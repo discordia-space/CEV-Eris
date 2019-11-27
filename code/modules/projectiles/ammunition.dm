@@ -211,29 +211,30 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+			to_chat(user, SPAN_WARNING("\The [src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
+			to_chat(user, SPAN_WARNING("\The [C] does not fit into \the [src]."))
 			return
 		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
-			to_chat(user, SPAN_WARNING("There is no ammo in [src]!"))
+			to_chat(user, SPAN_WARNING("There is no ammo in \the [src]!"))
 			return
-		if(!do_after(user, src.reload_delay, src))
-			to_chat(user, SPAN_WARNING("You stop loading ammo into [other]"))
+		if(other.stored_ammo.len >= other.max_ammo)
+			to_chat(user, SPAN_NOTICE("\The [other] is already full."))
 			return
+		var/diff = FALSE
 		for(var/obj/item/ammo in src.stored_ammo)
-			if(other.stored_ammo.len >= other.max_ammo)
-				break
-			var/obj/item/ammo_casing/T = removeCasing()
-			if(T)
-				other.insertCasing(T)
-			else
-				break
-		to_chat(user, SPAN_NOTICE("You're done here"))
+			if(other.stored_ammo.len < other.max_ammo && do_after(user, reload_delay/other.max_ammo, src) && other.insertCasing(removeCasing()))
+				diff = TRUE
+				continue
+			break
+		if(diff)
+			to_chat(user, SPAN_NOTICE("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
+		else
+			to_chat(user, SPAN_WARNING("You fail to load anything into \the [other]"))
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)
