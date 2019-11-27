@@ -211,16 +211,16 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+			to_chat(user, SPAN_WARNING("\The [src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
+			to_chat(user, SPAN_WARNING("\The [C] does not fit into \the [src]."))
 			return
 		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
-			to_chat(user, SPAN_WARNING("There is no ammo in [src]!"))
+			to_chat(user, SPAN_WARNING("There is no ammo in \the [src]!"))
 			return
 		if(other.stored_ammo.len >= other.max_ammo)
 			to_chat(user, SPAN_NOTICE("\The [other] is already full."))
