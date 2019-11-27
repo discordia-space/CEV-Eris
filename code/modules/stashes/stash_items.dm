@@ -6,5 +6,5 @@
 	name = "hidden stash"
 	desc = "a suspiciously lumpy sack full of mystery"
 	icon_state = "sack"
-	item_state = "giftbag"
+	item_state = "sack"
 	max_w_class = ITEM_SIZE_HUGE

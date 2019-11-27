@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/pug
+/obj/item/weapon/gun/projectile/shotgun/pug
 	name = "SG \"M12 Pug\""
 	desc = "A semi-auto, magazine-fed shotgun designed for close quarters combat, nicknamed 'Striker' by boarding parties. \
 			Robust and reliable design allows you to swap magazines on go and dump as many shells at your foes as you want... \
@@ -19,10 +19,10 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
 	recoil_buildup = 30
+	fire_delay = 3 //basically slightly nerfed version of SEMIAUTO_NODELAY to counter autoclickers
+				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 
-	firemodes = list(SEMI_AUTO_NODELAY)
-
-/obj/item/weapon/gun/projectile/automatic/pug/update_icon()
+/obj/item/weapon/gun/projectile/shotgun/pug/update_icon()
 	overlays.Cut()
 	icon_state = "[initial(icon_state)]"
 	if(ammo_magazine)
@@ -30,6 +30,6 @@
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		overlays += "slide"
 
-/obj/item/weapon/gun/projectile/automatic/pug/Initialize()
+/obj/item/weapon/gun/projectile/shotgun/pug/Initialize()
 	. = ..()
 	update_icon()

@@ -4,6 +4,7 @@
 	icon_state = "scalpel_t3"
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
+	armor_penetration = ARMOR_PEN_SHALLOW
 	sharp = TRUE
 	edge = TRUE
 	w_class = ITEM_SIZE_TINY
@@ -31,6 +32,7 @@
 	icon_state = "scalpel_t5"
 	damtype = "fire"
 	force = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_MODERATE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
 	degradation = 0.11
