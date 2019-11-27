@@ -395,7 +395,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		var/turf/our_turf = get_turf(src.loc)
 		if(M.client)
 			shake_camera(M, 15, 1)
-			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5, is_global = TRUE)
+			M.playsound_local(our_turf, 'sound/effects/alert.ogg', 100, 1, 0.5)
 
 // Misc
 /obj/item/weapon/paper/gravity_gen
