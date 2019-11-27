@@ -23,9 +23,8 @@
 	var/update_flag = 0
 
 /obj/machinery/portable_atmospherics/canister/examine(mob/user)
-	if(src.sealed == TRUE)
+	if(sealed == TRUE)
 		to_chat(user, SPAN_WARNING("The gasket has been sealed shut!"))
-		return
 
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1
@@ -272,8 +271,6 @@ update_flag
 			else if(sealed == FALSE)
 				to_chat(user, "You seal the gasket with a pulse of electricity.")
 				sealed = TRUE
-				SSnano.Destroy(src)
-				SSnano.update_uis(src) // exploit protection. no leaving the window open after sealing the can.
 				return
 			else if(sealed == TRUE)
 				to_chat(user, "You zap the gasket's seal, unlocking it with a voltaic crackle.")
@@ -299,10 +296,6 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if (src.destroyed)
 		return
-	if (sealed == TRUE)
-		to_chat(user, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
-		return
-
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -339,24 +332,27 @@ update_flag
 	if (!istype(src.loc, /turf))
 		return 0
 
-	if(!usr.canmove || usr.stat || usr.restrained() || sealed == 1 || !in_range(loc, usr)) // exploit protection -walter0o
+	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr)) // exploit protection -walter0o
 		usr << browse(null, "window=canister")
 		onclose(usr, "canister")
 		return
 
 	if(href_list["toggle"])
-		if (valve_open)
-			if (holding)
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+		if (sealed == TRUE)
+			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
+			return
+			if (valve_open)
+				if (holding)
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+				else
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 			else
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
-		else
-			if (holding)
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
-			else
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
-				log_open()
-		valve_open = !valve_open
+				if (holding)
+					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
+				else
+					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
+					log_open()
+			valve_open = !valve_open
 
 	if (href_list["remove_tank"])
 		if(holding)
