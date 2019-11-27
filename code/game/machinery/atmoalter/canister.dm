@@ -22,10 +22,6 @@
 	var/release_log = ""
 	var/update_flag = 0
 
-/obj/machinery/portable_atmospherics/canister/examine(mob/user)
-	if(sealed == TRUE)
-		to_chat(user, SPAN_WARNING("The gasket has been sealed shut!"))
-
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1
 
