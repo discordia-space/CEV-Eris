@@ -11,6 +11,10 @@
 	name = "Milk"
 	build_path = /obj/item/weapon/reagent_containers/food/drinks/milk
 
+/datum/design/bioprinter/soap
+	name = "Soap"
+	build_path = /obj/item/weapon/soap/nanotrasen
+
 //[NUTRIMENTS]
 /datum/design/bioprinter/ez
 	name = "EZ-Nutrient"
