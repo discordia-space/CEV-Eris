@@ -6,22 +6,6 @@
 /mob/living/proc/handle_recoil(var/obj/item/weapon/gun/G)
 	if(G.recoil_buildup)
 		recoil += G.recoil_buildup
-		/* I was told to remove this
-		if(dual_wielding) //to nerf make it less overpowered, you will suffer even more recoil
-			recoil += G.recoil_buildup * 0.5 //it still depends on a gun you fire
-			var/obj/item/weapon/gun/off_hand
-			var/mob/living/carbon/human/H = user
-			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
-				off_hand = H.l_hand
-
-			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
-				off_hand = H.r_hand
-
-			if(off_hand)
-				off_hand.recoil += off_hand.G.recoil_buildup * 0.5
-
-			recoil = min(MAX_ACCURACY_OFFSET, recoil) //No sense in building up recoil to numbers that wan't affect it anymore
-		*/
 		update_recoil(G)
 
 
