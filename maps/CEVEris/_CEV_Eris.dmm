@@ -27101,7 +27101,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
+/obj/machinery/vending/assist,
+/turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/robotics)
 "biS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -28517,6 +28518,7 @@
 	icon_state = "alarm0";
 	pixel_x = 24
 	},
+/obj/item/weapon/tool/hemostat,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "blA" = (
@@ -32932,7 +32934,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_research{
 	name = "Research and Development";
-	req_access = list(110)
+	req_access = list(5)
 	},
 /obj/machinery/door/blast/regular/open{
 	id = "RDDoorLockdown";
@@ -82382,12 +82384,11 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dBJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay)
@@ -107951,14 +107952,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/engine_room)
-"eFG" = (
-/obj/structure/multiz/ladder,
-/turf/simulated/floor/tiled/techmaint,
-/area/space)
-"eFH" = (
-/obj/random/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/space)
 "eFI" = (
 /obj/machinery/computer/general_air_control{
 	dir = 1;
@@ -282851,10 +282844,10 @@ abF
 abF
 abF
 abF
-aae
-aae
-aae
-aae
+alb
+alb
+alb
+alb
 aaa
 aaa
 aaa
@@ -283053,10 +283046,10 @@ dVb
 dVr
 alb
 abF
-aae
-eFG
-eFH
-aae
+alb
+dMn
+aof
+alb
 aaa
 aaa
 aaa
