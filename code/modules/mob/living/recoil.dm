@@ -35,8 +35,6 @@
 	var/time = world.time - last_recoil_update
 	if(time)
 		//About the following code. This code is a mess, and we SHOULD NOT USE WORLD TIME FOR RECOIL
-		//If anything, recoil should be a human var
-		//But until that done, here is a way to cut down a recoil for sure with time
 		var/timed_reduction = min(time**2, 400)
 		recoil -= timed_reduction * calc_reduction()
 
