@@ -490,6 +490,7 @@
 	designs = list(
 		/datum/design/bioprinter/meat,
 		/datum/design/bioprinter/milk,
+		/datum/design/bioprinter/soap,
 
 		/datum/design/bioprinter/ez,
 		/datum/design/bioprinter/l4z,
