@@ -869,5 +869,5 @@
 /obj/effect/flicker_overlay/New(atom/loc)
 	..()
 	icon = loc.icon
-	layer = loc.layer + 0.1
+	layer = loc.layer
 	plane = loc.plane
