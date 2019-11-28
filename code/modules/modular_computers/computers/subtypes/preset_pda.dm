@@ -127,9 +127,7 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 
-/obj/item/weapon/storage/box/PDAs/Initialize()
-	. = ..()
-
+/obj/item/weapon/storage/box/PDAs/populate_contents()
 	new /obj/item/modular_computer/pda(src)
 	new /obj/item/modular_computer/pda(src)
 	new /obj/item/modular_computer/pda(src)
