@@ -267,6 +267,7 @@ update_flag
 			else if(sealed == FALSE)
 				to_chat(user, "You seal the gasket with a pulse of electricity.")
 				sealed = TRUE
+				desc = "<font color='#8a0808'><i>The gasket has been sealed shut!</i></font>"
 				return
 			else if(sealed == TRUE)
 				to_chat(user, "You zap the gasket's seal, unlocking it with a voltaic crackle.")
