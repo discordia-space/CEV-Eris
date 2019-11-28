@@ -228,7 +228,7 @@
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
-		wires.Interact(user)
+		wires?.Interact(user)
 		return
 
 	if(default_part_replacement(I, user))
@@ -869,5 +869,5 @@
 /obj/effect/flicker_overlay/New(atom/loc)
 	..()
 	icon = loc.icon
-	layer = loc.layer + 0.1
+	layer = loc.layer
 	plane = loc.plane
