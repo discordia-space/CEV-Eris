@@ -18,12 +18,14 @@
 	var/maxamount = 15
 	var/reload_delay = 0
 
-/obj/item/ammo_casing/New()
-	..()
+/obj/item/ammo_casing/Initialize()
+	. = ..()
 	if(ispath(projectile_type))
 		BB = new projectile_type(src)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
+	if(amount > 1)
+		update_icon()
 
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
