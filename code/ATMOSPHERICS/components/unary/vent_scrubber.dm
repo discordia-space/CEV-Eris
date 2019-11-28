@@ -22,7 +22,7 @@
 	var/datum/radio_frequency/radio_connection
 
 	var/scrubbing = SCRUBBING
-	var/list/scrubbing_gas = list("carbon_dioxide")
+	var/list/scrubbing_gas = list("carbon_dioxide","sleeping_agent","plasma")
 	var/expanded_range = FALSE
 
 	var/panic = FALSE //is this scrubber panicked?
