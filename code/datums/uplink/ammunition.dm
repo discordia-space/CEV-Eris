@@ -53,7 +53,7 @@
 
 /datum/uplink_item/item/ammo/slpistol
 	name = ".35 Auto SL"
-	desc = "Standard .40 speed loader, loaded with lethal ammunition. Can fit 6 bullets."
+	desc = "Standard .35 Auto speed loader, loaded with lethal ammunition. Can fit 6 bullets."
 	item_cost = 2
 	path = /obj/item/ammo_magazine/slpistol
 
