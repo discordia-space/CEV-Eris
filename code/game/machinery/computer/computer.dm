@@ -54,7 +54,7 @@
 	if(prob(Proj.get_structure_damage()))
 		if(!(stat & BROKEN))
 			var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
-			S.set_up(6, 0, src)
+			S.set_up(3, 0, src)
 			S.start()
 		set_broken()
 	..()
