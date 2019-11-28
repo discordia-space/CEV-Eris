@@ -59,10 +59,6 @@
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
 
-	var/recoil = 0
-	var/last_recoil_update = 0
-	var/recoil_timer
-
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
 
@@ -304,7 +300,7 @@
 	update_firemode() //Stops automatic weapons spamming this shit endlessly
 
 //called after successfully firing
-/obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
+/obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
 		playsound(user, fire_sound_silenced, 15, 1, -3)
@@ -326,96 +322,8 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
-	handle_recoil(user)
+	user.handle_recoil(src)
 	update_icon()
-
-/obj/item/weapon/gun/proc/handle_recoil(mob/user)
-	if(recoil_buildup)
-		recoil += recoil_buildup
-
-		if(dual_wielding) //to nerf make it less overpowered, you will suffer even more recoil
-			recoil += recoil_buildup * 0.5 //it still depends on a gun you fire
-			var/obj/item/weapon/gun/off_hand
-			var/mob/living/carbon/human/H = user
-			if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
-				off_hand = H.l_hand
-
-			else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
-				off_hand = H.r_hand
-
-			if(off_hand)
-				off_hand.recoil += off_hand.recoil_buildup * 0.5
-
-			recoil = min(MAX_ACCURACY_OFFSET, recoil) //No sense in building up recoil to numbers that wan't affect it anymore
-		update_recoil(user)
-
-
-/obj/item/weapon/gun/proc/calc_reduction(mob/user = loc)
-	if(!istype(user))
-		return 0
-	return max(BASE_ACCURACY_REGEN + user.stats.getStat(STAT_VIG)*VIG_ACCURACY_REGEN, MIN_ACCURACY_REGEN)
-
-//Called to get current recoil value
-/obj/item/weapon/gun/proc/calc_recoil(mob/user)
-	if(!recoil || !last_recoil_update)
-		return 0
-	if(!istype(user))
-		recoil = 0
-		last_recoil_update = 0
-	else
-		var/time = world.time - last_recoil_update
-		if(time)
-			//About the following code. This code is a mess, and we SHOULD NOT USE WORLD TIME FOR RECOIL
-			//If anything, recoil should be a human var
-			//But until that done, here is a way to cut down a recoil for sure with time
-			var/timed_reduction = min(time**2, 400)
-			recoil -= timed_reduction * calc_reduction(user)
-
-			if(recoil <= 0)
-				recoil = 0
-				last_recoil_update = 0
-			else
-				last_recoil_update = world.time
-	return recoil
-
-//Called after setting recoil
-/obj/item/weapon/gun/proc/update_recoil(mob/user)
-	if(recoil <= 0)
-		recoil = 0
-		last_recoil_update = 0
-	else
-		if(last_recoil_update)
-			calc_recoil(user)
-		else
-			last_recoil_update = world.time
-	deltimer(recoil_timer)
-	recoil_timer = null
-	update_recoil_cursor(user)
-
-/obj/item/weapon/gun/proc/update_recoil_cursor(mob/living/user = loc)
-	if(!istype(user))
-		return
-
-	update_cursor(user)
-
-	var/bottom = 0
-	switch(recoil)
-		if(0 to 10)
-			;
-		if(10 to 20)
-			bottom = 10
-		if(20 to 30)
-			bottom = 20
-		if(30 to 50)
-			bottom = 30
-		if(50 to MAX_ACCURACY_OFFSET)
-			bottom = 50
-		if(MAX_ACCURACY_OFFSET to INFINITY)
-			bottom = MAX_ACCURACY_OFFSET
-	if(bottom)
-		var/reduction = calc_reduction(user)
-		if(reduction > 0)
-			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -444,7 +352,7 @@
 
 
 //does the actual launching of the projectile
-/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/living/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
@@ -452,8 +360,8 @@
 	if(params)
 		P.set_clickpoint(params)
 	var/offset = 0
-	if(calc_recoil(user))
-		offset += recoil
+	if(user.calc_recoil())
+		offset += user.recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
 

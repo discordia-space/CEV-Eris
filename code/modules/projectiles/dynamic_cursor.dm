@@ -41,7 +41,7 @@
 	if(H.client)
 		H.client.mouse_pointer_icon = initial(H.client.mouse_pointer_icon)
 		var/icon/scaled = 'icons/obj/gun_cursors/standard/standard1.dmi' //Default cursor
-		switch(calc_recoil(H))
+		switch(H.calc_recoil())
 			if(0 to 10)
 				scaled = 'icons/obj/gun_cursors/standard/standard1.dmi'
 			if(10 to 20)
