@@ -24,7 +24,11 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 
-/obj/item/weapon/storage/deferred/proc/spawn_contents()
+/obj/item/weapon/storage/deferred/populate_contents()
+	// Do not create contents if they are already spawned, or if prompted to by Initialize call
+	if(!initialized || contents_spawned)
+		return
+
 	contents_spawned = TRUE
 	for (var/a in initial_contents)
 		var/quantity = 1
@@ -35,21 +39,17 @@
 			new a(src)
 	expand_to_fit()
 
-/obj/item/weapon/storage/deferred/open(var/mob/user)
-	if (!contents_spawned)
-		spawn_contents()
-	.=..()
+/obj/item/weapon/storage/deferred/open(mob/user)
+	populate_contents()
+	. = ..()
 
-/obj/item/weapon/storage/deferred/show_to(var/mob/user)
-	if (!contents_spawned)
-		spawn_contents()
-	.=..()
+/obj/item/weapon/storage/deferred/show_to(mob/user)
+	populate_contents()
+	. = ..()
 
-
-/obj/item/weapon/storage/deferred/can_be_inserted(obj/item/W as obj, stop_messages = 0)
-	if (!contents_spawned)
-		spawn_contents()
-	.=..()
+/obj/item/weapon/storage/deferred/can_be_inserted(obj/item/W, stop_messages = 0)
+	populate_contents()
+	. = ..()
 
 
 /obj/item/weapon/storage/deferred/rations

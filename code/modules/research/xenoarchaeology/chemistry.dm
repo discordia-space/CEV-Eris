@@ -17,8 +17,7 @@
 	name = "solution tray box"
 	icon_state = "solution_trays"
 
-/obj/item/weapon/storage/box/solution_trays/Initialize()
-	. = ..()
+/obj/item/weapon/storage/box/solution_trays/populate_contents()
 	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
 	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
 	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)

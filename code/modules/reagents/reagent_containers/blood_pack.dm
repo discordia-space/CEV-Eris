@@ -3,8 +3,7 @@
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
 
-/obj/item/weapon/storage/box/bloodpacks/Initialize()
-	. = ..()
+/obj/item/weapon/storage/box/bloodpacks/populate_contents()
 	new /obj/item/weapon/reagent_containers/blood(src)
 	new /obj/item/weapon/reagent_containers/blood(src)
 	new /obj/item/weapon/reagent_containers/blood(src)

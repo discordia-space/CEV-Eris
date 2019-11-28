@@ -19,10 +19,10 @@
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTIC = 2)
 	var/worn_access = FALSE
 
-/obj/item/weapon/storage/backpack/New()
+/obj/item/weapon/storage/backpack/Initialize()
+	. = ..()
 	if (!item_state)
 		item_state = icon_state
-	..()
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (!worn_check())
@@ -285,8 +285,7 @@
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel_leather"
 
-/obj/item/weapon/storage/backpack/satchel/leather/withwallet/New()
-	..()
+/obj/item/weapon/storage/backpack/satchel/leather/withwallet/populate_contents()
 	new /obj/item/weapon/storage/wallet/random(src)
 
 //Faction-specific satchels

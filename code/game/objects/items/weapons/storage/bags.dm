@@ -131,9 +131,6 @@
 	storage_slots = 7
 	allow_quick_empty = TRUE // this function is superceded
 
-/obj/item/weapon/storage/bag/sheetsnatcher/New()
-	..()
-
 /obj/item/weapon/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W,/obj/item/stack/material))
 		if(!stop_messages)
