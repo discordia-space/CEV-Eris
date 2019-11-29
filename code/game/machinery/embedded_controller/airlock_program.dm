@@ -284,7 +284,8 @@
 		"sigtype" = "command",
 		"power" = power,
 		"direction" = direction,
-		"set_external_pressure" = pressure
+		"set_external_pressure" = pressure,
+		"expanded_range" = TRUE
 	)
 	post_signal(signal)
 

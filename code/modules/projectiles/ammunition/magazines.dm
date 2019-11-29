@@ -417,11 +417,6 @@
 	max_ammo = 8
 	ammo_color = "-slug"
 
-/obj/item/ammo_magazine/m12/empty
-	icon_state = "m12"
-	ammo_color = ""
-	initial_ammo = 0
-
 /obj/item/ammo_magazine/m12/pellet
 	name = "ammo drum (12 gauge pellet)"
 	icon_state = "m12_pellets"
@@ -439,3 +434,8 @@
 	icon_state = "m12_beanbag"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	ammo_color = "-beanbag"
+
+/obj/item/ammo_magazine/m12/empty
+	name = "ammo drum (12 gauge)"
+	icon_state = "m12"
+	initial_ammo = 0

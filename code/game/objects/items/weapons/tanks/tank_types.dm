@@ -14,10 +14,12 @@
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
 	icon_state = "oxygen"
+	item_state = "oxygen"
 	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
 	default_gas = "oxygen"
+	slot_flags = SLOT_BACK
 
 /obj/item/weapon/tank/oxygen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 10)
@@ -27,10 +29,12 @@
 /obj/item/weapon/tank/oxygen/yellow
 	desc = "A tank of oxygen, this one is yellow."
 	icon_state = "oxygen_f"
+	item_state = "oxygen_f"
 
 /obj/item/weapon/tank/oxygen/red
 	desc = "A tank of oxygen, this one is red."
 	icon_state = "oxygen_fr"
+	item_state = "oxygen_fr"
 
 
 /*

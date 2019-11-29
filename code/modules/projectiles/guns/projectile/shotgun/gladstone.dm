@@ -10,6 +10,4 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	price_tag = 3000
-	damage_multiplier = 1.2
-	penetration_multiplier = 1.1
 	recoil_buildup = 14

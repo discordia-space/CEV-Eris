@@ -5,6 +5,10 @@
 	icon_state = "science"
 
 /obj/structure/closet/secure_closet/personal/scientist/populate_contents()
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/purple/scientist(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/purple/scientist(src)
 	new /obj/item/clothing/under/rank/scientist(src)
 	//new /obj/item/clothing/suit/labcoat/science(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
@@ -20,6 +24,7 @@
 	icon_state = "rd"
 
 /obj/structure/closet/secure_closet/reinforced/RD/populate_contents()
+	new /obj/item/weapon/storage/backpack/satchel/leather/withwallet(src)
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)
 	new /obj/item/clothing/under/rank/expedition_overseer(src)

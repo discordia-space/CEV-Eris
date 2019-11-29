@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/automatic/idaho
-	name = "FS SMG .30 Auto \"Idaho\""
+	name = "FS SMG .35 Auto \"Idaho\""
 	desc = "The Idaho is a cheap self-defence weapon, mass-produced by \"Frozen Star\" for paramilitary and private use. Uses 30 Auto rounds."
 	icon = 'icons/obj/guns/projectile/idaho.dmi'
 	icon_state = "idaho"
@@ -15,7 +15,7 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_WOOD = 4)
 	price_tag = 1600
-	damage_multiplier = 0.75
+	damage_multiplier = 0.9
 	recoil_buildup = 4.5
 
 	firemodes = list(

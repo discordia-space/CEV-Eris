@@ -1,7 +1,7 @@
 /obj/item/weapon/disk
 	name = "disk"
 	icon = 'icons/obj/discs.dmi'
-	icon_state = "blue"
+	icon_state = "data-red"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
@@ -13,14 +13,14 @@
 //TO-DO: Make the genetics machine accept them.
 /obj/item/weapon/disk/data
 	name = "Cloning Data Disk"
-	icon_state = "purple"
+	icon_state = "data-purple"
 	var/datum/dna2/record/buf = null
 	var/read_only = FALSE //Well,it's still a floppy disk
 
 /obj/item/weapon/disk/data/New()
 	..()
-	var/diskcolor = pick(0,1,2)
-	icon_state = "datadisk[diskcolor]"
+	var/diskcolor = pick("red","blue","green","purple","black")
+	icon_state = "data-[diskcolor]"
 
 /obj/item/weapon/disk/data/proc/initializeDisk()
 	buf = new

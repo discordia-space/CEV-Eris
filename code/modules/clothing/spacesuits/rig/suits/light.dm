@@ -4,7 +4,7 @@
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
-	armor = list(melee = 50, bullet = 35, energy = 30, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 35, energy = 30, bomb = 25, bio = 100, rad = 20)
 	emp_protection = 10
 	slowdown = 0
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS

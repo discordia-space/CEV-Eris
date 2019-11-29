@@ -54,6 +54,10 @@
 	icon_door = "mixed"
 
 /obj/structure/closet/jcloset/populate_contents()
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/sport/purple(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel(src)
 	new /obj/item/clothing/under/rank/janitor(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/clothing/gloves/thick(src)
@@ -97,9 +101,9 @@
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/church(src)
+		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/church(src)
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 
 /obj/structure/closet/acolyte
 	name = "acolyte closet"
@@ -115,6 +119,6 @@
 	new /obj/item/clothing/suit/armor/vest/acolyte(src)
 	new /obj/item/clothing/head/helmet/acolyte(src)
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/church(src)
+		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/church(src)
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
