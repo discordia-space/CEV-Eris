@@ -286,7 +286,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter
-	disk_name = "NeoTeology Bioprinter Production"
+	disk_name = "NeoTheology Bioprinter Production"
 	icon_state = "neotheology"
 
 	license = -1
@@ -319,7 +319,7 @@
 
 // Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
-	disk_name = "NeoTeology Bioprinter Pack"
+	disk_name = "NeoTheology Bioprinter Pack"
 	icon_state = "neotheology"
 
 	license = -1
@@ -344,7 +344,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
-	disk_name = "NeoTeology Circuit Pack"
+	disk_name = "NeoTheology Circuit Pack"
 	icon_state = "neotheology"
 
 	license = -1
