@@ -19,13 +19,30 @@
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
 	var/bolt_open = 0
+	var/item_suffix = ""
 	zoom_factor = 2.0
 
+/obj/item/weapon/gun/projectile/heavysniper/ironhammer
+	name = "FS AMR \"Penetrator\""
+
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
-	if(bolt_open)
-		icon_state = "heavysniper-open"
+	..()
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if (item_suffix)
+		itemstring += "[item_suffix]"
+
+	if (bolt_open)
+		iconstring += "_open"
 	else
-		icon_state = "heavysniper"
+		iconstring += "_closed"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
+
+
 
 /obj/item/weapon/gun/projectile/heavysniper/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
 	if(zoom)
@@ -68,9 +85,10 @@
 	..()
 
 /obj/item/weapon/weaponparts
+	var/part_color = ""
 	name = "weaponpart"
 	desc = "how did you get it?"
-	icon = 'icons/obj/weaponparts.dmi'
+	icon = 'icons/obj/weaponparts.dmi'	
 
 /obj/item/weapon/weaponparts/heavysniper/stock
 	name = "sniper stock"
@@ -92,7 +110,7 @@
 	desc = "This is a barrel from a sniper rifle."
 	icon_state = "sniper_barrel"
 
-/obj/item/weapon/weaponparts/heavysniper/stock/attackby(obj/item/W, mob/user)
+/obj/item/weapon/weaponparts/heavysniper/stock/attackby(obj/item/W, mob/user,)
 	if(istype(W,/obj/item/weapon/weaponparts/heavysniper/reciever))
 		to_chat(user, "You attach the reciever to the stock")
 		var/obj/item/weapon/weaponparts/heavysniper/stockreciever/HS = new (get_turf(src))
