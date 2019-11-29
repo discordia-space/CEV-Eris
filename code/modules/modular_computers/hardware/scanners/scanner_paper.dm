@@ -12,18 +12,18 @@
 
 /obj/item/weapon/computer_hardware/scanner/paper/do_on_afterattack(mob/user, obj/item/weapon/paper/target, proximity)
 	if(!driver || !driver.using_scanner)
-		return
+		return FALSE
 	if(!can_use_scanner(user, target, proximity))
-		return
+		return FALSE
 	var/data = html2pencode(target.info)
 	if(!data)
-		return
+		return FALSE
 	if (!scan_power_use())
-		return
+		return FALSE
 	to_chat(user, "You scan \the [target] with [src].")
 	driver.data_buffer = data
 	SSnano.update_uis(driver.NM)
+	return TRUE
 
 /obj/item/weapon/computer_hardware/scanner/paper/do_on_attackby(mob/user, atom/target)
-	do_on_afterattack(user, target, TRUE)
-	return TRUE
+	return do_on_afterattack(user, target, TRUE)

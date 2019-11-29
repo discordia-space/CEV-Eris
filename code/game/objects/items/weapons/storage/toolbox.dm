@@ -21,52 +21,54 @@
 	icon_state = "red"
 	item_state = "toolbox_red"
 
-	New()
-		..()
-		new /obj/item/weapon/tool/crowbar(src)
-		new /obj/item/weapon/extinguisher/mini(src)
-		if(prob(50))
-			new /obj/item/device/lighting/toggleable/flashlight(src)
-		else
-			new /obj/item/device/lighting/glowstick/flare(src)
-		if (prob(40))
-			new /obj/item/weapon/tool/tape_roll(src)
-		new /obj/item/device/radio(src)
+/obj/item/weapon/storage/toolbox/emergency/populate_contents()
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/weapon/extinguisher/mini(src)
+	if(prob(50))
+		new /obj/item/device/lighting/toggleable/flashlight(src)
+	else
+		new /obj/item/device/lighting/glowstick/flare(src)
+	if (prob(40))
+		new /obj/item/weapon/tool/tape_roll(src)
+	new /obj/item/device/radio(src)
 
 /obj/item/weapon/storage/toolbox/mechanical
 	name = "mechanical toolbox"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 
-	New()
-		..()
-		new /obj/item/weapon/tool/screwdriver(src)
-		new /obj/item/weapon/tool/wrench(src)
-		new /obj/item/weapon/tool/weldingtool(src)
-		new /obj/item/weapon/tool/crowbar(src)
-		new /obj/item/device/scanner/gas(src)
-		new /obj/item/weapon/tool/wirecutters(src)
+/obj/item/weapon/storage/toolbox/mechanical/populate_contents()
+	new /obj/item/weapon/tool/screwdriver(src)
+	new /obj/item/weapon/tool/wrench(src)
+	new /obj/item/weapon/tool/weldingtool(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/device/scanner/gas(src)
+	new /obj/item/weapon/tool/wirecutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical
 	name = "electrical toolbox"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
 
-	New()
-		..()
-		var/color = pick("red","yellow","green","blue","pink","orange","cyan","white")
-		new /obj/item/weapon/tool/screwdriver(src)
-		new /obj/item/weapon/tool/wirecutters(src)
-		new /obj/item/device/t_scanner(src)
-		new /obj/item/weapon/tool/crowbar(src)
+/obj/item/weapon/storage/toolbox/electrical/populate_contents()
+	var/color = pick("red","yellow","green","blue","pink","orange","cyan","white")
+
+	new /obj/item/weapon/tool/screwdriver(src)
+	new /obj/item/weapon/tool/wirecutters(src)
+	new /obj/item/device/t_scanner(src)
+	new /obj/item/weapon/tool/crowbar(src)
+	new /obj/item/stack/cable_coil(src,30,color)
+	new /obj/item/stack/cable_coil(src,30,color)
+
+	if(prob(5))
+		new /obj/item/clothing/gloves/insulated(src)
+	else if(prob(10))
+		new /obj/item/weapon/tool/multitool(src)
+	else
 		new /obj/item/stack/cable_coil(src,30,color)
-		new /obj/item/stack/cable_coil(src,30,color)
-		if (prob(60))
-			new /obj/item/weapon/tool/tape_roll(src)
-		if(prob(5))
-			new /obj/item/clothing/gloves/insulated(src)
-		else
-			new /obj/item/stack/cable_coil(src,30,color)
+
+	if(prob(60))
+		new /obj/item/weapon/tool/tape_roll(src)
 
 /obj/item/weapon/storage/toolbox/syndicate
 	name = "suspicious looking toolbox"
@@ -75,12 +77,22 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
 	force = WEAPON_FORCE_DANGEROUS
 
-	New()
-		..()
-		new /obj/item/clothing/gloves/insulated(src)
-		new /obj/item/weapon/tool/screwdriver/combi_driver(src)
-		new /obj/item/weapon/tool/wrench/big_wrench(src)
-		new /obj/item/weapon/tool/weldingtool/advanced(src)
-		new /obj/item/weapon/tool/crowbar/pneumatic(src)
-		new /obj/item/weapon/tool/wirecutters/armature(src)
-		new /obj/item/weapon/tool/multitool(src)
+/obj/item/weapon/storage/toolbox/syndicate/populate_contents()
+	var/obj/item/weapon/tool/cell_tool
+
+	new /obj/item/clothing/gloves/insulated(src)
+
+	cell_tool = new /obj/item/weapon/tool/screwdriver/combi_driver(src)
+	qdel(cell_tool.cell)
+	cell_tool.cell = new /obj/item/weapon/cell/small/super(cell_tool)
+
+	cell_tool = new /obj/item/weapon/tool/crowbar/pneumatic(src)
+	qdel(cell_tool.cell)
+	cell_tool.cell = new /obj/item/weapon/cell/medium/super(cell_tool)
+
+	new /obj/item/weapon/tool/weldingtool/advanced(src)
+	new /obj/item/weapon/tool/wirecutters/armature(src)
+	new /obj/item/weapon/tool/multitool(src)
+	new /obj/item/weapon/cell/medium/super(src)
+	new /obj/item/weapon/cell/small/super(src)
+

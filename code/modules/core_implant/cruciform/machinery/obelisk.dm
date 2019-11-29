@@ -27,7 +27,7 @@
 /obj/machinery/power/nt_obelisk/New()
 	..()
 
-/obj/machinery/attack_hand(mob/user as mob)
+/obj/machinery/power/nt_obelisk/attack_hand(mob/user)
 	return
 
 /obj/machinery/power/nt_obelisk/Process()

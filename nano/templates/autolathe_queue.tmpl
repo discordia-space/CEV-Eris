@@ -25,7 +25,7 @@
 			<div class="item">
 				<div class="itemLabelWidest">Materials</div>
 				{{for data.current.materials :material:material_i}}
-					{{material.amount = Math.round((material.req * data.mat_efficiency) * 100) / 100;}}
+					{{material.amount = data.current.adjust_materials ? Math.round((material.req * data.mat_efficiency) * 100) / 100 : material.req;}}
 					<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
 				{{/for}}
 			</div>

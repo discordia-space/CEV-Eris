@@ -21,6 +21,6 @@
 		new /obj/item/weapon/implant/core_implant/cruciform(src)
 	new /obj/item/weapon/material/knife/neotritual(src)
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/church(src)
+		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/church(src)
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)

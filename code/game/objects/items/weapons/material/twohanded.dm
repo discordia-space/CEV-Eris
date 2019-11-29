@@ -81,6 +81,7 @@
 	force_divisor = 0.6 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
 	sharp = 1
 	edge = 1
+	armor_penetration = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -107,6 +108,7 @@
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	force = WEAPON_FORCE_PAINFUL
+	armor_penetration = ARMOR_PEN_DEEP // It's a SPEAR!
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK

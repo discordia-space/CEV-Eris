@@ -1,15 +1,23 @@
 //This file is for defines related to damage, armor, and generally violence
 
 //Weapon Force: Provides the base damage for melee weapons.
-//These are due for a review and overhaul, generally too powerful
 #define WEAPON_FORCE_HARMLESS		3
 #define WEAPON_FORCE_WEAK			7
 #define WEAPON_FORCE_NORMAL			10
 #define WEAPON_FORCE_PAINFUL		15
 #define WEAPON_FORCE_DANGEROUS		20
 #define WEAPON_FORCE_ROBUST			26
-#define WEAPON_FORCE_LETHAL			51
+#define WEAPON_FORCE_BRUTAL			33
+#define WEAPON_FORCE_LETHAL			40
+#define WEAPON_FORCE_GODLIKE		88 // currently only used by the energy axe, which can only be obtained via admin verbs
 
+//Armor Penetration: Ignores a certain amount of armor for the purposes of inflicting damage.
+#define ARMOR_PEN_GRAZING			5
+#define ARMOR_PEN_SHALLOW			10
+#define ARMOR_PEN_MODERATE			15
+#define ARMOR_PEN_DEEP				20
+#define ARMOR_PEN_EXTREME			25
+#define ARMOR_PEN_HALF				50
 
 //Resistance values, used on floors, windows, airlocks, girders, and similar hard targets.
 //Resistance value is also used on simple animals.

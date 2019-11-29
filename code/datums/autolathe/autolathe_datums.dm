@@ -8,6 +8,7 @@
 
 	var/list/materials = list()		//List of materials. Format: "id" = amount.
 	var/list/chemicals = list()		//List of reagents. Format: "id" = amount.
+	var/adjust_materials = TRUE		//Whether material efficiency applies to this design
 	var/build_path = null			//The path of the object that gets created.
 	var/build_type = NONE			//Flag as to what kind machine the design is built in. See defines.
 	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
@@ -65,14 +66,25 @@
 //Add materials and reagents from object to the recipe
 /datum/design/proc/AddObjectMaterials(obj/O)
 	var/multiplier = 1
+	var/is_stack = FALSE
 
-	// If stackable, we want to multiply materials by amount
+	// If stackable, we want to multiply materials by the stack amount
 	if(istype(O, /obj/item/stack))
 		var/obj/item/stack/stack = O
 		multiplier = stack.get_amount()
+		is_stack = TRUE
 
-	var/list/mats = O.matter
-	if (mats && mats.len)
+	else if(istype(O, /obj/item/ammo_casing))
+		var/obj/item/ammo_casing/casing = O
+		multiplier = casing.amount
+		is_stack = TRUE
+
+	var/list/mats = O.get_matter()
+	if(length(mats))
+		// We don't want material efficiency to factor in for stacks, to prevent material dupe bugs
+		if(is_stack)
+			adjust_materials = FALSE
+
 		for(var/a in mats)
 			var/amount = mats[a] * multiplier
 			if(amount)
@@ -110,8 +122,10 @@
 	id = type
 
 /datum/design/proc/AssembleDesignUIData()
-	ui_data = list("id" = "[id]", "name" = name, "desc" = desc, "time" = time, "category" = category)
-
+	ui_data = list(
+		"id" = "[id]", "name" = name, "desc" = desc, "time" = time,
+		"category" = category, "adjust_materials" = adjust_materials
+	)
 	// ui_data["icon"] is set in asset code.
 
 	if(length(materials))
@@ -146,11 +160,11 @@
 	var/atom/A = new build_path(newloc)
 	A.Created()
 
-	if(mat_efficiency != 1 && isobj(A))
-		var/obj/O = A
-		if(length(O.matter))
-			for(var/i in O.matter)
-				O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
+	if(mat_efficiency != 1 && adjust_materials)
+		for(var/obj/O in A.GetAllContents(includeSelf = TRUE))
+			if(length(O.matter))
+				for(var/i in O.matter)
+					O.matter[i] = round(O.matter[i] * mat_efficiency, 0.01)
 
 	return A
 

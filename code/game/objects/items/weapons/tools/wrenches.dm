@@ -25,7 +25,7 @@
 	desc = "If everything else failed - bring a bigger wrench."
 	icon_state = "big-wrench"
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40)
-	matter = list(MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	degradation = 0.7

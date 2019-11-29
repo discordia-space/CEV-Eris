@@ -37,7 +37,7 @@
 	desc = "When you really need to crack open something."
 	icon_state = "pneumo_crowbar"
 	item_state = "jackhammer"
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
 	degradation = 0.7
 	use_power_cost = 0.8
