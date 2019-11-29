@@ -97,7 +97,7 @@
 
 /datum/design/autolathe/circuit/biogen
 	name = "NeoTeology Biomatter Generator, Power Generator"
-	build_path = bj/item/weapon/circuitboard/neotheology/biogen
+	build_path = /obj/item/weapon/circuitboard/neotheology/biogen
 
 /datum/design/autolathe/circuit/biogen_console
 	name = "NeoTeology Biomatter Generator, Power Generator Console"
