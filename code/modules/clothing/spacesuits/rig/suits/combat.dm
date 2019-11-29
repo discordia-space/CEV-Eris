@@ -6,7 +6,7 @@
 	desc = "A sleek and dangerous hardsuit for active combat."
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
-	armor = list(melee = 70, bullet = 70, energy = 60, bomb = 60, bio = 100, rad = 60)
+	armor = list(melee = 70, bullet = 70, energy = 60, bomb = 60, bio = 100, rad = 40)
 	slowdown = 1.35
 	drain = 4
 	offline_slowdown = 3
@@ -41,7 +41,7 @@
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ihs_combat
 	suit_type = "ironhammer hardsuit"
-	armor = list(melee = 70, bullet = 65, energy = 60, bomb = 60, bio = 100, rad = 70)
+	armor = list(melee = 70, bullet = 65, energy = 60, bomb = 60, bio = 100, rad = 50)
 	slowdown = 1.3 //so you must choose between good prot but you're slow as hell and meh prot but you can outrun turtle
 	drain = 3.5
 	offline_slowdown = 3

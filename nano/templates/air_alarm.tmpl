@@ -16,71 +16,93 @@ Used In File(s): \code\game\machinery\alarm.dm
 #define AALARM_SCREEN_SENSORS	5
 
  -->
-<H1>Air Status</H1>
-{{if data.has_environment}}
-	{{for data.environment}}
-		{{:value.name}}: 
-		{{if value.danger_level == 2}}
-			<span class='bad'>
-		{{else value.danger_level == 1}}
-			<span class='average'>
-		{{else}}
-			<span class='good'>
-		{{/if}}
-		{{:helper.fixed(value.value, 1)}}
-		</span>{{:value.unit}}<br>
-	{{/for}}
-	Local Status: {{if data.total_danger == 2}}
-			<span class='bad'>DANGER: Internals Required
-		{{else data.total_danger == 1}}
-			<span class='average'>Caution
-		{{else}}
-			<span class='good'>Optimal
-		{{/if}}
-		</span><br>
-    Area Status: {{if data.atmos_alarm}}<span class='bad'>Atmosphere alert in area</span>{{else data.fire_alarm}}<span class='bad'>Fire alarm in area</span>{{else}}No alerts{{/if}}
-{{else}}
-	<span class='bad'>Warning: Cannot obtain air sample for analysis.</span>
-{{/if}}
-<HR>
-    <table width="100%">
-        <tr>
-            <td>
-                <tr>
-                    <td>
-                        <H3>Remote Control</H3>
-                    </td>
-                    <td>
-                        <H3>Thermostat</H3>
-                    </td>
-                </tr>
-            </td>
-            <td>
-                <tr>
-                    <td>
-                        <div class="item">
-                            <div class="itemContent" style="width: 100%;">	
-                                {{:helper.link('Off',	null, { 'rcon' : 1}, data.remote_connection && !data.remote_access ? (data.rcon == 1 ? 'yellowButton' : 'disabled') : null, data.rcon == 1 ? 'selected' : null)}}
-                                {{:helper.link('Auto',	null, { 'rcon' : 2}, data.remote_connection && !data.remote_access ? (data.rcon == 2 ? 'yellowButton' : 'disabled') : null, data.rcon == 2 ? 'selected' : null)}}
-                                {{:helper.link('On',	null, { 'rcon' : 3}, data.remote_connection && !data.remote_access ? (data.rcon == 3 ? 'yellowButton' : 'disabled') : null, data.rcon == 3 ? 'selected' : null)}}
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        {{:helper.link(data.target_temperature, null, { 'temperature' : 1})}}
-                    </td>
-                </tr>
-            </td>
-        </tr>
-    </table>
-<HR>
-{{if (data.locked && !data.remote_connection) || (data.remote_connection && ! data.remote_access)}}
-	{{if data.remote_connection}}
-		<span class='noticePlaceholder'>(Current remote control settings and alarm status restricts access.)</span>
+<div class="display">
+	<header><h3>Air Status</h3></header>
+	<article>
+	{{if data.has_environment}}
+		{{for data.environment}}
+		<section>
+			<span class="label">{{:value.name.toTitleCase()}}:</span>
+			<div class="content">
+				{{if value.danger_level == 2}}
+				<span class='bad'>
+				{{else value.danger_level == 1}}
+				<span class='average'>
+				{{else}}
+				<span class='good'>
+				{{/if}}
+				{{:helper.fixed(value.value, 1)}}
+				</span>{{:value.unit}}
+			</div>
+		</section>
+		{{/for}}
+		<section>
+			<span class="label">Local Status:</span>
+			<div class="content">
+			{{if data.total_danger == 2}}
+				<span class='bad'>DANGER: Internals Required</span>
+			{{else data.total_danger == 1}}
+				<span class='average'>Caution</span>
+			{{else}}
+				<span class='good'>Optimal</span>
+			{{/if}}
+			</div>
+		</section>
+		<section>
+			<span class="label">Area Status:</span>
+			<div class="content">
+		    {{if data.atmos_alarm}}
+				<span class='bad'>Atmosphere alert in area</span>
+			{{else data.fire_alarm}}
+				<span class='bad'>Fire alarm in area</span>
+			{{else}}
+				No alerts
+			{{/if}}
+			</div>
+		</section>
 	{{else}}
-		<span class='noticePlaceholder'>(Swipe ID card to unlock interface.)</span>
+		<span class='bad'>Warning: Cannot obtain air sample for analysis.</span>
 	{{/if}}
+	<article>
+</div>
+
+<table width="100%">
+    <tr>
+        <td>
+            <tr>
+                <td><H3>Remote Control</H3></td>
+                <td><H3>Thermostat</H3></td>
+            </tr>
+        </td>
+        <td>
+            <tr>
+                <td>
+                    <div class="item">
+                        <div class="itemContent" style="width: 100%;">	
+                            {{:helper.link('Off',	null, { 'rcon' : 1}, data.remote_connection && !data.remote_access ? (data.rcon == 1 ? 'yellowButton' : 'disabled') : null, data.rcon == 1 ? 'selected' : null)}}
+                            {{:helper.link('Auto',	null, { 'rcon' : 2}, data.remote_connection && !data.remote_access ? (data.rcon == 2 ? 'yellowButton' : 'disabled') : null, data.rcon == 2 ? 'selected' : null)}}
+                            {{:helper.link('On',	null, { 'rcon' : 3}, data.remote_connection && !data.remote_access ? (data.rcon == 3 ? 'yellowButton' : 'disabled') : null, data.rcon == 3 ? 'selected' : null)}}
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    {{:helper.link(data.target_temperature, null, { 'temperature' : 1})}}
+                </td>
+            </tr>
+        </td>
+    </tr>
+</table>
+
+{{if (data.locked && !data.remote_connection) || (data.remote_connection && !data.remote_access)}}
+<div class='notice'><span class='noticePlaceholder'>
+	{{if data.remote_connection}}
+		Current remote control settings and alarm status restricts access
+	{{else}}
+		Swipe an ID card to unlock interface
+	{{/if}}
+</span></div>
 {{else}}
+	<HR>
     {{if data.screen != 1}}
         <div class="item">{{:helper.link('Main Menu', null, { 'screen' : 1})}}</div>
     {{/if}}
@@ -116,34 +138,32 @@ Used In File(s): \code\game\machinery\alarm.dm
 			<div class="item">
 			{{:value.long_name}}</div>
 			<div class="item">
-				<div class="itemLabel">
-					Operating:
-				</div>
+				<div class="itemLabel">Operating:</div>
 				<div class="itemContent">
 					{{:helper.link(value.power ? 'On' : 'Off', null, { 'id_tag' : value.id_tag, 'command' : 'power', 'val' : value.power ? 0 : 1}, null, value.power ? null : 'redButton')}}
 				</div>
 			</div>
 			<div class="item">
-				<div class="itemLabel">
-					Operation Mode:
-				</div>
+				<div class="itemLabel">Operation Mode:</div>
 				<div class="itemContent">
 					{{:value.direction == "siphon" ? 'Siphoning' : 'Pressurizing'}}
 				</div>
 			</div>
 			<div class="item">
-				<div class="itemLabel">
-					Pressure Checks:
+				<div class="itemLabel">Range:</div>
+				<div class="itemContent">
+					{{:helper.link(value.expanded_range ? "Extended" : "Normal", null, { 'id_tag' : value.id_tag, 'command' : 'toggle_expanded_range', 'val' : 1}, null, value.expanded_range ? 'redButton' : null)}}
 				</div>
+			</div>
+			<div class="item">
+				<div class="itemLabel">Pressure Checks:</div>
 				<div class="itemContent">
 					{{:helper.link('External', null, { 'id_tag' : value.id_tag, 'command' : 'checks', 'val' : value.checks^1}, null, value.checks&1 ? 'selected' : null)}}
 					{{:helper.link('Internal', null, { 'id_tag' : value.id_tag, 'command' : 'checks', 'val' : value.checks^2}, null, value.checks&2 ? 'selected' : null)}}
 				</div>
 			</div>
 			<div class="item">
-				<div class="itemLabel">
-					External Pressure Bound:
-				</div>
+				<div class="itemLabel">External Pressure Bound:</div>
 				<div class="itemContent">
 					{{:helper.link(helper.fixed(value.external,2), null, { 'id_tag' : value.id_tag, 'command' : 'set_external_pressure'})}}
 					{{:helper.link('Reset', null, { 'id_tag' : value.id_tag, 'command' : 'reset_external_pressure'})}}
@@ -158,25 +178,25 @@ Used In File(s): \code\game\machinery\alarm.dm
 			<div class="item">
 			{{:value.long_name}}</div>
 			<div class="item">
-				<div class="itemLabel">
-					Operating:
-				</div>
+				<div class="itemLabel">Operating:</div>
 				<div class="itemContent">
 					{{:helper.link(value.power ? 'On' : 'Off', null, { 'id_tag' : value.id_tag, 'command' : 'power', 'val' : value.power ? 0 : 1}, null, value.power ? null : 'redButton')}}
 				</div>
 			</div>
 			<div class="item">
-				<div class="itemLabel">
-					Operation Mode:
-				</div>
+				<div class="itemLabel">Operation Mode:</div>
 				<div class="itemContent">
 					{{:helper.link(value.scrubbing ? 'Scrubbing' : 'Siphoning', null, { 'id_tag' : value.id_tag, 'command' : 'scrubbing', 'val' : value.scrubbing ? 0 : 1}, null, value.scrubbing ? null : 'redButton')}}
 				</div>
 			</div>
 			<div class="item">
-				<div class="itemLabel">
-					Filters:
+				<div class="itemLabel">Range:</div>
+				<div class="itemContent">
+					{{:helper.link(value.expanded_range ? "Extended" : "Normal", null, { 'id_tag' : value.id_tag, 'command' : 'toggle_expanded_range', 'val' : 1}, null, value.expanded_range ? 'redButton' : null)}}
 				</div>
+			</div>
+			<div class="item">
+				<div class="itemLabel">Filters:</div>
 				<div class="itemContent">
 					{{for value.filters :filterValue:filterIndex}}
 						{{:helper.link(filterValue.name, null, { 'id_tag' : value.id_tag, 'command' : filterValue.command, 'val' : filterValue.val ? 0 : 1}, null, filterValue.val ? 'selected' : null)}}

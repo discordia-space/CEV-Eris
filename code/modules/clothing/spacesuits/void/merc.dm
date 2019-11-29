@@ -26,10 +26,10 @@
 //Syndicate rig
 /obj/item/clothing/head/helmet/space/void/merc
 	name = "blood-red voidsuit helmet"
-	desc = "An advanced helmet designed for work in special operations. Property of Gorlex Marauders."
+	desc = "An advanced voidsuit helmet designed to provide protection in combat. Frequently employed by interstellar mercenaries."
 	icon_state = "rig0-syndie"
 	item_state = "syndie_helm"
-	armor = list(melee = 60, bullet = 50, energy = 30, bomb = 35, bio = 100, rad = 60)
+	armor = list(melee = 60, bullet = 50, energy = 40, bomb = 55, bio = 100, rad = 60)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
 	camera_networks = list(NETWORK_MERCENARY)
@@ -38,9 +38,9 @@
 /obj/item/clothing/suit/space/void/merc
 	icon_state = "rig-syndie"
 	name = "blood-red voidsuit"
-	desc = "An advanced suit that protects against injuries during special operations. Property of Gorlex Marauders."
+	desc = "An advanced voidsuit that protects against injuries during combat operations. Frequently employed by interstellar mercenaries."
 	item_state = "syndie_voidsuit"
 	slowdown = 1
-	armor = list(melee = 60, bullet = 40, energy = 30, bomb = 35, bio = 100, rad = 60)
+	armor = list(melee = 60, bullet = 50, energy = 40, bomb = 55, bio = 100, rad = 60)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")

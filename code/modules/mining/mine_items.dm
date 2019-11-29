@@ -6,13 +6,11 @@
 	req_access = list(access_merchant)
 	access_occupy = list(access_mining)
 
-/obj/structure/closet/secure_closet/personal/miner/New()
-	..()
-	sleep(2)
+/obj/structure/closet/secure_closet/personal/miner/populate_contents()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/eng(src)
+		new /obj/item/weapon/storage/backpack/satchel/industrial(src)
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/thick(src)
