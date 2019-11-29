@@ -526,12 +526,12 @@
 
 /obj/structure/sign/faction/one_star
 	name = "One Star"
-	desc = "One Star's all-seeing eye, a banner of now fallen empire. Once they controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
+	desc = "One Star's all-seeing eye, a banner of a now fallen empire. They once controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
 	icon_state = "one_star"
 
 /obj/structure/sign/faction/one_star_old
 	name = "One Star"
-	desc = "One Star's all-seeing eye, a banner of now fallen empire. Once they controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
+	desc = "One Star's all-seeing eye, a banner of a now fallen empire. They once controlled this sector from their capital Earth. Now it's all just dust, forgotten derelicts, and automated ships."
 	icon_state = "one_star_old"
 
 /obj/structure/sign/faction/frozenstar
