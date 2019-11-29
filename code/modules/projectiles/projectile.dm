@@ -552,7 +552,7 @@
 	if (result == PROJECTILE_CONTINUE)
 		return FALSE
 
-	if(isliving(target_mob))
+	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
 		if(damage > 10 && damage_type == BRUTE)
