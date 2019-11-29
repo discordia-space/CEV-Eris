@@ -34,6 +34,7 @@
 
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
+	var/recoil_decline = 400 //How quickly recoil dissipates.
 
 	var/muzzle_flash = 3
 	var/requires_two_hands
@@ -368,7 +369,7 @@
 			//About the following code. This code is a mess, and we SHOULD NOT USE WORLD TIME FOR RECOIL
 			//If anything, recoil should be a human var
 			//But until that done, here is a way to cut down a recoil for sure with time
-			var/timed_reduction = min(time**2, 400)
+			var/timed_reduction = min(time**2, recoil_decline)
 			recoil -= timed_reduction * calc_reduction(user)
 
 			if(recoil <= 0)
