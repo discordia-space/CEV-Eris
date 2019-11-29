@@ -555,7 +555,7 @@
 	if(isliving(target_mob))
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
-		if(damage && damage_type == BRUTE)
+		if(damage > 10 && damage_type == BRUTE)
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
