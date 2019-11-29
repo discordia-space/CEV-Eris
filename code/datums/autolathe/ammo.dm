@@ -1,26 +1,26 @@
 /datum/design/autolathe/ammo/shotgun
-	name = "shotgun shell (slug)"
-	build_path = /obj/item/ammo_casing/shotgun
+	name = "shotgun shells (slug)"
+	build_path = /obj/item/ammo_casing/shotgun/prespawned
 
 /datum/design/autolathe/ammo/shotgun_pellet
-	name = "shotgun shell (buckshot)"
-	build_path = /obj/item/ammo_casing/shotgun/pellet
+	name = "shotgun shells (buckshot)"
+	build_path = /obj/item/ammo_casing/shotgun/pellet/prespawned
 
 /datum/design/autolathe/ammo/stunshell
-	name = "shotgun shell (taser)"
-	build_path = /obj/item/ammo_casing/shotgun/stunshell
+	name = "shotgun shells (taser)"
+	build_path = /obj/item/ammo_casing/shotgun/stunshell/prespawned
 
 /datum/design/autolathe/ammo/shotgun_blanks
-	name = "shotgun shell (blank)"
-	build_path = /obj/item/ammo_casing/shotgun/blank
+	name = "shotgun shells (blank)"
+	build_path = /obj/item/ammo_casing/shotgun/blank/prespawned
 
 /datum/design/autolathe/ammo/shotgun_beanbag
-	name = "shotgun shell (beanbag)"
-	build_path = /obj/item/ammo_casing/shotgun/beanbag
+	name = "shotgun shells (beanbag)"
+	build_path = /obj/item/ammo_casing/shotgun/beanbag/prespawned
 
 /datum/design/autolathe/ammo/shotgun_flash
-	name = "shotgun shell (flash)"
-	build_path = /obj/item/ammo_casing/shotgun/flash
+	name = "shotgun shells (flash)"
+	build_path = /obj/item/ammo_casing/shotgun/flash/prespawned
 
 /datum/design/autolathe/ammo/magazine_pistol
 	name = "standard magazine (.35 Auto)"
