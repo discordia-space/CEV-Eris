@@ -25,9 +25,8 @@
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
 
-/obj/item/weapon/storage/box/botanydisk/New()
-	..()
-	for(var/i = 0;i<7;i++)
+/obj/item/weapon/storage/box/botanydisk/populate_contents()
+	for(var/i in 1 to 7)
 		new /obj/item/weapon/disk/botany(src)
 
 /obj/machinery/botany
