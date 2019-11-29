@@ -17,6 +17,7 @@
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/deck/tarot(src)
+	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards (src)
 	for (var/i in 1 to 10)
 		new /obj/item/weapon/implant/core_implant/cruciform(src)
 	new /obj/item/weapon/material/knife/neotritual(src)
