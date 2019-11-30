@@ -140,8 +140,11 @@
 /datum/sanity/proc/changeLevel(amount)
 	if(sanity_invulnerability && amount < 0)
 		return
-	level = CLAMP(level + amount, 0, max_level)
-	updateLevel()
+	if(onDamage())
+		level = CLAMP(level + amount, 0, 60)
+	else
+		level = CLAMP(level + amount, 0, max_level)
+		updateLevel()
 
 /datum/sanity/proc/setLevel(amount)
 	if(sanity_invulnerability)
