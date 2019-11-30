@@ -22,9 +22,6 @@
 	var/item_suffix = ""
 	zoom_factor = 2.0
 
-/obj/item/weapon/gun/projectile/heavysniper/ironhammer
-	name = "FS AMR \"Penetrator\""
-
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()
 	..()
 
