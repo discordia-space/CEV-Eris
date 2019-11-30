@@ -59,7 +59,7 @@
 	icon_state = "AK_wood"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 3000
-
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	firemodes = list(
 	SEMI_AUTO_NODELAY,
 	BURST_5_ROUND
