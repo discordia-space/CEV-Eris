@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/vintorez
 	name = "Excelsior .20 \"Vintorez\""
-	desc = "This is a copy of design from country that does not exist anymore. Still a highly valuable for it's armor piercing capabilities."
+	desc = "This gun is a copy of a design from a country that no longer exists. It is still highly prized for its armor piercing capabilities."
 	icon = 'icons/obj/guns/projectile/vintorez.dmi'
 	icon_state = "vintorez"
 	item_state = "vintorez"
