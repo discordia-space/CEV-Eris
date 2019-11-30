@@ -202,7 +202,7 @@ datum/sanity/proc/pick_sound()
 		'sound/sanity/hydraulic.ogg',
 		'sound/sanity/glass_step.ogg',
 		'sound/sanity/supermatter.ogg',
-		list('sound/hallucinations/i_see_you1.ogg', "You feel the hair on your neck stand on end. Is that someone behind you?"""),
+		list('sound/hallucinations/i_see_you1.ogg', "You feel the hair on your neck stand on end. Is that someone behind you?"),
 		list('sound/sanity/heavy_footsteps.ogg', "What was that?!"),
 		list('sound/sanity/screech.ogg', "You feel a chill run up your spine!"),
 		list('sound/sanity/very_evil_laugh.ogg', "Your skin breaks out into goosebumps.")
