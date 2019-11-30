@@ -15,7 +15,7 @@
 #define SANITY_DAMAGE_PSY(damage, vig) (damage * SANITY_DAMAGE_MOD * (2 - (vig) / STAT_LEVEL_MAX))
 
 // Damage received from seeing someone die
-#define SANITY_DAMAGE_DEATH(vig) (10 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
+#define SANITY_DAMAGE_DEATH(vig) (25 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
 
 #define SANITY_GAIN_SMOKE 0.05 // A full cig restores 300 times that
 #define SANITY_GAIN_SAY 1
@@ -107,6 +107,7 @@
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
 
+
 /datum/sanity/proc/onPsyDamage(amount)
 	changeLevel(-SANITY_DAMAGE_PSY(amount, owner.stats.getStat(STAT_VIG)))
 
@@ -140,8 +141,11 @@
 /datum/sanity/proc/changeLevel(amount)
 	if(sanity_invulnerability && amount < 0)
 		return
-	level = CLAMP(level + amount, 0, max_level)
-	updateLevel()
+	if(onDamage())
+		level = CLAMP(level + amount, 0, 60)
+	else
+		level = CLAMP(level + amount, 0, max_level)
+		updateLevel()
 
 /datum/sanity/proc/setLevel(amount)
 	if(sanity_invulnerability)
