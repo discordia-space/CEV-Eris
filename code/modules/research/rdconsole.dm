@@ -142,20 +142,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		to_chat(user, SPAN_NOTICE("You disable the security protocols."))
 		return TRUE
 
-/obj/machinery/computer/rdconsole/attackby(obj/item/I, mob/user)
-	if(!emagged)
-		if(QUALITY_PULSING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_COG)) //Smarties can hack into the console with just a multitool!
-				emagged = TRUE
-				to_chat(user, SPAN_NOTICE("You disable the security protocols."))
-				return
-	if(emagged)
-		if(QUALITY_PULSING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_NORMAL, required_stat = STAT_COG)) //You can also re-enable them, if you feel like it for some reason.
-				emagged = FALSE
-				to_chat(user, SPAN_NOTICE("You re-enable the security protocols."))
-				return
-
 /obj/machinery/computer/rdconsole/proc/reset_screen() // simply resets the screen to the main screen and updates the UIs
 	screen = SCREEN_MAIN
 	SSnano.update_uis(src)
