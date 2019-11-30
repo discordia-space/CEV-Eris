@@ -27,11 +27,11 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You feel like pain is a key to your greatness!",
-		"You feel like no matter what, you can survive even hell!",
-		"You feel like pain is your ally to endure this journey!",
-		"You feel how pain shreds your mortal cloth!",
-		"You feel how pain cleared your mind!"
+		"You endure your pain well, and emerge in bliss.",
+		"You feel like you could take on the world!",
+		"Your pain no longer bothers you.",
+		"You feel like the pain has cleared your head.",
+		"You feel the pain, and you feel the gain!"
 	)
 
 /datum/breakdown/positive/stalwart/can_occur()
@@ -43,7 +43,7 @@
 	holder.owner.adjustFireLoss(-25)
 	holder.owner.adjustOxyLoss(-45)
 	holder.owner.adjustToxLoss(-25)
-	holder.owner.reagents.add_reagent("tramadol", 5)
+	holder.owner.reagents.add_reagent("tramadol", 5) // the way this works is silly as all fuck and should probably be fixed at some point 
 	..()
 
 
@@ -54,11 +54,11 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You feel how your inner mind hardened by your adventures!",
-		"You feel like you can always take a step back and relax from all horrors!",
-		"You feel like your mistakes are path to enlightenment!",
-		"You feel like no matter what, you will be able to adapt!",
-		"You feel like your brain reconfiguring himself to give you a upper hand in any situation!"
+		"You feel like your mind has been sharpened by your experiences.",
+		"You feel like you're starting to get used to this.",
+		"You feel mentally prepared.",
+		"You feel like you're one step ahead.",
+		"You feel like you have the upper hand."
 	)
 
 /datum/breakdown/positive/adaptation/conclude()
@@ -74,11 +74,11 @@
 	duration = 20 MINUTES
 
 	start_messages = list(
-		"You feel like your mind is concentrated beyond human capabilities!",
-		"You feel like your mind able to endure whatever happens with it!",
-		"You feel how even darkest corners of mind are enlighten by your will!",
-		"You feel like horrors are no match for you!",
-		"You feel like you gazed into abyss and lit it with your adamant will!"
+		"You focus and feel your mind turning inward.",
+		"You have taken the first step toward enlightenment.",
+		"You are disconnected from the world around you.",
+		"You have become iron willed.",
+		"Nothing phases you anymore."
 	)
 
 /datum/breakdown/positive/concentration/New()
@@ -101,14 +101,14 @@
 	restore_sanity_pre = 100
 
 	start_messages = list(
-		"You're filled with DETERMINATION!",
-		"You feel like nothing can stand against you!",
-		"You feel that you will endure everything in your life!",
-		"You feel how your adamant will shaping your body to it's prime!",
-		"You feel immortality in your veins!"
+		"You feel invincible!",
+		"You are unstoppable, you are unbreakable!",
+		"You feel like a GOD!",
+		"You feel a rush of adrenaline in your veins. Nothing can hurt you now!",
+		"You've learned to brush off wounds that would kill lesser beings!"
 	)
 	end_messages = list(
-		"Your determination wears off. Will you feel something like this once again?"
+		"The last drop of adrenaline leaves your veins. You feel like a normal human now."
 	)
 
 /datum/breakdown/positive/determination/occur()
@@ -127,11 +127,11 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You feel like everything happened wrong to shape you better!",
-		"You feel how your brain absorbs knowledge from your past!",
-		"You feel how your past gave you it's secrets in your mistakes!",
-		"You feel all your senses much more clearer now!",
-		"You feel knowledge locked behind the past, now pouring into your brain!"
+		"You feel like you've learned from your experience.",
+		"Something in your mind clicks. You feel more competent!",
+		"You manage to learn from past mistakes.",
+		"You take in the knowledge of your past experiences.",
+		"Everything makes more sense now!"
 	)
 
 /datum/breakdown/positive/lesson/conclude()
@@ -147,14 +147,14 @@
 	restore_sanity_post = 70
 
 	start_messages = list(
-		"You can't suffer this no more!",
-		"Your inner empire now reigns your body!",
-		"You mind is no more. Instincts is the only what you have now!",
-		"You can't live like this, your mind begs for mercy!",
-		"You feel like you aren't yourself now!"
+		"You can't take it anymore! You completely lose control!",
+		"Make it stop, make it stop! You'd do anything to make it stop!",
+		"Your mind cracks under the weight of the things you've seen and felt!",
+		"Your brain screams for mercy! It's time to end it all!",
+		"You can't handle the pressure anymore! Your head runs wild with thoughts of suicide!"
 	)
 	end_messages = list(
-		"You feel easier now, with a body back at your control."
+		"You feel the panic subside. Perhaps it's alright to live, after all?"
 	)
 
 /datum/breakdown/negative/selfharm/update()
@@ -164,13 +164,12 @@
 	var/datum/gender/G = gender_datums[holder.owner.gender]
 	if(prob(50))
 		var/emote = pick(list(
-			"screams with devilish voice!",
-			"bites [G.his] tongue in attempt to scream!",
-			"screams muffled bigotry with otherworld voice!",
-			"laughs with devilish voice!",
-			"laughs with muffled agony!",
-			"laughs uncontrollably!",
-			"laughs and twitches in the same time!"
+			"screams incoherently!",
+			"bites [G.his] tongue and mutters under [G.his] breath.",
+			"utters muffled curses.",
+			"grumbles.",
+			"screams with soulful agony!",
+			"stares at the floor."
 		))
 		holder.owner.custom_emote(message=emote)
 	else if(!holder.owner.incapacitated())
@@ -185,14 +184,14 @@
 						damage_eyes = FALSE
 						break
 			if(damage_eyes)
-				holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches [G.his] eyes!"))
+				holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches at [G.his] eyes!"))
 				var/obj/item/organ/internal/eyes/eyes = holder.owner.internal_organs_by_name[BP_EYES]
 				eyes.take_damage(rand(1,2), 1)
 			else
 				holder.owner.visible_message(SPAN_DANGER(pick(list(
 					"[holder.owner] tries to end [G.his] misery!",
-					"[holder.owner] tried to peel [G.his] skin off!",
-					"[holder.owner] bites [G.his] limbs uncontrollably!"
+					"[holder.owner] tries to peel [G.his] own skin off!",
+					"[holder.owner] bites [G.his] own limbs uncontrollably!"
 				))))
 				var/list/obj/item/organ/external/parts = holder.owner.get_damageable_organs()
 				if(parts.len)
@@ -214,14 +213,14 @@
 	restore_sanity_post = 50
 
 	start_messages = list(
-		"You feel like your mind can't hold emotions anymore!",
-		"You feel how pain overwhelms you!",
-		"You feel like there is no point in being yourself at all!",
-		"You feel tears pouring on your face!",
-		"You feel that there is something inside you, that you can't hold anymore!"
+		"You get overwhelmed and start to panic!",
+		"You're incosolably terrified!",
+		"You can't choke back the tears anymore!",
+		"The hair on your nape stands on end! The fear sends you into a frenzy!",
+		"It's too much! You freak out and lose control!"
 	)
 	end_messages = list(
-		"You feel better now. "
+		"You calm down as your feelings subside. You feel horribly embarassed!"
 	)
 
 /datum/breakdown/negative/hysteric/update()
@@ -358,77 +357,6 @@
 	end_messages = list(
 		"You feel easier again, at once."
 	)
-
-/datum/breakdown/common/obsession/New()
-	..()
-	if(prob(97))
-		var/list/candidates = list() //subtypesof(/obj/item/weapon/oddity)
-		while(candidates.len)
-			target = pick(candidates)
-			if(!locate(target))
-				candidates -= target
-				target = null
-				continue
-			objectname = initial(target.name)
-			break
-	if(!target)
-		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
-		if(candidates.len)
-			var/mob/living/carbon/human/H = pick(candidates)
-			target = pick(H.organs - H.organs_by_name[BP_CHEST])
-			objectname = "[H.real_name]'s [target.name]"
-
-/datum/breakdown/common/obsession/can_occur()
-	return !!target
-
-/datum/breakdown/common/obsession/update()
-	. = ..()
-	if(!.)
-		return
-	var/obj/item/found = FALSE
-	if(ispath(target))
-		found = locate(target) in holder.owner
-	else
-		if(QDELETED(target))
-			conclude()
-			return FALSE
-		found = target.loc == holder.owner
-	if(found)
-		var/message = pick(list(
-			"Your mind convulses in the ecstasy. The sacred is now yours!",
-			"You feel warmth of the [objectname] in your head.",
-			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."
-		))
-		to_chat(holder.owner, SPAN_NOTICE(message))
-		holder.restoreLevel(70)
-		conclude()
-		return FALSE
-	if(prob(50))
-		var/message = pick(list(
-			"You knew it. The [objectname] will ease your journey to the stars.",
-			"You watch, but the only thing you can see is [objectname].",
-			"Your thoughts are all about [objectname].",
-			"You imagine how you will pour your hands into still warm [objectname].",
-			"Vivid imagery of [objectname] is all around your brain.",
-			"You know it. It is the key to your salvation. [capitalize(objectname)]. [capitalize(objectname)]. [capitalize(objectname)]!",
-			"Thin voice within says only one thing: [objectname].",
-			"It hurts you to keep pretending that your life without [objectname] have meaning.",
-			"Your minds whispers to you with the only words in their silent throats: [objectname].",
-			"You know that only salvation from your sins is [objectname]."
-		))
-		to_chat(holder.owner, SPAN_NOTICE(message))
-
-/datum/breakdown/common/obsession/occur()
-	for(var/stat in ALL_STATS)
-		holder.owner.stats.addTempStat(stat, -5, INFINITY, "Obsession")
-	return ..()
-
-/datum/breakdown/common/obsession/conclude()
-	for(var/stat in ALL_STATS)
-		holder.owner.stats.removeTempStat(stat, "Obsession")
-	..()
-
-
 
 #define KLEPTOMANIA_COOLDOWN rand(30 SECONDS, 60 SECONDS)
 
