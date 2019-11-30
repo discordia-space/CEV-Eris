@@ -105,7 +105,7 @@
 
 
 /datum/sanity/proc/onDamage(amount)
-	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
+	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)), 60)
 
 /datum/sanity/proc/onPsyDamage(amount)
 	changeLevel(-SANITY_DAMAGE_PSY(amount, owner.stats.getStat(STAT_VIG)))
@@ -137,14 +137,13 @@
 	changeLevel(SANITY_GAIN_SAY)
 
 
-/datum/sanity/proc/changeLevel(amount)
+/datum/sanity/proc/changeLevel(amount, var/cap = max_level)
 	if(sanity_invulnerability && amount < 0)
 		return
-	if(onDamage())
-		level = CLAMP(level + amount, 0, 60)
-	else
-		level = CLAMP(level + amount, 0, max_level)
-		updateLevel()
+	if(level >= cap)
+		return
+	level = CLAMP(level + amount, 0, cap)
+	updateLevel()
 
 /datum/sanity/proc/setLevel(amount)
 	if(sanity_invulnerability)
