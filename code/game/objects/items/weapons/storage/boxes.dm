@@ -24,7 +24,8 @@
 	desc = "It's just an ordinary box."
 	icon_state = "box"
 	item_state = "syringe_kit"
-	max_storage_space = DEFAULT_NORMAL_STORAGE
+	max_w_class = ITEM_SIZE_SMALL
+	max_storage_space = DEFAULT_SMALL_STORAGE 
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	health = 20
 
