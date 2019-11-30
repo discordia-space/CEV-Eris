@@ -246,7 +246,74 @@
 	--holder.owner.suppress_communication
 	..()
 
+/datum/breakdown/common/obsession/New()	
+	..()	
+	if(prob(97))	
+		var/list/candidates = list() //subtypesof(/obj/item/weapon/oddity)	
+		while(candidates.len)	
+			target = pick(candidates)	
+			if(!locate(target))	
+				candidates -= target	
+				target = null	
+				continue	
+			objectname = initial(target.name)	
+			break	
+	if(!target)	
+		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner	
+		if(candidates.len)	
+			var/mob/living/carbon/human/H = pick(candidates)	
+			target = pick(H.organs - H.organs_by_name[BP_CHEST])	
+			objectname = "[H.real_name]'s [target.name]"	
 
+/datum/breakdown/common/obsession/can_occur()	
+	return !!target	
+
+/datum/breakdown/common/obsession/update()	
+	. = ..()	
+	if(!.)	
+		return	
+	var/obj/item/found = FALSE	
+	if(ispath(target))	
+		found = locate(target) in holder.owner	
+	else	
+		if(QDELETED(target))	
+			conclude()	
+			return FALSE	
+		found = target.loc == holder.owner	
+	if(found)	
+		var/message = pick(list(	
+			"Your mind convulses in the ecstasy. The sacred is now yours!",	
+			"You feel warmth of the [objectname] in your head.",	
+			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."	
+		))	
+		to_chat(holder.owner, SPAN_NOTICE(message))	
+		holder.restoreLevel(70)	
+		conclude()	
+		return FALSE	
+	if(prob(50))	
+		var/message = pick(list(	
+			"You knew it. The [objectname] will ease your journey to the stars.",	
+			"You watch, but the only thing you can see is [objectname].",	
+			"Your thoughts are all about [objectname].",	
+			"You imagine how you will pour your hands into still warm [objectname].",	
+			"Vivid imagery of [objectname] is all around your brain.",	
+			"You know it. It is the key to your salvation. [capitalize(objectname)]. [capitalize(objectname)]. [capitalize(objectname)]!",	
+			"Thin voice within says only one thing: [objectname].",	
+			"It hurts you to keep pretending that your life without [objectname] have meaning.",	
+			"Your minds whispers to you with the only words in their silent throats: [objectname].",	
+			"You know that only salvation from your sins is [objectname]."	
+		))	
+		to_chat(holder.owner, SPAN_NOTICE(message))	
+
+/datum/breakdown/common/obsession/occur()	
+	for(var/stat in ALL_STATS)	
+		holder.owner.stats.addTempStat(stat, -5, INFINITY, "Obsession")	
+	return ..()	
+
+/datum/breakdown/common/obsession/conclude()	
+	for(var/stat in ALL_STATS)	
+		holder.owner.stats.removeTempStat(stat, "Obsession")	
+	..()	
 
 /datum/breakdown/negative/delusion
 	//name = "Delusion"
