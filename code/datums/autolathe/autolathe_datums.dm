@@ -77,7 +77,8 @@
 	else if(istype(O, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/casing = O
 		multiplier = casing.amount
-		is_stack = TRUE
+		if(casing.amount > 1 || casing.maxamount > 1)
+			is_stack = TRUE
 
 	var/list/mats = O.get_matter()
 	if(length(mats))
