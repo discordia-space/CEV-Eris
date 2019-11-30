@@ -110,10 +110,10 @@
 			"Escaping from your purpose is impossible...",
 			"Seven times seven. Seven times seven. Seven times seven. Seven times seven. Seven times seven. Seven times seven. Seven times seven. Seven times seven. Seven times seven. ",
 			"And so they laughed. They laughed. You know they laughed. You heard them laugh. They laughed. They laughed.",
-			"Whenever you see a mirror, you feel like you can just reach out… and step through it.",
+			"Whenever you see a mirror, you feel like you can just reach outï¿½ and step through it.",
 			"THEY ARE COMING THEY ARE COMING THEY ARE COMING",
 			"No. Parts of you are crumbling. No. No!",
-			"What is this? No… No!",
+			"What is this? Noï¿½ No!",
 			"Something is scratching from behind your eyes, aching to get out.",
 			"SHE EMBRACES ALL CHILDREN SHE EMBRACES ALL CHILDREN SHE EMBRACES ALL CHILDREN",
 			"Shadows lie still, here where there is no sun to move them. Sometimes they shiver in fluorescent-light.",
@@ -177,19 +177,18 @@
 
 /datum/sanity/proc/pick_emote_20()
 	var/static/list/emotes = list(
-		"shivers",
-		"stares at something blindly for a moment.",
-		"looks disoriented for a moment."
+		"grumbles.",
+		"mutters.",
+		"groans."
 	)
 	return pick(emotes)
 
 /datum/sanity/proc/pick_emote_40()
 	var/static/list/emotes = list(
-		"have a zombie stare",
-		"is about to snap.",
-		"rapidly and loudly tilts their head in unusual angle.",
-		"laughs a bit.",
-		"sobs for a moment."
+		"stares.",
+		"sighs.",
+		"frowns.",
+		"glares."
 	)
 	return pick(emotes)
 
@@ -203,9 +202,9 @@ datum/sanity/proc/pick_sound()
 		'sound/sanity/hydraulic.ogg',
 		'sound/sanity/glass_step.ogg',
 		'sound/sanity/supermatter.ogg',
-		list('sound/hallucinations/i_see_you1.ogg', "You hear someone behind you."),
-		list('sound/sanity/heavy_footsteps.ogg', "You hear that something heavy behind you."),
-		list('sound/sanity/screech.ogg', "You've got goosebumps."),
-		list('sound/sanity/very_evil_laugh.ogg', "You hear an evil laugh.")
+		list('sound/hallucinations/i_see_you1.ogg', "You feel the hair on your neck stand on end. Is that someone behind you?"),
+		list('sound/sanity/heavy_footsteps.ogg', "What was that?!"),
+		list('sound/sanity/screech.ogg', "You feel a chill run up your spine!"),
+		list('sound/sanity/very_evil_laugh.ogg', "Your skin breaks out into goosebumps.")
 	)
 	return pick(sanity_sounds_without_text)
