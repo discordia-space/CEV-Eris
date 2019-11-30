@@ -76,59 +76,59 @@
 //NT Circuits
 
 /datum/design/autolathe/circuit/bioprinter
-	name = "NeoTeology Biomatter Printer"
+	name = "NeoTheology Biomatter Printer"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioprinter
 
 /datum/design/autolathe/circuit/solidifier
-	name = "NeoTeology Biomatter Solidifier"
+	name = "NeoTheology Biomatter Solidifier"
 	build_path = /obj/item/weapon/circuitboard/neotheology/solidifier
 
 /datum/design/autolathe/circuit/cloner
-	name = "NeoTeology Cloner, Pod"
+	name = "NeoTheology Cloner, Pod"
 	build_path = /obj/item/weapon/circuitboard/neotheology/cloner
 
 /datum/design/autolathe/circuit/reader
-	name = "NeoTeology Cloner, Cruciform Reader"
+	name = "NeoTheology Cloner, Cruciform Reader"
 	build_path = /obj/item/weapon/circuitboard/neotheology/reader
 
 /datum/design/autolathe/circuit/biocan
-	name = "NeoTeology Cloner, Biomass container"
+	name = "NeoTheology Cloner, Biomass container"
 	build_path = /obj/item/weapon/circuitboard/neotheology/biocan
 
 /datum/design/autolathe/circuit/biogen
-	name = "NeoTeology Biomatter Generator, Power Generator"
+	name = "NeoTheology Biomatter Generator, Power Generator"
 	build_path = /obj/item/weapon/circuitboard/neotheology/biogen
 
 /datum/design/autolathe/circuit/biogen_console
-	name = "NeoTeology Biomatter Generator, Power Generator Console"
+	name = "NeoTheology Biomatter Generator, Power Generator Console"
 	build_path = /obj/item/weapon/circuitboard/neotheology/biogen_console
 
 /datum/design/autolathe/circuit/biogen_port
-	name = "NeoTeology Biomatter Generator, Power Generator Port"
+	name = "NeoTheology Biomatter Generator, Power Generator Port"
 	build_path = /obj/item/weapon/circuitboard/neotheology/biogen_port
 
 /datum/design/autolathe/circuit/bioreactor_loader
-	name = "NeoTeology Biomatter Reactor, Loader"
+	name = "NeoTheology Biomatter Reactor, Loader"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_loader
 
 /datum/design/autolathe/circuit/bioreactor_metrics
-	name = "NeoTeology Biomatter Reactor, Metrics"
+	name = "NeoTheology Biomatter Reactor, Metrics"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_metrics
 
 /datum/design/autolathe/circuit/bioreactor_port
-	name = "NeoTeology Biomatter Reactor, Port"
+	name = "NeoTheology Biomatter Reactor, Port"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_port
 
 /datum/design/autolathe/circuit/bioreactor_biotank
-	name = "NeoTeology Biomatter Reactor, Biomatter Tank"
+	name = "NeoTheology Biomatter Reactor, Biomatter Tank"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_biotank
 
 /datum/design/autolathe/circuit/bioreactor_unloader
-	name = "NeoTeology Biomatter Reactor, Unloader"
+	name = "NeoTheology Biomatter Reactor, Unloader"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_unloader
 
 /datum/design/autolathe/circuit/bioreactor_platform
-	name = "NeoTeology Biomatter Reactor, Platform"
+	name = "NeoTheology Biomatter Reactor, Platform"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_platform
 	
 
