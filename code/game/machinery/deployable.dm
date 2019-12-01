@@ -59,7 +59,7 @@ for reference:
 	var/maxhealth = 100
 	var/material/material
 
-/obj/structure/barricade/New(var/newloc, var/material_name)
+/obj/structure/barricade/New(newloc, material_name)
 	..(newloc)
 	if(!material_name)
 		material_name = "wood"
@@ -108,7 +108,7 @@ for reference:
 		..()
 
 /obj/structure/barricade/proc/dismantle()
-	material.place_dismantled_product(get_turf(src))
+	material.place_sheet(drop_location(), amount=5)
 	qdel(src)
 	return
 

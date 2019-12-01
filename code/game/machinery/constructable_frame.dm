@@ -12,6 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = 0
+	matter = list(MATERIAL_STEEL = 8)
 	var/base_state = "box"			//base icon for creating subtypes of machine frame
 	var/list/components = null
 	var/list/req_components = null
@@ -123,7 +124,7 @@
 			if(state == STATE_NONE)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You dismantle the frame"))
-					new /obj/item/stack/material/steel(src.loc, 8)
+					drop_materials(drop_location())
 					qdel(src)
 					return
 				return
