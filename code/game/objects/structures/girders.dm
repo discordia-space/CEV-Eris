@@ -1,15 +1,16 @@
 /obj/structure/girder
+	name = "wall grider"
 	icon_state = "girder"
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
+	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
 	var/health = 150
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
 	var/resistance = RESISTANCE_TOUGH
-	var/dismantle_materials_count = 5
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
@@ -19,9 +20,16 @@
 
 //Low girders are used to build low walls
 /obj/structure/girder/low
+	name = "low wall grider"
+	matter = list(MATERIAL_STEEL = 3)
 	health = 120
 	cover = 25 //how much cover the girder provides against projectiles.
-	dismantle_materials_count = 3
+
+//Used in recycling or deconstruction
+/obj/structure/girder/get_matter()
+	. = ..()
+	if(reinf_material)
+		.[reinf_material.name] = 2
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)
@@ -81,7 +89,7 @@
 	var/list/usable_qualities = list()
 	if(state == 0 && ((anchored && !reinf_material) || !anchored))
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
-	if(state == 2 || (anchored && !reinf_material))
+	if(state == 2 || (anchored && reinforcing && !reinf_material))
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(state == 0 && anchored)
 		usable_qualities.Add(QUALITY_PRYING)
@@ -124,7 +132,7 @@
 				to_chat(user, SPAN_NOTICE("You start removing support struts..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You removed the support struts!"))
-					reinf_material.place_dismantled_product(get_turf(src))
+					reinf_material.place_sheet(drop_location(), amount=2)
 					reinf_material = null
 					reset_girder()
 					return
@@ -132,20 +140,34 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 2)
-				to_chat(user, SPAN_NOTICE("Now unsecuring support struts..."))
+				to_chat(user, SPAN_NOTICE("You start unsecuring support struts..."))
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You unsecured the support struts!"))
 					state = 1
 					return
-			if(anchored && !reinf_material)
+			if(anchored && reinforcing && !reinf_material)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					reinforcing = !reinforcing
-					to_chat(user, SPAN_NOTICE("The [src] can now be [reinforcing? "reinforced" : "constructed"]!"))
+					reinforcing = FALSE
+					new /obj/item/stack/rods(drop_location(), 2)
+					to_chat(user, SPAN_NOTICE("[src] can now be constructed!"))
 					return
 			return
 
 		if(ABORT_CHECK)
 			return
+
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/S = I
+		if(anchored && !reinforcing)
+			if(S.get_amount() < 2)
+				to_chat(user, SPAN_NOTICE("There isn't enough material here to start reinforcing the girder."))
+				return
+
+			to_chat(user, SPAN_NOTICE("You start to prepare [src] for reinforcing with [S]..."))
+			if (!do_after(user, 40, src) || !S.use(2))
+				return
+			to_chat(user, SPAN_NOTICE("You prepare to reinforce [src]."))
+			reinforcing = TRUE
 
 	if(istype(I, /obj/item/stack/material))
 		if(reinforcing && !reinf_material)
@@ -247,10 +269,10 @@
 		to_chat(user, "You cannot reinforce \the [src] with that; it is too soft.")
 		return 0
 
-	to_chat(user, SPAN_NOTICE("Now reinforcing..."))
+	to_chat(user, SPAN_NOTICE("You start reinforcing [src] with [S]..."))
 	if (!do_after(user, 40,src) || !S.use(2))
 		return 1 //don't call parent attackby() past this point
-	to_chat(user, SPAN_NOTICE("You added reinforcement!"))
+	to_chat(user, SPAN_NOTICE("You reinforce [src]!"))
 
 	reinf_material = M
 	reinforce_girder()
@@ -264,7 +286,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/material/steel(src.loc, dismantle_materials_count)
+	drop_materials(drop_location())
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)
