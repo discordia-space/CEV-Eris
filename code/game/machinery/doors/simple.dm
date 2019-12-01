@@ -172,7 +172,7 @@
 	color = "#824B28"
 
 /obj/machinery/door/unpowered/simple/wood/New(var/newloc,var/material_name)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 
 /obj/machinery/door/unpowered/simple/wood/saloon
 	icon_base = "saloon"
@@ -180,9 +180,9 @@
 	normalspeed = 0
 
 /obj/machinery/door/unpowered/simple/wood/saloon/New(var/newloc,var/material_name)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 	glass = 1
 	set_opacity(0)
 
 /obj/machinery/door/unpowered/simple/resin/New(var/newloc,var/material_name)
-	..(newloc, "resin")
+	..(newloc, MATERIAL_RESIN)
