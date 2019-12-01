@@ -2,13 +2,14 @@
 	name = "orange railing"
 	desc = "A standard steel railing painted in copper color. Prevents stupid people from falling to their doom."
 	icon = 'icons/obj/railing.dmi'
-	density = 1
-	throwpass = 1
-	climbable = 1
+	density = TRUE
+	throwpass = TRUE
+	climbable = TRUE
 	layer = 3.2	//Just above doors
-	anchored = 1
+	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
+	matter = list(MATERIAL_STEEL = 4)
 	var/broken = 0
 	var/health=70
 	var/maxhealth=70
@@ -252,7 +253,7 @@
 			if(!anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
-					new /obj/item/stack/material/steel(src.loc, 4)
+					drop_materials(drop_location())
 					qdel(src)
 			return
 
