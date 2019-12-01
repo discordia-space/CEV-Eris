@@ -20,7 +20,8 @@
 	oxygentanks = 0
 
 
-/obj/structure/dispenser/New()
+/obj/structure/dispenser/Initialize()
+	. = ..()
 	update_icon()
 
 
@@ -52,7 +53,7 @@
 	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
 		if(oxygentanks < 10)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			oxytanks.Add(I)
 			oxygentanks++
 			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
@@ -65,11 +66,11 @@
 	if(istype(I, /obj/item/weapon/tank/plasma))
 		if(plasmatanks < 10)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			platanks.Add(I)
 			plasmatanks++
 			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
-			if(oxygentanks < 6)
+			if(plasmatanks < 6)
 				update_icon()
 		else
 			to_chat(user, SPAN_NOTICE("[src] is full."))
@@ -79,45 +80,39 @@
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(anchored)
 				to_chat(user, SPAN_NOTICE("You lean down and unwrench [src]."))
-				anchored = 0
+				anchored = FALSE
 			else
 				to_chat(user, SPAN_NOTICE("You wrench [src] into place."))
-				anchored = 1
+				anchored = TRUE
 			return
 
 /obj/structure/dispenser/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
-		return
-	if(Adjacent(usr))
-		usr.set_machine(src)
-		if(href_list["oxygen"])
-			if(oxygentanks > 0)
-				var/obj/item/weapon/tank/oxygen/O
-				if(oxytanks.len == oxygentanks)
-					O = oxytanks[1]
-					oxytanks.Remove(O)
-				else
-					O = new /obj/item/weapon/tank/oxygen(loc)
-				O.loc = loc
-				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
-				oxygentanks--
-				update_icon()
-		if(href_list["plasma"])
-			if(plasmatanks > 0)
-				var/obj/item/weapon/tank/plasma/P
-				if(platanks.len == plasmatanks)
-					P = platanks[1]
-					platanks.Remove(P)
-				else
-					P = new /obj/item/weapon/tank/plasma(loc)
-				P.loc = loc
-				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
-				plasmatanks--
-				update_icon()
-		playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
-		add_fingerprint(usr)
-		updateUsrDialog()
-	else
-		usr << browse(null, "window=dispenser")
-		return
+	if(..())
+		return 1
+
+	usr.set_machine(src)
+
+	var/obj/item/weapon/tank/tank
+	if(href_list["oxygen"] && oxygentanks > 0)
+		if(oxytanks.len == oxygentanks)
+			tank = oxytanks[1]
+			oxytanks.Remove(tank)
+		else
+			tank = new /obj/item/weapon/tank/oxygen(loc)
+		oxygentanks--
+	if(href_list["plasma"] && plasmatanks > 0)
+		if(platanks.len == plasmatanks)
+			tank = platanks[1]
+			platanks.Remove(tank)
+		else
+			tank = new /obj/item/weapon/tank/plasma(loc)
+		plasmatanks--
+
+	if(tank)
+		tank.forceMove(drop_location())
+		to_chat(usr, SPAN_NOTICE("You take [tank] out of [src]."))
+		update_icon()
+
+	playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
+	updateUsrDialog()
 	return
