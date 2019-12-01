@@ -520,7 +520,9 @@
 	if(isnull(max_storage_space) && !isnull(storage_slots))
 		max_storage_space = storage_slots*BASE_STORAGE_COST(max_w_class)
 
-	populate_contents()
+	// Deferred storage doesn't populate_contents() from Initialize, it does so when accessed by player
+	if(!istype(src, /obj/item/weapon/storage/deferred))
+		populate_contents()
 
 	var/total_storage_space = 0
 	for(var/obj/item/I in contents)
