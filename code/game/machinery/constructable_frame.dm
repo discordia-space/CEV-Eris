@@ -105,14 +105,14 @@
 			if(state == STATE_CIRCUIT)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					state = STATE_WIRES
-					circuit.loc = src.loc
+					circuit.forceMove(drop_location())
 					circuit = null
 					if(components.len == 0)
 						to_chat(user, SPAN_NOTICE("You remove the circuit board."))
 					else
 						to_chat(user, SPAN_NOTICE("You remove the circuit board and other components."))
-						for(var/obj/item/weapon/W in components)
-							W.loc = src.loc
+						for(var/obj/component in components)
+							component.forceMove(drop_location())
 					desc = initial(desc)
 					req_components = null
 					components = null
