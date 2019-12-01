@@ -25,17 +25,15 @@
 	item_state = "syringe_kit"
 
 /obj/item/weapon/storage/deferred/populate_contents()
-	// Do not create contents if they are already spawned, or if prompted to by Initialize call
-	if(!initialized || contents_spawned)
+	// Do not create contents if they are already spawned
+	if(contents_spawned)
 		return
 
 	contents_spawned = TRUE
-	for (var/a in initial_contents)
-		var/quantity = 1
-		if (initial_contents[a])
-			quantity = initial_contents[a]
+	for(var/a in initial_contents)
+		var/quantity = initial_contents[a] ? initial_contents[a] : 1
 
-		for (var/i = 0; i < quantity; i++)
+		for(var/i = 0; i < quantity; i++)
 			new a(src)
 	expand_to_fit()
 
