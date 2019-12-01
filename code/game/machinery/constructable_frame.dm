@@ -96,8 +96,7 @@
 					to_chat(user, SPAN_NOTICE("You remove the cables."))
 					state = STATE_NONE
 					icon_state = "[base_state]_0"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
-					A.amount = 5
+					new /obj/item/stack/cable_coil(drop_location(), 5)
 					return
 			return
 
