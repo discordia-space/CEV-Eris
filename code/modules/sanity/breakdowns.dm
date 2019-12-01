@@ -508,29 +508,3 @@
 /datum/breakdown/common/signs/proc/check_message(_, msg)
 	if(msg == message)
 		finished = TRUE
-
-
-
-/datum/breakdown/common/ptsd
-	name = "PTSD"
-	duration = 2 MINUTES
-	restore_sanity_post = 50
-
-	start_messages = list(
-		"You feel like you constantly living on edge...",
-		"You are much more concentrated on everything at once...",
-		"You feel like everything can be dangerous, better be prepared...",
-		"Your senses are sharp like they never was before, but for what price...",
-		"You hear much better now, cacophony of sounds is no more."
-	)
-	end_messages = list(
-		"You feel like you wade into the quiet of the stream."
-	)
-
-/datum/breakdown/common/ptsd/occur()
-	++holder.owner.flashbacks
-	return ..()
-
-/datum/breakdown/common/ptsd/conclude()
-	--holder.owner.flashbacks
-	..()
