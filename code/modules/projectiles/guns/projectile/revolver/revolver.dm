@@ -57,3 +57,27 @@
 
 /obj/item/weapon/gun/projectile/revolver/update_icon()
 	update_charge()
+
+
+
+/obj/item/weapon/gun/projectile/revolver/reverse //Fires directly at its user... unless the user is a clown, of course.
+
+/obj/item/weapon/gun/projectile/revolver/reverse/special_check(mob/user) // "How about another joke, Murray?"
+	if(!restrict_safety)
+		if(safety)
+			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
+			handle_click_empty(user)
+			return FALSE
+	if((CLUMSY in user.mutations) == FALSE) //Clumsy handling
+		var/obj/P = consume_next_projectile()
+		if(P)
+			if(process_projectile(P, user, user, BP_HEAD))
+				handle_post_fire(user, user)
+				user.visible_message(
+					SPAN_DANGER("\The [user] shoots \himself in the face with \the [src]!"),
+					SPAN_DANGER("You somehow shoot yourself in the face with \the [src]!! How the hell?!")
+					)
+				user.drop_item()
+				user.emote("scream")
+				user.Weaken(4)
+	return TRUE

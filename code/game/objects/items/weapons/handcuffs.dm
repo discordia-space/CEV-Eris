@@ -177,3 +177,8 @@ var/last_chew = 0
 	icon = 'icons/obj/bureaucracy.dmi'
 	breakouttime = 200
 	cuff_type = "duct tape"
+
+/obj/item/weapon/handcuffs/fake
+	name = "handcuffs"
+	desc = "Fake handcuffs meant for gag purposes."
+	breakouttime = 10 //
