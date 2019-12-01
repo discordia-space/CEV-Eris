@@ -1034,7 +1034,7 @@
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/weapon/gun/projectile/boltgun/fs = 2000, /obj/item/ammo_magazine/lpistol/rubber = 300, /obj/item/ammo_magazine/lpistol = 400,/obj/item/ammo_magazine/slpistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
 					/obj/item/weapon/storage/pouch/pistol_holster =150, /obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/lpistol = 300, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
-					/obj/item/ammo_magazine/ammobox/lrifle_small = 200, /obj/item/weapon/material/hatchet/tacknife = 600)
+					/obj/item/ammo_magazine/ammobox/lrifle_small = 200, /obj/item/weapon/material/hatchet/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
 
 //This one's from bay12
 /obj/machinery/vending/cart
