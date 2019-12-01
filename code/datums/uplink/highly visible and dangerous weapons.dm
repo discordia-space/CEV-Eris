@@ -51,10 +51,10 @@
 	item_cost = 8
 	path = /obj/item/weapon/storage/box/syndie_kit/sts35
 
-/datum/uplink_item/item/visible_weapons/bulldog
-	name = "Bulldog Shotgun"
+/datum/uplink_item/item/visible_weapons/pug
+	name = "Pug Shotgun"
 	item_cost = 12
-	path = /obj/item/weapon/storage/box/syndie_kit/bulldog
+	path = /obj/item/weapon/storage/box/syndie_kit/pug
 
 /datum/uplink_item/item/visible_weapons/heavysniper
 	name = "Anti-material Rifle"

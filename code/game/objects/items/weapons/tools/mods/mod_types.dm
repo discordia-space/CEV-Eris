@@ -8,23 +8,25 @@
 //This includes most mechanical ones
 /obj/item/weapon/tool_upgrade/reinforcement/stick
 	name = "brace bar"
-	desc = "A sturdy pole made of fiber tape and metal rods. Can be used to reinforce the shaft of many tools"
+	desc = "A sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools"
 	icon_state = "brace_bar"
 	required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_PRYING, QUALITY_SAWING,QUALITY_SHOVELING,QUALITY_DIGGING,QUALITY_EXCAVATION)
 	prefix = "braced"
 	degradation_mult = 0.65
 	force_mod = 1
 	price_tag = 120
+	matter = list(MATERIAL_PLASTEEL = 6, MATERIAL_PLASTIC = 1)
 
 
 //Heatsink can be attached to any tool that uses fuel or power
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink
 	name = "heatsink"
-	desc = "An array of aluminium fins which dissipates heat, reducing damage and extending the lifespan of power tools."
+	desc = "An array of plasteel fins which dissipates heat, reducing damage and extending the lifespan of power tools."
 	icon_state = "heatsink"
 	prefix = "heatsunk"
 	degradation_mult = 0.65
 	health_threshold_modifier = 10
+	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
 
 
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
@@ -36,7 +38,7 @@
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating
 	name = "reinforced plating"
-	desc = "A sturdy bit of metal that can be bolted onto any tool to protect it. Tough, but bulky"
+	desc = "A sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky"
 	icon_state = "plate"
 	prefix = "reinforced"
 	degradation_mult = 0.55
@@ -44,6 +46,7 @@
 	precision = -5
 	bulk_mod = 1
 	health_threshold_modifier = 10
+	matter = list(MATERIAL_PLASTEEL = 4)
 
 
 /obj/item/weapon/tool_upgrade/reinforcement/guard
@@ -55,7 +58,7 @@
 	degradation_mult = 0.75
 	precision = 5
 	health_threshold_modifier = 10
-
+	matter = list(MATERIAL_PLASTEEL = 5)
 
 
 
@@ -68,6 +71,7 @@
 	icon_state = "ergonomic"
 	prefix = "ergonomic"
 	workspeed = 0.15
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 5)
 
 
 /obj/item/weapon/tool_upgrade/productivity/ratchet
@@ -77,6 +81,7 @@
 	required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_SCREW_DRIVING)
 	prefix = "ratcheting"
 	workspeed = 0.25
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint
 	name = "red paint"
@@ -85,6 +90,7 @@
 	prefix = "red"
 	workspeed = 0.20
 	precision = -10
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint/apply_values()
 	if (..())
@@ -99,6 +105,7 @@
 	workspeed = 0.15
 	precision = 5
 	force_mult = 1.15
+	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 3)
 
 
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade
@@ -111,7 +118,7 @@
 	workspeed = 0.25
 	degradation_mult = 0.85
 	force_mult = 1.10
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_DIAMOND = 1)
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_DIAMOND = 4)
 
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	.=..()
@@ -132,6 +139,7 @@
 	force_mult = 1.15
 	degradation_mult = 1.15
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
 
 
 //Enhances power tools majorly, but also increases costs
@@ -149,6 +157,7 @@
 	fuelcost_mult = 1.35
 	precision = -10
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4)
 
 /obj/item/weapon/tool_upgrade/productivity/motor/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	.=..()
@@ -170,7 +179,7 @@
 	icon_state = "laser_guide"
 	prefix = "laser-guided"
 	precision = 10
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_URANIUM = 1)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_URANIUM = 1)
 
 
 //Fits onto generally small tools that require precision, especially surgical tools
@@ -184,6 +193,7 @@
 	prefix = "stabilized"
 	precision = 10
 	health_threshold_modifier = 10
+	matter = list(MATERIAL_PLASTIC = 3)
 
 /obj/item/weapon/tool_upgrade/refinement/magbit
 	name = "magnetic bit"
@@ -192,6 +202,7 @@
 	required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING, QUALITY_CLAMPING, QUALITY_BONE_SETTING)
 	prefix = "magnetic"
 	precision = 10
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2)
 
 
 /obj/item/weapon/tool_upgrade/refinement/ported_barrel
@@ -226,6 +237,7 @@
 	bulk_mod = 1
 	degradation_mult = 1.15
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/augment/cell_mount/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
 	.=..()
@@ -262,6 +274,7 @@
 	bulk_mod = 1
 	degradation_mult = 1.15
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/augment/fuel_tank/apply_values()
 	if (..())
@@ -277,6 +290,7 @@
 	bulk_mod = 1
 	degradation_mult = 1.30
 	health_threshold_modifier = -20
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
 
 /obj/item/weapon/tool_upgrade/augment/holding_tank/apply_values()
 	if (..())
@@ -293,6 +307,7 @@
 	degradation_mult = 1.3
 	precision = -10
 	health_threshold_modifier = -20
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/augment/expansion/apply_values()
 	if (..())
@@ -302,7 +317,7 @@
 /obj/item/weapon/tool_upgrade/augment/spikes
 	name = "spikes"
 	icon_state = "spike"
-	desc = "An array of sharp bits of metal, seemingly adapted for easy affixing to a tool. Would make it into a better weapon, but won't do much for productivity."
+	desc = "An array of sharp bits of plasteel, seemingly adapted for easy affixing to a tool. Would make it into a better weapon, but won't do much for productivity."
 	prefix = "spiked"
 	force_mod = 4
 	precision = -5
@@ -310,6 +325,7 @@
 	workspeed = -0.15
 	price_tag = 100
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_PLASTEEL = 3)
 
 /obj/item/weapon/tool_upgrade/augment/spikes/apply_values()
 	if (..())
@@ -322,6 +338,7 @@
 	icon_state = "dampener"
 	prefix = "silenced"
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
 
 /obj/item/weapon/tool_upgrade/augment/dampener/apply_values()
@@ -339,6 +356,7 @@
 	precision = 14
 	workspeed = 14
 	health_threshold_modifier = -10
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
 /obj/item/weapon/tool_upgrade/augment/repair_nano
 	name = "repair nano"
@@ -347,3 +365,4 @@
 	prefix = "self-healing"
 	degradation_mult = 0.01
 	health_threshold_modifier = 10
+	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)

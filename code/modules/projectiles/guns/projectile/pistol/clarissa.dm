@@ -1,10 +1,11 @@
 /obj/item/weapon/gun/projectile/clarissa
 	name = "FS HG .35 Auto \"Clarissa\""
-	desc = "A small, easily concealable, but somewhat underpowered gun. Uses highcap .35 Auto mags."
+	desc = "A small, easily concealable, but somewhat underpowered gun. Uses both standard and highcap .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/clarissa.dmi'
 	icon_state = "clarissa"
 	item_state = "clarissa"
 	w_class = ITEM_SIZE_SMALL
+	can_dual = 1
 	caliber = "pistol"
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -12,11 +13,15 @@
 	price_tag = 1200
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_H_PISTOL
+	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	silencer_type = /obj/item/weapon/silencer
-	damage_multiplier = 0.9
+	damage_multiplier = 0.7
 	recoil_buildup = 19
 
+	firemodes = list(
+		SEMI_AUTO_NODELAY,
+		BURST_3_ROUND
+		)
 
 /obj/item/weapon/gun/projectile/clarissa/update_icon()
 	..()
@@ -46,3 +51,7 @@
 	damage_multiplier = 1.2
 	recoil_buildup = 21
 	price_tag = 1400
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_ILLEGAL = 3)
+	firemodes = list(
+		SEMI_AUTO_NODELAY
+		)

@@ -39,20 +39,10 @@
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-	var/clean = 0
-	switch(href_list["command"])	//anti-HTML-hacking checks
-		if("cycle_ext")
-			clean = 1
-		if("cycle_int")
-			clean = 1
-		if("force_ext")
-			clean = 1
-		if("force_int")
-			clean = 1
-		if("abort")
-			clean = 1
-		if("toggle_override")
-			clean = 1
+	var/clean = FALSE
+	switch(href_list["command"])
+		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "toggle_override")
+			clean = TRUE
 
 	if(clean)
 		program.receive_user_command(href_list["command"])

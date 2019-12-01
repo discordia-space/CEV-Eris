@@ -19,7 +19,7 @@
 	price_tag = 100
 
 /obj/item/clothing/head/helmet/agrolyte
-	name = "Argolyte hood"
+	name = "Agrolyte hood"
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"
 	armor = list(melee = 35, bullet = 20, energy = 20, bomb = 25, bio = 100, rad = 80)

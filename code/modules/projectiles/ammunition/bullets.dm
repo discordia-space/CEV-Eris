@@ -37,11 +37,13 @@
 	desc = "A .25 Caseless Rifle bullet casing."
 	caliber = "clrifle"
 	projectile_type = /obj/item/projectile/bullet/clrifle
+	is_caseless = TRUE
 
 /obj/item/ammo_casing/clrifle/rubber
 	desc = "A .25 Caseless Rifle rubber bullet casing."
 	caliber = "clrifle"
 	projectile_type = /obj/item/projectile/bullet/clrifle/rubber
+	is_caseless = TRUE
 
 /obj/item/ammo_casing/lrifle
 	desc = "A .30 rifle bullet casing."

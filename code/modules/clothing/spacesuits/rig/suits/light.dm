@@ -4,12 +4,13 @@
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
-	armor = list(melee = 50, bullet = 35, energy = 30, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 35, energy = 30, bomb = 25, bio = 100, rad = 20)
 	emp_protection = 10
 	slowdown = 0
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
 	offline_slowdown = 0
 	offline_vision_restriction = 0
+	drain = 2
 
 	chest_type = /obj/item/clothing/suit/space/rig/light
 	helm_type =  /obj/item/clothing/head/helmet/space/rig/light
@@ -18,7 +19,6 @@
 
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
-	breach_threshold = 18 //comparable to voidsuits
 
 /obj/item/clothing/gloves/rig/light
 	name = "gloves"

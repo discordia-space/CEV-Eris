@@ -8,8 +8,7 @@
 	storage_slots = 14
 	price_tag = 50
 
-/obj/item/weapon/storage/briefcase/crimekit/New()
-	..()
+/obj/item/weapon/storage/briefcase/crimekit/populate_contents()
 	new /obj/item/weapon/storage/box/swabs(src)
 	new /obj/item/weapon/storage/box/fingerprints(src)
 	new /obj/item/weapon/reagent_containers/spray/luminol(src)
