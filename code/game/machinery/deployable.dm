@@ -73,6 +73,11 @@ for reference:
 	maxhealth = material.integrity
 	health = maxhealth
 
+/obj/structure/barricade/get_matter()
+	. = ..()
+	if(material)
+		LAZYAPLUS(., material.name, 5)
+
 /obj/structure/barricade/get_material()
 	return material
 
@@ -108,7 +113,7 @@ for reference:
 		..()
 
 /obj/structure/barricade/proc/dismantle()
-	material.place_sheet(drop_location(), amount=5)
+	drop_materials(drop_location())
 	qdel(src)
 	return
 
