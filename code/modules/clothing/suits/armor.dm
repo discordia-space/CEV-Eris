@@ -273,7 +273,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	slowdown = 0.5
-	armor = list(melee = 25, bullet = 65, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 25, bullet = 60, energy = 0, bomb = 0, bio = 0, rad = 0) // worse than bulletroof by 35
 	siemens_coefficient = 0.7
 	price_tag = 500
 
@@ -293,10 +293,10 @@
 	icon_state = "flakvest"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	slowdown = 0.2
-	armor = list(melee = 35, bullet = 25, energy = 0, bomb = 25, bio = 0, rad = 0)
+	slowdown = 0
+	armor = list(melee = 35, bullet = 30, energy = 0, bomb = 25, bio = 0, rad = 0) // sum equal to HM vest
 	siemens_coefficient = 0.7
-	price_tag = 300
+	price_tag = 400
 
 /obj/item/clothing/suit/armor/bulletproof/flakvest/green
 	name = "green flakvest vest"
