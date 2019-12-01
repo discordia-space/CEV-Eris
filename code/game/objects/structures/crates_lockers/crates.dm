@@ -382,3 +382,13 @@
 	desc = "A secure wooden crate."
 	name = "Secure wooden crate"
 	icon_state = "plasmacrate"
+
+/obj/structure/closet/crate/serbcrate
+	desc = "A secure wooden crate."
+	name = "Secure wooden crate"
+	icon_state = "serbcrate"
+
+/obj/structure/closet/crate/serbcrate_gray
+	desc = "A secure metallic crate."
+	name = "Secure metallic crate"
+	icon_state = "serbcrate_gray"
