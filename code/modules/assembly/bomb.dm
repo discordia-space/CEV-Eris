@@ -7,7 +7,7 @@
 	throw_speed = 2
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
-	var/status = 0   //0 - not readied //1 - bomb finished with welder
+	var/welded = FALSE   //0 - not readied //1 - bomb finished with welder
 	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
 	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a plasma tank
 
@@ -27,7 +27,7 @@
 
 	add_fingerprint(user)
 
-	var/tool_type = I.get_tool_type(user, QUALITY_BOLT_TURNING, QUALITY_WELDING, src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_WELDING), src)
 	switch(tool_type)
 
 		if(QUALITY_BOLT_TURNING)
@@ -47,14 +47,14 @@
 
 		if(QUALITY_WELDING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-				if(!status)
-					status = 1
+				if(!welded)
+					welded = TRUE
 					bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
 					message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
 					to_chat(user, SPAN_NOTICE("A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited."))
 					return
 				else
-					status = 0
+					welded = FALSE
 					bombers += "[key_name(user)] unwelded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
 					to_chat(user, SPAN_NOTICE("The hole has been closed."))
 					return
@@ -76,7 +76,7 @@
 	sleep(10)
 	if(!src)
 		return
-	if(status)
+	if(welded)
 		bombtank.ignite()	//if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
 	else
 		bombtank.release()
