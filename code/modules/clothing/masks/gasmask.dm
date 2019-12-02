@@ -78,7 +78,7 @@ obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
-		M << "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!"
+		to_chat(M, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
 		return 1
 
 /obj/item/clothing/mask/gas/sexyclown
