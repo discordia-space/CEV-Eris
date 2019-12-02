@@ -93,7 +93,7 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 		man_amount++
 	man_rating -= man_amount
 
-	recharged = initial(recharged) - man_rating - las_rating
+	recharged = initial(recharged) - man_rating - man_amount
 
  /**
   * The ui_interact proc is used to open and update Nano UIs
