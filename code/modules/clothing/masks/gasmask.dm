@@ -76,7 +76,7 @@ obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 
 	var/choice = input(M,"To what form do you wish to Morph this mask?","Morph Mask") in options
 
-	if(src && choice && !M.stat && in_range(M,src))
+	if(src && choice && !M.incapacitated() && adjacent(M))
 		icon_state = options[choice]
 		to_chat(M, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
 		return 1
