@@ -112,6 +112,7 @@
 		++resting
 		pick_desires()
 		insight -= 100
+	owner.HUDneed["sanity"]?.update_icon()
 
 /datum/sanity/proc/handle_level()
 	level_change = SANITY_CHANGE_FADEOFF(level_change)
@@ -279,6 +280,7 @@
 	level = new_level
 	if(level == 0 && world.time >= breakdown_time)
 		breakdown()
+	owner.HUDneed["sanity"]?.update_icon()
 
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN

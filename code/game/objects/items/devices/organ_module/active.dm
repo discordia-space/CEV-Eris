@@ -5,9 +5,11 @@
 
 /obj/item/organ_module/active/onInstall(var/obj/item/organ/external/E)
 	new /obj/item/organ/external/proc/activate_module(E, verb_name, verb_desc)
+	E.update_bionics_hud()
 
 /obj/item/organ_module/active/onRemove(var/obj/item/organ/external/E)
 	E.verbs -= /obj/item/organ/external/proc/activate_module
+	E.update_bionics_hud()
 
 /obj/item/organ_module/active/organ_removed(obj/item/organ/external/E, mob/living/carbon/human/H)
 	onRemove(E)
