@@ -174,7 +174,7 @@
 	name = "steelpot helmet"
 	desc = " Titanium helmet of serbian origin. Still widely used despite of its discontinued production."
 	icon_state = "steelpot"
-	armor = list(melee = 25, bullet = 30, energy = 0, bomb = 25, bio = 0, rad = 0) // same as IHS helmet
+	armor = list(melee = 40, bullet = 40, energy = 0, bomb = 40, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
@@ -183,7 +183,7 @@
 	name = "green altyn helmet"
 	desc = "Green titanium helmet of serbian origin. Still widely used despite of its discontinued production."
 	icon_state = "altyn"
-	armor = list(melee = 15, bullet = 55, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
+	armor = list(melee = 45, bullet = 55, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
