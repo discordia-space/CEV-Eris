@@ -31,8 +31,9 @@
 	suit_type = "industrial hardsuit"
 	desc = "A heavy, powerful rig used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
-	armor = list(melee = 60, bullet = 60, energy = 15, bomb = 30, bio = 100, rad = 50)
+	armor = list(melee = 60, bullet = 60, energy = 15, bomb = 30, bio = 100, rad = 80)
 	slowdown = 3
+	drain = 3
 	offline_slowdown = 10
 	offline_vision_restriction = 2
 	emp_protection = -20
@@ -111,6 +112,7 @@ Advanced Voidsuit: Technomancer Exultant
 	icon_state = "ce_rig"
 	armor = list(melee = 45, bullet = 45, energy = 35, bomb = 65, bio = 80, rad = 100)
 	slowdown = 0
+	drain = 2
 	offline_slowdown = 0
 	offline_vision_restriction = 0
 
@@ -157,8 +159,9 @@ Advanced Voidsuit: Technomancer Exultant
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
-	armor = list(melee = 45, bullet = 35, energy = 80, bomb = 100, bio = 100, rad = 100)
+	armor = list(melee = 40, bullet = 35, energy = 65, bomb = 80, bio = 100, rad = 100)
 	slowdown = 1
+	drain = 3
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
@@ -199,10 +202,10 @@ Advanced Voidsuit: Technomancer Exultant
 
 	name = "rescue suit control module"
 	suit_type = "rescue hardsuit"
-	desc = "A durable suit designed for medical rescue in high risk areas."
+	desc = "A relatively lightweight and durable RIG suit designed for medical rescue in hazardous locations."
 	icon_state = "medical_rig"
-	armor = list(melee = 35, bullet = 35, energy = 35, bomb = 60, bio = 100, rad = 100)
-	slowdown = 1
+	armor = list(melee = 30, bullet = 30, energy = 25, bomb = 60, bio = 100, rad = 60)
+	slowdown = 0.75
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
@@ -235,8 +238,9 @@ Advanced Voidsuit: Technomancer Exultant
 	suit_type = "hazard hardsuit"
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
-	armor = list(melee = 40, bullet = 50, energy = 50, bomb = 80, bio = 100, rad = 100)
+	armor = list(melee = 55, bullet = 55, energy = 55, bomb = 80, bio = 100, rad = 100)
 	slowdown = 1
+	drain = 3.5
 	offline_slowdown = 3
 	offline_vision_restriction = 1
 

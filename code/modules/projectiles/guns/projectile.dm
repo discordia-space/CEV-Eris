@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
-	recoil = 1
+	recoil_buildup = 1
 
 	var/caliber = "357"		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
@@ -125,6 +125,7 @@
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
+			to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
 			return //incompatible
 
 		//How are we trying to apply this magazine to this gun?
@@ -190,6 +191,7 @@
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
+			to_chat(user, SPAN_WARNING("[src] is incompatible with [C]."))
 			return //incompatible
 		if(loaded.len >= max_shells)
 			to_chat(user, SPAN_WARNING("[src] is full."))

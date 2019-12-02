@@ -52,8 +52,6 @@
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
-	var/sanity_gain
-
 	// Catalog stuff
 	var/appear_in_default_catalog = TRUE
 	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
@@ -152,10 +150,6 @@
 	return
 
 /datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	if(sanity_gain)
-		var/mob/living/carbon/human/H = M
-		if(istype(H))
-			H.sanity.onChem(src, effect_multiplier)
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

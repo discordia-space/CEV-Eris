@@ -18,15 +18,15 @@
 	name = "body bags"
 	desc = "This box contains a number of body bags."
 	icon_state = "bodybags"
-	New()
-		..()
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
+
+/obj/item/weapon/storage/box/bodybags/populate_contents()
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
 
 
 /obj/structure/closet/body_bag

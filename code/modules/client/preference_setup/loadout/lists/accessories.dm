@@ -93,3 +93,20 @@
 /datum/gear/accessory/tie/horrible
 	display_name = "tie, socially disgraceful"
 	path = /obj/item/clothing/accessory/horrible
+
+/datum/gear/accessory/wallet
+	display_name = "wallet, colour select"
+	path = /obj/item/weapon/storage/wallet
+	flags = GEAR_HAS_COLOR_SELECTION
+
+/datum/gear/accessory/scarf
+	display_name = "scarf selection"
+	path = /obj/item/clothing/mask/scarf
+	slot = slot_wear_mask
+	flags = GEAR_HAS_TYPE_SELECTION
+
+/datum/gear/accessory/bandana
+	display_name = "bandana selection"
+	path = /obj/item/clothing/mask/bandana
+	slot = slot_wear_mask
+	flags = GEAR_HAS_TYPE_SELECTION

@@ -36,8 +36,10 @@
 	item_state = "utility"
 	can_hold = list(
 		/obj/item/weapon/tool,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/rcd,
 		/obj/item/device/lighting/toggleable/flashlight,
-		/obj/item/device/radio/headset,
+		/obj/item/device/radio,
 		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/scanner/gas,
@@ -56,8 +58,7 @@
 		)
 
 
-/obj/item/weapon/storage/belt/utility/full/New()
-	..()
+/obj/item/weapon/storage/belt/utility/full/populate_contents()
 	new /obj/item/weapon/tool/screwdriver(src)
 	new /obj/item/weapon/tool/wrench(src)
 	new /obj/item/weapon/tool/weldingtool(src)
@@ -65,8 +66,7 @@
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-/obj/item/weapon/storage/belt/utility/atmostech/New()
-	..()
+/obj/item/weapon/storage/belt/utility/atmostech/populate_contents()
 	new /obj/item/weapon/tool/screwdriver(src)
 	new /obj/item/weapon/tool/wrench(src)
 	new /obj/item/weapon/tool/weldingtool(src)

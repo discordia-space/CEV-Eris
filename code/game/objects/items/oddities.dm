@@ -4,8 +4,6 @@
 //If rebalancing is needed, keep in mind spawning rate of those items, it might be good idea to change that as well
 //Clockrigger 2019
 
-#define MINIMUM_ODDITY_STAT 2
-
 /obj/item/weapon/oddity
 	name = "Oddity"
 	desc = "Strange item of uncertain origin."
@@ -13,13 +11,10 @@
 	icon_state = "gift3"
 	item_state = "electronic"
 	w_class = ITEM_SIZE_SMALL
-	var/claimed = FALSE
 
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
-//As for perks, the second number in associated list will be a chance to get it
 	var/list/oddity_stats
-	var/list/oddity_perks
 
 	var/sanity_value = 1
 
@@ -28,43 +23,27 @@
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
-
-/obj/item/weapon/oddity/attack_self(mob/user as mob)
-
-	if(claimed)
-		to_chat(user, SPAN_NOTICE("This item is already someone's inspiration."))
-		return FALSE
-
-	if(!ishuman(user))
-		to_chat(user, SPAN_NOTICE("There is no value in this item for you"))
-		return FALSE
-
 	if(oddity_stats)
-		var/chosen_stat = pick(oddity_stats)
-		var/stat_change = rand (2, oddity_stats[chosen_stat])
-		user.stats.changeStat(chosen_stat, stat_change)
-		claim(user)
-		to_chat(user, SPAN_NOTICE("Something sparks in your mind as you examine the [initial(name)]. A brief moment of understanding to this item's past granting you insight to a bigger picture. \
-									Your [chosen_stat] skill is increased by [stat_change]"))
-
-	if(oddity_perks)
-		var/chosen_perk = pick(oddity_perks)
-		if(prob (oddity_perks[chosen_perk]))
-			var/datum/perk/P = new chosen_perk
-			P.teach(user.stats)
-			claim(user)
-			to_chat(user, SPAN_NOTICE("You are now something more. The abillity [P.name] is avalible for you."))
-
-	return TRUE
+		for(var/stat in oddity_stats)
+			oddity_stats[stat] = rand(1, oddity_stats[stat])
 
 
-/obj/item/weapon/oddity/proc/claim(mob/user as mob)
-	if(!claimed)
-		claimed = TRUE
-		name = "[user.name] [name]"
-		return TRUE
-	else
-		return FALSE
+/obj/item/weapon/oddity/examine(user)
+	..()
+	for(var/stat in oddity_stats)
+		var/aspect
+		switch(oddity_stats[stat])
+			if(10 to INFINITY)
+				aspect = "an <span style='color:#d0b050;'>overwhelming</span>"
+			if(6 to 10)
+				aspect = "a <span class='red'>strong</span>"
+			if(3 to 6)
+				aspect = "a <span class='green'>medium</span>"
+			if(1 to 3)
+				aspect = "a <span class='blue'>weak</span>"
+			else
+				continue
+		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
 
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
@@ -270,6 +249,3 @@
 		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
-
-
-#undef MINIMUM_ODDITY_STAT

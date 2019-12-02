@@ -483,7 +483,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/list/known_designs = list()
 			for(var/i in files.known_designs)
 				var/datum/design/D = i
-				if(!D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER)))
+				if(!(D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER))))
 					// doesn't make much sense to copy starting designs around, unless you can use them in lathes
 					known_designs += list(list("name" = D.name, "id" = "\ref[D]"))
 			data["known_designs"] = known_designs
@@ -539,6 +539,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(selected_category)
 				data["selected_category"] = selected_category
 				data["possible_designs"] = get_possible_designs_data(target_device == linked_lathe ? PROTOLATHE : IMPRINTER, selected_category)
+
+			if(target_device.current_file)
+				data["device_current"] = target_device.current_file.design.name
+
+			data["device_error"] = target_device.error
 
 			var/list/queue_list = list()
 			for(var/f in target_device.queue)

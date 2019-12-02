@@ -478,7 +478,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				else
 					qdel(src)
 	else
-		if(istype(I, /obj/item/stack/material) && I.get_material_name() == "steel")
+		if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
 			var/obj/item/stack/G = I
 
 			user.visible_message("[user] starts covering [src] with the [I]", "You start covering [src] with the [I]")

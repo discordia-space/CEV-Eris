@@ -36,10 +36,8 @@
 	src.add_fingerprint(usr)
 
 	var/clean = FALSE
-	switch(href_list["command"])	//anti-HTML-hacking checks
-		if("force_door")
-			clean = TRUE
-		if("toggle_override")
+	switch(href_list["command"])
+		if("force_door", "toggle_override")
 			clean = TRUE
 
 	if(clean)

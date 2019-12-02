@@ -137,7 +137,7 @@
 
 //return 1 if slipped, 0 otherwise
 /mob/proc/handle_spaceslipping()
-	if(prob(5)) //Todo: Factor in future agility stat here
+	if(prob(1)) //Todo: Factor in future agility stat here
 		to_chat(src, SPAN_WARNING("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)

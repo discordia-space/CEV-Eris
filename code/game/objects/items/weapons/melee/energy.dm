@@ -5,7 +5,7 @@
 	var/active_w_class
 	sharp = 0
 	edge = 0
-	armor_penetration = 50
+	armor_penetration = ARMOR_PEN_HALF
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
@@ -59,12 +59,9 @@
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
 	icon_state = "axe0"
-	//active_force = 150 //holy...
-	active_force = 60
-	active_throwforce = 35
+	active_force = WEAPON_FORCE_GODLIKE
+	active_throwforce = 50
 	active_w_class = ITEM_SIZE_HUGE
-	//force = 40
-	//throwforce = 25
 	force = 20
 	throwforce = 10
 	throw_speed = 1
@@ -94,8 +91,8 @@
 	name = "energy sword"
 	desc = "May the Force be with you."
 	icon_state = "sword0"
-	active_force = WEAPON_FORCE_ROBUST
-	active_throwforce = WEAPON_FORCE_ROBUST
+	active_force = WEAPON_FORCE_LETHAL // Go forth and slay, padawan
+	active_throwforce = WEAPON_FORCE_LETHAL
 	active_w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS

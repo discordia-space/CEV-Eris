@@ -5,6 +5,7 @@
 	icon_state = "mandella"
 	item_state = "pistol_s"
 	w_class = ITEM_SIZE_NORMAL
+	can_dual = 1
 	caliber = "pistol"
 	silencer_type = /obj/item/weapon/silencer/integrated
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
