@@ -14,7 +14,7 @@
 	if(prob(40))
 		visible_message("[src] hesitates for a moment...and then charges at [user]!")
 		return FALSE //Sometimes roach just be like that
-	visible_message("[src] scuttles towards [user], examining the [thefood] they have in their hand.")
+	visible_message("[src] scuttles towards [user], examining the [ambrosiavulgaris] they have in their hand.")
 	can_buckle = TRUE
 	if(do_after(src, taming_window, src)) //Here's your window to climb onto it.
 		if(!buckled_mob || user != buckled_mob) //They need to be riding us
