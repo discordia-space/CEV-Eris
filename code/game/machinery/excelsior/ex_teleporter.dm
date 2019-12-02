@@ -84,6 +84,17 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 				return
 
 
+/obj/machinery/complant_teleporter/RefreshParts()
+	..()
+	var/man_rating = 0
+	var/man_amount = 0
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		man_rating += M.rating
+		man_amount++
+	man_rating -= man_amount
+
+	recharged = initial(recharged) - man_rating - las_rating
+
  /**
   * The ui_interact proc is used to open and update Nano UIs
   * If ui_interact is not used then the UI will not update correctly
