@@ -35,9 +35,8 @@
 	desc = "A machine used for construction of advanced prototypes. Operated from an R\&D console."
 	icon_state = "protolathe"
 
+	build_type = PROTOLATHE
 	storage_capacity = 120
-
-	have_reagents = TRUE
 
 
 /obj/machinery/autolathe/rnd/imprinter
@@ -45,6 +44,7 @@
 	desc = "A machine used for printing advanced circuit boards. Operated from an R\&D console."
 	icon_state = "imprinter"
 
+	build_type = IMPRINTER
 	storage_capacity = 60
 	speed = 3
 

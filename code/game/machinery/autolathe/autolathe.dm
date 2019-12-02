@@ -22,6 +22,8 @@
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
+	var/build_type = AUTOLATHE
+
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null
 
 	var/list/stored_material = list()
