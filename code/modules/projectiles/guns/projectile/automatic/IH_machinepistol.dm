@@ -5,6 +5,7 @@
 	icon_state = "IH_mp"
 	item_state = "IH_mp"
 	w_class = ITEM_SIZE_NORMAL
+	can_dual = 1
 	caliber = "pistol"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -18,7 +19,7 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.8
-	recoil_buildup = 4
+	recoil_buildup = 3
 
 	firemodes = list(
 		FULL_AUTO_400,

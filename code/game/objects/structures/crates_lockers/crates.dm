@@ -1,7 +1,7 @@
 /obj/structure/closet/crate
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/crate.dmi'
 	icon_state = "crate"
 	climbable = TRUE
 	dense_when_open = TRUE

@@ -78,7 +78,6 @@ var/list/flooring_types
 	var/space_smooth = SMOOTH_ALL
 	//There are no lists for spaces
 
-
 	/*
 	How we smooth with movable atoms
 	These are checked after the above turf based smoothing has been handled
@@ -110,25 +109,20 @@ var/list/flooring_types
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
-
 //Flooring Procs
 /decl/flooring/proc/get_plating_type(var/turf/location)
 	return plating_type
-
 
 //Used to check if we can build the specified type of floor ontop of this one
 /decl/flooring/proc/can_build_floor(var/decl/flooring/newfloor)
 	return FALSE
 
-
 //Used when someone attacks the floor
 /decl/flooring/proc/attackby(var/obj/item/I, var/mob/user, var/turf/T)
 	return FALSE
 
-
 /decl/flooring/proc/Entered(mob/living/M as mob)
 	return
-
 
 /decl/flooring/grass
 	name = "grass"
@@ -153,7 +147,6 @@ var/list/flooring_types
 	build_type = null //Todo: add bags of fertilised soil or something to create dirt floors
 	footstep_sound = "gravel"
 
-
 /decl/flooring/asteroid
 	name = "coarse sand"
 	desc = "Gritty and unpleasant."
@@ -163,12 +156,8 @@ var/list/flooring_types
 	build_type = null
 	footstep_sound = "asteroid"
 
+//=========PLATING==========\\
 
-
-
-
-
-//=========PLATING==========
 /decl/flooring/reinforced/plating
 	name = "plating"
 	descriptor = "plating"
@@ -203,16 +192,14 @@ var/list/flooring_types
 		return null
 	return plating_type
 
+//==========UNDERPLATING==============\\
 
-
-
-//==========UNDERPLATING==============
 /decl/flooring/reinforced/plating/under
 	name = "underplating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	descriptor = "support beams"
 	icon_base = "under"
-	build_type = MATERIAL_STEEL //Same type as the normal plating, we'll use can_build_floor to control it
+	build_type = /obj/item/stack/material/steel //Same type as the normal plating, we'll use can_build_floor to control it
 	flags = TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS
 	can_paint = 1
 	plating_type = /decl/flooring/reinforced/plating/hull
@@ -246,7 +233,6 @@ var/list/flooring_types
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(T)
 				T.contents += CT
 
-
 /decl/flooring/reinforced/plating/under/get_plating_type(var/turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return plating_type
@@ -260,8 +246,6 @@ var/list/flooring_types
 	else if (turf_is_upper_hull(location))
 		return /decl/flooring/reinforced/plating
 	else return null
-
-
 
 /decl/flooring/reinforced/plating/under/Entered(mob/living/M as mob)
 	for(var/obj/structure/catwalk/C in get_turf(M))
@@ -271,24 +255,22 @@ var/list/flooring_types
 	if(!ishuman(M)|| M.incorporeal_move || !has_gravity(get_turf(M)))
 		return
 	if(MOVING_QUICKLY(M))
-		if(prob(20))
+		if(prob(5))
 			M.adjustBruteLoss(5)
 			M.slip(null, 6)
 			playsound(M, 'sound/effects/bang.ogg', 50, 1)
 			to_chat(M, SPAN_WARNING("You tripped over!"))
 			return
 
+//============HULL PLATING=========\\
 
-
-
-//============HULL PLATING=========
 /decl/flooring/reinforced/plating/hull
 	name = "hull"
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/hull.dmi'
 	icon_base = "hullcenter"
 	flags = TURF_HAS_CORNERS | TURF_HAS_INNER_CORNERS | TURF_REMOVE_WELDER | TURF_CAN_BURN | TURF_CAN_BREAK
-	build_type = MATERIAL_PLASTEEL
+	build_type = /obj/item/stack/material/plasteel
 	has_base_range = 35
 	//try_update_icon = 0
 	plating_type = null
@@ -305,7 +287,6 @@ var/list/flooring_types
 /decl/flooring/reinforced/plating/hull/can_build_floor(var/decl/flooring/newfloor)
 	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
 
-
 /decl/flooring/reinforced/plating/hull/get_plating_type(var/turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
 		return null
@@ -314,10 +295,8 @@ var/list/flooring_types
 	else
 		return null //This should never happen, hull plating should only be on the exterior
 
+//==========CARPET==============\\
 
-
-
-//==========CARPET==============
 /decl/flooring/carpet
 	name = "red carpet"
 	desc = "Imported and comfy."
@@ -367,10 +346,8 @@ var/list/flooring_types
 	icon_base = "oracarpet"
 	build_type = /obj/item/stack/tile/carpet/oracarpet
 
+//==========TILING==============\\
 
-
-
-//==========TILING==============
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
@@ -386,11 +363,6 @@ var/list/flooring_types
 	floor_smooth = SMOOTH_NONE
 	wall_smooth = SMOOTH_NONE
 	space_smooth = SMOOTH_NONE
-
-
-
-
-
 
 /decl/flooring/tiling/steel
 	name = "floor"
@@ -472,10 +444,6 @@ var/list/flooring_types
 	icon_base = "bar_light"
 	build_type = /obj/item/stack/tile/floor/steel/bar_light
 
-
-
-
-
 /decl/flooring/tiling/white
 	name = "floor"
 	icon_base = "tiles"
@@ -543,10 +511,6 @@ var/list/flooring_types
 	icon_base = "monofloor"
 	build_type = /obj/item/stack/tile/floor/white/monofloor
 	has_base_range = 15
-
-
-
-
 
 /decl/flooring/tiling/dark
 	name = "floor"
@@ -616,8 +580,6 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor/dark/monofloor
 	has_base_range = 15
 
-
-
 /decl/flooring/tiling/cafe
 	name = "floor"
 	icon_base = "cafe"
@@ -662,8 +624,8 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/floor/techmaint/cargo
 	footstep_sound = "floor"
 
+//==========MISC==============\\
 
-//==========MISC==============
 /decl/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
@@ -676,7 +638,6 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/wood
 	smooth_nothing = TRUE
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER | TURF_HIDES_THINGS
-
 
 /decl/flooring/reinforced
 	name = "reinforced floor"
@@ -719,8 +680,7 @@ var/list/flooring_types
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	can_paint = null
 
-
-//==========Derelict==============
+//==========Derelict==============\\
 
 /decl/flooring/tiling/derelict
 	name = "floor"
@@ -733,12 +693,10 @@ var/list/flooring_types
 	icon_base = "derelict1"
 	build_type = /obj/item/stack/tile/derelict/white_red_edges
 
-
 /decl/flooring/tiling/derelict/white_small_edges
 	name = "floor"
 	icon_base = "derelict2"
 	build_type = /obj/item/stack/tile/derelict/white_small_edges
-
 
 /decl/flooring/tiling/derelict/red_white_edges
 	name = "floor"

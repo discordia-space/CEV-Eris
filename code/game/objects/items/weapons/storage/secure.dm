@@ -181,14 +181,9 @@
 	density = FALSE
 	cant_hold = list(/obj/item/weapon/storage/secure/briefcase)
 
-/obj/item/weapon/storage/secure/safe/New()
-	..()
+/obj/item/weapon/storage/secure/safe/populate_contents()
 	new /obj/item/weapon/paper(src)
 	new /obj/item/weapon/pen(src)
 
-/obj/item/weapon/storage/secure/safe/attack_hand(mob/user as mob)
+/obj/item/weapon/storage/secure/safe/attack_hand(mob/user)
 	return attack_self(user)
-
-/obj/item/weapon/storage/secure/safe/HoS/New()
-	..()
-	//new /obj/item/weapon/storage/lockbox/clusterbang(src) This item is currently broken... and probably shouldnt exist to begin with (even though it's cool)

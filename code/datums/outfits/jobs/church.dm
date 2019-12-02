@@ -7,8 +7,8 @@
 
 /decl/hierarchy/outfit/job/church/New()
 	..()
-	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/church;
-	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/church;
+	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/neotheology;
+	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/neotheology;
 
 /decl/hierarchy/outfit/job/church/chaplain
 	name = OUTFIT_JOB_NAME("NeoTheology Preacher")

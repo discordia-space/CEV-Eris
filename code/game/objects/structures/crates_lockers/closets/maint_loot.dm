@@ -170,5 +170,3 @@
 	new /obj/random/rations(src)
 	new /obj/random/rations(src)
 	new /obj/random/cluster/roaches(src)
-	new /obj/random/cluster/roaches/low_chance(src)
-	new /obj/random/cluster/roaches/low_chance(src)

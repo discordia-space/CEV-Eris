@@ -33,7 +33,7 @@
 	price_tag = 150
 
 /obj/item/clothing/suit/armor/vest/agrolyte
-	name = "Argolyte attire"
+	name = "Agrolyte armor"
 	desc = "Every rose has its thorns."
 	icon_state = "botanist"
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION

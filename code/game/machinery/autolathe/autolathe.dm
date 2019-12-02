@@ -228,7 +228,7 @@
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
-		wires.Interact(user)
+		wires?.Interact(user)
 		return
 
 	if(default_part_replacement(I, user))
@@ -261,7 +261,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	usr.set_machine(src)
 
 	if(href_list["insert"])
@@ -719,7 +718,8 @@
 
 /obj/machinery/autolathe/proc/consume_materials(datum/design/design)
 	for(var/material in design.materials)
-		stored_material[material] = max(0, stored_material[material] - SANITIZE_LATHE_COST(design.materials[material]))
+		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]) : design.materials[material]
+		stored_material[material] = max(0, stored_material[material] - material_cost)
 
 	for(var/reagent in design.chemicals)
 		container.reagents.remove_reagent(reagent, design.chemicals[reagent])
@@ -869,5 +869,5 @@
 /obj/effect/flicker_overlay/New(atom/loc)
 	..()
 	icon = loc.icon
-	layer = loc.layer + 0.1
+	layer = loc.layer
 	plane = loc.plane

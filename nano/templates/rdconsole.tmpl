@@ -231,14 +231,22 @@
 					</div>
 				</div>
 
-				<h3>Queue information</h3>
+				<h3>Construction information</h3>
 				<div class="statusDisplayRecords">
 					<div class="item">
 						<div class="itemContent" style="width: 100%;">
+							{{if data.device_current}}
+								Constructing: {{:data.device_current}}<br/>
+								{{if data.device_error}}
+									<div class="bad">{{:data.device_error}}</div>
+								{{/if}}
+								<br/>
+							{{/if}}
+							Queue:<br/>
 							{{for data.queue}}
 								{{:index + 1}}) {{:value}}<br/>
 							{{empty}}
-								Empty
+								Empty<br/>
 							{{/for}}
 							{{if data.queue.length > 0}}
 								<div class="item">
@@ -322,7 +330,7 @@
 	<table style="width: 30%">
 	<div class='item'>
 	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
-	<tr><td>Disk capacity:</td><td style="width: 100%"><div style="width: 50%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div></td>
+	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
 	</div>
 	</table>
 	{{if data.has_disk}}
@@ -365,7 +373,7 @@
 	<table style="width: 30%">
 	<div class='item'>
 	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
-	<tr><td>Disk capacity:</td><td style="width: 100%"><div style="width: 50%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div></td>
+	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
 	</div>
 	</table>
 	{{if data.has_disk}}
@@ -408,7 +416,7 @@
 	<table style="width: 30%">
 	<div class='item'>
 	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
-	<tr><td>Disk capacity:</td><td style="width: 100%"><div style="width: 50%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div></td>
+	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
 	</div>
 	</table>
 	{{if data.has_disk}}

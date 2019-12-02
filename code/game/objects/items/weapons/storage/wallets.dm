@@ -1,7 +1,7 @@
 /obj/item/weapon/storage/wallet
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
-	storage_slots = 10
+	storage_slots = 7
 	icon_state = "wallet"
 	w_class = ITEM_SIZE_SMALL
 	can_hold = list(
@@ -10,7 +10,7 @@
 		/obj/item/clothing/mask/smokable/cigarette/,
 		/obj/item/device/lighting/toggleable/flashlight/pen,
 		/obj/item/seeds,
-		/obj/item/stack/medical,
+		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/coin,
 		/obj/item/weapon/dice,
 		/obj/item/weapon/disk,
@@ -73,18 +73,16 @@
 	else
 		return ..()
 
-/obj/item/weapon/storage/wallet/random/New()
-	..()
-	var/item1_type = pick( /obj/item/weapon/spacecash/bundle/c10,/obj/item/weapon/spacecash/bundle/c100,/obj/item/weapon/spacecash/bundle/c1000,/obj/item/weapon/spacecash/bundle/c20,/obj/item/weapon/spacecash/bundle/c200,/obj/item/weapon/spacecash/bundle/c50, /obj/item/weapon/spacecash/bundle/c500)
+/obj/item/weapon/storage/wallet/random/populate_contents()
+	var/item1_type = pick(/obj/item/weapon/spacecash/bundle/c10,/obj/item/weapon/spacecash/bundle/c100,/obj/item/weapon/spacecash/bundle/c1000,/obj/item/weapon/spacecash/bundle/c20,/obj/item/weapon/spacecash/bundle/c200,/obj/item/weapon/spacecash/bundle/c50,/obj/item/weapon/spacecash/bundle/c500)
 	var/item2_type
 	if(prob(50))
-		item2_type = pick( /obj/item/weapon/spacecash/bundle/c10,/obj/item/weapon/spacecash/bundle/c100,/obj/item/weapon/spacecash/bundle/c1000,/obj/item/weapon/spacecash/bundle/c20,/obj/item/weapon/spacecash/bundle/c200,/obj/item/weapon/spacecash/bundle/c50, /obj/item/weapon/spacecash/bundle/c500)
-	var/item3_type = pick( /obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron )
+		item2_type = pick(/obj/item/weapon/spacecash/bundle/c10,/obj/item/weapon/spacecash/bundle/c100,/obj/item/weapon/spacecash/bundle/c1000,/obj/item/weapon/spacecash/bundle/c20,/obj/item/weapon/spacecash/bundle/c200,/obj/item/weapon/spacecash/bundle/c50,/obj/item/weapon/spacecash/bundle/c500)
+	var/item3_type = pick(/obj/item/weapon/coin/silver, /obj/item/weapon/coin/silver, /obj/item/weapon/coin/gold, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron, /obj/item/weapon/coin/iron)
 
-	spawn(2)
-		if(item1_type)
-			new item1_type(src)
-		if(item2_type)
-			new item2_type(src)
-		if(item3_type)
-			new item3_type(src)
+	if(item1_type)
+		new item1_type(src)
+	if(item2_type)
+		new item2_type(src)
+	if(item3_type)
+		new item3_type(src)
