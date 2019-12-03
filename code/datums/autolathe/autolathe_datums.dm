@@ -131,20 +131,19 @@
 
 	if(length(materials))
 		var/list/RS = list()
-		for(var/mat in materials)
-			RS.Add(list(list("name" = mat, "req" = materials[mat])))
+
+		for(var/material in materials)
+			var/material/material_datum = get_material_by_name(material)
+			RS.Add(list(list("id" = material, "name" = material_datum.display_name, "req" = materials[material])))
+
 		ui_data["materials"] = RS
 
 	if(length(chemicals))
 		var/list/RS = list()
 
 		for(var/reagent in chemicals)
-			var/datum/reagent/RG = chemical_reagents_list[reagent]
-			var/chemical_name = "UNKNOWN"
-			if(RG)
-				chemical_name = RG.name
-
-			RS.Add(list(list("id" = reagent, "name" = chemical_name, "req" = chemicals[reagent])))
+			var/datum/reagent/reagent_datum = chemical_reagents_list[reagent]
+			RS.Add(list(list("id" = reagent, "name" = reagent_datum.name, "req" = chemicals[reagent])))
 
 		ui_data["chemicals"] = RS
 

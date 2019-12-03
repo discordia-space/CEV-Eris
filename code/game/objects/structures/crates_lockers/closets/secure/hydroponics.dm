@@ -21,6 +21,7 @@
 	new /obj/item/weapon/material/hatchet(src)
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
+	new /obj/item/clothing/gloves/botanic_leather(src)
 
 /obj/structure/closet/secure_closet/personal/hydroponics/public
 	name = "gardener's locker"
@@ -47,6 +48,7 @@
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
 	new /obj/item/clothing/suit/space/void/agrolyte(src)
 	new /obj/item/clothing/head/helmet/space/void/agrolyte(src)
+	new /obj/item/clothing/gloves/botanic_leather(src)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else

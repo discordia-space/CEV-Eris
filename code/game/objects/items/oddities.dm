@@ -23,6 +23,10 @@
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
+	if(oddity_stats)
+		for(var/stat in oddity_stats)
+			oddity_stats[stat] = rand(1, oddity_stats[stat])
+
 
 /obj/item/weapon/oddity/examine(user)
 	..()
