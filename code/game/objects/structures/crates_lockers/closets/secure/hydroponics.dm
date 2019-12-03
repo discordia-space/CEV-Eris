@@ -45,8 +45,8 @@
 	new /obj/item/weapon/material/hatchet(src)
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-	new /obj/item/clothing/suit/armor/vest/agrolyte(src)
-	new /obj/item/clothing/head/helmet/agrolyte(src)
+	new /obj/item/clothing/suit/space/void/agrolyte(src)
+	new /obj/item/clothing/head/helmet/space/void/agrolyte(src)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else

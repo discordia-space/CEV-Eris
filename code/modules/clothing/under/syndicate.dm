@@ -3,13 +3,6 @@
 	desc = "It's some non-descript, slightly suspicious looking, civilian clothing."
 	icon_state = "syndicate"
 	item_state = "bl_suit"
-
+	siemens_coefficient = 0.8
 	has_sensor = 0
-	siemens_coefficient = 0.9
 	price_tag = 50
-
-/obj/item/clothing/under/syndicate/combat
-	name = "combat turtleneck"
-
-
-

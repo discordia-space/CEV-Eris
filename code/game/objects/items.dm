@@ -42,7 +42,7 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/list/armor = list(melee = 0, bullet = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = list() //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used

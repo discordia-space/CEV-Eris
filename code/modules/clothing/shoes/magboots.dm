@@ -3,13 +3,20 @@
 	name = "magboots"
 	icon_state = "magboots0"
 	species_restricted = null
-	force = 3
+	force = WEAPON_FORCE_WEAK
 	overslot = 1
 	var/magpulse = 0
 	var/mag_slow = 3
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
-	armor = list(melee = 40, bullet = 30, energy = 30, bomb = 50, bio = 100, rad = 70)
+	armor = list(
+		melee = ARMOR_MELEE_MODERATE,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_SMALL,
+		bomb = ARMOR_BOMB_SMALL,
+		bio = ARMOR_BIO_IMMUNE,
+		rad = ARMOR_RAD_MAJOR
+	)
 	siemens_coefficient = 0 // DAMN BOI
 	//This armor only applies to legs
 

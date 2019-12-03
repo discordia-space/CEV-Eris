@@ -21,7 +21,11 @@
 		)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
 	var/up = 0
-	armor = list(melee = 40, bullet = 30, energy = 30, bomb = 0, bio = 0, rad = 0)
+	armor = list(
+		melee = ARMOR_MELEE_SMALL,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_MINOR
+	)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	body_parts_covered = HEAD|FACE|EYES
 	action_button_name = "Flip Welding Mask"

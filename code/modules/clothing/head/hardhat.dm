@@ -5,9 +5,15 @@
 	action_button_name = "Toggle Headlamp"
 	brightness_on = 4 //luminosity when on
 	light_overlay = "hardhat_light"
-	armor = list(melee = 30, bullet = 15, energy = 15, bomb = 20, bio = 10, rad = 20)
-	flags_inv = 0
-	siemens_coefficient = 0.9
+	armor = list(
+		melee = ARMOR_BULLET_SMALL,
+		bullet = ARMOR_BULLET_MINOR,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_MINOR,
+		bio = ARMOR_BIO_MINOR,
+		rad = ARMOR_RAD_SMALL
+	)
+	siemens_coefficient = 0.8
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 30
 

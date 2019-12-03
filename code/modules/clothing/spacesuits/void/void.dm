@@ -5,7 +5,14 @@
 	icon_state = "void"
 
 	heat_protection = HEAD
-	armor = list(melee = 40, bullet = 35, energy = 15, bomb = 35, bio = 100, rad = 70)
+	armor = list(
+		melee = ARMOR_MELEE_MODERATE,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_SMALL,
+		bio = ARMOR_BIO_IMMUNE,
+		rad = ARMOR_RAD_LARGE
+	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	light_overlay = "helmet_light"
@@ -16,10 +23,14 @@
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 1
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 35, energy = 15, bomb = 35, bio = 100, rad = 70)
-
-
+	armor = list(
+		melee = ARMOR_MELEE_MODERATE,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_SMALL,
+		bio = ARMOR_BIO_IMMUNE,
+		rad = ARMOR_RAD_LARGE
+	)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	breach_threshold = 5

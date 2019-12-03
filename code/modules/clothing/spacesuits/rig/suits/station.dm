@@ -21,8 +21,6 @@
 
 
 
-
-
 /***************************************
 	Industrial Suit: For Mining
 ****************************************/
@@ -31,7 +29,14 @@
 	suit_type = "industrial hardsuit"
 	desc = "A heavy, powerful rig used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
-	armor = list(melee = 60, bullet = 60, energy = 15, bomb = 30, bio = 100, rad = 80)
+	armor = list(
+		melee = ARMOR_MELEE_MAJOR,
+		bullet = ARMOR_BULLET_MAJOR,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_SMALL,
+		bio = ARMOR_BIO_IMMUNE,
+		rad = ARMOR_RAD_MAJOR
+	)
 	slowdown = 3
 	drain = 3
 	offline_slowdown = 10
@@ -50,7 +55,6 @@
 	req_access = list()
 	req_one_access = list()
 
-
 /obj/item/weapon/rig/industrial/equipped
 
 	initial_modules = list(
@@ -61,9 +65,6 @@
 		)
 
 
-
-
-
 /***************************************
 	EVA Suit
 ****************************************/
@@ -72,7 +73,14 @@
 	suit_type = "EVA hardsuit"
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
-	armor = list(melee = 30, bullet = 30, energy = 15, bomb = 20, bio = 100, rad = 100)
+	armor = list(
+		melee = ARMOR_MELEE_SMALL,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_MINOR,
+		bio = ARMOR_BIO_IMMUNE,
+		rad = ARMOR_RAD_IMMUNE
+	)
 	slowdown = 0
 	offline_slowdown = 1
 	offline_vision_restriction = 1
@@ -90,7 +98,6 @@
 	req_one_access = list()
 
 /obj/item/weapon/rig/eva/equipped
-
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/rcd,
@@ -98,19 +105,22 @@
 		)
 
 
-
-
-
 /***************************************
 Advanced Voidsuit: Technomancer Exultant
 ****************************************/
-
 /obj/item/weapon/rig/ce
 	name = "advanced voidsuit control module"
 	suit_type = "advanced voidsuit"
 	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
 	icon_state = "ce_rig"
-	armor = list(melee = 45, bullet = 45, energy = 35, bomb = 65, bio = 80, rad = 100)
+	armor = list(
+		melee = ARMOR_MELEE_MODERATE,
+		bullet = ARMOR_BULLET_MODERATE,
+		energy = ARMOR_ENERGY_MODERATE,
+		bomb = ARMOR_BOMB_MODERATE,
+		bio = ARMOR_RAD_IMMUNE,
+		rad = ARMOR_BOMB_IMMUNE
+	)
 	slowdown = 0
 	drain = 2
 	offline_slowdown = 0
@@ -154,12 +164,18 @@ Advanced Voidsuit: Technomancer Exultant
 	Hazmat: Moebius Overseer
 ****************************************/
 /obj/item/weapon/rig/hazmat
-
 	name = "AMI control module"
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
-	armor = list(melee = 40, bullet = 35, energy = 65, bomb = 80, bio = 100, rad = 100)
+	armor = list(
+		melee = ARMOR_MELEE_MODERATE,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_MAJOR,
+		bomb = ARMOR_BOMB_MAJOR,
+		bio = ARMOR_RAD_IMMUNE,
+		rad = ARMOR_BOMB_IMMUNE
+	)
 	slowdown = 1
 	drain = 3
 	offline_vision_restriction = 1
@@ -199,12 +215,18 @@ Advanced Voidsuit: Technomancer Exultant
 	Medical
 ****************************************/
 /obj/item/weapon/rig/medical
-
 	name = "rescue suit control module"
 	suit_type = "rescue hardsuit"
 	desc = "A relatively lightweight and durable RIG suit designed for medical rescue in hazardous locations."
 	icon_state = "medical_rig"
-	armor = list(melee = 30, bullet = 30, energy = 25, bomb = 60, bio = 100, rad = 60)
+	armor = list(
+		melee = ARMOR_MELEE_SMALL,
+		bullet = ARMOR_BULLET_SMALL,
+		energy = ARMOR_ENERGY_MINOR,
+		bomb = ARMOR_BOMB_MODERATE,
+		bio = ARMOR_RAD_IMMUNE,
+		rad = ARMOR_BOMB_IMMUNE
+	)
 	slowdown = 0.75
 	offline_vision_restriction = 1
 
@@ -217,10 +239,9 @@ Advanced Voidsuit: Technomancer Exultant
 		/obj/item/roller
 	)
 
+/obj/item/weapon/rig/medical/equipped
 	req_access = list()
 	req_one_access = list()
-
-/obj/item/weapon/rig/medical/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/chem_dispenser/injector,
@@ -238,7 +259,14 @@ Advanced Voidsuit: Technomancer Exultant
 	suit_type = "hazard hardsuit"
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
-	armor = list(melee = 55, bullet = 55, energy = 55, bomb = 80, bio = 100, rad = 100)
+	armor = list(
+		melee = ARMOR_MELEE_LARGE,
+		bullet = ARMOR_BULLET_LARGE,
+		energy = ARMOR_ENERGY_LARGE,
+		bomb = ARMOR_BOMB_MAJOR,
+		bio = ARMOR_RAD_IMMUNE,
+		rad = ARMOR_BOMB_IMMUNE
+	)
 	slowdown = 1
 	drain = 3.5
 	offline_slowdown = 3
@@ -251,7 +279,6 @@ Advanced Voidsuit: Technomancer Exultant
 
 
 /obj/item/weapon/rig/hazard/equipped
-
 	initial_modules = list(
 		/obj/item/rig_module/vision/sechud,
 		/obj/item/rig_module/maneuvering_jets,

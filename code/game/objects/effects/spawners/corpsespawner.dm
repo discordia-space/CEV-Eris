@@ -89,11 +89,11 @@
 	name = "Syndicate Operative"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/armor/vest
-	corpseshoes = /obj/item/clothing/shoes/swat
+	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsegloves = /obj/item/clothing/gloves/thick/swat
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
-	corpsehelmet = /obj/item/clothing/head/helmet/swat
+	corpsehelmet = /obj/item/clothing/head/helmet
 	corpseback = /obj/item/weapon/storage/backpack
 	corpseid = 1
 	corpseidjob = "Operative"
@@ -105,7 +105,7 @@
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
 	corpsesuit = /obj/item/clothing/suit/space/void/merc
-	corpseshoes = /obj/item/clothing/shoes/swat
+	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsegloves = /obj/item/clothing/gloves/thick/swat
 	corpseradio = /obj/item/device/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
@@ -191,7 +191,7 @@
 	corpsemask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	corpsehelmet = /obj/item/clothing/head/centhat
 	corpsegloves = /obj/item/clothing/gloves/thick/swat
-	corpseshoes = /obj/item/clothing/shoes/swat
+	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"

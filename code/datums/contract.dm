@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/ihs_combat
+		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
 	)
 
 /datum/antag_contract/item/steal/New()
