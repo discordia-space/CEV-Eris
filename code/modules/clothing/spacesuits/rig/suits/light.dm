@@ -5,12 +5,12 @@
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_SMALL
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 25
 	)
 	emp_protection = 10
 	slowdown = 0
@@ -83,12 +83,12 @@
 	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
 	icon_state = "ninja_rig"
 	armor = list(
-		melee = ARMOR_MELEE_LARGE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_SMALL
+		melee = 40,
+		bullet = 30,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 25
 	)
 	emp_protection = 40 //change this to 30 if too high.
 	slowdown = 0

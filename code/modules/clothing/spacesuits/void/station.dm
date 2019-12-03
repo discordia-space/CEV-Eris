@@ -10,12 +10,12 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_IMMUNE
+		melee = 30,
+		bullet = 30,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 100
 	)
 
 /obj/item/clothing/suit/space/void/engineering
@@ -24,12 +24,12 @@
 	icon_state = "rig-engineering"
 	item_state = "eng_voidsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_IMMUNE
+		melee = 30,
+		bullet = 30,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 100
 	)
 	extra_allowed = list(
 		/obj/item/weapon/storage/toolbox,
@@ -49,12 +49,12 @@
 		slot_r_hand_str = "mining_helm",
 		)
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 50,
+		bullet = 30,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	light_overlay = "helmet_light_dual"
 
@@ -64,12 +64,12 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "mining_voidsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 50,
+		bullet = 30,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 //Medical Rig
@@ -83,12 +83,12 @@
 		slot_r_hand_str = "medical_helm",
 		)
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 /obj/item/clothing/suit/space/void/medical
@@ -104,12 +104,12 @@
 		/obj/item/roller
 	)
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 	//Security
@@ -124,12 +124,12 @@
 		)
 
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 30,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
@@ -140,12 +140,12 @@
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection"
 	item_state = "ihvoidsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 30,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	siemens_coefficient = 0.7
 
@@ -160,12 +160,12 @@
 		slot_r_hand_str = "atmos_helm",
 		)
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 30,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	light_overlay = "helmet_light_dual"
@@ -176,11 +176,11 @@
 	name = "atmos voidsuit"
 	item_state = "atmos_voidsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 30,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE

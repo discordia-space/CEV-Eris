@@ -8,7 +8,13 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(
-		bio = ARMOR_BIO_MODERATE
+		melee = 0,
+		bullet = 0,
+		bomb = 0,
+		bio = 50,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
@@ -33,7 +39,13 @@
 	icon_open = "labcoat_vir_open"
 	icon_closed = "labcoat_vir"
 	armor = list(
-		bio = ARMOR_BIO_LARGE
+		melee = 0,
+		bullet = 0,
+		bomb = 0,
+		bio = 75,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 
 /obj/item/clothing/suit/storage/toggle/labcoat/science

@@ -7,7 +7,12 @@
 	icon_state = "director"
 	item_state = "lb_suit"
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /obj/item/clothing/under/rank/scientist
@@ -17,7 +22,12 @@
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /obj/item/clothing/under/rank/chemist
@@ -27,7 +37,12 @@
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /*
@@ -40,7 +55,12 @@
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /obj/item/clothing/under/rank/virologist
@@ -50,7 +70,12 @@
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /obj/item/clothing/under/rank/medical
@@ -60,7 +85,12 @@
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /obj/item/clothing/under/rank/medical/blue

@@ -15,10 +15,12 @@
 	item_state = "jackboots"
 	force = WEAPON_FORCE_WEAK
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	siemens_coefficient = 0.6
 	can_hold_knife = 1
@@ -29,9 +31,12 @@
 	icon_state = "reinforced"
 	item_state = "reinforced"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 	siemens_coefficient = 0.5
 
@@ -41,11 +46,12 @@
 	icon_state = "workboots"
 	item_state = "workboots"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MINOR,
-		rad = ARMOR_RAD_SMALL
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 25
 	)
 	siemens_coefficient = 0
 	can_hold_knife = 1

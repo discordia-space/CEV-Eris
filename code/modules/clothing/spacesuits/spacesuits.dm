@@ -14,11 +14,12 @@
 		)
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MODERATE
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 100,
+		rad = 50
 	)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
@@ -76,11 +77,12 @@
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
 	slowdown = 3
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MODERATE
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 100,
+		rad = 50
 	)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS

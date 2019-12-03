@@ -24,12 +24,12 @@
 
 	// These values are passed on to all component pieces.
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MODERATE
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 50
 	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE

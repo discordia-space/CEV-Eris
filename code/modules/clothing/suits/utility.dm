@@ -19,9 +19,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	extra_allowed = list(/obj/item/weapon/extinguisher)
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		bomb = ARMOR_BOMB_MINOR,
-		bio = ARMOR_BIO_MINOR
+		melee = 10,
+		bullet = 0,
+		energy = 0,
+		bomb = 10,
+		bio = 10,
+		rad = 0
 	)
 	slowdown = 1
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
@@ -40,12 +43,12 @@
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_IMMUNE,
-		bio = ARMOR_BIO_MODERATE,
-		rad = ARMOR_RAD_MODERATE
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 100,
+		bio = 50,
+		rad = 50
 	)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
@@ -66,12 +69,12 @@
 	permeability_coefficient = 0.01
 	slowdown = 3.2
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_IMMUNE,
-		bio = ARMOR_BIO_MODERATE,
-		rad = ARMOR_RAD_MODERATE
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 100,
+		bio = 50,
+		rad = 50
 	)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -97,9 +100,12 @@
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	armor = list(
-		energy = ARMOR_ENERGY_MODERATE,
-		bio = ARMOR_BIO_MAJOR,
-		rad = ARMOR_RAD_IMMUNE
+		melee = 0,
+		bullet = 0,
+		energy = 30,
+		bomb = 0,
+		bio = 90,
+		rad = 100
 	)
 	price_tag = 50
 
@@ -116,9 +122,12 @@
 	extra_allowed = list(/obj/item/clothing/head/radiation)
 	slowdown = 1.5
 	armor = list(
-		energy = ARMOR_ENERGY_MODERATE,
-		bio = ARMOR_BIO_MAJOR,
-		rad = ARMOR_RAD_IMMUNE
+		melee = 0,
+		bullet = 0,
+		energy = 30,
+		bomb = 0,
+		bio = 90,
+		rad = 100
 	)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	price_tag = 100

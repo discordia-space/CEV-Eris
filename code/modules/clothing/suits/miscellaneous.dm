@@ -194,10 +194,12 @@
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
 	armor = list(
-	melee = ARMOR_MELEE_MINOR,
-	bullet = ARMOR_BULLET_MINOR,
-	energy = ARMOR_ENERGY_MINOR,
-	bomb = ARMOR_BOMB_MINOR
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS

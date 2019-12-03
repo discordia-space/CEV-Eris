@@ -86,7 +86,12 @@
 	item_state = "janitor"
 	permeability_coefficient = 0.50
 	armor = list(
-		bio = ARMOR_BIO_MINOR
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
 	)
 
 /obj/item/clothing/under/librarian

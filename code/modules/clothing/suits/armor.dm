@@ -19,10 +19,10 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 30,
+		bullet = 30,
+		energy = 20,
+		bomb = 10
 	)
 
 /obj/item/clothing/suit/armor/vest/security
@@ -49,10 +49,12 @@
 	desc = "An armored vest of dubious quality. Provides decent protection against physical damage, for a piece of crap."
 	icon_state = "armor_handmade"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 30,
+		bullet = 20,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	price_tag = 150
 
@@ -66,10 +68,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1
 	armor = list(
-		melee = ARMOR_MELEE_PROFICIENT,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 75,
+		bullet = 30,
+		energy = 30,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
@@ -88,10 +92,12 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.5
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_PROFICIENT,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 30,
+		bullet = 75,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	price_tag = 500
 
@@ -106,9 +112,12 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.5
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_PROFICIENT
+		melee = 30,
+		bullet = 30,
+		energy = 75,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 	siemens_coefficient = 0
 	price_tag = 650
@@ -152,10 +161,12 @@
 	slowdown = 1
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 30,
+		bullet = 30,
+		energy = 20,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	equip_delay = 2 SECONDS
 
@@ -179,10 +190,12 @@
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
 	icon_state = "webvest"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 20,
+		bullet = 30,
+		energy = 20,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -201,10 +214,12 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 
 /*
@@ -214,13 +229,17 @@
 /obj/item/clothing/suit/armor/reactive
 	name = "reactive teleport armor"
 	desc = "Someone separated our Research Director's head from their body!"
-	var/active = 0
+	var/active = FALSE
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL
+		melee = 20,
+		bullet = 20,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 		)
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")

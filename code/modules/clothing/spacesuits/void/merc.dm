@@ -4,12 +4,12 @@
 	icon_state = "scaf"
 	item_state = "scaf"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_PROFICIENT,
-		energy = ARMOR_ENERGY_MAJOR,
-		bomb = ARMOR_BOMB_LARGE,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_SMALL
+		melee = 50,
+		bullet = 75,
+		energy = 50,
+		bomb = 75,
+		bio = 100,
+		rad = 25
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
@@ -24,12 +24,12 @@
 	slowdown = 1.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = ARMOR_MELEE_PROFICIENT,
-		bullet = ARMOR_BULLET_MAJOR,
-		energy = ARMOR_ENERGY_MAJOR,
-		bomb = ARMOR_BOMB_LARGE,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_SMALL
+		melee = 75,
+		bullet = 50,
+		energy = 50,
+		bomb = 75,
+		bio = 100,
+		rad = 25
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
@@ -42,12 +42,12 @@
 	icon_state = "syndiehelm"
 	item_state = "syndie_helm"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_MODERATE,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 50,
+		bullet = 40,
+		energy = 30,
+		bomb = 50,
+		bio = 100,
+		rad = 75
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
@@ -68,12 +68,12 @@
 	desc = "An advanced suit that protects against injuries during special operations. This version is additionally reinforced against melee attacks."
 	item_state = "syndie_voidsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_MODERATE,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 50,
+		bullet = 40,
+		energy = 30,
+		bomb = 50,
+		bio = 100,
+		rad = 75
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")

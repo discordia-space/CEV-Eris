@@ -91,8 +91,12 @@
 		)
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		energy = ARMOR_ENERGY_MINOR
+		melee = 10,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 	siemens_coefficient = 0.8
 	body_parts_covered = 0
@@ -138,10 +142,12 @@
 	item_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(
-		melee = ARMOR_MELEE_LARGE,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 40,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.6

@@ -13,12 +13,12 @@
 	)
 
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	siemens_coefficient = 0
 	species_restricted = list("Human")
@@ -36,12 +36,12 @@
 	w_class = ITEM_SIZE_NORMAL
 	//Decent all around, but less ballistic resistance
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	siemens_coefficient = 0 //Shockproof!
 	matter = list(

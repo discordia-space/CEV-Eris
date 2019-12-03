@@ -11,9 +11,12 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 
 //Guild Technician
@@ -25,9 +28,12 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 
 //Quartermaster
@@ -39,9 +45,12 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR
+		melee = 30,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 	siemens_coefficient = 0.8
 
@@ -68,9 +77,12 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = ARMOR_MELEE_MINOR,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 
 /obj/item/clothing/suit/chaplain_hoodie/coat
@@ -116,9 +128,12 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_SMALL
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 	price_tag = 250
 
@@ -150,7 +165,12 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
 	armor = list(
-		melee = ARMOR_MELEE_MINOR
+		melee = 10,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
 	)
 
 /obj/item/clothing/suit/storage/surgical_apron

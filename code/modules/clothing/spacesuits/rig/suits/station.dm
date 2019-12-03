@@ -30,12 +30,12 @@
 	desc = "A heavy, powerful rig used by construction crews and mining corporations."
 	icon_state = "engineering_rig"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_MAJOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 50,
+		bullet = 50,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	slowdown = 3
 	drain = 3
@@ -74,12 +74,12 @@
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MINOR,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_IMMUNE
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 10,
+		bio = 100,
+		rad = 100
 	)
 	slowdown = 0
 	offline_slowdown = 1
@@ -114,12 +114,12 @@ Advanced Voidsuit: Technomancer Exultant
 	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
 	icon_state = "ce_rig"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_MODERATE,
-		bio = ARMOR_RAD_IMMUNE,
-		rad = ARMOR_BOMB_IMMUNE
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 50,
+		bio = 100,
+		rad = 100
 	)
 	slowdown = 0
 	drain = 2
@@ -169,12 +169,12 @@ Advanced Voidsuit: Technomancer Exultant
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MAJOR,
-		bomb = ARMOR_BOMB_MAJOR,
-		bio = ARMOR_RAD_IMMUNE,
-		rad = ARMOR_BOMB_IMMUNE
+		melee = 30,
+		bullet = 20,
+		energy = 50,
+		bomb = 90,
+		bio = 100,
+		rad = 100
 	)
 	slowdown = 1
 	drain = 3
@@ -220,12 +220,12 @@ Advanced Voidsuit: Technomancer Exultant
 	desc = "A relatively lightweight and durable RIG suit designed for medical rescue in hazardous locations."
 	icon_state = "medical_rig"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MODERATE,
-		bio = ARMOR_RAD_IMMUNE,
-		rad = ARMOR_BOMB_IMMUNE
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 50,
+		bio = 100,
+		rad = 100
 	)
 	slowdown = 0.75
 	offline_vision_restriction = 1
@@ -260,12 +260,12 @@ Advanced Voidsuit: Technomancer Exultant
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
 	armor = list(
-		melee = ARMOR_MELEE_LARGE,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_LARGE,
-		bomb = ARMOR_BOMB_MAJOR,
-		bio = ARMOR_RAD_IMMUNE,
-		rad = ARMOR_BOMB_IMMUNE
+		melee = 40,
+		bullet = 40,
+		energy = 40,
+		bomb = 90,
+		bio = 100,
+		rad = 100
 	)
 	slowdown = 1
 	drain = 3.5

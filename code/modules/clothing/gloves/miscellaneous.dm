@@ -52,10 +52,12 @@
 	icon_state = "ihscombat"
 	item_state = "ihscombat"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 	price_tag = 300
 
@@ -65,10 +67,12 @@
 	icon_state = "black"
 	item_state = "swat_gl"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 	siemens_coefficient = 0
 	price_tag = 500

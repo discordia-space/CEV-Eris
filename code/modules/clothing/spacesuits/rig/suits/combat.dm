@@ -7,12 +7,12 @@
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
 	armor = list(
-		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BULLET_MAJOR,
-		energy = ARMOR_ENERGY_MAJOR,
-		bomb = ARMOR_BOMB_MODERATE,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MODERATE
+		melee = 50,
+		bullet = 50,
+		energy = 50,
+		bomb = 50,
+		bio = 100,
+		rad = 50
 	)
 	slowdown = 1.35
 	drain = 4

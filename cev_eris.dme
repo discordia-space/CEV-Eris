@@ -18,7 +18,6 @@
 #include "code\__DEFINES\_planes+layers.dm"
 #include "code\__DEFINES\admin.dm"
 #include "code\__DEFINES\appearance.dm"
-#include "code\__DEFINES\armor.dm"
 #include "code\__DEFINES\atmos.dm"
 #include "code\__DEFINES\callbacks.dm"
 #include "code\__DEFINES\chemistry.dm"

@@ -9,10 +9,12 @@
 	item_flags = THICKMATERIAL
 	body_parts_covered = HEAD | EARS
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 30,
+		bullet = 30,
+		energy = 20,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 	flags_inv = HIDEEARS
 	cold_protection = HEAD
@@ -28,10 +30,12 @@
 	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
 	icon_state = "hm_helmet"
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 30,
+		bullet = 10,
+		energy = 20,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	price_tag = 75
 
@@ -48,10 +52,12 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_MINOR
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
@@ -63,10 +69,12 @@
 	icon_state = "light_riot"
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = ARMOR_MELEE_PROFICIENT,
-		bullet = ARMOR_BULLET_MODERATE,
-		energy = ARMOR_ENERGY_MODERATE,
-		bomb = ARMOR_BOMB_SMALL
+		melee = 75,
+		bullet = 30,
+		energy = 30,
+		bomb = 25,
+		bio = 0,
+		rad = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flash_protection = FLASH_PROTECTION_MAJOR

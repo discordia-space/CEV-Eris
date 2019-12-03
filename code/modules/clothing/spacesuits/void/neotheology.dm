@@ -1,15 +1,14 @@
-
 /obj/item/clothing/head/helmet/space/void/acolyte
 	name = "Acolyte hood"
 	desc = "Even the most devout deserve head protection."
 	icon_state = "acolyte"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 20,
+		bullet = 20,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 /obj/item/clothing/suit/space/void/acolyte
@@ -18,12 +17,12 @@
 	icon_state = "acolyte"
 	slowdown = 0.15
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 20,
+		bullet = 20,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 /obj/item/clothing/head/helmet/space/void/agrolyte
@@ -31,12 +30,12 @@
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 /obj/item/clothing/suit/space/void/agrolyte
@@ -45,12 +44,12 @@
 	icon_state = "botanist"
 	slowdown = 0
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 
 /obj/item/clothing/head/helmet/space/void/custodian
@@ -58,12 +57,12 @@
 	desc = "Cleaning floors is more dangerous than it looks."
 	icon_state = "custodian"
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	unacidable = TRUE
 
@@ -73,11 +72,11 @@
 	icon_state = "custodian"
 	slowdown = 0.15
 	armor = list(
-		melee = ARMOR_MELEE_SMALL,
-		bullet = ARMOR_BULLET_MINOR,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	unacidable = TRUE

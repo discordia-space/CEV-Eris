@@ -9,12 +9,12 @@
 		)
 	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
 	armor = list(
-		melee = ARMOR_MELEE_LARGE,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 40,
+		bullet = 40,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	siemens_coefficient = 0.7
 
@@ -26,11 +26,11 @@
 	slowdown = 1
 	unacidable = 1
 	armor = list(
-		melee = ARMOR_MELEE_LARGE,
-		bullet = ARMOR_BULLET_LARGE,
-		energy = ARMOR_ENERGY_SMALL,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_MAJOR
+		melee = 40,
+		bullet = 40,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 90
 	)
 	siemens_coefficient = 0.7

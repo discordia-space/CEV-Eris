@@ -38,7 +38,12 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(
-		bio = ARMOR_BIO_LARGE
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 75,
+		rad = 0
 	)
 	price_tag = 10
 

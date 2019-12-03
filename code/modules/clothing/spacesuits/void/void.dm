@@ -6,12 +6,12 @@
 
 	heat_protection = HEAD
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 30,
+		bullet = 20,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -24,12 +24,12 @@
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 1
 	armor = list(
-		melee = ARMOR_MELEE_MODERATE,
-		bullet = ARMOR_BULLET_SMALL,
-		energy = ARMOR_ENERGY_MINOR,
-		bomb = ARMOR_BOMB_SMALL,
-		bio = ARMOR_BIO_IMMUNE,
-		rad = ARMOR_RAD_LARGE
+		melee = 30,
+		bullet = 20,
+		energy = 10,
+		bomb = 25,
+		bio = 100,
+		rad = 75
 	)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE

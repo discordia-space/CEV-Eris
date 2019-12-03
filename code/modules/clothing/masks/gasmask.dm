@@ -13,7 +13,12 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
 	armor = list(
-		bio = ARMOR_BIO_LARGE
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 75,
+		bio = 0,
+		rad = 0
 	)
 	price_tag = 20
 
@@ -36,9 +41,6 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out plasma but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	armor = list(
-		bio = ARMOR_BIO_MAJOR
-	)
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/swat
