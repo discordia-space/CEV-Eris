@@ -62,10 +62,4 @@
 	update_categories()
 
 /obj/machinery/autolathe/mechfab/proc/update_categories()
-	categories = list()
-	for(var/datum/design/D in files.known_designs)
-		if(D.build_type & build_type)
-			categories |= D.category
-
-	if((!show_category || !(show_category in categories)) && length(categories))
-		show_category = categories[1]
+	categories = files.design_categories_mechfab
