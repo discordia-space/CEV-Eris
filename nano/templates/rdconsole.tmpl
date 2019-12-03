@@ -165,11 +165,11 @@
 								<table class="fixed" style="width: 100%;">
 									{{for data.possible_designs}}
 										<tr style="width: 100%;">
-											<td style="width: 12%">
-												<img class="statusDisplayItem" src={{:value.icon}} height=24 width=24></img>
+											<td style="width: 32px">
+												<img class="statusDisplayItem" src={{:value.data.icon}} height=24 width=24></img>
 											</td>
-											<td style="width: 70%">
-												{{:helper.link(value.name, '', {'build' : value.id, 'amount': 1}, value.can_create >= 1 ? null : 'disabled')}}
+											<td style="width: 100%">
+												{{:helper.link(value.data.name, '', {'build' : value.id, 'amount': 1}, value.can_create >= 1 ? null : 'disabled')}}
 												{{if data.screen == "protolathe"}}
 													{{if value.can_create >= 3}}
 														{{:helper.link('x3', '', {'build' : value.id, 'amount': 3})}}
@@ -180,16 +180,30 @@
 												{{/if}}
 											</td>
 											<td style="width: 100%" align="right">
-												{{if value.temp_material}}
-													{{:value.temp_material}}
-												{{/if}}
+												{{for value.data.materials  :material:material_i}}
+													{{material.amount = value.data.adjust_materials ? Math.round((material.req * data.materials_data.mat_efficiency) * 100) / 100 : material.req;}}
+													{{if value.missing_materials.indexOf(material.id) == -1}}
+														{{:material.amount}} {{:material.name}} 
+													{{else}}
+														<span style="color:red">{{:material.amount}} {{:material.name}}</span> 
+													{{/if}}
+												{{/for}}
+
+												{{for value.data.chemicals  :chemical:chemical_i}}
+													{{if value.missing_chemicals.indexOf(chemical.id) == -1}}
+														{{:chemical.req}} {{:chemical.name}} 
+													{{else}}
+														<span style="color:red">{{:chemical.req}} {{:chemical.name}}</span> 
+													{{/if}}
+												{{/for}}
+
 												{{if value.temp_chemical}}
 													{{:value.temp_chemical}}
 												{{/if}}
 											</td>
 										</tr>
 										<tr style="width: 100%">
-										 <td colspan = '3'><small>{{:value.desc}}</small></td>
+										 <td colspan = '3'><small>{{:value.data.desc}}</small></td>
 										</tr>
 									{{/for}}
 								</table>

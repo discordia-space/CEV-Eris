@@ -5,6 +5,7 @@
 	icon_state = "stanok"
 	circuit = /obj/item/weapon/circuitboard/excelsiorautolathe
 
+	build_type = AUTOLATHE | BIOPRINTER
 	speed = 4
 	storage_capacity = 240
 	unsuitable_materials = list()	// Can use biomatter too.
