@@ -31,7 +31,7 @@ before_script:
   - ./install-byond.sh
 
 script:
-  - (! grep -r 'step_[xy]' maps)
+  - (! grep -rn 'step_[xy]' maps)
   - (! grep -E "(/obj/machinery/door/firedoor).*\1" maps/*.dmm)
   - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
 #  - bash dm.sh -M${DM_MAPFILE} ${DM_BUILDFILE}
