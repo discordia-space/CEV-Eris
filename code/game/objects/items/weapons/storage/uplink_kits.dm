@@ -311,13 +311,3 @@
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
-
-/obj/item/weapon/storage/box/syndie_kit/reverse
-	name = "Reverse Revolver box"
-	desc = "\"How about another joke, Murray?\""
-
-/obj/item/weapon/storage/box/syndie_kit/reverse/New()
-	..()
-	new /obj/item/weapon/gun/projectile/revolver/reverse(src)
-	new /obj/item/ammo_magazine/slmagnum(src)
-
