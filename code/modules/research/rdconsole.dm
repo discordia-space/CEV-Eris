@@ -343,48 +343,37 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	reset_screen()
 
 
-/obj/machinery/computer/rdconsole/proc/get_possible_designs_data(build_type, category) // Builds the design list for the UI
+/obj/machinery/computer/rdconsole/proc/get_possible_designs_data(obj/machinery/autolathe/rnd/target_machine, category) // Builds the design list for the UI
 	var/list/designs_list = list()
 	for(var/datum/design/D in files.known_designs)
-		if(D.build_type & build_type)
+		if(D.build_type & target_machine.build_type)
 			var/cat = "Unspecified"
 			if(D.category)
 				cat = D.category
 			if((category == cat) || (category == "Search Results" && findtext(D.name, search_text)))
-				var/temp_material
-				var/temp_chemical
-				var/maximum = 50
-				var/can_build
-				var/can_build_chem
-				var/iconName = getAtomCacheFilename(D.build_path)
-				for(var/M in D.materials)
-					if(build_type & PROTOLATHE)
-						can_build = linked_lathe.check_craftable_amount_by_material(D, M)
-					if(build_type & IMPRINTER)
-						can_build = linked_imprinter.check_craftable_amount_by_material(D, M)
-					var/material/mat = get_material_by_name(M)
-					if(can_build < 1)
-						temp_material += " <span style=\"color:red\">[D.materials[M]] [mat.display_name]</span>"
-					else
-						temp_material += " [D.materials[M]] [mat.display_name]"
-					can_build = min(can_build,maximum)
-				for(var/C in D.chemicals)
-					if(build_type & IMPRINTER)
-						can_build_chem = linked_imprinter.check_craftable_amount_by_chemical(D, C)
-					var/datum/reagent/R = chemical_reagents_list[C] // this is how you do it, you don't fucking new every possible reagent till you find a match
-					if(can_build_chem < 1)
-						temp_chemical += " <span style=\"color:red\">[D.chemicals[C]] [R.name]</span>"
-					else
-						temp_chemical += " [D.chemicals[C]] [R.name]"
-					can_build = min(can_build, can_build_chem)
+				var/list/missing_materials = list()
+				var/list/missing_chemicals = list()
+				var/can_build = 50
+				var/can_build_temp
+
+				for(var/material in D.materials)
+					can_build_temp = target_machine.check_craftable_amount_by_material(D, material)
+					if(can_build_temp < 1)
+						missing_materials += material
+					can_build = min(can_build, can_build_temp)
+
+				for(var/chemical in D.chemicals)
+					can_build_temp = target_machine.check_craftable_amount_by_chemical(D, chemical)
+					if(can_build_temp < 1)
+						missing_chemicals += chemical
+					can_build = min(can_build, can_build_temp)
+
 				designs_list += list(list(
-					"id" =             "\ref[D]",
-					"name" =           D.name,
-					"desc" =           D.desc,
-					"icon" =			iconName,
-					"can_create" =     can_build,
-					"temp_material" =  temp_material,
-					"temp_chemical" =  temp_chemical
+					"data" = D.ui_data(),
+					"id" = "\ref[D]",
+					"can_create" = can_build,
+					"missing_materials" = missing_materials,
+					"missing_chemicals" = missing_chemicals
 				))
 	return designs_list
 
@@ -538,7 +527,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 			if(selected_category)
 				data["selected_category"] = selected_category
-				data["possible_designs"] = get_possible_designs_data(target_device == linked_lathe ? PROTOLATHE : IMPRINTER, selected_category)
+				data["possible_designs"] = get_possible_designs_data(target_device, selected_category)
 
 			if(target_device.current_file)
 				data["device_current"] = target_device.current_file.design.name

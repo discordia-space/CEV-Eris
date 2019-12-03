@@ -25,35 +25,57 @@
 /mob/living/carbon/proc/remove_nsa(tag)
 	if(nerve_system_accumulations[tag])
 		nerve_system_accumulations.Remove(tag)
+
 /mob/living/carbon/proc/get_nsa_value(tag)
 	if(nerve_system_accumulations[tag])
 		return nerve_system_accumulations[tag]
 
 /mob/living/carbon/proc/get_nsa()
+	return nsa_current
+
+/mob/living/carbon/proc/get_nsa_target()
 	var/accumulatedNSA
 	for(var/tag in nerve_system_accumulations)
 		accumulatedNSA += nerve_system_accumulations[tag]
 	return accumulatedNSA
 
 /mob/living/carbon/proc/handle_nsa()
+	var/nsa_target = get_nsa_target()
+	if(nsa_target != nsa_current)
+		nsa_current = nsa_target > nsa_current \
+		            ? min(nsa_current + nsa_target / 30, nsa_target) \
+		            : max(nsa_current - 6.66, nsa_target)
+		nsa_changed()
 	if(get_nsa() > nsa_threshold)
 		nsa_breached_effect()
 
+/mob/living/carbon/proc/nsa_changed()
+	if(get_nsa() > nsa_threshold)
+		var/stat_mod = get_nsa() > 140 ? -20 : -10
+		for(var/stat in ALL_STATS)
+			stats.addTempStat(stat, stat_mod, INFINITY, "nsa_breach")
+	else
+		for(var/stat in ALL_STATS)
+			stats.removeTempStat(stat, "nsa_breach")
+	HUDneed["nsa"]?.update_icon()
+
 /mob/living/carbon/proc/nsa_breached_effect()
-	apply_effect(3, STUTTER)
-	make_jittery(10)
-	make_dizzy(10)
-	druggy = max(druggy, 40)
-	if(prob(5))
-		emote(pick("twitch", "drool", "moan", "blink_r", "shiver"))
-	else if (prob(10))
-		var/direction = pick(cardinal)
-		if(MayMove(direction))
-			DoMove(direction)
-	else if(prob(20))
-		Weaken(10)
-		if(prob(5))
-			Stun(rand(1,5))
+	if(get_nsa() < 120)
+		return
+	vomit()
+
+	if(get_nsa() < 160)
+		return
+	drop_l_hand()
+	drop_r_hand()
+
+	if(get_nsa() < 180)
+		return
+	adjustToxLoss(1)
+
+	if(get_nsa() < 200)
+		return
+	Sleeping(2)
 
 /mob/living/carbon/Destroy()
 	qdel(ingested)

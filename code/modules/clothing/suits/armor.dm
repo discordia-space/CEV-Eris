@@ -264,6 +264,44 @@
 	item_state = "mercwebvest"
 	armor = list(melee = 45, bullet = 45, energy = 40, bomb = 40, bio = 0, rad = 0)
 
+// S E R B I A //
+
+/obj/item/clothing/suit/armor/bulletproof/platecarrier
+	name = "black platecarrier vest"
+	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "platecarrier"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	slowdown = 0.5
+	armor = list(melee = 25, bullet = 60, energy = 0, bomb = 0, bio = 0, rad = 0) // worse than bulletroof by 35
+	siemens_coefficient = 0.7
+	price_tag = 500
+
+/obj/item/clothing/suit/armor/bulletproof/platecarrier/green
+	name = "green platecarrier vest"
+	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "platecarrier_green"
+
+/obj/item/clothing/suit/armor/bulletproof/platecarrier/tan
+	name = "tan platecarrier vest"
+	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "platecarrier_tan"
+
+/obj/item/clothing/suit/armor/bulletproof/flakvest
+	name = "black flakvest vest"
+	desc = "An armored vest that protects against high-velocity solid projectiles."
+	icon_state = "flakvest"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	slowdown = 0
+	armor = list(melee = 35, bullet = 30, energy = 0, bomb = 25, bio = 0, rad = 0) // sum equal to HM vest
+	siemens_coefficient = 0.7
+	price_tag = 400
+
+/obj/item/clothing/suit/armor/bulletproof/flakvest/green
+	name = "green flakvest vest"
+	desc = "An armored vest that protects against high-velocity solid projectiles."
+	icon_state = "flakvest_green"
 
 //All of the armor below is mostly unused
 
