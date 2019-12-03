@@ -11,7 +11,7 @@
 	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
 	var/list/default_files = list(		// List of files stored on this drive when spawned.
 		/datum/computer_file/program/computerconfig,
-		/datum/computer_file/program/ntnetdownload,
+		/datum/computer_file/program/downloader,
 		/datum/computer_file/program/filemanager
 	)
 
