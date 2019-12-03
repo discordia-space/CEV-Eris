@@ -58,6 +58,27 @@
 	)
 	price_tag = 150
 
+// Serbian flak vests
+/obj/item/clothing/suit/armor/flak
+	name = "black flakvest vest"
+	desc = "An armored vest that protects against high-velocity solid projectiles."
+	icon_state = "flakvest"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	armor = list(
+		melee = 35,
+		bullet = 35,
+		energy = 0,
+		bomb = 20,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 400
+
+/obj/item/clothing/suit/armor/flak/green
+	name = "green flakvest vest"
+	icon_state = "flakvest_green"
+
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
@@ -103,6 +124,26 @@
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	icon_state = "bulletproof_ironhammer"
+
+/obj/item/clothing/suit/armor/bulletproof/serbian
+	name = "black platecarrier vest"
+	icon_state = "platecarrier"
+	armor = list(
+		melee = 25,
+		bullet = 60,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
+/obj/item/clothing/suit/armor/bulletproof/serbian/green
+	name = "green platecarrier vest"
+	icon_state = "platecarrier_green"
+
+/obj/item/clothing/suit/armor/bulletproof/serbian/tan
+	name = "tan platecarrier vest"
+	icon_state = "platecarrier_tan"
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "ablative armor vest"
