@@ -167,3 +167,77 @@
 		set_light(2, 2, COLOR_LIGHTING_ORANGE_MACHINERY)
 	update_wear_icon()
 	..()
+
+// S E R B I A //
+
+/obj/item/clothing/head/helmet/steelpot
+	name = "steelpot helmet"
+	desc = " Titanium helmet of serbian origin. Still widely used despite of its discontinued production."
+	icon_state = "steelpot"
+	armor = list(melee = 40, bullet = 40, energy = 0, bomb = 40, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
+	flags_inv = BLOCKHAIR
+	body_parts_covered = HEAD|EARS
+	siemens_coefficient = 1
+
+/obj/item/clothing/head/helmet/altyn
+	name = "green altyn helmet"
+	desc = "Green titanium helmet of serbian origin. Still widely used despite of its discontinued production."
+	icon_state = "altyn"
+	armor = list(melee = 45, bullet = 55, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	siemens_coefficient = 1
+
+	tint = TINT_MODERATE
+	action_button_name = "Flip Face Shield"
+	var/up = 0
+	var/base_state
+
+/obj/item/clothing/head/helmet/altyn/attack_self()
+	if(!base_state)
+		base_state = icon_state
+	toggle()
+
+
+/obj/item/clothing/head/helmet/altyn/verb/toggle()
+	set category = "Object"
+	set name = "Adjust face shield"
+	set src in usr
+
+	if(!usr.incapacitated())
+		if(src.up)
+			src.up = !src.up
+			body_parts_covered |= (EYES|FACE)
+			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			tint = initial(tint)
+			icon_state = base_state
+			armor = initial(armor)
+			to_chat(usr, "You flip the [src] down to protect your face.")
+		else
+			src.up = !src.up
+			body_parts_covered &= ~(EYES|FACE)
+			tint = TINT_NONE
+			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			icon_state = "[base_state]_up"
+			armor = list(melee = 15, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
+			to_chat(usr, "You push the [src] up out of your face.")
+		update_wear_icon()	//so our mob-overlays
+		usr.update_action_buttons()
+
+
+/obj/item/clothing/head/helmet/altyn/brown
+	name = "brown altyn helmet"
+	desc = "Brown titanium helmet of serbian origin. Still widely used despite of its discontinued production."
+	icon_state = "altyn_brown"
+
+/obj/item/clothing/head/helmet/altyn/black
+	name = "black altyn helmet"
+	desc = "Black titanium helmet of serbian origin. Still widely used despite of its discontinued production."
+	icon_state = "altyn_black"
+
+/obj/item/clothing/head/helmet/altyn/maska
+	name = "maska helmet"
+	desc = "I do not know who I am I, don\'t know why I\'m here. All I know is that I must kill."
+	icon_state = "maska"
+	armor = list(melee = 65, bullet = 65, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	tint = TINT_HEAVY
