@@ -34,12 +34,6 @@
 	item_cost = 7
 	path = /obj/item/weapon/storage/box/syndie_kit/revolver
 
-/datum/uplink_item/item/visible_weapons/revolver/reverse
-	name = "Reverse Revolver"
-	desc = "The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Honk."
-	item_cost = 7
-	path = /obj/item/weapon/storage/box/syndie_kit/reverse
-
 //These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
 /datum/uplink_item/item/visible_weapons/submachinegun
 	name = "Submachine Gun"
