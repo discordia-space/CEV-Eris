@@ -32456,7 +32456,6 @@
 	desc = "It controls the RND Window Blast doors.";
 	id = "RDWindowsLockdown";
 	name = "RND Window Blast Doors Control";
-	step_y = 0
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
