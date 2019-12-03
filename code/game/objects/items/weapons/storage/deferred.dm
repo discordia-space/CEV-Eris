@@ -129,6 +129,7 @@
 //These use open topped crate sprites but are still functionally boxes. They can be picked up, but are too large to fit in anything
 /obj/item/weapon/storage/deferred/crate
 	w_class = ITEM_SIZE_HUGE //This is too big to fit in a backpack
+	icon = 'icons/obj/crate.dmi'
 	item_state = "toolbox_yellow"
 
 
