@@ -108,7 +108,7 @@
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
 	force = WEAPON_FORCE_PAINFUL
-	armor_penetration = ARMOR_PEN_DEEP // It's a SPEAR!
+	armor_penetration = ARMOR_PEN_MODERATE // It's a SPEAR!
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK

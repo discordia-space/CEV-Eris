@@ -267,7 +267,7 @@ Advanced Voidsuit: Technomancer Exultant
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 1
+	slowdown = 1.35
 	drain = 3.5
 	offline_slowdown = 3
 	offline_vision_restriction = 1

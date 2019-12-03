@@ -5,7 +5,6 @@
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 30
-	armor_penetration = 10
 	damage_type = BURN
 	check_armour = ARMOR_ENERGY
 	eyeblur = 4
@@ -30,13 +29,13 @@
 
 /obj/item/projectile/beam/midlaser
 	damage = 30
-	armor_penetration = 20
+	armor_penetration = 10
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
 	damage = 50
-	armor_penetration = 30
+	armor_penetration = 20
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
@@ -46,7 +45,7 @@
 	name = "xray beam"
 	icon_state = "xray"
 	damage = 25
-	armor_penetration = 50
+	armor_penetration = 40
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
@@ -56,7 +55,7 @@
 	name = "pulse"
 	icon_state = "u_laser"
 	damage = 40
-	armor_penetration = 30
+	armor_penetration = 20
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
 	tracer_type = /obj/effect/projectile/laser_pulse/tracer
@@ -135,7 +134,7 @@
 	name = "sniper beam"
 	icon_state = "xray"
 	damage = 60
-	armor_penetration = 60
+	armor_penetration = 50
 	stun = 3
 	weaken = 3
 	stutter = 3
