@@ -52,7 +52,7 @@
 		data["target"] = 1
 		data["speed"] = PRG.dos_speed
 
-		// The UI template uses this to draw a block of 1s and 0s, the more 1s the closer you are to completion
+		// The UI template uses this to draw a block of 1s and 0s, the more 1s the closer you are to overloading target
 		// Combined with UI updates this adds quite nice effect to the UI
 		data["completion_fraction"] = PRG.target.dos_overload / PRG.target.dos_capacity
 	else

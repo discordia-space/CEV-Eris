@@ -1,8 +1,8 @@
 var/global/nttransfer_uid = 0
 
 /datum/computer_file/program/nttransfer
-	filename = "nttransfer"
-	filedesc = "NTNet P2P Transfer Client"
+	filename = "p2p_transfer"
+	filedesc = "P2P Transfer Client"
 	extended_desc = "This program allows for simple file transfer via direct peer to peer connection."
 	program_icon_state = "comm_logs"
 	program_key_state = "generic_key"
@@ -77,7 +77,7 @@ var/global/nttransfer_uid = 0
 
 
 /datum/nano_module/program/computer_nttransfer
-	name = "NTNet P2P Transfer Client"
+	name = "P2P Transfer Client"
 
 /datum/nano_module/program/computer_nttransfer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	if(!program)
@@ -126,7 +126,7 @@ var/global/nttransfer_uid = 0
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "ntnet_transfer.tmpl", "NTNet P2P Transfer Client", 575, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_transfer.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
