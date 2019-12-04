@@ -106,7 +106,7 @@
 	// Download speed according to connectivity state. Network server is assumed to be on unlimited speed so we're limited by our local connectivity
 	// Allow speed to vary 15% up or down
 	update_netspeed(speed_variance=15)
-	download_completion = max(download_completion + ntnet_speed, downloaded_file.size)
+	download_completion = min(download_completion + ntnet_speed, downloaded_file.size)
 
 /datum/computer_file/program/downloader/Topic(href, href_list)
 	if(..())
