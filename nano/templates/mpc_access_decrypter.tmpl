@@ -2,13 +2,25 @@
 {{if data.message}}
 	##INFO: {{:data.message}}<br><br>{{:helper.link('RESET', null, { 'PRG_reset' : 1 })}}
 {{else data.running}}
-	##Attempting to decrypt network access codes. Please wait. Rate: {{:data.rate}} PHash/s<br>
-	{{for data.dos_strings}}
-		{{:value}}<br>
-	{{/for}}
+	##Attempting to decrypt network access codes. Please wait.<br>
+	##Rate: {{:data.rate}} PHash/s<br>
+	
+	{{ for (var x = 0; x < 10; x++) { }}
+		{{ for (var y = 0; y < 24; y++) { }}
+			{{:Math.random() < data.completion_fraction ? "1" : "0"}}
+		{{ } }}
+		<br>
+	{{ } }}
+	
+	<br>
 	{{:helper.link('ABORT', null, { 'PRG_reset' : 1 })}}
 {{else}}
-	##System ready. Select an access code to decrypt.
+	{{if data.regions}}
+		##System ready. Select an access code to decrypt:
+	{{else}}
+		##Insert a valid ID card to continue.
+	{{/if}}
+
 	<div class='item' style='width: 100%'>
 		{{for data.regions}}
 			<div style='float: left; width: 175px; min-height: 250px'>
