@@ -32,12 +32,12 @@
 			return
 		found = 1
 		network_card = H
-	else if(istype(H, /obj/item/weapon/computer_hardware/nano_printer))
-		if(nano_printer)
-			to_chat(user, "This computer's nano printer slot is already occupied by \the [nano_printer].")
+	else if(istype(H, /obj/item/weapon/computer_hardware/printer))
+		if(printer)
+			to_chat(user, "This computer's printer slot is already occupied by \the [printer].")
 			return
 		found = 1
-		nano_printer = H
+		printer = H
 	else if(istype(H, /obj/item/weapon/computer_hardware/card_slot))
 		if(card_slot)
 			to_chat(user, "This computer's card slot is already occupied by \the [card_slot].")

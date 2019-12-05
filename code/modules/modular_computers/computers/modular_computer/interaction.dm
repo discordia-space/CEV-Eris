@@ -202,8 +202,8 @@
 		return
 
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/paper_bundle))
-		if(nano_printer)
-			nano_printer.attackby(W, user)
+		if(printer)
+			printer.attackby(W, user)
 	if(istype(W, /obj/item/device/aicard))
 		if(!ai_slot)
 			return

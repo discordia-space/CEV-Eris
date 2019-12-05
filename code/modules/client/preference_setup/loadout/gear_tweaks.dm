@@ -185,7 +185,7 @@
 	var/list/ValidBatteries = list(/obj/item/weapon/cell/small, /obj/item/weapon/cell/small/high, /obj/item/weapon/cell/small/super)
 	var/list/ValidHardDrives = list(/obj/item/weapon/computer_hardware/hard_drive/micro, /obj/item/weapon/computer_hardware/hard_drive/small, /obj/item/weapon/computer_hardware/hard_drive)
 	var/list/ValidNetworkCards = list(/obj/item/weapon/computer_hardware/network_card, /obj/item/weapon/computer_hardware/network_card/advanced)
-	var/list/ValidNanoPrinters = list(null, /obj/item/weapon/computer_hardware/nano_printer)
+	var/list/ValidPrinters = list(null, /obj/item/weapon/computer_hardware/printer)
 	var/list/ValidCardSlots = list(null, /obj/item/weapon/computer_hardware/card_slot)
 	var/list/ValidTeslaLinks = list(null, /obj/item/weapon/computer_hardware/tesla_link)
 
@@ -203,7 +203,7 @@
 	O = ValidNetworkCards[metadata[4]]
 	if(O)
 		names += initial(O.name)
-	O = ValidNanoPrinters[metadata[5]]
+	O = ValidPrinters[metadata[5]]
 	if(O)
 		names += initial(O.name)
 	O = ValidCardSlots[metadata[6]]
@@ -267,14 +267,14 @@
 
 	names = list()
 	counter = 1
-	for(var/i in ValidNanoPrinters)
+	for(var/i in ValidPrinters)
 		if(i)
 			var/obj/O = i
 			names[initial(O.name)] = counter++
 		else
 			names["None"] = counter++
 
-	entry = input(user, "Choose a nanoprinter.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
+	entry = input(user, "Choose a printer.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
 	. += names[entry]
 
 	names = list()
@@ -322,9 +322,9 @@
 	if(ValidNetworkCards[metadata[4]])
 		var/t = ValidNetworkCards[metadata[4]]
 		I.network_card = new t(I)
-	if(ValidNanoPrinters[metadata[5]])
-		var/t = ValidNanoPrinters[metadata[5]]
-		I.nano_printer = new t(I)
+	if(ValidPrinters[metadata[5]])
+		var/t = ValidPrinters[metadata[5]]
+		I.printer = new t(I)
 	if(ValidCardSlots[metadata[6]])
 		var/t = ValidCardSlots[metadata[6]]
 		I.card_slot = new t(I)

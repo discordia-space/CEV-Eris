@@ -121,10 +121,10 @@
 		if(!selected_audio)
 			error = "Error: No file loaded."
 			return TRUE
-		if(!computer.nano_printer)
+		if(!computer.printer)
 			error = "Missing Hardware: Your computer does not have the required hardware to complete this operation."
 			return TRUE
-		if(!computer.nano_printer.print_text(selected_audio.transcribed ? selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."))
+		if(!computer.printer.print_text(selected_audio.transcribed ? selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."))
 			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
 			return TRUE
 

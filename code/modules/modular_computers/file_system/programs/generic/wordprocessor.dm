@@ -152,10 +152,10 @@
 
 	if(href_list["PRG_printfile"])
 		. = TRUE
-		if(!computer.nano_printer)
+		if(!computer.printer)
 			error = "Missing Hardware: Your computer does not have the required hardware to complete this operation."
 			return TRUE
-		if(!computer.nano_printer.print_text(pencode2html(loaded_data)))
+		if(!computer.printer.print_text(pencode2html(loaded_data)))
 			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
 			return TRUE
 

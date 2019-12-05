@@ -1045,7 +1045,7 @@
 	icon_deny = "cart-deny"
 	products = list(/obj/item/modular_computer/pda = 10,/obj/item/weapon/computer_hardware/scanner/medical = 6,
 					/obj/item/weapon/computer_hardware/scanner/reagent = 6,/obj/item/weapon/computer_hardware/scanner/atmos = 6,
-					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/nano_printer = 10,
+					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/printer = 10,
 					/obj/item/weapon/computer_hardware/card_slot = 3,/obj/item/weapon/computer_hardware/ai_slot = 4)
 	auto_price = FALSE
 
