@@ -411,6 +411,7 @@
 
 	beaker.forceMove(src)
 	container = beaker
+	reagents = beaker.reagents
 	to_chat(user, SPAN_NOTICE("You put \the [beaker] into [src]."))
 	SSnano.update_uis(src)
 
@@ -424,6 +425,7 @@
 
 	container.forceMove(drop_location())
 	to_chat(usr, SPAN_NOTICE("You remove \the [container] from \the [src]."))
+	reagents = null
 
 	if(istype(user) && Adjacent(user))
 		user.put_in_active_hand(container)
