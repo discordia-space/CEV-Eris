@@ -1073,7 +1073,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/intent
 	name = "intent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "blank"
+	icon_state = "full"
 	screen_loc = "8,2"
 
 /obj/screen/intent/New()
@@ -1183,7 +1183,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
 	name = "dmg"
-	screen_loc = "1,1"
+	screen_loc = "1,1:-32"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = UI_DAMAGE_LAYER
@@ -1290,7 +1290,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/glasses_overlay
 	icon = null
 	name = "glasses"
-	screen_loc = "1,1"
+	screen_loc = "1:-32,1:-32"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.

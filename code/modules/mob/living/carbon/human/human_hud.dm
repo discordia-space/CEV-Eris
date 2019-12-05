@@ -62,6 +62,10 @@
 			if(HUDdatum.HUDneed[p]["minloc"])
 				HUD.screen_loc = HUDdatum.HUDneed[p]["minloc"]
 
+		for (var/p in H.HUDtech)
+			var/obj/screen/HUD = H.HUDtech[p]
+			if(HUDdatum.HUDoverlays[p]["minloc"])
+				HUD.screen_loc = HUDdatum.HUDoverlays[p]["minloc"]
 
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 			HUDinv.underlays.Cut()
@@ -80,6 +84,10 @@
 			if (HUDdatum.HUDneed[p]["background"])
 				HUD.underlays += HUDdatum.IconUnderlays[HUDdatum.HUDneed[p]["background"]]
 			HUD.screen_loc = HUDdatum.HUDneed[p]["loc"]
+
+		for (var/p in H.HUDtech)
+			var/obj/screen/HUD = H.HUDtech[p]
+			HUD.screen_loc = HUDdatum.HUDoverlays[p]["loc"]
 
 		for (var/obj/screen/inventory/HUDinv in H.HUDinventory)
 			for (var/p in H.species.hud.gear)
@@ -206,7 +214,7 @@
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
 
-		var/obj/screen/HUD = new HUDtype(techobject,H, HUDdatum.HUDoverlays[techobject]["loc"],\
+		var/obj/screen/HUD = new HUDtype(techobject,H,\
 		 HUDdatum.HUDoverlays[techobject]["icon"] ? HUDdatum.HUDoverlays[techobject]["icon"] : null,\
 		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
 		HUD.layer = FLASH_LAYER
