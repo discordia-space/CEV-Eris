@@ -13,7 +13,7 @@
 
 /tipsAndTricks/roles/antag_good_rp_two
     roles_list = list(/datum/antagonist)
-    tipText = "Play to have fun and to bring others into the fun. If your round feels less like a kill compilation and more like a scifi thriller, you're doing it right."
+    tipText = "Play to have fun and to bring others into the fun. If your round feels less like a kill compilation and more like a sci-fi thriller, you're doing it right."
 
 /tipsAndTricks/roles/antag_good_rp_three
     roles_list = list(/datum/antagonist)
@@ -29,7 +29,7 @@
 
 /tipsAndTricks/roles/computerPrograms
     roles_list = list(/datum/antagonist/traitor)
-    tipText = "When you emag a computer it unlocks access to some unique programs. Access Decipherer is one of them. Note that most of the programs depends on computer processing power."
+    tipText = "When you emag a computer it unlocks access to some unique programs. Access Decipherer is one of them. Note that most of the programs depend on computer processing power."
 
 /tipsAndTricks/roles/borgEmag
     roles_list = list(/datum/antagonist/traitor)
