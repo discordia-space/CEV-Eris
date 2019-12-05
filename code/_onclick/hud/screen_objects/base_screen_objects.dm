@@ -735,12 +735,14 @@ obj/screen/fire/DEADelize()
 /obj/screen/internal
 	name = "internal"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "internal0"
+	icon_state = "blank"
 	screen_loc = "15,14"
 
 /obj/screen/internal/New()
 	..()
-	ovrls["internal1"] += new /image/no_recolor(icon = src.icon)
+	ovrls["internal0"] += new /image(icon = src.icon, icon_state = "internal0")
+	ovrls["internal1"] += new /image/no_recolor(icon = src.icon, icon_state = "internal1")
+	update_icon()
 
 /obj/screen/internal/Click()
 //	if("internal")
@@ -750,7 +752,7 @@ obj/screen/fire/DEADelize()
 			if(C.internal)
 				C.internal = null
 				to_chat(C, SPAN_NOTICE("No longer running on internals."))
-				overlays.Cut()
+				update_icon()
 			else
 
 				var/no_mask
@@ -848,6 +850,8 @@ obj/screen/fire/DEADelize()
 	overlays.Cut()
 	if(parentmob:internal)
 		overlays += ovrls["internal1"]
+	else
+		overlays += ovrls["internal0"]
 
 /obj/screen/internal/DEADelize()
 	overlays.Cut()
