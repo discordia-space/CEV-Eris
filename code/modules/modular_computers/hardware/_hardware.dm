@@ -17,7 +17,7 @@
 	var/malfunction_probability = 10// Chance of malfunction when the component is damaged
 	var/usage_flags = PROGRAM_ALL
 
-/obj/item/weapon/computer_hardware/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
+/obj/item/weapon/computer_hardware/attackby(obj/item/W, mob/living/user)
 	// Multitool. Runs diagnostics
 	if(QUALITY_PULSING in W.tool_qualities)
 		if(W.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_COG))
@@ -48,7 +48,7 @@
 
 
 // Called on multitool click, prints diagnostic information to the user.
-/obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/weapon/computer_hardware/proc/diagnostics(mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
 /obj/item/weapon/computer_hardware/Initialize()
@@ -58,7 +58,8 @@
 		holder2 = loc
 
 /obj/item/weapon/computer_hardware/Destroy()
-	holder2 = null
+	if(holder2)
+		holder2.uninstall_component(src)
 	return ..()
 
 // Handles damage checks
@@ -76,7 +77,7 @@
 	// Good to go.
 	return TRUE
 
-/obj/item/weapon/computer_hardware/examine(var/mob/user)
+/obj/item/weapon/computer_hardware/examine(mob/user)
 	. = ..()
 	if(damage > damage_failure)
 		to_chat(user, SPAN_WARNING("It seems to be severely damaged!"))
@@ -84,6 +85,9 @@
 		to_chat(user, SPAN_WARNING("It seems to be damaged!"))
 	else if(damage)
 		to_chat(user, SPAN_NOTICE("It seems to be slightly damaged."))
+
+/obj/item/weapon/computer_hardware/drop_location()
+	return holder2 ? holder2.drop_location() : ..()
 
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
 /obj/item/weapon/computer_hardware/proc/take_damage(amount)

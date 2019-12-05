@@ -16,7 +16,7 @@
 		return
 	power_usage = power_usage_occupied
 
-/obj/item/weapon/computer_hardware/ai_slot/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/weapon/computer_hardware/ai_slot/attackby(obj/item/weapon/W, mob/user)
 	if(..())
 		return 1
 	if(istype(W, /obj/item/device/aicard))
@@ -28,16 +28,13 @@
 		stored_card = W
 		update_power_usage()
 	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
+		if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			to_chat(user, "You manually remove \the [stored_card] from \the [src].")
-			stored_card.forceMove(get_turf(src))
+			stored_card.forceMove(drop_location())
 			stored_card = null
 			update_power_usage()
 
 /obj/item/weapon/computer_hardware/ai_slot/Destroy()
-	if(holder2 && (holder2.ai_slot == src))
-		holder2.ai_slot = null
 	if(stored_card)
-		stored_card.forceMove(get_turf(holder2))
-	holder2 = null
+		stored_card.forceMove(drop_location())
 	return ..()

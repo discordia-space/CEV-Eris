@@ -50,11 +50,6 @@ var/global/ntnet_card_uid = 1
 	hardware_size = 3
 	price_tag = 15
 
-/obj/item/weapon/computer_hardware/network_card/Destroy()
-	if(holder2 && (holder2.network_card == src))
-		holder2.network_card = null
-	holder2 = null
-	return ..()
 
 // Returns a string identifier of this network card
 /obj/item/weapon/computer_hardware/network_card/proc/get_network_tag()

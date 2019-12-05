@@ -80,8 +80,8 @@
 	if(stored_pen && !ispath(stored_pen))
 		QDEL_NULL(stored_pen)
 
-	for(var/obj/item/weapon/computer_hardware/CH in src.get_all_components())
-		uninstall_component(null, CH, delete = TRUE)
+	for(var/obj/item/CH in get_all_components())
+		qdel(CH)
 	return ..()
 
 /obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)

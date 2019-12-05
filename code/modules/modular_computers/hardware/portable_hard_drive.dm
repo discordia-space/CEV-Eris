@@ -40,11 +40,6 @@
 	if(disk_name)
 		SetName("[initial(name)] - '[disk_name]'")
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/Destroy()
-	if(holder2 && (holder2.portable_drive == src))
-		holder2.portable_drive = null
-	return ..()
-
 /obj/item/weapon/computer_hardware/hard_drive/portable/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/pen))
 		var/new_name = input(user, "What would you like to label the disk?", "Tape labeling") as null|text
