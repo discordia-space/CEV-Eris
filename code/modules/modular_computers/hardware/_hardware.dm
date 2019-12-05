@@ -7,8 +7,8 @@
 	price_tag = 10
 	var/obj/item/modular_computer/holder2 = null
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
-	var/enabled = 1					// If the hardware is turned off set this to 0.
-	var/critical = 1				// Prevent disabling for important component, like the HDD.
+	var/enabled = TRUE				// If the hardware is turned off set this to 0.
+	var/critical = FALSE			// Prevent disabling for important component, like the HDD.
 	var/hardware_size = 1			// Limits which devices can contain this component. 1: Tablets/Laptops/Consoles, 2: Laptops/Consoles, 3: Consoles only
 	var/damage = 0					// Current damage level
 	var/max_damage = 100			// Maximal damage level.

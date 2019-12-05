@@ -5,6 +5,7 @@
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "blue"
+	critical = FALSE
 	hardware_size = 1
 	power_usage = 30
 	max_capacity = 64

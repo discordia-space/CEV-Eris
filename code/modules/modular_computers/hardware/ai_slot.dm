@@ -4,7 +4,6 @@
 	desc = "An IIS interlink with connection uplinks that allow the device to interface with most common inteliCard models. Too large to fit into tablets. Uses a lot of power when active."
 	icon_state = "aislot"
 	hardware_size = 1
-	critical = 0
 	power_usage = 100
 	origin_tech = list(TECH_POWER = 2, TECH_DATA = 3)
 	var/obj/item/device/aicard/stored_card

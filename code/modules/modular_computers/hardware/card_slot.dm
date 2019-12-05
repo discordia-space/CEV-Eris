@@ -2,7 +2,6 @@
 	name = "ID card slot"
 	desc = "Slot that allows this computer to read and write data on ID cards. Necessary for some programs to run properly."
 	power_usage = 10 //W
-	critical = 0
 	icon_state = "cardreader"
 	hardware_size = 1
 	origin_tech = list(TECH_DATA = 2)

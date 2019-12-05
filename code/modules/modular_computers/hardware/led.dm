@@ -3,7 +3,6 @@
 	desc = "Little bit of circuitry that emits light when a current is passed through it."
 	icon_state = "battery_nano"
 	power_usage = 45 //W
-	critical = 0
 	enabled = FALSE
 	var/brightness_power = 1
 	var/brightness_range = 3

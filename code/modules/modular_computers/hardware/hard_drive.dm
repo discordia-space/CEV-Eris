@@ -4,6 +4,7 @@
 	power_usage = 25					// SSD or something with low power usage
 	icon_state = "hdd_normal"
 	hardware_size = 1
+	critical = TRUE
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	var/max_capacity = 128
 	var/used_capacity = 0

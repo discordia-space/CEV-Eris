@@ -7,7 +7,7 @@
 	icon_state = "cpu_normal"
 	hardware_size = 2
 	power_usage = 50
-	critical = 1
+	critical = TRUE
 	malfunction_probability = 1
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 

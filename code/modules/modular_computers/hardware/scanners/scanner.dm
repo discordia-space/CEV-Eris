@@ -7,7 +7,6 @@
 	var/active_power_usage = 4000
 	icon_state = "printer"
 	hardware_size = 1
-	critical = 0
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 
 	var/driver_type = /datum/computer_file/program/scanner		// A program type that the scanner interfaces with and attempts to install on insertion.

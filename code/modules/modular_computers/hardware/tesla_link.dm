@@ -1,8 +1,6 @@
 /obj/item/weapon/computer_hardware/tesla_link
 	name = "tesla link"
 	desc = "An advanced tesla link that wirelessly recharges connected device from nearby area power controller."
-	critical = 0
-	enabled = 1
 	icon_state = "teslalink"
 	hardware_size = 1
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GOLD = 1)
