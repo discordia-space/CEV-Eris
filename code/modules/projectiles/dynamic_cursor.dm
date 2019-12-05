@@ -30,8 +30,7 @@
 		remove_cursor(user)
 
 /obj/item/weapon/gun/proc/update_cursor(mob/living/H)
-	if(!H || !istype(H))
-		return
+	ASSERT(H)
 	if(H.get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
 		remove_cursor(H)
 		return

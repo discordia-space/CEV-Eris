@@ -3,7 +3,6 @@
 	set category = "IC"
 
 	if(!stat && can_click())
-		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
 			process_resist()
@@ -248,12 +247,12 @@
 		buckled.user_unbuckle_mob(src)
 
 /mob/living/carbon/escape_buckle()
-	setClickCooldown(100)
 	if(!buckled) return
 
 	if(!restrained())
 		..()
 	else
+		setClickCooldown(100)
 		visible_message(
 			SPAN_DANGER("[usr] attempts to unbuckle themself!"),
 			SPAN_WARNING("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")

@@ -185,8 +185,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/weapon/storage/backpack/chameleon/New()
-	..()
+/obj/item/weapon/storage/backpack/chameleon/Initialize()
+	. = ..()
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/weapon/storage/backpack/satchel/leather/withwallet)
 		clothing_choices = generate_chameleon_choices(/obj/item/weapon/storage/backpack, blocked)

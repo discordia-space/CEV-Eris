@@ -140,7 +140,7 @@
 	required_tech_levels = list()
 	cost = 500
 
-	unlocks_designs = list()
+	unlocks_designs = list(/datum/design/research/item/mecha/hydraulic_clamp)
 
 /datum/technology/mech_utility_modules
 	name = "Exosuit Utility Modules"

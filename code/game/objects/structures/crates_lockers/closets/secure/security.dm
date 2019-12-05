@@ -175,9 +175,9 @@
 	new /obj/item/device/taperecorder(src)
 	new /obj/item/weapon/gun/projectile/revolver/consul(src)
 	new /obj/item/clothing/accessory/holster/armpit(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
+	new /obj/item/ammo_magazine/slmagnum/rubber(src)
+	new /obj/item/ammo_magazine/slmagnum/rubber(src)
+	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/injection

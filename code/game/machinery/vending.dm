@@ -1034,7 +1034,7 @@
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/weapon/gun/projectile/boltgun/fs = 2000, /obj/item/ammo_magazine/lpistol/rubber = 300, /obj/item/ammo_magazine/lpistol = 400,/obj/item/ammo_magazine/slpistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
 					/obj/item/weapon/storage/pouch/pistol_holster =150, /obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/lpistol = 300, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
-					/obj/item/ammo_magazine/ammobox/lrifle_small = 200, /obj/item/weapon/material/hatchet/tacknife = 600)
+					/obj/item/ammo_magazine/ammobox/lrifle_small = 200, /obj/item/weapon/material/hatchet/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1298,7 +1298,7 @@
 	desc = "All the props an actor could need. Probably."
 	icon_state = "Theater"
 	products = list(/obj/structure/flora/pottedplant = 2, /obj/item/device/lighting/toggleable/lamp = 2, /obj/item/device/lighting/toggleable/lamp/green = 2, /obj/item/weapon/reagent_containers/food/drinks/jar = 1,
-					/obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2, /obj/item/weapon/phone = 3)
+					/obj/item/toy/cultsword = 4, /obj/item/toy/katana = 2, /obj/item/weapon/phone = 3, /obj/item/clothing/head/centhat = 3, /obj/item/clothing/head/richard = 1)
 	auto_price = FALSE
 
 //FOR ACTORS GUILD - Containers
@@ -1349,6 +1349,23 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 3000,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
 					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 4000)
+
+/obj/machinery/vending/serbomat
+	name = "From Serbia with love"
+	desc = "How did this end up here?"
+	icon_state = "serbomat"
+	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	products = list(
+					/obj/item/weapon/storage/deferred/crate/uniform_green = 5, /obj/item/weapon/storage/deferred/crate/uniform_brown = 5,
+					/obj/item/weapon/storage/deferred/crate/uniform_black = 5, /obj/item/weapon/storage/deferred/crate/uniform_flak = 5,
+					/obj/item/weapon/storage/deferred/crate/uniform_light = 5
+					)
+	prices = list(  /obj/item/weapon/storage/deferred/crate/uniform_green = 1000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 1000,
+					/obj/item/weapon/storage/deferred/crate/uniform_black = 1000, /obj/item/weapon/storage/deferred/crate/uniform_flak = 1200,
+					/obj/item/weapon/storage/deferred/crate/uniform_light = 800
+					)
+	idle_power_usage = 211
+	auto_price = FALSE
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

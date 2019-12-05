@@ -44,7 +44,7 @@
 	update_recoil_cursor(G)
 
 /mob/living/proc/update_recoil_cursor(var/obj/item/weapon/gun/G)
-	G.update_cursor()
+	G.update_cursor(src)
 	var/bottom = 0
 	switch(recoil)
 		if(0 to 10)
@@ -62,4 +62,4 @@
 	if(bottom)
 		var/reduction = calc_reduction()
 		if(reduction > 0)
-			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
+			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor, G), 1 + (recoil - bottom) / reduction)

@@ -304,9 +304,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		..()
 
 /obj/item/weapon/storage/belt/utility/full/bst
+	storage_slots = 14
 
-/obj/item/weapon/storage/belt/utility/full/bst/New()
-	..()
+/obj/item/weapon/storage/belt/utility/full/bst/populate_contents()
 	new /obj/item/weapon/tool/multitool(src)
 	new /obj/item/device/t_scanner(src)
 

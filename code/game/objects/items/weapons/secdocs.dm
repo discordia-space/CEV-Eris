@@ -34,10 +34,6 @@
 	. = ..()
 	var/mob/living/carbon/human/owner = loc
 	if(istype(owner))
-		var/chosen_stat = pick(oddity_stats)
-		var/stat_change = rand(2, oddity_stats[chosen_stat])
-		owner.stats.changeStat(chosen_stat, stat_change)
-		claim(owner)
 		to_chat(owner, SPAN_NOTICE("You have valuable science data on your person. It is essential that you do not let it fall into the wrong hands."))
 
 /hook/roundstart/proc/place_docs()

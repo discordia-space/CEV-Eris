@@ -1551,12 +1551,3 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		return FALSE
-
-/mob/living/carbon/human/playsound_local(turf/source, soundin, vol)
-	var/static/list/pewpew = gunshot_sound+casing_sound+ric_sound+miss_sound+explosion_sound+bullet_hit_object_sound
-	if(flashbacks)
-		soundin = get_sfx(soundin)
-		if(!(soundin in pewpew+gun_interact_sound))
-			soundin = pick(pewpew)
-			vol /= 2
-	..()

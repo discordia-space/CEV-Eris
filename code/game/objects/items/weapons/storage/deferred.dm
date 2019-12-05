@@ -24,32 +24,30 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 
-/obj/item/weapon/storage/deferred/proc/spawn_contents()
-	contents_spawned = TRUE
-	for (var/a in initial_contents)
-		var/quantity = 1
-		if (initial_contents[a])
-			quantity = initial_contents[a]
+/obj/item/weapon/storage/deferred/populate_contents()
+	// Do not create contents if they are already spawned
+	if(contents_spawned)
+		return
 
-		for (var/i = 0; i < quantity; i++)
+	contents_spawned = TRUE
+	for(var/a in initial_contents)
+		var/quantity = initial_contents[a] ? initial_contents[a] : 1
+
+		for(var/i = 0; i < quantity; i++)
 			new a(src)
 	expand_to_fit()
 
-/obj/item/weapon/storage/deferred/open(var/mob/user)
-	if (!contents_spawned)
-		spawn_contents()
-	.=..()
+/obj/item/weapon/storage/deferred/open(mob/user)
+	populate_contents()
+	. = ..()
 
-/obj/item/weapon/storage/deferred/show_to(var/mob/user)
-	if (!contents_spawned)
-		spawn_contents()
-	.=..()
+/obj/item/weapon/storage/deferred/show_to(mob/user)
+	populate_contents()
+	. = ..()
 
-
-/obj/item/weapon/storage/deferred/can_be_inserted(obj/item/W as obj, stop_messages = 0)
-	if (!contents_spawned)
-		spawn_contents()
-	.=..()
+/obj/item/weapon/storage/deferred/can_be_inserted(obj/item/W, stop_messages = 0)
+	populate_contents()
+	. = ..()
 
 
 /obj/item/weapon/storage/deferred/rations
@@ -131,6 +129,7 @@
 //These use open topped crate sprites but are still functionally boxes. They can be picked up, but are too large to fit in anything
 /obj/item/weapon/storage/deferred/crate
 	w_class = ITEM_SIZE_HUGE //This is too big to fit in a backpack
+	icon = 'icons/obj/crate.dmi'
 	item_state = "toolbox_yellow"
 
 
@@ -216,3 +215,68 @@
 	initial_contents = list(/obj/random/booze = 10,
 	/obj/random/booze/low_chance = 10,
 	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 3)
+
+/obj/item/weapon/storage/deferred/crate/uniform_green
+	name = "green uniform kit"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "serbcrate_deferred_green"
+	initial_contents = list(
+	/obj/item/clothing/under/serbiansuit = 1,
+	/obj/item/clothing/head/soft/green2soft = 1,
+	/obj/item/clothing/suit/armor/bulletproof/platecarrier/green = 1,
+	/obj/item/clothing/head/helmet/altyn = 1,
+	/obj/item/clothing/mask/balaclava/tactical = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/gloves/fingerless = 1)
+
+/obj/item/weapon/storage/deferred/crate/uniform_brown
+	name = "brown uniform kit"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "serbcrate_deferred_brown"
+	initial_contents = list(
+	/obj/item/clothing/under/serbiansuit/brown = 1,
+	/obj/item/clothing/head/soft/tan2soft = 1,
+	/obj/item/clothing/suit/armor/bulletproof/platecarrier/tan = 1,
+	/obj/item/clothing/head/helmet/altyn/brown = 1,
+	/obj/item/clothing/mask/balaclava/tactical = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/gloves/fingerless = 1)
+
+/obj/item/weapon/storage/deferred/crate/uniform_black
+	name = "black uniform kit"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "serbcrate_deferred_black"
+	initial_contents = list(
+	/obj/item/clothing/under/serbiansuit/black = 1,
+	/obj/item/clothing/suit/armor/bulletproof/platecarrier = 1,
+	/obj/item/clothing/head/helmet/altyn/black = 1,
+	/obj/item/clothing/mask/balaclava/tactical = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/gloves/fingerless = 1,
+	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 1)
+
+/obj/item/weapon/storage/deferred/crate/uniform_flak
+	name = "flak serbian uniform crate"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "serbcrate_deferred_worn"
+	initial_contents = list(
+	/obj/item/clothing/under/serbiansuit = 1,
+	/obj/item/clothing/suit/armor/bulletproof/flakvest/green = 1,
+	/obj/item/clothing/head/helmet/altyn/maska = 1,
+	/obj/item/clothing/mask/balaclava/tactical = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/gloves/fingerless = 1,
+	/obj/item/weapon/storage/fancy/cigarettes = 1)
+
+/obj/item/weapon/storage/deferred/crate/uniform_light
+	name = "light armor kit"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "serbcrate_deferred_worn"
+	initial_contents = list(
+	/obj/item/clothing/under/serbiansuit = 1,
+	/obj/item/clothing/head/soft/green2soft = 1,
+	/obj/item/clothing/suit/armor/bulletproof/flakvest = 1,
+	/obj/item/clothing/head/helmet/steelpot = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/gloves/fingerless = 1,
+	/obj/item/weapon/storage/fancy/cigarettes = 1)

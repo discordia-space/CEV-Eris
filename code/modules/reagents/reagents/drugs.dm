@@ -2,6 +2,14 @@
 /datum/reagent/drug
 	reagent_type = "Drug"
 
+	var/sanity_gain
+
+/datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if(sanity_gain)
+		var/mob/living/carbon/human/H = M
+		if(istype(H))
+			H.sanity.onDrug(src, effect_multiplier)
+
 
 /datum/reagent/drug/space_drugs
 	name = "Space drugs"

@@ -103,8 +103,8 @@ SUBSYSTEM_DEF(research)
 		T.max_level = all_tech_trees[i].len
 		R.researched_tech[T] = list()
 
-	R.known_designs |= starting_designs
-
 	for(var/tech in statting_technologies)
 		R.UnlockTechology(tech, initial = TRUE)
 
+	for(var/design in starting_designs)
+		R.AddDesign2Known(design)

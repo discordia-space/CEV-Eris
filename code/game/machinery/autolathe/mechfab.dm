@@ -4,6 +4,7 @@
 	icon_state = "mechfab"
 	circuit = /obj/item/weapon/circuitboard/mechfab
 
+	build_type = MECHFAB
 	storage_capacity = 240
 	speed = 3
 
@@ -23,16 +24,14 @@
 	files = new /datum/research(src)
 
 /obj/machinery/autolathe/mechfab/design_list()
-	var/list/designs = list()
+	var/list/design_files = list()
 
-	for(var/i in files.known_designs)
-		var/datum/design/D = i
-		if(!(D.build_type & MECHFAB) || !D.file)
-			continue
+	for(var/d in files.known_designs)
+		var/datum/design/design = d
+		if((design.build_type & build_type) && design.file)
+			design_files |= design.file
 
-		designs |= D.file
-
-	return designs
+	return design_files
 
 /obj/machinery/autolathe/mechfab/ui_interact()
 	if(!categories)
@@ -63,11 +62,4 @@
 	update_categories()
 
 /obj/machinery/autolathe/mechfab/proc/update_categories()
-	categories = list()
-	for(var/datum/design/D in files.known_designs)
-		if(!(D.build_type & MECHFAB))
-			continue
-		categories |= D.category
-
-	if((!show_category || !(show_category in categories)) && length(categories))
-		show_category = categories[1]
+	categories = files.design_categories_mechfab
