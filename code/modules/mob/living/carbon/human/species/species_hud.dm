@@ -2,9 +2,9 @@
 
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 	var/list/ProcessHUD = list(
-		"health","nutrition","bodytemp","pressure","toxin","oxygen","fire","internal","sanity","nsa",
+		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
 		"throw","pull","resist","drop","look up","rest", //"jump",
-		"m_intent","intent","damage zone","craft menu",
+		"move intent","intent","damage zone","craft menu",
 		"equip","swap hand","left arm bionics","right arm bionics","toggle invetory"
 	)
 	var/icon              // If set, overrides ui_style.
