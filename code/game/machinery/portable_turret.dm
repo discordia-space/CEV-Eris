@@ -372,12 +372,12 @@ var/list/turret_icons
 
 		else if((QUALITY_PULSING in I.tool_qualities) && (!debugopen))
 			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD,  required_stat = STAT_COG))
-				if((TOOL_USE_SUCCESS) && (locked))
-					locked = !locked
+				if((TOOL_USE_SUCCESS) && (isLocked(user)))
+					locked = 0
 					to_chat(user, SPAN_NOTICE("You manage to hack the ID reader, unlocking the access panel with a satisfying click."))
 					updateUsrDialog()
-				else if((TOOL_USE_SUCCESS) && (!locked))
-					locked = locked
+				else if((TOOL_USE_SUCCESS) && (!isLocked(user)))
+					locked = 1
 					to_chat(user, SPAN_NOTICE("You manage to hack the ID reader and the access panel's locking lugs snap shut."))
 					updateUsrDialog()
 				else if((TOOL_USE_FAIL) && (!overridden) && (min(prob(35 - STAT_COG), 5)))
@@ -398,7 +398,7 @@ var/list/turret_icons
 				if(debugopen)
 					debugopen = 0
 					to_chat(user, SPAN_NOTICE("You carefully shut the secondary maintenance hatch and screw it back into place."))
-				else 
+				else
 					debugopen = 1
 					to_chat(user, SPAN_NOTICE("You gently unscrew the seconday maintenance hatch, gaining access to the turret's internal circuitry and debug functions."))
 					desc = "A hatch on the bottom of the access panel is opened, exposing the circuitry inside."
@@ -411,7 +411,7 @@ var/list/turret_icons
 					to_chat(user, SPAN_WARNING("You disconnect the turret's security protocol override!"))
 					overridden = 1
 					req_one_access.Cut()
-					req_access = list(access_occupy)
+					req_one_access = list(access_occupy)
 				else if(TOOL_USE_FAIL)
 					user.visible_message(
 						SPAN_DANGER("[user] cut the wrong wire and tripped the security protocol on the [src]! Run!"),

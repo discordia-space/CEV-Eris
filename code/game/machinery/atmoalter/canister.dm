@@ -338,6 +338,7 @@ update_flag
 		if (sealed == TRUE)
 			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
 			return
+		else if (sealed == FALSE)
 			if (valve_open)
 				if (holding)
 					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
