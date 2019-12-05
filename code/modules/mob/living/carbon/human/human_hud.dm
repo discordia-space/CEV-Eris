@@ -191,11 +191,11 @@
 
 	//Добавляем Элементы ХУДа (украшения)
 	for (var/list/whistle in HUDdatum.HUDfrippery)
-		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"],H)
-		perdelka.icon = HUDdatum.icon
+		var/obj/screen/frippery/F = new (whistle["icon_state"],whistle["loc"],H)
+		F.icon = HUDdatum.icon
 		if(whistle["hideflag"])
-			perdelka.hideflag = whistle["hideflag"]
-		H.HUDfrippery += perdelka
+			F.hideflag = whistle["hideflag"]
+		H.HUDfrippery += F
 	return
 
 /mob/living/carbon/human/create_HUDtech()
