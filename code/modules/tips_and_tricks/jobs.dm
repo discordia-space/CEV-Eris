@@ -165,7 +165,7 @@
 
 /tipsAndTricks/jobs/drink_app
     jobs_list = list(/datum/job/clubworker, /datum/job/clubmanager)
-    tipText = "There is program in your PDA called Neon Cocktails that can help you with making drinks."
+    tipText = "There is a program in your PDA called Neon Cocktails that can help you with making drinks."
 
 /tipsAndTricks/jobs/bots
     jobs_list = list(/datum/job/rd, /datum/job/scientist, /datum/job/roboticist)
