@@ -132,6 +132,11 @@
 		breakouttime = HC.breakouttime - src.stats.getStat(STAT_ROB) * 10
 		displaytime = round(breakouttime / 600) //Minutes
 
+	var/mob/living/carbon/human/H = src
+	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
+		breakouttime /= 2
+		displaytime /= 2
+
 	visible_message(
 		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
 		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)")
