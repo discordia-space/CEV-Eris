@@ -82,7 +82,14 @@
 
 	for(var/obj/item/CH in get_all_components())
 		qdel(CH)
+	QDEL_NULL(cell)
 	return ..()
+
+// A new computer hull was just built - remove all components
+/obj/item/modular_computer/Created()
+	for(var/obj/item/CH in get_all_components())
+		qdel(CH)
+	QDEL_NULL(cell)
 
 /obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
 	if(computer_emagged)
@@ -90,7 +97,7 @@
 		return NO_EMAG_ACT
 	else
 		computer_emagged = TRUE
-		to_chat(user, "You emag \the [src]. It's screen briefly shows a \"OVERRIDE ACCEPTED: New software downloads available.\" message.")
+		to_chat(user, "You emag \the [src]. Its screen flickers briefly.")
 		return TRUE
 
 /obj/item/modular_computer/update_icon()
