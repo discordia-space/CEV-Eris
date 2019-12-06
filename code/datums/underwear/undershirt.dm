@@ -7,3 +7,7 @@
 	name = "None"
 	always_last = TRUE
 	underwear_type = null
+
+/datum/category_item/underwear/undershirt/fleettank
+	name = "Fleet Tank"
+	icon_state = "tank_fleet_s"

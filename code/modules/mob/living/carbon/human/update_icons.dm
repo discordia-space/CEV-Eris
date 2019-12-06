@@ -462,7 +462,7 @@ var/global/list/damage_icon_parts = list()
 		"belt"			= 'icons/inventory/belt/mob.dmi',
 		"s_store"		= 'icons/inventory/on_suit/mob.dmi',
 		"backpack"		= 'icons/inventory/back/mob.dmi',
-		"underwear"		= 'icons/inventory/underwear/mob.dmi'
+		"underwear"		= 'icons/mob/human_races/underwear.dmi'
 		)
 	return icons[slot]
 
