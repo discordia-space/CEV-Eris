@@ -43,7 +43,7 @@
 	holder.owner.adjustFireLoss(-25)
 	holder.owner.adjustOxyLoss(-45)
 	holder.owner.adjustToxLoss(-25)
-	holder.owner.reagents.add_reagent("tramadol", 5) // the way this works is silly as all fuck and should probably be fixed at some point 
+	holder.owner.reagents.add_reagent("tramadol", 5) // the way this works is silly as all fuck and should probably be fixed at some point
 	..()
 
 
@@ -214,7 +214,7 @@
 
 	start_messages = list(
 		"You get overwhelmed and start to panic!",
-		"You're incosolably terrified!",
+		"You're inconsolably terrified!",
 		"You can't choke back the tears anymore!",
 		"The hair on your nape stands on end! The fear sends you into a frenzy!",
 		"It's too much! You freak out and lose control!"
@@ -258,7 +258,7 @@
 		"You feel like something is speaking to you from within!",
 		"You feel a voice starting to scream in your head!",
 		"You feel like your brain decided to scream at you!",
-		"You feel like voices marching in your mind!",
+		"You feel like voices are marching in your mind!",
 		"You feel sounds warp into cacophony!"
 	)
 	end_messages = list(
@@ -285,14 +285,14 @@
 	var/list/image/images = list()
 
 	start_messages = list(
-		"You feel like you know understand something that you shouldn't!",
+		"You feel like you understand something that you shouldn't!",
 		"You feel the thoughts crawling in your head!",
-		"You feel like your mind trying to comprehend the secrets of the universe itself!",
+		"You feel like your mind is trying to comprehend the secrets of the universe itself!",
 		"You feel it. Secrets. They are all around you.",
-		"You feel like your tower of knowledge on wedge to reach the stars, the only one brick is missing!"
+		"You feel your tower of knowledge on course to reach the stars, with only a single brick missing!"
 	)
 	end_messages = list(
-		"You feel like it is gone. But would it return?"
+		"You feel like it is gone. But will it return?"
 	)
 
 /datum/breakdown/negative/fabric/occur()
@@ -328,9 +328,9 @@
 	restore_sanity_post = 50
 
 	start_messages = list(
-		"You feel like there is no point in all of this!",
-		"You brain refused to comprehend all of this!",
-		"You feel like you don't wanna continue what ever you're doing!",
+		"You feel like there is no point in any of this!",
+		"You brain refuses to comprehend any of this!",
+		"You feel like you don't want to continue whatever you're doing!",
 		"You feel like your best days are gone forever!",
 		"You feel it. You know it. There is no turning back!"
 	)
@@ -349,14 +349,14 @@
 	var/objectname
 
 	start_messages = list(
-		"You hear a sickening, raspy voice in your head. It wants one small task of you...",
-		"Your mind was impaled with sickening need to hold something.",
-		"Your mind whispered one of his secrets to you, but you need a token to access it's treasures...",
-		"You feel old saying was true,a key to true power is real...",
-		"You feel under constant pressure, but there a way to ease the pain..."
+		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
+		"Your mind is impaled with the sickening need to hold something.",
+		"Your mind whispers one of its secrets to you - but you need a token to access its true treasures...",
+		"You feel like the old saying is true - the key to true power is real...",
+		"You feel under constant pressure, but there is a way to ease the pain..."
 	)
 	end_messages = list(
-		"You feel easier again, at once."
+		"You feel at ease again, suddenly."
 	)
 
 /datum/breakdown/common/obsession/New()
@@ -395,8 +395,8 @@
 		found = target.loc == holder.owner
 	if(found)
 		var/message = pick(list(
-			"Your mind convulses in the ecstasy. The sacred is now yours!",
-			"You feel warmth of the [objectname] in your head.",
+			"Your mind convulses in the ecstasy. The sacred [objectname] is now yours!",
+			"You feel the warmth of the [objectname] in your head.",
 			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
@@ -406,14 +406,14 @@
 	if(prob(50))
 		var/message = pick(list(
 			"You knew it. The [objectname] will ease your journey to the stars.",
-			"You watch, but the only thing you can see is [objectname].",
-			"Your thoughts are all about [objectname].",
-			"You imagine how you will pour your hands into still warm [objectname].",
-			"Vivid imagery of [objectname] is all around your brain.",
+			"You look all around, but the only thing you can see is the [objectname].",
+			"Your thoughts are all about the [objectname].",
+			"You imagine how you will pour your hands into the still warm [objectname].",
+			"Vivid imagery of the [objectname] fills your brain.",
 			"You know it. It is the key to your salvation. [capitalize(objectname)]. [capitalize(objectname)]. [capitalize(objectname)]!",
-			"Thin voice within says only one thing: [objectname].",
-			"It hurts you to keep pretending that your life without [objectname] have meaning.",
-			"Your minds whispers to you with the only words in their silent throats: [objectname].",
+			"The voice within you demands only one thing: the [objectname].",
+			"It hurts you to keep pretending that your life without the [objectname] has meaning.",
+			"Your mind whispers to you with the only words in its silent throat: [objectname].",
 			"You know that only salvation from your sins is [objectname]."
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
@@ -437,14 +437,14 @@
 	var/pickup_time = 0
 
 	start_messages = list(
-		"You feel need to hold something, that you shouldn't...",
-		"You feel like others don't value what they have, but you on the other side...",
+		"You feel the need to hold something that you perhaps shouldn't...",
+		"You feel like others don't value what they have - but you on the other hand...",
 		"You feel like everything should be in your possession...",
-		"You feel like everything can be yours, just a small effort needed...",
-		"You feel like some things have strong aura around them, it won't hurt to take them for a while..."
+		"You feel like everything can be yours, with just the smallest effort...",
+		"You feel like some things have a strong aura around them. It won't hurt to take them for a while..."
 	)
 	end_messages = list(
-		"You feel easier without stealing things now."
+		"You feel easier about not stealing things now."
 	)
 
 /datum/breakdown/common/kleptomania/update()
@@ -472,14 +472,14 @@
 	var/message
 
 	start_messages = list(
-		"You feel like fabric of reality is visible to you...",
-		"You feel that truth is hidden somewhere, right in your mind...",
-		"You feel like your mind have spoken to you, after centuries of silence...",
+		"You feel like the fabric of reality is visible to you...",
+		"You feel that the truth is hidden somewhere, within your mind...",
+		"You feel like your mind has spoken to you, after centuries of silence...",
 		"You feel like you were blind, but now you see...",
-		"You feel like universe itself speaking to you..."
+		"You feel like the universe itself is speaking to you..."
 	)
 	end_messages = list(
-		"The truth have spoken. You feel it again. Melody of sounds is back to you."
+		"The truth have spoken. You feel it again. The melody of sound returns to you."
 	)
 
 /datum/breakdown/common/signs/New()
