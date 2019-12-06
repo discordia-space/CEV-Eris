@@ -367,7 +367,8 @@ var/list/turret_icons
 
 		else if((QUALITY_PULSING in I.tool_qualities) && (debugopen))
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PULSING, FAILCHANCE_NORMAL,  required_stat = STAT_COG))
-				registered_names = null
+				registered_names.Cut()
+				registered_names = list()
 				to_chat(user, SPAN_NOTICE("You access the debug board and reset the turret's access list."))
 
 		else if((QUALITY_PULSING in I.tool_qualities) && (!debugopen))
