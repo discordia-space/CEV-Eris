@@ -87,25 +87,30 @@
 
 
 // Processor
-/datum/design/research/item/modularcomponent/cpu
+/datum/design/research/item/computer_part/cpu
 	build_type = IMPRINTER
-	chemicals = list("silicon" = 20)
-	name = "computer processor unit"
+
+
+/datum/design/research/item/computer_part/cpu/basic
 	build_path = /obj/item/weapon/computer_hardware/processor_unit
 	sort_string = "VBAAW"
+	starts_unlocked = TRUE
 
-/datum/design/research/item/modularcomponent/cpu/small
-	name = "computer microprocessor unit"
+/datum/design/research/item/computer_part/cpu/basic/small
 	build_path = /obj/item/weapon/computer_hardware/processor_unit/small
+
+
+/datum/design/research/item/computer_part/cpu/adv
+	build_path = /obj/item/weapon/computer_hardware/processor_unit/adv
 	sort_string = "VBAAX"
 
-/datum/design/research/item/modularcomponent/cpu/photonic
-	name = "computer photonic processor unit"
-	chemicals = list("silicon" = 40)
-	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic
+/datum/design/research/item/computer_part/cpu/adv/small
+	build_path = /obj/item/weapon/computer_hardware/processor_unit/adv/small
+
+
+/datum/design/research/item/computer_part/cpu/super
+	build_path = /obj/item/weapon/computer_hardware/processor_unit/super
 	sort_string = "VBAAY"
 
-/datum/design/research/item/modularcomponent/cpu/photonic/small
-	name = "computer photonic microprocessor unit"
-	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic/small
-	sort_string = "VBAAZ"
+/datum/design/research/item/computer_part/cpu/super/small
+	build_path = /obj/item/weapon/computer_hardware/processor_unit/super/small

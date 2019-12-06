@@ -5,13 +5,14 @@
 /obj/random/techpart/item_to_spawn()
 	return pickweight(list(
 				/obj/item/weapon/computer_hardware/card_slot = 9,
-				/obj/item/weapon/computer_hardware/hard_drive = 9,
+				/obj/item/weapon/computer_hardware/hard_drive = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/advanced = 3,
 				/obj/item/weapon/computer_hardware/network_card = 9,
 				/obj/item/weapon/computer_hardware/network_card/advanced = 3,
-				/obj/item/weapon/computer_hardware/processor_unit = 9,
-				/obj/item/weapon/computer_hardware/processor_unit/small = 9,
-				/obj/item/weapon/computer_hardware/processor_unit/photonic = 3,
+				/obj/item/weapon/computer_hardware/processor_unit = 6,
+				/obj/item/weapon/computer_hardware/processor_unit/small = 6,
+				/obj/item/weapon/computer_hardware/processor_unit/adv = 3,
+				/obj/item/weapon/computer_hardware/processor_unit/adv/small = 4,
 				/obj/item/weapon/computer_hardware/tesla_link = 9,
 				/obj/item/device/assembly/igniter = 12,
 				/obj/item/device/assembly/infra = 12,
