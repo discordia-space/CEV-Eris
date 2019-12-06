@@ -13,8 +13,7 @@
 	name = "Gunnery Sergeant jumpsuit"
 	icon_state = "warden"
 	item_state = "r_suit"
-
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/warden/skirt
 	name = "Gunnery Sergeant jumpskirt"
@@ -33,8 +32,7 @@
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "security"
 	item_state = "ba_suit"
-
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/security/skirt
 	name = "Ironhammer Operative's jumpskirt"
@@ -47,8 +45,7 @@
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
 	icon_state = "medspec"
 	item_state = "ba_suit"
-
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/medspec/skirt
 	name = "Medical Specialist's jumpskirt"
@@ -60,8 +57,7 @@
 	name = "tactical jumpsuit"
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
 	icon_state = "syndicate"
-
-	siemens_coefficient = 0.9
+	siemens_coefficient = 0.8
 
 /*
  * Detective
@@ -71,24 +67,17 @@
 	desc = "Casual turtleneck and jeans, civilian clothes of Ironhammer Inspector."
 	icon_state = "insp_under"
 	item_state = "insp_under"
-
-	siemens_coefficient = 0.9
-
-
+	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/det
 	name = "inspector's suit"
 	desc = "A rumpled white dress shirt paired with well-worn grey slacks, complete with a blue striped tie and a faux-gold tie clip."
 	icon_state = "detective"
 	item_state = "det"
-
-	siemens_coefficient = 0.9
-
-
+	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/det/black
 	icon_state = "detective3"
-
 	//item_state = "sl_suit"
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
 
@@ -101,8 +90,15 @@
 		slot_r_hand_str = "det_hat",
 		)
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
-	armor = list(melee = 10, bullet = 5, energy = 10, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 0.9
+	armor = list(
+		melee = 10,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	siemens_coefficient = 0.8
 	body_parts_covered = 0
 
 /obj/item/clothing/head/det/grey
@@ -118,7 +114,6 @@
 	name = "Ironhammer Commander's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
-
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/ih_commander/skirt
@@ -146,7 +141,14 @@
 	icon_state = "hos"
 	item_state = "hos"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 50, bullet = 50, energy = 30, bomb = 25, bio = 0, rad = 0)
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 
@@ -157,15 +159,12 @@
 	icon_state = "jensen"
 	item_state = "jensen"
 
-	siemens_coefficient = 0.6
-
 /obj/item/clothing/suit/armor/hos/jensen
 	name = "armored trenchcoat"
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
 	flags_inv = 0
-	siemens_coefficient = 0.6
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /*

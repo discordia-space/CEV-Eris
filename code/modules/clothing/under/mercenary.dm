@@ -4,7 +4,6 @@
 	icon_state = "greenturtle"
 	item_state = "bl_suit"
 	has_sensor = 0
-	siemens_coefficient = 0.9
 	price_tag = 50
 
 /obj/item/clothing/under/turtleneck/New()

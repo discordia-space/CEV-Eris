@@ -1454,6 +1454,7 @@
 #include "code\modules\clothing\spacesuits\rig\suits\station.dm"
 #include "code\modules\clothing\spacesuits\void\excelsior.dm"
 #include "code\modules\clothing\spacesuits\void\merc.dm"
+#include "code\modules\clothing\spacesuits\void\neotheology.dm"
 #include "code\modules\clothing\spacesuits\void\station.dm"
 #include "code\modules\clothing\spacesuits\void\void.dm"
 #include "code\modules\clothing\spacesuits\void\wizard.dm"

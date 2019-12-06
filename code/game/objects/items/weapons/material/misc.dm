@@ -33,7 +33,7 @@
 	item_state = "knife"
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 0
-	armor_penetration = ARMOR_PEN_DEEP
+	armor_penetration = ARMOR_PEN_MODERATE
 
 /obj/item/weapon/material/minihoe // -- Numbers
 	name = "mini hoe"
@@ -55,7 +55,6 @@
 	thrown_force_divisor = 0.25 // 5 with weight 20 (steel)
 	sharp = 1
 	edge = 1
-	armor_penetration = ARMOR_PEN_SHALLOW
 	throw_speed = 1
 	throw_range = 3
 	w_class = ITEM_SIZE_BULKY

@@ -9,7 +9,7 @@
 	/obj/item/clothing/gloves/captain = 1)
 	contents_list_extra = list()
 	contents_list_random = list(/obj/item/clothing/head/helmet/space/capspace = 70,
-	/obj/item/clothing/suit/armor/captain = 70,
+	/obj/item/clothing/suit/space/captain = 70,
 	/obj/item/weapon/tank/jetpack/oxygen = 55,
 	/obj/item/weapon/melee/chainofcommand = 65,
 	/obj/item/weapon/reagent_containers/food/drinks/flask = 50,

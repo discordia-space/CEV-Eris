@@ -1,17 +1,3 @@
-//Deathsquad suit
-/obj/item/clothing/head/helmet/space/deathsquad
-	name = "deathsquad helmet"
-	desc = "That's not red paint. That's real blood."
-	icon_state = "deathsquad"
-	item_state_slots = list(
-		slot_l_hand_str = "syndicate-helm-black-red",
-		slot_r_hand_str = "syndicate-helm-black-red",
-		)
-	armor = list(melee = 65, bullet = 55, energy = 45, bomb = 30, bio = 100, rad = 60)
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
-	flags_inv = BLOCKHAIR
-	siemens_coefficient = 0.6
-
 //Space santa outfit suit
 /obj/item/clothing/head/helmet/space/santahat
 	name = "Santa's hat"
