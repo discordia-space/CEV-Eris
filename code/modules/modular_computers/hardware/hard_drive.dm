@@ -1,8 +1,8 @@
 /obj/item/weapon/computer_hardware/hard_drive
 	name = "basic hard drive"
 	desc = "A small power efficient solid state drive for use in basic computers where power efficiency is desired."
-	power_usage = 25					// SSD or something with low power usage
 	icon_state = "hdd_normal"
+	power_usage = 25					// SSD or something with low power usage
 	hardware_size = 1
 	critical = TRUE
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)

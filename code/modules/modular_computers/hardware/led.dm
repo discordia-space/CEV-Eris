@@ -1,7 +1,7 @@
 /obj/item/weapon/computer_hardware/led
-	name = "Light Emitting Diode"
+	name = "light emitting diode"
 	desc = "Little bit of circuitry that emits light when a current is passed through it."
-	icon_state = "battery_nano"
+	icon_state = "led"
 	power_usage = 45 //W
 	enabled = FALSE
 	var/brightness_power = 1
