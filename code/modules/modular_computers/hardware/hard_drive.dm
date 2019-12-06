@@ -55,6 +55,14 @@
 	icon_state = "hdd_small"
 	hardware_size = 1
 
+/obj/item/weapon/computer_hardware/hard_drive/small/adv
+	name = "small advanced hard drive"
+	desc = "An upgraded version of miniature hard drive used in portable devices."
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
+	power_usage = 20
+	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
+	max_capacity = 128
+
 /obj/item/weapon/computer_hardware/hard_drive/micro
 	name = "micro hard drive"
 	desc = "A small micro hard drive for portable devices."

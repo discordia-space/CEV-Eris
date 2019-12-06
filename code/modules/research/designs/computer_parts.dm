@@ -41,8 +41,13 @@
 /datum/design/research/item/modularcomponent/disk/small
 	build_path = /obj/item/weapon/computer_hardware/hard_drive/small
 	sort_string = "VBAAE"
+	starts_unlocked = TRUE
 
-/datum/design/research/item/modularcomponent/disk/micro
+/datum/design/research/item/computer_part/disk/small_adv
+	build_path = /obj/item/weapon/computer_hardware/hard_drive/small/adv
+	sort_string = "VBAAF"
+
+/datum/design/research/item/computer_part/disk/micro
 	build_path = /obj/item/weapon/computer_hardware/hard_drive/micro
 	sort_string = "VBAAF"
 
