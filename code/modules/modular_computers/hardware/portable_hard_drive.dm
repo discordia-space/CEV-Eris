@@ -31,7 +31,7 @@
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
-	price_tag = 50
+	price_tag = 150
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/Initialize()
 	. = ..()
