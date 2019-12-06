@@ -770,7 +770,7 @@ Checks if a list has the same entries and values as an element of big.
 /proc/is_associative(list/L)
 	for(var/key in L)
 		// if the key is a list that means it's actually an array of lists (stupid Byond...)
-		if(isnum(key) && isnull(L[key]) && istype(key, /list))
+		if(isnum(key) || istype(key, /list) || isnull(L[key]))
 			return FALSE
 	return TRUE
 
