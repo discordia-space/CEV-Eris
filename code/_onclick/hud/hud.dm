@@ -38,10 +38,14 @@ var/list/global_huds
 
 	//that nasty looking dither you  get when you're short-sighted
 	vimpaired = newlist(
-		/obj/screen{icon_state = "dither50"; screen_loc = "1,1 to 5,15"},
-		/obj/screen{icon_state = "dither50"; screen_loc = "5,1 to 10,5"},
-		/obj/screen{icon_state = "dither50"; screen_loc = "6,11 to 10,15"},
-		/obj/screen{icon_state = "dither50"; screen_loc = "11,1 to 15,15"}
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH to WEST+4,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+4,SOUTH to EAST-5,SOUTH+4"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+5,NORTH-4 to EAST-5,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST-4,SOUTH to EAST,NORTH"},
+
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH:-32 to EAST,SOUTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST:32,SOUTH to EAST,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST:32,SOUTH:-32"},
 	)
 
 	//welding mask overlay black/dither
@@ -54,7 +58,11 @@ var/list/global_huds
 		/obj/screen{icon_state = "black"; screen_loc = "WEST,SOUTH to EAST,SOUTH+1"},
 		/obj/screen{icon_state = "black"; screen_loc = "WEST,SOUTH+2 to WEST+1,NORTH"},
 		/obj/screen{icon_state = "black"; screen_loc = "EAST-1,SOUTH+2 to EAST,NORTH"},
-		/obj/screen{icon_state = "black"; screen_loc = "WEST+2,NORTH-1 to EAST-2,NORTH"}
+		/obj/screen{icon_state = "black"; screen_loc = "WEST+2,NORTH-1 to EAST-2,NORTH"},
+
+		/obj/screen{icon_state = "black"; screen_loc = "WEST,SOUTH:-32 to EAST,SOUTH"},
+		/obj/screen{icon_state = "black"; screen_loc = "EAST:32,SOUTH to EAST,NORTH"},
+		/obj/screen{icon_state = "black"; screen_loc = "EAST:32,SOUTH:-32"},
 	)
 
 	for(var/obj/screen/O in (vimpaired + darkMask))
