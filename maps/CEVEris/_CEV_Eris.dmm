@@ -21162,6 +21162,9 @@
 /area/eris/maintenance/section1deck4central)
 "aWV" = (
 /obj/structure/table/reinforced,
+/obj/item/stack/material/plastic{
+	amount = 120
+	},
 /obj/item/stack/material/steel{
 	amount = 120
 	},

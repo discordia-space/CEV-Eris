@@ -1140,6 +1140,7 @@
 	icon_deny = "sec-deny"
 	req_access = list(access_security)
 	products = list(/obj/item/weapon/handcuffs = 8,
+					/obj/item/weapon/handcuffs/zipties = 8,
 					/obj/item/weapon/grenade/flashbang = 8,
 					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
 					/obj/item/device/flash = 8,
