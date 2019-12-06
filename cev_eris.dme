@@ -98,8 +98,6 @@
 #include "code\__HELPERS\sorting\TimSort.dm"
 #include "code\_compatibility\512.dm"
 #include "code\_compatibility\513.dm"
-#include "code\_compatibility\509\text.dm"
-#include "code\_compatibility\509\type2type.dm"
 #include "code\_datastructures\path_node.dm"
 #include "code\_datastructures\priority_queue.dm"
 #include "code\_datastructures\stack.dm"
