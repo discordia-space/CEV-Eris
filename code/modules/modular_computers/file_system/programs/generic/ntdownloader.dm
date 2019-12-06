@@ -103,6 +103,9 @@
 			begin_file_download(downloads_queue[1], downloads_queue[downloads_queue[1]])
 			downloads_queue.Remove(downloads_queue[1])
 
+	if(!downloaded_file)
+		return
+
 	// Download speed according to connectivity state. Network server is assumed to be on unlimited speed so we're limited by our local connectivity
 	// Allow speed to vary 15% up or down
 	update_netspeed(speed_variance=15)
