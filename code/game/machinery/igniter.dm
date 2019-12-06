@@ -37,10 +37,8 @@
 
 /obj/machinery/igniter/attack_hand(mob/user as mob)
 	if(..())
-		return
-	add_fingerprint(user)
+		return 1
 	ignite()
-	return
 
 /obj/machinery/igniter/Process()	//ugh why is this even in process()?
 	if (on && powered() )

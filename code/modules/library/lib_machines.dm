@@ -104,7 +104,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(href_list["back"])
 		screenstate = 0
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	keyboardsound(usr)
 	return
@@ -384,7 +383,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				spawn() src.Topic(nhref, params2list(nhref), src)
 	if(href_list["sort"] in list("author", "title", "category"))
 		sortby = href_list["sort"]
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 
@@ -434,7 +432,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(href_list["eject"])
 		for(var/obj/item/weapon/book/B in contents)
 			B.loc = src.loc
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 

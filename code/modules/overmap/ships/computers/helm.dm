@@ -212,7 +212,6 @@
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 
 
