@@ -6,6 +6,7 @@
 	hardware_size = 1
 	power_usage = 100
 	origin_tech = list(TECH_POWER = 2, TECH_DATA = 3)
+	price_tag = 100
 	var/obj/item/device/aicard/stored_card
 	var/power_usage_idle = 100
 	var/power_usage_occupied = 2 KILOWATTS

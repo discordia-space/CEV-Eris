@@ -12,7 +12,6 @@
 	default_files = list()
 	origin_tech = list(TECH_DATA = 2)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.25)
-	matter_reagents = list()
 	price_tag = 25
 	var/disk_name
 	var/license = 0

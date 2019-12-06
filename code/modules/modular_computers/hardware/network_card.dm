@@ -5,6 +5,7 @@ var/global/ntnet_card_uid = 1
 	desc = "A basic network card for usage with standard NTNet frequencies."
 	power_usage = 10
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 1)
+	matter_reagents = list("silicon" = 20)
 	icon_state = "netcard"
 	hardware_size = 1
 	var/identification_id = null	// Identification ID. Technically MAC address of this device. Can't be changed by user.
@@ -24,8 +25,8 @@ var/global/ntnet_card_uid = 1
 	if(ethernet)
 		to_chat(user, "OpenEth (Physical Connection) - Physical network connection port")
 
-/obj/item/weapon/computer_hardware/network_card/New(var/l)
-	..(l)
+/obj/item/weapon/computer_hardware/network_card/Initialize()
+	. = ..()
 	identification_id = ntnet_card_uid
 	ntnet_card_uid++
 
@@ -33,12 +34,12 @@ var/global/ntnet_card_uid = 1
 	name = "advanced network card"
 	desc = "An advanced network card for usage with standard frequencies. It's transmitter is strong enough to connect even when far away."
 	long_range = TRUE
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.5)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 2)
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 2)
 	power_usage = 30 // Better range but higher power usage.
 	icon_state = "netcard_adv"
 	hardware_size = 1
-	price_tag = 15
+	price_tag = 100
 
 /obj/item/weapon/computer_hardware/network_card/wired
 	name = "wired network card"
@@ -48,7 +49,6 @@ var/global/ntnet_card_uid = 1
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "netcard_ethernet"
 	hardware_size = 3
-	price_tag = 15
 
 
 // Returns a string identifier of this network card
