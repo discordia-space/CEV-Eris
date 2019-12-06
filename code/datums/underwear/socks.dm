@@ -28,7 +28,7 @@
 	has_color = TRUE
 
 /datum/category_item/underwear/socks/thigh
-	name = "Socks"
+	name = "Socks, Thigh"
 	underwear_name = "socks_thigh"
 	icon_state = "socks_thigh"
 	has_color = TRUE
