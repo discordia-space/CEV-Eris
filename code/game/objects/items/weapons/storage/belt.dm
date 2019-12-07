@@ -66,15 +66,15 @@
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-/obj/item/weapon/storage/belt/utility/atmostech/populate_contents()
+/obj/item/weapon/storage/belt/utility/technomancer/New()
+	..()
 	new /obj/item/weapon/tool/screwdriver(src)
 	new /obj/item/weapon/tool/wrench(src)
 	new /obj/item/weapon/tool/weldingtool(src)
 	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/weapon/tool/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
-
-
+	new /obj/item/weapon/tool/multitool(src)
+	new /obj/item/stack/cable_coil/random(src)
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"

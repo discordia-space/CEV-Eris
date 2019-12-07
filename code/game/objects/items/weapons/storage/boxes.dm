@@ -25,7 +25,7 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	max_w_class = ITEM_SIZE_SMALL
-	max_storage_space = DEFAULT_SMALL_STORAGE 
+	max_storage_space = DEFAULT_SMALL_STORAGE
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	health = 20
 
@@ -638,10 +638,18 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
-/obj/item/weapon/storage/box/autolathe_blank
+/obj/item/weapon/storage/box/data_disk
 	name = "data disk box"
 	icon_state = "disk_kit"
 
-/obj/item/weapon/storage/box/autolathe_blank/populate_contents()
+/obj/item/weapon/storage/box/data_disk/populate_contents()
 	for(var/i in 1 to 7)
 		new /obj/item/weapon/computer_hardware/hard_drive/portable(src)
+
+/obj/item/weapon/storage/box/data_disk/basic
+	name = "basic data disk box"
+	icon_state = "disk_kit"
+
+/obj/item/weapon/storage/box/data_disk/basic/populate_contents()
+	for(var/i in 1 to 7)
+		new /obj/item/weapon/computer_hardware/hard_drive/portable/basic(src)

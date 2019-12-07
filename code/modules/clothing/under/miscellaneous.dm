@@ -2,17 +2,13 @@
 	name = "red pj's"
 	desc = "Sleepwear."
 	icon_state = "red_pyjamas"
-
 	item_state = "w_suit"
 
 /obj/item/clothing/under/pj/blue
 	name = "blue pj's"
 	desc = "Sleepwear."
 	icon_state = "blue_pyjamas"
-
 	item_state = "w_suit"
-
-
 
 
 /obj/item/clothing/under/waiter
@@ -27,41 +23,12 @@
 	desc = "It makes you look HONKable!"
 	icon_state = "sexyclown"
 	item_state = "clown"
-
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/under/space
-	name = "\improper NASA jumpsuit"
-	desc = "It has a NASA logo on it and is made of space-proofed materials."
-	icon_state = "black"
-	item_state = "bl_suit"
-
-	w_class = ITEM_SIZE_BULKY//bulky item
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.02
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS //Needs gloves and shoes with cold protection to be fully protected.
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-
-/obj/item/clothing/under/acj
-	name = "administrative cybernetic jumpsuit"
-	icon_state = "syndicate"
-	item_state = "bl_suit"
-
-	desc = "it's a cybernetically enhanced jumpsuit used for administrative duties."
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	armor = list(melee = 100, bullet = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0
 
 /obj/item/clothing/under/owl
 	name = "owl uniform"
 	desc = "A jumpsuit with owl wings. Photorealistic owl feathers! Twooooo!"
 	icon_state = "owl"
-
 	item_state = "owl"
 
 

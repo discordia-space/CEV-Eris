@@ -5,36 +5,10 @@
 	icon_state = "crate"
 	climbable = TRUE
 	dense_when_open = TRUE
-	var/rigged = FALSE
-	dismantle_material = /obj/item/stack/material/plasteel
+	matter = list(MATERIAL_PLASTEEL = 10)
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 	price_tag = 200
-
-
-/obj/structure/closet/crate/open()
-	if(src.opened)
-		return FALSE
-	if(!src.can_open())
-		return FALSE
-
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
-		if(isliving(usr))
-			var/mob/living/L = usr
-			if(L.electrocute_act(17, src))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
-				if(usr.stunned)
-					return 2
-
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
-	for(var/obj/O in src)
-		O.forceMove(get_turf(src))
-	src.opened = TRUE
-	update_icon()
-
-	if(climbable)
-		structure_shaken()
-	return TRUE
 
 /obj/structure/closet/crate/close()
 	if(!src.opened)
@@ -42,7 +16,7 @@
 	if(!src.can_close())
 		return FALSE
 
-	playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src.loc, close_sound, 15, 1, -3)
 	var/itemcount = 0
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
@@ -59,35 +33,6 @@
 	src.opened = FALSE
 	update_icon()
 	return TRUE
-
-/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
-		return ..()
-	else if(istype(W, /obj/item/weapon/packageWrap))
-		return
-	else if(istype(W, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/C = W
-		if(rigged)
-			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
-			return
-		if (C.use(1))
-			to_chat(user, SPAN_NOTICE("You rig [src]."))
-			rigged = TRUE
-			return
-	else if(istype(W, /obj/item/device/radio/electropack))
-		if(rigged)
-			to_chat(user, SPAN_NOTICE("You attach [W] to [src]."))
-			user.drop_item()
-			W.forceMove(src)
-			return
-	else if(istype(W, /obj/item/weapon/tool/wirecutters))
-		if(rigged)
-			to_chat(user, SPAN_NOTICE("You cut away the wiring."))
-			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
-			rigged = FALSE
-			return
-	else
-		return ..()
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
@@ -133,7 +78,8 @@
 	name = "plastic crate"
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
-	dismantle_material = /obj/item/stack/material/plastic
+	matter = list(MATERIAL_PLASIC = 10)
+	price_tag = 50
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"

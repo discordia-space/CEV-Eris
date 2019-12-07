@@ -658,14 +658,14 @@
 /area/eris/security/range)
 "abP" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/riot/ironhammer,
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/head/helmet/riot,
@@ -844,27 +844,27 @@
 /area/eris/security/armory)
 "acl" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acm" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
-/obj/item/clothing/suit/armor/vest/security,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
+/obj/item/clothing/suit/armor/vest/ironhammer,
 /obj/item/clothing/head/helmet,
 /obj/item/clothing/head/helmet,
 /obj/item/clothing/head/helmet,
@@ -1343,7 +1343,7 @@
 /obj/structure/table/rack,
 /obj/random/rig_module,
 /obj/random/rig_module,
-/obj/item/weapon/rig/ihs_combat/equipped,
+/obj/item/weapon/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adl" = (
@@ -1515,7 +1515,7 @@
 /obj/random/rig_module,
 /obj/random/rig_module,
 /obj/random/rig_module,
-/obj/item/weapon/rig/ihs_combat/equipped,
+/obj/item/weapon/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adJ" = (
@@ -21162,6 +21162,9 @@
 /area/eris/maintenance/section1deck4central)
 "aWV" = (
 /obj/structure/table/reinforced,
+/obj/item/stack/material/plastic{
+	amount = 120
+	},
 /obj/item/stack/material/steel{
 	amount = 120
 	},
@@ -71781,7 +71784,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/tank/jetpack/oxygen,
 /obj/item/clothing/mask/gas,
-/obj/item/clothing/suit/armor/captain,
+/obj/item/clothing/suit/space/captain,
 /obj/item/clothing/head/helmet/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
@@ -108547,32 +108550,78 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
-"fgH" = (
+"eRb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4starboard)
+"ijn" = (
+/obj/structure/table/bar_special,
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
+"ikb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/railing{
+	tag = "icon-railing0 (NORTH)";
+	icon_state = "railing0";
+	dir = 1;
+	anchored = 1
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4starboard)
+"jKG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
 /obj/structure/cable/green{
 	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"fsV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+"kcK" = (
+/obj/structure/table/bar_special,
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 3
+	},
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
+"lls" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/large/high;
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28;
+	pixel_y = 0
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"gGF" = (
+"lCK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -108599,7 +108648,69 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
-"gXN" = (
+"mCf" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1379;
+	master_tag = "third_sec_3_access_console";
+	name = "Third Section External Access Button - 3";
+	pixel_x = -25;
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/white/brown_platform,
+/area/space)
+"oKO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4starboard)
+"paj" = (
+/obj/structure/sign/faction/moebius{
+	pixel_y = -32
+	},
+/obj/machinery/computer/aifixer{
+	icon_state = "computer";
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/eris/command/meo)
+"qZr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/quartermaster/storage)
+"rGA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4starboard)
+"wnF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -108615,114 +108726,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"hGo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4starboard)
-"ijn" = (
-/obj/structure/table/bar_special,
-/obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
-"jGX" = (
-/obj/structure/sign/faction/moebius{
-	pixel_y = -32
-	},
-/obj/machinery/computer/aifixer{
-	icon_state = "computer";
-	dir = 1
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/eris/command/meo)
-"jSU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/quartermaster/storage)
-"kcK" = (
-/obj/structure/table/bar_special,
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 3
-	},
-/obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
-"mcA" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/large/high;
-	dir = 4;
-	name = "East APC";
-	pixel_x = 28;
-	pixel_y = 0
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4starboard)
-"mBO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4starboard)
-"pKx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
-	dir = 1;
-	anchored = 1
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4starboard)
-"uGL" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1379;
-	master_tag = "third_sec_3_access_console";
-	name = "Third Section External Access Button - 3";
-	pixel_x = -25;
-	pixel_y = 25
-	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/space)
 
 (1,1,1) = {"
 aaa
@@ -173269,7 +173272,7 @@ bVX
 cap
 cgO
 cgX
-jSU
+qZr
 bgH
 chO
 cie
@@ -173471,7 +173474,7 @@ bVX
 cap
 cgO
 cgY
-jSU
+qZr
 bgH
 cEJ
 cgY
@@ -174279,7 +174282,7 @@ bVX
 caG
 cgO
 cuu
-jSU
+qZr
 bgH
 cFj
 cie
@@ -174481,7 +174484,7 @@ bVX
 bVX
 cgO
 cgY
-jSU
+qZr
 bgH
 chN
 cHY
@@ -174683,7 +174686,7 @@ aaa
 aaa
 cgO
 cus
-jSU
+qZr
 cgO
 cgO
 cgO
@@ -174885,7 +174888,7 @@ aad
 aaa
 cgO
 cgX
-jSU
+qZr
 cCJ
 chR
 cig
@@ -175289,7 +175292,7 @@ aad
 aad
 cgO
 cgO
-gGF
+lCK
 cgO
 cgO
 cgO
@@ -175917,7 +175920,7 @@ csb
 cfm
 bVX
 esi
-gXN
+wnF
 bVX
 dtG
 csb
@@ -176098,7 +176101,7 @@ aaa
 bVX
 caG
 csa
-pKx
+ikb
 cAm
 cuQ
 cuQ
@@ -176119,7 +176122,7 @@ don
 cCK
 dsy
 esj
-hGo
+rGA
 bVX
 dtE
 dtF
@@ -176301,7 +176304,7 @@ bVX
 bVX
 csb
 bVX
-mBO
+jKG
 cti
 cfD
 cWs
@@ -176314,10 +176317,10 @@ cFX
 cFX
 avn
 dHi
-fsV
+eRb
 dZP
 ehj
-fgH
+oKO
 dZP
 erB
 esk
@@ -176519,7 +176522,7 @@ dHA
 cap
 cap
 cap
-mcA
+lls
 cap
 cap
 cap
@@ -212855,7 +212858,7 @@ ctS
 crx
 cDW
 cvj
-jGX
+paj
 cto
 aaa
 dvd
@@ -258938,7 +258941,7 @@ axq
 btI
 aad
 axN
-uGL
+mCf
 axN
 axN
 aad

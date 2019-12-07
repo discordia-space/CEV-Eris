@@ -8,7 +8,14 @@
 	desc = "A blood-red hardsuit featuring some fairly illegal technology."
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
-	armor = list(melee = 80, bullet = 65, energy = 30, bomb = 80, bio = 100, rad = 60)
+	armor = list(
+		melee = 50,
+		bullet = 50,
+		energy = 30,
+		bomb = 75,
+		bio = 100,
+		rad = 50
+	)
 	slowdown = 1
 	drain = 3.5
 	offline_slowdown = 3

@@ -59,7 +59,13 @@
 	var/datum/effect/effect/system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
 	var/wrenching = 0
-	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
+	var/last_target					//last target fired at, prevents turrets from erratically firing at all valid targets in range
+
+	var/hackfail = 0				//if the turret has gotten pissed at someone who tried to hack it, but failed, it will immediately reactivate and target them.
+	var/debugopen = 0				//if the turret's debug functions are accessible through the control panel
+	var/list/registered_names = list() 		//holder for registered IDs for the turret to ignore
+	var/list/access_occupy = list()
+	var/overridden = 0				//if the security override is 0, security protocols are on. if 1, protocols are broken.
 
 /obj/machinery/porta_turret/One_star
 	name = "one star turret"
@@ -84,7 +90,7 @@
 /obj/machinery/porta_turret/New()
 	..()
 	req_access.Cut()
-	req_one_access = list(access_security, access_heads)
+	req_one_access = list(access_security, access_heads, access_occupy)
 
 	//Sets up a spark system
 	spark_system = new /datum/effect/effect/system/spark_spread
@@ -283,9 +289,12 @@ var/list/turret_icons
 
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
+
+	var/obj/item/weapon/card/id/ID = I.GetIdCard()
+
 	if (user.a_intent != I_HURT)
 		if(stat & BROKEN)
-			if(istype(I, /obj/item/weapon/tool/crowbar))
+			if(QUALITY_PRYING in I.tool_qualities)
 				//If the turret is destroyed, you can remove it with a crowbar to
 				//try and salvage its components
 				to_chat(user, SPAN_NOTICE("You begin prying the metal coverings off."))
@@ -304,12 +313,15 @@ var/list/turret_icons
 						to_chat(user, SPAN_NOTICE("You remove the turret but did not manage to salvage anything."))
 					qdel(src) // qdel
 
-		else if((istype(I, /obj/item/weapon/tool/wrench)))
+		else if(QUALITY_BOLT_TURNING in I.tool_qualities)
 			if(enabled)
 				to_chat(user, SPAN_WARNING("You cannot unsecure an active turret!"))
 				return
 			if(wrenching)
 				to_chat(user, "<span class='warning'>Someone is already [anchored ? "un" : ""]securing the turret!</span>")
+				return
+			if(debugopen)
+				to_chat(user, SPAN_WARNING("You can't secure the turret while the circuitry is exposed!"))
 				return
 			if(!anchored && isinspace())
 				to_chat(user, SPAN_WARNING("Cannot secure turrets in space!"))
@@ -343,13 +355,73 @@ var/list/turret_icons
 			wrenching = 0
 
 		else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
-			//Behavior lock/unlock mangement
 			if(allowed(user))
 				locked = !locked
 				to_chat(user, "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>")
 				updateUsrDialog()
+			else if((debugopen) && (has_access(access_occupy, list(), ID.GetAccess())))
+				registered_names += ID.registered_name
+				to_chat(user, SPAN_NOTICE("You transfer the card's ID code to the turret's list of targetting exceptions."))
 			else
 				to_chat(user, SPAN_NOTICE("Access denied."))
+
+		else if((QUALITY_PULSING in I.tool_qualities) && (debugopen))
+			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_PULSING, FAILCHANCE_NORMAL,  required_stat = STAT_COG))
+				registered_names.Cut()
+				registered_names = list()
+				to_chat(user, SPAN_NOTICE("You access the debug board and reset the turret's access list."))
+
+		else if((QUALITY_PULSING in I.tool_qualities) && (!debugopen))
+			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD,  required_stat = STAT_COG))
+				if((TOOL_USE_SUCCESS) && (isLocked(user)))
+					locked = 0
+					to_chat(user, SPAN_NOTICE("You manage to hack the ID reader, unlocking the access panel with a satisfying click."))
+					updateUsrDialog()
+				else if((TOOL_USE_SUCCESS) && (!isLocked(user)))
+					locked = 1
+					to_chat(user, SPAN_NOTICE("You manage to hack the ID reader and the access panel's locking lugs snap shut."))
+					updateUsrDialog()
+				else if((TOOL_USE_FAIL) && (!overridden) && (min(prob(35 - STAT_COG), 5)))
+					enabled = 1
+					hackfail = 1
+					user.visible_message(
+						SPAN_DANGER("[user] tripped the security protocol on the [src]! Run!"),
+						SPAN_DANGER("You trip the security protocol! Run!")
+					)
+					sleep(300)
+					hackfail = 0
+				else
+					to_chat(user, SPAN_WARNING("You fail to hack the ID reader, but avoid tripping the security protocol."))
+
+
+		else if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_HARD,  required_stat = STAT_MEC))
+				if(debugopen)
+					debugopen = 0
+					to_chat(user, SPAN_NOTICE("You carefully shut the secondary maintenance hatch and screw it back into place."))
+				else
+					debugopen = 1
+					to_chat(user, SPAN_NOTICE("You gently unscrew the seconday maintenance hatch, gaining access to the turret's internal circuitry and debug functions."))
+					desc = "A hatch on the bottom of the access panel is opened, exposing the circuitry inside."
+
+		else if((QUALITY_WIRE_CUTTING in I.tool_qualities) && (debugopen))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_VERY_HARD,  required_stat = STAT_MEC))
+				if(overridden)
+					to_chat(user, SPAN_WARNING("The security protocol override has already been disconnected!"))
+				else if(TOOL_USE_SUCCESS)
+					to_chat(user, SPAN_WARNING("You disconnect the turret's security protocol override!"))
+					overridden = 1
+					req_one_access.Cut()
+					req_one_access = list(access_occupy)
+				else if(TOOL_USE_FAIL)
+					user.visible_message(
+						SPAN_DANGER("[user] cut the wrong wire and tripped the security protocol on the [src]! Run!"),
+						SPAN_DANGER("You accidentally cut the wrong wire, tripping the security protocol! Run!")
+					)
+					enabled = 1
+					hackfail = 1
+					sleep(300)
+					hackfail = 0
 
 	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
@@ -486,6 +558,11 @@ var/list/turret_icons
 			secondarytargets += L
 
 /obj/machinery/porta_turret/proc/assess_living(var/mob/living/L)
+	var/obj/item/weapon/card/id/id_card = L.GetIdCard()
+
+	if(id_card && id_card.registered_name in registered_names)
+		return TURRET_NOT_TARGET
+
 	if(!istype(L))
 		return TURRET_NOT_TARGET
 
@@ -509,6 +586,9 @@ var/list/turret_icons
 
 	if(emagged)		// If emagged not even the dead get a rest
 		return L.stat ? TURRET_SECONDARY_TARGET : TURRET_PRIORITY_TARGET
+
+	if(hackfail)
+		return TURRET_PRIORITY_TARGET
 
 	if(lethal && locate(/mob/living/silicon/ai) in get_turf(L))		//don't accidentally kill the AI!
 		return TURRET_NOT_TARGET

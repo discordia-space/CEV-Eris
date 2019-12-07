@@ -126,7 +126,7 @@
 
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/PD = portable_drive
 
-	uninstall_component(user, portable_drive)
+	uninstall_component(portable_drive, user)
 	user.put_in_hands(PD)
 	update_uis()
 
@@ -202,8 +202,8 @@
 		return
 
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/paper_bundle))
-		if(nano_printer)
-			nano_printer.attackby(W, user)
+		if(printer)
+			printer.attackby(W, user)
 	if(istype(W, /obj/item/device/aicard))
 		if(!ai_slot)
 			return
@@ -213,7 +213,7 @@
 		return ..()
 
 	if(istype(W, suitable_cell) || istype(W, /obj/item/weapon/computer_hardware))
-		try_install_component(user, W)
+		try_install_component(W, user)
 
 
 
@@ -266,7 +266,7 @@
 					var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(choice)
 					if(!H)
 						return
-					uninstall_component(user, H)
+					uninstall_component(H, user)
 					return
 	..()
 

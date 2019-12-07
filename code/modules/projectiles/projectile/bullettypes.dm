@@ -12,12 +12,12 @@ There are important things regarding this file:
 //Low-caliber pistols and SMGs
 /obj/item/projectile/bullet/pistol
 	damage = 24
-	armor_penetration = 15
+	armor_penetration = 5
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/pistol/hv
 	damage = 28
-	armor_penetration = 20
+	armor_penetration = 10
 	penetrating = 1
 	step_delay = 0.75
 
@@ -41,7 +41,7 @@ There are important things regarding this file:
 //Carbines and rifles
 /obj/item/projectile/bullet/srifle
 	damage = 25
-	armor_penetration = 35
+	armor_penetration = 25
 	penetrating = 2
 	can_ricochet = TRUE
 
@@ -59,7 +59,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle
 	damage = 27
-	armor_penetration = 35
+	armor_penetration = 25
 	penetrating = 1
 	sharp = FALSE
 	can_ricochet = TRUE
@@ -74,25 +74,25 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	damage = 28
-	armor_penetration = 30
+	armor_penetration = 20
 	penetrating = 1
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/lrifle/hv
 	damage = 30
-	armor_penetration = 35
+	armor_penetration = 30
 	penetrating = 2
 	step_delay = 0.75
 
 //Revolvers and high-caliber pistols
 /obj/item/projectile/bullet/magnum
 	damage = 32
-	armor_penetration = 20
+	armor_penetration = 15
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/magnum/hv
 	damage = 35
-	armor_penetration = 25
+	armor_penetration = 20
 	penetrating = 1
 	step_delay = 0.75
 
@@ -108,7 +108,7 @@ There are important things regarding this file:
 //Sniper rifles
 /obj/item/projectile/bullet/antim
 	damage = 70
-	armor_penetration = 80
+	armor_penetration = 50
 	stun = 3
 	weaken = 3
 	penetrating = 5
@@ -135,9 +135,9 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
-	damage = 50 * 0
-	agony = 50 * 0.1
-	armor_penetration = 12 * 0.2
+	damage = 1
+	agony = 5
+	armor_penetration = 0
 	embed = FALSE
 	knockback = 0
 
@@ -147,7 +147,6 @@ There are important things regarding this file:
 	name = "shrapnel"
 	icon_state = "birdshot-1"
 	damage = 10
-	armor_penetration = 8
 	pellets = 8
 	range_step = 1
 	spread_step = 10

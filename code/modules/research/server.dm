@@ -169,7 +169,6 @@
 	if(..())
 		return 1
 
-	add_fingerprint(usr)
 	usr.set_machine(src)
 	if(!allowed(usr) && !emagged)
 		to_chat(usr, SPAN_WARNING("You do not have the required access level"))

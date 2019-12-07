@@ -93,7 +93,6 @@
 			if("revoke")
 				revoke_maint_all_access()
 	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/keycard_auth/proc/countdown_finished(event)

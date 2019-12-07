@@ -52,28 +52,20 @@
 <h2>Computer Components</h2>
 {{for data.hardware}}
 <div>
-	<h3>{{:value.name}}</h3>
+	<h3>{{:helper.capitalizeFirstLetter(value.name)}}</h3>
 	<i>{{:value.desc}}</i><br>
-	<div class="itemLabel">
-		State: 
-	</div>
-	<div class="itemContent">
-		{{:value.enabled ? "Enabled" : "Disabled"}}
-	</div>	
-	<div class="itemLabel">
-		Power Usage: 
-	</div>
-	<div class="itemContent">
-		{{:value.powerusage}}W
-	</div>
 	{{if !value.critical}}
-	<div class="itemLabel">
-		Toggle Component: 
-	</div>
-	<div class="itemContent">
-		{{:helper.link("ON", null, {'PC_enable_component' : value.name}, value.enabled ? 'disabled' : null)}}
-		{{:helper.link("OFF", null, {'PC_disable_component' : value.name}, value.enabled ? null : 'disabled')}}
-	</div>
+		<div class="itemLabel">State:</div>
+		<div class="itemContent">{{:value.enabled ? "Enabled" : "Disabled"}}</div>
+	{{/if}}
+	<div class="itemLabel">Power Usage:</div>
+	<div class="itemContent">{{:value.powerusage}}W</div>
+	{{if !value.critical}}
+		<div class="itemLabel">Toggle Component:</div>
+		<div class="itemContent">
+			{{:helper.link("ON", null, {'PC_enable_component' : 1, 'component' : value.name}, value.enabled ? 'selected' : null)}}
+			{{:helper.link("OFF", null, {'PC_disable_component' : 1, 'component' : value.name}, value.enabled ? null : 'selected')}}
+		</div>
 	{{/if}}
 	<br>
 </div>

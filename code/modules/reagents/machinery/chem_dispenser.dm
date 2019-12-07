@@ -128,7 +128,6 @@
 			B.loc = loc
 			beaker = null
 
-	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
 

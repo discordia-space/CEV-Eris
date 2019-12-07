@@ -401,11 +401,15 @@
 	var/datum/autodoc/autodoc_processor
 	var/turf/wearer_loc = null
 
-/obj/item/rig_module/autodoc/New()
-	..()
+/obj/item/rig_module/autodoc/Initialize()
+	. = ..()
 	autodoc_processor = new()
 	autodoc_processor.holder = src
 	autodoc_processor.damage_heal_amount = 20
+
+/obj/item/rig_module/autodoc/Destroy()
+	QDEL_NULL(autodoc_processor)
+	return ..()
 
 /obj/item/rig_module/autodoc/engage()
 	if(!..())

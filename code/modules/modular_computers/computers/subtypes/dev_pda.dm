@@ -27,14 +27,3 @@
 		eject_id()
 	else
 		..()
-
-/obj/item/modular_computer/pda/Created()
-	qdel(processor_unit)
-	qdel(cell)
-	qdel(tesla_link)
-	qdel(hard_drive)
-	qdel(network_card)
-	qdel(scanner)
-	qdel(card_slot)
-	qdel(gps_sensor)
-	qdel(led)

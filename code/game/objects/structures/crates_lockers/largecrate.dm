@@ -3,6 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
+	matter = list(MATERIAL_WOOD = 10)
 	density = 1
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
@@ -12,7 +13,7 @@
 /obj/structure/largecrate/attackby(obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
-			new /obj/item/stack/material/wood(src)
+			drop_materials(drop_location())
 			var/turf/T = get_turf(src)
 			for(var/atom/movable/AM in contents)
 				if(AM.simulated) AM.forceMove(T)
