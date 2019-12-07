@@ -90,6 +90,7 @@
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/clothing/head/beret/purple(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
+	new /obj/item/weapon/gun/matter/launcher/nt_sprayer(src)
 	new /obj/item/weapon/caution(src)
 	new /obj/item/weapon/caution(src)
 	new /obj/item/weapon/caution(src)

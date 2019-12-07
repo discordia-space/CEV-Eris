@@ -177,3 +177,7 @@
 /datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""
 	build_path = /obj/item/weapon/gun/energy/sniperrifle
+
+/datum/design/autolathe/gun/nt_sprayer
+	name = "NT cleansing carbine"
+	build_path = /obj/item/weapon/gun/matter/launcher/nt_sprayer
