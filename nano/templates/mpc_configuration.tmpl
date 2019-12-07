@@ -52,7 +52,7 @@
 <h2>Computer Components</h2>
 {{for data.hardware}}
 <div>
-	<h3>{{:value.name}}</h3>
+	<h3>{{:helper.capitalizeFirstLetter(value.name)}}</h3>
 	<i>{{:value.desc}}</i><br>
 	{{if !value.critical}}
 		<div class="itemLabel">State:</div>
