@@ -1362,7 +1362,9 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 5, /obj/item/weapon/storage/deferred/crate/uniform_flak = 5,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 5
 					)
-	prices = list(  /obj/item/weapon/storage/deferred/crate/uniform_green = 1000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 1000,
+	prices = list(  
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
+					/obj/item/weapon/storage/deferred/crate/uniform_green = 1000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 1000,
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 1000, /obj/item/weapon/storage/deferred/crate/uniform_flak = 1200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 800
 					)
