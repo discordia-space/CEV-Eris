@@ -59,7 +59,7 @@ for reference:
 	var/maxhealth = 100
 	var/material/material
 
-/obj/structure/barricade/New(var/newloc, var/material_name)
+/obj/structure/barricade/New(newloc, material_name)
 	..(newloc)
 	if(!material_name)
 		material_name = "wood"
@@ -72,6 +72,11 @@ for reference:
 	color = material.icon_colour
 	maxhealth = material.integrity
 	health = maxhealth
+
+/obj/structure/barricade/get_matter()
+	. = ..()
+	if(material)
+		LAZYAPLUS(., material.name, 5)
 
 /obj/structure/barricade/get_material()
 	return material
@@ -108,7 +113,7 @@ for reference:
 		..()
 
 /obj/structure/barricade/proc/dismantle()
-	material.place_dismantled_product(get_turf(src))
+	drop_materials(drop_location())
 	qdel(src)
 	return
 

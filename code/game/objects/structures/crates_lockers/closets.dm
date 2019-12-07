@@ -6,9 +6,11 @@
 	density = 1
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_GARGANTUAN
+	matter = list(MATERIAL_STEEL = 10)
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
+	var/rigged = FALSE
 	var/icon_door = null
 	var/icon_welded = "welded"
 	var/icon_lock = "lock"
@@ -37,14 +39,8 @@
 	var/store_mobs = 1
 	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
-	var/dismantle_material = /obj/item/stack/material/steel
-
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
-
-/obj/structure/closet/New()
-	..()
-	update_icon()
 
 /obj/structure/closet/Initialize(mapload)
 	..()
@@ -102,6 +98,9 @@
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
 	return (!density)
+
+/obj/structure/closet/get_material()
+	return length(matter) ? get_material_by_name(matter[1]) : null
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || (secure && locked))
@@ -180,7 +179,16 @@
 
 /obj/structure/closet/proc/open(mob/living/user)
 	if(opened || !can_open(user))
-		return
+		return FALSE
+
+	if(rigged && (locate(/obj/item/device/radio/electropack) in src) && istype(user))
+		if(user.electrocute_act(20, src))
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+			if(user.stunned)
+				return FALSE
+
 	playsound(loc, open_sound, 100, 1, -3)
 	opened = TRUE
 	if(!dense_when_open)
@@ -188,7 +196,10 @@
 	dump_contents()
 	update_icon()
 	update_openspace()
-	return 1
+	if(climbable)
+		structure_shaken()
+
+	return TRUE
 
 /obj/structure/closet/proc/close(mob/living/user)
 	if(!opened || !can_close(user))
@@ -341,18 +352,59 @@
 		//Empty gripper attacks will call attack_AI
 		return 0
 
+	var/list/usable_qualities = list(QUALITY_WELDING)
+	if(opened)
+		usable_qualities += QUALITY_SAWING
+		usable_qualities += QUALITY_BOLT_TURNING
+	if(rigged)
+		usable_qualities += QUALITY_WIRE_CUTTING
+
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	switch(tool_type)
+		if(QUALITY_WELDING)
+			if(!opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					welded = !src.welded
+					update_icon()
+					src.visible_message(
+						SPAN_NOTICE("[src] has been disassembled by [user]."),
+						"You hear [tool_type]."
+					)
+			else
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					src.visible_message(
+						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
+						"You hear [tool_type]."
+					)
+					drop_materials(drop_location())
+					qdel(src)
+			return
+
+		if(QUALITY_SAWING, QUALITY_BOLT_TURNING)
+			if(opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					src.visible_message(
+						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
+						"You hear [tool_type]."
+					)
+					drop_materials(drop_location())
+					qdel(src)
+				return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(rigged)
+				to_chat(user, SPAN_NOTICE("You cut away the wiring."))
+				new /obj/item/stack/cable_coil(drop_location(), 1)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+				rigged = FALSE
+				return
+
+		if(ABORT_CHECK)
+			return
+
 	if(src.opened)
 		if(istype(I,/obj/item/tk_grab))
 			return 0
-		if(QUALITY_WELDING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				new dismantle_material(src.loc, 10)
-				src.visible_message(
-					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
-					"You hear welding."
-				)
-				qdel(src)
-				return
 		if(istype(I, /obj/item/weapon/storage/laundry_basket) && I.contents.len)
 			var/obj/item/weapon/storage/laundry_basket/LB = I
 			var/turf/T = get_turf(src)
@@ -366,14 +418,23 @@
 			return
 		usr.unEquip(I, src.loc)
 		return
+	else if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/C = I
+		if(rigged)
+			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
+			return
+		if (C.use(1))
+			to_chat(user, SPAN_NOTICE("You rig [src]."))
+			rigged = TRUE
+			return
+	else if(istype(I, /obj/item/device/radio/electropack))
+		if(rigged)
+			to_chat(user, SPAN_NOTICE("You attach [I] to [src]."))
+			user.drop_item()
+			I.forceMove(src)
+			return
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
-	else if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			welded = !src.welded
-			update_icon()
-			for(var/mob/M in viewers(src))
-				M.show_message(SPAN_WARNING("[src] has been [welded?"welded shut":"unwelded"] by [user.name]."), 3, SPAN_WARNING("You hear welding."), 2)
 	else if(istype(I,/obj/item/weapon/card/id))
 		src.togglelock(user)
 		return

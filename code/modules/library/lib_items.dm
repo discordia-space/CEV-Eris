@@ -15,9 +15,10 @@
 	name = "bookcase"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
+	matter = list(MATERIAL_WOOD = 10)
 	anchored = TRUE
-	density = 1
-	opacity = 1
+	density = TRUE
+	opacity = TRUE
 
 /obj/structure/bookcase/Initialize()
 	. = ..()
@@ -46,7 +47,7 @@
 		to_chat(user, SPAN_NOTICE("You begin dismantling \the [src]."))
 		if(do_after(user,25,src))
 			to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
-			new /obj/item/stack/material/wood(get_turf(src), 10)
+			drop_materials(drop_location())
 			for(var/obj/item/weapon/book/b in contents)
 				b.loc = (get_turf(src))
 			qdel(src)

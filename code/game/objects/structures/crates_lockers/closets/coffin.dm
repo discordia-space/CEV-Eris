@@ -2,6 +2,7 @@
 	name = "coffin"
 	desc = "It's a burial receptacle for the dearly departed."
 	icon_state = "coffin"
+	matter = list(MATERIAL_WOOD = 10)
 	var/mob/living/occupant = null
 
 /obj/structure/closet/coffin/close(mob/living/user)

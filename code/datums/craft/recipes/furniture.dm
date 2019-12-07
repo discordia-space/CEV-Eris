@@ -44,18 +44,11 @@
 	name = "closet"
 	result = /obj/structure/closet
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL),
-	)
-
-/datum/craft_recipe/furniture/closet
-	name = "closet"
-	result = /obj/structure/closet
-	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/crate/plasteel
-	name = "Metal crate"
+	name = "plasteel crate"
 	result = /obj/structure/closet/crate
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
@@ -129,7 +122,7 @@
 	name = "wooden chair"
 	result = /obj/structure/bed/chair/custom/wood
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
 	)
 
 //Custom chairs
@@ -159,7 +152,7 @@
 	name = "wheelchair"
 	result = /obj/structure/bed/chair/wheelchair
 	steps = list(
-		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
 // Comfy chairs
