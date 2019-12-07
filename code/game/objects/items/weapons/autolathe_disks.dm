@@ -344,6 +344,8 @@
 		/datum/design/bioprinter/belt/security,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/autolathe/gun/nt_sprayer
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
