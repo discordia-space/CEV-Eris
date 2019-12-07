@@ -100,7 +100,7 @@
 
 /datum/design/autolathe/gun/boltgun_fs
 	name = "FS .30 \"Kardashev-Mosin\""
-	build_path = /obj/item/weapon/gun/projectile/boltgun/fs
+	build_path = /obj/item/weapon/gun/projectile/boltgun/serbian
 
 /datum/design/autolathe/gun/heavysniper
 	name = "NT AMR .60 \"Penetrator\""
