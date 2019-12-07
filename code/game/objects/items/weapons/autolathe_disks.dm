@@ -402,7 +402,6 @@
 		/datum/design/autolathe/gun/revolver_detective,
 		/datum/design/autolathe/gun/doublebarrel,
 		/datum/design/autolathe/gun/pump_shotgun,
-		/datum/design/autolathe/gun/boltgun_fs,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_kinetic_guns //please, maintain general order (pistol>revolver>SMG>Other>Shotgun>GLs)+(smaller/less damaging caliber>bigger/more damaging caliber)
