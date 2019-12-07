@@ -1,5 +1,6 @@
 /obj/item/device/mental_imprinter
 	name = "mental imprinter"
+	desc = "A device that is applied to eyes to imprint skills into one's mind."
 	icon_state = "mental_imprinter"
 	var/spent = FALSE
 
