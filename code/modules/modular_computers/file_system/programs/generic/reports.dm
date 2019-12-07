@@ -7,7 +7,7 @@
 	nanomodule_path = /datum/nano_module/program/reports
 	extended_desc = "A general paperwork viewing and editing utility."
 	size = 6
-	available_on_ntnet = 1
+	available_on_ntnet = TRUE
 	requires_ntnet = 0
 	usage_flags = PROGRAM_ALL
 
@@ -26,7 +26,7 @@
 			if(selected_report)
 				data["report_data"] = selected_report.generate_nano_data(get_access(user))
 			data["view_only"] = can_view_only
-			data["printer"] = program.computer.nano_printer
+			data["printer"] = program.computer.printer
 		if(REPORTS_DOWNLOAD)
 			var/list/L = list()
 			for(var/datum/computer_file/report/report in ntnet_global.fetch_reports(get_access(user)))
@@ -150,13 +150,13 @@
 		field.ask_value(user) //Handles the remaining IO.
 		return 1
 	if(href_list["print"])
-		if(!selected_report || !program.computer || !program.computer.nano_printer)
+		if(!selected_report || !program.computer || !program.computer.printer)
 			return 1
 		if(!selected_report.verify_access(get_access(user)))
 			return 1
 		var/with_fields = text2num(href_list["print_mode"])
 		var/text = selected_report.generate_pencode(get_access(user), with_fields)
-		if(!program.computer.nano_printer.print_text(text, selected_report.display_name()))
+		if(!program.computer.printer.print_text(text, selected_report.display_name()))
 			to_chat(user, "Hardware error: Printer was unable to print the file. It may be out of paper.")
 		return 1
 	if(href_list["export"])

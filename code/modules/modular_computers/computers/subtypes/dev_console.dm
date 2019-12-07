@@ -25,14 +25,6 @@
 		else
 			playsound(src, "keystroke", 40)
 
-/obj/item/modular_computer/console/Created()
-	qdel(processor_unit)
-	qdel(tesla_link)
-	qdel(hard_drive)
-	qdel(network_card)
-	qdel(scanner)
-
-
 /obj/item/modular_computer/console/break_apart()
 	..()
 	var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()

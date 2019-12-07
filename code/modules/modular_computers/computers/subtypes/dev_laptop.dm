@@ -38,10 +38,3 @@
 	else
 		overlays.Cut()
 		icon_state = icon_state_closed
-
-/obj/item/modular_computer/laptop/Created()
-	qdel(processor_unit)
-	qdel(tesla_link)
-	qdel(hard_drive)
-	qdel(network_card)
-	qdel(scanner)

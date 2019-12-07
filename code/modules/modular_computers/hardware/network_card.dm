@@ -1,17 +1,17 @@
 var/global/ntnet_card_uid = 1
 
 /obj/item/weapon/computer_hardware/network_card
-	name = "basic NTNet network card"
+	name = "basic network card"
 	desc = "A basic network card for usage with standard NTNet frequencies."
 	power_usage = 10
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 1)
-	critical = 0
-	icon_state = "netcard_basic"
+	matter_reagents = list("silicon" = 20)
+	icon_state = "netcard"
 	hardware_size = 1
 	var/identification_id = null	// Identification ID. Technically MAC address of this device. Can't be changed by user.
 	var/identification_string = "" 	// Identification string, technically nickname seen in the network. Can be set by user.
-	var/long_range = 0
-	var/ethernet = 0 // Hard-wired, therefore always on, ignores NTNet wireless checks.
+	var/long_range = FALSE
+	var/ethernet = FALSE // Hard-wired, therefore always on, ignores NTNet wireless checks.
 	malfunction_probability = 1
 
 /obj/item/weapon/computer_hardware/network_card/diagnostics(var/mob/user)
@@ -25,37 +25,31 @@ var/global/ntnet_card_uid = 1
 	if(ethernet)
 		to_chat(user, "OpenEth (Physical Connection) - Physical network connection port")
 
-/obj/item/weapon/computer_hardware/network_card/New(var/l)
-	..(l)
+/obj/item/weapon/computer_hardware/network_card/Initialize()
+	. = ..()
 	identification_id = ntnet_card_uid
 	ntnet_card_uid++
 
 /obj/item/weapon/computer_hardware/network_card/advanced
-	name = "advanced NTNet network card"
-	desc = "An advanced network card for usage with standard NTNet frequencies. It's transmitter is strong enough to connect even when far away."
-	long_range = 1
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.5)
+	name = "advanced network card"
+	desc = "An advanced network card for usage with standard frequencies. It's transmitter is strong enough to connect even when far away."
+	long_range = TRUE
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 2)
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 2)
 	power_usage = 30 // Better range but higher power usage.
-	icon_state = "netcard_advanced"
+	icon_state = "netcard_adv"
 	hardware_size = 1
-	price_tag = 15
+	price_tag = 100
 
 /obj/item/weapon/computer_hardware/network_card/wired
-	name = "wired NTNet network card"
-	desc = "An advanced network card for usage with standard NTNet frequencies. This one also supports wired connection."
-	ethernet = 1
+	name = "wired network card"
+	desc = "An advanced network card for usage with standard frequencies. This one supports wired connection."
+	ethernet = TRUE
 	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 3)
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "netcard_ethernet"
 	hardware_size = 3
-	price_tag = 15
 
-/obj/item/weapon/computer_hardware/network_card/Destroy()
-	if(holder2 && (holder2.network_card == src))
-		holder2.network_card = null
-	holder2 = null
-	return ..()
 
 // Returns a string identifier of this network card
 /obj/item/weapon/computer_hardware/network_card/proc/get_network_tag()
