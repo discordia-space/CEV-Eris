@@ -1940,6 +1940,7 @@
 #include "code\modules\modular_computers\file_system\binary\design.dm"
 #include "code\modules\modular_computers\file_system\binary\research.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\access_decrypter.dm"
+#include "code\modules\modular_computers\file_system\programs\antagonist\bootkit.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\dos.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\hacked_camera.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\revelation.dm"
