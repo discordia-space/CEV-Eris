@@ -1357,6 +1357,7 @@
 	icon_state = "serbomat"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 30, // ghetto antihacking, have fun
 					/obj/item/weapon/storage/deferred/crate/uniform_green = 5, /obj/item/weapon/storage/deferred/crate/uniform_brown = 5,
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 5, /obj/item/weapon/storage/deferred/crate/uniform_flak = 5,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 5
