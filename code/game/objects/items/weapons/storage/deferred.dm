@@ -219,7 +219,7 @@
 /obj/item/weapon/storage/deferred/crate/uniform_green
 	name = "green uniform kit"
 	desc = "A moderately sized crate full of clothes."
-	icon_state = "serbcrate_deferred_green"
+	icon_state = "serbcrate_dereferred_green"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
 	/obj/item/clothing/head/soft/green2soft = 1,
@@ -232,7 +232,7 @@
 /obj/item/weapon/storage/deferred/crate/uniform_brown
 	name = "brown uniform kit"
 	desc = "A moderately sized crate full of clothes."
-	icon_state = "serbcrate_deferred_brown"
+	icon_state = "serbcrate_dereferred_brown"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/brown = 1,
 	/obj/item/clothing/head/soft/tan2soft = 1,
@@ -245,7 +245,7 @@
 /obj/item/weapon/storage/deferred/crate/uniform_black
 	name = "black uniform kit"
 	desc = "A moderately sized crate full of clothes."
-	icon_state = "serbcrate_deferred_black"
+	icon_state = "serbcrate_dereferred_black"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/black = 1,
 	/obj/item/clothing/suit/armor/bulletproof/serbian = 1,
@@ -258,7 +258,7 @@
 /obj/item/weapon/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"
 	desc = "A moderately sized crate full of clothes."
-	icon_state = "serbcrate_deferred_worn"
+	icon_state = "serbcrate_dereferred_worn"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
 	/obj/item/clothing/suit/armor/flak/green = 1,
@@ -271,7 +271,7 @@
 /obj/item/weapon/storage/deferred/crate/uniform_light
 	name = "light armor kit"
 	desc = "A moderately sized crate full of clothes."
-	icon_state = "serbcrate_deferred_worn"
+	icon_state = "serbcrate_dereferred_worn"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
 	/obj/item/clothing/head/soft/green2soft = 1,
