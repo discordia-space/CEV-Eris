@@ -1367,6 +1367,7 @@
 					)
 	idle_power_usage = 211
 	auto_price = FALSE
+	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"
