@@ -132,7 +132,6 @@
 			new /obj/item/clothing/head/surgery/purple(src)
 	new /obj/item/clothing/under/rank/moebius_biolab_officer(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/cmo(src)
-	new /obj/item/weapon/cartridge/cmo(src)
 	new /obj/item/clothing/gloves/latex(src)
 	new /obj/item/clothing/shoes/color/brown	(src)
 	new /obj/item/device/radio/headset/heads/cmo(src)

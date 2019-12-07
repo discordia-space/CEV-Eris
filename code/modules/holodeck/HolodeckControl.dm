@@ -96,34 +96,33 @@
 /obj/machinery/computer/HolodeckControl/Topic(href, href_list)
 	if(..())
 		return 1
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
-		usr.set_machine(src)
 
-		if(href_list["program"])
-			var/prog = href_list["program"]
-			if(prog in holodeck_programs)
-				loadProgram(holodeck_programs[prog])
+	usr.set_machine(src)
 
-		else if(href_list["AIoverride"])
-			if(!issilicon(usr))
-				return
+	if(href_list["program"])
+		var/prog = href_list["program"]
+		if(prog in holodeck_programs)
+			loadProgram(holodeck_programs[prog])
 
-			if(safety_disabled && emagged)
-				return //if a traitor has gone through the trouble to emag the thing, let them keep it.
+	else if(href_list["AIoverride"])
+		if(!issilicon(usr))
+			return
 
-			safety_disabled = !safety_disabled
-			update_projections()
-			if(safety_disabled)
-				message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
-				log_game("[key_name(usr)] overrided the holodeck's safeties")
-			else
-				message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
-				log_game("[key_name(usr)] restored the holodeck's safeties")
+		if(safety_disabled && emagged)
+			return //if a traitor has gone through the trouble to emag the thing, let them keep it.
 
-		else if(href_list["gravity"])
-			toggleGravity(linkedholodeck)
+		safety_disabled = !safety_disabled
+		update_projections()
+		if(safety_disabled)
+			message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
+			log_game("[key_name(usr)] overrided the holodeck's safeties")
+		else
+			message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
+			log_game("[key_name(usr)] restored the holodeck's safeties")
 
-		src.add_fingerprint(usr)
+	else if(href_list["gravity"])
+		toggleGravity(linkedholodeck)
+
 	src.updateUsrDialog()
 	return
 

@@ -34,11 +34,7 @@
 
 /obj/machinery/button/remote/attack_hand(mob/user as mob)
 	if(..())
-		return
-
-	add_fingerprint(user)
-	if(stat & (NOPOWER|BROKEN))
-		return
+		return 1
 
 	if(!allowed(user) && (wires & 1))
 		to_chat(user, SPAN_WARNING("Access Denied"))

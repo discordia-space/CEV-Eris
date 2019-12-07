@@ -52,7 +52,6 @@
 		machine.outputMaterial(material_name, machine.stack_amt)
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 
 /**********************Mineral stacking unit**************************/
