@@ -119,11 +119,3 @@
 	initial_name = "IH sergeant cap"
 	desc = "It's a field cap for officers."
 	icon_state = "sargesoft"
-
-/obj/item/clothing/head/soft/delinquentsoft
-	name = "delinquent cap"
-	desc = "I will judge you."
-	icon_state = "delinquent"
-
-/obj/item/clothing/head/soft/delinquentsoft/attack_self(mob/user)
-		to_chat(user, "You simply can't flip the hat backwards.")

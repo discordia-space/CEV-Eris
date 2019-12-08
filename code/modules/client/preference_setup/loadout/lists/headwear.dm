@@ -135,9 +135,3 @@
 	display_name = "cap, IH sergeant"
 	path = /obj/item/clothing/head/soft/sarge2soft
 	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
-
-/datum/gear/head/cap/deliquent
-	display_name = "cap, deliquent"
-	path = /obj/item/clothing/head/soft/delinquentsoft
-	allowed_roles = list("Ironhammer Commander")
-	cost = 10
