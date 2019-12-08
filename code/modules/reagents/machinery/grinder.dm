@@ -197,7 +197,6 @@
 	if(href_list["detach"])
 		detach()
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-	SSnano.update_uis(src)
 	return 1
 
 /obj/machinery/reagentgrinder/proc/detach(mob/user)
