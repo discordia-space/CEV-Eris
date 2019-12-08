@@ -47,7 +47,7 @@
 		I.forceMove(src)
 		src.beaker = I
 		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
-		updateUsrDialog()
+		SSnano.update_uis(src)
 		update_icon()
 		return
 
@@ -56,7 +56,7 @@
 		return
 
 	var/obj/item/O = I
-	
+
 	if(!istype(O))
 		return
 
@@ -81,7 +81,7 @@
 		else
 			to_chat(user, "You fill \the [src] from \the [O].")
 
-		updateUsrDialog()
+		SSnano.update_uis(src)
 		return
 
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
@@ -90,7 +90,7 @@
 	O.add_fingerprint(user)
 	O.forceMove(src)
 	holdingitems += O
-	updateUsrDialog()
+	SSnano.update_uis(src)
 	. = ..()
 
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -106,16 +106,16 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog()
+			SSnano.update_uis(src)
 			return 0
 
 	//Useability tweak for borgs
 	if (istype(O,/obj/item/weapon/gripper))
-		interact(user)
+		ui_interact(user)
 		return
 
 	if(holdingitems && holdingitems.len >= limit)
-		to_chat(usr, "The machine cannot hold anymore items.")
+		to_chat(user, "The machine cannot hold anymore items.")
 		return 1
 
 	if(!istype(O))
@@ -142,7 +142,7 @@
 		else
 			to_chat(user, "You fill \the [src] from \the [O].")
 
-		src.updateUsrDialog()
+		SSnano.update_uis(src)
 		return 0
 
 	if(!sheet_reagents[O.type] && (!O.reagents || !O.reagents.total_volume))
@@ -152,108 +152,66 @@
 	user.remove_from_mob(O)
 	O.loc = src
 	holdingitems += O
-	src.updateUsrDialog()
+	SSnano.update_uis(src)
 	return 0
 
 /obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
 	return 0
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
-	var/list/options = list("grind", "eject", "detach", "menu")
-	for(var/option in options)
-		options[option] = image(icon = 'icons/obj/chemical.dmi', icon_state = "[option]")
-	var/selected
-	selected = show_radial_menu(user, src, options, radius = 42)
-	if(!selected)
+/obj/machinery/reagentgrinder/attack_hand(mob/user)
+	. = ..()
+	if(.)
 		return
-	switch(selected)
-		if ("grind")
-			grind()
-		if("eject")
-			eject()
-		if ("detach")
-			detach()
-		if("menu")
-			interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
-	if(inoperable())
-		return
 	user.set_machine(src)
-	var/is_chamber_empty = 0
-	var/is_beaker_ready = 0
-	var/processing_chamber = ""
-	var/beaker_contents = ""
-	var/dat = ""
+	ui_interact(user)
 
-	if(!inuse)
-		for (var/obj/item/O in holdingitems)
-			processing_chamber += "\A [O.name]<BR>"
+/obj/machinery/reagentgrinder/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = ui_data()
 
-		if (!processing_chamber)
-			is_chamber_empty = 1
-			processing_chamber = "Nothing."
-		if (!beaker)
-			beaker_contents = "<B>No beaker attached.</B><br>"
-		else
-			is_beaker_ready = 1
-			beaker_contents = "<B>The beaker contains:</B><br>"
-			var/anything = 0
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
-				anything = 1
-				beaker_contents += "[R.volume] - [R.name]<br>"
-			if(!anything)
-				beaker_contents += "Nothing<br>"
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "grinder.tmpl", name, 400, 550)
+		ui.set_initial_data(data)
+		ui.open()
 
+/obj/machinery/reagentgrinder/ui_data()
+	var/list/data = list()
+	data["on"] = inuse
 
-		dat = {"
-	<b>Processing chamber contains:</b><br>
-	[processing_chamber]<br>
-	[beaker_contents]<hr>
-	"}
-		if (is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
-			dat += "<A href='?src=\ref[src];action=grind'>Process the reagents</a><BR>"
-		if(holdingitems && holdingitems.len > 0)
-			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
-		if (beaker)
-			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
-	else
-		dat += "Please wait..."
-	user << browse("<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")
-	onclose(user, "reagentgrinder")
-	return
-
+	if(beaker)
+		data["beaker"] = beaker.reagents.ui_data()
+	data["contents"] = list()
+	for (var/obj/item/O in holdingitems)
+		data["contents"] += "\A [O.name]"
+	return data
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)
 	if(..())
 		return 1
 
-	switch(href_list["action"])
-		if ("grind")
-			grind()
-		if("eject")
-			eject()
-		if ("detach")
-			detach()
+	if(href_list["grind"])
+		grind(usr)
+	if(href_list["eject"])
+		eject(usr)
+	if(href_list["detach"])
+		detach()
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-	src.updateUsrDialog()
 	return 1
 
-/obj/machinery/reagentgrinder/proc/detach()
-
-	if (usr.stat != 0)
+/obj/machinery/reagentgrinder/proc/detach(mob/user)
+	if(user.stat)
 		return
-	if (!beaker)
+	if(!beaker)
 		return
 	beaker.loc = src.loc
 	beaker = null
 	update_icon()
 
-/obj/machinery/reagentgrinder/proc/eject()
-
-	if (usr.stat != 0)
+/obj/machinery/reagentgrinder/proc/eject(mob/user)
+	if(user.stat)
 		return
-	if (!holdingitems || holdingitems.len == 0)
+	if(!holdingitems || holdingitems.len == 0)
 		return
 
 	for(var/obj/item/O in holdingitems)
@@ -262,13 +220,12 @@
 	holdingitems.Cut()
 
 /obj/machinery/reagentgrinder/proc/grind()
-
 	power_change()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
 	// Sanity check.
-	if (!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
+	if(!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return
 
 	playsound(src.loc, 'sound/machines/blender.ogg', 50, 1)
@@ -277,10 +234,10 @@
 	// Reset the machine.
 	spawn(60)
 		inuse = 0
-		interact(usr)
+		SSnano.update_uis(src)
 
 	// Process.
-	for (var/obj/item/O in holdingitems)
+	for(var/obj/item/O in holdingitems)
 
 		var/remaining_volume = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 		if(remaining_volume <= 0)
@@ -351,7 +308,7 @@
 			if(istype(stack))
 				var/amount_to_take = max(0,min(stack.amount,round(remaining_volume/REAGENTS_PER_SHEET)))
 				if(amount_to_take)
-					stack.use(amount_to_take)	
+					stack.use(amount_to_take)
 					if(QDELETED(stack))
 						src.contents.Remove(O)
 					reagents.add_reagent(get_material_name_by_stack_type(stack.type), (amount_to_take*REAGENTS_PER_SHEET))
