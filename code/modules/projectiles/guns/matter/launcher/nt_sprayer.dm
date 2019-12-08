@@ -1,5 +1,6 @@
 /obj/item/weapon/gun/matter/launcher/nt_sprayer
-	name = "cleansing carbine"
+	name = "NT BCR \"Righteous One\""
+	desc = "\"NeoTheology\" brand cleansing carbine. Uses solid biomass as ammo and dispense cleansing liquid on hit."
 	icon_state = "nt_sprayer"
 	icon = 'icons/obj/guns/matter/nt_sprayer.dmi'
 	slot_flags = SLOT_BACK

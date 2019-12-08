@@ -98,10 +98,6 @@
 	name = "Excelsior .30 \"Kardashev-Mosin\""
 	build_path = /obj/item/weapon/gun/projectile/boltgun
 
-/datum/design/autolathe/gun/boltgun_fs
-	name = "FS .30 \"Kardashev-Mosin\""
-	build_path = /obj/item/weapon/gun/projectile/boltgun/fs
-
 /datum/design/autolathe/gun/heavysniper
 	name = "NT AMR .60 \"Penetrator\""
 	build_path = /obj/item/weapon/gun/projectile/heavysniper
@@ -181,3 +177,7 @@
 /datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""
 	build_path = /obj/item/weapon/gun/energy/sniperrifle
+
+/datum/design/autolathe/gun/nt_sprayer
+	name = "NT cleansing carbine"
+	build_path = /obj/item/weapon/gun/matter/launcher/nt_sprayer
