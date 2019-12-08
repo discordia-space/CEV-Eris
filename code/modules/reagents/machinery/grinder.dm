@@ -190,12 +190,12 @@
 	if(..())
 		return 1
 
-	if(href_list["grind"])
-		grind(usr)
+	if(href_list["detach"])
+		detach(usr)
 	if(href_list["eject"])
 		eject(usr)
-	if(href_list["detach"])
-		detach()
+	if(href_list["grind"])
+		grind()
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	return 1
 
