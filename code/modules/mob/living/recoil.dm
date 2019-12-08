@@ -64,46 +64,52 @@
 		if(reduction > 0)
 			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
 
+GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to lists of offsets, which point to icons
+
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
 		remove_cursor()
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/icon/scaled = 'icons/obj/gun_cursors/standard/standard1.dmi' //Default cursor
-		switch(calc_recoil())
-			if(0 to 10)
-				scaled = 'icons/obj/gun_cursors/standard/standard1.dmi'
-			if(10 to 20)
-				scaled = 'icons/obj/gun_cursors/standard/standard2.dmi'
-			if(20 to 30)
-				scaled = 'icons/obj/gun_cursors/standard/standard3.dmi'
-			if(30 to 50)
-				scaled = 'icons/obj/gun_cursors/standard/standard4.dmi'
-			if(50 to MAX_ACCURACY_OFFSET)
-				scaled = 'icons/obj/gun_cursors/standard/standard5.dmi'
-			if(MAX_ACCURACY_OFFSET to INFINITY)
-				scaled = 'icons/obj/gun_cursors/standard/standard6.dmi' //Catch. If we're above these numbers of recoil
-		/*
-		var/image/scaled = image('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
-		var/offset = calc_recoil()
-		for(var/dir in list(NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
-			var/image/overlay = image('icons/obj/gun_cursors/standard/standard.dmi', scaled, dir)
-			if(dir & NORTH)
-				overlay.pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-			if(dir & SOUTH)
-				overlay.pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-			if(dir & EAST)
-				overlay.pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-			if(dir & WEST)
-				overlay.pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-			to_chat(world, "overlay [overlay] [overlay.pixel_x] [overlay.pixel_y]")
-			scaled.overlays.Add(overlay)
-			*/
+		var/offset = round(calc_recoil())
+		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
+		if(!isicon(base))
+			base = icon('icons/effects/96x96.dmi')
+			var/icon/scaled = icon('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
+			base.Blend(scaled, ICON_OVERLAY, x = 32, y = 32)
 
-		if(scaled)
-			client.mouse_pointer_icon = scaled
+			for(var/dir in list(NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
+				var/icon/overlay = icon('icons/obj/gun_cursors/standard/standard.dmi', "[dir]")
+				var/pixel_y
+				var/pixel_x
+				if(dir & NORTH)
+					pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+				if(dir & SOUTH)
+					pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+				if(dir & EAST)
+					pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+				if(dir & WEST)
+					pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+				to_chat(world, "overlay [dir] [overlay] [pixel_x] [pixel_y]")
+				base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
+			add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
+		if(base)
+			client.mouse_pointer_icon = base
 
 /mob/living/proc/remove_cursor()
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+
+/proc/find_cursor_icon(var/icon_file, var/offset)
+	var/list/L = GLOB.cursor_icons[icon_file]
+	if(L)
+		return L["[offset]"]
+
+/proc/add_cursor_icon(var/icon/icon, var/icon_file, var/offset)
+	var/list/L = GLOB.cursor_icons[icon_file]
+	if(!L)
+		GLOB.cursor_icons[icon_file] = list()
+		L = GLOB.cursor_icons[icon_file]
+	L.Add("[offset]")
+	L["[offset]"] = icon
