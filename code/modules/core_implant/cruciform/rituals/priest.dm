@@ -289,23 +289,27 @@
 /datum/ritual/cruciform/priest/short_boost/mechanical
 	name = "Pounding Whisper"
 	phrase = "Vocavitque nomen eius Noe dicens iste consolabitur nos ab operibus et laboribus manuum nostrarum in terra cui maledixit Dominus"
-	stats_to_boost = list(STAT_MEC = 10)
+	stats_to_boost = list(STAT_MEC = 15)
 
 /datum/ritual/cruciform/priest/short_boost/cognition
 	name = "Revelation of Secrets"
 	phrase = "Quia Dominus dat sapientiam et ex ore eius scientia et prudentia"
-	stats_to_boost = list(STAT_COG = 10)
+	stats_to_boost = list(STAT_COG = 15)
 
 /datum/ritual/cruciform/priest/short_boost/biology
 	name = "Lisp of Vitae"
 	phrase = "Ecce ego obducam ei cicatricem et sanitatem et curabo eos et revelabo illis deprecationem pacis et veritatis"
-	stats_to_boost = list(STAT_BIO = 10)
+	stats_to_boost = list(STAT_BIO = 15)
 
 /datum/ritual/cruciform/priest/short_boost/courage
 	name = "Canto of Courage"
 	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
 	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)
 
+/datum/ritual/cruciform/priest/short_boost/vigilance
+	name = "Commitment to Determination"
+	phrase = "Cor meum et caro mea, potest deficere, sed non in viribus Deus cordis mei et pars mea Deus in aeternum"
+	stats_to_boost = list(STAT_VIG = 10)
 
 /datum/ritual/targeted/cruciform/priest/atonement
 	name = "Atonement"
