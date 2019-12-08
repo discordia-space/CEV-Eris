@@ -23,5 +23,19 @@
 
 /datum/category_item/underwear/top/sports_bra
 	name = "Sports bra"
-	icon_state = "sport_bra"
+	icon_state = "sports_bra"
+	has_color = TRUE
+
+/datum/category_item/underwear/top/sports_bra_alt
+	name = "Sports bra, alt."
+	icon_state = "sports_bra_alt"
+	has_color = TRUE
+
+/datum/category_item/underwear/top/lacy_bra_alt
+	name = "Bra, lacy"
+	icon_state = "lacy_bra_alt"
+
+/datum/category_item/underwear/top/halterneck_bra
+	name = "Bra, halterneck"
+	icon_state = "halterneck_bra"
 	has_color = TRUE

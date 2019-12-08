@@ -318,7 +318,7 @@ var/global/list/damage_icon_parts = list()
 			var/obj/item/underwear/UW = entry
 			var/icon/I = new /icon(get_gender_icon(gender, "underwear"), UW.icon_state)
 			if(UW.color)
-				I.Blend(UW.color, ICON_ADD)
+				I.Blend(UW.color, ICON_MULTIPLY)
 			underwear.Blend(I, ICON_OVERLAY)
 		overlays_standing[UNDERWEAR_LAYER] = image(underwear)
 	if(update_icons)
@@ -462,7 +462,7 @@ var/global/list/damage_icon_parts = list()
 		"belt"			= 'icons/inventory/belt/mob.dmi',
 		"s_store"		= 'icons/inventory/on_suit/mob.dmi',
 		"backpack"		= 'icons/inventory/back/mob.dmi',
-		"underwear"		= 'icons/mob/human_races/underwear.dmi'
+		"underwear"		= (g == MALE) ? 'icons/inventory/underwear/mob.dmi' : 'icons/inventory/underwear/mob_fem.dmi'
 		)
 	return icons[slot]
 
