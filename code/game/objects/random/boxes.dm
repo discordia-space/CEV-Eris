@@ -3,13 +3,13 @@
 	icon_state = "box-blue"
 	item_to_spawn()
 		return pickweight(list(/obj/random/pack/rare = 1,
-					/obj/item/weapon/storage/box/botanydisk = 1,
 					/obj/item/weapon/storage/box/beakers = 3,
 					/obj/item/weapon/storage/box/bloodpacks = 2,
 					/obj/item/weapon/storage/box/autoinjectors = 2,
 					/obj/item/weapon/storage/box/matches = 2,
 					/obj/item/weapon/storage/box/donkpockets = 2,
-					/obj/item/weapon/storage/box/autolathe_blank = 3,
+					/obj/item/weapon/storage/box/data_disk/basic = 2,
+					/obj/item/weapon/storage/box/data_disk = 1,
 					/obj/item/weapon/storage/box/cups = 1,
 					/obj/item/weapon/storage/box/drinkingglasses = 2,
 					/obj/item/weapon/storage/box/fingerprints = 1,

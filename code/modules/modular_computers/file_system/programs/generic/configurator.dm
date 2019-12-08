@@ -49,7 +49,7 @@
 	var/list/all_entries[0]
 	for(var/obj/item/weapon/computer_hardware/H in hardware)
 		all_entries.Add(list(list(
-		"name" = capitalize(H.name),
+		"name" = H.name,
 		"desc" = H.desc,
 		"enabled" = H.enabled,
 		"critical" = H.critical,

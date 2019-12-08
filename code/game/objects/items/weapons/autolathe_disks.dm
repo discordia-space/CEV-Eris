@@ -234,23 +234,26 @@
 		/datum/design/autolathe/computer_part/frame_pda,
 		/datum/design/autolathe/computer_part/frame_tablet,
 		/datum/design/autolathe/computer_part/frame_laptop,
-		/datum/design/research/item/modularcomponent/disk/micro,
-		/datum/design/research/item/modularcomponent/disk/small,
-		/datum/design/research/item/modularcomponent/disk/normal,
-		/datum/design/research/item/modularcomponent/disk/advanced,
-		/datum/design/research/item/modularcomponent/cpu/small,
-		/datum/design/research/item/modularcomponent/cpu,
-		/datum/design/research/item/modularcomponent/netcard/basic,
-		/datum/design/research/item/modularcomponent/netcard/advanced,
-		/datum/design/research/item/modularcomponent/netcard/wired,
-		/datum/design/research/item/modularcomponent/cardslot,
-		/datum/design/research/item/modularcomponent/teslalink,
-		/datum/design/research/item/modularcomponent/portabledrive/basic,
-		/datum/design/research/item/modularcomponent/nanoprinter,
+		/datum/design/research/item/computer_part/disk/micro,
+		/datum/design/research/item/computer_part/disk/small,
+		/datum/design/research/item/computer_part/disk/normal,
+		/datum/design/research/item/computer_part/disk/advanced,
+		/datum/design/research/item/computer_part/cpu/basic,
+		/datum/design/research/item/computer_part/cpu/basic/small,
+		/datum/design/research/item/computer_part/cpu/adv,
+		/datum/design/research/item/computer_part/cpu/adv/small,
+		/datum/design/research/item/computer_part/netcard/basic,
+		/datum/design/research/item/computer_part/netcard/advanced,
+		/datum/design/research/item/computer_part/netcard/wired,
+		/datum/design/research/item/computer_part/cardslot,
+		/datum/design/research/item/computer_part/teslalink,
+		/datum/design/research/item/computer_part/portabledrive/basic,
+		/datum/design/research/item/computer_part/portabledrive/normal,
+		/datum/design/research/item/computer_part/printer,
+		/datum/design/research/item/computer_part/led,
 		/datum/design/autolathe/computer_part/gps,
-		/datum/design/autolathe/computer_part/led,
-		/datum/design/autolathe/computer_part/scanner_paper,
-		/datum/design/autolathe/computer_part/scanner_atmos,
+		/datum/design/autolathe/computer_part/scanner/paper,
+		/datum/design/autolathe/computer_part/scanner/atmos,
 	)
 
 
@@ -341,6 +344,8 @@
 		/datum/design/bioprinter/belt/security,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/autolathe/gun/nt_sprayer
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
@@ -362,7 +367,7 @@
 		/datum/design/autolathe/circuit/bioreactor_port,
 		/datum/design/autolathe/circuit/bioreactor_metrics,
 		/datum/design/autolathe/circuit/bioreactor_loader,
-		
+
 		/datum/design/autolathe/circuit/biogen,
 		/datum/design/autolathe/circuit/biogen_port,
 		/datum/design/autolathe/circuit/biogen_console,
@@ -399,7 +404,6 @@
 		/datum/design/autolathe/gun/revolver_detective,
 		/datum/design/autolathe/gun/doublebarrel,
 		/datum/design/autolathe/gun/pump_shotgun,
-		/datum/design/autolathe/gun/boltgun_fs,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_kinetic_guns //please, maintain general order (pistol>revolver>SMG>Other>Shotgun>GLs)+(smaller/less damaging caliber>bigger/more damaging caliber)

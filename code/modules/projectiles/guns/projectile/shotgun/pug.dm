@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/projectile/shotgun/pug
-	name = "SG \"M12 Pug\""
-	desc = "A semi-auto, magazine-fed shotgun designed for close quarters combat, nicknamed 'Striker' by boarding parties. \
+	name = "SA SG \"Bojevic\""
+	desc = "Semi-auto, half polymer, all serbian. \
+			It's magazine-fed shotgun designed for close quarters combat, nicknamed 'Striker' by boarding parties. \
 			Robust and reliable design allows you to swap magazines on go and dump as many shells at your foes as you want... \
 			if you could manage recoil, of course. Compatible only with special M12 8-round drum magazines."
 	icon = 'icons/obj/guns/projectile/pug.dmi'

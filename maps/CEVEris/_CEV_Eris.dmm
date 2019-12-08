@@ -32458,7 +32458,7 @@
 /obj/machinery/button/remote/blast_door{
 	desc = "It controls the RND Window Blast doors.";
 	id = "RDWindowsLockdown";
-	name = "RND Window Blast Doors Control";
+	name = "RND Window Blast Doors Control"
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
@@ -36055,7 +36055,7 @@
 /turf/simulated/wall,
 /area/eris/security/lobby)
 "bCB" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/serbomat,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/lobby)
 "bCC" = (

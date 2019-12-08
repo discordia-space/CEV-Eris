@@ -2,7 +2,6 @@
 	name = "ID card slot"
 	desc = "Slot that allows this computer to read and write data on ID cards. Necessary for some programs to run properly."
 	power_usage = 10 //W
-	critical = 0
 	icon_state = "cardreader"
 	hardware_size = 1
 	origin_tech = list(TECH_DATA = 2)
@@ -12,9 +11,7 @@
 
 
 /obj/item/weapon/computer_hardware/card_slot/Destroy()
-	if(holder2 && (holder2.card_slot == src))
-		holder2.card_slot = null
 	if(stored_card)
-		stored_card.forceMove(get_turf(holder2))
-	holder2 = null
+		stored_card.forceMove(drop_location())
+		stored_card = null
 	return ..()

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/boltgun
-	name = "Excelsior .30 \"Kardashev-Mosin\""
-	desc = "Weapon for hunting, or endless trench warfare.\
+	name = "Excelsior BR .30 \"Kardashev-Mosin\""
+	desc = "Weapon for hunting, or endless trench warfare. \
 			If you’re on a budget, it’s a darn good rifle for just about everything."
 	icon = 'icons/obj/guns/projectile/boltgun.dmi'
 	icon_state = "boltgun"
@@ -88,10 +88,10 @@
 		return
 	..()
 
-/obj/item/weapon/gun/projectile/boltgun/fs
-	name = "FS .30 \"Kardashev-Mosin\""
-	desc = "Weapon for hunting, or endless trench warfare.\
-			If you’re on a budget, it’s a darn good rifle for just about everything.\
+/obj/item/weapon/gun/projectile/boltgun/serbian
+	name = "SA BR .30 \"Novakovic\""
+	desc = "Weapon for hunting, or endless trench warfare. \
+			If you’re on a budget, it’s a darn good rifle for just about everything. \
 			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"

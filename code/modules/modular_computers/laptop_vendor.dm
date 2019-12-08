@@ -106,7 +106,7 @@
 		if(dev_nanoprint)
 			total_price += 99
 			if(fabricate)
-				fabricated_device.nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(fabricated_device)
+				fabricated_device.printer = new/obj/item/weapon/computer_hardware/printer(fabricated_device)
 		if(dev_card)
 			total_price += 199
 			if(fabricate)
@@ -158,7 +158,7 @@
 		if(dev_nanoprint)
 			total_price += 99
 			if(fabricate)
-				fabricated_device.nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(fabricated_device)
+				fabricated_device.printer = new/obj/item/weapon/computer_hardware/printer(fabricated_device)
 		if(dev_card)
 			total_price += 199
 			if(fabricate)
