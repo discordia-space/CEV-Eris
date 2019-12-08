@@ -159,3 +159,8 @@
 		var/obj/item/weapon/storage/bsdm/B = .
 		B.owner = U.uplink_owner
 		U.bsdm_time = world.time + 10 MINUTES
+
+/datum/uplink_item/item/tools/mental_imprinter
+	name = "Mental Imprinter"
+	item_cost = 5
+	path = /obj/item/device/mental_imprinter

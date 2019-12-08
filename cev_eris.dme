@@ -822,6 +822,7 @@
 #include "code\game\objects\items\devices\lighting.dm"
 #include "code\game\objects\items\devices\lightreplacer.dm"
 #include "code\game\objects\items\devices\megaphone.dm"
+#include "code\game\objects\items\devices\mental_imprinter.dm"
 #include "code\game\objects\items\devices\mind_fryer.dm"
 #include "code\game\objects\items\devices\paicard.dm"
 #include "code\game\objects\items\devices\pipe_painter.dm"

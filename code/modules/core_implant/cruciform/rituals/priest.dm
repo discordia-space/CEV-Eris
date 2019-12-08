@@ -306,6 +306,10 @@
 	phrase = "Huic David ad te Domine clamabo Deus meus ne sileas a me nequando taceas a me et adsimilabor descendentibus in lacum"
 	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10)
 
+/datum/ritual/cruciform/priest/short_boost/vigilance
+	name = "Commitment to Determination"
+	phrase = "Cor meum et caro mea, potest deficere, sed non in viribus Deus cordis mei et pars mea Deus in aeternum"
+	stats_to_boost = list(STAT_VIG = 10)
 
 /datum/ritual/targeted/cruciform/priest/atonement
 	name = "Atonement"

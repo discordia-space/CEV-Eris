@@ -344,6 +344,8 @@
 		/datum/design/bioprinter/belt/security,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/autolathe/gun/nt_sprayer
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
@@ -402,7 +404,6 @@
 		/datum/design/autolathe/gun/revolver_detective,
 		/datum/design/autolathe/gun/doublebarrel,
 		/datum/design/autolathe/gun/pump_shotgun,
-		/datum/design/autolathe/gun/boltgun_fs,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_kinetic_guns //please, maintain general order (pistol>revolver>SMG>Other>Shotgun>GLs)+(smaller/less damaging caliber>bigger/more damaging caliber)
