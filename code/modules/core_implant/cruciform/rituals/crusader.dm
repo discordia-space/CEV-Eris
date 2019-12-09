@@ -46,7 +46,7 @@
 /datum/ritual/cruciform/crusader/battle_call/proc/discard_effect(mob/living/carbon/human/user, amount)
 	user.stats.changeStat(STAT_TGH, -amount)
 	user.stats.changeStat(STAT_ROB, -amount)
-	user.stats.changeStat(STAT_VIG, -amount)
+	user.stats.changeStat(STAT_VIG, -amount / 2)
 
 /datum/ritual/cruciform/crusader/flash
 	name = "Searing Revelation"
