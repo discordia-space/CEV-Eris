@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_CHEMISTRY]
 	C.associated_template = "catalog_list_reagents.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
 	C = GLOB.catalogs[CATALOG_DRINKS]
 	C.associated_template = "catalog_list_drinks.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
@@ -166,6 +166,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/scannable
 	var/overdose
 	var/addiction_chance
+	var/addiction_threshold
 	var/list/recipe_data
 	var/list/result_of_decomposition_in
 	var/list/can_be_used_in
@@ -192,7 +193,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			return
 	can_be_used_in.Add(reagent_type)
 
-/datum/catalog_entry/reagent/New(var/datum/reagent/V)
+/datum/catalog_entry/reagent/New(datum/reagent/V)
 	if(!istype(V))
 		error("wrong usage of [src.type]")
 		qdel(src)
@@ -223,7 +224,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		chilling_decompose = dat
 		chilling_point = V.chilling_point
 
-	scannable = V.scannable ? "Yes" : "No"
+	scannable = V.scannable
 	overdose = V.overdose ? V.overdose : null
 	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
 	if(recipes)
@@ -240,7 +241,8 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	taste = "Has [V.taste_mult > 1 ? "strong" : V.taste_mult < 1 ? "weak" : ""] taste of [V.taste_description]."
 	color = "[V.color]"
 	if(V.addiction_threshold || V.addiction_chance)
-		addiction_chance = "Has [V.addiction_threshold ? "high" : V.addiction_chance <= 10 ? "low" : V.addiction_chance <= 25 ? "moderate" : "high"] addicition chance."
+		addiction_chance = V.addiction_threshold ? "high" : V.addiction_chance <= 10 ? "Low" : V.addiction_chance <= 25 ? "Moderate" : "High"
+		addiction_threshold = V.addiction_threshold
 
 /datum/catalog_entry/reagent/catalog_ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
@@ -274,6 +276,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["taste"] = taste
 	data["color"] = color
 	data["addiction_chance"] = addiction_chance
+	data["addiction_threshold"] = addiction_threshold
 
 	return data
 

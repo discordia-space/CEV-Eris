@@ -7,8 +7,13 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
-/proc/cmp_catalog_entry_asc(var/datum/catalog_entry/a, var/datum/catalog_entry/b)
+/proc/cmp_catalog_entry_asc(datum/catalog_entry/a, datum/catalog_entry/b)
 	return sorttext(b.title, a.title)
+
+/proc/cmp_catalog_entry_chem(datum/catalog_entry/reagent/a, datum/catalog_entry/reagent/b)
+	if(a.reagent_type != b.reagent_type)
+		return sorttext(b.reagent_type, a.reagent_type)
+	return cmp_catalog_entry_asc(a, b)
 
 /proc/cmp_numeric_asc(a,b)
 	return a - b

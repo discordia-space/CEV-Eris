@@ -115,7 +115,7 @@
 	metabolism = REM * 0.5
 	addiction_chance = 10
 	nerve_system_accumulations = 40
-	reagent_type = "Drugs/Stimulator"
+	reagent_type = "Drug/Stimulator"
 	sanity_gain = 1.5
 
 /datum/reagent/drug/psilocybin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
