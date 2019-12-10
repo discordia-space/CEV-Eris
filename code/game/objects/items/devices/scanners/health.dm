@@ -200,9 +200,9 @@
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
 			if((blood_percent <= BLOOD_VOLUME_SAFE) && (blood_percent > BLOOD_VOLUME_BAD))
-				dat += SPAN_DANGER("Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='highlight'>Type: [blood_type]")
+				dat += SPAN_DANGER("Warning: <font color='red'><b>Blood Level LOW: [blood_percent]% </b></font> [blood_volume]cl.</span> <span class='highlight'>Type: [blood_type]")
 			else if(blood_percent <= BLOOD_VOLUME_BAD)
-				dat += SPAN_DANGER("<i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</i></span> <span class='highlight'>Type: [blood_type]")
+				dat += SPAN_DANGER("<i>Warning: <font color='red'><b> Blood Level CRITICAL: [blood_percent]% </b></font> [blood_volume]cl.</i></span> <span class='highlight'>Type: [blood_type]")
 			else
 				dat += span("highlight", "Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
 		dat += "<span class='highlight'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "#0080ff"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>"
