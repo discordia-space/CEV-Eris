@@ -770,9 +770,13 @@ Checks if a list has the same entries and values as an element of big.
 /proc/is_associative(list/L)
 	for(var/key in L)
 		// if the key is a list that means it's actually an array of lists (stupid Byond...)
-		if(isnum(key) || istype(key, /list) || isnull(L[key]))
+		if(isnum(key) || istype(key, /list))
 			return FALSE
-	return TRUE
+
+		if(!isnull(L[key]))
+			return TRUE
+
+	return FALSE
 
 /proc/group_by(list/group_list, key, value)
 	var/values = group_list[key]
@@ -798,7 +802,7 @@ Checks if a list has the same entries and values as an element of big.
 			return 1
 	return 0
 
-/proc/parse_for_paths(var/list/data)
+/proc/parse_for_paths(list/data)
 	if(!islist(data) || !data.len)
 		return list()
 	var/list/types = list()
