@@ -151,6 +151,16 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "FS Handgun Pack"
 	group = "Security"
 
+/datum/supply_pack/fsrevolver
+	name = "FS Revolver Pack"
+	contains = list(/obj/item/weapon/gun/projectile/revolver/detective,
+					/obj/item/weapon/gun/projectile/revolver/detective,
+					/obj/item/weapon/gun/projectile/revolver/consul)
+	cost = 3300
+	containertype = /obj/structure/closet/crate/secure/weapon
+	crate_name = "FS Revolver Pack"
+	group = "Security"
+
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,

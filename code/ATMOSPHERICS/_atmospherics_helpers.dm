@@ -559,3 +559,25 @@
 		return jointext(status, " ")
 	else
 		return status.len
+
+// Gets target gas mixtures from either just the location turf, or a 3x3 radius.
+// Used by air vents and air scrubbers.
+/proc/get_target_environments(obj/machinery/M, expanded = FALSE)
+	var/turf/loc_turf = get_turf(M)
+	var/datum/gas_mixture/environment = loc_turf.return_air()
+	var/list/target_environments = environment ? list(environment) : list()
+
+	if(!expanded)
+		return target_environments
+
+	for(var/turf/T in orange(1, loc_turf))
+		if(SSair.air_blocked(loc_turf, T) & AIR_BLOCKED)
+			continue
+
+		environment = T.return_air()
+		if(!environment)
+			continue
+		target_environments += environment
+
+	return target_environments
+

@@ -27,28 +27,6 @@
 	new /obj/item/clothing/under/soviet(src)
 
 
-/obj/structure/closet/gimmick/tacticool
-	name = "tacticool gear closet"
-	desc = "It's a storage unit for Tacticool gear."
-	icon_state = "syndicate"
-
-/obj/structure/closet/gimmick/tacticool/populate_contents()
-	new /obj/item/clothing/glasses/eyepatch(src)
-	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/clothing/gloves/thick/swat(src)
-	new /obj/item/clothing/gloves/thick/swat(src)
-	new /obj/item/clothing/head/helmet/swat(src)
-	new /obj/item/clothing/head/helmet/swat(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/shoes/swat(src)
-	new /obj/item/clothing/shoes/swat(src)
-	new /obj/item/clothing/suit/armor/swat(src)
-	new /obj/item/clothing/suit/armor/swat(src)
-	new /obj/item/clothing/under/syndicate(src)
-	new /obj/item/clothing/under/syndicate(src)
-
-
 /obj/structure/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
@@ -62,9 +40,9 @@
 	name = "red-team Thunderdome closet"
 
 /obj/structure/closet/thunderdome/tdred/populate_contents()
-	new /obj/item/clothing/suit/armor/tdome/red(src)
-	new /obj/item/clothing/suit/armor/tdome/red(src)
-	new /obj/item/clothing/suit/armor/tdome/red(src)
+	new /obj/item/clothing/suit/armor/heavy/red(src)
+	new /obj/item/clothing/suit/armor/heavy/red(src)
+	new /obj/item/clothing/suit/armor/heavy/red(src)
 	new /obj/item/weapon/melee/energy/sword(src)
 	new /obj/item/weapon/melee/energy/sword(src)
 	new /obj/item/weapon/melee/energy/sword(src)
@@ -86,9 +64,9 @@
 	icon_state = "syndicate"
 
 /obj/structure/closet/thunderdome/tdgreen/populate_contents()
-	new /obj/item/clothing/suit/armor/tdome/green(src)
-	new /obj/item/clothing/suit/armor/tdome/green(src)
-	new /obj/item/clothing/suit/armor/tdome/green(src)
+	new /obj/item/clothing/suit/armor/heavy/green(src)
+	new /obj/item/clothing/suit/armor/heavy/green(src)
+	new /obj/item/clothing/suit/armor/heavy/green(src)
 	new /obj/item/weapon/melee/energy/sword(src)
 	new /obj/item/weapon/melee/energy/sword(src)
 	new /obj/item/weapon/melee/energy/sword(src)
@@ -106,6 +84,6 @@
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 
 /obj/structure/closet/oldstyle
-	name = "\improper Old closet"
+	name = "old closet"
 	desc = "Old and rusty closet, probably older than you."
 	icon_state = "oldstyle"

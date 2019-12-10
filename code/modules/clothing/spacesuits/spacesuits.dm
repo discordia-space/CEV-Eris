@@ -6,14 +6,21 @@
 	name = "Space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT | COVER_PREVENT_MANIPULATION
+	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	flags_inv = BLOCKHAIR
 	item_state_slots = list(
 		slot_l_hand_str = "s_helmet",
 		slot_r_hand_str = "s_helmet",
 		)
 	permeability_coefficient = 0.01
-	armor = list(melee = 15, bullet = 15, energy = 15, bomb = 0, bio = 100, rad = 50)
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 100,
+		rad = 50
+	)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	cold_protection = HEAD
@@ -62,16 +69,23 @@
 	desc = "A suit that protects against low pressure environments. \"CEV Eris\" is written in large block letters on the back."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = ITEM_SIZE_BULKY//bulky item
+	w_class = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | COVER_PREVENT_MANIPULATION
+	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
 	slowdown = 3
-	armor = list(melee = 15, bullet = 15, energy = 15, bomb = 0, bio = 100, rad = 50)
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 100,
+		rad = 50
+	)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude")

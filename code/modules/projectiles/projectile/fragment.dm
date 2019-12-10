@@ -20,3 +20,4 @@
 	icon_state = "invisible"
 	embed = 0
 	damage = 20
+	check_armour = ARMOR_BOMB

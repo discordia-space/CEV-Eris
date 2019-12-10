@@ -5,6 +5,7 @@
 	icon_state = "mac"
 	item_state = "mac"
 	w_class = ITEM_SIZE_NORMAL
+	can_dual = 1
 	caliber = "pistol"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT

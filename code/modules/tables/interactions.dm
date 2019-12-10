@@ -65,16 +65,23 @@
 			set_pixel_click_offset(A, params)
 		return
 
-	if (istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
+	if(istype(A, /obj/item) && istype(A.loc, /turf))
 		var/obj/item/O = A
-		//Mice can push around pens and paper, but not heavy tools
-		if (O.w_class <= user.can_pull_size)
-			O.forceMove(loc)
-			set_pixel_click_offset(O, params, animate=TRUE)
-			return
-		else
-			to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
-			return
+
+		if(isghost(user))
+			if( src_location == over_location )
+				set_pixel_click_offset(O, params, animate = TRUE)
+				return
+				
+		else if (A.CanMouseDrop(loc, user))
+			//Mice can push around pens and paper, but not heavy tools
+			if (O.w_class <= user.can_pull_size)
+				O.forceMove(loc)
+				set_pixel_click_offset(O, params, animate = TRUE)
+				return
+			else
+				to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
+				return
 
 	return ..()
 

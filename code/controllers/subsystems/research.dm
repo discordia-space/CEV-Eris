@@ -84,7 +84,14 @@ SUBSYSTEM_DEF(research)
 	// If designs are already generated, initialized right away.
 	// If not, add them to the list to be initialized later.
 	if(research_initialized)
-		var/datum/design/design = locate(design_file.design) in all_designs
+		var/datum/design/design
+
+		for(var/d in all_designs)
+			var/datum/design/_design = d
+			if(_design.type == design_file.design || _design.id == design_file.design)
+				design = _design
+				break
+
 		if(design)
 			design_file.design = design
 			design_file.on_design_set()
@@ -103,8 +110,8 @@ SUBSYSTEM_DEF(research)
 		T.max_level = all_tech_trees[i].len
 		R.researched_tech[T] = list()
 
-	R.known_designs |= starting_designs
-
 	for(var/tech in statting_technologies)
 		R.UnlockTechology(tech, initial = TRUE)
 
+	for(var/design in starting_designs)
+		R.AddDesign2Known(design)

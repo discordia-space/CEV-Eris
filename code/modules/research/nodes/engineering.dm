@@ -78,8 +78,8 @@
 
 // Make this its own tech tree?
 /datum/technology/modular_components
-	name = "Modular Components"
-	desc = "Components for modular computers."
+	name = "Advanced PC hardware"
+	desc = "Advanced components for modular computers."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
@@ -91,26 +91,18 @@
 	cost = 1000
 
 	unlocks_designs = list(
-							/datum/design/research/item/modularcomponent/portabledrive/basic,
-							/datum/design/research/item/modularcomponent/portabledrive/normal,
-							/datum/design/research/item/modularcomponent/portabledrive/advanced,
-							/datum/design/research/item/modularcomponent/disk/normal,
-							/datum/design/research/item/modularcomponent/disk/advanced,
-							/datum/design/research/item/modularcomponent/disk/super,
-							/datum/design/research/item/modularcomponent/disk/cluster,
-							/datum/design/research/item/modularcomponent/disk/small,
-							/datum/design/research/item/modularcomponent/disk/micro,
-							/datum/design/research/item/modularcomponent/netcard/basic,
-							/datum/design/research/item/modularcomponent/netcard/advanced,
-							/datum/design/research/item/modularcomponent/netcard/wired,
-							/datum/design/research/item/modularcomponent/cardslot,
-							/datum/design/research/item/modularcomponent/nanoprinter,
-							/datum/design/research/item/modularcomponent/teslalink,
-							/datum/design/research/item/modularcomponent/cpu,
-							/datum/design/research/item/modularcomponent/cpu/small,
-							/datum/design/research/item/modularcomponent/cpu/photonic,
-							/datum/design/research/item/modularcomponent/cpu/photonic/small
-						)
+		/datum/design/research/item/computer_part/portabledrive/advanced,
+		/datum/design/research/item/computer_part/disk/small_adv,
+		/datum/design/research/item/computer_part/disk/advanced,
+		/datum/design/research/item/computer_part/disk/super,
+		/datum/design/research/item/computer_part/disk/cluster,
+		/datum/design/research/item/computer_part/netcard/advanced,
+		/datum/design/research/item/computer_part/teslalink,
+		/datum/design/research/item/computer_part/cpu/adv,
+		/datum/design/research/item/computer_part/cpu/adv/small,
+		/datum/design/research/item/computer_part/cpu/super,
+		/datum/design/research/item/computer_part/cpu/super/small
+		)
 
 // Make this its own tech tree?
 /datum/technology/custom_circuits

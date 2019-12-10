@@ -1,9 +1,16 @@
 /obj/structure/closet/secure_closet/personal/hydroponics
 	name = "botanist's locker"
 	req_access = list(access_hydroponics)
+	access_occupy = list(access_hydroponics)
 	icon_state = "hydro"
 
 /obj/structure/closet/secure_closet/personal/hydroponics/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/botanist(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/botanist(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/botanist(src)
 	new /obj/item/clothing/suit/apron(src)
 	new /obj/item/weapon/storage/bag/plants(src)
 	new /obj/item/clothing/under/rank/hydroponics(src)
@@ -14,10 +21,17 @@
 	new /obj/item/weapon/material/hatchet(src)
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
+	new /obj/item/clothing/gloves/botanic_leather(src)
+
+/obj/structure/closet/secure_closet/personal/hydroponics/public
+	name = "gardener's locker"
+	req_access = list(access_hydroponics)
+	access_occupy = list()
 
 /obj/structure/closet/secure_closet/personal/agrolyte
 	name = "agrolyte's locker"
 	req_access = list(access_hydroponics)
+	access_occupy = list(access_hydroponics)
 	icon_state = "agrolyte"
 
 /obj/structure/closet/secure_closet/personal/agrolyte/populate_contents()
@@ -32,9 +46,10 @@
 	new /obj/item/weapon/material/hatchet(src)
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-	new /obj/item/clothing/suit/armor/vest/agrolyte(src)
-	new /obj/item/clothing/head/helmet/agrolyte(src)
+	new /obj/item/clothing/suit/space/void/agrolyte(src)
+	new /obj/item/clothing/head/helmet/space/void/agrolyte(src)
+	new /obj/item/clothing/gloves/botanic_leather(src)
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/church(src)
+		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/church(src)
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)

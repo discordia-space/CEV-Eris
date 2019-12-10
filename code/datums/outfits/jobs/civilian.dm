@@ -41,7 +41,7 @@
 /decl/hierarchy/outfit/job/service/actor/clown/New()
 	..()
 	backpack_overrides[/decl/backpack_outfit/backpack] = /obj/item/weapon/storage/backpack/clown
-	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/weapon/storage/backpack/satchel/norm
+	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/weapon/storage/backpack/satchel/leather
 
 
 /decl/hierarchy/outfit/job/service/actor/clown/post_equip(var/mob/living/carbon/human/H)

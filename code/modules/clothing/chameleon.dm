@@ -119,7 +119,7 @@
 /obj/item/clothing/suit/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/suit/cyborg_suit)
+		var/blocked = list(src.type, null)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/suit, blocked)
 
 /obj/item/clothing/suit/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
@@ -178,22 +178,22 @@
 //**Chameleon Backpack**
 //**********************
 /obj/item/weapon/storage/backpack/chameleon
-	name = "backpack"
+	name = "grey backpack"
 	icon_state = "backpack"
 	item_state = "backpack"
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-/obj/item/weapon/storage/backpack/chameleon/New()
-	..()
+/obj/item/weapon/storage/backpack/chameleon/Initialize()
+	. = ..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/weapon/storage/backpack/satchel/withwallet)
+		var/blocked = list(src.type, /obj/item/weapon/storage/backpack/satchel/leather/withwallet)
 		clothing_choices = generate_chameleon_choices(/obj/item/weapon/storage/backpack, blocked)
 
 /obj/item/weapon/storage/backpack/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
-	name = "backpack"
-	desc = "You wear this on your back and put items into it."
+	name = "grey backpack"
+	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	icon_state = "backpack"
 	item_state = "backpack"
 	update_icon()

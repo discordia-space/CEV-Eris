@@ -1,11 +1,11 @@
 /datum/computer_file/program/filemanager
 	filename = "filemanager"
-	filedesc = "NTOS File Manager"
+	filedesc = "File Manager"
 	extended_desc = "This program allows management of files."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	program_menu_icon = "folder-collapsed"
-	size = 8
+	size = 6
 	requires_ntnet = 0
 	available_on_ntnet = 0
 	undeletable = 1
@@ -117,10 +117,10 @@
 		var/datum/computer_file/data/F = HDD.find_file_by_name(open_file)
 		if(!F || !istype(F))
 			return 1
-		if(!computer.nano_printer)
+		if(!computer.printer)
 			error = "Missing Hardware: Your computer does not have required hardware to complete this operation."
 			return 1
-		if(!computer.nano_printer.print_text(pencode2html(F.stored_data)))
+		if(!computer.printer.print_text(pencode2html(F.stored_data)))
 			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
 			return 1
 	if(href_list["PRG_copytousb"])
@@ -149,7 +149,7 @@
 		SSnano.update_uis(NM)
 
 /datum/nano_module/program/computer_filemanager
-	name = "NTOS File Manager"
+	name = "File Manager"
 
 /datum/nano_module/program/computer_filemanager/ui_data()
 	var/list/data = host.initial_data()
@@ -189,7 +189,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "mpc_file_manager.tmpl", "NTOS File Manager", 575, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_file_manager.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

@@ -28,7 +28,7 @@
 /decl/hierarchy/outfit/job/security/gunserg
 	name = OUTFIT_JOB_NAME("Ironhammer Gunnery Sergeant")
 	uniform = /obj/item/clothing/under/rank/warden
-	suit = /obj/item/clothing/suit/armor/vest/security
+	suit = /obj/item/clothing/suit/armor/vest/ironhammer
 	head = /obj/item/clothing/head/beret/sec/navy/warden
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	l_pocket = /obj/item/device/flash
@@ -39,7 +39,7 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Inspector")
 	head = /obj/item/clothing/head/det
 	uniform = /obj/item/clothing/under/rank/inspector
-	suit = /obj/item/clothing/suit/storage/insp_trench
+	suit = /obj/item/clothing/suit/storage/detective/ironhammer
 	head = /obj/item/clothing/head/det
 	gloves = /obj/item/clothing/gloves/stungloves
 	l_pocket = /obj/item/device/flash
@@ -69,7 +69,7 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Operative")
 	l_pocket = /obj/item/device/flash
 	uniform = /obj/item/clothing/under/rank/security
-	suit = /obj/item/clothing/suit/armor/vest/security
+	suit = /obj/item/clothing/suit/armor/vest/ironhammer
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	head = /obj/item/clothing/head/helmet

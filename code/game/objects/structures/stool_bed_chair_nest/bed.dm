@@ -37,6 +37,13 @@
 /obj/structure/bed/get_material()
 	return material
 
+/obj/structure/bed/get_matter()
+	. = ..()
+	if(material)
+		LAZYAPLUS(., material.name, 5)
+	if(padding_material)
+		LAZYAPLUS(., padding_material.name, 1)
+
 // Reuse the cache/code from stools, todo maybe unify.
 /obj/structure/bed/update_icon()
 	// Prep icon.
@@ -190,10 +197,7 @@
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
-	if(material)
-		material.place_sheet(get_turf(src))
-	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+	drop_materials(drop_location())
 	qdel(src)
 
 /obj/structure/bed/psych
@@ -203,17 +207,17 @@
 	base_icon = "psychbed"
 
 /obj/structure/bed/psych/New(var/newloc)
-	..(newloc,"wood","leather")
+	..(newloc, MATERIAL_WOOD, MATERIAL_LEATHER)
 
 /obj/structure/bed/padded/New(var/newloc)
-	..(newloc,MATERIAL_PLASTIC,"cotton")
+	..(newloc, MATERIAL_PLASTIC, "cotton")
 
 /obj/structure/bed/alien
 	name = "resting contraption"
 	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
 
 /obj/structure/bed/alien/New(var/newloc)
-	..(newloc,"resin")
+	..(newloc, MATERIAL_RESIN)
 
 /*
  * Roller beds

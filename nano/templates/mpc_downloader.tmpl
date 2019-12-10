@@ -16,47 +16,29 @@
 	<hr>
 {{/if}}
 
-	<h2>{{:data.downloadname ? 'Download Running' : 'No Downloads In Progress'}}</h2>
-	<i>{{:data.downloadname ? 'Please wait...' : 'Standing by...'}}</i>
+
+{{if data.downloadname}}
+	<h2>Download in progress</h2>
+	<i>Please wait...</i>
 	<div class="item">
-		<div class="itemLabel">
-			File name: 
-		</div>
+		<div class="itemLabel">File name:</div>
+		<div class="itemContent">{{:data.downloadname}}</div>
+		<div class="itemLabel">File description:</div>
+		<div class="itemContent">{{:data.downloaddesc}}</div>
+		<div class="itemLabel">Transfer Rate:</div>
+		<div class="itemContent">{{:data.downloadspeed}} GQ/s</div>
+		<div class="itemLabel">Download progress:</div>
 		<div class="itemContent">
-			{{:data.downloadname ? data.downloadname : 'N/A'}}
-		</div>
-		<div class="itemLabel">
-			File description: 
-		</div>
-		<div class="itemContent">
-			{{:data.downloadname ? data.downloaddesc : 'N/A'}}
-		</div>
-		<div class="itemLabel">
-			File size: 
-		</div>
-		<div class="itemContent">
-			{{:data.downloadname ? (data.downloadcompletion + 'GQ / ' + data.downloadsize + 'GQ') : 'N/A'}}
-		</div>
-		<div class="itemLabel">
-			Transfer Rate: 
-		</div>
-		<div class="itemContent">
-			{{:data.downloadname ? data.downloadspeed : '0'}} GQ/s
-		</div>
-		<div class="itemLabel">
-			Download progress: 
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.downloadcompletion, 0, data.downloadname ? data.downloadsize : 0, 'good')}}
-			{{if data.downloadname}}
+			{{:helper.displayBar(data.downloadcompletion, 0, data.downloadsize, 'good', data.downloadcompletion + 'GQ / ' + data.downloadsize + 'GQ')}}
 			{{:helper.link('', (data.download_paused ? 'play' : 'pause'), {'download_pause' : 1})}}	
 			{{:helper.link('', 'stop', {'download_stop' : 1})}}	
-		{{/if}}
 		</div>
 	</div>
 
 	<br><hr>
-	
+{{/if}}
+
+{{if data.downloads_queue && data.downloads_queue.length}}
 	<h2>Downloads Queue</h2>
 	<div class="item">
 	{{for data.downloads_queue}}
@@ -71,15 +53,16 @@
 		<i>The queue is currently empty.</i>
 	{{/for}}
 	</div>
+
 	<br><hr>
-	
+{{/if}}
+
 	<h2>Primary software repository</h2>
 	<div class="itemLabel">
 		Hard drive: 
 	</div>
 	<div class="itemContent">
-		{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good')}}
-		{{:data.disk_used}}GQ / {{:data.disk_size}}GQ
+		{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}
 	</div>
 	<table>
 	{{for data.downloadable_programs}}
@@ -92,13 +75,15 @@
 	</table>
 	{{if data.hackedavailable}}
 		<h2>*UNKNOWN* software repository</h2>
-		<i>Please note that NanoTrasen does not recommend download of software from non-official servers.</i>
+		<table>
 		{{for data.hacked_programs}}
-		<tr><td>{{:helper.link(value.filedesc, value.icon, {'PRG_downloadfile' : value.filename})}}	
+		<tr><td>{{:helper.link('', value.icon, {'PRG_downloadfile' : value.filename}, ((value.in_queue || value.filename == data.downloadname) ? 'disabled' : null))}}	
+			<td><span class='white'>{{:value.filedesc}}</span>
 			<td>{{:value.fileinfo}}
 			<td>{{:value.size}} GQ
 		</div>
 		{{/for}}
+		</table>
 	{{/if}}
 
 <br><br><hr><i>NTOS v2.0.4b Copyright NanoTrasen 2557 - 2559</i>

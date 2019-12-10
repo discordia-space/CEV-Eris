@@ -21,12 +21,12 @@
 
 	//Heavy armor
 	/obj/item/weapon/rig/combat = 10,
-	/obj/item/weapon/rig/ihs_combat = 10,
+	/obj/item/weapon/rig/combat/ironhammer = 10,
 	/obj/item/weapon/rig/hazard = 10,
 
 	//The ones below here come with built in weapons
 	/obj/item/weapon/rig/combat/equipped = 4,
-	/obj/item/weapon/rig/ihs_combat/equipped = 4,
+	/obj/item/weapon/rig/combat/ironhammer/equipped = 4,
 	/obj/item/weapon/rig/hazard/equipped = 4,
 	))
 

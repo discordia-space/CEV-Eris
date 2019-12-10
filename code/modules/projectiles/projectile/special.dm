@@ -25,7 +25,8 @@
 /obj/item/projectile/bullet/rocket
 	name = "high explosive rocket"
 	icon_state = "rocket"
-	damage = 50
+	damage = 70
+	armor_penetration = 100
 	check_armour = ARMOR_BULLET
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset)

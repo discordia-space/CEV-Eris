@@ -5,13 +5,13 @@
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "blue"
+	critical = FALSE
 	hardware_size = 1
 	power_usage = 30
 	max_capacity = 64
 	default_files = list()
 	origin_tech = list(TECH_DATA = 2)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.25)
-	matter_reagents = list()
 	price_tag = 25
 	var/disk_name
 	var/license = 0
@@ -31,18 +31,13 @@
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
-	price_tag = 50
+	price_tag = 150
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/Initialize()
 	. = ..()
 	w_class = ITEM_SIZE_SMALL
 	if(disk_name)
 		SetName("[initial(name)] - '[disk_name]'")
-
-/obj/item/weapon/computer_hardware/hard_drive/portable/Destroy()
-	if(holder2 && (holder2.portable_drive == src))
-		holder2.portable_drive = null
-	return ..()
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/pen))

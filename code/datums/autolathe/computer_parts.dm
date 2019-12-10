@@ -15,14 +15,10 @@
 	name = "GPS sensor"
 	build_path = /obj/item/weapon/computer_hardware/gps_sensor
 
-/datum/design/autolathe/computer_part/led
-	name = "light emitting diode"
-	build_path = /obj/item/weapon/computer_hardware/led
-
-/datum/design/autolathe/computer_part/scanner_paper
+/datum/design/autolathe/computer_part/scanner/paper
 	name = "paper scanner module"
 	build_path = /obj/item/weapon/computer_hardware/scanner/paper
 
-/datum/design/autolathe/computer_part/scanner_atmos
+/datum/design/autolathe/computer_part/scanner/atmos
 	name = "atmospheric scanner module"
 	build_path = /obj/item/weapon/computer_hardware/scanner/atmos

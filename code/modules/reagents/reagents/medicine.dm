@@ -46,7 +46,7 @@
 /datum/reagent/medicine/meralyne/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.heal_organ_damage(1.2 * effect_multiplier, 0, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.30)
-	
+
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
 	id = "kelotane"
@@ -89,6 +89,7 @@
 	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
 	M.add_chemical_effect(CE_ANTITOX, 1)
 	holder.remove_reagent("pararein", 0.2 * effect_multiplier)
+	holder.remove_reagent("blattedin", 0.2 * effect_multiplier)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -550,7 +551,7 @@
 /datum/reagent/medicine/quickclot/overdose(var/mob/living/carbon/M, var/alien)
 	M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
 
-/datum/reagent/ossisine   
+/datum/reagent/medicine/ossisine
 	name = "Ossisine"
 	id = "ossisine"
 	description = "Paralyses user and restores broken bones. Medicate in critical conditions only."
@@ -592,7 +593,7 @@
 	M.make_jittery(-50)
 
 
-/datum/reagent/medicine/kyphotorin 
+/datum/reagent/medicine/kyphotorin
 	name = "Kyphotorin"
 	id = "kyphotorin"
 	description = "Allows patient to grow back limbs. Extremely painful to user and needs constant medical attention when applied."
@@ -752,7 +753,7 @@
 		M.sleeping = max(M.sleeping, 20)
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
-	
+
 
 
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)

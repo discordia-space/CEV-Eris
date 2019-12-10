@@ -5,7 +5,7 @@
 
 /obj/structure/closet/secure_closet/reinforced/captains/populate_contents()
 	new /obj/item/weapon/storage/backpack/captain(src)
-	new /obj/item/weapon/storage/backpack/satchel/cap(src)
+	new /obj/item/weapon/storage/backpack/satchel/captain(src)
 	new /obj/item/clothing/head/caphat/cap(src)
 	new /obj/item/clothing/under/rank/captain(src)
 	new /obj/item/clothing/suit/armor/vest(src)
@@ -54,8 +54,8 @@
 	icon_state = "hos"
 
 /obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
-	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel/sec(src)
+	new /obj/item/weapon/storage/backpack/ironhammer(src)
+	new /obj/item/weapon/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
@@ -84,8 +84,8 @@
 	icon_state = "warden"
 
 /obj/structure/closet/secure_closet/warden/populate_contents()
-	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel/sec(src)
+	new /obj/item/weapon/storage/backpack/ironhammer(src)
+	new /obj/item/weapon/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/clothing/under/rank/warden(src)
 	new /obj/item/clothing/head/beret/sec/navy/warden(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
@@ -112,8 +112,8 @@
 	icon_state = "sec"
 
 /obj/structure/closet/secure_closet/personal/security/populate_contents()
-	new /obj/item/weapon/storage/backpack/security(src)
-	new /obj/item/weapon/storage/backpack/satchel/sec(src)
+	new /obj/item/weapon/storage/backpack/ironhammer(src)
+	new /obj/item/weapon/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/weapon/storage/belt/security(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
@@ -157,8 +157,8 @@
 	new /obj/item/clothing/under/rank/det(src)
 	new /obj/item/clothing/under/rank/det/black(src)
 	new /obj/item/clothing/under/rank/inspector(src)
-	new /obj/item/clothing/suit/storage/det_trench(src)
-	new /obj/item/clothing/suit/storage/insp_trench(src)
+	new /obj/item/clothing/suit/storage/detective(src)
+	new /obj/item/clothing/suit/storage/detective/ironhammer(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/head/det(src)
@@ -175,9 +175,9 @@
 	new /obj/item/device/taperecorder(src)
 	new /obj/item/weapon/gun/projectile/revolver/consul(src)
 	new /obj/item/clothing/accessory/holster/armpit(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
-	new /obj/item/ammo_magazine/magnum/rubber(src)
+	new /obj/item/ammo_magazine/slmagnum/rubber(src)
+	new /obj/item/ammo_magazine/slmagnum/rubber(src)
+	new /obj/item/ammo_magazine/slmagnum/rubber(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/structure/closet/secure_closet/injection

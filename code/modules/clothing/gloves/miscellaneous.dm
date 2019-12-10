@@ -10,7 +10,7 @@
 	name = "cyborg gloves"
 	icon_state = "robohands"
 	item_state = "r_hands"
-	siemens_coefficient = 1.0
+	siemens_coefficient = 1
 
 /obj/item/clothing/gloves/insulated
 	desc = "These gloves will protect the wearer from electric shock."
@@ -37,7 +37,7 @@
 	name = "black gloves"
 	icon_state = "black"
 	item_state = "bgloves"
-	siemens_coefficient = 0.50
+	siemens_coefficient = 0.5
 	permeability_coefficient = 0.05
 	price_tag = 100
 
@@ -51,7 +51,14 @@
 	name = "IHS combat gloves"
 	icon_state = "ihscombat"
 	item_state = "ihscombat"
-	armor = list(melee = 40, bullet = 30,energy = 30, bomb = 40, bio = 10, rad = 0)
+	armor = list(
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
 	price_tag = 300
 
 /obj/item/clothing/gloves/thick/combat //Combined effect of SWAT gloves and insulated gloves
@@ -59,7 +66,14 @@
 	name = "combat gloves"
 	icon_state = "black"
 	item_state = "swat_gl"
-	armor = list(melee = 40, bullet = 30, energy = 30, bomb = 40, bio = 10, rad = 0)
+	armor = list(
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
 	siemens_coefficient = 0
 	price_tag = 500
 
@@ -81,3 +95,15 @@
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0.50 //thick work gloves
 	price_tag = 50
+
+/obj/item/clothing/gloves/fingerless
+	name = "fingerless gloves"
+	desc = "Plain black gloves without fingertips for the hard working."
+	icon_state = "fingerless"
+	item_state = "fingerless"
+	clipped = TRUE
+	cold_protection = ARMS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = ARMS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	price_tag = 10

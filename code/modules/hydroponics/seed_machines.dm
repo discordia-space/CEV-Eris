@@ -25,9 +25,8 @@
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
 
-/obj/item/weapon/storage/box/botanydisk/New()
-	..()
-	for(var/i = 0;i<7;i++)
+/obj/item/weapon/storage/box/botanydisk/populate_contents()
+	for(var/i in 1 to 7)
 		new /obj/item/weapon/disk/botany(src)
 
 /obj/machinery/botany
@@ -172,7 +171,6 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/Topic(href, href_list)
-
 	if(..())
 		return 1
 
@@ -197,18 +195,12 @@
 		loaded_disk = null
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
-
 	if(..())
 		return 1
 
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-
 	if(href_list["scan_genome"])
-
 		if(!seed) return
 
 		last_action = world.time
@@ -302,7 +294,6 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/editor/Topic(href, href_list)
-
 	if(..())
 		return 1
 
@@ -310,7 +301,7 @@
 		if(!loaded_disk || !seed) return
 
 		last_action = world.time
-		active = 1
+		active = TRUE
 
 		if(!isnull(plant_controller.seeds[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)
@@ -324,6 +315,3 @@
 		for(var/datum/plantgene/gene in loaded_disk.genes)
 			seed.seed.apply_gene(gene)
 			seed.modified += rand(5,10)
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)

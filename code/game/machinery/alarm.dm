@@ -492,7 +492,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "air_alarm.tmpl", src.name, 325, 625, master_ui = master_ui, state = state)
+		ui = new(user, src, ui_key, "air_alarm.tmpl", src.name, 400, 625, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -529,12 +529,13 @@
 				if(!info)
 					continue
 				vents[++vents.len] = list(
-						"id_tag"	= id_tag,
-						"long_name" = sanitize(long_name),
-						"power"		= info["power"],
-						"checks"	= info["checks"],
-						"direction"	= info["direction"],
-						"external"	= info["external"]
+						"id_tag"			= id_tag,
+						"long_name"			= sanitize(long_name),
+						"power"				= info["power"],
+						"expanded_range"	= info["expanded_range"],
+						"checks"			= info["checks"],
+						"direction"			= info["direction"],
+						"external"			= info["external"]
 					)
 			data["vents"] = vents
 		if(AALARM_SCREEN_SCRUB)
@@ -545,12 +546,13 @@
 				if(!info)
 					continue
 				scrubbers[++scrubbers.len] = list(
-						"id_tag"	= id_tag,
-						"long_name" = sanitize(long_name),
-						"power"		= info["power"],
-						"scrubbing"	= info["scrubbing"],
-						"panic"		= info["panic"],
-						"filters"	= list()
+						"id_tag"			= id_tag,
+						"long_name"			= sanitize(long_name),
+						"power"				= info["power"],
+						"expanded_range"	= info["expanded_range"],
+						"scrubbing"			= info["scrubbing"],
+						"panic"				= info["panic"],
+						"filters"			= list()
 					)
 				scrubbers[scrubbers.len]["filters"] += list(list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]))
 				scrubbers[scrubbers.len]["filters"] += list(list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]))
@@ -675,6 +677,8 @@
 				if( "power",
 					"adjust_external_pressure",
 					"checks",
+					"expanded_range",
+					"toggle_expanded_range",
 					"o2_scrub",
 					"n2_scrub",
 					"co2_scrub",
@@ -1255,7 +1259,7 @@ Just a object used in constructing fire alarms
 	return
 
 /obj/machinery/partyalarm/proc/reset()
-	if (!( working ))
+	if (!working)
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1263,7 +1267,7 @@ Just a object used in constructing fire alarms
 	return
 
 /obj/machinery/partyalarm/proc/alarm()
-	if (!( working ))
+	if (!working)
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1271,28 +1275,17 @@ Just a object used in constructing fire alarms
 	return
 
 /obj/machinery/partyalarm/Topic(href, href_list)
-	..()
-	if (usr.stat || stat & (BROKEN|NOPOWER))
-		return
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(loc, /turf))) || (isAI(usr)))
-		usr.machine = src
-		if (href_list["reset"])
-			reset()
-		else
-			if (href_list["alarm"])
-				alarm()
-			else
-				if (href_list["time"])
-					timing = text2num(href_list["time"])
-				else
-					if (href_list["tp"])
-						var/tp = text2num(href_list["tp"])
-						time += tp
-						time = min(max(round(time), 0), 120)
-		updateUsrDialog()
+	if(..())
+		return 1
 
-		add_fingerprint(usr)
-	else
-		usr << browse(null, "window=partyalarm")
-		return
-	return
+	if (href_list["reset"])
+		reset()
+	else if (href_list["alarm"])
+		alarm()
+	else if (href_list["time"])
+		timing = text2num(href_list["time"])
+	else if (href_list["tp"])
+		var/tp = text2num(href_list["tp"])
+		time += tp
+		time = min(max(round(time), 0), 120)
+

@@ -29,7 +29,7 @@
 	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
 	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7
 	max_upgrades = 4

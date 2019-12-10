@@ -37,6 +37,7 @@
 
 	user.stats.changeStat(STAT_TGH, count)
 	user.stats.changeStat(STAT_ROB, count)
+	user.stats.changeStat(STAT_VIG, (count / 2))
 	to_chat(user, SPAN_NOTICE("You feel an extraordinary burst of energy."))
 	set_personal_cooldown(user)
 	addtimer(CALLBACK(src, .proc/discard_effect, user, count), src.cooldown_time)
@@ -45,7 +46,7 @@
 /datum/ritual/cruciform/crusader/battle_call/proc/discard_effect(mob/living/carbon/human/user, amount)
 	user.stats.changeStat(STAT_TGH, -amount)
 	user.stats.changeStat(STAT_ROB, -amount)
-
+	user.stats.changeStat(STAT_VIG, -amount / 2)
 
 /datum/ritual/cruciform/crusader/flash
 	name = "Searing Revelation"

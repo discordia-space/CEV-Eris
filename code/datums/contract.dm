@@ -175,24 +175,32 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/ihs_combat
+		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
 	)
 
 /datum/antag_contract/item/steal/New()
 	..()
-	var/list/candidates = possible_items.Copy()
-	for(var/datum/antag_contract/item/steal/C in GLOB.all_antag_contracts)
-		candidates.Remove(C.target_desc)
-	if(candidates.len)
-		target_desc = pick(candidates)
-		target_type = possible_items[target_desc]
-		desc = "Steal [target_desc] and send it via BSDM."
+	if(!target_type)
+		var/list/candidates = possible_items.Copy()
+		for(var/datum/antag_contract/item/steal/C in GLOB.all_antag_contracts)
+			candidates.Remove(C.target_desc)
+		if(candidates.len)
+			target_desc = pick(candidates)
+			target_type = possible_items[target_desc]
+			desc = "Steal [target_desc] and send it via BSDM."
 
 /datum/antag_contract/item/steal/can_place()
-	return ..() && target_desc
+	return ..() && target_type
 
 /datum/antag_contract/item/steal/check(obj/item/weapon/storage/container)
 	return locate(target_type) in container
+
+
+/datum/antag_contract/item/steal/docs
+	unique = TRUE
+	reward = 12
+	target_type = /obj/item/weapon/oddity/secdocs
+	desc = "Steal the secret documents and send them via BSDM."
 
 
 /datum/antag_contract/item/dump
@@ -211,3 +219,59 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	for(var/obj/item/weapon/spacecash/cash in container)
 		received += cash.worth
 	return received >= sum
+
+
+/datum/antag_contract/item/blood
+	name = "Steal blood samples"
+	unique = TRUE
+	reward = 10
+	var/count
+
+/datum/antag_contract/item/blood/New()
+	..()
+	count = rand(3, 6)
+	desc = "Send blood samples of [count] different people in separate containers via BSDM."
+
+/datum/antag_contract/item/blood/check(obj/item/weapon/storage/container)
+	var/list/samples = list()
+	for(var/obj/item/weapon/reagent_containers/C in container)
+		var/list/data = C.reagents?.get_data("blood")
+		if(!data || data["species"] != "Human" || data["blood_DNA"] in samples)
+			continue
+		samples += data["blood_DNA"]
+		if(samples.len >= count)
+			return TRUE
+	return FALSE
+
+
+/datum/antag_contract/item/research
+	name = "Steal research"
+	unique = TRUE
+	reward = 6
+	var/list/targets = list()
+	var/static/counter = 0
+
+/datum/antag_contract/item/research/New()
+	..()
+	var/list/candidates = SSresearch.all_designs.Copy()
+	for(var/datum/antag_contract/item/research/C in GLOB.all_antag_contracts)
+		candidates -= C.targets
+	while(candidates.len && targets.len < 8)
+		var/datum/design/D = pick(candidates)
+		targets += D
+		candidates -= D
+	desc = "Send a disk with one of the following designs via BSDM: [english_list(targets, and_text = " or ")]."
+
+/datum/antag_contract/item/research/can_place()
+	return ..() && targets.len && counter < 3
+
+/datum/antag_contract/item/research/place()
+	..()
+	++counter
+
+/datum/antag_contract/item/research/check(obj/item/weapon/storage/container)
+	for(var/obj/item/weapon/computer_hardware/hard_drive/H in container)
+		for(var/datum/computer_file/binary/design/D in H.stored_files)
+			if(D.design in targets)
+				return TRUE
+	return FALSE

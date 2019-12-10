@@ -35,7 +35,7 @@
 	name = "heavy laser"
 	icon_state = "heavylaser"
 	damage = 50
-	armor_penetration = 30
+	armor_penetration = 20
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/laser_heavy/tracer
@@ -45,7 +45,7 @@
 	name = "xray beam"
 	icon_state = "xray"
 	damage = 25
-	armor_penetration = 50
+	armor_penetration = 40
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
 	tracer_type = /obj/effect/projectile/xray/tracer
@@ -55,7 +55,7 @@
 	name = "pulse"
 	icon_state = "u_laser"
 	damage = 40
-	armor_penetration = 30
+	armor_penetration = 20
 
 	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
 	tracer_type = /obj/effect/projectile/laser_pulse/tracer
@@ -133,8 +133,8 @@
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
-	damage = 50
-	armor_penetration = 20
+	damage = 60
+	armor_penetration = 50
 	stun = 3
 	weaken = 3
 	stutter = 3

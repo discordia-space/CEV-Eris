@@ -334,16 +334,16 @@
 	src.health = max(0, src.health - damage)
 	if(src.health <= 0 && initialhealth > 0)
 		src.set_broken()
-		smoke_amount = 6
+		smoke_amount = 4
 	else if(src.health < src.maxhealth / 4 && initialhealth >= src.maxhealth / 4)
 		visible_message("\The [src] looks like it's about to break!" )
-		smoke_amount = 5
+		smoke_amount = 3
 	else if(src.health < src.maxhealth / 2 && initialhealth >= src.maxhealth / 2)
 		visible_message("\The [src] looks seriously damaged!" )
-		smoke_amount = 4
+		smoke_amount = 2
 	else if(src.health < src.maxhealth * 3/4 && initialhealth >= src.maxhealth * 3/4)
 		visible_message("\The [src] shows signs of damage!" )
-		smoke_amount = 3
+		smoke_amount = 1
 	update_icon()
 	if(damage_smoke && smoke_amount)
 		var/datum/effect/effect/system/smoke_spread/S = new

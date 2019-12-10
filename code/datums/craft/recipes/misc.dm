@@ -1,5 +1,5 @@
 /datum/craft_recipe/wall_girders
-	name = "wall girders"
+	name = "wall girder"
 	result = /obj/structure/girder
 	time = WORKTIME_NORMAL
 	steps = list(
@@ -9,7 +9,7 @@
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/wall_girders/low
-	name = "low girders"
+	name = "low wall girder"
 	result = /obj/structure/girder/low
 	time = WORKTIME_FAST
 	steps = list(

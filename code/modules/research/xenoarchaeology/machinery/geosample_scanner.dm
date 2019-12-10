@@ -327,8 +327,8 @@
 		scanned_item = null
 
 /obj/machinery/radiocarbon_spectrometer/Topic(href, href_list)
-	if(stat & (NOPOWER|BROKEN))
-		return 0 // don't update UIs attached to this object
+	if(..())
+		return 1
 
 	if(href_list["scanItem"])
 		if(scanning)
@@ -363,5 +363,4 @@
 			scanned_item = null
 
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
-	add_fingerprint(usr)
 	return 1 // update UIs attached to this object

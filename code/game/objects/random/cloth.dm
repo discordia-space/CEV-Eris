@@ -54,7 +54,7 @@
 
 /obj/random/cloth/armor/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/suit/armor/bulletproof = 10,
-				/obj/item/clothing/suit/armor/captain = 1,
+				/obj/item/clothing/suit/space/captain = 1,
 				/obj/item/clothing/suit/armor/heavy = 2,
 				/obj/item/clothing/suit/armor/riot = 4,
 				/obj/item/clothing/suit/armor/laserproof = 2,
@@ -80,9 +80,9 @@
 	return pickweight(list(/obj/item/clothing/suit/poncho = 10,
 				/obj/item/clothing/suit/storage/ass_jacket = 10,
 				/obj/item/clothing/suit/storage/cargo_jacket = 10,
-				/obj/item/clothing/suit/storage/det_trench = 5,
+				/obj/item/clothing/suit/storage/detective = 5,
 				/obj/item/clothing/suit/storage/hazardvest = 10,
-				/obj/item/clothing/suit/storage/insp_trench  = 3,
+				/obj/item/clothing/suit/storage/detective/ironhammer  = 3,
 				/obj/item/clothing/suit/storage/leather_jacket = 3,
 				/obj/item/clothing/suit/storage/robotech_jacket = 10,
 				/obj/item/clothing/suit/storage/toggle/bomber = 5,
@@ -188,7 +188,6 @@
 /obj/random/cloth/helmet/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/head/helmet = 5,
 				/obj/item/clothing/head/helmet/riot = 5,
-				/obj/item/clothing/head/helmet/swat = 3,
 				/obj/item/clothing/head/helmet/space/void/SCAF = 1))
 
 /obj/random/cloth/helmet/low_chance
@@ -328,12 +327,10 @@
 				/obj/item/clothing/shoes/color/white = 1,
 				/obj/item/clothing/shoes/color/red = 1,
 				/obj/item/clothing/shoes/color/yellow = 1,
-				/obj/item/clothing/shoes/combat = 2,  //No slip
 				/obj/item/clothing/shoes/galoshes = 8,
 				/obj/item/clothing/shoes/jackboots = 14,
 				/obj/item/clothing/shoes/leather = 14,
 				/obj/item/clothing/shoes/reinforced = 14,
-				/obj/item/clothing/shoes/swat = 14,
 				/obj/item/clothing/shoes/workboots = 4))
 
 /obj/random/cloth/shoes/low_chance
@@ -350,19 +347,42 @@
 	icon_state = "armor-grey"
 
 /obj/random/cloth/backpack/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/backpack = 18,
+	return pickweight(list(/obj/item/weapon/storage/backpack = 8,
+				/obj/item/weapon/storage/backpack/white = 4,
+				/obj/item/weapon/storage/backpack/purple = 4,
+				/obj/item/weapon/storage/backpack/blue = 4,
+				/obj/item/weapon/storage/backpack/green = 4,
+				/obj/item/weapon/storage/backpack/orange = 4,
+				/obj/item/weapon/storage/backpack/botanist = 4,
 				/obj/item/weapon/storage/backpack/captain = 1,
 				/obj/item/weapon/storage/backpack/clown = 4,
 				/obj/item/weapon/storage/backpack/industrial = 6,
-				/obj/item/weapon/storage/backpack/medic = 6,
-				/obj/item/weapon/storage/backpack/military = 6,
+				/obj/item/weapon/storage/backpack/medical = 6,
 				/obj/item/weapon/storage/backpack/security = 6,
-				/obj/item/weapon/storage/backpack/satchel/cap = 1,
-				/obj/item/weapon/storage/backpack/satchel/eng = 6,
-				/obj/item/weapon/storage/backpack/satchel/med = 6,
-				/obj/item/weapon/storage/backpack/satchel/norm = 6,
-				/obj/item/weapon/storage/backpack/satchel/sec = 6,
-				/obj/item/weapon/storage/backpack/satchel/withwallet = 18))
+				/obj/item/weapon/storage/backpack/neotheology = 4,
+				/obj/item/weapon/storage/backpack/ironhammer = 4,
+				/obj/item/weapon/storage/backpack/military = 6,
+				/obj/item/weapon/storage/backpack/sport = 8,
+				/obj/item/weapon/storage/backpack/sport/white = 4,
+				/obj/item/weapon/storage/backpack/sport/purple = 4,
+				/obj/item/weapon/storage/backpack/sport/blue = 4,
+				/obj/item/weapon/storage/backpack/sport/green = 4,
+				/obj/item/weapon/storage/backpack/sport/orange = 4,
+				/obj/item/weapon/storage/backpack/sport/botanist = 4,
+				/obj/item/weapon/storage/backpack/satchel = 8,
+				/obj/item/weapon/storage/backpack/satchel/white = 4,
+				/obj/item/weapon/storage/backpack/satchel/purple = 4,
+				/obj/item/weapon/storage/backpack/satchel/blue = 4,
+				/obj/item/weapon/storage/backpack/satchel/green = 4,
+				/obj/item/weapon/storage/backpack/satchel/orange = 4,
+				/obj/item/weapon/storage/backpack/satchel/botanist = 4,
+				/obj/item/weapon/storage/backpack/satchel/captain = 1,
+				/obj/item/weapon/storage/backpack/satchel/industrial = 6,
+				/obj/item/weapon/storage/backpack/satchel/medical = 6,
+				/obj/item/weapon/storage/backpack/satchel/security = 6,
+				/obj/item/weapon/storage/backpack/satchel/leather/withwallet = 12,
+				/obj/item/weapon/storage/backpack/satchel/ironhammer = 4,
+				/obj/item/weapon/storage/backpack/satchel/neotheology = 4))
 
 /obj/random/cloth/backpack/low_chance
 	name = "low chance random backpack"

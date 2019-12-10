@@ -3,19 +3,19 @@
 	build_path = /obj/item/weapon/gun/launcher/syringe
 
 /datum/design/autolathe/gun/olivaw
-	name = "FS HG .32 \"Olivaw\""
+	name = "FS HG .35 \"Olivaw\""
 	build_path = /obj/item/weapon/gun/projectile/olivaw
 
 /datum/design/autolathe/gun/giskard
-	name = "FS HG .32 \"Giskard\""
+	name = "FS HG .35 \"Giskard\""
 	build_path = /obj/item/weapon/gun/projectile/giskard
 
 /datum/design/autolathe/gun/clarissa
-	name = "FS HG 9x19 \"Clarissa\""
+	name = "FS HG .35 \"Clarissa\""
 	build_path = /obj/item/weapon/gun/projectile/clarissa
 
 /datum/design/autolathe/gun/makarov
-	name = "Excelsior 9x19 \"Makarov\""
+	name = "Excelsior .35 \"Makarov\""
 	build_path = /obj/item/weapon/gun/projectile/clarissa/makarov
 
 /datum/design/autolathe/gun/mk58
@@ -27,7 +27,7 @@
 	build_path = /obj/item/weapon/gun/projectile/mk58/wood
 
 /datum/design/autolathe/gun/revolver_detective
-	name = "FS REV .38 \"Havelock\""
+	name = "FS REV .35 \"Havelock\""
 	build_path = /obj/item/weapon/gun/projectile/revolver/detective
 
 /datum/design/autolathe/gun/doublebarrel
@@ -47,39 +47,39 @@
 	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/gladstone
 
 /datum/design/autolathe/gun/revolver
-	name = "FS REV .357 \"Miller\""
+	name = "FS REV .40 \"Miller\""
 	build_path = /obj/item/weapon/gun/projectile/revolver
 
 /datum/design/autolathe/gun/revolver_consul
-	name = "FS REV .44 \"Consul\""
+	name = "FS REV .40 \"Consul\""
 	build_path = /obj/item/weapon/gun/projectile/revolver/consul
 
 /datum/design/autolathe/gun/revolver_deckard
-	name = "FS REV .44 \"Deckard\""
+	name = "FS REV .40 \"Deckard\""
 	build_path = /obj/item/weapon/gun/projectile/revolver/deckard
 
 /datum/design/autolathe/gun/lamia
-	name = "FS HG .44 \"Lamia\""
+	name = "FS HG .40 \"Lamia\""
 	build_path = /obj/item/weapon/gun/projectile/lamia
 
 /datum/design/autolathe/gun/deagle
-	name = "FS HG .50 \"Avasarala\""
+	name = "FS HG .40 \"Avasarala\""
 	build_path = /obj/item/weapon/gun/projectile/deagle
 
 /datum/design/autolathe/gun/smg_sol
-	name = "FS CAR 6.5x39 \"Sol\""
+	name = "FS CAR .25 caseless \"Sol\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/sol
 
 /datum/design/autolathe/gun/smg_sol_rds
-	name = "FS CAR 6.5x39 \"Sol\""
+	name = "FS CAR .25 caseless \"Sol\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
 /datum/design/autolathe/gun/ak47
-	name = "Excelsior 7.62x39 AK-47"
+	name = "Excelsior .30 AK-47"
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47
 
 /datum/design/autolathe/gun/ak47_fs
-	name = "FS AR 7.62x39 \"Kalashnikov\""
+	name = "FS AR .30 \"Kalashnikov\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/ak47/fs
 
 /datum/design/autolathe/gun/vintorez
@@ -87,47 +87,43 @@
 	build_path = /obj/item/weapon/gun/projectile/automatic/vintorez
 
 /datum/design/autolathe/gun/idaho
-	name = "FS SMG 9x19 \"Idaho\""
+	name = "FS SMG .35 \"Idaho\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/idaho
 
 /datum/design/autolathe/gun/atreides
-	name = "FS SMG .45 \"Atreides\""
+	name = "FS SMG .35 \"Atreides\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/atreides
 
 /datum/design/autolathe/gun/boltgun
 	name = "Excelsior .30 \"Kardashev-Mosin\""
 	build_path = /obj/item/weapon/gun/projectile/boltgun
 
-/datum/design/autolathe/gun/boltgun_fs
-	name = "FS .30 \"Kardashev-Mosin\""
-	build_path = /obj/item/weapon/gun/projectile/boltgun/fs
-
 /datum/design/autolathe/gun/heavysniper
 	name = "NT AMR .60 \"Penetrator\""
 	build_path = /obj/item/weapon/gun/projectile/heavysniper
 
 /datum/design/autolathe/gun/IH_sidearm
-	name = "FS HG 10mm \"Paco\""
+	name = "FS HG .35 \"Paco\""
 	build_path = /obj/item/weapon/gun/projectile/IH_sidearm
 
 /datum/design/autolathe/gun/IH_smg
-	name = "FS SMG 9x19 \"Straylight\""
+	name = "FS SMG .35 \"Straylight\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/IH_smg
 
 /datum/design/autolathe/gun/IH_machinepistol
-	name = "FS MP 9x19 \"Molly\""
+	name = "FS MP .35 \"Molly\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
 
 /datum/design/autolathe/gun/drozd
-	name = "Excelsior 9x19 \"Drozd\""
+	name = "Excelsior.35 \"Drozd\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/drozd
 
 /datum/design/autolathe/gun/z8
-	name = "FS CAR 5.56x45mm \"Z8 Bulldog\""
+	name = "FS CAR .20 \"Z8 Bulldog\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/z8
 
 /datum/design/autolathe/gun/IH_heavyrifle
-	name = "FS BR 5.56x45 \"Wintermute\""
+	name = "FS BR .20 \"Wintermute\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
 
 /datum/design/autolathe/gun/grenade_launcher
@@ -181,3 +177,7 @@
 /datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""
 	build_path = /obj/item/weapon/gun/energy/sniperrifle
+
+/datum/design/autolathe/gun/nt_sprayer
+	name = "NT cleansing carbine"
+	build_path = /obj/item/weapon/gun/matter/launcher/nt_sprayer

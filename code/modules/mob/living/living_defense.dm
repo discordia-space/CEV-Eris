@@ -56,8 +56,8 @@
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
-
-	return TRUE
+		return actual_damage
+	return effective_damage
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -99,7 +99,7 @@
 	if(!P.nodamage)
 		hit_impact(P.damage, hit_dir)
 		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
-	
+
 	if(P.agony > 0 && istype(P,/obj/item/projectile/bullet))
 		hit_impact(P.agony, hit_dir)
 		damage_through_armor(P.agony, HALLOSS, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))

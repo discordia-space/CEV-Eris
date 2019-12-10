@@ -93,7 +93,7 @@
 	..()
 
 /obj/item/weapon/soap/nanotrasen
-	desc = "A NanoTrasen-brand bar of soap. Smells of plasma."
+	desc = "A NeoTheology-brand bar of soap. Smells of biomatter."
 	icon_state = "soapnt"
 
 /obj/item/weapon/soap/deluxe
