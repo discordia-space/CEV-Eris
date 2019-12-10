@@ -51,6 +51,9 @@ In times of crisis, lock down the medbay to protect those within, from outside t
 
 Your second loyalty is to your career with Moebius corp, and to your coworkers in both branches of moebius. Help out your scientific colleagues, and aid in their pursuit of knowledge."
 
+	perks = list(/datum/perk/ancientpractice)
+	
+
 /obj/landmark/join/start/cmo
 	name = "Moebius Biolab Officer"
 	icon_state = "player-green-officer"
