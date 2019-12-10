@@ -1,8 +1,3 @@
-#define BASE_ACCURACY_REGEN 0.75 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.015 //Recoil reduction per ds per VIG
-#define MIN_ACCURACY_REGEN  0.4 //How low can we get with negative VIG
-#define MAX_ACCURACY_OFFSET  75 //It's both how big gun recoil can build up, and how hard you can miss
-
 /mob/living/proc/handle_recoil(var/obj/item/weapon/gun/G)
 	if(G.recoil_buildup)
 		recoil += G.recoil_buildup
@@ -44,11 +39,10 @@
 	update_recoil_cursor(G)
 
 /mob/living/proc/update_recoil_cursor()
+	to_chat(world, "update recoil cursor called. Recoil: [recoil]")
 	update_cursor()
 	var/bottom = 0
 	switch(recoil)
-		if(0 to 10)
-			;
 		if(10 to 20)
 			bottom = 10
 		if(20 to 30)
@@ -59,12 +53,12 @@
 			bottom = 50
 		if(MAX_ACCURACY_OFFSET to INFINITY)
 			bottom = MAX_ACCURACY_OFFSET
+	to_chat(world, "bottom: [bottom]")
 	if(bottom)
 		var/reduction = calc_reduction()
+		to_chat(world, "reduction: [reduction] timer: [1+(recoil-bottom)/reduction]")
 		if(reduction > 0)
 			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
-
-GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to lists of offsets, which point to icons
 
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
@@ -74,28 +68,8 @@ GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to list
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 		var/offset = round(calc_recoil())
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
-		if(!isicon(base))
-			base = icon('icons/effects/96x96.dmi')
-			var/icon/scaled = icon('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
-			base.Blend(scaled, ICON_OVERLAY, x = 32, y = 32)
-
-			for(var/dir in list(NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
-				var/icon/overlay = icon('icons/obj/gun_cursors/standard/standard.dmi', "[dir]")
-				var/pixel_y
-				var/pixel_x
-				if(dir & NORTH)
-					pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-				if(dir & SOUTH)
-					pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-				if(dir & EAST)
-					pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-				if(dir & WEST)
-					pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-				to_chat(world, "overlay [dir] [overlay] [pixel_x] [pixel_y]")
-				base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
-			add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
-		if(base)
-			client.mouse_pointer_icon = base
+		ASSERT(isicon(base))
+		client.mouse_pointer_icon = base
 
 /mob/living/proc/remove_cursor()
 	if(client)
@@ -113,3 +87,26 @@ GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to list
 		L = GLOB.cursor_icons[icon_file]
 	L.Add("[offset]")
 	L["[offset]"] = icon
+
+/proc/make_cursor_icon(var/icon_file, var/offset)
+	to_chat(world, "make cursor icon called.")
+	var/icon/base = icon('icons/effects/96x96.dmi')
+	var/icon/scaled = icon('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
+	base.Blend(scaled, ICON_OVERLAY, x = 32, y = 32)
+
+	for(var/dir in list(NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
+		var/icon/overlay = icon('icons/obj/gun_cursors/standard/standard.dmi', "[dir]")
+		var/pixel_y
+		var/pixel_x
+		if(dir & NORTH)
+			pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir & SOUTH)
+			pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir & EAST)
+			pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir & WEST)
+			pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		to_chat(world, "overlay [dir] [overlay] [pixel_x] [pixel_y]")
+		base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
+	add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
+	return base
