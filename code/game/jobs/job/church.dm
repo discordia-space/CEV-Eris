@@ -165,8 +165,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/church/janitor
 
 	stat_modifiers = list(
-		STAT_ROB = 10,
+		STAT_ROB = 15,
 		STAT_BIO = 10,
+		STAT_VIG = 15
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
