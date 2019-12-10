@@ -43,6 +43,10 @@
 	var/mob/living/carbon/human/patient = null
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS, AUTODOC_BLOOD)
 
+/datum/autodoc/New(obj/new_holder)
+	. = ..()
+	holder = new_holder
+
 /datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
 	patient = human
 /datum/autodoc/proc/scan_user()
