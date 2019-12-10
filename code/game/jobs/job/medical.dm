@@ -109,6 +109,8 @@ You are expected to be knowledgeable and competent in at least basic treatment, 
 
 Your second loyalty is to your career with Moebius corp, and to your coworkers in both branches of moebius. Help out your scientific colleagues, and aid in their pursuit of knowledge."
 
+	perks = list(/datum/perk/ancientpractice)
+
 /obj/landmark/join/start/doctor
 	name = "Moebius Doctor"
 	icon_state = "player-green"

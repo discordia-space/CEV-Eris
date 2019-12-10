@@ -24,6 +24,7 @@
 	var/lastpuke = 0
 
 	var/cpr_time = 1.0
+	var/purge_time = 1.0
 	nutrition = 400.0//Carbon
 
 

@@ -681,6 +681,13 @@ var/list/rank_prefix = list(\
 	if(!H || !(H.functions & BODYPART_REAGENT_INTAKE))
 		return FALSE
 	return TRUE
+/mob/living/carbon/human/proc/check_has_hand()
+	var/obj/item/organ/external/H1 = get_organ(BP_L_ARM)
+	var/obj/item/organ/external/H2 = get_organ(BP_R_ARM)
+	if((!H1 && !H2) || !((H1.functions & BODYPART_GRASP) && (H2.functions & BODYPART_GRASP)))
+		return FALSE
+	return TRUE
+
 
 /mob/living/carbon/human/vomit()
 

@@ -28,3 +28,15 @@
 	cooldown_time = world.time + 7 MINUTES
 	addtimer(CALLBACK(src, .proc/deactivate), 1 MINUTES)
 	return ..()
+
+/datum/perk/ancientpractice
+	name = "Ancient Healing"
+	var/cooldown_time = 0
+	active = FALSE
+	toggleable = TRUE
+/datum/perk/ancientpractice/activate()
+	if(world.time < cooldown_time)
+		return FALSE
+	cooldown_time = world.time + 4 MINUTES
+	addtimer(CALLBACK(src, .proc/deactivate), 2 MINUTES)
+	return ..()
