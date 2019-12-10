@@ -89,7 +89,7 @@
 				H.visible_message(SPAN_DANGER("\The [H] performs CPR on \the [src]!"))
 				to_chat(src, SPAN_NOTICE("You feel a breath of fresh air enter your lungs. It feels good."))
 				to_chat(H, SPAN_WARNING("Repeat at least every 7 seconds."))
-			else if (istype(H) && health < HEALTH_THRESHOLD_SOFTCRIT && health > HEALTH_THRESHOLD_DEAD && (H.targeted_organ == BP_L_ARM || H.targeted_organ == BP_R_ARM) && H.stats.getPerk(/datum/perk/ancientpractice)?.is_active())
+			else if (istype(H) && health < 40 && health > HEALTH_THRESHOLD_DEAD && (H.targeted_organ == BP_L_ARM || H.targeted_organ == BP_R_ARM) && H.stats.getPerk(/datum/perk/ancientpractice)?.is_active())
 				if(!H.check_has_hand())
 					to_chat(H, SPAN_DANGER("You don't have any working hands, you cannot purge!"))
 				if(!check_has_hand())
