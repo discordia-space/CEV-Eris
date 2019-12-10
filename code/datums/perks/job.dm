@@ -37,6 +37,6 @@
 /datum/perk/ancientpractice/activate()
 	if(world.time < cooldown_time)
 		return FALSE
-	cooldown_time = world.time + 4 MINUTES
-	addtimer(CALLBACK(src, .proc/deactivate), 2 MINUTES)
+	cooldown_time = world.time + 5 MINUTES
+	addtimer(CALLBACK(src, .proc/deactivate), 3 MINUTES)
 	return ..()

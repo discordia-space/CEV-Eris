@@ -100,12 +100,12 @@
 
 				purge_time = 0
 
-				spawn(30)
+				spawn(15)
 					purge_time = 1
 
 				H.visible_message(SPAN_DANGER("\The [H] is trying purge \the [src]'s veins of toxins!"))	
 
-				if(!do_after(H, 30, src))
+				if(!do_after(H, 15, src))
 					return
 				var/purge_efficiency = 3 + max(0, 2 * (H.stats.getStat(STAT_BIO) / 10))
 				adjustToxLoss(-(min(getToxLoss(), purge_efficiency)))
