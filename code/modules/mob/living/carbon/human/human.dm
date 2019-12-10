@@ -1120,10 +1120,6 @@ var/list/rank_prefix = list(\
 	else
 		return 0
 
-#define MODIFICATION_ORGANIC 1
-#define MODIFICATION_SILICON 2
-#define MODIFICATION_REMOVED 3
-
 //Needed for augmentation
 /mob/living/carbon/human/proc/rebuild_organs(from_preference)
 	if(!species)
@@ -1209,10 +1205,6 @@ var/list/rank_prefix = list(\
 	species.organs_spawned(src)
 
 	update_body()
-
-#undef MODIFICATION_REMOVED
-#undef MODIFICATION_ORGANIC
-#undef MODIFICATION_SILICON
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
