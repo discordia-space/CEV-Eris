@@ -99,7 +99,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/icon_on
 	var/icon_off
 	var/type_butt = null
-	var/chem_volume = 0
+	var/chem_volume = 15
 	var/smoketime = 0
 	var/matchmes = "USER lights NAME with FLAME"
 	var/lightermes = "USER lights NAME with FLAME"
@@ -236,7 +236,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
-
+	
 /obj/item/clothing/mask/smokable/cigarette/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
