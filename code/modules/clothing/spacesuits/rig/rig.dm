@@ -113,8 +113,7 @@
 		return visor.vision.glasses
 
 /obj/item/weapon/rig/examine()
-	to_chat(usr, "This is \icon[src][src.name].")
-	to_chat(usr, "[src.desc]")
+	..()
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
@@ -125,8 +124,8 @@
 		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
 		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
 
-/obj/item/weapon/rig/New()
-	..()
+/obj/item/weapon/rig/Initialize()
+	. = ..()
 
 	item_state = icon_state
 	wires = new(src)
@@ -136,7 +135,7 @@
 		allowed |= extra_allowed
 
 	if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
-		locked = 0
+		locked = FALSE
 
 	spark_system = new()
 	spark_system.set_up(5, 0, src)

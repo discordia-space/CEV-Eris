@@ -363,8 +363,8 @@
 		jets.toggle()
 	return 1
 
-/obj/item/rig_module/maneuvering_jets/New()
-	..()
+/obj/item/rig_module/maneuvering_jets/Initialize()
+	. = ..()
 	jets = new(src)
 
 //Some slightly complex setup here to make hardsuit jetpacks work right
