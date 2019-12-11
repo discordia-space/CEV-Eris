@@ -8,7 +8,7 @@
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
 	var/filling_states				// List of percentages full that have icons
-	
+
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -18,14 +18,11 @@
 	if(N)
 		amount_per_transfer_from_this = N
 
-/obj/item/weapon/reagent_containers/New()
+/obj/item/weapon/reagent_containers/Initialize()
+	create_reagents(volume)
+	. = ..() // This creates initial reagents
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
-	create_reagents(volume)
-	if(preloaded_reagents)
-		for(var/reagent in preloaded_reagents)
-			reagents.add_reagent(reagent, preloaded_reagents[reagent])
-	..()
 
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
@@ -201,7 +198,7 @@
 		return FALSE
 	if(!reagents.total_volume)
 		return FALSE
-	
+
 	// nothing to separate
 	if(reagents.reagent_list.len <= 1)
 		return FALSE
@@ -221,12 +218,11 @@
 			if(!C.reagents.get_free_space())
 				containers.Remove(C)
 				continue
-			
+
 			var/amount = min(C.reagents.get_free_space(), amount_to_transfer)
 			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
 				C.reagents.add_reagent(R.id, amount, R.get_data())
 				reagents.remove_reagent(R.id, amount)
 				amount_to_transfer = max(0,amount_to_transfer - amount)
 	return TRUE
-		
-		
+

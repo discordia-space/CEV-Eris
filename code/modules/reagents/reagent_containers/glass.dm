@@ -42,12 +42,12 @@
 		/obj/machinery/biogenerator,
 		/obj/machinery/constructable_frame,
 		/obj/machinery/radiocarbon_spectrometer,
-		/obj/machinery/centrifuge, 
+		/obj/machinery/centrifuge,
 		/obj/machinery/electrolyzer
 		)
 
-/obj/item/weapon/reagent_containers/glass/New()
-	..()
+/obj/item/weapon/reagent_containers/glass/Initialize()
+	. = ..()
 	base_name = name
 
 /obj/item/weapon/reagent_containers/glass/proc/has_lid()
