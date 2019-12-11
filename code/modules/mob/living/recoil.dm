@@ -3,7 +3,6 @@
 		recoil += G.recoil_buildup
 		update_recoil(G)
 
-
 /mob/living/proc/calc_reduction()
 	return max(BASE_ACCURACY_REGEN + stats.getStat(STAT_VIG)*VIG_ACCURACY_REGEN, MIN_ACCURACY_REGEN)
 
@@ -39,26 +38,10 @@
 	update_recoil_cursor(G)
 
 /mob/living/proc/update_recoil_cursor()
-	to_chat(world, "update recoil cursor called. Recoil: [recoil]")
 	update_cursor()
-	var/bottom = 0
-	switch(recoil)
-		if(10 to 20)
-			bottom = 10
-		if(20 to 30)
-			bottom = 20
-		if(30 to 50)
-			bottom = 30
-		if(50 to MAX_ACCURACY_OFFSET)
-			bottom = 50
-		if(MAX_ACCURACY_OFFSET to INFINITY)
-			bottom = MAX_ACCURACY_OFFSET
-	to_chat(world, "bottom: [bottom]")
-	if(bottom)
-		var/reduction = calc_reduction()
-		to_chat(world, "reduction: [reduction] timer: [1+(recoil-bottom)/reduction]")
-		if(reduction > 0)
-			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
+	var/reduction = calc_reduction()
+	if(reduction > 0 && recoil > 0)
+		recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1+round(recoil/10)/reduction)
 
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
@@ -89,7 +72,6 @@
 	L["[offset]"] = icon
 
 /proc/make_cursor_icon(var/icon_file, var/offset)
-	to_chat(world, "make cursor icon called.")
 	var/icon/base = icon('icons/effects/96x96.dmi')
 	var/icon/scaled = icon('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
 	base.Blend(scaled, ICON_OVERLAY, x = 32, y = 32)
@@ -106,7 +88,6 @@
 			pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
 		if(dir & WEST)
 			pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
-		to_chat(world, "overlay [dir] [overlay] [pixel_x] [pixel_y]")
 		base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
 	add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
 	return base
