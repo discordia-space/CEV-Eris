@@ -31,6 +31,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
 /obj/item/proc/resolve_attackby(atom/A, mob/user, params)
+	if(item_flags & ABSTRACT)//Abstract items cannot be interacted with. They're not real.
+		return 1
 	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)

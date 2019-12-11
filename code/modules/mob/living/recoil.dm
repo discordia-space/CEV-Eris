@@ -4,6 +4,9 @@
 #define MAX_ACCURACY_OFFSET  75 //It's both how big gun recoil can build up, and how hard you can miss
 
 /mob/living/proc/handle_recoil(var/obj/item/weapon/gun/G)
+	if(G.one_hand_penalty)//If the gun has a two handed penalty and is not weilded.
+		if(!G.wielded)
+			recoil += G.one_hand_penalty //Then the one hand penalty wil lbe added to the recoil.
 	if(G.recoil_buildup)
 		recoil += G.recoil_buildup
 		update_recoil(G)
@@ -21,7 +24,6 @@
 		//About the following code. This code is a mess, and we SHOULD NOT USE WORLD TIME FOR RECOIL
 		var/timed_reduction = min(time**2, 400)
 		recoil -= timed_reduction * calc_reduction()
-
 		if(recoil <= 0)
 			recoil = 0
 			last_recoil_update = 0

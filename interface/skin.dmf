@@ -474,6 +474,9 @@ macro "hotkeymode"
 	elem 
 		name = "S+UP"
 		command = "MoveKey 2 0"
+	elem
+		name = "SHIFT+X"
+		command = ".wield"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
