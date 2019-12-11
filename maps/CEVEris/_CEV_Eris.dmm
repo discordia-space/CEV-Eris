@@ -70755,6 +70755,9 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay/iso)
 "dcy" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
 "dcz" = (
@@ -71925,6 +71928,9 @@
 	name = "plastic table frame"
 	},
 /obj/machinery/reagentgrinder,
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "deZ" = (
@@ -72068,6 +72074,15 @@
 /obj/item/weapon/storage/box/pillbottles,
 /obj/item/weapon/storage/box/pillbottles,
 /obj/item/weapon/storage/box/pillbottles,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "dfp" = (
@@ -73286,6 +73301,11 @@
 /obj/item/stack/material/plasma,
 /obj/item/weapon/hand_labeler,
 /obj/item/weapon/packageWrap,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "dhW" = (
@@ -74294,10 +74314,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
-"dka" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/eris/medical/chemistry)
 "dkb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -76780,7 +76796,7 @@
 /area/eris/maintenance/section1deck1central)
 "dpl" = (
 /obj/machinery/chem_master,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "dpm" = (
 /obj/machinery/alarm{
@@ -76938,7 +76954,7 @@
 /area/eris/maintenance/junk)
 "dpF" = (
 /obj/machinery/chemical_dispenser,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "dpG" = (
 /obj/machinery/atmospherics/binary/pump,
@@ -77807,6 +77823,11 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
 "drA" = (
@@ -78313,7 +78334,7 @@
 	pixel_y = -8
 	},
 /obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "dsO" = (
 /obj/structure/multiz/stairs/active,
@@ -102461,7 +102482,7 @@
 /obj/item/weapon/storage/box,
 /obj/item/weapon/storage/box,
 /obj/item/weapon/storage/box,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "euW" = (
 /obj/structure/table/standard,
@@ -102470,7 +102491,7 @@
 	icon_state = "pipe-y";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "euX" = (
 /obj/machinery/light{
@@ -102485,7 +102506,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "euY" = (
 /obj/random/junk/low_chance,
@@ -102517,12 +102538,12 @@
 "evd" = (
 /obj/structure/table/standard,
 /obj/machinery/centrifuge,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "evf" = (
 /obj/machinery/light,
 /obj/machinery/chemical_dispenser,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "evg" = (
 /obj/structure/table/standard,
@@ -102535,7 +102556,7 @@
 	},
 /obj/item/weapon/storage/box/beakers,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "evh" = (
 /obj/machinery/door/firedoor,
@@ -102699,7 +102720,7 @@
 	pixel_x = 24
 	},
 /obj/structure/table/standard,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "evw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -108338,14 +108359,14 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white/cargo,
+/turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "gQw" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "gUn" = (
 /obj/structure/table/standard,
@@ -108391,7 +108412,7 @@
 /obj/structure/table/standard,
 /obj/machinery/chem_heater,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "jDU" = (
 /obj/machinery/door/firedoor,
@@ -108425,6 +108446,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"jRe" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/medical/chemstor)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
@@ -108455,11 +108482,11 @@
 /obj/item/weapon/storage/box,
 /obj/item/weapon/storage/box,
 /obj/item/weapon/storage/box,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "lcL" = (
 /obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "liQ" = (
 /obj/structure/table/standard{
@@ -108586,6 +108613,11 @@
 	pixel_x = 11;
 	pixel_y = 0
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "nZb" = (
@@ -108609,6 +108641,14 @@
 /obj/landmark/join/start/chemist,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white/brown_platform,
+/area/eris/medical/chemistry)
+"ozX" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
 "oKO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -108779,6 +108819,14 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"wEJ" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/chemistry)
 "wOW" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/structure/catwalk,
@@ -247491,7 +247539,7 @@ duL
 dvs
 lcL
 gQw
-dka
+lcL
 evf
 dte
 aaa
@@ -248098,7 +248146,7 @@ dsg
 dnP
 dtI
 dnP
-dka
+lcL
 dty
 aaa
 aaa
@@ -248300,7 +248348,7 @@ oih
 jtf
 euW
 evd
-dka
+lcL
 dty
 aaa
 dqI
@@ -248502,7 +248550,7 @@ lUc
 dnP
 dtI
 dnP
-dka
+lcL
 dty
 aaa
 dqI
@@ -248699,7 +248747,7 @@ dcB
 dte
 liQ
 dkl
-dvs
+ozX
 dvs
 euV
 dtI
@@ -248901,7 +248949,7 @@ dzO
 dte
 deY
 dkl
-dvs
+ozX
 dvs
 lcL
 dtI
@@ -249103,7 +249151,7 @@ dcD
 dte
 dfo
 nGz
-dvs
+wEJ
 dvs
 dsN
 euX
@@ -288694,7 +288742,7 @@ dUR
 dUW
 alG
 egQ
-dPN
+jRe
 edR
 dPN
 dQb
