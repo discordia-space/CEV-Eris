@@ -111,8 +111,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/New()
 	..()
 	reagent_flags |= NO_REACT // so it doesn't react until you light it
-	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
-	reagents.add_reagent("nicotine", 5)
+	//create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
+	//reagents.add_reagent("nicotine", 5)
 		
 /obj/item/clothing/mask/smokable/Process()
 	var/turf/location = get_turf(src)
