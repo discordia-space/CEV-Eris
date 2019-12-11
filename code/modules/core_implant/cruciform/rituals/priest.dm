@@ -182,7 +182,7 @@
 
 	var/mob/M = CI.wearer
 
-	if(ishuman(M) && !CI.wearer.stat == DEAD)
+	if(ishuman(M) && M.is_dead())
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
 		E.take_damage(15)
@@ -191,7 +191,7 @@
 		CI.uninstall()
 		return TRUE
 
-	else if(ismob(M) && !CI.wearer.stat == DEAD) //Cruciforms can't normally be placed on non-humans, but this is still here for sanity purposes.
+	else if(ismob(M) && M.is_dead()) //Cruciforms can't normally be placed on non-humans, but this is still here for sanity purposes.
 		CI.name = "[M]'s Cruciform"
 		CI.uninstall()
 		return TRUE
