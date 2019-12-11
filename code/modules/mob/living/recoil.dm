@@ -91,3 +91,11 @@
 		base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
 	add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
 	return base
+
+/proc/send_all_cursor_icons(var/client/C)
+	var/list/cursor_icons = GLOB.cursor_icons
+	for(var/icon_file in cursor_icons)
+		var/list/icons = cursor_icons[icon_file]
+		for(var/offset in icons)
+			var/icon/I = icons[offset]
+			C << I
