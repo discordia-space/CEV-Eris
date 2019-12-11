@@ -56933,7 +56933,7 @@
 /area/eris/quartermaster/storage)
 "cwX" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -59121,7 +59121,7 @@
 /area/eris/command/meeting_room)
 "cBC" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cBD" = (
@@ -71927,7 +71927,7 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
@@ -74454,7 +74454,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "dkp" = (
 /obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -98564,7 +98564,7 @@
 /area/eris/rnd/xenobiology/xenoflora)
 "eme" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
@@ -108793,7 +108793,7 @@
 /area/eris/medical/chemistry)
 "vGf" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_medchem";
 	name = "Maintenance Hatch Control";
