@@ -377,10 +377,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				))
 	return designs_list
 
-/obj/machinery/computer/rdconsole/attack_ai(mob/user)
-	. = ..()
-	ui_interact(user)
-
 /obj/machinery/computer/rdconsole/attack_hand(mob/user)
 	if(..())
 		return
