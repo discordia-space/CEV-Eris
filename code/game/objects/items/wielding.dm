@@ -9,15 +9,13 @@
 	var/force_wielded = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
 
 
-/mob/proc/do_wield()//The proc we actually care about.
-	if(!isliving(src))//So ghosts can't do this.
-		return
+/mob/living/proc/do_wield()//The proc we actually care about.
 	var/obj/item/I = get_active_hand()
 	if(!I)
 		return
 	I.attempt_wield(src)
 
-/obj/item/proc/unwield(mob/user)
+/obj/item/proc/unwield(mob/living/user)
 	if(!wielded || !user)
 		return
 	wielded = FALSE
@@ -44,7 +42,7 @@
 		user.drop_from_inventory(O)
 	return
 
-/obj/item/proc/wield(mob/user)
+/obj/item/proc/wield(mob/living/user)
 	if(wielded)
 		return
 	if(!is_held_twohanded(user))
@@ -63,12 +61,12 @@
 	if(user)
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
-	user.visible_message(SPAN_WARNING("[user] grabs the [initial(name)] with both hands."))
+	user.visible_message(SPAN_WARNING("[user] grabs \the [initial(name)] with both hands."))
 	if(wieldsound)
 		playsound(loc, wieldsound, 50, 1)
 	var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
 	O.name = "[name] - offhand"
-	O.desc = "Your second grip on the [name]"
+	O.desc = "Your second grip on \the [name]"
 	user.put_in_inactive_hand(O)
 	return
 
@@ -126,18 +124,16 @@
 
 /obj/item/weapon/twohanded/offhand/unwield()
 	wielded = FALSE
-	loc = null
 	if(!QDELETED(src))
 		qdel(src)
 
 /obj/item/weapon/twohanded/offhand/wield()
 	if(wielded)//Only delete if we're wielded
 		wielded = FALSE
-		loc = null
 		if(!QDELETED(src))
 			qdel(src)
 
-/obj/item/weapon/twohanded/offhand/dropped(mob/user)
+/obj/item/weapon/twohanded/offhand/dropped(mob/living/user)
 	..()
 	var/obj/item/I = user.get_active_hand()
 	var/obj/item/II = user.get_inactive_hand()
@@ -145,11 +141,10 @@
 		I.unwield(user)
 	if(II)
 		II.unwield(user)
-	loc = null
 	if(!QDELETED(src))
 		qdel(src)
 
 
-/mob/verb/wield_hotkey()//For the hotkeys. Not sure where this should be put. But it pertains to two-handing so *shrug*.
+/mob/living/verb/wield_hotkey()//For the hotkeys. Not sure where this should be put. But it pertains to two-handing so *shrug*.
 	set name = ".wield"
 	do_wield()
