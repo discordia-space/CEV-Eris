@@ -561,6 +561,8 @@
 
 
 /obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
+	set category = "Object"
+
 	if (!silenced || !silenced.can_remove)
 		to_chat(user, "No silencer is installed on \the [src]")
 		verbs -= /obj/item/weapon/gun/proc/remove_silencer
