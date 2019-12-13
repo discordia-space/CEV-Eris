@@ -164,9 +164,6 @@
 			if(connected)
 				return
 
-/obj/machinery/body_scanconsole/attack_ai(user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/body_scanconsole/attack_hand(user as mob)
 	if(..())
 		return

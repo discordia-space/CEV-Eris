@@ -157,10 +157,6 @@
 
 	return
 
-//Allows AIs to use door_timer, see human attack_hand function below
-/obj/machinery/door_timer/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
-
 //Check access for shower temp change of for other dangerous functions
 /obj/machinery/door_timer/proc/allowed_advanced(var/mob/user as mob)
 	var/obj/item/id = user.GetIdCard()
