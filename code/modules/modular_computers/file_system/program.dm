@@ -40,7 +40,7 @@
 
 /datum/computer_file/program/clone()
 	var/datum/computer_file/program/temp = ..()
-	temp.required_access = required_access
+	temp.required_access = required_access.Copy()
 	temp.nanomodule_path = nanomodule_path
 	temp.filedesc = filedesc
 	temp.program_icon_state = program_icon_state
