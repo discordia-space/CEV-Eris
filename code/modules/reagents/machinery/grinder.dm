@@ -251,8 +251,8 @@
 	name = "Industrial Grinder"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "juicer1" //placeholder
+	icon = 'icons/obj/machines/grinder.dmi'
+	icon_state = "grinder"
 	reagent_flags = NO_REACT
 	circuit = /obj/item/weapon/circuitboard/industrial_grinder
 	limit = 25
@@ -275,6 +275,12 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	grind()
+
+/obj/machinery/reagentgrinder/industrial/update_icon()
+	overlays.Cut()
+
+	if(panel_open)
+		overlays.Add(image(icon, "[icon_state]_p"))
 
 /obj/machinery/reagentgrinder/industrial/ui_data()
 	var/list/data = ..()
