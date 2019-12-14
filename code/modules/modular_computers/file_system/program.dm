@@ -2,7 +2,7 @@
 /datum/computer_file/program
 	filetype = "PRG"
 	filename = "UnknownProgram"						// File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!
-	var/required_access = null						// List of required accesses to run/download the program.
+	var/required_access = null						// Access level required to run/download the program.
 	var/requires_access_to_run = 1					// Whether the program checks for required_access when run.
 	var/requires_access_to_download = 1				// Whether the program checks for required_access when downloading.
 	var/datum/nano_module/NM = null					// If the program uses NanoModule, put it here and it will be automagically opened. Otherwise implement ui_interact.

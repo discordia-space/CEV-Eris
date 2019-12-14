@@ -28,11 +28,12 @@
 		totalFlavor += data[data[i]]
 
 	if(totalFlavor != 0)
-		for(var/i in 1 to data.len) //cull the tasteless
-			if(data[data[i]]/totalFlavor * 100 < 10)
-				data[data[i]] = null
-				data -= data[i]
-				data -= null
+		var/flavors_to_remove = list()
+		for(var/flavor in data) //cull the tasteless
+			if(data[flavor]/totalFlavor * 100 < 10)
+				flavors_to_remove += flavor
+
+		data -= flavors_to_remove
 
 /datum/reagent/organic/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(!injectable)

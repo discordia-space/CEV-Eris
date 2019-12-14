@@ -20,8 +20,8 @@
 	var/sanity_gain = 0.2 //Per bite
 	var/cooked = FALSE
 
-/obj/item/weapon/reagent_containers/food/snacks/New()
-	..()
+/obj/item/weapon/reagent_containers/food/snacks/Initialize()
+	. = ..()
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
 
