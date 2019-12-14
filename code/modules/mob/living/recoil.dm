@@ -23,6 +23,11 @@
 			last_recoil_update = world.time
 	return recoil
 
+/mob/living/proc/calc_timer()
+	if(recoil <= 0)
+		return 0
+	return round(1+((recoil/10)/calc_reduction()))
+
 //Called after setting recoil
 /mob/living/proc/update_recoil(var/obj/item/weapon/gun/G)
 	if(recoil <= 0)
@@ -39,9 +44,10 @@
 
 /mob/living/proc/update_recoil_cursor()
 	update_cursor()
-	var/reduction = calc_reduction()
-	if(reduction > 0 && recoil > 0)
-		recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1+round(recoil/10)/reduction)
+	var/timer = calc_timer()
+	if(timer > 0)
+		deltimer(recoil_timer)
+		recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), timer, TIMER_STOPPABLE)
 
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
