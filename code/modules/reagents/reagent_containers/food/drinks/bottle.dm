@@ -19,9 +19,9 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Initialize()
-	. = ..()
 	icon_state_full = "[icon_state]"
 	icon_state_empty = "[icon_state]_empty"
+	. = ..()
 	if(isGlass)
 		unacidable = TRUE
 
