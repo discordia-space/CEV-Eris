@@ -13,6 +13,7 @@
 	melee_damage_upper = 3 //He's a ranged roach
 
 	breath_required_type = NONE
+	min_breath_required_type = 0
 	min_breath_poison_type = 0.4
 
 	min_air_pressure = 0
