@@ -209,7 +209,7 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/clothing/shoes = user.shoes
 	if(!istype(shoes))
 		return damage
-	return damage + (shoes ? shoes.force : 0)
+	return damage + (shoes ? shoes.force / 5 : 0)
 
 /datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
