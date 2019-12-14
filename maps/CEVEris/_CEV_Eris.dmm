@@ -26332,6 +26332,9 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
+/obj/item/weapon/storage/belt/utility,
+/obj/item/weapon/tool/crowbar,
+/obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "bgZ" = (
@@ -27519,9 +27522,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bjC" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/tool/crowbar,
-/obj/item/clothing/glasses/welding,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "bjD" = (
@@ -71924,13 +71925,10 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deY" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/obj/machinery/reagentgrinder/portable,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
+/obj/machinery/reagentgrinder/industrial,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "deZ" = (
