@@ -18,11 +18,12 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/on_reagent_change()
 	update_icon()
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/New()
+/obj/item/weapon/reagent_containers/food/drinks/bottle/Initialize()
+	. = ..()
 	icon_state_full = "[icon_state]"
 	icon_state_empty = "[icon_state]_empty"
-	..()
-	if(isGlass) unacidable = 1
+	if(isGlass)
+		unacidable = TRUE
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()

@@ -260,7 +260,7 @@ Class Procs:
 			return rating
 		else
 			rating = P.rating
-		
+
 	return rating
 
 /obj/machinery/proc/assign_uid()
@@ -296,15 +296,16 @@ Class Procs:
 
 
 //Tool qualities are stored in \code\__defines\tools_and_qualities.dm
-/obj/machinery/proc/default_deconstruction(var/obj/item/I, var/mob/user)
+/obj/machinery/proc/default_deconstruction(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
+	var/qualities = list(QUALITY_SCREW_DRIVING)
+
+	if(panel_open)
+		qualities += QUALITY_PRYING
+
+	var/tool_type = I.get_tool_type(user, qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_PRYING)
-			if(!panel_open)
-				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
-				return TRUE
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()

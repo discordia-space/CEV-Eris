@@ -89,10 +89,9 @@ Procs:
 	else
 		tree.level += 1
 
-	for(var/D in T.unlocks_designs)
-		var/datum/design/design = locate(D) in SSresearch.all_designs
-		if(design)
-			AddDesign2Known(design)
+	for(var/id in T.unlocks_designs)
+		AddDesign2Known(SSresearch.get_design(id))
+
 	return TRUE
 
 /datum/research/proc/download_from(datum/research/O)

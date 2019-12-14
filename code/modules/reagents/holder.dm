@@ -569,7 +569,7 @@
 	for(var/r in reagent_list)
 		var/datum/reagent/R = r
 		// list in a list because Byond merges the first list...
-		contents.Add(list(list("name" = R.name, "volume" = R.volume)))
+		contents.Add(list(list("name" = R.name, "volume" = R.volume, "id" = R.id)))
 
 	data["contents"] = contents
 

@@ -30,9 +30,6 @@
 	supported_programs = list()
 	restricted_programs = list()
 
-/obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as mob)
 	if(..())
 		return 1

@@ -24,9 +24,6 @@
 	density = 0
 	CheckFaceFlag = 0
 
-/obj/machinery/computer/atmoscontrol/attack_ai(var/mob/user as mob)
-	ui_interact(user)
-
 /obj/machinery/computer/atmoscontrol/attack_hand(mob/user)
 	if(..())
 		return 1

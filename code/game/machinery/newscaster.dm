@@ -225,9 +225,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			return
 	return
 
-/obj/machinery/newscaster/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
 
 	if(!src.ispowered || src.isbroken)
@@ -755,9 +752,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		else
 			to_chat(user, SPAN_NOTICE("This does nothing."))
 	src.update_icon()
-
-/obj/machinery/newscaster/attack_ai(mob/user as mob)
-	return src.attack_hand(user) //or maybe it'll have some special functions? No idea.
 
 /datum/news_photo
 	var/is_synth = 0

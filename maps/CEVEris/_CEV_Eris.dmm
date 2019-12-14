@@ -26332,6 +26332,9 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
+/obj/item/weapon/storage/belt/utility,
+/obj/item/weapon/tool/crowbar,
+/obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "bgZ" = (
@@ -27519,9 +27522,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bjC" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/tool/crowbar,
-/obj/item/clothing/glasses/welding,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "bjD" = (
@@ -56933,7 +56934,7 @@
 /area/eris/quartermaster/storage)
 "cwX" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -59121,7 +59122,7 @@
 /area/eris/command/meeting_room)
 "cBC" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cBD" = (
@@ -71924,13 +71925,10 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deY" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/obj/machinery/reagentgrinder,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
+/obj/machinery/reagentgrinder/industrial,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "deZ" = (
@@ -74454,7 +74452,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "dkp" = (
 /obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -98564,7 +98562,7 @@
 /area/eris/rnd/xenobiology/xenoflora)
 "eme" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
@@ -108793,7 +108791,7 @@
 /area/eris/medical/chemistry)
 "vGf" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_medchem";
 	name = "Maintenance Hatch Control";

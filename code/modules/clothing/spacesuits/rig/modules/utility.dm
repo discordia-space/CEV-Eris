@@ -363,8 +363,8 @@
 		jets.toggle()
 	return 1
 
-/obj/item/rig_module/maneuvering_jets/New()
-	..()
+/obj/item/rig_module/maneuvering_jets/Initialize()
+	. = ..()
 	jets = new(src)
 
 //Some slightly complex setup here to make hardsuit jetpacks work right
@@ -395,16 +395,15 @@
 	active = 1
 	usable = 1
 
-
 	interface_name = "Autodoc"
 	interface_desc = "Module with set of instruments that is capable to preform surgery on user"
 	var/datum/autodoc/autodoc_processor
+	var/autodoc_type = /datum/autodoc
 	var/turf/wearer_loc = null
 
 /obj/item/rig_module/autodoc/Initialize()
 	. = ..()
-	autodoc_processor = new()
-	autodoc_processor.holder = src
+	autodoc_processor = new autodoc_type(src)
 	autodoc_processor.damage_heal_amount = 20
 
 /obj/item/rig_module/autodoc/Destroy()
@@ -443,8 +442,5 @@
 /obj/item/rig_module/autodoc/deactivate()
 	return
 
-/obj/item/rig_module/autodoc/comercial/New()
-	..()
-	autodoc_processor = new/datum/autodoc/capitalist_autodoc()
-	autodoc_processor.holder = src
-	autodoc_processor.damage_heal_amount = 20
+/obj/item/rig_module/autodoc/commercial
+	autodoc_type = /datum/autodoc/capitalist_autodoc

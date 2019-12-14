@@ -148,9 +148,6 @@
 		shatter()
 		return
 
-/obj/machinery/door/window/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/door/window/attack_hand(mob/user as mob)
 
 	if(ishuman(user))

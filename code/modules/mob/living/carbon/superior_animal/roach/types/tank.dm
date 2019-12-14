@@ -8,9 +8,9 @@
 	health = 60
 	move_to_delay = 7
 	mob_size = MOB_MEDIUM
-	density = 1
+	density = TRUE
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/panzer
 
-
-
-
+// Panzers won't slip over on water or soap.
+/mob/living/carbon/superior_animal/roach/tank/slip(var/slipped_on,stun_duration=8)
+	return FALSE

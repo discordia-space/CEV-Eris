@@ -7,6 +7,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
+	var/list/can_hold_extra = list() //List of objects which this item can additionally store not defined by the parent.
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
@@ -18,6 +19,10 @@
 	var/allow_quick_gather = null //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
+
+/obj/item/weapon/storage/New()
+	can_hold |= can_hold_extra
+	. = ..()
 
 /HUD_element/threePartBox/storageBackground
 	start_icon = icon("icons/HUD/storage_start.png")

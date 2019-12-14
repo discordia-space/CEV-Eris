@@ -258,9 +258,6 @@
 	onclose(user, "message")
 	return
 
-/obj/machinery/computer/message_monitor/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
 	if(isnull(linkedServer))
 		to_chat(user, SPAN_WARNING("Could not complete brute-force: Linked Server Disconnected!"))
