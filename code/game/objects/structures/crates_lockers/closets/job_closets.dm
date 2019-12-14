@@ -82,7 +82,7 @@
 
 /obj/structure/closet/custodial/populate_contents()
 	new /obj/item/clothing/under/rank/church(src)
-	new /obj/item/weapon/storage/belt/church(src)
+	new /obj/item/weapon/storage/belt/utility/neotheology(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/space/void/custodian(src)
@@ -112,8 +112,8 @@
 	icon_state = "acolyte"
 
 /obj/structure/closet/acolyte/populate_contents()
-	new /obj/item/clothing/under/rank/church(src)
-	new /obj/item/weapon/storage/belt/church(src)
+	new /obj/item/clothing/under/rank/acolyte(src)
+	new /obj/item/weapon/storage/belt/security/neotheology(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
