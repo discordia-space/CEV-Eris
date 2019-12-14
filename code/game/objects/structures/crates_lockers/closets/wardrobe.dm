@@ -55,7 +55,7 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/populate_contents()
-	new /obj/item/clothing/under/rank/chaplain(src)
+	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/suit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)

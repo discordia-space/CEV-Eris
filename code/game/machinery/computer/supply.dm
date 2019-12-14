@@ -17,9 +17,6 @@
 	var/contraband = FALSE
 	var/hacked = FALSE
 
-/obj/machinery/computer/supplycomp/attack_ai(mob/user)
-	return attack_hand(user)
-
 /obj/machinery/computer/supplycomp/attack_hand(mob/user)
 	if(!allowed(user))
 		to_chat(user, SPAN_WARNING("Access Denied."))

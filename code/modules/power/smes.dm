@@ -241,10 +241,6 @@
 	return 0
 
 
-/obj/machinery/power/smes/attack_ai(mob/user)
-	add_hiddenprint(user)
-	ui_interact(user)
-
 /obj/machinery/power/smes/attack_hand(mob/user)
 	add_fingerprint(user)
 	ui_interact(user)

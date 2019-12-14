@@ -10,9 +10,6 @@
 
 	var/safety = 1
 
-/obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)
-	ui_interact(user)
-
 /obj/machinery/computer/robotics/attack_hand(var/mob/user as mob)
 	if(..())
 		return
