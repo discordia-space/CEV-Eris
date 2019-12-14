@@ -55,7 +55,7 @@
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/offset = round(calc_recoil())
+		var/offset = min(round(calc_recoil()), MAX_ACCURACY_OFFSET)
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base
