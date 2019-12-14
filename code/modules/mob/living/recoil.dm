@@ -74,7 +74,6 @@
 	if(!L)
 		GLOB.cursor_icons[icon_file] = list()
 		L = GLOB.cursor_icons[icon_file]
-	L.Add("[offset]")
 	L["[offset]"] = icon
 
 /proc/make_cursor_icon(var/icon_file, var/offset)
