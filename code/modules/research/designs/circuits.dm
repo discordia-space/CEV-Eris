@@ -277,6 +277,12 @@
 	sort_string = "JBABB"
 	category = CAT_POWER
 
+/datum/design/research/circuit/breakerbox
+	name = "breaker box"
+	build_path = /obj/item/weapon/circuitboard/breakerbox
+	sort_string = "JBABC"
+	category = CAT_POWER
+
 /datum/design/research/circuit/gas_heater
 	name = "gas heating system"
 	build_path = /obj/item/weapon/circuitboard/unary_atmos/heater
