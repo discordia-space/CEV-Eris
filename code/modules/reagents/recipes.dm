@@ -394,8 +394,8 @@
 /datum/chemical_reaction/positive_ling/can_happen(datum/reagents/holder)
 	if(..())
 		var/list/blood_data = holder.get_data("blood")
-		return TRUE if(blood_data["ling"])
-		
+		if(blood_data["ling"])
+			return TRUE
 		return FALSE
 		
 /datum/chemical_reaction/cryoxadone
