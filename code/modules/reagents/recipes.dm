@@ -394,7 +394,7 @@
 /datum/chemical_reaction/positive_ling/can_happen(datum/reagents/holder)
 	if(..())
 		var/b = holder.Find("blood")
-		if (b.ling = FALSE)
+		if (b.ling == FALSE)
 			return FALSE
 
 /datum/chemical_reaction/cryoxadone
