@@ -54,7 +54,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	for(var/datum/reagent/organic/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.blood_color,"blood_type"=dna.b_type,	\
-							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
+							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list(), "ling" = player_is_antag_id(src,ROLE_CHANGELING) ? TRUE : null )
 			B.color = B.data["blood_colour"]
 
 // Takes care blood loss and regeneration
