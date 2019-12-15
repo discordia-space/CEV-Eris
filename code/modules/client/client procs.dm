@@ -369,6 +369,7 @@
 		for(var/datum/asset/D in (priority_assets + other_assets))
 			D.send_slow(src)
 
+		send_all_cursor_icons(src)
 
 /mob/proc/MayRespawn()
 	return FALSE

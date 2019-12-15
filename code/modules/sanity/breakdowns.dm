@@ -343,10 +343,13 @@
 
 
 
+#define OBSESSION_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+
 /datum/breakdown/common/obsession
 	name = "Obsession"
 	var/obj/item/target
 	var/objectname
+	var/message_time = 0
 
 	start_messages = list(
 		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
@@ -403,7 +406,8 @@
 		holder.restoreLevel(70)
 		conclude()
 		return FALSE
-	if(prob(50))
+	if(world.time >= message_time)
+		message_time = world.time + OBSESSION_COOLDOWN
 		var/message = pick(list(
 			"You knew it. The [objectname] will ease your journey to the stars.",
 			"You look all around, but the only thing you can see is the [objectname].",

@@ -953,9 +953,6 @@ FIRE ALARM
 			src.alarm()			// added check of detector status here
 	return
 
-/obj/machinery/firealarm/attack_ai(mob/user)
-	ui_interact(user)
-
 /obj/machinery/firealarm/attack_hand(mob/user)
 	. = ..()
 	if (.)

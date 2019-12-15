@@ -126,9 +126,6 @@
 		need_player_check = 1
 		update_icon()
 
-/obj/machinery/mining/drill/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/mining/drill/attackby(obj/item/I, mob/user as mob)
 
 	if(!active)

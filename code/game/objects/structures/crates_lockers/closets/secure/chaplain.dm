@@ -4,10 +4,10 @@
 	icon_state = "head_preacher"
 
 /obj/structure/closet/secure_closet/reinforced/chaplain/populate_contents()
-	new /obj/item/clothing/under/rank/chaplain(src)
+	new /obj/item/clothing/under/rank/preacher(src)
+	new /obj/item/clothing/under/rank/preacher(src)
 	new /obj/item/device/radio/headset/church(src)
-	new /obj/item/clothing/under/rank/chaplain(src)
-	new /obj/item/weapon/storage/belt/church(src)
+	new /obj/item/weapon/storage/belt/security/neotheology(src)
 	new /obj/item/clothing/shoes/reinforced(src)
 	new /obj/item/clothing/shoes/reinforced(src)
 	new /obj/item/clothing/suit/chaplain_hoodie(src)

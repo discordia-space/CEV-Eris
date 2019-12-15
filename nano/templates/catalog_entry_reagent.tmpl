@@ -6,43 +6,45 @@
 	{{/if}}
 	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
 	<br><br>
-	<div class="item">
-		<h1>{{:data.name}}</h1>
-	</div>
+	<div class="item"><h1>{{:data.name}}</h1></div>
+	<div class="item">{{:data.description}}</div>
 	<div class="item">
 		<h4>Specifications:</h4>
 		{{if data.reagent_type}}
-			<div class="itemLabel">
-				Type:
-			</div>
-			<div class="itemContent">
-				{{:data.reagent_type}}.
-			</div>
+			<div class="itemLabel">Type:</div>
+			<div class="itemContent">{{:data.reagent_type}}</div>
 		{{/if}}
-		<div class="itemLabel">
-			Phase:
-		</div>
+		<div class="itemLabel">Phase:</div>
+		<div class="itemContent">{{:data.reagent_state}} at STP</div>
+		<div class="itemLabel">Color:</div>
+		<div class="itemContent"><span class='colorBox' style='background-color:{{:data.color}}'></span></div>
+		<div class="itemLabel">Metabolism:</div>
 		<div class="itemContent">
-			{{:data.reagent_state}} at STP.
-		</div>
-		<div class="itemLabel">
-			Metabolism:
-		</div>
-		<div class="itemContent">
-			{{:data.metabolism_blood}}u/s in blood.
+			{{:data.metabolism_blood}}u/s in blood
 			{{if data.metabolism_stomach}}
-				<br>{{:data.metabolism_stomach}}u/s in stomach.
+				<br>{{:data.metabolism_stomach}}u/s in stomach
 			{{else}}
-				<br>{{:data.metabolism_blood/2}}u/s in stomach.
+				<br>{{:data.metabolism_blood/2}}u/s in stomach
 			{{/if}}
 		</div>
-		<div class="itemLabel">
-			Nerve system accumulation:
-		</div>
-		<div class="itemContent">
-			{{:data.nsa}} units.
-		</div>
+		<div class="itemLabel">NSA:</div>
+		<div class="itemContent">{{:data.nsa}} units</div>
 		
+		{{if data.addiction_threshold}}
+			<div class="itemLabel">Addiction threshold:</div>
+			<div class="itemContent">{{:data.addiction_threshold}}u</div>
+		{{/if}}
+
+		{{if data.addiction_chance}}
+			<div class="itemLabel">Addiction chance:</div>
+			<div class="itemContent">{{:data.addiction_chance}}</div>
+		{{/if}}
+
+		{{if data.overdose}}
+			<div class="itemLabel">Overdose at:</div>
+			<div class="itemContent">{{:data.overdose}}u</div>
+		{{/if}}
+
 		{{if data.heating_decompose || data.chilling_decompose}}
 			<div class="itemLabel">
 				Decomposition:
@@ -53,7 +55,7 @@
 					{{for data.heating_decompose.types}}
 						{{:helper.catalogEntryLink(value)}}
 					{{/for}}
-					 at {{:data.heating_point}}k.
+					 at {{:data.heating_point}}k
 				{{/if}}
 				{{if data.chilling_decompose}}
 					Chilling: Into 
@@ -99,24 +101,9 @@
 				{{/for}}
 			</div>
 		{{/if}}
-		<div class="itemLabel">
-			Is scannable:
-		</div>
-		<div class="itemContent">
-			{{:data.scannable}}.
-		</div>
-		{{if data.overdose}}
-			<div class="itemLabel">
-				Overdose at:
-			</div>
-			<div class="itemContent">
-				{{:data.overdose}}u.
-			</div>
-		{{/if}}
+
 		{{if data.can_be_used_in}}
-			<div class="itemLabel">
-				Takes part in reactions:
-			</div>
+			<div class="itemLabel">Takes part in reactions:</div>
 			<div class="itemContent">
 				<div class="statusDisplay" style="overflow: auto;">
 						<table>
@@ -128,20 +115,10 @@
 			</div>
 		{{/if}}
 
-		<h4>Description:</h4>
-		<div class="item">
-			{{:data.description}}
-		</div>
-		<div class="item">
-			{{:data.taste}}
-		</div>
-		<div class="item">
-			Has <span class='colorBox' style='background-color:{{:data.color}}'></span> coloration.
-		</div>
-		{{if data.addiction_chance}}
-			<div class="item">
-				{{:data.addiction_chance}}
-			</div>
+		<div class="item">{{:data.taste}}</div>
+
+		{{if !data.scannable}}
+			<div class="item">Impossible to scan.</div>
 		{{/if}}
 	</div>
 {{/if}}

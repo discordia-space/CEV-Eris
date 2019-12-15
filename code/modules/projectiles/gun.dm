@@ -423,7 +423,10 @@
 	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
-	update_cursor(user)
+	if(safety)
+		user.remove_cursor()
+	else
+		user.update_cursor()
 	update_hud_actions()
 
 /obj/item/weapon/gun/examine(mob/user)
@@ -487,7 +490,10 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
-	update_cursor(user)
+	if(safety)
+		user.remove_cursor()
+	else
+		user.update_cursor()
 
 
 //Finds the current firemode and calls update on it. This is called from a few places:
@@ -561,6 +567,8 @@
 
 
 /obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
+	set category = "Object"
+
 	if (!silenced || !silenced.can_remove)
 		to_chat(user, "No silencer is installed on \the [src]")
 		verbs -= /obj/item/weapon/gun/proc/remove_silencer

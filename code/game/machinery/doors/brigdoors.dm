@@ -157,10 +157,6 @@
 
 	return
 
-//Allows AIs to use door_timer, see human attack_hand function below
-/obj/machinery/door_timer/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
-
 //Check access for shower temp change of for other dangerous functions
 /obj/machinery/door_timer/proc/allowed_advanced(var/mob/user as mob)
 	var/obj/item/id = user.GetIdCard()
@@ -346,7 +342,7 @@
 //Stolen from status_display
 /obj/machinery/door_timer/proc/texticon(var/tn, var/px = 0, var/py = 0)
 	var/image/I = image('icons/obj/status_display.dmi', "blank")
-	var/len = lentext(tn)
+	var/len = length(tn)
 
 	for(var/d = 1 to len)
 		var/char = copytext(tn, len-d+1, len-d+2)

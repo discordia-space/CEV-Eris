@@ -235,10 +235,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/chem_master/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/chem_master/attack_hand(mob/user as mob)
+/obj/machinery/chem_master/attack_hand(mob/user)
 	if(inoperable())
 		return
 	user.set_machine(src)

@@ -529,8 +529,8 @@
 					if("noise")
 						word = pick("z-z-bz-z", "hz-z-z", "zu-zu-we-e", "e-e-ew-e", "bz-ze-ew")
 					if("jam") //word jamming, small Max Headroom's cameo
-						if(lentext(word) > 3)
-							var/entry = rand(2, lentext(word)-2)
+						if(length(word) > 3)
+							var/entry = rand(2, length(word)-2)
 							var/jammed = ""
 							for(var/jam_i = 1 to rand(2, 5))
 								jammed += copytext(word, entry, entry+2) + "-"

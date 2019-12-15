@@ -196,12 +196,6 @@ var/list/turret_icons
 
 	return 0
 
-/obj/machinery/porta_turret/attack_ai(mob/user)
-	if(isLocked(user))
-		return
-
-	ui_interact(user)
-
 /obj/machinery/porta_turret/attack_hand(mob/user)
 	if(isLocked(user))
 		return

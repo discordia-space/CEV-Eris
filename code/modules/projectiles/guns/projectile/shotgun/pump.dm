@@ -32,10 +32,11 @@
 		recentpump = world.time
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+	var/turf/newloc = get_turf(src)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 
 	if(chambered)//We have a shell in the chamber
-		chambered.loc = get_turf(src)//Eject casing
+		chambered.forceMove(newloc) //Eject casing
 		chambered = null
 
 	if(loaded.len)

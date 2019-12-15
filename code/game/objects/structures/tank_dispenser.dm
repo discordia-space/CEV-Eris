@@ -34,19 +34,18 @@
 		if(1 to 4)	overlays += "plasma-[plasmatanks]"
 		if(5 to INFINITY) overlays += "plasma-5"
 
-/obj/structure/dispenser/attack_ai(mob/user as mob)
+/obj/structure/dispenser/attack_ai(mob/user)
 	if(user.Adjacent(src))
 		return attack_hand(user)
 	..()
 
-/obj/structure/dispenser/attack_hand(mob/user as mob)
+/obj/structure/dispenser/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
 	dat += "Plasma tanks: [plasmatanks] - [plasmatanks ? "<A href='?src=\ref[src];plasma=1'>Dispense</A>" : "empty"]"
 	user << browse(dat, "window=dispenser")
 	onclose(user, "dispenser")
-	return
 
 
 /obj/structure/dispenser/attackby(obj/item/I, mob/user)
@@ -94,15 +93,15 @@
 
 	var/obj/item/weapon/tank/tank
 	if(href_list["oxygen"] && oxygentanks > 0)
-		if(oxytanks.len == oxygentanks)
-			tank = oxytanks[1]
+		if(oxytanks.len)
+			tank = oxytanks[oxytanks.len]	// Last stored tank is always the first one to be dispensed
 			oxytanks.Remove(tank)
 		else
 			tank = new /obj/item/weapon/tank/oxygen(loc)
 		oxygentanks--
 	if(href_list["plasma"] && plasmatanks > 0)
-		if(platanks.len == plasmatanks)
-			tank = platanks[1]
+		if(platanks.len)
+			tank = platanks[platanks.len]
 			platanks.Remove(tank)
 		else
 			tank = new /obj/item/weapon/tank/plasma(loc)
@@ -115,4 +114,3 @@
 
 	playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 	updateUsrDialog()
-	return
