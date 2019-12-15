@@ -17,6 +17,23 @@
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
+	var/tick_cost = 2
+	var/obj/item/weapon/cell/cell = null
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/chameleon/Initialize()
+	. = ..()
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
+
+/obj/item/device/chameleon/get_cell()
+	return cell
+
+/obj/item/device/chameleon/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+
 /obj/item/device/chameleon/dropped()
 	disrupt()
 	..()
@@ -27,6 +44,22 @@
 
 /obj/item/device/chameleon/attack_self()
 	toggle()
+
+/obj/item/device/chameleon/Process()
+	if(active_dummy)
+		if(!cell || !cell.checked_use(tick_cost))
+			to_chat(src.loc, SPAN_WARNING("Your device dies. You are visible now."))
+			disrupt()
+
+/obj/item/device/chameleon/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+	else
+		return ..()
+
+/obj/item/device/chameleon/attackby(obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		src.cell = C
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
 	if (istype(target, /obj/item/weapon/storage)) return
@@ -42,6 +75,11 @@
 
 /obj/item/device/chameleon/proc/toggle()
 	if(!can_use || !saved_item) return
+	if(!cell || !cell.check_charge(tick_cost))
+		playsound(loc, 'sound/machines/button.ogg', 50, 1)
+		to_chat(usr, SPAN_NOTICE("[src] battery is dead or missing."))
+		return
+	. = ..()
 	if(active_dummy)
 		eject_all()
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
@@ -52,6 +90,7 @@
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
 		spawn(8) qdel(T)
+		STOP_PROCESSING(SSobj, src)
 	else
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
 		var/obj/O = new saved_item(src)
@@ -64,6 +103,7 @@
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
 		spawn(8) qdel(T)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/chameleon/proc/disrupt(var/delete_dummy = 1)
 	if(active_dummy)
