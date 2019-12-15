@@ -68,7 +68,7 @@
 	required_tech_levels = list()
 	cost = 1000
 
-	unlocks_designs = list(/obj/item/weapon/circuitboard/breakerbox)
+	unlocks_designs = list(/datum/design/research/circuit/breakerbox)
 
 /datum/technology/super_power
 	name = "Super Power Storing"
