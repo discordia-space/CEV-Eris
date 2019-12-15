@@ -395,7 +395,8 @@
 	if(..())
 		var/list/blood_data = holder.get_data("blood")
 		return TRUE if(blood_data["ling"])
-			
+		
+		return FALSE
 		
 /datum/chemical_reaction/cryoxadone
 	result = "cryoxadone"
