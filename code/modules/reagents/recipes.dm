@@ -107,7 +107,7 @@
 
 	if(rotation_required && !holder.rotating)
 		return FALSE
-
+	
 	return TRUE
 
 /datum/chemical_reaction/proc/calc_reaction_progress(var/datum/reagents/holder, var/reaction_limit)
@@ -383,12 +383,19 @@
 	result_amount = 1
 	maximum_temperature = INFINITY
 	minimum_temperature = 400
+
 /datum/chemical_reaction/positive_ling
 	result = "positiveling"
-	required_reagents = list("negativeling" = 1, "ling_blood" = 1)
+	required_reagents = list("negativeling" = 1, "blood" = 1)
 	result_amount = 1
 	maximum_temperature = INFINITY
 	minimum_temperature = 700
+
+/datum/chemical_reaction/positive_ling/can_happen(datum/reagents/holder)
+	if(..())
+		var/b = holder.Find("blood")
+		if (b.ling = FALSE)
+			return FALSE
 
 /datum/chemical_reaction/cryoxadone
 	result = "cryoxadone"
