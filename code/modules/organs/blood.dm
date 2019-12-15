@@ -125,7 +125,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	B.data["antibodies"] = src.antibodies
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
-	B.data["ling"] = src.ling
+	B.data["ling"] = player_is_antag_id(src.mind,ROLE_CHANGELING) ? TRUE : null
 	// Putting this here due to return shenanigans.
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
