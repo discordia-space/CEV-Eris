@@ -46,6 +46,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	data["trace_chem"] = temp_chem
 	data["blood_colour"] = species.blood_color
 	data["resistances"] = null
+	data["ling"] = player_is_antag_id(src,ROLE_CHANGELING) ? TRUE : null
 	return data
 
 //Resets blood data

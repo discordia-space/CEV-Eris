@@ -377,6 +377,18 @@
 	result = "ryetalyn"
 	required_reagents = list("arithrazine" = 1, "carbon" = 1)
 	result_amount = 2
+/datum/chemical_reaction/negative_ling
+	result = "negativeling"
+	required_reagents = list("ryetalyn" = 1, "carbon" = 1)
+	result_amount = 1
+	maximum_temperature = INFINITY
+	minimum_temperature = 400
+/datum/chemical_reaction/positive_ling
+	result = "positiveling"
+	required_reagents = list("negativeling" = 1, "ling_blood" = 1)
+	result_amount = 1
+	maximum_temperature = INFINITY
+	minimum_temperature = 700
 
 /datum/chemical_reaction/cryoxadone
 	result = "cryoxadone"

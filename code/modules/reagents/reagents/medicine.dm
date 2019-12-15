@@ -340,6 +340,24 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
+/datum/reagent/medicine/negative_ling
+	name = "Negative Ling Marker"
+	id = "negativeling"
+	description = "A marker compound that turns positive when put in contact with changeling blood."
+	taste_description = "acid"
+	reagent_state = SOLID
+	color = "#022000"
+	
+
+/datum/reagent/medicine/positive_ling
+	name = "Positive Ling Marker"
+	id = "positiveling"
+	description = "This marker compound has come in contact with changeling blood."
+	taste_description = "acid"
+	reagent_state = SOLID
+	color = "#910000"
+
+
 /datum/reagent/medicine/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
