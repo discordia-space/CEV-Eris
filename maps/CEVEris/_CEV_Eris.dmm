@@ -63128,7 +63128,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/engeva)
 "cKE" = (
-/obj/machinery/suit_cycler/engineering,
+/obj/machinery/suit_storage_unit/engineering,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cKF" = (
@@ -65536,7 +65536,7 @@
 	},
 /area/shuttle/mining/station)
 "cQv" = (
-/obj/machinery/suit_cycler/mining,
+/obj/machinery/suit_storage_unit/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "5,20"
 	},
