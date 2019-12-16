@@ -341,18 +341,18 @@
 		H.update_mutations()
 
 /datum/reagent/medicine/negative_ling
-	name = "Negative Ling Marker"
+	name = "Negative Paragenetic Marker"
 	id = "negativeling"
-	description = "A marker compound that turns positive when put in contact with changeling blood."
+	description = "A marker compound that turns positive when put in contact with morphogenic mutant blood."
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#022000"
 	
 
 /datum/reagent/medicine/positive_ling
-	name = "Positive Ling Marker"
+	name = "Positive Paragenetic Marker"
 	id = "positiveling"
-	description = "This marker compound has come in contact with changeling blood."
+	description = "This marker compound has come in contact with morphogenic mutant blood."
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#910000"
