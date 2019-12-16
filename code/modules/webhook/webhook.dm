@@ -35,7 +35,7 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 
 	var/msg = input(src, "Enter the message. Leave blank to cancel.", "Lobby Message")
 	if(msg)
-		log_and_message_admins("has sent a message in discord lobby")
+		log_and_message_admins("has sent a message in discord lobby - [msg]")
 		lobby_message(message = msg, color = "#79FE5F")
 
 
@@ -69,3 +69,18 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 			.["stealth"] += X
 		else
 			.["present"] += X
+
+/proc/send2coders(var/message = "Debug Message", var/color = "#FFFFFF", var/sender, var/admiralty = 0)
+	if (!config.webhook_url || !config.webhook_key)
+		return
+	spawn(0)
+		var/query_string = "type=codealert"
+		if(admiralty)
+			query_string = "type=admiraltyalert"
+		query_string += "&key=[url_encode(config.webhook_key)]"
+		query_string += "&msg=[url_encode(message)]"
+		query_string += "&color=[url_encode(color)]"
+		if(sender)
+			query_string += "&from=[url_encode(sender)]"
+		world.Export("[config.webhook_url]?[query_string]")
+

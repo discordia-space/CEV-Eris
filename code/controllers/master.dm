@@ -229,6 +229,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if (rtn2 <= 0)
 		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+		send2coders(message = "Failed to recreate Master Controller (Error code: [rtn2]), it's up to the failsafe now", admiralty = 1)
 		Failsafe.defcon = 2
 
 // Main loop.
