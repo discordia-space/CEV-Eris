@@ -21228,18 +21228,20 @@
 /area/eris/engineering/wastingroom)
 "aXf" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
+/obj/item/ammo_magazine/hpistol,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aXg" = (
@@ -22424,6 +22426,8 @@
 /obj/item/ammo_magazine/magnum,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
 /obj/item/ammo_magazine/ammobox/srifle,
 /obj/item/ammo_magazine/ammobox/srifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
@@ -91650,6 +91654,10 @@
 /obj/item/ammo_magazine/ihsrifle,
 /obj/item/ammo_magazine/ihsrifle,
 /obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "dWB" = (
@@ -99283,6 +99291,7 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/ammo_magazine/ihclrifle,
 /obj/item/ammo_magazine/ihclrifle,
 /obj/item/ammo_magazine/ihclrifle,
 /obj/item/ammo_magazine/ihclrifle,

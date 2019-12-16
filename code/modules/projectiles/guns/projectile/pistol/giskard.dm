@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/giskard
 	name = "FS HG .35 Auto \"Giskard\""
-	desc = "That's the \"Frozen Star\" popular non-lethal pistol. Can even fit into the pocket! Uses holdout .35 Auto mags."
+	desc = "That's the \"Frozen Star\" popular self defense pistol. Can even fit into the pocket! Uses standard pistol .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/giskard.dmi'
 	icon_state = "giskard"
 	item_state = "pistol"
