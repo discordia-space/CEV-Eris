@@ -54271,9 +54271,6 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay)
 "cqy" = (
-/obj/machinery/conveyor/northwest{
-	id = "mining_internal"
-	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "cqz" = (
@@ -67163,7 +67160,7 @@
 	},
 /area/shuttle/mining/station)
 "cUs" = (
-/obj/structure/ore_box,
+/obj/structure/closet/crate,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,14"
 	},
@@ -69613,7 +69610,7 @@
 /area/shuttle/mining/station)
 "cZN" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,6";
+	icon_state = "13,7";
 	opacity = 0
 	},
 /area/shuttle/mining/station)
@@ -69830,7 +69827,6 @@
 	},
 /area/shuttle/mining/station)
 "daq" = (
-/obj/structure/closet/crate,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,9"
 	},
@@ -69943,6 +69939,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/light/small,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,4"
 	},
@@ -69956,7 +69953,10 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/structure/reagent_dispensers/fueltank/huge,
+/obj/structure/table/rack,
+/obj/item/stack/material/plasma{
+	amount = 25
+	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "daH" = (
@@ -108601,10 +108601,7 @@
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
 "nZP" = (
-/obj/structure/table/rack,
-/obj/item/stack/material/plasma{
-	amount = 25
-	},
+/obj/structure/reagent_dispensers/fueltank/huge,
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "ofp" = (
