@@ -26888,9 +26888,9 @@
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "biq" = (
-/obj/landmark/machinery/input,
+/obj/landmark/machinery/output,
 /obj/machinery/conveyor/west{
-	id = "mining_external"
+	id = "mining_internal"
 	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
@@ -26965,13 +26965,6 @@
 /obj/random/booze/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
-"biy" = (
-/obj/structure/plasticflaps/mining,
-/obj/machinery/conveyor/west{
-	id = "mining_external"
-	},
-/turf/simulated/floor,
-/area/shuttle/mining/station)
 "biz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -27628,9 +27621,7 @@
 /area/eris/security/evidencestorage)
 "bjM" = (
 /obj/structure/ore_box,
-/obj/machinery/conveyor/west{
-	id = "mining_external"
-	},
+/obj/landmark/machinery/input,
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "bjN" = (
@@ -27685,7 +27676,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bjT" = (
-/obj/landmark/machinery/output,
 /obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor/south{
 	id = "mining_internal"
@@ -65926,9 +65916,6 @@
 /area/shuttle/mining/station)
 "cRp" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/camera/network/mining{
-	dir = 1
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "12,19"
 	},
@@ -66703,9 +66690,6 @@
 	},
 /area/shuttle/mining/station)
 "cTl" = (
-/obj/machinery/camera/network/mining{
-	dir = 1
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "12,16"
 	},
@@ -67329,7 +67313,7 @@
 /area/shuttle/mining/station)
 "cUO" = (
 /obj/machinery/conveyor_switch{
-	id = "mining_external"
+	id = "mining_internal"
 	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,13"
@@ -67811,8 +67795,8 @@
 	},
 /area/shuttle/mining/station)
 "cVV" = (
-/obj/machinery/mineral/unloading_machine{
-	icon_state = "unloader-corner"
+/obj/machinery/conveyor/southwest/ccw{
+	id = "mining_internal"
 	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
@@ -69258,9 +69242,6 @@
 	},
 /obj/structure/table/steel,
 /obj/machinery/recharger,
-/obj/item/weapon/cell/large/high,
-/obj/item/weapon/cell/large/high,
-/obj/item/weapon/cell/large/high,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,7"
 	},
@@ -69562,9 +69543,9 @@
 /area/shuttle/mining/station)
 "cZD" = (
 /obj/structure/table/steel,
-/obj/item/stack/material/plasma{
-	amount = 25
-	},
+/obj/item/weapon/cell/large/high,
+/obj/item/weapon/cell/large/high,
+/obj/item/weapon/cell/large/high,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,6"
 	},
@@ -69794,11 +69775,6 @@
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "dai" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,5"
 	},
@@ -69854,6 +69830,7 @@
 	},
 /area/shuttle/mining/station)
 "daq" = (
+/obj/structure/closet/crate,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,9"
 	},
@@ -69966,11 +69943,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,4"
 	},
@@ -69984,7 +69956,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/structure/ore_box,
+/obj/structure/reagent_dispensers/fueltank/huge,
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "daH" = (
@@ -108628,6 +108600,13 @@
 /obj/landmark/storyevent/hidden_vent_antag,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"nZP" = (
+/obj/structure/table/rack,
+/obj/item/stack/material/plasma{
+	amount = 25
+	},
+/turf/simulated/floor,
+/area/shuttle/mining/station)
 "ofp" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -212849,7 +212828,7 @@ cXA
 cYs
 cYY
 cZD
-dah
+nZP
 dah
 daW
 dbs
@@ -215065,7 +215044,7 @@ cTN
 cUs
 cUO
 cVu
-biy
+cXI
 cWX
 cXL
 cYB
