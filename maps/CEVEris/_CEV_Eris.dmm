@@ -65175,7 +65175,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
+/obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,21"
 	},
@@ -65507,7 +65507,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
+/obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,20"
 	},
@@ -65827,7 +65827,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
+/obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,19"
 	},

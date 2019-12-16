@@ -1,27 +1,33 @@
-/obj/item/weapon/mining_scanner
-	name = "ore detector"
+/obj/item/device/scanner/mining
+	name = "subsurface ore detector"
 	desc = "A complex device used to locate ore deep underground."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "mining-scanner"
 	item_state = "electronic"
-	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 1)
+	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 
-/obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
-	to_chat(user, "You begin sweeping \the [src] about, scanning for metal deposits.")
+	charge_per_use = 2
 
-	if(!do_after(user, 50,src))
-		return
+/obj/item/device/scanner/mining/is_valid_scan_target(atom/O)
+	return istype(O, /turf/simulated)
 
+
+/obj/item/device/scanner/mining/scan(turf/T, mob/user)
+	scan_data = mining_scan_action(T, user)
+	scan_title = "Subsurface ore scan - ([T.x], [T.y])"
+	show_results(user)
+
+/proc/mining_scan_action(turf/source, mob/user)
 	var/list/metals = list(
 		"surface minerals" = 0,
 		"precious metals" = 0,
 		"nuclear fuel" = 0,
 		"exotic matter" = 0
 		)
-	var/turf/TLoc = get_turf(user)
-	for(var/turf/simulated/T in trange(2, TLoc))
 
+	var/list/lines = list("Ore deposits found at [source.x], [source.y]:")
+
+	for(var/turf/simulated/T in trange(2, source))
 		if(!T.has_resources)
 			continue
 
@@ -29,14 +35,17 @@
 			var/ore_type
 
 			switch(metal)
-				if("silicates", "carbonaceous rock", "iron")	ore_type = "surface minerals"
-				if(MATERIAL_GOLD, MATERIAL_SILVER, MATERIAL_DIAMOND)					ore_type = "precious metals"
-				if(MATERIAL_URANIUM)									ore_type = "nuclear fuel"
-				if("plasma", "osmium", "hydrogen")				ore_type = "exotic matter"
+				if("silicates", "carbonaceous rock", "iron")
+					ore_type = "surface minerals"
+				if(MATERIAL_GOLD, MATERIAL_SILVER, MATERIAL_DIAMOND)
+					ore_type = "precious metals"
+				if(MATERIAL_URANIUM)
+					ore_type = "nuclear fuel"
+				if("plasma", "osmium", "hydrogen")
+					ore_type = "exotic matter"
 
-			if(ore_type) metals[ore_type] += T.resources[metal]
-
-	to_chat(user, "\icon[src] <span class='notice'>The scanner beeps and displays a readout.</span>")
+			if(ore_type)
+				metals[ore_type] += T.resources[metal]
 
 	for(var/ore_type in metals)
 		var/result = "no sign"
@@ -46,4 +55,6 @@
 			if(26 to 75) result = "significant amounts"
 			if(76 to INFINITY) result = "huge quantities"
 
-		to_chat(user, "- [result] of [ore_type].")
+		lines += "- [result] of [ore_type]."
+
+	return jointext(lines, "<br>")
