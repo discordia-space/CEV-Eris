@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/olivaw
 	name = "FS HG .35 Auto \"Olivaw\""
-	desc = "That's a \"Frozen Star\" popular non-lethal pistol. This one seems to have a two-round burst-fire mode. Uses holdout .35 Auto mags."
+	desc = "That's a \"Frozen Star\" popular self defense pistol. This one seems to have a two-round burst-fire mode. Uses standard pistol .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/olivawcivil.dmi'
 	icon_state = "olivawcivil"
 	item_state = "pistol"
