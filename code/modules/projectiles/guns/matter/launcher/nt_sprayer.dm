@@ -5,7 +5,6 @@
 	icon = 'icons/obj/guns/matter/nt_sprayer.dmi'
 	slot_flags = SLOT_BACK
 	fire_sound = 'sound/weapons/Genhit.ogg'
-	restrict_safety = TRUE
 
 	matter_type = MATERIAL_BIOMATTER
 
@@ -14,6 +13,8 @@
 
 
 /obj/item/weapon/arrow/cleansing
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "toxin"
 	throwforce = 1
 	sharp = FALSE
 

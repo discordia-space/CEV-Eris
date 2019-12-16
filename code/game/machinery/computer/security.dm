@@ -47,9 +47,6 @@
 		to_chat(user, "You insert [O].")
 	..()
 
-/obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
 //Someone needs to break down the dat += into chunks instead of long ass lines.
 /obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
 	if(..())

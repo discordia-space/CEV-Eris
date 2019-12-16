@@ -25,7 +25,7 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	max_w_class = ITEM_SIZE_SMALL
-	max_storage_space = DEFAULT_SMALL_STORAGE
+	max_storage_space = DEFAULT_SMALL_STORAGE + 1
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	health = 20
 
@@ -81,10 +81,12 @@
 /obj/item/weapon/storage/box/survival/populate_contents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 
-/obj/item/weapon/storage/box/engineer/populate_contents()
+/obj/item/weapon/storage/box/survival/extended/populate_contents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen/engi(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"

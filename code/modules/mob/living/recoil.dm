@@ -1,13 +1,7 @@
-#define BASE_ACCURACY_REGEN 0.75 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.015 //Recoil reduction per ds per VIG
-#define MIN_ACCURACY_REGEN  0.4 //How low can we get with negative VIG
-#define MAX_ACCURACY_OFFSET  75 //It's both how big gun recoil can build up, and how hard you can miss
-
 /mob/living/proc/handle_recoil(var/obj/item/weapon/gun/G)
 	if(G.recoil_buildup)
 		recoil += G.recoil_buildup
 		update_recoil(G)
-
 
 /mob/living/proc/calc_reduction()
 	return max(BASE_ACCURACY_REGEN + stats.getStat(STAT_VIG)*VIG_ACCURACY_REGEN, MIN_ACCURACY_REGEN)
@@ -29,6 +23,11 @@
 			last_recoil_update = world.time
 	return recoil
 
+/mob/living/proc/calc_timer()
+	if(recoil <= 0)
+		return 0
+	return round(1+((recoil/10)/calc_reduction()))
+
 //Called after setting recoil
 /mob/living/proc/update_recoil(var/obj/item/weapon/gun/G)
 	if(recoil <= 0)
@@ -43,23 +42,65 @@
 	recoil_timer = null
 	update_recoil_cursor(G)
 
-/mob/living/proc/update_recoil_cursor(var/obj/item/weapon/gun/G)
-	G.update_cursor(src)
-	var/bottom = 0
-	switch(recoil)
-		if(0 to 10)
-			;
-		if(10 to 20)
-			bottom = 10
-		if(20 to 30)
-			bottom = 20
-		if(30 to 50)
-			bottom = 30
-		if(50 to MAX_ACCURACY_OFFSET)
-			bottom = 50
-		if(MAX_ACCURACY_OFFSET to INFINITY)
-			bottom = MAX_ACCURACY_OFFSET
-	if(bottom)
-		var/reduction = calc_reduction()
-		if(reduction > 0)
-			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor, G), 1 + (recoil - bottom) / reduction)
+/mob/living/proc/update_recoil_cursor()
+	update_cursor()
+	var/timer = calc_timer()
+	if(timer > 0)
+		deltimer(recoil_timer)
+		recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), timer, TIMER_STOPPABLE)
+
+/mob/living/proc/update_cursor()
+	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
+		remove_cursor()
+		return
+	if(client)
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+		var/offset = min(round(calc_recoil()), MAX_ACCURACY_OFFSET)
+		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
+		ASSERT(isicon(base))
+		client.mouse_pointer_icon = base
+
+/mob/living/proc/remove_cursor()
+	if(client)
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+
+/proc/find_cursor_icon(var/icon_file, var/offset)
+	var/list/L = GLOB.cursor_icons[icon_file]
+	if(L)
+		return L["[offset]"]
+
+/proc/add_cursor_icon(var/icon/icon, var/icon_file, var/offset)
+	var/list/L = GLOB.cursor_icons[icon_file]
+	if(!L)
+		GLOB.cursor_icons[icon_file] = list()
+		L = GLOB.cursor_icons[icon_file]
+	L["[offset]"] = icon
+
+/proc/make_cursor_icon(var/icon_file, var/offset)
+	var/icon/base = icon('icons/effects/96x96.dmi')
+	var/icon/scaled = icon('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
+	base.Blend(scaled, ICON_OVERLAY, x = 32, y = 32)
+
+	for(var/dir in list(NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
+		var/icon/overlay = icon('icons/obj/gun_cursors/standard/standard.dmi', "[dir]")
+		var/pixel_y
+		var/pixel_x
+		if(dir & NORTH)
+			pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir & SOUTH)
+			pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir & EAST)
+			pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir & WEST)
+			pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
+	add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
+	return base
+
+/proc/send_all_cursor_icons(var/client/C)
+	var/list/cursor_icons = GLOB.cursor_icons
+	for(var/icon_file in cursor_icons)
+		var/list/icons = cursor_icons[icon_file]
+		for(var/offset in icons)
+			var/icon/I = icons[offset]
+			C << I
