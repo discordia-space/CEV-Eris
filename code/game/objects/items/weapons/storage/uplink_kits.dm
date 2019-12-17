@@ -98,7 +98,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_spying
 	name = "box (S)"
-	desc = "A box with spying implanter inside. Implant your contract target and wait 1 minute for the confirmation."
+	desc = "A box with spying implanter inside. Implant your contract target with it and wait 1 minute for the confirmation."
 
 /obj/item/weapon/storage/box/syndie_kit/imp_spying/populate_contents()
 	new /obj/item/weapon/implanter/spying(src)

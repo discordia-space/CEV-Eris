@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	while(candidates.len)
 		var/datum/mind/target_mind = pick(candidates)
 		var/mob/living/carbon/human/H = target_mind.current
-		if(!istype(H) || H.stat == DEAD)
+		if(!istype(H) || H.stat == DEAD || H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			candidates -= target_mind
 			continue
 		target = H
