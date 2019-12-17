@@ -120,7 +120,7 @@
 
 /datum/uplink_item/item/tools/spy_sensor
 	name = "Spying Sensor (4x)"
-	desc = "A set of sensor packages designed to collect some information for your client and self-destruct afterwards. \
+	desc = "A set of sensor packages designed to collect some information for your client. \
 			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
