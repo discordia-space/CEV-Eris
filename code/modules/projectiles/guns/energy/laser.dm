@@ -40,6 +40,9 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	price_tag = 2000
+	firemodes = list(
+		WEAPON_CHARGE
+	)
 
 /obj/item/weapon/gun/energy/captain
 	name = "NT LG \"Destiny\""

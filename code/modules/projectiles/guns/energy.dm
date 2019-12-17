@@ -25,6 +25,12 @@
 	var/recharge_time = 4
 	var/charge_tick = 0
 
+	var/overcharge_timer //Holds ref to the timer used for overcharging
+	var/overcharging = FALSE //If true, process adds charge each process tick
+	var/overcharge_rate = 1 //Base overcharge additive rate for the gun
+	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max
+	var/overcharge_max = 10
+
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()
 	if(.)
