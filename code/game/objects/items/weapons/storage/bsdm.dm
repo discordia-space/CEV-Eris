@@ -10,18 +10,21 @@
 	matter = list(MATERIAL_STEEL = 6)
 	var/datum/mind/owner
 
+/obj/item/weapon/storage/bsdm/proc/can_launch()
+	return owner && (locate(/area/space) in view(get_turf(src)))
+
 /obj/item/weapon/storage/bsdm/attack_self(mob/user)
 	ui_interact(user)
 
 /obj/item/weapon/storage/bsdm/interact(mob/user)
 	ui_interact(user)
 
-/obj/item/weapon/storage/bsdm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/item/weapon/storage/bsdm/ui_data(mob/user)
+	var/list/data = list()
 
-	data["can_launch"] = !!(locate(/area/space) in view(get_turf(src)))
-	data["owner"] = owner.name
-	data["is_owner"] = owner == user.mind
+	data["can_launch"] = can_launch()
+	data["owner"] = owner ? owner.name : "no one"
+	data["is_owner"] = owner && (owner == user.mind)
 	data["contracts"] = list()
 
 	for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
@@ -33,6 +36,11 @@
 			"reward" = C.reward
 		)))
 
+	return data
+
+/obj/item/weapon/storage/bsdm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
+	var/list/data = ui_data(user)
+
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "bsdm.tmpl", "[name]", 400, 430)
@@ -43,16 +51,20 @@
 	if(..())
 		return 1
 
-	if (href_list["launch"])
-		if(!(locate(/area/space) in view(get_turf(src))))
+	if(href_list["launch"])
+		if(!can_launch())
 			return
+
+		if(ismob(loc))
+			to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
+
 		for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
 			if(C.completed)
 				continue
 			C.on_container(src)
 		qdel(src)
 
-	else if (href_list["owner"])
+	else if(href_list["owner"])
 		owner = usr.mind
 		. = 1
 
