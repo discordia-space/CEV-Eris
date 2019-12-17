@@ -1,7 +1,9 @@
 /obj/item/device/mental_imprinter
 	name = "mental imprinter"
-	desc = "A device that is applied to eyes to imprint skills into one's mind."
+	desc = "A device that is applied to an eye to imprint skills into one's mind."
 	icon_state = "mental_imprinter"
+	origin_tech = list(TECH_BIO = 5, TECH_ILLEGAL = 2)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASMA = 4, MATERIAL_BIOMASS = 6)
 	var/spent = FALSE
 
 /obj/item/device/mental_imprinter/proc/imprint(mob/living/carbon/human/user)

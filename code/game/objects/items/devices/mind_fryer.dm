@@ -1,6 +1,9 @@
 /obj/item/device/mind_fryer
 	name = "mind fryer"
+	desc = "A device that attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns."
 	icon_state = "mind_fryer"
+	origin_tech = list(TECH_BIO = 5, TECH_COMBAT = 3, TECH_ILLEGAL = 3)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_URANIUM = 4)
 	var/datum/antag_contract/derail/contract
 	var/datum/mind/owner
 	var/list/mob/living/carbon/human/victims
