@@ -20,25 +20,38 @@
 	set src in view(1)
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
+
 	icon_state = "mind_fryer_deploy"
-	for(var/datum/antag_contract/derail/C in GLOB.all_antag_contracts)
-		if(C.completed)
-			continue
-		contract = C
-		break
-	victims = list(owner.current)
+	find_contract()
 	START_PROCESSING(SSobj, src)
 	verbs -= .verb/activate
 
 /obj/item/device/mind_fryer/Process()
 	for(var/mob/living/carbon/human/H in view(src))
-		if(H.get_species() != "Human" || (H in victims))
+		if(H.get_species() != "Human" || (H in victims) || (owner && H.mind == owner))
 			continue
 		icon_state = "mind_fryer_running"
 		H.sanity.onPsyDamage(2)
 
+	// Pick up a new contract if there is none
+	if(owner && !contract)
+		find_contract()
+
+/obj/item/device/mind_fryer/proc/find_contract()
+	for(var/datum/antag_contract/derail/C in GLOB.all_antag_contracts)
+		if(C.completed)
+			continue
+		contract = C
+		victims = list()
+		break
+
 /obj/item/device/mind_fryer/proc/reg_break(mob/living/carbon/human/victim)
+	// If in owner's inventory, give a signal that the break was registred and counted towards contract
+	if(owner && owner.current)
+		if(src in owner.current.GetAllContents(includeSelf = FALSE))
+			to_chat(owner.current, SPAN_DANGER("[src] clicks."))
+
 	victims += victim
-	if(victims.len > contract?.count)
+	if(contract && victims.len >= contract.count)
 		contract.report(src)
 		contract = null
