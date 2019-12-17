@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(active_mind_fryers)
+
 /obj/item/device/mind_fryer
 	name = "mind fryer"
 	desc = "A device that attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns."
@@ -24,7 +26,13 @@
 	icon_state = "mind_fryer_deploy"
 	find_contract()
 	START_PROCESSING(SSobj, src)
+	GLOB.active_mind_fryers += src
 	verbs -= .verb/activate
+
+/obj/item/device/mind_fryer/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	GLOB.active_mind_fryers -= src
+	return ..()
 
 /obj/item/device/mind_fryer/Process()
 	for(var/mob/living/carbon/human/H in view(src))
