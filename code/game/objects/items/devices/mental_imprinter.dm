@@ -13,6 +13,8 @@
 
 	user.sanity.onPsyDamage(30)
 	user.stats.changeStat(stat, 5)
+
+	to_chat(user, SPAN_DANGER("[src] plunges into your eye, imprinting your mind with new information!"))
 	spent = TRUE
 
 /obj/item/device/mental_imprinter/attack(mob/M, mob/living/carbon/human/user, target_zone)
