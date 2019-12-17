@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	var/desc
 	var/reward = 0
 	var/completed = FALSE
+	var/datum/mind/completed_by = null
 	var/unique = FALSE
 
 /datum/antag_contract/proc/can_place()
@@ -21,6 +22,11 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
 	completed = TRUE
+	completed_by = M
+
+	if(M && M.current)
+		to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
+
 	for(var/obj/item/device/uplink/U in world_uplinks)
 		if(U.uplink_owner != M)
 			continue
