@@ -173,6 +173,7 @@
 	*/
 	if (success_quantity >= target_quantity)
 		//Yay, all antags successfully spawned
+		log_and_message_admins("Antagonist Spawning successful for antagonist [role_id], [antag], quantity [success_quantity]")
 		return TRUE
 	else
 		//Welp, we didn't manage to spawn as many as desired

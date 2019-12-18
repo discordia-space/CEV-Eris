@@ -21,6 +21,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
 	completed = TRUE
+	log_and_message_admins("[M] completed contract [name] [desc]")
 	for(var/obj/item/device/uplink/U in world_uplinks)
 		if(U.uplink_owner != M)
 			continue
