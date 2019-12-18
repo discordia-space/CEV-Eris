@@ -42,9 +42,6 @@
 		qdel(alarm_monitor)
 		alarm_monitor = null
 
-/obj/machinery/computer/station_alert/attack_ai(mob/user)
-	ui_interact(user)
-
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
 	if(..())
 		return

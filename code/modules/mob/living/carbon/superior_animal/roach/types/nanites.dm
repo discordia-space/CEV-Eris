@@ -12,6 +12,14 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 3 //He's a ranged roach
 
+	breath_required_type = NONE
+	breath_poison_type = NONE
+	min_breath_required_type = 0
+	min_breath_poison_type = 0
+
+	min_air_pressure = 0
+	min_bodytemperature = 0
+
 /mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
 
@@ -26,10 +34,11 @@
 
 /mob/living/simple_animal/hostile/naniteswarm
 	name = "nanite infested miniroach cluster"
-	desc = "A swarm of disgusting mini locusts infested with nanomachines."
+	desc = "A swarm of disgusting locusts infested with nanomachines."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "naniteroach"
 	pass_flags = PASSTABLE
+	density = FALSE
 	health = 10
 	maxHealth = 10
 	melee_damage_lower = 1
@@ -37,3 +46,13 @@
 	attacktext = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = "roach"
+
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0

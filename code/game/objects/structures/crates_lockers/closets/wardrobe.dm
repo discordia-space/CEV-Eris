@@ -55,7 +55,7 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/populate_contents()
-	new /obj/item/clothing/under/rank/chaplain(src)
+	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/suit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
@@ -283,8 +283,7 @@
 
 /obj/structure/closet/wardrobe/tactical/populate_contents()
 	new /obj/item/clothing/under/tactical(src)
-	new /obj/item/clothing/suit/armor/tactical(src)
-	new /obj/item/clothing/head/helmet/tactical(src)
+	new /obj/item/clothing/suit/armor/heavy(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/weapon/storage/belt/security(src)

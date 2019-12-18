@@ -119,7 +119,7 @@
 /obj/item/clothing/suit/chameleon/New()
 	..()
 	if(!clothing_choices)
-		var/blocked = list(src.type, /obj/item/clothing/suit/cyborg_suit)
+		var/blocked = list(src.type, null)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/suit, blocked)
 
 /obj/item/clothing/suit/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
@@ -320,7 +320,7 @@
 	icon = 'icons/obj/guns/projectile/deagle.dmi'
 	icon_state = "deagle"
 	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
 	matter = list()
 
 	fire_sound = 'sound/weapons/Gunshot.ogg'

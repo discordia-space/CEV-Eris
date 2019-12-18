@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/heavysniper
-	name = "NT AMR \"Penetrator\""
+	name = "SA AMR \"Hristov\""
 	desc = "A portable anti-armour rifle, fitted with a scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells. Alt click it to access the chamber."
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
@@ -85,7 +85,7 @@
 	var/part_color = ""
 	name = "weaponpart"
 	desc = "how did you get it?"
-	icon = 'icons/obj/weaponparts.dmi'	
+	icon = 'icons/obj/weaponparts.dmi'
 
 /obj/item/weapon/weaponparts/heavysniper/stock
 	name = "sniper stock"

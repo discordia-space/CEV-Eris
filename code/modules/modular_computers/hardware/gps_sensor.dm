@@ -3,15 +3,16 @@
 	name = "gps sensor"
 	desc = "GPS sensors are receivers with antenna that use a ship navigation system."
 	power_usage = 5 //W
-	critical = 0
 	icon_state = "gps_basic"
 	hardware_size = 1
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
+	matter_reagents = list("silicon" = 10)
 	origin_tech = list(TECH_BLUESPACE = 2)
 	usage_flags = PROGRAM_ALL
 	var/datum/gps_data/gps
 
 /obj/item/weapon/computer_hardware/gps_sensor/Initialize()
-	.=..()
+	. = ..()
 	gps = new /datum/gps_data(src)
 
 /obj/item/weapon/computer_hardware/gps_sensor/Destroy()

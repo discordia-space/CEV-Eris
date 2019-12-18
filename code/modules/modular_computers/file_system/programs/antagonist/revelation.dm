@@ -4,7 +4,7 @@
 	program_icon_state = "hostile"
 	program_key_state = "security_key"
 	program_menu_icon = "home"
-	extended_desc = "This virus can destroy hard drive of system it is executed on. It may be obfuscated to look like another non-malicious program. Once armed, it will destroy the system upon next execution."
+	extended_desc = "This virus can destroy the hard drive of a system it is executed on. It may be obfuscated to look like another non-malicious program. Once armed, it will destroy the system upon the next execution."
 	size = 13
 	requires_ntnet = 0
 	available_on_ntnet = 0

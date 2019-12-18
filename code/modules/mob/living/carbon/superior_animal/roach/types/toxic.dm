@@ -8,6 +8,8 @@
 	maxHealth = 45
 	health = 45
 
+	contaminant_immunity = TRUE
+
 	melee_damage_lower = 3
 	melee_damage_upper = 7 //Weaker than hunter
 

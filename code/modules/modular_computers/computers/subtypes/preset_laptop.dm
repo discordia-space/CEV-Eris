@@ -5,7 +5,7 @@
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
-	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+	printer = new/obj/item/weapon/computer_hardware/printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/install_default_hardware()
@@ -14,7 +14,7 @@
 	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src) //Only the advanced laptop gets a tesla link
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/advanced(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)
-	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+	printer = new/obj/item/weapon/computer_hardware/printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/standard/install_default_hardware()
@@ -22,7 +22,7 @@
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
-	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+	printer = new/obj/item/weapon/computer_hardware/printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/install_default_programs()
@@ -42,7 +42,7 @@
 	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
-	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+	printer = new/obj/item/weapon/computer_hardware/printer(src)
 	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/laptop/preset/records/install_default_programs()
@@ -73,8 +73,8 @@
 //debug
 /obj/item/modular_computer/laptop/preset/debug/install_default_hardware()
 	..()
-	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
-	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/photonic/small(src)
+	printer = new/obj/item/weapon/computer_hardware/printer(src)
+	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/super/small(src)
 	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
 	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/cluster(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)

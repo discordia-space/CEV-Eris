@@ -953,9 +953,6 @@ FIRE ALARM
 			src.alarm()			// added check of detector status here
 	return
 
-/obj/machinery/firealarm/attack_ai(mob/user)
-	ui_interact(user)
-
 /obj/machinery/firealarm/attack_hand(mob/user)
 	. = ..()
 	if (.)
@@ -1259,7 +1256,7 @@ Just a object used in constructing fire alarms
 	return
 
 /obj/machinery/partyalarm/proc/reset()
-	if (!( working ))
+	if (!working)
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1267,7 +1264,7 @@ Just a object used in constructing fire alarms
 	return
 
 /obj/machinery/partyalarm/proc/alarm()
-	if (!( working ))
+	if (!working)
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1275,28 +1272,17 @@ Just a object used in constructing fire alarms
 	return
 
 /obj/machinery/partyalarm/Topic(href, href_list)
-	..()
-	if (usr.stat || stat & (BROKEN|NOPOWER))
-		return
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(loc, /turf))) || (isAI(usr)))
-		usr.machine = src
-		if (href_list["reset"])
-			reset()
-		else
-			if (href_list["alarm"])
-				alarm()
-			else
-				if (href_list["time"])
-					timing = text2num(href_list["time"])
-				else
-					if (href_list["tp"])
-						var/tp = text2num(href_list["tp"])
-						time += tp
-						time = min(max(round(time), 0), 120)
-		updateUsrDialog()
+	if(..())
+		return 1
 
-		add_fingerprint(usr)
-	else
-		usr << browse(null, "window=partyalarm")
-		return
-	return
+	if (href_list["reset"])
+		reset()
+	else if (href_list["alarm"])
+		alarm()
+	else if (href_list["time"])
+		timing = text2num(href_list["time"])
+	else if (href_list["tp"])
+		var/tp = text2num(href_list["tp"])
+		time += tp
+		time = min(max(round(time), 0), 120)
+

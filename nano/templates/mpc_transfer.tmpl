@@ -6,47 +6,23 @@
 </div>
 {{else data.downloading}}
 	<h2>Download in progress...</h2>
-	<div class="itemLabel">
-		Downloaded file: 
-	</div>
-	<div class="itemContent">
-		{{:data.download_name}}
-	</div>	
-	<div class="itemLabel">
-		Download progress: 
-	</div>
-	<div class="itemContent">
-		{{:data.download_progress}} / {{:data.download_size}} GQ
-	</div>
-	<div class="itemLabel">
-		Transfer speed: 
-	</div>
-	<div class="itemContent">
-		{{:data.download_netspeed}}GQ/s
-	</div>
-	<div class="itemLabel">
-		Controls: 
-	</div>
+	<div class="itemLabel">Downloaded file:</div>
+	<div class="itemContent">{{:data.download_name}}</div>	
+	<div class="itemLabel">Download progress:</div>
+	<div class="itemContent">{{:data.download_progress}} / {{:data.download_size}} GQ</div>
+	<div class="itemLabel">Transfer speed:</div>
+	<div class="itemContent">{{:data.download_netspeed}}GQ/s</div>
+	<div class="itemLabel">Controls:</div>
 	<div class="itemContent">
 		{{:helper.link('Abort download', null, {'PRG_reset' : 1})}}
 	</div>
 {{else data.uploading}}
 	<h2>Server enabled</h2>
-	<div class="itemLabel">
-		Connected clients: 
-	</div>
-	<div class="itemContent">
-		{{:data.upload_clients}}
-	</div>
-	<div class="itemLabel">
-		Provided file: 
-	</div>
-	<div class="itemContent">
-		{{:data.upload_filename}}
-	</div>
-	<div class="itemLabel">
-		Server password: 
-	</div>
+	<div class="itemLabel">Connected clients:</div>
+	<div class="itemContent">{{:data.upload_clients}}</div>
+	<div class="itemLabel">Provided file:</div>
+	<div class="itemContent">{{:data.upload_filename}}</div>
+	<div class="itemLabel">Server password:</div>
 	<div class="itemContent">
 		{{if data.haspassword}}
 			ENABLED
@@ -54,9 +30,7 @@
 			DISABLED
 		{{/if}}
 	</div>
-	<div class="itemLabel">
-		Commands: 
-	</div>
+	<div class="itemLabel">Commands:</div>
 	<div class="itemContent">
 		{{:helper.link('Set password', null, {'PRG_setpassword' : 1})}}
 		{{:helper.link('Exit server', null, {'PRG_reset' : 1})}}

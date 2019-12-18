@@ -21,12 +21,12 @@
 
 	//Heavy armor
 	/obj/item/weapon/rig/combat = 10,
-	/obj/item/weapon/rig/ihs_combat = 10,
+	/obj/item/weapon/rig/combat/ironhammer = 10,
 	/obj/item/weapon/rig/hazard = 10,
 
 	//The ones below here come with built in weapons
 	/obj/item/weapon/rig/combat/equipped = 4,
-	/obj/item/weapon/rig/ihs_combat/equipped = 4,
+	/obj/item/weapon/rig/combat/ironhammer/equipped = 4,
 	/obj/item/weapon/rig/hazard/equipped = 4,
 	))
 
@@ -90,8 +90,6 @@
 	/obj/item/rig_module/fabricator/energy_net = 0.2,
 	/obj/item/rig_module/self_destruct = 1,
 
-	//Stealth
-	/obj/item/rig_module/stealth_field = 0.5,
 	/obj/item/rig_module/teleporter = 0.5,
 
 	//Utility
@@ -108,7 +106,7 @@
 	/obj/item/rig_module/maneuvering_jets = 8, //Useful but common
 
 	//Vision
-	/obj/item/rig_module/vision/multi = 0.2, //Every vision mod in one, very powerful
+	/obj/item/rig_module/vision/multi = 0.1, //Every vision mod in one, very powerful
 	/obj/item/rig_module/vision/meson = 2,
 	/obj/item/rig_module/vision/thermal = 0.5, //Thermal is very strong
 	/obj/item/rig_module/vision/nvg = 2,
@@ -147,8 +145,6 @@
 	/obj/item/rig_module/fabricator/energy_net = 1,
 	/obj/item/rig_module/self_destruct = 1,
 
-	//Stealth
-	/obj/item/rig_module/stealth_field = 1,
 	/obj/item/rig_module/teleporter = 1,
 
 	//Utility
@@ -159,7 +155,7 @@
 	/obj/item/rig_module/voice = 1,
 
 	//Vision
-	/obj/item/rig_module/vision/multi = 0.5, //Every vision mod in one, very powerful
+	/obj/item/rig_module/vision/multi = 0.1, //Every vision mod in one, very powerful
 	/obj/item/rig_module/vision/thermal = 1, //Thermal is very strong
 	/obj/item/rig_module/vision/nvg = 1
 	))

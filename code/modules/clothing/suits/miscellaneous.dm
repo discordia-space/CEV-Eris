@@ -16,7 +16,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/blue)
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armour"
@@ -26,7 +26,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/red)
-	siemens_coefficient = 3.0
+	siemens_coefficient = 3
 
 /*
  * Costume
@@ -37,16 +37,6 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	body_parts_covered = UPPER_TORSO|ARMS
-
-
-/obj/item/clothing/suit/cyborg_suit
-	name = "cyborg suit"
-	desc = "Suit for a cyborg costume."
-	icon_state = "death"
-	item_state = "death"
-	flags = CONDUCT
-	fire_resist = T0C+5200
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/judgerobe
@@ -74,7 +64,7 @@
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = ITEM_SIZE_NORMAL
-	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank/emergency_oxygen,/obj/item/toy)
+	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = COVER_PREVENT_MANIPULATION
@@ -87,7 +77,7 @@
 	item_state = "chickensuit"
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 /obj/item/clothing/suit/monkeysuit
@@ -97,7 +87,7 @@
 	item_state = "monkeysuit"
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 /obj/item/clothing/suit/cardborg
@@ -147,7 +137,7 @@
 	item_state = "xenos_helm"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 
 //swimsuit
@@ -159,31 +149,26 @@
 	name = "black swimsuit"
 	desc = "An oldfashioned black swimsuit."
 	icon_state = "swim_black"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/blue
 	name = "blue swimsuit"
 	desc = "An oldfashioned blue swimsuit."
 	icon_state = "swim_blue"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/purple
 	name = "purple swimsuit"
 	desc = "An oldfashioned purple swimsuit."
 	icon_state = "swim_purp"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/green
 	name = "green swimsuit"
 	desc = "An oldfashioned green swimsuit."
 	icon_state = "swim_green"
-	siemens_coefficient = 1
 
 /obj/item/clothing/under/swimsuit/red
 	name = "red swimsuit"
 	desc = "An oldfashioned red swimsuit."
 	icon_state = "swim_red"
-	siemens_coefficient = 1
 
 /obj/item/clothing/suit/poncho
 	name = "poncho"
@@ -208,7 +193,14 @@
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. And remember, Tunnel Snakes rule!"
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
-	armor = list(melee = 20, bullet = 5, energy = 20, bomb = 10, bio = 0, rad = 0)
+	armor = list(
+		melee = 10,
+		bullet = 10,
+		energy = 10,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20

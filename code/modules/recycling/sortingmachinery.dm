@@ -358,7 +358,9 @@
 	return
 
 /obj/item/device/destTagger/Topic(href, href_list)
-	src.add_fingerprint(usr)
+	if(..())
+		return 1
+
 	if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
 		src.currTag = href_list["nextTag"]
 	if(href_list["nextTag"] == "CUSTOM")

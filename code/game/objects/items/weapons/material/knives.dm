@@ -20,7 +20,6 @@
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEM_SIZE_NORMAL
-		armor_penetration = ARMOR_PEN_SHALLOW
 		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
@@ -62,7 +61,6 @@
 	edge = 1
 	force_divisor = 0.3 // 18 when wielded with hardness 60 (steel)
 	matter = list(MATERIAL_STEEL = 3)
-	armor_penetration = ARMOR_PEN_GRAZING
 	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	unbreakable = 1
@@ -76,7 +74,6 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "tacknife"
 	item_state = "knife"
-	armor_penetration = ARMOR_PEN_MODERATE
 	applies_material_colour = 0
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 15)
 
@@ -85,7 +82,6 @@
 	desc = "A sharp, metal hook what sticks into things."
 	icon_state = "hook_knife"
 	item_state = "hook_knife"
-	armor_penetration = ARMOR_PEN_SHALLOW
 	embed_mult = 1.5 //This is designed for embedding
 
 /obj/item/weapon/material/knife/ritual
@@ -94,7 +90,6 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	applies_material_colour = 0
-	armor_penetration = ARMOR_PEN_MODERATE
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
@@ -103,7 +98,6 @@
 	force_divisor = 0.4 // 24 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10)
-	armor_penetration = ARMOR_PEN_SHALLOW
 
 /obj/item/weapon/material/knife/neotritual
 	name = "NeoTheology ritual knife"
@@ -112,4 +106,3 @@
 	icon_state = "neot-knife"
 	item_state = "knife"
 	applies_material_colour = 0
-	armor_penetration = ARMOR_PEN_SHALLOW

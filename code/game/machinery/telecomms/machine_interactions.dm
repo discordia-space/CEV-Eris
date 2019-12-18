@@ -132,9 +132,6 @@
 				to_chat(user, SPAN_WARNING("You need five coils of wire for this."))
 
 
-/obj/machinery/telecomms/attack_ai(var/mob/user as mob)
-	attack_hand(user)
-
 /obj/machinery/telecomms/attack_hand(var/mob/user as mob)
 
 	// You need a multitool to use this, or be silicon

@@ -1007,34 +1007,28 @@
 	/obj/item/weapon/gun/projectile/revolver/detective = 5,
 	/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
 	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
-	/obj/item/weapon/gun/projectile/boltgun/fs = 3,
 	/obj/item/ammo_magazine/pistol/rubber = 20,
 	/obj/item/ammo_magazine/hpistol/rubber = 20,
-	/obj/item/ammo_magazine/lpistol/rubber = 20,
 	/obj/item/ammo_magazine/slpistol/rubber = 20,
 	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
 	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-	/obj/item/ammo_magazine/ammobox/lrifle_small = 20,
 	/obj/item/ammo_magazine/sllrifle = 10,
 	/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
 	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
-	/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
-	/obj/item/clothing/accessory/holster = 5,
-	/obj/item/weapon/storage/pouch/pistol_holster = 5)
+	/obj/item/weapon/storage/box/shotgunammo/blanks = 10)
 
 	contraband = list(/obj/item/ammo_magazine/slpistol = 20,
 	/obj/item/ammo_magazine/pistol = 20,
-	/obj/item/ammo_magazine/lpistol = 20,
 	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/ammo_magazine/ammobox/pistol = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
 	/obj/item/weapon/material/hatchet/tacknife = 6)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/energy/gun/martin = 1500, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/weapon/gun/projectile/boltgun/fs = 2000, /obj/item/ammo_magazine/lpistol/rubber = 300, /obj/item/ammo_magazine/lpistol = 400,/obj/item/ammo_magazine/slpistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
-					/obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50, /obj/item/clothing/accessory/holster = 150,
-					/obj/item/weapon/storage/pouch/pistol_holster =150, /obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/lpistol = 300, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
-					/obj/item/ammo_magazine/ammobox/lrifle_small = 200, /obj/item/weapon/material/hatchet/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
+					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
+					/obj/item/ammo_magazine/slpistol/rubber = 300, /obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50,
+					/obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
+					/obj/item/weapon/material/hatchet/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1045,7 +1039,7 @@
 	icon_deny = "cart-deny"
 	products = list(/obj/item/modular_computer/pda = 10,/obj/item/weapon/computer_hardware/scanner/medical = 6,
 					/obj/item/weapon/computer_hardware/scanner/reagent = 6,/obj/item/weapon/computer_hardware/scanner/atmos = 6,
-					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/nano_printer = 10,
+					/obj/item/weapon/computer_hardware/scanner/paper = 10,/obj/item/weapon/computer_hardware/printer = 10,
 					/obj/item/weapon/computer_hardware/card_slot = 3,/obj/item/weapon/computer_hardware/ai_slot = 4)
 	auto_price = FALSE
 
@@ -1140,6 +1134,7 @@
 	icon_deny = "sec-deny"
 	req_access = list(access_security)
 	products = list(/obj/item/weapon/handcuffs = 8,
+					/obj/item/weapon/handcuffs/zipties = 8,
 					/obj/item/weapon/grenade/flashbang = 8,
 					/obj/item/weapon/grenade/chem_grenade/teargas = 8,
 					/obj/item/device/flash = 8,
@@ -1337,13 +1332,13 @@
 	product_slogans = "Print your own gun TODAY!;The future is NOW!;Can't stop the industrial revolution!"
 	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
-	products = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 20, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
+	products = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 20, /obj/item/weapon/storage/box/data_disk/basic = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 10,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 20,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
 	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 2)
-	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
+	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50, /obj/item/weapon/storage/box/data_disk/basic = 100, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 500,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 1800, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 400,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 3000,
@@ -1356,16 +1351,24 @@
 	icon_state = "serbomat"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
-					/obj/item/weapon/storage/deferred/crate/uniform_green = 5, /obj/item/weapon/storage/deferred/crate/uniform_brown = 5,
-					/obj/item/weapon/storage/deferred/crate/uniform_black = 5, /obj/item/weapon/storage/deferred/crate/uniform_flak = 5,
-					/obj/item/weapon/storage/deferred/crate/uniform_light = 5
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 30, // ghetto antihacking, have fun
+					/obj/item/weapon/storage/deferred/crate/uniform_green = 4, /obj/item/weapon/storage/deferred/crate/uniform_brown = 4,
+					/obj/item/weapon/storage/deferred/crate/uniform_black = 4, /obj/item/weapon/storage/deferred/crate/uniform_flak = 2,
+					/obj/item/weapon/storage/deferred/crate/uniform_light = 2,
+					/obj/item/weapon/gun/projectile/boltgun/serbian = 8,
+					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					)
-	prices = list(  /obj/item/weapon/storage/deferred/crate/uniform_green = 1000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 1000,
-					/obj/item/weapon/storage/deferred/crate/uniform_black = 1000, /obj/item/weapon/storage/deferred/crate/uniform_flak = 1200,
-					/obj/item/weapon/storage/deferred/crate/uniform_light = 800
+	prices = list(
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
+          				/obj/item/weapon/storage/deferred/crate/uniform_green = 2000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 2000,
+					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000, /obj/item/weapon/storage/deferred/crate/uniform_flak = 2200,
+					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
+					/obj/item/weapon/gun/projectile/boltgun/serbian = 1000,
+					/obj/item/ammo_magazine/ammobox/lrifle_small = 300,
 					)
 	idle_power_usage = 211
 	auto_price = FALSE
+	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/custom
 	name = "Custom Vendomat"

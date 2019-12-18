@@ -6,6 +6,10 @@
 	name = "handcuffs"
 	build_path = /obj/item/weapon/handcuffs
 
+/datum/design/autolathe/sec/zipties
+	name = "zip ties"
+	build_path = /obj/item/weapon/handcuffs/zipties
+
 /datum/design/autolathe/sec/electropack
 	name = "electropack"
 	build_path = /obj/item/device/radio/electropack

@@ -106,6 +106,8 @@
 
 /datum/uplink_item/item/tools/mind_fryer
 	name = "Mind Fryer"
+	desc = "When activated, attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns. \
+			The device owner is immune to this effect."
 	item_cost = 3
 	path = /obj/item/device/mind_fryer
 	antag_roles = list()
@@ -118,6 +120,8 @@
 
 /datum/uplink_item/item/tools/spy_sensor
 	name = "Spying Sensor (4x)"
+	desc = "A set of sensor packages designed to collect some information for your client. \
+			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
 	antag_roles = ROLES_CONTRACT
@@ -159,3 +163,8 @@
 		var/obj/item/weapon/storage/bsdm/B = .
 		B.owner = U.uplink_owner
 		U.bsdm_time = world.time + 10 MINUTES
+
+/datum/uplink_item/item/tools/mental_imprinter
+	name = "Mental Imprinter"
+	item_cost = 5
+	path = /obj/item/device/mental_imprinter

@@ -190,7 +190,7 @@
 	maxHealth = victim.maxHealth * 2 + 10
 	health = maxHealth
 	name = "[pick("warped", "twisted", "tortured", "tormented")] [victim.name]"
-	if(lentext(victim.desc))
+	if(length(victim.desc))
 		desc = desc + " But now silver pus oozes from open wounds and unknown mechanisms push through their deathly skin..."
 	density = victim.density
 	mob_size = victim.mob_size

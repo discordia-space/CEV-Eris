@@ -13,7 +13,6 @@
  */
 
 /obj/item/weapon/rig
-
 	name = "hardsuit control module"
 	icon = 'icons/obj/rig_modules.dmi'
 	desc = "A back-mounted hardsuit deployment and control mechanism."
@@ -24,12 +23,20 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 
 	// These values are passed on to all component pieces.
-	armor = list(melee = 40, bullet = 35, energy = 35, bomb = 35, bio = 100, rad = 40)
+	armor = list(
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 50
+	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.1
 	permeability_coefficient = 0.1
 	unacidable = 1
+	slowdown = 1
 
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
@@ -106,8 +113,7 @@
 		return visor.vision.glasses
 
 /obj/item/weapon/rig/examine()
-	to_chat(usr, "This is \icon[src][src.name].")
-	to_chat(usr, "[src.desc]")
+	..()
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
@@ -118,8 +124,8 @@
 		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
 		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
 
-/obj/item/weapon/rig/New()
-	..()
+/obj/item/weapon/rig/Initialize()
+	. = ..()
 
 	item_state = icon_state
 	wires = new(src)
@@ -129,7 +135,7 @@
 		allowed |= extra_allowed
 
 	if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
-		locked = 0
+		locked = FALSE
 
 	spark_system = new()
 	spark_system.set_up(5, 0, src)

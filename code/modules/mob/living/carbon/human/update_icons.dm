@@ -132,8 +132,7 @@ Please contact me on #coderbus IRC. ~Carn x
 #define L_HAND_LAYER		24
 #define R_HAND_LAYER		25
 #define FIRE_LAYER			26		//If you're on fire
-#define TARGETED_LAYER		27		//BS12: Layer for the target overlay from weapon targeting system
-#define TOTAL_LAYERS		27
+#define TOTAL_LAYERS		26
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -1008,6 +1007,5 @@ var/global/list/damage_icon_parts = list()
 #undef LEGCUFF_LAYER
 #undef L_HAND_LAYER
 #undef R_HAND_LAYER
-#undef TARGETED_LAYER
 #undef FIRE_LAYER
 #undef TOTAL_LAYERS

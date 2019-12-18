@@ -50,29 +50,38 @@
 /obj/item/modular_computer/Topic(href, href_list)
 	if(..())
 		return 1
-	if( href_list["PC_exit"] )
+	if(href_list["PC_exit"])
 		kill_program()
 		return 1
-	if( href_list["PC_enable_component"] )
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["PC_enable_component"])
-		if(H && istype(H) && !H.enabled)
-			H.enabled = 1
+	if(href_list["PC_enable_component"])
+		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["component"])
+		if(istype(H) && !H.enabled)
+			H.enabled = TRUE
 			H.enabled()
 		. = 1
-	if( href_list["PC_disable_component"] )
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["PC_disable_component"])
-		if(H && istype(H) && H.enabled)
-			H.enabled = 0
+	if(href_list["PC_disable_component"])
+		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["component"])
+		if(istype(H) && H.enabled)
+			H.enabled = FALSE
 			H.disabled()
 		. = 1
-	if( href_list["PC_shutdown"] )
+	if(href_list["PC_toggle_component"])
+		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["component"])
+		if(istype(H))
+			H.enabled = !H.enabled
+			if(H.enabled)
+				H.enabled()
+			else
+				H.disabled()
+		. = 1
+	if(href_list["PC_shutdown"])
 		shutdown_computer()
 		return 1
-	if( href_list["PC_minimize"] )
+	if(href_list["PC_minimize"])
 		var/mob/user = usr
 		minimize_program(user)
 
-	if( href_list["PC_killprogram"] )
+	if(href_list["PC_killprogram"])
 		var/prog = href_list["PC_killprogram"]
 		var/datum/computer_file/program/P = null
 		var/mob/user = usr
@@ -86,14 +95,14 @@
 		update_uis()
 		to_chat(user, "<span class='notice'>Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed.</span>")
 
-	if( href_list["PC_runprogram"] )
+	if(href_list["PC_runprogram"])
 		return run_program(href_list["PC_runprogram"])
 
-	if( href_list["PC_setautorun"] )
+	if(href_list["PC_setautorun"])
 		if(!hard_drive)
 			return
 		set_autorun(href_list["PC_setautorun"])
-	if( href_list["PC_terminal"] )
+	if(href_list["PC_terminal"])
 		open_terminal(usr)
 		return 1
 
@@ -124,6 +133,10 @@
 		data["PC_batteryicon"] = "batt_5.gif"
 		data["PC_batterypercent"] = "N/C"
 		data["PC_showbatteryicon"] = cell ? 1 : 0
+
+	if(led)
+		data["PC_light_name"] = led.name
+		data["PC_light_on"] = led.enabled
 
 	if(tesla_link && tesla_link.enabled && apc_powered)
 		data["PC_apclinkicon"] = "charging.gif"

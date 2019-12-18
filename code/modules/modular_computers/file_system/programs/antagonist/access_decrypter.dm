@@ -1,23 +1,23 @@
 /datum/computer_file/program/access_decrypter
-	filename = "nt_accrypt"
-	filedesc = "NTNet Access Decrypter"
+	filename = "accrypt"
+	filedesc = "Access Decrypter"
 	program_icon_state = "hostile"
 	program_key_state = "security_key"
 	program_menu_icon = "unlocked"
 	extended_desc = "This highly advanced script can very slowly decrypt operational codes used in almost any network. These codes can be downloaded to an ID card to expand the available access. The system administrator will probably notice this."
 	size = 34
-	requires_ntnet = 1
-	available_on_ntnet = 0
-	available_on_syndinet = 1
+	requires_ntnet = TRUE
+	available_on_ntnet = FALSE
+	available_on_syndinet = TRUE
 	nanomodule_path = /datum/nano_module/program/access_decrypter/
 	var/message = ""
 	var/running = FALSE
 	var/progress = 0
-	var/target_progress = 300
+	var/target_progress = 200
 	var/datum/access/target_access = null
 	var/list/restricted_access_codes = list(access_change_ids, access_network) // access codes that are not hackable due to balance reasons
 
-/datum/computer_file/program/access_decrypter/kill_program(var/forced)
+/datum/computer_file/program/access_decrypter/kill_program(forced)
 	reset()
 	..(forced)
 
@@ -25,6 +25,7 @@
 	running = FALSE
 	message = ""
 	progress = 0
+	target_access = null
 
 /datum/computer_file/program/access_decrypter/process_tick()
 	. = ..()
@@ -36,13 +37,13 @@
 		message = "A fatal hardware error has been detected."
 		return
 	if(!istype(RFID.stored_card))
-		message = "RFID card has been removed from the device. Operation aborted."
+		message = "ID card has been removed from the device. Operation aborted."
 		return
 
 	progress += get_speed()
 
 	if(progress >= target_progress)
-		if(prob(20 * max(STAT_LEVEL_ADEPT - operator_skill, 0))) // Oops
+		if(prob(max(STAT_LEVEL_ADEPT - operator_skill, 0) * 3)) // Oops, wrong access
 			var/list/valid_access_values = get_all_station_access()
 			valid_access_values -= restricted_access_codes
 			valid_access_values -= RFID.stored_card.access
@@ -51,9 +52,9 @@
 		if(ntnet_global.intrusion_detection_enabled && !prob(get_sneak_chance()))
 			ntnet_global.add_log("IDS WARNING - Unauthorised access to primary keycode database from device: [computer.network_card.get_network_tag()]  - downloaded access codes for: [target_access.desc].")
 			ntnet_global.intrusion_detection_alarm = 1
-		message = "Successfully decrypted and saved operational key codes. Downloaded access codes for: [target_access.desc]"
-		target_access = null
+		var/datum/access/cloned_access = target_access
 		reset()
+		message = "Successfully decrypted and saved operational key codes. Downloaded access codes for: [cloned_access.desc]"
 
 /datum/computer_file/program/access_decrypter/Topic(href, href_list)
 	if(..())
@@ -70,7 +71,7 @@
 			message = "A fatal hardware error has been detected."
 			return
 		if(!istype(RFID.stored_card))
-			message = "RFID card is not present in the device. Operation aborted."
+			message = "ID card is not present in the device. Operation aborted."
 			return
 
 		var/access = text2num(href_list["PRG_execute"])
@@ -91,14 +92,14 @@
 		return 1
 
 /datum/computer_file/program/access_decrypter/proc/get_sneak_chance()
-	return max(operator_skill - STAT_LEVEL_ADEPT, 0) * 30
+	return max(operator_skill - STAT_LEVEL_BASIC, 0) * 3
 
 /datum/computer_file/program/access_decrypter/proc/get_speed()
-	var/skill_speed_modifier = 1 + (operator_skill - STAT_LEVEL_ADEPT)/4
+	var/skill_speed_modifier = max(100 + (operator_skill - STAT_LEVEL_BASIC) * 2, 25) / 100
 	return computer.processor_unit.max_idle_programs * skill_speed_modifier
 
 /datum/nano_module/program/access_decrypter
-	name = "NTNet Access Decrypter"
+	name = "Access Decrypter"
 
 /datum/nano_module/program/access_decrypter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	if(!ntnet_global)
@@ -115,36 +116,31 @@
 		data["running"] = 1
 		data["rate"] = PRG.get_speed()
 
-		// Stolen from DOS traffic generator, generates strings of 1s and 0s
-		var/percentage = (PRG.progress / PRG.target_progress) * 100
-		var/list/strings[0]
-		for(var/j, j<10, j++)
-			var/string = ""
-			for(var/i, i<20, i++)
-				string = "[string][prob(percentage)]"
-			strings.Add(string)
-		data["dos_strings"] = strings
+		// The UI template uses this to draw a block of 1s and 0s, the more 1s the closer you are to completion
+		// Combined with UI updates this adds quite nice effect to the UI
+		data["completion_fraction"] = PRG.progress / PRG.target_progress
+
 	else if(program.computer.card_slot && program.computer.card_slot.stored_card)
 		var/obj/item/weapon/card/id/id_card = program.computer.card_slot.stored_card
 		var/list/regions = list()
-		for(var/i = 1; i <= 7; i++)
+		for(var/region in ACCESS_REGION_MIN to ACCESS_REGION_MAX)
 			var/list/accesses = list()
-			for(var/access in get_region_accesses(i))
+			for(var/access in get_region_accesses(region))
 				if (get_access_desc(access))
 					accesses.Add(list(list(
 						"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
 						"ref" = access,
-						"allowed" = (access in id_card.access) ? 1 : 0,
-						"blocked" = (access in PRG.restricted_access_codes) ? 1 : 0)))
+						"allowed" = (access in id_card.access),
+						"blocked" = (access in PRG.restricted_access_codes))))
 
 			regions.Add(list(list(
-				"name" = get_region_accesses_name(i),
+				"name" = get_region_accesses_name(region),
 				"accesses" = accesses)))
 		data["regions"] = regions
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "access_decrypter.tmpl", "NTNet Access Decrypter", 550, 400, state = state)
+		ui = new(user, src, ui_key, "mpc_access_decrypter.tmpl", "Access Decrypter", 550, 400, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

@@ -735,12 +735,14 @@ obj/screen/fire/DEADelize()
 /obj/screen/internal
 	name = "internal"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "internal0"
+	icon_state = "blank"
 	screen_loc = "15,14"
 
 /obj/screen/internal/New()
 	..()
-	ovrls["internal1"] += new /image/no_recolor(icon = src.icon)
+	ovrls["internal0"] += new /image(icon = src.icon, icon_state = "internal0")
+	ovrls["internal1"] += new /image/no_recolor(icon = src.icon, icon_state = "internal1")
+	update_icon()
 
 /obj/screen/internal/Click()
 //	if("internal")
@@ -750,7 +752,7 @@ obj/screen/fire/DEADelize()
 			if(C.internal)
 				C.internal = null
 				to_chat(C, SPAN_NOTICE("No longer running on internals."))
-				overlays.Cut()
+				update_icon()
 			else
 
 				var/no_mask
@@ -848,6 +850,8 @@ obj/screen/fire/DEADelize()
 	overlays.Cut()
 	if(parentmob:internal)
 		overlays += ovrls["internal1"]
+	else
+		overlays += ovrls["internal0"]
 
 /obj/screen/internal/DEADelize()
 	overlays.Cut()
@@ -1069,7 +1073,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/intent
 	name = "intent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "blank"
+	icon_state = "full"
 	screen_loc = "8,2"
 
 /obj/screen/intent/New()
@@ -1179,7 +1183,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
 	name = "dmg"
-	screen_loc = "1,1"
+	screen_loc = "1,1:-32"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = UI_DAMAGE_LAYER
@@ -1286,7 +1290,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/glasses_overlay
 	icon = null
 	name = "glasses"
-	screen_loc = "1,1"
+	screen_loc = "1:-32,1:-32"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.

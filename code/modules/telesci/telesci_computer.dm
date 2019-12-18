@@ -71,9 +71,6 @@
 	else
 		..()
 
-/obj/machinery/computer/telescience/attack_ai(mob/user)
-	src.attack_hand(user)
-
 /obj/machinery/computer/telescience/attack_hand(mob/user)
 	if(..())
 		return

@@ -19,8 +19,8 @@
 	var/list/spray_sizes = list(1,3)
 	volume = 250
 
-/obj/item/weapon/reagent_containers/spray/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/Initialize()
+	. = ..()
 	src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 
 /obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)

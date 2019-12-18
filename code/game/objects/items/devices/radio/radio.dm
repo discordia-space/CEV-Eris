@@ -66,11 +66,11 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/Destroy()
 	remove_hearing()
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
 	SSradio.remove_object(src, frequency)
 	for (var/ch_name in channels)
 		SSradio.remove_object(src, radiochannels[ch_name])
+
 	return ..()
 
 

@@ -2,7 +2,7 @@
 	name = "belt"
 	desc = "Can hold various things."
 	icon = 'icons/inventory/belt/icon.dmi'
-	icon_state = "utilitybelt"
+	icon_state = "utility"
 	item_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
@@ -32,7 +32,7 @@
 /obj/item/weapon/storage/belt/utility
 	name = "tool belt"
 	desc = "Can hold various tools."
-	icon_state = "utilitybelt"
+	icon_state = "utility"
 	item_state = "utility"
 	can_hold = list(
 		/obj/item/weapon/tool,
@@ -54,9 +54,11 @@
 		/obj/item/clothing/glasses,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/cell/small,
-		/obj/item/weapon/cell/medium
-		)
-
+		/obj/item/weapon/cell/medium,
+		/obj/item/weapon/grenade/chem_grenade/cleaner,
+		/obj/item/weapon/grenade/chem_grenade/antiweed,
+		/obj/item/weapon/grenade/chem_grenade/metalfoam
+	)
 
 /obj/item/weapon/storage/belt/utility/full/populate_contents()
 	new /obj/item/weapon/tool/screwdriver(src)
@@ -66,15 +68,14 @@
 	new /obj/item/weapon/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-/obj/item/weapon/storage/belt/utility/atmostech/populate_contents()
-	new /obj/item/weapon/tool/screwdriver(src)
-	new /obj/item/weapon/tool/wrench(src)
-	new /obj/item/weapon/tool/weldingtool(src)
-	new /obj/item/weapon/tool/crowbar(src)
-	new /obj/item/weapon/tool/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
-
-
+/obj/item/weapon/storage/belt/utility/neotheology
+	name = "neotheologian utility belt"
+	desc = "Waist-held holy items."
+	icon_state = "utility_neotheology"
+	can_hold_extra = list(
+		/obj/item/weapon/book/ritual/cruciform,
+		/obj/item/weapon/implant/core_implant/cruciform
+	)
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -103,7 +104,7 @@
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/lighting/toggleable/flashlight,
 		/obj/item/weapon/extinguisher/mini
-		)
+	)
 
 /obj/item/weapon/storage/belt/medical/emt
 	name = "EMT utility belt"
@@ -143,7 +144,18 @@
 		/obj/item/weapon/gun/energy/gun/martin,
 		//obj/item/weapon/gun/energy/taser, //too big, use holster
 		/obj/item/taperoll
-		)
+	)
+
+/obj/item/weapon/storage/belt/security/neotheology
+	name = "neotheologian tactical belt"
+	desc = "Can hold various military and security equipment."
+	icon_state = "tactical_neotheology"
+	can_hold_extra = list(
+		/obj/item/weapon/book/ritual/cruciform,
+		/obj/item/weapon/implant/core_implant/cruciform,
+		/obj/item/weapon/material/knife/neotritual,
+		/obj/item/weapon/gun/energy/crossbow
+	)
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"
@@ -153,9 +165,4 @@
 	storage_slots = 1
 	can_hold = list(
 		/obj/item/clothing/mask/luchador
-		)
-
-/obj/item/weapon/storage/belt/church
-	name = "NeoTheology belt"
-	desc = "Waist-held holy items."
-	icon_state = "ntbelt"
+	)

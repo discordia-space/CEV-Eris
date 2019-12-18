@@ -1,18 +1,17 @@
 /datum/computer_file/program/newsbrowser
-	filename = "newsbrowser"
-	filedesc = "NTNet/ExoNet News Browser"
+	filename = "news_browser"
+	filedesc = "News Browser"
 	extended_desc = "This program may be used to view and download news articles from the network."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	program_menu_icon = "contact"
 	size = 4
-	requires_ntnet = 1
-	available_on_ntnet = 1
+	requires_ntnet = TRUE
+	available_on_ntnet = TRUE
 
 	nanomodule_path = /datum/nano_module/program/computer_newsbrowser/
 	var/datum/computer_file/data/news_article/loaded_article
 	var/download_progress = 0
-	var/download_netspeed = 0
 	var/downloading = 0
 	var/message = ""
 	var/show_archived = 0
@@ -20,24 +19,16 @@
 /datum/computer_file/program/newsbrowser/process_tick()
 	if(!downloading)
 		return
-	download_netspeed = 0
-	// Speed defines are found in misc.dm
-	switch(ntnet_status)
-		if(1)
-			download_netspeed = NTNETSPEED_LOWSIGNAL
-		if(2)
-			download_netspeed = NTNETSPEED_HIGHSIGNAL
-		if(3)
-			download_netspeed = NTNETSPEED_ETHERNET
-	download_progress += download_netspeed
+	..()
+	download_progress += ntnet_speed
 	if(download_progress >= loaded_article.size)
 		downloading = 0
-		requires_ntnet = 0 // Turn off NTNet requirement as we already loaded the file into local memory.
+		requires_ntnet = FALSE // Turn off NTNet requirement as we already loaded the file into local memory.
 	SSnano.update_uis(NM)
 
 /datum/computer_file/program/newsbrowser/kill_program()
 	..()
-	requires_ntnet = 1
+	requires_ntnet = TRUE
 	loaded_article = null
 	download_progress = 0
 	downloading = 0
@@ -60,7 +51,7 @@
 		. = 1
 		downloading = 0
 		download_progress = 0
-		requires_ntnet = 1
+		requires_ntnet = TRUE
 		loaded_article = null
 	if(href_list["PRG_clearmessage"])
 		. = 1
@@ -87,7 +78,7 @@
 
 
 /datum/nano_module/program/computer_newsbrowser
-	name = "NTNet/ExoNet News Browser"
+	name = "News Browser"
 
 /datum/nano_module/program/computer_newsbrowser/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 
@@ -108,7 +99,7 @@
 		data["download_running"] = 1
 		data["download_progress"] = PRG.download_progress
 		data["download_maxprogress"] = PRG.loaded_article.size
-		data["download_rate"] = PRG.download_netspeed
+		data["download_rate"] = PRG.ntnet_speed
 	else										// Viewing list of articles
 		var/list/all_articles[0]
 		for(var/datum/computer_file/data/news_article/F in ntnet_global.available_news)
@@ -125,7 +116,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "news_browser.tmpl", "NTNet/ExoNet News Browser", 575, 750, state = state)
+		ui = new(user, src, ui_key, "mpc_news_browser.tmpl", name, 575, 750, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

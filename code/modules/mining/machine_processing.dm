@@ -69,10 +69,8 @@
 	if(..())
 		return 1
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
 
 	if(href_list["toggle_smelting"])
-
 		var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
 		if(!choice) return
 
@@ -85,16 +83,14 @@
 		machine.ores_processing[href_list["toggle_smelting"]] = choice
 
 	if(href_list["toggle_power"])
-
 		machine.active = !machine.active
 
 	if(href_list["toggle_ores"])
-
 		show_all_ores = !show_all_ores
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.updateUsrDialog()
-	return
+
 
 /**********************Mineral processing unit**************************/
 

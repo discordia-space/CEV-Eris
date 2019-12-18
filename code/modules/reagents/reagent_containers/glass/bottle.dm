@@ -12,10 +12,10 @@
 	filling_states = "-10;10;25;50;75;80;100"
 	lid_icon_state = "lid_bottle"
 
-/obj/item/weapon/reagent_containers/glass/bottle/New()
+/obj/item/weapon/reagent_containers/glass/bottle/Initialize()
+	. = ..()
 	if(!icon_state || icon_state == "bottle")
 		icon_state = "bottle-[rand(1,4)]"
-	..()
 
 /obj/item/weapon/reagent_containers/glass/bottle/update_icon()
 	cut_overlays()

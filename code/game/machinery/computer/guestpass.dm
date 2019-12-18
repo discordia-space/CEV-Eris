@@ -90,9 +90,6 @@
 		return
 	..()
 
-/obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
-	return attack_hand(user)
-
 /obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
 	if(..())
 		return

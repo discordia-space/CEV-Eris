@@ -112,27 +112,14 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return 0
 
 
-/obj/machinery/telecomms/New()
-	telecomms_list += src
-	..()
-
-	//Set the listening_levels if there's none.
-	if(!listening_levels || !listening_levels.len)
-		//Defaults to our Z level!
-		var/turf/position = get_turf(src)
-
-		listening_levels = list(position.z)
-		var/z_level = position.z
-		// UP
-		while(HasAbove(z_level++))
-			listening_levels |= z_level
-		// Down
-		z_level = position.z
-		while(HasBelow(z_level--))
-			listening_levels |= z_level
-
 /obj/machinery/telecomms/Initialize()
 	. = ..()
+	telecomms_list += src
+
+	//Set the listening_levels if there's none.
+	if(!length(listening_levels))
+		update_listening_levels()
+
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)
@@ -147,7 +134,31 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	for(var/obj/machinery/telecomms/comm in telecomms_list)
 		comm.links -= src
 	links = list()
+	return ..()
+
+// If moved, update listening levels
+/obj/machinery/telecomms/forceMove(atom/destination, special_event, glide_size_override=0)
 	. = ..()
+	if(.)
+		update_listening_levels()
+
+// Updates levels the telecomm machine is listening to
+/obj/machinery/telecomms/proc/update_listening_levels()
+	var/turf/position = get_turf(src)
+
+	//Defaults to our Z level!
+	var/z_level = position.z
+	listening_levels = list(z_level)
+
+	// UP
+	while(HasAbove(z_level++))
+		listening_levels |= z_level
+
+	// Down
+	z_level = position.z
+	while(HasBelow(z_level--))
+		listening_levels |= z_level
+
 
 // Used in auto linking
 /obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)

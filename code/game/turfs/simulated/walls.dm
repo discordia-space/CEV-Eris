@@ -344,15 +344,14 @@
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
-
+/turf/simulated/wall/proc/dismantle_wall(devastated, explode, no_product)
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		if(reinf_material)
 			reinf_material.place_dismantled_girder(src, reinf_material)
 		else
 			material.place_dismantled_girder(src)
-		material.place_dismantled_product(src,devastated)
+		material.place_sheet(src, amount=3)
 
 	for(var/obj/O in src.contents) //Eject contents!
 		if(istype(O,/obj/item/weapon/contraband/poster))

@@ -97,9 +97,9 @@
 	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
 	//Добавляем Элементы ХУДа (украшения)
 	for (var/list/whistle in HUDdatum.HUDfrippery)
-		var/obj/screen/frippery/perdelka = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
-		perdelka.icon = HUDdatum.icon
-		H.HUDfrippery += perdelka
+		var/obj/screen/frippery/F = new (whistle["icon_state"],whistle["loc"], whistle["dir"],H)
+		F.icon = HUDdatum.icon
+		H.HUDfrippery += F
 	return
 
 
