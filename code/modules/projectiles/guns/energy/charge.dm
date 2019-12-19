@@ -108,11 +108,14 @@
 
 /obj/item/weapon/gun/energy/proc/add_charge(var/mob/living/user)
 	deltimer(overcharge_timer)
-	if(overcharging)
+	if(overcharging && get_holding_mob() == user && get_cell() && cell.checked_use(1))
 		overcharge_level = min(overcharge_max, overcharge_level + get_overcharge_add(user))
 		if(overcharge_level < overcharge_max)
 			overcharge_timer = addtimer(CALLBACK(src, .proc/add_charge, user), 1 SECONDS, TIMER_STOPPABLE)
-	to_chat(world, "overcharging. overcharging: [overcharging]. overcharge_timer:[overcharge_timer]. overcharge_level [overcharge_level]")
+		to_chat(world, "overcharging. overcharging: [overcharging]. overcharge_timer:[overcharge_timer]. overcharge_level [overcharge_level]")
+		return
+	visible_message(SPAN_WARNING("\The [src] sputters out."))
+	overcharge_level = 0
 
 #define VIG_OVERCHARGE_GEN 0.05
 
@@ -132,4 +135,4 @@
 	overcharge_level = 0
 
 /obj/item/weapon/gun/energy/proc/overcharge_level_to_mult()
-	return overcharge_level
+	return overcharge_level/10
