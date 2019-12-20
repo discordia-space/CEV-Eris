@@ -116,8 +116,6 @@
 	visible_message(SPAN_WARNING("\The [src] sputters out."))
 	overcharge_level = 0
 
-#define VIG_OVERCHARGE_GEN 0.05
-
 /obj/item/weapon/gun/energy/proc/get_overcharge_add(var/mob/living/user)
 	return overcharge_rate+user.stats.getStat(STAT_VIG)*VIG_OVERCHARGE_GEN
 
