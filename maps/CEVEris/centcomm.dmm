@@ -4009,7 +4009,6 @@
 "kQ" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/SCAF,
-/obj/item/clothing/head/helmet/space/void/SCAF,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5750,14 +5749,8 @@
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/ionrifle,
 /obj/item/weapon/material/harpoon,
-/obj/item/clothing/suit/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/merc/equipped,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /obj/item/weapon/rig/light/stealth,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
@@ -5821,8 +5814,6 @@
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/sniperrifle,
 /obj/item/clothing/suit/space/void/mining,
-/obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/weapon/tank/oxygen,
 /obj/item/weapon/tank/oxygen,

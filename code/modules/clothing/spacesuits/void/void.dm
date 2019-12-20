@@ -33,14 +33,24 @@
 	)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	action_button_name = "Toggle Helmet"
 	breach_threshold = 5
 	resilience = 0.09
 	can_breach = 1
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
-	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
+	var/obj/item/clothing/head/helmet/helmet = /obj/item/clothing/head/helmet/space/void   // Deployable helmet, if any.
 	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
+
+/obj/item/clothing/suit/space/void/Initialize()
+	if(boots && ispath(boots))
+		boots = new boots(src)
+	if(helmet && ispath(helmet))
+		helmet = new helmet(src)
+	if(tank && ispath(tank))
+		tank = new tank(src)
+	. = ..()
 
 /obj/item/clothing/suit/space/void/examine(user)
 	..(user)
@@ -51,8 +61,16 @@
 	if(tank && in_range(src,user))
 		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
 
+/obj/item/clothing/suit/space/void/ui_action_click()
+	toggle_helmet()
 
+/obj/item/clothing/suit/space/void/clean_blood()
+	//So that you dont have to detach the components to clean them, also since you can't detach the helmet
+	if(boots) boots.clean_blood()
+	if(helmet) helmet.clean_blood()
+	if(tank) tank.clean_blood()
 
+	return ..()
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
@@ -201,34 +219,20 @@
 		return
 
 	if(istype(W,/obj/item/weapon/tool/screwdriver))
-		if(helmet || boots || tank)
-			var/choice = input("What component would you like to remove?") as null|anything in list(helmet,boots,tank)
+		if(boots || tank)
+			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank)
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
 				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
 				tank.forceMove(get_turf(src))
 				src.tank = null
-			else if(choice == helmet)
-				to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
-				helmet.forceMove(get_turf(src))
-				src.helmet = null
 			else if(choice == boots)
 				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				src.boots = null
 		else
 			to_chat(user, "\The [src] does not have anything installed.")
-		return
-	else if(istype(W,/obj/item/clothing/head/helmet/space))
-		if(helmet)
-			to_chat(user, "\The [src] already has a helmet installed.")
-		else
-			to_chat(user, "You attach \the [W] to \the [src]'s helmet mount.")
-			user.drop_item()
-			W.forceMove(src)
-			src.helmet = W
-			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)

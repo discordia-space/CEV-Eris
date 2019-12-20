@@ -86,7 +86,6 @@
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/space/void/custodian(src)
-	new /obj/item/clothing/head/helmet/space/void/custodian(src)
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/clothing/head/beret/purple(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
@@ -118,7 +117,6 @@
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)
-	new /obj/item/clothing/head/helmet/space/void/acolyte(src)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/neotheology(src)
 	else
