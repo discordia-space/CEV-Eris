@@ -472,6 +472,8 @@
 	//Tell the user if they could fit a silencer on
 	if (silencer_type && !silenced)
 		to_chat(user, SPAN_NOTICE("You could attach a silencer to this."))
+	if(one_hand_penalty)
+		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
