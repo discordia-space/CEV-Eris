@@ -11,6 +11,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	move_to_delay = 8
+	mob_size = MOB_MEDIUM
 	var/distress_level = 0
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
@@ -89,3 +90,7 @@ reinforcements left it will attempt to evacuate*/
 			visible_message(SPAN_DANGER("[src] emits a haunting scream as it turns to flee, taking the nearby horde with it...."))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
 				B.evacuate()
+
+// Fuhrers won't slip over on water or soap.
+/mob/living/carbon/superior_animal/roach/fuhrer/slip(var/slipped_on,stun_duration=8)
+	return FALSE

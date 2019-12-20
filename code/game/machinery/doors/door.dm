@@ -198,9 +198,6 @@
 	take_damage(damage)
 	return
 
-/obj/machinery/door/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/door/attack_hand(mob/user as mob)
 	if(src.allowed(user) && operable())
 		if(src.density)

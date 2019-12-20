@@ -108,10 +108,7 @@
 */
 
 
-/obj/machinery/computer/pod/attack_ai(var/mob/user as mob)
-	return attack_hand(user)
-
-/obj/machinery/computer/pod/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/pod/attack_hand(mob/user)
 	if(..())
 		return
 

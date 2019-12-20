@@ -163,9 +163,6 @@
 			SSnano.update_uis(src) // update all UIs attached to src
 			return
 
-/obj/machinery/chemical_dispenser/attack_ai(mob/living/user)
-	return src.attack_hand(user)
-
 /obj/machinery/chemical_dispenser/attack_hand(mob/living/user)
 	if(stat & BROKEN)
 		return

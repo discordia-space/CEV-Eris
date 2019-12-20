@@ -11,7 +11,7 @@
  * Interface lock can be pulsed to toggle whether or not the interface can be accessed.
  */
 
-/datum/wires/rig/UpdateCut(var/index, var/mended)
+/datum/wires/rig/UpdateCut(index, mended)
 
 	var/obj/item/weapon/rig/rig = holder
 	switch(index)
@@ -22,8 +22,15 @@
 		if(RIG_INTERFACE_SHOCK)
 			rig.electrified = mended ? 0 : -1
 			rig.shock(usr,100)
+		if(RIG_SYSTEM_CONTROL)
+			if(mended)
+				rig.malfunctioning = 0
+				rig.malfunction_delay = 0
+			else
+				rig.malfunctioning = 10
+				rig.malfunction_delay = 30
 
-/datum/wires/rig/UpdatePulsed(var/index)
+/datum/wires/rig/UpdatePulsed(index)
 
 	var/obj/item/weapon/rig/rig = holder
 	switch(index)
@@ -48,9 +55,7 @@
 
 /datum/wires/rig/CanUse(var/mob/living/L)
 	var/obj/item/weapon/rig/rig = holder
-	if(rig.open)
-		return 1
-	return 0
+	return rig.open
 
 #undef RIG_SECURITY
 #undef RIG_AI_OVERRIDE

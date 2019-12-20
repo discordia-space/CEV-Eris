@@ -88,11 +88,6 @@
 	src.updateDialog()
 
 
-/obj/machinery/power/generator_type2/attack_ai(mob/user)
-	if(stat & (BROKEN|NOPOWER)) return
-	interact(user)
-
-
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER)) return

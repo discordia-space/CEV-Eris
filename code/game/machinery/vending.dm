@@ -1009,7 +1009,6 @@
 	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
 	/obj/item/ammo_magazine/pistol/rubber = 20,
 	/obj/item/ammo_magazine/hpistol/rubber = 20,
-	/obj/item/ammo_magazine/lpistol/rubber = 20,
 	/obj/item/ammo_magazine/slpistol/rubber = 20,
 	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
 	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
@@ -1020,16 +1019,15 @@
 
 	contraband = list(/obj/item/ammo_magazine/slpistol = 20,
 	/obj/item/ammo_magazine/pistol = 20,
-	/obj/item/ammo_magazine/lpistol = 20,
 	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/ammo_magazine/ammobox/pistol = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
 	/obj/item/weapon/material/hatchet/tacknife = 6)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/energy/gun/martin = 1500, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/lpistol/rubber = 300, /obj/item/ammo_magazine/lpistol = 400,/obj/item/ammo_magazine/slpistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
-					/obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/lpistol = 300, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
+					/obj/item/ammo_magazine/slpistol/rubber = 300, /obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50,
+					/obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
 					/obj/item/weapon/material/hatchet/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
 
 //This one's from bay12
@@ -1360,7 +1358,7 @@
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 8,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					)
-	prices = list(  
+	prices = list(
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
           				/obj/item/weapon/storage/deferred/crate/uniform_green = 2000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 2000,
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000, /obj/item/weapon/storage/deferred/crate/uniform_flak = 2200,

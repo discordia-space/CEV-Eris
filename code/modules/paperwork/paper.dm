@@ -16,7 +16,6 @@
 	w_class = ITEM_SIZE_TINY
 	throw_range = 1
 	throw_speed = 1
-	layer = 4
 	slot_flags = SLOT_HEAD
 	body_parts_covered = HEAD
 	attack_verb = list("bapped")
