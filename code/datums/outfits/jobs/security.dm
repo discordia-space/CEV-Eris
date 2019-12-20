@@ -41,7 +41,7 @@
 	uniform = /obj/item/clothing/under/rank/inspector
 	suit = /obj/item/clothing/suit/storage/detective/ironhammer
 	head = /obj/item/clothing/head/det
-	gloves = /obj/item/clothing/gloves/stungloves
+	gloves = /obj/item/clothing/gloves/thick/swat
 	l_pocket = /obj/item/device/flash
 	shoes = /obj/item/clothing/shoes/reinforced
 	belt = /obj/item/weapon/gun/energy/gun/martin

@@ -5,6 +5,7 @@
 	item_state = "bgloves"
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
+	siemens_coefficient = 1
 	var/stunforce = 0
 	var/agonyforce = 50
 	var/status = FALSE		//whether the thing is on or not
@@ -32,6 +33,7 @@
 			return TRUE
 		else
 			status = FALSE
+			siemens_coefficient = 1
 			update_icon()
 			return FALSE
 
@@ -54,11 +56,13 @@
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
 	if(cell && cell.charge > hitcost)
 		status = !status
+		siemens_coefficient = 3
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = FALSE
+		siemens_coefficient = 1
 		if(!cell)
 			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
 		else
@@ -108,6 +112,7 @@
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 		status = FALSE
+		siemens_coefficient = 1
 
 /obj/item/clothing/gloves/stungloves/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
