@@ -1,18 +1,14 @@
 #define RESTART_WEBHOOK "restart"
 
 /proc/call_restart_webhook()
-    call_webhook(RESTART_WEBHOOK)
-
-/proc/call_webhook(method)
-    if (!config.webhook_url || !config.webhook_key)
-        log_adminwarn("Looks like webhook is not configured. Please add WEBHOOK_URL and WEBHOOK_KEY to the config")
-        return
-
-    var/webhook = "[config.webhook_url]/[method]?key=[config.webhook_key]";
-    log_debug("Calling webhook with address [webhook]")
-    var http[] = world.Export(webhook)
-    if(!http)
-        log_adminwarn("Failed to call [method] webhook!");
+	if (!config.webhook_url || !config.webhook_key)
+		return
+	spawn(0)
+		var/message = "<@&546427101247438849	> Restart!"
+		var/query_string = "type=restart"
+		query_string += "&key=[url_encode(config.webhook_key)]"
+		query_string += "&msg=[url_encode(message)]"
+		world.Export("[config.webhook_url]?[query_string]")
 
 /proc/lobby_message(var/message = "Debug Message", var/color = "#FFFFFF", var/sender)
 	if (!config.webhook_url || !config.webhook_key)
@@ -31,7 +27,7 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 	set name = "Message Lobby"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN)) return
+	if(!check_rights(R_ADMIN, 0, usr)) return
 
 	var/msg = input(src, "Enter the message. Leave blank to cancel.", "Lobby Message")
 	if(msg)
@@ -61,7 +57,7 @@ ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
 	for(var/client/X in admins)
 		.["total"] += X
-		if(requiredflags != 0 && !check_rights(rights_required = requiredflags, show_msg = FALSE, user = X))
+		if(requiredflags != 0 && !check_rights(R_ADMIN, 0, X))
 			.["noflags"] += X
 		else if(X.is_afk())
 			.["afk"] += X
