@@ -35,7 +35,7 @@
 			//Energy weapons need to have enough charge to fire
 			if(istype(gun, /obj/item/weapon/gun/energy))
 				var/obj/item/weapon/gun/energy/E = gun
-				if (!E.cell || !E.cell.check_charge(E.charge_cost))
+				if (!E.get_cell() || !E.get_cell().check_charge(E.charge_cost))
 					can_fire = FALSE
 
 			//TODO: Centralise all this into some can_fire proc
@@ -102,17 +102,16 @@
 ******************/
 
 /obj/item/weapon/gun/energy/proc/begin_charge(var/mob/living/user)
-	to_chat(world, "charge begins.")
-	overcharging = TRUE
 	overcharge_timer = addtimer(CALLBACK(src, .proc/add_charge, user), 1 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/weapon/gun/energy/proc/add_charge(var/mob/living/user)
 	deltimer(overcharge_timer)
-	if(overcharging && get_holding_mob() == user && get_cell() && cell.checked_use(1))
+	if(get_holding_mob() == user && get_cell() && cell.checked_use(1))
 		overcharge_level = min(overcharge_max, overcharge_level + get_overcharge_add(user))
 		if(overcharge_level < overcharge_max)
 			overcharge_timer = addtimer(CALLBACK(src, .proc/add_charge, user), 1 SECONDS, TIMER_STOPPABLE)
-		to_chat(world, "overcharging. overcharging: [overcharging]. overcharge_timer:[overcharge_timer]. overcharge_level [overcharge_level]")
+		else
+			visible_message(SPAN_NOTICE("\The [src] clicks."))
 		return
 	visible_message(SPAN_WARNING("\The [src] sputters out."))
 	overcharge_level = 0
@@ -123,12 +122,11 @@
 	return overcharge_rate+user.stats.getStat(STAT_VIG)*VIG_OVERCHARGE_GEN
 
 /obj/item/weapon/gun/energy/proc/release_charge(var/atom/target, var/mob/living/user)
-	overcharging = FALSE
 	deltimer(overcharge_timer)
 	var/overcharge_add = overcharge_level_to_mult()
 	damage_multiplier += overcharge_add
 	penetration_multiplier += overcharge_add
-	if(cell.checked_use(overcharge_level))
+	if(overcharge_level > 2 && cell.checked_use(overcharge_level))
 		Fire(target, user)
 	damage_multiplier -= overcharge_add
 	penetration_multiplier -= overcharge_add
