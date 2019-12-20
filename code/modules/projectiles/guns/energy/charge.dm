@@ -102,17 +102,20 @@
 ******************/
 
 /obj/item/weapon/gun/energy/proc/begin_charge(var/mob/living/user)
+	to_chat(user, SPAN_NOTICE("You begin charging \the [src]."))
 	overcharge_timer = addtimer(CALLBACK(src, .proc/add_charge, user), 1 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/weapon/gun/energy/proc/add_charge(var/mob/living/user)
 	deltimer(overcharge_timer)
 	if(get_holding_mob() == user && get_cell() && cell.checked_use(1))
 		overcharge_level = min(overcharge_max, overcharge_level + get_overcharge_add(user))
+		set_light(2, overcharge_level/2, "#ff0d00")
 		if(overcharge_level < overcharge_max)
 			overcharge_timer = addtimer(CALLBACK(src, .proc/add_charge, user), 1 SECONDS, TIMER_STOPPABLE)
 		else
 			visible_message(SPAN_NOTICE("\The [src] clicks."))
 		return
+	set_light(0)
 	visible_message(SPAN_WARNING("\The [src] sputters out."))
 	overcharge_level = 0
 
@@ -126,6 +129,7 @@
 	penetration_multiplier += overcharge_add
 	if(overcharge_level > 2 && cell.checked_use(overcharge_level))
 		Fire(target, user)
+	set_light(0)
 	damage_multiplier -= overcharge_add
 	penetration_multiplier -= overcharge_add
 	overcharge_level = 0
