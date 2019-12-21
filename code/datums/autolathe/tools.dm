@@ -80,19 +80,19 @@
 
 /datum/design/autolathe/tool/knife
 	name = "kitchen knife"
-	build_path = /obj/item/weapon/material/knife
+	build_path = /obj/item/weapon/tool/knife
 
 /datum/design/autolathe/tool/tacknife
 	name = "tactical knife"
-	build_path = /obj/item/weapon/material/hatchet/tacknife
+	build_path = /obj/item/weapon/tool/knife/tacknife
 
 /datum/design/autolathe/tool/hatchet
 	name = "hatchet"
-	build_path = /obj/item/weapon/material/hatchet
+	build_path = /obj/item/weapon/tool/hatchet
 
 /datum/design/autolathe/tool/minihoe
 	name = "mini hoe"
-	build_path = /obj/item/weapon/material/minihoe
+	build_path = /obj/item/weapon/tool/minihoe
 
 /datum/design/autolathe/tool/shovel
 	name = "shovel"

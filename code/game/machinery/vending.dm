@@ -1023,12 +1023,12 @@
 	/obj/item/ammo_magazine/ammobox/pistol = 20,
 	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
-	/obj/item/weapon/material/hatchet/tacknife = 6)
+	/obj/item/weapon/tool/knife/tacknife = 6)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/energy/gun/martin = 1500, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/slpistol/rubber = 300, /obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50,
 					/obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
-					/obj/item/weapon/material/hatchet/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
+					/obj/item/weapon/tool/knife/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1148,7 +1148,7 @@
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,
 					/obj/item/weapon/storage/box/evidence = 2)
-	contraband = list(/obj/item/weapon/material/hatchet/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
+	contraband = list(/obj/item/weapon/tool/knife/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
 
 /obj/machinery/vending/hydronutrients
@@ -1217,11 +1217,11 @@
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
-	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/material/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/material/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3,
+	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/tool/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/tool/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/pitcher = 3,/obj/item/weapon/reagent_containers/food/drinks/teapot = 3,/obj/item/weapon/reagent_containers/food/drinks/mug = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/black = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/green = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/blue = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/mug/red = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/heart = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/one = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/metal = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/brit = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/teacup = 10,)
-	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/material/knife/butch = 2)
+	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/tool/knife/butch = 2)
 	auto_price = FALSE
 
 /obj/machinery/vending/sovietsoda

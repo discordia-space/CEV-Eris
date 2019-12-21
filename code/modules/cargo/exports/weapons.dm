@@ -11,7 +11,7 @@
 /datum/export/weapon/knife
 	cost = 300
 	unit_name = "combat knife"
-	export_types = list(/obj/item/weapon/material/knife)
+	export_types = list(/obj/item/weapon/tool/knife)
 
 /datum/export/weapon/taser
 	cost = 350
