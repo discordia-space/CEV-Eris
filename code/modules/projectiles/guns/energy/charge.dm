@@ -35,7 +35,8 @@
 			//Energy weapons need to have enough charge to fire
 			if(istype(gun, /obj/item/weapon/gun/energy))
 				var/obj/item/weapon/gun/energy/E = gun
-				if (!E.get_cell() || !E.get_cell().check_charge(E.charge_cost))
+				var/obj/item/weapon/cell/C = E.get_cell()
+				if (!C || !C.check_charge(E.charge_cost))
 					can_fire = FALSE
 
 			//TODO: Centralise all this into some can_fire proc
@@ -78,11 +79,8 @@
 	var/atom/target = null
 	var/obj/item/weapon/gun/energy/reciever
 
-/datum/click_handler/charge/mob_check(mob/living/carbon/human/user)
-	return TRUE
-
-/datum/click_handler/charge/use_ability()
-	return TRUE
+/datum/click_handler/charge/Click()
+	return TRUE //As we don't use the normal click, but the MouseDown/MouseUp, this function is not needed at all. This also bypasses the delete on use check
 
 //Begin charging
 /datum/click_handler/charge/MouseDown(object,location,control,params)
@@ -129,6 +127,8 @@
 	penetration_multiplier += overcharge_add
 	if(overcharge_level > 2 && cell.checked_use(overcharge_level))
 		Fire(target, user)
+	else
+		visible_message(SPAN_WARNING("\The [src] sputters."))
 	set_light(0)
 	damage_multiplier -= overcharge_add
 	penetration_multiplier -= overcharge_add
