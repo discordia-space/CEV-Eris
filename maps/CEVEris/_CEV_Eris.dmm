@@ -108577,6 +108577,10 @@
 /obj/landmark/storyevent/hidden_vent_antag,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"nZP" = (
+/obj/structure/reagent_dispensers/fueltank/huge,
+/turf/simulated/floor,
+/area/shuttle/mining/station)
 "ofp" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -108738,10 +108742,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
-"vEH" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/turf/simulated/floor,
-/area/shuttle/mining/station)
 "vGf" = (
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder/portable,
@@ -212802,7 +212802,7 @@ cXA
 cYs
 cYY
 cZD
-vEH
+nZP
 dah
 daW
 dbs
