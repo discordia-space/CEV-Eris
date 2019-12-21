@@ -4,7 +4,7 @@
 	if (!config.webhook_url || !config.webhook_key)
 		return
 	spawn(0)
-		var/message = "<@&546427101247438849	> Restart!"
+		var/message = "<@&546427101247438849> Restart!"
 		var/query_string = "type=restart"
 		query_string += "&key=[url_encode(config.webhook_key)]"
 		query_string += "&msg=[url_encode(message)]"
