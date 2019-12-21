@@ -470,48 +470,38 @@
 /obj/machinery/suit_storage_unit/medical
 	overlay_color = "#E0E0E0"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/medical
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/medical
 
 
 /obj/machinery/suit_storage_unit/security
 	overlay_color = "#50649A"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/security
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/security
 
 
 /obj/machinery/suit_storage_unit/engineering
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/engineering
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/engineering
 
 /obj/machinery/suit_storage_unit/engineering/atmos
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/atmos
 
 
 /obj/machinery/suit_storage_unit/nt
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/acolyte
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/acolyte
 
 /obj/machinery/suit_storage_unit/nt/agrolyte
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/agrolyte
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/agrolyte
 
 /obj/machinery/suit_storage_unit/nt/custodian
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/custodian
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/custodian
 
 
 /obj/machinery/suit_storage_unit/mining
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/mining
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/mining
 
 
 /obj/machinery/suit_storage_unit/excelsior
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/excelsior
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/excelsior
 
 /obj/machinery/suit_storage_unit/merc
 	overlay_color = "#D04044"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/merc
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space/void/merc
 	MASK_TYPE = /obj/item/clothing/mask/gas/syndicate

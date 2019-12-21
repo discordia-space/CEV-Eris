@@ -71,7 +71,7 @@
 	icon_state = "clown"
 	item_state = "clown_hat"
 
-obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
+/obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 
 	var/mob/M = usr
 	var/list/options = list()
@@ -80,7 +80,7 @@ obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 	options["The Madman"] = "joker"
 	options["The Rainbow Color"] ="rainbow"
 
-	var/choice = input(M,"To what form do you wish to Morph this mask?","Morph Mask") as anything|null in options
+	var/choice = input(M,"To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
 
 	if(src && choice && !M.incapacitated() && Adjacent(M))
 		icon_state = options[choice]
