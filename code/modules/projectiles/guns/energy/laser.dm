@@ -86,10 +86,7 @@ obj/item/weapon/gun/energy/retro
 	fire_delay = 20
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
-	firemodes = list(
-		WEAPON_NORMAL,
-		WEAPON_CHARGE
-	)
+
 
 /obj/item/weapon/gun/proc/set_item_state
 	item_state_slots[slot_back_str] = "back"
