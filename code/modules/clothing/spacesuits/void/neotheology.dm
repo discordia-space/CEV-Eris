@@ -24,6 +24,7 @@
 		bio = 100,
 		rad = 75
 	)
+	helmet = /obj/item/clothing/head/helmet/space/void/acolyte
 
 /obj/item/clothing/head/helmet/space/void/agrolyte
 	name = "Agrolyte hood"
@@ -51,6 +52,7 @@
 		bio = 100,
 		rad = 75
 	)
+	helmet = /obj/item/clothing/head/helmet/space/void/agrolyte
 
 /obj/item/clothing/head/helmet/space/void/custodian
 	name = "Custodian helmet"
@@ -80,3 +82,4 @@
 		rad = 90
 	)
 	unacidable = TRUE
+	helmet = /obj/item/clothing/head/helmet/space/void/custodian

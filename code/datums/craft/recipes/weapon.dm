@@ -26,7 +26,7 @@
 
 /datum/craft_recipe/weapon/knife
 	name = "steel knife"
-	result = /obj/item/weapon/material/knife
+	result = /obj/item/weapon/tool/knife
 	steps = list(
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)

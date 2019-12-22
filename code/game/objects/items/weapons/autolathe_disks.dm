@@ -512,7 +512,6 @@
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/clothing/excelsior_armor,
-		/datum/design/autolathe/clothing/excelsior_helmet,
 		/datum/design/autolathe/cell/large/excelsior,
 		/datum/design/autolathe/cell/medium/excelsior,
 		/datum/design/autolathe/cell/small/excelsior,
@@ -548,8 +547,7 @@
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
-		/datum/design/autolathe/clothing/excelsior_armor,
-		/datum/design/autolathe/clothing/excelsior_helmet
+		/datum/design/autolathe/clothing/excelsior_armor
 	)
 
 
