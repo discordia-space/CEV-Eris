@@ -44,6 +44,7 @@
 		/datum/design/autolathe/tool/crowbar,
 		/datum/design/autolathe/tool/screwdriver,
 		/datum/design/autolathe/tool/wirecutters,
+		/datum/design/autolathe/tool/pliers,
 		/datum/design/autolathe/tool/wrench,
 		/datum/design/autolathe/tool/saw,
 		/datum/design/autolathe/tool/multitool,
