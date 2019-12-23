@@ -127,9 +127,11 @@
 		if(!is_igniter(detonator.left_assembly))
 			detonator.left_assembly.activate()
 			active = 1
+			log_and_message_admins("primed via detonator \a [src]")
 		if(!is_igniter(detonator.right_assembly))
 			detonator.right_assembly.activate()
 			active = 1
+			log_and_message_admins("primed via detonator \a [src]")
 	if(active)
 		icon_state = initial(icon_state) + "_active"
 
