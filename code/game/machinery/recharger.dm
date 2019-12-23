@@ -52,6 +52,7 @@
 
 	if(!anchored)
 		to_chat(user, SPAN_WARNING("Attach [src] first!"))
+		return
 
 	if(!user.canUnEquip(I))
 		return
