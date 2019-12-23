@@ -113,15 +113,19 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 
 /obj/machinery/telecomms/Initialize()
-	. = ..()
+	..()
 	telecomms_list += src
 
 	//Set the listening_levels if there's none.
 	if(!length(listening_levels))
 		update_listening_levels()
 
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/telecomms/LateInitialize()
+	..()
+	// Links nearby machines after the telecomm list is already populated
 	if(autolinkers.len)
-		// Links nearby machines
 		if(!long_range_link)
 			for(var/obj/machinery/telecomms/T in orange(20, src))
 				add_link(T)
