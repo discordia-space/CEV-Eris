@@ -154,6 +154,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/proc/update_listening_levels()
 	var/turf/position = get_turf(src)
 
+	// Likely nullspaced as a part of Destroy process
+	if(!position)
+		listening_levels = list()
+		return
+
 	//Defaults to our Z level!
 	var/z_level = position.z
 	listening_levels = list(z_level)
