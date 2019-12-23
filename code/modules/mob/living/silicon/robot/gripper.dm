@@ -239,7 +239,7 @@
 		/obj/item/device/scanner/health,//For building medibots
 		/obj/item/weapon/disk,
 		/obj/item/device/scanner/plant,//For farmbot construction
-		/obj/item/weapon/material/minihoe,//Farmbots and xenoflora
+		/obj/item/weapon/tool/minihoe,//Farmbots and xenoflora
 		/obj/item/weapon/computer_hardware
 		)
 
@@ -268,7 +268,7 @@
 		/obj/item/seeds,
 		/obj/item/weapon/grown,
 		/obj/item/trash,
-		/obj/item/weapon/broken_bottle,
+		/obj/item/weapon/tool/broken_bottle,
 		/obj/item/weapon/paper,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/circuitboard/broken,

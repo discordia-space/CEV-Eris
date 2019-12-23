@@ -45,8 +45,8 @@
 		/obj/item/device/scanner/gas,
 		/obj/item/taperoll/engineering,
 		/obj/item/device/robotanalyzer,
-		/obj/item/weapon/material/minihoe,
-		/obj/item/weapon/material/hatchet,
+		/obj/item/weapon/tool/minihoe,
+		/obj/item/weapon/tool/hatchet,
 		/obj/item/device/scanner/plant,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/hand_labeler,
@@ -153,7 +153,7 @@
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
-		/obj/item/weapon/material/knife/neotritual,
+		/obj/item/weapon/tool/knife/neotritual,
 		/obj/item/weapon/gun/energy/crossbow
 	)
 

@@ -285,8 +285,9 @@
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
-	for(var/obj/item/device/mind_fryer/M in oview(owner))
-		M.reg_break(owner)
+	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
+		if(get_turf(M) in view(get_turf(owner)))
+			M.reg_break(owner)
 
 	var/list/possible_results
 	if(prob(positive_prob))

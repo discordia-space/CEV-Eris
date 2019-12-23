@@ -34,3 +34,4 @@
 		rad = 90
 	)
 	siemens_coefficient = 0.7
+	helmet = /obj/item/clothing/head/helmet/space/void/wizard

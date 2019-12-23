@@ -1,6 +1,8 @@
 /obj/item/device/spy_sensor
 	name = "spying sensor"
 	icon_state = "motion0" //placeholder
+	origin_tech = list(TECH_MAGNETS = 5, TECH_ILLEGAL = 2)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
 	var/active = FALSE
 	var/datum/mind/owner
 	var/list/obj/item/device/spy_sensor/group
@@ -38,14 +40,23 @@
 	active = TRUE
 	start()
 
-/obj/item/device/spy_sensor/proc/start()
+	var/sensor_amount = length(get_local_sensors())
+	to_chat(usr, SPAN_NOTICE("Sensor activated. [sensor_amount] sensor\s active in the area."))
+	if(sensor_amount >= 3 && timer)
+		to_chat(usr, SPAN_NOTICE("Data collection initiated."))
+
+/obj/item/device/spy_sensor/proc/get_local_sensors()
 	var/list/local_sensors = list()
 	for(var/obj/item/device/spy_sensor/S in get_area(src))
-		if(S.owner != owner || !S.active || S.timer)
+		if(S.owner != owner || !S.active)
 			continue
 		local_sensors += S
+	return local_sensors
+
+/obj/item/device/spy_sensor/proc/start()
+	var/list/local_sensors = get_local_sensors()
 	if(local_sensors.len >= 3)
-		timer = addtimer(CALLBACK(src, .proc/finish), 10 MINUTES)
+		timer = addtimer(CALLBACK(src, .proc/finish), 10 MINUTES, TIMER_STOPPABLE)
 		for(var/obj/item/device/spy_sensor/S in local_sensors)
 			S.timer = timer
 			S.group = local_sensors

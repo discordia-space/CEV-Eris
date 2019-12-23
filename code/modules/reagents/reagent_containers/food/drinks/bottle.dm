@@ -61,7 +61,7 @@
 		M.drop_from_inventory(src)
 
 	//Creates a shattering noise and replaces the bottle with a broken_bottle
-	var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(newloc)
+	var/obj/item/weapon/tool/broken_bottle/B = new /obj/item/weapon/tool/broken_bottle(newloc)
 	if(prob(33))
 		new/obj/item/weapon/material/shard(newloc) // Create a glass shard at the target's location!
 	B.icon_state = src.icon_state
@@ -160,30 +160,8 @@
 		reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.
-	var/obj/item/weapon/broken_bottle/B = smash(target.loc, target)
+	var/obj/item/weapon/tool/broken_bottle/B = smash(target.loc, target)
 	user.put_in_active_hand(B)
-
-//Keeping this here for now, I'll ask if I should keep it here.
-/obj/item/weapon/broken_bottle
-	name = "broken bottle"
-	desc = "A bottle with a sharp broken bottom."
-	icon = 'icons/obj/drinks.dmi'
-	icon_state = "broken_bottle"
-	force = 9
-	throwforce = 5
-	throw_speed = 3
-	throw_range = 5
-	item_state = "beer"
-	attack_verb = list("stabbed", "slashed", "attacked")
-	sharp = 1
-	edge = 0
-	tool_qualities = list(QUALITY_CUTTING = 10)
-	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
-
-/obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
-
 
 //// Precreated bottles ////
 

@@ -94,7 +94,7 @@
 		if(90)
 			new/obj/item/organ/internal/heart(src)
 		if(91)
-			new/obj/item/weapon/material/sword/katana(src)
+			new/obj/item/weapon/tool/sword/katana(src)
 		if(92)
 			new/obj/item/weapon/dnainjector/xraymut(src) // Probably the least OP
 		if(93) // Why the hell not
