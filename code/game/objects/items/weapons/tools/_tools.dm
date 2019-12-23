@@ -142,6 +142,9 @@
 	else
 		..()
 
+/obj/item/weapon/tool/get_cell()
+	return cell
+
 /obj/item/weapon/tool/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
@@ -243,8 +246,8 @@
 
 	data["force"] = force
 	data["force_max"] = initial(force) * 10
-		
-	
+
+
 	data["extra_volume"] = extra_bulk
 
 	data["upgrades_max"] = max_upgrades
@@ -254,7 +257,7 @@
 		data["attachments"] = list()
 		for(var/atom/A in upgrades)
 			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
-	
+
 	return data
 
 /obj/item/weapon/tool/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -267,7 +270,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-// saves troubles for some one else who will expand this 
+// saves troubles for some one else who will expand this
 // delete this comment if you are the chosen one
 /obj/item/weapon/tool/Topic(href, href_list)
 	if(..())
@@ -723,7 +726,7 @@
 		timespent = 5
 
 	if(use_power_cost)
-		if (!cell.checked_use(use_power_cost*timespent))
+		if (!cell?.checked_use(use_power_cost*timespent))
 			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 			return FALSE
 
@@ -839,7 +842,7 @@
 		if(!cell)
 			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
 		else
-			to_chat(user, "The charge meter reads [round(cell.percent() )]%.")
+			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
 
 	if(use_fuel_cost)
 		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
