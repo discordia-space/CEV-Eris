@@ -62,17 +62,17 @@
 			S.group = local_sensors
 
 /obj/item/device/spy_sensor/proc/reset()
-	if(!timer)
+	if(!timer || !group)
 		return
+
 	if(length(group) > 3)
 		group -= src
 		return
 
-	if(timer && group)
-		deltimer(timer)
-		for(var/obj/item/device/spy_sensor/S in group)
-			S.timer = null
-			S.group = null
+	deltimer(timer)
+	for(var/obj/item/device/spy_sensor/S in group)
+		S.timer = null
+		S.group = null
 	start()
 
 /obj/item/device/spy_sensor/proc/finish()
