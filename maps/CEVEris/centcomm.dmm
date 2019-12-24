@@ -4020,7 +4020,7 @@
 	},
 /area/shuttle/mercenary)
 "kS" = (
-/obj/item/weapon/material/knife{
+/obj/item/weapon/tool/knife{
 	pixel_x = -6
 	},
 /obj/item/weapon/reagent_containers/syringe/drugs{
@@ -5048,7 +5048,7 @@
 /area/wizard_station)
 "no" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/knife/ritual,
+/obj/item/weapon/tool/knife/ritual,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5444,7 +5444,7 @@
 	},
 /area/wizard_station)
 "or" = (
-/obj/item/weapon/material/knife/ritual,
+/obj/item/weapon/tool/knife/ritual,
 /turf/unsimulated/floor{
 	icon_state = "freezerfloor";
 	dir = 2
@@ -5766,7 +5766,7 @@
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/ambrosiavulgarisseed,
-/obj/item/weapon/material/minihoe,
+/obj/item/weapon/tool/minihoe,
 /obj/item/weapon/beartrap,
 /obj/structure/table/steel,
 /turf/simulated/shuttle/plating,

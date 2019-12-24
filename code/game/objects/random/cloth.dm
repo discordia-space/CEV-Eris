@@ -56,7 +56,7 @@
 	return pickweight(list(/obj/item/clothing/suit/armor/bulletproof = 10,
 				/obj/item/clothing/suit/space/captain = 1,
 				/obj/item/clothing/suit/armor/heavy = 2,
-				/obj/item/clothing/suit/armor/riot = 4,
+				/obj/item/clothing/suit/armor/heavy/riot = 4,
 				/obj/item/clothing/suit/armor/laserproof = 2,
 				/obj/item/clothing/suit/armor/vest/detective  = 10,
 				/obj/item/clothing/suit/armor/vest/handmade = 20,

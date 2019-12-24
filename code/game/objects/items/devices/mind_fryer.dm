@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_URANIUM = 4)
 	var/datum/antag_contract/derail/contract
 	var/datum/mind/owner
-	var/list/mob/living/carbon/human/victims
+	var/list/victims = list()
 
 /obj/item/device/mind_fryer/attack_self(mob/user)
 	if(owner == user.mind)
@@ -54,12 +54,18 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 		break
 
 /obj/item/device/mind_fryer/proc/reg_break(mob/living/carbon/human/victim)
-	// If in owner's inventory, give a signal that the break was registred and counted towards contract
+	if(victim.get_species() != "Human")
+		return
+
 	if(owner && owner.current)
+		if(victim == owner.current)
+			return
+
+		// If in owner's inventory, give a signal that the break was registred and counted towards contract
 		if(src in owner.current.GetAllContents(includeSelf = FALSE))
 			to_chat(owner.current, SPAN_DANGER("[src] clicks."))
 
-	victims += victim
+	victims |= victim
 	if(contract && victims.len >= contract.count)
 		contract.report(src)
 		contract = null
