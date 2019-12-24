@@ -146,8 +146,9 @@
 				affect_ingest(M, alien, RTM(removed, location))
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, RTM(removed, location))
-	remove_self(removed)
-	return
+	// At this point, the reagent might have removed itself entirely - safety check
+	if(volume && holder)
+		remove_self(removed)
 
 /datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	return
