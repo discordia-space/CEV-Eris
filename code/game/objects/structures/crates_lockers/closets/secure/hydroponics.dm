@@ -12,7 +12,7 @@
 	else
 		new /obj/item/weapon/storage/backpack/satchel/botanist(src)
 	new /obj/item/clothing/suit/apron(src)
-	new /obj/item/weapon/storage/bag/plants(src)
+	new /obj/item/weapon/storage/bag/produce(src)
 	new /obj/item/clothing/under/rank/hydroponics(src)
 	new /obj/item/device/scanner/plant(src)
 	new /obj/item/device/radio/headset/headset_service(src)
@@ -37,7 +37,7 @@
 /obj/structure/closet/secure_closet/personal/agrolyte/populate_contents()
 	new /obj/item/clothing/suit/apron(src)
 	new /obj/item/weapon/storage/belt/utility/neotheology(src)
-	new /obj/item/weapon/storage/bag/plants(src)
+	new /obj/item/weapon/storage/bag/produce(src)
 	new /obj/item/clothing/under/rank/hydroponics(src)
 	new /obj/item/device/scanner/plant(src)
 	new /obj/item/device/radio/headset/church(src)
