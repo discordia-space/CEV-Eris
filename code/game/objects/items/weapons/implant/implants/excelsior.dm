@@ -88,7 +88,7 @@
 		if(A.id == antag_id && A.faction && A.faction.id == faction_id)
 			return
 
-	make_antagonist_faction(wearer.mind, antag_id, F)
+	make_antagonist_faction(wearer.mind, antag_id, F, check = FALSE)
 
 
 /obj/item/weapon/implant/excelsior/on_uninstall()

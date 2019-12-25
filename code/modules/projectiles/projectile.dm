@@ -18,7 +18,8 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
-	var/hitsound_wall = ""//"ricochet"
+	var/hitsound_wall = "ricochet"
+	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
 	var/silenced = FALSE	//Attack message
@@ -32,8 +33,6 @@
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
-
-	var/dispersion = 0.0
 
 	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
@@ -57,6 +56,7 @@
 	var/drowsy = 0
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
+	var/knockback = 0
 
 	var/hitscan = FALSE		// whether the projectile should be hitscan
 	var/step_delay = 1	// the delay between iterations if not a hitscan projectile
@@ -78,17 +78,21 @@
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	damage = initial(damage) * newmult
 
+/obj/item/projectile/multiply_projectile_penetration(newmult)
+	armor_penetration = initial(armor_penetration) * newmult
+
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
 	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony)
+	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy)
 	return TRUE
 
 // generate impact effect
 /obj/item/projectile/proc/on_impact(atom/A)
 	impact_effect(effect_transform)
-	playsound(src, "hitsound_wall", 50, 1, -2)
+	if(!ismob(A))
+		playsound(src, hitsound_wall, 50, 1, -2)
 	return
 
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
@@ -118,12 +122,6 @@
 	if(mouse_control["icon-y"])
 		p_y = text2num(mouse_control["icon-y"])
 
-	//randomize clickpoint a bit based on dispersion
-	if(dispersion)
-		var/radius = round((dispersion*0.443)*world.icon_size*0.8) //0.443 = sqrt(pi)/4 = 2a, where a is the side length of a square that shares the same area as a circle with diameter = dispersion
-		p_x = between(0, p_x + rand(-radius, radius), world.icon_size)
-		p_y = between(0, p_y + rand(-radius, radius), world.icon_size)
-
 //called to launch a projectile
 /obj/item/projectile/proc/launch(atom/target, target_zone, x_offset=0, y_offset=0, angle_offset=0)
 	var/turf/curloc = get_turf(src)
@@ -147,7 +145,7 @@
 	return FALSE
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, target_zone, x_offset=0, y_offset=0)
+/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
 	if(user == target) //Shooting yourself
 		user.bullet_act(src, target_zone)
 		qdel(src)
@@ -159,7 +157,7 @@
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 
-	return launch(target, target_zone, x_offset, y_offset)
+	return launch(target, target_zone, x_offset, y_offset, angle_offset)
 
 //Used to change the direction of the projectile in flight.
 /obj/item/projectile/proc/redirect(new_x, new_y, atom/starting_loc, mob/new_firer=null)
@@ -535,6 +533,8 @@
 	else
 		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 
+	playsound(target_mob, pick(mob_hit_sound), 40, 1)
+
 	//admin logs
 	if(!no_attack_log)
 		if(ismob(firer))
@@ -551,6 +551,22 @@
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)
 		return FALSE
+
+	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
+		var/turf/target_loca = get_turf(target_mob)
+		var/mob/living/L = target_mob
+		if(damage > 10 && damage_type == BRUTE)
+			var/splatter_dir = dir
+			if(starting)
+				splatter_dir = get_dir(starting, target_loca)
+				target_loca = get_step(target_loca, splatter_dir)
+			var/blood_color = "#C80000"
+			if(ishuman(target_mob))
+				var/mob/living/carbon/human/H = target_mob
+				blood_color = H.species.blood_color
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(target_mob.loc, splatter_dir, blood_color)
+			if(prob(50))
+				target_loca.add_blood(L)
 
 	return TRUE
 
@@ -649,6 +665,8 @@
 
 		before_move()
 		Move(location.return_turf())
+		pixel_x = location.pixel_x
+		pixel_y = location.pixel_y
 
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))
@@ -668,22 +686,16 @@
 /obj/item/projectile/proc/before_move()
 	return FALSE
 
-/obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, var/x_offset = 0, var/y_offset = 0)
+/obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, x_offset = 0, y_offset = 0, angle_offset)
 	// setup projectile state
 	starting = startloc
 	current = startloc
 	yo = targloc.y - startloc.y + y_offset
 	xo = targloc.x - startloc.x + x_offset
 
-	// trajectory dispersion
-	var/offset = 0
-	if(dispersion)
-		var/radius = round(dispersion*9, 1)
-		offset = rand(-radius, radius)
-
 	// plot the initial trajectory
 	trajectory = new()
-	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset=offset)
+	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset)
 
 	// generate this now since all visual effects the projectile makes can use it
 	effect_transform = new()

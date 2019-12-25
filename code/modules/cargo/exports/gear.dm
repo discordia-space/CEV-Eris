@@ -25,7 +25,7 @@
 /datum/export/gear/riot_armor
 	cost = 500
 	unit_name = "riot armor suit"
-	export_types = list(/obj/item/clothing/suit/armor/riot)
+	export_types = list(/obj/item/clothing/suit/armor/heavy/riot)
 
 /datum/export/gear/bulletproof_armor
 	cost = 500
@@ -65,21 +65,30 @@
 /datum/export/gear/space/helmet
 	cost = 400
 	unit_name = "space helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space/void)
+	export_types = list(/obj/item/clothing/head/helmet/space)
+	include_subtypes = FALSE
 
 /datum/export/gear/space/suit
 	cost = 600
 	unit_name = "space suit"
-	export_types = list(/obj/item/clothing/suit/space/void)
+	export_types = list(/obj/item/clothing/suit/space)
+	include_subtypes = FALSE
 
+/datum/export/gear/space/helmet/emergency
+	cost = 200
+	unit_name = "emergency space helmet"
+	export_types = list(/obj/item/clothing/head/helmet/space/emergency)
+	include_subtypes = TRUE
 
-/datum/export/gear/space/voidhelmet
-	cost = 550
-	unit_name = "void helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space/void)
+/datum/export/gear/space/suit/emergency
+	cost = 300
+	unit_name = "emergency space suit"
+	export_types = list(/obj/item/clothing/suit/space/emergency)
+	include_subtypes = TRUE
+
 
 /datum/export/gear/space/voidsuit
-	cost = 650
+	cost = 1200 //650 for the suit, 550 for the helmet
 	unit_name = "void suit"
 	export_types = list(/obj/item/clothing/suit/space/void)
 
@@ -87,14 +96,30 @@
 /datum/export/gear/space/syndiehelmet
 	cost = 1000
 	unit_name = "Syndicate space helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space/void/merc)
+	export_types = list(/obj/item/clothing/head/helmet/space/syndicate)
 	include_subtypes = TRUE
 
 /datum/export/gear/space/syndiesuit
 	cost = 1500
 	unit_name = "Syndicate space suit"
+	export_types = list(/obj/item/clothing/suit/space/syndicate)
+	include_subtypes = TRUE
+
+/datum/export/gear/space/syndievoid
+	cost = 2500 //1500 for the suit, 1000 for the helmet
+	unit_name = "Syndicate void suit"
 	export_types = list(/obj/item/clothing/suit/space/void/merc)
 	include_subtypes = TRUE
+
+/datum/export/gear/space/helmet/captain
+	cost = 1000
+	unit_name = "Captain's space helmet"
+	export_types = list(/obj/item/clothing/head/helmet/space/capspace)
+
+/datum/export/gear/space/suit/captain
+	cost = 1500
+	unit_name = "Captain's space suit"
+	export_types = list(/obj/item/clothing/suit/space/captain)
 
 
 // Radsuits
@@ -173,11 +198,6 @@
 //----------------SHOES-----------------------
 //--------------------------------------------
 
-/datum/export/gear/shoes/combat
-	cost = 500
-	unit_name = "combat boots"
-	export_types = list(/obj/item/clothing/shoes/combat,
-									/obj/item/clothing/shoes/swat)
 
 /datum/export/gear/shoes/jackboots
 	cost = 100

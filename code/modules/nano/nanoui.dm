@@ -103,7 +103,6 @@ nanoui is used to open and update nano browser uis
 		// Avoid opening the window if the resources are not loaded yet.
 		if(!assets.check_sent(user.client))
 			to_chat(user, "Resources are still loading. Please wait.")
-			assets.send(user.client)
 			close()
 
 //Do not qdel nanouis. Use close() instead.
@@ -449,9 +448,9 @@ nanoui is used to open and update nano browser uis
 		return // Will be closed by update_status().
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
+	winset(user, window_id, "on-close=\"nanoclose \ref[src]\"")
+
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
-	on_close_winset()
-	//onclose(user, window_id)
 	SSnano.ui_opened(src)
 
  /**
@@ -491,20 +490,20 @@ nanoui is used to open and update nano browser uis
 	master_ui = null
 	qdel(src)
 
- /**
-  * Set the UI window to call the nanoclose verb when the window is closed
-  * This allows Nano to handle closed windows
-  *
-  * @return nothing
-  */
-/datum/nanoui/proc/on_close_winset()
-	if(!user.client)
-		return
-	var/params = "\ref[src]"
 
-	if(!user || !user.client)
-		return
-	winset(user, window_id, "on-close=\"nanoclose [params]\"")
+ /**
+  * Verify if this UI window is actually open on client's side
+  *
+  * @return is_open boolean - if the UI is actually open on client.
+  */
+/datum/nanoui/proc/verify_open()
+	var/list/window_params = params2list(winget(user, window_id, "on-close;is-visible"))
+	window_params["is-visible"] = (window_params["is-visible"] == "true")
+
+	if(window_params["on-close"] && window_params["is-visible"])
+		return TRUE
+
+	return FALSE
 
  /**
   * Push data to an already open UI window

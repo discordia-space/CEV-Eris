@@ -1,6 +1,6 @@
 /datum/design/research/circuit
 	build_type = IMPRINTER
-	chemicals = list("silicon" = 15)
+	chemicals = list("silicon" = 5)
 
 /datum/design/research/circuit/AssembleDesignName(atom/temp_atom)
 	..()
@@ -9,11 +9,11 @@
 		return
 
 	if(C.board_type == "machine")
-		name = "Machine circuit design ([item_name])"
+		name = "Machine circuit ([item_name])"
 	else if(C.board_type == "computer")
-		name = "Computer circuit design ([item_name])"
+		name = "Computer circuit ([item_name])"
 	else
-		name = "Circuit design ([item_name])"
+		name = "Circuit ([item_name])"
 
 /datum/design/research/circuit/AssembleDesignDesc()
 	if(!desc)
@@ -275,6 +275,12 @@
 	desc = "Allows for the construction of circuit boards used to build a SMES."
 	build_path = /obj/item/weapon/circuitboard/smes
 	sort_string = "JBABB"
+	category = CAT_POWER
+
+/datum/design/research/circuit/breakerbox
+	name = "breaker box"
+	build_path = /obj/item/weapon/circuitboard/breakerbox
+	sort_string = "JBABC"
 	category = CAT_POWER
 
 /datum/design/research/circuit/gas_heater

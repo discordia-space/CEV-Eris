@@ -36,10 +36,7 @@
 	..()
 	return
 
-/obj/machinery/computer/curer/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/curer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/curer/attack_hand(mob/user)
 	if(..())
 		return
 	user.machine = src
@@ -91,7 +88,6 @@
 		container.loc = src.loc
 		container = null
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 
 

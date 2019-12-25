@@ -12,6 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = 0
+	matter = list(MATERIAL_STEEL = 8)
 	var/base_state = "box"			//base icon for creating subtypes of machine frame
 	var/list/components = null
 	var/list/req_components = null
@@ -95,8 +96,7 @@
 					to_chat(user, SPAN_NOTICE("You remove the cables."))
 					state = STATE_NONE
 					icon_state = "[base_state]_0"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
-					A.amount = 5
+					new /obj/item/stack/cable_coil(drop_location(), 5)
 					return
 			return
 
@@ -104,14 +104,14 @@
 			if(state == STATE_CIRCUIT)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					state = STATE_WIRES
-					circuit.loc = src.loc
+					circuit.forceMove(drop_location())
 					circuit = null
 					if(components.len == 0)
 						to_chat(user, SPAN_NOTICE("You remove the circuit board."))
 					else
 						to_chat(user, SPAN_NOTICE("You remove the circuit board and other components."))
-						for(var/obj/item/weapon/W in components)
-							W.loc = src.loc
+						for(var/obj/component in components)
+							component.forceMove(drop_location())
 					desc = initial(desc)
 					req_components = null
 					components = null
@@ -123,7 +123,7 @@
 			if(state == STATE_NONE)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You dismantle the frame"))
-					new /obj/item/stack/material/steel(src.loc, 8)
+					drop_materials(drop_location())
 					qdel(src)
 					return
 				return

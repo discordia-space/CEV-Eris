@@ -26,6 +26,9 @@
 		</div>
 		<div style="float: right;padding-left: 5px">
 			<table><tr>
+				{{if data.PC_light_name}}
+					<td>{{:helper.link('', 'lightbulb', {'PC_toggle_component' : 1, 'component' : data.PC_light_name}, null, data.PC_light_on ? 'selected' : null)}}
+				{{/if}}
 				<td>{{:helper.link('Shutdown', null, {'PC_shutdown' : 1})}}
 			</table>
 		</div>

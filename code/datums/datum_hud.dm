@@ -98,37 +98,48 @@
 
 
 	HUDoverlays = list(
-		"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
-		"flash" =  list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"pain" = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"drugeffect" = list("type" = /obj/screen/drugoverlay, "loc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
-		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1", "icon_state" = "blank")
+		"flash"      = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"pain"       = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"drugeffect" = list("type" = /obj/screen/drugoverlay,         "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+
+		"damageoverlay"  = list("type" = /obj/screen/damageoverlay,   "loc" = "1,1:-32", "icon" =  'icons/mob/screen1_full.dmi'),
+		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1:-32", "icon_state" = "blank"),
 	)
 
 	HUDneed = list(
-		"health"      = list("type" = /obj/screen/health,    "loc" = "EAST+1,BOTTOM+5", "minloc" = "RIGHT,7", "background" = "back1"),
-		"nutrition"   = list("type" = /obj/screen/nutrition,  "loc" = "EAST+1,BOTTOM+4", "minloc" = "RIGHT,6", "background" = "back1"),
-		"bodytemp"    = list("type" = /obj/screen/bodytemp,   "loc" = "EAST+1,BOTTOM+6", "minloc" = "RIGHT,8", "background" = "back1"),
-		"pressure"    = list("type" = /obj/screen/pressure,   "loc" = "EAST+1,BOTTOM+12", "minloc" = "RIGHT,14", "background" = "back1"),
-		"toxin"       = list("type" = /obj/screen/toxin,      "loc" = "EAST+1,BOTTOM+9", "minloc" = "RIGHT,11", "background" = "back1"),
-		"oxygen"      = list("type" = /obj/screen/oxygen,     "loc" = "EAST+1,BOTTOM+11", "minloc" = "RIGHT,13", "background" = "back1"),
-		"fire"        = list("type" = /obj/screen/fire,       "loc" = "EAST+1,BOTTOM+8", "minloc" = "RIGHT,10", "background" = "back1"),
-		"throw"       = list("type" = /obj/screen/HUDthrow,   "loc" = "EAST+1,BOTTOM", "minloc" = "RIGHT-1,2", "background" = "back13"),
-		"pull"        = list("type" = /obj/screen/pull,       "loc" = "EAST:16,BOTTOM", "minloc" = "RIGHT,2", "background" = "back13"),
-		"drop"        = list("type" = /obj/screen/drop,       "loc" = "EAST+1:16,BOTTOM", "minloc" = "RIGHT-1:16,2", "background" = "back13"),
-		"resist"      = list("type" = /obj/screen/resist,     "loc" = "EAST,BOTTOM", "minloc" = "RIGHT:16,2", "background" = "back13"),
-		"m_intent"    = list("type" = /obj/screen/mov_intent, "loc" = "EAST,BOTTOM-1", "minloc" = "RIGHT-1,1", "background" = "back1"),
-		"equip"       = list("type" = /obj/screen/equip,      "loc" = "8,1", "minloc" = "7,2", "background" = "back14-l"),
-		"intent"      = list("type" = /obj/screen/intent,     "loc" = "13:16,0", "minloc" = "12:16,1", "background" = "back1"),
-		"help"        = list("type" = /obj/screen/fastintent/help,     "loc" = "13,0", "minloc" = "12,1", "background" = "back15"),
-		"disarm"      = list("type" = /obj/screen/fastintent/disarm,   "loc" = "13,0:-16", "minloc" = "12,1:-16", "background" = "back15"),
-		"harm"        = list("type" = /obj/screen/fastintent/harm,     "loc" = "14:16,0:-16", "minloc" = "13:16,1", "background" = "back15"),
-		"grab"        = list("type" = /obj/screen/fastintent/grab,     "loc" = "14:16,0", "minloc" = "13:16,1:-16", "background" = "back15"),
-		"damage zone" = list("type" = /obj/screen/zone_sel,   "loc" = "EAST+1,BOTTOM-1", "minloc" = "RIGHT,1", "background" = "back1"),
-		"internal"    = list("type" = /obj/screen/internal,   "loc" = "EAST+1,BOTTOM+13", "minloc" = "RIGHT,15", "background" = "back1"),
-		"swap hand"   = list("type" = /obj/screen/swap,       "loc" = "8,1", "minloc" = "7,2"),
-		"toggle invetory"   = list("type" = /obj/screen/toggle_invetory,       "loc" = "2,0", "minloc" = "1,1", "background" = "back1")
-		)
+//status
+	"nutrition"          = list("type" = /obj/screen/nutrition,         "loc" = "EAST+1:1,BOTTOM+3:25",   "minloc" = "RIGHT:1,5:26",  "background" = "back17"),
+	"neural system accumulation" = list("type" = /obj/screen/nsa,       "loc" = "EAST+1:1,BOTTOM+4:6",    "minloc" = "RIGHT:1,6:7",   "background" = "back17"),
+	"body temperature"   = list("type" = /obj/screen/bodytemp,          "loc" = "EAST+1:1,BOTTOM+4:19",   "minloc" = "RIGHT:1,6:20",  "background" = "back17"),
+	"health"             = list("type" = /obj/screen/health,            "loc" = "EAST+1,BOTTOM+5",        "minloc" = "RIGHT,7",       "background" = "back1"),
+	"sanity"             = list("type" = /obj/screen/sanity,            "loc" = "EAST+1,BOTTOM+6",        "minloc" = "RIGHT,8:-2",    "background" = "back1"),
+	"oxygen"             = list("type" = /obj/screen/oxygen,            "loc" = "EAST+1:1,BOTTOM+7",      "minloc" = "RIGHT:1,9:-3",  "background" = "back18"),
+	"fire"               = list("type" = /obj/screen/fire,              "loc" = "EAST+1:16,BOTTOM+7",     "minloc" = "RIGHT:16,9:-3", "background" = "back18"),
+	"pressure"           = list("type" = /obj/screen/pressure,          "loc" = "EAST+1:1,BOTTOM+7:15",   "minloc" = "RIGHT:1,9:12",  "background" = "back18"),
+	"toxin"              = list("type" = /obj/screen/toxin,             "loc" = "EAST+1:16,BOTTOM+7:15",  "minloc" = "RIGHT:16,9:12", "background" = "back18"),
+	"internal"           = list("type" = /obj/screen/internal,          "loc" = "EAST+1,BOTTOM+8:-2",     "minloc" = "RIGHT,10:-5",   "background" = "back15"),
+//corner buttons
+	"jump"               = list("type" = /obj/screen/jump,              "loc" = "EAST+1,BOTTOM+1:-6",     "minloc" = "RIGHT,3:-6",   "background" = "back17-1"),
+	"look up"            = list("type" = /obj/screen/look_up,           "loc" = "EAST,BOTTOM:13",         "minloc" = "RIGHT-1,2:13", "background" = "back17-1"),
+	"throw"              = list("type" = /obj/screen/HUDthrow,          "loc" = "EAST+1,BOTTOM:13",       "minloc" = "RIGHT,2:13",   "background" = "back17-1"),
+	"pull"               = list("type" = /obj/screen/pull,              "loc" = "EAST-1,BOTTOM:13",       "minloc" = "RIGHT-2,2:13", "background" = "back17-1"),
+	"drop"               = list("type" = /obj/screen/drop,              "loc" = "EAST+1,BOTTOM",          "minloc" = "RIGHT,2",      "background" = "back17-1"),
+	"resist"             = list("type" = /obj/screen/resist,            "loc" = "EAST-1,BOTTOM",          "minloc" = "RIGHT-2,2",    "background" = "back17-1"),
+	"rest"               = list("type" = /obj/screen/rest,              "loc" = "EAST,BOTTOM",            "minloc" = "RIGHT-1,2",    "background" = "back17-1"),
+	"move intent"        = list("type" = /obj/screen/mov_intent,        "loc" = "EAST,BOTTOM-1",          "minloc" = "RIGHT-1,1",    "background" = "back1"),
+	"implant bionics"    = list("type" = /obj/screen/implant_bionics,   "loc" = "EAST-2,BOTTOM-1",        "minloc" = "12,1",         "background" = "back13"),
+	"craft menu"         = list("type" = /obj/screen/craft_menu,        "loc" = "EAST-2:16,BOTTOM-1",     "minloc" = "12:16,1",      "background" = "back13"),
+	"intent"             = list("type" = /obj/screen/intent,            "loc" = "EAST-1,BOTTOM-1",        "minloc" = "13,1",         "background" = "back1"),
+	"damage zone"        = list("type" = /obj/screen/zone_sel,          "loc" = "EAST+1,BOTTOM-1",        "minloc" = "RIGHT,1",      "background" = "back1"),
+//hand buttons
+	"equip"              = list("type" = /obj/screen/equip,             "loc" = "8,1",                "minloc" = "7,2",          "background" = "back14-l"),
+	"swap hand"          = list("type" = /obj/screen/swap,              "loc" = "8,1",                "minloc" = "7,2"),
+	"right arm bionics"  = list("type" = /obj/screen/bionics/r_arm,     "loc" = "7:19,1",             "minloc" = "6:20,2",       "background" = "back16"),
+	"left arm bionics"   = list("type" = /obj/screen/bionics/l_arm,     "loc" = "10,1",               "minloc" = "9:-1,2",       "background" = "back16"),
+
+	"toggle invetory"    = list("type" = /obj/screen/toggle_invetory,   "loc" = "2,0",                "minloc" = "1,1",          "background" = "back1")
+
+	)
 
 	slot_data = list (
 		"Uniform" =   list("loc" = "2,1", "minloc" = "1,2",           "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
@@ -167,17 +178,11 @@
 		list("loc" = "12,0", "icon_state" = "frame3-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-2"),
 		list("loc" = "12,0", "icon_state" = "frame0-3"),
-		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame1-1"),
-		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame3-3"),
-		list("loc" = "EAST+1,BOTTOM+3", "icon_state" = "frame0-4"),
-		list("loc" = "EAST+1,BOTTOM+7", "icon_state" = "frame0-1"),
-		list("loc" = "EAST+1,BOTTOM+7", "icon_state" = "frame3-3"),
-		list("loc" = "EAST+1,BOTTOM+7", "icon_state" = "frame0-4"),
-		list("loc" = "EAST+1,BOTTOM+10", "icon_state" = "frame0-1"),
-		list("loc" = "EAST+1,BOTTOM+10", "icon_state" = "frame3-3"),
-		list("loc" = "EAST+1,BOTTOM+10", "icon_state" = "frame0-4"),
-		list("loc" = "EAST+1,BOTTOM+14", "icon_state" = "frame0-1"),
-		list("loc" = "EAST+1,BOTTOM+14", "icon_state" = "frame3-1")
+		list("loc" = "EAST+1,BOTTOM+2:25", "icon_state" = "frame1-1"),
+		list("loc" = "EAST+1,BOTTOM+2:25", "icon_state" = "frame3-3"),
+		list("loc" = "EAST+1,BOTTOM+2:25", "icon_state" = "frame0-4"),
+		list("loc" = "EAST+1,BOTTOM+8:14", "icon_state" = "frame0-1"),
+		list("loc" = "EAST+1,BOTTOM+8:14", "icon_state" = "frame3-1")
 		)
 		//list("loc" = "2,3", "icon_state" = "block",  "hideflag" = TOGGLE_INVENTORY_FLAG),
 
@@ -202,7 +207,11 @@
 		"back14-l" = new /image(src.icon, "t14-l"),
 		"back14-m" = new /image(src.icon, "t14-m"),
 		"back14-r" = new /image(src.icon, "t14-r"),
-		"back15" = new /image(src.icon, "t15")
+		"back15" = new /image(src.icon, "t15"),
+		"back16" = new /image(src.icon, "t16"),
+		"back17" = new /image(src.icon, "t17"),
+		"back17-1" = new /image(src.icon, "t17-1"),
+		"back18" = new /image(src.icon, "t18"),
 	)
 
 	for (var/p in IconUnderlays)

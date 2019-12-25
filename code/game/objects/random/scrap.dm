@@ -112,3 +112,50 @@
 	name = "low chance random trash"
 	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70
+
+
+
+
+/obj/random/scrap/beacon/sparse_weighted
+	name = "Random sparse weighted beacon trash"
+
+/obj/random/scrap/beacon/sparse_weighted/item_to_spawn()
+		return pickweight(list(
+						/obj/structure/scrap/poor = 122,
+						/obj/structure/scrap = 40,
+						/obj/structure/scrap/medical = 12,
+						/obj/structure/scrap/science = 12,
+						/obj/structure/scrap/vehicle = 18,
+						/obj/structure/scrap/cloth = 30,
+						/obj/structure/scrap/food = 52,
+						/obj/structure/scrap/guns = 3
+					))
+
+
+
+/obj/random/scrap/beacon/moderate_weighted
+	name = "Random moderate weighted beacon trash"
+
+/obj/random/scrap/beacon/moderate_weighted/item_to_spawn()
+		return pickweight(list(
+						/obj/random/scrap/beacon/sparse_weighted = 2,
+						/obj/random/scrap/beacon/dense_weighted = 1
+					))
+
+
+
+/obj/random/scrap/beacon/dense_weighted
+	name = "Random dense weighted beacon trash"
+
+/obj/random/scrap/beacon/dense_weighted/item_to_spawn()
+		return pickweight(list(
+						/obj/structure/scrap/poor/large/beacon = 110,
+						/obj/structure/scrap/poor/structure/beacon = 90,
+						/obj/structure/scrap/large = 20,
+						/obj/structure/scrap/medical/large/beacon = 14,
+						/obj/structure/scrap/science/large/beacon = 14,
+						/obj/structure/scrap/vehicle/large/beacon = 20,
+						/obj/structure/scrap/cloth/large/beacon = 26,
+						/obj/structure/scrap/food/large/beacon = 40,
+						/obj/structure/scrap/guns/large/beacon = 3
+					))

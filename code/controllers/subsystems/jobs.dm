@@ -395,6 +395,12 @@ SUBSYSTEM_DEF(job)
 		C.install_default_modules_by_job(job)
 		C.access.Add(job.cruciform_access)
 
+	var/obj/item/weapon/oddity/secdocs/D
+	if(D.inv_spawn_count > 0 && prob(5) && !(locate(/obj/item/weapon/oddity/secdocs) in H.get_contents()))
+		D = new
+		if(H.equip_to_storage(D))
+			--D.inv_spawn_count
+
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H

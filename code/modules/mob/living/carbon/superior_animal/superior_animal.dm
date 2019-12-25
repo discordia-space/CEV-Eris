@@ -31,7 +31,7 @@
 	var/stop_automated_movement = 0 //use this to temporarely stop random movement
 	var/stop_automated_movement_when_pulled = 0
 
-	var/contaminant_immunity = 0 //if 1, mob is immune to harmful contaminants in air (plasma), skin contact, does not relate to breathing
+	var/contaminant_immunity = FALSE //if TRUE, mob is immune to harmful contaminants in air (plasma), skin contact, does not relate to breathing
 	var/cold_protection = 0 //0 to 1 value, which corresponds to the percentage of protection, affects only bodytemperature
 	var/heat_protection = 0
 	var/breath_required_type = "oxygen" //0 to disable, oxyloss if absent in sufficient quantity

@@ -40,11 +40,11 @@
 
 
 /datum/design/research/item/mechfab/modules/multitool/surgical
-	build_path = /obj/item/organ_module/active/multitool/surgical
+	build_path = /obj/item/organ_module/active/simple/surgical
 	name = "Embedded surgical multitool"
 
 /datum/design/research/item/mechfab/modules/multitool/engineer
-	build_path = /obj/item/organ_module/active/multitool/engineer
+	build_path = /obj/item/organ_module/active/simple/engineer
 	name = "Embedded Technomancer multitool"
 
 /datum/design/research/item/mechfab/modules/multitool/miner

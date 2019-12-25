@@ -9,12 +9,12 @@
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = 0
-	caliber = "a762"
+	caliber = "lrifle"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_BOX
-	magazine_type = /obj/item/ammo_magazine/a762
+	magazine_type = /obj/item/ammo_magazine/lrifle
 	tac_reloads = FALSE
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 15, MATERIAL_WOOD = 5)
 	price_tag = 5000
@@ -22,7 +22,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 0.3 //machinegun level
+	recoil_buildup = 3.5
 
 	firemodes = list(
 		FULL_AUTO_600,

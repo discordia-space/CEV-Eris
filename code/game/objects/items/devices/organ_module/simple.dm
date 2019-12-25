@@ -49,4 +49,5 @@
 
 /obj/item/organ_module/active/simple/organ_removed(var/obj/item/organ/external/E, var/mob/living/carbon/human/H)
 	retract(H, E)
+	..()
 

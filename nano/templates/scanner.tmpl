@@ -12,8 +12,8 @@
 			Scanner is:
 		</div>
 		<div class="itemContent">
-			{{:helper.link('Enabled', null, {'PC_enable_component' : data.scanner_name}, data.scanner_enabled ? 'selected' : null)}}
-			{{:helper.link('Disabled', null, {'PC_disable_component' : data.scanner_name}, !data.scanner_enabled ? 'selected' : null)}}
+			{{:helper.link('Enabled', null, {'PC_enable_component' : 1, 'component' : data.scanner_name}, data.scanner_enabled ? 'selected' : null)}}
+			{{:helper.link('Disabled', null, {'PC_disable_component' : 1, 'component' : data.scanner_name}, !data.scanner_enabled ? 'selected' : null)}}
 		</div>
 		<div class="itemLabel">
 			Scanner Actions:

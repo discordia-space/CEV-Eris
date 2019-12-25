@@ -11,7 +11,7 @@
 	icon = 'icons/atmos/vent_pump.dmi'
 	icon_state = "map_vent"
 
-	name = "Air Vent"
+	name = "air vent"
 	desc = "Has a valve and pump attached to it"
 	use_power = 0
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
@@ -19,13 +19,15 @@
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
-	var/area/initial_loc
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
+
+	var/area/initial_loc
 	var/area_uid
 	var/id_tag = null
 
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
+	var/expanded_range = FALSE
 
 	var/external_pressure_bound = EXTERNAL_PRESSURE_BOUND
 	var/internal_pressure_bound = INTERNAL_PRESSURE_BOUND
@@ -40,7 +42,7 @@
 	var/internal_pressure_bound_default = INTERNAL_PRESSURE_BOUND
 	var/pressure_checks_default = PRESSURE_CHECKS
 
-	var/welded = 0 // Added for aliens -- TLE
+	var/welded = FALSE // Added for aliens -- TLE
 
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
@@ -73,7 +75,6 @@
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
-	icon = null
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
 	if (!id_tag)
@@ -102,31 +103,18 @@
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500 //meant to match air injector
 
-/obj/machinery/atmospherics/unary/vent_pump/update_icon(var/safety = 0)
-	if(!check_icon_cache())
-		return
-	if (!node1)
+/obj/machinery/atmospherics/unary/vent_pump/update_icon(safety = 0)
+	if(!node1)
 		use_power = 0
 
-	overlays.Cut()
-
-	var/vent_icon = "vent"
-
-	var/turf/T = get_turf(src)
-	if(!istype(T))
-		return
-
-	if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
-		vent_icon += "h"
-
 	if(welded)
-		vent_icon += "weld"
-	else if(!powered())
-		vent_icon += "off"
+		icon_state = "weld"
+	else if(!powered() || !use_power)
+		icon_state = "off"
 	else
-		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
-
-	overlays += icon_manager.get_atmos_icon("device", , , vent_icon)
+		icon_state = pump_direction ? "out" : "in"
+		if(expanded_range)
+			icon_state += "_expanded"
 
 /obj/machinery/atmospherics/unary/vent_pump/update_underlays()
 	if(..())
@@ -141,6 +129,7 @@
 				add_underlay(T, node1, dir, node1.icon_connect_type)
 			else
 				add_underlay(T,, dir)
+			underlays += "frame"
 
 /obj/machinery/atmospherics/unary/vent_pump/hide()
 	update_icon()
@@ -162,30 +151,38 @@
 	if(welded)
 		return 0
 
-	var/datum/gas_mixture/environment = loc.return_air()
-	if (!environment)
+	var/list/environments = get_target_environments(src, expanded_range)
+	if(!length(environments))
 		return 0
 
-	if (!environment.total_moles && !air_contents.total_moles)
-		return 0
+	var/power_draw = 0
+	var/transfer_happened = FALSE
 
-	//Figure out the target pressure difference
-	var/pressure_delta = get_pressure_delta(environment)
-	//src.visible_message("DEBUG >>> [src]: pressure_delta = [pressure_delta]")
+	for(var/e in environments)
+		var/datum/gas_mixture/environment = e
+		if (!environment)
+			continue
 
-	var/power_draw = -1
-	if(pressure_delta > 0.5)
-		if(pump_direction) //internal -> external
-			var/transfer_moles = calculate_transfer_moles(air_contents, environment, pressure_delta)
-			power_draw = pump_gas(src, air_contents, environment, transfer_moles, power_rating)
-		else //external -> internal
-			var/transfer_moles = calculate_transfer_moles(environment, air_contents, pressure_delta, (network)? network.volume : 0)
+		if (!environment.total_moles && !air_contents.total_moles)
+			continue
 
-			//limit flow rate from turfs
-			transfer_moles = min(transfer_moles, environment.total_moles*air_contents.volume/environment.volume)	//group_multiplier gets divided out here
-			power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+		//Figure out the target pressure difference
+		var/pressure_delta = get_pressure_delta(environment)
+		//src.visible_message("DEBUG >>> [src]: pressure_delta = [pressure_delta]")
 
-	if (power_draw >= 0)
+		if(pressure_delta > 0.5)
+			if(pump_direction) //internal -> external
+				var/transfer_moles = calculate_transfer_moles(air_contents, environment, pressure_delta)
+				power_draw += pump_gas(src, air_contents, environment, transfer_moles, power_rating)
+			else //external -> internal
+				var/transfer_moles = calculate_transfer_moles(environment, air_contents, pressure_delta, (network)? network.volume : 0)
+
+				//limit flow rate from turfs
+				transfer_moles = min(transfer_moles, environment.total_moles*air_contents.volume/environment.volume)	//group_multiplier gets divided out here
+				power_draw += pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+			transfer_happened = TRUE
+
+	if(transfer_happened)
 		last_power_draw = power_draw
 		use_power(power_draw)
 		if(network)
@@ -224,6 +221,7 @@
 		"device" = "AVP",
 		"power" = use_power,
 		"direction" = pump_direction?("release"):("siphon"),
+		"expanded_range" = expanded_range,
 		"checks" = pressure_checks,
 		"internal" = internal_pressure_bound,
 		"external" = external_pressure_bound,
@@ -288,6 +286,11 @@
 	if(signal.data["direction"] != null)
 		pump_direction = text2num(signal.data["direction"])
 
+	if(signal.data["expanded_range"])
+		expanded_range = text2num(signal.data["expanded_range"])
+	if(signal.data["toggle_expanded_range"])
+		expanded_range = !expanded_range
+
 	if(signal.data["set_internal_pressure"] != null)
 		if (signal.data["set_internal_pressure"] == "default")
 			internal_pressure_bound = internal_pressure_bound_default
@@ -316,8 +319,6 @@
 		)
 
 	if(signal.data["adjust_external_pressure"] != null)
-
-
 		external_pressure_bound = between(
 			0,
 			external_pressure_bound + text2num(signal.data["adjust_external_pressure"]),

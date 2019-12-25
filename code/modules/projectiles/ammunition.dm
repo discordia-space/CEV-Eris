@@ -18,12 +18,14 @@
 	var/maxamount = 15
 	var/reload_delay = 0
 
-/obj/item/ammo_casing/New()
-	..()
+/obj/item/ammo_casing/Initialize()
+	. = ..()
 	if(ispath(projectile_type))
 		BB = new projectile_type(src)
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
+	if(amount > 1)
+		update_icon()
 
 //removes the projectile from the ammo casing
 /obj/item/ammo_casing/proc/expend()
@@ -151,14 +153,15 @@
 #define MAGAZINE 		4	//The magazine item itself goes inside the gun
 
 #define MAG_WELL_GENERIC	0	//Guns without special magwells
-#define MAG_WELL_PISTOL		1	//Pistols
-#define MAG_WELL_SMG		2	//smgs
-#define MAG_WELL_CIVI_RIFLE	4	//Normal non IH or AK rifles
-#define MAG_WELL_IH			8	//IH guns
-#define MAG_WELL_AK			16	//AKs
-#define MAG_WELL_BOX		32	//Lmgs with box mags
-#define MAG_WELL_PAN		64	//Lmgs with pan mags
-#define MAG_WELL_DART       128 //Dartgun mag
+#define MAG_WELL_L_PISTOL	1	//Pistols
+#define MAG_WELL_PISTOL		2
+#define MAG_WELL_H_PISTOL	4	//High cap Pistols
+#define MAG_WELL_SMG		8	//smgs
+#define MAG_WELL_RIFLE		16	//Normal non-IH rifles
+#define MAG_WELL_IH			32	//IH guns
+#define MAG_WELL_BOX		64	//Lmgs with box mags
+#define MAG_WELL_PAN		128	//Lmgs with pan mags
+#define MAG_WELL_DART       256 //Dartgun mag
 
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
@@ -174,6 +177,8 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+
+	var/ammo_color = ""		//For use in modular sprites
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
@@ -208,29 +213,30 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+			to_chat(user, SPAN_WARNING("\The [src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
+			to_chat(user, SPAN_WARNING("\The [C] does not fit into \the [src]."))
 			return
 		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
-			to_chat(user, SPAN_WARNING("There is no ammo in [src]!"))
+			to_chat(user, SPAN_WARNING("There is no ammo in \the [src]!"))
 			return
-		if(!do_after(user, src.reload_delay, src))
-			to_chat(user, SPAN_WARNING("You stop loading ammo into [other]"))
+		if(other.stored_ammo.len >= other.max_ammo)
+			to_chat(user, SPAN_NOTICE("\The [other] is already full."))
 			return
+		var/diff = FALSE
 		for(var/obj/item/ammo in src.stored_ammo)
-			if(other.stored_ammo.len >= other.max_ammo)
-				break
-			var/obj/item/ammo_casing/T = removeCasing()
-			if(T)
-				other.insertCasing(T)
-			else
-				break
-		to_chat(user, SPAN_NOTICE("You're done here"))
+			if(other.stored_ammo.len < other.max_ammo && do_after(user, reload_delay/other.max_ammo, src) && other.insertCasing(removeCasing()))
+				diff = TRUE
+				continue
+			break
+		if(diff)
+			to_chat(user, SPAN_NOTICE("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
+		else
+			to_chat(user, SPAN_WARNING("You fail to load anything into \the [other]"))
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src && stored_ammo.len)

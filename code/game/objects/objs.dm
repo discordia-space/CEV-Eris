@@ -224,7 +224,19 @@
 //Returns the list of matter in this object
 //You can override it to customise exactly what is returned.
 /obj/proc/get_matter()
-	return matter
+	return matter ? matter : list()
+
+//Drops the materials in matter list on into target location
+//Use for deconstrction
+/obj/proc/drop_materials(target_loc)
+	var/list/materials = get_matter()
+
+	for(var/mat_name in materials)
+		var/material/material = get_material_by_name(mat_name)
+		if(!material)
+			continue
+
+		material.place_material(target_loc, materials[mat_name])
 
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
@@ -241,3 +253,7 @@
 //Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
 /obj/proc/multiply_projectile_damage(var/newmult)
 	throwforce = initial(throwforce) * newmult
+
+//Same for AP
+/obj/proc/multiply_projectile_penetration(var/newmult)
+	armor_penetration = initial(armor_penetration) * newmult

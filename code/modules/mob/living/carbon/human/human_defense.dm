@@ -23,7 +23,8 @@ meteor_act
 		else
 			P.on_hit(src, def_zone)
 			return 2
-	//Checking abosrb for spawning shrapnel
+
+	//Checking absorb for spawning shrapnel
 	.=..(P , def_zone)
 
 	var/check_absorb = .
@@ -36,6 +37,54 @@ meteor_act
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
 			organ.embed(SP)
+
+
+/mob/living/carbon/human/hit_impact(damage, dir)
+	if(incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_BUCKLED_PARTIALLY))
+		return
+	if(damage < stats.getStat(STAT_TGH))
+		..()
+		return
+
+	var/r_dir = reverse_dir[dir]
+	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
+
+	var/stumbled = FALSE
+
+	if(prob(60 - stats.getStat(STAT_TGH)))
+		stumbled = TRUE
+		step(src, pick(cardinal - hit_dirs))
+
+	for(var/atom/movable/A in oview(1))
+		if(!A.Adjacent(src) || prob(50 + stats.getStat(STAT_TGH)))
+			continue
+
+		if(istype(A, /obj/structure/table))
+			var/obj/structure/table/T = A
+			if (!T.can_touch(src) || T.flipped != 0 || !T.flip(get_cardinal_dir(src, T)))
+				continue
+			if(T.climbable)
+				T.structure_shaken()
+			playsound(T,'sound/machines/Table_Fall.ogg',100,1)
+
+		else if(istype(A, /obj/machinery/door))
+			var/obj/machinery/door/D = A
+			D.Bumped(src)
+
+		else if(istype(A, /obj/machinery/button))
+			A.attack_hand(src)
+
+		else if(istype(A, /obj/item) || prob(33))
+			if(A.anchored)
+				continue
+			step(A, pick(cardinal))
+
+		else
+			continue
+		stumbled = TRUE
+
+	if(stumbled)
+		visible_message(SPAN_WARNING("[src] stumbles around."))
 
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
@@ -229,6 +278,15 @@ meteor_act
 						update_inv_glasses(0)
 				if(BP_CHEST)
 					bloody_body(src)
+			//All this is copypasta'd from projectile code. Basically there's a cool splat animation when someone gets hit by something.
+			var/splatter_dir = dir
+			var/turf/target_loca = get_turf(src)
+			splatter_dir = get_dir(user, target_loca)
+			target_loca = get_step(target_loca, splatter_dir)
+			var/blood_color = "#C80000"
+			blood_color = src.species.blood_color
+			new /obj/effect/overlay/temp/dir_setting/bloodsplatter(src.loc, splatter_dir, blood_color)
+			target_loca.add_blood(src)
 
 	return TRUE
 
@@ -386,7 +444,8 @@ meteor_act
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	var/obj/item/clothing/suit/space/SS = wear_suit
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
-	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+	if(prob(20(penetrated_dam * SS.resilience))) SS.create_breaches(damtype, penetrated_dam) // changed into a probability calculation based on the degree of penetration by Plasmatik. you can tune resilience to drastically change breaching chances.
+																			// at maximum penetration, breaches are always created, at 1 penetration, they have a 20% chance to form
 
 /mob/living/carbon/human/reagent_permeability()
 	var/perm = 0

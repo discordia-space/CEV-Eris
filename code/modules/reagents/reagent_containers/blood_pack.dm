@@ -3,8 +3,7 @@
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
 
-/obj/item/weapon/storage/box/bloodpacks/Initialize()
-	. = ..()
+/obj/item/weapon/storage/box/bloodpacks/populate_contents()
 	new /obj/item/weapon/reagent_containers/blood(src)
 	new /obj/item/weapon/reagent_containers/blood(src)
 	new /obj/item/weapon/reagent_containers/blood(src)
@@ -23,8 +22,8 @@
 	filling_states = "-10;10;25;50;75;80;100"
 	var/blood_type = null
 
-/obj/item/weapon/reagent_containers/blood/New()
-	..()
+/obj/item/weapon/reagent_containers/blood/Initialize()
+	. = ..()
 	if(blood_type)
 		reagents.add_reagent("blood", 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
 

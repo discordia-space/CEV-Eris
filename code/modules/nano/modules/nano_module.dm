@@ -60,7 +60,7 @@
 			data += catalog.ui_data(user, search_value = catalog_search)
 	return data
 
-// refreshes catalog browsing 
+// refreshes catalog browsing
 // must be always called after creating nanoUI
 /datum/nano_module/proc/refresh_catalog_browsing(var/mob/user, var/datum/nanoui/ui)
 	if(selected_entry)
@@ -81,7 +81,7 @@
 		entry_history.Add(selected_entry)
 
 	selected_entry = entry_to_browse
-	
+
 	ui.add_template("catalogEntry", selected_entry.associated_template)
 
 	catalog_browse_stage = CATALOG_BROWSE_STAGE_ENTRY
@@ -99,9 +99,9 @@
 	entry_history = list()
 	selected_entry = null
 	catalog = catalog_to_browse
-	
+
 	ui.add_template("catalog", catalog.associated_template)
-	
+
 	catalog_browse_stage = CATALOG_BROWSE_STAGE_LIST
 	ui.reinitialise(new_initial_data = ui_data(user))
 	return TRUE
@@ -135,7 +135,7 @@
 		if(!selected_entry)
 			return
 		return 1
-	
+
 	if(href_list["catalog_search_run"])
 		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!new_search || new_search == "")
@@ -155,11 +155,11 @@
 /datum/nano_module/proc/print_text(var/text, var/mob/user)
 	var/obj/item/modular_computer/MC = nano_host()
 	if(istype(MC))
-		if(!MC.nano_printer)
+		if(!MC.printer)
 			to_chat(user, "Error: No printer detected. Unable to print document.")
 			return
 
-		if(!MC.nano_printer.print_text(text))
+		if(!MC.printer.print_text(text))
 			to_chat(user, "Error: Printer was unable to print the document. It may be out of paper.")
 	else
 		to_chat(user, "Error: Unable to detect compatible printer interface. Are you running NTOSv2 compatible system?")

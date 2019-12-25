@@ -2202,7 +2202,7 @@ assassination method if you time it right*/
 		maint_access = 0 // Disallow maintenance mode
 	else
 		maint_access = 1 // Explicitly allow maint_access -> Othwerwise we have a stuck mech, as you cant change the state back, if maint_access is 0
-		state = 1 // Enable maintenance mode. It won't move.
+		state = 0 // Enable maintenance mode. It won't move.
 
 //Does a random check for each possible type of internal damage, and adds it if it passes
 //The probability should be somewhat low unless you just want to saturate it with damage

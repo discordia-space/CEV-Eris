@@ -125,3 +125,13 @@
 /datum/gear/head/ushanka
 	display_name = "ushanka"
 	path = /obj/item/clothing/head/ushanka
+
+/datum/gear/head/cap/secfield
+	display_name = "cap, IH field"
+	path = /obj/item/clothing/head/soft/sec2soft
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
+
+/datum/gear/head/cap/sarge
+	display_name = "cap, IH sergeant"
+	path = /obj/item/clothing/head/soft/sarge2soft
+	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")

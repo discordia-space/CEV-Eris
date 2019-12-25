@@ -25,6 +25,7 @@
 	hud_actions = list()
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
+	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -32,11 +33,12 @@
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 
 	var/fire_sound_text = "gunshot"
-	var/recoil_buildup = 0.2 //How quickly recoil builds up
+	var/recoil_buildup = 2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
 	var/requires_two_hands
 	var/dual_wielding
+	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
 	var/wielded_icon = "gun_wielded"
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
@@ -56,10 +58,6 @@
 	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
-
-	var/recoil = 0
-	var/last_recoil_update = 0
-	var/recoil_timer
 
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
@@ -128,9 +126,9 @@
 		item_state_slots[slot_l_hand_str] = "lefthand"  + state
 		item_state_slots[slot_r_hand_str] = "righthand" + state
 	if(back)
-		item_state_slots[slot_back_str]   = "back"
+		item_state_slots[slot_back_str]   = "back"      + state
 	if(onsuit)
-		item_state_slots[slot_s_store_str]= "onsuit"
+		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
 /obj/item/weapon/gun/update_wear_icon()
 	if(requires_two_hands)
@@ -189,6 +187,7 @@
 	var/obj/item/weapon/gun/off_hand   //DUAL WIELDING
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
+
 		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
 			off_hand = H.l_hand
 			dual_wielding = TRUE
@@ -199,7 +198,9 @@
 		else
 			dual_wielding = FALSE
 
-		if(off_hand && off_hand.can_hit(user))
+		if(!can_dual)
+			dual_wielding = FALSE
+		else if(off_hand && off_hand.can_hit(user))
 			spawn(1)
 			off_hand.Fire(A,user,params)
 	else
@@ -251,9 +252,9 @@
 			handle_click_empty(user)
 			break
 
-		process_accuracy(projectile, user, target)
-
 		projectile.multiply_projectile_damage(damage_multiplier)
+
+		projectile.multiply_projectile_penetration(penetration_multiplier)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
@@ -299,7 +300,7 @@
 	update_firemode() //Stops automatic weapons spamming this shit endlessly
 
 //called after successfully firing
-/obj/item/weapon/gun/proc/handle_post_fire(mob/user, atom/target, var/pointblank=0, var/reflex=0)
+/obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, var/pointblank=0, var/reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
 		playsound(user, fire_sound_silenced, 15, 1, -3)
@@ -321,84 +322,17 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
-	handle_recoil(user)
+	user.handle_recoil(src)
 	update_icon()
-
-/obj/item/weapon/gun/proc/handle_recoil(mob/user)
-	var/added_recoil = recoil_buildup*10 //Course wanted noticeable recoil. EX: 0.2 buildup * 10 = 2
-	if(added_recoil)
-		recoil += added_recoil
-		update_recoil(user)
-
-#define BASE_ACCURACY_REGEN 0.85 //Recoil reduction per ds with 0 VIG
-#define VIG_ACCURACY_REGEN  0.02 //Recoil reduction per ds per VIG
-#define MIN_ACCURACY_REGEN  0.25 //How low can we get with negative VIG
-/obj/item/weapon/gun/proc/calc_reduction(mob/user = loc)
-	if(!istype(user))
-		return 0
-	return max(BASE_ACCURACY_REGEN + user.stats.getStat(STAT_VIG)*VIG_ACCURACY_REGEN, MIN_ACCURACY_REGEN)
-
-//Called to get current recoil value
-/obj/item/weapon/gun/proc/calc_recoil(mob/user)
-	if(!recoil || !last_recoil_update)
-		return 0
-	if(!istype(user))
-		recoil = 0
-		last_recoil_update = 0
-	else
-		var/time = world.time - last_recoil_update
-		if(time)
-			recoil -= time * calc_reduction(user)
-			if(recoil <= 0)
-				recoil = 0
-				last_recoil_update = 0
-			else
-				last_recoil_update = world.time
-	return recoil
-
-//Called after setting recoil
-/obj/item/weapon/gun/proc/update_recoil(mob/user)
-	if(recoil <= 0)
-		recoil = 0
-		last_recoil_update = 0
-	else
-		if(last_recoil_update)
-			calc_recoil(user)
-		else
-			last_recoil_update = world.time
-	deltimer(recoil_timer)
-	recoil_timer = null
-	update_recoil_cursor(user)
-
-/obj/item/weapon/gun/proc/update_recoil_cursor(mob/living/user = loc)
-	if(!istype(user))
-		return
-
-	update_cursor(user)
-
-	var/bottom = 0
-	switch(recoil)
-		if(0 to 0.5)
-			;
-		if(0.5 to 1)
-			bottom = 0.5
-		if(1 to 1.5)
-			bottom = 1
-		if(1.5 to 2)
-			bottom = 1.5
-		if(2 to 3)
-			bottom = 2
-		if(3 to INFINITY)
-			bottom = 3
-	if(bottom)
-		var/reduction = calc_reduction(user)
-		if(reduction > 0)
-			recoil_timer = addtimer(CALLBACK(src, .proc/update_recoil_cursor), 1 + (recoil - bottom) / reduction)
 
 /obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
 	var/obj/item/projectile/P = projectile
+
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
+
+	if(dual_wielding)
+		return //dual wielding deal too much damage as it is, so no point blank for it
 
 	//default point blank multiplier
 	var/damage_mult = 1.3
@@ -416,49 +350,22 @@
 				damage_mult = 1.5
 	P.damage *= damage_mult
 
-/obj/item/weapon/gun/proc/process_accuracy(obj/projectile, mob/user, atom/target, dispersion = 0) //Applies the actual bullet spread
-	var/obj/item/projectile/P = projectile
-	if(!istype(P))
-		return
-	if(calc_recoil(user))
-		dispersion += recoil/2
-		if(zoom)
-			dispersion += recoil*zoom_factor/2 //recoil is worse when looking through a scope
-	P.dispersion = dispersion
 
 //does the actual launching of the projectile
-/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/living/user, atom/target, var/target_zone, var/params=null)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
 	if(params)
 		P.set_clickpoint(params)
-	var/lower_offset = 0
-	var/upper_offset = 0
-	if(calc_recoil(user))
-		lower_offset = -recoil*20
-		upper_offset = recoil*20
-	if(iscarbon(user))
-		var/mob/living/carbon/mob = user
-		var/aim_coeff = mob.stats.getStat(STAT_VIG)/10 //Allows for security to be better at aiming
-		if(aim_coeff > 0)//EG. 60 which is the max, turns into 6. Giving a sizeable accuracy bonus.
-			lower_offset += aim_coeff
-			upper_offset -= aim_coeff
-		if(mob.shock_stage > 120)	//shooting while in shock
-			lower_offset *= 15 //A - * a - is a +
-			upper_offset *= 15
-		else if(mob.shock_stage > 70)
-			lower_offset *= 10 //A - * a - is a +
-			upper_offset *= 10
+	var/offset = 0
+	if(user.calc_recoil())
+		offset += user.recoil
+	offset = min(offset, MAX_ACCURACY_OFFSET)
+	offset = rand(-offset, offset)
 
-	var/x_offset = 0
-	var/y_offset = 0
-	x_offset = rand(lower_offset, upper_offset) //Recoil fucks up the spread of your bullets
-	y_offset = rand(lower_offset, upper_offset)
-
-
-	return !P.launch_from_gun(target, user, src, target_zone, x_offset, y_offset)
+	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Suicide handling.
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
@@ -516,7 +423,10 @@
 	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
-	update_cursor(user)
+	if(safety)
+		user.remove_cursor()
+	else
+		user.update_cursor()
 	update_hud_actions()
 
 /obj/item/weapon/gun/examine(mob/user)
@@ -580,7 +490,10 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
-	update_cursor(user)
+	if(safety)
+		user.remove_cursor()
+	else
+		user.update_cursor()
 
 
 //Finds the current firemode and calls update on it. This is called from a few places:
@@ -654,6 +567,8 @@
 
 
 /obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
+	set category = "Object"
+
 	if (!silenced || !silenced.can_remove)
 		to_chat(user, "No silencer is installed on \the [src]")
 		verbs -= /obj/item/weapon/gun/proc/remove_silencer

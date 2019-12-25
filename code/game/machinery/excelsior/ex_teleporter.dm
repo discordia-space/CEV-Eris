@@ -156,9 +156,6 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 	new order_path(loc, amount)
 	processing_order = FALSE
 
-/obj/machinery/complant_teleporter/attack_ai(mob/user)
-	return src.attack_hand(user)
-
 /obj/machinery/complant_teleporter/attack_hand(mob/user)
 	if(stat & BROKEN)
 		return

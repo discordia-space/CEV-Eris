@@ -61,7 +61,7 @@
 	icon_state = "fire"
 
 /obj/structure/closet/firecloset/populate_contents()
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/weapon/tank/oxygen/red(src)
 	new /obj/item/weapon/extinguisher(src)
@@ -89,8 +89,10 @@
 		new /obj/item/weapon/tool/weldingtool(src)
 	if(prob(70))
 		new /obj/item/weapon/tool/crowbar(src)
-	if(prob(70))
+	if(prob(50))
 		new /obj/item/weapon/tool/wirecutters(src)
+	if(prob(50))
+		new /obj/item/weapon/tool/wirecutters/pliers(src)
 	if(prob(70))
 		new /obj/item/device/t_scanner(src)
 	if(prob(20))

@@ -21,6 +21,7 @@ var/list/custom_table_appearance = list(
 	climbable = 1
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	throwpass = 1
+	matter = list(MATERIAL_STEEL = 2)
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
@@ -38,6 +39,13 @@ var/list/custom_table_appearance = list(
 	var/list/custom_appearance = null
 
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
+
+/obj/structure/table/get_matter()
+	. = ..()
+	if(material)
+		LAZYAPLUS(., material.name, 1)
+	if(reinforced)
+		LAZYAPLUS(., reinforced.name, 1)
 
 /obj/structure/table/proc/update_material()
 	var/old_maxhealth = maxhealth
@@ -71,8 +79,6 @@ var/list/custom_table_appearance = list(
 
 /obj/structure/table/Initialize()
 	. = ..()
-
-
 
 	// reset color/alpha, since they're set for nice map previews
 	color = "#ffffff"
@@ -166,7 +172,7 @@ var/list/custom_table_appearance = list(
 				if(!material)
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 						user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
-						new /obj/item/stack/material/steel(src.loc, 2)
+						drop_materials(drop_location())
 						qdel(src)
 			return
 

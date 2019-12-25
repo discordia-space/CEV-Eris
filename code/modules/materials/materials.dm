@@ -207,27 +207,31 @@ var/list/name_to_material
 	name = "placeholder"
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material)
+/material/proc/place_dismantled_girder(target, material/reinf_material)
 	var/obj/structure/girder/G = new(target)
 	if(reinf_material)
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
 
-// General wall debris product placement.
-// Not particularly necessary aside from snowflakey cult girders.
-/material/proc/place_dismantled_product(var/turf/target,var/is_devastated)
-	for(var/x=1;x<(is_devastated?2:3);x++)
-		place_sheet(target)
+// Use this to drop a given amount of material.
+/material/proc/place_material(target, amount=1)
+	// Drop the integer amount of sheets
+	if(place_sheet(target, round(amount)))
+		amount -= round(amount)
+
+	// If there is a remainder left, drop it as a shard instead
+	if(amount)
+		place_shard(target, amount)
 
 // Debris product. Used ALL THE TIME.
-/material/proc/place_sheet(var/turf/target)
+/material/proc/place_sheet(target, amount=1)
 	if(stack_type)
-		return new stack_type(target)
+		return new stack_type(target, amount)
 
 // As above.
-/material/proc/place_shard(var/turf/target)
+/material/proc/place_shard(target, amount=1)
 	if(shard_type)
-		return new /obj/item/weapon/material/shard(target, src.name)
+		return new /obj/item/weapon/material/shard(target, src.name, amount)
 
 // Used by walls and weapons to determine if they break or not.
 /material/proc/is_brittle()

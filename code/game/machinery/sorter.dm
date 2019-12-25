@@ -3,6 +3,7 @@
 
 #define SORT_TYPE_MATERIAL "material"
 #define SORT_TYPE_REAGENT "reagent"
+#define SORT_TYPE_NAME "name"
 /*
 	Sorter will sort items based on rules
 */
@@ -12,12 +13,33 @@
 	var/value
 	var/amount
 
-/datum/sort_rule/New(var/accept, var/type, var/value, var/amount)
+/datum/sort_rule/New(accept, type, value, amount = 0)
 	src.accept = accept
 	src.sort_type = type
 	src.value = value
 	src.amount = amount
 
+/datum/sort_rule/proc/check_match(atom/movable/sorted)
+	var/obj/O
+	if(istype(sorted, /obj))
+		O = sorted
+
+	switch(sort_type)
+		if(SORT_TYPE_MATERIAL)
+			if(O)
+				var/list/materials = O.get_matter()
+				if((value in materials) && (!amount || materials[value] >= amount))
+					return TRUE
+
+		if(SORT_TYPE_REAGENT)
+			if(O && O.reagents && O.reagents.has_reagent(value, amount))
+				return TRUE
+
+		if(SORT_TYPE_NAME)
+			if(findtext(sorted.name, value))
+				return TRUE
+
+	return FALSE
 
 
 /obj/machinery/sorter
@@ -32,9 +54,9 @@
 
 	circuit = /obj/item/weapon/circuitboard/sorter
 	// based on levels of manipulators
-	var/speed = 20
+	var/speed = 25
 	// based on levels of scanners
-	var/number_of_settings = 2
+	var/number_of_settings = 3
 	var/input_side = SOUTH
 	var/accept_output_side = EAST
 	var/refuse_output_side = null //by default it will be reversed input_side
@@ -42,7 +64,7 @@
 	var/progress = 0
 
 	var/list/sort_settings = list()
-	var/obj/current_item
+	var/atom/movable/current_item
 
 	//UI vars
 	var/list/custom_rule = list("accept", "sort_type", "value", "amount")
@@ -84,43 +106,43 @@
 		progress += speed
 		if(progress >= 100)
 			sort(current_item)
-			progress = 0
+			grab()
 			use_power(1)
 		update_icon()
 	else
 		grab()
 
 
-/obj/machinery/sorter/proc/sort(var/obj/item_to_sort)
+/obj/machinery/sorter/proc/sort(atom/movable/item_to_sort)
 	if(!current_item || !sort_settings)
 		return
 	var/sorted = FALSE
 	for(var/datum/sort_rule/rule in sort_settings)
-		switch(rule.sort_type)
-			if(SORT_TYPE_MATERIAL)
-				if(rule.value in item_to_sort.matter)
-					if(rule.amount && (item_to_sort.matter[rule.value] >= rule.amount))
-						sorted = rule.accept
-						if(!sorted)
-							break
-
-			if(SORT_TYPE_REAGENT)
-				if(item_to_sort.reagents && item_to_sort.reagents.has_reagent(rule.value, rule.amount))
-					sorted = rule.accept
-					if(!sorted)
-						break
+		if(rule.check_match(item_to_sort))
+			sorted = rule.accept
+			if(!sorted)
+				break
 
 	eject(sorted)
-	return
+	progress = 0
 
 
 /obj/machinery/sorter/proc/grab()
 	if(current_item)
 		return
 	var/turf/T = get_step(src, input_side)
-	for(var/obj/O in T)
+	for(var/atom/movable/O in T)
 		if(O.anchored)
 			continue
+
+		// Only process dead mobs
+		if(ismob(O))
+			if(!isliving(O))
+				continue
+			var/mob/living/M = O
+			if(M.stat != DEAD)
+				continue
+
 		var/obj/structure/closet/C = O
 		if(istype(C))
 			C.open()
@@ -156,7 +178,7 @@
 	var/num_settings = 0
 	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
 		num_settings += S.rating
-	number_of_settings = num_settings * 2
+	number_of_settings = num_settings * initial(number_of_settings)
 	speed = manipulator_rating*10
 
 
@@ -279,3 +301,4 @@
 
 #undef SORT_TYPE_MATERIAL
 #undef SORT_TYPE_REAGENT
+#undef SORT_TYPE_NAME

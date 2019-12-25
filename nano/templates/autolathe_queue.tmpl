@@ -1,0 +1,82 @@
+<div class="block" style ='position: relative;'>
+	<div class="item">
+		<div class="item">
+			{{:helper.link('', data.paused ? 'play' : 'pause', {'pause' : 1}, null, 'bigButton')}}
+			{{if data.current}}
+				{{:helper.link('', 'close', {'abort_print' : 1}, null, 'bigButton')}}
+			{{/if}}
+		</div>
+		{{if data.current}}
+		<div class="item">
+			<div style ='position: absolute; top: 8px; right: 8px; max-height:48px; max-width:48px; height:48px; width:48px; margin-left:0px' class='statusDisplayItem'>
+				<img src= {{:data.current.icon}} height=48 width=48>
+			</div>
+			<div class="itemLabelWidest">Printing {{:data.current.name}}</div>
+			<div style="width: calc(100% - 4px)">
+			{{if data.error}}
+				<div class="bad">{{:data.error}}</div>
+			{{else}}
+				{{:helper.displayBar(data.progress / data.current.time, 0, 1, 'good', Math.round((data.progress / data.current.time) * 100) + "%")}}
+			{{/if}}
+			</div>
+		</div>
+		<div class="statusDisplay">
+			{{if data.current.materials}}
+			<div class="item">
+				<div class="itemLabelWidest">Materials</div>
+				{{for data.current.materials :material:material_i}}
+					{{material.amount = data.current.adjust_materials ? Math.round((material.req * data.mat_efficiency) * 100) / 100 : material.req;}}
+					<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
+				{{/for}}
+			</div>
+			{{/if}}
+			{{if data.current.chemicals}}
+			<div class="item">
+				<div class="itemLabelWidest">Reagents</div>
+				{{for data.current.chemicals :chemical:chemical_i}}
+					<div class="itemContentWidest">{{:chemical.name}}: {{:Math.round(chemical.req * 100) / 100}}</div>
+				{{/for}}
+			</div>
+			{{/if}}
+			<div class="item">
+				<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:data.current.time}}</div>
+			</div>
+
+		</div>
+		{{else}}
+			<div class="itemLabelWidest"><div class="average">Idle</div></div>
+		{{/if}}	
+	</div>
+</div>
+{{if data.queue_max}}
+<div class="block" style ='position: relative;'>
+	<div class="item">
+		<div class="itemLabelWidest">Queue: {{:data.queue.length}}/{{:data.queue_max}} </div>
+		{{for data.queue}}
+			<div class="item">
+				<div class="itemContentWidest" style ='position: relative;'>
+					<div style ='position: absolute; top: 10px; right: 10px; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+					{{if value.error >= 2}}
+						<div class="bad">{{:value.name}}</div>
+					{{else value.error == 1}}
+						<div class="average">{{:value.name}}</div>
+					{{else}}
+						{{:value.name}}
+					{{/if}}				
+				</div>
+				<div class="itemLabelWidest">
+					{{:helper.link('', 'close', {'remove_from_queue' : value.ind}, null, 'statusValue')}}
+					{{if value.ind > 1}}
+						{{:helper.link('', 'triangle-1-n', {'move_up_queue' : value.ind}, null, 'statusValue')}}
+					{{/if}}
+					{{if value.ind < data.queue_len}}
+						{{:helper.link('', 'triangle-1-s', {'move_down_queue' : value.ind}, null, 'statusValue')}}
+					{{/if}}
+				</div>
+			</div>
+		{{empty}}
+			<div class="itemContentWidest">Empty</div>
+		{{/for}}
+	</div>
+</div>
+{{/if}}

@@ -1,9 +1,10 @@
 /obj/structure/computerframe
-	density = 1
-	anchored = 0
 	name = "computer frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"
+	density = TRUE
+	anchored = FALSE
+	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
 	var/obj/item/weapon/circuitboard/circuit = null
 //	weight = 1.0E8
@@ -31,8 +32,12 @@
 	else
 		rotate()
 
-/obj/structure/computerframe/attackby(obj/item/I, mob/user)
+/obj/structure/computerframe/get_matter()
+	. = ..()
+	if(state >= 4)
+		.[MATERIAL_GLASS] = 2
 
+/obj/structure/computerframe/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list()
 	if(state == 0 || state == 1)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
@@ -47,7 +52,6 @@
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -67,7 +71,7 @@
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You deconstruct the frame."))
-					new /obj/item/stack/material/steel( src.loc, 5 )
+					drop_materials(drop_location())
 					qdel(src)
 					return
 			return
@@ -78,7 +82,7 @@
 					to_chat(user, SPAN_NOTICE("You remove the circuit board."))
 					state = 1
 					icon_state = "0"
-					circuit.loc = src.loc
+					circuit.forceMove(drop_location())
 					circuit = null
 					return
 			if(state == 4)
@@ -86,7 +90,7 @@
 					to_chat(user, SPAN_NOTICE("You remove the glass panel."))
 					state = 3
 					icon_state = "3"
-					new /obj/item/stack/material/glass(src.loc, 2)
+					new /obj/item/stack/material/glass(drop_location(), 2)
 					return
 			return
 
@@ -106,8 +110,8 @@
 			if(state == 4)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You connect the monitor."))
-					var/B = new src.circuit.build_path(src.loc, src.dir)
-					src.circuit.construct(B)
+					var/B = new circuit.build_path(drop_location(), src.dir)
+					circuit.construct(B)
 					qdel(src)
 					return
 			return
@@ -118,8 +122,7 @@
 					to_chat(user, SPAN_NOTICE("You remove the cables."))
 					state = 2
 					icon_state = "2"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(src.loc)
-					A.amount = 5
+					new /obj/item/stack/cable_coil(drop_location(), 5)
 					return
 			return
 

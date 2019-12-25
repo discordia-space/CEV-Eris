@@ -8,16 +8,16 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/saved_best_explosion = 0
 
 	var/static/list/tech_points = list(
-		"materials" = 200,
-		"engineering" = 250,
-		"phorontech" = 500,
-		"powerstorage" = 300,
-		"bluespace" = 1000,
-		"biotech" = 300,
-		"combat" = 500,
-		"magnets" = 350,
-		"programming" = 400,
-		"syndicate" = 5000,
+		TECH_MATERIAL = 200,
+		TECH_ENGINEERING = 250,
+		TECH_PLASMA = 500,
+		TECH_POWER = 300,
+		TECH_BLUESPACE = 1000,
+		TECH_BIO = 300,
+		TECH_COMBAT = 500,
+		TECH_MAGNET = 350,
+		TECH_DATA = 400,
+		TECH_ILLEGAL = 5000,
 	)
 
 	// So we don't give points for researching non-artifact item
@@ -249,11 +249,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 /obj/item/device/science_tool/afterattack(obj/O, mob/living/user)
 	var/scanneddata = 0
 
-	if(istype(O, /obj/item/weapon/disk/research_points))
-		var/obj/item/weapon/disk/research_points/disk = O
-		to_chat(user, SPAN_NOTICE("[disk] stores approximately [disk.stored_points] research points"))
-		return
-
 	if(istype(O,/obj/item/weapon/paper/autopsy_report))
 		var/obj/item/weapon/paper/autopsy_report/report = O
 		for(var/datum/autopsy_data/W in report.autopsy_data)
@@ -304,24 +299,17 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	scanned_slimecores = list()
 	datablocks = 0
 
-/obj/item/weapon/disk/research_points
-	name = "Important Disk"
-	desc = "Looks a disk with some important information stored. Scientists might know what to do with it"
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
-	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
-	var/stored_points
 
-/obj/item/weapon/disk/research_points/Initialize()
-	. = ..()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
+/obj/item/weapon/computer_hardware/hard_drive/portable/research_points
+	disk_name = "research data"
+	var/min_points = 2000
+	var/max_points = 10000
 
-	stored_points = rand(1,10)*1000
+/obj/item/weapon/computer_hardware/hard_drive/portable/research_points/install_default_files()
+	..()
+	var/datum/computer_file/binary/research_points/F = new(size = rand(min_points / 1000, max_points / 1000))
+	store_file(F)
 
-/obj/item/weapon/disk/research_points/rare/Initialize()
-	. = ..()
-
-	stored_points = rand(10, 20)*1000
+/obj/item/weapon/computer_hardware/hard_drive/portable/research_points/rare
+	min_points = 10000
+	max_points = 20000

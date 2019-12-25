@@ -14,11 +14,7 @@
 	possible_transfer_amounts = null
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
-
-///obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
-//	..()
-//	reagents.add_reagent("tricordrazine", 30)
-//	return
+	preloaded_reagents = list("tricordrazine" = 30)
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)

@@ -32,7 +32,7 @@
 /datum/ritual/targeted/cruciform/inquisitor/penance
 	name = "Penance"
 	phrase = "Mihi vindicta \[Target human]"
-	desc = "Imparts extreme pain on the target disciple. Does no actual harm.."
+	desc = "Imparts extreme pain on the target disciple. Does no actual harm."
 	power = 35
 
 /datum/ritual/targeted/cruciform/inquisitor/penance/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)

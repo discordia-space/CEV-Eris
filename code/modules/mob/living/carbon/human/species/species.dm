@@ -377,13 +377,16 @@
 			L[hairstyle] = S
 	return L
 
-/datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
+/datum/species/proc/equip_survival_gear(mob/living/carbon/human/H, extendedtank = TRUE)
+	var/box_type = /obj/item/weapon/storage/box/survival
+
+	if(extendedtank)
+		box_type = /obj/item/weapon/storage/box/survival/extended
+
 	if(istype(H.get_equipped_item(slot_back), /obj/item/weapon/storage))
-		if (extendedtank)	H.equip_to_storage(new /obj/item/weapon/storage/box/engineer(H.back))
-		else	H.equip_to_storage(new /obj/item/weapon/storage/box/survival(H.back))
+		H.equip_to_storage(new box_type(H.back))
 	else
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H), slot_r_hand)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+		H.equip_to_slot_or_del(new box_type(H), slot_r_hand)
 
 /datum/species/proc/has_equip_slot(slot)
 	if(hud && hud.equip_slots)

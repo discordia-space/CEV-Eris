@@ -52,8 +52,6 @@
 
 	var/nerve_system_accumulations = 5 // Nerve system accumulations
 
-	var/sanity_gain
-
 	// Catalog stuff
 	var/appear_in_default_catalog = TRUE
 	var/reagent_type = "FIX DAT SHIT IMIDIATLY"
@@ -148,14 +146,11 @@
 				affect_ingest(M, alien, RTM(removed, location))
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, RTM(removed, location))
-	remove_self(removed)
-	return
+	// At this point, the reagent might have removed itself entirely - safety check
+	if(volume && holder)
+		remove_self(removed)
 
 /datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	if(sanity_gain)
-		var/mob/living/carbon/human/H = M
-		if(istype(H))
-			H.sanity.onChem(src, effect_multiplier)
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

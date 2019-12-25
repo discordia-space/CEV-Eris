@@ -379,7 +379,126 @@
 		H.check_self_for_injuries()
 
 //--------------------------------------------------health end---------------------------------------------------------
+//--------------------------------------------------sanity---------------------------------------------------------
+/obj/screen/sanity
+	name = "sanity"
+	icon_state = "blank"
 
+/obj/screen/sanity/New()
+	..()
+	ovrls["sanity0"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity0")
+	ovrls["sanity1"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity1")
+	ovrls["sanity2"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity2")
+	ovrls["sanity3"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity3")
+	ovrls["sanity4"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity4")
+	ovrls["sanity5"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity5")
+	ovrls["sanity6"] += new /image/no_recolor(icon = src.icon, icon_state = "sanity6")
+	update_icon()
+
+/obj/screen/sanity/update_icon()
+	var/mob/living/carbon/human/H = parentmob
+	if(!istype(H) || H.stat == DEAD)
+		return
+
+	overlays.Cut()
+	var/image/ovrl
+
+	switch(H.sanity.level / H.sanity.max_level)
+		if(-INFINITY to 0)
+			overlays += ovrls["sanity6"]
+			return
+		if(1 to INFINITY)
+			ovrl = ovrls["sanity0"]
+		if(0.8 to 1)
+			ovrl = ovrls["sanity1"]
+		if(0.6 to 0.8)
+			ovrl = ovrls["sanity2"]
+		if(0.4 to 0.6)
+			ovrl = ovrls["sanity3"]
+		if(0.2 to 0.4)
+			ovrl = ovrls["sanity4"]
+		if(0 to 0.2)
+			ovrl = ovrls["sanity5"]
+
+	switch(H.sanity.insight)
+		if(-INFINITY to 20)
+			ovrl.color = "#a6a6a6"
+		if(20 to 40)
+			ovrl.color = "#09ed01"
+		if(40 to 60)
+			ovrl.color = "#ff7200"
+		if(60 to 80)
+			ovrl.color = "#0054ff"
+		if(80 to INFINITY)
+			ovrl.color = "#9040e0"
+
+	overlays += ovrl
+
+/obj/screen/sanity/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["sanity0"]
+
+/obj/screen/sanity/Click()
+	var/mob/living/carbon/human/H = parentmob
+	if(!istype(H))
+		return
+	H.sanity.print_desires()
+
+//--------------------------------------------------sanity end---------------------------------------------------------
+//--------------------------------------------------nsa---------------------------------------------------------
+/obj/screen/nsa
+	name = "nsa"
+	icon_state = "blank"
+
+/obj/screen/nsa/New()
+	..()
+	ovrls["nsa0"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa0")
+	ovrls["nsa1"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa1")
+	ovrls["nsa2"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa2")
+	ovrls["nsa3"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa3")
+	ovrls["nsa4"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa4")
+	ovrls["nsa5"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa5")
+	ovrls["nsa6"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa6")
+	ovrls["nsa7"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa7")
+	ovrls["nsa8"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa8")
+	ovrls["nsa9"]  += new /image/no_recolor(icon = src.icon, icon_state = "nsa9")
+	ovrls["nsa10"] += new /image/no_recolor(icon = src.icon, icon_state = "nsa10")
+	update_icon()
+
+/obj/screen/nsa/update_icon()
+	var/mob/living/carbon/C = parentmob
+	if(!istype(C) || C.stat == DEAD)
+		return
+	overlays.Cut()
+	switch(C.get_nsa())
+		if(200 to INFINITY)
+			overlays += ovrls["nsa10"]
+		if(-INFINITY to 20)
+			overlays += ovrls["nsa0"]
+		if(20 to 40)
+			overlays += ovrls["nsa1"]
+		if(40 to 60)
+			overlays += ovrls["nsa2"]
+		if(60 to 80)
+			overlays += ovrls["nsa3"]
+		if(80 to 100)
+			overlays += ovrls["nsa4"]
+		if(100 to 120)
+			overlays += ovrls["nsa5"]
+		if(120 to 140)
+			overlays += ovrls["nsa6"]
+		if(140 to 160)
+			overlays += ovrls["nsa7"]
+		if(160 to 180)
+			overlays += ovrls["nsa8"]
+		if(180 to 200)
+			overlays += ovrls["nsa9"]
+
+/obj/screen/nsa/DEADelize()
+	overlays.Cut()
+	overlays += ovrls["nsa0"]
+
+//--------------------------------------------------nsa end---------------------------------------------------------
 //--------------------------------------------------nutrition---------------------------------------------------------
 /obj/screen/nutrition
 	name = "nutrition"
@@ -592,7 +711,6 @@
 	..()
 	ovrls["fire1"] += new /image/no_recolor(icon = src.icon, icon_state ="fire1")
 	ovrls["fire0"] += new /image(icon = src.icon, icon_state ="fire0")
-	ovrls["fire-1"] += new /image/no_recolor(icon = src.icon, icon_state ="fire-1")
 	update_icon()
 //	ovrl.appearance_flags = RESET_COLOR
 
@@ -602,15 +720,11 @@
 /obj/screen/fire/update_icon()
 	var/mob/living/carbon/human/H = parentmob
 	src.overlays.Cut()
-//	if (H.fire_alert)
-	overlays += ovrls["fire[H.fire_alert]"]
-//	icon_state = "fire[H.fire_alert]"
-	/*if(H.fire_alert)							icon_state = "fire[H.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
-	else										icon_state = "fire0"*/
+	overlays += ovrls["fire[H.fire_alert == 1]"]
 
 obj/screen/fire/DEADelize()
 	overlays.Cut()
-	overlays += ovrls["fire-1"]
+	overlays += ovrls["fire0"]
 //--------------------------------------------------fire end---------------------------------------------------------
 /*/obj/screen/slot_object
 	name = "slot"
@@ -621,13 +735,14 @@ obj/screen/fire/DEADelize()
 /obj/screen/internal
 	name = "internal"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "internal0"
+	icon_state = "blank"
 	screen_loc = "15,14"
 
 /obj/screen/internal/New()
 	..()
-	ovrls["internal1"] += new /image/no_recolor(icon = src.icon, icon_state ="internal1")
-	ovrls["internal2"] += new /image/no_recolor(icon = src.icon, icon_state ="internal2")
+	ovrls["internal0"] += new /image(icon = src.icon, icon_state = "internal0")
+	ovrls["internal1"] += new /image/no_recolor(icon = src.icon, icon_state = "internal1")
+	update_icon()
 
 /obj/screen/internal/Click()
 //	if("internal")
@@ -637,7 +752,7 @@ obj/screen/fire/DEADelize()
 			if(C.internal)
 				C.internal = null
 				to_chat(C, SPAN_NOTICE("No longer running on internals."))
-				overlays.Cut()
+				update_icon()
 			else
 
 				var/no_mask
@@ -735,11 +850,32 @@ obj/screen/fire/DEADelize()
 	overlays.Cut()
 	if(parentmob:internal)
 		overlays += ovrls["internal1"]
+	else
+		overlays += ovrls["internal0"]
 
 /obj/screen/internal/DEADelize()
 	overlays.Cut()
 //-----------------------internal END------------------------------
 
+//-----------------------jump------------------------------
+/obj/screen/jump
+	name = "jump"
+	icon_state = "jump"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+//-----------------------jump END------------------------------
+//-----------------------look up------------------------------
+/obj/screen/look_up
+	name = "look up"
+	icon_state = "look_up"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/look_up/Click()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H))
+		H.lookup()
+//-----------------------look up END------------------------------
 //-----------------------Pull------------------------------
 
 /obj/screen/pull
@@ -822,7 +958,16 @@ obj/screen/fire/DEADelize()
 
 
 //-----------------------resist END------------------------------
+//-----------------------rest------------------------------
+/obj/screen/rest
+	name = "rest"
+	icon_state = "rest"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
+/obj/screen/rest/Click()
+	parentmob.lay_down()
+//-----------------------rest END------------------------------
 //-----------------------mov_intent------------------------------
 /obj/screen/mov_intent
 	name = "mov_intent"
@@ -875,12 +1020,60 @@ obj/screen/fire/DEADelize()
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
 //-----------------------swap END------------------------------
+//-----------------------bionics------------------------------
+/obj/screen/bionics
+	name = "bionics"
+	icon_state = "bionics"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+	var/target_organ
 
+/obj/screen/bionics/New()
+	..()
+	update_icon()
+
+/obj/screen/bionics/l_arm
+	target_organ = BP_L_ARM
+
+/obj/screen/bionics/r_arm
+	target_organ = BP_R_ARM
+
+/obj/screen/bionics/update_icon()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H))
+		var/obj/item/organ/external/E = H.organs_by_name[target_organ]
+		if(E?.module)
+			invisibility = 0
+			return
+	invisibility = 101
+
+/obj/screen/bionics/Click()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H))
+		var/obj/item/organ/external/E = H.organs_by_name[target_organ]
+		E?.module?.activate(H, E)
+//-----------------------bionics (implant)------------------------------
+/obj/screen/implant_bionics
+	name = "implant bionics"
+	icon_state = "bionics_implant"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+//-----------------------bionics END------------------------------
+//-----------------------craft menu------------------------------
+/obj/screen/craft_menu
+	name = "craft menu"
+	icon_state = "craft_menu"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/craft_menu/Click()
+	parentmob.open_craft_menu()
+//-----------------------craft menu END------------------------------
 //-----------------------intent------------------------------
 /obj/screen/intent
 	name = "intent"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "blank"
+	icon_state = "full"
 	screen_loc = "8,2"
 
 /obj/screen/intent/New()
@@ -891,21 +1084,27 @@ obj/screen/fire/DEADelize()
 	ovrls["help"] += new /image/no_recolor (icon = src.icon, icon_state ="help")
 	update_icon()
 
-/obj/screen/intent/Click()
-	parentmob.a_intent_change("right")
-//	update_icon()//update in a_intent_change, because macro
+/obj/screen/intent/Click(location, control, params)
+	var/_x = text2num(params2list(params)["icon-x"])
+	var/_y = text2num(params2list(params)["icon-y"])
+
+	if(_x<=16 && _y<=16)
+		parentmob.a_intent_change(I_HURT)
+
+	else if(_x<=16 && _y>=17)
+		parentmob.a_intent_change(I_HELP)
+
+	else if(_x>=17 && _y<=16)
+		parentmob.a_intent_change(I_GRAB)
+
+	else if(_x>=17 && _y>=17)
+		parentmob.a_intent_change(I_DISARM)
+	else
+		return ..()
 
 /obj/screen/intent/update_icon()
 	src.overlays.Cut()
 	switch (parentmob.a_intent)
-/*		if(I_HELP)
-			icon_state = "help"
-		if(I_HURT)
-			icon_state = "harm"
-		if(I_GRAB)
-			icon_state = "grab"
-		if(I_DISARM)
-			icon_state = "disarm"*/
 		if(I_HELP)
 			src.overlays += ovrls["help"]
 		if(I_HURT)
@@ -984,7 +1183,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "oxydamageoverlay0"
 	name = "dmg"
-	screen_loc = "1,1"
+	screen_loc = "1,1:-32"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = UI_DAMAGE_LAYER
@@ -1091,7 +1290,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/glasses_overlay
 	icon = null
 	name = "glasses"
-	screen_loc = "1,1"
+	screen_loc = "1:-32,1:-32"
 	mouse_opacity = 0
 	process_flag = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.

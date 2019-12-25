@@ -118,6 +118,16 @@ var/last_chew = 0
 
 	last_chew = world.time
 
+/obj/item/weapon/handcuffs/zipties
+	name = "zip ties"
+	desc = "Plastic, disposable zipties that can be used to restrain someone."
+	icon_state = "cuff_white"
+	matter = list(MATERIAL_PLASTIC = 2)
+	breakouttime = 700 //Deciseconds = 70s, this is higher than usual ss13 because breakout time is subtracted by 1 second for every robustness stat
+	cuff_sound = 'sound/weapons/cablecuff.ogg'
+	cuff_type = "zip ties"
+	elastic = 1
+
 /obj/item/weapon/handcuffs/cable
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
@@ -177,3 +187,8 @@ var/last_chew = 0
 	icon = 'icons/obj/bureaucracy.dmi'
 	breakouttime = 200
 	cuff_type = "duct tape"
+
+/obj/item/weapon/handcuffs/fake
+	name = "handcuffs"
+	desc = "Fake handcuffs meant for gag purposes."
+	breakouttime = 10 //

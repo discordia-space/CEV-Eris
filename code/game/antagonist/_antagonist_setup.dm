@@ -77,11 +77,11 @@ GLOBAL_LIST_EMPTY(faction_types)
 		if(istype(M) && A.create_antagonist(M))
 			return A
 
-/proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
+/proc/make_antagonist_faction(datum/mind/M, a_id, datum/faction/F, check = TRUE)
 	if(GLOB.all_antag_types[a_id])
 		var/a_type = GLOB.all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
-		A.create_antagonist(M, F)
+		A.create_antagonist(M, F, check = check)
 
 		return A
 
@@ -152,6 +152,12 @@ GLOBAL_LIST_EMPTY(faction_types)
 /proc/player_is_antag_id(var/datum/mind/player, var/a_id)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(!a_id || antag.id == a_id)
+			return TRUE
+	return FALSE
+
+/proc/player_is_antag_in_list(datum/mind/player, list/a_ids)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.id in a_ids)
 			return TRUE
 	return FALSE
 

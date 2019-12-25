@@ -12,7 +12,14 @@
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
-	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 75, rad = 0)
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 75,
+		rad = 0
+	)
 	price_tag = 20
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
@@ -34,7 +41,6 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out plasma but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 90, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/swat
@@ -64,6 +70,22 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
+
+/obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["True Form"] = "clown"
+	options["The Feminist"] = "sexyclown"
+	options["The Madman"] = "joker"
+	options["The Rainbow Color"] ="rainbow"
+
+	var/choice = input(M,"To what form do you wish to Morph this mask?","Morph Mask") as null|anything in options
+
+	if(src && choice && !M.incapacitated() && Adjacent(M))
+		icon_state = options[choice]
+		to_chat(M, "Your Clown Mask has now morphed into [choice], all praise the Honk Mother!")
+		return 1
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"

@@ -1,23 +1,28 @@
 /obj/item/weapon/gun/projectile/revolver
-	name = "FS REV .357 \"Miller\""
-	desc = "The \"Frozen Star\" \"Miller\" is a revolver of choice when you absolutely, positively need to make a hole in someone. Uses old-school .357 ammo."
+	name = "FS REV .40 Magnum \"Miller\""
+	desc = "The \"Frozen Star\" \"Miller\" is a revolver of choice when you absolutely, positively need to make a hole in someone. Uses .40 Magnum ammo."
 	icon = 'icons/obj/guns/projectile/revolver.dmi'
 	icon_state = "revolver"
 	item_state = "revolver"
-	caliber = "357"
+	caliber = "magnum"
+	force = WEAPON_FORCE_NORMAL
+	can_dual = 1
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
 	max_shells = 7
 	var/drawChargeMeter = TRUE
-	ammo_type = /obj/item/ammo_casing/a357
+	ammo_type = /obj/item/ammo_casing/magnum
 	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/rev_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/revolver_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
-	recoil = 0.8 //high caliber pistol recoil
 	price_tag = 2000 //avasarala of revolver world
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
+	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
+	damage_multiplier = 1.75
+	armor_penetration = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
+	recoil_buildup = 50
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"

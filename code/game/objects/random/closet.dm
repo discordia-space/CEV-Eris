@@ -18,9 +18,6 @@
 				/obj/structure/closet/lasertag/blue = 1,
 				/obj/structure/closet/toolcloset = 8,
 				/obj/structure/closet/gimmick/russian = 0.5,
-				/obj/structure/closet/gimmick/tacticool = 0.1,
-				/obj/structure/closet/thunderdome/tdred = 0.4,
-				/obj/structure/closet/thunderdome/tdgreen = 0.4,
 				/obj/structure/closet/jcloset = 1,
 				/obj/structure/closet/malf/suits =  0.5,
 				/obj/structure/closet/syndicate/personal = 0.1,
@@ -94,3 +91,13 @@
 	name = "low chance random maint loot closet"
 	icon_state = "closet-black-low"
 	spawn_nothing_percentage = 60
+
+// For Scrap Beacon
+/obj/random/closet_maintloot/beacon/item_to_spawn()
+	return pickweight(list(
+				/obj/structure/closet/random_miscellaneous = 5,
+				/obj/structure/closet/random_tech = 3,
+				/obj/structure/closet/random_milsupply = 1,
+				/obj/structure/closet/random_medsupply = 3,
+				/obj/structure/closet/random_hostilemobs/beacon = 8
+			))

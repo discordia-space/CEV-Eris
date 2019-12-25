@@ -29,10 +29,18 @@
 	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
 	force = WEAPON_FORCE_NORMAL
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7
 	max_upgrades = 4
+
+/obj/item/weapon/tool/wirecutters/pliers
+	name = "pliers"
+	desc = "Useful for pinching, clamping and occasional bolt turning."
+	icon_state = "pliers"
+	edge = FALSE
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 25, QUALITY_CLAMPING = 20, QUALITY_BOLT_TURNING = 15, QUALITY_BONE_SETTING = 15)
+
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))

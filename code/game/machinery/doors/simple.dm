@@ -65,16 +65,16 @@
 			flick("[icon_base]closing", src)
 	return
 
-/obj/machinery/door/unpowered/simple/inoperable(var/additional_flags = 0)
+/obj/machinery/door/unpowered/simple/inoperable(additional_flags = 0)
 	return (stat & (BROKEN|additional_flags))
 
-/obj/machinery/door/unpowered/simple/close(var/forced = 0)
+/obj/machinery/door/unpowered/simple/close(forced = 0)
 	if(!can_close(forced))
 		return
 	playsound(src.loc, material.dooropen_noise, 100, 1)
 	..()
 
-/obj/machinery/door/unpowered/simple/open(var/forced = 0)
+/obj/machinery/door/unpowered/simple/open(forced = 0)
 	if(!can_open(forced))
 		return
 	playsound(src.loc, material.dooropen_noise, 100, 1)
@@ -82,11 +82,11 @@
 
 /obj/machinery/door/unpowered/simple/set_broken()
 	..()
-	material.place_dismantled_product(get_turf(src))
+	material.place_sheet(drop_location(), amount=5)
 	qdel(src)
 
 
-/obj/machinery/door/unpowered/simple/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
+/obj/machinery/door/unpowered/simple/attack_ai(mob/user) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
 		return
 	else if(isrobot(user)) //but cyborgs can
@@ -107,7 +107,7 @@
 				take_damage(150)
 
 
-/obj/machinery/door/unpowered/simple/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/unpowered/simple/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 
 	//Harm intent overrides other actions
@@ -172,7 +172,7 @@
 	color = "#824B28"
 
 /obj/machinery/door/unpowered/simple/wood/New(var/newloc,var/material_name)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 
 /obj/machinery/door/unpowered/simple/wood/saloon
 	icon_base = "saloon"
@@ -180,9 +180,9 @@
 	normalspeed = 0
 
 /obj/machinery/door/unpowered/simple/wood/saloon/New(var/newloc,var/material_name)
-	..(newloc, "wood")
+	..(newloc, MATERIAL_WOOD)
 	glass = 1
 	set_opacity(0)
 
 /obj/machinery/door/unpowered/simple/resin/New(var/newloc,var/material_name)
-	..(newloc, "resin")
+	..(newloc, MATERIAL_RESIN)

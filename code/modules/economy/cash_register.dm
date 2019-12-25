@@ -93,7 +93,6 @@
 		return
 
 	usr.set_machine(src)
-	add_fingerprint(usr)
 
 	if(href_list["choice"])
 		switch(href_list["choice"])

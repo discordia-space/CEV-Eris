@@ -1,8 +1,12 @@
 /datum/hud_data
 
 	var/list/equip_slots = list() // Checked by mob_can_equip().
-	var/list/ProcessHUD = list("health","nutrition","bodytemp","pressure","toxin","oxygen","fire", "throw","pull",
-	"resist","drop","m_intent","equip","intent","help","harm","grab","disarm","damage zone", "internal","swap hand","toggle invetory")
+	var/list/ProcessHUD = list(
+		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
+		"throw","pull","resist","drop","look up","rest", //"jump",
+		"move intent","intent","damage zone","craft menu",
+		"equip","swap hand","left arm bionics","right arm bionics","toggle invetory"
+	)
 	var/icon              // If set, overrides ui_style.
 	//var/has_a_intent = 1  // Set to draw intent box.
 	//var/has_m_intent = 1  // Set to draw move intent box.

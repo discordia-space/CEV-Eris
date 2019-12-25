@@ -49,7 +49,7 @@
 		data["net_comms"] = !!program.get_signal(NTNET_COMMUNICATION) //Double !! is needed to get 1 or 0 answer
 		data["net_syscont"] = !!program.get_signal(NTNET_SYSTEMCONTROL)
 		if(program.computer)
-			data["have_printer"] = !!program.computer.nano_printer
+			data["have_printer"] = !!program.computer.printer
 		else
 			data["have_printer"] = 0
 	else
@@ -248,8 +248,8 @@
 		if("printmessage")
 			. = 1
 			if(is_autenthicated(user) && ntn_comm)
-				if(program && program.computer && program.computer.nano_printer)
-					if(!program.computer.nano_printer.print_text(current_viewing_message["contents"],current_viewing_message["title"]))
+				if(program && program.computer && program.computer.printer)
+					if(!program.computer.printer.print_text(current_viewing_message["contents"],current_viewing_message["title"]))
 						to_chat(usr, "<span class='notice'>Hardware Error: Printer was unable to print the selected file.</span>")
 					else
 						program.computer.visible_message("<span class='notice'>\The [program.computer] prints out a paper.</span>")

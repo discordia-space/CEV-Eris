@@ -1,6 +1,5 @@
 /datum/design/research/item/powercell
 	build_type = AUTOLATHE | PROTOLATHE | MECHFAB
-	name_category = "power cell"
 	category = CAT_POWER
 
 /datum/design/research/item/powercell/AssembleDesignDesc()

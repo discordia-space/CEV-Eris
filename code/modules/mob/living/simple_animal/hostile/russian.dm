@@ -19,7 +19,7 @@
 	attacktext = "punched"
 	a_intent = I_HURT
 	var/corpse = /obj/landmark/corpse/russian
-	var/weapon1 = /obj/item/weapon/material/knife
+	var/weapon1 = /obj/item/weapon/tool/knife
 	min_oxy = 5
 	max_oxy = 0
 	min_tox = 0
@@ -40,7 +40,7 @@
 	ranged = 1
 	projectiletype = /obj/item/projectile/bullet
 	projectilesound = 'sound/weapons/Gunshot.ogg'
-	casingtype = /obj/item/ammo_casing/a357
+	casingtype = /obj/item/ammo_casing/magnum
 
 
 /mob/living/simple_animal/hostile/russian/death()

@@ -1,0 +1,56 @@
+{{if data.on}}
+	<i>Please wait...</i>
+{{else}}
+	<div class="item">
+		{{:helper.link('Process', 'power', {'grind' : 1}, data.beaker && data.contents.length ? null : 'disabled')}}
+	</div>
+
+	<div class="item">
+		<div class="itemLabelWide">
+			Processing chamber
+		</div>
+		<div class="itemContentMedium">
+			{{:helper.link('Eject Reagents', 'eject', {'eject' : 1}, data.contents.length ? null : 'disabled', 'floatRight')}}
+		</div>
+	</div>
+	<div class="statusDisplay" style="min-height: 180px;">
+		<div class='item'>
+			{{for data.contents}}
+				<span class='highlight'>{{:value}}</span><br>
+			{{empty}}
+				<span class="average"><i>
+					No reagents loaded
+				</i></span>
+			{{/for}}
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="itemLabel">
+			Beaker
+		</div>
+		<div class="itemContent">
+			{{:helper.link('Detach Beaker', 'eject', {'detach' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
+		</div>
+	</div>
+	<div class="statusDisplay" style="min-height: 180px;">
+		<div class="item">
+			<div class="itemContent" style="width: 100%;">
+				{{if data.beaker}}
+					Volume:&nbsp;{{:helper.fixed(data.beaker.total_volume)}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}<br>
+					{{for data.beaker.contents}}
+						<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+					{{empty}}
+						<span class="bad">
+							Beaker is empty
+						</span>
+					{{/for}}
+				{{else}}
+					<span class="average"><i>
+						No beaker attached
+					</i></span>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+{{/if}}

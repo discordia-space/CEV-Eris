@@ -2,7 +2,7 @@
 /datum/computer_file/program
 	filetype = "PRG"
 	filename = "UnknownProgram"						// File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!
-	var/required_access = null						// List of required accesses to run/download the program.
+	var/required_access = null						// Access level required to run/download the program.
 	var/requires_access_to_run = 1					// Whether the program checks for required_access when run.
 	var/requires_access_to_download = 1				// Whether the program checks for required_access when downloading.
 	var/datum/nano_module/NM = null					// If the program uses NanoModule, put it here and it will be automagically opened. Otherwise implement ui_interact.
@@ -106,7 +106,7 @@
 	update_netspeed()
 	return 1
 
-/datum/computer_file/program/proc/update_netspeed()
+/datum/computer_file/program/proc/update_netspeed(speed_variance=0)
 	ntnet_speed = 0
 	switch(ntnet_status)
 		if(1)
@@ -115,6 +115,10 @@
 			ntnet_speed = NTNETSPEED_HIGHSIGNAL
 		if(3)
 			ntnet_speed = NTNETSPEED_ETHERNET
+
+	if(speed_variance)
+		ntnet_speed *= rand(100+speed_variance, 100-speed_variance) / 100
+		ntnet_speed = round(ntnet_speed, 0.01)
 
 // Check if the user can run program. Only humans can operate computer. Automatically called in run_program()
 // User has to wear their ID or have it inhand for ID Scan to work.

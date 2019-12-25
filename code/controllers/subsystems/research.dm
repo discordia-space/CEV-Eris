@@ -12,6 +12,7 @@ SUBSYSTEM_DEF(research)
 
 	var/list/all_designs = list()	// All design datums
 	var/list/starting_designs = list() // List of designs starts_unlocked = TRUE
+	var/list/statting_technologies = list() // List of technologies that have no cost and no unlock requirements
 	var/list/all_tech_trees = list() // All tech tree typepaths (keys) associated to a list of their tech node instances (list(values))
 	var/list/all_tech_nodes = list() // All tech nodes
 
@@ -43,6 +44,10 @@ SUBSYSTEM_DEF(research)
 	for(var/T in subtypesof(/datum/technology))
 		var/datum/technology/tech = new T
 		all_tech_nodes += tech
+
+		if(!tech.cost && !length(tech.required_technologies) && !length(tech.required_tech_levels))
+			statting_technologies += tech
+
 		if(tech.tech_type in all_tech_trees)
 			all_tech_trees[tech.tech_type] += tech
 		else
@@ -79,13 +84,8 @@ SUBSYSTEM_DEF(research)
 	// If designs are already generated, initialized right away.
 	// If not, add them to the list to be initialized later.
 	if(research_initialized)
-		var/datum/design/design = locate(design_file.design) in all_designs
-		if(design)
-			design_file.design = design
-			design_file.on_design_set()
-		else
-			error("Incorrect design ID or path: [design_file.design]")
-
+		design_file.design = SSresearch.get_design(design_file.design)
+		design_file.on_design_set()
 	else
 		design_files_to_init += design_file
 
@@ -97,6 +97,17 @@ SUBSYSTEM_DEF(research)
 		var/datum/tech/T = new i
 		T.max_level = all_tech_trees[i].len
 		R.researched_tech[T] = list()
-	for(var/i in starting_designs)
-		R.known_designs += i
-	
+
+	for(var/tech in statting_technologies)
+		R.UnlockTechology(tech, initial = TRUE)
+
+	for(var/design in starting_designs)
+		R.AddDesign2Known(design)
+
+/datum/controller/subsystem/research/proc/get_design(id)
+	for(var/_design in all_designs)
+		var/datum/design/design = _design
+		if(design.id == id)
+			return design
+
+	error("Incorrect design ID or path: [id]")

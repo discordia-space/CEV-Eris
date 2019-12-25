@@ -4,26 +4,28 @@
 	icon_state = "capspace"
 	item_state = "capspace"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
-	item_flags = STOPPRESSUREDAMAGE
-	flags_inv = HIDEFACE|BLOCKHAIR
-	permeability_coefficient = 0.01
-	armor = list(melee = 65, bullet = 55, energy = 40, bomb = 50, bio = 100, rad = 50)
+	armor = list(
+		melee = 50,
+		bullet = 40,
+		energy = 40,
+		bomb = 50,
+		bio = 100,
+		rad = 50
+	)
+	siemens_coefficient = 0.7
 
-//Captain's space suit
-// This is not the proper path but I don't currently know enough about how this all works to mess with it.
-/obj/item/clothing/suit/armor/captain
+/obj/item/clothing/suit/space/captain
 	name = "Captain's armor"
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
-	w_class = ITEM_SIZE_BULKY
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.02
-	item_flags = STOPPRESSUREDAMAGE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 1.5
-	armor = list(melee = 65, bullet = 55, energy = 40, bomb = 50, bio = 100, rad = 50)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	armor = list(
+		melee = 50,
+		bullet = 40,
+		energy = 40,
+		bomb = 50,
+		bio = 100,
+		rad = 50
+	)
 	siemens_coefficient = 0.7

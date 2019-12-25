@@ -51,6 +51,11 @@ var/list/rustle_sound = list(
 var/list/punch_sound = list(
 	'sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'
 )
+
+var/list/bullet_hit_wall = list(
+	'sound/weapons/guns/misc/ric1.ogg', 'sound/weapons/guns/misc/ric2.ogg', 'sound/weapons/guns/misc/ric3.ogg', 'sound/weapons/guns/misc/ric4.ogg', 'sound/weapons/guns/misc/ric5.ogg'
+)
+
 var/list/clown_sound = list('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
 var/list/swing_hit_sound = list(
 	'sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'
@@ -425,6 +430,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("thud") soundin = pick(thud_sound)
 			if ("weld") soundin = pick(weld_sound)
 			if ("rummage") soundin = pick(rummage_sound)
+			if ("ricochet") soundin = pick(bullet_hit_wall)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 

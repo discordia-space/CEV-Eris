@@ -87,7 +87,7 @@
 	build_path = /obj/item/weapon/hatton_magazine/moebius
 	sort_string = "TAACC"
 /datum/design/research/item/ammo/c20r_ammo
-	name = "C20R 10mm Magazine"
-	desc = "10mm SMG magazine for the C-20r"
-	build_path = /obj/item/ammo_magazine/smg10mm
+	name = "C20R 35 Auto Magazine"
+	desc = "35 Auto SMG magazine for the C-20r"
+	build_path = /obj/item/ammo_magazine/smg
 	sort_string = "TAACD"

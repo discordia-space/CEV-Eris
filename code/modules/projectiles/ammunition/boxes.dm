@@ -36,181 +36,93 @@
 			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
 	update_icon()
 
-/obj/item/ammo_magazine/ammobox/a10mm
-	name = "ammunition box (10mm)"
-	icon_state = "box10mm"
-	matter = list(MATERIAL_STEEL = 6)
-	caliber = "10mm"
-	ammo_type = /obj/item/ammo_casing/a10mm
-	max_ammo = 32
 
-/obj/item/ammo_magazine/ammobox/a10mm/rubber
-	name = "ammunition box (10mm rubber)"
-	icon_state = "box10mm-rubber"
-	ammo_type = /obj/item/ammo_casing/a10mm/rubber
-
-//obj/item/ammo_magazine/ammobox/a10mm/hv
-	//name = "ammunition box (10mm high velocity)"
-	//icon_state = "box10mm-hv"
-	//ammo_type = /obj/item/ammo_casing/a10mm/hv
-
-/obj/item/ammo_magazine/ammobox/c9mm
-	name = "ammunition box (9mm)"
+/obj/item/ammo_magazine/ammobox/pistol
+	name = "ammunition box (.35 Auto)"
 	icon_state = "box9mm"
 	matter = list(MATERIAL_STEEL = 5)
-	caliber = "9mm"
-	ammo_type = /obj/item/ammo_casing/c9mm
+	caliber = "pistol"
+	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 30
 
-/obj/item/ammo_magazine/ammobox/c9mm/flash
-	name = "ammunition box (9mm flash)"
+/obj/item/ammo_magazine/ammobox/pistol/flash
+	name = "ammunition box (.35 Auto flash)"
 	icon_state = "box9mm-flash"
-	ammo_type = /obj/item/ammo_casing/c9mm/flash
+	ammo_type = /obj/item/ammo_casing/pistol/flash
 
-/obj/item/ammo_magazine/ammobox/c9mm/practice
-	name = "ammunition box (9mm practice)"
+/obj/item/ammo_magazine/ammobox/pistol/practice
+	name = "ammunition box (.35 Auto practice)"
 	icon_state = "box9mm-practice"
-	ammo_type = /obj/item/ammo_casing/c9mm/practice
+	ammo_type = /obj/item/ammo_casing/pistol/practice
 
-/obj/item/ammo_magazine/ammobox/c9mm/rubber
-	name = "ammunition box (9mm rubber)"
+/obj/item/ammo_magazine/ammobox/pistol/rubber
+	name = "ammunition box (.35 Auto rubber)"
 	icon_state = "box9mm-rubber"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
+	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
-/obj/item/ammo_magazine/ammobox/cl32
-	name = "ammunition box (.32)"
-	icon_state = "box32"
-	matter = list(MATERIAL_STEEL = 5)
-	caliber = ".32"
-	ammo_type = /obj/item/ammo_casing/cl32
-	max_ammo = 40
-
-/obj/item/ammo_magazine/ammobox/cl32/rubber
-	name = "ammunition box (.32 rubber)"
-	icon_state = "box32-rubber"
-	ammo_type = /obj/item/ammo_casing/cl32/rubber
-
-/obj/item/ammo_magazine/ammobox/c45
-	name = "ammunition box (.45)"
-	icon_state = "box45"
-	matter = list(MATERIAL_STEEL = 8)
-	caliber = ".45"
-	ammo_type = /obj/item/ammo_casing/c45
-	max_ammo = 30
-
-/obj/item/ammo_magazine/ammobox/c45/flash
-	name = "ammunition box (.45)"
-	icon_state = "box45-flash"
-	ammo_type = /obj/item/ammo_casing/c45/flash
-
-/obj/item/ammo_magazine/ammobox/c45/practice
-	name = "ammunition box (.45)"
-	icon_state = "box45-practice"
-	ammo_type = /obj/item/ammo_casing/c45/practice
-
-/obj/item/ammo_magazine/ammobox/c45/rubber
-	name = "ammunition box (.45)"
-	icon_state = "box45-rubber"
-	ammo_type = /obj/item/ammo_casing/c45/rubber
-
-/obj/item/ammo_magazine/ammobox/c10x24
-	name = "ammunition box (10mm x 24 caseless)"
-	icon_state = "box10x24"
-	matter = list(MATERIAL_STEEL = 8)
-	caliber = "10x24"
-	ammo_type = /obj/item/ammo_casing/c10x24
-	max_ammo = 200
-
-/obj/item/ammo_magazine/ammobox/a556
-	name = "ammunition box (5.56mm)"
+/obj/item/ammo_magazine/ammobox/srifle
+	name = "ammunition box (.20 Rifle)"
 	icon_state = "box556mm"
 	matter = list(MATERIAL_STEEL = 10)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "a556"
-	ammo_type = /obj/item/ammo_casing/a556
+	caliber = "srifle"
+	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 80
 
-/obj/item/ammo_magazine/ammobox/a556/practice
-	name = "ammunition box (5.56mm practice)"
+/obj/item/ammo_magazine/ammobox/srifle/practice
+	name = "ammunition box (.20 Rifle practice)"
 	icon_state = "box556mm-practice"
-	ammo_type = /obj/item/ammo_casing/a556/practice
+	ammo_type = /obj/item/ammo_casing/srifle/practice
 
-/obj/item/ammo_magazine/ammobox/c65mm
-	name = "ammunition box (6.5mm)"
+/obj/item/ammo_magazine/ammobox/clrifle
+	name = "ammunition box (.25 Caseless Rifle)"
 	icon_state = "box65mm"
 	matter = list(MATERIAL_STEEL = 10)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "6.5mm"
-	ammo_type = /obj/item/ammo_casing/c65
+	caliber = "clrifle"
+	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 80
 
-/obj/item/ammo_magazine/ammobox/c65mm/rubber
-	name = "ammunition box (6.5mm rubber)"
+/obj/item/ammo_magazine/ammobox/clrifle/rubber
+	name = "ammunition box (.25 Caseless Rifle rubber)"
 	icon_state = "box65mm-rubber"
-	ammo_type = /obj/item/ammo_casing/c65/rubber
+	ammo_type = /obj/item/ammo_casing/clrifle/rubber
 
-/obj/item/ammo_magazine/ammobox/a762
-	name = "ammunition box (7.62mm)"
+/obj/item/ammo_magazine/ammobox/lrifle
+	name = "ammunition box (.30 Rifle)"
 	icon_state = "box762mm"
 	matter = list(MATERIAL_STEEL = 10)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "a762"
-	ammo_type = /obj/item/ammo_casing/a762
+	caliber = "lrifle"
+	ammo_type = /obj/item/ammo_casing/lrifle
 	mag_type = SPEEDLOADER | MAGAZINE
 	max_ammo = 80
 
-/obj/item/ammo_magazine/ammobox/c357
-	name = "ammunition box (.357)"
-	icon_state = "box357"
-	matter = list(MATERIAL_STEEL = 5)
-	caliber = "357"
-	ammo_type = /obj/item/ammo_casing/a357
-	max_ammo = 30
-
-/obj/item/ammo_magazine/ammobox/c38
-	name = "ammunition box (.38)"
-	icon_state = "box38"
-	matter = list(MATERIAL_STEEL = 5)
-	caliber = ".38"
-	ammo_type = /obj/item/ammo_casing/c38
-	max_ammo = 30
-
-/obj/item/ammo_magazine/ammobox/c38/rubber
-	name = "ammunition box (.38 rubber)"
-	icon_state = "box38-rubber"
-	ammo_type = /obj/item/ammo_casing/c38/rubber
-
-/obj/item/ammo_magazine/ammobox/c44
-	name = "ammunition box (.44)"
+/obj/item/ammo_magazine/ammobox/magnum
+	name = "ammunition box (.40 Magnum)"
 	icon_state = "box44"
 	matter = list(MATERIAL_STEEL = 5)
-	caliber = ".44"
-	ammo_type = /obj/item/ammo_casing/cl44
+	caliber = "40m"
+	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 20
 
-/obj/item/ammo_magazine/ammobox/c44/rubber
-	name = "ammunition box (.44 rubber)"
+/obj/item/ammo_magazine/ammobox/magnum/rubber
+	name = "ammunition box (.40 Magnum rubber)"
 	icon_state = "box44-rubber"
-	ammo_type = /obj/item/ammo_casing/cl44/rubber
+	ammo_type = /obj/item/ammo_casing/magnum/rubber
 
-/obj/item/ammo_magazine/ammobox/c50
-	name = "ammunition box (.50)"
-	icon_state = "box50"
-	matter = list(MATERIAL_STEEL = 10)
-	caliber = ".50"
-	ammo_type = /obj/item/ammo_casing/a50
-	max_ammo = 20
-
-/obj/item/ammo_magazine/ammobox/c50/rubber
-	name = "ammunition box (.50 rubber)"
-	icon_state = "box50-rubber"
-	ammo_type = /obj/item/ammo_casing/a50/rubber
-
-/obj/item/ammo_magazine/ammobox/a145
-	name = "ammunition box (14.5mm)"
+/obj/item/ammo_magazine/ammobox/antim
+	name = "ammunition box (.60 Anti Material)"
 	icon_state = "box145mm"
 	matter = list(MATERIAL_STEEL = 8)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "14.5mm"
-	ammo_type = /obj/item/ammo_casing/a145
+	caliber = "antim"
+	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
+
+/obj/item/ammo_magazine/ammobox/lrifle_small
+	name = "FS .30 ammo pack"
+	icon_state = "box_lrifle"
+	caliber = "lrifle"
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 10

@@ -14,7 +14,7 @@
 	melee_damage_upper = 10
 	poison_per_bite = 2
 	var/atom/cocoon_target
-	poison_type = "stoxin"
+	poison_type = "pararein"
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/spider/nurse
 	meat_amount = 3
 	var/fed = 0

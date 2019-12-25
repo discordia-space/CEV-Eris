@@ -55,7 +55,7 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/populate_contents()
-	new /obj/item/clothing/under/rank/chaplain(src)
+	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/suit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
@@ -139,6 +139,7 @@
 	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/shoes/color/white(src)
 	new /obj/item/clothing/shoes/color/white(src)
+	new /obj/item/weapon/storage/backpack/sport/white(src)
 
 /obj/structure/closet/wardrobe/pjs
 	name = "pajama wardrobe"
@@ -245,6 +246,7 @@
 	new /obj/item/clothing/head/soft/grey(src)
 	new /obj/item/clothing/head/soft/grey(src)
 	new /obj/item/clothing/head/soft/grey(src)
+	new /obj/item/weapon/storage/backpack/sport(src)
 
 /obj/structure/closet/wardrobe/mixed
 	name = "mixed wardrobe"
@@ -270,6 +272,10 @@
 	new /obj/item/clothing/mask/bandana/gold(src)
 	new /obj/item/clothing/mask/bandana/purple(src)
 	new /obj/item/clothing/mask/bandana/camo(src)
+	new /obj/item/weapon/storage/backpack/sport/purple(src)
+	new /obj/item/weapon/storage/backpack/sport/green(src)
+	new /obj/item/weapon/storage/backpack/sport/blue(src)
+	new /obj/item/weapon/storage/backpack/sport/orange(src)
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
@@ -277,8 +283,7 @@
 
 /obj/structure/closet/wardrobe/tactical/populate_contents()
 	new /obj/item/clothing/under/tactical(src)
-	new /obj/item/clothing/suit/armor/tactical(src)
-	new /obj/item/clothing/head/helmet/tactical(src)
+	new /obj/item/clothing/suit/armor/heavy(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/weapon/storage/belt/security(src)

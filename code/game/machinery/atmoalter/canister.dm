@@ -13,6 +13,7 @@
 
 	var/canister_color = "yellow"
 	var/can_label = 1
+	var/sealed = FALSE
 	start_pressure = 45 * ONE_ATMOSPHERE
 	var/temperature_resistance = 1000 + T0C
 	volume = 1000
@@ -258,6 +259,21 @@ update_flag
 		..()
 		return
 
+	else if(QUALITY_PULSING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			if(valve_open == 1)
+				to_chat(user, SPAN_WARNING("You can't seal the gasket while the valve is open!"))
+				return
+			else if(sealed == FALSE)
+				to_chat(user, "You seal the gasket with a pulse of electricity.")
+				sealed = TRUE
+				desc = "<font color='#8a0808'><i>The gasket has been sealed shut!</i></font>"
+				return
+			else if(sealed == TRUE)
+				to_chat(user, "You zap the gasket's seal, unlocking it with a voltaic crackle.")
+				sealed = FALSE
+				return
+
 	else
 		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
 		src.health -= I.force
@@ -319,18 +335,22 @@ update_flag
 		return
 
 	if(href_list["toggle"])
-		if (valve_open)
-			if (holding)
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+		if (sealed == TRUE)
+			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
+			return
+		else if (sealed == FALSE)
+			if (valve_open)
+				if (holding)
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+				else
+					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 			else
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
-		else
-			if (holding)
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
-			else
-				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
-				log_open()
-		valve_open = !valve_open
+				if (holding)
+					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
+				else
+					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
+					log_open()
+			valve_open = !valve_open
 
 	if (href_list["remove_tank"])
 		if(holding)
