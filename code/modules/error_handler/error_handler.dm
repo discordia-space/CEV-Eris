@@ -103,6 +103,7 @@ var/total_runtimes_skipped = 0
 		desclines += "  (This error will now be item_flags & SILENT for [ERROR_SILENCE_TIME / 600] minutes)"
 	// Now to actually output the error info...
 	log_to_dd("\[[time_stamp()]] Runtime in [e.file],[e.line]: [e]")
+	send2coders(message = "\[[time_stamp()]] Runtime in [e.file],[e.line]: [e]  \n [jointext(desclines, "\n")]", color = "#0000ff")
 	for(var/line in desclines)
 		log_to_dd(line)
 	if(error_cache)

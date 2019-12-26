@@ -59,5 +59,6 @@
 #define TRAIT_FLESH_COLOUR         	39
 #define TRAIT_CHEM_SPRAYER         	40
 #define TRAIT_WALL_HUGGER			41
+#define TRAIT_INVASIVE				42//Allows to invade already seeded tiles
 
 #define WALL_HUG_OFFSET 			12 //How many pixels a wallhugging plant is offset towards a wall

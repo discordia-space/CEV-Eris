@@ -21,28 +21,25 @@
 	armor = list(
 		melee = 30,
 		bullet = 30,
-		energy = 20,
-		bomb = 10
+		energy = 30,
+		bomb = 10,
+		bio = 0,
+		rad = 0
 	)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
-	desc = "An armored vest that protects against some damage. Not designed for serious operations."
 	icon_state = "armor_security"
-	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/detective
 	name = "armor"
 	desc = "An armored vest with a detective's badge on it."
 	icon_state = "armor_detective"
-	item_state = "armor"
-	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "security armor"
-	desc = "An armored vest that protects against some damage. This one features Ironhammer Security iconography. Not designed for serious operations."
+	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
-	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/handmade
 	name = "handmade armor vest"
@@ -51,7 +48,7 @@
 	armor = list(
 		melee = 30,
 		bullet = 20,
-		energy = 10,
+		energy = 15,
 		bomb = 10,
 		bio = 0,
 		rad = 0
@@ -73,37 +70,11 @@
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 400
 
 /obj/item/clothing/suit/armor/flak/green
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
-/obj/item/clothing/suit/armor/riot
-	name = "riot suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
-	icon_state = "riot"
-	item_state = "armor"
-	w_class = ITEM_SIZE_BULKY
-	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP|COVER_PREVENT_MANIPULATION|EQUIP_SOUNDS
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
-	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
-		bio = 0,
-		rad = 0
-	)
-	flags_inv = HIDEJUMPSUIT
-	siemens_coefficient = 0.5
-	price_tag = 500
-	equip_delay = 2 SECONDS
-
-/obj/item/clothing/suit/armor/riot/ironhammer
-	icon_state = "riot_ironhammer"
-	item_state = "armor"
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
@@ -113,9 +84,9 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.5
 	armor = list(
-		melee = 30,
+		melee = 25,
 		bullet = 75,
-		energy = 10,
+		energy = 25,
 		bomb = 10,
 		bio = 0,
 		rad = 0
@@ -136,6 +107,7 @@
 		bio = 0,
 		rad = 0
 	)
+	price_tag = 400
 
 /obj/item/clothing/suit/armor/bulletproof/serbian/green
 	name = "green platecarrier vest"
@@ -153,8 +125,8 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.5
 	armor = list(
-		melee = 30,
-		bullet = 30,
+		melee = 25,
+		bullet = 25,
 		energy = 75,
 		bomb = 0,
 		bio = 0,
@@ -186,7 +158,9 @@
 /obj/item/clothing/suit/armor/laserproof/ironhammer
 	icon_state = "ablative_ironhammer"
 
-//Heavy Armor
+/*
+ * Heavy Armor Types
+ */
 /obj/item/clothing/suit/armor/heavy
 	name = "heavy armor"
 	desc = "A heavily armored suit that protects against moderate damage."
@@ -195,6 +169,7 @@
 	w_class = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.9
+	siemens_coefficient = 0.5
 	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP|COVER_PREVENT_MANIPULATION|EQUIP_SOUNDS
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -202,14 +177,15 @@
 	slowdown = 1
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 20,
-		bomb = 10,
+		melee = 35,
+		bullet = 35,
+		energy = 35,
+		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
 	equip_delay = 2 SECONDS
+	price_tag = 250
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
@@ -225,7 +201,30 @@
 	item_state = "tdgreen"
 	siemens_coefficient = 1
 
-//Storage subtypes
+// Riot suit
+/obj/item/clothing/suit/armor/heavy/riot
+	name = "riot suit"
+	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
+	icon_state = "riot"
+	item_state = "swat_suit"
+	flags_inv = HIDEJUMPSUIT
+	armor = list(
+		melee = 75,
+		bullet = 25,
+		energy = 25,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 500
+
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer
+	icon_state = "riot_ironhammer"
+	item_state = "swat_suit"
+
+/*
+ * Storage Types
+ */
 /obj/item/clothing/suit/storage/vest
 	name = "webbed armor vest"
 	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
@@ -255,9 +254,9 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 35,
+		bullet = 35,
+		energy = 35,
 		bomb = 25,
 		bio = 0,
 		rad = 0
@@ -277,7 +276,7 @@
 	armor = list(
 		melee = 20,
 		bullet = 20,
-		energy = 0,
+		energy = 20,
 		bomb = 0,
 		bio = 0,
 		rad = 0
