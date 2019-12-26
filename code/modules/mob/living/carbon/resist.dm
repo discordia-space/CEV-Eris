@@ -2,10 +2,18 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!stat && can_click())
-		resist_grab()
-		if(!weakened)
-			process_resist()
+	if(can_resist())
+		next_move = world.time + 20
+		process_resist()
+
+/mob/living/proc/can_resist()
+	//need to allow !canmove, or otherwise neck grabs can't be resisted
+	//so just check weakened instead.
+	if(stat || weakened)
+		return 0
+	if(next_move > world.time)
+		return 0
+	return 1
 
 /mob/living/proc/process_resist()
 	//Getting out of someone's inventory.
@@ -13,20 +21,18 @@
 		escape_inventory(src.loc)
 		return
 
+	//resisting grabs (as if it helps anyone...)
+	if (!restrained())
+		resist_grab()
+
 	//unbuckling yourself
 	if(buckled)
-		if (buckled.resist_buckle(src))
-			spawn()
-				escape_buckle()
-			return TRUE
-		else
-			return FALSE
+		spawn() escape_buckle()
 
 	//Breaking out of a locker?
 	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
 		var/obj/structure/closet/C = loc
 		spawn() C.mob_breakout(src)
-		return TRUE
 
 /mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
 	if(H != src.loc) return
@@ -53,8 +59,6 @@
 	else if(istype(H.loc,/obj/item))
 		to_chat(src, "<span class='warning'>You struggle free of \the [H.loc].</span>")
 		H.forceMove(get_turf(H))
-
-
 
 /mob/living/proc/resist_grab()
 	var/resisting = 0
