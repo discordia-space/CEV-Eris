@@ -54,6 +54,7 @@
 
 	if(user)
 		log_and_message_admins("primed \a [src]")
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>primed \a [src]</font>"
 
 	icon_state = initial(icon_state) + "_active"
 	active = 1

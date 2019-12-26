@@ -92,6 +92,7 @@
 
 /obj/item/weapon/gun/launcher/grenade/handle_post_fire(mob/user)
 	log_and_message_admins("fired a grenade ([chambered.name]) from a grenade launcher ([src.name]).")
+	user.attack_log += "\[[time_stamp()]\] <font color='red'> fired a grenade ([chambered.name]) from a grenade launcher ([src.name])</font>"
 	chambered = null
 	pump(user)
 
