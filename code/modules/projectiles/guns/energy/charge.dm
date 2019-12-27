@@ -136,3 +136,8 @@
 
 /obj/item/weapon/gun/energy/proc/overcharge_level_to_mult()
 	return overcharge_level/10
+
+/obj/item/weapon/gun/energy/dropped(mob/user)
+	..()
+	if(overcharge_level)
+		overcharge_level = 0
