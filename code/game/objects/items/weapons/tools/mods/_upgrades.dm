@@ -169,7 +169,6 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/on_examine(var/mob/user)
-	to_chat(world, "on_examine called. user:[user]")
 	if (upgrades["precision"] > 0)
 		to_chat(user, SPAN_NOTICE("Enhances precision by [upgrades["precision"]]"))
 	else if (upgrades["precision"] < 0)
