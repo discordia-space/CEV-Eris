@@ -22,6 +22,7 @@
 				/obj/item/weapon/circuitboard/curefab = 1,
 				/obj/item/weapon/circuitboard/destructive_analyzer = 2,
 				/obj/item/weapon/circuitboard/drone_control = 2,
+				/obj/item/weapon/circuitboard/industrial_grinder = 4,
 				/obj/item/weapon/circuitboard/mech_recharger = 2,
 				/obj/item/weapon/circuitboard/mecha/ripley/main = 1,
 				/obj/item/weapon/circuitboard/mecha/ripley/peripherals = 1,

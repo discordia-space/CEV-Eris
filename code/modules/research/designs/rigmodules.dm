@@ -8,10 +8,10 @@
 	build_path = /obj/item/rig_module/autodoc
 	sort_string = "VDAAF"
 
-/datum/design/research/item/autodoc_comercial
+/datum/design/research/item/autodoc_commercial
 	name = "commercial autodoc module"
 	desc = "A complex surgery system for almost all your needs."
-	build_path = /obj/item/rig_module/autodoc/comercial
+	build_path = /obj/item/rig_module/autodoc/commercial
 	sort_string = "VDAAG"
 
 /datum/design/research/item/chem_dispenser

@@ -6,7 +6,7 @@
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/tool/pickaxe/drill,
 		/obj/item/weapon/tool/pickaxe/excavation,
-		/obj/item/weapon/mining_scanner,
+		/obj/item/device/scanner/mining,
 		/obj/item/weapon/tool/shovel,
 		/obj/item/device/radio/off,
 		/obj/item/weapon/tool/screwdriver

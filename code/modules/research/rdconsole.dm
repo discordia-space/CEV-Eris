@@ -640,7 +640,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 			var/list/unlock_list = list()
 			for(var/T in tech_node.unlocks_designs)
-				var/datum/design/D = locate(T) in SSresearch.all_designs
+				var/datum/design/D = SSresearch.get_design(T)
 				if(D) // remove?
 					var/list/build_types = list()
 					if(D.build_type & IMPRINTER)

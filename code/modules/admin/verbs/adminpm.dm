@@ -106,6 +106,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_pm_panel, R_ADMIN|R_MOD|R_MENTOR, FALSE)
 	if(C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
 		sound_to(C, 'sound/effects/adminhelp.ogg')
 
+	lobby_message(message = "PM: [key_name(src)]->[key_name(C)]: [msg]")
+
 	log_admin("PM: [key_name(src)]->[key_name(C)]: [msg]")
 
 

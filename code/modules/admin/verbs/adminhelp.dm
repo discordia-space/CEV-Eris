@@ -24,6 +24,7 @@
 	if(!msg)
 		return
 
+	var/original_msg = msg
 
 
 	if(!mob) //this doesn't happen
@@ -36,7 +37,7 @@
 	var/mentor_msg = "\blue <b><font color=red>Request for Help: </font>[get_options_bar(mob, 4, 1, 1, 0)]:</b> [msg]"
 	msg = "\blue <b><font color=red>Request for Help:: </font>[get_options_bar(mob, 2, 1, 1)]:</b> [msg]"
 
-
+	send2adminchat(key_name(src), original_msg)
 
 	for(var/client/X in admins)
 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)

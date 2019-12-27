@@ -233,7 +233,7 @@
 		return
 	if(!assailant.can_click())
 		return
-	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - assailant.stats.getStat(STAT_ROB))))
+	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - (round(assailant.stats.getStat(STAT_ROB) ** 0.8)))))
 		return
 	if(!assailant.canmove || assailant.lying)
 		qdel(src)

@@ -1008,10 +1008,11 @@ var/list/rank_prefix = list(\
 						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."), \
 						SPAN_WARNING("Your movement jostles [O] in your [organ.name] painfully."))
 					to_chat(src, msg)
-
-				organ.take_damage(rand(1,3), 0, 0)
-				if(organ.setBleeding())
-					src.adjustToxLoss(rand(1,3))
+				var/mob/living/carbon/human/H = organ.owner
+				if(!MOVING_DELIBERATELY(H))
+					organ.take_damage(rand(1,3), 0, 0)
+					if(organ.setBleeding())
+						src.adjustToxLoss(rand(1,3))
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"

@@ -658,14 +658,14 @@
 /area/eris/security/range)
 "abP" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
-/obj/item/clothing/suit/armor/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
+/obj/item/clothing/suit/armor/heavy/riot/ironhammer,
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/head/helmet/riot,
@@ -1591,10 +1591,7 @@
 /area/eris/security/armory)
 "adS" = (
 /obj/structure/table/rack,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/head/helmet/space/void/security,
-/obj/item/clothing/suit/space/void/security,
+/obj/item/clothing/suit/space/void/security/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "adT" = (
@@ -1927,7 +1924,7 @@
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/tool/shovel/spade,
-/obj/item/weapon/material/minihoe,
+/obj/item/weapon/tool/minihoe,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/prison)
 "aeJ" = (
@@ -21228,18 +21225,20 @@
 /area/eris/engineering/wastingroom)
 "aXf" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
+/obj/item/ammo_magazine/smg,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aXg" = (
@@ -22414,18 +22413,24 @@
 	},
 /obj/item/ammo_magazine/ammobox/magnum,
 /obj/item/ammo_magazine/ammobox/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
-/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo,
 /obj/item/ammo_magazine/ammobox/srifle,
 /obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZC" = (
@@ -26332,6 +26337,9 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
+/obj/item/weapon/storage/belt/utility,
+/obj/item/weapon/tool/crowbar,
+/obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "bgZ" = (
@@ -26885,9 +26893,9 @@
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "biq" = (
-/obj/landmark/machinery/input,
+/obj/landmark/machinery/output,
 /obj/machinery/conveyor/west{
-	id = "mining_external"
+	id = "mining_internal"
 	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
@@ -26962,13 +26970,6 @@
 /obj/random/booze/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
-"biy" = (
-/obj/structure/plasticflaps/mining,
-/obj/machinery/conveyor/west{
-	id = "mining_external"
-	},
-/turf/simulated/floor,
-/area/shuttle/mining/station)
 "biz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -27519,9 +27520,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bjC" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/tool/crowbar,
-/obj/item/clothing/glasses/welding,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "bjD" = (
@@ -27627,9 +27626,7 @@
 /area/eris/security/evidencestorage)
 "bjM" = (
 /obj/structure/ore_box,
-/obj/machinery/conveyor/west{
-	id = "mining_external"
-	},
+/obj/landmark/machinery/input,
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "bjN" = (
@@ -27684,7 +27681,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bjT" = (
-/obj/landmark/machinery/output,
 /obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor/south{
 	id = "mining_internal"
@@ -45465,7 +45461,7 @@
 /area/eris/security/lobby)
 "bWv" = (
 /obj/structure/closet/crate/hydroponics,
-/obj/item/weapon/material/minihoe,
+/obj/item/weapon/tool/minihoe,
 /obj/item/weapon/tool/shovel/spade,
 /obj/item/weapon/reagent_containers/spray/plantbgone,
 /obj/item/weapon/tool/wirecutters,
@@ -54280,9 +54276,6 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay)
 "cqy" = (
-/obj/machinery/conveyor/northwest{
-	id = "mining_internal"
-	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "cqz" = (
@@ -56933,7 +56926,7 @@
 /area/eris/quartermaster/storage)
 "cwX" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -57139,7 +57132,6 @@
 /area/eris/engineering/engeva)
 "cxs" = (
 /obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
 /obj/machinery/door/window/northright{
 	dir = 2;
 	name = "Atmospherics Hardsuits";
@@ -57149,9 +57141,7 @@
 	dir = 8
 	},
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cxt" = (
@@ -57320,7 +57310,6 @@
 /area/eris/quartermaster/office)
 "cxR" = (
 /obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
 /obj/machinery/door/window/northright{
 	dir = 2;
 	name = "Atmospherics Hardsuits";
@@ -57328,9 +57317,7 @@
 	},
 /obj/machinery/camera/network/engineering,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /obj/structure/sign/faction/technomancers{
 	pixel_y = 32
 	},
@@ -57834,7 +57821,6 @@
 /area/eris/quartermaster/office)
 "cyZ" = (
 /obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
 /obj/machinery/door/window/northright{
 	dir = 2;
 	name = "Atmospherics Hardsuits";
@@ -57844,9 +57830,7 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cza" = (
@@ -57858,7 +57842,6 @@
 /area/eris/engineering/engeva)
 "czb" = (
 /obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -57867,9 +57850,7 @@
 	name = "Engineering Hardsuits";
 	req_access = list(11)
 	},
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "czc" = (
@@ -58575,16 +58556,13 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cAz" = (
-/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/machinery/door/window/southleft{
 	name = "Engineering Hardsuits";
 	req_access = list(11)
 	},
 /obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /obj/structure/sign/faction/technomancers{
 	pixel_y = 32
 	},
@@ -58839,16 +58817,13 @@
 /turf/simulated/floor/bluegrid,
 /area/eris/crew_quarters/bar)
 "cBb" = (
-/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/machinery/door/window/southleft{
 	name = "Engineering Hardsuits";
 	req_access = list(11)
 	},
 /obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cBc" = (
@@ -59121,7 +59096,7 @@
 /area/eris/command/meeting_room)
 "cBC" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cBD" = (
@@ -59430,7 +59405,7 @@
 /area/eris/quartermaster/storage)
 "cCk" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/weapon/material/knife/butch,
+/obj/item/weapon/tool/knife/butch,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/crew_quarters/kitchen)
 "cCl" = (
@@ -63127,7 +63102,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/engeva)
 "cKE" = (
-/obj/machinery/suit_cycler/engineering,
+/obj/machinery/suit_storage_unit/engineering,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cKF" = (
@@ -65186,8 +65161,7 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
+/obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,21"
 	},
@@ -65518,8 +65492,7 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
+/obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,20"
 	},
@@ -65535,7 +65508,7 @@
 	},
 /area/shuttle/mining/station)
 "cQv" = (
-/obj/machinery/suit_cycler/mining,
+/obj/machinery/suit_storage_unit/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "5,20"
 	},
@@ -65838,8 +65811,7 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
+/obj/item/device/scanner/mining,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,19"
 	},
@@ -65925,9 +65897,6 @@
 /area/shuttle/mining/station)
 "cRp" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/camera/network/mining{
-	dir = 1
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "12,19"
 	},
@@ -66702,9 +66671,6 @@
 	},
 /area/shuttle/mining/station)
 "cTl" = (
-/obj/machinery/camera/network/mining{
-	dir = 1
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "12,16"
 	},
@@ -67178,7 +67144,7 @@
 	},
 /area/shuttle/mining/station)
 "cUs" = (
-/obj/structure/ore_box,
+/obj/structure/closet/crate,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,14"
 	},
@@ -67328,7 +67294,7 @@
 /area/shuttle/mining/station)
 "cUO" = (
 /obj/machinery/conveyor_switch{
-	id = "mining_external"
+	id = "mining_internal"
 	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "14,13"
@@ -67810,8 +67776,8 @@
 	},
 /area/shuttle/mining/station)
 "cVV" = (
-/obj/machinery/mineral/unloading_machine{
-	icon_state = "unloader-corner"
+/obj/machinery/conveyor/southwest/ccw{
+	id = "mining_internal"
 	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
@@ -69257,9 +69223,6 @@
 	},
 /obj/structure/table/steel,
 /obj/machinery/recharger,
-/obj/item/weapon/cell/large/high,
-/obj/item/weapon/cell/large/high,
-/obj/item/weapon/cell/large/high,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,7"
 	},
@@ -69561,9 +69524,9 @@
 /area/shuttle/mining/station)
 "cZD" = (
 /obj/structure/table/steel,
-/obj/item/stack/material/plasma{
-	amount = 25
-	},
+/obj/item/weapon/cell/large/high,
+/obj/item/weapon/cell/large/high,
+/obj/item/weapon/cell/large/high,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,6"
 	},
@@ -69631,7 +69594,7 @@
 /area/shuttle/mining/station)
 "cZN" = (
 /turf/simulated/shuttle/wall/mining{
-	icon_state = "13,6";
+	icon_state = "13,7";
 	opacity = 0
 	},
 /area/shuttle/mining/station)
@@ -69793,11 +69756,6 @@
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "dai" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,5"
 	},
@@ -69965,11 +69923,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/machinery/light/small,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "4,4"
 	},
@@ -69983,7 +69937,10 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/structure/ore_box,
+/obj/structure/table/rack,
+/obj/item/stack/material/plasma{
+	amount = 25
+	},
 /turf/simulated/floor,
 /area/shuttle/mining/station)
 "daH" = (
@@ -71924,13 +71881,10 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deY" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/obj/machinery/reagentgrinder,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
+/obj/machinery/reagentgrinder/industrial,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "deZ" = (
@@ -74454,7 +74408,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "dkp" = (
 /obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -76181,9 +76135,7 @@
 	},
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/medical,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/medical,
+/obj/item/clothing/suit/space/void/medical/equipped,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/medeva)
 "dnT" = (
@@ -76847,9 +76799,7 @@
 	},
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/medical,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/medical,
+/obj/item/clothing/suit/space/void/medical/equipped,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/medeva)
 "dps" = (
@@ -76963,9 +76913,7 @@
 "dpH" = (
 /obj/structure/table/rack,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/medical,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/medical,
+/obj/item/clothing/suit/space/void/medical/equipped,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/medeva)
 "dpI" = (
@@ -91652,6 +91600,10 @@
 /obj/item/ammo_magazine/ihsrifle,
 /obj/item/ammo_magazine/ihsrifle,
 /obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/ihsrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "dWB" = (
@@ -93012,8 +92964,8 @@
 /obj/structure/closet/crate/hydroponics,
 /obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/tool/wrench,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/minihoe,
+/obj/item/weapon/tool/minihoe,
+/obj/item/weapon/tool/minihoe,
 /obj/item/weapon/tool/shovel/spade,
 /obj/item/weapon/tool/shovel/spade,
 /obj/item/weapon/reagent_containers/spray/plantbgone,
@@ -96189,7 +96141,6 @@
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2starboard)
 "egQ" = (
@@ -96239,7 +96190,6 @@
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/engineering,
-/obj/item/clothing/head/helmet/space/void/engineering,
 /obj/structure/sign/vacuum{
 	pixel_x = 32
 	},
@@ -98564,7 +98514,7 @@
 /area/eris/rnd/xenobiology/xenoflora)
 "eme" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
@@ -99293,6 +99243,7 @@
 /obj/item/ammo_magazine/ihclrifle,
 /obj/item/ammo_magazine/ihclrifle,
 /obj/item/ammo_magazine/ihclrifle,
+/obj/item/ammo_magazine/ihclrifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "enX" = (
@@ -99996,8 +99947,8 @@
 	dir = 1
 	},
 /obj/structure/closet/chefcloset,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
+/obj/item/weapon/tool/knife,
+/obj/item/weapon/tool/knife,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "epI" = (
@@ -108501,7 +108452,7 @@
 	},
 /obj/item/device/scanner/mass_spectrometer/adv,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/material/knife/butch,
+/obj/item/weapon/tool/knife/butch,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "lls" = (
@@ -108630,6 +108581,10 @@
 /obj/landmark/storyevent/hidden_vent_antag,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"nZP" = (
+/obj/structure/reagent_dispensers/fueltank/huge,
+/turf/simulated/floor,
+/area/shuttle/mining/station)
 "ofp" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -108793,7 +108748,7 @@
 /area/eris/medical/chemistry)
 "vGf" = (
 /obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/reagentgrinder/portable,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_medchem";
 	name = "Maintenance Hatch Control";
@@ -212851,7 +212806,7 @@ cXA
 cYs
 cYY
 cZD
-dah
+nZP
 dah
 daW
 dbs
@@ -215067,7 +215022,7 @@ cTN
 cUs
 cUO
 cVu
-biy
+cXI
 cWX
 cXL
 cYB

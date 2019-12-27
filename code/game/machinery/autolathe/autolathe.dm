@@ -84,15 +84,12 @@
 
 	image_load = new(src)
 	image_load_material = new(src)
-	vis_contents += image_load
-	vis_contents += image_load_material
 
 	if(have_disk && default_disk)
 		disk = new default_disk(src)
 
 /obj/machinery/autolathe/Destroy()
 	QDEL_NULL(wires)
-	vis_contents.Cut()
 	QDEL_NULL(image_load)
 	QDEL_NULL(image_load_material)
 	return ..()
@@ -683,10 +680,15 @@
 	return ERR_OK
 
 
-/obj/machinery/autolathe/Process()
+/obj/machinery/autolathe/power_change()
+	..()
 	if(stat & NOPOWER)
 		working = FALSE
-		update_icon()
+	update_icon()
+	SSnano.update_uis(src)
+
+/obj/machinery/autolathe/Process()
+	if(stat & NOPOWER)
 		return
 
 	if(current_file)
@@ -868,8 +870,15 @@
 	icon_state = ""
 	mouse_opacity = 0
 
-/obj/effect/flicker_overlay/New(atom/loc)
+/obj/effect/flicker_overlay/New(atom/movable/loc)
 	..()
 	icon = loc.icon
 	layer = loc.layer
 	plane = loc.plane
+	loc.vis_contents += src
+
+/obj/effect/flicker_overlay/Destroy()
+	if(istype(loc, /atom/movable))
+		var/atom/movable/A = loc
+		A.vis_contents -= src
+	return ..()
