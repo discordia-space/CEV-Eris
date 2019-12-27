@@ -1,4 +1,4 @@
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )
+#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(##arguments)) )
 
 #define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
 
@@ -36,6 +36,7 @@
 
 
 // /atom signals
+#define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 
 // /area signals
 
@@ -60,7 +61,9 @@
 // /obj signals
 
 // /obj/item signals
-
+#define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
+#define COMSIG_APPVAL "apply_values"									//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values
+#define COMSIG_REMOVE "uninstall"										//from  /obj/item/weapon/tool/attackby(): Called to remove an upgrade
 // /obj/item/clothing signals
 
 // /obj/item/implant signals

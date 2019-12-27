@@ -68,6 +68,9 @@
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
 
+	var/list/item_upgrades = list()
+	var/max_upgrades = 3
+
 /obj/item/Destroy()
 	QDEL_NULL(hidden_uplink)
 	QDEL_NULL(blood_overlay)
@@ -488,6 +491,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	for(var/A in hud_actions)
 		var/obj/item/action = A
 		action.update_icon()
+
+/obj/item/proc/refresh_upgrades()
+	return
 
 
 /obj/item/device

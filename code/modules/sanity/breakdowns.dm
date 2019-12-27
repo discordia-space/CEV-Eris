@@ -313,7 +313,7 @@
 	images.Cut()
 	..()
 
-/datum/breakdown/negative/fabric/proc/add_image(_, image/I)
+/datum/breakdown/negative/fabric/proc/add_image(image/I)
 	images |= I
 	holder.owner.client?.images |= I
 
@@ -509,6 +509,6 @@
 	UnregisterSignal(holder.owner, COMSIG_HUMAN_SAY)
 	..()
 
-/datum/breakdown/common/signs/proc/check_message(_, msg)
+/datum/breakdown/common/signs/proc/check_message(msg)
 	if(msg == message)
 		finished = TRUE
