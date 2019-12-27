@@ -246,8 +246,14 @@
 			return
 		if(!affecting.lying)
 			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
+			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed by [assailant.name] ([assailant.ckey])</font>"
+			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed [affecting.name] ([affecting.ckey])</font>"
+			msg_admin_attack("[assailant] grabbed a [affecting].")
 		else
 			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground!"))
+			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been pinned by [assailant.name] ([assailant.ckey])</font>"
+			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Pinned [affecting.name] ([affecting.ckey])</font>"
+			msg_admin_attack("[assailant] pinned down [affecting].")
 			apply_pinning(affecting, assailant)
 
 		state = GRAB_AGGRESSIVE
@@ -318,6 +324,9 @@
 				if(I_HELP)
 					if(force_down)
 						to_chat(assailant, SPAN_WARNING("You are no longer pinning [affecting] to the ground."))
+						affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer pinned down by [assailant.name] ([assailant.ckey])</font>"
+						assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Released from pin [affecting.name] ([affecting.ckey])</font>"
+						msg_admin_attack("[key_name(assailant)] Released from pin [key_name(affecting)]")
 						force_down = 0
 						return
 					inspect_organ(affecting, assailant, hit_zone)
@@ -348,6 +357,9 @@
 /obj/item/weapon/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
 		assailant.visible_message(SPAN_WARNING("[assailant] lost \his tight grip on [affecting]'s neck!"))
+		affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer gripped by [assailant.name] ([assailant.ckey] neck.)</font>"
+		assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Lost his grip on [affecting.name] ([affecting.ckey] neck.)</font>"
+		msg_admin_attack("[key_name(assailant)] lost his tight grip on [key_name(affecting)] neck.")
 		hud.icon_state = "kill"
 		state = GRAB_NECK
 
