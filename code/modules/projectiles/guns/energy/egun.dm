@@ -19,6 +19,7 @@
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="energystun", item_modifystate="stun", fire_sound='sound/weapons/Taser.ogg', icon="stun"),
 		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, modifystate="energykill", item_modifystate="kill", fire_sound='sound/weapons/Laser.ogg', icon="kill"),
+		WEAPON_CHARGE,
 		)
 
 /obj/item/weapon/gun/energy/gun/mounted
@@ -47,9 +48,10 @@
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]
-	switch(current_mode.name)
-		if("stun") overlays += "taser_pdw"
-		if("kill") overlays += "lazer_pdw"
+	if(current_mode.name == "stun")
+		overlays += "taser_pdw"
+	else
+		overlays += "lazer_pdw"
 
 /obj/item/weapon/gun/energy/gun/martin/update_icon()
 	overlays.Cut()

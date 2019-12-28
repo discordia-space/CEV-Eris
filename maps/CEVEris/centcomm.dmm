@@ -4009,7 +4009,6 @@
 "kQ" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/SCAF,
-/obj/item/clothing/head/helmet/space/void/SCAF,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -4021,7 +4020,7 @@
 	},
 /area/shuttle/mercenary)
 "kS" = (
-/obj/item/weapon/material/knife{
+/obj/item/weapon/tool/knife{
 	pixel_x = -6
 	},
 /obj/item/weapon/reagent_containers/syringe/drugs{
@@ -5049,7 +5048,7 @@
 /area/wizard_station)
 "no" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/knife/ritual,
+/obj/item/weapon/tool/knife/ritual,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -5445,7 +5444,7 @@
 	},
 /area/wizard_station)
 "or" = (
-/obj/item/weapon/material/knife/ritual,
+/obj/item/weapon/tool/knife/ritual,
 /turf/unsimulated/floor{
 	icon_state = "freezerfloor";
 	dir = 2
@@ -5750,14 +5749,8 @@
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/ionrifle,
 /obj/item/weapon/material/harpoon,
-/obj/item/clothing/suit/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/clothing/suit/space/void/engineering,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/merc/equipped,
+/obj/item/clothing/suit/space/void/engineering/equipped,
 /obj/item/weapon/rig/light/stealth,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
@@ -5773,7 +5766,7 @@
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/ambrosiavulgarisseed,
-/obj/item/weapon/material/minihoe,
+/obj/item/weapon/tool/minihoe,
 /obj/item/weapon/beartrap,
 /obj/structure/table/steel,
 /turf/simulated/shuttle/plating,
@@ -5821,8 +5814,6 @@
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/sniperrifle,
 /obj/item/clothing/suit/space/void/mining,
-/obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/weapon/tank/oxygen,
 /obj/item/weapon/tank/oxygen,

@@ -44,6 +44,7 @@
 		/datum/design/autolathe/tool/crowbar,
 		/datum/design/autolathe/tool/screwdriver,
 		/datum/design/autolathe/tool/wirecutters,
+		/datum/design/autolathe/tool/pliers,
 		/datum/design/autolathe/tool/wrench,
 		/datum/design/autolathe/tool/saw,
 		/datum/design/autolathe/tool/multitool,
@@ -512,7 +513,6 @@
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/clothing/excelsior_armor,
-		/datum/design/autolathe/clothing/excelsior_helmet,
 		/datum/design/autolathe/cell/large/excelsior,
 		/datum/design/autolathe/cell/medium/excelsior,
 		/datum/design/autolathe/cell/small/excelsior,
@@ -548,8 +548,7 @@
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
-		/datum/design/autolathe/clothing/excelsior_armor,
-		/datum/design/autolathe/clothing/excelsior_helmet
+		/datum/design/autolathe/clothing/excelsior_armor
 	)
 
 

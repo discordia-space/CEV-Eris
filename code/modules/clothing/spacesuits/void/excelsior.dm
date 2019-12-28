@@ -49,3 +49,4 @@
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 5
 	)
+	helmet = /obj/item/clothing/head/helmet/space/void/excelsior
