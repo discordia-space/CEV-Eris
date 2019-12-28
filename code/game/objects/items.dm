@@ -48,6 +48,8 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
+	var/contained_sprite = FALSE //TRUE if object icon and related mob overlays are all in one dmi
+
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
 	//** These specify item/icon overrides for _slots_
