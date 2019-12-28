@@ -1,7 +1,3 @@
-#define MODIFICATION_ORGANIC 1
-#define MODIFICATION_SILICON 2
-#define MODIFICATION_REMOVED 3
-
 datum/preferences
 	var/icon/preview_icon  = null
 	var/icon/preview_south = null
@@ -42,7 +38,3 @@ datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	preview_south.Scale(preview_south.Width() * 2, preview_south.Height() * 2)
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) 
 	return mannequin.icon
-
-#undef MODIFICATION_REMOVED
-#undef MODIFICATION_ORGANIC
-#undef MODIFICATION_SILICON

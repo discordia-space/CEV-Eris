@@ -501,6 +501,7 @@
 /obj/machinery/suit_storage_unit/excelsior
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/excelsior
 
+
 /obj/machinery/suit_storage_unit/merc
 	overlay_color = "#D04044"
 	SUIT_TYPE = /obj/item/clothing/suit/space/void/merc

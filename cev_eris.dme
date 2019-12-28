@@ -781,7 +781,6 @@
 #include "code\game\objects\effects\decals\remains.dm"
 #include "code\game\objects\effects\decals\wanted_poster.dm"
 #include "code\game\objects\effects\decals\warning_stripes.dm"
-#include "code\game\objects\effects\decals\weldable.dm"
 #include "code\game\objects\effects\decals\Cleanable\aliens.dm"
 #include "code\game\objects\effects\decals\Cleanable\fuel.dm"
 #include "code\game\objects\effects\decals\Cleanable\humans.dm"

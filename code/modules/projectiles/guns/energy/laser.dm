@@ -88,10 +88,6 @@ obj/item/weapon/gun/energy/retro
 	price_tag = 3000
 
 
-/obj/item/weapon/gun/proc/set_item_state
-	item_state_slots[slot_back_str] = "back"
-	item_state_slots[slot_s_store_str]= "onsuit"
-
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
 	self_recharge = TRUE
