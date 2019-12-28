@@ -14,6 +14,8 @@
 
 //All lathe-type devices that link into the R&D console fall into thise type for easy identification and some shared procs
 /obj/machinery/autolathe/rnd
+	queue_max = 16
+
 	have_disk = FALSE
 	have_recycling = FALSE
 	have_design_selector = FALSE

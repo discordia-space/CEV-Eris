@@ -59,9 +59,9 @@ proc/admin_proc()
 	if(!check_rights(R_ADMIN)) return
 	to_chat(world, "you have enough rights!")
 
-NOTE: It checks usr by default. Supply the "user" argument if you wish to check for a specific mob.
+NOTE: It checks usr by default. Supply the "Ñ" argument if you wish to check for a specific client/mob.
 */
-/proc/check_rights(rights_required, show_msg=1, var/client/C = usr)
+/proc/check_rights(rights_required, show_msg=1, client/C = usr)
 	if(ismob(C))
 		var/mob/M = C
 		C = M.client

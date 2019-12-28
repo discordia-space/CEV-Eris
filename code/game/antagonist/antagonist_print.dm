@@ -62,14 +62,15 @@
 
 	if(length(contracts))
 		var/total_tc = 0
-		var/num = 1
+		var/num = 0
 
 		text += "<br><b>Contracts fulfilled:</b>"
 		for(var/c in contracts)
 			var/datum/antag_contract/contract = c
 			total_tc += contract.reward
-			text += "<br><b>Contract [num]:</b> [contract.desc] <font color='green'>(+[contract.reward] TC)</font>"
 			num++
+
+			text += "<br><b>Contract [num]:</b> [contract.desc] <font color='green'>(+[contract.reward] TC)</font>"
 
 		text += "<br><b>Total: [num] contracts, <font color='green'>[total_tc] TC</font></b><br>"
 
