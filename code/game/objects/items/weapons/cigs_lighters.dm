@@ -108,10 +108,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/ignitermes = "USER lights NAME with FLAME"
 	preloaded_reagents = list("nicotine" = 5)
 
-/obj/item/clothing/mask/smokable/New()
-	..()
+/obj/item/clothing/mask/smokable/Initialize()
 	reagent_flags |= NO_REACT // so it doesn't react until you light it
-	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
+	// Make the cigarrete a chemical holder of given volume before preloaded_reagents are spawned in
+	create_reagents(chem_volume)
+	. = ..()
 
 /obj/item/clothing/mask/smokable/Process()
 	var/turf/location = get_turf(src)
