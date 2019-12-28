@@ -13,7 +13,7 @@
 
 	onMoved(null, null, A.loc)
 
-/datum/component/atom_sanity/proc/onMoved(_, oldloc, newloc)
+/datum/component/atom_sanity/proc/onMoved(oldloc, newloc)
 	if(isturf(oldloc))
 		var/area/current_area = get_area(oldloc) //Actually new area is curret
 		if(isturf(newloc) && current_area == get_area(newloc))

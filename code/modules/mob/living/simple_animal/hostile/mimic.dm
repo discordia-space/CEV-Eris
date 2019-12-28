@@ -5,7 +5,7 @@
 /mob/living/simple_animal/hostile/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/crate.dmi'
 	icon_state = "crate"
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/carp

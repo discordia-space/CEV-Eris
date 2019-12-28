@@ -101,6 +101,9 @@
 	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object,location,control,params)
+	if(!isturf(owner.mob.loc)) // This stops from firing full auto weapons inside closets or in /obj/effect/dummy/chameleon chameleon projector
+		return FALSE
+	
 	object = resolve_world_target(object)
 	if (object)
 		target = object

@@ -490,6 +490,9 @@
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey] )</font>"
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
+		msg_admin_attack("[user] puts a [target] on \the [src].")
 	return TRUE
 
 

@@ -9,18 +9,15 @@
 	for (var/t in subtypesof(/obj/item/weapon/tool_upgrade))
 		new t(usr.loc)
 */
-
-/obj/item/weapon/tool_upgrade
-	name = "tool upgrade"
-	icon = 'icons/obj/tool_upgrades.dmi'
-	force = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_SMALL
-	price_tag = 200
-
+/datum/component/item_upgrade
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/prefix = "upgraded" //Added to the tool's name
 
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
+
+	//The upgrade can not be applied to a tool that has any of these qualities
+	var/list/negative_qualities = list()
 
 	//If true, can only be applied to tools that use fuel
 	var/req_fuel = FALSE
@@ -28,71 +25,19 @@
 	//If true, can only be applied to tools that use a power cell
 	var/req_cell = FALSE
 
-	var/obj/item/weapon/tool/holder = null //The tool we're installed into
-	matter = list(MATERIAL_STEEL = 1)
-
 	//Actual effects of upgrades
-	var/precision = 0
-	var/workspeed = 0
-	var/degradation_mult = 1
-	var/force_mult = 1	//Multiplies weapon damage
-	var/force_mod = 0	//Adds a flat value to weapon damage
-	var/powercost_mult = 1
-	var/fuelcost_mult = 1
-	var/bulk_mod = 0
-	var/health_threshold_modifier = 0
+	var/list/upgrades = list() //variable name(string) -> num
 
-/obj/item/weapon/tool_upgrade/examine(var/mob/user)
-	.=..()
-	if (precision > 0)
-		to_chat(user, SPAN_NOTICE("Enhances precision by [precision]"))
-	else if (precision < 0)
-		to_chat(user, SPAN_WARNING("Reduces precision by [abs(precision)]"))
-	if (workspeed)
-		to_chat(user, SPAN_NOTICE("Enhances workspeed by [workspeed*100]%"))
+/datum/component/item_upgrade/Initialize()
+	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
+	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
 
-	if (degradation_mult < 1)
-		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-degradation_mult)*100]%"))
-	else if	(degradation_mult > 1)
-		to_chat(user, SPAN_WARNING("Increases tool degradation by [(degradation_mult-1)*100]%"))
+/datum/component/item_upgrade/proc/attempt_install(atom/A, var/mob/living/user, params)
+	return can_apply(A, user) && apply(A, user)
 
-	if (force_mult != 1)
-		to_chat(user, SPAN_NOTICE("Increases tool damage by [(force_mult-1)*100]%"))
-	if (force_mod)
-		to_chat(user, SPAN_NOTICE("Increases tool damage by [force_mod]"))
-	if (powercost_mult != 1)
-		to_chat(user, SPAN_WARNING("Modifies power usage by [(powercost_mult-1)*100]%"))
-	if (fuelcost_mult != 1)
-		to_chat(user, SPAN_WARNING("Modifies fuel usage by [(fuelcost_mult-1)*100]%"))
-	if (bulk_mod)
-		to_chat(user, SPAN_WARNING("Increases tool size by [bulk_mod]"))
-
-	if (required_qualities.len)
-		to_chat(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))
-		to_chat(user, english_list(required_qualities, and_text = " or "))
-
-
-
-/******************************
-	CORE CODE
-******************************/
-
-
-/obj/item/weapon/tool_upgrade/afterattack(obj/O, mob/user, proximity)
-
-	if(!proximity) return
-	try_apply(O, user)
-
-/obj/item/weapon/tool_upgrade/proc/try_apply(var/obj/item/weapon/tool/O, var/mob/user)
-	if (!can_apply(O, user))
-		return
-
-	apply(O, user)
-
-
-/obj/item/weapon/tool_upgrade/proc/can_apply(var/obj/item/weapon/tool/T, var/mob/user)
-	if (isrobot(T))
-		var/mob/living/silicon/robot/R = T
+/datum/component/item_upgrade/proc/can_apply(var/atom/A, var/mob/living/user)
+	if (isrobot(A))
+		var/mob/living/silicon/robot/R = A
 		if(!R.opened)
 			to_chat(user, SPAN_WARNING("You need to open [R]'s panel to access its tools."))
 		var/list/robotools = list()
@@ -101,81 +46,162 @@
 		if(robotools.len)
 			var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
 			if(chosen_tool == "Cancel")
-				return
-			try_apply(chosen_tool,user)
+				return FALSE
+			return can_apply(chosen_tool,user)
 		else
 			to_chat(user, SPAN_WARNING("[R] has no modifiable tools."))
-		return
+		return FALSE
 
-	if (!istool(T))
-		to_chat(user, SPAN_WARNING("This can only be applied to a tool!"))
-		return
+	if (istool(A))
+		var/obj/item/weapon/tool/T = A
+		if (T.item_upgrades.len >= T.max_upgrades)
+			to_chat(user, SPAN_WARNING("This tool can't fit anymore modifications!"))
+			return FALSE
 
-	if (T.upgrades.len >= T.max_upgrades)
-		to_chat(user, SPAN_WARNING("This tool can't fit anymore modifications!"))
-		return
+		if (required_qualities.len)
+			var/qmatch = FALSE
+			for (var/q in required_qualities)
+				if (T.ever_has_quality(q))
+					qmatch = TRUE
+					break
 
-	if (required_qualities.len)
-		var/qmatch = FALSE
-		for (var/q in required_qualities)
-			if (T.ever_has_quality(q))
-				qmatch = TRUE
-				break
+			if (!qmatch)
+				to_chat(user, SPAN_WARNING("This tool lacks the required qualities!"))
+				return FALSE
 
-		if (!qmatch)
-			to_chat(user, SPAN_WARNING("This tool lacks the required qualities!"))
-			return
+		if(negative_qualities.len)
+			for(var/i in negative_qualities)
+				if(T.ever_has_quality(i))
+					to_chat(user, SPAN_WARNING("This tool can not accept the modification!"))
+					return FALSE
 
-	if (req_fuel && !T.use_fuel_cost)
-		to_chat(user, SPAN_WARNING("This tool doesn't use fuel!"))
-		return
+		if (req_fuel && !T.use_fuel_cost)
+			to_chat(user, SPAN_WARNING("This tool doesn't use fuel!"))
+			return FALSE
 
-	if (req_cell && !T.use_power_cost)
-		to_chat(user, SPAN_WARNING("This tool doesn't use power!"))
-		return
+		if (req_cell && !T.use_power_cost)
+			to_chat(user, SPAN_WARNING("This tool doesn't use power!"))
+			return FALSE
 
-	//No using multiples of the same upgrade
-	for (var/obj/item/weapon/tool_upgrade/U in T.upgrades)
-		if (U.type == type)
-			to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
-			return
+		if(upgrades["cell_hold_upgrades"])
+			if(!(T.suitable_cell == /obj/item/weapon/cell/medium || T.suitable_cell == /obj/item/weapon/cell/small))
+				to_chat(user, SPAN_WARNING("This tool does not require a cell holding upgrade."))
+				return FALSE
+			if(T.cell)
+				to_chat(user, SPAN_WARNING("Remove the cell from the tool first!"))
+				return FALSE
+		//No using multiples of the same upgrade
+		for (var/obj/item/I in T.item_upgrades)
+			if (I.type == type)
+				to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
+				return FALSE
 
+		return TRUE
+	to_chat(user, SPAN_WARNING("This can only be applied to a tool!"))
+	return FALSE
+
+/datum/component/item_upgrade/proc/apply(var/obj/item/A, var/mob/living/user)
+	if (user)
+		user.visible_message(SPAN_NOTICE("[user] starts applying [parent] to [A]"), SPAN_NOTICE("You start applying \the [parent] to \the [A]"))
+		var/obj/item/I = parent
+		if (!I.use_tool(user = user, target =  A, base_time = WORKTIME_FAST, required_quality = null, fail_chance = FAILCHANCE_ZERO, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
+			return FALSE
+		to_chat(user, SPAN_NOTICE("You have successfully installed \the [parent] in \the [A]"))
+		user.drop_from_inventory(parent)
+	//If we get here, we succeeded in the applying
+	var/obj/item/I = parent
+	I.forceMove(A)
+	A.item_upgrades.Add(I)
+	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
+	A.refresh_upgrades()
 	return TRUE
 
+/datum/component/item_upgrade/proc/uninstall(var/obj/item/I)
+	var/obj/item/P = parent
+	I.item_upgrades -= P
+	P.forceMove(get_turf(src))
+	UnregisterSignal(I, COMSIG_APPVAL)
 
-//Applying an upgrade to a tool is a mildly difficult process
-/obj/item/weapon/tool_upgrade/proc/apply(var/obj/item/weapon/tool/T, var/mob/user)
-
-	if (user)
-	
-		user.visible_message(SPAN_NOTICE("[user] starts applying [src] to [T]"), SPAN_NOTICE("You start applying [src] to [T]"))
-		if (!use_tool(user = user, target =  T, base_time = WORKTIME_FAST, required_quality = null, fail_chance = FAILCHANCE_ZERO, required_stat = STAT_MEC, forced_sound = WORKSOUND_WRENCHING))
-			return
-		to_chat(user, SPAN_NOTICE("You have successfully installed [src] in [T]"))
-		user.drop_from_inventory(src)
-	//If we get here, we succeeded in the applying
-	holder = T
-	forceMove(T)
-	T.upgrades.Add(src)
-	T.refresh_upgrades()
-
-
-//This does the actual numerical changes.
-//The tool itself asks us to call this, and it resets itself before doing so
-/obj/item/weapon/tool_upgrade/proc/apply_values()
+/datum/component/item_upgrade/proc/apply_values(var/atom/holder)
 	if (!holder)
 		return
-
-	holder.precision += precision
-	holder.workspeed += workspeed
-	holder.degradation *= degradation_mult
-	holder.force *= force_mult
-	holder.switched_on_force *= force_mult
-	holder.force += force_mod
-	holder.switched_on_force += force_mod
-	holder.use_fuel_cost *= fuelcost_mult
-	holder.use_power_cost *= powercost_mult
-	holder.extra_bulk += bulk_mod
-	holder.health_threshold += health_threshold_modifier
-	holder.prefixes |= prefix
+	if(istype(holder, /obj/item/weapon/tool))
+		var/obj/item/weapon/tool/T = holder
+		if(upgrades["precision"])
+			T.precision += upgrades["precision"]
+		if(upgrades["workspeed"])
+			T.workspeed += upgrades["workspeed"]
+		if(upgrades["degradation_mult"])
+			T.degradation *= upgrades["degradation_mult"]
+		if(upgrades["force_mult"])
+			T.force *= upgrades["force_mult"]
+			T.switched_on_force *= upgrades["force_mult"]
+		if(upgrades["force_mod"])
+			T.force += upgrades["force_mod"]
+			T.switched_on_force += upgrades["force_mod"]
+		if(upgrades["fuelcost_mult"])
+			T.use_fuel_cost *= upgrades["fuelcost_mult"]
+		if(upgrades["powercost_mult"])
+			T.use_power_cost *= upgrades["powercost_mult"]
+		if(upgrades["bulk_mod"])
+			T.extra_bulk += upgrades["bulk_mod"]
+		if(upgrades["health_threshold_modifier"])
+			T.health_threshold += upgrades["health_threshold_modifier"]
+		if(upgrades["max_fuel"])
+			T.max_fuel += upgrades["max_fuel"]
+		if(upgrades["max_upgrades"])
+			T.max_upgrades += upgrades["max_upgrades"]
+		if(upgrades["sharp"])
+			T.sharp = upgrades["sharp"]
+		if(upgrades["color"])
+			T.color = upgrades["color"]
+		if(upgrades["item_flag_add"])
+			T.item_flags |= upgrades["item_flag_add"]
+		if(upgrades["cell_hold_upgrade"])
+			switch(T.suitable_cell)
+				if(/obj/item/weapon/cell/medium)
+					T.suitable_cell = /obj/item/weapon/cell/large
+					prefix = "large-cell"
+				if(/obj/item/weapon/cell/small)
+					T.suitable_cell = /obj/item/weapon/cell/medium
+		T.prefixes |= prefix
 	return TRUE
+
+/datum/component/item_upgrade/proc/on_examine(var/mob/user)
+	if (upgrades["precision"] > 0)
+		to_chat(user, SPAN_NOTICE("Enhances precision by [upgrades["precision"]]"))
+	else if (upgrades["precision"] < 0)
+		to_chat(user, SPAN_WARNING("Reduces precision by [abs(upgrades["precision"])]"))
+	if (upgrades["workspeed"])
+		to_chat(user, SPAN_NOTICE("Enhances workspeed by [upgrades["workspeed"]*100]%"))
+
+	if (upgrades["degradation_mult"] < 1)
+		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-upgrades["degradation_mult"])*100]%"))
+	else if	(upgrades["degradation_mult"] > 1)
+		to_chat(user, SPAN_WARNING("Increases tool degradation by [(upgrades["degradation_mult"]-1)*100]%"))
+
+	if (upgrades["force_mult"] != 1)
+		to_chat(user, SPAN_NOTICE("Increases tool damage by [(upgrades["force_mult"]-1)*100]%"))
+	if (upgrades["force_mod"])
+		to_chat(user, SPAN_NOTICE("Increases tool damage by [upgrades["force_mod"]]"))
+	if (upgrades["powercost_mult"] != 1)
+		to_chat(user, SPAN_WARNING("Modifies power usage by [(upgrades["powercost_mult"]-1)*100]%"))
+	if (upgrades["fuelcost_mult"] != 1)
+		to_chat(user, SPAN_WARNING("Modifies fuel usage by [(upgrades["fuelcost_mult"]-1)*100]%"))
+	if (upgrades["max_fuel"])
+		to_chat(user, SPAN_NOTICE("Modifies fuel storage by [upgrades["max_fuel"]] units."))
+	if (upgrades["bulk_mod"])
+		to_chat(user, SPAN_WARNING("Increases tool size by [upgrades["bulk_mod"]]"))
+
+	if (required_qualities.len)
+		to_chat(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))
+		to_chat(user, english_list(required_qualities, and_text = " or "))
+
+
+/obj/item/weapon/tool_upgrade
+	name = "tool upgrade"
+	icon = 'icons/obj/tool_upgrades.dmi'
+	force = WEAPON_FORCE_HARMLESS
+	w_class = ITEM_SIZE_SMALL
+	price_tag = 200

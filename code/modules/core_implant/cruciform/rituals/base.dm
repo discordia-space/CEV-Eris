@@ -65,6 +65,7 @@
 
 /datum/ritual/cruciform/base/reveal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	var/was_triggired = FALSE
+	log_and_message_admins("performed reveal litany")
 	if(prob(20)) //Aditional fail chance that hidded from user
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 		return TRUE

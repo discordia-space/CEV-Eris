@@ -73,7 +73,7 @@
 	engage_string = "Begin Scan"
 	usable = 1
 	selectable = 0
-	device_type = /obj/item/weapon/mining_scanner
+	device_type = /obj/item/device/scanner/mining
 
 
 /obj/item/rig_module/device/rcd
