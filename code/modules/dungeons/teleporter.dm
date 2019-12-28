@@ -113,9 +113,7 @@
 		victims_to_teleport += R
 
 	for(var/mob/living/M in victims_to_teleport)
-		M.x = target.x
-		M.y = target.y
-		M.z = target.z
+		M.forceMove(get_turf(target))
 
 	new /obj/structure/scrap/science/large(src.loc)
 
@@ -263,9 +261,7 @@
 			to_chat(user, "The beacon has no destination, Ahelp this.")
 	else if(active)
 		to_chat(user, "You reach out and touch the beacon. A strange feeling envelops you.")
-		user.x = target.x
-		user.y = target.y
-		user.z = target.z
+		user.forceMove(get_turf(target))
 		sleep(1)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(user))
