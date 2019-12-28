@@ -110,6 +110,8 @@
 				slot_s_store_str = icon,
 			)
 		item_icons = item_icons_cache[type]
+	if(one_hand_penalty && (!wielded_item_state))//If the gun has a one handed penalty but no wielded item state then use this generic one.
+		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
 
 
 /obj/item/weapon/gun/Destroy()
@@ -126,7 +128,7 @@
 	if(!(hands || back || onsuit))
 		hands = back = onsuit = TRUE
 	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
-		if(wield_state)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
+		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
 		else

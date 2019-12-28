@@ -20,8 +20,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 2200
 	recoil_buildup = 20
-	one_hand_penalty = 5
-	wielded_item_state = "-wielded"
+	one_hand_penalty = 20
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
