@@ -50247,8 +50247,8 @@
 /area/eris/quartermaster/storage)
 "chb" = (
 /obj/structure/closet/crate/hydroponics,
-/obj/item/weapon/storage/bag/plants,
-/obj/item/weapon/storage/bag/plants,
+/obj/item/weapon/storage/bag/produce,
+/obj/item/weapon/storage/bag/produce,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
 "chc" = (

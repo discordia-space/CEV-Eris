@@ -508,11 +508,11 @@
 		else
 			to_chat(user, SPAN_DANGER("\The [src] already has seeds in it!"))
 
-	else if (istype(I, /obj/item/weapon/storage/bag/plants))
+	else if (istype(I, /obj/item/weapon/storage/bag/produce))
 
 		attack_hand(user)
 
-		var/obj/item/weapon/storage/bag/plants/S = I
+		var/obj/item/weapon/storage/bag/produce/S = I
 		for (var/obj/item/weapon/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
 			if(!S.can_be_inserted(G))
 				return
