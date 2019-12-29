@@ -8,6 +8,9 @@
 	response_harm   = "stomps on"
 	icon_state = "brainslug"
 
+	health = 30
+	maxHealth = 30
+
 	speed = 4
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
@@ -68,31 +71,33 @@
 	if(chemicals < 50)
 		chemicals++
 
-	if(host)
-		if(!stat && !host.stat)
-			if(host.reagents.has_reagent("sugar"))
-				if(!docile)
-					to_chat(get_borer_control(), SPAN_DANGER("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
-					docile = TRUE
-			else
-				if(docile)
-					to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
-					docile = FALSE
+	if(host && !stat && !host.stat)
+		// Regenerate if within a host
+		if(health < maxHealth)
+			adjustBruteLoss(-1)
 
-			if(chemicals < 250)
-				chemicals++
-			if(controlling)
+		if(host.reagents.has_reagent("sugar"))
+			if(!docile)
+				to_chat(get_borer_control(), SPAN_DANGER("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
+				docile = TRUE
+		else
+			if(docile)
+				to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
+				docile = FALSE
 
-				if(docile)
-					to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
-					host.release_control()
-					return
+		if(chemicals < 250)
+			chemicals++
+		if(controlling)
+			if(docile)
+				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
+				host.release_control()
+				return
 
-				if(prob(5))
-					host.adjustBrainLoss(0.1)
+			if(prob(5))
+				host.adjustBrainLoss(0.1)
 
-				if(prob(host.brainloss/20))
-					host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
+			if(prob(host.brainloss/20))
+				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
 
 /mob/living/simple_animal/borer/Stat()
 	. = ..()
