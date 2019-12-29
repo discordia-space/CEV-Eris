@@ -1,4 +1,5 @@
 #define MOVE_DELAY_BASE 1.1
+#define MOVE_DELAY_VENTCRAWL MOVE_DELAY_BASE //Ventcrawling has a static speed for all mobs
 
 //Glidesize
 #define FRACTIONAL_GLIDESIZES 1
