@@ -30,10 +30,35 @@
 	var/mob/living/carbon/human/host        // Human host for the brain worm.
 	var/truename                            // Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
-	var/controlling                         // Used in human death check.
+	var/controlling = FALSE					// Used in human death check.
 	var/docile = 0                          // Sugar can stop borers from acting.
 	var/has_reproduced
 	var/roundstart
+
+	// Abilities borer can use when outside the host
+	var/list/abilities_standalone = list(
+		/mob/living/proc/ventcrawl,
+		/mob/living/proc/hide,
+		/mob/living/simple_animal/borer/proc/paralyze_victim,
+		/mob/living/simple_animal/borer/proc/infest,
+
+		)
+
+	// Abilities borer can use when inside the host, but not in control
+	var/list/abilities_in_host = list(
+		/mob/living/simple_animal/borer/proc/secrete_chemicals,
+		/mob/living/simple_animal/borer/proc/assume_control,
+		/mob/living/simple_animal/borer/proc/paralyze_victim,
+		/mob/living/simple_animal/borer/proc/release_host
+	)
+
+	// Abilities borer can use when controlling the host
+	// (keep in mind that those have to be abilities of /mob/living/carbon, not /mob/living/simple_animal/borer)
+	var/list/abilities_in_control = list(
+		/mob/living/carbon/proc/release_control,
+		/mob/living/carbon/proc/punish_host,
+		/mob/living/carbon/proc/spawn_larvae
+	)
 
 	// Reagents the borer can secrete into host's blood
 	var/list/produced_reagents = list(
@@ -55,11 +80,30 @@
 	..()
 
 	add_language(LANGUAGE_CORTICAL)
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	update_abilities()
 
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 	if(!roundstart) request_player()
+
+/mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
+	// Remove all abilities
+	verbs -= abilities_standalone
+	verbs -= abilities_in_host
+	host?.verbs -= abilities_in_control
+
+	// Borer gets host abilities before actually getting inside the host
+	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
+	if(force_host)
+		verbs += abilities_in_host
+		return
+
+	// Re-grant some of the abilities, depending on the situation
+	if(!host)
+		verbs += abilities_standalone
+	else if(!controlling)
+		verbs += abilities_in_host
+	else
+		host.verbs += abilities_in_control
 
 // If borer is controlling a host directly, send messages to host instead of borer
 /mob/living/simple_animal/borer/proc/get_borer_control()
@@ -123,12 +167,10 @@
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		head.implants -= src
 
-	controlling = 0
+	controlling = FALSE
 
 	host.remove_language(LANGUAGE_CORTICAL)
-	host.verbs -= /mob/living/carbon/proc/release_control
-	host.verbs -= /mob/living/carbon/proc/punish_host
-	host.verbs -= /mob/living/carbon/proc/spawn_larvae
+	update_abilities()
 
 	if(host_brain)
 
@@ -166,7 +208,6 @@
 	qdel(host_brain)
 
 /mob/living/simple_animal/borer/proc/leave_host()
-
 	if(!host) return
 
 	if(host.mind)
@@ -183,7 +224,7 @@
 	var/mob/living/H = host
 	H.status_flags &= ~PASSEMOTES
 	host = null
-	return
+	update_abilities()
 
 //Procs for grabbing players.
 /mob/living/simple_animal/borer/proc/request_player()
