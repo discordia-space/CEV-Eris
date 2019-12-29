@@ -110,6 +110,9 @@
 
 	if (client.statpanel == "Status")
 		stat("Chemicals", chemicals)
+		if(host)
+			stat("Host health", host.stat == DEAD ? "Deceased" : host.health)
+			stat("Host brain damage", host.getBrainLoss())
 
 /mob/living/simple_animal/borer/proc/detatch()
 
