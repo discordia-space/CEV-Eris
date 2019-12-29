@@ -5,6 +5,10 @@
 	Some upgrades have multiple bonuses. Some have drawbacks in addition to boosts
 */
 
+#define REQ_FUEL 1
+#define REQ_CELL 2
+#define REQ_FUEL_OR_CELL 4
+
 /*/client/verb/debugupgrades()
 	for (var/t in subtypesof(/obj/item/weapon/tool_upgrade))
 		new t(usr.loc)
@@ -19,11 +23,8 @@
 	//The upgrade can not be applied to a tool that has any of these qualities
 	var/list/negative_qualities = list()
 
-	//If true, can only be applied to tools that use fuel
-	var/req_fuel = FALSE
-
-	//If true, can only be applied to tools that use a power cell
-	var/req_cell = FALSE
+	//If REQ_FUEL, can only be applied to tools that use fuel. If REQ_CELL, can only be applied to tools that use cell, If REQ_FUEL_OR_CELL, can be applied if it has fuel OR a cell
+	var/req_fuel_cell = FALSE
 
 	//Actual effects of upgrades
 	var/list/upgrades = list() //variable name(string) -> num
@@ -31,6 +32,7 @@
 /datum/component/item_upgrade/Initialize()
 	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
+	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/item_upgrade/proc/attempt_install(atom/A, var/mob/living/user, params)
 	return can_apply(A, user) && apply(A, user)
@@ -75,12 +77,16 @@
 					to_chat(user, SPAN_WARNING("This tool can not accept the modification!"))
 					return FALSE
 
-		if (req_fuel && !T.use_fuel_cost)
-			to_chat(user, SPAN_WARNING("This tool doesn't use fuel!"))
+		if ((req_fuel_cell & REQ_FUEL) && !T.use_fuel_cost)
+			to_chat(user, SPAN_WARNING("This tool does not use fuel!"))
 			return FALSE
 
-		if (req_cell && !T.use_power_cost)
-			to_chat(user, SPAN_WARNING("This tool doesn't use power!"))
+		if((req_fuel_cell & REQ_CELL) && !T.use_power_cost)
+			to_chat(user, SPAN_WARNING("This tool does not use power!"))
+			return FALSE
+
+		if((req_fuel_cell & REQ_FUEL_OR_CELL) && (!T.use_power_cost && !T.use_fuel_cost))
+			to_chat(user, SPAN_WARNING("This tool does not use [T.use_power_cost?"fuel":"power"]!"))
 			return FALSE
 
 		if(upgrades["cell_hold_upgrades"])
@@ -113,14 +119,13 @@
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
-	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 	A.refresh_upgrades()
 	return TRUE
 
 /datum/component/item_upgrade/proc/uninstall(var/obj/item/I)
 	var/obj/item/P = parent
 	I.item_upgrades -= P
-	P.forceMove(get_turf(src))
+	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_APPVAL)
 
 /datum/component/item_upgrade/proc/apply_values(var/atom/holder)

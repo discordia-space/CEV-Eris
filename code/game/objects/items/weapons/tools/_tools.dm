@@ -162,7 +162,7 @@
 		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
 			to_chat(user, SPAN_NOTICE("You successfully remove [toremove] while leaving it intact."))
-			SEND_SIGNAL(toremove, COMSIG_REMOVE)
+			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
 			refresh_upgrades()
 			return 1
 		else
