@@ -32,6 +32,7 @@
 /datum/component/item_upgrade/Initialize()
 	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
+	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
 /datum/component/item_upgrade/proc/attempt_install(atom/A, var/mob/living/user, params)
 	return can_apply(A, user) && apply(A, user)
@@ -118,7 +119,6 @@
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
-	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 	A.refresh_upgrades()
 	return TRUE
 
