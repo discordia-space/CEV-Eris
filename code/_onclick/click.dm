@@ -137,7 +137,7 @@
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
 		if(W)
-			var/resolved = W.resolve_attackby(A, src, params)
+			var/resolved = SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params) || W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
