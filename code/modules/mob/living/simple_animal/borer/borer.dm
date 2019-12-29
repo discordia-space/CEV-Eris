@@ -7,19 +7,23 @@
 	response_disarm = "prods"
 	response_harm   = "stomps on"
 	icon_state = "brainslug"
-	speed = 5
+
+	speed = 4
+	see_in_dark = 8
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	a_intent = I_HURT
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	attacktext = "nipped"
 	friendly = "prods"
 	wander = 0
+	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
 	//holder_type = /obj/item/weapon/holder/borer //Theres no inhand sprites for holding borers, it turns you into a pink square
 
 	var/used_dominate
-	var/chemicals = 10                      // Chemicals used for reproduction and spitting neurotoxin.
+	var/chemicals = 50                      // Chemicals used for reproduction and spitting neurotoxin.
 	var/mob/living/carbon/human/host        // Human host for the brain worm.
 	var/truename                            // Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
@@ -27,6 +31,13 @@
 	var/docile = 0                          // Sugar can stop borers from acting.
 	var/has_reproduced
 	var/roundstart
+
+	// Reagents the borer can secrete into host's blood
+	var/list/produced_reagents = list(
+		"alkysine",
+		"bicaridine", "kelotane", "dexalin", "anti_toxin",
+		"hyperzine", "tramadol", "space_drugs"
+		)
 
 /mob/living/simple_animal/borer/roundstart
 	roundstart = 1
@@ -47,35 +58,33 @@
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 	if(!roundstart) request_player()
 
-/mob/living/simple_animal/borer/Life()
+// If borer is controlling a host directly, send messages to host instead of borer
+/mob/living/simple_animal/borer/proc/get_borer_control()
+	return (host && controlling) ? host : src
 
+/mob/living/simple_animal/borer/Life()
 	..()
 
+	if(chemicals < 50)
+		chemicals++
+
 	if(host)
-
 		if(!stat && !host.stat)
-
 			if(host.reagents.has_reagent("sugar"))
 				if(!docile)
-					if(controlling)
-						to_chat(host, "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility.")
-					else
-						to_chat(src, "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility.")
-					docile = 1
+					to_chat(get_borer_control(), SPAN_DANGER("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
+					docile = TRUE
 			else
 				if(docile)
-					if(controlling)
-						to_chat(host, "\blue You shake off your lethargy as the sugar leaves your host's blood.")
-					else
-						to_chat(src, "\blue You shake off your lethargy as the sugar leaves your host's blood.")
-					docile = 0
+					to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
+					docile = FALSE
 
 			if(chemicals < 250)
 				chemicals++
 			if(controlling)
 
 				if(docile)
-					to_chat(host, "\blue You are feeling far too docile to continue controlling your host...")
+					to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
 					host.release_control()
 					return
 

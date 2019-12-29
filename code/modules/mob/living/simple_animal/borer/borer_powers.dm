@@ -206,27 +206,33 @@
 	set name = "Secrete Chemicals"
 	set desc = "Push some chemicals into your host's bloodstream."
 
-	if(!host)
-		to_chat(src, "You are not inside a host body.")
+	if(stat)
 		return
 
-	if(stat)
-		to_chat(src, "You cannot secrete chemicals in your current state.")
+	if(!host)
+		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		return
 
 	if(docile)
-		to_chat(src, "\blue You are feeling far too docile to do that.")
+		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
 		return
 
 	if(chemicals < 50)
-		to_chat(src, "You don't have enough chemicals!")
+		to_chat(src, SPAN_WARNING("You don't have enough chemicals!"))
 
-	var/chem = input("Select a chemical to secrete.", "Chemicals") as null|anything in list("alkysine","bicaridine","hyperzine","tramadol")
+	var/list/chem_names = list()
+	for(var/id in produced_reagents)
+		var/datum/reagent/D = chemical_reagents_list[id]
+		chem_names[D.name] = id
+
+	var/chem_name = input("Select a chemical to secrete.", "Chemicals") as null|anything in chem_names
+	var/chem = chem_names[chem_name]
 
 	if(!chem || chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return
 
-	to_chat(src, "\red <B>You squirt a measure of [chem] from your reservoirs into [host]'s bloodstream.</B>")
 	host.reagents.add_reagent(chem, 10)
+	to_chat(src, SPAN_NOTICE("You secrete some chemicals from your reservoirs. There are [host.reagents.get_reagent_amount(chem)] units of [chem_name] in host's bloodstream now."))
 	chemicals -= 50
 
 /mob/living/simple_animal/borer/verb/dominate_victim()
