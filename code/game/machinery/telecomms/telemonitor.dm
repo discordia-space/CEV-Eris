@@ -1,6 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-
 /*
 	Telecomms monitor tracks the overall trafficing of a telecommunications network
 	and displays a heirarchy of linked machines.
@@ -14,8 +11,6 @@
 	var/screen = 0				// the screen number:
 	var/list/machinelist = list()	// the machines located by the computer
 	var/obj/machinery/telecomms/SelectedMachine
-
-	var/network = "NULL"		// the network to probe
 
 	var/temp = ""				// temporary feedback messages
 
@@ -95,9 +90,7 @@
 						temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font>"
 
 					else
-						for(var/obj/machinery/telecomms/T in range(25, src))
-							if(T.network == network)
-								machinelist.Add(T)
+						machinelist = find_machines()
 
 						if(!machinelist.len)
 							temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font>"
@@ -123,40 +116,10 @@
 		updateUsrDialog()
 		return
 
-	attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
-		if(istype(D, /obj/item/weapon/tool/screwdriver))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
-			if(do_after(user, 20, src))
-				if (src.stat & BROKEN)
-					to_chat(user, SPAN_NOTICE("The broken glass falls out."))
-					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					new /obj/item/weapon/material/shard( src.loc )
-					var/obj/item/weapon/circuitboard/comm_monitor/M = new /obj/item/weapon/circuitboard/comm_monitor( A )
-					for (var/obj/C in src)
-						C.loc = src.loc
-					A.circuit = M
-					A.state = 3
-					A.icon_state = "3"
-					A.anchored = 1
-					qdel(src)
-				else
-					to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
-					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					var/obj/item/weapon/circuitboard/comm_monitor/M = new /obj/item/weapon/circuitboard/comm_monitor( A )
-					for (var/obj/C in src)
-						C.loc = src.loc
-					A.circuit = M
-					A.state = 4
-					A.icon_state = "4"
-					A.anchored = 1
-					qdel(src)
-		src.updateUsrDialog()
-		return
-
 /obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
-		to_chat(user, SPAN_NOTICE("You you disable the security protocols"))
+		emagged = TRUE
+		to_chat(user, SPAN_NOTICE("You disable the security protocols"))
 		src.updateUsrDialog()
 		return 1

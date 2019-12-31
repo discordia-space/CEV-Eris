@@ -224,11 +224,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/handcuffs,
 					/obj/item/weapon/handcuffs,
 					/obj/item/clothing/head/helmet/riot,
-					/obj/item/clothing/suit/armor/riot,
+					/obj/item/clothing/suit/armor/heavy/riot,
 					/obj/item/clothing/head/helmet/riot,
-					/obj/item/clothing/suit/armor/riot,
+					/obj/item/clothing/suit/armor/heavy/riot,
 					/obj/item/clothing/head/helmet/riot,
-					/obj/item/clothing/suit/armor/riot)
+					/obj/item/clothing/suit/armor/heavy/riot)
 	cost = 6100
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Riot gear crate"
@@ -672,23 +672,42 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Particle Accelerator crate"
 
 /datum/supply_pack/mecha_ripley
-	name = "Circuit Crate (\"Ripley\" APLU)"
-	contains = list(/obj/item/weapon/circuitboard/mecha/ripley/main, //TEMPORARY due to lack of circuitboard printer
-					/obj/item/weapon/circuitboard/mecha/ripley/peripherals) //TEMPORARY due to lack of circuitboard printer
+	name = "exosuit assembly crate (\"Ripley\" APLU)"
+	contains = list(
+		/obj/item/mecha_parts/mecha_equipment/tool/drill,
+		/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
+		/obj/item/weapon/circuitboard/mecha/main,
+		/obj/item/weapon/circuitboard/mecha/peripherals,
+		/obj/item/mecha_parts/chassis/ripley,
+		/obj/item/mecha_parts/part/ripley_torso,
+		/obj/item/mecha_parts/part/ripley_left_arm,
+		/obj/item/mecha_parts/part/ripley_right_arm,
+		/obj/item/mecha_parts/part/ripley_left_leg,
+		/obj/item/mecha_parts/part/ripley_right_leg
+	)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
-	crate_name = "APLU \"Ripley\" Circuit Crate"
-	access = access_robotics
+	crate_name = "APLU \"Ripley\" exosuit assembly crate"
 	group = "Engineering"
 
 /datum/supply_pack/mecha_odysseus
-	name = "Circuit Crate (\"Odysseus\")"
-	contains = list(/obj/item/weapon/circuitboard/mecha/odysseus/peripherals, //TEMPORARY due to lack of circuitboard printer
-					/obj/item/weapon/circuitboard/mecha/odysseus/main) //TEMPORARY due to lack of circuitboard printer
-	cost = 2500
+	name = "exosuit assembly crate (\"Odysseus\")"
+	contains = list(
+		/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
+		/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
+		/obj/item/weapon/circuitboard/mecha/main,
+		/obj/item/weapon/circuitboard/mecha/peripherals,
+		/obj/item/mecha_parts/chassis/odysseus,
+		/obj/item/mecha_parts/part/odysseus_head,
+		/obj/item/mecha_parts/part/odysseus_torso,
+		/obj/item/mecha_parts/part/odysseus_left_arm,
+		/obj/item/mecha_parts/part/odysseus_right_arm,
+		/obj/item/mecha_parts/part/odysseus_left_leg,
+		/obj/item/mecha_parts/part/odysseus_right_leg
+	)
+	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
-	crate_name = "\"Odysseus\" Circuit Crate"
-	access = access_robotics
+	crate_name = "\"Odysseus\" exosuit assembly crate"
 	group = "Engineering"
 
 /datum/supply_pack/robotics
@@ -943,8 +962,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/spray/plantbgone,
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
-					/obj/item/weapon/material/hatchet,
-					/obj/item/weapon/material/minihoe,
+					/obj/item/weapon/tool/hatchet,
+					/obj/item/weapon/tool/minihoe,
 					/obj/item/device/scanner/plant,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron) // Updated with new things

@@ -1,5 +1,5 @@
 /datum/reagent/organic/blood
-	data = new/list("donor" = null, "viruses" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
+	data = new/list("donor" = null, "viruses" = null, "species" = "Human", "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list(), "ling" = null)
 	name = "Blood"
 	id = "blood"
 	reagent_state = LIQUID
@@ -17,7 +17,7 @@
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
 	return
-
+	
 /datum/reagent/organic/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/t = data.Copy()
 	if(t["virus2"])

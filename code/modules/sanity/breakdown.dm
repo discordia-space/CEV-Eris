@@ -39,6 +39,7 @@
 	flick(icon_state, img)
 	holder.owner.playsound_local(get_turf(holder.owner), breakdown_sound, 100)
 	if(start_messages)
+		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration]")
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)
 		holder.restoreLevel(restore_sanity_pre)
@@ -51,6 +52,7 @@
 
 /datum/breakdown/proc/conclude()
 	if(end_messages)
+		log_and_message_admins("[holder.owner] is no longer affected by [name]")
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
 	if(restore_sanity_post)
 		holder.restoreLevel(restore_sanity_post)

@@ -13,7 +13,7 @@
 	desc = "Standard-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	force = WEAPON_FORCE_WEAK
+	force = WEAPON_FORCE_HARMLESS
 	armor = list(
 		melee = 20,
 		bullet = 10,

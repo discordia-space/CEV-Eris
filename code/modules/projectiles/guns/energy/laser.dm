@@ -12,6 +12,10 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
+	firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+	)
 
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = TRUE
@@ -40,6 +44,10 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	price_tag = 2000
+	firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+	)
 
 /obj/item/weapon/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -57,6 +65,10 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = null
 	self_recharge = TRUE
 	price_tag = 4500
+	firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+	)
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
@@ -76,9 +88,6 @@ obj/item/weapon/gun/energy/retro
 	price_tag = 3000
 	one_hand_penalty = 5
 
-/obj/item/weapon/gun/proc/set_item_state
-	item_state_slots[slot_back_str] = "back"
-	item_state_slots[slot_s_store_str]= "onsuit"
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"

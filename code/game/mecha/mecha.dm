@@ -84,7 +84,7 @@
 
 	var/list/equipment = new
 	var/obj/item/mecha_parts/mecha_equipment/selected
-	var/max_equip = 3
+	var/max_equip = 4
 	var/datum/events/events
 
 	//Sounds

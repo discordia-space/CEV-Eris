@@ -63,3 +63,5 @@
 
 /obj/machinery/autolathe/mechfab/proc/update_categories()
 	categories = files.design_categories_mechfab
+	if(!show_category && length(categories))
+		show_category = categories[1]
