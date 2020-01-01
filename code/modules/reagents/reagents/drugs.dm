@@ -202,7 +202,7 @@
 	if(prob(30))	
 		M.vomit()
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
-	if ((prob(20) && paralysis < 1)
+	if ((prob(20) && paralysis < 1))
 			M.visible_message(SPAN_DANGER("[M] starts having a seizure!"), SPAN_DANGER("You have a seizure!"))
 			M.Paralyse(10)
 			M.make_jittery(30)
