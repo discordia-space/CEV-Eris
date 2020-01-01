@@ -197,6 +197,16 @@
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	M.add_chemical_effect(CE_PULSE, 1)
 
+/datum/reagent/drug/hyperzine/overdose(var/mob/living/carbon/M, var/alien)
+	M.adjustToxLoss((0.5) * effect_multiplier)
+	if(prob(30))	
+		M.vomit()
+	M.add_chemical_effect(CE_SPEEDBOOST, -1)
+	if ((prob(20) && paralysis < 1)
+			M.visible_message(SPAN_DANGER"[M] starts having a seizure!"), SPAN_DANGER("You have a seizure!"))
+			M.Paralyse(10)
+			M.make_jittery(30)
+
 /datum/reagent/drug/sanguinum
 	name = "Sanguinum"
 	id = "sanguinum"
