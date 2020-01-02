@@ -26,7 +26,7 @@
 		bio = 10,
 		rad = 0
 	)
-	slowdown = 1
+	slowdown = 0.4
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	item_flags = STOPPRESSUREDAMAGE | COVER_PREVENT_MANIPULATION
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -67,7 +67,7 @@
 	w_class = ITEM_SIZE_HUGE
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	slowdown = 3.2
+	slowdown = 1.5
 	armor = list(
 		melee = 30,
 		bullet = 30,
@@ -81,7 +81,7 @@
 	item_flags = COVER_PREVENT_MANIPULATION
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
-	equip_delay = 20 SECONDS
+	equip_delay = 10 SECONDS
 	price_tag = 300
 
 /obj/item/clothing/head/bomb_hood/security
@@ -94,9 +94,9 @@
  * Radiation protection
  */
 /obj/item/clothing/head/radiation
-	name = "Radiation Hood"
+	name = "radiation hood"
 	icon_state = "rad"
-	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
+	desc = "A hood with radiation protective properties."
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	armor = list(
@@ -111,8 +111,8 @@
 
 
 /obj/item/clothing/suit/radiation
-	name = "Radiation suit"
-	desc = "A suit that protects against radiation. Label: Made with lead, do not eat insulation."
+	name = "radiation suit"
+	desc = "A suit that protects against radiation."
 	icon_state = "rad"
 	item_state = "rad_suit"
 	w_class = ITEM_SIZE_BULKY
@@ -120,7 +120,7 @@
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	extra_allowed = list(/obj/item/clothing/head/radiation)
-	slowdown = 1.5
+	slowdown = 0.4
 	armor = list(
 		melee = 0,
 		bullet = 0,
