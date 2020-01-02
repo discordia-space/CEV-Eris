@@ -137,22 +137,17 @@
  */
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
+	desc = "It's a storage unit for explosion-protective space suits."
 	icon_state = "bomb"
 
 /obj/structure/closet/bombcloset/populate_contents()
-	new /obj/item/clothing/suit/bomb_suit(src)
+	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/head/bomb_hood(src)
+	new /obj/item/clothing/head/helmet/space/bomb(src)
 
-/obj/structure/closet/bombclosetsecurity
-	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
-	icon_state = "bomb"
-
-/obj/structure/closet/bombclosetsecurity/populate_contents()
-	new /obj/item/clothing/suit/bomb_suit/security(src)
+/obj/structure/closet/bombcloset/security/populate_contents()
+	new /obj/item/clothing/suit/space/bomb/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/head/bomb_hood/security(src)
+	new /obj/item/clothing/head/helmet/space/bomb/security(src)

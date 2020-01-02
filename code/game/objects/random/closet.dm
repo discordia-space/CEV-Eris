@@ -22,7 +22,7 @@
 				/obj/structure/closet/malf/suits =  0.5,
 				/obj/structure/closet/syndicate/personal = 0.1,
 				/obj/structure/closet/bombcloset = 0.5,
-				/obj/structure/closet/bombclosetsecurity = 0.4))
+				/obj/structure/closet/bombcloset/security = 0.4))
 
 /obj/random/closet/low_chance
 	name = "low chance random closet"

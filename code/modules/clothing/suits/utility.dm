@@ -36,61 +36,6 @@
 
 
 /*
- * Bomb protection
- */
-/obj/item/clothing/head/bomb_hood
-	name = "bomb hood"
-	desc = "Use in case of bomb."
-	icon_state = "bombsuit"
-	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 100,
-		bio = 50,
-		rad = 50
-	)
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
-	body_parts_covered = HEAD|FACE|EYES|EARS
-	item_flags = COVER_PREVENT_MANIPULATION
-	siemens_coefficient = 0
-	equip_delay = 5 SECONDS
-	flash_protection = FLASH_PROTECTION_MAJOR
-	tint = TINT_HEAVY
-	price_tag = 100
-
-/obj/item/clothing/suit/bomb_suit
-	name = "bomb suit"
-	desc = "A suit designed for safety when handling explosives."
-	icon_state = "bombsuit"
-	item_state = "bombsuit"
-	w_class = ITEM_SIZE_HUGE
-	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.01
-	slowdown = 1.5
-	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 100,
-		bio = 50,
-		rad = 50
-	)
-	flags_inv = HIDEJUMPSUIT|HIDETAIL
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	item_flags = COVER_PREVENT_MANIPULATION
-	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0
-	equip_delay = 10 SECONDS
-	price_tag = 300
-
-/obj/item/clothing/head/bomb_hood/security
-	icon_state = "bombsuitsec"
-
-/obj/item/clothing/suit/bomb_suit/security
-	icon_state = "bombsuitsec"
-
-/*
  * Radiation protection
  */
 /obj/item/clothing/head/radiation

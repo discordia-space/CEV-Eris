@@ -182,7 +182,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/obj/structure/closet/bombclosetsecurity,
+/obj/structure/closet/bombcloset/security,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "aaF" = (
@@ -325,7 +325,7 @@
 /obj/machinery/camera/network/security{
 	dir = 4
 	},
-/obj/structure/closet/bombclosetsecurity,
+/obj/structure/closet/bombcloset/security,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "aaY" = (
