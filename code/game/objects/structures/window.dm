@@ -701,6 +701,9 @@
 //Fulltile windows can only exist ontop of a low wall
 //If they're ever not on a wall, they will drop to the floor and smash.
 /obj/structure/window/proc/mount_check()
+	if(QDELETED(src))
+		return
+
 	if (!is_full_window())
 		return
 
