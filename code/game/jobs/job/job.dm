@@ -67,13 +67,18 @@
 		for(var/name in src.stat_modifiers)
 			target.stats.changeStat(name, stat_modifiers[name])
 
-	for(var/perk in perks)
-		var/datum/perk/P = new perk
-		P.teach(target.stats)
+	if(flavor)
+		for(var/perk in flavor.perks)
+			var/datum/perk/P = new perk
+			P.teach(target.stats)
+	else
+		for(var/perk in perks)
+			var/datum/perk/P = new perk
+			P.teach(target.stats)
 
 	return TRUE
 
-/datum/job/proc/add_additiional_language(var/mob/living/carbon/human/target)
+/datum/job/proc/add_additional_language(var/mob/living/carbon/human/target, datum/job_flavor/flavor)
 	if(!ishuman(target))
 		return FALSE
 
@@ -84,9 +89,14 @@
 
 	var/i
 
-	for(i in also_known_languages)
-		if(prob(also_known_languages[i]))
-			H.add_language(i)
+	if(flavor)
+		for(i in flavor.also_known_languages)
+			if(prob(flavor.also_known_languages[i]))
+				H.add_language(i)
+	else
+		for(i in also_known_languages)
+			if(prob(also_known_languages[i]))
+				H.add_language(i)
 
 	return TRUE
 

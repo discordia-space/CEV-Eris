@@ -43,5 +43,5 @@ As an vagabond, you should strive to help out anyone you can. Or at least, anyon
 
 /datum/job/assistant/New()
 	..()
-	for(var/alt in subtypesof(/datum/job_flavor/assistant))
+	for(var/alt in subtypesof(/datum/job_flavor/vagabond) - (/datum/job_flavor/vagabond/cosmic))
 		random_flavors += new alt

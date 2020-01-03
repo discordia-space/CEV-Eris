@@ -320,7 +320,7 @@ SUBSYSTEM_DEF(job)
 		// END EMAIL GENERATION
 		job.equip(H, flavor ? flavor.title : H.mind ? H.mind.role_alt_title : "")
 		job.add_stats(H, flavor)
-		job.add_additiional_language(H)
+		job.add_additional_language(H, flavor)
 
 
 		job.apply_fingerprints(H)
