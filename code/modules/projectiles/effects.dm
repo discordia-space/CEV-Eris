@@ -126,3 +126,26 @@
 //----------------------------
 /obj/effect/projectile/bullet/muzzle
 	icon_state = "muzzle_bullet"
+
+//----------------------------
+// Plasma
+//----------------------------
+/obj/effect/projectile/plasma/muzzle
+	icon_state = "muzzle_plasma"
+
+/obj/effect/projectile/plasma/muzzle/light
+	icon_state = "muzzle_plasma_pink" //Hue shift of 168
+
+/obj/effect/projectile/plasma/muzzle/heavy
+	icon_state = "muzzle_plasma_blue" //Hue shift of 84
+
+/obj/effect/projectile/plasma/tracer
+
+/obj/effect/projectile/plasma/impact
+	icon_state = "impact_plasma"
+
+/obj/effect/projectile/plasma/impact/light
+	icon_state = "impact_plasma_pink"
+
+/obj/effect/projectile/plasma/impact/heavy
+	icon_state = "impact_plasma_blue"
