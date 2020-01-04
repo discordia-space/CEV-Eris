@@ -66,7 +66,7 @@
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
 
 /datum/uplink_item/item/tools/space_suit
-	name = "Space Suit"
+	name = "Mercenary Voidsuit"
 	item_cost = 6
 	path = /obj/item/weapon/storage/box/syndie_kit/space
 
