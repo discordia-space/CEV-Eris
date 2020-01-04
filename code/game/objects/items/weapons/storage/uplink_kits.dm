@@ -115,13 +115,11 @@
 	U3.passive_gain = 0
 
 /obj/item/weapon/storage/box/syndie_kit/space
-	name = "boxed space suit and helmet"
+	name = "boxed voidsuit"
 
 /obj/item/weapon/storage/box/syndie_kit/space/populate_contents()
-	new /obj/item/clothing/suit/space/syndicate(src)
-	new /obj/item/clothing/head/helmet/space/syndicate(src)
+	new /obj/item/clothing/suit/space/void/merc/boxed(src)
 	new /obj/item/clothing/mask/gas/syndicate(src)
-	new /obj/item/weapon/tank/emergency_oxygen/double(src)
 
 /obj/item/weapon/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"

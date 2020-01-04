@@ -83,3 +83,6 @@
 /obj/item/clothing/suit/space/void/merc/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/oxygen
+
+/obj/item/clothing/suit/space/void/merc/boxed
+	tank = /obj/item/weapon/tank/emergency_oxygen/double
