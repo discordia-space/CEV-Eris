@@ -68485,9 +68485,6 @@
 /area/shuttle/mining/station)
 "cXE" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-/obj/item/weapon/storage/box/shotgunammo/slug,
 /obj/item/weapon/storage/box/shotgunammo/slug,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "7,9"
@@ -89149,12 +89146,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
 /obj/random/medical/low_chance,
 /obj/random/medical/low_chance,
 /obj/structure/table/rack/shelf,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "dQV" = (
