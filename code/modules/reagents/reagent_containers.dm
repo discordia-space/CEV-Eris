@@ -65,7 +65,12 @@
 		to_chat(user, SPAN_NOTICE("[src] is full."))
 		return TRUE
 
-	var/trans = target.reagents.trans_to_obj(src, target:amount_per_transfer_from_this)
+	var/transfer_amount = amount_per_transfer_from_this
+	if(istype(target, /obj/item/weapon/reagent_containers))
+		var/obj/item/weapon/reagent_containers/C = target
+		transfer_amount = C.amount_per_transfer_from_this
+
+	var/trans = target.reagents.trans_to_obj(src, transfer_amount)
 	to_chat(user, SPAN_NOTICE("You fill [src] with [trans] units of the contents of [target]."))
 	playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 	return TRUE
