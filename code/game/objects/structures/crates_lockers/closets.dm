@@ -458,7 +458,7 @@
 				//Cognition can be used to speed up the proccess
 				if (prob (user.stats.getStat(STAT_COG)))
 					hack_stage = hack_require
-					to_chat(user, SPAN_NOTICE("You found a shortcut, a defect in a system that allows you to hack it right now. Now you just need to open it."))
+					to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
 				else
 					hack_stage++
 
