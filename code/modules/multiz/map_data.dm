@@ -165,25 +165,25 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	names[level] = MD.name
 
 	if(MD.is_station_level)
-		station_levels += level
+		station_levels |= level
 
 	if(MD.is_admin_level)
-		admin_levels += level
+		admin_levels |= level
 
 	if(MD.is_player_level)
-		player_levels += level
+		player_levels |= level
 
 	if(MD.is_contact_level)
-		contact_levels += level
+		contact_levels |= level
 
 	if(MD.generate_asteroid)
-		asteroid_leves += level
+		asteroid_leves |= level
 
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
 
 	if(MD.is_sealed)
-		sealed_levels += level
+		sealed_levels |= level
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
