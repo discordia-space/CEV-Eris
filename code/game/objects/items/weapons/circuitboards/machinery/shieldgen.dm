@@ -3,7 +3,7 @@
 #endif
 // New shields
 /obj/item/weapon/circuitboard/shield_generator
-	name = T_BOARD("advanced shield generator")
+	name = T_BOARD("hull shield generator")
 	board_type = "machine"
 	build_path = /obj/machinery/power/shield_generator
 	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
