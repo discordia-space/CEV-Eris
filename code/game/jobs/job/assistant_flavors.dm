@@ -8,7 +8,8 @@
 //
 // Vagabonds
 //
-/datum/job_flavor/vagabond/stat_modifiers = list(
+/datum/job_flavor/vagabond
+	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
 		STAT_BIO = 8,

@@ -4,5 +4,5 @@
 	uniform = /obj/item/clothing/under/rank/assistant
 
 /decl/hierarchy/outfit/job/crewman
-	name = OUTFIT_JOB_NAME(ASSISTANT_TITLE)
+	name = OUTFIT_JOB_NAME("Crewman")
 	uniform = /obj/item/clothing/under/rank/crewman
