@@ -990,6 +990,7 @@
 		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
 
 /mob/living/carbon/human/rejuvenate()
+	sanity.setLevel(sanity.max_level)
 	restore_blood()
 	..()
 
