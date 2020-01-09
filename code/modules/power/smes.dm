@@ -431,6 +431,35 @@
 	if(!output_attempt)
 		outputting = 0
 
+// Proc: toggle_input()
+// Parameters: None
+// Description: Switches the input on/off depending on previous setting
+/obj/machinery/power/smes/proc/toggle_input()
+	inputting(!input_attempt)
+	update_icon()
+
+// Proc: toggle_output()
+// Parameters: None
+// Description: Switches the output on/off depending on previous setting
+/obj/machinery/power/smes/proc/toggle_output()
+	outputting(!output_attempt)
+	update_icon()
+
+// Proc: set_input()
+// Parameters: 1 (new_input - New input value in Watts)
+// Description: Sets input setting on this SMES. Trims it if limits are exceeded.
+/obj/machinery/power/smes/proc/set_input(var/new_input = 0)
+	input_level = between(0, new_input, input_level_max)
+	update_icon()
+
+// Proc: set_output()
+// Parameters: 1 (new_output - New output value in Watts)
+// Description: Sets output setting on this SMES. Trims it if limits are exceeded.
+/obj/machinery/power/smes/proc/set_output(var/new_output = 0)
+	output_level = between(0, new_output, output_level_max)
+	update_icon()
+
+
 /obj/machinery/power/smes/emp_act(severity)
 	if(prob(50))
 		inputting(rand(0,1))
