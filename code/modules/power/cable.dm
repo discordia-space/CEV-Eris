@@ -57,7 +57,7 @@ var/list/possible_cable_coil_colours = list(
 	return PN.draw_power(amount)
 
 /obj/structure/cable/yellow
-	color = COLOR_AMBER
+	color = COLOR_YELLOW
 
 /obj/structure/cable/green
 	color = COLOR_GREEN
