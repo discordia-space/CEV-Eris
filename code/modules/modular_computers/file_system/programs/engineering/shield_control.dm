@@ -107,7 +107,7 @@
 
 /datum/nano_module/shield_control/Topic(href, href_list)
 	if(..())
-		return 1
+		return
 
 	if(href_list["connect"])
 		connect_to_generator()
