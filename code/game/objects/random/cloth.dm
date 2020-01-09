@@ -119,7 +119,7 @@
 				/obj/item/clothing/suit/bio_suit/security = 5,
 				/obj/item/clothing/suit/bio_suit/virology = 5,
 				/obj/item/clothing/suit/radiation = 30,
-				/obj/item/clothing/suit/bomb_suit = 20))
+				/obj/item/clothing/suit/space/bomb = 20))
 
 /obj/random/cloth/hazmatsuit/low_chance
 	name = "low chance random hazmat suit"

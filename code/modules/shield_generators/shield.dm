@@ -160,7 +160,7 @@ Like for example singulo act and whatever.
 		// The closer we are to impact site, the longer it takes for shield to come back up.
 		S.fail(-(-range + get_dist(src, S)) * 2)
 
-/obj/effect/shield/proc/take_damage(var/damage, var/damtype, var/hitby)
+/obj/effect/shield/proc/take_damage(damage, damtype, hitby)
 	if(!gen)
 		qdel(src)
 		return
@@ -284,6 +284,13 @@ Like for example singulo act and whatever.
 		return 0
 	mover.shield_impact(src)
 	return ..()
+
+// If moved (usually by a shuttle), the field ceases to exist
+/obj/effect/shield/forceMove()
+	. = ..()
+	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
+	if(. && !QDELETED(src))
+		qdel(src)
 
 
 /obj/effect/shield/proc/overcharge_shock(var/mob/living/M)

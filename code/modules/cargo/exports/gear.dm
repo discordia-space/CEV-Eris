@@ -144,17 +144,6 @@
 	unit_name = "biosuit"
 	export_types = list(/obj/item/clothing/suit/bio_suit)
 
-// Bombsuits
-/datum/export/gear/bombhelmet
-	cost = 100
-	unit_name = "bomb suit hood"
-	export_types = list(/obj/item/clothing/head/bomb_hood)
-
-/datum/export/gear/bombsuit
-	cost = 300
-	unit_name = "bomb suit"
-	export_types = list(/obj/item/clothing/suit/bomb_suit)
-
 //--------------------------------------------
 //---------------GLASSES----------------------
 //--------------------------------------------
