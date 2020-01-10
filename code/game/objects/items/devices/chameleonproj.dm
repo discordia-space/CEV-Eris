@@ -18,6 +18,7 @@
 	var/saved_overlays
 
 	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
+	var/move_cost = 4 //how much charge is consumed per movement
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 
@@ -54,9 +55,8 @@
 
 /obj/item/device/chameleon/Process()
 	if(active_dummy)
-		if(!cell || !cell.checked_use(tick_cost))
-			to_chat(src.loc, SPAN_WARNING("\The [src] sputters. You are visible now."))
-			disrupt()
+		if(cell)
+			cell.checked_use(tick_cost)
 
 /obj/item/device/chameleon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell,usr))
@@ -84,10 +84,6 @@
 
 /obj/item/device/chameleon/proc/toggle()
 	if(!can_use || !saved_item) return
-	if(!cell || !cell.check_charge(tick_cost))
-		playsound(loc, 'sound/machines/button.ogg', 50, 1)
-		to_chat(usr, SPAN_NOTICE("\The [src]'s battery is dead or missing."))
-		return
 	if(active_dummy)
 		eject_all()
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
@@ -138,7 +134,6 @@
 	desc = ""
 	density = 0
 	anchored = 1
-	var/can_move = 1
 	var/obj/item/device/chameleon/master = null
 
 /obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/device/chameleon/C)
@@ -175,22 +170,22 @@
 
 /obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
+	var/move_delay = 0
+	switch(user.bodytemperature)
+		if(300 to INFINITY)
+			move_delay = 10
+		if(295 to 300)
+			move_delay = 13
+		if(280 to 295)
+			move_delay = 16
+		if(260 to 280)
+			move_delay = 20
+		else
+			move_delay = 25
+	if(!master.cell || !master.cell.checked_use(master.move_cost))
+		user.add_move_cooldown(move_delay)
 
-	if(can_move)
-		can_move = 0
-		switch(user.bodytemperature)
-			if(300 to INFINITY)
-				spawn(10) can_move = 1
-			if(295 to 300)
-				spawn(13) can_move = 1
-			if(280 to 295)
-				spawn(16) can_move = 1
-			if(260 to 280)
-				spawn(20) can_move = 1
-			else
-				spawn(25) can_move = 1
-		step(src, direction)
-	return
+	step(src, direction)
 
 /obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
