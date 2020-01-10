@@ -98,7 +98,7 @@
 				return FALSE
 		//No using multiples of the same upgrade
 		for (var/obj/item/I in T.item_upgrades)
-			if (I.type == type)
+			if (I.type == parent.type)
 				to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
 				return FALSE
 
