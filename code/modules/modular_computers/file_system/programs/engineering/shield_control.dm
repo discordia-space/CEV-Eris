@@ -10,14 +10,14 @@
 	filedesc = "Shield Control"
 	nanomodule_path = /datum/nano_module/shield_control
 	program_icon_state = "engine"
-	extended_desc = "This program allows remote management of the hull shield generator. Can only be run on consoles"
+	extended_desc = "This program allows remote management of the hull shield generator. Cannot be run on tablet computers."
 	required_access = access_atmospherics
 	requires_ntnet = 1
 	network_destination = "shield control system"
 	required_access = access_engine //Restricted to engineering and the bridge
 	requires_ntnet_feature = NTNET_SYSTEMCONTROL
-	usage_flags = PROGRAM_CONSOLE //Console only, this is a sensitive program
-	size = 30
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_CONSOLE
+	size = 24
 
 
 /datum/nano_module/shield_control
@@ -67,7 +67,7 @@
 		playsound_host('sound/machines/buzz-two.ogg', 50)
 		genloc = ""
 
-/datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 
 	var/list/data = host.initial_data()
 
@@ -97,7 +97,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800)
+		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -107,7 +107,7 @@
 
 /datum/nano_module/shield_control/Topic(href, href_list)
 	if(..())
-		return 1
+		return
 
 	if(href_list["connect"])
 		connect_to_generator()

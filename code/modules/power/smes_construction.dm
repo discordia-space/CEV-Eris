@@ -1,48 +1,50 @@
 // BUILDABLE SMES(Superconducting Magnetic Energy Storage) UNIT
 //
-// Last Change 1.1.2015 by Atlantis - Happy New Year!
-//
 // This is subtype of SMES that should be normally used. It can be constructed, deconstructed and hacked.
 // It also supports RCON System which allows you to operate it remotely, if properly set.
 
 //MAGNETIC COILS - These things actually store and transmit power within the SMES. Different types have different properties
-/obj/item/weapon/smes_coil
+/obj/item/weapon/stock_parts/smes_coil
 	name = "SMES coil"
 	desc = "Standard superconductive magnetic coil with average capacity and I/O rating."
 	icon = 'icons/obj/stock_parts.dmi'
-	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
+	icon_state = "smes_coil"			// Just a few icons patched together. If someone wants to make a better icon, feel free to do so!
 	w_class = ITEM_SIZE_BULKY 						// It's LARGE (backpack size)
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_SILVER = 4)
 	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 3, TECH_MATERIAL = 2)
 	var/ChargeCapacity = 10000000
 	var/IOCapacity = 750000
+	rating = 2
 
 // 20% Charge Capacity, 60% I/O Capacity. Used for substation/outpost SMESs.
-/obj/item/weapon/smes_coil/weak
+/obj/item/weapon/stock_parts/smes_coil/weak
 	name = "basic SMES coil"
 	desc = "Cheaper model of standard superconductive magnetic coil. It's capacity and I/O rating are considerably lower."
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 2)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 2)
 	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 2, TECH_MATERIAL = 1)
 	ChargeCapacity = 2000000
 	IOCapacity = 600000
+	rating = 1
 
 // 1000% Charge Capacity, 20% I/O Capacity
-/obj/item/weapon/smes_coil/super_capacity
+/obj/item/weapon/stock_parts/smes_coil/super_capacity
 	name = "capacitance SMES coil"
 	desc = "Specialised version of standard superconductive magnetic coil. This one has significantly stronger containment field, allowing for significantly larger power storage. It's IO rating is much lower, however."
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_URANIUM = 4)
 	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_MATERIAL = 3)
 	ChargeCapacity = 100000000
 	IOCapacity = 150000
+	rating = 3
 
 // 10% Charge Capacity, 400% I/O Capacity. Technically turns SMES into large super capacitor.Ideal for shields.
-/obj/item/weapon/smes_coil/super_io
+/obj/item/weapon/stock_parts/smes_coil/super_io
 	name = "transmission SMES coil"
 	desc = "Specialised version of standard superconductive magnetic coil. While this one won't store almost any power, it rapidly transfers power, making it useful in systems which require large throughput."
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_GOLD = 4)
 	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_MATERIAL = 3)
 	ChargeCapacity = 1000000
 	IOCapacity = 3000000
+	rating = 3
 
 
 // SMES itself
@@ -117,7 +119,7 @@
 	capacity = 0
 	input_level_max = 0
 	output_level_max = 0
-	for(var/obj/item/weapon/smes_coil/C in component_parts)
+	for(var/obj/item/weapon/stock_parts/smes_coil/C in component_parts)
 		cur_coils ++
 		capacity += C.ChargeCapacity
 		input_level_max += C.IOCapacity
@@ -336,45 +338,45 @@
 				return
 
 		// Superconducting Magnetic Coil - Upgrade the SMES
-		else if(istype(W, /obj/item/weapon/smes_coil))
+		else if(istype(W, /obj/item/weapon/stock_parts/smes_coil))
 			if (cur_coils < max_coils)
 
 				if (failure_probability && prob(failure_probability))
 					total_system_failure(failure_probability, user)
 					return
 
-				to_chat(usr, "You install the coil into the SMES unit!")
+				to_chat(usr, SPAN_NOTICE("You install the coil into the SMES unit."))
 				user.drop_item()
 				component_parts += W
 				W.loc = src
 				RefreshParts()
 			else
-				to_chat(usr, "\red You can't insert more coils to this SMES unit!")
+				to_chat(usr, SPAN_WARNING("You can't insert more coils to this SMES unit!"))
 
-// Proc: toggle_input()
-// Parameters: None
-// Description: Switches the input on/off depending on previous setting
-/obj/machinery/power/smes/buildable/proc/toggle_input()
-	inputting(!input_attempt)
-	update_icon()
+// SMESes that power ship sections
+// Output enabled,  partially charged
+/obj/machinery/power/smes/buildable/substation
+	charge = 5e+006
 
-// Proc: toggle_output()
-// Parameters: None
-// Description: Switches the output on/off depending on previous setting
-/obj/machinery/power/smes/buildable/proc/toggle_output()
-	outputting(!output_attempt)
-	update_icon()
+	output_attempt = TRUE
+	output_level = 200000
 
-// Proc: set_input()
-// Parameters: 1 (new_input - New input value in Watts)
-// Description: Sets input setting on this SMES. Trims it if limits are exceeded.
-/obj/machinery/power/smes/buildable/proc/set_input(var/new_input = 0)
-	input_level = between(0, new_input, input_level_max)
-	update_icon()
+	RCon_tag = "Substation - BROKEN, REPORT THIS"
 
-// Proc: set_output()
-// Parameters: 1 (new_output - New output value in Watts)
-// Description: Sets output setting on this SMES. Trims it if limits are exceeded.
-/obj/machinery/power/smes/buildable/proc/set_output(var/new_output = 0)
-	output_level = between(0, new_output, output_level_max)
-	update_icon()
+
+// SMESes that power the entire ship
+// Enabled and partially charged
+/obj/machinery/power/smes/buildable/engine
+	charge = 8e+006
+
+	input_attempt = TRUE
+	output_attempt = TRUE
+
+	input_level = 1e+006
+	output_level = 1e+006
+
+// They spawn with an extra coil to handle the load
+/obj/machinery/power/smes/buildable/engine/Initialize()
+	. = ..()
+	component_parts += new /obj/item/weapon/stock_parts/smes_coil(src)
+	RefreshParts()
