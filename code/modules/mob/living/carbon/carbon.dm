@@ -11,71 +11,9 @@
 	..()
 
 	handle_viruses()
-	handle_nsa()
 	// Increase germ_level regularly
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
-
-/mob/living/carbon/proc/adjust_nsa(value, tag)
-	if(!tag)
-		crash_with("no tag given to adjust_nsa()")
-		return
-	nerve_system_accumulations[tag] = value
-
-/mob/living/carbon/proc/remove_nsa(tag)
-	if(nerve_system_accumulations[tag])
-		nerve_system_accumulations.Remove(tag)
-
-/mob/living/carbon/proc/get_nsa_value(tag)
-	if(nerve_system_accumulations[tag])
-		return nerve_system_accumulations[tag]
-
-/mob/living/carbon/proc/get_nsa()
-	return nsa_current
-
-/mob/living/carbon/proc/get_nsa_target()
-	var/accumulatedNSA
-	for(var/tag in nerve_system_accumulations)
-		accumulatedNSA += nerve_system_accumulations[tag]
-	return accumulatedNSA
-
-/mob/living/carbon/proc/handle_nsa()
-	var/nsa_target = get_nsa_target()
-	if(nsa_target != nsa_current)
-		nsa_current = nsa_target > nsa_current \
-		            ? min(nsa_current + nsa_target / 30, nsa_target) \
-		            : max(nsa_current - 6.66, nsa_target)
-		nsa_changed()
-	if(get_nsa() > nsa_threshold)
-		nsa_breached_effect()
-
-/mob/living/carbon/proc/nsa_changed()
-	if(get_nsa() > nsa_threshold)
-		var/stat_mod = get_nsa() > 140 ? -20 : -10
-		for(var/stat in ALL_STATS)
-			stats.addTempStat(stat, stat_mod, INFINITY, "nsa_breach")
-	else
-		for(var/stat in ALL_STATS)
-			stats.removeTempStat(stat, "nsa_breach")
-	HUDneed["nsa"]?.update_icon()
-
-/mob/living/carbon/proc/nsa_breached_effect()
-	if(get_nsa() < 120)
-		return
-	vomit()
-
-	if(get_nsa() < 160)
-		return
-	drop_l_hand()
-	drop_r_hand()
-
-	if(get_nsa() < 180)
-		return
-	adjustToxLoss(1)
-
-	if(get_nsa() < 200)
-		return
-	Sleeping(2)
 
 /mob/living/carbon/Destroy()
 	qdel(ingested)
