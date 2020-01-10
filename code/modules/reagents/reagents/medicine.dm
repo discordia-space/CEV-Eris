@@ -670,19 +670,19 @@
 	metabolism = REM/2
 
 /datum/reagent/medicine/detox/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	if(M.nsa_threshold == initial(M.nsa_threshold))
-		M.nsa_threshold += rand(20, 60)
+	if(M.metabolism_effects.nsa_threshold == initial(M.metabolism_effects.nsa_threshold))
+		M.metabolism_effects.nsa_threshold += rand(20, 60)
 
 /datum/reagent/medicine/detox/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.nsa_threshold = initial(C.nsa_threshold)
+		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold)
 
 /datum/reagent/medicine/detox/overdose(var/mob/living/carbon/M, var/alien)
 	var/mob/living/carbon/C = M
 	if(istype(C))
-		C.nsa_threshold = initial(C.nsa_threshold) - rand(20, 40)
+		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold) - rand(20, 40)
 
 /datum/reagent/medicine/purger
 	name = "Purger"
@@ -781,17 +781,17 @@
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		for (var/tag in C.nerve_system_accumulations)
-			var/nsa_value = C.get_nsa_value(tag)/2
-				C.adjust_nsa(nsa_value, tag)
+		for (var/tag in C.metabolism_effects.nerve_system_accumulations)
+			var/nsa_value = C.metabolism_effects.get_nsa_value(tag)/2
+				C.metabolism_effects.adjust_nsa(nsa_value, tag)
 
 /datum/reagent/medicine/haloperidol/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		for (var/tag in C.nerve_system_accumulations)
-			var/nsa_value = C.get_nsa_value(tag)*2
-				C.adjust_nsa(nsa_value, tag)
+		for (var/tag in C.metabolism_effects.nerve_system_accumulations)
+			var/nsa_value = C.metabolism_effects.get_nsa_value(tag)*2
+				C.metabolism_effects.adjust_nsa(nsa_value, tag)
 
 
 /datum/reagent/medicine/vomitol
