@@ -19,9 +19,9 @@
 	one_hand_penalty = 10
 
 	firemodes = list(
-		list(mode_name="maim", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=null, charge_cost=null, icon="stun"),
-		list(mode_name="kill", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=null, charge_cost=null, icon="kill"),
-		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=25, charge_cost=50, icon="destroy"),
+		list(mode_name="maim", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=null, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="kill", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=null, charge_cost=null, icon="kill", projectile_color = "#FF0000"),
+		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=25, charge_cost=50, icon="destroy", projectile_color = "#FFFFFF"),
 	)
 
 
@@ -41,8 +41,8 @@
 	fire_delay = 20
 
 	firemodes = list(
-		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=null, icon="destroy"),
-		list(mode_name="RAPID", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=10, charge_cost=175, icon="destroy"),
+		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=null, icon="destroy", projectile_color = "#0000FF"),
+		list(mode_name="RAPID", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=10, charge_cost=175, icon="destroy", projectile_color = "#FF0000"),
 	)
 
 
@@ -62,7 +62,7 @@
 	zoom_factor = null
 
 	firemodes = list(
-		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=null, icon="destroy"),
+		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=null, icon="destroy", projectile_color = "#FFA500"),
 	)
 
 /obj/item/weapon/gun/energy/plasma/cassad/update_icon()
