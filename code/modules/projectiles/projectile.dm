@@ -719,6 +719,7 @@
 			M.set_transform(T)
 			M.pixel_x = location.pixel_x
 			M.pixel_y = location.pixel_y
+			M.color = color
 			M.activate()
 
 /obj/item/projectile/proc/tracer_effect(var/matrix/M)
@@ -734,6 +735,7 @@
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
+			P.color = color
 			if(!hitscan)
 				P.activate(step_delay)	//if not a hitscan projectile, remove after a single delay
 			else
@@ -751,6 +753,7 @@
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
+			P.color = color
 			P.activate()
 
 //"Tracing" projectile

@@ -12,16 +12,8 @@
 
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
-	icon_state = "plasma_bolt_pink"
-
-	muzzle_type = /obj/effect/projectile/plasma/muzzle/light
-	impact_type = /obj/effect/projectile/plasma/impact/light
 	damage = 20
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
-	icon_state = "plasma_bolt_blue"
-
-	muzzle_type = /obj/effect/projectile/plasma/muzzle/heavy
-	impact_type = /obj/effect/projectile/plasma/impact/heavy
 	damage = 40
