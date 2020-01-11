@@ -810,6 +810,7 @@
 #include "code\game\objects\items\slimeflashlight.dm"
 #include "code\game\objects\items\toys.dm"
 #include "code\game\objects\items\trash.dm"
+#include "code\game\objects\items\wielding.dm"
 #include "code\game\objects\items\devices\aicard.dm"
 #include "code\game\objects\items\devices\binoculars.dm"
 #include "code\game\objects\items\devices\camera_bug.dm"

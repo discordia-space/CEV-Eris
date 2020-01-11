@@ -15,6 +15,7 @@
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
 	price_tag = 3000
 	projectile_type = /obj/item/projectile/ion
+	one_hand_penalty = 5
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess

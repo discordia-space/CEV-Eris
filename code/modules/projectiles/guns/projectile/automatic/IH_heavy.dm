@@ -23,6 +23,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	zoom_factor = 0.4
 	recoil_buildup = 7
+	one_hand_penalty = 10
 
 	firemodes = list(
 		FULL_AUTO_400,
