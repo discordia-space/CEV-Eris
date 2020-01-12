@@ -46,8 +46,10 @@
 	nerve_system_accumulations[tag] = value
 
 /datum/metabolism_effects/proc/remove_nsa(tag)
-	if(nerve_system_accumulations[tag])
-		nerve_system_accumulations.Remove(tag)
+	for(var/i in nerve_system_accumulations)
+		if(findtext(i, tag, 1, 0) == 1)
+			nerve_system_accumulations.Remove(i)
+		
 
 /datum/metabolism_effects/proc/get_nsa_value(tag)
 	if(nerve_system_accumulations[tag])
