@@ -4,6 +4,12 @@
 	icon_state = "head_preacher"
 
 /obj/structure/closet/secure_closet/reinforced/chaplain/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/neotheology(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/neotheology(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/under/rank/preacher(src)
 	new /obj/item/clothing/under/rank/preacher(src)
 	new /obj/item/device/radio/headset/church(src)
@@ -21,7 +27,3 @@
 	for (var/i in 1 to 10)
 		new /obj/item/weapon/implant/core_implant/cruciform(src)
 	new /obj/item/weapon/tool/knife/neotritual(src)
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/neotheology(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)

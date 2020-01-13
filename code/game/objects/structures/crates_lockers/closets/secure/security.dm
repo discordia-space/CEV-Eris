@@ -54,7 +54,10 @@
 	icon_state = "hos"
 
 /obj/structure/closet/secure_closet/reinforced/hos/populate_contents()
-	new /obj/item/weapon/storage/backpack/ironhammer(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/ironhammer(src)
+	else
+		new /obj/item/weapon/storage/backpack/sport/ironhammer(src)
 	new /obj/item/weapon/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
@@ -84,7 +87,10 @@
 	icon_state = "warden"
 
 /obj/structure/closet/secure_closet/warden/populate_contents()
-	new /obj/item/weapon/storage/backpack/ironhammer(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/ironhammer(src)
+	else
+		new /obj/item/weapon/storage/backpack/sport/ironhammer(src)
 	new /obj/item/weapon/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/clothing/under/rank/warden(src)
 	new /obj/item/clothing/head/beret/sec/navy/warden(src)
@@ -112,7 +118,10 @@
 	icon_state = "sec"
 
 /obj/structure/closet/secure_closet/personal/security/populate_contents()
-	new /obj/item/weapon/storage/backpack/ironhammer(src)
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack/ironhammer(src)
+	else
+		new /obj/item/weapon/storage/backpack/sport/ironhammer(src)
 	new /obj/item/weapon/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/device/radio/headset/headset_sec(src)
 	new /obj/item/weapon/storage/belt/security(src)
