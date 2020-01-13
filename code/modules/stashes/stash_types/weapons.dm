@@ -45,7 +45,7 @@
 	/obj/random/powercell = 4)
 
 	contents_list_random = list(/obj/item/weapon/storage/box/explosive = 40,
-	/obj/item/weapon/material/twohanded/fireaxe = 70,
+	/obj/item/weapon/tool/fireaxe = 70,
 	/obj/item/clothing/gloves/insulated = 50,
 	/obj/item/weapon/storage/box/emps = 30,
 	/obj/item/weapon/gun/energy/ionrifle = 70,

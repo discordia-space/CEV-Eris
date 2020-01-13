@@ -547,7 +547,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress_old, R_FUN, FALSE)
 			W.registered_name = M.real_name
 			M.equip_to_slot_or_del(W, slot_wear_id)
 
-			var/obj/item/weapon/material/twohanded/fireaxe/fire_axe = new(M)
+			var/obj/item/weapon/tool/fireaxe/fire_axe = new(M)
 			M.equip_to_slot_or_del(fire_axe, slot_r_hand)
 
 		if("masked killer")
@@ -562,7 +562,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress_old, R_FUN, FALSE)
 			M.equip_to_slot_or_del(new /obj/item/weapon/tool/knife(M), slot_l_store)
 			M.equip_to_slot_or_del(new /obj/item/weapon/tool/scalpel(M), slot_r_store)
 
-			var/obj/item/weapon/material/twohanded/fireaxe/fire_axe = new(M)
+			var/obj/item/weapon/tool/fireaxe/fire_axe = new(M)
 			M.equip_to_slot_or_del(fire_axe, slot_r_hand)
 
 			for(var/obj/item/carried_item in M.contents)
