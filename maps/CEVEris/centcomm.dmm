@@ -971,7 +971,7 @@
 /area/holodeck/source_thunderdomecourt)
 "cT" = (
 /obj/structure/table/holotable,
-/obj/item/clothing/head/helmet/thunderdome,
+/obj/item/clothing/head/armor/helmet/thunderdome,
 /obj/item/clothing/suit/armor/heavy/red,
 /obj/item/clothing/under/color/red,
 /obj/item/weapon/holo/esword/red,
@@ -1580,7 +1580,7 @@
 /area/holodeck/source_thunderdomecourt)
 "eH" = (
 /obj/structure/table/holotable,
-/obj/item/clothing/head/helmet/thunderdome,
+/obj/item/clothing/head/armor/helmet/thunderdome,
 /obj/item/clothing/suit/armor/heavy/green,
 /obj/item/clothing/under/color/green,
 /obj/item/weapon/holo/esword/green,

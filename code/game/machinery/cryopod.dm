@@ -184,7 +184,7 @@
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
-		/obj/item/clothing/head/helmet/space,
+		/obj/item/clothing/head/space,
 		/obj/item/weapon/storage/internal
 	)
 

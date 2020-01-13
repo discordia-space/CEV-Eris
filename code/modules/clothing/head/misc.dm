@@ -238,3 +238,12 @@
 	desc = "An orange piece of cloth, worn on the head."
 	icon_state = "orange_bandana"
 	body_parts_covered = 0
+
+/obj/item/clothing/head/gladiator
+	name = "gladiator helmet"
+	desc = "Ave, Imperator, morituri te salutant."
+	icon_state = "gladiator"
+	item_flags = THICKMATERIAL
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EARS
+	siemens_coefficient = 1

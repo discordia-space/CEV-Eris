@@ -6,7 +6,7 @@
 	armor = list(melee = 25, bullet = 10, energy = 50, bomb = 0, bio = 100, rad = 100)
 	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 
-/obj/item/clothing/head/helmet/space/anomaly
+/obj/item/clothing/head/space/anomaly
 	name = "Expedition hood"
 	desc = "A pressure resistant expedition hood partially capable of insulating against exotic alien energies."
 	icon_state = "cespace_helmet"

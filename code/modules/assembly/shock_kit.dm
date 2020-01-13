@@ -2,7 +2,7 @@
 	name = "electrohelmet assembly"
 	desc = "This appears to be made from both an electropack and a helmet."
 	icon_state = "shock_kit"
-	var/obj/item/clothing/head/helmet/part1 = null
+	var/obj/item/clothing/head/armor/helmet/part1 = null
 	var/obj/item/device/radio/electropack/part2 = null
 	var/status = 0
 	w_class = ITEM_SIZE_HUGE

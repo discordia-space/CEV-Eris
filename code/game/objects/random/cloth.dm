@@ -53,15 +53,22 @@
 	icon_state = "armor-grey"
 
 /obj/random/cloth/armor/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/suit/armor/bulletproof = 10,
-				/obj/item/clothing/suit/space/captain = 1,
+	return pickweight(list(/obj/item/clothing/suit/armor/vest = 20,
+				/obj/item/clothing/suit/armor/vest/security = 15,
+				/obj/item/clothing/suit/armor/vest/detective  = 10,
+				/obj/item/clothing/suit/armor/vest/ironhammer = 2,
+				/obj/item/clothing/suit/armor/vest/handmade = 5,
+				/obj/item/clothing/suit/armor/flak = 5,
+				/obj/item/clothing/suit/armor/flak/green = 5,
+				/obj/item/clothing/suit/armor/bulletproof = 10,
+				/obj/item/clothing/suit/armor/bulletproof/ironhammer = 2,
+				/obj/item/clothing/suit/armor/bulletproof/serbian = 2,
+				/obj/item/clothing/suit/armor/bulletproof/serbian/green = 2,
+				/obj/item/clothing/suit/armor/bulletproof/serbian/tan = 2,
+				/obj/item/clothing/suit/armor/laserproof = 4,
 				/obj/item/clothing/suit/armor/heavy = 2,
 				/obj/item/clothing/suit/armor/heavy/riot = 4,
-				/obj/item/clothing/suit/armor/laserproof = 2,
-				/obj/item/clothing/suit/armor/vest/detective  = 10,
-				/obj/item/clothing/suit/armor/vest/handmade = 20,
-				/obj/item/clothing/suit/space/void/SCAF = 1,
-				/obj/item/clothing/suit/armor/vest/security = 20))
+				/obj/item/clothing/suit/storage/vest/merc = 2))
 
 /obj/random/cloth/armor/low_chance
 	name = "low chance random armor"
@@ -118,8 +125,8 @@
 				/obj/item/clothing/suit/bio_suit/scientist = 5,
 				/obj/item/clothing/suit/bio_suit/security = 5,
 				/obj/item/clothing/suit/bio_suit/virology = 5,
-				/obj/item/clothing/suit/radiation = 30,
-				/obj/item/clothing/suit/space/bomb = 20))
+				/obj/item/clothing/suit/radiation = 15,
+				/obj/item/clothing/suit/space/bomb = 10))
 
 /obj/random/cloth/hazmatsuit/low_chance
 	name = "low chance random hazmat suit"
@@ -186,9 +193,18 @@
 	icon_state = "armor-grey"
 
 /obj/random/cloth/helmet/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/head/helmet = 5,
-				/obj/item/clothing/head/helmet/riot = 5,
-				/obj/item/clothing/head/helmet/space/void/SCAF = 1))
+	return pickweight(list(/obj/item/clothing/head/armor/helmet = 20,
+				/obj/item/clothing/head/armor/helmet/visor = 15,
+				/obj/item/clothing/head/armor/helmet/dermal = 2,
+				/obj/item/clothing/head/armor/helmet/ironhammer = 2,
+				/obj/item/clothing/head/armor/bulletproof = 10,
+				/obj/item/clothing/head/armor/laserproof = 4,
+				/obj/item/clothing/head/armor/riot = 4,
+				/obj/item/clothing/head/armor/steelpot = 10,
+				/obj/item/clothing/head/armor/altyn = 2,
+				/obj/item/clothing/head/armor/altyn/brown = 2,
+				/obj/item/clothing/head/armor/altyn/black = 2,
+				/obj/item/clothing/head/armor/altyn/maska = 1))
 
 /obj/random/cloth/helmet/low_chance
 	name = "low chance random helmet"

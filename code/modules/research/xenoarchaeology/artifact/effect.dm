@@ -97,7 +97,7 @@ proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 	if(istype(H.wear_suit,/obj/item/clothing/suit/space/anomaly))
 		protected += 0.6
 
-	if(istype(H.head,/obj/item/clothing/head/helmet/space/anomaly))
+	if(istype(H.head,/obj/item/clothing/head/space/anomaly))
 		protected += 0.3
 
 	//latex gloves and science goggles also give a bit of bonus protection

@@ -9,14 +9,6 @@
 	var/mag_slow = 3
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
-	armor = list(
-		melee = 30,
-		bullet = 10,
-		energy = 20,
-		bomb = 25,
-		bio = 100,
-		rad = 90
-	)
 	siemens_coefficient = 0 // DAMN BOI
 	//This armor only applies to legs
 
@@ -57,12 +49,15 @@
 	Used by mercenaries
 */
 /obj/item/clothing/shoes/magboots/merc
-	desc = "Sturdy hiking boots with powerful magnetic soles. Useful in or out of a vessel."
 	name = "military magboots"
-	icon_state = "mercboots0"
+	desc = "Sturdy hiking boots with powerful magnetic soles. Useful in or out of a vessel."
+	icon_state = "mercboots"
+	item_flags = NOSLIP|DRAG_AND_DROP_UNEQUIP
 	species_restricted = null
+	force = WEAPON_FORCE_PAINFUL
+	overslot = FALSE
+	magpulse = TRUE
+	mag_slow = 0
+	icon_base = null
 	can_hold_knife = TRUE
-	overshoes = 0
-	mag_slow = 2
-	icon_base = "mercboots"
-	action_button_name = "Toggle Magboots"
+	action_button_name = null
