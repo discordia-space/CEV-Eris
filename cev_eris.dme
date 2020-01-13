@@ -101,6 +101,7 @@
 #include "code\_datastructures\path_node.dm"
 #include "code\_datastructures\priority_queue.dm"
 #include "code\_datastructures\stack.dm"
+#include "code\_global_vars\mapping.dm"
 #include "code\_global_vars\misc.dm"
 #include "code\_global_vars\lists\flavor.dm"
 #include "code\_global_vars\lists\mapping.dm"
