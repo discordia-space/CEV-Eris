@@ -240,7 +240,7 @@
 	name = "green altyn helmet"
 	desc = "Green titanium helmet of serbian origin. Still widely used despite of its discontinued production."
 	icon_state = "altyn"
-	armor = list(melee = 45, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
+	armor = list(melee = 50, bullet = 50, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
@@ -296,5 +296,5 @@
 	name = "maska helmet"
 	desc = "I do not know who I am I, don\'t know why I\'m here. All I know is that I must kill."
 	icon_state = "maska"
-	armor = list(melee = 60, bullet = 60, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	armor = list(melee = 65, bullet = 65, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
 	tint = TINT_HEAVY
