@@ -37,6 +37,7 @@
 	desc = "A swarm of disgusting locusts infested with nanomachines."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "naniteroach"
+	icon_living = "naniteroach"
 	pass_flags = PASSTABLE
 	density = FALSE
 	health = 10
@@ -56,3 +57,8 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+
+/mob/living/simple_animal/hostile/naniteswarm/death()
+	..()
+	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
+	qdel(src)
