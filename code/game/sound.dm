@@ -302,18 +302,12 @@ var/list/rummage_sound = list(\
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	for (var/P in GLOB.player_list)
 		var/mob/M = P
-		if(!M || !M.client)
+		if(!M || !M.client || !M.loc)
 			continue
 
 		var/distance = get_dist(M, turf_source)
 		if(distance <= (world.view + extrarange) * 3)
 			var/turf/T = get_turf(M)
-
-			// Nullspaced player mobs? Nullspaced player mobs.
-			if(!T)
-				crash_with("WARNING: [M] (ckey [M.ckey]) is a player mob in nullspace")
-				continue
-
 			var/z_dist = abs(T.z - turf_source.z)
 			z_dist *= 0.5 //The reduction in volume over zlevels was too much
 			if(T && z_dist <= 1)
