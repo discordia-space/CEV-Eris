@@ -835,7 +835,6 @@
 	return output //Send it back to the gun!
 
 /proc/get_proj_icon_by_color(var/obj/item/projectile/P, var/color)
-	to_chat(world, "P:[P]. Color:[color]")
 	var/icon/I = new(P.icon, P.icon_state)
 	I.Blend(color)
 	return I
