@@ -81,8 +81,67 @@
 		bio = 0,
 		rad = 0
 	)
-	siemens_coefficient = 0
 	price_tag = 250
+
+/obj/item/clothing/head/armor/bulletproof/ironhammer
+	name = "bulletproof helmet"
+	desc = "A bulletproof security helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	icon_state = "bulletproof_ironhammer"
+	action_button_name = "Toggle Night Vision"
+	var/obj/item/clothing/glasses/bullet_proof_ironhammer/hud
+	price_tag = 150
+
+/obj/item/clothing/head/armor/bulletproof/ironhammer/New()
+	..()
+	hud = new(src)
+	hud.canremove = FALSE
+
+/obj/item/clothing/head/armor/bulletproof/ironhammer/ui_action_click()
+	toggle()
+
+/obj/item/clothing/head/armor/bulletproof/ironhammer/verb/toggle()
+	set name = "Toggle Night Vision"
+	set desc = "Allows you to see in the dark"
+	set category = "Object"
+	var/mob/user = loc
+	if(usr.stat || user.restrained())
+		return
+	if(user.get_equipped_item(slot_head) != src)
+		return
+	if(hud in src)
+		if(user.equip_to_slot_if_possible(hud, slot_glasses))
+			to_chat(user, "You enable security hud on [src].")
+			update_icon()
+		else
+			to_chat(user, "You are wearing something which is in the way.")
+	else
+		if(ismob(hud.loc))
+			var/mob/hud_loc = hud.loc
+			hud_loc.drop_from_inventory(hud, src)
+			to_chat(user, "You disable security hud on [src].")
+		hud.forceMove(src)
+		update_icon()
+	usr.update_action_buttons()
+
+/obj/item/clothing/head/armor/bulletproof/ironhammer/dropped(usr)
+	..()
+	if(hud.loc != src)
+		if(ismob(hud.loc))
+			var/mob/hud_loc = hud.loc
+			hud_loc.drop_from_inventory(hud, src)
+			to_chat(hud_loc, "[hud] automaticly retract in [src].")
+		hud.forceMove(src)
+		update_icon()
+
+/obj/item/clothing/head/armor/bulletproof/ironhammer/update_icon()
+	if(hud in src)
+		icon_state = "bulletproof_ironhammer"
+		set_light(0, 0)
+	else
+		icon_state = "bulletproof_ironhammer_on"
+		set_light(1, 1, COLOR_LIGHTING_GREEN_MACHINERY)
+	update_wear_icon()
+	..()
 
 /obj/item/clothing/head/armor/laserproof //TODO: Give it reflection capabilities after refactor
 	name = "ablative helmet"

@@ -292,8 +292,8 @@
 				/obj/item/clothing/gloves/insulated/cheap = 7,
 				/obj/item/clothing/gloves/latex = 9,
 				/obj/item/clothing/gloves/thick = 5,
-				/obj/item/clothing/gloves/thick/combat = 1,
-				/obj/item/clothing/gloves/thick/swat = 2,
+				/obj/item/clothing/gloves/security/tactical = 1,
+				/obj/item/clothing/gloves/security = 2,
 				/obj/item/clothing/gloves/stungloves = 1))
 
 /obj/random/cloth/gloves/low_chance

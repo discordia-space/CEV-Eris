@@ -1,7 +1,7 @@
 /decl/hierarchy/outfit/job/security
 	hierarchy_type = /decl/hierarchy/outfit/job/security
 	l_ear = /obj/item/device/radio/headset/headset_sec
-	gloves = /obj/item/clothing/gloves/thick
+	gloves = /obj/item/clothing/gloves/security/ironhammer
 	shoes = /obj/item/clothing/shoes/jackboots/ironhammer
 	id_type = /obj/item/weapon/card/id/sec
 	pda_type = /obj/item/modular_computer/pda/security
@@ -40,7 +40,6 @@
 	uniform = /obj/item/clothing/under/rank/inspector
 	suit = /obj/item/clothing/suit/storage/detective/ironhammer
 	head = /obj/item/clothing/head/det
-	gloves = /obj/item/clothing/gloves/thick/swat
 	l_pocket = /obj/item/device/flash
 	shoes = /obj/item/clothing/shoes/reinforced/ironhammer
 	belt = /obj/item/weapon/gun/energy/gun/martin
