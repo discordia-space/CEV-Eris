@@ -278,7 +278,10 @@
 		if(pointblank)
 			process_point_blank(projectile, user, target)
 		if(projectile_color)
-			projectile.color = projectile_color
+			projectile.icon = get_proj_icon_by_color(projectile, projectile_color)
+			if(istype(projectile, /obj/item/projectile))
+				var/obj/item/projectile/P = projectile
+				P.proj_color = projectile_color
 		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()

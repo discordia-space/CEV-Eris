@@ -2,6 +2,7 @@
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	layer = ABOVE_MOB_LAYER
+	var/lifetime = 3
 
 /obj/effect/projectile/New(var/turf/location)
 	init_plane()
@@ -13,11 +14,9 @@
 	if(istype(M))
 		transform = M
 
-/obj/effect/projectile/proc/activate(var/kill_delay = 3)
+/obj/effect/projectile/proc/activate(var/kill_delay = lifetime)
 	spawn(kill_delay)
 		qdel(src)	//see effect_system.dm - sets loc to null and lets GC handle removing these effects
-
-	return
 
 //----------------------------
 // Laser beam
@@ -143,6 +142,7 @@
 
 /obj/effect/projectile/plasma/impact
 	icon_state = "impact_plasma"
+	lifetime = 7.5
 
 /obj/effect/projectile/plasma/impact/light
 	icon_state = "impact_plasma_pink"

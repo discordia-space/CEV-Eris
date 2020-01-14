@@ -14,14 +14,14 @@
 	projectile_type = /obj/item/projectile/beam
 	cell_type = /obj/item/weapon/cell/medium
 	sel_mode = 2
-	charge_cost = 75
+	charge_cost = 20 //Gives us 40 shots per high medium-sized cell
 	recoil_buildup = 1 //pulse weapons have a bit more recoil
 	one_hand_penalty = 10
 
 	firemodes = list(
 		list(mode_name="maim", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=null, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
 		list(mode_name="kill", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=null, charge_cost=null, icon="kill", projectile_color = "#FF0000"),
-		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=25, charge_cost=50, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=25, charge_cost=10, icon="destroy", projectile_color = "#FFFFFF"),
 	)
 
 
@@ -42,7 +42,7 @@
 
 	firemodes = list(
 		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=null, icon="destroy", projectile_color = "#0000FF"),
-		list(mode_name="RAPID", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=10, charge_cost=175, icon="destroy", projectile_color = "#FF0000"),
+		list(mode_name="RAPID", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=10, charge_cost=30, icon="destroy", projectile_color = "#FF0000"),
 	)
 
 
@@ -56,7 +56,7 @@
 	fire_sound = 'sound/weapons/pulse.ogg'
 	projectile_type = /obj/item/projectile/beam/pulse
 	sel_mode = 1
-	charge_cost = 80
+	charge_cost = 25 //32 shots per high medium cell
 	fire_delay = 15
 	price_tag = 3000
 	zoom_factor = null
