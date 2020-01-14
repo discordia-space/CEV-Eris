@@ -76,7 +76,7 @@
 	armor = list(
 		melee = 30,
 		bullet = 75,
-		energy = 30,
+		energy = 25,
 		bomb = 25,
 		bio = 0,
 		rad = 0
@@ -92,7 +92,7 @@
 	flags_inv = HIDEEARS | HIDEEYES
 	armor = list(
 		melee = 30,
-		bullet = 30,
+		bullet = 25,
 		energy = 75,
 		bomb = 0,
 		bio = 0,
