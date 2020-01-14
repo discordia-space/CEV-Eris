@@ -314,7 +314,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 				pulse_mod *= 1.25
 		blood_volume *= max(0.3, (1-(heart.damage / heart.max_damage))) * pulse_mod
 
-	if(!heart.open && chem_effects[CE_BLOODCLOT])
+	if(heart && !heart.open && chem_effects[CE_BLOODCLOT])
 		blood_volume *= max(0, 1-chem_effects[CE_BLOODCLOT])
 
 	return min(blood_volume, 100)
