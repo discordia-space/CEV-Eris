@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/map_templates = list()
 	var/dmm_suite/maploader = null
+	var/list/teleportlocs = list()
+	var/list/ghostteleportlocs = list()
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 
@@ -35,7 +37,37 @@ SUBSYSTEM_DEF(mapping)
 	maploader = new()
 	load_map_templates()
 
+	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
+	for(var/area/A in world)
+		GLOB.map_areas += A.type
 
+	// Do the same for teleport locs
+	for(var/area/AR in world)
+		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
+		if(teleportlocs.Find(AR.name)) continue
+		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
+		if (picked)
+			teleportlocs += AR.name
+			teleportlocs[AR.name] = AR
+
+	teleportlocs = sortAssoc(teleportlocs)
+
+	// And the same for ghost teleport locs
+
+
+	for(var/area/AR in world)
+		if(ghostteleportlocs.Find(AR.name)) continue
+		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
+		if (picked)
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+
+	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+
+	return 1
 
 	return ..()
 
