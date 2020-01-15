@@ -1025,9 +1025,10 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
+	channels = list("Engineering" = 1, "Common" = 1)
 	stat_modifiers = list(
 		STAT_COG = 15,
-		STAT_MEC = 30
+		STAT_MEC = 40
 	)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/R)
@@ -1045,6 +1046,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/borg/sight/meson(src)
 
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	//src.emag.name = "Plasma Cutter"
@@ -1053,7 +1055,7 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
 	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
-	var/datum/matter_synth/wire = new /datum/matter_synth/wire(15)
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
 	synths += metal
 	synths += glass
 	synths += wood

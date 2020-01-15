@@ -407,9 +407,11 @@
 
 /obj/item/weapon/tool/crowbar/robotic
 	icon = 'icons/obj/robot_items.dmi'
+	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
 
 /obj/item/weapon/tool/wrench/robotic
 	icon = 'icons/obj/robot_items.dmi'
+	tool_qualities = list(QUALITY_BOLT_TURNING = 40)
 
 /obj/item/weapon/tool/screwdriver/robotic
 	icon = 'icons/obj/robot_items.dmi'
@@ -420,6 +422,8 @@
 
 /obj/item/weapon/tool/wirecutters/robotic
 	icon = 'icons/obj/robot_items.dmi'
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 
 /obj/item/weapon/tool/weldingtool/robotic
 	icon = 'icons/obj/robot_items.dmi'
+	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
