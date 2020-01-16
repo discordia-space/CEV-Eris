@@ -58,9 +58,7 @@
 	if(!proximity) return
 	..()
 	if(A && wielded)
-		if(istype(A,/obj/structure/grille))
-			qdel(A)
-		else if(istype(A,/obj/effect/plant))
+		if(istype(A,/obj/effect/plant))
 			var/obj/effect/plant/P = A
 			P.die_off()
 
