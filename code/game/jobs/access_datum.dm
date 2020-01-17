@@ -491,7 +491,7 @@
 /datum/access/research_equipment
 	id = access_research_equipment
 	desc = "Research Console"
-	region = ACCESS_REGION_RESEARCH
+	access_type = ACCESS_REGION_RESEARCH 
 /***************
 * Antag access *
 ***************/

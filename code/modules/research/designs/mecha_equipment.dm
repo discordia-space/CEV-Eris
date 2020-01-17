@@ -16,26 +16,32 @@
 /datum/design/research/item/mecha/hydraulic_clamp
 	name = "Hydraulic clamp"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/drill
 	name = "Drill"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/extinguisher
 	name = "Extinguisher"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/extinguisher
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/cable_layer
 	name = "Cable layer"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/cable_layer
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/flaregun
 	name = "Flare launcher"
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/sleeper
 	name = "Sleeper"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/sleeper
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/syringe_gun
 	name = "Syringe gun"
@@ -46,6 +52,7 @@
 /datum/design/research/item/mecha/passenger
 	name = "Passenger compartment"
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/passenger
+	starts_unlocked = TRUE
 
 /datum/design/research/item/mecha/jetpack
 	name = "jetpack module"

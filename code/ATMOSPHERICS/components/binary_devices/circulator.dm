@@ -6,9 +6,7 @@
 	desc = "A gas circulator turbine and heat exchanger."
 	icon = 	'icons/obj/machines/thermoelectric.dmi'
 	icon_state = "circ-unassembled"
-
-	density = TRUE
-	anchored = FALSE
+	anchored = 0
 
 	var/kinetic_efficiency = 0.06 //combined kinetic and kinetic-to-electric efficiency
 	var/volume_ratio = 0.2
@@ -23,6 +21,8 @@
 	var/stored_energy = 0
 	var/temperature_overlay
 
+	density = 1
+
 /obj/machinery/atmospherics/binary/circulator/New()
 	..()
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
@@ -30,8 +30,6 @@
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
 	var/datum/gas_mixture/removed
-	recent_moles_transferred = 0
-
 	if(anchored && !(stat&BROKEN) && network1)
 		var/input_starting_pressure = air1.return_pressure()
 		var/output_starting_pressure = air2.return_pressure()
@@ -57,9 +55,11 @@
 				network1.update = 1
 
 				last_worldtime_transfer = world.time
+		else
+			recent_moles_transferred = 0
 
-	update_icon()
-	return removed
+		update_icon()
+		return removed
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_stored_energy()
 	last_stored_energy_transferred = stored_energy
@@ -80,13 +80,15 @@
 		return
 	if (last_pressure_delta > 0 && recent_moles_transferred > 0)
 		if (temperature_overlay)
-			overlays += temperature_overlay
+			overlays += image('icons/obj/machines/thermoelectric.dmi', temperature_overlay)
 		if (last_pressure_delta > 5*ONE_ATMOSPHERE)
-			overlays += "circ-run"
+			overlays += image('icons/obj/machines/thermoelectric.dmi', "circ-run")
 		else
-			overlays += "circ-slow"
+			overlays += image('icons/obj/machines/thermoelectric.dmi', "circ-slow")
 	else
-		overlays += "circ-off"
+		overlays += image('icons/obj/machines/thermoelectric.dmi', "circ-off")
+
+	return
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
@@ -148,7 +150,3 @@
 
 	src.set_dir(turn(src.dir, -90))
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-
-/obj/machinery/atmospherics/binary/circulator/anchored
-	icon_state = "circ-assembled"
-	anchored = TRUE

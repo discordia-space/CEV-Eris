@@ -33,7 +33,4 @@
     tipText = "If you walk instead of run on underplating, you won't trip."
 
 /tipsAndTricks/gameplay/zoneTargetingNum
-    tipText = "You can target specific damage zones by using the Numpad keys."
-
-/tipsAndTricks/gameplay/cuffHardsuit
-    tipText = "People in RIG/Hardsuits need to be cuffed using zipties or cable cuffs. Normal cuffs are not large enough to cover their gauntlets."
+    tipText = " You can target specific damage zones by using the Numpad keys."

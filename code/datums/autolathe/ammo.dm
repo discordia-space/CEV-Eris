@@ -34,6 +34,18 @@
 	name = "standard magazine (.35 Auto, flash)"
 	build_path = /obj/item/ammo_magazine/pistol/flash
 
+/datum/design/autolathe/ammo/magazine_lpistol
+	name = "holdout magazine (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/lpistol
+
+/datum/design/autolathe/ammo/magazine_lpistol_rubber
+	name = "holdout magazine (.35 Auto rubber)"
+	build_path = /obj/item/ammo_magazine/lpistol/rubber
+
+/datum/design/autolathe/ammo/magazine_lpistol_flash
+	name = "holdout magazine (.35 Auto, flash)"
+	build_path = /obj/item/ammo_magazine/lpistol/flash
+
 /datum/design/autolathe/ammo/magazine_hpistol
 	name = "highcap magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/hpistol

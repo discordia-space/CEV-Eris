@@ -1,3 +1,6 @@
+//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
+
+
 
 
 
@@ -12,6 +15,7 @@
 	var/list/viewingcode = list()
 	var/obj/machinery/telecomms/server/SelectedServer
 
+	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 
 	var/storedcode = ""			// code stored
@@ -146,7 +150,9 @@
 						temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font>"
 
 					else
-						servers = find_machines(/obj/machinery/telecomms/server)
+						for(var/obj/machinery/telecomms/server/T in range(25, src))
+							if(T.network == network)
+								servers.Add(T)
 
 						if(!servers.len)
 							temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font>"
@@ -200,10 +206,40 @@
 		updateUsrDialog()
 		return
 
+	attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
+		if(istype(D, /obj/item/weapon/tool/screwdriver))
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			if(do_after(user, 20, src))
+				if (src.stat & BROKEN)
+					to_chat(user, SPAN_NOTICE("The broken glass falls out."))
+					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+					new /obj/item/weapon/material/shard( src.loc )
+					var/obj/item/weapon/circuitboard/comm_traffic/M = new /obj/item/weapon/circuitboard/comm_traffic( A )
+					for (var/obj/C in src)
+						C.loc = src.loc
+					A.circuit = M
+					A.state = 3
+					A.icon_state = "3"
+					A.anchored = 1
+					qdel(src)
+				else
+					to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
+					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+					var/obj/item/weapon/circuitboard/comm_traffic/M = new /obj/item/weapon/circuitboard/comm_traffic( A )
+					for (var/obj/C in src)
+						C.loc = src.loc
+					A.circuit = M
+					A.state = 4
+					A.icon_state = "4"
+					A.anchored = 1
+					qdel(src)
+		src.updateUsrDialog()
+		return
+
 /obj/machinery/computer/telecomms/traffic/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = TRUE
-		to_chat(user, SPAN_NOTICE("You disable the security protocols"))
+		emagged = 1
+		to_chat(user, SPAN_NOTICE("You you disable the security protocols"))
 		src.updateUsrDialog()
 		return 1

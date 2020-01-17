@@ -1,3 +1,4 @@
+#define DIRECT_OUTPUT(A, B) A << B
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 //The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
 

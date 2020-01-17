@@ -58,6 +58,7 @@
 #define BP_GBLADDER "gas bladder"
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
+#define BP_PLASMA   "plasma filter"
 #define BP_ACETONE  "acetone reactor"
 
 // Robo Organs.

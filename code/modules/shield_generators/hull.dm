@@ -1,6 +1,6 @@
 //The main hull shield. Moving a few variables here to make it easier to branch off the parent for shortrange bubble shields and such
 /obj/machinery/power/shield_generator/hull
-	name = "hull shield core"
+	name = "Hull Shield Core"
 	report_integrity = TRUE
 	default_modes = list(MODEFLAG_HYPERKINETIC, MODEFLAG_HULL, MODEFLAG_MULTIZ)
 	// Foolproof defaults for a hull shield to block meteors
@@ -27,10 +27,10 @@
 
 
 //This subtype comes pre-deployed and partially charged
-/obj/machinery/power/shield_generator/hull/installed/Initialize()
-	. = ..()
+/obj/machinery/power/shield_generator/hull/installed/New()
+	.=..()
 	anchored = toggle_tendrils(TRUE)
-	current_energy = max_energy * 0.30
+	current_energy = max_energy * 0.2
 
 
 /obj/machinery/power/shield_generator/hull/update_icon()
@@ -110,10 +110,10 @@
 		return ..(href, href_list)
 
 /obj/machinery/shield_conduit
-	name = "shield conduit"
+	name = "Shield"
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "conduit_0"
-	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy."
+	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy"
 	description_info = "This is purely visual. They are created and removed when you wrench/unwrench the shield generator"
 	density = TRUE
 	anchored = FALSE //Will be set true just after deploying

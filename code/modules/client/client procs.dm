@@ -325,6 +325,8 @@
 		else
 			src.register_in_db()
 
+
+#undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
 
 //checks if a client is afk

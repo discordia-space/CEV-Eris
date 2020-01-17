@@ -169,11 +169,11 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 var/obj/machinery/blackbox_recorder/blackbox
 
 /obj/machinery/blackbox_recorder
-	name = "blackbox recorder"
-	icon = 'icons/obj/machines/telecomms.dmi'
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
-	density = TRUE
-	anchored = TRUE
+	name = "Blackbox Recorder"
+	density = 1
+	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100

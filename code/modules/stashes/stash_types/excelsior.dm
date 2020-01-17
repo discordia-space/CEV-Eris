@@ -14,6 +14,7 @@
 	contents_list_random = list(/obj/item/weapon/implantcase/excelsior/broken = 70,
 	/obj/item/weapon/implantcase/excelsior/broken = 40,
 	/obj/item/clothing/suit/space/void/excelsior = 70,
+	/obj/item/clothing/head/helmet/space/void/excelsior = 70,
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
 	/obj/item/ammo_magazine/lrifle_long = 50,

@@ -220,6 +220,13 @@
 
 	qdel(src)
 
+/obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
+	if(!ai)
+		return FALSE
+	if (player_is_antag_id(ai.mind,ROLE_MALFUNCTION))
+		return TRUE
+	return FALSE
+
 /obj/structure/AIcore/deactivated/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	if(istype(W, /obj/item/device/aicard))

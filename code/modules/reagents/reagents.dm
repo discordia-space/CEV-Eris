@@ -113,12 +113,16 @@
 
 // Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		C.adjust_nsa(nerve_system_accumulations, id)
+	return
 
 // Called when this reagent is removed while inside a mob
 /datum/reagent/proc/on_mob_delete(mob/living/L)
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.metabolism_effects.remove_nsa(id)
+		C.remove_nsa(id)
 	return
 
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
@@ -142,9 +146,8 @@
 				affect_ingest(M, alien, RTM(removed, location))
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, RTM(removed, location))
-	// At this point, the reagent might have removed itself entirely - safety check
-	if(volume && holder)
-		remove_self(removed)
+	remove_self(removed)
+	return
 
 /datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	return

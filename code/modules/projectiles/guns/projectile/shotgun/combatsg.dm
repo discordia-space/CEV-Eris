@@ -13,5 +13,4 @@
 	damage_multiplier = 1.1
 	penetration_multiplier = 1
 	recoil_buildup = 16
-	one_hand_penalty = 20
 
