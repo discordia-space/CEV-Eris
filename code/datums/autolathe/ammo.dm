@@ -85,7 +85,16 @@
 	name = "SMG magazine (.35 Auto rubber)"
 	build_path = /obj/item/ammo_magazine/smg/rubber
 
+// .35 ammobox
 
+/datum/design/autolathe/ammo/35_ammobox_brute
+	name = "ammunition box (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/ammobox/pistol
+
+/datum/design/autolathe/ammo/35_ammobox_brute
+	name = "ammunition box (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/ammobox/pistol/rubber
+	
 // .40 Speed Loaders + mags
 
 /datum/design/autolathe/ammo/sl_magnum_rubber
@@ -106,6 +115,12 @@
 	name = "magazine (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/magnum
 
+// . 40 ammobox
+
+/datum/design/autolathe/ammo/mg_ammobox_brute
+	name = "ammunition box (.40 Magnum)"
+	build_path = /obj/item/ammo_magazine/ammobox/magnum
+	
 // .20 Rifle
 
 /datum/design/autolathe/ammo/srifle
@@ -120,6 +135,12 @@
 	name = "IH magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/ihsrifle
 
+// . 20 ammobox
+
+/datum/design/autolathe/ammo/srifle_ammobox_brute
+	name = "ammunition box (.20 Rifle)"
+	build_path = /obj/item/ammo_magazine/ammobox/srifle
+
 // .25 Rifle
 
 /datum/design/autolathe/ammo/SMG_sol_rubber
@@ -133,7 +154,17 @@
 /datum/design/autolathe/ammo/c10x24 // Dallas speshul
 	name = "box magazine (.25 caseless)"
 	build_path = /obj/item/ammo_magazine/c10x24
-	
+
+// . 25 ammobox
+
+/datum/design/autolathe/ammo/clrifle_ammobox_brute
+	name = "ammunition box (.25 Caseless Rifle)"
+	build_path = /obj/item/ammo_magazine/ammobox/clrifle
+
+/datum/design/autolathe/ammo/clrifle_ammobox_rubber
+	name = "ammunition box (.25 Caseless Rifle rubber)"
+	build_path = /obj/item/ammo_magazine/ammobox/clrifle/rubber
+
 // .30 Rifle + Speed loaders
 
 /datum/design/autolathe/ammo/sl_lrifle
@@ -148,6 +179,12 @@
 	name = "long magazine (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/lrifle_long
 
+/datum/design/autolathe/ammo/lrifle_pk
+	name = "PK munitions box (.30 Rifle)"
+	build_path = /obj/item/ammo_magazine/lrifle/pk	
+
+// .30 ammobox
+
 /datum/design/autolathe/ammo/box_lrifle
 	name = "ammunition box (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/ammobox/lrifle
@@ -157,7 +194,3 @@
 /datum/design/autolathe/ammo/antim
 	name = "antimaterial rifle casings (.60)"
 	build_path = /obj/item/ammo_casing/antim
-
-/datum/design/autolathe/ammo/lrifle_pk
-	name = "PK munitions box (.30 Rifle)"
-	build_path = /obj/item/ammo_magazine/lrifle/pk	
