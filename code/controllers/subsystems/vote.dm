@@ -83,9 +83,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	var/data = "<html><head><title>Voting Panel</title></head><body>"
 
-	var/admin = FALSE
-	if(C.mob)
-		admin = check_rights(user = C.mob, show_msg=FALSE)
+	var/admin = check_rights(R_ADMIN, FALSE, C)
 
 	voters |= C
 

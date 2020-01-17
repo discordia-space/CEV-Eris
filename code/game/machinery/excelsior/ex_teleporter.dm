@@ -2,31 +2,31 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
-	desc = "a powerful one way teleporter that allows shipping in construction materials. Takes a long time to charge"
+	desc = "A powerful one way teleporter that allows shipping in construction materials. Takes a long time to charge."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/teleporter.dmi'
 	icon_state = "idle"
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	active_power_usage = 15000
 	circuit = /obj/item/weapon/circuitboard/excelsior_teleporter
 
 	var/energy = 0
-	var/max_energy = 100
-	var/recharged = 20 // counts to 0, regenerates energy a bit and resets to initial value.
+	var/max_energy = 1000
+	var/energy_gain = 1
 	var/processing_order = FALSE
 
 	var/list/buy_list = list(
-		MATERIAL_STEEL = list("amount" = 30, "price" = 10),
-		MATERIAL_WOOD = list("amount" = 30, "price" = 10),
-		MATERIAL_PLASTIC = list("amount" = 30, "price" = 10),
-		MATERIAL_GLASS = list("amount" = 30, "price" = 10),
-		MATERIAL_PLASTEEL = list("amount" = 10, "price" = 30),
-		MATERIAL_URANIUM = list("amount" = 10, "price" = 40),
-		MATERIAL_DIAMOND = list("amount" = 10, "price" = 50),
-		MATERIAL_SILVER = list("amount" = 15, "price" = 30),
-		MATERIAL_GOLD = list("amount" = 10, "price" = 30),
+		MATERIAL_STEEL = list("amount" = 30, "price" = 50),
+		MATERIAL_WOOD = list("amount" = 30, "price" = 50),
+		MATERIAL_PLASTIC = list("amount" = 30, "price" = 50),
+		MATERIAL_GLASS = list("amount" = 30, "price" = 50),
+		MATERIAL_PLASTEEL = list("amount" = 10, "price" = 200),
+		MATERIAL_SILVER = list("amount" = 10, "price" = 100),
+		MATERIAL_GOLD = list("amount" = 10, "price" = 200),
+		MATERIAL_URANIUM = list("amount" = 10, "price" = 300),
+		MATERIAL_DIAMOND = list("amount" = 10, "price" = 400),
 		)
 
 /obj/machinery/complant_teleporter/Initialize()
@@ -36,6 +36,26 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 /obj/machinery/complant_teleporter/Destroy()
 	excelsior_teleporters -= src
 	.=..()
+
+/obj/machinery/complant_teleporter/RefreshParts()
+	var/man_rating = 0
+	var/man_amount = 0
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		man_rating += M.rating
+		man_amount++
+
+	// +50% speed for each upgrade tier
+	var/coef = 1 + (((man_rating / man_amount) - 1) / 2)
+
+	energy_gain = initial(energy_gain) * coef
+	active_power_usage = initial(active_power_usage) * coef
+
+	var/obj/item/weapon/cell/C = locate() in component_parts
+	if(C)
+		max_energy = C.maxcharge / 10
+		energy = min(energy, max_energy)
+		if(C.autorecharging)
+			energy_gain *= 2
 
 /obj/machinery/complant_teleporter/update_icon()
 	overlays.Cut()
@@ -62,16 +82,12 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 	if(stat & (BROKEN|NOPOWER))
 		return
 
-	use_power = (energy < max_energy) ? 2 : 1
-
-	recharged--
-	if(!recharged)
-		recharged = initial(recharged)
-		var/addenergy = 1
-		var/oldenergy = energy
-		energy = min(energy + addenergy, max_energy)
-		if(energy != oldenergy)
-			SSnano.update_uis(src)
+	if(energy < max_energy)
+		energy = min(energy + energy_gain, max_energy)
+		SSnano.update_uis(src)
+		use_power = ACTIVE_POWER_USE
+	else
+		use_power = IDLE_POWER_USE
 
 /obj/machinery/complant_teleporter/ex_act(severity)
 	switch(severity)
@@ -94,18 +110,25 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
   *
   * @return nothing
   */
-/obj/machinery/complant_teleporter/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/complant_teleporter/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.restrained()) return
 
-	// this is the data which will be sent to the ui
-	var/data[0]
-	//data["amount"] = amount
+	var/list/data = ui_data()
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "excelsior_teleporter.tmpl", name, 390, 450)
+		ui.set_initial_data(data)
+		ui.open()
+
+/obj/machinery/complant_teleporter/ui_data()
+	var/list/data = list()
 	data["energy"] = round(energy)
 	data["maxEnergy"] = round(max_energy)
 
-	var/order_list[0]
-	for (var/item in buy_list)
+	var/list/order_list = list()
+	for(var/item in buy_list)
 		order_list += list(
 			list(
 				"title" = material_display_name(item),
@@ -117,11 +140,8 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 
 	data["buy_list"] = order_list
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "excelsior_teleporter.tmpl", name, 390, 450)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
+
 
 /obj/machinery/complant_teleporter/Topic(href, href_list)
 	if(stat & (NOPOWER|BROKEN))

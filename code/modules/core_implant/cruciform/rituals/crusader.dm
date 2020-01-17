@@ -38,6 +38,7 @@
 	user.stats.changeStat(STAT_TGH, count)
 	user.stats.changeStat(STAT_ROB, count)
 	user.stats.changeStat(STAT_VIG, (count / 2))
+	log_and_message_admins("performed a crusade litany")
 	to_chat(user, SPAN_NOTICE("You feel an extraordinary burst of energy."))
 	set_personal_cooldown(user)
 	addtimer(CALLBACK(src, .proc/discard_effect, user, count), src.cooldown_time)
@@ -63,6 +64,7 @@
 	else
 		to_chat(user, SPAN_NOTICE("The flux of psy-energy washed your mind, but you managed to keep focused!"))
 	playsound(user.loc, 'sound/effects/cascade.ogg', 65, 1)
+	log_and_message_admins("performed a searing revelation litany")
 	for(var/mob/living/carbon/human/victim in view(user))
 		if(!victim.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			if(prob(100 - victim.stats.getStat(STAT_VIG)))

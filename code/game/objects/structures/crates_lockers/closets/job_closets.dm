@@ -81,12 +81,17 @@
 	icon_state = "custodian"
 
 /obj/structure/closet/custodial/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/neotheology(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/neotheology(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/under/rank/church(src)
 	new /obj/item/weapon/storage/belt/utility/neotheology(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/space/void/custodian(src)
-	new /obj/item/clothing/head/helmet/space/void/custodian(src)
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/clothing/head/beret/purple(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
@@ -101,10 +106,6 @@
 	new /obj/item/weapon/mop(src)
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/neotheology(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 
 /obj/structure/closet/acolyte
 	name = "acolyte closet"
@@ -112,14 +113,15 @@
 	icon_state = "acolyte"
 
 /obj/structure/closet/acolyte/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/neotheology(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/neotheology(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/under/rank/acolyte(src)
 	new /obj/item/weapon/storage/belt/security/neotheology(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)
-	new /obj/item/clothing/head/helmet/space/void/acolyte(src)
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/neotheology(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)

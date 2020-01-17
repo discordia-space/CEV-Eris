@@ -287,8 +287,8 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0, var/hands = TRUE)
-	if (!M || !(istype(M)))
+/proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1.0, hands = TRUE)
+	if (!M || !istype(M) || siemens_coeff == 0)
 		return
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	var/area/source_area
@@ -300,11 +300,11 @@
 		power_source = Cable.powernet
 
 	var/datum/powernet/PN
-	var/obj/item/weapon/cell/large/cell
+	var/obj/item/weapon/cell/cell
 
 	if(istype(power_source,/datum/powernet))
 		PN = power_source
-	else if(istype(power_source,/obj/item/weapon/cell/large))
+	else if(istype(power_source,/obj/item/weapon/cell))
 		cell = power_source
 	else if(istype(power_source,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/apc = power_source
@@ -322,28 +322,10 @@
 		PN.trigger_warning(5)
 
 	var/body_part = null
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.siemens_coefficient == 0)
-			return
-		var/obj/item/clothing/cloth
-		if(hands && H.gloves)
-			cloth = H.gloves
-			body_part = M.hand ? BP_L_ARM : BP_R_ARM
-		else if(H.shoes) // hand or legs for now
-			cloth = H.shoes
-			body_part = pick(BP_L_LEG, BP_R_LEG)
-		if(cloth)
-			siemens_coeff = cloth.siemens_coefficient
-		if(siemens_coeff == 0)	return 0
-		//TODO: ask for overslot contents checks
-
-
-	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
-	//Since this one is longer it will override the original one.
-	if(PN)
-		PN.trigger_warning()
+	if(hands)
+		body_part = M.hand ? BP_L_ARM : BP_R_ARM
+	else
+		body_part = pick(BP_L_LEG, BP_R_LEG)
 
 	if (!cell && !PN)
 		return 0
@@ -353,22 +335,25 @@
 		PN_damage = PN.get_electrocute_damage()
 	if (cell)
 		cell_damage = cell.get_electrocute_damage()
-	var/shock_damage = 0
-	if (PN_damage>=cell_damage)
+	var/shock_damage = max(PN_damage, cell_damage)
+	if (PN_damage >= cell_damage)
 		power_source = PN
-		shock_damage = PN_damage
 	else
 		power_source = cell
-		shock_damage = cell_damage
 
 	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff, body_part) //zzzzzzap!
 	var/drained_energy = drained_hp*20
+
+	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
+	//Since this one is longer it will override the original one.
+	if(drained_energy && PN)
+		PN.trigger_warning()
 
 	if (source_area)
 		source_area.use_power(drained_energy/CELLRATE)
 	else if (istype(power_source,/datum/powernet))
 		var/drained_power = drained_energy/CELLRATE
 		drained_power = PN.draw_power(drained_power)
-	else if (istype(power_source, /obj/item/weapon/cell/large))
+	else if (istype(power_source, /obj/item/weapon/cell))
 		cell.use(drained_energy)
 	return drained_energy

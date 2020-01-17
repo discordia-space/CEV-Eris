@@ -339,3 +339,13 @@
 	item_state = "seclite"
 	light_spot_radius = 3
 	light_spot_power = 2.5
+
+/obj/item/device/lighting/toggleable/flashlight/seclite/update_icon()
+	. = ..()
+
+	if(on)
+		item_state = "[initial(icon_state)]-on"
+		update_wear_icon()
+	else
+		item_state = "[initial(icon_state)]"
+		update_wear_icon()

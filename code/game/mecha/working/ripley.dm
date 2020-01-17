@@ -3,7 +3,8 @@
 	name = "APLU \"Ripley\""
 	icon_state = "ripley"
 	initial_icon = "ripley"
-	step_in = 6
+	step_in = 4
+	max_equip = 5
 	max_temperature = 20000
 	health = 300
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
@@ -27,7 +28,7 @@
 	max_temperature = 65000
 	health = 350
 	lights_power = 8
-	damage_absorption = list("fire"=0.5,"bullet"=0.8,"bomb"=0.5)
+	damage_absorption = list("brute"=0.8,"fire"=0.5,"bullet"=0.8,"energy"=1,"bomb"=0.5)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
 
 /obj/mecha/working/ripley/deathripley

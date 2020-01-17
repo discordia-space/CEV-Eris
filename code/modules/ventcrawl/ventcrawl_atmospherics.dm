@@ -42,7 +42,6 @@
 			user.remove_ventcrawl()
 			user.forceMove(src.loc)
 			user.visible_message("You hear something squeezing through the pipes.", "You climb out the ventilation system.")
-	user.set_move_cooldown(VENTCRAWL_DELAY) //Ventcrawling is a static speed for all mobs
 
 /obj/machinery/atmospherics/proc/can_crawl_through()
 	return 1

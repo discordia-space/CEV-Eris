@@ -470,7 +470,7 @@
 	if(!istype(C) || C.stat == DEAD)
 		return
 	overlays.Cut()
-	switch(C.get_nsa())
+	switch(C.metabolism_effects.get_nsa())
 		if(200 to INFINITY)
 			overlays += ovrls["nsa10"]
 		if(-INFINITY to 20)
@@ -876,6 +876,18 @@ obj/screen/fire/DEADelize()
 	if(istype(H))
 		H.lookup()
 //-----------------------look up END------------------------------
+
+//-----------------------wield------------------------------
+/obj/screen/wield
+	name = "wield"
+	icon_state = "wield"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/wield/Click()
+	var/mob/living/carbon/human/H = parentmob
+	H.do_wield()
+//-----------------------wield END------------------------------
 //-----------------------Pull------------------------------
 
 /obj/screen/pull

@@ -241,7 +241,6 @@
 /obj/structure/closet/crate/large
 	name = "large crate"
 	desc = "A hefty metal crate."
-	icon = 'icons/obj/storage.dmi'
 	icon_state = "largemetal"
 	icon_welded = null //TODO
 
@@ -266,7 +265,6 @@
 /obj/structure/closet/crate/secure/large
 	name = "large crate"
 	desc = "A hefty metal crate with an electronic locking system."
-	icon = 'icons/obj/storage.dmi'
 	icon_state = "largemetal"
 	icon_lock = "largemetal"
 	icon_sparking = null

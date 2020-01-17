@@ -67,7 +67,7 @@
 		return
 	if(!can_use(user))
 		return
-			
+
 	if(is_valid_scan_target(A) && A.simulated)
 		user.visible_message(SPAN_NOTICE("[user] runs \the [src] over \the [A]."), range = 2)
 		if(scan_sound)
@@ -78,8 +78,6 @@
 		scan(A, user)
 		if(!scan_title)
 			scan_title = "[capitalize(name)] scan - [A]"
-	else
-		to_chat(user, "You cannot get any results from \the [A] with \the [src].")
 
 /obj/item/device/scanner/proc/cell_check()
 	if(!cell && suitable_cell)

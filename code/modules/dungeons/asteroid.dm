@@ -203,7 +203,7 @@
 		if(prob(85))
 			rockspawns += SP
 	for(var/obj/rogue_mobspawner/MS in myarea.mob_spawns)
-		if(prob(65))
+		if(prob(50))
 			mobspawns += MS
 	for(var/obj/asteroid_spawner/SP in rockspawns)
 		var/datum/rogue/asteroid/AS = generate_asteroid()

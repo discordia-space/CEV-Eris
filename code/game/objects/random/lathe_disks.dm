@@ -9,6 +9,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 3,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 5,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 3,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 4,

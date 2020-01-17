@@ -22,6 +22,7 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 2000
+	one_hand_penalty = 10
 	var/bolt_open = 0
 	var/item_suffix = ""
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
@@ -97,3 +98,4 @@
 	item_suffix  = "_wood"
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	wielded_item_state = "_doble_wood"

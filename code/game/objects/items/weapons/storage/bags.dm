@@ -99,11 +99,11 @@
 
 
 // -----------------------------
-//          Plant bag
+//          Produce bag
 // -----------------------------
 
-/obj/item/weapon/storage/bag/plants
-	name = "plant bag"
+/obj/item/weapon/storage/bag/produce
+	name = "produce bag"
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbag"
 	max_storage_space = 100
@@ -111,7 +111,9 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
-		/obj/item/weapon/grown)
+		/obj/item/weapon/grown,
+		/obj/item/weapon/reagent_containers/food/snacks/egg,
+		/obj/item/weapon/reagent_containers/food/snacks/meat)
 
 
 // -----------------------------

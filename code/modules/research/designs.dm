@@ -109,7 +109,6 @@ other types of metals and chemistry for reagents).
 	sort_string = "MBAAA"
 
 /datum/design/research/item/scalpel_laser
-	name = "Basic Laser Scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
 	build_path = /obj/item/weapon/tool/scalpel/laser
 	sort_string = "MBBAA"

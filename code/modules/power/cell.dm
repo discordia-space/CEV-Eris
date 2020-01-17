@@ -218,32 +218,31 @@
 				corrupt()
 	return
 
+// Calculation of cell shock damage
+// Keep in mind that airlocks, the most common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage
+// Also, even the most common gloves and boots have siemens_coefficent < 1, offering a degree of shock protection
 /obj/item/weapon/cell/proc/get_electrocute_damage()
 	switch (charge)
-/*		if (9000 to INFINITY)
-			return min(rand(90,150),rand(90,150))
-		if (2500 to 9000-1)
-			return min(rand(70,145),rand(70,145))
-		if (1750 to 2500-1)
-			return min(rand(35,110),rand(35,110))
-		if (1500 to 1750-1)
-			return min(rand(30,100),rand(30,100))
-		if (750 to 1500-1)
-			return min(rand(25,90),rand(25,90))
-		if (250 to 750-1)
-			return min(rand(20,80),rand(20,80))
-		if (100 to 250-1)
-			return min(rand(20,65),rand(20,65))*/
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000-1)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000-1)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000-1)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000-1)
+		if (40000 to INFINITY) // Here in case some supercharged superscience cells pop up
+			return min(rand(80,180),rand(80,180))
+		if (20000 to 40000) // Limit for L-class - only reached by rare Robustcell-X at full charge
+			return min(rand(60,160),rand(60,160))
+		if (15000 to 20000) // High grade L-class
+			return min(rand(50,140),rand(50,140))
+		if (10000 to 15000)
+			return min(rand(40,120),rand(40,120))
+		if (5000 to 10000) // Default APC cell that's fully charged
+			return min(rand(25,60),rand(25,60))
+		if (1000 to 5000) // Low grade L-class, high grade M-class, default APC cell that's not fully charged
+			return min(rand(20,40),rand(20,40))
+		if (500 to 1000) // Usual M-class
+			return min(rand(15,25),rand(15,25))
+		if (250 to 500) // Limit for S-class
 			return min(rand(10,20),rand(10,20))
+		if (100 to 250) // Usual S-class
+			return min(rand(5,15),rand(5,15))
+		if (10 to 100) // Low S-class
+			return min(rand(1,10),rand(1,10))
 		else
 			return 0
 

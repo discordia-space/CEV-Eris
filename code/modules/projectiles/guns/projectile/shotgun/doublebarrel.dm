@@ -20,6 +20,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1500
+	one_hand_penalty = 5
 	var/bolt_open = 0
 
 	burst_delay = 0

@@ -812,13 +812,14 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/weapon/gripper/service(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
-	src.modules += new /obj/item/weapon/material/minihoe(src)
-	src.modules += new /obj/item/weapon/material/hatchet(src)
+	src.modules += new /obj/item/weapon/tool/minihoe(src)
+	src.modules += new /obj/item/weapon/tool/hatchet(src)
 	src.modules += new /obj/item/device/scanner/plant(src)
-	src.modules += new /obj/item/weapon/storage/bag/plants(src)
+	src.modules += new /obj/item/weapon/storage/bag/produce(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)
 	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/weapon/material/knife(src)
+	src.modules += new /obj/item/weapon/tool/knife(src)
+	src.modules += new /obj/item/weapon/reagent_containers/food/condiment/enzyme(src)
 	src.modules += new /obj/item/weapon/soap(src) // a cheap bar of soap
 	src.modules += new /obj/item/weapon/reagent_containers/glass/rag(src) // a rag for.. yeah.. the primary tool of bartender
 	src.modules += new /obj/item/weapon/pen/robopen(src)
@@ -897,7 +898,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/pickaxe/drill(src)
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
-	src.modules += new /obj/item/weapon/mining_scanner(src)
+	src.modules += new /obj/item/device/scanner/mining(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	..(R)
@@ -946,7 +947,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
 	src.modules += new /obj/item/device/scanner/reagent/adv(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
-	src.modules += new /obj/item/weapon/storage/bag/plants(src)
+	src.modules += new /obj/item/weapon/storage/bag/produce(src)
 	src.modules += new /obj/item/weapon/pen/robopen(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
@@ -1024,9 +1025,10 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
+	channels = list("Engineering" = 1, "Common" = 1)
 	stat_modifiers = list(
 		STAT_COG = 15,
-		STAT_MEC = 30
+		STAT_MEC = 40
 	)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/R)
@@ -1044,6 +1046,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/borg/sight/meson(src)
 
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	//src.emag.name = "Plasma Cutter"
@@ -1052,7 +1055,7 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
 	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
-	var/datum/matter_synth/wire = new /datum/matter_synth/wire(15)
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
 	synths += metal
 	synths += glass
 	synths += wood

@@ -39,8 +39,8 @@
 		to_chat(user, "The machine cannot hold anymore items.")
 		return 1
 
-	if(istype(I,/obj/item/weapon/storage/bag/plants))
-		var/obj/item/weapon/storage/bag/plants/bag = I
+	if(istype(I,/obj/item/weapon/storage/bag/produce))
+		var/obj/item/weapon/storage/bag/produce/bag = I
 		var/failed = 1
 		for(var/obj/item/G in bag.contents)
 			if(!G.reagents || !G.reagents.total_volume)

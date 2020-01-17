@@ -57,7 +57,17 @@ var/game_id = null
 
 
 #define RECOMMENDED_VERSION 512
+// This function enable_debugger() enables local or remote (requires opening a port on router) debugging if the computer running this has set env EXTOOLS_DLL.
+// Only runs if env var EXTOOLS_DLL is set otherwise it won't load the dll file.
+// Used with the Visual Studio Code debugger and DreamMaker Language Client extension from https://github.com/SpaceManiac/SpacemanDMM/wiki/Setting-up-Debugging
+
+/world/proc/enable_debugger()
+    var/dll = world.GetConfig("env", "EXTOOLS_DLL")
+    if (dll)
+        call(dll, "debug_initialize")()
+
 /world/New()
+	enable_debugger()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
