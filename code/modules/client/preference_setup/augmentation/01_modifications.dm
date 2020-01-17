@@ -57,13 +57,14 @@
 
 	for(var/organ in pref.r_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
+		var/organ_name = capitalize(organ_tag_to_name[organ])
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(!pref.modifications_allowed())
-			dat += "<a class='linkOff'><b>[organ_tag_to_name[organ]]</b></a>"
+			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
-			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
+			dat += "<div><a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		else
-			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
+			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		if(mod.hascolor)
 			dat += "<a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		dat += "<br><div >[disp_name]</div></div>"
@@ -74,15 +75,16 @@
 
 	for(var/organ in pref.l_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
+		var/organ_name = capitalize(organ_tag_to_name[organ])
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(mod.hascolor)
 			dat += "<div><a href='?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
 		if(!pref.modifications_allowed())
-			dat += "<a class='linkOff'><b>[organ_tag_to_name[organ]]</b></a>"
+			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
 		else if(organ == pref.current_organ)
-			dat += "<a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
+			dat += "<a class='Organs_active' href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		else
-			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_tag_to_name[organ]]</b></a>"
+			dat += "<a href='?src=\ref[src];organ=[organ]'><b>[organ_name]</b></a>"
 		dat += "<br>[disp_name]</div>"
 
 	dat += "</td></tr></table><hr>"
@@ -94,11 +96,12 @@
 		if(!organ in body_modifications) continue
 
 		var/datum/body_modification/mod = pref.get_modification(organ)
+		var/organ_name = capitalize(organ_tag_to_name[organ])
 		var/disp_name = mod.short_name
 		if(organ == pref.current_organ)
-			dat += "<td width='33%'><b><span style='background-color:pink'>[organ_tag_to_name[organ]]</span></b>"
+			dat += "<td width='33%'><b><span style='background-color:pink'>[organ_name]</span></b>"
 		else
-			dat += "<td width='33%'><b>[organ_tag_to_name[organ]]</b>"
+			dat += "<td width='33%'><b>[organ_name]</b>"
 		if(!pref.modifications_allowed())
 			dat += "<br><a class='linkOff'>[disp_name]</a></td>"
 		else

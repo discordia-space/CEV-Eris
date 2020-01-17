@@ -115,11 +115,12 @@
 		var/o_a =  (limb.gender == PLURAL) ? "" : "a "
 
 		if(isnull(owner.species.has_limbs[limb.organ_tag]))
-			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][limb.organ_tag]."))
+			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
-		if(owner.get_organ(limb.organ_tag))
-			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][limb.organ_tag]."))
+		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
+		if(existing_limb)
+			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
 		if(limb.parent_organ != organ_tag)

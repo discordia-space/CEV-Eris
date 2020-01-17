@@ -1,5 +1,5 @@
 /obj/item/prosthesis
-	name = "posthesis"
+	name = "prosthesis"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon = 'icons/obj/prosthesis.dmi'
 	item_state = "buildpipe"
