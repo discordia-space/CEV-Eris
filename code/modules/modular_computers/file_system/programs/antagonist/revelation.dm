@@ -82,3 +82,6 @@
 		ui.open()
 		ui.set_auto_update(1)
 
+/datum/computer_file/program/revelation/primed
+	filename = "click me"
+	armed = 1

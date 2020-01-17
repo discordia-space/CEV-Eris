@@ -1,7 +1,7 @@
 /obj/machinery/portable_atmospherics/hydroponics
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics_machines.dmi'
-	icon_state = "hydrotray3"
+	icon_state = "hydrotray"
 	density = 1
 	anchored = 1
 	reagent_flags = OPENCONTAINER
