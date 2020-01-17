@@ -553,3 +553,9 @@ proc/TextPreview(var/string, var/len=40)
 	. = base
 	if(rest)
 		. += .(rest)
+
+
+
+
+
+#define gender2text(gender) capitalize(gender)

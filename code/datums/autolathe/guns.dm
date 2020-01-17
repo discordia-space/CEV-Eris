@@ -168,15 +168,15 @@
 
 /datum/design/autolathe/gun/pulse
 	name = "NT PR \"Dominion\""
-	build_path = /obj/item/weapon/gun/energy/plasma
+	build_path = /obj/item/weapon/gun/energy/pulse
 
 /datum/design/autolathe/gun/pulse_destroyer
 	name = "NT PR \"Purger\""
-	build_path = /obj/item/weapon/gun/energy/plasma/destroyer
+	build_path = /obj/item/weapon/gun/energy/pulse/destroyer
 
 /datum/design/autolathe/gun/pulse_cassad
 	name = "FS PR \"Cassad\""
-	build_path = /obj/item/weapon/gun/energy/plasma/cassad
+	build_path = /obj/item/weapon/gun/energy/pulse/cassad
 
 /datum/design/autolathe/gun/sniperrifle
 	name = "NT MER \"Valkyrie\""

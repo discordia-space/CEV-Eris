@@ -16,11 +16,6 @@
 var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms
-	icon = 'icons/obj/machines/telecomms.dmi'
-	density = TRUE
-	anchored = TRUE
-	use_power = IDLE_POWER_USE
-
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
@@ -37,8 +32,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/produces_heat = 1	//whether the machine will produce heat when on.
 	var/delay = 10 // how many process() ticks to delay per heat
 	var/long_range_link = 0	// Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
+	var/circuitboard = null // string pointing to a circuitboard type
 	var/hide = 0				// Is it a hidden machine?
-	var/list/listening_levels = list() // 0 = auto set in Initialize() - this is the z level that the machine is listening to.
+	var/list/listening_levels = list() // 0 = auto set in New() - this is the z level that the machine is listening to.
 
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
@@ -116,20 +112,29 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return 0
 
 
-/obj/machinery/telecomms/Initialize()
-	..()
+/obj/machinery/telecomms/New()
 	telecomms_list += src
+	..()
 
 	//Set the listening_levels if there's none.
-	if(!length(listening_levels))
-		update_listening_levels()
+	if(!listening_levels || !listening_levels.len)
+		//Defaults to our Z level!
+		var/turf/position = get_turf(src)
 
-	return INITIALIZE_HINT_LATELOAD
+		listening_levels = list(position.z)
+		var/z_level = position.z
+		// UP
+		while(HasAbove(z_level++))
+			listening_levels |= z_level
+		// Down
+		z_level = position.z
+		while(HasBelow(z_level--))
+			listening_levels |= z_level
 
-/obj/machinery/telecomms/LateInitialize()
-	..()
-	// Links nearby machines after the telecomm list is already populated
+/obj/machinery/telecomms/Initialize()
+	. = ..()
 	if(autolinkers.len)
+		// Links nearby machines
 		if(!long_range_link)
 			for(var/obj/machinery/telecomms/T in orange(20, src))
 				add_link(T)
@@ -142,36 +147,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	for(var/obj/machinery/telecomms/comm in telecomms_list)
 		comm.links -= src
 	links = list()
-	return ..()
-
-// If moved, update listening levels
-/obj/machinery/telecomms/forceMove(atom/destination, special_event, glide_size_override=0)
 	. = ..()
-	if(.)
-		update_listening_levels()
-
-// Updates levels the telecomm machine is listening to
-/obj/machinery/telecomms/proc/update_listening_levels()
-	var/turf/position = get_turf(src)
-
-	// Likely nullspaced as a part of Destroy process
-	if(!position)
-		listening_levels = list()
-		return
-
-	//Defaults to our Z level!
-	var/z_level = position.z
-	listening_levels = list(z_level)
-
-	// UP
-	while(HasAbove(z_level++))
-		listening_levels |= z_level
-
-	// Down
-	z_level = position.z
-	while(HasBelow(z_level--))
-		listening_levels |= z_level
-
 
 // Used in auto linking
 /obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
@@ -279,13 +255,17 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 */
 
 /obj/machinery/telecomms/receiver
-	name = "subspace receiver"
+	name = "Subspace Receiver"
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcast receiver"
 	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 600
 	machinetype = 1
 	produces_heat = 0
-	circuit = /obj/item/weapon/circuitboard/telecomms/receiver
+	circuitboard = "/obj/item/weapon/circuitboard/telecomms/receiver"
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
 
@@ -332,11 +312,16 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 */
 
 /obj/machinery/telecomms/hub
-	name = "telecommunication hub"
+	name = "Telecommunication Hub"
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "hub"
+	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 1600
 	machinetype = 7
-	circuit = /obj/item/weapon/circuitboard/telecomms/hub
+	circuitboard = "/obj/item/weapon/circuitboard/telecomms/hub"
 	long_range_link = 1
 	netspeed = 40
 
@@ -361,13 +346,17 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 */
 
 /obj/machinery/telecomms/relay
-	name = "telecommunication relay"
+	name = "Telecommunication Relay"
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "relay"
 	desc = "A mighty piece of hardware used to send massive amounts of data far away."
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 600
 	machinetype = 8
 	produces_heat = 0
-	circuit = /obj/item/weapon/circuitboard/telecomms/relay
+	circuitboard = "/obj/item/weapon/circuitboard/telecomms/relay"
 	netspeed = 5
 	long_range_link = 1
 	var/broadcasting = 1
@@ -409,12 +398,16 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 */
 
 /obj/machinery/telecomms/bus
-	name = "bus mainframe"
+	name = "Bus Mainframe"
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "bus"
 	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 1000
 	machinetype = 2
-	circuit = /obj/item/weapon/circuitboard/telecomms/bus
+	circuitboard = "/obj/item/weapon/circuitboard/telecomms/bus"
 	netspeed = 40
 	var/change_frequency = 0
 
@@ -457,13 +450,17 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 */
 
 /obj/machinery/telecomms/processor
-	name = "processor unit"
+	name = "Processor Unit"
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "processor"
 	desc = "This machine is used to process large quantities of information."
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 600
 	machinetype = 3
 	delay = 5
-	circuit = /obj/item/weapon/circuitboard/telecomms/processor
+	circuitboard = "/obj/item/weapon/circuitboard/telecomms/processor"
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
 	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
@@ -491,12 +488,16 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 
 /obj/machinery/telecomms/server
-	name = "telecommunication server"
+	name = "Telecommunication Server"
+	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "comm_server"
 	desc = "A machine used to store data and network statistics."
+	density = 1
+	anchored = 1
+	use_power = 1
 	idle_power_usage = 300
 	machinetype = 4
-	circuit = /obj/item/weapon/circuitboard/telecomms/server
+	circuitboard = "/obj/item/weapon/circuitboard/telecomms/server"
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()

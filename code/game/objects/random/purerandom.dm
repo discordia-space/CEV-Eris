@@ -69,7 +69,7 @@
 				/obj/item/weapon/lipstick/random = 3,
 				/obj/item/weapon/inflatable_dispenser = 2,
 				/obj/item/weapon/grenade/chem_grenade/cleaner = 2,
-				/obj/item/weapon/stock_parts/smes_coil = 2,
+				/obj/item/weapon/smes_coil = 2,
 				/obj/item/weapon/tank/anesthetic = 2,
 				/obj/item/weapon/tank/nitrogen = 2,
 				/obj/item/clothing/mask/balaclava = 3,

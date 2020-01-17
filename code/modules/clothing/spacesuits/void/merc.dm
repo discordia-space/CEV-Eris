@@ -33,7 +33,6 @@
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
-	helmet = /obj/item/clothing/head/helmet/space/void/SCAF
 
 
 //Voidsuit for traitors
@@ -41,7 +40,7 @@
 	name = "blood-red voidsuit helmet"
 	desc = "An advanced helmet designed for work in special operations. This version is additionally reinforced against melee attacks."
 	icon_state = "syndiehelm"
-	item_state = "syndiehelm"
+	item_state = "syndie_helm"
 	armor = list(
 		melee = 50,
 		bullet = 40,
@@ -78,11 +77,3 @@
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list("Human")
-	helmet = /obj/item/clothing/head/helmet/space/void/merc
-
-/obj/item/clothing/suit/space/void/merc/equipped
-	boots = /obj/item/clothing/shoes/magboots
-	tank = /obj/item/weapon/tank/oxygen
-
-/obj/item/clothing/suit/space/void/merc/boxed
-	tank = /obj/item/weapon/tank/emergency_oxygen/double

@@ -1,6 +1,6 @@
 /obj/mecha/working
 	internal_damage_threshold = 60
-	var/list/cargo = list()
+	var/list/cargo = new
 	var/cargo_capacity = 5
 
 /obj/mecha/working/Initialize()

@@ -26,6 +26,7 @@
 	name = "Serbian Mercenary combat gear"
 
 	suit = /obj/item/clothing/suit/space/void/SCAF
+	head = /obj/item/clothing/head/helmet/space/void/SCAF
 	suit_store = /obj/item/weapon/tank/jetpack/oxygen
 	back = /obj/item/weapon/storage/backpack/military
 

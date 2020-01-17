@@ -301,7 +301,7 @@
 	for(var/datum/component/fabric/F in GLOB.fabric_list)
 		if(F.parent == holder.owner)
 			continue
-		add_image(F.fabric_image)
+		add_image(null, F.fabric_image)
 	++holder.owner.language_blackout
 	return ..()
 
@@ -313,7 +313,7 @@
 	images.Cut()
 	..()
 
-/datum/breakdown/negative/fabric/proc/add_image(image/I)
+/datum/breakdown/negative/fabric/proc/add_image(_, image/I)
 	images |= I
 	holder.owner.client?.images |= I
 
@@ -509,6 +509,6 @@
 	UnregisterSignal(holder.owner, COMSIG_HUMAN_SAY)
 	..()
 
-/datum/breakdown/common/signs/proc/check_message(msg)
+/datum/breakdown/common/signs/proc/check_message(_, msg)
 	if(msg == message)
 		finished = TRUE

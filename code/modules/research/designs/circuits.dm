@@ -12,6 +12,8 @@
 		name = "Machine circuit ([item_name])"
 	else if(C.board_type == "computer")
 		name = "Computer circuit ([item_name])"
+	else
+		name = "Circuit ([item_name])"
 
 /datum/design/research/circuit/AssembleDesignDesc()
 	if(!desc)

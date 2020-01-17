@@ -66,8 +66,6 @@
 	var/tracer_type
 	var/impact_type
 
-	var/proj_color //If defined, is used to change the muzzle, tracer, and impact icon colors through Blend()
-
 	var/datum/plot_vector/trajectory	// used to plot the path of the projectile
 	var/datum/vector_loc/location		// current location of the projectile in pixel space
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
@@ -718,10 +716,6 @@
 		var/obj/effect/projectile/M = new muzzle_type(get_turf(src))
 
 		if(istype(M))
-			if(proj_color)
-				var/icon/I = new(M.icon, M.icon_state)
-				I.Blend(proj_color)
-				M.icon = I
 			M.set_transform(T)
 			M.pixel_x = location.pixel_x
 			M.pixel_y = location.pixel_y
@@ -737,10 +731,6 @@
 		var/obj/effect/projectile/P = new tracer_type(location.loc)
 
 		if(istype(P))
-			if(proj_color)
-				var/icon/I = new(P.icon, P.icon_state)
-				I.Blend(proj_color)
-				P.icon = I
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
@@ -754,18 +744,14 @@
 	if (!location)
 		return
 
-	if(ispath(impact_type))
+	if(ispath(tracer_type))
 		var/obj/effect/projectile/P = new impact_type(location.loc)
 
 		if(istype(P))
-			if(proj_color)
-				var/icon/I = new(P.icon, P.icon_state)
-				I.Blend(proj_color)
-				P.icon = I
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
-			P.activate(P.lifetime)
+			P.activate()
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
@@ -833,8 +819,3 @@
 	var/output = trace.launch(target) //Test it!
 	qdel(trace) //No need for it anymore
 	return output //Send it back to the gun!
-
-/proc/get_proj_icon_by_color(var/obj/item/projectile/P, var/color)
-	var/icon/I = new(P.icon, P.icon_state)
-	I.Blend(color)
-	return I

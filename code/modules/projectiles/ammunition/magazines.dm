@@ -37,6 +37,45 @@
 	icon_state = "9x19pr"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
+/////////////Holdout/////////////
+/obj/item/ammo_magazine/lpistol
+	name = "holdout magazine (.35 Auto)"
+	icon_state = "10l"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_L_PISTOL
+	matter = list(MATERIAL_STEEL = 3)
+	caliber = "pistol"
+	ammo_type = /obj/item/ammo_casing/pistol
+	max_ammo = 8
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/lpistol/update_icon()	//temp fix till sprites can be updated
+	if (!stored_ammo.len)
+		icon_state = "[initial(icon_state)]-0"
+		return
+	else
+		icon_state = "[initial(icon_state)]-8"
+		return
+
+/obj/item/ammo_magazine/lpistol/empty
+	icon_state = "10"
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/lpistol/flash
+	name = "holdout magazine (.35 Auto flash)"
+	icon_state = "10f"
+	ammo_type = /obj/item/ammo_casing/pistol/flash
+
+/obj/item/ammo_magazine/lpistol/highvelocity
+	name = "holdout magazine (.35 Auto high-velocity)"
+	icon_state = "10hv"
+	ammo_type = /obj/item/ammo_casing/pistol/hv
+
+/obj/item/ammo_magazine/lpistol/rubber
+	name = "holdout magazine (.35 Auto rubber)"
+	icon_state = "10r"
+	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
 /////////////HighCap/////////////
 /obj/item/ammo_magazine/hpistol

@@ -219,7 +219,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 //Shakes the mob's camera
 //Strength is not recommended to set higher than 4, and even then its a bit wierd
-/proc/shake_camera(mob/M, duration, strength = 1, var/taper = 0.25)
+/proc/shake_camera(mob/M, duration, strength=1, var/taper = 0.25)
 	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
 		return
 

@@ -117,9 +117,6 @@
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
-			src.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed passively by [M.name] ([M.ckey])</font>"
-			M.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed passively [src.name] ([src.ckey])</font>"
-			msg_admin_attack("[M] grabbed passively a [src].")
 			return 1
 
 		if(I_HURT)

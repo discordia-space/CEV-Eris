@@ -1,29 +1,29 @@
-GLOBAL_LIST_EMPTY(rad_collectors)
+//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
+var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector
-	name = "radiation collector array"
+	name = "Radiation Collector Array"
 	desc = "A device which uses Hawking Radiation and plasma to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
-	anchored = FALSE
-	density = TRUE
+	anchored = 0
+	density = 1
 	req_access = list(access_engine_equip)
-
+//	use_power = 0
 	var/obj/item/weapon/tank/plasma/P = null
 	var/last_power = 0
 	var/last_power_new = 0
-	var/active = FALSE
-	var/locked = FALSE
+	var/active = 0
+	var/locked = 0
 	var/drainratio = 1
 
-/obj/machinery/power/rad_collector/Initialize()
-	. = ..()
-	GLOB.rad_collectors += src
+/obj/machinery/power/rad_collector/New()
+	..()
+	rad_collectors += src
 
 /obj/machinery/power/rad_collector/Destroy()
-	QDEL_NULL(P)
-	GLOB.rad_collectors -= src
-	return ..()
+	rad_collectors -= src
+	. = ..()
 
 /obj/machinery/power/rad_collector/Process()
 	//so that we don't zero out the meter if the SM is processed first.
@@ -40,18 +40,17 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	return
 
 
-/obj/machinery/power/rad_collector/attack_hand(mob/user)
+/obj/machinery/power/rad_collector/attack_hand(mob/user as mob)
 	if(anchored)
-		if(!locked)
+		if(!src.locked)
 			toggle_power()
-			user.visible_message(
-				SPAN_NOTICE("[user] turns [src] [active? "on" : "off"]."),
-				SPAN_NOTICE("You turn [src] [active ? "on" : "off"].")
-				)
+			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
+			"You turn the [src.name] [active? "on":"off"].")
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["plasma"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
+			return
 		else
-			to_chat(user, SPAN_WARNING("The controls are locked!"))
-		return
+			to_chat(user, "\red The controls are locked!")
+			return
 	..()
 
 
@@ -66,57 +65,59 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_PRYING)
-			if(P && !locked)
+			if(P && !src.locked)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					eject()
+					return
 			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(!P)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					anchored = !anchored
-					user.visible_message(
-						SPAN_NOTICE("[user] [anchored ? "secures" : "unsecures"] [src]."),
-						SPAN_NOTICE("You [anchored ? "secure" : "undo"] the external bolts."),
+					src.anchored = !src.anchored
+					user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
+						"You [anchored? "secure":"undo"] the external bolts.", \
 						"You hear a ratchet")
 					if(anchored)
 						connect_to_network()
 					else
 						disconnect_from_network()
+					return
 			return
 
 		if(ABORT_CHECK)
 			return
 
 	if(istype(I, /obj/item/weapon/tank/plasma))
-		if(!anchored)
-			to_chat(user, SPAN_WARNING("[src] needs to be secured to the floor first."))
+		if(!src.anchored)
+			to_chat(user, "\red The [src] needs to be secured to the floor first.")
 			return
-		if(P)
-			to_chat(user, SPAN_WARNING("[src] already has a plasma tank loaded."))
+		if(src.P)
+			to_chat(user, "\red The [src] already has a plasma tank loaded.")
 			return
 		user.drop_item()
-		P = I
-		I.forceMove(src)
+		src.P = I
+		I.loc = src
 		update_icons()
 		return
 
 	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
-		if(allowed(user))
+		if (src.allowed(user))
 			if(active)
-				locked = !locked
-				to_chat(user, SPAN_NOTICE("The controls are now [locked ? "locked" : "unlocked"]."))
+				src.locked = !src.locked
+				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
-				locked = FALSE //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when [src] is active."))
+				src.locked = 0 //just in case it somehow gets locked
+				to_chat(user, "\red The controls can only be locked when the [src] is active.")
 		else
-			to_chat(user, SPAN_WARNING("Access denied!"))
+			to_chat(user, "\red Access denied!")
 		return
 	return ..()
 
 /obj/machinery/power/rad_collector/examine(mob/user)
-	if(..())
-		to_chat(user, "The meter indicates that [src] is collecting [last_power] W.")
+	if (..(user, 3))
+		to_chat(user, "The meter indicates that \the [src] is collecting [last_power] W.")
+		return 1
 
 /obj/machinery/power/rad_collector/ex_act(severity)
 	switch(severity)
@@ -126,31 +127,36 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 
 /obj/machinery/power/rad_collector/proc/eject()
-	locked = FALSE
-	if (!P)
+	locked = 0
+	var/obj/item/weapon/tank/plasma/Z = src.P
+	if (!Z)
 		return
-	P.forceMove(drop_location())
-	P = null
+	Z.loc = get_turf(src)
+	Z.layer = initial(Z.layer)
+	src.P = null
 	if(active)
 		toggle_power()
 	else
 		update_icons()
 
-/obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
+/obj/machinery/power/rad_collector/proc/receive_pulse(var/pulse_strength)
 	if(P && active)
-		var/power_produced = P.air_contents.gas["plasma"]*pulse_strength*20
+		var/power_produced = 0
+		power_produced = P.air_contents.gas["plasma"]*pulse_strength*20
 		add_avail(power_produced)
 		last_power_new = power_produced
+		return
+	return
 
 
 /obj/machinery/power/rad_collector/proc/update_icons()
 	overlays.Cut()
 	if(P)
-		overlays += "ptank"
+		overlays += image('icons/obj/singularity.dmi', "ptank")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		overlays += "on"
+		overlays += image('icons/obj/singularity.dmi', "on")
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
@@ -162,6 +168,5 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		icon_state = "ca"
 		flick("ca_deactive", src)
 	update_icons()
+	return
 
-/obj/machinery/power/rad_collector/anchored
-	anchored = TRUE

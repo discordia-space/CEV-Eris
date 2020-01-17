@@ -59,11 +59,9 @@ var/datum/controller/failsafe/Failsafe
 						if(3)
 							to_chat(admins, "<span class='adminnotice'>Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks.</span>")
 							--defcon
-							send2coders(message = "Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks.", color = "#ff0000", admiralty = 1)
 						if(2)
 							to_chat(admins, "<span class='boldannounce'>Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.</span>")
 							--defcon
-							send2coders(message = "Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks.", color = "#ff0000", admiralty = 1)
 						if(1)
 
 							to_chat(admins, "<span class='boldannounce'>Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting...</span>")
@@ -76,7 +74,6 @@ var/datum/controller/failsafe/Failsafe
 							else if(rtn < 0)
 								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
 								to_chat(admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
-								send2coders(message = "ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying", color = "#ff0000", admiralty = 1)
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
 						if(0) //DEFCON 0! (mc failed to restart)
