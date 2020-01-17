@@ -9,7 +9,7 @@
 
 
 /obj/item/organ/external/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
-	if(is_open())
+	if(is_open() && !diagnosed)
 		try_autodiagnose(user)
 
 	var/list/data = ui_data(user)
