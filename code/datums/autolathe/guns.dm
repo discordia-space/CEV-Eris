@@ -98,6 +98,10 @@
 	name = "Excelsior .30 \"Kardashev-Mosin\""
 	build_path = /obj/item/weapon/gun/projectile/boltgun
 
+/datum/design/autolathe/gun/boltgun_serbian
+	name = "SA BR .30 \"Novakovic\""
+	build_path = /obj/item/weapon/gun/projectile/boltgun/serbian
+
 /datum/design/autolathe/gun/heavysniper
 	name = "NT AMR .60 \"Penetrator\""
 	build_path = /obj/item/weapon/gun/projectile/heavysniper

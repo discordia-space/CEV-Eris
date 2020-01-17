@@ -58,10 +58,6 @@
 	name = "highcap magazine (.35 Auto, flash)"
 	build_path = /obj/item/ammo_magazine/hpistol/flash
 
-/datum/design/autolathe/ammo/magazine_srifle
-	name = "magazine (.20 Rifle)"
-	build_path = /obj/item/ammo_magazine/srifle
-
 /datum/design/autolathe/ammo/SMG_sol_rubber
 	name = "magazine (.25 caseless Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/rubber
@@ -129,3 +125,8 @@
 /datum/design/autolathe/ammo/smg_rubber
 	name = "SMG magazine (.35 Auto rubber)"
 	build_path = /obj/item/ammo_magazine/smg/rubber
+
+/datum/design/autolathe/ammo/antim
+	name = "antimaterial rifle casings (.60)"
+	build_path = /obj/item/ammo_casing/antim
+	
