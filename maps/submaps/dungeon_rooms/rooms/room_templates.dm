@@ -135,21 +135,21 @@
 	room_tag = "under_only"
 	directional_flags = list("north", "east")*/
 
-/datum/map_template/dungeon_template/room/penitentiary.dmm
+/datum/map_template/dungeon_template/room/penitentiary
 	name = "penitentiary"
 	desc = "Enjoy your stay."
 	mappath = 'maps/submaps/dungeon_rooms/rooms/penitentiary.dmm'
 	directional_flags = list("west", "east")
 	room_tag = "horizontal_only"
 
-/datum/map_template/dungeon_template/room/secure_storage_horizontal.dmm
+/datum/map_template/dungeon_template/room/secure_storage_horizontal
 	name = "secure_storage_horizontal"
 	desc = "Enjoy your stay."
 	mappath = 'maps/submaps/dungeon_rooms/rooms/secure_storage_horizontal.dmm'
 	directional_flags = list("west", "east")
 	room_tag = "horizontal_only"
 
-/datum/map_template/dungeon_template/room/showers.dmm
+/datum/map_template/dungeon_template/room/showers
 	name = "showers"
 	desc = "Enjoy your stay."
 	mappath = 'maps/submaps/dungeon_rooms/rooms/showers.dmm'

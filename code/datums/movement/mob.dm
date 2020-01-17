@@ -175,7 +175,13 @@
 	if (overflow > 1 || overflow < 0)
 		overflow = 0
 
-	var/delay = mob.movement_delay() - overflow
+	var/mob_delay = mob.movement_delay()
+	if(isliving(mob))
+		var/mob/living/L = mob
+		if(L.is_ventcrawling)
+			mob_delay = MOVE_DELAY_VENTCRAWL
+
+	var/delay = mob_delay - overflow
 	SetDelay(delay)
 
 

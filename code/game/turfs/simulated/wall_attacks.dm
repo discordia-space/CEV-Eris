@@ -96,7 +96,7 @@
 /turf/simulated/wall/attackby(obj/item/I, mob/user)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if (!user.)
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 

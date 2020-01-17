@@ -377,11 +377,11 @@ BLIND     // can't see anything
 
 	if(!knifes)
 		knifes = list(
-			/obj/item/weapon/material/knife,
+			/obj/item/weapon/tool/knife,
 			/obj/item/weapon/material/shard,
 			/obj/item/weapon/material/butterfly,
 			/obj/item/weapon/material/kitchen/utensil,
-			/obj/item/weapon/material/hatchet/tacknife,
+			/obj/item/weapon/tool/knife/tacknife,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)

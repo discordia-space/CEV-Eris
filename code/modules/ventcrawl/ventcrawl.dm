@@ -1,6 +1,3 @@
-#define VENTCRAWL_DELAY 2 //A hack. like the entire rest of the movement system.
-//I will tear it out and remake it at some point ~Nanako
-
 var/list/ventcrawl_machinery = list(
 	/obj/machinery/atmospherics/unary/vent_scrubber,
 	/obj/machinery/atmospherics/unary/vent_pump

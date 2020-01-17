@@ -358,11 +358,10 @@
 		..()
 	return
 
-/obj/structure/window/proc/hit(var/damage, var/sound_effect = TRUE, var/ignore_resistance = FALSE)
+/obj/structure/window/proc/hit(damage, sound_effect = TRUE, ignore_resistance = FALSE)
 	damage = take_damage(damage, TRUE, ignore_resistance)
-	if (sound_effect)
-		playsound(src.loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
-	return
+	if(sound_effect && loc) // If the window was shattered and, thus, nullspaced, don't try to play hit sound
+		playsound(loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
 
 
 /obj/structure/window/proc/rotate()
@@ -702,6 +701,9 @@
 //Fulltile windows can only exist ontop of a low wall
 //If they're ever not on a wall, they will drop to the floor and smash.
 /obj/structure/window/proc/mount_check()
+	if(QDELETED(src))
+		return
+
 	if (!is_full_window())
 		return
 

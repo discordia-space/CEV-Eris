@@ -530,7 +530,7 @@ default behaviour is:
 												var/mob/living/carbon/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 												if(blood_volume > 0)
-													H.vessel.remove_reagent("blood", 1)
+													H.vessel.remove_reagent("blood", 0.5)
 
 
 						step_glide(pulling, get_dir(pulling.loc, T), glide_size)

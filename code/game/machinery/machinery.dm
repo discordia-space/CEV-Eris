@@ -300,7 +300,7 @@ Class Procs:
 
 	var/qualities = list(QUALITY_SCREW_DRIVING)
 
-	if(panel_open)
+	if(panel_open && circuit)
 		qualities += QUALITY_PRYING
 
 	var/tool_type = I.get_tool_type(user, qualities, src)

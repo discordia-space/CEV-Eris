@@ -35,6 +35,7 @@
 		fail("It is too late for this one, the soul has already left the vessel", user, C)
 		return FALSE
 
+	log_and_message_admins("successfully baptized [CI.wearer]")
 	to_chat(CI.wearer, "<span class='info'>Your cruciform vibrates and warms up.</span>")
 
 	CI.activate()
@@ -223,6 +224,7 @@
 
 	for(var/obj/item/weapon/coreimplant_upgrade/CU in CI.upgrades)
 		CU.remove()
+		log_and_message_admins("removed upgrade from [C] cruciform with asacris litany")
 
 	return TRUE
 
@@ -338,7 +340,7 @@
 		return FALSE
 
 	var/mob/living/M = CI.wearer
-
+	log_and_message_admins("inflicted pain on [C] with atonement litany")
 	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
 
 

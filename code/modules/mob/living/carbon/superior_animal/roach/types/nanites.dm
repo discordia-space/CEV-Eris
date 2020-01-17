@@ -13,8 +13,9 @@
 	melee_damage_upper = 3 //He's a ranged roach
 
 	breath_required_type = NONE
+	breath_poison_type = NONE
 	min_breath_required_type = 0
-	min_breath_poison_type = 0.4
+	min_breath_poison_type = 0
 
 	min_air_pressure = 0
 	min_bodytemperature = 0
@@ -36,6 +37,7 @@
 	desc = "A swarm of disgusting locusts infested with nanomachines."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "naniteroach"
+	icon_living = "naniteroach"
 	pass_flags = PASSTABLE
 	density = FALSE
 	health = 10
@@ -55,3 +57,8 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+
+/mob/living/simple_animal/hostile/naniteswarm/death()
+	..()
+	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
+	qdel(src)

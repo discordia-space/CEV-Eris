@@ -241,13 +241,13 @@
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
-	take_damage(damage)
-
 	if(Proj.damage_type == BRUTE && prob(src.damage / (material.integrity + reinf_material?.integrity) * 33))
 		var/obj/item/weapon/material_trash/metal/slug = new(get_turf(Proj))
 		slug.matter.Cut()
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
 		slug.throw_at(get_turf(Proj), 0, 1)
+
+	take_damage(damage)
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()

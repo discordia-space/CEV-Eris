@@ -196,6 +196,12 @@
 	preloaded_reagents = list("spaceacillin" = 15)
 
 
+/obj/item/weapon/reagent_containers/pill/prosurgeon
+	name = "ProSurgeon pill"
+	desc = "Contains a stimulating drug that is used to reduce tremor to minimum."
+	icon_state = "pill3"
+	preloaded_reagents = list("prosurgeon" = 10)
+
 
 
 
