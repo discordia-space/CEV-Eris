@@ -23,6 +23,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.7
 	recoil_buildup = 6
+	one_hand_penalty = 5
 
 	firemodes = list(
 		FULL_AUTO_400,

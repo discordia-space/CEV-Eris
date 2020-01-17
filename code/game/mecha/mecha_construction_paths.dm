@@ -103,7 +103,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Peripherals control module is installed"),
 		//8
-		list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
+		list("key"=/obj/item/weapon/circuitboard/mecha/peripherals,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Central control module is secured"),
 		//9
@@ -111,7 +111,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Central control module is installed"),
 		//10
-		list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
+		list("key"=/obj/item/weapon/circuitboard/mecha/main,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="The wiring is adjusted"),
 		//11
@@ -209,7 +209,7 @@
 						"[user] removes the central control module from [holder].",
 						"You remove the central computer mainboard from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/ripley/main(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/main(get_turf(holder))
 					holder.icon_state = "ripley4"
 			if(8)
 				if(diff==FORWARD)
@@ -237,7 +237,7 @@
 						"[user] removes the peripherals control module from [holder].",
 						"You remove the peripherals control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/peripherals(get_turf(holder))
 					holder.icon_state = "ripley6"
 			if(6)
 				if(diff==FORWARD)
@@ -393,7 +393,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Targeting module is installed"),
 		//12
-		list("key"=/obj/item/weapon/circuitboard/mecha/gygax/targeting,
+		list("key"=/obj/item/weapon/circuitboard/mecha/targeting,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Peripherals control module is secured"),
 		//13
@@ -401,7 +401,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Peripherals control module is installed"),
 		//14
-		list("key"=/obj/item/weapon/circuitboard/mecha/gygax/peripherals,
+		list("key"=/obj/item/weapon/circuitboard/mecha/peripherals,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Central control module is secured"),
 		//15
@@ -409,7 +409,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Central control module is installed"),
 		//16
-		list("key"=/obj/item/weapon/circuitboard/mecha/gygax/main,
+		list("key"=/obj/item/weapon/circuitboard/mecha/main,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="The wiring is adjusted"),
 		//17
@@ -507,7 +507,7 @@
 						"[user] removes the central control module from [holder].",
 						"You remove the central computer mainboard from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/gygax/main(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/main(get_turf(holder))
 					holder.icon_state = "gygax4"
 			if(14)
 				if(diff==FORWARD)
@@ -535,7 +535,7 @@
 						"[user] removes the peripherals control module from [holder].",
 						"You remove the peripherals control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/gygax/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/peripherals(get_turf(holder))
 					holder.icon_state = "gygax6"
 			if(12)
 				if(diff==FORWARD)
@@ -563,7 +563,7 @@
 						"[user] removes the weapon control module from [holder].",
 						"You remove the weapon control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/gygax/targeting(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/targeting(get_turf(holder))
 					holder.icon_state = "gygax8"
 			if(10)
 				if(diff==FORWARD)
@@ -780,7 +780,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Peripherals control module is installed"),
 		//9
-		list("key"=/obj/item/weapon/circuitboard/mecha/ripley/peripherals,
+		list("key"=/obj/item/weapon/circuitboard/mecha/peripherals,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Central control module is secured"),
 		//10
@@ -788,7 +788,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Central control module is installed"),
 		//11
-		list("key"=/obj/item/weapon/circuitboard/mecha/ripley/main,
+		list("key"=/obj/item/weapon/circuitboard/mecha/main,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="The wiring is adjusted"),
 		//12
@@ -886,7 +886,7 @@
 						"[user] removes the central control module from [holder].",
 						"You remove the central computer mainboard from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/ripley/main(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/main(get_turf(holder))
 					holder.icon_state = "fireripley4"
 			if(9)
 				if(diff==FORWARD)
@@ -914,7 +914,7 @@
 						"[user] removes the peripherals control module from [holder].",
 						"You remove the peripherals control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/peripherals(get_turf(holder))
 					holder.icon_state = "fireripley6"
 			if(7)
 				if(diff==FORWARD)
@@ -1082,7 +1082,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Targeting module is installed"),
 		//12
-		list("key"=/obj/item/weapon/circuitboard/mecha/durand/targeting,
+		list("key"=/obj/item/weapon/circuitboard/mecha/targeting,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Peripherals control module is secured"),
 		//13
@@ -1090,7 +1090,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Peripherals control module is installed"),
 		//14
-		list("key"=/obj/item/weapon/circuitboard/mecha/durand/peripherals,
+		list("key"=/obj/item/weapon/circuitboard/mecha/peripherals,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Central control module is secured"),
 		//15
@@ -1098,7 +1098,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Central control module is installed"),
 		//16
-		list("key"=/obj/item/weapon/circuitboard/mecha/durand/main,
+		list("key"=/obj/item/weapon/circuitboard/mecha/main,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="The wiring is adjusted"),
 		//17
@@ -1197,7 +1197,7 @@
 						"[user] removes the central control module from [holder].",
 						"You remove the central computer mainboard from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/durand/main(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/main(get_turf(holder))
 					holder.icon_state = "durand4"
 			if(14)
 				if(diff==FORWARD)
@@ -1225,7 +1225,7 @@
 						"[user] removes the peripherals control module from [holder].",
 						"You remove the peripherals control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/durand/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/peripherals(get_turf(holder))
 					holder.icon_state = "durand6"
 			if(12)
 				if(diff==FORWARD)
@@ -1253,7 +1253,7 @@
 						"[user] removes the weapon control module from [holder].",
 						"You remove the weapon control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/durand/targeting(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/targeting(get_turf(holder))
 					holder.icon_state = "durand8"
 			if(10)
 				if(diff==FORWARD)
@@ -1499,7 +1499,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Weapon control is installed."),
 		//16
-		list("key"=/obj/item/weapon/circuitboard/mecha/phazon/targeting,
+		list("key"=/obj/item/weapon/circuitboard/mecha/targeting,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Peripherals control module is secured."),
 		//17
@@ -1507,7 +1507,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Peripherals control module is installed"),
 		//18
-		list("key"=/obj/item/weapon/circuitboard/mecha/phazon/peripherals,
+		list("key"=/obj/item/weapon/circuitboard/mecha/peripherals,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Central control module is secured."),
 		//19
@@ -1515,7 +1515,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Central control module is installed."),
 		//20
-		list("key"=/obj/item/weapon/circuitboard/mecha/phazon/main,
+		list("key"=/obj/item/weapon/circuitboard/mecha/main,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="The wiring is adjusted."),
 		//21
@@ -1614,7 +1614,7 @@
 						"[user] removes the central control module from the [holder].",
 						"You remove the central computer mainboard from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/phazon/main(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/main(get_turf(holder))
 					holder.icon_state = "phazon4"
 			if(18)
 				if(diff==FORWARD)
@@ -1642,7 +1642,7 @@
 						"[user] removes the peripherals control module from the [holder].",
 						"You remove the peripherals control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/phazon/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/peripherals(get_turf(holder))
 					holder.icon_state = "phazon6"
 			if(16)
 				if(diff==FORWARD)
@@ -1670,7 +1670,7 @@
 						"[user] removes the weapon control module from the [holder].",
 						"You remove the weapon control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/phazon/targeting(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/targeting(get_turf(holder))
 					holder.icon_state = "phazon8"
 			if(14)
 				if(diff==FORWARD)
@@ -1936,7 +1936,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Peripherals control module is installed"),
 		//8
-		list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/peripherals,
+		list("key"=/obj/item/weapon/circuitboard/mecha/peripherals,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="Central control module is secured"),
 		//9
@@ -1944,7 +1944,7 @@
 			"backkey"=QUALITY_PRYING,
 			"desc"="Central control module is installed"),
 		//10
-		list("key"=/obj/item/weapon/circuitboard/mecha/odysseus/main,
+		list("key"=/obj/item/weapon/circuitboard/mecha/main,
 			"backkey"=QUALITY_SCREW_DRIVING,
 			"desc"="The wiring is adjusted"),
 		//11
@@ -2042,7 +2042,7 @@
 						"[user] removes the central control module from [holder].",
 						"You remove the central computer mainboard from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/odysseus/main(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/main(get_turf(holder))
 					holder.icon_state = "odysseus4"
 			if(8)
 				if(diff==FORWARD)
@@ -2070,7 +2070,7 @@
 						"[user] removes the peripherals control module from [holder].",
 						"You remove the peripherals control module from [holder]."
 					)
-					new /obj/item/weapon/circuitboard/mecha/odysseus/peripherals(get_turf(holder))
+					new /obj/item/weapon/circuitboard/mecha/peripherals(get_turf(holder))
 					holder.icon_state = "odysseus6"
 			if(6)
 				if(diff==FORWARD)

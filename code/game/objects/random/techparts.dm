@@ -47,6 +47,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 3,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 2,

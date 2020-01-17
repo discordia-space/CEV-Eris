@@ -9,8 +9,10 @@
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "generator0"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
+
+	circuit = /obj/item/weapon/circuitboard/shield_generator
 
 	var/needs_update = FALSE //If true, will update in process
 
@@ -65,7 +67,7 @@
 	var/last_report_time = 0 //World time of the last time we sent a report
 	var/min_report_interval = 120 SECONDS //Time between reports for small damage. This will be ignored for large integrity changes
 	var/last_report_integrity = 100
-	var/max_report_integrity = 90 //If shield integrity is above this, don't bother reporting
+	var/max_report_integrity = 80 //If shield integrity is above this, don't bother reporting
 	var/report_delay = 20 SECONDS //We will wait this amount of time after taking a hit before sending a report.
 	var/report_scheduled = FALSE //
 
@@ -82,15 +84,8 @@
 
 
 
-/obj/machinery/power/shield_generator/New()
-	.=..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/shield_generator(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)			// Capacitor. Improves shield mitigation when better part is used.
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/smes_coil(src)						// SMES coil. Improves maximal shield energy capacity.
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	RefreshParts()
+/obj/machinery/power/shield_generator/Initialize()
+	. = ..()
 	connect_to_network()
 	wires = new(src)
 
@@ -118,7 +113,7 @@
 
 /obj/machinery/power/shield_generator/RefreshParts()
 	max_energy = 0
-	for(var/obj/item/weapon/smes_coil/S in component_parts)
+	for(var/obj/item/weapon/stock_parts/smes_coil/S in component_parts)
 		max_energy += (S.ChargeCapacity / CELLRATE)
 	current_energy = between(0, current_energy, max_energy)
 
@@ -444,25 +439,32 @@
 // Takes specific amount of damage
 /obj/machinery/power/shield_generator/proc/take_damage(var/damage, var/shield_damtype, var/atom/damager = null)
 	var/energy_to_use = damage * ENERGY_PER_HP
-	if(check_flag(MODEFLAG_MODULATE))
-		mitigation_em -= MITIGATION_HIT_LOSS
-		mitigation_heat -= MITIGATION_HIT_LOSS
-		mitigation_physical -= MITIGATION_HIT_LOSS
 
+	// Even if the shield isn't currently modulating, it can still use old modulation buildup to reduce damage
+	switch(shield_damtype)
+		if(SHIELD_DAMTYPE_PHYSICAL)
+			energy_to_use *= 1 - (mitigation_physical / 100)
+		if(SHIELD_DAMTYPE_EM)
+			energy_to_use *= 1 - (mitigation_em / 100)
+		if(SHIELD_DAMTYPE_HEAT)
+			energy_to_use *= 1 - (mitigation_heat / 100)
+
+	mitigation_em -= MITIGATION_HIT_LOSS
+	mitigation_heat -= MITIGATION_HIT_LOSS
+	mitigation_physical -= MITIGATION_HIT_LOSS
+
+	if(check_flag(MODEFLAG_MODULATE))
 		switch(shield_damtype)
 			if(SHIELD_DAMTYPE_PHYSICAL)
 				mitigation_physical += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
-				energy_to_use *= 1 - (mitigation_physical / 100)
 			if(SHIELD_DAMTYPE_EM)
 				mitigation_em += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
-				energy_to_use *= 1 - (mitigation_em / 100)
 			if(SHIELD_DAMTYPE_HEAT)
 				mitigation_heat += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
-				energy_to_use *= 1 - (mitigation_heat / 100)
 
-		mitigation_em = between(0, mitigation_em, mitigation_max)
-		mitigation_heat = between(0, mitigation_heat, mitigation_max)
-		mitigation_physical = between(0, mitigation_physical, mitigation_max)
+	mitigation_em = between(0, mitigation_em, mitigation_max)
+	mitigation_heat = between(0, mitigation_heat, mitigation_max)
+	mitigation_physical = between(0, mitigation_physical, mitigation_max)
 
 	current_energy -= energy_to_use
 
@@ -632,24 +634,24 @@
 	last_report_time = world.time
 	last_report_integrity = field_integrity()
 
-	//If integrity is above 90% we won't bother notifying anyone, but we still set the above vars
+	//If integrity is above 80% we won't bother notifying anyone, but we still set the above vars
 	if (field_integrity() >= max_report_integrity)
 		return
 
 	//Ok now we actually do the report
 	var/prefix = ""
 	var/spanclass = ""
-	if (field_integrity() <= 75)
-		prefix = "Warning! : "
-		spanclass = "notice"
 	if (field_integrity() <= 50)
-		prefix = "Danger! : "
-		spanclass = "danger"
+		prefix = "Warning! "
+		spanclass = "notice"
 	if (field_integrity() <= 25)
-		prefix = "--CRITICAL WARNING!--: "
+		prefix = "Danger! "
+		spanclass = "danger"
+	if (field_integrity() <= 15)
+		prefix = "--CRITICAL WARNING!-- "
 		spanclass = "danger"
 
-	command_announcement.Announce(span(spanclass, "[prefix] shield integrity at [round(field_integrity())]%"), "Shield Status Report", msg_sanitized = TRUE)
+	command_announcement.Announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report", msg_sanitized = TRUE)
 
 
 /obj/machinery/power/shield_generator/proc/wrench(var/user, var/obj/item/O)

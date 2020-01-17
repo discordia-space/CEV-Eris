@@ -2,6 +2,7 @@
 //added different sort of gibs and animations. N
 /mob/proc/gib(anim="gibbed-m",do_gibs)
 	death(1)
+	transforming = TRUE
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
@@ -36,6 +37,7 @@
 		H.release_mob()
 
 	var/atom/movable/overlay/animation = null
+	transforming = TRUE
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
@@ -57,8 +59,6 @@
 
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")
-
-
 	if(stat == DEAD)
 		return 0
 
@@ -66,6 +66,12 @@
 
 	if(!gibbed && deathmessage != "no message") // This is gross, but reliable. Only brains use it.
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
+
+	// Drop all embedded items if gibbed/dusted
+	if(gibbed)
+		for(var/obj/O in embedded)
+			O.forceMove(loc)
+		embedded = list()
 
 	for(var/mob/living/carbon/human/H in oviewers(src))
 		H.sanity.onSeeDeath(src)

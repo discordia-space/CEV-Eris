@@ -20,7 +20,7 @@
 	return loc ? loc.z : 0
 
 /proc/get_area_name(N) //get area by its name
-	for(var/area/A in world)
+	for(var/area/A in GLOB.map_areas)
 		if(A.name == N)
 			return A
 	return 0

@@ -8,3 +8,6 @@ GLOBAL_LIST_EMPTY(initialTypeIcon)
 
 GLOBAL_DATUM(lobbyScreen, /datum/lobbyscreen)
 
+// WORLD TOPIC CACHING //
+GLOBAL_VAR(topic_status_lastcache)
+GLOBAL_LIST(topic_status_cache)

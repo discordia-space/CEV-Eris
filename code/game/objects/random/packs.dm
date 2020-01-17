@@ -125,7 +125,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/pouch = 2,
 					/obj/random/tool_upgrade/rare = 4,
 					/obj/random/rig_module/rare = 4,
-					/obj/random/credits/c5000 = 4,
+					/obj/random/credits/c1000 = 3,
 					/obj/random/mecha_equipment = 3,
 					/obj/item/stash_spawner = 4 //Creates a stash of goodies for a scavenger hunt
 	))
@@ -185,3 +185,13 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "low chance random junk structure"
 	icon_state = "machine-grey-low"
 	spawn_nothing_percentage = 70
+
+/obj/random/pack/junk_machine/beacon/item_to_spawn()
+	return pickweight(list(
+					/obj/random/structures = 7, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/random/closet_maintloot/beacon = 28, //That one is also important part of the maints
+					/obj/random/closet_tech = 3,
+					/obj/random/closet = 2,
+					/obj/random/closet_wardrobe = 2,
+					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+				))

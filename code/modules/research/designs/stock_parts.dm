@@ -104,19 +104,19 @@
 
 // SMES coils
 /datum/design/research/item/part/smes_coil
-	build_path = /obj/item/weapon/smes_coil
+	build_path = /obj/item/weapon/stock_parts/smes_coil
 	sort_string = "UAAAH"
 
 /datum/design/research/item/part/smes_coil/weak
-	build_path = /obj/item/weapon/smes_coil/weak
+	build_path = /obj/item/weapon/stock_parts/smes_coil/weak
 	sort_string = "UAAAI"
 
 /datum/design/research/item/part/smes_coil/super_io
-	build_path = /obj/item/weapon/smes_coil/super_io
+	build_path = /obj/item/weapon/stock_parts/smes_coil/super_io
 	sort_string = "UAAAJ"
 
 /datum/design/research/item/part/smes_coil/super_capacity
-	build_path = /obj/item/weapon/smes_coil/super_capacity
+	build_path = /obj/item/weapon/stock_parts/smes_coil/super_capacity
 	sort_string = "UAAAK"
 
 // RPED

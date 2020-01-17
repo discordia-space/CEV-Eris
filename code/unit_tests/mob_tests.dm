@@ -265,7 +265,9 @@ datum/unit_test/robot_module_icons/start_test()
 
 	return 1
 
-#undef VULNERABLE
-#undef IMMUNE
 #undef SUCCESS
 #undef FAILURE
+#undef STANDARD
+#undef ARMORED
+#undef EXTRA_VULNERABLE
+#undef IMMUNE

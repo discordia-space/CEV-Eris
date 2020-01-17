@@ -16,6 +16,7 @@
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 13
+	one_hand_penalty = 10
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,

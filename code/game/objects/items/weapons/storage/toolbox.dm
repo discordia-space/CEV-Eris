@@ -42,8 +42,11 @@
 	new /obj/item/weapon/tool/wrench(src)
 	new /obj/item/weapon/tool/weldingtool(src)
 	new /obj/item/weapon/tool/crowbar(src)
+	if(prob(50))
+		new /obj/item/weapon/tool/wirecutters(src)
+	else
+		new /obj/item/weapon/tool/wirecutters/pliers(src)
 	new /obj/item/device/scanner/gas(src)
-	new /obj/item/weapon/tool/wirecutters(src)
 
 /obj/item/weapon/storage/toolbox/electrical
 	name = "electrical toolbox"
@@ -54,7 +57,10 @@
 	var/color = pick("red","yellow","green","blue","pink","orange","cyan","white")
 
 	new /obj/item/weapon/tool/screwdriver(src)
-	new /obj/item/weapon/tool/wirecutters(src)
+	if(prob(50))
+		new /obj/item/weapon/tool/wirecutters(src)
+	else
+		new /obj/item/weapon/tool/wirecutters/pliers(src)
 	new /obj/item/device/t_scanner(src)
 	new /obj/item/weapon/tool/crowbar(src)
 	new /obj/item/stack/cable_coil(src,30,color)

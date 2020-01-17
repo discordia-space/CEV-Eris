@@ -78,7 +78,7 @@
 			min_mobs = rand(0, 3)
 			monsoon_coefficient = (rand(5, 30)/10)
 
-	ticks_before_next_summon = rand(5, 15)
+	ticks_before_next_summon = rand(10, 20)
 	var/mobs_to_spawn = rand(min_mobs, max_mobs)
 	while(mobs_to_spawn)
 		var/mobchoice = pick(mobgenlist)
@@ -103,6 +103,9 @@
 /obj/rogue/teleporter/proc/end_teleporter_event()
 	portal_burst()
 
+	for(var/mob/living/simple_animal/SA in range(8, src))//So wounded people won't fucking die when returning
+		SA.adjustBruteLoss(50)
+
 	for(var/mob/living/carbon/human/H in range(8, src))//Only human mobs are allowed, otherwise you'd end up with a fuckton of carps in the dungeon
 		victims_to_teleport += H
 
@@ -110,9 +113,7 @@
 		victims_to_teleport += R
 
 	for(var/mob/living/M in victims_to_teleport)
-		M.x = target.x
-		M.y = target.y
-		M.z = target.z
+		M.forceMove(get_turf(target))
 
 	new /obj/structure/scrap/science/large(src.loc)
 
@@ -241,3 +242,27 @@
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(loc))
 			sparks.start()
+
+
+/obj/rogue/telebeacon/return_beacon
+	name = "ancient return beacon"
+	desc = "A metallic pylon, covered in rust. It seems still operational. Barely."
+
+
+/obj/rogue/telebeacon/return_beacon/attack_hand(var/mob/user as mob)
+	if(!target)
+		target = locate(/obj/crawler/teleport_marker)
+	if(!active)
+		if(target)
+			to_chat(user, "You activate the beacon. It starts glowing softly.")
+			active = 1
+			icon_state = "beacon_on"
+		else
+			to_chat(user, "The beacon has no destination, Ahelp this.")
+	else if(active)
+		to_chat(user, "You reach out and touch the beacon. A strange feeling envelops you.")
+		user.forceMove(get_turf(target))
+		sleep(1)
+		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		sparks.set_up(3, 0, get_turf(user))
+		sparks.start()

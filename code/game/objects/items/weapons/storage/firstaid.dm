@@ -127,7 +127,7 @@
 	can_hold = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,
-		/obj/item/weapon/tool/saw/circular,
+		/obj/item/weapon/tool/saw,
 		/obj/item/weapon/tool/hemostat,
 		/obj/item/weapon/tool/retractor,
 		/obj/item/weapon/tool/scalpel,
@@ -147,6 +147,21 @@
 	new /obj/item/weapon/tool/scalpel(src)
 	new /obj/item/weapon/tool/surgicaldrill(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	make_exact_fit()
+
+/obj/item/weapon/storage/firstaid/surgery/traitor/populate_contents()
+	if (empty) return
+	new /obj/item/weapon/tool/bonesetter(src)
+	new /obj/item/weapon/tool/cautery(src)
+	new /obj/item/weapon/tool/saw/circular/advanced(src)
+	new /obj/item/weapon/tool/hemostat(src)
+	new /obj/item/weapon/tool/retractor(src)
+	new /obj/item/weapon/tool/scalpel/advanced(src)
+	new /obj/item/weapon/tool/surgicaldrill(src)
+	new /obj/item/device/scanner/health(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
+	new /obj/item/weapon/storage/pill_bottle/prosurgeon(src)
 	make_exact_fit()
 
 /*
@@ -298,3 +313,16 @@
 	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
 	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
 	new /obj/item/weapon/reagent_containers/pill/citalopram(src)
+
+/obj/item/weapon/storage/pill_bottle/prosurgeon
+	name = "bottle of ProSurgeon pills"
+	desc = "Contains pills used to reduce hand tremor."
+
+/obj/item/weapon/storage/pill_bottle/prosurgeon/populate_contents()
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)

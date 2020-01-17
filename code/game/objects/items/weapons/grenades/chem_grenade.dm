@@ -19,9 +19,9 @@
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
 	var/affected_area = 3
 
-/obj/item/weapon/grenade/chem_grenade/New()
-	..()
+/obj/item/weapon/grenade/chem_grenade/Initialize()
 	create_reagents(1000)
+	. = ..()
 
 /obj/item/weapon/grenade/chem_grenade/attack_self(mob/user as mob)
 	if(!stage || stage==1)
@@ -127,9 +127,11 @@
 		if(!is_igniter(detonator.left_assembly))
 			detonator.left_assembly.activate()
 			active = 1
+			log_and_message_admins("primed via detonator \a [src]")
 		if(!is_igniter(detonator.right_assembly))
 			detonator.right_assembly.activate()
 			active = 1
+			log_and_message_admins("primed via detonator \a [src]")
 	if(active)
 		icon_state = initial(icon_state) + "_active"
 
@@ -197,8 +199,8 @@
 	path = 1
 	stage = 2
 
-/obj/item/weapon/grenade/chem_grenade/metalfoam/New()
-	..()
+/obj/item/weapon/grenade/chem_grenade/metalfoam/Initialize()
+	. = ..()
 	var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -219,8 +221,8 @@
 	path = 1
 	stage = 2
 
-/obj/item/weapon/grenade/chem_grenade/incendiary/New()
-	..()
+/obj/item/weapon/grenade/chem_grenade/incendiary/Initialize()
+	. = ..()
 	var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -243,8 +245,8 @@
 	path = 1
 	stage = 2
 
-/obj/item/weapon/grenade/chem_grenade/antiweed/New()
-	..()
+/obj/item/weapon/grenade/chem_grenade/antiweed/Initialize()
+	. = ..()
 	var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -267,8 +269,8 @@
 	stage = 2
 	path = 1
 
-/obj/item/weapon/grenade/chem_grenade/cleaner/New()
-	..()
+/obj/item/weapon/grenade/chem_grenade/cleaner/Initialize()
+	. = ..()
 	var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -289,8 +291,8 @@
 	stage = 2
 	path = 1
 
-/obj/item/weapon/grenade/chem_grenade/teargas/New()
-	..()
+/obj/item/weapon/grenade/chem_grenade/teargas/Initialize()
+	. = ..()
 	var/obj/item/weapon/reagent_containers/glass/beaker/large/B1 = new(src)
 	var/obj/item/weapon/reagent_containers/glass/beaker/large/B2 = new(src)
 

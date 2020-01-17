@@ -455,7 +455,13 @@
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
 
-				hack_stage++
+				//Cognition can be used to speed up the proccess
+				if (prob (user.stats.getStat(STAT_COG)))
+					hack_stage = hack_require
+					to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
+				else
+					hack_stage++
+
 				to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
 			else if(hack_stage >= hack_require)
 				locked = FALSE
