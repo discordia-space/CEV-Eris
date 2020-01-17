@@ -45,7 +45,7 @@
 		/obj/item/weapon/stock_parts/scanning_module/adv = 20,
 		/obj/item/weapon/stock_parts/manipulator/nano = 20,
 		/obj/item/weapon/stock_parts/micro_laser/high = 20,
-		/obj/item/weapon/stock_parts/matter_bin/adv = 20
+		/obj/item/weapon/stock_parts/matter_bin/adv = 20,
 	)
 
 /obj/structure/salvageable/machine/Initialize()
@@ -70,7 +70,7 @@
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/stock_parts/capacitor/adv = 30,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 20
+		/obj/item/weapon/computer_hardware/network_card/advanced = 20,
 	)
 obj/structure/salvageable/computer/Initialize()
 	. = ..()
@@ -105,7 +105,7 @@ obj/structure/salvageable/computer/Initialize()
 		/obj/item/stack/material/plasteel{amount = 10} = 40,
 		/obj/item/stack/material/silver{amount = 10} = 20,
 		/obj/item/stack/material/gold{amount = 10} = 20,
-		/obj/item/stack/material/plasma{amount = 10} = 20
+		/obj/item/stack/material/plasma{amount = 10} = 20,
 	)
 
 /obj/structure/salvageable/implant_container
@@ -129,7 +129,7 @@ obj/structure/salvageable/computer/Initialize()
 		/obj/item/weapon/implanter = 30,
 		/obj/item/stack/material/steel{amount = 10} = 30,
 		/obj/item/stack/material/glass{amount = 10} = 30,
-		/obj/item/stack/material/silver{amount = 10} = 30
+		/obj/item/stack/material/silver{amount = 10} = 30,
 	)
 
 obj/structure/salvageable/implant_container/Initialize()
@@ -157,7 +157,7 @@ obj/structure/salvageable/implant_container/Initialize()
 		/obj/item/weapon/computer_hardware/hard_drive = 50,
 		/obj/item/weapon/computer_hardware/hard_drive/advanced = 30,
 		/obj/item/weapon/computer_hardware/hard_drive/advanced = 30,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 20
+		/obj/item/weapon/computer_hardware/network_card/advanced = 20,
 	)
 
 obj/structure/salvageable/data/Initialize()
@@ -187,7 +187,7 @@ obj/structure/salvageable/data/Initialize()
 		/obj/item/weapon/stock_parts/subspace/transmitter = 40,
 		/obj/item/weapon/stock_parts/subspace/crystal = 30,
 		/obj/item/weapon/stock_parts/subspace/crystal = 30,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 20
+		/obj/item/weapon/computer_hardware/network_card/advanced = 20,
 	)
 
 obj/structure/salvageable/server/Initialize()
@@ -213,7 +213,7 @@ obj/structure/salvageable/server/Initialize()
 		/obj/item/weapon/computer_hardware/processor_unit/adv = 40,
 		/obj/item/weapon/computer_hardware/processor_unit/adv/small = 30,
 		/obj/item/weapon/computer_hardware/hard_drive = 60,
-		/obj/item/weapon/computer_hardware/hard_drive/advanced = 40
+		/obj/item/weapon/computer_hardware/hard_drive/advanced = 40,
 	)
 
 obj/structure/salvageable/personal/Initialize()
@@ -226,10 +226,14 @@ obj/structure/salvageable/personal/Initialize()
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 90,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/computer_hardware/processor_unit/adv = 60,
 		/obj/item/weapon/computer_hardware/hard_drive/cluster = 50,
-		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/shady = 50,
-		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/nuke = 50
+		/obj/item/weapon/computer_hardware/network_card/wired = 40,
+		/obj/item/weapon/computer_hardware/card_slot = 40,
+		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/shady = 10,
+		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/nuke = 10,
 	)
 
 obj/structure/salvageable/bliss/Initialize()
@@ -255,6 +259,8 @@ obj/structure/salvageable/bliss/Initialize()
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 80,
 		/obj/item/stack/cable_coil{amount = 5} = 80,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 40,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 40,
 		/obj/item/weapon/stock_parts/scanning_module/one_star = 40,
@@ -264,7 +270,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/micro_laser/one_star = 40,
 		/obj/item/weapon/stock_parts/micro_laser/one_star = 40,
 		/obj/item/weapon/stock_parts/matter_bin/one_star = 40,
-		/obj/item/weapon/stock_parts/matter_bin/one_star = 40
+		/obj/item/weapon/stock_parts/matter_bin/one_star = 40,
 	)
 
 /obj/structure/salvageable/computer_os
@@ -274,13 +280,15 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/console_screen = 80,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 60,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40,
 	)
 
 /obj/structure/salvageable/implant_container_os
@@ -289,6 +297,8 @@ obj/structure/salvageable/bliss/Initialize()
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 80,
 		/obj/item/stack/cable_coil{amount = 5} = 80,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/implant/death_alarm = 30,
 		/obj/item/weapon/implant/explosive = 20,
 		/obj/item/weapon/implant/freedom = 20,
@@ -299,7 +309,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/prosthesis/l_leg = 20,
 		/obj/item/prosthesis/r_leg = 20,
 		/obj/item/weapon/implantcase = 30,
-		/obj/item/weapon/implanter = 30
+		/obj/item/weapon/implanter = 30,
 	)
 
 /obj/structure/salvageable/data_os
@@ -309,12 +319,14 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/console_screen = 90,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/computer_hardware/processor_unit/adv = 60,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 50,
 		/obj/item/weapon/computer_hardware/hard_drive/super = 50,
 		/obj/item/weapon/computer_hardware/hard_drive/super = 50,
 		/obj/item/weapon/computer_hardware/hard_drive/cluster = 50,
-		/obj/item/weapon/computer_hardware/network_card/wired = 40
+		/obj/item/weapon/computer_hardware/network_card/wired = 40,
 	)
 
 /obj/structure/salvageable/server_os
@@ -324,6 +336,8 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/console_screen = 80,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/computer_hardware/network_card/wired = 40,
 		/obj/item/weapon/computer_hardware/network_card/wired = 40,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
@@ -338,7 +352,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/subspace/transmitter = 40,
 		/obj/item/weapon/stock_parts/subspace/crystal = 30,
 		/obj/item/weapon/stock_parts/subspace/crystal = 30,
-		/obj/item/weapon/computer_hardware/network_card/wired = 20
+		/obj/item/weapon/computer_hardware/network_card/wired = 20,
 	)
 
 /obj/structure/salvageable/console_os
@@ -350,13 +364,15 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/hard_drive/portable/research_points/rare = 45,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/weapon/stock_parts/console_screen = 80,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 60,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40,
 	)
 
 /obj/structure/salvageable/console_broken_os
@@ -367,11 +383,13 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/hard_drive/portable/research_points/rare = 25,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/weapon/stock_parts/console_screen = 80,
+		/obj/item/weapon/material_trash/circuit = 60,
+		/obj/item/weapon/material_trash/metal = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 60,
 		/obj/item/weapon/stock_parts/capacitor/one_star = 60,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
 		/obj/item/weapon/computer_hardware/processor_unit/super = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40,
 	)
