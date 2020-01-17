@@ -37,11 +37,6 @@
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/engineering
-
-/obj/item/clothing/suit/space/void/engineering/equipped
-	boots = /obj/item/clothing/shoes/magboots
-	tank = /obj/item/weapon/tank/jetpack/oxygen
 
 //Mining rig
 /obj/item/clothing/head/helmet/space/void/mining
@@ -76,7 +71,6 @@
 		bio = 100,
 		rad = 75
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/mining
 
 //Medical Rig
 /obj/item/clothing/head/helmet/space/void/medical
@@ -117,10 +111,6 @@
 		bio = 100,
 		rad = 75
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/medical
-
-/obj/item/clothing/suit/space/void/medical/equipped
-	boots = /obj/item/clothing/shoes/magboots
 
 	//Security
 /obj/item/clothing/head/helmet/space/void/security
@@ -158,11 +148,6 @@
 		rad = 75
 	)
 	siemens_coefficient = 0.7
-	helmet = /obj/item/clothing/head/helmet/space/void/security
-
-/obj/item/clothing/suit/space/void/security/equipped
-	boots = /obj/item/clothing/shoes/magboots
-	tank = /obj/item/weapon/tank/jetpack/oxygen
 
 //Atmospherics Rig (BS12)
 /obj/item/clothing/head/helmet/space/void/atmos
@@ -199,4 +184,3 @@
 		rad = 75
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	helmet = /obj/item/clothing/head/helmet/space/void/atmos

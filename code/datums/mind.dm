@@ -307,7 +307,11 @@
 
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
-	return role && mind && player_is_antag_id(mind, role)
+	if(mind)
+		if(!role)
+			return player_is_antag_id(mind,role)
+	else
+		return FALSE
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()

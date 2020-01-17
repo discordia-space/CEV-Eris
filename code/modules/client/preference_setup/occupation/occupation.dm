@@ -1,3 +1,8 @@
+//used for pref.alternate_option
+#define GET_RANDOM_JOB 0
+#define BE_ASSISTANT 1
+#define RETURN_TO_LOBBY 2
+
 #define JOB_LEVEL_NEVER  4
 #define JOB_LEVEL_LOW    3
 #define JOB_LEVEL_MEDIUM 2
@@ -493,6 +498,6 @@
 	return (job.title in player_alt_titles) ? player_alt_titles[job.title] : job.title
 
 #undef JOB_LEVEL_NEVER
-#undef JOB_LEVEL_LOW
+#undef SET_LEVE_LOW
 #undef JOB_LEVEL_MEDIUM
 #undef JOB_LEVEL_HIGH

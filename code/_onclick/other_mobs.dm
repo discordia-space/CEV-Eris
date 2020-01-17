@@ -34,11 +34,7 @@
 /mob/living/carbon/human/RangedAttack(var/atom/A)
 	if((istype(A, /turf/simulated/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
 		var/turf/T = get_turf(A)
-		if(T.Adjacent(shadow))
-			for(var/obj/structure/S in shadow.loc)
-				if(S.density)
-					return
-
+		if(T.Adjacent(shadow) && !locate(/obj/structure) in shadow.loc)
 			var/list/objects_to_stand_on = list(
 				/obj/item/weapon/stool,
 				/obj/structure/bed,

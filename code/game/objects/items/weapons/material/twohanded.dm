@@ -1,16 +1,45 @@
-// /obj/item/weapon/material/twohanded IS MOSTLY DEPRECATED.
-//INSTEAD OF SNOWFLAKE TWOHANDABLE ITEMS ALL ITEMS CAN BE WIELDED IN BOTH HANDS.
-//THIS FILE HAS BEEN MODIFIED TO FIT IN THIS NEW SYSTEM, BUT OTHERWISE REMAINS UNTOUCHED.
-//TWOHANDED MATERIAL ITEMS WILL STILL BEHAVE THE SAME.
+/* Two-handed Weapons
+ * Contains:
+ * 		Twohanded
+ *		Fireaxe
+ *		Double-Bladed Energy Swords
+ */
+
+/*##################################################################
+##################### TWO HANDED WEAPONS BE HERE~ -Agouri :3 ########
+####################################################################*/
+
+//Rewrote TwoHanded weapons stuff and put it all here. Just copypasta fireaxe to make new ones ~Carn
+//This rewrite means we don't have two variables for EVERY item which are used only by a few weapons.
+//It also tidies stuff up elsewhere.
 
 /*
  * Twohanded
  */
 /obj/item/weapon/material/twohanded
 	w_class = ITEM_SIZE_BULKY
+	var/wielded = 0
+	var/force_wielded = 0
+	var/force_unwielded
+	var/wieldsound = null
+	var/unwieldsound = null
 	var/base_icon
 	var/base_name
 	var/unwielded_force_divisor = 0.25
+
+/obj/item/weapon/material/twohanded/update_wear_icon()
+	var/mob/living/M = loc
+	if(istype(M) && !issmall(M) && ((M.r_hand == src && !M.l_hand) || (M.l_hand == src && !M.r_hand)))
+		wielded = 1
+		force = force_wielded
+		name = "[base_name] (wielded)"
+		update_icon()
+	else
+		wielded = 0
+		force = force_unwielded
+		name = "[base_name]"
+	update_icon()
+	..()
 
 /obj/item/weapon/material/twohanded/update_force()
 	base_name = name

@@ -340,24 +340,6 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
-/datum/reagent/medicine/negative_ling
-	name = "Negative Paragenetic Marker"
-	id = "negativeling"
-	description = "A marker compound that turns positive when put in contact with morphogenic mutant blood."
-	taste_description = "acid"
-	reagent_state = SOLID
-	color = "#022000"
-	
-
-/datum/reagent/medicine/positive_ling
-	name = "Positive Paragenetic Marker"
-	id = "positiveling"
-	description = "This marker compound has come in contact with morphogenic mutant blood."
-	taste_description = "acid"
-	reagent_state = SOLID
-	color = "#910000"
-
-
 /datum/reagent/medicine/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
@@ -670,19 +652,19 @@
 	metabolism = REM/2
 
 /datum/reagent/medicine/detox/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	if(M.metabolism_effects.nsa_threshold == initial(M.metabolism_effects.nsa_threshold))
-		M.metabolism_effects.nsa_threshold += rand(20, 60)
+	if(M.nsa_threshold == initial(M.nsa_threshold))
+		M.nsa_threshold += rand(20, 60)
 
 /datum/reagent/medicine/detox/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold)
+		C.nsa_threshold = initial(C.nsa_threshold)
 
 /datum/reagent/medicine/detox/overdose(var/mob/living/carbon/M, var/alien)
 	var/mob/living/carbon/C = M
 	if(istype(C))
-		C.metabolism_effects.nsa_threshold = initial(C.metabolism_effects.nsa_threshold) - rand(20, 40)
+		C.nsa_threshold = initial(C.nsa_threshold) - rand(20, 40)
 
 /datum/reagent/medicine/purger
 	name = "Purger"
@@ -772,8 +754,27 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 
+
+
 /datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustToxLoss(6)
+
+/datum/reagent/medicine/haloperidol/on_mob_add(mob/living/L)
+	..()
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		for (var/tag in C.nerve_system_accumulations)
+			var/nsa_value = C.get_nsa_value(tag)/2
+				C.adjust_nsa(nsa_value, tag)
+
+/datum/reagent/medicine/haloperidol/on_mob_delete(mob/living/L)
+	..()
+	var/mob/living/carbon/C = L
+	if(istype(C))
+		for (var/tag in C.nerve_system_accumulations)
+			var/nsa_value = C.get_nsa_value(tag)*2
+				C.adjust_nsa(nsa_value, tag)
+
 
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"

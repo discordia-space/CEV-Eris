@@ -181,7 +181,7 @@
 /obj/machinery/teleport/hub/New()
 	..()
 	underlays.Cut()
-	underlays += "tele-wires"
+	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
 	spawn()
@@ -316,7 +316,7 @@
 /obj/machinery/teleport/station/New()
 	..()
 	overlays.Cut()
-	overlays += "controller-wires"
+	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
 
 /obj/machinery/teleport/station/attackby(var/obj/item/weapon/W)
 	src.attack_hand()

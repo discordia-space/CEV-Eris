@@ -1,3 +1,7 @@
+#define QDELETED(X) (!X || X.gc_destroyed)
+
+
+
 /datum
 	var/weakref/weakref
 

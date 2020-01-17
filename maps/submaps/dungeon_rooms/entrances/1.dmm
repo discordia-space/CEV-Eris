@@ -28,10 +28,6 @@
 /obj/crawler/spawnpoint,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
-"i" = (
-/obj/rogue/telebeacon/return_beacon,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
 
 (1,1,1) = {"
 a
@@ -103,7 +99,7 @@ a
 b
 c
 e
-i
+c
 h
 c
 e

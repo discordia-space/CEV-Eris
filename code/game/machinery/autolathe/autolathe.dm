@@ -680,15 +680,10 @@
 	return ERR_OK
 
 
-/obj/machinery/autolathe/power_change()
-	..()
-	if(stat & NOPOWER)
-		working = FALSE
-	update_icon()
-	SSnano.update_uis(src)
-
 /obj/machinery/autolathe/Process()
 	if(stat & NOPOWER)
+		working = FALSE
+		update_icon()
 		return
 
 	if(current_file)
