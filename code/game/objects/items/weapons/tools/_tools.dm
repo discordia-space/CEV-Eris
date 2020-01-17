@@ -57,8 +57,6 @@
 	var/last_tooluse = 0 //When the tool was last used for a tool operation. This is set both at the start of an operation, and after the doafter call
 
 	//Vars for tool upgrades
-	var/list/upgrades = list()
-	var/max_upgrades = 3
 	var/precision = 0	//Subtracted from failure rates
 	var/workspeed = 1	//Worktimes are divided by this
 	var/extra_bulk = 0 	//Extra physicial volume added by certain mods
@@ -142,6 +140,9 @@
 	else
 		..()
 
+/obj/item/weapon/tool/get_cell()
+	return cell
+
 /obj/item/weapon/tool/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
@@ -151,8 +152,8 @@
 	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
 	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
 	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
-	if (upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
-		var/list/possibles = upgrades.Copy()
+	if (item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
+		var/list/possibles = item_upgrades.Copy()
 		possibles += "Cancel"
 		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
 		if (toremove == "Cancel")
@@ -161,9 +162,7 @@
 		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
 			to_chat(user, SPAN_NOTICE("You successfully remove [toremove] while leaving it intact."))
-			upgrades -= toremove
-			toremove.forceMove(get_turf(src))
-			toremove.holder = null
+			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
 			refresh_upgrades()
 			return 1
 		else
@@ -171,11 +170,8 @@
 			if (prob(50))
 				//50% chance to break the upgrade and remove it
 				to_chat(user, SPAN_DANGER("You successfully remove [toremove], but destroy it in the process."))
-				upgrades -= toremove
-				toremove.forceMove(get_turf(src))
-				toremove.holder = null
-				spawn(1)
-					QDEL_NULL(toremove)
+				SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
+				QDEL_NULL(toremove)
 				refresh_upgrades()
 				return 1
 			else if (degradation) //Because robot tools are unbreakable
@@ -243,18 +239,18 @@
 
 	data["force"] = force
 	data["force_max"] = initial(force) * 10
-		
-	
+
+
 	data["extra_volume"] = extra_bulk
 
 	data["upgrades_max"] = max_upgrades
 
 	// it could be done with catalog using one line but whatever
-	if(upgrades.len)
+	if(item_upgrades.len)
 		data["attachments"] = list()
-		for(var/atom/A in upgrades)
+		for(var/atom/A in item_upgrades)
 			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
-	
+
 	return data
 
 /obj/item/weapon/tool/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -267,7 +263,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-// saves troubles for some one else who will expand this 
+// saves troubles for some one else who will expand this
 // delete this comment if you are the chosen one
 /obj/item/weapon/tool/Topic(href, href_list)
 	if(..())
@@ -723,7 +719,7 @@
 		timespent = 5
 
 	if(use_power_cost)
-		if (!cell.checked_use(use_power_cost*timespent))
+		if (!cell?.checked_use(use_power_cost*timespent))
 			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 			return FALSE
 
@@ -795,7 +791,7 @@
 /***************************
 	Tool Upgrades
 ****************************/
-/obj/item/weapon/tool/proc/refresh_upgrades()
+/obj/item/weapon/tool/refresh_upgrades()
 //First of all, lets reset any var that could possibly be altered by an upgrade
 	degradation = initial(degradation)
 	workspeed = initial(workspeed)
@@ -817,8 +813,7 @@
 	prefixes = list()
 
 	//Now lets have each upgrade reapply its modifications
-	for (var/obj/item/weapon/tool_upgrade/T in upgrades)
-		T.apply_values()
+	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 
 	for (var/prefix in prefixes)
 		name = "[prefix] [name]"
@@ -839,7 +834,7 @@
 		if(!cell)
 			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
 		else
-			to_chat(user, "The charge meter reads [round(cell.percent() )]%.")
+			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
 
 	if(use_fuel_cost)
 		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
@@ -854,9 +849,9 @@
 	if (workspeed != 1)
 		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
 
-	if (upgrades.len)
+	if (item_upgrades.len)
 		to_chat(user, "It has the following upgrades installed:")
-		for (var/obj/item/weapon/tool_upgrade/TU in upgrades)
+		for (var/obj/item/TU in item_upgrades)
 			to_chat(user, SPAN_NOTICE(TU.name))
 
 	if (health)

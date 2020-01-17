@@ -5,7 +5,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/thick
 	pda_slot = slot_l_store
-	backpack_contents = list(/obj/item/device/t_scanner = 1, /obj/item/device/lighting/glowstick/yellow = 1)
+	r_pocket = /obj/item/device/t_scanner
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/engineering/New()
@@ -28,12 +28,10 @@
 	uniform = /obj/item/clothing/under/rank/engineer
 	suit = /obj/item/clothing/suit/storage/hazardvest
 	head = /obj/item/clothing/head/hardhat
-	r_pocket = /obj/item/device/t_scanner
 	id_type = /obj/item/weapon/card/id/engie
 	pda_type = /obj/item/modular_computer/pda/engineering
 
 /decl/hierarchy/outfit/job/engineering/engineer/void
 	name = OUTFIT_JOB_NAME("Technomancer - Voidsuit")
-	head = /obj/item/clothing/head/helmet/space/void/engineering
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/engineering

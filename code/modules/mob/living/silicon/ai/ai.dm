@@ -248,7 +248,7 @@ var/list/ai_verbs_default = list(
 
 	to_chat(src, radio_text)
 
-	if (!player_is_antag_id(mind, ROLE_MALFUNCTION))
+	if (!check_special_role(ROLE_MALFUNCTION))
 		show_laws()
 		to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
@@ -256,27 +256,13 @@ var/list/ai_verbs_default = list(
 	setup_icon()
 
 /mob/living/silicon/ai/Destroy()
-	qdel(aiMulti)
-	qdel(aiRadio)
-	aiMulti = null
-	aiRadio = null
-
 	ai_list -= src
 
-	qdel(eyeobj)
-	eyeobj = null
-
-	qdel(psupply)
-	psupply = null
-
-	qdel(aiMulti)
-	aiMulti = null
-
-	qdel(aiRadio)
-	aiRadio = null
-
-	qdel(aiCamera)
-	aiCamera = null
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(psupply)
+	QDEL_NULL(aiMulti)
+	QDEL_NULL(aiRadio)
+	QDEL_NULL(aiCamera)
 
 	return ..()
 

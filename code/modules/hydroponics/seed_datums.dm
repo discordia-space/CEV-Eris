@@ -1276,3 +1276,4 @@
 	set_trait(TRAIT_YIELD,-1)
 	set_trait(TRAIT_SPREAD,3)
 	set_trait(TRAIT_POTENCY,50)
+	set_trait(TRAIT_INVASIVE,1)

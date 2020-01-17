@@ -14,6 +14,9 @@
 		to_chat(usr, SPAN_WARNING("You don't have anything in your hands to give to \the [target]."))
 		return
 
+	if(I.item_flags & ABSTRACT)//No giving people offhands.
+		return
+
 	if(alert(target,"[usr] wants to give you \a [I]. Will you accept it?",,"Yes","No") == "No")
 		target.visible_message(SPAN_NOTICE("\The [usr] tried to hand \the [I] to \the [target], \
 		but \the [target] didn't want it."))

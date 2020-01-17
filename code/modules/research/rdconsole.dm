@@ -308,6 +308,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		griefProtection()
 		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
+			log_and_message_admins("reset the R&D console's database")
 			screen = SCREEN_WORKING
 			qdel(files)
 			files = new /datum/research(src)

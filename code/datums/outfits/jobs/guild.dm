@@ -34,6 +34,5 @@
 
 /decl/hierarchy/outfit/job/cargo/mining/void
 	name = OUTFIT_JOB_NAME("Guild Miner - Voidsuit")
-	head = /obj/item/clothing/head/helmet/space/void/mining
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/mining

@@ -16,7 +16,6 @@
 /obj/item/weapon/tool/tape_roll/web
 	name = "web tape"
 	desc = "A strip of fabric covered in an all-natural adhesive. Holds things together with the power of thoughts and prayers."
-	icon_state = "webtape"
 	tool_qualities = list(QUALITY_ADHESIVE = 15, QUALITY_SEALING = 15)
 	use_stock_cost = 0.17
 	max_stock = 30

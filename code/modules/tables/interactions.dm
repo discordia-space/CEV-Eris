@@ -97,6 +97,9 @@
 				target.Weaken(5)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
+			user.attack_log += "\[[time_stamp()]\] <font color='red'>Slammed [target.name] ([target.ckey] against over \the [src])</font>"
+			msg_admin_attack("[user] slammed a [target] against \the [src].")
 			if(material)
 				playsound(loc, material.tableslam_noise, 50, 1)
 			else
@@ -119,6 +122,9 @@
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey])</font>"
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
+		msg_admin_attack("[user] puts a [target] on \the [src].")
 	return TRUE
 
 

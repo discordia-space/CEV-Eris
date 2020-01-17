@@ -3,15 +3,15 @@
 #define STATE_CIRCUIT 	3
 
 //Circuit boards are in /code/game/objects/items/weapons/circuitboards/machinery/
-
-/obj/machinery/constructable_frame //Made into a seperate type to make future revisions easier.
-	name = "machine frame"
-
+/obj/machinery/constructable_frame
 	icon = 'icons/obj/stock_parts.dmi'
-	icon_state = "box_0"
+	use_power = 0
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+
+/obj/machinery/constructable_frame/machine_frame //Made into a seperate type to make future revisions easier.
+	name = "machine frame"
+	icon_state = "box_0"
 	matter = list(MATERIAL_STEEL = 8)
 	var/base_state = "box"			//base icon for creating subtypes of machine frame
 	var/list/components = null
@@ -20,31 +20,29 @@
 	var/state = STATE_NONE
 	frame_type = FRAME_DEFAULT
 
-/obj/machinery/constructable_frame/examine(var/mob/user)
-	update_desc()
-	.=..()
+/obj/machinery/constructable_frame/machine_frame/examine(mob/user)
+	. = ..()
 
+	if(state == STATE_NONE)
+		to_chat(user, "The beginning of a machine. Add wires, a circuit board, and any extra required parts.")
+	else if(state == STATE_WIRES)
+		to_chat(user, "A wired machine frame. Now it needs a circuit board that will decide what kind of machine it becomes.")
+	else if(state == STATE_CIRCUIT)
+		to_chat(user, "A machine frame with \a [circuit] in it.")
 
-/obj/machinery/constructable_frame/proc/update_desc()
-	var/D
-	if (state == STATE_NONE)
-		D = "The beginning of a machine. Add wires, a circuitboard, and any extra required parts"
-	else if (state == STATE_WIRES)
-		D = "Now it needs a circuitboard, this will decide what kind of machine it becomes."
-	else if (state == STATE_CIRCUIT)
-		if (!component_check())
-			D = "Now it needs a few extra parts, listed below."
+		var/list/component_list = list()
+		if(req_components)
+			for(var/I in req_components)
+				var/amt = req_components[I]
+				if(amt <= 0)
+					continue
+				component_list += "[amt] [amt == 1 ? req_component_names[I] : "[req_component_names[I]]\s"]"
+
+		if(length(component_list))
+			to_chat(user, "Requires [english_list(component_list)].")
 		else
-			D = "It's almost complete! Now just use a screwdriver to apply the finishing touch."
-	D += "\n\n"
-	if(req_components)
-		var/list/component_list = new
-		for(var/I in req_components)
-			if(req_components[I] > 0)
-				component_list += "[num2text(req_components[I])] [req_component_names[I]]"
-		D += "Requires [english_list(component_list)]."
-	desc = D
-	..()
+			to_chat(user, "It's almost complete! Now just use a screwdriver to apply the finishing touch.")
+
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/user)
 
@@ -159,14 +157,26 @@
 					state = STATE_CIRCUIT
 					components = list()
 					req_components = circuit.req_components.Copy()
-					for(var/A in circuit.req_components)
-						req_components[A] = circuit.req_components[A]
-					req_component_names = circuit.req_components.Copy()
+
+					var/static/list/special_component_names = list(
+						/obj/item/weapon/cell/large = "L-class power cell",
+						/obj/item/weapon/cell/medium = "M-class power cell",
+						/obj/item/weapon/cell/small = "S-class power cell",
+						)
+
+					req_component_names = list()
 					for(var/A in req_components)
-						var/obj/ct = new A // have to quickly instantiate it get name
-						req_component_names[A] = ct.name
-					update_desc()
-					to_chat(user, desc)
+						if(special_component_names[A])
+							req_component_names[A] = special_component_names[A]
+						else if(ispath(A, /obj/item/stack))
+							var/obj/item/stack/ct = A
+							req_component_names[A] = initial(ct.singular_name)
+
+						// Still no name? Basic handling it is.
+						if(!req_component_names[A])
+							var/obj/ct = A
+							req_component_names[A] = initial(ct.name)
+					examine(user)
 				else
 					to_chat(user, SPAN_WARNING("This frame does not accept circuit boards of this type!"))
 
@@ -176,32 +186,32 @@
 				for(var/CM in req_components)
 					if(istype(I, CM) && (req_components[CM] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(istype(I, /obj/item/stack/cable_coil))
-							var/obj/item/stack/cable_coil/CP = I
-							if(CP.get_amount() > 1)
-								// amount of cable to take, idealy amount required,
-								// but limited by amount provided
-								var/camt = min(CP.amount, req_components[CM])
-								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-								CC.amount = camt
-								CC.update_icon()
-								CP.use(camt)
+
+						// Stacks get special treatment
+						if(istype(I, /obj/item/stack))
+							var/obj/item/stack/CP = I
+
+							// amount of stack to take, idealy amount required,
+							// but limited by amount provided
+							var/amount = min(CP.get_amount(), req_components[CM])
+
+							if(amount > 0 && CP.use(amount))
+								var/obj/item/stack/CC = new I.type(src, amount)
 								components += CC
-								req_components[CM] -= camt
-								update_desc()
-								break
+								req_components[CM] -= amount
+							break
 						if(user.drop_from_inventory(I))
 							I.forceMove(src)
 							components += I
 							req_components[CM]--
-							update_desc()
 							break
-				to_chat(user, desc)
-				if(I && I.loc != src && !istype(I, /obj/item/stack/cable_coil))
+				if(I && I.loc != src && !istype(I, /obj/item/stack))
 					to_chat(user, SPAN_WARNING("You cannot add that component to the machine!"))
+				else
+					examine(user)
 	update_icon()
 
-/obj/machinery/constructable_frame/proc/component_check()
+/obj/machinery/constructable_frame/machine_frame/proc/component_check()
 	var/ready = TRUE
 	for(var/R in req_components)
 		if(req_components[R] > 0)

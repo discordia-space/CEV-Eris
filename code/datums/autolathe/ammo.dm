@@ -61,7 +61,8 @@
 	name = "standard magazine (.35 Auto, flash)"
 	build_path = /obj/item/ammo_magazine/pistol/flash
 
-<<<<<<< HEAD
+// .35 large 
+
 /datum/design/autolathe/ammo/magazine_lpistol
 	name = "holdout magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/lpistol
@@ -73,9 +74,8 @@
 /datum/design/autolathe/ammo/magazine_lpistol_flash
 	name = "holdout magazine (.35 Auto, flash)"
 	build_path = /obj/item/ammo_magazine/lpistol/flash
-=======
+
 // .35 Highcap
->>>>>>> parent of c30aef94... Revert "disks"
 
 /datum/design/autolathe/ammo/magazine_hpistol
 	name = "highcap magazine (.35 Auto)"

@@ -212,15 +212,15 @@
 
 /datum/design/autolathe/gun/plasma/dominion
 	name = "NT PR \"Dominion\""
-	build_path = /obj/item/weapon/gun/energy/pulse
+	build_path = /obj/item/weapon/gun/energy/plasma
 
 /datum/design/autolathe/gun/plasma/destroyer
 	name = "NT PR \"Purger\""
-	build_path = /obj/item/weapon/gun/energy/pulse/destroyer
+	build_path = /obj/item/weapon/gun/energy/plasma/destroyer
 
 /datum/design/autolathe/gun/plasma/cassad
 	name = "FS PR \"Cassad\""
-	build_path = /obj/item/weapon/gun/energy/pulse/cassad
+	build_path = /obj/item/weapon/gun/energy/plasma/cassad
 
 // Special
 

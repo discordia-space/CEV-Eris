@@ -24,7 +24,7 @@
 		{{if data.is_owner}}
 			{{:data.owner}}
 		{{else}}
-			{{:helper.link(data.owner, null, {'owner' : 1})}}
+			{{:helper.link(data.owner + " (click to change)", null, {'owner' : 1})}}
 		{{/if}}
 	</div>
 </div>

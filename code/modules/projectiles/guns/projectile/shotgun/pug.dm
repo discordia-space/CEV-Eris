@@ -20,8 +20,14 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
 	recoil_buildup = 30
-	fire_delay = 3 //basically slightly nerfed version of SEMIAUTO_NODELAY to counter autoclickers
+
+	one_hand_penalty = 10
+
 				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
+	firemodes = list(
+		FULL_AUTO_400,
+		SEMI_AUTO_NODELAY
+		)
 
 /obj/item/weapon/gun/projectile/shotgun/pug/update_icon()
 	overlays.Cut()
@@ -30,6 +36,13 @@
 		overlays += "m12[ammo_magazine.ammo_color]"
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		overlays += "slide"
+	if(wielded)//I hate this snowflake bullshit but I don't feel like messing with it.
+		if(ammo_magazine)
+			item_state = wielded_item_state + "_mag"
+		else 
+			item_state = wielded_item_state		
+	else
+		item_state = initial(item_state)
 
 /obj/item/weapon/gun/projectile/shotgun/pug/Initialize()
 	. = ..()
