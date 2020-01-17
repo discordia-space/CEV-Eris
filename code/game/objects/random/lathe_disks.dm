@@ -2,8 +2,9 @@
 	name = "random lathe disk"
 	icon_state = "tech-green"
 
-/obj/random/lathe_disk/item_to_spawn()
+/obj/random/lathe_disk/item_to_spawn() // pickweight is calculated from advanced list = / 2 - 1. If lower than 1 - delete from the list;
 	return pickweight(list(
+<<<<<<< HEAD
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 8,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 3,
@@ -20,6 +21,54 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_new_guns = 0.5,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 5,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 2))
+=======
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 20,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 16,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 6,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 3,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard = 1,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_doublebarrel = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kammerer = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_regulator = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone = 2,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides = 1,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov = 1,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_martin = 3,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon = 2,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
+>>>>>>> parent of c30aef94... Revert "disks"
 
 /obj/random/lathe_disk/low_chance
 	name = "low chance random lathe disk"
@@ -35,13 +84,60 @@
 
 /obj/random/lathe_disk/advanced/item_to_spawn()
 	return pickweight(list(
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_kinetic_guns = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_old_guns = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_new_guns = 0.5,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 2))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 6,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 8,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller = 5,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_mateba = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lamia = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_deagle = 2,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_doublebarrel = 5,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kammerer = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_regulator = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug = 1,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides = 4,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov = 4,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pk = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_protector = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar = 1,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_martin = 8,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_valkirye = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon = 6,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_cassad = 1,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
+
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
 
 /obj/random/lathe_disk/advanced/low_chance
 	name = "low chance advanced lathe disk"
