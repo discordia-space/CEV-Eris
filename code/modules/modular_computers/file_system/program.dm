@@ -179,6 +179,15 @@
 		NM = null
 	return 1
 
+// Checks a skill of a given mob, if mob can have one.
+// Needed because ghosts can access MPC UIs, and admin ghosts can interact with them even.
+/datum/computer_file/program/proc/get_operator_skill(mob/user, stat_type)
+	if(user && user.stats)
+		return user.stats.getStat(stat_type)
+
+	return STAT_LEVEL_MIN
+
+
 // This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns 1 continue with UI initialisation.
 // It returns 0 if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.
 /datum/computer_file/program/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
