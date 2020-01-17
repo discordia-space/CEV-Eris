@@ -152,6 +152,11 @@
 	max_ammo = 30
 	multiple_sprites = 1
 
+//obj/item/ammo_magazine/ih556/highvelocity
+//	name = "IH magazine (5.56mm high-velocity)"
+//	icon_state = "WinMag_h"
+//	ammo_type = /obj/item/ammo_casing/a556/hv
+
 /obj/item/ammo_magazine/ihclrifle
 	name = "magazine (.25 Caseless Rifle)"
 	icon_state = "mg_ih_sol_l"
@@ -362,7 +367,7 @@
 ////////////Shotguns!////////////
 
 /obj/item/ammo_magazine/m12
-	name = "ammo drum (.50 slug)"
+	name = "ammo drum (12 gauge slug)"
 	icon_state = "m12_slug"
 	mag_type = MAGAZINE
 	mag_well =  MAG_WELL_RIFLE
@@ -374,24 +379,24 @@
 	ammo_color = "-slug"
 
 /obj/item/ammo_magazine/m12/pellet
-	name = "ammo drum (.50 pellet)"
+	name = "ammo drum (12 gauge pellet)"
 	icon_state = "m12_pellets"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	ammo_color = "-pellets"
 
 /obj/item/ammo_magazine/m12/stun
-	name = "ammo drum (.50 stun)"
+	name = "ammo drum (12 gauge stun)"
 	icon_state = "m12_stun"
 	ammo_type = /obj/item/ammo_casing/shotgun/stunshell
 	ammo_color = "-stun"
 
 /obj/item/ammo_magazine/m12/beanbag
-	name = "ammo drum (.50 beanbag)"
+	name = "ammo drum (12 gauge beanbag)"
 	icon_state = "m12_beanbag"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	ammo_color = "-beanbag"
 
 /obj/item/ammo_magazine/m12/empty
-	name = "ammo drum (.50)"
+	name = "ammo drum (12 gauge)"
 	icon_state = "m12"
 	initial_ammo = 0

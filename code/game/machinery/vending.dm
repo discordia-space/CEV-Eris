@@ -1335,14 +1335,15 @@
 	products = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 20, /obj/item/weapon/storage/box/data_disk/basic = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 10,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 2,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
+	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 2)
 	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50, /obj/item/weapon/storage/box/data_disk/basic = 100, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 500,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 1800, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 400,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 3000,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
-					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,)
+					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200, /obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 4000)
 
 /obj/machinery/vending/serbomat
 	name = "From Serbia with love"
