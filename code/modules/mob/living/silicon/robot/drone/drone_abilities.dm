@@ -1,7 +1,7 @@
 // DRONE ABILITIES
 /mob/living/silicon/robot/drone/verb/set_mail_tag()
 	set name = "Set Mail Tag"
-	set desc = "Tag yourself for delivery through the disposals system."
+	set desc = "Tag yourself for delivery through the disposals system. Will automatically mail you when used in disposal chute."
 	set category = "Silicon Commands"
 
 	var/new_tag = input("Select the desired destination.", "Set Mail Tag", null) as null|anything in tagger_locations

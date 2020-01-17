@@ -78,6 +78,7 @@
 #define COVER_PREVENT_MANIPULATION 0x40 // Only clothing with this flag will prevent manipulation under it. Its for space suits and such, unlike from usual Bay12 rules of clothing manipulation.
 #define DRAG_AND_DROP_UNEQUIP      0x80 // Allow you put intems in hands with drag and drop
 #define EQUIP_SOUNDS               0x100// Play sound when equipped/unequipped
+#define ABSTRACT			       0x200//For items that don't really exist. Can't be put on tables or interacted with.
 
 // Flags for pass_flags.
 #define PASSTABLE  0x1

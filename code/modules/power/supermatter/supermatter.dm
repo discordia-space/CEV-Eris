@@ -15,13 +15,15 @@
 	DAMAGE_RATE_LIMIT	Controls the maximum rate at which the SM will take damage due to high temperatures.
 */
 
-//Controls how much power is produced by each collector in range - this is the main parameter for tweaking SM balance, as it basically controls how the power variable relates to the rest of the game.
+//This is the main parameter for tweaking SM balance, as it basically controls how the power variable relates to the rest of the game.
 #define POWER_FACTOR 1.0
 #define DECAY_FACTOR 700			//Affects how fast the supermatter power decays
 #define CRITICAL_TEMPERATURE 5000	//K
 #define CHARGING_FACTOR 0.05
 #define DAMAGE_RATE_LIMIT 3			//damage rate cap at power = 300, scales linearly with power
 
+//Controls how much power is sent to each collector in range, in relation to SM power
+#define COLLECTOR_TRANSFER_FACTOR 0.5
 
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
@@ -86,7 +88,7 @@
 
 	var/debug = 0
 
-/obj/machinery/power/supermatter/New()
+/obj/machinery/power/supermatter/Initialize()
 	. = ..()
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
 	assign_uid()
@@ -170,7 +172,6 @@
 	return ..()
 
 /obj/machinery/power/supermatter/Process()
-
 	var/turf/L = loc
 
 	if(isnull(L))		// We have a null turf...something is wrong, stop processing this entity.
@@ -235,7 +236,7 @@
 		power = max( (removed.temperature * temp_factor) * oxygen + power, 0)
 
 		//We've generated power, now let's transfer it to the collectors for storing/usage
-		//transfer_energy()
+		transfer_energy()
 
 		var/device_energy = power * REACTION_POWER_MODIFIER
 
@@ -331,15 +332,15 @@
 		ui.set_auto_update(1)
 
 
-/*
+
 /obj/machinery/power/supermatter/proc/transfer_energy()
-	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
+	var/transfer_energy = power * POWER_FACTOR * COLLECTOR_TRANSFER_FACTOR
+	for(var/obj/machinery/power/rad_collector/R in GLOB.rad_collectors)
 		var/distance = get_dist(R, src)
 		if(distance <= 15)
-			//for collectors using standard plasma tanks at 1013 kPa, the actual power generated will be this power*POWER_FACTOR*20*29 = power*POWER_FACTOR*580
-			R.receive_pulse(power * POWER_FACTOR * (min(3/distance, 1))**2)
-	return
-*/
+			//for collectors using standard plasma tanks at 1013 kPa, the actual power generated will be this transfer_energy*20*29 = transfer_energy*580
+			R.receive_pulse(transfer_energy * (min(3/distance, 1))**2)
+
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 

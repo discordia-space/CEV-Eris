@@ -3,7 +3,7 @@
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 	var/list/ProcessHUD = list(
 		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
-		"throw","pull","resist","drop","look up","rest", //"jump",
+		"throw","pull","resist","drop","look up","rest", "wield", //"jump",
 		"move intent","intent","damage zone","craft menu",
 		"equip","swap hand","left arm bionics","right arm bionics","toggle invetory"
 	)

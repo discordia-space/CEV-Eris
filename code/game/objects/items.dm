@@ -183,6 +183,8 @@
 // Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
 // This exists so that dropped() could exclusively be called when an item is dropped.
 /obj/item/proc/on_slotmove(var/mob/user)
+	if(wielded)
+		unwield(user)
 	if (zoom)
 		zoom(user)
 

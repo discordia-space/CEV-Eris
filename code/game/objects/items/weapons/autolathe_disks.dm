@@ -1,7 +1,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design
 	name = "design disk"
-	icon_state = "yellow"
 	desc = "Data disk used to store autolathe designs."
+	icon_state = "yellow"
 	max_capacity = 1024	// Up to 255 designs, automatically reduced to the nearest power of 2
 	origin_tech = list(TECH_DATA = 3) // Most design disks end up being 64 to 128 GQ
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
@@ -196,7 +196,16 @@
 		/datum/design/autolathe/circuit/centrifuge,
 		/datum/design/autolathe/circuit/electrolyzer,
 		/datum/design/autolathe/circuit/reagentgrinder,
+	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors
+	disk_name = "Technomancers LAT-018 Conveyors"
+	icon_state = "technomancers"
+
+	license = -1
+	designs = list(
+		/datum/design/autolathe/conveyor,
+		/datum/design/autolathe/conveyor_switch
 	)
 
 
@@ -385,6 +394,7 @@
 		/datum/design/research/item/flash,
 		/datum/design/autolathe/sec/handcuffs,
 		/datum/design/autolathe/sec/zipties,
+		/datum/design/autolathe/sec/electropack,
 		/datum/design/autolathe/misc/taperecorder,
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,

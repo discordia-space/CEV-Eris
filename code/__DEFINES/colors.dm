@@ -63,7 +63,7 @@
 #define	PIPE_COLOR_GREY		"#e4e7ea"	//yes white is grey
 #define	PIPE_COLOR_RED		"#c1293f"
 #define	PIPE_COLOR_BLUE		"#1f92c2"
-#define	PIPE_COLOR_CYAN		"#0C9d98"
+#define	PIPE_COLOR_CYAN		"#0c9d98"
 #define	PIPE_COLOR_GREEN	"#8ad55d"
 #define	PIPE_COLOR_YELLOW	"#deb63d"
 #define	PIPE_COLOR_BLACK	"#34383d"

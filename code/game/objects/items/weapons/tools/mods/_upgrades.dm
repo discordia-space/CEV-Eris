@@ -98,7 +98,7 @@
 				return FALSE
 		//No using multiples of the same upgrade
 		for (var/obj/item/I in T.item_upgrades)
-			if (I.type == type)
+			if (I.type == parent.type)
 				to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
 				return FALSE
 
@@ -186,13 +186,13 @@
 	else if	(upgrades["degradation_mult"] > 1)
 		to_chat(user, SPAN_WARNING("Increases tool degradation by [(upgrades["degradation_mult"]-1)*100]%"))
 
-	if (upgrades["force_mult"] != 1)
+	if (upgrades["force_mult"] >= 1)
 		to_chat(user, SPAN_NOTICE("Increases tool damage by [(upgrades["force_mult"]-1)*100]%"))
 	if (upgrades["force_mod"])
 		to_chat(user, SPAN_NOTICE("Increases tool damage by [upgrades["force_mod"]]"))
-	if (upgrades["powercost_mult"] != 1)
+	if (upgrades["powercost_mult"] >= 1)
 		to_chat(user, SPAN_WARNING("Modifies power usage by [(upgrades["powercost_mult"]-1)*100]%"))
-	if (upgrades["fuelcost_mult"] != 1)
+	if (upgrades["fuelcost_mult"] >= 1)
 		to_chat(user, SPAN_WARNING("Modifies fuel usage by [(upgrades["fuelcost_mult"]-1)*100]%"))
 	if (upgrades["max_fuel"])
 		to_chat(user, SPAN_NOTICE("Modifies fuel storage by [upgrades["max_fuel"]] units."))

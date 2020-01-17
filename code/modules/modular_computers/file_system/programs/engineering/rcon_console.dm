@@ -5,7 +5,7 @@
 	program_icon_state = "generic"
 	program_key_state = "rd_key"
 	program_menu_icon = "power"
-	extended_desc = "This program allows remote control of power distribution systems. This program can not be run on tablet computers."
+	extended_desc = "This program allows remote control of power distribution systems. Cannot be run on tablet computers."
 	required_access = access_engine
 	requires_ntnet = 1
 	network_destination = "RCON remote control system"

@@ -17,6 +17,31 @@
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
+	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
+	var/move_cost = 4 //how much charge is consumed per movement
+	var/obj/item/weapon/cell/cell
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/device/chameleon/Initialize()
+	.=..()
+	if(. && !cell && suitable_cell)
+		cell = new suitable_cell(src)
+
+/obj/item/device/chameleon/get_cell()
+	return cell
+
+/obj/item/device/chameleon/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+
+/obj/item/device/chameleon/examine(mob/user)
+	..()
+	if(cell)
+		to_chat(user, SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent())]%\""))
+	else
+		to_chat(user, SPAN_WARNING("\The [src] has no cell."))
+
 /obj/item/device/chameleon/dropped()
 	disrupt()
 	..()
@@ -27,6 +52,23 @@
 
 /obj/item/device/chameleon/attack_self()
 	toggle()
+
+/obj/item/device/chameleon/Process()
+	if(active_dummy)
+		if(cell)
+			cell.checked_use(tick_cost)
+
+/obj/item/device/chameleon/MouseDrop(over_object)
+	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell,usr))
+		cell = null
+	else
+		return ..()
+
+/obj/item/device/chameleon/attackby(var/obj/item/C, mob/living/user)
+	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
+		cell = C
+		return
+	..()
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
 	if (istype(target, /obj/item/weapon/storage)) return
@@ -51,6 +93,7 @@
 		var/obj/effect/overlay/T = new(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
+		STOP_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 	else
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
@@ -63,6 +106,7 @@
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
+		START_PROCESSING(SSobj, src)
 		spawn(8) qdel(T)
 
 /obj/item/device/chameleon/proc/disrupt(var/delete_dummy = 1)
@@ -90,7 +134,6 @@
 	desc = ""
 	density = 0
 	anchored = 1
-	var/can_move = 1
 	var/obj/item/device/chameleon/master = null
 
 /obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/device/chameleon/C)
@@ -127,22 +170,22 @@
 
 /obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
+	var/move_delay = 0
+	switch(user.bodytemperature)
+		if(300 to INFINITY)
+			move_delay = 10
+		if(295 to 300)
+			move_delay = 13
+		if(280 to 295)
+			move_delay = 16
+		if(260 to 280)
+			move_delay = 20
+		else
+			move_delay = 25
+	if(!master.cell || !master.cell.checked_use(master.move_cost))
+		user.add_move_cooldown(move_delay)
 
-	if(can_move)
-		can_move = 0
-		switch(user.bodytemperature)
-			if(300 to INFINITY)
-				spawn(10) can_move = 1
-			if(295 to 300)
-				spawn(13) can_move = 1
-			if(280 to 295)
-				spawn(16) can_move = 1
-			if(260 to 280)
-				spawn(20) can_move = 1
-			else
-				spawn(25) can_move = 1
-		step(src, direction)
-	return
+	step(src, direction)
 
 /obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
