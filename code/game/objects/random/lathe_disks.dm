@@ -4,25 +4,6 @@
 
 /obj/random/lathe_disk/item_to_spawn() // pickweight is calculated from advanced list = / 2 - 1. If lower than 1 - delete from the list;
 	return pickweight(list(
-<<<<<<< HEAD
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 8,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 5,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_cheap_guns = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_kinetic_guns = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/fs_energy_guns = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_old_guns = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_new_guns = 0.5,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 5,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 2))
-=======
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 20,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 16,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 6,
@@ -69,7 +50,6 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
->>>>>>> parent of c30aef94... Revert "disks"
 
 /obj/random/lathe_disk/low_chance
 	name = "low chance random lathe disk"
