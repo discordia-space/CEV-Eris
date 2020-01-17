@@ -1051,7 +1051,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Hull dents",
 				"fix_name" = "Repair",
-				"step" = "[/datum/surgery_step/robotic/fix_brute]"
+				"step" = /datum/surgery_step/robotic/fix_brute
 			)
 			conditions_list.Add(list(condition))
 
@@ -1059,7 +1059,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Damaged wiring",
 				"fix_name" = "Replace",
-				"step" = "[/datum/surgery_step/robotic/fix_burn]"
+				"step" = /datum/surgery_step/robotic/fix_burn
 			)
 			conditions_list.Add(list(condition))
 
@@ -1068,7 +1068,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Bleeding",
 				"fix_name" = "Clamp",
-				"step" = "[/datum/surgery_step/fix_bleeding]"
+				"step" = /datum/surgery_step/fix_bleeding
 			)
 			conditions_list.Add(list(condition))
 
@@ -1076,7 +1076,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Bone fracture",
 				"fix_name" = "Mend",
-				"step" = "[/datum/surgery_step/fix_bone]"
+				"step" = /datum/surgery_step/fix_bone
 			)
 			conditions_list.Add(list(condition))
 
@@ -1084,7 +1084,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Necrosis",
 				"fix_name" = "Treat",
-				"step" = "[/datum/surgery_step/fix_necrosis]"
+				"step" = /datum/surgery_step/fix_necrosis
 			)
 			conditions_list.Add(list(condition))
 
