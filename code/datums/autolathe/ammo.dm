@@ -87,11 +87,11 @@
 
 // .35 ammobox
 
-/datum/design/autolathe/ammo/35_ammobox_brute
+/datum/design/autolathe/ammo/pistol_ammobox_brute
 	name = "ammunition box (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/ammobox/pistol
 
-/datum/design/autolathe/ammo/35_ammobox_rubber
+/datum/design/autolathe/ammo/pistol_ammobox_rubber
 	name = "ammunition box (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/ammobox/pistol/rubber
 	
