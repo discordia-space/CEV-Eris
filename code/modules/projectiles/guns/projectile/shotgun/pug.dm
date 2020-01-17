@@ -20,9 +20,14 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
 	recoil_buildup = 30
+
 	one_hand_penalty = 10
-	fire_delay = 3 //basically slightly nerfed version of SEMIAUTO_NODELAY to counter autoclickers
+
 				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
+	firemodes = list(
+		FULL_AUTO_400,
+		SEMI_AUTO_NODELAY
+		)
 
 /obj/item/weapon/gun/projectile/shotgun/pug/update_icon()
 	overlays.Cut()
