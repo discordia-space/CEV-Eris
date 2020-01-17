@@ -302,6 +302,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/research_points
 	disk_name = "research data"
+	icon_state = "onestar"
 	var/min_points = 2000
 	var/max_points = 10000
 
