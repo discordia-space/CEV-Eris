@@ -116,6 +116,9 @@
 	if(one_hand_penalty && (!wielded_item_state))//If the gun has a one handed penalty but no wielded item state then use this generic one.
 		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
 
+	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info
+	action.owner = src
+	hud_actions += action
 
 /obj/item/weapon/gun/Destroy()
 	for(var/i in firemodes)
@@ -504,15 +507,6 @@
 
 	toggle_firemode(user)
 
-/obj/item/weapon/gun/ui_action_click(mob/living/user, action_name)
-	switch(action_name)
-		if("fire mode")
-			toggle_firemode(user)
-		if("scope")
-			toggle_scope(user)
-		if("safety")
-			toggle_safety(user)
-
 /obj/item/weapon/gun/proc/toggle_firemode(mob/living/user)
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
@@ -626,3 +620,21 @@
 	damage_multiplier += silenced.damage_mod
 	silenced = null
 	update_icon()
+
+
+/obj/item/weapon/gun/ui_data(mob/user)
+	var/list/data = list()
+	data["damage_multiplier"] = damage_multiplier
+	data["penetration_multiplier"] = penetration_multiplier
+
+	data["fire_delay"] = fire_delay //time between shot, in ms
+	data["burst"] = burst //How many shots are fired per click
+	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
+
+	data["force"] = force
+	data["force_max"] = initial(force)*10
+	data["muzzle_flash"] = muzzle_flash
+
+	data["recoil_buildup"] = recoil_buildup
+	data["recoil_buildup_max"] = initial(recoil_buildup)*10
+	return data
