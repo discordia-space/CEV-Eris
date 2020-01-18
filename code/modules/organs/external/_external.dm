@@ -259,10 +259,25 @@
 	return
 
 /obj/item/organ/external/proc/get_tally()
-	if(status & ORGAN_SPLINTED)
+	if(status & (ORGAN_DEAD|ORGAN_CUT_AWAY))
+		return 4
+	else if(status & (ORGAN_BROKEN|ORGAN_MUTATED))
+		return 3
+	// malfunctioning only happens intermittently so treat it as a broken limb when it procs
+	else if(is_malfunctioning())
+		if(prob(10))
+			owner.visible_message("\The [owner]'s [name] [pick("twitches", "shudders")] and sparks!")
+			var/datum/effect/effect/system/spark_spread/spark_system = new ()
+			spark_system.set_up(5, 0, owner)
+			spark_system.attach(owner)
+			spark_system.start()
+			spawn(10)
+				qdel(spark_system)
+		return 3
+	else if(is_dislocated())
+		return 1
+	else if(status & ORGAN_SPLINTED)
 		return 0.5
-	else if(status & ORGAN_BROKEN)
-		return 1.5
 	else
 		return tally
 
