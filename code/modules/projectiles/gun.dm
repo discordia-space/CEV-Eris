@@ -637,4 +637,18 @@
 
 	data["recoil_buildup"] = recoil_buildup
 	data["recoil_buildup_max"] = initial(recoil_buildup)*10
+
+	if(firemodes.len)
+		var/list/firemodes_info = list()
+		for(var/i = 1 to firemodes.len)
+			data["firemode_count"] += 1
+			var/datum/firemode/F = firemodes[i]
+			firemodes_info += list(list(
+				"current" = (i == sel_mode),
+				"name" = F.name,
+				"burst" = F.settings["burst"],
+				"fire_delay" = F.settings["fire_delay"],
+				"move_delay" = F.settings["move_delay"],
+				))
+		data["firemode_info"] = firemodes_info
 	return data

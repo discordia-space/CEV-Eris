@@ -97,3 +97,38 @@
 		{{/if}}
 	</div>
 </div>
+{{if data.firemode_count}}
+	<div class="item">
+		<h3>Firemodes: {{:data.firemode_count}}</h3>
+		<table style="width:100%;  overflow-wrap: break-all;">
+			{{for data.firemode_info}}
+				<tr>
+				<div class="statusDisplay" style="overflow: auto;">
+					<div class="item" style="margin: 0px">
+						<h4>
+							{{:value.name}} {{if value.current == 1}} <b>SELECTED</b> {{/if}}
+						</h4>
+						<div class="itemLabel">
+						Rounds per burst: 
+						</div>
+							<div class="itemContent">
+								{{:value.burst}}
+							</div>
+						<div class="itemLabel">
+						Fire delay: 
+						</div>
+							<div class="itemContent">
+								{{:value.fire_delay}} ms
+							</div>
+						<div class="itemLabel">
+						Movement delay: 
+						</div>
+							<div class="itemContent">
+								{{:value.move_delay}} ms
+							</div>
+					</div>
+				</div>
+			{{/for}}
+		</table>
+	</div>
+{{/if}}
