@@ -219,7 +219,6 @@ obj/structure/salvageable/server/Initialize()
 obj/structure/salvageable/personal/Initialize()
 	. = ..()
 	icon_state = "personal[rand(0,12)]"
-	new /obj/structure/table/reinforced (loc)
 
 /obj/structure/salvageable/bliss
 	name = "strange terminal"
