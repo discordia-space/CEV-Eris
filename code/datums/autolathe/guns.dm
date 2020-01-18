@@ -25,6 +25,14 @@
 	name = "NT HG .35 \"Mk58\""
 	build_path = /obj/item/weapon/gun/projectile/mk58/wood
 
+/datum/design/autolathe/gun/silenced
+	name = "FS HG .35 Auto \"Mandella\""
+	build_path = /obj/item/weapon/gun/projectile/silenced
+
+/datum/design/autolathe/gun/colt
+	name = "FS HG .35 Auto \"Colt M1911\""
+	build_path = /obj/item/weapon/gun/projectile/colt
+
 /datum/design/autolathe/gun/revolver_detective
 	name = "FS REV .35 \"Havelock\""
 	build_path = /obj/item/weapon/gun/projectile/revolver/detective

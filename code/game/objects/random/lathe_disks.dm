@@ -17,6 +17,8 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced = 2,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul = 1,
@@ -46,9 +48,10 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon = 2,
 
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 5,
 
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 5,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
 
 /obj/random/lathe_disk/low_chance
@@ -70,6 +73,8 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 8,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced = 6,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller = 5,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul = 4,
@@ -118,7 +123,9 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
 
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 8))
 
 /obj/random/lathe_disk/advanced/low_chance
 	name = "low chance advanced lathe disk"

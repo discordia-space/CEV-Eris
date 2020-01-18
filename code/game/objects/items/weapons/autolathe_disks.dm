@@ -390,6 +390,19 @@
 		/datum/design/autolathe/ammo/shotgun_beanbag
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes
+	disk_name = "Frozen Star Ammoboxes Pack"
+	icon_state = "frozenstar"
+
+	license = 12
+	designs = list(
+		/datum/design/autolathe/ammo/pistol_ammobox_rubber,
+		/datum/design/autolathe/ammo/pistol_ammobox_brute,
+		/datum/design/autolathe/ammo/mg_ammobox_brute,
+		/datum/design/autolathe/ammo/srifle_ammobox_brute,
+		/datum/design/autolathe/ammo/box_lrifle,
+	)
+
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo //please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 	disk_name = "Frozen Star Lethal Ammo Pack"
 	icon_state = "frozenstar"
@@ -522,8 +535,30 @@
 	designs = list(
 		/datum/design/autolathe/gun/mk58,
 		/datum/design/autolathe/gun/mk58_wood,
-		/datum/design/autolathe/ammo/sl_pistol_rubber,
-		/datum/design/autolathe/ammo/sl_pistol_brute,
+		/datum/design/autolathe/ammo/magazine_pistol_rubber,
+		/datum/design/autolathe/ammo/magazine_pistol,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt
+	disk_name = "Frozen Star .35 Colt 1911 Pack"
+	icon_state = "frozenstar"
+
+	license = 8
+	designs = list(
+		/datum/design/autolathe/gun/colt, //"FS HG .35 Auto \"Colt M1911\""
+		/datum/design/autolathe/ammo/magazine_pistol_rubber,
+		/datum/design/autolathe/ammo/magazine_pistol,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced
+	disk_name = "Frozen Star .35 Mandella Pack"
+	icon_state = "frozenstar"
+
+	license = 8
+	designs = list(
+		/datum/design/autolathe/gun/silenced, // "FS HG .35 Auto \"Mandella\""
+		/datum/design/autolathe/ammo/magazine_pistol_rubber,
+		/datum/design/autolathe/ammo/magazine_pistol,
 	)
 
 // .40 REVOLVERS
@@ -791,7 +826,7 @@
 		/datum/design/autolathe/ammo/box_lrifle,
 	)
 
-// Heavy 
+// Heavy
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper
 	disk_name = "NeoTheology Armory .60 Penetrator AMR Pack"

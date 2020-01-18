@@ -53,6 +53,8 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced = 2,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul = 1,
@@ -85,6 +87,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
 
 /obj/random/techpart/low_chance
