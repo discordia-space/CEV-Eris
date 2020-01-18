@@ -49,7 +49,7 @@
 
 /datum/gear/utility/normallaptop
 	display_name = "consumer laptop"
-	path = /obj/item/modular_computer/laptop/preset/custom_loadout/standart/xenoware
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/standard/xenoware
 	cost = 3
 
 /datum/gear/utility/advancedlaptop
