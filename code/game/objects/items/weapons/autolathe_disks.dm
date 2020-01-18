@@ -166,7 +166,6 @@
 		/datum/design/autolathe/tool/pickaxe_excavation,
 		/datum/design/autolathe/tool/circularsaw,
 		/datum/design/autolathe/tool/chainsaw,
-		/datum/design/autolathe/tool/hypersaw,
 		/datum/design/autolathe/tool/rcd,
 		/datum/design/autolathe/tool/electric_screwdriver,
 		/datum/design/autolathe/tool/combi_driver,
