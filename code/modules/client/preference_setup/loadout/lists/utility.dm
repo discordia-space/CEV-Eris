@@ -41,3 +41,20 @@
 	display_name = "advanced tablet computer"
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
 	cost = 3
+
+/datum/gear/utility/cheaplaptop
+	display_name = "military laptop"
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/cheap/elbrus4kk
+	cost = 2
+
+/datum/gear/utility/normallaptop
+	display_name = "consumer laptop"
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/standart/xenoware
+	cost = 3
+
+/datum/gear/utility/advancedlaptop
+	display_name = "high-tech laptop"
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/golden
+	cost = 5
+
+
