@@ -49,6 +49,8 @@
 		/mob/living/simple_animal/borer/proc/secrete_chemicals,
 		/mob/living/simple_animal/borer/proc/assume_control,
 		/mob/living/simple_animal/borer/proc/paralyze_victim,
+		/mob/living/simple_animal/borer/proc/read_mind,
+		/mob/living/simple_animal/borer/proc/write_mind,
 		/mob/living/simple_animal/borer/proc/release_host
 	)
 

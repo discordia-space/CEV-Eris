@@ -243,7 +243,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(3, src))
+	for(var/mob/living/carbon/C in view(3, get_turf(src)))
 		if(C == host || C.stat == DEAD)
 			continue
 
@@ -255,7 +255,7 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
 
-	if(!M || !(M in view(3, src))) return
+	if(!M || !(M in view(3, get_turf(src)))) return
 
 	if(M.has_brain_worms())
 		to_chat(src, "You cannot infest someone who is already infested!")
@@ -349,3 +349,99 @@
 	restore_blood()
 	fixblood()
 	update_lying_buckled_and_verb_status()
+
+
+/mob/living/simple_animal/borer/proc/read_mind()
+	set category = "Abilities"
+	set name = "Read Mind"
+	set desc = "Extract information, languages and skills out of host's brain. May cause confusion and brain damage."
+
+	if(stat)
+		return
+
+	if(!host)
+		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		return
+
+	if(docile)
+		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		return
+
+	var/list/copied_stats = list()
+	for(var/stat_name in ALL_STATS)
+		var/host_stat = host.stats.getStat(stat_name, pure=TRUE)
+		var/borer_stat = stats.getStat(stat_name, pure=TRUE)
+		if(host_stat > borer_stat)
+			stats.setStat(stat_name, host_stat)
+			copied_stats += stat_name
+
+	var/list/copied_languages = list()
+	for(var/datum/language/L in host.languages)
+		if(!(L.flags & HIVEMIND) && !can_speak(L))
+			add_language(L.name)
+			copied_languages += L.name
+
+	if(host.mind)
+		host.mind.show_memory(src)
+
+	var/copied_amount = length(copied_stats) + length(copied_languages)
+	if(copied_amount)
+		if(length(copied_stats))
+			to_chat(src, SPAN_NOTICE("You extracted some knowledge on [english_list(copied_stats)]."))
+
+		if(length(copied_languages))
+			to_chat(src, SPAN_NOTICE("You learned [english_list(copied_languages)]."))
+
+		to_chat(host, SPAN_DANGER("Your head spins, your memories thrown in disarray!"))
+		host.adjustBrainLoss(copied_amount * 4)
+		host?.sanity.onPsyDamage(copied_amount * 4)
+
+		host.make_dizzy(copied_amount * 4)
+		host.confused = max(host.confused, copied_amount * 4)
+
+
+/mob/living/simple_animal/borer/proc/write_mind()
+	set category = "Abilities"
+	set name = "Write Mind"
+	set desc = "Write known skills and languages to host's brain. May cause confusion and brain damage."
+
+	if(stat)
+		return
+
+	if(!host)
+		to_chat(src, SPAN_WARNING("You are not inside a host body."))
+		return
+
+	if(docile)
+		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		return
+
+	var/list/copied_stats = list()
+	for(var/stat_name in ALL_STATS)
+		var/host_stat = host.stats.getStat(stat_name, pure=TRUE)
+		var/borer_stat = stats.getStat(stat_name, pure=TRUE)
+		if(borer_stat > host_stat)
+			host.stats.setStat(stat_name, borer_stat)
+			copied_stats += stat_name
+
+	var/list/copied_languages = list()
+	for(var/datum/language/L in languages)
+		if(!(L.flags & HIVEMIND) && !host.can_speak(L))
+			host.add_language(L.name)
+			copied_languages += L.name
+
+
+	var/copied_amount = length(copied_stats) + length(copied_languages)
+	if(copied_amount)
+		if(length(copied_stats))
+			to_chat(src, SPAN_NOTICE("You put some knowledge on [english_list(copied_stats)] into your host's mind."))
+
+		if(length(copied_languages))
+			to_chat(src, SPAN_NOTICE("You teach your host [english_list(copied_languages)]."))
+
+		to_chat(host, SPAN_DANGER("Your head spins as new information fills your mind!"))
+		host.adjustBrainLoss(copied_amount * 2)
+		host?.sanity.onPsyDamage(copied_amount * 2)
+
+		host.make_dizzy(copied_amount * 2)
+		host.confused = max(host.confused, copied_amount * 2)
