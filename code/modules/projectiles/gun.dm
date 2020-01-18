@@ -62,6 +62,9 @@
 	var/wielded_item_state = null
 	var/one_hand_penalty = 0 //The higher this number is, the more severe the accuracy penalty for shooting it one handed. 5 is a good baseline for this, but var edit it live and play with it yourself.
 
+	var/projectile_color //Set by a firemode. Sets the fired projectiles color
+
+
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
 		return ..() * 0.5 //Guns should be sold in the player market.
@@ -274,7 +277,11 @@
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
-
+		if(projectile_color)
+			projectile.icon = get_proj_icon_by_color(projectile, projectile_color)
+			if(istype(projectile, /obj/item/projectile))
+				var/obj/item/projectile/P = projectile
+				P.proj_color = projectile_color
 		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()

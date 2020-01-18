@@ -57,7 +57,7 @@
 		if (isAI(user))
 			var/turf/T = get_turf(target)
 			T.move_camera_by_click()
-		else if (Adjacent(src, user))
+		else if (Adjacent(user))
 			attack_hand(user)
 
 

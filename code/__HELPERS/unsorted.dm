@@ -642,16 +642,9 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
 
-//Returns: all the areas in the world
-/proc/return_areas()
-	var/list/area/areas = list()
-	for(var/area/A in world)
-		areas += A
-	return areas
-
 //Returns: all the areas in the world, sorted.
 /proc/return_sorted_areas()
-	return sortNames(return_areas())
+	return sortNames(GLOB.map_areas)
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
@@ -663,7 +656,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 		areatype = areatemp.type
 
 	var/list/areas = new/list()
-	for(var/area/N in world)
+	for(var/area/N in GLOB.map_areas)
 		if(istype(N, areatype)) areas += N
 	return areas
 
@@ -677,7 +670,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 		areatype = areatemp.type
 
 	var/list/atoms = new/list()
-	for(var/area/N in world)
+	for(var/area/N in GLOB.map_areas)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
 				atoms += A

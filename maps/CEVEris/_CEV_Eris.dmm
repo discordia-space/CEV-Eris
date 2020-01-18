@@ -22209,10 +22209,10 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/weapon/gun/energy/pulse/cassad,
-/obj/item/weapon/gun/energy/pulse/cassad,
-/obj/item/weapon/gun/energy/pulse/cassad,
-/obj/item/weapon/gun/energy/pulse/cassad,
+/obj/item/weapon/gun/energy/plasma/cassad,
+/obj/item/weapon/gun/energy/plasma/cassad,
+/obj/item/weapon/gun/energy/plasma/cassad,
+/obj/item/weapon/gun/energy/plasma/cassad,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aZi" = (

@@ -470,7 +470,7 @@
 	if(!istype(C) || C.stat == DEAD)
 		return
 	overlays.Cut()
-	switch(C.get_nsa())
+	switch(C.metabolism_effects.get_nsa())
 		if(200 to INFINITY)
 			overlays += ovrls["nsa10"]
 		if(-INFINITY to 20)

@@ -92,12 +92,12 @@ A small pool of thematically appropriate religious items that are generally chea
 /datum/uplink_item/item/neotheology/pulse
 	item_cost = 10
 	name = "NT PR \"Dominion\""
-	path = /obj/item/weapon/gun/energy/pulse
+	path = /obj/item/weapon/gun/energy/plasma
 
 /datum/uplink_item/item/neotheology/pulse_destroyer
 	item_cost = 10
 	name = "NT PR \"Purger\""
-	path = /obj/item/weapon/gun/energy/pulse/destroyer
+	path = /obj/item/weapon/gun/energy/plasma/destroyer
 
 
 
