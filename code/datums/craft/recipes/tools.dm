@@ -87,7 +87,6 @@
 	name = "Jury-rigged torch"
 	result = /obj/item/weapon/tool/weldingtool/improvised
 	steps = list(
-		list(QUALITY_ADHESIVE, 15, 150),
 		list(/obj/item/device/assembly/igniter, 1),
 		list(/obj/item/weapon/tank/emergency_oxygen, 1)
 	)
