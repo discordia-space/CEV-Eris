@@ -48,7 +48,7 @@
 	var/insight_rest = 0
 	var/resting = 0
 
-	var/list/desires = list()
+	var/list/desires
 
 	var/positive_prob = 20
 	var/negative_prob = 30
@@ -59,12 +59,14 @@
 	var/breakdown_time = 0
 	var/spook_time = 0
 
-	var/list/datum/breakdown/breakdowns = list()
+	var/list/datum/breakdown/breakdowns
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
 	level = max_level
 	insight = rand(0, 30)
+	breakdowns = list()
+	desires = list()
 	RegisterSignal(owner, COMSIG_MOB_LIFE, .proc/onLife)
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
@@ -88,7 +90,8 @@
 	if(sanity_invulnerability)
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
-	for(var/atom/A in view(owner.client ? owner.client : owner))
+	for(var/a in view(owner.client ? owner.client : owner))
+		var/atom/A = a
 		if(A.sanity_damage)
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
 
@@ -101,7 +104,8 @@
 		. *= owner.stats.getStat(STAT_VIG) / STAT_LEVEL_MAX
 
 /datum/sanity/proc/handle_breakdowns()
-	for(var/datum/breakdown/B in breakdowns)
+	for(var/b in breakdowns)
+		var/datum/breakdown/B = b
 		if(!B.update())
 			breakdowns -= B
 
@@ -285,7 +289,8 @@
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
-	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
+	for(var/m in GLOB.active_mind_fryers)
+		var/obj/item/device/mind_fryer/M = m
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
 
