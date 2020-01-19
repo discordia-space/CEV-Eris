@@ -18,9 +18,6 @@
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
-	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/clothing_info
-	action.owner = src
-	hud_actions = list(action)
 
 	if(matter)
 		return
@@ -69,26 +66,6 @@
 		return ..()
 	if(!pre_equip(usr, over_object))
 		..()
-
-/obj/item/clothing/ui_data(mob/user)
-	var/list/data = list()
-
-	if(armor)
-		data["armor"] = list()
-		for(var/name in armor)
-			data["armor"] += list(list("name" = capitalize(name), "number" = armor[name]))
-
-	return data
-
-/obj/item/clothing/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = ui_data(user)
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "clothing_stats.tmpl", name, 650, 550, state = state)
-		ui.auto_update_layout = 1
-		ui.set_initial_data(data)
-		ui.open()
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -578,16 +555,3 @@ BLIND     // can't see anything
 		set_sensors(U)
 	else
 		return ..()
-
-
-/obj/screen/item_action/top_bar/clothing_info
-	icon = 'icons/mob/screen/gun_actions.dmi'
-	screen_loc = "8,1:13"
-	minloc = "7,2:13"
-	name = "Clothing information"
-	icon_state = "info"
-
-/obj/item/clothing/ui_action_click(mob/living/user, action_name)
-	switch(action_name)
-		if("Clothing information")
-			ui_interact(user)

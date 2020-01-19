@@ -40,7 +40,7 @@
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"
 	body_parts_covered = HEAD
-	flags_inv = null
+	flags_inv = NONE
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"

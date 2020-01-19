@@ -175,7 +175,6 @@
 				/obj/item/clothing/under/suit_jacket/red = 5,
 				/obj/item/clothing/under/suit_jacket = 5,
 				/obj/item/clothing/under/turtleneck = 5,
-				/obj/item/clothing/under/tactical = 5,
 				/obj/item/clothing/under/syndicate = 5))
 
 /obj/random/cloth/under/low_chance

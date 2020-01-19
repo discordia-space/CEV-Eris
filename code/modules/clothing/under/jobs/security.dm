@@ -53,12 +53,6 @@
 	icon_state = "medspec_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
-/obj/item/clothing/under/tactical
-	name = "tactical jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
-	icon_state = "syndicate"
-	siemens_coefficient = 0.8
-
 /*
  * Detective
  */

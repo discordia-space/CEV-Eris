@@ -282,7 +282,7 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/tactical/populate_contents()
-	new /obj/item/clothing/under/tactical(src)
+	new /obj/item/clothing/under/syndicate(src)
 	new /obj/item/clothing/suit/armor/heavy(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)

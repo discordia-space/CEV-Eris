@@ -40,9 +40,8 @@
 	name = "Warden's jacket"
 	desc = "An armoured jacket with an attached vest holding a badge and livery."
 	icon_state = "warden_jacket"
-	item_state = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	price_tag = 300
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	price_tag = 350
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
@@ -77,7 +76,6 @@
 		bio = 0,
 		rad = 0
 	)
-	flags_inv = HIDEJUMPSUIT
 	price_tag = 600
 
 /obj/item/clothing/suit/armor/greatcoat/ironhammer
