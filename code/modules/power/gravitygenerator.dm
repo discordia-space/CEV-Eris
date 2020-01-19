@@ -21,7 +21,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	anchored = 1
 	density = 1
-	use_power = 0
+	power_mode = NO_POWER_USE
 	unacidable = 1
 	var/sprite_number = 0
 
@@ -102,9 +102,9 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	icon_state = "on_8"
 	idle_power_usage = 0
 	active_power_usage = 3000
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 	sprite_number = 8
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	interact_offline = 1
 	var/on = 1
 	var/breaker = 1
@@ -302,7 +302,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		return
 	on = new_state
 	charging_state = POWER_IDLE
-	use_power = on ? 2 : 1
+	power_mode = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	if(new_state) // If we turned on
 		grav_on()
 	else

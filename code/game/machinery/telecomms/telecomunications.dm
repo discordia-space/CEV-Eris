@@ -19,7 +19,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	icon = 'icons/obj/machines/telecomms.dmi'
 	density = TRUE
 	anchored = TRUE
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
@@ -249,7 +249,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	if (!produces_heat)
 		return
 
-	if (!use_power)
+	if (!power_mode)
 		return
 
 	if(!(stat & (NOPOWER|BROKEN)))

@@ -67,7 +67,7 @@
 
 	icon_state = "apc0"
 	anchored = 1
-	use_power = 0
+	power_mode = NO_POWER_USE
 	req_access = list(access_engine_equip)
 	var/need_sound
 	var/area/area
@@ -188,9 +188,7 @@
 /obj/machinery/power/apc/Destroy()
 	src.update()
 	area.apc = null
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
+	area.power_flags &= ~(POWER_LIGHT|POWER_ENVIRON|POWER_EQUIP)
 	area.power_change()
 	qdel(wires)
 	wires = null
@@ -858,18 +856,20 @@
 
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted && !failure_timer)
-		area.power_light = (lighting > 1)
-		area.power_equip = (equipment > 1)
-		area.power_environ = (environ > 1)
-//		if (area.name == "AI Chamber")
-//			spawn(10)
-//				world << " [area.name] [area.power_equip]"
+		if(lighting > 1)
+			area.power_flags |= POWER_LIGHT
+		else
+			area.power_flags &= ~(POWER_LIGHT)
+		if(equipment > 1)
+			area.power_flags |= POWER_EQUIP
+		else
+			area.power_flags &= ~(POWER_EQUIP)
+		if(environ > 1)
+			area.power_flags |= POWER_ENVIRON
+		else
+			area.power_flags &= ~(POWER_EQUIP)
 	else
-		area.power_light = 0
-		area.power_equip = 0
-		area.power_environ = 0
-//		if (area.name == "AI Chamber")
-//			world << "[area.power_equip]"
+		area.power_flags = ~(POWER_LIGHT|POWER_EQUIP|POWER_ENVIRON)
 	area.power_change()
 
 /obj/machinery/power/apc/proc/isWireCut(var/wireIndex)
@@ -1032,7 +1032,7 @@
 
 	if(stat & (BROKEN|MAINT))
 		return
-	if(!area.requires_power)
+	if(area.power_flags & NO_POWER_REQUIRED)
 		return
 	if(failure_timer)
 		update()
@@ -1041,9 +1041,9 @@
 		force_update = 1
 		return
 
-	lastused_light = area.usage(LIGHT)
-	lastused_equip = area.usage(EQUIP)
-	lastused_environ = area.usage(ENVIRON)
+	lastused_light = area.usage(POWER_LIGHT)
+	lastused_equip = area.usage(POWER_EQUIP)
+	lastused_environ = area.usage(POWER_ENVIRON)
 	area.clear_usage()
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ

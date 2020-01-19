@@ -6,7 +6,7 @@
 
 	anchored = 1
 	density = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	circuit = /obj/item/weapon/circuitboard/bluespacerelay
 	var/on = 1
 

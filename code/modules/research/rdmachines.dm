@@ -5,7 +5,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	var/obj/machinery/computer/rdconsole/linked_console
 
 /obj/machinery/r_n_d/attack_hand(mob/user)

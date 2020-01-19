@@ -7,9 +7,9 @@
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "light1"
 	anchored = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 20
-	power_channel = LIGHT
+	power_channel = POWER_LIGHT
 	var/slow_turning_on = FALSE
 	var/forceful_toggle = FALSE
 	var/on = 1
@@ -107,7 +107,7 @@
 /obj/machinery/light_switch/power_change()
 
 	if(!otherarea)
-		if(powered(LIGHT))
+		if(powered(POWER_LIGHT))
 			stat &= ~NOPOWER
 		else
 			stat |= NOPOWER

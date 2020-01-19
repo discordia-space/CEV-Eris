@@ -9,7 +9,7 @@
 	name = "air injector"
 	desc = "Passively injects air into its surroundings. Has a valve attached to it that can control flow rate."
 
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 15000	//15000 W ~ 20 HP
 
@@ -32,7 +32,7 @@
 	if(!powered())
 		icon_state = "off"
 	else
-		icon_state = "[use_power ? "on" : "off"]"
+		icon_state = "[power_mode ? "on" : "off"]"
 
 /obj/machinery/atmospherics/unary/outlet_injector/update_underlays()
 	if(..())
@@ -54,7 +54,7 @@
 	last_power_draw = 0
 	last_flow_rate = 0
 
-	if((stat & (NOPOWER|BROKEN)) || !use_power)
+	if((stat & (NOPOWER|BROKEN)) || !power_mode)
 		return
 
 	var/power_draw = -1
@@ -109,7 +109,7 @@
 	signal.data = list(
 		"tag" = id,
 		"device" = "AO",
-		"power" = use_power,
+		"power" = power_mode,
 		"volume_rate" = volume_rate,
 		"sigtype" = "status"
 	 )
@@ -128,10 +128,10 @@
 		return 0
 
 	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+		power_mode = text2num(signal.data["power"])
 
 	if(signal.data["power_toggle"])
-		use_power = !use_power
+		power_mode = !power_mode
 
 	if(signal.data["inject"])
 		spawn inject()

@@ -7,7 +7,7 @@
 	icon_state = "mass_driver"
 	anchored = 1.0
 	layer = LOW_OBJ_LAYER
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 50
 

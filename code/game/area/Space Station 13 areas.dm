@@ -30,12 +30,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/eject = null
 	var/is_maintenance = FALSE
 	var/debug = 0
-	var/requires_power = 1
-	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
-
-	var/power_equip = 1
-	var/power_light = 1
-	var/power_environ = 1
+	var/power_flags = NONE
 	var/used_equip = 0
 	var/used_light = 0
 	var/used_environ = 0
@@ -68,12 +63,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/space
 	name = "\improper Space"
 	icon_state = "space"
-	requires_power = 1
-	always_unpowered = 1
+	power_flags = ALWAYS_UNPOWERED
 	dynamic_lighting = 1
-	power_light = 0
-	power_equip = 0
-	power_environ = 0
 	has_gravity = FALSE
 	flags = AREA_FLAG_EXTERNAL
 	ambience = list('sound/ambience/ambispace.ogg')
@@ -98,7 +89,7 @@ area/space/atmosalert()
 	flags = AREA_FLAG_CRITICAL
 
 /area/arrival
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/arrival/start
 	name = "\improper Arrival Area"
@@ -118,7 +109,7 @@ area/space/atmosalert()
 //All shuttles should now be under shuttle since we have smooth-wall code.
 
 /area/shuttle
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	sound_env = SMALL_ENCLOSED
 	base_turf = /turf/space
 
@@ -204,11 +195,11 @@ area/space/atmosalert()
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
-	requires_power = 1
+	power_flags = NONE
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
-	requires_power = 1
+	power_flags = NONE
 	base_turf = /turf/simulated/floor/asteroid
 
 /area/shuttle/transport1/centcom
@@ -222,12 +213,12 @@ area/space/atmosalert()
 /area/shuttle/alien/base
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Base"
-	requires_power = 1
+	power_flags = NONE
 
 /area/shuttle/alien/mine
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Mine"
-	requires_power = 1
+	power_flags = NONE
 
 /area/shuttle/prison/
 	name = "\improper Prison Shuttle"
@@ -302,11 +293,11 @@ area/space/atmosalert()
 
 /area/shuttle/research/station
 	icon_state = "shuttle2"
-	requires_power = 1
+	power_flags = NONE
 
 /area/shuttle/research/outpost
 	icon_state = "shuttle"
-	requires_power = 1
+	power_flags = NONE
 	base_turf = /turf/simulated/floor/asteroid
 
 
@@ -316,7 +307,7 @@ area/space/atmosalert()
 /area/centcom
 	name = "\improper Centcom"
 	icon_state = "centcom"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	dynamic_lighting = 0
 	vessel = "centcom"
 
@@ -353,13 +344,13 @@ area/space/atmosalert()
 /area/centcom/alien
 	name = "\improper Alien base"
 	icon_state = "yellow"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	vessel = "alien"
 
 /area/centcom/merc_base
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	dynamic_lighting = 0
 	vessel = "syndicate mothership"
 
@@ -387,13 +378,13 @@ area/space/atmosalert()
 /area/asteroid					// -- TLE
 	name = "\improper Moon"
 	icon_state = "asteroid"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	sound_env = ASTEROID
 
 /area/asteroid/cave				// -- TLE
 	name = "\improper Moon - Underground"
 	icon_state = "cave"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	sound_env = ASTEROID
 
 /area/asteroid/artifactroom
@@ -406,13 +397,13 @@ area/space/atmosalert()
 /area/wizard_station
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	dynamic_lighting = 0
 
 /area/skipjack_station
 	name = "\improper Skipjack"
 	icon_state = "yellow"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/skipjack_station/start
 	name = "\improper Skipjack"
@@ -730,19 +721,19 @@ area/space/atmosalert()
 	name = "\improper Wild West Mines"
 	icon_state = "away1"
 	luminosity = 1
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/awaymission/wwgov
 	name = "\improper Wild West Mansion"
 	icon_state = "away2"
 	luminosity = 1
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/awaymission/wwrefine
 	name = "\improper Wild West Refinery"
 	icon_state = "away3"
 	luminosity = 1
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/awaymission/wwvault
 	name = "\improper Wild West Vault"
@@ -751,7 +742,7 @@ area/space/atmosalert()
 /area/awaymission/wwvaultdoors
 	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/awaymission/desert
 	name = "Mars"
@@ -772,7 +763,7 @@ area/space/atmosalert()
 /area/awaymission/spacebattle
 	name = "\improper Space Battle"
 	icon_state = "away"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/awaymission/spacebattle/cruiser
 	name = "\improper Nanotrasen Cruiser"
@@ -804,14 +795,14 @@ area/space/atmosalert()
 /area/awaymission/listeningpost
 	name = "\improper Listening Post"
 	icon_state = "away"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 
 /area/awaymission/beach
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
 	dynamic_lighting = 0
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	ambience = list()
 	var/sound/mysound = null
 

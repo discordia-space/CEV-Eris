@@ -7,7 +7,7 @@
 
 	name = "air scrubber"
 	desc = "Has a valve and pump attached to it"
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -34,7 +34,7 @@
 	var/welded = FALSE
 
 /obj/machinery/atmospherics/unary/vent_scrubber/on
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	icon_state = "map_scrubber_on"
 
 /obj/machinery/atmospherics/unary/vent_scrubber/New()
@@ -53,11 +53,11 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_icon(safety = 0)
 	if(!node1)
-		use_power = 0
+		power_mode = NO_POWER_USE
 
 	if(welded)
 		icon_state = "weld"
-	else if(!powered() || !use_power)
+	else if(!powered() || !power_mode)
 		icon_state = "off"
 	else
 		icon_state = scrubbing ? "on" : "in"
@@ -96,7 +96,7 @@
 		"tag" = id_tag,
 		"device" = "AScr",
 		"timestamp" = world.time,
-		"power" = use_power,
+		"power" = power_mode,
 		"scrubbing" = scrubbing,
 		"panic" = panic,
 		"expanded_range" = expanded_range,
@@ -128,10 +128,10 @@
 	..()
 
 	if (!node1)
-		use_power = 0
+		power_mode = NO_POWER_USE
 		return
 	//broadcast_status()
-	if(!use_power)
+	if(!power_mode)
 		return 0
 
 	if(stat & (NOPOWER|BROKEN))
@@ -183,9 +183,9 @@
 		return 0
 
 	if(signal.data["power"] != null)
-		use_power = text2num(signal.data["power"])
+		power_mode = text2num(signal.data["power"])
 	if(signal.data["power_toggle"] != null)
-		use_power = !use_power
+		power_mode = !power_mode
 
 	if(signal.data["panic_siphon"] || signal.data["toggle_panic_siphon"])
 		if(signal.data["panic_siphon"])
@@ -194,7 +194,7 @@
 			panic = !panic
 
 		if(panic)
-			use_power = 1
+			power_mode = IDLE_POWER_USE
 			scrubbing = SIPHONING
 		else
 			scrubbing = SCRUBBING
@@ -282,7 +282,7 @@
 			return
 
 		if(QUALITY_BOLT_TURNING)
-			if (!(stat & NOPOWER) && use_power)
+			if (!(stat & NOPOWER) && power_mode)
 				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
 				return 1
 			var/turf/T = src.loc

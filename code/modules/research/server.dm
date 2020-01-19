@@ -75,7 +75,7 @@
 	if(!produces_heat)
 		return
 
-	if(!use_power)
+	if(!power_mode)
 		return
 
 	if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from telecoms

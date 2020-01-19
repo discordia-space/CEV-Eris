@@ -24,7 +24,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	//var/max_volume_transfer = 10000
 
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -41,14 +41,14 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/on
 	icon_state = "map_on"
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 
 
 /obj/machinery/atmospherics/binary/pump/update_icon()
 	if(!powered())
 		icon_state = "off"
 	else
-		icon_state = "[use_power ? "on" : "off"]"
+		icon_state = "[power_mode ? "on" : "off"]"
 
 /obj/machinery/atmospherics/binary/pump/update_underlays()
 	if(..())
@@ -66,7 +66,7 @@ Thus, the two variables affect pump operation are set in New():
 	last_power_draw = 0
 	last_flow_rate = 0
 
-	if((stat & (NOPOWER|BROKEN)) || !use_power)
+	if((stat & (NOPOWER|BROKEN)) || !power_mode)
 		return
 
 	var/power_draw = -1
@@ -108,7 +108,7 @@ Thus, the two variables affect pump operation are set in New():
 	signal.data = list(
 		"tag" = id,
 		"device" = "AGP",
-		"power" = use_power,
+		"power" = power_mode,
 		"target_output" = target_pressure,
 		"sigtype" = "status"
 	)
@@ -125,7 +125,7 @@ Thus, the two variables affect pump operation are set in New():
 	var/data[0]
 
 	data = list(
-		"on" = use_power,
+		"on" = power_mode,
 		"pressure_set" = round(target_pressure*100),	//Nano UI can't handle rounded non-integers, apparently.
 		"max_pressure" = max_pressure_setting,
 		"last_flow_rate" = round(last_flow_rate*10),
@@ -154,12 +154,12 @@ Thus, the two variables affect pump operation are set in New():
 
 	if(signal.data["power"])
 		if(text2num(signal.data["power"]))
-			use_power = 1
+			power_mode = IDLE_POWER_USE
 		else
-			use_power = 0
+			power_mode = NO_POWER_USE
 
 	if("power_toggle" in signal.data)
-		use_power = !use_power
+		power_mode = !power_mode
 
 	if(signal.data["set_output_pressure"])
 		target_pressure = between(
@@ -193,7 +193,7 @@ Thus, the two variables affect pump operation are set in New():
 	if(..()) return 1
 
 	if(href_list["power"])
-		use_power = !use_power
+		power_mode = !power_mode
 
 	switch(href_list["set_press"])
 		if ("min")
@@ -219,7 +219,7 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/I, var/mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
-	if (!(stat & NOPOWER) && use_power)
+	if (!(stat & NOPOWER) && power_mode)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()

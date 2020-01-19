@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = FALSE
 
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
 
 	var/max_power = 500000
@@ -156,7 +156,7 @@
 		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
 					"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
 					"You hear a ratchet")
-		use_power = anchored
+		power_mode = anchored ? IDLE_POWER_USE : NO_POWER_USE
 		if(anchored) // Powernet connection stuff.
 			connect_to_network()
 		else

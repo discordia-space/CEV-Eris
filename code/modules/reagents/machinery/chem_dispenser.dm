@@ -11,7 +11,7 @@
 	icon_state = "dispenser"
 	density = TRUE
 	anchored = TRUE
-	use_power = NO_POWER_USE // Handles power use in Process()
+	power_mode = NO_POWER_USE // Handles power use in Process()
 	layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/weapon/circuitboard/chemical_dispenser
 

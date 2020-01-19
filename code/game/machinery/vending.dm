@@ -95,7 +95,7 @@
 	var/icon_type //For overlays after remodeling a custom vending machine
 
 	// Power
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 

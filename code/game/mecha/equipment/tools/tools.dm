@@ -712,7 +712,6 @@
 	range = 0
 	var/datum/global_iterator/pr_energy_relay
 	var/coeff = 100
-	var/list/use_channels = list(EQUIP,ENVIRON,LIGHT)
 
 	New()
 		..()
@@ -737,8 +736,8 @@
 	proc/get_power_channel(var/area/A)
 		var/pow_chan
 		if(A)
-			for(var/c in use_channels)
-				if(A.powered(c))
+			for(var/c in list(POWER_EQUIP,POWER_ENVIRON,POWER_LIGHT))
+				if(IS_AREA_POWERED(A, c))
 					pow_chan = c
 					break
 		return pow_chan
@@ -775,14 +774,14 @@
 			var/area/A = get_area(ER.chassis)
 			if(A)
 				var/pow_chan
-				for(var/c in list(EQUIP,ENVIRON,LIGHT))
-					if(A.powered(c))
+				for(var/c in list(POWER_EQUIP,POWER_ENVIRON,POWER_LIGHT))
+					if(IS_AREA_POWERED(A, c))
 						pow_chan = c
 						break
 				if(pow_chan)
 					var/delta = min(12, ER.chassis.cell.maxcharge-cur_charge)
 					ER.chassis.give_power(delta)
-					A.use_power(delta*ER.coeff, pow_chan)
+					USE_AREA_POWER(A, delta*ER.coeff, pow_chan)
 		return
 
 

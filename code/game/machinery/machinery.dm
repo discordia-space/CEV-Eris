@@ -102,13 +102,18 @@ Class Procs:
 
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
-		//0 = dont run the auto
-		//1 = run auto, use idle
-		//2 = run auto, use active
+	/**
+	  *Determines the usage of power
+	  *NO_POWER_USE, means that no power will be used by this machine
+	  *IDLE_POWER_USE, means that the machine will be in stand-by and drain a smaller amount of power.
+	  *The exact amount for this mode is, 'idle_power_usage'
+	  *ACTIVE_POWER_USE, means that the machine is in active use and consumes a lot of power.
+	  *Amount drained is: 'active_power_usage'
+	  */
+	var/power_mode = IDLE_POWER_USE
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
+	var/power_channel = POWER_EQUIP //EQUIP, ENVIRON or LIGHT
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
@@ -135,11 +140,11 @@ Class Procs:
 	return ..()
 
 /obj/machinery/Process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
+	if(!(power_mode || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
-	if(use_power && !stat)
+	if(power_mode && !stat)
 		use_power(7500/severity)
 
 		new /obj/effect/overlay/pulse(loc)

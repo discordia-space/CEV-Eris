@@ -11,10 +11,10 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 80
 	active_power_usage = 3000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
@@ -168,14 +168,14 @@
 	if (!regulating_temperature)
 		//check for when we should start adjusting temperature
 		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2.0)
-			update_use_power(2)
+			power_mode = ACTIVE_POWER_USE
 			regulating_temperature = 1
 			visible_message("\The [src] clicks as it starts up.",\
 			"You hear a click and a faint electronic hum.")
 	else
 		//check for when we should stop adjusting temperature
 		if (!get_danger_level(environment.temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) <= 0.5)
-			update_use_power(1)
+			power_mode = IDLE_POWER_USE
 			regulating_temperature = 0
 			visible_message("\The [src] clicks quietly.",\
 			"You hear a click as a faint electronic humming stops.")
@@ -906,10 +906,10 @@ FIRE ALARM
 	var/timing = 0.0
 	var/lockdownbyai = 0
 	anchored = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
@@ -1200,7 +1200,7 @@ Just a object used in constructing fire alarms
 	var/timing = 0.0
 	var/lockdownbyai = 0
 	anchored = 1.0
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 

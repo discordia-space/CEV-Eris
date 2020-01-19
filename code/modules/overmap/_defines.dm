@@ -6,7 +6,7 @@ var/global/list/map_sectors = list()
 /area/overmap/
 	name = "System Map"
 	icon_state = "start"
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	base_turf = /turf/unsimulated/map
 
 /turf/unsimulated/map

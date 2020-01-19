@@ -5,7 +5,7 @@
 	icon = 'icons/obj/holosign.dmi'
 	icon_state = "sign_off"
 	layer = ABOVE_MOB_LAYER
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	anchored = 1
@@ -29,7 +29,7 @@
 	if (stat & (BROKEN|NOPOWER))
 		return
 	lit = !lit
-	use_power = lit ? 2 : 1
+	power_mode = lit ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	update_icon()
 
 /obj/machinery/holosign/update_icon()
@@ -41,7 +41,7 @@
 /obj/machinery/holosign/power_change()
 	if (stat & NOPOWER)
 		lit = 0
-		use_power = 0
+		power_mode = NO_POWER_USE
 	update_icon()
 
 /obj/machinery/holosign/surgery

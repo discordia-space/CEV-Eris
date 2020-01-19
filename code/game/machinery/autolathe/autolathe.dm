@@ -17,7 +17,7 @@
 	density = 1
 	anchored = 1
 	layer = BELOW_OBJ_LAYER
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/circuitboard/autolathe
@@ -713,7 +713,7 @@
 		working = FALSE
 		next_file()
 
-	use_power = working ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	power_mode = working ? ACTIVE_POWER_USE : IDLE_POWER_USE
 
 	special_process()
 	update_icon()

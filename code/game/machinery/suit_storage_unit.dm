@@ -16,7 +16,7 @@
 	density = TRUE
 	layer = BELOW_OBJ_LAYER // Removed suit should always display above it
 
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 5000
 
@@ -270,7 +270,7 @@
 	if(OCCUPANT && !locked)
 		locked = TRUE //Let's lock it for good measure
 
-	use_power = ACTIVE_POWER_USE
+	power_mode = ACTIVE_POWER_USE
 
 	update_icon()
 	updateUsrDialog()
@@ -301,7 +301,7 @@
 		locked = FALSE
 		eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
 
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	isUV = FALSE //Cycle ends
 	update_icon()
 	updateUsrDialog()

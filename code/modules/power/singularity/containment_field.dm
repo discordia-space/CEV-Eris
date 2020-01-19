@@ -8,7 +8,7 @@
 	anchored = 1
 	density = 0
 	unacidable = 1
-	use_power = 0
+	power_mode = NO_POWER_USE
 	light_range = 4
 	layer = ABOVE_OBJ_LAYER
 	flags = PROXMOVE

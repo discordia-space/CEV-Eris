@@ -156,7 +156,7 @@
 	name = "airlock sensor"
 
 	anchored = 1
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 
 	var/id_tag
 	var/master_tag
@@ -305,7 +305,7 @@
 	name = "access button"
 
 	anchored = 1
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 
 	var/master_tag
 	var/frequency = 1449

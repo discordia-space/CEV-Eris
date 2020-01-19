@@ -8,7 +8,7 @@
 	icon_state = "freezer_0"
 	density = 1
 	anchored = 1
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 5			// 5 Watts for thermostat related circuitry
 	circuit = /obj/item/weapon/circuitboard/unary_atmos/cooler
 	var/heatsink_temperature = T20C	// The constant temperature reservoir into which the freezer pumps heat. Probably the hull of the station or something.
@@ -46,7 +46,7 @@
 
 /obj/machinery/atmospherics/unary/freezer/update_icon()
 	if(node1)
-		if(use_power && cooling)
+		if(power_mode != NO_POWER_USE && cooling)
 			icon_state = "freezer_1"
 		else
 			icon_state = "freezer"
@@ -60,7 +60,7 @@
 /obj/machinery/atmospherics/unary/freezer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
-	data["on"] = use_power ? 1 : 0
+	data["on"] = power_mode ? 1 : 0
 	data["gasPressure"] = round(air_contents.return_pressure())
 	data["gasTemperature"] = round(air_contents.temperature)
 	data["minGasTemperature"] = 0
@@ -92,10 +92,11 @@
 	if(..())
 		return 1
 	if(href_list["toggleStatus"])
-		use_power = !use_power
-		if(use_power)
+		if(power_mode == NO_POWER_USE)
+			power_mode = IDLE_POWER_USE
 			to_chat(usr, "[src] turned on.")
 		else
+			power_mode = NO_POWER_USE
 			to_chat(usr, "[src] turned off.")
 		update_icon()
 	if(href_list["temp"])
@@ -113,7 +114,7 @@
 /obj/machinery/atmospherics/unary/freezer/Process()
 	..()
 
-	if(stat & (NOPOWER|BROKEN) || !use_power)
+	if(stat & (NOPOWER|BROKEN) || !power_mode)
 		cooling = 0
 		update_icon()
 		return

@@ -52,10 +52,9 @@
 	var/area/A = get_area(src)
 	if(!isarea(A))
 		return
-	if(!A.powered(EQUIP))
+	if(!IS_AREA_POWERED(A, POWER_EQUIP))
 		return
-	A.use_power(EQUIP, 5000)
-	var/light = A.power_light
+	USE_AREA_POWER(A, POWER_EQUIP, 5000)
 	A.updateicon()
 
 	flick("echair1", src)
@@ -70,6 +69,5 @@
 		buckled_mob.Stun(600)
 	visible_message(SPAN_DANGER("The electric chair went off!"), SPAN_DANGER("You hear a deep sharp shock!"))
 
-	A.power_light = light
 	A.updateicon()
 	return

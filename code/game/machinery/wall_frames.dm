@@ -39,7 +39,7 @@
 	if (!istype(loc, /turf/simulated/floor))
 		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
 		return
-	if (A.requires_power == 0 || A.name == "Space")
+	if ((A.power_flags & NO_POWER_REQUIRED) || A.name == "Space")
 		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed in this area."))
 		return
 

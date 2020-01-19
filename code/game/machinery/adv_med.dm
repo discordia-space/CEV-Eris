@@ -11,7 +11,7 @@
 	density = 1
 	anchored = 1
 
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 
@@ -57,13 +57,13 @@
 	src.occupant.forceMove(loc)
 	src.occupant.reset_view()
 	src.occupant = null
-	update_use_power(1)
+	power_mode = IDLE_POWER_USE
 	update_icon()
 
 /obj/machinery/bodyscanner/proc/set_occupant(var/mob/living/L)
 	L.forceMove(src)
 	src.occupant = L
-	update_use_power(2)
+	power_mode = ACTIVE_POWER_USE
 	update_icon()
 	src.add_fingerprint(usr)
 

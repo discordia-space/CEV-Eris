@@ -48,7 +48,7 @@
 	icon_state = "sorter"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 200
 

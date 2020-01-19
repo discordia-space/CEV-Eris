@@ -6,10 +6,10 @@
 	layer = GAS_PUMP_LAYER
 	var/obj/machinery/atmospherics/pipe/target = null
 	anchored = 1.0
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 	var/frequency = 0
 	var/id
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 15
 
 /obj/machinery/meter/New()

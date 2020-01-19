@@ -16,7 +16,7 @@ proc/cardinalrange(var/center)
 	anchored = 1
 	density = 1
 	dir = 1
-	use_power = 0//Living things generally dont use power
+	power_mode = IDLE_POWER_USE//Living things generally dont use power
 	idle_power_usage = 0
 	active_power_usage = 0
 

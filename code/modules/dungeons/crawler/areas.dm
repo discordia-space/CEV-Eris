@@ -2,5 +2,5 @@
 	name = "Dungeon"
 	icon_state = "start"
 	has_gravity = 1
-	requires_power = 0
+	power_flags = NO_POWER_REQUIRED
 	var/room_controllers = list()

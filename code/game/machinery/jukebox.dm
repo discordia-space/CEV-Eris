@@ -21,8 +21,8 @@
 	var/state_base = "jukebox2"
 	anchored = 1
 	density = 1
-	power_channel = EQUIP
-	use_power = 1
+	power_channel = POWER_EQUIP
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
 
@@ -201,7 +201,7 @@
 
 /obj/machinery/media/jukebox/proc/stop_playing()
 	playing = 0
-	update_use_power(1)
+	power_mode = IDLE_POWER_USE
 	update_icon()
 	QDEL_NULL(sound_token)
 
@@ -214,5 +214,5 @@
 	sound_token = GLOB.sound_player.play_looping(src, sound_id, current_track.GetTrack(), volume = volume, range = range, falloff = 3, prefer_mute = TRUE)
 
 	playing = 1
-	update_use_power(2)
+	power_mode = ACTIVE_POWER_USE
 	update_icon()

@@ -162,8 +162,8 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		nextProcessingListPosition++
 
 		if(!QDELETED(thing) && (thing.Process(wait) != PROCESS_KILL))
-			if(thing.use_power)
-				thing.auto_use_power()
+			if(thing.power_mode)
+				thing.use_power(thing.power_mode == IDLE_POWER_USE ? thing.idle_power_usage : thing.active_power_usage)
 		else
 			local_list.Remove(thing)
 			thing.is_processing = null

@@ -4,7 +4,7 @@
 	name = "Embedded Controller"
 	anchored = 1
 
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 
 	var/on = 1
@@ -42,7 +42,7 @@ obj/machinery/embedded_controller/radio/Destroy()
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 	density = 0
 
 	var/id_tag

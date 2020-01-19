@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/recharger.dmi'
 	icon_state = "recharger"
 	anchored = TRUE
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 4
 	circuit = /obj/item/weapon/circuitboard/recharger
 	var/max_power_usage = 40000	//40 kW. This is the highest power the charger can draw and use,
@@ -116,9 +116,9 @@
 
 	if(cell && !cell.fully_charged())
 		cell.give((active_power_usage*CELLRATE)*efficiency)
-		update_use_power(ACTIVE_POWER_USE)
+		power_mode = ACTIVE_POWER_USE
 	else
-		update_use_power(IDLE_POWER_USE)
+		power_mode = IDLE_POWER_USE
 	update_icon()
 
 /obj/machinery/recharger/emp_act(severity)

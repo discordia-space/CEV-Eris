@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics
 	name = "atmoalter"
-	use_power = 0
+	power_mode = NO_POWER_USE
 	var/datum/gas_mixture/air_contents = new
 
 	var/obj/machinery/atmospherics/portables_connector/connected_port
@@ -146,7 +146,7 @@
 	var/obj/item/weapon/cell/large/cell
 
 /obj/machinery/portable_atmospherics/powered/powered()
-	if(use_power) //using area power
+	if(power_mode != NO_POWER_USE) //using area power
 		return ..()
 	if(cell && cell.charge)
 		return 1

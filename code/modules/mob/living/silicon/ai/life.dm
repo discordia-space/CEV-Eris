@@ -69,12 +69,10 @@
 					spawn(20)
 						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 						sleep(50)
-						if (current_area.power_equip)
-							if (!istype(T, /turf/space))
-								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
-								aiRestorePowerRoutine = 0
-//								src.blind.alpha = 0
-								return
+						if (!lacks_power())
+							to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
+							aiRestorePowerRoutine = 0
+							return
 						to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
 						sleep(20)
 						to_chat(src, "Emergency control system online. Verifying connection to power network.")
@@ -99,12 +97,10 @@
 									else src << "Lost connection with the APC!"
 								src:aiRestorePowerRoutine = 2
 								return
-							if (current_area.power_equip)
-								if (!istype(T, /turf/space))
-									to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
-									aiRestorePowerRoutine = 0
-//									src.blind.alpha = 0 //This, too, is a fix to issue 603
-									return
+							if (!lacks_power())
+								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
+								aiRestorePowerRoutine = 0
+								return
 							switch(PRP)
 								if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."
 								if (2) src << "Best route identified. Hacking offline APC power port."
@@ -137,7 +133,7 @@
 		return 0
 	var/turf/T = get_turf(src)
 	var/area/A = get_area(src)
-	return ((!A.power_equip) && A.requires_power == 1 || istype(T, /turf/space)) && !istype(src.loc,/obj/item)
+	return (!IS_AREA_POWERED(A, POWER_EQUIP) || istype(T, /turf/space)) && !istype(src.loc,/obj/item)
 
 /mob/living/silicon/ai/updatehealth()
 	if(status_flags & GODMODE)
@@ -166,7 +162,6 @@
 		update_dead_sight()
 
 /mob/living/silicon/ai/proc/is_blinded()
-	var/area/A = get_area(src)
-	if (A && !A.power_equip && !istype(src.loc,/obj/item) && !APU_power)
+	if (lacks_power() && !APU_power)
 		return 1
 	return 0

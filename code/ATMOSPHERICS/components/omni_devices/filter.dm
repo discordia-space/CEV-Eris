@@ -9,7 +9,7 @@
 	var/datum/omni_port/input
 	var/datum/omni_port/output
 
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -101,7 +101,7 @@
 /obj/machinery/atmospherics/omni/filter/ui_data()
 	var/list/data = new()
 
-	data["power"] = use_power
+	data["power"] = power_mode
 	data["config"] = configuring
 
 	var/portData[0]
@@ -157,16 +157,16 @@
 	switch(href_list["command"])
 		if("power")
 			if(!configuring)
-				use_power = !use_power
+				power_mode = !power_mode
 			else
-				use_power = 0
+				power_mode = NO_POWER_USE
 		if("configure")
 			configuring = !configuring
 			if(configuring)
-				use_power = 0
+				power_mode = NO_POWER_USE
 
 	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
-	if(configuring && !use_power)
+	if(configuring && !power_mode)
 		switch(href_list["command"])
 			if("set_flow_rate")
 				var/new_flow_rate = input(usr, "Enter new flow rate limit (0-[max_flow_rate]L/s)", "Flow Rate Control", set_flow_rate) as num

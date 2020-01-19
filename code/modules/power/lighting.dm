@@ -166,10 +166,10 @@
 	desc = "A lighting fixture."
 	anchored = 1
 	layer = WALL_OBJ_LAYER
-	use_power = 2
+	power_mode = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	power_channel = POWER_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
 	var/brightness_range = 7	// luminosity when on, also used in power calculation
@@ -229,7 +229,7 @@
 	. = ..()
 
 	var/area/A = get_area(src)
-	if(A && !A.requires_power)
+	if(IS_AREA_POWERED(A, POWER_LIGHT))
 		on = 1
 
 	var/area/location = get_area(loc)
@@ -325,10 +325,10 @@
 					on = 0
 					set_light(0)
 			else
-				use_power = 2
+				power_mode = ACTIVE_POWER_USE
 				set_light(brightness_range, brightness_power, brightness_color)
 	else
-		use_power = 1
+		power_mode = IDLE_POWER_USE
 		set_light(0)
 
 	active_power_usage = ((light_range + light_power) * 10)
@@ -471,7 +471,7 @@
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
 	var/area/A = get_area(src)
-	return A && A.lightswitch && (!A.requires_power || A.power_light)
+	return A && A.lightswitch && IS_AREA_POWERED(A, POWER_LIGHT)
 
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	var/on_s = on // s stands for safety
@@ -639,7 +639,7 @@
 
 /obj/machinery/light/Process()
 	if(on)
-		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
+		use_power(light_range * LIGHTING_POWER_FACTOR, POWER_LIGHT)
 
 
 // called when area power state changes

@@ -32,7 +32,7 @@
 
 	data["viewing"] = viewing
 	if(sensors)
-		data["on"] = sensors.use_power
+		data["on"] = sensors.power_mode
 		data["range"] = sensors.range
 		data["health"] = sensors.health
 		data["max_health"] = sensors.max_health
@@ -111,7 +111,7 @@
 	..()
 	if(!linked)
 		return
-	if(sensors && sensors.use_power && sensors.powered())
+	if(sensors && sensors.power_mode && sensors.powered())
 		linked.set_light(sensors.range+1, 5)
 	else
 		linked.set_light(0)
@@ -150,7 +150,7 @@
 	return 1
 
 /obj/machinery/shipsensors/update_icon()
-	if(use_power)
+	if(power_mode)
 		icon_state = "sensors"
 	else
 		icon_state = "sensors_off"
@@ -171,16 +171,16 @@
 	..()
 
 /obj/machinery/shipsensors/proc/toggle()
-	if(!use_power && health == 0)
+	if(!power_mode && health == 0)
 		return
-	if(!use_power) //need some juice to kickstart
+	if(!power_mode) //need some juice to kickstart
 		use_power(idle_power_usage*5)
-	use_power = !use_power
+	power_mode = !power_mode
 	update_icon()
 
 /obj/machinery/shipsensors/Process()
 	..()
-	if(use_power) //can't run in non-vacuum
+	if(power_mode) //can't run in non-vacuum
 		if(!in_vacuum())
 			toggle()
 		if(current_heat > critical_heat)
@@ -197,7 +197,7 @@
 		current_heat = max(0, current_heat - heat_reduction)
 
 /obj/machinery/shipsensors/power_change()
-	if(use_power && !powered())
+	if(power_mode && !powered())
 		toggle()
 
 /obj/machinery/shipsensors/proc/set_range(nrange)
@@ -205,12 +205,12 @@
 	idle_power_usage = 1500 * (range**2) // Exponential increase, also affects speed of overheating
 
 /obj/machinery/shipsensors/emp_act(severity)
-	if(!use_power)
+	if(!power_mode)
 		return
 	take_damage(20/severity)
 	toggle()
 
 /obj/machinery/shipsensors/proc/take_damage(value)
 	health = min(max(health - value, 0),max_health)
-	if(use_power && health == 0)
+	if(power_mode && health == 0)
 		toggle()

@@ -9,11 +9,11 @@
 	power_rating = 15000	//15000 W ~ 20 HP
 
 /obj/machinery/atmospherics/binary/pump/high_power/on
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	icon_state = "map_on"
 
 /obj/machinery/atmospherics/binary/pump/high_power/update_icon()
 	if(!powered())
 		icon_state = "off"
 	else
-		icon_state = "[use_power ? "on" : "off"]"
+		icon_state = "[power_mode ? "on" : "off"]"

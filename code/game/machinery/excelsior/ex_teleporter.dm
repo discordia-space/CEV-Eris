@@ -7,7 +7,7 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/teleporter.dmi'
 	icon_state = "idle"
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 40
 	active_power_usage = 15000
 	circuit = /obj/item/weapon/circuitboard/excelsior_teleporter
@@ -85,9 +85,9 @@ var/list/global/excelsior_teleporters = list() //This list is used to make turre
 	if(energy < max_energy)
 		energy = min(energy + energy_gain, max_energy)
 		SSnano.update_uis(src)
-		use_power = ACTIVE_POWER_USE
+		power_mode = ACTIVE_POWER_USE
 	else
-		use_power = IDLE_POWER_USE
+		power_mode = IDLE_POWER_USE
 
 /obj/machinery/complant_teleporter/ex_act(severity)
 	switch(severity)

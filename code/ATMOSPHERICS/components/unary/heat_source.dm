@@ -8,7 +8,7 @@
 	icon_state = "heater_0"
 	density = 1
 	anchored = 1
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
 	circuit = /obj/item/weapon/circuitboard/unary_atmos/heater
 
@@ -49,7 +49,7 @@
 
 /obj/machinery/atmospherics/unary/heater/update_icon()
 	if(node1)
-		if(use_power && heating)
+		if(power_mode && heating)
 			icon_state = "heater_1"
 		else
 			icon_state = "heater"
@@ -61,7 +61,7 @@
 /obj/machinery/atmospherics/unary/heater/Process()
 	..()
 
-	if(stat & (NOPOWER|BROKEN) || !use_power)
+	if(stat & (NOPOWER|BROKEN) || !power_mode)
 		heating = 0
 		update_icon()
 		return
@@ -83,7 +83,7 @@
 /obj/machinery/atmospherics/unary/heater/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
-	data["on"] = use_power ? 1 : 0
+	data["on"] = power_mode ? 1 : 0
 	data["gasPressure"] = round(air_contents.return_pressure())
 	data["gasTemperature"] = round(air_contents.temperature)
 	data["minGasTemperature"] = 0
@@ -113,7 +113,7 @@
 	if(..())
 		return 1
 	if(href_list["toggleStatus"])
-		use_power = !use_power
+		power_mode = !power_mode
 		update_icon()
 	if(href_list["temp"])
 		var/amount = text2num(href_list["temp"])

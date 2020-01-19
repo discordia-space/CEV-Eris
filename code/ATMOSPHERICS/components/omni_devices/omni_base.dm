@@ -5,7 +5,7 @@
 	name = "omni device"
 	icon = 'icons/atmos/omni_devices.dmi'
 	icon_state = "base"
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	initialize_directions = 0
 	level = BELOW_PLATING_LEVEL
 
@@ -52,7 +52,7 @@
 	else if(error_check())
 		overlays = overlays_error
 	else
-		overlays = use_power ? (overlays_on) : (overlays_off)
+		overlays = power_mode ? (overlays_on) : (overlays_off)
 
 	underlays = underlays_current
 
@@ -66,9 +66,9 @@
 	last_flow_rate = 0
 
 	if(error_check())
-		use_power = 0
+		power_mode = NO_POWER_USE
 
-	if((stat & (NOPOWER|BROKEN)) || !use_power)
+	if((stat & (NOPOWER|BROKEN)) || !power_mode)
 		return 0
 	return 1
 

@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 
 	explosion_resistance = 10
 

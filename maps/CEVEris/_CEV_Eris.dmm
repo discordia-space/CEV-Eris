@@ -1732,7 +1732,7 @@
 	frequency = 1443;
 	icon_state = "on";
 	id = "air_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
@@ -10780,7 +10780,7 @@
 	frequency = 1441;
 	icon_state = "on";
 	id = "incernator_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/eris/maintenance/disposal)
@@ -12361,7 +12361,7 @@
 	icon_state = "map_vent_out";
 	pressure_checks = 1;
 	pressure_checks_default = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /obj/machinery/shield_diffuser,
 /turf/simulated/floor/hull,
@@ -13249,7 +13249,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/plasma,
 /area/eris/engineering/atmos)
@@ -13734,7 +13734,7 @@
 	icon_state = "map_injector";
 	id = "tox_in";
 	pixel_y = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/plasma,
 /area/eris/engineering/atmos)
@@ -14066,7 +14066,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/atmos)
@@ -14163,7 +14163,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/n20,
 /area/eris/engineering/atmos)
@@ -14218,7 +14218,7 @@
 	tag_north = 1;
 	tag_south = 2;
 	tag_west = 6;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
@@ -14501,7 +14501,7 @@
 	icon_state = "map_injector";
 	id = "waste_in";
 	pixel_y = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/atmos)
@@ -14606,7 +14606,7 @@
 	icon_state = "map_injector";
 	id = "n2o_in";
 	pixel_y = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/n20,
 /area/eris/engineering/atmos)
@@ -14961,7 +14961,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/airmix,
 /area/eris/engineering/atmos)
@@ -15053,7 +15053,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/eris/engineering/atmos)
@@ -15086,7 +15086,7 @@
 	tag_north = 1;
 	tag_south = 2;
 	tag_west = 7;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
@@ -15368,7 +15368,7 @@
 	tag_north = 1;
 	tag_south = 0;
 	tag_west = 5;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -15393,7 +15393,7 @@
 	tag_north = 0;
 	tag_south = 3;
 	tag_west = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -15448,7 +15448,7 @@
 	frequency = 1443;
 	icon_state = "map_injector";
 	id = "air_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/airmix,
 /area/eris/engineering/atmos)
@@ -15544,7 +15544,7 @@
 	icon_state = "map_injector";
 	id = "co2_in";
 	pixel_y = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/eris/engineering/atmos)
@@ -15625,7 +15625,7 @@
 	tag_north = 2;
 	tag_south = 4;
 	tag_west = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
@@ -16067,7 +16067,7 @@
 	tag_south_con = 0.79;
 	tag_west = 1;
 	tag_west_con = 0.21;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
@@ -16308,7 +16308,7 @@
 	icon_state = "map_vent_out";
 	pressure_checks = 1;
 	pressure_checks_default = 1;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/hull,
 /area/eris/engineering/atmos)
@@ -16761,7 +16761,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
@@ -17063,7 +17063,7 @@
 	frequency = 1441;
 	icon_state = "map_injector";
 	id = "o2_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/oxygen,
 /area/eris/engineering/atmos)
@@ -17084,7 +17084,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/oxygen,
 /area/eris/engineering/atmos)
@@ -17110,7 +17110,7 @@
 	frequency = 1441;
 	icon_state = "map_injector";
 	id = "n2_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/nitrogen,
 /area/eris/engineering/atmos)
@@ -17131,7 +17131,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/nitrogen,
 /area/eris/engineering/atmos)
@@ -36649,7 +36649,7 @@
 "bEg" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4;
-	use_power = 0
+	power_mode = 0
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -36702,7 +36702,7 @@
 "bEk" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4;
-	use_power = 0
+	power_mode = 0
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -37528,7 +37528,7 @@
 "bFR" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 1;
-	use_power = 0
+	power_mode = 0
 	},
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -45474,7 +45474,7 @@
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 2;
 	icon_state = "freezer_1";
-	use_power = 1;
+	power_mode = 1;
 	power_setting = 20;
 	set_temperature = 73
 	},
@@ -48807,7 +48807,7 @@
 	dir = 4;
 	icon_state = "freezer_1";
 	set_temperature = 240;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/command/tcommsat/chamber)
@@ -48898,7 +48898,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
@@ -52331,7 +52331,7 @@
 	tag_east = 2;
 	tag_north = 6;
 	tag_south = 1;
-	use_power = 0
+	power_mode = 0
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -52555,7 +52555,7 @@
 	tag_east = 2;
 	tag_north = 4;
 	tag_south = 1;
-	use_power = 0
+	power_mode = 0
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -52603,7 +52603,7 @@
 	pressure_checks = 2;
 	pressure_checks_default = 2;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/eris/rnd/mixing)
@@ -52893,7 +52893,7 @@
 	frequency = 1443;
 	icon_state = "map_injector";
 	id = "air_in";
-	use_power = 1
+	power_mode = 1
 	},
 /obj/machinery/shield_diffuser,
 /turf/simulated/floor/reinforced/airless,
@@ -79646,7 +79646,7 @@
 	frequency = 1441;
 	icon_state = "on";
 	id = "left_propulsion_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/engine,
 /area/eris/engineering/propulsion/left)
@@ -87213,7 +87213,7 @@
 	pressure_checks = 1;
 	pressure_checks_default = 1;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/reinforced{
@@ -88058,7 +88058,7 @@
 	name = "Coolant Injector";
 	pixel_y = 1;
 	power_rating = 30000;
-	use_power = 1;
+	power_mode = 1;
 	volume_rate = 700
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -94463,7 +94463,7 @@
 	frequency = 1441;
 	icon_state = "on";
 	id = "right_propulsion_in";
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/engine,
 /area/eris/engineering/propulsion/right)
@@ -94936,7 +94936,7 @@
 	internal_pressure_bound_default = 4000;
 	pressure_checks = 1;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/engine,
 /area/eris/engineering/propulsion/right)
@@ -97066,7 +97066,7 @@
 	internal_pressure_bound_default = 4000;
 	pressure_checks = 1;
 	pump_direction = 0;
-	use_power = 1
+	power_mode = 1
 	},
 /turf/simulated/floor/reinforced/engine,
 /area/eris/engineering/propulsion/left)

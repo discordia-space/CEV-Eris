@@ -11,7 +11,7 @@
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
 
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
@@ -185,7 +185,7 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.loc = src
-		update_use_power(2)
+		power_mode = ACTIVE_POWER_USE
 		occupant = M
 		update_icon()
 
@@ -201,7 +201,7 @@
 		if(A == beaker)
 			continue
 		A.loc = loc
-	update_use_power(1)
+	power_mode = IDLE_POWER_USE
 	update_icon()
 	toggle_filter()
 

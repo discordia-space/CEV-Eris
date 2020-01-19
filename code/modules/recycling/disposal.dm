@@ -384,7 +384,7 @@
 // charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/Process()
 	if(!air_contents || (stat & BROKEN))			// nothing can happen if broken
-		update_use_power(0)
+		power_mode = NO_POWER_USE
 		return
 
 	flush_count++
@@ -401,7 +401,7 @@
 		flush()
 
 	if(mode != 1) //if off or ready, no need to charge
-		update_use_power(1)
+		power_mode = IDLE_POWER_USE
 	else if(air_contents.return_pressure() >= SEND_PRESSURE)
 		mode = 2 //if full enough, switch to ready mode
 		update()
@@ -410,7 +410,7 @@
 
 /obj/machinery/disposal/proc/pressurize()
 	if(stat & NOPOWER)			// won't charge if no power
-		update_use_power(0)
+		power_mode = IDLE_POWER_USE
 		return
 
 	var/atom/L = loc						// recharging from loc turf

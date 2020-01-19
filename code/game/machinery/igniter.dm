@@ -7,7 +7,7 @@
 	var/on = 0
 	plane = FLOOR_PLANE
 	anchored = TRUE
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	var/_wifi_id
@@ -69,7 +69,7 @@
 	var/last_spark = 0
 	var/base_state = "migniter"
 	anchored = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	var/_wifi_id

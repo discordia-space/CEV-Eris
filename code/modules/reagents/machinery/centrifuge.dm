@@ -17,7 +17,7 @@
 	anchored = TRUE
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "centrifuge"
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 20
 	circuit = /obj/item/weapon/circuitboard/centrifuge
 	layer = BELOW_OBJ_LAYER

@@ -24,21 +24,14 @@
 	if (ship_area)
 		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
-	if(!requires_power)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
-
 	sanity = new(src)
 
 	..()
 
 /area/Initialize()
 	. = ..()
-	if(!requires_power || !apc)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
+	if(!apc)
+		power_flags &= ~(POWER_LIGHT|POWER_ENVIRON|POWER_EQUIP)
 	power_change()		// all machines set to current power level, also updates lighting icon
 
 
@@ -152,7 +145,7 @@
 
 	////////////weather
 
-	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
+	if ((fire || eject || party || atmosalm == 2) && IS_AREA_POWERED(src, POWER_ENVIRON) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			for(var/obj/machinery/light/L in src)
 				if(istype(L, /obj/machinery/light/small))
@@ -178,29 +171,6 @@
 				continue
 			L.reset_color()
 
-
-/*
-#define EQUIP 1
-#define LIGHT 2
-#define ENVIRON 3
-*/
-
-/area/proc/powered(var/chan)		// return true if the area has power to given channel
-
-	if(!requires_power)
-		return 1
-	if(always_unpowered)
-		return 0
-	switch(chan)
-		if(EQUIP)
-			return power_equip
-		if(LIGHT)
-			return power_light
-		if(ENVIRON)
-			return power_environ
-
-	return 0
-
 // called when power status changes
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
@@ -208,16 +178,16 @@
 	if (fire || eject || party)
 		updateicon()
 
-/area/proc/usage(var/chan)
+/area/proc/usage(var/chan = ALL)
 	var/used = 0
 	switch(chan)
-		if(LIGHT)
+		if(POWER_LIGHT)
 			used += used_light
-		if(EQUIP)
+		if(POWER_EQUIP)
 			used += used_equip
-		if(ENVIRON)
+		if(POWER_ENVIRON)
 			used += used_environ
-		if(TOTAL)
+		if(ALL)
 			used += used_light + used_equip + used_environ
 	return used
 
@@ -225,16 +195,6 @@
 	used_equip = 0
 	used_light = 0
 	used_environ = 0
-
-/area/proc/use_power(var/amount, var/chan)
-	switch(chan)
-		if(EQUIP)
-			used_equip += amount
-		if(LIGHT)
-			used_light += amount
-		if(ENVIRON)
-			used_environ += amount
-
 
 var/list/mob/living/forced_ambiance_list = new
 

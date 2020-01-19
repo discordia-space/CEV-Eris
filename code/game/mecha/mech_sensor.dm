@@ -6,9 +6,9 @@
 	anchored = 1
 	density = 1
 	throwpass = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	layer = 3.3
-	power_channel = EQUIP
+	power_channel = POWER_EQUIP
 	var/on = 0
 	var/id_tag = null
 

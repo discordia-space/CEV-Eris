@@ -4,7 +4,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"
 
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 
 	circuit = /obj/item/weapon/circuitboard/holodeckcontrol
@@ -188,7 +188,7 @@
 			damaged = 1
 			loadProgram(holodeck_programs["turnoff"], 0)
 			active = 0
-			use_power = 1
+			power_mode = IDLE_POWER_USE
 			for(var/mob/M in range(10,src))
 				M.show_message("The holodeck overloads!")
 
@@ -239,7 +239,7 @@
 			linkedholodeck.update_gravity()
 
 		active = 0
-		use_power = 1
+		power_mode = IDLE_POWER_USE
 
 
 /obj/machinery/computer/HolodeckControl/proc/loadProgram(var/datum/holodeck_program/HP, var/check_delay = 1)
@@ -260,7 +260,7 @@
 
 	last_change = world.time
 	active = 1
-	use_power = 2
+	power_mode = IDLE_POWER_USE
 
 	for(var/item in holographic_objs)
 		derez(item)
@@ -317,7 +317,7 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 
 
 	if(A.has_gravity)
@@ -334,7 +334,7 @@
 	linkedholodeck.has_gravity = TRUE
 
 	active = 0
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 
 /obj/machinery/computer/HolodeckControl/Exodus
 	linkedholodeck_area = /area/holodeck/alphadeck

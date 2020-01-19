@@ -11,7 +11,7 @@
 	interact_offline = 1
 
 	var/on = 0
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 200
 
@@ -282,7 +282,7 @@
 //	occupant.metabslow = 0
 	occupant = null
 	current_heat_capacity = initial(current_heat_capacity)
-	update_use_power(1)
+	power_mode = IDLE_POWER_USE
 	update_icon()
 	return
 
@@ -312,7 +312,7 @@
 		to_chat(M, SPAN_NOTICE("<b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"))
 	occupant = M
 	current_heat_capacity = HEAT_CAPACITY_HUMAN
-	update_use_power(2)
+	power_mode = ACTIVE_POWER_USE
 //	M.metabslow = 1
 	add_fingerprint(usr)
 	update_icon()

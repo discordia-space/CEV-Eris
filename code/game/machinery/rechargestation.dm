@@ -5,7 +5,7 @@
 	icon_state = "borgcharger0"
 	density = 1
 	anchored = 1
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 50
 	circuit = /obj/item/weapon/circuitboard/recharge_station
 	var/mob/occupant = null
@@ -65,16 +65,13 @@
 		update_icon()
 
 //since the recharge station can still be on even with NOPOWER. Instead it draws from the internal cell.
-/obj/machinery/recharge_station/auto_use_power()
+/obj/machinery/recharge_station/use_power(amt, chan)
 	if(!(stat & NOPOWER))
 		return ..()
 
 	if(!has_cell_power())
 		return 0
-	if(src.use_power == 1)
-		cell.use(idle_power_usage * CELLRATE)
-	else if(src.use_power >= 2)
-		cell.use(active_power_usage * CELLRATE)
+	cell.use(amt * CELLRATE)
 	return 1
 
 //Processes the occupant, drawing from the internal power cell if needed.

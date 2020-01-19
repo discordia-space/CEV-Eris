@@ -13,7 +13,7 @@
 
 	name = "air vent"
 	desc = "Has a valve and pump attached to it"
-	use_power = 0
+	power_mode = 0
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -51,18 +51,18 @@
 	var/radio_filter_in
 
 /obj/machinery/atmospherics/unary/vent_pump/on
-	use_power = 1
+	power_mode = 1
 	icon_state = "map_vent_out"
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on
-	use_power = 1
+	power_mode = 1
 	icon_state = "map_vent_in"
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos
-	use_power = 1
+	power_mode = 1
 	icon_state = "map_vent_in"
 	external_pressure_bound = 0
 	external_pressure_bound_default = 0
@@ -87,7 +87,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
-	power_channel = EQUIP
+	power_channel = POWER_EQUIP
 	power_rating = 15000	//15 kW ~ 20 HP
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
@@ -96,7 +96,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/engine
 	name = "Engine Core Vent"
-	power_channel = ENVIRON
+	power_channel = POWER_ENVIRON
 	power_rating = 30000	//15 kW ~ 20 HP
 
 /obj/machinery/atmospherics/unary/vent_pump/engine/New()
@@ -105,11 +105,11 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon(safety = 0)
 	if(!node1)
-		use_power = 0
+		power_mode = NO_POWER_USE
 
 	if(welded)
 		icon_state = "weld"
-	else if(!powered() || !use_power)
+	else if(!powered() || !power_mode)
 		icon_state = "off"
 	else
 		icon_state = pump_direction ? "out" : "in"
@@ -139,10 +139,10 @@
 	..()
 
 	if (!node1)
-		use_power = 0
+		power_mode = NO_POWER_USE
 		return
 
-	if(!use_power)
+	if(power_mode == NO_POWER_USE)
 		return 0
 
 	if(stat & (NOPOWER|BROKEN))
@@ -219,7 +219,7 @@
 		"area" = src.area_uid,
 		"tag" = src.id_tag,
 		"device" = "AVP",
-		"power" = use_power,
+		"power" = power_mode,
 		"direction" = pump_direction?("release"):("siphon"),
 		"expanded_range" = expanded_range,
 		"checks" = pressure_checks,
@@ -269,10 +269,10 @@
 		pump_direction = 1
 
 	if(signal.data["power"] != null)
-		use_power = text2num(signal.data["power"])
+		power_mode = text2num(signal.data["power"])
 
 	if(signal.data["power_toggle"] != null)
-		use_power = !use_power
+		power_mode = !power_mode
 
 	if(signal.data["checks"] != null)
 		if (signal.data["checks"] == "default")
@@ -362,7 +362,7 @@
 
 
 		if(QUALITY_BOLT_TURNING)
-			if (!(stat & NOPOWER) && use_power)
+			if (!(stat & NOPOWER) && power_mode)
 				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
 				return 1
 			var/turf/T = src.loc

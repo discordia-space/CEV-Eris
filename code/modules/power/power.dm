@@ -11,7 +11,7 @@
 	icon = 'icons/obj/power.dmi'
 	anchored = 1.0
 	var/datum/powernet/powernet = null
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 
@@ -70,25 +70,14 @@
 
 	var/area/A = get_area(src)
 	if(A)
-		return A.powered(chan)			// return power status of the area
+		return IS_AREA_POWERED(A, chan)			// return power status of the area
 	return 0
 
 // increment the power usage stats for an area
 /obj/machinery/proc/use_power(var/amount, var/chan = power_channel) // defaults to power_channel
 	var/area/A = get_area(src)		// make sure it's in an area
-	if(A && A.powered(chan))
-		A.use_power(amount, chan)
-
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
-	use_power = new_use_power
-
-/obj/machinery/proc/auto_use_power()
-	switch (use_power)
-		if (1)
-			use_power(idle_power_usage)
-		if (2)
-			use_power(active_power_usage)
+	if(A && IS_AREA_POWERED(A, chan))
+		USE_AREA_POWER(A, amount, chan)
 
 /obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change
 										// by default, check equipment channel & set flag
@@ -350,7 +339,7 @@
 		PN.trigger_warning()
 
 	if (source_area)
-		source_area.use_power(drained_energy/CELLRATE)
+		USE_AREA_POWER(source_area, drained_energy/CELLRATE, POWER_ENVIRON)
 	else if (istype(power_source,/datum/powernet))
 		var/drained_power = drained_energy/CELLRATE
 		drained_power = PN.draw_power(drained_power)

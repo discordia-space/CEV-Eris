@@ -30,15 +30,15 @@
 					step_rand(W)
 
 			var/area/A = get_area(M)
-			if(A.requires_power && !A.always_unpowered && A.power_light && isPlayerLevel(A.z))
+			if(!(A.power_flags & NO_POWER_REQUIRED) && IS_AREA_POWERED(A, POWER_LIGHT) && isPlayerLevel(A.z))
 				affected_areas |= get_area(M)
 
 	affected_mobs |= user
 	for(var/area/AffectedArea in affected_areas)
-		AffectedArea.power_light = 0
+		AffectedArea.power_flags &= ~(POWER_LIGHT)
 		AffectedArea.power_change()
 		spawn(rand(25,50))
-			AffectedArea.power_light = 1
+			AffectedArea.power_flags |= POWER_LIGHT
 			AffectedArea.power_change()
 
 	sleep(100)

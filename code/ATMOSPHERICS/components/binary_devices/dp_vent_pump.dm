@@ -20,7 +20,7 @@
 
 	level = BELOW_PLATING_LEVEL
 
-	use_power = 0
+	power_mode = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -73,7 +73,7 @@
 	if(!powered())
 		vent_icon += "off"
 	else
-		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
+		vent_icon += "[power_mode ? "[pump_direction ? "out" : "in"]" : "off"]"
 
 	overlays += icon_manager.get_atmos_icon("device", , , vent_icon)
 
@@ -105,7 +105,7 @@
 	last_power_draw = 0
 	last_flow_rate = 0
 
-	if(stat & (NOPOWER|BROKEN) || !use_power)
+	if(stat & (NOPOWER|BROKEN) || !power_mode)
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -177,7 +177,7 @@
 	signal.data = list(
 		"tag" = id,
 		"device" = "ADVP",
-		"power" = use_power,
+		"power" = power_mode,
 		"direction" = pump_direction?("release"):("siphon"),
 		"checks" = pressure_checks,
 		"input" = input_pressure_min,
@@ -209,10 +209,10 @@
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
 	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+		power_mode = text2num(signal.data["power"])
 
 	if(signal.data["power_toggle"])
-		use_power = !use_power
+		power_mode = !power_mode
 
 	if(signal.data["direction"])
 		pump_direction = text2num(signal.data["direction"])

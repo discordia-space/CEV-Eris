@@ -4,7 +4,7 @@
 	anchored = TRUE
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "electrolysis"
-	use_power = IDLE_POWER_USE
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 40
 	circuit = /obj/item/weapon/circuitboard/electrolyzer
 	layer = BELOW_OBJ_LAYER
@@ -141,7 +141,7 @@
 		separation_beaker.forceMove(get_turf(src))
 		separation_beaker = null
 	..()
-	
+
 
 /obj/machinery/electrolyzer/attack_hand(mob/user)
 	if(..())
@@ -281,7 +281,7 @@
 			if(!state || state == -1)
 				turn_off()
 			SSnano.update_uis(src)
-			
+
 
 /obj/item/device/makeshift_electrolyser/attack_self(mob/user as mob)
 	user.set_machine(src)

@@ -172,7 +172,7 @@
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
 	var/accurate = 0
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	var/obj/machinery/computer/teleporter/com
@@ -308,7 +308,7 @@
 	icon_state = "controller"
 	var/active = 0
 	var/engaged = 0
-	use_power = 1
+	power_mode = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	var/obj/machinery/teleport/hub/com
@@ -337,8 +337,8 @@
 	if (com)
 		com.icon_state = "tele1"
 		use_power(5000)
-		update_use_power(2)
-		com.update_use_power(2)
+		power_mode = ACTIVE_POWER_USE
+		com.power_mode = ACTIVE_POWER_USE
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter engaged!"), 2)
 	src.add_fingerprint(usr)
@@ -352,8 +352,8 @@
 	if (com)
 		com.icon_state = "tele0"
 		com.accurate = 0
-		com.update_use_power(1)
-		update_use_power(1)
+		power_mode = IDLE_POWER_USE
+		com.power_mode = IDLE_POWER_USE
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), 2)
 	src.add_fingerprint(usr)

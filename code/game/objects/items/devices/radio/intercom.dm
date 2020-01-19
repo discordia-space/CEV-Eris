@@ -103,7 +103,7 @@
 			if(!A)
 				on = 0
 			else
-				on = A.powered(EQUIP) // set "on" to the power status
+				on = IS_AREA_POWERED(A, POWER_EQUIP) // set "on" to the power status
 
 		if(!on)
 			icon_state = "intercom-p"

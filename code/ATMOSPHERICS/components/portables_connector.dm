@@ -15,7 +15,7 @@
 	var/datum/pipe_network/network
 
 	var/on = 0
-	use_power = 0
+	power_mode = NO_POWER_USE
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_FILTER_LAYER
 

@@ -167,7 +167,7 @@
 					to_chat(user, SPAN_NOTICE("ERROR: SMES RCon error - Unable to reach destination. Please verify wire connection."))
 				return
 	else if(M && istype(M)) // Not power machinery, so it's a regular machine instead. These have weak explosions.
-		if(!M.use_power) // Not using power at all
+		if(!M.power_mode) // Not using power at all
 			to_chat(user, SPAN_NOTICE("ERROR: No power grid connection. Unable to overload."))
 			return
 		if(M.inoperable()) // Not functional

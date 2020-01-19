@@ -115,13 +115,8 @@ move an amendment</a> to the drawing.</p>
 	//var/ma
 	//ma = A.master ? "[A.master]" : "(null)"
 	//world << "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
-	A.power_equip = 0
-	A.power_light = 0
-	A.power_environ = 0
-	A.always_unpowered = 0
+	A.power_flags = NONE
 	move_turfs_to_area(turfs, A)
-
-	A.always_unpowered = 0
 
 	spawn(5)
 		//ma = A.master ? "[A.master]" : "(null)"
