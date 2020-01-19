@@ -29,7 +29,6 @@
 	if(faction == "station")
 		return 1
 
-
 	for (var/obj/mecha/M in mechas_list)
 		if (M.z == src.z && get_dist(src, M) <= dist)
 			return 1

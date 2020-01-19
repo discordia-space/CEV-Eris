@@ -4,17 +4,16 @@
 
 	..()
 	if(config.enable_mob_sleep)
-		if(life_cycles_before_scan > 0)
+
+		if(life_cycles_before_scan)
 			life_cycles_before_scan--
-		else
-			if(check_surrounding_area(7))
-				activate_ai()
-				life_cycles_before_scan = 3
+		else if(check_surrounding_area(7))
+			activate_ai()
+			life_cycles_before_scan = 3
 
 		if(life_cycles_before_sleep)
 			life_cycles_before_sleep--
-
-		if(life_cycles_before_sleep < 1 && !AI_inactive)
+		else
 			AI_inactive = TRUE
 
 
