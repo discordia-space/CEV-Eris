@@ -9,7 +9,7 @@
 			life_cycles_before_scan--
 		else if(check_surrounding_area(7))
 			activate_ai()
-			life_cycles_before_scan = 3
+			life_cycles_before_scan = 8
 
 		if(life_cycles_before_sleep)
 			life_cycles_before_sleep--
