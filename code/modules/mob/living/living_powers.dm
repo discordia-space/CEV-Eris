@@ -24,10 +24,10 @@
 
 /mob/living/proc/check_surrounding_area(var/dist = 7)
 	if(faction == "neutral")
-		return 1
+		return 0
 
 	if(faction == "station")
-		return 1
+		return 0
 
 	for (var/obj/mecha/M in mechas_list)
 		if (M.z == src.z && get_dist(src, M) <= dist)
