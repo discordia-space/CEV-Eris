@@ -4,13 +4,14 @@
 	var/mob/shadow/shadow
 
 /mob/shadow
-	plane = OPENSPACE_PLANE
 	name = "shadow"
 	desc = "Z-level shadow"
 	anchored = 1
 	unacidable = 1
 	density = 0
 	alpha = 0
+	original_plane = FLOOR_PLANE
+	layer = ABOVE_OPEN_TURF_LAYER
 	var/mob/owner = null
 
 /mob/shadow/can_fall()

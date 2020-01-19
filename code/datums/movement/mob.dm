@@ -175,7 +175,7 @@
 	if (overflow > 1 || overflow < 0)
 		overflow = 0
 
-	var/mob_delay = mob.movement_delay()
+	var/mob_delay = max(MOVE_DELAY_MIN, mob.movement_delay())
 	if(isliving(mob))
 		var/mob/living/L = mob
 		if(L.is_ventcrawling)

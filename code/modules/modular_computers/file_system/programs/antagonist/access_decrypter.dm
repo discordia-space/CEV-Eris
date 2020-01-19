@@ -85,7 +85,7 @@
 			return 1
 
 		running = TRUE
-		operator_skill = usr.stats.getStat(STAT_COG)
+		operator_skill = get_operator_skill(usr, STAT_COG)
 		if(ntnet_global.intrusion_detection_enabled && !prob(get_sneak_chance()))
 			ntnet_global.add_log("IDS WARNING - Unauthorised access attempt to primary keycode database from device: [computer.network_card.get_network_tag()]")
 			ntnet_global.intrusion_detection_alarm = 1

@@ -180,7 +180,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	// Invoke legacy surgery code
 	if(!do_old_surgery(M, user, tool))
-		if(affected && affected.open && tool.tool_qualities)
+		if(affected && affected.open && tool && tool.tool_qualities)
 			// Open or update surgery UI
 			affected.ui_interact(user)
 

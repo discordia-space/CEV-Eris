@@ -94,12 +94,12 @@ var/global/list/organ_structure = list(
 	)
 
 var/global/list/organ_tag_to_name = list(
-	head  = "Head", r_arm = "Right arm",
-	chest = "Body", r_leg = "Right Leg",
-	eyes  = "Eyes", l_arm = "Left arm",
-	groin = "Groin",l_leg = "Left Leg",
-	chest2= "Back", heart = "Heart",
-	lungs  = "Lungs", liver = "Liver"
+	head  = "head", r_arm = "right arm",
+	chest = "body", r_leg = "right leg",
+	eyes  = "eyes", l_arm = "left arm",
+	groin = "groin",l_leg = "left leg",
+	chest2= "back", heart = "heart",
+	lungs  = "lungs", liver = "liver"
 	)
 
 // Visual nets

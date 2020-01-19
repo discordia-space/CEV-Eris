@@ -9,7 +9,7 @@
 
 
 /obj/item/organ/external/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
-	if(is_open())
+	if(is_open() && !diagnosed)
 		try_autodiagnose(user)
 
 	var/list/data = ui_data(user)
@@ -34,9 +34,9 @@
 	data["diagnosed"] = diagnosed
 
 	if(owner && !cannot_amputate)
-		data["amputate_step"] = BP_IS_ROBOTIC(src) ? "[/datum/surgery_step/robotic/amputate]" : "[/datum/surgery_step/amputate]"
+		data["amputate_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/amputate : /datum/surgery_step/amputate
 
-	data["insert_step"] = BP_IS_ROBOTIC(src) ? "[/datum/surgery_step/insert_item/robotic]" : "[/datum/surgery_step/insert_item]"
+	data["insert_step"] = BP_IS_ROBOTIC(src) ? /datum/surgery_step/insert_item/robotic : /datum/surgery_step/insert_item
 
 	var/list/contents_list = list()
 
@@ -58,7 +58,7 @@
 			var/list/remove_action = list(
 				"name" = "Extract",
 				"target" = "\ref[organ]",
-				"step" = BP_IS_ROBOTIC(src) ? "[/datum/surgery_step/robotic/remove_item]" : "[/datum/surgery_step/remove_item]"
+				"step" = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
 			)
 
 			actions_list.Add(list(remove_action))
@@ -69,13 +69,13 @@
 			connect_action = list(
 				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Connect" : "Disconnect",
 				"organ" = "\ref[organ]",
-				"step" = "[/datum/surgery_step/robotic/connect_organ]"
+				"step" = /datum/surgery_step/robotic/connect_organ
 			)
 		else
 			connect_action = list(
 				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
 				"organ" = "\ref[organ]",
-				"step" = (organ.status & ORGAN_CUT_AWAY) ? "[/datum/surgery_step/attach_organ]" : "[/datum/surgery_step/detach_organ]"
+				"step" = (organ.status & ORGAN_CUT_AWAY) ? /datum/surgery_step/attach_organ : /datum/surgery_step/detach_organ
 			)
 
 
@@ -102,7 +102,7 @@
 			var/list/remove_action = list(
 				"name" = "Extract",
 				"target" = "\ref[implant]",
-				"step" = BP_IS_ROBOTIC(src) ? "[/datum/surgery_step/robotic/remove_item]" : "[/datum/surgery_step/remove_item]"
+				"step" = BP_IS_ROBOTIC(src) ? /datum/surgery_step/robotic/remove_item : /datum/surgery_step/remove_item
 			)
 
 			actions_list.Add(list(remove_action))

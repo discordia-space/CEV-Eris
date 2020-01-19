@@ -204,10 +204,10 @@
 							var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
 							H.pain(affecting, pain)
 							if(user != H)
-								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
-								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "alot of " : ""]pain."))
+								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
+								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
 							else
-								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
+								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 				else
 					to_chat(target, SPAN_NOTICE("You feel a tiny prick!"))
 			else
