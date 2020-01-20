@@ -108,10 +108,8 @@
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
 	steps = list(
 		list(/obj/item/pipe, 1, "time" = 60),
-		list(/obj/item/weapon/crossbowframe, 1, "time" = 20),
-		list(/obj/item/weapon/grenade/chem_grenade, 1, "time" = 20),
-		list(/obj/item/device/assembly/igniter, 1),
-		list(/obj/item/stack/cable_coil, 2, "time" = 10)
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/weapon/crossbowframe, 1, "time" = 20)
 	)
 
 /datum/craft_recipe/weapon/flamethrower

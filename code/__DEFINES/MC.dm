@@ -30,10 +30,8 @@ if (Datum.is_processing) {\
 	Processor.processing += Datum;\
 }
 
-//stopProcessingWrapper catches removal from processing list before it happens to adjust last position in memory during resumes
 #define STOP_PROCESSING(Processor, Datum) \
 if(Datum.is_processing) {\
-	Processor.stopProcessingWrapper(Datum);\
 	if(Processor.processing.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\

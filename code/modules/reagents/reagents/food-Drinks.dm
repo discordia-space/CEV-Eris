@@ -832,6 +832,7 @@
 	color = "#100800"
 	adj_temp = -5
 	adj_sleepy = -2
+	nerve_system_accumulations = 50
 
 	glass_icon_state = "nuka_colaglass"
 	glass_name = "Nuka-Cola"
@@ -840,7 +841,7 @@
 
 /datum/reagent/drink/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.8)
 	M.make_jittery(20 * effect_multiplier)
 	M.druggy = max(M.druggy, 30 * effect_multiplier)
 	M.dizziness += 5 * effect_multiplier

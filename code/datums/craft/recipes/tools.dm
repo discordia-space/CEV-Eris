@@ -79,9 +79,7 @@
 	result = /obj/item/weapon/tool/saw/improvised
 	steps = list(
 		list(/obj/item/stack/rods, 1, 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
-		list(QUALITY_ADHESIVE, 15, 150)
+		list(QUALITY_CUTTING, 15, 150)
 	)
 
 //Some pipes duct taped together, attached to a tank and an igniter
@@ -89,9 +87,6 @@
 	name = "Jury-rigged torch"
 	result = /obj/item/weapon/tool/weldingtool/improvised
 	steps = list(
-		list(/obj/item/pipe, 1, "time" = 60),
-		list(/obj/item/pipe, 1, "time" = 60),
-		list(QUALITY_ADHESIVE, 15, 150),
 		list(/obj/item/device/assembly/igniter, 1),
 		list(/obj/item/weapon/tank/emergency_oxygen, 1)
 	)
