@@ -62,7 +62,7 @@
 	max_fuel = 80
 
 /obj/item/weapon/tool/saw/hyper
-	name = "hypersaw"
+	name = "TM hypersaw"
 	desc = "This eco-friendly saw will Rip and Tear until it is done."
 	icon_state = "hypersaw"
 	hitsound = WORKSOUND_CHAINSAW
