@@ -75,6 +75,10 @@
 
 	var/mob/living/carbon/superior_animal/roach/nanite/parent
 
+/mob/living/simple_animal/hostile/naniteswarm/New(loc, var/nuparent)
+	..()
+	parent = nuparent
+
 /mob/living/simple_animal/hostile/naniteswarm/death()
 	..()
 	if(parent)
