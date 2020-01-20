@@ -119,7 +119,6 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		current_run.Cut(1, 2)
 		if(istype(PN) && !QDELETED(PN))
 			PN.Process(wait)
-		else
 			pipenets.Remove(PN)
 			PN.is_processing = null
 		if(MC_TICK_CHECK)
@@ -137,7 +136,6 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		if(istype(M) && !QDELETED(M) && !(M.Process(wait) == PROCESS_KILL))
 			if(M.use_power)
 				M.auto_use_power()
-		else
 			machinery.Remove(M)
 			M.is_processing = null
 		if(MC_TICK_CHECK)
@@ -153,7 +151,6 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		current_run.Cut(1, 2)
 		if(istype(PN) && !QDELETED(PN))
 			PN.reset(wait)
-		else
 			powernets.Remove(PN)
 			PN.is_processing = null
 		if(MC_TICK_CHECK)
