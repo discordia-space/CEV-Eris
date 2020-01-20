@@ -48,10 +48,6 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon = 2,
 
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad = 1,
-
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 5,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 5,
@@ -123,7 +119,7 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_cassad = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad = 1,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
 
