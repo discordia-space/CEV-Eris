@@ -989,8 +989,8 @@
 // SPECIAL
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun
-	disk_name = "Moebious Scientifica - Syring Gun"
-	icon_state = "moebious"
+	disk_name = "Moebius Scientifica - Syring Gun"
+	icon_state = "moebius"
 
 	license = 8
 	designs = list(
