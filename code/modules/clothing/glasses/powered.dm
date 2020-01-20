@@ -12,8 +12,13 @@
 
 /obj/item/clothing/glasses/powered/Initialize()
 	. = ..()
+	START_PROCESSING(SSobj, src)
 	if(!cell && suitable_cell)
 		cell = new /obj/item/weapon/cell/small(src)
+
+/obj/item/clothing/glasses/powered/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/clothing/glasses/powered/Process()
 	if(active)

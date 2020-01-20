@@ -13,9 +13,8 @@
 	if(toggleable)
 		toggle(user, !active)
 
-/obj/item/clothing/glasses/New()
-	..()
-	START_PROCESSING(SSobj, src)
+/obj/item/clothing/glasses/Initialize()
+	. = ..()
 	if(toggleable)	// We need to spawn them switched off, because they consume power
 		toggle(null, active)
 
