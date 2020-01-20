@@ -25,8 +25,8 @@ SUBSYSTEM_DEF(processing)
 	var/times_fired = src.times_fired
 
 	while(current_run.len)
-		var/datum/thing = current_run[1]
-		current_run.Cut(1, 2)
+		var/datum/thing = current_run[current_run.len]
+		current_run.len--
 		if(QDELETED(thing) || (call(thing, process_proc)(wait, times_fired, src) == PROCESS_KILL))
 			if(thing)
 				thing.is_processing = null

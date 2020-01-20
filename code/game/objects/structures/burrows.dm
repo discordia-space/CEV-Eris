@@ -239,6 +239,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 /obj/structure/burrow/Process()
+	if(!processing)
+		CRASH("Attempted to process a burrow although it doesn't want to.")
+		return
 	//Burrows process when they are either sending or recieving mobs.
 	//One or the other, cant do both at once
 	var/progress = (world.time - migration_initiated) / duration

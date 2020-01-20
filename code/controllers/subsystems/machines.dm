@@ -72,15 +72,16 @@ if(current_step == this_step || (check_resumed && !resumed)) {\
 			propagate_network(PC,PC.powernet)
 
 datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
-	set background=1
 
 	if(!Master.current_runlevel)//So it only does it at roundstart
 		report_progress("Initializing atmos machinery")
+	var/list/atmosmachines = list()
 	for(var/obj/machinery/atmospherics/A in machines)
 		A.atmos_init()
+		atmosmachines += A
 		CHECK_TICK
 
-	for(var/obj/machinery/atmospherics/unary/U in machines)
+	for(var/obj/machinery/atmospherics/unary/U in atmosmachines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/T = U
 			T.broadcast_status()
@@ -90,7 +91,7 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		CHECK_TICK
 	if(!Master.current_runlevel)//So it only does it at roundstart
 		report_progress("Initializing pipe networks")
-	for(var/obj/machinery/atmospherics/machine in machines)
+	for(var/obj/machinery/atmospherics/machine in atmosmachines)
 		machine.build_network()
 		CHECK_TICK
 
@@ -115,8 +116,8 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 	//cache for sanic speed (lists are references anyways)
 	var/list/current_run = src.current_run
 	while(current_run.len)
-		var/datum/pipe_network/PN = current_run[1]
-		current_run.Cut(1, 2)
+		var/datum/pipe_network/PN = current_run[current_run.len]
+		current_run.len--
 		if(istype(PN) && !QDELETED(PN))
 			PN.Process(wait)
 		else
@@ -132,9 +133,9 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 	var/list/current_run = src.current_run
 	while(current_run.len)
-		var/obj/machinery/M = current_run[1]
-		current_run.Cut(1, 2)
-		if(istype(M) && !QDELETED(M) && !(M.Process(wait) == PROCESS_KILL))
+		var/obj/machinery/M = current_run[current_run.len]
+		current_run.len--
+		if(!QDELETED(M) && !(M.Process(wait) == PROCESS_KILL))
 			if(M.use_power)
 				M.auto_use_power()
 		else
@@ -149,8 +150,8 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 	var/list/current_run = src.current_run
 	while(current_run.len)
-		var/datum/powernet/PN = current_run[1]
-		current_run.Cut(1, 2)
+		var/datum/powernet/PN = current_run[current_run.len]
+		current_run.len--
 		if(istype(PN) && !QDELETED(PN))
 			PN.reset(wait)
 		else
