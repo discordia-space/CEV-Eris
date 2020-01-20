@@ -6,3 +6,8 @@
 [merge "merge-dmi"]
 	name = iconfile merge driver
 	driver = ./tools/dmitool/dmimerge.sh %O %A %B
+	
+[remote "upstream"]
+        fetch = +refs/heads/*:refs/remotes/upstream/*
+        url = https://github.com/discordia-space/CEV-Eris
+        fetch = +refs/pull/*/head:refs/remotes/upstream/pr/*
