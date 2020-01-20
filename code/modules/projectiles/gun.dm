@@ -494,6 +494,11 @@
 	sel_mode++
 	if(sel_mode > firemodes.len)
 		sel_mode = 1
+	return set_firemode(sel_mode)
+
+/obj/item/weapon/gun/proc/set_firemode(var/index)
+	if(index > firemodes.len)
+		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
@@ -644,6 +649,7 @@
 			data["firemode_count"] += 1
 			var/datum/firemode/F = firemodes[i]
 			firemodes_info += list(list(
+				"index" = i,
 				"current" = (i == sel_mode),
 				"name" = F.name,
 				"burst" = F.settings["burst"],
@@ -652,3 +658,12 @@
 				))
 		data["firemode_info"] = firemodes_info
 	return data
+
+/obj/item/weapon/gun/Topic(href, href_list, var/datum/topic_state/state)
+	if(..(href, href_list, state))
+		return 1
+
+	if(href_list["firemode"])
+		sel_mode = text2num(href_list["firemode"])
+		set_firemode(sel_mode)
+		return 1

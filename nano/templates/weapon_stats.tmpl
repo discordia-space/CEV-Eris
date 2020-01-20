@@ -106,7 +106,11 @@
 				<div class="statusDisplay" style="overflow: auto;">
 					<div class="item" style="margin: 0px">
 						<h4>
-							{{:value.name}} {{if value.current == 1}} <b>SELECTED</b> {{/if}}
+							{{if value.current == 1}}
+								<b>{{:value.name}}</b>
+							{{else}}
+								{{:helper.link(value.name, 'null', {'firemode' : value.index})}}<br>
+							{{/if}}
 						</h4>
 						<div class="itemLabel">
 						Rounds per burst: 
