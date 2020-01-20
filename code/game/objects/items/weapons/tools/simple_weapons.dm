@@ -35,6 +35,33 @@
 	attack_verb = list("chopped", "torn", "cut")
 	tool_qualities = list(QUALITY_CUTTING = 20)
 
+/obj/item/weapon/tool/fireaxe  // DEM AXES MAN, marker -Agouri
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "fireaxe0"
+	wielded_icon = "fireaxe1"
+	name = "fire axe"
+	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	sharp = 1
+	edge = 1
+	armor_penetration = ARMOR_PEN_MODERATE
+	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
+	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
+	force = WEAPON_FORCE_NORMAL
+	force_unwielded = WEAPON_FORCE_NORMAL
+	force_wielded = WEAPON_FORCE_BRUTAL
+	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
+
+/obj/item/weapon/tool/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+	if(!proximity) return
+	..()
+	if(A && wielded)
+		if(istype(A,/obj/effect/plant))
+			var/obj/effect/plant/P = A
+			P.die_off()
+
 /obj/item/weapon/tool/minihoe
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."

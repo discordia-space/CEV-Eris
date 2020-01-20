@@ -56,7 +56,7 @@
 	var/obj/item/finished
 	if(istype(I, /obj/item/weapon/material/shard))
 		var/obj/item/weapon/material/tmp_shard = I
-		finished = new /obj/item/weapon/material/twohanded/spear(get_turf(user), tmp_shard.material.name)
+		finished = new /obj/item/weapon/material/spear(get_turf(user), tmp_shard.material.name)
 		to_chat(user, SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable."))
 	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))
