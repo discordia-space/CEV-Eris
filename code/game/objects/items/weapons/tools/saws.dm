@@ -70,7 +70,7 @@
 	force = WEAPON_FORCE_BRUTAL 
 	matter = list(MATERIAL_SILVER = 2, MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 3)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
-	max_upgrades = 2
+	max_upgrades = 4
 	degradation = 0.7
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
