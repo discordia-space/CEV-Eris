@@ -508,11 +508,12 @@
 	)
 
 // G U N S (minus excelsior and research)
+// Pack is used when there is more than one gun on the disk
 
 // .35 PISTOLS + REVOLVERS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns
-	disk_name = "Frozen Star Basic .35 Civilian Pack"
+	disk_name = "Frozen Star Basic - .35 Civilian Pack"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -528,7 +529,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58
-	disk_name = "NeoTheology Armory .35 MK58 Handgun Pack"
+	disk_name = "NeoTheology Armory - .35 MK58 Handgun Pack"
 	icon_state = "neotheology"
 
 	license = 8
@@ -540,7 +541,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt
-	disk_name = "Frozen Star .35 Colt 1911 Pack"
+	disk_name = "Frozen Star - .35 Colt 1911"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -551,7 +552,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced
-	disk_name = "Frozen Star .35 Mandella Pack"
+	disk_name = "Frozen Star - .35 Mandella"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -564,7 +565,7 @@
 // .40 REVOLVERS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller
-	disk_name = "Frozen Star .40 Miller Revolver Pack"
+	disk_name = "Frozen Star - .40 Miller Revolver"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -575,7 +576,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul
-	disk_name = "Frozen Star .40 Consul Revolver Pack"
+	disk_name = "Frozen Star - .40 Consul Revolver"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -586,7 +587,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard
-	disk_name = "Frozen Star .40 Deckard Revolver Pack"
+	disk_name = "Frozen Star - .40 Deckard Revolver"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -597,7 +598,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_mateba
-	disk_name = "Frozen Star .40 Mateba Revolver Pack"
+	disk_name = "Frozen Star - .40 Mateba Revolver"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -610,7 +611,7 @@
 // .40 PISTOLS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lamia
-	disk_name = "Frozen Star .40 Lamia Handgun Pack"
+	disk_name = "Frozen Star - .40 Lamia Handgun"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -621,7 +622,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_deagle
-	disk_name = "Frozen Star .40 Avasarala Handgun Pack"
+	disk_name = "Frozen Star - .40 Avasarala Handgun"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -634,7 +635,7 @@
 // .50 SHOTGUNS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_doublebarrel
-	disk_name = "Frozen Star .50 Double Barrel Shotgun Pack"
+	disk_name = "Frozen Star - .50 Double Barrel Shotgun"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -647,7 +648,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kammerer
-	disk_name = "Frozen Star .50 Kammerer Shotgun Pack"
+	disk_name = "Frozen Star - .50 Kammerer Shotgun"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -660,7 +661,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_regulator
-	disk_name = "NeoTheology Armory .50 Regulator Shotgun Pack"
+	disk_name = "NeoTheology Armory - .50 Regulator Shotgun"
 	icon_state = "neotheology"
 
 	license = 8
@@ -673,7 +674,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone
-	disk_name = "Frozen Star .50 Gladstone Shotgun Pack"
+	disk_name = "Frozen Star - .50 Gladstone Shotgun"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -686,7 +687,7 @@
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug
-	disk_name = "Serbian Arms .50 Pug Auto Shotgun Pack"
+	disk_name = "Serbian Arms - .50 Pug Auto Shotgun"
 	icon_state = "serbian"
 
 	license = 8
@@ -700,7 +701,7 @@
 // .35 SMGs
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco
-	disk_name = "Frozen Star .35 Paco SMG Pack"
+	disk_name = "Frozen Star - .35 Paco SMG"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -711,7 +712,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight
-	disk_name = "Frozen Star .35 Straylight SMG Pack"
+	disk_name = "Frozen Star - .35 Straylight SMG"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -722,7 +723,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly
-	disk_name = "Frozen Star .35 Molly SMG Pack"
+	disk_name = "Frozen Star - .35 Molly SMG"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -733,7 +734,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho
-	disk_name = "Frozen Star .35 Idaho SMG Pack"
+	disk_name = "Frozen Star - .35 Idaho SMG"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -744,7 +745,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides
-	disk_name = "Frozen Star .35 Atreides SMG Pack"
+	disk_name = "Frozen Star - .35 Atreides SMG"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -757,7 +758,7 @@
 // .20 Rifles (AP)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog
-	disk_name = "Frozen Star .20 Bulldog Carabine Pack"
+	disk_name = "Frozen Star - .20 Bulldog Carabine"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -768,7 +769,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute
-	disk_name = "Frozen Star .20 Wintermute Battle Rifle Pack"
+	disk_name = "Frozen Star - .20 Wintermute Battle Rifle"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -780,7 +781,7 @@
 // .25 Caseless
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol
-	disk_name = "Frozen Star .25 Sol Caseless SMG Pack"
+	disk_name = "Frozen Star - .25 Sol Caseless SMG"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -792,7 +793,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
-	disk_name = "PAR .25 Dallas Pack"
+	disk_name = "PAR - .25 Dallas"
 	icon_state = "black"
 
 	license = 8
@@ -804,7 +805,7 @@
 // .30 Rifles
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_boltgun
-	disk_name = "Serbian Arms .30  Novakovic Rifle Pack"
+	disk_name = "Serbian Arms - .30  Novakovic Rifle"
 	icon_state = "serbian"
 
 	license = 8
@@ -815,7 +816,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov
-	disk_name = "Frozen Star .30 Kalashnikov Rifle Pack"
+	disk_name = "Frozen Star - .30 Kalashnikov Rifle"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -829,7 +830,7 @@
 // Heavy
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper
-	disk_name = "NeoTheology Armory .60 Penetrator AMR Pack"
+	disk_name = "NeoTheology Armory - .60 Penetrator AMR"
 	icon_state = "neotheology"
 
 	license = 8
@@ -840,7 +841,7 @@
 
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pk
-	disk_name = "Serbian Arms .30 Pulemyot Kalashnikova MG Pack"
+	disk_name = "Serbian Arms - .30 Pulemyot Kalashnikova MG"
 	icon_state = "serbian"
 
 	license = 8
@@ -852,7 +853,7 @@
 // Grenade Launchers
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_protector
-	disk_name = "NeoTheology Armory Protector Grenade Launcher"
+	disk_name = "NeoTheology Armory - Protector Grenade Launcher"
 	icon_state = "neotheology"
 
 	license = 8
@@ -861,7 +862,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar
-	disk_name = "Frozen Star Lenar Grenade Launcher"
+	disk_name = "Frozen Star - Lenar Grenade Launcher"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -872,7 +873,7 @@
 // ENERGY SMALL ARMS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor
-	disk_name = "NeoTheology Armory S-Cell Councelor Energy Pistol Pack"
+	disk_name = "NeoTheology Armory - Councelor PDW E"
 	icon_state = "neotheology"
 
 	license = 8
@@ -882,17 +883,17 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose
-	disk_name = "Frozen Star S-Cell Spider Rose Energy Pistol Pack"
+	disk_name = "Frozen Star - Spider Rose PDW E"
 	icon_state = "frozenstar"
 
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/energygun, // "FS PDW E \"Spider Rose\""
-		/datum/design/autolathe/cell/small/high,
+		/datum/design/autolathe/cell/medium/high,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_martin
-	disk_name = "Frozen Star S-Cell Martin Energy Pistol Pack"
+	disk_name = "Frozen Star - Martin PDW E"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -904,7 +905,7 @@
 // ENERGY ARMS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_nemesis
-	disk_name = "NeoTheology Armory M-Cell Nemesis Energy Crossbow Pack"
+	disk_name = "NeoTheology Armory - Nemesis Energy Crossbow"
 	icon_state = "neotheology"
 
 	license = 8
@@ -914,7 +915,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
-	disk_name = "NeoTheology Armory M-Cell Themis Energy Crossbow Pack"
+	disk_name = "NeoTheology Armory - Themis Energy Crossbow"
 	icon_state = "neotheology"
 
 	license = 8
@@ -924,7 +925,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall
-	disk_name = "NeoTheology Armory M-Cell Lightfall Laser Gun Pack"
+	disk_name = "NeoTheology Armory - Lightfall Laser Gun"
 	icon_state = "neotheology"
 
 	license = 8
@@ -934,7 +935,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_valkirye
-	disk_name = "NeoTheology Armory M-Cell Valkyrie Energy Rifle Pack"
+	disk_name = "NeoTheology Armory - Valkyrie Energy Rifle"
 	icon_state = "neotheology"
 
 	license = 8
@@ -944,7 +945,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon
-	disk_name = "NeoTheology Armory M-Cell Halicon Ion Rifle Pack"
+	disk_name = "NeoTheology Armory - Halicon Ion Rifle"
 	icon_state = "neotheology"
 
 	license = 8
@@ -956,7 +957,7 @@
 // PLASMA ARMS
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion
-	disk_name = "NeoTheology Armory M-Cell Dominion Plasma Rifle Pack"
+	disk_name = "NeoTheology Armory - Dominion Plasma Rifle"
 	icon_state = "neotheology"
 
 	license = 8
@@ -966,7 +967,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger
-	disk_name = "NeoTheology Armory M-Cell Purger Plasma Rifle Pack"
+	disk_name = "NeoTheology Armory - Purger Plasma Rifle"
 	icon_state = "neotheology"
 
 	license = 8
@@ -975,9 +976,9 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_cassad
-	disk_name = "NeoTheology Armory M-Cell Cassad Plasma Rifle Pack"
-	icon_state = "neotheology"
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad
+	disk_name = "Frozen Star - Cassad Plasma Rifle"
+	icon_state = "frozenstar"
 
 	license = 8
 	designs = list(
@@ -988,7 +989,7 @@
 // SPECIAL
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun
-	disk_name = "Moebious Scientifica Syring Gun Pack"
+	disk_name = "Moebious Scientifica - Syring Gun"
 	icon_state = "moebious"
 
 	license = 8
