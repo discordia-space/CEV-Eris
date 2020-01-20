@@ -19,7 +19,6 @@ var/global/list/image/splatter_cache=list()
 	var/basecolor="#A10808" // Color when wet.
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
-	var/drytime
 	sanity_damage = 1
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
@@ -36,12 +35,8 @@ var/global/list/image/splatter_cache=list()
 		STOP_PROCESSING(SSobj, src)
 	..(ignore=1)
 
-/obj/effect/decal/cleanable/blood/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
 /obj/effect/decal/cleanable/blood/Initialize()
-	..()
+	. = ..()
 	fall_to_floor()
 	update_icon()
 
@@ -54,8 +49,7 @@ var/global/list/image/splatter_cache=list()
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
-					qdel(B)
-					return INITIALIZE_HINT_QDELETE
+					return INITIALIZE_HINT_QDEL
 	addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount+1))
 
 /obj/effect/decal/cleanable/blood/update_icon()
@@ -234,11 +228,6 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("mucus")
 
 	var/list/datum/disease2/disease/virus2 = list()
-	var/dry=0 // Keeps the lag down
-
-/obj/effect/decal/cleanable/mucus/New()
-	spawn(DRYING_TIME * 2)
-		dry=1
 
 //This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
 /obj/effect/decal/cleanable/blood/proc/fall_to_floor()
