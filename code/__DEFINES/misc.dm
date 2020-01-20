@@ -282,3 +282,7 @@
 #define CATALOG_ALL "all"
 
 #define get_area(A) (get_step(A, 0)?.loc)
+
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
