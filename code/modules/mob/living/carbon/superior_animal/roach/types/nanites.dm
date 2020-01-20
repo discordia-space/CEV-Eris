@@ -20,16 +20,31 @@
 	min_air_pressure = 0
 	min_bodytemperature = 0
 
+	var/list/nanite_swarms = list()
+	var/max_swarms = 5
+
 /mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
 
 	if(isliving(A))
 		var/mob/living/L = A
-		if(istype(L) && prob(25))
+		if(istype(L) && prob(25) && nanite_swarms.len < max_swarms)
 			var/sound/screech = pick('sound/machines/robots/robot_talk_light1.ogg','sound/machines/robots/robot_talk_light2.ogg','sound/machines/robots/robot_talk_heavy4.ogg')
 			playsound(src, screech, 30, 1, -3)
-			new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src))
+			nanite_swarms.Add(new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src))
 			say("10101010011100010101")
+
+/mob/living/carbon/superior_animal/roach/nanite/death()
+	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in nanite_swarms)
+		nanite_swarms.Remove(NS)
+		NS.gib()
+	..()
+
+/mob/living/carbon/superior_animal/roach/nanite/Destroy()
+	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in nanite_swarms)
+		nanite_swarms.Remove(NS)
+		NS.gib()
+	.=..()
 
 
 /mob/living/simple_animal/hostile/naniteswarm
@@ -58,7 +73,21 @@
 	max_n2 = 0
 	minbodytemp = 0
 
+	var/mob/living/carbon/superior_animal/roach/nanite/parent
+
+/mob/living/simple_animal/hostile/naniteswarm/New(loc, var/nuparent)
+	..()
+	parent = nuparent
+
 /mob/living/simple_animal/hostile/naniteswarm/death()
 	..()
+	if(parent)
+		parent.nanite_swarms.Remove(src)
 	new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
 	qdel(src)
+
+/mob/living/simple_animal/hostile/naniteswarm/Destroy()
+	if(parent)
+		parent.nanite_swarms.Remove(src)
+		parent = null
+	.=..()
