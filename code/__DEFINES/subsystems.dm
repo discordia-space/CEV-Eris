@@ -95,7 +95,6 @@ if (Datum.is_processing) {\
 	SSmachines.List += Datum;\
 }
 
-//stopProcessingWrapper catches removal from processing list before it happens to adjust last position in memory during resumes
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
 	if(SSmachines.List.Remove(Datum)) {\
