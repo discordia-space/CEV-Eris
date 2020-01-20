@@ -7,26 +7,67 @@
 	response_disarm = "prods"
 	response_harm   = "stomps on"
 	icon_state = "brainslug"
-	speed = 5
+
+	health = 30
+	maxHealth = 30
+
+	speed = 4
+	see_in_dark = 8
+	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	a_intent = I_HURT
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	attacktext = "nipped"
 	friendly = "prods"
 	wander = 0
+	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
 	//holder_type = /obj/item/weapon/holder/borer //Theres no inhand sprites for holding borers, it turns you into a pink square
 
 	var/used_dominate
-	var/chemicals = 10                      // Chemicals used for reproduction and spitting neurotoxin.
+	var/chemicals = 50                      // Chemicals used for reproduction and spitting neurotoxin.
 	var/mob/living/carbon/human/host        // Human host for the brain worm.
 	var/truename                            // Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
-	var/controlling                         // Used in human death check.
+	var/controlling = FALSE					// Used in human death check.
 	var/docile = 0                          // Sugar can stop borers from acting.
 	var/has_reproduced
 	var/roundstart
+
+	// Abilities borer can use when outside the host
+	var/list/abilities_standalone = list(
+		/mob/living/proc/ventcrawl,
+		/mob/living/proc/hide,
+		/mob/living/simple_animal/borer/proc/paralyze_victim,
+		/mob/living/simple_animal/borer/proc/infest,
+
+		)
+
+	// Abilities borer can use when inside the host, but not in control
+	var/list/abilities_in_host = list(
+		/mob/living/simple_animal/borer/proc/secrete_chemicals,
+		/mob/living/simple_animal/borer/proc/assume_control,
+		/mob/living/simple_animal/borer/proc/paralyze_victim,
+		/mob/living/simple_animal/borer/proc/read_mind,
+		/mob/living/simple_animal/borer/proc/write_mind,
+		/mob/living/simple_animal/borer/proc/release_host
+	)
+
+	// Abilities borer can use when controlling the host
+	// (keep in mind that those have to be abilities of /mob/living/carbon, not /mob/living/simple_animal/borer)
+	var/list/abilities_in_control = list(
+		/mob/living/carbon/proc/release_control,
+		/mob/living/carbon/proc/punish_host,
+		/mob/living/carbon/proc/spawn_larvae
+	)
+
+	// Reagents the borer can secrete into host's blood
+	var/list/produced_reagents = list(
+		"alkysine",
+		"bicaridine", "kelotane", "dexalin", "anti_toxin",
+		"hyperzine", "tramadol", "space_drugs"
+		)
 
 /mob/living/simple_animal/borer/roundstart
 	roundstart = 1
@@ -41,49 +82,68 @@
 	..()
 
 	add_language(LANGUAGE_CORTICAL)
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	update_abilities()
 
 	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 	if(!roundstart) request_player()
 
-/mob/living/simple_animal/borer/Life()
+/mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
+	// Remove all abilities
+	verbs -= abilities_standalone
+	verbs -= abilities_in_host
+	host?.verbs -= abilities_in_control
 
+	// Borer gets host abilities before actually getting inside the host
+	// Workaround for a BYOND bug: http://www.byond.com/forum/post/1833666
+	if(force_host)
+		verbs += abilities_in_host
+		return
+
+	// Re-grant some of the abilities, depending on the situation
+	if(!host)
+		verbs += abilities_standalone
+	else if(!controlling)
+		verbs += abilities_in_host
+	else
+		host.verbs += abilities_in_control
+
+// If borer is controlling a host directly, send messages to host instead of borer
+/mob/living/simple_animal/borer/proc/get_borer_control()
+	return (host && controlling) ? host : src
+
+/mob/living/simple_animal/borer/Life()
 	..()
 
-	if(host)
+	if(chemicals < 50)
+		chemicals++
 
-		if(!stat && !host.stat)
+	if(host && !stat && !host.stat)
+		// Regenerate if within a host
+		if(health < maxHealth)
+			adjustBruteLoss(-1)
 
-			if(host.reagents.has_reagent("sugar"))
-				if(!docile)
-					if(controlling)
-						to_chat(host, "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility.")
-					else
-						to_chat(src, "\blue You feel the soporific flow of sugar in your host's blood, lulling you into docility.")
-					docile = 1
-			else
-				if(docile)
-					if(controlling)
-						to_chat(host, "\blue You shake off your lethargy as the sugar leaves your host's blood.")
-					else
-						to_chat(src, "\blue You shake off your lethargy as the sugar leaves your host's blood.")
-					docile = 0
+		if(host.reagents.has_reagent("sugar"))
+			if(!docile)
+				to_chat(get_borer_control(), SPAN_DANGER("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
+				docile = TRUE
+		else
+			if(docile)
+				to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
+				docile = FALSE
 
-			if(chemicals < 250)
-				chemicals++
-			if(controlling)
+		if(chemicals < 250)
+			chemicals++
+		if(controlling)
+			if(docile)
+				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
+				host.release_control()
+				return
 
-				if(docile)
-					to_chat(host, "\blue You are feeling far too docile to continue controlling your host...")
-					host.release_control()
-					return
+			if(prob(5))
+				host.adjustBrainLoss(0.1)
 
-				if(prob(5))
-					host.adjustBrainLoss(0.1)
-
-				if(prob(host.brainloss/20))
-					host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
+			if(prob(host.brainloss/20))
+				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
 
 /mob/living/simple_animal/borer/Stat()
 	. = ..()
@@ -96,6 +156,9 @@
 
 	if (client.statpanel == "Status")
 		stat("Chemicals", chemicals)
+		if(host)
+			stat("Host health", host.stat == DEAD ? "Deceased" : host.health)
+			stat("Host brain damage", host.getBrainLoss())
 
 /mob/living/simple_animal/borer/proc/detatch()
 
@@ -106,12 +169,10 @@
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		head.implants -= src
 
-	controlling = 0
+	controlling = FALSE
 
 	host.remove_language(LANGUAGE_CORTICAL)
-	host.verbs -= /mob/living/carbon/proc/release_control
-	host.verbs -= /mob/living/carbon/proc/punish_host
-	host.verbs -= /mob/living/carbon/proc/spawn_larvae
+	update_abilities()
 
 	if(host_brain)
 
@@ -149,7 +210,6 @@
 	qdel(host_brain)
 
 /mob/living/simple_animal/borer/proc/leave_host()
-
 	if(!host) return
 
 	if(host.mind)
@@ -166,7 +226,7 @@
 	var/mob/living/H = host
 	H.status_flags &= ~PASSEMOTES
 	host = null
-	return
+	update_abilities()
 
 //Procs for grabbing players.
 /mob/living/simple_animal/borer/proc/request_player()
