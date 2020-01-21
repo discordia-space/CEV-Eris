@@ -98,7 +98,7 @@
 	if(frequency)
 		radio_connection = SSradio.add_object(src, frequency)
 
-/obj/machinery/atmospherics/unary/outlet_injector/proc/broadcast_status()
+/obj/machinery/atmospherics/unary/outlet_injector/broadcast_status()
 	if(!radio_connection)
 		return 0
 

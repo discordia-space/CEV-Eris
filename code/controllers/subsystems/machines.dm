@@ -81,17 +81,17 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 		atmosmachines += A
 		CHECK_TICK
 
-	for(var/obj/machinery/atmospherics/unary/U in atmosmachines)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
+	for(var/U in atmosmachines)
+		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump) || istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
+			var/obj/machinery/atmospherics/unary/T = U
 			T.broadcast_status()
 		CHECK_TICK
 	if(!Master.current_runlevel)//So it only does it at roundstart
 		report_progress("Initializing pipe networks")
-	for(var/obj/machinery/atmospherics/machine in atmosmachines)
+	for(var/m in atmosmachines)
+		if(!m) //We got yeeted
+			continue
+		var/obj/machinery/atmospherics/machine = m
 		machine.build_network()
 		CHECK_TICK
 
