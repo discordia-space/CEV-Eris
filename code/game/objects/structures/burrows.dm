@@ -162,7 +162,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
 	The mobs it is to send should be placed inside it by the caller
 */
-/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 0, var/percentage = 1)
+/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 1, var/percentage = 1)
 	if (!_target)
 		return
 
