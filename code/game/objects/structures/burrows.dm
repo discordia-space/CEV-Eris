@@ -173,6 +173,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	target = _target
 
 	if (!processing)
+		processing = TRUE
 		START_PROCESSING(SSobj, src)
 
 
@@ -240,7 +241,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 /obj/structure/burrow/Process()
-	if(!processing) //Sometimes we are still stuck in the current processing queue
+	if(!is_processing) //Sometimes we are still stuck in the current processing queue although we got removed.
 		return
 	//Burrows process when they are either sending or recieving mobs.
 	//One or the other, cant do both at once
@@ -285,7 +286,6 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if (progress >= 1)
 			//We're done, its time to send them
 			complete_migration()
-			return PROCESS_KILL
 
 	//Processing on the recieving end is done to make sounds and visual FX
 	else if (recieving)
@@ -355,6 +355,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 	//Lets reset all these vars that we used during migration
+	STOP_PROCESSING(SSobj, src)
 	processing = FALSE
 	target = null
 	recieving = null
