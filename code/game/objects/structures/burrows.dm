@@ -234,6 +234,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	migration_initiated = start_time
 	duration = _duration
 	recieving = sender
+	processing = TRUE
 	START_PROCESSING(SSobj, src)
 
 
