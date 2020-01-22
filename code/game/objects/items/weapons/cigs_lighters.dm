@@ -101,6 +101,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/type_butt = null
 	var/chem_volume = 0
 	var/smoketime = 0
+	var/quality_multiplier = 1 // Used for sanity and insight gain
 	var/matchmes = "USER lights NAME with FLAME"
 	var/lightermes = "USER lights NAME with FLAME"
 	var/zippomes = "USER lights NAME with FLAME"
@@ -282,6 +283,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigaroff"
 	smoketime = 1500
 	chem_volume = 20
+	quality_multiplier = 2
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to offend their NAME by lighting it with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
@@ -303,6 +305,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigar2off"
 	smoketime = 7200
 	chem_volume = 30
+	quality_multiplier = 3
 
 /obj/item/weapon/cigbutt
 	name = "cigarette butt"
@@ -341,6 +344,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	zippomes = "<span class='rose'>With much care, USER lights their NAME with their FLAME.</span>"
 	weldermes = "<span class='notice'>USER recklessly lights NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME with the power of science.</span>"
+	quality_multiplier = 2 // Fancy!
 
 /obj/item/clothing/mask/smokable/pipe/New()
 	..()
@@ -413,6 +417,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
 	chem_volume = 35
+	quality_multiplier = 1 // Not nearly as fancy as the other one
 
 /////////
 //ZIPPO//
