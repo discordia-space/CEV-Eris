@@ -91,8 +91,14 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 6,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_mags_large = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_pistol = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_magnum = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_srifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_clrifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_lrifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_shotgun = 4,))
 
 /obj/random/techpart/low_chance
 	name = "low chance random techpart"

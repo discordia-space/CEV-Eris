@@ -91502,16 +91502,16 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "dWB" = (

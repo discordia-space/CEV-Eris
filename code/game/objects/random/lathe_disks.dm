@@ -51,8 +51,14 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 5,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 5,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_mags_large = 2,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_pistol = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_magnum = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_srifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_clrifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_lrifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_shotgun = 4,))
 
 /obj/random/lathe_disk/low_chance
 	name = "low chance random lathe disk"
@@ -124,8 +130,14 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 8,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 8))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_mags_large = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_pistol = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_magnum = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_srifle = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_clrifle = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_lrifle = 8,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_shotgun = 8,))
 
 /obj/random/lathe_disk/advanced/low_chance
 	name = "low chance advanced lathe disk"

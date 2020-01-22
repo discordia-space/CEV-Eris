@@ -78,12 +78,6 @@
 	item_cost = 3
 	path = /obj/item/ammo_magazine/srifle
 
-datum/uplink_item/item/ammo/ihsrifle
-	name = ".20 Rifle IH magazine"
-	desc = "IH issued .20 magazine with lethal ammunition. Well known for it's armor penetrating capabilities. Can fit 30 bullets."
-	item_cost = 3
-	path = /obj/item/ammo_magazine/ihsrifle
-
 /datum/uplink_item/item/ammo/ihclrifle
 	name = ".25 caseless magazine"
 	desc = "Standard .25 magazine with lethal ammunition. Used mostly in IHS carabines. Can fit 30 bullets."

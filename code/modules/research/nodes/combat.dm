@@ -59,7 +59,7 @@
 
 	required_technologies = list(/datum/technology/weapon_recharging)
 	required_tech_levels = list()
-	cost = 1500
+	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/stunrevolver,
 							/datum/design/research/item/ammo/shotgun_stun
@@ -83,7 +83,7 @@
 
 /datum/technology/basic_lethal
 	name = "Basic Lethal Weapons"
-	desc = "Chemical grenade design with anti-acid coating inside."
+	desc = "Chemical grenade design and experimental energy shells."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.6
@@ -92,9 +92,13 @@
 
 	required_technologies = list(/datum/technology/weapon_recharging)
 	required_tech_levels = list()
-	cost = 2000
+	cost = 1500
 
-	unlocks_designs = list(/datum/design/research/item/weapon/large_grenade)
+	unlocks_designs = list(
+							/datum/design/research/item/weapon/large_grenade,
+							/datum/design/research/item/ammo/shotgun_laser,
+							/datum/design/research/item/ammo/shotgun_ion,
+						)
 
 /datum/technology/exotic_weaponry
 	name = "Experemental Weaponry"
