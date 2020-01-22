@@ -182,7 +182,7 @@
 	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.66
-	overdose = 10
+	overdose = REM * 0.66
 	withdrawal_threshold = 10
 	nerve_system_accumulations = 55
 	reagent_type = "Drug/Stimulator"
