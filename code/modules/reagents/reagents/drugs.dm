@@ -112,7 +112,7 @@
 	taste_description = "mushroom"
 	color = "#E700E7"
 	overdose = REAGENTS_OVERDOSE * 0.66
-	metabolism = REM * 0.5
+	metabolism = REM * 0.2
 	addiction_chance = 10
 	nerve_system_accumulations = 40
 	reagent_type = "Drug/Stimulator"
