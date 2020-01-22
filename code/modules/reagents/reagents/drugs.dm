@@ -181,8 +181,8 @@
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FF3300"
-	metabolism = REAGENTS_OVERDOSE * 0.66
-	overdose = REM * 0.66
+	metabolism = REM * 0.66
+	overdose = REAGENTS_OVERDOSE * 0.66
 	withdrawal_threshold = 10
 	nerve_system_accumulations = 55
 	reagent_type = "Drug/Stimulator"
