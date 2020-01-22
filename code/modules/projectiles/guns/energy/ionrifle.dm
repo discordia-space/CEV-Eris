@@ -1,6 +1,8 @@
 /obj/item/weapon/gun/energy/ionrifle
 	name = "NT IR \"Halicon\""
-	desc = "The NT IR Halicon is a man-portable anti-armor weapon designed to disable mechanical threats, produced by NeoTheology. Not the best of its type, but gets the job done."
+	desc = "The Halicon is a portable directed EMP weapon designed as general purpose electronic warfare rifle. \
+			Produced by NeoTheology. Harms electronics, prosthetics, mechas, RIG-suits and etc. \
+			Not the best of its type, but gets the job done. Feeds off Medium-type cells."
 	icon = 'icons/obj/guns/energy/iongun.dmi'
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
@@ -11,7 +13,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	charge_cost = 200
+	charge_cost = 150
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
 	price_tag = 3000
 	projectile_type = /obj/item/projectile/ion
