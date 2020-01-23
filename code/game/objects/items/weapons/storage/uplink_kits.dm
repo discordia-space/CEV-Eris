@@ -205,7 +205,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/sts35/populate_contents()
 	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
-	new /obj/item/ammo_magazine/lrifle_short(src)
+	new /obj/item/ammo_magazine/lrifle(src)
 
 /obj/item/weapon/storage/box/syndie_kit/pug
 	name = "Pug box"

@@ -108,29 +108,18 @@
 	item_cost = 3
 	path = /obj/item/ammo_magazine/ihclrifle/hv
 
-/datum/uplink_item/item/ammo/lrifle_short
-	name = ".30 Rifle magazine"
-	desc = "Short .30 magazine with lethal ammunition. Can fit 20 bullets."
-	item_cost = 2
-	path = /obj/item/ammo_magazine/lrifle_short
 
-/datum/uplink_item/item/ammo/lrifle_short/highvelocity
-	name = ".30 Rifle HV magazine"
-	desc = "Short .30 magazine with high velocity ammunition. Can fit 20 bullets."
-	item_cost = 3
-	path = /obj/item/ammo_magazine/lrifle_short/hv
-
-/datum/uplink_item/item/ammo/lrifle_long
+/datum/uplink_item/item/ammo/lrifle
 	name = ".30 Rifle magazine"
 	desc = "Long .30 magazine with lethal ammunition. Can fit 30 bullets."
 	item_cost = 3
-	path = /obj/item/ammo_magazine/lrifle_long
+	path = /obj/item/ammo_magazine/lrifle
 
-/datum/uplink_item/item/ammo/lrifle_long/highvelocity
+/datum/uplink_item/item/ammo/lrifle/highvelocity
 	name = ".30 Rifle HV magazine"
 	desc = "Long .30 magazine with high velocity ammunition. Can fit 30 bullets."
 	item_cost = 4
-	path = /obj/item/ammo_magazine/lrifle_long/highvelocity
+	path = /obj/item/ammo_magazine/lrifle/highvelocity
 
 //// HV ammo packets ////
 
@@ -188,12 +177,6 @@
 	desc = "M12 shotgun magazine with buckshot shells loaded. Can fit 8 shells."
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
-
-/datum/uplink_item/item/ammo/m12/stun
-	name = "M12 shotgun mag with taser shells"
-	desc = "M12 shotgun magazine with tazer shells loaded. Can fit 8 shells."
-	item_cost = 4
-	path = /obj/item/ammo_magazine/m12/stun
 
 ////special////
 

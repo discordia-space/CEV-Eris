@@ -76,12 +76,6 @@
 	name_category = "ammunition"
 	category = CAT_WEAPON
 
-/datum/design/research/item/ammo/shotgun_stun
-	name = "shotgun, stun"
-	desc = "A stunning shell for a shotgun."
-	build_path = /obj/item/ammo_casing/shotgun/stunshell
-	sort_string = "TAACB"
-
 /datum/design/research/item/ammo/hatton
 	name = "Moebius BT \"Q-del\" gas tube"
 	build_path = /obj/item/weapon/hatton_magazine/moebius
@@ -92,15 +86,3 @@
 	desc = "35 Auto SMG magazine for the C-20r"
 	build_path = /obj/item/ammo_magazine/smg
 	sort_string = "TAACD"
-
-/datum/design/research/item/ammo/shotgun_ion
-	name = "shotgun, ion"
-	desc = "An advanced shotgun shell which uses a subspace ansible crystal to produce an effect similar to a standard ion rifle."
-	build_path = /obj/item/ammo_casing/shotgun/ion
-	sort_string = "TAACF"
-
-/datum/design/research/item/ammo/shotgun_laser
-	name = "shotgun, laser"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a laser weapon in a ballistic package."
-	build_path = /obj/item/ammo_casing/shotgun/laser
-	sort_string = "TAACG"

@@ -5,10 +5,10 @@
 	caliber = "pistol"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-/obj/item/ammo_casing/pistol/flash
-	desc = "A .35 Auto flash shell casing."
+/obj/item/ammo_casing/pistol/incendiary
+	desc = "A .35 Auto incendiary shell casing."
 	caliber = "pistol"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/bullet/pistol/incendiary
 
 /obj/item/ammo_casing/pistol/hv
 	desc = "A .35 Auto high-velocity bullet casing."
@@ -32,10 +32,10 @@
 	caliber = "magnum"
 	projectile_type = /obj/item/projectile/bullet/magnum
 
-/obj/item/ammo_casing/magnum/flash
-	desc = "A .40 Magnum flash shell casing."
+/obj/item/ammo_casing/magnum/incendiary
+	desc = "A .40 Magnum incendiary shell casing."
 	caliber = "magnum"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/bullet/magnum/incendiary
 
 /obj/item/ammo_casing/magnum/practice
 	desc = "A .40 Magnum practice bullet casing."
@@ -59,10 +59,10 @@
 	caliber = "srifle"
 	projectile_type = /obj/item/projectile/bullet/srifle
 
-/obj/item/ammo_casing/srifle/flash
-	desc = "A .20 Rifle flash bullet casing."
+/obj/item/ammo_casing/srifle/incendiary
+	desc = "A .20 Rifle incendiary bullet casing."
 	caliber = "srifle"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/bullet/srifle/incendiary
 
 /obj/item/ammo_casing/srifle/practice
 	desc = "A .20 Rifle practice bullet casing."
@@ -87,10 +87,10 @@
 	projectile_type = /obj/item/projectile/bullet/clrifle
 	is_caseless = TRUE
 
-/obj/item/ammo_casing/clrifle/flash
-	desc = "A .25 Caseless Rifle flash bullet casing."
+/obj/item/ammo_casing/clrifle/incendiary
+	desc = "A .25 Caseless Rifle incendiary bullet casing."
 	caliber = "clrifle"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/bullet/clrifle/incendiary
 	is_caseless = TRUE
 
 /obj/item/ammo_casing/clrifle/practice
@@ -118,10 +118,10 @@
 	caliber = "lrifle"
 	projectile_type = /obj/item/projectile/bullet/lrifle
 
-/obj/item/ammo_casing/lrifle/flash
-	desc = "A .30 rifle flash bullet casing."
+/obj/item/ammo_casing/lrifle/incendiary
+	desc = "A .30 rifle incendiary bullet casing."
 	caliber = "lrifle"
-	projectile_type = /obj/item/projectile/energy/flash
+	projectile_type = /obj/item/projectile/bullet/lrifle/incendiary
 
 /obj/item/ammo_casing/lrifle/practice
 	desc = "A .30 rifle practice bullet casing."
@@ -212,23 +212,6 @@
 /obj/item/ammo_casing/shotgun/practice/prespawned
 	amount = 5
 
-//Can stun in one hit if aimed at the head, but
-//is blocked by clothing that stops tasers and is vulnerable to EMP
-/obj/item/ammo_casing/shotgun/stunshell
-	name = "taser shell"
-	desc = "A .50 taser cartridge."
-	icon_state = "stunshell"
-	spent_icon = "stunshell-spent"
-	projectile_type = /obj/item/projectile/energy/electrode/stunshot
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5, MATERIAL_URANIUM = 1)
-
-/obj/item/ammo_casing/shotgun/stunshell/emp_act(severity)
-	if(prob(100/severity)) BB = null
-	update_icon()
-
-/obj/item/ammo_casing/shotgun/stunshell/prespawned
-	amount = 5
-
 //Does not stun, only blinds, but has area of effect.
 /obj/item/ammo_casing/shotgun/flash
 	name = "flash shell"
@@ -239,28 +222,6 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
 
 /obj/item/ammo_casing/shotgun/flash/prespawned
-	amount = 5
-
-/obj/item/ammo_casing/shotgun/ion
-	name = "ion shell"
-	desc = "An advanced shotgun shell which uses a subspace ansible crystal to produce an effect similar to a standard ion rifle."
-	icon_state = "ionshell"
-	spent_icon = "ionshell-spent"
-	projectile_type = /obj/item/projectile/ion
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5, MATERIAL_DIAMOND = 0.5)
-
-/obj/item/ammo_casing/shotgun/ion/prespawned
-	amount = 5
-
-/obj/item/ammo_casing/shotgun/laser
-	name = "laser shell"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a laser weapon in a ballistic package."
-	icon_state = "lshell"
-	spent_icon = "lshell-spent"
-	projectile_type = /obj/item/projectile/beam
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
-
-/obj/item/ammo_casing/shotgun/laser/prespawned
 	amount = 5
 
 //// Other ////

@@ -62,7 +62,6 @@
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/stunrevolver,
-							/datum/design/research/item/ammo/shotgun_stun
 						)
 
 
@@ -96,8 +95,6 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/large_grenade,
-							/datum/design/research/item/ammo/shotgun_laser,
-							/datum/design/research/item/ammo/shotgun_ion,
 						)
 
 /datum/technology/exotic_weaponry
@@ -117,7 +114,7 @@
 
 /datum/technology/adv_exotic_weaponry
 	name = "Advanced Experemental Weaponry"
-	desc = "Specisl weapon system using plasma as catalyst. Special weapon core prototipe that deal DNA damage to target."
+	desc = "Special weapon system using plasma as catalyst. Special weapon core prototype that deal DNA damage to target."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
@@ -131,6 +128,52 @@
 	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
 							/datum/design/research/item/weapon/plasmapistol
 						)
+
+/datum/technology/temp
+	name = "Basic Temperature Ammunition"
+	desc = "Incendiary ammunition for large catriges."
+	tech_type = RESEARCH_COMBAT
+
+	x = 0.6
+	y = 0.6
+	icon = "ammobox"
+
+	required_technologies = list(/datum/technology/basic_lethal)
+	required_tech_levels = list()
+	cost = 5000
+
+	unlocks_designs = list(
+							/datum/design/autolathe/ammo/srifle/incendiary,
+							/datum/design/autolathe/ammo/srifle_ammobox_small/incendiary,
+							/datum/design/autolathe/ammo/ihclrifle/incendiary,
+							/datum/design/autolathe/ammo/clrifle_ammobox_small/incendiary,
+							/datum/design/autolathe/ammo/lrifle/incendiary,
+							/datum/design/autolathe/ammo/lrifle_ammobox_small/incendiary,
+						)
+
+/datum/technology/adv_temp
+	name = "Advanced Temperature Ammunition"
+	desc = "Incendiary ammunition for small catriges."
+	tech_type = RESEARCH_COMBAT
+
+	x = 0.6
+	y = 0.7
+	icon = "ammobox"
+
+	required_technologies = list(/datum/technology/temp)
+	required_tech_levels = list()
+	cost = 5000
+
+	unlocks_designs = list(
+							/datum/design/autolathe/ammo/magazine_pistol/incendiary,
+							/datum/design/autolathe/ammo/sl_pistol/incendiary,
+							/datum/design/autolathe/ammo/smg/incendiary,
+							/datum/design/autolathe/ammo/pistol_ammobox/incendiary,
+							/datum/design/autolathe/ammo/sl_magnum/incendiary,
+							/datum/design/autolathe/ammo/mg_magnum/incendiary,
+							/datum/design/autolathe/ammo/magnum_ammobox/incendiary,
+						)
+
 
 /datum/technology/adv_lethal
 	name = "Advanced Lethal Weapons"

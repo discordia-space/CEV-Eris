@@ -45,10 +45,11 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 30
 
-/obj/item/ammo_magazine/ammobox/pistol/flash
-	name = "ammunition packet (.35 Auto flash)"
+/obj/item/ammo_magazine/ammobox/pistol/incendiary
+	name = "ammunition packet (.35 Auto incendiary)"
 	icon_state = "pistol_f"
-	ammo_type = /obj/item/ammo_casing/pistol/flash
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASMA = 3, MATERIAL_CARDBOARD = 1)
+	ammo_type = /obj/item/ammo_casing/pistol/incendiary
 
 /obj/item/ammo_magazine/ammobox/pistol/practice
 	name = "ammunition packet (.35 Auto practice)"
@@ -75,10 +76,11 @@
 	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 30
 
-/obj/item/ammo_magazine/ammobox/magnum/flash
-	name = "ammunition packet (.40 Magnum flash)"
+/obj/item/ammo_magazine/ammobox/magnum/incendiary
+	name = "ammunition packet (.40 Magnum incendiary)"
 	icon_state = "magnum_f"
-	ammo_type = /obj/item/ammo_casing/magnum/flash
+	matter = list(MATERIAL_STEEL = 9, MATERIAL_PLASMA = 3, MATERIAL_CARDBOARD = 1)
+	ammo_type = /obj/item/ammo_casing/magnum/incendiary
 
 /obj/item/ammo_magazine/ammobox/magnum/practice
 	name = "ammunition packet (.40 Magnum practice)"
@@ -119,10 +121,11 @@
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 60
 
-/obj/item/ammo_magazine/ammobox/srifle_small/flash
-	name = "ammunition packet (.20 Rifle flash)"
+/obj/item/ammo_magazine/ammobox/srifle_small/incendiary
+	name = "ammunition packet (.20 Rifle incendiary)"
 	icon_state = "srifle_f"
-	ammo_type = /obj/item/ammo_casing/srifle/flash
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5, MATERIAL_CARDBOARD = 1)
+	ammo_type = /obj/item/ammo_casing/srifle/incendiary
 
 /obj/item/ammo_magazine/ammobox/srifle_small/practice
 	name = "ammunition packet (.20 Rifle practice)"
@@ -163,10 +166,11 @@
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 60
 
-/obj/item/ammo_magazine/ammobox/clrifle_small/flash
-	name = "ammunition packet (.25 Caseless Rifle flash)"
+/obj/item/ammo_magazine/ammobox/clrifle_small/incendiary
+	name = "ammunition packet (.25 Caseless Rifle incendiary)"
 	icon_state = "clrifle_f"
-	ammo_type = /obj/item/ammo_casing/clrifle/flash
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5, MATERIAL_CARDBOARD = 1)
+	ammo_type = /obj/item/ammo_casing/clrifle/incendiary
 
 /obj/item/ammo_magazine/ammobox/clrifle_small/practice
 	name = "ammunition packet (.25 Caseless Rifle practice)"
@@ -203,10 +207,11 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 60
 
-/obj/item/ammo_magazine/ammobox/lrifle_small/flash
-	name = "ammunition packet (.30 Rifle flash)"
+/obj/item/ammo_magazine/ammobox/lrifle_small/incendiary
+	name = "ammunition packet (.30 Rifle incendiary)"
 	icon_state = "lrifle_f"
-	ammo_type = /obj/item/ammo_casing/lrifle/flash
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5, MATERIAL_CARDBOARD = 1)
+	ammo_type = /obj/item/ammo_casing/lrifle/incendiary
 
 /obj/item/ammo_magazine/ammobox/lrifle_small/practice
 	name = "ammunition packet (.30 Rifle practice)"

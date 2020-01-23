@@ -154,7 +154,7 @@
 	desc = "A crate containing six FS AK-47 rifles, and plenty of magazines."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs  = 6,
-	/obj/item/ammo_magazine/lrifle_long = 18)
+	/obj/item/ammo_magazine/lrifle = 18)
 
 /obj/item/weapon/storage/deferred/crate/grenadier
 	name = "grenadier crate"

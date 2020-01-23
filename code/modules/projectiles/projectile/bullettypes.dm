@@ -38,6 +38,18 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/pistol/incendiary
+	damage = 10
+	armor_penetration = 2
+	var/fire_stacks = 4
+
+/obj/item/projectile/bullet/pistol/incendiary/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.adjust_fire_stacks(fire_stacks)
+		M.IgniteMob()
+
 //Carbines and rifles
 
 // .20 rifle
@@ -74,6 +86,18 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/srifle/incendiary
+	damage = 12
+	armor_penetration = 2
+	var/fire_stacks = 4
+
+/obj/item/projectile/bullet/srifle/incendiary/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.adjust_fire_stacks(fire_stacks)
+		M.IgniteMob()
+
 // .25 rifle
 
 /obj/item/projectile/bullet/clrifle
@@ -106,6 +130,18 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/clrifle/incendiary
+	damage = 13
+	armor_penetration = 2
+	var/fire_stacks = 4
+
+/obj/item/projectile/bullet/clrifle/incendiary/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.adjust_fire_stacks(fire_stacks)
+		M.IgniteMob()
+
 // .30 rifle
 
 /obj/item/projectile/bullet/lrifle
@@ -137,6 +173,18 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/lrifle/incendiary
+	damage = 14
+	armor_penetration = 2
+	var/fire_stacks = 4
+
+/obj/item/projectile/bullet/lrifle/incendiary/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.adjust_fire_stacks(fire_stacks)
+		M.IgniteMob()
+
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	damage = 32
@@ -166,6 +214,17 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 
+/obj/item/projectile/bullet/magnum/incendiary
+	damage = 16
+	armor_penetration = 2
+	var/fire_stacks = 4
+
+/obj/item/projectile/bullet/magnum/incendiary/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.adjust_fire_stacks(fire_stacks)
+		M.IgniteMob()
 
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim

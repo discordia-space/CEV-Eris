@@ -239,3 +239,7 @@
 /datum/design/autolathe/gun/syringe_gun
 	name = "syringe gun"
 	build_path = /obj/item/weapon/gun/launcher/syringe
+
+/datum/design/autolathe/gun/dart_gun
+	name = "Z-H P Artemis Dartgun"
+	build_path = /obj/item/weapon/gun/projectile/dartgun

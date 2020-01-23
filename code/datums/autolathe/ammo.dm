@@ -8,10 +8,6 @@
 	name = "shotgun shells (buckshot)"
 	build_path = /obj/item/ammo_casing/shotgun/pellet/prespawned
 
-/datum/design/autolathe/ammo/stunshell
-	name = "shotgun shells (taser)"
-	build_path = /obj/item/ammo_casing/shotgun/stunshell/prespawned
-
 /datum/design/autolathe/ammo/shotgun_blanks
 	name = "shotgun shells (blank)"
 	build_path = /obj/item/ammo_casing/shotgun/blank/prespawned
@@ -23,14 +19,6 @@
 /datum/design/autolathe/ammo/shotgun_flash
 	name = "shotgun shells (flash)"
 	build_path = /obj/item/ammo_casing/shotgun/flash/prespawned
-
-/datum/design/autolathe/ammo/shotgun_ion
-	name = "shotgun shells (ion)"
-	build_path = /obj/item/ammo_casing/shotgun/ion/prespawned
-
-/datum/design/autolathe/ammo/shotgun_laser
-	name = "shotgun shells (laser)"
-	build_path = /obj/item/ammo_casing/shotgun/laser/prespawned
 
 // Shotgun mags
 
@@ -52,9 +40,9 @@
 	name = "speed loader (.35 Auto hollow point)"
 	build_path = /obj/item/ammo_magazine/slpistol
 
-/datum/design/autolathe/ammo/sl_pistol/flash
-	name = "speed loader (.35 Auto flash)"
-	build_path = /obj/item/ammo_magazine/slpistol/flash
+/datum/design/autolathe/ammo/sl_pistol/incendiary
+	name = "speed loader (.35 Auto incendiary)"
+	build_path = /obj/item/ammo_magazine/slpistol/incendiary
 
 /datum/design/autolathe/ammo/sl_pistol/practice
 	name = "speed loader (.35 Auto practice)"
@@ -69,9 +57,9 @@
 	name = "standard magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/pistol
 
-/datum/design/autolathe/ammo/magazine_pistol/flash
-	name = "standard magazine (.35 Auto, flash)"
-	build_path = /obj/item/ammo_magazine/pistol/flash
+/datum/design/autolathe/ammo/magazine_pistol/incendiary
+	name = "standard magazine (.35 Auto incendiary)"
+	build_path = /obj/item/ammo_magazine/pistol/incendiary
 
 /datum/design/autolathe/ammo/magazine_pistol/practice
 	name = "standard magazine (.35 Auto practice)"
@@ -87,9 +75,9 @@
 	name = "highcap magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/hpistol
 
-/datum/design/autolathe/ammo/magazine_hpistol/flash
-	name = "highcap magazine (.35 Auto flash)"
-	build_path = /obj/item/ammo_magazine/hpistol/flash
+/datum/design/autolathe/ammo/magazine_hpistol/incendiary
+	name = "highcap magazine (.35 Auto incendiary)"
+	build_path = /obj/item/ammo_magazine/hpistol/incendiary
 
 /datum/design/autolathe/ammo/magazine_hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
@@ -105,9 +93,9 @@
 	name = "SMG magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/smg
 
-/datum/design/autolathe/ammo/smg/flash
-	name = "SMG magazine (.35 Auto flash)"
-	build_path = /obj/item/ammo_magazine/smg/flash
+/datum/design/autolathe/ammo/smg/incendiary
+	name = "SMG magazine (.35 Auto incendiary)"
+	build_path = /obj/item/ammo_magazine/smg/incendiary
 
 /datum/design/autolathe/ammo/smg/practice
 	name = "SMG magazine (.35 Auto practice)"
@@ -123,9 +111,9 @@
 	name = "ammunition packet (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/ammobox/pistol
 
-/datum/design/autolathe/ammo/pistol_ammobox/flash
-	name = "ammunition packet (.35 Auto flash)"
-	build_path = /obj/item/ammo_magazine/ammobox/pistol/flash
+/datum/design/autolathe/ammo/pistol_ammobox/incendiary
+	name = "ammunition packet (.35 Auto incendiary)"
+	build_path = /obj/item/ammo_magazine/ammobox/pistol/incendiary
 
 /datum/design/autolathe/ammo/pistol_ammobox/practice
 	name = "ammunition packet (.35 Auto practice)"
@@ -141,9 +129,9 @@
 	name = "speed loader (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/slmagnum
 
-/datum/design/autolathe/ammo/sl_magnum/flash
-	name = "speed loader (.40 Magnum flash)"
-	build_path = /obj/item/ammo_magazine/slmagnum/flash
+/datum/design/autolathe/ammo/sl_magnum/incendiary
+	name = "speed loader (.40 Magnum incendiary)"
+	build_path = /obj/item/ammo_magazine/slmagnum/incendiary
 
 /datum/design/autolathe/ammo/sl_magnum/practice
 	name = "speed loader (.40 Magnum practice)"
@@ -159,9 +147,9 @@
 	name = "magazine (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/magnum
 
-/datum/design/autolathe/ammo/mg_magnum/flash
-	name = "magazine (.40 Magnum flash)"
-	build_path = /obj/item/ammo_magazine/magnum/flash
+/datum/design/autolathe/ammo/mg_magnum/incendiary
+	name = "magazine (.40 Magnum incendiary)"
+	build_path = /obj/item/ammo_magazine/magnum/incendiary
 
 /datum/design/autolathe/ammo/mg_magnum/practice
 	name = "magazine (.40 Magnum practice)"
@@ -177,9 +165,9 @@
 	name = "ammunition packet (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/ammobox/magnum
 
-/datum/design/autolathe/ammo/magnum_ammobox/flash
-	name = "ammunition packet (.40 Magnum flash)"
-	build_path = /obj/item/ammo_magazine/ammobox/magnum/flash
+/datum/design/autolathe/ammo/magnum_ammobox/incendiary
+	name = "ammunition packet (.40 Magnum incendiary)"
+	build_path = /obj/item/ammo_magazine/ammobox/magnum/incendiary
 
 /datum/design/autolathe/ammo/magnum_ammobox/practice
 	name = "ammunition packet (.40 Magnum practice)"
@@ -191,26 +179,6 @@
 
 // .20 Rifle
 
-/datum/design/autolathe/ammo/srifle_short
-	name = "short magazine (.20 Rifle)"
-	build_path = /obj/item/ammo_magazine/srifle
-
-/datum/design/autolathe/ammo/srifle_short/empty
-	name = "empty short magazine (.20 Rifle)"
-	build_path = /obj/item/ammo_magazine/srifle/empty
-
-/datum/design/autolathe/ammo/srifle_short/flash
-	name = "short magazine (.20 Rifle flash)"
-	build_path = /obj/item/ammo_magazine/srifle/flash
-
-/datum/design/autolathe/ammo/srifle_short/practice
-	name = "short magazine (.20 Rifle practice)"
-	build_path = /obj/item/ammo_magazine/srifle/practice
-
-/datum/design/autolathe/ammo/srifle_short/rubber
-	name = "short magazine (.20 Rifle rubber)"
-	build_path = /obj/item/ammo_magazine/srifle/rubber
-
 /datum/design/autolathe/ammo/srifle
 	name = "long magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle
@@ -219,9 +187,9 @@
 	name = "long empty magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/empty
 
-/datum/design/autolathe/ammo/srifle/flash
-	name = "long magazine (.20 Rifle flash)"
-	build_path = /obj/item/ammo_magazine/srifle/flash
+/datum/design/autolathe/ammo/srifle/incendiary
+	name = "long magazine (.20 Rifle incendiary)"
+	build_path = /obj/item/ammo_magazine/srifle/incendiary
 
 /datum/design/autolathe/ammo/srifle/practice
 	name = "long magazine (.20 Rifle practice)"
@@ -245,9 +213,9 @@
 	name = "ammunition packet (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle_small
 
-/datum/design/autolathe/ammo/srifle_ammobox_small/flash
-	name = "ammunition packet (.20 Rifle flash)"
-	build_path = /obj/item/ammo_magazine/ammobox/srifle_small/flash
+/datum/design/autolathe/ammo/srifle_ammobox_small/incendiary
+	name = "ammunition packet (.20 Rifle incendiary)"
+	build_path = /obj/item/ammo_magazine/ammobox/srifle_small/incendiary
 
 /datum/design/autolathe/ammo/srifle_ammobox_small/practice
 	name = "ammunition packet (.20 Rifle practice)"
@@ -267,9 +235,9 @@
 	name = "empty magazine (.25 caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/empty
 
-/datum/design/autolathe/ammo/ihclrifle/flash
-	name = "magazine (.25 caseless Rifle flash)"
-	build_path = /obj/item/ammo_magazine/ihclrifle/flash
+/datum/design/autolathe/ammo/ihclrifle/incendiary
+	name = "magazine (.25 caseless Rifle incendiary)"
+	build_path = /obj/item/ammo_magazine/ihclrifle/incendiary
 
 /datum/design/autolathe/ammo/ihclrifle/practice
 	name = "magazine (.25 caseless Rifle practice)"
@@ -297,9 +265,9 @@
 	name = "ammunition packet (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/ammobox/clrifle_small
 
-/datum/design/autolathe/ammo/clrifle_ammobox_small/flash
-	name = "ammunition packet (.25 Caseless Rifle flash)"
-	build_path = /obj/item/ammo_magazine/ammobox/clrifle_small/flash
+/datum/design/autolathe/ammo/clrifle_ammobox_small/incendiary
+	name = "ammunition packet (.25 Caseless Rifle incendiary)"
+	build_path = /obj/item/ammo_magazine/ammobox/clrifle_small/incendiary
 
 /datum/design/autolathe/ammo/clrifle_ammobox_small/practice
 	name = "ammunition packet (.25 Caseless Rifle practice)"
@@ -311,45 +279,25 @@
 
 // .30 Rifle
 
-/datum/design/autolathe/ammo/lrifle_short
-	name = "short magazine (.30 Rifle)"
-	build_path = /obj/item/ammo_magazine/lrifle_short
-
-/datum/design/autolathe/ammo/lrifle_short/empty
-	name = "empty short magazine (.30 Rifle)"
-	build_path = /obj/item/ammo_magazine/lrifle_short/empty
-
-/datum/design/autolathe/ammo/lrifle_short/flash
-	name = "short magazine (.30 Rifle flash)"
-	build_path = /obj/item/ammo_magazine/lrifle_short/flash
-
-/datum/design/autolathe/ammo/lrifle_short/practice
-	name = "short magazine (.30 Rifle practice)"
-	build_path = /obj/item/ammo_magazine/lrifle_short/practice
-
-/datum/design/autolathe/ammo/lrifle_short/rubber
-	name = "short magazine (.30 Rifle rubber)"
-	build_path = /obj/item/ammo_magazine/lrifle_short/rubber
-
-/datum/design/autolathe/ammo/lrifle_long
+/datum/design/autolathe/ammo/lrifle
 	name = "long magazine (.30 Rifle)"
-	build_path = /obj/item/ammo_magazine/lrifle_long
+	build_path = /obj/item/ammo_magazine/lrifle
 
-/datum/design/autolathe/ammo/lrifle_long/empty
+/datum/design/autolathe/ammo/lrifle/empty
 	name = "empty long magazine (.30 Rifle)"
-	build_path = /obj/item/ammo_magazine/lrifle_long/empty
+	build_path = /obj/item/ammo_magazine/lrifle/empty
 
-/datum/design/autolathe/ammo/lrifle_long/flash
-	name = "long magazine (.30 Rifle flash)"
-	build_path = /obj/item/ammo_magazine/lrifle_long/flash
+/datum/design/autolathe/ammo/lrifle/incendiary
+	name = "long magazine (.30 Rifle incendiary)"
+	build_path = /obj/item/ammo_magazine/lrifle/incendiary
 
-/datum/design/autolathe/ammo/lrifle_long/practice
+/datum/design/autolathe/ammo/lrifle/practice
 	name = "long magazine (.30 Rifle practice)"
-	build_path = /obj/item/ammo_magazine/lrifle_long/practice
+	build_path = /obj/item/ammo_magazine/lrifle/practice
 
-/datum/design/autolathe/ammo/lrifle_long/rubber
+/datum/design/autolathe/ammo/lrifle/rubber
 	name = "long magazine (.30 Rifle rubber)"
-	build_path = /obj/item/ammo_magazine/lrifle_long/rubber
+	build_path = /obj/item/ammo_magazine/lrifle/rubber
 
 // .30 Boxmag + Speedloader
 
@@ -368,12 +316,12 @@
 	build_path = /obj/item/ammo_magazine/ammobox/lrifle
 
 /datum/design/autolathe/ammo/lrifle_ammobox_small
-	name = "ammunition packet (.30 Rifle flash)"
+	name = "ammunition packet (.30 Rifle incendiary)"
 	build_path = /obj/item/ammo_magazine/ammobox/lrifle_small
 
-/datum/design/autolathe/ammo/lrifle_ammobox_small/flash
-	name = "ammunition packet (.30 Rifle flash)"
-	build_path = /obj/item/ammo_magazine/ammobox/lrifle_small/flash
+/datum/design/autolathe/ammo/lrifle_ammobox_small/incendiary
+	name = "ammunition packet (.30 Rifle incendiary)"
+	build_path = /obj/item/ammo_magazine/ammobox/lrifle_small/incendiary
 
 /datum/design/autolathe/ammo/lrifle_ammobox_small/practice
 	name = "ammunition packet (.30 Rifle practice)"
@@ -392,3 +340,9 @@
 /datum/design/autolathe/ammo/box_antim
 	name = "ammunition box (.60)"
 	build_path = /obj/item/ammo_magazine/ammobox/antim
+
+/datum/design/autolathe/ammo/dart_mag
+	name = "chemical darts magazine"
+	build_path = /obj/item/ammo_magazine/chemdart
+
+	
