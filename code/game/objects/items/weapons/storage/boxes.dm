@@ -237,18 +237,6 @@
 	new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
 	new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
 
-/obj/item/weapon/storage/box/shotgunammo/stunshells
-	name = "box of stun shells"
-
-/obj/item/weapon/storage/box/shotgunammo/stunshells/populate_contents()
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-	new /obj/item/ammo_casing/shotgun/stunshell/prespawned(src)
-
 /obj/item/weapon/storage/box/shotgunammo/practiceshells
 	name = "box of practice shells"
 
