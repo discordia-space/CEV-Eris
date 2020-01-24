@@ -149,7 +149,6 @@
 		bio = 0,
 		rad = 0
 	)
-	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 
 //Jensen cosplay gear
