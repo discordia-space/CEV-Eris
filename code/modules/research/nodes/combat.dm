@@ -143,35 +143,7 @@
 	cost = 5000
 
 	unlocks_designs = list(
-							/datum/design/autolathe/ammo/srifle/incendiary,
-							/datum/design/autolathe/ammo/srifle_ammobox_small/incendiary,
-							/datum/design/autolathe/ammo/ihclrifle/incendiary,
-							/datum/design/autolathe/ammo/clrifle_ammobox_small/incendiary,
-							/datum/design/autolathe/ammo/lrifle/incendiary,
-							/datum/design/autolathe/ammo/lrifle_ammobox_small/incendiary,
-						)
-
-/datum/technology/adv_temp
-	name = "Advanced Temperature Ammunition"
-	desc = "Incendiary ammunition for small catriges."
-	tech_type = RESEARCH_COMBAT
-
-	x = 0.6
-	y = 0.7
-	icon = "ammobox"
-
-	required_technologies = list(/datum/technology/temp)
-	required_tech_levels = list()
-	cost = 5000
-
-	unlocks_designs = list(
-							/datum/design/autolathe/ammo/magazine_pistol/incendiary,
-							/datum/design/autolathe/ammo/sl_pistol/incendiary,
-							/datum/design/autolathe/ammo/smg/incendiary,
-							/datum/design/autolathe/ammo/pistol_ammobox/incendiary,
-							/datum/design/autolathe/ammo/sl_magnum/incendiary,
-							/datum/design/autolathe/ammo/mg_magnum/incendiary,
-							/datum/design/autolathe/ammo/magnum_ammobox/incendiary,
+							/datum/design/research/item/ammo/shotgun_incendiary,
 						)
 
 

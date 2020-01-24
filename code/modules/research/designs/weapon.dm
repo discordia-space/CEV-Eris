@@ -86,3 +86,10 @@
 	desc = "35 Auto SMG magazine for the C-20r"
 	build_path = /obj/item/ammo_magazine/smg
 	sort_string = "TAACD"
+
+/datum/design/research/item/ammo/shotgun_incendiary
+	name = "incendiary shotgun shells"
+	desc = "Insendiary ammunition for shotguns"
+	build_path = /obj/item/ammo_casing/shotgun/incendiary/prespawned
+	sort_string = "TAACF"
+

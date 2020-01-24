@@ -15,12 +15,6 @@
 	icon_state = "pistol"
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/pistol/incendiary
-	name = "standard magazine (.35 Auto incendiary)"
-	icon_state = "pistol_f"
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASMA = 1)
-	ammo_type = /obj/item/ammo_casing/pistol/incendiary
-
 /obj/item/ammo_magazine/pistol/practice
 	name = "standard magazine (.35 Auto practice)"
 	icon_state = "pistol_p"
@@ -53,11 +47,6 @@
 /obj/item/ammo_magazine/hpistol/empty
 	icon_state = "hpistol"
 	initial_ammo = 0
-
-/obj/item/ammo_magazine/hpistol/incendiary
-	name = "highcap magazine (.35 Auto incendiary)"
-	icon_state = "hpistol_f"
-	ammo_type = /obj/item/ammo_casing/pistol/incendiary
 
 /obj/item/ammo_magazine/hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
@@ -92,13 +81,6 @@
 	icon_state = "smg"
 	ammo_color = ""
 	initial_ammo = 0
-
-/obj/item/ammo_magazine/smg/incendiary
-	name = "smg magazine (.35 Auto incendiary)"
-	icon_state = "smg_f"
-	ammo_color = "-f"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 1)
-	ammo_type = /obj/item/ammo_casing/pistol/incendiary
 
 /obj/item/ammo_magazine/smg/practice
 	name = "smg magazine (.35 Auto practice)"
@@ -136,12 +118,6 @@
 	icon_state = "magnum"
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/magnum/incendiary
-	name = "magazine (40 Magnum incendiary)"
-	icon_state = "magnum_f"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASMA = 1)
-	ammo_type = /obj/item/ammo_casing/magnum/incendiary
-
 /obj/item/ammo_magazine/magnum/practice
 	name = "magazine (40 Magnum practice)"
 	icon_state = "magnum_p"
@@ -175,12 +151,6 @@
 	icon_state = "srifle"
 	matter = list(MATERIAL_STEEL = 3)
 	initial_ammo = 0
-
-/obj/item/ammo_magazine/srifle/incendiary
-	name = "magazine (.20 Rifle incendiary)"
-	icon_state = "srifle_f"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASMA = 2)
-	ammo_type = /obj/item/ammo_casing/srifle/incendiary
 
 /obj/item/ammo_magazine/srifle/practice
 	name = "magazine (.20 Rifle practice)"
@@ -226,12 +196,6 @@
 /obj/item/ammo_magazine/ihclrifle/empty
 	icon_state = "ihclrifle"
 	initial_ammo = 0
-
-/obj/item/ammo_magazine/ihclrifle/incendiary
-	name = "magazine (.25 Caseless Rifle incendiary)"
-	icon_state = "ihclrifle_f"
-	matter = list(MATERIAL_STEEL = 7, MATERIAL_PLASMA = 2)
-	ammo_type = /obj/item/ammo_casing/clrifle/incendiary
 
 /obj/item/ammo_magazine/ihclrifle/practice
 	name = "magazine (.25 Caseless Rifle practice)"
@@ -309,12 +273,6 @@
 	icon_state = "lrifle"
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/lrifle/incendiary
-	name = "long magazine (.30 Rifle incendiary)"
-	icon_state = "lrifle_f"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASMA = 2)
-	ammo_type = /obj/item/ammo_casing/lrifle/incendiary
-
 /obj/item/ammo_magazine/lrifle/practice
 	name = "long magazine (.30 Rifle practice)"
 	icon_state = "lrifle_p"
@@ -354,11 +312,6 @@
 	max_ammo = 6
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/slpistol/incendiary
-	name = "speed loader (.35 Special incendiary)"
-	icon_state = "slpistol_f"
-	ammo_type = /obj/item/ammo_casing/pistol/incendiary
-
 /obj/item/ammo_magazine/slpistol/practice
 	name = "speed loader (.35 Special practice)"
 	icon_state = "slpistol_p"
@@ -385,11 +338,6 @@
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
 	multiple_sprites = 1
-
-/obj/item/ammo_magazine/slmagnum/incendiary
-	name = "speed loader (.40 Magnum incendiary)"
-	icon_state = "slmagnum_f"
-	ammo_type = /obj/item/ammo_casing/magnum/incendiary
 
 /obj/item/ammo_magazine/slmagnum/practice
 	name = "speed loader (.40 Magnum practice)"

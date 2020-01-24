@@ -5,11 +5,6 @@
 	caliber = "pistol"
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-/obj/item/ammo_casing/pistol/incendiary
-	desc = "A .35 Auto incendiary shell casing."
-	caliber = "pistol"
-	projectile_type = /obj/item/projectile/bullet/pistol/incendiary
-
 /obj/item/ammo_casing/pistol/hv
 	desc = "A .35 Auto high-velocity bullet casing."
 	caliber = "pistol"
@@ -31,11 +26,6 @@
 	desc = "A .40 Magnum hollow point bullet casing."
 	caliber = "magnum"
 	projectile_type = /obj/item/projectile/bullet/magnum
-
-/obj/item/ammo_casing/magnum/incendiary
-	desc = "A .40 Magnum incendiary shell casing."
-	caliber = "magnum"
-	projectile_type = /obj/item/projectile/bullet/magnum/incendiary
 
 /obj/item/ammo_casing/magnum/practice
 	desc = "A .40 Magnum practice bullet casing."
@@ -59,11 +49,6 @@
 	caliber = "srifle"
 	projectile_type = /obj/item/projectile/bullet/srifle
 
-/obj/item/ammo_casing/srifle/incendiary
-	desc = "A .20 Rifle incendiary bullet casing."
-	caliber = "srifle"
-	projectile_type = /obj/item/projectile/bullet/srifle/incendiary
-
 /obj/item/ammo_casing/srifle/practice
 	desc = "A .20 Rifle practice bullet casing."
 	caliber = "srifle"
@@ -85,12 +70,6 @@
 	desc = "A .25 Caseless Rifle bullet casing."
 	caliber = "clrifle"
 	projectile_type = /obj/item/projectile/bullet/clrifle
-	is_caseless = TRUE
-
-/obj/item/ammo_casing/clrifle/incendiary
-	desc = "A .25 Caseless Rifle incendiary bullet casing."
-	caliber = "clrifle"
-	projectile_type = /obj/item/projectile/bullet/clrifle/incendiary
 	is_caseless = TRUE
 
 /obj/item/ammo_casing/clrifle/practice
@@ -117,11 +96,6 @@
 	desc = "A .30 rifle bullet casing."
 	caliber = "lrifle"
 	projectile_type = /obj/item/projectile/bullet/lrifle
-
-/obj/item/ammo_casing/lrifle/incendiary
-	desc = "A .30 rifle incendiary bullet casing."
-	caliber = "lrifle"
-	projectile_type = /obj/item/projectile/bullet/lrifle/incendiary
 
 /obj/item/ammo_casing/lrifle/practice
 	desc = "A .30 rifle practice bullet casing."
@@ -222,6 +196,17 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
 
 /obj/item/ammo_casing/shotgun/flash/prespawned
+	amount = 5
+
+/obj/item/ammo_casing/shotgun/incendiary
+	name = "incendiary shell"
+	desc = "A .50 chemical shell with highly flammable load."
+	icon_state = "ishell"
+	spent_icon = "ishell-spent"
+	projectile_type = /obj/item/projectile/bullet/shotgun/incendiary
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASMA = 0.5)
+
+/obj/item/ammo_casing/shotgun/incendiary/prespawned
 	amount = 5
 
 //// Other ////

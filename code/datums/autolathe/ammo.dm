@@ -40,10 +40,6 @@
 	name = "speed loader (.35 Auto hollow point)"
 	build_path = /obj/item/ammo_magazine/slpistol
 
-/datum/design/autolathe/ammo/sl_pistol/incendiary
-	name = "speed loader (.35 Auto incendiary)"
-	build_path = /obj/item/ammo_magazine/slpistol/incendiary
-
 /datum/design/autolathe/ammo/sl_pistol/practice
 	name = "speed loader (.35 Auto practice)"
 	build_path = /obj/item/ammo_magazine/slpistol/practice
@@ -56,10 +52,6 @@
 /datum/design/autolathe/ammo/magazine_pistol
 	name = "standard magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/pistol
-
-/datum/design/autolathe/ammo/magazine_pistol/incendiary
-	name = "standard magazine (.35 Auto incendiary)"
-	build_path = /obj/item/ammo_magazine/pistol/incendiary
 
 /datum/design/autolathe/ammo/magazine_pistol/practice
 	name = "standard magazine (.35 Auto practice)"
@@ -75,10 +67,6 @@
 	name = "highcap magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/hpistol
 
-/datum/design/autolathe/ammo/magazine_hpistol/incendiary
-	name = "highcap magazine (.35 Auto incendiary)"
-	build_path = /obj/item/ammo_magazine/hpistol/incendiary
-
 /datum/design/autolathe/ammo/magazine_hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
 	build_path = /obj/item/ammo_magazine/hpistol/practice
@@ -92,10 +80,6 @@
 /datum/design/autolathe/ammo/smg
 	name = "SMG magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/smg
-
-/datum/design/autolathe/ammo/smg/incendiary
-	name = "SMG magazine (.35 Auto incendiary)"
-	build_path = /obj/item/ammo_magazine/smg/incendiary
 
 /datum/design/autolathe/ammo/smg/practice
 	name = "SMG magazine (.35 Auto practice)"
@@ -111,10 +95,6 @@
 	name = "ammunition packet (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/ammobox/pistol
 
-/datum/design/autolathe/ammo/pistol_ammobox/incendiary
-	name = "ammunition packet (.35 Auto incendiary)"
-	build_path = /obj/item/ammo_magazine/ammobox/pistol/incendiary
-
 /datum/design/autolathe/ammo/pistol_ammobox/practice
 	name = "ammunition packet (.35 Auto practice)"
 	build_path = /obj/item/ammo_magazine/ammobox/pistol/practice
@@ -128,10 +108,6 @@
 /datum/design/autolathe/ammo/sl_magnum
 	name = "speed loader (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/slmagnum
-
-/datum/design/autolathe/ammo/sl_magnum/incendiary
-	name = "speed loader (.40 Magnum incendiary)"
-	build_path = /obj/item/ammo_magazine/slmagnum/incendiary
 
 /datum/design/autolathe/ammo/sl_magnum/practice
 	name = "speed loader (.40 Magnum practice)"
@@ -147,10 +123,6 @@
 	name = "magazine (.40 Magnum hollow point)"
 	build_path = /obj/item/ammo_magazine/magnum
 
-/datum/design/autolathe/ammo/mg_magnum/incendiary
-	name = "magazine (.40 Magnum incendiary)"
-	build_path = /obj/item/ammo_magazine/magnum/incendiary
-
 /datum/design/autolathe/ammo/mg_magnum/practice
 	name = "magazine (.40 Magnum practice)"
 	build_path = /obj/item/ammo_magazine/magnum/practice
@@ -164,10 +136,6 @@
 /datum/design/autolathe/ammo/magnum_ammobox
 	name = "ammunition packet (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/ammobox/magnum
-
-/datum/design/autolathe/ammo/magnum_ammobox/incendiary
-	name = "ammunition packet (.40 Magnum incendiary)"
-	build_path = /obj/item/ammo_magazine/ammobox/magnum/incendiary
 
 /datum/design/autolathe/ammo/magnum_ammobox/practice
 	name = "ammunition packet (.40 Magnum practice)"
@@ -186,10 +154,6 @@
 /datum/design/autolathe/ammo/srifle/empty
 	name = "long empty magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/empty
-
-/datum/design/autolathe/ammo/srifle/incendiary
-	name = "long magazine (.20 Rifle incendiary)"
-	build_path = /obj/item/ammo_magazine/srifle/incendiary
 
 /datum/design/autolathe/ammo/srifle/practice
 	name = "long magazine (.20 Rifle practice)"
@@ -213,10 +177,6 @@
 	name = "ammunition packet (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle_small
 
-/datum/design/autolathe/ammo/srifle_ammobox_small/incendiary
-	name = "ammunition packet (.20 Rifle incendiary)"
-	build_path = /obj/item/ammo_magazine/ammobox/srifle_small/incendiary
-
 /datum/design/autolathe/ammo/srifle_ammobox_small/practice
 	name = "ammunition packet (.20 Rifle practice)"
 	build_path = /obj/item/ammo_magazine/ammobox/srifle_small/practice
@@ -234,10 +194,6 @@
 /datum/design/autolathe/ammo/ihclrifle/empty
 	name = "empty magazine (.25 caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/empty
-
-/datum/design/autolathe/ammo/ihclrifle/incendiary
-	name = "magazine (.25 caseless Rifle incendiary)"
-	build_path = /obj/item/ammo_magazine/ihclrifle/incendiary
 
 /datum/design/autolathe/ammo/ihclrifle/practice
 	name = "magazine (.25 caseless Rifle practice)"
@@ -265,10 +221,6 @@
 	name = "ammunition packet (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/ammobox/clrifle_small
 
-/datum/design/autolathe/ammo/clrifle_ammobox_small/incendiary
-	name = "ammunition packet (.25 Caseless Rifle incendiary)"
-	build_path = /obj/item/ammo_magazine/ammobox/clrifle_small/incendiary
-
 /datum/design/autolathe/ammo/clrifle_ammobox_small/practice
 	name = "ammunition packet (.25 Caseless Rifle practice)"
 	build_path = /obj/item/ammo_magazine/ammobox/clrifle_small/practice
@@ -286,10 +238,6 @@
 /datum/design/autolathe/ammo/lrifle/empty
 	name = "empty long magazine (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/lrifle/empty
-
-/datum/design/autolathe/ammo/lrifle/incendiary
-	name = "long magazine (.30 Rifle incendiary)"
-	build_path = /obj/item/ammo_magazine/lrifle/incendiary
 
 /datum/design/autolathe/ammo/lrifle/practice
 	name = "long magazine (.30 Rifle practice)"
@@ -316,12 +264,8 @@
 	build_path = /obj/item/ammo_magazine/ammobox/lrifle
 
 /datum/design/autolathe/ammo/lrifle_ammobox_small
-	name = "ammunition packet (.30 Rifle incendiary)"
+	name = "ammunition packet (.30 Rifle)"
 	build_path = /obj/item/ammo_magazine/ammobox/lrifle_small
-
-/datum/design/autolathe/ammo/lrifle_ammobox_small/incendiary
-	name = "ammunition packet (.30 Rifle incendiary)"
-	build_path = /obj/item/ammo_magazine/ammobox/lrifle_small/incendiary
 
 /datum/design/autolathe/ammo/lrifle_ammobox_small/practice
 	name = "ammunition packet (.30 Rifle practice)"
