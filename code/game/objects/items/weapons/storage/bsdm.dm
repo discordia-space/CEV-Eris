@@ -1,6 +1,8 @@
 /obj/item/weapon/storage/bsdm
 	name = "\improper BSDM unit"
 	desc = "A Blue Space Direct Mail unit, commonly used by corporate infiltrators. \
+			Essentially it is a box with enormous storage space for it size which uses Bluespace technology to store \
+			(usually) stolen goods inside and teleport itself upon need. Can also sustain life of a small creature inside if needed. \
 			Once activated, teleports a small distance away into space and sends a signal for a recovery probe to pick it up."
 	icon_state = "bsdm"
 	item_state = "bsdm"

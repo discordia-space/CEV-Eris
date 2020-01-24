@@ -37,6 +37,13 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
+	holder_type =
+
+//made this holder to be able to set it as antag target for stealing, parent is in the holder.dm
+/obj/item/weapon/holder/corgi/ian
+	name = "Ian"
+	desc = "It's Ian! Bark."
+	gender = MALE
 
 /mob/living/simple_animal/corgi/Life()
 	..()

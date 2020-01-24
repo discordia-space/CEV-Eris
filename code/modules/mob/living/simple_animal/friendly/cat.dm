@@ -233,19 +233,13 @@
 	gender = FEMALE
 	icon_state = "cat"
 	befriend_job = "Moebius Biolab Officer"
+	holder_type = /obj/item/weapon/holder/cat/fluff/runtime
 
-/mob/living/simple_animal/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww"
-	icon_state = "kitten"
-	gender = NEUTER
-
-// Leaving this here for now.
-/obj/item/weapon/holder/cat/fluff/bones
-	name = "Bones"
-	desc = "It's Bones! Meow."
-	gender = MALE
-	icon_state = "cat3"
+/obj/item/weapon/holder/cat/fluff/runtime
+	name = "Runtime"
+	desc = "It's Runtime! Meow."
+	gender = FEMALE
+	icon_state = "cat"
 
 /mob/living/simple_animal/cat/fluff/bones
 	name = "Bones"
@@ -253,7 +247,18 @@
 	gender = MALE
 	icon_state = "cat3"
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
-	var/friend_name = "Erstatz Vryroxes"
+
+/obj/item/weapon/holder/cat/fluff/bones
+	name = "Bones"
+	desc = "It's Bones! Meow."
+	gender = MALE
+	icon_state = "cat3"
+
+/mob/living/simple_animal/cat/kitten
+	name = "kitten"
+	desc = "D'aaawwww"
+	icon_state = "kitten"
+	gender = NEUTER
 
 /mob/living/simple_animal/cat/kitten/New()
 	gender = pick(MALE, FEMALE)

@@ -191,15 +191,17 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 		"the station blueprints" = /obj/item/blueprints,
 		"a sample of slime extract" = /obj/item/slime_extract,
 		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
-		"a Moebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
+		"a Moebius Expedition Overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
 		"a exultant's jumpsuit" = /obj/item/clothing/under/rank/exultant,
-		"a Moebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
-		"a Ironhammer commander's jumpsuit" = /obj/item/clothing/under/rank/ih_commander,
+		"a Moebius Biolab Officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
+		"a Ironhammer Commander's jumpsuit" = /obj/item/clothing/under/rank/ih_commander,
 		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
+		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer,
+		"a Moebius Biolab Officer's cat, Runtime" = /obj/item/weapon/holder/cat/fluff/runtime,
+		"a First Officer's dog, Ian" = /obj/item/weapon/holder/corgi/ian //less cruel than its meat, at least
 	)
 
 /datum/antag_contract/item/steal/New()

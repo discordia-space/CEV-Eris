@@ -80879,6 +80879,7 @@
 	pixel_x = 0;
 	pixel_y = 32
 	},
+/mob/living/simple_animal/cat/fluff/Runtime,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/command/mbo)
 "dyT" = (
