@@ -18,8 +18,8 @@
 	var/teleport_offset = 8		//radius of wrong place
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
-	var/Charging = 0 			//If its charging up or not
-	var/Using = 0				//If its being used
+	var/Charging = FALSE 			//If its charging up or not
+	var/Using = FALSE				//If its being used
 /obj/item/weapon/bluespace_harpoon/Initialize()
 	. = ..()
 	if(!cell && suitable_cell)
@@ -35,9 +35,9 @@
 		update_icon()
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
-	if(Using == 0)
-		Using = 1
-		Charging = 1
+	if(!Using)
+		Using = TRUE
+		Charging = TRUE
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
 			if(istype(A, /obj/item/weapon/storage/))
 				return
@@ -59,10 +59,10 @@
 				if ((O.client && !( O.blinded )))
 					to_chat(O, "<span class = 'warning'>[user] fire from [src]</span>")
 			to_chat(user, "<span class = 'warning'>You fire from [src]</span>")
-			Charging = 0
+			Charging = FALSE
 		else
 			to_chat(user, "<span class = 'warning'>Error, do not move!</span>")
-			Using = 0
+			Using = FALSE
 	else
 		to_chat(user, "<span class = 'warning'>Error, single destination only!</span>")
 
@@ -79,8 +79,8 @@
 		teleport(AtomTurf, UserTurf)
 
 /obj/item/weapon/bluespace_harpoon/proc/teleport(var/turf/source, var/turf/target)
-	if(Charging == 0)
-		Using = 0
+	if(!Charging)
+		Using = FALSE
 		for(var/atom/movable/AM in source)
 			if(istype(AM, /mob/shadow))
 				continue
