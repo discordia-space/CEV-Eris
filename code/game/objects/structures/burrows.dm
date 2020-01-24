@@ -174,6 +174,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 	if (!processing)
 		START_PROCESSING(SSobj, src)
+		processing = TRUE
 
 
 	//The time we started. Used for animations
@@ -235,10 +236,16 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	duration = _duration
 	recieving = sender
 	START_PROCESSING(SSobj, src)
+	processing = TRUE
 
 
 
 /obj/structure/burrow/Process()
+	// Currently, STOP_PROCESSING does NOT instantly remove the object from processing queue
+	// This is a quick and dirty fix for runtime error spam caused by this
+	if(!processing)
+		return
+
 	//Burrows process when they are either sending or recieving mobs.
 	//One or the other, cant do both at once
 	var/progress = (world.time - migration_initiated) / duration
