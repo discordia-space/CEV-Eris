@@ -405,7 +405,7 @@
 /obj/item/weapon/tool_upgrade/augment/ai_tool
 	name = "Nanointegrated AI"
 	desc = "A forgotten One Star tech. This module must be slapped hard enough on a surface of any tool, and you can enjoy right away the benefits it provides. \
-			A powerful AI will integrate itself in this tool with help on nanobots it's control, and improve it in every way possible."
+			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
