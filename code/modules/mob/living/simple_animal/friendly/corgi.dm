@@ -37,7 +37,7 @@
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
-	holder_type =
+	holder_type = /obj/item/weapon/holder/corgi/ian
 
 //made this holder to be able to set it as antag target for stealing, parent is in the holder.dm
 /obj/item/weapon/holder/corgi/ian
