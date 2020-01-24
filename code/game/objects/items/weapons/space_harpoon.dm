@@ -11,6 +11,7 @@
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 5)
 	price_tag = 4000
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
 	var/mode = MODE_TRANSMIT
 	var/transforming = FALSE	// mode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
