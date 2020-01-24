@@ -17,7 +17,7 @@
 	var/teleport_offset = 8		//radius of wrong place
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
-
+	var/Using = 0 				//If its charging up or not
 /obj/item/weapon/bluespace_harpoon/Initialize()
 	. = ..()
 	if(!cell && suitable_cell)
@@ -33,7 +33,8 @@
 		update_icon()
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
-	if(do_after(user, 40, src))
+	Using = 1
+	if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
 		if(istype(A, /obj/item/weapon/storage/))
 			return
 		else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
@@ -50,10 +51,13 @@
 
 		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
-	for(var/mob/O in oviewers(src))
-		if ((O.client && !( O.blinded )))
-			to_chat(O, "<span class = 'warning'>[user] fire from [src]</span>")
-	to_chat(user, "<span class = 'warning'>You fire from [src]</span>")
+		for(var/mob/O in oviewers(src))
+			if ((O.client && !( O.blinded )))
+				to_chat(O, "<span class = 'warning'>[user] fire from [src]</span>")
+		to_chat(user, "<span class = 'warning'>You fire from [src]</span>")
+		Using = 0
+	else
+		to_chat(user, "<span class = 'warning'>Error, recalibrate!</span>")
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
@@ -68,14 +72,15 @@
 		teleport(AtomTurf, UserTurf)
 
 /obj/item/weapon/bluespace_harpoon/proc/teleport(var/turf/source, var/turf/target)
-	for(var/atom/movable/AM in source)
-		if(istype(AM, /mob/shadow))
-			continue
-		if(!AM.anchored)
-			if(prob(offset_chance))
-				AM.forceMove(get_turf(pick(orange(teleport_offset,source))))
-			else
-				AM.forceMove(target)
+	if(Using == 0)
+		for(var/atom/movable/AM in source)
+			if(istype(AM, /mob/shadow))
+				continue
+			if(!AM.anchored)
+				if(prob(offset_chance))
+					AM.forceMove(get_turf(pick(orange(teleport_offset,source))))
+				else
+					AM.forceMove(target)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
