@@ -213,7 +213,9 @@ obj/structure/salvageable/server/Initialize()
 		/obj/item/weapon/computer_hardware/processor_unit/adv = 40,
 		/obj/item/weapon/computer_hardware/processor_unit/adv/small = 30,
 		/obj/item/weapon/computer_hardware/hard_drive = 60,
-		/obj/item/weapon/computer_hardware/hard_drive/advanced = 40
+		/obj/item/weapon/computer_hardware/hard_drive/advanced = 40,
+		/obj/random/lathe_disk = 50,
+		/obj/random/lathe_disk/advanced = 30,
 	)
 
 obj/structure/salvageable/personal/Initialize()
