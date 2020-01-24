@@ -33,21 +33,22 @@
 		update_icon()
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
-	if(istype(A, /obj/item/weapon/storage/))
-		return
-	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
-		return
+	if(do_after(user, 40, src))
+		if(istype(A, /obj/item/weapon/storage/))
+			return
+		else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
+			return
 
-	if(!cell || !cell.checked_use(100))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
-		return
-	if(!user || !A || user.machine)
-		return
-	if(transforming)
-		to_chat(user, "<span class = 'warning'>You can't fire while [src] transforming!</span>")
-		return
+		if(!cell || !cell.checked_use(100))
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			return
+		if(!user || !A || user.machine)
+			return
+		if(transforming)
+			to_chat(user, "<span class = 'warning'>You can't fire while [src] transforming!</span>")
+			return
 
-	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
 	for(var/mob/O in oviewers(src))
 		if ((O.client && !( O.blinded )))
