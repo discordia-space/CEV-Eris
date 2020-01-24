@@ -403,8 +403,9 @@
 	I.prefix = "silenced"
 
 /obj/item/weapon/tool_upgrade/augment/ai_tool
-	name = "ai tool"
-	desc = "A tool mod from OneStar is deemed heretic by the clan of Technomancers. It enhances the tool by the micro-ai at cost of increased power usage."
+	name = "Nanointegrated AI"
+	desc = "A forgotten One Star tech. This module must be slapped hard enough on a surface of any tool, and you can enjoy right away the benefits it provides. \
+			A powerful AI will integrate itself in this tool with help on nanobots it's control, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
