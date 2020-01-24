@@ -50,22 +50,21 @@
 			if(!user || !A || user.machine)
 				return
 			if(transforming)
-				to_chat(user, "<span class = 'warning'>You can't fire while [src] transforming!</span>")
+				to_chat(user, SPAN_WARNING("You can't fire while [src] transforming!"))
 				return
 
 			playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
 			for(var/mob/O in oviewers(src))
 				if ((O.client && !( O.blinded )))
-					to_chat(O, "<span class = 'warning'>[user] fire from [src]</span>")
-			to_chat(user, "<span class = 'warning'>You fire from [src]</span>")
+					to_chat(O, SPAN_WARNING("[user] fire from [src]"))
+			to_chat(user,SPAN_WARNING("You fire from [src]"))
 			Charging = FALSE
 		else
-			to_chat(user, "<span class = 'warning'>Error, do not move!</span>")
+			to_chat(user, SPAN_WARNING("Error, do not move!"))
 			Using = FALSE
 	else
-		to_chat(user, "<span class = 'warning'>Error, single destination only!</span>")
-
+		to_chat(user, SPAN_WARNING("Error, single destination only!"))
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
 	s.start()
@@ -101,7 +100,7 @@
 		return
 	mode = !mode
 	transforming = TRUE
-	to_chat(user, "<span class = 'notice'>You change [src] mode to [mode ? "transmiting" : "receiving"].</span>")
+	to_chat(user, SPAN_NOTICE("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
 	flick("harpoon-[mode]-change", src)
 	spawn(13)	//Average length of transforming animation
@@ -112,7 +111,7 @@
 
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
 	..(user, dist)
-	to_chat(user, "<span class='notice'>Mode set to [mode ? "transmiting" : "receiving"].</span>")
+	to_chat(user, SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"]."))
 
 /obj/item/weapon/bluespace_harpoon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
