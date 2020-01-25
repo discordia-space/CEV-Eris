@@ -41,7 +41,7 @@
 	name = "ammunition packet (.35 Auto)"
 	icon_state = "pistol_l"
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_CARDBOARD = 1)
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 30
 
@@ -66,7 +66,7 @@
 	name = "ammunition packet (.40 Magnum)"
 	icon_state = "magnum_l"
 	matter = list(MATERIAL_STEEL = 9, MATERIAL_CARDBOARD = 1)
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 30
 
@@ -92,7 +92,7 @@
 	icon_state = "box_srifle_l"
 	matter = list(MATERIAL_STEEL = 60)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "srifle"
+	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 240
 
@@ -105,7 +105,7 @@
 	name = "ammunition packet (.20 Rifle)"
 	icon_state = "srifle_l"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
-	caliber = "srifle"
+	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 60
 
@@ -131,7 +131,7 @@
 	icon_state = "box_clrifle_l"
 	matter = list(MATERIAL_STEEL = 60)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 240
 
@@ -144,7 +144,7 @@
 	name = "ammunition packet (.25 Caseless Rifle)"
 	icon_state = "clrifle_l"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 60
 
@@ -170,7 +170,7 @@
 	icon_state = "box_lrifle_l"
 	matter = list(MATERIAL_STEEL = 60)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle
 	mag_type = SPEEDLOADER | MAGAZINE
 	max_ammo = 240
@@ -179,7 +179,7 @@
 	name = "ammunition packet (.30 Rifle lethal)"
 	icon_state = "lrifle_l"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_CARDBOARD = 1)
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 60
 
@@ -205,7 +205,7 @@
 	icon_state = "antim"
 	matter = list(MATERIAL_STEEL = 24)
 	w_class = ITEM_SIZE_BULKY
-	caliber = "antim"
+	caliber = CAL_ANTIM
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
 

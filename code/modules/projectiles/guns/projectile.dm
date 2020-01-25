@@ -14,7 +14,7 @@
 	matter = list(MATERIAL_STEEL = 1)
 	recoil_buildup = 1
 
-	var/caliber = "357"		//determines which casings will fit
+	var/caliber = CAL_357		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
 	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
 	var/obj/item/ammo_casing/chambered = null
@@ -334,33 +334,7 @@
 
 /obj/item/weapon/gun/projectile/ui_data(mob/user)
 	var/list/data = ..()
-	var/caliber_string = "If this is not a caliber, please report to \[illegible\]"
-	switch(caliber)
-		if("357")
-			caliber_string = ".357"
-		if("clrifle")
-			caliber_string = ".25 Caseless"
-		if("srifle")
-			caliber_string = ".20"
-		if("pistol")
-			caliber_string = ".35"
-		if("lrifle")
-			caliber_string = ".30"
-		if("40m" || "magnum") //The fact that there's two strings for magnum needs fixing
-			caliber_string = ".40 magnum"
-		if("antim")
-			caliber_string = ".60 Anti Material"
-		if("shotgun")
-			caliber_string = "Shotgun Shell"
-		if("70")
-			caliber_string = ".70"
-		if("caps")
-			caliber_string = "plastic cap"
-		if("rocket")
-			caliber_string = "Rocket propelled grenade"
-		if("dart")
-			caliber_string = "Chemical dart"
-	data["caliber"] = caliber_string
+	data["caliber"] = caliber
 	data["current_ammo"] = get_ammo()
 	data["max_shells"] = get_max_ammo()
 

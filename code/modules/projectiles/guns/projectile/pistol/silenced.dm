@@ -6,7 +6,7 @@
 	item_state = "pistol_s"
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	silencer_type = /obj/item/weapon/silencer/integrated
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)

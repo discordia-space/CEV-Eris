@@ -5,7 +5,7 @@
 	icon_state = "deagle"
 	item_state = "revolver"
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)

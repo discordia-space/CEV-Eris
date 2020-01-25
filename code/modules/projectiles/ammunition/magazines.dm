@@ -6,7 +6,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 10
 	multiple_sprites = 1
@@ -39,7 +39,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_H_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 16
 	multiple_sprites = 1
@@ -72,7 +72,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 35
 	multiple_sprites = 1
@@ -110,7 +110,7 @@
 	ammo_mag = "mag_cl40m"
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	max_ammo = 10
 	multiple_sprites = 1
 
@@ -141,7 +141,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
-	caliber = "srifle"
+	caliber = CAL_SRIFLE
 	matter = list(MATERIAL_STEEL = 6)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 20
@@ -174,7 +174,7 @@
 	icon_state = "10x24"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 1)
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 99
@@ -189,7 +189,7 @@
 	ammo_mag = "ih_sol"
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	max_ammo = 30
 	multiple_sprites = 1
 
@@ -220,7 +220,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_BOX
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 50
@@ -235,7 +235,7 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_BOX
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
@@ -263,7 +263,7 @@
 	icon_state = "lrifle_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 5)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 30
@@ -293,7 +293,7 @@
 	icon_state = "maxim"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PAN
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 10)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
@@ -306,7 +306,7 @@
 	name = "speed loader (.35 Special)"
 	icon_state = "slpistol_l"
 	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
@@ -333,7 +333,7 @@
 	name = "speed loader (.40 Magnum)"
 	icon_state = "slmagnum_l"
 	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
@@ -359,7 +359,7 @@
 	name = "ammo strip (.30 Rifle)"
 	icon_state = "lrifle"
 	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 5
@@ -371,7 +371,7 @@
 	name = "speed loader (caps)"
 	icon_state = "slpistol_r"
 	icon = 'icons/obj/ammo_speed.dmi'
-	caliber = "caps"
+	caliber = CAL_CAP
 	color = "#FF0000"
 	ammo_type = /obj/item/ammo_casing/cap
 	matter = list(MATERIAL_STEEL = 2)
@@ -383,7 +383,7 @@
 	icon_state = "75"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	caliber = "70"
+	caliber = CAL_70
 	ammo_type = /obj/item/ammo_casing/a75
 	multiple_sprites = 1
 	max_ammo = 4
@@ -398,7 +398,7 @@
 	icon_state = "m12_slug"
 	mag_type = MAGAZINE
 	mag_well =  MAG_WELL_RIFLE
-	caliber = "shotgun"
+	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 6)
 	multiple_sprites = 1

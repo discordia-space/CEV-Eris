@@ -3,7 +3,7 @@
 	desc = "A rare, custom-built revolver. Use when there is no time for Voight-Kampff test. Uses .40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/deckard.dmi'
 	icon_state = "deckard"
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
