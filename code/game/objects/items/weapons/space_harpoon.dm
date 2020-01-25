@@ -11,7 +11,7 @@
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 5)
 	price_tag = 4000
-	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
+	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
 	var/mode = MODE_TRANSMIT
 	var/transforming = FALSE	// mode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
@@ -46,6 +46,7 @@
 
 			if(!cell || !cell.checked_use(100))
 				to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+				Using = FALSE
 				return
 			if(!user || !A || user.machine)
 				return
