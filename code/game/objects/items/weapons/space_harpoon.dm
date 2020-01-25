@@ -46,6 +46,7 @@
 
 			if(!cell || !cell.checked_use(100))
 				to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+				Using = FALSE
 				return
 			if(!user || !A || user.machine)
 				return
@@ -65,6 +66,7 @@
 			Using = FALSE
 	else
 		to_chat(user, SPAN_WARNING("Error, single destination only!"))
+
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
 	s.start()
