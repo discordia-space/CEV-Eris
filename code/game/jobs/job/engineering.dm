@@ -27,7 +27,7 @@
 		STAT_MEC = 40,
 		STAT_COG = 20,
 		STAT_TGH = 15,
-		STAT_VIG = 10,
+		STAT_VIG = 15,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
@@ -80,7 +80,7 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 		STAT_MEC = 30,
 		STAT_COG = 15,
 		STAT_TGH = 10,
-		STAT_VIG = 5,
+		STAT_VIG = 10,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/power_monitor,
