@@ -24,7 +24,6 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
 	icon_state = "rig-engineering"
 	item_state = "eng_voidsuit"
-	slowdown = 0.4
 	armor = list(
 		melee = 30,
 		bullet = 30,
