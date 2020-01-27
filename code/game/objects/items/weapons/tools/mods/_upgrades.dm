@@ -178,7 +178,7 @@
 	if (upgrades[UPGRADE_WORKSPEED])
 		to_chat(user, SPAN_NOTICE("Enhances workspeed by [upgrades[UPGRADE_WORKSPEED]*100]%"))
 
-	if (upgrades[UPGRADE_DEGRADATION_MULT] < 1)
+	if (upgrades[UPGRADE_DEGRADATION_MULT] && upgrades[UPGRADE_DEGRADATION_MULT] < 1)
 		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
 	else if	(upgrades[UPGRADE_DEGRADATION_MULT] > 1)
 		to_chat(user, SPAN_WARNING("Increases tool degradation by [(upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
