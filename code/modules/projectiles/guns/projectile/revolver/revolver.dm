@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/revolver.dmi'
 	icon_state = "revolver"
 	item_state = "revolver"
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	force = WEAPON_FORCE_NORMAL
 	can_dual = 1
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

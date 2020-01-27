@@ -2,7 +2,7 @@
 	<h3>Specifications:</h3>
 	<div class="statusDisplay" style="overflow: auto;">
 		<h4>Weapon details:</h4>
-		{{if data.damage_multiplier > 1}}
+		{{if data.damage_multiplier != 1}}
 			<div class="itemLabel">
 				Projectile damage multiplier:
 			</div>
@@ -10,13 +10,13 @@
 				 {{:data.damage_multiplier}}x
 			</div>
 		{{/if}}
-		{{if data.penetration_multiplier > 1}}
+		{{if data.penetration_multiplier != 1}}
 			<div class="itemLabel">
 				Projectile penetration multiplier: 
 			</div>
-				<div class="itemContent">
-					{{:data.penetration_multiplier}}x
-				</div>
+			<div class="itemContent">
+				{{:data.penetration_multiplier}}x
+			</div>
 		{{/if}}
 		<div class="itemLabel">
 			Fire delay: 

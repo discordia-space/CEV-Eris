@@ -5,7 +5,7 @@
 	icon_state = "olivawcivil"
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	ammo_mag = "mag_lpistol"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	can_dual = 1

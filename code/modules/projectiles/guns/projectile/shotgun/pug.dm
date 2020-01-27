@@ -8,7 +8,7 @@
 	icon_state = "pug"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "shotgun"
+	caliber = CAL_SHOTGUN
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
@@ -39,8 +39,8 @@
 	if(wielded)//I hate this snowflake bullshit but I don't feel like messing with it.
 		if(ammo_magazine)
 			item_state = wielded_item_state + "_mag"
-		else 
-			item_state = wielded_item_state		
+		else
+			item_state = wielded_item_state
 	else
 		item_state = initial(item_state)
 

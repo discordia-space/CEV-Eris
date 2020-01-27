@@ -9,7 +9,7 @@
 	item_state = "dallas"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE

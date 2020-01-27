@@ -5,7 +5,7 @@
 	icon_state = "inspector"
 	item_state = "revolver"
 	drawChargeMeter = FALSE
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	max_shells = 6
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
