@@ -666,14 +666,14 @@
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abQ" = (
@@ -865,14 +865,14 @@
 /obj/item/clothing/suit/armor/vest/ironhammer,
 /obj/item/clothing/suit/armor/vest/ironhammer,
 /obj/item/clothing/suit/armor/vest/ironhammer,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acn" = (
@@ -71634,7 +71634,7 @@
 /obj/item/weapon/tank/jetpack/oxygen,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/space/captain,
-/obj/item/clothing/head/helmet/space/capspace,
+/obj/item/clothing/head/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deJ" = (
@@ -97589,7 +97589,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,9"
@@ -97711,14 +97711,14 @@
 	},
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "eko" = (
 /obj/machinery/light,
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "ekp" = (
@@ -97899,7 +97899,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,8"
@@ -98137,7 +98137,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,7"

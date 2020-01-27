@@ -1,23 +1,19 @@
-/obj/item/clothing/head/helmet/space/rig/industrial
+/obj/item/clothing/head/space/rig/industrial
 	camera_networks = list(NETWORK_MINE)
 
-/obj/item/clothing/head/helmet/space/rig/ce
+/obj/item/clothing/head/space/rig/ce
 	camera_networks = list(NETWORK_ENGINEERING)
 
-/obj/item/clothing/head/helmet/space/rig/eva
+/obj/item/clothing/head/space/rig/eva
 	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_ENGINEERING)
 
-/obj/item/clothing/head/helmet/space/rig/hazmat
+/obj/item/clothing/head/space/rig/hazmat
 	light_overlay = "hardhat_light"
 	camera_networks = list(NETWORK_RESEARCH)
 
-/obj/item/clothing/head/helmet/space/rig/medical
+/obj/item/clothing/head/space/rig/medical
 	camera_networks = list(NETWORK_MEDICAL)
-
-/obj/item/clothing/head/helmet/space/rig/hazard
-	light_overlay = "helmet_light_dual"
-	camera_networks = list(NETWORK_SECURITY)
 
 
 
@@ -43,7 +39,7 @@
 	offline_vision_restriction = 2
 	emp_protection = -20
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
+	helm_type = /obj/item/clothing/head/space/rig/industrial
 
 	extra_allowed = list(
 		/obj/item/device/t_scanner,
@@ -85,7 +81,7 @@
 	offline_slowdown = 1
 	offline_vision_restriction = 1
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/eva
+	helm_type = /obj/item/clothing/head/space/rig/eva
 
 	extra_allowed = list(
 		/obj/item/weapon/storage/toolbox,
@@ -128,7 +124,7 @@ Advanced Voidsuit: Technomancer Exultant
 
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
+	helm_type = /obj/item/clothing/head/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/rig/ce
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce
 
@@ -180,7 +176,7 @@ Advanced Voidsuit: Technomancer Exultant
 	drain = 3
 	offline_vision_restriction = 1
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/hazmat
+	helm_type = /obj/item/clothing/head/space/rig/hazmat
 
 	extra_allowed = list(
 		/obj/item/stack/flag,
@@ -230,7 +226,7 @@ Advanced Voidsuit: Technomancer Exultant
 	slowdown = 0.75
 	offline_vision_restriction = 1
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/medical
+	helm_type = /obj/item/clothing/head/space/rig/medical
 
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
@@ -248,40 +244,4 @@ Advanced Voidsuit: Technomancer Exultant
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/healthscanner,
 		/obj/item/rig_module/vision/medhud
-		)
-
-
-/***************************************
-	Hazard Suit
-****************************************/
-/obj/item/weapon/rig/hazard
-	name = "hazard hardsuit control module"
-	suit_type = "hazard hardsuit"
-	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
-	icon_state = "hazard_rig"
-	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 40,
-		bomb = 90,
-		bio = 100,
-		rad = 100
-	)
-	slowdown = 1.35
-	drain = 3.5
-	offline_slowdown = 3
-	offline_vision_restriction = 1
-
-	helm_type = /obj/item/clothing/head/helmet/space/rig/hazard
-
-	req_access = list()
-	req_one_access = list()
-
-
-/obj/item/weapon/rig/hazard/equipped
-	initial_modules = list(
-		/obj/item/rig_module/vision/sechud,
-		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/grenade_launcher,
-		/obj/item/rig_module/mounted/taser
 		)

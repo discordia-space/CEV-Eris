@@ -8,7 +8,7 @@
 	contents_list_base = list(/obj/item/clothing/under/rank/captain = 1,
 	/obj/item/clothing/gloves/captain = 1)
 	contents_list_extra = list()
-	contents_list_random = list(/obj/item/clothing/head/helmet/space/capspace = 70,
+	contents_list_random = list(/obj/item/clothing/head/space/capspace = 70,
 	/obj/item/clothing/suit/space/captain = 70,
 	/obj/item/weapon/tank/jetpack/oxygen = 55,
 	/obj/item/weapon/melee/chainofcommand = 65,
@@ -30,7 +30,7 @@
 	/obj/item/weapon/hatton = 15,
 	/obj/item/weapon/rcd = 15,
 	/obj/item/weapon/melee/telebaton = 15,
-	/obj/item/clothing/suit/armor/hos = 15)
+	/obj/item/clothing/suit/armor/greatcoat = 15)
 	weight = 0.2
 
 

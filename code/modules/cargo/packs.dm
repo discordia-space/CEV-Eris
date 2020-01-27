@@ -202,8 +202,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/armor/vest/security,
 					/obj/item/clothing/suit/armor/vest/detective,
 					/obj/item/clothing/suit/storage/vest,
-					/obj/item/clothing/head/helmet,
-					/obj/item/clothing/head/helmet)
+					/obj/item/clothing/head/armor/helmet,
+					/obj/item/clothing/head/armor/helmet)
 	cost = 1500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Surplus Amor"
@@ -223,11 +223,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/handcuffs,
 					/obj/item/weapon/handcuffs,
 					/obj/item/weapon/handcuffs,
-					/obj/item/clothing/head/helmet/riot,
+					/obj/item/clothing/head/armor/riot_hud,
 					/obj/item/clothing/suit/armor/heavy/riot,
-					/obj/item/clothing/head/helmet/riot,
+					/obj/item/clothing/head/armor/riot_hud,
 					/obj/item/clothing/suit/armor/heavy/riot,
-					/obj/item/clothing/head/helmet/riot,
+					/obj/item/clothing/head/armor/riot_hud,
 					/obj/item/clothing/suit/armor/heavy/riot)
 	cost = 6100
 	containertype = /obj/structure/closet/crate/secure
@@ -246,8 +246,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "IH Ballistic Armor"
 	contains = list(/obj/item/clothing/suit/armor/bulletproof,
 					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/head/helmet,
-					/obj/item/clothing/head/helmet)
+					/obj/item/clothing/head/armor/helmet,
+					/obj/item/clothing/head/armor/helmet)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "FS Close Quarters Pack"
@@ -293,8 +293,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "IH Ablative Armor"
 	contains = list(/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/head/helmet,
-					/obj/item/clothing/head/helmet)
+					/obj/item/clothing/head/armor/helmet,
+					/obj/item/clothing/head/armor/helmet)
 	cost = 3500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Ablative Armor crate"

@@ -243,8 +243,8 @@
 
 /mob/living/carbon/human/tracking_status()
 	//Cameras can't track people wearing an agent card or a ninja hood.
-	if(istype(head, /obj/item/clothing/head/helmet/space/rig))
-		var/obj/item/clothing/head/helmet/space/rig/helmet = head
+	if(istype(head, /obj/item/clothing/head/space/rig))
+		var/obj/item/clothing/head/space/rig/helmet = head
 		if(helmet.prevent_track())
 			return TRACKING_TERMINATE
 

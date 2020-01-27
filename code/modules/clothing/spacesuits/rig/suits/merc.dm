@@ -1,4 +1,4 @@
-/obj/item/clothing/head/helmet/space/rig/merc
+/obj/item/clothing/head/space/rig/merc
 	light_overlay = "helmet_light_dual_green"
 	camera_networks = list(NETWORK_MERCENARY)
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
@@ -21,7 +21,7 @@
 	offline_slowdown = 3
 	offline_vision_restriction = 1
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/merc
+	helm_type = /obj/item/clothing/head/space/rig/merc
 
 
 	initial_modules = list(

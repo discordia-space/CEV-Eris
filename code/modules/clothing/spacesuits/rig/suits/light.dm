@@ -5,11 +5,11 @@
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
 	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 20,
-		bomb = 25,
-		bio = 100,
+		melee = 25,
+		bullet = 15,
+		energy = 15,
+		bomb = 20,
+		bio = 75,
 		rad = 25
 	)
 	emp_protection = 10
@@ -20,7 +20,7 @@
 	drain = 2
 
 	chest_type = /obj/item/clothing/suit/space/rig/light
-	helm_type =  /obj/item/clothing/head/helmet/space/rig/light
+	helm_type =  /obj/item/clothing/head/space/rig/light
 	boot_type =  /obj/item/clothing/shoes/magboots/rig/light
 	glove_type = /obj/item/clothing/gloves/rig/light
 
@@ -33,7 +33,7 @@
 /obj/item/clothing/shoes/magboots/rig/light
 	name = "shoes"
 
-/obj/item/clothing/head/helmet/space/rig/light
+/obj/item/clothing/head/space/rig/light
 	name = "hood"
 
 /obj/item/weapon/rig/light/hacker

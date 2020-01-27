@@ -72,7 +72,7 @@ A small pool of thematically appropriate religious items that are generally chea
 /datum/uplink_item/item/neotheology/coat
 	name = "Preacher Coat"
 	item_cost = 3
-	path = /obj/item/clothing/suit/chaplain_hoodie
+	path = /obj/item/clothing/suit/neotheology_coat
 
 /*
 	Guns: All taken from the NeoTheology Armory of the New Testament
