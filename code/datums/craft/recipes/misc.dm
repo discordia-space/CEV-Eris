@@ -120,9 +120,9 @@
 	name = "red folder"
 	result = /obj/item/weapon/folder/red
 
-/datum/craft_recipe/folder/white
-	name = "white folder"
-	result = /obj/item/weapon/folder/white
+/datum/craft_recipe/folder/cyan
+	name = "cyan folder"
+	result = /obj/item/weapon/folder/cyan
 
 /datum/craft_recipe/folder/yellow
 	name = "yellow folder"

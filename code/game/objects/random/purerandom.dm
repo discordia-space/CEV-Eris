@@ -45,7 +45,7 @@
 				/obj/item/weapon/folder/blue = 2,
 				/obj/item/weapon/folder/red = 2,
 				/obj/item/weapon/folder/yellow = 2,
-				/obj/item/weapon/folder/white = 2,
+				/obj/item/weapon/folder/cyan = 2,
 				/obj/item/weapon/paper_bin = 2,
 				/obj/item/device/flash = 2,
 				/obj/item/device/camera_film = 4,
