@@ -60,3 +60,17 @@
 	max_upgrades = 4
 	use_fuel_cost = 0.1
 	max_fuel = 80
+
+/obj/item/weapon/tool/saw/hyper
+	name = "TM hypersaw"
+	desc = "This eco-friendly saw will Rip and Tear until it is done."
+	icon_state = "hypersaw"
+	hitsound = WORKSOUND_CHAINSAW
+	worksound = WORKSOUND_CHAINSAW
+	force = WEAPON_FORCE_BRUTAL 
+	matter = list(MATERIAL_SILVER = 2, MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 3)
+	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
+	max_upgrades = 4
+	degradation = 0.7
+	use_power_cost = 1
+	suitable_cell = /obj/item/weapon/cell/medium

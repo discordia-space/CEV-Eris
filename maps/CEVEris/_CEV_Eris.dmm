@@ -16514,9 +16514,9 @@
 "aMQ" = (
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aMR" = (
@@ -16525,9 +16525,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aMS" = (
@@ -16537,9 +16537,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aMT" = (
@@ -16554,9 +16554,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aMV" = (
@@ -16659,9 +16659,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aNk" = (
@@ -16672,9 +16672,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aNl" = (
@@ -16683,9 +16683,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aNm" = (
@@ -16716,9 +16716,9 @@
 /obj/structure/multiz/ladder/up,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aNp" = (
@@ -16744,9 +16744,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aNt" = (
@@ -16765,9 +16765,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "aNu" = (
@@ -26197,9 +26197,9 @@
 /obj/machinery/message_server,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "bgM" = (
@@ -26213,9 +26213,9 @@
 /obj/machinery/blackbox_recorder,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "bgO" = (
@@ -26360,9 +26360,9 @@
 /obj/machinery/r_n_d/server/robotics,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "bhf" = (
@@ -26377,9 +26377,9 @@
 /obj/machinery/r_n_d/server/core,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "bhh" = (
@@ -31090,6 +31090,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/components,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools,
 /turf/simulated/floor/plating,
@@ -33956,9 +33957,9 @@
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/rnd/server)
 "bxU" = (
@@ -35871,9 +35872,9 @@
 /obj/machinery/telecomms/processor/preset_two,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bCh" = (
@@ -35973,9 +35974,9 @@
 /obj/machinery/telecomms/bus/preset_two,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bCu" = (
@@ -37056,18 +37057,18 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bEW" = (
 /obj/machinery/telecomms/hub/preset,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bEX" = (
@@ -37235,9 +37236,9 @@
 /obj/machinery/telecomms/server/presets/supply,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFo" = (
@@ -37259,9 +37260,9 @@
 /obj/machinery/telecomms/bus/preset_one,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFq" = (
@@ -37277,9 +37278,9 @@
 /obj/machinery/telecomms/server/presets/service,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFs" = (
@@ -37378,54 +37379,54 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFA" = (
 /obj/machinery/bluespacerelay,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFB" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFC" = (
 /obj/machinery/telecomms/server/presets/unused,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFD" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFE" = (
 /obj/machinery/ntnet_relay,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFF" = (
@@ -37435,18 +37436,18 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFG" = (
 /obj/machinery/telecomms/relay/preset/station,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFH" = (
@@ -37506,9 +37507,9 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFQ" = (
@@ -37519,9 +37520,9 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFR" = (
@@ -37546,9 +37547,9 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFU" = (
@@ -37586,9 +37587,9 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bFZ" = (
@@ -37664,18 +37665,18 @@
 /obj/machinery/telecomms/bus/preset_three,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bGh" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bGi" = (
@@ -39215,9 +39216,9 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bJg" = (
@@ -39418,9 +39419,9 @@
 /obj/machinery/telecomms/processor/preset_three,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bJB" = (
@@ -39533,9 +39534,9 @@
 /obj/machinery/telecomms/server/presets/security,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bJM" = (
@@ -39830,9 +39831,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bKr" = (
@@ -46404,9 +46405,9 @@
 "bYx" = (
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bYy" = (
@@ -46514,9 +46515,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bYN" = (
@@ -47066,9 +47067,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "bZX" = (
@@ -47475,9 +47476,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "cbe" = (
@@ -48097,9 +48098,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ccu" = (
@@ -48805,7 +48806,7 @@
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 4;
 	icon_state = "freezer_1";
-	set_temperature = 73;
+	set_temperature = 240;
 	use_power = 1
 	},
 /turf/simulated/floor/tiled/steel/panels,
@@ -48863,9 +48864,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ceb" = (
@@ -48901,9 +48902,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ced" = (
@@ -49255,9 +49256,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ceM" = (
@@ -49265,9 +49266,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/black,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ceN" = (
@@ -49279,9 +49280,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ceO" = (
@@ -49291,9 +49292,9 @@
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "ceP" = (
@@ -58456,6 +58457,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
@@ -62431,12 +62433,13 @@
 /turf/simulated/open,
 /area/eris/hallway/main/section2)
 "cJi" = (
-/obj/machinery/power/smes{
-	output_attempt = 1
-	},
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
+	},
+/obj/machinery/power/smes/buildable{
+	charge = 5e+006;
+	output_attempt = 1
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/post)
@@ -101089,9 +101092,9 @@
 /obj/machinery/telecomms/server/presets/nt,
 /turf/simulated/floor/bluegrid{
 	name = "Server Base";
-	nitrogen = 500;
+	nitrogen = 180;
 	oxygen = 0;
-	temperature = 80
+	temperature = 200
 	},
 /area/eris/command/tcommsat/chamber)
 "esp" = (

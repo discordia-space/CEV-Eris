@@ -90,7 +90,7 @@
 			return 1
 		executed = 1
 		target.dos_sources.Add(src)
-		operator_skill = usr.stats.getStat(STAT_COG)
+		operator_skill = get_operator_skill(usr, STAT_COG)
 
 		var/list/sources_to_show = list(computer.network_card.get_network_tag())
 		var/extra_to_show = 2 * max(operator_skill - STAT_LEVEL_ADEPT, 0)

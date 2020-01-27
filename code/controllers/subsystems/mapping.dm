@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(mapping)
 
 	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
 	for(var/area/A in world)
-		GLOB.map_areas += A.type
+		GLOB.map_areas += A
 
 	// Do the same for teleport locs
 	for(var/area/AR in world)

@@ -108,6 +108,9 @@
 /datum/design/autolathe/tool/chainsaw
 	build_path = /obj/item/weapon/tool/saw/chain
 
+/datum/design/autolathe/tool/hypersaw
+	build_path = /obj/item/weapon/tool/saw/hyper
+
 /datum/design/autolathe/tool/surgicaldrill
 	build_path = /obj/item/weapon/tool/surgicaldrill
 

@@ -8,6 +8,9 @@
 				/obj/structure/salvageable/implant_container = 3,\
 				/obj/structure/salvageable/data = 6,\
 				/obj/structure/salvageable/server = 6,\
+				/obj/structure/salvageable/computer = 6,\
+				/obj/structure/salvageable/personal = 5,\
+				/obj/structure/salvageable/bliss = 1 ,\
 				/obj/structure/computerframe = 5,\
 				/obj/machinery/constructable_frame/machine_frame = 4,\
 				/obj/structure/reagent_dispensers/fueltank = 6,\
@@ -23,3 +26,18 @@
 	name = "low chance random structures"
 	icon_state = "machine-black-low"
 	spawn_nothing_percentage = 60
+
+/obj/random/structures/os
+	name = "random os structure"
+
+/obj/random/structures/os/item_to_spawn()
+	return pickweight(list(/obj/structure/salvageable/machine_os = 10,\
+				/obj/structure/salvageable/autolathe = 10,\
+				/obj/structure/salvageable/implant_container_os = 3,\
+				/obj/structure/salvageable/data_os = 6,\
+				/obj/structure/salvageable/server_os = 6,\
+				/obj/structure/salvageable/computer_os = 6,\
+				/obj/structure/salvageable/console_broken_os = 6,\
+				/obj/structure/salvageable/console_os = 3,\
+				/obj/structure/computerframe = 2,\
+				/obj/machinery/constructable_frame/machine_frame = 2))

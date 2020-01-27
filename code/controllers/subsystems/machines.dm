@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(machines)
 	var/list/power_objects = list()
 
 	var/list/processing
-	var/nextProcessingListPosition = 0 //position of next thing to be processed, inside of currently processed list
+	var/list/current_run = list()
 
 /datum/controller/subsystem/machines/PreInit()
 	 processing = machinery
@@ -33,14 +33,6 @@ SUBSYSTEM_DEF(machines)
 	setup_atmos_machinery(machinery)
 	fire()
 	..()
-
-/datum/controller/subsystem/machines/stopProcessingWrapper(var/D, var/list/L = processing) //called before a thing stops being processed
-	if (!nextProcessingListPosition) //0 position means currently processed list is not paused or running, no point in adjusting last position due to removals from list
-		return
-	var/position = L.Find(D) //find exact position in list
-	if (position)
-		if (position < nextProcessingListPosition) //removals from list are only relevant to currently processed position if they are on the left side of it, otherwise they do not alter order of processing
-			nextProcessingListPosition-- //adjust current position to compensate for removed thing
 
 #define INTERNAL_PROCESS_STEP(this_step, check_resumed, proc_to_call, cost_var, next_step)\
 if(current_step == this_step || (check_resumed && !resumed)) {\
@@ -119,114 +111,68 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
-
-	//localizations
-	var/list/local_list = pipenets
-	var/datum/pipe_network/thing
-	var/wait = src.wait
-
-	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
-		thing = local_list[nextProcessingListPosition]
-		nextProcessingListPosition++
-
-		if(!QDELETED(thing))
-			thing.Process(wait)
+		src.current_run = pipenets.Copy()
+	//cache for sanic speed (lists are references anyways)
+	var/list/current_run = src.current_run
+	while(current_run.len)
+		var/datum/pipe_network/PN = current_run[1]
+		current_run.Cut(1, 2)
+		if(istype(PN) && !QDELETED(PN))
+			PN.Process(wait)
 		else
-			local_list.Remove(thing)
-			thing.is_processing = null
-			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
+			pipenets.Remove(PN)
+			PN.is_processing = null
+		if(MC_TICK_CHECK)
+			return
 
-		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only every tickCheckPeriod-th processed thing
-			if (MC_TICK_CHECK)
-				return
-
-	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
-		src.nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
+		src.current_run = machinery.Copy()
 
-	//localizations
-	var/list/local_list = machinery
-	var/obj/machinery/thing
-	var/wait = src.wait
-	var/nextProcessingListPosition = src.nextProcessingListPosition
-	if(!nextProcessingListPosition)
-		return
-
-	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition <= local_list.len) //until position is valid
-		thing = local_list[nextProcessingListPosition]
-		nextProcessingListPosition++
-
-		if(!QDELETED(thing) && (thing.Process(wait) != PROCESS_KILL))
-			if(thing.use_power)
-				thing.auto_use_power()
+	var/list/current_run = src.current_run
+	while(current_run.len)
+		var/obj/machinery/M = current_run[1]
+		current_run.Cut(1, 2)
+		if(istype(M) && !QDELETED(M) && !(M.Process(wait) == PROCESS_KILL))
+			if(M.use_power)
+				M.auto_use_power()
 		else
-			local_list.Remove(thing)
-			thing.is_processing = null
-			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
-
-		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only tickCheckPeriod-th processed thing
-			if (MC_TICK_CHECK)
-				src.nextProcessingListPosition = nextProcessingListPosition
-				return
-
-	src.nextProcessingListPosition = 0 //entire list was processed
+			machinery.Remove(M)
+			M.is_processing = null
+		if(MC_TICK_CHECK)
+			return
 
 /datum/controller/subsystem/machines/proc/process_powernets(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
+		src.current_run = powernets.Copy()
 
-	//localizations
-	var/list/local_list = powernets
-	var/datum/powernet/thing
-	var/wait = src.wait
-
-	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
-		thing = local_list[nextProcessingListPosition]
-		nextProcessingListPosition++
-
-		if(!QDELETED(thing))
-			thing.reset(wait)
+	var/list/current_run = src.current_run
+	while(current_run.len)
+		var/datum/powernet/PN = current_run[1]
+		current_run.Cut(1, 2)
+		if(istype(PN) && !QDELETED(PN))
+			PN.reset(wait)
 		else
-			local_list.Remove(thing)
-			thing.is_processing = null
-			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
+			powernets.Remove(PN)
+			PN.is_processing = null
+		if(MC_TICK_CHECK)
+			return
 
-		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only every tickCheckPeriod-th processed thing
-			if (MC_TICK_CHECK)
-				return
-
-	nextProcessingListPosition = 0 //entire list was processed
 
 /datum/controller/subsystem/machines/proc/process_power_objects(resumed = 0)
 	if (!resumed)
-		nextProcessingListPosition = 1 //fresh start, otherwise from saved posisition
+		src.current_run = power_objects.Copy()
 
-	//localizations
-	var/list/local_list = power_objects
-	var/obj/item/thing
-	var/wait = src.wait
-
-	var/tickCheckPeriod = round(local_list.len/16+1) //pause process at most every 1/16th length of list
-	while(nextProcessingListPosition && (nextProcessingListPosition <= local_list.len)) //until position is valid
-		thing = local_list[nextProcessingListPosition]
-		nextProcessingListPosition++
-
-		if(!thing.pwr_drain(wait)) // 0 = Process Kill, remove from processing list.
-			local_list.Remove(thing)
-			thing.is_processing = null
-			nextProcessingListPosition-- //removing processed thing from list moves the queue to the left, adjust accordingly
-
-		if(!(nextProcessingListPosition%tickCheckPeriod)) //pauses only every tickCheckPeriod-th processed thing
-			if (MC_TICK_CHECK)
-				return
-
-	nextProcessingListPosition = 0 //entire list was processed
+	var/list/current_run = src.current_run
+	while(current_run.len)
+		var/obj/item/I = current_run[current_run.len]
+		current_run.len--
+		if(!I.pwr_drain(wait)) // 0 = Process Kill, remove from processing list.
+			power_objects.Remove(I)
+			I.is_processing = null
+		if(MC_TICK_CHECK)
+			return
 
 /datum/controller/subsystem/machines/Recover()
 	if (istype(SSmachines.pipenets))

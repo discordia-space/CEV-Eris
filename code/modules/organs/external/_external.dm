@@ -259,10 +259,25 @@
 	return
 
 /obj/item/organ/external/proc/get_tally()
-	if(status & ORGAN_SPLINTED)
+	if(status & (ORGAN_DEAD|ORGAN_CUT_AWAY))
+		return 4
+	else if(status & (ORGAN_BROKEN|ORGAN_MUTATED))
+		return 3
+	// malfunctioning only happens intermittently so treat it as a broken limb when it procs
+	else if(is_malfunctioning())
+		if(prob(10))
+			owner.visible_message("\The [owner]'s [name] [pick("twitches", "shudders")] and sparks!")
+			var/datum/effect/effect/system/spark_spread/spark_system = new ()
+			spark_system.set_up(5, 0, owner)
+			spark_system.attach(owner)
+			spark_system.start()
+			spawn(10)
+				qdel(spark_system)
+		return 3
+	else if(is_dislocated())
+		return 1
+	else if(status & ORGAN_SPLINTED)
 		return 0.5
-	else if(status & ORGAN_BROKEN)
-		return 1.5
 	else
 		return tally
 
@@ -1051,7 +1066,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Hull dents",
 				"fix_name" = "Repair",
-				"step" = "[/datum/surgery_step/robotic/fix_brute]"
+				"step" = /datum/surgery_step/robotic/fix_brute
 			)
 			conditions_list.Add(list(condition))
 
@@ -1059,7 +1074,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Damaged wiring",
 				"fix_name" = "Replace",
-				"step" = "[/datum/surgery_step/robotic/fix_burn]"
+				"step" = /datum/surgery_step/robotic/fix_burn
 			)
 			conditions_list.Add(list(condition))
 
@@ -1068,7 +1083,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Bleeding",
 				"fix_name" = "Clamp",
-				"step" = "[/datum/surgery_step/fix_bleeding]"
+				"step" = /datum/surgery_step/fix_bleeding
 			)
 			conditions_list.Add(list(condition))
 
@@ -1076,7 +1091,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Bone fracture",
 				"fix_name" = "Mend",
-				"step" = "[/datum/surgery_step/fix_bone]"
+				"step" = /datum/surgery_step/fix_bone
 			)
 			conditions_list.Add(list(condition))
 
@@ -1084,7 +1099,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			condition = list(
 				"name" = "Necrosis",
 				"fix_name" = "Treat",
-				"step" = "[/datum/surgery_step/fix_necrosis]"
+				"step" = /datum/surgery_step/fix_necrosis
 			)
 			conditions_list.Add(list(condition))
 

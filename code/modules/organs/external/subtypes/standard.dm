@@ -79,7 +79,7 @@
 		var/list/condition = list(
 			"name" = "Disfigured face",
 			"fix_name" = "Restore",
-			"step" = "[/datum/surgery_step/fix_face]"
+			"step" = /datum/surgery_step/fix_face
 		)
 		conditions_list.Add(list(condition))
 

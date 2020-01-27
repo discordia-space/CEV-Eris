@@ -45,9 +45,6 @@
 /datum/controller/subsystem/proc/PreInit()
 	return
 
-/datum/controller/subsystem/proc/stopProcessingWrapper() //called before a thing stops being processed
-	return
-
 //This is used so the mc knows when the subsystem sleeps. do not override.
 /datum/controller/subsystem/proc/ignite(resumed = 0)
 	set waitfor = 0

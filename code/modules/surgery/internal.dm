@@ -112,17 +112,23 @@
 		if(!owner)
 			return FALSE
 
+		// Can't attach a stump
+		if(limb.is_stump())
+			return FALSE
+
 		var/o_a =  (limb.gender == PLURAL) ? "" : "a "
 
 		if(isnull(owner.species.has_limbs[limb.organ_tag]))
-			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][limb.organ_tag]."))
+			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
-		if(owner.get_organ(limb.organ_tag))
-			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][limb.organ_tag]."))
+		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
+		if(existing_limb && !existing_limb.is_stump())
+			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
-		if(limb.parent_organ != organ_tag)
+		// You can only attach a limb to either a parent organ or a stump of the same organ
+		if(limb.parent_organ != organ_tag && limb.organ_tag != organ_tag)
 			to_chat(user, SPAN_WARNING("You can't attach [limb] to [get_surgery_name()]!"))
 			return FALSE
 
@@ -138,11 +144,13 @@
 		if(!owner)
 			return FALSE
 
-		for(var/part_name in prosthesis.part)
-			if(owner.get_organ(part_name))
+		for(var/part_tag in prosthesis.part)
+			var/obj/item/organ/external/existing_limb = owner.get_organ(part_tag)
+			if(existing_limb && !existing_limb.is_stump())
 				continue
-			var/datum/organ_description/organ_data = owner.species.has_limbs[part_name]
-			if(!organ_data || organ_data.parent_organ != organ_tag)
+
+			var/datum/organ_description/organ_data = owner.species.has_limbs[part_tag]
+			if(!organ_data || (organ_data.parent_organ != organ_tag && organ_data.organ_tag != organ_tag))
 				continue
 
 			return TRUE
@@ -192,11 +200,27 @@
 	// Limbs
 	else if(istype(I, /obj/item/organ/external))
 		var/obj/item/organ/external/limb = I
-		limb.replaced(owner)
 
-		owner.update_body()
-		owner.updatehealth()
-		owner.UpdateDamageIcon()
+		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
+
+		// Save the owner before removing limb stump, as it may null the owner
+		// if the operation is performed on the stump itself
+		var/mob/living/carbon/human/saved_owner = owner
+
+		// Remove existing limb (usually a limb stump)
+		if(existing_limb)
+			// Prevent the new limb from being deleted along with the old one
+			limb.loc = null
+
+			// Remove and delete the old limb
+			existing_limb.removed(null, FALSE)
+			qdel(existing_limb)
+
+		limb.replaced(saved_owner)
+
+		saved_owner.update_body()
+		saved_owner.updatehealth()
+		saved_owner.UpdateDamageIcon()
 
 
 	// Prosthesis
@@ -204,18 +228,36 @@
 	else if(istype(I, /obj/item/prosthesis))
 		var/obj/item/prosthesis/prosthesis = I
 
-		for(var/part_name in prosthesis.part)
-			if(owner.get_organ(part_name))
-				continue
-			var/datum/organ_description/organ_data = owner.species.has_limbs[part_name]
-			if(!organ_data || organ_data.parent_organ != organ_tag)
-				continue
-			var/new_limb_type = prosthesis.part[part_name]
-			new new_limb_type(owner, organ_data)
+		// Save the owner before removing limb stump, as it may null the owner
+		// if the operation is performed on the stump itself
+		var/mob/living/carbon/human/saved_owner = owner
 
-		owner.update_body()
-		owner.updatehealth()
-		owner.UpdateDamageIcon()
+		for(var/part_tag in prosthesis.part)
+			var/obj/item/organ/external/existing_limb = owner.get_organ(part_tag)
+			if(existing_limb && !existing_limb.is_stump())
+				continue
+
+			var/datum/organ_description/organ_data = owner.species.has_limbs[part_tag]
+			if(!organ_data || organ_data.organ_tag != organ_tag)
+				continue
+
+			// Remove existing limb (usually a limb stump)
+			if(existing_limb)
+				// Prevent the new limb from being deleted along with the old one
+				prosthesis.loc = null
+
+				// Remove and delete the old limb
+				existing_limb.removed(null, FALSE)
+				qdel(existing_limb)
+
+			var/new_limb_type = prosthesis.part[part_tag]
+			new new_limb_type(saved_owner, organ_data)
+			break
+
+		saved_owner.update_body()
+		saved_owner.updatehealth()
+		saved_owner.UpdateDamageIcon()
+		qdel(src)
 
 	// Cavity implants
 	else

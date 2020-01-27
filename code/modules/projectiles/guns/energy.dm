@@ -147,3 +147,13 @@
 	if(istype(C, suitable_cell) && insert_item(C, user))
 		cell = C
 		update_icon()
+
+/obj/item/weapon/gun/energy/ui_data(mob/user)
+	var/list/data = ..()
+	data["charge_cost"] = charge_cost
+	var/obj/item/weapon/cell/C = get_cell()
+	if(C)
+		data["cell_charge"] = C.percent()
+		data["shots_remaining"] = round(C.charge/charge_cost)
+		data["max_shots"] = round(C.maxcharge/charge_cost)
+	return data
