@@ -61,13 +61,12 @@ var/game_id = null
 // Only runs if env var EXTOOLS_DLL is set otherwise it won't load the dll file.
 // Used with the Visual Studio Code debugger and DreamMaker Language Client extension from https://github.com/SpaceManiac/SpacemanDMM/wiki/Setting-up-Debugging
 
-/world/proc/enable_debugger()
-    var/dll = world.GetConfig("env", "EXTOOLS_DLL")
-    if (dll)
-        call(dll, "debug_initialize")()
-
 /world/New()
-	enable_debugger()
+	// Begin loading of extools DLL and components
+	extools_initialize()
+	maptick_initialize()
+	debugger_initialize()
+	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
