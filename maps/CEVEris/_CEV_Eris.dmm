@@ -852,7 +852,14 @@
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
-/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acm" = (
