@@ -74,7 +74,7 @@
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
-	slowdown = 3
+	slowdown = 1
 	armor = list(
 		melee = 10,
 		bullet = 10,
