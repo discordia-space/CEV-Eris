@@ -108588,6 +108588,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"ntp" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay)
 "nuu" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -108635,6 +108639,7 @@
 "oih" = (
 /obj/landmark/join/start/chemist,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "oup" = (
@@ -108758,6 +108763,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
+"qTX" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/surgery)
 "qZr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -164759,8 +164768,8 @@ aKl
 bwy
 aNc
 csS
-aPn
-aPn
+csS
+csS
 csS
 aSn
 aSL
@@ -204385,7 +204394,7 @@ cgI
 cgI
 cda
 cjK
-cjK
+qTX
 cpy
 crS
 coI
@@ -207818,7 +207827,7 @@ cvS
 bUV
 ccj
 cLG
-coL
+ntp
 coL
 dvR
 cKx
