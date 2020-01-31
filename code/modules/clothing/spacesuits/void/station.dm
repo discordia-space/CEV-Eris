@@ -40,7 +40,7 @@
 		/obj/item/weapon/rcd
 	)
 	
-helmet = /obj/item/clothing/head/space/void/engineering
+	helmet = /obj/item/clothing/head/space/void/engineering
 
 /obj/item/clothing/suit/space/void/engineering/equipped
 	boots = /obj/item/clothing/shoes/magboots
