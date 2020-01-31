@@ -22,7 +22,7 @@
 	icon_state = "void"
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
-	slowdown = 1
+	slowdown = 0.3
 	armor = list(
 		melee = 30,
 		bullet = 20,
