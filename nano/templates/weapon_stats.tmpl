@@ -1,0 +1,139 @@
+<div class="item">
+	<h3>Specifications:</h3>
+	<div class="statusDisplay" style="overflow: auto;">
+		<h4>Weapon details:</h4>
+		{{if data.damage_multiplier != 1}}
+			<div class="itemLabel">
+				Projectile damage multiplier:
+			</div>
+			<div class="itemContent">
+				 {{:data.damage_multiplier}}x
+			</div>
+		{{/if}}
+		{{if data.penetration_multiplier != 1}}
+			<div class="itemLabel">
+				Projectile penetration multiplier: 
+			</div>
+			<div class="itemContent">
+				{{:data.penetration_multiplier}}x
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Fire delay: 
+		</div>
+			<div class="itemContent">
+				{{:data.fire_delay}} ms
+			</div>
+		{{if data.burst > 1}}
+			<div class="itemLabel">
+				Rounds per burst: 
+			</div>
+				<div class="itemContent">
+					{{:data.burst}} rounds
+				</div>
+			<div class="itemLabel">
+				Burst delay: 
+			</div>
+				<div class="itemContent">
+					{{:data.burst_delay}} ms
+				</div>
+		{{/if}}
+		<div class="itemLabel">
+			Kickback: 
+		</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.recoil_buildup, 0, data.recoil_buildup_max, '', data.recoil_buildup)}}
+			</div>
+		
+		<div class="itemLabel">
+			Melee capabilities:
+		</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
+			</div>
+		
+		{{if data.caliber}}
+			<h4>Ammo details:</h4>
+				<div class="itemLabel">
+					Rifled caliber: 
+				</div>
+					<div class="itemContent">
+						{{:data.caliber}}
+					</div>
+				<div class="itemLabel">
+					Ammo remaining: 
+				</div>
+					<div class="itemContent">
+						{{:helper.displayBar(data.current_ammo, 0, data.max_shells, '', data.current_ammo)}}
+					</div>
+		{{/if}}
+		
+		{{if data.charge_cost}}
+			<h4>Power information:</h4>
+				{{if data.cell_charge}}
+					<div class="itemLabel">
+						Cell rating:
+					</div>
+						<div class="itemContent">
+							{{:helper.displayBar(data.cell_charge, 0, 100, data.cell_charge <= 25 ? 'bad' : data.cell_charge < 100 ? 'average' : '', data.cell_charge + '%')}}
+						</div>
+				{{else}}
+					<div class="average">
+						No cell installed.
+					</div>
+				{{/if}}
+				<div class="itemLabel">
+					Power usage: 
+				</div>	
+					<div class="itemContent">
+						{{:data.charge_cost}}
+					</div>
+				<div class="itemLabel">
+					Shots remaining: 
+				</div>
+					<div class="itemContent">
+						{{:helper.displayBar(data.shots_remaining, 0, data.max_shots, '', data.shots_remaining)}}
+					</div>
+		{{/if}}
+	</div>
+</div>
+{{if data.firemode_count}}
+	<div class="item">
+		<h3>Firemodes: {{:data.firemode_count}}</h3>
+		<table style="width:100%;  overflow-wrap: break-all;">
+			{{for data.firemode_info}}
+				<tr>
+				<div class="statusDisplay" style="overflow: auto;">
+					<div class="item" style="margin: 0px">
+						<h4>
+						{{if value.current == 1}}
+							{{:helper.link(value.name, 'null', {'firemode' : value.index}, null, 'redButton')}}
+						{{else}}
+							{{:helper.link(value.name, 'null', {'firemode' : value.index})}}
+						{{/if}}
+						</h4>
+						<br>
+						<div class="itemLabel">
+						Rounds per burst: 
+						</div>
+							<div class="itemContent">
+								{{:value.burst}}
+							</div>
+						<div class="itemLabel">
+						Fire delay: 
+						</div>
+							<div class="itemContent">
+								{{:value.fire_delay}} ms
+							</div>
+						<div class="itemLabel">
+						Movement delay: 
+						</div>
+							<div class="itemContent">
+								{{:value.move_delay}} ms
+							</div>
+					</div>
+				</div>
+			{{/for}}
+		</table>
+	</div>
+{{/if}}

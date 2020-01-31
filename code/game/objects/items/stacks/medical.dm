@@ -34,7 +34,7 @@
 			return TRUE
 
 		if(affecting.organ_tag == BP_HEAD)
-			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+			if(H.head && istype(H.head,/obj/item/clothing/head/space))
 				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.head]!"))
 				return 1
 		else

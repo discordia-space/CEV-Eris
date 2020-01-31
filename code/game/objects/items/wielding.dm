@@ -75,7 +75,7 @@
 		item_state = wielded_icon
 
 /obj/item/proc/update_unwield_icon()//That way it doesn't interupt any other special icon_states.
-	if(wielded && wielded_icon)
+	if(!wielded && wielded_icon)
 		item_state = "[initial(item_state)]"
 
 //For general weapons.

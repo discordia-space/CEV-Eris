@@ -1,11 +1,11 @@
-/obj/item/clothing/head/helmet/space/void/acolyte
+/obj/item/clothing/head/space/void/acolyte
 	name = "Acolyte hood"
 	desc = "Even the most devout deserve head protection."
 	icon_state = "acolyte"
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 10,
+		melee = 25,
+		bullet = 25,
+		energy = 25,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -15,18 +15,18 @@
 	name = "Acolyte armor"
 	desc = "Worn heavy, steadfast in the name of God."
 	icon_state = "acolyte"
-	slowdown = 0.15
+	slowdown = 0.3
 	armor = list(
-		melee = 20,
-		bullet = 20,
-		energy = 10,
+		melee = 25,
+		bullet = 25,
+		energy = 25,
 		bomb = 25,
 		bio = 100,
 		rad = 75
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/acolyte
+	helmet = /obj/item/clothing/head/space/void/acolyte
 
-/obj/item/clothing/head/helmet/space/void/agrolyte
+/obj/item/clothing/head/space/void/agrolyte
 	name = "Agrolyte hood"
 	desc = "Don't want anything getting in your eyes."
 	icon_state = "botanist"
@@ -52,9 +52,9 @@
 		bio = 100,
 		rad = 75
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/agrolyte
+	helmet = /obj/item/clothing/head/space/void/agrolyte
 
-/obj/item/clothing/head/helmet/space/void/custodian
+/obj/item/clothing/head/space/void/custodian
 	name = "Custodian helmet"
 	desc = "Cleaning floors is more dangerous than it looks."
 	icon_state = "custodian"
@@ -63,7 +63,7 @@
 		bullet = 10,
 		energy = 10,
 		bomb = 25,
-		bio = 100,
+		bio = 200,
 		rad = 90
 	)
 	unacidable = TRUE
@@ -78,8 +78,8 @@
 		bullet = 10,
 		energy = 10,
 		bomb = 25,
-		bio = 100,
+		bio = 200,
 		rad = 90
 	)
 	unacidable = TRUE
-	helmet = /obj/item/clothing/head/helmet/space/void/custodian
+	helmet = /obj/item/clothing/head/space/void/custodian

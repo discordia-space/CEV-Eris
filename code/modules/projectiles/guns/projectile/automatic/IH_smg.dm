@@ -5,7 +5,7 @@
 	icon_state = "IH_smg"
 	item_state = "IH_smg"
 	w_class = ITEM_SIZE_NORMAL
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/pistol"

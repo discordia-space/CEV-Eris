@@ -18,7 +18,7 @@
 			new /obj/effect/spawner/newbomb/timer/syndicate(src)
 			new /obj/item/device/powersink(src)
 			new /obj/item/clothing/suit/space/syndicate(src)
-			new /obj/item/clothing/head/helmet/space/syndicate(src)
+			new /obj/item/clothing/head/space/syndicate(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/weapon/tank/emergency_oxygen/double(src)
 			return
@@ -55,7 +55,7 @@
 /*			if("lordsingulo")
 			new /obj/item/device/radio/beacon/syndicate(src)
 			new /obj/item/clothing/suit/space/syndicate(src)
-			new /obj/item/clothing/head/helmet/space/syndicate(src)
+			new /obj/item/clothing/head/space/syndicate(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/weapon/tank/emergency_oxygen/double(src)
 			new /obj/item/weapon/card/emag(src)
@@ -205,7 +205,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/sts35/populate_contents()
 	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
-	new /obj/item/ammo_magazine/lrifle_short(src)
+	new /obj/item/ammo_magazine/lrifle(src)
 
 /obj/item/weapon/storage/box/syndie_kit/pug
 	name = "Pug box"

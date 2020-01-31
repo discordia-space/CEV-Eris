@@ -34,6 +34,9 @@
 
 	var/sanity_damage = 0
 
+/atom/proc/update_icon()
+	return
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()

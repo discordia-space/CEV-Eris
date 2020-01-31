@@ -391,10 +391,6 @@
 /obj/random/material_rare/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
-"bS" = (
-/obj/item/weapon/folder/white,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned_fortress)
 "bT" = (
 /obj/structure/sink{
 	icon_state = "sink";
@@ -13370,7 +13366,7 @@ ae
 ae
 ae
 ab
-bS
+bp
 bp
 bp
 ab
@@ -21836,7 +21832,7 @@ bp
 bp
 bp
 bp
-bS
+bp
 bp
 aN
 aS
@@ -26292,7 +26288,7 @@ ab
 ab
 ae
 ab
-bS
+bp
 bp
 bp
 ac

@@ -666,14 +666,14 @@
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
-/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
+/obj/item/clothing/head/armor/riot_hud,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abQ" = (
@@ -852,7 +852,14 @@
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
-/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acm" = (
@@ -865,14 +872,14 @@
 /obj/item/clothing/suit/armor/vest/ironhammer,
 /obj/item/clothing/suit/armor/vest/ironhammer,
 /obj/item/clothing/suit/armor/vest/ironhammer,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
-/obj/item/clothing/head/helmet,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
+/obj/item/clothing/head/armor/helmet/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acn" = (
@@ -52695,7 +52702,7 @@
 /area/eris/medical/medbay/iso)
 "cmZ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
+/obj/item/weapon/folder/cyan,
 /obj/item/clothing/accessory/stethoscope,
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/medical/medbay/iso)
@@ -71634,7 +71641,7 @@
 /obj/item/weapon/tank/jetpack/oxygen,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/space/captain,
-/obj/item/clothing/head/helmet/space/capspace,
+/obj/item/clothing/head/space/capspace,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "deJ" = (
@@ -81362,7 +81369,7 @@
 /area/eris/command/mbo)
 "dzY" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
+/obj/item/weapon/folder/cyan,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -83290,8 +83297,8 @@
 /area/eris/engineering/construction)
 "dEj" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/folder/white,
+/obj/item/weapon/folder/cyan,
+/obj/item/weapon/folder/cyan,
 /obj/item/weapon/hand_labeler,
 /obj/item/weapon/reagent_containers/syringe,
 /obj/item/weapon/storage/box/gloves,
@@ -91502,16 +91509,16 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
-/obj/item/ammo_magazine/ihsrifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
+/obj/item/ammo_magazine/srifle,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "dWB" = (
@@ -97589,7 +97596,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,9"
@@ -97711,14 +97718,14 @@
 	},
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "eko" = (
 /obj/machinery/light,
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "ekp" = (
@@ -97899,7 +97906,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,8"
@@ -98137,7 +98144,7 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/clothing/suit/space/anomaly,
-/obj/item/clothing/head/helmet/space/anomaly,
+/obj/item/clothing/head/space/anomaly,
 /obj/item/clothing/mask/breath,
 /turf/simulated/shuttle/floor/science{
 	icon_state = "11,7"

@@ -2,7 +2,7 @@
  * Defines the helmets, gloves and shoes for rigs.
  */
 
-/obj/item/clothing/head/helmet/space/rig
+/obj/item/clothing/head/space/rig
 	name = "helmet"
 	item_flags = 		 THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	flags_inv = 		 HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
@@ -47,7 +47,7 @@
 	retract_while_active = FALSE
 
 //TODO: move this to modules
-/obj/item/clothing/head/helmet/space/rig/proc/prevent_track()
+/obj/item/clothing/head/space/rig/proc/prevent_track()
 	return 0
 
 /obj/item/clothing/gloves/rig/Touch(var/atom/A, var/proximity)

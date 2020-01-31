@@ -20,7 +20,7 @@
 
 /obj/item/device/radio/electropack/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/clothing/head/helmet))
+	if(istype(W, /obj/item/clothing/head/armor/helmet))
 		if(!b_stat)
 			to_chat(user, SPAN_NOTICE("[src] is not ready to be attached!"))
 			return

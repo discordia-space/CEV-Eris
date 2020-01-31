@@ -147,22 +147,6 @@
 	if (!BB)
 		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
 
-//Gun loading types
-#define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.
-#define SPEEDLOADER 	2	//Transfers casings from the mag to the gun when used.
-#define MAGAZINE 		4	//The magazine item itself goes inside the gun
-
-#define MAG_WELL_GENERIC	0	//Guns without special magwells
-#define MAG_WELL_L_PISTOL	1	//Pistols
-#define MAG_WELL_PISTOL		2
-#define MAG_WELL_H_PISTOL	4	//High cap Pistols
-#define MAG_WELL_SMG		8	//smgs
-#define MAG_WELL_RIFLE		16	//Normal non-IH rifles
-#define MAG_WELL_IH			32	//IH guns
-#define MAG_WELL_BOX		64	//Lmgs with box mags
-#define MAG_WELL_PAN		128	//Lmgs with pan mags
-#define MAG_WELL_DART       256 //Dartgun mag
-
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
 	name = "magazine"
@@ -183,7 +167,7 @@
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
 	var/mag_well = MAG_WELL_GENERIC
-	var/caliber = "357"
+	var/caliber = CAL_357
 	var/ammo_mag = "default"
 	var/max_ammo = 7
 	var/reload_delay = 0 //when we need to make reload slower

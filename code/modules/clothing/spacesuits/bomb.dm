@@ -1,7 +1,7 @@
 /*
  * Bomb protection
  */
-/obj/item/clothing/head/helmet/space/bomb
+/obj/item/clothing/head/space/bomb
 	name = "bomb helmet"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
@@ -39,7 +39,7 @@
 	equip_delay = 10 SECONDS
 	price_tag = 300
 
-/obj/item/clothing/head/helmet/space/bomb/security
+/obj/item/clothing/head/space/bomb/security
 	icon_state = "bombsuitsec"
 
 /obj/item/clothing/suit/space/bomb/security

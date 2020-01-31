@@ -9,7 +9,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
 	auto_eject = 1
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)

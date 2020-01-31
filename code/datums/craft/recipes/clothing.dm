@@ -35,7 +35,7 @@
 
 /datum/craft_recipe/clothing/combat_helmet
 	name = "combat helmet"
-	result = /obj/item/clothing/head/helmet/handmade
+	result = /obj/item/clothing/head/armor/helmet/handmade
 	steps = list(
 		list(/obj/item/weapon/reagent_containers/glass/bucket, 1, "time" = 30),
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),

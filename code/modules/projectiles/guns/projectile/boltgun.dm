@@ -9,7 +9,7 @@
 	force = WEAPON_FORCE_ROBUST
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	fire_delay = 12 // double the standart
 	damage_multiplier = 1.4
 	penetration_multiplier  = 1.5

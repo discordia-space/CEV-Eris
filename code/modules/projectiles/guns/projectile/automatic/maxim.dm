@@ -8,7 +8,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = 0
 	max_shells = 96
-	caliber = "lrifle"
+	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	ammo_type = "/obj/item/ammo_casing/lrifle"
 	load_method = MAGAZINE

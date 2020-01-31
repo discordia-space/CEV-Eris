@@ -5,7 +5,7 @@
 	icon_state = "lamia"
 	item_state = "lamia"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	ammo_mag = "mag_magnum"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	can_dual = 1

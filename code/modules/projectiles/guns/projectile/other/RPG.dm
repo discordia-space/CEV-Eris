@@ -10,7 +10,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "rocket"
+	caliber = CAL_ROCKET
 	fire_sound = 'sound/effects/bang.ogg' //placeholder, needs new sound
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 5)

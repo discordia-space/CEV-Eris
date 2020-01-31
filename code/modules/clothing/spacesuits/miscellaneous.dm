@@ -1,5 +1,5 @@
 //Space santa outfit suit
-/obj/item/clothing/head/helmet/space/santahat
+/obj/item/clothing/head/space/santahat
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
@@ -18,7 +18,7 @@
 	allowed = list(/obj/item) //for stuffing exta special presents
 
 //Orange emergency space suit
-/obj/item/clothing/head/helmet/space/emergency
+/obj/item/clothing/head/space/emergency
 	name = "Emergency Space Helmet"
 	icon_state = "emergencyhelm"
 	item_state = "emergencyhelm"

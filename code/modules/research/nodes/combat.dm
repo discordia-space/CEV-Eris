@@ -59,10 +59,9 @@
 
 	required_technologies = list(/datum/technology/weapon_recharging)
 	required_tech_levels = list()
-	cost = 1500
+	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/stunrevolver,
-							/datum/design/research/item/ammo/shotgun_stun
 						)
 
 
@@ -83,7 +82,7 @@
 
 /datum/technology/basic_lethal
 	name = "Basic Lethal Weapons"
-	desc = "Chemical grenade design with anti-acid coating inside."
+	desc = "Chemical grenade design and experimental energy shells."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.6
@@ -92,9 +91,11 @@
 
 	required_technologies = list(/datum/technology/weapon_recharging)
 	required_tech_levels = list()
-	cost = 2000
+	cost = 1500
 
-	unlocks_designs = list(/datum/design/research/item/weapon/large_grenade)
+	unlocks_designs = list(
+							/datum/design/research/item/weapon/large_grenade,
+						)
 
 /datum/technology/exotic_weaponry
 	name = "Experemental Weaponry"
@@ -113,7 +114,7 @@
 
 /datum/technology/adv_exotic_weaponry
 	name = "Advanced Experemental Weaponry"
-	desc = "Specisl weapon system using plasma as catalyst. Special weapon core prototipe that deal DNA damage to target."
+	desc = "Special weapon system using plasma as catalyst. Special weapon core prototype that deal DNA damage to target."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
@@ -127,6 +128,24 @@
 	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
 							/datum/design/research/item/weapon/plasmapistol
 						)
+
+/datum/technology/temp
+	name = "Basic Temperature Ammunition"
+	desc = "Incendiary ammunition for large catriges."
+	tech_type = RESEARCH_COMBAT
+
+	x = 0.6
+	y = 0.6
+	icon = "ammobox"
+
+	required_technologies = list(/datum/technology/basic_lethal)
+	required_tech_levels = list()
+	cost = 5000
+
+	unlocks_designs = list(
+							/datum/design/research/item/ammo/shotgun_incendiary,
+						)
+
 
 /datum/technology/adv_lethal
 	name = "Advanced Lethal Weapons"

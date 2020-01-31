@@ -42,7 +42,7 @@
 				ear_safety += 2
 			if(HULK in M.mutations)
 				ear_safety += 1
-			if(istype(M:head, /obj/item/clothing/head/helmet))
+			if(istype(M:head, /obj/item/clothing/head/armor/helmet))
 				ear_safety += 1
 
 //Flashing everyone

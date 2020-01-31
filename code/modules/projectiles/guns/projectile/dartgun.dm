@@ -23,7 +23,7 @@
 	name = "chemical dart"
 	desc = "A small hardened, hollow dart."
 	icon_state = "dart"
-	caliber = "dart"
+	caliber = CAL_DART
 	projectile_type = /obj/item/projectile/bullet/chemdart
 
 /obj/item/ammo_casing/chemdart/expend()
@@ -36,7 +36,7 @@
 	item_state = "rcdammo"
 	origin_tech = list(TECH_MATERIAL = 2)
 	mag_type = MAGAZINE
-	caliber = "dart"
+	caliber = CAL_DART
 	ammo_type = /obj/item/ammo_casing/chemdart
 	max_ammo = 5
 	multiple_sprites = 1
@@ -48,9 +48,10 @@
 	icon = 'icons/obj/guns/projectile/dartgun.dmi'
 	icon_state = "dartgun-empty"
 
-	caliber = "dart"
+	caliber = CAL_DART
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic click"
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 	recoil_buildup = 0
 	silenced = 1
 	load_method = MAGAZINE

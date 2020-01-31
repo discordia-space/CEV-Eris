@@ -7,7 +7,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	ammo_type = "/obj/item/ammo_casing/pistol"
 	load_method = MAGAZINE

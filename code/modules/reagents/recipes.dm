@@ -370,7 +370,7 @@
 
 /datum/chemical_reaction/hyperzine
 	result = "hyperzine"
-	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
+	required_reagents = list("sugar" = 1, "blattedin" = 1, "sulfur" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/ryetalyn

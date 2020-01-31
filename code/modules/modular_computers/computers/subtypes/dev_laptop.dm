@@ -4,7 +4,7 @@
 	desc = "A portable clamshell computer."
 	hardware_flag = PROGRAM_LAPTOP
 	icon = 'icons/obj/modular_laptop.dmi'
-	icon_state = "laptop-open"
+	icon_state = "laptop"
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 4)
 	w_class = ITEM_SIZE_NORMAL
 	base_idle_power_usage = 25
@@ -17,7 +17,6 @@
 	screen_on = FALSE
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 200
-	var/icon_state_closed = "laptop-closed"
 
 /obj/item/modular_computer/laptop/AltClick(var/mob/user)
 // Prevents carrying of open laptops inhand.
@@ -33,8 +32,12 @@
 
 /obj/item/modular_computer/laptop/update_icon()
 	..()
+
+	var/iconstring = initial(icon_state)
 	if(anchored)
-		icon_state = initial(icon_state)
+		iconstring += "-open"
 	else
 		overlays.Cut()
-		icon_state = icon_state_closed
+		iconstring += "-closed"
+
+	icon_state = iconstring
