@@ -202,4 +202,4 @@
 		rad = 75
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	helmet = /obj/item/clothing/head/helmet/space/void/atmos
+	helmet = /obj/item/clothing/head/space/void/atmos
