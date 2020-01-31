@@ -104,7 +104,7 @@
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_voidsuit"
-	slowdown = 0.25
+	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
 		/obj/item/device/scanner/health,
