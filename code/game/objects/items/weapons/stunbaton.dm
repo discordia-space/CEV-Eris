@@ -14,7 +14,7 @@
 	attack_verb = list("beaten")
 	price_tag = 500
 	var/stunforce = 0
-	var/agonyforce = 30
+	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
