@@ -22,9 +22,9 @@
 		mob_passthrough_check = 1
 	else
 		var/obj/item/weapon/grab/G = locate() in target_mob
-		if(G.state >= GRAB_NECK)
+		if(G && G.state >= GRAB_NECK)
 			mob_passthrough_check = rand()
-		else 
+		else
 			mob_passthrough_check = 0
 	return ..()
 
