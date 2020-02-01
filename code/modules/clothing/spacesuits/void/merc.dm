@@ -4,9 +4,9 @@
 	icon_state = "scaf"
 	item_state = "scaf"
 	armor = list(
-		melee = 70,
-		bullet = 75,
-		energy = 70,
+		melee = 50,
+		bullet = 55,
+		energy = 50,
 		bomb = 75,
 		bio = 100,
 		rad = 30
@@ -24,9 +24,9 @@
 	slowdown = 0.5
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 50,
-		bullet = 55,
-		energy = 50,
+		melee = 60,
+		bullet = 65,
+		energy = 60,
 		bomb = 75,
 		bio = 100,
 		rad = 30
