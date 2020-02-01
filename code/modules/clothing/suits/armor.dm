@@ -111,7 +111,7 @@
 	slowdown = 0.15
 	armor = list(
 		melee = 25,
-		bullet = 75,
+		bullet = 60,
 		energy = 25,
 		bomb = 10,
 		bio = 0,
