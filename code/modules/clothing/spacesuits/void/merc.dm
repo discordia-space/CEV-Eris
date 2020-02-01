@@ -21,12 +21,12 @@
 	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
 	icon_state = "scaf"
 	item_state = "scaf"
-	slowdown = 1.2
+	slowdown = 0.5
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 70,
-		bullet = 75,
-		energy = 70,
+		melee = 50,
+		bullet = 55,
+		energy = 50,
 		bomb = 75,
 		bio = 100,
 		rad = 30
