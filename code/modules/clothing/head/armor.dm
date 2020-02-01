@@ -75,7 +75,7 @@
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
 		melee = 30,
-		bullet = 75,
+		bullet = 60,
 		energy = 25,
 		bomb = 25,
 		bio = 0,
