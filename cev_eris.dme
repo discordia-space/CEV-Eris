@@ -2057,7 +2057,6 @@
 #include "code\modules\organs\external\damage.dm"
 #include "code\modules\organs\external\organ_icon.dm"
 #include "code\modules\organs\external\stump.dm"
-#include "code\modules\organs\external\subtypes\prosthesis.dm"
 #include "code\modules\organs\external\subtypes\robotic.dm"
 #include "code\modules\organs\external\subtypes\robotic_types.dm"
 #include "code\modules\organs\external\subtypes\standard.dm"

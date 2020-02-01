@@ -76,18 +76,22 @@
 	var/stage = 0
 	var/cavity = 0
 
+	// Used for spawned robotic organs
+	var/default_description = null
+
 /obj/item/organ/external/New(mob/living/carbon/holder, datum/organ_description/OD)
 	..(holder)
 
 	if(OD)
 		set_description(OD)
+	else if(default_description)
+		set_description(new default_description)
 
 	if(owner)
 		replaced(owner)
 		sync_colour_to_human(owner)
 
-	spawn(1)
-		update_icon()
+	update_icon()
 
 /obj/item/organ/external/Destroy()
 	if(parent)
@@ -259,9 +263,9 @@
 	return
 
 /obj/item/organ/external/proc/get_tally()
-	if(status & (ORGAN_DEAD|ORGAN_CUT_AWAY))
-		return 4
-	else if(status & (ORGAN_BROKEN|ORGAN_MUTATED))
+	if(is_broken())
+		return 3
+	else if(status & (ORGAN_MUTATED|ORGAN_DEAD))
 		return 3
 	// malfunctioning only happens intermittently so treat it as a broken limb when it procs
 	else if(is_malfunctioning())
@@ -273,7 +277,7 @@
 			spark_system.start()
 			spawn(10)
 				qdel(spark_system)
-		return 3
+		return 2
 	else if(is_dislocated())
 		return 1
 	else if(status & ORGAN_SPLINTED)
