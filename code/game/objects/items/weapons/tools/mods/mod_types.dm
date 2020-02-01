@@ -14,12 +14,12 @@
 	price_tag = 120
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
 
-//list/upgrades, list/required_qualities, list/negative_qualities, prefix, req_fuel, req_cell
+//list/tool_upgrades, list/required_qualities, list/negative_qualities, prefix, req_fuel, req_cell
 
 /obj/item/weapon/tool_upgrade/reinforcement/stick/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 		UPGRADE_DEGRADATION_MULT = 0.65,
 		UPGRADE_FORCE_MOD = 1,
 		)
@@ -37,7 +37,7 @@
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 		UPGRADE_DEGRADATION_MULT = 0.65,
 		UPGRADE_HEALTH_THRESHOLD = 10
 		)
@@ -54,7 +54,7 @@
 /obj/item/weapon/tool_upgrade/reinforcement/plating/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.55,
 	UPGRADE_FORCE_MOD = 1,
 	UPGRADE_PRECISION = -5,
@@ -72,7 +72,7 @@
 /obj/item/weapon/tool_upgrade/reinforcement/guard/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.75,
 	UPGRADE_PRECISION = 5,
 	UPGRADE_HEALTH_THRESHOLD = 10
@@ -93,7 +93,7 @@
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.15
 	)
 	I.prefix = "ergonomic"
@@ -109,7 +109,7 @@
 /obj/item/weapon/tool_upgrade/productivity/ratchet/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.25
 	)
 	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_SCREW_DRIVING)
@@ -126,7 +126,7 @@
 /obj/item/weapon/tool_upgrade/productivity/red_paint/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.20,
 	UPGRADE_PRECISION = -10,
 	UPGRADE_COLOR = "#FF4444"
@@ -143,7 +143,7 @@
 /obj/item/weapon/tool_upgrade/productivity/whetstone/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.15,
 	UPGRADE_PRECISION = 5,
 	UPGRADE_FORCE_MULT = 1.15
@@ -162,7 +162,7 @@
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.25,
 	UPGRADE_DEGRADATION_MULT = 0.85,
 	UPGRADE_FORCE_MULT = 1.10,
@@ -182,7 +182,7 @@
 /obj/item/weapon/tool_upgrade/productivity/oxyjet/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.20,
 	UPGRADE_FORCE_MULT = 1.15,
 	UPGRADE_DEGRADATION_MULT = 1.15,
@@ -202,7 +202,7 @@
 /obj/item/weapon/tool_upgrade/productivity/motor/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.5,
 	UPGRADE_FORCE_MULT = 1.15,
 	UPGRADE_DEGRADATION_MULT = 1.15,
@@ -227,7 +227,7 @@
 /obj/item/weapon/tool_upgrade/refinement/laserguide/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10)
 	I.prefix = "laser-guided"
 
@@ -243,7 +243,7 @@
 /obj/item/weapon/tool_upgrade/refinement/stabilized_grip/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10,
 	UPGRADE_HEALTH_THRESHOLD = 10)
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
@@ -258,7 +258,7 @@
 /obj/item/weapon/tool_upgrade/refinement/magbit/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10
 	)
 	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING, QUALITY_CLAMPING, QUALITY_BONE_SETTING)
@@ -273,7 +273,7 @@
 /obj/item/weapon/tool_upgrade/refinement/ported_barrel/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 12,
 	UPGRADE_DEGRADATION_MULT = 1.15,
 	UPGRADE_BULK = 1,
@@ -296,7 +296,7 @@
 /obj/item/weapon/tool_upgrade/augment/cell_mount/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_BULK = 1,
 	UPGRADE_DEGRADATION_MULT = 1.15,
 	UPGRADE_HEALTH_THRESHOLD = -10,
@@ -315,7 +315,7 @@
 /obj/item/weapon/tool_upgrade/augment/fuel_tank/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_BULK = 1,
 	UPGRADE_DEGRADATION_MULT = 1.15,
 	UPGRADE_HEALTH_THRESHOLD = -10,
@@ -333,7 +333,7 @@
 /obj/item/weapon/tool_upgrade/augment/holding_tank/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_BULK = 1,
 	UPGRADE_DEGRADATION_MULT = 1.30,
 	UPGRADE_HEALTH_THRESHOLD = -20,
@@ -353,12 +353,12 @@
 /obj/item/weapon/tool_upgrade/augment/expansion/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_BULK = 2,
 	UPGRADE_DEGRADATION_MULT = 1.3,
 	UPGRADE_PRECISION = -10,
 	UPGRADE_HEALTH_THRESHOLD = -20,
-	UPGRADE_MAXUPGRADES = 3
+	UPGRADE_MAXtool_upgrades = 3
 	)
 	I.prefix = "custom"
 
@@ -372,7 +372,7 @@
 /obj/item/weapon/tool_upgrade/augment/spikes/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_FORCE_MOD = 4,
 	UPGRADE_PRECISION = -5,
 	UPGRADE_DEGRADATION_MULT = 1.15,
@@ -411,7 +411,7 @@
 /obj/item/weapon/tool_upgrade/augment/dampener/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_COLOR = "#AAAAAA",
 	UPGRADE_HEALTH_THRESHOLD = -10,
 	UPGRADE_ITEMFLAGPLUS = SILENT
@@ -428,7 +428,7 @@
 /obj/item/weapon/tool_upgrade/augment/ai_tool/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_POWERCOST_MULT = 1.20,
 	UPGRADE_PRECISION = 14,
 	UPGRADE_WORKSPEED = 14,
@@ -446,7 +446,7 @@
 /obj/item/weapon/tool_upgrade/augment/repair_nano/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
+	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.01,
 	UPGRADE_HEALTH_THRESHOLD = 10
 	)
