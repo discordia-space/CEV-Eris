@@ -127,7 +127,7 @@
 	icon_state = "platecarrier"
 	armor = list(
 		melee = 25,
-		bullet = 60,
+		bullet = 50,
 		energy = 0,
 		bomb = 0,
 		bio = 0,
