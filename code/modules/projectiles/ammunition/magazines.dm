@@ -144,7 +144,7 @@
 	caliber = CAL_SRIFLE
 	matter = list(MATERIAL_STEEL = 6)
 	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 20
+	max_ammo = 25
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/srifle/empty
