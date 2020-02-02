@@ -3,6 +3,7 @@
 	desc = "Sterilized equipment within. Do not contaminate."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "dnakit"
+	illustration = null
 	can_hold = list(/obj/item/weapon/forensics/swab)
 	storage_slots = 14
 
@@ -24,6 +25,7 @@
 	desc = "Sterilized equipment within. Do not contaminate."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "dnakit"
+	illustration = null
 	can_hold = list(/obj/item/weapon/sample/print)
 	storage_slots = 14
 

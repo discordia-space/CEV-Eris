@@ -240,3 +240,8 @@
 	w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/weapon/coin,
 		/obj/item/weapon/spacecash)
+
+/obj/item/weapon/storage/bag/money/Initialize()
+	. = ..()
+	if(prob(20))
+		icon_state = "moneybagalt"
