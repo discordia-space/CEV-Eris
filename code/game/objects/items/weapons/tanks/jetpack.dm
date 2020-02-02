@@ -124,7 +124,7 @@
 	var/atom/movable/A = get_toplevel_atom() //Get what this jetpack is attached to, usually a mob or object
 	if (A)
 		//This is a hack. Future todo: Make mechas not utilize anchored
-		if (istype(A, /obj/mecha))
+		if (istype(A, /mob/living/exosuit))
 			A.anchored = FALSE
 
 		var/turf/T = get_turf(A)

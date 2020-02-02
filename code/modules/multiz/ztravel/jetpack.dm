@@ -36,7 +36,7 @@
 /datum/vertical_travel_method/jetpack/calculate_time()
 	if (isrobot(M))
 		base_time *= 2 //Robots are heavy and slow, but they can use jetpacks
-	else if (istype(M, /obj/mecha))
+	else if (istype(M, /mob/living/exosuit))
 		base_time *= 2.5 //Heavier still
 	.=..()
 

@@ -114,13 +114,13 @@
 		return
 	if(!density)
 		return ..()
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(mecha.occupant)
-			var/mob/M = mecha.occupant
-			if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
-			M.last_bumped = world.time
-			attack_hand(M)
+	if(istype(AM, /mob/living/exosuit))
+		var/mob/living/exosuit/mecha = AM
+		if(mecha.pilots.len)
+			for(var/mob/M in mecha.pilots)
+				if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
+				M.last_bumped = world.time
+				attack_hand(M)
 	return 0
 
 /obj/machinery/door/firedoor/proc/checkAlarmed()

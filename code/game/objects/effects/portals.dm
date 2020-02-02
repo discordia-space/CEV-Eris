@@ -79,7 +79,7 @@ var/list/portal_cache = list()
 		return
 	if (istype(M, /obj/effect/effect/light)) //lights from flashlights too.
 		return
-	if (M.anchored && !istype(M, /obj/mecha))
+	if (M.anchored && !istype(M, /mob/living/exosuit))
 		return
 	if (!( target ))
 		qdel(src)

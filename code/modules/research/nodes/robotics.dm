@@ -32,17 +32,15 @@
 	cost = 500
 
 	unlocks_designs = list(
-		/datum/design/research/circuit/mechacontrol,
+		//datum/design/research/circuit/mechacontrol,
 		/datum/design/research/circuit/mechfab,
 		/datum/design/research/circuit/dronecontrol,
-		/datum/design/research/circuit/mecha/main,
-		/datum/design/research/circuit/mecha/peripherals,
-		/datum/design/research/circuit/mecha/targeting
+		/datum/design/research/item/mechfab/exosuit/control_module
 		)
 
 /datum/technology/mech_odysseus
-	name = "Odysseus"
-	desc = "Odysseus - the medical exosuit."
+	name = "ERROR"
+	desc = "ERROROdysseus - the medical exosuit.ERROR"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -54,6 +52,7 @@
 	cost = 500
 
 	unlocks_designs = list(
+/*
 		/datum/design/research/item/mechfab/odysseus/chassis,
 		/datum/design/research/item/mechfab/odysseus/torso,
 		/datum/design/research/item/mechfab/odysseus/head,
@@ -61,12 +60,13 @@
 		/datum/design/research/item/mechfab/odysseus/right_arm,
 		/datum/design/research/item/mechfab/odysseus/left_leg,
 		/datum/design/research/item/mechfab/odysseus/right_leg
+*/
 		)
 
 
 /datum/technology/mech_gygax
-	name = "Gygax"
-	desc = "Gygax - the killer exosuit."
+	name = "ERROR"
+	desc = "ERRORGygax - the killer exosuit.ERROR"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -78,6 +78,7 @@
 	cost = 2000
 
 	unlocks_designs = list(
+/*
 		/datum/design/research/item/mechfab/gygax/chassis,
 		/datum/design/research/item/mechfab/gygax/torso,
 		/datum/design/research/item/mechfab/gygax/head,
@@ -86,6 +87,7 @@
 		/datum/design/research/item/mechfab/gygax/left_leg,
 		/datum/design/research/item/mechfab/gygax/right_leg,
 		/datum/design/research/item/mechfab/gygax/armour
+*/
 		)
 /*
 /datum/technology/mech_gyrax_ultra
@@ -104,8 +106,8 @@
 	unlocks_designs = list("ultra_main", "ultra_peri", "ultra_targ")
 */
 /datum/technology/mech_durand
-	name = "Durand"
-	desc = "Durand - the knight exosuit."
+	name = "ERROR"
+	desc = "ERRORDurand - the knight exosuit.ERROR"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.7
@@ -117,6 +119,7 @@
 	cost = 2000
 
 	unlocks_designs = list(
+/*
 		/datum/design/research/item/mechfab/durand/chassis,
 		/datum/design/research/item/mechfab/durand/torso,
 		/datum/design/research/item/mechfab/durand/head,
@@ -125,12 +128,13 @@
 		/datum/design/research/item/mechfab/durand/left_leg,
 		/datum/design/research/item/mechfab/durand/right_leg,
 		/datum/design/research/item/mechfab/durand/armour
+*/
 	)
 
 
 /datum/technology/mech_phazon
-	name = "Phazon"
-	desc = "Phazon - the battle scout exosuit"
+	name = "ERROR"
+	desc = "ERRORPhazon - the battle scout exosuitERROR"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.8
@@ -142,7 +146,8 @@
 	cost = 4000
 
 	unlocks_designs = list(
-		/datum/design/research/item/mechfab/phazon/chassis,
+/*
+			/datum/design/research/item/mechfab/phazon/chassis,
 		/datum/design/research/item/mechfab/phazon/torso,
 		/datum/design/research/item/mechfab/phazon/head,
 		/datum/design/research/item/mechfab/phazon/left_arm,
@@ -150,6 +155,7 @@
 		/datum/design/research/item/mechfab/phazon/left_leg,
 		/datum/design/research/item/mechfab/phazon/right_leg,
 		/datum/design/research/item/mechfab/phazon/armour
+*/
 		)
 
 
@@ -168,12 +174,10 @@
 	cost = 500
 
 	unlocks_designs = list(
-		/datum/design/research/item/mecha/hydraulic_clamp,
-		/datum/design/research/item/mecha/drill,
-		/datum/design/research/item/mecha/extinguisher,
-		/datum/design/research/item/mecha/cable_layer,
-		/datum/design/research/item/mecha/flaregun,
-		/datum/design/research/item/mecha/passenger
+		/datum/design/research/item/exosuit/hydraulic_clamp,
+		/datum/design/research/item/exosuit/drill,
+		/datum/design/research/item/exosuit/extinguisher,
+		/datum/design/research/item/exosuit/sleeper
 	)
 
 /datum/technology/mech_utility_modules
@@ -190,6 +194,7 @@
 	cost = 1000
 
 	unlocks_designs = list(
+/*
 							/datum/design/research/item/mecha/jetpack,
 							/datum/design/research/item/mecha/ai_holder,
 							/datum/design/research/item/mecha/wormhole_gen,
@@ -202,6 +207,7 @@
 							/datum/design/research/item/mecha/syringe_gun,
 							/datum/design/research/item/mecha/diamond_drill,
 							/datum/design/research/item/mecha/generator_nuclear
+*/
 							)
 
 /datum/technology/mech_teleporter_modules
@@ -217,7 +223,7 @@
 	required_tech_levels = list()
 	cost = 5000
 
-	unlocks_designs = list(/datum/design/research/item/mecha/teleporter)
+	unlocks_designs = list(/datum/design/research/item/exosuit/gravity_catapult)
 
 /datum/technology/mech_armor_modules
 	name = "Exosuit Armor Modules"
@@ -233,8 +239,8 @@
 	cost = 2000
 
 	unlocks_designs = list(
-		/datum/design/research/item/mecha/ccw_armor,
-		/datum/design/research/item/mecha/proj_armor
+/*		/datum/design/research/item/mecha/ccw_armor,
+		/datum/design/research/item/mecha/proj_armor*/
 		)
 
 /datum/technology/mech_weaponry_modules
@@ -251,9 +257,9 @@
 	cost = 2000
 
 	unlocks_designs = list(
-							/datum/design/research/item/mecha/weapon/scattershot,
+/*							/datum/design/research/item/mecha/weapon/scattershot,
 							/datum/design/research/item/mecha/weapon/laser,
-							/datum/design/research/item/mecha/weapon/grenade_launcher
+							/datum/design/research/item/mecha/weapon/grenade_launcher*/
 							)
 
 /datum/technology/mech_heavy_weaponry_modules
@@ -270,8 +276,8 @@
 	cost = 4000
 
 	unlocks_designs = list(
-							/datum/design/research/item/mecha/weapon/laser_heavy,
-							/datum/design/research/item/mecha/weapon/ion
+/*							/datum/design/research/item/mecha/weapon/laser_heavy,
+							/datum/design/research/item/mecha/weapon/ion*/
 							)
 
 //AI BRANCH

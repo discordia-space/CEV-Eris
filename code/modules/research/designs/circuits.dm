@@ -106,13 +106,13 @@
 	build_path = /obj/item/weapon/circuitboard/robotics
 	sort_string = "HAAAB"
 	category = CAT_COMP
-
+/*
 /datum/design/research/circuit/mechacontrol
 	name = "exosuit control console"
 	build_path = /obj/item/weapon/circuitboard/mecha_control
 	sort_string = "HAAAC"
 	category = CAT_COMP
-
+*/
 /datum/design/research/circuit/rdconsole
 	name = "R&D control console"
 	build_path = /obj/item/weapon/circuitboard/rdconsole

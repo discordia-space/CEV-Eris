@@ -88,7 +88,7 @@
 
 
 /datum/vertical_travel_method/New(var/mob/L)
-	if (istype(L.loc, /obj/mecha)) //Add more vehicle related checks here in future
+	if (istype(L.loc, /mob/living/exosuit)) //Add more vehicle related checks here in future
 		M = L.loc
 	else
 		M = L

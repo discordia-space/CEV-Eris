@@ -671,19 +671,38 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Particle Accelerator crate"
 
+
 /datum/supply_pack/mecha_ripley
 	name = "exosuit assembly crate (\"Ripley\" APLU)"
 	contains = list(
-		/obj/item/mecha_parts/mecha_equipment/tool/drill,
-		/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
+		/obj/item/mech_equipment/drill,
+		/obj/item/mech_equipment/clamp,
+		/obj/item/mech_equipment/light,
+		/obj/item/mech_component/sensors,
+		/obj/item/mech_component/control_module,
+		/obj/item/mech_component/chassis,
+		/obj/item/mech_component/manipulators/powerloader,
+		/obj/item/mech_component/propulsion/powerloader,
+		/obj/item/robot_parts/robot_component/armour/exosuit
+	)
+	cost = 3000
+	containertype = /obj/structure/closet/crate/secure/scisecurecrate
+	crate_name = "standart exosuit assembly crate"
+	group = "Engineering"
+/*
+/datum/supply_pack/mecha_ripley
+	name = "exosuit assembly crate (\"Ripley\" APLU)"
+	contains = list(
+		/obj/item/mech_equipment/drill,
+		/obj/item/mech_equipment/clamp,
 		/obj/item/weapon/circuitboard/mecha/main,
 		/obj/item/weapon/circuitboard/mecha/peripherals,
-		/obj/item/mecha_parts/chassis/ripley,
-		/obj/item/mecha_parts/part/ripley_torso,
-		/obj/item/mecha_parts/part/ripley_left_arm,
-		/obj/item/mecha_parts/part/ripley_right_arm,
-		/obj/item/mecha_parts/part/ripley_left_leg,
-		/obj/item/mecha_parts/part/ripley_right_leg
+		/obj/item/mech_component/chassis,
+		/obj/item/mech_component/part/ripley_torso,
+		/obj/item/mech_component/part/ripley_left_arm,
+		/obj/item/mech_component/part/ripley_right_arm,
+		/obj/item/mech_component/part/ripley_left_leg,
+		/obj/item/mech_component/part/ripley_right_leg
 	)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
@@ -693,23 +712,23 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/mecha_odysseus
 	name = "exosuit assembly crate (\"Odysseus\")"
 	contains = list(
-		/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
-		/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
+		/obj/item/mech_equipment/tool/syringe_gun,
+		/obj/item/mech_equipment/tool/sleeper,
 		/obj/item/weapon/circuitboard/mecha/main,
 		/obj/item/weapon/circuitboard/mecha/peripherals,
-		/obj/item/mecha_parts/chassis/odysseus,
-		/obj/item/mecha_parts/part/odysseus_head,
-		/obj/item/mecha_parts/part/odysseus_torso,
-		/obj/item/mecha_parts/part/odysseus_left_arm,
-		/obj/item/mecha_parts/part/odysseus_right_arm,
-		/obj/item/mecha_parts/part/odysseus_left_leg,
-		/obj/item/mecha_parts/part/odysseus_right_leg
+		/obj/item/mech_component/chassis/odysseus,
+		/obj/item/mech_component/part/odysseus_head,
+		/obj/item/mech_component/part/odysseus_torso,
+		/obj/item/mech_component/part/odysseus_left_arm,
+		/obj/item/mech_component/part/odysseus_right_arm,
+		/obj/item/mech_component/part/odysseus_left_leg,
+		/obj/item/mech_component/part/odysseus_right_leg
 	)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure/scisecurecrate
 	crate_name = "\"Odysseus\" exosuit assembly crate"
 	group = "Engineering"
-
+*/
 /datum/supply_pack/robotics
 	name = "Robotics assembly crate"
 	contains = list(/obj/item/device/assembly/prox_sensor,

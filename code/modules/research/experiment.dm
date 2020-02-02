@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		/obj/machinery/auto_cloner,
 		/obj/machinery/power/supermatter,
 		/obj/machinery/giga_drill,
-		/obj/mecha/working/hoverpod,
+//		/obj/mecha/working/hoverpod,
 		/obj/machinery/replicator,
 		/obj/machinery/artifact
 	)
