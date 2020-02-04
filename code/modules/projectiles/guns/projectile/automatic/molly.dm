@@ -1,9 +1,9 @@
-/obj/item/weapon/gun/projectile/automatic/IH_machinepistol
+/obj/item/weapon/gun/projectile/automatic/molly
 	name = "FS MP .35 Auto \"Molly\""
 	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Issued to non-combatants among Ironhammer as powerful self-protection sidearm. Custom magwell allows it to feed both from highcap pistol and SMG magazines. Uses .35 Auto rounds."
-	icon = 'icons/obj/guns/projectile/IH_mp.dmi'
-	icon_state = "IH_mp"
-	item_state = "IH_mp"
+	icon = 'icons/obj/guns/projectile/molly.dmi'
+	icon_state = "molly"
+	item_state = "molly"
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	caliber = CAL_PISTOL
@@ -27,7 +27,7 @@
 		BURST_3_ROUND
 		)
 
-/obj/item/weapon/gun/projectile/automatic/IH_machinepistol/update_icon()
+/obj/item/weapon/gun/projectile/automatic/molly/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -46,6 +46,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/IH_machinepistol/Initialize()
+/obj/item/weapon/gun/projectile/automatic/molly/Initialize()
 	. = ..()
 	update_icon()

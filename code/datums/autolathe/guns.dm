@@ -27,7 +27,7 @@
 
 /datum/design/autolathe/gun/silenced
 	name = "FS HG .35 Auto \"Mandella\""
-	build_path = /obj/item/weapon/gun/projectile/silenced
+	build_path = /obj/item/weapon/gun/projectile/mandella
 
 /datum/design/autolathe/gun/colt
 	name = "FS HG .35 Auto \"Colt M1911\""
@@ -35,7 +35,7 @@
 
 /datum/design/autolathe/gun/revolver_detective
 	name = "FS REV .35 \"Havelock\""
-	build_path = /obj/item/weapon/gun/projectile/revolver/detective
+	build_path = /obj/item/weapon/gun/projectile/revolver/havelock
 
 // .40 handguns
 
@@ -61,7 +61,7 @@
 
 /datum/design/autolathe/gun/deagle
 	name = "FS HG .40 \"Avasarala\""
-	build_path = /obj/item/weapon/gun/projectile/deagle
+	build_path = /obj/item/weapon/gun/projectile/avasarala
 
 // Shotguns
 
@@ -75,7 +75,7 @@
 
 /datum/design/autolathe/gun/combat_shotgun
 	name = "NT SG \"Regulator 1000\""
-	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/regulator
 
 /datum/design/autolathe/gun/gladstone
 	name = "FS SG \"Gladstone\""
@@ -83,7 +83,7 @@
 
 /datum/design/autolathe/gun/pug
 	name = "SA SG \"Bojevic\""
-	build_path = /obj/item/weapon/gun/projectile/shotgun/pug
+	build_path = /obj/item/weapon/gun/projectile/shotgun/bojevic
 
 // SMGs
 
@@ -97,15 +97,15 @@
 
 /datum/design/autolathe/gun/IH_sidearm
 	name = "FS HG .35 \"Paco\""
-	build_path = /obj/item/weapon/gun/projectile/IH_sidearm
+	build_path = paco/obj/item/weapon/gun/projectile/paco
 
 /datum/design/autolathe/gun/IH_smg
 	name = "FS SMG .35 \"Straylight\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/IH_smg
+	build_path = /obj/item/weapon/gun/projectile/automatic/straylight
 
 /datum/design/autolathe/gun/IH_machinepistol
 	name = "FS MP .35 \"Molly\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/IH_machinepistol
+	build_path = /obj/item/weapon/gun/projectile/automatic/molly
 
 /datum/design/autolathe/gun/drozd
 	name = "Excelsior.35 \"Drozd\""
@@ -123,7 +123,7 @@
 
 /datum/design/autolathe/gun/IH_heavyrifle
 	name = "FS BR .20 \"Wintermute\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
+	build_path = /obj/item/weapon/gun/projectile/automatic/wintermute
 
 
 // .25 Rifles
@@ -216,7 +216,7 @@
 	name = "NT MER \"Valkyrie\""
 	build_path = /obj/item/weapon/gun/energy/sniperrifle
 
-// Plasma 
+// Plasma
 
 /datum/design/autolathe/gun/plasma/dominion
 	name = "NT PR \"Dominion\""
