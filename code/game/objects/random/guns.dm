@@ -32,7 +32,7 @@
 				/obj/item/weapon/gun/projectile/revolver/consul = 4,\
 				/obj/item/weapon/gun/projectile/revolver = 4,\
 				/obj/item/weapon/gun/projectile/automatic/wintermute = 1,\
-				paco/obj/item/weapon/gun/projectile/paco = 2,\
+				/obj/item/weapon/gun/projectile/paco = 2,\
 				/obj/item/weapon/gun/projectile/automatic/molly = 2,\
 				/obj/item/weapon/gun/projectile/automatic/straylight = 1))
 

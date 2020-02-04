@@ -97,7 +97,7 @@
 
 /datum/design/autolathe/gun/IH_sidearm
 	name = "FS HG .35 \"Paco\""
-	build_path = paco/obj/item/weapon/gun/projectile/paco
+	build_path = /obj/item/weapon/gun/projectile/paco
 
 /datum/design/autolathe/gun/IH_smg
 	name = "FS SMG .35 \"Straylight\""

@@ -102,7 +102,7 @@
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
-	new	paco/obj/item/weapon/gun/projectile/paco(src)
+	new	/obj/item/weapon/gun/projectile/paco(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/weapon/gun/projectile/automatic/sol/rds(src)
@@ -132,7 +132,7 @@
 	new /obj/item/weapon/gun/projectile/automatic/sol/rds(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
-	new	paco/obj/item/weapon/gun/projectile/paco(src)
+	new	/obj/item/weapon/gun/projectile/paco(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 	new /obj/item/weapon/storage/pouch/baton_holster(src)
 

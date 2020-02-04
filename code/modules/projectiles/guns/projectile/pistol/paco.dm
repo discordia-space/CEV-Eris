@@ -1,4 +1,4 @@
-paco/obj/item/weapon/gun/projectile/paco
+/obj/item/weapon/gun/projectile/paco
 	name = "FS HG \"Paco\""
 	desc = "A modern and reliable sidearm for the soldier in the field. Commonly issued as a sidearm to Ironhammer Operatives. Uses standard .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/paco.dmi'
@@ -22,7 +22,7 @@ paco/obj/item/weapon/gun/projectile/paco
 	damage_multiplier = 1.1
 	recoil_buildup = 20
 
-paco/obj/item/weapon/gun/projectile/paco/update_icon()
+/obj/item/weapon/gun/projectile/paco/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -41,6 +41,6 @@ paco/obj/item/weapon/gun/projectile/paco/update_icon()
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-paco/obj/item/weapon/gun/projectile/paco/Initialize()
+/obj/item/weapon/gun/projectile/paco/Initialize()
 	. = ..()
 	update_icon()
