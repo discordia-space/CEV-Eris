@@ -41,7 +41,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 	contents = list(
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+		/obj/item/weapon/gun/projectile/shotgun/pump/regulator,
 		/obj/item/weapon/gun/projectile/automatic/idaho,
 		/obj/item/weapon/gun/projectile/automatic/z8)
 

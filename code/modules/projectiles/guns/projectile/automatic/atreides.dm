@@ -1,9 +1,9 @@
 /obj/item/weapon/gun/projectile/automatic/atreides
 	name = "FS SMG .35 Auto \"Atreides\""
 	desc = "The Atreides is a replica of an old and popular SMG. It has a strong kick. Uses .35 Auto rounds."
-	icon = 'icons/obj/guns/projectile/mac.dmi'
-	icon_state = "mac"
-	item_state = "mac"
+	icon = 'icons/obj/guns/projectile/atreides.dmi'
+	icon_state = "atreides"
+	item_state = "atreides"
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	caliber = CAL_PISTOL

@@ -18639,8 +18639,8 @@
 /area/eris/maintenance/section3deck1central)
 "aRy" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
+/obj/item/weapon/gun/projectile/automatic/wintermute,
+/obj/item/weapon/gun/projectile/automatic/wintermute,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -19349,10 +19349,10 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSZ" = (
@@ -80912,8 +80912,8 @@
 /area/eris/engineering/starboardhallway)
 "dyX" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/deagle,
-/obj/item/weapon/gun/projectile/deagle,
+/obj/item/weapon/gun/projectile/avasarala,
+/obj/item/weapon/gun/projectile/avasarala,
 /obj/machinery/door/blast/shutters/glass{
 	id = "BridgeArmoury";
 	name = "Armoury showcase"

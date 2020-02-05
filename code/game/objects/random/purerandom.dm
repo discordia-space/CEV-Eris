@@ -126,7 +126,7 @@
 				/obj/item/weapon/gun/projectile/mk58 = 1,
 				/obj/item/weapon/gun/projectile/giskard = 1,
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
-				/obj/item/weapon/gun/projectile/revolver/detective = 1,
+				/obj/item/weapon/gun/projectile/revolver/havelock = 1,
 				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
 				/obj/item/stash_spawner = 12))
 

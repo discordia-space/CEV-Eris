@@ -1,9 +1,9 @@
-/obj/item/weapon/gun/projectile/silenced
+/obj/item/weapon/gun/projectile/mandella
 	name = "FS HG .35 Auto \"Mandella\""
 	desc = "A small, quiet,  easily concealable gun. Uses standard .35 Auto mags. Has an integrated silencer which can't be removed."
 	icon = 'icons/obj/guns/projectile/mandella.dmi'
 	icon_state = "mandella"
-	item_state = "pistol_s"
+	item_state = "mandella"
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	caliber = CAL_PISTOL
@@ -19,12 +19,12 @@
 
 
 //This comes with a preinstalled silencer
-/obj/item/weapon/gun/projectile/silenced/Initialize()
+/obj/item/weapon/gun/projectile/mandella/Initialize()
 	.=..()
 	apply_silencer(new /obj/item/weapon/silencer/integrated(src), null)
 
 
-/obj/item/weapon/gun/projectile/silenced/update_icon()
+/obj/item/weapon/gun/projectile/mandella/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -37,6 +37,6 @@
 
 	icon_state = iconstring
 
-/obj/item/weapon/gun/projectile/silenced/Initialize()
+/obj/item/weapon/gun/projectile/mandella/Initialize()
 	. = ..()
 	update_icon()

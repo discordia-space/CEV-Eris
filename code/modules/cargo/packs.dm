@@ -143,7 +143,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/fssmall
 	name = "FS Handgun Pack"
 	contains = list(/obj/item/weapon/gun/projectile/colt,
-			/obj/item/weapon/gun/projectile/IH_sidearm,
+			/obj/item/weapon/gun/projectile/paco,
 			/obj/item/weapon/gun/projectile/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw)
 	cost = 3000
@@ -153,8 +153,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/fsrevolver
 	name = "FS Revolver Pack"
-	contains = list(/obj/item/weapon/gun/projectile/revolver/detective,
-					/obj/item/weapon/gun/projectile/revolver/detective,
+	contains = list(/obj/item/weapon/gun/projectile/revolver/havelock,
+					/obj/item/weapon/gun/projectile/revolver/havelock,
 					/obj/item/weapon/gun/projectile/revolver/consul)
 	cost = 3300
 	containertype = /obj/structure/closet/crate/secure/weapon

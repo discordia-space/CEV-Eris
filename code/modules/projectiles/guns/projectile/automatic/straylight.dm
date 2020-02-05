@@ -1,9 +1,9 @@
-/obj/item/weapon/gun/projectile/automatic/IH_smg
+/obj/item/weapon/gun/projectile/automatic/straylight
 	name = "FS SMG .35 Auto \"Straylight\""
 	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. Sacrifices a fire selector to cut mass, so it requires a careful hand. Uses .35 Auto rounds."
-	icon = 'icons/obj/guns/projectile/IH_smg.dmi'
-	icon_state = "IH_smg"
-	item_state = "IH_smg"
+	icon = 'icons/obj/guns/projectile/straylight.dmi'
+	icon_state = "straylight"
+	item_state = "straylight"
 	w_class = ITEM_SIZE_NORMAL
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -23,7 +23,7 @@
 	firemodes = list(
 		FULL_AUTO_600)
 
-/obj/item/weapon/gun/projectile/automatic/IH_smg/update_icon()
+/obj/item/weapon/gun/projectile/automatic/straylight/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -43,6 +43,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/IH_smg/Initialize()
+/obj/item/weapon/gun/projectile/automatic/straylight/Initialize()
 	. = ..()
 	update_icon()
