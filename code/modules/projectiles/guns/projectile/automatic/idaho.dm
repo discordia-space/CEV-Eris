@@ -1,8 +1,9 @@
 /obj/item/weapon/gun/projectile/automatic/idaho
 	name = "FS SMG .40 Magnum \"Idaho\""
-	desc = "The Idaho is an experimental SMG made by \"Frozen Star\" for paramilitary and private use. \
-			Design implements a larger caliber for compact frame in sum with capability of full auto to drastically increase \
-			impact, but aim and recoil suffers as the result. Has worse than average fire rate. Uses .40 magnum rounds."
+	desc = "An experimental Submachine gun made by \"Frozen Star\", for Paramilitary and private security use. \
+			Rifled to take a larger caliber than a typical submachine gun, it boasts a greater impact, but suffers \
+			from poor recoil control and horrible armor penetration capabilities as a result. \
+			Has worse than average fire rate. Uses .40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/idaho.dmi'
 	icon_state = "idaho"
 	item_state = "idaho"

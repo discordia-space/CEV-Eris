@@ -1,10 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/molly
 	name = "FS MP .35 Auto \"Molly\""
-	desc = "An experimental fully automatic pistol. Was designed as a middle ground between SMGs and pistols to put superior \
-			firepower of first into frame of second, but unfortunately ended up too underpowered even for a pistol. \
-			Still quite deadly in CQC due to full auto capability. Not very successful design, but certanly far from failure. \
-			Often issued to non-combatants among Ironhammer as self-protection sidearm. \
-			Custom magwell allows it to feed both from highcap pistol and SMG magazines. Uses .35 Auto rounds."
+	desc = "An experimental fully automatic pistol, designed as a middle ground between SMGs and Pistols. \
+			Primarily employed in CQC scenarios or as a civilian self defence tool. \
+			Takes both highcap pistol and smg mags. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/molly.dmi'
 	icon_state = "molly"
 	item_state = "molly"

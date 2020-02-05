@@ -1,10 +1,7 @@
 /obj/item/weapon/gun/projectile/automatic/drozd
 	name = "Excelsior .35 Auto \"Drozd\""
-	desc = "An excellent fully automatic submachinegun. Made by \"Excelsior\" by reverse-engineering and improving upon Moebius \
-			reverse-engineered C20r robust design to sevelop even more deadly weapon. Damage is subpar, but armor penetration \
-			capabilities are excellent. Blueprints didn't make it onto the Means of Production disk for some logistic reasons \
-			and few existing disks was lost. Famous for it's perfomance in close quarters. Has better than average fire rate. \
-			Uses .35 Auto rounds."
+	desc = "An excellent fully automatic submachine gun, Made by \"Excelsior\", reverse engineered from the \"Moebius\" \
+			reverse engineered C20r, with an emphasis on armor penetration over direct damage. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/drozd.dmi'
 	icon_state = "drozd"
 	item_state = "drozd"
