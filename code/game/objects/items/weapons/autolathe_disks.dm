@@ -552,7 +552,7 @@
 		/datum/design/autolathe/gun/giskard,
 		/datum/design/autolathe/gun/olivaw,
 		/datum/design/autolathe/gun/clarissa,
-		/datum/design/autolathe/gun/revolver_detective,
+		/datum/design/autolathe/gun/havelock,
 		/datum/design/autolathe/ammo/magazine_pistol/practice,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/sl_pistol/practice,
@@ -588,7 +588,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/silenced, // "FS HG .35 Auto \"Mandella\""
+		/datum/design/autolathe/gun/mandella, // "FS HG .35 Auto \"Mandella\""
 		/datum/design/autolathe/ammo/magazine_pistol/practice,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
@@ -658,7 +658,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/deagle, // "FS HG .40 \"Avasarala\""
+		/datum/design/autolathe/gun/avasarala, // "FS HG .40 \"Avasarala\""
 		/datum/design/autolathe/ammo/mg_magnum/practice,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
 		)
@@ -695,7 +695,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/combat_shotgun, // "NT SG \"Regulator 1000\""
+		/datum/design/autolathe/gun/regulator, // "NT SG \"Regulator 1000\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -719,7 +719,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/pug, // "SA SG \"Bojevic\""
+		/datum/design/autolathe/gun/bojevic, // "SA SG \"Bojevic\""
 		/datum/design/autolathe/ammo/m12beanbag, // Never add tazershells, for love of god
 		/datum/design/autolathe/ammo/m12pellet,
 		/datum/design/autolathe/ammo/m12slug,
@@ -733,7 +733,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/IH_sidearm, // "FS HG .35 \"Paco\""
+		/datum/design/autolathe/gun/paco, // "FS HG .35 \"Paco\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -744,7 +744,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/IH_smg, // "FS SMG .35 \"Straylight\""
+		/datum/design/autolathe/gun/straylight, // "FS SMG .35 \"Straylight\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -755,7 +755,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/IH_machinepistol, // "FS MP .35 \"Molly\""
+		/datum/design/autolathe/gun/molly, // "FS MP .35 \"Molly\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -801,7 +801,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/IH_heavyrifle, // "FS BR .20 \"Wintermute\""
+		/datum/design/autolathe/gun/wintermute, // "FS BR .20 \"Wintermute\""
 		/datum/design/autolathe/ammo/srifle/practice,
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
