@@ -1,35 +1,37 @@
 /obj/item/weapon/gun/projectile/automatic/idaho
-	name = "FS SMG .35 Auto \"Idaho\""
-	desc = "The Idaho is a cheap self-defence weapon, mass-produced by \"Frozen Star\" for paramilitary and private use. Uses 30 Auto rounds."
+	name = "FS SMG .40 Magnum \"Idaho\""
+	desc = "The Idaho is an experimental SMG made by \"Frozen Star\" for paramilitary and private use. \
+			Design implements a larger caliber for compact frame in sum with capability of full auto to drastically increase \
+			impact, but aim and recoil suffers as the result. Has worse than average fire rate. Uses .40 magnum rounds."
 	icon = 'icons/obj/guns/projectile/idaho.dmi'
 	icon_state = "idaho"
 	item_state = "idaho"
 	w_class = ITEM_SIZE_NORMAL
-	can_dual = 1
-	caliber = CAL_PISTOL
+	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	ammo_type = "/obj/item/ammo_casing/pistol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
-	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_WOOD = 4)
-	price_tag = 1600
-	damage_multiplier = 0.9
-	recoil_buildup = 4.5
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_WOOD = 4)
+	price_tag = 2000
+	penetration_multiplier = 0.3
+	recoil_buildup = 8
 
 	firemodes = list(
-		FULL_AUTO_400,
+		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/idaho/update_icon()
-	..()
+	overlays.Cut()
+	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
 	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]-full"
-		set_item_state("-full")
-	else
-		icon_state = initial(icon_state)
-		set_item_state()
-	return
+		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		overlays += "slide[silenced ? "_s" : ""]"
+
+/obj/item/weapon/gun/projectile/automatic/idaho/Initialize()
+	. = ..()
+	update_icon()
