@@ -95,6 +95,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd = 2,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute = 1,

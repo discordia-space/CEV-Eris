@@ -490,10 +490,10 @@
 		/datum/design/autolathe/circuit/autolathe_disk_cloner,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/gun/makarov,
-		/datum/design/autolathe/gun/drozd,
+		//datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/sec/silencer,
 		/datum/design/autolathe/ammo/magazine_pistol,
-		/datum/design/autolathe/ammo/smg,
+		//datum/design/autolathe/ammo/smg,
  		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
 		/datum/design/autolathe/ammo/sl_lrifle,
@@ -526,10 +526,10 @@
 	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/makarov,
-		/datum/design/autolathe/gun/drozd,
+		//datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/sec/silencer,
 		/datum/design/autolathe/ammo/magazine_pistol,
-		/datum/design/autolathe/ammo/smg,
+		//datum/design/autolathe/ammo/smg,
 		/datum/design/autolathe/gun/ak47,
    		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/ammo/sl_lrifle,
@@ -729,7 +729,7 @@
 		/datum/design/autolathe/ammo/m12slug,
 		)
 
-// .35 SMGs
+// SMGs
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco
 	disk_name = "Frozen Star - .35 Paco SMG"
@@ -784,6 +784,17 @@
 		/datum/design/autolathe/gun/atreides, // "FS SMG .35 \"Atreides\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd
+	disk_name = "Excelsior - .35 Auto Drozd SMG"
+	desc = "The back has a machine etching: \"Nobody is to be blamed for being born a slave; but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing..\""
+	icon_state = "excelsior"
+
+	license = 8
+	designs = list(
+		/datum/design/autolathe/gun/drozd,
+		/datum/design/autolathe/ammo/smg //it's AP SMG, and it's Excelsior - no feeble rubber needed.
 	)
 
 // .20 Rifles (AP)
