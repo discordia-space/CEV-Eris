@@ -1,10 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/straylight
 	name = "FS SMG .35 Auto \"Straylight\""
-	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. It supposed to be testing ground for newly \
-			developed firing mechanism that later was supposed to be used in other \"Frozen Star\" designs, but it turned out to \
-			be practically useless for other weapons due to suffering similar limitations as \"Molly\" - lack of firepower \
-			and extra kickback. After minor redesign it made a great rapid-firing less than lethal weapon made with rubber ammo \
-			in mind instead. Has excellent fire rate. Uses .35 Auto rounds."
+	desc = "A compact, lightweight rapid submachine gun. Was primarily used for testing ammunition and weapon modifications. \
+			Suffers from poor recoil control, and underperforming ballistic impact, but makes up for this through sheer firerate. \
+			Especially effective with rubber ammunition. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/straylight.dmi'
 	icon_state = "straylight"
 	item_state = "straylight"
