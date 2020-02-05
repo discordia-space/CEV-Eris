@@ -131,6 +131,20 @@
 	name = "magazine (.40 Magnum rubber)"
 	build_path = /obj/item/ammo_magazine/magnum/rubber
 
+// .40 SMG Magazines
+
+/datum/design/autolathe/ammo/msmg
+	name = "SMG magazine (.40 Magnum)"
+	build_path = /obj/item/ammo_magazine/msmg
+
+/datum/design/autolathe/ammo/msmg/practice
+	name = "SMG magazine (.40 Magnum practice)"
+	build_path = /obj/item/ammo_magazine/msmg/practice
+
+/datum/design/autolathe/ammo/msmg/rubber
+	name = "SMG magazine (.40 Magnum rubber)"
+	build_path = /obj/item/ammo_magazine/msmg/rubber
+
 // . 40 ammoboxes
 
 /datum/design/autolathe/ammo/magnum_ammobox
@@ -289,4 +303,3 @@
 	name = "chemical darts magazine"
 	build_path = /obj/item/ammo_magazine/chemdart
 
-	

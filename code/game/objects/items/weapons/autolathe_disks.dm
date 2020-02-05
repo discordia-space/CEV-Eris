@@ -401,6 +401,8 @@
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		//smg mags
 		/datum/design/autolathe/ammo/smg/rubber,
+		//magnum smg mags
+		/datum/design/autolathe/ammo/msmg/rubber,
 		// rifles
 		/datum/design/autolathe/ammo/srifle/rubber,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
@@ -425,6 +427,8 @@
 		/datum/design/autolathe/ammo/sl_magnum,
 		//smg mags
 		/datum/design/autolathe/ammo/smg,
+		//magnum smg mags
+		/datum/design/autolathe/ammo/msmg,
 		// rifles
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/ammo/ihclrifle,
@@ -761,14 +765,14 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho
-	disk_name = "Frozen Star - .35 Idaho SMG"
+	disk_name = "Frozen Star - .40 Idaho SMG"
 	icon_state = "frozenstar"
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/idaho, // "FS SMG .35 \"Idaho\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/gun/idaho, // "FS SMG .40 \"Idaho\""
+		/datum/design/autolathe/ammo/msmg/practice,
+		/datum/design/autolathe/ammo/msmg/rubber,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides
@@ -796,7 +800,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute
-	disk_name = "Frozen Star - .20 Wintermute Battle Rifle"
+	disk_name = "Frozen Star - .20 Wintermute Assault Rifle"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -821,7 +825,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
-	disk_name = "PAR - .25 Dallas"
+	disk_name = ".25 Dallas"
 	icon_state = "black"
 
 	license = 8
@@ -938,8 +942,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
@@ -948,8 +951,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/large_energy_crossbow, // "NT EC \"Themis\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/gun/large_energy_crossbow, // "NT EC \"Themis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall
