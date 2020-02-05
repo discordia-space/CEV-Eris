@@ -168,11 +168,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-		switch(I.damtype)
-			if("fire")
-				health -= I.force
-			if("brute")
-				health -= I.force * 0.1
+		health -= I.force * I.structure_damage_factor
 	healthcheck()
 	..()
 	return
