@@ -791,7 +791,7 @@
 	desc = "The back has a machine etching: \"Nobody is to be blamed for being born a slave; but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing..\""
 	icon_state = "excelsior"
 
-	license = 8
+	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/drozd,
 		/datum/design/autolathe/ammo/smg //it's AP SMG, and it's Excelsior - no feeble rubber needed.
