@@ -1,7 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/atreides
 	name = "FS SMG .35 Auto \"Atreides\""
 	desc = "The Atreides is a replica of an old and popular SMG. Cheap and mass produced generic self-defence weapon. \
-			Design is so generic that all of it characteristics is neither too bad or too good. Uses .35 Auto rounds."
+			The overall design is so generic that it is neither considered good nor bad in comparison to other firearms. \
+			Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/atreides.dmi'
 	icon_state = "atreides"
 	item_state = "atreides"
