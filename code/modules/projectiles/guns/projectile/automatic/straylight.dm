@@ -17,7 +17,7 @@
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = 1
-	matter = list(MATERIAL_PLASTEEL = 7, MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 8)
 	price_tag = 1600
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	damage_multiplier = 0.65 //made with rubber rounds in mind, specifically for rubber rounds. For lethality refer to Wintermute.

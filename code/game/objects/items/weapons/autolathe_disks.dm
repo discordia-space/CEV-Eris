@@ -825,7 +825,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
-	disk_name = ".25 Dallas"
+	disk_name = "PAR - .25 Dallas"
 	icon_state = "black"
 
 	license = 8
