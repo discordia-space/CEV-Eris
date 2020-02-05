@@ -1,6 +1,10 @@
 /obj/item/weapon/gun/projectile/automatic/straylight
 	name = "FS SMG .35 Auto \"Straylight\""
-	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. Sacrifices a fire selector to cut mass, so it requires a careful hand. Uses .35 Auto rounds."
+	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. It supposed to be testing ground for newly \
+			developed firing mechanism that later was supposed to be used in other \"Frozen Star\" designs, but it turned out to \
+			be practically useless for other weapons due to suffering similar limitations as \"Molly\" - lack of firepower \
+			and extra kickback. After minor redesign it made a great rapid-firing less than lethal weapon made with rubber ammo \
+			in mind instead. Has excellent fire rate. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/straylight.dmi'
 	icon_state = "straylight"
 	item_state = "straylight"
@@ -13,15 +17,18 @@
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = 1
-	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
-	price_tag = 2500 //good smg with normal recoil and silencer possibility
+	matter = list(MATERIAL_PLASTEEL = 7, MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 10)
+	price_tag = 1600
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	damage_multiplier = 0.7
-	recoil_buildup = 2.5
+	damage_multiplier = 0.65 //made with rubber rounds in mind, specifically for rubber rounds. For lethality refer to Wintermute.
+	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.
+	recoil_buildup = 3
 	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(
-		FULL_AUTO_600)
+		FULL_AUTO_800,
+		SEMI_AUTO_NODELAY
+		)
 
 /obj/item/weapon/gun/projectile/automatic/straylight/update_icon()
 	..()
