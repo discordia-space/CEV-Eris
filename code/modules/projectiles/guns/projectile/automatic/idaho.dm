@@ -16,6 +16,7 @@
 	magazine_type = /obj/item/ammo_magazine/smg
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_WOOD = 4)
 	price_tag = 2000
+	damage_multiplier = 1
 	penetration_multiplier = 0.3
 	recoil_buildup = 8
 
