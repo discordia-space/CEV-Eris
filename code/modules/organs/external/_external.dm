@@ -33,10 +33,9 @@
 	var/body_part = null               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.
 	var/model                          // Used when caching robolimb icons.
-	//var/default_icon	// Used to force override of species-specific limb icons (for prosthetics).
-	var/force_icon
+
+	var/force_icon			// Used to force override of species-specific limb icons (for prosthetics).
 	var/icon/mob_icon                  // Cached icon for use in mob overlays.
-	var/gendered = null
 	var/skin_tone			// Skin tone.
 	var/skin_col			// skin colour
 	var/hair_col
@@ -58,7 +57,7 @@
 	// Joint/state stuff.
 	var/functions = NONE	// Functions performed by body part. Bitflag, see _defines/damage_organs.dm for possible values.
 
-	var/disfigured = 0		// Scarred/burned beyond recognition.
+	var/disfigured = FALSE	// Scarred/burned beyond recognition.
 	var/cannot_amputate		// Impossible to amputate.
 	var/cannot_break		// Impossible to fracture.
 	var/joint = "joint"		// Descriptive string used in dislocation.
@@ -120,15 +119,27 @@
 
 /obj/item/organ/external/proc/set_description(datum/organ_description/desc)
 	src.name = desc.name
+	src.surgery_name = desc.surgery_name
 	src.organ_tag = desc.organ_tag
-	src.amputation_point = desc.amputation_point
-	src.joint = desc.joint
+	src.body_part = desc.body_part
+	src.parent_organ = desc.parent_organ
+
 	src.max_damage = desc.max_damage
 	src.min_broken_damage = desc.min_broken_damage
+	src.dislocated = desc.dislocated
+	src.vital = desc.vital
+	src.cannot_amputate = desc.cannot_amputate
+
 	src.w_class = desc.w_class
-	src.parent_organ = desc.parent_organ
-	src.body_part = desc.body_part
+	src.cavity_max_w_class = desc.cavity_max_w_class
+
+	src.amputation_point = desc.amputation_point
+	src.joint = desc.joint
+	src.encased = desc.encased
+	src.cavity_name = desc.cavity_name
+
 	src.functions = desc.functions
+	src.drop_on_remove = desc.drop_on_remove.Copy()
 
 /obj/item/organ/external/replaced(mob/living/carbon/human/target)
 	owner = target
