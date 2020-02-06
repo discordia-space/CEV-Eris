@@ -95382,7 +95382,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/weapon/cigbutt,
+/obj/item/trash/cigbutt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -96306,7 +96306,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
 "ehx" = (
-/obj/item/weapon/cigbutt{
+/obj/item/trash/cigbutt{
 	pixel_x = 2;
 	pixel_y = 9
 	},

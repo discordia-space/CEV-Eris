@@ -230,7 +230,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 	icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	icon_off = "cigoff"
-	type_butt = /obj/item/weapon/cigbutt
+	type_butt = /obj/item//cigbutt
 	chem_volume = 15
 	smoketime = 300
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
@@ -278,7 +278,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
 	icon_off = "cigar2off"
-	type_butt = /obj/item/weapon/cigbutt/cigarbutt
+	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
 	item_state = "cigaroff"
 	smoketime = 1500
@@ -307,22 +307,23 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 30
 	quality_multiplier = 3
 
-/obj/item/weapon/cigbutt
+/obj/item/trash/cigbutt
 	name = "cigarette butt"
 	desc = "A manky old cigarette butt."
 	icon = 'icons/inventory/face/icon.dmi'
 	icon_state = "cigbutt"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_BIOMASS = 1)
 	throwforce = 1
 
-/obj/item/weapon/cigbutt/New()
+/obj/item/trash/cigbutt/New()
 	..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	transform = turn(transform,rand(0,360))
 
-/obj/item/weapon/cigbutt/cigarbutt
+/obj/item/trash/cigbutt/cigarbutt
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"

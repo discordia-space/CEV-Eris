@@ -3721,7 +3721,7 @@
 	},
 /area/shuttle/mercenary)
 "kq" = (
-/obj/item/weapon/cigbutt,
+/obj/item/trash/cigbutt,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor7"
 	},

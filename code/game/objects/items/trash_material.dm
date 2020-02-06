@@ -1,10 +1,10 @@
-/obj/item/weapon/material_trash
-	name = "trash"
+/obj/item/trash/material
 	icon = 'icons/obj/material_trash.dmi'
+	matter = list()
 	var/matter_chances = list()	//List of lists: list(material_name, chance, amount)
 
 
-/obj/item/weapon/material_trash/Initialize()
+/obj/item/trash/material/Initialize()
 	. = ..()
 	if(!matter)
 		matter = list()
@@ -17,7 +17,7 @@
 
 
 
-/obj/item/weapon/material_trash/metal
+/obj/item/trash/material/metal
 	name = "scrap metal"
 	desc = "A piece of metal that can be recycled in an autolathe."
 	icon_state = "metal0"
@@ -30,12 +30,12 @@
 		list(MATERIAL_PLATINUM, 4, 2),
 	)
 
-/obj/item/weapon/material_trash/metal/Initialize()
+/obj/item/trash/material/metal/Initialize()
 	. = ..()
 	icon_state = "metal[rand(4)]"
 
 
-/obj/item/weapon/material_trash/circuit
+/obj/item/trash/material/circuit
 	name = "burnt circuit"
 	desc = "A burnt circuit that can be recycled in an autolathe."
 	w_class = ITEM_SIZE_SMALL
@@ -49,12 +49,12 @@
 		list(MATERIAL_DIAMOND, 4, 2),
 	)
 
-/obj/item/weapon/material_trash/circuit/Initialize()
+/obj/item/trash/material/circuit/Initialize()
 	. = ..()
 	icon_state = "circuit[rand(3)]"
 
 
-/obj/item/weapon/material_trash/device
+/obj/item/trash/material/device
 	name = "broken device"
 	desc = "A broken device that can be recycled in an autolathe."
 	w_class = ITEM_SIZE_SMALL
@@ -68,7 +68,6 @@
 		list(MATERIAL_DIAMOND, 5, 2),
 	)
 
-/obj/item/weapon/material_trash/device/Initialize()
+/obj/item/trash/material/device/Initialize()
 	. = ..()
 	icon_state = "device[rand(3)]"
-
