@@ -807,14 +807,15 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd
-	disk_name = "Excelsior - .35 Auto Drozd SMG"
+	disk_name = "Excelsior - .40 Drozd SMG"
 	desc = "The back has a machine etching: \"Nobody is to be blamed for being born a slave; but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing..\""
 	icon_state = "excelsior"
 
 	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/drozd,
-		/datum/design/autolathe/ammo/smg //it's AP SMG, and it's Excelsior - no feeble rubber needed.
+		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like means of production
+		/datum/design/autolathe/ammo/msmg/rubber
 	)
 
 // .20 Rifles (AP)
