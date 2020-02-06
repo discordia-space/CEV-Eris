@@ -477,7 +477,7 @@
 // Excelsior
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior
 	disk_name = "Excelsior Means of Production"
-	desc = "The back has a machine etching: \"This struggle must be organised, according to “all the rules of the art”, by people who are professionally engaged in revolutionary activity.\"
+	desc = "The back has a machine etching: \"This struggle must be organised, according to \"all the rules of the art\", by people who are professionally engaged in revolutionary activity.\""
 	icon_state = "excelsior"
 
 	license = -1
