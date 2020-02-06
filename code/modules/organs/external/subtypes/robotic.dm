@@ -29,11 +29,11 @@
 		matter[mat_name] *= w_class
 
 /obj/item/organ/external/robotic/Destroy()
-	deactivate(1)
+	deactivate(emergency=TRUE)
 	. = ..()
 
 /obj/item/organ/external/robotic/removed()
-	deactivate(1)
+	deactivate(emergency=TRUE)
 	..()
 
 /obj/item/organ/external/robotic/update_germs()
@@ -49,7 +49,7 @@
 /obj/item/organ/external/robotic/proc/activate()
 	return 1
 
-/obj/item/organ/external/robotic/proc/deactivate(var/emergency = 1)
+/obj/item/organ/external/robotic/proc/deactivate(emergency = TRUE)
 	return 1
 
 /obj/item/organ/external/robotic/limb
@@ -73,3 +73,6 @@
 
 /obj/item/organ/external/robotic/r_leg
 	default_description = /datum/organ_description/leg/right
+
+/obj/item/organ/external/robotic/groin
+	default_description = /datum/organ_description/groin

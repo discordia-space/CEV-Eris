@@ -59,7 +59,6 @@
 	max_damage = 100
 	min_broken_damage = 60
 	dislocated = -1
-	vital = TRUE
 
 	w_class = ITEM_SIZE_BULKY
 	cavity_max_w_class = ITEM_SIZE_SMALL

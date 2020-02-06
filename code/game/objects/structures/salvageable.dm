@@ -125,6 +125,7 @@ obj/structure/salvageable/computer/Initialize()
 		/obj/item/organ/external/robotic/r_arm = 20,
 		/obj/item/organ/external/robotic/l_leg = 20,
 		/obj/item/organ/external/robotic/r_leg = 20,
+		/obj/item/organ/external/robotic/groin = 10,
 		/obj/item/weapon/implantcase = 30,
 		/obj/item/weapon/implanter = 30,
 		/obj/item/stack/material/steel{amount = 10} = 30,
@@ -301,6 +302,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/organ/external/robotic/r_arm = 20,
 		/obj/item/organ/external/robotic/l_leg = 20,
 		/obj/item/organ/external/robotic/r_leg = 20,
+		/obj/item/organ/external/robotic/groin = 10,
 		/obj/item/weapon/implantcase = 30,
 		/obj/item/weapon/implanter = 30
 	)
