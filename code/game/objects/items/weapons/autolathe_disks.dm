@@ -764,13 +764,13 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho
-	disk_name = "Frozen Star - .40 Idaho SMG"
-	icon_state = "frozenstar"
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric
+	disk_name = "Serbian Arms - .40 Zoric SMG"
+	icon_state = "serbian"
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/idaho, // "FS SMG .40 \"Idaho\""
+		/datum/design/autolathe/gun/zoric, // "SA SMG .40 \"Zoric\""
 		/datum/design/autolathe/ammo/msmg/practice,
 		/datum/design/autolathe/ammo/msmg/rubber,
 	)
