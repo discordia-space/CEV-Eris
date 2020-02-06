@@ -14,7 +14,6 @@
 	dir = SOUTH
 	layer = BELOW_MOB_LAYER
 	organ_tag = "limb"
-	var/icon_name = null
 	var/tally = 0
 
 	// Strings

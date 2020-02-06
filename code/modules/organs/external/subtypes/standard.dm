@@ -6,7 +6,6 @@
 	name = "upper body"
 	surgery_name = "torso"
 	organ_tag = BP_CHEST
-	icon_name = "torso"
 	max_damage = 100
 	min_broken_damage = 35
 	w_class = ITEM_SIZE_HUGE
@@ -25,7 +24,6 @@
 	name = "lower body"
 	surgery_name = "lower abdomen"
 	organ_tag = BP_GROIN
-	icon_name = "groin"
 	max_damage = 100
 	min_broken_damage = 35
 	w_class = ITEM_SIZE_BULKY
@@ -40,7 +38,6 @@
 
 /obj/item/organ/external/head
 	organ_tag = BP_HEAD
-	icon_name = "head"
 	name = "head"
 	surgery_name = "head" // Prevents "Unknown's Unkonwn's head" from popping up if the head was amputated and then reattached
 	max_damage = 75
