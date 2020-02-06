@@ -139,7 +139,8 @@
 	src.cavity_name = desc.cavity_name
 
 	src.functions = desc.functions
-	src.drop_on_remove = desc.drop_on_remove.Copy()
+	if(desc.drop_on_remove)
+		src.drop_on_remove = desc.drop_on_remove.Copy()
 
 /obj/item/organ/external/replaced(mob/living/carbon/human/target)
 	owner = target
