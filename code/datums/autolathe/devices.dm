@@ -55,5 +55,5 @@
 	build_path = /obj/item/weapon/flamethrower
 
 /datum/design/autolathe/device/excelbaton
-	name = "Dubinka"
+	name = "Expropriator"
 	build_path = /obj/item/weapon/melee/baton/excelbaton 
