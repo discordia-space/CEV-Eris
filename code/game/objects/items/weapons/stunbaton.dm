@@ -180,7 +180,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 
 /obj/item/weapon/melee/baton/excelbaton 
-	name = "Dubinka"
+	name = "Expropriator"
 	desc = "A cheap and effective way to feed the red tide"
 	icon_state = "sovietbaton"
 	item_state = "soviet"
