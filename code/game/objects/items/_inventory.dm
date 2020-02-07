@@ -33,7 +33,7 @@
 /obj/item/pre_attack(atom/a, mob/user, var/params)
 	if(overslot)
 		var/obj/item/clothing/i = a
-		if (i)
+		if (istype(i))
 			if(i.is_worn() && i.slot_flags == slot_flags)
 				user.equip_to_appropriate_slot(src)
 				return TRUE
