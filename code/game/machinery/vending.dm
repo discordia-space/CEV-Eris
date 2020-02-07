@@ -1048,6 +1048,8 @@
 					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
 					/obj/item/ammo_magazine/sllrifle = 200,
 					/obj/item/ammo_magazine/slpistol = 400,
+					/obj/item/ammo_magazine/smg/rubber = 400,
+					/obj/item/ammo_magazine/smg = 500,
 					/obj/item/ammo_magazine/ammobox/pistol = 200,
 					/obj/item/weapon/storage/box/shotgunammo/slug = 300,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
