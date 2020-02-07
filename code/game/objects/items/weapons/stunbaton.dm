@@ -178,3 +178,19 @@
 	attack_verb = list("poked")
 	slot_flags = null
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
+
+/obj/item/weapon/melee/baton/excelbaton 
+	name = "Expropriator"
+	desc = "A cheap and effective way to feed the red tide"
+	icon_state = "sovietbaton"
+	item_state = "soviet"
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
+	stunforce = 0
+	agonyforce = 40
+	hitcost = 100
+	attack_verb = list("battered")
+	slot_flags = SLOT_BELT 
+	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+
