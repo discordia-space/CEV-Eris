@@ -53,3 +53,7 @@
 /datum/design/autolathe/device/flamethrower
 	name = "flamethrower"
 	build_path = /obj/item/weapon/flamethrower
+
+/datum/design/autolathe/device/excelbaton
+	name = "Dubinka"
+	build_path = /obj/item/weapon/melee/baton/excelbaton 
