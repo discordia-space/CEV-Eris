@@ -6,7 +6,7 @@
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
 	var/stunforce = 0
-	var/agonyforce = 50
+	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null

@@ -13,8 +13,8 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	price_tag = 500
-	var/stunforce = 10
-	var/agonyforce = 30
+	var/stunforce = 0
+	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
@@ -173,7 +173,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	stunforce = 0
-	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
+	agonyforce = 40	//same force as a stunbaton, but uses way more charge.
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
