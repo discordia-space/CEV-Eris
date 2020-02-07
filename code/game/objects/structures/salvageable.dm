@@ -121,10 +121,11 @@ obj/structure/salvageable/computer/Initialize()
 		/obj/item/weapon/implant/freedom = 5,
 		/obj/item/weapon/implant/tracking = 10,
 		/obj/item/weapon/implant/chem = 10,
-		/obj/item/prosthesis/l_arm = 20,
-		/obj/item/prosthesis/r_arm = 20,
-		/obj/item/prosthesis/l_leg = 20,
-		/obj/item/prosthesis/r_leg = 20,
+		/obj/item/organ/external/robotic/l_arm = 20,
+		/obj/item/organ/external/robotic/r_arm = 20,
+		/obj/item/organ/external/robotic/l_leg = 20,
+		/obj/item/organ/external/robotic/r_leg = 20,
+		/obj/item/organ/external/robotic/groin = 10,
 		/obj/item/weapon/implantcase = 30,
 		/obj/item/weapon/implanter = 30,
 		/obj/item/stack/material/steel{amount = 10} = 30,
@@ -221,7 +222,7 @@ obj/structure/salvageable/server/Initialize()
 obj/structure/salvageable/personal/Initialize()
 	. = ..()
 	icon_state = "personal[rand(0,12)]"
-	new /obj/structure/table/reinforced (loc) 
+	new /obj/structure/table/reinforced (loc)
 
 /obj/structure/salvageable/bliss
 	name = "strange terminal"
@@ -297,10 +298,11 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/implant/freedom = 20,
 		/obj/item/weapon/implant/tracking = 30,
 		/obj/item/weapon/implant/chem = 30,
-		/obj/item/prosthesis/l_arm = 20,
-		/obj/item/prosthesis/r_arm = 20,
-		/obj/item/prosthesis/l_leg = 20,
-		/obj/item/prosthesis/r_leg = 20,
+		/obj/item/organ/external/robotic/l_arm = 20,
+		/obj/item/organ/external/robotic/r_arm = 20,
+		/obj/item/organ/external/robotic/l_leg = 20,
+		/obj/item/organ/external/robotic/r_leg = 20,
+		/obj/item/organ/external/robotic/groin = 10,
 		/obj/item/weapon/implantcase = 30,
 		/obj/item/weapon/implanter = 30
 	)

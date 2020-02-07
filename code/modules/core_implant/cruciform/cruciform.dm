@@ -85,11 +85,14 @@ var/list/disciples = list()
 	if(!wearer)
 		return
 	for(var/obj/O in wearer)
-		if(istype(O, /obj/item/organ/external/robotic))
-			var/obj/item/organ/external/robotic/R = O
+		if(istype(O, /obj/item/organ/external))
+			var/obj/item/organ/external/R = O
+			if(!BP_IS_ROBOTIC(R))
+				continue
+
 			if(R.owner != wearer)
 				continue
-			wearer.visible_message(SPAN_DANGER("[wearer]'s [R.name] tears off."),\
+			wearer.visible_message(SPAN_DANGER("[wearer]'s [R.name] tears off."),
 			SPAN_DANGER("Your [R.name] tears off."))
 			R.droplimb()
 		if(istype(O, /obj/item/weapon/implant))
