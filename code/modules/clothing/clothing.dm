@@ -138,7 +138,9 @@
 		ui.open()
 
 /obj/item/clothing/ui_action_click(mob/living/user, action_name)
-	ui_interact(user)
+	if(action_name == "Clothing information")
+		ui_interact(user)
+		return TRUE
 
 /obj/screen/item_action/top_bar/clothing_info
 	icon = 'icons/mob/screen/gun_actions.dmi'
