@@ -184,8 +184,8 @@
 	desc = "A cheap and effective way to feed the red tide"
 	icon_state = "sovietbaton"
 	item_state = "soviet"
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_NORMAL
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
 	stunforce = 0
 	agonyforce = 40
 	hitcost = 100
