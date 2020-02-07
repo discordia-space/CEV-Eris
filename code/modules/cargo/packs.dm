@@ -1339,7 +1339,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
                 /obj/random/gun_energy_cheap,
                 /obj/random/gun_shotgun)
 	name = "Surplus Weaponry"
-	cost = 2000
+	cost = 5000
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
