@@ -26,3 +26,18 @@
 #define UPGRADE_ITEMFLAGPLUS "item_flag_add"
 
 #define UPGRADE_CELLPLUS "cell_hold_upgrade"
+
+
+
+//Weapon upgrade defines
+
+#define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
+#define GUN_UPGRADE_PEN_MULT "penetration_mult"
+#define GUN_UPGRADE_FIRE_DELAY_MULT "fire_delay_mult"
+#define GUN_UPGRADE_MOVE_DELAY_MULT "move_delay_mult"
+#define GUN_UPGRADE_RECOIL "recoil_mult"
+#define GUN_UPGRADE_MUZZLEFLASH "muzzleflash_mult"
+#define GUN_UPGRADE_SILENCER "silencable"
+#define GUN_UPGRADE_CHARGECOST "chargecost_mult"
+#define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
+#define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"

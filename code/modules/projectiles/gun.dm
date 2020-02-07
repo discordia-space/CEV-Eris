@@ -52,6 +52,7 @@
 
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
+	var/list/gun_tags = list() //Attributes of the gun, used to see if an upgrade can be applied to this weapon.
 	/*	SILENCER HANDLING */
 	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
 	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one

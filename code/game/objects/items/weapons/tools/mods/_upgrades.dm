@@ -13,8 +13,6 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/prefix = "upgraded" //Added to the tool's name
 
-	var/gun_tag //Used for checking where the item will be placed on a gun
-
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
 
@@ -24,10 +22,14 @@
 	//If REQ_FUEL, can only be applied to tools that use fuel. If REQ_CELL, can only be applied to tools that use cell, If REQ_FUEL_OR_CELL, can be applied if it has fuel OR a cell
 	var/req_fuel_cell = FALSE
 
+	var/exclusive_type
+
 	//Actual effects of upgrades
 	var/list/tool_upgrades = list() //variable name(string) -> num
 
 	//Weapon upgrades
+	var/list/gun_loc_tag //Define(string). For checking if the gun already has something of this installed (No double trigger mods, for instance)
+	var/list/req_gun_tags = list() //Define(string). Must match all to be able to install it.
 	var/list/weapon_upgrades = list() //variable name(string) -> num
 
 /datum/component/item_upgrade/Initialize()
@@ -46,7 +48,7 @@
 		var/obj/item/T = A
 		//No using multiples of the same upgrade
 		for (var/obj/item/I in T.item_upgrades)
-			if (I.type == parent.type)
+			if (I.type == parent.type || (exclusive_type && istype(I.type, exclusive_type)))
 				to_chat(user, SPAN_WARNING("An upgrade of this type is already installed!"))
 				return FALSE
 
@@ -118,12 +120,16 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/check_gun(var/obj/item/weapon/gun/G, var/mob/living/user)
-	if(!gun_tag)
+	if(!req_gun_tags.len)
 		to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
 		return FALSE //Can't be applied to a weapon
-	if(G.item_upgrades[gun_tag])
-		to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_tag]!"))
+	if(gun_loc_tag && G.item_upgrades[gun_loc_tag])
+		to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_loc_tag]!"))
 		return FALSE
+	for(var/I in req_gun_tags)
+		if(!G.gun_tags.Find(I))
+			to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
+			return FALSE
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply(var/obj/item/A, var/mob/living/user)
@@ -229,9 +235,77 @@
 		to_chat(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))
 		to_chat(user, english_list(required_qualities, and_text = " or "))
 
-	if(gun_tag)
-		to_chat(user, SPAN_NOTICE("Can be attached to a gun's [gun_tag], giving the following benefits to a gun:"))
+	if(weapon_upgrades.len)
+		to_chat(user, SPAN_NOTICE("Can be attached to a firearm, giving the following benefits:"))
 
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
+			var/amount = weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
+			if(amount > 1)
+				to_chat(user, SPAN_NOTICE("Increases projectile damage by [amount*100]%"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases projectile damage by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
+			var/amount = weapon_upgrades[GUN_UPGRADE_PEN_MULT]
+			if(amount > 1)
+				to_chat(user, SPAN_NOTICE("Increases projectile penetration by [amount*100]%"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases projectile penetration by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
+			var/amount = weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Increases fire delay by [amount*100]%"))
+			else
+				to_chat(user, SPAN_NOTICE("Decreases fire delay by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
+			var/amount = weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Increases move delay by [amount*100]%"))
+			else
+				to_chat(user, SPAN_NOTICE("Decreases move delay by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
+			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Increases kickback by [amount*100]%"))
+			else
+				to_chat(user, SPAN_NOTICE("Decreases kickback by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH])
+			var/amount = weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Increases muzzle flash by [amount*100]%"))
+			else
+				to_chat(user, SPAN_NOTICE("Decreases muzzle flash by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_SILENCER] == 1)
+			to_chat(user, SPAN_NOTICE("Silences the weapon."))
+
+		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
+			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Increases cell firing cost by [amount*100]%"))
+			else
+				to_chat(user, SPAN_NOTICE("Decreases cell firing cost by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
+			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
+			if(amount > 1)
+				to_chat(user, SPAN_NOTICE("Increases overcharge maximum by [amount*100]%"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases overcharge maximum by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE])
+			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE]
+			if(amount > 1)
+				to_chat(user, SPAN_NOTICE("Increases overcharge rate by [amount*100]%"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases overcharge rate by [amount*100]%"))
+
+		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
+		to_chat(user, english_list(req_gun_tags))
 
 
 
