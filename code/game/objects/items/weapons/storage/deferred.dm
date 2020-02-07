@@ -168,7 +168,7 @@
 
 /obj/item/weapon/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
 	name = "demolitions crate"
-	desc = "A crate containing one \"RPG-7\" launcher, and ten 40mm PG-7VL warheads."
+	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7VL warheads."
 	icon_state = "old_weaponcrate"
 	initial_contents = list(/obj/item/ammo_casing/rocket = 12,
 	/obj/item/weapon/storage/pouch/tubular = 1,
@@ -200,6 +200,16 @@
 	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
 	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/weapon/tool/knife/boot = 6)
+
+/obj/item/weapon/storage/deferred/crate/specialists_sidearm
+	name = "specialists sidearm crate"
+	desc = "A crate containing four Zoric heavy submachineguns and 400 rounds of .40 ammunition. For when you need to carry \
+			something lighter than AK with your RPG or LMG."
+	icon_state = "old_weaponcrate"
+	initial_contents = list(
+		/obj/item/weapon/gun/projectile/automatic/zoric = 4,
+		/obj/item/ammo_magazine/msmg = 16,
+		)
 
 /obj/item/weapon/storage/deferred/crate/cells
 	name = "power cell bin"

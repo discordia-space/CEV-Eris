@@ -401,6 +401,8 @@
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		//smg mags
 		/datum/design/autolathe/ammo/smg/rubber,
+		//magnum smg mags
+		/datum/design/autolathe/ammo/msmg/rubber,
 		// rifles
 		/datum/design/autolathe/ammo/srifle/rubber,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
@@ -425,6 +427,8 @@
 		/datum/design/autolathe/ammo/sl_magnum,
 		//smg mags
 		/datum/design/autolathe/ammo/smg,
+		//magnum smg mags
+		/datum/design/autolathe/ammo/msmg,
 		// rifles
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/ammo/ihclrifle,
@@ -473,45 +477,55 @@
 // Excelsior
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior
 	disk_name = "Excelsior Means of Production"
-	desc = "Seize it."
+	desc = "The back has a machine etching: \"This struggle must be organised, according to \"all the rules of the art\", by people who are professionally engaged in revolutionary activity.\""
 	icon_state = "excelsior"
 
 	license = -1
 	designs = list(
-		/datum/design/autolathe/circuit/autolathe_excelsior,
+		/datum/design/autolathe/gun/makarov,						//guns
+		/datum/design/autolathe/gun/drozd,
+		/datum/design/autolathe/gun/vintorez,
+		/datum/design/autolathe/gun/boltgun,
+		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
+		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/pistol_ammobox,
+		/datum/design/autolathe/ammo/pistol_ammobox/rubber,
+		/datum/design/autolathe/ammo/msmg,							//drozd ammo
+		/datum/design/autolathe/ammo/msmg/rubber,
+		/datum/design/autolathe/ammo/magnum_ammobox,
+		/datum/design/autolathe/ammo/magnum_ammobox/rubber,
+		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
+		/datum/design/autolathe/ammo/srifle/rubber,
+		/datum/design/autolathe/ammo/srifle_ammobox,
+		/datum/design/autolathe/ammo/srifle_ammobox/rubber,
+		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
+		/datum/design/autolathe/ammo/lrifle_ammobox_small,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
+		/datum/design/autolathe/ammo/lrifle,						//AK ammo
+		/datum/design/autolathe/ammo/lrifle/rubber,
+		/datum/design/autolathe/ammo/lrifle_ammobox,
+		/datum/design/autolathe/circuit/autolathe_excelsior,		//circuits
 		/datum/design/autolathe/circuit/shieldgen_excelsior,
 		/datum/design/autolathe/circuit/reconstructor_excelsior,
 		/datum/design/autolathe/circuit/diesel_excelsior,
 		/datum/design/autolathe/circuit/turret_excelsior,
 		/datum/design/autolathe/circuit/autolathe_disk_cloner,
-		/datum/design/autolathe/device/implanter,
-		/datum/design/autolathe/gun/makarov,
-		/datum/design/autolathe/gun/drozd,
-		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/ammo/magazine_pistol,
-		/datum/design/autolathe/ammo/smg,
- 		/datum/design/autolathe/gun/boltgun,
-		/datum/design/autolathe/gun/ak47,
-		/datum/design/autolathe/ammo/sl_lrifle,
-		/datum/design/autolathe/ammo/lrifle,
-		/datum/design/autolathe/ammo/lrifle_ammobox,
-		/datum/design/autolathe/gun/vintorez,
-		/datum/design/autolathe/ammo/srifle,
-		/datum/design/autolathe/device/excelsiormine,
-		/datum/design/autolathe/sec/beartrap,
-		/datum/design/autolathe/clothing/excelsior_armor,
-		/datum/design/autolathe/cell/large/excelsior,
-		/datum/design/autolathe/cell/medium/excelsior,
-		/datum/design/autolathe/cell/small/excelsior,
-		/datum/design/research/item/part/micro_mani,
+		/datum/design/research/item/part/micro_mani,				//machine parts
 		/datum/design/research/item/part/subspace_amplifier,
 		/datum/design/research/item/part/subspace_crystal,
 		/datum/design/research/item/part/subspace_transmitter,
-		/datum/design/autolathe/part/igniter,
+		/datum/design/autolathe/part/igniter,						//regular parts
 		/datum/design/autolathe/part/signaler,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/research/item/part/basic_capacitor,
-		/datum/design/autolathe/part/camera_assembly
+		/datum/design/autolathe/cell/large/excelsior,				//power cells
+		/datum/design/autolathe/cell/medium/excelsior,
+		/datum/design/autolathe/cell/small/excelsior,
+		/datum/design/autolathe/device/excelsiormine,				//security
+		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/device/implanter,					//misc
+		/datum/design/autolathe/clothing/excelsior_armor,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior_weapons
@@ -523,18 +537,28 @@
 	designs = list(
 		/datum/design/autolathe/gun/makarov,
 		/datum/design/autolathe/gun/drozd,
-		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/ammo/magazine_pistol,
-		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/gun/vintorez,
+		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
-   		/datum/design/autolathe/gun/boltgun,
-		/datum/design/autolathe/ammo/sl_lrifle,
-		/datum/design/autolathe/ammo/lrifle,
+		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
+		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/pistol_ammobox,
+		/datum/design/autolathe/ammo/pistol_ammobox/rubber,
+		/datum/design/autolathe/ammo/msmg,							//drozd ammo
+		/datum/design/autolathe/ammo/msmg/rubber,
+		/datum/design/autolathe/ammo/magnum_ammobox,
+		/datum/design/autolathe/ammo/magnum_ammobox/rubber,
+		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
+		/datum/design/autolathe/ammo/srifle/rubber,
+		/datum/design/autolathe/ammo/srifle_ammobox,
+		/datum/design/autolathe/ammo/srifle_ammobox/rubber,
+		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
+		/datum/design/autolathe/ammo/lrifle_ammobox_small,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
+		/datum/design/autolathe/ammo/lrifle,						//AK ammo
+		/datum/design/autolathe/ammo/lrifle/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox,
-  		/datum/design/autolathe/gun/vintorez,
-		/datum/design/autolathe/ammo/srifle,
-		/datum/design/autolathe/device/excelsiormine,
-		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/sec/silencer,						//misc
 		/datum/design/autolathe/clothing/excelsior_armor
 	)
 
@@ -725,7 +749,7 @@
 		/datum/design/autolathe/ammo/m12slug,
 		)
 
-// .35 SMGs
+// SMGs
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco
 	disk_name = "Frozen Star - .35 Paco SMG"
@@ -760,15 +784,15 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho
-	disk_name = "Frozen Star - .35 Idaho SMG"
-	icon_state = "frozenstar"
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric
+	disk_name = "Serbian Arms - .40 Zoric SMG"
+	icon_state = "serbian"
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/idaho, // "FS SMG .35 \"Idaho\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/gun/zoric, // "SA SMG .40 \"Zoric\""
+		/datum/design/autolathe/ammo/msmg/practice,
+		/datum/design/autolathe/ammo/msmg/rubber,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides
@@ -780,6 +804,18 @@
 		/datum/design/autolathe/gun/atreides, // "FS SMG .35 \"Atreides\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd
+	disk_name = "Excelsior - .40 Drozd SMG"
+	desc = "The back has a machine etching: \"Nobody is to be blamed for being born a slave; but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing..\""
+	icon_state = "excelsior"
+
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/drozd,
+		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like means of production
+		/datum/design/autolathe/ammo/msmg/rubber
 	)
 
 // .20 Rifles (AP)
@@ -796,7 +832,7 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute
-	disk_name = "Frozen Star - .20 Wintermute Battle Rifle"
+	disk_name = "Frozen Star - .20 Wintermute Assault Rifle"
 	icon_state = "frozenstar"
 
 	license = 8
@@ -938,8 +974,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
@@ -948,8 +983,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/large_energy_crossbow, // "NT EC \"Themis\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/gun/large_energy_crossbow, // "NT EC \"Themis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall

@@ -24,7 +24,7 @@
 
 /obj/random/gun_normal/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 2,\
-				/obj/item/weapon/gun/projectile/automatic/idaho = 1,\
+				/obj/item/weapon/gun/projectile/automatic/zoric = 1,\
 				/obj/item/weapon/gun/projectile/automatic/atreides = 1,\
 				/obj/item/weapon/gun/projectile/avasarala = 2,\
 				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2,\

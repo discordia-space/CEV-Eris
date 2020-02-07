@@ -1,6 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/atreides
 	name = "FS SMG .35 Auto \"Atreides\""
-	desc = "The Atreides is a replica of an old and popular SMG. It has a strong kick. Uses .35 Auto rounds."
+	desc = "The Atreides is a replica of an old and popular SMG. Cheap and mass produced generic self-defence weapon. \
+			The overall design is so generic that it is neither considered good nor bad in comparison to other firearms. \
+			Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/atreides.dmi'
 	icon_state = "atreides"
 	item_state = "atreides"
@@ -13,23 +15,36 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
-	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
-	price_tag = 2000
-	damage_multiplier = 0.9
-	recoil_buildup = 5
+	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
+	price_tag = 1200
+	damage_multiplier = 0.8
+	recoil_buildup = 4
+	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/atreides/update_icon()
 	..()
-	if(ammo_magazine)
-		icon_state = "[initial(icon_state)]-full"
-		set_item_state("-full")
-	else
-		icon_state = initial(icon_state)
-		set_item_state()
-	return
+
+	var/iconstring = initial(icon_state)
+	var/itemstring = ""
+
+	if (ammo_magazine)
+		iconstring += "_mag"
+		itemstring += "_mag"
+
+	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		iconstring += "_slide"
+
+	if (silenced)
+		iconstring += "_s"
+
+	icon_state = iconstring
+	set_item_state(itemstring)
+
+/obj/item/weapon/gun/projectile/automatic/atreides/Initialize()
+	. = ..()
+	update_icon()

@@ -1,6 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/straylight
 	name = "FS SMG .35 Auto \"Straylight\""
-	desc = "A compact and lightweight submachinegun that sprays small rounds rapidly. Sacrifices a fire selector to cut mass, so it requires a careful hand. Uses .35 Auto rounds."
+	desc = "A compact, lightweight rapid submachine gun. Was primarily used for testing ammunition and weapon modifications. \
+			Suffers from poor recoil control, and underperforming ballistic impact, but makes up for this through sheer firerate. \
+			Especially effective with rubber ammunition. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/straylight.dmi'
 	icon_state = "straylight"
 	item_state = "straylight"
@@ -13,15 +15,18 @@
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = 1
-	matter = list(MATERIAL_PLASTEEL = 16, MATERIAL_PLASTIC = 4)
-	price_tag = 2500 //good smg with normal recoil and silencer possibility
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 8)
+	price_tag = 1600
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	damage_multiplier = 0.7
-	recoil_buildup = 2.5
+	damage_multiplier = 0.65 //made with rubber rounds in mind, specifically for rubber rounds. For lethality refer to Wintermute.
+	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.
+	recoil_buildup = 3
 	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(
-		FULL_AUTO_600)
+		FULL_AUTO_800,
+		SEMI_AUTO_NODELAY
+		)
 
 /obj/item/weapon/gun/projectile/automatic/straylight/update_icon()
 	..()
