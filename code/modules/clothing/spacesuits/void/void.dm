@@ -62,10 +62,9 @@
 		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
 
 /obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
-	if(action_name == "Clothing information")
-		ui_interact(user)
-	else
-		toggle_helmet()
+	if(..())
+		return TRUE
+	toggle_helmet()
 
 /obj/item/clothing/suit/space/void/clean_blood()
 	//So that you dont have to detach the components to clean them, also since you can't detach the helmet

@@ -66,6 +66,8 @@
 	add_fingerprint(user)
 
 /obj/item/clothing/gloves/stungloves/ui_action_click()
+	if(..())
+		return TRUE
 	attack_self(usr)
 
 /obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
