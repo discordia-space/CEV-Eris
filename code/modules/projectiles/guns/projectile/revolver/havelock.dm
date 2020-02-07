@@ -1,8 +1,8 @@
-/obj/item/weapon/gun/projectile/revolver/detective
+/obj/item/weapon/gun/projectile/revolver/havelock
 	name = "FS REV .35 Auto \"Havelock\""
 	desc = "A cheap Frozen Star knock-off of a Smith & Wesson Model 10. Uses .35 special rounds."
-	icon = 'icons/obj/guns/projectile/detective.dmi'
-	icon_state = "detective"
+	icon = 'icons/obj/guns/projectile/havelock.dmi'
+	icon_state = "havelock"
 	drawChargeMeter = FALSE
 	w_class = ITEM_SIZE_SMALL
 	max_shells = 6

@@ -5,9 +5,6 @@
 	Some upgrades have multiple bonuses. Some have drawbacks in addition to boosts
 */
 
-#define REQ_FUEL 1
-#define REQ_CELL 2
-#define REQ_FUEL_OR_CELL 4
 
 /*/client/verb/debugupgrades()
 	for (var/t in subtypesof(/obj/item/weapon/tool_upgrade))
@@ -133,37 +130,37 @@
 		return
 	if(istype(holder, /obj/item/weapon/tool))
 		var/obj/item/weapon/tool/T = holder
-		if(upgrades["precision"])
-			T.precision += upgrades["precision"]
-		if(upgrades["workspeed"])
-			T.workspeed += upgrades["workspeed"]
-		if(upgrades["degradation_mult"])
-			T.degradation *= upgrades["degradation_mult"]
-		if(upgrades["force_mult"])
-			T.force *= upgrades["force_mult"]
-			T.switched_on_force *= upgrades["force_mult"]
-		if(upgrades["force_mod"])
-			T.force += upgrades["force_mod"]
-			T.switched_on_force += upgrades["force_mod"]
-		if(upgrades["fuelcost_mult"])
-			T.use_fuel_cost *= upgrades["fuelcost_mult"]
-		if(upgrades["powercost_mult"])
-			T.use_power_cost *= upgrades["powercost_mult"]
-		if(upgrades["bulk_mod"])
-			T.extra_bulk += upgrades["bulk_mod"]
-		if(upgrades["health_threshold_modifier"])
-			T.health_threshold += upgrades["health_threshold_modifier"]
-		if(upgrades["max_fuel"])
-			T.max_fuel += upgrades["max_fuel"]
-		if(upgrades["max_upgrades"])
-			T.max_upgrades += upgrades["max_upgrades"]
-		if(upgrades["sharp"])
-			T.sharp = upgrades["sharp"]
-		if(upgrades["color"])
-			T.color = upgrades["color"]
-		if(upgrades["item_flag_add"])
-			T.item_flags |= upgrades["item_flag_add"]
-		if(upgrades["cell_hold_upgrade"])
+		if(upgrades[UPGRADE_PRECISION])
+			T.precision += upgrades[UPGRADE_PRECISION]
+		if(upgrades[UPGRADE_WORKSPEED])
+			T.workspeed += upgrades[UPGRADE_WORKSPEED]
+		if(upgrades[UPGRADE_DEGRADATION_MULT])
+			T.degradation *= upgrades[UPGRADE_DEGRADATION_MULT]
+		if(upgrades[UPGRADE_FORCE_MULT])
+			T.force *= upgrades[UPGRADE_FORCE_MULT]
+			T.switched_on_force *= upgrades[UPGRADE_FORCE_MULT]
+		if(upgrades[UPGRADE_FORCE_MOD])
+			T.force += upgrades[UPGRADE_FORCE_MOD]
+			T.switched_on_force += upgrades[UPGRADE_FORCE_MOD]
+		if(upgrades[UPGRADE_FUELCOST_MULT])
+			T.use_fuel_cost *= upgrades[UPGRADE_FUELCOST_MULT]
+		if(upgrades[UPGRADE_POWERCOST_MULT])
+			T.use_power_cost *= upgrades[UPGRADE_POWERCOST_MULT]
+		if(upgrades[UPGRADE_BULK])
+			T.extra_bulk += upgrades[UPGRADE_BULK]
+		if(upgrades[UPGRADE_HEALTH_THRESHOLD])
+			T.health_threshold += upgrades[UPGRADE_HEALTH_THRESHOLD]
+		if(upgrades[UPGRADE_MAXFUEL])
+			T.max_fuel += upgrades[UPGRADE_MAXFUEL]
+		if(upgrades[UPGRADE_MAXUPGRADES])
+			T.max_upgrades += upgrades[UPGRADE_MAXUPGRADES]
+		if(upgrades[UPGRADE_SHARP])
+			T.sharp = upgrades[UPGRADE_SHARP]
+		if(upgrades[UPGRADE_COLOR])
+			T.color = upgrades[UPGRADE_COLOR]
+		if(upgrades[UPGRADE_ITEMFLAGPLUS])
+			T.item_flags |= upgrades[UPGRADE_ITEMFLAGPLUS]
+		if(upgrades[UPGRADE_CELLPLUS])
 			switch(T.suitable_cell)
 				if(/obj/item/weapon/cell/medium)
 					T.suitable_cell = /obj/item/weapon/cell/large
@@ -174,30 +171,30 @@
 	return TRUE
 
 /datum/component/item_upgrade/proc/on_examine(var/mob/user)
-	if (upgrades["precision"] > 0)
-		to_chat(user, SPAN_NOTICE("Enhances precision by [upgrades["precision"]]"))
-	else if (upgrades["precision"] < 0)
-		to_chat(user, SPAN_WARNING("Reduces precision by [abs(upgrades["precision"])]"))
-	if (upgrades["workspeed"])
-		to_chat(user, SPAN_NOTICE("Enhances workspeed by [upgrades["workspeed"]*100]%"))
+	if (upgrades[UPGRADE_PRECISION] > 0)
+		to_chat(user, SPAN_NOTICE("Enhances precision by [upgrades[UPGRADE_PRECISION]]"))
+	else if (upgrades[UPGRADE_PRECISION] < 0)
+		to_chat(user, SPAN_WARNING("Reduces precision by [abs(upgrades[UPGRADE_PRECISION])]"))
+	if (upgrades[UPGRADE_WORKSPEED])
+		to_chat(user, SPAN_NOTICE("Enhances workspeed by [upgrades[UPGRADE_WORKSPEED]*100]%"))
 
-	if (upgrades["degradation_mult"] < 1)
-		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-upgrades["degradation_mult"])*100]%"))
-	else if	(upgrades["degradation_mult"] > 1)
-		to_chat(user, SPAN_WARNING("Increases tool degradation by [(upgrades["degradation_mult"]-1)*100]%"))
+	if (upgrades[UPGRADE_DEGRADATION_MULT] && upgrades[UPGRADE_DEGRADATION_MULT] < 1)
+		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
+	else if	(upgrades[UPGRADE_DEGRADATION_MULT] > 1)
+		to_chat(user, SPAN_WARNING("Increases tool degradation by [(upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
 
-	if (upgrades["force_mult"] >= 1)
-		to_chat(user, SPAN_NOTICE("Increases tool damage by [(upgrades["force_mult"]-1)*100]%"))
-	if (upgrades["force_mod"])
-		to_chat(user, SPAN_NOTICE("Increases tool damage by [upgrades["force_mod"]]"))
-	if (upgrades["powercost_mult"] >= 1)
-		to_chat(user, SPAN_WARNING("Modifies power usage by [(upgrades["powercost_mult"]-1)*100]%"))
-	if (upgrades["fuelcost_mult"] >= 1)
-		to_chat(user, SPAN_WARNING("Modifies fuel usage by [(upgrades["fuelcost_mult"]-1)*100]%"))
-	if (upgrades["max_fuel"])
-		to_chat(user, SPAN_NOTICE("Modifies fuel storage by [upgrades["max_fuel"]] units."))
-	if (upgrades["bulk_mod"])
-		to_chat(user, SPAN_WARNING("Increases tool size by [upgrades["bulk_mod"]]"))
+	if (upgrades[UPGRADE_FORCE_MULT] >= 1)
+		to_chat(user, SPAN_NOTICE("Increases tool damage by [(upgrades[UPGRADE_FORCE_MULT]-1)*100]%"))
+	if (upgrades[UPGRADE_FORCE_MOD])
+		to_chat(user, SPAN_NOTICE("Increases tool damage by [upgrades[UPGRADE_FORCE_MOD]]"))
+	if (upgrades[UPGRADE_POWERCOST_MULT] >= 1)
+		to_chat(user, SPAN_WARNING("Modifies power usage by [(upgrades[UPGRADE_POWERCOST_MULT]-1)*100]%"))
+	if (upgrades[UPGRADE_FUELCOST_MULT] >= 1)
+		to_chat(user, SPAN_WARNING("Modifies fuel usage by [(upgrades[UPGRADE_FUELCOST_MULT]-1)*100]%"))
+	if (upgrades[UPGRADE_MAXFUEL])
+		to_chat(user, SPAN_NOTICE("Modifies fuel storage by [upgrades[UPGRADE_MAXFUEL]] units."))
+	if (upgrades[UPGRADE_BULK])
+		to_chat(user, SPAN_WARNING("Increases tool size by [upgrades[UPGRADE_BULK]]"))
 
 	if (required_qualities.len)
 		to_chat(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))

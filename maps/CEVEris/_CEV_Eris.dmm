@@ -18639,8 +18639,8 @@
 /area/eris/maintenance/section3deck1central)
 "aRy" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
+/obj/item/weapon/gun/projectile/automatic/wintermute,
+/obj/item/weapon/gun/projectile/automatic/wintermute,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -19349,10 +19349,10 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSZ" = (
@@ -80912,8 +80912,8 @@
 /area/eris/engineering/starboardhallway)
 "dyX" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/deagle,
-/obj/item/weapon/gun/projectile/deagle,
+/obj/item/weapon/gun/projectile/avasarala,
+/obj/item/weapon/gun/projectile/avasarala,
 /obj/machinery/door/blast/shutters/glass{
 	id = "BridgeArmoury";
 	name = "Armoury showcase"
@@ -108433,6 +108433,19 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"kEW" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck5port)
 "kFJ" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box,
@@ -108533,6 +108546,28 @@
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"mub" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck5port)
 "mCf" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -108588,6 +108623,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"ntp" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay)
 "nuu" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -108635,6 +108674,7 @@
 "oih" = (
 /obj/landmark/join/start/chemist,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "oup" = (
@@ -108758,6 +108798,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
+"qTX" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/surgery)
 "qZr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -127259,8 +127303,8 @@ aCn
 bts
 ceR
 aCn
-bPZ
-bRI
+kEW
+mub
 awR
 alg
 aaa
@@ -164759,8 +164803,8 @@ aKl
 bwy
 aNc
 csS
-aPn
-aPn
+csS
+csS
 csS
 aSn
 aSL
@@ -204385,7 +204429,7 @@ cgI
 cgI
 cda
 cjK
-cjK
+qTX
 cpy
 crS
 coI
@@ -207818,7 +207862,7 @@ cvS
 bUV
 ccj
 cLG
-coL
+ntp
 coL
 dvR
 cKx

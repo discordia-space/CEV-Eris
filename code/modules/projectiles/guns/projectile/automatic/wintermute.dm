@@ -1,10 +1,9 @@
-//Primary AR of IH. Has supreme AP to deal with those pesky Serbs (guildsmans actually) in armored hardsuits.
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle
+/obj/item/weapon/gun/projectile/automatic/wintermute
 	name = "FS AR .20 \"Wintermute\""
 	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines."
-	icon = 'icons/obj/guns/projectile/IH_heavyrifle.dmi'
-	icon_state = "IH_heavyrifle"
-	item_state = "IH_heavyrifle"
+	icon = 'icons/obj/guns/projectile/wintermute.dmi'
+	icon_state = "wintermute"
+	item_state = "wintermute"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_SRIFLE
@@ -31,7 +30,7 @@
 		BURST_3_ROUND
 		)
 
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/update_icon()
+/obj/item/weapon/gun/projectile/automatic/wintermute/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -47,6 +46,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle/Initialize()
+/obj/item/weapon/gun/projectile/automatic/wintermute/Initialize()
 	. = ..()
 	update_icon()

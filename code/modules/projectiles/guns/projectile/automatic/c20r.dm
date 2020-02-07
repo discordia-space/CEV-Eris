@@ -1,6 +1,9 @@
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "C-20r"
-	desc = "The C-20r is a lightweight and rapid-firing SMG, for when you REALLY need someone dead. Uses .35 Auto rounds. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstock stamp."
+	desc = "The C-20r is a lightweight and robust bullpup SMG of ancient design, for when you REALLY need someone dead. \
+			Famous as most used SMG by criminal organizations of various sorts. Was recently reverse-engineered by Moebius \
+			almost completely from the scratch, introducing gun to the broad masses of customers. \
+			Has a '\"Scarborough Arms\" - Per falcis, per pravitas' buttstock stamp. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/cr20.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
@@ -13,21 +16,22 @@
 	mag_well = MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/smg
 	auto_eject = TRUE
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
-	price_tag = 3000
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 6)
+	price_tag = 1800
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/sfrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/sfrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/sfrifle_cock.ogg'
-	zoom_factor = 0.2
-	damage_multiplier = 1.1
-	recoil_buildup = 6
+	damage_multiplier = 1
+	penetration_multiplier = 1.5 //7.5 with regular lethal ammo, 15 with HV, seems legit
+	zoom_factor = 0.4
+	recoil_buildup = 3
+
 	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
 		)
 
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()

@@ -1,9 +1,9 @@
-/obj/item/weapon/gun/projectile/deagle
+/obj/item/weapon/gun/projectile/avasarala
 	name = "FS HG .40 Magnum \"Avasarala\""
 	desc = "An obvious replica of an old Earth \"Desert Eagle\". Robust and straight, this is a gun for a leader, not just an officer."
-	icon = 'icons/obj/guns/projectile/deagle.dmi'
-	icon_state = "deagle"
-	item_state = "revolver"
+	icon = 'icons/obj/guns/projectile/avasarala.dmi'
+	icon_state = "avasarala"
+	item_state = "avasarala"
 	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
