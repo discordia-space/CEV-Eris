@@ -314,7 +314,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigbutt"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	matter = list(MATERIAL_BIOMASS = 1)
+	matter = list(MATERIAL_BIOMATTER = 1)
 	throwforce = 1
 
 /obj/item/trash/cigbutt/New()
