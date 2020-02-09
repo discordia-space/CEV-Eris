@@ -141,6 +141,7 @@
 	if(action_name == "Clothing information")
 		ui_interact(user)
 		return TRUE
+	return ..()
 
 /obj/screen/item_action/top_bar/clothing_info
 	icon = 'icons/mob/screen/gun_actions.dmi'
