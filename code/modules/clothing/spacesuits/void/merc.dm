@@ -31,6 +31,7 @@
 		bio = 100,
 		rad = 30
 	)
+	flash_protection = FLASH_PROTECTION_MAJOR
 	siemens_coefficient = 0.35
 	breach_threshold = 10
 	resilience = 0.07
