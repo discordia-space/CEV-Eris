@@ -13,14 +13,15 @@
 	)
 
 	armor = list(
-		melee = 40,
-		bullet = 40,
+		melee = 50,
+		bullet =50,
 		energy = 50,
 		bomb = 30,
 		bio = 100,
 		rad = 90
 	)
 	siemens_coefficient = 0
+	flash_protection = FLASH_PROTECTION_MAJOR
 	species_restricted = list("Human")
 	//camera_networks = list(NETWORK_EXCELSIOR) //Todo future: Excelsior camera network and monitoring console
 	light_overlay = "helmet_light_green"
@@ -33,8 +34,8 @@
 	slowdown = 0.2
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 40,
-		bullet = 40,
+		melee = 60,
+		bullet = 60,
 		energy = 50,
 		bomb = 30,
 		bio = 100,
