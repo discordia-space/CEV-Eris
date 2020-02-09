@@ -70,7 +70,7 @@
 
 /obj/item/clothing/head/armor/bulletproof
 	name = "bulletproof helmet"
-	desc = "A bulletproof security helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	desc = "A bulletproof helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent, comes in a fetching tan to fit the vest."
 	icon_state = "bulletproof"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
