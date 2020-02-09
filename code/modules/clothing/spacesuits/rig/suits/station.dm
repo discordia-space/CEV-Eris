@@ -33,9 +33,9 @@
 		bio = 100,
 		rad = 90
 	)
-	slowdown = 3
+	slowdown = 1
 	drain = 3
-	offline_slowdown = 10
+	offline_slowdown = 5
 	offline_vision_restriction = 2
 	emp_protection = -20
 
@@ -172,7 +172,7 @@ Advanced Voidsuit: Technomancer Exultant
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 1
+	slowdown = 0.7
 	drain = 3
 	offline_vision_restriction = 1
 
@@ -223,7 +223,7 @@ Advanced Voidsuit: Technomancer Exultant
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 0.75
+	slowdown = 0.5
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/medical

@@ -111,7 +111,7 @@
 	slowdown = 0.15
 	armor = list(
 		melee = 25,
-		bullet = 75,
+		bullet = 55,
 		energy = 25,
 		bomb = 10,
 		bio = 0,
@@ -121,13 +121,22 @@
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	icon_state = "bulletproof_ironhammer"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	armor = list(
+		melee = 25,
+		bullet = 60,
+		energy = 25,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/serbian
 	name = "black platecarrier vest"
 	icon_state = "platecarrier"
 	armor = list(
 		melee = 25,
-		bullet = 60,
+		bullet = 50,
 		energy = 0,
 		bomb = 0,
 		bio = 0,
@@ -279,9 +288,9 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
+		melee = 55,
+		bullet = 55,
+		energy = 55,
 		bomb = 25,
 		bio = 0,
 		rad = 0
