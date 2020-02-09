@@ -45,7 +45,7 @@
 /datum/uplink_item/item/tools/heavy_helmet
 	name = "Heavy Armor Helmet"
 	item_cost = 4
-	path = /obj/item/clothing/head/armor/bulletproof
+	path = /obj/item/clothing/head/armor/helmet/merchelm
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
