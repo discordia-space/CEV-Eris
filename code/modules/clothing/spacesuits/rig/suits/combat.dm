@@ -14,7 +14,7 @@
 		bio = 100,
 		rad = 50
 	)
-	slowdown = 1.35
+	slowdown = 1
 	drain = 4
 	offline_slowdown = 3
 	offline_vision_restriction = 1
@@ -68,7 +68,7 @@
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 1.5
+	slowdown = 1
 	drain = 4
 	offline_slowdown = 3
 	offline_vision_restriction = 1

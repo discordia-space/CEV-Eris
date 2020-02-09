@@ -14,6 +14,7 @@
 		rad = 75
 	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flash_protection = FLASH_PROTECTION_MAJOR
 
 	light_overlay = "helmet_light"
 
@@ -22,7 +23,7 @@
 	icon_state = "void"
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
-	slowdown = 1
+	slowdown = 0.3
 	armor = list(
 		melee = 30,
 		bullet = 20,

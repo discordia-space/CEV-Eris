@@ -26,7 +26,7 @@
 		bio = 10,
 		rad = 0
 	)
-	slowdown = 0.4
+	slowdown = 0.2
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	item_flags = STOPPRESSUREDAMAGE | COVER_PREVENT_MANIPULATION
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -65,7 +65,7 @@
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	extra_allowed = list(/obj/item/clothing/head/radiation)
-	slowdown = 0.4
+	slowdown = 0.2
 	armor = list(
 		melee = 0,
 		bullet = 0,
