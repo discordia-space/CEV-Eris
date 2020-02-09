@@ -35,6 +35,22 @@
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
 
+/obj/item/clothing/head/armor/helmet/merchelm
+	name = "Heavy Armour Helmet"
+	desc = "A high-quality helmet in a fetching tan. Very durable"
+	icon_state = "merchelm"
+	body_parts_covered = HEAD | EARS | EYES | FACE
+	armor = list(
+		melee = 50,
+		bullet = 50,
+		energy = 50,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
+	flash_protection = FLASH_PROTECTION_MAJOR
+	price_tag = 500
+
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
@@ -70,7 +86,7 @@
 
 /obj/item/clothing/head/armor/bulletproof
 	name = "bulletproof helmet"
-	desc = "A bulletproof helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent, comes in a fetching tan to fit the vest."
+	desc = "A bulletproof helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
 	icon_state = "bulletproof"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
@@ -302,6 +318,7 @@
 	icon_state = "altyn"
 	armor = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
 
@@ -325,6 +342,7 @@
 			src.up = !src.up
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			flash_protection = initial(flash_protection)
 			icon_state = base_state
 			armor = initial(armor)
 			to_chat(usr, "You flip the [src] down to protect your face.")
@@ -332,6 +350,7 @@
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			flash_protection = FLASH_PROTECTION_NONE
 			icon_state = "[base_state]_up"
 			armor = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
 			to_chat(usr, "You push the [src] up out of your face.")
