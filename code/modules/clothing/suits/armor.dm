@@ -279,9 +279,9 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
+		melee = 55,
+		bullet = 55,
+		energy = 55,
 		bomb = 25,
 		bio = 0,
 		rad = 0
