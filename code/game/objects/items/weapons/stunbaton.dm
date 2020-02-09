@@ -181,7 +181,7 @@
 
 /obj/item/weapon/melee/baton/excelbaton 
 	name = "Expropriator"
-	desc = "A cheap and effective way to feed the red tide"
+	desc = "A cheap and effective way to feed the red tide."
 	icon_state = "sovietbaton"
 	item_state = "soviet"
 	force = WEAPON_FORCE_PAINFUL
