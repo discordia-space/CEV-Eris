@@ -4,9 +4,9 @@
 	icon_state = "scaf"
 	item_state = "scaf"
 	armor = list(
-		melee = 50,
-		bullet = 55,
-		energy = 50,
+		melee = 60,
+		bullet = 65,
+		energy = 60,
 		bomb = 75,
 		bio = 100,
 		rad = 30
