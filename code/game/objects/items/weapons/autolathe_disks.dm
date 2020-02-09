@@ -526,6 +526,7 @@
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/device/implanter,					//misc
 		/datum/design/autolathe/clothing/excelsior_armor,
+		/datum/design/autolathe/device/excelbaton,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior_weapons
@@ -560,7 +561,6 @@
 		/datum/design/autolathe/ammo/lrifle_ammobox,
 		/datum/design/autolathe/sec/silencer,						//misc
 		/datum/design/autolathe/clothing/excelsior_armor,
-		/datum/design/autolathe/device/excelbaton
 	)
 
 // G U N S (minus excelsior and research)
