@@ -21,7 +21,6 @@
 		rad = 90
 	)
 	siemens_coefficient = 0
-	flash_protection = FLASH_PROTECTION_MAJOR
 	species_restricted = list("Human")
 	//camera_networks = list(NETWORK_EXCELSIOR) //Todo future: Excelsior camera network and monitoring console
 	light_overlay = "helmet_light_green"
