@@ -82,6 +82,7 @@
 		rad = 0
 	)
 	price_tag = 250
+	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer
 	name = "bulletproof helmet"
