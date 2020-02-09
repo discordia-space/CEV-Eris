@@ -140,9 +140,7 @@
 			C.wrapped = new C.external_type
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell/large(src)
-		cell.maxcharge = 7500
-		cell.charge = 7500
+		cell = new /obj/item/weapon/cell/large/moebius/high(src)
 
 	..()
 
@@ -674,19 +672,19 @@
 		I.forceMove(src)
 		recalculate_synth_capacities()
 
-	else if (istype(I, /obj/item/weapon/cell/large) && opened)	// trying to put a cell inside
+	else if (istype(I, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
-			to_chat(user, "Close the panel first.")
+			to_chat(user, SPAN_WARNING("Close the panel first."))
 		else if(cell)
-			to_chat(user, "There is a power cell already installed.")
-		else if(I.w_class != ITEM_SIZE_NORMAL)
-			to_chat(user, "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
+			to_chat(user, SPAN_WARNING("There is a power cell already installed."))
+		else if(!istype(I, /obj/item/weapon/cell/large))
+			to_chat(user, SPAN_WARNING("\The [I] is too small to fit here."))
 		else
 			user.drop_item()
 			I.loc = src
 			cell = I
-			to_chat(user, "You insert the power cell.")
+			to_chat(user, SPAN_NOTICE("You insert the power cell."))
 
 			C.installed = 1
 			C.wrapped = I
@@ -695,24 +693,24 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if(istype(I, /obj/item/device/encryptionkey/) && opened)
+	else if(istype(I, /obj/item/device/encryptionkey) && opened)
 		if(radio)//sanityyyyyy
 			radio.attackby(I,user)//GTFO, you have your own procs
 		else
-			to_chat(user, "Unable to locate a radio.")
+			to_chat(user, SPAN_WARNING("Unable to locate a radio."))
 
-	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer)||istype(I, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
+	else if(I.GetIdCard() || length(I.GetAccess()))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
-			to_chat(user, "The interface seems slightly damaged")
+			to_chat(user, SPAN_WARNING("The interface seems slightly damaged."))
 		if(opened)
-			to_chat(user, "You must close the cover to swipe an ID card.")
+			to_chat(user, SPAN_WARNING("You must close the cover to swipe an ID card."))
 		else
 			if(allowed(usr))
 				locked = !locked
-				to_chat(user, "You [ locked ? "lock" : "unlock"] [src]'s interface.")
+				to_chat(user, SPAN_NOTICE("You [locked ? "lock" : "unlock"] [src]'s interface."))
 				updateicon()
 			else
-				to_chat(user, SPAN_DANGER("Access denied."))
+				to_chat(user, SPAN_WARNING("Access denied."))
 
 	else if(istype(I, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = I
@@ -754,7 +752,7 @@
 			cell.update_icon()
 			cell.add_fingerprint(user)
 			user.put_in_active_hand(cell)
-			to_chat(user, "You remove \the [cell].")
+			to_chat(user, SPAN_NOTICE("You remove \the [cell]."))
 			cell = null
 			cell_component.wrapped = null
 			cell_component.installed = 0
@@ -762,41 +760,25 @@
 		else if(cell_component.installed == -1)
 			cell_component.installed = 0
 			var/obj/item/broken_device = cell_component.wrapped
-			to_chat(user, "You remove \the [broken_device].")
+			to_chat(user, SPAN_WARNING("You remove \the [broken_device]."))
 			user.put_in_active_hand(broken_device)
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
 	return ..(user,FLOOR(damage * 0.5, 1),attack_message)
 
-/mob/living/silicon/robot/proc/allowed(mob/M)
-	//check if it doesn't require any access at all
-	if(check_access(null))
-		return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
-			return 1
-	else if(isrobot(M))
-		var/mob/living/silicon/robot/R = M
-		if(check_access(R.get_active_hand()) || istype(R.get_active_hand(), /obj/item/weapon/card/robot))
-			return 1
-	return 0
+/mob/living/silicon/robot/proc/allowed(atom/movable/A)
+	if(!length(req_access)) //no requirements
+		return TRUE
 
-/mob/living/silicon/robot/proc/check_access(obj/item/weapon/card/id/I)
-	if(!istype(req_access, /list)) //something's very wrong
-		return 1
+	var/list/access = A?.GetAccess()
 
-	var/list/L = req_access
-	if(!L.len) //no requirements
-		return 1
-	if(!I || !istype(I, /obj/item/weapon/card/id) || !I.access) //not ID or no access
-		return 0
+	if(!length(access)) //no ID or no access
+		return FALSE
 	for(var/req in req_access)
-		if(req in I.access) //have one of the required accesses
-			return 1
-	return 0
+		if(req in access) //have one of the required accesses
+			return TRUE
+	return FALSE
 
 /mob/living/silicon/robot/updateicon()
 	overlays.Cut()

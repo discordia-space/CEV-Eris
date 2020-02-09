@@ -97,7 +97,10 @@
 	hud.canremove = FALSE
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer/ui_action_click()
+	if(..())
+		return TRUE
 	toggle()
+
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer/verb/toggle()
 	set name = "Toggle Night Vision"
@@ -240,6 +243,8 @@
 	hud.canremove = FALSE
 
 /obj/item/clothing/head/armor/riot_hud/ui_action_click()
+	if(..())
+		return TRUE
 	toggle()
 
 /obj/item/clothing/head/armor/riot_hud/verb/toggle()

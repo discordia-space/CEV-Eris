@@ -61,7 +61,9 @@
 	if(tank && in_range(src,user))
 		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
 
-/obj/item/clothing/suit/space/void/ui_action_click()
+/obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
 	toggle_helmet()
 
 /obj/item/clothing/suit/space/void/clean_blood()
