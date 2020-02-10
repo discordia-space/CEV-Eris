@@ -7,8 +7,8 @@
 	armor_penetration = 10
 	damage_type = BURN
 
-	muzzle_type = /obj/effect/projectile/plasma/muzzle
-	impact_type = /obj/effect/projectile/plasma/impact
+	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
+	impact_type = /obj/effect/projectile/impact/plasma_cutter
 
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"

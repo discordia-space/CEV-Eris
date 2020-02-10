@@ -9,7 +9,7 @@
 	damage = 15
 	damage_type = BURN
 	check_armour = ARMOR_BIO
-	step_delay = 2
+	speed = 2
 
 
 /obj/item/projectile/goo/on_hit(atom/target)

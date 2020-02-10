@@ -43,7 +43,7 @@
 		return
 
 	var/obj/item/projectile/energy/neurotoxin/A = new /obj/item/projectile/energy/neurotoxin(usr.loc)
-	A.current = U
+	//A.current = U
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x
 	A.Process()

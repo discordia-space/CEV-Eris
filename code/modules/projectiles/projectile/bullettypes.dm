@@ -19,7 +19,7 @@ There are important things regarding this file:
 	damage = 28
 	armor_penetration = 10
 	penetrating = 1
-	step_delay = 0.75
+	//speed = 0.75 TODO: MAKE THESE FASTER?
 
 /obj/item/projectile/bullet/pistol/practice
 	name = "practice bullet"
@@ -64,7 +64,7 @@ There are important things regarding this file:
 	damage = 30
 	armor_penetration = 30
 	penetrating = 4
-	step_delay = 0.75
+	//step_delay = 0.75
 
 /obj/item/projectile/bullet/srifle/rubber
 	name = "rubber bullet"
@@ -96,7 +96,7 @@ There are important things regarding this file:
 	damage = 32
 	armor_penetration = 30
 	penetrating = 2
-	step_delay = 0.75
+	//step_delay = 0.75
 
 /obj/item/projectile/bullet/clrifle/rubber
 	name = "rubber bullet"
@@ -127,7 +127,7 @@ There are important things regarding this file:
 	damage = 30
 	armor_penetration = 30
 	penetrating = 2
-	step_delay = 0.75
+	//step_delay = 0.75
 
 /obj/item/projectile/bullet/lrifle/rubber
 	name = "rubber bullet"
@@ -156,7 +156,7 @@ There are important things regarding this file:
 	damage = 35
 	armor_penetration = 20
 	penetrating = 1
-	step_delay = 0.75
+	//step_delay = 0.75
 
 /obj/item/projectile/bullet/magnum/rubber
 	name = "rubber bullet"
@@ -182,7 +182,7 @@ There are important things regarding this file:
 	damage = 54
 	armor_penetration = 10
 	knockback = 1
-	step_delay = 1.65
+	speed = 0.8
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"

@@ -12,9 +12,9 @@
 	hitscan = 1
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
 
-	muzzle_type = /obj/effect/projectile/laser/muzzle
-	tracer_type = /obj/effect/projectile/laser/tracer
-	impact_type = /obj/effect/projectile/laser/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser
+	tracer_type = /obj/effect/projectile/tracer/laser
+	impact_type = /obj/effect/projectile/impact/laser
 
 	heat = 100
 
@@ -37,9 +37,9 @@
 	damage = 50
 	armor_penetration = 20
 
-	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
-	tracer_type = /obj/effect/projectile/laser_heavy/tracer
-	impact_type = /obj/effect/projectile/laser_heavy/impact
+	muzzle_type = /obj/effect/projectile/muzzle/heavy_laser
+	tracer_type = /obj/effect/projectile/tracer/heavy_laser
+	impact_type = /obj/effect/projectile/impact/heavy_laser
 
 /obj/item/projectile/beam/xray
 	name = "xray beam"
@@ -47,9 +47,9 @@
 	damage = 25
 	armor_penetration = 40
 
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/item/projectile/beam/pulse
 	name = "pulse"
@@ -57,9 +57,9 @@
 	damage = 40
 	armor_penetration = 20
 
-	muzzle_type = /obj/effect/projectile/laser_pulse/muzzle
-	tracer_type = /obj/effect/projectile/laser_pulse/tracer
-	impact_type = /obj/effect/projectile/laser_pulse/impact
+	muzzle_type = /obj/effect/projectile/muzzle/pulse
+	tracer_type = /obj/effect/projectile/tracer/pulse
+	impact_type = /obj/effect/projectile/impact/pulse
 
 /obj/item/projectile/beam/pulse/on_hit(atom/target)
 	if(isturf(target))
@@ -71,9 +71,9 @@
 	icon_state = "emitter"
 	damage = 0 // The actual damage is computed in /code/modules/power/singularity/emitter.dm
 
-	muzzle_type = /obj/effect/projectile/emitter/muzzle
-	tracer_type = /obj/effect/projectile/emitter/tracer
-	impact_type = /obj/effect/projectile/emitter/impact
+	muzzle_type = /obj/effect/projectile/muzzle/emitter
+	tracer_type = /obj/effect/projectile/tracer/emitter
+	impact_type = /obj/effect/projectile/impact/emitter
 
 /obj/item/projectile/beam/lastertag/blue
 	name = "lasertag beam"
@@ -84,9 +84,9 @@
 	damage_type = BURN
 	check_armour = ARMOR_ENERGY
 
-	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
-	tracer_type = /obj/effect/projectile/laser_blue/tracer
-	impact_type = /obj/effect/projectile/laser_blue/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
+	tracer_type = /obj/effect/projectile/tracer/laser/blue
+	impact_type = /obj/effect/projectile/impact/laser/blue
 
 /obj/item/projectile/beam/lastertag/blue/on_hit(atom/target)
 	if(ishuman(target))
@@ -119,9 +119,9 @@
 	damage_type = BURN
 	check_armour = ARMOR_ENERGY
 
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/disabler
+	tracer_type = /obj/effect/projectile/tracer/disabler
+	impact_type = /obj/effect/projectile/impact/disabler
 
 /obj/item/projectile/beam/lastertag/omni/on_hit(atom/target)
 	if(ishuman(target))
@@ -139,9 +139,9 @@
 	weaken = 3
 	stutter = 3
 
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/item/projectile/beam/stun
 	name = "stun beam"
@@ -151,6 +151,6 @@
 	agony = 30
 	damage_type = HALLOSS
 
-	muzzle_type = /obj/effect/projectile/stun/muzzle
-	tracer_type = /obj/effect/projectile/stun/tracer
-	impact_type = /obj/effect/projectile/stun/impact
+	muzzle_type = /obj/effect/projectile/muzzle/stun
+	tracer_type = /obj/effect/projectile/tracer/stun
+	impact_type = /obj/effect/projectile/impact/stun

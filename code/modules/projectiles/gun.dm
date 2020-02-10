@@ -405,7 +405,7 @@
 	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
 
-	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
+	return !P.launch_from_gun(target, target_zone, user, params, null, offset, src)
 
 //Suicide handling.
 /obj/item/weapon/gun/proc/handle_suicide(mob/living/user)
