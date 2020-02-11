@@ -669,14 +669,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				mode=2
 
 		if("Ringtone")
-			var/t = input(U, "Please enter new ringtone", name, ttone) as text
+			var/t = stripped_input(U, "Please enter new ringtone", name, ttone, 20)
 			if (in_range(src, U) && loc == U)
 				if (t)
 					if(src.hidden_uplink && hidden_uplink.check_trigger(U, lowertext(t), lowertext(lock_code)))
 						to_chat(U, "The PDA softly beeps.")
 						ui.close()
 					else
-						t = sanitize(t, 20)
 						ttone = t
 			else
 				ui.close()
