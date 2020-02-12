@@ -63,6 +63,7 @@
 	light_range = 5
 	light_power = 1
 	light_color = COLOR_MUZZLE_FLASH
+	directional = TRUE
 
 /obj/effect/projectile/muzzle/tachyon
 	icon_state = "muzzle_pulse"

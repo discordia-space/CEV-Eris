@@ -695,18 +695,20 @@
 		if(ispath(muzzle_type))
 			if(firer)
 				var/obj/effect/projectile/thing = 	new muzzle_type(get_turf(src))
-				var/matrix/M = new
-				if(firer.dir == NORTH)
-					thing.pixel_y = 16
-				else if(firer.dir == SOUTH)
-					thing.pixel_y = -16
-				else if(firer.dir == EAST)
-					thing.pixel_x = 16
-				else if(firer.dir == WEST)
-					thing.pixel_x = -16
-				M.Turn(original_angle)
-				thing.transform = M
-				spawn(3)
+				if(thing.directional)
+					thing.dir = firer.dir
+					if(firer.dir == NORTH)
+						thing.pixel_y = 16
+						thing.layer = BELOW_MOB_LAYER // So it looks right.
+					else if(firer.dir == SOUTH)
+						thing.pixel_y = -16
+					else if(firer.dir == EAST)
+						thing.pixel_x = 16
+					else if(firer.dir == WEST)
+						thing.pixel_x = -16
+					spawn(3)
+						qdel(thing)
+				else
 					qdel(thing)
 	forceMove(starting)
 	trajectory = new(starting.x, starting.y, starting.z, 0, 0, Angle, pixel_speed)

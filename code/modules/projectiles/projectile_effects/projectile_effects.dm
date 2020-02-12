@@ -9,6 +9,7 @@
 	light_color = "#FF00DC"
 	mouse_opacity = 0
 	appearance_flags = 0
+	var/directional = FALSE
 
 /obj/effect/projectile/singularity_pull()
 	return
