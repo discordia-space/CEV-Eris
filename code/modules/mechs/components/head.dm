@@ -11,6 +11,7 @@
 	has_hardpoints = list(HARDPOINT_HEAD)
 	var/active_sensors = 0
 	power_use = 15
+	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/mech_component/sensors/Destroy()
 	QDEL_NULL(camera)

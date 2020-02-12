@@ -1,5 +1,4 @@
 
-
 // Big stompy robots.
 /mob/living/exosuit
 	name = "exosuit"
@@ -210,3 +209,5 @@
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
 
+/mob/living/exosuit/get_mob()
+	return pilots[1]

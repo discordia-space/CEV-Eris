@@ -301,18 +301,18 @@
 
 		return 1
 
-
-
-
-/obj/item/mech_equipment/mounted_system/taser/plasma
-	name = "mounted plasma cutter"
-	desc = "An industrial plasma cutter mounted onto the chassis of the mech. "
-	icon_state = "railauto" //TODO: Make a new sprite that doesn't get sec called on you.
-	holding_type = /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
-	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+/obj/item/mech_equipment/mounted_system/extinguisher
+	icon_state = "mech_exting"
+	holding_type = /obj/item/weapon/extinguisher/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
-	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 
-/obj/item/weapon/gun/energy/plasmacutter/mounted/mech
-	use_external_power = TRUE
-	restrict_safety = TRUE
+/obj/item/weapon/extinguisher/mech
+	max_water = 4000 //Good is gooder
+	icon_state = "mech_exting"
+
+/obj/item/weapon/extinguisher/mech/get_hardpoint_maptext()
+	return "[reagents.total_volume]/[max_water]"
+
+/obj/item/weapon/extinguisher/mech/get_hardpoint_status_value()
+	return reagents.total_volume/max_water

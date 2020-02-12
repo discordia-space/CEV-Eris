@@ -62,7 +62,7 @@
 
 	maptext = holding.get_hardpoint_maptext()
 
-	var/ui_damage = (!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_GUI_DISRUPT) && prob(owner.emp_damage)))
+	var/ui_damage = (!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage)))
 
 	var/value = holding.get_hardpoint_status_value()
 	if(isnull(value))
@@ -73,7 +73,7 @@
 		value = -1
 		maptext = "ERROR"
 	else
-		if((owner.emp_damage>EMP_GUI_DISRUPT) && prob(owner.emp_damage*2))
+		if((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage*2))
 			if(prob(10))
 				value = -1
 			else

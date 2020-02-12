@@ -17,6 +17,7 @@
 	var/min_pilot_size = MOB_SMALL
 	var/max_pilot_size = MOB_LARGE
 	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mech_component/chassis/New()
 	..()
@@ -87,7 +88,7 @@
 	cell.charge = cell.maxcharge
 
 /obj/item/mech_component/chassis/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing,/obj/item/robot_parts/robot_component/diagnosis_unit))
+	if(istype(thing, /obj/item/robot_parts/robot_component/diagnosis_unit))
 		if(diagnostics)
 			to_chat(user, SPAN_WARNING("\The [src] already has a diagnostic system installed."))
 			return

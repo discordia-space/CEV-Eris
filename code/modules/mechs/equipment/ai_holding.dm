@@ -31,7 +31,7 @@
 		destroy_eyeobj(M)
 	controlled_mech = M
 
-/obj/item/mech_equipment/tool/ai_holder
+/obj/item/mech_equipment/ai_holder
 	name = "AI holder"
 	desc = "This is AI holder, thats allow AI control exo-suits."
 	icon_state = "ai_holder"
@@ -40,12 +40,13 @@
 	energy_drain = 2
 	equip_cooldown = 20
 	salvageable = 0
+	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	var/obj/machinery/camera/Cam = null
 	var/mob/living/silicon/ai/occupant = null
 	var/mob/living/prev_occupant = null
 
 
-/obj/item/mech_equipment/tool/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
+/obj/item/mech_equipment/ai_holder/proc/occupied(var/mob/living/silicon/ai/AI)
 	if(chassis.occupant && !isAI(chassis.occupant))
 		prev_occupant = chassis.occupant
 		prev_occupant.forceMove(src)
@@ -55,7 +56,7 @@
 	chassis.update_icon()
 	AI.add_mecha_verbs()
 
-/obj/item/mech_equipment/tool/ai_holder/interact(var/mob/living/silicon/ai/user)
+/obj/item/mech_equipment/ai_holder/interact(var/mob/living/silicon/ai/user)
 	if(!chassis) return
 	if(occupant)
 		if(occupant == user) go_out()
@@ -75,6 +76,6 @@
 		return
 
 	if(isAI(mob_container))
-		var/obj/item/mech_equipment/tool/ai_holder/AH = locate() in src
+		var/obj/item/mech_equipment/ai_holder/AH = locate() in src
 		if(AH)
 			AH.eject()

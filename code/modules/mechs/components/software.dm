@@ -1,7 +1,7 @@
 #define T_BOARD_MECH(name)	"exosuit software (" + (name) + ")"
 
 /obj/item/weapon/circuitboard/exosystem
-	name = "exosuit software template"
+	name = T_BOARD_MECH("template")
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	item_state = "electronic"

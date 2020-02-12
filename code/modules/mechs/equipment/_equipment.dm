@@ -4,7 +4,7 @@
 	name = "exosuit hardpoint system"
 	icon = MECHA_EQUIPMENT_ICON
 	icon_state = ""
-	matter = list(MATERIAL_STEEL = 10000, MATERIAL_PLASTIC = 5000, MATERIAL_OSMIUM = 500)
+	matter = list(MATERIAL_STEEL = 40)
 	force = 10
 
 	var/restricted_hardpoints

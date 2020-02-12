@@ -21,8 +21,8 @@
 	return def_zone //Careful with effects, mechs shouldn't be stunned
 
 /mob/living/exosuit/updatehealth()
-	maxHealth = body.mech_health
-	health = maxHealth-(getFireLoss()+getBruteLoss())
+	if(body) maxHealth = body.mech_health
+	health = maxHealth - (getFireLoss() + getBruteLoss())
 
 /mob/living/exosuit/adjustFireLoss(var/amount, var/obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
 	if(MC)

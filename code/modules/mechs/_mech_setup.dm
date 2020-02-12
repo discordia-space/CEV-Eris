@@ -21,7 +21,7 @@
 #define MECH_SOFTWARE_ENGINEERING			"advanced engineering systems"	// RCD.
 
 // EMP damage points before various effects occur.
-#define EMP_GUI_DISRUPT 					5								// 1 ion rifle shot == 8.
+#define EMP_HUD_DISRUPT 					5								// 1 ion rifle shot == 8.
 #define EMP_MOVE_DISRUPT 					10								// 2 shots.
 #define EMP_ATTACK_DISRUPT 					20								// 3 shots.
 

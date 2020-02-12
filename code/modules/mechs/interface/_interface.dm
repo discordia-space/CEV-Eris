@@ -77,7 +77,7 @@
 	if(!body || !get_cell() || (get_cell().charge <= 0))
 		return
 
-	if(!body.diagnostics || !body.diagnostics.is_functional() || ((emp_damage>EMP_GUI_DISRUPT) && prob(emp_damage*2)))
+	if(!body.diagnostics || !body.diagnostics.is_functional() || ((emp_damage>EMP_HUD_DISRUPT) && prob(emp_damage*2)))
 		if(!GLOB.mech_damage_overlay_cache["critfail"])
 			GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECHA_HUD_ICON,icon_state="dam_error")
 		hud_health.overlays |= GLOB.mech_damage_overlay_cache["critfail"]
@@ -88,7 +88,7 @@
 		var/state = 0
 		var/obj/item/mech_component/MC = part_to_state[part]
 		if(MC)
-			if((emp_damage>EMP_GUI_DISRUPT) && prob(emp_damage*3))
+			if((emp_damage>EMP_HUD_DISRUPT) && prob(emp_damage*3))
 				state = rand(0,4)
 			else
 				state = MC.damage_state

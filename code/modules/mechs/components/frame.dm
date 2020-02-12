@@ -23,7 +23,7 @@
 	var/is_reinforced = 0
 	var/set_name
 	dir = SOUTH
-	var/obj/item/stack/material/material = null
+	var/material/material = null
 
 /obj/structure/heavy_vehicle_frame/proc/set_colour(var/new_colour)
 	var/painted_component = FALSE
@@ -40,27 +40,26 @@
 	QDEL_NULL(body)
 	. = ..()
 
-/obj/structure/heavy_vehicle_frame/examine()
+/obj/structure/heavy_vehicle_frame/examine(var/mob/user)
 	. = ..()
-	if(.)
-		if(!arms)
-			to_chat(usr, SPAN_WARNING("It is missing manipulators."))
-		if(!legs)
-			to_chat(usr, SPAN_WARNING("It is missing propulsion."))
-		if(!head)
-			to_chat(usr, SPAN_WARNING("It is missing sensors."))
-		if(!body)
-			to_chat(usr, SPAN_WARNING("It is missing a chassis."))
-		if(is_wired == FRAME_WIRED)
-			to_chat(usr, SPAN_WARNING("It has not had its wiring adjusted."))
-		else if(!is_wired)
-			to_chat(usr, SPAN_WARNING("It has not yet been wired."))
-		if(is_reinforced == FRAME_REINFORCED)
-			to_chat(usr, SPAN_WARNING("It has not had its internal reinforcement secured."))
-		else if(is_reinforced == FRAME_REINFORCED_SECURE)
-			to_chat(usr, SPAN_WARNING("It has not had its internal reinforcement welded in."))
-		else if(!is_reinforced)
-			to_chat(usr, SPAN_WARNING("It does not have any internal reinforcement."))
+	if(!arms)
+		to_chat(user, SPAN_WARNING("It is missing manipulators."))
+	if(!legs)
+		to_chat(user, SPAN_WARNING("It is missing propulsion."))
+	if(!head)
+		to_chat(user, SPAN_WARNING("It is missing sensors."))
+	if(!body)
+		to_chat(user, SPAN_WARNING("It is missing a chassis."))
+	if(is_wired == FRAME_WIRED)
+		to_chat(user, SPAN_WARNING("It has not had its wiring adjusted."))
+	else if(!is_wired)
+		to_chat(user, SPAN_WARNING("It has not yet been wired."))
+	if(is_reinforced == FRAME_REINFORCED)
+		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement secured."))
+	else if(is_reinforced == FRAME_REINFORCED_SECURE)
+		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement welded in."))
+	else if(!is_reinforced)
+		to_chat(user, SPAN_WARNING("It does not have any internal reinforcement."))
 
 /obj/structure/heavy_vehicle_frame/update_icon()
 	. = ..()
@@ -87,7 +86,7 @@
 			if(!do_after(user, 5))
 				return
 			user.visible_message(SPAN_NOTICE("\The [user] crowbars the reinforcement off \the [src]."))
-			material.forceMove(loc)
+			material.place_sheet(src.loc, 10)
 			material = null
 			is_reinforced = 0
 			return
@@ -138,7 +137,8 @@
 			return
 
 		visible_message(SPAN_NOTICE("\The [user] begins tightening screws, flipping connectors and finishing off \the [src]."))
-		if(!do_after(user, 50))
+
+		if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(arms && legs && head && body) || QDELETED(src) || QDELETED(user))
 			return
 
 		// We're all done. Finalize the exosuit and pass the frame to the new system.
@@ -208,12 +208,11 @@
 			if(!do_after(user, 30) || is_reinforced)
 				return
 
-			if(user.canUnEquip(M, src))
-				visible_message("\The [user] reinforces \the [src] with \the [M].")
-				playsound(user.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-				material = new M.type(src)
-				M.transfer_to(material, 10)
-				is_reinforced = FRAME_REINFORCED
+			visible_message("\The [user] reinforces \the [src] with \the [M].")
+			playsound(user.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			material = M.material
+			is_reinforced = FRAME_REINFORCED
+			M.use(10)
 		else
 			return ..()
 	// Securing metal.
@@ -319,7 +318,7 @@
 /obj/structure/heavy_vehicle_frame/proc/uninstall_component(var/obj/item/component, var/mob/user)
 	if(!istype(component) || (component.loc != src) || !istype(user))
 		return FALSE
-	if(!do_after(user, 40 || component.loc != src))
+	if(!do_after(user, 40) || component.loc != src)
 		return FALSE
 	user.visible_message(SPAN_NOTICE("\The [user] crowbars \the [component] off \the [src]."))
 	component.forceMove(get_turf(src))

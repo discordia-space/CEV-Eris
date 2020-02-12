@@ -21,21 +21,6 @@
 	install_system(new /obj/item/mech_equipment/mounted_system/taser(src), HARDPOINT_LEFT_HAND)
 	install_system(new /obj/item/mech_equipment/mounted_system/taser/ion(src), HARDPOINT_RIGHT_HAND)
 
-/obj/item/mech_component/manipulators/combat
-	name = "combat arms"
-	exosuit_desc_string = "flexible, advanced manipulators"
-	icon_state = "combat_arms"
-	melee_damage = 5
-	action_delay = 10
-	power_use = 50
-
-/obj/item/mech_component/propulsion/combat
-	name = "combat legs"
-	exosuit_desc_string = "sleek hydraulic legs"
-	icon_state = "combat_legs"
-	move_delay = 3
-	power_use = 20
-
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
 	gender = PLURAL
@@ -44,11 +29,7 @@
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	power_use = 200
-
-/obj/item/mech_component/sensors/combat/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_WEAPONS, MECH_SOFTWARE_ADVWEAPONS)
+	matter = list(MATERIAL_STEEL = 10)
 
 /obj/item/mech_component/chassis/combat
 	name = "sealed exosuit chassis"
@@ -58,6 +39,29 @@
 	exosuit_desc_string = "an armoured chassis"
 	icon_state = "combat_body"
 	power_use = 40
+	matter = list(MATERIAL_STEEL = 45)
+
+/obj/item/mech_component/manipulators/combat
+	name = "combat arms"
+	exosuit_desc_string = "flexible, advanced manipulators"
+	icon_state = "combat_arms"
+	melee_damage = 5
+	action_delay = 10
+	power_use = 50
+	matter = list(MATERIAL_STEEL = 15)
+
+/obj/item/mech_component/propulsion/combat
+	name = "combat legs"
+	exosuit_desc_string = "sleek hydraulic legs"
+	icon_state = "combat_legs"
+	move_delay = 3
+	power_use = 20
+	matter = list(MATERIAL_STEEL = 15)
+
+/obj/item/mech_component/sensors/combat/prebuild()
+	..()
+	software = new(src)
+	software.installed_software = list(MECH_SOFTWARE_WEAPONS, MECH_SOFTWARE_ADVWEAPONS)
 
 /obj/item/mech_component/chassis/combat/prebuild()
 	. = ..()

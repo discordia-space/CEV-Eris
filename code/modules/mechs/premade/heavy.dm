@@ -21,25 +21,6 @@
 	install_system(new /obj/item/mech_equipment/mounted_system/taser/laser(src), HARDPOINT_LEFT_HAND)
 	install_system(new /obj/item/mech_equipment/mounted_system/taser/ion(src), HARDPOINT_RIGHT_HAND)
 
-/obj/item/mech_component/manipulators/heavy
-	name = "combat arms"
-	exosuit_desc_string = "super-heavy reinforced manipulators"
-	icon_state = "heavy_arms"
-	desc = "Designed to function where any other piece of equipment would have long fallen apart, the Hephaestus Superheavy Lifter series can take a beating and excel at delivering it."
-	melee_damage = 25
-	action_delay = 15
-	max_damage = 90
-	power_use = 60
-
-/obj/item/mech_component/propulsion/heavy
-	name = "heavy legs"
-	exosuit_desc_string = "heavy hydraulic legs"
-	desc = "Oversized actuators struggle to move these armoured legs. "
-	icon_state = "heavy_legs"
-	move_delay = 5
-	max_damage = 90
-	power_use = 100
-
 /obj/item/mech_component/sensors/heavy
 	name = "heavy sensors"
 	exosuit_desc_string = "a reinforced monoeye"
@@ -47,11 +28,7 @@
 	icon_state = "heavy_head"
 	max_damage = 120
 	power_use = 0
-
-/obj/item/mech_component/sensors/heavy/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_WEAPONS, MECH_SOFTWARE_ADVWEAPONS)
+	matter = list(MATERIAL_STEEL = 16)
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -64,6 +41,33 @@
 	mech_health = 500
 	power_use = 50
 	has_hardpoints = list(HARDPOINT_BACK)
+	matter = list(MATERIAL_STEEL = 70, MATERIAL_URANIUM = 10)
+
+/obj/item/mech_component/manipulators/heavy
+	name = "combat arms"
+	exosuit_desc_string = "super-heavy reinforced manipulators"
+	icon_state = "heavy_arms"
+	desc = "Designed to function where any other piece of equipment would have long fallen apart, the Hephaestus Superheavy Lifter series can take a beating and excel at delivering it."
+	melee_damage = 25
+	action_delay = 15
+	max_damage = 90
+	power_use = 60
+	matter = list(MATERIAL_STEEL = 20)
+
+/obj/item/mech_component/propulsion/heavy
+	name = "heavy legs"
+	exosuit_desc_string = "heavy hydraulic legs"
+	desc = "Oversized actuators struggle to move these armoured legs. "
+	icon_state = "heavy_legs"
+	move_delay = 5
+	max_damage = 90
+	power_use = 100
+	matter = list(MATERIAL_STEEL = 20)
+
+/obj/item/mech_component/sensors/heavy/prebuild()
+	..()
+	software = new(src)
+	software.installed_software = list(MECH_SOFTWARE_WEAPONS, MECH_SOFTWARE_ADVWEAPONS)
 
 /obj/item/mech_component/chassis/heavy/prebuild()
 	. = ..()

@@ -5,6 +5,7 @@
 	var/move_delay = 5
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	power_use = 50
+	matter = list(MATERIAL_STEEL = 6)
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)

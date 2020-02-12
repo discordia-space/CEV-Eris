@@ -5,9 +5,6 @@
 	if(load && isliving(load))
 		return load
 
-/mob/living/exosuit/get_mob()
-	return pilots[1]
-
 /obj/vehicle/train/get_mob()
 	return buckled_mob
 

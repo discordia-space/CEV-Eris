@@ -1,158 +1,149 @@
 /datum/design/research/item/mechfab/exosuit/control_module
 	name = "exosuit control module"
-	id = "mech_control_module"
 	build_path = /obj/item/mech_component/control_module
-	time = 15
 	materials = list(MATERIAL_STEEL = 5)
+
+/datum/design/research/item/mechfab/exosuit/basics
+	starts_unlocked = TRUE
+
+/datum/design/research/item/mechfab/exosuit/basics/frame
+	name = "exosuit frame"
+	build_path = /obj/structure/heavy_vehicle_frame
+	time = 70
+
+/datum/design/research/item/mechfab/exosuit/basics/head
+	name = "exosuit head"
+	build_path = /obj/item/mech_component/sensors
+	time = 70
+
+/datum/design/research/item/mechfab/exosuit/basics/chassis
+	name = "exosuit chassis"
+	build_path = /obj/item/mech_component/chassis
+	time = 70
+
+/datum/design/research/item/mechfab/exosuit/basics/arms
+	name = "exosuit arms"
+	build_path = /obj/item/mech_component/manipulators
+	time = 70
+
+/datum/design/research/item/mechfab/exosuit/basics/legs
+	name = "exosuit legs"
+	build_path = /obj/item/mech_component/propulsion
+	time = 70
 
 
 //ARMOR
-/datum/design/research/item/mechfab/exosuit/basic_armour
+/datum/design/research/item/mechfab/exosuit/armour
+	time = 50
+
+/datum/design/research/item/mechfab/exosuit/armour/basic
 	name = "basic exosuit armour"
-	id = "mech_armour_basic"
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit
 	time = 30
-	materials = list(MATERIAL_STEEL = 7)
 
-/datum/design/research/item/mechfab/exosuit/radproof_armour
+/datum/design/research/item/mechfab/exosuit/armour/radproof
 	name = "radiation-proof exosuit armour"
-	id = "mech_armour_radproof"
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
-	time = 50
-	materials = list(MATERIAL_STEEL = 12)
 
-/datum/design/research/item/mechfab/exosuit/em_armour
+/datum/design/research/item/mechfab/exosuit/armour/em
 	name = "EM-shielded exosuit armour"
-	id = "mech_armour_em"
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/em
-	time = 50
-	materials = list(MATERIAL_STEEL = 12)
 
-/datum/design/research/item/mechfab/exosuit/combat_armour
-	name = "Combat exosuit armour"
-	id = "mech_armour_combat"
+/datum/design/research/item/mechfab/exosuit/armour/combat
+	name = "combat exosuit armour"
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
-	time = 50
-	materials = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5)
 
 
 //POWERLOADER
-/datum/design/research/item/mechfab/exosuit/powerloader_head
-	name = "power loader sensors"
-	id = "powerloader_head"
+/datum/design/research/item/mechfab/exosuit/powerloader
+	category = "PowerLoader"
+	starts_unlocked = TRUE
+
+/datum/design/research/item/mechfab/exosuit/powerloader/head
+	name = "powerloader sensors (head)"
 	build_path = /obj/item/mech_component/sensors/powerloader
 	time = 15
-	materials = list(MATERIAL_STEEL = 5)
 
-/datum/design/research/item/mechfab/exosuit/powerloader_torso
-	name = "power loader chassis"
-	id = "powerloader_body"
+/datum/design/research/item/mechfab/exosuit/powerloader/torso
+	name = "powerloader chassis"
 	build_path = /obj/item/mech_component/chassis/powerloader
 	time = 50
-	materials = list(MATERIAL_STEEL = 20)
 
-/datum/design/research/item/mechfab/exosuit/powerloader_arms
-	name = "power loader manipulators"
-	id = "powerloader_arms"
+/datum/design/research/item/mechfab/exosuit/powerloader/arms
+	name = "powerloader manipulators"
 	build_path = /obj/item/mech_component/manipulators/powerloader
 	time = 30
-	materials = list(MATERIAL_STEEL = 6)
 
-/datum/design/research/item/mechfab/exosuit/powerloader_legs
-	name = "power loader motivators"
-	id = "powerloader_legs"
+/datum/design/research/item/mechfab/exosuit/powerloader/legs
+	name = "powerloader motivators"
 	build_path = /obj/item/mech_component/propulsion/powerloader
 	time = 30
-	materials = list(MATERIAL_STEEL = 6)
 
 
 //LIGHT
-/datum/design/research/item/mechfab/exosuit/light_head
+/datum/design/research/item/mechfab/exosuit/light/category = "Light Exosuit"
+/datum/design/research/item/mechfab/exosuit/light/head
 	name = "light exosuit sensors"
-	id = "light_head"
 	time = 20
-	materials = list(MATERIAL_STEEL = 8)
 	build_path = /obj/item/mech_component/sensors/light
 
-/datum/design/research/item/mechfab/exosuit/light_torso
+/datum/design/research/item/mechfab/exosuit/light/torso
 	name = "light exosuit chassis"
-	id = "light_body"
 	time = 40
-	materials = list(MATERIAL_STEEL = 30)
 	build_path = /obj/item/mech_component/chassis/light
 
-/datum/design/research/item/mechfab/exosuit/light_arms
+/datum/design/research/item/mechfab/exosuit/light/arms
 	name = "light exosuit manipulators"
-	id = "light_arms"
 	time = 20
-	materials = list(MATERIAL_STEEL = 10)
 	build_path = /obj/item/mech_component/manipulators/light
 
-/datum/design/research/item/mechfab/exosuit/light_legs
+/datum/design/research/item/mechfab/exosuit/light/legs
 	name = "light exosuit motivators"
-	id = "light_legs"
 	time = 25
-	materials = list(MATERIAL_STEEL = 10)
 	build_path = /obj/item/mech_component/propulsion/light
 
 
 //HEAVY
-/datum/design/research/item/mechfab/exosuit/heavy_head
+/datum/design/research/item/mechfab/exosuit/heavy/category = "Heavy Exosuit"
+/datum/design/research/item/mechfab/exosuit/heavy/head
 	name = "heavy exosuit sensors"
-	id = "heavy_head"
 	time = 35
-	materials = list(MATERIAL_STEEL = 16)
 	build_path = /obj/item/mech_component/sensors/heavy
 
-/datum/design/research/item/mechfab/exosuit/heavy_torso
+/datum/design/research/item/mechfab/exosuit/heavy/torso
 	name = "heavy exosuit chassis"
-	id = "heavy_body"
 	time = 75
-	materials = list(MATERIAL_STEEL = 70, MATERIAL_URANIUM = 10)
 	build_path = /obj/item/mech_component/chassis/heavy
 
-/datum/design/research/item/mechfab/exosuit/heavy_arms
+/datum/design/research/item/mechfab/exosuit/heavy/arms
 	name = "heavy exosuit manipulators"
-	id = "heavy_arms"
 	time = 35
-	materials = list(MATERIAL_STEEL = 20)
 	build_path = /obj/item/mech_component/manipulators/heavy
 
-/datum/design/research/item/mechfab/exosuit/heavy_legs
+/datum/design/research/item/mechfab/exosuit/heavy/legs
 	name = "heavy exosuit motivators"
-	id = "heavy_legs"
 	time = 35
-	materials = list(MATERIAL_STEEL = 20)
 	build_path = /obj/item/mech_component/propulsion/heavy
 
 
-
-
 //COMBAT
-/datum/design/research/item/mechfab/exosuit/combat_head
+/datum/design/research/item/mechfab/exosuit/combat/category = "Combat Exosuit"
+/datum/design/research/item/mechfab/exosuit/combat/head
 	name = "combat exosuit sensors"
-	id = "combat_head"
 	time = 30
-	materials = list(MATERIAL_STEEL = 10)
 	build_path = /obj/item/mech_component/sensors/combat
 
-/datum/design/research/item/mechfab/exosuit/combat_torso
+/datum/design/research/item/mechfab/exosuit/combat/torso
 	name = "combat exosuit chassis"
-	id = "combat_body"
 	time = 60
-	materials = list(MATERIAL_STEEL = 45)
 	build_path = /obj/item/mech_component/chassis/combat
 
-/datum/design/research/item/mechfab/exosuit/combat_arms
+/datum/design/research/item/mechfab/exosuit/combat/arms
 	name = "combat exosuit manipulators"
-	id = "combat_arms"
 	time = 30
-	materials = list(MATERIAL_STEEL = 15)
 	build_path = /obj/item/mech_component/manipulators/combat
 
-/datum/design/research/item/mechfab/exosuit/combat_legs
+/datum/design/research/item/mechfab/exosuit/combat/legs
 	name = "combat exosuit motivators"
-	id = "combat_legs"
 	time = 30
-	materials = list(MATERIAL_STEEL = 15)
 	build_path = /obj/item/mech_component/propulsion/combat
