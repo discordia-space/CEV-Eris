@@ -9,6 +9,14 @@
 	w_class = ITEM_SIZE_TINY
 	price_tag = 500
 
+/obj/item/weapon/silencer/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_SILENCER = TRUE,
+		)
+	I.req_gun_tags = list(GUN_SILENCABLE)
+
 //A silencer that comes built into certain guns. Cannot be removed, doesn't affect damage
 /obj/item/weapon/silencer/integrated
 	damage_mod = 0

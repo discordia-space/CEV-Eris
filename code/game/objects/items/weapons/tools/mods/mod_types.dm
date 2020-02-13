@@ -438,6 +438,16 @@
 	)
 	I.prefix = "intelligent"
 	I.req_fuel_cell = REQ_CELL
+	I.weapon_upgrades = list(
+	GUN_UPGRADE_RECOIL = 0.8,
+	GUN_UPGRADE_DAMAGE_MULT = 1.2,
+	GUN_UPGRADE_PEN_MULT = 1.2,
+	GUN_UPGRADE_FIRE_DELAY_MULT = 0.8,
+	GUN_UPGRADE_MOVE_DELAY_MULT = 0.8,
+	GUN_UPGRADE_MUZZLEFLASH = 0.8,
+	GUN_UPGRADE_CHARGECOST = 0.8,
+	GUN_UPGRADE_OVERCHARGE_MAX = 0.8,
+	GUN_UPGRADE_OVERCHARGE_RATE = 1.2)
 
 /obj/item/weapon/tool_upgrade/augment/repair_nano
 	name = "repair nano"

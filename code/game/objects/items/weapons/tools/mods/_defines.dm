@@ -41,3 +41,5 @@
 #define GUN_UPGRADE_CHARGECOST "chargecost_mult"
 #define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
 #define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
+
+#define GUN_SILENCABLE "silencable"

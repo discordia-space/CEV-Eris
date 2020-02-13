@@ -14,7 +14,7 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
-	silencer_type = /obj/item/weapon/silencer
+	gun_tags = list(GUN_SILENCABLE)
 	damage_multiplier = 0.7
 	recoil_buildup = 19
 

@@ -366,9 +366,9 @@
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
 			if(amount > 1)
-				to_chat(user, SPAN_NOTICE("Increases overcharge maximum by [amount*100]%"))
+				to_chat(user, SPAN_WARNING("Increases overcharge maximum by [amount*100]%"))
 			else
-				to_chat(user, SPAN_WARNING("Decreases overcharge maximum by [amount*100]%"))
+				to_chat(user, SPAN_NOTICE("Decreases overcharge maximum by [amount*100]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE]

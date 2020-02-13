@@ -5,7 +5,7 @@
 	icon_state = "giskard"
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	silencer_type = /obj/item/weapon/silencer
+	gun_tags = list(GUN_SILENCABLE)
 	caliber = CAL_PISTOL
 	w_class = ITEM_SIZE_SMALL
 	can_dual = 1

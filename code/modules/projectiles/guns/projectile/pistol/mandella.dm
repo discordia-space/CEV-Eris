@@ -9,7 +9,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	caliber = CAL_CLRIFLE
-	silencer_type = /obj/item/weapon/silencer/integrated
+	silenced = TRUE
+
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
@@ -18,11 +19,6 @@
 	damage_multiplier = 1			//27 with lethal, 32 with hv
 	penetration_multiplier = 0.8	//12 with lethal, 16 with hv
 	recoil_buildup = 19
-
-//This comes with a preinstalled silencer
-/obj/item/weapon/gun/projectile/mandella/Initialize()
-	.=..()
-	apply_silencer(new /obj/item/weapon/silencer/integrated(src), null)
 
 
 /obj/item/weapon/gun/projectile/mandella/update_icon()

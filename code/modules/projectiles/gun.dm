@@ -54,8 +54,7 @@
 
 	var/list/gun_tags = list() //Attributes of the gun, used to see if an upgrade can be applied to this weapon.
 	/*	SILENCER HANDLING */
-	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
-	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
+	var/silenced = FALSE
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
 
 	var/icon_contained = TRUE
@@ -249,11 +248,7 @@
 		return ..() //Pistolwhippin'
 
 
-/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
-	.=..()
-	if (!.)
-		if (silencer_type && istype(A, silencer_type))
-			apply_silencer(A, user)
+
 
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
@@ -491,9 +486,6 @@
 		else
 			to_chat(user, SPAN_NOTICE("The safety is off."))
 
-	//Tell the user if they could fit a silencer on
-	if (silencer_type && !silenced)
-		to_chat(user, SPAN_NOTICE("You could attach a silencer to this."))
 	if(one_hand_penalty)
 		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
@@ -587,56 +579,6 @@
 
 	toggle_safety(usr)
 
-/*
-	Gun Modding
-*/
-/obj/item/weapon/gun/proc/apply_silencer(var/obj/item/weapon/silencer/A, var/mob/user)
-	if (silenced)
-		to_chat(user, "\The [src] already has a silencer installed!")
-		return
-
-	if (istype(A, silencer_type))
-
-		if (user)
-			playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
-			if (!do_after(user, 40, src))
-				return
-			if (!user.unEquip(A))
-				return
-			to_chat(user, SPAN_NOTICE("You install \the [A] in \the [src]"))
-
-		//Here's the code where we actually install it
-		A.forceMove(src)//Silencer goes inside us
-		silenced = A
-		damage_multiplier -= A.damage_mod //Silencers make the weapon slightly weaker
-		update_icon() //Guns that support silencers are responsible for setting their own icon appropriately
-		if (silenced.can_remove)
-			verbs += /obj/item/weapon/gun/proc/remove_silencer //Give us a verb to remove it
-
-
-/obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
-	set category = "Object"
-
-	if (!silenced || !silenced.can_remove)
-		to_chat(user, "No silencer is installed on \the [src]")
-		verbs -= /obj/item/weapon/gun/proc/remove_silencer
-		return
-
-	if (user)
-		playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
-		if (!do_after(user, 40, src))
-			return
-		//Drop it in their hands
-		user.put_in_hands(silenced)
-	.=silenced //Set return value to the silencer incase caller wants to do something with it
-	if (silenced.loc == src)
-		silenced.forceMove(loc) //Move it out if a user didn't take it
-
-	damage_multiplier += silenced.damage_mod
-	silenced = null
-	update_icon()
-
-
 /obj/item/weapon/gun/ui_data(mob/user)
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
@@ -694,5 +636,6 @@
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 
+	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
