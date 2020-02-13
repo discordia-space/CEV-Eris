@@ -119,10 +119,10 @@
 
 	return TRUE
 
-/datum/component/item_upgrade/proc/attempt_uninstall(atom/A, var/mob/living/user)
-	if(!isitem(A))
+/datum/component/item_upgrade/proc/attempt_uninstall(var/obj/item/C, var/mob/living/user)
+	if(!isitem(C))
 		return 0
-	var/obj/item/C = A
+
 	var/obj/item/I = parent
 	var/obj/item/upgrade_loc = I.loc
 	var/obj/item/weapon/tool/T
@@ -193,7 +193,7 @@
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
-	RegisterSignal(A, COMSIG_IATTACK, .proc/attempt_uninstall)
+	RegisterSignal(A, COMSIG_ATTACKBY, .proc/attempt_uninstall)
 	A.refresh_upgrades()
 	return TRUE
 
@@ -202,7 +202,7 @@
 	I.item_upgrades -= P
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_APPVAL)
-	UnregisterSignal(I, COMSIG_IATTACK)
+	UnregisterSignal(I, COMSIG_ATTACKBY)
 
 /datum/component/item_upgrade/proc/apply_values(var/atom/holder)
 	if (!holder)
