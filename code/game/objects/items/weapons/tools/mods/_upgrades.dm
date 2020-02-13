@@ -109,7 +109,7 @@
 		to_chat(user, SPAN_WARNING("This tool does not use [T.use_power_cost?"fuel":"power"]!"))
 		return FALSE
 
-	if(tool_upgrades["cell_hold_upgrades"])
+	if(tool_upgrades[UPGRADE_CELLPLUS])
 		if(!(T.suitable_cell == /obj/item/weapon/cell/medium || T.suitable_cell == /obj/item/weapon/cell/small))
 			to_chat(user, SPAN_WARNING("This tool does not require a cell holding upgrade."))
 			return FALSE
@@ -119,8 +119,53 @@
 
 	return TRUE
 
+/datum/component/item_upgrade/proc/attempt_uninstall(atom/A, var/mob/living/user)
+	if(!isitem(A))
+		return 0
+	var/obj/item/C = A
+	var/obj/item/I = parent
+	var/obj/item/upgrade_loc = I.loc
+	var/obj/item/weapon/tool/T
+
+	if(istype(upgrade_loc, /obj/item/weapon/tool))
+		T = upgrade_loc
+
+	ASSERT(istype(upgrade_loc))
+	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
+	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
+	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
+	if (upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
+		var/list/possibles = upgrade_loc.item_upgrades.Copy()
+		possibles += "Cancel"
+		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
+		if (toremove == "Cancel")
+			return 1
+
+		if (C.use_tool(user = user, target =  upgrade_loc, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+			//If you pass the check, then you manage to remove the upgrade intact
+			to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
+			SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+			upgrade_loc.refresh_upgrades()
+			return 1
+		else
+			//You failed the check, lets see what happens
+			if (prob(50))
+				//50% chance to break the upgrade and remove it
+				to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
+				SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+				QDEL_NULL(toremove)
+				upgrade_loc.refresh_upgrades()
+				return 1
+			else if (T && T.degradation) //Because robot tools are unbreakable
+				//otherwise, damage the host tool a bit, and give you another try
+				to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
+				T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
+				upgrade_loc.refresh_upgrades()
+				return 1
+	return 0
+
 /datum/component/item_upgrade/proc/check_gun(var/obj/item/weapon/gun/G, var/mob/living/user)
-	if(!req_gun_tags.len)
+	if(!weapon_upgrades.len)
 		to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
 		return FALSE //Can't be applied to a weapon
 	if(gun_loc_tag && G.item_upgrades[gun_loc_tag])
@@ -130,6 +175,9 @@
 		if(!G.gun_tags.Find(I))
 			to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
 			return FALSE
+	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/weapon/gun/energy))
+		to_chat(user, SPAN_WARNING("This weapon does not use power!"))
+		return FALSE
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply(var/obj/item/A, var/mob/living/user)
@@ -145,6 +193,7 @@
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(A, COMSIG_IATTACK, .proc/attempt_uninstall)
 	A.refresh_upgrades()
 	return TRUE
 
@@ -153,6 +202,7 @@
 	I.item_upgrades -= P
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_APPVAL)
+	UnregisterSignal(I, COMSIG_IATTACK)
 
 /datum/component/item_upgrade/proc/apply_values(var/atom/holder)
 	if (!holder)
@@ -204,6 +254,29 @@
 	T.prefixes |= prefix
 
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/weapon/gun/G)
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
+		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
+		G.penetration_multiplier *= weapon_upgrades[GUN_UPGRADE_PEN_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
+		G.fire_delay *= weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
+		G.move_delay *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_RECOIL])
+		G.recoil_buildup *= weapon_upgrades[GUN_UPGRADE_RECOIL]
+	if(weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH])
+		G.muzzle_flash *= weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH]
+	if(weapon_upgrades[GUN_UPGRADE_SILENCER])
+		G.silenced = weapon_upgrades[GUN_UPGRADE_SILENCER]
+	if(istype(G, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/E = G
+		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
+			E.charge_cost *= weapon_upgrades[GUN_UPGRADE_CHARGECOST]
+		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
+			E.overcharge_rate *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
+		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
+			E.overcharge_max *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
+
 
 /datum/component/item_upgrade/proc/on_examine(var/mob/user)
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)

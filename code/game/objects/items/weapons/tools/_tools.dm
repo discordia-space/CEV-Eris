@@ -149,37 +149,6 @@
 		update_icon()
 		return
 
-	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
-	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
-	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
-	if (item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
-		var/list/possibles = item_upgrades.Copy()
-		possibles += "Cancel"
-		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
-		if (toremove == "Cancel")
-			return
-
-		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-			//If you pass the check, then you manage to remove the upgrade intact
-			to_chat(user, SPAN_NOTICE("You successfully remove [toremove] while leaving it intact."))
-			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
-			refresh_upgrades()
-			return 1
-		else
-			//You failed the check, lets see what happens
-			if (prob(50))
-				//50% chance to break the upgrade and remove it
-				to_chat(user, SPAN_DANGER("You successfully remove [toremove], but destroy it in the process."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
-				QDEL_NULL(toremove)
-				refresh_upgrades()
-				return 1
-			else if (degradation) //Because robot tools are unbreakable
-				//otherwise, damage the host tool a bit, and give you another try
-				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
-				adjustToolHealth(-(5 * degradation), user) // inflicting 4 times use damage
-				refresh_upgrades()
-				return 1
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return

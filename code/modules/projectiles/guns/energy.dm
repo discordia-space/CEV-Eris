@@ -157,3 +157,10 @@
 		data["shots_remaining"] = round(C.charge/charge_cost)
 		data["max_shots"] = round(C.maxcharge/charge_cost)
 	return data
+
+/obj/item/weapon/gun/energy/refresh_upgrades()
+	//refresh our unique variables before applying upgrades too
+	charge_cost = initial(charge_cost)
+	overcharge_max = initial(overcharge_max)
+	overcharge_rate = initial(overcharge_rate)
+	..()

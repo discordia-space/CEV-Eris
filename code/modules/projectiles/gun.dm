@@ -677,3 +677,22 @@
 		sel_mode = text2num(href_list["firemode"])
 		set_firemode(sel_mode)
 		return 1
+
+/obj/item/weapon/gun/refresh_upgrades()
+	//First of all, lets reset any var that could possibly be altered by an upgrade
+	damage_multiplier = initial(damage_multiplier)
+	penetration_multiplier = initial(penetration_multiplier)
+	fire_delay = initial(fire_delay)
+	move_delay = initial(move_delay)
+	recoil_buildup = initial(recoil_buildup)
+	muzzle_flash = initial(muzzle_flash)
+	silenced = initial(silenced)
+
+	//re-apply any firemodes
+	set_firemode(sel_mode)
+
+	//Now lets have each upgrade reapply its modifications
+	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+
+	//then update any UIs with the new stats
+	SSnano.update_uis(src)
