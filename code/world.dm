@@ -63,9 +63,10 @@ var/game_id = null
 
 /world/New()
 	// Begin loading of extools DLL and components
-	extools_initialize()
-	maptick_initialize()
-	debugger_initialize()
+	// DISABLED UNTIL EXTOOLS IS COMPATIBLE WITH 513
+	//extools_initialize()
+	//maptick_initialize()
+	//debugger_initialize()
 	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
