@@ -1,9 +1,11 @@
-/obj/item/weapon/gun/projectile/automatic/IH_machinepistol
+/obj/item/weapon/gun/projectile/automatic/molly
 	name = "FS MP .35 Auto \"Molly\""
-	desc = "An experimental fully automatic pistol. Compact and flexible, but somewhat underpowered. Issued to non-combatants among Ironhammer as powerful self-protection sidearm. Custom magwell allows it to feed both from highcap pistol and SMG magazines. Uses .35 Auto rounds."
-	icon = 'icons/obj/guns/projectile/IH_mp.dmi'
-	icon_state = "IH_mp"
-	item_state = "IH_mp"
+	desc = "An experimental fully automatic pistol, designed as a middle ground between SMGs and Pistols. \
+			Primarily employed in CQC scenarios or as a civilian self defence tool. \
+			Takes both highcap pistol and smg mags. Uses .35 Auto rounds."
+	icon = 'icons/obj/guns/projectile/molly.dmi'
+	icon_state = "molly"
+	item_state = "molly"
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	caliber = CAL_PISTOL
@@ -18,16 +20,15 @@
 	price_tag = 1700
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	silencer_type = /obj/item/weapon/silencer
-	damage_multiplier = 0.8
+	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
 	recoil_buildup = 3
 
 	firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
 		)
 
-/obj/item/weapon/gun/projectile/automatic/IH_machinepistol/update_icon()
+/obj/item/weapon/gun/projectile/automatic/molly/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -46,6 +47,6 @@
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/weapon/gun/projectile/automatic/IH_machinepistol/Initialize()
+/obj/item/weapon/gun/projectile/automatic/molly/Initialize()
 	. = ..()
 	update_icon()

@@ -1,18 +1,18 @@
 // Station voidsuits
 //Engineering rig
 /obj/item/clothing/head/space/void/engineering
-	name = "engineering voidsuit helmet"
+	name = "Technomancer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
-	icon_state = "rig0-engineering"
-	item_state = "eng_helm"
+	icon_state = "technohelmet"
+	item_state = "technohelmet"
 	item_state_slots = list(
 		slot_l_hand_str = "eng_helm",
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 10,
+		melee = 40,
+		bullet = 40,
+		energy =30,
 		bomb = 25,
 		bio = 100,
 		rad = 100
@@ -20,14 +20,14 @@
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/space/void/engineering
-	name = "engineering voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
-	icon_state = "rig-engineering"
-	item_state = "eng_voidsuit"
+	name = "Technomancer voidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
+	icon_state = "technosuit"
+	item_state = "technosuit"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 10,
+		melee = 40,
+		bullet = 40,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 100
@@ -104,7 +104,7 @@
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_voidsuit"
-	slowdown = 0.25
+	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
 		/obj/item/device/scanner/health,

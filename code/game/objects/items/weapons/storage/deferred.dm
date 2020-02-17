@@ -24,6 +24,7 @@
 	icon = 'icons/obj/storage/deferred.dmi'
 	icon_state = "box"
 	item_state = "box"
+	contained_sprite = TRUE
 
 /obj/item/weapon/storage/deferred/populate_contents()
 	// Do not create contents if they are already spawned
@@ -136,7 +137,7 @@
 //These use open topped crate sprites but are still functionally boxes. They can be picked up, but are too large to fit in anything
 /obj/item/weapon/storage/deferred/crate
 	w_class = ITEM_SIZE_HUGE //This is too big to fit in a backpack
-	icon_state = "serbcrate_dereferred_worn"
+	icon_state = "serbcrate_deferred_worn"
 	item_state = "crate"
 
 
@@ -175,8 +176,8 @@
 
 /obj/item/weapon/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
 	name = "demolitions crate"
-	desc = "A crate containing one \"RPG-7\" launcher, and ten 40mm PG-7VL warheads."
 	icon_state = "serbcrate_deferred_black"
+	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7VL warheads."
 	initial_contents = list(/obj/item/ammo_casing/rocket = 12,
 	/obj/item/weapon/storage/pouch/tubular = 1,
 	/obj/item/weapon/gun/projectile/rpg = 1,
@@ -207,6 +208,16 @@
 	initial_contents = list(/obj/item/weapon/gun/projectile/clarissa/makarov = 6,
 	/obj/item/ammo_magazine/hpistol = 20,
 	/obj/item/weapon/tool/knife/boot = 6)
+
+/obj/item/weapon/storage/deferred/crate/specialists_sidearm
+	name = "specialists sidearm crate"
+	desc = "A crate containing four Zoric heavy submachineguns and 400 rounds of .40 ammunition. For when you need to carry \
+			something lighter than AK with your RPG or LMG."
+	icon_state = "serbcrate_deferred_green"
+	initial_contents = list(
+		/obj/item/weapon/gun/projectile/automatic/zoric = 4,
+		/obj/item/ammo_magazine/msmg = 16,
+		)
 
 /obj/item/weapon/storage/deferred/crate/cells
 	name = "power cell bin"

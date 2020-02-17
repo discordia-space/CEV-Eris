@@ -22,7 +22,7 @@
 				text += fA.print_success()
 
 	if(current_factions.len)
-		text += "<font size=3><b>Round factions were:</b></font>"
+		text += "<br><font size=3><b>Round factions were:</b></font>"
 		for(var/datum/faction/F in current_factions)
 			text += F.print_success()
 

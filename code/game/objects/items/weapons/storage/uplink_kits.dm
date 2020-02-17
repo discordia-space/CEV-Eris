@@ -215,7 +215,7 @@
 	w_class = ITEM_SIZE_HUGE
 
 /obj/item/weapon/storage/box/syndie_kit/pug/populate_contents()
-	new /obj/item/weapon/gun/projectile/shotgun/pug(src)
+	new /obj/item/weapon/gun/projectile/shotgun/bojevic(src)
 	new /obj/item/ammo_magazine/m12/pellet(src)
 
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle

@@ -236,7 +236,8 @@
 	if(istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		insert_disk(user, I)
 
-	if(istype(I, /obj/item/stack))
+	// Some item types are consumed by default
+	if(istype(I, /obj/item/stack) || istype(I, /obj/item/trash) || istype(I, /obj/item/weapon/material/shard))
 		eat(user, I)
 		return
 

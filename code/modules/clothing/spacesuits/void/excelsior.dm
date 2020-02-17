@@ -13,8 +13,8 @@
 	)
 
 	armor = list(
-		melee = 40,
-		bullet = 40,
+		melee = 50,
+		bullet =50,
 		energy = 50,
 		bomb = 30,
 		bio = 100,
@@ -30,11 +30,11 @@
 	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges."
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
-	slowdown = 0.7
+	slowdown = 0.2
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 40,
-		bullet = 40,
+		melee = 60,
+		bullet = 60,
 		energy = 50,
 		bomb = 30,
 		bio = 100,

@@ -232,8 +232,10 @@
 					var/cur_note = text2ascii(note) - 96
 					if(cur_note < 1 || cur_note > 7)
 						continue
-					for(var/i=2 to length(note))
-						var/ni = copytext(note,i,i+1)
+					var/notelen = length(note)
+					var/ni = ""
+					for(var/i = length(note[1]) + 1, i <= notelen, i += length(ni))
+						ni = note[i]
 						if(!text2num(ni))
 							if(ni == "#" || ni == "b" || ni == "n")
 								cur_acc[cur_note] = ni
