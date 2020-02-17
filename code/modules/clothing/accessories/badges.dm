@@ -109,7 +109,7 @@
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/badge/marshal
-	name = "Marshal's badge"
+	name = "Marshal badge"
  	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
  	icon_state = "marshalbadge"
 	badge_string = "Ironhammer Marshal Bureau"
