@@ -378,3 +378,18 @@
 	desc = "I do not know who I am I, don\'t know why I\'m here. All I know is that I must kill."
 	icon_state = "maska"
 	armor = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+
+/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle	//really low stats since it's a loadout thing for everyone
+	name = "\improper Type-34C Semi-Enclosed Headwear"
+	desc = "Civilian model of a popular helmet used by certain law enforcement agencies. It does not have any armor plating, but has a neo-laminated fiber lining."
+	icon_state = "cyberpunkgoggle"
+	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
+	siemens_coefficient = 0.9	//More conductive than most helmets
+	armor = list(
+		melee = 0,
+		bullet = 5,
+		energy = 1,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

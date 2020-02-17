@@ -146,3 +146,8 @@
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
+/obj/item/clothing/under/cyberpunksleek
+	name = "sleek modern coat"
+	desc = "A sleek, fashionable coat that is as low-profile and comfortable as a jumpsuit."
+	icon_state = "cyberpunksleek"
+	item_state = "lb_suit"
