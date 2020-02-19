@@ -16,7 +16,7 @@ meteor_act
 	var/obj/item/organ/external/organ = get_organ()
 
 	//Shields
-	var/shield_check = check_shields(P.damage, P, null, def_zone, "the [P.name]")
+	var/shield_check = check_shields(P.get_structure_damage(), P, null, def_zone, "the [P.name]")
 	if(shield_check)
 		if(shield_check < 0)
 			return shield_check
@@ -31,7 +31,7 @@ meteor_act
 	//Shrapnel
 	if(P.can_embed() && (check_absorb < 2))
 		var/armor = getarmor_organ(organ, ARMOR_BULLET)
-		if(prob(20 + max(P.damage - armor, -10)))
+		if(prob(20 + max(P.damage_types[BRUTE] - armor, -10)))
 			var/obj/item/weapon/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."

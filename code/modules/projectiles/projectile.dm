@@ -37,8 +37,7 @@
 	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
 
-	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
+	var/list/damage_types = list(BRUTE = 10) //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS -> int are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = ARMOR_BULLET //Defines what armor to use when it hits things. Full list could be found at defines\damage_organs.dm
@@ -74,14 +73,33 @@
 										//  have to be recreated multiple times
 
 /obj/item/projectile/is_hot()
-	if (damage_type == BURN)
-		return damage * heat
+	if (damage_types[BURN])
+		return damage_types[BURN] * heat
+
+/obj/item/projectile/proc/get_total_damage()
+	var/val = 0
+	for(var/i in damage_types)
+		val += damage_types[i]
+	return val
+
+/obj/item/projectile/proc/is_halloss()
+	for(var/i in damage_types)
+		if(i != HALLOSS)
+			return FALSE
+	return TRUE
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
-	damage = initial(damage) * newmult
+	for(var/i in damage_types)
+		to_chat(world, "pre_mult:[damage_types[i]]")
+		damage_types[i] *= newmult
+		to_chat(world, "post_mult:[damage_types[i]]")
 
 /obj/item/projectile/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
+
+/obj/item/projectile/multiply_projectile_step_delay(newmult)
+	if(!hitscan)
+		step_delay = initial(step_delay) * newmult
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
@@ -100,14 +118,14 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_type != BRUTE)
+	if(!embed || damage_types[BRUTE] != 0)
 		return FALSE
 	return TRUE
 
 /obj/item/projectile/proc/get_structure_damage()
-	if(damage_type == BRUTE || damage_type == BURN)
-		return damage
-	return FALSE
+	to_chat(world, "[src]:get_structure_damage. [damage_types.len] [damage_types[BRUTE]] [damage_types[BURN]] [damage_types[BRUTE]+damage_types[BURN]]")
+	return damage_types[BRUTE] + damage_types[BURN]
+
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)
@@ -557,7 +575,7 @@
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
-		if(damage > 10 && damage_type == BRUTE)
+		if(damage_types[BRUTE] > 10)
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)

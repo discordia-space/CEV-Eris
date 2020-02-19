@@ -83,9 +83,9 @@
 			..()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
+	if(!Proj.get_structure_damage())
 		return
-	health -= Proj.damage
+	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()
 

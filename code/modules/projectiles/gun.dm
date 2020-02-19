@@ -43,12 +43,14 @@
 	var/suppress_delay_warning = FALSE
 
 	var/safety = TRUE//is safety will be toggled on spawn() or not
-	var/restrict_safety = FALSE//if gun don't need safety in all - toggle to TRUE
+	var/restrict_safety = FALSE //To restrict the users ability to toggle the safety
 
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
+
+	var/init_offset = 0
 
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
@@ -66,6 +68,7 @@
 
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
+	var/proj_step_multiplier = 1
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -283,6 +286,8 @@
 
 		projectile.multiply_projectile_penetration(penetration_multiplier)
 
+		projectile.multiply_projectile_step_delay(proj_step_multiplier)
+
 		if(pointblank)
 			process_point_blank(projectile, user, target)
 		if(projectile_color)
@@ -370,9 +375,7 @@
 	user.handle_recoil(src)
 	update_icon()
 
-/obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
-	var/obj/item/projectile/P = projectile
-
+/obj/item/weapon/gun/proc/process_point_blank(var/obj/item/projectile/P, mob/user, atom/target)
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
 
@@ -393,18 +396,17 @@
 				damage_mult = 2.5
 			else if(grabstate >= GRAB_AGGRESSIVE)
 				damage_mult = 1.5
-	P.damage *= damage_mult
+	P.multiply_projectile_damage(damage_mult)
 
 
 //does the actual launching of the projectile
-/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/living/user, atom/target, var/target_zone, var/params=null)
-	var/obj/item/projectile/P = projectile
+/obj/item/weapon/gun/proc/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = 0
+	var/offset = init_offset
 	if(user.calc_recoil())
 		offset += user.recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
@@ -425,11 +427,10 @@
 		mouthshoot = FALSE
 		return
 
-	if(!restrict_safety)
-		if(safety)
-			handle_click_empty(user)
-			mouthshoot = FALSE
-			return
+	if(safety)
+		handle_click_empty(user)
+		mouthshoot = FALSE
+		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
 		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
@@ -443,9 +444,11 @@
 			return
 
 		in_chamber.on_hit(M)
-		if (in_chamber.damage_type != HALLOSS)
+		if (!in_chamber.is_halloss())
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
+			for(var/damage_type in in_chamber.damage_types)
+				var/damage = in_chamber.damage_types[damage_type]*2.5
+				user.apply_damage(damage, damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))
@@ -480,11 +483,10 @@
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
 
-	if(!restrict_safety)
-		if(safety)
-			to_chat(user, SPAN_NOTICE("The safety is on."))
-		else
-			to_chat(user, SPAN_NOTICE("The safety is off."))
+	if(safety)
+		to_chat(user, SPAN_NOTICE("The safety is on."))
+	else
+		to_chat(user, SPAN_NOTICE("The safety is off."))
 
 	if(one_hand_penalty)
 		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
@@ -547,12 +549,11 @@
 		new_mode.update(force_state)
 
 /obj/item/weapon/gun/AltClick(mob/user)
-	if(!restrict_safety)
-		if(user.incapacitated())
-			to_chat(user, SPAN_WARNING("You can't do that right now!"))
-			return
+	if(user.incapacitated())
+		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		return
 
-		toggle_safety(user)
+	toggle_safety(user)
 
 
 //Updating firing modes at appropriate times
@@ -629,7 +630,9 @@
 	recoil_buildup = initial(recoil_buildup)
 	muzzle_flash = initial(muzzle_flash)
 	silenced = initial(silenced)
-
+	restrict_safety = initial(restrict_safety)
+	proj_step_multiplier = initial(proj_step_multiplier)
+	init_offset = initial(init_offset)
 	//re-apply any firemodes
 	set_firemode(sel_mode)
 

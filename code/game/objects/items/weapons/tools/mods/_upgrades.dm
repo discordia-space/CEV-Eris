@@ -12,6 +12,7 @@
 /datum/component/item_upgrade
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/prefix = "upgraded" //Added to the tool's name
+	var/removal_time = WORKTIME_SLOW
 
 	//The upgrade can be applied to a tool that has any of these qualities
 	var/list/required_qualities = list()
@@ -141,7 +142,7 @@
 		if (toremove == "Cancel")
 			return 1
 
-		if (C.use_tool(user = user, target =  upgrade_loc, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+		if (C.use_tool(user = user, target =  upgrade_loc, base_time = removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 			//If you pass the check, then you manage to remove the upgrade intact
 			to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
 			SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
@@ -256,8 +257,12 @@
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/weapon/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_PLUS])
+		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGE_PLUS]
 	if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
 		G.penetration_multiplier *= weapon_upgrades[GUN_UPGRADE_PEN_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])
+		G.proj_step_multiplier *= weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 		G.fire_delay *= weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
@@ -268,6 +273,14 @@
 		G.muzzle_flash *= weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH]
 	if(weapon_upgrades[GUN_UPGRADE_SILENCER])
 		G.silenced = weapon_upgrades[GUN_UPGRADE_SILENCER]
+	if(weapon_upgrades[GUN_UPGRADE_OFFSET])
+		G.init_offset = max(0, G.init_offset+weapon_upgrades[GUN_UPGRADE_OFFSET])
+	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
+		G.restrict_safety = TRUE
+		if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == TRUE) //Forcing it always on
+			G.safety = TRUE
+		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == FALSE) //Forcing it always off
+			G.safety = FALSE
 	if(istype(G, /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/E = G
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
@@ -339,6 +352,13 @@
 			else
 				to_chat(user, SPAN_NOTICE("Decreases move delay by [amount*100]%"))
 
+		if(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])
+			var/amount = weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Slows down the weapons projectile by [amount*100]%"))
+			else
+				to_chat(user, SPAN_NOTICE("Speeds up the weapons projectile by [amount*100]%"))
+
 		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]
 			if(amount > 1)
@@ -355,6 +375,11 @@
 
 		if(weapon_upgrades[GUN_UPGRADE_SILENCER] == 1)
 			to_chat(user, SPAN_NOTICE("Silences the weapon."))
+
+		if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 0)
+			to_chat(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
+		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
+			to_chat(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
 
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]
@@ -376,6 +401,13 @@
 				to_chat(user, SPAN_NOTICE("Increases overcharge rate by [amount*100]%"))
 			else
 				to_chat(user, SPAN_WARNING("Decreases overcharge rate by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_OFFSET])
+			var/amount = weapon_upgrades[GUN_UPGRADE_OFFSET]
+			if(amount > 1)
+				to_chat(user, SPAN_WARNING("Increases weapon inaccuracy by [amount]°"))
+			else
+				to_chat(user, SPAN_NOTICE("Decreases weapon inaccuracy by [amount]°"))
 
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))
