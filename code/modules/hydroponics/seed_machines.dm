@@ -215,7 +215,12 @@
 			return 1
 		loaded_gene = P
 
-		seed.modified += rand(20, 60)
+		var/stat_multiplier = 1
+		if(usr.stats)
+			// Uses best of BIO and COG
+			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
+
+		seed.modified += round(rand(30, 70) * stat_multiplier)
 		if(seed.modified >= 100)
 			failed_task = TRUE
 			QDEL_NULL(seed)
@@ -255,17 +260,22 @@
 		if(!loaded_gene || !seed)
 			return 1
 
+		var/stat_multiplier = 1
+		if(usr.stats)
+			// Uses best of BIO and COG
+			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
+
 		if(!isnull(plant_controller.seeds[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)
 			seed.seed_type = seed.seed.name
 			seed.update_seed()
 
-		if(prob(seed.modified))
+		if(prob(seed.modified * stat_multiplier))
 			failed_task = TRUE
 			seed.modified = 100
 
 		seed.seed.apply_gene(loaded_gene)
-		seed.modified += rand(5, 10)
+		seed.modified += round(rand(10, 15) * stat_multiplier)
 		seed.modified = max(seed.modified, 100)
 
 		start_task()
