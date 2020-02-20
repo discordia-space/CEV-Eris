@@ -109,16 +109,25 @@
 
 		seed.update_seed()
 
-		visible_message("[src] spits out [seed].")
+		to_chat(usr, SPAN_NOTICE("You remove \the [seed] from \the [src]."))
+
 		seed.forceMove(drop_location())
+		if(Adjacent(usr))
+			usr.put_in_active_hand(seed)
+
 		seed = null
 		return 1
 
 	if(href_list["eject_disk"])
 		if(!disk)
 			return 1
-		visible_message("[src] spits out [disk].")
+
+		to_chat(usr, SPAN_NOTICE("You remove \the [disk] from \the [src]."))
+
 		disk.forceMove(drop_location())
+		if(Adjacent(usr))
+			usr.put_in_active_hand(disk)
+
 		disk = null
 		return 1
 
