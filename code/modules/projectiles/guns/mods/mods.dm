@@ -61,6 +61,18 @@
 	desc = "Uses magnetic induction to heat the projectile of a weapon. Arguable combat effectiveness, but flashy nonetheless."
 	icon_state = "Caster"
 
+/obj/item/weapon/gun_upgrade/barrel/overheat/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_PEN_MULT = 0.5,
+		GUN_UPGRADE_DAMAGE_BURN = 10,
+		GUN_UPGRADE_OFFSET = 5,
+		GUN_UPGRADE_RECOIL = 1.5,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 1.5,
+		)
+	I.gun_loc_tag = GUN_BARREL
+	I.req_gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/weapon/gun_upgrade/trigger
 

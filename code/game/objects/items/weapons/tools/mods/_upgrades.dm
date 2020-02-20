@@ -257,8 +257,8 @@
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/weapon/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
-	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_PLUS])
-		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGE_PLUS]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
+		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
 	if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
 		G.penetration_multiplier *= weapon_upgrades[GUN_UPGRADE_PEN_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])
@@ -275,6 +275,20 @@
 		G.silenced = weapon_upgrades[GUN_UPGRADE_SILENCER]
 	if(weapon_upgrades[GUN_UPGRADE_OFFSET])
 		G.init_offset = max(0, G.init_offset+weapon_upgrades[GUN_UPGRADE_OFFSET])
+
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE])
+		G.proj_damage_adjust[BRUTE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN])
+		G.proj_damage_adjust[BURN] += weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX])
+		G.proj_damage_adjust[TOX] += weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY])
+		G.proj_damage_adjust[OXY] += weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE])
+		G.proj_damage_adjust[CLONE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS])
+		G.proj_damage_adjust[HALLOSS] += weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]
+
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
 		if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == TRUE) //Forcing it always on
@@ -358,6 +372,24 @@
 				to_chat(user, SPAN_WARNING("Slows down the weapons projectile by [amount*100]%"))
 			else
 				to_chat(user, SPAN_NOTICE("Speeds up the weapons projectile by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE])
+			to_chat(user, SPAN_NOTICE("Modifies projectile brute damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]] damage points"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN])
+			to_chat(user, SPAN_NOTICE("Modifies projectile burn damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN]] damage points"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX])
+			to_chat(user, SPAN_NOTICE("Modifies projectile toxic damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX]] damage points"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY])
+			to_chat(user, SPAN_NOTICE("Modifies projectile oxy-loss damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY]] damage points"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE])
+			to_chat(user, SPAN_NOTICE("Modifies projectile clone damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]] damage points"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS])
+			to_chat(user, SPAN_NOTICE("Modifies projectile pseudo damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]

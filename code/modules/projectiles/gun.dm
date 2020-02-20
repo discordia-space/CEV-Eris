@@ -69,6 +69,7 @@
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
+	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -287,6 +288,10 @@
 		projectile.multiply_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
+
+		if(istype(projectile, /obj/item/projectile))
+			var/obj/item/projectile/P = projectile
+			P.adjust_damages(proj_damage_adjust)
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)

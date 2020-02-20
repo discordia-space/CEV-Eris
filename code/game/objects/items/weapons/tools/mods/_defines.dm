@@ -39,7 +39,14 @@
 #define GUN_UPGRADE_MUZZLEFLASH "muzzleflash_mult"
 #define GUN_UPGRADE_STEPDELAY_MULT "stepdelay_mult"
 
-#define GUN_UPGRADE_DAMAGE_PLUS "damage_plus"
+#define GUN_UPGRADE_DAMAGEMOD_PLUS "damage_plus"
+
+#define GUN_UPGRADE_DAMAGE_BRUTE "brute_damage"
+#define GUN_UPGRADE_DAMAGE_BURN "burn_damage"
+#define GUN_UPGRADE_DAMAGE_TOX "toxin_damage"
+#define GUN_UPGRADE_DAMAGE_OXY "oxygen_damage"
+#define GUN_UPGRADE_DAMAGE_CLONE "clone_damage"
+#define GUN_UPGRADE_DAMAGE_HALLOSS "hallucination_damage"
 
 
 #define GUN_UPGRADE_SILENCER "silencable"
@@ -49,7 +56,7 @@
 #define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
 #define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
 
-#define GUN_UPGRADE_OFFSET "offset"
+#define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 
 //Location Tag defines
 

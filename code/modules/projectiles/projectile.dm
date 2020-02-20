@@ -72,6 +72,7 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+
 /obj/item/projectile/is_hot()
 	if (damage_types[BURN])
 		return damage_types[BURN] * heat
@@ -100,6 +101,14 @@
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
+
+/obj/item/projectile/proc/adjust_damages(var/list/newdamages)
+	if(!newdamages.len)
+		return
+	for(var/damage_type in newdamages)
+		to_chat(world, "pre mod:[damage_types[damage_type]]")
+		damage_types[damage_type] += newdamages[damage_type]
+		to_chat(world, "post mod:[damage_types[damage_type]]")
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
