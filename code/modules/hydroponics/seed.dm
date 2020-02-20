@@ -12,11 +12,7 @@
 	F.genesource = genesource
 	F.genesource_uid = genesource_uid
 	F.genetype = genetype
-	F.values = values.Copy()
-
-	for(var/value_id in values)
-		if(islist(values[value_id]))
-			F.values[value_id] = values[value_id].Copy()
+	F.values = deepCopyList(values)
 
 	return F
 
