@@ -78,7 +78,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle
 	damage = 27
-	armor_penetration = 25
+	armor_penetration = 15
 	penetrating = 1
 	sharp = FALSE
 	can_ricochet = TRUE
@@ -94,7 +94,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle/hv
 	damage = 32
-	armor_penetration = 30
+	armor_penetration = 20
 	penetrating = 2
 	step_delay = 0.75
 
