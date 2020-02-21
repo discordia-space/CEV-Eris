@@ -14,7 +14,7 @@
 
 /datum/design/autolathe/tool/weldertool_adv
 	name = "advanced welding tool"
-	build_path = /obj/item/weapon/tool/weldingtool/adv
+	build_path = /obj/item/weapon/tool/weldingtool/advanced
 
 /datum/design/autolathe/tool/weldertool_onestar
 	name = "one star welding tool"
