@@ -49,6 +49,7 @@
 	build_path = /obj/item/ammo_magazine/slpistol/rubber
 
 // . 35 Pistol
+
 /datum/design/autolathe/ammo/magazine_pistol
 	name = "standard magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/pistol
@@ -202,26 +203,44 @@
 // .25 Rifle
 
 /datum/design/autolathe/ammo/ihclrifle
-	name = "magazine (.25 caseless Rifle)"
+	name = "magazine (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/ihclrifle
 
 /datum/design/autolathe/ammo/ihclrifle/empty
-	name = "empty magazine (.25 caseless Rifle)"
+	name = "empty magazine (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/empty
 
 /datum/design/autolathe/ammo/ihclrifle/practice
-	name = "magazine (.25 caseless Rifle practice)"
+	name = "magazine (.25 Caseless Rifle practice)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/practice
 
 /datum/design/autolathe/ammo/ihclrifle/rubber
-	name = "magazine (.25 caseless Rifle rubber)"
+	name = "magazine (.25 Caseless Rifle rubber)"
 	build_path = /obj/item/ammo_magazine/ihclrifle/rubber
 
 /datum/design/autolathe/ammo/c10x24 // Dallas speshul
-	name = "box magazine (.25 caseless)"
+	name = "box magazine (.25 Caseless)"
 	build_path = /obj/item/ammo_magazine/c10x24
 
-// . 25 ammobox
+// .25 rifle, but wide
+
+/datum/design/autolathe/ammo/cspistol
+	name = "pistol magazine (.25 Caseless Rifle)"
+	build_path = /obj/item/ammo_magazine/cspistol
+
+/datum/design/autolathe/ammo/cspistol/empty
+	name = "empty pistol magazine (.25 Caseless Rifle)"
+	build_path = /obj/item/ammo_magazine/cspistol/empty
+
+/datum/design/autolathe/ammo/cspistol/practice
+	name = "pistol magazine (.25 Caseless Rifle practice)"
+	build_path = /obj/item/ammo_magazine/cspistol/practice
+
+/datum/design/autolathe/ammo/cspistol/rubber
+	name = "pistol magazine (.25 Caseless Rifle rubber)"
+	build_path = /obj/item/ammo_magazine/cspistol/rubber
+
+// .25 ammobox
 
 /datum/design/autolathe/ammo/clrifle_ammobox
 	name = "ammunition box (.25 Caseless Rifle)"
