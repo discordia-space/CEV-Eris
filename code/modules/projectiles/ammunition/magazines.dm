@@ -224,8 +224,6 @@
 	icon_state = "ihclrifle_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_IH
-	ammo_mag = "ih_sol_l"
-	ammo_mag = "ih_sol"
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_CLRIFLE
@@ -258,8 +256,6 @@
 	icon_state = "cspistol_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	ammo_mag = "cspistol_l"
-	ammo_mag = "cspistol"
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_CLRIFLE
