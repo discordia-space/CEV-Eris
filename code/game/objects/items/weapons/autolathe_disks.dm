@@ -164,6 +164,7 @@
 		/datum/design/research/item/weapon/mining/drill,
 		/datum/design/research/item/weapon/mining/drill_diamond,
 		/datum/design/autolathe/tool/pickaxe_excavation,
+		/datum/design/autolathe/tool/shovel/power,
 		/datum/design/autolathe/tool/circularsaw,
 		/datum/design/autolathe/tool/chainsaw,
 		/datum/design/autolathe/tool/rcd,
