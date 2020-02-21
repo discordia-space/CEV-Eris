@@ -172,6 +172,7 @@
 		/datum/design/autolathe/tool/combi_driver,
 		/datum/design/autolathe/tool/armature_cutter,
 		/datum/design/autolathe/part/diamondblade,
+		/datum/design/autolathe/tool/weldertool_adv,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
