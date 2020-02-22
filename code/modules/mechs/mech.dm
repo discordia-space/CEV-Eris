@@ -48,7 +48,7 @@
 	var/maintenance_protocols
 
 	// Material
-	var/material/material
+	var/material/material = MATERIAL_STEEL
 
 	// Cockpit access vars.
 	var/hatch_closed = FALSE
@@ -58,11 +58,16 @@
 	var/use_air      = FALSE
 
 	// Interface stuff.
-	var/list/hud_elements = list()
+/*
 	var/list/hardpoint_hud_elements = list()
+
+	var/list/hud_elements = list()
+
 	var/obj/screen/movable/exosuit/health/hud_health
 	var/obj/screen/movable/exosuit/toggle/hatch_open/hud_open
 	var/obj/screen/movable/exosuit/power/hud_power
+*/
+	defaultHUD = "exosuits"
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
@@ -80,7 +85,7 @@
 */
 /mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
-
+	material = get_material_by_name("[material]")
 	if(!access_card) access_card = new (src)
 
 	pixel_x = default_pixel_x
@@ -131,17 +136,13 @@
 
 	selected_system = null
 
-	for(var/thing in pilots)
-		var/mob/pilot = thing
-		if(pilot.client)
-			pilot.client.screen -= hud_elements
-			pilot.client.images -= hud_elements
-		ismob(pilot) ? pilot.forceMove(get_turf(src)) : null
+	for(var/mob/living/Pilot in pilots)
+		eject(Pilot)
 	pilots = null
 
-	for(var/thing in hud_elements)
+	for(var/thing in HUDneed)
 		qdel(thing)
-	hud_elements.Cut()
+	HUDneed.Cut()
 
 	for(var/hardpoint in hardpoints)
 		qdel(hardpoints[hardpoint])
@@ -153,12 +154,7 @@
 	QDEL_NULL(head)
 	QDEL_NULL(body)
 
-	for(var/hardpoint in hardpoint_hud_elements)
-		var/obj/screen/movable/exosuit/hardpoint/H = hardpoint_hud_elements[hardpoint]
-		H.owner = null
-		H.holding = null
-		qdel(H)
-	hardpoint_hud_elements.Cut()
+	destroy_HUD()
 
 	. = ..()
 
@@ -193,7 +189,7 @@
 					damage_string = "almost destroyed"
 			to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
-		to_chat(user, "It menaces with reinforcements of [material].")
+		material ? to_chat(user, "It menaces with reinforcements of [material].") : null
 
 /mob/living/exosuit/return_air()
 	return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()

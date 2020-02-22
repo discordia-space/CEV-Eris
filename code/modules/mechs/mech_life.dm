@@ -7,7 +7,7 @@
 		var/mob/pilot = thing
 		if(pilot.loc != src) // Admin jump or teleport/grab.
 			if(pilot.client)
-				pilot.client.screen -= hud_elements
+				pilot.client.screen -= HUDneed
 				LAZYREMOVE(pilots, pilot)
 				UNSETEMPTY(pilots)
 		update_pilots()
@@ -23,13 +23,8 @@
 	updatehealth()
 	if(health <= 0 && stat != DEAD)
 		death()
-
-	..() //Handles stuff like environment
-
-	handle_hud_icons()
-
+	. = ..() //Handles stuff like environment
 	lying = FALSE // Fuck off, carp.
-	handle_vision()
 
 /mob/living/exosuit/get_cell()
 	return body ? body.cell : null
@@ -56,9 +51,9 @@
 	//Mechs and vehicles in general can be assumed to just tend to whatever ambient temperature
 	if(abs(environment.temperature - bodytemperature) > 10 )
 		bodytemperature += ((environment.temperature - bodytemperature) / 3)
-
-	if(environment.temperature > material.melting_point * 1.25 ) //A bit higher because I like to assume there's a difference between a mech and a wall
-		apply_damage(damage = (environment.temperature - (material.melting_point))/5 , damagetype = BURN)
+	var/meltpoint = material ? material.melting_point : 1000
+	if(environment.temperature > meltpoint * 1.25) //A bit higher because I like to assume there's a difference between a mech and a wall
+		apply_damage(damage = (environment.temperature - (meltpoint))/5 , damagetype = BURN)
 	//A possibility is to hook up interface icons here. But this works pretty well in my experience
 		if(prob(5))
 			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))

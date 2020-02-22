@@ -4,17 +4,7 @@
 	icon = MECHA_HUD_ICON
 	icon_state = "hardpoint"
 	var/mob/living/exosuit/owner
-
-/obj/screen/movable/exosuit/radio
-	name = "radio"
-	icon_state = "radio"
-
-/obj/screen/movable/exosuit/radio/Click()
-	if(..()) 
-		if(owner.radio)
-			owner.radio.attack_self(usr)
-		else
-			to_chat(usr, SPAN_WARNING("There is no radio installed."))
+/obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
 
 /obj/screen/movable/exosuit/Initialize()
 	. = ..()
@@ -26,23 +16,76 @@
 /obj/screen/movable/exosuit/Click()
 	return (!owner || !usr.incapacitated() && (usr == owner || usr.loc == owner))
 
-/obj/screen/movable/exosuit/hardpoint
-	name = "hardpoint"
+/obj/screen/movable/exosuit/radio
+	name = "radio"
+	icon_state = "radio"
+
+/obj/screen/movable/exosuit/radio/Click()
+	if(..())
+		if(owner.radio)
+			owner.radio.attack_self(usr)
+		else
+			to_chat(usr, SPAN_WARNING("There is no radio installed."))
+
+/obj/screen/movable/exosuit/hardpoints_show
+	name = "Show hardpoints"
+	icon_state = "hardpoint_question"
+
+/obj/screen/movable/exosuit/hardpoints_show/update_icon()
+	. = ..()
+	overlays.Cut()
+	if(myhardpoint)
+		icon_state = "hardpoint_selected"
+		overlays += image(icon = myhardpoint.icon, icon_state = myhardpoint.icon_state)
+	else icon_state = initial(icon_state)
+
+/obj/screen/movable/exosuit/hardpoints_show/Click(var/location, var/control, var/params)
+	. = ..()
+	if(owner.hardpoints.len)
+		myhardpoint = null
+		update_icon()
+		var/list/options = list()
+		for(var/obj/item/I in owner.hardpoints) options[I] = image(icon = I.icon, icon_state = I.icon_state)
+		var/hardpoint = show_radial_menu(usr, src, options, radius = 40)
+		myhardpoint = hardpoint
+		update_icon()
+
+		if(!(..()))
+			return
+
+		var/modifiers = params2list(params)
+		if(modifiers["ctrl"])
+			if(owner.hardpoints_locked)
+				to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
+				return
+			if(owner.remove_system(hardpoint_tag))
+				to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
+			else
+				to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
+			return
+
+		if(owner.selected_hardpoint == hardpoint_tag)
+			icon_state = "hardpoint"
+			owner.clear_selected_hardpoint()
+		else
+			if(owner.set_hardpoint(hardpoint_tag))
+				icon_state = "hardpoint_selected"
+
+/obj/screen/movable/exosuit/hardpoints_show
 	var/hardpoint_tag
-	var/obj/item/holding
+	var/obj/item/myhardpoint
 
 	maptext_x = 34
 	maptext_y = 3
 	maptext_width = 64
 
-/obj/screen/movable/exosuit/hardpoint/MouseDrop()
-	..()
-	if(holding) holding.screen_loc = screen_loc
+/obj/screen/movable/exosuit/hardpoints_show/on_handle_hud(var/mob/living/exosuit/E)
+	. = ..()
+	update_system_info()
 
-/obj/screen/movable/exosuit/hardpoint/proc/update_system_info()
-
+/obj/screen/movable/exosuit/hardpoints_show/proc/update_system_info()
 	// No point drawing it if we have no item to use or nobody to see it.
-	if(!holding || !owner)
+	if(!myhardpoint || !owner)
 		return
 
 	var/has_pilot_with_client = owner.client
@@ -60,11 +103,11 @@
 		overlays.Cut()
 		return
 
-	maptext = holding.get_hardpoint_maptext()
+	maptext = myhardpoint.get_hardpoint_maptext()
 
 	var/ui_damage = (!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage)))
 
-	var/value = holding.get_hardpoint_status_value()
+	var/value = myhardpoint.get_hardpoint_status_value()
 	if(isnull(value))
 		overlays.Cut()
 		return
@@ -116,33 +159,14 @@
 			new_overlays += GLOB.hardpoint_bar_cache[i]
 	overlays = new_overlays
 
-/obj/screen/movable/exosuit/hardpoint/Initialize(mapload, var/newtag)
+/obj/screen/movable/exosuit/hardpoints_show/MouseDrop()
+	..()
+	if(myhardpoint) myhardpoint.screen_loc = screen_loc
+
+/obj/screen/movable/exosuit/hardpoints_show/Initialize(mapload, var/newtag)
 	. = ..()
 	hardpoint_tag = newtag
 	name = "hardpoint ([hardpoint_tag])"
-
-/obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
-
-	if(!(..()))
-		return
-
-	var/modifiers = params2list(params)
-	if(modifiers["ctrl"])
-		if(owner.hardpoints_locked)
-			to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
-			return
-		if(owner.remove_system(hardpoint_tag))
-			to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
-		else
-			to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
-		return
-
-	if(owner.selected_hardpoint == hardpoint_tag)
-		icon_state = "hardpoint"
-		owner.clear_selected_hardpoint()
-	else
-		if(owner.set_hardpoint(hardpoint_tag))
-			icon_state = "hardpoint_selected"
 
 /obj/screen/movable/exosuit/eject
 	name = "eject"
@@ -161,6 +185,12 @@
 	icon_state = null
 
 	maptext_width = 64
+
+/obj/screen/movable/exosuit/power/on_handle_hud(var/mob/living/exosuit/E)
+	. = ..()
+	var/obj/item/weapon/cell/C = E.get_cell()
+	if(istype(C)) E.HUDneed["mech_hud_power"]?.maptext = "[round(get_cell().charge)]/[round(get_cell().maxcharge)]"
+	else E.HUDneed["mech_hud_power"]?.maptext = "CHECK POWER"
 
 /obj/screen/movable/exosuit/rename/Click()
 	if(..())
@@ -230,6 +260,44 @@
 	name = "exosuit integrity"
 	icon_state = "health"
 
+/obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
+	. = ..()
+	overlays.Cut()
+
+	if(!E.body || !E.get_cell() || (E.get_cell().charge <= 0))
+		return
+
+	if(!E.body.diagnostics || !E.body.diagnostics.is_functional() || ((E.emp_damage>EMP_HUD_DISRUPT) && prob(E.emp_damage*2)))
+		if(!GLOB.mech_damage_overlay_cache["critfail"])
+			GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECHA_HUD_ICON,icon_state="dam_error")
+		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
+		return
+
+	var/list/part_to_state = list("legs" = E.legs,"body" = E.body,"head" = E.head,"arms" = E.arms)
+	for(var/part in part_to_state)
+		var/state = 0
+		var/obj/item/mech_component/MC = part_to_state[part]
+		if(MC)
+			if((E.emp_damage>EMP_HUD_DISRUPT) && prob(E.emp_damage*3))
+				state = rand(0,4)
+			else
+				state = MC.damage_state
+		if(!GLOB.mech_damage_overlay_cache["[part]-[state]"])
+			var/image/I = image(icon=MECHA_HUD_ICON,icon_state="dam_[part]")
+			switch(state)
+				if(1)
+					I.color = "#0f0"
+				if(2)
+					I.color = "#f2c50d"
+				if(3)
+					I.color = "#ea8515"
+				if(4)
+					I.color = "#f00"
+				else
+					I.color = "#f5f5f0"
+			GLOB.mech_damage_overlay_cache["[part]-[state]"] = I
+		overlays |= GLOB.mech_damage_overlay_cache["[part]-[state]"]
+
 //Controls if cameras set the vision flags
 /obj/screen/movable/exosuit/toggle/camera
 	name = "toggle camera matrix"
@@ -244,6 +312,6 @@
 		return
 	owner.head.active_sensors = ..()
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
-	
+
 
 #undef BAR_CAP

@@ -192,7 +192,7 @@
 
 /obj/item/weapon/material/drill_head/Initialize()
 	. = ..()
-	durability = 2 * material.integrity
+	durability = 2 * (material ? material.integrity : 1)
 
 /obj/item/mech_equipment/drill
 	name = "drill"

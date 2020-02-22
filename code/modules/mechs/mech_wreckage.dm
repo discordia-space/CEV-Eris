@@ -1,18 +1,18 @@
 /obj/structure/mech_wreckage
 	name = "wreckage"
+	icon = MECHA_WRECKAGE_ICON
+	icon_state = "wreck"
 	desc = "It might have some salvagable parts."
 	density = 1
 	opacity = 1
 	anchored = 1
-	icon_state = "wreck"
-	icon = MECHA_PART_ITEM_ICON
 	var/prepared
 	var/material/material
 
 /obj/structure/mech_wreckage/New(var/newloc, var/mob/living/exosuit/exosuit, var/gibbed)
 	if(exosuit)
 		name = "wreckage of \the [exosuit.name]"
-		material = exosuit.material
+		material = exosuit.material ? exosuit.material : MATERIAL_OSMIUM
 		if(!gibbed)
 			for(var/obj/item/thing in list(exosuit.arms, exosuit.legs, exosuit.head, exosuit.body))
 				if(thing && prob(40))

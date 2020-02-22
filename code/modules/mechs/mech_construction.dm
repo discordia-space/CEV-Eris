@@ -46,10 +46,12 @@
 
 	GLOB.destroyed_event.unregister(module_to_forget, src, .proc/forget_module)
 
-	var/obj/screen/movable/exosuit/hardpoint/H = hardpoint_hud_elements[target]
-	H.holding = null
+	var/obj/screen/movable/exosuit/hardpoints_show/H = HUDneed["mech_hard_point_selector"]
+	if(H)
+		H.myhardpoint = null
+		H.update_icon()
 
-	hud_elements -= module_to_forget
+	HUDneed -= module_to_forget
 	check_HUDneed()
 	update_icon()
 
@@ -97,14 +99,9 @@
 	system.forceMove(src)
 	hardpoints[system_hardpoint] = system
 
-	var/obj/screen/movable/exosuit/hardpoint/H = hardpoint_hud_elements[system_hardpoint]
-	H.holding = system
+	get_hardpoints_HUD()?.myhardpoint = system
 
-	system.screen_loc = H.screen_loc
-//	system.hud_layerise()
-
-	hud_elements |= system
-	check_HUDneed()
+	check_HUD()
 	update_icon()
 
 	return 1
@@ -135,15 +132,13 @@
 	system.layer = initial(system.layer)
 	GLOB.destroyed_event.unregister(system, src, .proc/forget_module)
 
-	var/obj/screen/movable/exosuit/hardpoint/H = hardpoint_hud_elements[system_hardpoint]
-	H.holding = null
-
+	reset_hardpoint_HUD()
 	for(var/thing in pilots)
 		var/mob/pilot = thing
 		if(pilot && pilot.client)
 			pilot.client.screen -= system
 
-	hud_elements -= system
+	HUDneed -= system
 	check_HUDneed()
 	update_icon()
 

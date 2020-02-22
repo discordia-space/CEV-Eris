@@ -64,6 +64,7 @@
 				draw_pilot.pixel_z = 0
 				draw_pilot.transform = null
 			LAZYADD(pilot_overlays, draw_pilot)
+			update_mech_hud_4(pilot)
 		if(update_overlays && LAZYLEN(pilot_overlays))
 			overlays += pilot_overlays
 

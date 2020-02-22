@@ -149,8 +149,9 @@
 		for(var/hardpoint in hardpoints)
 			if(hardpoint != selected_hardpoint)
 				continue
-			var/obj/screen/movable/exosuit/hardpoint/H = hardpoint_hud_elements[hardpoint]
+			var/obj/screen/movable/exosuit/hardpoints_show/H = get_hardpoints_HUD()
 			if(istype(H))
+				H.myhardpoint = null
 				H.icon_state = "hardpoint"
 				break
 		selected_system = null
@@ -182,12 +183,11 @@
 		return
 	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
 	user.forceMove(src)
-	LAZYDISTINCTADD(pilots, user)
+	LAZYOR(pilots, user)
 	sync_access()
-	playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+	playsound(get_turf(src), 'sound/machines/windowdoor.ogg', 50, 1)
 	user.playsound_local(null, 'sound/mecha/nominal.ogg', 50)
-	if(user.client) user.client.screen |= hud_elements
-	//LAZYDISTINCTADD(user.additional_vision_handlers, src)
+	//LAZYOR(user.additional_vision_handlers, src)
 	update_pilots()
 	return 1
 
@@ -206,7 +206,7 @@
 			if(!silent)
 				to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 			return
-		hud_open.toggled()
+		HUDneed["mech_hud_open"].toggled()
 		if(!silent)
 			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
 	else
@@ -215,9 +215,7 @@
 
 	user.forceMove(get_turf(src))
 //	LAZYREMOVE(user.additional_vision_handlers, src)
-	if(user.client)
-		user.client.screen -= hud_elements
-		user.client.eye = user
+	if(user.client) update_mech_hud_4(user)
 	if(user in pilots)
 		a_intent = I_HURT
 		LAZYREMOVE(pilots, user)
@@ -309,7 +307,7 @@
 		return
 	hatch_closed = !hatch_closed
 	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
-	hud_open.update_icon()
+	HUDneed["mech_hud_open"].update_icon()
 	update_icon()
 	return
 

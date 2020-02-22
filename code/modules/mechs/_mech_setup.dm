@@ -2,7 +2,7 @@
 #define MECHA_DECALS_ICON					'icons/mecha2/mech_decals.dmi'
 #define MECHA_PARTS_HELD_ICON				'icons/mecha2/mech_parts_held.dmi'
 #define MECHA_PARTS_ICON					'icons/mecha2/mech_parts.dmi'
-#define MECHA_PART_ITEM_ICON				'icons/mecha2/mech_part_items.dmi'
+#define MECHA_WRECKAGE_ICON				'icons/mecha2/mech_wreckage.dmi'
 #define MECHA_EQUIPMENT_ICON				'icons/mecha2/mech_equipment.dmi'
 #define MECHA_HUD_ICON						'icons/mecha2/mech_hud.dmi'
 
@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON)
 
 #include "equipment/_equipment.dm"
 
-#include "interface/_interface.dm"
+#include "interface/_mech_HUD.dm"
 
 #include "premade/_premade.dm"
 

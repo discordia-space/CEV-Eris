@@ -62,7 +62,7 @@
 	var/moving_dir = direction
 
 	var/failed = FALSE
-	if(prob(rand(0, 25)))
+	if(prob(rand(0, round(5 / rand(1, 5)))))
 		to_chat(mover, SPAN_DANGER("You clumsily fumble with the exosuit joystick."))
 		failed = TRUE
 	else if(exosuit.emp_damage >= EMP_MOVE_DISRUPT && prob(30))
@@ -81,8 +81,7 @@
 	return MOVEMENT_HANDLED
 
 
-/datum/movement_handler/mob/space/exosuit
-	expected_host_type = /mob/living/exosuit
+/datum/movement_handler/mob/space/exosuit/expected_host_type = /mob/living/exosuit
 
 // Space movement
 /datum/movement_handler/mob/space/exosuit/DoMove(var/direction, var/mob/mover)
