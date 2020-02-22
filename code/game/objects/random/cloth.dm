@@ -195,6 +195,7 @@
 /obj/random/cloth/helmet/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/head/armor/helmet = 20,
 				/obj/item/clothing/head/armor/helmet/visor = 15,
+				/obj/item/clothing/head/armor/bulletproof/ironhammer = 10,
 				/obj/item/clothing/head/armor/helmet/dermal = 2,
 				/obj/item/clothing/head/armor/helmet/ironhammer = 2,
 				/obj/item/clothing/head/armor/bulletproof = 10,
