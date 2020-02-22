@@ -224,8 +224,6 @@
 	icon_state = "ihclrifle_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_IH
-	ammo_mag = "ih_sol_l"
-	ammo_mag = "ih_sol"
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_CLRIFLE
@@ -251,7 +249,39 @@
 	icon_state = "ihclrifle_r"
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
 
-///////// . 30 RIFLE /////////
+////////// .25 PISTOL //////////
+
+/obj/item/ammo_magazine/cspistol
+	name = "pistol magazine (.25 Caseless Rifle)"
+	icon_state = "cspistol_l"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
+	ammo_type = /obj/item/ammo_casing/clrifle
+	matter = list(MATERIAL_STEEL = 4)
+	caliber = CAL_CLRIFLE
+	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/cspistol/empty
+	icon_state = "cspistol"
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/cspistol/practice
+	name = "pistol magazine (.25 Caseless Rifle practice)"
+	icon_state = "cspistol_p"
+	ammo_type = /obj/item/ammo_casing/clrifle/practice
+
+/obj/item/ammo_magazine/cspistol/hv
+	name = "pistol magazine (.25 Caseless Rifle high-velocity)"
+	icon_state = "cspistol_hv"
+	ammo_type = /obj/item/ammo_casing/clrifle/hv
+
+/obj/item/ammo_magazine/cspistol/rubber
+	name = "pistol magazine (.25 Caseless Rifle rubber)"
+	icon_state = "cspistol_r"
+	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+
+///////// .30 RIFLE ///////////
 
 /obj/item/ammo_magazine/lrifle
 	name = "magazine box (.30 Rifle)"

@@ -108,6 +108,17 @@
 	item_cost = 3
 	path = /obj/item/ammo_magazine/ihclrifle/hv
 
+/datum/uplink_item/item/ammo/cspistol
+	name = ".25 caseless pistol magazine"
+	desc = "Pistol .25 magazine with lethal ammunition. Used solely in Mandella. Can fit 10 bullets."
+	item_cost = 1
+	path = /obj/item/ammo_magazine/cspistol
+
+/datum/uplink_item/item/ammo/cspistol/highvelocity
+	name = ".25 caseless HV pistol magazine"
+	desc = "Pistol .25 magazine with high-velocity ammunition. Used solely in Mandella. Can fit 10 bullets."
+	item_cost = 3
+	path = /obj/item/ammo_magazine/cspistol/hv
 
 /datum/uplink_item/item/ammo/lrifle
 	name = ".30 Rifle magazine"

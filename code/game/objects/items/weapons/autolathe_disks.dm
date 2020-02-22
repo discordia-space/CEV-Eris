@@ -164,6 +164,7 @@
 		/datum/design/research/item/weapon/mining/drill,
 		/datum/design/research/item/weapon/mining/drill_diamond,
 		/datum/design/autolathe/tool/pickaxe_excavation,
+		/datum/design/autolathe/tool/shovel/power,
 		/datum/design/autolathe/tool/circularsaw,
 		/datum/design/autolathe/tool/chainsaw,
 		/datum/design/autolathe/tool/rcd,
@@ -171,6 +172,7 @@
 		/datum/design/autolathe/tool/combi_driver,
 		/datum/design/autolathe/tool/armature_cutter,
 		/datum/design/autolathe/part/diamondblade,
+		/datum/design/autolathe/tool/weldertool_adv,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
@@ -396,6 +398,7 @@
 		//pistol mags
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
+		/datum/design/autolathe/ammo/cspistol/rubber,
 		//speed loaders
 		/datum/design/autolathe/ammo/sl_pistol/rubber,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
@@ -422,6 +425,7 @@
 		//pistol mags
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/mg_magnum,
+		/datum/design/autolathe/ammo/cspistol,
 		//speed loaders
 		/datum/design/autolathe/ammo/sl_pistol,
 		/datum/design/autolathe/ammo/sl_magnum,
@@ -608,14 +612,14 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced
-	disk_name = "Frozen Star - .35 Mandella"
+	disk_name = "Frozen Star - .25 Mandella"
 	icon_state = "frozenstar"
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/mandella, // "FS HG .35 Auto \"Mandella\""
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
-		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/gun/mandella, // "FS HG .25 Caseless \"Mandella\""
+		/datum/design/autolathe/ammo/cspistol/practice,
+		/datum/design/autolathe/ammo/cspistol/rubber,
 	)
 
 // .40 REVOLVERS

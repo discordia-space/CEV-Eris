@@ -101,7 +101,8 @@
 				/obj/item/clothing/suit/storage/toggle/labcoat/medspec = 3,
 				/obj/item/clothing/suit/storage/toggle/labcoat/science = 3,
 				/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 3,
-				/obj/item/clothing/suit/storage/qm_coat = 2))
+				/obj/item/clothing/suit/storage/qm_coat = 2,
+				/obj/item/clothing/suit/storage/cyberpunksleek = 8))
 
 /obj/random/cloth/suit/low_chance
 	name = "low chance random suit"
@@ -203,7 +204,8 @@
 				/obj/item/clothing/head/armor/altyn = 2,
 				/obj/item/clothing/head/armor/altyn/brown = 2,
 				/obj/item/clothing/head/armor/altyn/black = 2,
-				/obj/item/clothing/head/armor/altyn/maska = 1))
+				/obj/item/clothing/head/armor/altyn/maska = 1,
+				/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle = 18))
 
 /obj/random/cloth/helmet/low_chance
 	name = "low chance random helmet"
