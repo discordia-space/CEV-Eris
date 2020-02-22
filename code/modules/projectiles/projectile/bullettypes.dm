@@ -78,7 +78,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle
 	damage = 27
-	armor_penetration = 25
+	armor_penetration = 15
 	penetrating = 1
 	sharp = TRUE
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
@@ -94,7 +94,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle/hv
 	damage = 32
-	armor_penetration = 30
+	armor_penetration = 20
 	penetrating = 2
 	step_delay = 0.75
 	can_ricochet = TRUE
