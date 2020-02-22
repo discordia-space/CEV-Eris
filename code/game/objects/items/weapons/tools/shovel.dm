@@ -32,3 +32,17 @@
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 20, QUALITY_EXCAVATION = 20)
+
+/obj/item/weapon/tool/shovel/power
+	name = "powershovel"
+	desc = "A power tool for all your shoveling needs."
+	icon_state = "powershovel"
+	item_state = "shovel"
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_WEAK
+	w_class = ITEM_SIZE_NORMAL
+	matter = list(MATERIAL_PLASTEEL = 6,  MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
+	tool_qualities = list(QUALITY_SHOVELING = 60, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 10)
+	use_power_cost = 0.8
+	suitable_cell = /obj/item/weapon/cell/medium
+	workspeed = 1.2
