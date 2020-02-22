@@ -101,7 +101,3 @@
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
 	allowed_roles = list("First Officer")*/
-
-/datum/gear/uniform/cyberpunksleek
-	display_name = "sleek modern coat"
-	path = /obj/item/clothing/under/cyberpunksleek
