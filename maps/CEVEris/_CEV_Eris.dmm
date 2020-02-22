@@ -99422,7 +99422,7 @@
 "eoF" = (
 /obj/structure/table/standard,
 /obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/box/botanydisk,
+/obj/item/weapon/storage/box/data_disk/basic,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoG" = (

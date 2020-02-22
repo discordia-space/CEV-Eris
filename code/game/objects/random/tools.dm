@@ -27,6 +27,7 @@
 				/obj/item/weapon/tool/saw/hyper = 0.5,
 				/obj/item/weapon/tool/shovel = 5,
 				/obj/item/weapon/tool/shovel/spade = 2.5,
+				/obj/item/weapon/tool/shovel/power = 1,
 				/obj/item/weapon/tool/pickaxe = 2,
 				/obj/item/weapon/tool/pickaxe/jackhammer = 1,
 				/obj/item/weapon/tool/pickaxe/drill = 1,

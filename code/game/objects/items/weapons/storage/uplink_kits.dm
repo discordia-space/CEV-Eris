@@ -173,13 +173,13 @@
 
 
 /obj/item/weapon/storage/box/syndie_kit/pistol
-	name = "\improper Smooth operator"
-	desc = ".35 Auto with silencer kit."
+	name = "smooth operator"
+	desc = ".25 Caseless handgun with a single magazine and pocket holster for easy consealment."
 
 /obj/item/weapon/storage/box/syndie_kit/pistol/populate_contents()
-	new /obj/item/weapon/gun/projectile/clarissa(src)
-	new /obj/item/weapon/silencer(src)
-	new /obj/item/ammo_magazine/hpistol(src)
+	new /obj/item/weapon/gun/projectile/mandella(src)
+	new /obj/item/ammo_magazine/cspistol(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/item/weapon/storage/box/syndie_kit/c20r
 	name = "C-20r box"
