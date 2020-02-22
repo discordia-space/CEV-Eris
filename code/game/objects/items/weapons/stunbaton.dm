@@ -51,13 +51,13 @@
 
 /obj/item/weapon/melee/baton/update_icon()
 	if(status)
-		icon_state = "[initial(name)]_active"
+		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)
-		icon_state = "[initial(name)]_nocell"
+		icon_state = "[initial(icon_state)]_nocell"
 	else
-		icon_state = "[initial(name)]"
+		icon_state = "[initial(icon_state)]"
 
-	if(icon_state == "[initial(name)]_active")
+	if(icon_state == "[initial(icon_state)]_active")
 		set_light(1.5, 1, COLOR_LIGHTING_ORANGE_BRIGHT)
 	else
 		set_light(0)
@@ -179,7 +179,7 @@
 	slot_flags = null
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 
-/obj/item/weapon/melee/baton/excelbaton 
+/obj/item/weapon/melee/baton/excelbaton
 	name = "Expropriator"
 	desc = "A cheap and effective way to feed the red tide."
 	icon_state = "sovietbaton"
@@ -190,7 +190,7 @@
 	agonyforce = 40
 	hitcost = 100
 	attack_verb = list("battered")
-	slot_flags = SLOT_BELT 
+	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
 

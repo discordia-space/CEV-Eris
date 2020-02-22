@@ -54,7 +54,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 			var/index = findtext(e, "=")		// format is "key=value"
 			if(index)
 				var/key = copytext(e, 1, index)
-				var/val = copytext(e, index+1)
+				var/val = copytext(e, index + length(e[index]))
 				codes[key] = val
 			else
 				codes[e] = "1"
@@ -204,7 +204,7 @@ Transponder Codes:<UL>"}
 					updateDialog()
 
 				else if(href_list["locedit"])
-					var/newloc = sanitize(input("Enter New Location", "Navigation Beacon", location) as text|null)
+					var/newloc = stripped_input(usr, "Enter New Location", "Navigation Beacon", location, MAX_MESSAGE_LEN)
 					if(newloc)
 						location = newloc
 						updateDialog()

@@ -13,7 +13,10 @@ GLOBAL_VAR(topic_status_lastcache)
 GLOBAL_LIST(topic_status_cache)
 
 // Extools vars
-GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag) //This var is updated every tick by a DLL if present, used to reduce lag 
+//This var is updated every tick by a DLL if present, used to reduce lag
+//If no DLL is present, the default during MC init is 5% of tick_lag
+//It's bumped to MAPTICK_DEFAULT_ITU during runtime (set once MC init is done)
+GLOBAL_VAR_INIT(internal_tick_usage, 0.05 * world.tick_lag)
 GLOBAL_PROTECT(internal_tick_usage) // NO TOUCHY
 
 GLOBAL_VAR_INIT(fallback_alerted, FALSE)
