@@ -20426,7 +20426,6 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/barracks)
 "aVv" = (
-/obj/machinery/computer/telecomms/traffic,
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/telecommonitor)
 "aVw" = (
@@ -56104,10 +56103,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/oldtele)
-"cvg" = (
-/obj/machinery/computer/telecomms/traffic,
-/turf/simulated/floor/bluegrid,
-/area/eris/command/tcommsat/computer)
 "cvh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -245416,7 +245411,7 @@ bYo
 dhm
 dhm
 cZA
-cvg
+diG
 diy
 diG
 diG
