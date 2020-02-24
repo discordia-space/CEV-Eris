@@ -218,8 +218,3 @@
 	return sum / args.len
 
 // )
-
-// Round up
-proc/n_ceil(var/num)
-	if(isnum(num))
-		return round(num)+1
