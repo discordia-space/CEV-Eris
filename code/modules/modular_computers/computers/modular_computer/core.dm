@@ -258,7 +258,7 @@
 		return
 
 	P.computer = src
-	if(!P.is_supported_by_hardware(hardware_flag, 1, user))
+	if(!P.is_supported_by_hardware(src, user, TRUE))
 		return
 	if(P in all_threads)
 		P.program_state = PROGRAM_STATE_ACTIVE
