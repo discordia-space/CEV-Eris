@@ -674,6 +674,14 @@
 	center_of_mass = list("x"=16, "y"=16)
 	preloaded_reagents = list("protein" = 6)
 
+/obj/item/weapon/reagent_containers/food/snacks/sausage/fuhrers_sausage
+	name = "\improper Fuhrers Sausage"
+	desc = "A piece of mixed, long meat."
+	filling_color = "#DB0000"
+	bitesize = 4
+	center_of_mass = list("x"=16, "y"=16)
+	preloaded_reagents = list("protein" = 6)
+
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket
 	name = "Donk-pocket"
 	desc = "The food of choice for the seasoned traitor."
