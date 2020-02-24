@@ -8,7 +8,7 @@
 	size = 7
 	requires_ntnet = 1
 	available_on_ntnet = 1
-	//Those needed to restore data when programm is killed 
+	//Those needed to restore data when programm is killed
 	var/stored_login = ""
 	var/stored_password = ""
 	usage_flags = PROGRAM_ALL
@@ -18,7 +18,7 @@
 	nanomodule_path = /datum/nano_module/email_client
 
 // Persistency. Unless you log out, or unless your password changes, this will pre-fill the login data when restarting the program
-/datum/computer_file/program/email_client/kill_program()
+/datum/computer_file/program/email_client/kill_program(forced = FALSE)
 	if(NM)
 		var/datum/nano_module/email_client/NME = NM
 		if(NME.current_account)

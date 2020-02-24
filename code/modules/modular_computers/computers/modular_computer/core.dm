@@ -7,33 +7,30 @@
 		shutdown_computer()
 		return FALSE
 
-	if(active_program && active_program.requires_ntnet && !get_ntnet_status(active_program.requires_ntnet_feature)) // Active program requires NTNet to run but we've just lost connection. Crash.
-		active_program.event_networkfailure(0)
+	var/ntnet_status = get_ntnet_status()
 
-	for(var/datum/computer_file/program/P in idle_threads)
-		if(P.requires_ntnet && !get_ntnet_status(P.requires_ntnet_feature))
-			P.event_networkfailure(1)
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
 
-	if(active_program)
-		if(active_program.program_state != PROGRAM_STATE_KILLED)
-			active_program.ntnet_status = get_ntnet_status()
-			active_program.computer_emagged = computer_emagged
-			active_program.process_tick()
+		if(PRG.requires_ntnet && !get_ntnet_status(PRG.requires_ntnet_feature))
+			PRG.event_network_failure()
+
+		if(PRG.program_state != PROGRAM_STATE_KILLED)
+			PRG.ntnet_status = ntnet_status
+			PRG.computer_emagged = computer_emagged
+			PRG.process_tick()
 		else
-			active_program = null
-
-	for(var/datum/computer_file/program/P in idle_threads)
-		if(P.program_state != PROGRAM_STATE_KILLED)
-			P.ntnet_status = get_ntnet_status()
-			P.computer_emagged = computer_emagged
-			P.process_tick()
-		else
-			idle_threads.Remove(P)
+			all_threads.Remove(PRG)
+			if(PRG == active_program)
+				active_program = null
 
 	handle_power() // Handles all computer power interaction
 	check_update_ui_need()
 
-	var/static/list/beepsounds = list('sound/effects/compbeep1.ogg','sound/effects/compbeep2.ogg','sound/effects/compbeep3.ogg','sound/effects/compbeep4.ogg','sound/effects/compbeep5.ogg')
+	var/static/list/beepsounds = list(
+		'sound/effects/compbeep1.ogg', 'sound/effects/compbeep2.ogg', 'sound/effects/compbeep3.ogg',
+		'sound/effects/compbeep4.ogg', 'sound/effects/compbeep5.ogg'
+	)
 	if(enabled && world.time > ambience_last_played + 60 SECONDS && prob(1))
 		ambience_last_played = world.time
 		playsound(src.loc, pick(beepsounds),15,1,10)
@@ -73,7 +70,7 @@
 	. = ..()
 
 /obj/item/modular_computer/Destroy()
-	kill_program(1)
+	kill_program(forced=TRUE)
 	QDEL_NULL_LIST(terminals)
 	STOP_PROCESSING(SSobj, src)
 
@@ -114,7 +111,8 @@
 			return
 		if(active_program)
 			overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
-			set_light(screen_light_range, screen_light_strength, get_average_color(icon,active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu), skip_screen_check = TRUE)
+			var/target_color = get_average_color(icon,active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+			set_light(screen_light_range, screen_light_strength, target_color, skip_screen_check = TRUE)
 			if(active_program.program_key_state)
 				overlays.Add(active_program.program_key_state)
 		else
@@ -124,24 +122,27 @@
 		set_light(0, skip_screen_check = TRUE)
 
 //skip_screen_check is used when set_light is called from update_icon
-/obj/item/modular_computer/set_light(var/range, var/brightness, var/color, var/skip_screen_check = FALSE)
+/obj/item/modular_computer/set_light(range, brightness, color, skip_screen_check = FALSE)
 	if (enabled && led && led.enabled)
 		//We need to buff non handheld devices cause othervise their screen light might be brighter
 		brightness = (hardware_flag & (PROGRAM_PDA | PROGRAM_TABLET)) ? led.brightness_power : (led.brightness_power * 1.4)
 		range = (hardware_flag & (PROGRAM_PDA | PROGRAM_TABLET)) ? led.brightness_range : (led.brightness_range * 1.2)
-		..(range,brightness,led.brightness_color)
+		..(range, brightness, led.brightness_color)
 	else if (!skip_screen_check)
 		if (screen_on)
 			if(bsod)
-				..(screen_light_range, screen_light_strength, get_average_color(icon,"bsod"))
+				color = get_average_color(icon, "bsod")
+				..(screen_light_range, screen_light_strength, color)
 				return
 			if(!enabled)
 				..(0)
 				return
 			if(active_program)
-				..(screen_light_range, screen_light_strength, get_average_color(icon,active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu))
+				color = get_average_color(icon, active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+				..(screen_light_range, screen_light_strength, color)
 			else
-				..(screen_light_range, screen_light_strength, get_average_color(icon,icon_state_menu))
+				color = get_average_color(icon, icon_state_menu)
+				..(screen_light_range, screen_light_strength, color)
 	else
 		..(range, brightness, color)
 
@@ -154,27 +155,28 @@
 	var/issynth = issilicon(user) // Robots and AIs get different activation messages.
 	if(damage > broken_damage)
 		if(issynth)
-			to_chat(user, "You send an activation signal to \the [src], but it responds with an error code. It must be damaged.")
+			to_chat(user, SPAN_WARNING("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
 		else
-			to_chat(user, "You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again.")
+			to_chat(user, SPAN_WARNING("You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again."))
 		return
 	if(processor_unit && try_use_power(0)) // Battery-run and charged or non-battery but powered by APC.
 		if(issynth)
-			to_chat(user, "You send an activation signal to \the [src], turning it on")
+			to_chat(user, SPAN_NOTICE("You send an activation signal to \the [src], turning it on"))
 		else
-			to_chat(user, "You press the power button and start up \the [src]")
+			to_chat(user, SPAN_NOTICE("You press the power button and start up \the [src]."))
 		enable_computer(user)
 
 	else // Unpowered
 		if(issynth)
-			to_chat(user, "You send an activation signal to \the [src] but it does not respond")
+			to_chat(user, SPAN_WARNING("You send an activation signal to \the [src] but it does not respond."))
 		else
-			to_chat(user, "You press the power button but \the [src] does not respond")
+			to_chat(user, SPAN_WARNING("You press the power button but \the [src] does not respond."))
 
 // Relays kill program request to currently active program. Use this to quit current program.
-/obj/item/modular_computer/proc/kill_program(var/forced = FALSE)
+/obj/item/modular_computer/proc/kill_program(forced = FALSE)
 	if(active_program)
 		active_program.kill_program(forced)
+		all_threads.Remove(active_program)
 		active_program = null
 	var/mob/user = usr
 	if(user && istype(user))
@@ -193,12 +195,14 @@
 		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(var/loud = TRUE)
-	kill_program(1)
+/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	QDEL_NULL_LIST(terminals)
-	for(var/datum/computer_file/program/P in idle_threads)
-		P.kill_program(1)
-		idle_threads.Remove(P)
+
+	kill_program(forced=TRUE)
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
+		PRG.kill_program(forced=TRUE)
+		all_threads.Remove(PRG)
 
 	//Turn on all non-disabled hardware
 	for (var/obj/item/weapon/computer_hardware/H in src)
@@ -230,7 +234,6 @@
 	if(!active_program || !processor_unit)
 		return
 
-	idle_threads.Add(active_program)
 	active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 	SSnano.close_uis(active_program.NM ? active_program.NM : active_program)
 	active_program = null
@@ -245,26 +248,25 @@
 	if(hard_drive)
 		P = hard_drive.find_file_by_name(prog)
 
-	if(!P || !istype(P)) // Program not found or it's not executable program.
-		to_chat(user, "<span class='danger'>\The [src]'s screen shows \"I/O ERROR - Unable to run [prog]\" warning.</span>")
+	if(!istype(P)) // Program not found or it's not executable program.
+		to_chat(user, SPAN_WARNING("I/O ERROR - Unable to run [prog]"))
 		return
 
 	P.computer = src
 	if(!P.is_supported_by_hardware(hardware_flag, 1, user))
 		return
-	if(P in idle_threads)
+	if(P in all_threads)
 		P.program_state = PROGRAM_STATE_ACTIVE
 		active_program = P
-		idle_threads.Remove(P)
 		update_icon()
 		return
 
-	if(idle_threads.len >= processor_unit.max_idle_programs+1)
-		to_chat(user, "<span class='notice'>\The [src] displays a \"Maximal CPU load reached. Unable to run another program.\" error</span>")
+	if(all_threads.len >= processor_unit.max_programs+1)
+		to_chat(user, SPAN_WARNING("Maximal CPU load reached. Unable to run another program."))
 		return
 
 	if(P.requires_ntnet && !get_ntnet_status(P.requires_ntnet_feature)) // The program requires NTNet connection, but we are not connected to NTNet.
-		to_chat(user, "<span class='danger'>\The [src]'s screen shows \"NETWORK ERROR - Unable to connect to NTNet. Please retry. If problem persists contact your system administrator.\" warning.</span>")
+		to_chat(user, SPAN_WARNING("NETWORK ERROR - Unable to connect to network. Please retry. If problem persists, contact your system administrator."))
 		return
 
 	if(active_program)
@@ -272,6 +274,7 @@
 
 	if(P.run_program(user))
 		active_program = P
+		all_threads.Add(P)
 		update_icon()
 	return TRUE
 
@@ -304,12 +307,13 @@
 		last_world_time = stationtime2text()
 		ui_update_needed = TRUE
 
-	if(idle_threads.len)
+	if(all_threads.len)
 		var/list/current_header_icons = list()
-		for(var/datum/computer_file/program/P in idle_threads)
-			if(!P.ui_header)
+		for(var/p in all_threads)
+			var/datum/computer_file/program/PRG = p
+			if(!PRG.ui_header)
 				continue
-			current_header_icons[P.type] = P.ui_header
+			current_header_icons[PRG.type] = PRG.ui_header
 		if(!last_header_icons)
 			last_header_icons = current_header_icons
 

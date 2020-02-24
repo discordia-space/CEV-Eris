@@ -24,7 +24,7 @@
 	var/download_paused = FALSE
 	usage_flags = PROGRAM_ALL
 
-/datum/computer_file/program/downloader/kill_program()
+/datum/computer_file/program/downloader/kill_program(forced = FALSE)
 	..()
 	downloaded_file = null
 	download_completion = 0

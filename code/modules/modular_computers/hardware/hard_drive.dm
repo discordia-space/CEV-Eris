@@ -134,6 +134,11 @@
 		return FALSE
 
 	if(F in stored_files)
+		// If removed file is a program that's currently running, kill it
+		if(istype(F, /datum/computer_file/program) && holder2 && (F in holder2.all_threads))
+			var/datum/computer_file/program/PRG = F
+			PRG.event_file_removed()
+
 		stored_files -= F
 		recalculate_size()
 		return TRUE

@@ -23,6 +23,9 @@
 		return // No HDD, No HDD files list or no stored files. Something is very broken.
 
 	var/datum/computer_file/data/autorun = hard_drive.find_file_by_name("autorun")
+	var/autorun_name = ""
+	if(istype(autorun))
+		autorun_name = autorun.stored_data
 
 	var/list/data = get_header_data()
 
@@ -32,9 +35,8 @@
 		program["name"] = P.filename
 		program["desc"] = P.filedesc
 		program["icon"] = P.program_menu_icon
-		program["autorun"] = (istype(autorun) && (autorun.stored_data == P.filename)) ? 1 : 0
-		if(P in idle_threads)
-			program["running"] = 1
+		program["autorun"] = (autorun_name == P.filename)
+		program["running"] = (P in all_threads)
 		programs.Add(list(program))
 
 	data["programs"] = programs
@@ -163,15 +165,12 @@
 		data["gps_data"] = gps_sensor.get_position_text()
 
 	var/list/program_headers = list()
-	for(var/datum/computer_file/program/P in idle_threads)
-		if(!P.ui_header)
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
+		if(!PRG.ui_header)
 			continue
 		program_headers.Add(list(list(
-			"icon" = P.ui_header
-		)))
-	if(active_program && active_program.ui_header)
-		program_headers.Add(list(list(
-			"icon" = active_program.ui_header
+			"icon" = PRG.ui_header
 		)))
 	data["PC_programheaders"] = program_headers
 

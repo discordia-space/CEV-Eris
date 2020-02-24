@@ -26,13 +26,13 @@
 			target = null
 			error = "Connection to destination relay lost."
 
-/datum/computer_file/program/ntnet_dos/kill_program(var/forced)
+/datum/computer_file/program/ntnet_dos/kill_program(forced = FALSE)
 	if(target)
 		target.dos_sources.Remove(src)
 		target = null
 	executed = 0
 
-	..(forced)
+	..()
 
 /datum/nano_module/program/computer_dos
 	name = "DoS Traffic Generator"

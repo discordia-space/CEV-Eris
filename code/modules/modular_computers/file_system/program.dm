@@ -170,13 +170,11 @@
 	return 0
 
 // Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.
-/datum/computer_file/program/proc/kill_program(var/forced = 0)
+/datum/computer_file/program/proc/kill_program(forced = FALSE)
 	program_state = PROGRAM_STATE_KILLED
 	if(network_destination)
 		generate_network_log("Connection to [network_destination] closed.")
-	if(NM)
-		qdel(NM)
-		NM = null
+	QDEL_NULL(NM)
 	return 1
 
 // Checks a skill of a given mob, if mob can have one.
