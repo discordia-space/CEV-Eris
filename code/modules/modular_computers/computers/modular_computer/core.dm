@@ -223,12 +223,15 @@
 			H.enabled()
 
 	// Autorun feature
-	var/datum/computer_file/data/autorun = hard_drive ? hard_drive.find_file_by_name("autorun") : null
-	if(istype(autorun))
-		run_program(autorun.stored_data)
+	autorun_program(hard_drive)
 
 	if(user)
 		ui_interact(user)
+
+/obj/item/modular_computer/proc/autorun_program(obj/item/weapon/computer_hardware/hard_drive/disk)
+	var/datum/computer_file/data/autorun = disk?.find_file_by_name("AUTORUN")
+	if(istype(autorun))
+		run_program(autorun.stored_data, disk)
 
 /obj/item/modular_computer/proc/minimize_program(mob/user)
 	if(!active_program || !processor_unit)
@@ -241,15 +244,17 @@
 	if(istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
 
-
-/obj/item/modular_computer/proc/run_program(prog)
+/obj/item/modular_computer/proc/run_program(prog_name, obj/item/weapon/computer_hardware/hard_drive/disk)
 	var/datum/computer_file/program/P = null
 	var/mob/user = usr
-	if(hard_drive)
-		P = hard_drive.find_file_by_name(prog)
+
+	if(disk)
+		P = disk.find_file_by_name(prog_name)
+	else
+		P = getFileByName(prog_name)
 
 	if(!istype(P)) // Program not found or it's not executable program.
-		to_chat(user, SPAN_WARNING("I/O ERROR - Unable to run [prog]"))
+		to_chat(user, SPAN_WARNING("I/O ERROR - Unable to run [prog_name]"))
 		return
 
 	P.computer = src
@@ -338,14 +343,7 @@
 		return ..()
 
 /obj/item/modular_computer/proc/set_autorun(program)
-	if(!hard_drive)
-		return
-	var/datum/computer_file/data/autorun = hard_drive.find_file_by_name("autorun")
-	if(!istype(autorun))
-		autorun = new/datum/computer_file/data()
-		autorun.filename = "autorun"
-		autorun.stored_data = "[program]"
-		hard_drive.store_file(autorun)
+	hard_drive?.set_autorun(program)
 
 /obj/item/modular_computer/GetIdCard()
 	if(card_slot && istype(card_slot.stored_card))
@@ -369,20 +367,26 @@
 	LAZYADD(terminals, new /datum/terminal/(user, src))
 
 
-/obj/item/modular_computer/proc/getProgramByType(var/type)
-	if(!hard_drive || !hard_drive.check_functionality())
-		return null
-	var/datum/computer_file/F = locate(type) in hard_drive.stored_files
-	if(!F || !istype(F, type))
-		return null
+/obj/item/modular_computer/proc/getProgramByType(type, include_portable=TRUE)
+	var/datum/computer_file/F = null
+
+	if(hard_drive?.check_functionality())
+		F = locate(type) in hard_drive.stored_files
+
+	if(!F && include_portable && portable_drive?.check_functionality())
+		F = locate(type) in portable_drive.stored_files
+
 	return F
 
-/obj/item/modular_computer/proc/getFileByName(var/name)
-	if(!hard_drive || !hard_drive.check_functionality())
-		return null
-	var/datum/computer_file/F = hard_drive.find_file_by_name(name)
-	if(!F || !istype(F))
-		return null
+/obj/item/modular_computer/proc/getFileByName(name, include_portable=TRUE)
+	var/datum/computer_file/F = null
+
+	if(hard_drive?.check_functionality())
+		F = hard_drive.find_file_by_name(name)
+
+	if(!F && include_portable && portable_drive?.check_functionality())
+		F = portable_drive.find_file_by_name(name)
+
 	return F
 
 // accepts either name or type

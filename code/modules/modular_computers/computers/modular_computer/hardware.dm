@@ -19,6 +19,7 @@
 			return
 		found = TRUE
 		portable_drive = H
+
 	else if(istype(H, /obj/item/weapon/computer_hardware/led))
 		if(led)
 			to_chat(user, SPAN_WARNING("This computer's LED slot is already occupied by \the [led]."))
@@ -95,6 +96,8 @@
 			CH.holder2 = src
 			if(CH.enabled)
 				CH.enabled()
+			if(istype(CH, /obj/item/weapon/computer_hardware/hard_drive) && enabled)
+				autorun_program(portable_drive) // Autorun malware: now in SS13!
 		update_verbs()
 
 // Uninstalls component.
@@ -107,6 +110,15 @@
 
 	if(istype(H, /obj/item/weapon/computer_hardware))
 		to_remove = H
+
+		// Close all running apps before removing the disk
+		if(istype(H, /obj/item/weapon/computer_hardware/hard_drive))
+			var/obj/item/weapon/computer_hardware/hard_drive/disk = H
+			for(var/p in all_threads)
+				var/datum/computer_file/program/PRG = p
+				if((PRG in disk.stored_files))
+					PRG.event_disk_removed()
+
 		critical = to_remove.critical && to_remove.enabled
 
 		to_remove.holder2 = null
@@ -142,7 +154,7 @@
 	to_chat(user, SPAN_NOTICE("You remove \the [H] from \the [src]."))
 	H.forceMove(drop_location())
 
-	if(critical && enabled)
+	if(critical)
 		to_chat(user, SPAN_DANGER("\The [src]'s screen freezes for a split second and flickers to black."))
 		shutdown_computer()
 	update_verbs()
