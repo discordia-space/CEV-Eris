@@ -675,7 +675,7 @@
 	preloaded_reagents = list("protein" = 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/sausage/fuhrers_sausage
-	name = "\improper Fuhrers Sausage"
+	name = "\improper franken fuhrer"
 	desc = "A piece of mixed, long meat."
 	icon_state = "fuhrersausage"
 	filling_color = "#DB0000"
@@ -1205,6 +1205,17 @@
 	center_of_mass = list("x"=15, "y"=9)
 	nutriment_desc = list("cheese" = 5, "chips" = 2)
 	nutriment_amt = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/MRE
+	name = "MRE"
+	icon_state = "MRE"
+	desc = "Meal Ready to Eat, contains enough to keep a soldier feed for a day"
+	trash = /obj/item/trash/mret
+	filling_color = "#FFA305"
+	bitesize = 6
+	center_of_mass = list("x"=15, "y"=9)
+	nutriment_desc = list("cheese" = 3, "crackers" = 4, "pizza" = 1)
+	nutriment_amt = 10
 
 /obj/item/weapon/reagent_containers/food/snacks/syndicake
 	name = "Syndi-Cakes"
