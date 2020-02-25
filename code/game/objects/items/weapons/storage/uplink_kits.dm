@@ -1,5 +1,5 @@
 /obj/item/weapon/storage/box/syndicate/populate_contents()
-	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "lordsingulo" = 1, "smoothoperator" = 1)))
+	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, /*"lordsingulo" = 1,*/ "smoothoperator" = 1)))
 		if("bloodyspai")
 			new /obj/item/clothing/under/chameleon(src)
 			new /obj/item/clothing/mask/gas/voice(src)
@@ -74,6 +74,7 @@
 	desc = "A sleek, sturdy box. This one is using state of the art folding to hold more inside!"
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
+	illustration = "writing_of_doom"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
