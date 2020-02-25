@@ -1196,6 +1196,17 @@
 	nutriment_desc = list("cheese" = 5, "chips" = 2)
 	nutriment_amt = 4
 
+/obj/item/weapon/reagent_containers/food/snacks/mre
+	name = "Meal Ready to Eat"
+	icon_state = "mre"
+	desc = "Three meals to to keep a soldier feed for a day"
+	trash = /obj/item/trash/mret
+	filling_color = "#FFA305"
+	bitesize = 4
+	center_of_mass = list("x"=15, "y"=9)
+	nutriment_desc = list("cheese" = 3, "crackers" = 3)
+	nutriment_amt = 12
+
 /obj/item/weapon/reagent_containers/food/snacks/syndicake
 	name = "Syndi-Cakes"
 	icon_state = "syndi_cakes"
