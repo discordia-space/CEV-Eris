@@ -11,7 +11,6 @@
 	worksound = WORKSOUND_HARD_SLASH
 	slot_flags = SLOT_EARS
 	throw_speed = WEAPON_FORCE_WEAK
-	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -34,7 +33,7 @@
 	force = WEAPON_FORCE_DANGEROUS
 	armor_penetration = ARMOR_PEN_MODERATE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
-	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40)
+	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40, QUALITY_CAUTERIZING = 20)
 	degradation = 0.11
 	use_power_cost = 0.12
 	suitable_cell = /obj/item/weapon/cell/small
@@ -59,5 +58,6 @@
 	force = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 10)
+	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 5)
 	degradation = 4 //Gets worse with use
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game

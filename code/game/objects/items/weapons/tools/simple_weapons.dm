@@ -9,12 +9,11 @@
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_WEAK
-	throw_speed = 3
-	throw_range = 5
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
+	max_upgrades = 1 //it's not even a tool
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
@@ -28,21 +27,21 @@
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_SMALL
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	armor_penetration = ARMOR_PEN_SHALLOW
-	origin_tech = "materials=2;combat=1"
+	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	tool_qualities = list(QUALITY_CUTTING = 20)
 
-/obj/item/weapon/tool/fireaxe  // DEM AXES MAN, marker -Agouri
+/obj/item/weapon/tool/fireaxe
+	name = "fire axe"
+	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "fireaxe0"
 	wielded_icon = "fireaxe1"
-	name = "fire axe"
-	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	armor_penetration = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
@@ -71,6 +70,7 @@
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
+	max_upgrades = 2
 	tool_qualities = list(QUALITY_SHOVELING = 10)
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
@@ -81,17 +81,18 @@
 
 /obj/item/weapon/tool/knife
 	name = "kitchen knife"
+	desc = "A general purpose Chef's Knife made by Asters Merchant Guild. Guaranteed to stay sharp for years to come."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags = CONDUCT
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_WEAK
 	armor_penetration = ARMOR_PEN_SHALLOW
+	max_upgrades = 2
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -128,11 +129,12 @@
 /obj/item/weapon/tool/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "butch"
-	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
+	desc = "A huge thing used for chopping and chopping up meat. This includes roaches and roach-by-products."
 	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_NORMAL
 	armor_penetration = ARMOR_PEN_MODERATE
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 15)
 
 /obj/item/weapon/tool/knife/neotritual
@@ -143,6 +145,7 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 	force = WEAPON_FORCE_PAINFUL
+	max_upgrades = 3
 
 /obj/item/weapon/tool/knife/tacknife
 	name = "tactical knife"
@@ -153,14 +156,16 @@
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	force = WEAPON_FORCE_PAINFUL
 	armor_penetration = ARMOR_PEN_MODERATE
+	max_upgrades = 3
 
 /obj/item/weapon/tool/scythe
-	icon_state = "scythe0"
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "scythe0"
 	matter = list(MATERIAL_PLASTEEL = 7, MATERIAL_PLASTIC = 3)
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
@@ -177,11 +182,11 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "claymore"
 	item_state = "claymore"
-	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 3)
-	sharp = 1
-	edge = 1
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
+	sharp = TRUE
+	edge = TRUE
 	slot_flags = SLOT_BELT
-	armor_penetration = ARMOR_PEN_EXTREME
+	armor_penetration = ARMOR_PEN_DEEP
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_BRUTAL
 	throwforce = WEAPON_FORCE_NORMAL
@@ -190,9 +195,12 @@
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
-/obj/item/weapon/tool/sword/katana
+/obj/item/weapon/tool/sword/katana //slightly more penetration, slightly less damage
 	name = "katana"
 	desc = "Woefully underpowered in D20. This one looks pretty sharp."
 	icon_state = "katana"
 	item_state = "katana"
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	slot_flags = SLOT_BELT | SLOT_BACK
+	armor_penetration = ARMOR_PEN_EXTREME
+	force = WEAPON_FORCE_ROBUST
