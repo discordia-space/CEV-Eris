@@ -16,7 +16,7 @@
 
 /obj/item/weapon/tool/saw/improvised //tier 1
 	name = "choppa"
-	desc = "A wicked serrated blade made of whatever nasty sharp things you could find. It would make a pretty decent weapon."
+	desc = "A wicked serrated blade made of whatever nasty sharp things you could find. It would make a pretty decent weapon, given there are more space for some tool mods too."
 	icon_state = "impro_saw"
 	force = WEAPON_FORCE_PAINFUL //doubles as makeshift melee weapon, thus must have more damage than tier 2 saw
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)

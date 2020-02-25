@@ -27,7 +27,7 @@
 
 /obj/item/weapon/tool/scalpel/laser
 	name = "laser scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. Can be used as cautery to some extent as well."
 	icon_state = "scalpel_t5"
 	damtype = "fire"
 	force = WEAPON_FORCE_DANGEROUS
@@ -48,7 +48,7 @@
 //A makeshift knife, for doing all manner of cutting and stabbing tasks in a half-assed manner
 /obj/item/weapon/tool/shiv
 	name = "shiv"
-	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle."
+	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle. Could become a decent tool or weapon with right tool mods."
 	icon_state = "impro_shiv"
 	worksound = WORKSOUND_HARD_SLASH
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")

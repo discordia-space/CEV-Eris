@@ -54,7 +54,7 @@
 
 /obj/item/weapon/tool/weldingtool/improvised
 	name = "jury-rigged torch"
-	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky."
+	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
 	icon_state = "ghettowelder"
 	item_state = "ghettowelder"
 	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8

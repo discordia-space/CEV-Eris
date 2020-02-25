@@ -17,7 +17,7 @@
 
 /obj/item/weapon/tool/shovel/improvised
 	name = "junk shovel"
-	desc = "A large but fragile tool for moving dirt and rock."
+	desc = "A large but fragile tool for moving dirt and rock, made by hand. Has more then enough space for tool mods to make it better."
 	icon_state = "impro_shovel"
 	tool_qualities = list(QUALITY_SHOVELING = 25, QUALITY_DIGGING = 25, QUALITY_EXCAVATION = 10)
 	degradation = 1.5

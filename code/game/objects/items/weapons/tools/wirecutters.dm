@@ -15,7 +15,7 @@
 //Better and more flexible than most improvised tools, but more bulky and annoying to make
 /obj/item/weapon/tool/wirecutters/improvised
 	name = "wiremanglers"
-	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things."
+	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things. Could serve you well if you stuff it with enough tool mods."
 	icon_state = "impro_cutter"
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
