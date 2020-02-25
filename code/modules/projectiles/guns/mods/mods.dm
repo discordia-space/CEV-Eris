@@ -108,4 +108,19 @@
 
 /obj/item/weapon/gun_upgrade/mechanism
 
+/obj/item/weapon/gun_upgrade/mechanism/overshooter
+	name = "Frozen Star \"Overshooter\" internal magazine kit"
+	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
+	icon_state = "Overshooter"
+
+/obj/item/weapon/gun_upgrade/mechanism/overshooter/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_MAGUP = 3
+		)
+	I.req_gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
+	I.gun_loc_tag = GUN_MECHANISM
+
+
 /obj/item/weapon/gun_upgrade/underbarrel

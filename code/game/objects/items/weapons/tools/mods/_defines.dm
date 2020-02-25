@@ -31,6 +31,7 @@
 
 //Weapon upgrade defines
 
+//Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
 #define GUN_UPGRADE_PEN_MULT "penetration_mult"
 #define GUN_UPGRADE_FIRE_DELAY_MULT "fire_delay_mult"
@@ -38,8 +39,13 @@
 #define GUN_UPGRADE_RECOIL "recoil_mult"
 #define GUN_UPGRADE_MUZZLEFLASH "muzzleflash_mult"
 #define GUN_UPGRADE_STEPDELAY_MULT "stepdelay_mult"
+#define GUN_UPGRADE_CHARGECOST "chargecost_mult"
+#define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
+#define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
 
+//Int additive
 #define GUN_UPGRADE_DAMAGEMOD_PLUS "damage_plus"
+#define GUN_UPGRADE_MAGUP "magazine_addition"
 
 #define GUN_UPGRADE_DAMAGE_BRUTE "brute_damage"
 #define GUN_UPGRADE_DAMAGE_BURN "burn_damage"
@@ -48,15 +54,17 @@
 #define GUN_UPGRADE_DAMAGE_CLONE "clone_damage"
 #define GUN_UPGRADE_DAMAGE_HALLOSS "hallucination_damage"
 
+#define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 
+
+
+//boolean
 #define GUN_UPGRADE_SILENCER "silencable"
 #define GUN_UPGRADE_FORCESAFETY "safety force"
 
-#define GUN_UPGRADE_CHARGECOST "chargecost_mult"
-#define GUN_UPGRADE_OVERCHARGE_MAX "overcharge_max_mult"
-#define GUN_UPGRADE_OVERCHARGE_RATE "overcharge_rate_mult"
 
-#define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
+
+
 
 //Location Tag defines
 
@@ -65,10 +73,11 @@
 #define GUN_TRIGGER "trigger slot"
 #define GUN_MUZZLE "muzzle slot"
 #define GUN_SCOPE "scope slot"
-#define GUN_MECHANICAL "misc slot"
+#define GUN_MECHANISM "misc slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"
 #define GUN_PROJECTILE "projectile firing"
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
+#define GUN_INTERNAL_MAG "internal mag"

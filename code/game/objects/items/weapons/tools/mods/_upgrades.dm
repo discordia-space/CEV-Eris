@@ -304,6 +304,11 @@
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			E.overcharge_max *= weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]
 
+	if(istype(G, /obj/item/weapon/gun/projectile))
+		var/obj/item/weapon/gun/projectile/P = G
+		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
+			P.max_shells += weapon_upgrades[GUN_UPGRADE_MAGUP]
+
 
 /datum/component/item_upgrade/proc/on_examine(var/mob/user)
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
@@ -399,11 +404,18 @@
 				to_chat(user, SPAN_NOTICE("Decreases kickback by [amount*100]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH])
-			var/amount = weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
+			var/amount = weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH]
 			if(amount > 1)
 				to_chat(user, SPAN_WARNING("Increases muzzle flash by [amount*100]%"))
 			else
 				to_chat(user, SPAN_NOTICE("Decreases muzzle flash by [amount*100]%"))
+
+		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
+			var/amount = weapon_upgrades[GUN_UPGRADE_MAGUP]
+			if(amount > 1)
+				to_chat(user, SPAN_NOTICE("Increases internal magazine size by [amount]"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases internal magazine size by [amount]"))
 
 		if(weapon_upgrades[GUN_UPGRADE_SILENCER] == 1)
 			to_chat(user, SPAN_NOTICE("Silences the weapon."))

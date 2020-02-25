@@ -340,3 +340,7 @@
 	data["max_shells"] = get_max_ammo()
 
 	return data
+
+/obj/item/weapon/gun/projectile/refresh_upgrades()
+	max_shells = initial(max_shells)
+	..()
