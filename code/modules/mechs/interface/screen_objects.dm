@@ -50,26 +50,21 @@
 		myhardpoint = hardpoint
 		update_icon()
 
-		if(!(..()))
-			return
+		if(!(..())) return
 
 		var/modifiers = params2list(params)
 		if(modifiers["ctrl"])
 			if(owner.hardpoints_locked)
 				to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
 				return
-			if(owner.remove_system(hardpoint_tag))
-				to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
-			else
-				to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
+			if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
+			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
 			return
 
 		if(owner.selected_hardpoint == hardpoint_tag)
 			icon_state = "hardpoint"
 			owner.clear_selected_hardpoint()
-		else
-			if(owner.set_hardpoint(hardpoint_tag))
-				icon_state = "hardpoint_selected"
+		else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
 
 /obj/screen/movable/exosuit/hardpoints_show
 	var/hardpoint_tag

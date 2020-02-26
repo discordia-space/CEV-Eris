@@ -1,5 +1,9 @@
 #define BAR_CAP 12
 
+/mob/living/exosuit/Login()
+	. = ..()
+	update_hud()
+
 /mob/living/exosuit/check_HUD()
 	. = ..()
 	if(LAZYLEN(pilots)) for(var/mob/living/pilot in pilots) if(pilot.client) update_mech_hud_4(pilot)
@@ -11,7 +15,7 @@
 
 /mob/living/exosuit/create_HUDneed()
 	. = ..()
-	var/datum/hud/HUDdatum = global.HUDdatums[defaultHUD]
+	var/datum/hud/exosuits/HUDdatum = global.HUDdatums[defaultHUD]
 
 	for(var/HUDname in HUDdatum.HUDneed)
 		if (!(HUDdatum.HUDneed.Find(HUDname)))
@@ -26,6 +30,12 @@
 			HUDneed[HUD.name] += HUD
 			if(HUD.process_flag)
 				HUDprocess += HUD
+
+/mob/living/exosuit/update_hud()
+	. = ..()
+	for(var/mob/M in pilots)
+		M.update_hud()
+	check_HUD()
 /*
 	var/i = 1
 	var/list/additional_hud_elements = list(
@@ -72,9 +82,10 @@
 	H.update_icon()
 
 /mob/living/exosuit/proc/update_mech_hud_4(var/mob/living/M)
-	if(M in pilots)		for(var/i in HUDneed) if(!HUDneed[i] in M.HUDneed) M.HUDneed[i] = HUDneed[i]
-	else if(M != src)	for(var/i in HUDneed) LAZYREMOVE(M.HUDneed, i)
-	M.check_HUD()
+	if(M.client)
+		if(M in pilots)		for(var/i in HUDneed) if(!HUDneed[i] in M.client.screen) M.client.screen += HUDneed[i]
+		else if(M != src)	for(var/i in HUDneed) LAZYREMOVE(M.client.screen, i)
+		M.check_HUD()
 
 #include "screen_objects.dm"
 #include "datum_HUD.dm"
