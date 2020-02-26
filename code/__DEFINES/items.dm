@@ -1,3 +1,5 @@
+//Item upgrade defines
+
 #define REQ_FUEL 1
 #define REQ_CELL 2
 #define REQ_FUEL_OR_CELL 4

@@ -106,6 +106,9 @@
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
+		if(damage_type == IRRADIATE)
+			irradiate += damage_type[IRRADIATE]
+			continue
 		to_chat(world, "pre mod:[damage_types[damage_type]]")
 		damage_types[damage_type] += newdamages[damage_type]
 		to_chat(world, "post mod:[damage_types[damage_type]]")

@@ -74,6 +74,22 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
+//For energy weapons, increases the damage output, but also the charge cost
+/obj/item/weapon/gun_upgrade/barrel/excruciator
+	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
+	desc = "It's time for us to shine."
+	icon_state = "Excruciator"
+
+/obj/item/weapon/gun_upgrade/barrel/excruciator/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DAMAGE_MULT = 1.3,
+		GUN_UPGRADE_CHARGECOST = 2
+		)
+	I.gun_loc_tag = GUN_BARREL
+	I.req_gun_tags = list(GUN_ENERGY, GUN_NOFIREMODES)
+
 /obj/item/weapon/gun_upgrade/trigger
 
 //Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay
@@ -108,6 +124,7 @@
 
 /obj/item/weapon/gun_upgrade/mechanism
 
+//Adds +3 to the internal magazine of a weapon
 /obj/item/weapon/gun_upgrade/mechanism/overshooter
 	name = "Frozen Star \"Overshooter\" internal magazine kit"
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
@@ -122,5 +139,43 @@
 	I.req_gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
 	I.gun_loc_tag = GUN_MECHANISM
 
+/obj/item/weapon/gun_upgrade/mechanism/glass_widow
+	name = "Syndicate \"Glass Widow\" infuser"
+	desc = "An old technology from the Corporate Wars, used to make formerly useless civilian-grade weaponry into something much more lethal."
+	icon_state = "Glass_Widow"
+
+/obj/item/weapon/gun_upgrade/mechanism/glass_widow/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_IRRADIATE = 5
+		)
+	I.req_gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
+	I.gun_loc_tag = GUN_MECHANISM
+
+/obj/item/weapon/gun_upgrade/mechanism/weintraub
+	name = "Frozen Star \"Weintraub\" full auto kit"
+	desc = "A fully automatic receiver for the .25 \"Sol\"."
+	icon_state = "Weintraub"
+
+/obj/item/weapon/gun_upgrade/mechanism/weintraub/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_FULLAUTO = TRUE,
+		GUN_UPGRADE_RECOIL = 1.2
+	)
+	I.req_gun_tags = list(GUN_SOL)
+	I.gun_loc_tag = GUN_MECHANISM
+
 
 /obj/item/weapon/gun_upgrade/underbarrel
+
+/obj/item/weapon/storage/box/gun_upgrades
+	name = "Big box of gun fun"
+	desc = "If seen, please report to your nearest \[REDACTED\]"
+
+/obj/item/weapon/storage/box/gun_upgrades/populate_contents()
+	for(var/i in subtypesof(/obj/item/weapon/gun_upgrade))
+		new i(src)
+	new /obj/item/weapon/bikehorn(src)

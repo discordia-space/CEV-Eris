@@ -615,6 +615,13 @@
 				"move_delay" = F.settings["move_delay"],
 				))
 		data["firemode_info"] = firemodes_info
+
+	if(item_upgrades.len)
+		data["attachments"] = list()
+		for(var/atom/A in item_upgrades)
+			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+
+
 	return data
 
 /obj/item/weapon/gun/Topic(href, href_list, var/datum/topic_state/state)
@@ -638,6 +645,7 @@
 	restrict_safety = initial(restrict_safety)
 	proj_step_multiplier = initial(proj_step_multiplier)
 	init_offset = initial(init_offset)
+	firesound = initial(firesound)
 	//re-apply any firemodes
 	set_firemode(sel_mode)
 

@@ -104,7 +104,6 @@
 	I.prefix = "ergonomic"
 
 
-
 /obj/item/weapon/tool_upgrade/productivity/ratchet
 	name = "ratcheting mechanism"
 	desc = "A mechanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction"

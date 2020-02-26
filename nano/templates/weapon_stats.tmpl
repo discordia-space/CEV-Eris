@@ -137,3 +137,20 @@
 		</table>
 	</div>
 {{/if}}
+
+<div class="item">
+	<h3>Attachments:</h3>
+	{{if data.attachments}}
+		<div class="statusDisplay" style="overflow: auto;">
+			<table style="width:100%;  overflow-wrap: break-all;">
+				{{for data.attachments}}
+					<tr>
+					<div class="item" style="margin: 0px">
+						<div style ='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
+						{{:value.name}}
+					</div>
+				{{/for}}
+			</table>
+		</div>
+	{{/if}}
+</div>

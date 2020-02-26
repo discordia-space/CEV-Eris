@@ -288,13 +288,14 @@
 		G.proj_damage_adjust[CLONE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS])
 		G.proj_damage_adjust[HALLOSS] += weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION])
+		G.proj_damage_adjust[IRRADIATE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]
+	if(weapon_upgrades[GUN_UPGRADE_HONK])
+		G.fire_sound = 'sound/items/bikehorn.ogg'
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
-		if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == TRUE) //Forcing it always on
-			G.safety = TRUE
-		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == FALSE) //Forcing it always off
-			G.safety = FALSE
+		G.safety = weapon_upgrades[GUN_UPGRADE_FORCESAFETY]
 	if(istype(G, /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/E = G
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
@@ -317,6 +318,7 @@
 		to_chat(user, SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))
 	if (tool_upgrades[UPGRADE_WORKSPEED])
 		to_chat(user, SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
+
 
 	if (tool_upgrades[UPGRADE_DEGRADATION_MULT] < 1)
 		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
@@ -396,6 +398,9 @@
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS])
 			to_chat(user, SPAN_NOTICE("Modifies projectile pseudo damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]] damage points"))
 
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION])
+			to_chat(user, SPAN_NOTICE("Modifies projectile radiation damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]] damage points"))
+
 		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]
 			if(amount > 1)
@@ -452,6 +457,9 @@
 				to_chat(user, SPAN_WARNING("Increases weapon inaccuracy by [amount]°"))
 			else
 				to_chat(user, SPAN_NOTICE("Decreases weapon inaccuracy by [amount]°"))
+
+		if(weapon_upgrades[GUN_UPGRADE_HONK])
+			to_chat(user, SPAN_WARNING("Cheers up the firing sound of the weapon."))
 
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))
