@@ -32,7 +32,7 @@
 	permeability_coefficient = 0.01
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	item_flags = COVER_PREVENT_MANIPULATION
-	slowdown = 0.4
+	slowdown = 0.2
 	armor = list(
 		melee = 0,
 		bullet = 0,

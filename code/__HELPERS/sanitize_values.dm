@@ -1,7 +1,7 @@
 //general stuff
 /proc/sanitize_bool(boolean, default=FALSE)
 	return sanitize_integer(boolean, FALSE, TRUE, default)
-	
+
 /proc/sanitize_integer(number, min=0, max=1, default=0)
 	if(isnum(number))
 		number = round(number)
@@ -33,20 +33,34 @@
 			else		return default
 	return default
 
-/proc/sanitize_hexcolor(color, default="#000000")
-	if(!istext(color)) return default
+/proc/sanitize_hexcolor(color, default="#000000", desired_format=6, include_crunch=TRUE)
+	var/crunch = include_crunch ? "#" : ""
+	if(!istext(color))
+		color = ""
+
+	var/start = 1 + (text2ascii(color, 1) == 35)
 	var/len = length(color)
-	if(len != 7 && len !=4) return default
-	if(text2ascii(color, 1) != 35) return default	//35 is the ascii code for "#"
-	. = "#"
-	for(var/i=2, i<=len, i++)
-		var/ascii = text2ascii(color, i)
-		switch(ascii)
-			if(48 to 57)	. += ascii2text(ascii)		//numbers 0 to 9
-			if(97 to 102)	. += ascii2text(ascii)		//letters a to f
-			if(65 to 70)	. += ascii2text(ascii+32)	//letters A to F - translates to lowercase
-			else			return default
-	return .
+	var/char = ""
+
+	. = ""
+	for(var/i = start, i <= len, i += length(char))
+		char = color[i]
+		switch(text2ascii(char))
+			if(48 to 57)		//numbers 0 to 9
+				. += char
+			if(97 to 102)		//letters a to f
+				. += char
+			if(65 to 70)		//letters A to F
+				. += lowertext(char)
+			else
+				break
+
+	if(length_char(.) != desired_format)
+		if(default)
+			return default
+		return crunch + repeat_string(desired_format, "0")
+
+	return crunch + .
 
 //Valid format codes: YY, YEAR, MM, DD, hh, mm, ss, :, -. " " (space). Invalid format will return default.
 /proc/sanitize_time(time, default, format = "hh:mm")

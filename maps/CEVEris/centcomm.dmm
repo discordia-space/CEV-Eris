@@ -3721,7 +3721,7 @@
 	},
 /area/shuttle/mercenary)
 "kq" = (
-/obj/item/weapon/cigbutt,
+/obj/item/trash/cigbutt,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor7"
 	},
@@ -6274,6 +6274,21 @@
 /obj/map_data/admin,
 /turf/space,
 /area/space)
+"Qq" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/deferred/crate/specialists_sidearm,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
+"Vk" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/deferred/crate/tools,
+/obj/item/weapon/storage/deferred/crate/tools,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 
 (1,1,1) = {"
 aa
@@ -33459,7 +33474,7 @@ gZ
 jD
 jM
 gZ
-jN
+Vk
 iX
 iX
 iX
@@ -33859,9 +33874,9 @@ hl
 gZ
 kN
 lS
+Qq
 jo
 jE
-jN
 hf
 iX
 iX

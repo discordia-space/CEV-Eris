@@ -1,6 +1,34 @@
-/datum/plantgene
+/datum/computer_file/binary/plantgene
+	filetype = "PDNA"
+	size = 10
+
+	var/genesource = ""
+	var/genesource_uid = 0
 	var/genetype    // Label used when applying trait.
 	var/list/values // Values to copy into the target seed datum.
+
+/datum/computer_file/binary/plantgene/clone()
+	var/datum/computer_file/binary/plantgene/F = ..()
+	F.genesource = genesource
+	F.genesource_uid = genesource_uid
+	F.genetype = genetype
+	F.values = deepCopyList(values)
+
+	return F
+
+/datum/computer_file/binary/plantgene/proc/update_name()
+	filename = "PL_GENE_[plant_controller.gene_tag_masks[genetype]]_[genesource_uid]"
+
+/datum/computer_file/binary/plantgene/ui_data()
+	var/list/data = list(
+		"filename" = filename,
+		"source" = genesource,
+		"strain" = genesource_uid,
+		"tag" = genetype,
+		"size" = size,
+		"mask" = plant_controller.gene_tag_masks[genetype]
+	)
+	return data
 
 /datum/seed
 	//Tracking.
@@ -577,7 +605,7 @@
 	return
 
 //Mutates a specific trait/set of traits.
-/datum/seed/proc/apply_gene(var/datum/plantgene/gene)
+/datum/seed/proc/apply_gene(datum/computer_file/binary/plantgene/gene)
 
 	if(!gene || !gene.values || get_trait(TRAIT_IMMUTABLE) > 0) return
 
@@ -632,13 +660,19 @@
 	update_growth_stages()
 
 //Returns a list of the desired trait values.
-/datum/seed/proc/get_gene(var/genetype)
-
-	if(!genetype) return 0
+/datum/seed/proc/get_gene(genetype)
+	if(!genetype)
+		return null
 
 	var/list/traits_to_copy
-	var/datum/plantgene/P = new()
+	var/datum/computer_file/binary/plantgene/P = new()
 	P.genetype = genetype
+	P.genesource_uid = uid
+	P.genesource = "[display_name]"
+	if(!roundstart)
+		P.genesource += " (variety #[uid])"
+	P.update_name()
+
 	P.values = list()
 
 	switch(genetype)
@@ -673,7 +707,7 @@
 
 	for(var/trait in traits_to_copy)
 		P.values["[trait]"] = get_trait(trait)
-	return (P ? P : 0)
+	return P
 
 //Place the plant products at the feet of the user.
 /datum/seed/proc/harvest(var/mob/living/user,var/yield_mod,var/harvest_sample,var/force_amount)

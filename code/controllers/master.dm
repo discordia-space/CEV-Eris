@@ -196,7 +196,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 #else
 	world.sleep_offline = TRUE
 #endif
+
 	world.tick_lag = config.Ticklag
+	// Fallback ITU value - will be overwritten next tick by extools lib if it's present
+	GLOB.internal_tick_usage = world.tick_lag * MAPTICK_FALLBACK_ITU * 0.01
+
 	var/initialized_tod = REALTIMEOFDAY
 	sleep(1)
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10

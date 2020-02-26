@@ -1,3 +1,4 @@
+<!-- Make sure you read the guidelines before conrtibuting! https://wiki.cev-eris.com/Content_GuidelinesEn -->
 
 ## About The Pull Request
 <!-- Why is it needed, what it fixes. Write up links to closing issues there as well, but make it short. -->

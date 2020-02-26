@@ -73,6 +73,7 @@
 #define INIT_OPEN_SPACE -150
 #define INIT_ORDER_CRAFT -175
 #define INIT_ORDER_LATELOAD -180
+#define INIT_ORDER_CHAT	-185
 
 // SS runlevels
 

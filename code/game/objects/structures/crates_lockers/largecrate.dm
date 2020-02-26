@@ -1,7 +1,7 @@
-/obj/structure/largecrate
+/obj/structure/largecrate //TODO: Refactor this into a crate subtype.
 	name = "large crate"
 	desc = "A hefty wooden crate."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/crate.dmi'
 	icon_state = "densecrate"
 	matter = list(MATERIAL_WOOD = 10)
 	density = 1

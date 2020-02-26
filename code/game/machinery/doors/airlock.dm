@@ -611,13 +611,11 @@ There are 9 wires.
 	set category = "Object"
 	set src in view(1)
 
-	if(!isliving(usr))
-		to_chat(usr, SPAN_WARNING("You can't do this."))
+	if(!isliving(usr) || !CanUseTopic(usr))
 		return
+
 	if(wedged_item)
-		if(usr && !wedged_item.use_tool(usr, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_ZERO, list(STAT_MEC, STAT_ROB)))
-			return
-		wedged_item.forceMove(loc)
+		wedged_item.forceMove(drop_location())
 		if(usr)
 			usr.put_in_hands(wedged_item)
 			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))

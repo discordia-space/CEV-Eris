@@ -236,7 +236,8 @@
 	if(istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		insert_disk(user, I)
 
-	if(istype(I, /obj/item/stack))
+	// Some item types are consumed by default
+	if(istype(I, /obj/item/stack) || istype(I, /obj/item/trash) || istype(I, /obj/item/weapon/material/shard))
 		eat(user, I)
 		return
 
@@ -868,13 +869,14 @@
 /obj/effect/flicker_overlay
 	name = ""
 	icon_state = ""
-	mouse_opacity = 0
+	// Acts like a part of the object it's created for when in vis_contents
+	// Inherits everything but the icon_state
+	vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
 /obj/effect/flicker_overlay/New(atom/movable/loc)
 	..()
+	// Just VIS_INHERIT_ICON isn't enough: flicker() needs an actual icon to be set
 	icon = loc.icon
-	layer = loc.layer
-	plane = loc.plane
 	loc.vis_contents += src
 
 /obj/effect/flicker_overlay/Destroy()

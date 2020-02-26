@@ -9,9 +9,9 @@
 	nonmaint_reroll = 100
 	contents_list_base = list(/obj/item/weapon/storage/box/smokes)
 	contents_list_random = list(
-		
+
 		/obj/item/weapon/storage/box/anti_photons = 60,
-		/obj/item/weapon/gun/projectile/silenced = 50)
+		/obj/item/weapon/gun/projectile/mandella = 50)
 
 /datum/stash/ninja/haiku
 	lore = "Swift electric ghost<br>\

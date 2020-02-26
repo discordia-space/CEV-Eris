@@ -26,18 +26,23 @@
 /datum/robot_component/proc/uninstall()
 
 /datum/robot_component/proc/destroy()
-	var/brokenstate = "broken" // Generic icon
-	if (istype(wrapped, /obj/item/robot_parts/robot_component))
-		var/obj/item/robot_parts/robot_component/comp = wrapped
-		brokenstate = comp.icon_state_broken
-	if(wrapped)
-		qdel(wrapped)
-
-
-	wrapped = new/obj/item/broken_device
-	wrapped.icon_state = brokenstate // Module-specific broken icons! Yay!
-
 	// The thing itself isn't there anymore, but some fried remains are.
+	if(wrapped)
+		var/obj/item/trash_item = new /obj/item/trash/broken_robot_part
+
+		trash_item.icon = wrapped.icon
+		trash_item.matter = wrapped.matter.Copy()
+		trash_item.name = "broken [wrapped.name]"
+		trash_item.w_class = wrapped.w_class
+		if(istype(wrapped, /obj/item/robot_parts/robot_component))
+			var/obj/item/robot_parts/robot_component/comp = wrapped
+			trash_item.icon_state = comp.icon_state_broken // Module-specific broken icons! Yay!
+		else
+			trash_item.icon_state = wrapped.icon_state
+
+		qdel(wrapped)
+		wrapped = trash_item
+
 	installed = -1
 	uninstall()
 
@@ -246,10 +251,14 @@
 // Component Objects
 // These objects are visual representation of modules
 
-/obj/item/broken_device
+// Spawned when a robot component breaks
+// Has default name/icon/materials, replaced by the component itself when it breaks
+/obj/item/trash/broken_robot_part
 	name = "broken component"
+	desc = "A robot part, broken beyond repair. Can be recycled in an autolathe."
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "broken"
+	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/robot_parts/robot_component
 	icon = 'icons/obj/robot_component.dmi'
