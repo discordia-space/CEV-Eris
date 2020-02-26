@@ -1016,7 +1016,12 @@
 					/obj/item/ammo_magazine/sllrifle = 10,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
 					/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
-					/obj/item/weapon/storage/box/shotgunammo/blanks = 10)
+					/obj/item/weapon/storage/box/shotgunammo/blanks = 10,
+					/obj/item/clothing/accessory/holster = 5,
+					/obj/item/clothing/accessory/holster/armpit = 5,
+					/obj/item/clothing/accessory/holster/waist = 5,
+					/obj/item/clothing/accessory/holster/hip = 5)
+
 
 	contraband = list(
 					/obj/item/ammo_magazine/slpistol = 20,
