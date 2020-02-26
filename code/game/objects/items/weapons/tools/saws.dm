@@ -27,7 +27,6 @@
 	name = "circular saw"
 	desc = "For heavy duty cutting."
 	icon_state = "saw"
-	w_class = ITEM_SIZE_NORMAL
 	hitsound = WORKSOUND_CIRCULAR_SAW
 	worksound = WORKSOUND_CIRCULAR_SAW
 	force = WEAPON_FORCE_ROBUST
@@ -53,7 +52,6 @@
 	name = "chainsaw"
 	desc = "You can cut trees, people, walls and zombies with it, just watch out for fuel."
 	icon_state = "chainsaw"
-	w_class = ITEM_SIZE_NORMAL
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
 	force = WEAPON_FORCE_BRUTAL //Rip and tear!
@@ -68,7 +66,6 @@
 	name = "TM hypersaw"
 	desc = "This eco-friendly chainsaw will Rip and Tear until it is done."
 	icon_state = "hypersaw"
-	w_class = ITEM_SIZE_NORMAL
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
 	force = WEAPON_FORCE_BRUTAL
