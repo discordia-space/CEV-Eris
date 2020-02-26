@@ -136,7 +136,7 @@ var/global/list/limb_icon_cache = list()
 		else if(!dna)
 			icon = 'icons/mob/human_races/r_human.dmi'
 		else if(BP_IS_ROBOTIC(src))
-			icon = 'icons/mob/human_races/robotic.dmi'
+			icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 		else if(status & ORGAN_MUTATED)
 			icon = species.deform
 		else

@@ -101,7 +101,8 @@
 				/obj/item/clothing/suit/storage/toggle/labcoat/medspec = 3,
 				/obj/item/clothing/suit/storage/toggle/labcoat/science = 3,
 				/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 3,
-				/obj/item/clothing/suit/storage/qm_coat = 2))
+				/obj/item/clothing/suit/storage/qm_coat = 2,
+				/obj/item/clothing/suit/storage/cyberpunksleek = 8))
 
 /obj/random/cloth/suit/low_chance
 	name = "low chance random suit"
@@ -194,6 +195,7 @@
 /obj/random/cloth/helmet/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/head/armor/helmet = 20,
 				/obj/item/clothing/head/armor/helmet/visor = 15,
+				/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg = 10,
 				/obj/item/clothing/head/armor/helmet/dermal = 2,
 				/obj/item/clothing/head/armor/helmet/ironhammer = 2,
 				/obj/item/clothing/head/armor/bulletproof = 10,
@@ -203,7 +205,8 @@
 				/obj/item/clothing/head/armor/altyn = 2,
 				/obj/item/clothing/head/armor/altyn/brown = 2,
 				/obj/item/clothing/head/armor/altyn/black = 2,
-				/obj/item/clothing/head/armor/altyn/maska = 1))
+				/obj/item/clothing/head/armor/altyn/maska = 1,
+				/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle = 18))
 
 /obj/random/cloth/helmet/low_chance
 	name = "low chance random helmet"
@@ -406,21 +409,37 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-
-
-
 /obj/random/cloth/belt
 	name = "random belt"
-	desc = "This is a random belt"
+	desc = "This is a random belt."
 	icon_state = "armor-grey"
 
 /obj/random/cloth/belt/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/storage/belt/medical = 8,
 				/obj/item/weapon/storage/belt/medical/emt = 8,
 				/obj/item/weapon/storage/belt/security = 4,
-				/obj/item/weapon/storage/belt/utility = 8,))
+				/obj/item/weapon/storage/belt/security/neotheology = 2,
+				/obj/item/weapon/storage/belt/utility = 8,
+				/obj/item/weapon/storage/belt/utility/neotheology = 4))
 
 /obj/random/cloth/belt/low_chance
 	name = "low chance random belt"
+	icon_state = "armor-grey-low"
+	spawn_nothing_percentage = 60
+
+/obj/random/cloth/holster
+	name = "random holster"
+	desc = "This is a random holster."
+	icon_state = "armor-grey"
+
+/obj/random/cloth/holster/item_to_spawn()
+	return pickweight(list(/obj/item/clothing/accessory/holster = 1,
+				/obj/item/clothing/accessory/holster/armpit = 1,
+				/obj/item/clothing/accessory/holster/waist = 1,
+				/obj/item/clothing/accessory/holster/hip = 1,))
+
+/obj/random/cloth/holster/low_chance
+	name = "low chance random holster"
+	desc = "This is a random holster."
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60

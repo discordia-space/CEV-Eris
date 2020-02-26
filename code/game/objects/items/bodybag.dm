@@ -14,21 +14,6 @@
 		qdel(src)
 
 
-/obj/item/weapon/storage/box/bodybags
-	name = "body bags"
-	desc = "This box contains a number of body bags."
-	icon_state = "bodybags"
-
-/obj/item/weapon/storage/box/bodybags/populate_contents()
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-
-
 /obj/structure/closet/body_bag
 	name = "body bag"
 	desc = "A plastic bag designed for the storage and transportation of cadavers."

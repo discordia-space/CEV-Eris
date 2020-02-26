@@ -90,7 +90,6 @@
 	/obj/item/rig_module/fabricator/energy_net = 0.2,
 	/obj/item/rig_module/self_destruct = 1,
 
-	/obj/item/rig_module/teleporter = 0.5,
 
 	//Utility
 	/obj/item/rig_module/device/healthscanner = 4,

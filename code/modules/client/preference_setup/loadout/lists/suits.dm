@@ -43,3 +43,8 @@
 	display_name = "poncho, tan"
 	path = /obj/item/clothing/suit/poncho
 	cost = 1
+
+/datum/gear/suit/cyberpunksleek
+	display_name = "sleek modern overcoat"
+	path = /obj/item/clothing/suit/storage/cyberpunksleek
+	cost = 2

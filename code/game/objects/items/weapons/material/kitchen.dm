@@ -74,6 +74,12 @@
 /obj/item/weapon/material/kitchen/utensil/spoon/plastic
 	default_material = MATERIAL_PLASTIC
 
+/obj/item/weapon/material/kitchen/utensil/spoon/mre
+	desc = "A wooden spoon, almost chalky."
+	icon_state = "mre_spoon"
+	applies_material_colour = FALSE
+	default_material = MATERIAL_WOOD
+
 /*
  * Rolling Pins
  */

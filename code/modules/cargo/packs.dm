@@ -143,7 +143,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/fssmall
 	name = "FS Handgun Pack"
 	contains = list(/obj/item/weapon/gun/projectile/colt,
-			/obj/item/weapon/gun/projectile/IH_sidearm,
+			/obj/item/weapon/gun/projectile/paco,
 			/obj/item/weapon/gun/projectile/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw)
 	cost = 3000
@@ -153,8 +153,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/fsrevolver
 	name = "FS Revolver Pack"
-	contains = list(/obj/item/weapon/gun/projectile/revolver/detective,
-					/obj/item/weapon/gun/projectile/revolver/detective,
+	contains = list(/obj/item/weapon/gun/projectile/revolver/havelock,
+					/obj/item/weapon/gun/projectile/revolver/havelock,
 					/obj/item/weapon/gun/projectile/revolver/consul)
 	cost = 3300
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -164,8 +164,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/fsassault
 	name = "FS Assault Pack"
 	contains = list(/obj/item/weapon/gun/projectile/automatic/ak47/fs,
-			/obj/item/weapon/gun/projectile/automatic/idaho,
-			/obj/item/weapon/gun/projectile/automatic/idaho)
+			/obj/item/weapon/gun/projectile/automatic/atreides,
+			/obj/item/weapon/gun/projectile/automatic/atreides)
 	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Assault Pack"
@@ -1339,7 +1339,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
                 /obj/random/gun_energy_cheap,
                 /obj/random/gun_shotgun)
 	name = "Surplus Weaponry"
-	cost = 2000
+	cost = 5000
 	crate_name = "Surplus Weapons Crate"
 	containertype = /obj/structure/closet/crate/secure/weapon
 	group = "Security"
@@ -1374,8 +1374,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Operations"
 
 
+/datum/supply_pack/randomised/holsters
+	num_contained = 4
+	contains = list(/obj/random/cloth/holster,
+					/obj/random/cloth/holster,
+					/obj/random/cloth/holster,
+					/obj/random/cloth/holster)
+	name = "Surplus Unform Holsters"
+	cost = 1000
+	crate_name = "Surplus Uniform Holsters Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Operations"
 
-datum/supply_pack/randomised/voidsuit
+/datum/supply_pack/randomised/voidsuit
 	num_contained = 1
 	contains = list(/obj/random/voidsuit,
 					/obj/random/voidsuit/damaged)
@@ -1385,7 +1396,7 @@ datum/supply_pack/randomised/voidsuit
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-datum/supply_pack/randomised/rig
+/datum/supply_pack/randomised/rig
 	num_contained = 1
 	contains = list(/obj/random/rig,
 					/obj/random/rig/damaged)
@@ -1395,7 +1406,7 @@ datum/supply_pack/randomised/rig
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-datum/supply_pack/randomised/rigmods
+/datum/supply_pack/randomised/rigmods
 	num_contained = 2
 	contains = list(/obj/random/rig_module,
 				/obj/random/rig_module)
