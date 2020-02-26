@@ -39,7 +39,8 @@
 
 /obj/item/modular_computer/pda/moebius/install_default_programs()
 	..()
-	hard_drive.store_file(new /datum/computer_file/program/chem_catalog())
+	hard_drive.store_file(new /datum/computer_file/program/signaller)
+	hard_drive.store_file(new /datum/computer_file/program/chem_catalog)
 
 /obj/item/modular_computer/pda/moebius/install_default_hardware()
 	..()
