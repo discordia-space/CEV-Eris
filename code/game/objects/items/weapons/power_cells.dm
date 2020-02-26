@@ -253,7 +253,7 @@
 	maxcharge = 50
 	// Autorecharge rate is calculated for PDA power consumption: enough to offset it, unless PDA light is on.
 	autorecharging = TRUE
-	autorecharge_rate = 0.0006
+	autorecharge_rate = 0.0007
 	recharge_time = 1
 
 /obj/item/weapon/cell/small/excelsior
