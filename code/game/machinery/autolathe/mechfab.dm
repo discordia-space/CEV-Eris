@@ -65,3 +65,13 @@
 	categories = files.design_categories_mechfab
 	if(!show_category && length(categories))
 		show_category = categories[1]
+
+
+
+// A version with some materials already loaded, to be used on map spawn
+/obj/machinery/autolathe/mechfab/loaded
+	stored_material = list(
+		MATERIAL_STEEL = 120,
+		MATERIAL_PLASTIC = 120,
+		MATERIAL_GLASS = 120,
+		)

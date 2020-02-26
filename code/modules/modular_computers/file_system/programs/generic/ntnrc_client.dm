@@ -184,11 +184,11 @@
 	else
 		ui_header = "ntnrc_idle.gif"
 
-/datum/computer_file/program/chatclient/kill_program(var/forced = 0)
+/datum/computer_file/program/chatclient/kill_program(forced = FALSE)
 	if(channel)
 		channel.remove_client(src)
 		channel = null
-	..(forced)
+	..()
 
 /datum/nano_module/program/computer_chatclient
 	name = "NTNet Relay Chat Client"

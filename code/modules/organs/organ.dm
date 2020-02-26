@@ -126,7 +126,7 @@
 	if(istype(loc, /obj/item/device/mmi))
 		return TRUE
 
-	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/weapon/storage/box/freezer))
+	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/weapon/storage/freezer))
 		return TRUE
 
 	return FALSE

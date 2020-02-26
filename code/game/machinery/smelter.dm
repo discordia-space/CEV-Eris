@@ -156,6 +156,13 @@
 
 /obj/machinery/smelter/proc/eject_material_stack(material)
 	var/obj/item/stack/material/stack_type = material_stack_type(material)
+
+	// Sanity check: avoid an infinite loop in eject_all_material when trying to drop an invalid material
+	if(!stack_type)
+		stored_material[material] = 0
+		crash_with("Attempted to drop an invalid material: [material]")
+		return
+
 	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
 	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
 	eject(S, output_side)

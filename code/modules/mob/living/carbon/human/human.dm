@@ -121,7 +121,7 @@
 
 		if (2.0)
 			if (!shielded)
-				b_loss += 60
+				b_loss += 150
 
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 30
@@ -130,7 +130,7 @@
 				Paralyse(10)
 
 		if(3.0)
-			b_loss += 30
+			b_loss += 100
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
 				ear_deaf += 60
@@ -139,29 +139,13 @@
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
-	var/update = 0
-
-	// focus most of the blast on one organ
-	var/obj/item/organ/external/take_blast = pick(organs)
-	update |= take_blast.take_damage(b_loss * 0.9, f_loss * 0.9, used_weapon = "Explosive blast")
-
-	// distribute the remaining 10% on all limbs equally
-	b_loss *= 0.1
-	f_loss *= 0.1
-
-	var/weapon_message = "Explosive Blast"
-
-	for(var/obj/item/organ/external/temp in organs)
-		switch(temp.name)
-			if(BP_HEAD)
-				update |= temp.take_damage(b_loss * 0.2, f_loss * 0.2, used_weapon = weapon_message)
-			if(BP_CHEST)
-				update |= temp.take_damage(b_loss * 0.4, f_loss * 0.4, used_weapon = weapon_message)
-			else
-				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
-	if(update)
-		UpdateDamageIcon()
-
+		
+	var/organ_hit = BP_CHEST //Chest is hit first
+	var/exp_damage
+	while (b_loss > 0)
+		b_loss -= exp_damage = rand(0, b_loss)
+		src.apply_damage(exp_damage, BRUTE, organ_hit)
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit 
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)

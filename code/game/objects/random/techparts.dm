@@ -68,7 +68,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides = 1,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog = 1,

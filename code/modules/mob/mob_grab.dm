@@ -233,10 +233,21 @@
 		return
 	if(!assailant.can_click())
 		return
-	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - (round(assailant.stats.getStat(STAT_ROB) ** 0.8)))))
-		return
 	if(!assailant.canmove || assailant.lying)
 		qdel(src)
+		return
+
+	// Adjust the grab cooldown using assailant's ROB stat
+	var/assailant_stat = assailant.stats.getStat(STAT_ROB)
+	var/cooldown_increase
+	if(assailant_stat > 0)
+		// Positive ROB decreases cooldown, but not linearely
+		cooldown_increase = -(assailant_stat ** 0.8)
+	else
+		// Negative ROB is a flat cooldown increase
+		cooldown_increase = assailant_stat
+
+	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN + round(cooldown_increase))))
 		return
 
 	last_action = world.time

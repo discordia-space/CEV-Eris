@@ -38,58 +38,65 @@
 		holder.update_icon()
 	return
 
+/obj/item/device/assembly/signaler/proc/set_code(new_code)
+	code = clamp(round(new_code), 1, 100)
 
-/obj/item/device/assembly/signaler/interact(mob/user as mob, flag1)
-	var/dat = {"
-		<TT>
-		<A href='byond://?src=\ref[src];send=1'>Send Signal</A><BR>
-		<B>Frequency/Code</B> for signaler:<BR>
-		Frequency:
-		<A href='byond://?src=\ref[src];freq=-10'>-</A>
-		<A href='byond://?src=\ref[src];freq=-2'>-</A>
-		[format_frequency(src.frequency)]
-		<A href='byond://?src=\ref[src];freq=2'>+</A>
-		<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+/obj/item/device/assembly/signaler/proc/set_freq(new_freq)
+	set_frequency(sanitize_frequency(round(new_freq), RADIO_LOW_FREQ, RADIO_HIGH_FREQ))
 
-		Code:
-		<A href='byond://?src=\ref[src];code=-5'>-</A>
-		<A href='byond://?src=\ref[src];code=-1'>-</A>
-		[src.code]
-		<A href='byond://?src=\ref[src];code=1'>+</A>
-		<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-		-------
-		</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+/obj/item/device/assembly/signaler/interact(mob/user, flag1)
+	ui_interact(user)
 
+/obj/item/device/assembly/signaler/ui_data()
+	var/list/data = list(
+		"freq" = frequency,
+		"code" = code
+		)
+	return data
+
+/obj/item/device/assembly/signaler/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data(user)
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "mpc_signaller.tmpl", name, 350, 200, state = state)
+		ui.set_initial_data(data)
+		ui.open()
 
 /obj/item/device/assembly/signaler/Topic(href, href_list)
-	if(..()) return 1
+	if(..())
+		return 1
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=radio")
-		onclose(usr, "radio")
-		return
+	if(href_list["signal"])
+		set_freq(text2num(href_list["freq"]))
+		set_code(text2num(href_list["code"]))
 
-	if (href_list["freq"])
-		var/new_frequency = (frequency + text2num(href_list["freq"]))
-		if(new_frequency < RADIO_LOW_FREQ || new_frequency > RADIO_HIGH_FREQ)
-			new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
-		set_frequency(new_frequency)
-
-	if(href_list["code"])
-		src.code += text2num(href_list["code"])
-		src.code = round(src.code)
-		src.code = min(100, src.code)
-		src.code = max(1, src.code)
-
-	if(href_list["send"])
-		spawn( 0 )
+		spawn(0)
 			signal()
+		return 1
 
-	if(usr)
-		attack_self(usr)
+	if(href_list["change_code"])
+		set_code(code + text2num(href_list["change_code"]))
+		return 1
+
+	if(href_list["edit_code"])
+		var/input_code = input("Enter signal code (1-100):", "Signal parameters", code) as num|null
+		if(input_code && CanUseTopic(usr))
+			set_code(input_code)
+		return 1
+
+	if(href_list["change_freq"])
+		set_freq(frequency + text2num(href_list["change_freq"]))
+		return 1
+
+	if(href_list["edit_freq"])
+		var/input_freq = input("Enter signal frequency ([RADIO_LOW_FREQ]-[RADIO_HIGH_FREQ]):", "Signal parameters", frequency) as num|null
+		if(input_freq && CanUseTopic(usr))
+			if(input_freq < RADIO_LOW_FREQ) // A decimal input maybe?
+				input_freq *= 10
+
+			set_freq(input_freq)
+		return 1
 
 
 /obj/item/device/assembly/signaler/proc/signal()
@@ -123,7 +130,7 @@
 
 	if(!holder)
 		for(var/mob/O in hearers(1, src.loc))
-			O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
+			O.show_message("\icon[src] *beep* *beep*", 3, "*beep* *beep*", 2)
 
 
 /obj/item/device/assembly/signaler/proc/set_frequency(new_frequency)

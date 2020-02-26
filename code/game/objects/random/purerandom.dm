@@ -14,7 +14,7 @@
 				/obj/item/stack/medical/bruise_pack = 3,
 				/obj/item/bodybag/cryobag = 2,
 				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,
-				/obj/item/weapon/cigbutt = 4,
+				/obj/item/trash/cigbutt = 4,
 				/obj/item/device/t_scanner = 2,
 				/obj/random/voidsuit/damaged = 3,
 				/obj/item/device/scanner/gas = 2,
@@ -126,7 +126,7 @@
 				/obj/item/weapon/gun/projectile/mk58 = 1,
 				/obj/item/weapon/gun/projectile/giskard = 1,
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
-				/obj/item/weapon/gun/projectile/revolver/detective = 1,
+				/obj/item/weapon/gun/projectile/revolver/havelock = 1,
 				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
 				/obj/item/stash_spawner = 12))
 

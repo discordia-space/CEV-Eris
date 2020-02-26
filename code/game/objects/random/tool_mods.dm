@@ -24,6 +24,7 @@
 	/obj/item/weapon/tool_upgrade/augment/fuel_tank = 1,
 	/obj/item/weapon/tool_upgrade/augment/expansion = 0.25,
 	/obj/item/weapon/tool_upgrade/augment/spikes = 1,
+	/obj/item/weapon/tool_upgrade/augment/hammer_addon = 0.75,
 	/obj/item/weapon/tool_upgrade/augment/dampener = 0.5))
 
 /obj/random/tool_upgrade/low_chance

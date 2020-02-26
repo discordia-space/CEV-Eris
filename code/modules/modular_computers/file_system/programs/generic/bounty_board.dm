@@ -80,7 +80,7 @@
 	if(!F)
 		return
 	if(!F.verify_access_edit(get_record_access(user)))
-		to_chat(user, "<span class='notice'>\The [nano_host()] flashes an \"Access Denied\" warning.</span>")
+		to_chat(user, SPAN_WARNING("Access Denied"))
 		return
 	F.ask_value(user)
 
@@ -122,7 +122,7 @@
 		if(!selectedEntry)
 			return
 		if(!selectedEntry.publish(usr))
-			to_chat(usr, "<span class='notice'>\The [nano_host()] flashes an \"Insufficient Data\" warning.</span>")
+			to_chat(usr, SPAN_WARNING("Insufficient Data"))
 			return
 		selectedEntry = null
 		return 1
@@ -133,15 +133,22 @@
 		if(selectedEntry.claimedby_id_card)
 			selectedEntry = null
 			return 1
-		var/datum/report_field/array/signed_people/SP = selectedEntry.field_from_name("People who signed for job")
-		var/mob/living/carbon/human/H = input(usr, "Select value", "Give reward to ?", SP.get_raw()) as null|anything in SP.get_raw()
-		if(selectedEntry.remove(H))
-			selectedEntry = null
+
+		if(selectedEntry.owner_id_card == usr.GetIdCard())
+			var/datum/report_field/array/signed_people/SP = selectedEntry.field_from_name("People who signed for job")
+			var/mob/living/carbon/human/H = input(usr, "Select value", "Give reward to ?", SP.get_raw()) as null|anything in SP.get_raw()
+			if(selectedEntry.remove(H))
+				selectedEntry = null
+			else
+				to_chat(usr, SPAN_WARNING("Error occured during reward transfer"))
 		else
-			to_chat(usr, "<span class='notice'>\The [nano_host()] flashes \"Error occured during reward transfer\" .</span>")
+			if(selectedEntry.remove())
+				selectedEntry = null
+			else
+				to_chat(usr, SPAN_WARNING("Error occured during reward transfer"))
+
 		return 1
 
 	if(href_list["edit_field"])
 		edit_field(usr, text2num(href_list["edit_field"]))
 		return 1
-		

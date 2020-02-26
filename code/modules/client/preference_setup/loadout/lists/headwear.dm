@@ -135,3 +135,8 @@
 	display_name = "cap, IH sergeant"
 	path = /obj/item/clothing/head/soft/sarge2soft
 	allowed_roles = list("Ironhammer Commander","Ironhammer Gunnery Sergeant")
+
+/datum/gear/head/cyberpunkgoggle
+	display_name = "Type-34C Semi-Enclosed Headwear"
+	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
+	cost = 2

@@ -293,7 +293,9 @@ var/global/use_preloader = FALSE
 			var/full_def = trim_text(copytext(model, old_position, dpos)) //full definition, e.g : /obj/foo/bar{variables=derp}
 			var/variables_start = findtext(full_def, "{")
 			var/atom_def = text2path(trim_text(copytext(full_def, 1, variables_start))) //path definition, e.g /obj/foo/bar
-			old_position = dpos + 1
+
+			if(dpos)
+				old_position = dpos + length(model[dpos])
 
 			if(!atom_def) // Skip the item if the path does not exist.  Fix your crap, mappers!
 				continue
@@ -303,7 +305,7 @@ var/global/use_preloader = FALSE
 			var/list/fields = list()
 
 			if(variables_start)//if there's any variable
-				full_def = copytext(full_def,variables_start+1,length(full_def))//removing the last '}'
+				full_def = copytext(full_def, variables_start + length(full_def[variables_start]), -length(copytext_char(full_def, -1))) //removing the last '}'
 				fields = readlist(full_def, ";", TRUE)
 				if(fields.len)
 					if(!trim(fields[fields.len]))
@@ -471,11 +473,12 @@ var/global/use_preloader = FALSE
 
 		// part to the left of = (the key/var name), or the entire value. If treating it as a var name, strip quotes at the same time.
 		var/trim_left = trim_text(copytext(text,old_position,(equal_position ? equal_position : position)), keys_only_string)
-		old_position = position + 1
+		if(position)
+			old_position = position + length(text[position])
 
 		var/trim_right = trim_left
 		if(equal_position)//associative var, so do the association
-			trim_right = trim_text(copytext(text,equal_position+1,position))//the content of the variable
+			trim_right = trim_text(copytext(text, equal_position + length(text[equal_position]), position))//the content of the variable
 			if(!keys_only_string) // We also need to evaluate the key for the types it is permitted to be
 				if(findtext(trim_left,"\"",1,2)) //Check for string
 					trim_left = copytext(trim_left,2,findtext(trim_left,"\"",3,0))

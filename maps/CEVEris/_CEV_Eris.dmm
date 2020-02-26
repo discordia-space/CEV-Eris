@@ -852,14 +852,14 @@
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
 /obj/item/clothing/suit/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
-/obj/item/clothing/head/armor/bulletproof/ironhammer,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
+/obj/item/clothing/head/armor/bulletproof/ironhammer_full,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acm" = (
@@ -3890,8 +3890,6 @@
 /area/eris/command/commander)
 "aiZ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/cartridge/detective,
-/obj/item/weapon/cartridge/detective,
 /obj/item/weapon/tool/tape_roll,
 /turf/simulated/floor/wood,
 /area/eris/command/commander)
@@ -18639,8 +18637,8 @@
 /area/eris/maintenance/section3deck1central)
 "aRy" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
-/obj/item/weapon/gun/projectile/automatic/IH_heavyrifle,
+/obj/item/weapon/gun/projectile/automatic/wintermute,
+/obj/item/weapon/gun/projectile/automatic/wintermute,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -18871,10 +18869,10 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
 "aRX" = (
-/obj/machinery/autolathe/mechfab,
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
+/obj/machinery/autolathe/mechfab/loaded,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/rnd/lab)
 "aRY" = (
@@ -19349,10 +19347,10 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
-/obj/item/weapon/gun/projectile/automatic/IH_smg,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
+/obj/item/weapon/gun/projectile/automatic/straylight,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSZ" = (
@@ -20426,7 +20424,6 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/barracks)
 "aVv" = (
-/obj/machinery/computer/telecomms/traffic,
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/telecommonitor)
 "aVw" = (
@@ -27142,7 +27139,7 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/barracks)
 "biW" = (
-/obj/machinery/autolathe,
+/obj/machinery/autolathe/loaded,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/rnd/lab)
 "biX" = (
@@ -28709,19 +28706,9 @@
 /area/eris/hallway/side/eschangarb)
 "bmc" = (
 /obj/structure/table/rack,
-/obj/item/stack/material/glass{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
 /obj/item/stack/material/plasteel{
 	amount = 10
 	},
-/obj/item/stack/material/plastic{
-	amount = 120
-	},
-/obj/item/weapon/reagent_containers/glass/beaker,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bmd" = (
@@ -32387,43 +32374,13 @@
 /obj/item/stack/material/glass{
 	amount = 120
 	},
-/obj/item/stack/material/glass{
-	amount = 120
-	},
 /obj/item/stack/material/steel{
 	amount = 120
 	},
 /obj/item/stack/material/steel{
 	amount = 120
 	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/components,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical,
 /obj/item/weapon/reagent_containers/glass/beaker,
-/obj/item/stack/material/plastic{
-	amount = 120
-	},
-/obj/item/stack/material/plastic{
-	amount = 120
-	},
-/obj/item/stack/material/plastic{
-	amount = 120
-	},
 /obj/item/stack/material/plastic{
 	amount = 120
 	},
@@ -32433,6 +32390,9 @@
 	id = "RDWindowsLockdown";
 	name = "RND Window Blast Doors Control"
 	},
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/components,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/rnd/lab)
 "buD" = (
@@ -56104,10 +56064,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/oldtele)
-"cvg" = (
-/obj/machinery/computer/telecomms/traffic,
-/turf/simulated/floor/bluegrid,
-/area/eris/command/tcommsat/computer)
 "cvh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -56392,15 +56348,6 @@
 /area/eris/quartermaster/storage)
 "cwa" = (
 /obj/structure/table/standard,
-/obj/item/weapon/cartridge/signal/science,
-/obj/item/weapon/cartridge/signal/science{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/weapon/cartridge/signal/science{
-	pixel_x = 4;
-	pixel_y = 6
-	},
 /obj/item/clothing/glasses/welding/superior,
 /obj/machinery/keycard_auth{
 	pixel_x = 0;
@@ -58105,7 +58052,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/hallway/side/bridgehallway)
 "czF" = (
-/obj/machinery/autolathe,
+/obj/machinery/autolathe/loaded,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "czG" = (
@@ -58312,16 +58259,7 @@
 /area/eris/security/lobby)
 "cAc" = (
 /obj/structure/table/standard,
-/obj/item/stack/material/glass{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
-/obj/item/stack/material/plastic{
-	amount = 120
-	},
-/obj/item/weapon/reagent_containers/glass/beaker,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "cAd" = (
@@ -58464,7 +58402,6 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
@@ -74636,10 +74573,10 @@
 /area/eris/command/mbo/quarters)
 "dlb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/cartridge/chemistry{
+/obj/item/weapon/computer_hardware/scanner/reagent{
 	pixel_y = 2
 	},
-/obj/item/weapon/cartridge/medical{
+/obj/item/weapon/computer_hardware/scanner/medical{
 	pixel_x = 6;
 	pixel_y = 3
 	},
@@ -80912,8 +80849,8 @@
 /area/eris/engineering/starboardhallway)
 "dyX" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/deagle,
-/obj/item/weapon/gun/projectile/deagle,
+/obj/item/weapon/gun/projectile/avasarala,
+/obj/item/weapon/gun/projectile/avasarala,
 /obj/machinery/door/blast/shutters/glass{
 	id = "BridgeArmoury";
 	name = "Armoury showcase"
@@ -81184,15 +81121,15 @@
 /area/eris/command/mbo)
 "dzB" = (
 /obj/structure/table/standard,
-/obj/item/weapon/cartridge/medical{
+/obj/item/weapon/computer_hardware/scanner/medical{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/weapon/cartridge/medical{
+/obj/item/weapon/computer_hardware/scanner/medical{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/weapon/cartridge/chemistry{
+/obj/item/weapon/computer_hardware/scanner/reagent{
 	pixel_y = 2
 	},
 /turf/simulated/floor/carpet/sblucarpet,
@@ -83292,7 +83229,7 @@
 /obj/machinery/camera/network/engineering{
 	dir = 8
 	},
-/obj/machinery/autolathe,
+/obj/machinery/autolathe/loaded,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "dEj" = (
@@ -88578,13 +88515,8 @@
 	pixel_y = 28
 	},
 /obj/structure/table/standard,
-/obj/item/stack/material/glass{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/random/material,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/primary)
 "dPQ" = (
@@ -90357,7 +90289,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "dTU" = (
-/obj/machinery/autolathe,
+/obj/machinery/autolathe/loaded,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/primary)
 "dTV" = (
@@ -95382,7 +95314,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/weapon/cigbutt,
+/obj/item/trash/cigbutt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -96306,7 +96238,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
 "ehx" = (
-/obj/item/weapon/cigbutt{
+/obj/item/trash/cigbutt{
 	pixel_x = 2;
 	pixel_y = 9
 	},
@@ -99422,7 +99354,7 @@
 "eoF" = (
 /obj/structure/table/standard,
 /obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/box/botanydisk,
+/obj/item/weapon/storage/box/data_disk/basic,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "eoG" = (
@@ -108433,6 +108365,19 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"kEW" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck5port)
 "kFJ" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box,
@@ -108533,6 +108478,28 @@
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"mub" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck5port)
 "mCf" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -108588,6 +108555,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"ntp" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/medbay)
 "nuu" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -108635,6 +108606,7 @@
 "oih" = (
 /obj/landmark/join/start/chemist,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "oup" = (
@@ -108758,6 +108730,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
+"qTX" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/eris/medical/surgery)
 "qZr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -127259,8 +127235,8 @@ aCn
 bts
 ceR
 aCn
-bPZ
-bRI
+kEW
+mub
 awR
 alg
 aaa
@@ -164759,8 +164735,8 @@ aKl
 bwy
 aNc
 csS
-aPn
-aPn
+csS
+csS
 csS
 aSn
 aSL
@@ -204385,7 +204361,7 @@ cgI
 cgI
 cda
 cjK
-cjK
+qTX
 cpy
 crS
 coI
@@ -207818,7 +207794,7 @@ cvS
 bUV
 ccj
 cLG
-coL
+ntp
 coL
 dvR
 cKx
@@ -245372,7 +245348,7 @@ bYo
 dhm
 dhm
 cZA
-cvg
+diG
 diy
 diG
 diG

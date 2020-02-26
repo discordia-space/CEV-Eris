@@ -960,6 +960,48 @@
 	else
 		QDEL_NULL(air_supply)
 
+/obj/item/weapon/rig/clean_blood()
+	..()
+	if(chest)
+		chest.clean_blood()
+	if(boots)
+		boots.clean_blood()
+	if(helmet)
+		helmet.clean_blood()
+	if(gloves)
+		gloves.clean_blood()
+	var/obj/glasses = getCurrentGlasses()
+	if(glasses)
+		glasses.clean_blood()
+
+/obj/item/weapon/rig/decontaminate()
+	..()
+	if(chest)
+		chest.decontaminate()
+	if(boots)
+		boots.decontaminate()
+	if(helmet)
+		helmet.decontaminate()
+	if(gloves)
+		gloves.decontaminate()
+	var/obj/item/glasses = getCurrentGlasses()
+	if(glasses)
+		glasses.decontaminate()
+
+/obj/item/weapon/rig/make_young()
+	..()
+	if(chest)
+		chest.make_young()
+	if(boots)
+		boots.make_young()
+	if(helmet)
+		helmet.make_young()
+	if(gloves)
+		gloves.make_young()
+	var/obj/glasses = getCurrentGlasses()
+	if(glasses)
+		glasses.make_young()
+
 #undef ONLY_DEPLOY
 #undef ONLY_RETRACT
 #undef SEAL_DELAY

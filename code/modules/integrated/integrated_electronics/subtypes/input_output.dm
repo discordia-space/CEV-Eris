@@ -273,8 +273,12 @@
 
 	activate_pin(3)
 
-	for(var/mob/O in hearers(1, get_turf(src)))
-		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
+	var/turf/location = get_turf(src)
+	if(!location)
+		return
+
+	for(var/mob/O in hearers(1, location))
+		O.show_message("\icon[src] *beep* *beep*", 3, "*beep* *beep*", 2)
 
 /obj/item/integrated_circuit/input/EPv2
 	name = "\improper EPv2 circuit"

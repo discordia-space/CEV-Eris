@@ -26,7 +26,7 @@
 		requires_ntnet = FALSE // Turn off NTNet requirement as we already loaded the file into local memory.
 	SSnano.update_uis(NM)
 
-/datum/computer_file/program/newsbrowser/kill_program()
+/datum/computer_file/program/newsbrowser/kill_program(forced = FALSE)
 	..()
 	requires_ntnet = TRUE
 	loaded_article = null

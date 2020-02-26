@@ -63,7 +63,8 @@
 	icon_state = "hpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
-/////////////SMG/////////////
+/////////////.35 SMG/////////////
+
 /obj/item/ammo_magazine/smg
 	name = "smg magazine (.35 Auto)"
 	icon_state = "smg_l"
@@ -99,6 +100,44 @@
 	icon_state = "smg_r"
 	ammo_color = "-r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+
+/////////////.40 SMG/////////////
+
+/obj/item/ammo_magazine/msmg
+	name = "smg magazine (.40 Magnum)"
+	icon_state = "msmg_l"
+	ammo_color = "-l"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
+	matter = list(MATERIAL_STEEL = 5)
+	caliber = CAL_MAGNUM
+	ammo_type = /obj/item/ammo_casing/magnum
+	max_ammo = 25
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/msmg/empty
+	icon_state = "smg"
+	ammo_color = ""
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/msmg/practice
+	name = "smg magazine (.40 Magnum practice)"
+	icon_state = "msmg_p"
+	ammo_color = "-p"
+	ammo_type = /obj/item/ammo_casing/magnum/practice
+
+/obj/item/ammo_magazine/msmg/hv
+	name = "smg magazine (.40 Magnum high-velocity)"
+	icon_state = "msmg_hv"
+	ammo_color = "-hv"
+	ammo_type = /obj/item/ammo_casing/magnum/hv
+
+/obj/item/ammo_magazine/msmg/rubber
+	name = "smg magazine (.40 Magnum rubber)"
+	icon_state = "msmg_r"
+	ammo_color = "-r"
+	ammo_type = /obj/item/ammo_casing/magnum/rubber
 
 ///////////// .40 pistol ///////////
 
@@ -144,7 +183,7 @@
 	caliber = CAL_SRIFLE
 	matter = list(MATERIAL_STEEL = 6)
 	ammo_type = /obj/item/ammo_casing/srifle
-	max_ammo = 20
+	max_ammo = 25
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/srifle/empty
@@ -185,8 +224,6 @@
 	icon_state = "ihclrifle_l"
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_IH
-	ammo_mag = "ih_sol_l"
-	ammo_mag = "ih_sol"
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_CLRIFLE
@@ -212,7 +249,39 @@
 	icon_state = "ihclrifle_r"
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
 
-///////// . 30 RIFLE /////////
+////////// .25 PISTOL //////////
+
+/obj/item/ammo_magazine/cspistol
+	name = "pistol magazine (.25 Caseless Rifle)"
+	icon_state = "cspistol_l"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
+	ammo_type = /obj/item/ammo_casing/clrifle
+	matter = list(MATERIAL_STEEL = 4)
+	caliber = CAL_CLRIFLE
+	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/cspistol/empty
+	icon_state = "cspistol"
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/cspistol/practice
+	name = "pistol magazine (.25 Caseless Rifle practice)"
+	icon_state = "cspistol_p"
+	ammo_type = /obj/item/ammo_casing/clrifle/practice
+
+/obj/item/ammo_magazine/cspistol/hv
+	name = "pistol magazine (.25 Caseless Rifle high-velocity)"
+	icon_state = "cspistol_hv"
+	ammo_type = /obj/item/ammo_casing/clrifle/hv
+
+/obj/item/ammo_magazine/cspistol/rubber
+	name = "pistol magazine (.25 Caseless Rifle rubber)"
+	icon_state = "cspistol_r"
+	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+
+///////// .30 RIFLE ///////////
 
 /obj/item/ammo_magazine/lrifle
 	name = "magazine box (.30 Rifle)"

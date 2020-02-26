@@ -132,6 +132,6 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		P.launch(T)
 
 		//Some of the fragments will hit mobs in the same turf
-		if (prob(20))
+		if (prob(95))
 			for(var/mob/living/M in epicenter)
 				P.attack_mob(M, 0, 100)
