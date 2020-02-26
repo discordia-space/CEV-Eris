@@ -263,6 +263,7 @@
 	if(P in all_threads)
 		P.program_state = PROGRAM_STATE_ACTIVE
 		active_program = P
+		update_uis()
 		update_icon()
 		return
 
@@ -280,6 +281,7 @@
 	if(P.run_program(user))
 		active_program = P
 		all_threads.Add(P)
+		update_uis()
 		update_icon()
 	return TRUE
 

@@ -35,9 +35,6 @@
 	computer = null
 	. = ..()
 
-/datum/computer_file/program/nano_host()
-	return computer.nano_host()
-
 /datum/computer_file/program/clone()
 	var/datum/computer_file/program/temp = ..()
 	temp.required_access = required_access
@@ -188,7 +185,7 @@
 
 // This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns 1 continue with UI initialisation.
 // It returns 0 if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.
-/datum/computer_file/program/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/datum/computer_file/program/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(program_state != PROGRAM_STATE_ACTIVE) // Our program was closed. Close the ui if it exists.
 		if(ui)
 			ui.close()
@@ -198,6 +195,11 @@
 		return 0
 	return 1
 
+// This prevents program UI from opening when the program itself is closed.
+/datum/computer_file/program/CanUseTopic(mob/user, datum/topic_state/state = GLOB.default_state)
+	if(!computer || program_state != PROGRAM_STATE_ACTIVE)
+		return STATUS_CLOSE
+	return computer.CanUseTopic(user, state)
 
 // CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:
 // Topic calls are automagically forwarded from NanoModule this program contains.
@@ -216,6 +218,12 @@
 		return NM.check_eye(user)
 	else
 		return -1
+
+/datum/computer_file/program/initial_data()
+	return computer.get_header_data()
+
+/datum/computer_file/program/update_layout()
+	return TRUE
 
 /obj/item/modular_computer/initial_data()
 	return get_header_data()
