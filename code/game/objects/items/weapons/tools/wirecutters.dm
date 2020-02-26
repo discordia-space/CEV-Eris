@@ -36,7 +36,7 @@
 
 /obj/item/weapon/tool/wirecutters/pliers //hybrid of wirecutters, wrench and cautery
 	name = "pliers"
-	desc = "Multitool from the world of maintenance. Useful for pinching, clamping and occasional bolt turning."
+	desc = "A multitool from the world of maintenance. Useful for pinching, clamping, and occasional bolt turning."
 	icon_state = "pliers"
 	edge = FALSE
 	sharp = FALSE

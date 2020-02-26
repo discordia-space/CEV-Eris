@@ -20,7 +20,7 @@
 
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
-	desc = "Electric screwdriver powered by S class cell. Can be used as drilling tool if neccessary, thought not well suited for it."
+	desc = "An electrical screwdriver, powered by an S class cell. Can be used as a drilling tool if necessary, though is not well suited to do so."
 	icon_state = "e-screwdriver"
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)

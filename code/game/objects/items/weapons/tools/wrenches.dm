@@ -13,7 +13,7 @@
 
 /obj/item/weapon/tool/wrench/improvised
 	name = "sheet spanner"
-	desc = "A flat bit of metal with some usefully shaped holes cut into it. Would perform better than regular wrench with some tool mods investment."
+	desc = "A flat bit of metal with some usefully shaped holes cut into it. Would perform better than a regular wrench with some tool mods investment."
 	icon_state = "impro_wrench"
 	degradation = 4
 	force = WEAPON_FORCE_HARMLESS
