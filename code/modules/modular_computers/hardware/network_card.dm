@@ -12,7 +12,19 @@ var/global/ntnet_card_uid = 1
 	var/identification_string = "" 	// Identification string, technically nickname seen in the network. Can be set by user.
 	var/long_range = FALSE
 	var/ethernet = FALSE // Hard-wired, therefore always on, ignores NTNet wireless checks.
+	var/datum/radio_frequency/radio_connection	// Used by signaller code
+	var/frequency = 1457
 	malfunction_probability = 1
+
+/obj/item/weapon/computer_hardware/network_card/Initialize()
+	. = ..()
+	identification_id = ntnet_card_uid
+	ntnet_card_uid++
+	set_frequency(frequency)
+
+/obj/item/weapon/computer_hardware/network_card/Destroy()
+	SSradio.remove_object(src, frequency)
+	return ..()
 
 /obj/item/weapon/computer_hardware/network_card/diagnostics(var/mob/user)
 	..()
@@ -25,10 +37,38 @@ var/global/ntnet_card_uid = 1
 	if(ethernet)
 		to_chat(user, "OpenEth (Physical Connection) - Physical network connection port")
 
-/obj/item/weapon/computer_hardware/network_card/Initialize()
-	. = ..()
-	identification_id = ntnet_card_uid
-	ntnet_card_uid++
+/obj/item/weapon/computer_hardware/network_card/proc/set_frequency(new_frequency)
+	if(ethernet || !new_frequency || !frequency)
+		return
+
+	if(radio_connection && new_frequency == frequency)
+		return
+
+	SSradio.remove_object(src, frequency)
+	frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
+
+/obj/item/weapon/computer_hardware/network_card/proc/signal(new_frequency, code)
+	if(!radio_connection || !check_functionality())
+		return
+
+	set_frequency(new_frequency)
+
+	var/datum/signal/signal = new
+	signal.source = src
+	signal.encryption = CLAMP(code, 1, 100)
+	signal.data["message"] = "ACTIVATE"
+	spawn(0)
+		radio_connection.post_signal(src, signal)
+
+/obj/item/weapon/computer_hardware/network_card/receive_signal(datum/signal/signal)
+	if(!check_functionality() || !holder2 || !holder2.enabled)
+		return
+
+	for(var/datum/computer_file/program/signaller/S in holder2.all_threads)
+		S.receive_signal(signal)
+
+
 
 /obj/item/weapon/computer_hardware/network_card/advanced
 	name = "advanced network card"
