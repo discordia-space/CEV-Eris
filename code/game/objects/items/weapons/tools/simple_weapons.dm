@@ -185,22 +185,24 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
 	sharp = TRUE
 	edge = TRUE
+	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT
-	armor_penetration = ARMOR_PEN_DEEP
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_BRUTAL
+	force = WEAPON_FORCE_ROBUST
+	armor_penetration = ARMOR_PEN_DEEP
+
 	throwforce = WEAPON_FORCE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 
-/obj/item/weapon/tool/sword/katana //slightly more penetration, slightly less damage
+/obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
 	name = "katana"
 	desc = "Woefully underpowered in D20. This one looks pretty sharp."
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	slot_flags = SLOT_BELT | SLOT_BACK
-	armor_penetration = ARMOR_PEN_EXTREME
-	force = WEAPON_FORCE_ROBUST
+	force = WEAPON_FORCE_BRUTAL
+	armor_penetration = ARMOR_PEN_MODERATE
