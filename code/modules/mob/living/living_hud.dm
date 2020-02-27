@@ -27,7 +27,26 @@
 		for(var/i=1,i<=HUDtech.len,i++)
 			var/p = HUDtech[i]
 			src.client.screen += HUDtech[p]
+
+/mob/living/proc/hide_HUD()
+	if(client)
+		for(var/i = 1 to HUDneed.len)
+			client.screen.Remove(HUDneed[HUDneed[i]])
+
+		for(var/obj/screen/HUDinv in HUDinventory)
+			client.screen.Remove(HUDinv)
+
+		for(var/obj/screen/HUDinv in HUDfrippery)
+			client.screen.Remove(HUDinv)
+
+		for(var/obj/screen/HUDinv in HUDprocess)
+			client.screen.Remove(HUDinv)
+
+		for(var/i = 1 to HUDtech.len)
+			client.screen.Remove(HUDtech[HUDtech[i]])
+
 //For HUD checking needs
+
 
 /mob/living/proc/recolor_HUD(var/_color, var/_alpha)
 	for(var/i=1,i<=HUDneed.len,i++)

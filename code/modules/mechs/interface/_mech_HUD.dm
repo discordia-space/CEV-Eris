@@ -22,9 +22,10 @@
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-			var/obj/screen/HUD = new HUDtype(HUDname, src,\
+			var/obj/screen/movable/exosuit/HUD = new HUDtype(HUDname, src,\
 			HUDdatum.HUDneed[HUDname]["icon"] ? HUDdatum.HUDneed[HUDname]["icon"] : HUDdatum.icon,\
 			HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
+			HUD.screen_loc = HUDdatum.HUDneed[HUDname]["loc"]
 			if(HUDdatum.HUDneed[HUDname]["hideflag"])
 				HUD.hideflag = HUDdatum.HUDneed[HUDname]["hideflag"]
 			HUDneed[HUD.name] += HUD
@@ -63,7 +64,6 @@
 */
 
 /mob/living/exosuit/show_HUD()
-	. = ..()
 	for(var/mob/living/P in pilots)
 		update_mech_hud_4(P)
 
@@ -82,10 +82,22 @@
 	H.update_icon()
 
 /mob/living/exosuit/proc/update_mech_hud_4(var/mob/living/M)
+	to_chat(world, "updating mech hud for [M]")
 	if(M.client)
-		if(M in pilots)		for(var/i in HUDneed) if(!HUDneed[i] in M.client.screen) M.client.screen += HUDneed[i]
-		else if(M != src)	for(var/i in HUDneed) LAZYREMOVE(M.client.screen, i)
+		to_chat(world, "M has client.")
+		if(pilots.Find(M))
+			to_chat(world, "M is a pilot.")
+			M.hud_override = TRUE
+			M.hide_HUD()
+			for(var/i in HUDneed)
+				to_chat(world, "[i] [M.client.screen.Find(HUDneed[i])]")
+				M.client.screen |= HUDneed[i]
+				to_chat(world, "[M.client.screen.Find(HUDneed[i])]")
+		else if(M != src)
+			to_chat(world, "M is not a pilot nor is src")
+			M.hud_override = FALSE
+			for(var/i in HUDneed)
+				to_chat(world, "[i] [M.client.screen.Find(HUDneed[i])]")
+				M.client.screen -= HUDneed[i]
+				to_chat(world, "[M.client.screen.Find(HUDneed[i])]")
 		M.check_HUD()
-
-#include "screen_objects.dm"
-#include "datum_HUD.dm"

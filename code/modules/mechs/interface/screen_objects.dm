@@ -6,12 +6,11 @@
 	var/mob/living/exosuit/owner
 /obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
 
-/obj/screen/movable/exosuit/Initialize()
+/obj/screen/movable/exosuit/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	. = ..()
-	var/mob/living/exosuit/newowner = loc
-	if(!istype(newowner))
+	owner = _parentmob
+	if(!istype(owner))
 		return qdel(src)
-	owner = newowner
 
 /obj/screen/movable/exosuit/Click()
 	return (!owner || !usr.incapacitated() && (usr == owner || usr.loc == owner))
@@ -161,7 +160,6 @@
 /obj/screen/movable/exosuit/hardpoints_show/Initialize(mapload, var/newtag)
 	. = ..()
 	hardpoint_tag = newtag
-	name = "hardpoint ([hardpoint_tag])"
 
 /obj/screen/movable/exosuit/eject
 	name = "eject"

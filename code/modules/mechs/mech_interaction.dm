@@ -215,12 +215,11 @@
 
 	user.forceMove(get_turf(src))
 //	LAZYREMOVE(user.additional_vision_handlers, src)
-	if(user.client) update_mech_hud_4(user)
 	if(user in pilots)
 		a_intent = I_HURT
-		LAZYREMOVE(pilots, user)
-		UNSETEMPTY(pilots)
+		pilots -= user
 		update_pilots()
+	if(user.client) update_mech_hud_4(user)
 	return 1
 
 /mob/living/exosuit/attackby(var/obj/item/thing, var/mob/user)

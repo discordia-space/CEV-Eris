@@ -108,9 +108,3 @@
 	if(owner && loc == owner)
 		return owner.get_cell()
 	return null
-
-#include "combat.dm"
-//#include "ai_holding.dm"
-#include "engineering.dm"
-#include "medical.dm"
-#include "utility.dm"

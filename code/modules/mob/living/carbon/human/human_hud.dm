@@ -1,6 +1,6 @@
 /mob/living/carbon/human/check_HUD()
 	var/mob/living/carbon/human/H = src
-	if(!H.client)//no client, no HUD
+	if(!H.client || H.hud_override)//no client, no HUD
 		return
 
 //	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
@@ -141,6 +141,11 @@
 	. = ..()
 	recolor_HUD(src.client.prefs.UI_style_color, src.client.prefs.UI_style_alpha)
 	return
+
+/mob/living/carbon/human/hide_HUD()
+	..()
+	if(client)
+		client.screen.Remove(contents)
 
 /mob/living/carbon/human/create_HUDinventory()
 	var/mob/living/carbon/human/H = src

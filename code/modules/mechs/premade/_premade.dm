@@ -149,7 +149,3 @@
 /mob/living/exosuit/premade/random/extra/New(var/newloc, var/obj/structure/heavy_vehicle_frame/source_frame)
 	..(newloc, source_frame, super_random = TRUE)
 
-#include "combat.dm"
-#include "heavy.dm"
-#include "light.dm"
-#include "powerloader.dm"
