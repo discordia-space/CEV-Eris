@@ -213,7 +213,7 @@
 	enabled = FALSE
 	update_icon()
 
-/obj/item/modular_computer/proc/enable_computer(var/mob/user = null)
+/obj/item/modular_computer/proc/enable_computer(mob/user)
 	enabled = TRUE
 	update_icon()
 
@@ -267,7 +267,7 @@
 		update_icon()
 		return
 
-	if(all_threads.len >= processor_unit.max_programs+1)
+	if(all_threads.len >= processor_unit.max_programs)
 		to_chat(user, SPAN_WARNING("Maximal CPU load reached. Unable to run another program."))
 		return
 
