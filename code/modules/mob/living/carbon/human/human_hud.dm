@@ -16,8 +16,7 @@
 		recreate_flag = TRUE
 
 	if(recreate_flag)
-		H.destroy_HUD()
-		H.create_HUD()
+		H.reset_HUD()
 
 
 	H.show_HUD()

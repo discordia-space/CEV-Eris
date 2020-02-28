@@ -88,3 +88,8 @@
 /mob/living/proc/create_HUDfrippery()
 ///mob/living/proc/create_HUDprocess()
 /mob/living/proc/create_HUDtech()
+
+/mob/living/proc/reset_HUD()
+	destroy_HUD()
+	create_HUD()
+	update_hud()

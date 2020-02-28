@@ -100,4 +100,5 @@
 				to_chat(world, "[i] [M.client.screen.Find(HUDneed[i])]")
 				M.client.screen -= HUDneed[i]
 				to_chat(world, "[M.client.screen.Find(HUDneed[i])]")
+			M.reset_HUD()
 		M.check_HUD()
