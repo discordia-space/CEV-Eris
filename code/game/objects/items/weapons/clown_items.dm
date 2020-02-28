@@ -92,7 +92,7 @@
 		return
 	..()
 
-/obj/item/weapon/soap/nanotrasen
+/obj/item/weapon/soap/company
 	desc = "A NeoTheology-brand bar of soap. Smells of biomatter."
 	icon_state = "soapnt"
 

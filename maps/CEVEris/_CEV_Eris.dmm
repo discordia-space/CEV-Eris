@@ -55991,7 +55991,7 @@
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/soap/company,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/storage)
 "cuS" = (
@@ -72064,8 +72064,8 @@
 /obj/item/weapon/storage/box/lights/tubes,
 /obj/item/weapon/storage/box/lights/tubes,
 /obj/item/weapon/storage/box/lights/tubes,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/soap/company,
+/obj/item/weapon/soap/company,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "dfG" = (
