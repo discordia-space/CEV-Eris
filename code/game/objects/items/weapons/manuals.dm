@@ -122,7 +122,7 @@
 
 /obj/item/weapon/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
-	desc = "An information manual for Syndicate operatives on the usage of nuclear devices to destroy Nanotrasen facilities, a throwback to the past."
+	desc = "An information manual for Syndicate operatives on the usage of nuclear devices to destroy Company facilities, a throwback to the past."
 	icon_state = "book_nuclear"
 	author = "Syndicate"
 	title = "Fission Mailed: Nuclear Sabotage 101"

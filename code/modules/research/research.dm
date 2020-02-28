@@ -245,7 +245,7 @@ Procs:
 /datum/tech/illegal
 	name = "Illegal Technologies Research"
 	shortname = "Illegal Tech"
-	desc = "The study of technologies that violate standard Nanotrasen regulations."
+	desc = "The study of technologies that violate standard Company regulations."
 	rare = 3
 	shown = FALSE
 	item_tech_req = TECH_ILLEGAL // research any traitor item and this tech will show up

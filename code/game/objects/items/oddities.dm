@@ -177,7 +177,7 @@
 
 /obj/item/weapon/oddity/common/old_pda
 	name = "broken pda"
-	desc = "An old Nanotrasen era PDA. These were issued to their employees all throughout the galaxy."
+	desc = "An old corporate era PDA. These were issued to their employees all throughout the galaxy."
 	icon_state = "old_pda"
 	item_state = "electronic"
 	oddity_stats = list(

@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/crossbow
 	name = "NT EC \"Nemesis\""
-	desc = "Mini energy crossbow, produced by old Nanotrasen, discontinued now. A weapon favored by many mercenary stealth specialists."
+	desc = "Mini energy crossbow, produced by The Company, discontinued now. A weapon favored by many mercenary stealth specialists."
 	icon = 'icons/obj/guns/energy/crossbow.dmi'
 	icon_state = "crossbow"
 	w_class = ITEM_SIZE_SMALL
@@ -25,7 +25,7 @@
 
 /obj/item/weapon/gun/energy/crossbow/largecrossbow
 	name = "NT EC \"Themis\""
-	desc = "Energy crossbow, produced by old Nanotrasen, discontinued now. A weapon favored by mercenary infiltration teams."
+	desc = "Energy crossbow, produced by The Company, discontinued now. A weapon favored by mercenary infiltration teams."
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_PLASTIC = 20, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 9)
