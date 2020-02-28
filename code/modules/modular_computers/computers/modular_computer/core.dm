@@ -285,6 +285,12 @@
 		update_icon()
 	return TRUE
 
+/obj/item/modular_computer/proc/on_disk_disabled(obj/item/weapon/computer_hardware/hard_drive/disk)
+	// Close all running apps before the disk is removed
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
+		if((PRG in disk.stored_files))
+			PRG.event_disk_removed()
 
 /obj/item/modular_computer/proc/update_label()
 	var/obj/item/weapon/card/id/I = GetIdCard()

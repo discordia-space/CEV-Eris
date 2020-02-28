@@ -110,20 +110,12 @@
 
 	if(istype(H, /obj/item/weapon/computer_hardware))
 		to_remove = H
-
-		// Close all running apps before removing the disk
-		if(istype(H, /obj/item/weapon/computer_hardware/hard_drive))
-			var/obj/item/weapon/computer_hardware/hard_drive/disk = H
-			for(var/p in all_threads)
-				var/datum/computer_file/program/PRG = p
-				if((PRG in disk.stored_files))
-					PRG.event_disk_removed()
-
 		critical = to_remove.critical && to_remove.enabled
 
-		to_remove.holder2 = null
-		if (to_remove.enabled)
+		if(to_remove.enabled)
 			to_remove.disabled()
+
+		to_remove.holder2 = null
 
 	if(portable_drive == H)
 		portable_drive = null
