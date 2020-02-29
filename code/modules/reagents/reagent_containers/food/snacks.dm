@@ -2005,6 +2005,113 @@
 	preloaded_reagents = list("gold" = 5)
 	cooked = TRUE
 
+//mre food
+/obj/item/weapon/reagent_containers/food/snacks/mre
+	name = "mre"
+	desc = "A closed mre, ready to be opened."
+	icon_state = "mre"
+	trash = /obj/item/trash/mre
+	filling_color = "#948051"
+	nutriment_desc = list("heartiness" = 1, "beans" = 3)
+	nutriment_amt = 6
+	preloaded_reagents = list("protein" = 3, "iron" = 10)
+	cooked = TRUE
+	reagent_flags = NONE
+	var/warm = FALSE
+	var/open = FALSE
+	var/list/heated_reagents = list("tricordrazine" = 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/attack_self(mob/user)
+	if(!open)
+		open()
+		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
+		return
+	user.visible_message(
+		SPAN_NOTICE("[user] crushes \the [src] package."),
+		"You crush \the [src] package and feel a comfortable heat build up."
+	)
+	spawn(300)
+		to_chat(user, "You think \the [src] is ready to eat about now.")
+		heat()
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/attack(mob/M as mob, mob/user as mob, def_zone)
+	. = ..()
+	if(!open)
+		open()
+		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/proc/heat()
+	warm = TRUE
+	for(var/reagent in heated_reagents)
+		reagents.add_reagent(reagent, heated_reagents[reagent])
+	bitesize = 6
+	name = "warm " + name
+	icon_state = "[initial(icon_state)]_hot"
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/proc/open(mob/user)
+	icon_state = "[initial(icon_state)]_open"
+	desc = "A plethora of steaming beans mixed with meat, ready for consumption."
+	open = TRUE
+	reagent_flags |= REFILLABLE
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/can
+	name = "ration can"
+	desc = "Can of stew meat, tab right on top for easy opening."
+	icon_state = "ration_can"
+	trash = /obj/item/trash/mre_can
+	filling_color = "#948051"
+	nutriment_desc = list("heartiness" = 1, "meat" = 3)
+	nutriment_amt = 5
+	preloaded_reagents = list("protein" = 6, "iron" = 2)
+	heated_reagents = list("bicaridine" = 5, "kelotane" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_paste
+	name = "nutrient paste"
+	desc = "A peachy looking paste."
+	icon_state = "paste"
+	trash = /obj/item/trash/mre_paste
+	filling_color = "#DEDEAB"
+	nutriment_desc = list("acrid peaches" = 2)
+	bitesize = 2
+	nutriment_amt = 3
+	preloaded_reagents = list("hyperzine" = 8, "paracetamol" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_cracker
+	name = "enriched cracker"
+	desc = "It's a salted cracker, the surface looks saturated with oil."
+	icon_state = "mre_cracker"
+	filling_color = "#F5DEB8"
+	center_of_mass = list("x"=17, "y"=6)
+	nutriment_desc = list("salt" = 1, "cracker" = 2)
+	bitesize = 2
+	nutriment_amt = 1
+	preloaded_reagents = list("dexalinp" = 1, "steady" = 1, "nicotine" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre
+	name = "morale bar"
+	desc = "Some brand of non-melting military chocolate."
+	icon_state = "mre_candy"
+	trash = /obj/item/trash/mre_candy
+	preloaded_reagents = list("sugar" = 3, "serotrotium" = 2)
+	var/open = FALSE
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre/attack_self(mob/user)
+	if(!open)
+		open()
+		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
+		return
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre/attack(mob/M as mob, mob/user as mob, def_zone)
+	. = ..()
+	if(!open)
+		open()
+		to_chat(user, SPAN_WARNING("You viciously rip \the [src] open with your teeth, swallowing some plastic in the process, you animal."))
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre/proc/open(mob/user)
+	icon_state = "mre_candy_open"
+	open = TRUE
+
+
 /////////////////////////////////////////////////Sliceable////////////////////////////////////////
 // All the food items that can be sliced into smaller bits like Meatbread and Cheesewheels
 

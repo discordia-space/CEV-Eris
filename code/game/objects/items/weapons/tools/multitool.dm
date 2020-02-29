@@ -13,8 +13,6 @@
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	worksound = WORKSOUND_PULSING
-	throw_range = 15
-	throw_speed = 3
 	tool_qualities = list(QUALITY_PULSING = 30)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 

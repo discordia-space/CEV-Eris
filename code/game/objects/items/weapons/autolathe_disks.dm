@@ -169,12 +169,13 @@
 		/datum/design/autolathe/tool/circularsaw,
 		/datum/design/autolathe/tool/powered_hammer,
 		/datum/design/autolathe/tool/chainsaw,
+		/datum/design/autolathe/tool/hypersaw,
 		/datum/design/autolathe/tool/rcd,
 		/datum/design/autolathe/tool/electric_screwdriver,
 		/datum/design/autolathe/tool/combi_driver,
 		/datum/design/autolathe/tool/armature_cutter,
-		/datum/design/autolathe/part/diamondblade,
 		/datum/design/autolathe/tool/weldertool_adv,
+		/datum/design/autolathe/part/diamondblade
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
@@ -292,10 +293,17 @@
 		/datum/design/bioprinter/leather/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/bioprinter/leather/holster,
+		/datum/design/bioprinter/leather/holster/armpit,
+		/datum/design/bioprinter/leather/holster/waist,
+		/datum/design/bioprinter/leather/holster/hip,
 
 		/datum/design/bioprinter/medical/bruise,
 		/datum/design/bioprinter/medical/splints,
@@ -324,10 +332,17 @@
 		/datum/design/bioprinter/leather/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/bioprinter/leather/holster,
+		/datum/design/bioprinter/leather/holster/armpit,
+		/datum/design/bioprinter/leather/holster/waist,
+		/datum/design/bioprinter/leather/holster/hip,
 
 		/datum/design/autolathe/gun/nt_sprayer
 	)

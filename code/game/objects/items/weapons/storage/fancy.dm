@@ -11,6 +11,7 @@
  *		Candle Box
  *		Crayon Box
  *		Cigarette Box
+ *		MRE containers
  */
 
 /obj/item/weapon/storage/fancy/
@@ -56,6 +57,20 @@
 /obj/item/weapon/storage/fancy/egg_box/populate_contents()
 	for(var/i in 1 to storage_slots)
 		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
+
+//MRE food
+/obj/item/weapon/storage/fancy/mre_cracker
+	icon_state = "crackersbox"
+	name = "enriched crackers pack"
+	storage_slots = 5
+	icon_type = "crackers"
+	can_hold = list(
+		/obj/item/weapon/reagent_containers/food/snacks/mre_cracker
+		)
+
+/obj/item/weapon/storage/fancy/mre_cracker/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/weapon/reagent_containers/food/snacks/mre_cracker(src)
 
 /*
  * Candle Box

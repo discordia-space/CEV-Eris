@@ -56,7 +56,6 @@
 	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_PRYING = 20)
 	glow_color = COLOR_BLUE_LIGHT
 	degradation = 0.6
-	max_upgrades = 2
 	workspeed = 1.2
 	use_power_cost = 0
 
