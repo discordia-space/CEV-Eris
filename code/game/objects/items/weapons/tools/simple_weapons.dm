@@ -186,7 +186,7 @@
 	sharp = TRUE
 	edge = TRUE
 	w_class = ITEM_SIZE_NORMAL
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
 	force = WEAPON_FORCE_ROBUST
 	armor_penetration = ARMOR_PEN_DEEP
