@@ -58,8 +58,8 @@
 /datum/design/autolathe/tool/hammer
 	build_path = /obj/item/weapon/tool/hammer
 
-/datum/design/autolathe/tool/poweredhammer
-	build_path = /obj/item/weapon/tool/hammer/poweredhammer
+/datum/design/autolathe/tool/powered_hammer
+	build_path = /obj/item/weapon/tool/hammer/powered_hammer
 
 /datum/design/autolathe/tool/big_wrench
 	build_path = /obj/item/weapon/tool/wrench/big_wrench

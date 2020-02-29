@@ -167,7 +167,7 @@
 		/datum/design/autolathe/tool/pickaxe_excavation,
 		/datum/design/autolathe/tool/shovel/power,
 		/datum/design/autolathe/tool/circularsaw,
-		/datum/design/autolathe/tool/poweredhammer,
+		/datum/design/autolathe/tool/powered_hammer,
 		/datum/design/autolathe/tool/chainsaw,
 		/datum/design/autolathe/tool/rcd,
 		/datum/design/autolathe/tool/electric_screwdriver,
