@@ -120,6 +120,9 @@
 	price_tag = 500
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
+	name = "full bulletproof suit"
+	desc = "A vest with hand and arm-guards attached that excels in protecting the wearer against high-velocity solid projectiles. \
+			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(

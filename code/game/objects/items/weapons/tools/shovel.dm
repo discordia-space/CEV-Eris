@@ -17,32 +17,35 @@
 
 /obj/item/weapon/tool/shovel/improvised
 	name = "junk shovel"
-	desc = "A large but fragile tool for moving dirt and rock."
+	desc = "A large but fragile tool for moving dirt and rock, made by hand. Has more than enough space for tool mods to make it better."
 	icon_state = "impro_shovel"
-	degradation = 1.5
 	tool_qualities = list(QUALITY_SHOVELING = 25, QUALITY_DIGGING = 25, QUALITY_EXCAVATION = 10)
+	degradation = 1.5
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 
 /obj/item/weapon/tool/shovel/spade
 	name = "spade"
-	desc = "A small tool for digging and moving dirt."
+	desc = "A small tool ofter used for simple gardening task such as digging soil and moving dirt."
 	icon_state = "spade"
 	item_state = "spade"
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
-	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 20, QUALITY_EXCAVATION = 20)
+	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 20, QUALITY_EXCAVATION = 10)
+	max_upgrades = 2
 
 /obj/item/weapon/tool/shovel/power
-	name = "powershovel"
-	desc = "A power tool for all your shoveling needs."
+	name = "power shovel 9000"
+	desc = "A powered shovel for all your dumpster diving needs."
 	icon_state = "powershovel"
 	item_state = "shovel"
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTEEL = 6,  MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
-	tool_qualities = list(QUALITY_SHOVELING = 60, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 10)
+	tool_qualities = list(QUALITY_SHOVELING = 60, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 20)
 	use_power_cost = 0.8
+	degradation = 0.7
+	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium
-	workspeed = 1.2

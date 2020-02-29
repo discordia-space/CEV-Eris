@@ -3,7 +3,8 @@
 	desc = "A handgun holster."
 	icon_state = "holster"
 	slot = "utility"
-	price_tag = 100
+	matter = list(MATERIAL_BIOMATTER = 5)
+	price_tag = 200
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
@@ -113,7 +114,7 @@
 
 /obj/item/clothing/accessory/holster/armpit
 	name = "armpit holster"
-	desc = "A worn-out handgun holster. Perfect for concealed carry"
+	desc = "A worn-out handgun holster. Perfect for concealed carry."
 	icon_state = "holster"
 
 /obj/item/clothing/accessory/holster/waist
