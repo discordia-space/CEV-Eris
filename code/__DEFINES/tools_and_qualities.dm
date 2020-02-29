@@ -56,7 +56,7 @@
 #define WORKSOUND_PULSING				'sound/items/multitool_pulse.ogg'
 #define WORKSOUND_SCREW_DRIVING			'sound/items/Screwdriver.ogg'
 #define WORKSOUND_EASY_CROWBAR			'sound/items/Crowbar.ogg'
-#define WORKSOUND_HAMMER				'sound/items/Hammer.ogg'
+#define WORKSOUND_HAMMER				'sound/items/hammer.ogg'
 #define WORKSOUND_REMOVING				'sound/items/Deconstruct.ogg'
 #define WORKSOUND_DRIVER_TOOL			'sound/items/e_screwdriver.ogg'
 #define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'
