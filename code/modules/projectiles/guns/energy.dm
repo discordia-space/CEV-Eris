@@ -24,7 +24,7 @@
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
 	var/recharge_time = 4
 	var/charge_tick = 0
-
+	gun_tags = list(GUN_ENERGY)
 	var/overcharge_timer //Holds ref to the timer used for overcharging
 	var/overcharge_rate = 1 //Base overcharge additive rate for the gun
 	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max

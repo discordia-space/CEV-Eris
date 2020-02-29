@@ -88,7 +88,7 @@
 		GUN_UPGRADE_CHARGECOST = 2
 		)
 	I.gun_loc_tag = GUN_BARREL
-	I.req_gun_tags = list(GUN_ENERGY, GUN_NOFIREMODES)
+	I.req_gun_tags = list(GUN_ENERGY)
 
 /obj/item/weapon/gun_upgrade/trigger
 
@@ -177,5 +177,7 @@
 
 /obj/item/weapon/storage/box/gun_upgrades/populate_contents()
 	for(var/i in subtypesof(/obj/item/weapon/gun_upgrade))
-		new i(src)
+		var/obj/test = i
+		if(initial(test.icon_state))
+			new i(src)
 	new /obj/item/weapon/bikehorn(src)

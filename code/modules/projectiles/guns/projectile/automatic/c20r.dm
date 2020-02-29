@@ -28,7 +28,7 @@
 	recoil_buildup = 3
 	one_hand_penalty = 5 //smg level
 
-	gun_tags = list(GUN_SILENCABLE)
+	gun_tags = list(GUN_PROJECTILE,GUN_SILENCABLE)
 
 	firemodes = list(
 		FULL_AUTO_400,

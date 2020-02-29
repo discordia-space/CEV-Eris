@@ -12,6 +12,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
+	gun_tags = list(GUN_LASER)
 	firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE

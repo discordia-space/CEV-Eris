@@ -645,7 +645,7 @@
 	restrict_safety = initial(restrict_safety)
 	proj_step_multiplier = initial(proj_step_multiplier)
 	init_offset = initial(init_offset)
-	firesound = initial(firesound)
+	fire_sound = initial(fire_sound)
 	//re-apply any firemodes
 	set_firemode(sel_mode)
 

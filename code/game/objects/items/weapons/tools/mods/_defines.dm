@@ -63,6 +63,7 @@
 #define GUN_UPGRADE_SILENCER "silencable"
 #define GUN_UPGRADE_FORCESAFETY "safety force"
 #define GUN_UPGRADE_HONK "why"
+#define GUN_UPGRADE_FULLAUTO "full auto"
 
 
 
@@ -83,7 +84,6 @@
 #define GUN_LASER "laser firing"
 #define GUN_REVOLVER "revolver"
 #define GUN_INTERNAL_MAG "internal mag"
-#define GUN_NOFIREMODES "no alt firemodes"
 
 #define GUN_CALIBRE_35 "caliber .35"
 

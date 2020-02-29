@@ -169,13 +169,22 @@
 	if(!weapon_upgrades.len)
 		to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
 		return FALSE //Can't be applied to a weapon
-	if(gun_loc_tag && G.item_upgrades[gun_loc_tag])
-		to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_loc_tag]!"))
+
+	if (G.item_upgrades.len >= G.max_upgrades)
+		to_chat(user, SPAN_WARNING("This weapon can't fit anymore modifications!"))
 		return FALSE
+
+	for(var/obj/I in G.item_upgrades)
+		var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
+		if(IU && IU.gun_loc_tag == gun_loc_tag)
+			to_chat(user, SPAN_WARNING("There is already something attached to \the [G]'s [gun_loc_tag]!"))
+			return FALSE
+
 	for(var/I in req_gun_tags)
 		if(!G.gun_tags.Find(I))
 			to_chat(user, SPAN_WARNING("\The [G] lacks the following property: [I]"))
 			return FALSE
+
 	if((req_fuel_cell & REQ_CELL) && !istype(G, /obj/item/weapon/gun/energy))
 		to_chat(user, SPAN_WARNING("This weapon does not use power!"))
 		return FALSE
@@ -292,6 +301,9 @@
 		G.proj_damage_adjust[IRRADIATE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]
 	if(weapon_upgrades[GUN_UPGRADE_HONK])
 		G.fire_sound = 'sound/items/bikehorn.ogg'
+
+	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
+		//Redo how firemodes are applied so that it is something that can be reset
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE

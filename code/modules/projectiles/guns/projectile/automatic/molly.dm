@@ -21,7 +21,7 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
-	gun_tags = list(GUN_SILENCABLE)
+	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
 	recoil_buildup = 3
 	one_hand_penalty = 5 //despine it being handgun, it's better to hold in two hands while shooting. SMG level.
 
