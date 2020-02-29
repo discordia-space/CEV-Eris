@@ -1,6 +1,6 @@
 /obj/item/weapon/tool/omnitool
 	name = "Asters \"Munchkin 5000\""
-	desc = "Fuel powered monster of a tool. Its weldier part is most advanced one, capable of welding things without harmfull glow and sparks, so no protection needed."
+	desc = "A fuel powered monster of a tool. Its welding attachment is capable of welding things without an eye-damaging flash, so no eye protection is required."
 	icon_state = "omnitool"
 	w_class = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
@@ -12,7 +12,7 @@
 	toggleable = TRUE
 	create_hot_spot = TRUE
 	glow_color = COLOR_ORANGE
-	max_upgrades = 5
+	max_upgrades = 2
 
 /obj/item/weapon/tool/medmultitool
 	name = "One Star medmultitool"

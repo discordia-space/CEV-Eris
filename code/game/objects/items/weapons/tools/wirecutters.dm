@@ -5,8 +5,6 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_WIRECUTTING
-	throw_speed = 2
-	throw_range = 9
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	attack_verb = list("pinched", "nipped")
@@ -17,29 +15,32 @@
 //Better and more flexible than most improvised tools, but more bulky and annoying to make
 /obj/item/weapon/tool/wirecutters/improvised
 	name = "wiremanglers"
-	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things."
+	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things. Could serve you well if you stuff it with enough tool mods."
 	icon_state = "impro_cutter"
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 20, QUALITY_RETRACTING = 10, QUALITY_BONE_SETTING = 10)
 	degradation = 1.5
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 
 /obj/item/weapon/tool/wirecutters/armature
 	name = "armature cutter"
 	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
+	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7
 	max_upgrades = 4
 
-/obj/item/weapon/tool/wirecutters/pliers
+/obj/item/weapon/tool/wirecutters/pliers //hybrid of wirecutters, wrench and cautery
 	name = "pliers"
-	desc = "Useful for pinching, clamping and occasional bolt turning."
+	desc = "A multitool from the world of maintenance. Useful for pinching, clamping, and occasional bolt turning."
 	icon_state = "pliers"
 	edge = FALSE
-	tool_qualities = list(QUALITY_WIRE_CUTTING = 25, QUALITY_CLAMPING = 20, QUALITY_BOLT_TURNING = 15, QUALITY_BONE_SETTING = 15)
+	sharp = FALSE
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 10, QUALITY_CLAMPING = 20, QUALITY_BOLT_TURNING = 15, QUALITY_BONE_SETTING = 20)
 
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)

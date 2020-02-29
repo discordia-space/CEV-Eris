@@ -167,12 +167,13 @@
 		/datum/design/autolathe/tool/shovel/power,
 		/datum/design/autolathe/tool/circularsaw,
 		/datum/design/autolathe/tool/chainsaw,
+		/datum/design/autolathe/tool/hypersaw,
 		/datum/design/autolathe/tool/rcd,
 		/datum/design/autolathe/tool/electric_screwdriver,
 		/datum/design/autolathe/tool/combi_driver,
 		/datum/design/autolathe/tool/armature_cutter,
-		/datum/design/autolathe/part/diamondblade,
 		/datum/design/autolathe/tool/weldertool_adv,
+		/datum/design/autolathe/part/diamondblade
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
