@@ -79,3 +79,19 @@
 /obj/item/trash/tastybread
 	name = "bread tube"
 	icon_state = "tastybread"
+
+/obj/item/trash/mre
+	name = "mre"
+	icon_state = "mre_trash"
+
+/obj/item/trash/mre_paste
+	name = "nutrient paste"
+	icon_state = "paste_trash"
+
+/obj/item/trash/mre_candy
+	name = "candy"
+	icon_state = "mre_candy_trash"
+
+/obj/item/trash/mre_can
+	name = "ration can"
+	icon_state = "ration_can_trash"
