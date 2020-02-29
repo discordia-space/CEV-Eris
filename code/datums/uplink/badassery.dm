@@ -68,3 +68,10 @@
 		icon = image(initial(C.icon), initial(C.icon_state))
 
 	return "\icon[icon]"
+
+/datum/uplink_item/item/badassery/marshallbadge
+	name = "Marshal's Badge"
+	item_cost = 1
+	antag_roles = list(ROLE_MARSHAL)
+	path = /obj/item/clothing/accessory/badge/marshal
+	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."

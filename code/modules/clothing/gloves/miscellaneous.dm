@@ -28,9 +28,9 @@
 	permeability_coefficient = 0.05
 	price_tag = 50
 
-	New()
-		//average of 0.5, somewhat better than regular gloves' 0.75
-		siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35)
+/obj/item/clothing/gloves/insulated/cheap/New()
+	//average of 0.5, somewhat better than regular gloves' 0.75
+	siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35)
 
 /obj/item/clothing/gloves/thick
 	desc = "These work gloves are thick and fire-resistant."
@@ -46,34 +46,29 @@
 	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/thick/swat
-	desc = "These tactical gloves are somewhat fire and impact-resistant."
-	name = "IHS combat gloves"
-	icon_state = "ihscombat"
-	item_state = "ihscombat"
-	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 20,
-		bomb = 25,
-		bio = 0,
-		rad = 0
-	)
-	price_tag = 300
+/obj/item/clothing/gloves/security
+	desc = "Padded security gloves."
+	name = "security gloves"
+	icon_state = "security"
+	item_state = "combat"
+	siemens_coefficient = 0.5
+	permeability_coefficient = 0.05
+	cold_protection = ARMS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = ARMS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+	price_tag = 100
 
-/obj/item/clothing/gloves/thick/combat //Combined effect of SWAT gloves and insulated gloves
+/obj/item/clothing/gloves/security/ironhammer
+	name = "operator's gloves"
+	icon_state = "security_ironhammer"
+	item_state = "combat"
+
+/obj/item/clothing/gloves/security/tactical
 	desc = "These tactical gloves are somewhat fire and impact resistant."
-	name = "combat gloves"
-	icon_state = "black"
+	name = "tactical gloves"
+	icon_state = "security"
 	item_state = "swat_gl"
-	armor = list(
-		melee = 30,
-		bullet = 20,
-		energy = 20,
-		bomb = 25,
-		bio = 0,
-		rad = 0
-	)
 	siemens_coefficient = 0
 	price_tag = 500
 

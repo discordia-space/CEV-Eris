@@ -1,50 +1,52 @@
 // Station voidsuits
 //Engineering rig
-/obj/item/clothing/head/helmet/space/void/engineering
-	name = "engineering voidsuit helmet"
+/obj/item/clothing/head/space/void/engineering
+	name = "Technomancer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
-	icon_state = "rig0-engineering"
-	item_state = "eng_helm"
+	icon_state = "technohelmet"
+	item_state = "technohelmet"
 	item_state_slots = list(
 		slot_l_hand_str = "eng_helm",
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 10,
+		melee = 40,
+		bullet = 40,
+		energy =30,
 		bomb = 25,
 		bio = 100,
 		rad = 100
 	)
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/space/void/engineering
-	name = "engineering voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
-	icon_state = "rig-engineering"
-	item_state = "eng_voidsuit"
+	name = "Technomancer voidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
+	icon_state = "technosuit"
+	item_state = "technosuit"
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 10,
+		melee = 40,
+		bullet = 40,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 100
 	)
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	extra_allowed = list(
 		/obj/item/weapon/storage/toolbox,
 		/obj/item/weapon/storage/briefcase/inflatable,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/engineering
+	helmet = /obj/item/clothing/head/space/void/engineering
 
 /obj/item/clothing/suit/space/void/engineering/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
 
 //Mining rig
-/obj/item/clothing/head/helmet/space/void/mining
+/obj/item/clothing/head/space/void/mining
 	name = "mining voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating."
 	icon_state = "rig0-mining"
@@ -76,10 +78,10 @@
 		bio = 100,
 		rad = 75
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/mining
+	helmet = /obj/item/clothing/head/space/void/mining
 
 //Medical Rig
-/obj/item/clothing/head/helmet/space/void/medical
+/obj/item/clothing/head/space/void/medical
 	name = "medical voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has minor radiation shielding."
 	icon_state = "rig0-medical"
@@ -102,7 +104,7 @@
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_voidsuit"
-	slowdown = 0.25
+	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
 		/obj/item/device/scanner/health,
@@ -117,13 +119,13 @@
 		bio = 100,
 		rad = 75
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/medical
+	helmet = /obj/item/clothing/head/space/void/medical
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
 
 	//Security
-/obj/item/clothing/head/helmet/space/void/security
+/obj/item/clothing/head/space/void/security
 	name = "ironhammer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "ihsvoidhelm"
@@ -147,7 +149,7 @@
 /obj/item/clothing/suit/space/void/security
 	name = "ironhammer voidsuit"
 	icon_state = "ihvoidsuit"
-	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection"
+	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
 		melee = 30,
@@ -158,14 +160,14 @@
 		rad = 75
 	)
 	siemens_coefficient = 0.7
-	helmet = /obj/item/clothing/head/helmet/space/void/security
+	helmet = /obj/item/clothing/head/space/void/security
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
 
 //Atmospherics Rig (BS12)
-/obj/item/clothing/head/helmet/space/void/atmos
+/obj/item/clothing/head/space/void/atmos
 	desc = "A special helmet designed for work in a hazardous, low pressure environments. Has improved thermal protection and minor radiation shielding."
 	name = "atmospherics voidsuit helmet"
 	icon_state = "rig0-atmos"
@@ -199,4 +201,4 @@
 		rad = 75
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	helmet = /obj/item/clothing/head/helmet/space/void/atmos
+	helmet = /obj/item/clothing/head/space/void/atmos

@@ -17,7 +17,6 @@
 				/obj/item/weapon/circuitboard/circuit_imprinter = 2,
 				/obj/item/weapon/circuitboard/comm_monitor = 1,
 				/obj/item/weapon/circuitboard/comm_server = 1,
-				/obj/item/weapon/circuitboard/comm_traffic = 1,
 				/obj/item/weapon/circuitboard/communications = 2,
 				/obj/item/weapon/circuitboard/curefab = 1,
 				/obj/item/weapon/circuitboard/destructive_analyzer = 2,

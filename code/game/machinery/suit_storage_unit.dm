@@ -23,7 +23,7 @@
 	var/mob/living/carbon/OCCUPANT = null
 	var/obj/item/clothing/suit/space/SUIT = null
 	var/SUIT_TYPE = null
-	var/obj/item/clothing/head/helmet/space/HELMET = null
+	var/obj/item/clothing/head/space/HELMET = null
 	var/HELMET_TYPE = null
 	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
 	var/MASK_TYPE = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
@@ -449,7 +449,7 @@
 		return
 	else if(istype(I, /obj/item/clothing/suit/space))
 		load(I, user, SLOT_SUIT)
-	else if(istype(I, /obj/item/clothing/head/helmet))
+	else if(istype(I, /obj/item/clothing/head/space))
 		load(I, user, SLOT_HELMET)
 	else if(istype(I, /obj/item/clothing/mask))
 		load(I, user, SLOT_MASK)
@@ -464,7 +464,7 @@
 /obj/machinery/suit_storage_unit/standard_unit
 	overlay_color = "#B0B0B0"
 	SUIT_TYPE = /obj/item/clothing/suit/space
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space
+	HELMET_TYPE = /obj/item/clothing/head/space
 	MASK_TYPE = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/medical

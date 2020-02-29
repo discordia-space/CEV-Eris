@@ -123,7 +123,7 @@
 		internal = null
 	else
 		// Check for airtight mask/helmet.
-		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space)))
+		if(!(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/space)))
 			return
 		// Find an internal source.
 		if(istype(back, /obj/item/weapon/tank))

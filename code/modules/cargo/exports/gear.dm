@@ -7,7 +7,7 @@
 	cost = 100
 	include_subtypes = FALSE
 	unit_name = "helmet"
-	export_types = list(/obj/item/clothing/head/helmet)
+	export_types = list(/obj/item/clothing/head/armor/helmet)
 
 /datum/export/gear/sec_armor
 	cost = 200
@@ -20,7 +20,7 @@
 /datum/export/gear/riot_helmet
 	cost = 250
 	unit_name = "riot helmet"
-	export_types = list(/obj/item/clothing/head/helmet/riot)
+	export_types = list(/obj/item/clothing/head/armor/riot)
 
 /datum/export/gear/riot_armor
 	cost = 500
@@ -65,7 +65,7 @@
 /datum/export/gear/space/helmet
 	cost = 400
 	unit_name = "space helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space)
+	export_types = list(/obj/item/clothing/head/space)
 	include_subtypes = FALSE
 
 /datum/export/gear/space/suit
@@ -77,7 +77,7 @@
 /datum/export/gear/space/helmet/emergency
 	cost = 200
 	unit_name = "emergency space helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space/emergency)
+	export_types = list(/obj/item/clothing/head/space/emergency)
 	include_subtypes = TRUE
 
 /datum/export/gear/space/suit/emergency
@@ -96,7 +96,7 @@
 /datum/export/gear/space/syndiehelmet
 	cost = 1000
 	unit_name = "Syndicate space helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space/syndicate)
+	export_types = list(/obj/item/clothing/head/space/syndicate)
 	include_subtypes = TRUE
 
 /datum/export/gear/space/syndiesuit
@@ -114,7 +114,7 @@
 /datum/export/gear/space/helmet/captain
 	cost = 1000
 	unit_name = "Captain's space helmet"
-	export_types = list(/obj/item/clothing/head/helmet/space/capspace)
+	export_types = list(/obj/item/clothing/head/space/capspace)
 
 /datum/export/gear/space/suit/captain
 	cost = 1500

@@ -6,7 +6,7 @@
 	return pickweight(list(
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 3,
 				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
-				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,
+				/obj/item/weapon/storage/box/shotgunammo = 1,
 				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
 				/obj/item/ammo_magazine/ammobox/magnum = 1,
 				/obj/item/ammo_magazine/ammobox/clrifle = 1,
@@ -17,10 +17,10 @@
 				/obj/item/ammo_magazine/smg/rubber = 1,
 				/obj/item/ammo_magazine/pistol = 2,
 				/obj/item/ammo_magazine/pistol/rubber = 4,
-				/obj/item/ammo_magazine/pistol/flash = 4,
+				/obj/item/ammo_magazine/pistol/practice = 4,
 				/obj/item/ammo_magazine/hpistol = 1,
 				/obj/item/ammo_magazine/hpistol/rubber = 2,
-				/obj/item/ammo_magazine/hpistol/flash = 2,
+				/obj/item/ammo_magazine/hpistol/practice = 2,
 				/obj/item/ammo_magazine/slmagnum = 2,
 				/obj/item/ammo_magazine/slpistol = 3,
 				/obj/item/ammo_magazine/slpistol/rubber = 4))
@@ -42,7 +42,7 @@
 	return pickweight(list(
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,
 				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
-				/obj/item/weapon/storage/box/shotgunammo/stunshells = 1,
+				/obj/item/weapon/storage/box/shotgunammo = 1,
 				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3))
 
 /obj/random/ammo/shotgun/low_chance

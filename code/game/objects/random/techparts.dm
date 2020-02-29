@@ -68,7 +68,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_idaho = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides = 1,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog = 1,
@@ -88,11 +88,12 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad = 1,
 
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_syringegun = 10,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun = 6,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 6,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,))
 
 /obj/random/techpart/low_chance
 	name = "low chance random techpart"

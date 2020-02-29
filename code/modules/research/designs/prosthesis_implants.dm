@@ -5,21 +5,19 @@
 	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/prosthesis/r_arm
-	name = "right arm"
-	build_path = /obj/item/prosthesis/r_arm
+	build_path = /obj/item/organ/external/robotic/r_arm
 
 /datum/design/research/item/mechfab/prosthesis/l_arm
-	name = "left arm"
-	build_path = /obj/item/prosthesis/l_arm
+	build_path = /obj/item/organ/external/robotic/l_arm
 
 /datum/design/research/item/mechfab/prosthesis/r_leg
-	name = "right leg"
-	build_path = /obj/item/prosthesis/r_leg
+	build_path = /obj/item/organ/external/robotic/r_leg
 
 /datum/design/research/item/mechfab/prosthesis/l_leg
-	name = "left leg"
-	build_path = /obj/item/prosthesis/l_leg
+	build_path = /obj/item/organ/external/robotic/l_leg
 
+/datum/design/research/item/mechfab/prosthesis/groin
+	build_path = /obj/item/organ/external/robotic/groin
 
 //Modules ====================================
 

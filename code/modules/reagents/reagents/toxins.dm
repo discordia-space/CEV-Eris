@@ -325,7 +325,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#009CA8"
-	metabolism = REM * 0.5
+	metabolism = REM * 5
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/medicine/soporific/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -354,7 +354,7 @@
 	taste_description = "bitterness"
 	reagent_state = SOLID
 	color = "#000067"
-	metabolism = REM * 0.5
+	metabolism = REM * 5
 	overdose = REAGENTS_OVERDOSE * 0.5
 
 /datum/reagent/medicine/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

@@ -14,44 +14,26 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	force = WEAPON_FORCE_HARMLESS
-	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
-		bomb = 10,
-		bio = 0,
-		rad = 0
-	)
 	siemens_coefficient = 0.6
-	can_hold_knife = 1
+	can_hold_knife = TRUE
+
+/obj/item/clothing/shoes/jackboots/ironhammer
+	icon_state = "jackboots_ironhammer"
 
 /obj/item/clothing/shoes/reinforced
-	name = "reinforced boots"
-	desc = "Slightly reinforced boots. Optimal for your journey into a wonderful world of maintenance."
+	name = "reinforced shoes"
+	desc = "Slightly reinforced shoes. Optimal for your journey into a wonderful world of maintenance."
 	icon_state = "reinforced"
 	item_state = "reinforced"
-	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
-		bomb = 0,
-		bio = 0,
-		rad = 0
-	)
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/shoes/reinforced/ironhammer
+	icon_state = "reinforced_ironhammer"
+
 /obj/item/clothing/shoes/workboots
-	name = "workboots"
+	name = "work boots"
 	desc = "A pair of steel-toed work boots designed for use in industrial settings. Safety first."
 	icon_state = "workboots"
 	item_state = "workboots"
-	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
-		bomb = 10,
-		bio = 0,
-		rad = 25
-	)
 	siemens_coefficient = 0
-	can_hold_knife = 1
+	can_hold_knife = TRUE

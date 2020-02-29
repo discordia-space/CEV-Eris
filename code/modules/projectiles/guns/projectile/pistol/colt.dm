@@ -3,7 +3,7 @@
 	desc = "A cheap knock-off of a Colt M1911. Uses standard .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/colt.dmi'
 	icon_state = "colt"
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1200

@@ -21,6 +21,7 @@
 /obj/machinery/complant_maker/attackby(var/obj/item/I, var/mob/user)
 	if(working)
 		to_chat(user, SPAN_WARNING("[src] is active. Wait for it to finish."))
+		return
 
 	if(default_deconstruction(I, user))
 		return
@@ -31,10 +32,36 @@
 	if(panel_open)
 		return
 
-	if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/robot_parts) || istype(I,/obj/item/prosthesis))
+	var/accepted = FALSE
+
+	if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/robot_parts))
 		user.remove_from_mob(I)
 		qdel(I)
+		accepted = TRUE
 
+	else if(istype(I, /obj/item/organ))
+		var/obj/item/organ/O = I
+		if(BP_IS_ROBOTIC(O))
+			user.remove_from_mob(I)
+			qdel(I)
+			accepted = TRUE
+
+	else if(istype(I, /obj/item/weapon/implantcase))
+		var/obj/item/weapon/implantcase/case = I
+		if(case.implant)
+			QDEL_NULL(case.implant)
+			case.update_icon()
+			accepted = TRUE
+
+	else if(istype(I, /obj/item/weapon/implanter))
+		var/obj/item/weapon/implanter/implanter = I
+		if(implanter.implant)
+			QDEL_NULL(implanter.implant)
+			implanter.update_icon()
+			accepted = TRUE
+
+
+	if(accepted)
 		working = TRUE
 		start_time = world.time
 
@@ -52,11 +79,10 @@
 		return
 
 	if(working && world.time >= start_time + build_time)
-		new /obj/item/weapon/implantcase/excelsior(src.loc)
+		new /obj/item/weapon/implantcase/excelsior(drop_location())
 		flick(image(icon, "opening"), src)
 		working = FALSE
-
-	update_icon()
+		update_icon()
 
 
 /obj/machinery/complant_maker/update_icon()

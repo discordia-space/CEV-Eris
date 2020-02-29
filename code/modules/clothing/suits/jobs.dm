@@ -9,7 +9,7 @@
 	icon_state = "ass_jacket"
 	item_state = "ass_jacket"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -47,7 +47,7 @@
 	armor = list(
 		melee = 30,
 		bullet = 20,
-		energy = 10,
+		energy = 20,
 		bomb = 0,
 		bio = 0,
 		rad = 0
@@ -69,8 +69,8 @@
 	)
 
 //Chaplain
-/obj/item/clothing/suit/chaplain_hoodie
-	name = "preacher jacket"
+/obj/item/clothing/suit/neotheology_jacket
+	name = "acolyte jacket"
 	desc = "A long, lightly armoured jacket. Dark, stylish, and authoritarian."
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
@@ -85,11 +85,20 @@
 		rad = 0
 	)
 
-/obj/item/clothing/suit/chaplain_hoodie/coat
+/obj/item/clothing/suit/neotheology_coat
 	name = "preacher coat"
 	desc = "A snugly fitting, lightly armoured brown coat."
 	icon_state = "church_coat"
 	item_state = "church_coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(
+		melee = 30,
+		bullet = 20,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 //Chaplain
 /obj/item/clothing/suit/nun
@@ -126,7 +135,7 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -135,6 +144,7 @@
 		bio = 0,
 		rad = 0
 	)
+	siemens_coefficient = 0.8
 	price_tag = 250
 
 /obj/item/clothing/suit/storage/detective/ironhammer
@@ -152,7 +162,7 @@
 	item_state = "hazard"
 	blood_overlay_type = "armor"
 	extra_allowed = list(/obj/item/weapon/tool)
-	body_parts_covered = UPPER_TORSO
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
 
 //Roboticist

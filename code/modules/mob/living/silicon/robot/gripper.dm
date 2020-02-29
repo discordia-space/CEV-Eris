@@ -271,9 +271,7 @@
 		/obj/item/weapon/paper,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/circuitboard/broken,
-		/obj/item/broken_device,
 		/obj/item/clothing/mask/smokable/cigarette,
-		/obj/item/weapon/cigbutt,
 		///obj/item/weapon/reagent_containers/cooking_container //PArt of cooking overhaul, not yet ported
 		)
 

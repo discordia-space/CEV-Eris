@@ -21,7 +21,7 @@
 	..()
 	var/folder = list(
 		"Grey"			=	/obj/item/weapon/folder,
-		"White"			=	/obj/item/weapon/folder/white,
+		"Cyan"			=	/obj/item/weapon/folder/cyan,
 		"Red"			=	/obj/item/weapon/folder/red,
 		"Yellow"		=	/obj/item/weapon/folder/yellow,
 		"Blue"			=	/obj/item/weapon/folder/blue,

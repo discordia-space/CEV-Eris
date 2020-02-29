@@ -1,5 +1,5 @@
 /obj/item/weapon/storage/box/syndicate/populate_contents()
-	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "lordsingulo" = 1, "smoothoperator" = 1)))
+	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, /*"lordsingulo" = 1,*/ "smoothoperator" = 1)))
 		if("bloodyspai")
 			new /obj/item/clothing/under/chameleon(src)
 			new /obj/item/clothing/mask/gas/voice(src)
@@ -18,7 +18,7 @@
 			new /obj/effect/spawner/newbomb/timer/syndicate(src)
 			new /obj/item/device/powersink(src)
 			new /obj/item/clothing/suit/space/syndicate(src)
-			new /obj/item/clothing/head/helmet/space/syndicate(src)
+			new /obj/item/clothing/head/space/syndicate(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/weapon/tank/emergency_oxygen/double(src)
 			return
@@ -55,7 +55,7 @@
 /*			if("lordsingulo")
 			new /obj/item/device/radio/beacon/syndicate(src)
 			new /obj/item/clothing/suit/space/syndicate(src)
-			new /obj/item/clothing/head/helmet/space/syndicate(src)
+			new /obj/item/clothing/head/space/syndicate(src)
 			new /obj/item/clothing/mask/gas/syndicate(src)
 			new /obj/item/weapon/tank/emergency_oxygen/double(src)
 			new /obj/item/weapon/card/emag(src)
@@ -74,6 +74,7 @@
 	desc = "A sleek, sturdy box. This one is using state of the art folding to hold more inside!"
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
+	illustration = "writing_of_doom"
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
@@ -173,13 +174,13 @@
 
 
 /obj/item/weapon/storage/box/syndie_kit/pistol
-	name = "\improper Smooth operator"
-	desc = ".35 Auto with silencer kit."
+	name = "smooth operator"
+	desc = ".25 Caseless handgun with a single magazine and pocket holster for easy consealment."
 
 /obj/item/weapon/storage/box/syndie_kit/pistol/populate_contents()
-	new /obj/item/weapon/gun/projectile/clarissa(src)
-	new /obj/item/weapon/silencer(src)
-	new /obj/item/ammo_magazine/hpistol(src)
+	new /obj/item/weapon/gun/projectile/mandella(src)
+	new /obj/item/ammo_magazine/cspistol(src)
+	new /obj/item/weapon/storage/pouch/pistol_holster(src)
 
 /obj/item/weapon/storage/box/syndie_kit/c20r
 	name = "C-20r box"
@@ -205,7 +206,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/sts35/populate_contents()
 	new /obj/item/weapon/gun/projectile/automatic/sts35(src)
-	new /obj/item/ammo_magazine/lrifle_short(src)
+	new /obj/item/ammo_magazine/lrifle(src)
 
 /obj/item/weapon/storage/box/syndie_kit/pug
 	name = "Pug box"
@@ -214,7 +215,7 @@
 	w_class = ITEM_SIZE_HUGE
 
 /obj/item/weapon/storage/box/syndie_kit/pug/populate_contents()
-	new /obj/item/weapon/gun/projectile/shotgun/pug(src)
+	new /obj/item/weapon/gun/projectile/shotgun/bojevic(src)
 	new /obj/item/ammo_magazine/m12/pellet(src)
 
 /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle

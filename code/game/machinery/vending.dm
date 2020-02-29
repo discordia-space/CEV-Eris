@@ -1000,35 +1000,61 @@
 	icon_state = "weapon"
 	no_criminals = TRUE
 	products = list(/obj/item/device/flash = 6,
-	/obj/item/weapon/reagent_containers/spray/pepper = 6,
-	/obj/item/weapon/gun/projectile/olivaw = 5,
-	/obj/item/weapon/gun/projectile/giskard = 5,
-	/obj/item/weapon/gun/energy/gun/martin = 5,
-	/obj/item/weapon/gun/projectile/revolver/detective = 5,
-	/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
-	/obj/item/weapon/gun/projectile/shotgun/pump = 3,
-	/obj/item/ammo_magazine/pistol/rubber = 20,
-	/obj/item/ammo_magazine/hpistol/rubber = 20,
-	/obj/item/ammo_magazine/slpistol/rubber = 20,
-	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-	/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
-	/obj/item/ammo_magazine/sllrifle = 10,
-	/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
-	/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
-	/obj/item/weapon/storage/box/shotgunammo/blanks = 10)
+					/obj/item/weapon/reagent_containers/spray/pepper = 6,
+					/obj/item/weapon/gun/projectile/olivaw = 5,
+					/obj/item/weapon/gun/projectile/giskard = 5,
+					/obj/item/weapon/gun/energy/gun/martin = 5,
+					/obj/item/weapon/gun/projectile/revolver/havelock = 5,
+					/obj/item/weapon/gun/projectile/automatic/atreides = 3,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+					/obj/item/ammo_magazine/pistol/rubber = 20,
+					/obj/item/ammo_magazine/hpistol/rubber = 5,
+					/obj/item/ammo_magazine/slpistol/rubber = 20,
+					/obj/item/ammo_magazine/smg/rubber = 15,
+					/obj/item/ammo_magazine/ammobox/pistol/rubber = 20,
+					/obj/item/ammo_magazine/sllrifle = 10,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 10,
+					/obj/item/weapon/storage/box/shotgunammo/flashshells = 10,
+					/obj/item/weapon/storage/box/shotgunammo/blanks = 10)
 
-	contraband = list(/obj/item/ammo_magazine/slpistol = 20,
-	/obj/item/ammo_magazine/pistol = 20,
-	/obj/item/ammo_magazine/hpistol = 20,
-	/obj/item/ammo_magazine/ammobox/pistol = 20,
-	/obj/item/weapon/storage/box/shotgunammo/slug = 10,
-	/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
-	/obj/item/weapon/tool/knife/tacknife = 6)
-	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/weapon/gun/energy/gun/martin = 1500, /obj/item/weapon/gun/projectile/revolver/detective = 2500, /obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 2000, /obj/item/ammo_magazine/ammobox/pistol/rubber = 400, /obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
-					/obj/item/ammo_magazine/slpistol/rubber = 300, /obj/item/ammo_magazine/pistol/rubber = 200, /obj/item/ammo_magazine/hpistol = 400, /obj/item/ammo_magazine/hpistol/rubber = 300, /obj/item/weapon/storage/box/shotgunammo/beanbags = 300, /obj/item/weapon/storage/box/shotgunammo/flashshells = 300, /obj/item/weapon/storage/box/shotgunammo/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 200, /obj/item/ammo_magazine/slpistol = 400, /obj/item/ammo_magazine/ammobox/pistol = 400, /obj/item/weapon/storage/box/shotgunammo/slug = 300, /obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
-					/obj/item/weapon/tool/knife/tacknife = 600, /obj/item/ammo_magazine/pistol = 400)
+	contraband = list(
+					/obj/item/ammo_magazine/slpistol = 20,
+					/obj/item/ammo_magazine/pistol = 20,
+					/obj/item/ammo_magazine/hpistol = 5,
+					/obj/item/ammo_magazine/smg = 15,
+					/obj/item/ammo_magazine/ammobox/pistol = 20,
+					/obj/item/weapon/storage/box/shotgunammo/slug = 10,
+					/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
+					/obj/item/weapon/tool/knife/tacknife = 6)
+	prices = list(
+					/obj/item/device/flash = 600,
+					/obj/item/weapon/reagent_containers/spray/pepper = 800,
+					/obj/item/weapon/gun/projectile/olivaw = 1600,
+					/obj/item/weapon/gun/projectile/giskard = 1200,
+					/obj/item/weapon/gun/energy/gun/martin = 1500,
+					/obj/item/weapon/gun/projectile/revolver/havelock = 2500,
+					/obj/item/weapon/gun/projectile/automatic/atreides = 1500,
+					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
+					/obj/item/weapon/gun/projectile/shotgun/pump = 2000,
+					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
+					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
+					/obj/item/ammo_magazine/slpistol/rubber = 300,
+					/obj/item/ammo_magazine/pistol/rubber = 200,
+					/obj/item/ammo_magazine/hpistol = 400,
+					/obj/item/ammo_magazine/hpistol/rubber = 300,
+					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300,
+					/obj/item/weapon/storage/box/shotgunammo/flashshells = 300,
+					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
+					/obj/item/ammo_magazine/sllrifle = 200,
+					/obj/item/ammo_magazine/slpistol = 400,
+					/obj/item/ammo_magazine/smg/rubber = 400,
+					/obj/item/ammo_magazine/smg = 500,
+					/obj/item/ammo_magazine/ammobox/pistol = 200,
+					/obj/item/weapon/storage/box/shotgunammo/slug = 300,
+					/obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
+					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/ammo_magazine/pistol = 400)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1145,6 +1171,9 @@
 					/obj/item/ammo_magazine/slmagnum/rubber = 4,
 					/obj/item/ammo_magazine/magnum/rubber = 4,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 2,
+					/obj/item/ammo_magazine/ammobox/pistol/rubber = 4,
+					/obj/item/ammo_magazine/ammobox/magnum/rubber = 4,
+					/obj/item/ammo_magazine/ammobox/clrifle_small/rubber = 4,
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,
 					/obj/item/weapon/storage/box/evidence = 2)
@@ -1331,18 +1360,42 @@
 	product_slogans = "Print your own gun TODAY!;The future is NOW!;Can't stop the industrial revolution!"
 	product_ads = "Almost free!;Print it yourself!;Don't copy that floppy!"
 	icon_state = "discomat"
-	products = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 20, /obj/item/weapon/storage/box/data_disk/basic = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 10,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 2,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 10, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5, /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10, /obj/item/weapon/circuitboard/autolathe = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3, /obj/item/weapon/circuitboard/vending = 10)
-	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3)
-	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50, /obj/item/weapon/storage/box/data_disk/basic = 100, /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 500,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 1800, /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 400, /obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 400,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600, /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700, /obj/item/weapon/circuitboard/autolathe = 700, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
-					/obj/item/weapon/circuitboard/vending = 500, /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,)
+	products = list(
+					/obj/item/weapon/computer_hardware/hard_drive/portable = 20,
+					/obj/item/weapon/storage/box/data_disk/basic = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 2,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
+					/obj/item/weapon/circuitboard/autolathe = 3,
+					/obj/item/weapon/circuitboard/vending = 10)
+	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
+	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50,
+					/obj/item/weapon/storage/box/data_disk/basic = 100,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 400,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 400,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/components = 500,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools = 1800,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits = 600,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors = 400,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 400,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 500,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700,
+					/obj/item/weapon/circuitboard/autolathe = 700,
+					/obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/circuitboard/vending = 500,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,)
 
 /obj/machinery/vending/serbomat
 	name = "From Serbia with love"
