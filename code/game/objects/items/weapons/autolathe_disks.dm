@@ -291,10 +291,17 @@
 		/datum/design/bioprinter/leather/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/bioprinter/leather/holster,
+		/datum/design/bioprinter/leather/holster/armpit,
+		/datum/design/bioprinter/leather/holster/waist,
+		/datum/design/bioprinter/leather/holster/hip,
 
 		/datum/design/bioprinter/medical/bruise,
 		/datum/design/bioprinter/medical/splints,
@@ -323,10 +330,17 @@
 		/datum/design/bioprinter/leather/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/bioprinter/leather/holster,
+		/datum/design/bioprinter/leather/holster/armpit,
+		/datum/design/bioprinter/leather/holster/waist,
+		/datum/design/bioprinter/leather/holster/hip,
 
 		/datum/design/autolathe/gun/nt_sprayer
 	)
