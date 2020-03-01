@@ -248,6 +248,12 @@
 	catalysts = list("plasma" = 5)
 	result_amount = 1
 
+/datum/chemical_reaction/toxin
+	result = "toxin"
+	required_reagents = list("ammonia" = 1, "mercury" = 1, "ethanol" = 1)
+	catalysts = list("plasma" = 5)
+	result_amount = 3
+
 /datum/chemical_reaction/sterilizine
 	result = "sterilizine"
 	required_reagents = list("ethanol" = 1, "anti_toxin" = 1, "hclacid" = 1)
