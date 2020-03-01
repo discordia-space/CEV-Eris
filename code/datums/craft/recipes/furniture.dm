@@ -73,6 +73,7 @@
 	result = /obj/structure/barricade
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
+		list(QUALITY_HAMMERING, 10, 20)
 	)
 
 /datum/craft_recipe/furniture/coffin
