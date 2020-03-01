@@ -6,7 +6,7 @@
 	flags = CONDUCT
 	force = WEAPON_FORCE_PAINFUL
 	worksound = WORKSOUND_HAMMER
-	w_class = ITEM_SIZE_NORMAL
+	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
@@ -22,6 +22,24 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 6, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_HAMMERING = 45)
+	armor_penetration = ARMOR_PEN_MODERATE
 	degradation = 0.7
 	use_power_cost = 0.22
-	suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/weapon/cell/large
+	max_upgrades = 1
+
+/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer
+	name = "One Star hammer"
+	desc = "Used for applying immeasurable blunt force to anything in your way."
+	icon_state = "onestar_hammer"
+	item_state = "onestar_hammer"
+	force = WEAPON_FORCE_BRUTAL
+	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
+	w_class = ITEM_SIZE_HUGE
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 3, MATERIAL_DIAMOND = 3)
+	tool_qualities = list(QUALITY_HAMMERING = 60)
+	armor_penetration = ARMOR_PEN_EXTREME
+	degradation = 0.6
+	workspeed = 1.2
+	suitable_cell = /obj/item/weapon/cell/large
+	max_upgrades = 2
