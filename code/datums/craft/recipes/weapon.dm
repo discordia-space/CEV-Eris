@@ -133,6 +133,18 @@
 		list(/obj/item/stack/cable_coil, 2, "time" = 10)
 	)
 
+/datum/craft_recipe/weapon/laser_sabre
+	name = "laser sabre"
+	result = /obj/item/weapon/melee/energy/sword/sabre
+	steps = list(
+		list(/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip, 1, "time" = 5),
+		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
+		list(/obj/item/weapon/gun/energy/gun, 5, "time" = 5),
+		list(/obj/item/weapon/cell/medium/moebius/nuclear, 1),
+		list(/obj/item/stack/cable_coil, 10, "time" = 5),
+		list(QUALITY_ADHESIVE, 15, 70)
+		(
+
 /datum/craft_recipe/weapon/mechanical_trap
 	name = "makeshift mechanical trap"
 	result = /obj/item/weapon/beartrap/makeshift
