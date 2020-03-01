@@ -2137,6 +2137,7 @@
 
 /datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
+	M.add_chemical_effect(CE_PAINKILLER, 60)
 	if(dose > 30)
 		M.adjustToxLoss(0.2 * effect_multiplier)
 	if(dose > 60 && ishuman(M) && prob(5))
@@ -2147,7 +2148,7 @@
 				L.take_damage(1 * effect_multiplier, 0)
 			else
 				L.take_damage(10 * effect_multiplier, 0)
-        M.add_chemical_effect(CE_PAINKILLER, 60)
+
 
 /datum/reagent/ethanol/red_mead
 	name = "Red Mead"
