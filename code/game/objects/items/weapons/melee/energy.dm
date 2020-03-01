@@ -159,6 +159,14 @@
 	desc = "Arrrr matey."
 	icon_state = "cutlass0"
 
+/obj/item/weapon/melee/energy/sword/sabre
+	name = "laser sabre"
+	desc = "You feel the radiant glow below your skin."
+	icon_state = "lasersword"
+	origin_tech = list(TECH_MAGNET = 5, TECH_POWER = 6, TECH_COMBAT = 3)
+	active_throwforce = WEAPON_FORCE_ROBUST	
+
+
 /*
  *Energy Blade
  */
