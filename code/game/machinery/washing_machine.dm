@@ -27,7 +27,8 @@
 	/obj/item/stack/material/hairlesshide,
 	/obj/item/weapon/bedsheet,
 	/obj/item/weapon/storage/belt,
-	/obj/item/weapon/storage/backpack)
+	/obj/item/weapon/storage/backpack,
+	/obj/item/weapon/rig)
 
 /obj/machinery/washing_machine/Destroy()
 	qdel(crayon)
@@ -42,16 +43,7 @@
 	if (istype(A, /obj/item))
 		var/obj/item/I = A
 		I.decontaminate()
-	if (A.oldified)
-		A.name = initial(A.name)
-		A.color = initial(A.color)
-		if (istype(A, /obj/item/clothing))
-			var/obj/item/clothing/C = A
-
-			C.slowdown = initial(C.slowdown)
-			C.heat_protection = initial(C.heat_protection)
-			C.cold_protection = initial(C.cold_protection)
-			C.equip_delay = initial(C.equip_delay)
+	A.make_young()
 
 
 /obj/machinery/washing_machine/verb/start()
