@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 			return FALSE
 
 
-/datum/computer_file/report/bounty_entry/proc/remove(var/mob/living/carbon/human/contractor)
+/datum/computer_file/report/bounty_entry/proc/remove(mob/living/carbon/human/contractor)
 	var/destroy = FALSE
 	if(istype(contractor))
 		claimedby_id_card = contractor.GetIdCard()
