@@ -143,7 +143,7 @@
 		list(/obj/item/weapon/cell/medium/moebius/nuclear, 1),
 		list(/obj/item/stack/cable_coil, 10, "time" = 5),
 		list(QUALITY_ADHESIVE, 15, 70)
-		(
+	)
 
 /datum/craft_recipe/weapon/mechanical_trap
 	name = "makeshift mechanical trap"
