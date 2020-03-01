@@ -134,6 +134,19 @@
 	)
 
 
+//just a clamp with a flat surface to hammer something
+/datum/craft_recipe/tool/hammer_addon
+	name = "Tool mod: Hammer addon"
+	result = /obj/item/weapon/tool_upgrade/augment/hammer_addon
+	steps = list(
+		list(/obj/item/stack/rods, 1, 30),
+		list(QUALITY_WELDING, 10, 150),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, 150),
+	)
+
+
+
 //An improvised adapter to fit a larger power cell. This is pretty fancy as crafted items go
 //Requires an APC frame, a fuckton of wires, a large cell, and several tools
 /datum/craft_recipe/tool/cell_mount
