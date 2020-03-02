@@ -247,3 +247,9 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
+
+/obj/item/clothing/head/sweatband
+	name = "reckless sweatband"
+	desc = "To win a war, you gotta become war."
+	icon_state = "sweatband"
+	body_parts_covered = 0
