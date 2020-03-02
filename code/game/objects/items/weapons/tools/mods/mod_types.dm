@@ -384,7 +384,7 @@
 
 /obj/item/weapon/tool_upgrade/augment/hammer_addon
 	name = "Hammer Addon"
-	icon_state = "Flat"
+	icon_state = "hammer_addon"
 	desc = "A attachment that fits on almost everything that gives a simple flat surface for hammering"
 	matter = list(MATERIAL_STEEL = 2)
 
