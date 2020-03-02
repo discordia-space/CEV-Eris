@@ -1078,8 +1078,8 @@
 	glass_center_of_mass = list("x"=16, "y"=5)
 
 /datum/reagent/ethanol/bluecuracao/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/cognac
 	name = "Cognac"
@@ -1096,8 +1096,8 @@
 	glass_center_of_mass = list("x"=16, "y"=6)
 
 /datum/reagent/ethanol/cognac/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/deadrum
 	name = "Deadrum"
@@ -1131,8 +1131,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/gin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
@@ -1145,7 +1145,7 @@
 	M.sleeping = max(0, M.sleeping - 2 * effect_multiplier)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
-        
+    
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	M.make_jittery(5)
@@ -1165,8 +1165,8 @@
 	glass_center_of_mass = list("x"=15, "y"=7)
 
 /datum/reagent/ethanol/coffee/kahluaglass/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/melonliquor
 	name = "Melon Liquor"
@@ -1182,8 +1182,8 @@
 	glass_center_of_mass = list("x"=16, "y"=5)
 
 /datum/reagent/ethanol/melonliquor/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 25)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/ethanol/rum
 	name = "Rum"
@@ -1200,8 +1200,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/rum/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/sake
 	name = "Sake"
@@ -1217,8 +1217,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/sake/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/tequilla
 	name = "Tequila"
@@ -1234,8 +1234,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/tequilla/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/thirteenloko
 	name = "Thirteen Loko"
@@ -1274,8 +1274,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/vermouth/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/vodka
 	name = "Vodka"
@@ -1309,8 +1309,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/whiskey/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/wine
 	name = "Wine"
@@ -1326,8 +1326,8 @@
 	glass_center_of_mass = list("x"=15, "y"=7)
 
 /datum/reagent/ethanol/wine/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/ntcahors
 	name = "NeoTheology Cahors Wine"
@@ -1365,8 +1365,8 @@
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/acid_spit/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 25)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/ethanol/alliescocktail
 	name = "Allies Cocktail"
@@ -1382,8 +1382,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/alliescocktail/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/aloe
 	name = "Aloe"
@@ -1399,8 +1399,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/aloe/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/amasec
 	name = "Amasec"
@@ -1417,8 +1417,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/amasec/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/andalusia
 	name = "Andalusia"
@@ -1434,8 +1434,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/andalusia/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/antifreeze
 	name = "Anti-freeze"
@@ -1453,8 +1453,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/antifreeze/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/atomicbomb
 	name = "Atomic Bomb"
@@ -1472,8 +1472,8 @@
 	glass_center_of_mass = list("x"=15, "y"=7)
 
 /datum/reagent/ethanol/atomicbomb/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 50)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/ethanol/coffee/b52
 	name = "B-52"
@@ -1489,8 +1489,8 @@
 	glass_desc = "Kahlua, Irish cream, and congac. You will get bombed."
 
 /datum/reagent/ethanol/coffee/b52/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/bahama_mama
 	name = "Bahama mama"
@@ -1506,8 +1506,8 @@
 	glass_center_of_mass = list("x"=16, "y"=5)
 
 /datum/reagent/ethanol/bahama_mama/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
@@ -1524,8 +1524,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/bananahonk/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 49)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 49)
 
 /datum/reagent/ethanol/barefoot
 	name = "Barefoot"
@@ -1541,8 +1541,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/barefoot/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/beepsky_smash
 	name = "Beepsky Smash"
@@ -1578,8 +1578,8 @@
 	glass_desc = "A brew of milk and beer. For those alcoholics who fear osteoporosis."
 
 /datum/reagent/ethanol/bilk/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 15)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 15)
 
 /datum/reagent/ethanol/black_russian
 	name = "Black Russian"
@@ -1595,8 +1595,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/black_russian/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
@@ -1611,8 +1611,8 @@
 	glass_desc = "Tomato juice, mixed with Vodka and a lil' bit of lime. Tastes like liquid murder."
 
 /datum/reagent/ethanol/bloody_mary/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/booger
 	name = "Booger"
@@ -1627,8 +1627,8 @@
 	glass_desc = "Ewww..."
 
 /datum/reagent/ethanol/booger/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 25)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/ethanol/coffee/brave_bull
 	name = "Brave Bull"
@@ -1645,8 +1645,8 @@
 	glass_center_of_mass = list("x"=15, "y"=8)
 
 /datum/reagent/ethanol/coffee/brave_bull/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/changelingsting
 	name = "Changeling Sting"
@@ -1661,8 +1661,8 @@
 	glass_desc = "A stingy drink."
 
 /datum/reagent/ethanol/changelingsting/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 50)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/ethanol/martini
 	name = "Classic Martini"
@@ -1678,8 +1678,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/martini/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
@@ -1695,8 +1695,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/cuba_libre/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
@@ -1713,8 +1713,8 @@
 	glass_center_of_mass = list("x"=16, "y"=2)
 
 /datum/reagent/ethanol/demonsblood/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/devilskiss
 	name = "Devils Kiss"
@@ -1730,8 +1730,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/devilskiss/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/driestmartini
 	name = "Driest Martini"
@@ -1748,8 +1748,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/driestmartini/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 43)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 43)
 
 /datum/reagent/ethanol/ginfizz
 	name = "Gin Fizz"
@@ -1765,8 +1765,8 @@
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/ginfizz/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/grog
 	name = "Grog"
@@ -1782,8 +1782,8 @@
 	glass_desc = "A fine and cepa drink for Space."
 
 /datum/reagent/ethanol/grog/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 1)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 1)
 
 /datum/reagent/ethanol/erikasurprise
 	name = "Erika Surprise"
@@ -1799,8 +1799,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/erikasurprise/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
@@ -1818,8 +1818,8 @@
 	glass_center_of_mass = list("x"=17, "y"=6)
 
 /datum/reagent/ethanol/gargle_blaster/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 60)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 60)
 
 /datum/reagent/ethanol/gintonic
 	name = "Gin and Tonic"
@@ -1835,8 +1835,8 @@
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/gintonic/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 35)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 35)
 
 /datum/reagent/ethanol/goldschlager
 	name = "Goldschlager"
@@ -1853,8 +1853,8 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/goldschlager/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/hippies_delight
 	name = "Hippies' Delight"
@@ -1872,8 +1872,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/hippies_delight/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/hooch
 	name = "Hooch"
@@ -1889,8 +1889,8 @@
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/ethanol/hooch/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 60)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 60)
 
 /datum/reagent/ethanol/iced_beer
 	name = "Iced Beer"
@@ -1908,8 +1908,8 @@
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/iced_beer/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 35)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 35)
 
 /datum/reagent/ethanol/irishcarbomb
 	name = "Irish Car Bomb"
@@ -1925,8 +1925,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/irishcarbomb/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/coffee/irishcoffee
 	name = "Irish Coffee"
@@ -1942,8 +1942,8 @@
 	glass_center_of_mass = list("x"=15, "y"=10)
 
 /datum/reagent/ethanol/coffee/irishcoffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/irish_cream
 	name = "Irish Cream"
@@ -1959,8 +1959,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/irish_cream/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/longislandicedtea
 	name = "Long Island Iced Tea"
@@ -1976,8 +1976,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/longislandicedtea/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/manhattan
 	name = "Manhattan"
@@ -1993,8 +1993,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/manhattan/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
@@ -2011,8 +2011,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/manhattan_proj/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
@@ -2027,8 +2027,8 @@
 	glass_desc = "A manly concotion made from Ale and Beer. Intended for true men only."
 
 /datum/reagent/ethanol/manly_dorf/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/margarita
 	name = "Margarita"
@@ -2044,8 +2044,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/margarita/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/mead
 	name = "Mead"
@@ -2063,8 +2063,8 @@
 	glass_center_of_mass = list("x"=17, "y"=10)
 
 /datum/reagent/ethanol/mead/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 25)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/ethanol/moonshine
 	name = "Moonshine"
@@ -2080,8 +2080,8 @@
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 
 /datum/reagent/ethanol/moonshine/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 43)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 43)
 
 /datum/reagent/ethanol/neurotoxin
 	name = "Neurotoxin"
@@ -2117,8 +2117,8 @@
 	glass_center_of_mass = list("x"=7, "y"=8)
 
 /datum/reagent/ethanol/patron/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 35)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 35)
 
 /datum/reagent/ethanol/pwine
 	name = "Poison Wine"
@@ -2164,8 +2164,8 @@
 	glass_center_of_mass = list("x"=17, "y"=10)
 
 /datum/reagent/ethanol/red_mead/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 25)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 25)
 
 /datum/reagent/ethanol/sbiten
 	name = "Sbiten"
@@ -2183,8 +2183,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/sbiten/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 50)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 50)
 
 /datum/reagent/ethanol/screwdrivercocktail
 	name = "Screwdriver"
@@ -2200,8 +2200,8 @@
 	glass_center_of_mass = list("x"=15, "y"=10)
 
 /datum/reagent/ethanol/screwdrivercocktail/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/silencer
 	name = "Silencer"
@@ -2219,8 +2219,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/silencer/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/singulo
 	name = "Singulo"
@@ -2236,8 +2236,8 @@
 	glass_center_of_mass = list("x"=17, "y"=4)
 
 /datum/reagent/ethanol/singulo/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/snowwhite
 	name = "Snow White"
@@ -2253,8 +2253,8 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/snowwhite/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 35)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 35)
 
 /datum/reagent/ethanol/suidream
 	name = "Sui Dream"
@@ -2270,8 +2270,8 @@
 	glass_center_of_mass = list("x"=16, "y"=5)
 
 /datum/reagent/ethanol/suidream/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 5)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 5)
 
 /datum/reagent/ethanol/syndicatebomb
 	name = "Syndicate Bomb"
@@ -2287,8 +2287,8 @@
 	glass_center_of_mass = list("x"=16, "y"=4)
 
 /datum/reagent/ethanol/syndicatebomb/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/tequilla_sunrise
 	name = "Tequila Sunrise"
@@ -2303,8 +2303,8 @@
 	glass_desc = "Oh great, now you feel nostalgic about sunrises back on Terra..."
 
 /datum/reagent/ethanol/tequilla_sunrise/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
@@ -2321,8 +2321,8 @@
 	glass_center_of_mass = list("x"=16, "y"=2)
 
 /datum/reagent/ethanol/threemileisland/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
@@ -2340,8 +2340,8 @@
 	glass_desc = "Whoah, this thing is on FIRE"
 
 /datum/reagent/ethanol/toxins_special/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
@@ -2357,8 +2357,8 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 
 /datum/reagent/ethanol/vodkamartini/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
@@ -2374,8 +2374,8 @@
 	glass_center_of_mass = list("x"=16, "y"=7)
 
 /datum/reagent/ethanol/vodkatonic/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 40)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 40)
 
 /datum/reagent/ethanol/white_russian
 	name = "White Russian"
@@ -2391,8 +2391,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/white_russian/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
@@ -2408,8 +2408,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/whiskey_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 30)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 30)
 
 /datum/reagent/ethanol/whiskeysoda
 	name = "Whiskey Soda"
@@ -2424,8 +2424,8 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/whiskeysoda/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 45)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 45)
 
 /datum/reagent/ethanol/specialwhiskey // I have no idea what this is and where it comes from
 	name = "Special Blend Whiskey"
@@ -2441,5 +2441,5 @@
 	glass_center_of_mass = list("x"=16, "y"=12)
 
 /datum/reagent/ethanol/specialwhiskey/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-        ..()
-        M.add_chemical_effect(CE_PAINKILLER, 50)
+    ..()
+    M.add_chemical_effect(CE_PAINKILLER, 50)
