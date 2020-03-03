@@ -188,7 +188,7 @@
 	metabolism = 0.02
 
 /datum/reagent/medicine/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 50)
+	M.add_chemical_effect(CE_PAINKILLER, 130)
 
 /datum/reagent/medicine/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
@@ -207,7 +207,7 @@
 	nerve_system_accumulations = 40
 
 /datum/reagent/medicine/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 130 )
+	M.add_chemical_effect(CE_PAINKILLER, 50 )
 
 /datum/reagent/medicine/tramadol/overdose(var/mob/living/carbon/M, var/alien)
 	..()

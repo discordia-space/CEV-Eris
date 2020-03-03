@@ -127,7 +127,7 @@
 	/obj/item/weapon/storage/pill_bottle/dermaline,
 	/obj/item/weapon/storage/pill_bottle/dexalin_plus,
 	/obj/item/weapon/storage/pill_bottle/dylovene,
-	/obj/item/weapon/storage/pill_bottle/tramadol,
+	/obj/item/weapon/storage/pill_bottle/paracetamol,
 	/obj/item/weapon/storage/pill_bottle/spaceacillin,
 	/obj/item/stack/medical/splint)
 

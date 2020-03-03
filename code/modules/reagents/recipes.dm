@@ -244,7 +244,7 @@
 
 /datum/chemical_reaction/oxycodone
 	result = "oxycodone"
-	required_reagents = list("ethanol" = 1, "tramadol" = 1)
+	required_reagents = list("ethanol" = 1, "paracetamol" = 1)
 	catalysts = list("plasma" = 5)
 	result_amount = 1
 

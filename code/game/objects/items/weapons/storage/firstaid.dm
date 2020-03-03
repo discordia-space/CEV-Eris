@@ -116,7 +116,7 @@
 	new /obj/item/weapon/storage/pill_bottle/dermaline(src)
 	new /obj/item/weapon/storage/pill_bottle/dexalin_plus(src)
 	new /obj/item/weapon/storage/pill_bottle/dylovene(src)
-	new /obj/item/weapon/storage/pill_bottle/tramadol(src)
+	new /obj/item/weapon/storage/pill_bottle/paracetamol(src)
 	new /obj/item/weapon/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/stack/medical/splint(src)
 
@@ -301,6 +301,19 @@
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
+
+/obj/item/weapon/storage/pill_bottle/paracetamol
+	name = "bottle of Paracetamol pills"
+	desc = "Contains pills used to relieve pain but better than Tramadol!!."
+
+/obj/item/weapon/storage/pill_bottle/tramadol/populate_contents()
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
+	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
 
 /obj/item/weapon/storage/pill_bottle/citalopram
 	name = "bottle of Citalopram pills"
