@@ -104,8 +104,24 @@
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_SHALLOW
 	matter = list(MATERIAL_SILVER = 2, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
-	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
+	switched_on_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
+	switched_off_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 10)
 	max_upgrades = 4
 	degradation = 0.7
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
+
+/obj/item/weapon/tool/saw/circular/turn_on(mob/user)
+	if(!cell)
+		return 0
+	if(cell.charge > use_power_cost)
+		to_chat(user, SPAN_NOTICE("You switch [src] on."))
+		..()
+	else
+		item_state = initial(item_state)
+		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
+
+/obj/item/weapon/tool/saw/circular/turn_off(mob/user)
+
+	to_chat(user, SPAN_NOTICE("You switch [src] off."))
+	..()
