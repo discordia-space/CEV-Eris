@@ -38,8 +38,24 @@
 	icon_state = "pneumo_crowbar"
 	item_state = "jackhammer"
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
+	switched_off_qualities = list(QUALITY_DIGGING = 5)
+	switched_on_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
 	degradation = 0.7
 	use_power_cost = 0.8
 	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium
+
+/obj/item/weapon/tool/crowbar/pneumatic/turn_on(mob/user)
+	if(!cell)
+		return 0
+	if(cell.charge > use_power_cost)
+		to_chat(user, SPAN_NOTICE("You switch [src] on."))
+		..()
+	else
+		item_state = initial(item_state)
+		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
+
+/obj/item/weapon/tool/crowbar/pneumatic/turn_off(mob/user)
+
+	to_chat(user, SPAN_NOTICE("You switch [src] off."))
+	..()
