@@ -22,4 +22,4 @@
 	recoil_buildup = 0.2 //with new system it gives slight chance to miss but not really
 	fire_sound = 'sound/effects/bang.ogg'
 	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg' //placeholder, needs new sound
-	onehanded = 2
+	twohanded = TRUE
