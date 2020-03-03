@@ -38,7 +38,7 @@
 		..()
 	else
 		item_state = initial(item_state)
-		to_chat(user, SPAN_WARNING("[src] does not have a power source installed."))
+		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
 
 /obj/item/weapon/tool/hammer/powered_hammer/turn_off(mob/user)
 
