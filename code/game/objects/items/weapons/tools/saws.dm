@@ -29,13 +29,30 @@
 	icon_state = "saw"
 	hitsound = WORKSOUND_CIRCULAR_SAW
 	worksound = WORKSOUND_CIRCULAR_SAW
-	force = WEAPON_FORCE_ROBUST
+	force = WEAPON_FORCE_PAINFUL
+	switched_on_force = WEAPON_FORCE_ROBUST
 	armor_penetration = ARMOR_PEN_MODERATE
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
-
+	switched_on_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
+	switched_off_qualities = list(QUALITY_SAWING = 10, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 15)
+	toggleable = TRUE
 	use_power_cost = 0.15
 	suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/weapon/tool/saw/circular/turn_on(mob/user)
+	if(!cell)
+		return 0
+	if(cell.charge > use_power_cost)
+		to_chat(user, SPAN_NOTICE("You switch [src] on."))
+		..()
+	else
+		item_state = initial(item_state)
+		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
+
+/obj/item/weapon/tool/saw/circular/turn_off(mob/user)
+
+	to_chat(user, SPAN_NOTICE("You switch [src] off."))
+	..()
 
 /obj/item/weapon/tool/saw/circular/advanced //tier 4, focusing on armor penetration
 	name = "advanced circular saw"
@@ -43,7 +60,7 @@
 	icon_state = "advanced_saw"
 	armor_penetration = ARMOR_PEN_DEEP
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
+	switched_on_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
 	degradation = 0.7
 	use_power_cost = 0.22
 	max_upgrades = 4
@@ -54,13 +71,29 @@
 	icon_state = "chainsaw"
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
-	force = WEAPON_FORCE_BRUTAL //Rip and tear!
+	force = WEAPON_FORCE_PAINFUL
+	switched_on_force = WEAPON_FORCE_BRUTAL //Rip and tear!
 	armor_penetration = ARMOR_PEN_SHALLOW
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
-	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20) //not the best choice to cut wires
+	switched_on_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)	//not the best choice to cut wires
+	switched_off_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 10)
+	toggleable = TRUE
 	max_upgrades = 4
 	use_fuel_cost = 0.1
 	max_fuel = 80
+
+/obj/item/weapon/tool/saw/chain/turn_on(mob/user)
+	if(get_fuel() > passive_fuel_cost)
+		to_chat(user, SPAN_NOTICE("You switch [src] on."))
+		..()
+	else
+		item_state = initial(item_state)
+		to_chat(user, SPAN_WARNING("[src] seems to have not enought fuel."))
+
+/obj/item/weapon/tool/saw/chain/turn_off(mob/user)
+
+	to_chat(user, SPAN_NOTICE("You switch [src] off."))
+	..()
 
 /obj/item/weapon/tool/saw/hyper //tier 4, focusing on damage, cell variant
 	name = "TM hypersaw"
