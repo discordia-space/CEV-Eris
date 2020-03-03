@@ -126,6 +126,9 @@
 
 /obj/item/weapon/melee/energy/sword/pirate/New()
 	blade_color = "cutlass"
+	
+/obj/item/weapon/melee/energy/sword/sabre/New()
+	blade_color = "green"
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
 	if(!active)
@@ -158,6 +161,14 @@
 	name = "energy cutlass"
 	desc = "Arrrr matey."
 	icon_state = "cutlass0"
+
+
+/obj/item/weapon/melee/energy/sword/sabre
+	name = "laser sabre"
+	desc = "You feel the radiant glow below your skin."
+	origin_tech = list(TECH_MAGNET = 5, TECH_POWER = 6, TECH_COMBAT = 3)
+	active_force = WEAPON_FORCE_ROBUST
+	active_throwforce = WEAPON_FORCE_ROBUST
 
 /*
  *Energy Blade
