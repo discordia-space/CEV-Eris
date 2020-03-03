@@ -281,6 +281,7 @@
 	if(P.run_program(user))
 		active_program = P
 		all_threads.Add(P)
+		active_program.ui_interact(user)
 		update_uis()
 		update_icon()
 	return TRUE

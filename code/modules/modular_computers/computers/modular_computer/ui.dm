@@ -91,10 +91,7 @@
 
 	if(href_list["PC_runprogram"])
 		var/obj/item/weapon/computer_hardware/hard_drive/prog_disk = locate(href_list["disk"]) in src
-
-		run_program(href_list["PC_runprogram"], prog_disk)
-		ui_interact(usr)
-		return
+		return run_program(href_list["PC_runprogram"], prog_disk)
 
 	if(href_list["PC_setautorun"])
 		if(!hard_drive)
