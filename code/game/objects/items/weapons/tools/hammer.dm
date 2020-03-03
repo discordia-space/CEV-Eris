@@ -26,7 +26,7 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 	toggleable = TRUE
 	degradation = 0.7
-	use_power_cost = 0
+	use_power_cost = 2
 	suitable_cell = /obj/item/weapon/cell/medium
 	max_upgrades = 1
 
