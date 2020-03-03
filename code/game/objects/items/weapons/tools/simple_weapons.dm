@@ -220,5 +220,6 @@
 	force = WEAPON_FORCE_NORMAL
 	force_unwielded = WEAPON_FORCE_NORMAL
 	force_wielded = WEAPON_FORCE_DANGEROUS
+	tool_qualities = list(QUALITY_HAMMERING = 15)
 	attack_verb = list("attacked", "smashed", "bludgeoned", "beaten")
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
