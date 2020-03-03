@@ -64,6 +64,7 @@
 
 	var/projectile_color //Set by a firemode. Sets the fired projectiles color
 
+	var/onehanded = 1 //If false, gun can only be fired when wileded
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -197,6 +198,11 @@
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
+	if(onehanded > 1)
+		if(!wielded)
+			to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand"))
+			return FALSE
+
 	return TRUE
 
 /obj/item/weapon/gun/emp_act(severity)
