@@ -80,7 +80,7 @@
 
 /obj/item/weapon/oddity/common/photo_coridor
 	name = "surreal maint photo"
-	desc = "The corridor in this photograph looks familiar, though something seems wrong about it; as if everything in it was replaced with an exact replica of itself."
+	desc = "The corridor in this photograph looks familiar, though something seems wrong about it; It's as if everything in it was replaced with an exact replica of itself."
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAT_MEC = 5,
@@ -99,7 +99,7 @@
 
 /obj/item/weapon/oddity/common/old_newspaper
 	name = "old newspaper"
-	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experements gone wrong."
+	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong."
 	icon_state = "old_newspaper"
 	oddity_stats = list(
 		STAT_MEC = 4,
@@ -119,8 +119,8 @@
 
 /obj/item/weapon/oddity/common/paper_omega
 	name = "collection of obscure reports"
-	desc = "Even the authors seem to be rather skeptical about their findings. Yet they are not connected to each other, but results are similar."
-	icon_state = "paper_omega"
+	desc = "Even the authors seem to be rather skeptical about their findings. The reports are not connected to each other, but their results are similar."
+	icon_state = "paper_omega" //broken icon
 	oddity_stats = list(
 		STAT_MEC = 8,
 		STAT_COG = 8,
@@ -129,7 +129,7 @@
 
 /obj/item/weapon/oddity/common/book_eyes
 	name = "observer book"
-	desc = "This book details the information on some cyber creatures. Who did this, how this is even possible?"
+	desc = "This book details information on some cyber creatures. Who did this, how this is even possible?"
 	icon_state = "book_eyes"
 	oddity_stats = list(
 		STAT_ROB = 9,
@@ -139,7 +139,7 @@
 
 /obj/item/weapon/oddity/common/book_omega
 	name = "occult book"
-	desc = "Most of the stories in this book seem to be the writing of mad men. But at least the stories are interesting."
+	desc = "Most of the stories in this book seem to be the writing of a madman, but at least the stories are interesting."
 	icon_state = "book_omega"
 	oddity_stats = list(
 		STAT_BIO = 6,
@@ -158,7 +158,7 @@
 
 /obj/item/weapon/oddity/common/old_money
 	name = "old money"
-	desc = "It's not like organization that issued this exist now."
+	desc = "It's not like organization that issued this exists anymore."
 	icon_state = "old_money"
 	oddity_stats = list(
 		STAT_ROB = 4,
@@ -196,7 +196,7 @@
 
 /obj/item/weapon/oddity/common/teddy
 	name = "teddy bear"
-	desc = "He will there for you, in tough times."
+	desc = "He will be there for you, even through tough times."
 	icon_state = "teddy"
 	oddity_stats = list(
 		STAT_ROB = 7,
@@ -225,7 +225,7 @@
 
 /obj/item/weapon/oddity/common/old_id
 	name = "old id"
-	desc = "There is story behind this name. Untold, and cruel fate."
+	desc = "There is a story behind this name. Untold, and cruel in fate."
 	icon_state = "old_id"
 	oddity_stats = list(
 		STAT_VIG = 9,
