@@ -26,12 +26,13 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 	toggleable = TRUE
 	degradation = 0.7
-	use_power_cost = 3
+	use_power_cost = 0
 	suitable_cell = /obj/item/weapon/cell/medium
 	max_upgrades = 1
 
 /obj/item/weapon/tool/hammer/powered_hammer/turn_on(mob/user)
-
+	if(!cell)
+		return 0
 	if(cell.charge > use_power_cost)
 		to_chat(user, SPAN_NOTICE("You switch [src] on."))
 		..()
@@ -57,5 +58,6 @@
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)
 	armor_penetration = ARMOR_PEN_EXTREME
 	degradation = 0.6
-	workspeed = 2.5
+	use_power_cost = 1.5
+	workspeed = 1.5
 	max_upgrades = 2
