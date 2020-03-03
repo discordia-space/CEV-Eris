@@ -64,7 +64,7 @@
 
 	var/projectile_color //Set by a firemode. Sets the fired projectiles color
 
-	var/onehanded = 1 //If false, gun can only be fired when wileded
+	var/onehanded = 1 //If greater than 1, gun can only be fired when wileded
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
