@@ -144,8 +144,6 @@
 	/obj/item/rig_module/fabricator/energy_net = 1,
 	/obj/item/rig_module/self_destruct = 1,
 
-	/obj/item/rig_module/teleporter = 1,
-
 	//Utility
 	/obj/item/rig_module/device/drill = 1,
 	/obj/item/rig_module/device/rcd = 1,
