@@ -1,7 +1,7 @@
 /datum/job_flavor
 	var/title
 	var/list/also_known_languages
-	var/outfit_type
+	var/job_flavor_outfit_type = /decl/hierarchy/outfit/job/crewman
 	var/list/stat_modifiers
 	var/list/perks
 
@@ -9,6 +9,7 @@
 // Vagabonds
 //
 /datum/job_flavor/vagabond
+	job_flavor_outfit_type = /decl/hierarchy/outfit/job/crewman
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -25,7 +26,7 @@
 /datum/job_flavor/vagabond/cosmic/assistant
 	title = "Assistant"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 25)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	job_flavor_outfit_type = /decl/hierarchy/outfit/job/assistant
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -37,7 +38,7 @@
 
 /datum/job_flavor/vagabond/cosmic/crewman
 	title = "Crewman"
-	outfit_type = /decl/hierarchy/outfit/job/crewman
+	job_flavor_outfit_type = /decl/hierarchy/outfit/job/crewman
 	stat_modifiers = list(
 		STAT_ROB = 10,
 		STAT_TGH = 10,

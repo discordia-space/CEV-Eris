@@ -10,7 +10,6 @@
 	selection_color = "#dddddd"
 	initial_balance	= 800
 	wage = WAGE_NONE //Get a job ya lazy bum
-	alt_titles = list("Assistant", "Crewman")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)
 
 	access = list(access_maint_tunnels)
@@ -43,13 +42,5 @@ As an vagabond, you should strive to help out anyone you can. Or at least, anyon
 
 /datum/job/assistant/New()
 	..()
-	var/alt_title = title
-	if(alt_title == ("Assistant"))
-		for(var/alt in typesof(/datum/job_flavor/vagabond/cosmic/assistant))
-			random_flavors += new alt
-	if(alt_title == ("Crewman"))
-		for(var/alt in typesof(/datum/job_flavor/vagabond/cosmic/crewman))
-			random_flavors += new alt
-	else
-		for(var/alt in subtypesof(/datum/job_flavor/vagabond) - list(/datum/job_flavor/vagabond/cosmic))
-			random_flavors += new alt
+	for(var/alt in subtypesof(/datum/job_flavor/vagabond) - list(/datum/job_flavor/vagabond/cosmic))
+		random_flavors += new alt

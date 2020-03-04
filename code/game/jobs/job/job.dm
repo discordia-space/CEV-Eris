@@ -44,19 +44,19 @@
 
 	var/list/perks = list()
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title, datum/job_flavor/flavor)
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title, var/datum/job_flavor/flavor)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title, flavor)
 	if(outfit) . = outfit.equip(H, title, alt_title)
 
-/datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title, datum/job_flavor/flavor)
+/datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title, var/datum/job_flavor/flavor)
 	if(alt_title && alt_titles)
 		. = alt_titles[alt_title]
-	if(flavor)
-		. = flavor.outfit_type || .
+	if(random_flavors && flavor)
+		. = random_flavors[flavor.job_flavor_outfit_type] || .
 	. = . || outfit_type
 	. = outfit_by_type(.)
 
-/datum/job/proc/add_stats(var/mob/living/carbon/human/target, datum/job_flavor/flavor)
+/datum/job/proc/add_stats(var/mob/living/carbon/human/target, var/datum/job_flavor/flavor)
 	if(!istype(target))
 		return FALSE
 
@@ -78,7 +78,7 @@
 
 	return TRUE
 
-/datum/job/proc/add_additional_language(var/mob/living/carbon/human/target, datum/job_flavor/flavor)
+/datum/job/proc/add_additional_language(var/mob/living/carbon/human/target, var/datum/job_flavor/flavor)
 	if(!ishuman(target))
 		return FALSE
 
