@@ -72,7 +72,7 @@
 	icon_state = "chainsaw"
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
-	force = WEAPON_FORCE_DANGEROUS
+	force = WEAPON_FORCE_PAINFUL
 	switched_on_force = WEAPON_FORCE_BRUTAL //Rip and tear!
 	armor_penetration = ARMOR_PEN_SHALLOW
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
@@ -102,7 +102,7 @@
 	icon_state = "hypersaw"
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
-	force = WEAPON_FORCE_DANGEROUS
+	force = WEAPON_FORCE_PAINFUL
 	armor_penetration = ARMOR_PEN_SHALLOW
 	switched_on_force = WEAPON_FORCE_BRUTAL
 	matter = list(MATERIAL_SILVER = 2, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
