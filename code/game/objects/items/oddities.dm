@@ -120,7 +120,7 @@
 /obj/item/weapon/oddity/common/paper_omega
 	name = "collection of obscure reports"
 	desc = "Even the authors seem to be rather skeptical about their findings. The reports are not connected to each other, but their results are similar."
-	icon_state = "paper_omega" //broken icon
+	icon_state = "folder-omega" //changed from "paper_omega"
 	oddity_stats = list(
 		STAT_MEC = 8,
 		STAT_COG = 8,
