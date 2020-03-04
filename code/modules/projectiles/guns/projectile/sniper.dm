@@ -8,7 +8,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2, TECH_ILLEGAL = 2)
-	caliber = "antim"
+	caliber = CAL_ANTIM
 	recoil_buildup = 75
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING
@@ -18,6 +18,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/rifle_load.ogg'
 	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
 	price_tag = 5000
+	one_hand_penalty = 10
 	var/bolt_open = 0
 	var/item_suffix = ""
 	zoom_factor = 2.0

@@ -20,7 +20,7 @@
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if (!(species && (species.flags & NO_PAIN)))
-		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+		if(halloss >= 10) tally += (halloss / 20) //halloss shouldn't slow you down if you can't even feel it
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
 		tally += 1 //Small slowdown so wheelchairs aren't turbospeed
@@ -37,7 +37,7 @@
 
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
-	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+	tally += stance_damage // missing/damaged legs or augs affect speed
 
 	return tally
 

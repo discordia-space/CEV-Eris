@@ -2,9 +2,9 @@
 	name = "FS SG \"Bull\""
 	desc = "A \"Frozen Star\" double-barreled pump-action shotgun. Marvel of engineering, this gun is often used by Ironhammer tactical units. \
 			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws."
-	icon = 'icons/obj/guns/projectile/PeaceWalker.dmi'
-	icon_state = "PeaceWalker"
-	item_state = "PW"
+	icon = 'icons/obj/guns/projectile/bull.dmi'
+	icon_state = "bull"
+	item_state = "bull"
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 7
@@ -12,13 +12,14 @@
 	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "shotgun"
+	caliber = CAL_SHOTGUN
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	price_tag = 2800 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
+	one_hand_penalty = 5
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'

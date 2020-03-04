@@ -129,9 +129,14 @@
 /datum/gear/head/cap/secfield
 	display_name = "cap, IH field"
 	path = /obj/item/clothing/head/soft/sec2soft
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant", "Inspector")
 
 /datum/gear/head/cap/sarge
 	display_name = "cap, IH sergeant"
 	path = /obj/item/clothing/head/soft/sarge2soft
-	allowed_roles = list("Ironhammer Commander","Gunnery Sergeant")
+	allowed_roles = list("Ironhammer Commander","Ironhammer Gunnery Sergeant")
+
+/datum/gear/head/cyberpunkgoggle
+	display_name = "Type-34C Semi-Enclosed Headwear"
+	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
+	cost = 2

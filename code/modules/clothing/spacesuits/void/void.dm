@@ -1,5 +1,5 @@
 //NASA Voidsuit
-/obj/item/clothing/head/helmet/space/void
+/obj/item/clothing/head/space/void
 	name = "void helmet"
 	desc = "A high-tech dark red space suit helmet. Used for AI satellite maintenance."
 	icon_state = "void"
@@ -8,12 +8,13 @@
 	armor = list(
 		melee = 30,
 		bullet = 20,
-		energy = 10,
+		energy = 15,
 		bomb = 25,
 		bio = 100,
 		rad = 75
 	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flash_protection = FLASH_PROTECTION_MAJOR
 
 	light_overlay = "helmet_light"
 
@@ -22,11 +23,11 @@
 	icon_state = "void"
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
-	slowdown = 1
+	slowdown = 0.3
 	armor = list(
 		melee = 30,
 		bullet = 20,
-		energy = 10,
+		energy = 15,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -40,7 +41,7 @@
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
-	var/obj/item/clothing/head/helmet/helmet = /obj/item/clothing/head/helmet/space/void   // Deployable helmet, if any.
+	var/obj/item/clothing/head/armor/helmet/helmet = /obj/item/clothing/head/space/void   // Deployable helmet, if any.
 	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
 
 /obj/item/clothing/suit/space/void/Initialize()
@@ -61,7 +62,9 @@
 	if(tank && in_range(src,user))
 		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
 
-/obj/item/clothing/suit/space/void/ui_action_click()
+/obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
 	toggle_helmet()
 
 /obj/item/clothing/suit/space/void/clean_blood()

@@ -19,6 +19,11 @@
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
 
+	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/clothing_info
+	action.owner = src
+	if(!islist(hud_actions)) hud_actions = list()
+	hud_actions += action
+
 	if(matter)
 		return
 
@@ -66,6 +71,85 @@
 		return ..()
 	if(!pre_equip(usr, over_object))
 		..()
+
+/proc/body_part_coverage_to_string(var/body_parts)
+	var/list/body_partsL = list()
+	if(body_parts & HEAD)
+		body_partsL.Add("head")
+	if(body_parts & FACE)
+		body_partsL.Add("face")
+	if(body_parts & EYES)
+		body_partsL.Add("eyes")
+	if(body_parts & EARS)
+		body_partsL.Add("ears")
+	if(body_parts & UPPER_TORSO)
+		body_partsL.Add("upper torso")
+	if(body_parts & LOWER_TORSO)
+		body_partsL.Add("lower torso")
+	if(body_parts & LEGS)
+		body_partsL.Add("legs")
+	else
+		if(body_parts & LEG_LEFT)
+			body_partsL.Add("left leg")
+		if(body_parts & LEG_RIGHT)
+			body_partsL.Add("right leg")
+	if(body_parts & ARMS)
+		body_partsL.Add("arms")
+	else
+		if(body_parts & ARM_LEFT)
+			body_partsL.Add("left arm")
+		if(body_parts & ARM_RIGHT)
+			body_partsL.Add("right arm")
+
+	return english_list(body_partsL)
+
+/obj/item/clothing/ui_data()
+	var/list/data = list()
+	if(armor.len)
+		var/list/armor_vals = list()
+		for(var/i in armor)
+			if(armor[i])
+				armor_vals += list(list(
+					"name" = i,
+					"value" = armor[i]
+					))
+		data["armor_info"] = armor_vals
+	if(body_parts_covered)
+		var/body_part_string = body_part_coverage_to_string(body_parts_covered)
+		data["body_coverage"] = body_part_string
+	data["slowdown"] = slowdown
+	if(heat_protection)
+		data["heat_protection"] = body_part_coverage_to_string(heat_protection)
+		data["heat_protection_temperature"] = max_heat_protection_temperature
+	if(cold_protection)
+		data["cold_protection"] = body_part_coverage_to_string(cold_protection)
+		data["cold_protection_temperature"] = min_cold_protection_temperature
+	data["equip_delay"] = equip_delay
+	return data
+
+/obj/item/clothing/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = ui_data(user)
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "clothing_stats.tmpl", name, 650, 550, state = state)
+		ui.auto_update_layout = 1
+		ui.set_initial_data(data)
+		ui.open()
+
+/obj/item/clothing/ui_action_click(mob/living/user, action_name)
+	if(action_name == "Clothing information")
+		ui_interact(user)
+		return TRUE
+	return ..()
+
+/obj/screen/item_action/top_bar/clothing_info
+	icon = 'icons/mob/screen/gun_actions.dmi'
+	screen_loc = "8,1:13"
+	minloc = "7,2:13"
+	name = "Clothing information"
+	icon_state = "info"
+
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -320,7 +404,6 @@ BLIND     // can't see anything
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
-	var/overshoes = 0
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -429,6 +512,7 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(
+		/obj/item/weapon/clipboard,
 		/obj/item/weapon/storage/pouch/,
 		/obj/item/weapon/gun,
 		/obj/item/weapon/melee,

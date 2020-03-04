@@ -39,8 +39,13 @@
 
 /datum/uplink_item/item/tools/heavy_vest
 	name = "Heavy Armor Vest"
-	item_cost = 4
+	item_cost = 6
 	path = /obj/item/clothing/suit/storage/vest/merc
+
+/datum/uplink_item/item/tools/heavy_helmet
+	name = "Heavy Armor Helmet"
+	item_cost = 4
+	path = /obj/item/clothing/head/armor/helmet/merchelm
 
 /datum/uplink_item/item/tools/encryptionkey_radio
 	name = "Encrypted Radio Channel Key"
@@ -66,7 +71,7 @@
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
 
 /datum/uplink_item/item/tools/space_suit
-	name = "Space Suit"
+	name = "Mercenary Voidsuit"
 	item_cost = 6
 	path = /obj/item/weapon/storage/box/syndie_kit/space
 

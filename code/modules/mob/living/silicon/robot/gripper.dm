@@ -20,7 +20,6 @@
 		/obj/item/weapon/camera_assembly,
 		/obj/item/weapon/tank,
 		/obj/item/weapon/circuitboard,
-		/obj/item/weapon/smes_coil,
 		/obj/item/device/assembly,//Primarily for making improved cameras, but opens many possibilities
 		/obj/item/weapon/computer_hardware,
 		/obj/item/stack/tile //Repair floors yay
@@ -272,9 +271,7 @@
 		/obj/item/weapon/paper,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/circuitboard/broken,
-		/obj/item/broken_device,
 		/obj/item/clothing/mask/smokable/cigarette,
-		/obj/item/weapon/cigbutt,
 		///obj/item/weapon/reagent_containers/cooking_container //PArt of cooking overhaul, not yet ported
 		)
 

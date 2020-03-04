@@ -1,6 +1,5 @@
 /obj/item/organ/external/stump
 	name = "limb stump"
-	icon_name = ""
 	dislocated = -1
 
 /obj/item/organ/external/stump/New(var/mob/living/carbon/holder, var/OD, var/obj/item/organ/external/limb)
@@ -10,7 +9,7 @@
 		amputation_point = limb.amputation_point
 		joint = limb.joint
 		parent_organ = limb.parent_organ
-		wounds = limb.wounds
+		wounds = limb.wounds.Copy()
 	..(holder, null)
 	if(istype(limb))
 		max_damage = limb.max_damage

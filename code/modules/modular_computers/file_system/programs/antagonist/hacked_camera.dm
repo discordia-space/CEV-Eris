@@ -24,7 +24,7 @@
 			ntnet_global.intrusion_detection_alarm = 1
 
 /datum/computer_file/program/camera_monitor/hacked/ui_interact(mob/user)
-	operator_skill = user.stats.getStat(STAT_COG)
+	operator_skill = get_operator_skill(user, STAT_COG)
 	. = ..() // Actual work done by nanomodule's parent.
 
 /datum/nano_module/camera_monitor/hacked

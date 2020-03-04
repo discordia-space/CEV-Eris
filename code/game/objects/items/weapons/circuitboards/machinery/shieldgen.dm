@@ -3,7 +3,7 @@
 #endif
 // New shields
 /obj/item/weapon/circuitboard/shield_generator
-	name = T_BOARD("advanced shield generator")
+	name = T_BOARD("hull shield generator")
 	board_type = "machine"
 	build_path = /obj/machinery/power/shield_generator
 	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
@@ -11,7 +11,7 @@
 	req_components = list(
 							/obj/item/weapon/stock_parts/capacitor = 1,
 							/obj/item/weapon/stock_parts/micro_laser = 1,
-							/obj/item/weapon/smes_coil = 1,
+							/obj/item/weapon/stock_parts/smes_coil = 1,
 							/obj/item/weapon/stock_parts/console_screen = 1)
 
 /obj/item/weapon/circuitboard/shield_diffuser

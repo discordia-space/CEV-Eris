@@ -15,13 +15,17 @@
 /obj/item/projectile/bullet/on_hit(atom/target)
 	if (..(target))
 		var/mob/living/L = target
-		shake_camera(L, 3, 2)
+		shake_camera(L, 1, 1, 0.5)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
 	if(penetrating > 0 && damage > 20 && prob(damage))
 		mob_passthrough_check = 1
 	else
-		mob_passthrough_check = 0
+		var/obj/item/weapon/grab/G = locate() in target_mob
+		if(G && G.state >= GRAB_NECK)
+			mob_passthrough_check = rand()
+		else
+			mob_passthrough_check = 0
 	return ..()
 
 /obj/item/projectile/bullet/can_embed()

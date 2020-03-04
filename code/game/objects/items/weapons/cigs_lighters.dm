@@ -101,6 +101,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/type_butt = null
 	var/chem_volume = 0
 	var/smoketime = 0
+	var/quality_multiplier = 1 // Used for sanity and insight gain
 	var/matchmes = "USER lights NAME with FLAME"
 	var/lightermes = "USER lights NAME with FLAME"
 	var/zippomes = "USER lights NAME with FLAME"
@@ -229,7 +230,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 	icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	icon_off = "cigoff"
-	type_butt = /obj/item/weapon/cigbutt
+	type_butt = /obj/item//cigbutt
 	chem_volume = 15
 	smoketime = 300
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
@@ -277,11 +278,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
 	icon_off = "cigar2off"
-	type_butt = /obj/item/weapon/cigbutt/cigarbutt
+	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
 	item_state = "cigaroff"
 	smoketime = 1500
 	chem_volume = 20
+	quality_multiplier = 2
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to offend their NAME by lighting it with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
@@ -303,23 +305,25 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigar2off"
 	smoketime = 7200
 	chem_volume = 30
+	quality_multiplier = 3
 
-/obj/item/weapon/cigbutt
+/obj/item/trash/cigbutt
 	name = "cigarette butt"
 	desc = "A manky old cigarette butt."
 	icon = 'icons/inventory/face/icon.dmi'
 	icon_state = "cigbutt"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_BIOMATTER = 1)
 	throwforce = 1
 
-/obj/item/weapon/cigbutt/New()
+/obj/item/trash/cigbutt/New()
 	..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	transform = turn(transform,rand(0,360))
 
-/obj/item/weapon/cigbutt/cigarbutt
+/obj/item/trash/cigbutt/cigarbutt
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"
@@ -341,6 +345,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	zippomes = "<span class='rose'>With much care, USER lights their NAME with their FLAME.</span>"
 	weldermes = "<span class='notice'>USER recklessly lights NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME with the power of science.</span>"
+	quality_multiplier = 2 // Fancy!
 
 /obj/item/clothing/mask/smokable/pipe/New()
 	..()
@@ -413,6 +418,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
 	icon_off = "cobpipeoff"
 	chem_volume = 35
+	quality_multiplier = 1 // Not nearly as fancy as the other one
 
 /////////
 //ZIPPO//

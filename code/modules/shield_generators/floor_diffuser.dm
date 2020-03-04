@@ -52,16 +52,16 @@
 
 /obj/machinery/shield_diffuser/Initialize()
 	update_turfs()
-	.=..()
+	. = ..()
 
 /obj/machinery/shield_diffuser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	.=..()
+	. = ..()
 	update_turfs()
 
 /obj/machinery/shield_diffuser/Destroy()
 	enabled = FALSE
 	update_turfs()
-	..()
+	return ..()
 
 /obj/machinery/shield_diffuser/attackby(obj/item/O as obj, mob/user as mob)
 	if(default_deconstruction(O, user))

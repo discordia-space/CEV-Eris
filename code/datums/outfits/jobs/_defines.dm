@@ -16,4 +16,10 @@ backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/stora
 
 #define BACKPACK_OVERRIDE_SECURITY \
 backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/ironhammer; \
+backpack_overrides[/decl/backpack_outfit/backsport]     = /obj/item/weapon/storage/backpack/sport/ironhammer; \
 backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/ironhammer; \
+
+#define BACKPACK_OVERRIDE_NEOTHEOLOGY \
+	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/neotheology; \
+	backpack_overrides[/decl/backpack_outfit/backsport]     = /obj/item/weapon/storage/backpack/sport/neotheology; \
+	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/neotheology; \

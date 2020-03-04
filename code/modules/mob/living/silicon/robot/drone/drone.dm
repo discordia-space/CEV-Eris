@@ -58,6 +58,8 @@ var/list/mob_hat_cache = list()
 	var/obj/item/hat
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
+	var/eyecolor = "blue"
+	var/armguard = ""
 
 	holder_type = /obj/item/weapon/holder/drone
 
@@ -125,6 +127,7 @@ var/list/mob_hat_cache = list()
 		C.max_damage = 10
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
+	//choose_overlay()
 	updateicon()
 
 /mob/living/silicon/robot/drone/init()
@@ -152,10 +155,12 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/updateicon()
 
 	overlays.Cut()
-	if(stat == 0)
-		overlays += "eyes-[icon_state]"
-	else
-		overlays -= "eyes"
+	if(stat == CONSCIOUS)
+		overlays += "eyes-drone[eyecolor]"
+
+	if(armguard)
+		overlays += "model-[armguard]"
+
 	if(hat) // Let the drones wear hats.
 		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
 
@@ -346,6 +351,11 @@ var/list/mob_hat_cache = list()
 	real_name = "construction drone ([rand(100,999)])"
 	name = real_name
 
+/mob/living/silicon/robot/drone/construction/updateicon()
+	overlays.Cut()
+	if(stat == CONSCIOUS)
+		overlays += "eyes-[module_sprites[icontype]]"
+
 /proc/too_many_active_drones()
 	var/drones = 0
 	for(var/mob/living/silicon/robot/drone/D in SSmobs.mob_list)
@@ -353,6 +363,27 @@ var/list/mob_hat_cache = list()
 			drones++
 	return drones >= config.max_maint_drones
 
+/mob/living/silicon/robot/drone/verb/choose_eyecolor()
+	set name = "Choose Light Color"
+	set category = "Silicon Commands"
+	var/list/colors = list( "blue", "red", "orange", "green", "violet")
 
+	eyecolor = input("Please, select a color!", "color", null) as null|anything in colors
 
+	if(!colors)
+		eyecolor = "blue"
+		return
 
+/mob/living/silicon/robot/drone/verb/choose_armguard()
+	set name = "Choose Armguards"
+	set category = "Silicon Commands"
+	var/list/colors = list( "blue", "red", "brown", "orange", "green", "none")
+
+	armguard = input("Please, select armguards!", "color", null) as null|anything in colors
+
+	if(!colors)
+		armguard = ""
+		return
+
+	verbs -= /mob/living/silicon/robot/drone/verb/choose_armguard
+	to_chat(src, "Your armguard has been set.")

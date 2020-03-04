@@ -16,7 +16,6 @@
 /obj/item/weapon/tool/tape_roll/web
 	name = "web tape"
 	desc = "A strip of fabric covered in an all-natural adhesive. Holds things together with the power of thoughts and prayers."
-	icon_state = "webtape"
 	tool_qualities = list(QUALITY_ADHESIVE = 15, QUALITY_SEALING = 15)
 	use_stock_cost = 0.17
 	max_stock = 30
@@ -182,8 +181,8 @@
 	if(target_turf != source_turf)
 		dir_offset = get_dir(source_turf, target_turf)
 		if(!(dir_offset in cardinal))
-			to_chat(user, "You cannot reach that from here."		) // can only place stuck papers in cardinal directions, to
-			return											// reduce papers around corners issue.
+			to_chat(user, "You cannot reach that from here.") // can only place stuck papers in cardinal directions, to
+			return											  // reduce papers around corners issue.
 
 	user.drop_from_inventory(src)
 	forceMove(source_turf)

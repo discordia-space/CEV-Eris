@@ -5,7 +5,7 @@
 			for(var/i=1,i<=rand(1,5),i++)
 				new /obj/item/weapon/a_gift(T)
 	//for(var/mob/living/simple_animal/corgi/Ian/Ian in SSmobs.mob_list)
-	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
+	//	Ian.place_on_head(new /obj/item/clothing/head/space/santahat(Ian))
 
 /proc/ChristmasEvent()
 	for(var/obj/structure/flora/tree/pine/xmas in world)

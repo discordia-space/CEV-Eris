@@ -73,6 +73,7 @@
 #define INIT_OPEN_SPACE -150
 #define INIT_ORDER_CRAFT -175
 #define INIT_ORDER_LATELOAD -180
+#define INIT_ORDER_CHAT	-185
 
 // SS runlevels
 
@@ -95,10 +96,8 @@ if (Datum.is_processing) {\
 	SSmachines.List += Datum;\
 }
 
-//stopProcessingWrapper catches removal from processing list before it happens to adjust last position in memory during resumes
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
-	SSmachines.stopProcessingWrapper(Datum, SSmachines.List);\
 	if(SSmachines.List.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\

@@ -3,8 +3,8 @@
 	desc = "It's a high efficiency thermoelectric generator."
 	icon = 'icons/obj/machines/thermoelectric.dmi'
 	icon_state = "teg-unassembled"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 
 	use_power = 1
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
@@ -64,11 +64,7 @@
 /obj/machinery/power/generator/update_icon()
 	icon_state = anchored ? "teg-assembled" : "teg-unassembled"
 	overlays.Cut()
-	if (circ1)
-		circ1.temperature_overlay = null
-	if (circ2)
-		circ2.temperature_overlay = null
-	if (stat & (NOPOWER|BROKEN))
+	if (stat & (NOPOWER|BROKEN) || !anchored)
 		return 1
 	else
 		if (lastgenlev != 0)
@@ -219,7 +215,7 @@
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "generator.tmpl", "Thermoelectric Generator", 450, 500)
+		ui = new(user, src, ui_key, "generator.tmpl", "Thermoelectric Generator", 450, 550)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -251,3 +247,8 @@
 		return
 
 	src.set_dir(turn(src.dir, -90))
+
+
+/obj/machinery/power/generator/anchored
+	icon_state = "teg-assembled"
+	anchored = TRUE

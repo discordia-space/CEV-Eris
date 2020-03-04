@@ -6,7 +6,7 @@
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	silencer_type = /obj/item/weapon/silencer
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	w_class = ITEM_SIZE_SMALL
 	can_dual = 1
 	fire_delay = 0.6

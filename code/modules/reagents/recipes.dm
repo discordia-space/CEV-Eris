@@ -248,6 +248,12 @@
 	catalysts = list("plasma" = 5)
 	result_amount = 1
 
+/datum/chemical_reaction/toxin
+	result = "toxin"
+	required_reagents = list("ammonia" = 1, "mercury" = 1, "ethanol" = 1)
+	catalysts = list("plasma" = 5)
+	result_amount = 3
+
 /datum/chemical_reaction/sterilizine
 	result = "sterilizine"
 	required_reagents = list("ethanol" = 1, "anti_toxin" = 1, "hclacid" = 1)
@@ -272,6 +278,11 @@
 	result = "space_drugs"
 	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/nicotine
+    result = "nicotine"
+    required_reagents = list("toxin" = 1, "carbon" = 1, "capsaicin" = 1, "mercury" = 1)
+    result_amount = 4
 
 /datum/chemical_reaction/lube
 	result = "lube"
@@ -370,7 +381,7 @@
 
 /datum/chemical_reaction/hyperzine
 	result = "hyperzine"
-	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
+	required_reagents = list("sugar" = 1, "blattedin" = 1, "sulfur" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/ryetalyn

@@ -140,7 +140,7 @@
 		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/gun/projectile/giskard,
 		//obj/item/weapon/gun/projectile/olivaw, //too big, use holster
-		//obj/item/weapon/gun/projectile/revolver/detective, //too big, use holster
+		//obj/item/weapon/gun/projectile/revolver/havelock, //too big, use holster
 		/obj/item/weapon/gun/energy/gun/martin,
 		//obj/item/weapon/gun/energy/taser, //too big, use holster
 		/obj/item/taperoll

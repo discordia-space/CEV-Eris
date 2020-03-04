@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/automatic/sol
 	name = "FS CAR .25 CS \"Sol\""
-	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless Rifle rounds."
+	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol-para"
 	item_state = "sol"
@@ -9,13 +9,14 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
 	auto_eject = 1
-	caliber = "clrifle"
+	caliber = CAL_CLRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 13
+	one_hand_penalty = 10
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,

@@ -2,12 +2,11 @@
 //Note: Everything in modules/clothing/spacesuits should have the entire suit grouped together.
 //      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
 
-/obj/item/clothing/head/helmet/space
-	name = "Space helmet"
+/obj/item/clothing/head/space
+	name = "space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
-	flags_inv = BLOCKHAIR
 	item_state_slots = list(
 		slot_l_hand_str = "s_helmet",
 		slot_r_hand_str = "s_helmet",
@@ -25,9 +24,13 @@
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
+	w_class = ITEM_SIZE_NORMAL
 	species_restricted = list("exclude")
 	flash_protection = FLASH_PROTECTION_MAJOR
+	price_tag = 100
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -37,12 +40,12 @@
 	brightness_on = 4
 	on = 0
 
-/obj/item/clothing/head/helmet/space/Initialize()
+/obj/item/clothing/head/space/Initialize()
 	. = ..()
 	if(camera_networks && camera_networks.len)
-		verbs += /obj/item/clothing/head/helmet/space/proc/toggle_camera
+		verbs += /obj/item/clothing/head/space/proc/toggle_camera
 
-/obj/item/clothing/head/helmet/space/proc/toggle_camera()
+/obj/item/clothing/head/space/proc/toggle_camera()
 	set name = "Toggle Helmet Camera"
 	set category = "Object"
 	set src in usr
@@ -60,13 +63,13 @@
 		else
 			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
-/obj/item/clothing/head/helmet/space/examine(var/mob/user)
+/obj/item/clothing/head/space/examine(var/mob/user)
 	if(..(user, 1) && camera_networks && camera_networks.len)
 		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
 
 /obj/item/clothing/suit/space
-	name = "Space suit"
-	desc = "A suit that protects against low pressure environments. \"CEV Eris\" is written in large block letters on the back."
+	name = "space suit"
+	desc = "A cheap and bulky suit that protects against low pressure environments."
 	icon_state = "space"
 	item_state = "s_suit"
 	w_class = ITEM_SIZE_BULKY
@@ -75,7 +78,7 @@
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
-	slowdown = 3
+	slowdown = 1
 	armor = list(
 		melee = 10,
 		bullet = 10,

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/mk58.dmi'
 	icon_state = "mk58"
 	item_state = "pistol"
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1400

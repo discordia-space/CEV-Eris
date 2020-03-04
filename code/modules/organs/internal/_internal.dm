@@ -75,14 +75,14 @@
 			condition = list(
 				"name" = "Damage",
 				"fix_name" = "Repair",
-				"step" = "[/datum/surgery_step/robotic/fix_organ]",
+				"step" = /datum/surgery_step/robotic/fix_organ,
 				"organ" = "\ref[src]"
 			)
 		else
 			condition = list(
 				"name" = "Damage",
 				"fix_name" = "Heal",
-				"step" = "[/datum/surgery_step/fix_organ]",
+				"step" = /datum/surgery_step/fix_organ,
 				"organ" = "\ref[src]"
 			)
 

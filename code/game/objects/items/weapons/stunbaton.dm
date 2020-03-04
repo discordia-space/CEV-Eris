@@ -13,8 +13,8 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	price_tag = 500
-	var/stunforce = 10
-	var/agonyforce = 30
+	var/stunforce = 0
+	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell = null
@@ -51,13 +51,13 @@
 
 /obj/item/weapon/melee/baton/update_icon()
 	if(status)
-		icon_state = "[initial(name)]_active"
+		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)
-		icon_state = "[initial(name)]_nocell"
+		icon_state = "[initial(icon_state)]_nocell"
 	else
-		icon_state = "[initial(name)]"
+		icon_state = "[initial(icon_state)]"
 
-	if(icon_state == "[initial(name)]_active")
+	if(icon_state == "[initial(icon_state)]_active")
 		set_light(1.5, 1, COLOR_LIGHTING_ORANGE_BRIGHT)
 	else
 		set_light(0)
@@ -173,8 +173,24 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	stunforce = 0
-	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
+	agonyforce = 40	//same force as a stunbaton, but uses way more charge.
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
+
+/obj/item/weapon/melee/baton/excelbaton
+	name = "Expropriator"
+	desc = "A cheap and effective way to feed the red tide."
+	icon_state = "sovietbaton"
+	item_state = "soviet"
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
+	stunforce = 0
+	agonyforce = 40
+	hitcost = 100
+	attack_verb = list("battered")
+	slot_flags = SLOT_BELT
+	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+

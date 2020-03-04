@@ -171,7 +171,7 @@
 
 	required_technologies = list(/datum/technology/teleportation)
 	required_tech_levels = list()
-	cost = 2000
+	cost = 3000
 
 	unlocks_designs = list(	/datum/design/research/item/beaker/bluespace,
 							/datum/design/research/item/beaker/noreact,

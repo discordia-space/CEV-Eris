@@ -1,5 +1,5 @@
 //Captain's Spacesuit
-/obj/item/clothing/head/helmet/space/capspace
+/obj/item/clothing/head/space/capspace
 	name = "space helmet"
 	icon_state = "capspace"
 	item_state = "capspace"
@@ -19,7 +19,7 @@
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
-	slowdown = 1.5
+	slowdown = 1
 	armor = list(
 		melee = 50,
 		bullet = 40,

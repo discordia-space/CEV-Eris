@@ -86,6 +86,7 @@ obj/item/weapon/gun/energy/retro
 	fire_delay = 20
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
+	one_hand_penalty = 5
 
 
 /obj/item/weapon/gun/energy/lasercannon/mounted

@@ -59,7 +59,7 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/suit/nun(src)
 	new /obj/item/clothing/head/nun_hood(src)
-	new /obj/item/clothing/suit/chaplain_hoodie(src)
+	new /obj/item/clothing/suit/neotheology_jacket(src)
 	new /obj/item/clothing/head/chaplain_hood(src)
 	new /obj/item/clothing/under/bride_white(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
@@ -282,7 +282,7 @@
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/tactical/populate_contents()
-	new /obj/item/clothing/under/tactical(src)
+	new /obj/item/clothing/under/syndicate(src)
 	new /obj/item/clothing/suit/armor/heavy(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)

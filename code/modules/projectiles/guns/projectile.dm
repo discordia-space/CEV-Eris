@@ -14,7 +14,7 @@
 	matter = list(MATERIAL_STEEL = 1)
 	recoil_buildup = 1
 
-	var/caliber = "357"		//determines which casings will fit
+	var/caliber = CAL_357		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
 	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
 	var/obj/item/ammo_casing/chambered = null
@@ -311,6 +311,15 @@
 		bullets += 1
 	return bullets
 
+/obj/item/weapon/gun/projectile/proc/get_max_ammo()
+	var/bullets = 0
+	if (load_method & MAGAZINE)
+		if(ammo_magazine)
+			bullets += ammo_magazine.max_ammo
+	if (load_method & SPEEDLOADER)
+		bullets += max_shells
+	return bullets
+
 /* Unneeded -- so far.
 //in case the weapon has firemodes and can't unload using attack_hand()
 /obj/item/weapon/gun/projectile/verb/unload_gun()
@@ -322,3 +331,11 @@
 
 	unload_ammo(usr)
 */
+
+/obj/item/weapon/gun/projectile/ui_data(mob/user)
+	var/list/data = ..()
+	data["caliber"] = caliber
+	data["current_ammo"] = get_ammo()
+	data["max_shells"] = get_max_ammo()
+
+	return data

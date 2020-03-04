@@ -1,8 +1,8 @@
 /obj/item/weapon/oddity/secdocs
 	name = "science data"
 	desc = "Folder contains some papers with important science data."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "scifolder0"
+	icon = 'icons/obj/oddities.dmi'
+	icon_state = "folder"
 	price_tag = 5000
 
 	oddity_stats = list(
@@ -14,7 +14,7 @@
 	var/static/inv_spawn_count = 3
 
 /obj/item/weapon/oddity/secdocs/Initialize()
-	icon_state = "scifolder[rand(0,3)]"
+	icon_state = "folder-[pick("omega","psi","theta")]"
 	name = pick("Atractor fields theory",
 				"World lines theory",
 				"Outside context problem evidence",

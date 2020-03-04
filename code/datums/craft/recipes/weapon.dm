@@ -5,7 +5,7 @@
 
 /datum/craft_recipe/weapon/baseballbat
 	name = "baseball bat"
-	result = /obj/item/weapon/material/twohanded/baseballbat
+	result = /obj/item/weapon/material/baseballbat
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD)
 	)
@@ -108,10 +108,8 @@
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
 	steps = list(
 		list(/obj/item/pipe, 1, "time" = 60),
-		list(/obj/item/weapon/crossbowframe, 1, "time" = 20),
-		list(/obj/item/weapon/grenade/chem_grenade, 1, "time" = 20),
-		list(/obj/item/device/assembly/igniter, 1),
-		list(/obj/item/stack/cable_coil, 2, "time" = 10)
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/weapon/crossbowframe, 1, "time" = 20)
 	)
 
 /datum/craft_recipe/weapon/flamethrower
@@ -144,4 +142,14 @@
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_BOLT_TURNING, 10, 70),
 		list(/obj/item/stack/cable_coil, 2, "time" = 10)
+	)
+
+/datum/craft_recipe/weapon/homewrecker
+	name = "homewrecker"
+	result = /obj/item/weapon/tool/homewrecker
+	steps = list(
+		list(/obj/item/stack/rods, 12, "time" = 30),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 30, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 30)
 	)

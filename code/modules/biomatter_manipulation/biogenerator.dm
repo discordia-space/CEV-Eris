@@ -70,7 +70,7 @@
 		var/biomatter_amount = 1/max(1, port.pipes_dirtiness)
 		port.tank.reagents.remove_reagent("biomatter", biomatter_amount)
 		generator.chamber.consume_and_produce()
-		var/output_power = 100000
+		var/output_power = 200000
 
 		//port wearout
 		port.working_cycles++

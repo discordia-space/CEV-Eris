@@ -6,7 +6,7 @@
 	item_state = "vintorez"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "srifle"
+	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_ILLEGAL = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
 	ammo_type = "/obj/item/ammo_casing/srifle"
@@ -19,6 +19,7 @@
 	penetration_multiplier = 1.2
 	damage_multiplier = 1.2
 	recoil_buildup = 8
+	one_hand_penalty = 10
 	silencer_type = /obj/item/weapon/silencer
 
 	firemodes = list(

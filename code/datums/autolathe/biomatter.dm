@@ -56,6 +56,21 @@
 	name = "Cash Bag"
 	build_path = /obj/item/weapon/storage/bag/money
 
+/datum/design/bioprinter/leather/holster
+	name = "shoulder holster"
+	build_path = /obj/item/clothing/accessory/holster
+
+/datum/design/bioprinter/leather/holster/armpit
+	name = "armpit holster"
+	build_path = /obj/item/clothing/accessory/holster/armpit
+
+/datum/design/bioprinter/leather/holster/waist
+	name = "waist holster"
+	build_path = /obj/item/clothing/accessory/holster/waist
+
+/datum/design/bioprinter/leather/holster/hip
+	name = "hip holster"
+	build_path = /obj/item/clothing/accessory/holster/hip
 
 /datum/design/bioprinter/belt
 	materials = list("biomatter" = 30)
@@ -64,13 +79,21 @@
 	name = "Utility belt"
 	build_path = /obj/item/weapon/storage/belt/utility
 
+/datum/design/bioprinter/belt/utility/neotheology
+	name = "Neotheologian utility belt"
+	build_path = /obj/item/weapon/storage/belt/utility/neotheology
+
 /datum/design/bioprinter/belt/medical
 	name = "Medical belt"
 	build_path = /obj/item/weapon/storage/belt/medical
 
 /datum/design/bioprinter/belt/security
-	name = "Security belt"
+	name = "Tactical belt"
 	build_path = /obj/item/weapon/storage/belt/security
+
+/datum/design/bioprinter/belt/security/neotheology
+	name = "Neotheologian tactical belt"
+	build_path = /obj/item/weapon/storage/belt/security/neotheology
 
 /datum/design/bioprinter/belt/medical/emt
 	name = "EMT belt"

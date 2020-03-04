@@ -51,7 +51,7 @@
 	var/suit_type = "hardsuit"
 	var/list/initial_modules = list()
 	var/chest_type = /obj/item/clothing/suit/space/rig
-	var/helm_type =  /obj/item/clothing/head/helmet/space/rig
+	var/helm_type =  /obj/item/clothing/head/space/rig
 	var/boot_type =  /obj/item/clothing/shoes/magboots/rig
 	var/glove_type = /obj/item/clothing/gloves/rig
 	var/cell_type =  /obj/item/weapon/cell/large/high
@@ -61,7 +61,7 @@
 	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
 	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
-	var/obj/item/clothing/head/helmet/space/rig/helmet = null // Deployable helmet, if any.
+	var/obj/item/clothing/head/space/rig/helmet = null // Deployable helmet, if any.
 	var/obj/item/clothing/gloves/rig/gloves = null            // Deployable gauntlets, if any.
 	var/obj/item/weapon/cell/large/cell                             // Power supply, if any.
 	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)

@@ -224,3 +224,18 @@
 	item_state = "black_hoodie"
 	icon_open = "black_hoodie_open"
 	icon_closed = "black_hoodie"
+
+/obj/item/clothing/suit/storage/cyberpunksleek
+	name = "\improper Enforcer's Overcoat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek"
+	item_state = "brown_jacket"
+	armor = list(
+		melee = 5,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS

@@ -8,9 +8,8 @@
 
 /mob/living/silicon/robot/syndicate/New()
 	if(!cell)
-		cell = new /obj/item/weapon/cell/large(src)
-		cell.maxcharge = 25000
-		cell.charge = 25000
+		// Starts with a fancy high capacity cell
+		cell = new /obj/item/weapon/cell/large/hyper(src)
 
 	..()
 

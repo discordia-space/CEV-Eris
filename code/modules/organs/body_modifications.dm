@@ -109,7 +109,7 @@ var/global/list/modifications_types = list(
 	desc = "Simple, brutal and reliable prosthesis"
 	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	replace_limb = /obj/item/organ/external/robotic
-	icon = 'icons/mob/human_races/robotic.dmi'
+	icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 	nature = MODIFICATION_SILICON
 	allow_nt = FALSE
 

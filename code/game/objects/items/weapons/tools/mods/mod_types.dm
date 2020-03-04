@@ -20,8 +20,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-		"degradation_mult" = 0.65,
-		"force_mod" = 1,
+		UPGRADE_DEGRADATION_MULT = 0.65,
+		UPGRADE_FORCE_MOD = 1,
 		)
 
 	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_PRYING, QUALITY_SAWING,QUALITY_SHOVELING,QUALITY_DIGGING,QUALITY_EXCAVATION)
@@ -38,8 +38,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-		"degradation_mult" = 0.65,
-		"health_threshold_modifier" = 10
+		UPGRADE_DEGRADATION_MULT = 0.65,
+		UPGRADE_HEALTH_THRESHOLD = 10
 		)
 	I.prefix = "heatsunk"
 	I.req_fuel_cell = REQ_FUEL_OR_CELL
@@ -55,11 +55,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"degradation_mult" = 0.55,
-	"force_mod" = 1,
-	"precision" = -5,
-	"bulk_mod" = 1,
-	"health_threshold_modifier" = 10)
+	UPGRADE_DEGRADATION_MULT = 0.55,
+	UPGRADE_FORCE_MOD = 1,
+	UPGRADE_PRECISION = -5,
+	UPGRADE_BULK = 1,
+	UPGRADE_HEALTH_THRESHOLD = 10)
 	I.prefix = "reinforced"
 
 
@@ -73,11 +73,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"degradation_mult" = 0.75,
-	"precision" = 5,
-	"health_threshold_modifier" = 10
+	UPGRADE_DEGRADATION_MULT = 0.75,
+	UPGRADE_PRECISION = 5,
+	UPGRADE_HEALTH_THRESHOLD = 10
 	)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING)
+	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING, QUALITY_HAMMERING)
 	I.prefix = "shielded"
 
 
@@ -94,7 +94,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.15
+	UPGRADE_WORKSPEED = 0.15
 	)
 	I.prefix = "ergonomic"
 
@@ -110,7 +110,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.25
+	UPGRADE_WORKSPEED = 0.25
 	)
 	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_SCREW_DRIVING)
 	I.prefix = "ratcheting"
@@ -127,9 +127,9 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.20,
-	"precision" = -10,
-	"color" = "#FF4444"
+	UPGRADE_WORKSPEED = 0.20,
+	UPGRADE_PRECISION = -10,
+	UPGRADE_COLOR = "#FF4444"
 	)
 	I.prefix = "red"
 
@@ -144,9 +144,9 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.15,
-	"precision" = 5,
-	"force_mult" = 1.15
+	UPGRADE_WORKSPEED = 0.15,
+	UPGRADE_PRECISION = 5,
+	UPGRADE_FORCE_MULT = 1.15
 	)
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_SHOVELING, QUALITY_WIRE_CUTTING)
 	I.prefix = "sharpened"
@@ -163,9 +163,9 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.25,
-	"degradation_mult" = 0.85,
-	"force_mult" = 1.10,
+	UPGRADE_WORKSPEED = 0.25,
+	UPGRADE_DEGRADATION_MULT = 0.85,
+	UPGRADE_FORCE_MULT = 1.10,
 	)
 	I.required_qualities = list(QUALITY_CUTTING, QUALITY_SHOVELING, QUALITY_SAWING, QUALITY_WIRE_CUTTING, QUALITY_PRYING)
 	I.negative_qualities = list(QUALITY_WELDING, QUALITY_LASER_CUTTING)
@@ -183,10 +183,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.20,
-	"force_mult" = 1.15,
-	"degradation_mult" = 1.15,
-	"health_threshold_modifier" = -10
+	UPGRADE_WORKSPEED = 0.20,
+	UPGRADE_FORCE_MULT = 1.15,
+	UPGRADE_DEGRADATION_MULT = 1.15,
+	UPGRADE_HEALTH_THRESHOLD = -10
 	)
 	I.required_qualities = list(QUALITY_WELDING)
 	I.prefix = "oxyjet"
@@ -203,15 +203,15 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"workspeed" = 0.5,
-	"force_mult" = 1.15,
-	"degradation_mult" = 1.15,
-	"powercost_mult" = 1.35,
-	"fuelcost_mult" = 1.35,
-	"precision" = -10,
-	"health_threshold_modifier" = -10
+	UPGRADE_WORKSPEED = 0.5,
+	UPGRADE_FORCE_MULT = 1.15,
+	UPGRADE_DEGRADATION_MULT = 1.15,
+	UPGRADE_POWERCOST_MULT = 1.35,
+	UPGRADE_FUELCOST_MULT = 1.35,
+	UPGRADE_PRECISION = -10,
+	UPGRADE_HEALTH_THRESHOLD = -10
 	)
-	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION)
+	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_HAMMERING)
 	I.prefix = "high-power"
 	I.req_fuel_cell = REQ_FUEL_OR_CELL
 
@@ -228,7 +228,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"precision" = 10)
+	UPGRADE_PRECISION = 10)
 	I.prefix = "laser-guided"
 
 
@@ -244,8 +244,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"precision" = 10,
-	"health_threshold_modifier" = 10)
+	UPGRADE_PRECISION = 10,
+	UPGRADE_HEALTH_THRESHOLD = 10)
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
 	I.prefix = "stabilized"
 
@@ -259,7 +259,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"precision" = 10
+	UPGRADE_PRECISION = 10
 	)
 	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING, QUALITY_CLAMPING, QUALITY_BONE_SETTING)
 	I.prefix = "magnetic"
@@ -274,10 +274,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"precision" = 12,
-	"degradation_mult" = 1.15,
-	"bulk_mod" = 1,
-	"health_threshold_modifier" = 10
+	UPGRADE_PRECISION = 12,
+	UPGRADE_DEGRADATION_MULT = 1.15,
+	UPGRADE_BULK = 1,
+	UPGRADE_HEALTH_THRESHOLD = 10
 	)
 	I.required_qualities = list(QUALITY_WELDING)
 	I.prefix = "ported"
@@ -297,10 +297,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"bulk_mod" = 1,
-	"degradation_mult" = 1.15,
-	"health_threshold_modifier" = -10,
-	"cell_hold_upgrade" = 1
+	UPGRADE_BULK = 1,
+	UPGRADE_DEGRADATION_MULT = 1.15,
+	UPGRADE_HEALTH_THRESHOLD = -10,
+	UPGRADE_CELLPLUS = 1
 	)
 	I.prefix = "medium-cell"
 	I.req_fuel_cell = REQ_CELL
@@ -316,10 +316,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"bulk_mod" = 1,
-	"degradation_mult" = 1.15,
-	"health_threshold_modifier" = -10,
-	"max_fuel" = 100)
+	UPGRADE_BULK = 1,
+	UPGRADE_DEGRADATION_MULT = 1.15,
+	UPGRADE_HEALTH_THRESHOLD = -10,
+	UPGRADE_MAXFUEL = 100)
 	I.prefix = "expanded"
 	I.req_fuel_cell = REQ_FUEL
 
@@ -334,10 +334,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"bulk_mod" = 1,
-	"degradation_mult" = 1.30,
-	"health_threshold_modifier" = -20,
-	"max_fuel" = 600
+	UPGRADE_BULK = 1,
+	UPGRADE_DEGRADATION_MULT = 1.30,
+	UPGRADE_HEALTH_THRESHOLD = -20,
+	UPGRADE_MAXFUEL = 600
 	)
 	I.prefix = "holding"
 	I.req_fuel_cell = REQ_FUEL
@@ -354,11 +354,11 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"bulk_mod" = 2,
-	"degradation_mult" = 1.3,
-	"precision" = -10,
-	"health_threshold_modifier" = -20,
-	"max_upgrades" = 3
+	UPGRADE_BULK = 2,
+	UPGRADE_DEGRADATION_MULT = 1.3,
+	UPGRADE_PRECISION = -10,
+	UPGRADE_HEALTH_THRESHOLD = -20,
+	UPGRADE_MAXUPGRADES = 3
 	)
 	I.prefix = "custom"
 
@@ -373,14 +373,31 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"force_mod" = 4,
-	"precision" = -5,
-	"degradation_mult" = 1.15,
-	"workspeed" = -0.15,
-	"health_threshold_modifier" = -10,
-	"sharp" = TRUE
+	UPGRADE_FORCE_MOD = 4,
+	UPGRADE_PRECISION = -5,
+	UPGRADE_DEGRADATION_MULT = 1.15,
+	UPGRADE_WORKSPEED = -0.15,
+	UPGRADE_HEALTH_THRESHOLD = -10,
+	UPGRADE_SHARP = TRUE
 	)
 	I.prefix = "spiked"
+
+/obj/item/weapon/tool_upgrade/augment/hammer_addon
+	name = "Hammer Addon"
+	icon_state = "hammer_addon"
+	desc = "A attachment that fits on almost everything that gives a simple flat surface for hammering"
+	matter = list(MATERIAL_STEEL = 2)
+
+/obj/item/weapon/tool_upgrade/augment/hammer_addon/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.upgrades = list(
+	UPGRADE_FORCE_MOD = 4,
+	UPGRADE_WORKSPEED = -0.5,
+	UPGRADE_HEALTH_THRESHOLD = 5,
+	tool_qualities = list(QUALITY_HAMMERING = 10)
+	)
+	I.prefix = "flattened"
 
 
 
@@ -396,15 +413,16 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"color" = "#AAAAAA",
-	"health_threshold_modifier" = -10,
-	"item_flag_add" = SILENT
+	UPGRADE_COLOR = "#AAAAAA",
+	UPGRADE_HEALTH_THRESHOLD = -10,
+	UPGRADE_ITEMFLAGPLUS = SILENT
 	)
 	I.prefix = "silenced"
 
 /obj/item/weapon/tool_upgrade/augment/ai_tool
-	name = "ai tool"
-	desc = "A tool mod from OneStar is deemed heretic by the clan of Technomancers. It enhances the tool by the micro-ai at cost of increased power usage."
+	name = "Nanointegrated AI"
+	desc = "A forgotten One Star tech. Due to its unique installation method of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
+		A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
@@ -412,10 +430,10 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"powercost_mult" = 1.20,
-	"precision" = 14,
-	"workspeed" = 14,
-	"health_threshold_modifier" = -10,
+	UPGRADE_POWERCOST_MULT = 1.20,
+	UPGRADE_PRECISION = 14,
+	UPGRADE_WORKSPEED = 14,
+	UPGRADE_HEALTH_THRESHOLD = -10,
 	)
 	I.prefix = "intelligent"
 	I.req_fuel_cell = REQ_CELL
@@ -430,7 +448,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	"degradation_mult" = 0.01,
-	"health_threshold_modifier" = 10
+	UPGRADE_DEGRADATION_MULT = 0.01,
+	UPGRADE_HEALTH_THRESHOLD = 10
 	)
 	I.prefix = "self-healing"

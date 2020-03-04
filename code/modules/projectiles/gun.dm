@@ -36,10 +36,8 @@
 	var/recoil_buildup = 2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
-	var/requires_two_hands
 	var/dual_wielding
 	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
-	var/wielded_icon = "gun_wielded"
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE
@@ -61,6 +59,11 @@
 
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
+	var/wielded_item_state = null
+	var/one_hand_penalty = 0 //The higher this number is, the more severe the accuracy penalty for shooting it one handed. 5 is a good baseline for this, but var edit it live and play with it yourself.
+
+	var/projectile_color //Set by a firemode. Sets the fired projectiles color
+
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -110,7 +113,12 @@
 				slot_s_store_str = icon,
 			)
 		item_icons = item_icons_cache[type]
+	if(one_hand_penalty && (!wielded_item_state))//If the gun has a one handed penalty but no wielded item state then use this generic one.
+		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
 
+	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info
+	action.owner = src
+	hud_actions += action
 
 /obj/item/weapon/gun/Destroy()
 	for(var/i in firemodes)
@@ -120,28 +128,42 @@
 	return ..()
 
 /obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+	var/wield_state = null
+	if(wielded_item_state)
+		wield_state = wielded_item_state
 	if(!(hands || back || onsuit))
 		hands = back = onsuit = TRUE
-	if(hands)
-		item_state_slots[slot_l_hand_str] = "lefthand"  + state
-		item_state_slots[slot_r_hand_str] = "righthand" + state
+	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
+		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
+			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
+			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+		else
+			item_state_slots[slot_l_hand_str] = "lefthand"  + state
+			item_state_slots[slot_r_hand_str] = "righthand" + state
+	state = initial(state)
 	if(back)
 		item_state_slots[slot_back_str]   = "back"      + state
 	if(onsuit)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
-/obj/item/weapon/gun/update_wear_icon()
-	if(requires_two_hands)
-		var/mob/living/M = loc
-		if(istype(M))
-			if((M.l_hand == src && !M.r_hand) || (M.r_hand == src && !M.l_hand))
-				name = "[initial(name)] (wielded)"
-				item_state = wielded_icon
+
+/obj/item/weapon/gun/update_icon()
+	if(wielded_item_state)
+		if(icon_contained)//If it has it own icon file then we want to pull from that.
+			if(wielded)
+				item_state_slots[slot_l_hand_str] = "lefthand"  + wielded_item_state
+				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
-				name = initial(name)
-				item_state = initial(item_state)
-				update_icon(ignore_inhands=1) // In case item_state is set somewhere else.
-	..()
+				item_state_slots[slot_l_hand_str] = "lefthand"
+				item_state_slots[slot_r_hand_str] = "righthand"
+		else//Otherwise we can just pull from the generic left and right hand icons.
+			if(wielded)
+				item_state_slots[slot_l_hand_str] = wielded_item_state
+				item_state_slots[slot_r_hand_str] = wielded_item_state
+			else
+				item_state_slots[slot_l_hand_str] = initial(item_state)
+				item_state_slots[slot_r_hand_str] = initial(item_state)
+
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -258,7 +280,11 @@
 
 		if(pointblank)
 			process_point_blank(projectile, user, target)
-
+		if(projectile_color)
+			projectile.icon = get_proj_icon_by_color(projectile, projectile_color)
+			if(istype(projectile, /obj/item/projectile))
+				var/obj/item/projectile/P = projectile
+				P.proj_color = projectile_color
 		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()
@@ -322,6 +348,20 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
+
+	if(one_hand_penalty)
+		if(!wielded)
+			switch(one_hand_penalty)
+				if(1)
+					if(prob(50)) //don't need to tell them every single time
+						to_chat(user, "<span class='warning'>Your aim wavers slightly.</span>")
+				if(2)
+					to_chat(user, "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>")
+				if(3)
+					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
+				if(4 to INFINITY)
+					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
+
 	user.handle_recoil(src)
 	update_icon()
 
@@ -444,6 +484,8 @@
 	//Tell the user if they could fit a silencer on
 	if (silencer_type && !silenced)
 		to_chat(user, SPAN_NOTICE("You could attach a silencer to this."))
+	if(one_hand_penalty)
+		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -452,6 +494,11 @@
 	sel_mode++
 	if(sel_mode > firemodes.len)
 		sel_mode = 1
+	return set_firemode(sel_mode)
+
+/obj/item/weapon/gun/proc/set_firemode(var/index)
+	if(index > firemodes.len)
+		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
@@ -464,15 +511,6 @@
 		return
 
 	toggle_firemode(user)
-
-/obj/item/weapon/gun/ui_action_click(mob/living/user, action_name)
-	switch(action_name)
-		if("fire mode")
-			toggle_firemode(user)
-		if("scope")
-			toggle_scope(user)
-		if("safety")
-			toggle_safety(user)
 
 /obj/item/weapon/gun/proc/toggle_firemode(mob/living/user)
 	var/datum/firemode/new_mode = switch_firemodes()
@@ -587,3 +625,45 @@
 	damage_multiplier += silenced.damage_mod
 	silenced = null
 	update_icon()
+
+
+/obj/item/weapon/gun/ui_data(mob/user)
+	var/list/data = list()
+	data["damage_multiplier"] = damage_multiplier
+	data["penetration_multiplier"] = penetration_multiplier
+
+	data["fire_delay"] = fire_delay //time between shot, in ms
+	data["burst"] = burst //How many shots are fired per click
+	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
+
+	data["force"] = force
+	data["force_max"] = initial(force)*10
+	data["muzzle_flash"] = muzzle_flash
+
+	data["recoil_buildup"] = recoil_buildup
+	data["recoil_buildup_max"] = initial(recoil_buildup)*10
+
+	if(firemodes.len)
+		var/list/firemodes_info = list()
+		for(var/i = 1 to firemodes.len)
+			data["firemode_count"] += 1
+			var/datum/firemode/F = firemodes[i]
+			firemodes_info += list(list(
+				"index" = i,
+				"current" = (i == sel_mode),
+				"name" = F.name,
+				"burst" = F.settings["burst"],
+				"fire_delay" = F.settings["fire_delay"],
+				"move_delay" = F.settings["move_delay"],
+				))
+		data["firemode_info"] = firemodes_info
+	return data
+
+/obj/item/weapon/gun/Topic(href, href_list, var/datum/topic_state/state)
+	if(..(href, href_list, state))
+		return 1
+
+	if(href_list["firemode"])
+		sel_mode = text2num(href_list["firemode"])
+		set_firemode(sel_mode)
+		return 1
