@@ -118,7 +118,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/Process()
 	var/turf/location = get_turf(src)
 	smoketime--
-	if(smoketime < 1)
+	if(smoketime < 0)
 		die()
 		return
 	if(location)
@@ -233,7 +233,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "cigoff"
 	type_butt = /obj/item//cigbutt
 	chem_volume = 15
-	smoketime = 301
+	smoketime = 300
 	preloaded_reagents = list("nicotine" = 6)
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to light their NAME with FLAME.</span>"
@@ -283,7 +283,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
 	item_state = "cigaroff"
-	smoketime = 701
+	smoketime = 700
 	chem_volume = 20
 	preloaded_reagents = list("nicotine" = 14)
 	quality_multiplier = 2
@@ -306,7 +306,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
 	icon_off = "cigar2off"
-	smoketime = 1001
+	smoketime = 1000
 	chem_volume = 30
 	preloaded_reagents = list("nicotine" = 20)
 	quality_multiplier = 3
@@ -343,7 +343,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "pipeon"  //Note - these are in masks.dmi
 	icon_off = "pipeoff"
 	smoketime = 0
-	chem_volume = 51
+	chem_volume = 50
 	preloaded_reagents = list("nicotine" = 1)
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to light their NAME with FLAME.</span>"
