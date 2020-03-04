@@ -108,6 +108,7 @@
 	matter = list(MATERIAL_SILVER = 2, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
 	switched_on_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
 	switched_off_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 10)
+	toggleable = TRUE
 	max_upgrades = 4
 	degradation = 0.7
 	use_power_cost = 1
