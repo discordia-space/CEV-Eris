@@ -49,6 +49,7 @@
 
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
+	var/list/init_firemodes = list()
 
 	var/init_offset = 0
 
@@ -78,20 +79,7 @@
 
 /obj/item/weapon/gun/Initialize()
 	. = ..()
-	for(var/i in 1 to firemodes.len)
-		var/list/L = firemodes[i]
-
-		//If this var is set, it means spawn a specific subclass of firemode
-		if (L["mode_type"])
-			var/newtype = L["mode_type"]
-			firemodes[i] = new newtype(src, firemodes[i])
-		else
-			firemodes[i] = new /datum/firemode(src, firemodes[i])
-
-	//Properly initialize the default firing mode
-	if (firemodes.len)
-		var/datum/firemode/F = firemodes[sel_mode]
-		F.apply_to(src)
+	initialize_firemodes()
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety_verb//addint it to all guns
@@ -100,10 +88,6 @@
 		action.owner = src
 		hud_actions += action
 
-	if(firemodes.len > 1)
-		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/fire_mode
-		action.owner = src
-		hud_actions += action
 
 	if(zoom_factor)
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/scope
@@ -132,6 +116,7 @@
 			qdel(i)
 	firemodes = null
 	return ..()
+
 
 /obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
 	var/wield_state = null
@@ -496,6 +481,34 @@
 	if(one_hand_penalty)
 		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
 
+
+/obj/item/weapon/gun/proc/initialize_firemodes()
+	to_chat(world, "adding firemodes: [init_firemodes.len]")
+	if(firemodes.len)
+		for(var/i in firemodes)
+			qdel(i)
+			firemodes.Remove(i)
+	for(var/i in 1 to init_firemodes.len)
+		var/list/L = init_firemodes[i]
+		add_firemode(L)
+
+	//Properly initialize the default firing mode
+	if (firemodes.len)
+		set_firemode(sel_mode)
+
+	if(firemodes.len > 1)
+		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/fire_mode
+		action.owner = src
+		hud_actions += action
+
+/obj/item/weapon/gun/proc/add_firemode(var/list/firemode)
+	//If this var is set, it means spawn a specific subclass of firemode
+	if (firemode["mode_type"])
+		var/newtype = firemode["mode_type"]
+		firemodes.Add(new newtype(src, firemode))
+	else
+		firemodes.Add(new /datum/firemode(src, firemode))
+
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
 		return null
@@ -646,6 +659,7 @@
 	proj_step_multiplier = initial(proj_step_multiplier)
 	init_offset = initial(init_offset)
 	fire_sound = initial(fire_sound)
+	initialize_firemodes()
 	//re-apply any firemodes
 	set_firemode(sel_mode)
 

@@ -19,7 +19,7 @@
 	one_hand_penalty = 10
 	twohanded = TRUE
 
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
 		list(mode_name="melt", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, charge_cost=25, icon="kill", projectile_color = "#FF0000"),
 		list(mode_name="INCINERATE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
@@ -41,7 +41,7 @@
 	projectile_type = /obj/item/projectile/beam/pulse
 	fire_delay = 15
 
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="INCINERATE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=30, icon="kill", projectile_color = "#FFFF00"),
 		list(mode_name="VAPORIZE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, charge_cost=70, icon="destroy", projectile_color = "#FF0000", recoil_buildup=3),
 	)
@@ -62,7 +62,7 @@
 	price_tag = 3000
 	zoom_factor = null
 
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=15, icon="stun", projectile_color = "#00FFFF"),
 		list(mode_name="melt", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=null, charge_cost=null, icon="kill", projectile_color = "#00AAFF"),
 	)

@@ -18,7 +18,7 @@
 	damage_multiplier = 0.7
 	recoil_buildup = 19
 
-	firemodes = list(
+	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
@@ -52,6 +52,6 @@
 	recoil_buildup = 21
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_ILLEGAL = 3)
-	firemodes = list(
+	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)

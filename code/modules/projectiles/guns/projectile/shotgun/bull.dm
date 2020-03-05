@@ -25,7 +25,7 @@
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
 		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)

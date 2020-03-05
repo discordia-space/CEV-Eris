@@ -303,6 +303,7 @@
 		G.fire_sound = 'sound/items/bikehorn.ogg'
 
 	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
+		G.add_firemode(FULL_AUTO_400)
 		//Redo how firemodes are applied so that it is something that can be reset
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))

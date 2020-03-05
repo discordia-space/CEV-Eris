@@ -25,7 +25,7 @@
 	recoil_buildup = 3
 	one_hand_penalty = 5 //despine it being handgun, it's better to hold in two hands while shooting. SMG level.
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)

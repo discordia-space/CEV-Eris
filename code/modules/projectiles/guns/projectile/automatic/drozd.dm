@@ -23,7 +23,7 @@
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY
 		)
