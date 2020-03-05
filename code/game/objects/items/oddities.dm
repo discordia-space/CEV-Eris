@@ -80,7 +80,7 @@
 
 /obj/item/weapon/oddity/common/photo_coridor
 	name = "surreal maint photo"
-	desc = "The corridor in this photograph looks familiar, though something seems wrong about it; It's as if everything in it was replaced with an exact replica of itself."
+	desc = "The corridor in this photograph looks familiar, though something seems wrong about it; it's as if everything in it was replaced with an exact replica of itself."
 	icon_state = "photo_corridor"
 	oddity_stats = list(
 		STAT_MEC = 5,
@@ -139,7 +139,7 @@
 
 /obj/item/weapon/oddity/common/book_omega
 	name = "occult book"
-	desc = "Most of the stories in this book seem to be the writing of a madman, but at least the stories are interesting."
+	desc = "Most of the stories in this book seem to be the writings of madmen, but at least the stories are interesting."
 	icon_state = "book_omega"
 	oddity_stats = list(
 		STAT_BIO = 6,
@@ -158,7 +158,7 @@
 
 /obj/item/weapon/oddity/common/old_money
 	name = "old money"
-	desc = "It's not like organization that issued this exists anymore."
+	desc = "It's not like the organization that issued this exists anymore."
 	icon_state = "old_money"
 	oddity_stats = list(
 		STAT_ROB = 4,
@@ -187,7 +187,7 @@
 
 /obj/item/weapon/oddity/common/towel
 	name = "trustworthy towel"
-	desc = "Always have it with you."
+	desc = "It's always good to have one with you."
 	icon_state = "towel"
 	oddity_stats = list(
 		STAT_ROB = 6,
@@ -196,7 +196,7 @@
 
 /obj/item/weapon/oddity/common/teddy
 	name = "teddy bear"
-	desc = "He will be there for you, even through tough times."
+	desc = "He will be there for you, even in tough times."
 	icon_state = "teddy"
 	oddity_stats = list(
 		STAT_ROB = 7,
@@ -242,7 +242,7 @@
 
 /obj/item/weapon/oddity/common/paper_bundle
 	name = "paper bundle"
-	desc = "Somewhere there, there is a truth, hidden under all of this scrap."
+	desc = "Somewhere there is a truth, hidden under all of this scrap."
 	icon_state = "paper_bundle"
 	oddity_stats = list(
 		STAT_BIO = 6,
