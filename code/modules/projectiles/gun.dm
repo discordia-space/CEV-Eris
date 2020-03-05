@@ -80,6 +80,9 @@
 /obj/item/weapon/gun/Initialize()
 	. = ..()
 	initialize_firemodes()
+	//Properly initialize the default firing mode
+	if (firemodes.len)
+		set_firemode(sel_mode)
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety_verb//addint it to all guns
@@ -484,22 +487,22 @@
 
 /obj/item/weapon/gun/proc/initialize_firemodes()
 	to_chat(world, "adding firemodes: [init_firemodes.len]")
-	if(firemodes.len)
-		for(var/i in firemodes)
-			qdel(i)
-			firemodes.Remove(i)
+	QDEL_CLEAR_LIST(firemodes)
+
 	for(var/i in 1 to init_firemodes.len)
 		var/list/L = init_firemodes[i]
 		add_firemode(L)
 
-	//Properly initialize the default firing mode
-	if (firemodes.len)
-		set_firemode(sel_mode)
-
+	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
+	to_chat(world, "action:[action]")
 	if(firemodes.len > 1)
-		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/fire_mode
-		action.owner = src
-		hud_actions += action
+		if(!action)
+			action = new /obj/screen/item_action/top_bar/gun/fire_mode
+			action.owner = src
+			hud_actions += action
+	else
+		qdel(action)
+		hud_actions -= action
 
 /obj/item/weapon/gun/proc/add_firemode(var/list/firemode)
 	//If this var is set, it means spawn a specific subclass of firemode
@@ -524,6 +527,7 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
+	refresh_upgrades() //reapply any modifications this does to the gun
 	update_hud_actions()
 	return new_mode
 
@@ -650,18 +654,18 @@
 	//First of all, lets reset any var that could possibly be altered by an upgrade
 	damage_multiplier = initial(damage_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
+	proj_step_multiplier = initial(proj_step_multiplier)
 	fire_delay = initial(fire_delay)
 	move_delay = initial(move_delay)
 	recoil_buildup = initial(recoil_buildup)
 	muzzle_flash = initial(muzzle_flash)
 	silenced = initial(silenced)
 	restrict_safety = initial(restrict_safety)
-	proj_step_multiplier = initial(proj_step_multiplier)
 	init_offset = initial(init_offset)
+	proj_damage_adjust = list()
 	fire_sound = initial(fire_sound)
+	restrict_safety = initial(restrict_safety)
 	initialize_firemodes()
-	//re-apply any firemodes
-	set_firemode(sel_mode)
 
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
