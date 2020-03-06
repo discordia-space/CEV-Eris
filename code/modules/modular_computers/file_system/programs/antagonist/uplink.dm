@@ -39,7 +39,7 @@
 		return 1
 
 	if(href_list["resume"])
-		var/obj/item/modular_computer/computer = host
+		var/obj/item/modular_computer/computer = nano_host()
 		SSnano.close_user_uis(usr, src)
 		computer.hidden_uplink.trigger(usr)
 		return 1
