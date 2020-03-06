@@ -24,14 +24,14 @@
 	var/download_paused = FALSE
 	usage_flags = PROGRAM_ALL
 
-/datum/computer_file/program/downloader/kill_program()
+/datum/computer_file/program/downloader/kill_program(forced = FALSE)
 	..()
 	downloaded_file = null
 	download_completion = 0
 	downloaderror = ""
 	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/downloader/proc/begin_file_download(var/filename, skill)
+/datum/computer_file/program/downloader/proc/begin_file_download(filename, skill)
 	if(downloaded_file)
 		return 0
 
@@ -74,34 +74,33 @@
 	server = "NTNet Software Repository"
 	return "[fake_file.filename].[fake_file.filetype]"
 
-/datum/computer_file/program/downloader/proc/abort_file_download()
+
+/datum/computer_file/program/downloader/proc/end_file_download(abort=FALSE)
 	if(!downloaded_file)
 		return
-	generate_network_log("Aborted download of file [file_info].")
+
+	generate_network_log("[abort ? "Aborted" : "Completed"] download of file [file_info].")
+
+	if(!abort)
+		if(!computer?.hard_drive?.store_file(downloaded_file))
+			// The download failed
+			downloaderror = {"I/O ERROR - Unable to save file.
+			Check whether you have enough free space on your hard drive and whether your hard drive is properly connected."}
+
 	downloaded_file = null
 	download_completion = 0
 	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/downloader/proc/complete_file_download()
-	if(!downloaded_file)
-		return
-	generate_network_log("Completed download of file [file_info].")
-	if(!computer || !computer.hard_drive || !computer.hard_drive.store_file(downloaded_file))
-		// The download failed
-		downloaderror = "I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance."
-	downloaded_file = null
-	download_completion = 0
-	ui_header = "downloader_finished.gif"
+	if(downloads_queue.len > 0)
+		begin_file_download(downloads_queue[1], downloads_queue[downloads_queue[1]])
+		downloads_queue.Remove(downloads_queue[1])
 
 /datum/computer_file/program/downloader/process_tick()
 	if(!downloaded_file || download_paused)
 		return
 
 	if(download_completion >= downloaded_file.size)
-		complete_file_download()
-		if(downloads_queue.len > 0)
-			begin_file_download(downloads_queue[1], downloads_queue[downloads_queue[1]])
-			downloads_queue.Remove(downloads_queue[1])
+		end_file_download()
 
 	if(!downloaded_file)
 		return
@@ -139,7 +138,7 @@
 
 	if(href_list["download_stop"])
 		if(downloaded_file)
-			abort_file_download()
+			end_file_download(abort=TRUE)
 		return 1
 	return 0
 
@@ -204,7 +203,7 @@
 		// Only those programs our user can run will show in the list
 		if(!P.can_run(user) && P.requires_access_to_download)
 			continue
-		if(!P.is_supported_by_hardware(my_computer.hardware_flag, 1, user))
+		if(!P.is_supported_by_hardware(my_computer, user))
 			continue
 		all_entries.Add(list(list(
 		"filename" = P.filename,

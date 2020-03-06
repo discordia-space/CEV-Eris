@@ -951,8 +951,7 @@
 /obj/machinery/vending/assist
 	products = list(
 		/obj/item/device/assembly/prox_sensor = 5,/obj/item/device/assembly/igniter = 3,
-		/obj/item/device/assembly/signaler = 4,/obj/item/weapon/tool/wirecutters = 1, /obj/item/weapon/tool/wirecutters/pliers = 1,
-		/obj/item/weapon/cartridge/signal = 4
+		/obj/item/device/assembly/signaler = 6,/obj/item/weapon/tool/wirecutters = 1, /obj/item/weapon/tool/wirecutters/pliers = 1
 	)
 	contraband = list(/obj/item/device/lighting/toggleable/flashlight = 5,/obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"

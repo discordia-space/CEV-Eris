@@ -89,8 +89,6 @@
 	install_default_files()
 
 /obj/item/weapon/computer_hardware/hard_drive/Destroy()
-	if(holder2 && (holder2.hard_drive == src))
-		holder2.hard_drive = null
 	stored_files = null
 	return ..()
 
@@ -103,6 +101,10 @@
 	// 999 is a byond limit that is in place. It's unlikely someone will reach that many files anyway, since you would sooner run out of space.
 	to_chat(user, "NT-NFS File Table Status: [stored_files.len]/999")
 	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
+
+/obj/item/weapon/computer_hardware/hard_drive/disabled()
+	..()
+	holder2?.on_disk_disabled(src)
 
 // Use this proc to add file to the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
 /obj/item/weapon/computer_hardware/hard_drive/proc/store_file(datum/computer_file/F)
@@ -134,6 +136,11 @@
 		return FALSE
 
 	if(F in stored_files)
+		// If removed file is a program that's currently running, kill it
+		if(istype(F, /datum/computer_file/program) && holder2 && (F in holder2.all_threads))
+			var/datum/computer_file/program/PRG = F
+			PRG.event_file_removed()
+
 		stored_files -= F
 		recalculate_size()
 		return TRUE
@@ -224,6 +231,16 @@
 		return null
 
 	return sanitizeSafe(D.stored_data, max_length = MAX_LNAME_LEN)
+
+
+/obj/item/weapon/computer_hardware/hard_drive/proc/set_autorun(program)
+	var/datum/computer_file/data/autorun = find_file_by_name("autorun")
+	if(!istype(autorun))
+		autorun = new /datum/computer_file/data
+		autorun.filename = "AUTORUN"
+		store_file(autorun)
+
+	autorun.stored_data = "[program]"
 
 
 // Disk UI data, used by file browser UI

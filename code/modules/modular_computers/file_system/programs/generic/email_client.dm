@@ -8,17 +8,19 @@
 	size = 7
 	requires_ntnet = 1
 	available_on_ntnet = 1
-	//Those needed to restore data when programm is killed 
+	usage_flags = PROGRAM_ALL
+
+	//Those needed to restore data when programm is killed
 	var/stored_login = ""
 	var/stored_password = ""
-	usage_flags = PROGRAM_ALL
+	var/datum/computer_file/data/email_account/current_account
 
 	var/ringtone = TRUE
 
 	nanomodule_path = /datum/nano_module/email_client
 
 // Persistency. Unless you log out, or unless your password changes, this will pre-fill the login data when restarting the program
-/datum/computer_file/program/email_client/kill_program()
+/datum/computer_file/program/email_client/kill_program(forced = FALSE)
 	if(NM)
 		var/datum/nano_module/email_client/NME = NM
 		if(NME.current_account)
@@ -28,6 +30,7 @@
 		else
 			stored_login = ""
 			stored_password = ""
+		update_email()
 	. = ..()
 
 /datum/computer_file/program/email_client/run_program()
@@ -50,11 +53,42 @@
 
 	var/check_count = NME.check_for_new_messages()
 	if(check_count)
-		if(check_count == 2)
-			NME.new_mail_notify()
 		ui_header = "ntnrc_new.gif"
 	else
 		ui_header = "ntnrc_idle.gif"
+
+/datum/computer_file/program/email_client/Destroy()
+	// Disconnect from the email account
+	stored_login =  ""
+	update_email()
+	return ..()
+
+/datum/computer_file/program/email_client/proc/update_email()
+	if(current_account)
+		current_account.connected_clients -= src
+		current_account = null
+
+	if(stored_login)
+		var/datum/computer_file/data/email_account/account = ntnet_global.find_email_by_login(stored_login)
+		if(account && !account.suspended && account.password == stored_password)
+			current_account = account
+			current_account.connected_clients |= src
+
+
+/datum/computer_file/program/email_client/proc/mail_received(datum/computer_file/data/email_message/received_message)
+	// If the client is currently running, sending notification is handled by /datum/nano_module/email_client instead
+	if(program_state != PROGRAM_STATE_KILLED)
+		return
+
+	// The app is not on a functioning disk, not in an MPC, or the MPC is not running
+	if(!holder?.check_functionality() || !holder.holder2?.enabled)
+		return
+
+	var/mob/living/L = get(holder.holder2, /mob/living)
+	if(L)
+		var/open_app_link = "<a href='?src=\ref[holder.holder2];PC_runprogram=[filename];disk=\ref[holder]'>Open Email Client</a>"
+		received_message.notify_mob(L, holder.holder2, open_app_link)
+
 
 /datum/nano_module/email_client/
 	name = "Email Client"
@@ -84,20 +118,10 @@
 	var/search = ""
 
 
-/datum/nano_module/email_client/proc/mail_received(var/datum/computer_file/data/email_message/received_message)
-	var/mob/living/L = get(host, /mob/living)
+/datum/nano_module/email_client/proc/mail_received(datum/computer_file/data/email_message/received_message)
+	var/mob/living/L = get(nano_host(), /mob/living)
 	if(L)
-		if(issilicon(host))
-			new_mail_notify()
-		var/list/msg = list()
-		msg += "*--*\n"
-		msg += "<span class='notice'>New mail received from [received_message.source]:</span>\n"
-		msg += "<b>Subject:</b> [utf8_to_cp1251(received_message.title)]\n<b>Message:</b>\n[utf8_to_cp1251(pencode2html(received_message.stored_data))]\n"
-		if(received_message.attachment)
-			msg += "<b>Attachment:</b> [received_message.attachment.filename].[received_message.attachment.filetype] ([received_message.attachment.size]GQ)\n"
-		msg += "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>\n"
-		msg += "*--*"
-		to_chat(L, unicode_to_cyrillic(jointext(msg, null)))
+		received_message.notify_mob(L, nano_host(), "<a href='?src=\ref[src];open;reply=[received_message.uid]'>Reply</a>")
 
 /datum/nano_module/email_client/Destroy()
 	log_out()
@@ -119,10 +143,10 @@
 	for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
 		if(!account || !account.can_login)
 			continue
-		if(id_login && id_login["login"] == account.login)
+		if(stored_login && stored_login == account.login)
 			target = account
 			break
-		if(stored_login && stored_login == account.login)
+		if(id_login && id_login["login"] == account.login)
 			target = account
 			break
 
@@ -147,18 +171,6 @@
 	else
 		error = "Invalid Password"
 		return 0
-
-/datum/nano_module/email_client/proc/new_mail_notify()
-	if(issilicon(host))
-		var/mob/living/silicon/S = host
-		if(S.email_ringtone)
-			playsound(S, 'sound/machines/twobeep.ogg', 50, 1)
-	else if (istype(host,/obj/item/modular_computer))
-		var/obj/item/modular_computer/computer = nano_host()
-		var/datum/computer_file/program/email_client/PRG = computer.active_program
-		if (istype(PRG) && PRG.ringtone)
-			computer.visible_message("\The [host] beeps softly, indicating a new email has been received.", 1)
-			playsound(computer, 'sound/machines/twobeep.ogg', 50, 1)
 
 // Returns 0 if no new messages were received, 1 if there is an unread message but notification has already been sent.
 // and 2 if there is a new message that appeared in this tick (and therefore notification should be sent by the program).

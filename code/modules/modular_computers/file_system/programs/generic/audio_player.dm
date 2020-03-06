@@ -63,7 +63,7 @@
 			selected_audio.transcribed = TRUE
 		SSnano.update_uis(NM)
 
-/datum/computer_file/program/audio/kill_program()
+/datum/computer_file/program/audio/kill_program(forced = FALSE)
 	..()
 	selected_audio = null
 	browsing = TRUE
