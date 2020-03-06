@@ -92,23 +92,8 @@
 	update_icon()
 
 /obj/item/organ/external/Destroy()
-	if(parent)
-		parent.children -= src
-
-	if(children)
-		for(var/obj/item/organ/external/C in children)
-			qdel(C)
-		children = null
-
-	if(internal_organs)
-		for(var/obj/item/organ/O in internal_organs)
-			qdel(O)
-		internal_organs = null
-
-	if(owner)
-		owner.organs -= src
-		owner.bad_external_organs -= src
-		owner.organs_by_name -= src.organ_tag
+	for(var/obj/item/organ/O in children + internal_organs)
+		qdel(O)
 
 	if(module)
 		QDEL_NULL(module)
@@ -168,15 +153,20 @@
 		module.organ_installed(src, owner)
 
 /obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE)
-	if(!owner)
-		return
+	parent.children -= src
 
+	var/mob/living/carbon/human/victim = owner
+
+	. = ..()
+
+	if(redraw_mob && victim)
+		victim.update_body()
+
+
+/obj/item/organ/external/removed_mob(mob/living/user)
 	owner.organs -= src
 	owner.organs_by_name -= src.organ_tag
 	owner.bad_external_organs -= src
-
-	if(module)
-		module.organ_removed(src, owner)
 
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
@@ -184,8 +174,11 @@
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
 			implant.forceMove(get_turf(owner))
 		else
-			implant.loc = src
+			implant.forceMove(src)
 	implants.Cut()
+
+	if(module)
+		module.organ_removed(src, owner)
 
 	release_restraints()
 
@@ -194,27 +187,10 @@
 		dropped = owner.get_equipped_item(slot)
 		owner.drop_from_inventory(dropped)
 
-	if(parent)
-		parent.children -= src
-		parent = null
+	for(var/obj/item/organ/organ in children + internal_organs)
+		organ.removed_mob(user)
 
-	if(children)
-		for(var/obj/item/organ/external/child in children)
-			child.removed()
-			child.loc = src
-
-	if(internal_organs)
-		for(var/obj/item/organ/organ in internal_organs)
-			organ.removed()
-			organ.loc = src
-
-	var/mob/living/carbon/human/victim = owner
-
-	. = ..()
-
-	if(redraw_mob)
-		victim.update_body()
-
+	..()
 	SSnano.update_uis(src)
 
 

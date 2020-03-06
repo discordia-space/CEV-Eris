@@ -56,16 +56,14 @@
 	else
 		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
-/obj/item/organ/internal/brain/removed(mob/living/user)
-	if(istype(owner))
-		name = "[owner.real_name]'s brain"
+/obj/item/organ/internal/brain/removed_mob(mob/living/user)
+	name = "[owner.real_name]'s brain"
 
-		var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
-		if(borer)
-			borer.detatch() //Should remove borer if the brain is removed - RR
+	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+	if(borer)
+		borer.detatch() //Should remove borer if the brain is removed - RR
 
-		transfer_identity(owner)
-
+	transfer_identity(owner)
 	..()
 
 /obj/item/organ/internal/brain/replaced(var/mob/living/target)
