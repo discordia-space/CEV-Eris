@@ -105,7 +105,7 @@
 	new	/obj/item/weapon/gun/projectile/paco(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
-	new /obj/item/weapon/gun/projectile/automatic/sol/rds(src)
+	new /obj/item/weapon/gun/projectile/automatic/sol(src)
 	new /obj/item/weapon/storage/box/holobadge(src)
 	new /obj/item/clothing/accessory/badge/warden(src)
 	new /obj/item/weapon/storage/pouch/pistol_holster(src)
