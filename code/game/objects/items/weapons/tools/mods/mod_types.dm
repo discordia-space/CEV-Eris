@@ -77,7 +77,7 @@
 	UPGRADE_PRECISION = 5,
 	UPGRADE_HEALTH_THRESHOLD = 10
 	)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING, QUALITY_HAMMERING)
+	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING)
 	I.prefix = "shielded"
 
 
@@ -211,7 +211,7 @@
 	UPGRADE_PRECISION = -10,
 	UPGRADE_HEALTH_THRESHOLD = -10
 	)
-	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_HAMMERING)
+	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION)
 	I.prefix = "high-power"
 	I.req_fuel_cell = REQ_FUEL_OR_CELL
 
@@ -381,23 +381,6 @@
 	UPGRADE_SHARP = TRUE
 	)
 	I.prefix = "spiked"
-
-/obj/item/weapon/tool_upgrade/augment/hammer_addon
-	name = "Hammer Addon"
-	icon_state = "hammer_addon"
-	desc = "A attachment that fits on almost everything that gives a simple flat surface for hammering"
-	matter = list(MATERIAL_STEEL = 2)
-
-/obj/item/weapon/tool_upgrade/augment/hammer_addon/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.upgrades = list(
-	UPGRADE_FORCE_MOD = 4,
-	UPGRADE_WORKSPEED = -0.5,
-	UPGRADE_HEALTH_THRESHOLD = 5,
-	tool_qualities = list(QUALITY_HAMMERING = 10)
-	)
-	I.prefix = "flattened"
 
 
 
