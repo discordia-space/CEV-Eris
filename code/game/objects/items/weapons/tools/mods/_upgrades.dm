@@ -203,6 +203,7 @@
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
+	RegisterSignal(A, COMSIG_ADDVAL, .proc/add_values)
 	RegisterSignal(A, COMSIG_ATTACKBY, .proc/attempt_uninstall)
 	A.refresh_upgrades()
 	return TRUE
@@ -211,6 +212,7 @@
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	P.forceMove(get_turf(I))
+	UnregisterSignal(I, COMSIG_ADDVAL)
 	UnregisterSignal(I, COMSIG_APPVAL)
 	UnregisterSignal(I, COMSIG_ATTACKBY)
 
@@ -221,6 +223,12 @@
 		apply_values_tool(holder)
 	if(isgun(holder))
 		apply_values_gun(holder)
+	return TRUE
+
+/datum/component/item_upgrade/proc/add_values(var/atom/holder)
+	ASSERT(holder)
+	if(isgun(holder))
+		add_values_gun(holder)
 	return TRUE
 
 /datum/component/item_upgrade/proc/apply_values_tool(var/obj/item/weapon/tool/T)
@@ -284,7 +292,6 @@
 		G.silenced = weapon_upgrades[GUN_UPGRADE_SILENCER]
 	if(weapon_upgrades[GUN_UPGRADE_OFFSET])
 		G.init_offset = max(0, G.init_offset+weapon_upgrades[GUN_UPGRADE_OFFSET])
-
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE])
 		G.proj_damage_adjust[BRUTE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN])
@@ -301,10 +308,6 @@
 		G.proj_damage_adjust[IRRADIATE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]
 	if(weapon_upgrades[GUN_UPGRADE_HONK])
 		G.fire_sound = 'sound/items/bikehorn.ogg'
-
-	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
-		G.add_firemode(FULL_AUTO_400)
-		//Redo how firemodes are applied so that it is something that can be reset
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
@@ -323,6 +326,22 @@
 		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
 			P.max_shells += weapon_upgrades[GUN_UPGRADE_MAGUP]
 
+	for(var/datum/firemode/F in G.firemodes)
+		apply_values_firemode(F)
+
+/datum/component/item_upgrade/proc/add_values_gun(var/obj/item/weapon/gun/G)
+	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
+		G.add_firemode(FULL_AUTO_400)
+
+/datum/component/item_upgrade/proc/apply_values_firemode(var/datum/firemode/F)
+	for(var/i in F.settings)
+		switch(i)
+			if("fire_delay")
+				if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
+					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+			if("move_delay")
+				if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
+					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
 /datum/component/item_upgrade/proc/on_examine(var/mob/user)
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)

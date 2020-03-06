@@ -486,7 +486,6 @@
 
 
 /obj/item/weapon/gun/proc/initialize_firemodes()
-	to_chat(world, "adding firemodes: [init_firemodes.len]")
 	QDEL_CLEAR_LIST(firemodes)
 
 	for(var/i in 1 to init_firemodes.len)
@@ -494,7 +493,6 @@
 		add_firemode(L)
 
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
-	to_chat(world, "action:[action]")
 	if(firemodes.len > 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/fire_mode
@@ -527,7 +525,6 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
-	refresh_upgrades() //reapply any modifications this does to the gun
 	update_hud_actions()
 	return new_mode
 
@@ -668,6 +665,7 @@
 	initialize_firemodes()
 
 	//Now lets have each upgrade reapply its modifications
+	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 
 	update_icon()
