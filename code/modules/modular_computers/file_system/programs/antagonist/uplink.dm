@@ -62,8 +62,8 @@
 		ui.set_auto_update(TRUE)
 
 /datum/nano_module/program/uplink/proc/log_in()
-	var/obj/item/modular_computer/computer = host
-	var/datum/computer_file/program/uplink/PRG = program
+	var/obj/item/modular_computer/computer = nano_host()
+	var/datum/computer_file/program/uplink/PRG = computer.active_program
 	if(computer.hidden_uplink)
 		if (computer.hidden_uplink.check_trigger(usr,stored_login))
 			PRG.authenticated = TRUE
