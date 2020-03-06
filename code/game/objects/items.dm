@@ -332,9 +332,10 @@
 	. = ..()
 	if(blood_overlay)
 		overlays.Remove(blood_overlay)
-	if(istype(src, /obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/G = src
-		G.transfer_blood = 0
+
+/obj/item/clothing/gloves/clean_blood()
+	.=..()
+	transfer_blood = 0
 
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
