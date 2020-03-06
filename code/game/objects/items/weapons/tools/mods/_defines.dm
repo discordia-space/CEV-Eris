@@ -76,6 +76,7 @@
 #define GUN_MUZZLE "muzzle slot"
 #define GUN_SCOPE "scope slot"
 #define GUN_MECHANISM "misc slot"
+#define GUN_GRIP "grip slot"
 
 //Whitelist Tag defines
 #define GUN_SILENCABLE "silencable"

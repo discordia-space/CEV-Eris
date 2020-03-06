@@ -99,7 +99,8 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_RECOIL = 0.9,
 	)
-	I.req_gun_tags = list(GUN_UNDERBARREL)
+	I.gun_loc_tag = GUN_GRIP
+	I.req_gun_tags = list(GUN_GRIP)
 
 	I.prefix = "ergonomic"
 

@@ -33,7 +33,7 @@
 	var/list/req_gun_tags = list() //Define(string). Must match all to be able to install it.
 	var/list/weapon_upgrades = list() //variable name(string) -> num
 
-/datum/component/item_upgrade/Initialize()
+/datum/component/item_upgrade/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, .proc/attempt_install)
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
@@ -120,51 +120,6 @@
 
 	return TRUE
 
-/datum/component/item_upgrade/proc/attempt_uninstall(var/obj/item/C, var/mob/living/user)
-	if(!isitem(C))
-		return 0
-
-	var/obj/item/I = parent
-	var/obj/item/upgrade_loc = I.loc
-	var/obj/item/weapon/tool/T
-
-	if(istype(upgrade_loc, /obj/item/weapon/tool))
-		T = upgrade_loc
-
-	ASSERT(istype(upgrade_loc))
-	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
-	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
-	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
-	if (upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
-		var/list/possibles = upgrade_loc.item_upgrades.Copy()
-		possibles += "Cancel"
-		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
-		if (toremove == "Cancel")
-			return 1
-
-		if (C.use_tool(user = user, target =  upgrade_loc, base_time = removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-			//If you pass the check, then you manage to remove the upgrade intact
-			to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
-			SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
-			upgrade_loc.refresh_upgrades()
-			return 1
-		else
-			//You failed the check, lets see what happens
-			if (prob(50))
-				//50% chance to break the upgrade and remove it
-				to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
-				QDEL_NULL(toremove)
-				upgrade_loc.refresh_upgrades()
-				return 1
-			else if (T && T.degradation) //Because robot tools are unbreakable
-				//otherwise, damage the host tool a bit, and give you another try
-				to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
-				T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
-				upgrade_loc.refresh_upgrades()
-				return 1
-	return 0
-
 /datum/component/item_upgrade/proc/check_gun(var/obj/item/weapon/gun/G, var/mob/living/user)
 	if(!weapon_upgrades.len)
 		to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
@@ -204,7 +159,7 @@
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
 	RegisterSignal(A, COMSIG_ADDVAL, .proc/add_values)
-	RegisterSignal(A, COMSIG_ATTACKBY, .proc/attempt_uninstall)
+	A.AddComponent(/datum/component/upgrade_removal)
 	A.refresh_upgrades()
 	return TRUE
 
@@ -214,7 +169,6 @@
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_ADDVAL)
 	UnregisterSignal(I, COMSIG_APPVAL)
-	UnregisterSignal(I, COMSIG_ATTACKBY)
 
 /datum/component/item_upgrade/proc/apply_values(var/atom/holder)
 	if (!holder)
@@ -496,7 +450,56 @@
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))
 
+/datum/component/upgrade_removal
+	dupe_mode = COMPONENT_DUPE_UNIQUE
 
+/datum/component/upgrade_removal/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
+
+/datum/component/upgrade_removal/proc/attempt_uninstall(var/obj/item/C, var/mob/living/user)
+	if(!isitem(C))
+		return 0
+
+	var/obj/item/upgrade_loc = parent
+
+	var/obj/item/weapon/tool/T //For dealing damage to the item
+
+	if(istype(upgrade_loc, /obj/item/weapon/tool))
+		T = upgrade_loc
+
+	ASSERT(istype(upgrade_loc))
+	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
+	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
+	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
+	if (upgrade_loc.item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
+		var/list/possibles = upgrade_loc.item_upgrades.Copy()
+		possibles += "Cancel"
+		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
+		if (toremove == "Cancel")
+			return 1
+		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
+		if (C.use_tool(user = user, target =  upgrade_loc, base_time = IU.removal_time, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+			//If you pass the check, then you manage to remove the upgrade intact
+			to_chat(user, SPAN_NOTICE("You successfully remove \the [toremove] while leaving it intact."))
+			SEND_SIGNAL(toremove, COMSIG_REMOVE, upgrade_loc)
+			upgrade_loc.refresh_upgrades()
+			return 1
+		else
+			//You failed the check, lets see what happens
+			if (prob(50))
+				//50% chance to break the upgrade and remove it
+				to_chat(user, SPAN_DANGER("You successfully remove \the [toremove], but destroy it in the process."))
+				SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
+				QDEL_NULL(toremove)
+				upgrade_loc.refresh_upgrades()
+				return 1
+			else if (T && T.degradation) //Because robot tools are unbreakable
+				//otherwise, damage the host tool a bit, and give you another try
+				to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
+				T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
+				upgrade_loc.refresh_upgrades()
+				return 1
+	return 0
 
 /obj/item/weapon/tool_upgrade
 	name = "tool upgrade"
