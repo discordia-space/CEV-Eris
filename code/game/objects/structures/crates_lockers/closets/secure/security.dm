@@ -129,7 +129,7 @@
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
 	new /obj/item/ammo_magazine/ihclrifle/rubber(src)
-	new /obj/item/weapon/gun/projectile/automatic/sol/rds(src)
+	new /obj/item/weapon/gun/projectile/automatic/sol(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
 	new /obj/item/ammo_magazine/pistol/rubber(src)
 	new	/obj/item/weapon/gun/projectile/paco(src)
