@@ -128,13 +128,9 @@
 
 // .25 Rifles
 
-/datum/design/autolathe/gun/smg_sol
+/datum/design/autolathe/gun/sol
 	name = "FS CAR .25 caseless \"Sol\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/sol
-
-/datum/design/autolathe/gun/smg_sol_rds
-	name = "FS CAR .25 caseless \"Sol\""
-	build_path = /obj/item/weapon/gun/projectile/automatic/sol/rds
 
 /datum/design/autolathe/gun/dallas
 	name = "PAR .25 CS \"Dallas\""
