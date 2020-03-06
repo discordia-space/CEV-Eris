@@ -1019,7 +1019,8 @@
 					/obj/item/clothing/accessory/holster = 5,
 					/obj/item/clothing/accessory/holster/armpit = 5,
 					/obj/item/clothing/accessory/holster/waist = 5,
-					/obj/item/clothing/accessory/holster/hip = 5)
+					/obj/item/clothing/accessory/holster/hip = 5,
+					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
 
 
 	contraband = list(
@@ -1058,7 +1059,8 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 300,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
 					/obj/item/weapon/tool/knife/tacknife = 600,
-					/obj/item/ammo_magazine/pistol = 400)
+					/obj/item/ammo_magazine/pistol = 400,
+					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 1000,)
 
 //This one's from bay12
 /obj/machinery/vending/cart

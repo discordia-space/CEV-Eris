@@ -23,7 +23,7 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_SILENCABLE)
 
-//Decreases fire delay
+//Decreases fire delay. Acquired through loot spawns
 /obj/item/weapon/gun_upgrade/barrel/forged
 	name = "forged barrel"
 	desc = "Despite advancements in 3D printing, a properly forged plasteel barrel can still outperform anything that comes from an autolathe."
@@ -38,7 +38,7 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
-//Increases penetration multiplier, projectile speed. Increases fire delay
+//Increases penetration multiplier, projectile speed. Increases fire delay. Acquired via science
 /obj/item/weapon/gun_upgrade/barrel/mag_accel
 	name = "Moebius \"Penetrator\" magnetic accelerator barrel"
 	desc = "Uses sympathetic magnetic coiling to increase exit velocity of a metal projectile."
@@ -55,7 +55,7 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
-//Adds +10 burn damage to a bullet, lowers armor penetration, adds a constant projectile offset, increases recoil and fire delay
+//Adds +10 burn damage to a bullet, lowers armor penetration, adds a constant projectile offset, increases recoil and fire delay. Acquired via science
 /obj/item/weapon/gun_upgrade/barrel/overheat
 	name = "Moebius \"Caster\" magnetic overheat barrel"
 	desc = "Uses magnetic induction to heat the projectile of a weapon. Arguable combat effectiveness, but flashy nonetheless."
@@ -74,7 +74,7 @@
 	I.gun_loc_tag = GUN_BARREL
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
-//For energy weapons, increases the damage output, but also the charge cost
+//For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns.
 /obj/item/weapon/gun_upgrade/barrel/excruciator
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
@@ -92,7 +92,7 @@
 
 /obj/item/weapon/gun_upgrade/trigger
 
-//Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay
+//Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay. Acquired through loot spawns
 /obj/item/weapon/gun_upgrade/trigger/dangerzone
 	name = "Frozen Star \"Danger Zone\" Trigger"
 	desc = "When you need that extra edge."
@@ -107,7 +107,7 @@
 		)
 	I.gun_loc_tag = GUN_TRIGGER
 
-//Disables the ability to toggle the safety, toggles the safety permanently on, takes 2 minutes to remove (yikes)
+//Disables the ability to toggle the safety, toggles the safety permanently on, takes 2 minutes to remove (yikes). Acquired through loot spawns
 /obj/item/weapon/gun_upgrade/trigger/cop_block
 	name = "Frozen Star \"Cop Block\" Trigger"
 	desc = "A simpler way of making a weapon display-only"
@@ -124,7 +124,7 @@
 
 /obj/item/weapon/gun_upgrade/mechanism
 
-//Adds +3 to the internal magazine of a weapon
+//Adds +3 to the internal magazine of a weapon. Acquired through loot spawns.
 /obj/item/weapon/gun_upgrade/mechanism/overshooter
 	name = "Frozen Star \"Overshooter\" internal magazine kit"
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
@@ -139,6 +139,7 @@
 	I.req_gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
 	I.gun_loc_tag = GUN_MECHANISM
 
+//Adds radiation damage to .35 rounds. Acquired through telecrystal uplink
 /obj/item/weapon/gun_upgrade/mechanism/glass_widow
 	name = "Syndicate \"Glass Widow\" infuser"
 	desc = "An old technology from the Corporate Wars, used to make formerly useless civilian-grade weaponry into something much more lethal."
@@ -153,6 +154,7 @@
 	I.req_gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
 	I.gun_loc_tag = GUN_MECHANISM
 
+//Lets the SOL be made into a fully automatic weapon, but increases recoil. Acquirable through Frozen Star Guns&Ammo Vendor
 /obj/item/weapon/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
 	desc = "A fully automatic receiver for the .25 \"Sol\"."
@@ -168,6 +170,21 @@
 	I.req_gun_tags = list(GUN_SOL)
 	I.gun_loc_tag = GUN_MECHANISM
 
+//Causes your weapon to shoot you in the face, then explode. Acquired through uplink
+/obj/item/weapon/gun_upgrade/mechanism/reverse_loader
+	name = "Syndicate reverse loader"
+	desc = "Makes bullets loaded into the weapon fire backwards, into its user."
+	icon_state = "Reverse_loader"
+
+/obj/item/weapon/gun_upgrade/mechanism/reverse_loader/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RIGGED = TRUE
+	)
+	I.removal_time *= 5
+	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/weapon/gun_upgrade/underbarrel
 

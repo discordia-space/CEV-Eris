@@ -91,9 +91,7 @@
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	for(var/i in damage_types)
-		to_chat(world, "pre_mult:[damage_types[i]]")
 		damage_types[i] *= newmult
-		to_chat(world, "post_mult:[damage_types[i]]")
 
 /obj/item/projectile/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
@@ -109,9 +107,7 @@
 		if(damage_type == IRRADIATE)
 			irradiate += damage_type[IRRADIATE]
 			continue
-		to_chat(world, "pre mod:[damage_types[damage_type]]")
 		damage_types[damage_type] += newdamages[damage_type]
-		to_chat(world, "post mod:[damage_types[damage_type]]")
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
@@ -135,9 +131,7 @@
 	return TRUE
 
 /obj/item/projectile/proc/get_structure_damage()
-	to_chat(world, "[src]:get_structure_damage. [damage_types.len] [damage_types[BRUTE]] [damage_types[BURN]] [damage_types[BRUTE]+damage_types[BURN]]")
 	return damage_types[BRUTE] + damage_types[BURN]
-
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)

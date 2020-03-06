@@ -262,6 +262,10 @@
 		G.proj_damage_adjust[IRRADIATE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]
 	if(weapon_upgrades[GUN_UPGRADE_HONK])
 		G.fire_sound = 'sound/items/bikehorn.ogg'
+	if(weapon_upgrades[GUN_UPGRADE_RIGGED])
+		G.rigged = TRUE
+	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
+		G.rigged = 2
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
@@ -446,6 +450,12 @@
 
 		if(weapon_upgrades[GUN_UPGRADE_HONK])
 			to_chat(user, SPAN_WARNING("Cheers up the firing sound of the weapon."))
+
+		if(weapon_upgrades[GUN_UPGRADE_RIGGED])
+			to_chat(user, SPAN_WARNING("Rigs the weapon to fire back on its user."))
+
+		if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
+			to_chat(user, SPAN_WARNING("Rigs the weapon to explode."))
 
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))

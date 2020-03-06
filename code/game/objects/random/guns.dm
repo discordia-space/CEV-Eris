@@ -8,7 +8,8 @@
 				/obj/item/weapon/gun/projectile/revolver/havelock = 1,\
 				/obj/item/weapon/gun/projectile/giskard = 4,\
 				/obj/item/weapon/gun/projectile/shotgun/pump = 2,\
-				/obj/item/weapon/gun/projectile/olivaw = 2))
+				/obj/item/weapon/gun/projectile/olivaw = 2,
+				/obj/item/weapon/gun_upgrade/barrel/forged = 2,))
 
 /obj/random/gun_cheap/low_chance
 	name = "low chance random cheap gun"
@@ -34,7 +35,10 @@
 				/obj/item/weapon/gun/projectile/automatic/wintermute = 1,\
 				/obj/item/weapon/gun/projectile/paco = 2,\
 				/obj/item/weapon/gun/projectile/automatic/molly = 2,\
-				/obj/item/weapon/gun/projectile/automatic/straylight = 1))
+				/obj/item/weapon/gun/projectile/automatic/straylight = 1,
+				/obj/item/weapon/gun_upgrade/trigger/dangerzone = 1,
+				/obj/item/weapon/gun_upgrade/trigger/cop_block = 1,
+				/obj/item/weapon/gun_upgrade/mechanism/overshooter = 1))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"
@@ -51,7 +55,8 @@
 /obj/random/gun_energy_cheap/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/energy/gun/martin = 2,\
 				/obj/item/weapon/gun/energy/gun = 2,\
-				/obj/item/weapon/gun/energy/retro = 1))
+				/obj/item/weapon/gun/energy/retro = 1,
+				/obj/item/weapon/gun_upgrade/barrel/excruciator = 1))
 
 /obj/random/gun_energy_cheap/low_chance
 	name = "low chance random cheap energy weapon"

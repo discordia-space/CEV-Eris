@@ -31,7 +31,7 @@
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
-
+	var/rigged = FALSE
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
 
@@ -198,6 +198,20 @@
 		else
 			handle_click_empty(user)
 		return FALSE
+	if(rigged)
+		var/obj/P = consume_next_projectile()
+		if(P)
+			if(process_projectile(P, user, user, BP_HEAD))
+				handle_post_fire(user, user)
+				user.visible_message(
+					SPAN_DANGER("As \the [user] pulls the trigger on \the [src], a bullet fires backwards out of it"),
+					SPAN_DANGER("Your \the [src] fires backwards, shooting you in the face!")
+					)
+				user.drop_item()
+			if(rigged > TRUE)
+				explosion(get_turf(src), 1, 2, 3, 3)
+				qdel(src)
+			return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -662,6 +676,7 @@
 	proj_damage_adjust = list()
 	fire_sound = initial(fire_sound)
 	restrict_safety = initial(restrict_safety)
+	rigged = initial(rigged)
 	initialize_firemodes()
 
 	//Now lets have each upgrade reapply its modifications
