@@ -765,7 +765,7 @@ obj/screen/fire/DEADelize()
 					to_chat(C, SPAN_NOTICE("You are not wearing a suitable mask or helmet."))
 					return TRUE
 				else
-					var/list/nicename = null
+					var/list/tramadolname = null
 					var/list/tankcheck = null
 					var/breathes = "oxygen"    //default, we'll check later
 					var/list/contents = list()
@@ -774,10 +774,10 @@ obj/screen/fire/DEADelize()
 					if(ishuman(C))
 						var/mob/living/carbon/human/H = C
 						breathes = H.species.breath_type
-						nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
+						tramadolname = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
 						tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
 					else
-						nicename = list("right hand", "left hand", "back")
+						tramadolname = list("right hand", "left hand", "back")
 						tankcheck = list(C.r_hand, C.l_hand, C.back)
 
 					// Rigs are a fucking pain since they keep an air tank in nullspace.
@@ -785,7 +785,7 @@ obj/screen/fire/DEADelize()
 						var/obj/item/weapon/rig/rig = C.back
 						if(rig.air_supply)
 							from = "in"
-							nicename |= "hardsuit"
+							tramadolname |= "hardsuit"
 							tankcheck |= rig.air_supply
 
 					for(var/i=1, i<tankcheck.len+1, ++i)
@@ -838,7 +838,7 @@ obj/screen/fire/DEADelize()
 					//We've determined the best container now we set it as our internals
 
 					if(best)
-						to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]]."))
+						to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [tramadolname[best]]."))
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 

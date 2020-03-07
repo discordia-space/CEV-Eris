@@ -559,7 +559,7 @@
 		"ryetalyn",
 		"alkysine",
 		"thermite",
-		"tramadol",
+		"paracetamol",
 		"cryptobiolin",
 		"dermaline",
 		"dexalin",
@@ -1213,7 +1213,7 @@
 	name = "vale"
 	seed_name = "vale"
 	display_name = "vale bush"
-	chems = list("paracetamol" = list(1,5),"dexalin" = list(1,2),"nutriment"= list(1,5))
+	chems = list("tramadol" = list(1,5),"dexalin" = list(1,2),"nutriment"= list(1,5))
 
 /datum/seed/vale/New()
 	..()

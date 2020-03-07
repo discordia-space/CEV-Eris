@@ -53,7 +53,7 @@
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
-	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
+	desc = "You're not quite sure how you manage to take it on and off, but it implants tramadolly in your head."
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE

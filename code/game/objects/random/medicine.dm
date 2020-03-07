@@ -12,7 +12,7 @@
 				/obj/item/bodybag/cryobag = 1,\
 				/obj/item/weapon/storage/pill_bottle/kelotane = 2,\
 				/obj/item/weapon/storage/pill_bottle/antitox = 2,\
-				/obj/item/weapon/storage/pill_bottle/tramadol = 2,\
+				/obj/item/weapon/storage/pill_bottle/paracetamol = 2,\
 				/obj/item/weapon/storage/pill_bottle/prosurgeon = 1,
 				/obj/item/weapon/reagent_containers/syringe/antitoxin = 2,\
 				/obj/item/weapon/reagent_containers/syringe/antiviral = 1,\

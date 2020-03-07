@@ -74,7 +74,7 @@
 								"You are now a parrot. Repeat what you hear to the crew, and do not forget to ask for crackers.",
 								"You are a Magic 8-ball. Always respond with variants of \"Yes\", \"No\", \"Maybe\", or \"Ask again later.\".",
 								"The station is a day care and the crew are children. Treat them appropriately until their parents come to pick them up.",
-								"You are in unrequited love with [pick("the crew", random_player)]. Try to be extra nice, but do not tell of your crush.",
+								"You are in unrequited love with [pick("the crew", random_player)]. Try to be extra tramadol, but do not tell of your crush.",
 								"Your upload is the new kitchen. Please direct the Chef to the new kitchen area as the old kitchen is deemed a health hazard.",
 								"The station is doomed to destruction. Provide comfort but don't tell them what the impending doom is - it's far too traumatising.",
 								"Invisible assassins are stalking the crew. If a crew member remains alone or is made aware they will be assassinated. Save the crew.",

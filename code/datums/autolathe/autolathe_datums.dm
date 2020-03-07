@@ -47,7 +47,7 @@
 
 	name = capitalize(name)
 
-//Try to make up a nice description if we don't have one
+//Try to make up a tramadol description if we don't have one
 /datum/design/proc/AssembleDesignDesc()
 	if(desc)
 		return

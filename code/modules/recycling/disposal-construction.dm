@@ -195,38 +195,38 @@
 	// weldingtool: convert to real pipe
 
 /obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
-	var/nice_type = "pipe"
+	var/tramadol_type = "pipe"
 	var/is_pipe = FALSE // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)
 	switch(pipe_type)
 		if(PIPE_TYPE_BIN)
-			nice_type = "disposal bin"
+			tramadol_type = "disposal bin"
 		if(PIPE_TYPE_OUTLET)
-			nice_type = "disposal outlet"
+			tramadol_type = "disposal outlet"
 		if(PIPE_TYPE_INTAKE)
-			nice_type = "delivery chute"
+			tramadol_type = "delivery chute"
 		if(PIPE_TYPE_JUNC_SORT, PIPE_TYPE_JUNC_SORT_FLIP)
 			switch(sort_mode)
 				if(SORT_TYPE_NORMAL)
-					nice_type = "sorting pipe"
+					tramadol_type = "sorting pipe"
 				if(SORT_TYPE_WILDCARD)
-					nice_type = "wildcard sorting pipe"
+					tramadol_type = "wildcard sorting pipe"
 				if(SORT_TYPE_UNTAGGED)
-					nice_type = "untagged sorting pipe"
+					tramadol_type = "untagged sorting pipe"
 			is_pipe = TRUE
 		if(PIPE_TYPE_TAGGER)
-			nice_type = "tagging pipe"
+			tramadol_type = "tagging pipe"
 			is_pipe = TRUE
 		if(PIPE_TYPE_TAGGER_PART)
-			nice_type = "partial tagging pipe"
+			tramadol_type = "partial tagging pipe"
 			is_pipe = TRUE
 		else
-			nice_type = "pipe"
+			tramadol_type = "pipe"
 			is_pipe = TRUE
 
 	var/turf/T = src.loc
 	if(!T.is_plating())
-		to_chat(user, "You can only attach the [nice_type] if the floor plating is removed.")
+		to_chat(user, "You can only attach the [tramadol_type] if the floor plating is removed.")
 		return
 
 	var/obj/structure/disposalpipe/CP = locate() in T
@@ -242,10 +242,10 @@
 			if(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE))
 				if(CP) // There's something there
 					if(!istype(CP,/obj/structure/disposalpipe/trunk))
-						to_chat(user, "The [nice_type] requires a trunk underneath it in order to work.")
+						to_chat(user, "The [tramadol_type] requires a trunk underneath it in order to work.")
 						return
 				else // Nothing under, fuck.
-					to_chat(user, "The [nice_type] requires a trunk underneath it in order to work.")
+					to_chat(user, "The [tramadol_type] requires a trunk underneath it in order to work.")
 					return
 
 			if(CP)
@@ -254,7 +254,7 @@
 				if(istype(CP, /obj/structure/disposalpipe/broken))
 					pdir = CP.dir
 				if(pdir & pipe_dir)
-					to_chat(user, "There is already a [nice_type] at that location.")
+					to_chat(user, "There is already a [tramadol_type] at that location.")
 					return
 
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -265,7 +265,7 @@
 						density = 0
 					else
 						density = 1
-					to_chat(user, "You detach the [nice_type] from the underfloor.")
+					to_chat(user, "You detach the [tramadol_type] from the underfloor.")
 					return
 				else
 					anchored = 1
@@ -274,14 +274,14 @@
 						density = 0
 					else
 						density = 1 // We don't want disposal bins or outlets to go density 0
-					to_chat(user, "You attach the [nice_type] to the underfloor.")
+					to_chat(user, "You attach the [tramadol_type] to the underfloor.")
 					return
 			return
 
 		if(QUALITY_WELDING)
 			if(anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-					to_chat(user, "The [nice_type] has been welded in place!")
+					to_chat(user, "The [tramadol_type] has been welded in place!")
 					update() // TODO: Make this neat
 					if(is_pipe) // Pipe
 						var/pipetype = dpipetype()

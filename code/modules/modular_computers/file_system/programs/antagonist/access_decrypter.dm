@@ -117,7 +117,7 @@
 		data["rate"] = PRG.get_speed()
 
 		// The UI template uses this to draw a block of 1s and 0s, the more 1s the closer you are to completion
-		// Combined with UI updates this adds quite nice effect to the UI
+		// Combined with UI updates this adds quite tramadol effect to the UI
 		data["completion_fraction"] = PRG.progress / PRG.target_progress
 
 	else if(program.computer.card_slot && program.computer.card_slot.stored_card)

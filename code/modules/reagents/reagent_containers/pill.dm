@@ -98,18 +98,18 @@
 	preloaded_reagents = list("kelotane" = 15)
 
 
-/obj/item/weapon/reagent_containers/pill/paracetamol
-	name = "Paracetamol pill"
+/obj/item/weapon/reagent_containers/pill/tramadol
+	name = "tramadol pill"
 	desc = "Tylenol! A painkiller for the ages. Chewables!"
 	icon_state = "pill8"
-	preloaded_reagents = list("paracetamol" = 15)
+	preloaded_reagents = list("tramadol" = 15)
 
 
-/obj/item/weapon/reagent_containers/pill/tramadol
-	name = "Tramadol pill"
+/obj/item/weapon/reagent_containers/pill/paracetamol
+	name = "paracetamol pill"
 	desc = "A simple painkiller."
 	icon_state = "pill8"
-	preloaded_reagents = list("tramadol" = 15)
+	preloaded_reagents = list("paracetamol" = 15)
 
 
 /obj/item/weapon/reagent_containers/pill/methylphenidate
@@ -218,13 +218,13 @@
 					list("inaprovaline" = 30) = 2,\
 					list("anti_toxin" = 15) = 2,\
 					list("methylphenidate" = 15) = 2,\
-					list("paracetamol" = 15) = 2,\
+					list("tramadol" = 15) = 2,\
 					list("dexalin" = 15) = 2,\
 					list("dexalinp" = 15) = 2,\
 					list("impedrezene" = 10, "synaptizine" = 5, "hyperzine" = 5, "citalopram" = 15) = 1,\
 					list("space_drugs" = 15, "sugar" = 15) = 1,\
 					list("dermaline" = 15, "citalopram" = 15) = 1,\
-					list("tramadol" = 15, "spaceacillin" = 15) = 1,\
+					list("paracetamol" = 15, "spaceacillin" = 15) = 1,\
 					list("blattedin" = 15) = 1,\
 					list("imidazoline" = 15, "space_drugs" = 15) = 1,\
 					list("ethylredoxrazine" = 15, "hyperzine" = 35) = 1,\
@@ -235,7 +235,7 @@
 					list("fuel" = 50) = 1,\
 					list("water" = 15) = 1,\
 					list("sterilizine" = 50) = 1,\
-					list("tramadol" = 15, "sugar" = 15) = 1,\
+					list("paracetamol" = 15, "sugar" = 15) = 1,\
 					list("thermite" = 15) = 1,\
 					list("lube" = 50) = 1,\
 					list("pacid" = 15) = 1,\

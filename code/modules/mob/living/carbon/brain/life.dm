@@ -110,7 +110,7 @@
 			if(!(container && istype(container, /obj/item/device/mmi)))
 				emp_damage = 0
 			else
-				emp_damage = round(emp_damage,1)//Let's have some nice numbers to work with
+				emp_damage = round(emp_damage,1)//Let's have some tramadol numbers to work with
 			switch(emp_damage)
 				if(31 to INFINITY)
 					emp_damage = 30//Let's not overdo it

@@ -14,7 +14,7 @@
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
 	icon_state = "hairflower"
-	desc = "Smells nice."
+	desc = "Smells tramadol."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
 

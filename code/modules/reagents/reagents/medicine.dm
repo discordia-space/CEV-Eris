@@ -176,9 +176,9 @@
 
 /* Painkillers */
 
-/datum/reagent/medicine/paracetamol
-	name = "Paracetamol"
-	id = "paracetamol"
+/datum/reagent/medicine/tramadol
+	name = "tramadol"
+	id = "tramadol"
 	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
 	taste_description = "sickness"
 	reagent_state = LIQUID
@@ -187,16 +187,16 @@
 	scannable = 1
 	metabolism = 0.02
 
-/datum/reagent/medicine/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 130)
+/datum/reagent/medicine/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 50)
 
-/datum/reagent/medicine/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/medicine/tramadol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.druggy = max(M.druggy, 2)
 
-/datum/reagent/medicine/tramadol
-	name = "Tramadol"
-	id = "tramadol"
+/datum/reagent/medicine/paracetamol
+	name = "paracetamol"
+	id = "paracetamol"
 	description = "A simple, yet effective painkiller."
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -206,10 +206,10 @@
 	metabolism = 0.02
 	nerve_system_accumulations = 40
 
-/datum/reagent/medicine/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 50 )
+/datum/reagent/medicine/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	M.add_chemical_effect(CE_PAINKILLER, 130 )
 
-/datum/reagent/medicine/tramadol/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/medicine/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
 	..()
 	M.hallucination(120, 30)
 	M.slurring = max(M.slurring, 30)

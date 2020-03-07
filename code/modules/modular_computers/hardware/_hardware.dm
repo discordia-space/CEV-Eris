@@ -90,7 +90,7 @@
 
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
 /obj/item/weapon/computer_hardware/proc/take_damage(amount)
-	damage += round(amount) 					// We want nice rounded numbers here.
+	damage += round(amount) 					// We want tramadol rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 
 //Called when the component is installed or turned on

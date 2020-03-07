@@ -27,4 +27,4 @@
 	else
 		log_admin("[key_name(user)] toggled gravity off.", 1)
 		message_admins("<span class='notice'>[key_name_admin(usr)] toggled gravity off.", 1)
-		command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a nice day.</span>")
+		command_announcement.Announce("Feedback surge detected in mass-distributions systems. Artificial gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a tramadol day.</span>")

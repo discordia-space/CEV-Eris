@@ -15,7 +15,7 @@
 					 "mesec", "nagib", "planeta", "pozovi", "treperenje", "smeh", "svesnost", "raditi", "mucenje", "cudo", "magarci", "sudbina", "sloboda", \
 					 "provodljivost", "inicijalizacija", "kompjuter", "mlada", "glumac", "analiza", "andeo", \
 					 "vojska", "napad", "atmosferu", "laser", "tocno", "uprave", "zapamti", "automatskog", "uredaja", \
-					 "pecnice", "platiti", "pozari", "pokazati", "zivot", "radio", "bojne", "uzasno", "ujutro", "sudionika", \
+					 "pectramadol", "platiti", "pozari", "pokazati", "zivot", "radio", "bojne", "uzasno", "ujutro", "sudionika", \
 					 "gas", "glavnog", "grijeh", "granica", "zeljezo", "baterije", "knjiznica", "kontrola", "borba", \
 					 "brat", "zidov", "jedu", "jeo", "prirodno", "alat", "zainteresiran", "koristenje", "tako", "njihov", \
 					 "dinamica", "brzo", "organizacuya", "yeyenet", "radio", "peredacha", "priem", "slushno", "chastota", "gerts", "stantiya", \
@@ -268,7 +268,7 @@
 "Cubrilovic",
 "Cvijic",
 "Cvijovic",
-"Ðajic",
+"ï¿½ajic",
 "Damjenic",
 "Davidovic",
 "Djapic",
@@ -288,7 +288,7 @@
 "Gracanin",
 "Grba",
 "Grlic",
-"Grmuša",
+"Grmuï¿½a",
 "Grol",
 "Grujicic",
 "Horvat",
@@ -302,7 +302,7 @@
 "Jerkov",
 "Jigovic",
 "Jorgic",
-"Karadžic",
+"Karadï¿½ic",
 "Kadijevic",
 "Kajosevic",
 "Kalicanin",

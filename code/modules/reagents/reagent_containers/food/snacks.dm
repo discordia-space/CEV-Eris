@@ -1671,7 +1671,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/stew
 	name = "Stew"
-	desc = "A nice and warm stew. Healthy and strong."
+	desc = "A tramadol and warm stew. Healthy and strong."
 	icon_state = "stew"
 	filling_color = "#9E673A"
 	bitesize = 10
@@ -2074,7 +2074,7 @@
 	nutriment_desc = list("acrid peaches" = 2)
 	bitesize = 2
 	nutriment_amt = 3
-	preloaded_reagents = list("hyperzine" = 8, "paracetamol" = 5)
+	preloaded_reagents = list("hyperzine" = 8, "tramadol" = 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/mre_cracker
 	name = "enriched cracker"

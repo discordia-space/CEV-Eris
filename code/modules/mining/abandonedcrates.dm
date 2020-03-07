@@ -169,7 +169,7 @@
 
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(locked)
-		if (istype(W, /obj/item/weapon/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
+		if (istype(W, /obj/item/weapon/tool/multitool)) // Greetings Urist McProfessor, how about a tramadol game of cows and bulls?
 			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:"))
 			if (attempts == 1)
 				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt."))

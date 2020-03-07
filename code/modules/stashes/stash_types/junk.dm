@@ -65,7 +65,7 @@ Signed your pal who isn't named Bob."
  <br>\
 
  Take all that stuff we aren't allowed to sell anymore and move it to a jurisdiction with a little less market regulation.<br>\
- I even saw somewhere with a nice bit of curb appeal.<br>\
+ I even saw somewhere with a tramadol bit of curb appeal.<br>\
 %D"
 
 /datum/stash/junk/guild/protection

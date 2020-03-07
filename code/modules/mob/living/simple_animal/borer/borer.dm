@@ -66,7 +66,7 @@
 	var/list/produced_reagents = list(
 		"alkysine",
 		"bicaridine", "kelotane", "dexalin", "anti_toxin",
-		"hyperzine", "tramadol", "space_drugs"
+		"hyperzine", "paracetamol", "space_drugs"
 		)
 
 /mob/living/simple_animal/borer/roundstart

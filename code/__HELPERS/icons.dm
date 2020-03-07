@@ -97,7 +97,7 @@ BlendRGB(rgb1, rgb2, amount)
     if 1, the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
     The returned value is an RGB or RGBA color.
 BlendHSV(hsv1, hsv2, amount)
-    Blends between two HSV or HSVA colors using HSV blending, which tends to produce nicer results than regular RGB
+    Blends between two HSV or HSVA colors using HSV blending, which tends to produce tramadolr results than regular RGB
     blending because the brightness of the color is left intact. If amount is 0, the first color is the result; if 1,
     the second color is the result. 0.5 produces an average of the two. Values outside the 0 to 1 range are allowed as well.
     The returned value is an HSV or HSVA color.
@@ -824,7 +824,7 @@ proc
 			if(I:layer>A.layer)	continue//If layer is greater than what we need, skip it.
 			var/icon/image_overlay = new(I:icon, I:icon_state)//Blend only works with icon objects.
 			//Also, icons cannot directly set icon_state. Slower than changing variables but whatever.
-			alpha_mask.Blend(image_overlay, ICON_OR)//OR so they are lumped together in a nice overlay.
+			alpha_mask.Blend(image_overlay, ICON_OR)//OR so they are lumped together in a tramadol overlay.
 		return alpha_mask//And now return the mask.
 
 /mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.

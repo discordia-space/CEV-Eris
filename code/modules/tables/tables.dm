@@ -80,7 +80,7 @@ var/list/custom_table_appearance = list(
 /obj/structure/table/Initialize()
 	. = ..()
 
-	// reset color/alpha, since they're set for nice map previews
+	// reset color/alpha, since they're set for tramadol map previews
 	color = "#ffffff"
 	alpha = 255
 	update_connections(1)

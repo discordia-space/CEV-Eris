@@ -215,8 +215,8 @@
 	name = "chem dispenser magic"
 	ui_title = "Chem Dispenser 9000"
 	dispensable_reagents = list(
-		"inaprovaline","ryetalyn","paracetamol",
-		"tramadol","oxycodone","sterilizine",
+		"inaprovaline","ryetalyn","tramadol",
+		"paracetamol","oxycodone","sterilizine",
 		"leporazine","kelotane","dermaline",
 		"dexalin","dexalinp","tricordrazine",
 		"anti_toxin","synaptizine","hyronalin",

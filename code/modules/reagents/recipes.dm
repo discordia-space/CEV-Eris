@@ -232,14 +232,14 @@
 	required_reagents = list("silicon" = 1, "potassium" = 1, "ammonia" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/tramadol
-	result = "tramadol"
+/datum/chemical_reaction/paracetamol
+	result = "paracetamol"
 	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "acetone" = 1)
 	result_amount = 3
 
-/datum/chemical_reaction/paracetamol
-	result = "paracetamol"
-	required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
+/datum/chemical_reaction/tramadol
+	result = "tramadol"
+	required_reagents = list("paracetamol" = 1, "sugar" = 1, "water" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/oxycodone
@@ -365,7 +365,7 @@
 	result_amount = 3
 /datum/chemical_reaction/meralyne
 	result = "meralyne"
-	required_reagents = list("hyperzine" = 1, "blattedin" = 2, "tramadol" = 1)
+	required_reagents = list("hyperzine" = 1, "blattedin" = 2, "paracetamol" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/hyperzine
@@ -1766,7 +1766,7 @@
 
 /datum/chemical_reaction/machine_spirit
 	result = "machine spirit"
-	required_reagents = list("machine binding ritual" = 1, "tramadol" = 1, "blattedin" = 1)
+	required_reagents = list("machine binding ritual" = 1, "paracetamol" = 1, "blattedin" = 1)
 	result_amount = 3
 	maximum_temperature = 318
 	minimum_temperature = 308

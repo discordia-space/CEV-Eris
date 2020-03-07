@@ -135,7 +135,7 @@ var/list/channel_to_radio_key = new
 	//parse the radio code and consume it
 	var/message_mode = parse_message_mode(message, "headset")
 	if (message_mode)
-		//it would be really nice if the parse procs could do this for us.
+		//it would be really tramadol if the parse procs could do this for us.
 		if (message_mode == "headset")
 			message = copytext(message,2)
 		else

@@ -83,7 +83,7 @@
 /datum/medical_effect/headache
 	name = "Headache"
 	triggers = list("cryoxadone" = 10, "bicaridine" = 15, "tricordrazine" = 15, "cherrydrops" = 35)
-	cures = list("alkysine", "tramadol", "paracetamol", "oxycodone")
+	cures = list("alkysine", "paracetamol", "tramadol", "oxycodone")
 	cure_message = "Your head stops throbbing..."
 
 /datum/medical_effect/headache/on_life(mob/living/carbon/human/H, strength)
@@ -116,7 +116,7 @@
 // ======
 /datum/medical_effect/cramps
 	name = "Cramps"
-	triggers = list("anti_toxin" = 30, "tramadol" = 15)
+	triggers = list("anti_toxin" = 30, "paracetamol" = 15)
 	cures = list("inaprovaline")
 	cure_message = "The cramps let up..."
 

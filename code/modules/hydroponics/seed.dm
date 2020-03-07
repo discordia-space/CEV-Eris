@@ -451,7 +451,7 @@
 			"ryetalyn",
 			"alkysine",
 			"thermite",
-			"tramadol",
+			"paracetamol",
 			"cryptobiolin",
 			"dermaline",
 			"dexalin",

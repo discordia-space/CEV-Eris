@@ -256,7 +256,7 @@ its easier to just keep the beam vertical.
 			X.pixel_x=Pixel_x
 			X.pixel_y=Pixel_y
 		sleep(3)	//Changing this to a lower value will cause the beam to follow more smoothly with movement, but it will also be more laggy.
-					//I've found that 3 ticks provided a nice balance for my use.
+					//I've found that 3 ticks provided a tramadol balance for my use.
 	for(var/obj/effect/overlay/beam/O in orange(10, src)) if(O.BeamSource==src) qdel(O)
 
 
@@ -683,7 +683,7 @@ its easier to just keep the beam vertical.
 	BM.pixel_x--
 	BM.pixel_y--
 
-	if(Proj.damage >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
+	if(Proj.damage >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a tramadol big black hole.
 		BM.icon_state = "scorch"
 		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 	else //Otherwise it's a light dent.

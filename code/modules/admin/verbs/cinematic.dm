@@ -2,7 +2,7 @@ ADMIN_VERB_ADD(/client/proc/cinematic, R_FUN, FALSE)
 /client/proc/cinematic(var/cinematic as anything in list("explosion",null))
 	set name = "Cinematic"
 	set category = "Fun"
-	set desc = "Shows a cinematic."	// Intended for testing but I thought it might be nice for events on the rare occasion Feel free to comment it out if it's not wanted.
+	set desc = "Shows a cinematic."	// Intended for testing but I thought it might be tramadol for events on the rare occasion Feel free to comment it out if it's not wanted.
 
 	if(!check_rights(R_FUN))
 		return

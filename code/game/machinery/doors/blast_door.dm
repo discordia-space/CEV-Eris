@@ -190,7 +190,7 @@
 	opacity = 0
 
 // SUBTYPE: Shutters
-// Nicer looking, and also weaker, shutters. Found in kitchen and similar areas.
+// tramadolr looking, and also weaker, shutters. Found in kitchen and similar areas.
 /obj/machinery/door/blast/shutters
 	icon_state_open = "shutter0"
 	icon_state_opening = "shutterc0"
