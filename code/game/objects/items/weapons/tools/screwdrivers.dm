@@ -32,21 +32,6 @@
 	use_power_cost = 0.18
 	suitable_cell = /obj/item/weapon/cell/small
 
-/obj/item/weapon/tool/screwdriver/electric/turn_on(mob/user)
-	if(!cell)
-		return 0
-	if(cell.charge > use_power_cost)
-		to_chat(user, SPAN_NOTICE("You switch [src] on."))
-		..()
-	else
-		item_state = initial(item_state)
-		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
-
-/obj/item/weapon/tool/screwdriver/electric/turn_off(mob/user)
-
-	to_chat(user, SPAN_NOTICE("You switch [src] off."))
-	..()
-
 
 /obj/item/weapon/tool/screwdriver/combi_driver
 	name = "combi driver"
@@ -63,21 +48,6 @@
 	use_power_cost = 0.24
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 4
-
-/obj/item/weapon/tool/screwdriver/combi_driver/turn_on(mob/user)
-	if(!cell)
-		return 0
-	if(cell.charge > use_power_cost)
-		to_chat(user, SPAN_NOTICE("You switch [src] on."))
-		..()
-	else
-		item_state = initial(item_state)
-		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
-
-/obj/item/weapon/tool/screwdriver/combi_driver/turn_off(mob/user)
-
-	to_chat(user, SPAN_NOTICE("You switch [src] off."))
-	..()
 
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

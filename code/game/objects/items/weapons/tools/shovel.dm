@@ -51,18 +51,3 @@
 	degradation = 0.7
 	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium
-
-/obj/item/weapon/tool/shovel/power/turn_on(mob/user)
-	if(!cell)
-		return 0
-	if(cell.charge > use_power_cost)
-		to_chat(user, SPAN_NOTICE("You switch [src] on."))
-		..()
-	else
-		item_state = initial(item_state)
-		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
-
-/obj/item/weapon/tool/shovel/power/turn_off(mob/user)
-
-	to_chat(user, SPAN_NOTICE("You switch [src] off."))
-	..()
