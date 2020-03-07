@@ -61,3 +61,10 @@
 	use_power_cost = 1.5
 	workspeed = 1.5
 	max_upgrades = 2
+
+/obj/item/weapon/tool/powered_hammer/onestar_hammer/turn_on(mob/user)
+	..()
+
+/obj/item/weapon/tool/powered_hammer/onestar_hammer/turn_off(mob/user)
+	..()
+

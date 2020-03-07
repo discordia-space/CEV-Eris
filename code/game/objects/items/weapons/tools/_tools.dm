@@ -681,6 +681,13 @@
 	return return_quality
 
 /obj/item/weapon/tool/proc/turn_on(var/mob/user)
+	if(!cell)
+		return 0
+	if(cell.charge < use_power_cost)
+		item_state = initial(item_state)
+		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
+		return 0
+	to_chat(user, SPAN_NOTICE("You switch [src] on."))
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
