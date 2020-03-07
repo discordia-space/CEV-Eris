@@ -51,7 +51,7 @@
 	force_wielded = WEAPON_FORCE_BRUTAL
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	embed_mult = 1 //Axes cut deep, and their hooked shape catches on things
+	embed_mult = 0.6 //Axes cut deep, and their hooked shape catches on things
 
 /obj/item/weapon/tool/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
