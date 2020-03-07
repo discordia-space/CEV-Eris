@@ -87,6 +87,9 @@
 	name = "tactical knife"
 	build_path = /obj/item/weapon/tool/knife/tacknife
 
+/datum/design/autolathe/tool/katana
+	build_path = /obj/item/weapon/tool/sword/katana
+
 /datum/design/autolathe/tool/hatchet
 	build_path = /obj/item/weapon/tool/hatchet
 
