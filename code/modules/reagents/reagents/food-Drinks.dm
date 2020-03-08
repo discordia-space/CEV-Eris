@@ -678,7 +678,7 @@
 
 	glass_icon_state = "soy_latte"
 	glass_name = "soy latte"
-	glass_desc = "A tramadol and refrshing beverage while you are reading."
+	glass_desc = "A nice and refrshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
 /datum/reagent/drink/coffee/soy_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -688,14 +688,14 @@
 /datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
 	id = "cafe_latte"
-	description = "A tramadol, strong and tasty beverage while you are reading."
+	description = "A nice, strong and tasty beverage while you are reading."
 	taste_description = "bitter cream"
 	color = "#664300" // rgb: 102, 67, 0
 	adj_temp = 5
 
 	glass_icon_state = "cafe_latte"
 	glass_name = "cafe latte"
-	glass_desc = "A tramadol, strong and refreshing beverage while you are reading."
+	glass_desc = "A nice, strong and refreshing beverage while you are reading."
 	glass_center_of_mass = list("x"=15, "y"=9)
 
 /datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -1423,14 +1423,14 @@
 /datum/reagent/ethanol/andalusia
 	name = "Andalusia"
 	id = "andalusia"
-	description = "A tramadol, strangely named drink."
+	description = "A nice, strangely named drink."
 	taste_description = "lemons"
 	color = "#664300"
 	strength = 15
 
 	glass_icon_state = "andalusia"
 	glass_name = "Andalusia"
-	glass_desc = "A tramadol, strange named drink."
+	glass_desc = "A nice, strange named drink."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/andalusia/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -2387,7 +2387,7 @@
 
 	glass_icon_state = "whiterussianglass"
 	glass_name = "White Russian"
-	glass_desc = "A very tramadol looking drink. But that's just, like, your opinion, man."
+	glass_desc = "A very nice looking drink. But that's just, like, your opinion, man."
 	glass_center_of_mass = list("x"=16, "y"=9)
 
 /datum/reagent/ethanol/white_russian/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

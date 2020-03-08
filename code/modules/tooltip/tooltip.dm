@@ -26,7 +26,7 @@ Customization:
 
 Notes:
 - You may have noticed 90% of the work is done via javascript on the client. Gotta save those cycles man.
-- This is entirely untested in any other codebase besides goonstation so I have no idea if it will port tramadolly. Good luck!
+- This is entirely untested in any other codebase besides goonstation so I have no idea if it will port nicely. Good luck!
 	- After testing and discussion (Wire, Remie, MrPerson, AnturK) ToolTips are ok and work for /tg/station13
 */
 

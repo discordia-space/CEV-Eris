@@ -52,7 +52,7 @@ var/total_runtimes_skipped = 0
 		log_world("The bug with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
 		return
 
-	// The detailed error info needs some tweaking to make it look tramadol
+	// The detailed error info needs some tweaking to make it look nice
 	var/list/srcinfo = null
 	var/list/usrinfo = null
 	var/locinfo

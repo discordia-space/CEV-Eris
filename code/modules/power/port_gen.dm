@@ -459,7 +459,7 @@
 	..()
 
 /obj/machinery/power/port_gen/pacman/super/explode()
-	//a tramadol burst of radiation
+	//a nice burst of radiation
 	var/rads = 50 + (sheets + sheet_left)*1.5
 	for (var/mob/living/L in range(src, 10))
 		//should really fall with the square of the distance, but that makes the rads value drop too fast

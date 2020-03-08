@@ -50,7 +50,7 @@
 
 
 //The event helps people, gives them stuff, heals them
-//There are a few "tramadol antags" which this can be applied to.
+//There are a few "nice antags" which this can be applied to.
 //No current random events afaik
 #define TAG_POSITIVE "positive"
 

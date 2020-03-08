@@ -80,7 +80,7 @@
 
 //Area flags, possibly more to come
 #define AREA_FLAG_RAD_SHIELDED 1 // shielded from radiation, clearly
-#define AREA_FLAG_EXTERNAL     2 // External as in exposed to space, not outside in a tramadol, green, forest
+#define AREA_FLAG_EXTERNAL     2 // External as in exposed to space, not outside in a nice, green, forest
 #define AREA_FLAG_ION_SHIELDED 4 // shielded from ionospheric anomalies as an FBP / IPC
 #define AREA_FLAG_CRITICAL		8 //Area should not be targeted by very destructive events
 

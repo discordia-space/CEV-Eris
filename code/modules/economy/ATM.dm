@@ -89,7 +89,7 @@ log transactions
 	release_held_id(user)
 
 	//display a message to the user
-	var/response = pick("Initiating withdraw. Have a tramadol day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
+	var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
 	to_chat(user, "<span class='warning'>\icon[src] The [src] beeps: \"[response]\"</span>")
 	return 1
 

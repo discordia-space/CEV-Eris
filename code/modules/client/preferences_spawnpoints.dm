@@ -208,7 +208,7 @@
 	DORMITORY SPAWNING
 **********************/
 /*
-	You wake up from a tramadol nap, in a dormitory somewhere
+	You wake up from a nice nap, in a dormitory somewhere
 */
 /datum/spawnpoint/dormitory
 

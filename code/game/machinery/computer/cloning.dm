@@ -13,7 +13,7 @@
 	var/list/records = list()
 	var/datum/dna2/record/active_record = null
 	var/obj/item/weapon/disk/data/diskette = null //Mostly so the geneticist can steal everything.
-	var/loading = 0 // tramadol loading text
+	var/loading = 0 // nice loading text
 
 /obj/machinery/computer/cloning/Initialize()
 	. = ..()

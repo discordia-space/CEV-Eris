@@ -143,7 +143,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	return matches
 
 // Simple record to HTML (for paper purposes) conversion.
-// Not visually that tramadol, but it gets the work done, feel free to tweak it visually
+// Not visually that nice, but it gets the work done, feel free to tweak it visually
 /proc/record_to_html(var/datum/computer_file/report/crew_record/CR, var/access)
 	var/dat = "<tt><H2>RECORD DATABASE DATA DUMP</H2><i>Generated on: [stationdate2text()] [stationtime2text()]</i><br>******************************<br>"
 	dat += "<table>"

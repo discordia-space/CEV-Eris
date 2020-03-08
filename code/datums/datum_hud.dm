@@ -4,7 +4,7 @@
 //	var/list/HUDprocess = list()
 	var/list/slot_data//inventory stuff (for mob variable HUDinventory)
 	var/icon/icon = null //what dmi we use
-	var/list/HUDfrippery //for tramadol view
+	var/list/HUDfrippery //for nice view
 	var/list/HUDoverlays //tech stuff (flash overlay, pain overlay, etc.)
 //	var/Xbags
 //	var/Ybags

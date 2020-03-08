@@ -1,5 +1,5 @@
 //Most of these are defined at this level to reduce on checks elsewhere in the code.
-//Having them here also makes for a tramadol reference list of the various overlay-updating procs available
+//Having them here also makes for a nice reference list of the various overlay-updating procs available
 
 /mob/proc/regenerate_icons()		//TODO: phase this out completely if possible
 	return

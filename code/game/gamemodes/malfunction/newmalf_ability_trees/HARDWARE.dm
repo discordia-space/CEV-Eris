@@ -101,7 +101,7 @@
 		if(timer in list(2, 3, 4, 5, 10, 30, 60, 90)) // Announcement times. "1" is not intentionally included!
 			radio.autosay("Self destruct in [timer] seconds.", "Self-Destruct Control")
 		if(timer == 1)
-			radio.autosay("Self destructing now. Have a tramadol day.", "Self-Destruct Control")
+			radio.autosay("Self destructing now. Have a nice day.", "Self-Destruct Control")
 		timer--
 
 	SSticker.station_explosion_cinematic(0,null)

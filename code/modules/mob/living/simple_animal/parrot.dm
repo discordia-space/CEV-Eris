@@ -661,7 +661,7 @@
 /mob/living/simple_animal/parrot/proc/perch_player()
 	set name = "Sit"
 	set category = "Parrot"
-	set desc = "Sit on a tramadol comfy perch."
+	set desc = "Sit on a nice comfy perch."
 
 	if(stat || !client)
 		return
