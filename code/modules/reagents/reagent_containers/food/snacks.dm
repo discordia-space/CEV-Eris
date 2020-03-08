@@ -1671,7 +1671,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/stew
 	name = "Stew"
-	desc = "A tramadol and warm stew. Healthy and strong."
+	desc = "A nice and warm stew. Healthy and strong."
 	icon_state = "stew"
 	filling_color = "#9E673A"
 	bitesize = 10
