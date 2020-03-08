@@ -346,7 +346,7 @@
  */
 /obj/item/weapon/storage/freezer
 	name = "portable freezer"
-	desc = "This nifty shock-resistant device will keep your 'groceries' tramadol and non-spoiled."
+	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
 	icon_state = "freezer"
 	item_state = "medicalpack"
 	max_w_class = ITEM_SIZE_NORMAL
