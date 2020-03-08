@@ -303,7 +303,7 @@
 	new /obj/item/weapon/reagent_containers/pill/paracetamol(src)
 
 /obj/item/weapon/storage/pill_bottle/tramadol
-	name = "bottle of tramadol pills"
+	name = "bottle of Tramadol pills"
 	desc = "Contains pills used to relieve pain."
 
 /obj/item/weapon/storage/pill_bottle/paracetamol/populate_contents()
