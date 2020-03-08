@@ -44,13 +44,17 @@
 /obj/item/modular_computer/proc/install_default_programs()
 	return TRUE
 
-/obj/item/modular_computer/proc/install_default_programs_by_job(var/mob/living/carbon/human/H)
+/obj/item/modular_computer/proc/install_default_programs_by_job(mob/living/carbon/human/H)
+	if(!istype(H))
+		return
+
 	var/datum/job/jb = SSjob.GetJob(H.job)
-	if(!jb) return
+	if(!jb)
+		return
+
 	for(var/prog_type in jb.software_on_spawn)
-		var/datum/computer_file/program/prog_file = prog_type
-		if(initial(prog_file.usage_flags) & hardware_flag)
-			prog_file = new prog_file
+		var/datum/computer_file/program/prog_file = new prog_type
+		if(prog_file.is_supported_by_hardware(src))
 			hard_drive.store_file(prog_file)
 
 /obj/item/modular_computer/Initialize()

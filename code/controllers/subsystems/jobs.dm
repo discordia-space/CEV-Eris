@@ -303,6 +303,7 @@ SUBSYSTEM_DEF(job)
 	var/datum/job_flavor/flavor = pick(job.random_flavors)
 
 	if(job)
+		H.job = rank
 
 		//Equip custom gear loadout.
 		//var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
@@ -336,8 +337,6 @@ SUBSYSTEM_DEF(job)
 
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
-
-	H.job = rank
 
 	// If they're head, give them the account info for their department
 	if(H.mind && (job.head_position || job.department_account_access))
