@@ -145,7 +145,7 @@
 	effect_type = /datum/group_ritual_effect/cruciform/crusade
 
 /datum/group_ritual_effect/cruciform/crusade/success(var/mob/living/M, var/cnt)
-	if(cnt < 6)
+	if(cnt < 5)
 		return
 	var/obj/item/weapon/implant/core_implant/CI = M.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 	if(CI)
