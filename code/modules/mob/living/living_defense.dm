@@ -92,7 +92,7 @@
 		qdel(P)
 		return TRUE
 
-	if(P.knockback)
+	if(P.knockback && hit_dir)
 		throw_at(get_edge_target_turf(src, hit_dir), P.knockback, P.knockback)
 
 	//Armor and damage

@@ -46,6 +46,9 @@ meteor_act
 		..()
 		return
 
+	if(!dir) // Same turf as the source
+		return
+
 	var/r_dir = reverse_dir[dir]
 	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
