@@ -101,3 +101,10 @@
 /obj/item/mech_component/proc/update_components()
 	return
 
+#include "armour.dm"
+#include "arms.dm"
+#include "body.dm"
+#include "frame.dm"
+#include "head.dm"
+#include "legs.dm"
+#include "software.dm"

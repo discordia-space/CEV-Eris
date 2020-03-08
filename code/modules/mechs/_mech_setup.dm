@@ -48,3 +48,50 @@ GLOBAL_LIST_INIT(mech_damage_overlay_cache,		new)
 GLOBAL_LIST_INIT(mech_image_cache,				new)
 GLOBAL_LIST_INIT(mech_icon_cache,				new)
 GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON))
+
+#include "_mech_setup.dm"
+#include "mech.dm"
+#include "mech_construction.dm"
+#include "mech_damage.dm"
+#include "mech_damage_immunity.dm"
+#include "mech_icon.dm"
+#include "mech_interaction.dm"
+#include "mech_life.dm"
+#include "mech_movement.dm"
+#include "mech_misc.dm"
+#include "mech_recharger.dm"
+#include "mech_wreckage.dm"
+
+#include "components/_components.dm"
+	#include "components/armour.dm"
+	#include "components/arms.dm"
+	#include "components/body.dm"
+	#include "components/frame.dm"
+	#include "components/head.dm"
+	#include "components/legs.dm"
+	#include "components/software.dm"
+
+#include "equipment/_equipment.dm"
+	#include "equipment/combat.dm"
+	//#include "ai_holding.dm"
+	#include "equipment/engineering.dm"
+	#include "equipment/medical.dm"
+	#include "equipment/utility.dm"
+
+#include "interface/_mech_HUD.dm"
+	#include "interface/screen_objects.dm"
+	#include "interface/datum_HUD.dm"
+
+#include "premade/_premade.dm"
+	#include "premade/combat.dm"
+	#include "premade/heavy.dm"
+	#include "premade/light.dm"
+	#include "premade/powerloader.dm"
+
+#undef MECHA_WEAPON_OVERLAYS_ICON
+#undef MECHA_DECALS_ICON
+#undef MECHA_PARTS_HELD_ICON
+#undef MECHA_PARTS_ICON
+#undef MECHA_PART_ITEM_ICON
+#undef MECHA_EQUIPMENT_ICON
+#undef MECHA_HUD_ICON

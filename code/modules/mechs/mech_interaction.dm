@@ -217,7 +217,7 @@
 //	LAZYREMOVE(user.additional_vision_handlers, src)
 	if(user in pilots)
 		a_intent = I_HURT
-		pilots -= user
+		LAZYREMOVE(pilots, user)
 		update_pilots()
 	if(user.client) update_mech_hud_4(user)
 	return 1

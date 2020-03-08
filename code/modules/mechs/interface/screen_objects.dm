@@ -6,11 +6,14 @@
 	var/mob/living/exosuit/owner
 /obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
 
-/obj/screen/movable/exosuit/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
+/obj/screen/movable/exosuit/Initialize()
 	. = ..()
-	owner = _parentmob
-	if(!istype(owner))
+	addtimer(CALLBACK(src, .proc/InitOwner), 1 SECONDS)
+
+/obj/screen/movable/exosuit/proc/InitOwner()
+	if(!isliving(loc))
 		return qdel(src)
+	owner = loc
 
 /obj/screen/movable/exosuit/Click()
 	return (!owner || !usr.incapacitated() && (usr == owner || usr.loc == owner))
@@ -29,53 +32,112 @@
 /obj/screen/movable/exosuit/hardpoints_show
 	name = "Show hardpoints"
 	icon_state = "hardpoint_question"
-
-/obj/screen/movable/exosuit/hardpoints_show/update_icon()
-	. = ..()
-	overlays.Cut()
-	if(myhardpoint)
-		icon_state = "hardpoint_selected"
-		overlays += image(icon = myhardpoint.icon, icon_state = myhardpoint.icon_state)
-	else icon_state = initial(icon_state)
-
-/obj/screen/movable/exosuit/hardpoints_show/Click(var/location, var/control, var/params)
-	. = ..()
-	if(owner.hardpoints.len)
-		myhardpoint = null
-		update_icon()
-		var/list/options = list()
-		for(var/obj/item/I in owner.hardpoints) options[I] = image(icon = I.icon, icon_state = I.icon_state)
-		var/hardpoint = show_radial_menu(usr, src, options, radius = 40)
-		myhardpoint = hardpoint
-		update_icon()
-
-		if(!(..())) return
-
-		var/modifiers = params2list(params)
-		if(modifiers["ctrl"])
-			if(owner.hardpoints_locked)
-				to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
-				return
-			if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
-			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
-			return
-
-		if(owner.selected_hardpoint == hardpoint_tag)
-			icon_state = "hardpoint"
-			owner.clear_selected_hardpoint()
-		else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
-
-/obj/screen/movable/exosuit/hardpoints_show
-	var/hardpoint_tag
-	var/obj/item/myhardpoint
+	var/obj/item/mech_equipment/myhardpoint
 
 	maptext_x = 34
 	maptext_y = 3
 	maptext_width = 64
 
+/obj/screen/movable/exosuit/hardpoints_show/MouseDrop()
+	..()
+	if(myhardpoint) myhardpoint.screen_loc = screen_loc
+
 /obj/screen/movable/exosuit/hardpoints_show/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
 	update_system_info()
+
+/obj/screen/movable/exosuit/hardpoints_show/Click(var/location, var/control, var/params)
+	. = ..()
+	if(owner?.hardpoints?.len)
+		myhardpoint = null
+		update_icon()
+		var/list/options = list()
+		if(!GLOB.default_hardpoint_background)
+			GLOB.default_hardpoint_background = image(icon = MECHA_HUD_ICON, icon_state = "bar_bkg")
+			GLOB.default_hardpoint_background.pixel_x = 34
+		for(var/i in owner.hardpoints)
+			var/obj/I = owner.hardpoints[i]
+			if(I)
+				options[I] = image(icon = I.icon, icon_state = I.icon_state)
+				options[I].name = I.name
+				options[I].desc = I.desc
+		myhardpoint = show_radial_menu(usr, owner, options, radius = 40)
+		update_icon()
+
+		if(!(..())) return
+		if(myhardpoint)
+			var/modifiers = params2list(params)
+			if(modifiers["ctrl"])
+				if(owner.hardpoints_locked)
+					to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
+					return
+				if(owner.remove_system(myhardpoint.hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [myhardpoint.hardpoint_tag] hardpoint."))
+				else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [myhardpoint.hardpoint_tag] hardpoint."))
+				return
+
+			if(owner.selected_hardpoint == myhardpoint.hardpoint_tag)
+				icon_state = "hardpoint"
+				owner.clear_selected_hardpoint()
+			else if(owner.set_hardpoint(myhardpoint.hardpoint_tag)) icon_state = "hardpoint_selected"
+
+/obj/screen/movable/exosuit/hardpoints_show/update_icon()
+	. = ..()
+	overlays.Cut()
+
+	var/value
+	if(myhardpoint)
+		icon_state = "hardpoint_selected"
+		overlays += image(icon = myhardpoint.icon, icon_state = myhardpoint.icon_state)
+		maptext = myhardpoint.get_hardpoint_maptext()
+		value = myhardpoint?.get_hardpoint_status_value()
+	else icon_state = initial(icon_state)
+
+	if(!owner.get_cell() || (owner.get_cell().charge <= 0))
+		overlays.Cut()
+		return
+	if(!value)
+		overlays.Cut()
+		return
+	var/ui_damage = !owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage))
+	if(ui_damage)
+		value = -1
+		maptext = "ERROR"
+	else if((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage*2))
+		if(prob(10)) value = -1
+		else value = rand(1,BAR_CAP)
+	else value = round(value * BAR_CAP)
+
+	// Draw background.
+	var/list/new_overlays = list()
+	if(!GLOB.default_hardpoint_background)
+		GLOB.default_hardpoint_background = image(icon = MECHA_HUD_ICON, icon_state = "bar_bkg")
+		GLOB.default_hardpoint_background.pixel_x = 34
+	new_overlays += GLOB.default_hardpoint_background
+
+	if(!value)
+		if(!GLOB.hardpoint_bar_empty)
+			GLOB.hardpoint_bar_empty = image(icon=MECHA_HUD_ICON,icon_state="bar_flash")
+			GLOB.hardpoint_bar_empty.pixel_x = 24
+			GLOB.hardpoint_bar_empty.color = "#ff0000"
+		new_overlays += GLOB.hardpoint_bar_empty
+	else if(value)
+		if(!GLOB.hardpoint_error_icon)
+			GLOB.hardpoint_error_icon = image(icon=MECHA_HUD_ICON,icon_state="bar_error")
+			GLOB.hardpoint_error_icon.pixel_x = 34
+		new_overlays += GLOB.hardpoint_error_icon
+	else
+		value = min(value, BAR_CAP)
+		// Draw statbar.
+		if(!LAZYLEN(GLOB.hardpoint_bar_cache))
+			for(var/i=0;i<BAR_CAP;i++)
+				var/image/bar = image(icon=MECHA_HUD_ICON,icon_state="bar")
+				bar.pixel_x = 24+(i*2)
+				if(i>5) bar.color = "#00ff00"
+				else if(i>1) bar.color = "#ffff00"
+				else bar.color = "#ff0000"
+				GLOB.hardpoint_bar_cache += bar
+		for(var/i=i;i<=value;i++) new_overlays += GLOB.hardpoint_bar_cache[i]
+	overlays = new_overlays
 
 /obj/screen/movable/exosuit/hardpoints_show/proc/update_system_info()
 	// No point drawing it if we have no item to use or nobody to see it.
@@ -91,75 +153,7 @@
 				break
 	if(!has_pilot_with_client)
 		return
-
-	var/list/new_overlays = list()
-	if(!owner.get_cell() || (owner.get_cell().charge <= 0))
-		overlays.Cut()
-		return
-
-	maptext = myhardpoint.get_hardpoint_maptext()
-
-	var/ui_damage = (!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage)))
-
-	var/value = myhardpoint.get_hardpoint_status_value()
-	if(isnull(value))
-		overlays.Cut()
-		return
-
-	if(ui_damage)
-		value = -1
-		maptext = "ERROR"
-	else
-		if((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage*2))
-			if(prob(10))
-				value = -1
-			else
-				value = rand(1,BAR_CAP)
-		else
-			value = round(value * BAR_CAP)
-
-	// Draw background.
-	if(!GLOB.default_hardpoint_background)
-		GLOB.default_hardpoint_background = image(icon = MECHA_HUD_ICON, icon_state = "bar_bkg")
-		GLOB.default_hardpoint_background.pixel_x = 34
-	new_overlays += GLOB.default_hardpoint_background
-
-	if(value == 0)
-		if(!GLOB.hardpoint_bar_empty)
-			GLOB.hardpoint_bar_empty = image(icon=MECHA_HUD_ICON,icon_state="bar_flash")
-			GLOB.hardpoint_bar_empty.pixel_x = 24
-			GLOB.hardpoint_bar_empty.color = "#ff0000"
-		new_overlays += GLOB.hardpoint_bar_empty
-	else if(value < 0)
-		if(!GLOB.hardpoint_error_icon)
-			GLOB.hardpoint_error_icon = image(icon=MECHA_HUD_ICON,icon_state="bar_error")
-			GLOB.hardpoint_error_icon.pixel_x = 34
-		new_overlays += GLOB.hardpoint_error_icon
-	else
-		value = min(value, BAR_CAP)
-		// Draw statbar.
-		if(!LAZYLEN(GLOB.hardpoint_bar_cache))
-			for(var/i=0;i<BAR_CAP;i++)
-				var/image/bar = image(icon=MECHA_HUD_ICON,icon_state="bar")
-				bar.pixel_x = 24+(i*2)
-				if(i>5)
-					bar.color = "#00ff00"
-				else if(i>1)
-					bar.color = "#ffff00"
-				else
-					bar.color = "#ff0000"
-				GLOB.hardpoint_bar_cache += bar
-		for(var/i=i;i<=value;i++)
-			new_overlays += GLOB.hardpoint_bar_cache[i]
-	overlays = new_overlays
-
-/obj/screen/movable/exosuit/hardpoints_show/MouseDrop()
-	..()
-	if(myhardpoint) myhardpoint.screen_loc = screen_loc
-
-/obj/screen/movable/exosuit/hardpoints_show/Initialize(mapload, var/newtag)
-	. = ..()
-	hardpoint_tag = newtag
+	update_icon()
 
 /obj/screen/movable/exosuit/eject
 	name = "eject"

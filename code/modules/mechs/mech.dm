@@ -141,13 +141,11 @@
 	pilots = null
 
 	for(var/thing in HUDneed)
-		qdel(HUDneed[thing])
-		HUDneed[thing] = null
+		qdel(thing)
 	HUDneed.Cut()
 
 	for(var/hardpoint in hardpoints)
 		qdel(hardpoints[hardpoint])
-		hardpoints[hardpoint] = null
 	hardpoints.Cut()
 
 	QDEL_NULL(access_card)
