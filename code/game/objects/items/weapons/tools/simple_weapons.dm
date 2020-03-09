@@ -173,7 +173,6 @@
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	tool_qualities = null
 	toggleable = TRUE
-	attack_verb = list("punched", "cracked")
 /obj/item/weapon/tool/knife/butterfly/turn_on(mob/user) 
 	item_state = "[initial(item_state)]_on"
 		to_chat(user, SPAN_NOTICE("You flip out [src]."))
@@ -181,12 +180,13 @@
 	edge = TRUE
 	sharp = TRUE
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	..()
 /obj/item/weapon/tool/knife/butterfly/turn_off(mob/user) 
 	hitsound = initial(hitsound)
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)
-	attack_verb = initial(attack_verb)
+	attack_verb = list("punched","cracked")
 	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
 	..()
 
@@ -205,7 +205,6 @@
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	tool_qualities = null
 	toggleable = TRUE
-	attack_verb = list("punched", "cracked")
 /obj/item/weapon/tool/knife/switchblade/turn_on(mob/user) 
 	item_state = "[initial(item_state)]_on"
 		to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
@@ -219,7 +218,7 @@
 	hitsound = initial(hitsound)
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)
-	attack_verb = initial(attack_verb)
+	attack_verb = list("punched","cracked")
 	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
 	..()
 
