@@ -39,7 +39,7 @@
 
 /obj/structure/bed/chair/wheelchair
 	display_name = "wheelchair"
-	pathc = /obj/structure/bed/chair/wheelchair
+	path = /obj/structure/bed/chair/wheelchair
 	cost = 3
 
 /datum/gear/utility/normaltablet
