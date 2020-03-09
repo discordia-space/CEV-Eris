@@ -3,8 +3,8 @@
 	icon_state = "tool-red"
 
 /obj/random/knife/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/material/butterfly = 1,
-				/obj/item/weapon/material/butterfly/switchblade = 2,
+	return pickweight(list(/obj/item/weapon/tool/knife/butterfly = 1,
+				/obj/item/weapon/tool/knife/switchblade = 1,
 				/obj/item/weapon/tool/knife = 1,
 				/obj/item/weapon/tool/knife/boot = 0.5,
 				/obj/item/weapon/tool/knife/hook = 2,

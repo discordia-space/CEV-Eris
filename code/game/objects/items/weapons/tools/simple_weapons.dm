@@ -158,6 +158,71 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 	max_upgrades = 3
 
+/obj/item/weapon/tool/knife/butterfly
+	name = "butterfly knife"
+	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "butterflyknife"
+	item_state = "butterflyknife"
+	flags = CONDUCT
+	edge = FALSE
+	sharp = FALSE
+	force = WEAPON_FORCE_WEAK
+	switched_on_force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL =6)
+	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
+	tool_qualities = null
+	toggleable = TRUE
+	attack_verb = list("punched", "cracked")
+/obj/item/weapon/tool/knife/butterfly/turn_on(mob/user) 
+	item_state = "[initial(item_state)]_on"
+		to_chat(user, SPAN_NOTICE("You flip out [src]."))
+	icon_state = "butterflyknife_open"
+	edge = TRUE
+	sharp = TRUE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	..()
+/obj/item/weapon/tool/knife/butterfly/turn_off(mob/user) 
+	hitsound = initial(hitsound)
+	icon_state = initial(icon_state)
+	item_state = initial(item_state)
+	attack_verb = initial(attack_verb)
+	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
+	..()
+
+/obj/item/weapon/tool/knife/switchblade
+	name = "switchblade"
+	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "switchblade"
+	item_state = "switchblade"
+	flags = CONDUCT
+	edge = FALSE
+	sharp = FALSE
+	force = WEAPON_FORCE_WEAK
+	switched_on_force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6, MATERIAL_GOLD= 0.5)
+	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
+	tool_qualities = null
+	toggleable = TRUE
+	attack_verb = list("punched", "cracked")
+/obj/item/weapon/tool/knife/switchblade/turn_on(mob/user) 
+	item_state = "[initial(item_state)]_on"
+		to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
+	icon_state = "switchblade_open"
+	edge = TRUE
+	sharp = TRUE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	..()
+/obj/item/weapon/tool/knife/switchblade/turn_off(mob/user) 
+	hitsound = initial(hitsound)
+	icon_state = initial(icon_state)
+	item_state = initial(item_state)
+	attack_verb = initial(attack_verb)
+	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
+	..()
+
 /obj/item/weapon/tool/scythe
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."

@@ -38,6 +38,14 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
+/datum/craft_recipe/weapon/butterfly_knife
+	name = "butterfly knife"
+	result = /obj/item/weapon/tool/knife/butterfly
+	steps = list(
+		list(/obj/item/weapon/material/butterflyhandle, 1,),
+		list(/obj/item/weapon/material/butterflyblade, 1,"time" = 10),
+		list(QUALITY_SCREW_DRIVING, 10, 70,"time" = 3),
+	)
 
 /datum/craft_recipe/weapon/knife_blade
 	name = "knife blade"
