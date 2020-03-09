@@ -50,3 +50,26 @@
 	use_power_cost = 1.5
 	workspeed = 1.5
 	max_upgrades = 2
+
+/obj/item/weapon/tool/hammer/mace
+	name = "mace"
+	desc = "Used for applying blunt force trauma to a person's ribcage."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "mace"
+	item_state = "mace"
+
+	force = WEAPON_FORCE_DANGEROUS
+
+	tool_qualities = list(QUALITY_HAMMERING = 20)
+
+/obj/item/weapon/tool/hammer/mace/makeshift
+	name = "makeshift mace"
+	desc = "Some metal attached to the end of a stick, for applying blunt force trauma to a roach."
+	icon_state = "ghetto_mace"
+	item_state = "ghetto_mace"
+
+	force = WEAPON_FORCE_PAINFUL
+
+	tool_qualities = list(QUALITY_HAMMERING = 15)
+	degradation = 5 //This one breaks REALLY fast
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game

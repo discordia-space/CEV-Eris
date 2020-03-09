@@ -500,6 +500,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/refresh_upgrades()
 	return
 
+/obj/item/proc/on_embed(mob/user)
+	return
+
+/obj/item/proc/on_embed_removal(mob/living/user)
+	return
+
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'

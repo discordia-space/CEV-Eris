@@ -230,7 +230,7 @@
 					src.anchored = 1
 					src.pinned += O
 
-/mob/living/proc/embed(var/obj/O, var/def_zone=null)
+/mob/living/proc/embed(var/obj/item/O, var/def_zone=null)
 	if(ismob(O.loc))
 		var/mob/living/L = O.loc
 		if(!L.unEquip(O, src))
@@ -239,6 +239,7 @@
 	src.embedded += O
 	src.visible_message("<span class='danger'>\The [O] embeds in the [src]!</span>")
 	src.verbs += /mob/proc/yank_out_object
+	O.on_embed(src)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)

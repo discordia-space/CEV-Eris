@@ -123,6 +123,41 @@
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_MODERATE
 
+/obj/item/weapon/tool/sword/katana/nano
+	name = "Moebius \"Muramasa\" katana"
+	desc = "After an extensive binge of ancient animated recordings, a scientist decided to upgrade a recovered katana."
+	icon_state = "eutactic_katana"
+	item_state = "eutactic_katana"
+	toggleable = TRUE
+
+	suitable_cell = /obj/item/weapon/cell/small
+
+	use_power_cost = 0.4
+	passive_power_cost = 0.4
+
+	switched_on_qualities = list(QUALITY_CUTTING = 25)
+	switched_on_force = WEAPON_FORCE_LETHAL
+
+/obj/item/weapon/tool/sword/katana/nano/turn_on(mob/user)
+	.=..()
+	if(.)
+		embed_mult = 0
+		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+
+/obj/item/weapon/tool/sword/katana/nano/turn_off(mob/user)
+	..()
+	embed_mult = initial(embed_mult)
+	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+
+/obj/item/weapon/tool/sword/katana/nano/update_icon()
+	..()
+	if(cell)
+		overlays += "[icon_state]_cell"
+	if(switched_on)
+		overlays += "[icon_state]_power_on"
+	else
+		overlays += "[icon_state]_power_off"
+
 //Hammers (hammer tool quality isnt in yet so they dont have tool qualities) - would need it's own file soon
 
 /obj/item/weapon/tool/homewrecker
