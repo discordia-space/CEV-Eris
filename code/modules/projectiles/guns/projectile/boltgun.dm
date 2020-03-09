@@ -27,7 +27,8 @@
 	var/item_suffix = ""
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = 1
-
+	twohanded = TRUE
+	
 /obj/item/weapon/gun/projectile/boltgun/update_icon()
 	..()
 
