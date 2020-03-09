@@ -36,8 +36,7 @@
 	display_name = "cheap tablet computer"
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/cheap
 	cost = 2
-
-/obj/structure/bed/chair/wheelchair
+/datum/gear/utility/wheelchair
 	display_name = "wheelchair"
 	path = /obj/structure/bed/chair/wheelchair
 	cost = 3
