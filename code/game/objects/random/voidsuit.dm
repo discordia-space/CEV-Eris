@@ -8,7 +8,7 @@
 
 /obj/random/voidsuit/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/suit/space/void = 2,
-		/obj/item/clothing/suit/space/void/engineering = 2,
+		/obj/item/clothing/suit/space/void/engineering = 1,
 		/obj/item/clothing/suit/space/void/mining = 2,
 		/obj/item/clothing/suit/space/void/medical = 2.3,
 		/obj/item/clothing/suit/space/void/security = 1,

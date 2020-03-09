@@ -33,6 +33,8 @@
 	overlays += "sol_[ratio]"
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
+	..()
+	
 	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
 	set_item_state(ammo_magazine ?  "-full" : "", back = TRUE)
 	overlays.Cut()
