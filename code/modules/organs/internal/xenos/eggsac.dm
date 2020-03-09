@@ -67,6 +67,6 @@
 		SPAN_DANGER("\The [owner] regurgitates something into \the [M]'s torso!"),
 		SPAN_DANGER("A hideous lump of alien mass strains your ribcage as it settles within!")
 	)
-	var/obj/item/organ/internal/xenos/hivenode/node = new(affecting)
-	node.replaced(M, affecting)
+	var/obj/item/organ/internal/xenos/hivenode/node = new
+	node.replaced(affecting)
 

@@ -11,15 +11,25 @@
 	..()
 	handle_regeneration()
 
-/obj/item/organ/internal/removed()
-	..()
-	for(var/verb_path in owner_verbs)
-		verbs -= verb_path
-
 /obj/item/organ/internal/removed_mob()
 	owner.internal_organs_by_name -= organ_tag
 	owner.internal_organs -= src
+
+	for(var/verb_path in owner_verbs)
+		verbs -= verb_path
 	..()
+
+/obj/item/organ/internal/replaced(obj/item/organ/external/affected)
+	..()
+	parent.internal_organs |= src
+
+/obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
+	..()
+	owner.internal_organs |= src
+	owner.internal_organs_by_name[organ_tag] = src
+
+	for(var/proc_path in owner_verbs)
+		verbs += proc_path
 
 /obj/item/organ/internal/proc/take_internal_damage(amount, var/silent=0)
 	if(BP_IS_ROBOTIC(src))

@@ -341,42 +341,28 @@
 	START_PROCESSING(SSobj, src)
 
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/proc/replaced(obj/item/organ/external/affected)
+	parent = affected
+	forceMove(parent)
+	if(parent.owner)
+		replaced_mob(parent.owner)
 
-	if(!istype(target)) return
+
+/obj/item/organ/proc/replaced_mob(mob/living/carbon/human/target)
+	owner = target
+	forceMove(owner)
+	STOP_PROCESSING(SSobj, src)
 
 	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	transplant_data = list()
 	if(!transplant_blood)
-		transplant_data["species"] =    target.species.name
-		transplant_data["blood_type"] = target.dna.b_type
-		transplant_data["blood_DNA"] =  target.dna.unique_enzymes
+		transplant_data["species"] =    owner.species.name
+		transplant_data["blood_type"] = owner.dna.b_type
+		transplant_data["blood_DNA"] =  owner.dna.unique_enzymes
 	else
 		transplant_data["species"] =    transplant_blood.data["species"]
 		transplant_data["blood_type"] = transplant_blood.data["blood_type"]
 		transplant_data["blood_DNA"] =  transplant_blood.data["blood_DNA"]
-
-	owner = target
-	loc = owner
-	STOP_PROCESSING(SSobj, src)
-	target.internal_organs |= src
-	affected.internal_organs |= src
-	target.internal_organs_by_name[organ_tag] = src
-
-/obj/item/organ/proc/install(mob/living/carbon/human/H)
-	if(!istype(H))
-		return 1
-
-	owner = H
-	forceMove(owner)
-	if(parent_organ)
-		parent = H.get_organ(parent_organ)
-
-	if(H.dna)
-		if(!blood_DNA)
-			blood_DNA = list()
-		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-	STOP_PROCESSING(SSobj, src)
 
 /obj/item/organ/proc/heal_damage(amount)
 	return

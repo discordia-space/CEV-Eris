@@ -9,8 +9,6 @@
 	owner.remove_language(LANGUAGE_HIVEMIND)
 	..()
 
-/obj/item/organ/internal/xenos/hivenode/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
-	..(target, affected)
-	if(owner && ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.add_language(LANGUAGE_HIVEMIND)
+/obj/item/organ/internal/xenos/hivenode/replaced_mob(mob/living/carbon/human/target)
+	..()
+	owner.add_language(LANGUAGE_HIVEMIND)

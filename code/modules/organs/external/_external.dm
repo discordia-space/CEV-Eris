@@ -127,27 +127,22 @@
 	if(desc.drop_on_remove)
 		src.drop_on_remove = desc.drop_on_remove.Copy()
 
-/obj/item/organ/external/replaced(mob/living/carbon/human/target)
-	owner = target
-	forceMove(owner)
-	if(istype(owner))
-		owner.organs_by_name[organ_tag] = src
-		owner.organs |= src
-		for(var/obj/item/organ/organ in src)
-			organ.replaced(owner,src)
+/obj/item/organ/external/replaced(obj/item/organ/external/affected)
+	..()
+	parent.children |= src
 
-	if(parent_organ)
-		parent = owner.organs_by_name[src.parent_organ]
-		if(parent)
-			if(!parent.children)
-				parent.children = list()
-			parent.children.Add(src)
-			//Remove all stump wounds since limb is not missing anymore
-			for(var/datum/wound/lost_limb/W in parent.wounds)
-				parent.wounds -= W
-				qdel(W)
-				break
-			parent.update_damages()
+	//Remove all stump wounds since limb is not missing anymore
+	for(var/datum/wound/lost_limb/W in parent.wounds)
+		parent.wounds -= W
+		qdel(W)
+	parent.update_damages()
+
+/obj/item/organ/external/replaced_mob(mob/living/carbon/human/target)
+	..()
+	owner.organs_by_name[organ_tag] = src
+	owner.organs |= src
+	for(var/obj/item/organ/O in children + internal_organs)
+		O.replaced_mob(owner)
 
 	if(module)
 		module.organ_installed(src, owner)

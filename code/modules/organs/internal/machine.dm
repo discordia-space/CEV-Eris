@@ -87,10 +87,10 @@
 				cell = W
 				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 
-/obj/item/organ/internal/cell/replaced()
+/obj/item/organ/internal/cell/replaced_mob(mob/living/carbon/human/target)
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
-	if(owner && owner.stat == DEAD)
+	if(owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
 		owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 

@@ -66,17 +66,16 @@
 	transfer_identity(owner)
 	..()
 
-/obj/item/organ/internal/brain/replaced(var/mob/living/target)
-
-	if(target.key)
-		target.ghostize()
+/obj/item/organ/internal/brain/replaced_mob(mob/living/carbon/target)
+	..()
+	if(owner.key)
+		owner.ghostize()
 
 	if(brainmob)
 		if(brainmob.mind)
-			brainmob.mind.transfer_to(target)
+			brainmob.mind.transfer_to(owner)
 		else
-			target.key = brainmob.key
-	..()
+			owner.key = brainmob.key
 
 /obj/item/organ/internal/brain/slime
 	name = "slime core"

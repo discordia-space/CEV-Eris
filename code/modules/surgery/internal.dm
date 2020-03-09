@@ -87,7 +87,7 @@
 		var/o_do = (organ.gender == PLURAL) ? "don't" : "doesn't"
 
 		if(BP_IS_ROBOTIC(src) && !BP_IS_ROBOTIC(organ))
-			to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body."))
+			to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body part."))
 			return FALSE
 
 		if(!owner.species.has_organ[organ.organ_tag])
@@ -171,13 +171,14 @@
 	// Internal organs
 	else if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
-		organ.replaced(owner, src)
+		organ.replaced(src)
 
 	// Limbs
 	else if(istype(I, /obj/item/organ/external))
 		var/obj/item/organ/external/limb = I
 
 		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
+		var/obj/item/organ/external/target_limb = owner.get_organ(limb.parent_organ)
 
 		// Save the owner before removing limb stump, as it may null the owner
 		// if the operation is performed on the stump itself
@@ -192,7 +193,7 @@
 			existing_limb.removed(null, FALSE)
 			qdel(existing_limb)
 
-		limb.replaced(saved_owner)
+		limb.replaced(target_limb)
 
 		saved_owner.update_body()
 		saved_owner.updatehealth()
