@@ -29,7 +29,7 @@
 	icon_state = "saw"
 	hitsound = WORKSOUND_CIRCULAR_SAW
 	worksound = WORKSOUND_CIRCULAR_SAW
-	force = WEAPON_FORCE_ROBUST
+	force = WEAPON_FORCE_DANGEROUS
 	armor_penetration = ARMOR_PEN_MODERATE
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 40, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 30)
@@ -41,6 +41,7 @@
 	name = "advanced circular saw"
 	desc = "You think you can cut anything with it."
 	icon_state = "advanced_saw"
+	force = WEAPON_FORCE_ROBUST
 	armor_penetration = ARMOR_PEN_DEEP
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
@@ -54,7 +55,7 @@
 	icon_state = "chainsaw"
 	hitsound = WORKSOUND_CHAINSAW
 	worksound = WORKSOUND_CHAINSAW
-	force = WEAPON_FORCE_BRUTAL //Rip and tear!
+	force = WEAPON_FORCE_ROBUST //Rip and tear!
 	armor_penetration = ARMOR_PEN_SHALLOW
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20) //not the best choice to cut wires

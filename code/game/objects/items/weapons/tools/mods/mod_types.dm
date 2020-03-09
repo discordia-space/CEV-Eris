@@ -56,7 +56,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.55,
-	UPGRADE_FORCE_MOD = 1,
+	UPGRADE_FORCE_MOD = 4,
 	UPGRADE_PRECISION = -5,
 	UPGRADE_BULK = 1,
 	UPGRADE_HEALTH_THRESHOLD = 10)
@@ -392,7 +392,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	UPGRADE_FORCE_MOD = 4,
+	UPGRADE_FORCE_MOD = 1,
 	UPGRADE_WORKSPEED = -0.5,
 	UPGRADE_HEALTH_THRESHOLD = 5,
 	tool_qualities = list(QUALITY_HAMMERING = 10)
