@@ -37,6 +37,11 @@
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/cheap
 	cost = 2
 
+/obj/structure/bed/chair/wheelchair
+	display_name = "wheelchair"
+	pathc = /obj/structure/bed/chair/wheelchair
+	cost = 3
+
 /datum/gear/utility/normaltablet
 	display_name = "advanced tablet computer"
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
