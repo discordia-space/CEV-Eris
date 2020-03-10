@@ -9,11 +9,17 @@ Thumbs.db
 *.backup
 *.before
 *~Stashed changes
-tools/
-data/
-cfg/
-tmp/
+
+/tools/*
+
+/data/*
+
+/cfg/*
+
+/tmp/*
+
 build_log.txt
+
 __pycache__
 
 #vscode
