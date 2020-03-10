@@ -136,6 +136,7 @@
 	passive_power_cost = 0.4
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
 	switched_on_force = WEAPON_FORCE_LETHAL
 
 /obj/item/weapon/tool/sword/katana/nano/turn_on(mob/user)

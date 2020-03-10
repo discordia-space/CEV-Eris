@@ -966,6 +966,7 @@ mob/proc/yank_out_object()
 
 		affected.implants -= selection
 		affected.embedded -= selection
+		selection.on_embed_removal(src)
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
@@ -975,6 +976,7 @@ mob/proc/yank_out_object()
 
 	else
 		embedded -= selection
+		selection.on_embed_removal(src)
 		if(issilicon(src))
 			var/mob/living/silicon/robot/R = src
 			R.adjustBruteLoss(5)
