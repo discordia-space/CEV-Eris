@@ -16,6 +16,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
 	zoom_factor = 0 //Default zoom factor you want on all automatic weapons.
+	twohanded = TRUE
 
 	firemodes = list(
 		FULL_AUTO_400,
@@ -52,7 +53,7 @@
 			var/can_fire = TRUE
 
 			//Safety stops it
-			if (gun.safety)
+			if (gun.safety )
 				can_fire = FALSE
 
 			//Projectile weapons need to have enough ammo to fire

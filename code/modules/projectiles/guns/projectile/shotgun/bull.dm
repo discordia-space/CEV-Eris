@@ -20,6 +20,7 @@
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
 	one_hand_penalty = 5
+	twohanded = TRUE
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
@@ -74,7 +75,10 @@
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
 	if(reload)
-		pump(user)
+		if (wielded)
+			pump(user)
+		else 
+			to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
 	else
 		if(firemodes.len > 1)
 			..()
