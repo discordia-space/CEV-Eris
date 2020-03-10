@@ -175,7 +175,8 @@
 	toggleable = TRUE
 /obj/item/weapon/tool/knife/butterfly/turn_on(mob/user) 
 	item_state = "[initial(item_state)]_on"
-		to_chat(user, SPAN_NOTICE("You flip out [src]."))
+	to_chat(user, SPAN_NOTICE("You flip out [src]."))
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	icon_state = "butterflyknife_open"
 	edge = TRUE
 	sharp = TRUE
@@ -187,6 +188,7 @@
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)
 	attack_verb = list("punched","cracked")
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
 	..()
 
@@ -207,7 +209,8 @@
 	toggleable = TRUE
 /obj/item/weapon/tool/knife/switchblade/turn_on(mob/user) 
 	item_state = "[initial(item_state)]_on"
-		to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
+	to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	icon_state = "switchblade_open"
 	edge = TRUE
 	sharp = TRUE
@@ -219,6 +222,7 @@
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)
 	attack_verb = list("punched","cracked")
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
 	..()
 
