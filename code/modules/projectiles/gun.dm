@@ -189,7 +189,7 @@
 	if(twohanded)
 		if(!wielded)
 			if (world.time >= recentwield + 10)
-				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand"))
+				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
 				recentwield = world.time
 			return FALSE
 
