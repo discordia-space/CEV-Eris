@@ -53,7 +53,7 @@
 			var/can_fire = TRUE
 
 			//Safety stops it
-			if (gun.safety )
+			if (gun.safety)
 				can_fire = FALSE
 
 			//Projectile weapons need to have enough ammo to fire
