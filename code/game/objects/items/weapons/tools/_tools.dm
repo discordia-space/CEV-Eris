@@ -133,7 +133,6 @@
 				turn_off()
 
 		if(use_power_cost && passive_power_cost)
-			to_chat(world, "use power cost:[use_power_cost] passive_power_cost:[passive_power_cost] cell:[cell] cell charge:[cell?.charge]")
 			if(!cell?.checked_use(passive_power_cost))
 				turn_off()
 

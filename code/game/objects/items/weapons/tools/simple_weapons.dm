@@ -124,7 +124,7 @@
 	armor_penetration = ARMOR_PEN_MODERATE
 
 /obj/item/weapon/tool/sword/katana/nano
-	name = "Moebius \"Muramasa\" katana"
+	name = "\improper Moebius \"Muramasa\" katana"
 	desc = "After an extensive binge of ancient animated recordings, a scientist decided to upgrade a recovered katana."
 	icon_state = "eutactic_katana"
 	item_state = "eutactic_katana"
@@ -158,20 +158,3 @@
 		overlays += "[icon_state]_power_on"
 	else
 		overlays += "[icon_state]_power_off"
-
-//Hammers (hammer tool quality isnt in yet so they dont have tool qualities) - would need it's own file soon
-
-/obj/item/weapon/tool/homewrecker
-	name = "homewrecker"
-	desc = "A large steel chunk welded to a long handle. Extremely heavy."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "homewrecker0"
-	wielded_icon = "homewrecker1"
-	armor_penetration = ARMOR_PEN_EXTREME
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_NORMAL
-	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_DANGEROUS
-	tool_qualities = list(QUALITY_HAMMERING = 15)
-	attack_verb = list("attacked", "smashed", "bludgeoned", "beaten")
-	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING

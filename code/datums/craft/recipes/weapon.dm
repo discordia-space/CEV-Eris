@@ -158,7 +158,7 @@
 
 /datum/craft_recipe/weapon/homewrecker
 	name = "homewrecker"
-	result = /obj/item/weapon/tool/homewrecker
+	result = /obj/item/weapon/tool/hammer/homewrecker
 	steps = list(
 		list(/obj/item/stack/rods, 12, "time" = 30),
 		list(QUALITY_WELDING, 10, "time" = 30),
