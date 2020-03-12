@@ -51,6 +51,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun = 3,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/practice_ammo = 8,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,))

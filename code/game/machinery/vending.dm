@@ -1379,6 +1379,7 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/practice_ammo = 10,
 					/obj/item/weapon/circuitboard/autolathe = 3,
 					/obj/item/weapon/circuitboard/vending = 10)
 	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
@@ -1396,6 +1397,7 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design/practice_ammo = 200,
 					/obj/item/weapon/circuitboard/autolathe = 700,
 					/obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
 					/obj/item/weapon/circuitboard/vending = 500,

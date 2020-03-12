@@ -424,7 +424,7 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg/rubber,
-		// rifles
+		//rifles
 		/datum/design/autolathe/ammo/srifle/rubber,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 		/datum/design/autolathe/ammo/lrifle/rubber,
@@ -451,13 +451,44 @@
 		/datum/design/autolathe/ammo/smg,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg,
-		// rifles
+		//rifles
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/ammo/ihclrifle,
 		/datum/design/autolathe/ammo/lrifle,
 		//shells
 		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/ammo/shotgun,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/practice_ammo //comes with both mags and boxes
+	disk_name = "Frozen Star Practice Ammunition Pack"
+	icon_state = "frozenstar"
+
+	license = 20 //still has uses because it's dirt cheap and can be exploited for cheap empty mags
+	designs = list(
+		//pistol mags
+		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/mg_magnum/practice,
+		/datum/design/autolathe/ammo/cspistol/practice,
+		//speed loaders
+		/datum/design/autolathe/ammo/sl_pistol/practice,
+		/datum/design/autolathe/ammo/sl_magnum/practice,
+		//smg mags
+		/datum/design/autolathe/ammo/smg/practice,
+		//magnum smg mags
+		/datum/design/autolathe/ammo/msmg/practice,
+		//rifles
+		/datum/design/autolathe/ammo/srifle/practice,
+		/datum/design/autolathe/ammo/ihclrifle/practice,
+		/datum/design/autolathe/ammo/lrifle/practice,
+		//shells
+		/datum/design/autolathe/ammo/shotgun_blanks,
+		//boxes from now on
+		/datum/design/autolathe/ammo/pistol_ammobox/practice,
+		/datum/design/autolathe/ammo/magnum_ammobox/practice,
+		/datum/design/autolathe/ammo/srifle_ammobox_small/practice,
+		/datum/design/autolathe/ammo/clrifle_ammobox_small/practice,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/practice
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms
@@ -467,10 +498,8 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/pistol_ammobox,
-		/datum/design/autolathe/ammo/pistol_ammobox/practice,
 		/datum/design/autolathe/ammo/pistol_ammobox/rubber,
 		/datum/design/autolathe/ammo/magnum_ammobox,
-		/datum/design/autolathe/ammo/magnum_ammobox/practice,
 		/datum/design/autolathe/ammo/magnum_ammobox/rubber,
 	)
 
@@ -481,17 +510,14 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/srifle_ammobox_small,
-		/datum/design/autolathe/ammo/srifle_ammobox_small/practice,
 		/datum/design/autolathe/ammo/srifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/srifle_ammobox,
 		/datum/design/autolathe/ammo/srifle_ammobox/rubber,
 		/datum/design/autolathe/ammo/clrifle_ammobox_small,
-		/datum/design/autolathe/ammo/clrifle_ammobox_small/practice,
 		/datum/design/autolathe/ammo/clrifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/clrifle_ammobox,
 		/datum/design/autolathe/ammo/clrifle_ammobox/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small,
-		/datum/design/autolathe/ammo/lrifle_ammobox_small/practice,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox,
 	)
@@ -582,11 +608,11 @@
 		/datum/design/autolathe/ammo/lrifle/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox,
 		/datum/design/autolathe/sec/silencer,						//misc
-		/datum/design/autolathe/clothing/excelsior_armor,
+		/datum/design/autolathe/clothing/excelsior_armor
 	)
 
-// G U N S (minus excelsior and research)
-// Pack is used when there is more than one gun on the disk
+// G U N S (minus research but with excelsior included for reasons unknown)
+// "Pack" in name is used when there is more than one gun on the disk
 
 // .35 PISTOLS + REVOLVERS
 
@@ -600,10 +626,10 @@
 		/datum/design/autolathe/gun/olivaw,
 		/datum/design/autolathe/gun/clarissa,
 		/datum/design/autolathe/gun/havelock,
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
-		/datum/design/autolathe/ammo/sl_pistol/practice,
-		/datum/design/autolathe/ammo/sl_pistol/rubber,
+		/datum/design/autolathe/ammo/sl_pistol,
+		/datum/design/autolathe/ammo/sl_pistol/rubber
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58
@@ -614,8 +640,8 @@
 	designs = list(
 		/datum/design/autolathe/gun/mk58,
 		/datum/design/autolathe/gun/mk58_wood,
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
-		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt
@@ -625,8 +651,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/colt, //"FS HG .35 Auto \"Colt M1911\""
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
-		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced
@@ -636,8 +662,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/mandella, // "FS HG .25 Caseless \"Mandella\""
-		/datum/design/autolathe/ammo/cspistol/practice,
-		/datum/design/autolathe/ammo/cspistol/rubber,
+		/datum/design/autolathe/ammo/cspistol,
+		/datum/design/autolathe/ammo/cspistol/rubber
 	)
 
 // .40 REVOLVERS
@@ -649,8 +675,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/revolver, // "FS REV .40 \"Miller\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
-		/datum/design/autolathe/ammo/sl_magnum/rubber,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/rubber
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul
@@ -660,8 +686,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/revolver_consul, // "FS REV .40 \"Consul\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
-		/datum/design/autolathe/ammo/sl_magnum/rubber,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/rubber
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard
@@ -671,8 +697,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/revolver_deckard, // "FS REV .40 \"Deckard\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
-		/datum/design/autolathe/ammo/sl_magnum/rubber,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/rubber
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_mateba
@@ -682,8 +708,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/revolver_mateba, // "FS REV .40 Magnum \"Mateba\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
-		/datum/design/autolathe/ammo/sl_magnum/rubber,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/rubber
 		)
 
 // .40 PISTOLS
@@ -695,8 +721,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/lamia, // "FS HG .40 \"Lamia\""
-		/datum/design/autolathe/ammo/mg_magnum/practice,
-		/datum/design/autolathe/ammo/mg_magnum/rubber,
+		/datum/design/autolathe/ammo/mg_magnum,
+		/datum/design/autolathe/ammo/mg_magnum/rubber
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_deagle
@@ -706,8 +732,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/avasarala, // "FS HG .40 \"Avasarala\""
-		/datum/design/autolathe/ammo/mg_magnum/practice,
-		/datum/design/autolathe/ammo/mg_magnum/rubber,
+		/datum/design/autolathe/ammo/mg_magnum,
+		/datum/design/autolathe/ammo/mg_magnum/rubber
 		)
 
 // .50 SHOTGUNS
@@ -720,8 +746,8 @@
 	designs = list(
 		/datum/design/autolathe/gun/doublebarrel, // "double-barreled shotgun"
 		/datum/design/autolathe/ammo/shotgun_beanbag,
-		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kammerer
@@ -732,8 +758,8 @@
 	designs = list(
 		/datum/design/autolathe/gun/pump_shotgun, // "FS SG \"Kammerer\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
-		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_regulator
@@ -744,8 +770,8 @@
 	designs = list(
 		/datum/design/autolathe/gun/regulator, // "NT SG \"Regulator 1000\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
-		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone
@@ -756,8 +782,8 @@
 	designs = list(
 		/datum/design/autolathe/gun/gladstone, // "FS SG \"Gladstone\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
-		/datum/design/autolathe/ammo/shotgun_blanks,
-		/datum/design/autolathe/ammo/shotgun_flash,
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun
 		)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug
@@ -767,7 +793,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/bojevic, // "SA SG \"Bojevic\""
-		/datum/design/autolathe/ammo/m12beanbag, // Never add tazershells, for love of god
+		/datum/design/autolathe/ammo/m12beanbag,
 		/datum/design/autolathe/ammo/m12pellet,
 		/datum/design/autolathe/ammo/m12slug,
 		)
@@ -781,8 +807,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/paco, // "FS HG .35 \"Paco\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight
@@ -792,8 +818,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/straylight, // "FS SMG .35 \"Straylight\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly
@@ -803,8 +829,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/molly, // "FS MP .35 \"Molly\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric
@@ -814,8 +840,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/zoric, // "SA SMG .40 \"Zoric\""
-		/datum/design/autolathe/ammo/msmg/practice,
-		/datum/design/autolathe/ammo/msmg/rubber,
+		/datum/design/autolathe/ammo/msmg,
+		/datum/design/autolathe/ammo/msmg/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides
@@ -825,8 +851,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/atreides, // "FS SMG .35 \"Atreides\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd
@@ -837,7 +863,7 @@
 	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/drozd,
-		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like means of production
+		/datum/design/autolathe/ammo/msmg,
 		/datum/design/autolathe/ammo/msmg/rubber
 	)
 
@@ -850,8 +876,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/z8, // "FS CAR .20 \"Z8 Bulldog\""
-		/datum/design/autolathe/ammo/srifle/practice,
-		/datum/design/autolathe/ammo/srifle/rubber,
+		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/srifle/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_wintermute
@@ -861,21 +887,21 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/wintermute, // "FS BR .20 \"Wintermute\""
-		/datum/design/autolathe/ammo/srifle/practice,
-		/datum/design/autolathe/ammo/srifle/rubber,
+		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/srifle/rubber
 	)
 
 // .25 Caseless
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol
-	disk_name = "Frozen Star - .25 Sol Caseless SMG Pack"
+	disk_name = "Frozen Star - .25 Sol Caseless SMG"
 	icon_state = "frozenstar"
 
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/sol, // "FS CAR .25 caseless \"Sol\""
-		/datum/design/autolathe/ammo/ihclrifle/practice,
-		/datum/design/autolathe/ammo/ihclrifle/rubber,
+		/datum/design/autolathe/ammo/ihclrifle,
+		/datum/design/autolathe/ammo/ihclrifle/rubber
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/dallas
@@ -908,8 +934,8 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/ak47_fs, // "FS AR .30 \"Kalashnikov\""
-		/datum/design/autolathe/ammo/lrifle/practice,
-		/datum/design/autolathe/ammo/lrifle/rubber,
+		/datum/design/autolathe/ammo/lrifle,
+		/datum/design/autolathe/ammo/lrifle/rubber
 	)
 
 // Heavy
@@ -922,7 +948,7 @@
 	designs = list(
 		/datum/design/autolathe/gun/heavysniper, // "NT AMR .60 \"Penetrator\""
 		/datum/design/autolathe/ammo/antim,
-		/datum/design/autolathe/ammo/box_antim,
+		/datum/design/autolathe/ammo/box_antim
 	)
 
 
@@ -933,7 +959,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/mg_pk, // "SA MG .30 \"Pulemyot Kalashnikova\""
-		/datum/design/autolathe/ammo/lrifle_pk,
+		/datum/design/autolathe/ammo/lrifle_pk
 	)
 
 // Grenade Launchers
@@ -944,7 +970,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/grenade_launcher, // "NT GL \"Protector\""
+		/datum/design/autolathe/gun/grenade_launcher // "NT GL \"Protector\""
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar
@@ -953,7 +979,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/grenade_launcher_lenar, // "FS GL \"Lenar\""
+		/datum/design/autolathe/gun/grenade_launcher_lenar // "FS GL \"Lenar\""
 	)
 
 // ENERGY SMALL ARMS
@@ -965,7 +991,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/taser, // "NT SP \"Counselor\""
-		/datum/design/autolathe/cell/small/high,
+		/datum/design/autolathe/cell/small/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose
@@ -975,7 +1001,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/energygun, // "FS PDW E \"Spider Rose\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_martin
@@ -985,7 +1011,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/energygun_martin, // "FS PDW E \"Martin\""
-		/datum/design/autolathe/cell/small/high,
+		/datum/design/autolathe/cell/small/high
 	)
 
 // ENERGY ARMS
@@ -994,18 +1020,18 @@
 	disk_name = "NeoTheology Armory - Nemesis Energy Crossbow"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 4 //cut in half uses because it doesn't have any ammo
 	designs = list(
-		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\"" - self charging, no cell needed
+		/datum/design/autolathe/gun/energy_crossbow // "NT EC \"Nemesis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
 	disk_name = "NeoTheology Armory - Themis Energy Crossbow"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 4
 	designs = list(
-		/datum/design/autolathe/gun/large_energy_crossbow, // "NT EC \"Themis\"" - self charging, no cell needed
+		/datum/design/autolathe/gun/large_energy_crossbow // "NT EC \"Themis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall
@@ -1015,7 +1041,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/laser, // "NT LG \"Lightfall\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_valkirye
@@ -1025,7 +1051,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/sniperrifle, //"NT MER \"Valkyrie\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon
@@ -1035,7 +1061,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/ionrifle, // "NT IR \"Halicon\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 // PLASMA ARMS
@@ -1047,7 +1073,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/plasma/dominion, //"NT PR \"Dominion\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger
@@ -1057,7 +1083,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/plasma/destroyer, // "NT PR \"Purger\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad
@@ -1067,7 +1093,7 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/plasma/cassad, // "FS PR \"Cassad\""
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high
 	)
 
 // SPECIAL
@@ -1079,6 +1105,6 @@
 	license = 8
 	designs = list(
 		/datum/design/autolathe/gun/dart_gun, // Z-H P Artemis"
-		/datum/design/autolathe/ammo/dart_mag,
+		/datum/design/autolathe/ammo/dart_mag
 	)
 
