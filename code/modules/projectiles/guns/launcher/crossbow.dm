@@ -56,6 +56,7 @@
 	fire_delay = 25
 	slot_flags = SLOT_BACK
 	restrict_safety = TRUE
+	twohanded = TRUE
 
 	var/obj/item/bolt
 	var/tension = 0                         // Current draw on the bow.

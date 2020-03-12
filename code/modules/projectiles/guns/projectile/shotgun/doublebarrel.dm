@@ -22,7 +22,7 @@
 	price_tag = 1500
 	one_hand_penalty = 5
 	var/bolt_open = 0
-
+	twohanded = TRUE
 	burst_delay = 0
 	firemodes = list(
 		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),

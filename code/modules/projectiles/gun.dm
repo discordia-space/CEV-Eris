@@ -65,6 +65,7 @@
 	var/projectile_color //Set by a firemode. Sets the fired projectiles color
 
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
+	var/recentwield = 0 // to prevent spammage
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -187,7 +188,9 @@
 			return FALSE
 	if(twohanded)
 		if(!wielded)
-			to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand"))
+			if (world.time >= recentwield + 1 SECONDS)
+				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
+				recentwield = world.time
 			return FALSE
 
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling

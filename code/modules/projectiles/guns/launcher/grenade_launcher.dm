@@ -18,6 +18,7 @@
 	var/list/grenades = new/list()
 	var/max_grenades = 5 //holds this + one in the chamber
 	zoom_factor = 2.0
+	twohanded = TRUE
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/launcher/grenade/proc/pump(mob/user as mob)
@@ -105,7 +106,7 @@
 	force = 5
 	max_grenades = 0
 	safety = FALSE
-
+	twohanded = FALSE
 /obj/item/weapon/gun/launcher/grenade/underslung/attack_self()
 	return
 

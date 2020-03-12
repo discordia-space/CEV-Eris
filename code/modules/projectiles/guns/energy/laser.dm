@@ -16,13 +16,14 @@
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
+	twohanded = TRUE
 
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = TRUE
 	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
-
+	twohanded = FALSE
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
 	desc = "A modified version of \"NeoTheology\" brand laser carbine, this one fires less concentrated energy bolts, designed for target practice."
@@ -48,7 +49,7 @@ obj/item/weapon/gun/energy/retro
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
-
+	twohanded = TRUE
 /obj/item/weapon/gun/energy/captain
 	name = "NT LG \"Destiny\""
 	icon = 'icons/obj/guns/energy/capgun.dmi'
@@ -69,6 +70,7 @@ obj/item/weapon/gun/energy/retro
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
+	twohanded = FALSE
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
@@ -87,7 +89,7 @@ obj/item/weapon/gun/energy/retro
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
 	one_hand_penalty = 5
-
+	twohanded = TRUE
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -96,3 +98,5 @@ obj/item/weapon/gun/energy/retro
 	recharge_time = 10
 	safety = FALSE
 	restrict_safety = TRUE
+	twohanded = FALSE
+	

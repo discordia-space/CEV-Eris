@@ -18,7 +18,8 @@
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
 	recoil_buildup = 6
 	silencer_type = /obj/item/weapon/silencer
-
+	twohanded = FALSE
+	
 	firemodes = list(
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY

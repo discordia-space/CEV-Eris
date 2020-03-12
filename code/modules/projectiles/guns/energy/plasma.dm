@@ -17,6 +17,7 @@
 	charge_cost = 20 //Gives us 40 shots per high medium-sized cell
 	recoil_buildup = 1 //pulse weapons have a bit more recoil
 	one_hand_penalty = 10
+	twohanded = TRUE
 
 	firemodes = list(
 		list(mode_name="maim", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=null, charge_cost=null, icon="stun", projectile_color = "#0000FF"),

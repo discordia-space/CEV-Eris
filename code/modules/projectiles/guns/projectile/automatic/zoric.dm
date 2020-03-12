@@ -18,6 +18,7 @@
 	damage_multiplier = 1		 //32 lethal, 35 HV //damage
 	penetration_multiplier = 0.2 //3  lethal, 4  HV //AP
 	recoil_buildup = 8
+	twohanded = FALSE
 
 	firemodes = list(
 		FULL_AUTO_300,
