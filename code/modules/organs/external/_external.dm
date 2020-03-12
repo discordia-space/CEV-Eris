@@ -77,26 +77,27 @@
 	// Used for spawned robotic organs
 	var/default_description = null
 
-/obj/item/organ/external/New(mob/living/carbon/holder, datum/organ_description/OD)
-	..(holder)
-
+/obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
 		set_description(OD)
 	else if(default_description)
 		set_description(new default_description)
 
-	if(owner)
-		replaced(owner)
+	..(holder)
+
+	if(istype(holder))
 		sync_colour_to_human(owner)
 
 	update_icon()
 
 /obj/item/organ/external/Destroy()
-	for(var/obj/item/organ/O in children + internal_organs)
+	for(var/obj/item/organ/O in (children | internal_organs))
 		qdel(O)
 
-	if(module)
-		QDEL_NULL(module)
+	children.Cut()
+	internal_organs.Cut()
+
+	QDEL_NULL(module)
 
 	update_bionics_hud()
 
@@ -148,7 +149,8 @@
 		module.organ_installed(src, owner)
 
 /obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE)
-	parent.children -= src
+	if(parent)
+		parent.children -= src
 
 	var/mob/living/carbon/human/victim = owner
 
@@ -175,12 +177,13 @@
 	if(module)
 		module.organ_removed(src, owner)
 
-	release_restraints()
+	if(!(owner.status_flags & REBUILDING_ORGANS))
+		release_restraints()
 
-	var/obj/item/dropped = null
-	for(var/slot in drop_on_remove)
-		dropped = owner.get_equipped_item(slot)
-		owner.drop_from_inventory(dropped)
+		var/obj/item/dropped = null
+		for(var/slot in drop_on_remove)
+			dropped = owner.get_equipped_item(slot)
+			owner.drop_from_inventory(dropped)
 
 	for(var/obj/item/organ/organ in children + internal_organs)
 		organ.removed_mob(user)

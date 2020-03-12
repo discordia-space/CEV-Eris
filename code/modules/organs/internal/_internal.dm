@@ -1,11 +1,9 @@
 /obj/item/organ/internal
 	var/list/owner_verbs = list()
 
-/obj/item/organ/internal/install()
+/obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..()
-	if(owner)
-		for(var/proc_path in owner_verbs)
-			verbs += proc_path
+	update_icon()
 
 /obj/item/organ/internal/Process()
 	..()

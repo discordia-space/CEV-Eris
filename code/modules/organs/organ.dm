@@ -48,38 +48,28 @@
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(mob/living/carbon/holder, datum/organ_description/OD)
+/obj/item/organ/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..(holder)
-	var/internal = !istype(src, /obj/item/organ/external)
 	create_reagents(5)
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
+
 	if(istype(holder))
-		src.owner = holder
 		species = all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = all_species[dna.species]
+
+			if(!blood_DNA)
+				blood_DNA = list()
+			blood_DNA[dna.unique_enzymes] = dna.b_type
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
-		var/mob/living/carbon/human/H = holder
-		if(istype(H))
-			if(internal)
-				var/obj/item/organ/external/E = H.get_organ(parent_organ)
-				if(E)
-					if(E.internal_organs == null)
-						E.internal_organs = list()
-					E.internal_organs |= src
-			if(dna)
-				if(!blood_DNA)
-					blood_DNA = list()
-				blood_DNA[dna.unique_enzymes] = dna.b_type
-				if(internal)
-					H.internal_organs_by_name[src.organ_tag] = src
-		if(internal)
-			holder.internal_organs |= src
-	if(internal)
-		update_icon()
+
+		if(parent_organ)
+			replaced(holder.get_organ(parent_organ))
+		else
+			replaced_mob(holder)
 
 // Surgery hooks
 /obj/item/organ/attack_self(mob/living/user)
@@ -327,7 +317,7 @@
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
-	if(vital)
+	if(vital && !(owner.status_flags & REBUILDING_ORGANS))
 		if(user)
 			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()

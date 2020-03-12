@@ -78,11 +78,6 @@
 	if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
 
-		// Technical limitation
-		// TODO: fix this
-		if(!owner)
-			return FALSE
-
 		var/o_a =  (organ.gender == PLURAL) ? "" : "a "
 		var/o_do = (organ.gender == PLURAL) ? "don't" : "doesn't"
 
@@ -90,17 +85,14 @@
 			to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body part."))
 			return FALSE
 
-		if(!owner.species.has_organ[organ.organ_tag])
-			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ.organ_tag]."))
-			return FALSE
-
 		if(organ_tag != organ.parent_organ)
 			to_chat(user, SPAN_WARNING("\The [organ.organ_tag] [o_do] normally go in \the [name]."))
 			return FALSE
 
-		if(owner.internal_organs_by_name[organ.organ_tag])
-			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][organ.organ_tag]."))
-			return FALSE
+		for(var/obj/item/organ/internal/existing_organ in internal_organs)
+			if(existing_organ.organ_tag == organ.organ_tag)
+				to_chat(user, SPAN_WARNING("\The [name] already has [o_a][organ.organ_tag] in it."))
+				return FALSE
 
 		return TRUE
 

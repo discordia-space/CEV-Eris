@@ -59,16 +59,17 @@
 /obj/item/organ/internal/brain/removed_mob(mob/living/user)
 	name = "[owner.real_name]'s brain"
 
-	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
-	if(borer)
-		borer.detatch() //Should remove borer if the brain is removed - RR
+	if(!(owner.status_flags & REBUILDING_ORGANS))
+		var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+		if(borer)
+			borer.detatch() //Should remove borer if the brain is removed - RR
 
-	transfer_identity(owner)
+		transfer_identity(owner)
 	..()
 
 /obj/item/organ/internal/brain/replaced_mob(mob/living/carbon/target)
 	..()
-	if(owner.key)
+	if(owner.key && !(owner.status_flags & REBUILDING_ORGANS))
 		owner.ghostize()
 
 	if(brainmob)

@@ -54,8 +54,12 @@
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
+
+	// Prevent death from organ removal
+	status_flags |= REBUILDING_ORGANS
 	for(var/organ in organs)
 		qdel(organ)
+	organs.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -1110,6 +1114,8 @@ var/list/rank_prefix = list(\
 	if(!species)
 		return 0
 
+	status_flags |= REBUILDING_ORGANS
+
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
@@ -1188,6 +1194,7 @@ var/list/rank_prefix = list(\
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
 
+	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
 	update_body()
