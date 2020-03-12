@@ -516,11 +516,14 @@
 		ui.open()
 		ui.set_auto_update(1)
 
+/obj/item/weapon/rig/proc/get_species_icon()
+	return 'icons/mob/rig_back.dmi'
+
 /obj/item/weapon/rig/update_icon(var/update_mob_icon)
 
 	overlays.Cut()
 	if(!mob_icon || update_mob_icon)
-		var/species_icon = 'icons/mob/rig_back.dmi'
+		var/species_icon = get_species_icon()
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
 		mob_icon = image("icon" = species_icon, "icon_state" = icon_state)
