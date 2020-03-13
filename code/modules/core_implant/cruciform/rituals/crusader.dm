@@ -54,7 +54,7 @@
 	phrase = "Per fidem enim ambulamus et non per speciem."
 	desc = "Knocks over everybody without cruciform in the view range. Psy-wave is too powerful, speaker can be knocked too."
 	cooldown = TRUE
-	cooldown_time = 2 Minutes
+	cooldown_time = 2 MINUTES
 	cooldown_category = "flash"
 
 /datum/ritual/cruciform/crusader/flash/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C)
