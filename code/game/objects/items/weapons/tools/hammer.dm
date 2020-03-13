@@ -23,6 +23,7 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 6, MATERIAL_PLASTIC = 1)
 	switched_on_qualities = list(QUALITY_HAMMERING = 45)
 	switched_off_qualities = list(QUALITY_HAMMERING = 30)
+	toggleable = TRUE
 	armor_penetration = ARMOR_PEN_MODERATE
 	toggleable = TRUE
 	degradation = 0.7
@@ -30,32 +31,20 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 	max_upgrades = 1
 
-/obj/item/weapon/tool/hammer/powered_hammer/turn_on(mob/user)
-	if(!cell)
-		return 0
-	if(cell.charge > use_power_cost)
-		to_chat(user, SPAN_NOTICE("You switch [src] on."))
-		..()
-	else
-		item_state = initial(item_state)
-		to_chat(user, SPAN_WARNING("[src] seems to have a dead cell."))
-
-/obj/item/weapon/tool/hammer/powered_hammer/turn_off(mob/user)
-
-	to_chat(user, SPAN_NOTICE("You switch [src] off."))
-	..()
-
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer
 	name = "One Star hammer"
 	desc = "Used for applying immeasurable blunt force to anything in your way."
-	icon_state = "onestar_hammer"
-	item_state = "onestar_hammer"
+	icon_state = "onehammer"
+	item_state = "onehammer"
+	wielded_icon = "onehammer_on"
 	switched_on_force = WEAPON_FORCE_BRUTAL
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 3, MATERIAL_DIAMOND = 3)
 	switched_on_qualities = list(QUALITY_HAMMERING = 60)
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)
+	toggleable = TRUE
 	armor_penetration = ARMOR_PEN_EXTREME
 	degradation = 0.6
 	use_power_cost = 1.5
