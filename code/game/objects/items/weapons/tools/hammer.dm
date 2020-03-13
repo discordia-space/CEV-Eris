@@ -17,11 +17,12 @@
 	desc = "Used for applying excessive blunt force to a surface."
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
-	force = WEAPON_FORCE_DANGEROUS
+	switched_on_force = WEAPON_FORCE_DANGEROUS
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 6, MATERIAL_PLASTIC = 1)
-	tool_qualities = list(QUALITY_HAMMERING = 45)
+	switched_on_qualities = list(QUALITY_HAMMERING = 45)
+	switched_off_qualities = list(QUALITY_HAMMERING = 30)
 	armor_penetration = ARMOR_PEN_MODERATE
 	toggleable = TRUE
 	degradation = 0.7
@@ -35,12 +36,13 @@
 	icon_state = "onehammer"
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
-	force = WEAPON_FORCE_BRUTAL
+	switched_on_force = WEAPON_FORCE_BRUTAL
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 3, MATERIAL_DIAMOND = 3)
-	tool_qualities = list(QUALITY_HAMMERING = 60)
+	switched_on_qualities = list(QUALITY_HAMMERING = 60)
+	switched_off_qualities = list(QUALITY_HAMMERING = 35)
 	armor_penetration = ARMOR_PEN_EXTREME
 	degradation = 0.6
 	use_power_cost = 1.5
