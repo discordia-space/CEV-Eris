@@ -20,7 +20,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 1.3
 	recoil_buildup = 8
-	one_hand_penalty = 10
+	one_hand_penalty = 15 //automatic rifle level
 
 
 	firemodes = list(

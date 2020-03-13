@@ -16,7 +16,6 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
 	zoom_factor = 0 //Default zoom factor you want on all automatic weapons.
-	twohanded = TRUE
 
 	firemodes = list(
 		FULL_AUTO_400,

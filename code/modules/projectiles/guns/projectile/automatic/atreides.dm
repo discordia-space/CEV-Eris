@@ -20,7 +20,7 @@
 	damage_multiplier = 0.8
 	recoil_buildup = 4
 	silencer_type = /obj/item/weapon/silencer
-	twohanded = FALSE
+	one_hand_penalty = 5 //smg level
 
 	firemodes = list(
 		FULL_AUTO_400,
