@@ -19,7 +19,6 @@
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 50
-	chance = 33
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
@@ -31,7 +30,6 @@
 	phrase = "Panem nostrum cotidianum da nobis hodie"
 	desc = "Litany of piligrims, helps better withstand hunger."
 	power = 50
-	chance = 33
 
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.nutrition += 100
@@ -44,7 +42,6 @@
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
-	chance = 60
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
@@ -53,7 +50,7 @@
 
 		var/obj/item/weapon/implant/core_implant/cruciform/CI = target.get_core_implant()
 
-		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
+		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST))
 			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!"))
 	return TRUE
 
