@@ -20,8 +20,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 2200
 	recoil_buildup = 20
-	one_hand_penalty = 20
-	twohanded = TRUE
+	one_hand_penalty = 15 //full sized shotgun level
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -32,7 +31,7 @@
 	if(world.time >= recentpump + 10  & wielded)
 		pump(user)
 		recentpump = world.time
-	else 
+	else
 		to_chat(user, SPAN_DANGER("You need to wield this gun to pump it!"))
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)

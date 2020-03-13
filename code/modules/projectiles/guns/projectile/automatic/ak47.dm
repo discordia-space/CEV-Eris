@@ -23,7 +23,7 @@
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	recoil_buildup = 10
-	one_hand_penalty = 10
+	one_hand_penalty = 15 //automatic rifle level
 
 	firemodes = list(
 		FULL_AUTO_400,

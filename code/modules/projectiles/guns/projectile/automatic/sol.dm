@@ -16,7 +16,7 @@
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 13
-	one_hand_penalty = 10
+	one_hand_penalty = 5 //bullpup rifle (this one is smaller and carbine, so it's 5)
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
@@ -34,7 +34,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
 	..()
-	
+
 	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
 	set_item_state(ammo_magazine ?  "-full" : "", back = TRUE)
 	overlays.Cut()

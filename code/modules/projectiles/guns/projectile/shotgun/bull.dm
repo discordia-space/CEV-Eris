@@ -19,8 +19,7 @@
 	price_tag = 2800 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
-	one_hand_penalty = 5
-	twohanded = TRUE
+	one_hand_penalty = 10 //compact shotgun level
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
@@ -77,7 +76,7 @@
 	if(reload)
 		if (wielded)
 			pump(user)
-		else 
+		else
 			to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
 	else
 		if(firemodes.len > 1)
