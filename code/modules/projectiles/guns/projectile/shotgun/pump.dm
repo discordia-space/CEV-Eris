@@ -19,8 +19,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 2200
 	recoil_buildup = 20
-	one_hand_penalty = 20
-	twohanded = TRUE
+	one_hand_penalty = 15 //full sized shotgun level
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
