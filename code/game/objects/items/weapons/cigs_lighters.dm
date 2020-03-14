@@ -231,7 +231,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 	icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	icon_off = "cigoff"
-	type_butt = /obj/item//cigbutt
+	type_butt = /obj/item/trash/cigbutt
 	chem_volume = 15
 	smoketime = 300
 	preloaded_reagents = list("nicotine" = 6)
