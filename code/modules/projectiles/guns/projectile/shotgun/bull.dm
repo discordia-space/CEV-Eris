@@ -16,6 +16,7 @@
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
+	var/recentpump = 0 // to prevent spammage
 	price_tag = 2800 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
@@ -75,9 +76,9 @@
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
 	if(reload)
-		if (wielded)
+		if(wielded)
 			pump(user)
-		else 
+		else if (world.time >= recentpump + 5)
 			to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
 	else
 		if(firemodes.len > 1)

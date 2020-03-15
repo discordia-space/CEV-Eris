@@ -29,11 +29,11 @@
 	return null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
-	if(world.time >= recentpump + 10  & wielded)
+	if(wielded)
 		pump(user)
+	else if(world.time >= recentpump + 5)
+		to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
 		recentpump = world.time
-	else 
-		to_chat(user, SPAN_DANGER("You need to wield this gun to pump it!"))
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
 	var/turf/newloc = get_turf(src)
