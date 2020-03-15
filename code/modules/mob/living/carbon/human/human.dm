@@ -250,14 +250,15 @@ var/list/rank_prefix = list(\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
 	"Neotheology Preacher" = "Presbyter",\
-	"NeoTheology Acolyte" = "Archdeacon",\
-	"NeoTheology Inquisitor" = "Archimandrite",\
-	"NeoTheology Agrolyte" = "Deacon",\
-	"NeoTheology Custodian" = "Deacon",\
+	"NeoTheology Acolyte" = "Protodeacon",\
+	"NeoTheology Inquisitor" = "Heiromonk",\
+	"NeoTheology Agrolyte" = "Liturge",\
+	"NeoTheology Custodian" = "Archdeacon",\
 	"Moebius Doctor" = "Doctor",\
 	"Moebius Paramedic" = "EMT",\
 	"Technomancer Exultant" = "Exultant",\
 	"Guild Merchant" = "Merchant",\
+	"Ironhammer Medical Specialist" = "Specialist",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
