@@ -249,6 +249,13 @@ var/list/rank_prefix = list(\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
+	"Neotheology Preacher" = "Priest",\
+	"NeoTheology Acolyte" = "Deacon",\
+	"NeoTheology Inquisitor" = "Bishop",\
+	"Moebius Doctor" = "Doctor",\
+	"Moebius Paramedic" = "EMT",\
+	"Technomancer Exultant" = "Exultant",\
+	"Guild Merchant" = "Merchant",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
