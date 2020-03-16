@@ -45,11 +45,11 @@
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
-		if(target == H)
-		var/area/t = get_area(H) 
+		if(target == H) 
 			continue
 
 		var/obj/item/weapon/implant/core_implant/cruciform/CI = target.get_core_implant()
+		var/area/t = get_area(H)
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)))
 			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
