@@ -420,6 +420,7 @@
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
+
 /obj/item/rig_module/autodoc/Process()
 	if(..())
 		autodoc_processor.stop()
