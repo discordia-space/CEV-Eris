@@ -94,8 +94,7 @@
 
 	// Grab all the supplied components.
 	if(source_frame)
-		if(source_frame.set_name)
-			name = source_frame.set_name
+		if(source_frame.set_name) name = source_frame.set_name
 		if(source_frame.arms)
 			source_frame.arms.forceMove(src)
 			arms = source_frame.arms
@@ -108,8 +107,7 @@
 		if(source_frame.body)
 			source_frame.body.forceMove(src)
 			body = source_frame.body
-		if(source_frame.material)
-			material = source_frame.material
+		if(source_frame.material) material = source_frame.material
 
 	updatehealth()
 

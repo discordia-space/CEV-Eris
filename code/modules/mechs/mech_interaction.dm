@@ -149,9 +149,8 @@
 		for(var/hardpoint in hardpoints)
 			if(hardpoint != selected_hardpoint)
 				continue
-			var/obj/screen/movable/exosuit/hardpoints_show/H = get_hardpoints_HUD()
+			var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[hardpoint]
 			if(istype(H))
-				H.myhardpoint = null
 				H.icon_state = "hardpoint"
 				break
 		selected_system = null
@@ -206,7 +205,8 @@
 			if(!silent)
 				to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 			return
-		HUDneed["mech_hud_open"].toggled()
+		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+		if(H && istype(H)) H.toggled()
 		if(!silent)
 			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
 	else
@@ -306,7 +306,8 @@
 		return
 	hatch_closed = !hatch_closed
 	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
-	HUDneed["mech_hud_open"].update_icon()
+	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+	if(H && istype(H)) H.update_icon()
 	update_icon()
 	return
 

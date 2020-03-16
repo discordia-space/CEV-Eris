@@ -2,7 +2,7 @@
 #define MECHA_DECALS_ICON					'icons/mecha2/mech_decals.dmi'
 #define MECHA_PARTS_HELD_ICON				'icons/mecha2/mech_parts_held.dmi'
 #define MECHA_PARTS_ICON					'icons/mecha2/mech_parts.dmi'
-#define MECHA_WRECKAGE_ICON				'icons/mecha2/mech_wreckage.dmi'
+#define MECHA_WRECKAGE_ICON					'icons/mecha2/mech_wreckage.dmi'
 #define MECHA_EQUIPMENT_ICON				'icons/mecha2/mech_equipment.dmi'
 #define MECHA_HUD_ICON						'icons/mecha2/mech_hud.dmi'
 
@@ -95,3 +95,31 @@ GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON)
 #undef MECHA_PART_ITEM_ICON
 #undef MECHA_EQUIPMENT_ICON
 #undef MECHA_HUD_ICON
+
+#undef HARDPOINT_LEFT_HAND		
+#undef HARDPOINT_RIGHT_HAND	
+#undef HARDPOINT_LEFT_SHOULDER	
+#undef HARDPOINT_RIGHT_SHOULDER
+#undef HARDPOINT_HEAD
+
+#undef MECH_SOFTWARE_UTILITY	
+#undef MECH_SOFTWARE_MEDICAL	
+#undef MECH_SOFTWARE_WEAPONS	
+#undef MECH_SOFTWARE_ADVWEAPONS
+#undef MECH_SOFTWARE_ENGINEERING
+
+#undef EMP_HUD_DISRUPT 				
+#undef EMP_MOVE_DISRUPT 				
+#undef EMP_ATTACK_DISRUPT 				
+
+#undef MECH_COMPONENT_DAMAGE_UNDAMAGED
+#undef MECH_COMPONENT_DAMAGE_DAMAGED
+#undef MECH_COMPONENT_DAMAGE_DAMAGED_BAD
+#undef MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL
+
+#undef FRAME_REINFORCED
+#undef FRAME_REINFORCED_SECURE
+#undef FRAME_REINFORCED_WELDED
+
+#undef FRAME_WIRED
+#undef FRAME_WIRED_ADJUSTED

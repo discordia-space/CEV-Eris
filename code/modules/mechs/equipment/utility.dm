@@ -96,9 +96,11 @@
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		set_light(l_max_bright, l_inner_range, l_outer_range)
+		//set_light(l_max_bright, l_inner_range, l_outer_range)
+		set_light(l_outer_range, l_max_bright, "#ffffff")
 	else
 		icon_state = "[initial(icon_state)]"
+		//set_light(0, 0)
 		set_light(0, 0)
 
 #define CATAPULT_SINGLE 1

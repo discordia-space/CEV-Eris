@@ -35,7 +35,7 @@
 	//Realistically a module disappearing without being uninstalled is wrong and a bug or adminbus
 	var/target = null
 	for(var/hardpoint in hardpoints)
-		if(hardpoints[hardpoint]== module_to_forget)
+		if(hardpoints[hardpoint] == module_to_forget)
 			target = hardpoint
 			break
 
@@ -46,19 +46,13 @@
 
 	GLOB.destroyed_event.unregister(module_to_forget, src, .proc/forget_module)
 
-	var/obj/screen/movable/exosuit/hardpoints_show/H = HUDneed["mech_hard_point_selector"]
-	if(H)
-		H.myhardpoint = null
-		H.update_icon()
+	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[target]
+	H.holding = null
 
-	HUDneed -= module_to_forget
-	check_HUDneed()
+	//HUDneed.Remove(target)
+
+	check_HUD()
 	update_icon()
-
-	for(var/thing in pilots)
-		var/mob/pilot = thing
-		if(pilot && pilot.client)
-			pilot.client.screen -= module_to_forget
 
 /mob/living/exosuit/proc/install_system(var/obj/item/system, var/system_hardpoint, var/mob/user)
 
@@ -99,8 +93,16 @@
 	system.forceMove(src)
 	hardpoints[system_hardpoint] = system
 
-	get_hardpoints_HUD()?.myhardpoint = system
+	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
 
+	H.holding = system
+
+/*	system.screen_loc = H.screen_loc
+	system.plane = ABOVE_HUD_PLANE
+	system.layer = ABOVE_HUD_LAYER+1
+
+
+	HUDneed[system_hardpoint] = system*/
 	check_HUD()
 	update_icon()
 
@@ -128,17 +130,14 @@
 	if(istype(ME))
 		ME.uninstalled()
 	system.forceMove(get_turf(src))
-	system.screen_loc = null
-	system.layer = initial(system.layer)
+	/*system.screen_loc = null
+	system.layer = initial(system.layer)*/
 	GLOB.destroyed_event.unregister(system, src, .proc/forget_module)
 
-	reset_hardpoint_HUD()
-	for(var/thing in pilots)
-		var/mob/pilot = thing
-		if(pilot && pilot.client)
-			pilot.client.screen -= system
+	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
+	H.holding = null
 
-	HUDneed -= system
+	//HUDneed -= system_hardpoint
 	check_HUDneed()
 	update_icon()
 

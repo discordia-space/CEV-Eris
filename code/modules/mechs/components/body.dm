@@ -39,6 +39,7 @@
 	. = ..()
 
 /obj/item/mech_component/chassis/update_components()
+	. = ..()
 	diagnostics = locate() in src
 	cell =        locate() in src
 	armour =      locate() in src
