@@ -51,7 +51,7 @@
 				<b style="color:orange">Burn damage: {{:helper.round(value.burn_damage)}} </b>
 			</div><br>
 			{{:helper.link('Fix damage: '+data.damage_cost,         value.damage_picked?'check':null,	{'toggle':'damage',	 'id':value.id},    (value.damage && !data.active)?		null:'disabled')}}
-			{{:helper.link('Treat wounds: '+data.wound_cost,        value.wound_picked?'check':null,	{'toggle':'wound',	 'id':value.id},    (value.wound && !data.active)?		null:'disabled')}}
+			{{:helper.link('Close wounds: '+data.wound_cost,        value.wound_picked?'check':null,	{'toggle':'wound',	 'id':value.id},    (value.wound && !data.active)?		null:'disabled')}}
 			{{:helper.link('Close IB: '+data.ib_cost,               value.ib_picked?'check':null,		{'toggle':'ib',		 'id':value.id},    (value.ib && !data.active)?			null:'disabled')}}
 			{{:helper.link('Shrapnel removal: '+data.shrapnel_cost, value.shrapnel_picked?'check':null,	{'toggle':'shrapnel','id':value.id},    (value.shrapnel && !data.active)?	null:'disabled')}}
 			{{:helper.link('Mend Fracture: '+data.fracture_cost,    value.fracture_picked?'check':null,	{'toggle':'fracture','id':value.id},    (value.fracture && !data.active)?	null:'disabled')}}
