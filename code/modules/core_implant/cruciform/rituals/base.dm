@@ -41,17 +41,18 @@
 	name = "Entreaty"
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
-	power = 50
+	power = 35
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
 		if(target == H)
+		var/area/t = get_area(H) 
 			continue
 
 		var/obj/item/weapon/implant/core_implant/cruciform/CI = target.get_core_implant()
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)))
-			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!"))
+			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
 	return TRUE
 
 /datum/ritual/cruciform/base/reveal
