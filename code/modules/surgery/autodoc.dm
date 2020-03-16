@@ -22,12 +22,14 @@
 /datum/autodoc_patchnote
 	var/surgery_operations = 0
 	var/obj/item/organ/organ = null
+
 /datum/autodoc_patchnote/proc/Copy(var/blank = TRUE)
 	var/datum/autodoc_patchnote/copy = new()
 	copy.organ = organ
 	if(!blank)
 		copy.surgery_operations = surgery_operations
 	return copy
+
 /datum/autodoc
 	var/list/scanned_patchnotes = list()
 	var/list/picked_patchnotes = list()
@@ -35,7 +37,6 @@
 	var/template_name = "autodoc.tmpl"
 
 	var/active = FALSE
-	var/one_op_run = FALSE
 	var/damage_heal_amount = 30
 	var/processing_speed = 30 SECONDS
 	var/current_step = 1
@@ -49,6 +50,7 @@
 
 /datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
 	patient = human
+
 /datum/autodoc/proc/scan_user()
 	if(active)
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
@@ -109,15 +111,18 @@
 
 /datum/autodoc/proc/process_note(var/datum/autodoc_patchnote/patchnote)
 	if(!patchnote.surgery_operations)
+		to_chat(patient, SPAN_NOTICE("Treatment complete."))
 		return TRUE
 	var/obj/item/organ/external/external = patchnote.organ
 	if(!patchnote.organ)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
+			to_chat(patient, SPAN_NOTICE("Administering anti-toxin to patient."))
 			patient.adjustToxLoss(-damage_heal_amount)
 			if(!patient.getToxLoss())
 				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
 		else if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
+			to_chat(patient, SPAN_NOTICE("Performing dialysis on patient."))
 			var/pumped = 0
 			for(var/datum/reagent/x in patient.reagents.reagent_list)
 				patient.reagents.remove_any(AUTODOC_DIALYSIS_AMOUNT)
@@ -127,12 +132,14 @@
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
+			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
 			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
 			blood.volume += damage_heal_amount
 			if(blood.volume >= patient.vessel.total_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
+		to_chat(patient, SPAN_NOTICE("Treating damage on the patients [external]."))
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/internal = patchnote.organ
 			internal.damage -= damage_heal_amount
@@ -144,12 +151,14 @@
 		if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 
 	else if(patchnote.surgery_operations & AUTODOC_EMBED_OBJECT)
+		to_chat(patient, SPAN_NOTICE("Removing embedded objects from the patients [external]."))
 		for(var/obj/item/weapon/material/shard/shrapnel/shrapnel in external.implants)
 			external.implants -= shrapnel
 			shrapnel.loc = get_turf(patient)
 		patchnote.surgery_operations &= ~AUTODOC_EMBED_OBJECT
 
 	else if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
+		to_chat(patient, SPAN_NOTICE("Closing wounds on the patients [external]."))
 		for(var/datum/wound/wound in external.wounds)
 			if(!wound.internal)
 				wound.bandaged = 1
@@ -160,30 +169,30 @@
 		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
 	else if(patchnote.surgery_operations & AUTODOC_FRACTURE)
+		to_chat(patient, SPAN_NOTICE("Mending fractures in the patients [external]."))
 		external.mend_fracture()
 		patchnote.surgery_operations &= ~AUTODOC_FRACTURE
 
 	else if(patchnote.surgery_operations & AUTODOC_IB)
+		to_chat(patient, SPAN_NOTICE("Treating internal bleeding in the patients [external]."))
 		for(var/datum/wound/wound in external.wounds)
 			if(wound.internal)
 				external.wounds -= wound
 				qdel(wound)
 				external.update_damages()
 		patchnote.surgery_operations &= ~AUTODOC_IB
-	return (one_op_run || !patchnote.surgery_operations)
+	return !patchnote.surgery_operations
 
 /datum/autodoc/Process()
 	if(!patient)
 		stop()
-	if( current_step > picked_patchnotes.len )
+	if(current_step > picked_patchnotes.len)
 		stop()
 		scan_user(patient)
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
-		if(one_op_run)
-			current_step++
-		else if(process_note(picked_patchnotes[current_step]))
+		if(process_note(picked_patchnotes[current_step]))
 			current_step++
 
 /datum/autodoc/proc/fail()
@@ -342,11 +351,12 @@
 	var/processing_cost = 0
 
 	processing_speed = 20 SECONDS
-	one_op_run = TRUE
+
 /datum/autodoc/capitalist_autodoc/New()
 	. = ..()
 	linked_account = department_accounts[DEPARTMENT_MEDICAL]
 	template_name = "autodoc_capitalism.tmpl"
+
 /datum/autodoc/capitalist_autodoc/form_data()
 	var/list/data = ..()
 
@@ -367,6 +377,7 @@
 	data["blood_cost"] = AUTODOC_BLOOD_COST
 
 	return data
+
 /datum/autodoc/capitalist_autodoc/proc/charge(var/amount = 100)
 	if(linked_account && !linked_account.is_valid())
 		to_chat(patient, "Autodoc is out of service. Error code: #0x09")
@@ -409,6 +420,7 @@
 		if( patchnote.surgery_operations & AUTODOC_IB)
 			cost += AUTODOC_IB_COST
 	return cost
+
 /datum/autodoc/capitalist_autodoc/proc/login()
 	if(!patient)
 		patient_account = null
@@ -420,10 +432,12 @@
 			var/attempt_pin = ""
 			attempt_pin = input("Enter pin code", "Autodoc payement") as num
 			patient_account = attempt_account_access(id_card.associated_account_number, attempt_pin, 2)
+
 /datum/autodoc/capitalist_autodoc/start()
 	if(!charge(processing_cost))
 		return
 	..()
+
 /datum/autodoc/capitalist_autodoc/scan_user(mob/living/carbon/human/human)
 	if(!charge(AUTODOC_SCAN_COST))
 		return
