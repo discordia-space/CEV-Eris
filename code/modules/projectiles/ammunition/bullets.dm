@@ -209,6 +209,22 @@
 /obj/item/ammo_casing/shotgun/incendiary/prespawned
 	amount = 5
 
+//// Grenade Shells ////
+
+//obj/item/ammo_casing/grenade
+//	name = "Baton Round"
+//	desc = "A less-lethal rubber round, designed to be fired from grenade launchers"
+//	icon_state = "baton-round"
+//	spent_icon = "grenadeshell"
+//	projectile_type = /obj/item/projectile/bullet/batonround
+//	caliber = CAL_GRENADE
+//	maxamount = 1
+//obj/item/ammo_casing/grenade/blast
+//	name = "blast grenade shell"
+//	desc = "An explosive grenade shell, designed to be fired from grenade launchers"
+//	icon_state = "blast"
+//	projectile_type = 
+
 //// Other ////
 
 /obj/item/ammo_casing/rocket

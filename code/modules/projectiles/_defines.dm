@@ -12,6 +12,7 @@
 #define CAL_CAP "plastic cap"
 #define CAL_ROCKET "rocket propelled grenade"
 #define CAL_DART "chemical dart"
+#define CAL_GRENADE "grenade"
 
 //Gun loading types
 #define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.
