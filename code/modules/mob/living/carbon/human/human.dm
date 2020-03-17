@@ -145,7 +145,7 @@
 	while (b_loss > 0)
 		b_loss -= exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit 
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit 
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
