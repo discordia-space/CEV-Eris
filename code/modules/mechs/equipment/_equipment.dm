@@ -31,6 +31,10 @@
 	else
 		return 0
 
+/obj/item/mech_equipment/Click()
+	. = ..()
+	if(usr && (!owner || !usr.incapacitated() && (usr == owner || usr.loc == owner))) attack_self(usr)
+
 /obj/item/mech_equipment/attack_self(var/mob/user)
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		if(!(owner.get_cell() && owner.get_cell().check_charge(active_power_use * CELLRATE)))

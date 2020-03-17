@@ -147,20 +147,17 @@
 
 	if(selected_hardpoint)
 		for(var/hardpoint in hardpoints)
-			if(hardpoint != selected_hardpoint)
-				continue
+			if(hardpoint != selected_hardpoint) continue
 			var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[hardpoint]
 			if(istype(H))
 				H.icon_state = "hardpoint"
 				break
 		selected_system = null
-	selected_hardpoint = null
+		selected_hardpoint = null
 
 /mob/living/exosuit/proc/check_enter(var/mob/user)
-	if(!user || user.incapacitated())
-		return FALSE
-	if(!user.Adjacent(src))
-		return FALSE
+	if(!user || user.incapacitated())	return FALSE
+	if(!user.Adjacent(src)) 			return FALSE
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 		return FALSE
@@ -173,13 +170,10 @@
 	return TRUE
 
 /mob/living/exosuit/proc/enter(var/mob/user)
-	if(!check_enter(user))
-		return
+	if(!check_enter(user)) return
 	to_chat(user, SPAN_NOTICE("You start climbing into \the [src]..."))
-	if(!do_after(user, 25))
-		return
-	if(!check_enter(user))
-		return
+	if(!do_after(user, 25)) return
+	if(!check_enter(user)) return
 	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
 	user.forceMove(src)
 	LAZYOR(pilots, user)
@@ -192,26 +186,21 @@
 
 /mob/living/exosuit/proc/sync_access()
 	access_card.access = saved_access.Copy()
-	if(sync_access)
-		for(var/mob/pilot in pilots)
-			access_card.access |= pilot.GetAccess()
-			to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
+	if(sync_access) for(var/mob/pilot in pilots)
+		access_card.access |= pilot.GetAccess()
+		to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
 
 /mob/living/exosuit/proc/eject(var/mob/user, var/silent)
-	if(!user || !(user in src.contents))
-		return
+	if(!user || !(user in src.contents)) return
 	if(hatch_closed)
 		if(hatch_locked)
-			if(!silent)
-				to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 			return
 		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 		if(H && istype(H)) H.toggled()
-		if(!silent)
-			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
-	else
-		if(!silent)
-			to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
+		if(!silent) to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+	else if(!silent)
+		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
 //	LAZYREMOVE(user.additional_vision_handlers, src)
@@ -230,16 +219,12 @@
 			return
 
 		var/obj/item/mech_equipment/realThing = thing
-		if(realThing.owner)
-			return
+		if(realThing.owner) return
 
 		var/free_hardpoints = list()
-		for(var/hardpoint in hardpoints)
-			if(hardpoints[hardpoint] == null)
-				free_hardpoints += hardpoint
+		for(var/hardpoint in hardpoints) if(hardpoints[hardpoint] == null) free_hardpoints += hardpoint
 		var/to_place = input("Where would you like to install it?") as null|anything in (realThing.restricted_hardpoints & free_hardpoints)
-		if(install_system(thing, to_place, user))
-			return
+		if(install_system(thing, to_place, user)) return
 		to_chat(user, SPAN_WARNING("\The [src] could not be installed in that hardpoint."))
 		return
 
@@ -248,43 +233,37 @@
 		var/obj/item/device/kit/paint/P = thing
 		SetName(P.new_name)
 		desc = P.new_desc
-		for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
-			comp.decal = P.new_icon
-		if(P.new_icon_file)
-			icon = P.new_icon_file
+		for(var/obj/item/mech_component/comp in list(arms, legs, head, body)) comp.decal = P.new_icon
+		if(P.new_icon_file) icon = P.new_icon_file
 		update_icon()
 		P.use(1, user)
 		return 1
 
-	else
-		if(user.a_intent != I_HURT)
-			if(isMultitool(thing))
-				if(hardpoints_locked)
-					to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
-					return
-
-				var/list/parts = list()
-				for(var/hardpoint in hardpoints)
-					if(hardpoints[hardpoint])
-						parts += hardpoint
-				var/to_remove = input("Which component would you like to remove") as null|anything in parts
-
-				if(remove_system(to_remove, user))
-					update_armor()
-					return
-				to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+	else if(user.a_intent != I_HURT)
+		if(isMultitool(thing))
+			if(hardpoints_locked)
+				to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
 				return
-			else if(isWrench(thing))
-				if(!maintenance_protocols)
-					to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
-					return
 
-				visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
-				if(!do_after(user, 60) || !maintenance_protocols)
-					return
-				visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
-				dismantle()
+			var/list/parts = list()
+			for(var/hardpoint in hardpoints) if(hardpoints[hardpoint]) parts += hardpoint
+			var/to_remove = input("Which component would you like to remove") as null|anything in parts
+
+			if(remove_system(to_remove, user))
+				update_armor()
 				return
+			to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+			return
+		else if(isWrench(thing))
+			if(!maintenance_protocols)
+				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+				return
+
+			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
+			if(!do_after(user, 60) || !maintenance_protocols) return
+			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
+			dismantle()
+			return
 	return ..()
 
 /mob/living/exosuit/attack_hand(var/mob/user)

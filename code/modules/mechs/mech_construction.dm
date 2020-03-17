@@ -31,7 +31,7 @@
 
 	qdel(src)
 
-/mob/living/exosuit/proc/forget_module(var/module_to_forget)
+/mob/living/exosuit/proc/forget_module(var/obj/item/mech_equipment/module_to_forget)
 	//Realistically a module disappearing without being uninstalled is wrong and a bug or adminbus
 	var/target = null
 	for(var/hardpoint in hardpoints)
@@ -48,8 +48,9 @@
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[target]
 	H.holding = null
-
-	//HUDneed.Remove(target)
+	module_to_forget.layer = initial(module_to_forget.layer)
+	module_to_forget.plane = initial(module_to_forget.plane)
+	HUDneed.Remove(module_to_forget.name)
 
 	check_HUD()
 	update_icon()
@@ -73,36 +74,34 @@
 
 	var/obj/item/mech_equipment/ME = system
 	if(istype(ME))
-		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints))
-			return FALSE
+		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints)) return FALSE
 		if(ME.restricted_software)
-			if(!head || !head.software)
-				return FALSE
+			if(!head || !head.software) return FALSE
 			var/found
 			for(var/software in ME.restricted_software)
 				if(software in head.software.installed_software)
 					found = TRUE
 					break
-			if(!found)
-				return FALSE
+			if(!found) return FALSE
 		ME.installed(src)
 		GLOB.destroyed_event.register(system, src, .proc/forget_module)
 
 
 
 	system.forceMove(src)
-	hardpoints[system_hardpoint] = system
+	hardpoints[system.name] = system
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
 
 	H.holding = system
 
-/*	system.screen_loc = H.screen_loc
-	system.plane = ABOVE_HUD_PLANE
-	system.layer = ABOVE_HUD_LAYER+1
+	system.screen_loc = H.screen_loc
+	system.plane = H.plane
+	system.layer = H.layer + 1
 
 
-	HUDneed[system_hardpoint] = system*/
+	HUDneed[system.name] = system
+
 	check_HUD()
 	update_icon()
 
@@ -110,34 +109,30 @@
 
 /mob/living/exosuit/proc/remove_system(var/system_hardpoint, var/mob/user, var/force)
 
-	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint])
-		return 0
+	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint]) return 0
 
 	var/obj/item/system = hardpoints[system_hardpoint]
 	if(user)
-		var/delay = 30
-		if(delay > 0)
-			user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
-			if(!do_after(user, delay, src) || hardpoints[system_hardpoint] != system)
-				return FALSE
+		user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
+		if(!do_after(user, 30, src)  || hardpoints[system_hardpoint] != system) return FALSE
 
 	hardpoints[system_hardpoint] = null
 
-	if(system_hardpoint == selected_hardpoint)
-		clear_selected_hardpoint()
+	if(system_hardpoint == selected_hardpoint) clear_selected_hardpoint()
 
 	var/obj/item/mech_equipment/ME = system
-	if(istype(ME))
-		ME.uninstalled()
+	if(istype(ME)) ME.uninstalled()
 	system.forceMove(get_turf(src))
-	/*system.screen_loc = null
-	system.layer = initial(system.layer)*/
+	system.plane = initial(system.plane)
+	system.layer = initial(system.layer)
+
 	GLOB.destroyed_event.unregister(system, src, .proc/forget_module)
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
 	H.holding = null
 
-	//HUDneed -= system_hardpoint
+	HUDneed.Remove(system.name)
+
 	check_HUDneed()
 	update_icon()
 

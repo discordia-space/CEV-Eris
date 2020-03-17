@@ -17,10 +17,8 @@
 
 /obj/screen/movable/exosuit/radio/Click()
 	if(..())
-		if(owner.radio)
-			owner.radio.attack_self(usr)
-		else
-			to_chat(usr, SPAN_WARNING("There is no radio installed."))
+		if(owner.radio) owner.radio.attack_self(usr)
+		else to_chat(usr, SPAN_WARNING("There is no radio installed."))
 
 /obj/screen/movable/exosuit/hardpoint
 	name = "hardpoint"
@@ -89,19 +87,16 @@
 		GLOB.default_hardpoint_background = image(icon = MECHA_HUD_ICON, icon_state = "bar_bkg")
 		GLOB.default_hardpoint_background.pixel_x = 34
 	new_overlays += GLOB.default_hardpoint_background
-	if(holding)
-		if(ovrls["hardpoint"]) qdel(ovrls["hardpoint"])
-		ovrls["hardpoint"] = image(icon = holding.icon, icon_state = holding.icon_state, layer = layer + 0.1)
-	else ovrls["hardpoint"] = null
-	if(!value)
+
+	if(value == 0)
 		if(!GLOB.hardpoint_bar_empty)
-			GLOB.hardpoint_bar_empty = image(icon=MECHA_HUD_ICON, icon_state="bar_flash")
+			GLOB.hardpoint_bar_empty = image(icon = MECHA_HUD_ICON, icon_state="bar_flash")
 			GLOB.hardpoint_bar_empty.pixel_x = 24
 			GLOB.hardpoint_bar_empty.color = "#ff0000"
 		new_overlays += GLOB.hardpoint_bar_empty
-	else if(value)
+	else if(value < 0)
 		if(!GLOB.hardpoint_error_icon)
-			GLOB.hardpoint_error_icon = image(icon=MECHA_HUD_ICON, icon_state="bar_error")
+			GLOB.hardpoint_error_icon = image(icon = MECHA_HUD_ICON, icon_state="bar_error")
 			GLOB.hardpoint_error_icon.pixel_x = 34
 		new_overlays += GLOB.hardpoint_error_icon
 	else
@@ -109,8 +104,8 @@
 		// Draw statbar.
 		if(!LAZYLEN(GLOB.hardpoint_bar_cache))
 			for(var/i = 0; i < BAR_CAP; i++)
-				var/image/bar = image(icon=MECHA_HUD_ICON, icon_state="bar")
-				bar.pixel_x = 24+(i*2)
+				var/image/bar = image(icon = MECHA_HUD_ICON, icon_state="bar")
+				bar.pixel_x = 24 + (i * 2)
 				if(i>5) bar.color = "#00ff00"
 				else if(i>1) bar.color = "#ffff00"
 				else bar.color = "#ff0000"
@@ -120,24 +115,21 @@
 	overlays = new_overlays
 
 /obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
-	if(..())
-		if(owner)
-			var/modifiers = params2list(params)
-			if(modifiers["ctrl"])
-				if(owner.hardpoints_locked)
-					to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
-					return
-				if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
-				else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
-				return
-			if(modifiers["shift"] && holding)
-				holding.attack_self(usr)
-			else 
-				if(owner.selected_hardpoint == hardpoint_tag)
-					icon_state = "hardpoint"
-					owner.clear_selected_hardpoint()
-				else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
+	if(..() && owner && holding)
+		if(!owner.hatch_closed)
+			to_chat(usr, SPAN_WARNING("Error: Hardpoint interface disabled while [owner.body.hatch_descriptor] is open."))
+			return
 
+		var/modifiers = params2list(params)
+		if(modifiers["ctrl"])
+			if(owner.hardpoints_locked) to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
+			else if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
+			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
+		else if(modifiers["shift"] && holding) holding.attack_self(usr)
+		else if(owner.selected_hardpoint == hardpoint_tag)
+			icon_state = "hardpoint"
+			owner.clear_selected_hardpoint()
+		else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
 
 /obj/screen/movable/exosuit/eject
 	name = "eject"
@@ -240,9 +232,8 @@
 	if(!owner.body || !owner.get_cell() || (owner.get_cell().charge <= 0))
 		return
 
-	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage>EMP_HUD_DISRUPT) && prob(owner.emp_damage*2)))
-		if(!GLOB.mech_damage_overlay_cache["critfail"])
-			GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECHA_HUD_ICON,icon_state="dam_error")
+	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
+		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECHA_HUD_ICON, icon_state="dam_error")
 		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
 		return
 
@@ -251,23 +242,16 @@
 		var/state = 0
 		var/obj/item/mech_component/MC = part_to_state[part]
 		if(MC)
-			if((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 3))
-				state = rand(0,4)
-			else
-				state = MC.damage_state
+			if((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 3)) state = rand(0,4)
+			else state = MC.damage_state
 		if(!GLOB.mech_damage_overlay_cache["[part]-[state]"])
-			var/image/I = image(icon=MECHA_HUD_ICON,icon_state="dam_[part]")
+			var/image/I = image(icon = MECHA_HUD_ICON, icon_state="dam_[part]")
 			switch(state)
-				if(1)
-					I.color = "#0f0"
-				if(2)
-					I.color = "#f2c50d"
-				if(3)
-					I.color = "#ea8515"
-				if(4)
-					I.color = "#f00"
-				else
-					I.color = "#f5f5f0"
+				if(1) I.color = "#0f0"
+				if(2) I.color = "#f2c50d"
+				if(3) I.color = "#ea8515"
+				if(4) I.color = "#f00"
+				else I.color = "#f5f5f0"
 			GLOB.mech_damage_overlay_cache["[part]-[state]"] = I
 		overlays += GLOB.mech_damage_overlay_cache["[part]-[state]"]
 
