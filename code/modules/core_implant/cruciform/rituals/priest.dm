@@ -180,10 +180,14 @@
 	if(!CI.wearer)
 		fail("Cruciform is not installed.", user, C)
 		return FALSE
+	
+	if(CI.wearer.stat != DEAD)
+		fail("This one still lives.", user, C)
+		return FALSE
 
 	var/mob/M = CI.wearer
 
-	if(ishuman(M) && M.is_dead())
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
 		E.take_damage(15)
