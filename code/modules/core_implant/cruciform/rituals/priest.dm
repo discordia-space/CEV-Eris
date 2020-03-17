@@ -181,11 +181,11 @@
 		fail("Cruciform is not installed.", user, C)
 		return FALSE
 	
-	if(CI.wearer.stat != DEAD)
+		var/mob/M = CI.wearer
+	
+	if(!M.is_dead())
 		fail("This one still lives.", user, C)
 		return FALSE
-
-	var/mob/M = CI.wearer
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
