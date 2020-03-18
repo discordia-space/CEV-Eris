@@ -199,9 +199,8 @@
 /mob/living/carbon/human/proc/restore_organ(organ_type, var/show_message = FALSE, var/heal = FALSE,)
 	var/obj/item/organ/E = organs_by_name[organ_type]
 	if(E && E.organ_tag != BP_HEAD && !E.vital && !E.is_usable())	//Skips heads and vital bits...
-		E.removed()//...because no one wants their head to explode to make way for a new one.
-		qdel(E)
-		E= null
+		QDEL_NULL(E) //...because no one wants their head to explode to make way for a new one.
+
 	if(!E)
 		if(organ_type in BP_ALL_LIMBS)
 			var/datum/organ_description/organ_data = species.has_limbs[organ_type]
