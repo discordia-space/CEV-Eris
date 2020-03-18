@@ -28,11 +28,10 @@
 				/obj/item/weapon/gun/projectile/automatic/atreides = 1,\
 				/obj/item/weapon/gun/projectile/avasarala = 2,\
 				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2,\
-				/obj/item/weapon/gun/projectile/colt = 4,\
-				/obj/item/weapon/gun/projectile/revolver/consul = 4,\
-				/obj/item/weapon/gun/projectile/revolver = 4,\
+				/obj/item/weapon/gun/projectile/colt = 3,\
+				/obj/item/weapon/gun/projectile/revolver/consul = 3,\
+				/obj/item/weapon/gun/projectile/revolver = 3,\
 				/obj/item/weapon/gun/projectile/automatic/wintermute = 1,\
-				/obj/item/weapon/gun/projectile/paco = 2,\
 				/obj/item/weapon/gun/projectile/automatic/molly = 2,\
 				/obj/item/weapon/gun/projectile/automatic/straylight = 1))
 
