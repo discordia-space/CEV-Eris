@@ -88,7 +88,7 @@ They generally give more random result and can provide more divercity in spawn.
 /obj/random/pack/gun_loot/item_to_spawn()
 	return pickweight(list(
 					/obj/random/gun_cheap = 8,
-					/obj/random/gun_normal = 2,
+					/obj/random/gun_normal = 3,
 					/obj/random/gun_energy_cheap = 6,
 					/obj/random/gun_shotgun = 5,
 					/obj/random/knife = 6,
