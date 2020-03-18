@@ -16,7 +16,6 @@
 	handle_casings = HOLD_CASINGS
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
-	var/recentpump = 0 // to prevent spammage
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 2200
 	recoil_buildup = 20
@@ -28,11 +27,11 @@
 	return null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
-	if(world.time >= recentpump + 10  & wielded)
+	if(wielded)
 		pump(user)
-		recentpump = world.time
-	else
-		to_chat(user, SPAN_DANGER("You need to wield this gun to pump it!"))
+	else if(world.time >= recentpumpmsg + 5)
+		to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
+		recentpumpmsg = world.time
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
 	var/turf/newloc = get_turf(src)
