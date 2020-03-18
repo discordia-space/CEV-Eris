@@ -74,10 +74,11 @@
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
 	if(reload)
-		if (wielded)
+		if(wielded)
 			pump(user)
-		else
+		else if (world.time >= recentpumpmsg + 5)
 			to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
+			recentpumpmsg = world.time
 	else
 		if(firemodes.len > 1)
 			..()
