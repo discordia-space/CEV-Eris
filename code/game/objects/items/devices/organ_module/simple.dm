@@ -15,6 +15,8 @@
 		slot = slot_l_hand
 	else if(E.organ_tag in list(BP_R_ARM))
 		slot = slot_r_hand
+	if(E.organ_tag in list(BP_HEAD))
+		slot = slot_head
 	if(H.equip_to_slot_if_possible(holding, slot))
 		H.visible_message(
 			SPAN_WARNING("[H] extend \his [holding.name] from [E]."),

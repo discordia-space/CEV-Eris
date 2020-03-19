@@ -242,6 +242,7 @@
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/item/mechfab/modules/armor,
+							/datum/design/research/item/mechfab/modules/neko,
 							/datum/design/research/item/mechfab/modules/armblade,
 							/datum/design/research/item/mechfab/modules/runner,
 							/datum/design/research/item/mechfab/modules/multitool/surgical,

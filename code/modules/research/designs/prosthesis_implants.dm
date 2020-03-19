@@ -28,6 +28,10 @@
 	name = "subdermal body armor"
 	build_path = /obj/item/organ_module/armor
 
+/datum/design/research/item/mechfab/modules/neko
+	name = "Neko ears"
+	/obj/item/organ_module/active/simple/neko
+
 /datum/design/research/item/mechfab/modules/armblade
 	name = "Embedded armblade"
 	build_path = /obj/item/organ_module/active/simple/armblade

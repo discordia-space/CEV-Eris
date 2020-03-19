@@ -853,6 +853,7 @@
 #include "code\game\objects\items\devices\organ_module\simple.dm"
 #include "code\game\objects\items\devices\organ_module\active\armblades.dm"
 #include "code\game\objects\items\devices\organ_module\active\engineer.dm"
+#include "code\game\objects\items\devices\organ_module\active\head.dm"
 #include "code\game\objects\items\devices\organ_module\active\multitool.dm"
 #include "code\game\objects\items\devices\organ_module\active\surgical.dm"
 #include "code\game\objects\items\devices\organ_module\active\multitool\miner.dm"

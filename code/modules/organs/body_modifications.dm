@@ -161,6 +161,22 @@ var/global/list/modifications_types = list(
 		OM.install(E)
 	return E
 
+/datum/body_modification/limb/organ_module/neko
+	name = "Neko ears"
+	short_name = "Neko"
+	id = "neko"
+	desc = "Neko ears."
+	body_parts = list(BP_HEAD)
+	allow_nt = FALSE
+	module_type = /obj/item/organ_module/active/simple/neko
+
+/datum/body_modification/limb/organ_module/neko/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
+	var/obj/item/organ/external/E = ..()
+	if(module_type)
+		var/obj/item/organ_module/OM = /obj/item/organ_module/active/simple/neko
+		OM.install(E)
+	return E
+
 ////Internals////
 /datum/body_modification/organ/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
 	if(replace_limb)
