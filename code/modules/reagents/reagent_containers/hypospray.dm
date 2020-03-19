@@ -72,8 +72,19 @@
 	to_chat(user, SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
 	return
 
+/obj/item/weapon/reagent_containers/hypospray/verb/empty()
+	set name = "Empty Hypospray"
+	set category = "Object"
+	set src in usr
+
+	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+		return
+	if(isturf(usr.loc))
+		to_chat(usr, SPAN_NOTICE("You empty \the [src] onto the floor."))
+		reagents.splash(usr.loc, reagents.total_volume)
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
-	name = "autoinjector"
+	name = "autoinjector (inaprovaline)"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
@@ -101,14 +112,22 @@
 		icon_state = "[initial(icon_state)]0"
 
 
-/obj/item/weapon/reagent_containers/hypospray/verb/empty()
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin
+	name = "autoinjector (anti-toxin)"
+	preloaded_reagents = list("anti_toxin" = 5)
 
-	set name = "Empty Hypospray"
-	set category = "Object"
-	set src in usr
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine
+	name = "autoinjector (tricordrazine)"
+	preloaded_reagents = list("tricordrazine" = 5)
 
-	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
-		return
-	if(isturf(usr.loc))
-		to_chat(usr, SPAN_NOTICE("You empty \the [src] onto the floor."))
-		reagents.splash(usr.loc, reagents.total_volume)
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/spaceacillin
+	name = "autoinjector (spaceacillin)"
+	preloaded_reagents = list("spaceacillin" = 5)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/hyperzine
+	name = "autoinjector (hyperzine)"
+	preloaded_reagents = list("hyperzine" = 5)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/drugs
+	name = "autoinjector (drugs)"
+	preloaded_reagents = list("space_drugs" = 5)
