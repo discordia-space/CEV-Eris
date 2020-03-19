@@ -70,10 +70,11 @@
 	name = "mining voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "mining_voidsuit"
+		slowdown = 0.35
 	armor = list(
 		melee = 50,
-		bullet = 30,
-		energy = 20,
+		bullet = 35,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -136,7 +137,7 @@
 		)
 
 	armor = list(
-		melee = 30,
+		melee = 35,
 		bullet = 40,
 		energy = 30,
 		bomb = 25,
@@ -152,7 +153,7 @@
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
-		melee = 40,
+		melee = 35,
 		bullet = 40,
 		energy = 30,
 		bomb = 25,
