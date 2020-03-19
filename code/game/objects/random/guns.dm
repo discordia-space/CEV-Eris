@@ -14,7 +14,7 @@
 				/obj/item/weapon/gun/projectile/olivaw = 4,\
 				/obj/item/weapon/gun/energy/gun/martin = 2,\
 				/obj/item/weapon/gun/launcher/crossbow = 1,\
-				/obj/item/weapon/gun/projectile/boltgun = 1))
+				/obj/item/weapon/gun/projectile/boltgun/serbian = 1))
 
 /obj/random/gun_cheap/low_chance
 	name = "low chance random cheap gun"
@@ -41,7 +41,7 @@
 				/obj/item/weapon/gun/projectile/revolver/deckard = 2,\
 				/obj/item/weapon/gun/projectile/automatic/wintermute = 1,\
 				/obj/item/weapon/gun/projectile/automatic/sol = 1,\
-				/obj/item/weapon/gun/projectile/automatic/sts35 = 1\
+				/obj/item/weapon/gun/projectile/automatic/sts35 = 1,\
 				/obj/item/weapon/gun/projectile/automatic/molly = 2,\
 				/obj/item/weapon/gun/projectile/automatic/straylight = 1,\
 				/obj/item/weapon/gun/energy/gun = 2,\
