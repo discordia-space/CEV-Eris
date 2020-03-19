@@ -80,6 +80,7 @@
 	icon_state = "autoinjector"
 	item_state = "autoinjector"
 	amount_per_transfer_from_this = 5
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	volume = 5
 	preloaded_reagents = list("inaprovaline" = 5)
