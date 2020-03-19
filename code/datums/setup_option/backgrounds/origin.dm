@@ -22,9 +22,6 @@
 		STAT_COG = -8
 	)
 
-	if /mob/living/carbon/human
-		add_language(LANGUAGE_GERMAN)
-
 /datum/category_item/setup_option/background/origin/predstraza
 	name = "Predstraza"
 	desc = "The product of a widely held idea back on Earth that if one were to bring all of the Balkan populations on one colony ship, they would be forced to put aside their differences and work together to survive. \
