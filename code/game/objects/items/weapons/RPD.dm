@@ -1,5 +1,4 @@
 //Contains the rapid piping device. Copied over largely from pipe_dispenser and RCD files.
-//BUG: RPD uses charge when clicking on something, even if it doesn't create pipes.
 /obj/item/weapon/rpd
 	name = "rapid piping device"
 	desc = "A device used to rapidly build pipes."
@@ -15,7 +14,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2) //Redundant values that yer free ta' change later.
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PlASMA = 2, MATERIAL_PLASTIC = 5) //Redundant values that yer free ta' change later.
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 5) //Redundant values that yer free ta' change later.
 	price_tag = 500 //Redundant values that yer free ta' change later.
 	var/use_power_cost = 1.5
 	var/obj/item/weapon/cell/cell = null
@@ -43,9 +42,8 @@
 
 /obj/item/weapon/rpd/proc/useCharge()
 	//Use charge from the cell.
-	if(!cell||!cell.check_charge(use_power_cost))
+	if(!cell||!cell.checked_use(use_power_cost))
 		return 0
-	cell.charge -= use_power_cost
 	return 1
 
 /obj/item/weapon/rpd/proc/deletePipe(var/turf/T)
@@ -56,8 +54,8 @@
 
 /obj/item/weapon/rpd/attack_self(mob/user)
 	//Open pipe dispenser window.
-	if(..())
-		return
+	.=..()
+	if(.) return
 ///// Z-Level stuff
 	var/dat = {"
 <b>Regular pipes:</b><BR>
@@ -129,7 +127,6 @@
 		p_dir = text2num(href_list["dir"])
 	if(href_list["makemeter"])
 		p_dir = text2num(href_list["dir"]) //If direction is 0, the pipe is pipe_meter.
-	return
 
 /obj/item/weapon/rpd/afterattack(atom/A, mob/user, proximity)
 	if(wait)
@@ -167,12 +164,8 @@
 /obj/item/weapon/rpd/borg/useCharge(mob/user)
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
-		if(R.cell)
-			var/cost = use_power_cost*30 //Redundant values.
-			if(R.cell.charge >= cost)
-				R.cell.use(cost)
-			return 1
-	return 0
+		return R.cell && R.cell.checked_use(use_power_cost*30) //Redundant power use multiplier.
+	return ..()
 
 /obj/item/weapon/rpd/borg/attackby()
 	return
