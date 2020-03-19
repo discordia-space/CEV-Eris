@@ -86,12 +86,16 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
-	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
+	if(reagents.total_volume <= 0) //Prevents autoinjectors from being refilled.
 		reagent_flags &= ~REFILLABLE
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
+	cut_overlays()
 	if(reagents.total_volume > 0)
 		icon_state = initial(icon_state)
+		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector")
+		filling_overlay.color = reagents.get_color()
+		add_overlay(filling_overlay)
 	else
 		icon_state = "[initial(icon_state)]0"
 
