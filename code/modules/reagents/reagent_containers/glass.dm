@@ -15,6 +15,7 @@
 	w_class = ITEM_SIZE_SMALL
 	reagent_flags = OPENCONTAINER
 	unacidable = 1 //glass doesn't dissolve in acid
+	matter = list(MATERIAL_GLASS = 1)
 	var/lid_icon_state = null
 
 	var/label_text = ""

@@ -23,7 +23,8 @@
 				/obj/item/clothing/head/chameleon = 1,
 				/obj/item/clothing/under/chameleon = 1,
 				/obj/item/weapon/gun/energy/chameleon = 2,
-				/obj/item/weapon/reagent_containers/syringe/drugs = 1))
+				/obj/item/weapon/reagent_containers/syringe/drugs = 1,
+				/obj/item/weapon/reagent_containers/syringe/drugs_recreational = 1))
 
 /obj/random/contraband/low_chance
 	name = "low chance random illegal item"
