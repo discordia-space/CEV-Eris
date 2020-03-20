@@ -49,8 +49,8 @@
 /obj/item/clothing/head/space/void/mining
 	name = "mining voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating."
-	icon_state = "rig0-mining"
-	item_state = "mining_helm"
+	icon_state = "mining_helmet"
+	item_state = "mining_helmet"
 	item_state_slots = list(
 		slot_l_hand_str = "mining_helm",
 		slot_r_hand_str = "mining_helm",
@@ -66,10 +66,10 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/suit/space/void/mining
-	icon_state = "rig-mining"
 	name = "mining voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
-	item_state = "mining_voidsuit"
+	item_state = "miner_suit"
+	icon_state = "miner_suit"
 	slowdown = 0.35
 	armor = list(
 		melee = 50,
