@@ -52,6 +52,9 @@
 		if(!(damagetype == HALLOSS ))
 			var/agony_gamage = round( ( effective_damage * armor_effectiveness * ARMOR_AGONY_COEFFICIENT ) / 100 )
 			apply_effect(agony_gamage, AGONY)
+		else 
+			var/agony_gamage = round( ( effective_damage * armor_effectiveness * (ARMOR_ENERGY/80) ) / 100 )
+			apply_effect(agony_gamage, AGONY)
 
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
