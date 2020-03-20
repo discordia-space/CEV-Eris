@@ -19,7 +19,7 @@
 
 	// Reference data.
 	var/mob/living/carbon/human/owner	// Current mob owning the organ.
-	var/obj/item/organ/external/parent
+	var/obj/item/organ/external/parent	// A limb the organ is currently attached to or installed in.
 	var/list/transplant_data			// Transplant match data.
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
@@ -36,51 +36,40 @@
 	var/death_time						// limits organ self recovery
 
 /obj/item/organ/Destroy()
-	if(owner)
-		if(src in owner.contents)
-			owner.contents -= src
-		owner = null
-	parent = null
+	if(parent || owner)
+		removed()
+
 	QDEL_NULL(dna)
 	species = null
+	STOP_PROCESSING(SSobj, src)
 
 	return ..()
 
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(mob/living/carbon/holder, datum/organ_description/OD)
+/obj/item/organ/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..(holder)
-	var/internal = !istype(src, /obj/item/organ/external)
 	create_reagents(5)
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
+
 	if(istype(holder))
-		src.owner = holder
 		species = all_species["Human"]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = all_species[dna.species]
+
+			if(!blood_DNA)
+				blood_DNA = list()
+			blood_DNA[dna.unique_enzymes] = dna.b_type
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
-		var/mob/living/carbon/human/H = holder
-		if(istype(H))
-			if(internal)
-				var/obj/item/organ/external/E = H.get_organ(parent_organ)
-				if(E)
-					if(E.internal_organs == null)
-						E.internal_organs = list()
-					E.internal_organs |= src
-			if(dna)
-				if(!blood_DNA)
-					blood_DNA = list()
-				blood_DNA[dna.unique_enzymes] = dna.b_type
-				if(internal)
-					H.internal_organs_by_name[src.organ_tag] = src
-		if(internal)
-			holder.internal_organs |= src
-	if(internal)
-		update_icon()
+
+		if(parent_organ)
+			replaced(holder.get_organ(parent_organ))
+		else
+			replaced_mob(holder)
 
 // Surgery hooks
 /obj/item/organ/attack_self(mob/living/user)
@@ -296,6 +285,9 @@
 
 // Gets the limb this organ is located in, if any
 /obj/item/organ/proc/get_limb()
+	if(parent)
+		return parent
+
 	if(owner)
 		return owner.get_organ(parent_organ)
 
@@ -303,6 +295,7 @@
 		return loc
 
 	return null
+
 
 /obj/item/organ/proc/removed(mob/living/user)
 	var/obj/item/organ/external/affected = get_limb()
@@ -313,65 +306,53 @@
 	else
 		forceMove(get_turf(src))
 
-	if(!istype(owner))
-		return
+	parent = null
 
-	owner.internal_organs_by_name[organ_tag] = null
-	owner.internal_organs_by_name -= organ_tag
-	owner.internal_organs_by_name -= null
-	owner.internal_organs -= src
+	if(owner)
+		removed_mob(user)
 
-	START_PROCESSING(SSobj, src)
-	rejecting = null
+
+/obj/item/organ/proc/removed_mob(mob/living/user)
 	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
-	if(owner && vital)
+	if(vital && !(owner.status_flags & REBUILDING_ORGANS))
 		if(user)
-			user.attack_log += "\[[time_stamp()]\]<font color='red'> removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)])</font>"
-			owner.attack_log += "\[[time_stamp()]\]<font color='orange'> had a vital organ ([src]) removed by [user.name] ([user.ckey]) (INTENT: [uppertext(user.a_intent)])</font>"
-			msg_admin_attack("[user.name] ([user.ckey]) removed a vital organ ([src]) from [owner.name] ([owner.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
 		owner.death()
 
 	owner = null
+	rejecting = null
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+	if(parent)
+		forceMove(parent)
 
-	if(!istype(target)) return
+	START_PROCESSING(SSobj, src)
+
+
+/obj/item/organ/proc/replaced(obj/item/organ/external/affected)
+	parent = affected
+	forceMove(parent)
+	if(parent.owner)
+		replaced_mob(parent.owner)
+
+
+/obj/item/organ/proc/replaced_mob(mob/living/carbon/human/target)
+	owner = target
+	forceMove(owner)
+	STOP_PROCESSING(SSobj, src)
 
 	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
 	transplant_data = list()
 	if(!transplant_blood)
-		transplant_data["species"] =    target.species.name
-		transplant_data["blood_type"] = target.dna.b_type
-		transplant_data["blood_DNA"] =  target.dna.unique_enzymes
+		transplant_data["species"] =    owner.species.name
+		transplant_data["blood_type"] = owner.dna.b_type
+		transplant_data["blood_DNA"] =  owner.dna.unique_enzymes
 	else
 		transplant_data["species"] =    transplant_blood.data["species"]
 		transplant_data["blood_type"] = transplant_blood.data["blood_type"]
 		transplant_data["blood_DNA"] =  transplant_blood.data["blood_DNA"]
-
-	owner = target
-	loc = owner
-	STOP_PROCESSING(SSobj, src)
-	target.internal_organs |= src
-	affected.internal_organs |= src
-	target.internal_organs_by_name[organ_tag] = src
-
-/obj/item/organ/proc/install(mob/living/carbon/human/H)
-	if(!istype(H))
-		return 1
-
-	owner = H
-	forceMove(owner)
-	if(parent_organ)
-		parent = H.get_organ(parent_organ)
-
-	if(H.dna)
-		if(!blood_DNA)
-			blood_DNA = list()
-		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-	STOP_PROCESSING(SSobj, src)
 
 /obj/item/organ/proc/heal_damage(amount)
 	return
