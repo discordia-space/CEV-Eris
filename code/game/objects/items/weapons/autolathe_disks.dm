@@ -311,6 +311,9 @@
 		/datum/design/bioprinter/medical/ointment,
 		/datum/design/bioprinter/medical/advanced/bruise,
 		/datum/design/bioprinter/medical/advanced/ointment,
+
+		/datum/design/autolathe/gun/nt_sprayer
+
 	)
 
 // Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
