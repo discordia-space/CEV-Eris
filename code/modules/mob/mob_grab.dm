@@ -66,6 +66,7 @@
 				G.dancing = 1
 				G.adjust_position()
 				dancing = 1
+	update_slowdown()
 	adjust_position()
 
 //Used by throw code to hand over the mob, instead of throwing the grab.
@@ -155,6 +156,7 @@
 			C.Weaken(5)	//Should keep you down unless you get help.
 			C.losebreath = max(C.losebreath + 2, 3)
 
+	update_slowdown()
 	adjust_position()
 
 /obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
@@ -302,6 +304,7 @@
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
 			C.losebreath += 1
+	update_slowdown()
 	adjust_position()
 
 //This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
@@ -316,6 +319,32 @@
 			return 0
 
 	return 1
+
+// Function to compute the current slowdown and is more adjustable and uses mob/movement_delay() as starting value
+// The code will adjust or lower the slowdown depending on STAT_ROB skill, gravity, etc.
+/obj/item/weapon/grab/proc/update_slowdown()
+	// The movment speed of assailant will be determined by the victim whatever their size or things he wears minus how strong the assailant ( ROB )
+	// New function should take the victim variables in account : size of mob, under gravity or not
+	// ROB check will start in process for the victim so the assailant can have a jump on the victim in first movement tick or some shit unless he's already grabbed
+	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
+	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
+
+	// initial value for slowdown
+	slowdown = affecting.movement_delay()
+
+	if(!(affecting.check_gravity() && assailant.check_gravity()))
+		slowdown = 0
+		return	// Nothing to do here
+	else
+		if(assailant_stat > affecting_stat)
+			slowdown *= 0.2
+		else if(assailant_stat < affecting_stat)
+			slowdown *= 1.8
+
+		if(assailant.mob_size > affecting.mob_size)
+			slowdown *= 0.5
+		else if (assailant.mob_size < affecting.mob_size)
+			slowdown *= 1.5
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
