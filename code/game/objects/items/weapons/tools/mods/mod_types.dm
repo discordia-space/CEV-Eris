@@ -383,16 +383,15 @@
 	I.prefix = "spiked"
 
 /obj/item/weapon/tool_upgrade/augment/hammer_addon
-	name = "Hammer Addon"
+	name = "Flat surface"
 	icon_state = "hammer_addon"
-	desc = "A attachment that fits on almost everything that gives a simple flat surface for hammering"
+	desc = "An attachment that fits on almost everything, that gives a simple flat surface to employ the tool for hammering."
 	matter = list(MATERIAL_STEEL = 2)
 
 /obj/item/weapon/tool_upgrade/augment/hammer_addon/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	UPGRADE_FORCE_MOD = 4,
 	UPGRADE_WORKSPEED = -0.5,
 	UPGRADE_HEALTH_THRESHOLD = 5,
 	tool_qualities = list(QUALITY_HAMMERING = 10)
