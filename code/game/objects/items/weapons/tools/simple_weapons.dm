@@ -46,7 +46,6 @@
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_NORMAL
 	force_unwielded = WEAPON_FORCE_NORMAL
 	force_wielded = WEAPON_FORCE_BRUTAL
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -207,19 +206,3 @@
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_MODERATE
 
-//Hammers (hammer tool quality isnt in yet so they dont have tool qualities) - would need it's own file soon
-
-/obj/item/weapon/tool/homewrecker
-	name = "homewrecker"
-	desc = "A large steel chunk welded to a long handle. Extremely heavy."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "homewrecker0"
-	wielded_icon = "homewrecker1"
-	armor_penetration = ARMOR_PEN_EXTREME
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_NORMAL
-	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_DANGEROUS
-	tool_qualities = list(QUALITY_HAMMERING = 15)
-	attack_verb = list("attacked", "smashed", "bludgeoned", "beaten")
-	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
