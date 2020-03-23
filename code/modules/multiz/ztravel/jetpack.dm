@@ -9,7 +9,7 @@
 	start_verb_visible = "%m starts a controlled %d3t with the %s"
 	start_verb_personal = "You start a controlled %d3t with the %s"
 	base_time = 70
-	slip_chance = 50 //A little risky, but so what if you slip. You've got a jetpack to regain control!
+	slip_chance = 0 //Its a jetpack, how would you even screw this up!
 
 
 /datum/vertical_travel_method/jetpack/start_animation()
