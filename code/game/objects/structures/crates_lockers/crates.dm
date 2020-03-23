@@ -74,7 +74,7 @@
 	..()
 	update_icon()
 
-/plastic
+/obj/structure/closet/crate/plastic
 	name = "plastic crate"
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
