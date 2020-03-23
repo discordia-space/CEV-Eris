@@ -5,10 +5,10 @@
 	icon_state = "crate"
 	climbable = TRUE
 	dense_when_open = TRUE
-	matter = list(MATERIAL_PLASTEEL = 10)
+	matter = list(MATERIAL_STEEL = 10)
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
-	price_tag = 200
+	price_tag = 50
 
 /obj/structure/closet/crate/close()
 	if(!src.opened)
@@ -74,12 +74,12 @@
 	..()
 	update_icon()
 
-/obj/structure/closet/crate/plastic
+/plastic
 	name = "plastic crate"
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
 	matter = list(MATERIAL_PLASIC = 10)
-	price_tag = 50
+	price_tag = 10
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"
