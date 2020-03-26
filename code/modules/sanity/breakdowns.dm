@@ -250,7 +250,7 @@
 
 
 /datum/breakdown/negative/delusion
-	//name = "Delusion"
+	name = "Delusion"
 	duration = 1 MINUTES
 	restore_sanity_post = 50
 
@@ -307,6 +307,7 @@
 
 /datum/breakdown/negative/fabric/conclude()
 	--holder.owner.language_blackout
+	holder.insight += 95
 	holder.owner.client?.images -= images
 	UnregisterSignal(SSdcs, COMSIG_GLOB_FABRIC_NEW)
 	UnregisterSignal(holder.owner, COMSIG_MOB_LOGIN)
@@ -339,6 +340,7 @@
 	holder.positive_prob = max(holder.positive_prob - 10, 0)
 	holder.negative_prob = min(holder.negative_prob + 20, 100)
 	holder.max_level = max(holder.max_level - 20, 0)
+	holder.insight -= 10
 	..()
 
 
@@ -364,8 +366,8 @@
 
 /datum/breakdown/common/obsession/New()
 	..()
-	if(prob(97))
-		var/list/candidates = list() //subtypesof(/obj/item/weapon/oddity)
+	if(prob(100))////Change the probability after Erismed is implemented, with state of current medicine obsession with organs or limbs is free kill ticket.
+		var/list/candidates = list(subtypesof(/obj/item/weapon/oddity/common))
 		while(candidates.len)
 			target = pick(candidates)
 			if(!locate(target))
@@ -421,6 +423,7 @@
 			"You know that only salvation from your sins is [objectname]."
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
+		holder.insight += 100
 
 /datum/breakdown/common/obsession/occur()
 	for(var/stat in ALL_STATS)
@@ -431,6 +434,37 @@
 	for(var/stat in ALL_STATS)
 		holder.owner.stats.removeTempStat(stat, "Obsession")
 	..()
+
+
+/datum/breakdown/common/nostalgia
+	name = "Nostalgia"
+	restore_sanity_post = 40
+	var/area/nostalgic_target
+
+
+	start_messages = list(
+		"You feel that you've left something somewhere aboard. Something important...",
+		"There is a place where I understood my true self. I should get there again.",
+		"You suddenly feel that some place is pulling you towards itself slowly yet powerfully..."
+	)
+	end_messages = list(
+		"Finally, I am here."
+	)
+
+
+
+/datum/breakdown/common/nostalgia/New()
+	..()
+	nostalgic_target = pick(ship_areas)
+
+/datum/breakdown/common/nostalgia/update()
+	. = ..()
+	if (get_area(holder.owner) == nostalgic_target)
+		conclude()
+
+
+
+
 
 #define KLEPTOMANIA_COOLDOWN rand(30 SECONDS, 60 SECONDS)
 
@@ -471,7 +505,7 @@
 
 
 /datum/breakdown/common/signs
-	//name = "Signs"
+	name = "Signs"
 	restore_sanity_post = 70
 	var/message
 
@@ -506,6 +540,7 @@
 	return ..()
 
 /datum/breakdown/common/signs/conclude()
+	holder.insight += 15
 	UnregisterSignal(holder.owner, COMSIG_HUMAN_SAY)
 	..()
 
