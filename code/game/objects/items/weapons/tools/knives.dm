@@ -98,8 +98,8 @@
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
 
 /obj/item/weapon/tool/knife/dagger/bluespace
-	name = "bluespace dagger"
-	desc = "A teleportation matrix attached to a dagger, for sending things you stab very far away."
+	name = "Moebius \"Displacement Dagger\""
+	desc = "A teleportation matrix attached to a dagger, for sending things you stab it into very far away."
 	icon_state = "bluespace_dagger"
 	item_state = "bluespace_dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20)

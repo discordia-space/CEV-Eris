@@ -71,10 +71,12 @@
 	sort_string = "TBAAD"
 
 /datum/design/research/item/weapon/katana
+	name = "Moebius \"Muramasa\" Katana"
 	build_path = /obj/item/weapon/tool/sword/katana/nano
 
 
 /datum/design/research/item/weapon/bluespace_dagger
+	name = "Moebius \"Displacement Dagger\""
 	build_path = /obj/item/weapon/tool/knife/dagger/bluespace
 
 // Ammo
