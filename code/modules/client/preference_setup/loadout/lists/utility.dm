@@ -38,7 +38,7 @@
 	cost = 2
 /datum/gear/utility/wheelchair
 	display_name = "wheelchair"
-	path = /obj/structure/bed/chair/wheelchair
+	path = /obj/item/wheelchair
 	cost = 3
 
 /datum/gear/utility/normaltablet
