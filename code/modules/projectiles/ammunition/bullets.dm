@@ -219,7 +219,7 @@
 	projectile_type = /obj/item/projectile/bullet/batonround
 	caliber = CAL_GRENADE
 	maxamount = 1
-obj/item/ammo_casing/grenade/blast
+/obj/item/ammo_casing/grenade/blast
 	name = "blast grenade shell"
 	desc = "An explosive grenade shell, designed to be fired from grenade launchers"
 	icon_state = "blast"
