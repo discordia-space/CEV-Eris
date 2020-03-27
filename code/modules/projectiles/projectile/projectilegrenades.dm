@@ -23,7 +23,7 @@
 	else
 		..()
 
-obj/item/projectile/bullet/grenade/on_hit(atom/target)	//Allows us to cause different effects for each grenade shell on hit
+/obj/item/projectile/bullet/grenade/on_hit(atom/target)	//Allows us to cause different effects for each grenade shell on hit
 	grenade_effect(target)
 
 
@@ -55,5 +55,4 @@ obj/item/projectile/bullet/grenade/emp
 
 obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
 	empulse(target, heavy_emp_range, light_emp_range)
-
 
