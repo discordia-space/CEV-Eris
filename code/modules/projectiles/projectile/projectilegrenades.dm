@@ -2,7 +2,8 @@
 	name = "baton round"
 	icon_state = "grenade"
 	damage = 10
-	agony = 80                                   //Work more on number. Check armor?
+	agony = 80
+	check_armour = ARMOR_MELEE
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
