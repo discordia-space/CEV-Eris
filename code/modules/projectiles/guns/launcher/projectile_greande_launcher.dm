@@ -9,7 +9,7 @@ obj/item/weapon/gun/projectile/china
     w_class = ITEM_SIZE_HUGE
     slot_flags = SLOT_BACK
     force = WEAPON_FORCE_PAINFUL
-    matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_WOOD = 10)  //Work on those numbers later 
+    matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_WOOD = 10)
     price_tag = 4500
     caliber = CAL_GRENADE
     load_method = SINGLE_CASING
