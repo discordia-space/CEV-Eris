@@ -49,7 +49,7 @@
 obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
 
-obj/item/projectile/bullet/grenade/emp
+/obj/item/projectile/bullet/grenade/emp
 	var/heavy_emp_range = 3
 	var/light_emp_range = 8
 
