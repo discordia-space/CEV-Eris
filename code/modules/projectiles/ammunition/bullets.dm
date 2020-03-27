@@ -224,7 +224,7 @@
 	desc = "An explosive grenade shell, designed to be fired from grenade launchers"
 	icon_state = "blast"
 	projectile_type = /obj/item/projectile/bullet/grenade
-obj/item/ammo_casing/grenade/frag
+/obj/item/ammo_casing/grenade/frag
 	name = "frag grenade shell"
 	desc = "A frag grenade shell, designed to be fired from grenade launchers"
 	icon_state = "frag"
