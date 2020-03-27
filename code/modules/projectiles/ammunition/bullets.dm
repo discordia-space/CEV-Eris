@@ -212,7 +212,7 @@
 //// Grenade Shells ////
 
 /obj/item/ammo_casing/grenade
-	name = "Baton Round"
+	name = "baton round"
 	desc = "A less-lethal rubber round, designed to be fired from grenade launchers"
 	icon_state = "baton-round"
 	spent_icon = "grenadeshell"
