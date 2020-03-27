@@ -1,4 +1,4 @@
-obj/item/weapon/gun/projectile/china
+/obj/item/weapon/gun/projectile/shotgun/pump/china
     name = "China Lake"
     desc = "This centuries-old design was recently rediscovered and adapted for use in modern battlefields. \
         Working similar to a pump-action combat shotgun, its light weight and robust design quickly made it a popular weapon. \
@@ -20,33 +20,6 @@ obj/item/weapon/gun/projectile/china
     max_shells = 3
     recoil_buildup = 20
     twohanded = TRUE
-    var/recentpumpmsg = 0
 
-/obj/item/weapon/gun/projectile/china/consume_next_projectile()    //Taken from shotgun/pump
-	if(chambered)
-		return chambered.BB
-	return null
-
-/obj/item/weapon/gun/projectile/china/attack_self(mob/living/user as mob)
-	if(wielded)
-		pump(user)
-	else if(world.time >= recentpumpmsg + 5)
-		to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
-		recentpumpmsg = world.time
-
-/obj/item/weapon/gun/projectile/china/proc/pump(mob/M as mob)
-	var/turf/newloc = get_turf(src)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
-
-	if(chambered)//We have a shell in the chamber
-		chambered.forceMove(newloc) //Eject casing
-		chambered = null
-
-	if(loaded.len)
-		var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
-		loaded -= AC //Remove casing from loaded list.
-		chambered = AC
-
-	update_icon()
 
 
