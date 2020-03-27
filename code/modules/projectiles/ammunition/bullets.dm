@@ -226,7 +226,7 @@ obj/item/ammo_casing/grenade/blast
 	projectile_type = /obj/item/projectile/bullet/grenade
 obj/item/ammo_casing/grenade/frag
 	name = "frag grenade shell"
-	desc = "A explosive grenade shell, designed to be fired from grenade launchers"
+	desc = "A frag grenade shell, designed to be fired from grenade launchers"
 	icon_state = "frag"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
 obj/item/ammo_casing/grenade/emp
