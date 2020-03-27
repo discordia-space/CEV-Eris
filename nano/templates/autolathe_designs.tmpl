@@ -9,6 +9,11 @@
 			</div>
 			{{if value.filename == data.unfolded}}
 				<div class="statusDisplay" style="margin: 0px 4px 4px 4px">
+					<div class="item">
+						{{if data.disk.license >= 0}}
+							License point cost: {{:value.point_cost}}
+						{{/if}}
+					</div>
 					{{if value.materials}}
 					<div class="item">
 						<div class="itemLabelWidest">Materials</div>
