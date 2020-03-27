@@ -53,5 +53,5 @@
 	var/heavy_emp_range = 3
 	var/light_emp_range = 8
 
-obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
+/obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
 	empulse(target, heavy_emp_range, light_emp_range)
