@@ -34,7 +34,7 @@
 	var/light_impact_range = 3
 	var/flash_range = 10
 
-obj/item/projectile/bullet/grenade/proc/grenade_effect(target)
+/obj/item/projectile/bullet/grenade/proc/grenade_effect(target)
 	explosion(target, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
 /obj/item/projectile/bullet/grenade/frag
@@ -55,4 +55,3 @@ obj/item/projectile/bullet/grenade/emp
 
 obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
 	empulse(target, heavy_emp_range, light_emp_range)
-
