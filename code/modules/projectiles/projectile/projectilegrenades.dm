@@ -46,7 +46,7 @@
 	var/f_step = 2
 	var/same_turf_hit_chance = 15
 
-obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
+/obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
 
 /obj/item/projectile/bullet/grenade/emp
