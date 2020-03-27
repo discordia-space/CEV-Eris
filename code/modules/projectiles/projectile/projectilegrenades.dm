@@ -16,7 +16,7 @@
 	sharp = FALSE
 	check_armour = ARMOR_BULLET
 
-obj/item/projectile/bullet/grenade/Move()	//Makes grenade shells cause their effect when they arrive at their target turf
+/obj/item/projectile/bullet/grenade/Move()	//Makes grenade shells cause their effect when they arrive at their target turf
 	if(get_turf(src) == get_turf(original))
 		grenade_effect(get_turf(src))
 		qdel(src)
@@ -55,6 +55,5 @@ obj/item/projectile/bullet/grenade/emp
 
 obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
 	empulse(target, heavy_emp_range, light_emp_range)
-
 
 
