@@ -329,22 +329,30 @@
 	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
 	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
 
-	// initial value for slowdown
-	slowdown = affecting.movement_delay()
-
+	// Early exit to save processing time
 	if(!(affecting.check_gravity() && assailant.check_gravity()))
 		slowdown = 0
 		return	// Nothing to do here
+
+	// initial value for slowdown
+	slowdown = 2
+
+	if(affecting.lying)	//putting in lying for the victim will cause the assailant to expend more effort
+		slowdown += 2
+
+	if(affecting.is_dead() || affecting.incapacitated() )	// victim can't resist if he is dead or stunned.
+		slowdown *= 0.1
 	else
-		if(assailant_stat > affecting_stat)
-			slowdown *= 0.2
-		else if(assailant_stat < affecting_stat)
+		if(assailant_stat > affecting_stat)			// Assailant wins the ROB check
+			slowdown *= 0.5
+		else if(assailant_stat < affecting_stat)	// Victim wins the ROB check
 			slowdown *= 1.8
 
-		if(assailant.mob_size > affecting.mob_size)
-			slowdown *= 0.5
-		else if (assailant.mob_size < affecting.mob_size)
-			slowdown *= 1.5
+	// Size check here
+	if(assailant.mob_size > affecting.mob_size)
+		slowdown *= 0.5
+	else if (assailant.mob_size < affecting.mob_size)
+		slowdown *= 1.5
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
