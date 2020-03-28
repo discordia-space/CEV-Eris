@@ -338,7 +338,7 @@
 	slowdown = 2
 
 	if(affecting.lying)	//putting in lying for the victim will cause the assailant to expend more effort
-		slowdown += 2
+		slowdown += 1
 
 	if(affecting.is_dead() || affecting.incapacitated() )	// victim can't resist if he is dead or stunned.
 		slowdown *= 0.1
