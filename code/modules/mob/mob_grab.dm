@@ -320,7 +320,7 @@
 
 	return 1
 
-// Function to compute the current slowdown and is more adjustable and uses mob/movement_delay() as starting value
+// Function to compute the current slowdown and is more adjustable and uses number as starting value
 // The code will adjust or lower the slowdown depending on STAT_ROB skill, gravity, etc.
 /obj/item/weapon/grab/proc/update_slowdown()
 	// The movment speed of assailant will be determined by the victim whatever their size or things he wears minus how strong the assailant ( ROB )
@@ -344,8 +344,7 @@
 	if(affecting.is_dead() || affecting.incapacitated() )	// victim can't resist if he is dead or stunned.
 		slowdown *= 0.1
 	else
-		slowdown += -0.05 * difference_stat
-		slowdown = max(0, slowdown)
+		slowdown += max(0, -0.05 * difference_stat)			// Avoids negative values from making the grabber going supersanic
 
 	// Size check here
 	if(assailant.mob_size > affecting.mob_size)
