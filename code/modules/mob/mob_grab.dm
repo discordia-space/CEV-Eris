@@ -345,6 +345,7 @@
 		slowdown *= 0.1
 	else
 		slowdown += -0.05 * difference_stat
+		slowdown = max(0, slowdown)
 
 	// Size check here
 	if(assailant.mob_size > affecting.mob_size)
