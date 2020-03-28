@@ -747,14 +747,14 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/corgione/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["corgione"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+	var/mob/L= locate(input["corgione"])
+	if(!istype(L))
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
-	log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
-	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(H)]", 1)
-	H.corgize()
+	log_admin("[key_name(usr)] attempting to corgize [key_name(L)]")
+	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(L)]", 1)
+	L.corgize()
 
 
 /datum/admin_topic/forcespeech
@@ -798,30 +798,24 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makeai/Run(list/input)
-	var/mob/living/L = locate(input["revive"])
+	var/mob/living/L = locate(input["makeai"])
 	if(!istype(L))
 		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	if(config.allow_admin_rev)
-		L.revive()
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-		log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
-	else
-		to_chat(usr, "Admin Rejuvinates have been disabled")
-
+	L.AIize()
 
 /datum/admin_topic/makeslime
 	keyword = "makeslime"
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makeslime/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["makeslime"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+	var/mob/living/L = locate(input["makeslime"])
+	if(!istype(L))
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	usr.client.cmd_admin_slimeize(H)
+	usr.client.cmd_admin_slimeize(L)
 
 
 /datum/admin_topic/makerobot
@@ -829,9 +823,9 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makerobot/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["makerobot"])
+	var/mob/living/H = locate(input["makerobot"])
 	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
 	usr.client.cmd_admin_robotize(H)

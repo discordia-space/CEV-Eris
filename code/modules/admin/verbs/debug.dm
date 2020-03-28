@@ -39,14 +39,13 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	usr.show_message(t, 1)
 
 
-/client/proc/cmd_admin_robotize(var/mob/M in SSmobs.mob_list)
+/client/proc/cmd_admin_robotize(var/mob/living/M)
 	set category = "Fun"
 	set name = "Make Robot"
 
 	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
-		spawn(10)
-			M:Robotize()
+		M.Robotize()
 
 	else
 		alert("Invalid mob")
@@ -68,7 +67,7 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 		M.Animalize()
 
 
-/client/proc/makepAI(var/turf/T in SSmobs.mob_list)
+/client/proc/makepAI(var/turf/T)
 	set category = "Fun"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
@@ -95,14 +94,14 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 			SSpai.pai_candidates.Remove(candidate)
 
 
-/client/proc/cmd_admin_slimeize(var/mob/M in SSmobs.mob_list)
+/client/proc/cmd_admin_slimeize(var/mob/living/M)
 	set category = "Fun"
 	set name = "Make slime"
 
 	if(ishuman(M))
 		log_admin("[key_name(src)] has slimeized [M.key].")
 		spawn(10)
-			M:slimeize()
+			M.slimeize()
 
 		log_admin("[key_name(usr)] made [key_name(M)] into a slime.")
 		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into a slime.", 1)
