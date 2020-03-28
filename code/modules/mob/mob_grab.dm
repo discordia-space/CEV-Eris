@@ -328,6 +328,7 @@
 	// ROB check will start in process for the victim so the assailant can have a jump on the victim in first movement tick or some shit unless he's already grabbed
 	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
 	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
+	var/difference_stat = assailant_stat - affecting_stat
 
 	// Early exit to save processing time
 	if(!(affecting.check_gravity() && assailant.check_gravity()))
@@ -343,10 +344,7 @@
 	if(affecting.is_dead() || affecting.incapacitated() )	// victim can't resist if he is dead or stunned.
 		slowdown *= 0.1
 	else
-		if(assailant_stat > affecting_stat)			// Assailant wins the ROB check
-			slowdown *= 0.5
-		else if(assailant_stat < affecting_stat)	// Victim wins the ROB check
-			slowdown *= 1.8
+		slowdown += -0.05 * difference_stat
 
 	// Size check here
 	if(assailant.mob_size > affecting.mob_size)
