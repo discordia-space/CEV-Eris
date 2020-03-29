@@ -314,7 +314,7 @@ var/list/rummage_sound = list(\
 
 	return toplay
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
 	if(isarea(source))
 		error("[source] is an area and is trying to make the sound: [soundin]")
 		return
@@ -339,11 +339,11 @@ var/list/rummage_sound = list(\
 			var/turf/T = get_turf(M)
 
 			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet)
+				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure)
 
 var/const/FALLOFF_SOUNDS = 0.5
 
-/mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet)
+/mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure = TRUE)
 	if(!src.client || ear_deaf > 0)
 		return
 
@@ -374,18 +374,19 @@ var/const/FALLOFF_SOUNDS = 0.5
 		var/datum/gas_mixture/hearer_env = T.return_air()
 		var/datum/gas_mixture/source_env = turf_source.return_air()
 
-		if (hearer_env && source_env)
-			var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
+		if(use_pressure)
+			if (hearer_env && source_env)
+				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
 
-			if (pressure < ONE_ATMOSPHERE)
-				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
-		else //in space
-			pressure_factor = 0
+				if (pressure < ONE_ATMOSPHERE)
+					pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
+			else //in space
+				pressure_factor = 0
 
-		if (distance <= 1)
-			pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
+			if (distance <= 1)
+				pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
 
-		S.volume *= pressure_factor
+			S.volume *= pressure_factor
 		
 		if (S.volume <= 0)
 			return //no volume means no sound
@@ -506,7 +507,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	var/extrarange
 	var/falloff
 	var/is_global
-	var/use_pressure
+	var/use_pressure_
 	//Used to stop it early
 	var/timer_handle
 
@@ -523,7 +524,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	extrarange = _extrarange
 	falloff = _falloff
 	is_global = _is_global
-	use_pressure = _use_pressure
+	use_pressure_ = _use_pressure
 	self_id = "\ref[src]"
 
 	//When created we do our first sound immediately
@@ -546,7 +547,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 		return
 
 	//Actually play the sound
-	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
+	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure = use_pressure_)
 
 	//Setup the next sound
 	var/nextinterval = interval
