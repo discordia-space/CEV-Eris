@@ -140,11 +140,11 @@
 
 	if(changed_voice)
 		if(impersonating)
-			return "<a href=\"byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[impersonating]\">[speaker_name] ([jobname])</a>"
+			return "<a href=\"byond://?src=\ref[src];trackname=[speaker_name];track=\ref[impersonating]\">[speaker_name] ([jobname])</a>"
 		else
 			return "[speaker_name] ([jobname])"
 	else
-		return "<a href=\"byond://?src=\ref[src];trackname=[rhtml_encode(speaker_name)];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
+		return "<a href=\"byond://?src=\ref[src];trackname=[speaker_name];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
 
 /mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
 	. = ..()
