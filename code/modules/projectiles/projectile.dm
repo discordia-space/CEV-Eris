@@ -572,7 +572,7 @@
 
 	return TRUE
 
-/obj/item/projectile/Bump(atom/A as mob|obj|turf|area, var/forced = FALSE)
+/obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
 	if(A == src)
 		return FALSE
 	if(A == firer)
@@ -774,7 +774,7 @@
 	xo = null
 	var/result = 0 //To pass the message back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, var/forced)
+/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, forced)
 	if(A == firer)
 		loc = A.loc
 		return //cannot shoot yourself
