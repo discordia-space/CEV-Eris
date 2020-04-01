@@ -156,4 +156,4 @@
 
 		candidates += L
 
-	return input(user, "Who do you wish to target?", "Select a disciple") as (null|mob) in candidates
+	return input(user, "Who do you wish to target?", "Select a disciple") as null|mob in candidates

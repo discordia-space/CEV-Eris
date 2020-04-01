@@ -227,7 +227,7 @@
 		return
 	var/obj/screen/silicon/module/inv
 
-	if(invnum in (1 to 3))
+	if(invnum in 1 to 3)
 		inv = src.HUDinventory[invnum]
 		return inv.screen_loc
 	else
