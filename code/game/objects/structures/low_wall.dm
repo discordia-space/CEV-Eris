@@ -386,7 +386,7 @@
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING), src)
 	switch(tool_type)
 		if(QUALITY_WELDING)
-			if (locate(/obj/structure/window in loc))
+			if (locate(/obj/structure/window) in loc)
 				to_chat(user, SPAN_NOTICE("You must remove the window mounted on this wall before it can be repaired or deconstructed"))
 				return
 			if(locate(/obj/effect/overlay/wallrot) in src)
