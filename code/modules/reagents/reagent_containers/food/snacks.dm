@@ -733,6 +733,13 @@
 	preloaded_reagents = list("protein" = 6, "alkysine" = 6)
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/pickle
+	name = "pickle"
+	desc = "A pickle. You smirk just from looking at it. \red Funniest shit ever."
+	icon_state = "pickle"
+	filling_color = "#5bd63c"
+	preloaded_reagents = list("protein" = 20,)
+
 /obj/item/weapon/reagent_containers/food/snacks/human
 	var/hname = ""
 	var/job = null

@@ -230,6 +230,15 @@
 	new /obj/item/weapon/weaponparts/heavysniper/reciever(src)
 	new /obj/item/weapon/weaponparts/heavysniper/barrel(src)
 
+/obj/item/weapon/storage/box/syndie_kit/pickle
+	name = "Pickle box"
+	desc = "Pickle. For real men."
+	icon_state = "box_of_doom_big"
+	w_class = ITEM_SIZE_HUGE
+
+/obj/item/weapon/storage/box/syndie_kit/pickle/populate_contents()
+	new /obj/item/weapon/reagent_containers/food/snacks/pickle(src)
+
 /obj/item/weapon/storage/box/syndie_kit/toxin
 	name = "toxin kit"
 	desc = "An apple will not be enough to keep the doctor away after this."
