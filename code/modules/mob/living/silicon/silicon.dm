@@ -123,7 +123,7 @@
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN)
+/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
 	return FALSE//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
 /proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)

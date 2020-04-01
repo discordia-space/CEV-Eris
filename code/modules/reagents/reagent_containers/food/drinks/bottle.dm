@@ -150,7 +150,7 @@
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
 		user.visible_message(SPAN_DANGER("[user] smashes [src] into [H]'s [affecting.name]!"))
 		if(weaken_duration)
-			target.apply_effect(min(weaken_duration, 5), WEAKEN, armor_value = target.getarmor(hit_zone, ARMOR_MELEE)) // Never weaken more than a flash!
+			target.apply_effect(min(weaken_duration, 5), WEAKEN, target.getarmor(hit_zone, ARMOR_MELEE)) // Never weaken more than a flash!
 	else
 		user.visible_message(SPAN_DANGER("\The [user] smashes [src] into [target]!"))
 
