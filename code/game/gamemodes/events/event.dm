@@ -110,4 +110,3 @@
 	startedAt = world.time
 
 	setup()
-	..()

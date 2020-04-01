@@ -55,7 +55,7 @@
 		S.close(clientMob)
 
 /obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item, var/itemCount)
-	itemBackground.setClickProc(.itemBackgroundClick)
+	itemBackground.setClickProc(UNLINT(.itemBackgroundClick))
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -84,7 +84,7 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(.closeButtonClick)
+	closeButton.setClickProc(UNLINT(.closeButtonClick))
 	closeButton.setData("item", src)
 
 	//storage space based items
@@ -98,7 +98,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(.storageBackgroundClick)
+		storageBackground.setClickProc(UNLINT(.storageBackgroundClick))
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -182,7 +182,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(.storageBackgroundClick)
+				itemBackground.setClickProc(UNLINT(.storageBackgroundClick))
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots

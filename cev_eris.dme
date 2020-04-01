@@ -53,6 +53,7 @@
 #include "code\__DEFINES\research.dm"
 #include "code\__DEFINES\sanity.dm"
 #include "code\__DEFINES\shields.dm"
+#include "code\__DEFINES\spaceman_dmm.dm"
 #include "code\__DEFINES\species_languages.dm"
 #include "code\__DEFINES\storyteller_defines.dm"
 #include "code\__DEFINES\subsystems-priority.dm"
