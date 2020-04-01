@@ -132,7 +132,7 @@
 		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '[32*P.photo_size]'" \
-		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ]"\
+		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]; size=[32*P.photo_size]x[32*P.photo_size]")
 
 /obj/item/weapon/paper_bundle/attack_self(mob/user as mob)
