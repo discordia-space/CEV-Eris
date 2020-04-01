@@ -149,7 +149,7 @@
 		if(--limit <= 0)
 			break
 		if(!isnull(ores_stored[O.material]))
-			ores_stored[O.material] ++
+			ores_stored[O.material] += 1
 		qdel(O)
 
 	if(!active)
@@ -224,11 +224,11 @@
 					continue
 
 				for(var/i=0,i<can_make,i++)
-					ores_stored[metal]--
+					ores_stored[metal] -= 1
 					sheets++
 					new M.stack_type(get_step(src, output_dir))
 			else
-				ores_stored[metal]--
+				ores_stored[metal] -= 1
 				sheets++
 				new /obj/item/weapon/ore/slag(get_step(src, output_dir))
 		else
