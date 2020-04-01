@@ -102,7 +102,7 @@
 				var/datum/instrument/instrument = instruments[key]
 				categories |= instrument.category
 
-			var/category = input(usr, "Choose a category") as anything|null in categories 
+			var/category = input(usr, "Choose a category") as null|anything in categories 
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			var/list/instruments_available = list()
@@ -111,7 +111,7 @@
 				if (instrument.category == category)
 					instruments_available += key
 
-			var/new_instrument = input(usr, "Choose an instrument") as anything|null in instruments_available
+			var/new_instrument = input(usr, "Choose an instrument") as null|anything in instruments_available
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			if (new_instrument)
