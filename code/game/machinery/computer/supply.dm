@@ -309,8 +309,6 @@
 			else
 				return ERRORCODE_NOFUNDS
 
-			break
-
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)

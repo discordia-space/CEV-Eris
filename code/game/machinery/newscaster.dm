@@ -212,7 +212,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			qdel(src)
 			return
 		if(2.0)
-			src.isbroken=1
+			src.isbroken = 1
 			if(prob(50))
 				qdel(src)
 			else
@@ -220,10 +220,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			return
 		else
 			if(prob(50))
-				src.isbroken=1
+				src.isbroken = 1
 			src.update_icon()
-			return
-	return
 
 /obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
 
