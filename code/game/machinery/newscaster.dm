@@ -810,7 +810,7 @@ obj/item/weapon/newspaper/attack_self(mob/user as mob)
 		switch(screen)
 			if(0) //Cover
 				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
-				dat+="<DIV ALIGN='center'><FONT SIZE=2>[company_name]-standard newspaper, for use on [company_name] Space Facilities</FONT></div><HR>"
+				dat+="<DIV ALIGN='center'><FONT SIZE=2>[company_name]-standard newspaper, for use on [company_name]© Space Facilities</FONT></div><HR>"
 				if(isemptylist(src.news_content))
 					if(src.important_message)
 						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR></ul>"
