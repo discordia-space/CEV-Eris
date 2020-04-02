@@ -408,7 +408,7 @@ var/list/turret_icons
 						overridden = 1
 						req_one_access.Cut()
 						req_one_access = list(access_occupy)
-					else if(TOOL_USE_FAIL)
+					if(TOOL_USE_FAIL)
 						user.visible_message(
 							SPAN_DANGER("[user] cut the wrong wire and tripped the security protocol on the [src]! Run!"),
 							SPAN_DANGER("You accidentally cut the wrong wire, tripping the security protocol! Run!")

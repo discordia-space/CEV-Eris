@@ -40,7 +40,7 @@
 		W.time_inflicted = time_inflicted
 		return W
 
-/obj/item/weapon/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O)
+/obj/item/weapon/autopsy_scanner/proc/add_data(var/obj/item/organ/external/O, mob/living/carbon/user)
 	if(!O.autopsy_data.len && !O.trace_chemicals.len) return
 
 	for(var/V in O.autopsy_data)
@@ -53,7 +53,7 @@
 			*/
 
 			// Buffing this stuff up for now!
-			if(1)
+			if(prob(min(20 + (user.stats.getMult(STAT_BIO, STAT_LEVEL_EXPERT) * 100 ), 100)))
 				W.pretend_weapon = W.weapon
 			else
 				W.pretend_weapon = pick("mechanical toolbox", "wirecutters", "revolver", "crowbar", "fire extinguisher", "tomato soup", "oxygen tank", "emergency oxygen tank", "laser", "bullet")
@@ -203,7 +203,7 @@
 	for(var/mob/O in viewers(M))
 		O.show_message(SPAN_NOTICE("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)
 
-	src.add_data(S)
+	src.add_data(S, user)
 
 	return 1
 

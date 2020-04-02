@@ -97,14 +97,14 @@ TODO: LATER
 		
 
 /datum/interface/proc/getElementByID(var/id)
-	for(var/list/HUD_element/element in _elements)
+	for(var/HUD_element/element in _elements)
 		if(element.getIdentifier() == id)
 			return element
 	error("No element found with id \"[id]\".")
 
 /datum/interface/proc/hide(var/id)
 	if (!id)
-		for(var/list/HUD_element/element in _elements)
+		for(var/HUD_element/element in _elements)
 			element.hide()
 	else
 		var/HUD_element/E = getElementByID(id)
@@ -118,7 +118,7 @@ TODO: LATER
 		error("Interface has no observer.")
 		return FALSE
 	if (!id)
-		for(var/list/HUD_element/element in _elements)
+		for(var/HUD_element/element in _elements)
 			element.show(_observer)
 	else
 		var/HUD_element/E = getElementByID(id)

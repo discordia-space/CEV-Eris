@@ -18,7 +18,7 @@
 			owner.update_hair()
 	..()
 
-/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
+/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), silent)
 	. = ..()
 	if(. && !disfigured)
 		if (brute_dam > 40)

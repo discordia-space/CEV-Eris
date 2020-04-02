@@ -571,7 +571,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return src
 
 /HUD_element/proc/getChildElementWithID(var/id)
-	for(var/list/HUD_element/element in getElements())
+	for(var/HUD_element/element in getElements())
 		if(element.getIdentifier() == id)
 			return element
 	error("No element found with id \"[id]\".")
