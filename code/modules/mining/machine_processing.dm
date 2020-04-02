@@ -224,11 +224,11 @@
 					continue
 
 				for(var/i=0,i<can_make,i++)
-					ores_stored[metal] -= 1
+					ores_stored[metal]--
 					sheets++
 					new M.stack_type(get_step(src, output_dir))
 			else
-				ores_stored[metal] -= 1
+				ores_stored[metal]--
 				sheets++
 				new /obj/item/weapon/ore/slag(get_step(src, output_dir))
 		else
