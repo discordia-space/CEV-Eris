@@ -142,7 +142,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	if(_disconnectElement(element))
 		return element
 
-/HUD_element/proc/setClickProc(var/proc/P, var/holder, var/list/arguments)
+/HUD_element/proc/setClickProc(P, var/holder, var/list/arguments)
 	_clickProc = P
 	_holder = holder
 	_procArguments = arguments

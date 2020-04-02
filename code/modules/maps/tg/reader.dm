@@ -64,7 +64,7 @@ var/global/use_preloader = FALSE
 		z_offset = world.maxz + 1
 
 	// If it's not a single dir, default to north (Default orientation)
-	if(!orientation in cardinal)
+	if(!(orientation in cardinal))
 		orientation = SOUTH
 
 	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)

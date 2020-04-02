@@ -51,7 +51,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_hideParentOnHide = FALSE
 	var/_passClickToParent = FALSE
 
-	var/proc/_clickProc //called when element is clicked
+	var/_clickProc //called when element is clicked
 	var/_holder	//object that used with called proc
 	var/list/_procArguments	//arguments that can be passed to proc
 
