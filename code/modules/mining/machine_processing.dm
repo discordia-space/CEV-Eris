@@ -149,7 +149,7 @@
 		if(--limit <= 0)
 			break
 		if(!isnull(ores_stored[O.material]))
-			ores_stored[O.material] += 1
+			ores_stored[O.material]++
 		qdel(O)
 
 	if(!active)
