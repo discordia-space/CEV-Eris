@@ -360,7 +360,8 @@
 //			icon_state = "health_numb"
 			overlays += ovrls["health0"]
 		else
-			switch(100 - ((parentmob:species.flags & NO_PAIN) ? 0 : parentmob:traumatic_shock))
+			var/mob/living/carbon/parentmobC = parentmob	// same parent mob but in correct type for accessing to species
+			switch(100 - ((parentmobC.species.flags & NO_PAIN) ? 0 : parentmob.traumatic_shock))
 				if(100 to INFINITY)		overlays += ovrls["health0"]
 				if(80 to 100)			overlays += ovrls["health1"]
 				if(60 to 80)			overlays += ovrls["health2"]
@@ -564,16 +565,17 @@
 
 /obj/screen/bodytemp/update_icon()
 	//TODO: precalculate all of this stuff when the species datum is created
-	var/base_temperature = parentmob:species.body_temperature
+	var/mob/living/carbon/parentmobC = parentmob	// same parent mob but in correct type for accessing to species
+	var/base_temperature = parentmobC.species.body_temperature
 	if(base_temperature == null) //some species don't have a set metabolic temperature
-		base_temperature = (parentmob:species.heat_level_1 + parentmob:species.cold_level_1)/2
+		base_temperature = (parentmobC.species.heat_level_1 + parentmobC.species.cold_level_1)/2
 
 	var/temp_step
 	overlays.Cut()
 	if (parentmob:bodytemperature >= base_temperature)
-		temp_step = (parentmob:species.heat_level_1 - base_temperature)/4
+		temp_step = (parentmobC.species.heat_level_1 - base_temperature)/4
 
-		if (parentmob:bodytemperature >= parentmob:species.heat_level_1)
+		if (parentmob:bodytemperature >= parentmobC.species.heat_level_1)
 			overlays += ovrls["temp4"]//icon_state = "temp4"
 		else if (parentmob:bodytemperature >= base_temperature + temp_step*3)
 			overlays += ovrls["temp3"]
@@ -585,9 +587,9 @@
 			overlays += ovrls["temp0"]
 
 	else if (parentmob:bodytemperature < base_temperature)
-		temp_step = (base_temperature - parentmob:species.cold_level_1)/4
+		temp_step = (base_temperature - parentmobC.species.cold_level_1)/4
 
-		if (parentmob:bodytemperature <= parentmob:species.cold_level_1)
+		if (parentmob:bodytemperature <= parentmobC.species.cold_level_1)
 			overlays += ovrls["temp-4"]
 		else if (parentmob:bodytemperature <= base_temperature - temp_step*3)
 			overlays += ovrls["temp-3"]
