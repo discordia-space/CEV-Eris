@@ -72,6 +72,9 @@
 		\[row\] - New table row.
 		\[cell\] - New table cell.
 		\[logo\] - Inserts corporate logo image.
+		\[guild\] - Inserts Guild logo image.
+		\[moebius\] - Inserts Moebius logo image.
+		\[ironhammer\] - Inserts Ironhammer logo image.
 		\[bluelogo\] - Inserts blue corporate logo image.
 		\[solcrest\] - Inserts SCG crest image.
 		\[terraseal\] - Inserts TCC seal"}

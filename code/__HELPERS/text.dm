@@ -1,4 +1,4 @@
-/*
+aa/*
  * Holds procs designed to help with filtering text
  * Contains groups:
  *			SQL sanitization
@@ -444,6 +444,9 @@ proc/TextPreview(var/string, var/len=40)
 	t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 	t = replacetext(t, "\[row\]", "</td><tr>")
 	t = replacetext(t, "\[cell\]", "<td>")
+	t = replacetext(t, "\[moebius\]", "<img src = moebus_logo.png>")
+	t = replacetext(t, "\[ironhammer\]", "<img src = ironhammer.png>")
+	t = replacetext(t, "\[guild\]", "<img src = guild.png>")
 	t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
 	t = replacetext(t, "\[editorbr\]", "")
 	return t
