@@ -1,4 +1,4 @@
-aa/*
+/*
  * Holds procs designed to help with filtering text
  * Contains groups:
  *			SQL sanitization
