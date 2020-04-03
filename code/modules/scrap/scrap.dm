@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			loot.make_old()
 
 	loot = new(src)
-	loot.max_w_class = ITEM_SIZE_HUGE
+	UNLINT(loot.max_w_class) = ITEM_SIZE_HUGE	// Remove UNLINT when 1.4 drops
 	shuffle_loot()
 
 /obj/structure/scrap/Destroy()
