@@ -47,7 +47,8 @@
 	on = !on
 	if(on)
 		visible_message("<span class='warning'>[src] clicks and distributes some pain.")
-		for(var/turf/T in trange(1, locate(x, y, z - 1)))
+		var/obj/machinery/cellshower/targetshower = locate(x, y, z - 1)
+		for(var/turf/T in trange(1, targetshower))
 			if(T.density)
 				continue
 			var/obj/effect/shower/S = new(T)
@@ -58,7 +59,8 @@
 /obj/machinery/cellshower/proc/spray()
 	visible_message("<span class='warning'>[src] clicks and distributes some pain.")
 	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1)
-	for(var/turf/T in trange(1, locate(x, y, z - 1)))
+	var/obj/machinery/cellshower/targetshower = locate(x, y, z - 1)
+	for(var/turf/T in trange(1, targetshower))
 		if(T.density)
 			continue
 		spawn(0)
