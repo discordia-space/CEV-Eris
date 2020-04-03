@@ -1,192 +1,523 @@
-#define REPORTS_VIEW      1
-#define REPORTS_DOWNLOAD  2
+//Report datums for use with the report editor and other programs.
 
-/datum/computer_file/program/reports
-	filename = "repview"
-	filedesc = "Report Editor"
-	nanomodule_path = /datum/nano_module/program/reports
-	extended_desc = "A general paperwork viewing and editing utility."
-	size = 6
-	available_on_ntnet = TRUE
-	requires_ntnet = 0
-	usage_flags = PROGRAM_ALL
+/datum/computer_file/report/recipient/crew_transfer
+	form_name = "CTA-AG-01"
+	title = "Crew Transfer Application"
+	logo = "\[asters\]"
+	available_on_ntnet = 1
 
-/datum/nano_module/program/reports
-	name = "Report Editor"
-	var/can_view_only = 0                              //Whether we are in view-only mode.
-	var/datum/computer_file/report/selected_report     //A report being viewed/edited. This is a temporary copy.
-	var/datum/computer_file/report/saved_report        //The computer file open.
-	var/prog_state = REPORTS_VIEW
+/datum/computer_file/report/recipient/crew_transfer/generate_fields()
+	..()
+	var/list/xo_fields = list()
+	add_field(/datum/report_field/instruction, "CEV Eris - Office of the First Officer")
+	add_field(/datum/report_field/people/from_manifest, "Name (XO)")
+	add_field(/datum/report_field/people/from_manifest, "Name (applicant)", required = 1)
+	add_field(/datum/report_field/date, "Date filed")
+	add_field(/datum/report_field/time, "Time filed")
+	add_field(/datum/report_field/simple_text, "Present position")
+	add_field(/datum/report_field/simple_text, "Requested position")
+	add_field(/datum/report_field/pencode_text, "Reason stated")
+	add_field(/datum/report_field/instruction, "The following fields render the document invalid if not signed clearly.")
+	add_field(/datum/report_field/signature, "Applicant signature")
+	xo_fields += add_field(/datum/report_field/signature, "First officer's signature")
+	xo_fields += add_field(/datum/report_field/number, "Number of personnel in present/previous position")
+	xo_fields += add_field(/datum/report_field/number, "Number of personnel in requested position")
+	xo_fields += add_field(/datum/report_field/options/yes_no, "Approved")
+	for(var/datum/report_field/field in xo_fields)
+		field.set_access(access_edit = access_hop)
 
-/datum/nano_module/program/reports/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
-	var/list/data = host.initial_data()
-	data["prog_state"] = prog_state
-	switch(prog_state)
-		if(REPORTS_VIEW)
-			if(selected_report)
-				data["report_data"] = selected_report.generate_nano_data(get_access(user))
-			data["view_only"] = can_view_only
-			data["printer"] = program.computer.printer
-		if(REPORTS_DOWNLOAD)
-			var/list/L = list()
-			for(var/datum/computer_file/report/report in ntnet_global.fetch_reports(get_access(user)))
-				var/M = list()
-				M["name"] = report.display_name()
-				M["uid"] = report.uid
-				L += list(M)
-			data["reports"] = L
+/datum/computer_file/report/recipient/access_modification
+	form_name = "AMA-AG-02"
+	title = "Crew Access Modification Application"
+	logo = "\[asters\]"
+	available_on_ntnet = 1
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "reports.tmpl", name, 700, 800, state = state)
-		ui.auto_update_layout = 1
-		ui.set_initial_data(data)
-		ui.open()
+/datum/computer_file/report/recipient/access_modification/generate_fields()
+	..()
+	var/list/xo_fields = list()
+	add_field(/datum/report_field/instruction, "CEV Eris - Office of the First officer")
+	add_field(/datum/report_field/people/from_manifest, "Name (XO)")
+	add_field(/datum/report_field/people/from_manifest, "Name (applicant)", required = 1)
+	add_field(/datum/report_field/date, "Date filed")
+	add_field(/datum/report_field/time, "Time filed")
+	add_field(/datum/report_field/simple_text, "Present position")
+	add_field(/datum/report_field/simple_text, "Requested access")
+	add_field(/datum/report_field/pencode_text, "Reason stated")
+	add_field(/datum/report_field/simple_text, "Duration of expanded access")
+	add_field(/datum/report_field/instruction, "The following fields render the document invalid if not signed clearly.")
+	add_field(/datum/report_field/signature, "Applicant signature")
+	xo_fields += add_field(/datum/report_field/signature, "First officer's signature")
+	xo_fields += add_field(/datum/report_field/number, "Number of personnel in relevant position")
+	xo_fields += add_field(/datum/report_field/options/yes_no, "Approved")
+	for(var/datum/report_field/field in xo_fields)
+		field.set_access(access_edit = access_hop)
 
-/datum/nano_module/program/reports/proc/switch_state(new_state)
-	if(prog_state == new_state)
-		return
-	switch(new_state)
-		if(REPORTS_VIEW)
-			program.requires_ntnet_feature = null
-			program.requires_ntnet = 0
-			prog_state = REPORTS_VIEW
-		if(REPORTS_DOWNLOAD)
-			close_report()
-			program.requires_ntnet_feature = NTNET_SOFTWAREDOWNLOAD
-			program.requires_ntnet = 1
-			prog_state = REPORTS_DOWNLOAD
+/datum/computer_file/report/recipient/borging
+	form_name = "CC-MOL-09"
+	title = "Cyborgification Contract"
+	logo = "\[moebius\]\[asters\]"
+	available_on_ntnet = 1
 
-/datum/nano_module/program/reports/proc/close_report()
-	QDEL_NULL(selected_report)
-	saved_report = null
+/datum/computer_file/report/recipient/borging/generate_fields()
+	..()
+	var/list/xo_fields = list()
+	add_field(/datum/report_field/instruction, "CEV Eris - Office of the First officer")
+	add_field(/datum/report_field/people/from_manifest, "Name (XO)")
+	add_field(/datum/report_field/people/from_manifest, "Name (subject)", required = 1)
+	add_field(/datum/report_field/date, "Date filed")
+	add_field(/datum/report_field/time, "Time filed")
+	add_field(/datum/report_field/instruction, "I, undersigned, hereby agree to willingly undergo a Regulation Lobotimization with intention of cyborgification or AI assimilation, and I am aware of all the consequences of such act. I also understand that this operation may be irreversible, and that my employment contract will be terminated.")
+	add_field(/datum/report_field/signature, "Subject's signature")
+	xo_fields += add_field(/datum/report_field/signature, "First officer's signature")
+	xo_fields += add_field(/datum/report_field/options/yes_no, "Approved")
+	for(var/datum/report_field/field in xo_fields)
+		field.set_access(access_edit = access_hop)
 
-/datum/nano_module/program/reports/proc/save_report(mob/user, save_as)
-	if(!program.computer || !program.computer.hard_drive)
-		to_chat(user, "Unable to find hard drive.")
-		return
-	selected_report.rename_file()
-	if(!save_as)
-		program.computer.hard_drive.remove_file(saved_report)
-	if(!program.computer.hard_drive.try_store_file(selected_report))
-		to_chat(user, "Error storing file. Please check your hard drive.")
-		program.computer.hard_drive.store_file(saved_report) //Does nothing if already saved.
-		return
-	program.computer.hard_drive.store_file(selected_report)
-	if(!save_as)
-		qdel(saved_report)
-	saved_report = selected_report
-	selected_report = saved_report.clone()
-	to_chat(user, "The report has been saved as [saved_report.filename].[saved_report.filetype]")
+/datum/computer_file/report/recipient/sec
+	logo = "\[moebius\]"
 
-/datum/nano_module/program/reports/proc/load_report(mob/user)
-	if(!program.computer || !program.computer.hard_drive)
-		to_chat(user, "Unable to find hard drive.")
-		return
-	var/choices = list()
-	for(var/datum/computer_file/report/R in program.computer.hard_drive.stored_files)
-		choices["[R.filename].[R.filetype]"] = R
-	var/choice = input(user, "Which report would you like to load?", "Loading Report") as null|anything in choices
-	if(choice in choices)
-		var/datum/computer_file/report/chosen_report = choices[choice]
-		var/editing = alert(user, "Would you like to view or edit the report", "Loading Report", "View", "Edit")
-		if(editing == "View")
-			if(!chosen_report.verify_access(get_access(user)))
-				to_chat(user, "<span class='warning'>You lack access to view this report.</span>")
-				return
-			can_view_only = 1
-		else
-			if(!chosen_report.verify_access_edit(get_access(user)))
-				to_chat(user, "<span class='warning'>You lack access to edit this report.</span>")
-				return
-			can_view_only = 0
-		saved_report = chosen_report
-		selected_report = chosen_report.clone()
-		return 1
+/datum/computer_file/report/recipient/sec/New()
+	..()
+	set_access(access_security)
+	set_access(access_heads, override = 0)
 
-/datum/nano_module/program/reports/Topic(href, href_list)
-	if(..())
-		return 1
-	var/mob/user = usr
+/datum/computer_file/report/recipient/sec/investigation
+	form_name = "IR-IH-43"
+	title = "Investigation Report"
+	logo = "\[ironhammer\]"
+	available_on_ntnet = 1
 
-	if(text2num(href_list["warning"])) //Gives the user a chance to avoid losing unsaved reports.
-		if(alert(user, "Are you sure you want to leave this page? Unsubmitted data will be lost.",, "Yes", "No") == "No")
-			return 1 //If yes, proceed to the actual action instead.
+/datum/computer_file/report/recipient/sec/investigation/generate_fields()
+	..()
+	add_field(/datum/report_field/instruction, "Ironhammer Divison CEV Eris")
+	add_field(/datum/report_field/instruction, "For internal use only.")
+	add_field(/datum/report_field/people/from_manifest, "Name")
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time")
+	add_field(/datum/report_field/simple_text, "Case name")
+	add_field(/datum/report_field/pencode_text, "Summary")
+	add_field(/datum/report_field/pencode_text, "Observations")
+	add_field(/datum/report_field/signature, "Signature")
+	set_access(access_edit = access_security)
 
-	if(href_list["load"])
-		if(selected_report || saved_report)
-			close_report()
-		load_report(user)
-		return 1
-	if(href_list["save"])
-		if(!selected_report)
-			return 1
-		if(!selected_report.verify_access(get_access(user)))
-			return 1
-		var/save_as = text2num(href_list["save_as"])
-		save_report(user, save_as)
-	if(href_list["submit"])
-		if(!selected_report)
-			return 1
-		if(!selected_report.verify_access_edit(get_access(user)))
-			return 1
-		if(selected_report.submit(user))
-			to_chat(user, "The [src] has been submitted.")
-			if(alert(user, "Would you like to save a copy?","Save Report", "Yes", "No") == "Yes")
-				save_report(user)
-		return 1
-	if(href_list["discard"])
-		if(!selected_report)
-			return 1
-		close_report()
-		return 1
-	if(href_list["edit"])
-		if(!selected_report)
-			return 1
-		var/field_ID = text2num(href_list["ID"])
-		var/datum/report_field/field = selected_report.field_from_ID(field_ID)
-		if(!field || !field.verify_access_edit(get_access(user)))
-			return 1
-		field.ask_value(user) //Handles the remaining IO.
-		return 1
-	if(href_list["print"])
-		if(!selected_report || !program.computer || !program.computer.printer)
-			return 1
-		if(!selected_report.verify_access(get_access(user)))
-			return 1
-		var/with_fields = text2num(href_list["print_mode"])
-		var/text = selected_report.generate_pencode(get_access(user), with_fields)
-		if(!program.computer.printer.print_text(text, selected_report.display_name()))
-			to_chat(user, "Hardware error: Printer was unable to print the file. It may be out of paper.")
-		return 1
-	if(href_list["export"])
-		if(!selected_report || !program.computer || !program.computer.hard_drive)
-			return 1
-		if(!selected_report.verify_access(get_access(user)))
-			return 1
-		var/datum/computer_file/data/text/file = new
-		selected_report.rename_file()
-		file.stored_data = selected_report.generate_pencode(get_access(user), no_html = 1) //TXT files can't have html; they use pencode only.
-		file.filename = selected_report.filename
-		to_chat(user, (program.computer.hard_drive.store_file(file) ? "The report has been exported as [file.filename].[file.filetype]" : "Error storing file. Please check your hard drive."))
-		return 1
+/datum/computer_file/report/recipient/sec/incident
+	form_name = "SIC-IH-12"
+	title = "Security Incident Report"
+	logo = "\[ironhammer\]"
+	available_on_ntnet = 1
 
-	if(href_list["download"])
-		switch_state(REPORTS_DOWNLOAD)
-		return 1
-	if(href_list["get_report"])
-		var/uid = text2num(href_list["report"])
-		for(var/datum/computer_file/report/report in ntnet_global.fetch_reports(get_access(user)))
-			if(report.uid == uid)
-				selected_report = report.clone()
-				can_view_only = 0
-				switch_state(REPORTS_VIEW)
-				return 1
-		to_chat(user, "Network error: Selected report could not be downloaded. Check network functionality and credentials.")
-		return 1
-	if(href_list["home"])
-		switch_state(REPORTS_VIEW)
-		return 1
+/datum/computer_file/report/recipient/sec/incident/generate_fields()
+	..()
+	add_field(/datum/report_field/instruction, "Ironhammer Divison CEV Eris")
+	add_field(/datum/report_field/instruction, "To be filled out by Operative on duty responding to the Incident. Report must be signed and submitted before the end of the shift!")
+	add_field(/datum/report_field/people/from_manifest, "Reporting Operative")
+	add_field(/datum/report_field/simple_text, "Offense/Incident Type")
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time of incident")
+	add_field(/datum/report_field/people/list_from_manifest, "Assisting Operative(s)")
+	add_field(/datum/report_field/simple_text, "Location")
+	add_field(/datum/report_field/pencode_text, "Personnel involved in Incident", "\[small\]\[i\](V-Victim, S-Suspect, W-Witness, M-Missing, A-Arrested, RP-Reporting Person, D-Deceased)\[/i\]\[/small\]")
+	add_field(/datum/report_field/pencode_text, "Description of Items/Property", "\[small\]\[i\](D-Damaged, E-Evidence, L-Lost, R-Recovered, S-Stolen)\[/i\]\[/small\]")
+	add_field(/datum/report_field/pencode_text, "Narrative")
+	add_field(/datum/report_field/signature, "Reporting Operative's signature")
+	set_access(access_edit = access_security)
 
-#undef REPORTS_VIEW
-#undef REPORTS_DOWNLOAD
+/datum/computer_file/report/recipient/sec/evidence
+	form_name = "EPF-IH-02b"
+	title = "Evidence and Property Form"
+	logo = "\[ironhammer\]"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/sec/evidence/generate_fields()
+	..()
+	var/datum/report_field/temp_field
+	add_field(/datum/report_field/instruction, "Ironhammer Divison CEV Eris")
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time")
+	add_field(/datum/report_field/people/from_manifest, "Confiscated from")
+	add_field(/datum/report_field/pencode_text, "List of items in custody/evidence lockup")
+	set_access(access_edit = access_security)
+	temp_field = add_field(/datum/report_field/signature, "Gunnery Sergeant's signature")
+	temp_field.set_access(access_edit = list(access_security, access_armory))
+	temp_field = add_field(/datum/report_field/signature, "Detective's or MedSpec's signature")
+	temp_field.set_access(access_edit = list(access_security, access_forensics_lockers))
+
+//Supply and Exploration; these are not shown in deck manager.
+
+/datum/computer_file/report/recipient/docked
+	logo = "\[asters\]"
+	form_name = "DVR-AG-12"
+	title = "Docked Vessel Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/docked/New()
+	..()
+	set_access(access_cargo, access_cargo)
+	set_access(access_heads, override = 0)
+
+/datum/computer_file/report/recipient/docked/generate_fields()
+	..()
+	add_field(/datum/report_field/instruction, "CEV Eris Supply and Hangar Management Department")
+	add_field(/datum/report_field/instruction, "General Info")
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/simple_text, "Vessel Name")
+	add_field(/datum/report_field/simple_text, "Vessel Pilot/Owner")
+	add_field(/datum/report_field/simple_text, "Vessel Intended Purpose")
+	add_field(/datum/report_field/people/from_manifest, "Docking Authorized by")
+	add_field(/datum/report_field/instruction, "General Cargo Info")
+	add_field(/datum/report_field/pencode_text, "List the types of cargo onboard the vessel")
+	add_field(/datum/report_field/instruction, "Hazardous Cargo Info")
+	add_field(/datum/report_field/options/yes_no, "Weaponry")
+	add_field(/datum/report_field/options/yes_no, "Live Cargo")
+	add_field(/datum/report_field/options/yes_no, "Biohazardous material")
+	add_field(/datum/report_field/options/yes_no, "Chemical or radiation hazard")
+	add_field(/datum/report_field/signature, "To indicate authorization for vessel entry, sign here")
+	add_field(/datum/report_field/instruction, "Undocking and Departure")
+	add_field(/datum/report_field/time, "Undocking Time")
+	add_field(/datum/report_field/pencode_text, "Additional Undocking Comments")
+
+/datum/computer_file/report/recipient/fauna
+	logo = "\[asters\]\[moebius\]]"
+	form_name = "AFR-MOL-19f"
+	title = "Alien Fauna Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/docked/New()
+	..()
+	set_access(access_edit = access_cargo)
+	set_access(access_edit = access_moebius, override = 0)
+
+/datum/computer_file/report/recipient/fauna/generate_fields()
+	..()
+	add_field(/datum/report_field/instruction, "CEV Eris Expeditions")
+	add_field(/datum/report_field/instruction, "The following is to be filled out by members of a Expedition team after discovery and study of new alien life forms.")
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/people/list_from_manifest, "Personnel Involved")
+	add_field(/datum/report_field/pencode_text, "Anatomy/Appearance")
+	add_field(/datum/report_field/pencode_text, "Locomotion")
+	add_field(/datum/report_field/pencode_text, "Diet")
+	add_field(/datum/report_field/pencode_text, "Habitat")
+	add_field(/datum/report_field/simple_text, "Homeworld")
+	add_field(/datum/report_field/pencode_text, "Behavior")
+	add_field(/datum/report_field/pencode_text, "Defense/Offense")
+	add_field(/datum/report_field/pencode_text, "Special Characteristic(s)")
+	add_field(/datum/report_field/pencode_text, "Classification")
+	add_field(/datum/report_field/instruction, "On completion of this form and form approval, the Research Director should fax the form to both the Corporate Liaison and the Commanding Officer, as well as keep a copy on file in their Office alongside other mission reports.")
+
+//NT reports, mostly for liason but can be used by any NT personnel.
+
+/datum/computer_file/report/recipient/nt
+	logo = "\[moebius\]"
+
+/datum/computer_file/report/recipient/nt/proc/add_header()
+	add_field(/datum/report_field/simple_text, "Vessel", "CEV Eris")
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time")
+	add_field(/datum/report_field/simple_text, "Index")
+
+/datum/computer_file/report/recipient/nt/anomaly
+	form_name = "AOR-MOL-1546"
+	title = "Anomalistic Object Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/anomaly/New()
+	..()
+	set_access(access_moebius, access_moebius)
+
+/datum/computer_file/report/recipient/nt/anomaly/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/simple_text, "AO Codename")
+	add_field(/datum/report_field/people/from_manifest, "Reporting Scientist")
+	add_field(/datum/report_field/people/from_manifest, "Overviewing Research Director")
+	add_field(/datum/report_field/pencode_text, "Containment Procedures")
+	add_field(/datum/report_field/pencode_text, "Generalized Overview")
+	add_field(/datum/report_field/simple_text, "Approximate Age of AO")
+	add_field(/datum/report_field/simple_text, "Threat Level of AO")
+
+/datum/computer_file/report/recipient/nt/fire
+	form_name = "ETF-CEV-0102"
+	title = "Employment Termination Form"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/fire/New()
+	..()
+	set_access(access_heads, access_heads)
+	set_access(access_heads, override = 0)
+
+/datum/computer_file/report/recipient/nt/fire/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/instruction, "Notice of Termination of Employment")
+	add_field(/datum/report_field/people/from_manifest, "Name")
+	add_field(/datum/report_field/number, "Age")
+	add_field(/datum/report_field/simple_text, "Position")
+	add_field(/datum/report_field/pencode_text, "Reason for Termination")
+	add_field(/datum/report_field/signature, "Authorized by")
+	add_field(/datum/report_field/instruction, "Please attach necessary information alongside notice of termination.")
+
+/datum/computer_file/report/recipient/nt/incident/New()
+	..()
+	set_access(access_edit = access_heads)
+
+/datum/computer_file/report/recipient/nt/incident/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/pencode_text, "Summary of Incident")
+	add_field(/datum/report_field/pencode_text, "Details of Incident")
+
+/datum/computer_file/report/recipient/nt/incident/proc/add_signatures()
+	add_field(/datum/report_field/signature, "Signature")
+	add_field(/datum/report_field/signature, "Witness Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+
+/datum/computer_file/report/recipient/nt/incident/ship
+	form_name = "CEV-3203"
+	title = "CEV Eris Incident Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/ship/generate_fields()
+	..()
+	add_field(/datum/report_field/pencode_text, "Departments Involved")
+	add_signatures()
+
+
+/datum/computer_file/report/recipient/nt/incident/personnel
+	form_name = "CEV-3205"
+	title = "CEV Eris Personnel Incident Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/personnel/generate_fields()
+	..()
+	add_field(/datum/report_field/people/list_from_manifest, "Employee(s) Involved")
+	add_signatures()
+
+/datum/computer_file/report/recipient/nt/incident/asset
+	form_name = "C-3201"
+	title = "CEV Eris Loss Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/asset/generate_fields()
+	..()
+	add_field(/datum/report_field/pencode_text, "CEV Eris Employee Injuries")
+	add_field(/datum/report_field/pencode_text, "CEV Eris Assets Lost")
+	add_signatures()
+
+/datum/computer_file/report/recipient/nt/incident/xeno
+	form_name = "CEV-3213"
+	title = "Non-Human Incident Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/xeno/generate_fields()
+	add_field(/datum/report_field/instruction, "If non-human employee lacks a valid authorization, use form C-3213A instead.")
+	..()
+	add_field(/datum/report_field/people/list_from_manifest, "Non-Human Employee(s) Involved")
+	add_signatures()
+
+/datum/computer_file/report/recipient/nt/incident/xeno_no_visa/
+	form_name = "CEV-3213A"
+	title = "Non-Human Incident Report: Without Authorization"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/xeno_no_visa/generate_fields()
+	add_field(/datum/report_field/instruction, "If non-human has a valid authorization, use form C-3213 instead.")
+	..()
+	add_field(/datum/report_field/people/list_from_manifest, "Non-Human(s) Involved")
+	add_signatures()
+
+/datum/computer_file/report/recipient/nt/incident/synth
+	form_name = "CEV-3213X"
+	title = "CEV Eris Synthetic Incident Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/synth/generate_fields()
+	..()
+	add_field(/datum/report_field/people/list_from_manifest, "Synthetic(s) Involved")
+	add_signatures()
+
+/datum/computer_file/report/recipient/nt/incident/crew
+	form_name = "CEV-3241"
+	title = "CEV Eris Crew - Foreigner Incident Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/incident/crew/generate_fields()
+	add_field(/datum/report_field/instruction, "For multi-party incidents involving both ship crew and non-ship assets.")
+	..()
+	add_field(/datum/report_field/people/list_from_manifest, "Crew Member(s) Involved")
+	add_field(/datum/report_field/people/list_from_manifest, "Foreign Asset(s) Involved")
+	add_signatures()
+
+/datum/computer_file/report/recipient/nt/volunteer
+	form_name = "TSA-MOL-08"
+	title = "Test Subject Application"
+	logo = "\[moebius\]"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/volunteer/generate_fields()
+	..()
+	var/list/temp_fields = list()
+	add_header()
+	add_field(/datum/report_field/people/from_manifest, "Name of Volunteer")
+	add_field(/datum/report_field/simple_text, "Intended Procedure(s)")
+	add_field(/datum/report_field/simple_text, "Compensation for Volunteer: (if any)")
+	add_field(/datum/report_field/people/list_from_manifest, "Handling Researcher(s)")
+	add_field(/datum/report_field/instruction, "By signing, the \"Volunteer\" agrees to absolve Moebius Laboratories, and its employees, of any liability or responsibility for injuries, damages, property loss or side-effects that may result from the intended procedure. If signed by an authorized representative of Moebius Laboratories, such as a Expedition Overseer or Biolab officer - this form is deemed reviewed, but is only approved if so marked.")
+	add_field(/datum/report_field/signature, "Volunteer's Signature:")
+	temp_fields += add_field(/datum/report_field/signature, "Moebius Representative's Signature")
+	temp_fields += add_field(/datum/report_field/options/yes_no, "Approved")
+	for(var/datum/report_field/temp_field in temp_fields)
+		temp_field.set_access(access_edit = access_heads)
+
+/datum/computer_file/report/recipient/nt/deny
+	form_name = "TSA-MOL-08b"
+	title = "Rejection of Test Subject Volunteer Notice"
+	logo = "\[moebius\]"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/deny/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/instruction, "Dear Sir/Madam, we regret to inform you that your volunteer application for service as a test subject with Moebius Laboratories has been rejected. We thank you for your interest in our company and the progression of research. Attached, you will find a copy of your original volunteer form for your records. Regards,")
+	add_field(/datum/report_field/signature, "Moebius Representative's Signature")
+	add_field(/datum/report_field/people/from_manifest, "Name of Volunteer")
+	add_field(/datum/report_field/instruction, "Reason for Rejection")
+	add_field(/datum/report_field/options/yes_no, "Physically Unfit")
+	add_field(/datum/report_field/options/yes_no, "Mentally Unfit")
+	add_field(/datum/report_field/options/yes_no, "Project Cancellation")
+	add_field(/datum/report_field/simple_text, "Other")
+	add_field(/datum/report_field/options/yes_no, "Report Approved")
+	set_access(access_edit = access_heads)
+
+/datum/computer_file/report/recipient/nt/memo/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/simple_text, "Subject")
+	add_field(/datum/report_field/pencode_text, "Body")
+	add_field(/datum/report_field/signature, "Authorizing Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+
+/datum/computer_file/report/recipient/nt/memo/internal
+	form_name = "C-0003"
+	title = "Internal Memorandum"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/memo/internal/New()
+	..()
+	set_access(access_heads, access_heads)
+
+/datum/computer_file/report/recipient/nt/memo/external
+	form_name = "C-0005"
+	title = "External Memorandum"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/memo/external/New()
+	..()
+	set_access(access_edit = access_heads)
+
+//No access restrictions for easier use.
+/datum/computer_file/report/recipient/nt/sales
+	form_name = "AG-2192"
+	title = "Asters Guild Sales Contract and Receipt"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/sales/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/instruction, "Product Information")
+	add_field(/datum/report_field/simple_text, "Product Name")
+	add_field(/datum/report_field/simple_text, "Product Type")
+	add_field(/datum/report_field/number, "Product Unit Cost (T)")
+	add_field(/datum/report_field/number, "Product Units Requested")
+	add_field(/datum/report_field/number, "Total Cost (T)")
+	add_field(/datum/report_field/instruction, "Seller Information")
+	add_field(/datum/report_field/instruction, "The 'Purchaser' may not return any sold product units for re-compensation in credits, but may return the item for an identical item, or item of equal material (not credit) value. The 'Seller' agrees to make their best effort to repair, or replace any items that fail to accomplish their designed purpose, due to malfunction or manufacturing error - but not user-caused damage.")
+	add_field(/datum/report_field/people/from_manifest, "Name")
+	add_field(/datum/report_field/signature, "Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+
+/datum/computer_file/report/recipient/nt/visa
+	form_name = "AG-0952"
+	title = "CEV Eris Work Visa Request Form"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/visa/generate_fields()
+	..()
+	add_header()
+	var/datum/report_field/temp_field
+	add_field(/datum/report_field/people/from_manifest, "Intended Recipient of Visa")
+	add_field(/datum/report_field/pencode_text, "Reason for Request")
+	add_field(/datum/report_field/signature, "Applicant's Signature")
+	temp_field = add_field(/datum/report_field/signature, "Request Issuer's Signature")
+	temp_field.set_access(access_edit = access_heads)
+	temp_field = add_field(/datum/report_field/options/yes_no, "Request Approved by Issuer")
+	temp_field.set_access(access_edit = access_heads)
+	temp_field = add_field(/datum/report_field/signature, "Issuing Authority's Signature (acknowledging reciept)")
+	temp_field.set_access(access_edit = access_heads)
+
+/datum/computer_file/report/recipient/nt/payout
+	form_name = "AG-3310"
+	title = "Next of Kin Payout Authorization"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/nt/payout/generate_fields()
+	..()
+	add_header()
+	add_field(/datum/report_field/people/from_manifest, "This document hereby authorizes the payout of the remaining salary of")
+	add_field(/datum/report_field/pencode_text, "As well as the net-worth of any remaining personal assets: (Asset, Credit Amount)")
+	add_field(/datum/report_field/pencode_text, "Including personal effects")
+	add_field(/datum/report_field/instruction, "To be shipped and delivered directly to the employee's next of kin without delay.")
+	add_field(/datum/report_field/signature, "Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+	set_access(access_edit = access_heads)
+
+//Solgov reports, mostly for the SGR
+/datum/computer_file/report/recipient/sol
+	logo = "\[asters\]"
+	form_name = "AG-REP-00"
+
+/datum/computer_file/report/recipient/sol/audit
+	form_name = "AG-REP-12"
+	title = "CEV Eris Department Audit"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/sol/audit/generate_fields()
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time")
+	add_field(/datum/report_field/simple_text, "Name of Department")
+	add_field(/datum/report_field/pencode_text, "Positive Observations")
+	add_field(/datum/report_field/pencode_text, "Negative Observations")
+	add_field(/datum/report_field/pencode_text, "Other Notes")
+	add_field(/datum/report_field/signature, "Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+	set_access(access_edit = access_heads)
+
+/datum/computer_file/report/recipient/sol/audit
+	form_name = "AG-REP-4"
+	title = "Crewman Incident Report"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/sol/audit/generate_fields()
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time")
+	add_field(/datum/report_field/people/from_manifest, "Crewman Involved in Incident")
+	add_field(/datum/report_field/simple_text, "Nature of Incident")
+	add_field(/datum/report_field/pencode_text, "Description of incident")
+	add_field(/datum/report_field/signature, "Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+	set_access(access_edit = list(access_heads, access_heads))
+
+/datum/computer_file/report/recipient/sol/audit
+	form_name = "AG-REP-03b"
+	title = "Work Visa Issuing Form"
+	available_on_ntnet = 1
+
+/datum/computer_file/report/recipient/sol/audit/generate_fields()
+	var/datum/report_field/temp_field
+	add_field(/datum/report_field/date, "Date")
+	add_field(/datum/report_field/time, "Time")
+	add_field(/datum/report_field/people/from_manifest, "Recipient of Work Visa")
+	add_field(/datum/report_field/simple_text, "Species of Recipient")
+	temp_field = add_field(/datum/report_field/signature, "Issuer of Work Visa Signature")
+	add_field(/datum/report_field/signature, "Recipient of Work Visa Signature")
+	add_field(/datum/report_field/options/yes_no, "Approved")
+	temp_field.set_access(access_edit = access_heads)

@@ -71,10 +71,16 @@
 		\[grid\] - \[/grid\] : Table without visible borders, for layouts.
 		\[row\] - New table row.
 		\[cell\] - New table cell.
+		\[asters\] - Inserts Asters Guild image.
 		\[logo\] - Inserts corporate logo image.
 		\[bluelogo\] - Inserts blue corporate logo image.
 		\[solcrest\] - Inserts SCG crest image.
+		\[moebius\] - Inserts moebius image.
+		\[ironhammer\] - Inserts Ironhammer image.
 		\[terraseal\] - Inserts TCC seal"}
+
+
+
 
 		to_chat(usr, help)
 		return TRUE
