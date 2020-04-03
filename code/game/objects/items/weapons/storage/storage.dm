@@ -77,6 +77,7 @@
 		item.maptext = "<font color='white'>[itemCount]</font>"
 
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
+	RETURN_TYPE(/HUD_element)
 	var/HUD_element/main = new("storage")
 	main.setDeleteOnHide(TRUE)
 

@@ -120,6 +120,7 @@
 
 //Getting implants
 /mob/living/proc/get_core_implant(ctype = null, req_activated = TRUE)
+	RETURN_TYPE(/obj/item/weapon/implant/core_implant)
 	for(var/obj/item/weapon/implant/core_implant/I in src)
 		if(ctype && !istype(I, ctype))
 			continue

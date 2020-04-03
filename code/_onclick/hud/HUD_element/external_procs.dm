@@ -133,6 +133,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 
 /HUD_element/proc/add(var/HUD_element/newElement)
+	RETURN_TYPE(/HUD_element)
 	newElement = newElement || new
 	_connectElement(newElement)
 

@@ -97,6 +97,7 @@ TODO: LATER
 		
 
 /datum/interface/proc/getElementByID(var/id)
+	RETURN_TYPE(/HUD_element)
 	for(var/HUD_element/element in _elements)
 		if(element.getIdentifier() == id)
 			return element
