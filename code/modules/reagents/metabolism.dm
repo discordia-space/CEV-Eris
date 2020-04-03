@@ -83,7 +83,7 @@
 		for(var/stat in ALL_STATS)
 			parent.stats.removeTempStat(stat, "nsa_breach")
 
-	var/obj/screen/nsa/hud = parent.HUDneed["nsa"]
+	var/obj/screen/nsa/hud = parent.HUDneed["neural system accumulation"]
 	hud?.update_icon()
 
 /datum/metabolism_effects/proc/nsa_breached_effect()
