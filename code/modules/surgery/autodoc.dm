@@ -32,7 +32,7 @@
 
 /datum/autodoc
 	var/list/scanned_patchnotes = list()
-	var/list/picked_patchnotes = list()
+	var/list/datum/autodoc_patchnote/picked_patchnotes = list()
 	var/obj/holder
 	var/template_name = "autodoc.tmpl"
 

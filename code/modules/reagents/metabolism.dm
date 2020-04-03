@@ -82,7 +82,9 @@
 	else
 		for(var/stat in ALL_STATS)
 			parent.stats.removeTempStat(stat, "nsa_breach")
-	parent.HUDneed["neural system accumulation"]?.update_icon()
+
+	var/obj/screen/nsa/hud = parent.HUDneed["nsa"]
+	hud?.update_icon()
 
 /datum/metabolism_effects/proc/nsa_breached_effect()
 	if(get_nsa() < 120)

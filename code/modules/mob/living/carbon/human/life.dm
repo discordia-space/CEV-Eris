@@ -949,8 +949,9 @@
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
 		if(mind && mind.antagonist.len != 0)
-			if(hud_icon_reference[mind.antagonist[1].role_text]) //only display the first antagonist role
-				holder.icon_state = hud_icon_reference[mind.antagonist[1].role_text]
+			var/datum/antagonist/antag = mind.antagonist[1]	//only display the first antagonist role
+			if(hud_icon_reference[antag.role_text]) 
+				holder.icon_state = hud_icon_reference[antag.role_text]
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder

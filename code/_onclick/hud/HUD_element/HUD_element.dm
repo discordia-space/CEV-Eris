@@ -94,7 +94,8 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 
 	var/HUD_element/parent = getParent()
 	if (parent)
-		parent.getElements().Remove(src)
+		var/list/HUD_element/elementRemove = parent.getElements()
+		elementRemove.Remove(src)
 		_setParent()
 
 	for(var/name in _iconsBuffer)

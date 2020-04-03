@@ -66,8 +66,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		else if(istype(thing, /atom))
 			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/atom(thing)
 		else
-			if(!GLOB.catalogs[catalog_id].len)
-				qdel(GLOB.catalogs[catalog_id])
+			var/list/element = GLOB.catalogs[catalog_id]
+			if(!element.len)
+				qdel(element)
 				GLOB.catalogs.Remove(catalog_id)
 				return FALSE
 			error("Unsupported type passed to /proc/create_catalog_entry()")

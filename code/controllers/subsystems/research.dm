@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(research)
 	var/list/all_designs = list()	// All design datums
 	var/list/starting_designs = list() // List of designs starts_unlocked = TRUE
 	var/list/statting_technologies = list() // List of technologies that have no cost and no unlock requirements
-	var/list/all_tech_trees = list() // All tech tree typepaths (keys) associated to a list of their tech node instances (list(values))
+	var/list/list/all_tech_trees = list() // All tech tree typepaths (keys) associated to a list of their tech node instances (list(values))
 	var/list/all_tech_nodes = list() // All tech nodes
 
 	var/research_initialized = FALSE
