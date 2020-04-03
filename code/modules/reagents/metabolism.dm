@@ -200,7 +200,7 @@
 			addiction_list.Remove(R)
 			continue
 
-		addiction_list[R]++
+		addiction_list[R] += 1
 		if(!parent.chem_effects[CE_PURGER])
 
 			switch(addiction_list[R])
