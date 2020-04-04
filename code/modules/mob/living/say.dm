@@ -151,7 +151,6 @@ var/list/channel_to_radio_key = new
 	else
 		speaking = get_default_language()
 
-	message = capitalize(message)
 	// This is broadcast to all mobs with the language,
 	// irrespective of distance or anything else.
 	if(speaking && speaking.flags&HIVEMIND)
