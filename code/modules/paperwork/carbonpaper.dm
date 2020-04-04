@@ -38,7 +38,7 @@
 		return
 	if (copied == 0)
 		var/obj/item/weapon/paper/carbon/c = src
-		var/copycontents = rhtml_decode(c.info)
+		var/copycontents = html_decode(c.info)
 		var/obj/item/weapon/paper/carbon/copy = new /obj/item/weapon/paper/carbon (usr.loc)
 		// <font>
 		if(info)

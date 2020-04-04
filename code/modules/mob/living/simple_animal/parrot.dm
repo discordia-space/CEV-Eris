@@ -718,7 +718,7 @@
 		var/positioncut = 3
 		message = trim(copytext(message,positioncut))
 
-	message = capitalize_cp1251(trim_left(message))
+	message = capitalize(trim_left(message))
 
 	if(message_mode)
 		if(message_mode in radiochannels)

@@ -144,7 +144,7 @@
 				else
 		else
 			dat += text("<A href='?src=\ref[];login=1'>{Log In}</A>", src)
-	user << browse(russian_to_utf8(text("<HEAD><TITLE>Medical Records</TITLE></HEAD><TT>[]</TT>", dat)), "window=med_rec")
+	user << browse(text("<HEAD><TITLE>Medical Records</TITLE></HEAD><TT>[]</TT>", dat), "window=med_rec")
 	onclose(user, "med_rec")
 	return
 
@@ -318,7 +318,7 @@
 							src.active2.fields["cdi_d"] = t1
 					if("notes")
 						if (istype(src.active2, /datum/data/record))
-							var/t1 = sanitize(input("Please summarize notes:", "Med. records", rhtml_decode(src.active2.fields["notes"]), null)  as message, extra = 0)
+							var/t1 = sanitize(input("Please summarize notes:", "Med. records", html_decode(src.active2.fields["notes"]), null)  as message, extra = 0)
 							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || src.active2 != a2))
 								return
 							src.active2.fields["notes"] = t1
