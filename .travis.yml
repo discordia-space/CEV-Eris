@@ -14,7 +14,7 @@ env:
     - BYOND_MAJOR="513"
     - BYOND_MINOR="1511"
     - DM_BUILDFILE="cev_eris.dme"
-    - SPACEMAN_DMM_VERSION=suite-1.3
+    - SPACEMAN_DMM_VERSION=suite-1.4
 
 matrix:
   include:
