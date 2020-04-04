@@ -48,13 +48,9 @@ SUBSYSTEM_DEF(chat)
 
 	message = \
 		symbols_to_unicode(
-			cyrillic_to_unicode(
-				cp1251_to_utf8(
-					strip_improper(
-						color_macro_to_html(
-							message
-						)
-					)
+			strip_improper(
+				color_macro_to_html(
+					message
 				)
 			)
 		)

@@ -347,7 +347,7 @@
 	set src in usr
 	if(usr != src)
 		to_chat(usr, "No.")
-	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",rhtml_decode(flavor_text)) as message|null, extra = 0)
+	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)
 
 	if(msg != null)
 		flavor_text = msg
@@ -357,9 +357,9 @@
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
-			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
+			return "<font color='blue'>[msg]</font>"
 		else
-			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 
 /*
 /mob/verb/help()
@@ -498,7 +498,7 @@
 		if(src in view(usr))
 			var/dat = {"
 				<html><head><title>[name]</title></head>
-				<body><tt>[cp1251_to_utf8(replacetext(flavor_text, "\n", "<br>"))]</tt></body>
+				<body><tt>[replacetext(flavor_text, "\n", "<br>")]</tt></body>
 				</html>
 			"}
 			usr << browse(dat, "window=[name];size=500x200")

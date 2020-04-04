@@ -91,7 +91,7 @@
 	stating_laws[prefix] = 0
 
 /mob/living/silicon/proc/statelaw(var/law)
-	if(src.say(utf8_to_cp1251(law)))
+	if(src.say(law))
 		sleep(10)
 		return 1
 
