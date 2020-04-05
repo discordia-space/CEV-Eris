@@ -253,7 +253,7 @@
 		custom_rule["sort_type"] = href_list["sort_type"]
 
 	else if (href_list["type_input"])
-		custom_rule["value"] = lowertext(input("Type name of [custom_rule["sort_type"]]"))
+		custom_rule["value"] = input("Please, select a material!", "Matter sorting", null, null) as null|anything in MATERIAL_LIST
 
 	else if (href_list["amount_input"])
 		custom_rule["amount"] = text2num(input("Type amount of [custom_rule["sort_type"]]"))
