@@ -49,9 +49,9 @@
 							/datum/design/research/circuit/tcom/broadcaster,
 
 							/datum/design/research/item/part/subspace_ansible,
-							/datum/design/research/item/part/hyperwave_filter, 
+							/datum/design/research/item/part/hyperwave_filter,
 							/datum/design/research/item/part/subspace_amplifier,
-							/datum/design/research/item/part/subspace_treatment, 
+							/datum/design/research/item/part/subspace_treatment,
 							/datum/design/research/item/part/subspace_analyzer,
 							/datum/design/research/item/part/subspace_crystal,
 							/datum/design/research/item/part/subspace_transmitter)
@@ -69,7 +69,7 @@
 	required_tech_levels = list()
 	cost = 800
 
-	unlocks_designs = list( 
+	unlocks_designs = list(
 							/datum/design/research/circuit/tcom/bus,
 							/datum/design/research/circuit/tcom/hub,
 							/datum/design/research/circuit/tcom/processor,
@@ -176,7 +176,8 @@
 	unlocks_designs = list(	/datum/design/research/item/beaker/bluespace,
 							/datum/design/research/item/beaker/noreact,
 							/datum/design/research/item/bag_holding,
-							/datum/design/research/item/weapon/bluespace_harpoon
+							/datum/design/research/item/weapon/bluespace_harpoon,
+							/datum/design/research/item/weapon/bluespace_dagger
 							)
 /*
 /datum/technology/bluespace_rped
