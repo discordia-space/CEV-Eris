@@ -313,7 +313,7 @@
 
 /datum/computer_file/report/recipient/nt/incident/xeno_no_visa/
 	form_name = "CEV-3213A"
-	title = "Non-Human Incident Report: Without Athorization"
+	title = "Non-Human Incident Report: Without Authorization"
 	available_on_ntnet = 1
 
 /datum/computer_file/report/recipient/nt/incident/xeno_no_visa/generate_fields()
