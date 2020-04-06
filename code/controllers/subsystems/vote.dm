@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(vote)
 
 	var/datum/poll/poll = null
 
-	if(ispath(newvote) && newvote in votes)
+	if(ispath(newvote) && (newvote in votes))
 		poll = votes[newvote]
 
 	//can_start check is done before calling this so that admins can skip it

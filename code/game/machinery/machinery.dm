@@ -351,7 +351,7 @@ Class Procs:
 			RefreshParts()
 	else
 		to_chat(user, SPAN_NOTICE("Following parts detected in the machine:"))
-		for(var/var/obj/item/C in component_parts)
+		for(var/obj/item/C in component_parts)
 			to_chat(user, SPAN_NOTICE("    [C.name]"))
 	return 1
 

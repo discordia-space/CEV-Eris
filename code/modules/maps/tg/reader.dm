@@ -64,7 +64,7 @@ var/global/use_preloader = FALSE
 		z_offset = world.maxz + 1
 
 	// If it's not a single dir, default to north (Default orientation)
-	if(!orientation in cardinal)
+	if(!(orientation in cardinal))
 		orientation = SOUTH
 
 	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
@@ -143,7 +143,7 @@ var/global/use_preloader = FALSE
 			var/maxx = xcrdStart
 
 			// Assemble the grid of keys
-			var/list/key_list = list()
+			var/list/list/key_list = list()
 			for(var/line in gridLines)
 				var/list/line_keys = list()
 				xcrd = 1
@@ -169,7 +169,7 @@ var/global/use_preloader = FALSE
 			if(orientation != SOUTH)
 				var/num_cols = key_list[1].len
 				var/num_rows = key_list.len
-				var/list/new_key_list = list()
+				var/list/list/new_key_list = list()
 				// If it's rotated 180 degrees, the dimensions are the same
 				if(orientation == NORTH)
 					new_key_list.len = num_rows

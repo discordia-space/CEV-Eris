@@ -54,7 +54,7 @@
 	set desc = "Drench an object in acid, destroying it over time."
 	set category = "Abilities"
 
-	if(!O in oview(1, owner))
+	if(!(O in oview(1, owner)))
 		to_chat(owner, "<span class='alium'>[O] is too far away.</span>")
 		return
 

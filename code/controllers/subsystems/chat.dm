@@ -24,7 +24,6 @@ SUBSYSTEM_DEF(chat)
 
 	if(!istext(message))
 		CRASH("to_chat called with invalid input type")
-		return
 
 	if(target == world)
 		target = clients

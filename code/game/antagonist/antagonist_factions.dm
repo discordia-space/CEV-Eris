@@ -26,7 +26,7 @@
 	current_factions.Add(src)
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
-	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
+	if(!member || !member.owner || !member.owner.current || (member in members) || !member.owner.current.client)
 		return
 	if(possible_antags.len && !(member.id in possible_antags))
 		return
@@ -45,7 +45,7 @@
 	return TRUE
 
 /datum/faction/proc/add_leader(var/datum/antagonist/member, var/announce = TRUE)
-	if(!member || member in leaders || !member.owner.current)
+	if(!member || (member in leaders) || !member.owner.current)
 		return
 
 	if(!(member in members))
@@ -319,7 +319,7 @@
 
 	if(href_list["remleader"])
 		var/datum/antagonist/A = locate(href_list["remleader"])
-		if(istype(A) && A in leaders)
+		if(istype(A) && (A in leaders))
 			remove_leader(A)
 
 	if(href_list["remmember"])

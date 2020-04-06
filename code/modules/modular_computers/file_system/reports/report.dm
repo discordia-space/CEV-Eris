@@ -62,6 +62,7 @@ If the override option is set to 0, the access supplied will instead be added as
 			return field
 
 /datum/computer_file/report/proc/field_from_name(name)
+	RETURN_TYPE(/datum/report_field)
 	for(var/datum/report_field/field in fields)
 		if(field.display_name() == name)
 			return field

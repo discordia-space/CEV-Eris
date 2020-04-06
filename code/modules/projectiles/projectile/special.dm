@@ -63,7 +63,7 @@
 	nodamage = TRUE
 	check_armour = ARMOR_BULLET
 
-/obj/item/projectile/meteor/Bump(atom/A as mob|obj|turf|area)
+/obj/item/projectile/meteor/Bump(atom/A as mob|obj|turf|area, forced)
 	if(A == firer)
 		loc = A.loc
 		return

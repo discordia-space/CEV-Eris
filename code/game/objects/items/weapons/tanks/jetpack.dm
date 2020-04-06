@@ -297,6 +297,7 @@
 	These functions provide a generic interface for different kinds of tanks
 */
 /obj/item/weapon/tank/jetpack/proc/get_gas()
+	RETURN_TYPE(/datum/gas_mixture)
 	if (istype(gastank, /obj/item/weapon/tank))
 		return gastank.air_contents
 
@@ -307,11 +308,6 @@
 
 	//Unknown type? Create and return an empty gas mixture to prevent runtime errors
 	return new /datum/gas_mixture(0)
-
-
-
-
-
 
 /*****************************
 	Checks
