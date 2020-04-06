@@ -34,3 +34,8 @@
 	name = "Boot Knife"
 	item_cost = 3
 	path = /obj/item/weapon/tool/knife/boot
+
+/datum/uplink_item/item/stealthy_weapons/assassin_dagger
+	name = "Assassin's Dagger"
+	item_cost = 4
+	path = /obj/item/weapon/tool/knife/dagger/assassin

@@ -158,13 +158,14 @@
 
 /datum/craft_recipe/weapon/homewrecker
 	name = "homewrecker"
-	result = /obj/item/weapon/tool/homewrecker
+	result = /obj/item/weapon/tool/hammer/homewrecker
 	steps = list(
 		list(/obj/item/stack/rods, 12, "time" = 30),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 30, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, "time" = 30)
 	)
+
 
 /datum/craft_recipe/weapon/sonic_grenade
 	name = "Loudmouth grenade"
@@ -176,4 +177,15 @@
 		list(QUALITY_PULSING, 30, "time" = 50),
 		list(QUALITY_ADHESIVE, 30, "time" = 30),
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 20)
-	)
+    )
+
+/datum/craft_recipe/weapon/mace
+	name = "makeshift mace"
+	result = /obj/item/weapon/tool/hammer/mace/makeshift
+	steps = list(
+		list(/obj/item/stack/rods, 5, "time" = 15),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10)
+	  )

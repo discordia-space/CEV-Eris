@@ -50,3 +50,45 @@
 	use_power_cost = 1.5
 	workspeed = 1.5
 	max_upgrades = 2
+
+//Hammers (hammer tool quality isnt in yet so they dont have tool qualities) - would need it's own file soon
+
+/obj/item/weapon/tool/hammer/homewrecker
+	name = "homewrecker"
+	desc = "A large steel chunk welded to a long handle. Extremely heavy."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "homewrecker0"
+	wielded_icon = "homewrecker1"
+	armor_penetration = ARMOR_PEN_DEEP
+	w_class = ITEM_SIZE_HUGE
+	force = WEAPON_FORCE_NORMAL
+	force_unwielded = WEAPON_FORCE_NORMAL
+	force_wielded = WEAPON_FORCE_DANGEROUS
+	tool_qualities = list(QUALITY_HAMMERING = 15)
+	attack_verb = list("attacked", "smashed", "bludgeoned", "beaten")
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+
+
+/obj/item/weapon/tool/hammer/mace
+	name = "mace"
+	desc = "Used for applying blunt force trauma to a person's ribcage."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "mace"
+	item_state = "mace"
+
+	armor_penetration = ARMOR_PEN_DEEP
+	force = WEAPON_FORCE_DANGEROUS
+
+	tool_qualities = list(QUALITY_HAMMERING = 20)
+
+/obj/item/weapon/tool/hammer/mace/makeshift
+	name = "makeshift mace"
+	desc = "Some metal attached to the end of a stick, for applying blunt force trauma to a roach."
+	icon_state = "ghetto_mace"
+	item_state = "ghetto_mace"
+
+	force = WEAPON_FORCE_PAINFUL
+
+	tool_qualities = list(QUALITY_HAMMERING = 15)
+	degradation = 5 //This one breaks REALLY fast
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game

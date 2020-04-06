@@ -222,7 +222,9 @@
 	if(I in implants)
 		implants -= I
 		embedded -= I
-
+		if(isitem(I))
+			var/obj/item/item = I
+			item.on_embed_removal(owner)
 		if(istype(I, /obj/item/weapon/implant))
 			var/obj/item/weapon/implant/implant = I
 			if(implant.wearer)

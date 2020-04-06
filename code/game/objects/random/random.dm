@@ -7,6 +7,7 @@
 	var/max_amount = 1
 	var/spread_range = 0
 	var/has_postspawn = FALSE
+	invisibility = INVISIBILITY_MAXIMUM	// Hides these spawners from the dmm-tools minimap renderer of SpacemanDMM
 
 // creates a new object and deletes itself
 /obj/random/Initialize()

@@ -819,8 +819,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return 1
 	return 0
 
+// Robotic limbs malfunction - handled by subtype
 /obj/item/organ/external/proc/is_malfunctioning()
-	return (BP_IS_ROBOTIC(src) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
+	return FALSE
 
 /obj/item/organ/external/proc/embed(obj/item/W, silent = 0)
 	if(!owner || loc != owner)
@@ -838,6 +839,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.verbs += /mob/proc/yank_out_object
 
 	owner.embedded_flag = 1
+	W.on_embed(owner)
 	W.add_blood(owner)
 	W.loc = owner
 

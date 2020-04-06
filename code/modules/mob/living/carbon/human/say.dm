@@ -51,7 +51,7 @@
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
-	message = capitalize_cp1251(sanitize(message))
+	message = sanitize(message)
 	. = ..(message, alt_name = alt_name)
 
 	if(.)
