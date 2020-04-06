@@ -3,7 +3,7 @@
 
 /obj/item/weapon/bluespace_harpoon
 	name = "NT BSD \"Harpoon\""
-	desc = "One of the last things developed by old Nanotrasen, this harpoon serve as tool for short and accurate teleportation of cargo and personal through blue-space."
+	desc = "One of the last things developed by old Nanotrasen, this harpoon serves as a tool for short and accurate teleportation of cargo and personnel through bluespace."
 	icon_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
