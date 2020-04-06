@@ -21,6 +21,6 @@
 			continue
 		if(player.mind)
 			if(player.stat != 2)
-				if(get_turf(player) in first_escape_pod || get_turf(player) in second_escape_pod)
+				if(get_turf(player) in first_escape_pod || (get_turf(player) in second_escape_pod))
 					return FALSE
 	return TRUE

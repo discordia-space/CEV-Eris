@@ -112,7 +112,8 @@
 		++resting
 		pick_desires()
 		insight -= 100
-	owner.HUDneed["sanity"]?.update_icon()
+	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	hud?.update_icon()
 
 /datum/sanity/proc/handle_level()
 	level_change = SANITY_CHANGE_FADEOFF(level_change)
@@ -161,7 +162,8 @@
 				var/desire_count = 0
 				while(desire_count < 5)
 					var/candidate = pick(ethanol_types)
-					if(subtypesof(candidate).len) //Exclude categories
+					var/list/categories = subtypesof(candidate)
+					if(categories.len) //Exclude categories
 						ethanol_types -= candidate
 						continue
 					desires += candidate
@@ -280,7 +282,8 @@
 	level = new_level
 	if(level == 0 && world.time >= breakdown_time)
 		breakdown()
-	owner.HUDneed["sanity"]?.update_icon()
+	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	hud?.update_icon()
 
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN

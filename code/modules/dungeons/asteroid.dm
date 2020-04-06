@@ -173,8 +173,8 @@
 
 	var/area/asteroid/rogue/myarea
 
-	var/obj/asteroid_spawner/list/rockspawns = list()
-	var/obj/rogue_mobspawner/list/mobspawns = list()
+	var/list/obj/asteroid_spawner/rockspawns = list()
+	var/list/obj/rogue_mobspawner/mobspawns = list()
 
 	var/mobgenlist = list(
 	/mob/living/simple_animal/hostile/bear,

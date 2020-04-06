@@ -26,6 +26,7 @@
 	. = ..()
 
 /datum/nano_module/nano_host()
+	RETURN_TYPE(/datum)
 	return host ? host.nano_host() : src
 
 /datum/nano_module/proc/can_still_topic(var/datum/topic_state/state = GLOB.default_state)

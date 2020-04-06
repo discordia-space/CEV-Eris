@@ -69,9 +69,6 @@ SUBSYSTEM_DEF(mapping)
 
 	return 1
 
-	return ..()
-
-
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
 	world.maxz++

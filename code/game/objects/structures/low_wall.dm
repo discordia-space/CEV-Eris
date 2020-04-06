@@ -345,7 +345,7 @@
 		//Then we will upgrade the high wall connections to a cross too. this prevents some bugginess
 		if ((((i in list(CORNER_NORTHWEST, CORNER_SOUTHEAST)) && a == CORNER_CLOCKWISE) \
 		|| ((i in list(CORNER_NORTHEAST, CORNER_SOUTHWEST)) && a == CORNER_COUNTERCLOCKWISE)) \
-		&& b in list(5,7))
+		&& (b in list(5,7)))
 			//What a mess, all that determines whether a corner connects to only vertical.
 			//If its in the northwest or southeast corner, and its only connection is clockwise, then that connection is either up or down
 			//Ditto with the other check
@@ -386,7 +386,7 @@
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING), src)
 	switch(tool_type)
 		if(QUALITY_WELDING)
-			if (locate(/obj/structure/window in loc))
+			if (locate(/obj/structure/window) in loc)
 				to_chat(user, SPAN_NOTICE("You must remove the window mounted on this wall before it can be repaired or deconstructed"))
 				return
 			if(locate(/obj/effect/overlay/wallrot) in src)

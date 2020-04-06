@@ -30,13 +30,13 @@
 // Updates icon of this computer according to current status.
 /obj/machinery/computer/power_monitor/update_icon()
 	..()
+
 	if(stat & BROKEN)
 		icon_screen = "broken"
-		return
-	if(alerting)
+	else if(alerting)
 		icon_screen = "power_monitor_warn"
-		return
-	 icon_screen = "power_monitor"
+	else
+		icon_screen = "power_monitor"
 
 // On creation automatically connects to active sensors. This is delayed to ensure sensors already exist.
 /obj/machinery/computer/power_monitor/New()

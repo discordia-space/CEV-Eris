@@ -104,8 +104,8 @@
 	light_range = 3
 	var/obj/machinery/mineral/console = null
 	var/sheets_per_tick = 10
-	var/list/ores_processing[0]
-	var/list/ores_stored[0]
+	var/list/ores_processing
+	var/list/ores_stored
 	var/static/list/alloy_data
 	var/active = 0
 	var/input_dir = 0
@@ -113,6 +113,9 @@
 
 /obj/machinery/mineral/processing_unit/New()
 	..()
+
+	ores_processing = list()
+	ores_stored = list()
 
 	// initialize static alloy_data list
 	if(!alloy_data)
@@ -149,7 +152,7 @@
 		if(--limit <= 0)
 			break
 		if(!isnull(ores_stored[O.material]))
-			ores_stored[O.material] ++
+			ores_stored[O.material]++
 		qdel(O)
 
 	if(!active)
