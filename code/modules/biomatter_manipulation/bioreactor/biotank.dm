@@ -123,7 +123,7 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER + 0.05
 	pixel_y = 16
-	var/max_capacity = 1000
+	var/max_capacity = 10000
 	var/obj/machinery/multistructure/bioreactor_part/biotank_platform/platform
 	var/obj/structure/reagent_dispensers/biomatter/canister
 	var/default_position = 16
