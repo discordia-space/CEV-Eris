@@ -20,7 +20,7 @@
 	ui_interact(user)
 
 /obj/item/weapon/storage/bsdm/ui_data(mob/user)
-	var/list/data = list()
+	var/list/list/data = list()
 
 	data["can_launch"] = can_launch()
 	data["owner"] = owner ? owner.name : "no one"

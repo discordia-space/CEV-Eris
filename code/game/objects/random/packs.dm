@@ -44,7 +44,7 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/random/pack/tech_loot/item_to_spawn()
 	return pickweight(list(
-					/obj/random/lathe_disk = 3,
+					/obj/random/lathe_disk = 2,
 					/obj/random/circuitboard = 6,
 					/obj/random/knife = 6,
 					/obj/random/lowkeyrandom = 8,
@@ -87,16 +87,16 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/random/pack/gun_loot/item_to_spawn()
 	return pickweight(list(
-					/obj/random/gun_cheap = 3,
-					/obj/random/gun_normal = 1,
-					/obj/random/gun_energy_cheap = 3,
-					/obj/random/gun_shotgun = 2,
-					/obj/random/knife = 3,
-					/obj/random/ammo = 8,
-					/obj/random/ammo/shotgun = 8,
-					/obj/random/ammo_ihs = 8,
-					/obj/random/ammo_lowcost = 10,
-					/obj/random/cloth/holster = 4
+					/obj/random/gun_cheap = 8,
+					/obj/random/gun_normal = 3,
+					/obj/random/gun_energy_cheap = 6,
+					/obj/random/gun_shotgun = 5,
+					/obj/random/knife = 6,
+					/obj/random/ammo = 15,
+					/obj/random/ammo/shotgun = 15,
+					/obj/random/ammo_ihs = 15,
+					/obj/random/ammo_lowcost = 18,
+					/obj/random/cloth/holster = 8
 				))
 
 /obj/random/pack/gun_loot/low_chance
@@ -117,8 +117,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/common_oddities = 8,
 					/obj/random/material_rare = 3,
 					/obj/random/tool/advanced = 5,
-					/obj/random/gun_normal = 2,
-					/obj/random/lathe_disk/advanced = 3,
+					/obj/random/gun_normal = 3,
+					/obj/random/lathe_disk/advanced = 2,
 					/obj/item/weapon/cell/small/moebius/nuclear = 1,
 					/obj/item/weapon/cell/medium/moebius/hyper = 1,
 					/obj/random/rig = 1.5,

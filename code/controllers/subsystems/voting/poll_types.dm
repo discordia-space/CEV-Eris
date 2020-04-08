@@ -255,7 +255,7 @@
 	can_unvote = FALSE
 	see_votes = TRUE
 
-	question = cyrillic_to_unicode(input("What's your vote question?","Custom vote","Custom vote question"))
+	question = input("What's your vote question?","Custom vote","Custom vote question")
 
 	var/choice_text = ""
 	var/ch_num = 1
@@ -264,7 +264,7 @@
 		ch_num += 1
 		if(choice_text != "")
 			var/datum/vote_choice/custom/C = new
-			C.text = cyrillic_to_unicode(choice_text)
+			C.text = choice_text
 			choices.Add(C)
 	while(choice_text != "" && ch_num < 10)
 

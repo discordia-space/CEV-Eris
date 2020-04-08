@@ -38,6 +38,14 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
 	)
 
+/datum/craft_recipe/weapon/butterfly_knife
+	name = "butterfly knife"
+	result = /obj/item/weapon/tool/knife/butterfly
+	steps = list(
+		list(/obj/item/weapon/material/butterflyhandle, 1,),
+		list(/obj/item/weapon/material/butterflyblade, 1,"time" = 10),
+		list(QUALITY_SCREW_DRIVING, 10, 70,"time" = 3),
+	)
 
 /datum/craft_recipe/weapon/knife_blade
 	name = "knife blade"
@@ -158,10 +166,37 @@
 
 /datum/craft_recipe/weapon/homewrecker
 	name = "homewrecker"
-	result = /obj/item/weapon/tool/homewrecker
+	result = /obj/item/weapon/tool/hammer/homewrecker
 	steps = list(
-		list(/obj/item/stack/rods, 12, "time" = 30),
+		list(/obj/item/stack/rods, 5, "time" = 30),
 		list(QUALITY_WELDING, 10, "time" = 30),
-		list(CRAFT_MATERIAL, 30, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 30)
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
+/datum/craft_recipe/weapon/mace
+	name = "makeshift mace"
+	result = /obj/item/weapon/tool/hammer/mace/makeshift
+	steps = list(
+		list(/obj/item/stack/rods, 5, "time" = 15),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10)
+	)
+
+/datum/craft_recipe/weapon/charge_hammer
+	name = "charge hammer"
+	result = /obj/item/weapon/tool/hammer/charge
+	steps = list(
+		list(/obj/item/weapon/tool/hammer/homewrecker, 1, "time" = 120), //Get a homewrecker
+		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL), //Shore it up with some plasteel
+		list(QUALITY_WELDING, 10, "time" = 30), //Weld the plasteel to the head
+		list(/obj/item/rocket_engine, 1, "time" = 30),	//Attach a rocket engine
+		list(QUALITY_WELDING, 10, "time" = 30),//Weld it on
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASMA),//Fuel it up
+		list(/obj/item/weapon/tool_upgrade/augment/cell_mount, 1, "time" = 30),//Attach a cell-mount
+		list(QUALITY_SCREW_DRIVING, 10, "time" = 50), //Secure it
+		list(/obj/item/stack/cable_coil, 2, "time" = 10), //Wire it up
+		list(QUALITY_WIRE_CUTTING, 30, "time" = 50), //Fix the wires
 	)

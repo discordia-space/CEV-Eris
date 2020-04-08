@@ -396,7 +396,8 @@
 	var/jobban_list = list()
 	for(var/a_id in GLOB.antag_bantypes)
 		var/a_ban = GLOB.antag_bantypes[a_id]
-		jobban_list[get_antag_data(a_id).role_text] = a_ban
+		var/datum/antagonist/antag = get_antag_data(a_id)
+		jobban_list[antag.role_text] = a_ban
 	body += source.formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 	dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
@@ -1084,11 +1085,11 @@
 	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
 
 	//todo: sanitize
-	var/msg = russian_to_utf8(input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null)
+	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
 	if(!msg)
 		return
 
-	var/customname = russian_to_utf8(input(source.owner, "Pick a title for the report", "Title") as text|null)
+	var/customname = input(source.owner, "Pick a title for the report", "Title") as text|null
 
 	// Create the reply message
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( null ) //hopefully the null loc won't cause trouble for us

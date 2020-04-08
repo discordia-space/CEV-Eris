@@ -55,22 +55,25 @@ SUBSYSTEM_DEF(tips)
 		for(var/mob in T.mobs_list)
 			if(!GLOB.mobsTips[mob])
 				GLOB.mobsTips[mob] = list()
-			if(!GLOB.mobsTips[mob].Find(T))
-				GLOB.mobsTips[mob] += T
+			var/list/tipsAndTricks/mobs/lst = GLOB.mobsTips[mob]
+			if(!lst.Find(T))
+				lst += T
 	for(var/path in subtypesof(/tipsAndTricks/roles))
 		var/tipsAndTricks/roles/T = new path()
 		for(var/role in T.roles_list)
 			if(!GLOB.rolesTips[role])
 				GLOB.rolesTips[role] = list()
-			if(!GLOB.rolesTips[role].Find(T))
-				GLOB.rolesTips[role] += T
+			var/list/tipsAndTricks/roles/lst = GLOB.rolesTips[role]
+			if(!lst.Find(T))
+				lst += T
 	for(var/path in subtypesof(/tipsAndTricks/jobs))
 		var/tipsAndTricks/jobs/T = new path()
 		for(var/job in T.jobs_list)
 			if(!GLOB.jobsTips[job])
 				GLOB.jobsTips[job] = list()
-			if(!GLOB.jobsTips[job].Find(T))
-				GLOB.jobsTips[job] += T
+			var/list/tipsAndTricks/jobs/lst = GLOB.jobsTips[job]
+			if(!lst.Find(T))
+				lst += T
 	for(var/path in subtypesof(/tipsAndTricks/gameplay))
 		var/tipsAndTricks/gameplay/T = new path()
 		GLOB.gameplayTips += T

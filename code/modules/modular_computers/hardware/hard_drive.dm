@@ -255,7 +255,7 @@
 	var/list/files = list()
 	for(var/datum/computer_file/F in stored_files)
 		files.Add(list(list(
-			"filename" = cyrillic_to_unicode(F.filename),
+			"filename" = F.filename,
 			"filetype" = F.filetype,
 			"size" = F.size,
 			"undeletable" = F.undeletable

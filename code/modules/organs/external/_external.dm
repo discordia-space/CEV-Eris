@@ -195,9 +195,11 @@
 /obj/item/organ/external/proc/update_bionics_hud()
 	switch(organ_tag)
 		if(BP_L_ARM)
-			owner?.HUDneed["left arm bionics"]?.update_icon()
+			var/obj/item/organ/external/organ = owner?.HUDneed["left arm bionics"]
+			organ?.update_icon()
 		if(BP_R_ARM)
-			owner?.HUDneed["right arm bionics"]?.update_icon()
+			var/obj/item/organ/external/organ = owner?.HUDneed["right arm bionics"]
+			organ?.update_icon()
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
@@ -673,12 +675,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		holder = owner
 	if(!holder)
 		return
-	if (holder.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT))
+	if (holder.handcuffed && (body_part in list(ARM_LEFT, ARM_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.handcuffed.name] falls off of [holder.name].",\
 			"\The [holder.handcuffed.name] falls off you.")
 		holder.drop_from_inventory(holder.handcuffed)
-	if (holder.legcuffed && body_part in list(LEG_LEFT, LEG_RIGHT))
+	if (holder.legcuffed && (body_part in list(LEG_LEFT, LEG_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.legcuffed.name] falls off of [holder.name].",\
 			"\The [holder.legcuffed.name] falls off you.")
@@ -819,8 +821,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return 1
 	return 0
 
+// Robotic limbs malfunction - handled by subtype
 /obj/item/organ/external/proc/is_malfunctioning()
-	return (BP_IS_ROBOTIC(src) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
+	return FALSE
 
 /obj/item/organ/external/proc/embed(obj/item/W, silent = 0)
 	if(!owner || loc != owner)
@@ -838,6 +841,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.verbs += /mob/proc/yank_out_object
 
 	owner.embedded_flag = 1
+	W.on_embed(owner)
 	W.add_blood(owner)
 	W.loc = owner
 

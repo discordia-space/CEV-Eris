@@ -15,7 +15,7 @@
 		var/datum/computer_file/binary/design/D = new
 		D.set_design_type(design_typepath)
 		if(license > 0)
-			D.set_copy_protection(TRUE)
+			D.set_point_cost(designs[design_typepath])
 
 		store_file(D)
 
@@ -28,6 +28,7 @@
 	read_only = TRUE
 	return TRUE
 
+// Disks formated as /designpath = pointcost , if no point cost is specified it defaults to 1.
 
 // Asters
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools
@@ -118,14 +119,14 @@
 	disk_name = "Asters Robustcells"
 	icon_state = "guild"
 
-	license = 8
+	license = 10
 	designs = list(
 		/datum/design/autolathe/cell/large,
-		/datum/design/autolathe/cell/large/high,
+		/datum/design/autolathe/cell/large/high = 2,
 		/datum/design/autolathe/cell/medium,
-		/datum/design/autolathe/cell/medium/high,
+		/datum/design/autolathe/cell/medium/high = 2,
 		/datum/design/autolathe/cell/small,
-		/datum/design/autolathe/cell/small/high,
+		/datum/design/autolathe/cell/small/high = 2,
 	)
 
 
@@ -315,7 +316,7 @@
 		/datum/design/autolathe/gun/nt_sprayer
 	)
 
-// Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
+// Same as the other NT disk, minus the medical designs and encryption key. Should spawn in public access bioprinters if they get added by any chance.
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
 	disk_name = "NeoTheology Bioprinter Pack"
 	icon_state = "neotheology"
@@ -346,6 +347,8 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
+
+		/datum/design/autolathe/device/headset_church
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
@@ -594,12 +597,12 @@
 	disk_name = "Frozen Star Basic - .35 Civilian Pack"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/giskard,
-		/datum/design/autolathe/gun/olivaw,
-		/datum/design/autolathe/gun/clarissa,
-		/datum/design/autolathe/gun/havelock,
+		/datum/design/autolathe/gun/giskard = 3,
+		/datum/design/autolathe/gun/olivaw = 3,
+		/datum/design/autolathe/gun/clarissa = 3,
+		/datum/design/autolathe/gun/havelock = 3,
 		/datum/design/autolathe/ammo/magazine_pistol/practice,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/sl_pistol/practice,
@@ -610,10 +613,10 @@
 	disk_name = "NeoTheology Armory - .35 MK58 Handgun Pack"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/mk58,
-		/datum/design/autolathe/gun/mk58_wood,
+		/datum/design/autolathe/gun/mk58 = 3,
+		/datum/design/autolathe/gun/mk58_wood = 3,
 		/datum/design/autolathe/ammo/magazine_pistol/practice,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
@@ -622,9 +625,9 @@
 	disk_name = "Frozen Star - .35 Colt 1911"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/colt, //"FS HG .35 Auto \"Colt M1911\""
+		/datum/design/autolathe/gun/colt = 3, //"FS HG .35 Auto \"Colt M1911\""
 		/datum/design/autolathe/ammo/magazine_pistol/practice,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
@@ -633,9 +636,9 @@
 	disk_name = "Frozen Star - .25 Mandella"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/mandella, // "FS HG .25 Caseless \"Mandella\""
+		/datum/design/autolathe/gun/mandella = 3, // "FS HG .25 Caseless \"Mandella\""
 		/datum/design/autolathe/ammo/cspistol/practice,
 		/datum/design/autolathe/ammo/cspistol/rubber,
 	)
@@ -646,9 +649,9 @@
 	disk_name = "Frozen Star - .40 Miller Revolver"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/revolver, // "FS REV .40 \"Miller\""
+		/datum/design/autolathe/gun/revolver = 3, // "FS REV .40 \"Miller\""
 		/datum/design/autolathe/ammo/sl_magnum/practice,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
@@ -657,9 +660,9 @@
 	disk_name = "Frozen Star - .40 Consul Revolver"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/revolver_consul, // "FS REV .40 \"Consul\""
+		/datum/design/autolathe/gun/revolver_consul = 3, // "FS REV .40 \"Consul\""
 		/datum/design/autolathe/ammo/sl_magnum/practice,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
@@ -668,9 +671,9 @@
 	disk_name = "Frozen Star - .40 Deckard Revolver"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/revolver_deckard, // "FS REV .40 \"Deckard\""
+		/datum/design/autolathe/gun/revolver_deckard = 3, // "FS REV .40 \"Deckard\""
 		/datum/design/autolathe/ammo/sl_magnum/practice,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
@@ -679,9 +682,9 @@
 	disk_name = "Frozen Star - .40 Mateba Revolver"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/revolver_mateba, // "FS REV .40 Magnum \"Mateba\""
+		/datum/design/autolathe/gun/revolver_mateba = 3, // "FS REV .40 Magnum \"Mateba\""
 		/datum/design/autolathe/ammo/sl_magnum/practice,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
@@ -692,9 +695,9 @@
 	disk_name = "Frozen Star - .40 Lamia Handgun"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/lamia, // "FS HG .40 \"Lamia\""
+		/datum/design/autolathe/gun/lamia = 3, // "FS HG .40 \"Lamia\""
 		/datum/design/autolathe/ammo/mg_magnum/practice,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
 		)
@@ -703,9 +706,9 @@
 	disk_name = "Frozen Star - .40 Avasarala Handgun"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/avasarala, // "FS HG .40 \"Avasarala\""
+		/datum/design/autolathe/gun/avasarala = 3, // "FS HG .40 \"Avasarala\""
 		/datum/design/autolathe/ammo/mg_magnum/practice,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
 		)
@@ -716,9 +719,9 @@
 	disk_name = "Frozen Star - .50 Double Barrel Shotgun"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/doublebarrel, // "double-barreled shotgun"
+		/datum/design/autolathe/gun/doublebarrel = 3, // "double-barreled shotgun"
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -728,9 +731,9 @@
 	disk_name = "Frozen Star - .50 Kammerer Shotgun"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/pump_shotgun, // "FS SG \"Kammerer\""
+		/datum/design/autolathe/gun/pump_shotgun = 3, // "FS SG \"Kammerer\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -740,9 +743,9 @@
 	disk_name = "NeoTheology Armory - .50 Regulator Shotgun"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/regulator, // "NT SG \"Regulator 1000\""
+		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -752,9 +755,9 @@
 	disk_name = "Frozen Star - .50 Gladstone Shotgun"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/gladstone, // "FS SG \"Gladstone\""
+		/datum/design/autolathe/gun/gladstone = 3, // "FS SG \"Gladstone\""
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -764,9 +767,9 @@
 	disk_name = "Serbian Arms - .50 Pug Auto Shotgun"
 	icon_state = "serbian"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/bojevic, // "SA SG \"Bojevic\""
+		/datum/design/autolathe/gun/bojevic = 3, // "SA SG \"Bojevic\""
 		/datum/design/autolathe/ammo/m12beanbag, // Never add tazershells, for love of god
 		/datum/design/autolathe/ammo/m12pellet,
 		/datum/design/autolathe/ammo/m12slug,
@@ -778,9 +781,9 @@
 	disk_name = "Frozen Star - .35 Paco SMG"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/paco, // "FS HG .35 \"Paco\""
+		/datum/design/autolathe/gun/paco = 3, // "FS HG .35 \"Paco\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -789,9 +792,9 @@
 	disk_name = "Frozen Star - .35 Straylight SMG"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/straylight, // "FS SMG .35 \"Straylight\""
+		/datum/design/autolathe/gun/straylight = 3, // "FS SMG .35 \"Straylight\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -800,9 +803,9 @@
 	disk_name = "Frozen Star - .35 Molly SMG"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/molly, // "FS MP .35 \"Molly\""
+		/datum/design/autolathe/gun/molly = 3, // "FS MP .35 \"Molly\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -811,9 +814,9 @@
 	disk_name = "Serbian Arms - .40 Zoric SMG"
 	icon_state = "serbian"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/zoric, // "SA SMG .40 \"Zoric\""
+		/datum/design/autolathe/gun/zoric = 3, // "SA SMG .40 \"Zoric\""
 		/datum/design/autolathe/ammo/msmg/practice,
 		/datum/design/autolathe/ammo/msmg/rubber,
 	)
@@ -822,9 +825,9 @@
 	disk_name = "Frozen Star - .35 Atreides SMG"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/atreides, // "FS SMG .35 \"Atreides\""
+		/datum/design/autolathe/gun/atreides = 3, // "FS SMG .35 \"Atreides\""
 		/datum/design/autolathe/ammo/smg/practice,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
@@ -847,9 +850,9 @@
 	disk_name = "Frozen Star - .20 Bulldog Carabine"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/z8, // "FS CAR .20 \"Z8 Bulldog\""
+		/datum/design/autolathe/gun/z8 = 3, // "FS CAR .20 \"Z8 Bulldog\""
 		/datum/design/autolathe/ammo/srifle/practice,
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
@@ -858,9 +861,9 @@
 	disk_name = "Frozen Star - .20 Wintermute Assault Rifle"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/wintermute, // "FS BR .20 \"Wintermute\""
+		/datum/design/autolathe/gun/wintermute = 3, // "FS BR .20 \"Wintermute\""
 		/datum/design/autolathe/ammo/srifle/practice,
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
@@ -871,9 +874,9 @@
 	disk_name = "Frozen Star - .25 Sol Caseless SMG Pack"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/sol, // "FS CAR .25 caseless \"Sol\""
+		/datum/design/autolathe/gun/sol = 3, // "FS CAR .25 caseless \"Sol\""
 		/datum/design/autolathe/ammo/ihclrifle/practice,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 	)
@@ -882,9 +885,9 @@
 	disk_name = "PAR - .25 Dallas"
 	icon_state = "black"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/dallas, // "PAR .25 CS \"Dallas\""
+		/datum/design/autolathe/gun/dallas = 3, // "PAR .25 CS \"Dallas\""
 		/datum/design/autolathe/ammo/c10x24,
 	)
 
@@ -894,9 +897,9 @@
 	disk_name = "Serbian Arms - .30  Novakovic Rifle"
 	icon_state = "serbian"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/boltgun_serbian, // "SA BR .30 \"Novakovic\""
+		/datum/design/autolathe/gun/boltgun_serbian = 3, // "SA BR .30 \"Novakovic\""
 		/datum/design/autolathe/ammo/sl_lrifle,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small,
 	)
@@ -905,9 +908,9 @@
 	disk_name = "Frozen Star - .30 Kalashnikov Rifle"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/ak47_fs, // "FS AR .30 \"Kalashnikov\""
+		/datum/design/autolathe/gun/ak47_fs = 3, // "FS AR .30 \"Kalashnikov\""
 		/datum/design/autolathe/ammo/lrifle/practice,
 		/datum/design/autolathe/ammo/lrifle/rubber,
 	)
@@ -918,9 +921,9 @@
 	disk_name = "NeoTheology Armory - .60 Penetrator AMR"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/heavysniper, // "NT AMR .60 \"Penetrator\""
+		/datum/design/autolathe/gun/heavysniper = 3, // "NT AMR .60 \"Penetrator\""
 		/datum/design/autolathe/ammo/antim,
 		/datum/design/autolathe/ammo/box_antim,
 	)
@@ -930,9 +933,9 @@
 	disk_name = "Serbian Arms - .30 Pulemyot Kalashnikova MG"
 	icon_state = "serbian"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/mg_pk, // "SA MG .30 \"Pulemyot Kalashnikova\""
+		/datum/design/autolathe/gun/mg_pk = 3, // "SA MG .30 \"Pulemyot Kalashnikova\""
 		/datum/design/autolathe/ammo/lrifle_pk,
 	)
 
@@ -942,18 +945,18 @@
 	disk_name = "NeoTheology Armory - Protector Grenade Launcher"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 15
 	designs = list(
-		/datum/design/autolathe/gun/grenade_launcher, // "NT GL \"Protector\""
+		/datum/design/autolathe/gun/grenade_launcher = 3, // "NT GL \"Protector\""
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar
 	disk_name = "Frozen Star - Lenar Grenade Launcher"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 15
 	designs = list(
-		/datum/design/autolathe/gun/grenade_launcher_lenar, // "FS GL \"Lenar\""
+		/datum/design/autolathe/gun/grenade_launcher_lenar = 3, // "FS GL \"Lenar\""
 	)
 
 // ENERGY SMALL ARMS
@@ -962,9 +965,9 @@
 	disk_name = "NeoTheology Armory - Councelor PDW E"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/taser, // "NT SP \"Counselor\""
+		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
 		/datum/design/autolathe/cell/small/high,
 	)
 
@@ -972,9 +975,9 @@
 	disk_name = "Frozen Star - Spider Rose PDW E"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/energygun, // "FS PDW E \"Spider Rose\""
+		/datum/design/autolathe/gun/energygun = 3, // "FS PDW E \"Spider Rose\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -982,9 +985,9 @@
 	disk_name = "Frozen Star - Martin PDW E"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/energygun_martin, // "FS PDW E \"Martin\""
+		/datum/design/autolathe/gun/energygun_martin = 3, // "FS PDW E \"Martin\""
 		/datum/design/autolathe/cell/small/high,
 	)
 
@@ -1012,9 +1015,9 @@
 	disk_name = "NeoTheology Armory - Lightfall Laser Gun"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/laser, // "NT LG \"Lightfall\""
+		/datum/design/autolathe/gun/laser = 3, // "NT LG \"Lightfall\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -1022,9 +1025,9 @@
 	disk_name = "NeoTheology Armory - Valkyrie Energy Rifle"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/sniperrifle, //"NT MER \"Valkyrie\""
+		/datum/design/autolathe/gun/sniperrifle = 3, //"NT MER \"Valkyrie\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -1032,9 +1035,9 @@
 	disk_name = "NeoTheology Armory - Halicon Ion Rifle"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/ionrifle, // "NT IR \"Halicon\""
+		/datum/design/autolathe/gun/ionrifle = 3, // "NT IR \"Halicon\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -1044,9 +1047,9 @@
 	disk_name = "NeoTheology Armory - Dominion Plasma Rifle"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/plasma/dominion, //"NT PR \"Dominion\""
+		/datum/design/autolathe/gun/plasma/dominion = 3, //"NT PR \"Dominion\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -1054,9 +1057,9 @@
 	disk_name = "NeoTheology Armory - Purger Plasma Rifle"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/plasma/destroyer, // "NT PR \"Purger\""
+		/datum/design/autolathe/gun/plasma/destroyer = 3, // "NT PR \"Purger\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -1064,9 +1067,9 @@
 	disk_name = "Frozen Star - Cassad Plasma Rifle"
 	icon_state = "frozenstar"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/plasma/cassad, // "FS PR \"Cassad\""
+		/datum/design/autolathe/gun/plasma/cassad = 3, // "FS PR \"Cassad\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -1076,9 +1079,9 @@
 	disk_name = "Moebius Scientifica - Z-H P Artemis Dartgun"
 	icon_state = "moebius"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/dart_gun, // Z-H P Artemis"
+		/datum/design/autolathe/gun/dart_gun = 3, // Z-H P Artemis"
 		/datum/design/autolathe/ammo/dart_mag,
 	)
 

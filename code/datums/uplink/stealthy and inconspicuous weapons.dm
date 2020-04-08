@@ -39,3 +39,8 @@
 	name = "\"Glass Widow\" radiation infuser"
 	item_cost = 2
 	path = /obj/item/weapon/gun_upgrade/mechanism/glass_widow
+
+/datum/uplink_item/item/stealthy_weapons/assassin_dagger
+	name = "Assassin's Dagger"
+	item_cost = 4
+	path = /obj/item/weapon/tool/knife/dagger/assassin

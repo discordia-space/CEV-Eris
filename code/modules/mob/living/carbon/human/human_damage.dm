@@ -343,6 +343,7 @@ This function restores all organs.
 
 
 /mob/living/carbon/human/proc/get_organ(var/zone)
+	RETURN_TYPE(/obj/item/organ/external)
 	if(!zone)
 		zone = BP_CHEST
 	else if(zone in list(BP_EYES, BP_MOUTH))

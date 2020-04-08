@@ -264,7 +264,7 @@
 			data["cur_uid"] = current_message.uid
 			if(istype(current_message.attachment))
 				data["cur_hasattachment"] = 1
-				data["cur_attachment_filename"] = cyrillic_to_unicode("[current_message.attachment.filename].[current_message.attachment.filetype]")
+				data["cur_attachment_filename"] = "[current_message.attachment.filename].[current_message.attachment.filetype]"
 				data["cur_attachment_size"] = current_message.attachment.size
 		else
 			data["label_inbox"] = "Inbox ([current_account.inbox.len])"
@@ -406,7 +406,7 @@
 		return 1
 
 	if(href_list["edit_title"])
-		var/newtitle = sanitize(cyrillic_to_unicode(input_utf8(user,"Enter title for your message:", "Message title", msg_title)), 100)
+		var/newtitle = sanitize(input(user,"Enter title for your message:", "Message title", msg_title), 100)
 		if(newtitle)
 			msg_title = newtitle
 		return 1
@@ -416,13 +416,13 @@
 		var/oldtext = html_decode(msg_body)
 		oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-		var/newtext = sanitize(replacetext(cyrillic_to_unicode(input_utf8(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext)), "\n", "\[br\]"), 20000)
+		var/newtext = sanitize(replacetext(input(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext), "\n", "\[br\]"), 20000)
 		if(newtext)
 			msg_body = newtext
 		return 1
 
 	if(href_list["edit_recipient"])
-		var/newrecipient = sanitize(input_utf8(user,"Enter recipient's email address:", "Recipient", msg_recipient), 100)
+		var/newrecipient = sanitize(input(user,"Enter recipient's email address:", "Recipient", msg_recipient), 100)
 		if(newrecipient)
 			msg_recipient = newrecipient
 			addressbook = 0
@@ -433,13 +433,13 @@
 		return 1
 
 	if(href_list["edit_login"])
-		var/newlogin = sanitize(input_utf8(user,"Enter login", "Login", stored_login), 100)
+		var/newlogin = sanitize(input(user,"Enter login", "Login", stored_login), 100)
 		if(newlogin)
 			stored_login = newlogin
 		return 1
 
 	if(href_list["edit_password"])
-		var/newpass = sanitize(input_utf8(user,"Enter password", "Password"), 100)
+		var/newpass = sanitize(input(user,"Enter password", "Password"), 100)
 		if(newpass)
 			stored_password = newpass
 		return 1
@@ -516,13 +516,13 @@
 		return 1
 
 	if(href_list["changepassword"])
-		var/oldpassword = sanitize(input_utf8(user,"Please enter your old password:", "Password Change"), 100)
+		var/oldpassword = sanitize(input(user,"Please enter your old password:", "Password Change"), 100)
 		if(!oldpassword)
 			return 1
-		var/newpassword1 = sanitize(input_utf8(user,"Please enter your new password:", "Password Change"), 100)
+		var/newpassword1 = sanitize(input(user,"Please enter your new password:", "Password Change"), 100)
 		if(!newpassword1)
 			return 1
-		var/newpassword2 = sanitize(input_utf8(user,"Please re-enter your new password:", "Password Change"), 100)
+		var/newpassword2 = sanitize(input(user,"Please re-enter your new password:", "Password Change"), 100)
 		if(!newpassword2)
 			return 1
 
@@ -553,7 +553,7 @@
 			error = "Error exporting file. Are you using a functional and NTOS-compliant device?"
 			return 1
 
-		var/filename = sanitize(input_utf8(user,"Please specify file name:", "Message export"), 100)
+		var/filename = sanitize(input(user,"Please specify file name:", "Message export"), 100)
 		if(!filename)
 			return 1
 
@@ -605,7 +605,7 @@
 			error = "Error uploading attachment: File exceeds maximal permitted file size of 32GQ."
 			msg_attachment = null
 		else
-			error = cyrillic_to_unicode("File [msg_attachment.filename].[msg_attachment.filetype] has been successfully uploaded.")
+			error = "File [msg_attachment.filename].[msg_attachment.filetype] has been successfully uploaded."
 		return 1
 
 	if(href_list["downloadattachment"])
