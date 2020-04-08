@@ -195,12 +195,8 @@
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
 		force = switched_on_force
-	if(glow_color)
-		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
-	START_PROCESSING(SSobj, src)
 	update_icon()
 	update_wear_icon()
-	return TRUE
 
 /obj/item/weapon/tool/knife/butterfly/turn_off(mob/user) 
 	hitsound = initial(hitsound)
@@ -210,11 +206,8 @@
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
 	switched_on = FALSE
-	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
 	force = initial(force)
-	if(glow_color)
-		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
 	update_wear_icon()
 
@@ -246,12 +239,8 @@
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
 		force = switched_on_force
-	if(glow_color)
-		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
-	START_PROCESSING(SSobj, src)
 	update_icon()
 	update_wear_icon()
-	return TRUE
 
 /obj/item/weapon/tool/knife/switchblade/turn_off(mob/user)
 	hitsound = initial(hitsound)
@@ -261,10 +250,7 @@
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
 	switched_on = FALSE
-	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
 	force = initial(force)
-	if(glow_color)
-		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
 	update_wear_icon()
