@@ -332,6 +332,6 @@
 	name = "grey duffel bag"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "duffel"
-	max_storage_space = DEFAULT_HUGE_STORAGE * 2
+	max_storage_space = DEFAULT_HUGE_STORAGE * 1.5
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
 	equip_access = FALSE
