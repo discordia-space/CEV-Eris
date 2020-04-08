@@ -43,15 +43,16 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_SKYBOX 19
-#define INIT_ORDER_DBCORE 18
-#define INIT_ORDER_BLACKBOX 17
-#define INIT_ORDER_SERVER_MAINT 16
-#define INIT_ORDER_JOBS 15
-#define INIT_ORDER_EVENTS 14
-#define INIT_ORDER_TICKER 13
-#define INIT_ORDER_MAPPING 12
-#define INIT_ORDER_LANGUAGE 11
+#define INIT_ORDER_SKYBOX 20
+#define INIT_ORDER_DBCORE 19
+#define INIT_ORDER_BLACKBOX 18
+#define INIT_ORDER_SERVER_MAINT 17
+#define INIT_ORDER_JOBS 16
+#define INIT_ORDER_EVENTS 15
+#define INIT_ORDER_TICKER 14
+#define INIT_ORDER_MAPPING 13
+#define INIT_ORDER_LANGUAGE 12
+#define INIT_ORDER_INVENTORY 11
 #define INIT_ORDER_CHAR_SETUP 10
 #define INIT_ORDER_ATOMS 9
 #define INIT_ORDER_MACHINES 8

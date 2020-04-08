@@ -21,6 +21,7 @@
 	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.
 	recoil_buildup = 3
 	silencer_type = /obj/item/weapon/silencer
+	one_hand_penalty = 5 //smg level
 
 	firemodes = list(
 		FULL_AUTO_600,

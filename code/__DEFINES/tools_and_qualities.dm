@@ -13,6 +13,7 @@
 #define QUALITY_CAUTERIZING				"cauterizing"
 #define QUALITY_RETRACTING				"retracting"
 #define QUALITY_DRILLING				"drilling"
+#define QUALITY_HAMMERING				"hammering"
 #define QUALITY_SAWING					"sawing"
 #define QUALITY_BONE_SETTING			"bone setting"
 #define QUALITY_SHOVELING				"shoveling"
@@ -55,6 +56,7 @@
 #define WORKSOUND_PULSING				'sound/items/multitool_pulse.ogg'
 #define WORKSOUND_SCREW_DRIVING			'sound/items/Screwdriver.ogg'
 #define WORKSOUND_EASY_CROWBAR			'sound/items/Crowbar.ogg'
+#define WORKSOUND_HAMMER				'sound/items/hammer.ogg'
 #define WORKSOUND_REMOVING				'sound/items/Deconstruct.ogg'
 #define WORKSOUND_DRIVER_TOOL			'sound/items/e_screwdriver.ogg'
 #define WORKSOUND_PICKAXE				'sound/items/pickaxe.ogg'

@@ -168,7 +168,7 @@
 	name = "grenadier crate"
 	desc = "A crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices."
 	icon_state = "serbcrate_deferred_black"
-	initial_contents = list(/obj/item/weapon/grenade/frag/explosive = 5,
+	initial_contents = list(/obj/item/weapon/grenade/explosive = 5,
 	/obj/item/weapon/grenade/frag = 14,
 	/obj/item/weapon/grenade/empgrenade/low_yield = 4,
 	/obj/item/weapon/grenade/smokebomb = 8,

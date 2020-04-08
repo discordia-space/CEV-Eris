@@ -201,7 +201,8 @@ obj/structure/salvageable/server/Initialize()
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 90,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
-		/obj/item/weapon/computer_hardware/led = 80,
+		/obj/item/weapon/computer_hardware/led = 40,
+		/obj/item/weapon/computer_hardware/led/adv = 40,
 		/obj/item/stack/material/glass{amount = 5} = 70,
 		/obj/item/trash/material/circuit = 60,
 		/obj/item/trash/material/metal = 60,

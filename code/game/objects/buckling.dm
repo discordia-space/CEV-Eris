@@ -66,6 +66,9 @@
 	if(isslime(M))
 		to_chat(user, SPAN_WARNING("\The [M] is too squishy to buckle in."))
 		return 0
+	if(user.mob_size < M.mob_size)
+		to_chat(user, SPAN_WARNING("\The [M] is too heavy to buckle in."))
+		return 0
 
 	add_fingerprint(user)
 	unbuckle_mob()

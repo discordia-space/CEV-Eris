@@ -1,6 +1,6 @@
-#define SLOT_HELMET "helmet"
-#define SLOT_SUIT "suit"
-#define SLOT_MASK "mask"
+#define LOAD_SLOT_HELMET "helmet"
+#define LOAD_SLOT_SUIT "suit"
+#define LOAD_SLOT_MASK "mask"
 
 //////////////////////////////////////
 // SUIT STORAGE UNIT /////////////////
@@ -111,8 +111,6 @@
 			return
 		else
 			return
-	return
-
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
 	var/dat
@@ -415,11 +413,11 @@
 		return
 	var/check = null
 	switch(slot)
-		if(SLOT_MASK)
+		if(LOAD_SLOT_MASK)
 			check = MASK
-		if(SLOT_HELMET)
+		if(LOAD_SLOT_HELMET)
 			check = HELMET
-		if(SLOT_SUIT)
+		if(LOAD_SLOT_SUIT)
 			check = SUIT
 
 	if(check)
@@ -430,11 +428,11 @@
 	user.drop_from_inventory(I, src)
 
 	switch(slot)
-		if(SLOT_MASK)
+		if(LOAD_SLOT_MASK)
 			MASK = I
-		if(SLOT_HELMET)
+		if(LOAD_SLOT_HELMET)
 			HELMET = I
-		if(SLOT_SUIT)
+		if(LOAD_SLOT_SUIT)
 			SUIT = I
 
 	update_icon()
@@ -448,16 +446,16 @@
 	if(stat & NOPOWER)
 		return
 	else if(istype(I, /obj/item/clothing/suit/space))
-		load(I, user, SLOT_SUIT)
+		load(I, user, LOAD_SLOT_SUIT)
 	else if(istype(I, /obj/item/clothing/head/space))
-		load(I, user, SLOT_HELMET)
+		load(I, user, LOAD_SLOT_HELMET)
 	else if(istype(I, /obj/item/clothing/mask))
-		load(I, user, SLOT_MASK)
+		load(I, user, LOAD_SLOT_MASK)
 
 
-#undef SLOT_HELMET
-#undef SLOT_SUIT
-#undef SLOT_MASK
+#undef LOAD_SLOT_HELMET
+#undef LOAD_SLOT_SUIT
+#undef LOAD_SLOT_MASK
 
 // Unit subtypes
 

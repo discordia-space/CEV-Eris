@@ -21,7 +21,7 @@
 	damage_multiplier = 1.3 //35.1 with lethal, 41.3 with hv
 	penetration_multiplier = 1
 	recoil_buildup = 6
-	one_hand_penalty = 5
+	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
 
 	firemodes = list(
 		FULL_AUTO_400,

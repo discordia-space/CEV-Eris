@@ -47,11 +47,11 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
-/datum/craft_recipe/furniture/crate/plasteel
-	name = "plasteel crate"
+/datum/craft_recipe/furniture/crate/steel
+	name = "steel crate"
 	result = /obj/structure/closet/crate
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/furniture/crate/plastic
@@ -73,6 +73,7 @@
 	result = /obj/structure/barricade
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
+		list(QUALITY_HAMMERING, 10, 20)
 	)
 
 /datum/craft_recipe/furniture/coffin

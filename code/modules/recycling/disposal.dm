@@ -1272,7 +1272,6 @@
 		return checkTag in sortType
 	else
 		return checkTag == sortType
-	return FALSE
 
 	// next direction to move
 	// if coming in from negdir, then next is primary dir or sortdir

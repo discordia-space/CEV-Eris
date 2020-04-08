@@ -18,6 +18,8 @@
 				/obj/item/weapon/tool/crowbar = 12,
 				/obj/item/weapon/tool/crowbar/pneumatic = 2,
 				/obj/item/weapon/tool/wrench = 8,
+				/obj/item/weapon/tool/hammer = 10,
+				/obj/item/weapon/tool/hammer/powered_hammer = 2,
 				/obj/item/weapon/tool/wrench/big_wrench = 2,
 				/obj/item/weapon/tool/multitool = 4,
 				/obj/item/weapon/tool/saw = 8,

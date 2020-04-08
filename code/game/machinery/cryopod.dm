@@ -279,8 +279,15 @@
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/proc/despawn_occupant()
+	var/mob/living/carbon/human/H = occupant
+	var/list/occupant_organs = H.organs | H.internal_organs
+
 	//Drop all items into the pod.
 	for(var/obj/item/W in occupant)
+		// Don't delete the organs!
+		if(W in occupant_organs)
+			continue
+
 		occupant.drop_from_inventory(W)
 		W.forceMove(src)
 
@@ -327,6 +334,11 @@
 			if(O.owner && O.owner.current)
 				to_chat(O.owner.current, "<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
 			qdel(O)
+
+	//Same for contract-based objectives.
+	for(var/datum/antag_contract/contract in GLOB.all_antag_contracts)
+		contract.on_mob_despawned(occupant.mind)
+
 
 	//Handle job slot/tater cleanup.
 	var/job = occupant.mind.assigned_role

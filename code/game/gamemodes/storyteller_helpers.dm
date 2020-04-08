@@ -36,6 +36,7 @@
 
 
 /proc/get_storyteller()
+	RETURN_TYPE(/datum/storyteller)
 	return GLOB.storyteller
 
 /datum/storyteller/proc/update_crew_count()

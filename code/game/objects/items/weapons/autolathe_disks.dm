@@ -46,6 +46,7 @@
 		/datum/design/autolathe/tool/wirecutters,
 		/datum/design/autolathe/tool/pliers,
 		/datum/design/autolathe/tool/wrench,
+		/datum/design/autolathe/tool/hammer,
 		/datum/design/autolathe/tool/saw,
 		/datum/design/autolathe/tool/multitool,
 		/datum/design/autolathe/tool/pickaxe,
@@ -166,13 +167,15 @@
 		/datum/design/autolathe/tool/pickaxe_excavation,
 		/datum/design/autolathe/tool/shovel/power,
 		/datum/design/autolathe/tool/circularsaw,
+		/datum/design/autolathe/tool/powered_hammer,
 		/datum/design/autolathe/tool/chainsaw,
+		/datum/design/autolathe/tool/hypersaw,
 		/datum/design/autolathe/tool/rcd,
 		/datum/design/autolathe/tool/electric_screwdriver,
 		/datum/design/autolathe/tool/combi_driver,
 		/datum/design/autolathe/tool/armature_cutter,
-		/datum/design/autolathe/part/diamondblade,
 		/datum/design/autolathe/tool/weldertool_adv,
+		/datum/design/autolathe/part/diamondblade
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
@@ -263,6 +266,7 @@
 		/datum/design/research/item/computer_part/portabledrive/normal,
 		/datum/design/research/item/computer_part/printer,
 		/datum/design/research/item/computer_part/led,
+		/datum/design/research/item/computer_part/led/adv,
 		/datum/design/autolathe/computer_part/gps,
 		/datum/design/autolathe/computer_part/scanner/paper,
 		/datum/design/autolathe/computer_part/scanner/atmos,
@@ -290,16 +294,25 @@
 		/datum/design/bioprinter/leather/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
+
+		/datum/design/bioprinter/leather/holster,
+		/datum/design/bioprinter/leather/holster/armpit,
+		/datum/design/bioprinter/leather/holster/waist,
+		/datum/design/bioprinter/leather/holster/hip,
 
 		/datum/design/bioprinter/medical/bruise,
 		/datum/design/bioprinter/medical/splints,
 		/datum/design/bioprinter/medical/ointment,
 		/datum/design/bioprinter/medical/advanced/bruise,
 		/datum/design/bioprinter/medical/advanced/ointment,
+
+		/datum/design/autolathe/gun/nt_sprayer
 	)
 
 // Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
@@ -322,12 +335,17 @@
 		/datum/design/bioprinter/leather/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
+		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
+		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
 
-		/datum/design/autolathe/gun/nt_sprayer
+		/datum/design/bioprinter/leather/holster,
+		/datum/design/bioprinter/leather/holster/armpit,
+		/datum/design/bioprinter/leather/holster/waist,
+		/datum/design/bioprinter/leather/holster/hip,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
@@ -855,8 +873,7 @@
 
 	license = 8
 	designs = list(
-		/datum/design/autolathe/gun/smg_sol, // "FS CAR .25 caseless \"Sol\""
-		/datum/design/autolathe/gun/smg_sol_rds, // "FS CAR .25 caseless \"Sol\"" - reddot sight
+		/datum/design/autolathe/gun/sol, // "FS CAR .25 caseless \"Sol\""
 		/datum/design/autolathe/ammo/ihclrifle/practice,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 	)

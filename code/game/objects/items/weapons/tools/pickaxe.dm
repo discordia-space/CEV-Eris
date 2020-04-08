@@ -31,10 +31,10 @@
 	update_icon()
 
 /obj/item/weapon/tool/pickaxe/turn_on(mob/user)
-
-	mode = DIG
-	to_chat(user, SPAN_NOTICE("You tighten your grip on [src], and ready yourself to strike earth."))
-	..()
+	.=..()
+	if(.)
+		mode = DIG
+		to_chat(user, SPAN_NOTICE("You tighten your grip on [src], and ready yourself to strike earth."))
 
 /obj/item/weapon/tool/pickaxe/turn_off(mob/user)
 
@@ -56,19 +56,8 @@
 	switched_on_qualities = list(QUALITY_DIGGING = 40, QUALITY_PRYING = 20)
 	glow_color = COLOR_BLUE_LIGHT
 	degradation = 0.6
-	max_upgrades = 2
 	workspeed = 1.2
 	use_power_cost = 0
-
-/obj/item/weapon/tool/pickaxe/onestar/turn_on(mob/user)
-
-	to_chat(user, SPAN_NOTICE("You switch [src] on."))
-	..()
-
-/obj/item/weapon/tool/pickaxe/onestar/turn_off(mob/user)
-
-	to_chat(user, SPAN_NOTICE("You switch [src] off."))
-	..()
 
 
 /obj/item/weapon/tool/pickaxe/jackhammer

@@ -18,13 +18,12 @@
 /obj/item/organ/internal/eyes/proc/get_cache_key()
 	return "[cache_key][BP_IS_ROBOTIC(src) ? robo_color : eyes_color]"
 
-/obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
-
-	// Apply our eye colour to the target.
-	if(istype(target) && eyes_color)
-		target.eyes_color = eyes_color
-		target.update_eyes()
+/obj/item/organ/internal/eyes/replaced_mob(mob/living/carbon/human/target)
 	..()
+	// Apply our eye colour to the target.
+	if(eyes_color)
+		owner.eyes_color = eyes_color
+		owner.update_eyes()
 
 /obj/item/organ/internal/eyes/proc/update_colour()
 	if(!owner)

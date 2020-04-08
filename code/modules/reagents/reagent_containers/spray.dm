@@ -14,7 +14,7 @@
 	amount_per_transfer_from_this = 10
 	unacidable = 1 //plastic
 	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
-	matter = list(MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTIC = 2)
 	var/spray_size = 3
 	var/list/spray_sizes = list(1,3)
 	volume = 250
@@ -101,8 +101,6 @@
 	preloaded_reagents = list("cleaner" = 250)
 
 /obj/item/weapon/reagent_containers/spray/cleaner/drone
-	name = "space cleaner"
-	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 	preloaded_reagents = list("cleaner" = 50)
 
@@ -143,9 +141,8 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	amount_per_transfer_from_this = 1
-	possible_transfer_amounts = null
-	volume = 10
-	preloaded_reagents = list("water" = 10)
+	possible_transfer_amounts = list(1, 5, 10)
+	preloaded_reagents = list("water" = 50)
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"

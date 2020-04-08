@@ -358,7 +358,7 @@ default behaviour is:
 	return FALSE
 
 
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	return TRUE
 
 /mob/living/is_injectable(allowmobs = TRUE)

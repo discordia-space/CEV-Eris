@@ -253,6 +253,7 @@
 	item_state = "gas_alt"
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_ILLEGAL = 3)
+	flags_inv = HIDEEYES|HIDEFACE
 	var/global/list/clothing_choices
 
 /obj/item/clothing/mask/chameleon/New()

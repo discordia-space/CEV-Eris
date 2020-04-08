@@ -1,10 +1,9 @@
 /obj/item/modular_computer/proc/power_failure(var/malfunction = 0)
 	if(enabled) // Shut down the computer
 		visible_message("<span class='danger'>\The [src]'s screen flickers briefly and then goes dark.</span>", range = 1)
-		if(active_program)
-			active_program.event_powerfailure(0)
-		for(var/datum/computer_file/program/PRG in idle_threads)
-			PRG.event_powerfailure(1)
+		for(var/p in all_threads)
+			var/datum/computer_file/program/PRG = p
+			PRG.event_power_failure()
 		shutdown_computer(0)
 
 // Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.

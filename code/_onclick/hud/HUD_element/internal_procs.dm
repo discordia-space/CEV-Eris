@@ -129,7 +129,8 @@ see external_procs.dm for usable procs and documentation on how to use them
 
 	var/HUD_element/parent = E.getParent()
 	if (parent)
-		parent.getElements().Remove(E)
+		var/list/HUD_element/elementRemove = parent.getElements()
+		elementRemove.Remove(E)
 
 	E._setParent(src)
 	elements.Add(E)

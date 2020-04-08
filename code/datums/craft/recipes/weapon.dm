@@ -121,6 +121,18 @@
 		list(/obj/item/device/assembly/igniter, 1),
 	)
 
+/datum/craft_recipe/weapon/laser_sabre
+	name = "laser sabre"
+	result = /obj/item/weapon/melee/energy/sword/sabre
+	steps = list(
+		list(/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip, 1, "time" = 5),
+		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
+		list(/obj/item/weapon/gun/energy/gun, 1, "time" = 5),
+		list(/obj/item/weapon/cell/medium/moebius/nuclear, 1),
+		list(/obj/item/stack/cable_coil, 10, "time" = 5),
+		list(QUALITY_ADHESIVE, 15, 70)
+	)
+
 /datum/craft_recipe/weapon/rxd
 	name = "RXD - Rapid Crossbow Device"
 	result = /obj/item/weapon/gun/launcher/crossbow/RCD
@@ -146,10 +158,21 @@
 
 /datum/craft_recipe/weapon/homewrecker
 	name = "homewrecker"
-	result = /obj/item/weapon/tool/homewrecker
+	result = /obj/item/weapon/tool/hammer/homewrecker
 	steps = list(
 		list(/obj/item/stack/rods, 12, "time" = 30),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 30, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, "time" = 30)
+	)
+
+/datum/craft_recipe/weapon/mace
+	name = "makeshift mace"
+	result = /obj/item/weapon/tool/hammer/mace/makeshift
+	steps = list(
+		list(/obj/item/stack/rods, 5, "time" = 15),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10)
 	)

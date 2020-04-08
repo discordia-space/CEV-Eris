@@ -121,7 +121,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 
 	if(href_list["category"])
 		var/category = locate(href_list["category"])
-		if(category && category in categories)
+		if(category && (category in categories))
 			selected_category = category
 			if(selected_category.update_preview_icon)
 				preferences.update_preview_icon(naked = istype(selected_category, /datum/category_group/player_setup_category/augmentation))
