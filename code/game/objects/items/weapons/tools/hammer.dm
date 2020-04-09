@@ -101,7 +101,7 @@
 	item_state = "chargehammer"
 	w_class = ITEM_SIZE_HUGE
 	switched_on_force = WEAPON_FORCE_BRUTAL
-
+	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	switched_on_qualities = list(QUALITY_HAMMERING = 60)
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)
 	toggleable = TRUE
@@ -113,12 +113,12 @@
 
 /obj/item/weapon/tool/hammer/charge/New()
 	..()
-	T = new /datum/effect/effect/system/trail()
+	T = new /datum/effect/effect/system/trail/fire()
 	T.set_up(src)
 
 /obj/item/weapon/tool/hammer/charge/Destroy()
 	QDEL_NULL(T)
-	..()
+	return ..()
 
 /obj/item/weapon/tool/hammer/charge/afterattack(atom/target, mob/user, proximity_flag, params)
 	if(!switched_on || world.time < last_launch + 3 SECONDS)
@@ -137,11 +137,13 @@
 				to_chat(user, SPAN_WARNING("\The [src] launches from your grasp!"))
 				user.drop_item(src)
 				T.start()
+				playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 				throw_at(target, get_dist(target, user), 1, user)
 				T.stop()
 				last_launch = world.time
 				return
 		last_launch = world.time
 		T.start()
+		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		user.throw_at(target, get_dist(target, user), 1, user)
 		T.stop()
