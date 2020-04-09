@@ -92,3 +92,56 @@
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	degradation = 5 //This one breaks REALLY fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+
+/obj/item/weapon/tool/hammer/charge
+	name = "charge hammer"
+	desc = "After many issues with scientists trying to hammer a nail, one bright individual wondered what could be achieved by attaching a stellar-grade ship engine to the back."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "chargehammer"
+	item_state = "chargehammer"
+	w_class = ITEM_SIZE_HUGE
+	switched_on_force = WEAPON_FORCE_BRUTAL
+
+	switched_on_qualities = list(QUALITY_HAMMERING = 60)
+	switched_off_qualities = list(QUALITY_HAMMERING = 35)
+	toggleable = TRUE
+
+	suitable_cell = /obj/item/weapon/cell/medium
+	use_power_cost = 15
+	var/datum/effect/effect/system/trail/T
+	var/last_launch
+
+/obj/item/weapon/tool/hammer/charge/New()
+	..()
+	T = new /datum/effect/effect/system/trail()
+	T.set_up(src)
+
+/obj/item/weapon/tool/hammer/charge/Destroy()
+	QDEL_NULL(T)
+	..()
+
+/obj/item/weapon/tool/hammer/charge/afterattack(atom/target, mob/user, proximity_flag, params)
+	if(!switched_on || world.time < last_launch + 3 SECONDS)
+		return
+	var/cost = use_power_cost*get_dist(target, user)
+	if(user.check_gravity())
+		cost *= (user.mob_size/10)
+
+	if(cell?.checked_use(cost))
+		if(!wielded)
+			var/drop_prob = 30
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				drop_prob *= H.stats.getMult(STAT_ROB, STAT_LEVEL_EXPERT)
+			if(prob(drop_prob))
+				to_chat(user, SPAN_WARNING("\The [src] launches from your grasp!"))
+				user.drop_item(src)
+				T.start()
+				throw_at(target, get_dist(target, user), 1, user)
+				T.stop()
+				last_launch = world.time
+				return
+		last_launch = world.time
+		T.start()
+		user.throw_at(target, get_dist(target, user), 1, user)
+		T.stop()
