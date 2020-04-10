@@ -315,7 +315,7 @@
 		/datum/design/autolathe/gun/nt_sprayer
 	)
 
-// Same as the other NT disk, minus the medical designs. Spawns in public access bioprinters.
+// Same as the other NT disk, minus the medical designs and encryption key. Should spawn in public access bioprinters if they get added by any chance.
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
 	disk_name = "NeoTheology Bioprinter Pack"
 	icon_state = "neotheology"
@@ -346,6 +346,8 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
+
+		/datum/design/autolathe/device/headset_church
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_boards
