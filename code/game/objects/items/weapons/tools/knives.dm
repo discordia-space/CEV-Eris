@@ -138,7 +138,7 @@
 	name = "dagger"
 	desc = "A sharp implement, with a twist; The handle acts as a reservoir for reagents, and the blade injects those that it hits."
 	icon_state = "assdagger"
-	item_state = "assdagger"
+	item_state = "ass_dagger"
 	reagent_flags = INJECTABLE|TRANSPARENT
 
 /obj/item/weapon/tool/knife/dagger/assassin/New()
@@ -183,7 +183,7 @@
 	tool_qualities = null
 	toggleable = TRUE
 
-/obj/item/weapon/tool/knife/butterfly/turn_on(mob/user) 
+/obj/item/weapon/tool/knife/butterfly/turn_on(mob/user)
 	item_state = "[initial(item_state)]_on"
 	to_chat(user, SPAN_NOTICE("You flip out [src]."))
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
@@ -198,7 +198,7 @@
 	update_icon()
 	update_wear_icon()
 
-/obj/item/weapon/tool/knife/butterfly/turn_off(mob/user) 
+/obj/item/weapon/tool/knife/butterfly/turn_off(mob/user)
 	hitsound = initial(hitsound)
 	icon_state = initial(icon_state)
 	item_state = initial(item_state)
@@ -227,7 +227,7 @@
 	tool_qualities = null
 	toggleable = TRUE
 
-/obj/item/weapon/tool/knife/switchblade/turn_on(mob/user) 
+/obj/item/weapon/tool/knife/switchblade/turn_on(mob/user)
 	item_state = "[initial(item_state)]_on"
 	to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
 	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
