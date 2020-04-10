@@ -11,7 +11,7 @@
 	var/translate_hive = 0
 	var/syndie = 0
 	var/list/channels = list()
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 1)
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 
 /obj/item/device/encryptionkey/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
