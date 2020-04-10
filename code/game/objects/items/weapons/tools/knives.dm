@@ -166,3 +166,91 @@
 		var/trans = reagents.trans_to_mob(target, rand(1,3)*reagent_modifier, CHEM_BLOOD)
 		admin_inject_log(user, target, src, reagents.log_list(), trans)
 		to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
+
+/obj/item/weapon/tool/knife/butterfly
+	name = "butterfly knife"
+	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "butterflyknife"
+	item_state = "butterflyknife"
+	flags = CONDUCT
+	edge = FALSE
+	sharp = FALSE
+	force = WEAPON_FORCE_WEAK
+	switched_on_force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL =6)
+	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
+	tool_qualities = null
+	toggleable = TRUE
+
+/obj/item/weapon/tool/knife/butterfly/turn_on(mob/user) 
+	item_state = "[initial(item_state)]_on"
+	to_chat(user, SPAN_NOTICE("You flip out [src]."))
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+	edge = TRUE
+	sharp = TRUE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	switched_on = TRUE
+	tool_qualities = switched_on_qualities
+	if (!isnull(switched_on_force))
+		force = switched_on_force
+	update_icon()
+	update_wear_icon()
+
+/obj/item/weapon/tool/knife/butterfly/turn_off(mob/user) 
+	hitsound = initial(hitsound)
+	icon_state = initial(icon_state)
+	item_state = initial(item_state)
+	attack_verb = list("punched","cracked")
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
+	switched_on = FALSE
+	tool_qualities = switched_off_qualities
+	force = initial(force)
+	update_icon()
+	update_wear_icon()
+
+/obj/item/weapon/tool/knife/switchblade
+	name = "switchblade"
+	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "switchblade"
+	item_state = "switchblade"
+	flags = CONDUCT
+	edge = FALSE
+	sharp = FALSE
+	force = WEAPON_FORCE_WEAK
+	switched_on_force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6, MATERIAL_GOLD= 0.5)
+	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
+	tool_qualities = null
+	toggleable = TRUE
+
+/obj/item/weapon/tool/knife/switchblade/turn_on(mob/user) 
+	item_state = "[initial(item_state)]_on"
+	to_chat(user, SPAN_NOTICE("You press a button on the handle and [src] slides out."))
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+	edge = TRUE
+	sharp = TRUE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	switched_on = TRUE
+	tool_qualities = switched_on_qualities
+	if (!isnull(switched_on_force))
+		force = switched_on_force
+	update_icon()
+	update_wear_icon()
+
+/obj/item/weapon/tool/knife/switchblade/turn_off(mob/user)
+	hitsound = initial(hitsound)
+	icon_state = initial(icon_state)
+	item_state = initial(item_state)
+	attack_verb = list("punched","cracked")
+	playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
+	switched_on = FALSE
+	tool_qualities = switched_off_qualities
+	force = initial(force)
+	update_icon()
+	update_wear_icon()
