@@ -27,10 +27,8 @@
 	return null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
-	if(wielded)
+	if(world.time >= recentpumpmsg + 10)
 		pump(user)
-	else if(world.time >= recentpumpmsg + 5)
-		to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
 		recentpumpmsg = world.time
 
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
