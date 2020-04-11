@@ -267,7 +267,6 @@
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/robot/despawn_occupant()
-	/// Move then into mob/living/silicon/despawn()
 	var/mob/living/silicon/robot/R = occupant
 	if(!istype(R)) return ..()
 
