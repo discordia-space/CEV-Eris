@@ -92,7 +92,7 @@
 /datum/design/research/item/ammo/c20r_ammo
 	name = "C20R 35 Auto Magazine"
 	desc = "35 Auto SMG magazine for the C-20r"
-	build_path = /obj/item/ammo_magazine/smg
+	build_path = /obj/item/ammo_magazine/smg/empty
 	sort_string = "TAACD"
 
 /datum/design/research/item/ammo/shotgun_incendiary
