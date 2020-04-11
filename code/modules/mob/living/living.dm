@@ -467,12 +467,12 @@ default behaviour is:
 	for(var/datum/antag_contract/contract in GLOB.all_antag_contracts)
 		contract.on_mob_despawned(src.mind)
 
-	//Handle job slot/tater cleanup.
-	var/job = src.mind.assigned_role
+	if(src.mind)
+		//Handle job slot/tater cleanup.
+		var/job = src.mind.assigned_role
+		SSjob.FreeRole(job)
 
-	SSjob.FreeRole(job)
-
-	clear_antagonist(src.mind)
+		clear_antagonist(src.mind)
 
 	// Delete them from datacore.
 
