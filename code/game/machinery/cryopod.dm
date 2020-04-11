@@ -280,7 +280,9 @@
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/proc/despawn_occupant()
 	var/mob/living/carbon/human/H = occupant
-	var/list/occupant_organs = H.organs | H.internal_organs
+	var/list/occupant_organs
+	if(istype(H))
+		occupant_organs = H.organs | H.internal_organs
 
 	//Drop all items into the pod.
 	for(var/obj/item/W in occupant)
