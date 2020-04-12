@@ -46,7 +46,6 @@
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_NORMAL
 	force_unwielded = WEAPON_FORCE_NORMAL
 	force_wielded = WEAPON_FORCE_BRUTAL
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")

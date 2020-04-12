@@ -8,7 +8,7 @@
 //This includes most mechanical ones
 /obj/item/weapon/tool_upgrade/reinforcement/stick
 	name = "brace bar"
-	desc = "A sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools"
+	desc = "A sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools."
 	icon_state = "brace_bar"
 
 	price_tag = 120
@@ -47,7 +47,7 @@
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating
 	name = "reinforced plating"
-	desc = "A sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky"
+	desc = "A sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky."
 	icon_state = "plate"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 2) //steel to compensate for metal rods used in crafting
 
@@ -86,7 +86,7 @@
 //------------------------------------------------
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip
 	name = "ergonomic grip"
-	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand"
+	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand."
 	icon_state = "ergonomic"
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 5)
 
@@ -102,7 +102,7 @@
 
 /obj/item/weapon/tool_upgrade/productivity/ratchet
 	name = "ratcheting mechanism"
-	desc = "A mechanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction"
+	desc = "A mechanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction."
 	icon_state = "ratchet"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 
@@ -119,7 +119,7 @@
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint
 	name = "red paint"
-	desc = "Do red tools really work faster, or is the effect purely psychological"
+	desc = "Do red tools really work faster, or is the effect purely psychological."
 	icon_state = "paint_red"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 
@@ -136,7 +136,7 @@
 
 /obj/item/weapon/tool_upgrade/productivity/whetstone
 	name = "sharpening block"
-	desc = "A rough single-use block to sharpen a blade. The honed edge cuts smoothly"
+	desc = "A rough single-use block to sharpen a blade. The honed edge cuts smoothly."
 	icon_state = "whetstone"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 3)
 
@@ -149,11 +149,12 @@
 	UPGRADE_FORCE_MULT = 1.15
 	)
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_SHOVELING, QUALITY_WIRE_CUTTING)
+	I.negative_qualities = list(QUALITY_WELDING, QUALITY_LASER_CUTTING)
 	I.prefix = "sharpened"
 
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade
 	name = "Asters \"Gleaming Edge\": Diamond blade"
-	desc = "An adaptable industrial grade cutting disc, with diamond dust worked into the metal. Exceptionally durable"
+	desc = "An adaptable industrial grade cutting disc, with diamond dust worked into the metal. Exceptionally durable."
 	icon_state = "diamond_blade"
 	price_tag = 300
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_DIAMOND = 4)
@@ -174,7 +175,7 @@
 
 /obj/item/weapon/tool_upgrade/productivity/oxyjet
 	name = "oxyjet canister"
-	desc = "A canister of pure, compressed oxygen with adapters for mounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures"
+	desc = "A canister of pure, compressed oxygen with adapters for mounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures."
 	icon_state = "oxyjet"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
 
@@ -195,7 +196,7 @@
 //Enhances power tools majorly, but also increases costs
 /obj/item/weapon/tool_upgrade/productivity/motor
 	name = "high power motor"
-	desc = "A motor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but more expensive to run and harder to control"
+	desc = "A motor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but more expensive to run and harder to control."
 	icon_state = "motor"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4)
 
@@ -220,7 +221,7 @@
 //------------------------------------------------
 /obj/item/weapon/tool_upgrade/refinement/laserguide
 	name = "Asters \"Guiding Light\" laser guide"
-	desc = "A small visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision"
+	desc = "A small visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
 	icon_state = "laser_guide"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_URANIUM = 1)
 
@@ -236,7 +237,7 @@
 //Doesn't work onlarger things like crowbars and drills
 /obj/item/weapon/tool_upgrade/refinement/stabilized_grip
 	name = "gyrostabilized grip"
-	desc = "A fancy mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand"
+	desc = "A fancy mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand."
 	icon_state = "stabilizing"
 	matter = list(MATERIAL_PLASTIC = 3)
 
@@ -290,7 +291,7 @@
 /obj/item/weapon/tool_upgrade/augment/cell_mount
 	name = "heavy cell mount"
 	icon_state = "cell_mount"
-	desc = "A bulky adapter which allows oversized power cells to be installed into small tools"
+	desc = "A bulky adapter which allows oversized power cells to be installed into small tools."
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/augment/cell_mount/New()
@@ -347,7 +348,7 @@
 /obj/item/weapon/tool_upgrade/augment/expansion
 	name = "expansion port"
 	icon_state = "expand"
-	desc = "A bulky adapter which more modifications to be attached to the tool.  A bit fragile but you can compensate"
+	desc = "A bulky adapter which more modifications to be attached to the tool.  A bit fragile but you can compensate."
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/augment/expansion/New()
@@ -392,7 +393,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.upgrades = list(
-	UPGRADE_WORKSPEED = -0.5,
+	UPGRADE_WORKSPEED = -0.1,
 	UPGRADE_HEALTH_THRESHOLD = 5,
 	tool_qualities = list(QUALITY_HAMMERING = 10)
 	)
@@ -403,7 +404,7 @@
 //Vastly reduces tool sounds, for stealthy hacking
 /obj/item/weapon/tool_upgrade/augment/dampener
 	name = "aural dampener"
-	desc = "This aural dampener is a cutting edge tool attachment which mostly nullifies sound waves within a tiny radius. It minimises the noise created during use, perfect for stealth operations"
+	desc = "This aural dampener is a cutting edge tool attachment which mostly nullifies sound waves within a tiny radius. It minimises the noise created during use, perfect for stealth operations."
 	icon_state = "dampener"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
@@ -421,7 +422,7 @@
 /obj/item/weapon/tool_upgrade/augment/ai_tool
 	name = "Nanointegrated AI"
 	desc = "A forgotten One Star tech. Due to its unique installation method of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
-		A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
+			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
 
