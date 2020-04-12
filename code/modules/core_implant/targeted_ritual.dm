@@ -26,7 +26,7 @@
 		if(G[i] != TARGET_TEXT)
 			for(var/obj/item/weapon/implant/core_implant/C in world)
 				C.update_address()
-				if(istype(C, implant_type) && C.address && get_turf(C) in view())
+				if(istype(C, implant_type) && C.address && (get_turf(C) in view()))
 					CL.Add(C.address)
 
 			CL.Add(TARGET_CANCEL)

@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(statverbs)
 /datum/statverb/proc/try_action(mob/living/user, atom/target, saved_name = "target")
 	if(!istype(user))
 		return
-	if(!target in view(user))
+	if(!(target in view(user)))
 		to_chat(user, SPAN_WARNING("You're too far from [saved_name]"))
 		return FALSE
 

@@ -699,6 +699,8 @@
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
 		force = switched_on_force
+		if(wielded)
+			force *= 1.3
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	START_PROCESSING(SSobj, src)

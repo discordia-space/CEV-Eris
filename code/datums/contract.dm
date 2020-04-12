@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	var/list/samples = list()
 	for(var/obj/item/weapon/reagent_containers/C in contents)
 		var/list/data = C.reagents?.get_data("blood")
-		if(!data || data["species"] != "Human" || data["blood_DNA"] in samples)
+		if(!data || data["species"] != "Human" || (data["blood_DNA"] in samples))
 			continue
 		samples += data["blood_DNA"]
 		if(samples.len >= count)

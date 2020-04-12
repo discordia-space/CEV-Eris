@@ -711,8 +711,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			to_chat(src, "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>")
 		return 0
 
-	return 1
-
 /atom/proc/extra_ghost_link()
 	return
 

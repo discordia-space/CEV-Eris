@@ -221,7 +221,7 @@ var/list/global/map_templates = list()
 			continue
 
 		// Did we already place down a very similar submap?
-		if(chosen_template.template_group && chosen_template.template_group in template_groups_used)
+		if(chosen_template.template_group && (chosen_template.template_group in template_groups_used))
 			priority_submaps -= chosen_template
 			potential_submaps -= chosen_template
 			continue

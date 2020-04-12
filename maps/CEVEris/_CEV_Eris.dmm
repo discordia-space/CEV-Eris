@@ -754,7 +754,6 @@
 	name = "Yeetus"
 	},
 /obj/structure/disposalpipe/trunk,
-/obj/machinery/shield_diffuser,
 /turf/simulated/floor/hull{
 	flooring_override = "hullcenter18";
 	icon_state = "hullcenter18";
@@ -12361,11 +12360,12 @@
 "aCi" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	external_pressure_bound = 140;
-	external_pressure_bound_default = 140;
+	expanded_range = 1;
+	external_pressure_bound = 0;
+	external_pressure_bound_default = 0;
 	icon_state = "map_vent_out";
-	pressure_checks = 1;
-	pressure_checks_default = 1;
+	pressure_checks = 2;
+	pressure_checks_default = 2;
 	use_power = 1
 	},
 /obj/machinery/shield_diffuser,
@@ -12784,7 +12784,7 @@
 "aDm" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 1;
-	name = "Plasma to Engines"
+	name = "Plasma to Propulsion"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
@@ -16079,7 +16079,7 @@
 "aLJ" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 4;
-	name = "O2 to Engines"
+	name = "O2 to Propulsion"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
@@ -16308,11 +16308,12 @@
 "aMm" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
-	external_pressure_bound = 140;
-	external_pressure_bound_default = 140;
+	expanded_range = 1;
+	external_pressure_bound = 0;
+	external_pressure_bound_default = 0;
 	icon_state = "map_vent_out";
-	pressure_checks = 1;
-	pressure_checks_default = 1;
+	pressure_checks = 2;
+	pressure_checks_default = 2;
 	use_power = 1
 	},
 /turf/simulated/floor/hull,
@@ -17357,7 +17358,7 @@
 "aOP" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 2;
-	name = "Core to Space"
+	name = "Wasting to Space"
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/wastingroom)
@@ -56134,6 +56135,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/device/eftpos,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
 "cvt" = (
@@ -63834,7 +63836,7 @@
 "cMN" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 4;
-	name = "Core to Space"
+	name = "Core to Wasting"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -108251,7 +108253,7 @@
 "iDJ" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 4;
-	name = "Waste to Space"
+	name = "Waste to Wasting"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
@@ -122710,7 +122712,7 @@ aaa
 aaa
 aaa
 aaa
-abF
+crY
 abY
 acq
 acS
@@ -210980,7 +210982,7 @@ bqs
 bqw
 bqs
 aaa
-aaa
+abF
 abF
 aTG
 aTG
@@ -211182,7 +211184,7 @@ aTG
 bqv
 aTG
 aaa
-aaa
+abF
 abF
 aTG
 bqR
@@ -211992,7 +211994,7 @@ aTG
 aaa
 aaa
 aaa
-aaa
+abF
 bSo
 bfC
 biL

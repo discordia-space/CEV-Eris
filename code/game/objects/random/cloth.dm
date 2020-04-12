@@ -402,7 +402,9 @@
 				/obj/item/weapon/storage/backpack/satchel/security = 6,
 				/obj/item/weapon/storage/backpack/satchel/leather/withwallet = 12,
 				/obj/item/weapon/storage/backpack/satchel/ironhammer = 4,
-				/obj/item/weapon/storage/backpack/satchel/neotheology = 4))
+				/obj/item/weapon/storage/backpack/satchel/neotheology = 4,
+				/obj/item/weapon/storage/backpack/satchel/military = 6,
+				/obj/item/weapon/storage/backpack/duffelbag = 24))
 
 /obj/random/cloth/backpack/low_chance
 	name = "low chance random backpack"
