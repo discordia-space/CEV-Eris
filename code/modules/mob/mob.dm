@@ -13,6 +13,9 @@
 	..()
 	return QDEL_HINT_HARDDEL
 
+/mob/proc/despawn()
+	return
+
 /mob/get_fall_damage(var/turf/from, var/turf/dest)
 	return 0
 
