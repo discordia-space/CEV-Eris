@@ -73,7 +73,7 @@ var/list/escape_pods_by_name = list()
 		pod.arming_controller.arm()
 		return TOPIC_REFRESH*/
 
-	if("force_launch")
+	if(href_list["force_launch"])
 		if (pod.can_force())
 			pod.force_launch(src)
 		else if (evacuation_controller.has_evacuated() && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves

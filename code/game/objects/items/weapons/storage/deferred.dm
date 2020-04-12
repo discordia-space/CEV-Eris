@@ -271,7 +271,7 @@
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
-	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 1)
+	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat = 1)
 
 /obj/item/weapon/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"

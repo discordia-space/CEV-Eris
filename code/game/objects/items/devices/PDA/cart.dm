@@ -403,7 +403,7 @@
 		for(var/S in SSsupply.shoppinglist)
 			var/datum/supply_order/SO = S
 
-			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.id, "Name" = rhtml_encode(SO.object.name), "ApprovedBy" = SO.orderer, "Comment" = rhtml_encode(SO.reason))
+			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.id, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.orderer, "Comment" = html_encode(SO.reason))
 		if(!supplyOrderData.len)
 			supplyOrderData[++supplyOrderData.len] = list("Number" = null, "Name" = null, "OrderedBy"=null)
 
@@ -415,7 +415,7 @@
 		for(var/S in SSsupply.requestlist)
 			var/datum/supply_order/SO = S
 			requestCount++
-			requestData[++requestData.len] = list("Number" = SO.id, "Name" = rhtml_encode(SO.object.name), "OrderedBy" = SO.orderer, "Comment" = rhtml_encode(SO.reason))
+			requestData[++requestData.len] = list("Number" = SO.id, "Name" = html_encode(SO.object.name), "OrderedBy" = SO.orderer, "Comment" = html_encode(SO.reason))
 		if(!requestData.len)
 			requestData[++requestData.len] = list("Number" = null, "Name" = null, "orderedBy" = null, "Comment" = null)
 

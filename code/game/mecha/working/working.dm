@@ -29,7 +29,7 @@
 	..()
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
-		if(O && O in src.cargo)
+		if(O && (O in src.cargo))
 			src.occupant_message(SPAN_NOTICE("You unload [O]."))
 			O.loc = get_turf(src)
 			src.cargo -= O

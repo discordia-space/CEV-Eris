@@ -22,6 +22,7 @@
 	var/use_power_cost = 0	//For tool system, determinze how much power tool will drain from cells, 0 means no cell needed
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = null	//Dont forget to edit this for a tool, if you want in to consume cells
+	var/passive_power_cost = 1 //Energy consumed per process tick while active
 
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
@@ -127,8 +128,12 @@
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
 
-		if (passive_fuel_cost)
+		if (use_fuel_cost && passive_fuel_cost)
 			if(!consume_fuel(passive_fuel_cost))
+				turn_off()
+
+		if(use_power_cost && passive_power_cost)
+			if(!cell?.checked_use(passive_power_cost))
 				turn_off()
 
 
@@ -681,16 +686,31 @@
 	return return_quality
 
 /obj/item/weapon/tool/proc/turn_on(var/mob/user)
+	if(use_power_cost)
+		if(!cell)
+			to_chat(user, SPAN_WARNING("\The [src] has no cell!"))
+			return FALSE
+		if(cell.charge < use_power_cost)
+			to_chat(user, SPAN_WARNING("\The [src] does not have enough power!"))
+			return FALSE
+	if(user)
+		to_chat(user, SPAN_NOTICE("\The [src] turns on."))
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
 		force = switched_on_force
+		if(wielded)
+			force *= 1.3
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 	update_wear_icon()
+	return TRUE
 
 /obj/item/weapon/tool/proc/turn_off(var/mob/user)
+	if(user)
+		to_chat(user, SPAN_NOTICE("\The [src] turns off."))
 	switched_on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities

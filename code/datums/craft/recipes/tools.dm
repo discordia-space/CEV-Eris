@@ -88,7 +88,9 @@
 	result = /obj/item/weapon/tool/weldingtool/improvised
 	steps = list(
 		list(/obj/item/device/assembly/igniter, 1),
-		list(/obj/item/weapon/tank/emergency_oxygen, 1)
+		list(/obj/item/weapon/tank/emergency_oxygen, 1),
+		list(QUALITY_ADHESIVE, 15, 100),
+		list(QUALITY_SCREW_DRIVING, 10, 40)
 	)
 
 
@@ -100,8 +102,8 @@
 	name = "Tool mod: Brace bar"
 	result = /obj/item/weapon/tool_upgrade/reinforcement/stick
 	steps = list(
-		list(/obj/item/stack/rods, 1, 30),
-		list(/obj/item/stack/rods, 1, 30),
+		list(/obj/item/stack/rods, 3, 30),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
 		list(QUALITY_ADHESIVE, 50, 150)
 	)
 
@@ -112,9 +114,9 @@
 	name = "Tool mod: reinforcement plate"
 	result = /obj/item/weapon/tool_upgrade/reinforcement/plating
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
 		list(QUALITY_DRILLING, 10, 150),
-		list(/obj/item/stack/rods, 4, 30),
+		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_BOLT_TURNING, 10, 150),
 	)
 
@@ -126,26 +128,21 @@
 	steps = list(
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 150),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
-		list(/obj/item/weapon/material/shard/shrapnel, 1, "time" = 30),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 150),
 	)
 
 
 //just a clamp with a flat surface to hammer something
 /datum/craft_recipe/tool/hammer_addon
-	name = "Tool mod: Hammer addon"
+	name = "Tool mod: Flat surface"
 	result = /obj/item/weapon/tool_upgrade/augment/hammer_addon
 	steps = list(
-		list(/obj/item/stack/rods, 1, 30),
+		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 150),
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 150),
 	)
-
-
 
 //An improvised adapter to fit a larger power cell. This is pretty fancy as crafted items go
 //Requires an APC frame, a fuckton of wires, a large cell, and several tools
@@ -153,14 +150,15 @@
 	name = "Tool mod: Heavy cell mount"
 	result = /obj/item/weapon/tool_upgrade/augment/cell_mount
 	steps = list(
-		list(/obj/item/frame/apc, 2, "time" = 30),
-		list(QUALITY_SCREW_DRIVING, 10, "time" = 40),
-		list(/obj/item/stack/cable_coil, 30, "time" = 10),
-		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),
-		list(/obj/item/stack/cable_coil, 30, "time" = 10),
-		list(/obj/item/weapon/cell/large, 1),
-		list(QUALITY_SAWING, 10, "time" = 70),//The large cell is disassembled for parts
-		list(QUALITY_WELDING, 10, "time" = 70),
+		list(/obj/item/frame/apc, 2, "time" = 30),			//hull
+		list(QUALITY_SCREW_DRIVING, 10, "time" = 40),		//prepare hull
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),			//additional frame to support wires
+		list(QUALITY_WELDING, 10, "time" = 70),				//secure frame
+		list(/obj/item/stack/cable_coil, 30, "time" = 10),	//add wiring
+		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),		//adjust wiring
+		list(/obj/item/weapon/cell/large, 1),				//cell for parts
+		list(QUALITY_SAWING, 10, "time" = 70),				//The large cell is disassembled for parts
+		list(QUALITY_WELDING, 10, "time" = 70),				//weld parts in place
 	)
 
 //Welding backpack disassembled into a smaller tank
@@ -208,4 +206,3 @@
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(/obj/item/stack/rods, 2, 30)
 	)
-

@@ -14,7 +14,7 @@
 	name = "TaxQuickly 2559"
 	var/error = FALSE
 	var/stored_login = ""
-	
+
 
 /datum/nano_module/program/uplink/Topic(href, href_list)
 	if(..())
@@ -33,7 +33,7 @@
 		return 1
 
 	if(href_list["edit_login"])
-		var/newlogin = sanitize(input_utf8(usr,"Enter login", "Login", stored_login, type = "text"), 100)
+		var/newlogin = sanitize(input(usr,"Enter login", "Login", stored_login), 100)
 		if(newlogin)
 			stored_login = newlogin
 		return 1
@@ -49,7 +49,7 @@
 	var/list/data = host.initial_data()
 	var/datum/computer_file/program/uplink/PRG = program
 	data["error"] = error
-	data["stored_login"] = cyrillic_to_unicode(stored_login)
+	data["stored_login"] = stored_login
 	data["authenticated"] = PRG.authenticated
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

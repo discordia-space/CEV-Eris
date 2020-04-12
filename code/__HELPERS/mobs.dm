@@ -117,7 +117,6 @@
 			return "health0"
 		else
 			return "health-100"
-	return "0"
 
 /*
 Proc for attack log creation, because really why not

@@ -162,7 +162,8 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/c20r,
-							/datum/design/research/item/ammo/c20r_ammo
+							/datum/design/research/item/ammo/c20r_ammo,
+							/datum/design/research/item/weapon/katana
 						)
 
 /datum/technology/laser_weaponry

@@ -18,6 +18,13 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 /datum/antag_contract/proc/place()
 	GLOB.all_antag_contracts += src
 
+/datum/antag_contract/proc/remove()
+	GLOB.all_antag_contracts -= src
+
+// Called on every contract when a mob is despawned - currently, this can only happen when someone cryos
+/datum/antag_contract/proc/on_mob_despawned(datum/mind/M)
+	return
+
 /datum/antag_contract/proc/complete(datum/mind/M)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
@@ -104,6 +111,9 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	if(implant.wearer && implant.wearer.mind == target_mind)
 		complete(implant.owner)
 
+/datum/antag_contract/implant/on_mob_despawned(datum/mind/M)
+	if(M == target_mind)
+		remove()
 
 #define CONTRACT_RECON_TARGET_COUNT 3
 
@@ -182,6 +192,10 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 
 /datum/antag_contract/item/assasinate/check_contents(list/contents)
 	return target in contents
+
+/datum/antag_contract/item/assasinate/on_mob_despawned(datum/mind/M)
+	if(M == target_mind)
+		remove()
 
 
 /datum/antag_contract/item/steal
@@ -270,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	var/list/samples = list()
 	for(var/obj/item/weapon/reagent_containers/C in contents)
 		var/list/data = C.reagents?.get_data("blood")
-		if(!data || data["species"] != "Human" || data["blood_DNA"] in samples)
+		if(!data || data["species"] != "Human" || (data["blood_DNA"] in samples))
 			continue
 		samples += data["blood_DNA"]
 		if(samples.len >= count)

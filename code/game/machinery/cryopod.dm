@@ -150,13 +150,11 @@
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "cryopod_0"
+	icon_state = "cryopod"
 	density = 1
 	anchored = 1
 	dir = WEST
 
-	var/base_icon_state = "cryopod_0"
-	var/occupied_icon_state = "cryopod_1"
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
 	var/on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
@@ -192,9 +190,7 @@
 	name = "robotic storage unit"
 	desc = "A storage unit for robots."
 	icon = 'icons/obj/robot_storage.dmi'
-	icon_state = "pod_0"
-	base_icon_state = "pod_0"
-	occupied_icon_state = "pod_1"
+	icon_state = "pod"
 	on_store_message = "has entered robotic storage."
 	on_store_name = "Robotic Storage Oversight"
 	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
@@ -204,6 +200,7 @@
 
 /obj/machinery/cryopod/New()
 	announce = new /obj/item/device/radio/intercom(src)
+	update_icon()
 	..()
 
 /obj/machinery/cryopod/Destroy()
@@ -216,6 +213,12 @@
 	. = ..()
 
 	find_control_computer()
+
+/obj/machinery/cryopod/update_icon()
+	if(occupant)
+		icon_state = "[initial(icon_state)]_1"
+	else
+		icon_state = "[initial(icon_state)]_0"
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
 	// Workaround for http://www.byond.com/forum/?post=2007448
@@ -268,10 +271,13 @@
 	if(!istype(R)) return ..()
 
 	qdel(R.mmi)
+
+	// Cryopod code to extract items from cyborgs before calling ..() so the cybrog is in clean state for proc/despawn_occupant()
 	for(var/obj/item/I in R.module) // the tools the borg has; metal, glass, guns etc
 		for(var/obj/item/O in I) // the things inside the tools, if anything; mainly for janiborg trash bags
 			O.forceMove(R)
 		qdel(I)
+
 	qdel(R.module)
 
 	return ..()
@@ -279,8 +285,18 @@
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/proc/despawn_occupant()
+	var/mob/living/carbon/human/H = occupant
+	var/list/occupant_organs
+	if(istype(H))
+		occupant_organs = H.organs | H.internal_organs
+
 	//Drop all items into the pod.
+	//// Local pod code
 	for(var/obj/item/W in occupant)
+		// Don't delete the organs!
+		if(W in occupant_organs)
+			continue
+
 		occupant.drop_from_inventory(W)
 		W.forceMove(src)
 
@@ -295,6 +311,7 @@
 	items -= occupant // Don't delete the occupant
 	items -= announce // or the autosay radio.
 
+	// Preserve the mmi brain, quite snowflake code here
 	for(var/obj/item/W in items)
 		var/preserve = null
 		// Snowflaaaake.
@@ -319,41 +336,6 @@
 			else
 				W.forceMove(src.loc)
 
-	//Update any existing objectives involving this mob.
-	for(var/datum/objective/O in all_objectives)
-		// We don't want revs to get objectives that aren't for heads of staff. Letting
-		// them win or lose based on cryo is silly so we remove the objective.
-		if(O.target == occupant.mind)
-			if(O.owner && O.owner.current)
-				to_chat(O.owner.current, "<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
-			qdel(O)
-
-	//Handle job slot/tater cleanup.
-	var/job = occupant.mind.assigned_role
-
-	SSjob.FreeRole(job)
-
-	clear_antagonist(occupant.mind)
-
-	// Delete them from datacore.
-
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
-		if ((R.fields["name"] == occupant.real_name))
-			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
-		if ((T.fields["name"] == occupant.real_name))
-			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
-		if ((G.fields["name"] == occupant.real_name))
-			qdel(G)
-
-	icon_state = base_icon_state
-
-	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
-
-
 	//Make an announcement and log the person entering storage.
 	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.assigned_role] - [stationtime2text()]"
 	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.assigned_role]) at [stationtime2text()]"
@@ -361,7 +343,6 @@
 
 	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
-
 
 	//When the occupant is put into storage, their respawn time is reduced.
 	//This check exists for the benefit of people who get put into cryostorage while SSD and come back later
@@ -379,13 +360,9 @@
 				//Going safely to cryo will allow the patient to respawn more quickly
 				M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
 
-	//This should guarantee that ghosts don't spawn.
-	occupant.ckey = null
-
-	// Delete the mob.
-	qdel(occupant)
+	// This despawn is not a gib() in this sense, it is used to remove objectives tied on these despawned mobs in cryos
+	occupant.despawn()
 	set_occupant(null)
-
 
 /obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
 	try_put_inside(target, user)
@@ -534,8 +511,6 @@
 			var/mob/living/carbon/human/H = occupant
 			H.in_stasis = 1
 		new_occupant.forceMove(src)
-		icon_state = occupied_icon_state
-
 
 		if (notifications)
 			to_chat(occupant, SPAN_NOTICE("[on_enter_occupant_message]"))
@@ -547,7 +522,6 @@
 			If you wish to respawn as a different crewmember, you should treat your injuries at medical first</b>"))
 
 	else
-		icon_state = base_icon_state
 		if(!QDELETED(occupant))
 			occupant.forceMove(get_turf(src))
 			occupant.reset_view(null)
@@ -555,3 +529,5 @@
 				var/mob/living/carbon/human/H = occupant
 				H.in_stasis = 0
 		occupant = null
+
+	update_icon()

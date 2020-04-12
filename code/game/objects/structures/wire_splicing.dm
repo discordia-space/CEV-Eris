@@ -43,7 +43,7 @@
 				continue //No traps in space
 
 			//Catwalks are made for walking on, we definitely want traps there
-			if (locate(/obj/structure/catwalk in T))
+			if (locate(/obj/structure/catwalk) in T)
 				turf_score += 2
 
 			//If its below the threshold ignore it

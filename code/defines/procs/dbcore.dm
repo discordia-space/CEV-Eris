@@ -72,7 +72,7 @@ DBConnection/proc/Quote(str)
 	return _dm_db_quote(_db_con, str)
 
 DBConnection/proc/ErrorMsg()
-	return "## MYSQL ERROR: [russian_to_cp1251(_dm_db_error_msg(_db_con))]"
+	return "## MYSQL ERROR: [_dm_db_error_msg(_db_con)]"
 
 DBConnection/proc/SelectDB(database_name, dbi)
 	if(IsConnected())
