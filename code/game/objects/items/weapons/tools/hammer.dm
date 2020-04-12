@@ -45,7 +45,7 @@
 
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer
 	name = "One Star sledgehammer"
-	desc = "Famous sledgehammer model made by One Star used for applying immeasurable blunt force to anything in your way. Could breach even toughest obstracles and crack most resilent skulls."
+	desc = "A sledgehammer model produced by One Star, used for applying immeasurable blunt force to anything in your way. Capable of breaching even the toughtest obstacles, and cracking the most resilient skulls."
 	icon_state = "onehammer"
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
