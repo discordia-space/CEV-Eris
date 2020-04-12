@@ -46,7 +46,7 @@ var/global/nttransfer_uid = 0
 		if(!remote)
 			crash_download("Connection to remote server lost")
 
-/datum/computer_file/program/nttransfer/kill_program(var/forced = 0)
+/datum/computer_file/program/nttransfer/kill_program(forced = FALSE)
 	if(downloaded_file) // Client mode, clean up variables for next use
 		finalize_download()
 
@@ -54,7 +54,7 @@ var/global/nttransfer_uid = 0
 		for(var/datum/computer_file/program/nttransfer/P in connected_clients)
 			P.crash_download("Connection terminated by remote server")
 		downloaded_file = null
-	..(forced)
+	..()
 
 // Finishes download and attempts to store the file on HDD
 /datum/computer_file/program/nttransfer/proc/finish_download()

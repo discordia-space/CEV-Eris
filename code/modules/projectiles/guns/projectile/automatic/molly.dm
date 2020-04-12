@@ -22,6 +22,7 @@
 	silencer_type = /obj/item/weapon/silencer
 	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
 	recoil_buildup = 3
+	one_hand_penalty = 5 //despine it being handgun, it's better to hold in two hands while shooting. SMG level.
 
 	firemodes = list(
 		FULL_AUTO_400,

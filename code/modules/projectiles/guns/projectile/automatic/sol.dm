@@ -2,7 +2,7 @@
 	name = "FS CAR .25 CS \"Sol\""
 	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/sol.dmi'
-	icon_state = "sol-para"
+	icon_state = "sol"
 	item_state = "sol"
 	w_class = ITEM_SIZE_BULKY
 	ammo_mag = "ih_sol"
@@ -16,7 +16,7 @@
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 13
-	one_hand_penalty = 10
+	one_hand_penalty = 5 //bullpup rifle (this one is smaller and carbine, so it's 5)
 
 	firemodes = list(
 		SEMI_AUTO_NODELAY,
@@ -33,13 +33,9 @@
 	overlays += "sol_[ratio]"
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
+	..()
+
 	icon_state = initial(icon_state) + (ammo_magazine ?  "-full" : "")
 	set_item_state(ammo_magazine ?  "-full" : "", back = TRUE)
 	overlays.Cut()
 	update_charge()
-
-/obj/item/weapon/gun/projectile/automatic/sol/rds
-	desc = "A standard-issue weapon used by Ironhammer operatives. Compact and reliable. Uses .25 Caseless Rifle rounds. This one comes with red dot sight."
-	icon_state = "sol-eot"
-	price_tag = 2350
-	zoom_factor = 0.2

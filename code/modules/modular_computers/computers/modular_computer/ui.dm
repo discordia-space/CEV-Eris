@@ -22,22 +22,14 @@
 		visible_message("\The [src] beeps three times, it's screen displaying \"DISK ERROR\" warning.")
 		return // No HDD, No HDD files list or no stored files. Something is very broken.
 
-	var/datum/computer_file/data/autorun = hard_drive.find_file_by_name("autorun")
-
 	var/list/data = get_header_data()
 
-	var/list/programs = list()
-	for(var/datum/computer_file/program/P in hard_drive.stored_files)
-		var/list/program = list()
-		program["name"] = P.filename
-		program["desc"] = P.filedesc
-		program["icon"] = P.program_menu_icon
-		program["autorun"] = (istype(autorun) && (autorun.stored_data == P.filename)) ? 1 : 0
-		if(P in idle_threads)
-			program["running"] = 1
-		programs.Add(list(program))
+	data["hard_drive"] = get_program_data(hard_drive)
 
-	data["programs"] = programs
+	if(portable_drive)
+		data["portable_drive"] = get_program_data(portable_drive)
+
+
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "mpc_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
@@ -82,21 +74,24 @@
 		minimize_program(user)
 
 	if(href_list["PC_killprogram"])
-		var/prog = href_list["PC_killprogram"]
-		var/datum/computer_file/program/P = null
-		var/mob/user = usr
-		if(hard_drive)
-			P = hard_drive.find_file_by_name(prog)
+		var/prog_name = href_list["PC_killprogram"]
+		var/obj/item/weapon/computer_hardware/hard_drive/prog_disk = locate(href_list["disk"]) in src
+		if(!prog_disk)
+			return 1
 
-		if(!istype(P) || P.program_state == PROGRAM_STATE_KILLED)
-			return
+		for(var/p in all_threads)
+			var/datum/computer_file/program/PRG = p
+			if(PRG.program_state == PROGRAM_STATE_KILLED)
+				continue
 
-		P.kill_program(1)
-		update_uis()
-		to_chat(user, "<span class='notice'>Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed.</span>")
+			if(PRG.filename == prog_name && (PRG in prog_disk.stored_files))
+				PRG.kill_program(forced=TRUE)
+				to_chat(usr, SPAN_NOTICE("Program [PRG.filename].[PRG.filetype] has been killed."))
+				. = 1
 
 	if(href_list["PC_runprogram"])
-		return run_program(href_list["PC_runprogram"])
+		var/obj/item/weapon/computer_hardware/hard_drive/prog_disk = locate(href_list["disk"]) in src
+		return run_program(href_list["PC_runprogram"], prog_disk)
 
 	if(href_list["PC_setautorun"])
 		if(!hard_drive)
@@ -108,6 +103,31 @@
 
 	if(.)
 		update_uis()
+
+
+// Function used by NanoUI to obtain a list of programs for a given disk
+/obj/item/modular_computer/proc/get_program_data(obj/item/weapon/computer_hardware/hard_drive/disk)
+	var/datum/computer_file/data/autorun = disk.find_file_by_name("autorun")
+
+	var/list/disk_data = list(
+		"ref" = "\ref[disk]",
+		"name" = disk.get_disk_name(),
+		"autorun" = istype(autorun) ? autorun.stored_data : ""
+	)
+
+	var/list/programs = list()
+	for(var/datum/computer_file/program/PRG in disk.stored_files)
+		var/list/program = list(
+			"name" = PRG.filename,
+			"desc" = PRG.filedesc,
+			"icon" = PRG.program_menu_icon,
+			"running" = (PRG in all_threads)
+			)
+		programs.Add(list(program))
+	disk_data["programs"] = programs
+
+	return disk_data
+
 
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
@@ -128,11 +148,11 @@
 			else
 				data["PC_batteryicon"] = "batt_5.gif"
 		data["PC_batterypercent"] = "[round(cell.percent())] %"
-		data["PC_showbatteryicon"] = 1
+		data["PC_showbatteryicon"] = TRUE
 	else
 		data["PC_batteryicon"] = "batt_5.gif"
 		data["PC_batterypercent"] = "N/C"
-		data["PC_showbatteryicon"] = cell ? 1 : 0
+		data["PC_showbatteryicon"] = FALSE
 
 	if(led)
 		data["PC_light_name"] = led.name
@@ -153,8 +173,8 @@
 				data["PC_ntneticon"] = "sig_high.gif"
 			if(3)
 				data["PC_ntneticon"] = "sig_lan.gif"
-	data["has_gps"] = FALSE
-	if (gps_sensor)
+
+	if(gps_sensor)
 		data["has_gps"] = TRUE
 		if (gps_sensor.check_functionality())
 			data["gps_icon"] = "satelite_on.gif"
@@ -163,15 +183,12 @@
 		data["gps_data"] = gps_sensor.get_position_text()
 
 	var/list/program_headers = list()
-	for(var/datum/computer_file/program/P in idle_threads)
-		if(!P.ui_header)
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
+		if(!PRG.ui_header)
 			continue
 		program_headers.Add(list(list(
-			"icon" = P.ui_header
-		)))
-	if(active_program && active_program.ui_header)
-		program_headers.Add(list(list(
-			"icon" = active_program.ui_header
+			"icon" = PRG.ui_header
 		)))
 	data["PC_programheaders"] = program_headers
 

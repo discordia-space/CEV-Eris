@@ -22,7 +22,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	recoil_buildup = 3
-	one_hand_penalty = 5
+	one_hand_penalty = 30 //not like it's used anyway, but LMG level
 
 	firemodes = list(
 		FULL_AUTO_600,

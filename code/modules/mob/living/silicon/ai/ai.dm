@@ -452,7 +452,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "\red System error. Cannot locate [rhtml_decode(href_list["trackname"])].")
+			to_chat(src, "\red System error. Cannot locate [href_list["trackname"]].")
 		return
 
 	return

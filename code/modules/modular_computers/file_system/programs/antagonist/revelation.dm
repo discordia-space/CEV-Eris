@@ -12,10 +12,15 @@
 	nanomodule_path = /datum/nano_module/program/revelation/
 	var/armed = FALSE
 
-/datum/computer_file/program/revelation/run_program(var/mob/living/user)
-	. = ..(user)
+/datum/computer_file/program/revelation/run_program(mob/living/user)
+	if(!..())
+		return FALSE
+
 	if(armed)
 		activate()
+		return FALSE
+
+	return TRUE
 
 /datum/computer_file/program/revelation/proc/activate()
 	if(!computer)

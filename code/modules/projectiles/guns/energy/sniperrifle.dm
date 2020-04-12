@@ -21,3 +21,5 @@
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
+	twohanded = TRUE
+	

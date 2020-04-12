@@ -58,7 +58,7 @@
 	else
 		not_heard = "[verb] something" //TODO get rid of the null language and just prevent speech if language is null
 
-	message = capitalize_cp1251(trim(message))
+	message = trim(message)
 
 	if(speech_problem_flag)
 		var/list/handle_r = handle_speech_problems(message)

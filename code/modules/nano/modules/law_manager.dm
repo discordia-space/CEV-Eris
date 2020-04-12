@@ -68,31 +68,31 @@
 		return 1
 
 	if(href_list["change_zeroth_law"])
-		var/new_law = sanitize(input_utf8("Enter new law Zero. Leaving the field blank will cancel the edit.", "Edit Law", zeroth_law))
+		var/new_law = sanitize(input("Enter new law Zero. Leaving the field blank will cancel the edit.", "Edit Law", zeroth_law))
 		if(new_law && new_law != zeroth_law && can_still_topic())
 			zeroth_law = new_law
 		return 1
 
 	if(href_list["change_ion_law"])
-		var/new_law = sanitize(input_utf8("Enter new ion law. Leaving the field blank will cancel the edit.", "Edit Law", ion_law))
+		var/new_law = sanitize(input("Enter new ion law. Leaving the field blank will cancel the edit.", "Edit Law", ion_law))
 		if(new_law && new_law != ion_law && can_still_topic())
 			ion_law = new_law
 		return 1
 
 	if(href_list["change_inherent_law"])
-		var/new_law = sanitize(input_utf8("Enter new inherent law. Leaving the field blank will cancel the edit.", "Edit Law", inherent_law))
+		var/new_law = sanitize(input("Enter new inherent law. Leaving the field blank will cancel the edit.", "Edit Law", inherent_law))
 		if(new_law && new_law != inherent_law && can_still_topic())
 			inherent_law = new_law
 		return 1
 
 	if(href_list["change_supplied_law"])
-		var/new_law = sanitize(input_utf8("Enter new supplied law. Leaving the field blank will cancel the edit.", "Edit Law", supplied_law))
+		var/new_law = sanitize(input("Enter new supplied law. Leaving the field blank will cancel the edit.", "Edit Law", supplied_law))
 		if(new_law && new_law != supplied_law && can_still_topic())
 			supplied_law = new_law
 		return 1
 
 	if(href_list["change_supplied_law_position"])
-		var/new_position = input_utf8(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position) as num|null
+		var/new_position = input(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position) as num|null
 		if(isnum(new_position) && can_still_topic())
 			supplied_law_position = CLAMP(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
 		return 1
@@ -101,7 +101,7 @@
 		if(is_malf(usr))
 			var/datum/ai_law/AL = locate(href_list["edit_law"]) in owner.laws.all_laws()
 			if(AL)
-				var/new_law = sanitize(input_utf8(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
 				if(new_law && new_law != AL.law && is_malf(usr) && can_still_topic())
 					log_and_message_admins("has changed a law of [owner] from '[AL.law]' to '[new_law]'")
 					AL.law = new_law
@@ -152,10 +152,10 @@
 	owner.lawsync()
 
 	data["ion_law_nr"] = ionnum()
-	data["ion_law"] = cyrillic_to_unicode(ion_law)
-	data["zeroth_law"] = cyrillic_to_unicode(zeroth_law)
-	data["inherent_law"] = cyrillic_to_unicode(inherent_law)
-	data["supplied_law"] = cyrillic_to_unicode(supplied_law)
+	data["ion_law"] = ion_law
+	data["zeroth_law"] = zeroth_law
+	data["inherent_law"] = inherent_law
+	data["supplied_law"] = supplied_law
 	data["supplied_law_position"] = supplied_law_position
 
 	package_laws(data, "zeroth_laws", list(owner.laws.zeroth_law))
@@ -186,7 +186,7 @@
 /datum/nano_module/law_manager/proc/package_laws(var/list/data, var/field, var/list/datum/ai_law/laws)
 	var/packaged_laws[0]
 	for(var/datum/ai_law/AL in laws)
-		packaged_laws[++packaged_laws.len] = list("law" = cyrillic_to_unicode(AL.law), "index" = AL.get_index(), "state" = owner.laws.get_state_law(AL), "ref" = "\ref[AL]")
+		packaged_laws[++packaged_laws.len] = list("law" = AL.law, "index" = AL.get_index(), "state" = owner.laws.get_state_law(AL), "ref" = "\ref[AL]")
 	data[field] = packaged_laws
 	data["has_[field]"] = packaged_laws.len
 

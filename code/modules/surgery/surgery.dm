@@ -113,7 +113,7 @@
 		difficulty_adjust = 20
 
 	var/atom/surgery_target = get_surgery_target()
-	if(S.required_tool_quality)
+	if(S.required_tool_quality && (S.required_tool_quality in tool.tool_qualities))
 		success = tool.use_tool_extended(
 			user, surgery_target,
 			S.duration,

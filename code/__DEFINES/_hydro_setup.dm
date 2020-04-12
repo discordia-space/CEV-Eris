@@ -47,7 +47,7 @@
 #define TRAIT_WEED_TOLERANCE       	27
 #define TRAIT_ENDURANCE            	28
 #define TRAIT_YIELD                	29
-#define TRAIT_SPREAD               	30 //This define is duplicated in subsystems/migration.dm
+#define TRAIT_SPREAD               	30
 #define TRAIT_MATURATION           	31
 #define TRAIT_PRODUCTION           	32
 #define TRAIT_TELEPORTING          	33

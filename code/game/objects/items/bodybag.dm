@@ -71,7 +71,15 @@
 			qdel(src)
 		return
 
-
+/obj/structure/closet/body_bag/update_icon()
+    if(opened)
+        icon_state = "bodybag_open"
+    else
+        if(contains_body > 0)
+            icon_state = "bodybag_full"
+        else
+            icon_state = "bodybag_closed"
+				
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \

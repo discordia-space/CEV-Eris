@@ -64,6 +64,8 @@
 
 	var/projectile_color //Set by a firemode. Sets the fired projectiles color
 
+	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
+	var/recentwield = 0 // to prevent spammage
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -179,6 +181,18 @@
 	if(HULK in M.mutations)
 		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
 		return FALSE
+	if(!restrict_safety)
+		if(safety)
+			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
+			handle_click_empty(user)
+			return FALSE
+	if(twohanded)
+		if(!wielded)
+			if (world.time >= recentwield + 1 SECONDS)
+				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
+				recentwield = world.time
+			return FALSE
+
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
@@ -192,11 +206,6 @@
 		else
 			handle_click_empty(user)
 		return FALSE
-	if(!restrict_safety)
-		if(safety)
-			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
-			handle_click_empty(user)
-			return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/emp_act(severity)

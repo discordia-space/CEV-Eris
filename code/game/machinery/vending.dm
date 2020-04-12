@@ -1,9 +1,3 @@
-#define CAT_NORMAL 1
-#define CAT_HIDDEN 2  // also used in corresponding wires/vending.dm
-#define CAT_COIN   4
-
-#define CUSTOM_VENDOMAT_MODELS list("Generic" = "generic", "Security" = "sec", "Electronics" = "cart", "Research" = "robotics", "Medical" = "med", "Engineering" = "engivend", "Engineering 2" = "engi", "Tools" = "tool", "Shady" = "sovietsoda", "Fridge" = "smartfridge", "Alcohol" = "boozeomat", "Frozen Star" = "weapon", "NeoTheo" = "teomat", "Asters Power Cells" = "powermat", "Asters Disks" = "discomat")
-
 /**
  *  Datum used to hold information about a product in a vending machine
  */
@@ -951,8 +945,7 @@
 /obj/machinery/vending/assist
 	products = list(
 		/obj/item/device/assembly/prox_sensor = 5,/obj/item/device/assembly/igniter = 3,
-		/obj/item/device/assembly/signaler = 4,/obj/item/weapon/tool/wirecutters = 1, /obj/item/weapon/tool/wirecutters/pliers = 1,
-		/obj/item/weapon/cartridge/signal = 4
+		/obj/item/device/assembly/signaler = 6,/obj/item/weapon/tool/wirecutters = 1, /obj/item/weapon/tool/wirecutters/pliers = 1
 	)
 	contraband = list(/obj/item/device/lighting/toggleable/flashlight = 5,/obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
@@ -1108,7 +1101,7 @@
 
 
 /obj/machinery/vending/medical
-	name = "NanoMed Plus"
+	name = "MiniPharma Plus"
 	desc = "Medical drug dispenser."
 	icon_state = "med"
 	icon_deny = "med-deny"
@@ -1116,7 +1109,7 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
-					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
+					/obj/item/weapon/reagent_containers/syringe/spaceacillin = 4,/obj/item/weapon/reagent_containers/syringe = 12,
 					/obj/item/device/scanner/health = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
@@ -1133,28 +1126,65 @@
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
 	auto_price = FALSE
 
-/obj/machinery/vending/wallmed1
-	name = "NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
+/obj/machinery/vending/wallmed
+	name = "MicroMed"
+	desc = "Wall-mounted medical dispenser."
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	icon_state = "wallmed"
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/stack/medical/bruise_pack = 2,/obj/item/stack/medical/ointment = 2,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,/obj/item/device/scanner/health = 1)
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
+	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
+
+/obj/machinery/vending/wallmed/minor
+	products = list(
+		/obj/item/stack/medical/bruise_pack = 2, /obj/item/stack/medical/ointment = 2,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
+		/obj/item/device/scanner/health = 1
+		)
+	contraband = list(
+		/obj/item/weapon/reagent_containers/syringe/antitoxin = 2,
+		/obj/item/weapon/reagent_containers/syringe/spaceacillin = 2,
+		/obj/item/weapon/reagent_containers/pill/tox = 1
+		)
 	auto_price = FALSE
 
-/obj/machinery/vending/wallmed2
-	name = "NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
-	icon_state = "wallmed"
-	light_color = COLOR_LIGHTING_GREEN_BRIGHT
-	icon_deny = "wallmed-deny"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
-					/obj/item/stack/medical/ointment =3,/obj/item/device/scanner/health = 3)
-	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
+/obj/machinery/vending/wallmed/lobby
+	products = list(
+		/obj/item/device/scanner/health = 6,
+
+		/obj/item/stack/medical/bruise_pack = 2, /obj/item/stack/medical/ointment = 2,
+		/obj/item/stack/medical/advanced/bruise_pack = 1, /obj/item/stack/medical/advanced/ointment = 1,
+		/obj/item/stack/nanopaste = 1,
+
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin = 5, /obj/item/weapon/reagent_containers/syringe/antitoxin = 5,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine = 5, /obj/item/weapon/reagent_containers/syringe/tricordrazine = 5,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/spaceacillin = 1, /obj/item/weapon/reagent_containers/syringe/spaceacillin = 1,
+
+		/obj/item/weapon/implantcase/death_alarm = 2,
+		/obj/item/weapon/implanter = 2
+		)
+	contraband = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/hyperzine = 2,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/drugs = 2,
+		)
+	prices = list(
+		/obj/item/device/scanner/health = 50,
+
+		/obj/item/stack/medical/bruise_pack = 100, /obj/item/stack/medical/ointment = 100,
+		/obj/item/stack/medical/advanced/bruise_pack = 200, /obj/item/stack/medical/advanced/ointment = 200,
+		/obj/item/stack/nanopaste = 300,
+
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/antitoxin = 100, /obj/item/weapon/reagent_containers/syringe/antitoxin = 200,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/tricordrazine = 150, /obj/item/weapon/reagent_containers/syringe/tricordrazine = 300,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/spaceacillin = 100, /obj/item/weapon/reagent_containers/syringe/spaceacillin = 200,
+
+		/obj/item/weapon/implantcase/death_alarm = 500,
+		/obj/item/weapon/implanter = 50,
+
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/hyperzine = 500,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/drugs = 500,
+		)
+	vendor_department = DEPARTMENT_MEDICAL
 	auto_price = FALSE
 
 /obj/machinery/vending/security
@@ -1406,22 +1436,28 @@
 	name = "From Serbia with love"
 	desc = "How did this end up here?"
 	icon_state = "serbomat"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!."
 	products = list(
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 30, // ghetto antihacking, have fun
-					/obj/item/weapon/storage/deferred/crate/uniform_green = 4, /obj/item/weapon/storage/deferred/crate/uniform_brown = 4,
-					/obj/item/weapon/storage/deferred/crate/uniform_black = 4, /obj/item/weapon/storage/deferred/crate/uniform_flak = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 60, // ghetto antihacking, have fun
+					/obj/item/weapon/storage/deferred/crate/uniform_green = 4,
+					/obj/item/weapon/storage/deferred/crate/uniform_brown = 4,
+					/obj/item/weapon/storage/deferred/crate/uniform_black = 4,
+					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 2,
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 8,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
+					/obj/item/weapon/storage/ration_pack = 10
 					)
 	prices = list(
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 50,
-          				/obj/item/weapon/storage/deferred/crate/uniform_green = 2000, /obj/item/weapon/storage/deferred/crate/uniform_brown = 2000,
-					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000, /obj/item/weapon/storage/deferred/crate/uniform_flak = 2200,
+          			/obj/item/weapon/storage/deferred/crate/uniform_green = 2000,
+          			/obj/item/weapon/storage/deferred/crate/uniform_brown = 2000,
+					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000,
+					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
 					/obj/item/weapon/gun/projectile/boltgun/serbian = 1000,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 300,
+					/obj/item/weapon/storage/ration_pack = 800
 					)
 	idle_power_usage = 211
 	auto_price = FALSE

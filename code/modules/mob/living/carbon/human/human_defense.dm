@@ -46,6 +46,9 @@ meteor_act
 		..()
 		return
 
+	if(!dir) // Same turf as the source
+		return
+
 	var/r_dir = reverse_dir[dir]
 	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
@@ -444,7 +447,7 @@ meteor_act
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	var/obj/item/clothing/suit/space/SS = wear_suit
 	var/penetrated_dam = max(0,(damage - SS.breach_threshold))
-	if(prob(20(penetrated_dam * SS.resilience))) SS.create_breaches(damtype, penetrated_dam) // changed into a probability calculation based on the degree of penetration by Plasmatik. you can tune resilience to drastically change breaching chances.
+	if(prob(20 + (penetrated_dam * SS.resilience))) SS.create_breaches(damtype, penetrated_dam) // changed into a probability calculation based on the degree of penetration by Plasmatik. you can tune resilience to drastically change breaching chances.
 																			// at maximum penetration, breaches are always created, at 1 penetration, they have a 20% chance to form
 
 /mob/living/carbon/human/reagent_permeability()

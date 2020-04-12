@@ -20,8 +20,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
 	recoil_buildup = 30
-
-	one_hand_penalty = 10
+	one_hand_penalty = 20 //automatic shotgun level
 
 				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
 	firemodes = list(

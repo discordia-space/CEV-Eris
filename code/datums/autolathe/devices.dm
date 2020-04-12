@@ -56,4 +56,8 @@
 
 /datum/design/autolathe/device/excelbaton
 	name = "Expropriator"
-	build_path = /obj/item/weapon/melee/baton/excelbaton 
+	build_path = /obj/item/weapon/melee/baton/excelbaton
+
+/datum/design/autolathe/device/headset_church
+	name = "NeoTheology Radio Encryption Key"
+	build_path = /obj/item/device/encryptionkey/headset_church

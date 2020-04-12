@@ -10,10 +10,10 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 40,
-		bullet = 40,
+		melee = 35,
+		bullet = 30,
 		energy =30,
-		bomb = 25,
+		bomb = 40,
 		bio = 100,
 		rad = 100
 	)
@@ -25,10 +25,10 @@
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
-		melee = 40,
-		bullet = 40,
+		melee = 35,
+		bullet = 30,
 		energy = 30,
-		bomb = 25,
+		bomb = 40,
 		bio = 100,
 		rad = 100
 	)
@@ -49,16 +49,16 @@
 /obj/item/clothing/head/space/void/mining
 	name = "mining voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating."
-	icon_state = "rig0-mining"
-	item_state = "mining_helm"
+	icon_state = "mining_helmet"
+	item_state = "mining_helmet"
 	item_state_slots = list(
 		slot_l_hand_str = "mining_helm",
 		slot_r_hand_str = "mining_helm",
 		)
 	armor = list(
 		melee = 50,
-		bullet = 30,
-		energy = 20,
+		bullet = 35,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -66,14 +66,15 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/suit/space/void/mining
-	icon_state = "rig-mining"
 	name = "mining voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
-	item_state = "mining_voidsuit"
+	item_state = "miner_suit"
+	icon_state = "miner_suit"
+	slowdown = 0.35
 	armor = list(
 		melee = 50,
-		bullet = 30,
-		energy = 20,
+		bullet = 35,
+		energy = 30,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -91,9 +92,9 @@
 		slot_r_hand_str = "medical_helm",
 		)
 	armor = list(
-		melee = 20,
+		melee = 30,
 		bullet = 10,
-		energy = 10,
+		energy = 35,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -114,7 +115,7 @@
 	armor = list(
 		melee = 20,
 		bullet = 10,
-		energy = 10,
+		energy = 35,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -136,7 +137,7 @@
 		)
 
 	armor = list(
-		melee = 30,
+		melee = 35,
 		bullet = 40,
 		energy = 30,
 		bomb = 25,
@@ -152,7 +153,7 @@
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
-		melee = 30,
+		melee = 35,
 		bullet = 40,
 		energy = 30,
 		bomb = 25,

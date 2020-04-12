@@ -1,7 +1,7 @@
 /mob/living/carbon/slime/say(var/message)
 
 	message = sanitize(message)
-	message = capitalize_cp1251(trim_left(message))
+	message = trim_left(message)
 	var/verb = say_quote(message)
 
 	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/custom_emote))
@@ -31,13 +31,13 @@
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)
-		speech_buffer.Add(lowertext(rhtml_decode(message)))
+		speech_buffer.Add(lowertext(message))
 	..()
 
 /mob/living/carbon/slime/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)
-		speech_buffer.Add(lowertext(rhtml_decode(message)))
+		speech_buffer.Add(lowertext(message))
 	..()
 

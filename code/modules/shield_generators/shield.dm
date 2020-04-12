@@ -29,7 +29,7 @@
 	icon_state = "shield_normal"
 	anchored = 1
 	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	density = 1
 	invisibility = 0
 	var/obj/machinery/power/shield_generator/gen = null

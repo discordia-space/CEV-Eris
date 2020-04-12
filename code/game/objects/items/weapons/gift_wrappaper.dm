@@ -92,7 +92,7 @@
 
 /obj/item/weapon/gift/attack_self(mob/user as mob)
 	user.drop_item()
-	if(src.gift && src.gift in src.contents)
+	if(src.gift && (src.gift in src.contents))
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
 	else

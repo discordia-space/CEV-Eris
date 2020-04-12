@@ -183,7 +183,7 @@
 	if(mode == MODE_ISOLATING)
 		var/data = mainBeaker.reagents.get_data("blood")
 		if (data)
-			var/list/virus = data["virus2"]
+			var/list/datum/disease2/disease/virus = data["virus2"]
 			for (var/ID in virus)
 				var/obj/item/weapon/virusdish/dish = new (loc)
 				dish.virus2 = virus[ID].getcopy()

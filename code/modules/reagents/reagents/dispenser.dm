@@ -116,6 +116,7 @@
 
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
+	M.add_chemical_effect(CE_PAINKILLER, max(55-strength, 1))
 	return
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)

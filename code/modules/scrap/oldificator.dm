@@ -6,6 +6,9 @@
 /atom/proc/make_old()
 	return
 
+/atom/proc/make_young()
+	oldified = FALSE
+
 /obj/make_old()
 	if (oldified)
 		return FALSE
@@ -39,6 +42,12 @@
 
 	update_icon()
 	return TRUE
+
+/obj/make_young()
+	if(oldified)
+		name = initial(name)
+		color = initial(color)
+	..()
 
 /obj/item/make_old()
 	.=..()
@@ -197,6 +206,15 @@
 			add_blood()
 		if(prob(60)) // I mean, the thing is ew gross.
 			equip_delay += rand(0, 6 SECONDS)
+
+/obj/item/clothing/make_young()
+	if(oldified)
+		slowdown = initial(slowdown)
+		heat_protection = initial(heat_protection)
+		cold_protection = initial(cold_protection)
+		equip_delay = initial(equip_delay)
+	..()
+
 
 /obj/item/weapon/aiModule/broken
 	name = "\improper broken core AI module"

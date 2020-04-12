@@ -34,7 +34,7 @@
 	belt = /obj/item/weapon/storage/belt/utility/full
 	pda_slot = slot_r_store
 	id_type = /obj/item/weapon/card/id/dkgrey
-	pda_type = /obj/item/modular_computer/pda/roboticist
+	pda_type = /obj/item/modular_computer/pda/moebius/roboticist
 	l_hand = /obj/item/weapon/storage/toolbox/mechanical
 
 /decl/hierarchy/outfit/job/science/roboticist/New()

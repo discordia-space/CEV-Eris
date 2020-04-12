@@ -21,7 +21,7 @@
 	var/obj/machinery/multistructure/bioreactor_part/console/metrics_screen
 
 
-	var/list/platforms = list()
+	var/list/obj/machinery/multistructure/bioreactor_part/platform/platforms = list()
 	var/platform_enter_side = WEST		//this one represent 'door' side, used by various checks
 	var/chamber_closed = TRUE
 	var/chamber_solution = FALSE

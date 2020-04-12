@@ -3,13 +3,12 @@
 	desc = "A beaker."
 	icon_state = "beaker"
 	item_state = "beaker"
-	matter = list(MATERIAL_GLASS = 1)
 	filling_states = "-10;10;25;50;75;80;100"
 
 /obj/item/weapon/reagent_containers/glass/beaker/Initialize()
 	. = ..()
 	desc += " Can hold up to [volume] units."
-	
+
 /obj/item/weapon/reagent_containers/glass/beaker/pickup(mob/user)
 	..()
 	playsound(src,'sound/items/Glass_Fragment_take.ogg',50,1)

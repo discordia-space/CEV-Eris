@@ -208,17 +208,23 @@
 /datum/chemical_reaction/proc/send_data(var/datum/reagents/holder, var/reaction_limit)
 	return null
 
+// UI data used by chemical catalog
 /datum/chemical_reaction/ui_data()
 	var/list/dat = list()
 	if(required_reagents)
 		dat["reagents"] = list()
 		for(var/id in required_reagents)
-			dat["reagents"] += list(list("type" = get_reagent_type_by_id(id), "reagent" = get_reagent_name_by_id(id), "parts" = "[required_reagents[id]] part\s of "))
-	if(required_reagents)
+			dat["reagents"] += list(list("type" = get_reagent_type_by_id(id), "reagent" = get_reagent_name_by_id(id), "parts" = "[required_reagents[id]] part\s"))
+	if(catalysts)
 		dat["catalyst"] = list()
 		for(var/id in catalysts)
 			dat["catalyst"] += list(list("type" = get_reagent_type_by_id(id), "reagent" = get_reagent_name_by_id(id), "units" = catalysts[id]))
-	dat["result_amount"] = "Results in [result_amount] part\s of substance."
+
+	dat["minimum_temperature"] = minimum_temperature
+	if(maximum_temperature != INFINITY)
+		dat["maximum_temperature"] = maximum_temperature
+
+	dat["result_amount"] = "[result_amount] part\s"
 	return dat
 /* Common reactions */
 
@@ -234,12 +240,12 @@
 
 /datum/chemical_reaction/tramadol
 	result = "tramadol"
-	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "acetone" = 1)
+	required_reagents = list("paracetamol" = 1, "sugar" = 1, "water" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/paracetamol
 	result = "paracetamol"
-	required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
+	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "acetone" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/oxycodone
@@ -2059,7 +2065,7 @@
 
 /datum/chemical_reaction/nanopurgers
 	result = "nanopurgers"
-	required_reagents = list("nanites" = 1, "synaptizine" = 1)
+	required_reagents = list("nanites" = 1, "vomitol" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/cbu
@@ -2074,7 +2080,7 @@
 
 /datum/chemical_reaction/nanohands
 	result = "nanohands"
-	required_reagents = list("uncap nanites" = 1, "nanohands" = 1)
+	required_reagents = list("uncap nanites" = 1, "sterilizine" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/nanovoice

@@ -168,7 +168,7 @@
 	name = "grenadier crate"
 	desc = "A crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices."
 	icon_state = "serbcrate_deferred_black"
-	initial_contents = list(/obj/item/weapon/grenade/frag/explosive = 5,
+	initial_contents = list(/obj/item/weapon/grenade/explosive = 5,
 	/obj/item/weapon/grenade/frag = 14,
 	/obj/item/weapon/grenade/empgrenade/low_yield = 4,
 	/obj/item/weapon/grenade/smokebomb = 8,
@@ -271,7 +271,7 @@
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
-	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 1)
+	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat = 1)
 
 /obj/item/weapon/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"

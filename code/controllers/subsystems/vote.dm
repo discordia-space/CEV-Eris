@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(vote)
 
 	var/datum/poll/poll = null
 
-	if(ispath(newvote) && newvote in votes)
+	if(ispath(newvote) && (newvote in votes))
 		poll = votes[newvote]
 
 	//can_start check is done before calling this so that admins can skip it
@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(vote)
 
 		data += "</ul><hr>"
 	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
-	return russian_to_utf8(data, TRUE)
+	return data
 
 
 /datum/controller/subsystem/vote/Topic(href,href_list[],hsrc)
