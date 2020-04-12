@@ -13,10 +13,9 @@
 	// Add design files to the disk
 	for(var/design_typepath in designs)
 		var/datum/computer_file/binary/design/D = new
-		var/cost = designs[design_typepath]
 		D.set_design_type(design_typepath)
-		D.set_point_cost(cost)
 		if(license > 0)
+			D.set_point_cost(designs[design_typepath])
 			D.set_copy_protection(TRUE)
 
 		store_file(D)
