@@ -62,7 +62,7 @@
 		return TRUE
 
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = holder
-	disk.license  -= point_cost
+	disk.license -= point_cost
 	return TRUE
 
 
