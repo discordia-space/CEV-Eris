@@ -16,7 +16,6 @@
 		D.set_design_type(design_typepath)
 		if(license > 0)
 			D.set_point_cost(designs[design_typepath])
-			D.set_copy_protection(TRUE)
 
 		store_file(D)
 
