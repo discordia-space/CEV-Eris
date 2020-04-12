@@ -452,7 +452,8 @@ default behaviour is:
 
 	return
 
-// This function is not to be invoked when the mob is killed. It runs when the mob is leaving the game or similar means.
+// The proc despawn() is called by /obj/machinery/cryopod/proc/despawn_occupant() for clean removal of a mob out of the round with the removal of objectives affecting it.
+// This is not recommended to directly call this proc on a mob without a good reason. It kicks out the player from the game without turning him into a ghost.
 /mob/living/despawn()
 	//Update any existing objectives involving this mob.
 	for(var/datum/objective/O in all_objectives)
