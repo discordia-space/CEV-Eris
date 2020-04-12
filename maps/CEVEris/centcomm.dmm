@@ -6274,6 +6274,18 @@
 /obj/map_data/admin,
 /turf/space,
 /area/space)
+"rT" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "Qq" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/deferred/crate/specialists_sidearm,
@@ -33680,7 +33692,7 @@ iX
 iX
 iX
 iX
-iQ
+rT
 gZ
 gZ
 gZ
