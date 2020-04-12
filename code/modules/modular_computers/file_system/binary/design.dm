@@ -4,7 +4,7 @@
 	size = 4
 	var/datum/design/design = null
 	var/copy_protected = FALSE
-	var/point_cost 	//Point cost of the design.
+	var/point_cost = 0 	//Point cost of the design.
 
 /datum/computer_file/binary/design/clone()
 	var/datum/computer_file/binary/design/F = ..()
@@ -33,11 +33,16 @@
 		filetype = "SCD" // Secure Construction Design
 	else
 		filetype = "CD"
+
 /datum/computer_file/binary/design/proc/set_point_cost(cost)
-	if (cost)
-		point_cost = cost
-	else 
+	if (isnull(cost))
 		point_cost = 1
+	else 
+		point_cost = cost
+	
+	if(point_cost)
+		set_copy_protection(TRUE)
+
 /datum/computer_file/binary/design/proc/check_license()
 	if(!copy_protected)
 		return TRUE
