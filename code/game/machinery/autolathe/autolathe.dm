@@ -65,7 +65,7 @@
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	var/global/list/error_messages = list(
-		ERR_NOLICENSE = "Disk licenses have been exhausted.",
+		ERR_NOLICENSE = "Not enough license points left.",
 		ERR_NOTFOUND = "Design data not found.",
 		ERR_NOMATERIAL = "Not enough materials.",
 		ERR_NOREAGENT = "Not enough reagents.",
