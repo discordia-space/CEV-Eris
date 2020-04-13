@@ -47,9 +47,10 @@
 	GLOB.destroyed_event.unregister(module_to_forget, src, .proc/forget_module)
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[target]
-	H.holding = null
+	if(istype(H)) H.holding = null
 	module_to_forget.layer = initial(module_to_forget.layer)
 	module_to_forget.plane = initial(module_to_forget.plane)
+	HUDneed[module_to_forget.name] = null
 	HUDneed.Remove(module_to_forget.name)
 
 	check_HUD()
@@ -89,11 +90,11 @@
 
 
 	system.forceMove(src)
-	hardpoints[system.name] = system
+	hardpoints[system_hardpoint] = system
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
 
-	H.holding = system
+	if(istype(H)) H.holding = system
 
 	system.screen_loc = H.screen_loc
 	system.plane = H.plane
@@ -109,12 +110,14 @@
 
 /mob/living/exosuit/proc/remove_system(var/system_hardpoint, var/mob/user, var/force)
 
-	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint]) return 0
+	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint])
+		to_world("Rya [hardpoints_locked] [force] [hardpoints[system_hardpoint]] : [hardpoints_locked && !force] || [!hardpoints[system_hardpoint]]")
+		return 0
 
 	var/obj/item/system = hardpoints[system_hardpoint]
 	if(user)
 		user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
-		if(!do_after(user, 30, src)  || hardpoints[system_hardpoint] != system) return FALSE
+		if(!do_after(user, 30, src)  || hardpoints[system_hardpoint] != system) return 0
 
 	hardpoints[system_hardpoint] = null
 
@@ -122,18 +125,18 @@
 
 	var/obj/item/mech_equipment/ME = system
 	if(istype(ME)) ME.uninstalled()
-	system.forceMove(get_turf(src))
 	system.plane = initial(system.plane)
 	system.layer = initial(system.layer)
+	system.forceMove(get_turf(src))
 
 	GLOB.destroyed_event.unregister(system, src, .proc/forget_module)
 
 	var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[system_hardpoint]
-	H.holding = null
-
+	if(istype(H)) H.holding = null
+	HUDneed[system.name] = null
 	HUDneed.Remove(system.name)
 
-	check_HUDneed()
+	update_hud()
 	update_icon()
 
 	if(user)
