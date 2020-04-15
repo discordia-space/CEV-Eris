@@ -237,27 +237,24 @@
 
 /obj/item/device/taperecorder/proc/clear_memory(var/show_message = 1)
 
-	if(usr.stat)
+	if(usr.is_dead())
 		return
-	if(emagged)
+	else if(emagged)
 		if(show_message)
 			to_chat(usr, SPAN_WARNING("The recorder makes a scratchy noise."))
-		return
-	if(!audio_file)
+	else if(!audio_file)
 		if(show_message)
 			to_chat(usr, SPAN_WARNING("The recorder beeps. No file selected."))
-		return
-	if(recording || playing)
+	else if(recording || playing)
 		if(show_message)
 			to_chat(usr, SPAN_NOTICE("You can't clear the memory while playing or recording!"))
-		return
 	else
 		if(audio_file.storedinfo)	audio_file.storedinfo.Cut()
 		if(audio_file.timestamp)	audio_file.timestamp.Cut()
 		audio_file.used_capacity = 0
 		if(show_message)
 			to_chat(usr, SPAN_NOTICE("File cleared."))
-		return
+	
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 
 

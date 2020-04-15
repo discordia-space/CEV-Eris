@@ -93,7 +93,7 @@
 	dat += "<tr align='center'>"
 	var/counter = 0
 	for(var/organ in pref.internal_organs)
-		if(!organ in body_modifications) continue
+		if(!(organ in body_modifications)) continue
 
 		var/datum/body_modification/mod = pref.get_modification(organ)
 		var/organ_name = capitalize(organ_tag_to_name[organ])

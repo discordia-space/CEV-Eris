@@ -26,7 +26,7 @@
 /HUD_element/layout/horizontal/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
 	_alignment = horizontal
 	if(targets && targets.len)
-		for (var/list/HUD_element/T in targets)
+		for (var/HUD_element/T in targets)
 			add(T,padding,padding)
 			//we are using _aligment to align elements in alignElements()
 			T.setAlignment(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT,vertical)
@@ -37,7 +37,7 @@
 /HUD_element/layout/vertical/alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets, var/padding = 0)
 	_alignment = vertical
 	if(targets && targets.len)
-		for (var/list/HUD_element/T in targets)
+		for (var/HUD_element/T in targets)
 			add(T,padding,padding)
 			//we are using _aligment to align elements in alignElements()
 			T.setAlignment(horizontal, HUD_VERTICAL_SOUTH_INSIDE_ALIGNMENT)

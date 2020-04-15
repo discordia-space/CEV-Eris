@@ -181,7 +181,6 @@ SUBSYSTEM_DEF(weather)
 				break
 	if (!ispath(weather_datum_type, /datum/weather))
 		CRASH("run_weather called with invalid weather_datum_type: [weather_datum_type || "null"]")
-		return
 
 	var/datum/weather/W = new weather_datum_type()
 	W.telegraph()

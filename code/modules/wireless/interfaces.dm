@@ -51,7 +51,7 @@
 	if(istype(O))
 		parent = O
 
-/datum/wifi/Destroy(var/wifi/device)
+/datum/wifi/Destroy(var/datum/wifi/device)
 	parent = null
 	for(var/datum/wifi/D in connected_devices)
 		D.disconnect_device(src)
