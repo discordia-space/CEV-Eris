@@ -1,4 +1,3 @@
-//Moved defines to __DEFINES\construction.dm so RPD.dm could work.
 /obj/item/pipe
 	name = "pipe"
 	desc = "A pipe"
@@ -1133,35 +1132,3 @@
 	new/obj/machinery/meter( src.loc )
 	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
 	qdel(src)
-//not sure why these are necessary   //Commented out undefines so RPD.dm could work. Self-contained Defines otherwise.
-//#undef PIPE_SIMPLE_STRAIGHT
-//#undef PIPE_SIMPLE_BENT
-//#undef PIPE_HE_STRAIGHT
-//#undef PIPE_HE_BENT
-//#undef PIPE_CONNECTOR
-//#undef PIPE_MANIFOLD
-//#undef PIPE_JUNCTION
-//#undef PIPE_UVENT
-//#undef PIPE_MVALVE
-//#undef PIPE_PUMP
-//#undef PIPE_SCRUBBER
-//#undef PIPE_INSULATED_STRAIGHT
-//#undef PIPE_INSULATED_BENT
-//#undef PIPE_GAS_FILTER
-//#undef PIPE_GAS_MIXER
-//#undef PIPE_PASSIVE_GATE
-//#undef PIPE_VOLUME_PUMP
-//#undef PIPE_HEAT_EXCHANGE
-//#undef PIPE_MTVALVE
-//#undef PIPE_MTVALVEM
-//#undef PIPE_GAS_FILTER_M
-//#undef PIPE_GAS_MIXER_T
-//#undef PIPE_GAS_MIXER_M
-//#undef PIPE_SUPPLY_STRAIGHT
-//#undef PIPE_SUPPLY_BENT
-//#undef PIPE_SCRUBBERS_STRAIGHT
-//#undef PIPE_SCRUBBERS_BENT
-//#undef PIPE_SUPPLY_MANIFOLD
-//#undef PIPE_SCRUBBERS_MANIFOLD
-//#undef PIPE_UNIVERSAL
-//#undef PIPE_MANIFOLD4W
