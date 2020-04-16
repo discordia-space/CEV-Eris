@@ -20,7 +20,7 @@
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	var/wait = 0
-	var/pipe_type = null
+	var/pipe_type = 0
 	var/p_dir = 1
 
 /obj/item/weapon/rpd/attack()
