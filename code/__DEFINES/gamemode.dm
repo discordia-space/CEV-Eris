@@ -38,6 +38,7 @@
 #define ROLE_BANTYPE_CHANGELING ROLE_CHANGELING
 #define ROLE_BANTYPE_XENOS ROLE_XENOMORPH
 #define ROLE_BANTYPE_CREW_SIDED "crew_sided"
+#define ROLE_BANTYPE_BLITZ ROLE_BLITZ
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -60,6 +61,8 @@
 
 #define ROLE_INQUISITOR "inquisitor"
 #define ROLE_SECDOC_DEFENDER "secdoc_defender"
+
+#define ROLE_BLITZ "blitzshell"
 
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"

@@ -28,7 +28,13 @@
 /obj/item/weapon/gun/energy/plasma/mounted
 	self_recharge = TRUE
 	use_external_power = TRUE
+	safety = FALSE
+	twohanded = FALSE
+	one_hand_penalty = 0
 
+/obj/item/weapon/gun/energy/plasma/mounted/blitz
+	icon_state = "plasma_turret"
+	charge_meter = FALSE
 
 /obj/item/weapon/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""
