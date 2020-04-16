@@ -122,7 +122,7 @@
 	if(..())
 		return
 	if(href_list["make"])
-		pipe_type = href_list["make"]
+		pipe_type = text2num(href_list["make"])
 		p_dir = text2num(href_list["dir"])
 	if(href_list["makemeter"])
 		p_dir = text2num(href_list["dir"]) //If direction is 0, the pipe is pipe_meter.
