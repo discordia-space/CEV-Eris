@@ -122,7 +122,7 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		var/obj/item/projectile/bullet/pellet/fragment/P = new f_type(epicenter)
 
 		if (!isnull(f_damage))
-			P.damage = f_damage
+			P.damage_types[BRUTE] = f_damage
 		P.pellets = fragments_per_projectile
 		P.range_step = f_step
 

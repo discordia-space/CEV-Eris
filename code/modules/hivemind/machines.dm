@@ -239,7 +239,7 @@
 
 
 /obj/machinery/hivemind_machine/bullet_act(obj/item/projectile/Proj)
-	take_damage(Proj.damage)
+	take_damage(Proj.get_structure_damage())
 	. = ..()
 
 

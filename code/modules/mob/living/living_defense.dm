@@ -97,8 +97,10 @@
 
 	//Armor and damage
 	if(!P.nodamage)
-		hit_impact(P.damage, hit_dir)
-		damage_through_armor(P.damage, P.damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+		hit_impact(P.get_structure_damage(), hit_dir)
+		for(var/damage_type in P.damage_types)
+			var/damage = P.damage_types[damage_type]
+			damage_through_armor(damage, damage_type, def_zone, P.check_armour, armour_pen = P.armor_penetration, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 	if(P.agony > 0 && istype(P,/obj/item/projectile/bullet))
 		hit_impact(P.agony, hit_dir)

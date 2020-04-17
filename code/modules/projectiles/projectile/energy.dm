@@ -1,8 +1,7 @@
 /obj/item/projectile/energy
 	name = "energy"
 	icon_state = "spark"
-	damage = 0
-	damage_type = BURN
+	damage_types = list(BURN = 0)
 	check_armour = ARMOR_ENERGY
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
@@ -14,7 +13,7 @@
 /obj/item/projectile/energy/flash
 	name = "chemical shell"
 	icon_state = "bullet"
-	damage = 5
+	damage_types = list(BURN = 5)
 	agony = 10
 	kill_count = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	var/flash_range = 0
@@ -41,7 +40,7 @@
 
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
-	damage = 10
+	damage_types = list(BURN = 10)
 	flash_range = 1
 	brightness = 9 //similar to a flare
 	light_duration = 200
@@ -53,12 +52,12 @@
 	nodamage = 1
 	taser_effect = 1
 	agony = 40
-	damage_type = HALLOSS
+	damage_types = list(HALLOSS = 0)
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
-	damage = 5
+	damage_types = list(BURN = 5)
 	taser_effect = 1
 	agony = 80
 
@@ -66,23 +65,21 @@
 	name = "declone"
 	icon_state = "declone"
 	nodamage = 1
-	damage_type = CLONE
+	damage_types = list(CLONE = 0)
 	irradiate = 40
 
 
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
-	damage = 5
-	damage_type = TOX
+	damage_types = list(TOX = 1)
 	weaken = 5
 
 
 /obj/item/projectile/energy/bolt
 	name = "bolt"
 	icon_state = "cbbolt"
-	damage = 25
-	damage_type = TOX
+	damage_types = list(TOX = 25)
 	nodamage = 0
 	agony = 40
 	stutter = 10
@@ -90,19 +87,16 @@
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
-	damage = 30
-
+	damage_types = list(BURN = 30)
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neuro"
 	icon_state = "neurotoxin"
-	damage = 5
-	damage_type = TOX
+	damage_types = list(TOX = 5)
 	weaken = 5
 
 /obj/item/projectile/energy/plasma
 	name = "plasma bolt"
 	icon_state = "energy"
-	damage = 10
-	damage_type = TOX
+	damage_types = list(TOX = 10)
 	irradiate = 30

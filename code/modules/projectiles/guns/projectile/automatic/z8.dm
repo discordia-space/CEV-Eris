@@ -25,7 +25,7 @@
 	zoom_factor = 0.2
 	one_hand_penalty = 10 //bullpup rifle level
 
-	firemodes = list(
+	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND,
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)

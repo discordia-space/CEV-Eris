@@ -12,7 +12,7 @@
 	self_recharge = 1
 	matter = list(MATERIAL_STEEL = 20)
 	price_tag = 1000
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut", item_modifystate="mut", icon="kill"),
 		list(mode_name="increase yield", projectile_type=/obj/item/projectile/energy/florayield, modifystate="florayield", item_modifystate="yield", icon="stun"),
 		)

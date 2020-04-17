@@ -48,12 +48,12 @@
 // "Stun" weapons can cause minor damage to components (short-circuits?)
 // "Burn" damage is equally strong against internal components and exterior casing
 // "Brute" damage mostly damages the casing.
-/obj/item/modular_computer/bullet_act(var/obj/item/projectile/Proj)
-	switch(Proj.damage_type)
-		if(BRUTE)
-			take_damage(Proj.damage, Proj.damage / 2)
+/obj/item/modular_computer/bullet_act(var/obj/item/projectile/P)
+	for(var/i in P.damage_types)
+		if(i == BRUTE)
+			take_damage(P.damage_types[i], P.damage_types[i] / 2)
 		// TODO: enable after baymed
 		/*if(PAIN)
 			take_damage(Proj.damage, Proj.damage / 3, 0)*/
-		if(BURN)
-			take_damage(Proj.damage, Proj.damage / 1.5)
+		if(i == BURN)
+			take_damage(P.damage_types[i], P.damage_types[i] / 1.5)

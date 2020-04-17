@@ -28,3 +28,11 @@
 #define MAG_WELL_BOX		64	//Lmgs with box mags
 #define MAG_WELL_PAN		128	//Lmgs with pan mags
 #define MAG_WELL_DART       256 //Dartgun mag
+
+#define SLOT_BARREL "barrel"
+#define SLOT_GRIP "grip"
+#define SLOT_TRIGGER "trigger"
+#define SLOT_MUZZLE "muzzle"
+#define SLOT_SCOPE "scope"
+#define SLOT_UNDERBARREL "underbarrel"
+#define SLOT_MECHANICS "mechanics"

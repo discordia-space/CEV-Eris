@@ -6,8 +6,7 @@
 	name = "acrid goo"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
-	damage = 15
-	damage_type = BURN
+	damage_types = list(BURN = 15)
 	check_armour = ARMOR_BIO
 	step_delay = 2
 
