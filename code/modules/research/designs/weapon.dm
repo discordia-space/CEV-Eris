@@ -29,7 +29,7 @@
 	sort_string = "TAAAF"
 
 /datum/design/research/item/weapon/plasmapistol
-	build_path = /obj/item/weapon/gun/energy/toxgun
+	build_path = /obj/item/weapon/gun/energy/plasma/brigador
 	sort_string = "TAAAD"
 
 /datum/design/research/item/weapon/decloner
