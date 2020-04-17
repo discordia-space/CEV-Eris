@@ -56,14 +56,14 @@
 		if(!can_launch())
 			return
 
-		if(ismob(loc))
-			to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
-
 		for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
 			if(C.completed)
 				continue
 			C.on_container(src)
+		QDEL_CLEAR_LIST(contents)
 		if(del_on_send)
+			if(ismob(loc))
+				to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
 			qdel(src)
 
 	else if(href_list["owner"])

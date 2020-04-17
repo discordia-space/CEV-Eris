@@ -27,6 +27,7 @@
 	twohanded = FALSE
 
 /obj/item/weapon/gun/energy/laser/mounted/blitz
+	name = "SDF LR \"Strahl\""
 	icon_state = "laser_turret"
 	charge_meter = FALSE
 

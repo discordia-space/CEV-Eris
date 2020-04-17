@@ -33,6 +33,7 @@
 	one_hand_penalty = 0
 
 /obj/item/weapon/gun/energy/plasma/mounted/blitz
+	name = "SDF PR \"Sprengen\""
 	icon_state = "plasma_turret"
 	charge_meter = FALSE
 
