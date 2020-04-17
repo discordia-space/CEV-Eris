@@ -28,9 +28,9 @@
 	recoil_buildup = 3
 	one_hand_penalty = 5 //smg level
 
-	silencer_type = /obj/item/weapon/silencer
+	gun_tags = list(GUN_PROJECTILE,GUN_SILENCABLE)
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)

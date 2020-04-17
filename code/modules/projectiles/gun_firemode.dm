@@ -13,19 +13,15 @@
 
 /datum/firemode/New(obj/item/weapon/gun/_gun, list/properties = null)
 	..()
-	if(!properties) return
-
-	// Special var, controls mode button icon_state
-	if(properties["icon"])
-		icon_state = properties["icon"]
-		properties -= "icon"
+	if(!properties || !properties.len) return
 
 	gun = _gun
 	for(var/propname in properties)
 		var/propvalue = properties[propname]
-
 		if(propname == "mode_name")
 			name = propvalue
+		else if(propname == "icon")
+			icon_state = properties["icon"]
 		else if(isnull(propvalue))
 			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like dispersion
 		else

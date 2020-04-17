@@ -123,6 +123,23 @@
 	attack_verb = list("HONKED")
 	var/spam_flag = 0
 
+/obj/item/weapon/bikehorn/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_HONK = TRUE,
+		GUN_UPGRADE_RECOIL = 1.2,
+		GUN_UPGRADE_DAMAGE_MULT = 0.8,
+		GUN_UPGRADE_PEN_MULT = 0.8,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 1.2,
+		GUN_UPGRADE_MOVE_DELAY_MULT = 1.2,
+		GUN_UPGRADE_MUZZLEFLASH = 1.2,
+		GUN_UPGRADE_CHARGECOST = 1.2,
+		GUN_UPGRADE_OVERCHARGE_MAX = 1.2,
+		GUN_UPGRADE_OVERCHARGE_RATE = 0.8
+	)
+	I.gun_loc_tag = GUN_MECHANISM
+
 /obj/item/weapon/bikehorn/attack_self(mob/user as mob)
 	if (spam_flag == 0)
 		spam_flag = 1

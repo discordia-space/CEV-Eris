@@ -21,7 +21,7 @@
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY,
 		)

@@ -487,17 +487,17 @@
 
 	var/absorbed_damage //The amount of damage that will be subtracted from the projectile
 	var/taken_damage //The amount of damage the blob will recieve
-	switch(Proj.damage_type)
-		if(BRUTE)
-			absorbed_damage = min(health * brute_resist, Proj.damage)
-			taken_damage = (Proj.damage / brute_resist)
-		if(BURN)
-			absorbed_damage = min(health * fire_resist, Proj.damage)
-			taken_damage= (Proj.damage / fire_resist)
-
+	for(var/i in Proj.damage_types)
+		if(i == BRUTE)
+			absorbed_damage = min(health * brute_resist, Proj.damage_types[i])
+			taken_damage = (Proj.damage_types[i] / brute_resist)
+			Proj.damage_types[i] -= absorbed_damage
+		if(i == BURN)
+			absorbed_damage = min(health * fire_resist, Proj.damage_types[i])
+			taken_damage= (Proj.damage_types[i]  / fire_resist)
+			Proj.damage_types[i] -= absorbed_damage
 	take_damage(taken_damage)
-	Proj.damage -= absorbed_damage
-	if (Proj.damage <= 0)
+	if (Proj.get_total_damage() <= 0)
 		return 0
 	else
 		return PROJECTILE_CONTINUE

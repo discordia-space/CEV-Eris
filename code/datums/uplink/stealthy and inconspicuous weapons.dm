@@ -35,6 +35,11 @@
 	item_cost = 3
 	path = /obj/item/weapon/tool/knife/boot
 
+/datum/uplink_item/item/stealthy_weapons/infuser
+	name = "\"Glass Widow\" radiation infuser"
+	item_cost = 2
+	path = /obj/item/weapon/gun_upgrade/mechanism/glass_widow
+
 /datum/uplink_item/item/stealthy_weapons/assassin_dagger
 	name = "Assassin's Dagger"
 	item_cost = 4

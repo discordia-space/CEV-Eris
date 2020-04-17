@@ -274,7 +274,7 @@
 	. = ..()
 
 /obj/item/projectile/beam/drone
-	damage = 15
+	damage_types = list(BRUTE = 15)
 
 /obj/item/projectile/beam/pulse/drone
-	damage = 10
+	damage_types = list(BRUTE = 10)

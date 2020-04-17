@@ -25,7 +25,7 @@
 	recoil_buildup = 10
 	one_hand_penalty = 15 //automatic rifle level
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		BURST_5_ROUND
@@ -64,7 +64,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 3000
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	firemodes = list(
+	init_firemodes = list(
 	SEMI_AUTO_NODELAY,
 	BURST_5_ROUND
 	)

@@ -64,6 +64,8 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
+#define isgun(A) istype(A, /obj/item/weapon/gun)
+
 #define istool(A) istype(A, /obj/item/weapon/tool)
 
 #define isWrench(A) istype(A, /obj/item/weapon/tool/wrench)
