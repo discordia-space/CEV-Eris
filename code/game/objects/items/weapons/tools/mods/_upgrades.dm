@@ -309,11 +309,11 @@
 	if (tool_upgrades[UPGRADE_WORKSPEED])
 		to_chat(user, SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
 
-
-	if (tool_upgrades[UPGRADE_DEGRADATION_MULT] < 1)
-		to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
-	else if	(tool_upgrades[UPGRADE_DEGRADATION_MULT] > 1)
-		to_chat(user, SPAN_WARNING("Increases tool degradation by [(tool_upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
+	if (tool_upgrades[UPGRADE_DEGRADATION_MULT])
+		if (tool_upgrades[UPGRADE_DEGRADATION_MULT] < 1)
+			to_chat(user, SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
+		else if	(tool_upgrades[UPGRADE_DEGRADATION_MULT] > 1)
+			to_chat(user, SPAN_WARNING("Increases tool degradation by [(tool_upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
 
 	if (tool_upgrades[UPGRADE_FORCE_MULT] >= 1)
 		to_chat(user, SPAN_NOTICE("Increases tool damage by [(tool_upgrades[UPGRADE_FORCE_MULT]-1)*100]%"))
@@ -327,7 +327,8 @@
 		to_chat(user, SPAN_NOTICE("Modifies fuel storage by [tool_upgrades[UPGRADE_MAXFUEL]] units."))
 	if (tool_upgrades[UPGRADE_BULK])
 		to_chat(user, SPAN_WARNING("Increases tool size by [tool_upgrades[UPGRADE_BULK]]"))
-
+	if (tool_upgrades[UPGRADE_MAXUPGRADES])
+		to_chat(user, SPAN_NOTICE("Adds [tool_upgrades[UPGRADE_MAXUPGRADES]] additional modification slots."))
 	if (required_qualities.len)
 		to_chat(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))
 		to_chat(user, english_list(required_qualities, and_text = " or "))

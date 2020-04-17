@@ -18,10 +18,9 @@
 	price_tag = 1500
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
 	damage_multiplier = 1.1
 	recoil_buildup = 20
-	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
+	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35, GUN_SILENCABLE)
 
 /obj/item/weapon/gun/projectile/paco/update_icon()
 	..()
