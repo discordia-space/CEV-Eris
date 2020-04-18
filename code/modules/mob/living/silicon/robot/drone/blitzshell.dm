@@ -76,6 +76,7 @@
 			S.adjustBruteLoss(-S.maxHealth)
 			S.adjustFireLoss(-S.maxHealth)
 			charges--
+			to_chat(user, SPAN_NOTICE("Charge consumed. Remaining charges: [charges]"))
 			return
 		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
 		return
@@ -87,7 +88,7 @@
 
 /obj/item/device/drone_uplink/New()
 	..()
-	hidden_uplink = new(src, 0)
+	hidden_uplink = new(src, telecrystals = 0)
 
 /obj/item/device/drone_uplink/attack_self(mob/user)
 	if(hidden_uplink)

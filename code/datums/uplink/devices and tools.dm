@@ -173,3 +173,46 @@
 	name = "Mental Imprinter"
 	item_cost = 5
 	path = /obj/item/device/mental_imprinter
+
+//********** Blitzshell unique uplink items **********//
+
+/datum/uplink_item/item/tools/blitz_hp_upgrade
+	name = "Blitzshell Armour Augmentation"
+	desc = "Augment your chassis to take more blows before destruction."
+	item_cost = 15
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc)
+	if(U.uplink_owner && istype(U.uplink_owner.current, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = U.uplink_owner.current
+		BS.maxHealth *= 2
+		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
+
+/datum/uplink_item/item/tools/blitz_cell_upgrade
+	name = "Blitzshell Cell Upgrade"
+	desc = "Augment your cell charge, to hold additional energy."
+	item_cost = 15
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc)
+	if(U.uplink_owner && istype(U.uplink_owner.current, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = U.uplink_owner.current
+		var/obj/item/weapon/cell/C = BS.get_cell()
+		if(C)
+			C.maxcharge *= 1.5
+			to_chat(BS, SPAN_NOTICE("Your cell's maximum charge has been augmented."))
+
+/datum/uplink_item/item/tools/blitz_nanorepair
+	name = "Blitzshell Nanorepair Capsule"
+	desc = "Reload your nanorepair system, gaining extra charges."
+	item_cost = 10
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U, var/loc)
+	if(U.uplink_owner && istype(U.uplink_owner.current, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = U.uplink_owner.current
+		var/obj/item/device/nanite_container/NC = locate() in BS.module.modules
+		if(NC)
+			NC.charges += 2
+			to_chat(BS, SPAN_NOTICE("You now have [NC.charges] charges in your [NC]"))
