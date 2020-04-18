@@ -892,3 +892,7 @@ var/list/centcom_areas = list (
 	var/teleporter_spawns = list()
 	var/teleporter
 
+/area/deepmaint
+	icon_state = "away"
+	name = "Deep Maintenance"
+
