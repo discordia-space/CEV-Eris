@@ -27,7 +27,7 @@
 
 	var/numRooms //The upper limit of the number of 'rooms' placed in the dungeon. NOT GUARANTEED TO BE REACHED
 	var/numExtraPaths //The upper limit on the number of extra paths placed beyond those required to ensure connectivity. NOT GUARANTEED TO BE REACHED
-	var/maximumIterations = 100 //The number of do-nothing iterations before the generator gives up with an error.
+	var/maximumIterations = 150 //The number of do-nothing iterations before the generator gives up with an error.
 	var/roomMinSize //The minimum 'size' passed to rooms.
 	var/roomMaxSize //The maximum 'size' passed to rooms.
 	var/maxPathLength //The absolute maximum length paths are allowed to be.
@@ -35,6 +35,7 @@
 	var/minLongPathLength //The absolute minimum length of a long path
 	var/pathEndChance //The chance of terminating a path when it's found a valid endpoint, as a percentage
 	var/longPathChance //The chance that any given path will be designated 'long'
+	var/pathWidth = 2 //The default width of paths connecting the rooms
 
 	var/list/border_turfs //Internal list. No touching, unless you really know what you're doing.
 
@@ -72,11 +73,11 @@
 	 *	Probably not useful if you just want to make a simple dungeon				   *
 	 ***********************************************************************************/
 
-	/*
-		Returns a list of turfs adjacent to the turf 't'. The definition of 'adjacent'
-		may depend on various properties set - at the moment, it is limited to the turfs
-		in the four cardinal directions.
-	*/
+/*
+	Returns a list of turfs adjacent to the turf 't'. The definition of 'adjacent'
+	may depend on various properties set - at the moment, it is limited to the turfs
+	in the four cardinal directions.
+*/
 /obj/procedural/jp_DungeonGenerator/proc/getAdjacent(turf/t)
 	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
 	.=list()
@@ -88,6 +89,60 @@
 	if(k).+=k
 	k = get_step(t,WEST)
 	if(k).+=k
+/*
+
+	Same as above, but skips X tiles from original one
+
+*/
+
+/obj/procedural/jp_DungeonGenerator/proc/getAdjacentFurther(turf/t, var/num = 1)
+	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
+	.=list()
+	var/counter = num
+	var/k = null
+	k = get_step(t,NORTH)
+	while(counter > 0)
+		if(k)
+			k = get_step(k,NORTH)
+			counter--
+		else
+			k = null
+			break;
+	if(k)
+		.+=k
+	counter = num
+	k = get_step(t,SOUTH)
+	while(counter > 0)
+		if(k)
+			k = get_step(k,SOUTH)
+			counter--
+		else
+			k = null
+			break;
+	if(k)
+		.+=k
+	counter = num
+	k = get_step(t,EAST)
+	while(counter > 0)
+		if(k)
+			k = get_step(k,EAST)
+			counter--
+		else
+			k = null
+			break;
+	if(k)
+		.+=k
+	counter = num
+	k = get_step(t,WEST)
+	while(counter > 0)
+		if(k)
+			k = get_step(k,WEST)
+			counter--
+		else
+			k = null
+			break;
+	if(k)
+		.+=k
 
 /*
 	Returns 'true' if the turf 't' is of one of the types specified as a wall by the
@@ -133,9 +188,17 @@
 /obj/procedural/jp_DungeonGenerator/proc/setNumRooms(r)
 	numRooms = r
 
-	/*
-		Returns the number of rooms that will be placed in the dungeon
-	*/
+/*
+	Sets the width of paths generated.
+	Positive and negative integers work.
+*/
+
+/obj/procedural/jp_DungeonGenerator/proc/setPathWidth(r)
+	pathWidth = r
+
+/*
+	Returns the number of rooms that will be placed in the dungeon
+*/
 /obj/procedural/jp_DungeonGenerator/proc/getNumRooms()
 	return numRooms
 
@@ -641,6 +704,15 @@
 				var/ret = (t in newroom.getTurfs()) + (t in newroom.getBorder()) + (t in newroom.getWalls()) + (t in r.getTurfs()) + (t in r.getBorder()) + (t in r.getWalls())
 				if(ret>1) return TRUE
 	return FALSE
+/*
+	Returns an X by X square of turfs with initial turf being in bottom right
+*/
+
+/obj/procedural/jp_DungeonGenerator/proc/GetSquare(var/turf/T, var/side_size = 2)
+	var/list/square_turfs = list()
+	for(var/turf/N in block(T,locate(T.x + side_size - 1, T.y + side_size - 1, T.z)))
+		square_turfs += N
+	return square_turfs
 
 /*
 	Constructs a path between two jp_DungeonRegions.
@@ -703,18 +775,25 @@
 				continue
 
 		for(var/turf/t in getAdjacent(min))
-			if(isWall(t) && !(t in borders))
-				if(!(t in done) && !(t in next))
-					next+=t
-					previous["\ref[t]"] = min
-					cost["\ref[t]"] = mincost+1
+			var/stop_looking = FALSE
+			for(var/turf/t1 in GetSquare(t, pathWidth))
+				if(!(isWall(t1) && !(t1 in borders)))
+					stop_looking = TRUE
+					break
+			if(stop_looking)
+				continue
+			if(!(t in done) && !(t in next))
+				next+=t
+				previous["\ref[t]"] = min
+				cost["\ref[t]"] = mincost+1
 
 	endloop:
-	var/list/ret = list(end)
+	var/list/ret = list()
+	ret += GetSquare(end, pathWidth)
 	var/turf/last = end
 	while(1)
 		if(last==start) break
-		ret+=previous["\ref[last]"]
+		ret+= GetSquare(previous["\ref[last]"], pathWidth)
 		last=previous["\ref[last]"]
 
 	return ret
@@ -955,12 +1034,18 @@ to the floor that return true from isWall().
 /obj/procedural/jp_DungeonRoom/preexist/square/doesAccurate()
 	return TRUE
 
+
 /obj/procedural/jp_DungeonRoom/preexist/square/New(s, c, g)
 	..(s, c, g)
 	for(var/turf/t in range(centre, size)) turfs += t
-	for(var/turf/t in turfs) for(var/turf/t2 in gen.getAdjacent(t))
-		if(t2 in turfs) continue
-		if(gen.isWall(t2) && !(t2 in border)) border+=t2
+
+	for(var/turf/t in turfs)
+		for(var/turf/t2 in gen.getAdjacent(t))
+			if(t2 in turfs)
+				continue
+			if(gen.isWall(t2) && !(t2 in border))
+				border += t2
+
 
 /obj/procedural/jp_DungeonRoom/preexist/square/place()
 	for(var/turf/t in turfs)
@@ -990,9 +1075,14 @@ return true from isWall()
 
 		turfs += t
 
-	for(var/turf/t in turfs) for(var/turf/t2 in gen.getAdjacent(t))
-		if(t2 in turfs) continue
-		if(gen.isWall(t2) && !(t2 in border)) border+=t2
+
+
+	for(var/turf/t in turfs)
+		for(var/turf/t2 in gen.getAdjacent(t))
+			if(t2 in turfs)
+				continue
+			if(gen.isWall(t2) && !(t2 in border))
+				border+=t2
 
 /obj/procedural/jp_DungeonRoom/preexist/circle/place()
 	for(var/turf/t in turfs)
