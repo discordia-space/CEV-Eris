@@ -182,8 +182,8 @@
 	item_cost = 15
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc)
-	if(U.uplink_owner && istype(U.uplink_owner.current, /mob/living/silicon/robot/drone/blitzshell))
+/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = U.uplink_owner.current
 		BS.maxHealth *= 2
 		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
@@ -194,8 +194,8 @@
 	item_cost = 15
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc)
-	if(U.uplink_owner && istype(U.uplink_owner.current, /mob/living/silicon/robot/drone/blitzshell))
+/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = U.uplink_owner.current
 		var/obj/item/weapon/cell/C = BS.get_cell()
 		if(C)
@@ -205,14 +205,29 @@
 /datum/uplink_item/item/tools/blitz_nanorepair
 	name = "Blitzshell Nanorepair Capsule"
 	desc = "Reload your nanorepair system, gaining extra charges."
-	item_cost = 10
+	item_cost = 5
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U, var/loc)
-	if(U.uplink_owner && istype(U.uplink_owner.current, /mob/living/silicon/robot/drone/blitzshell))
+/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = U.uplink_owner.current
 		var/obj/item/device/nanite_container/NC = locate() in BS.module.modules
 		if(NC)
-			NC.charges += 2
+			NC.charges += 1
 			to_chat(BS, SPAN_NOTICE("You now have [NC.charges] charges in your [NC]"))
+
+/datum/uplink_item/item/tools/blitz_reinforcements
+	name = "Blitzshell Swarm Request"
+	desc = "Request additional reinforcements."
+	item_cost = 30
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_reinforcements/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	to_chat(user, SPAN_NOTICE("Additional Blitzshell inbound to your position."))
+	spawn(5)
+		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		sparks.set_up(5, 0, loc)
+		sparks.start()
+		var/mob/living/silicon/robot/drone/blitzshell/BS = new /mob/living/silicon/robot/drone/blitzshell(loc)
+		BS.request_player()

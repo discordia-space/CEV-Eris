@@ -12,7 +12,6 @@ var/datum/uplink/uplink = new()
 	categories = dd_sortedObjectList(categories)
 
 	for(var/datum/uplink_item/item in items)
-		to_chat(world, "uplink init item [item.desc]")
 		if(!item.name)
 			items -= item
 			continue
@@ -70,10 +69,8 @@ var/datum/uplink/uplink = new()
 	if(!U || !antag_roles.len)
 		return 1
 	if(!U.uplink_owner)
-		to_chat(world, "no uplink owner. [antag_roles[1]] [!!length(U.owner_roles & antag_roles)]")
 		return !!length(U.owner_roles & antag_roles)
 	else
-		to_chat(world, "uplink owner, is in antag list? [antag_roles[1]] [player_is_antag_in_list(U.uplink_owner, antag_roles)]")
 		return player_is_antag_in_list(U.uplink_owner, antag_roles)
 
 /datum/uplink_item/proc/cost(var/telecrystals)

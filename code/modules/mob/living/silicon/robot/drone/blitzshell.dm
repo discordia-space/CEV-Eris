@@ -24,6 +24,10 @@
 	var/obj/ID = locate(/obj/item/weapon/card/id/syndicate) in module.modules
 	return ID
 
+/mob/living/silicon/robot/drone/blitzshell/request_player()
+	var/datum/ghosttrap/G = get_ghost_trap("blitzshell drone")
+	G.request_player(src, "A new Blitzshell drone has become active, and is requesting a pilot.", MINISYNTH, 30 SECONDS)
+
 
 /obj/item/weapon/robot_module/drone/blitzshell
 	networks = list()
