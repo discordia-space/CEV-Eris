@@ -1,0 +1,17 @@
+"a" = (/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"b" = (/turf/simulated/floor/tiled/white,/area/deepmaint)
+"c" = (/mob/living/carbon/superior_animal/roach,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaa
+abaaaabaaba
+abaaaabaaba
+abaaaabaaba
+aaaaaaaaaaa
+aaaaacaaaaa
+ababaabaaaa
+ababaabaaaa
+ababaababbb
+aaaaaaaaaaa
+aaaaaaaaaaa
+"}

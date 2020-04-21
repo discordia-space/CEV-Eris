@@ -4,13 +4,14 @@
 	the results.
 */
 /*
-
-	Below thos is a pinnacle of sorcery unearthed from ancient era of byond.
+	Below this comment is a pinnacle of sorcery unearthed from ancient era of byond.
 	Proceed with caution, for you may not comprehed whatever the fuck this is.
 	I sure don't. Original code by http://www.byond.com/members/Jp
-	Adapted for Eris and more modern byond versions by me. Pathing was made strict/all objects here are subtype of obj/procedural.
+	Adapted for Eris and more modern byond versions by me.
+	Quite a bit was modified/removed/re-done.
+	Pathing was made strict/all objects here are subtype of obj/procedural.
 
-- Nestor (full permission to bug me if you have questions or code suggestions)
+- Nestor/drexample (full permission to bug me if you have questions or code suggestions)
 */
 /obj/procedural/jp_DungeonGenerator
 
@@ -52,6 +53,9 @@
 	var/list/obj/procedural/jp_DungeonRoom/out_rooms //A list containing all the jp_DungeonRoom datums placed on the map
 
 
+	var/list/room_templates = list() //A list of submaps used for room post-initialization
+
+
 	var/const/ERROR_NO_ROOMS = 1 //The allowed-rooms list is empty or bad.
 	var/const/ERROR_BAD_AREA = 2 //The area that the generator is allowed to work on was specified badly
 	var/const/ERROR_NO_WALLTYPE = 3 //The type used for walls wasn't specified
@@ -67,11 +71,17 @@
 	var/const/ERROR_MAX_ITERATIONS_CONNECTIVITY = 11 //Parameters were fine, but maximum iterations was reached while ensuring connectivity. If you get this error, there are /no/ guarantees about reachability - indeed, you may end up with a dungeon where no room is reachable from any other room.
 	var/const/ERROR_MAX_ITERATIONS_EXTRAPATHS = -2 //Parameters were fine, but maximum iterations was reached while placing extra paths after connectivity was ensured. The dungeon should be fine, all the rooms should be reachable, but it may be less interesting. Or you may just have asked to place too many extra paths.
 
+	var/const/ERROR_NO_SUBMAPS = 12 //Everything was fine, but you forgot to include submaps for rooms that try to load them.
+
 
 	/***********************************************************************************
 	 *	Internal procedures. Might be useful if you're writing a /jp_DungeonRoom datum.*
 	 *	Probably not useful if you just want to make a simple dungeon				   *
 	 ***********************************************************************************/
+
+/obj/procedural/jp_DungeonGenerator/proc/updateWallConnections()
+	for(var/turf/simulated/wall/W in border_turfs)
+		W.update_connections(1)
 
 /*
 	Returns a list of turfs adjacent to the turf 't'. The definition of 'adjacent'
@@ -89,6 +99,8 @@
 	if(k).+=k
 	k = get_step(t,WEST)
 	if(k).+=k
+
+
 /*
 
 	Same as above, but skips X tiles from original one
@@ -180,6 +192,19 @@
 		if(ERROR_MAX_ITERATIONS_ROOMS) return "Maximum iterations was reached while placing rooms on the map. The number of rooms you specified may not have been placed. The dungeon should still be usable"
 		if(ERROR_MAX_ITERATIONS_CONNECTIVITY) return "Maximum iterations was reached while ensuring connectivity. No guarantees can be made about reachability. This dungeon is likely unusable"
 		if(ERROR_MAX_ITERATIONS_EXTRAPATHS) return "Maximum iterations was reached while placing extra paths. The number of extra paths you specified may not have been placed. The dungeon should still be usable"
+		if(ERROR_NO_SUBMAPS) return "No submaps were provided for room types that require to load them."
+
+/*
+	Sets the type of submaps to load on room placement (only for rooms that actually have that in their finalize)
+*/
+/obj/procedural/jp_DungeonGenerator/proc/setSubmapPath(r)
+	room_templates = list()
+	for(var/item in subtypesof(r))
+		var/datum/map_template/deepmaint_template/submap = item
+		var/datum/map_template/deepmaint_template/S = new submap()
+		room_templates += S
+
+
 
 /*
 	Sets the number of rooms that will be placed in the dungeon to 'r'.
@@ -435,6 +460,10 @@
 /obj/procedural/jp_DungeonGenerator/proc/getWallType()
 	return walltype
 
+
+
+
+
 /*
 	Actually goes out on a limb and generates the dungeon. This procedure runs in the
 	background, because it's very slow. The various out_ variables will be updated after
@@ -483,6 +512,7 @@
 	else
 		out_seed = seed
 		rand_seed(seed)
+
 
 	z = corner1.z
 	minx = min(corner1.x, corner2.x) + roomMaxSize + 1
@@ -579,7 +609,8 @@
 
 		for(var/turf/t in path)
 			path-=t
-			path+=new floortype(t)
+			t.ChangeTurf(floortype)
+			path+= t
 
 		region1.addTurfs(path)
 
@@ -594,11 +625,21 @@
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
 		r.finalise()
 
+
+	updateWallConnections()
+
+
+
 	out_time = (world.timeofday-timer)
 	out_rooms = rooms
 	out_region = region1
 	out_numRooms = out_rooms.len
 	rand_seed(tempseed)
+
+
+
+
+
 
 /***********************************************************************************
  *	The remaining procedures are seriously internal, and I strongly suggest not    *
@@ -776,7 +817,7 @@
 
 		for(var/turf/t in getAdjacent(min))
 			var/stop_looking = FALSE
-			for(var/turf/t1 in GetSquare(t, pathWidth))
+			for(var/turf/t1 in GetSquare(t, pathWidth + 1))
 				if(!(isWall(t1) && !(t1 in borders)))
 					stop_looking = TRUE
 					break
@@ -930,6 +971,7 @@ want to create new jp_DungeonRooms. Consult the helpfile for more information
 	var/size //The size of the room. IMPORTANT: ROOMS MAY NOT TOUCH TURFS OUTSIDE range(centre, size). TURFS INSIDE range(centre,size) MAY BE DEALT WITH AS YOU WILL
 	var/obj/procedural/jp_DungeonGenerator/gen //A reference to the generator using this room
 
+	var/datum/map_template/my_map = null //The submap for this room
 	var/list/turfs = list() //The list of turfs in this room. That should include internal walls.
 	var/list/border = list() //The list of walls bordering this room. Anything in this list could be knocked down in order to make a path into the room
 	var/list/walls = list() //The list of walls bordering the room that aren't used for connections into the room. Should include every wall turf next to a floor turf. May include turfs up to range(centre, size+1)
@@ -1009,6 +1051,9 @@ Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 /obj/procedural/jp_DungeonRoom/proc/doesMultiborder()
 	return FALSE
 
+/obj/procedural/jp_DungeonRoom/proc/doesSubmaps()
+	return FALSE
+
 /obj/procedural/jp_DungeonRoom/preexist
 	name = "template"
 
@@ -1033,10 +1078,18 @@ to the floor that return true from isWall().
 
 /obj/procedural/jp_DungeonRoom/preexist/square/doesAccurate()
 	return TRUE
-
-
+/*
+/obj/procedural/jp_DungeonRoom/preexist/square/proc/getCorners()
+	var/list/corners = list()
+	corners += gen.GetSquare(locate(centre.x + (size - 1), centre.y + (size - 1), centre.z))
+	corners += gen.GetSquare(locate(centre.x - (size - 1), centre.y + (size - 1), centre.z))
+	corners += gen.GetSquare(locate(centre.x + (size - 1), centre.y - (size - 1), centre.z))
+	corners += gen.GetSquare(locate(centre.x - (size - 1), centre.y - (size - 1), centre.z))
+	return corners
+*/
 /obj/procedural/jp_DungeonRoom/preexist/square/New(s, c, g)
 	..(s, c, g)
+
 	for(var/turf/t in range(centre, size)) turfs += t
 
 	for(var/turf/t in turfs)
@@ -1045,7 +1098,6 @@ to the floor that return true from isWall().
 				continue
 			if(gen.isWall(t2) && !(t2 in border))
 				border += t2
-
 
 /obj/procedural/jp_DungeonRoom/preexist/square/place()
 	for(var/turf/t in turfs)
@@ -1123,3 +1175,23 @@ the arms of the plus sign - there are only four.
 	centre=new gen.floortype(centre)
 	turfs+=centre
 	border+=pick(gen.getAdjacent(centre))
+
+/*
+	Same as square, but loads a submap out of allowed list
+*/
+/obj/procedural/jp_DungeonRoom/preexist/square/submap
+	name = "submap square"
+
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/doesSubmaps()
+	return TRUE
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/New(s, c, g)
+	..(s, c, g)
+	my_map = pick(gen.room_templates)
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/finalise()
+	if(my_map)
+		my_map.load(centre, centered = TRUE, orientation = SOUTH, post_init = 0)
+	else
+		gen.out_error = gen.ERROR_NO_SUBMAPS

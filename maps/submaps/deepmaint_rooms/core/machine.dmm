@@ -1,0 +1,30 @@
+"a" = (/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"b" = (/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"c" = (/obj/machinery/field_generator,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"d" = (/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"e" = (/turf/simulated/floor/tiled/airless,/area/deepmaint)
+"f" = (/obj/machinery/the_singularitygen,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaa
+abbbbbbbbbbbbbbbbbbba
+abdddddddddddddddddba
+abdcdddddddddddddcdba
+abdddddddddddddddddba
+abdeeedededeeedededba
+abdedddedededddededba
+abdeeededededddeeddba
+abdedddedededddededba
+abdeddddeddeeedededba
+abddddddddfddddddddba
+abdeeddeeedeeedeeedba
+abdedededddedddedddba
+abdeeddeeedeeedeeedba
+abdedededddedddedddba
+abdededeeedeeedeeedba
+abdddddddddddddddddba
+abdcdddddddddddddcdba
+abdddddddddddddddddba
+abbbbbbbbbbbbbbbbbbba
+aaaaaaaaaaaaaaaaaaaaa
+"}

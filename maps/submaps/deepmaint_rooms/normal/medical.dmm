@@ -1,0 +1,23 @@
+"a" = (/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"b" = (/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"c" = (/obj/random/medical,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"d" = (/obj/random/medical_lowcost,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"e" = (/obj/random/medical/low_chance,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"f" = (/obj/random/medical_lowcost/low_chance,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"g" = (/mob/living/bot/medbot{on = 0},/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"h" = (/turf/simulated/wall,/area/deepmaint)
+"i" = (/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaa
+abbbbbbhhba
+abcbcbbbhba
+abdebbbbhba
+abdbbbbbhba
+abbbfbiiiba
+abbbbbibbha
+abbbbbigbha
+ahhbbbhhhba
+abhhhbbbbba
+aaaaaaaaaaa
+"}

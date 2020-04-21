@@ -1,0 +1,22 @@
+"a" = (/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"b" = (/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"c" = (/obj/random/medical/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"d" = (/obj/random/junk,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"e" = (/obj/random/lathe_disk/advanced/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"f" = (/obj/random/material_rare/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"g" = (/obj/random/junkfood/rotten,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"h" = (/turf/simulated/wall,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaa
+abbbbbbbcba
+abddbbbhbba
+abdebbbhcba
+abhbbbbhhba
+abhbbgbbcba
+ahhfbbbbbba
+ahbbbhbhbba
+abfbbhbgbba
+abbbbbbbbba
+aaaaaaaaaaa
+"}
