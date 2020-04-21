@@ -410,12 +410,13 @@
 
 // Magazines and ammo
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo //please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo
 	disk_name = "Frozen Star Nonlethal Magazines Pack"
 	icon_state = "frozenstar"
 
 	license = 20
 	designs = list(
+		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 		//pistol mags
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
@@ -427,7 +428,7 @@
 		/datum/design/autolathe/ammo/smg/rubber,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg/rubber,
-		// rifles
+		//rifles
 		/datum/design/autolathe/ammo/srifle/rubber,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 		/datum/design/autolathe/ammo/lrifle/rubber,
@@ -437,12 +438,13 @@
 		/datum/design/autolathe/ammo/shotgun_flash,
 	)
 
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo //please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo
 	disk_name = "Frozen Star Lethal Magazines Pack"
 	icon_state = "frozenstar"
 
 	license = 20
 	designs = list(
+		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
 		//pistol mags
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/mg_magnum,
@@ -454,7 +456,7 @@
 		/datum/design/autolathe/ammo/smg,
 		//magnum smg mags
 		/datum/design/autolathe/ammo/msmg,
-		// rifles
+		//rifles
 		/datum/design/autolathe/ammo/srifle,
 		/datum/design/autolathe/ammo/ihclrifle,
 		/datum/design/autolathe/ammo/lrifle,
@@ -834,7 +836,10 @@
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ex_drozd
 	disk_name = "Excelsior - .40 Drozd SMG"
-	desc = "The back has a machine etching: \"Nobody is to be blamed for being born a slave; but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing..\""
+	desc = {"The back has a machine etching:\n \
+	\"Nobody is to be blamed for being born a slave; \
+	but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - \
+	such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing.\""}
 	icon_state = "excelsior"
 
 	license = -1
@@ -997,18 +1002,18 @@
 	disk_name = "NeoTheology Armory - Nemesis Energy Crossbow"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/energy_crossbow, // "NT EC \"Nemesis\"" - self charging, no cell needed
+		/datum/design/autolathe/gun/energy_crossbow = 3, // "NT EC \"Nemesis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
 	disk_name = "NeoTheology Armory - Themis Energy Crossbow"
 	icon_state = "neotheology"
 
-	license = 8
+	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/large_energy_crossbow, // "NT EC \"Themis\"" - self charging, no cell needed
+		/datum/design/autolathe/gun/large_energy_crossbow = 3, // "NT EC \"Themis\"" - self charging, no cell needed
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall
