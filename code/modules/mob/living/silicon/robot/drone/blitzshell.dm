@@ -7,6 +7,8 @@
 	can_pull_size = ITEM_SIZE_HUGE
 	can_pull_mobs = MOB_PULL_SAME
 	communication_channel = LANGUAGE_BLITZ
+	station_drone = FALSE
+	eyecolor = null
 
 /mob/living/silicon/robot/drone/blitzshell/updatename()
 	real_name = "\"Blitzshell\" assault drone ([rand(100,999)])"
@@ -33,6 +35,8 @@
 	var/datum/ghosttrap/G = get_ghost_trap("blitzshell drone")
 	G.request_player(src, "A new Blitzshell drone has become active, and is requesting a pilot.", MINISYNTH, 30 SECONDS)
 
+/mob/living/silicon/robot/drone/blitzshell/get_scooped()
+	return
 
 /obj/item/weapon/robot_module/drone/blitzshell
 	networks = list()

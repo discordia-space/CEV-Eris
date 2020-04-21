@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(drones, list())
+
 /obj/machinery/computer/drone_control
 	name = "Maintenance Drone Control"
 	desc = "Used to monitor the station's drone population and the assembler that services them."
