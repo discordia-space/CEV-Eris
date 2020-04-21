@@ -3,7 +3,7 @@
 	name = "rapid piping device"
 	desc = "A device used to rapidly build pipes."
 	icon = 'icons/obj/tools.dmi'
-	icon_state = "rcd" //Same as RCD, currentely.
+	icon_state = "rpd" //By Toriate, according to Kurgis.
 	opacity = 0
 	density = 0
 	anchored = 0.0
