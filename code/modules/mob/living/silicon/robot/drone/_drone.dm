@@ -60,6 +60,7 @@ var/list/mob_hat_cache = list()
 	var/hat_y_offset = -13
 	var/eyecolor = "blue"
 	var/armguard = ""
+	var/communication_channel = LANGUAGE_DRONE
 
 	holder_type = /obj/item/weapon/holder/drone
 

@@ -6,6 +6,7 @@
 	hat_y_offset = -12
 	can_pull_size = ITEM_SIZE_HUGE
 	can_pull_mobs = MOB_PULL_SAME
+	communication_channel = LANGUAGE_BLITZ
 
 /mob/living/silicon/robot/drone/blitzshell/updatename()
 	real_name = "\"Blitzshell\" assault drone ([rand(100,999)])"
@@ -19,6 +20,10 @@
 	verbs |= /mob/living/proc/ventcrawl
 	verbs -= /mob/living/silicon/robot/drone/verb/choose_armguard
 	verbs -= /mob/living/silicon/robot/drone/verb/choose_eyecolor
+
+	remove_language(LANGUAGE_ROBOT)
+	remove_language(LANGUAGE_DRONE)
+	add_language(LANGUAGE_BLITZ, 1)
 
 /mob/living/silicon/robot/drone/blitzshell/GetIdCard()
 	var/obj/ID = locate(/obj/item/weapon/card/id/syndicate) in module.modules
@@ -35,6 +40,7 @@
 /obj/item/weapon/robot_module/drone/blitzshell/New()
 	modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src)
 	modules += new /obj/item/weapon/gun/energy/plasma/mounted/blitz(src)
+	modules += new /obj/item/weapon/tool/knife/tacknife(src) //For claiming heads for assassination missions
 	//Objective stuff
 	modules += new /obj/item/weapon/storage/bsdm/permanent(src) //for sending off item contracts
 	modules += new /obj/item/weapon/gripper/antag(src) //For picking up item contracts
@@ -52,6 +58,8 @@
 		/obj/item/weapon/computer_hardware/hard_drive,
 		/obj/item/weapon/reagent_containers,
 		/obj/item/weapon/spacecash,
+		/obj/item/device/mind_fryer,
+		/obj/item/organ/external/head,
 		)
 
 /obj/item/weapon/gripper/antag/New()
