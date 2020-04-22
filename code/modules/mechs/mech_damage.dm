@@ -1,4 +1,4 @@
-/mob/living/exosuit/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
+/mob/living/exosuit/apply_effect(var/effect = 0, var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
 	if(!effect || (blocked >= 100))
 		return 0
 	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
@@ -46,7 +46,7 @@
 			return body
 
 
-/mob/living/exosuit/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/damage_flags = 0, var/used_weapon = null, var/armor_pen, var/silent = FALSE)
+/mob/living/exosuit/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(!damage)
 		return 0
 

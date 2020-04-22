@@ -74,8 +74,9 @@
 		to_chat(i, msg)
 
 /mob/living/exosuit/proc/give_power(amount)
-	if(!get_cell())
-		get_cell().give(amount)
+	var/obj/item/weapon/cell/c = get_cell()
+	if(!c)
+		c?.give(amount)
 		return TRUE
 	return FALSE
 

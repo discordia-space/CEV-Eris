@@ -61,7 +61,8 @@
 
 	var/list/new_overlays = list()
 
-	if(!owner.get_cell() || (owner.get_cell().charge <= 0))
+	var/obj/item/weapon/cell/C = owner.get_cell()
+	if(!C || (C.charge <= 0))
 		overlays.Cut()
 		return
 
@@ -110,7 +111,7 @@
 				else if(i>1) bar.color = "#ffff00"
 				else bar.color = "#ff0000"
 				GLOB.hardpoint_bar_cache += bar
-		for(var/i = i; i <= value; i++) new_overlays += GLOB.hardpoint_bar_cache[i]
+		for(var/i = 1; i <= value; i++) new_overlays += GLOB.hardpoint_bar_cache[i]
 	if(ovrls["hardpoint"]) new_overlays += ovrls["hardpoint"]
 	overlays = new_overlays
 
@@ -228,8 +229,8 @@
 /obj/screen/movable/exosuit/health/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
 	overlays.Cut()
-
-	if(!owner.body || !owner.get_cell() || (owner.get_cell().charge <= 0))
+	var/obj/item/weapon/cell/C = owner.get_cell()
+	if(!owner.body || !C || (C.charge <= 0))
 		return
 
 	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
