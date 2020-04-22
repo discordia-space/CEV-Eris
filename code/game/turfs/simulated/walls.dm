@@ -223,8 +223,10 @@
 		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
 		ricochetchance = min(max(ricochetchance, 0), 100)
 		if(prob(ricochetchance))
+			// projectile loses up to 50% of its damage when it ricochets, depending on situation
 			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation
-			Proj.damage = damagediff
+			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
+			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
 			take_damage(min(proj_damage - damagediff, 100))
 			visible_message("<span class='danger'>The [Proj] ricochets from the surface of wall!</span>")
 			projectile_reflection(Proj)
@@ -241,7 +243,7 @@
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
-	if(Proj.damage_type == BRUTE && prob(src.damage / (material.integrity + reinf_material?.integrity) * 33))
+	if(Proj.damage_types[BRUTE] && prob(src.damage / (material.integrity + reinf_material?.integrity) * 33))
 		var/obj/item/trash/material/metal/slug = new(get_turf(Proj))
 		slug.matter.Cut()
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1

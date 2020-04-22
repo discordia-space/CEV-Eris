@@ -22,22 +22,23 @@
 <center><h3>RULES ({{:data.current_rule_num}}/{{:data.max_rule_num}})</h3></center>
 <hr>
 </hr>
-
-{{for data.rules}}
-	<div class="item">
-		{{if value.accept}}
-			Accept 
-		{{else}}
-			Refuse 
-		{{/if}}
-		the {{:value.sort_type}}: 
-		{{if value.amount && value.sort_type != "name"}}
-			{{:value.amount}} amount of 
-		{{/if}}
-		{{:value.value}}
-		{{:helper.link('Remove', 'angle-up', {'remove' : index+1})}}
-	</div>
-{{/for}}
+{{if data.rules.length}}
+	{{for data.rules}}
+		<div class="item">
+			{{if value.accept}}
+				Accept 
+			{{else}}
+				Refuse 
+			{{/if}}
+			the {{:value.sort_type}}: 
+			{{if value.amount && value.sort_type != "name"}}
+				{{:value.amount}} amount of 
+			{{/if}}
+			{{:value.value}}
+			{{:helper.link('Remove', 'angle-up', {'remove' : index+1})}}
+		</div>
+	{{/for}}
+{{/if}}
 
 <hr>
 </hr>
@@ -59,12 +60,10 @@
 	<div class="itemContent">
 		{{:helper.link(!data.new_rule_value ? "empty" : data.new_rule_value, null, {'type_input' : 1})}}
 	</div>
-	{{if value.amount && data.new_rule_sort != "name"}}
-		<div class="itemLabel"> Sort by amount: </div>
-		<div class="itemContent">
-			{{:helper.link(!data.new_rule_amount ? "none" : data.new_rule_amount, null, {'amount_input' : 1})}}
-		</div>
-	{{/if}}
+	<div class="itemLabel"> Sort by amount: </div>
+	<div class="itemContent">
+		{{:helper.link(!data.new_rule_amount ? "none" : data.new_rule_amount, null, {'amount_input' : 1})}}
+	</div>
 	<br>
 	{{:helper.link('Add this rule', 'angle-down', {'add' : 1})}}
 	<br>

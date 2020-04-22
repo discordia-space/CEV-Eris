@@ -140,10 +140,11 @@
 	var/obj/item/device/radio/radio = null//Let's give it a radio.
 
 /obj/item/device/mmi/radio_enabled/New()
-		..()
-		radio = new(src)//Spawns a radio inside the MMI.
-		radio.broadcasting = 1//So it's broadcasting from the start.
+	. = ..()
+	radio = new(src)//Spawns a radio inside the MMI.
+	radio.broadcasting = 1//So it's broadcasting from the start.
 
+//Allows the brain to toggle the radio functions.
 /obj/item/device/mmi/radio_enabled/verb/Toggle_Broadcasting()
 	set name = "Toggle Broadcasting"
 	set desc = "Toggle broadcasting channel on or off."

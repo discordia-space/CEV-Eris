@@ -33,6 +33,7 @@
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							///datum/computer_file/program/aidiag,
+							/datum/computer_file/program/signaller,
 							/datum/computer_file/program/camera_monitor,
 							/datum/computer_file/program/chem_catalog,
 							/datum/computer_file/program/reports)
@@ -70,7 +71,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	//alt_titles = list("Moebius Xenobiologist")
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 
-	software_on_spawn = list(/datum/computer_file/program/chem_catalog)
+	software_on_spawn = list(/datum/computer_file/program/signaller, /datum/computer_file/program/chem_catalog)
 
 	access = list(
 		access_robotics, access_tox, access_tox_storage, access_moebius, access_xenobiology, access_xenoarch, access_research_equipment,

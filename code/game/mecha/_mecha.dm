@@ -242,7 +242,7 @@
 	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src),0)
 
-/obj/mecha/proc/do_after(delay as num)
+/obj/mecha/proc/do_after_mech(delay as num)
 	sleep(delay)
 	if(src)
 		return 1
@@ -491,7 +491,7 @@
 
 
 
-		if(do_after(step_in))
+		if(do_after_mech(step_in))
 			can_move = 1
 		return 1
 	return 0
@@ -787,7 +787,7 @@ assassination method if you time it right*/
 	return
 
 /obj/mecha/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damage_type == HALLOSS && !(src.r_deflect_coeff > 1))
+	if(Proj.damage_types[HALLOSS] && !(src.r_deflect_coeff > 1))
 		use_power(Proj.agony * 5)
 
 	src.log_message("Hit by projectile. Type: [Proj.name]([Proj.check_armour]).",1)
@@ -801,7 +801,7 @@ assassination method if you time it right*/
 		var/ignore_threshold
 		if(istype(Proj, /obj/item/projectile/beam/pulse))
 			ignore_threshold = 1
-		src.hit_damage(Proj.damage, Proj.check_armour, is_melee=0)
+		src.hit_damage(Proj.get_structure_damage(), Proj.check_armour, is_melee=0)
 		if(prob(25)) spark_system.start()
 		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
 
@@ -809,7 +809,7 @@ assassination method if you time it right*/
 		if(Proj.penetrating)
 			var/distance = get_dist(Proj.starting, get_turf(loc))
 			var/hit_occupant = 1 //only allow the occupant to be hit once
-			for(var/i in 1 to min(Proj.penetrating, round(Proj.damage/15)))
+			for(var/i in 1 to min(Proj.penetrating, round(Proj.get_total_damage()/15)))
 				if(src.occupant && hit_occupant && prob(20))
 					Proj.attack_mob(src.occupant, distance)
 					hit_occupant = 0
@@ -1266,7 +1266,7 @@ assassination method if you time it right*/
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
-	if(H && H.client && H in range(1))
+	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -1849,7 +1849,7 @@ assassination method if you time it right*/
 		var/mob/occupant = P.occupant
 
 		user.visible_message(SPAN_NOTICE("\The [user] begins opening the hatch on \the [P]..."), SPAN_NOTICE("You begin opening the hatch on \the [P]..."))
-		if (!do_after(user, 40, needhand=0))
+		if (!do_after(user, 40, needhand = 0))
 			return
 
 		user.visible_message(SPAN_NOTICE("\The [user] opens the hatch on \the [P] and removes [occupant]!"), SPAN_NOTICE("You open the hatch on \the [P] and remove [occupant]!"))
@@ -1909,7 +1909,7 @@ assassination method if you time it right*/
 		src.log_message("Recalibration of coordination system started.")
 		usr << sound('sound/mecha/UI_SCI-FI_Compute_01_Wet_stereo.ogg',channel=4, volume=100)
 		var/T = src.loc
-		if(do_after(100))
+		if(do_after(10 SECONDS))
 			if(T == src.loc)
 				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
 				src.occupant_message("<font color='blue'>Recalibration successful.</font>")

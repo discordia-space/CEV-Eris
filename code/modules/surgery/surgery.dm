@@ -112,8 +112,13 @@
 	if(owner && user == owner)
 		difficulty_adjust = 20
 
+		// ...unless you are a changeling
+		// It makes sense that lings have a way of making their flesh cooperate
+		if(user.check_special_role(ROLE_CHANGELING))
+			difficulty_adjust = -50
+
 	var/atom/surgery_target = get_surgery_target()
-	if(S.required_tool_quality)
+	if(S.required_tool_quality && (S.required_tool_quality in tool.tool_qualities))
 		success = tool.use_tool_extended(
 			user, surgery_target,
 			S.duration,
@@ -266,8 +271,13 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 
 /obj/item/organ/external/proc/try_autodiagnose(mob/living/user)
-	if(istype(user) && user.stats)
-		if(user.stats.getStat(BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO) >= STAT_LEVEL_EXPERT)
+	if(istype(user))
+		// Changelings know their flesh, as long as it is connected to their bodies
+		if(!BP_IS_ROBOTIC(src) && user == owner && user.check_special_role(ROLE_CHANGELING))
+			diagnosed = TRUE
+			return TRUE
+
+		if(user.stats?.getStat(BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO) >= STAT_LEVEL_EXPERT)
 			to_chat(user, SPAN_NOTICE("One brief look at [get_surgery_name()] is enough for you to see all the issues immediately."))
 			diagnosed = TRUE
 			return TRUE
@@ -277,6 +287,12 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 //check if mob is lying down on something we can operate him on.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
 	if(M == user)	// Self-surgery
+
+		// Lings don't need to sit in a chair to perform a surgery on themselves
+		if(user.check_special_role(ROLE_CHANGELING))
+			return TRUE
+
+		// Normal humans do
 		var/atom/chair = locate(/obj/structure/bed/chair, M.loc)
 		return chair && chair.buckled_mob == M
 

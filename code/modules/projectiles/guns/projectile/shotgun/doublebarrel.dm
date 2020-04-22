@@ -20,11 +20,10 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1500
-	one_hand_penalty = 5
+	one_hand_penalty = 15 //full sized shotgun level
 	var/bolt_open = 0
-
 	burst_delay = 0
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
 		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)

@@ -14,7 +14,12 @@
 	stored_pen = /obj/item/weapon/pen
 	price_tag = 50
 	suitable_cell = /obj/item/weapon/cell/small //We take small battery
+
 	var/scanner_type = null
+	var/tesla_link_type = null
+	var/hard_drive_type = /obj/item/weapon/computer_hardware/hard_drive/small
+	var/processor_unit_type = /obj/item/weapon/computer_hardware/processor_unit/small
+	var/network_card_type = /obj/item/weapon/computer_hardware/network_card
 
 /obj/item/modular_computer/pda/Initialize()
 	. = ..()

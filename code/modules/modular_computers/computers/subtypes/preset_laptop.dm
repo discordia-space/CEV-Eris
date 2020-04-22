@@ -3,8 +3,16 @@
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)
-	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
-	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
+	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive(src)
+	network_card = new/obj/item/weapon/computer_hardware/network_card(src)
+	printer = new/obj/item/weapon/computer_hardware/printer(src)
+	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
+
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard/install_default_hardware()
+	..()
+	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)
+	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive(src)
+	network_card = new/obj/item/weapon/computer_hardware/network_card(src)
 	printer = new/obj/item/weapon/computer_hardware/printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 
@@ -17,23 +25,13 @@
 	printer = new/obj/item/weapon/computer_hardware/printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/standard/install_default_hardware()
-	..()
-	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)
-	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
-	network_card = new/obj/item/weapon/computer_hardware/network_card/(src)
-	printer = new/obj/item/weapon/computer_hardware/printer(src)
-	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
-
 /obj/item/modular_computer/laptop/preset/custom_loadout/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/email_client())
 	hard_drive.store_file(new/datum/computer_file/program/chatclient())
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
 	hard_drive.store_file(new/datum/computer_file/program/newsbrowser())
-	var/mob/living/carbon/human/H = get(src, /mob)
-	if(!istype(H)) return
-	install_default_programs_by_job(H)
+	install_default_programs_by_job(get(src, /mob/living/carbon/human))
 
 //Map presets
 /obj/item/modular_computer/laptop/preset/records/install_default_hardware()
@@ -115,7 +113,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/bounty_board_app())
 	hard_drive.store_file(new/datum/computer_file/program/chem_catalog())
 
-/obj/item/modular_computer/laptop/preset/custom_loadout/cheap/elbrus4kk 
+/obj/item/modular_computer/laptop/preset/custom_loadout/cheap/elbrus4kk
 	name = "elbrus4kk laptop"
 	desc = "A portable clamshell computer made by \"Institute of Computer Engineering\" company. This one is advertized as tougher than other models on the market."
 	icon_state = "elbrus4kk"

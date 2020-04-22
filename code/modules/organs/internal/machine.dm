@@ -87,15 +87,15 @@
 				cell = W
 				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 
-/obj/item/organ/internal/cell/replaced()
+/obj/item/organ/internal/cell/replaced_mob(mob/living/carbon/human/target)
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
-	if(owner && owner.stat == DEAD)
+	if(owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
 		owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
 
-/obj/item/organ/optical_sensor
+/obj/item/organ/internal/optical_sensor
 	name = "optical sensor"
 	organ_tag = "optics"
 	parent_organ = BP_HEAD
@@ -105,14 +105,14 @@
 	dead_icon = "camera_broken"
 
 // Used for an MMI or posibrain being installed into a human.
-/obj/item/organ/mmi_holder
+/obj/item/organ/internal/mmi_holder
 	name = "brain"
 	organ_tag = BP_BRAIN
 	parent_organ = BP_CHEST
 	vital = 1
 	var/obj/item/device/mmi/stored_mmi
 
-/obj/item/organ/mmi_holder/proc/update_from_mmi()
+/obj/item/organ/internal/mmi_holder/proc/update_from_mmi()
 	if(!stored_mmi)
 		return
 	name = stored_mmi.name
@@ -120,20 +120,19 @@
 	icon = stored_mmi.icon
 	icon_state = stored_mmi.icon_state
 
-/obj/item/organ/mmi_holder/removed(var/mob/living/user)
-
+/obj/item/organ/internal/mmi_holder/removed(mob/living/user)
 	if(stored_mmi)
-		stored_mmi.loc = get_turf(src)
-		if(owner.mind)
-			owner.mind.transfer_to(stored_mmi.brainmob)
+		stored_mmi.forceMove(get_turf(src))
 	..()
 
-	var/mob/living/holder_mob = loc
-	if(istype(holder_mob))
-		holder_mob.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/organ/mmi_holder/New()
+/obj/item/organ/internal/mmi_holder/removed_mob(mob/living/user)
+	if(owner.mind && stored_mmi)
+		owner.mind.transfer_to(stored_mmi.brainmob)
+	..()
+
+/obj/item/organ/internal/mmi_holder/New()
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	spawn(1)
@@ -141,10 +140,10 @@
 			owner.stat = 0
 			owner.visible_message(SPAN_DANGER("\The [owner] twitches visibly!"))
 
-/obj/item/organ/mmi_holder/posibrain
+/obj/item/organ/internal/mmi_holder/posibrain
 	nature = MODIFICATION_SILICON
 
-/obj/item/organ/mmi_holder/posibrain/New()
+/obj/item/organ/internal/mmi_holder/posibrain/New()
 	stored_mmi = new /obj/item/device/mmi/digital/posibrain(src)
 	..()
 	spawn(30)

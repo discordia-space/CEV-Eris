@@ -96,8 +96,6 @@
 
 	return TRUE
 
-	return TRUE
-
 /obj/machinery/neotheology/cloner/proc/open_anim()
 	qdel(anim0)
 	anim0 = image(icon, "pod_opening0")

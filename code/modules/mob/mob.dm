@@ -13,6 +13,9 @@
 	..()
 	return QDEL_HINT_HARDDEL
 
+/mob/proc/despawn()
+	return
+
 /mob/get_fall_damage(var/turf/from, var/turf/dest)
 	return 0
 
@@ -347,7 +350,7 @@
 	set src in usr
 	if(usr != src)
 		to_chat(usr, "No.")
-	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",rhtml_decode(flavor_text)) as message|null, extra = 0)
+	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)
 
 	if(msg != null)
 		flavor_text = msg
@@ -357,9 +360,9 @@
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
-			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
+			return "<font color='blue'>[msg]</font>"
 		else
-			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 
 /*
 /mob/verb/help()
@@ -498,7 +501,7 @@
 		if(src in view(usr))
 			var/dat = {"
 				<html><head><title>[name]</title></head>
-				<body><tt>[cp1251_to_utf8(replacetext(flavor_text, "\n", "<br>"))]</tt></body>
+				<body><tt>[replacetext(flavor_text, "\n", "<br>")]</tt></body>
 				</html>
 			"}
 			usr << browse(dat, "window=[name];size=500x200")
@@ -518,8 +521,8 @@
 				if(e && H.lying)
 					if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
 						return 1
-						break
-		return 0
+		else
+			return 0
 
 /mob/MouseDrop(mob/M as mob)
 	..()
@@ -966,6 +969,7 @@ mob/proc/yank_out_object()
 
 		affected.implants -= selection
 		affected.embedded -= selection
+		selection.on_embed_removal(src)
 		H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
@@ -975,6 +979,7 @@ mob/proc/yank_out_object()
 
 	else
 		embedded -= selection
+		selection.on_embed_removal(src)
 		if(issilicon(src))
 			var/mob/living/silicon/robot/R = src
 			R.adjustBruteLoss(5)

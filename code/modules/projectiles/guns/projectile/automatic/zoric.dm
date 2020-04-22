@@ -18,8 +18,10 @@
 	damage_multiplier = 1		 //32 lethal, 35 HV //damage
 	penetration_multiplier = 0.2 //3  lethal, 4  HV //AP
 	recoil_buildup = 8
+	twohanded = FALSE
+	one_hand_penalty = 5 //smg level
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY,
 		)

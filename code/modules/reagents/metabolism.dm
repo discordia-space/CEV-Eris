@@ -82,7 +82,9 @@
 	else
 		for(var/stat in ALL_STATS)
 			parent.stats.removeTempStat(stat, "nsa_breach")
-	parent.HUDneed["nsa"]?.update_icon()
+
+	var/obj/screen/nsa/hud = parent.HUDneed["neural system accumulation"]
+	hud?.update_icon()
 
 /datum/metabolism_effects/proc/nsa_breached_effect()
 	if(get_nsa() < 120)
@@ -198,7 +200,7 @@
 			addiction_list.Remove(R)
 			continue
 
-		addiction_list[R]++
+		addiction_list[R] += 1
 		if(!parent.chem_effects[CE_PURGER])
 
 			switch(addiction_list[R])

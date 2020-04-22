@@ -6,7 +6,7 @@
 	id = "dont use these"
 	description = "Microscopic construction robots."
 	taste_description = "slimey metal"
-	reagent_state = LIQUID
+	reagent_state = SOLID
 	color = "#696969" // ( ͡° ͜ʖ ͡°)
 	metabolism = REM/2
 	heating_point = 523
@@ -91,12 +91,12 @@
 /datum/reagent/nanites/arad/will_occur(var/mob/living/carbon/M, var/alien, var/location)
 	if(..() && M.radiation)
 		return TRUE
-		
+
 
 /datum/reagent/nanites/arad/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())
 		M.radiation = max(M.radiation - (5 + M.radiation * 0.10) * effect_multiplier, 0)
-		
+
 
 /datum/reagent/nanites/implant_medics
 	name = "Implantoids"
@@ -119,7 +119,7 @@
 						metabolism = 1
 						constant_metabolism = TRUE
 						return TRUE
-			
+
 
 /datum/reagent/nanites/implant_medics/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(..())
@@ -138,7 +138,7 @@
 				else if (istype(organ, /obj/item/organ/internal) && organ.damage > 0 && BP_IS_ROBOTIC(organ))
 					organ.heal_damage((2 + organ.damage * 0.05)* effect_multiplier)
 					return
-				
+
 
 /datum/reagent/nanites/nantidotes
 	name = "Nantidotes"

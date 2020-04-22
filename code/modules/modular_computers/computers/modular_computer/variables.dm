@@ -33,7 +33,7 @@
 	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/screen_light_strength = 0							// Intensity of light this computer emits. Comparable to numbers light fixtures use.
 	var/screen_light_range = 2								// Intensity of light this computer emits. Comparable to numbers light fixtures use.
-	var/list/idle_threads = list()							// Idle programs on background. They still receive process calls but can't be interacted with.
+	var/list/all_threads = list()							// All running programs, including the ones running in background
 
 	// Damage of the chassis. If the chassis takes too much damage it will break apart.
 	var/damage = 0				// Current damage level

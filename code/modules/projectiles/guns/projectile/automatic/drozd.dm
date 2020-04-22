@@ -11,15 +11,19 @@
 	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
+
 	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	price_tag = 2200
 	damage_multiplier = 0.8 	 //25,6 lethal, 28 HV //damage
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
 	recoil_buildup = 6
-	silencer_type = /obj/item/weapon/silencer
+	
+	twohanded = FALSE
+	one_hand_penalty = 5 //smg level
+	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY
 		)

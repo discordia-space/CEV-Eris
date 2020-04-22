@@ -22,9 +22,9 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	recoil_buildup = 3
-	one_hand_penalty = 5
-
-	firemodes = list(
+	one_hand_penalty = 30 //not like it's used anyway, but LMG level
+	gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
+	init_firemodes = list(
 		FULL_AUTO_600,
 		list(mode_name="short bursts", burst=5,    burst_delay=1, move_delay=6,  icon="burst"),
 		list(mode_name="long bursts",  burst=8, burst_delay=1, move_delay=8,  icon="burst"),

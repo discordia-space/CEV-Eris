@@ -126,12 +126,13 @@
 	cost = 5000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
-							/datum/design/research/item/weapon/plasmapistol
+							/datum/design/research/item/weapon/plasmapistol,
+							/datum/design/research/item/weapon_upgrade/penetrator
 						)
 
 /datum/technology/temp
 	name = "Basic Temperature Ammunition"
-	desc = "Incendiary ammunition for large catriges."
+	desc = "Incendiary ammunition for large cartridges."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.6
@@ -144,6 +145,7 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/ammo/shotgun_incendiary,
+							/datum/design/research/item/weapon_upgrade/overheat
 						)
 
 
@@ -162,7 +164,8 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/c20r,
-							/datum/design/research/item/ammo/c20r_ammo
+							/datum/design/research/item/ammo/c20r_ammo,
+							/datum/design/research/item/weapon/katana
 						)
 
 /datum/technology/laser_weaponry

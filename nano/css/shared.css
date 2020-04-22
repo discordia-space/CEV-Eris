@@ -54,6 +54,10 @@ hr {
     white-space: nowrap;
 }
 
+.linkFaintBackground {
+    background: none;
+}
+
 .hasIcon {
     padding: 0px 4px 4px 0px;
 }
@@ -63,7 +67,11 @@ hr {
 }
 
 a:hover, .zoomLink:hover, .linkActive:hover {
-    background: #507aac;
+    background: #405a8c;
+}
+
+.linkFaintBackground:hover {
+    background: rgba(80,100,120,.5);
 }
 
 .linkPending, .linkPending:hover {

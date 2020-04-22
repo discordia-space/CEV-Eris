@@ -24,7 +24,7 @@
 	var/computer_emagged = 0						// Set to 1 if computer that's running us was emagged. Computer updates this every Process() tick
 	var/ui_header = null							// Example: "something.gif" - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /nano/images/status_icons. Be careful not to use too large images!
 	var/ntnet_speed = 0								// GQ/s - current network connectivity transfer rate
-	var/operator_skill = STAT_LEVEL_MIN                  // Holder for skill value of current/recent operator for programs that tick.
+	var/operator_skill = STAT_LEVEL_MIN				// Holder for skill value of current/recent operator for programs that tick.
 
 /datum/computer_file/program/New(var/obj/item/modular_computer/comp = null)
 	..()
@@ -34,9 +34,6 @@
 /datum/computer_file/program/Destroy()
 	computer = null
 	. = ..()
-
-/datum/computer_file/program/nano_host()
-	return computer.nano_host()
 
 /datum/computer_file/program/clone()
 	var/datum/computer_file/program/temp = ..()
@@ -89,12 +86,12 @@
 		return computer.add_log(text)
 	return 0
 
-/datum/computer_file/program/proc/is_supported_by_hardware(var/hardware_flag = 0, var/loud = 0, var/mob/user = null)
-	if(!(hardware_flag & usage_flags))
+/datum/computer_file/program/proc/is_supported_by_hardware(obj/item/modular_computer/hardware, mob/user, loud)
+	if(!(hardware.hardware_flag & usage_flags))
 		if(loud && computer && user)
-			to_chat(user, "<span class='warning'>\The [computer] flashes: \"Hardware Error - Incompatible software\".</span>")
-		return 0
-	return 1
+			to_chat(user, SPAN_WARNING("Hardware Error - Incompatible software"))
+		return FALSE
+	return TRUE
 
 /datum/computer_file/program/proc/get_signal(var/specific_action = 0)
 	if(computer)
@@ -140,13 +137,13 @@
 	var/obj/item/weapon/card/id/I = user.GetIdCard()
 	if(!I)
 		if(loud)
-			to_chat(user, "<span class='notice'>\The [computer] flashes an \"RFID Error - Unable to scan ID\" warning.</span>")
+			to_chat(user, SPAN_WARNING("RFID Error - Unable to scan ID"))
 		return 0
 
 	if(access_to_check in I.access)
 		return 1
 	else if(loud)
-		to_chat(user, "<span class='notice'>\The [computer] flashes an \"Access Denied\" warning.</span>")
+		to_chat(user, SPAN_WARNING("Access Denied"))
 
 // This attempts to retrieve header data for NanoUIs. If implementing completely new device of different type than existing ones
 // always include the device here in this proc. This proc basically relays the request to whatever is running the program.
@@ -170,13 +167,11 @@
 	return 0
 
 // Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.
-/datum/computer_file/program/proc/kill_program(var/forced = 0)
+/datum/computer_file/program/proc/kill_program(forced = FALSE)
 	program_state = PROGRAM_STATE_KILLED
 	if(network_destination)
 		generate_network_log("Connection to [network_destination] closed.")
-	if(NM)
-		qdel(NM)
-		NM = null
+	QDEL_NULL(NM)
 	return 1
 
 // Checks a skill of a given mob, if mob can have one.
@@ -190,7 +185,7 @@
 
 // This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns 1 continue with UI initialisation.
 // It returns 0 if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.
-/datum/computer_file/program/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/datum/computer_file/program/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(program_state != PROGRAM_STATE_ACTIVE) // Our program was closed. Close the ui if it exists.
 		if(ui)
 			ui.close()
@@ -200,6 +195,18 @@
 		return 0
 	return 1
 
+// This prevents program UI from opening when the program itself is closed.
+/datum/computer_file/program/CanUseTopic(mob/user, datum/topic_state/state = GLOB.default_state)
+	if(!computer || program_state != PROGRAM_STATE_ACTIVE)
+		return STATUS_CLOSE
+	return computer.CanUseTopic(user, state)
+
+// A lot of MPC apps use nano_host() as a way to get the MPC object
+// We return the MPC for most calls, but
+/datum/computer_file/program/nano_host(ui_status_check=FALSE)
+	if(ui_status_check)
+		return src
+	return computer.nano_host()
 
 // CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:
 // Topic calls are automagically forwarded from NanoModule this program contains.
@@ -218,6 +225,12 @@
 		return NM.check_eye(user)
 	else
 		return -1
+
+/datum/computer_file/program/initial_data()
+	return computer.get_header_data()
+
+/datum/computer_file/program/update_layout()
+	return TRUE
 
 /obj/item/modular_computer/initial_data()
 	return get_header_data()

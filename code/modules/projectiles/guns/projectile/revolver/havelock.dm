@@ -15,3 +15,4 @@
 	damage_multiplier = 1.15 //because pistol round
 	penetration_multiplier = 1.2
 	recoil_buildup = 18
+	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)

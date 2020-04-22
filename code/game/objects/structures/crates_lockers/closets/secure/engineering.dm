@@ -83,4 +83,3 @@
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/powered/meson(src)
-	new /obj/item/weapon/cartridge/engineering(src)

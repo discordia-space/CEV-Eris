@@ -54,3 +54,8 @@
 	name = "Anti-material Rifle"
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
+
+/datum/uplink_item/item/visible_weapons/rigged
+	name = "Weapon reverse loader"
+	item_cost = 5
+	path = /obj/item/weapon/gun_upgrade/mechanism/reverse_loader

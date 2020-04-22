@@ -304,7 +304,7 @@ steam.start() -- spawns the effect
 	if(air_group || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
-		B.damage = (B.damage/2)
+		B.damage_types[BURN] /= 2
 	return 1
 /////////////////////////////////////////////
 // Sleep smoke

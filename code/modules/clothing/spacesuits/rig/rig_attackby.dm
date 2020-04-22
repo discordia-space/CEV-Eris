@@ -156,7 +156,7 @@
 			return
 
 	// Pass repair items on to the chestpiece.
-	if(chest && (istype(I,/obj/item/stack/material) || QUALITY_WELDING in I.tool_qualities))
+	if(chest && (istype(I,/obj/item/stack/material) || (QUALITY_WELDING in I.tool_qualities)))
 		return chest.attackby(I,user)
 
 	if(open)

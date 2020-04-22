@@ -1,7 +1,7 @@
 /obj/item/projectile/bullet/chemdart
 	name = "dart"
 	icon_state = "dart"
-	damage = 5
+	damage_types = list(BRUTE = 5)
 	sharp = 1
 	embed = 1 //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
 	var/reagent_amount = 15
@@ -16,7 +16,7 @@
 /obj/item/projectile/bullet/chemdart/on_hit(atom/target, def_zone = null)
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.can_inject(target_zone=def_zone))
+		if(L.can_inject(target_zone = def_zone))
 			reagents.trans_to_mob(L, reagent_amount, CHEM_BLOOD)
 
 /obj/item/ammo_casing/chemdart

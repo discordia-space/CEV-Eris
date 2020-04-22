@@ -77,41 +77,27 @@
 	// Used for spawned robotic organs
 	var/default_description = null
 
-/obj/item/organ/external/New(mob/living/carbon/holder, datum/organ_description/OD)
-	..(holder)
-
+/obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
 		set_description(OD)
 	else if(default_description)
 		set_description(new default_description)
 
-	if(owner)
-		replaced(owner)
+	..(holder)
+
+	if(istype(holder))
 		sync_colour_to_human(owner)
 
 	update_icon()
 
 /obj/item/organ/external/Destroy()
-	if(parent)
-		parent.children -= src
+	for(var/obj/item/organ/O in (children | internal_organs))
+		qdel(O)
 
-	if(children)
-		for(var/obj/item/organ/external/C in children)
-			qdel(C)
-		children = null
+	children.Cut()
+	internal_organs.Cut()
 
-	if(internal_organs)
-		for(var/obj/item/organ/O in internal_organs)
-			qdel(O)
-		internal_organs = null
-
-	if(owner)
-		owner.organs -= src
-		owner.bad_external_organs -= src
-		owner.organs_by_name -= src.organ_tag
-
-	if(module)
-		QDEL_NULL(module)
+	QDEL_NULL(module)
 
 	update_bionics_hud()
 
@@ -142,41 +128,42 @@
 	if(desc.drop_on_remove)
 		src.drop_on_remove = desc.drop_on_remove.Copy()
 
-/obj/item/organ/external/replaced(mob/living/carbon/human/target)
-	owner = target
-	forceMove(owner)
-	if(istype(owner))
-		owner.organs_by_name[organ_tag] = src
-		owner.organs |= src
-		for(var/obj/item/organ/organ in src)
-			organ.replaced(owner,src)
+/obj/item/organ/external/replaced(obj/item/organ/external/affected)
+	..()
+	parent.children |= src
 
-	if(parent_organ)
-		parent = owner.organs_by_name[src.parent_organ]
-		if(parent)
-			if(!parent.children)
-				parent.children = list()
-			parent.children.Add(src)
-			//Remove all stump wounds since limb is not missing anymore
-			for(var/datum/wound/lost_limb/W in parent.wounds)
-				parent.wounds -= W
-				qdel(W)
-				break
-			parent.update_damages()
+	//Remove all stump wounds since limb is not missing anymore
+	for(var/datum/wound/lost_limb/W in parent.wounds)
+		parent.wounds -= W
+		qdel(W)
+	parent.update_damages()
+
+/obj/item/organ/external/replaced_mob(mob/living/carbon/human/target)
+	..()
+	owner.organs_by_name[organ_tag] = src
+	owner.organs |= src
+	for(var/obj/item/organ/O in children + internal_organs)
+		O.replaced_mob(owner)
 
 	if(module)
 		module.organ_installed(src, owner)
 
 /obj/item/organ/external/removed(mob/living/user, redraw_mob = TRUE)
-	if(!owner)
-		return
+	if(parent)
+		parent.children -= src
 
+	var/mob/living/carbon/human/victim = owner
+
+	. = ..()
+
+	if(redraw_mob && victim)
+		victim.update_body()
+
+
+/obj/item/organ/external/removed_mob(mob/living/user)
 	owner.organs -= src
 	owner.organs_by_name -= src.organ_tag
 	owner.bad_external_organs -= src
-
-	if(module)
-		module.organ_removed(src, owner)
 
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
@@ -184,46 +171,35 @@
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
 			implant.forceMove(get_turf(owner))
 		else
-			implant.loc = src
+			implant.forceMove(src)
 	implants.Cut()
 
-	release_restraints()
+	if(module)
+		module.organ_removed(src, owner)
 
-	var/obj/item/dropped = null
-	for(var/slot in drop_on_remove)
-		dropped = owner.get_equipped_item(slot)
-		owner.drop_from_inventory(dropped)
+	if(!(owner.status_flags & REBUILDING_ORGANS))
+		release_restraints()
 
-	if(parent)
-		parent.children -= src
-		parent = null
+		var/obj/item/dropped = null
+		for(var/slot in drop_on_remove)
+			dropped = owner.get_equipped_item(slot)
+			owner.drop_from_inventory(dropped)
 
-	if(children)
-		for(var/obj/item/organ/external/child in children)
-			child.removed()
-			child.loc = src
+	for(var/obj/item/organ/organ in children + internal_organs)
+		organ.removed_mob(user)
 
-	if(internal_organs)
-		for(var/obj/item/organ/organ in internal_organs)
-			organ.removed()
-			organ.loc = src
-
-	var/mob/living/carbon/human/victim = owner
-
-	. = ..()
-
-	if(redraw_mob)
-		victim.update_body()
-
+	..()
 	SSnano.update_uis(src)
 
 
 /obj/item/organ/external/proc/update_bionics_hud()
 	switch(organ_tag)
 		if(BP_L_ARM)
-			owner?.HUDneed["left arm bionics"]?.update_icon()
+			var/obj/item/organ/external/organ = owner?.HUDneed["left arm bionics"]
+			organ?.update_icon()
 		if(BP_R_ARM)
-			owner?.HUDneed["right arm bionics"]?.update_icon()
+			var/obj/item/organ/external/organ = owner?.HUDneed["right arm bionics"]
+			organ?.update_icon()
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
@@ -699,12 +675,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		holder = owner
 	if(!holder)
 		return
-	if (holder.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT))
+	if (holder.handcuffed && (body_part in list(ARM_LEFT, ARM_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.handcuffed.name] falls off of [holder.name].",\
 			"\The [holder.handcuffed.name] falls off you.")
 		holder.drop_from_inventory(holder.handcuffed)
-	if (holder.legcuffed && body_part in list(LEG_LEFT, LEG_RIGHT))
+	if (holder.legcuffed && (body_part in list(LEG_LEFT, LEG_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.legcuffed.name] falls off of [holder.name].",\
 			"\The [holder.legcuffed.name] falls off you.")
@@ -845,8 +821,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return 1
 	return 0
 
+// Robotic limbs malfunction - handled by subtype
 /obj/item/organ/external/proc/is_malfunctioning()
-	return (BP_IS_ROBOTIC(src) && (brute_dam + burn_dam) >= 10 && prob(brute_dam + burn_dam))
+	return FALSE
 
 /obj/item/organ/external/proc/embed(obj/item/W, silent = 0)
 	if(!owner || loc != owner)
@@ -864,6 +841,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		owner.verbs += /mob/proc/yank_out_object
 
 	owner.embedded_flag = 1
+	W.on_embed(owner)
 	W.add_blood(owner)
 	W.loc = owner
 

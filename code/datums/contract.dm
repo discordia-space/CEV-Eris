@@ -18,6 +18,13 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 /datum/antag_contract/proc/place()
 	GLOB.all_antag_contracts += src
 
+/datum/antag_contract/proc/remove()
+	GLOB.all_antag_contracts -= src
+
+// Called on every contract when a mob is despawned - currently, this can only happen when someone cryos
+/datum/antag_contract/proc/on_mob_despawned(datum/mind/M)
+	return
+
 /datum/antag_contract/proc/complete(datum/mind/M)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
@@ -68,32 +75,45 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 /datum/antag_contract/implant
 	name = "Implant"
 	reward = 14
-	var/mob/living/carbon/human/target
+	var/datum/mind/target_mind
 
 /datum/antag_contract/implant/New()
 	var/list/candidates = SSticker.minds.Copy()
+
+	// Don't target the same player twice
 	for(var/datum/antag_contract/implant/C in GLOB.all_antag_contracts)
-		candidates -= C.target.mind
+		candidates -= C.target_mind
+
 	while(candidates.len)
-		var/datum/mind/target_mind = pick(candidates)
-		var/mob/living/carbon/human/H = target_mind.current
-		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H) || H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
-			candidates -= target_mind
+		var/datum/mind/candidate_mind = pick(candidates)
+		candidates -= candidate_mind
+
+		// Implant contracts are 75% less likely to target contract-based antags to reduce the amount of cheesy self-implants
+		if((player_is_antag_id(candidate_mind, ROLE_TRAITOR) || player_is_antag_id(candidate_mind, ROLE_CHANGELING)) && prob(75))
 			continue
-		target = H
-		desc = "Implant [target.real_name] with a spying implant."
+
+		// No check for cruciform because the spying implant can bypass it
+		var/mob/living/carbon/human/H = candidate_mind.current
+		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
+			continue
+
+		target_mind = candidate_mind
+		desc = "Implant [H.real_name] with a spying implant."
 		break
 	..()
 
 /datum/antag_contract/implant/can_place()
-	return ..() && target
+	return ..() && target_mind
 
 /datum/antag_contract/implant/proc/check(obj/item/weapon/implant/spying/implant)
 	if(completed)
 		return
-	if(implant.wearer == target)
+	if(implant.wearer && implant.wearer.mind == target_mind)
 		complete(implant.owner)
 
+/datum/antag_contract/implant/on_mob_despawned(datum/mind/M)
+	if(M == target_mind)
+		remove()
 
 #define CONTRACT_RECON_TARGET_COUNT 3
 
@@ -172,6 +192,10 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 
 /datum/antag_contract/item/assasinate/check_contents(list/contents)
 	return target in contents
+
+/datum/antag_contract/item/assasinate/on_mob_despawned(datum/mind/M)
+	if(M == target_mind)
+		remove()
 
 
 /datum/antag_contract/item/steal
@@ -260,7 +284,7 @@ GLOBAL_LIST_EMPTY(all_antag_contracts)
 	var/list/samples = list()
 	for(var/obj/item/weapon/reagent_containers/C in contents)
 		var/list/data = C.reagents?.get_data("blood")
-		if(!data || data["species"] != "Human" || data["blood_DNA"] in samples)
+		if(!data || data["species"] != "Human" || (data["blood_DNA"] in samples))
 			continue
 		samples += data["blood_DNA"]
 		if(samples.len >= count)

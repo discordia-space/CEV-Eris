@@ -89,15 +89,12 @@
 	updateicon()
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
-	if(module_state_1 == O)
-		return 1
-	else if(module_state_2 == O)
-		return 1
-	else if(module_state_3 == O)
+	if(module_state_1 == O || module_state_2 == O || module_state_3 == O)
+		updateicon()
 		return 1
 	else
 		return 0
-	updateicon()
+	
 
 //Helper procs for cyborg modules on the UI.
 //These are hackish but they help clean up code elsewhere.
@@ -227,7 +224,7 @@
 		return
 	var/obj/screen/silicon/module/inv
 
-	if(invnum in (1 to 3))
+	if(invnum in 1 to 3)
 		inv = src.HUDinventory[invnum]
 		return inv.screen_loc
 	else

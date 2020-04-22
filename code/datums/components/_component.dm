@@ -87,6 +87,12 @@
 /datum/component/proc/UnregisterFromParent()
 	return
 
+//Makes it so that only one thing can be registered on this signal type
+/datum/proc/ExclusiveRegisterSignal(datum/target, sig_type_or_types, proc_or_callback, override = FALSE)
+	if(target.comp_lookup.Find(sig_type_or_types))
+		return 0
+	return RegisterSignal(target, sig_type_or_types, proc_or_callback, override)
+
 /datum/proc/RegisterSignal(datum/target, sig_type_or_types, proc_or_callback, override = FALSE)
 	if(QDELETED(src) || QDELETED(target))
 		return

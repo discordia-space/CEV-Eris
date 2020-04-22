@@ -19,9 +19,10 @@
 	price_tag = 1200
 	damage_multiplier = 0.8
 	recoil_buildup = 4
-	silencer_type = /obj/item/weapon/silencer
+	one_hand_penalty = 5 //smg level
+	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)

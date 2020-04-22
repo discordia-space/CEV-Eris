@@ -201,7 +201,8 @@ obj/structure/salvageable/server/Initialize()
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 90,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
-		/obj/item/weapon/computer_hardware/led = 80,
+		/obj/item/weapon/computer_hardware/led = 40,
+		/obj/item/weapon/computer_hardware/led/adv = 40,
 		/obj/item/stack/material/glass{amount = 5} = 70,
 		/obj/item/trash/material/circuit = 60,
 		/obj/item/trash/material/metal = 60,
@@ -215,8 +216,8 @@ obj/structure/salvageable/server/Initialize()
 		/obj/item/weapon/computer_hardware/processor_unit/adv/small = 30,
 		/obj/item/weapon/computer_hardware/hard_drive = 60,
 		/obj/item/weapon/computer_hardware/hard_drive/advanced = 40,
-		/obj/random/lathe_disk = 50,
-		/obj/random/lathe_disk/advanced = 30,
+		/obj/random/lathe_disk = 40,
+		/obj/random/lathe_disk/advanced = 10,
 	)
 
 obj/structure/salvageable/personal/Initialize()

@@ -3,17 +3,19 @@
 	icon_state = "plasma_bolt"
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
-	damage = 30
-	armor_penetration = 10
-	damage_type = BURN
+	armor_penetration = 25
+	check_armour = ARMOR_ENERGY
+	damage_types = list(BURN = 33)
+
 
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
 	impact_type = /obj/effect/projectile/plasma/impact
 
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
-	damage = 20
+	armor_penetration = 0
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
-	damage = 40
+	armor_penetration = 50
+

@@ -1,8 +1,7 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage = 40
-	damage_type = BRUTE
+	damage_types = list(BRUTE = 40)
 	nodamage = 0
 	check_armour = ARMOR_BULLET
 	embed = TRUE
@@ -18,7 +17,7 @@
 		shake_camera(L, 1, 1, 0.5)
 
 /obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
-	if(penetrating > 0 && damage > 20 && prob(damage))
+	if(penetrating > 0 && damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]))
 		mob_passthrough_check = 1
 	else
 		var/obj/item/weapon/grab/G = locate() in target_mob
@@ -39,12 +38,12 @@
 
 	if(istype(A, /mob/living/exosuit))
 		return 1 //mecha have their own penetration handling
-
+	var/damage = damage_types[BRUTE]
 	if(ismob(A))
 		if(!mob_passthrough_check)
 			return 0
 		if(iscarbon(A))
-			damage *= 0.7 //squishy mobs absorb KE
+			damage *= 0.7
 		return 1
 
 	var/chance = 0
@@ -71,7 +70,7 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage = 15
+	damage_types = list(BRUTE = 15)
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.

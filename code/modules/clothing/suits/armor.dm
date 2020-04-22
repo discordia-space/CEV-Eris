@@ -81,6 +81,12 @@
 /obj/item/clothing/suit/armor/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
 
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat
+	name = "black serbian overcoat"
+	desc = "A black serbian overcoat with armor-weave and rank epaulettes"
+	icon_state = "overcoat_black"
+	item_state = "overcoat_black"
+
 // Serbian flak vests
 /obj/item/clothing/suit/armor/flak
 	name = "black flakvest vest"
@@ -120,6 +126,9 @@
 	price_tag = 500
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
+	name = "full bulletproof suit"
+	desc = "A vest with hand and arm-guards attached that excels in protecting the wearer against high-velocity solid projectiles. \
+			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(

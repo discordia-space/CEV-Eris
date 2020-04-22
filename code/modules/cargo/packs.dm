@@ -1393,8 +1393,19 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Operations"
 
 
+/datum/supply_pack/randomised/holsters
+	num_contained = 4
+	contains = list(/obj/random/cloth/holster,
+					/obj/random/cloth/holster,
+					/obj/random/cloth/holster,
+					/obj/random/cloth/holster)
+	name = "Surplus Unform Holsters"
+	cost = 1000
+	crate_name = "Surplus Uniform Holsters Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Operations"
 
-datum/supply_pack/randomised/voidsuit
+/datum/supply_pack/randomised/voidsuit
 	num_contained = 1
 	contains = list(/obj/random/voidsuit,
 					/obj/random/voidsuit/damaged)
@@ -1404,7 +1415,7 @@ datum/supply_pack/randomised/voidsuit
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-datum/supply_pack/randomised/rig
+/datum/supply_pack/randomised/rig
 	num_contained = 1
 	contains = list(/obj/random/rig,
 					/obj/random/rig/damaged)
@@ -1414,7 +1425,7 @@ datum/supply_pack/randomised/rig
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-datum/supply_pack/randomised/rigmods
+/datum/supply_pack/randomised/rigmods
 	num_contained = 2
 	contains = list(/obj/random/rig_module,
 				/obj/random/rig_module)
