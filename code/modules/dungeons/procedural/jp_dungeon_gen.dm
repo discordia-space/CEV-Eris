@@ -703,21 +703,21 @@
 		if((. > abs(newroom.getX() - r.getX())) && (. > abs(newroom.getY() - r.getY())))
 			if(!doAccurateRoomPlacementCheck) return TRUE
 			if(!(newroom.doesAccurate() && r.doesAccurate())) return TRUE
-			var
-				intx1=-1
-				intx2=-1
-				inty1=-1
-				inty2=-1
 
-				rx1 = r.getX()-r.getSize()-1
-				rx2 = r.getX()+r.getSize()+1
-				sx1 = newroom.getX()-newroom.getSize()-1
-				sx2 = newroom.getX()+newroom.getSize()+1
+			var/intx1=-1
+			var/intx2=-1
+			var/inty1=-1
+			var/inty2=-1
 
-				ry1 = r.getY()-r.getSize()-1
-				ry2 = r.getY()+r.getSize()+1
-				sy1 = newroom.getY()-newroom.getSize()-1
-				sy2 = newroom.getY()+newroom.getSize()+1
+			var/rx1 = r.getX()-r.getSize()-1
+			var/rx2 = r.getX()+r.getSize()+1
+			var/sx1 = newroom.getX()-newroom.getSize()-1
+			var/sx2 = newroom.getX()+newroom.getSize()+1
+
+			var/ry1 = r.getY()-r.getSize()-1
+			var/ry2 = r.getY()+r.getSize()+1
+			var/sy1 = newroom.getY()-newroom.getSize()-1
+			var/sy2 = newroom.getY()+newroom.getSize()+1
 
 			if(rx1>=sx1 && rx1<=sx2) intx1 = rx1
 			if(rx2>=sx1 && rx2<=sx2)
