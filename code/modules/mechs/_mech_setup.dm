@@ -49,7 +49,6 @@ GLOBAL_LIST_INIT(mech_image_cache,				new)
 GLOBAL_LIST_INIT(mech_icon_cache,				new)
 GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON))
 
-#include "_mech_setup.dm"
 	#include "mech.dm"
 	#include "mech_construction.dm"
 	#include "mech_damage.dm"

@@ -144,8 +144,8 @@
 /mob/living/exosuit/premade/random/normal
 
 /mob/living/exosuit/premade/random/boring/New(var/newloc, var/obj/structure/heavy_vehicle_frame/source_frame)
-	..(newloc, source_frame, using_boring_colours = TRUE)
+	..(newloc, source_frame, FALSE, TRUE)
 
 /mob/living/exosuit/premade/random/extra/New(var/newloc, var/obj/structure/heavy_vehicle_frame/source_frame)
-	..(newloc, source_frame, super_random = TRUE)
+	..(newloc, source_frame, TRUE)
 
