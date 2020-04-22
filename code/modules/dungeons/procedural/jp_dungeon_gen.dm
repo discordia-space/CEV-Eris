@@ -55,7 +55,6 @@
 
 	var/list/room_templates = list() //A list of submaps used for room post-initialization
 
-
 	var/const/ERROR_NO_ROOMS = 1 //The allowed-rooms list is empty or bad.
 	var/const/ERROR_BAD_AREA = 2 //The area that the generator is allowed to work on was specified badly
 	var/const/ERROR_NO_WALLTYPE = 3 //The type used for walls wasn't specified
@@ -216,6 +215,7 @@
 /*
 	Sets the width of paths generated.
 	Positive and negative integers work.
+	(negatives invert the way square that sets width of the path is calculated)
 */
 
 /obj/procedural/jp_DungeonGenerator/proc/setPathWidth(r)
