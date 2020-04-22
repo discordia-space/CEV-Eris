@@ -18,7 +18,7 @@
 	else . = ..()
 
 
-/mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user)
+/mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
 
 	if(!user || incapacitated() || user.incapacitated())
 		return

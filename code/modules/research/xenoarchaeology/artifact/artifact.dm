@@ -130,6 +130,6 @@
 
 	else if(istype(AM,/mob/living/exosuit))
 		var/mob/living/exosuit/M = AM
-		if(istype(M.selected_hardpoint, /obj/item/mech_equipment/drill))
-			var/obj/item/mech_equipment/drill/D = M.selected_hardpoint
+		if(istype(M.selected_system, /obj/item/mech_equipment/drill))
+			var/obj/item/mech_equipment/drill/D = M.selected_system
 			D.afterattack(src)
