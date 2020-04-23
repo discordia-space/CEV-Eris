@@ -270,7 +270,8 @@ var/list/channel_to_radio_key = new
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
-	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
