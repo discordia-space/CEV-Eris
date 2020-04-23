@@ -73,7 +73,7 @@
 
 /obj/item/device/nanite_container
 	name = "nanorepair system"
-	icon_state = "modkit"
+	icon_state = "nanorepair_tank"
 	desc = "Contains several capsules of nanites programmed to repair mechanical and electronic systems."
 	var/charges = 3
 
@@ -100,7 +100,7 @@
 
 /obj/item/device/drone_uplink
 	name = "Drone Bounty Uplink"
-	icon_state = "hand_tele"
+	icon_state = "uplink_access"
 
 /obj/item/device/drone_uplink/New()
 	..()

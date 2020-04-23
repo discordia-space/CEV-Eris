@@ -34,6 +34,7 @@
 
 /obj/item/weapon/gun/energy/plasma/mounted/blitz
 	name = "SDF PR \"Sprengen\""
+	desc = "A miniaturized plasma rifle, remounted for robotic use only."
 	icon_state = "plasma_turret"
 	charge_meter = FALSE
 

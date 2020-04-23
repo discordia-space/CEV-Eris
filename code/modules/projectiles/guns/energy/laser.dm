@@ -28,6 +28,7 @@
 
 /obj/item/weapon/gun/energy/laser/mounted/blitz
 	name = "SDF LR \"Strahl\""
+	desc = "A miniaturized laser rifle, remounted for robotic use only."
 	icon_state = "laser_turret"
 	charge_meter = FALSE
 
