@@ -12,7 +12,8 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
-	firemodes = list(
+	gun_tags = list(GUN_LASER)
+	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
@@ -45,7 +46,7 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	price_tag = 2000
-	firemodes = list(
+	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
@@ -66,7 +67,7 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = null
 	self_recharge = TRUE
 	price_tag = 4500
-	firemodes = list(
+	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)

@@ -137,13 +137,12 @@
 /datum/faction/proc/customize(var/mob/leader)
 
 /datum/faction/proc/communicate(var/mob/user)
-	if(!is_member(user))
+	if(!is_member(user) || user.stat != CONSCIOUS)
 		return
 
-	usr = user
-	var/message = input("Type message","[name] communication")
+	var/message = input(user, "Type message","[name] communication")
 
-	if(!message || !is_member(user))
+	if(!message || !is_member(user) || user.stat != CONSCIOUS) //Check the same things again, to prevent message-holding
 		return
 
 	message = capitalize(sanitize(message))

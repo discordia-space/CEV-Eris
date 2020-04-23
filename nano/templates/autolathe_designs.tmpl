@@ -6,6 +6,11 @@
 					<img src='{{:value.icon}}' height=24 width=24>
 				</div>
 				<div class="itemContentWidest">{{:value.name}}</div>
+				<div class="itemContentWidest">
+					{{if value.point_cost >= 0}}
+						<font color="#808080" size="2">License point cost: {{:value.point_cost}}</font>
+					{{/if}}
+				</div>
 			</div>
 			{{if value.filename == data.unfolded}}
 				<div class="statusDisplay" style="margin: 0px 4px 4px 4px">

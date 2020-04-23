@@ -51,44 +51,6 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 4,
 
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_colt = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_silenced = 2,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_consul = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_revolver_deckard = 1,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_doublebarrel = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kammerer = 3,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_regulator = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone = 2,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides = 1,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_boltgun = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov = 1,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_martin = 3,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall = 1,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon = 2,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_dominion = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger = 2,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad = 1,
-
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun = 6,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4,

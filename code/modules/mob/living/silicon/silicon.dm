@@ -113,11 +113,10 @@
 		IgniteMob()
 
 	if(!Proj.nodamage)
-		switch(Proj.damage_type)
-			if(BRUTE)
-				adjustBruteLoss(Proj.damage)
-			if(BURN)
-				adjustFireLoss(Proj.damage)
+		if(Proj.damage_types[BRUTE])
+			adjustBruteLoss(Proj.damage_types[BRUTE])
+		if(Proj.damage_types[BURN])
+			adjustFireLoss(Proj.damage_types[BURN])
 
 	Proj.on_hit(src)
 	updatehealth()
