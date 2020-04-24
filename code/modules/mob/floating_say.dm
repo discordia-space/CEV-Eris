@@ -1,6 +1,6 @@
 // Thanks to Burger from Burgerstation for the foundation for this.
-// This code was written by Chinsky for Nebula, I just made it compatible with Eris. - Matt 
-var/list/floating_chat_colors = list()
+// This code was written by Chinsky for Nebula, I just made it compatible with Eris. - Matt
+GLOBAL_LIST_INIT(floating_chat_colors, list())
 
 /atom/movable
 	var/list/stored_chat_text
@@ -21,9 +21,9 @@ var/list/floating_chat_colors = list()
 	if(length(message) > limit)
 		message = "[copytext(message, 1, limit)]..."
 
-	if(!floating_chat_colors[name])
-		floating_chat_colors[name] = get_random_colour(0,160,230)
-	style += "color: [floating_chat_colors[name]];"
+	if(!GLOB.floating_chat_colors[name])
+		GLOB.floating_chat_colors[name] = get_random_colour(0,160,230)
+	style += "color: [GLOB.floating_chat_colors[name]];"
 	// create 2 messages, one that appears if you know the language, and one that appears when you don't know the language
 	var/image/understood = generate_floating_text(src, capitalize(message), style, fontsize, duration, show_to)
 	var/image/gibberish = language ? generate_floating_text(src, language.scramble(message), style, fontsize, duration, show_to) : understood
