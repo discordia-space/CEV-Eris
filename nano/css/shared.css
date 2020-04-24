@@ -189,6 +189,10 @@ abbr {
     color: #ee0000;
 }
 
+.unimportant {
+    color: #808080;
+}
+
 .idle {
     color: #272727;
 }
