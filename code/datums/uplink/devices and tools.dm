@@ -223,6 +223,23 @@
 		return 1
 	return 0
 
+/datum/uplink_item/item/tools/blitz_laserweapon
+	name = "Blitzshell Weapons Upgrade"
+	desc = "Activates the embedded laser weapon system."
+	item_cost = 20
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/weapon/gun/energy/laser/mounted/blitz) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a laser system installed."))
+			return 0
+		BS.module.modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(BS.module)
+		return 1
+	return 0
+
 /datum/uplink_item/item/tools/blitz_nanorepair
 	name = "Blitzshell Nanorepair Capsule"
 	desc = "Reload your nanorepair system, gaining extra charges."

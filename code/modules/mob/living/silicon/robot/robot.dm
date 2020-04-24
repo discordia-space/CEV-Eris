@@ -21,7 +21,7 @@
 	var/crisis_override = 0
 	var/integrated_light_power = 6
 	var/datum/wires/robot/wires
-
+	var/ai_access = TRUE
 	var/power_efficiency = 1.0
 
 
