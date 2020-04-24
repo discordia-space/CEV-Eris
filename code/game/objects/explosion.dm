@@ -108,7 +108,7 @@ proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.ex_act(2)
 
-proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2)
+proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 95)
 	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter)
 
@@ -131,6 +131,6 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 		P.launch(T)
 
 		//Some of the fragments will hit mobs in the same turf
-		if (prob(95))
+		if (prob(same_turf_hit_chance))
 			for(var/mob/living/M in epicenter)
 				P.attack_mob(M, 0, 100)
