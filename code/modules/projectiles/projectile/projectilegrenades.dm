@@ -1,16 +1,17 @@
 /obj/item/projectile/bullet/batonround
 	name = "baton round"
 	icon_state = "grenade"
-	damage = 10
+	damage_types = list(BRUTE = 10)
 	agony = 80
 	check_armour = ARMOR_MELEE
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
+
 /obj/item/projectile/bullet/grenade
 	name = "grenade shell"
 	icon_state = "grenade"
-	damage = 20
+	damage_types = list(BRUTE = 20)
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
