@@ -8,6 +8,7 @@
 	max_w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_ILLEGAL = 3)
 	matter = list(MATERIAL_STEEL = 6)
+	var/del_on_send = TRUE
 	var/datum/mind/owner
 
 /obj/item/weapon/storage/bsdm/proc/can_launch()
@@ -55,14 +56,15 @@
 		if(!can_launch())
 			return
 
-		if(ismob(loc))
-			to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
-
 		for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
 			if(C.completed)
 				continue
 			C.on_container(src)
-		qdel(src)
+		QDEL_CLEAR_LIST(contents)
+		if(del_on_send)
+			if(ismob(loc))
+				to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
+			qdel(src)
 
 	else if(href_list["owner"])
 		owner = usr.mind
@@ -70,3 +72,6 @@
 
 	if(.)
 		SSnano.update_uis(src)
+
+/obj/item/weapon/storage/bsdm/permanent
+	del_on_send = FALSE
