@@ -205,3 +205,15 @@ datum/ghosttrap/pai/assess_candidate(var/mob/observer/ghost/candidate, var/mob/t
 
 datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	return 0
+
+/**************
+*  Blitzshell *
+**************/
+/datum/ghosttrap/blitzdrone
+	object = "blitzshell drone"
+	pref_check = ROLE_BLITZ
+	ghost_trap_message = "They have become a Blitzshell drone now."
+	ghost_trap_role = "Blitzshell Drone."
+	can_set_own_name = FALSE
+	list_as_special_role = FALSE
+	can_only_use_once = TRUE

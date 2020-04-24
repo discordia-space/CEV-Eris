@@ -191,7 +191,7 @@
 		update_dead_sight()
 	else
 		if (is_ventcrawling)
-			sight |= SEE_TURFS|SEE_OBJS|BLIND
+			sight |= SEE_TURFS|SEE_OBJS
 
 		if ((src.sight_mode & BORGXRAY))
 			src.sight |= SEE_TURFS

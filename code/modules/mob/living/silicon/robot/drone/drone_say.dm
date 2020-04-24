@@ -16,7 +16,7 @@
 			return emote(copytext(message,2))
 
 		if(copytext(message,1,2) == ";")
-			var/datum/language/L = all_languages["Drone Talk"]
+			var/datum/language/L = all_languages[communication_channel]
 			if(istype(L))
 				return L.broadcast(src,trim(copytext(message,2)))
 
