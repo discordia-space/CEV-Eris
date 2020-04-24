@@ -9,6 +9,7 @@
 	communication_channel = LANGUAGE_BLITZ
 	station_drone = FALSE
 	eyecolor = null
+	ai_access = FALSE
 
 /mob/living/silicon/robot/drone/blitzshell/updatename()
 	real_name = "\"Blitzshell\" assault drone ([rand(100,999)])"
@@ -42,7 +43,7 @@
 	networks = list()
 
 /obj/item/weapon/robot_module/drone/blitzshell/New()
-	modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src)
+	//modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src) //Deemed too strong
 	modules += new /obj/item/weapon/gun/energy/plasma/mounted/blitz(src)
 	modules += new /obj/item/weapon/tool/knife/tacknife(src) //For claiming heads for assassination missions
 	//Objective stuff
