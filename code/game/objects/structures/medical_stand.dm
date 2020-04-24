@@ -158,7 +158,7 @@
 					if(!do_mob(usr, target, 50))
 						usr.visible_message(SPAN_NOTICE("\The [usr]'s hand slips and pricks \the [target]."),
 									SPAN_NOTICE("Your hand slips and pricks \the [target]."))
-						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM), used_weapon = "drip needle")
+						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM), used_weapon = "Drip needle")
 						return
 					usr.visible_message(SPAN_NOTICE("\The [usr] hooks \the [target] up to \the [src]."),
 									SPAN_NOTICE("You hook \the [target] up to \the [src]."))
