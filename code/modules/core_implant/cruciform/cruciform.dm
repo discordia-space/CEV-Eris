@@ -26,7 +26,7 @@ var/list/disciples = list()
 	H.adjustBrainLoss(55+rand(5))
 	H.adjustOxyLoss(100+rand(50))
 	if(part)
-		H.apply_damage(100+rand(75), BURN, part)
+		H.apply_damage(100+rand(75), BURN, part, used_weapon = src)
 	H.apply_effect(40+rand(20), IRRADIATE, check_protection = 0)
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)

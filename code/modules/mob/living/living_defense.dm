@@ -43,7 +43,7 @@
 
 	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
-		apply_damage(effective_damage, damagetype, def_zone, used_weapon, sharp, edge)
+		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
 
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
 	else
@@ -55,7 +55,7 @@
 
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
-		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
+		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
 		return actual_damage
 	return effective_damage
 
