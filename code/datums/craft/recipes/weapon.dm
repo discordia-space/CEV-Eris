@@ -174,6 +174,19 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
+
+/datum/craft_recipe/weapon/sonic_grenade
+	name = "Loudmouth grenade"
+	result = /obj/item/weapon/grenade/sonic
+	steps = list(
+		list(/obj/item/device/hailer, 1, "time" = 20),
+		list(/obj/item/stack/cable_coil, 3, "time" = 20),
+		list(/obj/item/weapon/cell/large, 1, "time" = 20),
+		list(QUALITY_PULSING, 30, "time" = 50),
+		list(QUALITY_ADHESIVE, 30, "time" = 30),
+		list(QUALITY_SCREW_DRIVING, 10, "time" = 20)
+    )
+
 /datum/craft_recipe/weapon/mace
 	name = "makeshift mace"
 	result = /obj/item/weapon/tool/hammer/mace/makeshift
@@ -183,7 +196,7 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(/obj/item/stack/cable_coil, 2, "time" = 10)
-	)
+	  )
 
 /datum/craft_recipe/weapon/charge_hammer
 	name = "charge hammer"
