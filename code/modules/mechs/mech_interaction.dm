@@ -57,7 +57,7 @@
 		targeted_organ = user.targeted_organ
 	// You may attack the target with your exosuit FIST if you're malfunctioning.
 	var/failed = FALSE
-	var/prob_fail = rand(0, 15)
+	var/prob_fail = rand(0, 5)
 	if(prob(prob_fail))
 		to_chat(user, SPAN_DANGER("Your incompetence leads you to target the wrong thing with the exosuit!"))
 		failed = TRUE
@@ -115,7 +115,7 @@
 					ruser = user
 				temp_system.afterattack(A,ruser,adj,params)
 			if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
-				log_and_message_admins("used [temp_system] targetting [A]", user, src.loc)
+				log_attack("[user] used [temp_system] targetting [A]")
 			//Mech equipment subtypes can add further click delays
 			var/extra_delay = 0
 			if(ME != null)
