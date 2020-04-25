@@ -20,6 +20,7 @@
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
+	twohanded = FALSE
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -32,6 +33,7 @@
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
+	twohanded = FALSE
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -45,6 +47,7 @@
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
+	twohanded = FALSE
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
@@ -57,3 +60,4 @@
 /obj/item/weapon/gun/energy/plasmacutter/mounted/exosuit
 	use_external_power = TRUE
 	restrict_safety = TRUE
+	twohanded = FALSE
