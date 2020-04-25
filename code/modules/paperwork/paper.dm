@@ -20,8 +20,6 @@
 	body_parts_covered = HEAD
 	attack_verb = list("bapped")
 	matter = list(MATERIAL_BIOMATTER = 1)
-
-	// This line is for making the item correctly render as paper hat irregardless of icon_state as long the item_state did not change.
 	contained_sprite = TRUE
 
 	var/info		//What's actually written on the paper.
