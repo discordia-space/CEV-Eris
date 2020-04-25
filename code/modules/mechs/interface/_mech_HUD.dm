@@ -59,5 +59,5 @@
 			M.reset_view(src)
 		else
 			for(var/i in HUDneed) if(HUDneed[i]) M.client.screen -= HUDneed[i]
-			M.reset_HUD(M)
+			M.update_hud()
 		M.check_HUD()
