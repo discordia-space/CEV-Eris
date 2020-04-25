@@ -39,7 +39,7 @@
 				//if our target has hazard protection, then okay
 				var/hazard_protection = victim.getarmor(null, "bio")
 				if(!hazard_protection)
-					victim.apply_damage(CLONE_DAMAGE_PER_TICK, CLONE)
+					victim.apply_damage(CLONE_DAMAGE_PER_TICK, CLONE, used_weapon = "Biological")
 					if(prob(10))
 						playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
 					if(victim.health <= -victim.maxHealth)
