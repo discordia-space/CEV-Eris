@@ -1,11 +1,11 @@
 /mob/living/exosuit/apply_effect(var/effect = 0, var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
-	if(!effect || (blocked >= 100))
+	if(!effect || (armor_value >= 100))
 		return 0
 	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
 		if(effect > 0 && effecttype == IRRADIATE)
-			effect = max((1-(getarmor(null, IRRADIATE)/100))*effect/(blocked+1),0)
+			effect = max((1-(getarmor(null, IRRADIATE)/100))*effect/(armor_value+1),0)
 		var/mob/living/pilot = pick(pilots)
-		return pilot.apply_effect(effect, effecttype, blocked)
+		return pilot.apply_effect(effect, effecttype, armor_value)
 	if(!(effecttype in list(AGONY, STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
 		. = ..()
 
