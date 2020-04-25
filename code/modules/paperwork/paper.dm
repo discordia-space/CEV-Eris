@@ -21,6 +21,9 @@
 	attack_verb = list("bapped")
 	matter = list(MATERIAL_BIOMATTER = 1)
 
+	// This line is for making the item correctly render as paper hat irregardless of icon_state as long the item_state did not change.
+	contained_sprite = TRUE
+
 	var/info		//What's actually written on the paper.
 	var/info_links	//A different version of the paper which includes html links at fields and EOF
 	var/stamps		//The (text for the) stamps on the paper.
