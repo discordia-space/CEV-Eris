@@ -567,7 +567,7 @@ var/list/turret_icons
 	if(!L)
 		return TURRET_NOT_TARGET
 
-	if(!emagged && issilicon(L))	// Don't target silica
+	if(!emagged && (issilicon(L) && !isblitzshell(L)))	// Don't target silica
 		return TURRET_NOT_TARGET
 
 	if(L.stat && !emagged)		//if the perp is dead/dying, no need to bother really
@@ -599,7 +599,7 @@ var/list/turret_icons
 	if(isanimal(L) || issmall(L)) // Animals are not so dangerous
 		return check_anomalies ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
 
-	if(isxenomorph(L) || isalien(L)) // Xenos are dangerous
+	if(isxenomorph(L) || isalien(L) || isblitzshell(L)) // Xenos are dangerous
 		return check_anomalies ? TURRET_PRIORITY_TARGET	: TURRET_NOT_TARGET
 
 	if(ishuman(L))	//if the target is a human, analyze threat level
