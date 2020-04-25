@@ -143,7 +143,7 @@
 
 	H.apply_effects(5, 5)
 	for(var/i = 0, i < rand(1,3), i++)
-		H.apply_damage(rand(1,5), BRUTE, pick(parts))
+		H.apply_damage(rand(1,5), BRUTE, pick(parts), used_weapon = "Crashed by a train")
 
 	var/damage = rand(1,3)
 	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
