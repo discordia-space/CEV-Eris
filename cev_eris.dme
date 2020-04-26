@@ -2569,7 +2569,6 @@
 #include "maps\_map_shims.dm"
 #include "maps\CEVEris\_Eris_areas.dm"
 #include "maps\CEVEris\_map_data_Eris.dm"
-#include "maps\CEVEris\_CEV_Eris.dmm"
 #include "maps\CEVEris\datums\reports.dm"
 #include "maps\dungeons\crawler\crawler.dm"
 #include "maps\encounters\asteroid\asteroid.dm"
