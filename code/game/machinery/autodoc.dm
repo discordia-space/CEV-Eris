@@ -65,7 +65,7 @@
 	if (!occupant || locked)
 		return
 	if(autodoc_processor.active)
-		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait untill all operations would be done."))
+		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
 		return
 	for(var/obj/O in src)
 		O.forceMove(loc)

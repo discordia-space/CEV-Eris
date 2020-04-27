@@ -360,8 +360,8 @@
 			bodytemperature -= temperature_loss
 	else
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
+		if(istype(loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
 			loc_temp =  M.return_temperature()
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc

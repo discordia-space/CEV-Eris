@@ -2,19 +2,16 @@
 	name = "random mecha"
 	icon_state = "machine-red"
 	var/list/randsuits = list(
-		/obj/mecha/working/hoverpod = 5,
-		/obj/mecha/working/hoverpod/combatpod = 0.5,//Comes with weapons
-		/obj/mecha/working/hoverpod/shuttlepod = 6,
-		/obj/mecha/working/ripley = 5,
-		/obj/mecha/working/ripley/firefighter = 6,
-		/obj/mecha/working/ripley/deathripley = 0.5,//has a dangerous melee weapon
-		/obj/mecha/working/ripley/mining = 4,
-		/obj/mecha/medical/odysseus = 6,
-		/obj/mecha/medical/odysseus/loaded = 5,
-		/obj/mecha/combat/durand = 1,//comes unarmed
-		/obj/mecha/combat/gygax = 1.5,//comes unarmed
-		/obj/mecha/combat/marauder = 0.1,
-		/obj/mecha/combat/phazon = 0.6)
+//		/obj/mecha/working/hoverpod = 5,
+//		/obj/mecha/working/hoverpod/combatpod = 0.5,//Comes with weapons
+//		/obj/mecha/working/hoverpod/shuttlepod = 6,
+		/mob/living/exosuit/premade/powerloader = 5,
+//		/obj/mecha/working/ripley/firefighter = 6,
+//		/obj/mecha/working/ripley/deathripley = 0.5,//has a dangerous melee weapon
+		/mob/living/exosuit/premade/powerloader = 4,
+		/mob/living/exosuit/premade/light = 6,
+		/mob/living/exosuit/premade/combat = 1,//comes unarmed
+		)
 
 /obj/random/mecha/item_to_spawn()
 	return pickweight(randsuits)
@@ -49,40 +46,42 @@
 	icon_state = "tech-red"
 
 /obj/random/mecha_equipment/item_to_spawn()
-	return pickweight(list(/obj/item/mecha_parts/mecha_equipment/tool/ai_holder,
-		/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
-		/obj/item/mecha_parts/mecha_equipment/tool/cable_layer,
-		/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
-		/obj/item/mecha_parts/mecha_equipment/thruster = 2,
-		/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
-	 	/obj/item/mecha_parts/mecha_equipment/tool/drill,
-	 	/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
-	 	/obj/item/mecha_parts/mecha_equipment/tool/extinguisher,
-	 	/obj/item/mecha_parts/mecha_equipment/tool/rcd,
-	 	/obj/item/mecha_parts/mecha_equipment/teleporter,
-		/obj/item/mecha_parts/mecha_equipment/wormhole_generator,
-		/obj/item/mecha_parts/mecha_equipment/gravcatapult,
-		/obj/item/mecha_parts/mecha_equipment/armor_booster,
-		/obj/item/mecha_parts/mecha_equipment/armor_booster/anticcw_armor_booster,
-		/obj/item/mecha_parts/mecha_equipment/armor_booster/antiproj_armor_booster,
-		/obj/item/mecha_parts/mecha_equipment/repair_droid,
-		/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
-		/obj/item/mecha_parts/mecha_equipment/generator,
-		/obj/item/mecha_parts/mecha_equipment/generator/nuclear,
-		/obj/item/mecha_parts/mecha_equipment/tool/safety_clamp,
-		/obj/item/mecha_parts/mecha_equipment/tool/passenger,
-		/obj/item/mecha_parts/mecha_equipment/thruster,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/ion,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse,
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang))
+	return pickweight(list(
+//		/obj/item/mech_equipment/tool/ai_holder,
+		/obj/item/mech_equipment/sleeper,
+//		/obj/item/mech_equipment/cable_layer,
+//		/obj/item/mech_equipment/syringe_gun,
+//		/obj/item/mech_equipment/thruster = 2,
+		/obj/item/mech_equipment/clamp,
+		/obj/item/mech_equipment/drill,
+//		/obj/item/mech_equipment/drill/diamonddrill,
+		/obj/item/mech_equipment/mounted_system/extinguisher,
+		/obj/item/mech_equipment/mounted_system/rcd,
+		/obj/item/mech_equipment/catapult,
+//		/obj/item/mech_equipment/wormhole_generator,
+//		/obj/item/mech_equipment/gravcatapult,
+		/obj/item/robot_parts/robot_component/armour/exosuit,
+		/obj/item/robot_parts/robot_component/armour/exosuit/radproof,
+		/obj/item/robot_parts/robot_component/armour/exosuit/em,
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat,
+//		/obj/item/mech_equipment/repair_droid,
+//		/obj/item/mech_equipment/tesla_energy_relay,
+//		/obj/item/mech_equipment/generator,
+//		/obj/item/mech_equipment/generator/nuclear,
+//		/obj/item/mech_equipment/tool/safety_clamp,
+//		/obj/item/mech_equipment/tool/passenger,
+//		/obj/item/mech_equipment/thruster,
+		/obj/item/mech_equipment/mounted_system/taser/laser,
+		/obj/item/mech_equipment/mounted_system/taser/ion,
+//		/obj/item/mech_equipment/weapon/energy/pulse,
+		/obj/item/mech_equipment/mounted_system/taser,
+//		/obj/item/mech_equipment/weapon/ballistic/scattershot,
+//		/obj/item/mech_equipment/weapon/ballistic/lmg,
+//		/obj/item/mech_equipment/weapon/ballistic/missile_rack/flare,
+//		/obj/item/mech_equipment/weapon/ballistic/missile_rack/explosive,
+//		/obj/item/mech_equipment/weapon/ballistic/missile_rack/flashbang
+		)
+	)
 
 /obj/random/mecha/mecha_equipment/low_chance
 	name = "low chance random mecha equipment"

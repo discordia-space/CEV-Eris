@@ -57,8 +57,6 @@
 	switch(name)
 
 		if("equip")
-			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-				return TRUE
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
@@ -265,8 +263,6 @@
 		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return TRUE
-	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return TRUE
 	if(master)
 		var/obj/item/I = usr.get_active_hand()
 		if(I)
@@ -281,27 +277,21 @@
 	plane = HUD_PLANE
 
 /obj/screen/inventory/New(_name = "unnamed", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)//(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
-	src.name = _name
-//	src.screen_loc = _screen_loc
-	src.icon = _icon
-	src.slot_id = _slot_id
-	src.icon_state = _icon_state
-	src.parentmob = _parentmob
+	name = _name
+//	screen_loc = _screen_loc
+	icon = _icon
+	slot_id = _slot_id
+	icon_state = _icon_state
+	parentmob = _parentmob
 
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
-	if(!usr.can_click())
-		return TRUE
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return TRUE
-	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return TRUE
+	if(!usr.can_click()) return TRUE
+	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened) return TRUE
 	switch(name)
-		if("hand")
-			usr:swap_hand()
-		else
-			usr.attack_ui(slot_id)
+		if("hand") usr:swap_hand()
+		else usr.attack_ui(slot_id)
 	return TRUE
 
 /obj/screen/inventory/hand
@@ -309,24 +299,22 @@
 
 /obj/screen/inventory/hand/New()
 	..()
-	ovrls["act_hand"] += new /image/no_recolor (icon = src.icon, icon_state ="act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]")
+	ovrls["act_hand"] += new /image/no_recolor (icon = icon, icon_state ="act_hand[slot_id==slot_l_hand ? "-l" : "-r"]")
 	update_icon()
 
 /obj/screen/inventory/hand/Click()
 	var/mob/living/carbon/C = parentmob
-	if (src.slot_id == slot_l_hand)
-		C.activate_hand("l")
-	else
-		C.activate_hand("r")
+	if (slot_id == slot_l_hand) C.activate_hand("l")
+	else C.activate_hand("r")
 
 /obj/screen/inventory/hand/update_icon()
-	src.overlays -= ovrls["act_hand"]
-	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
-		src.overlays += ovrls["act_hand"]
-/*	if (src.slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
-		src.icon_state = "act_hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"
+	overlays -= ovrls["act_hand"]
+	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand))
+		overlays += ovrls["act_hand"]
+/*	if (slot_id == (parentmob.hand ? slot_l_hand : slot_r_hand)) // if display left
+		icon_state = "act_hand[slot_id==slot_l_hand ? "-l" : "-r"]"
 	else
-		src.icon_state = "hand[src.slot_id==slot_l_hand ? "-l" : "-r"]"*/
+		icon_state = "hand[slot_id==slot_l_hand ? "-l" : "-r"]"*/
 //--------------------------------------------------inventory end---------------------------------------------------------
 
 //--------------------------------------------------health---------------------------------------------------------
@@ -339,18 +327,17 @@
 
 /obj/screen/health/New()
 	..()
-	ovrls["health0"] += new /image (icon = src.icon, icon_state ="health0")
-	ovrls["health1"] += new /image/no_recolor(icon = src.icon, icon_state ="health1")
-	ovrls["health2"] += new /image/no_recolor(icon = src.icon, icon_state ="health2")
-	ovrls["health3"] += new /image/no_recolor(icon = src.icon, icon_state ="health3")
-	ovrls["health4"] += new /image/no_recolor(icon = src.icon, icon_state ="health4")
-	ovrls["health5"] += new /image/no_recolor(icon = src.icon, icon_state ="health5")
-	ovrls["health6"] += new /image/no_recolor(icon = src.icon, icon_state ="health6")
-	ovrls["health7"] += new /image(icon = src.icon, icon_state ="health7")
+	ovrls["health0"] += new/image(icon = icon, icon_state ="health0")
+	ovrls["health1"] += new/image/no_recolor(icon = icon, icon_state ="health1")
+	ovrls["health2"] += new/image/no_recolor(icon = icon, icon_state ="health2")
+	ovrls["health3"] += new/image/no_recolor(icon = icon, icon_state ="health3")
+	ovrls["health4"] += new/image/no_recolor(icon = icon, icon_state ="health4")
+	ovrls["health5"] += new/image/no_recolor(icon = icon, icon_state ="health5")
+	ovrls["health6"] += new/image/no_recolor(icon = icon, icon_state ="health6")
+	ovrls["health7"] += new/image(icon = icon, icon_state ="health7")
 	update_icon()
 
 /obj/screen/health/Process()
-	//var/mob/living/carbon/human/H = parentmob
 	update_icon()
 
 /obj/screen/health/update_icon()
@@ -1014,8 +1001,6 @@ obj/screen/fire/DEADelize()
 	screen_loc = "8,2"
 
 /obj/screen/equip/Click()
-	if (istype(parentmob.loc,/obj/mecha)) // stops inventory actions in a mech
-		return TRUE
 	if(ishuman(parentmob))
 		var/mob/living/carbon/human/H = parentmob
 		H.quick_equip()

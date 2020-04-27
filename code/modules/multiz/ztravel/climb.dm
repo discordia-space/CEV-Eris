@@ -17,7 +17,7 @@
 	if (.)
 		if (isrobot(M))
 			return FALSE //Robots can't climb
-		else if (istype(M, /obj/mecha))
+		else if (istype(M, /mob/living/exosuit))
 			return FALSE //Mechas can't climb, for now.
 			//Todo future: add some kind of var or function to allow certain mecha to climb
 

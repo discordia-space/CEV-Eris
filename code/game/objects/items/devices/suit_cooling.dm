@@ -70,9 +70,9 @@
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
 	if (ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		if(istype(H.loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			return M.return_temperature()
+		if(istype(H.loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
+			return M.bodytemperature
 		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
 			return M.air_contents.temperature
