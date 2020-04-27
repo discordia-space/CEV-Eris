@@ -12,7 +12,7 @@
 		if (isValidAttackTarget(O))
 			filteredTargets += O
 
-	for (var/obj/mecha/M in mechas_list)
+	for (var/mob/living/exosuit/M in mechas_list)
 		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
 			filteredTargets += M
 
@@ -50,9 +50,9 @@
 			return
 		return 1
 
-	if (istype(O, /obj/mecha))
-		var/obj/mecha/M = O
-		return isValidAttackTarget(M.occupant)
+	if (istype(O, /mob/living/exosuit))
+		var/mob/living/exosuit/M = O
+		return isValidAttackTarget(M.pilots[1])
 
 /mob/living/carbon/superior_animal/proc/destroySurroundings()
 	if (prob(break_stuff_probability))

@@ -26,7 +26,7 @@
 				/obj/item/weapon/circuitboard/mecha/main = 1,
 				/obj/item/weapon/circuitboard/mecha/peripherals = 1,
 				/obj/item/weapon/circuitboard/mecha/targeting = 1,
-				/obj/item/weapon/circuitboard/mecha_control = 2,
+//				/obj/item/weapon/circuitboard/mecha_control = 2,
 				/obj/item/weapon/circuitboard/mechfab = 2,
 				/obj/item/weapon/circuitboard/med_data = 2,
 				/obj/item/weapon/circuitboard/message_monitor = 1,

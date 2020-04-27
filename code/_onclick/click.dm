@@ -108,11 +108,11 @@
 
 
 
-	if(istype(loc, /obj/mecha))
+	if(istype(loc, /mob/living/exosuit))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
 			return
-		var/obj/mecha/M = loc
-		return M.click_action(A, src)
+		var/mob/living/exosuit/M = loc
+		return M.ClickOn(A)//, src)
 
 	if(restrained())
 		setClickCooldown(10)

@@ -16,8 +16,7 @@
 		recreate_flag = TRUE
 
 	if(recreate_flag)
-		H.destroy_HUD()
-		H.create_HUD()
+		H.reset_HUD()
 
 
 	H.show_HUD()
@@ -138,11 +137,7 @@
 
 
 /mob/living/carbon/human/create_HUD()
-
-	create_HUDinventory()
-	create_HUDneed()
-	create_HUDfrippery()
-	create_HUDtech()
+	. = ..()
 	recolor_HUD(src.client.prefs.UI_style_color, src.client.prefs.UI_style_alpha)
 	return
 

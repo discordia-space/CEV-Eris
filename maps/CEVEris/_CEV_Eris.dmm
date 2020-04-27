@@ -52270,10 +52270,6 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/weapon/circuitboard/mecha_control{
-	pixel_x = 1;
-	pixel_y = -1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -55559,7 +55555,6 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
 "ctS" = (
-/obj/machinery/computer/mecha,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
 "ctT" = (
@@ -60351,7 +60346,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cEw" = (
-/obj/machinery/computer/mecha,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/command/bridge)
 "cEx" = (

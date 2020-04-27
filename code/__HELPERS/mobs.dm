@@ -5,9 +5,6 @@
 	if(load && isliving(load))
 		return load
 
-/obj/mecha/get_mob()
-	return occupant
-
 /obj/vehicle/train/get_mob()
 	return buckled_mob
 
