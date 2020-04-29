@@ -40,7 +40,7 @@
 	var/step_in = 10 //make a step in step_in/10 sec.
 	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
-	var/obj/item/mecha_parts/mecha_equipment/thruster/thruster = null
+	var/obj/item/mech_equipment/thruster/thruster = null
 
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"energy"=1,"bomb"=1)
@@ -83,7 +83,7 @@
 	var/noexplode = 0 // Used for cases where an exosuit is spawned and turned into wreckage
 
 	var/list/equipment = new
-	var/obj/item/mecha_parts/mecha_equipment/selected
+	var/obj/item/mech_equipment/selected
 	var/max_equip = 4
 	var/datum/events/events
 
@@ -141,7 +141,7 @@
 
 	if(wreckage)
 		var/obj/effect/decal/mecha_wreckage/WR = new wreckage(loc)
-		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		for(var/obj/item/mech_equipment/E in equipment)
 			if(E.salvageable && prob(30))
 				WR.crowbar_salvage += E
 				E.forceMove(WR)
@@ -160,7 +160,7 @@
 			internal_tank.forceMove(WR)
 			internal_tank = null
 	else
-		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		for(var/obj/item/mech_equipment/E in equipment)
 			E.detach(loc)
 			E.destroy()
 
@@ -242,7 +242,7 @@
 	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src),0)
 
-/obj/mecha/proc/do_after(delay as num)
+/obj/mecha/proc/do_after_mech(delay as num)
 	sleep(delay)
 	if(src)
 		return 1
@@ -298,7 +298,7 @@
 			to_chat(user, "It's falling apart.")
 	if(equipment && equipment.len)
 		to_chat(user, "It's equipped with:")
-		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		for(var/obj/item/mech_equipment/ME in equipment)
 			to_chat(user, "\icon[ME] [ME]")
 
 
@@ -491,7 +491,7 @@
 
 
 
-		if(do_after(step_in))
+		if(do_after_mech(step_in))
 			can_move = 1
 		return 1
 	return 0
@@ -619,7 +619,7 @@ assassination method if you time it right*/
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
 		if(ignore_threshold || src.health*100/initial(src.health)<src.internal_damage_threshold)
-			var/obj/item/mecha_parts/mecha_equipment/destr = safepick(equipment)
+			var/obj/item/mech_equipment/destr = safepick(equipment)
 			if(destr)
 				destr.destroy()
 	return
@@ -716,7 +716,7 @@ assassination method if you time it right*/
 
 /obj/mecha/proc/start_booster_cooldown(is_melee)
 
-	for(var/obj/item/mecha_parts/mecha_equipment/armor_booster/B in equipment) //Ideally this would be done by the armor booster itself; attempts weren't great for performance.
+	for(var/obj/item/mech_equipment/armor_booster/B in equipment) //Ideally this would be done by the armor booster itself; attempts weren't great for performance.
 		if(B.melee == is_melee && B.equip_ready)
 			B.set_ready_state(0)
 			B.do_after_cooldown()
@@ -768,7 +768,7 @@ assassination method if you time it right*/
 /obj/mecha/hitby(atom/movable/A as mob|obj)
 	..()
 	src.log_message("Hit by [A].",1)
-	if(istype(A, /obj/item/mecha_parts/mecha_tracking))
+	if(istype(A, /obj/item/mech_component/mecha_tracking))
 		A.forceMove(src)
 		src.visible_message("The [A] fastens firmly to [src].")
 		return
@@ -787,7 +787,7 @@ assassination method if you time it right*/
 	return
 
 /obj/mecha/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damage_type == HALLOSS && !(src.r_deflect_coeff > 1))
+	if(Proj.damage_types[HALLOSS] && !(src.r_deflect_coeff > 1))
 		use_power(Proj.agony * 5)
 
 	src.log_message("Hit by projectile. Type: [Proj.name]([Proj.check_armour]).",1)
@@ -801,7 +801,7 @@ assassination method if you time it right*/
 		var/ignore_threshold
 		if(istype(Proj, /obj/item/projectile/beam/pulse))
 			ignore_threshold = 1
-		src.hit_damage(Proj.damage, Proj.check_armour, is_melee=0)
+		src.hit_damage(Proj.get_structure_damage(), Proj.check_armour, is_melee=0)
 		if(prob(25)) spark_system.start()
 		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
 
@@ -809,7 +809,7 @@ assassination method if you time it right*/
 		if(Proj.penetrating)
 			var/distance = get_dist(Proj.starting, get_turf(loc))
 			var/hit_occupant = 1 //only allow the occupant to be hit once
-			for(var/i in 1 to min(Proj.penetrating, round(Proj.damage/15)))
+			for(var/i in 1 to min(Proj.penetrating, round(Proj.get_total_damage()/15)))
 				if(src.occupant && hit_occupant && prob(20))
 					Proj.attack_mob(src.occupant, distance)
 					hit_occupant = 0
@@ -985,8 +985,8 @@ assassination method if you time it right*/
 		if(ABORT_CHECK)
 			return
 
-	if(istype(I, /obj/item/mecha_parts/mecha_equipment))
-		var/obj/item/mecha_parts/mecha_equipment/E = I
+	if(istype(I, /obj/item/mech_equipment))
+		var/obj/item/mech_equipment/E = I
 		spawn()
 			if(E.can_attach(src))
 				user.drop_item()
@@ -1029,7 +1029,7 @@ assassination method if you time it right*/
 				to_chat(user, "There's already a powercell installed.")
 		return
 
-	else if(istype(I, /obj/item/mecha_parts/mecha_tracking))
+	else if(istype(I, /obj/item/mech_component/mecha_tracking))
 		user.drop_from_inventory(I)
 		I.forceMove(src)
 		user.visible_message("[user] attaches [I] to [src].", "You attach [I] to [src]")
@@ -1266,7 +1266,7 @@ assassination method if you time it right*/
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
-	if(H && H.client && H in range(1))
+	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -1331,7 +1331,7 @@ assassination method if you time it right*/
 		return
 
 	if(isAI(mob_container))
-		var/obj/item/mecha_parts/mecha_equipment/tool/ai_holder/AH = locate() in src
+		var/obj/item/mech_equipment/tool/ai_holder/AH = locate() in src
 		if(AH)
 			AH.go_out()
 
@@ -1598,7 +1598,7 @@ assassination method if you time it right*/
 		output += {"<div class='wr'>
 						<div class='header'>Equipment</div>
 						<div class='links'>"}
-		for(var/obj/item/mecha_parts/mecha_equipment/W in equipment)
+		for(var/obj/item/mech_equipment/W in equipment)
 			output += "[W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
 		output += "<b>Available equipment slots:</b> [max_equip-equipment.len]"
 		output += "</div></div>"
@@ -1608,7 +1608,7 @@ assassination method if you time it right*/
 	if(!equipment.len)
 		return
 	var/output = "<b>Equipment:</b><div style=\"margin-left: 15px;\">"
-	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
+	for(var/obj/item/mech_equipment/MT in equipment)
 		output += "<div id='\ref[MT]'>[MT.get_equip_info()]</div>"
 	output += "</div>"
 	return output
@@ -1653,7 +1653,7 @@ assassination method if you time it right*/
 	if(!id_card || !user) return
 
 	var/maint_options = "<a href='?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>"
-	if (locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in contents)
+	if (locate(/obj/item/mech_equipment/tool/passenger) in contents)
 		maint_options += "<a href='?src=\ref[src];remove_passenger=1;user=\ref[user]'>Remove Passenger</a>"
 	if (src.dna)
 		maint_options += "<a href='?src=\ref[src];maint_reset_dna=1;user=\ref[user]'>Revert DNA-Lock</a>"
@@ -1718,7 +1718,7 @@ assassination method if you time it right*/
 	if(href_list["select_equip"])
 		if(usr != src.occupant)	return
 		usr << sound('sound/mecha/UI_SCI-FI_Tone_10_stereo.ogg',channel=4, volume=100);
-		var/obj/item/mecha_parts/mecha_equipment/equip = m_filter.getObj("select_equip")
+		var/obj/item/mech_equipment/equip = m_filter.getObj("select_equip")
 		if(equip)
 			src.selected = equip
 			src.occupant_message("You switch to [equip]")
@@ -1832,7 +1832,7 @@ assassination method if you time it right*/
 	if(href_list["remove_passenger"] && state >= 1)
 		var/mob/user = m_filter.getMob("user")
 		var/list/passengers = list()
-		for (var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P in contents)
+		for (var/obj/item/mech_equipment/tool/passenger/P in contents)
 			if (P.occupant)
 				passengers["[P.occupant]"] = P
 
@@ -1845,11 +1845,11 @@ assassination method if you time it right*/
 		if (!pname)
 			return
 
-		var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P = passengers[pname]
+		var/obj/item/mech_equipment/tool/passenger/P = passengers[pname]
 		var/mob/occupant = P.occupant
 
 		user.visible_message(SPAN_NOTICE("\The [user] begins opening the hatch on \the [P]..."), SPAN_NOTICE("You begin opening the hatch on \the [P]..."))
-		if (!do_after(user, 40, needhand=0))
+		if (!do_after(user, 40, needhand = 0))
 			return
 
 		user.visible_message(SPAN_NOTICE("\The [user] opens the hatch on \the [P] and removes [occupant]!"), SPAN_NOTICE("You open the hatch on \the [P] and remove [occupant]!"))
@@ -1909,7 +1909,7 @@ assassination method if you time it right*/
 		src.log_message("Recalibration of coordination system started.")
 		usr << sound('sound/mecha/UI_SCI-FI_Compute_01_Wet_stereo.ogg',channel=4, volume=100)
 		var/T = src.loc
-		if(do_after(100))
+		if(do_after(10 SECONDS))
 			if(T == src.loc)
 				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
 				src.occupant_message("<font color='blue'>Recalibration successful.</font>")
@@ -2178,7 +2178,7 @@ assassination method if you time it right*/
 //This does an individual check for each piece of equipment on the exosuit, and removes it if
 //this probability passes a check
 /obj/mecha/proc/lose_equipment(var/probability)
-	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+	for(var/obj/item/mech_equipment/E in equipment)
 		if (prob(probability))
 			E.detach(loc)
 			qdel(E)
@@ -2216,3 +2216,26 @@ assassination method if you time it right*/
 		setInternalDamage(MECHA_INT_TANK_BREACH)
 	if (prob(probability))
 		setInternalDamage(MECHA_INT_CONTROL_LOST)
+
+#include "mech_bay.dm"
+#include "mech_sensor.dm"
+#include "mecha_construction_paths.dm"
+#include "mecha_control_console.dm"
+#include "mecha_parts.dm"
+#include "mecha_wreckage.dm"
+#include "combat/combat.dm"
+#include "combat/durand.dm"
+#include "combat/gygax.dm"
+#include "combat/marauder.dm"
+#include "combat/phazon.dm"
+#include "equipment/mecha_equipment.dm"
+#include "equipment/tools/ai_holder.dm"
+#include "equipment/tools/medical_tools.dm"
+#include "equipment/tools/thruster.dm"
+#include "equipment/tools/tools.dm"
+#include "equipment/weapons/weapons.dm"
+#include "medical/medical.dm"
+#include "medical/odysseus.dm"
+#include "working/hoverpod.dm"
+#include "working/ripley.dm"
+#include "working/working.dm"

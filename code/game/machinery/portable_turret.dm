@@ -399,23 +399,24 @@ var/list/turret_icons
 					desc = "A hatch on the bottom of the access panel is opened, exposing the circuitry inside."
 
 		else if((QUALITY_WIRE_CUTTING in I.tool_qualities) && (debugopen))
-			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_VERY_HARD,  required_stat = STAT_MEC))
-				if(overridden)
-					to_chat(user, SPAN_WARNING("The security protocol override has already been disconnected!"))
-				else if(TOOL_USE_SUCCESS)
-					to_chat(user, SPAN_WARNING("You disconnect the turret's security protocol override!"))
-					overridden = 1
-					req_one_access.Cut()
-					req_one_access = list(access_occupy)
-				else if(TOOL_USE_FAIL)
-					user.visible_message(
-						SPAN_DANGER("[user] cut the wrong wire and tripped the security protocol on the [src]! Run!"),
-						SPAN_DANGER("You accidentally cut the wrong wire, tripping the security protocol! Run!")
-					)
-					enabled = 1
-					hackfail = 1
-					sleep(300)
-					hackfail = 0
+			if(overridden)
+				to_chat(user, SPAN_WARNING("The security protocol override has already been disconnected!"))
+			else
+				switch(I.use_tool_extended(user, src, WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_VERY_HARD,  required_stat = STAT_MEC))
+					if(TOOL_USE_SUCCESS)
+						to_chat(user, SPAN_WARNING("You disconnect the turret's security protocol override!"))
+						overridden = 1
+						req_one_access.Cut()
+						req_one_access = list(access_occupy)
+					if(TOOL_USE_FAIL)
+						user.visible_message(
+							SPAN_DANGER("[user] cut the wrong wire and tripped the security protocol on the [src]! Run!"),
+							SPAN_DANGER("You accidentally cut the wrong wire, tripping the security protocol! Run!")
+						)
+						enabled = 1
+						hackfail = 1
+						sleep(300)
+						hackfail = 0
 
 	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
@@ -554,7 +555,7 @@ var/list/turret_icons
 /obj/machinery/porta_turret/proc/assess_living(var/mob/living/L)
 	var/obj/item/weapon/card/id/id_card = L.GetIdCard()
 
-	if(id_card && id_card.registered_name in registered_names)
+	if(id_card && (id_card.registered_name in registered_names))
 		return TURRET_NOT_TARGET
 
 	if(!istype(L))
@@ -566,7 +567,7 @@ var/list/turret_icons
 	if(!L)
 		return TURRET_NOT_TARGET
 
-	if(!emagged && issilicon(L))	// Don't target silica
+	if(!emagged && (issilicon(L) && !isblitzshell(L)))	// Don't target silica
 		return TURRET_NOT_TARGET
 
 	if(L.stat && !emagged)		//if the perp is dead/dying, no need to bother really
@@ -598,7 +599,7 @@ var/list/turret_icons
 	if(isanimal(L) || issmall(L)) // Animals are not so dangerous
 		return check_anomalies ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
 
-	if(isxenomorph(L) || isalien(L)) // Xenos are dangerous
+	if(isxenomorph(L) || isalien(L) || isblitzshell(L)) // Xenos are dangerous
 		return check_anomalies ? TURRET_PRIORITY_TARGET	: TURRET_NOT_TARGET
 
 	if(ishuman(L))	//if the target is a human, analyze threat level

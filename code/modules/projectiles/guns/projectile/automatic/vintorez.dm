@@ -19,18 +19,13 @@
 	penetration_multiplier = 1.2
 	damage_multiplier = 1.2
 	recoil_buildup = 8
-	silencer_type = /obj/item/weapon/silencer
 	one_hand_penalty = 15 //automatic rifle level
-
-	firemodes = list(
+	silenced = TRUE
+	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		FULL_AUTO_400
 		)
 
-//This comes with a preinstalled silencer
-/obj/item/weapon/gun/projectile/automatic/vintorez/Initialize()
-	.=..()
-	apply_silencer(new /obj/item/weapon/silencer/integrated(src), null)
 
 /obj/item/weapon/gun/projectile/automatic/vintorez/update_icon()
 	var/iconstring = initial(icon_state)

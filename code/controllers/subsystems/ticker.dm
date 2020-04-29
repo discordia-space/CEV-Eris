@@ -446,15 +446,10 @@ SUBSYSTEM_DEF(ticker)
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
 			to_chat(world, "[robolist]")
 
-	var/dronecount = 0
+
 
 	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
-
-		if(isdrone(robo))
-			dronecount++
-			continue
-
-		if(!robo.connected_ai)
+		if(!isdrone(robo) && !robo.connected_ai)
 			if(robo.stat != 2)
 				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>")
 			else
@@ -462,7 +457,7 @@ SUBSYSTEM_DEF(ticker)
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
-
+	var/dronecount = GLOB.drones.len
 	if(dronecount)
 		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 

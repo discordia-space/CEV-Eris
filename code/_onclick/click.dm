@@ -108,11 +108,11 @@
 
 
 
-	if(istype(loc, /obj/mecha))
+	if(istype(loc, /mob/living/exosuit))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
 			return
-		var/obj/mecha/M = loc
-		return M.click_action(A, src)
+		var/mob/living/exosuit/M = loc
+		return M.ClickOn(A)//, src)
 
 	if(restrained())
 		setClickCooldown(10)
@@ -137,7 +137,7 @@
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
 		if(W)
-			var/resolved = SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params) || W.resolve_attackby(A, src, params)
+			var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -156,7 +156,7 @@
 		if(A.Adjacent(src)) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params) || W.resolve_attackby(A, src, params)
+				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 				if(!resolved && A && W)
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else

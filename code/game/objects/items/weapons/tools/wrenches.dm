@@ -17,7 +17,7 @@
 	icon_state = "impro_wrench"
 	degradation = 4
 	force = WEAPON_FORCE_HARMLESS
-	tool_qualities = list(QUALITY_BOLT_TURNING = 20, QUALITY_HAMMERING = 10)
+	tool_qualities = list(QUALITY_BOLT_TURNING = 20, QUALITY_HAMMERING = 5)
 	matter = list(MATERIAL_STEEL = 1)
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 

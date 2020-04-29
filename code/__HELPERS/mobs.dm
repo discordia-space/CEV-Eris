@@ -5,9 +5,6 @@
 	if(load && isliving(load))
 		return load
 
-/obj/mecha/get_mob()
-	return occupant
-
 /obj/vehicle/train/get_mob()
 	return buckled_mob
 
@@ -117,7 +114,6 @@
 			return "health0"
 		else
 			return "health-100"
-	return "0"
 
 /*
 Proc for attack log creation, because really why not

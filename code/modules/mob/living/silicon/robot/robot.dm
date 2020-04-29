@@ -21,7 +21,7 @@
 	var/crisis_override = 0
 	var/integrated_light_power = 6
 	var/datum/wires/robot/wires
-
+	var/ai_access = TRUE
 	var/power_efficiency = 1.0
 
 
@@ -479,7 +479,7 @@
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
 	..(Proj)
-	if(prob(75) && Proj.damage > 0) spark_system.start()
+	if(prob(75) && Proj.get_structure_damage() > 0) spark_system.start()
 	return 2
 
 /mob/living/silicon/robot/attackby(obj/item/I, mob/user)
@@ -1163,8 +1163,6 @@
 				to_chat(user, "You fail to hack [src]'s interface.")
 				to_chat(src, "Hack attempt detected.")
 			return 1
-		return
-
 
 /mob/living/silicon/robot/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))

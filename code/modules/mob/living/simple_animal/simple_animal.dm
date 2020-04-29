@@ -324,7 +324,7 @@
 	if(!Proj || Proj.nodamage)
 		return
 
-	adjustBruteLoss(Proj.damage)
+	adjustBruteLoss(Proj.get_total_damage())
 	return 0
 
 /mob/living/simple_animal/rejuvenate()
@@ -445,9 +445,9 @@
 		var/mob/living/L = target_mob
 		if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
 			return (0)
-	if (istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		if (M.occupant)
+	if (istype(target_mob, /mob/living/exosuit))
+		var/mob/living/exosuit/M = target_mob
+		if (M.pilots[1])
 			return (0)
 	if (istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob

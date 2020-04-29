@@ -53,6 +53,8 @@
 
 #define isdrone(A) istype(A, /mob/living/silicon/robot/drone)
 
+#define isblitzshell(A) istype(A, /mob/living/silicon/robot/drone/blitzshell)
+
 //-----------------Objects
 #define ismovable(A) istype(A, /atom/movable)
 
@@ -63,6 +65,8 @@
 #define isitem(A) istype(A, /obj/item)
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
+
+#define isgun(A) istype(A, /obj/item/weapon/gun)
 
 #define istool(A) istype(A, /obj/item/weapon/tool)
 

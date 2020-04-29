@@ -132,7 +132,7 @@
 
 	return priv_syndicate_access.Copy()
 
-/var/list/priv_region_access
+/var/list/list/priv_region_access
 /proc/get_region_accesses(var/code)
 	if(code == ACCESS_REGION_ALL)
 		return get_all_station_access()

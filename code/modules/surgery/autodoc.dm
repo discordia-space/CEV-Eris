@@ -1,12 +1,12 @@
 #define AUTODOC_DAMAGE          1
-#define AUTODOC_EMBED_OBJECT	1 << 1
-#define AUTODOC_FRACTURE 		1 << 2
-#define AUTODOC_IB				1 << 3
-#define AUTODOC_OPEN_WOUNDS		1 << 4
+#define AUTODOC_EMBED_OBJECT	(1 << 1)
+#define AUTODOC_FRACTURE 		(1 << 2)
+#define AUTODOC_IB				(1 << 3)
+#define AUTODOC_OPEN_WOUNDS		(1 << 4)
 
-#define AUTODOC_BLOOD			1 << 5
-#define AUTODOC_TOXIN			1 << 6
-#define AUTODOC_DIALYSIS		1 << 7
+#define AUTODOC_BLOOD			(1 << 5)
+#define AUTODOC_TOXIN			(1 << 6)
+#define AUTODOC_DIALYSIS		(1 << 7)
 #define AUTODOC_DIALYSIS_AMOUNT 5
 
 #define AUTODOC_SCAN_COST           200
@@ -32,7 +32,7 @@
 
 /datum/autodoc
 	var/list/scanned_patchnotes = list()
-	var/list/picked_patchnotes = list()
+	var/list/datum/autodoc_patchnote/picked_patchnotes = list()
 	var/obj/holder
 	var/template_name = "autodoc.tmpl"
 

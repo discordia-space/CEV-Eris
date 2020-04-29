@@ -128,7 +128,8 @@
 			if(QUALITY_DIGGING in I.tool_qualities)
 				attackby(I,R)
 
-	else if(istype(AM,/obj/mecha))
-		var/obj/mecha/M = AM
-		if(istype(M.selected,/obj/item/mecha_parts/mecha_equipment/tool/drill))
-			M.selected.action(src)
+	else if(istype(AM,/mob/living/exosuit))
+		var/mob/living/exosuit/M = AM
+		if(istype(M.selected_system, /obj/item/mech_equipment/drill))
+			var/obj/item/mech_equipment/drill/D = M.selected_system
+			D.afterattack(src)

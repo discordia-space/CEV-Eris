@@ -290,7 +290,7 @@
 /proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1.0, hands = TRUE)
 	if (!M || !istype(M) || siemens_coeff == 0)
 		return
-	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
+	if(istype(M.loc, /mob/living/exosuit))	return 0	//feckin mechs are dumb
 	var/area/source_area
 	if(istype(power_source,/area))
 		source_area = power_source

@@ -79,7 +79,7 @@
 	health = 400
 
 /obj/item/projectile/neurotox
-	damage = 30
+	damage_types = list(BRUTE = 30)
 	icon_state = "toxin"
 
 /mob/living/simple_animal/hostile/alien/death()

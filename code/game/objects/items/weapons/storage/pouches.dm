@@ -179,7 +179,8 @@
 		/obj/item/weapon/pen,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/weapon/hatton_magazine,
-		/obj/item/ammo_casing/rocket
+		/obj/item/ammo_casing/rocket,
+		/obj/item/ammo_casing/grenade
 		)
 
 /obj/item/weapon/storage/pouch/tubular/vial
@@ -221,7 +222,8 @@
 		/obj/item/weapon/gun/projectile/automatic/molly,
 		/obj/item/weapon/gun/projectile/paco,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn, //short enough to fit in
-		/obj/item/weapon/gun/launcher/syringe
+		/obj/item/weapon/gun/launcher/syringe,
+		/obj/item/weapon/gun/energy/plasma/brigador
 		)
 
 	sliding_behavior = TRUE

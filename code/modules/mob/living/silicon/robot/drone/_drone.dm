@@ -60,6 +60,8 @@ var/list/mob_hat_cache = list()
 	var/hat_y_offset = -13
 	var/eyecolor = "blue"
 	var/armguard = ""
+	var/communication_channel = LANGUAGE_DRONE
+	var/station_drone = TRUE
 
 	holder_type = /obj/item/weapon/holder/drone
 
@@ -94,6 +96,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
+	GLOB.drones.Remove(src)
 	. = ..()
 
 /mob/living/silicon/robot/drone/construction
@@ -130,6 +133,9 @@ var/list/mob_hat_cache = list()
 	//choose_overlay()
 	updateicon()
 
+	if(station_drone)
+		GLOB.drones |= src
+
 /mob/living/silicon/robot/drone/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = "d"
@@ -155,7 +161,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/updateicon()
 
 	overlays.Cut()
-	if(stat == CONSCIOUS)
+	if(stat == CONSCIOUS && eyecolor)
 		overlays += "eyes-drone[eyecolor]"
 
 	if(armguard)

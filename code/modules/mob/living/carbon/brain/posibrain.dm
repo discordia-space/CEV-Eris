@@ -38,7 +38,7 @@
 		return
 
 	var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
-	if(!G.assess_candidate(user, check_respawn_timer=FALSE))
+	if(!G.assess_candidate(user, check_respawn_timer = FALSE))
 		return
 	var/response = alert(user, "Are you sure you wish to possess this [src]?", "Possess [src]", "Yes", "No")
 	if(response == "Yes")

@@ -37,8 +37,7 @@
 	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
 
-	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
+	var/list/damage_types = list(BRUTE = 10) //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS -> int are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = ARMOR_BULLET //Defines what armor to use when it hits things. Full list could be found at defines\damage_organs.dm
@@ -73,15 +72,42 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+
 /obj/item/projectile/is_hot()
-	if (damage_type == BURN)
-		return damage * heat
+	if (damage_types[BURN])
+		return damage_types[BURN] * heat
+
+/obj/item/projectile/proc/get_total_damage()
+	var/val = 0
+	for(var/i in damage_types)
+		val += damage_types[i]
+	return val
+
+/obj/item/projectile/proc/is_halloss()
+	for(var/i in damage_types)
+		if(i != HALLOSS)
+			return FALSE
+	return TRUE
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
-	damage = initial(damage) * newmult
+	for(var/i in damage_types)
+		damage_types[i] *= newmult
 
 /obj/item/projectile/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
+
+/obj/item/projectile/multiply_projectile_step_delay(newmult)
+	if(!hitscan)
+		step_delay = initial(step_delay) * newmult
+
+/obj/item/projectile/proc/adjust_damages(var/list/newdamages)
+	if(!newdamages.len)
+		return
+	for(var/damage_type in newdamages)
+		if(damage_type == IRRADIATE)
+			irradiate += damage_type[IRRADIATE]
+			continue
+		damage_types[damage_type] += newdamages[damage_type]
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
 	if(!isliving(target))	return 0
@@ -100,14 +126,12 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_type != BRUTE)
+	if(!embed || damage_types[BRUTE] != 0)
 		return FALSE
 	return TRUE
 
 /obj/item/projectile/proc/get_structure_damage()
-	if(damage_type == BRUTE || damage_type == BURN)
-		return damage
-	return FALSE
+	return damage_types[BRUTE] + damage_types[BURN]
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)
@@ -557,7 +581,7 @@
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
-		if(damage > 10 && damage_type == BRUTE)
+		if(damage_types[BRUTE] > 10)
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
@@ -572,7 +596,7 @@
 
 	return TRUE
 
-/obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced=0)
+/obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
 	if(A == src)
 		return FALSE
 	if(A == firer)
@@ -595,7 +619,7 @@
 			var/obj/item/weapon/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
 				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
-				if(Bump(G.affecting, forced=1))
+				if(Bump(G.affecting, TRUE))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
 
 			passthrough = !attack_mob(M, distance)
@@ -774,13 +798,13 @@
 	xo = null
 	var/result = 0 //To pass the message back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area)
+/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, forced)
 	if(A == firer)
 		loc = A.loc
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return
-	if(isliving(A) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
+	if(isliving(A) || istype(A, /mob/living/exosuit) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1

@@ -122,7 +122,7 @@
 	icon_state = "pulse1_bl"
 	var/life = 20
 
-	Bump(atom/A)
+	Bump(atom/A, var/forced)
 		A.bullet_act(src, def_zone)
 		src.life -= 10
 		if(life <= 0)

@@ -1010,8 +1010,6 @@ proc/is_hot(obj/item/W as obj)
 		else
 			return 0
 
-	return 0
-
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O as obj)
 	if (!O) return 0

@@ -189,6 +189,10 @@ abbr {
     color: #ee0000;
 }
 
+.unimportant {
+    color: #808080;
+}
+
 .idle {
     color: #272727;
 }
@@ -765,7 +769,7 @@ th.bot {
     width: 75px;
 }
 .wideTable tr:nth-child(odd) {
-    background-color: #272727;
+	background-color: #272727;
 }
 
 /* Candystriped rows for tables */
@@ -787,27 +791,24 @@ th.bot {
 
 /* [Tooltips of description] */
 .sciTechTreeIcon span {
-	visibility		: hidden;
-	opacity			: 0;
-	transition		: opacity 0.3s linear;
+	display			: none;
 	padding			: 10px; 
 	margin-left		: 8px; 
 	width			: 200px;
 	z-index			: 999;
+	background      : #717177;
+	border          : 4px solid #666;
+	border-radius   : 0px 5px;
+	color           : #d1d1dd;
+	text-align      : center;
+	white-space     : pre-line;
 }
 .sciTechTreeIcon:hover span {
-	visibility		: visible;
-	opacity			: 1;
+	display			: block;
 	position		: absolute;
-	background		: #717177;
-	border			: 4px solid #666;
-	border-radius	: 5px;
-	color			: #d1d1dd;
-	text-align		: center;
-	white-space		: pre-line;
 }
 img.sciTechTreeIconToolTip {
-    background-image: url(science.png);
+	background-image: url(science.png);
 }
 /* [/Tooltips of description] */
 .sciTechTreeIcon {
@@ -831,7 +832,7 @@ img.sciTechTreeIconToolTip {
 
 .sciTechResearched:hover {
     background: #3fB44c;
-}
+}	
 
 .sciTechCantResearch {
 	background: #942f3c;

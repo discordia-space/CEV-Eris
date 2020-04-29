@@ -125,10 +125,10 @@
 				open()
 		return
 
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
+	if(istype(AM, /mob/living/exosuit))
+		var/mob/living/exosuit/mecha = AM
 		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+			if(mecha.pilots.len && (allowed(mecha.pilots[1]) || check_access_list(mecha.saved_access)))
 				open()
 			else
 				do_animate("deny")
@@ -171,12 +171,11 @@
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
-			switch (Proj.damage_type)
-				if(BRUTE)
-					new /obj/item/stack/material/steel(src.loc, 2)
-					new /obj/item/stack/rods(loc, 3)
-				if(BURN)
-					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
+			if(Proj.damage_types[BRUTE] > Proj.damage_types[BURN])
+				new /obj/item/stack/material/steel(src.loc, 2)
+				new /obj/item/stack/rods(loc, 3)
+			else
+				new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 			qdel(src)
 
 	if(damage)

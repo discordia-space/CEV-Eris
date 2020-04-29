@@ -260,13 +260,16 @@
 	else
 		var/loc_temp = T0C
 		var/loc_pressure = 0
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
+/*
+		if(istype(loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
 			loc_temp =  M.return_temperature()
 			loc_pressure =  M.return_pressure()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
-			loc_pressure = loc:air_contents.return_pressure()
+*/
+		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
+			loc_temp = M.air_contents.temperature
+			loc_pressure = M.air_contents.return_pressure()
 		else
 			loc_temp = environment.temperature
 			loc_pressure = environment.return_pressure()

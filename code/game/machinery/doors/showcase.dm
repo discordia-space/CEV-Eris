@@ -58,8 +58,8 @@
 
 
 /obj/machinery/door/blast/shutters/glass/bullet_act(var/obj/item/projectile/Proj)
-	if((Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		take_damage(Proj.damage)
+	if(Proj.get_structure_damage())
+		take_damage(Proj.get_structure_damage())
 	..()
 
 

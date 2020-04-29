@@ -8,6 +8,15 @@
 	base_quantity = 2
 	scaling_threshold = 15
 
+/datum/storyevent/roleset/blitz
+	id = "blitz"
+	name = "blitzshell infiltration"
+	role_id = ROLE_BLITZ
+	weight = 1
+
+	base_quantity = 1
+	scaling_threshold = 15
+
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"

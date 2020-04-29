@@ -46,7 +46,6 @@
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_NORMAL
 	force_unwielded = WEAPON_FORCE_NORMAL
 	force_wielded = WEAPON_FORCE_BRUTAL
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -119,7 +118,7 @@
 	desc = "Modern japanese-style blade that has no curve to it. This one looks pretty sharp."
 	icon_state = "katana"
 	item_state = "katana"
-	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_METAL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_MODERATE
 

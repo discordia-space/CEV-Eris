@@ -183,6 +183,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/HUDfrippery = list()//flavor
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
+	var/hud_override = FALSE //Override so a mob no longer calls their own HUD
 	var/defaultHUD = "" //Default mob hud
 
 	var/list/progressbars = null

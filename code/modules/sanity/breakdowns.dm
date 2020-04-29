@@ -362,41 +362,31 @@
 		"You feel at ease again, suddenly."
 	)
 
-/datum/breakdown/common/obsession/New()
-	..()
-	if(prob(97))
-		var/list/candidates = list() //subtypesof(/obj/item/weapon/oddity)
-		while(candidates.len)
-			target = pick(candidates)
-			if(!locate(target))
-				candidates -= target
-				target = null
-				continue
-			objectname = initial(target.name)
-			break
-	if(!target)
-		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
-		if(candidates.len)
-			var/mob/living/carbon/human/H = pick(candidates)
-			target = pick(H.organs - H.organs_by_name[BP_CHEST])
-			objectname = "[H.real_name]'s [target.name]"
-
 /datum/breakdown/common/obsession/can_occur()
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
+	candidates = shuffle(candidates)
+	while(candidates.len)
+		var/mob/living/carbon/human/H = pick(candidates)
+		candidates.Remove(H)
+		var/list/contents = H.get_contents()
+		target = locate(/obj/item/weapon/oddity) in contents
+		if(!target)
+			target = pick(H.organs - H.organs_by_name[BP_CHEST])
+
+		if(target)
+			objectname = "[H.real_name]'s [target.name]"
+			break
 	return !!target
 
 /datum/breakdown/common/obsession/update()
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/found = FALSE
-	if(ispath(target))
-		found = locate(target) in holder.owner
-	else
-		if(QDELETED(target))
-			conclude()
-			return FALSE
-		found = target.loc == holder.owner
-	if(found)
+	if(QDELETED(target))
+		to_chat(holder.owner, SPAN_WARNING("\The [objectname] is lost!"))
+		conclude()
+		return FALSE
+	if(target.loc == holder.owner)
 		var/message = pick(list(
 			"Your mind convulses in the ecstasy. The sacred [objectname] is now yours!",
 			"You feel the warmth of the [objectname] in your head.",

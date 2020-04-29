@@ -25,7 +25,7 @@
 	recoil_buildup = 3.5
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_600,
 		BURST_5_ROUND,
 		BURST_8_ROUND

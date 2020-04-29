@@ -53,7 +53,10 @@ var/list/name_to_material
 /proc/get_material_by_name(name)
 	if(!name_to_material)
 		populate_material_list()
-	return name_to_material[lowertext(name)]
+	var/material/M = name_to_material[lowertext(name)]
+	if(!M)
+		error("Invalid material given: [name]")
+	return M
 
 /proc/get_material_name_by_stack_type(stype)
 	if(!name_to_material)
