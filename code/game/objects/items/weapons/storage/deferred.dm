@@ -258,7 +258,7 @@
 	/obj/item/clothing/head/armor/altyn/brown = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/fingerless = 1)
+	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown = 1)
 
 /obj/item/weapon/storage/deferred/crate/uniform_black
 	name = "black uniform kit"

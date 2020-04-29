@@ -48,3 +48,8 @@
 	display_name = "sleek modern overcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek
 	cost = 2
+
+/datum/gear/suit/cyberpunksleek_long
+	display_name = "sleek modern longcoat"
+	path = /obj/item/clothing/suit/storage/cyberpunksleek_long
+	cost = 2
