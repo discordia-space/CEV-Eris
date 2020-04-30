@@ -17,10 +17,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 3)
 /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
-	use_external_power = TRUE
-	restrict_safety = TRUE
-	self_recharge = TRUE
-	twohanded = FALSE
+	STANDART_MECH_MOUNTED_WEAPON_VARS
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -30,10 +27,7 @@
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 /obj/item/weapon/gun/energy/ionrifle/mounted/mech
-	use_external_power = TRUE
-	restrict_safety = TRUE
-	self_recharge = TRUE
-	twohanded = FALSE
+	STANDART_MECH_MOUNTED_WEAPON_VARS
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -44,20 +38,16 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 /obj/item/weapon/gun/energy/laser/mounted/mech
 	name = "\improper CH-PS \"Immolator\" laser"
-	use_external_power = TRUE
-	restrict_safety = TRUE
-	self_recharge = TRUE
-	twohanded = FALSE
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
 	desc = "An industrial plasma cutter mounted onto the chassis of the mech. "
 	icon_state = "railauto" //TODO: Make a new sprite that doesn't get sec called on you.
-	holding_type = /obj/item/weapon/gun/energy/plasmacutter/mounted/exosuit
+	holding_type = /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
-/obj/item/weapon/gun/energy/plasmacutter/mounted/exosuit
-	use_external_power = TRUE
-	restrict_safety = TRUE
-	twohanded = FALSE
+
+/obj/item/weapon/gun/energy/plasmacutter/mounted/mech
+	STANDART_MECH_MOUNTED_WEAPON_VARS
+	self_recharge = FALSE

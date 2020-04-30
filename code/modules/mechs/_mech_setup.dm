@@ -39,6 +39,8 @@
 #define FRAME_WIRED							1
 #define FRAME_WIRED_ADJUSTED				2
 
+#define STANDART_MECH_MOUNTED_WEAPON_VARS use_external_power = TRUE;restrict_safety = TRUE;twohanded = FALSE;self_recharge = TRUE
+
 GLOBAL_DATUM_INIT(default_hardpoint_background,	/image,	null)
 GLOBAL_DATUM_INIT(hardpoint_error_icon,			/image,	null)
 GLOBAL_DATUM_INIT(hardpoint_bar_empty,			/image,	null)
@@ -111,7 +113,7 @@ GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON)
 
 #undef EMP_HUD_DISRUPT
 #undef EMP_MOVE_DISRUPT
-#undef EMP_ATTACK_DISRUPT 
+#undef EMP_ATTACK_DISRUPT
 
 #undef MECH_COMPONENT_DAMAGE_UNDAMAGED
 #undef MECH_COMPONENT_DAMAGE_DAMAGED
@@ -124,3 +126,5 @@ GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON)
 
 #undef FRAME_WIRED
 #undef FRAME_WIRED_ADJUSTED
+
+#undef STANDART_MECH_MOUNTED_WEAPON_VARS
