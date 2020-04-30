@@ -256,6 +256,22 @@
 			to_chat(BS, SPAN_NOTICE("You now have [NC.charges] charges in your [NC]"))
 			return 1
 	return 0
+/datum/uplink_item/item/tools/blitz_smokescreen
+	name = "Blitzshell Smoke Charge"
+	desc = "Reload your smoke system, gaining extra charges."
+	item_cost = 4
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/device/smokescreen/SS = locate() in BS.module.modules
+		if(SS)
+			SS.charges += 1
+			to_chat(BS, SPAN_NOTICE("You now have [SS.charges] charges in your [SS]"))
+			return 1
+	return 0
 
 /datum/uplink_item/item/tools/blitz_reinforcements
 	name = "Blitzshell Swarm Request"
