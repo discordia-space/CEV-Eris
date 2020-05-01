@@ -11,7 +11,7 @@
 	status_flags = PASSEMOTES
 	a_intent = I_HURT
 	mob_size = MOB_LARGE
-	can_be_feeded = 0
+	can_be_fed = 0
 	defaultHUD = "exosuits"
 
 	var/initial_icon

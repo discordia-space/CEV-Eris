@@ -195,4 +195,4 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.
 
-	var/can_be_feeded = 1 //Can be feeded by reagent_container or other things
+	var/can_be_fed = 1 //Can be feeded by reagent_container or other things

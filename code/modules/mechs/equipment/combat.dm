@@ -17,7 +17,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 3)
 /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
-	STANDART_MECH_MOUNTED_WEAPON_VARS
+	STANDARD_MECH_MOUNTED_WEAPON_VARS
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -27,7 +27,7 @@
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 /obj/item/weapon/gun/energy/ionrifle/mounted/mech
-	STANDART_MECH_MOUNTED_WEAPON_VARS
+	STANDARD_MECH_MOUNTED_WEAPON_VARS
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -49,5 +49,5 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
 
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
-	STANDART_MECH_MOUNTED_WEAPON_VARS
+	STANDARD_MECH_MOUNTED_WEAPON_VARS
 	self_recharge = FALSE
