@@ -1,9 +1,8 @@
 /mob/living/exosuit/proc/dismantle()
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-	var/obj/structure/heavy_vehicle_frame/frame = new(get_turf(src))
-	for(var/hardpoint in hardpoints)
-		remove_system(hardpoint, force = 1)
+	var/obj/structure/heavy_vehicle_frame/frame = new/obj/structure/heavy_vehicle_frame(get_turf(src))
+	for(var/hardpoint in hardpoints) remove_system(hardpoint, force = 1)
 	hardpoints.Cut()
 
 	if(arms)
@@ -41,8 +40,7 @@
 
 	hardpoints[target] = null
 
-	if(target == selected_hardpoint)
-		clear_selected_hardpoint()
+	if(target == selected_hardpoint) clear_selected_hardpoint()
 
 	GLOB.destroyed_event.unregister(module_to_forget, src, .proc/forget_module)
 
@@ -58,16 +56,14 @@
 
 /mob/living/exosuit/proc/install_system(var/obj/item/system, var/system_hardpoint, var/mob/user)
 
-	if(hardpoints_locked || hardpoints[system_hardpoint])
-		return FALSE
+	if(hardpoints_locked || hardpoints[system_hardpoint]) return FALSE
 
 	if(user)
-		var/delay = 30
+		var/mech_skill = user.stats.getStat(STAT_MEC) < 0 ? 0 : user.stats.getStat(STAT_MEC)
+		var/delay = 30 - sqrt(mech_skill * 3)
 		if(delay > 0)
 			user.visible_message(SPAN_NOTICE("\The [user] begins trying to install \the [system] into \the [src]."))
-			if(!do_after(user, delay, src) || user.get_active_hand() != system)
-				return FALSE
-
+			if(!do_after(user, delay, src) || user.get_active_hand() != system) return FALSE
 			if(user.unEquip(system))
 				to_chat(user, SPAN_NOTICE("You install \the [system] in \the [src]'s [system_hardpoint]."))
 				playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
@@ -110,14 +106,14 @@
 
 /mob/living/exosuit/proc/remove_system(var/system_hardpoint, var/mob/user, var/force)
 
-	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint])
-		to_world("Rya [hardpoints_locked] [force] [hardpoints[system_hardpoint]] : [hardpoints_locked && !force] || [!hardpoints[system_hardpoint]]")
-		return 0
+	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint]) return 0
 
 	var/obj/item/system = hardpoints[system_hardpoint]
 	if(user)
+		var/mech_skill = user.stats.getStat(STAT_MEC) < 0 ? 0 : user.stats.getStat(STAT_MEC)
+		var/delay = 30 - sqrt(mech_skill * 3)
 		user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
-		if(!do_after(user, 30, src)  || hardpoints[system_hardpoint] != system) return 0
+		if(!do_after(user, delay, src) || hardpoints[system_hardpoint] != system) return 0
 
 	hardpoints[system_hardpoint] = null
 

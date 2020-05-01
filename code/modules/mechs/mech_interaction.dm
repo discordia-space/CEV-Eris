@@ -17,9 +17,11 @@
 		body.MouseDrop_T(dropping, user)
 	else . = ..()
 
+/mob/living/exosuit/setClickCooldown(timeout)
+	. = ..()
+	for(var/mob/p in pilots) p.setClickCooldown(timeout)
 
 /mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
-
 	if(!user || incapacitated() || user.incapacitated())
 		return
 
@@ -158,6 +160,7 @@
 /mob/living/exosuit/proc/check_enter(var/mob/user)
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE
+	if(issilicon(user))					return FALSE
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 		return FALSE
@@ -175,6 +178,8 @@
 	if(!do_after(user, 25)) return
 	if(!check_enter(user)) return
 	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
+	user.drop_r_hand()
+	user.drop_l_hand()
 	user.forceMove(src)
 	LAZYOR(pilots, user)
 	sync_access()
