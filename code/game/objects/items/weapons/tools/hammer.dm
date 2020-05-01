@@ -14,8 +14,8 @@
 
 /obj/item/weapon/tool/hammer/homewrecker
 	name = "homewrecker"
-	desc = "A large steel chunk welded to a long handle which resembles sledgehammer. Extremely heavy."
-	icon_state = "homewrecker"
+	desc = "A large steel chunk welded to a long handle which resembles a sledgehammer. Extremely heavy."
+	icon_state = "homewrecker0"
 	item_state = "homewrecker"
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
