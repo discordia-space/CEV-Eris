@@ -239,3 +239,18 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/cyberpunksleek_long
+	name = "\improper Enforcer's long Overcoat"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_long"
+	item_state = "cyberpunksleek_long"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
