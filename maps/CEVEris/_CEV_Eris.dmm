@@ -3588,9 +3588,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
+	department = "Ironhammer Commander's Desk";
+	departmentType = 4;
+	name = "Ironhammer Commander RC";
 	pixel_x = -30;
 	pixel_y = 0
 	},
@@ -11988,7 +11988,8 @@
 "aBj" = (
 /obj/machinery/requests_console{
 	department = "Security";
-	departmentType = 5;
+	departmentType = 3;
+	name = "Security Requests Console";
 	pixel_y = 30
 	},
 /obj/machinery/light{
@@ -12316,7 +12317,8 @@
 "aCb" = (
 /obj/machinery/requests_console{
 	department = "Security";
-	departmentType = 5;
+	departmentType = 3;
+	name = "Security Requests Console";
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -25469,7 +25471,7 @@
 /obj/item/device/flash,
 /obj/machinery/requests_console{
 	department = "Robotics";
-	departmentType = 2;
+	departmentType = 3;
 	name = "Robotics RC";
 	pixel_y = -30
 	},
@@ -26773,6 +26775,7 @@
 "bic" = (
 /obj/machinery/requests_console{
 	department = "Virology";
+	departmentType = 3;
 	name = "Virology Requests Console";
 	pixel_x = 30
 	},
@@ -49162,6 +49165,7 @@
 /obj/machinery/requests_console{
 	department = "AI";
 	departmentType = 5;
+	name = "AI Requests Console";
 	pixel_y = -29
 	},
 /obj/structure/cable/cyan{
@@ -49422,8 +49426,8 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "First Officer's Desk";
-	departmentType = 5;
-	name = "Head of Personnel RC";
+	departmentType = 4;
+	name = "First Officer RC";
 	pixel_x = 30;
 	pixel_y = 0
 	},
@@ -51758,7 +51762,7 @@
 "ckM" = (
 /obj/machinery/requests_console{
 	department = "Science";
-	departmentType = 2;
+	departmentType = 3;
 	name = "Science Requests Console";
 	pixel_x = -30;
 	pixel_y = 0
@@ -55830,9 +55834,9 @@
 "cuD" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Research Director's Desk";
-	departmentType = 5;
-	name = "Research Director RC";
+	department = "Moebius Expedition Overseer's Desk";
+	departmentType = 4;
+	name = "Moebius Expedition Overseer RC";
 	pixel_x = -30;
 	pixel_y = 0
 	},
@@ -65562,7 +65566,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Bridge";
-	departmentType = 5;
+	departmentType = 3;
 	name = "Bridge RC";
 	pixel_y = -30
 	},
@@ -71546,7 +71550,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Captain's Desk";
-	departmentType = 5;
+	departmentType = 4;
 	name = "Captain RC";
 	pixel_x = 0;
 	pixel_y = 30
@@ -74416,7 +74420,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 0;
 	department = "Engineering";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Engineering RC";
 	pixel_x = 30;
 	pixel_y = 0
@@ -80811,9 +80815,9 @@
 "dyS" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
-	department = "Chief Medical Officer's Desk";
-	departmentType = 5;
-	name = "Chief Medical Officer RC";
+	department = "Moebius Biolab Officer's Desk";
+	departmentType = 4;
+	name = "Moebius Biolab Officer RC";
 	pixel_x = 0;
 	pixel_y = 32
 	},
@@ -81659,7 +81663,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 0;
 	department = "Medbay";
-	departmentType = 1;
+	departmentType = 3;
 	name = "Medbay RC";
 	pixel_x = 30;
 	pixel_y = 0;
@@ -106968,7 +106972,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Bridge";
-	departmentType = 5;
+	departmentType = 3;
 	name = "Bridge RC";
 	pixel_y = -30
 	},
@@ -108616,6 +108620,17 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"owS" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Technomancer Exultant's Desk";
+	departmentType = 4;
+	name = "Technomancer Exultant RC";
+	pixel_x = 30;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/command/exultant)
 "oxP" = (
 /obj/machinery/atmospherics/binary/pump{
 	name = "Port to Waste Cooling Loop"
@@ -282786,7 +282801,7 @@ abF
 abF
 eAs
 cQR
-cWk
+owS
 eAs
 ete
 eAs
