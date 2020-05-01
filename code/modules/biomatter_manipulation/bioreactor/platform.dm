@@ -111,11 +111,11 @@
 				organ.removed()
 				continue
 		if(H && H.mind && H.mind.key && H.stat == DEAD)
-		var/mob/M = key2mob(H.mind.key)
-		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 10 minutes."))
-		M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
-		M.set_respawn_bonus("CORPSE_DISSOLVING", 10 MINUTES)
-	
+			var/mob/M = key2mob(H.mind.key)
+			to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 10 minutes."))
+			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
+			M.set_respawn_bonus("CORPSE_DISSOLVING", 10 MINUTES)
+		
 	qdel(object)
 	//now let's add some dirt to the glass
 	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)
