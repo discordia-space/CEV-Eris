@@ -98,6 +98,30 @@
 		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
 		return
 	..()
+/obj/item/device/smokescreen
+	name = "smoke deployment system"
+	icon_state = "smokescreen"
+	desc = "Contains several capsules filled with smoking agent. Whem used creates a small smoke cloud."
+	var/charges = 3
+
+/obj/item/device/smokescreen/examine(mob/user)
+	..()
+	to_chat(user, SPAN_NOTICE("It has [charges] charges left."))
+
+/obj/item/device/smokescreen/attack_self(var/mob/user)
+	if(istype(user, /mob/living/silicon))
+		if(charges)
+			to_chat(user, SPAN_NOTICE("You activate \the [src]."))
+			var/datum/effect/effect/system/smoke_spread/S = new
+			S.set_up(5, 0, src)
+			S.start()
+			playsound(loc, 'sound/effects/turret/open.ogg', 50, 0)
+			charges--
+			to_chat(user, SPAN_NOTICE("Charge consumed. Remaining charges: [charges]"))
+			return
+		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
+		return
+	..()
 
 /obj/item/device/drone_uplink
 	name = "Drone Bounty Uplink"
