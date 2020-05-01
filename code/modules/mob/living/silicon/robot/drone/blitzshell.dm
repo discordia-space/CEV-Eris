@@ -54,7 +54,6 @@
 	//Misc equipment
 	modules += new /obj/item/weapon/card/id/syndicate(src) //This is our access. Scan cards to get better access
 	modules += new /obj/item/device/nanite_container(src) //For self repair. Get more charges via the contract system
-	modules += new /obj/item/device/smokescreen(src)
 
 /obj/item/weapon/gripper/antag
 	name = "Objective Gripper"
@@ -103,7 +102,7 @@
 	name = "smoke deployment system"
 	icon_state = "smokescreen"
 	desc = "Contains several capsules filled with smoking agent. Whem used creates a small smoke cloud."
-	var/charges = 4
+	var/charges = 3
 
 /obj/item/device/smokescreen/examine(mob/user)
 	..()
@@ -114,7 +113,7 @@
 		if(charges)
 			to_chat(user, SPAN_NOTICE("You activate \the [src]."))
 			var/datum/effect/effect/system/smoke_spread/S = new
-			S.set_up(4, 0, src)
+			S.set_up(5, 0, src)
 			S.start()
 			playsound(loc, 'sound/effects/turret/open.ogg', 50, 0)
 			charges--
