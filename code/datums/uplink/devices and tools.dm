@@ -257,6 +257,42 @@
 			return 1
 	return 0
 
+/datum/uplink_item/item/tools/blitz_smokescreen
+	name = "Blitzshell Smoke Upgade"
+	desc = "Activates the embedded smoke deployment system."
+	item_cost = 8
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/device/smokescreen) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a smoke deployment installed."))
+			return 0
+		BS.module.modules += new /obj/item/device/smokescreen(BS.module)
+		return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_smokescharge
+	name = "Blitzshell Smoke Charge"
+	desc = "Reload your smoke system, gaining extra charges."
+	item_cost = 4
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_smokescharge/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/device/smokescreen/SS = locate() in BS.module.modules
+		if(SS)
+			SS.charges += 1
+			to_chat(BS, SPAN_NOTICE("You now have [SS.charges] charges in your [SS]"))
+			return 1
+		else
+			to_chat(BS, SPAN_NOTICE("You do not have smoke deployment system unlocked"))
+	return 0
+
 /datum/uplink_item/item/tools/blitz_reinforcements
 	name = "Blitzshell Swarm Request"
 	desc = "Request additional reinforcements."
