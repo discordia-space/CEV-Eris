@@ -1,10 +1,7 @@
 /mob/living/exosuit/proc/dismantle()
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-	var/obj/structure/heavy_vehicle_frame/frame = new/obj/structure/heavy_vehicle_frame{
-		is_wired = FRAME_WIRED_ADJUSTED;
-		is_reinforced = FRAME_REINFORCED_WELDED;
-		}(get_turf(src))
+	var/obj/structure/heavy_vehicle_frame/frame = new/obj/structure/heavy_vehicle_frame(get_turf(src))
 	for(var/hardpoint in hardpoints) remove_system(hardpoint, force = 1)
 	hardpoints.Cut()
 
@@ -25,6 +22,8 @@
 		head.forceMove(frame)
 		head = null
 
+	frame.is_wired = FRAME_WIRED_ADJUSTED
+	frame.is_reinforced = FRAME_REINFORCED_WELDED
 	frame.set_name = name
 	frame.name = "frame of \the [frame.set_name]"
 	frame.update_icon()

@@ -18,12 +18,7 @@
 	else . = ..()
 
 /mob/living/exosuit/setClickCooldown(timeout)
-	/*
-	. = list(world.time + timeout, next_click)
-	for(var/mob/p in pilots) . += p.next_click
-	next_click = max(.)
-	*/
-
+	. = ..()
 	for(var/mob/p in pilots) p.setClickCooldown(timeout)
 
 /mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)

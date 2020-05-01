@@ -17,7 +17,10 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 3)
 /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
-	STANDARD_MECH_MOUNTED_WEAPON_VARS
+	use_external_power = TRUE
+	restrict_safety = TRUE
+	twohanded = FALSE
+	self_recharge = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -27,7 +30,10 @@
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 /obj/item/weapon/gun/energy/ionrifle/mounted/mech
-	STANDARD_MECH_MOUNTED_WEAPON_VARS
+	use_external_power = TRUE
+	restrict_safety = TRUE
+	twohanded = FALSE
+	self_recharge = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -37,6 +43,10 @@
 	matter = list(MATERIAL_PLASTEEL = 26, MATERIAL_SILVER = 5)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 /obj/item/weapon/gun/energy/laser/mounted/mech
+	use_external_power = TRUE
+	restrict_safety = TRUE
+	twohanded = FALSE
+	self_recharge = TRUE
 	name = "\improper CH-PS \"Immolator\" laser"
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
@@ -47,7 +57,8 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
-
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
-	STANDARD_MECH_MOUNTED_WEAPON_VARS
+	use_external_power = TRUE
+	restrict_safety = TRUE
+	twohanded = FALSE
 	self_recharge = FALSE

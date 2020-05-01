@@ -39,8 +39,6 @@
 #define FRAME_WIRED							1
 #define FRAME_WIRED_ADJUSTED				2
 
-#define STANDARD_MECH_MOUNTED_WEAPON_VARS use_external_power = TRUE;restrict_safety = TRUE;twohanded = FALSE;self_recharge = TRUE
-
 GLOBAL_DATUM_INIT(default_hardpoint_background,	/image,	null)
 GLOBAL_DATUM_INIT(hardpoint_error_icon,			/image,	null)
 GLOBAL_DATUM_INIT(hardpoint_bar_empty,			/image,	null)
