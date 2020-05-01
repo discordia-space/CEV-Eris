@@ -3,14 +3,16 @@
 /mob/living/exosuit
 	name = "exosuit"
 	desc = "A powerful machine piloted from a cockpit, but worn like a suit of armour."
-	density =  TRUE
-	opacity =  TRUE
+	density = TRUE
+	opacity = TRUE
 	anchored = TRUE
 	default_pixel_x = -8
 	default_pixel_y = 0
 	status_flags = PASSEMOTES
-	a_intent =     I_HURT
-	mob_size =     MOB_LARGE
+	a_intent = I_HURT
+	mob_size = MOB_LARGE
+	can_be_fed = 0
+	defaultHUD = "exosuits"
 
 	var/initial_icon
 
@@ -56,18 +58,6 @@
 
 	//Air!
 	var/use_air      = FALSE
-
-	// Interface stuff.
-/*
-	var/list/hardpoint_hud_elements = list()
-
-	var/list/hud_elements = list()
-
-	var/obj/screen/movable/exosuit/health/hud_health
-	var/obj/screen/movable/exosuit/toggle/hatch_open/hud_open
-	var/obj/screen/movable/exosuit/power/hud_power
-*/
-	defaultHUD = "exosuits"
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
