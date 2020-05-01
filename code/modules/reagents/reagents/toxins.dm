@@ -455,7 +455,7 @@
 	overdose = REAGENTS_OVERDOSE/3
 	addiction_chance = 10
 	nerve_system_accumulations = 5
-	strength = 0.1
+	strength = 0.01
 	heating_point = 523
 	heating_products = list("toxin")
 
