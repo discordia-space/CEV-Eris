@@ -147,11 +147,12 @@
 		if (M.get_respawn_bonus("CORPSE_HANDLING"))
 			return // we got this one already
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
-		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 8 minutes."))
+		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 10 minutes."))
+		
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
-		M.set_respawn_bonus("CORPSE_HANDLING", 8 MINUTES)
-
+		M.set_respawn_bonus("CORPSE_HANDLING", 10 MINUTES)
+		to_chat(user, SPAN_NOTICE("The corpse's spirit feels soothed and pleased."))
 
 
 
