@@ -1,7 +1,13 @@
 /mob/living/exosuit/MouseDrop_T(atom/dropping, mob/user)
-	var/obj/machinery/portable_atmospherics/canister/C = dropping
-	if(istype(C))
+	if(istype(dropping, /obj/machinery/portable_atmospherics/canister))
 		body.MouseDrop_T(dropping, user)
+	else if(user != src && user == dropping)
+		if(body)
+			if(user.mob_size >= body.min_pilot_size && user.mob_size <= body.max_pilot_size)
+				if(enter(user)) return 0
+			else
+				to_chat(user, SPAN_WARNING("You cannot pilot a exosuit of this size."))
+				return 0
 	else . = ..()
 
 /mob/living/exosuit/setClickCooldown(timeout)
