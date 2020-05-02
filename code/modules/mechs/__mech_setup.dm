@@ -11,7 +11,6 @@
 	#include "mech_misc.dm"
 	#include "mech_recharger.dm"
 	#include "mech_wreckage.dm"
-	//#include "mech_skins.dm"
 
 	#include "components/_components.dm"
 		#include "components/armour.dm"
