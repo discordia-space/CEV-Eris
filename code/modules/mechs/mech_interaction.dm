@@ -1,16 +1,3 @@
-/mob/living/MouseDrop(atom/over)
-	if(usr == src && usr != over)
-		if(istype(over, /mob/living/exosuit))
-			var/mob/living/exosuit/exosuit = over
-			if(exosuit.body)
-				if(usr.mob_size >= exosuit.body.min_pilot_size && usr.mob_size <= exosuit.body.max_pilot_size)
-					if(exosuit.enter(src))
-						return
-				else
-					to_chat(usr, SPAN_WARNING("You cannot pilot a exosuit of this size."))
-					return
-	else . = ..()
-
 /mob/living/exosuit/MouseDrop_T(atom/dropping, mob/user)
 	var/obj/machinery/portable_atmospherics/canister/C = dropping
 	if(istype(C))
