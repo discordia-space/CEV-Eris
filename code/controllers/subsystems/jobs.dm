@@ -111,7 +111,10 @@ SUBSYSTEM_DEF(job)
 		if(jobban_isbanned(player, job.title))
 			Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
 			continue
-
+		var/datum/category_item/setup_option/core_implant/I = player.client.prefs.get_option("Core implant")
+		// cant be Neotheology without a cruciform
+		if(job.department == DEPARTMENT_CHURCH && istype(I.implant_type,/obj/item/weapon/implant/core_implant/cruciform))
+			continue
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			Debug("GRJ Random job given, Player: [player], Job: [job]")
 			AssignRole(player, job.title)
