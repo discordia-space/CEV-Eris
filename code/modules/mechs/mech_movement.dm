@@ -19,12 +19,12 @@
 	// 		return 1
 
 
-/*
-/mob/living/exosuit/can_fall(var/anchor_bypass = FALSE, var/turf/location_override = src.loc)
+
+/*/mob/living/exosuit/can_fall()
 	//mechs are always anchored, so falling should always ignore it
 	if(..(TRUE, location_override))
-		return !(can_overcome_gravity())
-*/
+		return !(CanAvoidGravity())*/
+
 
 /datum/movement_handler/mob/exosuit
 	expected_host_type = /mob/living/exosuit
