@@ -9,7 +9,7 @@
 	gain_mult_major = 0.8
 	gain_mult_roleset = 0.8
 
-	repetition_multiplier = 0.95
+	repetition_multiplier = 1.95
 	tag_weight_mults = list(TAG_COMBAT = 0.75, TAG_NEGATIVE = 0.5, TAG_POSITIVE = 2)
 
 	//Healer gives you half an hour to setup before any antags
