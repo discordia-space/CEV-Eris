@@ -28,7 +28,7 @@
 	lying = FALSE // Fuck off, carp.
 
 /mob/living/exosuit/get_cell()
-	return body ? body.cell : null
+	return body ? body.get_cell() : null
 
 /mob/living/exosuit/proc/calc_power_draw()
 	//Passive power stuff here. You can also recharge cells or hardpoints if those make sense

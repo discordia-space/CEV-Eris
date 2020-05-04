@@ -3,7 +3,7 @@
 		return 0
 	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
 		if(effect > 0 && effecttype == IRRADIATE)
-			effect = max((1-(getarmor(null, IRRADIATE)/100))*effect/(armor_value+1),0)
+			effect = max((1 - (getarmor(null, ARMOR_RAD) / 100)) * effect / (armor_value + 1),0)
 		var/mob/living/pilot = pick(pilots)
 		return pilot.apply_effect(effect, effecttype, armor_value)
 	if(!(effecttype in list(AGONY, STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
@@ -20,60 +20,37 @@
 
 	return def_zone //Careful with effects, mechs shouldn't be stunned
 
+/mob/living/exosuit/getarmor(def_zone, type)
+	. = ..()
+	if(body?.armor_plate)
+		var/body_armor = body.armor_plate?.armor[type]
+		if(body_armor) . += body_armor
+
 /mob/living/exosuit/updatehealth()
 	if(body) maxHealth = body.mech_health
 	health = maxHealth - (getFireLoss() + getBruteLoss())
 
-/mob/living/exosuit/adjustFireLoss(var/amount, var/obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
+/mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
 	if(MC)
 		MC.take_burn_damage(amount)
 		MC.update_health()
 
-/mob/living/exosuit/adjustBruteLoss(var/amount, var/obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
+/mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
 	if(MC)
 		MC.take_brute_damage(amount)
 		MC.update_health()
 
-/mob/living/exosuit/proc/zoneToComponent(var/zone)
+/mob/living/exosuit/proc/zoneToComponent(zone)
 	switch(zone)
-		if(BP_EYES , BP_HEAD)
-			return head
-		if(BP_L_ARM , BP_R_ARM)
-			return arms
-		if(BP_L_LEG , BP_R_LEG)
-			return legs
-		else
-			return body
+		if(BP_EYES, BP_HEAD) return head
+		if(BP_L_ARM, BP_R_ARM) return arms
+		if(BP_L_LEG, BP_R_LEG) return legs
+		else return body
 
 
-/mob/living/exosuit/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/used_weapon = null, var/sharp = 0, var/edge = 0)
-	if(!damage)
-		return 0
-
-	var/rmor = getarmor(def_zone, damagetype)
-	damage = (rmor && damage) ? (damage / (rmor * 0.5)) : null
-
-	if(!damage)
-		return 0
-
-	var/target = zoneToComponent(def_zone)
-	//Only 3 types of damage concern mechs and vehicles
-	switch(damagetype)
-		if(BRUTE)
-			adjustBruteLoss(damage, target)
-		if(BURN)
-			adjustFireLoss(damage, target)
-		if(IRRADIATE)
-			radiation += damage
-
-	if((damagetype == BRUTE || damagetype == BURN) && prob(25+(damage*2)))
-		sparks.set_up(3,0,src)
-		sparks.start()
+/mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, sharp = 0, edge = 0, obj/used_weapon = null)
+	. = ..()
 	updatehealth()
-
-	return 1
-
-
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

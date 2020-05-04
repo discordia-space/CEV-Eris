@@ -16,7 +16,7 @@
 		body = new /obj/item/mech_component/chassis/powerloader(src)
 		body.color = "#ffdc37"
 
-	body.armour = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
+	body.armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 
 	. = ..()
 
@@ -62,7 +62,7 @@
 
 /obj/item/mech_component/chassis/powerloader/prebuild()
 	. = ..()
-	armour = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
+	armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(

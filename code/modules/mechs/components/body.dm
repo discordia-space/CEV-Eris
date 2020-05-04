@@ -6,7 +6,7 @@
 	var/mech_health = 300
 	var/obj/item/weapon/cell/cell
 	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
-	var/obj/item/robot_parts/robot_component/armour/exosuit/armour
+	var/obj/item/robot_parts/robot_component/armour/exosuit/armor_plate
 	var/obj/machinery/portable_atmospherics/canister/air_supply
 	var/datum/gas_mixture/cockpit
 	var/transparent_cabin = FALSE
@@ -31,10 +31,14 @@
 			)
 		)
 
+/obj/item/mech_component/chassis/get_cell()
+	update_components()
+	return cell
+
 /obj/item/mech_component/chassis/Destroy()
 	QDEL_NULL(cell)
 	QDEL_NULL(diagnostics)
-	QDEL_NULL(armour)
+	QDEL_NULL(armor_plate)
 	QDEL_NULL(air_supply)
 	. = ..()
 
@@ -42,7 +46,7 @@
 	. = ..()
 	diagnostics = locate() in src
 	cell =        locate() in src
-	armour =      locate() in src
+	armor_plate = locate() in src
 	air_supply =  locate() in src
 
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
@@ -50,8 +54,8 @@
 		to_chat(user, SPAN_WARNING("It is missing a power cell."))
 	if(!diagnostics)
 		to_chat(user, SPAN_WARNING("It is missing a diagnostics unit."))
-	if(!armour)
-		to_chat(user, SPAN_WARNING("It is missing exosuit armour plating."))
+	if(!armor_plate)
+		to_chat(user, SPAN_WARNING("It is missing exosuit armor plating."))
 
 /obj/item/mech_component/chassis/Initialize()
 	. = ..()
@@ -81,7 +85,7 @@
 		cockpit.react()
 
 /obj/item/mech_component/chassis/ready_to_install()
-	return (cell && diagnostics && armour)
+	return (cell && diagnostics && armor_plate)
 
 /obj/item/mech_component/chassis/prebuild()
 	diagnostics = new(src)
@@ -100,11 +104,11 @@
 			return
 		if(install_component(thing,user)) cell = thing
 	else if(istype(thing, /obj/item/robot_parts/robot_component/armour/exosuit))
-		if(armour)
+		if(armor_plate)
 			to_chat(user, SPAN_WARNING("\The [src] already has armour installed."))
 			return
-		if(install_component(thing, user))
-			armour = thing
+		else if(install_component(thing, user))
+			armor_plate = thing
 			var/mob/living/exosuit/E = loc
 			E.update_armor()
 	else
