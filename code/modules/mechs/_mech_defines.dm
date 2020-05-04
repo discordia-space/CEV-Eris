@@ -39,6 +39,8 @@
 #define FRAME_WIRED							1
 #define FRAME_WIRED_ADJUSTED				2
 
+#define MECH_WEAPON_POWER_COST				50
+
 GLOBAL_DATUM_INIT(default_hardpoint_background,	/image,	null)
 GLOBAL_DATUM_INIT(hardpoint_error_icon,			/image,	null)
 GLOBAL_DATUM_INIT(hardpoint_bar_empty,			/image,	null)

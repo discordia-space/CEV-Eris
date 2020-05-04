@@ -832,6 +832,9 @@
 		return 1
 	return 0
 
+/obj/item/weapon/rig/get_cell()
+	return cell
+
 /obj/item/weapon/rig/proc/ai_can_move_suit(var/mob/user, var/check_user_module = 0, var/check_for_ai = 0)
 
 	if(check_for_ai)
