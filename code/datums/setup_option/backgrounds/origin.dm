@@ -22,14 +22,18 @@
 		STAT_COG = -8
 	)
 
+/datum/category_item/setup_option/background/origin/oberth/apply(mob/living/carbon/human/character)
+  ..()
+  character.add_language(LANGUAGE_GERMAN)
+
 
 /datum/category_item/setup_option/background/origin/predstraza
 	name = "Predstraza"
 	desc = "The product of a widely held idea back on Earth that if one were to bring all of the Balkan populations on one colony ship, they would be forced to put aside their differences and work together to survive. \
 			Unfortunately, that idea failed miserably and is still failing. \
 			A jungle death world, full of hostile fauna and mired in endless armed conflict. \
-			The Serbian government occupied all of Predstraza’s space ports and controls most of the civilized regions. \
-			Located far from Hanza or NT territories, it’s a place favored for business by pirates, smugglers and all manner of outlaw."
+			The Serbian government occupied all of Predstraza's space ports and controls most of the civilized regions. \
+			Located far from Hanza or NT territories, it's a place favored for business by pirates, smugglers and all manner of outlaw."
 
 	stat_modifiers = list(
 		STAT_ROB = 10,
@@ -59,7 +63,7 @@
 
 /datum/category_item/setup_option/background/origin/new_rome
 	name = "New Rome"
-	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as Nanotrasen’s headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
+	desc = "One of the first colonies founded by American settlers, New Rome was rich with biosphere and natural resources and served as Nanotrasen's headquarters when it was still an emerging power. As such, it holds the highest human population of any planet in the galaxy. \
 			Although the War ended before it was sieged, New Rome suffered an economic crisis following the fall of Nanotrasen and never recovered. \
 			Formerly a garden world, it is now dotted with hive cities, decaying ecologies, widespread poverty, and NeoTheology desperately trying to revive the ecosphere artificially with biomatter technology. \
 			On New Rome, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live."
@@ -79,7 +83,7 @@
 	desc = "Founded by a Japanese megacorporation, Shimatengoku was - and still is - a high tech paradise. With 95% of its surface covered in seawater, its residents mostly live on islands, or drift along on gigantic oceanborne colonies. \
 			When the time of the Corporation War came, Shimatengoku made the wise decision to side with the Syndicate, and prospered immensely as a result. \
 			While there is a local government administration, the planet is mostly controlled by Frozen Star, an enormous company that is responsible for producing most of the military products found in Hanza. \
-			Frozen Star itself is owned by a family with ties to the Yakuza, organized crime syndicates originating from old Earth’s Japan. Fittingly, is a cruelly efficient place."
+			Frozen Star itself is owned by a family with ties to the Yakuza, organized crime syndicates originating from old Earth's Japan. Fittingly, is a cruelly efficient place."
 
 	stat_modifiers = list(
 		STAT_ROB = -6,
@@ -113,7 +117,7 @@
 	name = "Crozet"
 	desc = "A lifeless, unforgiving ice world, rich with rare minerals, life on Crozet is only possible underground. \
 			Originally founded by a French mining company, it was occupied later by exiled nobility from the HMSS \"Destined\". \
-			The exiles founded the Four Great Houses to defend the colony’s sovereignty, as well as their right to work the local population to death in the mines. \
+			The exiles founded the Four Great Houses to defend the colony's sovereignty, as well as their right to work the local population to death in the mines. \
 			This lasted until Nanotrasen invaded with the help of one of the Houses, and later, Crozet was left under NeoTheology control under the terms of a peace treaty. \
 			The local population are prone to revolt after decades of mistreatment and generally want to be left alone, making them ripe for recruitment by the Founders."
 
@@ -132,7 +136,7 @@
 	desc = "A collection of old and modified colony ships, FTL capable shipyards, mobile hydroponics, and an armada of military ships. \
 			The de facto Headquarters of the Ironhammer PMC, the armada can be deployed whenever or wherever is needed for a contract, or even evacuate to deep space if necessary. \
 			It moves from planet to planet in Hanza space, and is often used by larger, being used as a giant power projector over planetary governments. \
-			For the fleet to function, a gigantic amount of manpower is required, and the armada’s ships tend to be as populous as small cities, with both civilians and military personnel. \
+			For the fleet to function, a gigantic amount of manpower is required, and the armada's ships tend to be as populous as small cities, with both civilians and military personnel. \
 			Life in the Fleet is rather dull and spartan most of the time, with deep traditions of asceticism rooted in the crew of every ship. \
 			Needless to say, every planet it visits experiences a large tourism boom, growth in consumerism, and every bar and whorehouse running out of vacancy in under a day."
 
@@ -150,11 +154,11 @@
 	name = "End Point"
 	desc = "A trinary system with complicated orbits and black hole located in a safe distance from all of the habitable planets in the system. \
 			One of the first colonies, because of how rich the planets are in resources, and their abundance - the system being composed of more than a hundred of large celestial bodies. \
-			It’s also an extremely valuable place for scientists, due to its habitable planets, the black hole and rare materials. \
+			It's also an extremely valuable place for scientists, due to its habitable planets, the black hole and rare materials. \
 			End Point was never controlled by a single power. \
 			Smaller colony ships, belonging to third-world countries, damaged ships or just exploration cruisers - they have all found their place here, guided by a black hole and the riches highlighted by it. \
 			Even before the war it was full of conflicts between local governments, pirates and corporations, and it just got worse afterwards. \
-			While it’s formally under Hanza control now, the war resulted in a fall of many governments, thus the anarchy spreads, and patchwork states are being born and die every year. \
+			While it's formally under Hanza control now, the war resulted in a fall of many governments, thus the anarchy spreads, and patchwork states are being born and die every year. \
 			Nations are mixed in a spiral of endless conflict, all of the old Earth languages are present there, and any ideology and religion can be found here. \
 			This system is also known for Moebius HQ - a large station orbiting the End Point black hole."
 
@@ -173,9 +177,9 @@
 	desc = "Designed to serve as large, FTL capable mining platform by the first days of NanoTrasen. \
 			And it was used for that, until stars started coming back from Null Space. \
 			In order to salvage those wonders first, NanoTrasen has sent this platform, reworked to serve as a local forward operating base, and renamed it to Central Command. \
-			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentComm’s control, such as NSS 13 \"Exodus\", they surrendered to Syndicate. \
-			Now it’s an independent station under Ironhammer control, that oversees the spread of Null Space artifacts, or at least is trying to. \
-			It’s a place for grand deals to be made, friends to be sold, a place where people run from law and boring life,for a fresh start in Null Space. \
+			The war broke out, and without any support from the mainland, after relentless attacks from the Syndicate, and the destruction of many stations under CentComm's control, such as NSS 13 \"Exodus\", they surrendered to Syndicate. \
+			Now it's an independent station under Ironhammer control, that oversees the spread of Null Space artifacts, or at least is trying to. \
+			It's a place for grand deals to be made, friends to be sold, a place where people run from law and boring life,for a fresh start in Null Space. \
 			And - in most cases - die a horrible death in the end."
 
 	stat_modifiers = list(
