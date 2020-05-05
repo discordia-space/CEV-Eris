@@ -37,6 +37,7 @@
 	var/pathEndChance //The chance of terminating a path when it's found a valid endpoint, as a percentage
 	var/longPathChance //The chance that any given path will be designated 'long'
 	var/pathWidth = 2 //The default width of paths connecting the rooms
+	var/lightSpawnChance = 0 //Chance to spawn a light during path generation
 
 	var/list/border_turfs //Internal list. No touching, unless you really know what you're doing.
 
@@ -51,6 +52,7 @@
 	var/obj/procedural/jp_DungeonRegion/out_region //The jp_DungeonRegion object that we were left with after all the rooms were connected
 
 	var/list/obj/procedural/jp_DungeonRoom/out_rooms //A list containing all the jp_DungeonRoom datums placed on the map
+
 
 
 	var/list/room_templates = list() //A list of submaps used for room post-initialization
@@ -155,13 +157,53 @@
 	if(k)
 		.+=k
 
+
+/*
+
+	Spawns a lightbulb, adjacent to a wall
+
+*/
+
+
+/obj/procedural/jp_DungeonGenerator/proc/AddLight(t)
+	new /obj/machinery/light/floor(t)
+
+/*
+
+	Sets chance a light source spawns in the paths generated (in percent), per tile
+
+*/
+
+/obj/procedural/jp_DungeonGenerator/proc/setLightChance(r)
+	lightSpawnChance = r
+
+
+/*
+
+	Post-initializes all submaps
+
+*/
+
+/obj/procedural/jp_DungeonGenerator/proc/initializeSubmaps()
+	if(room_templates.len > 1) //Kind of a crutch, but eh.
+		var/datum/map_template/init_template = pick(room_templates)
+		var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
+		bounds[MAP_MINX] = 1
+		bounds[MAP_MINY] = world.maxy
+		bounds[MAP_MINZ] = (get_turf(loc)).z
+		bounds[MAP_MAXX] = world.maxx
+		bounds[MAP_MAXY] = 1
+		bounds[MAP_MAXZ] = (get_turf(loc)).z
+		init_template.initTemplateBounds(bounds)
+		testing("[bounds[MAP_MINX]], [bounds[MAP_MINY]], [bounds[MAP_MINZ]],  [bounds[MAP_MAXX]], [bounds[MAP_MAXY]], [bounds[MAP_MAXZ]]")
+
 /*
 	Returns 'true' if the turf 't' is of one of the types specified as a wall by the
 	parameters of the generator. False otherwise.
 */
 /obj/procedural/jp_DungeonGenerator/proc/isWall(turf/t)
-	if(islist(walltype)) return t.type in walltype
-	return t.type == walltype
+//	if(islist(walltype)) return t.type in walltype
+	return t.is_wall
 
 /*
 	Returns 'true' if l is a list, false otherwise
@@ -609,6 +651,8 @@
 
 		for(var/turf/t in path)
 			path-=t
+			if(prob(lightSpawnChance))
+				AddLight(t)
 			t.ChangeTurf(floortype)
 			path+= t
 
@@ -624,6 +668,8 @@
 
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
 		r.finalise()
+
+	initializeSubmaps()
 
 
 	updateWallConnections()
@@ -699,8 +745,8 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/intersects(var/obj/procedural/jp_DungeonRoom/newroom, var/list/obj/procedural/jp_DungeonRoom/rooms)
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
-		. = newroom.getSize() + r.getSize()+2
-		if((. > abs(newroom.getX() - r.getX())) && (. > abs(newroom.getY() - r.getY())))
+		. = newroom.getSize() + r.getSize() + 4
+		if((. > abs(newroom.getX() - r.getX() + 2)) && (. > abs(newroom.getY() - r.getY() + 2)))
 			if(!doAccurateRoomPlacementCheck) return TRUE
 			if(!(newroom.doesAccurate() && r.doesAccurate())) return TRUE
 
@@ -1192,6 +1238,6 @@ the arms of the plus sign - there are only four.
 
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/finalise()
 	if(my_map)
-		my_map.load(centre, centered = TRUE, orientation = SOUTH, post_init = 0)
+		my_map.load(centre, centered = TRUE, orientation = SOUTH, post_init = 1)
 	else
 		gen.out_error = gen.ERROR_NO_SUBMAPS

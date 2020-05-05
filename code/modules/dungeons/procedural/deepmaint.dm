@@ -51,6 +51,7 @@ var/global/list/free_deepmaint_ladders = list()
 				if (T.is_wall)
 					//Its got a wall!
 					viable_turfs[F] = T //We put this floor and its wall into the possible turfs list
+					break
 
 		if(viable_turfs.len == 0)
 			done_rooms += picked_room
@@ -82,6 +83,7 @@ var/global/list/free_deepmaint_ladders = list()
 	generate.name = name
 	generate.setArea(locate(x - round(width_x/2) + 1, y + round(height_y/2) + 1, z), locate(x + round(width_x/2) - 1, y - round(height_y/2) - 1, z))
 	generate.setWallType(/turf/simulated/wall)
+	generate.setLightChance(2)
 	generate.setFloorType(/turf/simulated/floor/tiled/techmaint_perforated)
 	generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap))
 	generate.setSubmapPath(/datum/map_template/deepmaint_template/big)
@@ -101,10 +103,10 @@ var/global/list/free_deepmaint_ladders = list()
 
 	generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap))
 	generate.setSubmapPath(/datum/map_template/deepmaint_template/room)
-	generate.setNumRooms(10)
-	generate.setExtraPaths(3)
-	generate.setMinPathLength(8)
-	generate.setMaxPathLength(45)
+	generate.setNumRooms(15)
+	generate.setExtraPaths(8)
+	generate.setMinPathLength(1)
+	generate.setMaxPathLength(50)
 	generate.setMinLongPathLength(25)
 	generate.setLongPathChance(30)
 	generate.setPathEndChance(30)
