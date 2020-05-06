@@ -54,4 +54,4 @@ if write_cl['changes']:
     print("Done!")
 else:
     print("No CL changes detected!")
-    exit(1)
+    exit(0)
