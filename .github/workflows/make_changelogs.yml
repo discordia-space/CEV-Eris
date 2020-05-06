@@ -32,6 +32,8 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          git config --local user.email "action@github.com"
+          git config--local user.name "Nestor Jr."
           git pull origin master
           git add -A html/changelogs/.
           git commit -m " Automatic changelog generation for PR #$PR_NUMBER [ci skip]" -a || true
