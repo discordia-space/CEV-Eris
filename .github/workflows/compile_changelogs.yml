@@ -11,8 +11,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-        with:
+        with: 
           fetch-depth: 25
+          persist-credentials: false
       - name: Python setup
         uses: actions/setup-python@v1
         with:
