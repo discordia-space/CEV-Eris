@@ -783,6 +783,8 @@
 	reagent_state = LIQUID
 	color = "#a6b85b"
 	overdose = REAGENTS_OVERDOSE
+	heating_point = 683.15
+	heating_products = list("carbon", "hclacid", "acetone")
 
 /datum/reagent/medicine/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(10 * effect_multiplier))
