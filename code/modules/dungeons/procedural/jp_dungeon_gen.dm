@@ -166,7 +166,7 @@
 
 
 /obj/procedural/jp_DungeonGenerator/proc/AddLight(t)
-	new /obj/machinery/light/floor(t)
+	new /obj/machinery/light/small/autoattach(t)
 
 /*
 
@@ -195,7 +195,7 @@
 		bounds[MAP_MAXY] = 1
 		bounds[MAP_MAXZ] = (get_turf(loc)).z
 		init_template.initTemplateBounds(bounds)
-		testing("[bounds[MAP_MINX]], [bounds[MAP_MINY]], [bounds[MAP_MINZ]],  [bounds[MAP_MAXX]], [bounds[MAP_MAXY]], [bounds[MAP_MAXZ]]")
+
 
 /*
 	Returns 'true' if the turf 't' is of one of the types specified as a wall by the
@@ -651,9 +651,10 @@
 
 		for(var/turf/t in path)
 			path-=t
-			if(prob(lightSpawnChance))
-				AddLight(t)
 			t.ChangeTurf(floortype)
+			if(prob(lightSpawnChance))
+				spawn(5)
+					AddLight(t)
 			path+= t
 
 		region1.addTurfs(path)

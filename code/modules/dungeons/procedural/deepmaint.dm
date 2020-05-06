@@ -13,7 +13,7 @@ var/global/list/free_deepmaint_ladders = list()
 
 /obj/procedural/jp_DungeonGenerator/deepmaint/generate(seed=null)
 	..(seed)
-	var/ladders_to_place = 4
+	var/ladders_to_place = 6
 	if(numRooms < ladders_to_place)
 		return
 	var/list/obj/procedural/jp_DungeonRoom/done_rooms = list()
@@ -83,7 +83,7 @@ var/global/list/free_deepmaint_ladders = list()
 	generate.name = name
 	generate.setArea(locate(x - round(width_x/2) + 1, y + round(height_y/2) + 1, z), locate(x + round(width_x/2) - 1, y - round(height_y/2) - 1, z))
 	generate.setWallType(/turf/simulated/wall)
-	generate.setLightChance(2)
+	generate.setLightChance(3)
 	generate.setFloorType(/turf/simulated/floor/tiled/techmaint_perforated)
 	generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap))
 	generate.setSubmapPath(/datum/map_template/deepmaint_template/big)
