@@ -31,6 +31,7 @@
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
+	strength = 0.6
 
 /datum/reagent/toxin/oil
 	name = "Oil"
