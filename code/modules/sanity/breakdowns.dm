@@ -16,7 +16,7 @@
 	icon_state = "negative"
 	breakdown_sound = 'sound/sanity/insane.ogg'
 
-
+//Ideas(delete before commiting): phantom spessmen, phantom fires,
 
 
 #define STALWART_THRESHOLD 30 // How damaged should owner be for Stalwart to be able to trigger
@@ -461,6 +461,62 @@
 	. = ..()
 	if (get_area(holder.owner) == nostalgic_target)
 		conclude()
+
+
+/datum/breakdown/common/high_as_hell
+	name = "High as Hell"
+	restore_sanity_post = 100
+
+	start_messages = list(
+		"You feel that you've left something somewhere aboard. Something important...",
+		"There is a place where I understood my true self. I should get there again.",
+		"You suddenly feel that some place is pulling you towards itself slowly yet powerfully..."
+	)
+	end_messages = list(
+		"OH FUCK.",
+		"FUCK YEAH",
+		"I need to rethink my life choices."
+	)
+
+
+/datum/breakdown/common/high_voltage
+	name = "High voltage"
+	restore_sanity_post = 100
+
+	start_messages = list(
+	"I need more power. Buzzing type."
+	)
+
+	end_messages = list(
+	"That's enough."
+	)
+
+/datum/breakdown/common/mechanicus
+	name ="Lust for Chrome"
+	restore_sanity_post = 80
+
+	start_messages = list(
+	"Flesh is weak, I need to replace it."
+	)
+
+	end_messages = list(
+	"011100010"
+	)
+
+	var/list/old_trash
+
+/datum/breakdown/common/mechanicus/New()
+	..()
+	old_trash = holder.owner.get_visible_implants()
+
+/datum/breakdown/common/mechanicus/update()
+	. = ..()
+	var/list/new_trash = holder.owner.get_visible_implants()
+	if(new_trash.len > old_trash.len)
+		conclude()
+
+
+
 
 
 

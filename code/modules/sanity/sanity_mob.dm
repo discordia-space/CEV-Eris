@@ -50,10 +50,10 @@
 
 	var/list/desires = list()
 
-	var/positive_prob = 20
-	var/negative_prob = 30
+	var/positive_prob = 15
+	var/negative_prob = 15
 
-	var/view_damage_threshold = 20
+	var/view_damage_threshold = 10
 
 	var/say_time = 0
 	var/breakdown_time = 0
@@ -184,7 +184,7 @@
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
-		amount /= 4
+		amount /= 2
 	insight_rest += amount
 	if(insight_rest >= 100)
 		insight_rest = 0
@@ -193,7 +193,7 @@
 /datum/sanity/proc/finish_rest()
 	var/list/stat_change = list()
 
-	var/stat_pool = resting * 15
+	var/stat_pool = resting * 10
 	while(stat_pool--)
 		LAZYAPLUS(stat_change, pick(ALL_STATS), 1)
 
@@ -234,7 +234,7 @@
 /datum/sanity/proc/onDrug(datum/reagent/drug/R, multiplier)
 	changeLevel(R.sanity_gain * multiplier)
 	if(resting)
-		add_rest(INSIGHT_DESIRE_DRUGS, 4 * multiplier)
+		add_rest(INSIGHT_DESIRE_DRUGS, 5 * multiplier)
 
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
@@ -244,12 +244,12 @@
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, amount_eaten)
 	changeLevel(snack.sanity_gain * amount_eaten / snack.bitesize)
 	if(snack.cooked && resting)
-		add_rest(snack.type, 20 * amount_eaten / snack.bitesize)
+		add_rest(snack.type, 15 * amount_eaten / snack.bitesize)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
 	if(resting)
-		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
+		add_rest(INSIGHT_DESIRE_SMOKING, 0.6 * S.quality_multiplier)
 
 /datum/sanity/proc/onSay()
 	if(world.time < say_time)

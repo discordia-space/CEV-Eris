@@ -225,7 +225,7 @@
 /datum/reagent/drug/mindwipe
 	name = "Mindwipe"
 	id = "mindwipe"
-	description = "Shocks the user's brain hard enough to make him forget about his troubles. Is ill-advised because of side effects"
+	description = "Shocks the user's brain hard enough to make him forget about his quirks. Is ill-advised because of side effects"
 	taste_description = "bitter"
 	reagent_state = LIQUID
 	color = "#bfff00"
@@ -235,7 +235,10 @@
 	addiction_chance = 20
 
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	for (var/datum/breakdown/B in M.sanity.breakdowns)
-		qdel.src
+	if (ishuman(M))
+		var/mob/living/carbon/human/affected = M
+		for (var/datum/breakdown/B in affected.sanity.breakdowns)
+			B.destroy()
+		affected.sanity.insight = 0
+		affected.sanity.level = 15
 
-/datum/reagent/drug/mindwipe
