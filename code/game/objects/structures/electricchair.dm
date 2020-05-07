@@ -62,8 +62,7 @@
 		sleep(1)
 		buckled_mob.burn_skin(110)
 		buckled_mob.Stun(600)
-	visible_message(SPAN_DANGER("The electric chair went off!"))
-	visible_message(SPAN_DANGER("You hear a deep sharp shock!"))
+	visible_message(SPAN_DANGER("The electric chair went off!"), SPAN_DANGER("You hear a deep sharp shock!"))
 	icon_state = "echair0"
 
 	A.power_light = light
