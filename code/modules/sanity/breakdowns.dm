@@ -237,6 +237,10 @@
 		holder.owner.emote("cry")
 
 /datum/breakdown/negative/hysteric/occur()
+	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
+	holder.owner << img
+	flick(icon_state, img)
+	spawn(600)
 	holder.owner.SetWeakened(4)
 	holder.owner.SetStunned(4)
 	++holder.owner.suppress_communication
