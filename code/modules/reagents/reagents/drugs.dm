@@ -237,9 +237,10 @@
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if (ishuman(M))
 		var/mob/living/carbon/human/affected = M
-		for (var/datum/breakdown/B in affected.sanity.breakdowns)
-			B.destroy()
-			to_chat(M, "<span class='notice'>You're anchored down!</span>")
+		if(prob(1))
+			for (var/datum/breakdown/B in affected.sanity.breakdowns)
+				B.destroy()
+				to_chat(M, "<span class='notice'>You're anchored down!</span>")
 		affected.sanity.insight = 0
 		affected.sanity.level = 15
 
