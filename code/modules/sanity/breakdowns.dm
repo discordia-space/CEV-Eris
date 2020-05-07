@@ -16,8 +16,6 @@
 	icon_state = "negative"
 	breakdown_sound = 'sound/sanity/insane.ogg'
 
-//Ideas(delete before commiting): phantom spessmen, phantom fires,
-
 
 #define STALWART_THRESHOLD 30 // How damaged should owner be for Stalwart to be able to trigger
 
@@ -198,6 +196,10 @@
 					holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
 
 /datum/breakdown/negative/selfharm/occur()
+	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
+	holder.owner << img
+	flick(icon_state, img)
+	spawn(600)
 	++holder.owner.suppress_communication
 	return ..()
 
@@ -468,9 +470,9 @@
 	restore_sanity_post = 100
 
 	start_messages = list(
-		"You feel that you've left something somewhere aboard. Something important...",
-		"There is a place where I understood my true self. I should get there again.",
-		"You suddenly feel that some place is pulling you towards itself slowly yet powerfully..."
+		"Alcohol doesn't kick it anymore for you. Or maybe you just drink too little?",
+		"That last pill felt dull. You need something much more tasty.",
+		"Why should you limit yourself by concepts of health and sanity? That little pill would fly you right to Heaven."
 	)
 	end_messages = list(
 		"OH FUCK.",
@@ -496,11 +498,13 @@
 	restore_sanity_post = 80
 
 	start_messages = list(
-	"Flesh is weak, I need to replace it."
+	"The flesh is weak, I need to replace it.",
+	"I yearn for the strength of metal, over the weakness of the flesh.",
+	"This body will not last long in its organic state, I must transcend it."
 	)
 
 	end_messages = list(
-	"011100010"
+	"0100011001101001011011100110000101101100011011000111100100101100001000000111011101100101001000000110000101110010011001010010000001100110011100100110010101100101"
 	)
 
 	var/list/old_trash

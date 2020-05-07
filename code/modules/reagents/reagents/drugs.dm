@@ -239,6 +239,7 @@
 		var/mob/living/carbon/human/affected = M
 		for (var/datum/breakdown/B in affected.sanity.breakdowns)
 			B.destroy()
+			to_chat(M, "<span class='notice'>You're anchored down!</span>")
 		affected.sanity.insight = 0
 		affected.sanity.level = 15
 
