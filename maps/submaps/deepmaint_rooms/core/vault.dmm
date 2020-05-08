@@ -16,7 +16,7 @@
 "ap" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "aq" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
 "ar" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/reinforced,/turf/simulated/floor/plating,/area/deepmaint)
-"as" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
+"as" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "at" = (/obj/machinery/door/airlock/glass,/obj/structure/girder,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "au" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
 "av" = (/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
@@ -32,10 +32,10 @@
 "aF" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/white/cargo,/area/deepmaint)
 "aG" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
 "aH" = (/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
-"aI" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/turf/simulated/floor/plating/under,/area/deepmaint)
+"aI" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
 "aJ" = (/obj/random/junk,/obj/random/junk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
 "aK" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
-"aL" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 1; icon_state = "map"; tag = "icon-manifold-f (NORTH)"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"aL" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/wall,/area/deepmaint)
 "aM" = (/obj/random/junk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 1},/turf/simulated/floor/plating/under,/area/deepmaint)
 "aN" = (/obj/machinery/washing_machine,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "aO" = (/obj/structure/table/standard,/obj/structure/bedsheetbin,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
@@ -49,7 +49,7 @@
 "aW" = (/obj/structure/table/standard,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "aX" = (/obj/structure/table/standard,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "aY" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/reinforced,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/floor/plating,/area/deepmaint)
-"aZ" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/floor/tiled/dark/monofloor,/area/deepmaint)
+"aZ" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
 "ba" = (/obj/machinery/vending/assist,/obj/machinery/light{dir = 8},/turf/simulated/floor/plating,/area/deepmaint)
 "bb" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "bc" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/steel,/area/deepmaint)
@@ -75,6 +75,11 @@
 "bw" = (/obj/structure/girder,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
 "bx" = (/obj/structure/girder,/obj/structure/girder,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
 "by" = (/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"bz" = (/obj/structure/catwalk,/obj/random/junk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
+"bA" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/obj/structure/disposalpipe/junction{dir = 8; icon_state = "pipe-j2"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"bB" = (/obj/machinery/door/airlock/glass,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
+"bC" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/steel,/area/deepmaint)
+"bD" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "bE" = (/obj/structure/catwalk,/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
 "bF" = (/obj/machinery/chem_master/condimaster,/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/cafe,/area/deepmaint)
 "bG" = (/obj/structure/table/standard,/obj/machinery/microwave{pixel_x = -3; pixel_y = 6},/turf/simulated/floor/tiled/cafe,/area/deepmaint)
@@ -86,6 +91,7 @@
 "bM" = (/obj/structure/bed/chair/office/dark{dir = 4},/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/gun_loot,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "bN" = (/obj/structure/bed/chair{dir = 8},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
 "bO" = (/obj/random/junk,/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
+"bP" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
 "bQ" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/glass/beaker{pixel_x = 5},/obj/item/weapon/reagent_containers/glass/beaker{pixel_x = 5},/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/tiled/cafe,/area/deepmaint)
 "bR" = (/obj/structure/table/reinforced,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "bS" = (/obj/structure/catwalk,/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
@@ -94,8 +100,10 @@
 "bV" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "bW" = (/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
 "bX" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
-"ca" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/manifold4w/hidden,/turf/simulated/floor/plating/under,/area/deepmaint)
-"cb" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 4; icon_state = "map"; tag = "icon-manifold-f (EAST)"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"bY" = (/obj/structure/disposalpipe/junction{dir = 2; icon_state = "pipe-y"},/turf/simulated/floor/tiled/dark/monofloor,/area/deepmaint)
+"bZ" = (/obj/machinery/door/airlock/vault{icon_state = "door_locked"; locked = 1},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
+"ca" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
+"cb" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/manifold4w/hidden,/obj/structure/disposalpipe/junction{tag = "icon-pipe-y (EAST)"; icon_state = "pipe-y"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
 "cc" = (/obj/structure/closet/secure_closet/personal,/obj/random/pack/rare,/obj/random/pack/rare,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "cd" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
 "ce" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
@@ -108,26 +116,31 @@
 "cl" = (/obj/machinery/vending/cigarette,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "cm" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "cn" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/deepmaint)
+"co" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"cp" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/wall/r_wall,/area/deepmaint)
+"cq" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
+"cr" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/random/junk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
+"cs" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
 
 (1,1,1) = {"
 aaaaafaaaaaiaaaoaaaaapaaaaaaafaiaaaaaaapaf
-aaamamamamacamamamamasamambEamacamaLamamaa
-aaacacacacabababababababababababacadacacaa
-afacaNaNaOabbnayaBaBaJaJaBaybqabaUaaaWacaa
-aoacaaaaaXabaKabababababababaMabbaaaaWagaf
-bbacbcaaaXabaPabbebfbgbhbiabaMabbjaaaWagaa
-aaacaaaaaXabaMabbkahahahblabaQabbmaaaWacaa
-aaacadacababaRabahbobpahahabaMababajakacaf
-aabrbsbtabalaSabababanabababaQalabambvacaa
-aabwbxbwabalbuaTaVaYaZaYaVbdbyalabambvacaa
-aaabatabababauabababanababababababambEacaf
-afabavbFbGabaxbHazagaabIaAabalalabamamacaa
-afabavbJbKabbLaxbMaCaaapbNabbOaDauasamacaa
-aaabavbJbQabaxbRaEagaaaaaAabaDaDabambSacao
-aaabavbTbUabbVabababadabababalalabambEacaa
-aoabaFabababajabaeaGamaqbWababababamamacaa
-aaabbXawajamamaqaecdcaaqbWbWbWaearcbbEacaa
-aaabaHccabaIaIaebWcdascecfbWaebWarambvacaa
+asaIaIaIaIaLaIaIaIaIaZaIaIbzaIaLaIbAaIaIas
+aaacacacacabababababababababababacbBacacaa
+afacaNaNaOabbnayaBaBaJaJaBaybqabaUbCaWacaa
+aoacaaaaaXabaKabababababababaMabbabCaWagaf
+bbacbcaaaXabaPabbebfbgbhbiabaMabbjbCaWagaa
+aaacaaaaaXabaMabbkahahahblabaQabbmbCaWacaa
+aaacadacababaRabahbobpahahabaMababbDakacaf
+aabrbsbtabalaSabababanabababaQalabbPbvacaa
+aabwbxbwabalbuaTaVaYbYaYaVbdbyalabbPbvacaa
+aaabatabababauabababbZababababababbPbEacaf
+afabavbFbGabaxbHazagbCbIaAabalalabbPamacaa
+afabavbJbKabbLaxbMaCbCapbNabbOaDaucaamacaa
+aaabavbJbQabaxbRaEagbCaaaAabaDaDabbPbSacao
+aaabavbTbUabbVabababbBabababalalabbPbEacaa
+aoabaFabababajabaeaGbPaqbWababababbPamacaa
+aaabbXawajamamaqaecdcbaTbdbdbdaVaYcobEacaa
+aaabaHcccpcqcqaVbdcrcscecfbWaebWarambvacaa
 afabcgchababababbWaGamaqciababababambvacaa
 aaababababcjckabababadabababclcmabajakacao
 aaaaaaaaaaafaaaoaaaaaacnaaaaaaapaaaaaaaaaa
