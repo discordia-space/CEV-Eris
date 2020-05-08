@@ -31,15 +31,15 @@
 		list(mode_name="fire grenades",  burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)
 		)
 
-	var/obj/item/weapon/gun/launcher/grenade/underslung/launcher
+	var/obj/item/weapon/gun/projectile/underslung/launcher
 
 /obj/item/weapon/gun/projectile/automatic/z8/Initialize()
 	. = ..()
 	launcher = new(src)
 
 /obj/item/weapon/gun/projectile/automatic/z8/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/weapon/grenade)))
-		launcher.load(I, user)
+	if((istype(I, /obj/item/ammo_casing/grenade)))
+		launcher.load_ammo(I, user)
 	else
 		..()
 
@@ -47,7 +47,7 @@
 	var/datum/firemode/cur_mode = firemodes[sel_mode]
 
 	if(user.get_inactive_hand() == src && cur_mode.settings["use_launcher"])
-		launcher.unload(user)
+		launcher.unload_ammo(user)
 	else
 		..()
 
@@ -56,7 +56,7 @@
 
 	if(cur_mode.settings["use_launcher"])
 		launcher.Fire(target, user, params, pointblank, reflex)
-		if(!launcher.chambered)
+		if(!launcher.loaded.len)
 			switch_firemodes() //switch back automatically
 	else
 		..()
