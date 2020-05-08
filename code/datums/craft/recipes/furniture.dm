@@ -143,10 +143,12 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
+	name_craft_menu = "Office chairs"
 
 /datum/craft_recipe/furniture/office_chair/light
 	name = "light office chair"
 	result = /obj/structure/bed/chair/office/light
+	variation_type = CRAFT_VARIATION
 
 // Wheelchairs
 /datum/craft_recipe/furniture/wheelchair
@@ -163,6 +165,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
+	name_craft_menu = "Comfy chairs"
 
 /datum/craft_recipe/furniture/comfy_chair/black
 	name = "black comfy chair"

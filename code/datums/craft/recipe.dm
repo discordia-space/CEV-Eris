@@ -11,6 +11,7 @@
 	var/avaliableToEveryone = TRUE
 
 	var/variation_type = CRAFT_REFERENCE
+	var/name_craft_menu
 
 /datum/craft_recipe/New()
 	var/step_definations = steps

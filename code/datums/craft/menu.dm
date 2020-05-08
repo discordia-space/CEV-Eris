@@ -62,7 +62,7 @@
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
 		if((recipe.avaliableToEveryone || (recipe.type in user.mind.knownCraftRecipes)) && (recipe.variation_type == CRAFT_REFERENCE))
 			items += list(list(
-				"name" = capitalize(recipe.name),
+				"name" = capitalize(recipe.name_craft_menu ? recipe.name_craft_menu : recipe.name),
 				"ref" = "\ref[recipe]"
 			))
 	data["items"] = items
