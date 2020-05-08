@@ -383,24 +383,10 @@
 			objectname = initial(target.name)
 			break
 	if(!target)
-		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
-		if(candidates.len)
-			var/mob/living/carbon/human/H = pick(candidates)
-/datum/breakdown/common/obsession/can_occur()
-	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
-	candidates = shuffle(candidates)
-	while(candidates.len)
-		var/mob/living/carbon/human/H = pick(candidates)
-		candidates.Remove(H)
-		var/list/contents = H.get_contents()
-		target = locate(/obj/item/weapon/oddity) in contents
-		if(!target)
-			target = pick(H.organs - H.organs_by_name[BP_CHEST])
+		return
+	//Here should go organ desire code as soon as Erismed is done. For now that code would never run.
 
-		if(target)
-			objectname = "[H.real_name]'s [target.name]"
-			break
-	return !!target
+
 
 /datum/breakdown/common/obsession/update()
 	. = ..()

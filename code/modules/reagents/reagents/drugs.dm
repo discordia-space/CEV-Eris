@@ -240,7 +240,7 @@
 		if(prob(1))
 			for (var/datum/breakdown/B in affected.sanity.breakdowns)
 				B.destroy()
-				to_chat(M, "<span class='notice'>You're anchored down!</span>")
+				to_chat(M, "<span class='notice'>You feel that something eases the strain on your sanity. But at which price?</span>")
 		affected.sanity.insight = 0
-		affected.sanity.level = 15
+		affected.sanity.level = 35
 
