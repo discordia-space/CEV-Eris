@@ -62,7 +62,7 @@
 	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
 		if((recipe.avaliableToEveryone || (recipe.type in user.mind.knownCraftRecipes)) && (recipe.variation_type == CRAFT_REFERENCE))
 			items += list(list(
-				"name" = capitalize(recipe.name_craft_menu ? recipe.name_craft_menu : recipe.name),
+				"name" = capitalize(recipe.name_craft_menu ? recipe.name_craft_menu : recipe.name), // Display subtype name if the item is the reference of a subtype of items
 				"ref" = "\ref[recipe]"
 			))
 	data["items"] = items
@@ -102,37 +102,21 @@
 		SSnano.update_uis(src)
 	else if(href_list["item"])
 		var/list/subtypes_item = subtypesof(locate(href_list["item"]))
-		var/num_choice = subtypes_item.len
-		to_chat(usr, "[num_choice] subtypes detected.")
-		if (subtypes_item.len > 1)
-			/*var/datum/craft_recipe/CR = input(src,"Please chose variation") as null|anything in subtypes_item
-			if(CanInteract(usr, GLOB.default_state))
-				if (!CR)
-					return
-				//var/usr_choice = variation_choices
-				to_chat(usr, "You made your choice of [CR.name].")
-
-				set_item(CR, usr)*/
-			var/list/namelist = list()
-			var/obj/item/CR
-			for (var/I in subtypes_item)
-				to_chat(usr, "Processing [I]")
-				to_chat(usr, "Pass.")
+		if (subtypes_item.len > 1)  // Check if the crafted item has variations
+			var/list/namelist = list()  // To store names of variations
+			var/obj/item/CR  // Temporary item
+			for (var/I in subtypes_item)  // Go through all variations of the reference item
 				CR = new I (null)
 				namelist += "[CR.name]"
-				to_chat(usr, "Processing [CR.name].")
-			var/variation_choices = input(usr, "Please chose variation") as null|anything in namelist
+			var/variation_choices = input(usr, "Please chose variation") as null|anything in namelist  // Ask the user which variation he wants to craft
 			if(CanInteract(usr, GLOB.default_state))
 				if (!variation_choices)
 					return
 				var/usr_choice = variation_choices
-				to_chat(usr, "You made your choice of [usr_choice].")
-
-				for (var/I in subtypes_item)
+				for (var/I in subtypes_item)  // Retrieve the desired item by checking the name of all variations
 					CR = new I (null)
 					if (CR.name == usr_choice)
-						to_chat(usr, "Choice registered.")
-						set_item("\ref[CR]", usr)
+						set_item("\ref[CR]", usr)  // Update UI with desired variation
 		else
 			set_item(href_list["item"], usr)
 		SSnano.update_uis(src)
