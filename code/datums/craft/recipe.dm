@@ -12,7 +12,7 @@
 	var/dir_type = CRAFT_WITH_USER_DIR  // spawn the result in the user's direction by default
 	// set it to CRAFT_TOWARD_USER to spawn the result towards the user
 	// set it to CRAFT_DEFAULT_DIR to spawn the result in its default direction (stored in dir_default)
-	var/dir_default = 2  // south is default for recipes with dir_type = 2
+	var/dir_default = 2  // south is default for recipes with dir_type = CRAFT_DEFAULT_DIR
 
 /datum/craft_recipe/New()
 	var/step_definations = steps
