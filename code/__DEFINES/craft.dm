@@ -3,3 +3,7 @@
 #define CRAFT_BATCH        4
 
 #define CRAFT_MATERIAL		"material"
+
+#define CRAFT_WITH_USER_DIR  0
+#define CRAFT_TOWARD_USER    1
+#define CRAFT_DEFAULT_DIR    2

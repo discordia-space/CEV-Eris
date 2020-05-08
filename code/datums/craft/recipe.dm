@@ -9,9 +9,9 @@
 	var/time = 30 //Used when no specific time is set
 	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
 	var/avaliableToEveryone = TRUE
-	var/dir_type = 0  // spawn the result in the user's direction by default
-	// set it to 1 to spawn the result towards the user
-	// set it to 2 to spawn the result in its default direction (stored in dir_default)
+	var/dir_type = CRAFT_WITH_USER_DIR  // spawn the result in the user's direction by default
+	// set it to CRAFT_TOWARD_USER to spawn the result towards the user
+	// set it to CRAFT_DEFAULT_DIR to spawn the result in its default direction (stored in dir_default)
 	var/dir_default = 2  // south is default for recipes with dir_type = 2
 
 /datum/craft_recipe/New()
@@ -27,9 +27,9 @@
 	var/atom/movable/M = new result(get_turf(C))
 	M.Created(user)
 	switch (C.recipe.dir_type)
-		if (0)  // spawn the result in the user's direction
+		if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 			M.dir = user.dir
-		if (1)  // spawn the result towards the user
+		if (CRAFT_TOWARD_USER)  // spawn the result towards the user
 			M.dir = reverse_dir[user.dir]
 		else  // spawn the result in its default direction
 			M.dir = C.recipe.dir_default
@@ -120,9 +120,9 @@
 	if(steps.len <= 1)
 		CR = new result(null)
 		switch (dir_type)
-			if (0)  // spawn the result in the user's direction
+			if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 				CR.dir = user.dir
-			if (1)  // spawn the result towards the user
+			if (CRAFT_TOWARD_USER)  // spawn the result towards the user
 				CR.dir = reverse_dir[user.dir]
 			else  // spawn the result in its default direction
 				CR.dir = dir_default
