@@ -26967,6 +26967,11 @@
 /obj/random/booze/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
+"biy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "biz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -41758,6 +41763,12 @@
 /area/eris/maintenance/section4deck4port)
 "bOi" = (
 /obj/machinery/botany/extractor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bOj" = (
@@ -44973,6 +44984,12 @@
 /area/eris/crew_quarters/hydroponics)
 "bVu" = (
 /obj/machinery/botany/editor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bVv" = (
@@ -98326,10 +98343,6 @@
 /area/eris/maintenance/section4deck1central)
 "ema" = (
 /obj/machinery/botany/extractor,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
-"emb" = (
-/obj/machinery/biogenerator,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emc" = (
@@ -164414,7 +164427,7 @@ cyN
 drI
 bUQ
 bVd
-bQq
+biy
 cCt
 cCP
 cEc
@@ -295089,7 +295102,7 @@ ebi
 ebi
 ebi
 ebi
-emb
+epD
 enf
 ecl
 bHc
