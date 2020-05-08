@@ -10,6 +10,8 @@
 	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
 	var/avaliableToEveryone = TRUE
 
+	var/variation_type = CRAFT_REFERENCE
+
 /datum/craft_recipe/New()
 	var/step_definations = steps
 	steps = new

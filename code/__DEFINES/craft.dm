@@ -3,3 +3,6 @@
 #define CRAFT_BATCH        4
 
 #define CRAFT_MATERIAL		"material"
+
+#define CRAFT_REFERENCE 0
+#define CRAFT_VARIATION 1

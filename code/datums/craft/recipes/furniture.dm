@@ -167,31 +167,39 @@
 /datum/craft_recipe/furniture/comfy_chair/black
 	name = "black comfy chair"
 	result = /obj/structure/bed/chair/comfy/black
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/brown
 	name = "brown comfy chair"
 	result = /obj/structure/bed/chair/comfy/brown
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/lime
 	name = "lime comfy chair"
 	result = /obj/structure/bed/chair/comfy/lime
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/teal
 	name = "teal comfy chair"
 	result = /obj/structure/bed/chair/comfy/teal
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/red
 	name = "red comfy chair"
 	result = /obj/structure/bed/chair/comfy/red
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/blue
 	name = "blue comfy chair"
 	result = /obj/structure/bed/chair/comfy/blue
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/purple
 	name = "purple comfy chair"
 	result = /obj/structure/bed/chair/comfy/purp
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/furniture/comfy_chair/green
 	name = "green comfy chair"
 	result = /obj/structure/bed/chair/comfy/green
+	variation_type = CRAFT_VARIATION
