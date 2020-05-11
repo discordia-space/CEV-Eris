@@ -1,18 +1,18 @@
 /obj/item/weapon/gun/projectile/revolver/havelock
 	name = "FS REV .35 Auto \"Havelock\""
-	desc = "A cheap Frozen Star knock-off of a Smith & Wesson Model 10. Uses .35 special rounds."
+	desc = "A cheap Frozen Star knock-off of a Smith & Wesson Model 10. Uses .35 auto rounds."
 	icon = 'icons/obj/guns/projectile/havelock.dmi'
 	icon_state = "havelock"
 	drawChargeMeter = FALSE
 	w_class = ITEM_SIZE_SMALL
-	max_shells = 6
+	max_shells = 5
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/Gunshot_light.ogg'
 	ammo_type = /obj/item/ammo_casing/pistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
-	price_tag = 800 //cheap civ peashooter revolver, something similar to olivav
-	damage_multiplier = 1.15 //because pistol round
+	price_tag = 800 // Powerful for a pocket gun, but limited by high recoil and low capacity.
+	damage_multiplier = 1.5 // 36 damage for regular rounds, 
 	penetration_multiplier = 1.2
-	recoil_buildup = 18
+	recoil_buildup = 40
 	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
