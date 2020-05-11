@@ -1,8 +1,3 @@
-//used for pref.alternate_option
-#define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
-#define RETURN_TO_LOBBY 2
-
 #define JOB_LEVEL_NEVER  4
 #define JOB_LEVEL_LOW    3
 #define JOB_LEVEL_MEDIUM 2
@@ -66,7 +61,7 @@
 
 	// We could have something like Captain set to high while on a non-rank map,
 	// so we prune here to make sure we don't spawn as a PFC captain
-	//prune_occupation_prefs()
+	prune_occupation_prefs()
 
 	//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		//this proc also automatically computes and updates points_by_job
 
@@ -137,11 +132,14 @@
 			bad_message = "\[IN [(available_in_days)] DAYS]"*/
 		else if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
-		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
+		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
+			bad_message = "\[SETUP RESTRICTED]"
+
+		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
 		if(bad_message)
-			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td>[bad_message]</td></tr>"
+			. += "<a href='?src=\ref[src];set_skills=[rank]'><del>[rank]</del></a></td><td><font color=black>[bad_message]</font></td></tr>"
 			continue
 
 		//. += (unspent && (current_level != JOB_LEVEL_NEVER) ? "<a class='Points' href='?src=\ref[src];set_skills=[rank]'>" : "<a href='?src=\ref[src];set_skills=[rank]'>")
@@ -153,7 +151,7 @@
 
 		. += "</a></td><td width='40%'>"
 
-		if(rank == "Assistant")//Assistant is special
+		if(rank == ASSISTANT_TITLE)//Assistant is special
 			. += "<a href='?src=\ref[src];set_job=[rank];set_level=[JOB_LEVEL_LOW]'>"
 			. += "[(rank in pref.job_low) ? "<font color=#55cc55>" : ""]\[Yes\][(rank in pref.job_low) ? "</font>" : ""]"
 			//. += "\[Yes\]"
@@ -208,8 +206,9 @@
 				return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 
 	else if(href_list["set_job"] && href_list["set_level"])
-		create_job_description(user)
-		if(SetJob(user, href_list["set_job"], text2num(href_list["set_level"]))) return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
+		if(SetJob(user, href_list["set_job"], text2num(href_list["set_level"])))
+			create_job_description(user)
+			return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
 /*
 	else if(href_list["set_skills"])
 		var/rank = href_list["set_skills"]
@@ -272,6 +271,8 @@
 	//First of all, we check if the user has opted to query any specific job by clicking the ? button
 	if(job_info_selected_rank)
 		job = SSjob.GetJob(job_info_selected_rank)
+	else if(ASSISTANT_TITLE in pref.job_low)
+		job = SSjob.GetJob(ASSISTANT_TITLE)
 	else
 		//If not, then we'll attempt to get the job they have set as high priority, if any
 		job = SSjob.GetJob(pref.job_high)
@@ -319,10 +320,24 @@
 
 	//Here we have a right-floating textbox that shows user's stats
 	job_desc +="<div style='border: 1px solid grey; float: right; margin-right: 20px; padding: 8px; line-height: 120%;'> <h1 style='padding: 0px;'>Stats:</h1>"
-	if (job.stat_modifiers.len)
+	if(job.title == ASSISTANT_TITLE)
+		job_desc += "<ul>"
+		for (var/a in ALL_STATS)
+			job_desc += "<li>[a]: ???</li>"
+		job_desc += "</ul>"
+	else if (job.stat_modifiers.len)
 		job_desc += "<ul>"
 		for (var/a in job.stat_modifiers)
 			job_desc += "<li>[a]: [job.stat_modifiers[a]]</li>"
+		job_desc += "</ul>"
+	else
+		job_desc += "None"
+	job_desc += "<h1 style='padding: 0px;'>Perks:</h1>"
+	if (job.perks.len)
+		job_desc += "<ul>"
+		for (var/a in job.perks)
+			var/datum/perk/P = a
+			job_desc += "<li>[initial(P.name)]</li>"
 		job_desc += "</ul>"
 	else
 		job_desc += "None"
@@ -365,7 +380,7 @@
 	if(!job)
 		return 0
 
-	if(role == "Assistant")
+	if(role == ASSISTANT_TITLE)
 		if(level == JOB_LEVEL_NEVER)
 			pref.job_low -= job.title
 		else
@@ -452,8 +467,9 @@
 	for(var/job_title in pref.job_low)
 		if(!(job_title in allowed_titles))
 			pref.job_low -= job_title
-/*
-datum/category_item/player_setup_item/proc/prune_occupation_prefs()
+
+/datum/category_item/player_setup_item/proc/prune_occupation_prefs()
+	/*
 	var/datum/species/S = preference_species()
 	if((GLOB.using_map.flags & MAP_HAS_BRANCH)\
 	   && (!pref.char_branch || !mil_branches.is_spawn_branch(pref.char_branch, S)))
@@ -462,8 +478,9 @@ datum/category_item/player_setup_item/proc/prune_occupation_prefs()
 	if((GLOB.using_map.flags & MAP_HAS_RANK)\
 	   && (!pref.char_rank || !mil_branches.is_spawn_rank(pref.char_branch, pref.char_rank, S)))
 		pref.char_rank = "None"
+	*/
 
-	prune_job_prefs()*/
+	prune_job_prefs()
 
 /datum/category_item/player_setup_item/occupation/proc/ResetJobs()
 	pref.job_high = null
@@ -476,6 +493,6 @@ datum/category_item/player_setup_item/proc/prune_occupation_prefs()
 	return (job.title in player_alt_titles) ? player_alt_titles[job.title] : job.title
 
 #undef JOB_LEVEL_NEVER
-#undef SET_LEVE_LOW
+#undef JOB_LEVEL_LOW
 #undef JOB_LEVEL_MEDIUM
 #undef JOB_LEVEL_HIGH

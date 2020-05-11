@@ -1,0 +1,113 @@
+
+<div class="itemLabel"> Status:  </div>
+{{if data.operational}}
+	<div class="itemContent">
+		<div class="good">
+			OPERATIONAL
+		</div>
+	</div>
+{{else}}
+	<div class="itemContent">
+		<div class="bad">
+			NOT OPERATIONAL
+		</div>
+	</div>
+{{/if}}
+
+<div class="itemLabel"> Power output:  </div>
+<div class="itemContent">
+	{{:data.output_power}}
+</div>
+
+<div class="itemLabel"> O2 input:  </div>
+<div class="itemContent">
+	{{if data.O2_input}}
+		<div class="good">
+			OK
+		</div>
+	{{else}}
+		<div class="average">
+			NONE
+		</div>
+	{{/if}}
+</div>
+	
+<div class="itemLabel"> CO2 output:  </div>
+<div class="itemContent">
+	{{if data.CO2_output}}
+		<div class="good">
+			OK
+		</div>
+	{{else}}
+		<div class="average">
+			NONE
+		</div>
+	{{/if}}
+</div>
+
+<div class="itemLabel"> Tank:  </div>
+<div class="itemContent">
+	{{if data.tank}}
+		Connected ({{:data.tank_bio_amount}} of biomatter left)
+	{{else}}
+		<div class="average">
+			NONE
+		</div>
+	{{/if}}
+</div>
+
+<div class="itemLabel"> Pipes condition:  </div>
+<div class="itemContent">
+	{{if data.pipes_condition > 1 && data.pipes_condition <= 2}}
+		<div class="good">
+			SLIGHTLY CONTAMINATED
+		</div>
+	{{else data.pipes_condition <= 4 && data.pipes_condition > 2}}
+		<div class="average">
+			CONTAMINATED
+		</div>
+	{{else data.pipes_condition == 5}}
+		<div class="bad">
+			BLOCKAGE
+		</div>
+	{{else}}
+		<div class="good">
+			CLEAN
+		</div>
+	{{/if}}
+</div>
+	
+<div class="itemLabel"> Coil condition: </div>
+{{if data.wires_integrity > 0}}
+	<div class="itemContent"> {{:data.coil_condition}} % </div>
+{{else}}
+	<div class="bad">
+		<div class="itemContent"> DAMAGED SECTORS DETECTED </div>
+	</div>
+{{/if}}
+
+<div class="itemLabel"> Powernet: </div>
+{{if data.powernet_detected}}
+	<div class="good">
+		<div class="itemContent"> DETECTED </div>
+	</div>
+{{else}}
+	<div class="bad">
+		<div class="itemContent"> UNDETECTED </div>
+	</div>
+{{/if}}
+	
+{{if data.wires}}
+	<div class="itemLabel"> Wires integrity: </div>
+	{{if data.wires_integrity > 0}}
+		<div class="itemContent"> {{:data.wires_integrity}} % </div>
+	{{else}}
+		<div class="bad">
+			<div class="itemContent"> WIRING NOT FUNCTIONAL </div>
+		</div>
+	{{/if}}
+{{else}}
+	<div class="bad">
+		Air chamber is lack of wires
+	</div>
+{{/if}}

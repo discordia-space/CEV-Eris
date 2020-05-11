@@ -3,19 +3,19 @@
 	desc = "A handgun holster."
 	icon_state = "holster"
 	slot = "utility"
+	matter = list(MATERIAL_BIOMATTER = 5)
+	price_tag = 200
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
-		user << SPAN_WARNING("There is already \a [holstered] holstered here!")
+		to_chat(user, SPAN_WARNING("There is already \a [holstered] holstered here!"))
 		return
 
 	if (!(I.slot_flags & SLOT_HOLSTER))
-		user << SPAN_WARNING("[I] won't fit in [src]!")
+		to_chat(user, SPAN_WARNING("[I] won't fit in [src]!"))
 		return
 
-	if(istype(user))
-		user.stop_aiming(no_message=1)
 	holstered = I
 	user.drop_from_inventory(holstered)
 	holstered.loc = src
@@ -33,7 +33,7 @@
 		return
 
 	if(istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
-		user << SPAN_WARNING("You need an empty hand to draw \the [holstered]!")
+		to_chat(user, SPAN_WARNING("You need an empty hand to draw \the [holstered]!"))
 	else
 		if(user.a_intent == I_HURT)
 			usr.visible_message(
@@ -69,9 +69,9 @@
 /obj/item/clothing/accessory/holster/examine(mob/user)
 	..(user)
 	if (holstered)
-		user << "A [holstered] is holstered here."
+		to_chat(user, "A [holstered] is holstered here.")
 	else
-		user << "It is empty."
+		to_chat(user, "It is empty.")
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()
@@ -101,12 +101,12 @@
 			H = locate() in S.accessories
 
 	if (!H)
-		usr << SPAN_WARNING("Something is very wrong.")
+		to_chat(usr, SPAN_WARNING("Something is very wrong."))
 
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << SPAN_WARNING("You need your gun equiped to holster it.")
+			to_chat(usr, SPAN_WARNING("You need your gun equiped to holster it."))
 			return
 		H.holster(W, usr)
 	else
@@ -114,7 +114,7 @@
 
 /obj/item/clothing/accessory/holster/armpit
 	name = "armpit holster"
-	desc = "A worn-out handgun holster. Perfect for concealed carry"
+	desc = "A worn-out handgun holster. Perfect for concealed carry."
 	icon_state = "holster"
 
 /obj/item/clothing/accessory/holster/waist

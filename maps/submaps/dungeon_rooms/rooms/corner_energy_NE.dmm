@@ -1,0 +1,294 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"c" = (
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"d" = (
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"e" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"f" = (
+/obj/structure/catwalk,
+/obj/machinery/light/floor,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"g" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"h" = (
+/obj/machinery/power/breakerbox/activated,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/crawler)
+"i" = (
+/obj/structure/computerframe,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/crawler)
+"j" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"k" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"l" = (
+/obj/structure/railing/grey,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"m" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"n" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"o" = (
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"p" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"q" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"r" = (
+/obj/machinery/power/terminal,
+/obj/structure/catwalk,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"s" = (
+/obj/machinery/power/smes/buildable,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/crawler)
+"t" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"u" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"v" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"w" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"x" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"y" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"z" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"A" = (
+/obj/structure/grille,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"C" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"D" = (
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+o
+o
+q
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+f
+l
+n
+t
+t
+A
+k
+a
+"}
+(3,1,1) = {"
+a
+e
+l
+n
+t
+t
+A
+k
+a
+"}
+(4,1,1) = {"
+a
+e
+l
+n
+t
+t
+A
+k
+a
+"}
+(5,1,1) = {"
+a
+e
+l
+n
+t
+x
+a
+A
+b
+"}
+(6,1,1) = {"
+b
+e
+l
+n
+t
+t
+x
+t
+C
+"}
+(7,1,1) = {"
+b
+e
+l
+p
+t
+t
+t
+t
+C
+"}
+(8,1,1) = {"
+b
+e
+k
+a
+u
+y
+y
+y
+C
+"}
+(9,1,1) = {"
+a
+c
+g
+c
+v
+z
+v
+D
+b
+"}
+(10,1,1) = {"
+a
+d
+h
+r
+s
+r
+s
+c
+a
+"}
+(11,1,1) = {"
+a
+d
+i
+r
+s
+r
+s
+c
+a
+"}
+(12,1,1) = {"
+a
+c
+j
+c
+w
+c
+j
+c
+a
+"}
+(13,1,1) = {"
+a
+a
+m
+m
+m
+m
+m
+a
+a
+"}

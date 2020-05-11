@@ -4,12 +4,12 @@
 	var/stored_data = "" 			// Stored data in string format.
 	filetype = "DAT"
 	var/block_size = 250
-	var/read_only = 0				// Whether the user will be reminded that the file probably shouldn't be edited.
+	var/read_only = FALSE			// Whether the user will be reminded that the file probably shouldn't be edited.
 
 /datum/computer_file/data/clone()
-	var/datum/computer_file/data/temp = ..()
-	temp.stored_data = stored_data
-	return temp
+	var/datum/computer_file/data/F = ..()
+	F.stored_data = stored_data
+	return F
 
 // Calculates file size from amount of characters in saved string
 /datum/computer_file/data/proc/calculate_size()

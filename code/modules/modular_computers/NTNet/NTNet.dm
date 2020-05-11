@@ -197,23 +197,38 @@ var/global/datum/ntnet/ntnet_global = new()
 			setting_systemcontrol = !setting_systemcontrol
 			add_log("Configuration Updated. Wireless network firewall now [setting_systemcontrol ? "allows" : "disallows"] remote control of [station_name()]'s systems.")
 
-/datum/ntnet/proc/find_email_by_name(var/login)
+/datum/ntnet/proc/find_email_by_login(var/login)
 	for(var/datum/computer_file/data/email_account/A in ntnet_global.email_accounts)
 		if(A.login == login)
 			return A
 	return 0
 
+/datum/ntnet/proc/sort_email_list()
+	// improved bubble sort
+	if(ntnet_global.email_accounts.len > 1)
+		for(var/i = 1, i <= ntnet_global.email_accounts.len, i++)
+			var/flag = FALSE
+			for(var/j = 1, j <= ntnet_global.email_accounts.len - 1, j++)
+				var/datum/computer_file/data/email_account/EA = ntnet_global.email_accounts[j]
+				var/datum/computer_file/data/email_account/EA_NEXT = ntnet_global.email_accounts[j+1]
+				if(sorttext(EA.ownerName, EA_NEXT.ownerName) == -1)
+					flag = TRUE
+					ntnet_global.email_accounts.Swap(j,j+1)
+			if(!flag)
+				break
+
 // Assigning emails to mobs
 
 /datum/ntnet/proc/rename_email(mob/user, old_login, desired_name, domain)
-	var/datum/computer_file/data/email_account/account = find_email_by_name(old_login)
+	var/datum/computer_file/data/email_account/account = find_email_by_login(old_login)
 	var/new_login = sanitize_for_email(desired_name)
 	new_login += "@[domain]"
 	if(new_login == old_login)
 		return	//If we aren't going to be changing the login, we quit silently.
-	if(find_email_by_name(new_login))
+	if(find_email_by_login(new_login))
 		to_chat(user, "Your email could not be updated: the new username is invalid.")
 		return
+	account.ownerName = user.real_name
 	account.login = new_login
 	to_chat(user, "Your email account address has been changed to <b>[new_login]</b>. This information has also been placed into your notes.")
 	add_log("Email address changed for [user]: [old_login] changed to [new_login]")
@@ -228,6 +243,7 @@ var/global/datum/ntnet/ntnet_global = new()
 			my_client.stored_login = new_login
 			my_client.stored_password = account.password
 			my_client.log_in()
+	sort_email_list()
 
 //Used for initial email generation.
 /datum/ntnet/proc/create_email(mob/user, desired_name, domain)
@@ -235,33 +251,29 @@ var/global/datum/ntnet/ntnet_global = new()
 	var/login = "[desired_name]@[domain]"
 	// It is VERY unlikely that we'll have two players, in the same round, with the same name and branch, but still, this is here.
 	// If such conflict is encountered, a random number will be appended to the email address. If this fails too, no email account will be created.
-	if(find_email_by_name(login))
+	if(find_email_by_login(login))
 		login = "[desired_name][random_id(/datum/computer_file/data/email_account/, 100, 999)]@[domain]"
 	// If even fallback login generation failed, just don't give them an email. The chance of this happening is astronomically low.
-	if(find_email_by_name(login))
+	if(find_email_by_login(login))
 		to_chat(user, "You were not assigned an email address.")
 		user.mind.store_memory("You were not assigned an email address.")
 	else
 		var/datum/computer_file/data/email_account/EA = new/datum/computer_file/data/email_account()
 		EA.password = GenerateKey()
 		EA.login = login
+		EA.ownerName = user.real_name
 		to_chat(user, "Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.")
 		if(user.mind)
 			user.mind.initial_email_login["login"] = EA.login
 			user.mind.initial_email_login["password"] = EA.password
 			user.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
-
 		if(ishuman(user))
-			var/obj/item/modular_computer/C = locate(/obj/item/modular_computer) in user.GetAllContents()
-			var/datum/computer_file/program/P = C?.getProgramByType(/datum/computer_file/program/email_client)
-			if(P)
-				var/datum/nano_module/email_client/my_client = P.NM
-				if(my_client && istype(my_client, /datum/nano_module/email_client))
-					if(my_client)
-						my_client.stored_login = EA.login
-						my_client.stored_password = EA.password
-						my_client.log_in()
-					C.minimize_program()
+			for(var/obj/item/modular_computer/C in user.GetAllContents())
+				var/datum/computer_file/program/email_client/P = C.getProgramByType(/datum/computer_file/program/email_client)
+				if(P)
+					P.stored_login = EA.login
+					P.stored_password = EA.password
+					P.update_email()
 		else if(issilicon(user))
 			var/mob/living/silicon/S = user
 			var/datum/nano_module/email_client/my_client = S.get_subsystem_from_path(/datum/nano_module/email_client)
@@ -269,6 +281,7 @@ var/global/datum/ntnet/ntnet_global = new()
 				my_client.stored_login = EA.login
 				my_client.stored_password = EA.password
 				my_client.log_in()
+	sort_email_list()
 
 /mob/proc/create_or_rename_email(newname, domain)
 	if(!mind)

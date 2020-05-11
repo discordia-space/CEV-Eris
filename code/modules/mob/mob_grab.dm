@@ -28,7 +28,7 @@
 	layer = 21
 	abstract = 1
 	item_state = "nothing"
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_COLOSSAL
 
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE
@@ -66,6 +66,7 @@
 				G.dancing = 1
 				G.adjust_position()
 				dancing = 1
+	update_slowdown()
 	adjust_position()
 
 //Used by throw code to hand over the mob, instead of throwing the grab.
@@ -155,6 +156,7 @@
 			C.Weaken(5)	//Should keep you down unless you get help.
 			C.losebreath = max(C.losebreath + 2, 3)
 
+	update_slowdown()
 	adjust_position()
 
 /obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
@@ -233,10 +235,21 @@
 		return
 	if(!assailant.can_click())
 		return
-	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN - assailant.stats.getStat(STAT_ROB))))
-		return
 	if(!assailant.canmove || assailant.lying)
 		qdel(src)
+		return
+
+	// Adjust the grab cooldown using assailant's ROB stat
+	var/assailant_stat = assailant.stats.getStat(STAT_ROB)
+	var/cooldown_increase
+	if(assailant_stat > 0)
+		// Positive ROB decreases cooldown, but not linearely
+		cooldown_increase = -(assailant_stat ** 0.8)
+	else
+		// Negative ROB is a flat cooldown increase
+		cooldown_increase = assailant_stat
+
+	if(world.time < (last_action + max(0, UPGRADE_COOLDOWN + round(cooldown_increase))))
 		return
 
 	last_action = world.time
@@ -246,8 +259,14 @@
 			return
 		if(!affecting.lying)
 			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
+			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed by [assailant.name] ([assailant.ckey])</font>"
+			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed [affecting.name] ([affecting.ckey])</font>"
+			msg_admin_attack("[assailant] grabbed a [affecting].")
 		else
 			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground!"))
+			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been pinned by [assailant.name] ([assailant.ckey])</font>"
+			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Pinned [affecting.name] ([affecting.ckey])</font>"
+			msg_admin_attack("[assailant] pinned down [affecting].")
 			apply_pinning(affecting, assailant)
 
 		state = GRAB_AGGRESSIVE
@@ -256,7 +275,7 @@
 
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
-			assailant << SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens.")
+			to_chat(assailant, SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens."))
 			return
 
 		assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] neck!"))
@@ -285,6 +304,7 @@
 		if(iscarbon(affecting))
 			var/mob/living/carbon/C = affecting
 			C.losebreath += 1
+	update_slowdown()
 	adjust_position()
 
 //This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
@@ -299,6 +319,38 @@
 			return 0
 
 	return 1
+
+// Function to compute the current slowdown and is more adjustable and uses number as starting value
+// The code will adjust or lower the slowdown depending on STAT_ROB skill, gravity, etc.
+/obj/item/weapon/grab/proc/update_slowdown()
+	// The movment speed of assailant will be determined by the victim whatever their size or things he wears minus how strong the assailant ( ROB )
+	// New function should take the victim variables in account : size of mob, under gravity or not
+	// ROB check will start in process for the victim so the assailant can have a jump on the victim in first movement tick or some shit unless he's already grabbed
+	var/affecting_stat = affecting.stats.getStat(STAT_ROB)	// Victim
+	var/assailant_stat = assailant.stats.getStat(STAT_ROB)	// Grabber
+	var/difference_stat = assailant_stat - affecting_stat
+
+	// Early exit to save processing time
+	if(!(affecting.check_gravity() && assailant.check_gravity()))
+		slowdown = 0
+		return	// Nothing to do here
+
+	// initial value for slowdown
+	slowdown = 2
+
+	if(affecting.lying)	//putting in lying for the victim will cause the assailant to expend more effort
+		slowdown += 1
+
+	if(affecting.is_dead() || affecting.incapacitated() )	// victim can't resist if he is dead or stunned.
+		slowdown *= 0.1
+	else
+		slowdown += max(0, -0.05 * difference_stat)			// Avoids negative values from making the grabber going supersanic
+
+	// Size check here
+	if(assailant.mob_size > affecting.mob_size)
+		slowdown *= 0.5
+	else if (assailant.mob_size < affecting.mob_size)
+		slowdown *= 1.5
 
 /obj/item/weapon/grab/attack(mob/M, mob/living/user)
 	if(!affecting)
@@ -317,7 +369,10 @@
 			switch(assailant.a_intent)
 				if(I_HELP)
 					if(force_down)
-						assailant << SPAN_WARNING("You are no longer pinning [affecting] to the ground.")
+						to_chat(assailant, SPAN_WARNING("You are no longer pinning [affecting] to the ground."))
+						affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer pinned down by [assailant.name] ([assailant.ckey])</font>"
+						assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Released from pin [affecting.name] ([affecting.ckey])</font>"
+						msg_admin_attack("[key_name(assailant)] Released from pin [key_name(affecting)]")
 						force_down = 0
 						return
 					inspect_organ(affecting, assailant, hit_zone)
@@ -348,6 +403,9 @@
 /obj/item/weapon/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
 		assailant.visible_message(SPAN_WARNING("[assailant] lost \his tight grip on [affecting]'s neck!"))
+		affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer gripped by [assailant.name] ([assailant.ckey] neck.)</font>"
+		assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Lost his grip on [affecting.name] ([affecting.ckey] neck.)</font>"
+		msg_admin_attack("[key_name(assailant)] lost his tight grip on [key_name(affecting)] neck.")
 		hud.icon_state = "kill"
 		state = GRAB_NECK
 

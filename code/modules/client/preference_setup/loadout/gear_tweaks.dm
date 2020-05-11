@@ -1,7 +1,7 @@
 /datum/gear_tweak/proc/get_contents(var/metadata)
 	return
 
-/datum/gear_tweak/proc/get_metadata(var/user, var/metadata)
+/datum/gear_tweak/proc/get_metadata(var/user, var/list/metadata, var/title)
 	return
 
 /datum/gear_tweak/proc/get_default()
@@ -85,7 +85,7 @@
 /datum/gear_tweak/path/get_default()
 	return valid_paths[1]
 
-/datum/gear_tweak/path/get_metadata(var/user, var/metadata)
+/datum/gear_tweak/path/get_metadata(var/user, var/list/metadata, var/title)
 	return input(user, "Choose a type.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in valid_paths
 
 /datum/gear_tweak/path/tweak_gear_data(var/metadata, var/datum/gear_data/gear_data)
@@ -118,7 +118,7 @@
 	for(var/i = 1 to valid_contents.len)
 		. += "Random"
 
-/datum/gear_tweak/contents/get_metadata(var/user, var/list/metadata)
+/datum/gear_tweak/contents/get_metadata(var/user, var/list/metadata, var/title)
 	. = list()
 	for(var/i = metadata.len to (valid_contents.len - 1))
 		metadata += "Random"
@@ -164,7 +164,7 @@
 /datum/gear_tweak/reagents/get_default()
 	return "Random"
 
-/datum/gear_tweak/reagents/get_metadata(var/user, var/list/metadata)
+/datum/gear_tweak/reagents/get_metadata(var/user, var/list/metadata, var/title)
 	. = input(user, "Choose an entry.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in (valid_reagents + list("Random", "None"))
 	if(!.)
 		return metadata
@@ -182,10 +182,10 @@
 
 /datum/gear_tweak/tablet
 	var/list/ValidProcessors = list(/obj/item/weapon/computer_hardware/processor_unit/small)
-	var/list/ValidBatteries = list(/obj/item/weapon/computer_hardware/battery_module/nano, /obj/item/weapon/computer_hardware/battery_module/micro, /obj/item/weapon/computer_hardware/battery_module)
+	var/list/ValidBatteries = list(/obj/item/weapon/cell/small, /obj/item/weapon/cell/small/high, /obj/item/weapon/cell/small/super)
 	var/list/ValidHardDrives = list(/obj/item/weapon/computer_hardware/hard_drive/micro, /obj/item/weapon/computer_hardware/hard_drive/small, /obj/item/weapon/computer_hardware/hard_drive)
 	var/list/ValidNetworkCards = list(/obj/item/weapon/computer_hardware/network_card, /obj/item/weapon/computer_hardware/network_card/advanced)
-	var/list/ValidNanoPrinters = list(null, /obj/item/weapon/computer_hardware/nano_printer)
+	var/list/ValidPrinters = list(null, /obj/item/weapon/computer_hardware/printer)
 	var/list/ValidCardSlots = list(null, /obj/item/weapon/computer_hardware/card_slot)
 	var/list/ValidTeslaLinks = list(null, /obj/item/weapon/computer_hardware/tesla_link)
 
@@ -203,7 +203,7 @@
 	O = ValidNetworkCards[metadata[4]]
 	if(O)
 		names += initial(O.name)
-	O = ValidNanoPrinters[metadata[5]]
+	O = ValidPrinters[metadata[5]]
 	if(O)
 		names += initial(O.name)
 	O = ValidCardSlots[metadata[6]]
@@ -214,7 +214,7 @@
 		names += initial(O.name)
 	return "[english_list(names, and_text = ", ")]"
 
-/datum/gear_tweak/tablet/get_metadata(var/user, var/metadata)
+/datum/gear_tweak/tablet/get_metadata(var/user, var/list/metadata, var/title)
 	. = list()
 
 	var/list/names = list()
@@ -267,14 +267,14 @@
 
 	names = list()
 	counter = 1
-	for(var/i in ValidNanoPrinters)
+	for(var/i in ValidPrinters)
 		if(i)
 			var/obj/O = i
 			names[initial(O.name)] = counter++
 		else
 			names["None"] = counter++
 
-	entry = input(user, "Choose a nanoprinter.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
+	entry = input(user, "Choose a printer.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
 	. += names[entry]
 
 	names = list()
@@ -314,17 +314,17 @@
 		I.processor_unit = new t(I)
 	if(ValidBatteries[metadata[2]])
 		var/t = ValidBatteries[metadata[2]]
-		I.battery_module = new t(I)
-		I.battery_module.charge = I.battery_module.maxcharge
+		I.cell = new t(I)
+		I.cell.charge = I.cell.maxcharge
 	if(ValidHardDrives[metadata[3]])
 		var/t = ValidHardDrives[metadata[3]]
 		I.hard_drive = new t(I)
 	if(ValidNetworkCards[metadata[4]])
 		var/t = ValidNetworkCards[metadata[4]]
 		I.network_card = new t(I)
-	if(ValidNanoPrinters[metadata[5]])
-		var/t = ValidNanoPrinters[metadata[5]]
-		I.nano_printer = new t(I)
+	if(ValidPrinters[metadata[5]])
+		var/t = ValidPrinters[metadata[5]]
+		I.printer = new t(I)
 	if(ValidCardSlots[metadata[6]])
 		var/t = ValidCardSlots[metadata[6]]
 		I.card_slot = new t(I)

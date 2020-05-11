@@ -9,85 +9,64 @@
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
 
-/datum/gear/uniform/jumpsuit
+/datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
 
-/datum/gear/uniform/jumpsuit/black
-	display_name = "jumpsuit, black"
-	path = /obj/item/clothing/under/color/black
+/datum/gear/uniform/jumpsuit/color_presets
+	display_name = "jumpsuit, color presets"
+	path = /obj/item/clothing/under/aqua
+	cost = 2
 
-/datum/gear/uniform/jumpsuit/blue
-	display_name = "jumpsuit, blue"
-	path = /obj/item/clothing/under/color/blue
+/datum/gear/uniform/jumpsuit/color_presets/New()
+	..()
+	var/jumpsuit = list(
+		"Black"			=	/obj/item/clothing/under/color/black,
+		"White"			=	/obj/item/clothing/under/color/white,
+		"Blue"			=	/obj/item/clothing/under/color/blue,
+		"Green"			=	/obj/item/clothing/under/color/green,
+		"Grey"			=	/obj/item/clothing/under/color/grey,
+		"Pink"			=	/obj/item/clothing/under/color/pink,
+		"Yellow"		=	/obj/item/clothing/under/color/yellow,
+		"Light-Blue"	=	/obj/item/clothing/under/lightblue,
+		"Red"			=	/obj/item/clothing/under/color/red,
+		"Aqua"			=	/obj/item/clothing/under/aqua,
+		"Purple"		=	/obj/item/clothing/under/purple,
+		"Light-Purple"	=	/obj/item/clothing/under/lightpurple,
+		"Light-Green"	=	/obj/item/clothing/under/lightgreen,
+		"Light-Brown"	=	/obj/item/clothing/under/lightbrown,
+		"Brown"			=	/obj/item/clothing/under/brown,
+		"Yellow-Green"	=	/obj/item/clothing/under/yellowgreen,
+		"Dark-Blue"		=	/obj/item/clothing/under/darkblue,
+		"Light-Red"		=	/obj/item/clothing/under/lightred,
+		"Dark-Red"		=	/obj/item/clothing/under/darkred,
+	)
+	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
-/datum/gear/uniform/jumpsuit/green
-	display_name = "jumpsuit, green"
-	path = /obj/item/clothing/under/color/green
-
-/datum/gear/uniform/jumpsuit/grey
-	display_name = "jumpsuit, grey"
-	path = /obj/item/clothing/under/color/grey
-
-/datum/gear/uniform/jumpsuit/pink
-	display_name = "jumpsuit, pink"
-	path = /obj/item/clothing/under/color/pink
-
-/datum/gear/uniform/jumpsuit/white
-	display_name = "jumpsuit, white"
+/datum/gear/uniform/jumpsuit/colorable
+	display_name = "jumpsuit, colorable"
+	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/under/color/white
 
-/datum/gear/uniform/jumpsuit/yellow
-	display_name = "jumpsuit, yellow"
-	path = /obj/item/clothing/under/color/yellow
+/datum/gear/uniform/security_skirt
+	display_name = "jumpskirt, operative"
+	path = /obj/item/clothing/under/rank/security/skirt
+	allowed_roles = list("Ironhammer Operative")
 
-/datum/gear/uniform/jumpsuit/lightblue
-	display_name = "jumpsuit, lightblue"
-	path = /obj/item/clothing/under/lightblue
+/datum/gear/uniform/medspec_skirt
+	display_name = "jumpskirt, medical specialist"
+	path = /obj/item/clothing/under/rank/medspec/skirt
+	allowed_roles = list("Ironhammer Medical Specialist")
 
-/datum/gear/uniform/jumpsuit/red
-	display_name = "jumpsuit, red"
-	path = /obj/item/clothing/under/color/red
+/datum/gear/uniform/warden_skirt
+	display_name = "jumpskirt, warden"
+	path = /obj/item/clothing/under/rank/warden/skirt
+	allowed_roles = list("Ironhammer Gunnery Sergeant")
 
-/datum/gear/uniform/jumpsuit/aqua
-	display_name = "jumpsuit, aqua"
-	path = /obj/item/clothing/under/aqua
-
-/datum/gear/uniform/jumpsuit/purple
-	display_name = "jumpsuit, purple"
-	path = /obj/item/clothing/under/purple
-
-/datum/gear/uniform/jumpsuit/lightpurple
-	display_name = "jumpsuit, lightpurple"
-	path = /obj/item/clothing/under/lightpurple
-
-/datum/gear/uniform/jumpsuit/lightgreen
-	display_name = "jumpsuit, lightgreen"
-	path = /obj/item/clothing/under/lightgreen
-
-/datum/gear/uniform/jumpsuit/lightbrown
-	display_name = "jumpsuit, lightbrown"
-	path = /obj/item/clothing/under/lightbrown
-
-/datum/gear/uniform/jumpsuit/brown
-	display_name = "jumpsuit, brown"
-	path = /obj/item/clothing/under/brown
-
-/datum/gear/uniform/jumpsuit/yellowgreen
-	display_name = "jumpsuit, yellowgreen"
-	path = /obj/item/clothing/under/yellowgreen
-
-/datum/gear/uniform/jumpsuit/darkblue
-	display_name = "jumpsuit, darkblue"
-	path = /obj/item/clothing/under/darkblue
-
-/datum/gear/uniform/jumpsuit/lightred
-	display_name = "jumpsuit, lightred"
-	path = /obj/item/clothing/under/lightred
-
-/datum/gear/uniform/jumpsuit/darkred
-	display_name = "jumpsuit, darkred"
-	path = /obj/item/clothing/under/darkred
+/datum/gear/uniform/hos_skirt
+	display_name = "jumpskirt, commander"
+	path = /obj/item/clothing/under/rank/ih_commander/skirt
+	allowed_roles = list("Ironhammer Commander")
 
 /*/datum/gear/uniform/skirt
 	display_name = "plaid skirt, blue"
@@ -101,22 +80,22 @@
 	display_name = "plaid skirt, red"
 	path = /obj/item/clothing/under/dress/plaid_red*/
 
-///datum/gear/uniform/suit  //amish
-	//display_name = "suit, amish"
-	//path = /obj/item/clothing/under/sl_suit
+/*/datum/gear/uniform/suit  //amish
+	display_name = "suit, amish"
+	path = /obj/item/clothing/under/sl_suit*/
 
-
-/datum/gear/uniform/scrubs/blue
-	display_name = "scrubs, blue"
+/datum/gear/uniform/scrubs/color_presets
+	display_name = "scrubs, color presets"
 	path = /obj/item/clothing/under/rank/medical/blue
 
-/datum/gear/uniform/scrubs/purple
-	display_name = "scrubs, purple"
-	path = /obj/item/clothing/under/rank/medical/purple
-
-/datum/gear/uniform/scrubs/green
-	display_name = "scrubs, green"
-	path = /obj/item/clothing/under/rank/medical/green
+/datum/gear/uniform/scrubs/color_presets/New()
+	..()
+	var/jumpsuit = list(
+		"Blue"			=	/obj/item/clothing/under/rank/medical/blue,
+		"Purple"		=	/obj/item/clothing/under/rank/medical/purple,
+		"Green"			=	/obj/item/clothing/under/rank/medical/green,
+	)
+	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"

@@ -8,6 +8,11 @@
 
 	var/hud_updateflag = 0
 
+	var/life_cycles_before_sleep = 120
+	var/life_cycles_before_scan = 100
+
+	var/stasis = FALSE
+	var/AI_inactive = FALSE
 
 	var/inventory_shown = 1
 
@@ -19,10 +24,6 @@
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
-
-
-	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 
@@ -63,3 +64,10 @@
 
 	var/image/static_overlay // For static overlays on living mobs
 	mob_classification = CLASSIFICATION_ORGANIC
+
+	var/list/chem_effects = list()
+
+	//Used in living/recoil.dm
+	var/recoil = 0 //What our current recoil level is
+	var/last_recoil_update = 0 //When our last recoil update was
+	var/recoil_timer //Holds the timer ID

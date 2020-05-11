@@ -10,7 +10,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags = NOREACT
+	reagent_flags = NO_REACT
 	var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/icon_on = "smartfridge"
 	var/icon_off = "smartfridge-off"
@@ -26,6 +26,7 @@
 
 
 /obj/machinery/smartfridge/secure
+	name = "\improper Secure SmartFridge"
 	is_secure = 1
 
 
@@ -35,19 +36,18 @@
 *   Seed Storage
 ********************/
 /obj/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
+	name = "\improper Refrigerated Seeds Storage"
 	desc = "When you need seeds fast!"
-	icon = 'icons/obj/vending.dmi'
-	icon_state = "seeds"
-	icon_on = "seeds"
-	icon_off = "seeds-off"
 
 /obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
-
+/obj/machinery/smartfridge/kitchen
+	name = "\improper Agro-Club Fridge"
+	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics."
+	req_one_access = list(access_hydroponics,access_kitchen)
 
 
 
@@ -220,7 +220,7 @@
 	return ..()
 
 /obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/) || istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat/) || istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg/))
 		return 1
 	return 0
 
@@ -266,12 +266,12 @@
 		return
 
 	if(stat & NOPOWER)
-		user << SPAN_NOTICE("\The [src] is unpowered and useless.")
+		to_chat(user, SPAN_NOTICE("\The [src] is unpowered and useless."))
 		return
 
 	if(accept_check(O))
 		if(contents.len >= max_n_of_items)
-			user << SPAN_NOTICE("\The [src] is full.")
+			to_chat(user, SPAN_NOTICE("\The [src] is full."))
 			return 1
 		else
 			user.remove_from_mob(O)
@@ -287,7 +287,7 @@
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
 				if(contents.len >= max_n_of_items)
-					user << SPAN_NOTICE("\The [src] is full.")
+					to_chat(user, SPAN_NOTICE("\The [src] is full."))
 					return 1
 				else
 					P.remove_from_storage(G,src)
@@ -297,23 +297,20 @@
 			update_icon()
 			user.visible_message(SPAN_NOTICE("[user] loads \the [src] with \the [P]."), SPAN_NOTICE("You load \the [src] with \the [P]."))
 			if(P.contents.len > 0)
-				user << SPAN_NOTICE("Some items are refused.")
+				to_chat(user, SPAN_NOTICE("Some items are refused."))
 
 		SSnano.update_uis(src)
 
 	else
-		user << SPAN_NOTICE("\The [src] smartly refuses [O].")
+		to_chat(user, SPAN_NOTICE("\The [src] smartly refuses [O]."))
 		return 1
 
 /obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
 		locked = -1
-		user << "You short out the product lock on [src]."
+		to_chat(user, "You short out the product lock on [src].")
 		return 1
-
-/obj/machinery/smartfridge/attack_ai(mob/user as mob)
-	attack_hand(user)
 
 /obj/machinery/smartfridge/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
@@ -330,7 +327,7 @@
 *   SmartFridge Menu
 ********************/
 
-/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/data[0]
@@ -345,7 +342,7 @@
 		var/K = item_quants[i]
 		var/count = item_quants[K]
 		if(count > 0)
-			items.Add(list(list("display_name" = rhtml_encode(capitalize(K)), "vend" = i, "quantity" = count)))
+			items.Add(list(list("display_name" = html_encode(capitalize(K)), "vend" = i, "quantity" = count)))
 
 	if(items.len > 0)
 		data["contents"] = items
@@ -425,6 +422,6 @@
 	if(stat & (NOPOWER|BROKEN)) return 0
 	if(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
 		if(!allowed(usr) && !emagged && locked != -1 && href_list["vend"])
-			usr << SPAN_WARNING("Access denied.")
+			to_chat(usr, SPAN_WARNING("Access denied."))
 			return 0
 	return ..()

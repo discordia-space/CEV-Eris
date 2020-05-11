@@ -3,6 +3,7 @@
 	var/implant_type = /obj/item/weapon/implant/core_implant
 	var/install_time = 0
 	var/time = 0
+	var/list/access = list()
 	var/mob/living/user
 
 	var/unique = TRUE
@@ -17,6 +18,9 @@
 /datum/core_module/proc/preinstall()
 
 /datum/core_module/proc/set_up()
+
+/datum/core_module/proc/GetAccess()
+	return access.Copy()
 
 
 //ACTIVATABLE

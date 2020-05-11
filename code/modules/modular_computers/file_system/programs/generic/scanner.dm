@@ -72,13 +72,17 @@
 		if(!save_scan(name))
 			to_chat(usr, "Scan save failed.")
 
+	if(href_list["clear"])
+		data_buffer = ""
+		return 1
+
 	if(.)
 		SSnano.update_uis(NM)
 
 /datum/nano_module/program/scanner
 	name = "Scanner"
 
-/datum/nano_module/program/scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	var/datum/computer_file/program/scanner/prog = program
 	if(!prog.computer)

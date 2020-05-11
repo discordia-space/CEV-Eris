@@ -124,7 +124,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					msg += "\t [varname] = [D]([D.type])\n"
 				else
 					msg += "\t [varname] = [varval]\n"
-	world << msg
+	to_chat(world, msg)
 
 	var/datum/controller/subsystem/BadBoy = Master.last_type_processed
 	var/FireHim = FALSE
@@ -140,7 +140,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				BadBoy.flags |= SS_NO_FIRE
 		if(msg)
 			to_chat(admins, "<span class='boldannounce'>[msg]</span>")
-			world << msg
+			to_chat(world, msg)
 
 	if (istype(Master.subsystems))
 		if(FireHim)
@@ -196,7 +196,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 #else
 	world.sleep_offline = TRUE
 #endif
+
 	world.tick_lag = config.Ticklag
+	// Fallback ITU value - will be overwritten next tick by extools lib if it's present
+	GLOB.internal_tick_usage = world.tick_lag * MAPTICK_FALLBACK_ITU * 0.01
+
 	var/initialized_tod = REALTIMEOFDAY
 	sleep(1)
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
@@ -229,6 +233,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if (rtn2 <= 0)
 		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+		send2coders(message = "Failed to recreate Master Controller (Error code: [rtn2]), it's up to the failsafe now", admiralty = 1)
 		Failsafe.defcon = 2
 
 // Main loop.
@@ -330,7 +335,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			subsystems_to_check = tickersubsystems
 		if (CheckQueue(subsystems_to_check) <= 0)
 			if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
-				world << "MC: SoftReset() failed, crashing"
+				to_chat(world, "MC: SoftReset() failed, crashing")
 				return
 			if (!error_level)
 				iteration++
@@ -342,7 +347,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		if (queue_head)
 			if (RunQueue() <= 0)
 				if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
-					world << "MC: SoftReset() failed, crashing"
+					to_chat(world, "MC: SoftReset() failed, crashing")
 					return
 				if (!error_level)
 					iteration++
@@ -526,9 +531,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 //	called if any mc's queue procs runtime or exit improperly.
 /datum/controller/master/proc/SoftReset(list/ticker_SS, list/runlevel_SS)
 	. = 0
-	world << "MC: SoftReset called, resetting MC queue state."
+	to_chat(world, "MC: SoftReset called, resetting MC queue state.")
 	if (!istype(subsystems) || !istype(ticker_SS) || !istype(runlevel_SS))
-		world << "MC: SoftReset: Bad list contents: '[subsystems]' '[ticker_SS]' '[runlevel_SS]'"
+		to_chat(world, "MC: SoftReset: Bad list contents: '[subsystems]' '[ticker_SS]' '[runlevel_SS]'")
 		return
 	var/subsystemstocheck = subsystems + ticker_SS
 	for(var/I in runlevel_SS)
@@ -542,26 +547,26 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			ticker_SS -= list(SS)
 			for(var/I in runlevel_SS)
 				I -= list(SS)
-			world << "MC: SoftReset: Found bad entry in subsystem list, '[SS]'"
+			to_chat(world, "MC: SoftReset: Found bad entry in subsystem list, '[SS]'")
 			continue
 		if (SS.queue_next && !istype(SS.queue_next))
-			world << "MC: SoftReset: Found bad data in subsystem queue, queue_next = '[SS.queue_next]'"
+			to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_next = '[SS.queue_next]'")
 		SS.queue_next = null
 		if (SS.queue_prev && !istype(SS.queue_prev))
-			world << "MC: SoftReset: Found bad data in subsystem queue, queue_prev = '[SS.queue_prev]'"
+			to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_prev = '[SS.queue_prev]'")
 		SS.queue_prev = null
 		SS.queued_priority = 0
 		SS.queued_time = 0
 		SS.state = SS_IDLE
 	if (queue_head && !istype(queue_head))
-		world << "MC: SoftReset: Found bad data in subsystem queue, queue_head = '[queue_head]'"
+		to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_head = '[queue_head]'")
 	queue_head = null
 	if (queue_tail && !istype(queue_tail))
-		world << "MC: SoftReset: Found bad data in subsystem queue, queue_tail = '[queue_tail]'"
+		to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_tail = '[queue_tail]'")
 	queue_tail = null
 	queue_priority_count = 0
 	queue_priority_count_bg = 0
-	world << "MC: SoftReset: Finished."
+	to_chat(world, "MC: SoftReset: Finished.")
 	. = 1
 
 
@@ -570,8 +575,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))")
-	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
+	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")
+	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)]%)"))
 
 /datum/controller/master/StartLoadingMap()
 	//disallow more than one map to load at once, multithreading it will just cause race conditions

@@ -6,6 +6,8 @@
 /obj/random/mob/roaches/item_to_spawn()
 	return pickweight(list(/mob/living/carbon/superior_animal/roach = 9,
 				/mob/living/carbon/superior_animal/roach/tank = 2,
+				/mob/living/carbon/superior_animal/roach/toxic = 2,
+				/mob/living/carbon/superior_animal/roach/nanite = 2,
 				/mob/living/carbon/superior_animal/roach/hunter = 4,
 				/mob/living/carbon/superior_animal/roach/support = 4,
 				/mob/living/carbon/superior_animal/roach/fuhrer = 0.5))
@@ -30,3 +32,7 @@
 	name = "low chance cluster of roaches"
 	icon_state = "hostilemob-brown-cluster-low"
 	spawn_nothing_percentage = 60
+
+// For Scrap Beacon
+/obj/random/cluster/roaches/beacon/item_to_spawn()
+	return /mob/living/carbon/superior_animal/roach/nanite

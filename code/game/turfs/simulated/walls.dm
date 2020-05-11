@@ -205,6 +205,7 @@
 	if(src.ricochet_id != 0)
 		if(src.ricochet_id == Proj.ricochet_id)
 			src.ricochet_id = 0
+			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE
 		src.ricochet_id = 0
 	var/proj_damage = Proj.get_structure_damage()
@@ -222,11 +223,14 @@
 		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
 		ricochetchance = min(max(ricochetchance, 0), 100)
 		if(prob(ricochetchance))
+			// projectile loses up to 50% of its damage when it ricochets, depending on situation
 			var/damagediff = round(proj_damage / 2 + proj_damage * ricochetchance / 200) // projectile loses up to 50% of its damage when it ricochets, depending on situation
-			Proj.damage = damagediff
+			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
+			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
 			take_damage(min(proj_damage - damagediff, 100))
 			visible_message("<span class='danger'>The [Proj] ricochets from the surface of wall!</span>")
 			projectile_reflection(Proj)
+			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
 	//cut some projectile damage here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
@@ -239,8 +243,13 @@
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
+	if(Proj.damage_types[BRUTE] && prob(src.damage / (material.integrity + reinf_material?.integrity) * 33))
+		var/obj/item/trash/material/metal/slug = new(get_turf(Proj))
+		slug.matter.Cut()
+		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
+		slug.throw_at(get_turf(Proj), 0, 1)
+
 	take_damage(damage)
-	return
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()
@@ -272,18 +281,18 @@
 	. = ..(user)
 
 	if(!damage)
-		user << SPAN_NOTICE("It looks fully intact.")
+		to_chat(user, SPAN_NOTICE("It looks fully intact."))
 	else
 		var/dam = damage / material.integrity
 		if(dam <= 0.3)
-			user << SPAN_WARNING("It looks slightly damaged.")
+			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
 		else if(dam <= 0.6)
-			user << SPAN_WARNING("It looks moderately damaged.")
+			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
 		else
-			user << SPAN_DANGER("It looks heavily damaged.")
+			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		user << SPAN_WARNING("There is fungus growing on [src].")
+		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
 
 //Damage
 
@@ -333,19 +342,18 @@
 /turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	burn(adj_temp)
 	if(adj_temp > material.melting_point)
-		take_damage(log(RAND_F(0.9, 1.1) * (adj_temp - material.melting_point)))
+		take_damage(log(RAND_DECIMAL(0.9, 1.1) * (adj_temp - material.melting_point)))
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(var/devastated, var/explode, var/no_product)
-
+/turf/simulated/wall/proc/dismantle_wall(devastated, explode, no_product)
 	playsound(src, 'sound/items/Welder.ogg', 100, 1)
 	if(!no_product)
 		if(reinf_material)
 			reinf_material.place_dismantled_girder(src, reinf_material)
 		else
 			material.place_dismantled_girder(src)
-		material.place_dismantled_product(src,devastated)
+		material.place_sheet(src, amount=3)
 
 	for(var/obj/O in src.contents) //Eject contents!
 		if(istype(O,/obj/item/weapon/contraband/poster))
@@ -397,7 +405,7 @@
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
-	user << SPAN_WARNING("The thermite starts melting through the wall.")
+	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
 
 	spawn(100)
 		if(O)

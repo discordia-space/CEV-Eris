@@ -2,12 +2,12 @@
 	name = "Hardware"
 	desc = "Unknown Hardware."
 	icon = 'icons/obj/modular_components.dmi'
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 0.25)
-	matter_reagents = list("silicon" = 5)
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
+	price_tag = 50
 	var/obj/item/modular_computer/holder2 = null
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
-	var/enabled = 1					// If the hardware is turned off set this to 0.
-	var/critical = 1				// Prevent disabling for important component, like the HDD.
+	var/enabled = TRUE				// If the hardware is turned off set this to 0.
+	var/critical = FALSE			// Prevent disabling for important component, like the HDD.
 	var/hardware_size = 1			// Limits which devices can contain this component. 1: Tablets/Laptops/Consoles, 2: Laptops/Consoles, 3: Consoles only
 	var/damage = 0					// Current damage level
 	var/max_damage = 100			// Maximal damage level.
@@ -16,7 +16,7 @@
 	var/malfunction_probability = 10// Chance of malfunction when the component is damaged
 	var/usage_flags = PROGRAM_ALL
 
-/obj/item/weapon/computer_hardware/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
+/obj/item/weapon/computer_hardware/attackby(obj/item/W, mob/living/user)
 	// Multitool. Runs diagnostics
 	if(QUALITY_PULSING in W.tool_qualities)
 		if(W.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_COG))
@@ -47,18 +47,18 @@
 
 
 // Called on multitool click, prints diagnostic information to the user.
-/obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
+/obj/item/weapon/computer_hardware/proc/diagnostics(mob/user)
 	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
 
-/obj/item/weapon/computer_hardware/New(var/obj/L)
-	.=..()
+/obj/item/weapon/computer_hardware/Initialize()
+	. = ..()
 	w_class = hardware_size
-	if(istype(L, /obj/item/modular_computer))
-		holder2 = L
-		return
+	if(istype(loc, /obj/item/modular_computer))
+		holder2 = loc
 
 /obj/item/weapon/computer_hardware/Destroy()
-	holder2 = null
+	if(holder2)
+		holder2.uninstall_component(src)
 	return ..()
 
 // Handles damage checks
@@ -76,17 +76,20 @@
 	// Good to go.
 	return TRUE
 
-/obj/item/weapon/computer_hardware/examine(var/mob/user)
+/obj/item/weapon/computer_hardware/examine(mob/user)
 	. = ..()
 	if(damage > damage_failure)
-		to_chat(user, "<span class='danger'>It seems to be severely damaged!</span>")
+		to_chat(user, SPAN_WARNING("It seems to be severely damaged!"))
 	else if(damage > damage_malfunction)
-		to_chat(user, "<span class='notice'>It seems to be damaged!</span>")
+		to_chat(user, SPAN_WARNING("It seems to be damaged!"))
 	else if(damage)
-		to_chat(user, "It seems to be slightly damaged.")
+		to_chat(user, SPAN_NOTICE("It seems to be slightly damaged."))
+
+/obj/item/weapon/computer_hardware/drop_location()
+	return holder2 ? holder2.drop_location() : ..()
 
 // Damages the component. Contains necessary checks. Negative damage "heals" the component.
-/obj/item/weapon/computer_hardware/proc/take_damage(var/amount)
+/obj/item/weapon/computer_hardware/proc/take_damage(amount)
 	damage += round(amount) 					// We want nice rounded numbers here.
 	damage = between(0, damage, max_damage)		// Clamp the value.
 

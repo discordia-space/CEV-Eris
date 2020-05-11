@@ -35,9 +35,9 @@
 	if(!wearer)
 		return
 	reagents.trans_to_mob(wearer, reagents.total_volume, CHEM_BLOOD)
-	wearer << "You hear a faint *beep*."
+	to_chat(wearer, "You hear a faint *beep*.")
 	if(!src.reagents.total_volume)
-		wearer << "You hear a faint click from your [part]."
+		to_chat(wearer, "You hear a faint click from your [part].")
 		spawn(0)
 			qdel(src)
 

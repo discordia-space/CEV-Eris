@@ -15,7 +15,7 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/assembly/voice/hear_talk(mob/living/M as mob, msg)
+/obj/item/device/assembly/voice/hear_talk(mob/M as mob, msg, verb, datum/language/speaking, speech_volume)
 	if(listening)
 		recorded = msg
 		listening = 0

@@ -1,5 +1,5 @@
 //Wizard Rig
-/obj/item/clothing/head/helmet/space/void/wizard
+/obj/item/clothing/head/space/void/wizard
 	name = "gem-encrusted voidsuit helmet"
 	desc = "A bizarre gem-encrusted helmet that radiates magical energies."
 	icon_state = "rig0-wiz"
@@ -8,7 +8,14 @@
 		slot_r_hand_str = "wiz_helm",
 		)
 	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
-	armor = list(melee = 60, bullet = 55, laser = 55,energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 40,
+		bomb = 25,
+		bio = 100,
+		rad = 90
+	)
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/space/void/wizard
@@ -17,7 +24,14 @@
 	desc = "A bizarre gem-encrusted suit that radiates strange energy readings."
 	item_state = "wiz_voidsuit"
 	slowdown = 1
-	w_class = ITEM_SIZE_NORMAL
 	unacidable = 1
-	armor = list(melee = 40, bullet = 55, laser = 55,energy = 5, bomb = 35, bio = 100, rad = 90)
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 40,
+		bomb = 25,
+		bio = 100,
+		rad = 90
+	)
 	siemens_coefficient = 0.7
+	helmet = /obj/item/clothing/head/space/void/wizard

@@ -41,7 +41,7 @@
 	if(istype(L))
 		owner = L
 
-/mob/living/simple_animal/hostile/scarybat/allow_spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/scarybat/allow_spacemove()
 	return ..()	//No drifting in space for space carp!	//original comments do not steal
 
 /mob/living/simple_animal/hostile/scarybat/FindTarget()

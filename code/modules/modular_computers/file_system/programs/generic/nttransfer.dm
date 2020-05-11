@@ -1,18 +1,18 @@
 var/global/nttransfer_uid = 0
 
 /datum/computer_file/program/nttransfer
-	filename = "nttransfer"
-	filedesc = "NTNet P2P Transfer Client"
+	filename = "p2p_transfer"
+	filedesc = "P2P Transfer Client"
 	extended_desc = "This program allows for simple file transfer via direct peer to peer connection."
 	program_icon_state = "comm_logs"
 	program_key_state = "generic_key"
 	program_menu_icon = "transferthick-e-w"
 	size = 7
-	requires_ntnet = 1
+	requires_ntnet = TRUE
 	requires_ntnet_feature = NTNET_PEERTOPEER
 	network_destination = "other device via P2P tunnel"
-	available_on_ntnet = 1
-	nanomodule_path = /datum/nano_module/program/computer_nttransfer/
+	available_on_ntnet = TRUE
+	nanomodule_path = /datum/nano_module/program/computer_nttransfer
 
 	var/error = ""										// Error screen
 	var/server_password = ""							// Optional password to download the file.
@@ -46,7 +46,7 @@ var/global/nttransfer_uid = 0
 		if(!remote)
 			crash_download("Connection to remote server lost")
 
-/datum/computer_file/program/nttransfer/kill_program(var/forced = 0)
+/datum/computer_file/program/nttransfer/kill_program(forced = FALSE)
 	if(downloaded_file) // Client mode, clean up variables for next use
 		finalize_download()
 
@@ -54,7 +54,7 @@ var/global/nttransfer_uid = 0
 		for(var/datum/computer_file/program/nttransfer/P in connected_clients)
 			P.crash_download("Connection terminated by remote server")
 		downloaded_file = null
-	..(forced)
+	..()
 
 // Finishes download and attempts to store the file on HDD
 /datum/computer_file/program/nttransfer/proc/finish_download()
@@ -77,9 +77,9 @@ var/global/nttransfer_uid = 0
 
 
 /datum/nano_module/program/computer_nttransfer
-	name = "NTNet P2P Transfer Client"
+	name = "P2P Transfer Client"
 
-/datum/nano_module/program/computer_nttransfer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_nttransfer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	if(!program)
 		return
 	var/datum/computer_file/program/nttransfer/PRG = program
@@ -126,7 +126,7 @@ var/global/nttransfer_uid = 0
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "ntnet_transfer.tmpl", "NTNet P2P Transfer Client", 575, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_transfer.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

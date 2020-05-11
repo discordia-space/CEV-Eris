@@ -40,7 +40,7 @@
 /obj/machinery/antigrav/examine(var/mob/user)
 	.=..()
 	if (on)
-		user << SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power")
+		to_chat(user, SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power"))
 
 /obj/machinery/antigrav/proc/stop()
 	if(area)
@@ -67,7 +67,7 @@
 		if(anchored)
 			start()
 		else
-			user << SPAN_WARNING("Fasten \the [src] to the floor first.")
+			to_chat(user, SPAN_WARNING("Fasten \the [src] to the floor first."))
 	else
 		stop()
 
@@ -76,7 +76,7 @@
 	if (I.has_quality(QUALITY_BOLT_TURNING))
 		if (anchored)
 			if(!on)
-				user << SPAN_NOTICE("You begin to unfasten \the [src] from the floor...")
+				to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src] from the floor..."))
 				if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 					user.visible_message( \
 						SPAN_NOTICE("\The [user] unfastens \the [src]."), \
@@ -84,9 +84,9 @@
 						"You hear ratchet.")
 					src.anchored = 0
 			else
-				user << SPAN_WARNING("Turn off \the [src] first.")
+				to_chat(user, SPAN_WARNING("Turn off \the [src] first."))
 		else
-			user << SPAN_NOTICE("You begin to fasten \the [src] to the floor...")
+			to_chat(user, SPAN_NOTICE("You begin to fasten \the [src] to the floor..."))
 			if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				user.visible_message( \
 					SPAN_NOTICE("\The [user] fastens \the [src]."), \

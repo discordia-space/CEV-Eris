@@ -13,7 +13,7 @@
 	set category = "Abilities"
 
 	if (get_dist(owner, M) > 1)
-		owner << "<span class='alium'>You need to be closer.</span>"
+		to_chat(owner, "<span class='alium'>You need to be closer.</span>")
 		return
 
 	var/amount = input(owner, "Amount:", "Transfer Plasma to [M]") as num
@@ -21,8 +21,8 @@
 		amount = abs(round(amount))
 		if(check_alien_ability(amount))
 			M.gain_plasma(amount)
-			M  <<  "<span class='alium'>[owner] has transfered [amount] plasma to you.</span>"
-			owner << "<span class='alium'>You have transferred [amount] plasma to [M].</span>"
+			to_chat(M, "<span class='alium'>[owner] has transfered [amount] plasma to you.</span>")
+			to_chat(owner, "<span class='alium'>You have transferred [amount] plasma to [M].</span>")
 
 
 /obj/item/organ/internal/xenos/plasmavessel/queen
@@ -53,7 +53,7 @@
 	set category = "Abilities"
 
 	if(alien_queen_exists())
-		owner << SPAN_NOTICE("We already have an active queen.")
+		to_chat(owner, SPAN_NOTICE("We already have an active queen."))
 		return
 
 	if(check_alien_ability(500))

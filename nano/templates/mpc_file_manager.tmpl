@@ -1,0 +1,73 @@
+{{if data.error}}
+	<h2>An error has occured:</h2>
+	Additional information: {{:data.error}}<br>
+	<i>Please try again. If the problem persists contact your system administrator for assistance.</i>
+	{{:helper.link('Back to menu', null, { "PRG_closefile" : 1 })}}
+{{else}}
+	{{if data.filename}}
+		<h2>Viewing file {{:data.filename}}</h2>
+		<div class='item'>
+		{{:helper.link('CLOSE', null, { "PRG_closefile" : 1 })}}
+		{{if !data.internal_disk.read_only}}
+			{{:helper.link('EDIT', null, { "PRG_edit" : 1 })}}
+		{{/if}}
+		{{:helper.link('PRINT', null, { "PRG_printfile" : 1 })}}
+		</div><hr>
+		{{:data.filedata}}
+	{{else}}
+		<h2>Available files (local):</h2>
+		<div class="itemContent">
+			{{:helper.displayBar(data.internal_disk.used_capacity, 0, data.internal_disk.max_capacity, 'good', data.internal_disk.used_capacity + " / " + data.internal_disk.max_capacity + " GQ")}}
+			<br>
+		</div>
+		<table>
+			<tr><th>Name
+			<th>Type
+			<th>Size
+			<th>Operations
+			{{for data.internal_disk.files}}
+				<tr><td>{{:value.filename}}
+				<td>.{{:value.filetype}}
+				<td>{{:value.size}}GQ
+				<td>
+					{{:helper.link('VIEW', null, { "PRG_openfile" : value.filename })}}
+					{{if !data.internal_disk.read_only}}
+						{{:helper.link('DELETE', null, { "PRG_deletefile" : value.filename }, value.undeletable ? 'disabled' : null)}}
+						{{:helper.link('RENAME', null, { "PRG_rename" : value.filename }, value.undeletable ? 'disabled' : null)}}
+						{{:helper.link('CLONE', null, { "PRG_clone" : value.filename }, value.undeletable ? 'disabled' : null)}}
+					{{/if}}
+					{{if data.portable_disk && !data.portable_disk.read_only}}
+						{{:helper.link('EXPORT', null, { "PRG_copytousb" : value.filename }, value.undeletable ? 'disabled' : null)}}
+					{{/if}}
+			{{/for}}
+		</table>
+		{{:helper.link('NEW DATA FILE', null, { "PRG_newtextfile" : 1 })}}
+
+		{{if data.portable_disk}}
+		<h2>Available files ({{:data.portable_disk.disk_name ? data.portable_disk.disk_name : 'portable device'}}):</h2>
+		<div class="itemContent">
+			{{:helper.displayBar(data.portable_disk.used_capacity, 0, data.portable_disk.max_capacity, 'good', data.portable_disk.used_capacity + " / " + data.portable_disk.max_capacity + " GQ")}}
+			<br>
+		</div>
+		<table>
+			<tr><th>Name
+			<th>Type
+			<th>Size
+			<th>Operations
+			{{for data.portable_disk.files}}
+				<tr><td>{{:value.filename}}
+				<td>.{{:value.filetype}}
+				<td>{{:value.size}}GQ
+				<td>
+					{{if !data.portable_disk.read_only}}
+						{{:helper.link('DELETE', null, { "PRG_usbdeletefile" : value.filename }, value.undeletable ? 'disabled' : null)}}
+					{{/if}}
+					{{if !data.internal_disk.read_only}}
+						{{:helper.link('IMPORT', null, { "PRG_copyfromusb" : value.filename }, value.undeletable ? 'disabled' : null)}}
+					{{/if}}
+			{{/for}}
+		</table>
+		{{/if}}
+	{{/if}}
+	
+{{/if}}

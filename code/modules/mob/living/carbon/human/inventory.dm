@@ -9,10 +9,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		src << SPAN_NOTICE("You are not holding anything to equip.")
+		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
 	if(!equip_to_appropriate_slot(I))
-		src << SPAN_WARNING("You are unable to equip that.")
+		to_chat(src, SPAN_WARNING("You are unable to equip that."))
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
@@ -46,7 +46,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if (HUDinv.slot_id == slot_id)
 			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
 	log_admin("[src] try find_inv_position a [slot_id], but not have that slot!")
-	src << "Some problem hase accure, change UI style pls or call admins."
+	to_chat(src, "Some problem hase accure, change UI style pls or call admins.")
 	return "7,7"
 
 //Mannequins have no hud, this was causing a lot of spam in the logs
@@ -209,6 +209,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(W.action_button_name)
 				update_action_buttons()
 
+			if(get_holding_hand(W))
+				W.add_hud_actions(src)
+
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/proc/legacy_equip_to_slot(obj/item/W, slot, redraw_mob = 1)
@@ -280,7 +283,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)
 			src.s_store = W
 		else
-			src << SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]")
+			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
 			return
 
 	return 1
@@ -303,7 +306,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.wear_suit
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		user << SPAN_WARNING("\The [covering] is in the way.")
+		to_chat(user, SPAN_WARNING("\The [covering] is in the way."))
 		return FALSE
 
 	return 1
@@ -348,12 +351,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(w_uniform)	items += w_uniform
 
 	if(include_carried)
-		if(slot_l_hand)     items += l_hand
-		if(slot_r_hand)     items += r_hand
-		if(slot_l_store)    items += l_store
-		if(slot_r_store)    items += r_store
-		if(slot_legcuffed)  items += legcuffed
-		if(slot_handcuffed) items += handcuffed
-		if(slot_s_store)    items += s_store
+		if(l_hand)     items += l_hand
+		if(r_hand)     items += r_hand
+		if(l_store)    items += l_store
+		if(r_store)    items += r_store
+		if(legcuffed)  items += legcuffed
+		if(handcuffed) items += handcuffed
+		if(s_store)    items += s_store
 
 	return items

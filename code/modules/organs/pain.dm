@@ -12,7 +12,7 @@ mob/var/next_pain_time = 0
 // partname is the name of a body part
 // amount is a num from 1 to 100
 mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
-	if(stat >= 1)
+	if(stat >= UNCONSCIOUS)
 		return
 	if(species && (species.flags & NO_PAIN))
 		return
@@ -48,23 +48,25 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 				msg = "<b><font size=3>OH GOD! Your [partname] is hurting terribly!</font></b>"
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
-		src << msg
+		to_chat(src, msg)
 	next_pain_time = world.time + (100 - amount)
 
 
 // message is the custom message to be displayed
 // flash_strength is 0 for weak pain flash, 1 for strong pain flash
-mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
-	if(stat >= 1)
+mob/living/carbon/human/proc/custom_pain(message, flash_strength)
+	if(stat >= UNCONSCIOUS)
 		return
 	if(species.flags & NO_PAIN)
 		return
-	if(reagents.has_reagent("tramadol"))
+
+	if(analgesic >= 100)
 		return
-	if(reagents.has_reagent("oxycodone"))
-		return
-	if(analgesic)
-		return
+	else if(analgesic >= 50)
+		flash_strength -= 1
+		if(flash_strength < 0)
+			return
+
 	var/msg = "\red <b>[message]</b>"
 	if(flash_strength >= 1)
 		msg = "\red <font size=3><b>[message]</b></font>"
@@ -72,7 +74,7 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 	// Anti message spam checks
 	if(msg && ((msg != last_pain_message) || (world.time >= next_pain_time)))
 		last_pain_message = msg
-		src << msg
+		to_chat(src, msg)
 	next_pain_time = world.time + 100
 
 mob/living/carbon/human/proc/handle_pain()
@@ -87,7 +89,7 @@ mob/living/carbon/human/proc/handle_pain()
 	var/maxdam = 0
 	var/obj/item/organ/external/damaged_organ = null
 	for(var/obj/item/organ/external/E in organs)
-		if(E.status&ORGAN_DEAD || E.robotic >= ORGAN_ROBOT)
+		if(E.status&ORGAN_DEAD || BP_IS_ROBOTIC(E))
 			continue
 		var/dam = E.get_damage()
 		// make the choice of the organ depend on damage,
@@ -100,7 +102,7 @@ mob/living/carbon/human/proc/handle_pain()
 
 	// Damage to internal organs hurts a lot.
 	for(var/obj/item/organ/I in internal_organs)
-		if(I.status&ORGAN_DEAD || I.robotic >= ORGAN_ROBOT)
+		if(I.status&ORGAN_DEAD || BP_IS_ROBOTIC(I))
 			continue
 		if(I.damage > 2) if(prob(2))
 			var/obj/item/organ/external/parent = get_organ(I.parent_organ)

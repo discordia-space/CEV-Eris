@@ -59,7 +59,7 @@
 	trail.set_up(src)
 	trail.start()
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/allow_spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/retaliate/malf_drone/allow_spacemove()
 	return 1
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/ListTargets()
@@ -274,7 +274,7 @@
 	. = ..()
 
 /obj/item/projectile/beam/drone
-	damage = 15
+	damage_types = list(BRUTE = 15)
 
 /obj/item/projectile/beam/pulse/drone
-	damage = 10
+	damage_types = list(BRUTE = 10)

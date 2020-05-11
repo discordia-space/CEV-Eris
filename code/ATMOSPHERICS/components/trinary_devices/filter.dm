@@ -2,7 +2,7 @@
 	icon = 'icons/atmos/filter.dmi'
 	icon_state = "map"
 	density = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 
 	name = "Gas filter"
 
@@ -134,10 +134,10 @@
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure.")
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	user << SPAN_NOTICE("You begin to unfasten \the [src]...")
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
@@ -152,7 +152,7 @@
 		return
 
 	if(!src.allowed(user))
-		user << SPAN_WARNING("Access denied.")
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 	var/dat

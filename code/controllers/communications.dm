@@ -67,6 +67,7 @@ Radiochat range: 1441 to 1489 (most devices refuse to be tune to other frequency
 
 Radio:
 1459 - standard radio chat
+1364 - NT department
 1351 - Science
 1353 - Command
 1355 - Medical
@@ -110,12 +111,14 @@ var/const/SYND_FREQ = 1213
 
 // department channels
 var/const/PUB_FREQ = 1459
+var/const/NT_FREQ = 1364
 var/const/SEC_FREQ = 1359
 var/const/ENG_FREQ = 1357
 var/const/MED_FREQ = 1355
 var/const/SCI_FREQ = 1351
 var/const/SRV_FREQ = 1349
 var/const/SUP_FREQ = 1347
+
 
 // internal department channels
 var/const/MED_I_FREQ = 1485
@@ -131,6 +134,7 @@ var/list/radiochannels = list(
 	"Special Ops" 	= DTH_FREQ,
 	"Mercenary" 	= SYND_FREQ,
 	"Supply" 		= SUP_FREQ,
+	"NT Voice"		= NT_FREQ,
 	"Service" 		= SRV_FREQ,
 	"AI Private"	= AI_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
@@ -144,7 +148,7 @@ var/list/CENT_FREQS = list(DTH_FREQ)
 var/list/ANTAG_FREQS = list(SYND_FREQ)
 
 //Department channels, arranged lexically
-var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
+var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -175,6 +179,8 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 		return "supradio"
 	if(frequency == SRV_FREQ) // service
 		return "srvradio"
+	if(frequency == NT_FREQ)
+		return "ntradio"
 	if(frequency in DEPT_FREQS)
 		return "deptradio"
 

@@ -6,9 +6,9 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		src << SPAN_NOTICE("You will now examine everything you click on.")
+		to_chat(src, SPAN_NOTICE("You will now examine everything you click on."))
 	else
-		src << SPAN_NOTICE("You will no longer examine things you click on.")
+		to_chat(src, SPAN_NOTICE("You will no longer examine things you click on."))
 
 /mob/observer/ghost/DblClickOn(var/atom/A, var/params)
 	if(client.buildmode)
@@ -57,24 +57,24 @@
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(com.locked)
-		user.loc = get_turf(com.locked)
+		user.forceMove(get_turf(com.locked))
 
 /obj/effect/portal/attack_ghost(mob/user as mob)
 	if(target)
-		user.loc = get_turf(target)
+		user.forceMove(get_turf(target))
 
 /*
 /obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
 	if(awaygate)
 		user.loc = awaygate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 
 /obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
 	if(stationgate)
 		user.loc = stationgate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 */
 
 // -------------------------------------------

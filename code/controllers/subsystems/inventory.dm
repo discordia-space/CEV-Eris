@@ -1,10 +1,8 @@
 SUBSYSTEM_DEF(inventory)
 	name = "Inventory"
-	init_order = INIT_ORDER_LATELOAD
+	init_order = INIT_ORDER_INVENTORY
 	flags = SS_NO_FIRE
 	var/global/list/slots
-
-	var/initialized = FALSE	//set to TRUE after it has been initialized, will obviously never be set if the subsystem doesn't initialize
 
 /datum/controller/subsystem/inventory/Initialize(start_timeofday)
 	slots = new()
@@ -16,7 +14,7 @@ SUBSYSTEM_DEF(inventory)
 		if(S.id > slots.len)
 			slots.len = S.id
 		slots[S.id] = S
-	initialized = TRUE
+	. = ..()
 
 /datum/controller/subsystem/inventory/proc/get_slot_datum(slot)
 	return slots.len >= slot ? slots[slot] : null

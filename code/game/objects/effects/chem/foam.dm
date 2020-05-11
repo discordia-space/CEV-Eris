@@ -170,7 +170,7 @@
 		)
 		qdel(src)
 	else
-		user << SPAN_NOTICE("You hit the metal foam but bounce off it.")
+		to_chat(user, SPAN_NOTICE("You hit the metal foam but bounce off it."))
 	return
 
 /obj/structure/foamedmetal/affect_grab(var/mob/living/user, var/mob/living/target)
@@ -190,7 +190,7 @@
 		)
 		qdel(src)
 	else
-		user << SPAN_NOTICE("You hit the metal foam to no effect.")
+		to_chat(user, SPAN_NOTICE("You hit the metal foam to no effect."))
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 	if(air_group)

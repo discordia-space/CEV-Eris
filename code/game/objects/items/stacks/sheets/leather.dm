@@ -73,7 +73,7 @@
 	if(QUALITY_CUTTING in I.tool_qualities)
 		usr.visible_message(SPAN_NOTICE("\The [usr] starts cutting hair off \the [src]"), SPAN_NOTICE("You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_COG))
-			usr << SPAN_NOTICE("You cut the hair from this [src.singular_name]")
+			to_chat(usr, SPAN_NOTICE("You cut the hair from this [src.singular_name]"))
 			//Try locating an exisitng stack on the tile and add to there if possible
 			for(var/obj/item/stack/material/hairlesshide/HS in usr.loc)
 				if(HS.amount < 50)

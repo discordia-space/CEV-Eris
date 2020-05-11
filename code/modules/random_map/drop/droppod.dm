@@ -187,7 +187,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/call_drop_pod, R_FUN, FALSE)
 				candidates |= player
 
 		if(!candidates.len)
-			usr << "There are no candidates for a drop pod launch."
+			to_chat(usr, "There are no candidates for a drop pod launch.")
 			return
 
 		// Get a player and a mob type.

@@ -8,6 +8,15 @@
 	base_quantity = 2
 	scaling_threshold = 15
 
+/datum/storyevent/roleset/blitz
+	id = "blitz"
+	name = "blitzshell infiltration"
+	role_id = ROLE_BLITZ
+	weight = 1
+
+	base_quantity = 1
+	scaling_threshold = 15
+
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"
@@ -59,7 +68,7 @@
 			break
 
 	if (!a_count)
-		if (report) report << SPAN_NOTICE("Failure: No antags which can serve as target")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
 		return FALSE //Can't spawn without at least one antag
 
 
@@ -93,7 +102,7 @@
 			break
 
 	if (a_count == 0)
-		if (report) report << SPAN_NOTICE("Failure: No antags which can serve as target")
+		if (report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
 		return FALSE //Can't spawn without at least one antag
 
 	return ..()

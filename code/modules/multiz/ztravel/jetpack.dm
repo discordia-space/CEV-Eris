@@ -9,7 +9,7 @@
 	start_verb_visible = "%m starts a controlled %d3t with the %s"
 	start_verb_personal = "You start a controlled %d3t with the %s"
 	base_time = 70
-	slip_chance = 50 //A little risky, but so what if you slip. You've got a jetpack to regain control!
+	slip_chance = 0 //Its a jetpack, how would you even screw this up!
 
 
 /datum/vertical_travel_method/jetpack/start_animation()
@@ -36,7 +36,7 @@
 /datum/vertical_travel_method/jetpack/calculate_time()
 	if (isrobot(M))
 		base_time *= 2 //Robots are heavy and slow, but they can use jetpacks
-	else if (istype(M, /obj/mecha))
+	else if (istype(M, /mob/living/exosuit))
 		base_time *= 2.5 //Heavier still
 	.=..()
 
@@ -76,7 +76,7 @@
 
 			var/progress = progress()
 			E.pixel_y = (max * progress) - 12 //-12 makes it offset down from the player a bit
-			E.pixel_x = rand_between(-4,4) //Slight side to side randomness so it looks chaotic
+			E.pixel_x = RAND_DECIMAL(-4,4) //Slight side to side randomness so it looks chaotic
 			E.alpha = (255 - (255 * progress))*2 //Fade out as the player does, but less so
 			E.layer = M.layer-0.01 //Match the player's layer so it doesn't render over foreground turfs when moving downwards
 

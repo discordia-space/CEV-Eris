@@ -1,4 +1,4 @@
-/obj/item/clothing/head/helmet/space/rig/merc
+/obj/item/clothing/head/space/rig/merc
 	light_overlay = "helmet_light_dual_green"
 	camera_networks = list(NETWORK_MERCENARY)
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
@@ -8,12 +8,20 @@
 	desc = "A blood-red hardsuit featuring some fairly illegal technology."
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
-	armor = list(melee = 80, bullet = 65, laser = 65, energy = 15, bomb = 80, bio = 100, rad = 60)
+	armor = list(
+		melee = 50,
+		bullet = 50,
+		energy = 30,
+		bomb = 75,
+		bio = 100,
+		rad = 50
+	)
 	slowdown = 1
+	drain = 3.5
 	offline_slowdown = 3
 	offline_vision_restriction = 1
 
-	helm_type = /obj/item/clothing/head/helmet/space/rig/merc
+	helm_type = /obj/item/clothing/head/space/rig/merc
 
 
 	initial_modules = list(

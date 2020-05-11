@@ -25,6 +25,7 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	matter = list(MATERIAL_BIOMATTER = 12)
 
 /obj/item/weapon/soap/New()
 	..()
@@ -44,35 +45,38 @@
 	if(!proximity) return
 
 	else if(istype(target,/obj/effect/decal/cleanable))
-		user << "<span class='notice'>You scrub \the [target.name] out.</span>"
+		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
 		qdel(target)
 		return
 	else if(istype(target,/turf))
-		user << "You start scrubbing the [target.name]"
-		if (do_after(user, 50, target)) //Soap should be slower and worse than mop
-			user << "<span class='notice'>You scrub \the [target.name] clean.</span>"
+		to_chat(user, "You start scrubbing the [target.name]")
+		if(do_after(user, 50, target)) //Soap should be slower and worse than mop
+			to_chat(user, "<span class='notice'>You scrub \the [target.name] clean.</span>")
 			var/turf/T = target
 			T.clean(src, user)
 			return
+		else
+			to_chat(user, "<span class='notice'>You need to stand still to clean \the [target.name]!</span>")
+			return
 	else if(istype(target,/obj/structure/sink) || istype(target,/obj/structure/sink))
-		user << "<span class='notice'>You wet \the [src] in the sink.</span>"
+		to_chat(user, "<span class='notice'>You wet \the [src] in the sink.</span>")
 		wet()
 		return
 	else if (istype(target, /obj/structure/mopbucket) || istype(target, /obj/item/weapon/reagent_containers/glass) || istype(target, /obj/structure/reagent_dispensers/watertank))
 		if (target.reagents && target.reagents.total_volume)
-			user << "<span class='notice'>You wet \the [src] in the [target].</span>"
+			to_chat(user, "<span class='notice'>You wet \the [src] in the [target].</span>")
 			wet()
 			return
 		else
-			user << "\The [target] is empty!"
+			to_chat(user, "\The [target] is empty!")
 
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		user << "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>"
+		to_chat(user, "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>")
 		return
 	else
-		user << "<span class='notice'>You clean \the [target.name].</span>"
+		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
 		target.clean_blood()
 		return
 
@@ -89,7 +93,7 @@
 	..()
 
 /obj/item/weapon/soap/nanotrasen
-	desc = "A NanoTrasen-brand bar of soap. Smells of plasma."
+	desc = "A NeoTheology-brand bar of soap. Smells of biomatter."
 	icon_state = "soapnt"
 
 /obj/item/weapon/soap/deluxe
@@ -118,6 +122,23 @@
 	throw_range = 15
 	attack_verb = list("HONKED")
 	var/spam_flag = 0
+
+/obj/item/weapon/bikehorn/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_HONK = TRUE,
+		GUN_UPGRADE_RECOIL = 1.2,
+		GUN_UPGRADE_DAMAGE_MULT = 0.8,
+		GUN_UPGRADE_PEN_MULT = 0.8,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 1.2,
+		GUN_UPGRADE_MOVE_DELAY_MULT = 1.2,
+		GUN_UPGRADE_MUZZLEFLASH = 1.2,
+		GUN_UPGRADE_CHARGECOST = 1.2,
+		GUN_UPGRADE_OVERCHARGE_MAX = 1.2,
+		GUN_UPGRADE_OVERCHARGE_RATE = 0.8
+	)
+	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/weapon/bikehorn/attack_self(mob/user as mob)
 	if (spam_flag == 0)

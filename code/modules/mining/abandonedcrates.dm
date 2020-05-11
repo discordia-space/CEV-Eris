@@ -30,7 +30,7 @@
 			new/obj/item/weapon/tool/pickaxe/drill(src)
 			new/obj/item/device/taperecorder(src)
 			new/obj/item/clothing/suit/space(src)
-			new/obj/item/clothing/head/helmet/space(src)
+			new/obj/item/clothing/head/space(src)
 		if(11 to 15)
 			new/obj/item/weapon/reagent_containers/glass/beaker/bluespace(src)
 		if(16 to 20)
@@ -94,7 +94,7 @@
 		if(90)
 			new/obj/item/organ/internal/heart(src)
 		if(91)
-			new/obj/item/weapon/material/sword/katana(src)
+			new/obj/item/weapon/tool/sword/katana(src)
 		if(92)
 			new/obj/item/weapon/dnainjector/xraymut(src) // Probably the least OP
 		if(93) // Why the hell not
@@ -130,29 +130,29 @@
 	if(!locked)
 		return
 
-	user << SPAN_NOTICE("The crate is locked with a Deca-code lock.")
+	to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
 	var/input = input(user, "Enter [codelen] digits.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
 
 	if(input == null || length(input) != codelen)
-		user << SPAN_NOTICE("You leave the crate alone.")
+		to_chat(user, SPAN_NOTICE("You leave the crate alone."))
 	else if(check_input(input))
-		user << SPAN_NOTICE("The crate unlocks!")
+		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
 		visible_message(SPAN_WARNING("A red light on \the [src]'s control panel flashes briefly."))
 		attempts--
 		if (attempts == 0)
-			user << SPAN_DANGER("The crate's anti-tamper system activates!")
+			to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
 			var/turf/T = get_turf(src.loc)
 			explosion(T, 0, 0, 1, 2)
 			qdel(src)
 
 /obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
 	if (locked)
-		user << SPAN_NOTICE("The crate unlocks!")
+		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 		locked = 0
 
 /obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
@@ -170,11 +170,11 @@
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/weapon/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
-			user << SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:")
+			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:"))
 			if (attempts == 1)
-				user << SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt.")
+				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt."))
 			else
-				user << SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts.")
+				to_chat(user, SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
@@ -186,6 +186,6 @@
 					else if(lastattempt[i] in code_contents)
 						++cows
 					code_contents -= lastattempt[i]
-				user << SPAN_NOTICE("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.")
+				to_chat(user, SPAN_NOTICE("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
 			return
 	..()

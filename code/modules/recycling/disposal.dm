@@ -61,6 +61,10 @@
 		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 		return TRUE
 
+/obj/machinery/disposal/MouseDrop_T(var/obj/item/I, mob/user, src_location, over_location, src_control, over_control, params)
+
+
+
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
 	if(stat & BROKEN || !I || !user)
@@ -80,28 +84,28 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(contents.len > 0)
-				user << "Eject the items first!"
+				to_chat(user, "Eject the items first!")
 				return
 			if(mode<=0)
 				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 					if(mode==0) // It's off but still not unscrewed
 						mode=-1 // Set it to doubleoff l0l
-						user << "You remove the screws around the power connection."
+						to_chat(user, "You remove the screws around the power connection.")
 						return
 					else if(mode==-1)
 						mode=0
-						user << "You attach the screws around the power connection."
+						to_chat(user, "You attach the screws around the power connection.")
 						return
 			return
 
 		if(QUALITY_WELDING)
 			if(contents.len > 0)
-				user << "Eject the items first!"
+				to_chat(user, "Eject the items first!")
 				return
 			if(mode==-1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << "You sliced the floorweld off the disposal unit."
+					to_chat(user, "You sliced the floorweld off the disposal unit.")
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_BIN
@@ -115,9 +119,9 @@
 			return
 
 
-	if(istype(I, /obj/item/weapon/storage/bag/trash))
-		var/obj/item/weapon/storage/bag/trash/T = I
-		user << "\blue You empty the bag."
+	if(istype(I, /obj/item/weapon/storage/bag))
+		var/obj/item/weapon/storage/bag/T = I
+		to_chat(user, "\blue You empty the bag.")
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O,src)
 		T.update_icon()
@@ -128,7 +132,7 @@
 		return
 
 	if(user.unEquip(I, src))
-		user << "You place \the [I] into the [src]."
+		to_chat(user, "You place \the [I] into the [src].")
 		for(var/mob/M in viewers(src))
 			if(M == user)
 				continue
@@ -139,56 +143,88 @@
 
 // mouse drop another mob or self
 //
-/obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(user.stat || !user.canmove || !istype(target))
-		return
-	if(target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1)
-		return
+/obj/machinery/disposal/MouseDrop_T(atom/movable/A, mob/user)
+	if(istype(A, /mob))
+		var/mob/target = A
+		if(user.stat || !user.canmove)
+			return
+		if(target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1)
+			return
 
-	//animals cannot put mobs other than themselves into disposal
-	if(isanimal(user) && target != user)
+		//animals cannot put mobs other than themselves into disposal
+		if(isanimal(user) && target != user)
+			return
+
+		src.add_fingerprint(user)
+		var/target_loc = target.loc
+		var/msg
+		for (var/mob/V in viewers(usr))
+			if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+				V.show_message("[usr] starts climbing into the disposal.", 3)
+			if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+				if(target.anchored) return
+				V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
+
+		var/delay = 20
+		if(!do_after(usr, max(delay * usr.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), src))
+			return
+		if(target_loc != target.loc)
+			return
+		if(target == user && !user.incapacitated(INCAPACITATION_ALL))	// if drop self, then climbed in
+												// must be awake, not stunned or whatever
+			msg = "[user.name] climbs into the [src]."
+			to_chat(user, "You climb into the [src].")
+		else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
+			msg = "[user.name] stuffs [target.name] into the [src]!"
+			to_chat(user, "You stuff [target.name] into the [src]!")
+
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
+			target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
+			msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		else
+			return
+		if (target.client)
+			target.client.perspective = EYE_PERSPECTIVE
+			target.client.eye = src
+
+		target.simple_move_animation(src)
+		target.forceMove(src)
+
+		for (var/mob/C in viewers(src))
+			if(C == user)
+				continue
+			C.show_message(msg, 3)
+
+		update()
 		return
+	else if (istype(A, /obj/item))
+		var/obj/item/I = A
+		if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
+			return ..()
+		if(istype(I, /obj/item/weapon/storage/bag/trash))
+			var/obj/item/weapon/storage/bag/trash/T = I
+			to_chat(user, SPAN_NOTICE("You empty the bag."))
+			for(var/obj/item/O in T.contents)
+				T.remove_from_storage(O,src)
+			T.update_icon()
+			update()
+			return
 
-	src.add_fingerprint(user)
-	var/target_loc = target.loc
-	var/msg
-	for (var/mob/V in viewers(usr))
-		if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			V.show_message("[usr] starts climbing into the disposal.", 3)
-		if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			if(target.anchored) return
-			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-	if(!do_after(usr, 20, src))
+		if(!I)
+			return
+
+		I.add_fingerprint(user)
+		I.forceMove(src)
+		to_chat(user, "You place \the [I] into the [src].")
+		for(var/mob/M in viewers(src))
+			if(M == user)
+				continue
+			M.show_message("[user.name] places \the [I] into the [src].", 3)
+			playsound(src.loc, 'sound/machines/vending_drop.ogg', 100, 1)
+
+		update()
 		return
-	if(target_loc != target.loc)
-		return
-	if(target == user && !user.incapacitated(INCAPACITATION_ALL))	// if drop self, then climbed in
-											// must be awake, not stunned or whatever
-		msg = "[user.name] climbs into the [src]."
-		user << "You climb into the [src]."
-	else if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-		msg = "[user.name] stuffs [target.name] into the [src]!"
-		user << "You stuff [target.name] into the [src]!"
-
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
-		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-	else
-		return
-	if (target.client)
-		target.client.perspective = EYE_PERSPECTIVE
-		target.client.eye = src
-
-	target.simple_move_animation(src)
-	target.forceMove(src)
-
-	for (var/mob/C in viewers(src))
-		if(C == user)
-			continue
-		C.show_message(msg, 3)
-
-	update()
-	return
+	. = ..()
 
 // attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user as mob)
@@ -219,7 +255,7 @@
 		return
 
 	if(user && user.loc == src)
-		usr << "\red You cannot reach the controls from inside."
+		to_chat(usr, "\red You cannot reach the controls from inside.")
 		return
 
 	// Clumsy folks can only flush it.
@@ -268,11 +304,11 @@
 
 /obj/machinery/disposal/Topic(href, href_list)
 	if(usr.loc == src)
-		usr << "\red You cannot reach the controls from inside."
+		to_chat(usr, "\red You cannot reach the controls from inside.")
 		return
 
 	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		usr << "\red The disposal units power is disabled."
+		to_chat(usr, "\red The disposal units power is disabled.")
 		return
 	if(..())
 		return
@@ -549,10 +585,20 @@
 		if(!loc)
 			return // check if we got GC'd
 
-		if(has_mob && prob(3))
+		if(has_mob && prob(5))
 			for(var/mob/living/H in src)
-				if(!isdrone(H)) //Drones use the mailing code to move through the disposal system,
-					H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+				if(isdrone(H)) //Drones use the mailing code to move through the disposal system,
+					continue
+
+				// Hurt any living creature jumping down disposals
+				var/multiplier = 1
+
+				// STAT_MEC or STAT_TGH help you reduce disposal damage, with no damage being recieved at all at STAT_LEVEL_EXPERT
+				if(H.stats)
+					multiplier = min(H.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT), H.stats.getMult(STAT_TGH, STAT_LEVEL_EXPERT))
+
+				if(multiplier > 0)
+					H.take_overall_damage(8 * multiplier, 0, "Blunt Trauma")
 
 		var/obj/structure/disposalpipe/current = loc
 		last = current
@@ -627,7 +673,7 @@
 
 	if (src.loc)
 		for (var/mob/M in hearers(src.loc.loc))
-			M << "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>"
+			to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
 
 	playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
 
@@ -641,6 +687,9 @@
 	active = 0
 	return ..()
 
+/obj/structure/disposalholder/AllowDrop()
+	return TRUE
+
 // Disposal pipes
 
 /obj/structure/disposalpipe
@@ -652,7 +701,7 @@
 	anchored = 1
 	density = 0
 
-	level = 1			// underfloor only
+	level = BELOW_PLATING_LEVEL			// underfloor only
 	var/pipe_dir = 0		// bitmask of pipe directions
 	dir = 0				// dir will contain dominant direction for junction pipes
 	var/health = 10 	// health points 0-10
@@ -1146,7 +1195,7 @@
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-			user << SPAN_NOTICE("Changed tag to '[sort_tag]'.")
+			to_chat(user, SPAN_NOTICE("Changed tag to '[sort_tag]'."))
 			updatename()
 			updatedesc()
 
@@ -1214,7 +1263,7 @@
 		if(O.currTag)// Tag set
 			sortType = O.currTag
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-			user << "\blue Changed filter to '[sortType]'."
+			to_chat(user, "\blue Changed filter to '[sortType]'.")
 			updatename()
 			updatedesc()
 
@@ -1223,7 +1272,6 @@
 		return checkTag in sortType
 	else
 		return checkTag == sortType
-	return FALSE
 
 	// next direction to move
 	// if coming in from negdir, then next is primary dir or sortdir
@@ -1460,18 +1508,18 @@
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 					if(mode==0) // It's off but still not unscrewed
 						mode=-1 // Set it to doubleoff l0l
-						user << "You remove the screws around the power connection."
+						to_chat(user, "You remove the screws around the power connection.")
 						return
 					else if(mode==-1)
 						mode=0
-						user << "You attach the screws around the power connection."
+						to_chat(user, "You attach the screws around the power connection.")
 						return
 			return
 
 		if(QUALITY_WELDING)
 			if(mode==-1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << "You sliced the floorweld off the disposal outlet."
+					to_chat(user, "You sliced the floorweld off the disposal outlet.")
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_OUTLET

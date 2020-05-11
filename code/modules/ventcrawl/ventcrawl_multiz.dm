@@ -15,7 +15,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/Entered(atom/movable/Obj)
 	if(istype(Obj, /mob/living))
 		var/mob/living/L = Obj
-		L << span("notice", "You are in a vertical pipe section. Use <a href='?src=\ref[src];crawl_user=\ref[L];crawl_dir=[travel_direction]'>[travel_verbname]</a> from the IC menu to [travel_direction_verb] a level.")
+		to_chat(L, span("notice", "You are in a vertical pipe section. Use <a href='?src=\ref[src];crawl_user=\ref[L];crawl_dir=[travel_direction]'>[travel_verbname]</a> from the IC menu to [travel_direction_verb] a level."))
 	. = ..()
 
 /obj/machinery/atmospherics/pipe/zpipe/Topic(href, href_list)
@@ -50,11 +50,11 @@
 
 /obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(var/mob/living/L, var/direction)
 	if (!can_z_crawl(L, direction))
-		L << span("notice", "You can't climb that way!.")
+		to_chat(L, span("notice", "You can't climb that way!."))
 		return
-	L << span("notice", "You start climbing [travel_direction_name] the pipe. This will take a while...")
+	to_chat(L, span("notice", "You start climbing [travel_direction_name] the pipe. This will take a while..."))
 	playsound(loc, 'sound/machines/ventcrawl.ogg', 100, 1, 3)
 	if(!do_after(L, 50, needhand = 0, target = get_turf(src)) || !can_z_crawl(L, direction))
-		L << span("danger", "You gave up on climbing [travel_direction_name] the pipe.")
+		to_chat(L, span("danger", "You gave up on climbing [travel_direction_name] the pipe."))
 		return FALSE
 	return ventcrawl_to(L, node2, null)

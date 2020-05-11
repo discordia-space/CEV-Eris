@@ -7,17 +7,22 @@
 	w_class = ITEM_SIZE_NORMAL
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
+	var/list/can_hold_extra = list() //List of objects which this item can additionally store not defined by the parent.
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
-	var/max_storage_space = 8 //The sum of the storage costs of all the items in this storage item.
+	var/max_storage_space = null //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
 	var/storage_slots = null //The number of storage slots in this container.
-	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
-	var/collection_mode = 1 //0 = pick one at a time, 1 = pick all on tile
+	var/use_to_pickup = null //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/display_contents_with_number = null //Set this to make the storage item group contents of the same type and display them as a number.
+	var/allow_quick_empty = null //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
+	var/allow_quick_gather = null //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
+
+/obj/item/weapon/storage/New()
+	can_hold |= can_hold_extra
+	. = ..()
 
 /HUD_element/threePartBox/storageBackground
 	start_icon = icon("icons/HUD/storage_start.png")
@@ -50,7 +55,7 @@
 		S.close(clientMob)
 
 /obj/item/weapon/storage/proc/setupItemBackground(var/HUD_element/itemBackground, var/atom/item, var/itemCount)
-	itemBackground.setClickProc(.itemBackgroundClick)
+	itemBackground.setClickProc(.proc/itemBackgroundClick)
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -72,6 +77,7 @@
 		item.maptext = "<font color='white'>[itemCount]</font>"
 
 /obj/item/weapon/storage/proc/generateHUD(var/datum/hud/data)
+	RETURN_TYPE(/HUD_element)
 	var/HUD_element/main = new("storage")
 	main.setDeleteOnHide(TRUE)
 
@@ -79,7 +85,7 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(.closeButtonClick)
+	closeButton.setClickProc(.proc/closeButtonClick)
 	closeButton.setData("item", src)
 
 	//storage space based items
@@ -93,7 +99,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(.storageBackgroundClick)
+		storageBackground.setClickProc(.proc/storageBackgroundClick)
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -177,7 +183,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(.storageBackgroundClick)
+				itemBackground.setClickProc(.proc/storageBackgroundClick)
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
@@ -275,7 +281,7 @@
 		return 0 //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] is full, make some space.")
+			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
 		return 0 //Storage item is full
 
 	if(W.anchored)
@@ -284,22 +290,22 @@
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages && ! istype(W, /obj/item/weapon/hand_labeler))
-				usr << SPAN_NOTICE("[src] cannot hold \the [W].")
+				to_chat(usr, SPAN_NOTICE("[src] cannot hold \the [W]."))
 			return 0
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
 			if(!stop_messages && !istype(W, /obj/item/weapon/hand_labeler))
-				usr << SPAN_NOTICE("[src] has no more space specifically for \the [W].")
+				to_chat(usr, SPAN_NOTICE("[src] has no more space specifically for \the [W]."))
 			return 0
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] cannot hold [W].")
+			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
 		return 0
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[W] is too long for this [src].")
+			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
 		return 0
 
 	//Slot based storage overrides space-based storage
@@ -310,12 +316,12 @@
 
 		if(total_storage_space > max_storage_space)
 			if(!stop_messages)
-				usr << SPAN_NOTICE("[src] is too full, make some space.")
+				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
 			return 0
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/weapon/storage)))
 		if(!stop_messages)
-			usr << SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size.")
+			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
 		return 0 //To prevent the stacking of same sized storage items.
 
 	return 1
@@ -341,7 +347,7 @@
 		if (!prevent_warning)
 			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
-					usr << SPAN_NOTICE("You put \the [W] into [src].")
+					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
@@ -393,7 +399,7 @@
 					remove_from_storage(L, T)
 					qdel(L)
 		if(amt_inserted)
-			user << "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining."
+			to_chat(user, "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining.")
 			return
 
 	if(!can_be_inserted(W))
@@ -403,14 +409,14 @@
 		var/obj/item/weapon/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				user << SPAN_WARNING("The tray won't fit in [src].")
+				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
 				return
 			else //todo: proper drop handling
 				W.loc = user.loc
 				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)
-				user << SPAN_WARNING("God damnit!")
+				to_chat(user, SPAN_WARNING("God damnit!"))
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
@@ -447,9 +453,9 @@
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
-			usr << "[src] now picks up all items in a tile at once."
+			to_chat(usr, "[src] now picks up all items in a tile at once.")
 		if(0)
-			usr << "[src] now picks up one item at a time."
+			to_chat(usr, "[src] now picks up one item at a time.")
 
 /obj/item/weapon/storage/proc/collectItems(var/turf/target, var/mob/user)
 	ASSERT(istype(target))
@@ -468,7 +474,7 @@
 			if (src.use_sound)
 				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
-			user << SPAN_NOTICE("You fail to pick anything up with \the [src].")
+			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
 
 
 /obj/item/weapon/storage/resolve_attackby(atom/A, mob/user)
@@ -477,33 +483,36 @@
 			if(collectItems(get_turf(A), user))
 				return TRUE
 	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
-	if(src.verbs.Find(/obj/item/weapon/storage/verb/quick_empty))
-		if(isturf(A))
-			src.quick_empty(A)
+	if(allow_quick_empty)
+		if(isturf(A) && !A.density)
+			dump_it(A)
 			return TRUE
-
 	return ..()
 
-/obj/item/weapon/storage/verb/quick_empty(var/turf/target)
+/obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
+	set src in view(1)
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T
-	if(isturf(target))
-		T = target
-	else
-		T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!istype(T))
+		return
+	dump_it(T, usr)
+
+/obj/item/weapon/storage/proc/dump_it(var/turf/target) //he bought?
+	if(!isturf(target))
+		return
+	if(!Adjacent(usr))
 		return
 	hide_from(usr)
 	for(var/obj/item/I in contents)
-		remove_from_storage(I, T)
+		remove_from_storage(I, target)
 
-/obj/item/weapon/storage/New()
-	..()
+/obj/item/weapon/storage/Initialize(mapload, ...)
+	. = ..()
 	if(allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
 	else
@@ -514,11 +523,21 @@
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
 
-	spawn(5)
-		var/total_storage_space = 0
-		for(var/obj/item/I in contents)
-			total_storage_space += I.get_storage_cost()
-		max_storage_space = max(total_storage_space,max_storage_space) //prevents spawned containers from being too small for their contents
+	if(isnull(max_storage_space) && !isnull(storage_slots))
+		max_storage_space = storage_slots*BASE_STORAGE_COST(max_w_class)
+
+	// Deferred storage doesn't populate_contents() from Initialize, it does so when accessed by player
+	if(!istype(src, /obj/item/weapon/storage/deferred))
+		populate_contents()
+
+	var/total_storage_space = 0
+	for(var/obj/item/I in contents)
+		total_storage_space += I.get_storage_cost()
+	max_storage_space = max(total_storage_space, max_storage_space) //prevents spawned containers from being too small for their contents
+
+// Override in subtypes
+/obj/item/weapon/storage/proc/populate_contents()
+	return
 
 /obj/item/weapon/storage/emp_act(severity)
 	if(!isliving(loc))
@@ -597,17 +616,17 @@
 	return depth
 
 /obj/item/proc/get_storage_cost()
-	if (storage_cost)
-		return storage_cost
-	else
-		return 2**(w_class-1) //1,2,4,8,16,...
+	return BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
 
 
 //Useful for spilling the contents of containers all over the floor
 /obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
-	if (!T || !istype(T, /turf))//If its not on the floor this might cause issues
+	if (!istype(T))//If its not on the floor this might cause issues
 		T = get_turf(src)
 
 	for (var/obj/O in contents)
 		remove_from_storage(O, T)
 		O.tumble(2)
+
+/obj/item/weapon/storage/AllowDrop()
+	return TRUE

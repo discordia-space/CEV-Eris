@@ -8,6 +8,10 @@
 
 /datum/preferences/proc/load_preferences()
 	if(!path)				return 0
+	if(!check_cooldown())
+		if(istype(client))
+			to_chat(client, SPAN_WARNING("You're attempting to load your preferences a little too fast. Wait half a second, then try again."))
+		return 0
 	if(!fexists(path))		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
@@ -20,6 +24,10 @@
 
 /datum/preferences/proc/save_preferences()
 	if(!path)				return 0
+	if(!check_cooldown())
+		if(istype(client))
+			to_chat(client, SPAN_WARNING("You're attempting to save your preferences a little too fast. Wait half a second, then try again."))
+		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
 	S.cd = "/"
@@ -31,7 +39,13 @@
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)				return 0
+	if(!check_cooldown())
+		if(istype(client))
+			to_chat(client, SPAN_WARNING("You're attempting to load your character a little too fast. Wait half a second, then try again."))
+		return 0
+
 	if(!fexists(path))		return 0
+
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
 	S.cd = "/"
@@ -58,6 +72,10 @@
 
 /datum/preferences/proc/save_character()
 	if(!path)				return 0
+	if(!check_cooldown())
+		if(istype(client))
+			to_chat(client, SPAN_WARNING("You're attempting to save your character a little too fast. Wait half a second, then try again."))
+		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
 	S.cd = maps_data.character_save_path(default_slot)

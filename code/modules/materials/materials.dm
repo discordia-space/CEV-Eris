@@ -53,7 +53,10 @@ var/list/name_to_material
 /proc/get_material_by_name(name)
 	if(!name_to_material)
 		populate_material_list()
-	return name_to_material[lowertext(name)]
+	var/material/M = name_to_material[lowertext(name)]
+	if(!M)
+		error("Invalid material given: [name]")
+	return M
 
 /proc/get_material_name_by_stack_type(stype)
 	if(!name_to_material)
@@ -136,10 +139,10 @@ var/list/name_to_material
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
-		user << SPAN_WARNING("You cannot make anything out of \the [target_stack]")
+		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
 		return
 	if(used_stack.get_amount() < 1 || target_stack.get_amount() < 1)
-		user << SPAN_WARNING("You need one rod and one sheet of [display_name] to make anything useful.")
+		to_chat(user, SPAN_WARNING("You need one rod and one sheet of [display_name] to make anything useful."))
 		return
 	used_stack.use(1)
 	target_stack.use(1)
@@ -149,15 +152,15 @@ var/list/name_to_material
 
 /material/proc/build_wired_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!wire_product)
-		user << SPAN_WARNING("You cannot make anything out of \the [target_stack]")
+		to_chat(user, SPAN_WARNING("You cannot make anything out of \the [target_stack]"))
 		return
 	if(used_stack.get_amount() < 5 || target_stack.get_amount() < 1)
-		user << SPAN_WARNING("You need five wires and one sheet of [display_name] to make anything useful.")
+		to_chat(user, SPAN_WARNING("You need five wires and one sheet of [display_name] to make anything useful."))
 		return
 
 	used_stack.use(5)
 	target_stack.use(1)
-	user << SPAN_NOTICE("You attach wire to the [name].")
+	to_chat(user, SPAN_NOTICE("You attach wire to the [name]."))
 	var/obj/item/product = new wire_product(get_turf(user))
 	if(!(user.l_hand && user.r_hand))
 		user.put_in_hands(product)
@@ -207,27 +210,31 @@ var/list/name_to_material
 	name = "placeholder"
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material)
+/material/proc/place_dismantled_girder(target, material/reinf_material)
 	var/obj/structure/girder/G = new(target)
 	if(reinf_material)
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
 
-// General wall debris product placement.
-// Not particularly necessary aside from snowflakey cult girders.
-/material/proc/place_dismantled_product(var/turf/target,var/is_devastated)
-	for(var/x=1;x<(is_devastated?2:3);x++)
-		place_sheet(target)
+// Use this to drop a given amount of material.
+/material/proc/place_material(target, amount=1)
+	// Drop the integer amount of sheets
+	if(place_sheet(target, round(amount)))
+		amount -= round(amount)
+
+	// If there is a remainder left, drop it as a shard instead
+	if(amount)
+		place_shard(target, amount)
 
 // Debris product. Used ALL THE TIME.
-/material/proc/place_sheet(var/turf/target)
+/material/proc/place_sheet(target, amount=1)
 	if(stack_type)
-		return new stack_type(target)
+		return new stack_type(target, amount)
 
 // As above.
-/material/proc/place_shard(var/turf/target)
+/material/proc/place_shard(target, amount=1)
 	if(shard_type)
-		return new /obj/item/weapon/material/shard(target, src.name)
+		return new /obj/item/weapon/material/shard(target, src.name, amount)
 
 // Used by walls and weapons to determine if they break or not.
 /material/proc/is_brittle()
@@ -397,12 +404,12 @@ var/list/name_to_material
 		return 0
 
 	if(!user.IsAdvancedToolUser())
-		user << SPAN_WARNING("This task is too complex for your clumsy hands.")
+		to_chat(user, SPAN_WARNING("This task is too complex for your clumsy hands."))
 		return 1
 
 	var/turf/T = user.loc
 	if(!istype(T))
-		user << SPAN_WARNING("You must be standing on open flooring to build a window.")
+		to_chat(user, SPAN_WARNING("You must be standing on open flooring to build a window."))
 		return 1
 
 	var/title = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
@@ -436,13 +443,13 @@ var/list/name_to_material
 				failed_to_build = 1
 			if(!failed_to_build && choice == "Windoor")
 				if(!is_reinforced())
-					user << SPAN_WARNING("This material is not reinforced enough to use for a door.")
+					to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
 					return
 				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
 					failed_to_build = 1
 
 		if(failed_to_build)
-			user << SPAN_WARNING("There is no room in this location.")
+			to_chat(user, SPAN_WARNING("There is no room in this location."))
 			return 1
 
 	else
@@ -456,11 +463,11 @@ var/list/name_to_material
 
 
 		if (!mount)
-			user << SPAN_WARNING("Full windows must be mounted on a low wall infront of you.")
+			to_chat(user, SPAN_WARNING("Full windows must be mounted on a low wall infront of you."))
 			return 1
 
 		if (locate(/obj/structure/window) in t)
-			user << SPAN_WARNING("The target tile must be clear of other windows")
+			to_chat(user, SPAN_WARNING("The target tile must be clear of other windows"))
 			return 1
 
 		//building will be successful, lets set the build location
@@ -476,13 +483,13 @@ var/list/name_to_material
 		build_path = created_window
 
 	if(used_stack.get_amount() < sheets_needed)
-		user << SPAN_WARNING("You need at least [sheets_needed] sheets to build this.")
+		to_chat(user, SPAN_WARNING("You need at least [sheets_needed] sheets to build this."))
 		return 1
 
 	// Build the structure and update sheet count etc.
 	used_stack.use(sheets_needed)
 	var/obj/O = new build_path(T, build_dir)
-	O.Created()
+	O.Created(user)
 	return 1
 
 /material/glass/proc/is_reinforced()
@@ -669,6 +676,14 @@ var/list/name_to_material
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		return 1
 	return 0
+
+/material/biomatter
+	name = MATERIAL_BIOMATTER
+	stack_type = /obj/item/stack/material/biomatter
+	icon_colour = "#F48042"
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
+	sheet_singular_name = "sheet"
+	sheet_plural_name = "sheets"
 
 //TODO PLACEHOLDERS:
 /material/leather

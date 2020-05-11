@@ -63,7 +63,7 @@
 		return 1
 	else if(isliving(mover))
 		if(prob(50))
-			mover << SPAN_WARNING("You get stuck in \the [src] for a moment.")
+			to_chat(mover, SPAN_WARNING("You get stuck in \the [src] for a moment."))
 			return 0
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
@@ -229,12 +229,12 @@
 			src.loc = O.owner ? O.owner.loc : O.loc
 			src.visible_message("<span class='warning'>\A [src] makes its way out of [O.owner ? "[O.owner]'s [O.name]" : "\the [O]"]!</span>")
 			if(O.owner)
-				O.owner.apply_damage(1, BRUTE, O.organ_tag)
+				O.owner.apply_damage(1, BRUTE, O.organ_tag, used_weapon = src)
 		else if(prob(1))
 			O.owner.apply_damage(1, TOX, O.organ_tag)
 			if(world.time > last_itch + 30 SECONDS)
 				last_itch = world.time
-				O.owner << SPAN_NOTICE("Your [O.name] itches...")
+				to_chat(O.owner, SPAN_NOTICE("Your [O.name] itches..."))
 	else if(prob(1))
 		src.visible_message(SPAN_NOTICE("\The [src] skitters."))
 

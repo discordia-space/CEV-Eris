@@ -1,6 +1,22 @@
  // This file contains all Nano procs/definitions for external classes/objects
 
  /**
+  * A "panic button" verb to close all UIs on current mob.
+  * Use it when the bug with UI not opening (because the server still considers it open despite it being closed on client) pops up.
+  * Feel free to remove it once the bug is confirmed to be fixed.
+  *
+  * @return nothing
+  */
+/client/verb/resetnano()
+	set name = "Reset NanoUI"
+	set category = "OOC"
+
+	var/ui_amt = length(mob.open_uis)
+	for(var/datum/nanoui/ui in mob.open_uis)
+		ui.close()
+	to_chat(src, "[ui_amt] UI windows reset.")
+
+ /**
   * Called when a Nano UI window is closed
   * This is how Nano handles closed windows
   * It must be a verb so that it can be called using winset
@@ -30,15 +46,27 @@
   * If ui_interact is not used then the UI will not update correctly
   * ui_interact is currently defined for /atom/movable
   *
-  * @param user /mob The mob who is interacting with this ui
-  * @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-  * @param ui /datum/nanoui This parameter is passed by the nanoui process() proc when updating an open ui
-  * @param force_open boolean Force the UI to (re)open, even if it's already open
+  * @param user /mob The mob who is interacting with this UI
+  * @param ui_key string A string key to use for this UI. Allows for multiple unique UIs on one obj/mob (defaut value "main")
+  * @param ui /datum/nanoui This parameter is passed by the nanoui process() proc when updating an open UI
+  * @param force_open enum See _defines/nanoui.dm
   *
   * @return nothing
   */
-/datum/proc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nano_ui/master_ui = null, var/datum/topic_state/state = GLOB.default_state)
+/datum/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nanoui/master_ui = null, datum/topic_state/state = GLOB.default_state)
 	return
+
+ /**
+  * Data to be sent to the UI.
+  * This must be implemented for a UI to work.
+  *
+  * @param user /mob The mob who interacting with the UI
+  * @param ui_key string A string key to use for this UI. Allows for multiple unique UIs on one obj/mob (defaut value "main")
+  *
+  * @return data /list Data to be sent to the UI
+ **/
+/datum/proc/ui_data(mob/user, ui_key = "main")
+	return list() // Not implemented.
 
 // Used by SSnano (/datum/controller/subsystem/processing/nano) to track UIs opened by this mob
 /mob/var/list/open_uis

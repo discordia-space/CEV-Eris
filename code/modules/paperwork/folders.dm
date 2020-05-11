@@ -4,6 +4,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = ITEM_SIZE_SMALL
+	matter = list(MATERIAL_BIOMATTER = 2)
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."
@@ -17,9 +18,9 @@
 	desc = "A yellow folder."
 	icon_state = "folder_yellow"
 
-/obj/item/weapon/folder/white
-	desc = "A white folder."
-	icon_state = "folder_white"
+/obj/item/weapon/folder/cyan
+	desc = "A cyan folder."
+	icon_state = "folder_cyan"
 
 /obj/item/weapon/folder/update_icon()
 	overlays.Cut()
@@ -32,7 +33,7 @@
 		user.drop_item()
 		W.loc = src
 		playsound(src,'sound/effects/Paper_Shake.ogg',40,1)
-		user << SPAN_NOTICE("You put the [W] into \the [src].")
+		to_chat(user, SPAN_NOTICE("You put the [W] into \the [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
 		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)

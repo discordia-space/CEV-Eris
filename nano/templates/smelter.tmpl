@@ -1,0 +1,36 @@
+<div class='statusDisplay'>
+	{{if data.currentItem}}
+		<center><b><h2>SMELTING...</h2></b>
+		<hr></hr>
+		<h3>Loaded item: {{:data.currentItem}}</h3></center><br>
+		<div class="itemLabel">
+			Progress:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.progress, 0, 100, 'highlight')}}
+		</div>
+
+	{{else}}
+		<center><b><h2>NO ITEM</h2></b></center>
+	{{/if}}
+</div>
+
+<div class="block">
+	<div class="item">
+		<div class="itemLabelWidest"><b>Loaded materials</b></div>
+	</div>
+	{{for data.materials}}
+		<div class="item">
+			<div class="itemLabelNarrow">{{:value.name}}</div>
+			<div class="itemContentNarrow">{{:value.count}}/{{:data.capacity}}</div>
+			<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject' : value.name}, null, 'statusValue')}}</b></div>
+		</div>
+	{{empty}}
+		<div class="item">
+			<div class="itemLabelNarrow">empty</div>
+		</div>
+	{{/for}}
+	<div class="item">
+		{{:helper.link('EJECT ALL', '', {'eject' : 1}, null, 'bigButton')}}
+	</div>
+</div>

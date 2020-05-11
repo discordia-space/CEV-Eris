@@ -66,7 +66,7 @@
 /obj/item/weapon/dnainjector/proc/inject(mob/M as mob, mob/user as mob)
 	if(isliving(M))
 		var/mob/living/L = M
-		L.apply_effect(rand(5,20), IRRADIATE, check_protection = 0)
+		L.apply_effect(rand(5,20), IRRADIATE, check_protection = FALSE)
 
 	if (!(NOCLONE in M.mutations)) // prevents drained people from having their DNA changed
 		if (buf.types & DNA2_BUF_UI)
@@ -121,7 +121,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!istype(H))
-		user << SPAN_WARNING("Apparently it didn't work...")
+		to_chat(user, SPAN_WARNING("Apparently it didn't work..."))
 		return
 
 	// Used by admin log.

@@ -1,0 +1,67 @@
+<!-- 
+Title: Chem Dispenser 5000 UI 
+Used In File(s): \code\modules\reagents\machinery\chem_dispenser.dm
+ -->
+<div class="item">
+	<div class="itemLabel">
+		Energy:
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Units')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Dispense:
+	</div>
+	<div class="itemContent">
+		{{:helper.link('5', 'gear', {'amount' : 5}, (data.amount == 5) ? 'selected' : null)}}
+		{{:helper.link('10', 'gear', {'amount' : 10}, (data.amount == 10) ? 'selected' : null)}}
+		{{:helper.link('20', 'gear', {'amount' : 20}, (data.amount == 20) ? 'selected' : null)}}
+		{{:helper.link('30', 'gear', {'amount' : 30}, (data.amount == 30) ? 'selected' : null)}}
+		{{:helper.link('40', 'gear', {'amount' : 40}, (data.amount == 40) ? 'selected' : null)}}
+	</div>
+</div>
+<div class="item">&nbsp;</div>
+<div class="item">
+	<div class="itemContentWide" style="width: 100%;">
+		{{for data.chemicals}}
+			{{:helper.link(value.title, 'circle-arrow-s', value.commands, null, data.accept_beaker ? 'fixedLeft' : 'fixedLeftWide')}}
+		{{/for}}
+		
+	</div>
+</div>
+<div class="item">&nbsp;</div>
+<div class="item">
+	<div class="itemLabel">
+		{{if data.glass}}
+			Glass
+		{{else}}
+			Beaker
+		{{/if}} Contents
+	</div>
+	<div class="itemContent">
+		{{:helper.link(data.accept_beaker ? 'Eject Beaker' : 'Eject Container', 'eject', {'ejectBeaker' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
+	</div>
+</div>
+<div class="statusDisplay" style="min-height: 180px;">
+	<div class="item">
+		<div class="itemContent" style="width: 100%;">
+			{{if data.beaker}}
+				<b>Volume:&nbsp;{{:data.beaker.total_volume}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}</b><br>
+				{{for data.beaker.contents}}
+					<span class="highlight">{{:value.volume}} units of {{:value.name}}</span><br>
+				{{empty}}
+					<span class="bad">
+						{{:data.accept_beaker ? "Beaker" : "Container"}} is empty
+					</span>
+				{{/for}}
+			{{else}}
+				<span class="average"><i>
+					No {{:data.accept_beaker ? "beaker" : "container"}} loaded
+				</i></span>
+			{{/if}}
+		</div>
+	</div>
+</div>

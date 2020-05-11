@@ -168,6 +168,8 @@ SUBSYSTEM_DEF(garbage)
 					var/msg = "GC: -- \ref[D] | [type] was unable to be GC'd --"
 					if(I.coords)
 						msg += "GC: -- \ref[D] | location is X=[I.coords.x_pos], Y=[I.coords.y_pos], Z=[I.coords.z_pos] --"
+					else
+						msg += "GC: -- \ref[D] | location is nullspace --"
 					log_to_dd(msg)
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
@@ -286,7 +288,7 @@ ADMIN_VERB_ADD(/client/proc/GCDebugItems, R_DEBUG, FALSE)
 		var/datum/qdel_item/qi = SSgarbage.items[a]
 		totals[a] = qi.qdels
 
-	var/list/sorted = slowSortAssocValue(totals)
+	var/list/sorted = sortAssoc(totals)
 
 	for (var/b in sorted)
 		data += "[b]: [totals[b]]<br>"
@@ -313,7 +315,7 @@ ADMIN_VERB_ADD(/client/proc/GCDebugPreQueue, R_DEBUG, FALSE)
 			else
 				totals[c.type] = 1
 
-	var/list/sorted = slowSortAssocValue(totals)
+	var/list/sorted = sortAssoc(totals)
 
 	for (var/b in sorted)
 		data += "[b]: [totals[b]]<br>"
@@ -345,7 +347,7 @@ ADMIN_VERB_ADD(/client/proc/GCDebugQueue, R_DEBUG, FALSE)
 			else
 				totals[c.type] = 1
 
-	var/list/sorted = slowSortAssocValue(totals)
+	var/list/sorted = sortAssoc(totals)
 
 	for (var/b in sorted)
 		data += "[b]: [totals[b]]<br>"

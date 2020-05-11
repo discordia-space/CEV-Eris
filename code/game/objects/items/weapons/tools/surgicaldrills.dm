@@ -7,6 +7,7 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2)
 	flags = CONDUCT
 	force = WEAPON_FORCE_DANGEROUS
+	armor_penetration = ARMOR_PEN_MODERATE
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
@@ -14,8 +15,3 @@
 
 	use_power_cost = 0.24
 	suitable_cell = /obj/item/weapon/cell/small
-
-
-/obj/item/weapon/tool/shiv
-	name = "sharv"
-	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle."

@@ -1,0 +1,347 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"b" = (
+/obj/structure/noticeboard,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"c" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"d" = (
+/obj/structure/ore_box,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"e" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"f" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"g" = (
+/obj/machinery/mineral/processing_unit_console,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"h" = (
+/obj/machinery/mineral/stacking_unit_console,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"i" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"j" = (
+/obj/machinery/conveyor/northeast{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"k" = (
+/obj/machinery/mineral/processing_unit,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"l" = (
+/obj/machinery/conveyor/southeast{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"m" = (
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/plating,
+/area/crawler)
+"n" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"o" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"p" = (
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"q" = (
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+"r" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+"s" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/machinery/mineral/unloading_machine,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"t" = (
+/obj/machinery/conveyor/northeast/ccw{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"u" = (
+/obj/machinery/mineral/stacking_machine,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"v" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/plating,
+/area/crawler)
+"w" = (
+/obj/machinery/conveyor/south{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"x" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/conveyor_switch/oneway{
+	id = 1
+	},
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"y" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"z" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"A" = (
+/obj/structure/salvageable/autolathe,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+"B" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"C" = (
+/obj/machinery/conveyor/northwest/ccw{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"D" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+"E" = (
+/obj/structure/plushie/beepsky,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+"F" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"G" = (
+/obj/machinery/conveyor/northwest{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"H" = (
+/obj/machinery/conveyor/west{
+	id = 1
+	},
+/obj/structure/plasticflaps/mining,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"I" = (
+/obj/machinery/conveyor/southwest{
+	id = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"J" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/plating,
+/area/crawler)
+"K" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"L" = (
+/obj/structure/table/onestar,
+/obj/machinery/light/floor,
+/turf/simulated/floor/plating,
+/area/crawler)
+"M" = (
+/obj/random/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+p
+p
+z
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+d
+d
+q
+q
+q
+F
+F
+a
+"}
+(3,1,1) = {"
+a
+e
+f
+q
+M
+q
+f
+e
+a
+"}
+(4,1,1) = {"
+a
+d
+d
+M
+q
+q
+F
+F
+a
+"}
+(5,1,1) = {"
+b
+f
+f
+r
+M
+D
+f
+f
+c
+"}
+(6,1,1) = {"
+c
+i
+n
+s
+x
+B
+K
+i
+c
+"}
+(7,1,1) = {"
+c
+a
+j
+t
+a
+C
+G
+a
+c
+"}
+(8,1,1) = {"
+c
+a
+k
+a
+a
+a
+H
+a
+c
+"}
+(9,1,1) = {"
+a
+a
+l
+u
+w
+w
+I
+a
+c
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+y
+a
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+g
+m
+q
+q
+q
+J
+a
+a
+"}
+(12,1,1) = {"
+a
+h
+v
+q
+A
+E
+L
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+o
+o
+o
+o
+o
+a
+a
+"}

@@ -1,27 +1,31 @@
-//It's a good day to die
-
-/obj/item/weapon/gun/projectile/automatic/dallas
-	name = "PAR 10mm x 24 \"Dallas\""
+/obj/item/weapon/gun/projectile/automatic/dallas //it's a good way to die
+	name = "PAR .25 CS \"Dallas\""
 	desc = "Dallas is a pulse-action air-cooled automatic assault rifle made by unknown manufacturer. This weapon is very rare, but deadly efficient. \
-		It's used by elite mercenaries, assassins or bald marines."
+			It's used by elite mercenaries, assassins or bald marines. Uses .25 Caseless rounds."
+	icon = 'icons/obj/guns/projectile/dallas.dmi'
 	icon_state = "dallas"
 	item_state = "dallas"
-	w_class = ITEM_SIZE_LARGE
-	force = WEAPON_FORCE_PAINFULL
-	caliber = "10x24"
+	w_class = ITEM_SIZE_HUGE
+	force = WEAPON_FORCE_PAINFUL
+	caliber = CAL_CLRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	load_method = MAGAZINE
-	magazine_type = /obj/item/ammo_magazine/c10x24
+	mag_well = MAG_WELL_RIFLE
+	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)
-	fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
+	price_tag = 5000 //99 rounds of pure pain and destruction served in auto-fire, so it basically an upgraded LMG
+	fire_sound 		= 'sound/weapons/guns/fire/m41_shoot.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/m41_cocked.ogg'
+	damage_multiplier = 1.3 //35.1 with lethal, 41.3 with hv
+	penetration_multiplier = 1
+	recoil_buildup = 6
+	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=3,    dispersion=list(0.0, 0.4, 0.6)),
+		SEMI_AUTO_NODELAY,
 		)
 
 /obj/item/weapon/gun/projectile/automatic/dallas/update_icon()

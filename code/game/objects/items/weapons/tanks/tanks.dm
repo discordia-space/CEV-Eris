@@ -8,7 +8,7 @@ var/list/global/tank_gauge_cache = list()
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 
-	var/gauge_icon = "indicator_tank"
+	var/gauge_icon = "indicator-tank-big"
 	var/last_gauge_pressure
 	var/gauge_cap = 6
 
@@ -23,23 +23,24 @@ var/list/global/tank_gauge_cache = list()
 
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
+	var/default_pressure = 3*ONE_ATMOSPHERE
+	var/default_gas = null
 	var/integrity = 3
-	var/volume = 70
+	var/volume = 70 //liters
 	var/manipulated_by = null		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
-/obj/item/weapon/tank/New()
-	..()
 
-	src.air_contents = new /datum/gas_mixture()
-	src.air_contents.volume = volume //liters
-	src.air_contents.temperature = T20C
+/obj/item/weapon/tank/Initialize(mapload, ...)
+	. = ..()
+	air_contents = new /datum/gas_mixture(volume)
+	air_contents.temperature = T20C
+	spawn_gas()
 	START_PROCESSING(SSobj, src)
 	update_gauge()
-	return
 
 /obj/item/weapon/tank/Destroy()
 	if(air_contents)
-		qdel(air_contents)
+		QDEL_NULL(air_contents)
 
 	STOP_PROCESSING(SSobj, src)
 
@@ -48,6 +49,11 @@ var/list/global/tank_gauge_cache = list()
 		TTV.remove_tank(src)
 
 	. = ..()
+
+// Override in subtypes
+/obj/item/weapon/tank/proc/spawn_gas()
+	if(default_gas)
+		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/weapon/tank/examine(mob/user)
 	. = ..(user, 0)
@@ -67,16 +73,12 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
-		user << SPAN_NOTICE("\The [src] feels [descriptive].")
+		to_chat(user, SPAN_NOTICE("\The [src] feels [descriptive]."))
 
-/obj/item/weapon/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/tank/attackby(obj/item/weapon/W, mob/living/user)
 	..()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
-
-	if ((istype(W, /obj/item/device/scanner/analyzer)) && get_dist(user, src) <= 1)
-		var/obj/item/device/scanner/analyzer/A = W
-		A.analyze_gases(src, user)
 	else if (istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
@@ -85,13 +87,13 @@ var/list/global/tank_gauge_cache = list()
 	if(istype(W, /obj/item/device/assembly_holder))
 		bomb_assemble(W,user)
 
-/obj/item/weapon/tank/attack_self(mob/user as mob)
+/obj/item/weapon/tank/attack_self(mob/living/user)
 	if (!(src.air_contents))
 		return
 
 	ui_interact(user)
 
-/obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/mob/living/carbon/location = null
 
 	if(istype(loc, /obj/item/weapon/rig))		// check for tanks in rigs
@@ -123,7 +125,7 @@ var/list/global/tank_gauge_cache = list()
 		else if(src in location)		// or if tank is in the mobs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
-		else if(istype(src.loc, /obj/item/weapon/rig) && src.loc in location)	// or the rig is in the mobs possession
+		else if(istype(src.loc, /obj/item/weapon/rig) && (src.loc in location))	// or the rig is in the mobs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
 
@@ -173,7 +175,7 @@ var/list/global/tank_gauge_cache = list()
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
 			location.internal = null
-			usr << SPAN_NOTICE("You close the tank release valve.")
+			to_chat(usr, SPAN_NOTICE("You close the tank release valve."))
 		else
 			var/can_open_valve
 			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
@@ -184,10 +186,10 @@ var/list/global/tank_gauge_cache = list()
 					can_open_valve = 1
 			if(can_open_valve)
 				location.internal = src
-				usr << SPAN_NOTICE("You open \the [src] valve.")
+				to_chat(usr, SPAN_NOTICE("You open \the [src] valve."))
 				playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
 			else
-				usr << SPAN_WARNING("You need something to connect to \the [src].")
+				to_chat(usr, SPAN_WARNING("You need something to connect to \the [src]."))
 			if(location.HUDneed.Find("internal"))
 				var/obj/screen/HUDelm = location.HUDneed["internal"]
 				HUDelm.update_icon()
@@ -233,17 +235,19 @@ var/list/global/tank_gauge_cache = list()
 	var/gauge_pressure = 0
 	if(air_contents)
 		gauge_pressure = air_contents.return_pressure()
-		if(gauge_pressure > TANK_IDEAL_PRESSURE)
-			gauge_pressure = -1
-		else
-			gauge_pressure = round((gauge_pressure/TANK_IDEAL_PRESSURE)*gauge_cap)
 
 	if(gauge_pressure == last_gauge_pressure)
 		return
 
 	last_gauge_pressure = gauge_pressure
+
+	var/indicator
+	if(gauge_pressure > TANK_IDEAL_PRESSURE)
+		indicator = "[gauge_icon]-overload"
+	else
+		indicator = "[gauge_icon]-[round((gauge_pressure/default_pressure)*gauge_cap)]"
+
 	overlays.Cut()
-	var/indicator = "[gauge_icon][(gauge_pressure == -1) ? "overload" : gauge_pressure]"
 	if(!tank_gauge_cache[indicator])
 		tank_gauge_cache[indicator] = image(icon, indicator)
 	overlays += tank_gauge_cache[indicator]

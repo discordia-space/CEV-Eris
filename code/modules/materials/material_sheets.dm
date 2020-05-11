@@ -3,6 +3,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_NORMAL
+	icon = 'icons/obj/stack/material.dmi'
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 120
@@ -81,11 +82,16 @@
 		return
 	return ..()
 
+/obj/item/stack/material/add(var/extra)
+	..()
+	update_strings()
+
+
 /obj/item/stack/material/iron
 	name = "iron"
-	icon_state = "sheet-silver"
+	icon_state = "sheet-iron"
 	default_type = MATERIAL_IRON
-	apply_colour = 1
+	price_tag = 2
 
 /obj/item/stack/material/iron/random
 	rand_min = 3
@@ -95,6 +101,7 @@
 	name = "sandstone brick"
 	icon_state = "sheet-sandstone"
 	default_type = MATERIAL_SANDSTONE
+	price_tag = 1
 
 /obj/item/stack/material/marble
 	name = "marble brick"
@@ -105,6 +112,7 @@
 	name = "diamond"
 	icon_state = "sheet-diamond"
 	default_type = MATERIAL_DIAMOND
+	price_tag = 100
 
 /obj/item/stack/material/diamond/random
 	rand_min = 1
@@ -114,6 +122,7 @@
 	name = MATERIAL_URANIUM
 	icon_state = "sheet-uranium"
 	default_type = MATERIAL_URANIUM
+	price_tag = 50
 
 /obj/item/stack/material/uranium/random
 	rand_min = 2
@@ -123,6 +132,7 @@
 	name = "solid plasma"
 	icon_state = "sheet-plasma"
 	default_type = MATERIAL_PLASMA
+	price_tag = 30
 
 /obj/item/stack/material/plasma/random
 	rand_min = 3
@@ -132,6 +142,8 @@
 	name = "plastic"
 	icon_state = "sheet-plastic"
 	default_type = MATERIAL_PLASTIC
+	price_tag = 2
+	novariants = FALSE
 
 /obj/item/stack/material/plastic/random
 	rand_min = 3
@@ -141,6 +153,7 @@
 	name = "gold"
 	icon_state = "sheet-gold"
 	default_type = MATERIAL_GOLD
+	price_tag = 50
 
 /obj/item/stack/material/gold/random
 	rand_min = 2
@@ -150,6 +163,7 @@
 	name = MATERIAL_SILVER
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_SILVER
+	price_tag = 40
 
 /obj/item/stack/material/silver/random
 	rand_min = 3
@@ -160,6 +174,7 @@
 	name = "platinum"
 	icon_state = "sheet-adamantine"
 	default_type = MATERIAL_PLATINUM
+	price_tag = 80
 
 /obj/item/stack/material/platinum/random
 	rand_min = 1
@@ -170,6 +185,7 @@
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
 	default_type = MATERIAL_MHYDROGEN
+	price_tag = 50
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -177,17 +193,21 @@
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
+	price_tag = 50
 
 /obj/item/stack/material/osmium
 	name = "osmium"
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
+	price_tag = 50
 
 /obj/item/stack/material/steel
 	name = MATERIAL_STEEL
 	icon_state = "sheet-metal"
 	default_type = MATERIAL_STEEL
+	price_tag = 2
+	novariants = FALSE
 
 //A stack which starts with the max amount
 /obj/item/stack/material/steel/full
@@ -202,6 +222,8 @@
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
 	default_type = MATERIAL_PLASTEEL
+	price_tag = 30
+	novariants = FALSE
 
 /obj/item/stack/material/plasteel/random
 	rand_min = 3
@@ -211,6 +233,7 @@
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = MATERIAL_WOOD
+	price_tag = 20
 
 /obj/item/stack/material/wood/random
 	rand_min = 3
@@ -220,11 +243,13 @@
 	name = "cloth"
 	icon_state = "sheet-cloth"
 	default_type = MATERIAL_CLOTH
+	price_tag = 20
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = MATERIAL_CARDBOARD
+	price_tag = 5
 
 /obj/item/stack/material/cardboard/random
 	rand_min = 5
@@ -235,11 +260,13 @@
 	desc = "The by-product of mob grinding."
 	icon_state = "sheet-leather"
 	default_type = MATERIAL_LEATHER
+	price_tag = 10
 
 /obj/item/stack/material/glass
 	name = MATERIAL_GLASS
 	icon_state = "sheet-glass"
 	default_type = MATERIAL_GLASS
+	price_tag = 2
 
 /obj/item/stack/material/glass/random
 	rand_min = 3
@@ -256,6 +283,7 @@
 	singular_name = "borosilicate glass sheet"
 	icon_state = "sheet-plasmaglass"
 	default_type = MATERIAL_PLASMAGLASS
+	price_tag = 10
 
 /obj/item/stack/material/glass/plasmaglass/random
 	rand_min = 3
@@ -267,4 +295,21 @@
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-plasmarglass"
 	default_type = MATERIAL_RPLASMAGLASS
+	price_tag = 12
 
+/obj/item/stack/material/biomatter
+	name = "biomatter"
+	desc = "An another by-product of mob grinding. Feels soft and... Strange."
+	singular_name = "biomatter sheet"
+	icon_state = "sheet-biomatter"
+	default_type = MATERIAL_BIOMATTER
+	max_amount = 60
+	price_tag = 10
+	var/biomatter_in_sheet = 10
+
+/obj/item/stack/material/biomatter/random
+	rand_min = 5
+	rand_max = 25
+
+/obj/item/stack/material/biomatter/full
+	amount = 60

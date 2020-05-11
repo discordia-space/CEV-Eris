@@ -1,5 +1,5 @@
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
-/datum/robot_component/
+/datum/robot_component
 	var/name
 	var/installed = 0
 	var/powered = 0
@@ -26,18 +26,23 @@
 /datum/robot_component/proc/uninstall()
 
 /datum/robot_component/proc/destroy()
-	var/brokenstate = "broken" // Generic icon
-	if (istype(wrapped, /obj/item/robot_parts/robot_component))
-		var/obj/item/robot_parts/robot_component/comp = wrapped
-		brokenstate = comp.icon_state_broken
-	if(wrapped)
-		qdel(wrapped)
-
-
-	wrapped = new/obj/item/broken_device
-	wrapped.icon_state = brokenstate // Module-specific broken icons! Yay!
-
 	// The thing itself isn't there anymore, but some fried remains are.
+	if(wrapped)
+		var/obj/item/trash_item = new /obj/item/trash/broken_robot_part
+
+		trash_item.icon = wrapped.icon
+		trash_item.matter = wrapped.matter.Copy()
+		trash_item.name = "broken [wrapped.name]"
+		trash_item.w_class = wrapped.w_class
+		if(istype(wrapped, /obj/item/robot_parts/robot_component))
+			var/obj/item/robot_parts/robot_component/comp = wrapped
+			trash_item.icon_state = comp.icon_state_broken // Module-specific broken icons! Yay!
+		else
+			trash_item.icon_state = wrapped.icon_state
+
+		qdel(wrapped)
+		wrapped = trash_item
+
 	installed = -1
 	uninstall()
 
@@ -122,11 +127,10 @@
 
 // ACTUATOR
 // Enables movement.
-// Uses no power when idle. Uses 200J for each tile the cyborg moves.
 /datum/robot_component/actuator
 	name = "actuator"
 	idle_usage = 0
-	active_usage = 200
+	active_usage = 100
 	external_type = /obj/item/robot_parts/robot_component/actuator
 	max_damage = 50
 
@@ -247,17 +251,41 @@
 // Component Objects
 // These objects are visual representation of modules
 
-/obj/item/broken_device
+// Spawned when a robot component breaks
+// Has default name/icon/materials, replaced by the component itself when it breaks
+/obj/item/trash/broken_robot_part
 	name = "broken component"
+	desc = "A robot part, broken beyond repair. Can be recycled in an autolathe."
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "broken"
+	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/robot_parts/robot_component
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "working"
+	var/icon_state_broken = "broken"
+	matter = list(MATERIAL_STEEL = 5)
+
 	var/brute = 0
 	var/burn = 0
-	var/icon_state_broken = "broken"
+	var/total_dam = 0
+	var/max_dam = 30
+
+/obj/item/robot_parts/robot_component/proc/take_damage(var/brute_amt, var/burn_amt)
+	brute += brute_amt
+	burn += burn_amt
+	total_dam = brute+burn
+	if(total_dam >= max_dam)
+		var/obj/item/weapon/circuitboard/broken/broken_device = new (get_turf(src))
+		if(icon_state_broken != "broken")
+			broken_device.icon = icon
+			broken_device.icon_state = icon_state_broken
+		broken_device.name = "broken [name]"
+		return broken_device
+	return 0
+
+/obj/item/robot_parts/robot_component/proc/is_functional()
+	return ((brute + burn) < max_dam)
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"
@@ -295,3 +323,4 @@
 	icon = 'icons/obj/tank.dmi'
 	icon_state = "jetpack-black"
 	icon_state_broken = "jetpack-black"
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 20)

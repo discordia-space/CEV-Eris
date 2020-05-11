@@ -1,19 +1,37 @@
-/decl/hierarchy/outfit/job/chaplain
-	name = OUTFIT_JOB_NAME("Neotheology Preacher")
+/decl/hierarchy/outfit/job/church
+	l_ear = /obj/item/device/radio/headset/church
+	id_type = /obj/item/weapon/card/id/church
+	pda_type = /obj/item/modular_computer/pda/church
+	hierarchy_type = /decl/hierarchy/outfit/job/church
+	backpack_contents = list(/obj/item/weapon/book/ritual/cruciform = 1)
+
+/decl/hierarchy/outfit/job/church/New()
+	..()
+	BACKPACK_OVERRIDE_NEOTHEOLOGY
+
+/decl/hierarchy/outfit/job/church/chaplain
+	name = OUTFIT_JOB_NAME("NeoTheology Preacher")
+	l_ear = /obj/item/device/radio/headset/heads/preacher
 	id_type = /obj/item/weapon/card/id/chaplain
-	uniform = /obj/item/clothing/under/rank/chaplain
-	suit = /obj/item/clothing/suit/chaplain_hoodie
+	uniform = /obj/item/clothing/under/rank/preacher
+	suit = /obj/item/clothing/suit/neotheology_coat
 	shoes = /obj/item/clothing/shoes/reinforced
 	gloves = /obj/item/clothing/gloves/thick
-	id_type = /obj/item/weapon/card/id/chaplain
-	pda_type = /obj/item/modular_computer/pda/medical
 	backpack_contents = list(/obj/item/weapon/book/ritual/cruciform/priest = 1)
 
-/decl/hierarchy/outfit/job/chaplain/post_equip(var/mob/living/carbon/human/H)
-	..()
-	var/obj/item/weapon/implant/core_implant/cruciform/C = new /obj/item/weapon/implant/core_implant/cruciform(H)
-	C.install(H)
-	C.activate()
-	C.add_module(new CRUCIFORM_PRIEST)
-	C.add_module(new CRUCIFORM_REDLIGHT)
-	H.religion = "Christianity"
+/decl/hierarchy/outfit/job/church/acolyte
+	name = OUTFIT_JOB_NAME("NeoTheology Acolyte")
+	uniform = /obj/item/clothing/under/rank/acolyte
+	shoes = /obj/item/clothing/shoes/reinforced
+	gloves = /obj/item/clothing/gloves/thick
+
+/decl/hierarchy/outfit/job/church/gardener
+	name = OUTFIT_JOB_NAME("Gardener")
+	uniform = /obj/item/clothing/under/rank/church
+	suit = /obj/item/clothing/suit/apron
+	gloves = /obj/item/clothing/gloves/botanic_leather
+	r_pocket = /obj/item/device/scanner/plant
+
+/decl/hierarchy/outfit/job/church/janitor
+	name = OUTFIT_JOB_NAME("Janitor")
+	uniform = /obj/item/clothing/under/rank/church

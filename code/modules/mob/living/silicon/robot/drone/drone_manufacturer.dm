@@ -1,6 +1,6 @@
 /proc/count_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in world)
+	for(var/mob/living/silicon/robot/drone/D in GLOB.drones)
 		if(D.key && D.client)
 			drones++
 	return drones
@@ -60,7 +60,7 @@
 /obj/machinery/drone_fabricator/examine(mob/user)
 	..(user)
 	if(produce_drones && drone_progress >= 100 && isghost(user) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
-		user << "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
+		to_chat(user, "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>")
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
 
@@ -94,15 +94,15 @@
 /proc/try_drone_spawn(var/mob/user, var/obj/machinery/drone_fabricator/fabricator)
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
-		user << SPAN_DANGER("The game hasn't started yet!")
+		to_chat(user, SPAN_DANGER("The game hasn't started yet!"))
 		return
 
 	if(!(config.allow_drone_spawn))
-		user << SPAN_DANGER("That verb is not currently permitted.")
+		to_chat(user, SPAN_DANGER("That verb is not currently permitted."))
 		return
 
 	if(jobban_isbanned(user,"Robot"))
-		user << SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone.")
+		to_chat(user, SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 
 	if(!user.MayRespawn(1, MINISYNTH))
@@ -117,7 +117,7 @@
 			all_fabricators[DF.fabricator_tag] = DF
 
 		if(!all_fabricators.len)
-			user << SPAN_DANGER("There are no available drone spawn points, sorry.")
+			to_chat(user, SPAN_DANGER("There are no available drone spawn points, sorry."))
 			return
 
 		var/choice = input(user,"Spawning as a drone will not affect your crew or mouse respawn timers. Which fabricator do you wish to use?") as null|anything in all_fabricators

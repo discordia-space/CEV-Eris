@@ -1,3 +1,29 @@
+//Defines for echo list index positions.
+//ECHO_DIRECT and ECHO_ROOM are the only two that actually appear to do anything, and represent the dry and wet channels of the environment effects, respectively.
+//The rest of the defines are there primarily for the sake of completeness. It might be worth testing on EAX-enabled hardware, and on future BYOND versions (I've tested with 511, 512, and 513)
+#define ECHO_DIRECT 1
+#define ECHO_DIRECTHF 2
+#define ECHO_ROOM 3
+#define ECHO_ROOMHF 4
+#define ECHO_OBSTRUCTION 5
+#define ECHO_OBSTRUCTIONLFRATIO 6
+#define ECHO_OCCLUSION 7
+#define ECHO_OCCLUSIONLFRATIO 8
+#define ECHO_OCCLUSIONROOMRATIO 9
+#define ECHO_OCCLUSIONDIRECTRATIO 10
+#define ECHO_EXCLUSION 11
+#define ECHO_EXCLUSIONLFRATIO 12
+#define ECHO_OUTSIDEVOLUMEHF 13
+#define ECHO_DOPPLERFACTOR 14
+#define ECHO_ROLLOFFFACTOR 15
+#define ECHO_ROOMROLLOFFFACTOR 16
+#define ECHO_AIRABSORPTIONFACTOR 17
+#define ECHO_FLAGS 18
+
+//Defines for controlling how zsound sounds.
+#define ZSOUND_DRYLOSS_PER_Z -2000 //Affects what happens to the dry channel as the sound travels through z-levels
+#define ZSOUND_DISTANCE_PER_Z 2 //Affects the distance added to the sound per z-level travelled
+
 //Sound environment defines. Reverb preset for sounds played in an area, see sound datum reference for more.
 #define GENERIC 0
 #define PADDED_CELL 1
@@ -51,6 +77,11 @@ var/list/rustle_sound = list(
 var/list/punch_sound = list(
 	'sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'
 )
+
+var/list/bullet_hit_wall = list(
+	'sound/weapons/guns/misc/ric1.ogg', 'sound/weapons/guns/misc/ric2.ogg', 'sound/weapons/guns/misc/ric3.ogg', 'sound/weapons/guns/misc/ric4.ogg', 'sound/weapons/guns/misc/ric5.ogg'
+)
+
 var/list/clown_sound = list('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
 var/list/swing_hit_sound = list(
 	'sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'
@@ -116,6 +147,44 @@ var/list/gunshot_sound = list('sound/weapons/Gunshot.ogg',
 	'sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg',
 	'sound/weapons/Gunshot4.ogg'
 )*/
+
+var/list/gun_interact_sound = list(
+	'sound/weapons/guns/interact/batrifle_cock.ogg',
+	'sound/weapons/guns/interact/batrifle_magin.ogg',
+	'sound/weapons/guns/interact/batrifle_magout.ogg',
+	'sound/weapons/guns/interact/bullet_insert2.ogg',
+	'sound/weapons/guns/interact/bullet_insert.ogg',
+	'sound/weapons/guns/interact/hpistol_cock.ogg',
+	'sound/weapons/guns/interact/hpistol_magin.ogg',
+	'sound/weapons/guns/interact/hpistol_magout.ogg',
+	'sound/weapons/guns/interact/lmg_close.ogg',
+	'sound/weapons/guns/interact/lmg_cock.ogg',
+	'sound/weapons/guns/interact/lmg_magin.ogg',
+	'sound/weapons/guns/interact/lmg_magout.ogg',
+	'sound/weapons/guns/interact/lmg_open.ogg',
+	'sound/weapons/guns/interact/ltrifle_cock.ogg',
+	'sound/weapons/guns/interact/ltrifle_magin.ogg',
+	'sound/weapons/guns/interact/ltrifle_magout.ogg',
+	'sound/weapons/guns/interact/m41_cocked.ogg',
+	'sound/weapons/guns/interact/m41_reload.ogg',
+	'sound/weapons/guns/interact/pistol_cock.ogg',
+	'sound/weapons/guns/interact/pistol_magin.ogg',
+	'sound/weapons/guns/interact/pistol_magout.ogg',
+	'sound/weapons/guns/interact/rev_cock.ogg',
+	'sound/weapons/guns/interact/rev_magin.ogg',
+	'sound/weapons/guns/interact/rev_magout.ogg',
+	'sound/weapons/guns/interact/rifle_boltback.ogg',
+	'sound/weapons/guns/interact/rifle_boltforward.ogg',
+	'sound/weapons/guns/interact/rifle_load.ogg',
+	'sound/weapons/guns/interact/selector.ogg',
+	'sound/weapons/guns/interact/sfrifle_cock.ogg',
+	'sound/weapons/guns/interact/sfrifle_magin.ogg',
+	'sound/weapons/guns/interact/sfrifle_magout.ogg',
+	'sound/weapons/guns/interact/shotgun_insert.ogg',
+	'sound/weapons/guns/interact/smg_cock.ogg',
+	'sound/weapons/guns/interact/smg_magin.ogg',
+	'sound/weapons/guns/interact/smg_magout.ogg'
+)
 
 var/list/short_equipement_sound = list(
 	'sound/misc/inventory/short_1.ogg',
@@ -245,68 +314,70 @@ var/list/rummage_sound = list(\
 
 	return toplay
 
-/proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
-
-	soundin = get_sfx(soundin) // same sound for everyone
-
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
 	if(isarea(source))
 		error("[source] is an area and is trying to make the sound: [soundin]")
 		return
 
-	var/frequency = get_rand_frequency() // Same frequency for everybody
+	soundin = get_sfx(soundin) // same sound for everyone
+	frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency // Same frequency for everybody
+
 	var/turf/turf_source = get_turf(source)
+	var/maxdistance = (world.view + extrarange) * 2
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	for (var/P in GLOB.player_list)
+	var/list/listeners = GLOB.player_list
+	if(!ignore_walls) //these sounds don't carry through walls
+		listeners = listeners & hearers(maxdistance, turf_source)
+
+	for(var/P in listeners)
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
 
-		var/distance = get_dist(M, turf_source)
-		if(distance <= (world.view + extrarange) * 3)
+		if(get_dist(M, turf_source) <= maxdistance)
 			var/turf/T = get_turf(M)
 
-			var/z_dist = abs(T.z - turf_source.z)
-			z_dist *= 0.5 //The reduction in volume over zlevels was too much
-			if(T && z_dist <= 1)
-				M.playsound_local(turf_source, soundin, vol/(1+z_dist), vary, extrarange, frequency, falloff, is_global, use_pressure)
+			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))
+				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure)
 
 var/const/FALLOFF_SOUNDS = 0.5
 
-//turf_source = our_turf, soundin = 'sound/effects/alert.ogg', vol = 100, vary = 1, extrarange = 0.5
-/mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, extrarange as num, frequency, falloff, is_global, use_pressure = TRUE)
-	if(!src.client || ear_deaf > 0)	return
-	soundin = get_sfx(soundin)
+/mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure = TRUE)
+	if(!src.client || ear_deaf > 0)
+		return
 
-	var/sound/S = sound(soundin)
-	S.wait = 0 //No queue
-	S.channel = 0 //Any channel
-	S.volume = vol
-	S.environment = -1
-	if (vary)
+	var/sound/S = soundin
+	if(!istype(S))
+		soundin = get_sfx(soundin)
+		S = sound(soundin)
+		S.wait = 0 //No queue
+		S.channel = 0 //Any channel
+		S.volume = vol
+		S.environment = -1
 		if(frequency)
 			S.frequency = frequency
-		else
+		else if (vary)
 			S.frequency = get_rand_frequency()
 
 	//sound volume falloff with pressure
 	var/pressure_factor = 1.0
-
-	// 3D sounds, the technology is here!
+	
 	var/turf/T = get_turf(src)
-
-	if(T)
+	// 3D sounds, the technology is here!
+	if(isturf(turf_source))
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
+
 		S.volume -= max(distance - (world.view + extrarange), 0) * 2 //multiplicative falloff to add on top of natural audio falloff.
 
 		var/datum/gas_mixture/hearer_env = T.return_air()
 		var/datum/gas_mixture/source_env = turf_source.return_air()
 
-		//Use pressure flag allows you to ignore the normal environment based checks, allowing sounds that can be heard in/from space
-		if (use_pressure)
+		if(use_pressure)
 			if (hearer_env && source_env)
 				var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
+
 				if (pressure < ONE_ATMOSPHERE)
 					pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
 			else //in space
@@ -316,23 +387,26 @@ var/const/FALLOFF_SOUNDS = 0.5
 				pressure_factor = max(pressure_factor, 0.15)	//hearing through contact
 
 			S.volume *= pressure_factor
-
+		
 		if (S.volume <= 0)
-			return	//no volume means no sound
+			return //no volume means no sound
 
 		var/dx = turf_source.x - T.x // Hearing from the right/left
 		S.x = dx
 		var/dz = turf_source.y - T.y // Hearing from infront/behind
 		S.z = dz
-		// The y value is for above your head, but there is no ceiling in 2d spessmens.
-		S.y = 1
+		var/dy = (turf_source.z - T.z) * ZSOUND_DISTANCE_PER_Z // Hearing from above/below. There is ceiling in 2d spessmans.
+		S.y = (dy < 0) ? dy - 1 : dy + 1 //We want to make sure there's *always* at least one extra unit of distance. This helps normalize sound that's emitting from the turf you're on.
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
+
+		if(!override_env)
+			envdry = abs(turf_source.z - T.z) * ZSOUND_DRYLOSS_PER_Z
 
 	if(!is_global)
 
 		if(istype(src,/mob/living/))
-			var/mob/living/M = src
-			if (M.hallucination)
+			var/mob/living/carbon/M = src
+			if (istype(M) && M.hallucination_power > 50 && M.chem_effects[CE_MIND] < 1)
 				S.environment = PSYCHOTIC
 			else if (M.druggy)
 				S.environment = DRUGGED
@@ -340,7 +414,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 				S.environment = DIZZY
 			else if (M.confused)
 				S.environment = DIZZY
-			else if (M.sleeping)
+			else if (M.stat == UNCONSCIOUS)
 				S.environment = UNDERWATER
 			else if (pressure_factor < 0.5)
 				S.environment = SPACE
@@ -353,21 +427,16 @@ var/const/FALLOFF_SOUNDS = 0.5
 			S.environment = SPACE
 		else
 			var/area/A = get_area(src)
-			if(istype(A))
-				S.environment = A.sound_env
+			S.environment = A.sound_env
 
-	src << S
+	var/list/echo_list = new(18)
+	echo_list[ECHO_DIRECT] = envdry
+	echo_list[ECHO_ROOM] = envwet
+	S.echo = echo_list
 
-/client/proc/playtitlemusic()
-	if(!SSticker.login_music)
-		return
-	if(get_preference_value(/datum/client_preference/play_lobby_music) == GLOB.PREF_YES)
-		sound_to(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+	sound_to(src, S)
 
-/client/proc/stoptitlemusic()
-	if(!SSticker.login_music)
-		return
-	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
+
 
 
 /proc/get_rand_frequency()
@@ -398,6 +467,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("thud") soundin = pick(thud_sound)
 			if ("weld") soundin = pick(weld_sound)
 			if ("rummage") soundin = pick(rummage_sound)
+			if ("ricochet") soundin = pick(bullet_hit_wall)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin
 
@@ -437,7 +507,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	var/extrarange
 	var/falloff
 	var/is_global
-	var/use_pressure
+	var/use_pressure_
 	//Used to stop it early
 	var/timer_handle
 
@@ -454,7 +524,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	extrarange = _extrarange
 	falloff = _falloff
 	is_global = _is_global
-	use_pressure = _use_pressure
+	use_pressure_ = _use_pressure
 	self_id = "\ref[src]"
 
 	//When created we do our first sound immediately
@@ -477,12 +547,12 @@ var/const/FALLOFF_SOUNDS = 0.5
 		return
 
 	//Actually play the sound
-	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure)
+	playsound(playfrom, soundin, vol, vary, extrarange, falloff, is_global, use_pressure = use_pressure_)
 
 	//Setup the next sound
 	var/nextinterval = interval
 	if (variance)
-		nextinterval *= rand_between(1-variance, 1+variance)
+		nextinterval *= RAND_DECIMAL(1-variance, 1+variance)
 
 	//Set the next timer handle
 	timer_handle = addtimer(CALLBACK(src, .proc/do_sound, TRUE), nextinterval, TIMER_STOPPABLE)

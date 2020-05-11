@@ -7,15 +7,12 @@
 	shoes = /obj/item/clothing/shoes/color/brown
 	id_type = /obj/item/weapon/card/id/gold
 	pda_type = /obj/item/modular_computer/pda/captain
-	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1)
+	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1, /obj/item/weapon/tool/knife/dagger/ceremonial = 1)
 
 /decl/hierarchy/outfit/job/captain/New()
 	..()
 	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/weapon/storage/backpack/captain
-	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/cap
-	/*
-	backpack_overrides[/decl/backpack_outfit/messenger_bag] = /obj/item/weapon/storage/backpack/messenger/com
-	*/
+	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/weapon/storage/backpack/satchel/captain
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
 	..()
@@ -39,4 +36,4 @@
 	gloves = /obj/item/clothing/gloves/thick
 	id_type = /obj/item/weapon/card/id/hop
 	pda_type = /obj/item/modular_computer/pda/heads/hop
-	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1)
+	backpack_contents = list(/obj/item/weapon/storage/box/ids = 1, /obj/item/weapon/tool/knife/dagger/ceremonial = 1)

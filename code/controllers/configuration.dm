@@ -7,8 +7,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
-	var/list/lobby_screens = list("title") // Which lobby screens are available
-
 	var/log_ooc = 0						// log OOC channel
 	var/log_access = 0					// log login/logout
 	var/log_say = 0						// log client say
@@ -54,7 +52,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/list/storytellers = list()				// allowed modes
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/allow_ai = 1					// allow ai job
+	var/allow_ai = 0					// allow ai job
 	var/hostedby = null
 	var/respawn_delay = 30
 	var/guest_jobban = 1
@@ -70,6 +68,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/use_cortical_stacks = 0			//enables neural lace
+	var/empty_server_restart_time = 0	// Time in minutes before empty server will restart
 
 	var/character_slots = 10				// The number of available character slots
 	var/loadout_slots = 3					// The number of loadout slots per character
@@ -79,6 +78,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/max_maint_drones = 5				//This many drones can spawn,
 	var/allow_drone_spawn = 1				//assuming the admin allow them to.
 	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+
+	var/enable_mob_sleep = 1  //Experimental - make mobs sleep when no danger is present
 
 	var/disable_player_mice = 0
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
@@ -127,6 +128,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
+	var/admin_memo_system = 0
 
 	var/simultaneous_pm_warning_timeout = 100
 
@@ -203,6 +205,13 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/ghosts_can_possess_animals = 0
 
+	var/emojis = 0
+
+	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
+
+	var/webhook_url
+	var/webhook_key
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -253,6 +262,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("ban_legacy_system")
 					config.ban_legacy_system = 1
+
+				if ("admin_memo_system")
+					config.admin_memo_system = 1
 
 				if ("use_recursive_explosions")
 					use_recursive_explosions = 1
@@ -630,6 +642,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("starlight")
 					config.starlight = value ? value : 0
 
+				if("random_submap_orientation")
+					config.random_submap_orientation = 1
+
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
@@ -652,9 +667,20 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					if(values.len > 0)
 						language_prefixes = values
 
-				if ("lobby_screens")
-					config.lobby_screens = splittext(value, ";")
+				if("empty_server_restart_time")
+					config.empty_server_restart_time = text2num(value)
 
+				if("emojis")
+					config.emojis = 1
+
+				if("enable_mob_sleep")
+					config.enable_mob_sleep = 1
+
+				if("webhook_key")
+					config.webhook_key = value
+
+				if("webhook_url")
+					config.webhook_url = value
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
@@ -686,6 +712,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
+
+
+
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

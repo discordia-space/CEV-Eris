@@ -36,6 +36,10 @@
 	log = FALSE
 
 /datum/world_topic/status/Run(list/input)
+	if(!key_valid) //If we have a key, then it's safe to trust that this isn't a malicious packet. Also prevents the extra info from leaking
+		if(GLOB.topic_status_lastcache <= world.time)
+			return GLOB.topic_status_cache
+		GLOB.topic_status_lastcache = world.time + 5
 	var/list/s = list()
 	s["version"] = game_version
 	s["storyteller"] = master_storyteller
@@ -80,6 +84,8 @@
 		s["players"] = n
 		s["admins"] = admins
 
+	if(!key_valid)
+		GLOB.topic_status_cache = .
 	return s
 
 
@@ -96,6 +102,7 @@
 			"sci" = science_positions,
 			"car" = cargo_positions,
 			"civ" = civilian_positions,
+			"chr" = church_positions,
 			"bot" = nonhuman_positions
 		)
 
@@ -230,11 +237,11 @@
 	C.irc_admin = input["sender"]
 
 	C << 'sound/effects/adminhelp.ogg'
-	C << message
+	to_chat(C, message)
 
 
 	for(var/client/A in admins)
 		if(A != C)
-			A << amessage
+			to_chat(A, amessage)
 
 	return "Message Successful"

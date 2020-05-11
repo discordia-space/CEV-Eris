@@ -37,7 +37,7 @@
 			else
 				return 1					//But only from one side
 		if(prob(chance))
-			health -= P.damage/2
+			health -= P.get_structure_damage()/2
 			if (health > 0)
 				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
 				return 0
@@ -65,16 +65,23 @@
 			set_pixel_click_offset(A, params)
 		return
 
-	if (istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
+	if(istype(A, /obj/item) && istype(A.loc, /turf))
 		var/obj/item/O = A
-		//Mice can push around pens and paper, but not heavy tools
-		if (O.w_class <= user.can_pull_size)
-			O.forceMove(loc)
-			set_pixel_click_offset(O, params, animate=TRUE)
-			return
-		else
-			user << SPAN_WARNING("[O] is too heavy for you to move!")
-			return
+
+		if(isghost(user))
+			if( src_location == over_location )
+				set_pixel_click_offset(O, params, animate = TRUE)
+				return
+
+		else if (A.CanMouseDrop(loc, user))
+			//Mice can push around pens and paper, but not heavy tools
+			if (O.w_class <= user.can_pull_size)
+				O.forceMove(loc)
+				set_pixel_click_offset(O, params, animate = TRUE)
+				return
+			else
+				to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
+				return
 
 	return ..()
 
@@ -82,14 +89,17 @@
 /obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(8, def_zone = BP_HEAD)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
+			user.attack_log += "\[[time_stamp()]\] <font color='red'>Slammed [target.name] ([target.ckey] against over \the [src])</font>"
+			msg_admin_attack("[user] slammed a [target] against \the [src].")
 			if(material)
 				playsound(loc, material.tableslam_noise, 50, 1)
 			else
@@ -102,16 +112,19 @@
 						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
 						SPAN_DANGER("\The [S] slices your face messily!")
 					)
-					target.apply_damage(10, def_zone = BP_HEAD)
+					target.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
 					if(prob(2))
 						target.embed(S, def_zone = BP_HEAD)
 		else
-			user << SPAN_DANGER("You need a better grip to do that!")
+			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey])</font>"
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
+		msg_admin_attack("[user] puts a [target] on \the [src].")
 	return TRUE
 
 
@@ -132,7 +145,7 @@
 		return
 
 	if(can_plate && !material)
-		user << SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first.")
+		to_chat(user, SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first."))
 		return
 
 	if (user.unEquip(W, loc))

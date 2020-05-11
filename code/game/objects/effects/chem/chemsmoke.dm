@@ -123,7 +123,7 @@
 	density = max(1, targetTurfs.len / 4) //clamp the cloud density minimum to 1 so it cant multiply the reagents
 
 	//Admin messaging
-	var/contained = carry.get_reagents()
+	var/contained = carry.log_list()
 	var/area/A = get_area(location)
 
 	var/where = "[A.name] | [location.x], [location.y]"
@@ -192,9 +192,9 @@
 
 		var/offset = 0
 		var/points = round((radius * 2 * M_PI) / arcLength)
-		var/angle = round(ToDegrees(arcLength / radius), 1)
+		var/angle = round(TODEGREES(arcLength / radius), 1)
 
-		if(!IsInteger(radius))
+		if(!ISINTEGER(radius))
 			offset = 45		//degrees
 
 		for(var/j = 0, j < points, j++)

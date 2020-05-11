@@ -33,11 +33,14 @@
 	{{if data.addressbook}}
 		{{:helper.link('Back', null, {'close_addressbook' : 1})}}
 		{{:helper.link('Enter Email', 'pencil', {'edit_recipient' : 1})}}
+		{{:helper.link(data.search, 'search', {'search' : 1})}}
 		<br><br>
 		<table>
-		<tr><td>Address book:
+		<tr><th>Owner's name<th style="width:60%">Address
 		{{for data.accounts}}
-			<tr class="candystripe"><td>{{:helper.link(value.login, null, {'set_recipient' : value.login})}}
+			<tr class="candystripe">
+			<td>{{:value.name}}
+			<td>{{:helper.link(value.login, null, {'set_recipient' : value.login})}}
 		{{/for}}
 		</table>
 	{{else data.new_message}}
@@ -47,7 +50,11 @@
 			</div>
 			<div class="itemContent">
 				<div class="statusDisplayComm" style="width:100%;min-height:1.7em;padding-bottom: 0;">
-					{{:data.msg_title}}
+					{{if data.msg_title}}
+						{{:data.msg_title}}
+					{{else}}
+						No subject
+					{{/if}}
 				</div>
 			</div>
 		</div>

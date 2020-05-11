@@ -43,9 +43,11 @@ var/global/list/image/fluidtrack_cache=list()
 	var/dirs=0
 	icon = 'icons/effects/fluidtracks.dmi'
 	icon_state = ""
+	random_rotation = FALSE
 	var/coming_state="blood1"
 	var/going_state="blood2"
 	var/updatedtracks=0
+	sanity_damage = 0.05
 
 	// dir = id in stack
 	var/list/setdirs=list(

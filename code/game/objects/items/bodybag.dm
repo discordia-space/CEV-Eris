@@ -6,26 +6,12 @@
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = ITEM_SIZE_SMALL
+	price_tag = 10
 
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
 		R.add_fingerprint(user)
 		qdel(src)
-
-
-/obj/item/weapon/storage/box/bodybags
-	name = "body bags"
-	desc = "This box contains body bags."
-	icon_state = "bodybags"
-	New()
-		..()
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
 
 
 /obj/structure/closet/body_bag
@@ -58,7 +44,7 @@
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
 	else if(istype(W, /obj/item/weapon/tool/wirecutters))
-		user << "You cut the tag off the bodybag"
+		to_chat(user, "You cut the tag off the bodybag.")
 		src.name = "body bag"
 		src.overlays.Cut()
 		return
@@ -85,14 +71,23 @@
 			qdel(src)
 		return
 
-
+/obj/structure/closet/body_bag/update_icon()
+    if(opened)
+        icon_state = "bodybag_open"
+    else
+        if(contains_body > 0)
+            icon_state = "bodybag_full"
+        else
+            icon_state = "bodybag_closed"
+				
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
-	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
+	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
 	a hostile enviroment."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 	origin_tech = list(TECH_BIO = 4)
+	price_tag = 250
 
 /obj/item/bodybag/cryobag/attack_self(mob/user)
 	var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)
@@ -101,8 +96,8 @@
 
 /obj/structure/closet/body_bag/cryobag
 	name = "stasis bag"
-	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant, especially useful if short on time or in \
-	a hostile enviroment."
+	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
+	a hostile enviroment. This one features a much more advanced design that preserves its occupant in cryostasis."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
@@ -126,7 +121,7 @@
 		O.name = "used stasis bag"
 		O.icon = src.icon
 		O.icon_state = "bodybag_used"
-		O.desc = "Pretty useless now.."
+		O.desc = "A used bodybag. It's nothing but trash now."
 		qdel(src)
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
@@ -150,7 +145,7 @@
 /obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	..()
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		user << "<span class='info'>You peer into \the [src].</span>"
+		to_chat(user, "<span class='info'>You peer into \the [src].</span>")
 		for(var/mob/living/L in contents)
 			L.examine(user)
 
@@ -158,9 +153,4 @@
 	if(opened)
 		..()
 	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
-		if(istype(W,/obj/item/device/scanner/healthanalyzer))
-			var/obj/item/device/scanner/healthanalyzer/analyzer = W
-			for(var/mob/living/L in contents)
-				analyzer.attack(L,user)
-		else
-			..()
+		..()

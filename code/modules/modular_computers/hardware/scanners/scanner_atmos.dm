@@ -17,15 +17,16 @@
 /obj/item/weapon/computer_hardware/scanner/atmos/do_on_afterattack(mob/user, atom/target, proximity)
 	if(!isobj(target))
 		return
-	var/data = scan_data(user, target, proximity)
-	if(!data)
-		return
 	if (!scan_power_use())
 		return
 	if(driver && driver.using_scanner)
-		driver.data_buffer = html2pencode(data)
-		SSnano.update_uis(driver.NM)
-	to_chat(user, data)
+		var/data = scan_data(user, target, proximity)
+		if(!data)
+			return
+		driver.data_buffer = data
+		if(!SSnano.update_uis(driver.NM))
+			holder2.run_program(driver.filename)
+			driver.NM.ui_interact(user)
 
 /obj/item/weapon/computer_hardware/scanner/atmos/proc/scan_data(mob/user, atom/target, proximity = TRUE)
 	if(!can_use_scanner(user, target, proximity))

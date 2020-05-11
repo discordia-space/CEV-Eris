@@ -4,7 +4,6 @@
 	icon_state = "pipe_d"
 	density = 1
 	anchored = 1
-	var/unwrenched = 0
 	var/wait = 0
 
 /obj/machinery/pipedispenser/attack_hand(user as mob)
@@ -75,7 +74,7 @@
 /obj/machinery/pipedispenser/Topic(href, href_list)
 	if(..())
 		return
-	if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if(!anchored || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
 		return
 	usr.set_machine(src)
@@ -101,36 +100,27 @@
 /obj/machinery/pipedispenser/attackby(var/obj/item/I, var/mob/user)
 	src.add_fingerprint(usr)
 	if (istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
-		usr << SPAN_NOTICE("You put [I] back to [src].")
+		to_chat(usr, SPAN_NOTICE("You put [I] back to [src]."))
 		user.drop_item()
 		qdel(I)
 		return
-	else if (istype(I, /obj/item/weapon/tool/wrench))
-		if (unwrenched==0)
-			user << SPAN_NOTICE("You begin to unfasten \the [src] from the floor...")
-			if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				user.visible_message( \
-					SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-					SPAN_NOTICE("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
-					"You hear ratchet.")
-				src.anchored = 0
-				src.stat |= MAINT
-				src.unwrenched = 1
-				if (usr.machine==src)
-					usr << browse(null, "window=pipedispenser")
-		else /*if (unwrenched==1)*/
-			user << SPAN_NOTICE("You begin to fasten \the [src] to the floor...")
-			if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				user.visible_message( \
-					SPAN_NOTICE("\The [user] fastens \the [src]."), \
-					SPAN_NOTICE("You have fastened \the [src]. Now it can dispense pipes."), \
-					"You hear ratchet.")
-				src.anchored = 1
-				src.stat &= ~MAINT
-				src.unwrenched = 0
-				power_change()
-	else
+	var/obj/item/weapon/tool/tool = I
+	if (!tool)
 		return ..()
+	if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		return ..()
+	anchored = !src.anchored
+	anchored ? (src.stat &= ~MAINT) : (src.stat |= MAINT)
+	if(anchored)
+		power_change()
+	else
+		if (usr.machine==src)
+			usr << browse(null, "window=pipedispenser")
+	user.visible_message( \
+		SPAN_NOTICE("\The [user] [anchored ? "":"un"]fastens \the [src]."), \
+		SPAN_NOTICE("You have [anchored ? "":"un"]fastened \the [src]."), \
+		"You hear ratchet.")
+
 
 /obj/machinery/pipedispenser/disposal
 	name = "Disposal Pipe Dispenser"
@@ -197,7 +187,7 @@ Nah
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 	if(href_list["dmake"])
-		if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+		if(!anchored || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=pipedispenser")
 			return
 		if(!wait)
@@ -252,8 +242,6 @@ Nah
 // adding a pipe dispensers that spawn unhooked from the ground
 /obj/machinery/pipedispenser/orderable
 	anchored = 0
-	unwrenched = 1
 
 /obj/machinery/pipedispenser/disposal/orderable
 	anchored = 0
-	unwrenched = 1

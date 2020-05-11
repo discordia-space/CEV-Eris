@@ -6,6 +6,7 @@
 	icon_state = "lipstick"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_BIOMATTER = 2)
 	var/colour = "red"
 	var/open = 0
 
@@ -32,7 +33,7 @@
 
 
 /obj/item/weapon/lipstick/attack_self(mob/user as mob)
-	user << "<span class='notice'>You twist \the [src] [open ? "closed" : "open"].</span>"
+	to_chat(user, "<span class='notice'>You twist \the [src] [open ? "closed" : "open"].</span>")
 	open = !open
 	if(open)
 		icon_state = "[initial(icon_state)]_[colour]"
@@ -49,7 +50,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
-			user << SPAN_NOTICE("You need to wipe off the old lipstick first!")
+			to_chat(user, SPAN_NOTICE("You need to wipe off the old lipstick first!"))
 			return
 		if(H == user)
 			user.visible_message(SPAN_NOTICE("[user] does their lips with \the [src]."), \
@@ -59,13 +60,13 @@
 		else
 			user.visible_message(SPAN_WARNING("[user] begins to do [H]'s lips with \the [src]."), \
 								 SPAN_NOTICE("You begin to apply \the [src]."))
-			if(do_after(user, 20, H) && do_after(H, 20, needshand = 0))	//user needs to keep their active hand, H does not.
+			if(do_mob(user, H, 30))	//user needs to keep their active hand, H does not.
 				user.visible_message(SPAN_NOTICE("[user] does [H]'s lips with \the [src]."), \
 									 SPAN_NOTICE("You apply \the [src]."))
 				H.lip_style = colour
 				H.update_body()
 	else
-		user << SPAN_NOTICE("Where are the lips on that?")
+		to_chat(user, SPAN_NOTICE("Where are the lips on that?"))
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
 

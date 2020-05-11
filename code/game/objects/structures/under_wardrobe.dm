@@ -104,7 +104,7 @@
 			return
 		LAZYSET(amount_of_underwear_by_id_card, id, ++current_quota)
 
-		var/obj/UW = UWI.create_underwear(metadata_list, H.body_build.underwear_icon)
+		var/obj/UW = UWI.create_underwear(loc, metadata_list, 'icons/inventory/underwear/mob.dmi')
 		UW.forceMove(loc)
 		H.put_in_hands(UW)
 

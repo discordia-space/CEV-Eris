@@ -21,7 +21,7 @@
 
 /obj/item/blueprints/attack_self(mob/M as mob)
 	if (!ishuman(M))
-		M << "This stack of blue paper means nothing to you." //monkeys cannot into projecting
+		to_chat(M, "This stack of blue paper means nothing to you." ) //monkeys cannot into projecting
 		return
 	interact()
 	return
@@ -45,7 +45,7 @@
 			edit_area()
 
 /obj/item/blueprints/interact()
-	var/area/A = get_area()
+	var/area/A = get_area(usr)
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
 <h2>[station_name()] blueprints</h2>
 <small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
@@ -72,13 +72,7 @@ move an amendment</a> to the drawing.</p>
 	usr << browse(text, "window=blueprints")
 	onclose(usr, "blueprints")
 
-
-/obj/item/blueprints/proc/get_area()
-	var/turf/T = get_turf(usr)
-	var/area/A = T.loc
-	return A
-
-/obj/item/blueprints/proc/get_area_type(var/area/A = get_area())
+/obj/item/blueprints/proc/get_area_type(var/area/A = get_area(usr))
 	if(istype(A, /area/space))
 		return AREA_SPACE
 	var/list/SPECIALS = list(
@@ -101,20 +95,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				usr << SPAN_WARNING("The new area must be completely airtight!")
+				to_chat(usr, SPAN_WARNING("The new area must be completely airtight!"))
 				return
 			if(ROOM_ERR_TOOLARGE)
-				usr << SPAN_WARNING("The new area too large!")
+				to_chat(usr, SPAN_WARNING("The new area too large!"))
 				return
 			else
-				usr << SPAN_WARNING("Error! Please notify administration!")
+				to_chat(usr, SPAN_WARNING("Error! Please notify administration!"))
 				return
 	var/list/turf/turfs = res
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""), MAX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		usr << SPAN_WARNING("Name too long.")
+		to_chat(usr, SPAN_WARNING("Name too long."))
 		return
 	var/area/A = new
 	A.name = str
@@ -143,18 +137,18 @@ move an amendment</a> to the drawing.</p>
 
 
 /obj/item/blueprints/proc/edit_area()
-	var/area/A = get_area()
+	var/area/A = get_area(usr)
 	//world << "DEBUG: edit_area"
 	var/prevname = "[A.name]"
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", prevname), MAX_NAME_LEN)
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		usr << SPAN_WARNING("Text too long.")
+		to_chat(usr, SPAN_WARNING("Text too long."))
 		return
 	set_area_machinery_title(A,str,prevname)
 	A.name = str
-	usr << SPAN_NOTICE("You set the area '[prevname]' title to '[str]'.")
+	to_chat(usr, SPAN_NOTICE("You set the area '[prevname]' title to '[str]'."))
 	interact()
 	return
 

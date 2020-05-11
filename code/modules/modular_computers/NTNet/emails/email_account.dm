@@ -4,6 +4,7 @@
 	var/list/spam = list()
 	var/list/deleted = list()
 
+	var/ownerName = ""
 	var/login = ""
 	var/password = ""
 	var/can_login = TRUE	// Whether you can log in with this account. Set to false for system accounts
@@ -63,6 +64,8 @@
 	else
 		inbox.Add(received_message)
 		for(var/datum/nano_module/email_client/ec in connected_clients)
+			ec.mail_received(received_message)
+		for(var/datum/computer_file/program/email_client/ec in connected_clients)
 			ec.mail_received(received_message)
 
 	return 1

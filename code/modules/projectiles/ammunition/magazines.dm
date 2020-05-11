@@ -1,323 +1,446 @@
-/obj/item/ammo_magazine/a10mm
-	name = "magazine (10mm)"
-	icon_state = "12mm"
+/////////////Standard/////////////
+/obj/item/ammo_magazine/pistol
+	name = "standard magazine (.35 Auto)"
+	icon_state = "pistol_l"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	caliber = "10mm"
-	matter = list(MATERIAL_STEEL = 4)
-	ammo_type = /obj/item/ammo_casing/a10mm
-	max_ammo = 20
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/a10mm/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/a10mm/highvelocity
-	name = "magazine (10mm high-velocity)"
-	icon_state = "12mmh"
-	ammo_type = /obj/item/ammo_casing/a10mm/hv
-
-/obj/item/ammo_magazine/mc9mm
-	name = "magazine (9mm)"
-	icon_state = "9x19p"
-	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
-	caliber = "9mm"
-	ammo_type = /obj/item/ammo_casing/c9mm
+	caliber = CAL_PISTOL
+	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 10
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/mc9mm/empty
+/obj/item/ammo_magazine/pistol/empty
+	icon_state = "pistol"
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/mc9mm/flash
-	name = "magazine (9mm flash)"
-	ammo_type = /obj/item/ammo_casing/c9mm/flash
+/obj/item/ammo_magazine/pistol/practice
+	name = "standard magazine (.35 Auto practice)"
+	icon_state = "pistol_p"
+	ammo_type = /obj/item/ammo_casing/pistol/practice
 
-/obj/item/ammo_magazine/mc9mm/highvelocity
-	name = "magazine (9mm high-velocity)"
-	icon_state = "9x19ph"
-	ammo_type = /obj/item/ammo_casing/c9mm/hv
+/obj/item/ammo_magazine/pistol/highvelocity
+	name = "standard magazine (.35 Auto high-velocity)"
+	icon_state = "pistol_hv"
+	ammo_type = /obj/item/ammo_casing/pistol/hv
 
-/obj/item/ammo_magazine/mc9mm/rubber
-	name = "magazine (9mm rubber)"
-	icon_state = "9x19pr"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
+/obj/item/ammo_magazine/pistol/rubber
+	name = "standard magazine (.35 Auto rubber)"
+	icon_state = "pistol_r"
+	ammo_type = /obj/item/ammo_casing/pistol/rubber
 
-/obj/item/ammo_magazine/mc9mmt
-	name = "top mounted magazine (9mm)"
-	icon_state = "9mmt"
+
+/////////////HighCap/////////////
+/obj/item/ammo_magazine/hpistol
+	name = "highcap magazine (.35 Auto)"
+	icon_state = "hpistol_l"
+	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c9mm
+	mag_well = MAG_WELL_H_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
-	caliber = "9mm"
-	max_ammo = 20
+	caliber = CAL_PISTOL
+	ammo_type = /obj/item/ammo_casing/pistol
+	max_ammo = 16
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/mc9mmt/empty
+/obj/item/ammo_magazine/hpistol/empty
+	icon_state = "hpistol"
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/mc9mmt/practice
-	name = "top mounted magazine (9mm practice)"
-	ammo_type = /obj/item/ammo_casing/c9mm/practice
+/obj/item/ammo_magazine/hpistol/practice
+	name = "highcap magazine (.35 Auto practice)"
+	icon_state = "hpistol_p"
+	ammo_type = /obj/item/ammo_casing/pistol/practice
 
-/obj/item/ammo_magazine/mc9mmt/rubber
-	name = "top mounted magazine (9mm rubber)"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
+/obj/item/ammo_magazine/hpistol/highvelocity
+	name = "highcap magazine (.35 Auto high-velocity)"
+	icon_state = "hpistol_hv"
+	ammo_type = /obj/item/ammo_casing/pistol/hv
 
-/obj/item/ammo_magazine/smg9mm
-	name = "smg magazine (9mm)"
-	icon_state = "smg9mm"
+/obj/item/ammo_magazine/hpistol/rubber
+	name = "highcap magazine (.35 Auto rubber)"
+	icon_state = "hpistol_r"
+	ammo_type = /obj/item/ammo_casing/pistol/rubber
+
+/////////////.35 SMG/////////////
+
+/obj/item/ammo_magazine/smg
+	name = "smg magazine (.35 Auto)"
+	icon_state = "smg_l"
+	ammo_color = "-l"
+	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c9mm
+	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "9mm"
+	caliber = CAL_PISTOL
+	ammo_type = /obj/item/ammo_casing/pistol
+	max_ammo = 35
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/smg/empty
+	icon_state = "smg"
+	ammo_color = ""
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/smg/practice
+	name = "smg magazine (.35 Auto practice)"
+	icon_state = "smg_p"
+	ammo_color = "-p"
+	ammo_type = /obj/item/ammo_casing/pistol/practice
+
+/obj/item/ammo_magazine/smg/hv
+	name = "smg magazine (.35 Auto high-velocity)"
+	icon_state = "smg_hv"
+	ammo_color = "-hv"
+	ammo_type = /obj/item/ammo_casing/pistol/hv
+
+/obj/item/ammo_magazine/smg/rubber
+	name = "smg magazine (.35 Auto rubber)"
+	icon_state = "smg_r"
+	ammo_color = "-r"
+	ammo_type = /obj/item/ammo_casing/pistol/rubber
+
+/////////////.40 SMG/////////////
+
+/obj/item/ammo_magazine/msmg
+	name = "smg magazine (.40 Magnum)"
+	icon_state = "msmg_l"
+	ammo_color = "-l"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_SMG
+	matter = list(MATERIAL_STEEL = 5)
+	caliber = CAL_MAGNUM
+	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 25
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/smg9mm/empty
+/obj/item/ammo_magazine/msmg/empty
+	icon_state = "smg"
+	ammo_color = ""
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/smg9mm/rubber
-	name = "smg magazine (9mm rubber)"
-	icon_state = "smg9mmr"
-	ammo_type = /obj/item/ammo_casing/c9mm/rubber
+/obj/item/ammo_magazine/msmg/practice
+	name = "smg magazine (.40 Magnum practice)"
+	icon_state = "msmg_p"
+	ammo_color = "-p"
+	ammo_type = /obj/item/ammo_casing/magnum/practice
 
-/obj/item/ammo_magazine/cl32
-	name = "magazine (.32)"
-	icon_state = "32trauma"
+/obj/item/ammo_magazine/msmg/hv
+	name = "smg magazine (.40 Magnum high-velocity)"
+	icon_state = "msmg_hv"
+	ammo_color = "-hv"
+	ammo_type = /obj/item/ammo_casing/magnum/hv
+
+/obj/item/ammo_magazine/msmg/rubber
+	name = "smg magazine (.40 Magnum rubber)"
+	icon_state = "msmg_r"
+	ammo_color = "-r"
+	ammo_type = /obj/item/ammo_casing/magnum/rubber
+
+///////////// .40 pistol ///////////
+
+/obj/item/ammo_magazine/magnum
+	name = "magazine (.40 Magnum)"
+	icon_state = "magnum_l"
 	mag_type = MAGAZINE
-	ammo_mag = "mag_cl32"
-	ammo_type = /obj/item/ammo_casing/cl32
+	mag_well = MAG_WELL_PISTOL
+	ammo_mag = "mag_cl40m"
+	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = ".32"
-	max_ammo = 7
+	caliber = CAL_MAGNUM
+	max_ammo = 10
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/cl32/rubber
-	name = "magazine (.32 rubber)"
-	icon_state = "32trauma_r"
-	ammo_type = /obj/item/ammo_casing/cl32/rubber
+/obj/item/ammo_magazine/magnum/empty
+	icon_state = "magnum"
+	initial_ammo = 0
 
-/obj/item/ammo_magazine/c45m
-	name = "magazine (.45)"
-	icon_state = "45"
+/obj/item/ammo_magazine/magnum/practice
+	name = "magazine (40 Magnum practice)"
+	icon_state = "magnum_p"
+	ammo_type = /obj/item/ammo_casing/magnum/practice
+
+/obj/item/ammo_magazine/magnum/hv
+	name = "magazine (40 Magnum high-velocity)"
+	icon_state = "magnum_hv"
+	ammo_type = /obj/item/ammo_casing/magnum/hv
+
+/obj/item/ammo_magazine/magnum/rubber
+	name = "magazine (40 Magnum rubber)"
+	icon_state = "magnum_r"
+	ammo_type = /obj/item/ammo_casing/magnum/rubber
+
+///////////// .20 RIFLE /////////////
+
+/obj/item/ammo_magazine/srifle
+	name = "magazine (.20 Rifle)"
+	icon_state = "srifle_l"
+	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c45
+	mag_well = MAG_WELL_RIFLE
+	caliber = CAL_SRIFLE
+	matter = list(MATERIAL_STEEL = 6)
+	ammo_type = /obj/item/ammo_casing/srifle
+	max_ammo = 25
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/srifle/empty
+	icon_state = "srifle"
 	matter = list(MATERIAL_STEEL = 3)
-	caliber = ".45"
-	max_ammo = 7
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/c45m/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/c45m/flash
-	name = "magazine (.45 flash)"
-	ammo_type = /obj/item/ammo_casing/c45/flash
+/obj/item/ammo_magazine/srifle/practice
+	name = "magazine (.20 Rifle practice)"
+	icon_state = "srifle_p"
+	ammo_type = /obj/item/ammo_casing/srifle/practice
 
-/obj/item/ammo_magazine/c45m/practice
-	name = "magazine (.45 practice)"
-	ammo_type = /obj/item/ammo_casing/c45/practice
+/obj/item/ammo_magazine/srifle/hv
+	name = "magazine (.20 Rifle high-velocity)"
+	icon_state = "srifle_hv"
+	ammo_type = /obj/item/ammo_casing/srifle/hv
 
-/obj/item/ammo_magazine/c45m/rubber
-	name = "magazine (.45 rubber)"
-	icon_state = "45r"
-	ammo_type = /obj/item/ammo_casing/c45/rubber
+/obj/item/ammo_magazine/srifle/rubber
+	name = "magazine (.20 Rifle rubber)"
+	icon_state = "srifle_r"
+	ammo_type = /obj/item/ammo_casing/srifle/rubber
 
-/obj/item/ammo_magazine/c45smg
-	name = "smg magazine (.45)"
-	icon_state = "smg45"
-	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/c45
-	matter = list(MATERIAL_STEEL = 4)
-	caliber = ".45"
-	max_ammo = 20
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/c45smg/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/c45smg/rubber
-	name = "smg magazine (.45 rubber)"
-	icon_state = "smg45r"
-	ammo_type = /obj/item/ammo_casing/c45/rubber
+////////// .25 RIFLE ///////////
 
 /obj/item/ammo_magazine/c10x24
-	name = "magazine (10mm x 24 caseless)"
+	name = "box magazine (.25 caseless)"
 	icon_state = "10x24"
 	mag_type = MAGAZINE
-	caliber = "10x24"
+	mag_well = MAG_WELL_RIFLE
+	caliber = CAL_CLRIFLE
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 1)
-	ammo_type = /obj/item/ammo_casing/c10x24
+	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 99
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a556
-	name = "magazine (5.56mm)"
-	icon_state = "5.56"
-	origin_tech = list(TECH_COMBAT = 2)
+/obj/item/ammo_magazine/ihclrifle
+	name = "magazine (.25 Caseless Rifle)"
+	icon_state = "ihclrifle_l"
 	mag_type = MAGAZINE
-	caliber = "a556"
-	matter = list(MATERIAL_STEEL = 3)
-	ammo_type = /obj/item/ammo_casing/a556
-	max_ammo = 10
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/a556/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/a556/practice
-	name = "magazine (5.56mm practice)"
-	ammo_type = /obj/item/ammo_casing/a556/practice
-
-/obj/item/ammo_magazine/sol65
-	name = "magazine (6.5mm)"
-	icon_state = "mg_ih_sol"
-	mag_type = MAGAZINE
-	ammo_mag = "ih_sol"
-	ammo_type = /obj/item/ammo_casing/c65
+	mag_well = MAG_WELL_IH
+	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
-	caliber = "6.5mm"
+	caliber = CAL_CLRIFLE
 	max_ammo = 30
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sol65/rubber
-	name = "magazine (6.5mm rubber)"
-	icon_state = "mg_ih_sol_r"
-	ammo_type = /obj/item/ammo_casing/c65/rubber
+/obj/item/ammo_magazine/ihclrifle/empty
+	icon_state = "ihclrifle"
+	initial_ammo = 0
 
-/obj/item/ammo_magazine/a762
-	name = "magazine box (7.62mm)"
-	icon_state = "a762"
+/obj/item/ammo_magazine/ihclrifle/practice
+	name = "magazine (.25 Caseless Rifle practice)"
+	icon_state = "ihclrifle_p"
+	ammo_type = /obj/item/ammo_casing/clrifle/practice
+
+/obj/item/ammo_magazine/ihclrifle/hv
+	name = "magazine (.25 Caseless Rifle high-velocity)"
+	icon_state = "ihclrifle_hv"
+	ammo_type = /obj/item/ammo_casing/clrifle/hv
+
+/obj/item/ammo_magazine/ihclrifle/rubber
+	name = "magazine (.25 Caseless Rifle rubber)"
+	icon_state = "ihclrifle_r"
+	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+
+////////// .25 PISTOL //////////
+
+/obj/item/ammo_magazine/cspistol
+	name = "pistol magazine (.25 Caseless Rifle)"
+	icon_state = "cspistol_l"
+	mag_type = MAGAZINE
+	mag_well = MAG_WELL_PISTOL
+	ammo_type = /obj/item/ammo_casing/clrifle
+	matter = list(MATERIAL_STEEL = 4)
+	caliber = CAL_CLRIFLE
+	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/cspistol/empty
+	icon_state = "cspistol"
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/cspistol/practice
+	name = "pistol magazine (.25 Caseless Rifle practice)"
+	icon_state = "cspistol_p"
+	ammo_type = /obj/item/ammo_casing/clrifle/practice
+
+/obj/item/ammo_magazine/cspistol/hv
+	name = "pistol magazine (.25 Caseless Rifle high-velocity)"
+	icon_state = "cspistol_hv"
+	ammo_type = /obj/item/ammo_casing/clrifle/hv
+
+/obj/item/ammo_magazine/cspistol/rubber
+	name = "pistol magazine (.25 Caseless Rifle rubber)"
+	icon_state = "cspistol_r"
+	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+
+///////// .30 RIFLE ///////////
+
+/obj/item/ammo_magazine/lrifle
+	name = "magazine box (.30 Rifle)"
+	icon_state = "lrifle_box"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	caliber = "a762"
+	mag_well = MAG_WELL_BOX
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 8)
-	ammo_type = /obj/item/ammo_casing/a762
+	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 50
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/a762/empty
+/obj/item/ammo_magazine/lrifle/empty
 	initial_ammo = 0
 
-/obj/item/ammo_magazine/c762
-	name = "magazine (7.62mm)"
-	icon_state = "c762"
+/obj/item/ammo_magazine/lrifle/pk
+	name = "PK munitions box (.30 Rifle)"
+	icon_state = "pk_box"
+	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	caliber = "a762"
-	matter = list(MATERIAL_STEEL = 4)
-	ammo_type = /obj/item/ammo_casing/a762
-	max_ammo = 20
+	mag_well = MAG_WELL_BOX
+	caliber = CAL_LRIFLE
+	matter = list(MATERIAL_STEEL = 8)
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 80
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ak47
-	name = "magazine (7.62mm)"
-	icon_state = "AKMag"
+/obj/item/ammo_magazine/ammobox/lrifle/pk/update_icon()
+	if (!stored_ammo.len)
+		icon_state = "pk_box-0"
+		return
+	if (stored_ammo.len == max_ammo)
+		icon_state = "pk_box"
+		return
+
+	var/number = 0
+	if (stored_ammo.len && max_ammo)
+		var/percent = (stored_ammo.len / max_ammo) * 100
+		number = round(percent, 25)
+	icon_state = "pk_box-[number]"
+
+/obj/item/ammo_magazine/lrifle/pk/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/lrifle
+	name = "long magazine (.30 Rifle)"
+	icon_state = "lrifle_l"
 	mag_type = MAGAZINE
-	caliber = "a762"
+	mag_well = MAG_WELL_RIFLE
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 5)
-	ammo_type = /obj/item/ammo_casing/a762
+	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 30
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ak47/highvelocity
-	name = "magazine (7.62mm high-velocity)"
-	icon_state = "AKMag_h"
-	ammo_type = /obj/item/ammo_casing/a762/hv
+/obj/item/ammo_magazine/lrifle/empty
+	icon_state = "lrifle"
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/lrifle/practice
+	name = "long magazine (.30 Rifle practice)"
+	icon_state = "lrifle_p"
+	ammo_type = /obj/item/ammo_casing/lrifle/practice
+
+/obj/item/ammo_magazine/lrifle/highvelocity
+	name = "long magazine (.30 Rifle high-velocity)"
+	icon_state = "lrifle_hv"
+	ammo_type = /obj/item/ammo_casing/lrifle/hv
+
+/obj/item/ammo_magazine/lrifle/rubber
+	name = "long magazine (.30 Rifle rubber)"
+	icon_state = "lrifle_r"
+	ammo_type = /obj/item/ammo_casing/lrifle/rubber
 
 /obj/item/ammo_magazine/maxim
-	name = "pan magazine (7.62mm)"
+	name = "pan magazine (.30 Rifle)"
 	icon_state = "maxim"
 	mag_type = MAGAZINE
-	caliber = "a762"
+	mag_well = MAG_WELL_PAN
+	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 10)
-	ammo_type = /obj/item/ammo_casing/a762
+	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sl357
-	name = "speed loader (.357)"
-	icon_state = "357"
-	caliber = "357"
-	ammo_type = /obj/item/ammo_casing/a357
-	matter = list(MATERIAL_STEEL = 3)
-	max_ammo = 7
-	multiple_sprites = 1
+///////// SPEEDLOADERS ///////////
 
-/obj/item/ammo_magazine/sl357/highvelocity
-	name = "speed loader (.357 high-velocity)"
-	icon_state = "357h"
-	ammo_type = /obj/item/ammo_casing/a357/hv
-
-/obj/item/ammo_magazine/sl38
-	name = "speed loader (.38)"
-	icon_state = "38"
-	caliber = ".38"
+//////// .35 SPEEDLOADERS //////////
+/obj/item/ammo_magazine/slpistol
+	name = "speed loader (.35 Special)"
+	icon_state = "slpistol_l"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
-	ammo_type = /obj/item/ammo_casing/c38
+	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sl38/rubber
-	name = "speed loader (.38 rubber)"
-	icon_state = "38r"
-	ammo_type = /obj/item/ammo_casing/c38/rubber
+/obj/item/ammo_magazine/slpistol/practice
+	name = "speed loader (.35 Special practice)"
+	icon_state = "slpistol_p"
+	ammo_type = /obj/item/ammo_casing/pistol/practice
 
-/obj/item/ammo_magazine/sl44
-	name = "speed loader (.44)"
-	icon_state = "44"
-	caliber = ".44"
-	ammo_type = /obj/item/ammo_casing/cl44
+/obj/item/ammo_magazine/slpistol/hv
+	name = "speed loader (.35 Special high-velocity)"
+	icon_state = "slpistol_hv"
+	ammo_type = /obj/item/ammo_casing/pistol/hv
+
+/obj/item/ammo_magazine/slpistol/rubber
+	name = "speed loader (.35 Special rubber)"
+	icon_state = "slpistol_r"
+	ammo_type = /obj/item/ammo_casing/pistol/rubber
+
+//////// .40 SPEEDLOADERS //////////
+
+/obj/item/ammo_magazine/slmagnum
+	name = "speed loader (.40 Magnum)"
+	icon_state = "slmagnum_l"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_MAGNUM
+	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/sl44/rubber
-	name = "speed loader (.44 rubber)"
-	icon_state = "44r"
-	ammo_type = /obj/item/ammo_casing/cl44/rubber
+/obj/item/ammo_magazine/slmagnum/practice
+	name = "speed loader (.40 Magnum practice)"
+	icon_state = "slmagnum_p"
+	ammo_type = /obj/item/ammo_casing/magnum/practice
 
-/obj/item/ammo_magazine/cl44
-	name = "magazine (.44)"
-	icon_state = "mg_ih_pst_44"
-	mag_type = MAGAZINE
-	ammo_mag = "mag_cl44"
-	ammo_type = /obj/item/ammo_casing/cl44
-	matter = list(MATERIAL_STEEL = 4)
-	caliber = ".44"
-	max_ammo = 10
+/obj/item/ammo_magazine/slmagnum/highvelocity
+	name = "speed loader (.40 Magnum high-velocity)"
+	icon_state = "slmagnum_hv"
+	ammo_type = /obj/item/ammo_casing/magnum/hv
+
+/obj/item/ammo_magazine/slmagnum/rubber
+	name = "speed loader (.40 Magnum rubber)"
+	icon_state = "slmagnum_r"
+	ammo_type = /obj/item/ammo_casing/magnum/rubber
+
+//////// .30 RIFLE SPEEDLOADERS ////////
+/obj/item/ammo_magazine/sllrifle
+	name = "ammo strip (.30 Rifle)"
+	icon_state = "lrifle"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_LRIFLE
+	matter = list(MATERIAL_STEEL = 3)
+	ammo_type = /obj/item/ammo_casing/lrifle
+	max_ammo = 5
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/cl44/rubber
-	name = "magazine (.44 rubber)"
-	icon_state = "mg_ih_pst_44r"
-	ammo_type = /obj/item/ammo_casing/cl44/rubber
-
-/obj/item/ammo_magazine/a50
-	name = "magazine (.50)"
-	icon_state = "50ae"
-	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	caliber = ".50"
-	matter = list(MATERIAL_STEEL = 4)
-	ammo_type = /obj/item/ammo_casing/a50
-	max_ammo = 7
-	multiple_sprites = 1
-
-/obj/item/ammo_magazine/a50/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/a50/rubber
-	name = "magazine (.50 rubber)"
-	icon_state = "50aer"
-	ammo_type = /obj/item/ammo_casing/a50/rubber
+/// OTHER ///
 
 /obj/item/ammo_magazine/caps
 	name = "speed loader (caps)"
-	icon_state = "38r"
-	caliber = "caps"
+	icon_state = "slpistol_r"
+	icon = 'icons/obj/ammo_speed.dmi'
+	caliber = CAL_CAP
 	color = "#FF0000"
 	ammo_type = /obj/item/ammo_casing/cap
 	matter = list(MATERIAL_STEEL = 2)
@@ -325,13 +448,45 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/a75
-	name = "ammo magazine (20mm)"
+	name = "ammo magazine (.70 Gyro)"
 	icon_state = "75"
 	mag_type = MAGAZINE
-	caliber = "75"
+	mag_well = MAG_WELL_PISTOL
+	caliber = CAL_70
 	ammo_type = /obj/item/ammo_casing/a75
 	multiple_sprites = 1
 	max_ammo = 4
 
 /obj/item/ammo_magazine/a75/empty
+	initial_ammo = 0
+
+////////////Shotguns!////////////
+
+/obj/item/ammo_magazine/m12
+	name = "ammo drum (.50 slug)"
+	icon_state = "m12_slug"
+	mag_type = MAGAZINE
+	mag_well =  MAG_WELL_RIFLE
+	caliber = CAL_SHOTGUN
+	ammo_type = /obj/item/ammo_casing/shotgun
+	matter = list(MATERIAL_STEEL = 6)
+	multiple_sprites = 1
+	max_ammo = 8
+	ammo_color = "-slug"
+
+/obj/item/ammo_magazine/m12/pellet
+	name = "ammo drum (.50 pellet)"
+	icon_state = "m12_pellets"
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_color = "-pellets"
+
+/obj/item/ammo_magazine/m12/beanbag
+	name = "ammo drum (.50 beanbag)"
+	icon_state = "m12_beanbag"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	ammo_color = "-beanbag"
+
+/obj/item/ammo_magazine/m12/empty
+	name = "ammo drum (.50)"
+	icon_state = "m12"
 	initial_ammo = 0

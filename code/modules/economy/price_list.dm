@@ -5,7 +5,7 @@
 /atom/movable/var/price_tag = null
 
 // The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
-/atom/movable/proc/get_item_cost()
+/atom/movable/proc/get_item_cost(var/export = FALSE)
 	return price_tag
 
 
@@ -605,7 +605,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/tofurkey
 	price_tag = 25
 
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat
+/obj/item/weapon/reagent_containers/food/snacks/meat/carp
 	price_tag = 25
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers

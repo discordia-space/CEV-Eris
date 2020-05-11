@@ -4,6 +4,7 @@
 	gender = PLURAL
 	organ_tag = BP_LUNGS
 	parent_organ = BP_CHEST
+	price_tag = 300
 
 	var/breath_type
 	var/poison_type
@@ -36,7 +37,7 @@
 	if(is_bruised())
 		if(prob(2))
 			spawn owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
+			owner.drip_blood(10)
 		if(prob(4))
 			spawn owner.emote("me", 1, "gasps for air!")
 			owner.losebreath += 15
@@ -72,6 +73,7 @@
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
 	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
+	
 	// Not enough to breathe
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
@@ -94,7 +96,6 @@
 		var/warn_prob
 		var/oxyloss
 		var/alert
-
 		if(exhaled_pp > safe_exhaled_max)
 			word = pick("extremely dizzy","short of breath","faint","confused")
 			warn_prob = 15
@@ -116,14 +117,15 @@
 			owner.co2_alert = 0
 
 		if(!owner.co2_alert && word && prob(warn_prob))
-			owner << SPAN_WARNING("You feel [word].")
+			to_chat(owner, SPAN_WARNING("You feel [word]."))
 			owner.adjustOxyLoss(oxyloss)
 			owner.co2_alert = alert
 
 	// Too much poison in the air.
+	
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
-		owner.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+		owner.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		owner.plasma_alert = 1
 	else
@@ -158,7 +160,7 @@
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
-				owner << SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!")
+				to_chat(owner, SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!"))
 
 			switch(breath.temperature)
 				if(species.cold_level_3 to species.cold_level_2)
@@ -172,7 +174,7 @@
 			owner.fire_alert = 1
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
-				owner << SPAN_DANGER("You feel your face burning and a searing heat in your lungs!")
+				to_chat(owner, SPAN_DANGER("You feel your face burning and a searing heat in your lungs!"))
 
 			switch(breath.temperature)
 				if(species.heat_level_1 to species.heat_level_2)

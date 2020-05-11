@@ -9,7 +9,6 @@
 	//The type of the faction we'll create if we can't find one
 	var/faction_type = null
 
-
 //This is a copypaste of roleset/trigger_event, with some new features added
 /datum/storyevent/roleset/faction/trigger_event()
 	calc_target_quantity()
@@ -72,6 +71,7 @@
 	if (success_quantity >= target_quantity)
 		//Yay, all antags successfully spawned
 		return TRUE
+
 	else
 		//Welp, we didn't manage to spawn as many as desired
 		log_and_message_admins("Storyteller Warning: Antagonist Spawning unsuccessful for antagonist [role_id], [antag] \n \
@@ -83,3 +83,15 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
+
+		if ( success_quantity > 0 )
+			// At least one antag has spawned
+			return TRUE
+		else
+			return FALSE
+
+// Code to prevent a role from being picked by the storyteller.
+/datum/storyevent/roleset/faction/antagonist_suitable(var/datum/mind/player, var/datum/antagonist/antag)
+	if(player.assigned_role in antag.story_ineligible)
+		return FALSE
+	return TRUE

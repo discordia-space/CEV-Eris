@@ -1,6 +1,34 @@
-/datum/plantgene
+/datum/computer_file/binary/plantgene
+	filetype = "PDNA"
+	size = 10
+
+	var/genesource = ""
+	var/genesource_uid = 0
 	var/genetype    // Label used when applying trait.
 	var/list/values // Values to copy into the target seed datum.
+
+/datum/computer_file/binary/plantgene/clone()
+	var/datum/computer_file/binary/plantgene/F = ..()
+	F.genesource = genesource
+	F.genesource_uid = genesource_uid
+	F.genetype = genetype
+	F.values = deepCopyList(values)
+
+	return F
+
+/datum/computer_file/binary/plantgene/proc/update_name()
+	filename = "PL_GENE_[plant_controller.gene_tag_masks[genetype]]_[genesource_uid]"
+
+/datum/computer_file/binary/plantgene/ui_data()
+	var/list/data = list(
+		"filename" = filename,
+		"source" = genesource,
+		"strain" = genesource_uid,
+		"tag" = genetype,
+		"size" = size,
+		"mask" = plant_controller.gene_tag_masks[genetype]
+	)
+	return data
 
 /datum/seed
 	//Tracking.
@@ -123,15 +151,15 @@
 	if(get_trait(TRAIT_CARNIVOROUS))
 		if(get_trait(TRAIT_CARNIVOROUS) == 2)
 			if(affecting)
-				target << SPAN_DANGER("\The [fruit]'s thorns pierce your [affecting.name] greedily!")
+				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns pierce your [affecting.name] greedily!"))
 			else
-				target << SPAN_DANGER("\The [fruit]'s thorns pierce your flesh greedily!")
+				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns pierce your flesh greedily!"))
 			damage = get_trait(TRAIT_POTENCY)/2
 		else
 			if(affecting)
-				target << SPAN_DANGER("\The [fruit]'s thorns dig deeply into your [affecting.name]!")
+				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns dig deeply into your [affecting.name]!"))
 			else
-				target << SPAN_DANGER("\The [fruit]'s thorns dig deeply into your flesh!")
+				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns dig deeply into your flesh!"))
 			damage = get_trait(TRAIT_POTENCY)/5
 	else
 		return
@@ -159,7 +187,7 @@
 
 		if(!body_coverage)
 			return
-		target << SPAN_DANGER("You are stung by \the [fruit]!")
+		to_chat(target, SPAN_DANGER("You are stung by \the [fruit]!"))
 		for(var/rid in chems)
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/5))
 			target.reagents.add_reagent(rid,injecting)
@@ -577,7 +605,7 @@
 	return
 
 //Mutates a specific trait/set of traits.
-/datum/seed/proc/apply_gene(var/datum/plantgene/gene)
+/datum/seed/proc/apply_gene(datum/computer_file/binary/plantgene/gene)
 
 	if(!gene || !gene.values || get_trait(TRAIT_IMMUTABLE) > 0) return
 
@@ -632,13 +660,19 @@
 	update_growth_stages()
 
 //Returns a list of the desired trait values.
-/datum/seed/proc/get_gene(var/genetype)
-
-	if(!genetype) return 0
+/datum/seed/proc/get_gene(genetype)
+	if(!genetype)
+		return null
 
 	var/list/traits_to_copy
-	var/datum/plantgene/P = new()
+	var/datum/computer_file/binary/plantgene/P = new()
 	P.genetype = genetype
+	P.genesource_uid = uid
+	P.genesource = "[display_name]"
+	if(!roundstart)
+		P.genesource += " (variety #[uid])"
+	P.update_name()
+
 	P.values = list()
 
 	switch(genetype)
@@ -673,7 +707,7 @@
 
 	for(var/trait in traits_to_copy)
 		P.values["[trait]"] = get_trait(trait)
-	return (P ? P : 0)
+	return P
 
 //Place the plant products at the feet of the user.
 /datum/seed/proc/harvest(var/mob/living/user,var/yield_mod,var/harvest_sample,var/force_amount)
@@ -682,9 +716,9 @@
 		return
 
 	if(!force_amount && get_trait(TRAIT_YIELD) == 0 && !harvest_sample)
-		if(istype(user)) user << SPAN_DANGER("You fail to harvest anything useful.")
+		if(istype(user)) to_chat(user, SPAN_DANGER("You fail to harvest anything useful."))
 	else
-		if(istype(user)) user << "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name]."
+		if(istype(user)) to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in plant_controller.seeds))
@@ -710,7 +744,7 @@
 					total_yield = get_trait(TRAIT_YIELD) + rand(yield_mod)
 				if(prob(user.stats.getStat(STAT_BIO)))
 					total_yield += 1
-					user << SPAN_NOTICE("You have managed to harvest more!")
+					to_chat(user, SPAN_NOTICE("You have managed to harvest more!"))
 				total_yield = max(1,total_yield)
 
 		for(var/i = 0;i<total_yield;i++)

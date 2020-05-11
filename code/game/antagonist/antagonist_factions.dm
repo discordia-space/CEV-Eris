@@ -26,7 +26,7 @@
 	current_factions.Add(src)
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
-	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
+	if(!member || !member.owner || !member.owner.current || (member in members) || !member.owner.current.client)
 		return
 	if(possible_antags.len && !(member.id in possible_antags))
 		return
@@ -34,7 +34,7 @@
 	members.Add(member)
 	member.faction = src
 	if(announce)
-		member.owner.current << SPAN_NOTICE("You became a member of the [name].")
+		to_chat(member.owner.current, SPAN_NOTICE("You became a member of the [name]."))
 
 	if (objectives.len)
 		member.set_objectives(objectives)
@@ -45,7 +45,7 @@
 	return TRUE
 
 /datum/faction/proc/add_leader(var/datum/antagonist/member, var/announce = TRUE)
-	if(!member || member in leaders || !member.owner.current)
+	if(!member || (member in leaders) || !member.owner.current)
 		return
 
 	if(!(member in members))
@@ -54,7 +54,7 @@
 	leaders.Add(member)
 	member.owner.current.verbs |= leader_verbs
 	if(announce)
-		member.owner.current << SPAN_NOTICE("You became a <b>leader</b> of the [name].")
+		to_chat(member.owner.current, SPAN_NOTICE("You became a <b>leader</b> of the [name]."))
 	update_members()
 	update_icons(member)
 	return TRUE
@@ -81,7 +81,7 @@
 
 	leaders.Remove(member)
 	if(announce)
-		member.owner.current << SPAN_WARNING("You are no longer the <b>leader</b> of the [name].")
+		to_chat(member.owner.current, SPAN_WARNING("You are no longer the <b>leader</b> of the [name]."))
 	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
@@ -99,7 +99,7 @@
 		remove_leader(member, FALSE)
 
 	if(announce)
-		member.owner.current << SPAN_WARNING("You are no longer a member of the [name].")
+		to_chat(member.owner.current, SPAN_WARNING("You are no longer a member of the [name]."))
 
 	if(member.owner && member.owner.current)
 		member.owner.current.verbs.Remove(verbs)
@@ -137,26 +137,25 @@
 /datum/faction/proc/customize(var/mob/leader)
 
 /datum/faction/proc/communicate(var/mob/user)
-	if(!is_member(user))
+	if(!is_member(user) || user.stat != CONSCIOUS)
 		return
 
-	usr = user
-	var/message = input("Type message","[name] communication")
+	var/message = input(user, "Type message","[name] communication")
 
-	if(!message || !is_member(user))
+	if(!message || !is_member(user) || user.stat != CONSCIOUS) //Check the same things again, to prevent message-holding
 		return
 
-	message = capitalize_cp1251(sanitize(message))
+	message = capitalize(sanitize(message))
 	var/text = "<span class='revolution'>[name] member, [user]: \"[message]\"</span>"
 	for(var/datum/antagonist/A in members)
-		A.owner.current << text
+		to_chat(A.owner.current, text)
 
 	//ghosts
 	for (var/mob/observer/ghost/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
-		if(M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH || is_admin(M.client))
-			M << "[text] ([ghost_follow_link(user, M)])"
+		if((M.antagHUD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH) || is_admin(M))
+			to_chat(M, "[text] ([ghost_follow_link(user, M)])")
 
 	log_say("[user.name]/[user.key] (REV [name]) : [message]")
 
@@ -319,7 +318,7 @@
 
 	if(href_list["remleader"])
 		var/datum/antagonist/A = locate(href_list["remleader"])
-		if(istype(A) && A in leaders)
+		if(istype(A) && (A in leaders))
 			remove_leader(A)
 
 	if(href_list["remmember"])

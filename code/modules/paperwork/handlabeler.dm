@@ -20,30 +20,30 @@
 		return		// don't set a label
 
 	if(!labels_left)
-		user << SPAN_NOTICE("No labels left.")
+		to_chat(user, SPAN_NOTICE("No labels left."))
 		return
 	if(!label || !length(label))
-		user << SPAN_NOTICE("No text set.")
+		to_chat(user, SPAN_NOTICE("No text set."))
 		return
 	if(length(A.name) + length(label) > 64)
-		user << SPAN_NOTICE("Label too big.")
+		to_chat(user, SPAN_NOTICE("Label too big."))
 		return
 	if(ishuman(A))
-		user << SPAN_NOTICE("The label refuses to stick to [A.name].")
+		to_chat(user, SPAN_NOTICE("The label refuses to stick to [A.name]."))
 		return
 	if(issilicon(A))
-		user << SPAN_NOTICE("The label refuses to stick to [A.name].")
+		to_chat(user, SPAN_NOTICE("The label refuses to stick to [A.name]."))
 		return
 	if(isobserver(A))
-		user << SPAN_NOTICE("[src] passes through [A.name].")
+		to_chat(user, SPAN_NOTICE("[src] passes through [A.name]."))
 		return
 	if(istype(A, /obj/item/weapon/reagent_containers/glass))
-		user << SPAN_NOTICE("The label can't stick to the [A.name].  (Try using a pen)")
+		to_chat(user, SPAN_NOTICE("The label can't stick to the [A.name].  (Try using a pen)"))
 		return
 	if(istype(A, /obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/tray = A
 		if(!tray.mechanical)
-			user << SPAN_NOTICE("How are you going to label that?")
+			to_chat(user, SPAN_NOTICE("How are you going to label that?"))
 			return
 		tray.labelled = label
 		spawn(1)
@@ -57,13 +57,13 @@
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
-		user << SPAN_NOTICE("You turn on \the [src].")
+		to_chat(user, SPAN_NOTICE("You turn on \the [src]."))
 		//Now let them chose the text.
 		var/str = sanitizeName(input(user,"Label text?","Set label",""), MAX_NAME_LEN) //Only A-Z, 1-9 and `-`
 		if(!str || !length(str))
-			user << SPAN_NOTICE("Invalid text.")
+			to_chat(user, SPAN_NOTICE("Invalid text."))
 			return
 		label = str
-		user << SPAN_NOTICE("You set the text to '[str]'.")
+		to_chat(user, SPAN_NOTICE("You set the text to '[str]'."))
 	else
-		user << SPAN_NOTICE("You turn off \the [src].")
+		to_chat(user, SPAN_NOTICE("You turn off \the [src]."))

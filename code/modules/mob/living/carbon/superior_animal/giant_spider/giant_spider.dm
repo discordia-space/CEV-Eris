@@ -19,7 +19,8 @@
 	move_to_delay = 6
 	turns_per_move = 5
 	see_in_dark = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/spider
+	meat_amount = 3
 	stop_automated_movement_when_pulled = 0
 
 	melee_damage_lower = 12
@@ -29,7 +30,7 @@
 	min_air_pressure = 15 //below this, brute damage is dealt
 
 	var/poison_per_bite = 5
-	var/poison_type = "toxin"
+	var/poison_type = "pararein"
 	pass_flags = PASSTABLE
 	faction = "spiders"
 	var/busy = 0

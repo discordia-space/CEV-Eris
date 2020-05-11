@@ -3,6 +3,7 @@
 	hierarchy_type = /decl/hierarchy/outfit/antagonist/mercenary
 
 	uniform = /obj/item/clothing/under/turtleneck
+	gloves = /obj/item/clothing/gloves/security/tactical
 	l_ear = /obj/item/device/radio/headset
 	shoes = /obj/item/clothing/shoes/magboots/merc
 	pda_slot = slot_belt
@@ -26,7 +27,6 @@
 	name = "Serbian Mercenary combat gear"
 
 	suit = /obj/item/clothing/suit/space/void/SCAF
-	head = /obj/item/clothing/head/helmet/space/void/SCAF
 	suit_store = /obj/item/weapon/tank/jetpack/oxygen
 	back = /obj/item/weapon/storage/backpack/military
 

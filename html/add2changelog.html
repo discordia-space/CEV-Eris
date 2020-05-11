@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -15,13 +15,13 @@
 	#result {width:100%;}
   </style>
   <script type="text/javascript">
-	var i=1;	
+	var i=1;
 	function createli(event){
 		event.preventDefault();
 		var liclass = $('#litype').val();
 		$('#table').append($('<tr><td><span class="icon '+liclass+'"></span><span>'+i+'.</span></td><td><input name="'+liclass+'" type="text" value="" class="li"></td></tr>'));
 		i++;
-	}	
+	}
 	function htmlEscape(str) {
 		return String(str)
 				.replace(/&/g, '&amp;')
@@ -29,21 +29,18 @@
 				.replace(/'/g, '&#39;')
 				.replace(/</g, '&lt;')
 				.replace(/>/g, '&gt;');
-	}	
+	}
 	$(document).ready(function(){
 		$('#addli').click(createli);
-		$('#commit').submit(function(event){			
+		$('#commit').submit(function(event){
 			event.preventDefault();
 			var result = $('#result');
-			var text = '<div class="commit sansserif">\n';
-			text += '\t<h2 class="date">'+$(this.date).val()+'</h2>\n';
-			text += '\t<h3 class="author">'+$(this.author).val()+' updated:</h3>\n';
-			text += '\t<ul class="changes bgimages16">\n';
+			var text = 'author: '+$(this.author).val()
+			if($(this.delafter).attr('checked') == "checked")	text += '\ndelete-after: True'
+			text += '\n\nchanges:';
 			$('input.li').each(function(){
-				text += '\t\t<li class="'+$(this).attr('name')+'">'+$(this).val()+'</li>\n';
+				text += '\n - '+$(this).attr('name')+': "'+$(this).val()+'"';
 			});
-			text += '\t</ul>\n';
-			text += '</div>\n';			
 			result.val(text);
 		});
 	});
@@ -52,16 +49,19 @@
 <body>
 <form id="commit" name="commit">
 <table id="table">
-<tr><td style="width:100px;"><span>Date:</span></td><td><input type="text" name="date" value="" title="Put date here"></td></tr>
-<tr><td><span>Author:</span></td><td><input type="text" name="author" value="" title="Put your name here"></td></tr>
+<tr><td style="width:100px;"><span>Author:</span></td><td><input type="text" name="author" value="" title="Put your name here"></td></tr>
+<tr><td><span>Delete after:</span></td><td><input type="checkbox" checked="checked" name="delafter"></td></tr>
 <tr><td><span>Add list item</span></td><td>
 <select name="litype" id="litype" title="Select change type and hit +">
-<option value="rscadd">Added feature</option>
-<option value="rscdel">Removed feature</option>
 <option value="bugfix">Bugfix</option>
 <option value="wip">Work in progress</option>
 <option value="tweak">Tweak</option>
+<option value="maptweak">Map tweak</option>
+<option value="spellcheck">Typo Fix</option>
 <option value="experiment">Experimental feature</option>
+<option value="rscadd">Added feature</option>
+<option value="rscdel">Removed feature</option>
+<option value="spellcheck">Spell check</option>
 <option value="imageadd">Added icon</option>
 <option value="imagedel">Removed icon</option>
 <option value="soundadd">Added sound</option>
@@ -70,7 +70,7 @@
 <button id="addli">+</button>
 </td></tr>
 </table>
-<input type="submit" value="Get HTML" title="Click here to get result">
+<input type="submit" value="Get .yml code" title="Click here to get result">
 </form>
 <textarea id="result" rows="20" cols="50"></textarea>
 </body>

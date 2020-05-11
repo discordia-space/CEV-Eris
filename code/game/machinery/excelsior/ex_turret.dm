@@ -11,7 +11,7 @@
 	raised = TRUE
 	circuit = /obj/item/weapon/circuitboard/excelsior_turret
 	installation = null
-	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/a762
+	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/lrifle
 	var/ammo = 0 // number of bullets left.
 	var/ammo_max = 160
 	var/working_range = 30 // how far this turret operates from excelsior teleporter
@@ -26,9 +26,9 @@
 /obj/machinery/porta_turret/excelsior/examine(mob/user)
 	if(!..(user, 2))
 		return
-	user << "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!"
+	to_chat(user, "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!")
 	if(!has_power_source_nearby())
-		user << "Seems to be powered down. No excelsior teleporter found nearby."
+		to_chat(user, "Seems to be powered down. No excelsior teleporter found nearby.")
 
 /obj/machinery/porta_turret/excelsior/Initialize()
 	. = ..()
@@ -46,7 +46,7 @@
 		return 0
 	return 1
 
-/obj/machinery/porta_turret/excelsior/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/porta_turret/excelsior/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
@@ -65,7 +65,7 @@
 /obj/machinery/porta_turret/excelsior/attackby(obj/item/ammo_magazine/I, mob/user)
 	if(istype(I, ammo_box) && I.stored_ammo.len)
 		if(ammo >= ammo_max)
-			user << SPAN_NOTICE("You cannot load more than [ammo_max] ammo.")
+			to_chat(user, SPAN_NOTICE("You cannot load more than [ammo_max] ammo."))
 			return
 
 		var/transfered_ammo = 0
@@ -76,7 +76,7 @@
 			transfered_ammo++
 			if(ammo == ammo_max)
 				break
-		user << SPAN_NOTICE("You loaded [transfered_ammo] bullets into [src]. It now contains [ammo] ammo.")
+		to_chat(user, SPAN_NOTICE("You loaded [transfered_ammo] bullets into [src]. It now contains [ammo] ammo."))
 	else
 		..()
 

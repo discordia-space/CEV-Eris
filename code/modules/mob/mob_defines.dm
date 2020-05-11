@@ -10,9 +10,9 @@
 	/datum/movement_handler/mob/death,
 	/datum/movement_handler/mob/conscious,
 	/datum/movement_handler/mob/eye,
+	/datum/movement_handler/mob/delay,
 	/datum/movement_handler/move_relay,
 	/datum/movement_handler/mob/buckle_relay,
-	/datum/movement_handler/mob/delay,
 	/datum/movement_handler/mob/stop_effect,
 	/datum/movement_handler/mob/physically_capable,
 	/datum/movement_handler/mob/physically_restrained,
@@ -25,40 +25,13 @@
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 
-//	var/obj/screen/flash = null
-//	var/obj/screen/blind = null
-	var/obj/screen/hands = null
-	var/obj/screen/pullin = null
-	var/obj/screen/purged = null
-//	var/obj/screen/internals = null
-//	var/obj/screen/oxygen = null
-	var/obj/screen/i_select = null
-	var/obj/screen/m_select = null
-//	var/obj/screen/toxin = null
-//	var/obj/screen/fire = null
-/*	var/obj/screen/bodytemp = null
-	var/obj/screen/healths = null
-	var/obj/screen/throw_icon = null
-	var/obj/screen/nutrition_icon = null
-	var/obj/screen/pressure = null
-	//var/obj/screen/damageoverlay = null
-	var/obj/screen/pain = null
-	var/obj/screen/gun/item/item_use_icon = null
-	var/obj/screen/gun/radio/radio_use_icon = null
-	var/obj/screen/gun/move/gun_move_icon = null
-	var/obj/screen/gun/run/gun_run_icon = null
-	var/obj/screen/gun/mode/gun_setting_icon = null*/
-
-	//spells hud icons - this interacts with add_spell and remove_spell
-	//var/list/obj/screen/movable/spell_master/spell_masters = null
-
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
 	The current method unnecessarily clusters up the variable list, especially for humans (although rearranging won't really clean it up a lot but the difference will be noticable for other mobs).
 	I'll make some notes on where certain variable defines should probably go.
 	Changing this around would probably require a good look-over the pre-existing code.
 	*/
-	var/obj/screen/zone_sel/zone_sel = null
+
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
@@ -147,7 +120,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 //	var/job = null//Living
 
-	var/can_pull_size = ITEM_SIZE_NO_CONTAINER // Maximum w_class the mob can pull.
+	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum w_class the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER       // Whether or not the mob can pull other mobs.
 
 	var/datum/dna/dna = null//Carbon
@@ -210,6 +183,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/HUDfrippery = list()//flavor
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
+	var/hud_override = FALSE //Override so a mob no longer calls their own HUD
 	var/defaultHUD = "" //Default mob hud
 
 	var/list/progressbars = null
@@ -220,3 +194,5 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/datum/stat_holder/stats
 
 	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.
+
+	var/can_be_fed = 1 //Can be feeded by reagent_container or other things

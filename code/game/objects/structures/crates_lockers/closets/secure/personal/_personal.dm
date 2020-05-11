@@ -6,18 +6,14 @@
 	var/list/access_occupy = list()
 	icon_state = "secure"
 
-/obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if(istype(user))
-		id_card = id_card || user.GetIdCard()
+/obj/structure/closet/secure_closet/personal/CanToggleLock(var/mob/user)
+	var/obj/item/weapon/card/id/id_card = user.GetIdCard()
 
-	if(istype(id_card))
-		if(id_card.registered_name == registered_name)
-			return TRUE
+	if(id_card && id_card.registered_name == registered_name)
+		return TRUE
 
-		if(!registered_name && has_access(access_occupy, list(), id_card.GetAccess()))
-			return TRUE
-
-	return ..()
+	if(!registered_name && ..())
+		return TRUE
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/W, mob/living/user)
 	if (src.opened)
@@ -36,7 +32,7 @@
 		if(!src.registered_name && has_access(access_occupy, list(), I.GetAccess()))
 			src.registered_name = I.registered_name
 			name = "[initial(name)] ([registered_name])"
-			user << SPAN_NOTICE("You occupied [src].")
+			to_chat(user, SPAN_NOTICE("You occupied [src]."))
 			return
 
 	return ..()
@@ -61,9 +57,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			usr << SPAN_WARNING("You need to unlock it first.")
+			to_chat(usr, SPAN_WARNING("You need to unlock it first."))
 		else if (src.broken)
-			usr << SPAN_WARNING("It appears to be broken.")
+			to_chat(usr, SPAN_WARNING("It appears to be broken."))
 		else
 			if (src.opened)
 				if(!src.close())

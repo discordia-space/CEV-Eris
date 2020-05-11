@@ -32,31 +32,33 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/New()
+/obj/machinery/door_timer/Initialize()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/door_timer/LateInitialize()
 	..()
 
-	spawn(20)
-		for(var/obj/machinery/door/window/brigdoor/M in SSmachines.machinery)
-			if (M.id == src.id)
-				targets += M
+	for(var/obj/machinery/door/window/brigdoor/M in SSmachines.machinery)
+		if (M.id == src.id)
+			targets += M
 
-		for(var/obj/machinery/flasher/F in SSmachines.machinery)
-			if(F.id == src.id)
-				targets += F
+	for(var/obj/machinery/flasher/F in SSmachines.machinery)
+		if(F.id == src.id)
+			targets += F
 
-		for(var/obj/machinery/cellshower/S in world)
-			if(S.id == src.id)
-				targets += S
+	for(var/obj/machinery/cellshower/S in SSmachines.machinery)
+		if(S.id == src.id)
+			targets += S
 
-		for(var/obj/structure/closet/secure_closet/brig/C in world)
-			if(C.id == src.id)
-				targets += C
+	for(var/obj/structure/closet/secure_closet/brig/C in world)
+		if(C.id == src.id)
+			targets += C
 
-		if(targets.len==0)
-			stat |= BROKEN
-		update_icon()
-		return
-	return
+	if(targets.len==0)
+		stat |= BROKEN
+	update_icon()
 
 
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
@@ -154,10 +156,6 @@
 		timetoset = 0
 
 	return
-
-//Allows AIs to use door_timer, see human attack_hand function below
-/obj/machinery/door_timer/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
 
 //Check access for shower temp change of for other dangerous functions
 /obj/machinery/door_timer/proc/allowed_advanced(var/mob/user as mob)
@@ -344,7 +342,7 @@
 //Stolen from status_display
 /obj/machinery/door_timer/proc/texticon(var/tn, var/px = 0, var/py = 0)
 	var/image/I = image('icons/obj/status_display.dmi', "blank")
-	var/len = lentext(tn)
+	var/len = length(tn)
 
 	for(var/d = 1 to len)
 		var/char = copytext(tn, len-d+1, len-d+2)

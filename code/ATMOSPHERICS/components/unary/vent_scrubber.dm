@@ -1,8 +1,11 @@
+#define SIPHONING	0
+#define SCRUBBING	1
+
 /obj/machinery/atmospherics/unary/vent_scrubber
 	icon = 'icons/atmos/vent_scrubber.dmi'
 	icon_state = "map_scrubber_off"
 
-	name = "Air Scrubber"
+	name = "air scrubber"
 	desc = "Has a valve and pump attached to it"
 	use_power = 0
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
@@ -10,7 +13,7 @@
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SCRUBBER //connects to regular and scrubber pipes
 
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 
 	var/area/initial_loc
@@ -18,16 +21,17 @@
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
-	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
+	var/scrubbing = SCRUBBING
 	var/list/scrubbing_gas = list("carbon_dioxide","sleeping_agent","plasma")
+	var/expanded_range = FALSE
 
-	var/panic = 0 //is this scrubber panicked?
+	var/panic = FALSE //is this scrubber panicked?
 
 	var/area_uid
 	var/radio_filter_out
 	var/radio_filter_in
 
-	var/welded = 0
+	var/welded = FALSE
 
 /obj/machinery/atmospherics/unary/vent_scrubber/on
 	use_power = 1
@@ -37,7 +41,6 @@
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
-	icon = null
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
 	if (!id_tag)
@@ -48,29 +51,18 @@
 	unregister_radio(src, frequency)
 	. = ..()
 
-
-/obj/machinery/atmospherics/unary/vent_scrubber/update_icon(var/safety = 0)
-	if(!check_icon_cache())
-		return
-
-	overlays.Cut()
-
-	var/scrubber_icon = "scrubber"
-
-	var/turf/T = get_turf(src)
-	if(!istype(T))
-		return
+/obj/machinery/atmospherics/unary/vent_scrubber/update_icon(safety = 0)
+	if(!node1)
+		use_power = 0
 
 	if(welded)
-		scrubber_icon += "weld"
-
+		icon_state = "weld"
+	else if(!powered() || !use_power)
+		icon_state = "off"
 	else
-		if(!powered())
-			scrubber_icon += "off"
-		else
-			scrubber_icon += "[use_power ? "[scrubbing ? "on" : "in"]" : "off"]"
-
-	overlays += icon_manager.get_atmos_icon("device", , , scrubber_icon)
+		icon_state = scrubbing ? "on" : "in"
+		if(expanded_range)
+			icon_state += "_expanded"
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_underlays()
 	if(..())
@@ -78,13 +70,14 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && node1 && node1.level == 1 && istype(node1, /obj/machinery/atmospherics/pipe))
+		if(!T.is_plating() && node1 && node1.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if(node1)
 				add_underlay(T, node1, dir, node1.icon_connect_type)
 			else
 				add_underlay(T,, dir)
+			underlays += "frame"
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
@@ -106,6 +99,7 @@
 		"power" = use_power,
 		"scrubbing" = scrubbing,
 		"panic" = panic,
+		"expanded_range" = expanded_range,
 		"filter_o2" = ("oxygen" in scrubbing_gas),
 		"filter_n2" = ("nitrogen" in scrubbing_gas),
 		"filter_co2" = ("carbon_dioxide" in scrubbing_gas),
@@ -146,21 +140,31 @@
 	if(welded)
 		return 0
 
-	var/datum/gas_mixture/environment = loc.return_air()
-	if (!environment)
+	var/list/environments = get_target_environments(src, expanded_range)
+	if(!length(environments))
 		return 0
 
-	var/power_draw = -1
-	if(scrubbing)
-		//limit flow rate from turfs
-		var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SCRUBBER_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
-		power_draw = scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, power_rating)
-	else //Just siphon all air
-		//limit flow rate from turfs
-		var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SIPHON_FLOWRATE/environment.volume)	//group_multiplier gets divided out here
-		power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+	var/power_draw = 0
+	var/transfer_happened = FALSE
 
-	if (power_draw >= 0)
+	for(var/e in environments)
+		var/datum/gas_mixture/environment = e
+		if (!environment)
+			continue
+
+		if(scrubbing)
+			//limit flow rate from turfs
+			var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SCRUBBER_FLOWRATE/environment.volume)
+			//group_multiplier gets divided out here
+			power_draw += scrub_gas(src, scrubbing_gas, environment, air_contents, transfer_moles, power_rating)
+		else //Just siphon all air
+			//limit flow rate from turfs
+			var/transfer_moles = min(environment.total_moles, environment.total_moles*MAX_SIPHON_FLOWRATE/environment.volume)
+			//group_multiplier gets divided out here
+			power_draw += pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+		transfer_happened = TRUE
+
+	if(transfer_happened)
 		last_power_draw = power_draw
 		use_power(power_draw)
 		if(network)
@@ -183,29 +187,31 @@
 	if(signal.data["power_toggle"] != null)
 		use_power = !use_power
 
-	if(signal.data["panic_siphon"]) //must be before if("scrubbing" thing
-		panic = text2num(signal.data["panic_siphon"])
+	if(signal.data["panic_siphon"] || signal.data["toggle_panic_siphon"])
+		if(signal.data["panic_siphon"])
+			panic = text2num(signal.data["panic_siphon"])
+		else
+			panic = !panic
+
 		if(panic)
 			use_power = 1
-			scrubbing = 0
+			scrubbing = SIPHONING
 		else
-			scrubbing = 1
-	if(signal.data["toggle_panic_siphon"] != null)
-		panic = !panic
-		if(panic)
-			use_power = 1
-			scrubbing = 0
-		else
-			scrubbing = 1
+			scrubbing = SCRUBBING
+
+	if(signal.data["expanded_range"])
+		expanded_range = text2num(signal.data["expanded_range"])
+	if(signal.data["toggle_expanded_range"])
+		expanded_range = !expanded_range
 
 	if(signal.data["scrubbing"] != null)
 		scrubbing = text2num(signal.data["scrubbing"])
 		if(scrubbing)
-			panic = 0
+			panic = FALSE
 	if(signal.data["toggle_scrubbing"])
 		scrubbing = !scrubbing
 		if(scrubbing)
-			panic = 0
+			panic = FALSE
 
 	var/list/toggle = list()
 
@@ -262,7 +268,7 @@
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			user << SPAN_NOTICE("Now welding the vent.")
+			to_chat(user, SPAN_NOTICE("Now welding the vent."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(!welded)
 					user.visible_message(SPAN_NOTICE("\The [user] welds the scrubber shut."), SPAN_NOTICE("You weld the vent scrubber."), "You hear welding.")
@@ -277,19 +283,19 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if (!(stat & NOPOWER) && use_power)
-				user << SPAN_WARNING("You cannot unwrench \the [src], turn it off first.")
+				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], turn it off first."))
 				return 1
 			var/turf/T = src.loc
 			if (node1 && node1.level==1 && isturf(T) && !T.is_plating())
-				user << SPAN_WARNING("You must remove the plating first.")
+				to_chat(user, SPAN_WARNING("You must remove the plating first."))
 				return 1
 			var/datum/gas_mixture/int_air = return_air()
 			var/datum/gas_mixture/env_air = loc.return_air()
 			if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-				user << SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure.")
+				to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 				add_fingerprint(user)
 				return 1
-			user << SPAN_NOTICE("You begin to unfasten \the [src]...")
+			to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
 			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				user.visible_message( \
 					SPAN_NOTICE("\The [user] unfastens \the [src]."), \
@@ -302,12 +308,15 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/examine(mob/user)
 	if(..(user, 1))
-		user << "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
+		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
 	else
-		user << "You are too far away to read the gauge."
+		to_chat(user, "You are too far away to read the gauge.")
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	if(initial_loc)
 		initial_loc.air_scrub_info -= id_tag
 		initial_loc.air_scrub_names -= id_tag
 	return ..()
+
+#undef SIPHONING
+#undef SCRUBBING

@@ -1,33 +1,34 @@
-/obj/item/weapon/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude
-	name = "prototype SMG"
-	desc = "A prototype lightweight, fast firing gun. Uses 9mm rounds."
+/obj/item/weapon/gun/projectile/automatic
+	name = "automatic projectile gun"
+	desc = "A debug firearm, which should be reported if present in-game. Uses 9mm rounds."
+	icon = 'icons/obj/guns/projectile/generic_smg.dmi'
 	icon_state = "generic_smg"
 	w_class = ITEM_SIZE_NORMAL
-	load_method = SPEEDLOADER //yup. until someone sprites a magazine for it.
+	load_method = SPEEDLOADER //Default is speedloader because all might not have magazine sprites.
 	max_shells = 22
-	caliber = "9mm"
+	caliber = CAL_35A
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	ammo_type = /obj/item/ammo_casing/c9mm
-	multi_aim = 1
+	ammo_type = /obj/item/ammo_casing/pistol
 	burst_delay = 2
 	fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cock.ogg'
-
-	firemodes = list(
+	zoom_factor = 0 //Default zoom factor you want on all automatic weapons.
+	gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
+	init_firemodes = list(
 		FULL_AUTO_400,
-		list(mode_name="semiauto",       burst=1, fire_delay=0,     dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null,     dispersion=list(0.0, 0.6, 1.0)),
-		list(mode_name="short bursts",   burst=5, fire_delay=null,     dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		SEMI_AUTO_NODELAY,
+		BURST_3_ROUND,
+		BURST_5_ROUND
 		)
 
 
 //Automatic firing
 //Todo: Way more checks and safety here
 /datum/firemode/automatic
-	settings = list(burst = 1, suppress_delay_warning = TRUE, dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2))
+	settings = list(burst = 1, suppress_delay_warning = TRUE, dispersion=null)
 	//The full auto clickhandler we have
 	var/datum/click_handler/fullauto/CH = null
 

@@ -156,7 +156,7 @@
 		precision = max(rand(1, 100)*bagholding.len, 100)
 		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
-			MM << SPAN_DANGER("The Bluespace interface on your [teleatom] interferes with the teleport!")
+			to_chat(MM, SPAN_DANGER("The Bluespace interface on your [teleatom] interferes with the teleport!"))
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
@@ -176,9 +176,9 @@
 		return 0
 
 	if(isAdminLevel(destination.z))
-		if(istype(teleatom, /obj/mecha))
-			var/obj/mecha/MM = teleatom
-			MM.occupant << SPAN_DANGER("\The [MM] would not survive the jump to a location so far away!")
+		if(istype(teleatom, /mob/living/exosuit))
+			var/mob/living/exosuit/MM = teleatom
+			MM.occupant_message(SPAN_DANGER("\The [MM.pilots.Join(" and ")] would not survive the jump to a location so far away!"))
 			return 0
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
 			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))

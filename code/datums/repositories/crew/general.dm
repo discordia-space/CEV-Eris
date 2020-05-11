@@ -3,6 +3,11 @@
 	crew_data["name"] = H.get_authentification_name(if_no_id="Unknown")
 	crew_data["rank"] = H.get_authentification_rank(if_no_id="Unknown", if_no_job="No Job")
 	crew_data["assignment"] = H.get_assignment(if_no_id="Unknown", if_no_job="No Job")
+
+	var/datum/computer_file/report/crew_record/CR = get_crewmember_record(crew_data["name"])		
+	if(CR)
+		if(CR.get_criminalStatus() == "*Arrest*" || CR.get_criminalStatus() == "Incarcerated")
+			crew_data["isCriminal"] = TRUE
 	return ..()
 
 /* Jamming */

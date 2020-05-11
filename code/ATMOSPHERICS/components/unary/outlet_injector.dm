@@ -21,7 +21,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	layer = GAS_SCRUBBER_LAYER
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()

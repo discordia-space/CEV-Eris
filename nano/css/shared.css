@@ -54,12 +54,24 @@ hr {
     white-space: nowrap;
 }
 
+.linkFaintBackground {
+    background: none;
+}
+
 .hasIcon {
     padding: 0px 4px 4px 0px;
 }
 
+.onlyIcon {
+    padding: 0px 0px 4px 0px;
+}
+
 a:hover, .zoomLink:hover, .linkActive:hover {
-    background: #507aac;
+    background: #405a8c;
+}
+
+.linkFaintBackground:hover {
+    background: rgba(80,100,120,.5);
 }
 
 .linkPending, .linkPending:hover {
@@ -163,31 +175,30 @@ abbr {
 
 .white {
     color: white;
-    font-weight: bold;
 }
 
 .good {
     color: #4f7529;
-    font-weight: bold;
 }
 
 .average {
     color: #cd6500;
-    font-weight: bold;
 }
 
 .bad {
     color: #ee0000;
-    font-weight: bold;
+}
+
+.unimportant {
+    color: #808080;
 }
 
 .idle {
     color: #272727;
-    font-weight: bold;
 }
 
 .redButton {
-    background: #ea0000;
+    background: #b00e0e;
 }
 
 .yellowButton {
@@ -232,6 +243,17 @@ abbr {
     margin: 4px 0 4px 0;
 }
 
+.danger
+{
+	color: #ff0000;	
+	font-weight: bold;
+}
+.warning
+{
+	color: #ff0000;	
+	font-style: italic;
+}
+
 .notice.icon {
     padding: 2px 4px 0 20px;
 }
@@ -267,7 +289,7 @@ div.notice {
     margin: 4px 0 0 0;
     clear: both;
     display: flex;
-    align-content: : wrap;
+    align-content: wrap;
     align-items: stretch;
 
 }
@@ -403,21 +425,23 @@ div.notice {
 
 .displayBar {
     position: relative;
-    width: 236px;
+    width: 100%;
     height: 16px;
-    border: 1px solid #666666;
+    border: 1px solid #40628a;
     float: left;
     margin: 0 5px 0 0;
     overflow: hidden;
     background: #000000;
+	line-height: 17px;
+	padding: 1px;
+	border: 1px solid #40628a;
+	background: #272727;
 }
 
 .displayBarText, .displayBarVerticalText, .displayBarBeakerText{
     position: absolute;
-    top: -2px;
-    left: 5px;
-    width: 100%;
-    height: 100%;
+	top: 0;
+	right: 3px;
     color: #ffffff;
     font-weight: normal;
 }
@@ -447,6 +471,14 @@ div.notice {
     overflow: hidden;
     float: left;
 	background: #000000;
+}
+
+.colorBox {
+	display: inline-block; 
+	width: 20px; 
+	height: 8px; 
+	border:1px solid #000; 
+	padding: 0px;
 }
 
 /*used in xenobio2 computer*/
@@ -488,7 +520,7 @@ div.notice {
 
 .displayBarFill.bad {
     color: #ffffff;
-    background: #ee0000;
+    background: #b00e0e;
 }
 
 .displayBarFill.highlight {
@@ -498,6 +530,10 @@ div.notice {
 
 .clearBoth {
     clear: both;
+}
+
+.noFloat {
+    float: none;
 }
 
 .clearLeft {
@@ -733,7 +769,7 @@ th.bot {
     width: 75px;
 }
 .wideTable tr:nth-child(odd) {
-    background-color: #272727;
+	background-color: #272727;
 }
 
 /* Candystriped rows for tables */
@@ -743,3 +779,169 @@ th.bot {
 .candystripe:nth-child(odd) {
 	background-color: rgba(0, 0, 0, 0.16);
 }
+
+#sciTechTreeContainer {
+	position: relative;
+	width: 99%;
+	height: 590px;
+	overflow: hidden;
+	border: 1px solid #40628a;
+	background: url(nanomapBackground.png);
+}
+
+/* [Tooltips of description] */
+.sciTechTreeIcon span {
+	display			: none;
+	padding			: 10px; 
+	margin-left		: 8px; 
+	width			: 200px;
+	z-index			: 999;
+	background      : #717177;
+	border          : 4px solid #666;
+	border-radius   : 0px 5px;
+	color           : #d1d1dd;
+	text-align      : center;
+	white-space     : pre-line;
+}
+.sciTechTreeIcon:hover span {
+	display			: block;
+	position		: absolute;
+}
+img.sciTechTreeIconToolTip {
+	background-image: url(science.png);
+}
+/* [/Tooltips of description] */
+.sciTechTreeIcon {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	background-image: url(science.png);
+	background-position: -0px -0px;
+	background-repeat: no-repeat;
+	zoom: 1;
+}
+
+.sciTechTreeIconBox {
+	width: 32px;
+	height: 32px;
+}
+
+.sciTechResearched {
+	background: #2f943c;
+}
+
+.sciTechResearched:hover {
+    background: #3fB44c;
+}	
+
+.sciTechCantResearch {
+	background: #942f3c;
+}
+
+.sciTechCantResearch:hover {
+    background: #B43f4c;
+}
+
+.sciTechSelected {
+	background: #3333cc;
+}
+
+.sciTechSelected:hover {
+    background: #3333cf;
+}
+
+.icon-gun { background-position: 0px 0px; }
+.icon-diamond { background-position: -32px 0px; }
+.icon-cell { background-position: -64px 0px; }
+.icon-wrench { background-position: -96px 0px; }
+.icon-telescience { background-position: -128px 0px; }
+.icon-monitoring { background-position: -160px 0px; }
+.icon-rd { background-position: -192px 0px; }
+.icon-tesla { background-position: -224px 0px; }
+
+.icon-spaceheater { background-position: 0px -32px; }
+.icon-pda { background-position: -32px -32px; }
+.icon-goldpda { background-position: -64px -32px; }
+.icon-advmop { background-position: -96px -32px; }
+.icon-drill { background-position: -128px -32px; }
+.icon-jackhammer { background-position: -160px -32px; }
+.icon-advmatterbin { background-position: -192px -32px; }
+.icon-supermatterbin { background-position: -224px -32px; }
+
+.icon-bluespacematterbin { background-position: 0px -64px; }
+.icon-rped { background-position: -32px -64px; }
+.icon-jawsoflife { background-position: -64px -64px; }
+.icon-healthanalyzer { background-position: -96px -64px; }
+.icon-hydroponics { background-position: -128px -64px; }
+.icon-microwave { background-position: -160px -64px; }
+.icon-candymachine { background-position: -192px -64px; }
+.icon-operationcomputer { background-position: -224px -64px; }
+
+.icon-vialbox { background-position: 0px -96px; }
+.icon-sleeper { background-position: -32px -96px; }
+.icon-medhud { background-position: -64px -96px; }
+.icon-handheldmonitor { background-position: -96px -96px; }
+.icon-medbeacon { background-position: -128px -96px; }
+.icon-rapidsyringegun { background-position: -160px -96px; }
+.icon-scalpelmanager { background-position: -192px -96px; }
+.icon-stunbaton { background-position: -224px -96px; }
+
+.icon-seccomputer { background-position: 0px -128px; }
+.icon-flash { background-position: -32px -128px; }
+.icon-recharger { background-position: -64px -128px; }
+.icon-ammobox { background-position: -96px -128px; }
+.icon-submachinegun { background-position: -128px -128px; }
+.icon-tempgun { background-position: -160px -128px; }
+.icon-teslagun { background-position: -192px -128px; }
+.icon-stunrevolver { background-position: -224px -128px; }
+
+.icon-supercell { background-position: 0px -160px; }
+.icon-hypercell { background-position: -32px -160px; }
+.icon-bluespacecell { background-position: -64px -160px; }
+.icon-solarcontrol { background-position: -96px -160px; }
+.icon-generator { background-position: -128px -160px; }
+.icon-supergenerator { background-position: -160px -160px; }
+.icon-smes { background-position: -192px -160px; }
+.icon-gps { background-position: -224px -160px; }
+
+.icon-headset { background-position: 0px -192px; }
+.icon-communications { background-position: -32px -192px; }
+.icon-radiogrid { background-position: -64px -192px; }
+.icon-bluespacething { background-position: -96px -192px; }
+.icon-teleporter { background-position: -128px -192px; }
+.icon-bluespacerped { background-position: -160px -192px; }
+.icon-bagofholding { background-position: -192px -192px; }
+.icon-cyborganalyzer { background-position: -224px -192px; }
+
+.icon-ripley { background-position: 0px -224px; }
+.icon-odyssey { background-position: -32px -224px; }
+.icon-posbrain { background-position: -64px -224px; }
+.icon-aicard { background-position: -96px -224px; }
+.icon-gygax { background-position: -128px -224px; }
+.icon-gygaxultra { background-position: -160px -224px; }
+.icon-durand { background-position: -192px -224px; }
+.icon-vindicator { background-position: -224px -224px; }
+
+.icon-mechgrenadelauncher { background-position: 0px -256px; }
+.icon-mechlaser { background-position: -32px -256px; }
+.icon-mechrcd { background-position: -64px -256px; }
+.icon-mecharmor { background-position: -96px -256px; }
+.icon-mechteleporter { background-position: -128px -256px; }
+.icon-rigscanner { background-position: -160px -256px; }
+.icon-rigtaser { background-position: -192px -256px; }
+.icon-rignuclearreactor { background-position: -224px -256px; }
+
+.icon-shield { background-position: 0px -288px; }
+.icon-fusion { background-position: -32px -288px; }
+.icon-chemdisp { background-position: -64px -288px; }
+.icon-binarykey { background-position: -96px -288px; }
+.icon-chamelion { background-position: -128px -288px; }
+.icon-freedom { background-position: -160px -288px; }
+.icon-module { background-position: -192px -288px; }
+.icon-borgmodule { background-position: -224px -288px; }
+
+.sciMenuButton {
+    width: 300px;
+    float: left;
+}
+

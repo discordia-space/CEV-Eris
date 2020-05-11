@@ -3,7 +3,6 @@
  *		Balloons
  *		Fake telebeacon
  *		Fake singularity
- *		Toy gun
  *		Toy crossbow
  *		Toy swords
  *		Toy bosun's whistle
@@ -48,7 +47,7 @@
 	if(!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
-		user << SPAN_NOTICE("You fill the balloon with the contents of [A].")
+		to_chat(user, SPAN_NOTICE("You fill the balloon with the contents of [A]."))
 		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
 		src.update_icon()
 	return
@@ -57,15 +56,15 @@
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(O.reagents)
 			if(O.reagents.total_volume < 1)
-				user << "The [O] is empty."
+				to_chat(user, "The [O] is empty.")
 			else if(O.reagents.total_volume >= 1)
 				if(O.reagents.has_reagent("pacid", 1))
-					user << "The acid chews through the balloon!"
+					to_chat(user, "The acid chews through the balloon!")
 					O.reagents.splash(user, reagents.total_volume)
 					qdel(src)
 				else
 					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-					user << SPAN_NOTICE("You fill the balloon with the contents of [O].")
+					to_chat(user, SPAN_NOTICE("You fill the balloon with the contents of [O]."))
 					O.reagents.trans_to_obj(src, 10)
 	src.update_icon()
 	return
@@ -116,7 +115,7 @@
 /obj/item/toy/crossbow
 	name = "foam dart crossbow"
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	item_icons = list(
@@ -129,7 +128,7 @@
 
 	examine(mob/user)
 		if(..(user, 2) && bullets)
-			user << SPAN_NOTICE("It is loaded with [bullets] foam darts!")
+			to_chat(user, SPAN_NOTICE("It is loaded with [bullets] foam darts!"))
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
@@ -137,9 +136,9 @@
 				user.drop_item()
 				qdel(I)
 				bullets++
-				user << SPAN_NOTICE("You load the foam dart into the crossbow.")
+				to_chat(user, SPAN_NOTICE("You load the foam dart into the crossbow."))
 			else
-				usr << SPAN_WARNING("It's already fully loaded.")
+				to_chat(usr, SPAN_WARNING("It's already fully loaded."))
 
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -247,13 +246,13 @@
 	attack_self(mob/user as mob)
 		src.active = !( src.active )
 		if (src.active)
-			user << SPAN_NOTICE("You extend the plastic blade with a quick flick of your wrist.")
+			to_chat(user, SPAN_NOTICE("You extend the plastic blade with a quick flick of your wrist."))
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
-			src.w_class = ITEM_SIZE_LARGE
+			src.w_class = ITEM_SIZE_BULKY
 		else
-			user << SPAN_NOTICE("You push the plastic blade back down into the handle.")
+			to_chat(user, SPAN_NOTICE("You push the plastic blade back down into the handle."))
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"
@@ -301,7 +300,7 @@
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(MOVING_QUICKLY(M))
-			M << SPAN_WARNING("You step on the snap pop!")
+			to_chat(M, SPAN_WARNING("You step on the snap pop!"))
 
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(2, 0, src)
@@ -342,12 +341,12 @@
 
 	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		user << SPAN_NOTICE("You refill your flower!")
+		to_chat(user, SPAN_NOTICE("You refill your flower!"))
 		return
 
 	else if (src.reagents.total_volume < 1)
 		src.empty = 1
-		user << SPAN_NOTICE("Your flower has run dry!")
+		to_chat(user, SPAN_NOTICE("Your flower has run dry!"))
 		return
 
 	else
@@ -369,7 +368,7 @@
 				for(var/atom/T in get_turf(D))
 					D.reagents.touch(T)
 					if(ismob(T) && T:client)
-						T:client << SPAN_WARNING("\The [user] has sprayed you with water!")
+						to_chat(T:client, SPAN_WARNING("\The [user] has sprayed you with water!"))
 				sleep(4)
 			qdel(D)
 
@@ -377,7 +376,7 @@
 
 /obj/item/toy/waterflower/examine(mob/user)
 	if(..(user, 0))
-		user << text("\icon[] [] units of water left!", src, src.reagents.total_volume)
+		to_chat(user, text("\icon[] [] units of water left!", src, src.reagents.total_volume))
 
 /*
  * Bosun's whistle
@@ -394,7 +393,7 @@
 
 /obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
 	if(cooldown < world.time - 35)
-		user << SPAN_NOTICE("You blow on [src], creating an ear-splitting noise!")
+		to_chat(user, SPAN_NOTICE("You blow on [src], creating an ear-splitting noise!"))
 		playsound(user, 'sound/misc/boatswain.ogg', 20, 1)
 		cooldown = world.time
 
@@ -409,14 +408,14 @@
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
-		user << SPAN_NOTICE("You play with [src].")
+		to_chat(user, SPAN_NOTICE("You play with [src]."))
 		playsound(user, 'sound/mecha/mechstep.ogg', 20, 1)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
 	if(loc == user)
 		if(cooldown < world.time - 8)
-			user << SPAN_NOTICE("You play with [src].")
+			to_chat(user, SPAN_NOTICE("You play with [src]."))
 			playsound(user, 'sound/mecha/mechturn.ogg', 20, 1)
 			cooldown = world.time
 			return
@@ -487,8 +486,8 @@
 	icon = 'icons/obj/toy.dmi'
 
 /obj/item/toy/figure/cmo
-	name = "Chief Medical Officer action figure"
-	desc = "A \"Space Life\" brand Chief Medical Officer action figure."
+	name = "Biolab Officer action figure"
+	desc = "A \"Space Life\" brand Biolab Officer action figure."
 	icon_state = "cmo"
 
 /obj/item/toy/figure/assistant
@@ -497,8 +496,8 @@
 	icon_state = "assistant"
 
 /obj/item/toy/figure/atmos
-	name = "Atmospheric Technician action figure"
-	desc = "A \"Space Life\" brand Atmospheric Technician action figure."
+	name = "Technomancer Atmosphericist action figure"
+	desc = "A \"Space Life\" brand Technomancer Atmosphericist action figure."
 	icon_state = "atmos"
 
 /obj/item/toy/figure/bartender
@@ -522,13 +521,13 @@
 	icon_state = "captain"
 
 /obj/item/toy/figure/cargotech
-	name = "Cargo Technician action figure"
-	desc = "A \"Space Life\" brand Cargo Technician action figure."
+	name = "Guild Technician action figure"
+	desc = "A \"Space Life\" brand Guild Technician action figure."
 	icon_state = "cargotech"
 
 /obj/item/toy/figure/ce
-	name = "Chief Engineer action figure"
-	desc = "A \"Space Life\" brand Chief Engineer action figure."
+	name = "Technomancer Exultant action figure"
+	desc = "A \"Space Life\" brand Technomancer Exultant action figure."
 	icon_state = "ce"
 
 /obj/item/toy/figure/chaplain
@@ -557,8 +556,8 @@
 	icon_state = "ian"
 
 /obj/item/toy/figure/detective
-	name = "Detective action figure"
-	desc = "A \"Space Life\" brand Detective action figure."
+	name = "Inspector action figure"
+	desc = "A \"Space Life\" brand Inspector action figure."
 	icon_state = "detective"
 
 /obj/item/toy/figure/dsquad
@@ -567,8 +566,8 @@
 	icon_state = "dsquad"
 
 /obj/item/toy/figure/engineer
-	name = "Engineer action figure"
-	desc = "A \"Space Life\" brand Engineer action figure."
+	name = "Technomancer action figure"
+	desc = "A \"Space Life\" brand Technomancer action figure."
 	icon_state = "engineer"
 
 /obj/item/toy/figure/geneticist
@@ -577,18 +576,18 @@
 	icon_state = "geneticist"
 
 /obj/item/toy/figure/hop
-	name = "Head of Personel action figure"
-	desc = "A \"Space Life\" brand Head of Personel action figure."
+	name = "First Officer action figure"
+	desc = "A \"Space Life\" brand First Officer action figure."
 	icon_state = "hop"
 
 /obj/item/toy/figure/hos
-	name = "Head of Security action figure"
-	desc = "A \"Space Life\" brand Head of Security action figure."
+	name = "Ironhammer Commander action figure"
+	desc = "A \"Space Life\" brand Ironhammer Commander action figure."
 	icon_state = "hos"
 
 /obj/item/toy/figure/qm
-	name = "Quartermaster action figure"
-	desc = "A \"Space Life\" brand Quartermaster action figure."
+	name = "Guild Merchant action figure"
+	desc = "A \"Space Life\" brand Guild Merchant action figure."
 	icon_state = "qm"
 
 /obj/item/toy/figure/janitor
@@ -617,8 +616,8 @@
 	icon_state = "mime"
 
 /obj/item/toy/figure/miner
-	name = "Shaft Miner action figure"
-	desc = "A \"Space Life\" brand Shaft Miner action figure."
+	name = "Guild Miner action figure"
+	desc = "A \"Space Life\" brand Guild Miner action figure."
 	icon_state = "miner"
 
 /obj/item/toy/figure/ninja
@@ -632,8 +631,8 @@
 	icon_state = "wizard"
 
 /obj/item/toy/figure/rd
-	name = "Research Director action figure"
-	desc = "A \"Space Life\" brand Research Director action figure."
+	name = "Expedition Overseer action figure"
+	desc = "A \"Space Life\" brand Expedition Overseer action figure."
 	icon_state = "rd"
 
 /obj/item/toy/figure/roboticist
@@ -652,18 +651,18 @@
 	icon_state = "syndie"
 
 /obj/item/toy/figure/secofficer
-	name = "Security Officer action figure"
-	desc = "A \"Space Life\" brand Security Officer action figure."
+	name = "Ironhammer Operative action figure"
+	desc = "A \"Space Life\" brand Ironhammer Operative action figure."
 	icon_state = "secofficer"
 
 /obj/item/toy/figure/warden
-	name = "Warden action figure"
-	desc = "A \"Space Life\" brand Warden action figure."
+	name = "Gunnery Sergeant action figure"
+	desc = "A \"Space Life\" brand Gunnery Sergeant action figure."
 	icon_state = "warden"
 
 /obj/item/toy/figure/psychologist
-	name = "Psychologist action figure"
-	desc = "A \"Space Life\" brand Psychologist action figure."
+	name = "Psychiatrist action figure"
+	desc = "A \"Space Life\" brand Psychiatrist action figure."
 	icon_state = "psychologist"
 
 /obj/item/toy/figure/paramedic
@@ -817,7 +816,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
 
 /obj/item/weapon/inflatable_duck

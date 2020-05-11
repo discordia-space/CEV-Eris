@@ -142,7 +142,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 		if (EVENT_LEVEL_MAJOR)
 			chosen_mob = pick(possible_mobs_major)
 			num_spawns_per_area = possible_mobs_major[chosen_mob]
-	num_spawns_per_area *= rand_between(0.75, 1.5)
+	num_spawns_per_area *= RAND_DECIMAL(0.75, 1.5)
 	num_spawns_per_area = round(num_spawns_per_area, 1)
 
 	switch(chosen_mob)
@@ -232,7 +232,8 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 			var/obj/structure/burrow/B = chosen_burrows[b]
 			if (QDELETED(B))
 				continue
-			areanames += strip_improper(get_area(B).name)
+			var/area/A = get_area(B)
+			areanames += strip_improper(A.name)
 		if (areanames.len)
 			switch(severity)
 				if (EVENT_LEVEL_MUNDANE)

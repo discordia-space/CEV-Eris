@@ -12,7 +12,7 @@
 
 	anchored = 1
 	density = 0
-	level = 1
+	level = BELOW_PLATING_LEVEL
 	var/alarm = 0
 	var/enabled = 1
 	var/list/diffused_turfs = list()
@@ -52,16 +52,16 @@
 
 /obj/machinery/shield_diffuser/Initialize()
 	update_turfs()
-	.=..()
+	. = ..()
 
 /obj/machinery/shield_diffuser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	.=..()
+	. = ..()
 	update_turfs()
 
 /obj/machinery/shield_diffuser/Destroy()
 	enabled = FALSE
 	update_turfs()
-	..()
+	return ..()
 
 /obj/machinery/shield_diffuser/attackby(obj/item/O as obj, mob/user as mob)
 	if(default_deconstruction(O, user))
@@ -100,3 +100,6 @@
 	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
 	if(alarm)
 		to_chat(user, "A red LED labeled \"Proximity Alarm\" is blinking on the control panel.")
+
+/obj/machinery/shield_diffuser/ex_act(severity)
+	return

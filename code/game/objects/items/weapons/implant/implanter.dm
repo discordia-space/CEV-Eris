@@ -20,7 +20,7 @@
 	if(!implant)
 		return ..()
 	user.put_in_hands(implant)
-	user << SPAN_NOTICE("You remove \the [implant] from \the [src].")
+	to_chat(user, SPAN_NOTICE("You remove \the [implant] from \the [src]."))
 	name = "implanter"
 	implant = null
 	update_icon()
@@ -38,7 +38,7 @@
 		return
 	if(!implant.is_external())
 		if(M.body_part_covered(user.targeted_organ))
-			user << SPAN_WARNING("You can't implant through clothes.")
+			to_chat(user, SPAN_WARNING("You can't implant through clothes."))
 			return
 
 	var/obj/item/organ/external/affected = null

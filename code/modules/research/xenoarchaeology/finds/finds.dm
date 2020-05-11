@@ -135,7 +135,7 @@
 			if(prob(25))
 				new_item = new /obj/item/weapon/material/kitchen/utensil/fork(src.loc)
 			else if(prob(50))
-				new_item = new /obj/item/weapon/material/knife(src.loc)
+				new_item = new /obj/item/weapon/tool/knife(src.loc)
 			else
 				new_item = new /obj/item/weapon/material/kitchen/utensil/spoon(src.loc)
 			additional_desc = "[pick("It's like no [item_type] you've ever seen before",\
@@ -164,7 +164,7 @@
 				"You wonder what kind of music was made with it")]."
 		if(6)
 			item_type = "[pick("bladed knife","serrated blade","sharp cutting implement")]"
-			new_item = new /obj/item/weapon/material/knife(src.loc)
+			new_item = new /obj/item/weapon/tool/knife(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
 			"It looks wickedly jagged",\
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains along the edges")]."
@@ -208,7 +208,7 @@
 				prob(1);ITEM_SIZE_TINY,
 				prob(2);ITEM_SIZE_SMALL,
 				prob(3);ITEM_SIZE_NORMAL,
-				prob(2);ITEM_SIZE_LARGE\
+				prob(2);ITEM_SIZE_BULKY\
 			)
 			var/storage_amount = 2**(new_box.max_w_class-1)
 			new_box.max_storage_space = rand(storage_amount, storage_amount * 10)
@@ -264,11 +264,11 @@
 			if(prob(25))
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				item_type = "smooth green crystal"
-				icon_state = "Green lump"
+				icon_state = "green_lump"
 			else if(prob(33))
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				item_type = "irregular purple crystal"
-				icon_state = "Phazon"
+				icon_state = "phazon"
 			else
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				item_type = "rough red crystal"
@@ -286,7 +286,7 @@
 			new_item.desc = ""
 		if(19 to 20)
 			apply_prefix = 0
-			new_item = new /obj/item/weapon/material/sword(src.loc)
+			new_item = new /obj/item/weapon/tool/sword(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
 		if(21 to 22)
@@ -313,7 +313,7 @@
 			apply_material_decorations = 0
 		if(25)
 			apply_prefix = 0
-			new_item = new /obj/item/weapon/material/sword/katana(src.loc)
+			new_item = new /obj/item/weapon/tool/sword/katana(src.loc)
 			new_item.force = 10
 			item_type = new_item.name
 		if(26)

@@ -10,14 +10,14 @@
 	filedesc = "Shield Control"
 	nanomodule_path = /datum/nano_module/shield_control
 	program_icon_state = "engine"
-	extended_desc = "This program allows remote management of the hull shield generator. Can only be run on consoles"
+	extended_desc = "This program allows remote management of the hull shield generator. Cannot be run on tablet computers."
 	required_access = access_atmospherics
 	requires_ntnet = 1
 	network_destination = "shield control system"
 	required_access = access_engine //Restricted to engineering and the bridge
 	requires_ntnet_feature = NTNET_SYSTEMCONTROL
-	usage_flags = PROGRAM_CONSOLE //Console only, this is a sensitive program
-	size = 30
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_CONSOLE
+	size = 24
 
 
 /datum/nano_module/shield_control
@@ -37,7 +37,7 @@
 	for (var/obj/machinery/power/shield_generator/hull/G in world)
 		//Check that the generator is on the same vessel as us.
 		//This allows antag ships/stations to have their own shield generators and consoles
-		if (is_matching_vessel(G, host))
+		if (is_matching_vessel(G, nano_host()))
 			if (G.anchored && G.tendrils_deployed) //Only look at those that are wrenched in and setup
 				gen = G //It's a good enough candidate, we're connected!
 				n++
@@ -67,7 +67,7 @@
 		playsound_host('sound/machines/buzz-two.ogg', 50)
 		genloc = ""
 
-/datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 
 	var/list/data = host.initial_data()
 
@@ -97,8 +97,8 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800)
-		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
+		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 600, 800, state = state)
+		if(nano_host().update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
@@ -107,7 +107,7 @@
 
 /datum/nano_module/shield_control/Topic(href, href_list)
 	if(..())
-		return 1
+		return
 
 	if(href_list["connect"])
 		connect_to_generator()
@@ -131,7 +131,7 @@
 		if(gen.running != SHIELD_RUNNING)
 			return
 		gen.running = SHIELD_DISCHARGING
-		gen.log_event(EVENT_DISABLED, host)
+		gen.log_event(EVENT_DISABLED, nano_host())
 		gen.offline_for += 30 //It'll take one minute to shut down
 		. = 1
 
@@ -139,7 +139,7 @@
 		if(gen.offline_for)
 			return
 		gen.running = SHIELD_RUNNING
-		gen.log_event(EVENT_ENABLED, host)
+		gen.log_event(EVENT_ENABLED, nano_host())
 		gen.regenerate_field()
 		gen.offline_for = 3 //This is to prevent cases where you startup the shield and then turn it off again immediately while spamclicking
 
@@ -159,7 +159,7 @@
 		gen.offline_for += 300 //5 minutes, given that procs happen every 2 seconds
 		gen.shutdown_field()
 		gen.emergency_shutdown = TRUE
-		gen.log_event(EVENT_DISABLED, host)
+		gen.log_event(EVENT_DISABLED, nano_host())
 		if(prob(temp_integrity - 50) * 1.75)
 			spawn()
 				empulse(gen, 7, 14)
@@ -174,7 +174,7 @@
 			return
 		gen.field_radius = between(1, new_range, world.maxx)
 		gen.regenerate_field()
-		gen.log_event(EVENT_RECONFIGURED, host)
+		gen.log_event(EVENT_RECONFIGURED, nano_host())
 		. = 1
 
 	if(href_list["set_input_cap"])
@@ -183,11 +183,11 @@
 			gen.input_cap = 0
 			return
 		gen.input_cap = max(0, new_cap) * 1000
-		gen.log_event(EVENT_RECONFIGURED, host)
+		gen.log_event(EVENT_RECONFIGURED, nano_host())
 		. = 1
 
 	if(href_list["toggle_mode"])
-		gen.log_event(EVENT_RECONFIGURED, host)
+		gen.log_event(EVENT_RECONFIGURED, nano_host())
 		gen.toggle_flag(text2num(href_list["toggle_mode"]))
 		. = 1
 
@@ -199,7 +199,7 @@
 
 // If PC is not null header template is loaded. Use PC.get_header_data() to get relevant nanoui data from it. All data entries begin with "PC_...."
 // In future it may be expanded to other modular computer devices.
-/datum/nano_module/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	var/list/sensors = list()

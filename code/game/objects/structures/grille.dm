@@ -69,25 +69,25 @@
 
 	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
 	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
-	switch(Proj.damage_type)
-		if(BRUTE)
+	for(var/i in Proj.damage_types)
+		if(i == BRUTE)
 			//bullets
 			if(Proj.original == src || prob(20))
-				Proj.damage *= between(0, Proj.damage/60, 0.5)
+				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 0.5)
 				if(prob(max((damage-10)/25, 0))*100)
 					passthrough = 1
 			else
-				Proj.damage *= between(0, Proj.damage/60, 1)
+				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 1)
 				passthrough = 1
-		if(BURN)
+		if(i == BURN)
 			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
 			if(!(Proj.original == src || prob(20)))
-				Proj.damage *= 0.5
+				Proj.damage_types[i] *= 0.5
 				passthrough = 1
 
 	if(passthrough)
 		. = PROJECTILE_CONTINUE
-		damage = between(0, (damage - Proj.damage)*(Proj.damage_type == BRUTE? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
+		damage = between(0, (damage - Proj.get_structure_damage())*(Proj.damage_types[BRUTE] ? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
 
 	src.health -= damage*0.2
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
@@ -143,23 +143,23 @@
 					else
 						dir_to_set = 4
 			else
-				user << SPAN_NOTICE("You can't reach.")
+				to_chat(user, SPAN_NOTICE("You can't reach."))
 				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
-				user << SPAN_NOTICE("There is already a window facing this way there.")
+				to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
 				return
-		user << SPAN_NOTICE("You start placing the window.")
+		to_chat(user, SPAN_NOTICE("You start placing the window."))
 		if(do_after(user,20,src))
 			for(var/obj/structure/window/WINDOW in loc)
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					user << SPAN_NOTICE("There is already a window facing this way there.")
+					to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
 					return
 
 			var/wtype = ST.material.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-				user << SPAN_NOTICE("You place the [WD] on [src].")
+				to_chat(user, SPAN_NOTICE("You place the [WD] on [src]."))
 				WD.update_icon()
 		return
 //window placing end
@@ -168,11 +168,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-		switch(I.damtype)
-			if("fire")
-				health -= I.force
-			if("brute")
-				health -= I.force * 0.1
+		health -= I.force * I.structure_damage_factor
 	healthcheck()
 	..()
 	return

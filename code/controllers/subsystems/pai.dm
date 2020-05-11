@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(pai)
 	var/inquirer = null
 	var/list/pai_candidates = list()
 	var/list/asked = list()
-	var/askDelay = 1 MINUTE
+	var/askDelay = 1 MINUTES
 
 /datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
@@ -216,7 +216,7 @@ SUBSYSTEM_DEF(pai)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/observer/ghost/o in GLOB.player_list)
-				if(o.key == c.key && o.MayRespawn())
+				if(o.key == c.key && o.MayRespawn(0,ANIMAL))
 					found = 1
 			if(found)
 				available.Add(c)
@@ -329,7 +329,7 @@ SUBSYSTEM_DEF(pai)
 /datum/controller/subsystem/pai/proc/requestRecruits(mob/user)
 	inquirer = user
 	for(var/mob/observer/ghost/O in GLOB.player_list)
-		if(!O.MayRespawn())
+		if(!O.MayRespawn(0,ANIMAL))
 			continue
 		if(jobban_isbanned(O, "pAI"))
 			continue

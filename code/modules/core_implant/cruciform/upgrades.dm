@@ -6,7 +6,7 @@
 
 /obj/item/weapon/coreimplant_upgrade/cruciform/priest
 	name = "Preacher Ascension Kit"
-	desc = "The first stage of promoting a disciple into a Neotheology Preacher. Requires a ritual from an inquisitor to complete."
+	desc = "The first stage of promoting a disciple into a NeoTheology Preacher. Requires a ritual from an Inquisitor to complete."
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 
 /obj/item/weapon/coreimplant_upgrade/cruciform/priest/set_up()

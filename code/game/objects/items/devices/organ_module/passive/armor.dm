@@ -1,5 +1,6 @@
 /obj/item/organ_module/armor
 	name = "subdermal armor"
+	desc = "A set of subdermal steel plates, designed to provide additional impact protection while remaining lightweight."
 	allowed_organs = list(BP_CHEST)
 	icon_state = "armor-chest"
 

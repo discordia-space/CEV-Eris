@@ -1,0 +1,69 @@
+{{if data.uid}}
+	{{:helper.link('BACK', '', {'clear_active' : 1})}}{{:helper.link('PRINT', '', {'print_active' : 1})}}<br><br>
+	<div class='statusDisplay'>
+		<div style="text-align: center">
+			<h3>Job Information</h3>
+		</div>
+		{{for data.fields}}
+			<div class='item'>
+				{{if data.can_edit && value.can_edit}}
+					<div class='itemLabel'>{{:helper.link(value.name, 'pencil', {'edit_field' : value.ID}, null)}}</div>
+				{{else}}
+					<div class='itemLabel'>{{:value.name}}:</div>
+				{{/if}}
+				{{if value.needs_big_box}}
+					<div style="display: inline-block;">
+					{{:value.value}}
+					</div>
+				{{else}}
+					<div class='itemBody'>{{:value.value}}</div>
+				{{/if}}
+			</div>
+		{{/for}}
+		{{if data.created}}
+			<div style="display: table; margin: 0 auto;">
+				{{:helper.link('Sign up for job', '', {'sign_up' : 1}, null)}}
+			</div>
+		{{/if}}
+		{{if !data.created}}
+			<div style="display: table; margin: 0 auto;">
+				{{:helper.link('Publish bounty', '', {'publish' : 1}, null)}}
+			</div>
+		{{/if}}
+		{{if data.can_edit}}
+			<div style="display: table; margin: 0 auto;">
+				{{:helper.link('Remove bounty', '', {'remove' : 1}, null)}}
+			</div>
+		{{/if}}
+	</div>
+{{else}}
+	<div style="display: table; margin: 0 auto;">
+		{{:helper.link('New Bounty', 'document', {'new_record' : 1}, null)}}
+	</div>
+	<h2>Available bounties:</h2>
+	<table style="width:100%">
+	<tr><td>Title<th style="width:50%">Description<th style="width:12%">Reward<th style="width:18%">Status
+	{{for data.not_claimed_bounties}}
+		<tr class="candystripe">
+		{{if value.status == "Not claimed"}}
+			<td style="background-color: #8daf6a;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
+		{{else}}
+			<td style="background-color: #8daf6a;">{{:value.name}}
+		{{/if}}
+		<td style="background-color: #8daf6a;">{{:value.desc}}
+		<td style="background-color: #8daf6a;">{{:value.reward}}
+		<td style="background-color: #8daf6a;">{{:value.status}}
+	{{/for}}
+	{{for data.claimed_bounties}}
+		<tr class="candystripe">
+		{{if value.status == "Not claimed"}}
+			<td style="background-color: #aa5f61;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
+		{{else}}
+			<td style="background-color: #aa5f61;">{{:value.name}}
+		{{/if}}
+		<td style="background-color: #aa5f61;">{{:value.desc}}
+		<td style="background-color: #aa5f61;">{{:value.reward}}
+		<td style="background-color: #aa5f61;">{{:value.status}}
+	{{/for}}
+	</table>
+{{/if}}

@@ -11,6 +11,7 @@
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
 	heat = 1873
+	preloaded_reagents = list("sulfur" = 10, "potassium" = 5, "hydrazine" = 5)
 
 /obj/item/device/lighting/glowstick/flare/Process()
 	..()

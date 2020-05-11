@@ -1,0 +1,178 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"c" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"d" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"e" = (
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"f" = (
+/obj/machinery/light/floor/built,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"g" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"h" = (
+/obj/crawler/spawnpoint,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"i" = (
+/obj/rogue/telebeacon/return_beacon,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+a
+g
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(3,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(4,1,1) = {"
+a
+c
+d
+c
+c
+c
+d
+c
+a
+"}
+(5,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(6,1,1) = {"
+a
+c
+e
+e
+e
+c
+e
+c
+a
+"}
+(7,1,1) = {"
+b
+c
+e
+i
+h
+c
+e
+c
+b
+"}
+(8,1,1) = {"
+a
+c
+e
+c
+e
+e
+e
+c
+a
+"}
+(9,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(10,1,1) = {"
+a
+c
+f
+c
+c
+c
+f
+c
+a
+"}
+(11,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(12,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+g
+a
+a
+a
+a
+"}

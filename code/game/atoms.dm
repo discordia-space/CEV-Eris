@@ -2,7 +2,7 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	var/level = 2
+	var/level = ABOVE_PLATING_LEVEL
 	var/flags = 0
 	var/list/fingerprints
 	var/list/fingerprintshidden
@@ -20,11 +20,8 @@
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
 	///Chemistry.
+	var/reagent_flags = NONE
 	var/datum/reagents/reagents = null
-
-	//var/chem_is_open_container = 0
-	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
-	///Chemistry.
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
@@ -33,10 +30,17 @@
 
 	var/initialized = FALSE
 
+	var/list/preloaded_reagents = null
+
+	var/sanity_damage = 0
+
+/atom/proc/update_icon()
+	return
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
-	var/do_initialize = SSatoms.initialized
+	var/do_initialize = SSatoms.init_state
 	if(do_initialize > INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
@@ -64,6 +68,16 @@
 		update_light()
 
 	update_plane()
+
+	if(preloaded_reagents)
+		if(!reagents)
+			var/volume = 0
+			for(var/reagent in preloaded_reagents)
+				volume += preloaded_reagents[reagent]
+			create_reagents(volume)
+		for(var/reagent in preloaded_reagents)
+			reagents.add_reagent(reagent, preloaded_reagents[reagent])
+
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -105,20 +119,22 @@
 /atom/proc/Bumped(AM as mob|obj)
 	return
 
-// Convenience proc to see if a container is open for chemistry handling
-// returns true if open
-// false if closed
+// Convenience procs to see if a container is open for chemistry handling
 /atom/proc/is_open_container()
-	return flags & OPENCONTAINER
+	return is_refillable() && is_drainable()
 
-/*//Convenience proc to see whether a container can be accessed in a certain way.
+/atom/proc/is_injectable(allowmobs = TRUE)
+	return reagents && (reagent_flags & (INJECTABLE | REFILLABLE))
 
-	proc/can_subract_container()
-		return flags & EXTRACT_CONTAINER
+/atom/proc/is_drawable(allowmobs = TRUE)
+	return reagents && (reagent_flags & (DRAWABLE | DRAINABLE))
 
-	proc/can_add_container()
-		return flags & INSERT_CONTAINER
-*/
+/atom/proc/is_refillable()
+	return reagents && (reagent_flags & REFILLABLE)
+
+/atom/proc/is_drainable()
+	return reagents && (reagent_flags & DRAINABLE)
+
 
 /atom/proc/CheckExit()
 	return TRUE
@@ -133,7 +149,7 @@
 
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	P.on_hit(src, 0, def_zone)
+	P.on_hit(src, def_zone)
 	. = FALSE
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -169,6 +185,9 @@
 			found += A.search_contents_for(path, filter_path)
 	return found
 
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	return
 
 
 
@@ -256,14 +275,43 @@ its easier to just keep the beam vertical.
 			full_name += "oil-stained [name][infix]."
 
 	if(isobserver(user))
-		user << "\icon[src] This is [full_name] [suffix]"
+		to_chat(user, "\icon[src] This is [full_name] [suffix]")
 	else
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
-	if(desc)
-		user << desc
+	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
-	return distance == -1 || (get_dist(src, user) <= distance)
+	if(desc)
+		to_chat(user, desc)
+
+	if(reagents)
+		if(reagent_flags & TRANSPARENT)
+			to_chat(user, "<span class='notice'>It contains:</span>")
+			if(reagents.reagent_list.len)
+				for(var/I in reagents.reagent_list)
+					var/datum/reagent/R = I
+					to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+
+				// TODO: reagent vision googles? code below:
+				/*
+				if(user.can_see_reagents()) //Show each individual reagent
+					for(var/I in reagents.reagent_list)
+						var/datum/reagent/R = I
+						to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+				else //Otherwise, just show the total volume
+					if(reagents && reagents.reagent_list.len)
+						to_chat(user, "<span class='notice'>[reagents.total_volume] units of various reagents.</span>")
+				*/
+			else
+				to_chat(user, "<span class='notice'>Nothing.</span>	")
+		else if(reagent_flags & AMOUNT_VISIBLE)
+			if(reagents.total_volume)
+				to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+			else
+				to_chat(user, "<span class='danger'>It's empty.</span>")
+	SEND_SIGNAL(src, COMSIG_EXAMINE, user, distance)
+
+	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -594,7 +642,7 @@ its easier to just keep the beam vertical.
 
 //This proc is called when objects are created during the round by players.
 //This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
-/atom/proc/Created()
+/atom/proc/Created(var/mob/user)
 	return
 	//Should be called when:
 		//An item is printed at an autolathe or protolathe **COMPLETE**
@@ -635,7 +683,7 @@ its easier to just keep the beam vertical.
 	BM.pixel_x--
 	BM.pixel_y--
 
-	if(Proj.damage >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
+	if(Proj.get_structure_damage() >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
 		BM.icon_state = "scorch"
 		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 	else //Otherwise it's a light dent.
@@ -657,3 +705,12 @@ its easier to just keep the beam vertical.
 		result += a
 		result |= a.get_recursive_contents()
 	return result
+
+/atom/proc/AllowDrop()
+	return FALSE
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : L.drop_location()

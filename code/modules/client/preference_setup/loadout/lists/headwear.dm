@@ -16,6 +16,10 @@
 	display_name = "beret, red"
 	path = /obj/item/clothing/head/beret
 
+/datum/gear/head/beret/purp
+	display_name = "beret, purple"
+	path = /obj/item/clothing/head/beret/purple
+
 /datum/gear/head/beret/bsec
 	display_name = "beret, navy (officer)"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
@@ -34,23 +38,12 @@
 /datum/gear/head/beret/eng
 	display_name = "beret, engie-orange"
 	path = /obj/item/clothing/head/beret/engineering
-
-/datum/gear/head/beret/purp
-	display_name = "beret, purple"
-	path = /obj/item/clothing/head/beret/purple
+	allowed_roles = list(JOBS_ENGINEERING)
 
 /datum/gear/head/beret/sec
 	display_name = "beret, red (security)"
 	path = /obj/item/clothing/head/beret/sec
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant")
-
-/datum/gear/head/cap/blue
-	display_name = "cap, blue"
-	path = /obj/item/clothing/head/soft/blue
-
-/datum/gear/head/cap/mailman
-	display_name = "cap, blue station"
-	path = /obj/item/clothing/head/mailman
+	allowed_roles = list(JOBS_SECURITY)
 
 /datum/gear/head/cap/flat
 	display_name = "cap, brown-flat"
@@ -61,63 +54,53 @@
 	path = /obj/item/clothing/head/soft/sec/corp
 	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
 
-/datum/gear/head/cap/green
-	display_name = "cap, green"
-	path = /obj/item/clothing/head/soft/green
-
-/datum/gear/head/cap/grey
-	display_name = "cap, grey"
-	path = /obj/item/clothing/head/soft/grey
-
-/datum/gear/head/cap/orange
-	display_name = "cap, orange"
-	path = /obj/item/clothing/head/soft/orange
-
-/datum/gear/head/cap/purple
-	display_name = "cap, purple"
-	path = /obj/item/clothing/head/soft/purple
-
 /datum/gear/head/cap/rainbow
 	display_name = "cap, rainbow"
 	path = /obj/item/clothing/head/soft/rainbow
 
-/datum/gear/head/cap/red
-	display_name = "cap, red"
-	path = /obj/item/clothing/head/soft/red
-
 /datum/gear/head/cap/sec
 	display_name = "cap, security (Security)"
 	path = /obj/item/clothing/head/soft/sec
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant", "Inspector")
+	allowed_roles = list(JOBS_SECURITY)
 
-/datum/gear/head/cap/yellow
-	display_name = "cap, yellow"
-	path = /obj/item/clothing/head/soft/yellow
+/datum/gear/head/cap/color_presets
+	display_name = "cap, color presets"
+	path = /obj/item/clothing/head/soft/blue
 
-/datum/gear/head/cap/white
-	display_name = "cap, white"
-	path = /obj/item/clothing/head/soft/mime
+/datum/gear/head/cap/color_presets/New()
+	..()
+	var/cap = list(
+		"White"			=	/obj/item/clothing/head/soft/mime,
+		"Grey"			=	/obj/item/clothing/head/soft/grey,
+		"Brown-Flat"	=	/obj/item/clothing/head/flatcap,
+		"Red"			=	/obj/item/clothing/head/soft/red,
+		"Orange"		=	/obj/item/clothing/head/soft/orange,
+		"Yellow"		=	/obj/item/clothing/head/soft/yellow,
+		"Green"			=	/obj/item/clothing/head/soft/green,
+		"Blue"			=	/obj/item/clothing/head/soft/blue,
+		"Blue Station"	=	/obj/item/clothing/head/mailman,
+		"Purple"		=	/obj/item/clothing/head/soft/purple,
+	)
+	gear_tweaks += new /datum/gear_tweak/path(cap)
 
 /datum/gear/head/hairflower
 	display_name = "hair flower pin, red"
 	path = /obj/item/clothing/head/hairflower
 
-/datum/gear/head/hardhat
-	display_name = "hardhat, yellow"
-	path = /obj/item/clothing/head/hardhat
+/datum/gear/head/hardhat/color_presets
+	display_name = "hardhat, color presets"
+	path = /obj/item/clothing/head/hardhat/dblue
 	cost = 2
 
-/datum/gear/head/hardhat/blue
-	display_name = "hardhat, blue"
-	path = /obj/item/clothing/head/hardhat/dblue
-
-/datum/gear/head/hardhat/orange
-	display_name = "hardhat, orange"
-	path = /obj/item/clothing/head/hardhat/orange
-
-/datum/gear/head/hardhat/red
-	display_name = "hardhat, red"
-	path = /obj/item/clothing/head/hardhat/red
+/datum/gear/head/hardhat/color_presets/New()
+	..()
+	var/hardhat = list(
+		"Red"		=	/obj/item/clothing/head/hardhat/red,
+		"Orange"	=	/obj/item/clothing/head/hardhat/orange,
+		"Yellow"	=	/obj/item/clothing/head/hardhat,
+		"Blue"		=	/obj/item/clothing/head/hardhat/dblue,
+	)
+	gear_tweaks += new /datum/gear_tweak/path(hardhat)
 
 /datum/gear/head/boater
 	display_name = "hat, boatsman"
@@ -142,3 +125,18 @@
 /datum/gear/head/ushanka
 	display_name = "ushanka"
 	path = /obj/item/clothing/head/ushanka
+
+/datum/gear/head/cap/secfield
+	display_name = "cap, IH field"
+	path = /obj/item/clothing/head/soft/sec2soft
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Ironhammer Gunnery Sergeant", "Inspector")
+
+/datum/gear/head/cap/sarge
+	display_name = "cap, IH sergeant"
+	path = /obj/item/clothing/head/soft/sarge2soft
+	allowed_roles = list("Ironhammer Commander","Ironhammer Gunnery Sergeant")
+
+/datum/gear/head/cyberpunkgoggle
+	display_name = "Type-34C Semi-Enclosed Headwear"
+	path = /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
+	cost = 2

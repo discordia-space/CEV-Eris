@@ -63,7 +63,7 @@
 		var/mob/living/carbon/M = affecting
 		M.anchored = initial(affecting.anchored)
 		M.captured = 0
-		M << "You are free of the net!"
+		to_chat(M, "You are free of the net!")
 
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -116,7 +116,7 @@
 	else
 		health -= rand(5,8)
 
-	H << "<span class='danger'>You claw at the energy net.</span>"
+	to_chat(H, "<span class='danger'>You claw at the energy net.</span>")
 
 	healthcheck()
 	return

@@ -57,7 +57,16 @@ var/game_id = null
 
 
 #define RECOMMENDED_VERSION 512
+// This function enable_debugger() enables local or remote (requires opening a port on router) debugging if the computer running this has set env EXTOOLS_DLL.
+// Only runs if env var EXTOOLS_DLL is set otherwise it won't load the dll file.
+// Used with the Visual Studio Code debugger and DreamMaker Language Client extension from https://github.com/SpaceManiac/SpacemanDMM/wiki/Setting-up-Debugging
+
 /world/New()
+	// Begin loading of extools DLL and components
+	extools_initialize()
+	maptick_initialize()
+	debugger_initialize()
+	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -97,6 +106,8 @@ var/game_id = null
 	populate_material_list()
 
 	Master.Initialize(10, FALSE)
+
+	call_restart_webhook()
 
 #ifdef UNIT_TEST
 	initialize_unit_tests()
@@ -162,13 +173,12 @@ var/world_topic_spam_protect_time = world.timeofday
 	fdel(F)
 	F << the_mode
 
-
 /hook/startup/proc/loadMOTD()
 	world.load_motd()
 	return 1
 
 /world/proc/load_motd()
-	join_motd = russian_to_cp1251(file2text("config/motd.txt"))
+	join_motd = file2text("config/motd.txt")
 
 
 /proc/load_configuration()

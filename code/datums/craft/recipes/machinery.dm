@@ -2,6 +2,7 @@
 	category = "Machinery"
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	time = 120
+	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/machinery/machine_frame
 	name = "machine frame"
@@ -17,14 +18,17 @@
 		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL),
 	)
 
-/datum/craft_recipe/machinery/computer_frame
+/datum/craft_recipe/machinery/computer
+	related_stats = list(STAT_MEC, STAT_COG)
+
+/datum/craft_recipe/machinery/computer/computer_frame
 	name = "computer frame"
 	result = /obj/structure/computerframe
 	steps = list(
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
-/datum/craft_recipe/machinery/modularconsole
+/datum/craft_recipe/machinery/computer/modularconsole
 	name = "modular console frame"
 	result = /obj/item/modular_computer/console
 	time = 200
@@ -34,7 +38,7 @@
 		list(CRAFT_MATERIAL, 4, MATERIAL_GLASS),
 	)
 
-/datum/craft_recipe/machinery/modularlaptop
+/datum/craft_recipe/machinery/computer/modularlaptop
 	name = "modular laptop frame"
 	result = /obj/item/modular_computer/laptop
 	time = 200
@@ -43,7 +47,7 @@
 		list(CRAFT_MATERIAL, 4, MATERIAL_GLASS),
 	)
 
-/datum/craft_recipe/machinery/modulartablet
+/datum/craft_recipe/machinery/computer/modulartablet
 	name = "modular tablet frame"
 	result = /obj/item/modular_computer/tablet
 	time = 200
@@ -52,7 +56,7 @@
 		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS),
 	)
 
-/datum/craft_recipe/machinery/modularpda
+/datum/craft_recipe/machinery/computer/modularpda
 	name = "modular pda frame"
 	result = /obj/item/modular_computer/pda
 	time = 200
@@ -61,7 +65,7 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_GLASS),
 	)
 
-/datum/craft_recipe/machinery/modulartelescreen
+/datum/craft_recipe/machinery/computer/modulartelescreen
 	name = "modular telescreen frame"
 	result = /obj/item/modular_computer/telescreen
 	time = 200
@@ -112,3 +116,4 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
 	)
+	related_stats = list(STAT_MEC, STAT_COG)

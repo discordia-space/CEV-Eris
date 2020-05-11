@@ -31,47 +31,52 @@
 
 /obj/machinery/pipelayer/attack_hand(mob/user as mob)
 	if(!metal&&!on)
-		user << SPAN_WARNING("\The [src] doesn't work without metal.")
+		to_chat(user, SPAN_WARNING("\The [src] doesn't work without metal."))
 		return
 	on=!on
-	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
+	user.visible_message(SPAN_NOTICE("[user] has [!on?"de":""]activated \the [src]."), SPAN_NOTICE("You [!on?"de":""]activate \the [src]."))
 	return
 
 /obj/machinery/pipelayer/attackby(var/obj/item/I, var/mob/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_PRYING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
-
 		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				if(metal)
-					var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
-					m = min(m, 50)
-					m = min(m, round(metal))
-					m = round(m)
-					if(m)
-						use_metal(m)
-						var/obj/item/stack/material/steel/MM = new (get_turf(src))
-						MM.amount = m
-						user.visible_message(SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."), SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
-				else
-					user << "\The [src] is empty."
+			if(!I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			if(metal)
+				var/m = round(input(usr,"Please specify the amount of metal to remove","Remove metal",min(round(metal),50)) as num, 1)
+				m = min(m, 50)
+				m = min(m, round(metal))
+				m = round(m)
+				if(m)
+					use_metal(m)
+					var/obj/item/stack/material/steel/MM = new (get_turf(src))
+					MM.amount = m
+					user.visible_message(
+						SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."),
+						SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
+			else
+				to_chat(user, "\The [src] is empty.")
 			return
 
 		if(QUALITY_PRYING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				a_dis=!a_dis
-				user.visible_message("<span class='notice'>[user] has [!a_dis?"de":""]activated auto-dismantling.</span>", "<span class='notice'>You [!a_dis?"de":""]activate auto-dismantling.</span>")
+			if(!I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			a_dis=!a_dis
+			user.visible_message(
+				SPAN_NOTICE("[user] has [!a_dis?"de":""]activated auto-dismantling."),
+				SPAN_NOTICE("You [!a_dis?"de":""]activate auto-dismantling."))
 			return
 
 		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
-				P_type = Pipes[P_type_t]
-				user.visible_message(SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."), SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
+			if(!I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
+			P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
+			P_type = Pipes[P_type_t]
+			user.visible_message(
+				SPAN_NOTICE("[user] has set \the [src] to manufacture [P_type_t]."),
+				SPAN_NOTICE("You set \the [src] to manufacture [P_type_t]."))
 			return
 
 		if(ABORT_CHECK)
@@ -81,9 +86,9 @@
 
 		var/result = load_metal(I)
 		if(isnull(result))
-			user << SPAN_WARNING("Unable to load [I] - no metal found.")
+			to_chat(user, SPAN_WARNING("Unable to load [I] - no metal found."))
 		else if(!result)
-			user << SPAN_NOTICE("\The [src] is full.")
+			to_chat(user, SPAN_NOTICE("\The [src] is full."))
 		else
 			user.visible_message(SPAN_NOTICE("[user] has loaded metal into \the [src]."), SPAN_NOTICE("You load metal into \the [src]"))
 
@@ -93,7 +98,7 @@
 
 /obj/machinery/pipelayer/examine(mob/user)
 	..()
-	user << "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated."
+	to_chat(user, "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated.")
 
 /obj/machinery/pipelayer/proc/reset()
 	on=0

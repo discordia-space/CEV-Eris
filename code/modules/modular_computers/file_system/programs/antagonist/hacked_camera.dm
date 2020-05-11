@@ -5,7 +5,7 @@
 	program_icon_state = "hostile"
 	program_key_state = "security_key"
 	program_menu_icon = "zoomin"
-	extended_desc = "This very advanced piece of software uses adaptive programming and large database of cipherkeys to bypass most encryptions used on camera networks. Be warned that system administrator may notice this."
+	extended_desc = "This very advanced piece of software uses adaptive programming and a large database of cipherkeys to bypass most encryptions used on camera networks. Be warned that the system administrator may notice this."
 	size = 73 // Very large, a price for bypassing ID checks completely.
 	available_on_ntnet = 0
 	available_on_syndinet = 1
@@ -24,7 +24,7 @@
 			ntnet_global.intrusion_detection_alarm = 1
 
 /datum/computer_file/program/camera_monitor/hacked/ui_interact(mob/user)
-	operator_skill = user.stats.getStat(STAT_COG)
+	operator_skill = get_operator_skill(user, STAT_COG)
 	. = ..() // Actual work done by nanomodule's parent.
 
 /datum/nano_module/camera_monitor/hacked

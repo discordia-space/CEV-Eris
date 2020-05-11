@@ -30,13 +30,13 @@
 // Updates icon of this computer according to current status.
 /obj/machinery/computer/power_monitor/update_icon()
 	..()
+
 	if(stat & BROKEN)
 		icon_screen = "broken"
-		return
-	if(alerting)
+	else if(alerting)
 		icon_screen = "power_monitor_warn"
-		return
-	 icon_screen = "power_monitor"
+	else
+		icon_screen = "power_monitor"
 
 // On creation automatically connects to active sensors. This is delayed to ensure sensors already exist.
 /obj/machinery/computer/power_monitor/New()
@@ -52,7 +52,7 @@
 	ui_interact(user)
 
 // Uses dark magic to operate the NanoUI of this computer.
-/obj/machinery/computer/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	power_monitor.ui_interact(user, ui_key, ui, force_open)
 
 

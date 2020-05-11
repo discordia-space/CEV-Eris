@@ -1,5 +1,4 @@
 #define MEMOFILE "data/memo.sav"	//where the memos are saved
-#define ENABLE_MEMOS 1				//using a define because screw making a config variable for it. This is more efficient and purty.
 
 ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 //admin memo system. show/delete/write.
@@ -8,7 +7,7 @@ ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 /client/proc/admin_memo(task in list("write","show","delete"))
 	set name = "Memo"
 	set category = "Server"
-	if(!ENABLE_MEMOS)		return
+	if(!config.admin_memo_system)	return
 	if(!check_rights(0))	return
 	switch(task)
 		if("write")		admin_memo_write()
@@ -19,13 +18,13 @@ ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 /client/proc/admin_memo_write()
 	var/savefile/F = new(MEMOFILE)
 	if(F)
-		var/memo = russian_to_cp1251(input(src,"Type your memo\n(Leaving it blank will delete your current memo):","Write Memo",null) as null|message)
+		var/memo = sanitize(input(src,"Type your memo\n(Leaving it blank will delete your current memo):","Write Memo",null) as null|message, extra = 0)
 		switch(memo)
 			if(null)
 				return
 			if("")
 				F.dir.Remove(ckey)
-				src << "<b>Memo removed</b>"
+				to_chat(src, "<b>Memo removed</b>")
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
@@ -34,11 +33,11 @@ ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 
 //show all memos
 /client/proc/admin_memo_show()
-	if(ENABLE_MEMOS)
+	if(config.admin_memo_system)
 		var/savefile/F = new(MEMOFILE)
 		if(F)
 			for(var/ckey in F.dir)
-				src << "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>"
+				to_chat(src, "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>")
 
 //delete your own or somebody else's memo
 /client/proc/admin_memo_delete()
@@ -51,7 +50,6 @@ ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 			ckey = src.ckey
 		if(ckey)
 			F.dir.Remove(ckey)
-			src << "<b>Removed Memo created by [ckey].</b>"
+			to_chat(src, "<b>Removed Memo created by [ckey].</b>")
 
 #undef MEMOFILE
-#undef ENABLE_MEMOS

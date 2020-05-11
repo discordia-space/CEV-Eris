@@ -29,7 +29,7 @@
 			list(name="Utility belt", cost=300, path=/obj/item/weapon/storage/belt/utility),
 			list(name="Leather Satchel", cost=400, path=/obj/item/weapon/storage/backpack/satchel),
 			list(name="Leather jacket", cost=400, /obj/item/clothing/suit/storage/leather_jacket),
-			list(name="Cash Bag", cost=400, path=/obj/item/weapon/storage/bag/cash),
+			list(name="Cash Bag", cost=400, path=/obj/item/weapon/storage/bag/money),
 			list(name="Medical belt", cost=300, path=/obj/item/weapon/storage/belt/medical),
 			list(name="Security belt", cost=300, path=/obj/item/weapon/storage/belt/security),
 			list(name="EMT belt", cost=300, path=/obj/item/weapon/storage/belt/medical/emt),
@@ -70,47 +70,47 @@
 		return
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << SPAN_NOTICE("The [src] is already loaded.")
+			to_chat(user, SPAN_NOTICE("The [src] is already loaded."))
 		else
 			user.remove_from_mob(I)
 			I.loc = src
 			beaker = I
 			updateUsrDialog()
 	else if(processing)
-		user << SPAN_NOTICE("\The [src] is currently processing.")
-	else if(istype(I, /obj/item/weapon/storage/bag/plants))
+		to_chat(user, SPAN_NOTICE("\The [src] is currently processing."))
+	else if(istype(I, /obj/item/weapon/storage/bag/produce))
 		var/i = 0
 		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			user << SPAN_NOTICE("\The [src] is already full! Activate it.")
+			to_chat(user, SPAN_NOTICE("\The [src] is already full! Activate it."))
 		else
 			for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in I.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
-					user << SPAN_NOTICE("You fill \the [src] to its capacity.")
+					to_chat(user, SPAN_NOTICE("You fill \the [src] to its capacity."))
 					break
 			if(i < 10)
-				user << SPAN_NOTICE("You empty \the [I] into \the [src].")
+				to_chat(user, SPAN_NOTICE("You empty \the [I] into \the [src]."))
 
 
 	else if(!istype(I, /obj/item/weapon/reagent_containers/food/snacks/grown))
-		user << SPAN_NOTICE("You cannot put this in \the [src].")
+		to_chat(user, SPAN_NOTICE("You cannot put this in \the [src]."))
 	else
 		var/i = 0
 		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			user << SPAN_NOTICE("\The [src] is full! Activate it.")
+			to_chat(user, SPAN_NOTICE("\The [src] is full! Activate it."))
 		else
 			user.remove_from_mob(I)
 			I.loc = src
-			user << SPAN_NOTICE("You put \the [I] in \the [src]")
+			to_chat(user, SPAN_NOTICE("You put \the [I] in \the [src]"))
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state =GLOB.outside_state)
+/obj/machinery/biogenerator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state =GLOB.outside_state)
 	user.set_machine(src)
 	var/list/data = list()
 	data["points"] = points
@@ -164,7 +164,7 @@
 	if (stat) //NOPOWER etc
 		return
 	if(processing)
-		usr << SPAN_NOTICE("The biogenerator is in the process of working.")
+		to_chat(usr, SPAN_NOTICE("The biogenerator is in the process of working."))
 		return
 	var/S = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/grown/I in contents)
@@ -198,7 +198,7 @@
 	if(!recipe)
 		return
 
-	if(!"allow_multiple" in recipe)
+	if(!("allow_multiple" in recipe))
 		amount = 1
 	else
 		amount = max(amount, 1)

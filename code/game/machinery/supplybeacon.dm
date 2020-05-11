@@ -44,28 +44,28 @@
 	name = "supermatter supply beacon"
 	drop_type = "supermatter"
 
-/obj/machinery/power/supply_beacon/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(!use_power && istype(W, /obj/item/weapon/tool/wrench))
+/obj/machinery/power/supply_beacon/attackby(var/obj/item/weapon/tool/W, var/mob/user)
+	if(!use_power)
 		if(!anchored && !connect_to_network())
-			user << SPAN_WARNING("This device must be placed over an exposed cable.")
+			to_chat(usr, SPAN_WARNING("This device must be placed over an exposed cable."))
 			return
+		if(!W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
+			return ..()
 		anchored = !anchored
-		user.visible_message("<span class='notice'>\The [user] [anchored ? "secures" : "unsecures"] \the [src].</span>")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-		return
-	return ..()
+		user.visible_message(SPAN_NOTICE("\The [user] [anchored ? "secures" : "unsecures"] \the [src]."))
+	return
 
 /obj/machinery/power/supply_beacon/attack_hand(var/mob/user)
 
 	if(expended)
 		use_power = 0
-		user << SPAN_WARNING("\The [src] has used up its charge.")
+		to_chat(user, SPAN_WARNING("\The [src] has used up its charge."))
 		return
 
 	if(anchored)
 		return use_power ? deactivate(user) : activate(user)
 	else
-		user << SPAN_WARNING("You need to secure the beacon with a wrench first!")
+		to_chat(user, SPAN_WARNING("You need to secure the beacon with a wrench first!"))
 		return
 
 /obj/machinery/power/supply_beacon/attack_ai(var/mob/user)
@@ -76,12 +76,12 @@
 	if(expended)
 		return
 	if(surplus() < 500)
-		if(user) user << SPAN_NOTICE("The connected wire doesn't have enough current.")
+		if(user) to_chat(user, SPAN_NOTICE("The connected wire doesn't have enough current."))
 		return
 	set_light(3, 3, COLOR_LIGHTING_ORANGE_MACHINERY)
 	icon_state = "beacon_active"
 	use_power = 1
-	if(user) user << SPAN_NOTICE("You activate the beacon. The supply drop will be dispatched soon.")
+	if(user) to_chat(user, SPAN_NOTICE("You activate the beacon. The supply drop will be dispatched soon."))
 
 /obj/machinery/power/supply_beacon/proc/deactivate(var/mob/user, var/permanent)
 	if(permanent)
@@ -92,7 +92,7 @@
 	set_light(0)
 	use_power = 0
 	target_drop_time = null
-	if(user) user << SPAN_NOTICE("You deactivate the beacon.")
+	if(user) to_chat(user, SPAN_NOTICE("You deactivate the beacon."))
 
 /obj/machinery/power/supply_beacon/Destroy()
 	if(use_power)

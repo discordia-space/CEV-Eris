@@ -4,6 +4,7 @@
 /obj/item/clothing/head/collectable
 	name = "collectable hat"
 	desc = "A rare collectable hat."
+	price_tag = 1000
 
 /obj/item/clothing/head/collectable/petehat
 	name = "ultra rare hat"

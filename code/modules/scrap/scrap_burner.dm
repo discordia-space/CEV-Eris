@@ -2,14 +2,13 @@
 	name = T_BOARD("PACMAN-type generator")
 	build_path = /obj/machinery/power/port_gen/pacman/scrap
 	board_type = "machine"
-	origin_tech = list(TECH_DATA = 3, TECH_PLASMA = 5, TECH_ENGINEERING = 5)
+	origin_tech = list(TECH_DATA = 3, TECH_PLASMA = 3, TECH_ENGINEERING = 3)
 
-/datum/design/circuit/pacman
+/datum/design/research/circuit/pacman/scrap
 	name = "PACMAN-type generator"
-	id = "pacman"
-	req_tech = list(TECH_DATA = 3, TECH_POWER = 5, TECH_ENGINEERING = 5)
 	build_path = /obj/item/weapon/circuitboard/pacman/scrap
 	sort_string = "JBAAD"
+	starts_unlocked = TRUE // i don't even know what this scrap pacman thing is supposed to be
 
 /obj/machinery/power/port_gen/pacman/scrap
 	name = "Scrapman Portable Generator"

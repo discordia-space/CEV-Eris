@@ -24,14 +24,14 @@
 		return
 	if (emote == "pale")
 		src.uses--
-		source << SPAN_NOTICE("You feel a sudden surge of energy!")
+		to_chat(source, SPAN_NOTICE("You feel a sudden surge of energy!"))
 		source.SetStunned(0)
 		source.SetWeakened(0)
 		source.SetParalysis(0)
 
 /obj/item/weapon/implant/adrenalin/on_install(mob/living/source)
 	source.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
-	source << "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate."
+	to_chat(source, "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.")
 
 
 /obj/item/weapon/implantcase/adrenalin

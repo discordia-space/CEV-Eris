@@ -38,7 +38,6 @@
 #define MINERALS 8
 
 #define EMERGENCY 9
-#define GAS 10
 #define MAINTENANCE 11
 #define ELECTRICAL 12
 #define ROBOTICS 13
@@ -47,17 +46,7 @@
 #define GEAR_EVA 15
 
 
-// TODO: make niggas poor after implementation
 /var/list/economic_species_modifier = list(/datum/species/human	= 10)
-
-//---- The following corporations are friendly with NanoTrasen and loosely enable trade and travel:
-//Corporation NanoTrasen - Generalised / high tech research and plasma exploitation.
-//Corporation Vessel Contracting - Ship and station construction, materials research.
-//Corporation Osiris Atmospherics - Atmospherics machinery construction and chemical research.
-//Corporation Second Red Cross Society - 26th century Red Cross reborn as a dominating economic force in biomedical science (research and materials).
-//Corporation Blue Industries - High tech and high energy research, in particular into the mysteries of bluespace manipulation and power generation.
-//Corporation Kusanagi Robotics - Founded by robotics legend Kaito Kusanagi in the 2070s, they have been on the forefront of mechanical augmentation and robotics development ever since.
-//Corporation Free traders - Not so much a corporation as a loose coalition of spacers, Free Traders are a roving band of smugglers, traders and fringe elements following a rigid (if informal) code of loyalty and honour. Mistrusted by most corporations, they are tolerated because of their uncanny ability to smell out a profit.
 
 //---- Descriptions of destination types
 //Space stations can be purpose built for a number of different things, but generally require regular shipments of essential supplies.
@@ -125,8 +114,8 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 	department.account_pin = department_account.remote_access_pin
 
 	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = new(department.account_initial_balance, department_account.owner_name, "Account creation", "Biesel GalaxyNet Terminal #277")
-	T.date = "2nd April, 2555"
+	var/datum/transaction/T = new(department.account_initial_balance, department_account.owner_name, "Account creation", "Asters Guild Terminal #277")
+	T.date = "2 April, 2555"
 	T.time = "11:24"
 
 	//add the account

@@ -3,6 +3,11 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
+	var/list/map_templates = list()
+	var/dmm_suite/maploader = null
+	var/list/teleportlocs = list()
+	var/list/ghostteleportlocs = list()
+
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 
 	if(config.generate_asteroid)
@@ -28,11 +33,41 @@ SUBSYSTEM_DEF(mapping)
 	else
 		testing("Overmap generation disabled in config.")
 
+//	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
+	maploader = new()
+	load_map_templates()
+
+	// Generate cache of all areas in world. This cache allows world areas to be looked up on a list instead of being searched for EACH time
+	for(var/area/A in world)
+		GLOB.map_areas += A
+
+	// Do the same for teleport locs
+	for(var/area/AR in world)
+		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
+		if(teleportlocs.Find(AR.name)) continue
+		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
+		if (picked)
+			teleportlocs += AR.name
+			teleportlocs[AR.name] = AR
+
+	teleportlocs = sortAssoc(teleportlocs)
+
+	// And the same for ghost teleport locs
 
 
+	for(var/area/AR in world)
+		if(ghostteleportlocs.Find(AR.name)) continue
+		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
+		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
+		if (picked)
+			ghostteleportlocs += AR.name
+			ghostteleportlocs[AR.name] = AR
 
-	return ..()
+	ghostteleportlocs = sortAssoc(ghostteleportlocs)
 
+	return 1
 
 /datum/controller/subsystem/mapping/proc/build_overmap()
 	testing("Building overmap...")
@@ -67,4 +102,15 @@ SUBSYSTEM_DEF(mapping)
 		else
 			testing("Overmap failed to create events.")
 			return FALSE
+	return TRUE
+
+
+
+/datum/controller/subsystem/mapping/proc/load_map_templates()
+	for(var/T in subtypesof(/datum/map_template))
+		var/datum/map_template/template = T
+		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
+			continue
+		template = new T()
+		map_templates[template.name] = template
 	return TRUE

@@ -18,7 +18,7 @@
 	..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	if(w_class < ITEM_SIZE_LARGE)
+	if(w_class < ITEM_SIZE_BULKY)
 		icon_state = "gift[w_class]"
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
@@ -88,30 +88,30 @@
 	var/size = 3.0
 	var/obj/item/gift = null
 	item_state = "gift"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 
 /obj/item/weapon/gift/attack_self(mob/user as mob)
 	user.drop_item()
-	if(src.gift && src.gift in src.contents)
+	if(src.gift && (src.gift in src.contents))
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
 	else
-		user << SPAN_WARNING("The gift was empty!")
+		to_chat(user, SPAN_WARNING("The gift was empty!"))
 	qdel(src)
 
 /obj/effect/spresent/relaymove(mob/user as mob)
 	if (user.stat)
 		return
-	user << SPAN_WARNING("You can't move.")
+	to_chat(user, SPAN_WARNING("You can't move."))
 
 /obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
 	if (!istype(W, /obj/item/weapon/tool/wirecutters))
-		user << SPAN_WARNING("I need wirecutters for that.")
+		to_chat(user, SPAN_WARNING("I need wirecutters for that."))
 		return
 
-	user << SPAN_NOTICE("You cut open the present.")
+	to_chat(user, SPAN_NOTICE("You cut open the present."))
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.forceMove(loc)
@@ -135,17 +135,18 @@
 	desc = "You can use this to wrap items in."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrap_paper"
+	matter = list(MATERIAL_BIOMATTER = 4)
 	var/amount = 20.0
 
 /obj/item/weapon/wrapping_paper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
-		user << SPAN_WARNING("You MUST put the paper on a table!")
-	if (W.w_class < ITEM_SIZE_LARGE)
+		to_chat(user, SPAN_WARNING("You MUST put the paper on a table!"))
+	if (W.w_class < ITEM_SIZE_BULKY)
 		if ((istype(user.l_hand, /obj/item/weapon/tool/wirecutters) || istype(user.r_hand, /obj/item/weapon/tool/wirecutters)))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				user << SPAN_WARNING("You need more paper!")
+				to_chat(user, SPAN_WARNING("You need more paper!"))
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
@@ -167,15 +168,15 @@
 				qdel(src)
 				return
 		else
-			user << SPAN_WARNING("You need scissors!")
+			to_chat(user, SPAN_WARNING("You need scissors!"))
 	else
-		user << SPAN_WARNING("The object is FAR too large!")
+		to_chat(user, SPAN_WARNING("The object is FAR too large!"))
 	return
 
 
 /obj/item/weapon/wrapping_paper/examine(mob/user)
 	if(..(user, 1))
-		user << text("There is about [] square units of paper left!", src.amount)
+		to_chat(user, text("There is about [] square units of paper left!", src.amount))
 
 /obj/item/weapon/wrapping_paper/attack(mob/target as mob, mob/user as mob)
 	if (!ishuman(target))
@@ -198,6 +199,6 @@
 			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
 
 		else
-			user << SPAN_WARNING("You need more paper.")
+			to_chat(user, SPAN_WARNING("You need more paper."))
 	else
-		user << "They are moving around too much. A straightjacket would help."
+		to_chat(user, "They are moving around too much. A straightjacket would help.")

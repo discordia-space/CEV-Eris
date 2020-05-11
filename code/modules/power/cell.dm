@@ -5,7 +5,7 @@
 /obj/item/weapon/cell //Basic type of the cells, should't be used by itself
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/power_cells.dmi'
 	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
@@ -22,17 +22,15 @@
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
+	var/autorecharge_rate = 0.03
 	var/recharge_time = 4 //How often nuclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
 
-/obj/item/weapon/cell/New()
-	..()
-	charge = maxcharge
-	update_icon()
-
 /obj/item/weapon/cell/Initialize()
 	. = ..()
+	charge = maxcharge
+	update_icon()
 	if(autorecharging)
 		START_PROCESSING(SSobj, src)
 
@@ -40,12 +38,19 @@
 	charge_tick++
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
-	give(maxcharge * 0.03)
+	give(maxcharge * autorecharge_rate)
+
+	// If installed in a gun, update gun icon to reflect new charge level.
+	if(istype(loc, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/I = loc
+		I.update_icon()
+
 	return 1
 
 //Newly manufactured cells start off empty. You can't create energy
 /obj/item/weapon/cell/Created()
 	charge = 0
+	update_icon()
 
 /obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 
@@ -78,7 +83,7 @@
 
 	overlays.Cut()
 	if (charge_status != null)
-		overlays += image('icons/obj/power.dmi', "[icon_state]_[charge_status]")
+		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
 
 	last_charge_status = charge_status
 
@@ -128,17 +133,15 @@
 	if(!..(user,2))
 		return
 
-	if(maxcharge <= 2500)
-		user << "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
-	else
-		user << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
+	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
+	to_chat(user, "The charge meter reads [round(src.percent() )]%.")
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
 
-		user << "You inject the solution into the power cell."
+		to_chat(user, "You inject the solution into the power cell.")
 
 		if(S.reagents.has_reagent("plasma", 5))
 
@@ -173,9 +176,9 @@
 	log_admin("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
 	message_admins("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
 
-	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-
 	qdel(src)
+
+	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
 /obj/item/weapon/cell/proc/corrupt()
 	charge /= 2
@@ -215,31 +218,33 @@
 				corrupt()
 	return
 
+// Calculation of cell shock damage
+// Keep in mind that airlocks, the most common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage
+// Also, even the most common gloves and boots have siemens_coefficent < 1, offering a degree of shock protection
 /obj/item/weapon/cell/proc/get_electrocute_damage()
 	switch (charge)
-/*		if (9000 to INFINITY)
-			return min(rand(90,150),rand(90,150))
-		if (2500 to 9000-1)
-			return min(rand(70,145),rand(70,145))
-		if (1750 to 2500-1)
-			return min(rand(35,110),rand(35,110))
-		if (1500 to 1750-1)
-			return min(rand(30,100),rand(30,100))
-		if (750 to 1500-1)
-			return min(rand(25,90),rand(25,90))
-		if (250 to 750-1)
-			return min(rand(20,80),rand(20,80))
-		if (100 to 250-1)
-			return min(rand(20,65),rand(20,65))*/
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000-1)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000-1)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000-1)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000-1)
+		if (40000 to INFINITY) // Here in case some supercharged superscience cells pop up
+			return min(rand(80,180),rand(80,180))
+		if (20000 to 40000) // Limit for L-class - only reached by rare Robustcell-X at full charge
+			return min(rand(60,160),rand(60,160))
+		if (15000 to 20000) // High grade L-class
+			return min(rand(50,140),rand(50,140))
+		if (10000 to 15000)
+			return min(rand(40,120),rand(40,120))
+		if (5000 to 10000) // Default APC cell that's fully charged
+			return min(rand(25,60),rand(25,60))
+		if (1000 to 5000) // Low grade L-class, high grade M-class, default APC cell that's not fully charged
+			return min(rand(20,40),rand(20,40))
+		if (500 to 1000) // Usual M-class
+			return min(rand(15,25),rand(15,25))
+		if (250 to 500) // Limit for S-class
 			return min(rand(10,20),rand(10,20))
+		if (100 to 250) // Usual S-class
+			return min(rand(5,15),rand(5,15))
+		if (10 to 100) // Low S-class
+			return min(rand(1,10),rand(1,10))
 		else
 			return 0
+
+/obj/item/weapon/cell/get_cell()
+	return src

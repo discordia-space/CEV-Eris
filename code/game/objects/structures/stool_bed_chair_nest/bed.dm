@@ -37,6 +37,13 @@
 /obj/structure/bed/get_material()
 	return material
 
+/obj/structure/bed/get_matter()
+	. = ..()
+	if(material)
+		LAZYAPLUS(., material.name, 5)
+	if(padding_material)
+		LAZYAPLUS(., padding_material.name, 1)
+
 // Reuse the cache/code from stools, todo maybe unify.
 /obj/structure/bed/update_icon()
 	// Prep icon.
@@ -107,7 +114,7 @@
 		dismantle()
 	else if(istype(W,/obj/item/stack))
 		if(padding_material)
-			user << "\The [src] is already padded."
+			to_chat(user, "\The [src] is already padded.")
 			return
 		var/obj/item/stack/C = W
 		if(C.get_amount() < 1) // How??
@@ -122,21 +129,21 @@
 			if(M.material && (M.material.flags & MATERIAL_PADDING))
 				padding_type = "[M.material.name]"
 		if(!padding_type)
-			user << "You cannot pad \the [src] with that."
+			to_chat(user, "You cannot pad \the [src] with that.")
 			return
 		C.use(1)
 		if(!istype(src.loc, /turf))
 			user.drop_from_inventory(src)
 			src.loc = get_turf(src)
-		user << "You add padding to \the [src]."
+		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
 
 	else if (W.has_quality(QUALITY_WIRE_CUTTING))
 		if(!padding_material)
-			user << "\The [src] has no padding to remove."
+			to_chat(user, "\The [src] has no padding to remove.")
 			return
-		user << "You remove the padding from \the [src]."
+		to_chat(user, "You remove the padding from \the [src].")
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		remove_padding()
 	else if(istype(W, /obj/item/weapon/grab))
@@ -190,10 +197,7 @@
 	update_icon()
 
 /obj/structure/bed/proc/dismantle()
-	if(material)
-		material.place_sheet(get_turf(src))
-	if(padding_material)
-		padding_material.place_sheet(get_turf(src))
+	drop_materials(drop_location())
 	qdel(src)
 
 /obj/structure/bed/psych
@@ -203,17 +207,17 @@
 	base_icon = "psychbed"
 
 /obj/structure/bed/psych/New(var/newloc)
-	..(newloc,"wood","leather")
+	..(newloc, MATERIAL_WOOD, MATERIAL_LEATHER)
 
 /obj/structure/bed/padded/New(var/newloc)
-	..(newloc,MATERIAL_PLASTIC,"cotton")
+	..(newloc, MATERIAL_PLASTIC, "cotton")
 
 /obj/structure/bed/alien
 	name = "resting contraption"
 	desc = "This looks similar to contraptions from earth. Could aliens be stealing our technology?"
 
 /obj/structure/bed/alien/New(var/newloc)
-	..(newloc,"resin")
+	..(newloc, MATERIAL_RESIN)
 
 /*
  * Roller beds
@@ -301,14 +305,14 @@
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
 	if(!held.len)
-		user << SPAN_NOTICE("The rack is empty.")
+		to_chat(user, SPAN_NOTICE("The rack is empty."))
 		return
 
 	if (!isturf(user.loc) || (locate(/obj/structure/bed/roller) in user.loc))
 		to_chat(user, SPAN_WARNING("You can't deploy that here!"))
 		return
 
-	user << SPAN_NOTICE("You deploy the roller bed.")
+	to_chat(user, SPAN_NOTICE("You deploy the roller bed."))
 	var/obj/item/roller/r = pick_n_take(held)
 	r.forceMove(user.loc)
 	r.deploy(user)

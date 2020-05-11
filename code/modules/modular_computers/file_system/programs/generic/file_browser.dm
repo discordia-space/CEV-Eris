@@ -1,11 +1,11 @@
 /datum/computer_file/program/filemanager
 	filename = "filemanager"
-	filedesc = "NTOS File Manager"
+	filedesc = "File Manager"
 	extended_desc = "This program allows management of files."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	program_menu_icon = "folder-collapsed"
-	size = 8
+	size = 6
 	requires_ntnet = 0
 	available_on_ntnet = 0
 	undeletable = 1
@@ -23,7 +23,7 @@
 		open_file = href_list["PRG_openfile"]
 	if(href_list["PRG_newtextfile"])
 		. = 1
-		var/newname = sanitize(input_utf8(usr, "Enter file name or leave blank to cancel:", "File rename"))
+		var/newname = sanitize(input(usr, "Enter file name or leave blank to cancel:", "File rename"))
 		if(!newname)
 			return 1
 		var/obj/item/weapon/computer_hardware/hard_drive/HDD = computer.hard_drive
@@ -73,7 +73,7 @@
 		var/datum/computer_file/file = HDD.find_file_by_name(href_list["PRG_rename"])
 		if(!file || !istype(file))
 			return 1
-		var/newname = sanitize(input_utf8(usr, "Enter new file name:", "File rename", file.filename))
+		var/newname = sanitize(input(usr, "Enter new file name:", "File rename", file.filename))
 		if(file && newname)
 			file.filename = newname
 	if(href_list["PRG_edit"])
@@ -92,7 +92,7 @@
 		var/oldtext = html_decode(F.stored_data)
 		oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-		var/newtext = sanitize(replacetext(input_utf8(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+		var/newtext = sanitize(replacetext(input(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 		if(!newtext)
 			return
 
@@ -117,10 +117,10 @@
 		var/datum/computer_file/data/F = HDD.find_file_by_name(open_file)
 		if(!F || !istype(F))
 			return 1
-		if(!computer.nano_printer)
+		if(!computer.printer)
 			error = "Missing Hardware: Your computer does not have required hardware to complete this operation."
 			return 1
-		if(!computer.nano_printer.print_text(pencode2html(F.stored_data)))
+		if(!computer.printer.print_text(pencode2html(F.stored_data)))
 			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
 			return 1
 	if(href_list["PRG_copytousb"])
@@ -149,62 +149,47 @@
 		SSnano.update_uis(NM)
 
 /datum/nano_module/program/computer_filemanager
-	name = "NTOS File Manager"
+	name = "File Manager"
 
-/datum/nano_module/program/computer_filemanager/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_filemanager/ui_data()
 	var/list/data = host.initial_data()
+
 	var/datum/computer_file/program/filemanager/PRG
 	PRG = program
 
-	var/obj/item/weapon/computer_hardware/hard_drive/HDD
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/RHDD
 	if(PRG.error)
 		data["error"] = PRG.error
-	if(PRG.open_file)
-		var/datum/computer_file/data/file
 
-		if(!PRG.computer || !PRG.computer.hard_drive)
-			data["error"] = "I/O ERROR: Unable to access hard drive."
-		else
-			HDD = PRG.computer.hard_drive
-			file = HDD.find_file_by_name(PRG.open_file)
+	if(!PRG.computer || !PRG.computer.hard_drive)
+		data["error"] = "I/O ERROR: Unable to access hard drive."
+
+	else
+		if(PRG.computer.hard_drive)
+			data["internal_disk"] = PRG.computer.hard_drive.ui_data()
+
+		if(PRG.computer.portable_drive)
+			data["portable_disk"] = PRG.computer.portable_drive.ui_data()
+
+		if(PRG.open_file)
+			var/datum/computer_file/data/file
+
+			file = PRG.computer.hard_drive.find_file_by_name(PRG.open_file)
 			if(file.filetype == "AUD")
 				data["error"] = "Software error: Please use a dedicated Audio Player program to read audio files."
 			else if(!istype(file))
 				data["error"] = "I/O ERROR: Unable to open file."
 			else
 				data["filedata"] = pencode2html(file.stored_data)
-				data["filename"] = cyrillic_to_unicode("[file.filename].[file.filetype]")
-	else
-		if(!PRG.computer || !PRG.computer.hard_drive)
-			data["error"] = "I/O ERROR: Unable to access hard drive."
-		else
-			HDD = PRG.computer.hard_drive
-			RHDD = PRG.computer.portable_drive
-			var/list/files[0]
-			for(var/datum/computer_file/F in HDD.stored_files)
-				files.Add(list(list(
-					"name" = cyrillic_to_unicode(F.filename),
-					"type" = F.filetype,
-					"size" = F.size,
-					"undeletable" = F.undeletable
-				)))
-			data["files"] = files
-			if(RHDD)
-				data["usbconnected"] = 1
-				var/list/usbfiles[0]
-				for(var/datum/computer_file/F in RHDD.stored_files)
-					usbfiles.Add(list(list(
-						"name" = cyrillic_to_unicode(F.filename),
-						"type" = F.filetype,
-						"size" = F.size,
-						"undeletable" = F.undeletable
-					)))
-				data["usbfiles"] = usbfiles
+				data["filename"] = "[file.filename].[file.filetype]"
+
+	return data
+
+/datum/nano_module/program/computer_filemanager/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+	var/list/data = ui_data()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "file_manager.tmpl", "NTOS File Manager", 575, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_file_manager.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

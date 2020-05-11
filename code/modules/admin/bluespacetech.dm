@@ -90,7 +90,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	var/mob/original_body = null
 
 /mob/living/carbon/human/bst/can_inject(var/mob/user, var/error_msg, var/target_zone)
-	user << span("alert", "The [src] disarms you before you can inject them.")
+	to_chat(user, span("alert", "The [src] disarms you before you can inject them."))
 	user.drop_item()
 	return FALSE
 
@@ -106,7 +106,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	spawn(10)
 		qdel(src)
 	if(key)
-
 		var/mob/observer/ghost/ghost = ghostize(TRUE)
 		ghost.name = "[ghost.key] BSTech"
 		ghost.real_name = "[ghost.key] BSTech"
@@ -120,10 +119,10 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 	if (fall_override)
 		fall_override = FALSE
-		src << SPAN_NOTICE("You will now fall normally.")
+		to_chat(src, SPAN_NOTICE("You will now fall normally."))
 	else
 		fall_override = TRUE
-		src << SPAN_NOTICE("You will no longer fall.")
+		to_chat(src, SPAN_NOTICE("You will no longer fall."))
 
 /mob/living/carbon/human/bst/verb/bstwalk()
 	set name = "Ruin Everything"
@@ -132,11 +131,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	set popup_menu = 0
 
 	if(!HasMovementHandler(/datum/movement_handler/mob/incorporeal))
-		src << SPAN_NOTICE("You will now phase through solid matter.")
+		to_chat(src, SPAN_NOTICE("You will now phase through solid matter."))
 		incorporeal_move = TRUE
 		ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
 	else
-		src << SPAN_NOTICE("You will no-longer phase through solid matter.")
+		to_chat(src, SPAN_NOTICE("You will no-longer phase through solid matter."))
 		incorporeal_move = FALSE
 		RemoveMovementHandler(/datum/movement_handler/mob/incorporeal)
 
@@ -169,9 +168,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	set category = "BST"
 
 	status_flags ^= GODMODE
-	src << SPAN_NOTICE("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
+	to_chat(src, SPAN_NOTICE("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
 
-	src << span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]")
+	to_chat(src, span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,7 +191,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -215,7 +214,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -230,7 +229,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -259,13 +258,13 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 			vision_flags = FALSE
 			see_invisible = -1
 
-	usr << "<span class='notice'>\The [src]'s vision mode is now <b>[mode]</b>.</span>"
+	to_chat(usr, "<span class='notice'>\The [src]'s vision mode is now <b>[mode]</b>.</span>")
 
 /obj/item/clothing/glasses/sunglasses/bst/attack_hand()
 	if(!usr)
 		return
 	if(!isbst(usr))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -280,7 +279,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -298,14 +297,15 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		usr << span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist.")
+		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
 		return
 	else
 		..()
 
 /obj/item/weapon/storage/belt/utility/full/bst
+	storage_slots = 14
 
-/obj/item/weapon/storage/belt/utility/full/bst/New()
+/obj/item/weapon/storage/belt/utility/full/bst/populate_contents()
 	..()
 	new /obj/item/weapon/tool/multitool(src)
 	new /obj/item/device/t_scanner(src)

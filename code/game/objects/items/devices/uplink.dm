@@ -19,10 +19,14 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/datum/mind/uplink_owner = null
 	var/used_TC = 0
 
+	var/list/owner_roles = new
+
 
 	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per minute.
 	//The total uses is only increased when this is a whole number
 	var/gain_progress = 0.0
+
+	var/bsdm_time = 0
 
 /obj/item/device/uplink/nano_host()
 	return loc
@@ -110,13 +114,15 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /*
 	NANO UI FOR UPLINK WOOP WOOP
 */
-/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/title = "Remote Uplink"
 	var/data[0]
 
 	data["welcome"] = welcome
 	data["crystals"] = uses
 	data["menu"] = nanoui_menu
+	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT)\
+	                                     : !!length(owner_roles & ROLES_CONTRACT)
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -160,6 +166,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	return 1
 
 /obj/item/device/uplink/hidden/proc/update_nano_data()
+	nanoui_data["menu"] = nanoui_menu
 	if(nanoui_menu == 0)
 		var/categories[0]
 		for(var/datum/uplink_category/category in uplink.categories)
@@ -172,7 +179,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 			if(item.can_view(src))
 				var/cost = item.cost(uses)
-				if(!cost) cost = "???"
+				if(cost == 0)
+					cost = "Free"
+				else if(!cost)
+					cost = "???"
 				items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
 
 		nanoui_data["items"] = items
@@ -189,17 +199,33 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				nanoui_data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
 								 // We trade off being able to automatically add shit for more control over what gets passed to json
 								 // and if it's sanitized for html.
-				nanoui_data["exploit"]["nanoui_exploit_record"] = rhtml_encode(L.fields["exploit_record"])                         		// Change stuff into html
+				nanoui_data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
 				nanoui_data["exploit"]["nanoui_exploit_record"] = replacetext(nanoui_data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
-				nanoui_data["exploit"]["name"] =  rhtml_encode(L.fields["name"])
-				nanoui_data["exploit"]["sex"] =  rhtml_encode(L.fields["sex"])
-				nanoui_data["exploit"]["age"] =  rhtml_encode(L.fields["age"])
-				nanoui_data["exploit"]["species"] =  rhtml_encode(L.fields["species"])
-				nanoui_data["exploit"]["rank"] =  rhtml_encode(L.fields["rank"])
-				nanoui_data["exploit"]["fingerprint"] =  rhtml_encode(L.fields["fingerprint"])
+				nanoui_data["exploit"]["name"] =  html_encode(L.fields["name"])
+				nanoui_data["exploit"]["sex"] =  html_encode(L.fields["sex"])
+				nanoui_data["exploit"]["age"] =  html_encode(L.fields["age"])
+				nanoui_data["exploit"]["species"] =  html_encode(L.fields["species"])
+				nanoui_data["exploit"]["rank"] =  html_encode(L.fields["rank"])
+				nanoui_data["exploit"]["fingerprint"] =  html_encode(L.fields["fingerprint"])
 
 				nanoui_data["exploit_exists"] = 1
 				break
+	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT) : !!length(owner_roles & ROLES_CONTRACT)))
+		var/list/available_contracts = list()
+		var/list/completed_contracts = list()
+		for(var/datum/antag_contract/C in GLOB.all_antag_contracts)
+			var/list/entry = list(list(
+				"name" = C.name,
+				"desc" = C.desc,
+				"reward" = C.reward,
+				"status" = C.completed ? "Fulfilled" : "Available"
+			))
+			if(!C.completed)
+				available_contracts.Add(entry)
+			else
+				completed_contracts.Add(entry)
+		nanoui_data["available_contracts"] = available_contracts
+		nanoui_data["completed_contracts"] = completed_contracts
 
 // I placed this here because of how relevant it is.
 // You place this in your uplinkable item to check if an uplink is active or not.
@@ -258,12 +284,18 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/telecrystals = 100
 	density = TRUE
 	anchored = TRUE
+	var/owner_roles //Can be a list of roles or a single role
 
 /obj/structure/uplink/New()
 	uplink = new(src, null, telecrystals)
 	uplink.update_nano_data()
 	uplink.emplaced = TRUE
+	if(owner_roles)
+		uplink.owner_roles |= owner_roles
 	..()
 
 /obj/structure/uplink/attack_hand(var/mob/user)
 	uplink.trigger(user)
+
+/obj/structure/uplink/mercenary
+	owner_roles = ROLE_MERCENARY

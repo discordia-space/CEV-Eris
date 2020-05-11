@@ -1,16 +1,16 @@
 /obj/structure/girder
+	name = "wall grider"
 	icon_state = "girder"
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_HUGE
+	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
 	var/health = 150
 	var/cover = 50 //how much cover the girder provides against projectiles.
 	var/material/reinf_material
 	var/reinforcing = 0
 	var/resistance = RESISTANCE_TOUGH
-	var/dismantle_materials_count = 5
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
@@ -20,9 +20,16 @@
 
 //Low girders are used to build low walls
 /obj/structure/girder/low
+	name = "low wall grider"
+	matter = list(MATERIAL_STEEL = 3)
 	health = 120
 	cover = 25 //how much cover the girder provides against projectiles.
-	dismantle_materials_count = 3
+
+//Used in recycling or deconstruction
+/obj/structure/girder/get_matter()
+	. = ..()
+	if(reinf_material)
+		.[reinf_material.name] = 2
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)
@@ -82,7 +89,7 @@
 	var/list/usable_qualities = list()
 	if(state == 0 && ((anchored && !reinf_material) || !anchored))
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
-	if(state == 2 || (anchored && !reinf_material))
+	if(state == 2 || (anchored && reinforcing && !reinf_material))
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(state == 0 && anchored)
 		usable_qualities.Add(QUALITY_PRYING)
@@ -95,24 +102,24 @@
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0)
 				if(anchored && !reinf_material)
-					user << SPAN_NOTICE("You start disassembling the girder...")
+					to_chat(user, SPAN_NOTICE("You start disassembling the girder..."))
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						user << SPAN_NOTICE("You dissasembled the girder!")
+						to_chat(user, SPAN_NOTICE("You dissasembled the girder!"))
 						dismantle()
 						return
 				if(!anchored)
-					user << SPAN_NOTICE("You start securing the girder...")
+					to_chat(user, SPAN_NOTICE("You start securing the girder..."))
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-						user << SPAN_NOTICE("You secured the girder!")
+						to_chat(user, SPAN_NOTICE("You secured the girder!"))
 						reset_girder()
 						return
 			return
 
 		if(QUALITY_PRYING)
 			if(state == 0 && anchored)
-				user << SPAN_NOTICE("You start dislodging the girder...")
+				to_chat(user, SPAN_NOTICE("You start dislodging the girder..."))
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You dislodged the girder!")
+					to_chat(user, SPAN_NOTICE("You dislodged the girder!"))
 					icon_state = "displaced"
 					anchored = 0
 					health = 50
@@ -122,10 +129,10 @@
 
 		if(QUALITY_WIRE_CUTTING)
 			if(state == 1)
-				user << SPAN_NOTICE("You start removing support struts...")
+				to_chat(user, SPAN_NOTICE("You start removing support struts..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You removed the support struts!")
-					reinf_material.place_dismantled_product(get_turf(src))
+					to_chat(user, SPAN_NOTICE("You removed the support struts!"))
+					reinf_material.place_sheet(drop_location(), amount=2)
 					reinf_material = null
 					reset_girder()
 					return
@@ -133,20 +140,34 @@
 
 		if(QUALITY_SCREW_DRIVING)
 			if(state == 2)
-				user << SPAN_NOTICE("Now unsecuring support struts...")
+				to_chat(user, SPAN_NOTICE("You start unsecuring support struts..."))
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You unsecured the support struts!")
+					to_chat(user, SPAN_NOTICE("You unsecured the support struts!"))
 					state = 1
 					return
-			if(anchored && !reinf_material)
+			if(anchored && reinforcing && !reinf_material)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					reinforcing = !reinforcing
-					user << SPAN_NOTICE("The [src] can now be [reinforcing? "reinforced" : "constructed"]!")
+					reinforcing = FALSE
+					new /obj/item/stack/rods(drop_location(), 2)
+					to_chat(user, SPAN_NOTICE("[src] can now be constructed!"))
 					return
 			return
 
 		if(ABORT_CHECK)
 			return
+
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/S = I
+		if(anchored && !reinforcing)
+			if(S.get_amount() < 2)
+				to_chat(user, SPAN_NOTICE("There isn't enough material here to start reinforcing the girder."))
+				return
+
+			to_chat(user, SPAN_NOTICE("You start to prepare [src] for reinforcing with [S]..."))
+			if (!do_after(user, 40, src) || !S.use(2))
+				return
+			to_chat(user, SPAN_NOTICE("You prepare to reinforce [src]."))
+			reinforcing = TRUE
 
 	if(istype(I, /obj/item/stack/material))
 		if(reinforcing && !reinf_material)
@@ -161,7 +182,7 @@
 
 /obj/structure/girder/proc/construct_wall(obj/item/stack/material/S, mob/user)
 	if(S.get_amount() < 3)
-		user << SPAN_NOTICE("There isn't enough material here to construct a wall.")
+		to_chat(user, SPAN_NOTICE("There isn't enough material here to construct a wall."))
 		return 0
 
 	var/material/M = name_to_material[S.default_type]
@@ -172,7 +193,7 @@
 	add_hiddenprint(usr)
 
 	if(M.integrity < 50)
-		user << SPAN_NOTICE("This material is too soft for use in wall construction.")
+		to_chat(user, SPAN_NOTICE("This material is too soft for use in wall construction."))
 		return 0
 
 
@@ -182,20 +203,20 @@
 	//In addtion we never made sprites for fake walls so it'd look awful anyway.
 	//TODO in future: Re-enable this feature after the underlying problem is solved
 	if (!anchored)
-		user << SPAN_NOTICE("The girders must be anchored to build a wall here.")
+		to_chat(user, SPAN_NOTICE("The girders must be anchored to build a wall here."))
 		return
 
-	user << SPAN_NOTICE("You begin adding the plating...")
+	to_chat(user, SPAN_NOTICE("You begin adding the plating..."))
 
 	if(!do_after(user,WORKTIME_SLOW,src) || !S.use(3))
 		return 1 //once we've gotten this far don't call parent attackby()
 
 	if(anchored)
-		user << SPAN_NOTICE("You added the plating!")
+		to_chat(user, SPAN_NOTICE("You added the plating!"))
 	else
-		user << SPAN_NOTICE("The girders must be anchored to build a wall here.")
+		to_chat(user, SPAN_NOTICE("The girders must be anchored to build a wall here."))
 		return
-		//user << SPAN_NOTICE("You create a false wall! Push on it to open or close the passage.")
+		//user, SPAN_NOTICE("You create a false wall! Push on it to open or close the passage.")
 		//wall_fake = 1
 
 	var/turf/Tsrc = get_turf(src)
@@ -210,7 +231,7 @@
 
 /obj/structure/girder/low/construct_wall(obj/item/stack/material/S, mob/user)
 	if(S.get_amount() < 1)
-		user << SPAN_NOTICE("There isn't enough material here to construct a low wall.")
+		to_chat(user, SPAN_NOTICE("There isn't enough material here to construct a low wall."))
 		return 0
 
 	var/material/M = name_to_material[S.default_type]
@@ -218,11 +239,11 @@
 		return 0
 
 	if (!istype(M, /material/steel))
-		user << SPAN_NOTICE("Low walls can only be made of steel.")
+		to_chat(user, SPAN_NOTICE("Low walls can only be made of steel."))
 		return 0
 	add_hiddenprint(usr)
 
-	user << SPAN_NOTICE("You begin adding the plating...")
+	to_chat(user, SPAN_NOTICE("You begin adding the plating..."))
 
 	if(!do_after(user,WORKTIME_NORMAL,src) || !S.use(1))
 		return 1 //once we've gotten this far don't call parent attackby()
@@ -236,22 +257,22 @@
 
 /obj/structure/girder/proc/reinforce_with_material(obj/item/stack/material/S, mob/user) //if the verb is removed this can be renamed.
 	if(reinf_material)
-		user << SPAN_NOTICE("\The [src] is already reinforced.")
+		to_chat(user, SPAN_NOTICE("\The [src] is already reinforced."))
 		return 0
 
 	if(S.get_amount() < 2)
-		user << SPAN_NOTICE("There isn't enough material here to reinforce the girder.")
+		to_chat(user, SPAN_NOTICE("There isn't enough material here to reinforce the girder."))
 		return 0
 
 	var/material/M = name_to_material[S.default_type]
 	if(!istype(M) || M.integrity < 50)
-		user << "You cannot reinforce \the [src] with that; it is too soft."
+		to_chat(user, "You cannot reinforce \the [src] with that; it is too soft.")
 		return 0
 
-	user << SPAN_NOTICE("Now reinforcing...")
+	to_chat(user, SPAN_NOTICE("You start reinforcing [src] with [S]..."))
 	if (!do_after(user, 40,src) || !S.use(2))
 		return 1 //don't call parent attackby() past this point
-	user << SPAN_NOTICE("You added reinforcement!")
+	to_chat(user, SPAN_NOTICE("You reinforce [src]!"))
 
 	reinf_material = M
 	reinforce_girder()
@@ -265,7 +286,7 @@
 	reinforcing = 0
 
 /obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/material/steel(src.loc, dismantle_materials_count)
+	drop_materials(drop_location())
 	qdel(src)
 
 /obj/structure/girder/attack_hand(mob/user as mob)

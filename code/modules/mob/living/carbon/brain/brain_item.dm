@@ -14,6 +14,7 @@
 	layer = ABOVE_MOB_LAYER
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
+	price_tag = 900
 	var/mob/living/carbon/brain/brainmob = null
 
 /obj/item/organ/internal/brain/xeno
@@ -35,7 +36,7 @@
 		brainmob = null
 	. = ..()
 
-/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/internal/brain/proc/transfer_identity(mob/living/carbon/H)
 	name = "\the [H]'s [initial(src.name)]"
 	brainmob = new(src)
 	brainmob.name = H.real_name
@@ -45,52 +46,46 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	brainmob << SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)].")
+	to_chat(brainmob, SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)]."))
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
 	..(user)
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		user << "You can feel the small spark of life still left in this one."
+		to_chat(user, "You can feel the small spark of life still left in this one.")
 	else
-		user << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
-/obj/item/organ/internal/brain/removed(mob/living/user)
+/obj/item/organ/internal/brain/removed_mob(mob/living/user)
 	name = "[owner.real_name]'s brain"
 
-	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+	if(!(owner.status_flags & REBUILDING_ORGANS))
+		var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+		if(borer)
+			borer.detatch() //Should remove borer if the brain is removed - RR
 
-	if(borer)
-		borer.detatch() //Should remove borer if the brain is removed - RR
-
-	var/obj/item/organ/internal/brain/B = src
-	if(istype(B) && istype(owner))
-		B.transfer_identity(owner)
-
+		transfer_identity(owner)
 	..()
 
-/obj/item/organ/internal/brain/replaced(var/mob/living/target)
-
-	if(target.key)
-		target.ghostize()
+/obj/item/organ/internal/brain/replaced_mob(mob/living/carbon/target)
+	..()
+	if(owner.key && !(owner.status_flags & REBUILDING_ORGANS))
+		owner.ghostize()
 
 	if(brainmob)
 		if(brainmob.mind)
-			brainmob.mind.transfer_to(target)
+			brainmob.mind.transfer_to(owner)
 		else
-			target.key = brainmob.key
-	..()
+			owner.key = brainmob.key
 
 /obj/item/organ/internal/brain/slime
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
-	robotic = 2
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
 
 /obj/item/organ/internal/brain/golem
 	name = "chem"
 	desc = "A tightly furled roll of paper, covered with indecipherable runes."
-	robotic = 2
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"

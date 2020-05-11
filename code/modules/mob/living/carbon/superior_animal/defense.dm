@@ -48,12 +48,12 @@
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					M << SPAN_NOTICE("You already grabbed [src].")
+					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
 					return
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				M << SPAN_NOTICE("You cannot grab [src], \he is buckled in!")
+				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G) //the grab will delete itself in New if affecting is anchored
 				return
 
@@ -194,6 +194,12 @@
 	if (!anim)
 		anim = 0
 
+	sleep(1)
+
+	for(var/obj/item/I in src)
+		drop_from_inventory(I)
+		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
+
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
 	. = ..(anim,do_gibs)
 
@@ -254,13 +260,16 @@
 	else
 		var/loc_temp = T0C
 		var/loc_pressure = 0
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
+/*
+		if(istype(loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
 			loc_temp =  M.return_temperature()
 			loc_pressure =  M.return_pressure()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
-			loc_pressure = loc:air_contents.return_pressure()
+*/
+		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
+			loc_temp = M.air_contents.temperature
+			loc_pressure = M.air_contents.return_pressure()
 		else
 			loc_temp = environment.temperature
 			loc_pressure = environment.return_pressure()

@@ -20,7 +20,7 @@
 		access_tox_storage, access_teleporter, access_sec_doors,
 		access_moebius, access_medical_equip, access_chemistry, access_virology, access_cmo, access_surgery, access_psychiatrist,
 		access_robotics, access_xenobiology, access_ai_upload, access_tech_storage, access_eva, access_external_airlocks,
-		access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network
+		access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network, access_research_equipment
 	)
 	ideal_character_age = 50
 
@@ -32,9 +32,11 @@
 
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
-							 ///datum/computer_file/program/aidiag,
-							 /datum/computer_file/program/camera_monitor,
-							 /datum/computer_file/program/reports)
+							///datum/computer_file/program/aidiag,
+							/datum/computer_file/program/signaller,
+							/datum/computer_file/program/camera_monitor,
+							/datum/computer_file/program/chem_catalog,
+							/datum/computer_file/program/reports)
 
 	description = "You are the head of the moebius research branch, tasked with directing shipboard research to new and profitable discoveries."
 
@@ -69,8 +71,10 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	//alt_titles = list("Moebius Xenobiologist")
 	outfit_type = /decl/hierarchy/outfit/job/science/scientist
 
+	software_on_spawn = list(/datum/computer_file/program/signaller, /datum/computer_file/program/chem_catalog)
+
 	access = list(
-		access_robotics, access_tox, access_tox_storage, access_moebius, access_xenobiology, access_xenoarch,
+		access_robotics, access_tox, access_tox_storage, access_moebius, access_xenobiology, access_xenoarch, access_research_equipment,
 		access_genetics
 	)
 
@@ -125,8 +129,10 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
 
 	access = list(
-		access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_moebius
+		access_robotics, access_tox, access_tox_storage, access_morgue, access_moebius, access_research_equipment
 	) //As a job that handles so many corpses, it makes sense for them to have morgue access.
+
+	software_on_spawn = list(/datum/computer_file/program/chem_catalog)
 
 	stat_modifiers = list(
 		STAT_MEC = 30,

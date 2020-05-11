@@ -32,19 +32,6 @@
 	var/heartbeat = 0
 	var/global/list/overlays_cache = null
 
-
-
-
-/*
-				if(HUDdatum.HUDneed[HUDelement.name]["icon"])
-					HUDelement.icon = HUDdatum.HUDneed[HUDelement.name]["icon"]
-				else
-					HUDelement.icon = HUDdatum.icon
-				HUDelement.screen_loc = HUDdatum.HUDneed[HUDelement.name]["loc"]
-*/
-
-
-
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
@@ -87,7 +74,6 @@
 
 		if(!client)
 			species.handle_npc(src)
-
 
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
@@ -174,7 +160,7 @@
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
-			src << "\red You have a seizure!"
+			to_chat(src, "\red You have a seizure!")
 			for(var/mob/O in viewers(src, null))
 				if(O == src)
 					continue
@@ -211,19 +197,19 @@
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
 			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				src << SPAN_WARNING("It becomes hard to see for some reason.")
+				to_chat(src, SPAN_WARNING("It becomes hard to see for some reason."))
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
-				src << SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!")
+				to_chat(src, SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!"))
 				drop_item()
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
 				if(prob(50))
-					src << SPAN_DANGER("You suddenly black out!")
+					to_chat(src, SPAN_DANGER("You suddenly black out!"))
 					Paralyse(10)
 				else if(!lying)
-					src << SPAN_DANGER("Your legs won't respond properly, you fall down!")
+					to_chat(src, SPAN_DANGER("Your legs won't respond properly, you fall down!"))
 					Weaken(10)
 
 
@@ -245,7 +231,7 @@
 			speech_problem_flag = 1
 			gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,100)
+	radiation = CLAMP(radiation,0,100)
 
 	if (radiation)
 		var/damage = 0
@@ -258,13 +244,13 @@
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				src << SPAN_WARNING("You feel weak.")
+				to_chat(src, SPAN_WARNING("You feel weak."))
 				Weaken(3)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == "Human") //apes go bald
 				if((h_style != "Bald" || f_style != "Shaved" ))
-					src << SPAN_WARNING("Your hair falls out.")
+					to_chat(src, SPAN_WARNING("Your hair falls out."))
 					h_style = "Bald"
 					f_style = "Shaved"
 					update_hair()
@@ -275,7 +261,7 @@
 			if(prob(5))
 				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 			if(prob(1))
-				src << SPAN_WARNING("You feel strange!")
+				to_chat(src, SPAN_WARNING("You feel strange!"))
 				adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 				emote("gasp")
 
@@ -374,11 +360,12 @@
 			bodytemperature -= temperature_loss
 	else
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
+		if(istype(loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
 			loc_temp =  M.return_temperature()
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
+			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
+			loc_temp = M.air_contents.temperature
 		else
 			loc_temp = environment.temperature
 
@@ -569,9 +556,12 @@
 		if(touching) touching.metabolize()
 		if(ingested) ingested.metabolize()
 		if(bloodstr) bloodstr.metabolize()
+		metabolism_effects.process()
 
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
+		if(!(CE_ALCOHOL in chem_effects))
+			stats.getPerk(/datum/perk/inspiration)?.deactivate()
 
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
@@ -628,27 +618,14 @@
 		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))
 			Paralyse(3)
 
-		if(hallucination)
-			if(hallucination >= 20)
-				if(prob(1))
-					fake_attack(src)
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
-/*				if(client && prob(5))
-					client.dir = pick(2,4,8)
-					spawn(rand(20,50))
-						client.dir = 1*/
+		if(hallucination_power)
+			handle_hallucinations()
 
-			hallucination = max(0, hallucination - 2)
-		else
-			for(var/atom/a in hallucinations)
-				qdel(a)
-
-			if(halloss >= species.total_health)
-				src << SPAN_WARNING("[species.halloss_message_self]")
-				src.visible_message("<B>[src]</B> [species.halloss_message].")
-				Paralyse(10)
-				setHalLoss(species.total_health-1)
+		if(halloss >= species.total_health)
+			to_chat(src, SPAN_WARNING("[species.halloss_message_self]"))
+			src.visible_message("<B>[src]</B> [species.halloss_message].")
+			Paralyse(10)
+			setHalLoss(species.total_health-1)
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -665,7 +642,7 @@
 				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
-			if( prob(2) && health && !hal_crit )
+			if( prob(2) && health)
 				spawn(0)
 					emote("snore")
 		//CONSCIOUS
@@ -755,7 +732,7 @@
 
 	// now handle what we see on our screen
 
-	var/obj/item/weapon/implant/core_implant/cruciform/C = get_cruciform() //ugh, we need more flexible hud
+	var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 	if(C)
 		var/datum/core_module/cruciform/neotheologyhud/NT_hud = C.get_module(/datum/core_module/cruciform/neotheologyhud)
 		if(NT_hud)
@@ -809,6 +786,8 @@
 
 	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH)))// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
+	else if(shock_resist)
+		shock_stage = min(shock_stage, 58)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
@@ -819,30 +798,32 @@
 		shock_stage = max(shock_stage-1, 0)
 		return
 
+	sanity.onShock(shock_stage)
+
 	if(shock_stage == 10)
-		src << "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
+		to_chat(src, "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>")
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 40)
-		src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
 		if (prob(2))
-			src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
 
 	if(shock_stage >= 80)
 		if (prob(5))
-			src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
 
 	if(shock_stage >= 120)
 		if (prob(2))
-			src << "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>"
+			to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
 			Paralyse(5)
 
 	if(shock_stage == 150)
@@ -969,8 +950,9 @@
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
 		if(mind && mind.antagonist.len != 0)
-			if(hud_icon_reference[mind.antagonist[1].role_text]) //only display the first antagonist role
-				holder.icon_state = hud_icon_reference[mind.antagonist[1].role_text]
+			var/datum/antagonist/antag = mind.antagonist[1]	//only display the first antagonist role
+			if(hud_icon_reference[antag.role_text]) 
+				holder.icon_state = hud_icon_reference[antag.role_text]
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
@@ -1010,6 +992,7 @@
 		bodytemperature += round(BODYTEMP_HEATING_MAX*(1-thermal_protection), 1)
 
 /mob/living/carbon/human/rejuvenate()
+	sanity.setLevel(sanity.max_level)
 	restore_blood()
 	..()
 

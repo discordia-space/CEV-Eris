@@ -66,7 +66,7 @@ var/list/portal_cache = list()
 	if (origin && Adjacent(origin))
 		var/dir = get_dir(origin, loc)
 		return get_step(T, dir)
-		
+
 /obj/effect/portal/proc/close()
 	qdel(src)
 
@@ -77,7 +77,9 @@ var/list/portal_cache = list()
 		return
 	if (istype(M, /obj/effect/sparks)) //sparks don't teleport
 		return
-	if (M.anchored && !istype(M, /obj/mecha))
+	if (istype(M, /obj/effect/effect/light)) //lights from flashlights too.
+		return
+	if (M.anchored && !istype(M, /mob/living/exosuit))
 		return
 	if (!( target ))
 		qdel(src)
@@ -165,5 +167,6 @@ var/list/portal_cache = list()
 	src.icon_state = "portal1"
 	if(istype(M, /mob/living))
 		var/mob/living/victim = M
+		//Portals ignore armor when messing you up, it's logical
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
 	do_teleport(M, get_destination(get_turf(M)), 1)

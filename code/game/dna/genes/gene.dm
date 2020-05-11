@@ -27,7 +27,7 @@
 * Is the gene active in this mob's DNA?
 */
 /datum/dna/gene/proc/is_active(var/mob/M)
-	return M.active_genes && type in M.active_genes
+	return M.active_genes && (type in M.active_genes)
 
 // Return 1 if we can activate.
 // HANDLE MUTCHK_FORCED HERE!
@@ -70,9 +70,8 @@
 *
 * @params M The subject.
 * @params g Gender (m or f)
-* @params fat Fat? (0 or 1)
 */
-/datum/dna/gene/proc/OnDrawUnderlays(var/mob/M, var/g, var/fat)
+/datum/dna/gene/proc/OnDrawUnderlays(var/mob/M, var/g)
 	return 0
 
 
@@ -113,10 +112,10 @@
 	M.mutations.Add(mutation)
 	if(activation_messages.len)
 		var/msg = pick(activation_messages)
-		M << SPAN_NOTICE("[msg]")
+		to_chat(M, SPAN_NOTICE("[msg]"))
 
 /datum/dna/gene/basic/deactivate(var/mob/M)
 	M.mutations.Remove(mutation)
 	if(deactivation_messages.len)
 		var/msg = pick(deactivation_messages)
-		M << SPAN_WARNING("[msg]")
+		to_chat(M, SPAN_WARNING("[msg]"))

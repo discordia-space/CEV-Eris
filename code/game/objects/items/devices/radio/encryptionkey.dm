@@ -11,7 +11,7 @@
 	var/translate_hive = 0
 	var/syndie = 0
 	var/list/channels = list()
-	matter = list(MATERIAL_STEEL = 1)
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 
 /obj/item/device/encryptionkey/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
@@ -46,10 +46,20 @@
 	icon_state = "med_cypherkey"
 	channels = list("Medical" = 1)
 
+/obj/item/device/encryptionkey/headset_church
+	name = "neotheology radio encryption key"
+	icon_state = "nt_cypherkey"
+	channels = list("NT Voice" = 1)
+
 /obj/item/device/encryptionkey/headset_sci
 	name = "moebius science radio encryption key"
 	icon_state = "sci_cypherkey"
 	channels = list("Science" = 1)
+
+/obj/item/device/encryptionkey/headset_moebius
+	name = "Moebius laboratories encryption key"
+	icon_state = "sci_cypherkey"
+	channels = list("Science" = 1, "Medical" = 1)
 
 /obj/item/device/encryptionkey/headset_com
 	name = "Eris command radio encryption key"
@@ -59,18 +69,23 @@
 /obj/item/device/encryptionkey/heads/captain
 	name = "Eris captain's encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0)
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "NT Voice" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0)
 
 /obj/item/device/encryptionkey/heads/ai_integrated
 	name = "ai integrated encryption key"
 	desc = "Integrated encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
 
 /obj/item/device/encryptionkey/heads/rd
 	name = "expedition overseer's encryption key"
 	icon_state = "rd_cypherkey"
 	channels = list("Science" = 1, "Command" = 1)
+
+/obj/item/device/encryptionkey/heads/moebius
+	name = "Moebius command encryption key"
+	icon_state = "rd_cypherkey"
+	channels = list("Science" = 1, "Medical" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/heads/hos
 	name = "Ironhammer commander's encryption key"
@@ -90,12 +105,17 @@
 /obj/item/device/encryptionkey/heads/hop
 	name = "First Officer's encryption key"
 	icon_state = "hop_cypherkey"
-	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0)
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "NT Voice" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Service" = 0)
 
 /obj/item/device/encryptionkey/heads/merchant
 	name = "Asters Merchant radio encryption key"
 	icon_state = "qm_cypherkey"
 	channels = list("Supply" = 1, "Command" = 1)
+
+/obj/item/device/encryptionkey/heads/preacher
+	name = "NeoTheology Preacher radio encryption key"
+	icon_state = "preach_cypherkey"
+	channels = list("NT Voice" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/headset_cargo
 	name = "Asters Guild radio encryption key"

@@ -4,21 +4,28 @@
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
-	armor = list(melee = 50, bullet = 35, laser = 35, energy = 30, bomb = 25, bio = 0, rad = 0)
+	armor = list(
+		melee = 25,
+		bullet = 15,
+		energy = 15,
+		bomb = 20,
+		bio = 75,
+		rad = 25
+	)
 	emp_protection = 10
 	slowdown = 0
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
 	offline_slowdown = 0
 	offline_vision_restriction = 0
+	drain = 2
 
 	chest_type = /obj/item/clothing/suit/space/rig/light
-	helm_type =  /obj/item/clothing/head/helmet/space/rig/light
+	helm_type =  /obj/item/clothing/head/space/rig/light
 	boot_type =  /obj/item/clothing/shoes/magboots/rig/light
 	glove_type = /obj/item/clothing/gloves/rig/light
 
 /obj/item/clothing/suit/space/rig/light
 	name = "suit"
-	breach_threshold = 18 //comparable to voidsuits
 
 /obj/item/clothing/gloves/rig/light
 	name = "gloves"
@@ -26,7 +33,7 @@
 /obj/item/clothing/shoes/magboots/rig/light
 	name = "shoes"
 
-/obj/item/clothing/head/helmet/space/rig/light
+/obj/item/clothing/head/space/rig/light
 	name = "hood"
 
 /obj/item/weapon/rig/light/hacker
@@ -75,7 +82,14 @@
 	suit_type = "ominous"
 	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
 	icon_state = "ninja_rig"
-	armor = list(melee = 65, bullet = 45, laser = 45, energy = 35, bomb = 25, bio = 100, rad = 30)
+	armor = list(
+		melee = 40,
+		bullet = 30,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 25
+	)
 	emp_protection = 40 //change this to 30 if too high.
 	slowdown = 0
 

@@ -96,8 +96,6 @@
 
 	return TRUE
 
-	return TRUE
-
 /obj/machinery/neotheology/cloner/proc/open_anim()
 	qdel(anim0)
 	anim0 = image(icon, "pod_opening0")
@@ -199,10 +197,8 @@
 
 		if(progress <= CLONING_DONE)
 			if(container)
-				if(container.biomass - biomass_consumption < 0)
+				if(!container.reagents.remove_reagent("biomatter", biomass_consumption))
 					stop()
-				else
-					container.biomass -= biomass_consumption
 			else
 				stop()
 
@@ -367,29 +363,29 @@
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/neotheology/biocan
 
-	var/biomass = 0
-	var/biomass_max = 600
+	var/biomass_capacity = 600
 
 
 /obj/machinery/neotheology/biomass_container/New()
 	..()
+	create_reagents(biomass_capacity)
 	if(SSticker.current_state != GAME_STATE_PLAYING)
-		biomass = 300
+		reagents.add_reagent("biomatter", 300)
 
 /obj/machinery/neotheology/biomass_container/RefreshParts()
 	var/T = 0
 	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
 		T += M.rating * 200
-	biomass_max = T
+	biomass_capacity = T
 
 /obj/machinery/neotheology/biomass_container/examine(mob/user)
 	if(!..(user, 2))
 		return
 
-	if(biomass == 0)
-		user << SPAN_NOTICE("It is empty.")
+	if(!reagents.has_reagent("biomatter"))
+		to_chat(user, SPAN_NOTICE("It is empty."))
 	else
-		user << SPAN_NOTICE("Filled to [biomass]/[biomass_max].")
+		to_chat(user, SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity]."))
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user as mob)
 
@@ -399,16 +395,38 @@
 	if(default_part_replacement(I, user))
 		return
 
-	for(var/type in BIOMASS_TYPES)
-		if(istype(I,type))
-			if(biomass >= biomass_max)
-				user << SPAN_NOTICE("\The [src] is full.")
-				return
-			user << SPAN_NOTICE("You put [I] into [src]'s load hatch.")
-			biomass += BIOMASS_TYPES[type]
-			user.drop_item()
-			qdel(I)
-	
+	if (istype(I, /obj/item/stack/material/biomatter))
+		var/obj/item/stack/material/biomatter/B = I
+		if (B.biomatter_in_sheet && B.amount)
+			var/sheets_amount_to_transphere = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
+			if(sheets_amount_to_transphere)
+				var/total_transphere_from_stack = 0
+				var/i = 1
+				while(i <= sheets_amount_to_transphere)
+					reagents.add_reagent("biomatter", B.biomatter_in_sheet)
+					total_transphere_from_stack += B.biomatter_in_sheet
+					i++
+				B.use(sheets_amount_to_transphere)
+				user.visible_message(
+									"[user.name] inserted \the [B.name]'s sheets in \the [name].",
+									"You inserted \the [B.name] in  (in amount: [sheets_amount_to_transphere]) \the [name].\
+									And after that you see how the counter on \the [name] is incremented by [total_transphere_from_stack]."
+									)
+				ping()
+			else
+				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transphere] in [name]"))
+			return
+		else
+			to_chat(user, SPAN_WARNING("\The [B.name] is exhausted and can't be melted to biomatter. "))
+
+	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container())
+		var/obj/item/weapon/reagent_containers/container = I
+		if(container.reagents.get_reagent_amount("biomatter") == container.reagents.total_volume)
+			container.reagents.trans_to_holder(reagents, container.amount_per_transfer_from_this)
+			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from \the [container] to \the [name]."))
+		else
+			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill \the [name]."))
+
 
 /obj/machinery/neotheology/biomass_container/update_icon()
 	overlays.Cut()
@@ -458,7 +476,7 @@
 		return
 
 	if(reading)
-		user << SPAN_WARNING("You try to pull the [implant], but it does not move.")
+		to_chat(user, SPAN_WARNING("You try to pull the [implant], but it does not move."))
 		return
 
 	user.put_in_active_hand(implant)
@@ -467,7 +485,7 @@
 	src.add_fingerprint(user)
 	update_icon()
 
-/obj/machinery/neotheology/reader/dismantle()
+/obj/machinery/neotheology/reader/on_deconstruction()
 	if(implant)
 		implant.forceMove(loc)
 		implant = null

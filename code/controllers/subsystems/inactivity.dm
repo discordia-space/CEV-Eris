@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(inactivity)
 	name = "Inactivity"
-	wait = 1 MINUTE
+	wait = 1 MINUTES
 	priority = SS_PRIORITY_INACTIVITY
 	var/tmp/list/client_list
 	var/number_kicked = 0
@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(inactivity)
 		client_list.len--
 		if(!C.holder && C.is_afk(config.kick_inactive MINUTES) && !isobserver(C.mob))
 			log_access("AFK: [key_name(C)]")
-			C << SPAN_WARNING("You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.")
+			to_chat(C, SPAN_WARNING("You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected."))
 			del(C) // Don't qdel, cannot override finalize_qdel behaviour for clients.
 			number_kicked++
 		else if (C.mob && C.mob.mind && C.mob.stat != DEAD)

@@ -14,7 +14,7 @@
 	if(!istype(O,/obj/item/weapon/virusdish)) return
 
 	if(dish)
-		user << "\The [src] is already loaded."
+		to_chat(user, "\The [src] is already loaded.")
 		return
 
 	dish = O
@@ -22,6 +22,10 @@
 	O.loc = src
 
 	user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
+
+// A special paper that we can scan with the science tool
+/obj/item/weapon/paper/virus_report
+	var/list/symptoms = list()
 
 /obj/machinery/disease2/diseaseanalyser/Process()
 	if(stat & (NOPOWER|BROKEN))
@@ -33,7 +37,7 @@
 			if (dish.virus2.addToDB())
 				ping("\The [src] pings, \"New pathogen added to data bank.\"")
 
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src.loc)
+			var/obj/item/weapon/paper/virus_report/P = new (src.loc)
 			P.name = "paper - [dish.virus2.name()]"
 
 			var/r = dish.virus2.get_info()
@@ -43,6 +47,8 @@
 				<hr>
 				<u>Additional Notes:</u>&nbsp;
 "}
+			for(var/datum/disease2/effectholder/symptom in dish.virus2.effects)
+				P.symptoms[symptom.effect.name] = symptom.effect.badness
 			dish.basic_info = dish.virus2.get_basic_info()
 			dish.info = r
 			dish.name = "[initial(dish.name)] ([dish.virus2.name()])"

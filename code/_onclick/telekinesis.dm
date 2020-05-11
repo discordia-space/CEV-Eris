@@ -67,7 +67,7 @@ var/const/tk_maxrange = 15
 	icon_state = "2"
 	flags = NOBLUDGEON
 	//item_state = null
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_COLOSSAL
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 
@@ -113,7 +113,7 @@ var/const/tk_maxrange = 15
 	if (d == 0)
 		return
 	if (d > tk_maxrange)
-		user << SPAN_NOTICE("Your mind won't reach that far.")
+		to_chat(user, SPAN_NOTICE("Your mind won't reach that far."))
 		return
 
 	if(!focus)

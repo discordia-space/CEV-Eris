@@ -20,7 +20,6 @@
 		/obj/item/weapon/camera_assembly,
 		/obj/item/weapon/tank,
 		/obj/item/weapon/circuitboard,
-		/obj/item/weapon/smes_coil,
 		/obj/item/device/assembly,//Primarily for making improved cameras, but opens many possibilities
 		/obj/item/weapon/computer_hardware,
 		/obj/item/stack/tile //Repair floors yay
@@ -34,9 +33,9 @@
 /obj/item/weapon/gripper/examine(var/mob/user)
 	..()
 	if (wrapped)
-		user << span("notice", "It is holding \the [wrapped]")
+		to_chat(user, span("notice", "It is holding \the [wrapped]"))
 	else
-		user << "It is empty."
+		to_chat(user, "It is empty.")
 
 
 /proc/grippersafety(var/obj/item/weapon/gripper/G)
@@ -61,17 +60,17 @@
 	if (!wrapped)
 		if(is_type_in_list(I,can_hold))
 			if (feedback)
-				user << "You collect \the [I]."
+				to_chat(user, "You collect \the [I].")
 			I.do_pickup_animation(user.loc, I.loc)
 			I.forceMove(src)
 			wrapped = I
 			update_icon()
 			return TRUE
 		if (feedback)
-			user << "<span class='danger'>Your gripper cannot hold \the [I].</span>"
+			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [I].</span>")
 		return FALSE
 	if (feedback)
-		user << "<span class='danger'>Your gripper is already holding \the [wrapped].</span>"
+		to_chat(user, "<span class='danger'>Your gripper is already holding \the [wrapped].</span>")
 	return FALSE
 
 
@@ -163,10 +162,10 @@
 		var/obj/item/weapon/storage/S = target
 		for (var/obj/item/C in S.contents)
 			if (grip_item(C, user, 0))
-				user << "You grab the [C] from inside the [target.name]."
+				to_chat(user, "You grab the [C] from inside the [target.name].")
 				S.update_icon()
 				return
-		user << "There is nothing inside the box that your gripper can collect"
+		to_chat(user, "There is nothing inside the box that your gripper can collect")
 		return
 
 	else if(istype(target,/obj/item)) //Check that we're not pocketing a mob.
@@ -236,10 +235,10 @@
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
 		/obj/item/device/assembly,//For building bots and similar complex R&D devices
-		/obj/item/device/scanner/healthanalyzer,//For building medibots
+		/obj/item/device/scanner/health,//For building medibots
 		/obj/item/weapon/disk,
-		/obj/item/device/scanner/analyzer/plant_analyzer,//For farmbot construction
-		/obj/item/weapon/material/minihoe,//Farmbots and xenoflora
+		/obj/item/device/scanner/plant,//For farmbot construction
+		/obj/item/weapon/tool/minihoe,//Farmbots and xenoflora
 		/obj/item/weapon/computer_hardware
 		)
 
@@ -268,13 +267,11 @@
 		/obj/item/seeds,
 		/obj/item/weapon/grown,
 		/obj/item/trash,
-		/obj/item/weapon/broken_bottle,
+		/obj/item/weapon/tool/broken_bottle,
 		/obj/item/weapon/paper,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/circuitboard/broken,
-		/obj/item/broken_device,
 		/obj/item/clothing/mask/smokable/cigarette,
-		/obj/item/weapon/cigbutt,
 		///obj/item/weapon/reagent_containers/cooking_container //PArt of cooking overhaul, not yet ported
 		)
 

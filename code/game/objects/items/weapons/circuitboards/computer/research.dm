@@ -15,9 +15,9 @@
 		if(src.build_path == /obj/machinery/computer/rdconsole/core)
 			src.name = T_BOARD("RD Console - Robotics")
 			src.build_path = /obj/machinery/computer/rdconsole/robotics
-			user << SPAN_NOTICE("Access protocols set to robotics.")
+			to_chat(user, SPAN_NOTICE("Access protocols set to robotics."))
 		else
 			src.name = T_BOARD("RD Console")
 			src.build_path = /obj/machinery/computer/rdconsole/core
-			user << SPAN_NOTICE("Access protocols set to default.")
+			to_chat(user, SPAN_NOTICE("Access protocols set to default."))
 	return

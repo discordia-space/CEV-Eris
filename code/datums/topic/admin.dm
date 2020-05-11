@@ -69,23 +69,23 @@
 	switch(bantype)
 		if(BANTYPE_PERMA)
 			if(!banckey || !banreason)
-				usr << "Not enough parameters (Requires ckey and reason)"
+				to_chat(usr, "Not enough parameters (Requires ckey and reason)")
 				return
 			banduration = null
 			banjob = null
 		if(BANTYPE_TEMP)
 			if(!banckey || !banreason || !banduration)
-				usr << "Not enough parameters (Requires ckey, reason and duration)"
+				to_chat(usr, "Not enough parameters (Requires ckey, reason and duration)")
 				return
 			banjob = null
 		if(BANTYPE_JOB_PERMA)
 			if(!banckey || !banreason || !banjob)
-				usr << "Not enough parameters (Requires ckey, reason and job)"
+				to_chat(usr, "Not enough parameters (Requires ckey, reason and job)")
 				return
 			banduration = null
 		if(BANTYPE_JOB_TEMP)
 			if(!banckey || !banreason || !banjob || !banduration)
-				usr << "Not enough parameters (Requires ckey, reason and job)"
+				to_chat(usr, "Not enough parameters (Requires ckey, reason and job)")
 				return
 
 	var/mob/playermob
@@ -123,14 +123,14 @@
 		if(!new_ckey)
 			return
 		if(new_ckey in admin_datums)
-			usr << "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin</font>"
+			to_chat(usr, "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin</font>")
 			return
 		adm_ckey = new_ckey
 		task = "rank"
 	else if(task != "show")
 		adm_ckey = ckey(input["ckey"])
 		if(!adm_ckey)
-			usr << "<font color='red'>Error: Topic 'editrights': No valid ckey</font>"
+			to_chat(usr, "<font color='red'>Error: Topic 'editrights': No valid ckey</font>")
 			return
 
 	var/datum/admins/D = admin_datums[adm_ckey]
@@ -164,7 +164,7 @@
 				if(config.admin_legacy_system)
 					new_rank = ckeyEx(new_rank)
 				if(!new_rank)
-					usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
+					to_chat(usr, "<font color='red'>Error: Topic 'editrights': Invalid rank</font>")
 					return
 				if(config.admin_legacy_system)
 					if(admin_ranks.len)
@@ -187,7 +187,7 @@
 		var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
 		D.associate(C)											//link up with the client and add verbs
 
-		C << "[key_name_admin(usr)] has set your admin rank to: [new_rank]."
+		to_chat(C, "[key_name_admin(usr)] has set your admin rank to: [new_rank].")
 		message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 		log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 		source.log_admin_rank_modification(adm_ckey, new_rank)
@@ -204,7 +204,7 @@
 		D.rights ^= permissionlist[new_permission]
 
 		var/client/C = directory[adm_ckey]
-		C << "[key_name_admin(usr)] has toggled your permission: [new_permission]."
+		to_chat(C, "[key_name_admin(usr)] has toggled your permission: [new_permission].")
 		message_admins("[key_name_admin(usr)] toggled the [new_permission] permission of [adm_ckey]")
 		log_admin("[key_name(usr)] toggled the [new_permission] permission of [adm_ckey]")
 		source.log_admin_permission_modification(adm_ckey, permissionlist[new_permission], new_permission)
@@ -219,7 +219,7 @@
 /datum/admin_topic/simplemake/Run(list/input)
 	var/mob/M = locate(input["mob"])
 	if(!ismob(M))
-		usr << "This can only be used on instances of type /mob"
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
 	var/delmob = FALSE
@@ -352,11 +352,11 @@
 
 	var/mob/M = locate(input["jobban2"])
 	if(!ismob(M))
-		usr << "This can only be used on instances of type /mob"
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
 	if(!M.ckey)	//sanity
-		usr << "This mob has no ckey"
+		to_chat(usr, "This mob has no ckey")
 		return
 
 	var/dat = ""
@@ -380,11 +380,13 @@
 	//Security (Red)
 	body += source.formatJobGroup(M, "Security Positions", "ffddf0", "securitydept", security_positions)
 	//Engineering (Yellow)
-	body += source.formatJobGroup(M, "Engineering Positions", "fff5cc", "engineeringdept", engineering_positions)
+	body += source.formatJobGroup(M, "Engineering Positions", "d5c88f", "engineeringdept", engineering_positions)
 	//Medical (White)
 	body += source.formatJobGroup(M, "Medical Positions", "ffeef0", "medicaldept", medical_positions)
 	//Science (Purple)
 	body += source.formatJobGroup(M, "Science Positions", "e79fff", "sciencedept", science_positions)
+	//Church (Gold)
+	body += source.formatJobGroup(M, "Church Positions", "ecd37d", "churchdept", church_positions)
 	//Civilian (Grey)
 	body += source.formatJobGroup(M, "Civilian Positions", "dddddd", "civiliandept", civilian_positions)
 	//Non-Human (Green)
@@ -394,7 +396,8 @@
 	var/jobban_list = list()
 	for(var/a_id in GLOB.antag_bantypes)
 		var/a_ban = GLOB.antag_bantypes[a_id]
-		jobban_list[get_antag_data(a_id).role_text] = a_ban
+		var/datum/antagonist/antag = get_antag_data(a_id)
+		jobban_list[antag.role_text] = a_ban
 	body += source.formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 	dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
@@ -407,12 +410,12 @@
 
 /datum/admin_topic/jobban3/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
-		usr << SPAN_WARNING("Mod jobbanning is disabled!")
+		to_chat(usr, SPAN_WARNING("Mod jobbanning is disabled!"))
 		return
 
 	var/mob/M = locate(input["jobban4"])
 	if(!ismob(M))
-		usr << "This can only be used on instances of type /mob"
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
 	if(M != usr)																//we can jobban ourselves
@@ -448,6 +451,11 @@
 				var/datum/job/temp = SSjob.GetJob(jobPos)
 				if(!temp) continue
 				joblist += temp.title
+		if("churchdept")
+			for(var/jobPos in church_positions)
+				var/datum/job/temp = SSjob.GetJob(jobPos)
+				if(!temp) continue
+				joblist += temp.title
 		if("civiliandept")
 			for(var/jobPos in civilian_positions)
 				var/datum/job/temp = SSjob.GetJob(jobPos)
@@ -475,13 +483,13 @@
 			if("Yes")
 
 				if(config.ban_legacy_system)
-					usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
+					to_chat(usr, "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban.")
 					return
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(!mins)
 					return
 				if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_job_tempban_max)
-					usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!")
+					to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!"))
 					return
 				var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
 				if(!reason)
@@ -500,9 +508,9 @@
 					else
 						msg += ", [job]"
 				message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes", 1)
-				M << "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>"
-				M << "\red <B>The reason is: [reason]</B>"
-				M << "\red This jobban will be lifted in [mins] minutes."
+				to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
+				to_chat(M, "\red <B>The reason is: [reason]</B>")
+				to_chat(M, "\red This jobban will be lifted in [mins] minutes.")
 				input["jobban2"] = TRUE // lets it fall through and refresh
 				return TRUE
 			if("No")
@@ -519,9 +527,9 @@
 						if(!msg)	msg = job
 						else		msg += ", [job]"
 					message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg]", 1)
-					M << "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>"
-					M << "\red <B>The reason is: [reason]</B>"
-					M << "\red Jobban can be lifted only upon request."
+					to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
+					to_chat(M, "\red <B>The reason is: [reason]</B>")
+					to_chat(M, "\red Jobban can be lifted only upon request.")
 					input["jobban2"] = TRUE // lets it fall through and refresh
 					return TRUE
 			if("Cancel")
@@ -531,7 +539,7 @@
 	//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 	if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
 		if(!config.ban_legacy_system)
-			usr << "Unfortunately, database based unbanning cannot be done through this panel"
+			to_chat(usr, "Unfortunately, database based unbanning cannot be done through this panel")
 			source.DB_ban_panel(M.ckey)
 			return
 		var/msg
@@ -552,7 +560,7 @@
 					continue
 		if(msg)
 			message_admins("\blue [key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg]", 1)
-			M << "\red<BIG><B>You have been un-jobbanned by [usr.client.ckey] from [msg].</B></BIG>"
+			to_chat(M, "\red<BIG><B>You have been un-jobbanned by [usr.client.ckey] from [msg].</B></BIG>")
 			input["jobban2"] = TRUE // lets it fall through and refresh
 		return TRUE
 	return FALSE //we didn't do anything!
@@ -568,9 +576,9 @@
 			return
 		var/reason = sanitize(input("Please enter reason"))
 		if(!reason)
-			M << "\red You have been kicked from the server"
+			to_chat(M, "\red You have been kicked from the server")
 		else
-			M << "\red You have been kicked from the server: [reason]"
+			to_chat(M, "\red You have been kicked from the server: [reason]")
 		log_admin("[key_name(usr)] booted [key_name(M)].")
 		message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 		//M.client = null
@@ -601,7 +609,7 @@
 
 /datum/admin_topic/newban/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
-		usr << SPAN_WARNING("Mod jobbanning is disabled!")
+		to_chat(usr, SPAN_WARNING("Mod jobbanning is disabled!"))
 		return
 
 	var/mob/M = locate(input["newban"])
@@ -617,7 +625,7 @@
 				return
 
 			if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_tempban_max)
-				usr << SPAN_WARNING("Moderators can only job tempban up to [config.mod_tempban_max] minutes!")
+				to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [config.mod_tempban_max] minutes!"))
 				return
 			if(mins >= 525600) mins = 525599
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
@@ -625,15 +633,15 @@
 				return
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 			ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
-			M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-			M << "\red This is a temporary ban, it will be removed in [mins] minutes."
+			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
+			to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
 
 			source.DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 
 			if(config.banappeals)
-				M << "\red To try to resolve this matter head to [config.banappeals]"
+				to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
 			else
-				M << "\red No ban appeals URL has been set."
+				to_chat(M, "\red No ban appeals URL has been set.")
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
@@ -649,12 +657,12 @@
 					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
 				if("No")
 					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-			M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
-			M << "\red This is a permanent ban."
+			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
+			to_chat(M, "\red This is a permanent ban.")
 			if(config.banappeals)
-				M << "\red To try to resolve this matter head to [config.banappeals]"
+				to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
 			else
-				M << "\red No ban appeals URL has been set."
+				to_chat(M, "\red No ban appeals URL has been set.")
 			ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
@@ -727,7 +735,7 @@
 /datum/admin_topic/monkeyone/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["monkeyone"])
 	if(!istype(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 		return
 
 	log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
@@ -740,14 +748,14 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/corgione/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["corgione"])
-	if(!istype(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+	var/mob/L= locate(input["corgione"])
+	if(!istype(L))
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
-	log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
-	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(H)]", 1)
-	H.corgize()
+	log_admin("[key_name(usr)] attempting to corgize [key_name(L)]")
+	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(L)]", 1)
+	L.corgize()
 
 
 /datum/admin_topic/forcespeech
@@ -757,7 +765,7 @@
 /datum/admin_topic/forcespeech/Run(list/input)
 	var/mob/M = locate(input["forcespeech"])
 	if(!ismob(M))
-		usr << "this can only be used on instances of type /mob"
+		to_chat(usr, "this can only be used on instances of type /mob")
 
 	var/speech = input("What will [key_name(M)] say?.", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins. //don't trust your admins.
 	if(!speech)
@@ -775,7 +783,7 @@
 /datum/admin_topic/revive/Run(list/input)
 	var/mob/living/L = locate(input["revive"])
 	if(!istype(L))
-		usr << "This can only be used on instances of type /mob/living"
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
 	if(config.allow_admin_rev)
@@ -783,7 +791,7 @@
 		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
 		log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
 	else
-		usr << "Admin Rejuvinates have been disabled"
+		to_chat(usr, "Admin Rejuvinates have been disabled")
 
 
 /datum/admin_topic/makeai
@@ -791,30 +799,24 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makeai/Run(list/input)
-	var/mob/living/L = locate(input["revive"])
+	var/mob/living/L = locate(input["makeai"])
 	if(!istype(L))
-		usr << "This can only be used on instances of type /mob/living"
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	if(config.allow_admin_rev)
-		L.revive()
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-		log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
-	else
-		usr << "Admin Rejuvinates have been disabled"
-
+	L.AIize()
 
 /datum/admin_topic/makeslime
 	keyword = "makeslime"
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makeslime/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["makeslime"])
-	if(!istype(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+	var/mob/living/L = locate(input["makeslime"])
+	if(!istype(L))
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	usr.client.cmd_admin_slimeize(H)
+	usr.client.cmd_admin_slimeize(L)
 
 
 /datum/admin_topic/makerobot
@@ -822,9 +824,9 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makerobot/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["makerobot"])
+	var/mob/living/H = locate(input["makerobot"])
 	if(!istype(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
 	usr.client.cmd_admin_robotize(H)
@@ -837,7 +839,7 @@
 /datum/admin_topic/makeanimal/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["makerobot"])
 	if(!istype(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 		return
 
 	usr.client.cmd_admin_robotize(H)
@@ -850,7 +852,7 @@
 /datum/admin_topic/togmutate/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["togmutate"])
 	if(!istype(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 		return
 	var/block=text2num(input["block"])
 	usr.client.cmd_admin_toggle_block(H,block)
@@ -907,7 +909,7 @@
 /datum/admin_topic/adminmoreinfo/Run(list/input)
 	var/mob/M = locate(input["adminmoreinfo"])
 	if(!ismob(M))
-		usr << "This can only be used on instances of type /mob"
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
 	var/location_description = ""
@@ -955,12 +957,12 @@
 		else
 			gender_description = "<font color='red'><b>[M.gender]</b></font>"
 
-	source.owner << "<b>Info about [M.name]:</b> "
-	source.owner << "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]"
-	source.owner << "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;"
-	source.owner << "Location = [location_description];"
-	source.owner << "[special_role_description]"
-	source.owner << "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[source];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[source];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, source)]) (<A HREF='?src=\ref[source];secretsadmin=check_antagonist'>CA</A>)"
+	to_chat(source.owner, "<b>Info about [M.name]:</b> ")
+	to_chat(source.owner, "Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]")
+	to_chat(source.owner, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;")
+	to_chat(source.owner, "Location = [location_description];")
+	to_chat(source.owner, "[special_role_description]")
+	to_chat(source.owner, "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[source];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[source];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, source)]) (<A HREF='?src=\ref[source];secretsadmin=check_antagonist'>CA</A>)")
 
 
 /datum/admin_topic/adminspawncookie
@@ -970,7 +972,7 @@
 /datum/admin_topic/adminspawncookie/Run(list/input)
 	var/mob/living/carbon/human/H = locate(input["adminspawncookie"])
 	if(!ishuman(H))
-		usr << "This can only be used on instances of type /mob/living/carbon/human"
+		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 		return
 
 	if(!H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand ))
@@ -981,7 +983,7 @@
 	log_admin("[key_name(H)] got their cookie, spawned by [key_name(source.owner)]")
 	message_admins("[key_name(H)] got their cookie, spawned by [key_name(source.owner)]")
 
-	H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
+	to_chat(H, "\blue Your prayers have been answered!! You received the <b>best cookie</b>!")
 
 
 /datum/admin_topic/bluespaceartillery
@@ -991,21 +993,21 @@
 /datum/admin_topic/bluespaceartillery/Run(list/input)
 	var/mob/living/M = locate(input["BlueSpaceArtillery"])
 	if(!isliving(M))
-		usr << "This can only be used on instances of type /mob/living"
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
 	if(alert(source.owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery?",  "Confirm Firing?" , "Yes" , "No") != "Yes")
 		return
 
 	if(BSACooldown)
-		source.owner << "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!"
+		to_chat(source.owner, "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!")
 		return
 
 	BSACooldown = TRUE
 	spawn(50)
 		BSACooldown = FALSE
 
-	M << "You've been hit by bluespace artillery!"
+	to_chat(M, "You've been hit by bluespace artillery!")
 	log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [source.owner]")
 	message_admins("[key_name(M)] has been hit by Bluespace Artillery fired by [source.owner]")
 
@@ -1055,7 +1057,7 @@
 
 		usr << browse(data, "window=[B.name]")
 	else
-		usr << "\red The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]"
+		to_chat(usr, "\red The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]")
 
 /datum/admin_topic/adminfaxviewpage
 	keyword = "AdminFaxViewPage"
@@ -1083,11 +1085,11 @@
 	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
 
 	//todo: sanitize
-	var/msg = russian_to_utf8(input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null)
+	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
 	if(!msg)
 		return
 
-	var/customname = russian_to_utf8(input(source.owner, "Pick a title for the report", "Title") as text|null)
+	var/customname = input(source.owner, "Pick a title for the report", "Title") as text|null
 
 	// Create the reply message
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( null ) //hopefully the null loc won't cause trouble for us
@@ -1105,11 +1107,11 @@
 	P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 	if(fax.recievefax(P))
-		source.owner << "\blue Message reply to transmitted successfully."
+		to_chat(source.owner, "\blue Message reply to transmitted successfully.")
 		log_admin("[key_name(source.owner)] replied to a fax message from [key_name(sender)]: [msg]")
 		message_admins("[key_name_admin(source.owner)] replied to a fax message from [key_name_admin(sender)]", 1)
 	else
-		source.owner << "\red Message reply failed."
+		to_chat(source.owner, "\red Message reply failed.")
 
 	QDEL_IN(P, 100)
 
@@ -1171,7 +1173,7 @@
 
 	var/mob/M = locate(input["traitor"])
 	if(!ismob(M))
-		usr << "This can only be used on instances of type /mob."
+		to_chat(usr, "This can only be used on instances of type /mob.")
 		return
 	source.show_traitor_panel(M)
 
@@ -1214,7 +1216,7 @@
 
 /datum/admin_topic/object_list/Run(list/input)
 	if(!config.allow_admin_spawning)
-		usr << "Spawning of items is not allowed."
+		to_chat(usr, "Spawning of items is not allowed.")
 		return
 
 	var/atom/loc = usr.loc
@@ -1260,7 +1262,7 @@
 	switch(where)
 		if("inhand")
 			if (!iscarbon(usr) && !isrobot(usr))
-				usr << "Can only spawn in hand when you're a carbon mob or cyborg."
+				to_chat(usr, "Can only spawn in hand when you're a carbon mob or cyborg.")
 				where = "onfloor"
 			target = usr
 
@@ -1272,10 +1274,10 @@
 					target = locate(loc.x + X,loc.y + Y,loc.z + Z)
 		if("inmarked")
 			if(!source.marked_datum())
-				usr << "You don't have any object marked. Abandoning spawn."
+				to_chat(usr, "You don't have any object marked. Abandoning spawn.")
 				return
 			else if(!istype(source.marked_datum(),  /atom))
-				usr << "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."
+				to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
 				return
 			else
 				target = source.marked_datum()
@@ -1349,17 +1351,17 @@
 /datum/admin_topic/toglang/Run(list/input)
 	var/mob/M = locate(input["toglang"])
 	if(!istype(M))
-		usr << "[M] is illegal type, must be /mob!"
+		to_chat(usr, "[M] is illegal type, must be /mob!")
 		return
 	var/lang2toggle = input["lang"]
 	var/datum/language/L = all_languages[lang2toggle]
 
 	if(L in M.languages)
 		if(!M.remove_language(lang2toggle))
-			usr << "Failed to remove language '[lang2toggle]' from \the [M]!"
+			to_chat(usr, "Failed to remove language '[lang2toggle]' from \the [M]!")
 	else
 		if(!M.add_language(lang2toggle))
-			usr << "Failed to add language '[lang2toggle]' from \the [M]!"
+			to_chat(usr, "Failed to add language '[lang2toggle]' from \the [M]!")
 
 
 /datum/admin_topic/viewruntime
@@ -1564,3 +1566,23 @@
 		if("view")
 			source.admincaster_screen = 1
 			source.access_news_network()
+
+
+//Player Notes
+/datum/admin_topic/notes
+	keyword = "notes"
+
+/datum/admin_topic/notes/Run(list/input)
+	var/ckey = input["ckey"]
+	if(!ckey)
+		var/mob/M = locate(input["mob"])
+		if(ismob(M))
+			ckey = M.ckey
+
+	switch(input[keyword])
+		if("add")
+			notes_add(ckey, input["text"])
+		if("remove")
+			notes_remove(ckey, text2num(input["from"]), text2num(input["to"]))
+
+	source.notes_show(ckey)

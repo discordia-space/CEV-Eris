@@ -9,7 +9,7 @@
 
 	text += print_objectives(FALSE)
 
-	owner.current << text
+	to_chat(owner.current, text)
 
 /datum/antagonist/proc/greet()
 	if(!owner || !owner.current)
@@ -17,20 +17,26 @@
 
 	var/mob/player = owner.current
 	// Basic intro text.
-	player << "<span class='danger'><font size=3>You are a [role_text]!</font></span>"
+	to_chat(player, "<span class='danger'><font size=3>You are \a [role_text]!</font></span>")
 	if(faction)
 		if(src in faction.leaders)
-			player << "You are a leader of the [faction.name]!"
+			to_chat(player, "You are a leader of the [faction.name]!")
 		else
-			player << "You are a member of the [faction.name]."
+			to_chat(player, "You are a member of the [faction.name].")
 
-		player << "[faction.welcome_text]"
+		to_chat(player, "[faction.welcome_text]")
 	else
-		player << "[welcome_text]"
+		to_chat(player, "[welcome_text]")
 
 	show_objectives()
-
+	printTip()
 	return TRUE
+
+/datum/antagonist/proc/printTip()
+	var/tipsAndTricks/T = SStips.getRoleTip(src)
+	if(T)
+		var/mob/player = owner.current
+		to_chat(player, SStips.formatTip(T, "Tip for \a [role_text]: "))
 
 /datum/antagonist/proc/get_special_objective_text()
 	return ""
@@ -46,9 +52,29 @@
 	return text
 
 /datum/antagonist/proc/print_objectives(var/append_success = TRUE)
-	var/text = ""
-	text += get_special_objective_text()
-	if(objectives && objectives.len)
+	var/text = get_special_objective_text()
+
+	var/list/contracts = list()
+	for(var/c in GLOB.all_antag_contracts)
+		var/datum/antag_contract/contract = c
+		if(contract.completed && contract.completed_by == owner)
+			contracts += contract
+
+	if(length(contracts))
+		var/total_tc = 0
+		var/num = 0
+
+		text += "<br><b>Contracts fulfilled:</b>"
+		for(var/c in contracts)
+			var/datum/antag_contract/contract = c
+			total_tc += contract.reward
+			num++
+
+			text += "<br><b>Contract [num]:</b> [contract.desc] <font color='green'>(+[contract.reward] TC)</font>"
+
+		text += "<br><b>Total: [num] contracts, <font color='green'>[total_tc] TC</font></b><br>"
+
+	if(length(objectives))
 		var/failed = FALSE
 		var/num = 1
 		for(var/datum/objective/O in objectives)

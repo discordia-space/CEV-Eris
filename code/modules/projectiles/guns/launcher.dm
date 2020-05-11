@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/launcher
 	name = "launcher"
 	desc = "A device that launches things."
+	icon = 'icons/obj/guns/launcher.dmi'
 	w_class = ITEM_SIZE_HUGE
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
@@ -16,7 +17,7 @@
 
 //Override this to avoid a runtime with suicide handling.
 /obj/item/weapon/gun/launcher/handle_suicide(mob/living/user)
-	user << "\red Shooting yourself with \a [src] is pretty tricky. You can't seem to manage it."
+	to_chat(user, SPAN_WARNING("Shooting yourself with \a [src] is pretty tricky. You can't seem to manage it."))
 	return
 
 /obj/item/weapon/gun/launcher/proc/update_release_force(obj/item/projectile)

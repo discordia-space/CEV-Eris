@@ -25,7 +25,7 @@
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << SPAN_DANGER("Movement is admin-disabled.") //This is to identify lag problems
+		to_chat(usr, SPAN_DANGER("Movement is admin-disabled.") ) //This is to identify lag problems
 		return
 
 	if (isliving(A))
@@ -93,10 +93,6 @@
 				for(var/i = 0;i<slip_dist;i++)
 					step(M, M.dir)
 					sleep(1)
-			else
-				M.inertia_dir = 0
-		else
-			M.inertia_dir = 0
 
 	..()
 

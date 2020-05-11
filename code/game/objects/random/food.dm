@@ -1,6 +1,6 @@
 /obj/random/rations
 	name = "random preserved rations"
-	icon_state = "food-red"
+	icon_state = "food-green"
 
 /obj/random/rations/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/reagent_containers/food/snacks/chips = 2,\
@@ -9,6 +9,12 @@
 				/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 2,\
 				/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 4,
 				/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 1))
+
+/obj/random/rations/low_chance
+	name = "low chance preserved rations"
+	icon_state = "food-green-low"
+	spawn_nothing_percentage = 60
+
 
 
 /obj/random/junkfood
@@ -27,6 +33,15 @@
 				/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
 				/obj/item/weapon/reagent_containers/food/snacks/pie = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/sandwich = 1))
+
+/obj/random/junkfood/low_chance
+	name = "low chance junkfood"
+	icon_state = "food-red-low"
+	spawn_nothing_percentage = 60
+
+
+
+
 
 /obj/random/junkfood/rotten
 	name = "random spoiled food"

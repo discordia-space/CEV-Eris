@@ -16,7 +16,7 @@
 	set desc = "Alter the message shouted by your hailer."
 
 	if(!isnull(insults))
-		usr << "The hailer is fried. The tiny input screen just shows a waving ASCII penis."
+		to_chat(usr, "The hailer is fried. The tiny input screen just shows a waving ASCII penis.")
 		return
 
 	var/new_message = input(usr, "Please enter new message (leave blank to reset).") as text
@@ -25,7 +25,7 @@
 	else
 		use_message = capitalize(copytext(sanitize(new_message), 1, MAX_MESSAGE_LEN))
 
-	usr << "You configure the hailer to shout \"[use_message]\"."
+	to_chat(usr, "You configure the hailer to shout \"[use_message]\".")
 
 /obj/item/device/hailer/attack_self(mob/living/carbon/user as mob)
 	if (spamcheck)
@@ -41,7 +41,7 @@
 			user.audible_message(SPAN_WARNING("[user]'s [name] gurgles something indecipherable and deeply offensive."), SPAN_WARNING("\The [user] holds up \the [name]."))
 			insults--
 		else
-			user << SPAN_DANGER("*BZZZZZZZZT*")
+			to_chat(user, SPAN_DANGER("*BZZZZZZZZT*"))
 
 	spamcheck = 1
 	spawn(20)
@@ -49,8 +49,8 @@
 
 /obj/item/device/hailer/emag_act(var/remaining_charges, var/mob/user)
 	if(isnull(insults))
-		user << SPAN_DANGER("You overload \the [src]'s voice synthesizer.")
+		to_chat(user, SPAN_DANGER("You overload \the [src]'s voice synthesizer."))
 		insults = rand(1, 3)//to prevent dickflooding
 		return 1
 	else
-		user << "The hailer is fried. You can't even fit the sequencer into the input slot."
+		to_chat(user, "The hailer is fried. You can't even fit the sequencer into the input slot.")

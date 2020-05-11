@@ -12,9 +12,25 @@
 /datum/uplink_item/item/medical/surgery
 	name = "Surgery kit"
 	item_cost = 5
-	path = /obj/item/weapon/storage/firstaid/surgery
+	path = /obj/item/weapon/storage/firstaid/surgery/traitor
 
 /datum/uplink_item/item/medical/combat
 	name = "Combat medical kit"
 	item_cost = 5
 	path = /obj/item/weapon/storage/firstaid/combat
+
+/datum/uplink_item/item/medical/nanites
+	name = "Raw nanites vial"
+	item_cost = 5
+	path = /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+
+/datum/uplink_item/item/medical/uncapnanites
+	name = "Raw uncapped nanites vial"
+	item_cost = 8
+	path = /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+
+/datum/uplink_item/item/medical/gene_vial
+	name = "Genetic material vial"
+	item_cost = 5
+	path = /obj/item/gene_vial
+	antag_roles = list(ROLE_CHANGELING)

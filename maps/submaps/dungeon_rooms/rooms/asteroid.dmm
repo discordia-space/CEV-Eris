@@ -1,0 +1,227 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall,
+/area/crawler)
+"c" = (
+/turf/space,
+/area/crawler)
+"d" = (
+/obj/structure/lattice,
+/turf/space,
+/area/crawler)
+"e" = (
+/turf/simulated/mineral,
+/area/crawler)
+"f" = (
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"g" = (
+/turf/simulated/floor/asteroid,
+/area/crawler)
+"h" = (
+/obj/machinery/computer,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"i" = (
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"j" = (
+/obj/effect/floor_decal/asteroid,
+/obj/machinery/floodlight,
+/turf/simulated/floor/asteroid,
+/area/crawler)
+"k" = (
+/obj/structure/inflatable/wall,
+/turf/simulated/floor/asteroid,
+/area/crawler)
+"l" = (
+/obj/structure/railing,
+/obj/structure/lattice,
+/turf/space,
+/area/crawler)
+"m" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/space,
+/area/crawler)
+"n" = (
+/obj/effect/floor_decal/asteroid,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"o" = (
+/obj/effect/floor_decal/asteroid,
+/turf/simulated/floor/asteroid,
+/area/crawler)
+"p" = (
+/obj/structure/inflatable/door,
+/turf/simulated/floor/asteroid,
+/area/crawler)
+"q" = (
+/obj/structure/catwalk,
+/turf/space,
+/area/crawler)
+"r" = (
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/external,
+/turf/space,
+/area/crawler)
+"s" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall,
+/area/crawler)
+"t" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+s
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+e
+e
+e
+e
+d
+c
+a
+"}
+(3,1,1) = {"
+a
+d
+e
+g
+g
+e
+e
+d
+a
+"}
+(4,1,1) = {"
+a
+e
+e
+h
+f
+g
+e
+c
+a
+"}
+(5,1,1) = {"
+a
+e
+f
+i
+f
+g
+e
+c
+b
+"}
+(6,1,1) = {"
+b
+e
+f
+f
+n
+o
+e
+c
+b
+"}
+(7,1,1) = {"
+b
+e
+e
+j
+o
+o
+e
+d
+b
+"}
+(8,1,1) = {"
+b
+e
+e
+e
+p
+e
+e
+c
+b
+"}
+(9,1,1) = {"
+a
+c
+e
+e
+g
+e
+c
+c
+b
+"}
+(10,1,1) = {"
+a
+c
+e
+k
+p
+e
+c
+c
+a
+"}
+(11,1,1) = {"
+a
+d
+e
+l
+q
+t
+d
+d
+a
+"}
+(12,1,1) = {"
+a
+c
+a
+m
+r
+m
+a
+c
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+i
+i
+i
+a
+a
+a
+"}

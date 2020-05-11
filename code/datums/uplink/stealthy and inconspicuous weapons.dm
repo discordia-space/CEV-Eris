@@ -24,11 +24,6 @@
 	item_cost = 2
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
 
-/datum/uplink_item/item/stealthy_weapons/detomatix
-	name = "Detomatix PDA Cartridge"
-	item_cost = 4
-	path = /obj/item/weapon/cartridge/syndicate
-
 /datum/uplink_item/item/stealthy_weapons/parapen
 	name = "Paralysis Pen"
 	item_cost = 6
@@ -38,4 +33,14 @@
 /datum/uplink_item/item/stealthy_weapons/boot_knife
 	name = "Boot Knife"
 	item_cost = 3
-	path = /obj/item/weapon/material/knife/boot
+	path = /obj/item/weapon/tool/knife/boot
+
+/datum/uplink_item/item/stealthy_weapons/infuser
+	name = "\"Glass Widow\" radiation infuser"
+	item_cost = 2
+	path = /obj/item/weapon/gun_upgrade/mechanism/glass_widow
+
+/datum/uplink_item/item/stealthy_weapons/assassin_dagger
+	name = "Assassin's Dagger"
+	item_cost = 4
+	path = /obj/item/weapon/tool/knife/dagger/assassin

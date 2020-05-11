@@ -5,10 +5,11 @@
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	gauge_icon = null
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	item_state = "jetpack"
-	force = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+	default_pressure = 6*ONE_ATMOSPHERE
 	var/datum/effect/effect/system/trail/jet/trail
 	var/on = 0.0
 	var/stabilization_on = 0
@@ -32,11 +33,6 @@
 	//Used for normal jet thrust effects
 	var/thrust_fx_done = FALSE
 
-/obj/item/weapon/tank/jetpack/Destroy()
-	QDEL_NULL(trail)
-	gastank = null // this is usually src, better to not call qdel infinitely
-	return ..()
-
 /*****************************
 	Jetpack Types
 *****************************/
@@ -44,57 +40,49 @@
 	name = "void jetpack (oxygen)"
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
-	item_state =  "jetpack-void"
+	item_state = "jetpack-void"
+	default_gas = "oxygen"
 
-/obj/item/weapon/tank/jetpack/void/New()
-	..()
-	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 /obj/item/weapon/tank/jetpack/oxygen
 	name = "jetpack (oxygen)"
 	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	item_state = "jetpack"
+	default_gas = "oxygen"
 
-/obj/item/weapon/tank/jetpack/oxygen/New()
-	..()
-	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 /obj/item/weapon/tank/jetpack/carbondioxide
 	name = "jetpack (carbon dioxide)"
 	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."
-	distribute_pressure = 0
 	icon_state = "jetpack-black"
-	item_state =  "jetpack-black"
+	item_state = "jetpack-black"
+	distribute_pressure = 0
+	default_gas = "carbon_dioxide"
 
 
-/obj/item/weapon/tank/jetpack/carbondioxide/New()
-	..()
-	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 
 /*****************************
 	Core Functionality
 *****************************/
-/obj/item/weapon/tank/jetpack/New()
-	..()
+/obj/item/weapon/tank/jetpack/Initialize(mapload, ...)
+	. = ..()
 	gastank = src
-	src.trail = new /datum/effect/effect/system/trail/jet()
-	src.trail.set_up(src)
+	trail = new /datum/effect/effect/system/trail/jet()
+	trail.set_up(src)
 
 
 /obj/item/weapon/tank/jetpack/Destroy()
-	qdel(trail)
-	. = ..()
+	QDEL_NULL(trail)
+	gastank = null // this is usually src, better to not call qdel infinitely
+	return ..()
 
 /obj/item/weapon/tank/jetpack/examine(mob/user)
 	. = ..()
-	user << "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa"
+	to_chat(user, "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa")
 	if(air_contents.total_moles < 5)
-		user << SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!")
+		to_chat(user, SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!"))
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
 
@@ -118,25 +106,25 @@
 /obj/item/weapon/tank/jetpack/proc/enable_stabilizer()
 	if (stabilize(usr, usr.l_move_time, TRUE))
 		stabilization_on = TRUE
-		usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+		to_chat(usr, "You toggle the stabilization [stabilization_on? "on":"off"].")
 		return TRUE
 	else
 		if (!on)
-			usr << SPAN_WARNING("The [src] must be enabled first!")
+			to_chat(usr, SPAN_WARNING("The [src] must be enabled first!"))
 		else
-			usr << SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser.")
+			to_chat(usr, SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser."))
 		return FALSE
 
 
 /obj/item/weapon/tank/jetpack/proc/disable_stabilizer()
 	stabilization_on = FALSE
-	usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+	to_chat(usr, "You toggle the stabilization [stabilization_on? "on":"off"].")
 
 	//If your jetpack cuts out, you'll fall in a gravity area. Lets trigger that
 	var/atom/movable/A = get_toplevel_atom() //Get what this jetpack is attached to, usually a mob or object
 	if (A)
 		//This is a hack. Future todo: Make mechas not utilize anchored
-		if (istype(A, /obj/mecha))
+		if (istype(A, /mob/living/exosuit))
 			A.anchored = FALSE
 
 		var/turf/T = get_turf(A)
@@ -171,7 +159,7 @@
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
-		usr << "You toggle the thrusters [on? "on":"off"]."
+		to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 	return TRUE
 
 
@@ -183,7 +171,7 @@
 		var/mob/M = usr
 		M.update_inv_back()
 		M.update_action_buttons()
-		usr << "You toggle the thrusters [on? "on":"off"]."
+		to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 
 
 
@@ -309,6 +297,7 @@
 	These functions provide a generic interface for different kinds of tanks
 */
 /obj/item/weapon/tank/jetpack/proc/get_gas()
+	RETURN_TYPE(/datum/gas_mixture)
 	if (istype(gastank, /obj/item/weapon/tank))
 		return gastank.air_contents
 
@@ -319,11 +308,6 @@
 
 	//Unknown type? Create and return an empty gas mixture to prevent runtime errors
 	return new /datum/gas_mixture(0)
-
-
-
-
-
 
 /*****************************
 	Checks
@@ -390,7 +374,8 @@
 /obj/item/weapon/tank/jetpack/synthetic
 	name = "synthetic jetpack"
 	desc = "A tank of compressed air for use as propulsion in zero-gravity areas. Has a built in compressor to refill it in any gaseous environment."
-	var/target_moles = (6*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
+	default_pressure = 6*ONE_ATMOSPHERE	// kPa. Also the pressure the compressor would fill itself to
+	default_gas = "carbon_dioxide"
 	var/processing = FALSE
 	var/compressing = FALSE
 	var/minimum_pressure = 95 //KPa. If environment pressure is less than this, we won't draw air
@@ -405,25 +390,19 @@
 	set category = "Silicon Commands"
 	.=..()
 
-/obj/item/weapon/tank/jetpack/synthetic/New()
-	..()
-	air_contents.adjust_gas("carbon_dioxide", target_moles)
-	return
-
-
 //Whenever we call a function that might use gas, we'll check if its time to start processing
 /obj/item/weapon/tank/jetpack/synthetic/allow_thrust(num, mob/living/user as mob, var/stabilization_check = FALSE)
 	.=..(num, user, stabilization_check)
 	if (!processing)
 		//We'll allow a 5% leeway before we go into sucking mode, to prevent constant turning on and off
-		if (get_gas().total_moles < target_moles * 0.95)
+		if (get_gas().total_moles < (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)) * 0.95)
 			processing = TRUE
 			START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/tank/jetpack/synthetic/stabilize(var/mob/living/user, var/schedule_time, var/enable_stabilize = FALSE)
 	.=..(user, schedule_time, enable_stabilize)
 	if (!processing)
-		if (get_gas().total_moles < target_moles * 0.95)
+		if (get_gas().total_moles < (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)) * 0.95)
 			processing = TRUE
 			START_PROCESSING(SSobj, src)
 
@@ -464,7 +443,7 @@
 	//We now start compressing.
 	if (!compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		R << SPAN_NOTICE("Your [src] clicks as it starts drawing and compressing air to refill the tank")
+		to_chat(R, SPAN_NOTICE("Your [src] clicks as it starts drawing and compressing air to refill the tank"))
 
 	compressing = TRUE
 	//Setting this compressing var to true will cause the component to draw power
@@ -472,7 +451,7 @@
 	var/transfer_moles = (volume_rate/environment.volume)*environment.total_moles
 	var/datum/gas_mixture/transfer = environment.remove(transfer_moles)
 	get_gas().add(transfer)
-	if(get_gas().total_moles >= target_moles)
+	if(get_gas().total_moles >= (default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C)))
 		stop_drawing(TRUE)
 
 	return TRUE
@@ -482,7 +461,7 @@
 	if (compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		var/mob/living/silicon/robot/R = get_holding_mob()
-		R << SPAN_NOTICE("Your [src] clicks as its internal compressor shuts off")
+		to_chat(R, SPAN_NOTICE("Your [src] clicks as its internal compressor shuts off"))
 	compressing = FALSE
 
 	if (complete)

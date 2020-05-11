@@ -83,6 +83,12 @@
 		<option value='?_src_=vars;emp=\ref[src]'>Trigger EM pulse</option>
 	"}
 
+/atom/get_view_variables_options()
+	. = ..()
+	if(reagents)
+		. += "<option value='?_src_=vars;addreagent=\ref[src]'>Add reagent</option>"
+
+
 /atom/movable/get_view_variables_options()
 	return ..() + {"
 		<option value='?_src_=vars;teleport_here=\ref[src]'>Teleport here</option>

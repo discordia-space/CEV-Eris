@@ -12,7 +12,7 @@
 		return
 
 	if(emote == activation_emote)
-		source << "The air glows as \the [scanned.name] uncompresses."
+		to_chat(source, "The air glows as \the [scanned.name] uncompresses.")
 		activate()
 
 /obj/item/weapon/implant/compressed/activate()
@@ -26,7 +26,7 @@
 	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if(source.mind)
 		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	source << "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
+	to_chat(source, "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
 
 
 /obj/item/weapon/implanter/compressed
@@ -49,7 +49,7 @@
 	var/obj/item/weapon/implant/compressed/c = implant
 	if (!c)	return
 	if (c.scanned == null)
-		user << "Please scan an object with the implanter first."
+		to_chat(user, "Please scan an object with the implanter first.")
 		return
 	..()
 
@@ -59,7 +59,7 @@
 	if(istype(A,/obj/item) && implant)
 		var/obj/item/weapon/implant/compressed/c = implant
 		if (c.scanned)
-			user << SPAN_WARNING("Something is already scanned inside the implant!")
+			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
 			return
 		if(ismob(A.loc))
 			var/mob/M = A.loc

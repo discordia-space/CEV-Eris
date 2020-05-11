@@ -24,7 +24,7 @@ ADMIN_VERB_ADD(/client/proc/callproc, R_DEBUG, FALSE)
 				else
 					return
 			if(!target)
-				usr << "Proc call cancelled."
+				to_chat(usr, "Proc call cancelled.")
 				return
 		if("Cancel")
 			return
@@ -57,10 +57,10 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 
 	if(hastarget)
 		if(!target)
-			usr << "Your callproc target no longer exists."
+			to_chat(usr, "Your callproc target no longer exists.")
 			return
 		if(!hascall(target, procname))
-			usr << "\The [target] has no call [procname]()"
+			to_chat(usr, "\The [target] has no call [procname]()")
 			return
 
 	var/list/arguments = list()
@@ -69,7 +69,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 
 	while(!done)
 		if(hastarget && !target)
-			usr << "Your callproc target no longer exists."
+			to_chat(usr, "Your callproc target no longer exists.")
 			return
 		switch(input("Type of [arguments.len+1]\th variable", "argument [arguments.len+1]") as null|anything in list(
 				"finished", "null", "text", "num", "type", "obj reference", "mob reference",
@@ -139,7 +139,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 
 	if(hastarget)
 		if(!target)
-			usr << "Your callproc target no longer exists."
+			to_chat(usr, "Your callproc target no longer exists.")
 			return
 		log_admin("[key_name(src)] called [target]'s [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
 		if(arguments.len)
@@ -150,5 +150,5 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 		log_admin("[key_name(src)] called [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
 		returnval = call(procname)(arglist(arguments))
 
-	usr << "<span class='info'>[procname]() returned: [isnull(returnval) ? "null" : returnval]</span>"
+	to_chat(usr, "<span class='info'>[procname]() returned: [isnull(returnval) ? "null" : returnval]</span>")
 

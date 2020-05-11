@@ -1,9 +1,11 @@
 /obj/random/lowkeyrandom //Absolutly random things
 	name = "random stuff"
 	icon_state = "radnomstuff-green"
-	var/list/possibilities = list(/obj/random/rare = 1.5,
+
+
+/obj/random/lowkeyrandom/item_to_spawn()
+	return pickweight(list(
 				/obj/item/weapon/storage/box/shotgunammo/beanbags = 1,
-				/obj/item/ammo_magazine/mc9mmt/rubber = 1,
 				/obj/item/weapon/storage/box/matches = 3,
 				/obj/item/stack/material/cardboard = 2,
 				/obj/item/weapon/cell/large = 3,
@@ -12,11 +14,11 @@
 				/obj/item/stack/medical/bruise_pack = 3,
 				/obj/item/bodybag/cryobag = 2,
 				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,
-				/obj/item/weapon/cigbutt = 4,
+				/obj/item/trash/cigbutt = 4,
 				/obj/item/device/t_scanner = 2,
 				/obj/random/voidsuit/damaged = 3,
-				/obj/item/device/scanner/analyzer = 2,
-				/obj/item/device/scanner/healthanalyzer = 2,
+				/obj/item/device/scanner/gas = 2,
+				/obj/item/device/scanner/health = 2,
 				/obj/item/weapon/storage/belt/utility/full = 6,
 				/obj/item/weapon/storage/belt/medical = 6,
 				/obj/item/weapon/storage/belt/security = 6,
@@ -43,14 +45,15 @@
 				/obj/item/weapon/folder/blue = 2,
 				/obj/item/weapon/folder/red = 2,
 				/obj/item/weapon/folder/yellow = 2,
-				/obj/item/weapon/folder/white = 2,
+				/obj/item/weapon/folder/cyan = 2,
 				/obj/item/weapon/paper_bin = 2,
 				/obj/item/device/flash = 2,
 				/obj/item/device/camera_film = 4,
 				/obj/item/device/radio = 3,
 				/obj/item/device/debugger = 1,
 				/obj/item/device/aicard = 1,
-				/obj/item/weapon/storage/box/botanydisk = 2,
+				/obj/item/weapon/storage/box/data_disk/basic = 2,
+				/obj/item/weapon/storage/box/data_disk = 1,
 				/obj/item/weapon/storage/box/ids = 2,
 				/obj/item/weapon/storage/briefcase/crimekit = 2,
 				/obj/item/weapon/storage/box/drinkingglasses = 2,
@@ -66,7 +69,7 @@
 				/obj/item/weapon/lipstick/random = 3,
 				/obj/item/weapon/inflatable_dispenser = 2,
 				/obj/item/weapon/grenade/chem_grenade/cleaner = 2,
-				/obj/item/weapon/smes_coil = 2,
+				/obj/item/weapon/stock_parts/smes_coil = 2,
 				/obj/item/weapon/tank/anesthetic = 2,
 				/obj/item/weapon/tank/nitrogen = 2,
 				/obj/item/clothing/mask/balaclava = 3,
@@ -92,9 +95,8 @@
 				/obj/item/weapon/airlock_electronics = 1,
 				/obj/item/rig_module/maneuvering_jets = 1,
 				/obj/item/rig_module/device/drill = 1,
-				/obj/item/clothing/glasses/meson = 1,
-				/obj/item/clothing/glasses/night = 1,
-				/obj/item/weapon/computer_hardware/battery_module = 2,
+				/obj/item/clothing/glasses/powered/meson = 1,
+				/obj/item/clothing/glasses/powered/night = 1,
 				/obj/item/weapon/computer_hardware/card_slot = 2,
 				/obj/item/weapon/computer_hardware/hard_drive = 2,
 				/obj/item/weapon/computer_hardware/network_card = 2,
@@ -115,35 +117,18 @@
 				/obj/item/weapon/stock_parts/subspace/treatment = 1,
 				/obj/item/weapon/aiModule/reset = 1,
 				/obj/item/weapon/circuitboard/autolathe = 1,
-				/obj/item/ammo_magazine/cl32/rubber = 1,
-				/obj/item/ammo_magazine/cl32 = 1,
-				/obj/item/ammo_magazine/sl357 = 1,
-				/obj/item/ammo_magazine/sl38 = 1,
-				/obj/item/ammo_magazine/sl38/rubber = 1,
+				/obj/item/ammo_magazine/pistol/rubber = 1,
+				/obj/item/ammo_magazine/pistol = 1,
+				/obj/item/ammo_magazine/slmagnum = 1,
+				/obj/item/ammo_magazine/slpistol = 1,
+				/obj/item/ammo_magazine/slpistol/rubber = 1,
 				/obj/item/weapon/flamethrower = 1,
 				/obj/item/weapon/gun/projectile/mk58 = 1,
 				/obj/item/weapon/gun/projectile/giskard = 1,
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
-				/obj/item/weapon/gun/projectile/revolver/detective = 1,
-				/obj/random/rig/damaged = 0.1,
-				/obj/random/voidsuit/damaged = 0.5,
-				/obj/random/pouch = 3,
-				/obj/random/junk = 25,
-				/obj/random/lathe_disk = 5,
-				/obj/random/rig_module = 4,
-				/obj/random/medical = 10,
-				/obj/random/junkfood = 10,
-				/obj/random/cloth/random_cloth = 5,
-				/obj/random/credits/c100 = 2,
-				/obj/item/stash_spawner = 12)
-
-/obj/random/lowkeyrandom/item_to_spawn()
-	var/turf/T = get_turf(src)
-	if (!isStationLevel(T.z))
-		//We don't want stashnotes spawning on the abandoned fortress, for now at least
-		possibilities.Remove(/obj/item/stash_spawner)
-
-	return pickweight(possibilities)
+				/obj/item/weapon/gun/projectile/revolver/havelock = 1,
+				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
+				/obj/item/stash_spawner = 12))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"

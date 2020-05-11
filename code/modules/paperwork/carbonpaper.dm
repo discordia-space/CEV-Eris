@@ -1,5 +1,5 @@
 /obj/item/weapon/paper/carbon
-	name = "paper"
+	name = "sheet of paper"
 	icon_state = "paper_stack"
 	item_state = "paper"
 	var/copied = 0
@@ -30,22 +30,30 @@
 	set category = "Object"
 	set src in usr
 
+	if (crumpled)
+		if (copied == 0)
+			to_chat(usr, "The carbon copies are crushed together with the paper, you can't remove them!")
+		else
+			to_chat(usr, "There are no more carbon copies attached to this paper!")
+		return
 	if (copied == 0)
 		var/obj/item/weapon/paper/carbon/c = src
-		var/copycontents = rhtml_decode(c.info)
+		var/copycontents = html_decode(c.info)
 		var/obj/item/weapon/paper/carbon/copy = new /obj/item/weapon/paper/carbon (usr.loc)
 		// <font>
-		copycontents = replacetext(copycontents, "<font face=\"[c.deffont]\" color=", "<font face=\"[c.deffont]\" nocolor=")	//state of the art techniques in action
-		copycontents = replacetext(copycontents, "<font face=\"[c.crayonfont]\" color=", "<font face=\"[c.crayonfont]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
-		copy.info += copycontents
-		copy.info += "</font>"
-		copy.name = "Copy - " + c.name
-		copy.fields = c.fields
-		copy.updateinfolinks()
-		usr << SPAN_NOTICE("You tear off the carbon-copy!")
+		if(info)
+			copycontents = replacetext(copycontents, "<font face=\"[c.deffont]\" color=", "<font face=\"[c.deffont]\" nocolor=")	//state of the art techniques in action
+			copycontents = replacetext(copycontents, "<font face=\"[c.crayonfont]\" color=", "<font face=\"[c.crayonfont]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+			copy.info += copycontents
+			copy.info += "</font>"
+			copy.name = "Copy - " + c.name
+			copy.fields = c.fields
+			copy.updateinfolinks()
+		to_chat(usr, SPAN_NOTICE("You tear off the carbon-copy!"))
+		playsound(src,'sound/effects/paper_tearingSoundBible.wav', 30, 1)
 		c.copied = 1
 		copy.iscopy = 1
 		copy.update_icon()
 		c.update_icon()
 	else
-		usr << "There are no more carbon copies attached to this paper!"
+		to_chat(usr, "There are no more carbon copies attached to this paper!")

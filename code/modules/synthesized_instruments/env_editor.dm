@@ -9,7 +9,7 @@
 	src.player = player
 
 
-/datum/nano_module/env_editor/ui_interact(mob/user, ui_key = "env_editor", var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/nano_module/env_editor/ui_interact(mob/user, ui_key = "env_editor", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/list/list/data = list()
 	data["env_params"] = list()
 	for (var/i=1 to 23)

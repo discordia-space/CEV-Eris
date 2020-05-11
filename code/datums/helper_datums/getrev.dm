@@ -35,10 +35,10 @@ client/verb/showrevinfo()
 	set desc = "Check the current server code revision"
 
 	if(revdata.revision)
-		src << "<b>Server revision:</b> [revdata.branch] - [revdata.date]"
+		to_chat(src, "<b>Server revision:</b> [revdata.branch] - [revdata.date]")
 		if(config.githuburl)
-			src << "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>"
+			to_chat(src, "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>")
 		else
-			src << revdata.revision
+			to_chat(src, revdata.revision)
 	else
-		src << "Revision unknown"
+		to_chat(src, "Revision unknown")

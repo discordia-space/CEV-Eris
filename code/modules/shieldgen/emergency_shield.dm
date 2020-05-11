@@ -248,10 +248,10 @@
 
 /obj/machinery/shieldgen/attack_hand(mob/user as mob)
 	if(locked)
-		user << "The machine is locked, you are unable to use it."
+		to_chat(user, "The machine is locked, you are unable to use it.")
 		return
 	if(is_open)
-		user << "The panel must be closed before operating this machine."
+		to_chat(user, "The panel must be closed before operating this machine.")
 		return
 
 	if (src.active)
@@ -266,7 +266,7 @@
 				"You hear heavy droning.")
 			src.shields_up()
 		else
-			user << "The device must first be secured to the floor."
+			to_chat(user, "The device must first be secured to the floor.")
 	return
 
 /obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
@@ -282,25 +282,25 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(locked)
-				user << SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers.")
+				to_chat(user, SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 				if(anchored)
-					user << SPAN_NOTICE("You unsecure the [src] from the floor!")
+					to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
 					if(active)
-						user << SPAN_NOTICE("The [src] shuts off!")
+						to_chat(user, SPAN_NOTICE("The [src] shuts off!"))
 						src.shields_down()
 					anchored = FALSE
 				else
 					if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-					user << SPAN_NOTICE("You secure the [src] to the floor!")
+					to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
 					anchored = TRUE
 			return
 
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, instant_finish_tier = 30))
 				is_open = !is_open
-				user << SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I]."))
 			return
 
 		if(ABORT_CHECK)
@@ -308,20 +308,20 @@
 
 	if(istype(I, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = I
-		user << SPAN_NOTICE("You begin to replace the wires.")
+		to_chat(user, SPAN_NOTICE("You begin to replace the wires."))
 		if(do_after(user, 30,src))
 			if (coil.use(1))
 				health = max_health
 				malfunction = 0
-				user << SPAN_NOTICE("You repair the [src]!")
+				to_chat(user, SPAN_NOTICE("You repair the [src]!"))
 				update_icon()
 
 	else if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if(src.allowed(user))
 			src.locked = !src.locked
-			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			user << SPAN_WARNING("Access denied.")
+			to_chat(user, SPAN_WARNING("Access denied."))
 
 	else
 		..()

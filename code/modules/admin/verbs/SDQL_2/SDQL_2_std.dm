@@ -105,7 +105,7 @@
 	thing << output(msg, control)
 
 /proc/_chat_output(thing, msg)
-    thing << msg
+    to_chat(thing, msg)
 
 /proc/_oview(Dist, Center = usr)
 	return oview(Dist, Center)

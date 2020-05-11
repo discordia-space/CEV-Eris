@@ -17,6 +17,7 @@
 	. = ..()
 	linked = map_sectors["[z]"]
 	get_known_sectors()
+	new /obj/effect/overmap_event/movable/comet()
 
 /obj/machinery/computer/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
@@ -27,7 +28,6 @@
 			R.fields["x"] = S.x
 			R.fields["y"] = S.y
 			known_sectors[S.name] = R
-	..()
 
 /obj/machinery/computer/helm/Process()
 	..()
@@ -66,6 +66,7 @@
 	return 0
 
 /obj/machinery/computer/helm/attack_hand(var/mob/user as mob)
+
 	if(..())
 		user.unset_machine()
 		manual_control = 0
@@ -78,7 +79,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 
@@ -142,7 +143,7 @@
 			sec_name = "Sector #[known_sectors.len]"
 		R.fields["name"] = sec_name
 		if(sec_name in known_sectors)
-			usr << "<span class='warning'>Sector with that name already exists, please input a different name.</span>"
+			to_chat(usr, "<span class='warning'>Sector with that name already exists, please input a different name.</span>")
 			return
 		switch(href_list["add"])
 			if("current")
@@ -155,8 +156,8 @@
 				var/newy = input("Input new entry y coordinate", "Coordinate input", linked.y) as num
 				if(!CanInteract(usr,state))
 					return
-				R.fields["x"] = Clamp(newx, 1, world.maxx)
-				R.fields["y"] = Clamp(newy, 1, world.maxy)
+				R.fields["x"] = CLAMP(newx, 1, world.maxx)
+				R.fields["y"] = CLAMP(newy, 1, world.maxy)
 		known_sectors[sec_name] = R
 
 	if (href_list["remove"])
@@ -170,14 +171,14 @@
 		if(!CanInteract(usr,state))
 			return
 		if (newx)
-			dx = Clamp(newx, 1, world.maxx)
+			dx = CLAMP(newx, 1, world.maxx)
 
 	if (href_list["sety"])
 		var/newy = input("Input new destiniation y coordinate", "Coordinate input", dy) as num|null
 		if(!CanInteract(usr,state))
 			return
 		if (newy)
-			dy = Clamp(newy, 1, world.maxy)
+			dy = CLAMP(newy, 1, world.maxy)
 
 	if (href_list["x"] && href_list["y"])
 		dx = text2num(href_list["x"])
@@ -190,7 +191,7 @@
 	if (href_list["speedlimit"])
 		var/newlimit = input("Input new speed limit for autopilot (0 to disable)", "Autopilot speed limit", speedlimit) as num|null
 		if(newlimit)
-			speedlimit = Clamp(newlimit, 0, 100)
+			speedlimit = CLAMP(newlimit, 0, 100)
 
 	if (href_list["move"])
 		var/ndir = text2num(href_list["move"])
@@ -210,7 +211,6 @@
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 
 
@@ -222,7 +222,7 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 
-/obj/machinery/computer/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 

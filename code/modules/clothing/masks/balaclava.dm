@@ -24,19 +24,19 @@
 				flags_inv = BLOCKHEADHAIR
 				body_parts_covered = HEAD
 				icon_state = "swatclava_open"
-				user << "You put the balaclava away, revealing your face."
+				to_chat(user, "You put the balaclava away, revealing your face.")
 				open = 1
 			if (1)
 				flags_inv = HIDEFACE|BLOCKFACEHAIR
 				body_parts_covered = FACE
 				icon_state = "swatclava_mouth"
-				user << "You adjust the balaclava up to cover your mouth."
+				to_chat(user, "You adjust the balaclava up to cover your mouth.")
 				open = 2
 			else
 				flags_inv = HIDEFACE|BLOCKHAIR
 				body_parts_covered = FACE|HEAD
 				icon_state = "swatclava"
-				user << "You pull the balaclava up to cover your whole head."
+				to_chat(user, "You pull the balaclava up to cover your whole head.")
 				open = 0
 		user.update_hair(0)
 		user.update_inv_ears(0)

@@ -150,6 +150,14 @@
 			  {{/for}}
 			</td>
 		  </tr>
+		  <tr>
+			<th style="color: '#fec044';">Church</th>
+			<td>
+			  {{for data.church_jobs}}
+				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{/for}}
+			</td>
+		  </tr>
 			<th style="color: '#808080';">Service</th>
 			<td>
 			  {{for data.service_jobs}}

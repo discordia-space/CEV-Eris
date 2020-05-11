@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply
 	//supply points
 	var/centcom_message = ""
+	var/list/exports = list() //List of export datums
 	var/contraband = 0
 	var/hacked = 0
 	//control
@@ -15,7 +16,7 @@ SUBSYSTEM_DEF(supply)
 	var/list/requestlist = list()
 	var/list/supply_packs = list()
 	//shuttle movement
-	var/movetime = 1200
+	var/movetime = 300
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 
 /datum/controller/subsystem/supply/Initialize(start_timeofday)
@@ -29,7 +30,7 @@ SUBSYSTEM_DEF(supply)
 
 
 /datum/controller/subsystem/supply/stat_entry()
-	..("Credits: [get_supply_credits()]")
+	..("Credits: [get_account_credits(department_accounts[DEPARTMENT_GUILD])]")
 
 //To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
@@ -49,10 +50,9 @@ SUBSYSTEM_DEF(supply)
 
 //Sellin
 /datum/controller/subsystem/supply/proc/sell()
-	//Selling things to centcom removed, will replace in future with a system of npc traders
-	/*
 	var/msg = ""
 	var/sold_atoms = ""
+	var/points = 0
 
 	for(var/area/subarea in shuttle.shuttle_area)
 		for(var/atom/movable/AM in subarea)
@@ -61,18 +61,24 @@ SUBSYSTEM_DEF(supply)
 
 			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
-	for(var/a in exports_list)
+	for(var/a in exports)
 		var/datum/export/E = a
 		var/export_text = E.total_printout()
 		if(!export_text)
 			continue
 
-		msg += "\n" + export_text + "\n"
+		msg += "[export_text]<br>"
 		points += E.total_cost
-		E.export_end()
+
+	msg += "<br>Total exports value: [points] credits.<br>"
+	exports.Cut()
+
+	var/datum/money_account/GA = department_accounts[DEPARTMENT_GUILD]
+	var/datum/transaction/T = new(points, "Asters Guild", "Exports", "Asters Automated Trading System")
+	T.apply_to(GA)
 
 	centcom_message = msg
-	*/
+
 
 //Buyin
 /datum/controller/subsystem/supply/proc/buy()
@@ -107,7 +113,7 @@ SUBSYSTEM_DEF(supply)
 		var/datum/supply_pack/SP = SO.object
 
 		var/obj/A = new SP.containertype(pickedloc)
-		A.name = "[SP.name][SO.comment ? " ([SO.comment])":"" ]"
+		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
 
 		//supply manifest generation begin
 
@@ -115,8 +121,8 @@ SUBSYSTEM_DEF(supply)
 		if(!SP.contraband)
 			slip = new /obj/item/weapon/paper/manifest(A)
 			slip.is_copy = 0
-			slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
-			slip.info +="Order #[SO.ordernum]<br>"
+			slip.info = "<h3>Shipping Manifest</h3><hr><br>"
+			slip.info +="Order #[SO.id]<br>"
 			slip.info +="Destination: [station_name]<br>"
 			slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
 			slip.info +="CONTENTS:<br><ul>"
@@ -129,7 +135,7 @@ SUBSYSTEM_DEF(supply)
 				var/list/L = SP.access // access var is a plain var, we need a list
 				A.req_access = L.Copy()
 			else
-				world << "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>"
+				to_chat(world, "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
 
 		var/list/contains
 		if(istype(SP,/datum/supply_pack/randomised))
@@ -153,27 +159,15 @@ SUBSYSTEM_DEF(supply)
 		if(slip)
 			slip.info += "</ul><br>"
 			slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+			slip.update_icon()
 
 	shoppinglist.Cut()
 	return
 
-
-//Returns the credits in the guild account, which is used for purchasing things
-/proc/get_supply_credits()
-	var/datum/money_account/GA = department_accounts["Guild"]
-	if (!GA)
-		return 0
-
-	return GA.money
-
 //Deducts credits from the guild account to pay for external purchases
-/proc/pay_supply_cost(var/source_name, var/purpose, var/terminal_id, var/amount)
-	var/datum/money_account/GA = department_accounts["Guild"]
+/proc/pay_for_order(datum/supply_order/order, terminal)
+	var/datum/money_account/GA = department_accounts[DEPARTMENT_GUILD]
 	if (!GA)
 		return FALSE
 
-	if (GA.money < amount)
-		return FALSE
-
-	charge_to_account(GA.account_number, source_name, purpose, terminal_id, amount)
-	return TRUE
+	return charge_to_account(GA.account_number, order.orderer, "Order of [order.object.name]", terminal, order.object.cost)

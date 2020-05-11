@@ -22,8 +22,8 @@
 	return ..()
 
 /obj/machinery/cellshower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/scanner/analyzer)
-		user << SPAN_NOTICE("The water temperature seems to be [watertemp].")
+	if(QUALITY_PULSING in I.tool_qualities)
+		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
 
 /obj/machinery/cellshower/Process()
 	for(var/obj/effect/shower/S in effect)
@@ -47,7 +47,8 @@
 	on = !on
 	if(on)
 		visible_message("<span class='warning'>[src] clicks and distributes some pain.")
-		for(var/turf/T in trange(1, locate(x, y, z - 1)))
+		var/obj/machinery/cellshower/targetshower = locate(x, y, z - 1)
+		for(var/turf/T in trange(1, targetshower))
 			if(T.density)
 				continue
 			var/obj/effect/shower/S = new(T)
@@ -58,7 +59,8 @@
 /obj/machinery/cellshower/proc/spray()
 	visible_message("<span class='warning'>[src] clicks and distributes some pain.")
 	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1)
-	for(var/turf/T in trange(1, locate(x, y, z - 1)))
+	var/obj/machinery/cellshower/targetshower = locate(x, y, z - 1)
+	for(var/turf/T in trange(1, targetshower))
 		if(T.density)
 			continue
 		spawn(0)
@@ -124,7 +126,7 @@
 		var/mob/living/L = O
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
-		L << SPAN_WARNING("You've been drenched in water!")
+		to_chat(L, SPAN_WARNING("You've been drenched in water!"))
 		if(iscarbon(O))
 			var/mob/living/carbon/M = O
 			if(M.r_hand)
@@ -215,11 +217,11 @@
 
 		if(master.watertemp == "freezing")
 			C.bodytemperature = max(80, C.bodytemperature - 80)
-			C << SPAN_WARNING("The water is freezing!")
+			to_chat(C, SPAN_WARNING("The water is freezing!"))
 			return
 		if(master.watertemp == "boiling")
 			C.bodytemperature = min(500, C.bodytemperature + 35)
 			C.adjustFireLoss(5)
-			C << SPAN_DANGER("The water is searing!")
+			to_chat(C, SPAN_DANGER("The water is searing!"))
 			return
 //cyka blyat

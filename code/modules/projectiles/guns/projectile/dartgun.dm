@@ -1,29 +1,29 @@
 /obj/item/projectile/bullet/chemdart
 	name = "dart"
 	icon_state = "dart"
-	damage = 5
+	damage_types = list(BRUTE = 5)
 	sharp = 1
 	embed = 1 //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
 	var/reagent_amount = 15
 	kill_count = 15 //shorter range
-	
+
 	muzzle_type = null
 
 /obj/item/projectile/bullet/chemdart/New()
 	reagents = new/datum/reagents(reagent_amount)
 	reagents.my_atom = src
 
-/obj/item/projectile/bullet/chemdart/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
-	if(blocked < 2 && isliving(target))
+/obj/item/projectile/bullet/chemdart/on_hit(atom/target, def_zone = null)
+	if(isliving(target))
 		var/mob/living/L = target
-		if(L.can_inject(target_zone=def_zone))
+		if(L.can_inject(target_zone = def_zone))
 			reagents.trans_to_mob(L, reagent_amount, CHEM_BLOOD)
 
 /obj/item/ammo_casing/chemdart
 	name = "chemical dart"
 	desc = "A small hardened, hollow dart."
 	icon_state = "dart"
-	caliber = "dart"
+	caliber = CAL_DART
 	projectile_type = /obj/item/projectile/bullet/chemdart
 
 /obj/item/ammo_casing/chemdart/expend()
@@ -36,54 +36,52 @@
 	item_state = "rcdammo"
 	origin_tech = list(TECH_MATERIAL = 2)
 	mag_type = MAGAZINE
-	caliber = "dart"
+	caliber = CAL_DART
 	ammo_type = /obj/item/ammo_casing/chemdart
 	max_ammo = 5
 	multiple_sprites = 1
+	mag_well = MAG_WELL_DART
 
 /obj/item/weapon/gun/projectile/dartgun
-	name = "dart gun"
+	name = "Z-H P Artemis"
 	desc = "Zeng-Hu Pharmaceutical's entry into the arms market, the Z-H P Artemis is a gas-powered dart gun capable of delivering chemical cocktails swiftly across short distances."
+	icon = 'icons/obj/guns/projectile/dartgun.dmi'
 	icon_state = "dartgun-empty"
-	item_state = null
 
-	caliber = "dart"
+	caliber = CAL_DART
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic click"
-	recoil = 0
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	recoil_buildup = 0
 	silenced = 1
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/chemdart
 	auto_eject = 0
+	mag_well = MAG_WELL_DART
 
 	var/list/beakers = list() //All containers inside the gun.
 	var/list/mixing = list() //Containers being used for mixing.
 	var/max_beakers = 3
 	var/dart_reagent_amount = 15
-	var/container_type = /obj/item/weapon/reagent_containers/glass/beaker
+	var/beaker_type = /obj/item/weapon/reagent_containers/glass/beaker
 	var/list/starting_chems = null
 
-/obj/item/weapon/gun/projectile/dartgun/dartgun/New()
+/obj/item/weapon/gun/projectile/dartgun/New()
 	..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
-			var/obj/B = new container_type(src)
+			var/obj/B = new beaker_type(src)
 			B.reagents.add_reagent(chem, 60)
 			beakers += B
 	update_icon()
 
 /obj/item/weapon/gun/projectile/dartgun/update_icon()
-	if(!ammo_magazine)
-		icon_state = "dartgun-empty"
-		return 1
-
-	if(!ammo_magazine.stored_ammo || ammo_magazine.stored_ammo.len)
-		icon_state = "dartgun-0"
-	else if(ammo_magazine.stored_ammo.len > 5)
-		icon_state = "dartgun-5"
+	..()
+	if(ammo_magazine)
+		icon_state = "dartgun-[round(ammo_magazine.stored_ammo.len,2)]"
 	else
-		icon_state = "dartgun-[ammo_magazine.stored_ammo.len]"
-	return 1
+		icon_state = "dartgun-empty"
+	return
 
 /obj/item/weapon/gun/projectile/dartgun/consume_next_projectile()
 	. = ..()
@@ -97,25 +95,25 @@
 	//	return
 	..()
 	if (beakers.len)
-		user << "\blue [src] contains:"
+		to_chat(user, SPAN_NOTICE("[src] contains:"))
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					user << "\blue [R.volume] units of [R.name]"
+					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
 
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
-		if(!istype(I, container_type))
-			user << "\blue [I] doesn't seem to fit into [src]."
+		if(!istype(I, beaker_type))
+			to_chat(user, SPAN_NOTICE("[I] doesn't seem to fit into [src]."))
 			return
 		if(beakers.len >= max_beakers)
-			user << "\blue [src] already has [max_beakers] beakers in it - another one isn't going to fit!"
+			to_chat(user, SPAN_NOTICE("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		B.loc = src
 		beakers += B
-		user << "\blue You slot [B] into [src]."
+		to_chat(user, SPAN_NOTICE("You slot [B] into [src]."))
 		src.updateUsrDialog()
 		return 1
 	..()
@@ -186,7 +184,7 @@
 		if(index <= beakers.len)
 			if(beakers[index])
 				var/obj/item/weapon/reagent_containers/glass/beaker/B = beakers[index]
-				usr << "You remove [B] from [src]."
+				to_chat(usr,  "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
 				B.loc = get_turf(src)
@@ -194,13 +192,3 @@
 		unload_ammo(usr)
 	src.updateUsrDialog()
 	return
-
-/obj/item/weapon/gun/projectile/dartgun/vox
-	name = "alien dart gun"
-	desc = "A small gas-powered dartgun, fitted for nonhuman hands."
-
-/obj/item/weapon/gun/projectile/dartgun/vox/medical
-	starting_chems = list("kelotane","bicaridine","anti_toxin")
-
-/obj/item/weapon/gun/projectile/dartgun/vox/raider
-	starting_chems = list("space_drugs","stoxin","impedrezene")

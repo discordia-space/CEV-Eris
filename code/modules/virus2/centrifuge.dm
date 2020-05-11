@@ -6,7 +6,6 @@
 	var/curing
 	var/isolating
 	CheckFaceFlag = 0
-	circuit = /obj/item/weapon/circuitboard/centrifuge
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
@@ -16,7 +15,7 @@
 
 	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial))
 		if(sample)
-			user << "\The [src] is already loaded."
+			to_chat(user, "\The [src] is already loaded.")
 			return
 
 		sample = O
@@ -37,7 +36,7 @@
 	if(..()) return
 	ui_interact(user)
 
-/obj/machinery/computer/centrifuge/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/centrifuge/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/data[0]
@@ -53,7 +52,7 @@
 		data["sample_inserted"] = !!sample
 
 		if (sample)
-			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in sample.reagents.reagent_list
 			if (B)
 				data["antibodies"] = antigens2string(B.data["antibodies"], none=null)
 
@@ -67,7 +66,7 @@
 					data["pathogens"] = pathogens
 
 			else
-				var/datum/reagent/antibodies/A = locate(/datum/reagent/antibodies) in sample.reagents.reagent_list
+				var/datum/reagent/organic/antibodies/A = locate(/datum/reagent/organic/antibodies) in sample.reagents.reagent_list
 				if(A)
 					data["antibodies"] = antigens2string(A.data["antibodies"], none=null)
 				data["is_antibody_sample"] = 1
@@ -98,8 +97,6 @@
 	var/mob/user = usr
 	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
 
-	src.add_fingerprint(user)
-
 	if (href_list["close"])
 		user.unset_machine()
 		ui.close()
@@ -110,7 +107,7 @@
 		return 1
 
 	if(href_list["isolate"])
-		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in sample.reagents.reagent_list
 		if (B)
 			var/datum/disease2/disease/virus = locate(href_list["isolate"])
 			virus2 = virus.getcopy()
@@ -121,7 +118,7 @@
 	switch(href_list["action"])
 		if ("antibody")
 			var/delay = 20
-			var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+			var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in sample.reagents.reagent_list
 			if (!B)
 				state("\The [src] buzzes, \"No antibody carrier detected.\"", "blue")
 				return 1
@@ -150,7 +147,7 @@
 
 /obj/machinery/computer/centrifuge/proc/cure()
 	if (!sample) return
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+	var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in sample.reagents.reagent_list
 	if (!B) return
 
 	var/list/data = list("antibodies" = B.data["antibodies"])
@@ -185,7 +182,7 @@
 
 	P.info += "<hr>"
 
-	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
+	var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in sample.reagents.reagent_list
 	if (B)
 		P.info += "<u>Antibodies:</u> "
 		P.info += antigens2string(B.data["antibodies"])
@@ -201,7 +198,7 @@
 			P.info += "None<br>"
 
 	else
-		var/datum/reagent/antibodies/A = locate(/datum/reagent/antibodies) in sample.reagents.reagent_list
+		var/datum/reagent/organic/antibodies/A = locate(/datum/reagent/organic/antibodies) in sample.reagents.reagent_list
 		if (A)
 			P.info += "The following antibodies have been isolated from the blood sample: "
 			P.info += antigens2string(A.data["antibodies"])

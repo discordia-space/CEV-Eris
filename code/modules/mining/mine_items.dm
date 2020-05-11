@@ -6,29 +6,28 @@
 	req_access = list(access_merchant)
 	access_occupy = list(access_mining)
 
-/obj/structure/closet/secure_closet/personal/miner/New()
-	..()
-	sleep(2)
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/eng(src)
+/obj/structure/closet/secure_closet/personal/miner/populate_contents()
+
+	new /obj/item/weapon/storage/backpack/industrial(src)
+	new /obj/item/weapon/storage/backpack/satchel/industrial(src)
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/glasses/powered/meson(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/weapon/cell/medium(src)
 	new /obj/item/weapon/cell/medium(src)
+	new /obj/item/weapon/cell/small(src)
 	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
-	new /obj/item/weapon/tool_upgrade/augment/fuel_tank(src)
-	new /obj/item/device/scanner/analyzer(src)
+	new /obj/item/device/scanner/gas(src)
 	new /obj/item/weapon/storage/bag/ore(src)
-	new /obj/item/device/lighting/toggleable/lantern(src)
+	new /obj/item/device/lighting/toggleable/flashlight/heavy(src)
 	new /obj/item/weapon/tool/shovel(src)
 	new /obj/item/weapon/tool/pickaxe(src)
-	new /obj/item/weapon/tool/pickaxe/jackhammer(src)
+	new /obj/item/weapon/tool/pickaxe/drill(src)
+	new /obj/item/weapon/gun/projectile/shotgun/doublebarrel(src)
+	new /obj/item/weapon/storage/box/shotgunammo/slug(src)
 	new /obj/item/device/t_scanner(src)
-	new /obj/random/tool_upgrade(src)
 
 /******************************Lantern*******************************/
 
@@ -106,11 +105,11 @@
 
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T,/turf/simulated/floor/asteroid))
-		user << "The flag won't stand up in this terrain."
+		to_chat(user, "The flag won't stand up in this terrain.")
 		return
 
 	if(F && F.upright)
-		user << "There is already a flag here."
+		to_chat(user, "There is already a flag here.")
 		return
 
 	var/obj/item/stack/flag/newflag = new src.type(T)

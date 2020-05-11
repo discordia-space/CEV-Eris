@@ -29,15 +29,15 @@
 	set src = usr
 
 	if(stat == 2)
-		usr << SPAN_DANGER("You are dead; it is too late for that.")
+		to_chat(usr, SPAN_DANGER("You are dead; it is too late for that."))
 		return
 
 	if(!seed)
-		usr << SPAN_DANGER("You are sterile!")
+		to_chat(usr, SPAN_DANGER("You are sterile!"))
 		return
 
 	if(world.time < harvest_time + min_explode_time)
-		usr << SPAN_DANGER("You are not mature enough for that.")
+		to_chat(usr, SPAN_DANGER("You are not mature enough for that."))
 		return
 
 	spore_explode()

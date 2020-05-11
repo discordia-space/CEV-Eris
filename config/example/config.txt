@@ -15,6 +15,9 @@ ALERT_DELTA The ship's self-destruct mechanism has been engaged. All crew are in
 ## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
 #BAN_LEGACY_SYSTEM
 
+## Enables the memo system for admins, used to log on each player
+ADMIN_MEMO_SYSTEM
+
 ## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
 JOBS_HAVE_MINIMAL_ACCESS
 
@@ -302,3 +305,17 @@ JOIN_UNASSIGNED
 
 ## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
 #MINIMUM_BYOND_BUILD
+
+## Time in minutes before empty server will restart	
+EMPTY_SERVER_RESTART_TIME 30
+
+## EMOJI ###
+## Comment this out if you want to disable emojis
+EMOJIS
+
+## MOB AI SLEEPING ###
+## Uncomment this out if you want to disable mob AI sleeping 
+#ENABLE_MOB_SLEEP
+
+WEBHOOK_URL http://localhost:44303/webhook/en
+WEBHOOK_KEY testkey

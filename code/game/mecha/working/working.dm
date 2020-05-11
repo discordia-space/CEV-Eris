@@ -1,6 +1,6 @@
 /obj/mecha/working
 	internal_damage_threshold = 60
-	var/list/cargo = new
+	var/list/cargo = list()
 	var/cargo_capacity = 5
 
 /obj/mecha/working/Initialize()
@@ -29,7 +29,7 @@
 	..()
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
-		if(O && O in src.cargo)
+		if(O && (O in src.cargo))
 			src.occupant_message(SPAN_NOTICE("You unload [O]."))
 			O.loc = get_turf(src)
 			src.cargo -= O

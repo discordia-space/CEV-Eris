@@ -3,7 +3,7 @@
 	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a mercifully brief end to others."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
 
@@ -65,7 +65,7 @@
 
 	if (istype(I,/obj/item/device/assembly_holder))
 		if(detonator)
-			user << SPAN_WARNING("There is another device in the way.")
+			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
 
 		user.visible_message("\The [user] begins attaching [I] to \the [src].", "You begin attaching [I] to \the [src]")

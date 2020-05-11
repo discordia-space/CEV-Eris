@@ -8,14 +8,14 @@
 	var/abstract = 0
 	var/r_speed = 1.0
 	var/health = null
+	var/max_health = null
 	var/burn_point = null
 	var/burning = null
 	var/hitsound = null
 	var/worksound = null
-	var/storage_cost = null
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
-//	causeerrorheresoifixthis
+
 	var/obj/item/master = null
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
@@ -42,11 +42,13 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/list/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = list() //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
+
+	var/contained_sprite = FALSE //TRUE if object icon and related mob overlays are all in one dmi
 
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
@@ -59,12 +61,17 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
+	// HUD action buttons. Only used by guns atm.
+	var/list/hud_actions
 
 	//Damage vars
 	var/force = 0	//How much damage the weapon deals
 	var/embed_mult = 0.5 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
+
+	var/list/item_upgrades = list()
+	var/max_upgrades = 3
 
 /obj/item/Destroy()
 	QDEL_NULL(hidden_uplink)
@@ -73,7 +80,13 @@
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
+		remove_hud_actions(m)
 		loc = null
+	if(hud_actions)
+		for(var/action in hud_actions)
+			qdel(action)
+		hud_actions = null
+
 	return ..()
 
 /obj/item/get_fall_damage()
@@ -111,16 +124,22 @@
 	var/message
 	var/size
 	switch(w_class)
-		if(1)
+		if(ITEM_SIZE_TINY)
 			size = "tiny"
-		if(2)
+		if(ITEM_SIZE_SMALL)
 			size = "small"
-		if(3)
+		if(ITEM_SIZE_NORMAL)
 			size = "normal-sized"
-		if(4)
+		if(ITEM_SIZE_BULKY)
 			size = "bulky"
-		if(5)
+		if(ITEM_SIZE_HUGE)
 			size = "huge"
+		if(ITEM_SIZE_GARGANTUAN)
+			size = "gargantuan"
+		if(ITEM_SIZE_COLOSSAL)
+			size = "colossal"
+		if(ITEM_SIZE_TITANIC)
+			size = "titanic"
 	message += "\nIt is a [size] item."
 
 	for(var/Q in tool_qualities)
@@ -143,6 +162,7 @@
 	if(target.put_in_active_hand(src) && old_loc )
 		if ((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
+	add_hud_actions(target)
 
 /obj/item/attack_ai(mob/user as mob)
 	if (istype(loc, /obj/item/weapon/robot_module))
@@ -153,7 +173,7 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/M, text)
+/obj/item/proc/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
 	return
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
@@ -163,6 +183,8 @@
 // Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
 // This exists so that dropped() could exclusively be called when an item is dropped.
 /obj/item/proc/on_slotmove(var/mob/user)
+	if(wielded)
+		unwield(user)
 	if (zoom)
 		zoom(user)
 
@@ -194,22 +216,22 @@
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
-		usr << SPAN_WARNING("You can't pick things up!")
+		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
 		return
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		usr << SPAN_WARNING("You can't pick things up!")
+		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
 		return
 	if(anchored) //Object isn't anchored
-		usr << SPAN_WARNING("You can't pick that up!")
+		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
-		usr << SPAN_WARNING("Your right hand is full.")
+		to_chat(usr, SPAN_WARNING("Your right hand is full."))
 		return
 	if(usr.hand && usr.l_hand) //Left hand is not full
-		usr << SPAN_WARNING("Your left hand is full.")
+		to_chat(usr, SPAN_WARNING("Your left hand is full."))
 		return
 	if(!istype(loc, /turf)) //Object is on a turf
-		usr << SPAN_WARNING("You can't pick that up!")
+		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
@@ -218,7 +240,7 @@
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click()
+/obj/item/proc/ui_action_click(mob/living/user, action_name)
 	attack_self(usr)
 
 //RETURN VALUES
@@ -242,11 +264,11 @@
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
-				user << SPAN_WARNING("You're going to need to remove the eye covering first.")
+				to_chat(user, SPAN_WARNING("You're going to need to remove the eye covering first."))
 				return
 
 	if(!M.has_eyes())
-		user << SPAN_WARNING("You cannot locate any eyes on [M]!")
+		to_chat(user, SPAN_WARNING("You cannot locate any eyes on [M]!"))
 		return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
@@ -260,7 +282,7 @@
 	//if((CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
-		M << SPAN_WARNING("You stab yourself in the eye.")
+		to_chat(M, SPAN_WARNING("You stab yourself in the eye."))
 		M.sdisabilities |= BLIND
 		M.weakened += 4
 		M.adjustBruteLoss(10)
@@ -276,8 +298,8 @@
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
 				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
-			M << SPAN_DANGER("[user] stabs you in the eye with [src]!")
-			user << SPAN_DANGER("You stab [M] in the eye with [src]!")
+			to_chat(M, SPAN_DANGER("[user] stabs you in the eye with [src]!"))
+			to_chat(user, SPAN_DANGER("You stab [M] in the eye with [src]!"))
 		else
 			user.visible_message( \
 				SPAN_DANGER("[user] has stabbed themself with [src]!"), \
@@ -287,18 +309,18 @@
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != DEAD)
-				if(eyes.robotic <= ORGAN_ASSISTED) //robot eyes bleeding might be a bit silly
-					M << SPAN_DANGER("Your eyes start to bleed profusely!")
+				if(BP_IS_ORGANIC(eyes) || BP_IS_ASSISTED(eyes)) //robot eyes bleeding might be a bit silly
+					to_chat(M, SPAN_DANGER("Your eyes start to bleed profusely!"))
 			if(prob(50))
 				if(M.stat != DEAD)
-					M << SPAN_WARNING("You drop what you're holding and clutch at your eyes!")
+					to_chat(M, SPAN_WARNING("You drop what you're holding and clutch at your eyes!"))
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if (eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
-					M << SPAN_WARNING("You go blind!")
+					to_chat(M, SPAN_WARNING("You go blind!"))
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
@@ -310,9 +332,10 @@
 	. = ..()
 	if(blood_overlay)
 		overlays.Remove(blood_overlay)
-	if(istype(src, /obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/G = src
-		G.transfer_blood = 0
+
+/obj/item/clothing/gloves/clean_blood()
+	.=..()
+	transfer_blood = 0
 
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
@@ -390,13 +413,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/cannotzoom
 
 	if(usr.stat || !(ishuman(usr)))
-		usr << "You are unable to focus through the [devicename]"
+		to_chat(usr, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
-	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
-		usr << "Your visor gets in the way of looking through the [devicename]"
+	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
+		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)
-		usr << "You are too distracted to look through the [devicename], perhaps if it was in your active hand this might work better"
+		to_chat(usr, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 
 	if(!zoom && !cannotzoom)
@@ -442,13 +465,48 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return 0 // Process Kill
 
 
+//Called when a human swaps hands to a hand which is holding this item
+/obj/item/proc/swapped_to(mob/user)
+	add_hud_actions(user)
+
+//Called when a human swaps hands away from a hand which is holding this item
+/obj/item/proc/swapped_from(mob/user)
+	remove_hud_actions(user)
+
+/obj/item/proc/add_hud_actions(mob/user)
+	if(!hud_actions || !user.client)
+		return
+
+	update_hud_actions()
+
+	for(var/action in hud_actions)
+		user.client.screen |= action
+
+/obj/item/proc/remove_hud_actions(mob/user)
+	if(!hud_actions || !user.client)
+		return
+
+	for(var/action in hud_actions)
+		user.client.screen -= action
+
+/obj/item/proc/update_hud_actions()
+	if(!hud_actions)
+		return
+
+	for(var/A in hud_actions)
+		var/obj/item/action = A
+		action.update_icon()
+
+/obj/item/proc/refresh_upgrades()
+	return
+
+/obj/item/proc/on_embed(mob/user)
+	return
+
+/obj/item/proc/on_embed_removal(mob/living/user)
+	return
+
+
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
-//Called when a human swaps hands to a hand which is holding this item
-/obj/item/proc/swapped_to(var/mob/user)
-	return
-
-//Called when a human swaps hands away from a hand which is holding this item
-/obj/item/proc/swapped_from(var/mob/user)
-	return

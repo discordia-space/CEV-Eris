@@ -2,7 +2,7 @@
 	if(T.density)
 		return
 	// Quick and dirty check to avoid placing things inside windows
-	if(locate(/obj/structure/grille, T))
+	if(locate(/obj/structure/low_wall || /obj/structure/grille, T))
 		return
 
 	var/cardinal_turfs = T.CardinalTurfs()
@@ -12,6 +12,8 @@
 		new path(T)
 	if(prob(2))
 		new /obj/effect/decal/cleanable/blood/oil(T)
+	if(prob(1))
+		new /mob/living/simple_animal/mouse(T)
 	if(prob(25))	// Keep in mind that only "corners" get any sort of web
 		attempt_web(T, cardinal_turfs)
 
@@ -21,10 +23,10 @@ var/global/list/random_junk
 		return /obj/effect/decal/cleanable/generic
 	if(!random_junk)
 		random_junk = subtypesof(/obj/item/trash)
-		random_junk += typesof(/obj/item/weapon/cigbutt)
 		random_junk += /obj/effect/decal/cleanable/spiderling_remains
 		random_junk += /obj/item/remains/mouse
 		random_junk += /obj/item/remains/robot
+		random_junk -= /obj/item/trash/material
 		random_junk -= /obj/item/trash/plate
 		random_junk -= /obj/item/trash/snack_bowl
 		random_junk -= /obj/item/trash/syndi_cakes

@@ -18,6 +18,7 @@
 	var/list/allowed_organs = list()
 	var/position_flag = 0
 	var/external = FALSE
+	var/cruciform_resist = FALSE
 
 /obj/item/weapon/implant/attackby(obj/item/weapon/I as obj, mob/user as mob)
 	..()
@@ -43,7 +44,7 @@
 	return external
 
 //return TRUE for implanter icon update.
-/obj/item/weapon/implant/proc/install(var/mob/living/target, var/organ, var/mob/user)
+/obj/item/weapon/implant/proc/install(mob/living/target, organ, mob/user)
 	var/obj/item/organ/external/affected
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -56,15 +57,15 @@
 		affected = H.organs_by_name[organ]
 
 		if(!affected)
-			user << SPAN_WARNING("[H] is missing that body part!.")
+			to_chat(user, SPAN_WARNING("[H] is missing that body part!."))
 			return
 
 		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
-			user << SPAN_WARNING("[src] cannot be implanted in this limb.")
+			to_chat(user, SPAN_WARNING("[src] cannot be implanted in this limb."))
 			return
 
 	if(!can_install(target, affected))
-		user << SPAN_WARNING("You can't install [src].")
+		to_chat(user, SPAN_WARNING("You can't install [src]."))
 		return
 
 	forceMove(target)
@@ -73,6 +74,7 @@
 	if(affected)
 		affected.implants += src
 		part = affected
+		SSnano.update_uis(affected) // Update surgery UI window, if any
 
 	on_install(target, affected)
 	wearer.update_implants()
@@ -102,7 +104,7 @@
 /obj/item/weapon/implant/proc/hear(message, mob/source)
 
 /obj/item/weapon/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
-	wearer << "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>"
+	to_chat(wearer, "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>")
 	if (part)
 		part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
 	else
@@ -113,7 +115,13 @@
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
-/obj/item/weapon/implant/proc/get_mob_overlay(var/gender, var/body_build)
+/obj/item/weapon/implant/proc/restore()
+	name = initial(name)
+	desc = initial(desc)
+	icon_state = initial(icon_state)
+	malfunction = initial(malfunction)
+
+/obj/item/weapon/implant/proc/get_mob_overlay(var/gender)
 	return null
 
 /obj/item/weapon/implant/Destroy()
@@ -124,3 +132,5 @@
 /obj/item/weapon/implant/explosive/emp_act(severity)
 	malfunction(severity)
 
+/obj/item/weapon/implant/proc/get_scanner_name()
+	return name

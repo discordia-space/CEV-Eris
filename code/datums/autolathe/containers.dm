@@ -1,47 +1,47 @@
-/datum/autolathe/recipe/container/drinkingglass
+/datum/design/autolathe/container/drinkingglass
 	name = "drinking glass"
-	path = /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
+	build_path = /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
 
-/datum/autolathe/recipe/container/carafe
+/datum/design/autolathe/container/carafe
 	name = "glass pitcher"
-	path = /obj/item/weapon/reagent_containers/food/drinks/carafe
+	build_path = /obj/item/weapon/reagent_containers/food/drinks/carafe
 
-/datum/autolathe/recipe/container/insulated_pitcher
+/datum/design/autolathe/container/insulated_pitcher
 	name = "insulated pitcher"
-	path = /obj/item/weapon/reagent_containers/food/drinks/pitcher
+	build_path = /obj/item/weapon/reagent_containers/food/drinks/pitcher
 
-/datum/autolathe/recipe/container/bucket
+/datum/design/autolathe/container/bucket
 	name = "bucket"
-	path = /obj/item/weapon/reagent_containers/glass/bucket
+	build_path = /obj/item/weapon/reagent_containers/glass/bucket
 
-/datum/autolathe/recipe/container/beaker
+/datum/design/autolathe/container/beaker
 	name = "glass beaker"
-	path = /obj/item/weapon/reagent_containers/glass/beaker
+	build_path = /obj/item/weapon/reagent_containers/glass/beaker
 
-/datum/autolathe/recipe/container/beaker_large
+/datum/design/autolathe/container/beaker_large
 	name = "large glass beaker"
-	path = /obj/item/weapon/reagent_containers/glass/beaker/large
+	build_path = /obj/item/weapon/reagent_containers/glass/beaker/large
 
-/datum/autolathe/recipe/container/vial
+/datum/design/autolathe/container/vial
 	name = "glass vial"
-	path = /obj/item/weapon/reagent_containers/glass/beaker/vial
+	build_path = /obj/item/weapon/reagent_containers/glass/beaker/vial
 
-/datum/autolathe/recipe/container/jar
+/datum/design/autolathe/container/jar
 	name = "jar"
-	path = /obj/item/weapon/reagent_containers/food/drinks/jar
+	build_path = /obj/item/weapon/reagent_containers/food/drinks/jar
 
-/datum/autolathe/recipe/container/syringe
+/datum/design/autolathe/container/syringe
 	name = "syringe"
-	path = /obj/item/weapon/reagent_containers/syringe
+	build_path = /obj/item/weapon/reagent_containers/syringe
 
-/datum/autolathe/recipe/container/syringegun_ammo
+/datum/design/autolathe/container/syringegun_ammo
 	name = "syringe gun cartridge"
-	path = /obj/item/weapon/syringe_cartridge
+	build_path = /obj/item/weapon/syringe_cartridge
 
-/datum/autolathe/recipe/container/spray
+/datum/design/autolathe/container/spray
 	name = "spray bottle"
-	path = /obj/item/weapon/reagent_containers/spray
+	build_path = /obj/item/weapon/reagent_containers/spray
 
-/datum/autolathe/recipe/container/pill_bottle
+/datum/design/autolathe/container/pill_bottle
 	name = "pill bottle"
-	path = /obj/item/weapon/storage/pill_bottle
+	build_path = /obj/item/weapon/storage/pill_bottle

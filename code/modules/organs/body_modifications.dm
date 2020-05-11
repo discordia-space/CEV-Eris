@@ -1,7 +1,3 @@
-#define MODIFICATION_ORGANIC 1
-#define MODIFICATION_SILICON 2
-#define MODIFICATION_REMOVED 3
-
 var/global/list/body_modifications = list()
 var/global/list/modifications_types = list(
 	BP_CHEST = "",  "chest2" = "", BP_HEAD = "",   BP_GROIN = "",
@@ -44,11 +40,12 @@ var/global/list/modifications_types = list(
 	var/icon/icon = 'icons/mob/human_races/body_modification.dmi'
 	var/nature = MODIFICATION_ORGANIC
 	var/hascolor = FALSE
+	var/allow_nt = TRUE
 
-/datum/body_modification/proc/get_mob_icon(organ, body_build = "", color="#ffffff", gender = MALE, species)	//Use in setup character only
+/datum/body_modification/proc/get_mob_icon(organ, color="#ffffff", gender = MALE, species)	//Use in setup character only
 	return new/icon('icons/mob/human.dmi', "blank")
 
-/datum/body_modification/proc/is_allowed(var/organ = "", datum/preferences/P)
+/datum/body_modification/proc/is_allowed(organ = "", datum/preferences/P, mob/living/carbon/human/H)
 	if(!organ || !(organ in body_parts))
 		//usr << "[name] isn't useable for [organ]"
 		return FALSE
@@ -58,8 +55,15 @@ var/global/list/modifications_types = list(
 		if(parent_organ)
 			var/datum/body_modification/parent = P.get_modification(parent_organ)
 			if(parent.nature > nature)
-				usr << "[name] can't be attached to [parent.name]"
+				to_chat(usr, "[name] can't be attached to [parent.name]")
 				return FALSE
+
+	if(!allow_nt)
+		if(H?.mind?.assigned_job.department == DEPARTMENT_CHURCH)
+			return FALSE
+		if(H?.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+			return FALSE
+
 	return TRUE
 
 /datum/body_modification/proc/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
@@ -95,6 +99,7 @@ var/global/list/modifications_types = list(
 	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	replace_limb = 1
 	nature = MODIFICATION_REMOVED
+
 /datum/body_modification/limb/amputation/create_organ()
 	return null
 
@@ -104,8 +109,9 @@ var/global/list/modifications_types = list(
 	desc = "Simple, brutal and reliable prosthesis"
 	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 	replace_limb = /obj/item/organ/external/robotic
-	icon = 'icons/mob/human_races/robotic.dmi'
+	icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 	nature = MODIFICATION_SILICON
+	allow_nt = FALSE
 
 /datum/body_modification/limb/prosthesis/New()
 	var/obj/item/organ/external/robotic/R = replace_limb
@@ -115,11 +121,8 @@ var/global/list/modifications_types = list(
 	short_name = "P: [name]"
 	name = "Prosthesis: [name]"
 
-/datum/body_modification/limb/prosthesis/is_allowed(var/organ = "", var/datum/preferences/P)
-	return ..(organ, P) && P.religion == "None"
-
-/datum/body_modification/limb/prosthesis/get_mob_icon(organ, body_build, color, gender, species)
-	return new/icon(icon, "[organ][gender == FEMALE ? "_f" : "_m"][body_build]")
+/datum/body_modification/limb/prosthesis/get_mob_icon(organ, color, gender, species)
+	return new/icon(icon, "[organ][gender == FEMALE ? "_f" : "_m"]")
 
 /datum/body_modification/limb/prosthesis/bishop
 	id = "prosthesis_bishop"
@@ -148,6 +151,7 @@ var/global/list/modifications_types = list(
 ////Organ Modules////
 /datum/body_modification/limb/organ_module
 	replace_limb = null
+	allow_nt = FALSE
 	var/module_type = null
 
 /datum/body_modification/limb/organ_module/create_organ(var/mob/living/carbon/holder, var/datum/organ_description/OD, var/color)
@@ -158,7 +162,6 @@ var/global/list/modifications_types = list(
 	return E
 
 ////Internals////
-
 /datum/body_modification/organ/create_organ(var/mob/living/carbon/holder, var/organ, var/color)
 	if(replace_limb)
 		return new replace_limb(holder)
@@ -171,13 +174,15 @@ var/global/list/modifications_types = list(
 	id = "assisted"
 	desc = "Assisted organ."
 	body_parts = list(BP_HEART, BP_LUNGS, BP_LIVER, BP_EYES)
+	allow_nt = FALSE
 
 /datum/body_modification/organ/assisted/create_organ(var/mob/living/carbon/holder, var/O, var/color)
 	var/obj/item/organ/I = ..(holder,O,color)
-	I.robotic = ORGAN_ASSISTED
+	I.nature = MODIFICATION_ASSISTED
 	I.min_bruised_damage = 15
 	I.min_broken_damage = 35
 	return I
+
 
 /datum/body_modification/organ/robotize_organ
 	name = "Robotic organ"
@@ -185,10 +190,11 @@ var/global/list/modifications_types = list(
 	id = "robotize_organ"
 	desc = "Robotic organ."
 	body_parts = list(BP_HEART, BP_LUNGS, BP_LIVER, BP_EYES)
+	allow_nt = FALSE
 
 /datum/body_modification/organ/robotize_organ/create_organ(var/mob/living/carbon/holder, O, color)
 	var/obj/item/organ/I = ..(holder,O,color)
-	I.robotic = ORGAN_ROBOT
+	I.nature = MODIFICATION_SILICON
 	if(istype(I, /obj/item/organ/internal/eyes))
 		var/obj/item/organ/internal/eyes/E = I
 		E.robo_color = iscolor(color) ? color : "#FFFFFF"
@@ -205,9 +211,9 @@ var/global/list/modifications_types = list(
 	hascolor = TRUE
 	replace_limb = /obj/item/organ/internal/eyes/oneeye
 
-/datum/body_modification/organ/oneeye/get_mob_icon(organ, body_build, color, gender, species)
+/datum/body_modification/organ/oneeye/get_mob_icon(organ, color, gender, species)
 	var/datum/species/S = all_species[species]
-	var/icon/I = new/icon(S.faceicobase, "eye_l[body_build]")
+	var/icon/I = new/icon(S.faceicobase, "eye_l")
 	I.Blend(color, ICON_ADD)
 	return I
 
@@ -222,9 +228,9 @@ var/global/list/modifications_types = list(
 	id = "missed_eye_right"
 	replace_limb = /obj/item/organ/internal/eyes/oneeye/right
 
-/datum/body_modification/organ/oneeye/right/get_mob_icon(organ, body_build, color, gender, species)
+/datum/body_modification/organ/oneeye/right/get_mob_icon(organ, color, gender, species)
 	var/datum/species/S = all_species[species]
-	var/icon/I = new/icon(S.faceicobase, "eye_r[body_build]")
+	var/icon/I = new/icon(S.faceicobase, "eye_r")
 	I.Blend(color, ICON_ADD)
 	return I
 
@@ -236,9 +242,9 @@ var/global/list/modifications_types = list(
 	body_parts = list(BP_EYES)
 	hascolor = TRUE
 
-/datum/body_modification/organ/heterochromia/get_mob_icon(organ, body_build, color, gender, species)
+/datum/body_modification/organ/heterochromia/get_mob_icon(organ, color, gender, species)
 	var/datum/species/S = all_species[species]
-	var/icon/I = new/icon(S.faceicobase, "eye_l[body_build]")
+	var/icon/I = new/icon(S.faceicobase, "eye_l")
 	I.Blend(color, ICON_ADD)
 	return I
 
@@ -246,7 +252,3 @@ var/global/list/modifications_types = list(
 	var/obj/item/organ/internal/eyes/heterohromia/E = new(holder,organ_type,color)
 	E.second_color = color
 	return E
-
-#undef MODIFICATION_REMOVED
-#undef MODIFICATION_ORGANIC
-#undef MODIFICATION_SILICON

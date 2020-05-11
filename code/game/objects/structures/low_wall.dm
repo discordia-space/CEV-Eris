@@ -25,6 +25,7 @@
 	layer = LOW_WALL_LAYER
 	icon = 'icons/obj/structures/low_wall.dmi'
 	icon_state = "metal"
+	throwpass = TRUE
 	var/connected = TRUE
 	var/wall_color = PLASTEEL_COLOUR
 	var/roundstart = FALSE
@@ -125,7 +126,7 @@
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return
 		else
-			user << SPAN_WARNING("[O] is too heavy for you to move!")
+			to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
 			return
 
 	return ..()
@@ -156,7 +157,7 @@
 			if (M.lying)
 				chance += 20				//Lying down lets you catch less bullets
 		if(prob(chance))
-			health -= P.damage/2
+			health -= P.get_structure_damage()/2
 			if (health > 0)
 				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
 				return 0
@@ -324,7 +325,7 @@
 		//Since we have everything in a bitfield, we can compare the diagonals against it.
 		//If both of its cardinals are here, the diagonal will be too
 		if ((wall_dirs_bitfield & d) == d)
-			if (debug)	world << "Connected to a diagonal wall, [direction_to_text(d)] [d], Bitfield [wall_dirs_bitfield]"
+			if (debug)	to_chat(world, "Connected to a diagonal wall, [direction_to_text(d)] [d], Bitfield [wall_dirs_bitfield]")
 			wall_dirs |= (d)
 			connection_dirs |= d
 
@@ -344,7 +345,7 @@
 		//Then we will upgrade the high wall connections to a cross too. this prevents some bugginess
 		if ((((i in list(CORNER_NORTHWEST, CORNER_SOUTHEAST)) && a == CORNER_CLOCKWISE) \
 		|| ((i in list(CORNER_NORTHEAST, CORNER_SOUTHWEST)) && a == CORNER_COUNTERCLOCKWISE)) \
-		&& b in list(5,7))
+		&& (b in list(5,7)))
 			//What a mess, all that determines whether a corner connects to only vertical.
 			//If its in the northwest or southeast corner, and its only connection is clockwise, then that connection is either up or down
 			//Ditto with the other check
@@ -382,38 +383,36 @@
 	//If the user isn't in harm intent and there's no window ontop of this wall, it is treated like a table.
 		//Items used on it will be placed on it like a surface
 
-	//Turn on harm intent to override this behaviour and instead attack/deconstruct the wall
-	if (!(locate(/obj/structure/window) in loc) && user.a_intent != I_HURT)
-		if (user.unEquip(I, src.loc))
-			set_pixel_click_offset(I, params)
-			return
-
 	var/tool_type = I.get_tool_type(user, list(QUALITY_WELDING), src)
 	switch(tool_type)
-
 		if(QUALITY_WELDING)
-			if (locate(/obj/structure/window in loc))
-				user << SPAN_NOTICE("You must remove the window mounted on this wall before it can be repaired or deconstructed")
+			if (locate(/obj/structure/window) in loc)
+				to_chat(user, SPAN_NOTICE("You must remove the window mounted on this wall before it can be repaired or deconstructed"))
 				return
 			if(locate(/obj/effect/overlay/wallrot) in src)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You burn away the fungi with \the [I].")
+					to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [I]."))
 					for(var/obj/effect/overlay/wallrot/WR in src)
 						qdel(WR)
 					return
 			if(health < maxhealth)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You repair the damage to [src].")
+					to_chat(user, SPAN_NOTICE("You repair the damage to [src]."))
 					take_damage(maxhealth - health)
 					return
 			if(isnull(construction_stage))
-				user << SPAN_NOTICE("You begin removing the outer plating...")
+				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
 				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You remove the outer plating.")
+					to_chat(user, SPAN_NOTICE("You remove the outer plating."))
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
 
+	//Turn on harm intent to override this behaviour and instead attack the wall
+	if (!(locate(/obj/structure/window) in loc) && user.a_intent != I_HURT)
+		if (user.unEquip(I, src.loc))
+			set_pixel_click_offset(I, params)
+			return
 
 
 	//Hitting the wall with stuff
@@ -474,23 +473,26 @@
 /obj/structure/low_wall/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.apply_damage(12, def_zone = BP_HEAD)
+			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 
 		else
-			user << SPAN_DANGER("You need a better grip to do that!")
+			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey] )</font>"
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
+		msg_admin_attack("[user] puts a [target] on \the [src].")
 	return TRUE
 
 

@@ -14,20 +14,6 @@
    - To skip equipping with appropriate gear, supply a positive third argument.
 */
 
-// Antagonist datum flags.
-#define ANTAG_OVERRIDE_JOB        1 // Assigned job is set to MODE when spawning.
-#define ANTAG_OVERRIDE_MOB        2 // Mob is recreated from datum mob_type var when spawning.
-#define ANTAG_CLEAR_EQUIPMENT     4 // All preexisting equipment is purged.
-#define ANTAG_CHOOSE_NAME         8 // Antagonists are prompted to enter a name.
-#define ANTAG_IMPLANT_IMMUNE     16 // Cannot be loyalty implanted.
-#define ANTAG_SUSPICIOUS         32 // Shows up on roundstart report.
-#define ANTAG_HAS_LEADER         64 // Generates a leader antagonist.
-#define ANTAG_HAS_NUKE          128 // Will spawn a nuke at supplied location.
-#define ANTAG_RANDSPAWN         256 // Potentially randomly spawns due to events.
-#define ANTAG_VOTABLE           512 // Can be voted as an additional antagonist before roundstart.
-#define ANTAG_SET_APPEARANCE   1024 // Causes antagonists to use an appearance modifier on spawn.
-#define ANTAG_RANDOM_EXCEPTED  2048 // If a game mode randomly selects antag types, antag types with this flag should be excluded.
-
 // Globals.
 GLOBAL_LIST_EMPTY(all_antag_types)
 GLOBAL_LIST_EMPTY(all_antag_selectable_types)
@@ -59,29 +45,33 @@ GLOBAL_LIST_EMPTY(faction_types)
 			A.remove_antagonist()
 
 /proc/create_antag_instance(var/a_id)
-	if(GLOB.all_antag_types[a_id])
-		var/atype = GLOB.all_antag_types[a_id].type
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/atype = all_antag_types[a_id].type
 		return new atype
 
 /proc/make_antagonist_ghost(var/mob/M, var/a_id)
-	if(GLOB.all_antag_types[a_id])
-		var/a_type = GLOB.all_antag_types[a_id].type
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/a_type = all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		if(A.create_from_ghost(M))
 			return A
 
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
-	if(GLOB.all_antag_types[a_id])
-		var/a_type = GLOB.all_antag_types[a_id].type
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/a_type = all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		if(istype(M) && A.create_antagonist(M))
 			return A
 
-/proc/make_antagonist_faction(var/datum/mind/M, var/a_id, var/datum/faction/F)
-	if(GLOB.all_antag_types[a_id])
-		var/a_type = GLOB.all_antag_types[a_id].type
+/proc/make_antagonist_faction(datum/mind/M, a_id, datum/faction/F, check = TRUE)
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/a_type = all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
-		A.create_antagonist(M, F)
+		A.create_antagonist(M, F, check = check)
 
 		return A
 
@@ -152,6 +142,12 @@ GLOBAL_LIST_EMPTY(faction_types)
 /proc/player_is_antag_id(var/datum/mind/player, var/a_id)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(!a_id || antag.id == a_id)
+			return TRUE
+	return FALSE
+
+/proc/player_is_antag_in_list(datum/mind/player, list/a_ids)
+	for(var/datum/antagonist/antag in player.antagonist)
+		if(antag.id in a_ids)
 			return TRUE
 	return FALSE
 

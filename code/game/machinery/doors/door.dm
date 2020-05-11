@@ -35,6 +35,8 @@
 	dir = EAST
 	var/width = 1
 
+	var/damage_smoke = FALSE
+
 	// turf animation
 	var/atom/movable/overlay/c_animation = null
 
@@ -123,10 +125,10 @@
 				open()
 		return
 
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
+	if(istype(AM, /mob/living/exosuit))
+		var/mob/living/exosuit/mecha = AM
 		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+			if(mecha.pilots.len && (allowed(mecha.pilots[1]) || check_access_list(mecha.saved_access)))
 				open()
 			else
 				do_animate("deny")
@@ -169,12 +171,11 @@
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
-			switch (Proj.damage_type)
-				if(BRUTE)
-					new /obj/item/stack/material/steel(src.loc, 2)
-					new /obj/item/stack/rods(loc, 3)
-				if(BURN)
-					new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
+			if(Proj.damage_types[BRUTE] > Proj.damage_types[BURN])
+				new /obj/item/stack/material/steel(src.loc, 2)
+				new /obj/item/stack/rods(loc, 3)
+			else
+				new /obj/effect/decal/cleanable/ash(src.loc) // Turn it to ashes!
 			qdel(src)
 
 	if(damage)
@@ -195,9 +196,6 @@
 		damage = M.mob_size
 	take_damage(damage)
 	return
-
-/obj/machinery/door/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
 
 /obj/machinery/door/attack_hand(mob/user as mob)
 	if(src.allowed(user) && operable())
@@ -231,7 +229,7 @@
 
 			if(QUALITY_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user << SPAN_NOTICE("You finish repairing the damage to \the [src].")
+					to_chat(user, SPAN_NOTICE("You finish repairing the damage to \the [src]."))
 					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
 					update_icon()
 					qdel(repairing)
@@ -241,7 +239,7 @@
 
 			if(QUALITY_PRYING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_ROB))
-					user << SPAN_NOTICE("You remove \the [repairing].")
+					to_chat(user, SPAN_NOTICE("You remove \the [repairing]."))
 					repairing.loc = user.loc
 					repairing = null
 					return
@@ -252,25 +250,25 @@
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
-			user << SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now.")
+			to_chat(user, SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now."))
 			return
 		if(health >= maxhealth)
-			user << SPAN_NOTICE("Nothing to fix!")
+			to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 			return
 		if(!density)
-			user << SPAN_WARNING("\The [src] must be closed before you can repair it.")
+			to_chat(user, SPAN_WARNING("\The [src] must be closed before you can repair it."))
 			return
 
 		//figure out how much metal we need
 		var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
-		amount_needed = ceil(amount_needed)
+		amount_needed = CEILING(amount_needed, 1)
 
 		var/obj/item/stack/stack = I
 		var/transfer
 		if (repairing)
 			transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
 			if (!transfer)
-				user << SPAN_WARNING("You must weld or remove \the [repairing] from \the [src] before you can add anything else.")
+				to_chat(user, SPAN_WARNING("You must weld or remove \the [repairing] from \the [src] before you can add anything else."))
 		else
 			repairing = stack.split(amount_needed)
 			if (repairing)
@@ -278,7 +276,7 @@
 				transfer = repairing.amount
 
 		if (transfer)
-			user << SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src].")
+			to_chat(user, SPAN_NOTICE("You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
 
 		return
 
@@ -326,28 +324,38 @@
 	if (!isnum(damage))
 		return
 
+	var/smoke_amount
+
 	var/initialhealth = src.health
 	src.health = max(0, src.health - damage)
 	if(src.health <= 0 && initialhealth > 0)
 		src.set_broken()
+		smoke_amount = 4
 	else if(src.health < src.maxhealth / 4 && initialhealth >= src.maxhealth / 4)
 		visible_message("\The [src] looks like it's about to break!" )
+		smoke_amount = 3
 	else if(src.health < src.maxhealth / 2 && initialhealth >= src.maxhealth / 2)
 		visible_message("\The [src] looks seriously damaged!" )
+		smoke_amount = 2
 	else if(src.health < src.maxhealth * 3/4 && initialhealth >= src.maxhealth * 3/4)
 		visible_message("\The [src] shows signs of damage!" )
+		smoke_amount = 1
 	update_icon()
+	if(damage_smoke && smoke_amount)
+		var/datum/effect/effect/system/smoke_spread/S = new
+		S.set_up(smoke_amount, 0, src)
+		S.start()
 	return
 
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(src.health < src.maxhealth / 4)
-		user << "\The [src] looks like it's about to break!"
+		to_chat(user, "\The [src] looks like it's about to break!")
 	else if(src.health < src.maxhealth / 2)
-		user << "\The [src] looks seriously damaged!"
+		to_chat(user, "\The [src] looks seriously damaged!")
 	else if(src.health < src.maxhealth * 3/4)
-		user << "\The [src] shows signs of damage!"
+		to_chat(user, "\The [src] shows signs of damage!")
 
 
 /obj/machinery/door/proc/set_broken()

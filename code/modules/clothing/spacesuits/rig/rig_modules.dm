@@ -1,14 +1,14 @@
 /obj/item/weapon/rig/proc/can_install(var/obj/item/rig_module/mod, var/mob/user, var/feedback = FALSE)
 	if(is_worn())
 		if (user && feedback)
-			user << SPAN_DANGER("You can't install a hardsuit module while the suit is being worn.")
+			to_chat(user, SPAN_DANGER("You can't install a hardsuit module while the suit is being worn."))
 		return FALSE
 
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/installed_mod in installed_modules)
 			if(!installed_mod.redundant && istype(installed_mod,mod.type))
 				if (user && feedback)
-					user << "The hardsuit already has a module of that class installed."
+					to_chat(user, "The hardsuit already has a module of that class installed.")
 				return FALSE
 
 	if (!mod.can_install(src, user, feedback))
@@ -25,14 +25,14 @@
 /obj/item/weapon/rig/proc/install(var/obj/item/rig_module/mod, var/mob/user)
 
 	if (user)
-		user << "You begin installing \the [mod] into \the [src]."
+		to_chat(user, "You begin installing \the [mod] into \the [src].")
 		if(!do_after(user,40,src))
 			return FALSE
 		if(!user || !mod)
 			return FALSE
 		if(mod.loc == user && !user.unEquip(mod))
 			return FALSE
-		user << "You install \the [mod] into \the [src]."
+		to_chat(user, "You install \the [mod] into \the [src].")
 	installed_modules |= mod
 	mod.holder = src
 	mod.forceMove(src)
@@ -59,7 +59,7 @@
 	mod.holder = null
 
 	if (user)
-		user << "You detatch \the [mod] from \the [src]."
+		to_chat(user, "You detatch \the [mod] from \the [src].")
 
 	mod.uninstalled(src, user)
 	if (delete)

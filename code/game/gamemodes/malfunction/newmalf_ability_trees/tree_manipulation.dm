@@ -46,7 +46,7 @@
 	var/mob/living/silicon/ai/user = usr
 	if(!ability_prechecks(user, price) || !ability_pay(user,price))
 		return
-	user << "Sending feedback pulse..."
+	to_chat(user, "Sending feedback pulse...")
 	for(var/obj/machinery/power/apc/AP in SSmachines.machinery)
 		if(prob(5))
 			AP.overload_lighting()
@@ -62,7 +62,7 @@
 	var/mob/living/silicon/ai/user = usr
 
 	if(target && !istype(target))
-		user << "This is not a camera."
+		to_chat(user, "This is not a camera.")
 		return
 
 	if(!target)
@@ -81,33 +81,33 @@
 				if(!ability_pay(user, price))
 					return
 				target.reset_wires()
-				user << "Camera reactivated."
+				to_chat(user, "Camera reactivated.")
 		if("Add X-Ray")
 			if(target.isXRay())
-				user << "Camera already has X-Ray function."
+				to_chat(user, "Camera already has X-Ray function.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeXRay()
 				target.reset_wires()
-				user << "X-Ray camera module enabled."
+				to_chat(user, "X-Ray camera module enabled.")
 				return
 		if("Add Motion Sensor")
 			if(target.isMotion())
-				user << "Camera already has Motion Sensor function."
+				to_chat(user, "Camera already has Motion Sensor function.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeMotion()
 				target.reset_wires()
-				user << "Motion Sensor camera module enabled."
+				to_chat(user, "Motion Sensor camera module enabled.")
 				return
 		if("Add EMP Shielding")
 			if(target.isEmpProof())
-				user << "Camera already has EMP Shielding function."
+				to_chat(user, "Camera already has EMP Shielding function.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeEmpProof()
 				target.reset_wires()
-				user << "EMP Shielding camera module enabled."
+				to_chat(user, "EMP Shielding camera module enabled.")
 				return
 
 
@@ -122,7 +122,7 @@
 	if(!ability_prechecks(user, price) || !ability_pay(user, price))
 		return
 
-	user << "Emergency forcefield projection completed."
+	to_chat(user, "Emergency forcefield projection completed.")
 	new/obj/machinery/shield/malfai(T)
 	user.hacking = 1
 	spawn(20)
@@ -146,14 +146,14 @@
 	// Verify if we can overload the target, if yes, calculate explosion strength. Some things have higher explosion strength than others, depending on charge(APCs, SMESs)
 	if(N && istype(N)) // /obj/machinery/power first, these create bigger explosions due to direct powernet connection
 		if(!istype(N, /obj/machinery/power/apc) && !istype(N, /obj/machinery/power/smes/buildable) && (!N.powernet || !N.powernet.avail)) // Directly connected machine which is not an APC or SMES. Either it has no powernet connection or it's powernet does not have enough power to overload
-			user << SPAN_NOTICE("ERROR: Low network voltage. Unable to overload. Increase network power level and try again.")
+			to_chat(user, SPAN_NOTICE("ERROR: Low network voltage. Unable to overload. Increase network power level and try again."))
 			return
 		else if (istype(N, /obj/machinery/power/apc)) // APC. Explosion is increased by available cell power.
 			var/obj/machinery/power/apc/A = N
 			if(A.cell && A.cell.charge)
 				explosion_intensity = 4 + round(A.cell.charge / 2000) // Explosion is increased by 1 for every 2k charge in cell
 			else
-				user << SPAN_NOTICE("ERROR: APC Malfunction - Cell depleted or removed. Unable to overload.")
+				to_chat(user, SPAN_NOTICE("ERROR: APC Malfunction - Cell depleted or removed. Unable to overload."))
 				return
 		else if (istype(N, /obj/machinery/power/smes/buildable)) // SMES. These explode in a very very very big boom. Similar to magnetic containment failure when messing with coils.
 			var/obj/machinery/power/smes/buildable/S = N
@@ -162,19 +162,19 @@
 			else
 				// Different error texts
 				if(!S.charge)
-					user << SPAN_NOTICE("ERROR: SMES Depleted. Unable to overload. Please charge SMES unit and try again.")
+					to_chat(user, SPAN_NOTICE("ERROR: SMES Depleted. Unable to overload. Please charge SMES unit and try again."))
 				else
-					user << SPAN_NOTICE("ERROR: SMES RCon error - Unable to reach destination. Please verify wire connection.")
+					to_chat(user, SPAN_NOTICE("ERROR: SMES RCon error - Unable to reach destination. Please verify wire connection."))
 				return
 	else if(M && istype(M)) // Not power machinery, so it's a regular machine instead. These have weak explosions.
 		if(!M.use_power) // Not using power at all
-			user << SPAN_NOTICE("ERROR: No power grid connection. Unable to overload.")
+			to_chat(user, SPAN_NOTICE("ERROR: No power grid connection. Unable to overload."))
 			return
 		if(M.inoperable()) // Not functional
-			user << SPAN_NOTICE("ERROR: Unknown error. Machine is probably damaged or power supply is nonfunctional.")
+			to_chat(user, SPAN_NOTICE("ERROR: Unknown error. Machine is probably damaged or power supply is nonfunctional."))
 			return
 	else // Not a machine at all (what the hell is this doing in Machines list anyway??)
-		user << SPAN_NOTICE("ERROR: Unable to overload - target is not a machine.")
+		to_chat(user, SPAN_NOTICE("ERROR: Unable to overload - target is not a machine."))
 		return
 
 	explosion_intensity = min(explosion_intensity, 12) // 3, 6, 12 explosion cap

@@ -12,17 +12,19 @@
 /obj/item/weapon/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
 	if(ishuman(M))
 		if(!istype(M.wear_suit, required_vest))
-			M << SPAN_WARNING("You need to be wearing your laser tag vest!")
+			to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
 			return 0
 	return ..()
 
 /obj/item/weapon/gun/energy/lasertag/blue
+	icon = 'icons/obj/guns/energy/bluetag.dmi'
 	icon_state = "bluetag"
 	item_state = "bluetag"
 	projectile_type = /obj/item/projectile/beam/lastertag/blue
 	required_vest = /obj/item/clothing/suit/bluetag
 
 /obj/item/weapon/gun/energy/lasertag/red
+	icon = 'icons/obj/guns/energy/redtag.dmi'
 	icon_state = "redtag"
 	item_state = "redtag"
 	projectile_type = /obj/item/projectile/beam/lastertag/red

@@ -7,11 +7,11 @@
 /obj/item/organ/internal/xenos/proc/check_alien_ability(var/cost,var/needs_foundation)
 	var/obj/item/organ/internal/xenos/plasmavessel/P = owner.internal_organs_by_name[BP_PLASMA]
 	if(!istype(P))
-		owner << SPAN_DANGER("Your plasma vessel has been removed!")
+		to_chat(owner, SPAN_DANGER("Your plasma vessel has been removed!"))
 		return
 
 	if(P.stored_plasma < cost)
-		owner << SPAN_WARNING("You don't have enough plasma stored to do that.")
+		to_chat(owner, SPAN_WARNING("You don't have enough plasma stored to do that."))
 		return FALSE
 
 	if(needs_foundation)
@@ -22,7 +22,7 @@
 			if(!(istype(T,/turf/space)))
 				has_foundation = TRUE
 		if(!has_foundation)
-			owner << SPAN_WARNING("You need a solid foundation to do that on.")
+			to_chat(owner, SPAN_WARNING("You need a solid foundation to do that on."))
 			return FALSE
 
 	P.stored_plasma -= cost

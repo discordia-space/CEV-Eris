@@ -27,7 +27,6 @@
 		return (!mover.density || !density || lying)
 	else
 		return (!mover.density || !density || lying)
-	return
 
 /mob/proc/add_move_cooldown(var/timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
@@ -120,77 +119,24 @@
 	return
 
 
-//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-/atom/movable/Move(newloc, direct)
-	if (direct & (direct - 1))
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (direct & 8)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (direct & 8)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		var/atom/A = src.loc
-
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
-		. = ..()
-		if(direct != olddir)
-			dir = olddir
-			set_dir(direct)
-
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		src.m_flag = 1
-		if ((A != src.loc && A && A.z == src.z))
-			src.last_move = get_dir(A, src.loc)
-
-
 //Called from space movement handler
 //Return true for safe movement
 //Return -1 for movement with possibility of slipping
 //Return false for no movement
-/mob/proc/allow_spacemove(var/check_drift = 0)
+/mob/proc/allow_spacemove()
 	//First up, check for magboots or other gripping capability
-	var/shoegrip = check_shoegrip()
-
 	//If we have some, then check the ground under us
-	if (shoegrip && check_solid_ground())
-		update_floating(FALSE)
+	if (incorporeal_move)
 		return TRUE
-	else if(check_dense_object())
-		update_floating(TRUE)
+	if (check_shoegrip() && check_solid_ground())
+		return TRUE
+	if (check_dense_object())
 		return -1
-
-	update_floating()
 	return FALSE
-
 
 //return 1 if slipped, 0 otherwise
 /mob/proc/handle_spaceslipping()
-	if(prob(5)) //Todo: Factor in future agility stat here
+	if(prob(1)) //Todo: Factor in future agility stat here
 		to_chat(src, SPAN_WARNING("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
@@ -204,8 +150,7 @@
 	if(istype(loc, /turf/space))
 		return 0
 
-	if(!lastarea)
-		lastarea = get_area(src)
+	lastarea = get_area(src)
 	if(!lastarea || !lastarea.has_gravity)
 		return 0
 
@@ -215,17 +160,18 @@
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
 //This proc is only called if we have grip, ie magboots
 /mob/proc/check_solid_ground()
-	.=FALSE
-	var/turf/simulated/T = loc
-	if (istype(T))
+	if (istype(loc, /turf/simulated))
+		if(istype(loc, /turf/simulated/open))
+			return FALSE //open spess was fogotten
 		return TRUE //We're standing on a simulated floor
 	else
 		//We're probably in space
-		for(var/obj/O in T)
+		for(var/obj/O in loc)
 			if(istype(O, /obj/structure/lattice))
 				return TRUE
 			if(istype(O, /obj/structure/catwalk))
 				return TRUE
+	return FALSE
 
 //This proc checks for dense, anchored atoms, or walls.
 //It checks all the adjacent tiles

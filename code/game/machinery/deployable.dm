@@ -59,7 +59,7 @@ for reference:
 	var/maxhealth = 100
 	var/material/material
 
-/obj/structure/barricade/New(var/newloc, var/material_name)
+/obj/structure/barricade/New(newloc, material_name)
 	..(newloc)
 	if(!material_name)
 		material_name = "wood"
@@ -73,6 +73,11 @@ for reference:
 	maxhealth = material.integrity
 	health = maxhealth
 
+/obj/structure/barricade/get_matter()
+	. = ..()
+	if(material)
+		LAZYAPLUS(., material.name, 5)
+
 /obj/structure/barricade/get_material()
 	return material
 
@@ -83,7 +88,7 @@ for reference:
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
 		if(health < maxhealth)
 			if(D.get_amount() < 1)
-				user << SPAN_WARNING("You need one sheet of [material.display_name] to repair \the [src].")
+				to_chat(user, SPAN_WARNING("You need one sheet of [material.display_name] to repair \the [src]."))
 				return
 			visible_message(SPAN_NOTICE("[user] begins to repair \the [src]."))
 			if(do_after(user,20,src) && health < maxhealth)
@@ -108,7 +113,7 @@ for reference:
 		..()
 
 /obj/structure/barricade/proc/dismantle()
-	material.place_dismantled_product(get_turf(src))
+	drop_materials(drop_location())
 	qdel(src)
 	return
 
@@ -165,10 +170,10 @@ for reference:
 				anchored = !anchored
 				icon_state = "barrier[locked]"
 				if((locked == 1.0) && (emagged < 2.0))
-					user << "Barrier lock toggled on."
+					to_chat(user, "Barrier lock toggled on.")
 					return
 				else if((locked == 0.0) && (emagged < 2.0))
-					user << "Barrier lock toggled off."
+					to_chat(user, "Barrier lock toggled off.")
 					return
 			else
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -249,7 +254,7 @@ for reference:
 		emagged = 1
 		req_access.Cut()
 		req_one_access.Cut()
-		user << "You break the ID authentication lock on \the [src]."
+		to_chat(user, "You break the ID authentication lock on \the [src].")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
@@ -257,7 +262,7 @@ for reference:
 		return 1
 	else if(emagged == 1)
 		emagged = 2
-		user << "You short out the anchoring mechanism on \the [src]."
+		to_chat(user, "You short out the anchoring mechanism on \the [src].")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()

@@ -3,16 +3,18 @@
 #define EJECT_CASINGS	1 //drop spent casings on the ground after firing
 #define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for multibarrelled guns
 
+
 /obj/item/weapon/gun/projectile
 	name = "gun"
 	desc = "A gun that fires bullets."
+	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
-	recoil = 1
+	recoil_buildup = 1
 
-	var/caliber = "357"		//determines which casings will fit
+	var/caliber = CAL_357		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
 	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
 	var/obj/item/ammo_casing/chambered = null
@@ -31,9 +33,12 @@
 	//For MAGAZINE guns
 	var/magazine_type = null	//the type of magazine that the gun comes preloaded with
 	var/obj/item/ammo_magazine/ammo_magazine = null //stored magazine
+	var/mag_well = MAG_WELL_GENERIC	//What kind of magazines the gun can load
 	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
+	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
+	gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/weapon/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
@@ -121,6 +126,7 @@
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
+			to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
 			return //incompatible
 
 		//How are we trying to apply this magazine to this gun?
@@ -142,11 +148,17 @@
 
 		switch(method_for_this_load)
 			if(MAGAZINE)
-				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")
-					user << SPAN_WARNING("[src] requires another magazine.") //wrong magazine
+//				if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
+//					to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
+//					return
+				if(tac_reloads && ammo_magazine)
+					unload_ammo(user)	// ejects the magazine before inserting the new one.
+					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))
+				else if(ammo_magazine)
+					to_chat(user, SPAN_WARNING("[src] already has a magazine loaded.")) //already a magazine here
 					return
-				if(ammo_magazine)
-					user << SPAN_WARNING("[src] already has a magazine loaded.") //already a magazine here
+				if(!(AM.mag_well & mag_well))
+					to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell.")) //wrong magazine
 					return
 				user.remove_from_mob(AM)
 				AM.loc = src
@@ -157,11 +169,11 @@
 				update_firemode()
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
-					user << SPAN_WARNING("[src] is full!")
+					to_chat(user, SPAN_WARNING("[src] is full!"))
 					return
 				var/count = 0
 				if(AM.reload_delay)
-					user << SPAN_NOTICE("It takes some time to reload [src] with [AM]...")
+					to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [AM]..."))
 				if (do_after(user, AM.reload_delay, user))
 					for(var/obj/item/ammo_casing/C in AM.stored_ammo)
 						if(loaded.len >= max_shells)
@@ -180,9 +192,15 @@
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
+			to_chat(user, SPAN_WARNING("[src] is incompatible with [C]."))
 			return //incompatible
 		if(loaded.len >= max_shells)
-			user << SPAN_WARNING("[src] is full.")
+			to_chat(user, SPAN_WARNING("[src] is full."))
+			return
+
+		if(C.reload_delay)
+			to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [C]..."))
+		if (!do_after(user, C.reload_delay, user))
 			return
 
 		if(C.amount > 1)
@@ -238,11 +256,13 @@
 			user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
 			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
-		user << SPAN_WARNING("[src] is empty.")
+		to_chat(user, SPAN_WARNING("[src] is empty."))
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
-	load_ammo(A, user)
+	.=..()
+	if (!.) //Parent returns true if attackby is handled
+		load_ammo(A, user)
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
 	if(firemodes.len > 1)
@@ -278,8 +298,8 @@
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	..(user)
 	if(ammo_magazine)
-		user << "It has \a [ammo_magazine] loaded."
-	user << "Has [get_ammo()] round\s remaining."
+		to_chat(user, "It has \a [ammo_magazine] loaded.")
+	to_chat(user, "Has [get_ammo()] round\s remaining.")
 	return
 
 /obj/item/weapon/gun/projectile/proc/get_ammo()
@@ -290,6 +310,15 @@
 		bullets += ammo_magazine.stored_ammo.len
 	if(chambered)
 		bullets += 1
+	return bullets
+
+/obj/item/weapon/gun/projectile/proc/get_max_ammo()
+	var/bullets = 0
+	if (load_method & MAGAZINE)
+		if(ammo_magazine)
+			bullets += ammo_magazine.max_ammo
+	if (load_method & SPEEDLOADER)
+		bullets += max_shells
 	return bullets
 
 /* Unneeded -- so far.
@@ -303,3 +332,15 @@
 
 	unload_ammo(usr)
 */
+
+/obj/item/weapon/gun/projectile/ui_data(mob/user)
+	var/list/data = ..()
+	data["caliber"] = caliber
+	data["current_ammo"] = get_ammo()
+	data["max_shells"] = get_max_ammo()
+
+	return data
+
+/obj/item/weapon/gun/projectile/refresh_upgrades()
+	max_shells = initial(max_shells)
+	..()

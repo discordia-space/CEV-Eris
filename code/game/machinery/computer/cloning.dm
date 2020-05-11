@@ -94,15 +94,12 @@
 			user.drop_item()
 			W.loc = src
 			src.diskette = W
-			user << "You insert [W]."
+			to_chat(user, "You insert [W].")
 			src.updateUsrDialog()
 			return
 	else
 		..()
 	return
-
-/obj/machinery/computer/cloning/attack_ai(mob/user as mob)
-	return attack_hand(user)
 
 /obj/machinery/computer/cloning/attack_hand(mob/user as mob)
 	if(..())

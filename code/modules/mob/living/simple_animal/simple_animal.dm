@@ -8,6 +8,8 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 
+	var/datum/component/spawner/nest
+
 	var/show_stat_health = TRUE	//does the percentage health show in the stat panel for the mob
 
 	var/icon_living = ""
@@ -147,117 +149,120 @@
 
 /mob/living/simple_animal/updatehealth()
 	..()
-	if (health <= 0)
+	if (health <= 0 && stat != DEAD)
 		death()
 
 /mob/living/simple_animal/examine(mob/user)
 	..()
 	if(hunger_enabled)
 		if (!nutrition)
-			user << SPAN_DANGER("It looks starving!")
+			to_chat(user, SPAN_DANGER("It looks starving!"))
 		else if (nutrition < max_nutrition *0.5)
-			user << SPAN_NOTICE("It looks hungry.")
+			to_chat(user, SPAN_NOTICE("It looks hungry."))
 		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
-			user << "It looks full and contented."
+			to_chat(user, "It looks full and contented.")
 	if (health < maxHealth * 0.5)
-		user << SPAN_DANGER("It looks badly wounded!")
+		to_chat(user, SPAN_DANGER("It looks badly wounded!"))
 	else if (health < maxHealth)
-		user << SPAN_WARNING("It looks wounded.")
+		to_chat(user, SPAN_WARNING("It looks wounded."))
 
 /mob/living/simple_animal/Life()
 	..()
 
-	if(stat == DEAD)
-		return 0
+	if(!stasis)
 
-	if(health <= 0)
-		death()
-		return
+		if(stat == DEAD)
+			return 0
 
-	if(health > maxHealth)
-		health = maxHealth
+		if(health <= 0)
+			death()
+			return
 
-	handle_stunned()
-	handle_weakened()
-	handle_paralysed()
-	handle_supernatural()
+		if(health > maxHealth)
+			health = maxHealth
 
-	process_food()
-	handle_foodscanning()
+		handle_stunned()
+		handle_weakened()
+		handle_paralysed()
+		handle_supernatural()
 
-	//Atmos
-	var/atmos_suitable = 1
+		process_food()
+		handle_foodscanning()
 
-	var/atom/A = loc
+		//Atmos
+		var/atmos_suitable = 1
 
-	if(istype(A,/turf))
-		var/turf/T = A
+		var/atom/A = loc
 
-		var/datum/gas_mixture/Environment = T.return_air()
+		if(istype(A,/turf))
+			var/turf/T = A
 
-		if(Environment)
+			var/datum/gas_mixture/Environment = T.return_air()
 
-			if( abs(Environment.temperature - bodytemperature) > 40 )
-				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
+			if(Environment)
 
-			if(min_oxy)
-				if(Environment.gas["oxygen"] < min_oxy)
-					atmos_suitable = 0
-			if(max_oxy)
-				if(Environment.gas["oxygen"] > max_oxy)
-					atmos_suitable = 0
-			if(min_tox)
-				if(Environment.gas["plasma"] < min_tox)
-					atmos_suitable = 0
-			if(max_tox)
-				if(Environment.gas["plasma"] > max_tox)
-					atmos_suitable = 0
-			if(min_n2)
-				if(Environment.gas["nitrogen"] < min_n2)
-					atmos_suitable = 0
-			if(max_n2)
-				if(Environment.gas["nitrogen"] > max_n2)
-					atmos_suitable = 0
-			if(min_co2)
-				if(Environment.gas["carbon_dioxide"] < min_co2)
-					atmos_suitable = 0
-			if(max_co2)
-				if(Environment.gas["carbon_dioxide"] > max_co2)
-					atmos_suitable = 0
+				if( abs(Environment.temperature - bodytemperature) > 40 )
+					bodytemperature += ((Environment.temperature - bodytemperature) / 5)
 
-	//Atmos effect
-	if(bodytemperature < minbodytemp)
-		fire_alert = 2
-		adjustBruteLoss(cold_damage_per_tick)
-	else if(bodytemperature > maxbodytemp)
-		fire_alert = 1
-		adjustBruteLoss(heat_damage_per_tick)
-	else
-		fire_alert = 0
+				if(min_oxy)
+					if(Environment.gas["oxygen"] < min_oxy)
+						atmos_suitable = 0
+				if(max_oxy)
+					if(Environment.gas["oxygen"] > max_oxy)
+						atmos_suitable = 0
+				if(min_tox)
+					if(Environment.gas["plasma"] < min_tox)
+						atmos_suitable = 0
+				if(max_tox)
+					if(Environment.gas["plasma"] > max_tox)
+						atmos_suitable = 0
+				if(min_n2)
+					if(Environment.gas["nitrogen"] < min_n2)
+						atmos_suitable = 0
+				if(max_n2)
+					if(Environment.gas["nitrogen"] > max_n2)
+						atmos_suitable = 0
+				if(min_co2)
+					if(Environment.gas["carbon_dioxide"] < min_co2)
+						atmos_suitable = 0
+				if(max_co2)
+					if(Environment.gas["carbon_dioxide"] > max_co2)
+						atmos_suitable = 0
 
-	if(!atmos_suitable)
-		adjustBruteLoss(unsuitable_atoms_damage)
+		//Atmos effect
+		if(bodytemperature < minbodytemp)
+			fire_alert = 2
+			adjustBruteLoss(cold_damage_per_tick)
+		else if(bodytemperature > maxbodytemp)
+			fire_alert = 1
+			adjustBruteLoss(heat_damage_per_tick)
+		else
+			fire_alert = 0
 
-	//Speaking
-	if(!client && speak_chance)
-		if(rand(0,200) < speak_chance)
-			visible_emote(emote_see)
-			speak_audio()
+		if(!atmos_suitable)
+			adjustBruteLoss(unsuitable_atoms_damage)
 
-	if(incapacitated())
-		return 1
+		if(!AI_inactive)
+			//Speaking
+			if(!client && speak_chance)
+				if(rand(0,200) < speak_chance)
+					visible_emote(emote_see)
+					speak_audio()
 
-	//Movement
-	turns_since_move++
-	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
-			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
-					moving_to = pick(cardinal)
-					set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
-					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
-					turns_since_move = 0
+			if(incapacitated())
+				return 1
+
+			//Movement
+			turns_since_move++
+			if(!client && !stop_automated_movement && wander && !anchored)
+				if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+					if(turns_since_move >= turns_per_move)
+						if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+							var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
+							moving_to = pick(cardinal)
+							set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
+							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+							turns_since_move = 0
 
 	return 1
 
@@ -281,16 +286,16 @@
 			nutrition = max(0,min(nutrition, max_nutrition))//clamp the value
 		else
 			if (prob(3))
-				src << "You feel hungry..."
+				to_chat(src, "You feel hungry...")
 
 		if (!reagents || !reagents.total_volume)
 			return
 
 		for(var/datum/reagent/current in reagents.reagent_list)
 			var/removed = min(current.metabolism*digest_factor, current.volume)
-			if (istype(current, /datum/reagent/nutriment))//If its food, it feeds us
-				var/datum/reagent/nutriment/N = current
-				nutrition += removed*N.nutriment_factor
+			if (istype(current, /datum/reagent/organic/nutriment))//If its food, it feeds us
+				var/datum/reagent/organic/nutriment/N = current
+				adjustNutrition(removed*N.nutriment_factor)
 				var/heal_amount = removed*N.regen_factor
 				if (bruteloss > 0)
 					var/n = min(heal_amount, bruteloss)
@@ -319,7 +324,7 @@
 	if(!Proj || Proj.nodamage)
 		return
 
-	adjustBruteLoss(Proj.damage)
+	adjustBruteLoss(Proj.get_total_damage())
 	return 0
 
 /mob/living/simple_animal/rejuvenate()
@@ -384,7 +389,7 @@
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
 	if(effective_force <= resistance)
-		user << SPAN_DANGER("This weapon is ineffective, it does no damage.")
+		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
 		return 2
 	effective_force -= resistance
 	.=..(O, user, effective_force, hit_zone)
@@ -440,9 +445,9 @@
 		var/mob/living/L = target_mob
 		if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
 			return (0)
-	if (istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		if (M.occupant)
+	if (istype(target_mob, /mob/living/exosuit))
+		var/mob/living/exosuit/M = target_mob
+		if (M.pilots[1])
 			return (0)
 	if (istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
@@ -610,7 +615,7 @@
 		wake_up()
 	else if (!resting)
 		fall_asleep()
-	src << span("notice","You are now [resting ? "resting" : "getting up"]")
+	to_chat(src, span("notice","You are now [resting ? "resting" : "getting up"]"))
 	update_icons()
 
 

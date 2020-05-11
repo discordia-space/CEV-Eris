@@ -4,7 +4,7 @@
 	icon_state = "closed"
 	health = 100
 	maxhealth = 100
-	resistance = 0
+	resistance = RESISTANCE_NONE
 	opacity = 0
 	layer = 4.2
 	var/have_glass = TRUE
@@ -36,7 +36,7 @@
 				var/obj/item/stack/material/glass/reinforced/G = I
 				if(G.get_amount() >= 2)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << SPAN_NOTICE("You start to put the glass into [src]...")
+					to_chat(user, SPAN_NOTICE("You start to put the glass into [src]..."))
 					if(do_after(user, 10, src))
 						if (density && G.use(2))
 							health = maxhealth
@@ -50,7 +50,7 @@
 			return
 
 	else
-		user << SPAN_WARNING("It must be closed!")
+		to_chat(user, SPAN_WARNING("It must be closed!"))
 
 /obj/machinery/door/blast/shutters/glass/attack_hand(mob/user)
 	return
@@ -58,8 +58,8 @@
 
 
 /obj/machinery/door/blast/shutters/glass/bullet_act(var/obj/item/projectile/Proj)
-	if((Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		take_damage(Proj.damage)
+	if(Proj.get_structure_damage())
+		take_damage(Proj.get_structure_damage())
 	..()
 
 
@@ -82,7 +82,7 @@
 			icon_state += "-broken"
 		else if(health < maxhealth)
 			var/ratio = health / maxhealth
-			ratio = Ceiling(ratio * 4) * 25
+			ratio = CEILING(ratio * 4, 1) * 25
 			overlays += "damage[ratio]"
 	else
 		icon_state = "open"
@@ -100,7 +100,7 @@
 
 	else
 		var/ratio = health / maxhealth
-		ratio = Ceiling(ratio * 4) * 25
+		ratio = CEILING(ratio * 4, 1) * 25
 		overlays.Cut()
 		flick("opening[ratio]", src)
 
@@ -125,7 +125,7 @@
 
 	else
 		var/ratio = health / maxhealth
-		ratio = Ceiling(ratio * 4) * 25
+		ratio = CEILING(ratio * 4, 1) * 25
 		flick("closing[ratio]", src)
 
 	density = 1

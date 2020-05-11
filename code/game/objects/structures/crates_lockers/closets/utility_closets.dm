@@ -25,14 +25,14 @@
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
 		if ("aid")
 			new /obj/item/weapon/tank/emergency_oxygen(src)
 			new /obj/item/weapon/storage/toolbox/emergency(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/weapon/storage/firstaid/o2(src)
 			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
 		if ("tank")
 			new /obj/item/weapon/tank/emergency_oxygen/engi(src)
 			new /obj/item/clothing/mask/breath(src)
@@ -45,8 +45,8 @@
 			new /obj/item/weapon/storage/firstaid/o2(src)
 			new /obj/item/clothing/suit/space/emergency(src)
 			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
 
 /obj/structure/closet/emcloset/legacy/populate_contents()
 	new /obj/item/weapon/tank/oxygen(src)
@@ -61,7 +61,7 @@
 	icon_state = "fire"
 
 /obj/structure/closet/firecloset/populate_contents()
-	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/suit/fire(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/weapon/tank/oxygen/red(src)
 	new /obj/item/weapon/extinguisher(src)
@@ -89,8 +89,10 @@
 		new /obj/item/weapon/tool/weldingtool(src)
 	if(prob(70))
 		new /obj/item/weapon/tool/crowbar(src)
-	if(prob(70))
+	if(prob(50))
 		new /obj/item/weapon/tool/wirecutters(src)
+	if(prob(50))
+		new /obj/item/weapon/tool/wirecutters/pliers(src)
 	if(prob(70))
 		new /obj/item/device/t_scanner(src)
 	if(prob(20))
@@ -135,22 +137,17 @@
  */
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
+	desc = "It's a storage unit for explosion-protective space suits."
 	icon_state = "bomb"
 
 /obj/structure/closet/bombcloset/populate_contents()
-	new /obj/item/clothing/suit/bomb_suit(src)
+	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/head/bomb_hood(src)
+	new /obj/item/clothing/head/space/bomb(src)
 
-/obj/structure/closet/bombclosetsecurity
-	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
-	icon_state = "bomb"
-
-/obj/structure/closet/bombclosetsecurity/populate_contents()
-	new /obj/item/clothing/suit/bomb_suit/security(src)
+/obj/structure/closet/bombcloset/security/populate_contents()
+	new /obj/item/clothing/suit/space/bomb/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/head/bomb_hood/security(src)
+	new /obj/item/clothing/head/space/bomb/security(src)

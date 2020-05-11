@@ -49,7 +49,7 @@
 
 
 /datum/event/prison_break/start()
-	for(var/area/A in world)
+	for(var/area/A in GLOB.map_areas)
 		if(is_type_in_list(A,areaType) && !is_type_in_list(A,areaNotType))
 			areas += A
 
@@ -59,7 +59,7 @@
 		for(var/obj/machinery/message_server/MS in world)
 			MS.send_rc_message("Engineering", my_department, rc_message, "", "", 2)
 		for(var/mob/living/silicon/ai/A in GLOB.player_list)
-			A << SPAN_DANGER("Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department].")
+			to_chat(A, SPAN_DANGER("Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department]."))
 
 	else
 		log_world("ERROR: Could not initate grey-tide. Unable to find suitable containment area.")

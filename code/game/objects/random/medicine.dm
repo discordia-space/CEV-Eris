@@ -13,9 +13,12 @@
 				/obj/item/weapon/storage/pill_bottle/kelotane = 2,\
 				/obj/item/weapon/storage/pill_bottle/antitox = 2,\
 				/obj/item/weapon/storage/pill_bottle/tramadol = 2,\
+				/obj/item/weapon/storage/pill_bottle/prosurgeon = 1,
 				/obj/item/weapon/reagent_containers/syringe/antitoxin = 2,\
-				/obj/item/weapon/reagent_containers/syringe/antiviral = 1,\
 				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,\
+				/obj/item/weapon/reagent_containers/syringe/tricordrazine = 1,\
+				/obj/item/weapon/reagent_containers/syringe/spaceacillin = 1,\
+				/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites = 0.5,\
 				/obj/item/stack/nanopaste = 1))
 
 /obj/random/medical/low_chance
@@ -31,7 +34,8 @@
 	return pickweight(list(/obj/item/stack/medical/bruise_pack = 4,\
 				/obj/item/stack/medical/ointment = 4,\
 				/obj/item/weapon/reagent_containers/syringe/antitoxin = 2,\
-				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2))
+				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,\
+				/obj/item/weapon/reagent_containers/syringe/tricordrazine = 1))
 
 /obj/random/medical_lowcost/low_chance
 	name = "low chance random low tier medicine"

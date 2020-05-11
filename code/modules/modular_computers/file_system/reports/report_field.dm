@@ -50,7 +50,7 @@
 /datum/report_field/proc/set_value(given_value)
 	value = given_value
 
-//Exports the contents of the field into html for viewing. 
+//Exports the contents of the field into html for viewing.
 /datum/report_field/proc/get_value()
 	return value
 
@@ -73,10 +73,10 @@ Basic field subtypes.
 
 /datum/report_field/simple_text/set_value(given_value)
 	if(istext(given_value))
-		value = sanitize(given_value) || ""
+		value = sanitizeSafe(given_value) || ""
 
 /datum/report_field/simple_text/ask_value(mob/user)
-	var/input = cyrillic_to_unicode(input(user, "[display_name()]:", "Form Input", html_decode(get_value())) as null|text)
+	var/input = input(user, "[display_name()]:", "Form Input", get_value()) as null|text
 	set_value(input)
 
 //Inteded for sizable text blocks.
@@ -89,10 +89,10 @@ Basic field subtypes.
 
 /datum/report_field/pencode_text/set_value(given_value)
 	if(istext(given_value))
-		value = sanitize(replacetext(given_value, "\n", "\[br\]"), MAX_PAPER_MESSAGE_LEN) || ""
+		value = sanitizeSafe(replacetext(given_value, "\n", "\[br\]"), MAX_PAPER_MESSAGE_LEN) || ""
 
 /datum/report_field/pencode_text/ask_value(mob/user)
-	set_value(cyrillic_to_unicode(input(user, "[display_name()] (You may use HTML paper formatting tags):", "Form Input", replacetext(html_decode(value), "\[br\]", "\n")) as null|message))
+	set_value(input(user, "[display_name()] (You may use HTML paper formatting tags):", "Form Input", replacetext(html_decode(value), "\[br\]", "\n")) as null|message)
 
 //Uses hh:mm format for times.
 /datum/report_field/time
@@ -120,6 +120,17 @@ Basic field subtypes.
 	value = 0
 
 /datum/report_field/number/set_value(given_value)
+	if(isnum(given_value))
+		value = abs(given_value)
+
+/datum/report_field/number/module/ask_value(mob/user)
+	var/value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
+	if(value >= 0)
+		set_value(value)
+	else
+		to_chat(user,SPAN_WARNING("Value has to be positive."))
+
+/datum/report_field/number/module/set_value(given_value)
 	if(isnum(given_value))
 		value = given_value
 
@@ -149,3 +160,40 @@ Basic field subtypes.
 
 /datum/report_field/signature/ask_value(mob/user)
 	set_value((user && user.real_name) ? user.real_name : "Anonymous")
+
+/datum/report_field/signature/anon/ask_value(mob/user)
+	if(user)
+		if("No" == input(user, "Would you like be anonymous ?", "", get_value()) as null|anything in list("No", "Yes"))
+			set_value(user.real_name ? user.real_name : "Anonymous")
+		else
+			set_value("Anonymous")
+
+/datum/report_field/array
+	var/list/value_list = list()
+
+/datum/report_field/array/proc/get_raw(var/position)
+	if(position)
+		return value_list[position]
+	else
+		return value_list
+
+/datum/report_field/array/get_value()
+	var/dat = ""
+	for(var/i = 1, i<=value_list.len, i++)
+		if(i > 1)
+			dat += "<br>"
+		dat += "[value_list[i]]"
+		return dat
+
+/datum/report_field/array/set_value()
+	error("Use add_value()")
+	return
+
+/datum/report_field/array/proc/add_value(var/given_value)
+	value_list.Add(given_value)
+
+/datum/report_field/array/proc/remove_value(var/given_value)
+	value_list.Remove(given_value)
+
+/datum/report_field/array/ask_value(mob/user)
+	add_value(input(user, "Add value", "") as null|text)

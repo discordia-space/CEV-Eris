@@ -5,7 +5,7 @@
 	program_icon_state = "generic"
 	program_key_state = "rd_key"
 	program_menu_icon = "power"
-	extended_desc = "This program allows remote control of power distribution systems. This program can not be run on tablet computers."
+	extended_desc = "This program allows remote control of power distribution systems. Cannot be run on tablet computers."
 	required_access = access_engine
 	requires_ntnet = 1
 	network_destination = "RCON remote control system"
@@ -22,7 +22,7 @@
 	var/hide_SMES_details = 0
 	var/hide_breakers = 0
 
-/datum/nano_module/rcon/ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/rcon/ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	FindDevices() // Update our devices list
 	var/list/data = host.initial_data()
 
@@ -40,7 +40,7 @@
 		"RCON_tag" = SMES.RCon_tag
 		)))
 
-	data["smes_info"] = sortByKey(smeslist, "RCON_tag")
+	data["smes_info"] = sortTim(smeslist, /proc/cmp_smeslist_rcon_tag)
 
 	// BREAKER DATA (simplified view)
 	var/list/breakerlist[0]

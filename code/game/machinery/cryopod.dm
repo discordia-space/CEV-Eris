@@ -41,9 +41,6 @@
 	storage_name = "Robotic Storage Control"
 	allow_items = 0
 
-/obj/machinery/computer/cryopod/attack_ai()
-	src.attack_hand()
-
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
 	if(stat & (NOPOWER|BROKEN))
 		return
@@ -96,7 +93,7 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << "<span class='notice'>There is nothing to recover from storage.</span>"
+			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
 			return
 
 		var/obj/item/I = input(usr, "Please choose which object to retrieve.","Object recovery",null) as null|anything in frozen_items
@@ -104,7 +101,7 @@
 			return
 
 		if(!(I in frozen_items))
-			user << "<span class='notice'>\The [I] is no longer in storage.</span>"
+			to_chat(user, "<span class='notice'>\The [I] is no longer in storage.</span>")
 			return
 
 		visible_message("<span class='notice'>The console beeps happily as it disgorges \the [I].</span>")
@@ -116,7 +113,7 @@
 		if(!allow_items) return
 
 		if(frozen_items.len == 0)
-			user << "<span class='notice'>There is nothing to recover from storage.</span>"
+			to_chat(user, "<span class='notice'>There is nothing to recover from storage.</span>")
 			return
 
 		visible_message("<span class='notice'>The console beeps happily as it disgorges the desired objects.</span>")
@@ -153,13 +150,11 @@
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "cryopod_0"
+	icon_state = "cryopod"
 	density = 1
 	anchored = 1
 	dir = WEST
 
-	var/base_icon_state = "cryopod_0"
-	var/occupied_icon_state = "cryopod_1"
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
 	var/on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
@@ -187,7 +182,7 @@
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
-		/obj/item/clothing/head/helmet/space,
+		/obj/item/clothing/head/space,
 		/obj/item/weapon/storage/internal
 	)
 
@@ -195,9 +190,7 @@
 	name = "robotic storage unit"
 	desc = "A storage unit for robots."
 	icon = 'icons/obj/robot_storage.dmi'
-	icon_state = "pod_0"
-	base_icon_state = "pod_0"
-	occupied_icon_state = "pod_1"
+	icon_state = "pod"
 	on_store_message = "has entered robotic storage."
 	on_store_name = "Robotic Storage Oversight"
 	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
@@ -207,6 +200,7 @@
 
 /obj/machinery/cryopod/New()
 	announce = new /obj/item/device/radio/intercom(src)
+	update_icon()
 	..()
 
 /obj/machinery/cryopod/Destroy()
@@ -219,6 +213,12 @@
 	. = ..()
 
 	find_control_computer()
+
+/obj/machinery/cryopod/update_icon()
+	if(occupant)
+		icon_state = "[initial(icon_state)]_1"
+	else
+		icon_state = "[initial(icon_state)]_0"
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
 	// Workaround for http://www.byond.com/forum/?post=2007448
@@ -271,10 +271,13 @@
 	if(!istype(R)) return ..()
 
 	qdel(R.mmi)
+
+	// Cryopod code to extract items from cyborgs before calling ..() so the cybrog is in clean state for proc/despawn_occupant()
 	for(var/obj/item/I in R.module) // the tools the borg has; metal, glass, guns etc
 		for(var/obj/item/O in I) // the things inside the tools, if anything; mainly for janiborg trash bags
 			O.forceMove(R)
 		qdel(I)
+
 	qdel(R.module)
 
 	return ..()
@@ -282,8 +285,18 @@
 // This function can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/proc/despawn_occupant()
+	var/mob/living/carbon/human/H = occupant
+	var/list/occupant_organs
+	if(istype(H))
+		occupant_organs = H.organs | H.internal_organs
+
 	//Drop all items into the pod.
+	//// Local pod code
 	for(var/obj/item/W in occupant)
+		// Don't delete the organs!
+		if(W in occupant_organs)
+			continue
+
 		occupant.drop_from_inventory(W)
 		W.forceMove(src)
 
@@ -298,6 +311,7 @@
 	items -= occupant // Don't delete the occupant
 	items -= announce // or the autosay radio.
 
+	// Preserve the mmi brain, quite snowflake code here
 	for(var/obj/item/W in items)
 		var/preserve = null
 		// Snowflaaaake.
@@ -322,41 +336,6 @@
 			else
 				W.forceMove(src.loc)
 
-	//Update any existing objectives involving this mob.
-	for(var/datum/objective/O in all_objectives)
-		// We don't want revs to get objectives that aren't for heads of staff. Letting
-		// them win or lose based on cryo is silly so we remove the objective.
-		if(O.target == occupant.mind)
-			if(O.owner && O.owner.current)
-				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
-			qdel(O)
-
-	//Handle job slot/tater cleanup.
-	var/job = occupant.mind.assigned_role
-
-	SSjob.FreeRole(job)
-
-	clear_antagonist(occupant.mind)
-
-	// Delete them from datacore.
-
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
-	for(var/datum/data/record/R in data_core.medical)
-		if ((R.fields["name"] == occupant.real_name))
-			qdel(R)
-	for(var/datum/data/record/T in data_core.security)
-		if ((T.fields["name"] == occupant.real_name))
-			qdel(T)
-	for(var/datum/data/record/G in data_core.general)
-		if ((G.fields["name"] == occupant.real_name))
-			qdel(G)
-
-	icon_state = base_icon_state
-
-	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
-
-
 	//Make an announcement and log the person entering storage.
 	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.assigned_role] - [stationtime2text()]"
 	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.assigned_role]) at [stationtime2text()]"
@@ -364,7 +343,6 @@
 
 	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
-
 
 	//When the occupant is put into storage, their respawn time is reduced.
 	//This check exists for the benefit of people who get put into cryostorage while SSD and come back later
@@ -376,19 +354,15 @@
 			if (istype(M))
 				if (!(M.get_respawn_bonus("CRYOSLEEP")))
 					//We send a message to the occupant's current mob - probably a ghost, but who knows.
-					M << SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by 20 minutes.")
+					to_chat(M, SPAN_NOTICE("Because your body was put into cryostorage, your crew respawn time has been reduced by [CRYOPOD_SPAWN_BONUS_DESC]."))
 					M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 				//Going safely to cryo will allow the patient to respawn more quickly
 				M.set_respawn_bonus("CRYOSLEEP", CRYOPOD_SPAWN_BONUS)
 
-	//This should guarantee that ghosts don't spawn.
-	occupant.ckey = null
-
-	// Delete the mob.
-	qdel(occupant)
+	// This despawn is not a gib() in this sense, it is used to remove objectives tied on these despawned mobs in cryos
+	occupant.despawn()
 	set_occupant(null)
-
 
 /obj/machinery/cryopod/affect_grab(var/mob/user, var/mob/target)
 	try_put_inside(target, user)
@@ -400,7 +374,7 @@
 
 /obj/machinery/cryopod/proc/try_put_inside(var/mob/living/affecting, var/mob/living/user)
 	if(occupant)
-		user << "<span class='notice'>\The [src] is in use.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is in use.</span>")
 		return
 
 	if(!ismob(affecting) || !Adjacent(affecting) || !Adjacent(user))
@@ -455,6 +429,9 @@
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = src.contents
 	if(occupant)
+		if(usr != occupant && !occupant.client && occupant.stat != DEAD)
+			to_chat(usr, SPAN_WARNING("It's locked inside!"))
+			return
 		items -= occupant
 	if(announce)
 		items -= announce
@@ -477,12 +454,12 @@
 		return
 
 	if(src.occupant)
-		usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
+		to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 		return
 
 	for(var/mob/living/carbon/slime/M in range(1,usr))
 		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
+			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
 
 	visible_message("[usr] starts climbing into \the [src].")
@@ -493,7 +470,7 @@
 			return
 
 		if(src.occupant)
-			usr << "<span class='notice'><B>\The [src] is in use.</B></span>"
+			to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 			return
 
 		usr.stop_pulling()
@@ -534,20 +511,17 @@
 			var/mob/living/carbon/human/H = occupant
 			H.in_stasis = 1
 		new_occupant.forceMove(src)
-		icon_state = occupied_icon_state
-
 
 		if (notifications)
-			occupant << SPAN_NOTICE("[on_enter_occupant_message]")
-			occupant << SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>")
+			to_chat(occupant, SPAN_NOTICE("[on_enter_occupant_message]"))
+			to_chat(occupant, SPAN_NOTICE("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"))
 		if (occupant.in_perfect_health() && notifications)
-			occupant << SPAN_NOTICE("<b>Your respawn time will be reduced by 20 minutes, allowing you to respawn as a crewmember much more quickly.</b>")
+			to_chat(occupant, SPAN_NOTICE("<b>Your respawn time will be reduced by 20 minutes, allowing you to respawn as a crewmember much more quickly.</b>"))
 		else if (notifications)
-			occupant << SPAN_DANGER("<b>Because you are not in perfect health, going into cryosleep will not reduce your crew respawn time. \
-			If you wish to respawn as a different crewmember, you should treat your injuries at medical first</b>")
+			to_chat(occupant, SPAN_DANGER("<b>Because you are not in perfect health, going into cryosleep will not reduce your crew respawn time. \
+			If you wish to respawn as a different crewmember, you should treat your injuries at medical first</b>"))
 
 	else
-		icon_state = base_icon_state
 		if(!QDELETED(occupant))
 			occupant.forceMove(get_turf(src))
 			occupant.reset_view(null)
@@ -555,3 +529,5 @@
 				var/mob/living/carbon/human/H = occupant
 				H.in_stasis = 0
 		occupant = null
+
+	update_icon()

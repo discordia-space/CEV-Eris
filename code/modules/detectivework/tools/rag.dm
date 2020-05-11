@@ -23,7 +23,8 @@
 	possible_transfer_amounts = list(5)
 	volume = 10
 	can_be_placed_into = null
-	flags = OPENCONTAINER | NOBLUDGEON
+	flags = NOBLUDGEON
+	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	unacidable = 0
 
 	var/on_fire = 0
@@ -53,7 +54,7 @@
 			if(on_fire)
 				visible_message(SPAN_WARNING("\The [user] lights [src] with [W]."))
 			else
-				user << SPAN_WARNING("You manage to singe [src], but fail to light it.")
+				to_chat(user, SPAN_WARNING("You manage to singe [src], but fail to light it."))
 
 	. = ..()
 	update_name()
@@ -94,7 +95,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/wipe_down(atom/A, mob/user)
 	if(!reagents.total_volume)
-		user << SPAN_WARNING("The [initial(name)] is dry!")
+		to_chat(user, SPAN_WARNING("The [initial(name)] is dry!"))
 	else
 		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
 		reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
@@ -111,17 +112,26 @@
 			user.do_attack_animation(src)
 			M.IgniteMob()
 		else if(reagents.total_volume)
-			if(user.targeted_organ == BP_MOUTH)
+			if(user.targeted_organ == BP_MOUTH && ishuman(target))
+				var/mob/living/carbon/human/H = target
+				if(!H.check_mouth_coverage())
+					if(do_after(user, 20, H))
+						user.do_attack_animation(src)
+						user.visible_message(
+							"<span class='danger'>\The [user] smothers [H] with [src]!</span>",
+							"<span class='warning'>You smother [H] with [src]!</span>",
+							"You hear some struggling and muffled cries of surprise"
+							)
+
+						reagents.trans_to_mob(H, amount_per_transfer_from_this, CHEM_BLOOD)
+						update_name()
+						return
+
 				user.do_attack_animation(src)
 				user.visible_message(
-					SPAN_DANGER("\The [user] smothers [target] with [src]!"),
-					SPAN_WARNING("You smother [target] with [src]!"),
-					"You hear some struggling and muffled cries of surprise"
+					"<span class='danger'>\The [user] try to smothers [H] with [src], but blocked!</span>",
+					"<span class='warning'>You try to smother [H] with [src]!</span>"
 					)
-
-				//it's inhaled, so... maybe CHEM_BLOOD doesn't make a whole lot of sense but it's the best we can do for now
-				reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
-				update_name()
 			else
 				wipe_down(target, user)
 		return
@@ -134,7 +144,7 @@
 
 	if(istype(A, /obj/structure/reagent_dispensers))
 		if(!reagents.get_free_space())
-			user << SPAN_WARNING("\The [src] is already soaked.")
+			to_chat(user, SPAN_WARNING("\The [src] is already soaked."))
 			return
 
 		if(A.reagents && A.reagents.trans_to_obj(src, reagents.maximum_volume))

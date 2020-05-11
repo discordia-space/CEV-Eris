@@ -8,7 +8,7 @@
 	var/max_spikes = 3
 	var/spikes = 3
 	release_force = 30
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/guns/launcher.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
 	fire_sound_text = "a strange noise"
@@ -31,14 +31,14 @@
 
 /obj/item/weapon/gun/launcher/spikethrower/examine(mob/user)
 	..(user)
-	user << "It has [spikes] spike\s remaining."
+	to_chat(user, "It has [spikes] spike\s remaining.")
 
 /obj/item/weapon/gun/launcher/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
 
 /obj/item/weapon/gun/launcher/spikethrower/special_check(user)
 	if(ishuman(user))
-		user << SPAN_WARNING("\The [src] does not respond to you!")
+		to_chat(user, SPAN_WARNING("\The [src] does not respond to you!"))
 		return 0
 	return ..()
 

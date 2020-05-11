@@ -1,5 +1,5 @@
 /*******************************
-* Neotheology: Religious items *
+* NeoTheology: Religious items *
 *******************************/
 /*
 Intended for inquisitors and maybe future crusaders
@@ -16,7 +16,7 @@ A small pool of thematically appropriate religious items that are generally chea
 
 	//Get the mob and their cruciform implant
 	var/mob/living/L = U.uplink_owner.current
-	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_cruciform()
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 
 	if (!C)
 		return FALSE
@@ -66,16 +66,16 @@ A small pool of thematically appropriate religious items that are generally chea
 /datum/uplink_item/item/neotheology/knife
 	name = "Ritual Blade"
 	item_cost = 2
-	path = /obj/item/weapon/material/knife/neotritual
+	path = /obj/item/weapon/tool/knife/neotritual
 
 
 /datum/uplink_item/item/neotheology/coat
 	name = "Preacher Coat"
 	item_cost = 3
-	path = /obj/item/clothing/suit/chaplain_hoodie
+	path = /obj/item/clothing/suit/neotheology_coat
 
 /*
-	Guns: All taken from the Neotheology Armoury of the New Testament
+	Guns: All taken from the NeoTheology Armory of the New Testament
 	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
 */
 /datum/uplink_item/item/neotheology/laser
@@ -92,12 +92,12 @@ A small pool of thematically appropriate religious items that are generally chea
 /datum/uplink_item/item/neotheology/pulse
 	item_cost = 10
 	name = "NT PR \"Dominion\""
-	path = /obj/item/weapon/gun/energy/pulse_rifle
+	path = /obj/item/weapon/gun/energy/plasma
 
-/datum/uplink_item/item/neotheology/pulse_rifle_destroyer
+/datum/uplink_item/item/neotheology/pulse_destroyer
 	item_cost = 10
 	name = "NT PR \"Purger\""
-	path = /obj/item/weapon/gun/energy/pulse_rifle/destroyer
+	path = /obj/item/weapon/gun/energy/plasma/destroyer
 
 
 

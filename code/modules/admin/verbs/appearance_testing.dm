@@ -54,7 +54,7 @@ var/datum/appearance_test/appearance_test = new
 	if(log_sprite_gen)
 		cache_generation_log += "[string]<br>"
 		if(log_sprite_gen_to_world)
-			world << string
+			to_chat(world, string)
 
 /datum/appearance_test/proc/show_log(var/mob/user)
 	user << browse(cache_generation_log, "window=cache_log;size=1270x770")

@@ -50,7 +50,7 @@
 	else
 		icon_state = "pen_[colour]"
 
-	user << SPAN_NOTICE("Changed color to '[colour].'")
+	to_chat(user, SPAN_NOTICE("Changed color to '[colour].'"))
 
 /obj/item/weapon/pen/invisible
 	desc = "It's an invisble pen marker."
@@ -61,7 +61,7 @@
 /obj/item/weapon/pen/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M))
 		return
-	user << SPAN_WARNING("You stab [M] with the pen.")
+	to_chat(user, SPAN_WARNING("You stab [M] with the pen."))
 //	M << "\red You feel a tiny prick!" //That's a whole lot of meta!
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stabbed with [name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to stab [M.name] ([M.ckey])</font>")
@@ -73,7 +73,7 @@
  */
 
 /obj/item/weapon/pen/reagent
-	flags = OPENCONTAINER
+	reagent_flags = REFILLABLE | DRAINABLE
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
@@ -91,7 +91,7 @@
 	if(M.can_inject(user,1))
 		if(reagents.total_volume)
 			if(M.reagents)
-				var/contained_reagents = reagents.get_reagents()
+				var/contained_reagents = reagents.log_list()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				admin_inject_log(user, M, src, contained_reagents, trans)
 
@@ -171,7 +171,7 @@
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK
-		usr << "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>"
+		to_chat(usr, "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>")
 
 
 /*
@@ -190,7 +190,11 @@
 	var/uses = 30 //0 for unlimited uses
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
+	var/grindable = TRUE //normal crayons are grindable, rainbow and mime aren't
 
 	New()
 		name = "[colourName] crayon"
+		if(grindable)
+			create_reagents(20)
+			reagents.add_reagent("crayon_dust_[colourName]", 20)
 		..()

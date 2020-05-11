@@ -89,15 +89,12 @@
 	updateicon()
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
-	if(module_state_1 == O)
-		return 1
-	else if(module_state_2 == O)
-		return 1
-	else if(module_state_3 == O)
+	if(module_state_1 == O || module_state_2 == O || module_state_3 == O)
+		updateicon()
 		return 1
 	else
 		return 0
-	updateicon()
+	
 
 //Helper procs for cyborg modules on the UI.
 //These are hackish but they help clean up code elsewhere.
@@ -227,7 +224,7 @@
 		return
 	var/obj/screen/silicon/module/inv
 
-	if(invnum in (1 to 3))
+	if(invnum in 1 to 3)
 		inv = src.HUDinventory[invnum]
 		return inv.screen_loc
 	else
@@ -238,7 +235,7 @@
 	if(!(locate(O) in src.module.modules) && O != src.module.emag)
 		return
 	if(activated(O))
-		src << SPAN_NOTICE("Already activated")
+		to_chat(src, SPAN_NOTICE("Already activated"))
 		return
 	if(!module_state_1)
 		if (O.pre_equip(src, slot_robot_equip_1))
@@ -277,7 +274,7 @@
 			sight_mode |= module_state_3:sight_mode
 		O.equipped(src, slot_robot_equip_3)
 	else
-		src << SPAN_NOTICE("You need to disable a module first!")
+		to_chat(src, SPAN_NOTICE("You need to disable a module first!"))
 
 
 //Attempt to grip the item in a gripper.

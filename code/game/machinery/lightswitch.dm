@@ -4,9 +4,9 @@
 /obj/machinery/light_switch
 	name = "light switch"
 	desc = "It turns lights on and off. What are you, simple?"
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "light1"
-	anchored = 1.0
+	anchored = 1
 	use_power = 1
 	idle_power_usage = 20
 	power_channel = LIGHT
@@ -61,7 +61,7 @@
 
 /obj/machinery/light_switch/examine(mob/user)
 	if(..(user, 1))
-		user << "A light switch. It is [on? "on" : "off"]."
+		to_chat(user, "A light switch. It is [on? "on" : "off"].")
 
 /obj/machinery/light_switch/proc/dramatic_turning()
 	if(slow_turning_on) // Sanity check. So nothing can force this thing to run twice simultaneously.

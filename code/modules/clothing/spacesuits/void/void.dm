@@ -1,12 +1,20 @@
 //NASA Voidsuit
-/obj/item/clothing/head/helmet/space/void
+/obj/item/clothing/head/space/void
 	name = "void helmet"
 	desc = "A high-tech dark red space suit helmet. Used for AI satellite maintenance."
 	icon_state = "void"
 
 	heat_protection = HEAD
-	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 60)
+	armor = list(
+		melee = 30,
+		bullet = 20,
+		energy = 15,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flash_protection = FLASH_PROTECTION_MAJOR
 
 	light_overlay = "helmet_light"
 
@@ -15,35 +23,57 @@
 	icon_state = "void"
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
-	slowdown = 1
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	armor = list(melee = 40, bullet = 35, laser = 35,energy = 5, bomb = 35, bio = 100, rad = 90)
-
-
+	slowdown = 0.3
+	armor = list(
+		melee = 30,
+		bullet = 20,
+		energy = 15,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-
-	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
-	//With 0.2 resiliance, will reach 10 breach damage after 3 laser carbine blasts or 8 smg hits.
-	breach_threshold = 18
+	action_button_name = "Toggle Helmet"
+	breach_threshold = 5
+	resilience = 0.09
 	can_breach = 1
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
-	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
+	var/obj/item/clothing/head/armor/helmet/helmet = /obj/item/clothing/head/space/void   // Deployable helmet, if any.
 	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
+
+/obj/item/clothing/suit/space/void/Initialize()
+	if(boots && ispath(boots))
+		boots = new boots(src)
+	if(helmet && ispath(helmet))
+		helmet = new helmet(src)
+	if(tank && ispath(tank))
+		tank = new tank(src)
+	. = ..()
 
 /obj/item/clothing/suit/space/void/examine(user)
 	..(user)
 	var/list/part_list = new
 	for(var/obj/item/I in list(helmet,boots,tank))
 		part_list += "\a [I]"
-	user << "\The [src] has [english_list(part_list)] installed."
+	to_chat(user, "\The [src] has [english_list(part_list)] installed.")
 	if(tank && in_range(src,user))
-		user << SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
+		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
 
+/obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
+	toggle_helmet()
 
+/obj/item/clothing/suit/space/void/clean_blood()
+	//So that you dont have to detach the components to clean them, also since you can't detach the helmet
+	if(boots) boots.clean_blood()
+	if(helmet) helmet.clean_blood()
+	if(tank) tank.clean_blood()
 
+	return ..()
 
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
@@ -64,16 +94,16 @@
 
 	if(helmet)
 		if(H.head)
-			M << "You are unable to deploy your suit's helmet as \the [H.head] is in the way."
+			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
 		else if (H.equip_to_slot_if_possible(helmet, slot_head))
-			M << "Your suit's helmet deploys with a hiss."
+			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			helmet.canremove = 0
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
-			M << "Alarmingly, the valve on your suit's installed tank fails to engage."
+			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
 		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
-			M << "The valve on your suit's installed tank safely engages."
+			to_chat(M, "The valve on your suit's installed tank safely engages.")
 			tank.canremove = 0
 
 
@@ -92,6 +122,8 @@
 			if(helmet && H.head == helmet)
 				H.drop_from_inventory(helmet)
 				helmet.forceMove(src)
+				if(helmet.overslot)
+					helmet.remove_overslot_contents(H)
 
 	if(boots)
 		boots.canremove = 1
@@ -100,6 +132,8 @@
 			if(boots && H.shoes == boots)
 				H.drop_from_inventory(boots)
 				boots.forceMove(src)
+				if(boots.overslot)
+					boots.remove_overslot_contents(H)
 
 	if(tank)
 		tank.canremove = 1
@@ -115,7 +149,7 @@
 		return
 
 	if(!helmet)
-		usr << "There is no helmet installed."
+		to_chat(usr, "There is no helmet installed.")
 		return
 
 	var/mob/living/carbon/human/H = usr
@@ -125,18 +159,18 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == helmet)
-		H << SPAN_NOTICE("You retract your suit helmet.")
+		to_chat(H, SPAN_NOTICE("You retract your suit helmet."))
 		helmet.canremove = 1
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	else
 		if(H.head)
-			H << SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head].")
+			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = 0
-			H << "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>"
+			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
 			playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	helmet.update_light(H)
 
@@ -150,11 +184,11 @@
 		return
 
 	if (!Adjacent(usr, get_turf(src)))
-		usr << SPAN_WARNING("You're too far away to eject the tank.")
+		to_chat(usr, SPAN_WARNING("You're too far away to eject the tank."))
 		return
 
 	if(!tank)
-		usr << "<span class='warning'>There is no tank inserted.</span>"
+		to_chat(usr, "<span class='warning'>There is no tank inserted.</span>")
 		return
 
 
@@ -184,44 +218,30 @@
 		return ..()
 
 	if(is_worn())
-		user << SPAN_WARNING("You cannot modify \the [src] while it is being worn.")
+		to_chat(user, SPAN_WARNING("You cannot modify \the [src] while it is being worn."))
 		return
 
 	if(istype(W,/obj/item/weapon/tool/screwdriver))
-		if(helmet || boots || tank)
-			var/choice = input("What component would you like to remove?") as null|anything in list(helmet,boots,tank)
+		if(boots || tank)
+			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank)
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
-				user << "You pop \the [tank] out of \the [src]'s storage compartment."
+				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
 				tank.forceMove(get_turf(src))
 				src.tank = null
-			else if(choice == helmet)
-				user << "You detatch \the [helmet] from \the [src]'s helmet mount."
-				helmet.forceMove(get_turf(src))
-				src.helmet = null
 			else if(choice == boots)
-				user << "You detatch \the [boots] from \the [src]'s boot mounts."
+				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				src.boots = null
 		else
-			user << "\The [src] does not have anything installed."
-		return
-	else if(istype(W,/obj/item/clothing/head/helmet/space))
-		if(helmet)
-			user << "\The [src] already has a helmet installed."
-		else
-			user << "You attach \the [W] to \the [src]'s helmet mount."
-			user.drop_item()
-			W.forceMove(src)
-			src.helmet = W
-			playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			to_chat(user, "\The [src] does not have anything installed.")
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)
-			user << "\The [src] already has magboots installed."
+			to_chat(user, "\The [src] already has magboots installed.")
 		else
-			user << "You attach \the [W] to \the [src]'s boot mounts."
+			to_chat(user, "You attach \the [W] to \the [src]'s boot mounts.")
 			user.drop_item()
 			W.forceMove(src)
 			boots = W
@@ -229,11 +249,11 @@
 		return
 	if(istype(W,/obj/item/weapon/tank))
 		if(tank)
-			user << "\The [src] already has an airtank installed."
+			to_chat(user, "\The [src] already has an airtank installed.")
 		else if(istype(W,/obj/item/weapon/tank/plasma))
-			user << "\The [W] cannot be inserted into \the [src]'s storage compartment."
+			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
 		else
-			user << "You insert \the [W] into \the [src]'s storage compartment."
+			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
 			user.drop_item()
 			W.forceMove(src)
 			tank = W

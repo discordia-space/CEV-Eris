@@ -5,7 +5,7 @@
 /obj/item/organ/external/proc/is_damageable(var/additional_damage = 0)
 	return (vital || brute_dam + burn_dam + additional_damage < max_damage)
 
-/obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
+/obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), silent)
 	var/prev_brute = brute_dam	//We'll record how much damage the limb already had, before we apply the damage from this incoming hit
 	var/prev_burn = burn_dam
 
@@ -31,7 +31,7 @@
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
 
-	var/can_cut = (prob(brute*2) || sharp) && robotic < ORGAN_ROBOT
+	var/can_cut = (prob(brute*2 || sharp) && !BP_IS_ROBOTIC(src))
 
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
 	// Non-vital organs are limited to max_damage. You can't kill someone by bludeonging their arm all the way to 200 -- you can
@@ -82,6 +82,7 @@
 	src.update_damages()
 	owner.updatehealth() //droplimb will call updatehealth() again if it does end up being called
 
+
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner && !is_stump())
 		if(!cannot_amputate && config.limbs_can_break && (brute_dam + burn_dam) >= (max_damage * ORGAN_HEALTH_MULTIPLIER))
@@ -112,8 +113,8 @@
 
 	return update_damstate()
 
-/obj/item/organ/external/proc/heal_damage(brute, burn, internal = 0, robo_repair = 0)
-	if(robotic >= ORGAN_ROBOT && !robo_repair)
+/obj/item/organ/external/heal_damage(brute, burn, internal = 0, robo_repair = 0)
+	if(BP_IS_ROBOTIC(src) && !robo_repair)
 		return
 
 	//Heal damage on the individual wounds
@@ -136,4 +137,3 @@
 	owner.updatehealth()
 
 	return update_damstate()
-

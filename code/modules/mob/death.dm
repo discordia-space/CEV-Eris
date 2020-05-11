@@ -2,6 +2,7 @@
 //added different sort of gibs and animations. N
 /mob/proc/gib(anim="gibbed-m",do_gibs)
 	death(1)
+	transforming = TRUE
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
@@ -29,13 +30,14 @@
 //This is the proc for turning a mob into ash. Mostly a copy of gib code (above).
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
-/mob/proc/dust(anim="dust-m",remains=/obj/effect/decal/cleanable/ash, iconfile = 'icons/mob/mob.dmi')
+/mob/proc/dust(anim = "dust-m", remains = /obj/effect/decal/cleanable/ash, iconfile = 'icons/mob/mob.dmi')
 	death(1)
 	if (istype(loc, /obj/item/weapon/holder))
 		var/obj/item/weapon/holder/H = loc
 		H.release_mob()
 
 	var/atom/movable/overlay/animation = null
+	transforming = TRUE
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
@@ -57,8 +59,6 @@
 
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")
-
-
 	if(stat == DEAD)
 		return 0
 
@@ -66,6 +66,15 @@
 
 	if(!gibbed && deathmessage != "no message") // This is gross, but reliable. Only brains use it.
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
+
+	// Drop all embedded items if gibbed/dusted
+	if(gibbed)
+		for(var/obj/O in embedded)
+			O.forceMove(loc)
+		embedded = list()
+
+	for(var/mob/living/carbon/human/H in oviewers(src))
+		H.sanity.onSeeDeath(src)
 
 	stat = DEAD
 	update_lying_buckled_and_verb_status()

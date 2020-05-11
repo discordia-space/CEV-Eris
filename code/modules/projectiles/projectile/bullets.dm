@@ -1,27 +1,30 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage = 40
-	damage_type = BRUTE
+	damage_types = list(BRUTE = 40)
 	nodamage = 0
-	check_armour = "bullet"
-	embed = 1
+	check_armour = ARMOR_BULLET
+	embed = TRUE
 	sharp = 0
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
-/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
-	if (..(target, blocked))
+/obj/item/projectile/bullet/on_hit(atom/target)
+	if (..(target))
 		var/mob/living/L = target
-		shake_camera(L, 3, 2)
+		shake_camera(L, 1, 1, 0.5)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
-	if(penetrating > 0 && damage > 20 && prob(damage))
+/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
+	if(penetrating > 0 && damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]))
 		mob_passthrough_check = 1
 	else
-		mob_passthrough_check = 0
+		var/obj/item/weapon/grab/G = locate() in target_mob
+		if(G && G.state >= GRAB_NECK)
+			mob_passthrough_check = rand()
+		else
+			mob_passthrough_check = 0
 	return ..()
 
 /obj/item/projectile/bullet/can_embed()
@@ -33,14 +36,14 @@
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)
 	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
-	if(istype(A, /obj/mecha))
+	if(istype(A, /mob/living/exosuit))
 		return 1 //mecha have their own penetration handling
-
+	var/damage = damage_types[BRUTE]
 	if(ismob(A))
 		if(!mob_passthrough_check)
 			return 0
 		if(iscarbon(A))
-			damage *= 0.7 //squishy mobs absorb KE
+			damage *= 0.7
 		return 1
 
 	var/chance = 0
@@ -67,7 +70,7 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage = 15
+	damage_types = list(BRUTE = 15)
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
@@ -83,7 +86,7 @@
 	var/remaining = pellets - pellet_loss
 	if (remaining < 0)
 		return 0
-	return round_prob(remaining)
+	return ROUND_PROB(remaining)
 
 /obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
 

@@ -3,58 +3,76 @@
 
 /obj/item/weapon/bluespace_harpoon
 	name = "NT BSD \"Harpoon\""
-	desc = "One of the last things developed by old Nanotrasen, this harpoon serve as tool for short and accurate teleportation of cargo and personal through blue-space."
+	desc = "One of the last things developed by old Nanotrasen, this harpoon serves as a tool for short and accurate teleportation of cargo and personnel through bluespace."
 	icon_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 4
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 5)
+	price_tag = 4000
+	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
 	var/mode = MODE_TRANSMIT
 	var/transforming = FALSE	// mode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
 	var/teleport_offset = 8		//radius of wrong place
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = /obj/item/weapon/cell/medium
+	var/Using = FALSE				//If its being used
 
-/obj/item/weapon/bluespace_harpoon/New()
-	..()
+/obj/item/weapon/bluespace_harpoon/Initialize()
+	. = ..()
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 
+/obj/item/weapon/bluespace_harpoon/get_cell()
+	return cell
+
+/obj/item/weapon/bluespace_harpoon/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/weapon/storage/))
-		return
-	else if(istype(A, /obj/structure/table/))
-		return
+		return ..()
+	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
+		return ..()
+	if(!Using)
+		Using = TRUE
+		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
+			Using = FALSE
+			if(!cell || !cell.checked_use(100))
+				to_chat(user, SPAN_WARNING("\The [src]'s battery is dead or missing."))
+				return
+			if(!user || !A || user.machine)
+				return
+			if(transforming)
+				to_chat(user, SPAN_WARNING("You can't fire \the [src] while transforming!"))
+				return
 
-	if(!cell || !cell.checked_use(100))
-		user << SPAN_WARNING("[src] battery is dead or missing.")
-		return
-	if(!user || !A || user.machine)
-		return
-	if(transforming)
-		user << "<span class = 'warning'>You can't fire while [src] transforming!</span>"
-		return
+			playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
-	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+			user.visible_message(SPAN_WARNING("\The [user] fires \the [src]!"))
+			to_chat(user,SPAN_WARNING("You fire from [src]"))
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(4, 1, A)
+			s.start()
 
-	for(var/mob/O in oviewers(src))
-		if ((O.client && !( O.blinded )))
-			O << "<span class = 'warning'>[user] fire from [src]</span>"
-	user << "<span class = 'warning'>You fire from [src]</span>"
+			var/turf/AtomTurf = get_turf(A)
+			var/turf/UserTurf = get_turf(user)
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-	s.set_up(4, 1, A)
-	s.start()
-
-	var/turf/AtomTurf = get_turf(A)
-	var/turf/UserTurf = get_turf(user)
-
-	if(mode)
-		teleport(UserTurf, AtomTurf)
+			if(mode)
+				teleport(UserTurf, AtomTurf)
+			else
+				teleport(AtomTurf, UserTurf)
+		else
+			to_chat(user, SPAN_WARNING("Error, do not move!"))
+			Using = FALSE
 	else
-		teleport(AtomTurf, UserTurf)
+		to_chat(user, SPAN_WARNING("Error, single destination only!"))
+
 
 /obj/item/weapon/bluespace_harpoon/proc/teleport(var/turf/source, var/turf/target)
 	for(var/atom/movable/AM in source)
@@ -77,7 +95,7 @@
 		return
 	mode = !mode
 	transforming = TRUE
-	user << "<span class = 'notice'>You change [src] mode to [mode ? "transmiting" : "receiving"].</span>"
+	to_chat(user, SPAN_NOTICE("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
 	flick("harpoon-[mode]-change", src)
 	spawn(13)	//Average length of transforming animation
@@ -88,7 +106,7 @@
 
 /obj/item/weapon/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
 	..(user, dist)
-	user << "<span class='notice'>Mode set to [mode ? "transmiting" : "receiving"].</span>"
+	to_chat(user, SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"]."))
 
 /obj/item/weapon/bluespace_harpoon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

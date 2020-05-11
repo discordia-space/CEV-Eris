@@ -13,9 +13,9 @@
 		return 1
 	if(feedback)
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
-			src << "Where do you intend to put \the [food]? You don't have a mouth!"
+			to_chat(src, "Where do you intend to put \the [food]? You don't have a mouth!")
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			src << SPAN_WARNING("\The [status[2]] is in the way!")
+			to_chat(src, SPAN_WARNING("\The [status[2]] is in the way!"))
 	return 0
 
 /mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
@@ -24,9 +24,9 @@
 		return 1
 	if(feedback)
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
-			feeder << "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!"
+			to_chat(feeder, "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!")
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			feeder << SPAN_WARNING("\The [status[2]] is in the way!")
+			to_chat(feeder, SPAN_WARNING("\The [status[2]] is in the way!"))
 	return 0
 
 /mob/living/carbon/human/proc/can_eat_status()
@@ -85,11 +85,6 @@
 	var/obj/item/clothing/glasses/G = O.getCurrentGlasses()
 	if(G && O.visor.active)
 		process_glasses(G,1)
-
-/mob/living/carbon/human/proc/get_core_implant()
-	var/obj/item/weapon/implant/core_implant/C = locate(/obj/item/weapon/implant/core_implant, src)
-	return C
-
 
 /mob/living/carbon/human/reset_layer()
 	if(hiding)

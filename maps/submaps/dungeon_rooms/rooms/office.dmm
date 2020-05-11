@@ -1,0 +1,595 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"ab" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"ac" = (
+/obj/structure/noticeboard,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"ad" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"ae" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"af" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"ag" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/onestar,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"ah" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/modular_computer/console,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"ai" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aj" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"ak" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"al" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/onestar,
+/obj/machinery/light/floor,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/stamp/denied,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"am" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/stamp/chameleon,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"an" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/stamp/denied,
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"ao" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/onestar,
+/obj/machinery/light/floor,
+/obj/item/weapon/storage/lunchbox/rainbow,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"ap" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aq" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/onestar,
+/obj/item/device/taperecorder,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"ar" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"as" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/table/onestar,
+/obj/item/clothing/accessory/medal/conduct,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"at" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/remains/human,
+/obj/item/clothing/accessory/blue,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"au" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/paper_bin,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"av" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/paper_bin,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aw" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"ax" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"ay" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/clothing/accessory/red,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"az" = (
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/onestar,
+/obj/item/remains/human,
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aA" = (
+/obj/machinery/papershredder,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"aB" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aC" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/weapon/storage/briefcase,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aD" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/onestar,
+/obj/item/modular_computer/laptop,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aE" = (
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/modular_computer/console{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aF" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aG" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/obj/structure/table/onestar,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aH" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/stamp/denied,
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aI" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/weapon/oddity/common/paper_omega,
+/obj/item/clothing/accessory/horrible,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aJ" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aK" = (
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aL" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aM" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"aN" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aO" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/onestar,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aP" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/item/remains/human,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aQ" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/obj/item/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aR" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/item/weapon/lipstick/black,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"aS" = (
+/obj/structure/table/onestar,
+/obj/item/weapon/phone,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aT" = (
+/obj/random/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"aU" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/modular_computer/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aV" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"aW" = (
+/obj/structure/largecrate,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"aX" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/stamp/denied,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aY" = (
+/obj/structure/table/onestar,
+/obj/item/weapon/pen/reagent/sleepy,
+/obj/item/weapon/newspaper,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"aZ" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"ba" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/stamp/denied,
+/obj/structure/barricade,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"bb" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/structure/barricade,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"bc" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/onestar,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/weapon/gun/projectile/handmade_pistol,
+/obj/random/ammo,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aj
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+ag
+as
+aA
+al
+aE
+aH
+ag
+aa
+"}
+(3,1,1) = {"
+aa
+ah
+at
+aM
+aC
+ad
+aI
+aP
+aa
+"}
+(4,1,1) = {"
+ac
+ab
+aR
+aM
+ae
+aF
+aw
+ao
+aa
+"}
+(5,1,1) = {"
+aa
+am
+au
+af
+aD
+aG
+aJ
+aY
+ar
+"}
+(6,1,1) = {"
+ar
+af
+af
+af
+aW
+aZ
+aK
+aS
+ar
+"}
+(7,1,1) = {"
+ar
+af
+aT
+af
+af
+aZ
+ae
+aB
+ar
+"}
+(8,1,1) = {"
+ar
+af
+af
+af
+aT
+af
+aL
+aU
+ar
+"}
+(9,1,1) = {"
+aa
+an
+av
+af
+af
+af
+ba
+bc
+ar
+"}
+(10,1,1) = {"
+aa
+ai
+ax
+aV
+af
+aZ
+bb
+aQ
+aa
+"}
+(11,1,1) = {"
+aa
+ak
+ay
+aV
+af
+aZ
+aN
+ap
+aa
+"}
+(12,1,1) = {"
+aa
+aq
+az
+af
+af
+af
+aO
+aX
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aj
+aj
+aj
+aj
+aj
+aa
+aa
+"}

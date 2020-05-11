@@ -10,6 +10,7 @@
 	icon_state = "badge"
 	item_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_ACCESSORY_BUFFER
+	price_tag = 200
 
 	var/stored_name
 	var/badge_string = "Ironhammer Security"
@@ -26,7 +27,7 @@
 /obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
 
 	if(!stored_name)
-		user << "You polish your badge fondly, shining up the surface."
+		to_chat(user, "You polish your badge fondly, shining up the surface.")
 		set_name(user.real_name)
 		return
 
@@ -54,17 +55,17 @@
 
 /obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
 	if(!stored_name)
-		user << "Waving around a holobadge before swiping an ID would be pretty pointless."
+		to_chat(user, "Waving around a holobadge before swiping an ID would be pretty pointless.")
 		return
 	return ..()
 
 /obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
-		user << SPAN_DANGER("\The [src] is already cracked.")
+		to_chat(user, SPAN_DANGER("\The [src] is already cracked."))
 		return
 	else
 		emagged = 1
-		user << SPAN_DANGER("You crack the holobadge security checks.")
+		to_chat(user, SPAN_DANGER("You crack the holobadge security checks."))
 		return 1
 
 /obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -73,12 +74,11 @@
 		return
 
 	if(access_security in id_card.access || emagged)
-		user << "You imprint your ID details onto the badge."
+		to_chat(user, "You imprint your ID details onto the badge.")
 		set_name(user.real_name)
 	else
-		user << "[src] rejects your insufficient access rights."
+		to_chat(user, "[src] rejects your insufficient access rights.")
 	return
-	..()
 
 /obj/item/weapon/storage/box/holobadge
 	name = "holobadge box"
@@ -108,8 +108,7 @@
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/badge/marshal
-	name = "marshal's badge"
-	desc = "A leather-backed gold badge displaying the crest of the Colonial Marshals."
+	name = "Marshal's badge"
+	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
 	icon_state = "marshalbadge"
-	badge_string = "Colonial Marshal Bureau"
-
+	badge_string = "Ironhammer Marshal Bureau"

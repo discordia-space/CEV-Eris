@@ -1,0 +1,183 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall,
+/area/crawler)
+"c" = (
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+"d" = (
+/obj/random/mob/roaches/low_chance,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+"e" = (
+/obj/random/junkfood/rotten,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+"f" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall,
+/area/crawler)
+"g" = (
+/obj/random/knife,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+"h" = (
+/obj/random/material_resources/low_chance,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+"i" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+"j" = (
+/obj/structure/closet/onestar/tier3,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+f
+f
+f
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(3,1,1) = {"
+a
+c
+d
+c
+c
+d
+c
+c
+a
+"}
+(4,1,1) = {"
+a
+c
+c
+c
+g
+c
+d
+c
+a
+"}
+(5,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+i
+b
+"}
+(6,1,1) = {"
+b
+c
+e
+c
+c
+c
+c
+c
+b
+"}
+(7,1,1) = {"
+b
+c
+c
+d
+c
+h
+c
+c
+b
+"}
+(8,1,1) = {"
+b
+c
+c
+c
+c
+c
+c
+c
+b
+"}
+(9,1,1) = {"
+a
+c
+j
+c
+c
+d
+c
+i
+b
+"}
+(10,1,1) = {"
+a
+c
+c
+c
+c
+c
+d
+c
+a
+"}
+(11,1,1) = {"
+a
+c
+d
+c
+d
+c
+c
+c
+a
+"}
+(12,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(13,1,1) = {"
+a
+a
+f
+f
+f
+f
+f
+a
+a
+"}

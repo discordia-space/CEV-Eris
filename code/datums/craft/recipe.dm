@@ -7,6 +7,12 @@
 	var/list/steps
 	var/flags
 	var/time = 30 //Used when no specific time is set
+	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
+	var/avaliableToEveryone = TRUE
+
+	var/variation_type = CRAFT_REFERENCE  // if the object is the reference of a subtype
+	// set it to CRAFT_VARIATION if the object is a variation of the reference
+	var/name_craft_menu  // name of the subtype formed by a reference and its variations
 
 /datum/craft_recipe/New()
 	var/step_definations = steps
@@ -14,20 +20,17 @@
 	for(var/i in step_definations)
 		steps += new /datum/craft_step(i, src)
 
-
 /datum/craft_recipe/proc/is_compelete(step)
 	return steps.len < step
 
-
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))
-	M.Created()
+	M.Created(user)
 	M.dir = user.dir
 	var/slot = user.get_inventory_slot(C)
 	qdel(C)
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
 		user.put_in_hands(M)
-
 
 /datum/craft_recipe/proc/get_description(pass_steps)
 	. = list()
@@ -48,7 +51,7 @@
 
 	if(flags & (CRAFT_ONE_PER_TURF|CRAFT_ON_FLOOR))
 		if((locate(result) in T))
-			user << SPAN_WARNING("You can't create more [name] here!")
+			to_chat(user, SPAN_WARNING("You can't create more [name] here!"))
 			return FALSE
 		else
 			//Prevent building dense things in turfs that already contain dense objects
@@ -56,7 +59,7 @@
 			if (initial(A.density))
 				for (var/atom/movable/AM in T)
 					if (AM != user && AM.density)
-						user << SPAN_WARNING("You can't build here, it's blocked by [AM]!")
+						to_chat(user, SPAN_WARNING("You can't build here, it's blocked by [AM]!"))
 						return FALSE
 
 	return TRUE
@@ -68,6 +71,25 @@
 	var/datum/craft_step/CS = steps[step]
 	return CS.apply(I, user, target, src)
 
+/datum/craft_recipe/proc/build_batch(mob/living/user, amount)
+	if(!amount)
+		return
+	if(steps.len > 1)
+		warning("A multi-step recipe has BATCH_CRAFT flag: [name]. It should not!")
+		try_build(user)
+		return
+
+	var/obj/item/CR = try_build(user)
+	while(--amount)
+		var/obj/item/stack/S = try_build(user)
+		if(!S)
+			break
+		if(istype(S))
+			if(CR.Adjacent(user))
+				S.transfer_to(CR)
+			else
+				//someone ninja'd the result stack so make new one
+				CR = S
 
 /datum/craft_recipe/proc/try_build(mob/living/user)
 	if(!can_build(user, get_turf(user)))
@@ -77,12 +99,12 @@
 	var/obj/item/I = CS.find_item(user)
 
 	if(!I)
-		user << SPAN_WARNING("You can't find required item!")
+		to_chat(user, SPAN_WARNING("You can't find required item!"))
 		return
 
 	//Robots can craft things on the floor
 	if(ishuman(user) && !I.is_held())
-		user << SPAN_WARNING("You should hold [I] in hands for doing that!")
+		to_chat(user, SPAN_WARNING("You should hold [I] in hands for doing that!"))
 		return
 
 	if(!CS.apply(I, user, null, src))
@@ -91,9 +113,12 @@
 	var/obj/item/CR
 	if(steps.len <= 1)
 		CR = new result(null)
+		CR.dir = user.dir
+		CR.Created(user)
 	else
 		CR = new /obj/item/craft (null, src)
 	if(flags & CRAFT_ON_FLOOR)
 		CR.forceMove(user.loc, MOVED_DROP)
 	else
 		user.put_in_hands(CR)
+	return CR

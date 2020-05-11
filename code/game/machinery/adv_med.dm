@@ -40,10 +40,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		usr << SPAN_WARNING("The scanner is already occupied!")
+		to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		usr << SPAN_WARNING("The subject cannot have abiotic items on.")
+		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -70,13 +70,13 @@
 
 /obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
-		user << SPAN_NOTICE("The scanner is already occupied!")
+		to_chat(user, SPAN_NOTICE("The scanner is already occupied!"))
 		return
 	if(target.buckled)
-		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		user << SPAN_NOTICE("Subject cannot have abiotic items on.")
+		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
@@ -86,13 +86,13 @@
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		user << SPAN_WARNING("The scanner is already occupied!")
+		to_chat(user, SPAN_WARNING("The scanner is already occupied!"))
 		return
 	if (target.abiotic())
-		user << SPAN_WARNING("Subject cannot have abiotic items on.")
+		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		user << SPAN_NOTICE("Unbuckle the subject before attempting to move them.")
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
 		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
@@ -144,7 +144,8 @@
 		/obj/item/weapon/implant/chem,
 		/obj/item/weapon/implant/death_alarm,
 		/obj/item/weapon/implant/tracking,
-		/obj/item/weapon/implant/core_implant/cruciform
+		/obj/item/weapon/implant/core_implant/cruciform,
+		/obj/item/weapon/implant/excelsior
 	)
 	var/delete
 	var/temphtml
@@ -163,19 +164,16 @@
 			if(connected)
 				return
 
-/obj/machinery/body_scanconsole/attack_ai(user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/body_scanconsole/attack_hand(user as mob)
 	if(..())
 		return
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
-		user << SPAN_WARNING("This console is not connected to a functioning body scanner.")
+		to_chat(user, SPAN_WARNING("This console is not connected to a functioning body scanner."))
 		return
 	if(!ishuman(connected.occupant))
-		user << SPAN_WARNING("This device can only scan compatible lifeforms.")
+		to_chat(user, SPAN_WARNING("This device can only scan compatible lifeforms."))
 		return
 
 	var/dat
@@ -201,18 +199,19 @@
 
 	if (href_list["print"])
 		if (!src.connected)
-			usr << "\icon[src]<span class='warning'>Error: No body scanner connected.</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>Error: No body scanner connected.</span>")
 			return
 		var/mob/living/carbon/human/occupant = src.connected.occupant
 		if (!src.connected.occupant)
-			usr << "\icon[src]<span class='warning'>The body scanner is empty.</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>The body scanner is empty.</span>")
 			return
 		if (!ishuman(occupant))
-			usr << "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
 			return
 		var/obj/item/weapon/paper/R = new(src.loc)
 		R.name = "Body scan report"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
+		R.update_icon()
 
 
 /obj/machinery/bodyscanner/proc/get_occupant_data()
@@ -317,11 +316,10 @@
 			bled = "Bleeding:"
 		if(e.status & ORGAN_BROKEN)
 			AN = "[e.broken_description]:"
-		switch(e.robotic)
-			if(ORGAN_ASSISTED)
-				robot = "Assisted:"
-			if(ORGAN_ROBOT)
-				robot = "Prosthetic:"
+		if(BP_IS_ASSISTED(e))
+			robot = "Assisted:"
+		if(BP_IS_ROBOTIC(e))
+			robot = "Prosthetic:"
 		if(e.open)
 			open = "Open:"
 
@@ -346,7 +344,8 @@
 			var/unknown_body = 0
 			for(var/I in e.implants)
 				if(is_type_in_list(I,known_implants))
-					imp += "[I] implanted:"
+					var/obj/item/weapon/implant/device = I
+					imp += "[device.get_scanner_name()] implanted:"
 				else
 					unknown_body++
 			if(unknown_body)
@@ -363,11 +362,10 @@
 	for(var/obj/item/organ/I in occ["internal_organs"])
 
 		var/mech = ""
-		switch(I.robotic)
-			if(ORGAN_ASSISTED)
-				mech = "Assisted:"
-			if(ORGAN_ROBOT)
-				mech = "Mechanical:"
+		if(BP_IS_ASSISTED(I))
+			mech = "Assisted:"
+		if(BP_IS_ROBOTIC(I))
+			mech = "Prosthetic:"
 
 		var/infection = "None"
 		switch (I.germ_level)

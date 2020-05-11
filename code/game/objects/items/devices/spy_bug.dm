@@ -32,8 +32,8 @@
 /obj/item/device/spy_bug/examine(mob/user)
 	. = ..(user, 0)
 	if(.)
-		user << "It's a tiny camera, microphone, and transmission device in a happy union."
-		user << "Needs to be both configured and brought in contact with monitor device to be fully functional."
+		to_chat(user, "It's a tiny camera, microphone, and transmission device in a happy union.")
+		to_chat(user, "Needs to be both configured and brought in contact with monitor device to be fully functional.")
 
 /obj/item/device/spy_bug/attack_self(mob/user)
 	radio.attack_self(user)
@@ -45,8 +45,8 @@
 	else
 		..()
 
-/obj/item/device/spy_bug/hear_talk(mob/M, var/msg, verb, datum/language/speaking)
-	radio.hear_talk(M, msg, speaking)
+/obj/item/device/spy_bug/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speech_volume)
+	radio.hear_talk(M, msg, speaking, speech_volume = speech_volume)
 
 
 /obj/item/device/spy_monitor
@@ -77,7 +77,7 @@
 /obj/item/device/spy_monitor/examine(mob/user)
 	. = ..(user, 1)
 	if(.)
-		user << "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
+		to_chat(user, "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made.")
 
 /obj/item/device/spy_monitor/attack_self(mob/user)
 	if(operating)
@@ -94,10 +94,10 @@
 
 /obj/item/device/spy_monitor/proc/pair(var/obj/item/device/spy_bug/SB, var/mob/living/user)
 	if(SB.camera in cameras)
-		user << SPAN_NOTICE("\The [SB] has been unpaired from \the [src].")
+		to_chat(user, SPAN_NOTICE("\The [SB] has been unpaired from \the [src]."))
 		cameras -= SB.camera
 	else
-		user << SPAN_NOTICE("\The [SB] has been paired with \the [src].")
+		to_chat(user, SPAN_NOTICE("\The [SB] has been paired with \the [src]."))
 		cameras += SB.camera
 
 /obj/item/device/spy_monitor/proc/view_cameras(mob/user)
@@ -120,7 +120,7 @@
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !selected_camera.can_use())
 				user.unset_machine()
 				user.reset_view(null)
-				user << SPAN_NOTICE("[selected_camera] unavailable.")
+				to_chat(user, SPAN_NOTICE("[selected_camera] unavailable."))
 				sleep(90)
 			else
 				user.set_machine(selected_camera)
@@ -134,14 +134,14 @@
 		return
 
 	if(!cameras.len)
-		user << SPAN_WARNING("No paired cameras detected!")
-		user << SPAN_WARNING("Bring a bug in contact with this device to pair the camera.")
+		to_chat(user, SPAN_WARNING("No paired cameras detected!"))
+		to_chat(user, SPAN_WARNING("Bring a bug in contact with this device to pair the camera."))
 		return
 
 	return 1
 
-/obj/item/device/spy_monitor/hear_talk(mob/M, var/msg, verb, datum/language/speaking)
-	return radio.hear_talk(M, msg, speaking)
+/obj/item/device/spy_monitor/hear_talk(mob/M, var/msg, verb, datum/language/speaking, speech_volume)
+	return radio.hear_talk(M, msg, speaking, speech_volume = speech_volume)
 
 
 /obj/machinery/camera/spy

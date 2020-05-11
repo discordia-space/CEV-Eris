@@ -1,6 +1,10 @@
+#define STARTUP_STAGE 1
+#define MAIN_STAGE 2
+#define WIND_DOWN_STAGE 3
+#define END_STAGE 4
+//weather defines
+
 // Areas.dm
-
-
 
 // ===
 /area
@@ -24,6 +28,8 @@
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
+
+	sanity = new(src)
 
 	..()
 
@@ -132,6 +138,20 @@
 	return
 
 /area/proc/updateicon()
+
+	///////weather
+
+	var/weather_icon
+	for(var/V in SSweather.processing)
+		var/datum/weather/W = V
+		if(W.stage != END_STAGE && (src in get_areas(/area)))
+			W.update_areas()
+			weather_icon = TRUE
+	if(!weather_icon)
+		icon_state = null
+
+	////////////weather
+
 	if ((fire || eject || party || atmosalm == 2) && (!requires_power||power_environ) && !istype(src, /area/space))//If it doesn't require power, can still activate this proc.
 		if(fire)
 			for(var/obj/machinery/light/L in src)
@@ -280,11 +300,12 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			gravity_blocker = null
 
-	if (GLOB.active_gravity_generator && gravity_is_on) //This is a global var
-		has_gravity = TRUE
+	if (GLOB.active_gravity_generator)
+		has_gravity = gravity_is_on
 
 	if (grav_before != has_gravity)
 		gravity_changed()
+
 
 
 //Called when the gravity state changes
@@ -292,7 +313,7 @@ var/list/mob/living/forced_ambiance_list = new
 	for(var/mob/M in src)
 		if(has_gravity)
 			thunk(M)
-		M.update_floating( M.check_dense_object() )
+		M.update_floating()
 
 //This thunk should probably not be an area proc.
 //TODO: Make it a mob proc
@@ -311,7 +332,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(1)
 			H.AdjustWeakened(1)
-		mob << SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!")
+		to_chat(mob, SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!"))
 
 /area/proc/prison_break()
 	var/obj/machinery/power/apc/theAPC = get_apc()
@@ -348,3 +369,9 @@ var/list/mob/living/forced_ambiance_list = new
 	if (!ship_area)
 		ship_area = TRUE
 		ship_areas[src] = TRUE
+
+/area/AllowDrop()
+	CRASH("Bad op: area/AllowDrop() called")
+
+/area/drop_location()
+	CRASH("Bad op: area/drop_location() called")

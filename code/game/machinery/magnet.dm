@@ -10,7 +10,7 @@
 	icon_state = "floor_magnet-f"
 	name = "Electromagnetic Generator"
 	desc = "A device that uses station power to create points of magnetic energy."
-	level = 1		// underfloor
+	level = BELOW_PLATING_LEVEL		// underfloor
 	layer = LOW_OBJ_LAYER
 	anchored = 1
 	use_power = 1
@@ -275,10 +275,9 @@
 		onclose(user, "magnet")
 
 	Topic(href, href_list)
-		if(stat & (BROKEN|NOPOWER))
-			return
+		if(..())
+			return 1
 		usr.set_machine(src)
-		src.add_fingerprint(usr)
 
 		if(href_list["radio-op"])
 

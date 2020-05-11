@@ -4,7 +4,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_POWER = 6, TECH_ENGINEERING = 4)
 	req_components = list(
-		/obj/item/weapon/smes_coil = 1,
+		/obj/item/weapon/stock_parts/smes_coil = 1,
 		/obj/item/stack/cable_coil = 30
 	)
 
@@ -41,3 +41,14 @@
 		/obj/item/weapon/stock_parts/micro_laser = 3,
 		/obj/item/weapon/stock_parts/capacitor = 3
 	)
+
+/obj/item/weapon/circuitboard/breakerbox
+	name = T_BOARD("breaker box")
+	build_path = /obj/machinery/power/breakerbox
+	board_type = "machine"
+	origin_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 4)
+	req_components = list(
+			/obj/item/weapon/stock_parts/smes_coil = 1,
+			/obj/item/stack/cable_coil = 10,
+			/obj/item/weapon/stock_parts/capacitor = 1
+		)

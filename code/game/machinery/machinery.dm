@@ -98,7 +98,7 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 
 	var/stat = 0
 	var/emagged = 0
@@ -203,7 +203,7 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if (!user.IsAdvancedToolUser())
-		usr << SPAN_WARNING("You don't have the dexterity to do this!")
+		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
 	if (ishuman(user))
@@ -212,7 +212,7 @@ Class Procs:
 			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << SPAN_WARNING("You momentarily forget how to use \the [src].")
+			to_chat(user, SPAN_WARNING("You momentarily forget how to use \the [src]."))
 			return 1
 
 	src.add_fingerprint(user)
@@ -243,6 +243,26 @@ Class Procs:
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return
 
+/obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
+	if(!type)
+		error("max_part_rating() wrong usage")
+		return
+	var/list/obj/item/weapon/stock_parts/parts = list()
+	for(var/list/obj/item/weapon/stock_parts/P in component_parts)
+		if(istype(P, type))
+			parts.Add(P)
+	if(!parts.len)
+		error("max_part_rating() havent found any parts")
+		return
+	var/rating = 1
+	for(var/obj/item/weapon/stock_parts/P in parts)
+		if(P.rating < rating)
+			return rating
+		else
+			rating = P.rating
+
+	return rating
+
 /obj/machinery/proc/assign_uid()
 	uid = gl_uid
 	gl_uid++
@@ -251,10 +271,7 @@ Class Procs:
 	for(var/mob/O in hearers(src, null))
 		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
 
-/obj/machinery/proc/ping(text=null)
-	if (!text)
-		text = "\The [src] pings."
-
+/obj/machinery/proc/ping(text="\The [src] pings.")
 	state(text, "blue")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
 
@@ -279,17 +296,18 @@ Class Procs:
 
 
 //Tool qualities are stored in \code\__defines\tools_and_qualities.dm
-/obj/machinery/proc/default_deconstruction(var/obj/item/I, var/mob/user)
+/obj/machinery/proc/default_deconstruction(obj/item/I, mob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
+	var/qualities = list(QUALITY_SCREW_DRIVING)
+
+	if(panel_open && circuit)
+		qualities += QUALITY_PRYING
+
+	var/tool_type = I.get_tool_type(user, qualities, src)
 	switch(tool_type)
-
 		if(QUALITY_PRYING)
-			if(!panel_open)
-				user << SPAN_NOTICE("You cant get to the components of \the [src], remove the cover.")
-				return TRUE
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-				user << SPAN_NOTICE("You remove the components of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
 				dismantle()
 			return TRUE
 
@@ -298,7 +316,7 @@ Class Procs:
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
-				user << SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 			return TRUE
 
@@ -327,14 +345,14 @@ Class Procs:
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						user << SPAN_NOTICE("[A.name] replaced with [B.name].")
+						to_chat(user, SPAN_NOTICE("[A.name] replaced with [B.name]."))
 						break
 			update_icon()
 			RefreshParts()
 	else
-		user << SPAN_NOTICE("Following parts detected in the machine:")
-		for(var/var/obj/item/C in component_parts)
-			user << SPAN_NOTICE("    [C.name]")
+		to_chat(user, SPAN_NOTICE("Following parts detected in the machine:"))
+		for(var/obj/item/C in component_parts)
+			to_chat(user, SPAN_NOTICE("    [C.name]"))
 	return 1
 
 /obj/machinery/proc/create_frame(var/type)
@@ -345,11 +363,9 @@ Class Procs:
 
 
 /obj/machinery/proc/dismantle()
-	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
-	M.set_dir(src.dir)
-	M.state = 2
-	M.icon_state = "[M.base_state]_1"
-	M.update_icon()
+	on_deconstruction()
+	spawn_frame()
+
 	for(var/obj/I in component_parts)
 		I.forceMove(loc)
 		component_parts -= I
@@ -358,6 +374,24 @@ Class Procs:
 		circuit.deconstruct(src)
 	qdel(src)
 	return 1
+
+//called on deconstruction before the final deletion
+/obj/machinery/proc/on_deconstruction()
+	return
+
+/obj/machinery/proc/spawn_frame(disassembled=TRUE)
+	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
+
+	transfer_fingerprints_to(M)
+	M.anchored = anchored
+	M.set_dir(src.dir)
+
+	M.state = 2
+	M.icon_state = "[M.base_state]_1"
+	M.update_icon()
+
+	return M
+
 
 /datum/proc/remove_visual(mob/M)
 	return

@@ -26,6 +26,7 @@
 	anchored = 0
 	base_state = "pflash"
 	density = 1
+	range = 3 //the eris' hallways are wider than other maps
 
 /obj/machinery/flasher/Initialize()
 	. = ..()
@@ -115,6 +116,8 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
 		if ((MOVING_DELIBERATELY(M)) && (src.anchored))
+			return
+		else if (src.anchored)
 			src.flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -142,7 +145,7 @@
 	use_power(5)
 
 	active = 1
-	icon_state = "launcheract"
+	icon_state = "launcher1"
 
 	for(var/obj/machinery/flasher/M in SSmachines.machinery)
 		if(M.id == src.id)
@@ -151,7 +154,7 @@
 
 	sleep(50)
 
-	icon_state = "launcherbtt"
+	icon_state = "launcher0"
 	active = 0
 
 	return

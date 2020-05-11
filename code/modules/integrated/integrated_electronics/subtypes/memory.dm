@@ -22,7 +22,7 @@
 				data = "[d]"
 		else if(!isnull(O.data))
 			data = O.data
-		user << "\The [src] has [data] saved to address [i]."
+		to_chat(user, "\The [src] has [data] saved to address [i].")
 
 /obj/item/integrated_circuit/memory/do_work()
 	for(var/i = 1 to inputs.len)
@@ -142,26 +142,26 @@
 			new_data = input("Now type in a string.","[src] string writing") as null|text
 			if(istext(new_data) && CanInteract(user,GLOB.physical_state))
 				O.data = new_data
-				user << SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()].")
+				to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()]."))
 		if("number")
 			accepting_refs = 0
 			new_data = input("Now type in a number.","[src] number writing") as null|num
 			if(isnum(new_data) && CanInteract(user,GLOB.physical_state))
 				O.data = new_data
-				user << SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()].")
+				to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()]."))
 		if("ref")
 			accepting_refs = 1
-			user << SPAN_NOTICE("You turn \the [src]'s ref scanner on.  Slide it across \
-			an object for a ref of that object to save it in memory.")
+			to_chat(user, SPAN_NOTICE("You turn \the [src]'s ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in memory."))
 		if("null")
 			O.data = null
-			user << SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing.")
+			to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing."))
 
 /obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)
 		var/datum/integrated_io/O = outputs[1]
 		O.data = weakref(target)
 		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
-		user << SPAN_NOTICE("You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
-		now off.")
+		to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
+		now off."))
 		accepting_refs = 0

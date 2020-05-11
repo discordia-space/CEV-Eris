@@ -52,7 +52,6 @@
 	var/note_num = delta1+delta2+GLOB.musical_config.nn2no[note]
 	if (note_num < 0 || note_num > 127)
 		CRASH("play_synthesized note failed because of 0..127 condition, [note], [acc], [oct]")
-		return
 
 	var/datum/sample_pair/pair = src.instrument_data.sample_map[GLOB.musical_config.n2t(note_num)]
 	#define Q 0.083 // 1/12
@@ -83,7 +82,7 @@
 	else
 		use_env = 1
 
-	var/current_volume = Clamp(sound_copy.volume, 0, 100)
+	var/current_volume = CLAMP(sound_copy.volume, 0, 100)
 	sound_copy.volume = current_volume //Sanitize volume
 	var/datum/sound_token/token = new /datum/sound_token/instrument(src.player.actual_instrument, src.sound_id, sound_copy, src.player.range, FALSE, use_env, player)
 	#if DM_VERSION < 511

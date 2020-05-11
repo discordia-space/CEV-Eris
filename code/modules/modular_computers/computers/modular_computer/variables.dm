@@ -33,7 +33,7 @@
 	var/steel_sheet_cost = 5								// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/screen_light_strength = 0							// Intensity of light this computer emits. Comparable to numbers light fixtures use.
 	var/screen_light_range = 2								// Intensity of light this computer emits. Comparable to numbers light fixtures use.
-	var/list/idle_threads = list()							// Idle programs on background. They still receive process calls but can't be interacted with.
+	var/list/all_threads = list()							// All running programs, including the ones running in background
 
 	// Damage of the chassis. If the chassis takes too much damage it will break apart.
 	var/damage = 0				// Current damage level
@@ -47,10 +47,10 @@
 	var/obj/item/weapon/computer_hardware/hard_drive/hard_drive						// Hard Drive component of this computer. Stores programs and files.
 
 	// Optional hardware (improves functionality, but is not critical for computer to work in most cases)
-	var/obj/item/weapon/cell/battery_module				// An internal power source for this computer. Can be recharged.
-	var/battery_type = /obj/item/weapon/cell/medium //What type of battery do we take?
+	var/obj/item/weapon/cell/cell													// An internal power source for this computer. Can be recharged.
+	var/suitable_cell = /obj/item/weapon/cell/medium								//What type of battery do we take?
 	var/obj/item/weapon/computer_hardware/card_slot/card_slot						// ID Card slot component of this computer. Mostly for HoP modification console that needs ID slot for modification.
-	var/obj/item/weapon/computer_hardware/nano_printer/nano_printer					// Nano Printer component of this computer, for your everyday paperwork needs.
+	var/obj/item/weapon/computer_hardware/printer/printer							// Printer component of this computer, for your everyday paperwork needs.
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/portable_drive		// Portable data storage
 	var/obj/item/weapon/computer_hardware/ai_slot/ai_slot							// AI slot, an intellicard housing that allows modifications of AIs.
 	var/obj/item/weapon/computer_hardware/tesla_link/tesla_link						// Tesla Link, Allows remote charging from nearest APC.

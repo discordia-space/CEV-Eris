@@ -9,8 +9,8 @@
 		"nav_asteroid_1",
 		"nav_asteroid_2"
 	)
-	start_x = 4
-	start_y = 5
+	start_x = 9
+	start_y = 10
 	known = 1
 	in_space = 0
 

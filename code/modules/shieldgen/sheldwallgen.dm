@@ -33,13 +33,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		user << "\red \The [src] needs to be firmly secured to the floor first."
+		to_chat(user, "\red \The [src] needs to be firmly secured to the floor first.")
 		return 1
 	if(src.locked && !issilicon(user))
-		user << "\red The controls are locked!"
+		to_chat(user, "\red The controls are locked!")
 		return 1
 	if(power != 1)
-		user << "\red \The [src] needs to be powered by wire underneath."
+		to_chat(user, "\red \The [src] needs to be powered by wire underneath.")
 		return 1
 
 	if(src.active >= 1)
@@ -207,29 +207,29 @@
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(active)
-				user << "Turn off the field generator first."
+				to_chat(user, "Turn off the field generator first.")
 				return
 
 			else if(!state)
 				state = TRUE
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user << "You secure the external reinforcing bolts to the floor."
+				to_chat(user, "You secure the external reinforcing bolts to the floor.")
 				src.anchored = 1
 				return
 
 			else
 				state = FALSE
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-				user << "You undo the external reinforcing bolts."
+				to_chat(user, "You undo the external reinforcing bolts.")
 				src.anchored = 0
 				return
 
 	if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))
 		if (src.allowed(user))
 			src.locked = !src.locked
-			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			user << "\red Access denied."
+			to_chat(user, "\red Access denied.")
 
 	else
 		src.add_fingerprint(user)

@@ -5,10 +5,12 @@
 	icon_state = "generic"
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_GARGANTUAN
+	matter = list(MATERIAL_STEEL = 10)
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE
+	var/rigged = FALSE
 	var/icon_door = null
 	var/icon_welded = "welded"
 	var/icon_lock = "lock"
@@ -35,21 +37,35 @@
 	var/store_misc = 1
 	var/store_items = 1
 	var/store_mobs = 1
-
-	var/dismantle_material = /obj/item/stack/material/steel
+	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
 /obj/structure/closet/can_prevent_fall()
 	return TRUE
 
 /obj/structure/closet/Initialize(mapload)
 	..()
+
 	populate_contents()
+	update_icon()
+	hack_require = rand(6,8)
+
+	//If closet is spawned in maints, chance of getting rusty content is increased.
+	if (in_maintenance())
+		old_chance = old_chance + 20
+
+	if (prob(old_chance))
+		make_old()
+
+	if (old_chance)
+		for (var/atom/thing in contents)
+			if (prob(old_chance))
+				thing.make_old()
+
 	return mapload ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
 
 /obj/structure/closet/LateInitialize()
 	. = ..()
-	update_icon()
-	hack_require = rand(6,8)
+
 	if(!opened) // if closed, any item at the crate's loc is put in the contents
 		var/obj/item/I
 		for(I in src.loc)
@@ -58,35 +74,33 @@
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = 0
 		for(I in src.contents)
-			content_size += Ceiling(I.w_class/2)
+			content_size += CEILING(I.w_class * 0.5, 1)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
-
-	if (in_maintenance() && prob(20))
-		make_old()
-
-
 
 /obj/structure/closet/examine(mob/user)
 	if(..(user, 1) && !opened)
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
-				content_size += Ceiling(I.w_class/2)
+				content_size += CEILING(I.w_class * 0.5, 1)
 		if(!content_size)
-			user << "It is empty."
+			to_chat(user, "It is empty.")
 		else if(storage_capacity > content_size*4)
-			user << "It is barely filled."
+			to_chat(user, "It is barely filled.")
 		else if(storage_capacity > content_size*2)
-			user << "It is less than half full."
+			to_chat(user, "It is less than half full.")
 		else if(storage_capacity > content_size)
-			user << "There is still some free space."
+			to_chat(user, "There is still some free space.")
 		else
-			user << "It is full."
+			to_chat(user, "It is full.")
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
 	return (!density)
+
+/obj/structure/closet/get_material()
+	return length(matter) ? get_material_by_name(matter[1]) : null
 
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || (secure && locked))
@@ -95,7 +109,7 @@
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > 0 && L.density)
 			if(user)
-				user << SPAN_DANGER("There's something large on top of [src], preventing it from opening.")
+				to_chat(user, SPAN_DANGER("There's something large on top of [src], preventing it from opening."))
 			return FALSE
 	return TRUE
 
@@ -165,7 +179,16 @@
 
 /obj/structure/closet/proc/open(mob/living/user)
 	if(opened || !can_open(user))
-		return
+		return FALSE
+
+	if(rigged && (locate(/obj/item/device/radio/electropack) in src) && istype(user))
+		if(user.electrocute_act(20, src))
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+			if(user.stunned)
+				return FALSE
+
 	playsound(loc, open_sound, 100, 1, -3)
 	opened = TRUE
 	if(!dense_when_open)
@@ -173,7 +196,10 @@
 	dump_contents()
 	update_icon()
 	update_openspace()
-	return 1
+	if(climbable)
+		structure_shaken()
+
+	return TRUE
 
 /obj/structure/closet/proc/close(mob/living/user)
 	if(!opened || !can_close(user))
@@ -194,37 +220,30 @@
 
 /obj/structure/closet/proc/toggle(mob/living/user)
 	if(!(opened ? close(user) : open(user)))
-		user << SPAN_NOTICE("It won't budge!")
+		to_chat(user, SPAN_NOTICE("It won't budge!"))
 		return
-	update_icon()
 
-/obj/structure/closet/proc/togglelock(mob/user as mob, var/obj/item/weapon/card/id/id_card)
+/obj/structure/closet/proc/togglelock(mob/user as mob)
 	var/ctype = istype(src,/obj/structure/closet/crate) ? "crate" : "closet"
 	if(!secure)
 		return
 
 	if(src.opened)
-		user << SPAN_NOTICE("Close the [ctype] first.")
+		to_chat(user, SPAN_NOTICE("Close the [ctype] first."))
 		return
 	if(src.broken)
-		user << SPAN_WARNING("The [ctype] appears to be broken.")
+		to_chat(user, SPAN_WARNING("The [ctype] appears to be broken."))
 		return
-	if(CanToggleLock(user, id_card))
+	if(CanToggleLock(user))
 		set_locked(!locked, user)
 	else
-		user << SPAN_NOTICE("Access Denied")
+		to_chat(user, SPAN_NOTICE("Access Denied"))
 
 /obj/structure/closet/AltClick(mob/user as mob)
 	if(Adjacent(user))
 		src.togglelock(user)
 
-/obj/structure/closet/proc/CanToggleLock(var/mob/user, var/obj/item/weapon/card/id/id_card)
-	if (istype(user))
-		id_card = id_card || user.GetIdCard()
-
-	if (istype(id_card))
-		return check_access_list(id_card.GetAccess())
-
+/obj/structure/closet/proc/CanToggleLock(var/mob/user)
 	return allowed(user)
 
 /obj/structure/closet/proc/set_locked(var/newlocked, mob/user = null)
@@ -258,7 +277,7 @@
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
-		var/item_size = Ceiling(I.w_class / 2)
+		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + added_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)
@@ -333,18 +352,59 @@
 		//Empty gripper attacks will call attack_AI
 		return 0
 
+	var/list/usable_qualities = list(QUALITY_WELDING)
+	if(opened)
+		usable_qualities += QUALITY_SAWING
+		usable_qualities += QUALITY_BOLT_TURNING
+	if(rigged)
+		usable_qualities += QUALITY_WIRE_CUTTING
+
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	switch(tool_type)
+		if(QUALITY_WELDING)
+			if(!opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					welded = !src.welded
+					update_icon()
+					src.visible_message(
+						SPAN_NOTICE("[src] has been disassembled by [user]."),
+						"You hear [tool_type]."
+					)
+			else
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					src.visible_message(
+						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
+						"You hear [tool_type]."
+					)
+					drop_materials(drop_location())
+					qdel(src)
+			return
+
+		if(QUALITY_SAWING, QUALITY_BOLT_TURNING)
+			if(opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					src.visible_message(
+						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
+						"You hear [tool_type]."
+					)
+					drop_materials(drop_location())
+					qdel(src)
+				return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(rigged)
+				to_chat(user, SPAN_NOTICE("You cut away the wiring."))
+				new /obj/item/stack/cable_coil(drop_location(), 1)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
+				rigged = FALSE
+				return
+
+		if(ABORT_CHECK)
+			return
+
 	if(src.opened)
 		if(istype(I,/obj/item/tk_grab))
 			return 0
-		if(QUALITY_WELDING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				new dismantle_material(src.loc, 10)
-				src.visible_message(
-					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
-					"You hear welding."
-				)
-				qdel(src)
-				return
 		if(istype(I, /obj/item/weapon/storage/laundry_basket) && I.contents.len)
 			var/obj/item/weapon/storage/laundry_basket/LB = I
 			var/turf/T = get_turf(src)
@@ -358,14 +418,23 @@
 			return
 		usr.unEquip(I, src.loc)
 		return
+	else if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/C = I
+		if(rigged)
+			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
+			return
+		if (C.use(1))
+			to_chat(user, SPAN_NOTICE("You rig [src]."))
+			rigged = TRUE
+			return
+	else if(istype(I, /obj/item/device/radio/electropack))
+		if(rigged)
+			to_chat(user, SPAN_NOTICE("You attach [I] to [src]."))
+			user.drop_item()
+			I.forceMove(src)
+			return
 	else if(istype(I, /obj/item/weapon/packageWrap))
 		return
-	else if(QUALITY_WELDING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			welded = !src.welded
-			update_icon()
-			for(var/mob/M in viewers(src))
-				M.show_message(SPAN_WARNING("[src] has been [welded?"welded shut":"unwelded"] by [user.name]."), 3, SPAN_WARNING("You hear welding."), 2)
 	else if(istype(I,/obj/item/weapon/card/id))
 		src.togglelock(user)
 		return
@@ -386,8 +455,14 @@
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
 
-				hack_stage++
-				user << SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen.")
+				//Cognition can be used to speed up the proccess
+				if (prob (user.stats.getStat(STAT_COG)))
+					hack_stage = hack_require
+					to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
+				else
+					hack_stage++
+
+				to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
 			else if(hack_stage >= hack_require)
 				locked = FALSE
 				broken = TRUE
@@ -433,7 +508,7 @@
 		return
 
 	if(!src.open())
-		user << SPAN_NOTICE("It won't budge!")
+		to_chat(user, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -446,7 +521,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		usr << SPAN_NOTICE("It won't budge!")
+		to_chat(usr, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/emag_act(var/remaining_charges, var/mob/user)
 	if(!broken)
@@ -454,7 +529,7 @@
 		broken = TRUE
 		update_icon()
 		playsound(src.loc, "sparks", 60, 1)
-		user << SPAN_NOTICE("You unlock \the [src].")
+		to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
 		return TRUE
 
 /obj/structure/closet/emp_act(severity)
@@ -482,7 +557,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		usr << SPAN_WARNING("This mob type can't use this verb.")
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
@@ -496,7 +571,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << SPAN_WARNING("This mob type can't use this verb.")
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
@@ -550,7 +625,7 @@
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either welded or locked... resist!!!
-	escapee << SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)")
+	to_chat(escapee, SPAN_WARNING("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)"))
 
 	visible_message(SPAN_DANGER("\The [src] begins to shake violently!"))
 
@@ -573,7 +648,7 @@
 
 	//Well then break it!
 	breakout = 0
-	escapee << SPAN_WARNING("You successfully break out!")
+	to_chat(escapee, SPAN_WARNING("You successfully break out!"))
 	visible_message(SPAN_DANGER("\The [escapee] successfully broke out of \the [src]!"))
 	playsound(src.loc, 'sound/effects/grillehit.ogg', 100, 1)
 	break_open()
@@ -593,3 +668,6 @@
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
 	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+
+/obj/structure/closet/AllowDrop()
+	return TRUE

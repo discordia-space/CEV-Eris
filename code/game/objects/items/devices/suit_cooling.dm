@@ -1,7 +1,7 @@
 /obj/item/device/suit_cooling_unit
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
-	w_class = ITEM_SIZE_LARGE
+	w_class = ITEM_SIZE_BULKY
 	icon = 'icons/obj/device.dmi'
 	icon_state = "suitcooler0"
 	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
@@ -24,11 +24,20 @@
 
 	//TODO: make it heat up the surroundings when not in space
 
-/obj/item/device/suit_cooling_unit/New()
+/obj/item/device/suit_cooling_unit/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
-	cell = new/obj/item/weapon/cell/large()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
-	cell.loc = src
+	cell = new /obj/item/weapon/cell/large(src)	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
+
+/obj/item/device/suit_cooling_unit/get_cell()
+	return cell
+
+/obj/item/device/suit_cooling_unit/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
 
 /obj/item/device/suit_cooling_unit/Process()
 	if (!on || !cell)
@@ -61,11 +70,12 @@
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
 	if (ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		if(istype(H.loc, /obj/mecha))
-			var/obj/mecha/M = loc
-			return M.return_temperature()
+		if(istype(H.loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
+			return M.bodytemperature
 		else if(istype(H.loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			return H.loc:air_contents.temperature
+			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
+			return M.air_contents.temperature
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/space))
@@ -114,7 +124,7 @@
 		cell.add_fingerprint(user)
 		cell.update_icon()
 
-		user << "You remove the [src.cell]."
+		to_chat(user, "You remove the [src.cell].")
 		src.cell = null
 		updateicon()
 		return
@@ -125,28 +135,28 @@
 	else
 		turn_on()
 		if (on)
-			user << "You switch on the [src]."
+			to_chat(user, "You switch on the [src].")
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/tool/screwdriver))
 		if(cover_open)
 			cover_open = 0
-			user << "You screw the panel into place."
+			to_chat(user, "You screw the panel into place.")
 		else
 			cover_open = 1
-			user << "You unscrew the panel."
+			to_chat(user, "You unscrew the panel.")
 		updateicon()
 		return
 
 	if (istype(W, /obj/item/weapon/cell/large))
 		if(cover_open)
 			if(cell)
-				user << "There is a [cell] already installed here."
+				to_chat(user, "There is a [cell] already installed here.")
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				user << "You insert the [cell]."
+				to_chat(user, "You insert the [cell].")
 		updateicon()
 		return
 
@@ -167,19 +177,19 @@
 
 	if (on)
 		if (attached_to_suit(src.loc))
-			user << "It's switched on and running."
+			to_chat(user, "It's switched on and running.")
 		else
-			user << "It's switched on, but not attached to anything."
+			to_chat(user, "It's switched on, but not attached to anything.")
 	else
-		user << "It is switched off."
+		to_chat(user, "It is switched off.")
 
 	if (cover_open)
 		if(cell)
-			user << "The panel is open, exposing the [cell]."
+			to_chat(user, "The panel is open, exposing the [cell].")
 		else
-			user << "The panel is open."
+			to_chat(user, "The panel is open.")
 
 	if (cell)
-		user << "The charge meter reads [round(cell.percent())]%."
+		to_chat(user, "The charge meter reads [round(cell.percent())]%.")
 	else
-		user << "It doesn't have a power cell installed."
+		to_chat(user, "It doesn't have a power cell installed.")

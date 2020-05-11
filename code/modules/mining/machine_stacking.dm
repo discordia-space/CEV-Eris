@@ -43,7 +43,7 @@
 		return 1
 
 	if(href_list["change_stack"])
-		var/choice = input("What would you like to set the stack amount to?") as null|anything in list(1,5,10,20,50)
+		var/choice = input("What would you like to set the stack amount to?") as null|anything in list(1,5,10,20,50,120)
 		if(!choice) return
 		machine.stack_amt = choice
 
@@ -52,7 +52,6 @@
 		machine.outputMaterial(material_name, machine.stack_amt)
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 
 /**********************Mineral stacking unit**************************/
@@ -68,7 +67,7 @@
 	var/input_dir = null
 	var/output_dir = null
 	var/list/stack_storage
-	var/stack_amt = 50; // Amount to stack before releassing
+	var/stack_amt = 120 // Amount to stack before releassing
 
 /obj/machinery/mineral/stacking_machine/New()
 	stack_storage = new

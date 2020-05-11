@@ -15,7 +15,6 @@ var/global/list/cached_icons = list()
 	possible_transfer_amounts = list(10,20,30,60)
 	volume = 60
 	unacidable = 0
-	flags = OPENCONTAINER
 	var/paint_type = "red"
 
 	afterattack(turf/simulated/target, mob/user, proximity)
@@ -27,7 +26,7 @@ var/global/list/cached_icons = list()
 			return ..()
 
 	New()
-		if(paint_type && lentext(paint_type) > 0)
+		if(paint_type && length(paint_type) > 0)
 			name = paint_type + " " + name
 		..()
 		reagents.add_reagent("water", volume*3/5)

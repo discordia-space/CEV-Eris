@@ -1,0 +1,270 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"c" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"d" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"e" = (
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/crawler)
+"f" = (
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"g" = (
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"h" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"i" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"j" = (
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"k" = (
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"l" = (
+/obj/machinery/computer/prisoner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"m" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"n" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"o" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"p" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"q" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"r" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"s" = (
+/obj/structure/sign/faction/one_star,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"t" = (
+/obj/random/mob/roomba,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"u" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"v" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"w" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"y" = (
+/obj/structure/bed,
+/turf/simulated/floor/tiled/dark/brown_platform,
+/area/crawler)
+"z" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"A" = (
+/obj/machinery/door/window/northright,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"B" = (
+/obj/machinery/door/window/northleft,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+"C" = (
+/obj/structure/low_wall/onestar,
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/dark/brown_perforated,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+b
+b
+b
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+k
+q
+v
+u
+z
+y
+a
+"}
+(3,1,1) = {"
+a
+d
+d
+r
+w
+u
+A
+g
+a
+"}
+(4,1,1) = {"
+a
+e
+a
+s
+u
+p
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+f
+l
+a
+u
+u
+z
+y
+b
+"}
+(6,1,1) = {"
+b
+g
+g
+C
+u
+t
+A
+g
+b
+"}
+(7,1,1) = {"
+b
+h
+m
+C
+u
+p
+a
+a
+b
+"}
+(8,1,1) = {"
+b
+g
+g
+C
+u
+u
+B
+g
+b
+"}
+(9,1,1) = {"
+a
+i
+i
+a
+t
+u
+z
+y
+b
+"}
+(10,1,1) = {"
+a
+a
+a
+s
+u
+p
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+j
+n
+u
+u
+u
+B
+g
+a
+"}
+(12,1,1) = {"
+a
+j
+n
+u
+u
+u
+z
+y
+a
+"}
+(13,1,1) = {"
+a
+a
+o
+b
+b
+b
+o
+a
+a
+"}

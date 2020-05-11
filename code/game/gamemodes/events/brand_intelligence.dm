@@ -53,14 +53,14 @@
 		kill()
 		return
 
-	if(IsMultiple(activeFor, 5))
+	if(ISMULTIPLE(activeFor, 5))
 		var/obj/machinery/vending/infectedMachine = pick(vendingMachines)
 		vendingMachines.Remove(infectedMachine)
 		infectedVendingMachines.Add(infectedMachine)
 		infectedMachine.shut_up = 0
 		infectedMachine.shoot_inventory = 1
 		infectedMachine.categories = 7 //This unlocks coin/contraband content
-		if(IsMultiple(activeFor, 12))
+		if(ISMULTIPLE(activeFor, 12))
 			originMachine.speak(pick("Try our aggressive new marketing strategies!", \
 									 "You should buy products to feed your lifestyle obsession!", \
 									 "Consume!", \

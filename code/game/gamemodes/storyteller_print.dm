@@ -22,7 +22,7 @@
 				text += fA.print_success()
 
 	if(current_factions.len)
-		text += "<font size=3><b>Round factions were:</b></font>"
+		text += "<br><font size=3><b>Round factions were:</b></font>"
 		for(var/datum/faction/F in current_factions)
 			text += F.print_success()
 
@@ -46,7 +46,7 @@
 		text += " (<b>[escaped_total>0 ? escaped_total : "none"] escaped</b>) and <b>[ghosts] ghosts</b>.<br>"
 	else
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
-	world << text
+	to_chat(world, text)
 
 
 

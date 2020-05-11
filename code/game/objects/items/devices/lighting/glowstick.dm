@@ -58,10 +58,10 @@
 
 /obj/item/device/lighting/glowstick/turn_on(mob/user)
 	if(fuel <= 0)
-		user << SPAN_NOTICE("The [src] is spent.")
+		to_chat(user, SPAN_NOTICE("The [src] is spent."))
 		return
 	if(on)
-		user << SPAN_NOTICE("The [src] is already lit.")
+		to_chat(user, SPAN_NOTICE("The [src] is already lit."))
 		return
 
 	. = ..()

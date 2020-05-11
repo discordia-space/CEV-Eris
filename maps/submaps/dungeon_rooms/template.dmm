@@ -1,0 +1,196 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"b" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"c" = (
+/obj/structure/bed/chair/custom/onestar,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"d" = (
+/obj/structure/table/onestar,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"e" = (
+/obj/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"f" = (
+/obj/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"g" = (
+/obj/structure/closet/onestar/tier3,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"h" = (
+/obj/crawler/crawler_chanceblock,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"i" = (
+/obj/crawler/crawler_chanceblock_danger,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"j" = (
+/obj/random/mob/roaches,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"k" = (
+/obj/random/mob/roaches/low_chance,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"l" = (
+/obj/random/mob/spiders,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+"m" = (
+/obj/random/mob/spiders/low_chance,
+/turf/simulated/floor/tiled/white/gray_perforated,
+/area/space)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+l
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+c
+m
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+d
+a
+a
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+e
+a
+a
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+f
+a
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+g
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+h
+a
+a
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+i
+a
+a
+a
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+j
+a
+a
+a
+a
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+k
+a
+a
+a
+a
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

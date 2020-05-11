@@ -149,7 +149,7 @@
 	..()
 
 /mob/living/carbon/slime/allow_spacemove()
-	return 2
+	return -1
 
 /mob/living/carbon/slime/Stat()
 	. = ..()
@@ -318,7 +318,7 @@
 	if(W.force > 0)
 		attacked += 10
 		if(prob(25))
-			user << SPAN_DANGER("[W] passes right through [src]!")
+			to_chat(user, SPAN_DANGER("[W] passes right through [src]!"))
 			return
 		if(Discipline && prob(50)) // wow, buddy, why am I getting attacked??
 			Discipline = 0

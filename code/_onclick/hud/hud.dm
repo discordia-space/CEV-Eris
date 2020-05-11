@@ -2,16 +2,11 @@
 	The global hud:
 	Uses the same visual objects for all players.
 */
-var/datum/global_hud/global_hud = new()
-var/list/global_huds = list(
-		global_hud.druggy,
-		global_hud.blurry,
-		global_hud.vimpaired,
-		global_hud.darkMask,
-		global_hud.nvg,
-		global_hud.thermal,
-		global_hud.meson,
-		global_hud.science)
+
+// Initialized in ticker.dm, see proc/setup_huds()
+var/datum/global_hud/global_hud
+var/list/global_huds
+
 /*
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -28,83 +23,53 @@ var/list/global_huds = list(
 	var/obj/screen/meson
 	var/obj/screen/science
 
-/datum/global_hud/proc/setup_overlay(var/icon_state)
-	var/obj/screen/screen = new /obj/screen/fullscreen()
-	screen.icon_state = icon_state
-
-	return screen
-
 /datum/global_hud/New()
 	//420erryday psychedellic colours screen overlay for when you are high
-	druggy = new /obj/screen()
-	druggy.screen_loc = ui_entire_screen
-	druggy.icon_state = "druggy"
-	druggy.layer = FULLSCREEN_LAYER
-	druggy.plane = FULLSCREEN_PLANE
-	druggy.mouse_opacity = 0
+	druggy = new /obj/screen/fullscreen/tile("druggy")
 
 	//that white blurry effect you get when you eyes are damaged
-	blurry = new /obj/screen()
-	blurry.screen_loc = ui_entire_screen
-	blurry.icon_state = "blurry"
-	blurry.layer = FULLSCREEN_LAYER
-	blurry.plane = FULLSCREEN_PLANE
-	blurry.mouse_opacity = 0
+	blurry = new /obj/screen/fullscreen/tile("blurry")
 
-	nvg = setup_overlay("nvg_hud")
+	nvg = new /obj/screen/fullscreen("nvg_hud")
 	nvg.plane = LIGHTING_PLANE
-	thermal = setup_overlay("thermal_hud")
-	meson = setup_overlay("meson_hud")
-	science = setup_overlay("science_hud")
+	thermal = new /obj/screen/fullscreen("thermal_hud")
+	meson = new /obj/screen/fullscreen("meson_hud")
+	science = new /obj/screen/fullscreen("science_hud")
 
-	var/obj/screen/O
-	var/i
 	//that nasty looking dither you  get when you're short-sighted
-	vimpaired = newlist(/obj/screen,/obj/screen,/obj/screen,/obj/screen)
-	O = vimpaired[1]
-	O.screen_loc = "1,1 to 5,15"
-	O = vimpaired[2]
-	O.screen_loc = "5,1 to 10,5"
-	O = vimpaired[3]
-	O.screen_loc = "6,11 to 10,15"
-	O = vimpaired[4]
-	O.screen_loc = "11,1 to 15,15"
+	vimpaired = newlist(
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH to WEST+4,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+4,SOUTH to EAST-5,SOUTH+4"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+5,NORTH-4 to EAST-5,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST-4,SOUTH to EAST,NORTH"},
+
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST,SOUTH:-32 to EAST,SOUTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST:32,SOUTH to EAST,NORTH"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST:32,SOUTH:-32"},
+	)
 
 	//welding mask overlay black/dither
-	darkMask = newlist(/obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen)
-	O = darkMask[1]
-	O.screen_loc = "WEST+2,SOUTH+2 to WEST+4,NORTH-2"
-	O = darkMask[2]
-	O.screen_loc = "WEST+4,SOUTH+2 to EAST-5,SOUTH+4"
-	O = darkMask[3]
-	O.screen_loc = "WEST+5,NORTH-4 to EAST-5,NORTH-2"
-	O = darkMask[4]
-	O.screen_loc = "EAST-4,SOUTH+2 to EAST-2,NORTH-2"
-	O = darkMask[5]
-	O.screen_loc = "WEST,SOUTH to EAST,SOUTH+1"
-	O = darkMask[6]
-	O.screen_loc = "WEST,SOUTH+2 to WEST+1,NORTH"
-	O = darkMask[7]
-	O.screen_loc = "EAST-1,SOUTH+2 to EAST,NORTH"
-	O = darkMask[8]
-	O.screen_loc = "WEST+2,NORTH-1 to EAST-2,NORTH"
+	darkMask = newlist(
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+2,SOUTH+2 to WEST+4,NORTH-2"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+4,SOUTH+2 to EAST-5,SOUTH+4"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "WEST+5,NORTH-4 to EAST-5,NORTH-2"},
+		/obj/screen{icon_state = "dither50"; screen_loc = "EAST-4,SOUTH+2 to EAST-2,NORTH-2"},
 
-	for(i = 1, i <= 4, i++)
-		O = vimpaired[i]
-		O.icon_state = "dither50"
-		O.layer = 17
-		O.mouse_opacity = 0
+		/obj/screen{icon_state = "black"; screen_loc = "WEST,SOUTH to EAST,SOUTH+1"},
+		/obj/screen{icon_state = "black"; screen_loc = "WEST,SOUTH+2 to WEST+1,NORTH"},
+		/obj/screen{icon_state = "black"; screen_loc = "EAST-1,SOUTH+2 to EAST,NORTH"},
+		/obj/screen{icon_state = "black"; screen_loc = "WEST+2,NORTH-1 to EAST-2,NORTH"},
 
-		O = darkMask[i]
-		O.icon_state = "dither50"
-		O.layer = 17
-		O.mouse_opacity = 0
+		/obj/screen{icon_state = "black"; screen_loc = "WEST,SOUTH:-32 to EAST,SOUTH"},
+		/obj/screen{icon_state = "black"; screen_loc = "EAST:32,SOUTH to EAST,NORTH"},
+		/obj/screen{icon_state = "black"; screen_loc = "EAST:32,SOUTH:-32"},
+	)
 
-	for(i = 5, i <= 8, i++)
-		O = darkMask[i]
-		O.icon_state = "black"
-		O.layer = 17
-		O.mouse_opacity = 0
+	for(var/obj/screen/O in (vimpaired + darkMask))
+		O.layer = FULLSCREEN_LAYER
+		O.plane = FULLSCREEN_PLANE
+		O.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 
 /*
 	The hud datum
@@ -263,11 +228,11 @@ datum/hud/New(mob/owner)
 	set hidden = 1
 
 	if(!hud_used)
-		usr << SPAN_WARNING("This mob type does not use a HUD.")
+		to_chat(usr, SPAN_WARNING("This mob type does not use a HUD."))
 		return
 
 	if(!ishuman(src))
-		usr << SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry.")
+		to_chat(usr, SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry."))
 		return
 
 	if(!client) return

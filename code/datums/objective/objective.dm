@@ -110,7 +110,7 @@ var/global/list/all_objectives_types = null
 /datum/objective/proc/select_human_target(var/mob/user)
 	var/list/possible_targets = get_targets_list()
 	if(!possible_targets || !possible_targets.len)
-		user << SPAN_WARNING("Sorry! No possible targets found!")
+		to_chat(user, SPAN_WARNING("Sorry! No possible targets found!"))
 		return
 	var/datum/mind/M = input(user, "New target") as null|anything in possible_targets
 	if(M)

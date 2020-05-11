@@ -1,7 +1,7 @@
 /*
 	Datum-based species. Should make for much cleaner and easier to maintain race code.
 */
-
+#define SPECIES_BLOOD_DEFAULT 560
 /datum/species
 
 	// Descriptors and strings.
@@ -143,6 +143,7 @@
 		)
 	var/vision_organ              // If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 
+	// The order is important!
 	var/list/has_limbs = list(
 		BP_CHEST =  new /datum/organ_description/chest,
 		BP_GROIN =  new /datum/organ_description/groin,
@@ -186,12 +187,6 @@
 /datum/species/proc/get_bodytype()
 	return name
 
-/datum/species/proc/get_body_build(var/gender, var/prefered)
-	for(var/BBT in typesof(/datum/body_build))
-		var/datum/body_build/BB = new BBT
-		if((!prefered || BB.name == prefered) && (gender in genders))
-			return BB
-
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
@@ -209,10 +204,10 @@
 	switch(msg_type)
 		if("cold")
 			if(!covered)
-				H << SPAN_DANGER("[pick(cold_discomfort_strings)]")
+				to_chat(H, SPAN_DANGER("[pick(cold_discomfort_strings)]"))
 		if("heat")
 			if(covered)
-				H << SPAN_DANGER("[pick(heat_discomfort_strings)]")
+				to_chat(H, SPAN_DANGER("[pick(heat_discomfort_strings)]"))
 
 /datum/species/proc/sanitize_name(var/name)
 	return sanitizeName(name)
@@ -383,13 +378,16 @@
 			L[hairstyle] = S
 	return L
 
-/datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 1)
+/datum/species/proc/equip_survival_gear(mob/living/carbon/human/H, extendedtank = TRUE)
+	var/box_type = /obj/item/weapon/storage/box/survival
+
+	if(extendedtank)
+		box_type = /obj/item/weapon/storage/box/survival/extended
+
 	if(istype(H.get_equipped_item(slot_back), /obj/item/weapon/storage))
-		if (extendedtank)	H.equip_to_storage(new /obj/item/weapon/storage/box/engineer(H.back))
-		else	H.equip_to_storage(new /obj/item/weapon/storage/box/survival(H.back))
+		H.equip_to_storage(new box_type(H.back))
 	else
-		if (extendedtank)	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(H), slot_r_hand)
-		else	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+		H.equip_to_slot_or_del(new box_type(H), slot_r_hand)
 
 /datum/species/proc/has_equip_slot(slot)
 	if(hud && hud.equip_slots)

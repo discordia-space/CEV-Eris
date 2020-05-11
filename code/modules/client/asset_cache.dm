@@ -25,7 +25,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset(var/client/client, var/asset_name, var/verify = TRUE)
+/proc/send_asset(client/client, asset_name, verify = TRUE)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
@@ -72,7 +72,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	return 1
 
 //This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset_list(var/client/client, var/list/asset_list, var/verify = TRUE)
+/proc/send_asset_list(client/client, list/asset_list, verify = TRUE)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
@@ -89,7 +89,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(!unreceived || !unreceived.len)
 		return 0
 	if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
-		client << "Sending Resources..."
+		to_chat(client, "Sending Resources...")
 	for(var/asset in unreceived)
 		if (asset in asset_cache.cache)
 			client << browse_rsc(asset_cache.cache[asset], asset)
@@ -124,121 +124,188 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc will download the files without clogging up the browse() queue, used for passively sending files on connection start.
 //The proc calls procs that sleep for long times.
-/proc/getFilesSlow(var/client/client, var/list/files, var/register_asset = TRUE)
+/proc/getFilesSlow(client/client, list/files, register_assets = TRUE, important = TRUE)
+	var/last_batch_start = world.time
+
 	for(var/file in files)
 		if (!client)
 			break
-		if (register_asset)
-			register_asset(file,files[file])
-		send_asset(client,file)
-		sleep(0) //queuing calls like this too quickly can cause issues in some client versions
+		if (register_assets)
+			register_asset(file, files[file])
+		send_asset(client, file)
+
+		if(!important && world.time > (last_batch_start + 5 SECONDS))
+			sleep(1 SECONDS)
+			last_batch_start = world.time
+			// Every 5 seconds of transmission, sleep for 1 second.
+			// Give other browse calls (newly opened UIs) a chance to slip in if we are sending hundreds of pics.
+		else
+			sleep(0)
+			// queuing calls like this too quickly can cause issues in some client versions
 
 //This proc "registers" an asset, it adds it to the cache for further use, you cannot touch it from this point on or you'll fuck things up.
 //if it's an icon or something be careful, you'll have to copy it before further use.
-/proc/register_asset(var/asset_name, var/asset)
+/proc/register_asset(asset_name, asset)
 	asset_cache.cache[asset_name] = asset
+
+//Generated names do not include file extention.
+//Used mainly for code that deals with assets in a generic way
+//The same asset will always lead to the same asset name
+/proc/generate_asset_name(var/file)
+	return "asset.[md5(fcopy_rsc(file))]"
+
+// will return filename for cached atom icon or null if not cached
+// can accept atom objects or types
+/proc/getAtomCacheFilename(var/atom/A)
+	if(!A || (!istype(A) && !ispath(A)))
+		return
+	var/filename = "[ispath(A) ? A : A.type].png"
+	filename = sanitizeFileName(filename)
+	if(asset_cache.cache[filename])
+		return filename
 
 //These datums are used to populate the asset cache, the proc "register()" does this.
 
 //all of our asset datums, used for referring to these later
 /var/global/list/asset_datums = list()
 
+/datum/asset
+	// All assets, "filename = file"
+	var/list/assets = list()
+
+	// If asset is trivial it's download will be transfered to end of queue
+	var/isTrivial = TRUE
+	var/registred = FALSE
+	var/verify = FALSE
+
 //get a assetdatum or make a new one
-/proc/get_asset_datum(var/type)
+/proc/get_asset_datum(type)
 	if (!(type in asset_datums))
 		return new type()
 	return asset_datums[type]
 
 /datum/asset/New()
 	asset_datums[type] = src
+	register()
 
 /datum/asset/proc/register()
-	return
-
-/datum/asset/proc/send(client)
-	return
-
-//If you don't need anything complicated.
-/datum/asset/simple
-	var/assets = list()
-	var/verify = FALSE
-
-/datum/asset/simple/register()
 	for(var/asset_name in assets)
 		register_asset(asset_name, assets[asset_name])
-/datum/asset/simple/send(client)
-	send_asset_list(client,assets,verify)
+	registred = TRUE
+
+/datum/asset/proc/send(client)
+	send_asset_list(client, assets, verify)
+
+/datum/asset/proc/send_slow(client)
+	getFilesSlow(client, assets, register_assets = FALSE, important = !isTrivial)
+
+// Check if all the assets were already sent
+/datum/asset/proc/check_sent(client/C)
+	if(length(assets & C.cache) == length(assets))
+		return TRUE
+	return FALSE
+
+
+//For sending entire directories of assets
+/datum/asset/directories
+	var/list/dirs = list()
+
+/datum/asset/directories/register()
+	// Crawl the directories to find files.
+	for (var/path in dirs)
+		var/list/filenames = flist(path)
+		for(var/filename in filenames)
+			if(copytext(filename, length(filename)) != "/") // Ignore directories.
+				if(fexists(path + filename))
+					assets[filename] = fcopy_rsc(path + filename)
+	..()
+
+
+// For registering or sending multiple others at once
+/datum/asset/group
+	var/list/children = list()
+
+/datum/asset/group/register()
+	for(var/type in children)
+		var/datum/asset/A = get_asset_datum(type)
+		if(!A.registred)
+			A.register()
+
+/datum/asset/group/send(client)
+	for(var/type in children)
+		var/datum/asset/A = get_asset_datum(type)
+		A.send(client)
+
+/datum/asset/group/send_slow(client)
+	for(var/type in children)
+		var/datum/asset/A = get_asset_datum(type)
+		A.send_slow(client)
+
+/datum/asset/group/check_sent(client)
+	for(var/type in children)
+		var/datum/asset/A = get_asset_datum(type)
+		A.check_sent(client)
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
+/datum/asset/simple/design_icons/register()
+	for(var/D in SSresearch.all_designs)
+		var/datum/design/design = D
 
-/datum/asset/simple/tgui
-	assets = list(
-		"tgui.css"	= 'tgui/assets/tgui.css',
-		"tgui.js"	= 'tgui/assets/tgui.js'
-	)
+		var/filename = sanitizeFileName("[design.build_path].png")
+		var/icon/I = getFlatTypeIcon(design.build_path)
+		assets[filename] = I
+
+		design.ui_data["icon"] = filename
+	..()
 
 
-/datum/asset/simple/pda
-	assets = list(
-		"pda_atmos.png"			= 'icons/pda_icons/pda_atmos.png',
-		"pda_back.png"			= 'icons/pda_icons/pda_back.png',
-		"pda_bell.png"			= 'icons/pda_icons/pda_bell.png',
-		"pda_blank.png"			= 'icons/pda_icons/pda_blank.png',
-		"pda_boom.png"			= 'icons/pda_icons/pda_boom.png',
-		"pda_bucket.png"		= 'icons/pda_icons/pda_bucket.png',
-		"pda_chatroom.png"      = 'icons/pda_icons/pda_chatroom.png',
-		"pda_crate.png"         = 'icons/pda_icons/pda_crate.png',
-		"pda_cuffs.png"         = 'icons/pda_icons/pda_cuffs.png',
-		"pda_eject.png"			= 'icons/pda_icons/pda_eject.png',
-		"pda_exit.png"			= 'icons/pda_icons/pda_exit.png',
-		"pda_honk.png"			= 'icons/pda_icons/pda_honk.png',
-		"pda_locked.png"        = 'icons/pda_icons/pda_locked.png',
-		"pda_mail.png"			= 'icons/pda_icons/pda_mail.png',
-		"pda_medical.png"		= 'icons/pda_icons/pda_medical.png',
-		"pda_menu.png"			= 'icons/pda_icons/pda_menu.png',
-		"pda_mule.png"			= 'icons/pda_icons/pda_mule.png',
-		"pda_notes.png"			= 'icons/pda_icons/pda_notes.png',
-		"pda_power.png"			= 'icons/pda_icons/pda_power.png',
-		"pda_rdoor.png"			= 'icons/pda_icons/pda_rdoor.png',
-		"pda_reagent.png"		= 'icons/pda_icons/pda_reagent.png',
-		"pda_refresh.png"		= 'icons/pda_icons/pda_refresh.png',
-		"pda_scanner.png"		= 'icons/pda_icons/pda_scanner.png',
-		"pda_signaler.png"		= 'icons/pda_icons/pda_signaler.png',
-		"pda_status.png"		= 'icons/pda_icons/pda_status.png'
-	)
+/datum/asset/simple/craft/register()
+	for(var/name in SScraft.categories)
+		for(var/datum/craft_recipe/CR in SScraft.categories[name])
+			if(CR.result)
+				var/filename = sanitizeFileName("[CR.result].png")
+				var/icon/I = getFlatTypeIcon(CR.result)
+				assets[filename] = I
 
-/datum/asset/nanoui
-	var/list/common = list()
+			for(var/datum/craft_step/CS in CR.steps)
+				if(CS.reqed_type)
+					var/filename = sanitizeFileName("[CS.reqed_type].png")
+					var/icon/I = getFlatTypeIcon(CS.reqed_type)
+					assets[filename] = I
+	..()
 
-	var/list/common_dirs = list(
+/datum/asset/simple/materials/register()
+	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
+		var/filename = sanitizeFileName("[type].png")
+		var/icon/I = getFlatTypeIcon(type)
+		assets[filename] = I
+	..()
+
+/datum/asset/simple/tool_upgrades/register()
+	for(var/type in subtypesof(/obj/item/weapon/tool_upgrade))
+		var/filename = sanitizeFileName("[type].png")
+		var/icon/I = getFlatTypeIcon(type)
+		assets[filename] = I
+	..()
+
+
+/datum/asset/directories/nanoui
+	isTrivial = FALSE
+	dirs = list(
+		"nano/js/",
 		"nano/css/",
 		"nano/images/",
+		"nano/templates/",
 		"nano/images/status_icons/",
 		"nano/images/modular_computers/",
-		"nano/js/"
-	)
-	var/list/uncommon_dirs = list(
-		"nano/templates/",
-		"news_articles/images/"
 	)
 
-/datum/asset/nanoui/register()
-	// Crawl the directories to find files.
-	for (var/path in common_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					common[filename] = fcopy_rsc(path + filename)
-					register_asset(filename, common[filename])
-	for (var/path in uncommon_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					register_asset(filename, fcopy_rsc(path + filename))
+/datum/asset/directories/images_news
+	dirs = list("news_articles/images/")
 
+
+/datum/asset/images_map/register()
 	var/list/mapnames = list()
 	for(var/z in maps_data.station_levels)
 		mapnames += map_image_file_name(z)
@@ -248,15 +315,8 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		if(copytext(filename, length(filename)) != "/") // Ignore directories.
 			var/file_path = MAP_IMAGE_PATH + filename
 			if((filename in mapnames) && fexists(file_path))
-				common[filename] = fcopy_rsc(file_path)
-				register_asset(filename, common[filename])
-
-/datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
-		uncommon = list(uncommon)
-
-	send_asset_list(client, uncommon, FALSE)
-	send_asset_list(client, common, TRUE)
+				assets[filename] = fcopy_rsc(file_path)
+	..()
 
 /*
 	Asset cache
@@ -271,13 +331,11 @@ var/decl/asset_cache/asset_cache = new()
 	cache = new
 
 /proc/send_assets()
-	for(var/type in typesof(/datum/asset) - list(/datum/asset, /datum/asset/simple))
-		var/datum/asset/A = new type()
-		A.register()
+	// Creates and registers every asset datum
+	for(var/type in subtypesof(/datum/asset) - list(/datum/asset/simple, /datum/asset/group, /datum/asset/directories))
+		get_asset_datum(type)
 
 	for(var/client/C in clients)
-		// Doing this to a client too soon after they've connected can cause issues, also the proc we call sleeps.
-		spawn(10)
-			getFilesSlow(C, asset_cache.cache, FALSE)
+		C.send_resources()
 
 	return TRUE

@@ -3,12 +3,12 @@
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
 
-	density = 1
+	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
-	anchored = 1.0
+	anchored = TRUE
 	flags = ON_BORDER
 	var/maxhealth = 20
-	var/resistance = 0	//Incoming damage is reduced by this flat amount before being subtracted from health
+	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
@@ -36,24 +36,24 @@
 	. = ..(user)
 
 	if(health == maxhealth)
-		user << SPAN_NOTICE("It looks fully intact.")
+		to_chat(user, SPAN_NOTICE("It looks fully intact."))
 	else
 		var/perc = health / maxhealth
 		if(perc > 0.75)
-			user << SPAN_NOTICE("It has a few cracks.")
+			to_chat(user, SPAN_NOTICE("It has a few cracks."))
 		else if(perc > 0.5)
-			user << SPAN_WARNING("It looks slightly damaged.")
+			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
 		else if(perc > 0.25)
-			user << SPAN_WARNING("It looks moderately damaged.")
+			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
 		else
-			user << SPAN_DANGER("It looks heavily damaged.")
+			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
 	if(silicate)
 		if (silicate < 30)
-			user << SPAN_NOTICE("It has a thin layer of silicate.")
+			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
 		else if (silicate < 70)
-			user << SPAN_NOTICE("It is covered in silicate.")
+			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
 		else
-			user << SPAN_NOTICE("There is a thick layer of silicate covering it.")
+			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
 
 
 //Subtracts resistance from damage then applies it
@@ -184,7 +184,7 @@
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
-		return 0
+		return !density
 	return 1
 
 
@@ -254,18 +254,18 @@
 	switch(state)
 		if(GRAB_PASSIVE)
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
-			target.apply_damage(7)
+			target.damage_through_armor(6, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(10)
 		if(GRAB_AGGRESSIVE)
 			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
-			if(prob(50))
+			if(prob(30))
 				target.Weaken(1)
-			target.apply_damage(10)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(15)
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
 			target.Weaken(5)
-			target.apply_damage(20)
+			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(20)
 	admin_attack_log(user, target,
 		"Smashed [key_name(target)] against \the [src]",
@@ -283,7 +283,7 @@
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
 	if((reinf && state >= 1) || (reinf && state == 0) || (!reinf))
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(reinf && state >= 1)
+	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
 	if (health < maxhealth)
 		usable_qualities.Add(QUALITY_SEALING)
@@ -295,12 +295,12 @@
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
 				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
-					user << SPAN_NOTICE("The [src] looks pretty solid now!")
+					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
 					health = maxhealth
 			if(QUALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
-						user << SPAN_NOTICE("You're not sure how to dismantle \the [src] properly.")
+						to_chat(user, SPAN_NOTICE("You're not sure how to dismantle \the [src] properly."))
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
@@ -316,7 +316,7 @@
 				if(reinf && state <= 1)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 1 - state
-						user << (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame."))
+						to_chat(user, (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame.")))
 				return 1 //No whacking the window with tools unless harm intent
 
 
@@ -325,17 +325,17 @@
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 3 - state
 						update_nearby_icons()
-						user << (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame."))
+						to_chat(user, (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame.")))
 						return
 				if(reinf && state == 0)
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						set_anchored(!anchored)
-						user << (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor."))
+						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor.")))
 						return
 				if(!reinf)
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 						set_anchored(!anchored)
-						user << (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window."))
+						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window.")))
 						return
 				return 1 //No whacking the window with tools unless harm intent
 
@@ -358,11 +358,10 @@
 		..()
 	return
 
-/obj/structure/window/proc/hit(var/damage, var/sound_effect = TRUE, var/ignore_resistance = FALSE)
+/obj/structure/window/proc/hit(damage, sound_effect = TRUE, ignore_resistance = FALSE)
 	damage = take_damage(damage, TRUE, ignore_resistance)
-	if (sound_effect)
-		playsound(src.loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
-	return
+	if(sound_effect && loc) // If the window was shattered and, thus, nullspaced, don't try to play hit sound
+		playsound(loc, 'sound/effects/glasshit.ogg', damage*4.5, 1, damage*0.6, damage*0.6) //The harder the hit, the louder and farther travelling the sound
 
 
 /obj/structure/window/proc/rotate()
@@ -374,7 +373,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -393,7 +392,7 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
@@ -518,7 +517,7 @@
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
 	damage_per_fire_tick = 3.0	// Was 2. Made weaker than rglass per tick.
 	maxhealth = 15
-	resistance = 0
+	resistance = RESISTANCE_NONE
 
 /obj/structure/window/basic/full
 	dir = SOUTH|EAST
@@ -526,7 +525,8 @@
 	icon_state = "fwindow"
 	alpha = 120
 	maxhealth = 40
-	resistance = 2
+	resistance = RESISTANCE_NONE
+	flags = null
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -538,7 +538,7 @@
 	maximal_heat = T0C + 5227  // Safe use temperature at 5500 kelvin. Easy to remember.
 	damage_per_fire_tick = 1.5 // Lowest per-tick damage so overheated supermatter chambers have some time to respond to it. Will still shatter before a delam.
 	maxhealth = 150
-	resistance = 8
+	resistance = RESISTANCE_AVERAGE
 
 /obj/structure/window/plasmabasic/full
 	dir = SOUTH|EAST
@@ -546,7 +546,8 @@
 	icon_state = "plasmawindow_mask"
 	alpha = 150
 	maxhealth = 200
-	resistance = 10
+	resistance = RESISTANCE_AVERAGE
+	flags = null
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -559,7 +560,7 @@
 	glasstype = /obj/item/stack/material/glass/reinforced
 
 	maxhealth = 50
-	resistance = 4
+	resistance = RESISTANCE_FRAGILE
 
 /obj/structure/window/New(Loc, constructed=0)
 	..()
@@ -574,7 +575,8 @@
 	icon_state = "fwindow"
 	alpha = 150
 	maxhealth = 80
-	resistance = 6
+	resistance = RESISTANCE_FRAGILE
+	flags = null
 
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
@@ -586,7 +588,7 @@
 	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
 	damage_per_fire_tick = 1.5
 	maxhealth = 200
-	resistance = 10
+	resistance = RESISTANCE_IMPROVED
 
 /obj/structure/window/reinforced/plasma/full
 	dir = SOUTH|EAST
@@ -594,7 +596,8 @@
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
 	maxhealth = 250
-	resistance = 12
+	resistance = RESISTANCE_IMPROVED
+	flags = null
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -616,7 +619,7 @@
 	icon_state = "window"
 	basestate = "window"
 	maxhealth = 300
-	resistance = 12
+	resistance = RESISTANCE_IMPROVED
 	reinf = 1
 	basestate = "w"
 	dir = 5
@@ -631,6 +634,7 @@
 	dir = SOUTH|EAST
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
+	flags = null
 
 /obj/structure/window/reinforced/polarized/proc/toggle()
 	if(opacity)
@@ -697,6 +701,9 @@
 //Fulltile windows can only exist ontop of a low wall
 //If they're ever not on a wall, they will drop to the floor and smash.
 /obj/structure/window/proc/mount_check()
+	if(QDELETED(src))
+		return
+
 	if (!is_full_window())
 		return
 

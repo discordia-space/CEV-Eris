@@ -5,8 +5,8 @@
 	item_state = "chain"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_DANGEROUS
+	throwforce = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
@@ -17,9 +17,9 @@
 	desc = "Toolbox tied to mop. A weapon of choice."
 	icon_state = "hm_hammer"
 	item_state = "hm_hammer"
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
-	w_class = ITEM_SIZE_LARGE
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
+	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
 	var/reinforced = FALSE
@@ -57,20 +57,20 @@
 	if(toolbox)
 		if(istype(C, /obj/item/weapon/tool/wirecutters))
 			if(reinforced)
-				user << SPAN_NOTICE("You cutted up the tapes from [src].")
+				to_chat(user, SPAN_NOTICE("You cutted up the tapes from [src]."))
 				reinforced = FALSE
 			else
-				user << SPAN_NOTICE("You carefully cut cables from [src].")
+				to_chat(user, SPAN_NOTICE("You carefully cut cables from [src]."))
 				break_apart(user)
 
 		if(istype(C, /obj/item/weapon/tool/tape_roll))
-			user << SPAN_NOTICE("You begins to tie [src] with [C]...")
+			to_chat(user, SPAN_NOTICE("You begins to tie [src] with [C]..."))
 			if(do_after(user, 50))
 				if(!reinforced)
-					user << SPAN_NOTICE("You reinforce [src].")
+					to_chat(user, SPAN_NOTICE("You reinforce [src]."))
 					reinforced = TRUE
 				else
-					user << SPAN_WARNING("[src] is already reinforced.")
+					to_chat(user, SPAN_WARNING("[src] is already reinforced."))
 	else
 		if(istype(C, /obj/item/weapon/storage/toolbox))
 			src.name = initial(src.name)
@@ -88,7 +88,7 @@
 			if(istype(C, /obj/item/weapon/storage/toolbox/mechanical))
 				icon_state = "hm_hammer_blue"
 				item_state = "hm_hammer_blue"
-			user << SPAN_NOTICE("You tied [C] to [src] and finally finish it!")
+			to_chat(user, SPAN_NOTICE("You tied [C] to [src] and finally finish it!"))
 	update_icon()
 
 /obj/item/weapon/melee/toolbox_maul/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
@@ -104,8 +104,8 @@
 	desc = "Stick with some nails in it. Looks sharp enough."
 	icon_state = "hm_spikeclub"
 	item_state = "hm_spikeclub"
-	force = WEAPON_FORCE_PAINFULL
-	throwforce = WEAPON_FORCE_PAINFULL
+	force = WEAPON_FORCE_PAINFUL
+	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")

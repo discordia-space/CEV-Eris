@@ -65,7 +65,7 @@
 /datum/export/analyzer
 	cost = 5
 	unit_name = "analyzer"
-	export_types = list(/obj/item/device/scanner/analyzer)
+	export_types = list(/obj/item/device/scanner/gas)
 
 /datum/export/analyzer/t_scanner
 	cost = 10
@@ -81,11 +81,11 @@
 
 // High-tech tools.
 /datum/export/rcd
-	cost = 100 // 15 metal -> 75 credits, +25 credits for production
+	cost = 2000
 	unit_name = "rapid construction device"
 	export_types = list(/obj/item/weapon/rcd)
 
 /datum/export/rcd_ammo
-	cost = 15 // 1.5 metal, 1 glass -> 12.5 credits, +2.5 credits
+	cost = 300
 	unit_name = "compressed matter cardridge"
 	export_types = list(/obj/item/weapon/rcd_ammo)

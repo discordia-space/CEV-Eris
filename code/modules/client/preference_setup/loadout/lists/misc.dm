@@ -1,5 +1,5 @@
 /datum/gear/bible
-	display_name = "Neotheology ritual book"
+	display_name = "NeoTheology ritual book"
 	path = /obj/item/weapon/book/ritual/cruciform
 	cost = 2
 
@@ -93,12 +93,13 @@
 
 /datum/gear/plush_toy/New()
 	..()
-	var/plushes = list()
-	plushes["mouse plush"] = /obj/item/toy/plushie/mouse
-	plushes["kitten plush"] = /obj/item/toy/plushie/kitten
-	plushes["lizard plush"] = /obj/item/toy/plushie/lizard
-	plushes["spider plush"] = /obj/item/toy/plushie/spider
-	plushes["farwa plush"] = /obj/item/toy/plushie/farwa
+	var/plushes = list(
+		"mouse plush"	=	/obj/item/toy/plushie/mouse,
+		"kitten plush"	=	/obj/item/toy/plushie/kitten,
+		"lizard plush"	=	/obj/item/toy/plushie/lizard,
+		"spider plush"	=	/obj/item/toy/plushie/spider,
+		"farwa plush"	=	/obj/item/toy/plushie/farwa,
+	)
 	gear_tweaks += new /datum/gear_tweak/path(plushes)
 
 /datum/gear/mirror/

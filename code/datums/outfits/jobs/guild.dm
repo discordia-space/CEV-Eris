@@ -17,12 +17,14 @@
 	name = OUTFIT_JOB_NAME("Guild Technician")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	suit = /obj/item/clothing/suit/storage/cargo_jacket
+	belt = /obj/item/weapon/storage/belt/utility
 	pda_type = /obj/item/modular_computer/pda/cargo
 
 /decl/hierarchy/outfit/job/cargo/mining
 	name = OUTFIT_JOB_NAME("Guild Miner")
 	uniform = /obj/item/clothing/under/rank/miner
-	pda_type = /obj/item/modular_computer/pda/science
+	pda_type = /obj/item/modular_computer/pda/moebius/science
+	belt = /obj/item/weapon/storage/belt/utility
 	backpack_contents = list(/obj/item/weapon/tool/crowbar = 1, /obj/item/weapon/storage/bag/ore = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
@@ -32,6 +34,5 @@
 
 /decl/hierarchy/outfit/job/cargo/mining/void
 	name = OUTFIT_JOB_NAME("Guild Miner - Voidsuit")
-	head = /obj/item/clothing/head/helmet/space/void/mining
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/mining

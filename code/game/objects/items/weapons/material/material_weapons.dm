@@ -18,6 +18,7 @@
 	var/default_material = MATERIAL_STEEL
 	var/material/material
 	var/drops_debris = 1
+	var/furniture_icon  //icon states for non-material colorable overlay, i.e. handles
 
 /obj/item/weapon/material/New(var/newloc, var/material_key)
 	..(newloc)

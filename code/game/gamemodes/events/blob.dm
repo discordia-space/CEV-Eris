@@ -45,7 +45,7 @@
 		Blob = null
 		kill()
 		return
-	if(IsMultiple(activeFor, 3))
+	if(ISMULTIPLE(activeFor, 3))
 		Blob.Process()
 
 
@@ -236,7 +236,7 @@
 		if (L.stat != DEAD)
 			return TRUE
 
-	for (var/obj/mecha/M in loc)
+	for (var/mob/living/exosuit/M in loc)
 		return TRUE
 
 	return FALSE
@@ -353,11 +353,6 @@
 	if(B)
 		B.ex_act(2)
 		return
-	var/obj/mecha/M = locate() in T
-	if(M)
-		M.visible_message(SPAN_DANGER("The blob attacks \the [M]!"))
-		M.take_damage(40)
-		return
 
 	T.Enter(src) //This should make them travel down stairs
 
@@ -447,22 +442,16 @@
 			continue
 		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
-		L.take_organ_damage(burn = rand_between(0.4, 2.3))
+		L.take_organ_damage(burn = RAND_DECIMAL(0.4, 2.3))
 
 		//In addition to the flat damage above, we will also splash a small amount of acid on the target
 		//This allows them to wear acidproof gear to resist it
 		if (iscarbon(L))
 			var/datum/reagents/R = new /datum/reagents(4, null)
-			R.add_reagent("sacid", rand_between(0.8,4))
+			R.add_reagent("sacid", RAND_DECIMAL(0.8,4))
 			R.trans_to(L, R.total_volume)
 			qdel(R)
 
-		return TRUE
-
-	var/obj/mecha/M = (locate(/obj/mecha) in loc)
-	if(M)
-		M.visible_message(SPAN_DANGER("The blob attacks \the [M]!"))
-		M.take_damage(5)
 		return TRUE
 
 	//If we get here, nobody was harmed
@@ -487,17 +476,17 @@
 
 	var/absorbed_damage //The amount of damage that will be subtracted from the projectile
 	var/taken_damage //The amount of damage the blob will recieve
-	switch(Proj.damage_type)
-		if(BRUTE)
-			absorbed_damage = min(health * brute_resist, Proj.damage)
-			taken_damage = (Proj.damage / brute_resist)
-		if(BURN)
-			absorbed_damage = min(health * fire_resist, Proj.damage)
-			taken_damage= (Proj.damage / fire_resist)
-
+	for(var/i in Proj.damage_types)
+		if(i == BRUTE)
+			absorbed_damage = min(health * brute_resist, Proj.damage_types[i])
+			taken_damage = (Proj.damage_types[i] / brute_resist)
+			Proj.damage_types[i] -= absorbed_damage
+		if(i == BURN)
+			absorbed_damage = min(health * fire_resist, Proj.damage_types[i])
+			taken_damage= (Proj.damage_types[i]  / fire_resist)
+			Proj.damage_types[i] -= absorbed_damage
 	take_damage(taken_damage)
-	Proj.damage -= absorbed_damage
-	if (Proj.damage <= 0)
+	if (Proj.get_total_damage() <= 0)
 		return 0
 	else
 		return PROJECTILE_CONTINUE

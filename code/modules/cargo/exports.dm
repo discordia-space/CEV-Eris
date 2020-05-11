@@ -27,9 +27,10 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
  then the player gets the profit from selling his own wasted time.
 */
 /proc/export_item_and_contents(atom/movable/AM, contraband, hacked, dry_run = FALSE)
+/*
 	if(!exports_list.len)
 		setupExports()
-
+*/
 	var/sold_str = ""
 	var/cost = 0
 
@@ -39,7 +40,8 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	// We go backwards, so it'll be innermost objects sold first
 	for(var/i in reverseRange(contents))
 		var/atom/movable/thing = i
-		for(var/datum/export/E in exports_list)
+		var/found_export
+		for(var/datum/export/E in SSsupply.exports)
 			if(!E)
 				continue
 			if(E.applies_to(thing, contraband, hacked))
@@ -48,7 +50,21 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 				else
 					E.sell_object(thing, contraband, hacked)
 					sold_str += " [thing.name]"
+				found_export = TRUE
 				break
+		if(!found_export)
+			var/item_value = thing.get_item_cost(TRUE)
+			if(item_value)
+				cost += item_value
+				sold_str += " [thing.name]"
+				if(!dry_run)
+					var/datum/export/new_export = new()
+					new_export.unit_name = thing.name
+					new_export.cost = item_value
+					new_export.include_subtypes = FALSE
+					new_export.export_types = list(thing.type)
+					new_export.sell_object(thing, contraband, hacked)
+					SSsupply.exports.Add(new_export)
 		if(!dry_run)
 			qdel(thing)
 
@@ -126,11 +142,11 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	msg += "."
 	return msg
 
-// The current export cycle is over now. Reset all the export temporary vars.
+// The current export cycle is over now. Delete export datums.
 /datum/export/proc/export_end()
-	total_cost = 0
-	total_amount = 0
+		qdel(src)
 
+/*
 var/list/exports_list = list()
 
 /proc/setupExports()
@@ -138,3 +154,4 @@ var/list/exports_list = list()
 		var/datum/export/E = new subtype
 		if(E.export_types && E.export_types.len) // Exports without a type are invalid/base types
 			exports_list += E
+*/

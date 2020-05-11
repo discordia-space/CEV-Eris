@@ -10,7 +10,6 @@
 	var/datum/computer_file/data/audio/selected_audio
 	var/transcribing = FALSE
 	var/transcribe_progress = 0
-	var/transcribe_netspeed = 0
 	var/browsing = TRUE
 	var/playing
 	var/playsleepseconds = 0
@@ -53,26 +52,18 @@
 		i++
 
 /datum/computer_file/program/audio/process_tick()
+	..()
 	if(!selected_audio)
 		transcribing = 0
 	if(transcribing)
-		transcribe_netspeed = 0
-		// Speed defines are found in misc.dm
-		switch(ntnet_status)
-			if(1)
-				transcribe_netspeed = NTNETSPEED_LOWSIGNAL
-			if(2)
-				transcribe_netspeed = NTNETSPEED_HIGHSIGNAL
-			if(3)
-				transcribe_netspeed = NTNETSPEED_ETHERNET
-		transcribe_progress += transcribe_netspeed
+		transcribe_progress += ntnet_speed
 		if(transcribe_progress >= selected_audio.size)
 			transcribe_progress = 0
 			transcribing = 0
 			selected_audio.transcribed = TRUE
 		SSnano.update_uis(NM)
 
-/datum/computer_file/program/audio/kill_program()
+/datum/computer_file/program/audio/kill_program(forced = FALSE)
 	..()
 	selected_audio = null
 	browsing = TRUE
@@ -130,17 +121,17 @@
 		if(!selected_audio)
 			error = "Error: No file loaded."
 			return TRUE
-		if(!computer.nano_printer)
+		if(!computer.printer)
 			error = "Missing Hardware: Your computer does not have the required hardware to complete this operation."
 			return TRUE
-		if(!computer.nano_printer.print_text(selected_audio.transcribed ? selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."))
+		if(!computer.printer.print_text(selected_audio.transcribed ? selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."))
 			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
 			return TRUE
 
 /datum/nano_module/program/audio
 	name = "Audio Player"
 
-/datum/nano_module/program/audio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/audio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 
 	var/datum/computer_file/program/audio/PRG
 	var/list/data = host.initial_data()
@@ -165,7 +156,7 @@
 			for(var/datum/computer_file/F in HDD.stored_files)
 				if(F.filetype == "AUD")
 					files.Add(list(list(
-						"name" = cyrillic_to_unicode(F.filename),
+						"name" = F.filename,
 						"size" = F.size
 					)))
 			data["files"] = files
@@ -177,7 +168,7 @@
 				for(var/datum/computer_file/F in RHDD.stored_files)
 					if(F.filetype == "AUD")
 						usbfiles.Add(list(list(
-							"name" = cyrillic_to_unicode(F.filename),
+							"name" = F.filename,
 							"size" = F.size,
 						)))
 				data["usbfiles"] = usbfiles
@@ -194,12 +185,12 @@
 		data["transcribe_running"] = 1
 		data["transcribe_progress"] = PRG.transcribe_progress
 		data["transcribe_maxprogress"] = PRG.selected_audio.size
-		data["transcribe_rate"] = PRG.transcribe_netspeed
+		data["transcribe_rate"] = PRG.ntnet_speed
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "audio_player.tmpl", "Audio Player", 575, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_audio_player.tmpl", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

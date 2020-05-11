@@ -86,7 +86,10 @@
 		CtrlAltClickOn(A)
 		return 1
 	if(modifiers["middle"])
-		MiddleClickOn(A)
+		if(modifiers["shift"])
+			ShiftMiddleClickOn(A)
+		else
+			MiddleClickOn(A)
 		return 1
 	if(modifiers["shift"])
 		ShiftClickOn(A)
@@ -105,11 +108,11 @@
 
 
 
-	if(istype(loc, /obj/mecha))
+	if(istype(loc, /mob/living/exosuit))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
 			return
-		var/obj/mecha/M = loc
-		return M.click_action(A, src)
+		var/mob/living/exosuit/M = loc
+		return M.ClickOn(A)//, src)
 
 	if(restrained())
 		setClickCooldown(10)
@@ -134,7 +137,7 @@
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		// faster access to objects already on you
 		if(W)
-			var/resolved = W.resolve_attackby(A, src, params)
+			var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -153,7 +156,7 @@
 		if(A.Adjacent(src)) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = W.resolve_attackby(A, src, params)
+				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
 				if(!resolved && A && W)
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
@@ -234,6 +237,9 @@
 	swap_hand()
 	return
 
+/mob/proc/ShiftMiddleClickOn(var/atom/A)
+	pointed(A)
+
 // In case of use break glass
 /*
 /atom/proc/MiddleClick(var/mob/M as mob)
@@ -248,6 +254,7 @@
 /mob/proc/ShiftClickOn(var/atom/A)
 	A.ShiftClick(src)
 	return
+
 /atom/proc/ShiftClick(var/mob/user)
 	if(user.client && user.client.eye == user)
 		user.examinate(src)
@@ -333,7 +340,7 @@
 		nutrition = max(nutrition - rand(1, 5), 0)
 		handle_regular_hud_updates()
 	else
-		src << SPAN_WARNING("You're out of energy!  You need food!")
+		to_chat(src, SPAN_WARNING("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /atom/movable/proc/face_atom(var/atom/A)

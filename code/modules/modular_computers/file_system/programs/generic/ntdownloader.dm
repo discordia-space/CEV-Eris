@@ -1,6 +1,6 @@
-/datum/computer_file/program/ntnetdownload
-	filename = "ntndownloader"
-	filedesc = "NTNet Software Download Tool"
+/datum/computer_file/program/downloader
+	filename = "downloader"
+	filedesc = "Software Download Tool"
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	program_menu_icon = "arrowthickstop-1-s"
@@ -14,13 +14,9 @@
 	nanomodule_path = /datum/nano_module/program/computer_ntnetdownload/
 	ui_header = "downloader_finished.gif"
 	var/datum/computer_file/program/downloaded_file = null
-	var/hacked_download = 0
+	var/hacked_download = FALSE
 	var/download_completion = 0 //GQ of downloaded data.
-	
-	var/download_netspeed = 0 //The base download speed in GQ/sec
-	var/download_netspeed_temp = 0 //A modified version that is download_netspeed with random variance added
-	var/netspeed_variance = 0.15 //Allow speed to vary 15% up or down
-	
+
 	var/downloaderror = ""
 	var/list/downloads_queue[0]
 	var/file_info //For logging, can be faked by antags.
@@ -28,15 +24,14 @@
 	var/download_paused = FALSE
 	usage_flags = PROGRAM_ALL
 
-/datum/computer_file/program/ntnetdownload/kill_program()
+/datum/computer_file/program/downloader/kill_program(forced = FALSE)
 	..()
 	downloaded_file = null
 	download_completion = 0
-	download_netspeed = 0
 	downloaderror = ""
 	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/ntnetdownload/proc/begin_file_download(var/filename, skill)
+/datum/computer_file/program/downloader/proc/begin_file_download(filename, skill)
 	if(downloaded_file)
 		return 0
 
@@ -52,7 +47,7 @@
 	generate_network_log("Began downloading file [file_info] from [server].")
 	downloaded_file = PRG.clone()
 
-/datum/computer_file/program/ntnetdownload/proc/check_file_download(var/filename)
+/datum/computer_file/program/downloader/proc/check_file_download(var/filename)
 	//returns 1 if file can be downloaded, returns 0 if download prohibited
 	var/datum/computer_file/program/PRG = ntnet_global.find_ntnet_file_by_name(filename)
 
@@ -68,7 +63,7 @@
 
 	return 1
 
-/datum/computer_file/program/ntnetdownload/proc/hide_file_info(datum/computer_file/file, skill)
+/datum/computer_file/program/downloader/proc/hide_file_info(datum/computer_file/file, skill)
 	server = (file in ntnet_global.available_station_software) ? "NTNet Software Repository" : "unspecified server"
 	if(!hacked_download)
 		return "[file.filename].[file.filetype]"
@@ -79,50 +74,43 @@
 	server = "NTNet Software Repository"
 	return "[fake_file.filename].[fake_file.filetype]"
 
-/datum/computer_file/program/ntnetdownload/proc/abort_file_download()
-	if(!downloaded_file)
-		return
-	generate_network_log("Aborted download of file [file_info].")
-	downloaded_file = null
-	download_completion = 0
-	download_netspeed = 0
-	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/ntnetdownload/proc/complete_file_download()
+/datum/computer_file/program/downloader/proc/end_file_download(abort=FALSE)
 	if(!downloaded_file)
 		return
-	generate_network_log("Completed download of file [file_info].")
-	if(!computer || !computer.hard_drive || !computer.hard_drive.store_file(downloaded_file))
-		// The download failed
-		downloaderror = "I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance."
+
+	generate_network_log("[abort ? "Aborted" : "Completed"] download of file [file_info].")
+
+	if(!abort)
+		if(!computer?.hard_drive?.store_file(downloaded_file))
+			// The download failed
+			downloaderror = {"I/O ERROR - Unable to save file.
+			Check whether you have enough free space on your hard drive and whether your hard drive is properly connected."}
+
 	downloaded_file = null
 	download_completion = 0
 	ui_header = "downloader_finished.gif"
 
-/datum/computer_file/program/ntnetdownload/process_tick()
+	if(downloads_queue.len > 0)
+		begin_file_download(downloads_queue[1], downloads_queue[downloads_queue[1]])
+		downloads_queue.Remove(downloads_queue[1])
+
+/datum/computer_file/program/downloader/process_tick()
 	if(!downloaded_file || download_paused)
 		return
+
 	if(download_completion >= downloaded_file.size)
-		complete_file_download()
-		if(downloads_queue.len > 0)
-			begin_file_download(downloads_queue[1], downloads_queue[downloads_queue[1]])
-			downloads_queue.Remove(downloads_queue[1])
+		end_file_download()
 
-	// Download speed according to connectivity state. NTNet server is assumed to be on unlimited speed so we're limited by our local connectivity
-	download_netspeed = 0
-	// Speed defines are found in misc.dm
-	switch(ntnet_status)
-		if(1)
-			download_netspeed = NTNETSPEED_LOWSIGNAL
-		if(2)
-			download_netspeed = NTNETSPEED_HIGHSIGNAL
-		if(3)
-			download_netspeed = NTNETSPEED_ETHERNET
-	download_netspeed *= rand_between(1-netspeed_variance, 1+netspeed_variance)
-	download_netspeed = round(download_netspeed, 0.001)
-	download_completion += download_netspeed
+	if(!downloaded_file)
+		return
 
-/datum/computer_file/program/ntnetdownload/Topic(href, href_list)
+	// Download speed according to connectivity state. Network server is assumed to be on unlimited speed so we're limited by our local connectivity
+	// Allow speed to vary 15% up or down
+	update_netspeed(speed_variance=15)
+	download_completion = min(download_completion + ntnet_speed, downloaded_file.size)
+
+/datum/computer_file/program/downloader/Topic(href, href_list)
 	if(..())
 		return 1
 	if(href_list["PRG_downloadfile"])
@@ -137,7 +125,6 @@
 	if(href_list["PRG_reseterror"])
 		if(downloaderror)
 			download_completion = 0
-			download_netspeed = 0
 			downloaded_file = null
 			downloaderror = ""
 		return 1
@@ -151,15 +138,15 @@
 
 	if(href_list["download_stop"])
 		if(downloaded_file)
-			abort_file_download()
+			end_file_download(abort=TRUE)
 		return 1
 	return 0
 
 /datum/nano_module/program/computer_ntnetdownload
-	name = "Network Downloader"
+	name = "Software Download Tool"
 	var/obj/item/modular_computer/my_computer = null
 
-/datum/nano_module/program/computer_ntnetdownload/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_ntnetdownload/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	if(program)
 		my_computer = program.computer
 
@@ -167,7 +154,7 @@
 		return
 
 	var/list/data = list()
-	var/datum/computer_file/program/ntnetdownload/prog = program
+	var/datum/computer_file/program/downloader/prog = program
 	// For now limited to execution by the downloader program
 	if(!prog || !istype(prog))
 		return
@@ -181,7 +168,7 @@
 		data["downloadname"] = prog.downloaded_file.filename
 		data["downloaddesc"] = prog.downloaded_file.filedesc
 		data["downloadsize"] = prog.downloaded_file.size
-		data["downloadspeed"] = prog.download_netspeed
+		data["downloadspeed"] = prog.ntnet_speed
 		data["downloadcompletion"] = round(prog.download_completion, 0.01)
 
 	data["download_paused"] = prog.download_paused
@@ -216,7 +203,7 @@
 		// Only those programs our user can run will show in the list
 		if(!P.can_run(user) && P.requires_access_to_download)
 			continue
-		if(!P.is_supported_by_hardware(my_computer.hardware_flag, 1, user))
+		if(!P.is_supported_by_hardware(my_computer, user))
 			continue
 		all_entries.Add(list(list(
 		"filename" = P.filename,
@@ -246,7 +233,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "ntnet_downloader.tmpl", "NTNet Download Program", 600, 700, state = state)
+		ui = new(user, src, ui_key, "mpc_downloader.tmpl", name, 600, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

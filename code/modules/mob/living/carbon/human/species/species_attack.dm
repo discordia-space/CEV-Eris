@@ -18,7 +18,7 @@
 /datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 
-	attack_damage = Clamp(attack_damage, 1, 5)
+	attack_damage = CLAMP(attack_damage, 1, 5)
 
 	if(target == user)
 		user.visible_message(SPAN_DANGER("[user] [pick(attack_verb)] \himself in the [affecting.name]!"))

@@ -14,7 +14,7 @@
 	return MOVEMENT_STOP
 
 /datum/movement_handler/mob/relayed_movement/proc/AddAllowedMover(var/mover)
-	LAZYDISTINCTADD(allowed_movers, mover)
+	LAZYOR(allowed_movers, mover)
 
 /datum/movement_handler/mob/relayed_movement/proc/RemoveAllowedMover(var/mover)
 	LAZYREMOVE(allowed_movers, mover)
@@ -100,7 +100,7 @@
 // Space movement
 /datum/movement_handler/mob/space/DoMove(var/direction, var/mob/mover)
 	if(!mob.check_gravity())
-		var/allowmove = mob.allow_spacemove(0)
+		var/allowmove = mob.allow_spacemove()
 		if(!allowmove)
 			return MOVEMENT_HANDLED
 		else if(allowmove == -1 && mob.handle_spaceslipping()) //Check to see if we slipped
@@ -113,7 +113,7 @@
 		return MOVEMENT_PROCEED
 
 	if(!mob.check_gravity())
-		if(!mob.allow_spacemove(0))
+		if(!mob.allow_spacemove())
 			return MOVEMENT_STOP
 	return MOVEMENT_PROCEED
 
@@ -175,7 +175,13 @@
 	if (overflow > 1 || overflow < 0)
 		overflow = 0
 
-	var/delay = mob.movement_delay() - overflow
+	var/mob_delay = max(MOVE_DELAY_MIN, mob.movement_delay())
+	if(isliving(mob))
+		var/mob/living/L = mob
+		if(L.is_ventcrawling)
+			mob_delay = MOVE_DELAY_VENTCRAWL
+
+	var/delay = mob_delay - overflow
 	SetDelay(delay)
 
 
@@ -311,32 +317,12 @@
 	. = 0
 	// TODO: Look into making grabs use movement events instead, this is a mess.
 	for (var/obj/item/weapon/grab/G in mob)
-		//. = max(., G.grab_slowdown())	// TODO: Bay grab system
 		. = max(., G.slowdown)
-		var/list/L = mob.ret_grab()
-		if(istype(L, /list))
-			if(L.len == 2)
-				L -= mob
-				var/mob/M = L[1]
-				if(M)
-					if (get_dist(old_turf, M) <= 1)
-						if (isturf(M.loc) && isturf(mob.loc))
-							if (mob.loc != old_turf && M.loc != mob.loc)
-								step(M, get_dir(M.loc, old_turf))
-			else
-				for(var/mob/M in L)
-					M.other_mobs = 1
-					if(mob != M)
-						M.animate_movement = 3
-				for(var/mob/M in L)
-					spawn( 0 )
-						step(M, direction)
-						return
-					spawn( 1 )
-						M.other_mobs = null
-						M.animate_movement = 2
-						return
-			G.adjust_position()
+		var/mob/M = G.affecting
+		if(M && get_dist(old_turf, M) <= 1)
+			if (isturf(M.loc) && isturf(mob.loc) && mob.loc != old_turf && M.loc != mob.loc)
+				step(M, get_dir(M.loc, old_turf))
+		G.adjust_position()
 
 /mob/proc/AdjustMovementDirection(var/direction)
 	. = direction

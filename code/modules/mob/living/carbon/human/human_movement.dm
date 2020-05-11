@@ -15,9 +15,12 @@
 
 
 	var/health_deficiency = (maxHealth - health)
+	var/hunger_deficiency = (max_nutrition - nutrition) //400 = max for humans.
+	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
+
 	if (!(species && (species.flags & NO_PAIN)))
-		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+		if(halloss >= 10) tally += (halloss / 20) //halloss shouldn't slow you down if you can't even feel it
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
 		tally += 1 //Small slowdown so wheelchairs aren't turbospeed
@@ -29,15 +32,17 @@
 
 	if(shock_stage >= 10) tally += 3
 
-	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
+	if(stats.getPerk(/datum/perk/timeismoney)?.is_active())
+		tally -= 2
+
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
-	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+	tally += stance_damage // missing/damaged legs or augs affect speed
 
 	return tally
 
 
-/mob/living/carbon/human/allow_spacemove(var/check_drift = 0)
+/mob/living/carbon/human/allow_spacemove()
 	//Can we act?
 	if(restrained())	return 0
 
@@ -45,20 +50,13 @@
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
-		//The cost for stabilization is paid later
-		if (check_drift)
+		if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
 			if (thrust.stabilization_on)
-				inertia_dir = 0
 				return TRUE
-			return FALSE
-		else if(thrust.allow_thrust(JETPACK_MOVE_COST, src))
-			inertia_dir = 0
-			return TRUE
+			return -1
 
 	//If no working jetpack then use the other checks
-	. = ..()
-
-
+	return ..()
 
 /mob/living/carbon/human/slip_chance(var/prob_slip = 5)
 	if(!..())

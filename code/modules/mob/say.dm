@@ -23,7 +23,7 @@
 	set name = "Say"
 	set hidden = TRUE
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 	set_typing_indicator(FALSE)
 	usr.say(message)
@@ -47,7 +47,7 @@
 	set hidden = TRUE
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
 	message = sanitize(message)
@@ -60,19 +60,19 @@
 
 /mob/proc/say_dead(var/message)
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << SPAN_DANGER("Speech is currently admin-disabled.")
+		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << SPAN_DANGER("Deadchat is globally muted.")
+			to_chat(src, SPAN_DANGER("Deadchat is globally muted."))
 			return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		usr << SPAN_DANGER("You have deadchat muted.")
+		to_chat(usr, SPAN_DANGER("You have deadchat muted."))
 		return
 
-	say_dead_direct("[pick("complains", "moans", "whines", "laments", "blubbers")], <span class='message'>\"[message]\"</span>", src)
+	say_dead_direct("[pick("complains", "moans", "whines", "laments", "blubbers")], <span class='message'>\"[emoji_parse(message)]\"</span>", src)
 
 /mob/proc/say_understands(var/mob/other, var/datum/language/speaking = null)
 
@@ -153,8 +153,8 @@
 	if(length(message) >= 1 && copytext(message,1,2) == get_prefix_key(/decl/prefix/radio_main_channel))
 		return standard_mode
 
-	if(length(message) >= 2)
-		var/channel_prefix =  sanitize_key(copytext(message, 1, 3))
+	if(length(message) >= 2 && copytext(message,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection))
+		var/channel_prefix =  copytext(message, 2, 3)
 		return department_radio_keys[channel_prefix]
 
 	return null
@@ -167,7 +167,7 @@
 		return all_languages["Noise"]
 
 	if(length(message) >= 2 && is_language_prefix(prefix))
-		var/language_prefix = sanitize_key(copytext(message, 2, 3))
+		var/language_prefix = copytext(message, 2, 3)
 		var/datum/language/L = language_keys[language_prefix]
 		if(can_speak(L))
 			return L

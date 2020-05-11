@@ -14,10 +14,16 @@
 
 
 /obj/item/mecha_parts/chassis
-	name="Mecha Chassis"
+	name = "Mecha Chassis"
 	icon_state = "backbone"
 	var/datum/construction/construct
+	var/construct_type
 	flags = CONDUCT
+
+/obj/item/mecha_parts/chassis/Initialize()
+	. = ..()
+	if(construct_type)
+		construct = new construct_type(src)
 
 /obj/item/mecha_parts/chassis/Destroy()
 	QDEL_NULL(construct)
@@ -35,165 +41,157 @@
 
 /obj/item/mecha_parts/chassis/ripley
 	name = "Ripley Chassis"
+	construct_type = /datum/construction/mecha/ripley_chassis
+	matter = list(MATERIAL_STEEL = 30)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/ripley_chassis(src)
+
+/obj/item/mecha_parts/chassis/ripley/firefighter
+	name = "Firefighter Chassis"
+	construct_type = /datum/construction/mecha/firefighter_chassis
+
 
 /obj/item/mecha_parts/part/ripley_torso
-	name="Ripley Torso"
-	desc="A torso part of Ripley APLU. Contains power unit, processing core and life support systems."
+	name = "Ripley Torso"
+	desc = "A torso part of Ripley APLU. Contains power unit, processing core and life support systems."
 	icon_state = "ripley_harness"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 40, MATERIAL_GLASS = 25)
 
 /obj/item/mecha_parts/part/ripley_left_arm
-	name="Ripley Left Arm"
-	desc="A Ripley APLU left arm. Data and power sockets are compatible with most exosuit tools."
+	name = "Ripley Left Arm"
+	desc = "A Ripley APLU left arm. Data and power sockets are compatible with most exosuit tools."
 	icon_state = "ripley_l_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 18)
 
 /obj/item/mecha_parts/part/ripley_right_arm
-	name="Ripley Right Arm"
-	desc="A Ripley APLU right arm. Data and power sockets are compatible with most exosuit tools."
+	name = "Ripley Right Arm"
+	desc = "A Ripley APLU right arm. Data and power sockets are compatible with most exosuit tools."
 	icon_state = "ripley_r_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 18)
 
 /obj/item/mecha_parts/part/ripley_left_leg
-	name="Ripley Left Leg"
-	desc="A Ripley APLU left leg. Contains somewhat complex servodrives and balance maintaining systems."
+	name = "Ripley Left Leg"
+	desc = "A Ripley APLU left leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "ripley_l_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 18)
 
 /obj/item/mecha_parts/part/ripley_right_leg
-	name="Ripley Right Leg"
-	desc="A Ripley APLU right leg. Contains somewhat complex servodrives and balance maintaining systems."
+	name = "Ripley Right Leg"
+	desc = "A Ripley APLU right leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "ripley_r_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 18)
 
 ///////// Gygax
 
 /obj/item/mecha_parts/chassis/gygax
 	name = "Gygax Chassis"
+	construct_type = /datum/construction/mecha/gygax_chassis
+	matter = list(MATERIAL_STEEL = 30)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/gygax_chassis(src)
 
 /obj/item/mecha_parts/part/gygax_torso
-	name="Gygax Torso"
-	desc="A torso part of Gygax. Contains power unit, processing core and life support systems. Has an additional equipment slot."
+	name = "Gygax Torso"
+	desc = "A torso part of Gygax. Contains power unit, processing core and life support systems. Has an additional equipment slot."
 	icon_state = "gygax_harness"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_BIO = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 25)
 
 /obj/item/mecha_parts/part/gygax_head
-	name="Gygax Head"
-	desc="A Gygax head. Houses advanced surveilance and targeting sensors."
+	name = "Gygax Head"
+	desc = "A Gygax head. Houses advanced surveilance and targeting sensors."
 	icon_state = "gygax_head"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_MAGNET = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_GLASS = 10)
 
 /obj/item/mecha_parts/part/gygax_left_arm
-	name="Gygax Left Arm"
-	desc="A Gygax left arm. Data and power sockets are compatible with most exosuit tools and weapons."
+	name = "Gygax Left Arm"
+	desc = "A Gygax left arm. Data and power sockets are compatible with most exosuit tools and weapons."
 	icon_state = "gygax_l_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mecha_parts/part/gygax_right_arm
-	name="Gygax Right Arm"
-	desc="A Gygax right arm. Data and power sockets are compatible with most exosuit tools and weapons."
+	name = "Gygax Right Arm"
+	desc = "A Gygax right arm. Data and power sockets are compatible with most exosuit tools and weapons."
 	icon_state = "gygax_r_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mecha_parts/part/gygax_left_leg
-	name="Gygax Left Leg"
+	name = "Gygax Left Leg"
 	icon_state = "gygax_l_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mecha_parts/part/gygax_right_leg
-	name="Gygax Right Leg"
+	name = "Gygax Right Leg"
 	icon_state = "gygax_r_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mecha_parts/part/gygax_armour
-	name="Gygax Armour Plates"
+	name = "Gygax Armour Plates"
 	icon_state = "gygax_armour"
 	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 4, TECH_ENGINEERING = 5)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_DIAMOND = 10)
 
 
 //////////// Durand
 
 /obj/item/mecha_parts/chassis/durand
 	name = "Durand Chassis"
+	construct_type = /datum/construction/mecha/durand_chassis
+	matter = list(MATERIAL_STEEL = 30)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/durand_chassis(src)
 
 /obj/item/mecha_parts/part/durand_torso
-	name="Durand Torso"
+	name = "Durand Torso"
 	icon_state = "durand_harness"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_BIO = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 50, MATERIAL_GLASS = 10, MATERIAL_SILVER = 10)
 
 /obj/item/mecha_parts/part/durand_head
-	name="Durand Head"
+	name = "Durand Head"
 	icon_state = "durand_head"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 10, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/durand_left_arm
-	name="Durand Left Arm"
+	name = "Durand Left Arm"
 	icon_state = "durand_l_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/durand_right_arm
-	name="Durand Right Arm"
+	name = "Durand Right Arm"
 	icon_state = "durand_r_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/durand_left_leg
-	name="Durand Left Leg"
+	name = "Durand Left Leg"
 	icon_state = "durand_l_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/durand_right_leg
-	name="Durand Right Leg"
+	name = "Durand Right Leg"
 	icon_state = "durand_r_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
+	matter = list(MATERIAL_STEEL = 30, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/durand_armour
-	name="Durand Armour Plates"
+	name = "Durand Armour Plates"
 	icon_state = "durand_armour"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 4, TECH_ENGINEERING = 5)
+	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 10)
 
 
 
-////////// Firefighter
-
-/obj/item/mecha_parts/chassis/firefighter
-	name = "Firefighter Chassis"
-
-	New()
-		..()
-		construct = new /datum/construction/mecha/firefighter_chassis(src)
-/*
-/obj/item/mecha_parts/part/firefighter_torso
-	name="Ripley-on-Fire Torso"
-	icon_state = "ripley_harness"
-
-/obj/item/mecha_parts/part/firefighter_left_arm
-	name="Ripley-on-Fire Left Arm"
-	icon_state = "ripley_l_arm"
-
-/obj/item/mecha_parts/part/firefighter_right_arm
-	name="Ripley-on-Fire Right Arm"
-	icon_state = "ripley_r_arm"
-
-/obj/item/mecha_parts/part/firefighter_left_leg
-	name="Ripley-on-Fire Left Leg"
-	icon_state = "ripley_l_leg"
-
-/obj/item/mecha_parts/part/firefighter_right_leg
-	name="Ripley-on-Fire Right Leg"
-	icon_state = "ripley_r_leg"
-*/
 
 ////////// Phazon
 //origin_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 4, TECH_ENGINEERING = 5)
@@ -201,87 +199,98 @@
 /obj/item/mecha_parts/chassis/phazon
 	name = "Phazon Chassis"
 	origin_tech = list(TECH_MATERIAL =7)
+	construct_type = /datum/construction/mecha/phazon_chassis
+	matter = list(MATERIAL_STEEL = 25)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/phazon_chassis(src)
 
 /obj/item/mecha_parts/part/phazon_torso
-	name="Phazon Torso"
+	name = "Phazon Torso"
 	icon_state = "phazon_harness"
 	origin_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 7, TECH_DATA = 7, TECH_POWER = 7)
+	matter = list(MATERIAL_STEEL = 35, MATERIAL_GLASS = 10, MATERIAL_PLASMA = 20)
 
 /obj/item/mecha_parts/part/phazon_head
-	name="Phazon Head"
+	name = "Phazon Head"
 	icon_state = "phazon_head"
-	origin_tech = list(TECH_MATERIAL =5, TECH_BLUESPACE = 2, TECH_MAGNET = 6, TECH_DATA = 6)
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 6, TECH_DATA = 6)
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_GLASS = 5, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 30)
 
 /obj/item/mecha_parts/part/phazon_left_arm
-	name="Phazon Left Arm"
+	name = "Phazon Left Arm"
 	icon_state = "phazon_l_arm"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/phazon_right_arm
-	name="Phazon Right Arm"
+	name = "Phazon Right Arm"
 	icon_state = "phazon_r_arm"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/phazon_left_leg
-	name="Phazon Left Leg"
+	name = "Phazon Left Leg"
 	icon_state = "phazon_l_leg"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3)
-/obj/item/mecha_parts/part/phazon_right_leg
-	name="Phazon Right Leg"
-	icon_state = "phazon_r_leg"
-	origin_tech = list(TECH_MATERIAL = 5,TECH_BLUESPACE = 2, TECH_MAGNET = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 3)
 
+/obj/item/mecha_parts/part/phazon_right_leg
+	name = "Phazon Right Leg"
+	icon_state = "phazon_r_leg"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 3)
 
 /obj/item/mecha_parts/part/phazon_armor
-	name="Phazon Right Armour"
+	name = "Phazon Armor"
 	icon_state = "phazon_armor"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 3, TECH_MAGNET = 3)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 10, MATERIAL_URANIUM = 10, MATERIAL_SILVER = 10, MATERIAL_DIAMOND = 5)
 
 ///////// Odysseus
 
 
 /obj/item/mecha_parts/chassis/odysseus
 	name = "Odysseus Chassis"
+	construct_type = /datum/construction/mecha/odysseus_chassis
+	matter = list(MATERIAL_STEEL = 25)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/odysseus_chassis(src)
 
 /obj/item/mecha_parts/part/odysseus_head
-	name="Odysseus Head"
+	name = "Odysseus Head"
 	icon_state = "odysseus_head"
 	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 2)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 15)
 
 /obj/item/mecha_parts/part/odysseus_torso
-	name="Odysseus Torso"
-	desc="A torso part of Odysseus. Contains power unit, processing core and life support systems."
+	name = "Odysseus Torso"
+	desc = "A torso part of Odysseus. Contains power unit, processing core and life support systems."
 	icon_state = "odysseus_torso"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_BIO = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 20)
 
 /obj/item/mecha_parts/part/odysseus_left_arm
-	name="Odysseus Left Arm"
-	desc="An Odysseus left arm. Data and power sockets are compatible with most exosuit tools."
+	name = "Odysseus Left Arm"
+	desc = "An Odysseus left arm. Data and power sockets are compatible with most exosuit tools."
 	icon_state = "odysseus_l_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 12)
 
 /obj/item/mecha_parts/part/odysseus_right_arm
-	name="Odysseus Right Arm"
-	desc="An Odysseus right arm. Data and power sockets are compatible with most exosuit tools."
+	name = "Odysseus Right Arm"
+	desc = "An Odysseus right arm. Data and power sockets are compatible with most exosuit tools."
 	icon_state = "odysseus_r_arm"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 12)
 
 /obj/item/mecha_parts/part/odysseus_left_leg
-	name="Odysseus Left Leg"
-	desc="An Odysseus left leg. Contains somewhat complex servodrives and balance maintaining systems."
+	name = "Odysseus Left Leg"
+	desc = "An Odysseus left leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "odysseus_l_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 12)
 
 /obj/item/mecha_parts/part/odysseus_right_leg
-	name="Odysseus Right Leg"
-	desc="A Odysseus right leg. Contains somewhat complex servodrives and balance maintaining systems."
+	name = "Odysseus Right Leg"
+	desc = "A Odysseus right leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "odysseus_r_leg"
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	matter = list(MATERIAL_STEEL = 12)

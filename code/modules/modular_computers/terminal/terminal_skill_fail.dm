@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(terminal_fails, init_subtypes(/datum/terminal_skill_fail))
 	message = "System log backup successful. Chosen method: email attachment. Recipients: all."
 
 /datum/terminal_skill_fail/random_ban/email_logs/execute()
-	var/datum/computer_file/data/email_account/server = ntnet_global.find_email_by_name(EMAIL_DOCUMENTS)
+	var/datum/computer_file/data/email_account/server = ntnet_global.find_email_by_login(EMAIL_DOCUMENTS)
 	for(var/datum/computer_file/data/email_account/email in ntnet_global.email_accounts)
 		if(!email.can_login || email.suspended)
 			continue

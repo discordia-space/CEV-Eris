@@ -92,7 +92,7 @@
 	var/s_block = c_airblock(src)
 	if(s_block & AIR_BLOCKED)
 		#ifdef ZASDBG
-		if(verbose) world << "Self-blocked."
+		if(verbose) to_chat(world, "Self-blocked.")
 		//dbg(blocked)
 		#endif
 		if(zone)
@@ -124,7 +124,7 @@
 		if(block & AIR_BLOCKED)
 
 			#ifdef ZASDBG
-			if(verbose) world << "[d] is blocked."
+			if(verbose) to_chat(world, "[d] is blocked.")
 			//unsim.dbg(air_blocked, turn(180,d))
 			#endif
 
@@ -134,7 +134,7 @@
 		if(r_block & AIR_BLOCKED)
 
 			#ifdef ZASDBG
-			if(verbose) world << "[d] is blocked."
+			if(verbose) to_chat(world, "[d] is blocked.")
 			//dbg(air_blocked, d)
 			#endif
 
@@ -165,7 +165,7 @@
 					//    we are blocking them and not blocking ourselves - this prevents tiny zones from forming on doorways.
 					if(((block & ZONE_BLOCKED) && !(r_block & ZONE_BLOCKED)) || ((r_block & ZONE_BLOCKED) && !(s_block & ZONE_BLOCKED)))
 						#ifdef ZASDBG
-						if(verbose) world << "[d] is zone blocked."
+						if(verbose) to_chat(world, "[d] is zone blocked.")
 						//dbg(zone_blocked, d)
 						#endif
 
@@ -179,22 +179,22 @@
 
 						#ifdef ZASDBG
 						dbg(assigned)
-						if(verbose) world << "Added to [zone]"
+						if(verbose) to_chat(world, "Added to [zone]")
 						#endif
 
 				else if(sim.zone != zone)
 
 					#ifdef ZASDBG
-					if(verbose) world << "Connecting to [sim.zone]"
+					if(verbose) to_chat(world, "Connecting to [sim.zone]")
 					#endif
 
 					SSair.connect(src, sim)
 
 
 			#ifdef ZASDBG
-				else if(verbose) world << "[d] has same zone."
+				else if(verbose) to_chat(world, "[d] has same zone.")
 
-			else if(verbose) world << "[d] has invalid zone."
+			else if(verbose) to_chat(world, "[d] has invalid zone.")
 			#endif
 
 		else
@@ -295,3 +295,23 @@
 	if(!air) air = new/datum/gas_mixture
 	air.copy_from(zone.air)
 	air.group_multiplier = 1
+
+
+// LINDA proc placeholder, used for compatibility with some tgstation code
+/turf/proc/GetAtmosAdjacentTurfs(alldir = FALSE)
+	var/check_dirs
+	if(alldir)
+		check_dirs = alldirs
+	else
+		check_dirs = cardinal
+
+	var/list/adjacent_turfs = list()
+
+	for(var/direction in check_dirs)
+		var/turf/T = get_step(src, direction)
+		if(!T)
+			continue
+		if(src.CanPass(null, T, 1.5, TRUE))
+			adjacent_turfs += T
+
+	return adjacent_turfs

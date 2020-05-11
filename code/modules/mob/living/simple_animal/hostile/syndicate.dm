@@ -68,14 +68,14 @@
 			visible_message("\red \b [src] blocks the [O] with its shield! ")
 		//user.do_attack_animation(src)
 	else
-		usr << "\red This weapon is ineffective, it does no damage."
+		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 		visible_message("\red [user] gently taps [src] with the [O]. ")
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(65))
-		src.health -= Proj.damage
+		..()
 	else
 		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
 	return 0
@@ -96,16 +96,16 @@
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
-/mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove(var/check_drift = 0)
-	return
+/mob/living/simple_animal/hostile/syndicate/melee/space/allow_spacemove()
+	return ..()
 
 /mob/living/simple_animal/hostile/syndicate/ranged
 	ranged = 1
 	rapid = 1
 	icon_state = "syndicateranged"
-	casingtype = /obj/item/ammo_casing/a10mm
+	casingtype = /obj/item/ammo_casing/pistol
 	projectilesound = 'sound/weapons/Gunshot_light.ogg'
-	projectiletype = /obj/item/projectile/bullet/a10mm
+	projectiletype = /obj/item/projectile/bullet/pistol
 
 	weapon1 = /obj/item/weapon/gun/projectile/automatic/c20r
 
@@ -124,8 +124,8 @@
 	corpse = /obj/landmark/corpse/syndicatecommando
 	speed = 0
 
-/mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove(var/check_drift = 0)
-	return
+/mob/living/simple_animal/hostile/syndicate/ranged/space/allow_spacemove()
+	return ..()
 
 
 

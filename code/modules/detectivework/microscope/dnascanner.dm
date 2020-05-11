@@ -18,11 +18,11 @@
 /obj/machinery/dnaforensics/attackby(var/obj/item/W, mob/user as mob)
 
 	if(bloodsamp)
-		user << SPAN_WARNING("There is already a sample in the machine.")
+		to_chat(user, SPAN_WARNING("There is already a sample in the machine."))
 		return
 
 	if(closed)
-		user << SPAN_WARNING("Open the cover before inserting the sample.")
+		to_chat(user, SPAN_WARNING("Open the cover before inserting the sample."))
 		return
 
 	var/obj/item/weapon/forensics/swab/swab = W
@@ -30,12 +30,12 @@
 		user.unEquip(W)
 		src.bloodsamp = swab
 		swab.loc = src
-		user << SPAN_NOTICE("You insert \the [W] into \the [src].")
+		to_chat(user, SPAN_NOTICE("You insert \the [W] into \the [src]."))
 	else
-		user << SPAN_WARNING("\The [src] only accepts used swabs.")
+		to_chat(user, SPAN_WARNING("\The [src] only accepts used swabs."))
 		return
 
-/obj/machinery/dnaforensics/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null)
+/obj/machinery/dnaforensics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(stat & (NOPOWER)) return
 	if(user.stat || user.restrained()) return
 	var/list/data = list()
@@ -67,12 +67,12 @@
 				if(closed == 1)
 					scanner_progress = 0
 					scanning = 1
-					usr << SPAN_NOTICE("Scan initiated.")
+					to_chat(usr, SPAN_NOTICE("Scan initiated."))
 					update_icon()
 				else
-					usr << SPAN_NOTICE("Please close sample lid before initiating scan.")
+					to_chat(usr, SPAN_NOTICE("Please close sample lid before initiating scan."))
 			else
-				usr << SPAN_WARNING("Insert an item to scan.")
+				to_chat(usr, SPAN_WARNING("Insert an item to scan."))
 
 	if(href_list["ejectItem"])
 		if(bloodsamp)
@@ -122,10 +122,7 @@
 		update_icon()
 	return
 
-/obj/machinery/dnaforensics/attack_ai(mob/user as mob)
-	ui_interact(user)
-
-/obj/machinery/dnaforensics/attack_hand(mob/user as mob)
+/obj/machinery/dnaforensics/attack_hand(mob/user)
 	ui_interact(user)
 
 /obj/machinery/dnaforensics/verb/toggle_lid()
@@ -137,7 +134,7 @@
 		return
 
 	if(scanning)
-		usr << SPAN_WARNING("You can't do that while [src] is scanning!")
+		to_chat(usr, SPAN_WARNING("You can't do that while [src] is scanning!"))
 		return
 
 	closed = !closed

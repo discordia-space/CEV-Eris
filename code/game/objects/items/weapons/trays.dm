@@ -32,7 +32,7 @@
 
 
 	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		M << SPAN_WARNING("You accidentally slam yourself with the [src]!")
+		to_chat(M, SPAN_WARNING("You accidentally slam yourself with the [src]!"))
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		if(prob(50))
@@ -81,7 +81,7 @@
 			break
 
 	if(protected)
-		M << SPAN_WARNING("You get slammed in the face with the tray, against your mask!")
+		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray, against your mask!"))
 		if(prob(33))
 			src.add_blood(H)
 			if (H.wear_mask)
@@ -111,7 +111,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		M << SPAN_WARNING("You get slammed in the face with the tray!")
+		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray!"))
 		if(prob(33))
 			src.add_blood(M)
 			var/turf/location = H.loc

@@ -3,7 +3,7 @@
 	var/alt_name = ""
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
 	message = sanitize(message)
@@ -11,7 +11,7 @@
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)
-			src << "\red You cannot whisper (muted)."
+			to_chat(src, "\red You cannot whisper (muted).")
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
@@ -23,8 +23,8 @@
 	if (src.stat)
 		return
 
-	if(name != GetVoice())
-		alt_name = "(as [get_id_name("Unknown")])"
+	if(name != rank_prefix_name(GetVoice()))
+		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
 	//parse the language code and consume it
 	var/datum/language/speaking = parse_language(message)
@@ -38,7 +38,7 @@
 /mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
 
 	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/weapon/grenade))
-		src << SPAN_DANGER("You're muzzled and cannot speak!")
+		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
 		return
 
 	var/message_range = 1
@@ -58,7 +58,7 @@
 	else
 		not_heard = "[verb] something" //TODO get rid of the null language and just prevent speech if language is null
 
-	message = capitalize_cp1251(trim(message))
+	message = trim(message)
 
 	if(speech_problem_flag)
 		var/list/handle_r = handle_speech_problems(message)
@@ -129,7 +129,7 @@
 	for (var/obj/O in view(message_range, src))
 		spawn (0)
 			if (O)
-				O.hear_talk(src, message, verb, speaking)
+				O.hear_talk(src, message, verb, speaking, 1)
 
 	var/list/eavesdropping = hearers(eavesdropping_range, src)
 	eavesdropping -= src
@@ -143,17 +143,22 @@
 	//now mobs
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
-	spawn(30) qdel(speech_bubble)
+	QDEL_IN(speech_bubble, 30)
 
+	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		M << speech_bubble
+		if(M.client)
+			speech_bubble_recipients |= M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src)
 
 	if (eavesdropping.len)
 		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
 		for(var/mob/M in eavesdropping)
-			M << speech_bubble
+			if(M.client)
+				speech_bubble_recipients |= M.client
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
+
+	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	if (watching.len)
 		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> [not_heard].</span>"

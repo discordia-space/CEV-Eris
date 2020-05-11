@@ -32,7 +32,7 @@
 /datum/ritual/targeted/cruciform/inquisitor/penance
 	name = "Penance"
 	phrase = "Mihi vindicta \[Target human]"
-	desc = "Imparts extreme pain on the target disciple. Does no actual harm.."
+	desc = "Imparts extreme pain on the target disciple. Does no actual harm."
 	power = 35
 
 /datum/ritual/targeted/cruciform/inquisitor/penance/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
@@ -49,7 +49,8 @@
 
 	var/mob/living/M = CI.wearer
 
-	M << SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity.")
+	log_and_message_admins(" inflicted pain on [CI.wearer] with penance litany")
+	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
 
 
 	var/datum/effect/effect/system/spark_spread/s = new
@@ -63,7 +64,7 @@
 /datum/ritual/targeted/cruciform/inquisitor/penance/process_target(var/index, var/obj/item/weapon/implant/core_implant/target, var/text)
 	target.update_address()
 	if(index == 1 && target.address == text)
-		if(target.wearer && (target.loc && target.locs[1] in view()))
+		if(target.wearer && (target.loc && (target.locs[1] in view())))
 			return target
 
 
@@ -79,7 +80,7 @@
 	desc = "Bound believer to your will."
 
 /datum/ritual/cruciform/inquisitor/obey/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 
@@ -117,7 +118,8 @@
 	power = 25 //Healing yourself is slightly easier than healing someone else
 
 /datum/ritual/cruciform/inquisitor/selfheal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C,list/targets)
-	H << "<span class='info'>A sensation of relief bathes you, washing away your pain</span>"
+	to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
+	log_and_message_admins("healed himself with convalescence litany")
 	H.add_chemical_effect(CE_PAINKILLER, 20)
 	H.adjustBruteLoss(-20)
 	H.adjustFireLoss(-20)
@@ -142,7 +144,7 @@
 	power = 35
 
 /datum/ritual/cruciform/inquisitor/heal_other/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI || !CI.active || !CI.wearer)
 		fail("Cruciform not found.", user, C)
@@ -159,7 +161,7 @@
 	//Checking turfs allows this to be done in unusual circumstances, like if both are inside the same mecha
 	var/turf/T = get_turf(user)
 	if (!(T.Adjacent(get_turf(H))))
-		user << SPAN_DANGER("[H] is beyond your reach..")
+		to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
 		return
 
 
@@ -167,9 +169,10 @@
 	if (do_after(user, 40, H, TRUE))
 		T = get_turf(user)
 		if (!(T.Adjacent(get_turf(H))))
-			user << SPAN_DANGER("[H] is beyond your reach..")
+			to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
 			return
-		H << "<span class='info'>A sensation of relief bathes you, washing away your pain</span>"
+		log_and_message_admins(" healed [CI.wearer] with Succour litany")
+		to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
 		H.add_chemical_effect(CE_PAINKILLER, 20)
 		H.adjustBruteLoss(-20)
 		H.adjustFireLoss(-20)
@@ -201,8 +204,8 @@
 	if(user == M)
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
-
-	M << SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you...")
+	log_and_message_admins("looks through the eyes of [C] with scrying litany")
+	to_chat(M, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
 
 	var/mob/observer/eye/god/eye = new/mob/observer/eye/god(M)
 	eye.target = M
@@ -242,10 +245,11 @@
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
 
-	var/text = input(user, "What message will you send to the target? The message will be recieved telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as (text|null)
+	var/text = input(user, "What message will you send to the target? The message will be recieved telepathically and they will not know who it is from unless you reveal yourself.", "Sending a message") as text|null
 	if (!text)
 		return
-	H << "<span class='notice'>A voice speaks in your mind: \"[text]\"</span>"
+	log_and_message_admins("sent a message to [H] with text \"[text]\"")
+	to_chat(H, "<span class='notice'>A voice speaks in your mind: \"[text]\"</span>")
 
 
 
@@ -259,7 +263,7 @@
 	power = 100
 
 /datum/ritual/cruciform/inquisitor/initiation/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
-	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user)
+	var/obj/item/weapon/implant/core_implant/CI = get_implant_from_victim(user, /obj/item/weapon/implant/core_implant/cruciform)
 
 	if(!CI || !CI.wearer || !ishuman(CI.wearer) || !CI.active)
 		fail("Cruciform not found",user,C)
@@ -277,6 +281,7 @@
 		return FALSE
 
 	PC.activate()
+	log_and_message_admins("promoted disciple [C] to Preacher with initiation litany")
 
 	return TRUE
 
@@ -293,10 +298,10 @@
 
 	if(I && I.uplink)
 		I.telecrystals = I.uplink.uses
-		user << "<span class='info'>You have [I.telecrystals] telecrystals.</span>"
+		to_chat(user, "<span class='info'>You have [I.telecrystals] telecrystals.</span>")
 		return FALSE
 	else
-		user << "<span class='info'>You have no uplink.</span>"
+		to_chat(user, "<span class='info'>You have no uplink.</span>")
 		return FALSE
 
 

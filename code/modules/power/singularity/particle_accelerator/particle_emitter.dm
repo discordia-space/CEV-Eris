@@ -2,7 +2,7 @@
 
 /obj/structure/particle_accelerator/particle_emitter
 	name = "EM Containment Grid"
-	desc_holder = "This launchs the Alpha particles, might not want to stand near this end."
+	desc_holder = "This launches the Alpha particles. It's probably not safe to stand near this end."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "none"
 	var/fire_delay = 50

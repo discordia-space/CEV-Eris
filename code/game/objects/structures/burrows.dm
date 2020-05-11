@@ -3,19 +3,23 @@
 	all types, but mostly roaches, can travel from one burrow to another, bypassing all obstacles inbetween
 */
 /obj/structure/burrow
-	name = "burrow"
-	desc = "Some sort of hole that leads inside a wall. It's full of hardened resin and secretions. Collapsing this would require some heavy digging tools"
+	name = "cracks"
+	desc = "Cracks on the tile."
 	anchored = TRUE
 	density = FALSE
 	plane = FLOOR_PLANE
 	icon = 'icons/obj/burrows.dmi'
-	icon_state = "hole"
-	level = 1 //Apparently this is a magic constant for things to appear under floors. Should really be a define
+	icon_state = "cracks"
+	level = BELOW_PLATING_LEVEL
 	layer = ABOVE_NORMAL_TURF_LAYER
 
-	//Integrity is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
-	//Any failed attempt to collapse it will reduce the integrity, making future attempts easier
-	var/integrity = 100
+	//health is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
+	//Any failed attempt to collapse it will reduce the health, making future attempts easier
+	var/health = 100
+
+	var/isSealed = TRUE	// borrow spawns as cracks and becomes a hole when critters emerge
+
+	var/isRevealed = FALSE // when burrow is revealed it prevents interactions with turf and is not hiden anymore
 
 	//A list of the mobs that are near this hole, and considered to be living here.
 	//Since this list is updated infrequently, it stores refs instead of direct pointers, to prevent GC issues
@@ -25,6 +29,10 @@
 	//If true, this burrow is located in a maintenance tunnel. Most of them will be
 	//Ones located outside of maint are much less likely to be picked for migration
 	var/maintenance = FALSE
+
+	//If true, this burrow is located near NT obelisk.
+	//those are much less likely to be picked for migration due cool NT magic
+	var/obelisk_around = null
 
 
 	//Vars for migration
@@ -53,19 +61,31 @@
 /obj/structure/burrow/New(var/loc, var/turf/anchor)
 	.=..()
 	all_burrows.Add(src)
+	var/obj/machinery/power/nt_obelisk/obelisk = locate(/obj/machinery/power/nt_obelisk) in range(7, src)
+	if(obelisk && obelisk.active)
+		qdel(src)
+		return
 	if (anchor)
 		offset_to(anchor, 8)
-
-	life_scan()
 
 	//Hide burrows under floors
 	var/turf/simulated/floor/F = loc
 	if (istype(F))
 		F.levelupdate()
 
+	life_scan()
+
+	// apparently burrows should face walls
+	for (var/d in cardinal)
+		var/turf/T = get_step(F, d)
+		if (T.is_wall)
+			dir = d
+			break
+
 	var/area/A = get_area(src)
 	if (A && A.is_maintenance)
 		maintenance = TRUE
+		break_open(TRUE)
 
 //Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
@@ -100,8 +120,8 @@
 /*
 	Returns true/false to indicate if the passed mob is valid to be considered population for this burrow
 */
-/obj/structure/burrow/proc/is_valid(var/mob/living/L)
-	if (QDELETED(L))
+/obj/structure/burrow/proc/is_valid(mob/living/L)
+	if(QDELETED(L) || !istype(L))
 		return FALSE
 
 	//Dead mobs don't count
@@ -142,7 +162,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
 	The mobs it is to send should be placed inside it by the caller
 */
-/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 0, var/percentage = 1)
+/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 1, var/percentage = 1)
 	if (!_target)
 		return
 
@@ -154,6 +174,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 	if (!processing)
 		START_PROCESSING(SSobj, src)
+		processing = TRUE
 
 
 	//The time we started. Used for animations
@@ -186,7 +207,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		var/mob/living/L = locate(v) //Resolve the hex reference into a mob
 
 		//Check that it's still valid. Hasn't been deleted, etc
-		if (!is_valid(L))
+		if(!is_valid(L))
 			continue
 
 
@@ -194,6 +215,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		if (issuperioranimal(L))
 			//If its a superior animal, then we'll set their mob target to this burrow
 			var/mob/living/carbon/superior_animal/SA = L
+			SA.activate_ai()
 			SA.target_mob = src //Tell them to target this burrow
 			SA.stance = HOSTILE_STANCE_ATTACK //This should make them walk over and attack it
 
@@ -214,12 +236,16 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	duration = _duration
 	recieving = sender
 	START_PROCESSING(SSobj, src)
-
-
+	processing = TRUE
 
 
 
 /obj/structure/burrow/Process()
+	// Currently, STOP_PROCESSING does NOT instantly remove the object from processing queue
+	// This is a quick and dirty fix for runtime error spam caused by this
+	if(!processing)
+		return
+
 	//Burrows process when they are either sending or recieving mobs.
 	//One or the other, cant do both at once
 	var/progress = (world.time - migration_initiated) / duration
@@ -271,24 +297,15 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 			audio("crumble", progress*100)
 
 		//Do a shake animation each second that gets more intense the closer we are to emergence
-		if (invisibility)
+		// We shake florring only if burrow is still a cracks
+		if (!isRevealed)
 			var/turf/simulated/floor/F = loc
 			if (istype(F) && F.flooring)
 				//This should never be false
-
-				//If the current flooring is a plating, we shake that
-				if (!F.flooring.is_plating)
-					if (prob(25)) //Occasional impact sound of something trying to force its way through
-						audio("thud", progress*100)
-					F.shake_animation(progress * max_shake_intensity)
-					return
+				if (prob(25)) //Occasional impact sound of something trying to force its way through
+					audio("thud", progress*100)
+				F.shake_animation(progress * max_shake_intensity)
 		shake_animation(progress * max_shake_intensity)
-
-
-
-
-
-
 
 
 /obj/structure/burrow/proc/complete_migration()
@@ -372,8 +389,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 //Called when an area becomes uninhabitable
 /obj/structure/burrow/proc/evacuate(var/force_nonmaint = TRUE)
-	//We're already busy sending or recieving a migration, can't start another
-	if (target || recieving)
+	//We're already busy sending or recieving a migration, can't start another or closed
+	if (target || recieving || isSealed)
 		return
 
 	//Lets check there's anyone to evacuate
@@ -412,106 +429,129 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 
 //Called when things enter or leave this burrow
-//This proc destroys anything that blocks the entrance, ie floors and catwalks
-/obj/structure/burrow/proc/break_open()
-	var/turf/simulated/floor/F = loc
-	if (istype(F) && F.flooring)
-		//This should never be false
-
-		//If the current flooring isnt a plating, then it must be an overfloor, tiles, soil, whatever
-		if (!F.flooring.is_plating)
+/obj/structure/burrow/proc/break_open(var/silent = FALSE)
+	if(isSealed)
+		reveal()
+		isSealed = FALSE
+		invisibility = 0
+		icon_state = "hole"
+		name = "burrow"
+		desc = "Some sort of hole that leads inside a wall. It's full of hardened resin and secretions. Collapsing this would require some heavy digging tools"
+		var/turf/simulated/floor/F = loc
+		if (istype(F) && F.flooring)
+			//This should never be false
 			//Play a sound
-			audio('sound/effects/impacts/thud_break.ogg', 100)
-			F.ex_act(3)//Destroy the flooring
-			if (!F.flooring.is_plating) //If it survived hit it again
-				F.ex_act(3)
+			if(!silent)
+				audio('sound/effects/impacts/thud_break.ogg', 100)
 			spawn_rubble(loc, 1, 100)//And make some rubble
 
-		//Smash any catwalks blocking us
-		for (var/obj/structure/catwalk/C in loc)
-			C.ex_act(1)
-			spawn_rubble(loc, 1, 100)//And make some rubble
-
-
-//If underfloor, hide the burrow
-/obj/structure/burrow/hide(var/i)
-	invisibility = i ? 101 : 0
-
-/obj/structure/burrow/hides_under_flooring()
-	return TRUE
-
-
-/obj/structure/burrow/proc/exposed()
+/obj/structure/burrow/proc/reveal()
+	if(!isRevealed)
+		isRevealed = TRUE
+		level = ABOVE_PLATING_LEVEL
 	var/turf/simulated/floor/F = loc
-	if (istype(F) && F.flooring)
-		if (!F.flooring.is_plating)
-			return FALSE
-
-	return TRUE
+	if (istype(F))
+		F.levelupdate()
 
 /*****************************************************
 	Collapsing burrows. Slow and hard work, but failure will make the next attempt easier,
 	so you'll get it eventually.
-	Uses digging quality, and the total of user's robust+mechanical stats
+	Uses digging quality, and user's robust or mechanical stats
+
+	While burrow is still emerging (cracks) player can attempt to weld it
+	Hole can be closed easely with metal sheets
 
 	Breaking a hole with a crowbar is theoretically possible, but extremely slow and difficult. You are strongly
 	advised to use proper mining tools. A pickaxe or a drill will do the job in a reasonable time
 *****************************************************/
 /obj/structure/burrow/attackby(obj/item/I, mob/user)
-	if (!exposed())
-		user << SPAN_WARNING("You have to remove the floor to access the [src]!")
+	if(!isRevealed)
 		return
+	if(isSealed)
+		if (I.has_quality(QUALITY_WELDING))
+			user.visible_message("[user] attempts to weld [src] with the [I]", "You start welding [src] with the [I]")
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC) && isSealed)
+				user.visible_message("[user] welds [src] with the [I].", "You welds [src] with the [I].")
+				if(recieving)
+					if(prob(33))
+						qdel(src)
+					else	// false welding, critters will create new cracks
+						invisibility = 101
+						spawn(rand(3,10) SECONDS)
+							if(isSealed)
+								audio('sound/effects/impacts/thud_break.ogg', 100)
+								spawn_rubble(loc, 1, 100)//And make some rubble
+								invisibility = 0
+				else
+					qdel(src)
+	else
+		if(istype(I, /obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
+			var/obj/item/stack/G = I
 
-	if (I.has_quality(QUALITY_DIGGING))
-		user.visible_message("[user] starts breaking and collapsing [src] with the [I]", "You start breaking and collapsing [src] with the [I]")
+			user.visible_message("[user] starts covering [src] with the [I]", "You start covering [src] with the [I]")
+			if(do_after(user, 20, src))
+				if (G.use(1))
+					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					collapse(clean = TRUE)
+					return
 
-		//Attempting to collapse a burrow may trigger reinforcements.
-		//Not immediate so they will take some time to arrive.
-		//Enough time to finish one attempt at breaking the burrow.
-		//If you succeed, then the reinforcements won't come
-		if (prob(5))
-			distress()
 
-		//We record the time to prevent exploits of starting and quickly cancelling
-		var/start = world.time
-		var/target_time = WORKTIME_FAST+ 2*integrity
+		if (I.has_quality(QUALITY_DIGGING) && !isSealed)
+			user.visible_message("[user] starts breaking and collapsing [src] with the [I]", "You start breaking and collapsing [src] with the [I]")
 
-		if (I.use_tool(user, src, target_time, QUALITY_DIGGING, 1.3*integrity, list(STAT_SUM, STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
-			//On success, the hole is destroyed!
-			user.visible_message("[user] collapses [src] with the [I]", "You collapse [src] with the [I]")
+			//Attempting to collapse a burrow may trigger reinforcements.
+			//Not immediate so they will take some time to arrive.
+			//Enough time to finish one attempt at breaking the burrow.
+			//If you succeed, then the reinforcements won't come
+			if (prob(5))
+				distress()
 
-			collapse()
-		else
-			var/duration = world.time - start
-			if (duration < 10) //Digging less than a second does nothing
-				return
+			//We record the time to prevent exploits of starting and quickly cancelling
+			var/start = world.time
+			var/target_time = WORKTIME_FAST+ 2*health
 
-			spawn_rubble(loc, 1, 100)
+			if (I.use_tool(user, src, target_time, QUALITY_DIGGING, health * 0.66, list(STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
+				//On success, the hole is destroyed!
+				new /obj/random/scrap/sparse_weighted(get_turf(user))
+				user.visible_message("[user] collapses [src] with the [I] and dumps trash which was in the way.", "You collapse [src] with the [I] and dump trash which was in the way.")
 
-			if (I.get_tool_quality(QUALITY_DIGGING) > 30)
-				user << SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll break it eventually")
+				collapse()
 			else
-				user << SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?")
+				var/duration = world.time - start
+				if (duration < 10) //Digging less than a second does nothing
+					return
 
-			//On failure, the hole takes some damage based on the digging quality of the tool.
-			//This will make things much easier next time
-			var/time_mult = 1
+				spawn_rubble(loc, 1, 100)
 
-			if (duration < target_time)
-				//If they spent less than the full time attempting the work, then the reduction is reduced
-				//A multiplier is based on 85% of the time spent working,
-				time_mult = (duration / target_time) * 0.85
-			integrity -= (I.get_tool_quality(QUALITY_DIGGING)*time_mult)
+				if (I.get_tool_quality(QUALITY_DIGGING) > 30)
+					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
+				else
+					to_chat(user, SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?"))
 
-		return
+				//On failure, the hole takes some damage based on the digging quality of the tool.
+				//This will make things much easier next time
+				var/time_mult = 1
+
+				if (duration < target_time)
+					//If they spent less than the full time attempting the work, then the reduction is reduced
+					//A multiplier is based on 85% of the time spent working,
+					time_mult = (duration / target_time) * 0.85
+				health -= (I.get_tool_quality(QUALITY_DIGGING)*time_mult)
+
+			return
 
 
-	.=..()
+	. = ..()
 
-//Collapses the burrow, deleting it
-/obj/structure/burrow/proc/collapse()
-	spawn_rubble(loc, 0, 100)
-	qdel(src)
+//Collapses the burrow, making cracks instead
+/obj/structure/burrow/proc/collapse(var/clean = FALSE)
+	if(!clean)
+		spawn_rubble(loc, 0, 100)
+	isSealed = TRUE
+	icon_state = initial(icon_state)
+	name = initial(name)
+	desc = initial(desc)
+
 
 //Spawns some rubble on or near a target turf
 //Will only allow one rubble decal per tile
@@ -535,6 +575,15 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	return TRUE
 
 
+//If underfloor, hide the burrow
+/obj/structure/burrow/hide(var/i)
+	invisibility = i ? INVISIBILITY_MAXIMUM : 0
+
+/obj/structure/burrow/hides_under_flooring()
+	if(!isRevealed)
+		return TRUE
+	return FALSE
+
 /****************************
 	Burrow entering
 ****************************/
@@ -547,14 +596,14 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 //Mobs that are summoned will walk up and attack this burrow
 //This will suck them in
-/obj/structure/burrow/attack_generic(var/mob/L)
+/obj/structure/burrow/attack_generic(mob/living/L)
 	if (is_valid(L))
 		enter_burrow(L)
 
 
-/obj/structure/burrow/proc/pull_mob(var/mob/living/L)
+/obj/structure/burrow/proc/pull_mob(mob/living/L)
 	if (!L.incapacitated())//Can't flee if you're stunned
-		walk_to(L, src, 1, L.move_to_delay*rand_between(1,1.5))
+		walk_to(L, src, 1, L.move_to_delay*RAND_DECIMAL(1,1.5))
 //We randomise the move delay a bit so that mobs don't just move in sync like particles of dust being sucked up
 
 
@@ -566,6 +615,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 //This proc handles creation of a plant on this burrow
 //It relies on the plant seed already being set
 /obj/structure/burrow/proc/spread_plants()
+	reveal()
 	if(istype(plant, /datum/seed/wires))		//hivemind wireweeds handling
 		if(locate(/obj/effect/plant) in loc)
 			return
@@ -596,3 +646,20 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	//will be quieter and not travel as far
 	playsound(src, soundtype, maintenance ? volume*0.5 : volume, TRUE,maintenance ? -3 : 0)
 
+/obj/structure/burrow/examine()
+	..()
+	if(isSealed && recieving)
+		to_chat(usr, SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through."))
+
+
+/obj/structure/burrow/ex_act(severity)
+	spawn(1)
+		var/turf/T = get_turf(src)
+		if(T.is_hole)
+			qdel(src)
+		else
+			collapse()
+
+/obj/structure/burrow/preventsTurfInteractions()
+	if(isRevealed)
+		return TRUE

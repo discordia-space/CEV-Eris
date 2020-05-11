@@ -1,6 +1,6 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
-	w_class = ITEM_SIZE_NO_CONTAINER
+	w_class = ITEM_SIZE_GARGANTUAN
 
 	var/climbable
 	var/breakable
@@ -17,7 +17,7 @@
  * Values are found in code/__defines/inventory_sizes.dm
  */
 /obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = (w_class == ITEM_SIZE_NO_CONTAINER ? ITEM_SIZE_LARGE : w_class) * 10
+	var/damage = w_class * 10
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
@@ -88,12 +88,12 @@
 		return 0
 
 	if (!user.Adjacent(src))
-		user << SPAN_DANGER("You can't climb there, the way is blocked.")
+		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
 		return 0
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		user << SPAN_DANGER("There's \a [occupied] in the way.")
+		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
 		return 0
 	return 1
 
@@ -131,7 +131,9 @@
 	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
-	if(!do_after(user,(issmall(user) ? 20 : 34), src))
+	var/delay = (issmall(user) ? 20 : 34)
+	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
+	if(!do_after(user, duration, src))
 		climbers -= user
 		return
 
@@ -148,21 +150,21 @@
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
 		M.Weaken(1)
-		M << SPAN_DANGER("You topple as you are shaken off \the [src]!")
+		to_chat(M, SPAN_DANGER("You topple as you are shaken off \the [src]!"))
 		climbers.Cut(1,2)
 
 	for(var/mob/living/M in get_turf(src))
 		if(M.lying) return //No spamming this on people.
 
 		M.Weaken(3)
-		M << SPAN_DANGER("You topple as \the [src] moves under you!")
+		to_chat(M, SPAN_DANGER("You topple as \the [src] moves under you!"))
 
 		if(prob(25))
 
 			var/damage = rand(15,30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(H))
-				H << SPAN_DANGER("You land heavily!")
+				to_chat(H, SPAN_DANGER("You land heavily!"))
 				M.adjustBruteLoss(damage)
 				return
 
@@ -177,12 +179,12 @@
 					affecting = H.get_organ(BP_HEAD)
 
 			if(affecting)
-				M << SPAN_DANGER("You land heavily on your [affecting.name]!")
+				to_chat(M, SPAN_DANGER("You land heavily on your [affecting.name]!"))
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
-				H << SPAN_DANGER("You land heavily!")
+				to_chat(H, SPAN_DANGER("You land heavily!"))
 				H.adjustBruteLoss(damage)
 
 			H.UpdateDamageIcon()
@@ -195,12 +197,12 @@
 	if(!Adjacent(user))
 		return 0
 	if (user.restrained() || user.buckled)
-		user << SPAN_NOTICE("You need your hands and legs free for this.")
+		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
 	if (issilicon(user))
-		user << SPAN_NOTICE("You need hands for this.")
+		to_chat(user, SPAN_NOTICE("You need hands for this."))
 		return 0
 	return 1
 

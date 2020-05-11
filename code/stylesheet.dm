@@ -48,10 +48,11 @@ em						{font-style: normal;font-weight: bold;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}
 .airadio				{color: #FF00FF;}
+.ntradio				{color: #D4AF37;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #A66300;}
-.medradio				{color: #008160;}
+.medradio				{color: #0081A3;}
 .sciradio				{color: #993399;}
 .supradio				{color: #5F4519;}
 .srvradio				{color: #6eaa2c;}
@@ -91,6 +92,7 @@ h1.alert, h2.alert		{color: #000000;}
 .russian				{color: #635d17}
 .serbian				{color: #Ad6f1d}
 .jive					{color: #666666}
+.german					{color: #001FFF}
 
 .interface				{color: #330033;}
 

@@ -11,15 +11,9 @@
 	w_class = ITEM_SIZE_SMALL
 	screen_light_strength = 2.1
 	screen_light_range = 2.1
-	battery_type = /obj/item/weapon/cell/small //We take small battery
+	price_tag = 100
+	suitable_cell = /obj/item/weapon/cell/small //We take small battery
 
 /obj/item/modular_computer/tablet/lease
 	desc = "A small, portable microcomputer. This one has a gold and blue stripe, and a serial number stamped into the case."
 	icon_state = "tabletsol"
-
-/obj/item/modular_computer/tablet/Created()
-	qdel(processor_unit)
-	qdel(tesla_link)
-	qdel(hard_drive)
-	qdel(network_card)
-	qdel(scanner)

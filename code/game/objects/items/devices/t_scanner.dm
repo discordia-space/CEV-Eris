@@ -51,6 +51,16 @@
 	var/datum/event_source //When listening for movement, this is the source we're listening to
 	var/mob/current_user //The last mob who interacted with us. We'll try to fetch the client from them
 
+
+/obj/item/device/t_scanner/get_cell()
+	return cell
+
+/obj/item/device/t_scanner/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/device/t_scanner/update_icon()
 	icon_state = "t-ray[enabled]"
 
@@ -128,7 +138,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 	for(var/turf/T in trange(scan_range, center))
 		for(var/obj/O in T.contents)
-			if(O.level != 1)
+			if(O.level != BELOW_PLATING_LEVEL)
 				continue
 			if(!O.invisibility && !O.hides_under_flooring())
 				continue //if it's already visible don't need an overlay for it
@@ -158,7 +168,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	if (loc == M)
 		set_enabled(!enabled)
 
-/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/t_scanner/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["enabled"] = enabled ? 1 : 0
@@ -200,9 +210,9 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 /obj/item/device/t_scanner/examine(var/mob/user)
 	.=..()
 	if (cell)
-		user << SPAN_NOTICE("The power meter reads [round(cell.percent(),0.1)]%")
+		to_chat(user, SPAN_NOTICE("The power meter reads [round(cell.percent(),0.1)]%"))
 	else
-		user << SPAN_WARNING("No power cell is installed and it can't function!")
+		to_chat(user, SPAN_WARNING("No power cell is installed and it can't function!"))
 
 
 

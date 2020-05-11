@@ -1,9 +1,13 @@
 /obj/item/weapon/gun/energy
 	name = "energy gun"
 	desc = "A basic energy-based gun."
+	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "energy"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
+
+	recoil_buildup = 0.5 //energy weapons have little to no recoil
+
 
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/obj/item/weapon/cell/cell = null
@@ -11,13 +15,20 @@
 	var/cell_type = /obj/item/weapon/cell/medium/high
 	var/projectile_type = /obj/item/projectile/beam/practice
 	var/modifystate
-	var/charge_meter = 1	//if set, the icon state will be chosen based on the current charge
+	var/charge_meter = TRUE //if set, the icon state will be chosen based on the current charge
+	var/item_modifystate
+	var/item_charge_meter = FALSE //same as above for item state
 
 	//self-recharging
 	var/self_recharge = 0	//if set, the weapon will recharge itself
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
 	var/recharge_time = 4
 	var/charge_tick = 0
+	gun_tags = list(GUN_ENERGY)
+	var/overcharge_timer //Holds ref to the timer used for overcharging
+	var/overcharge_rate = 1 //Base overcharge additive rate for the gun
+	var/overcharge_level = 0 //What our current overcharge level is. Peaks at overcharge_max
+	var/overcharge_max = 10
 
 /obj/item/weapon/gun/energy/switch_firemodes()
 	. = ..()
@@ -28,8 +39,8 @@
 	..()
 	update_icon()
 
-/obj/item/weapon/gun/energy/New()
-	..()
+/obj/item/weapon/gun/energy/Initialize()
+	. = ..()
 	if(self_recharge)
 		cell = new cell_type(src)
 		START_PROCESSING(SSobj, src)
@@ -57,6 +68,15 @@
 		update_icon()
 	return 1
 
+/obj/item/weapon/gun/energy/get_cell()
+	return cell
+
+/obj/item/weapon/gun/energy/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
 /obj/item/weapon/gun/energy/consume_next_projectile()
 	if(!cell) return null
 	if(!ispath(projectile_type)) return null
@@ -64,26 +84,15 @@
 	return new projectile_type(src)
 
 /obj/item/weapon/gun/energy/proc/get_external_cell()
-	if(isrobot(src.loc))
-		var/mob/living/silicon/robot/R = src.loc
-		return R.cell
-	if(istype(src.loc, /obj/item/rig_module))
-		var/obj/item/rig_module/module = src.loc
-		if(module.holder && module.holder.wearer)
-			var/mob/living/carbon/human/H = module.holder.wearer
-			if(istype(H) && H.back)
-				var/obj/item/weapon/rig/suit = H.back
-				if(istype(suit))
-					return suit.cell
-	return null
+	return loc.get_cell()
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	..(user)
 	if(!cell)
-		user << SPAN_NOTICE("Has no battery cell inserted.")
+		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
 		return
 	var/shots_remaining = round(cell.charge / charge_cost)
-	user << "Has [shots_remaining] shot\s remaining."
+	to_chat(user, "Has [shots_remaining] shot\s remaining.")
 	return
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
@@ -99,6 +108,11 @@
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
+
+		if(item_charge_meter)
+			set_item_state("-[item_modifystate][ratio]")
+	if(!item_charge_meter && item_modifystate)
+		set_item_state("-[item_modifystate]")
 	if(!ignore_inhands)
 		update_wear_icon()
 
@@ -108,17 +122,34 @@
 			cell = null
 			update_icon()
 	else
-		usr << SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!.")
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(self_recharge)
-		usr << SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries.")
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries."))
 		return
 
 	if(cell)
-		usr << SPAN_WARNING("[src] is already loaded.")
+		to_chat(usr, SPAN_WARNING("[src] is already loaded."))
 		return
 
 	if(istype(C, suitable_cell) && insert_item(C, user))
 		cell = C
 		update_icon()
+
+/obj/item/weapon/gun/energy/ui_data(mob/user)
+	var/list/data = ..()
+	data["charge_cost"] = charge_cost
+	var/obj/item/weapon/cell/C = get_cell()
+	if(C)
+		data["cell_charge"] = C.percent()
+		data["shots_remaining"] = round(C.charge/charge_cost)
+		data["max_shots"] = round(C.maxcharge/charge_cost)
+	return data
+
+/obj/item/weapon/gun/energy/refresh_upgrades()
+	//refresh our unique variables before applying upgrades too
+	charge_cost = initial(charge_cost)
+	overcharge_max = initial(overcharge_max)
+	overcharge_rate = initial(overcharge_rate)
+	..()

@@ -102,7 +102,7 @@
 				var/datum/instrument/instrument = instruments[key]
 				categories |= instrument.category
 
-			var/category = input(usr, "Choose a category") in categories as text|null
+			var/category = input(usr, "Choose a category") as null|anything in categories 
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			var/list/instruments_available = list()
@@ -111,7 +111,7 @@
 				if (instrument.category == category)
 					instruments_available += key
 
-			var/new_instrument = input(usr, "Choose an instrument") in instruments_available as text|null
+			var/new_instrument = input(usr, "Choose an instrument") as null|anything in instruments_available
 			if(!CanInteractWith(usr, owner, GLOB.physical_state))
 				return
 			if (new_instrument)
@@ -220,6 +220,15 @@
 	instruments = null
 	. = ..()
 
+/obj/structure/synthesized_instrument/attackby(var/obj/item/weapon/tool/tool, mob/user)
+	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		anchored = !anchored
+		user.visible_message( \
+					"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \
+					SPAN_NOTICE("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
+					"You hear ratchet.")
+	else
+		..()
 
 /obj/structure/synthesized_instrument/attack_hand(mob/user)
 	src.interact(user)
@@ -229,7 +238,7 @@
 	src.ui_interact(user)
 
 
-/obj/structure/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/structure/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 
@@ -281,7 +290,7 @@
 	src.ui_interact(user)
 
 
-/obj/item/device/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/item/device/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 

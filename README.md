@@ -6,4 +6,4 @@
 
 ## CONTRIBUTING
 
-Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md)
+Please see [CONTRIBUTING.md](CONTRIBUTING.md)

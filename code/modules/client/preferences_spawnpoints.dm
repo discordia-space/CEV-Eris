@@ -173,7 +173,7 @@
 		. |= C
 
 /datum/spawnpoint/cryo/can_spawn(var/mob/M, var/job, var/report = FALSE)
-	.=..()
+	. = ..()
 	if (.)
 		var/list/cryopods = get_spawn_locations()
 		if (cryopods.len)
@@ -200,8 +200,8 @@
 		return TRUE
 	return FALSE
 
-
-
+//Starboard Cryogenics
+/datum/spawnpoint/cryo/starboard
 
 
 /**********************
@@ -229,7 +229,7 @@
 		. |= C
 
 /datum/spawnpoint/dormitory/can_spawn(var/mob/M, var/job, var/report = FALSE)
-	.=..()
+	. = ..()
 	if (.)
 		var/list/cryopods = get_spawn_locations()
 		if (cryopods.len)

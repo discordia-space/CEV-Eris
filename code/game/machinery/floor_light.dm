@@ -34,7 +34,7 @@ var/list/floor_light_cache = list()
 
 		if(QUALITY_PULSING)
 			if(on)
-				user << SPAN_WARNING("\The [src] must be turn off to change a color.")
+				to_chat(user, SPAN_WARNING("\The [src] must be turn off to change a color."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
@@ -83,15 +83,15 @@ var/list/floor_light_cache = list()
 	else
 
 		if(!anchored)
-			user << SPAN_WARNING("\The [src] must be screwed down first.")
+			to_chat(user, SPAN_WARNING("\The [src] must be screwed down first."))
 			return
 
 		if(stat & BROKEN)
-			user << SPAN_WARNING("\The [src] is too damaged to be functional.")
+			to_chat(user, SPAN_WARNING("\The [src] is too damaged to be functional."))
 			return
 
 		if(stat & NOPOWER)
-			user << SPAN_WARNING("\The [src] is unpowered.")
+			to_chat(user, SPAN_WARNING("\The [src] is unpowered."))
 			return
 
 		on = !on

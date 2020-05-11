@@ -28,7 +28,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(H, WEST, always_use_defdir = 1)
 	else
-		var/mob/living/carbon/human/dummy = new()
+		var/mob/living/carbon/human/dummy/mannequin/dummy = new()
 		photo_front = getFlatIcon(dummy, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(dummy, WEST, always_use_defdir = 1)
 		qdel(dummy)
@@ -93,12 +93,11 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// Misc cultural info.
 	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
 	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
-	set_religion(H ? H.religion : "Unset")
 
 	if(H)
 		var/stats = list()
 		for(var/statName in ALL_STATS)
-			var/points = H.stats.getStat(statName,Pure = TRUE)
+			var/points = H.stats.getStat(statName,pure = TRUE)
 			if(points > STAT_LEVEL_NONE)
 				stats += "[statName]: [points] ([statPointsToLevel(points)])"
 
@@ -113,7 +112,22 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	var/datum/computer_file/report/crew_record/CR = new/datum/computer_file/report/crew_record()
 	GLOB.all_crew_records.Add(CR)
 	CR.load_from_mob(H)
+	SortModularRecords()
 	return CR
+
+/proc/SortModularRecords()
+	// improved bubble sort
+	if(GLOB.all_crew_records.len > 1)
+		for(var/i = 1, i <= GLOB.all_crew_records.len, i++)
+			var/flag = FALSE
+			for(var/j = 1, j <= GLOB.all_crew_records.len - 1, j++)
+				var/datum/computer_file/report/crew_record/CR = GLOB.all_crew_records[j]
+				var/datum/computer_file/report/crew_record/CR_NEXT = GLOB.all_crew_records[j+1]
+				if(sorttext(CR.get_name(), CR_NEXT.get_name()) == -1)
+					flag = TRUE
+					GLOB.all_crew_records.Swap(j,j+1)
+			if(!flag)
+				break
 
 // Gets crew records filtered by set of positions
 /proc/department_crew_manifest(var/list/filter_positions, var/blacklist = FALSE)
@@ -197,7 +211,6 @@ FIELD_NUM("Account",account, null, access_change_ids)
 // MEDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)
 FIELD_LONG("Medical Record", medRecord, access_moebius, access_moebius)
-FIELD_SHORT("Religion", religion, access_moebius, access_moebius)
 
 // SECURITY RECORDS
 FIELD_LIST("Criminal Status", criminalStatus, GLOB.security_statuses, access_security, access_security)

@@ -1,0 +1,22 @@
+<i>No program loaded. Please select program from list below.</i>
+<table>
+{{for data.hard_drive.programs}}
+	<tr><td>{{:helper.link(value.desc, value.icon, {'PC_runprogram' : value.name, 'disk' : data.hard_drive.ref})}}
+	{{if value.running}}
+	<td>{{:helper.link('X', null, {'PC_killprogram' : value.name, 'disk' : data.hard_drive.ref})}} 
+	{{/if}}
+{{/for}}
+</table>
+
+
+{{if data.portable_drive && data.portable_drive.programs.length}}
+<h3>{{:data.portable_drive.name ? data.portable_drive.name : "Data disk"}}</h3>
+<table>
+{{for data.portable_drive.programs}}
+	<tr><td>{{:helper.link(value.desc, value.icon, {'PC_runprogram' : value.name, 'disk' : data.portable_drive.ref})}}
+	{{if value.running}}
+	<td>{{:helper.link('X', null, {'PC_killprogram' : value.name, 'disk' : data.portable_drive.ref})}} 
+	{{/if}}
+{{/for}}
+</table>
+{{/if}}

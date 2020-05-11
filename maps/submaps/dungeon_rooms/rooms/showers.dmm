@@ -1,0 +1,213 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"c" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"d" = (
+/obj/structure/closet/l3closet,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/crawler)
+"e" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"f" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"g" = (
+/obj/structure/curtain/medical,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"h" = (
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/crawler)
+"i" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"j" = (
+/obj/structure/closet/l3closet,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/crawler)
+"k" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/cafe,
+/area/crawler)
+"l" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"m" = (
+/obj/random/mob/roomba,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/crawler)
+"n" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"q" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+i
+i
+i
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+e
+e
+e
+e
+e
+n
+a
+"}
+(3,1,1) = {"
+a
+c
+f
+l
+e
+l
+q
+n
+a
+"}
+(4,1,1) = {"
+a
+a
+g
+a
+a
+a
+g
+a
+a
+"}
+(5,1,1) = {"
+a
+d
+h
+k
+a
+d
+h
+k
+b
+"}
+(6,1,1) = {"
+b
+d
+h
+k
+a
+d
+h
+k
+b
+"}
+(7,1,1) = {"
+b
+j
+m
+k
+a
+j
+h
+k
+b
+"}
+(8,1,1) = {"
+b
+d
+h
+k
+a
+d
+h
+k
+b
+"}
+(9,1,1) = {"
+a
+d
+h
+k
+a
+d
+h
+k
+b
+"}
+(10,1,1) = {"
+a
+a
+g
+a
+a
+a
+g
+a
+a
+"}
+(11,1,1) = {"
+a
+c
+f
+l
+e
+l
+q
+n
+a
+"}
+(12,1,1) = {"
+a
+c
+e
+e
+e
+e
+e
+n
+a
+"}
+(13,1,1) = {"
+a
+a
+i
+i
+i
+i
+i
+a
+a
+"}

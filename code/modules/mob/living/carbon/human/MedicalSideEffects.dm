@@ -24,7 +24,7 @@
 	for(var/R in cures)
 		if(H.reagents.has_reagent(R))
 			if (cure_message)
-				H <<"\blue [cure_message]"
+				to_chat(H, "\blue [cure_message]")
 			return 1
 	return 0
 
@@ -82,7 +82,7 @@
 // ========
 /datum/medical_effect/headache
 	name = "Headache"
-	triggers = list("cryoxadone" = 10, "bicaridine" = 15, "tricordrazine" = 15)
+	triggers = list("cryoxadone" = 10, "bicaridine" = 15, "tricordrazine" = 15, "cherrydrops" = 35)
 	cures = list("alkysine", "tramadol", "paracetamol", "oxycodone")
 	cure_message = "Your head stops throbbing..."
 

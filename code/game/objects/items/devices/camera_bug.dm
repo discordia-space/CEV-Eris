@@ -13,7 +13,7 @@
 		if (C.bugged && C.status)
 			cameras.Add(C)
 	if (length(cameras) == 0)
-		user << SPAN_WARNING("No bugged functioning cameras found.")
+		to_chat(user, SPAN_WARNING("No bugged functioning cameras found."))
 		return
 
 	var/list/friendly_cameras = new/list()

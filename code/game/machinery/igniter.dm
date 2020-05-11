@@ -37,10 +37,8 @@
 
 /obj/machinery/igniter/attack_hand(mob/user as mob)
 	if(..())
-		return
-	add_fingerprint(user)
+		return 1
 	ignite()
-	return
 
 /obj/machinery/igniter/Process()	//ugh why is this even in process()?
 	if (on && powered() )
@@ -156,7 +154,7 @@
 	use_power(5)
 
 	active = 1
-	icon_state = "launcheract"
+	icon_state = "launcher1"
 
 	for(var/obj/machinery/sparker/M in SSmachines.machinery)
 		if (M.id == id)
@@ -169,7 +167,7 @@
 
 	sleep(50)
 
-	icon_state = "launcherbtt"
+	icon_state = "launcher0"
 	active = 0
 
 	return

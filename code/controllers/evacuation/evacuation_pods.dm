@@ -66,13 +66,13 @@
 	if (!evacuation_controller)
 		return
 	if (evacuation_controller.deny)
-		user << "Unable to initiate escape procedures."
+		to_chat(user, "Unable to initiate escape procedures.")
 		return
 	if (evacuation_controller.is_on_cooldown())
-		user << evacuation_controller.get_cooldown_message()
+		to_chat(user, evacuation_controller.get_cooldown_message())
 		return
 	if (evacuation_controller.is_evacuating())
-		user << "Escape procedures already in progress."
+		to_chat(user, "Escape procedures already in progress.")
 		return
 	if (evacuation_controller.call_evacuation(user, 1))
 		log_and_message_admins("[user? key_name(user) : "Autotransfer"] has initiated abandonment of the spacecraft.")

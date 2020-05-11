@@ -383,6 +383,54 @@
 	desc = "Medical Specialist"
 	region = ACCESS_REGION_SECURITY
 
+/var/const/access_paramedic = 68 // Paramedic's closet
+/datum/access/paramedic
+	id = access_paramedic
+	desc = "Paramedic's Office"
+	region = ACCESS_REGION_MEDBAY
+
+// /var/const/free_access_id = 69
+
+/**************
+* NeoTheology *
+***************/
+/var/const/access_nt_disciple = 70
+/datum/access/nt_disciple
+	id = access_nt_disciple
+	desc = "NeoTheology Disciple"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_acolyte = 71
+/datum/access/nt_acolyte
+	id = access_nt_acolyte
+	desc = "NeoTheology Acolyte"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_custodian = 72
+/datum/access/nt_custodian
+	id = access_nt_custodian
+	desc = "NeoTheology Custodian"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_agrolyte = 73
+/datum/access/nt_agrolyte
+	id = access_nt_agrolyte
+	desc = "NeoTheology Agrolyte"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_preacher = 74
+/datum/access/nt_preacher
+	id = access_nt_preacher
+	desc = "NeoTheology Preacher"
+	region = ACCESS_REGION_CHURCH
+
+/var/const/access_nt_inquisitor = 75
+/datum/access/nt_inquisitor
+	id = access_nt_inquisitor
+	desc = "NeoTheology Inquisitor"
+	region = ACCESS_REGION_CHURCH
+
+
 /******************
 * Central Command *
 ******************/
@@ -439,7 +487,11 @@
 	id = access_cent_captain
 	desc = "Code Gold"
 	access_type = ACCESS_TYPE_CENTCOM
-
+/var/const/access_research_equipment = 110 //RnD Console Access
+/datum/access/research_equipment
+	id = access_research_equipment
+	desc = "Research Console"
+	region = ACCESS_REGION_RESEARCH
 /***************
 * Antag access *
 ***************/

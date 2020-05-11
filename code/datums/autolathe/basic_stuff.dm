@@ -1,47 +1,47 @@
-/datum/autolathe/recipe/misc/flashlight
+/datum/design/autolathe/misc/flashlight
 	name = "flashlight"
-	path = /obj/item/device/lighting/toggleable/flashlight
+	build_path = /obj/item/device/lighting/toggleable/flashlight
 
-/datum/autolathe/recipe/misc/heavyflashlight
+/datum/design/autolathe/misc/heavyflashlight
 	name = "heavy duty flashlight"
-	path = /obj/item/device/lighting/toggleable/flashlight/heavy
+	build_path = /obj/item/device/lighting/toggleable/flashlight/heavy
 
-/datum/autolathe/recipe/misc/penflashlight
+/datum/design/autolathe/misc/penflashlight
 	name = "penlight"
-	path = /obj/item/device/lighting/toggleable/flashlight/pen
+	build_path = /obj/item/device/lighting/toggleable/flashlight/pen
 
-/datum/autolathe/recipe/misc/floor_light
+/datum/design/autolathe/misc/floor_light
 	name = "floor light"
-	path = /obj/machinery/floor_light
+	build_path = /obj/machinery/floor_light
 
-/datum/autolathe/recipe/misc/extinguisher
+/datum/design/autolathe/misc/extinguisher
 	name = "extinguisher"
-	path = /obj/item/weapon/extinguisher
+	build_path = /obj/item/weapon/extinguisher
 
-/datum/autolathe/recipe/misc/radio_headset
+/datum/design/autolathe/misc/radio_headset
 	name = "radio headset"
-	path = /obj/item/device/radio/headset
+	build_path = /obj/item/device/radio/headset
 
-/datum/autolathe/recipe/misc/radio_bounced
+/datum/design/autolathe/misc/radio_bounced
 	name = "station bounced radio"
-	path = /obj/item/device/radio/off
+	build_path = /obj/item/device/radio/off
 
-/datum/autolathe/recipe/misc/taperecorder
+/datum/design/autolathe/misc/taperecorder
 	name = "tape recorder"
-	path = /obj/item/device/taperecorder
+	build_path = /obj/item/device/taperecorder
 
-/datum/autolathe/recipe/misc/tube
+/datum/design/autolathe/misc/tube
 	name = "light tube"
-	path = /obj/item/weapon/light/tube
+	build_path = /obj/item/weapon/light/tube
 
-/datum/autolathe/recipe/misc/bulb
+/datum/design/autolathe/misc/bulb
 	name = "light bulb"
-	path = /obj/item/weapon/light/bulb
+	build_path = /obj/item/weapon/light/bulb
 
-/datum/autolathe/recipe/misc/ashtray
+/datum/design/autolathe/misc/ashtray
 	name = "glass ashtray"
-	path = /obj/item/weapon/material/ashtray
+	build_path = /obj/item/weapon/material/ashtray
 
-/datum/autolathe/recipe/misc/cane
+/datum/design/autolathe/misc/cane
 	name = "cane"
-	path = /obj/item/weapon/cane
+	build_path = /obj/item/weapon/cane

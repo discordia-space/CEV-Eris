@@ -1,0 +1,450 @@
+{{if data.screen == "working"}}
+	<h5 class='average'>The R&amp;D Console is currently busy.</h5>
+	<div class='notice'>
+	<center>Working...</center>
+	</div>
+	<p>
+	Thank you for your patience!
+	</p>
+{{else data.screen == "locked"}}
+	<h5 class='average'>The R&amp;D Console</h5>
+	<div class='notice'>
+	<center>SYSTEM LOCKED</center>
+	</div>
+	<p>
+	{{:helper.link("Unlock", 'unlocked', {'unlock' : 1})}}
+	</p>
+{{/if}}
+
+
+{{if !data.screen || data.screen == "main"}}
+<table style="width: 100%">
+	<tr>
+		<td valign="top">
+			<H2>R&amp;D Console Menu</H2>
+			<div class='item'>
+				{{:helper.link("Research", 'contact', {'go_screen' : 'tech_trees', 'need_access': 1},data.can_research ? null : 'disabled', data.can_research ? 'sciMenuButton' : null)}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Protolathe Construction Menu", 'image', {'go_screen' : 'protolathe'}, data.has_protolathe ? null : 'disabled', data.has_protolathe ? 'sciMenuButton' : null)}}
+			</div>
+			<div class='item'>
+				{{:helper.link("Circuit Construction Menu", 'video', {'go_screen' : 'circuit_imprinter'}, data.has_circuit_imprinter ? null : 'disabled', data.has_circuit_imprinter ? 'sciMenuButton' : null)}}
+			</div>
+			
+			<div class="statusDisplayRecords">
+				<div class="item">
+					<div class="itemContent" style="width: 100%;">
+						{{if !data.destroy_data}}
+						<span class="average">No Destructive Analyzer detected</span>
+						{{else}}
+							{{if !data.destroy_data.has_item}}
+								<span class="average">No item loaded inside Destructive Analyzer</span>
+							{{else}}
+								<span class="average">Destructive Analyzer:</span><br>
+								Name: {{:data.destroy_data.item_name}}<br>
+								Detected tech:<br>
+								<table style="width: 100%">
+								{{for data.destroy_data.tech_data}}
+									<tr>
+										<td style="width: 20%">{{:value.name}}</td><td style="width: 20%"><div style="width: 95%">{{:helper.displayBar(value.level, 0, 5, 'good', value.level)}}</div></td>
+									</tr>
+								{{/for}}
+								</table>
+								Estimated research value: {{:data.destroy_data.item_tech_points}} points ({{:data.destroy_data.item_tech_mod}}%)<br>
+								{{:helper.link("Deconstruct item", '', {'deconstruct' : 1})}}
+								{{:helper.link("Eject", '', {'eject_item' : 1})}}
+							{{/if}}
+						{{/if}}
+					</div>
+				</div>
+			</div>
+			
+			<div class='item'>
+				{{:helper.link("Settings", 'wrench', {'toggle_settings' : 1},null,'sciMenuButton')}}
+			</div>
+
+			{{if data.show_settings}}
+				<div class='item'>
+					{{:helper.link("Sync Database with Network", 'transferthick-e-w', {'sync' : 1}, data.sync ? null : 'disabled')}}
+				</div>
+				<div class='item'>
+					{{:helper.link("Connect to Research Network", 'lightbulb', {'togglesync' : 1}, data.sync ? 'disabled' : null)}}
+				</div>
+				<div class='item'>
+					{{:helper.link("Disconnect from Research Network", 'cancel', {'togglesync' : 1}, data.sync ? null : 'disabled')}}
+				</div>
+				<div class='item'>
+					{{:helper.link("Lock Console", 'locked', {'lock' : 1})}}
+					{{:helper.link("Reset R&D Database", 'trash', {'reset' : 1})}}
+				</div>
+			{{/if}}
+
+			{{if data.has_disk}}
+				<div class='item' style="width: 80%">
+					Disk capacity: <div style="width: 90%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div>
+					{{:helper.link("Disk Designs Management", 'save', {'go_screen' : 'disk_management_designs'}, null, 'sciMenuButton')}}
+					{{:helper.link("Disk Technology Management", 'save', {'go_screen' : 'disk_management_tech'}, null, 'sciMenuButton')}}
+					{{:helper.link("Disk Research Data Management", 'save', {'go_screen' : 'disk_management_data'}, null, 'sciMenuButton')}}
+					{{:helper.link("Eject", 'eject', {'eject_disk' : 1}, null, 'sciMenuButton')}}
+				</div>
+			{{else}}
+				No disk detected
+			{{/if}}
+			
+			<div class='item'>
+				{{:helper.link("Device Linkage Menu", 'link', {'toggle_link_menu' : 1},null,'sciMenuButton')}}
+			</div>
+			
+			{{if data.show_link_menu}}
+				<div class='item'>
+					{{:helper.link("Re-sync with Nearby Devices", 'link', {'find_device' : 1})}}
+				</div>
+				<div class='item'>
+					{{:helper.link("Disconnect Destructive Analyzer", 'close', {'disconnect' : "destroy"}, data.has_dest_analyzer ? null : 'disabled')}}
+				</div>
+				<div class='item'>
+					{{:helper.link("Disconnect Protolathe", 'close', {'disconnect' : "lathe"}, data.has_protolathe ? null : 'disabled')}}
+				</div>
+				<div class='item'>
+					{{:helper.link("Disconnect Circuit Imprinter", 'close', {'disconnect' : "imprinter"}, data.has_circuit_imprinter ? null : 'disabled')}}
+				</div>
+			{{/if}}
+		</td>
+		<td style="width: 450px" valign="top">
+			<H2>Technology Research</H2>
+			<div class="statusDisplayRecords">
+				<div class="item">
+					<div class="itemContent" style="width: 100%;">
+						<table class="fixed" style="width: 100%">
+						{{for data.tech_trees}}
+						<tr>
+							<td><span class="average">{{:value.shortname}}</span></td><td><div style="width: 95%">{{:helper.displayBar(value.level, 0, value.maxlevel, 'good', value.level + ' / ' + value.maxlevel)}}</div></td>
+						</tr>
+						{{/for}}
+						</table>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+{{/if}}
+
+{{if data.screen == "protolathe" || data.screen == "circuit_imprinter"}}
+	<div class='item'>
+		{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}
+	</div>
+	
+	<table class="fixed" style="width: 100%">
+		<tr>
+			<td valign="top">
+				<div class="statusDisplayRecords">
+					<div class="item">
+						<div class="itemContent" style="width: 100%;">
+							<table class="fixed" style="border-collapse: collapse;"><tr><td style="padding:0; margin:0;">
+							{{if data.screen == "protolathe"}}
+								<H2>Protolathe Menu:</H2>
+							{{else data.screen == "circuit_imprinter"}}
+								<H2>Circuit Imprinter Menu:</H2>
+							{{/if}}
+							</td><td style="padding:0; margin:0;padding-left: 10px">
+							{{:helper.link("Search", '', {'search' : 1})}}
+							{{if data.search_text}}
+							Searching for '{{:data.search_text}}'
+							{{/if}}
+							</td></tr></table>
+							<hr>
+							<div class='item'>
+								{{for data.all_categories}}
+									{{:helper.link(value, '', {'select_category' : value}, data.selected_category == value ? 'selected' : null)}}
+								{{/for}}
+							</div>
+							<div class='item'>
+								<table class="fixed" style="width: 100%;">
+									{{for data.possible_designs}}
+										<tr style="width: 100%;">
+											<td style="width: 32px">
+												<img class="statusDisplayItem" src={{:value.data.icon}} height=24 width=24></img>
+											</td>
+											<td style="width: 100%">
+												{{:helper.link(value.data.name, '', {'build' : value.id, 'amount': 1}, value.can_create >= 1 ? null : 'disabled')}}
+												{{if data.screen == "protolathe"}}
+													{{if value.can_create >= 3}}
+														{{:helper.link('x3', '', {'build' : value.id, 'amount': 3})}}
+													{{/if}}
+													{{if value.can_create >= 5}}
+														{{:helper.link('x5', '', {'build' : value.id, 'amount': 5})}}
+													{{/if}}
+												{{/if}}
+											</td>
+											<td style="width: 100%" align="right">
+												{{for value.data.materials  :material:material_i}}
+													{{material.amount = value.data.adjust_materials ? Math.round((material.req * data.materials_data.mat_efficiency) * 100) / 100 : material.req;}}
+													{{if value.missing_materials.indexOf(material.id) == -1}}
+														{{:material.amount}} {{:material.name}} 
+													{{else}}
+														<span style="color:red">{{:material.amount}} {{:material.name}}</span> 
+													{{/if}}
+												{{/for}}
+
+												{{for value.data.chemicals  :chemical:chemical_i}}
+													{{if value.missing_chemicals.indexOf(chemical.id) == -1}}
+														{{:chemical.req}} {{:chemical.name}} 
+													{{else}}
+														<span style="color:red">{{:chemical.req}} {{:chemical.name}}</span> 
+													{{/if}}
+												{{/for}}
+
+												{{if value.temp_chemical}}
+													{{:value.temp_chemical}}
+												{{/if}}
+											</td>
+										</tr>
+										<tr style="width: 100%">
+										 <td colspan = '3'><small>{{:value.data.desc}}</small></td>
+										</tr>
+									{{/for}}
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+			<td style="width: 430px" valign="top">
+				<h3>Material Storage</h3>
+				<div class="statusDisplayRecords">
+					<div class="item">
+						<div class="itemContent" style="width: 100%;">
+							<table class="fixed" style="width: 100%">
+				
+							{{for data.materials_data.reagents}}
+							<tr><td><span class="average">{{:value.name}}</span></td><td>{{:Math.round(value.amount * 100) / 100}}</td></tr>
+							{{/for}}
+							
+							{{for data.materials_data.materials}}
+							<tr>
+								<td><span class="average">{{:value.name.toTitleCase()}}</span></td>
+								<td>{{:Math.round(value.amount * 100) / 100}}/{{:data.materials_data.mat_capacity}}</td>
+								<td>
+								{{if value.amount && value.ejectable}}
+									{{:helper.link("Eject x1", '', {'eject_sheet' : value.id, 'amount' : 1})}}
+									{{:helper.link("x5", '', {'eject_sheet' : value.id, 'amount' : 5}, value.amount >= 5 ? "" : "disabled")}}
+									{{:helper.link("All", '', {'eject_sheet' : value.id, 'amount' : 1000})}}
+								{{/if}}
+								</td>
+							</tr>
+							{{/for}}
+				
+							{{if (!data.materials_data.materials || !data.materials_data.materials.length) && (!data.materials_data.reagents || !data.materials_data.reagents.length)}}
+								Empty
+							{{/if}}
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<h3>Construction information</h3>
+				<div class="statusDisplayRecords">
+					<div class="item">
+						<div class="itemContent" style="width: 100%;">
+							{{if data.device_current}}
+								Constructing: {{:data.device_current}}<br/>
+								{{if data.device_error}}
+									<div class="bad">{{:data.device_error}}</div>
+								{{/if}}
+								<br/>
+							{{/if}}
+							Queue:<br/>
+							{{for data.queue}}
+								{{:index + 1}}) {{:value}}<br/>
+							{{empty}}
+								Empty<br/>
+							{{/for}}
+							{{if data.queue.length > 0}}
+								<div class="item">
+									{{:helper.link("Clear", '', {'clear_queue' : 1})}}
+								</div>
+							{{/if}}
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+{{/if}}
+
+{{if data.screen == "tech_trees"}}
+	<div class='item'>
+	{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}
+
+	<span class="average">Research points:</span> {{:data.research_points}} <span class="average">{{:data.tech_tree_name}} level:</span> {{:data.tech_tree_level}}
+	</div>
+	<div class='item'>
+
+		{{for data.tech_trees}}
+			{{:helper.link(value.shortname, '', {'select_tech_tree' : value.id}, data.selected_tech_tree == value.id ? 'selected' : null)}}
+		{{/for}}
+	</div>
+
+	<table class="fixed" style="width: 100%">
+	  <tr>
+		<td valign="top">
+			<div id='sciTechTreeContainer'>
+				{{for data.lines}}
+					<div style="position: absolute;border-{{:value.istop?'top':'bottom'}}: 1px solid white;border-{{:value.isright?'right':'left'}}: 1px solid white;width: {{:value.width}}%;height: {{:value.height}}%;left: {{:value.line_x}}%;bottom: {{:value.line_y}}%"></div>
+				{{/for}}
+				
+				{{for data.techs}}
+					<div style="position: absolute; left: {{:value.x}}%; bottom: {{:value.y}}%;margin-left: -20px;margin-bottom: -20px;">
+						{{:helper.link("<div class='sciTechTreeIcon icon-"+value.icon+"'><span><img align='center' class='sciTechTreeIconToolTip icon-"+value.icon+"'><br><b>"+value.name+"</b><hr>"+value.description+"</span></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}
+					</div>
+				{{/for}}
+			</div>
+		</td>
+			<td style="width: 200px" valign="top">
+				{{if data.selected_technology}}
+					<b>Name</b><br>
+					{{:data.selected_technology.name}}
+					<br><br>
+					<b>Description</b><br>
+					{{:data.selected_technology.desc}}
+					<br><br>
+					{{if data.selected_technology.cost}}
+						<b>Cost</b></br>
+						{{:data.selected_technology.cost}} Research Points
+						</br></br>
+					{{/if}}
+					{{if data.selected_technology.requirements.length}}
+						<b>Requirements</b></br>
+						{{for data.selected_technology.requirements}}
+							<span style="color: {{:value.isgood?'#00FF00':'#FF0000'}}">{{:value.text}}</span></br>
+						{{/for}}
+						</br>
+					{{/if}}
+					<b>Unlocks</b></br>
+					{{for data.selected_technology.unlocks}}
+						- {{:value.text}} ({{:value.build_types}})</br>
+					{{/for}}
+					</br>
+					{{if data.selected_technology.isresearched}}
+						<span class="average">Researched</span>
+					{{else}}
+						{{:helper.link("Research", '', {'unlock_technology' : data.selected_technology.id})}}
+					{{/if}}
+				{{else}}
+					{{:data.tech_tree_desc}}
+				{{/if}}
+			</td>
+	  </tr>
+	</table>
+{{/if}}
+{{if data.screen == "disk_management_designs"}}
+	<table style="width: 30%">
+	<div class='item'>
+	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
+	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
+	</div>
+	</table>
+	{{if data.has_disk}}
+		<table style="width: 100%">
+		<tr>
+			<th>Disk</th>
+			<th>Local database</th>
+		</tr>
+		<tr>
+		<td valign="top" style="width: 50%">
+		<div class="statusDisplayRecords">
+		Detected designs:
+		{{for data.disk_designs}}
+			<div class="item">
+				{{:value.name}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only ? 'disabled' : null)}}
+				{{:helper.link("", 'arrowthick-1-e', {'download_disk_design' : value.id}, value.can_download ? null : 'disabled')}}
+			</div>
+		{{empty}}
+			<div class="item">The disk has no accessible design files stored on it.</div>
+		{{/for}}
+		</div>
+		</td>
+
+		<td valign="top" style="width: 50%">
+		<div class="statusDisplayRecords">
+		Local designs:
+		{{for data.known_designs}}
+			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_design' : value.id}, data.disk_read_only ? 'disabled' : null)}} {{:value.name}}</div>
+		{{empty}}
+			<div class="item">The local database has no design data.</div>
+		{{/for}}
+		</div>
+		</td>
+		</tr>
+		</table>
+	{{/if}}
+{{/if}}
+{{if data.screen == "disk_management_tech"}}
+	<table style="width: 30%">
+	<div class='item'>
+	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
+	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
+	</div>
+	</table>
+	{{if data.has_disk}}
+		<table style="width: 100%">
+		<tr>
+			<th>Disk</th>
+			<th>Local database</th>
+		</tr>
+		<tr>
+		<td valign="top" style="width: 50%">
+		<div class="statusDisplayRecords">
+		Detected technology nodes:
+		{{for data.disk_tech_nodes}}
+			<div class="item">
+				{{:value.name}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only ? 'disabled' : null)}}
+				{{:helper.link("", 'arrowthick-1-e', {'download_disk_node' : value.id})}}
+				</div>
+		{{empty}}
+			<div class="item">The disk has no accessible technology files stored on it.</div>
+		{{/for}}
+		</div>
+		</td>
+
+		<td valign="top" style="width: 50%">
+		<div class="statusDisplayRecords">
+		Local technology nodes:
+		{{for data.known_nodes}}
+			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_node' : value.id}, data.disk_read_only ? 'disabled' : null)}} {{:value.name}}</div>
+		{{empty}}
+			<div class="item">The local database has no technology data.</div>
+		{{/for}}
+		</div>
+		</td>
+		</tr>
+		</table>
+	{{/if}}
+{{/if}}
+{{if data.screen == "disk_management_data"}}
+	<table style="width: 30%">
+	<div class='item'>
+	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
+	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
+	</div>
+	</table>
+	{{if data.has_disk}}
+		<div class="statusDisplayRecords">
+		Detected research data files:
+		{{for data.disk_research_data}}
+			<div class="item">
+				{{:value.name}}
+				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only ? 'disabled' : null)}}
+				{{:helper.link("", 'arrowthick-1-e', {'download_disk_data' : value.id}, value.can_download ? null : 'disabled')}}
+				</div>
+		{{empty}}
+			<div class="item">The disk has no accessible research data files stored on it.</div>
+		{{/for}}
+		</div>
+	{{/if}}
+{{/if}}

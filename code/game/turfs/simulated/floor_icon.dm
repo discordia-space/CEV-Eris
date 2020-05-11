@@ -144,7 +144,7 @@ var/list/flooring_cache = list()
 	if (countercheck)
 		//If this is a countercheck, we skip all of the above, start off with true, and go straight to the atom lists
 		is_linked = TRUE
-	else
+	else if(T)
 
 		//is_wall is true for wall turfs and for floors containing a low wall
 

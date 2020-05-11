@@ -19,8 +19,12 @@
 			continue
 
 		//We check zdest, not floor, for existing plants
-		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents) )
-			continue
+		if((locate(/obj/effect/plant) in zdest.contents) || (locate(/obj/effect/dead_plant) in zdest.contents))
+			if(!(seed.get_trait(TRAIT_INVASIVE)))//Invasive ones can invade onto other tiles
+				continue
+			var/obj/effect/plant/neighbor_plant = (locate(/obj/effect/plant) in zdest.contents)
+			if(neighbor_plant.seed.get_trait(TRAIT_INVASIVE))//If it's also invasive, don't invade (for better performance and plants not eating at itself)
+				continue
 
 		//We dont want to melt external walls and cause breaches
 		if(!near_external && floor.density)
@@ -158,9 +162,9 @@
 		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
 		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
 		if (D)
-			health += rand_between(0,0.5)
+			health += RAND_DECIMAL(0,0.5)
 		else
-			health += rand_between(1,2.5)
+			health += RAND_DECIMAL(1,2.5)
 		refresh_icon()
 		if(health > max_health)
 			health = max_health
@@ -186,6 +190,12 @@
 			break
 		var/turf/target_turf = pick(neighbors)
 		target_turf = get_connecting_turf(target_turf, loc)
+		var/obj/effect/neighbor_plant = (locate(/obj/effect/plant) in target_turf.contents)
+		if(!neighbor_plant)
+			neighbor_plant = (locate(/obj/effect/dead_plant) in target_turf.contents)
+		if(neighbor_plant)//Not else, because if there's no dead plant either, it shouldn't run the check at all
+			visible_message("[src] takes over [neighbor_plant]!")
+			qdel(neighbor_plant)
 		var/obj/effect/plant/child = new type(get_turf(src),seed,src)
 		after_spread(child, target_turf)
 		// Update neighboring squares.

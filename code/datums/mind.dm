@@ -67,6 +67,8 @@
 	var/datum/stat_holder/stats = null
 
 	var/last_activity = 0
+
+	var/list/knownCraftRecipes = list()
 	/*
 		The world time when this mind was last in a mob, controlled by a client which did something.
 		Only updated once per minute, set by the inactivity subsystem
@@ -124,7 +126,7 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
-	recipient << browse(russian_to_utf8(output), "window=memory")
+	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(SSticker.current_state != GAME_STATE_PLAYING)
@@ -160,7 +162,7 @@
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
-				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
+				var/answer = alert("[antag.role_text] is an outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","Confirmation", "No","Yes")
 				ok = (answer == "Yes")
 			else
 				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","Confirmation","No","Yes")
@@ -180,7 +182,7 @@
 				if(antag.create_antagonist(src))
 					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 				else
-					usr << SPAN_WARNING("[src] could not be made into a [antag.role_text]!")
+					to_chat(usr, SPAN_WARNING("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
@@ -305,11 +307,7 @@
 
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
-	if(mind)
-		if(!role)
-			return player_is_antag_id(mind,role)
-	else
-		return FALSE
+	return role && mind && player_is_antag_id(mind, role)
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()
@@ -326,7 +324,7 @@
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
 	..()
-	if(!mind.assigned_role)	mind.assigned_role = "Assistant"	//defualt
+	if(!mind.assigned_role)	mind.assigned_role = ASSISTANT_TITLE	//defualt
 
 //slime
 /mob/living/carbon/slime/mind_initialize()

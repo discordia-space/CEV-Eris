@@ -69,6 +69,13 @@ particle whenever the target moves
 	trail_effect = /obj/effect/trail_particle/gasjet
 
 
+/////////////////////////////////////////////
+//Fire trail
+/////////////////////////////////////////////
+
+/datum/effect/effect/system/trail/fire
+	trail_effect = /obj/effect/trail_particle/fire
+
 
 /********************************************************
 	Jetpack Trails
@@ -115,3 +122,12 @@ Their only special behaviour atm is to delete themselves shortly after creation
 	name = "ion trails"
 	icon_state = "ion_fade"
 	anchored = 1.0
+
+/obj/effect/trail_particle/fire
+	name = "fire trail"
+	icon_state = "fire_trails"
+
+/obj/effect/trail_particle/fire/Initialize()
+	..()
+	var/turf/T = get_turf(src)
+	T?.hotspot_expose(1000,100)

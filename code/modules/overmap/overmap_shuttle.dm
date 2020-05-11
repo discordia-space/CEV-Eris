@@ -86,6 +86,7 @@
 				for(var/obj/item/weapon/tank/FT in fuel_tanks) //loop through tanks, consume their fuel one by one
 					if(FT.air_contents.get_by_flag(XGM_GAS_FUEL) >= fuel_to_consume)
 						FT.air_contents.remove_by_flag(XGM_GAS_FUEL, fuel_to_consume)
+						log_and_message_admins("shuttle has began his voyage from [current_location] to [next_location]")
 						return 1 //ALL REQUIRED FUEL HAS BEEN CONSUMED, GO FOR LAUNCH!
 					else //this tank doesn't have enough to launch shuttle by itself, so remove all its fuel, then continue loop
 						fuel_to_consume -= FT.air_contents.get_by_flag(XGM_GAS_FUEL)
@@ -113,7 +114,7 @@
 
 /obj/structure/fuel_port/attack_hand(mob/user as mob)
 	if(!opened)
-		user << "<spawn class='notice'>The door is secured tightly. You'll need a crowbar to open it."
+		to_chat(user, "<spawn class='notice'>The door is secured tightly. You'll need a crowbar to open it.")
 		return
 	else if(contents.len > 0)
 		user.put_in_hands(contents[1])
@@ -132,16 +133,16 @@
 	if(QUALITY_PRYING in W.tool_qualities)
 		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			if(opened)
-				user << "<spawn class='notice'>You tightly shut \the [src] door."
+				to_chat(user, "<spawn class='notice'>You tightly shut \the [src] door.")
 				playsound(src.loc, 'sound/machines/Custom_closetclose.ogg', 25, 0, -3)
 				opened = 0
 			else
-				user << "<spawn class='notice'>You open up \the [src] door."
+				to_chat(user, "<spawn class='notice'>You open up \the [src] door.")
 				playsound(src.loc, 'sound/machines/Custom_closetopen.ogg', 15, 1, -3)
 				opened = 1
 	else if(istype(W,/obj/item/weapon/tank))
 		if(!opened)
-			user << "<spawn class='warning'>\The [src] door is still closed!"
+			to_chat(user, "<spawn class='warning'>\The [src] door is still closed!")
 			return
 		if(contents.len == 0)
 			user.drop_from_inventory(W)

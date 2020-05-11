@@ -1,10 +1,5 @@
 //Items from RnD. NOT techs!
 
-/datum/export/rnd/synthetic_flash
-	cost = 100
-	unit_name = "synthetic flash"
-	export_types = list(/obj/item/device/flash/synthetic)
-
 /datum/export/rnd/mass_spectrometer
 	cost = 400
 	include_subtypes = FALSE

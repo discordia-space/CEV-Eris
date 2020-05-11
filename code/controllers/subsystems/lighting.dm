@@ -17,22 +17,22 @@ SUBSYSTEM_DEF(lighting)
 	var/list/currentrun_overlays
 
 	var/resuming_stage = 0
-	var/initialized = FALSE
 
 /datum/controller/subsystem/lighting/stat_entry()
 	..("L:[lighting_update_lights.len]|C:[lighting_update_corners.len]|O:[lighting_update_overlays.len]")
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
 	create_all_lighting_overlays()
-	..()
-	initialized = TRUE
+	. = ..()
 
 /datum/controller/subsystem/lighting/fire(resumed=FALSE)
 	if (resuming_stage == 0 || !resumed)
-		currentrun_lights   = lighting_update_lights
+		src.currentrun_lights   = lighting_update_lights
 		lighting_update_lights   = list()
 
 		resuming_stage = STAGE_SOURCES
+
+	var/list/currentrun_lights = src.currentrun_lights
 
 	while (currentrun_lights.len)
 		var/datum/light_source/L = currentrun_lights[currentrun_lights.len]
@@ -58,10 +58,12 @@ SUBSYSTEM_DEF(lighting)
 		//if (currentrun_corners && currentrun_corners.len)
 		//	to_chat(world, "we still have corners to do, but we're gonna override them?")
 
-		currentrun_corners  = lighting_update_corners
+		src.currentrun_corners  = lighting_update_corners
 		lighting_update_corners  = list()
 
 		resuming_stage = STAGE_CORNERS
+
+	var/list/currentrun_corners = src.currentrun_corners
 
 	while (currentrun_corners.len)
 		var/datum/lighting_corner/C = currentrun_corners[currentrun_corners.len]
@@ -73,10 +75,12 @@ SUBSYSTEM_DEF(lighting)
 			return
 
 	if (resuming_stage == STAGE_CORNERS || !resumed)
-		currentrun_overlays = lighting_update_overlays
+		src.currentrun_overlays = lighting_update_overlays
 		lighting_update_overlays = list()
 
 		resuming_stage = STAGE_OVERLAYS
+
+	var/list/currentrun_overlays = src.currentrun_overlays
 
 	while (currentrun_overlays.len)
 		var/atom/movable/lighting_overlay/O = currentrun_overlays[currentrun_overlays.len]

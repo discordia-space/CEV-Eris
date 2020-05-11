@@ -29,11 +29,11 @@
 	/mob/living/simple_animal/hostile/mimic,\
 	/mob/living/simple_animal/hostile/viscerator,\
 	/mob/living/simple_animal/hostile/hivebot,\
-	/obj/item/device/scanner/analyzer,\
+	/obj/item/device/scanner/gas,\
 	/obj/item/device/camera,\
 	/obj/item/device/flash,\
 	/obj/item/device/lighting/toggleable/flashlight,\
-	/obj/item/device/scanner/healthanalyzer,\
+	/obj/item/device/scanner/health,\
 	/obj/item/weapon/tool/multitool,\
 	/obj/item/device/paicard,\
 	/obj/item/device/radio,\
@@ -42,17 +42,17 @@
 	/obj/item/weapon/autopsy_scanner,\
 	/obj/item/weapon/bikehorn,\
 	/obj/item/weapon/tool/bonesetter,\
-	/obj/item/weapon/material/knife/butch,\
+	/obj/item/weapon/tool/knife/butch,\
 	/obj/item/weapon/caution,\
 	/obj/item/weapon/caution/cone,\
 	/obj/item/weapon/tool/crowbar,\
 	/obj/item/weapon/clipboard,\
 	/obj/item/weapon/cell/large,\
 	/obj/item/weapon/tool/saw/circular,\
-	/obj/item/weapon/material/hatchet,\
+	/obj/item/weapon/tool/hatchet,\
 	/obj/item/weapon/handcuffs,\
 	/obj/item/weapon/tool/hemostat,\
-	/obj/item/weapon/material/knife,\
+	/obj/item/weapon/tool/knife,\
 	/obj/item/weapon/flame/lighter,\
 	/obj/item/weapon/light/bulb,\
 	/obj/item/weapon/light/tube,\
@@ -93,9 +93,9 @@
 			var/spawn_type = pop(spawning_types)
 			var/obj/spawned_obj = new spawn_type(src.loc)
 			if(source_material)
-				if(lentext(source_material.name) < MAX_MESSAGE_LEN)
+				if(length(source_material.name) < MAX_MESSAGE_LEN)
 					spawned_obj.name = "[source_material] " +  spawned_obj.name
-				if(lentext(source_material.desc) < MAX_MESSAGE_LEN * 2)
+				if(length(source_material.desc) < MAX_MESSAGE_LEN * 2)
 					if(spawned_obj.desc)
 						spawned_obj.desc += " It is made of [source_material]."
 					else

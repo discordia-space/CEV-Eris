@@ -104,7 +104,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(href_list["back"])
 		screenstate = 0
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	keyboardsound(usr)
 	return
@@ -240,7 +239,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(istype(W, /obj/item/weapon/barcodescanner))
 		var/obj/item/weapon/barcodescanner/scanner = W
 		scanner.computer = src
-		user << "[scanner]'s associated machine has been set to [src]."
+		to_chat(user, "[scanner]'s associated machine has been set to [src].")
 		for (var/mob/V in hearers(src))
 			V.show_message("[src] lets out a low, short blip.", 2)
 	else
@@ -343,7 +342,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 							var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category, author_id) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]', [author_id])")
 							if(!query.Execute())
-								usr << query.ErrorMsg()
+								to_chat(usr, query.ErrorMsg())
 							else
 								log_and_message_admins("has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
@@ -384,7 +383,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				spawn() src.Topic(nhref, params2list(nhref), src)
 	if(href_list["sort"] in list("author", "title", "category"))
 		sortby = href_list["sort"]
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 
@@ -434,7 +432,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(href_list["eject"])
 		for(var/obj/item/weapon/book/B in contents)
 			B.loc = src.loc
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 

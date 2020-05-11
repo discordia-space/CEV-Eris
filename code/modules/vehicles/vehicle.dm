@@ -99,9 +99,9 @@
 				if(!locked)
 					open = !open
 					update_icon()
-					user << SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				else
-					user << SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside.")
+					to_chat(user, SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside."))
 				return
 
 		if(QUALITY_WIRE_CUTTING)
@@ -206,7 +206,7 @@
 		emagged = 1
 		if(locked)
 			locked = 0
-			user << SPAN_WARNING("You bypass [src]'s controls.")
+			to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
 		return 1
 
 /obj/vehicle/proc/explode()
@@ -265,13 +265,13 @@
 	C.forceMove(src)
 	src.cell = C
 	powercheck()
-	usr << SPAN_NOTICE("You install [C] in [src].")
+	to_chat(usr, SPAN_NOTICE("You install [C] in [src]."))
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	usr << SPAN_NOTICE("You remove [cell] from [src].")
+	to_chat(usr, SPAN_NOTICE("You remove [cell] from [src]."))
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null

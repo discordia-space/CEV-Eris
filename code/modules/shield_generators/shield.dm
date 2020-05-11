@@ -29,7 +29,7 @@
 	icon_state = "shield_normal"
 	anchored = 1
 	plane = GAME_PLANE
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	density = 1
 	invisibility = 0
 	var/obj/machinery/power/shield_generator/gen = null
@@ -160,7 +160,7 @@ Like for example singulo act and whatever.
 		// The closer we are to impact site, the longer it takes for shield to come back up.
 		S.fail(-(-range + get_dist(src, S)) * 2)
 
-/obj/effect/shield/proc/take_damage(var/damage, var/damtype, var/hitby)
+/obj/effect/shield/proc/take_damage(damage, damtype, hitby)
 	if(!gen)
 		qdel(src)
 		return
@@ -252,10 +252,10 @@ Like for example singulo act and whatever.
 
 // Projectiles
 /obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
-	if(proj.damage_type == BURN)
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_HEAT, proj)
-	else if (proj.damage_type == BRUTE)
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_PHYSICAL, proj)
+	if(proj.damage_types[BURN])
+		take_damage(proj.damage_types[BURN], SHIELD_DAMTYPE_HEAT, proj)
+	if(proj.damage_types[BRUTE])
+		take_damage(proj.damage_types[BRUTE], SHIELD_DAMTYPE_PHYSICAL, proj)
 	else
 		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM, proj)
 
@@ -284,6 +284,13 @@ Like for example singulo act and whatever.
 		return 0
 	mover.shield_impact(src)
 	return ..()
+
+// If moved (usually by a shuttle), the field ceases to exist
+/obj/effect/shield/forceMove()
+	. = ..()
+	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
+	if(. && !QDELETED(src))
+		qdel(src)
 
 
 /obj/effect/shield/proc/overcharge_shock(var/mob/living/M)

@@ -51,7 +51,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/_hideParentOnHide = FALSE
 	var/_passClickToParent = FALSE
 
-	var/proc/_clickProc //called when element is clicked
+	var/_clickProc //called when element is clicked
 	var/_holder	//object that used with called proc
 	var/list/_procArguments	//arguments that can be passed to proc
 
@@ -90,11 +90,12 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	var/list/HUD_element/elements = getElements()
 	for(var/HUD_element/E in elements)
 		elements -= E
-			qdel(E)
+		qdel(E)
 
 	var/HUD_element/parent = getParent()
 	if (parent)
-		parent.getElements().Remove(src)
+		var/list/HUD_element/elementRemove = parent.getElements()
+		elementRemove.Remove(src)
 		_setParent()
 
 	for(var/name in _iconsBuffer)

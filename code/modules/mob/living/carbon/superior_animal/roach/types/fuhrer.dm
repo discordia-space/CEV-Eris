@@ -4,7 +4,6 @@
 	desc = "A glorious leader of cockroaches. Literally Hitler."
 	icon_state = "fuhrer"
 
-	meat_amount = 20
 	turns_per_move = 4
 	maxHealth = 200
 	health = 200
@@ -12,12 +11,17 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	move_to_delay = 8
+	mob_size = MOB_MEDIUM
 	var/distress_level = 0
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
 	extra_burrow_chance = 100
 	blattedin_revives_left = 0 //He only lives once, cuz he's huge
 
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
+	meat_amount = 6
+
+	sanity_damage = 1
 
 
 
@@ -86,3 +90,7 @@ reinforcements left it will attempt to evacuate*/
 			visible_message(SPAN_DANGER("[src] emits a haunting scream as it turns to flee, taking the nearby horde with it...."))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
 				B.evacuate()
+
+// Fuhrers won't slip over on water or soap.
+/mob/living/carbon/superior_animal/roach/fuhrer/slip(var/slipped_on,stun_duration=8)
+	return FALSE

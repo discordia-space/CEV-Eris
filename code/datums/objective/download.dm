@@ -21,7 +21,7 @@
 		if(!istype(stolen_data))
 			continue
 
-		for(var/datum/tech/current_data in stolen_data.stored_research)
+		for(var/datum/tech/current_data in stolen_data.files.researched_tech)
 			if(current_data.level > 1)
 				current_amount += (current_data.level - 1)
 

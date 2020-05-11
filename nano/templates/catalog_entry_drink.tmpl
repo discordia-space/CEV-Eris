@@ -1,0 +1,63 @@
+<!-- 
+ -->
+{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item"><h1>{{:data.name}}</h1></div>
+	<div class="item">{{:data.description}}</div>
+	<div class="item">{{:data.taste}}</div>
+
+	<div class="item">
+		<h4>Specifications:</h4>
+		<div class="itemLabel">Type:</div>
+		<div class="itemContent">{{:data.thing_nature}}</div>
+
+		<div class="itemLabel">Color:</div>
+		<div class="itemContent"><span class='colorBox' style='background-color:{{:data.color}}'></span></div>
+
+		{{if data.strength}}
+			<div class="itemLabel">Alchohol strength:</div>
+			<div class="itemContent">{{:data.strength}}</div>
+		{{/if}}
+		{{if data.temperature}}
+			<div class="itemLabel">Served:</div>
+			<div class="itemContent">{{:data.temperature}}</div>
+		{{/if}}
+		{{if data.nutrition}}
+			<div class="itemLabel">Nourishment:</div>
+			<div class="itemContent">{{:data.nutrition}}</div>
+		{{/if}}
+		{{if data.recipe_data}}
+			<div class="itemLabel">Recipe:</div>
+			<div class="itemContent">
+				{{for data.recipe_data}}
+					<div class="statusDisplay" style="overflow: auto;">
+						{{for value.reagents :val:val_i}}
+							{{:val.parts}} of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+						{{for value.catalyst :val:val_i}}
+							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+
+						{{if value.minimum_temperature && value.maximum_temperature}}
+							At temperatures between {{:value.minimum_temperature}}K and {{:value.maximum_temperature}}K<br>
+						{{else value.minimum_temperature}}
+							At temperatures above {{:value.minimum_temperature}}K<br>
+						{{else value.maximum_temperature}}
+							At temperatures below {{:value.maximum_temperature}}K<br>
+						{{/if}}
+
+						{{if value.required_object}}
+							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}<br>
+						{{/if}}
+						Results in {{:value.result_amount}} of substance
+					</div>
+				{{/for}}
+			</div>
+		{{/if}}
+
+	</div>
+{{/if}}

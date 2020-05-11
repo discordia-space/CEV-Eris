@@ -54,27 +54,27 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	var/turf/T = get_turf(mob)
 
-	mob << "<b>We are at [T.z] level.</b>"
+	to_chat(mob, "<b>We are at [T.z] level.</b>")
 
-	mob << "level name is [get_level_name(T.z)]"
+	to_chat(mob, "level name is [get_level_name(T.z)]")
 
-	mob << "isStationLevel: [isStationLevel(mob.z)]"
-	mob << "isNotStationLevel: [isNotStationLevel(mob.z)]"
-	mob << "isOnStationLevel: [isOnStationLevel(mob)]"
+	to_chat(mob, "isStationLevel: [isStationLevel(mob.z)]")
+	to_chat(mob, "isNotStationLevel: [isNotStationLevel(mob.z)]")
+	to_chat(mob, "isOnStationLevel: [isOnStationLevel(mob)]")
 
-	mob << "isPlayerLevel: [isPlayerLevel(mob.z)]"
-	mob << "isOnPlayerLevel: [isOnPlayerLevel(mob)]"
+	to_chat(mob, "isPlayerLevel: [isPlayerLevel(mob.z)]")
+	to_chat(mob, "isOnPlayerLevel: [isOnPlayerLevel(mob)]")
 
-	mob << "isAdminLevel: [isAdminLevel(mob.z)]"
-	mob << "isNotAdminLevel: [isNotAdminLevel(mob.z)]"
-	mob << "isOnAdminLevel: [isOnAdminLevel(mob)]"
+	to_chat(mob, "isAdminLevel: [isAdminLevel(mob.z)]")
+	to_chat(mob, "isNotAdminLevel: [isNotAdminLevel(mob.z)]")
+	to_chat(mob, "isOnAdminLevel: [isOnAdminLevel(mob)]")
 
-	mob << "isAcessableLevel: [maps_data.accessable_levels[num2text(mob.z)]]"
+	to_chat(mob, "isAcessableLevel: [maps_data.accessable_levels[num2text(mob.z)]]")
 
 	if(maps_data.asteroid_leves[num2text(T.z)])
-		mob << "Asteroid will be generated here"
+		to_chat(mob, "Asteroid will be generated here")
 	else
-		mob << "This isn't asteroid level"
+		to_chat(mob, "This isn't asteroid level")
 
 /datum/maps_data
 	var/list/all_levels        = new
@@ -98,8 +98,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 						/datum/job/doctor, /datum/job/chemist, /datum/job/paramedic, /datum/job/psychiatrist,
 						/datum/job/technomancer,
 						/datum/job/cargo_tech, /datum/job/mining, /datum/job/merchant,
-						/datum/job/janitor, /datum/job/chef, /datum/job/bartender, /datum/job/hydro, /datum/job/actor,
-						/datum/job/chaplain,
+						/datum/job/clubworker, /datum/job/clubmanager, /datum/job/actor,
+						/datum/job/chaplain, /datum/job/acolyte, /datum/job/janitor, /datum/job/hydro,
 						/datum/job/scientist, /datum/job/roboticist,
 						/datum/job/ai, /datum/job/cyborg,
 						/datum/job/assistant
@@ -130,7 +130,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids),
 		ACCESS_REGION_COMMAND = list(access_change_ids),
 		ACCESS_REGION_GENERAL = list(access_change_ids),
-		ACCESS_REGION_SUPPLY = list(access_change_ids)
+		ACCESS_REGION_SUPPLY = list(access_change_ids),
+		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids)
 	)
 
 /datum/maps_data/proc/character_save_path(var/slot)
@@ -181,6 +182,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
 
+	if(MD.is_sealed)
+		sealed_levels += level
+
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
 		world.maxz++
@@ -224,6 +228,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/is_contact_level = FALSE // Defines Z-levels which, for example, a Code Red announcement may affect
 	var/is_accessable_level = TRUE // Prob modifier for random access (space travelling)
 	var/generate_asteroid= FALSE
+	var/is_sealed = FALSE //No transit at map edge
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
