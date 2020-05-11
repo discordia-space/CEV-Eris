@@ -7,14 +7,14 @@
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 1400
+	price_tag = 1000
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = 1
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	damage_multiplier = 0.9
+	damage_multiplier = 1.1 // 26.4 damage per shot
 	penetration_multiplier = 0.9
-	recoil_buildup = 3
+	recoil_buildup = 10 
 	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
 
 
