@@ -50,10 +50,10 @@
 
 	var/list/desires = list()
 
-	var/positive_prob = 15
-	var/negative_prob = 15
+	var/positive_prob = 20
+	var/negative_prob = 30
 
-	var/view_damage_threshold = 10
+	var/view_damage_threshold = 20
 
 	var/say_time = 0
 	var/breakdown_time = 0
