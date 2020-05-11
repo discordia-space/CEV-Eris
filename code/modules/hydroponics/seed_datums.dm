@@ -39,7 +39,7 @@
 	name = "berries"
 	seed_name = "berry"
 	display_name = "berry bush"
-	mutants = list("glowberries","poisonberries")
+	mutants = list("glowberries","poisonberries", "atroberry")
 	chems = list("nutriment" = list(1,10), "berryjuice" = list(10,10))
 	kitchen_tag = "berries"
 
@@ -109,6 +109,7 @@
 	seed_name = "Atropa belladonna"
 	display_name = "Atropa belladonna bush"
 	chems = list("nutriment" = list(1), "atropine" = list(1,5))
+	mutants = list()
 
 /datum/seed/berry/atroberry/New()
 	..()
