@@ -108,7 +108,7 @@
 	name = "atroberry"
 	seed_name = "Atropa belladonna"
 	display_name = "Atropa belladonna bush"
-	chems = list("nutriment" = list(1), "atropine" = list(1,5))
+	chems = list("nutriment" = list(1,5), "atropine" = list(1,5))
 	mutants = list()
 
 /datum/seed/berry/atroberry/New()
