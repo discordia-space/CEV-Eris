@@ -1547,6 +1547,7 @@
 #include "code\modules\hydroponics\seed_packets.dm"
 #include "code\modules\hydroponics\seed_storage.dm"
 #include "code\modules\hydroponics\beekeeping\beehive.dm"
+#include "code\modules\hydroponics\hydrochems\medicinalplants.dm"
 #include "code\modules\hydroponics\spreading\spacevines.dm"
 #include "code\modules\hydroponics\spreading\spreading.dm"
 #include "code\modules\hydroponics\spreading\spreading_growth.dm"
