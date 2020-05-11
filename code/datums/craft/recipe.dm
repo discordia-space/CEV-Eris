@@ -10,6 +10,10 @@
 	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
 	var/avaliableToEveryone = TRUE
 
+	var/variation_type = CRAFT_REFERENCE  // if the object is the reference of a subtype
+	// set it to CRAFT_VARIATION if the object is a variation of the reference
+	var/name_craft_menu  // name of the subtype formed by a reference and its variations
+
 /datum/craft_recipe/New()
 	var/step_definations = steps
 	steps = new

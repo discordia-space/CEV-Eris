@@ -111,22 +111,27 @@
 		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
 	)
 	related_stats = list(STAT_COG)
+	name_craft_menu = "Folders"
 
 /datum/craft_recipe/folder/blue
 	name = "blue folder"
 	result = /obj/item/weapon/folder/blue
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/folder/red
 	name = "red folder"
 	result = /obj/item/weapon/folder/red
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/folder/cyan
 	name = "cyan folder"
 	result = /obj/item/weapon/folder/cyan
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/folder/yellow
 	name = "yellow folder"
 	result = /obj/item/weapon/folder/yellow
+	variation_type = CRAFT_VARIATION
 
 /datum/craft_recipe/bandage
 	name = "bandages"
