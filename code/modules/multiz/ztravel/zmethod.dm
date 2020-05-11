@@ -121,6 +121,7 @@
 	M.set_plane(prev_plane)
 	if (travelsound)
 		travelsound.stop()
+	M.used_now = FALSE
 
 
 /datum/vertical_travel_method/proc/calculate_time()
@@ -154,11 +155,14 @@
 	Generally, use a message in a case where a user would expect it to work, to explain why it doesn't.
 */
 /datum/vertical_travel_method/proc/can_perform(var/dir)
+	if(M.used_now)
+		return "You are busy at the moment."
+
 	if (dir != direction)
 		direction = dir
 
 	if (!get_destination())
-		return FALSE
+		return "There is nothing in that direction."
 
 	return TRUE
 
@@ -168,6 +172,7 @@
 	calculate_time()
 	announce_start()
 	start_time = world.time
+	M.used_now = TRUE
 	spawn()
 		start_animation()
 

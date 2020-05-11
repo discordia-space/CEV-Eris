@@ -14,18 +14,18 @@
 
 /datum/vertical_travel_method/climb/can_perform(var/mob/living/L, var/dir)
 	.=..()
-	if (.)
+	if (. && !istext(.))
 		if (isrobot(M))
-			return FALSE //Robots can't climb
+			return "You're a robot, you can't climb." //Robots can't climb
 		else if (istype(M, /mob/living/exosuit))
-			return FALSE //Mechas can't climb, for now.
+			return "Mecha can not climb, yet." //Mechas can't climb, for now.
 			//Todo future: add some kind of var or function to allow certain mecha to climb
 
 		if (gravity)
 			/*
 				Climbing under gravity not yet implemented. would need special powers or augments
 			*/
-			return FALSE
+			return "Gravity is keeping you down, you can't climb like this."
 
 
 
@@ -82,7 +82,7 @@
 
 /datum/vertical_travel_method/climb/mag/can_perform(var/dir)
 	.=..()
-	if(.)
+	if(. && !istext(.))
 		if (!ishuman(M))
 			return FALSE
 		var/mob/living/carbon/human/H = M
@@ -97,7 +97,7 @@
 				if (!MB.magpulse)
 					return "You could use your [MB] to walk up the [surface] if they were turned on."
 
-			return FALSE
+			return "Your shoes don't have enough grip to climb up."
 
 
 /datum/vertical_travel_method/climb/mag/start_animation()

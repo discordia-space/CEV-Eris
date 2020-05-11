@@ -42,7 +42,7 @@
 
 /datum/vertical_travel_method/jetpack/can_perform(var/mob/living/L, var/dir)
 	.=..()
-	if (.)
+	if (. && !istext(.))
 		if (!istype(thrust))
 			return FALSE	//If you don't have a jetpack, we wont show any messages related to it
 

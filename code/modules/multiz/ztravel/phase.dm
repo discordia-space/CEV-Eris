@@ -7,7 +7,7 @@
 
 /datum/vertical_travel_method/phase/can_perform()
 	.=..()
-	if (.)
+	if (. && !istext(.))
 		if (istype(M, /mob/observer))
 			return TRUE
 		if (ismob(M) && mob.incorporeal_move)
