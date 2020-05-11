@@ -387,7 +387,6 @@
 	//Here should go organ desire code as soon as Erismed is done. For now that code would never run.
 
 
-
 /datum/breakdown/common/obsession/update()
 	. = ..()
 	if(!.)

@@ -130,7 +130,8 @@
 	pilots = null
 
 	for(var/thing in HUDneed)
-		qdel(thing)
+
+		qdel(HUDneed[thing])
 	HUDneed.Cut()
 
 	for(var/hardpoint in hardpoints)
