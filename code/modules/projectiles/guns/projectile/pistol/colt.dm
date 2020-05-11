@@ -5,14 +5,14 @@
 	icon_state = "colt"
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
-	price_tag = 1200
+	matter = list(MATERIAL_STEEL = 12, MATERIAL_PLASTIC = 6)
+	price_tag = 800
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = 1
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	damage_multiplier = 1.5
-	recoil_buildup = 17
+	damage_multiplier = 0.9 // 21.6 damage for regular bullets
+	recoil_buildup = 18
 	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
 
 
