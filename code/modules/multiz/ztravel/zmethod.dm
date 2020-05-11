@@ -137,13 +137,9 @@
 //Combines testing and starting. Autostarts if possible
 /datum/vertical_travel_method/proc/attempt(var/dir)
 	.=can_perform(dir)
-	if (. == TRUE)
+	if (.)
 		spawn()
 			start(dir)
-		return TRUE
-	else if (istext(.))
-		to_chat(M, SPAN_NOTICE(.))
-	return FALSE
 
 /*
 	Can perform checks whether its possible to do this ztravel method.
@@ -156,13 +152,15 @@
 */
 /datum/vertical_travel_method/proc/can_perform(var/dir)
 	if(M.used_now)
-		return "You are busy at the moment."
+		to_chat(M, SPAN_NOTICE("You are busy at the moment."))
+		return FALSE
 
 	if (dir != direction)
 		direction = dir
 
 	if (!get_destination())
-		return "There is nothing in that direction."
+		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
+		return FALSE
 
 	return TRUE
 

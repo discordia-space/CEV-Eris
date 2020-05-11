@@ -14,18 +14,21 @@
 
 /datum/vertical_travel_method/climb/can_perform(var/mob/living/L, var/dir)
 	.=..()
-	if (. && !istext(.))
+	if (.)
 		if (isrobot(M))
-			return "You're a robot, you can't climb." //Robots can't climb
+			to_chat(M, SPAN_NOTICE("You're a robot, you can't climb.")) //Robots can't climb
+			return FALSE
 		else if (istype(M, /mob/living/exosuit))
-			return "Mecha can not climb, yet." //Mechas can't climb, for now.
+			to_chat(M, SPAN_NOTICE("Mecha can not climb, yet."))
+			return FALSE //Mechas can't climb, for now.
 			//Todo future: add some kind of var or function to allow certain mecha to climb
 
 		if (gravity)
 			/*
 				Climbing under gravity not yet implemented. would need special powers or augments
 			*/
-			return "Gravity is keeping you down, you can't climb like this."
+			to_chat(M, SPAN_NOTICE("Gravity is keeping you down, you can't climb like this."))
+			return FALSE
 
 
 
@@ -82,7 +85,7 @@
 
 /datum/vertical_travel_method/climb/mag/can_perform(var/dir)
 	.=..()
-	if(. && !istext(.))
+	if(.)
 		if (!ishuman(M))
 			return FALSE
 		var/mob/living/carbon/human/H = M
@@ -95,9 +98,11 @@
 			if (istype(H.shoes, /obj/item/clothing/shoes/magboots))
 				var/obj/item/clothing/shoes/magboots/MB = H.shoes
 				if (!MB.magpulse)
-					return "You could use your [MB] to walk up the [surface] if they were turned on."
+					to_chat(M, SPAN_NOTICE("You could use your [MB] to walk up the [surface] if they were turned on."))
+					return FALSE
 
-			return "Your shoes don't have enough grip to climb up."
+			to_chat(M, SPAN_NOTICE("Your shoes don't have enough grip to climb up."))
+			return FALSE
 
 
 /datum/vertical_travel_method/climb/mag/start_animation()
