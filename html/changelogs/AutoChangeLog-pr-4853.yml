@@ -1,0 +1,11 @@
+author: Autisem
+delete-after: true
+changes:
+  - rscadd: A sink for NeoTheologists hydroponics
+  - rscadd: Both gene machines are added to NoeTheologists hydroponics
+  - rscadd: Atropa belladonna, a new berry which contains atropine
+  - rscadd: Atropine, which stops death and heals oxy damage, can be OD'd and will
+      cause oxy damage when it does
+  - bugfix: fixed roach taming not working, it can now be done with potato's
+  - balance: Genes are now unobfuscated, meaning that it will say what they do instead
+      of the guessing game
