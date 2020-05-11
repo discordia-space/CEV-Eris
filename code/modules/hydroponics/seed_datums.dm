@@ -114,7 +114,7 @@
 	..()
 	set_trait(TRAIT_YIELD,3)
 	set_trait(TRAIT_POTENCY,40)
-	set_TRAIT(TRAIT_PRODUCT_COLOUR,"#2f054b")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#2f054b")
 
 // Nettles/variants.
 /datum/seed/nettle
