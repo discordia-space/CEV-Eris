@@ -104,6 +104,17 @@
 	set_trait(TRAIT_POTENCY,50)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#7A5454")
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.35)
+/datum/seed/berry/atroberry
+	name = "atroberry"
+	seed_name = "Atropa belladonna"
+	display_name = "Atropa belladonna bush"
+	chems = list("nutriment" = list(1), "atropine" = list(1,5))
+
+/datum/seed/berry/atroberry/New()
+	..()
+	set_trait(TRAIT_YIELD,3)
+	set_trait(TRAIT_POTENCY,40)
+	set_TRAIT(TRAIT_PRODUCT_COLOUR,"#2f054b")
 
 // Nettles/variants.
 /datum/seed/nettle
