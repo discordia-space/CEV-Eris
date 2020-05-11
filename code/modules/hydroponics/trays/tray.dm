@@ -122,6 +122,10 @@
 		"radium" =  8,
 		"mutagen" = 15
 		)
+	
+	var/global/list/potency_reagents = list(
+		"diethylamine" =    2
+	)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
 	if(mechanical && !usr.incapacitated() && Adjacent(usr))
@@ -204,6 +208,9 @@
 				health += beneficial_reagents[R.id][1]       * reagent_total
 				yield_mod += beneficial_reagents[R.id][2]    * reagent_total
 				mutation_mod += beneficial_reagents[R.id][3] * reagent_total
+			//potency reagents boost the plats genetic potency, tweaking needed
+			if(potency_reagents[R.id])
+				seed.set_trait(TRAIT_POTENCY, TRAIT_POTENCY + (potency_reagents[R.id][1] * reagent_total * 0.5))
 
 			// Mutagen is distinct from the previous types and mostly has a chance of proccing a mutation.
 			if(mutagenic_reagents[R.id])
