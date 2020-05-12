@@ -271,8 +271,6 @@
 	if(!special_check(user))
 		return
 
-	user.stats.getPerk(/datum/perk/timeismoney)?.deactivate()
-
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	next_fire_time = world.time + shoot_time

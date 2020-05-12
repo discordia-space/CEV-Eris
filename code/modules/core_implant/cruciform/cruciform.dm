@@ -1,3 +1,5 @@
+#define OBELISK_UPDATE_TIME 5 SECONDS
+
 var/list/disciples = list()
 
 /obj/item/weapon/implant/core_implant/cruciform

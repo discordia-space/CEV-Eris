@@ -13,9 +13,6 @@
 	if(!..())
 		return
 
-	if(ismob(A) && a_intent != I_HELP)
-		stats.getPerk(/datum/perk/timeismoney)?.deactivate()
-
 	// Special glove functions:
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.

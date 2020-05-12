@@ -330,6 +330,7 @@ This file contains the underlying code for stash datums
 	//If theres a photo, attach it to the note
 	if (map_image)
 		note.attackby(map_image)
+	return note
 
 //Does final creation on lore, override this to do fancy things
 /datum/stash/proc/create_note_content()

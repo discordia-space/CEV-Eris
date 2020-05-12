@@ -1066,16 +1066,19 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
 /mob/verb/browse_mine_stats()
-	set name		= "Show Stats Values"
-	set desc		= "Browse your character stats."
+	set name		= "Show stats and perks"
+	set desc		= "Browse your character stats and perks."
 	set category	= "IC"
 	set src			= usr
 
 	browse_src_stats(src)
 
 /mob/proc/browse_src_stats(mob/user)
-	var/aditonalcss = {"
+	var/additionalcss = {"
 		<style>
+			table {
+				float: left;
+			}
 			table, th, td {
 				border: #3333aa solid 1px;
 				border-radius: 5px;
@@ -1087,22 +1090,36 @@ mob/proc/yank_out_object()
 			}
 		</style>
 	"}
-	var/table_header = "<th>Stat's Name<th>Stat's Value"
+	var/table_header = "<th>Stat Name<th>Stat Value"
 	var/list/S = list()
 	for(var/TS in ALL_STATS)
 		S += "<td>[TS]<td>[getStatStats(TS)]"
 	var/data = {"
-		[aditonalcss]
-		[user == src ? "Your stats:" : "[name]'s stats"]
-		<table>
+		[additionalcss]
+		[user == src ? "Your stats:" : "[name]'s stats"]<br>
+		<table width=20%>
 			<tr>[table_header]
 			<tr>[S.Join("<tr>")]
 		</table>
 	"}
+	// Perks
+	var/list/Plist = list()
+	for(var/perk in stats.perks)
+		var/datum/perk/P = perk
+		var/filename = sanitizeFileName("[P.type].png")
+		var/asset = asset_cache.cache[filename] // this is definitely a hack, but getAtomCacheFilename accepts only atoms for no fucking reason whatsoever.
+		if(asset)
+			Plist += "<td valign='middle'><img src=[filename]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
+	data += {"
+		<table width=80%>
+			<th colspan=2>Perks</th>
+			<tr>[Plist.Join("</tr><tr>")]</tr>
+		</table>
+	"}
 
-	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 220, 345)
+	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 1000, 345)
 	B.set_content(data)
-	B.set_window_options("can_resize=0;can_minimize=0")
+	B.set_window_options("can_minimize=0")
 	B.open()
 
 /mob/proc/getStatStats(typeOfStat)
