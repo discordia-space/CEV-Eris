@@ -994,6 +994,7 @@
 	no_criminals = TRUE
 	products = list(/obj/item/device/flash = 6,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,
+					/obj/item/weapon/gun/projectile/pistol/colt = 5,
 					/obj/item/weapon/gun/projectile/olivaw = 5,
 					/obj/item/weapon/gun/projectile/giskard = 5,
 					/obj/item/weapon/gun/energy/gun/martin = 5,
@@ -1015,10 +1016,8 @@
 					/obj/item/clothing/accessory/holster/waist = 5,
 					/obj/item/clothing/accessory/holster/hip = 5,
 					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
-
-
-	contraband = list(
-					/obj/item/ammo_magazine/slpistol = 20,
+					
+	contraband = list(		/obj/item/ammo_magazine/slpistol = 20,
 					/obj/item/ammo_magazine/pistol = 20,
 					/obj/item/ammo_magazine/hpistol = 5,
 					/obj/item/ammo_magazine/smg = 15,
@@ -1029,31 +1028,32 @@
 	prices = list(
 					/obj/item/device/flash = 600,
 					/obj/item/weapon/reagent_containers/spray/pepper = 800,
-					/obj/item/weapon/gun/projectile/olivaw = 1600,
-					/obj/item/weapon/gun/projectile/giskard = 1200,
+					/obj/item/weapon/gun/projectile/pistol/colt = 800
+					/obj/item/weapon/gun/projectile/olivaw = 1200,
+					/obj/item/weapon/gun/projectile/giskard = 600,
 					/obj/item/weapon/gun/energy/gun/martin = 1500,
-					/obj/item/weapon/gun/projectile/revolver/havelock = 2500,
+					/obj/item/weapon/gun/projectile/revolver/havelock = 1200,
 					/obj/item/weapon/gun/projectile/automatic/atreides = 1500,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
 					/obj/item/weapon/gun/projectile/shotgun/pump = 2000,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
-					/obj/item/ammo_magazine/slpistol/rubber = 300,
+					/obj/item/ammo_magazine/slpistol/rubber = 200,
 					/obj/item/ammo_magazine/pistol/rubber = 200,
-					/obj/item/ammo_magazine/hpistol = 400,
+					/obj/item/ammo_magazine/hpistol = 300,
 					/obj/item/ammo_magazine/hpistol/rubber = 300,
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300,
 					/obj/item/weapon/storage/box/shotgunammo/flashshells = 300,
 					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
 					/obj/item/ammo_magazine/sllrifle = 200,
-					/obj/item/ammo_magazine/slpistol = 400,
-					/obj/item/ammo_magazine/smg/rubber = 400,
-					/obj/item/ammo_magazine/smg = 500,
+					/obj/item/ammo_magazine/slpistol = 200,
+					/obj/item/ammo_magazine/smg/rubber = 300,
+					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/ammo_magazine/ammobox/pistol = 200,
 					/obj/item/weapon/storage/box/shotgunammo/slug = 300,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
 					/obj/item/weapon/tool/knife/tacknife = 600,
-					/obj/item/ammo_magazine/pistol = 400,
+					/obj/item/ammo_magazine/pistol = 300,
 					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 1000,)
 
 //This one's from bay12
