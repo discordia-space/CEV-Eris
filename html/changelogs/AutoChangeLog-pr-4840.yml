@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Added holowarrant item to display arrest and search warrants
+  - tweak: Tweaked Warrant Assistant application for holowarrant use
