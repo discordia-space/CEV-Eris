@@ -27,6 +27,7 @@
 	remove_language(LANGUAGE_ROBOT)
 	remove_language(LANGUAGE_DRONE)
 	add_language(LANGUAGE_BLITZ, 1)
+	UnlinkSelf()
 
 /mob/living/silicon/robot/drone/blitzshell/GetIdCard()
 	var/obj/ID = locate(/obj/item/weapon/card/id/syndicate) in module.modules
