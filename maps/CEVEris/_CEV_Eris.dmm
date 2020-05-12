@@ -16985,6 +16985,15 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
+"aNS" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "aNT" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -26958,6 +26967,11 @@
 /obj/random/booze/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
+"biy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "biz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -41747,6 +41761,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
+"bOi" = (
+/obj/machinery/botany/extractor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "bOj" = (
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
@@ -44959,8 +44983,13 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bVu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/botany/editor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bVv" = (
@@ -55558,9 +55587,6 @@
 /obj/machinery/computer/robotics,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
-"ctS" = (
-/turf/simulated/floor/carpet/purcarpet,
-/area/eris/command/meo)
 "ctT" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -60349,9 +60375,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
-"cEw" = (
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/eris/command/bridge)
 "cEx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/red{
 	tag = "icon-map (WEST)";
@@ -98320,10 +98343,6 @@
 /area/eris/maintenance/section4deck1central)
 "ema" = (
 /obj/machinery/botany/extractor,
-/turf/simulated/floor/tiled/white,
-/area/eris/rnd/xenobiology/xenoflora)
-"emb" = (
-/obj/machinery/biogenerator,
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emc" = (
@@ -164408,7 +164427,7 @@ cyN
 drI
 bUQ
 bVd
-bVu
+biy
 cCt
 cCP
 cEc
@@ -164606,7 +164625,7 @@ bZn
 cga
 cCz
 bQq
-bQq
+aNS
 bQq
 bQq
 bQq
@@ -164815,7 +164834,7 @@ bUT
 bUT
 bUT
 bQq
-bXi
+bOi
 bxH
 bQn
 bQn
@@ -165017,7 +165036,7 @@ auS
 auS
 bQn
 bQq
-bXi
+bVu
 bxH
 bQS
 bXR
@@ -213270,7 +213289,7 @@ crb
 clF
 clF
 cmG
-ctS
+cvj
 crx
 cDW
 cvj
@@ -288563,7 +288582,7 @@ aaa
 abq
 aad
 dUv
-cEw
+cHg
 cIp
 dVP
 dWh
@@ -295083,7 +295102,7 @@ ebi
 ebi
 ebi
 ebi
-emb
+epD
 enf
 ecl
 bHc

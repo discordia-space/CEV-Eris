@@ -1886,8 +1886,10 @@
 
 /datum/chemical_reaction/vomitol
 	result = "vomitol"
-	required_reagents = list("carbon" = 1, "sugar" = 1, "acetone" = 1)
+	required_reagents = list("carbon" = 1, "hclacid" = 1, "acetone" = 1)
 	result_amount = 3
+	maximum_temperature = 683.14 //So it doesn't form back into vomitol, decompose, and form back again when over decomposition point
+	minimum_temperature = 0
 
 /datum/chemical_reaction/arectine
 	result = "arectine"

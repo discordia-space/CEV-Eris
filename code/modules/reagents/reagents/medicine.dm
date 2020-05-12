@@ -88,8 +88,8 @@
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.adjustToxLoss(-((0.4 + (M.getToxLoss() * 0.05)) * effect_multiplier))
 	M.add_chemical_effect(CE_ANTITOX, 1)
-	holder.remove_reagent("pararein", 0.2 * effect_multiplier)
-	holder.remove_reagent("blattedin", 0.2 * effect_multiplier)
+	holder.remove_reagent("pararein", 0.2 )
+	holder.remove_reagent("blattedin", 0.2 )
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -783,6 +783,8 @@
 	reagent_state = LIQUID
 	color = "#a6b85b"
 	overdose = REAGENTS_OVERDOSE
+	heating_point = 683.15
+	heating_products = list("carbon", "hclacid", "acetone")
 
 /datum/reagent/medicine/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(10 * effect_multiplier))
