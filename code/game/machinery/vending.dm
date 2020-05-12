@@ -1017,7 +1017,7 @@
 					/obj/item/clothing/accessory/holster/hip = 5,
 					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
 					
-	contraband = list(		/obj/item/ammo_magazine/slpistol = 20,
+	contraband = list(/obj/item/ammo_magazine/slpistol = 20,
 					/obj/item/ammo_magazine/pistol = 20,
 					/obj/item/ammo_magazine/hpistol = 5,
 					/obj/item/ammo_magazine/smg = 15,
@@ -1025,8 +1025,7 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
 					/obj/item/weapon/tool/knife/tacknife = 6)
-	prices = list(
-					/obj/item/device/flash = 600,
+	prices = list(/obj/item/device/flash = 600,
 					/obj/item/weapon/reagent_containers/spray/pepper = 800,
 					/obj/item/weapon/gun/projectile/pistol/colt = 800
 					/obj/item/weapon/gun/projectile/olivaw = 1200,
@@ -1054,7 +1053,7 @@
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
 					/obj/item/weapon/tool/knife/tacknife = 600,
 					/obj/item/ammo_magazine/pistol = 300,
-					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 1000,)
+					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 1000)
 
 //This one's from bay12
 /obj/machinery/vending/cart
