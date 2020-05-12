@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Fixes robot equipment that would use the internal cell, not doing so.
-  - bugfix: Fixes the blitzshell being on accessible camera networks.
