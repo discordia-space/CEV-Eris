@@ -1,0 +1,4 @@
+author: Crossedfall
+delete-after: true
+changes:
+  - rscadd: Adds documentation to the automated changelog generator script
