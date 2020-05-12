@@ -21,8 +21,8 @@
 	var/obj/item/device/radio/exosuit/radio
 
 	var/wreckage_path = /obj/structure/mech_wreckage
-	var/mech_turn_sound = 'sound/mecha/mechturn.ogg'
-	var/mech_step_sound = 'sound/mecha/mechstep.ogg'
+	var/mech_turn_sound = 'sound/mechs/mechturn.ogg'
+	var/mech_step_sound = 'sound/mechs/mechstep.ogg'
 
 	// Access updating/container.
 	var/obj/item/weapon/card/id/access_card

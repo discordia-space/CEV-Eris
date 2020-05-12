@@ -1,6 +1,6 @@
 /obj/structure/mech_wreckage
 	name = "wreckage"
-	icon = MECHA_WRECKAGE_ICON
+	icon = MECH_WRECKAGE_ICON
 	icon_state = "wreck"
 	desc = "It might have some salvagable parts."
 	density = 1

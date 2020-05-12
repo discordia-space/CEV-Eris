@@ -19,7 +19,7 @@
 			return FALSE //Robots can't climb
 		else if (istype(M, /mob/living/exosuit))
 			return FALSE //Mechas can't climb, for now.
-			//Todo future: add some kind of var or function to allow certain mecha to climb
+			//Todo future: add some kind of var or function to allow certain mechs to climb
 
 		if (gravity)
 			/*
