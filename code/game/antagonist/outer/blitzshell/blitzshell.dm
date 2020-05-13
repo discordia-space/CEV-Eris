@@ -10,6 +10,3 @@
 
 	outer = TRUE
 	only_human = FALSE
-
-/datum/antagonist/blitz/create_objectives(var/survive = FALSE)
-	new /datum/objective/blitz_objective(src)
