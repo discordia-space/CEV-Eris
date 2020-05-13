@@ -88,7 +88,7 @@
 	if (!adjacent)
 		return
 
-	//must place on a wall and user must not be inside a closet/mecha/whatever
+	//must place on a wall and user must not be inside a closet/whatever
 	if (!istype(W) || !W.Adjacent(user))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return

@@ -126,9 +126,9 @@
 		return
 
 	if(istype(AM, /mob/living/exosuit))
-		var/mob/living/exosuit/mecha = AM
+		var/mob/living/exosuit/exosuit = AM
 		if(density)
-			if(mecha.pilots.len && (allowed(mecha.pilots[1]) || check_access_list(mecha.saved_access)))
+			if(exosuit.pilots.len && (allowed(exosuit.pilots[1]) || check_access_list(exosuit.saved_access)))
 				open()
 			else
 				do_animate("deny")

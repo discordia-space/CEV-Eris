@@ -1,13 +1,13 @@
-/mob/living/silicon/ai/proc/add_mecha_verbs()
-	verbs += /mob/living/silicon/ai/proc/view_mecha_stats
+/mob/living/silicon/ai/proc/add_mech_verbs()
+	verbs += /mob/living/silicon/ai/proc/view_mech_stats
 	verbs += /mob/living/silicon/ai/proc/AIeject
 
 
-/mob/living/silicon/ai/proc/remove_mecha_verbs()
-	verbs -= /mob/living/silicon/ai/proc/view_mecha_stats
+/mob/living/silicon/ai/proc/remove_mech_verbs()
+	verbs -= /mob/living/silicon/ai/proc/view_mech_stats
 	verbs -= /mob/living/silicon/ai/proc/AIeject
 
-/mob/living/silicon/ai/proc/view_mecha_stats()
+/mob/living/silicon/ai/proc/view_mech_stats()
 	set name = "View Stats"
 	set category = "Exosuit Interface"
 	set popup_menu = 0
@@ -22,7 +22,7 @@
 	if(controlled_mech)
 		controlled_mech.AIeject()
 
-/mob/living/silicon/ai/proc/set_mecha(var/mob/living/exosuit/M)
+/mob/living/silicon/ai/proc/set_mech(var/mob/living/exosuit/M)
 	if(M)
 		if(controlled_mech == M)
 			return
@@ -50,11 +50,11 @@
 	if(chassis.occupant && !isAI(chassis.occupant))
 		prev_occupant = chassis.occupant
 		prev_occupant.forceMove(src)
-	AI.set_mecha(chassis)
+	AI.set_mech(chassis)
 	occupant = AI
 	chassis.occupant = occupant
 	chassis.update_icon()
-	AI.add_mecha_verbs()
+	AI.add_mech_verbs()
 
 /obj/item/mech_equipment/ai_holder/interact(var/mob/living/silicon/ai/user)
 	if(!chassis) return

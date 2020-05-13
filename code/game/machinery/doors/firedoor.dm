@@ -115,9 +115,9 @@
 	if(!density)
 		return ..()
 	if(istype(AM, /mob/living/exosuit))
-		var/mob/living/exosuit/mecha = AM
-		if(mecha.pilots.len)
-			for(var/mob/M in mecha.pilots)
+		var/mob/living/exosuit/exosuit = AM
+		if(exosuit.pilots.len)
+			for(var/mob/M in exosuit.pilots)
 				if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
 				M.last_bumped = world.time
 				attack_hand(M)

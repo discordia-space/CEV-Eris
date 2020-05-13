@@ -68,9 +68,9 @@
 				sleep(50)
 				close()
 		else if(istype(AM, /mob/living/exosuit))
-			var/mob/living/exosuit/mecha = AM
+			var/mob/living/exosuit/exosuit = AM
 			if(density)
-				if(mecha.pilots.len && allowed(mecha.pilots[1]))
+				if(exosuit.pilots.len && allowed(exosuit.pilots[1]))
 					open()
 					sleep(50)
 					close()

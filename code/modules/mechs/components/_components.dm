@@ -1,10 +1,10 @@
 /obj/item/mech_component
-	icon = MECHA_PARTS_HELD_ICON
+	icon = MECH_PARTS_HELD_ICON
 	w_class = ITEM_SIZE_HUGE
 	gender = PLURAL
 	color = COLOR_GUNMETAL
 
-	var/on_mech_icon = MECHA_PARTS_ICON
+	var/on_mech_icon = MECH_PARTS_ICON
 	var/exosuit_desc_string
 	var/total_damage = 0
 	var/brute_damage = 0

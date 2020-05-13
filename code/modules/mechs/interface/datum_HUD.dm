@@ -1,6 +1,6 @@
 /datum/hud/exosuits
 	name = "exosuits"
-	icon = MECHA_HUD_ICON
+	icon = MECH_HUD_ICON
 	HUDneed = list(
 		"maintence"					=	list("type"	=	/obj/screen/movable/exosuit/toggle/maint,		"loc" = "WEST:4,CENTER-3:11"),
 		"exit from suit"			=	list("type"	=	/obj/screen/movable/exosuit/eject,				"loc" = "WEST:4,CENTER-3:25"),

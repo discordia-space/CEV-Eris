@@ -1,7 +1,7 @@
 // Screen objects hereon out.
 /obj/screen/movable/exosuit
 	name = "hardpoint"
-	icon = MECHA_HUD_ICON
+	icon = MECH_HUD_ICON
 	icon_state = "hardpoint"
 	var/mob/living/exosuit/owner
 
@@ -85,19 +85,19 @@
 
 	// Draw background.
 	if(!GLOB.default_hardpoint_background)
-		GLOB.default_hardpoint_background = image(icon = MECHA_HUD_ICON, icon_state = "bar_bkg")
+		GLOB.default_hardpoint_background = image(icon = MECH_HUD_ICON, icon_state = "bar_bkg")
 		GLOB.default_hardpoint_background.pixel_x = 34
 	new_overlays += GLOB.default_hardpoint_background
 
 	if(value == 0)
 		if(!GLOB.hardpoint_bar_empty)
-			GLOB.hardpoint_bar_empty = image(icon = MECHA_HUD_ICON, icon_state="bar_flash")
+			GLOB.hardpoint_bar_empty = image(icon = MECH_HUD_ICON, icon_state="bar_flash")
 			GLOB.hardpoint_bar_empty.pixel_x = 24
 			GLOB.hardpoint_bar_empty.color = "#ff0000"
 		new_overlays += GLOB.hardpoint_bar_empty
 	else if(value < 0)
 		if(!GLOB.hardpoint_error_icon)
-			GLOB.hardpoint_error_icon = image(icon = MECHA_HUD_ICON, icon_state="bar_error")
+			GLOB.hardpoint_error_icon = image(icon = MECH_HUD_ICON, icon_state="bar_error")
 			GLOB.hardpoint_error_icon.pixel_x = 34
 		new_overlays += GLOB.hardpoint_error_icon
 	else
@@ -105,7 +105,7 @@
 		// Draw statbar.
 		if(!LAZYLEN(GLOB.hardpoint_bar_cache))
 			for(var/i = 0; i < BAR_CAP; i++)
-				var/image/bar = image(icon = MECHA_HUD_ICON, icon_state="bar")
+				var/image/bar = image(icon = MECH_HUD_ICON, icon_state="bar")
 				bar.pixel_x = 24 + (i * 2)
 				if(i>5) bar.color = "#00ff00"
 				else if(i>1) bar.color = "#ffff00"
@@ -234,7 +234,7 @@
 		return
 
 	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
-		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECHA_HUD_ICON, icon_state="dam_error")
+		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECH_HUD_ICON, icon_state="dam_error")
 		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
 		return
 
@@ -246,7 +246,7 @@
 			if((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 3)) state = rand(0,4)
 			else state = MC.damage_state
 		if(!GLOB.mech_damage_overlay_cache["[part]-[state]"])
-			var/image/I = image(icon = MECHA_HUD_ICON, icon_state="dam_[part]")
+			var/image/I = image(icon = MECH_HUD_ICON, icon_state="dam_[part]")
 			switch(state)
 				if(1) I.color = "#0f0"
 				if(2) I.color = "#f2c50d"

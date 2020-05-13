@@ -45,7 +45,7 @@
 #define CAT_STOCKPARTS  "Stock Parts"
 #define CAT_PROSTHESIS  "Prosthesis"
 #define CAT_MINING      "Mining"
-#define CAT_MECHA       "Exosuits"
+#define CAT_MECH        "Exosuits"
 #define CAT_MODCOMP     "Modular Computers"
 #define CAT_CIRCUITS    "Circuits"
 #define CAT_MEDI        "Medical"
