@@ -68,6 +68,8 @@
 		/obj/item/weapon/spacecash,
 		/obj/item/device/mind_fryer,
 		/obj/item/organ/external/head,
+		/obj/item/weapon/oddity/secdocs,
+		/obj/item/stack/telecrystal //To reload the uplink
 		)
 
 /obj/item/weapon/gripper/antag/New()
