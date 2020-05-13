@@ -198,7 +198,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "L" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/autolathe/mechfab,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "M" = (

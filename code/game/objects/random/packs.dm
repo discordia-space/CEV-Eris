@@ -51,7 +51,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/material = 4,
 					/obj/random/material_rare = 3,
 					/obj/random/material_resources = 8,
-					/obj/random/mecha_equipment = 3,
+					/obj/random/exosuit_equipment = 3,
 					/obj/random/powercell = 8,
 					/obj/random/techpart = 10,
 					/obj/random/tool = 20,
@@ -128,7 +128,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/tool_upgrade/rare = 4,
 					/obj/random/rig_module/rare = 4,
 					/obj/random/credits/c1000 = 3,
-					/obj/random/mecha_equipment = 3,
+					/obj/random/exosuit_equipment = 3,
 					/obj/random/cloth/holster = 4,
 					/obj/item/stash_spawner = 4 //Creates a stash of goodies for a scavenger hunt
 	))
@@ -156,7 +156,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet = 4,
 					/obj/random/closet_wardrobe = 2,
 					/obj/random/scrap/moderate_weighted = 12, //Our scrap pile. This is basically just a huge spawner.
-					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
 /obj/random/pack/machine/low_chance
@@ -181,7 +181,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet_tech = 6,
 					/obj/random/closet = 4,
 					/obj/random/closet_wardrobe = 2,
-					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
 /obj/random/pack/junk_machine/low_chance
@@ -196,5 +196,5 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet_tech = 3,
 					/obj/random/closet = 2,
 					/obj/random/closet_wardrobe = 2,
-					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))

@@ -3,7 +3,7 @@
 	name = LANGUAGE_GERMAN
 	desc = "Language used by the inhabitants of Oberth."
 	colour = "german"
-	key = "g"
+	key = "d"
 	space_chance = 80
 	shorthand = "GE"
 	syllables = list("Frau", "Mann", "Waffe", "Schiff", "Bombe", "Explosion", "Grenze", "Strasse", "Halle", "Pistole", "Gewehr", "Uniform", "Kind", "Arzt", \

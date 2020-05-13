@@ -1,5 +1,5 @@
 /datum/design/research/item/exosuit
-	category = CAT_MECHA + " Equipment"
+	category = CAT_MECH + " Equipment"
 	time = 10
 	materials = list(MATERIAL_STEEL = 10)
 
@@ -8,7 +8,7 @@
 		desc = "Allows for the construction of \a [item_name] for installation in an exosuit hardpoint."
 
 /datum/design/research/item/mechfab/exosuit
-	category = CAT_MECHA
+	category = CAT_MECH
 
 #include "exosuits_components.dm"
 #include "exosuits_equipment.dm"

@@ -1,39 +1,34 @@
-/obj/random/mecha
-	name = "random mecha"
+/obj/random/exosuit
+	name = "random exosuit"
 	icon_state = "machine-red"
 	var/list/randsuits = list(
-//		/obj/mecha/working/hoverpod = 5,
-//		/obj/mecha/working/hoverpod/combatpod = 0.5,//Comes with weapons
-//		/obj/mecha/working/hoverpod/shuttlepod = 6,
 		/mob/living/exosuit/premade/powerloader = 5,
-//		/obj/mecha/working/ripley/firefighter = 6,
-//		/obj/mecha/working/ripley/deathripley = 0.5,//has a dangerous melee weapon
 		/mob/living/exosuit/premade/powerloader = 4,
 		/mob/living/exosuit/premade/light = 6,
 		/mob/living/exosuit/premade/combat = 1,//comes unarmed
 		)
 
-/obj/random/mecha/item_to_spawn()
+/obj/random/exosuit/item_to_spawn()
 	return pickweight(randsuits)
 
-/obj/random/mecha/low_chance
+/obj/random/exosuit/low_chance
 	name = "low chance random lathe disk"
 	icon_state = "machine-red-low"
 	spawn_nothing_percentage = 90
 
 
 
-/obj/random/mecha/damaged
-	name = "random damaged mecha"
+/obj/random/exosuit/damaged
+	name = "random damaged exosuit"
 	icon_state = "machine-red"
 	has_postspawn = TRUE
 
-/obj/random/mecha/damaged/post_spawn(var/list/things)
+/obj/random/exosuit/damaged/post_spawn(var/list/things)
 	for (var/obj/a in things)
 		a.make_old()
 
-/obj/random/mecha/damaged/low_chance
-	name = "low chance random damaged mecha"
+/obj/random/exosuit/damaged/low_chance
+	name = "low chance random damaged exosuit"
 	icon_state = "machine-red-low"
 	spawn_nothing_percentage = 90
 
@@ -41,11 +36,11 @@
 
 
 
-/obj/random/mecha_equipment
-	name = "random mecha equipment"
+/obj/random/exosuit_equipment
+	name = "random exosuit equipment"
 	icon_state = "tech-red"
 
-/obj/random/mecha_equipment/item_to_spawn()
+/obj/random/exosuit_equipment/item_to_spawn()
 	return pickweight(list(
 //		/obj/item/mech_equipment/tool/ai_holder,
 		/obj/item/mech_equipment/sleeper,
@@ -83,7 +78,7 @@
 		)
 	)
 
-/obj/random/mecha/mecha_equipment/low_chance
-	name = "low chance random mecha equipment"
+/obj/random/exosuit/mech_equipment/low_chance
+	name = "low chance random exosuit equipment"
 	icon_state = "tech-red-low"
 	spawn_nothing_percentage = 80

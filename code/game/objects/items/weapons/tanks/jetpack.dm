@@ -351,20 +351,6 @@
 	return TRUE
 
 
-/****************************
-	MECHA JETPACK
-*****************************/
-//Mecha jetpack uses the giant internal gas canister inside mechs
-/obj/item/weapon/tank/jetpack/mecha
-	name = "gas thruster system"
-	gastank = null //Starts off null, will be connected once installed
-	thrust_cost = JETPACK_MOVE_COST*10 //A mecha is much, much heavier than a human, and requires more gas to move
-
-/obj/item/weapon/tank/jetpack/mecha/operational_safety(var/mob/living/user)
-	if (gastank)
-		return TRUE
-	return FALSE
-
 
 
 /****************************

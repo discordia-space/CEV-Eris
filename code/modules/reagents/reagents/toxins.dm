@@ -22,7 +22,7 @@
 		if(sanityloss)
 			var/mob/living/carbon/human/H = M
 			if(istype(H))
-				H.sanity.onDrug(src, -effect_multiplier)
+				H.sanity.onToxin(src, effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, 1)
 
 /datum/reagent/toxin/overdose(var/mob/living/carbon/M, var/alien)

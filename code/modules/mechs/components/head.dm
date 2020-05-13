@@ -79,7 +79,7 @@
 	name = "exosuit control module"
 	desc = "A clump of circuitry and software chip docks, used to program exosuits."
 	icon_state = "control"
-	icon = MECHA_EQUIPMENT_ICON
+	icon = MECH_EQUIPMENT_ICON
 	gender = NEUTER
 	var/list/installed_software = list()
 	var/max_installed_software = 2
