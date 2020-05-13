@@ -8,3 +8,7 @@
 	icon_state = "sack"
 	item_state = "sack"
 	max_w_class = ITEM_SIZE_HUGE
+/obj/item/weapon/storage/deferred/stash/sack/hidden
+	desc = "Now includes special aluminium hidding tech to hide from t-ray scanners"
+	//only value that matters, if true will hide from t-ray scanners
+	is_tray_hidden = TRUE
