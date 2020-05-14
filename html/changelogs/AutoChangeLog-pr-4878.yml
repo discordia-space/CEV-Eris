@@ -1,0 +1,7 @@
+author: Kurgis, WatlerJe
+delete-after: true
+changes:
+  - rscadd: Added new wall-mounted fire closets across the CEV Eris.
+  - tweak: Firefighter equipment comes stored inside a duffelbag.
+  - imageadd: New sprites from WatlerJe for wall-mounted emergency lockers, fire-safety
+      closets, and MiniMed Vendor.
