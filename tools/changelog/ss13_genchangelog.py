@@ -58,6 +58,7 @@ validPrefixes = [
     'soundadd',
     'sounddel',
     'rscdel',
+    'maptweak,
     'rscadd',
     'imageadd',
     'imagedel',
