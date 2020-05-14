@@ -72,3 +72,69 @@
 	if(master_item)
 		master_item.update_icon()
 
+/obj/item/weapon/melee/needle
+	name = "needle and thread"
+	desc = "used to sow shut things, wonder what you could use it on"
+	icon = "icons/obj/items.dmi"
+	icon_state = "coin_string_overlay"
+/obj/item/weapon/teddy
+	name = "teddy bear"
+	desc = "Here to provide help at anytime"
+	icon = 'icons/obj/oddities.dmi'
+	icon_state = "teddy"
+	var/max_w_class = ITEM_SIZE_SMALL
+	var/max_storage_space = 5
+	var/open = FALSE
+	var/icon_open = "old_knife"
+	var/icon_closed = "teddy"
+	var/key = /obj/item/weapon/melee/needle
+	var/obj/item/weapon/storage/internal/container
+
+/obj/item/weapon/teddy/New()
+	container = new /obj/item/weapon/storage/internal(src)
+	container.max_w_class = max_w_class
+	container.max_storage_space = max_storage_space
+
+/obj/item/weapon/teddy/Destroy()
+	qdel(container)
+	container = null
+	. = ..()
+
+/obj/item/weapon/teddy/attack_hand(mob/user as mob)
+	if(open)
+		if (is_held() && !container.handle_attack_hand(user))
+			return TRUE
+	..(user)
+
+/obj/item/weapon/teddy/MouseDrop(obj/over_object)
+	if(container.handle_mousedrop(usr, over_object))
+		return TRUE
+	..(over_object)
+
+/obj/item/weapon/teddy/attackby(obj/item/W, mob/user)
+	if(!open)
+		if((QUALITY_CUTTING in W.tool_qualities))
+			to_chat(user,"You cut open the teddy bear")
+			icon_state = icon_open
+			open = TRUE
+			update_icon()
+			return FALSE
+		else
+			return FALSE
+	if(open && istype(W, key))
+		open = FALSE
+		to_chat(user,"You sow the teddy shut")
+		container.close_all()
+		icon_state = icon_closed
+		update_icon()
+		return FALSE
+	container.attackby(W, user)
+	..()
+/obj/item/weapon/teddy/attack_self(mob/user)
+	if(!open)
+		return FALSE
+	..()
+
+/obj/item/weapon/teddy/emp_act(severity)
+	container.emp_act(severity)
+	..()
