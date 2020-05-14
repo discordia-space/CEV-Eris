@@ -9154,13 +9154,15 @@
 	},
 /area/shuttle/escape_pod1/station)
 "auu" = (
-/obj/structure/closet/walllocker/emerglocker/north,
-/obj/structure/closet/walllocker/emerglocker/north{
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
 	dir = 1;
 	pixel_y = -32
 	},
 /obj/machinery/camera/network/crescent{
 	dir = 8
+	},
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -13470,13 +13472,15 @@
 	},
 /area/shuttle/escape_pod2/station)
 "aET" = (
-/obj/structure/closet/walllocker/emerglocker/north,
-/obj/structure/closet/walllocker/emerglocker/north{
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
 	dir = 1;
 	pixel_y = -32
 	},
 /obj/machinery/camera/network/crescent{
 	dir = 8
+	},
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -37187,6 +37191,9 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bFj" = (
@@ -49099,6 +49106,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
+	},
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
@@ -91406,7 +91416,7 @@
 /turf/simulated/open,
 /area/eris/neotheology/chapel)
 "dWx" = (
-/obj/structure/closet/walllocker/emerglocker/north,
+/obj/structure/closet/wall_mounted/emcloset/escape_pods,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dWy" = (
@@ -101438,10 +101448,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
-"eth" = (
-/obj/structure/closet/firecloset,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/eris/hallway/side/cryo)
 "eti" = (
 /obj/structure/table/bar_special,
 /obj/machinery/light{
@@ -108228,6 +108234,12 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"hNy" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -108351,6 +108363,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"jRq" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck4central)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
@@ -108592,6 +108610,13 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"nYI" = (
+/obj/structure/catwalk,
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck3port)
 "nZb" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -108751,6 +108776,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
+"qnS" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -108778,6 +108809,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"rjC" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck3port)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -165387,7 +165424,7 @@ cyw
 aYx
 aZW
 bay
-cvH
+jRq
 aLc
 aUS
 aWX
@@ -168905,7 +168942,7 @@ aaa
 aaa
 bON
 bfa
-bfA
+hNy
 bTh
 bfA
 bfA
@@ -170723,7 +170760,7 @@ aaa
 aaa
 bON
 bfa
-bfA
+qnS
 bTh
 bfA
 bfA
@@ -204787,7 +204824,7 @@ aTG
 abF
 bSx
 bSx
-bSV
+rjC
 cgI
 cll
 cIx
@@ -209460,7 +209497,7 @@ aaa
 aaa
 duu
 duu
-dgG
+nYI
 dgG
 buH
 evw
@@ -211730,7 +211767,7 @@ cNN
 bzX
 bzX
 bzX
-eth
+cxN
 cRE
 cZz
 cZz
