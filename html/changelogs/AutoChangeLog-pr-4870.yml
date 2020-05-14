@@ -1,7 +1,0 @@
-author: Autisem
-delete-after: true
-changes:
-  - rscadd: A exmaple stash sack that hides from t-ray scanners
-  - bugfix: storage items can now hide from t-ray scanners
-  - code_imp: storage now has a is_tray_hidden, if set to true it wont be found my
-      the scanner

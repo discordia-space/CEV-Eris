@@ -1,4 +1,0 @@
-author: drexample
-delete-after: true
-changes:
-  - bugfix: fixed changelog choking when encountered with wrong prefix
