@@ -1133,7 +1133,7 @@
 #include "code\game\objects\structures\crates_lockers\closets\onestar.dm"
 #include "code\game\objects\structures\crates_lockers\closets\syndicate.dm"
 #include "code\game\objects\structures\crates_lockers\closets\utility_closets.dm"
-#include "code\game\objects\structures\crates_lockers\closets\walllocker.dm"
+#include "code\game\objects\structures\crates_lockers\closets\wall_mounted.dm"
 #include "code\game\objects\structures\crates_lockers\closets\wardrobe.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\bar.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\cargo.dm"
