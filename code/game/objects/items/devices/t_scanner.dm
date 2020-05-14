@@ -142,6 +142,10 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 				continue
 			if(!O.invisibility && !O.hides_under_flooring())
 				continue //if it's already visible don't need an overlay for it
+			if(istype(O, /obj/item/weapon/storage))
+				var/obj/item/weapon/storage/S = O
+				if(S.is_tray_hidden)
+					continue
 			. += O
 
 
