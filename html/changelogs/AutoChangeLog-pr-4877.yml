@@ -1,5 +1,0 @@
-author: Tech3434
-delete-after: true
-changes:
-  - bugfix: when you upgrade manipulators inside the cloner it won't work at all
-  - bugfix: manipulators don't actually speed cloning process
