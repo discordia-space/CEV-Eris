@@ -102,7 +102,7 @@
 
 /obj/item/weapon/teddy/attack_hand(mob/user as mob)
 	if(open)
-		if (is_held() && !container.handle_attack_hand(user))
+		if (is_held() && !container.handle_attack_hand())
 			return TRUE
 	..(user)
 
@@ -114,7 +114,7 @@
 /obj/item/weapon/teddy/attackby(obj/item/W, mob/user)
 	if(!open)
 		if((QUALITY_CUTTING in W.tool_qualities))
-			to_chat(user,"You cut open the teddy bear")
+			to_chat(user,SPAN_NOTICE("You cut open the teddy bear"))
 			icon_state = icon_open
 			open = TRUE
 			update_icon()
@@ -130,6 +130,7 @@
 		return FALSE
 	container.attackby(W, user)
 	..()
+
 /obj/item/weapon/teddy/attack_self(mob/user)
 	if(!open)
 		return FALSE
