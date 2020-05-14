@@ -76,7 +76,7 @@
 	name = "needle and thread"
 	desc = "used to sow shut things, wonder what you could use it on"
 	icon = "icons/obj/items.dmi"
-	icon_state = "coin_string_overlay"
+	icon_state = "needle"
 /obj/item/weapon/teddy
 	name = "teddy bear"
 	desc = "Here to provide help at anytime"
@@ -85,8 +85,8 @@
 	var/max_w_class = ITEM_SIZE_SMALL
 	var/max_storage_space = 5
 	var/open = FALSE
-	var/icon_open = "old_knife"
-	var/icon_closed = "teddy"
+	var/icon_open = "ripped"
+	var/icon_closed = "bear"
 	var/key = /obj/item/weapon/melee/needle
 	var/obj/item/weapon/storage/internal/container
 
@@ -111,11 +111,16 @@
 		return TRUE
 	..(over_object)
 
+/obj/item/weapon/teddy/update_icon()
+	if(open)
+		icon_state = icon_open
+	else
+		icon_state = icon_closed
+
 /obj/item/weapon/teddy/attackby(obj/item/W, mob/user)
 	if(!open)
 		if((QUALITY_CUTTING in W.tool_qualities))
 			to_chat(user,SPAN_NOTICE("You cut open the teddy bear"))
-			icon_state = icon_open
 			open = TRUE
 			update_icon()
 			return FALSE
@@ -125,7 +130,6 @@
 		open = FALSE
 		to_chat(user,SPAN_NOTICE("You sew the teddy shut"))
 		container.close_all()
-		icon_state = icon_closed
 		update_icon()
 		return FALSE
 	container.attackby(W, user)
