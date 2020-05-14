@@ -123,7 +123,7 @@
 			return FALSE
 	if(open && istype(W, key))
 		open = FALSE
-		to_chat(user,"You sow the teddy shut")
+		to_chat(user,SPAN_NOTICE("You sew the teddy shut"))
 		container.close_all()
 		icon_state = icon_closed
 		update_icon()
