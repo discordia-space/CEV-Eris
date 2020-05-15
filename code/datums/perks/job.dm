@@ -68,9 +68,13 @@
 
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)
 	..()
-	var/list/choices = list(CHOICE_TCONTRACT, CHOICE_STASHPAPER, CHOICE_RAREOBJ) 
+	var/list/choices = list(CHOICE_RAREOBJ)
+	if(GLOB.all_antag_contracts.len)
+		choices += CHOICE_TCONTRACT
+	if(GLOB.all_stash_datums.len)
+		choices += CHOICE_STASHPAPER
 	// Let's see if an additional language is feasible. If the user has them all already somehow, we aren't gonna choose this. 
-	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN) // Not static, because we're gonna remove languages already known by the user
+	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN) // Not static, because we're gonna remove languages already known by the user
 	for(var/l in valid_languages)
 		var/datum/language/L = all_languages[l]
 		if(L in holder.languages)
@@ -80,16 +84,21 @@
 	// Let's pick a random choice
 	switch(pick(choices))
 		if(CHOICE_LANG)
-			holder.add_language(pick(valid_languages))
+			var/language = pick(valid_languages)
+			holder.add_language(language)
+			desc += " In particular, you happen to know [language]."
 		if(CHOICE_TCONTRACT)
 			var/datum/antag_contract/A = pick(GLOB.all_antag_contracts)
+			desc += " You feel like you remembered something important."
 			holder.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the station. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
 		if(CHOICE_STASHPAPER)
+			desc += " You have a special note in your storage."
 			var/category = pick(GLOB.all_stash_datums)
-			var/datum/stash/S = pick(GLOB.all_stash_datums[category]) // Random stash of random category
+			var/datum/stash/S = pick(GLOB.all_stash_datums[category]) // Random stash of random category // LIST IS EMPTY FOR SOME REASONS, SOLVE
 			var/note = S.spawn_note()
 			holder.equip_to_storage_or_drop(note)
 		if(CHOICE_RAREOBJ)
+			desc += " You managed to smuggle a rare item aboard."
 			var/obj/O = RANDOM_RARE_ITEM
 			holder.equip_to_storage_or_drop(new O)
 

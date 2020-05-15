@@ -90,8 +90,11 @@
 
 /datum/stat_holder/proc/getPerk(perkType)
 	RETURN_TYPE(/datum/perk)
-	return locate(perkType) in perks
+	var/datum/perk/path = ispath(perkType) ? perkType : text2path(perkType) // Adds support for textual argument so that it can be called through VV easily
+	if(path)
+		return locate(path) in perks
 
+/// The main, public proc to add a perk to a mob. Accepts a path or a stringified path.
 /datum/stat_holder/proc/addPerk(perkType)
 	if(!getPerk(perkType))
 		var/datum/perk/P = new perkType
@@ -99,6 +102,7 @@
 		P.assign(holder)
 
 
+/// The main, public proc to remove a perk from a mob. Accepts a path or a stringified path.
 /datum/stat_holder/proc/removePerk(perkType)
 	var/datum/perk/P = getPerk(perkType)
 	if(P)

@@ -220,12 +220,12 @@
 		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 		if(!O)
 			return
-		var/datum/component/inspiration/I = GetComponent(/datum/component/inspiration)
-		if(!I)
-			return
+		var/datum/component/inspiration/I = O.GetComponent(/datum/component/inspiration) // If it's a valid inspiration, it should have this component. If not, runtime
 		var/list/L = I.calculate_statistics()
 		for(var/stat in L)
-			owner.stats.changeStat(stat, L[stat] * multiplier)
+			var/stat_up = L[stat] * multiplier
+			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+			owner.stats.changeStat(stat, stat_up)
 
 
 /datum/sanity/proc/onDamage(amount)

@@ -104,13 +104,17 @@
 /// Returns a list to use with inspirations. It can be empty if there's not enough money in the bundle. Important side-effects: converts worth to points, thus reducing worth.
 /obj/item/weapon/spacecash/bundle/proc/return_stats()
 	RETURN_TYPE(/list)
-	var/points = min(worth%CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
-	worth -= points*CASH_PER_STAT
+	var/points = min(worth/CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
+	to_chat(world, "BEING CALLED POINTS [points]")
 	var/list/stats = list()
 	// Distribute points evenly with random statistics. Just skips the loop if there's not enough money in the bundle, resulting in an empty list.
 	while(points)
 		stats[pick(ALL_STATS)] += 1 // Picks a random stat, if not present it adds it with a value of 1, else it increases the value by 1
 		points--
+	worth -= points*CASH_PER_STAT
+	update_icon()
+	if(!worth)
+		qdel(src)
 	return stats
 
 /obj/item/weapon/spacecash/bundle/c1

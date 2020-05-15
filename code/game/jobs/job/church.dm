@@ -30,8 +30,6 @@
 		STAT_COG = 10,
 	)
 
-	perks = list(/datum/perk/sanityboost)
-
 	software_on_spawn = list(/datum/computer_file/program/records,
 							 /datum/computer_file/program/reports)
 
@@ -90,8 +88,6 @@
 	STAT_TGH = 5,
 	)
 
-	perks = list(/datum/perk/sanityboost)
-
 	core_upgrades = list(
 		CRUCIFORM_PRIEST
 	)
@@ -135,8 +131,6 @@
 		STAT_ROB = 10,
 	)
 
-	perks = list(/datum/perk/sanityboost)
-
 	description = "You are the holy cultivator of the church's plants, and assist in the production of biomatter. All duties of plant growth fall to you, making your role critical.<br>\
 	<br>\
 	Though the church is your primary concern, as you are a disciple of its faith, many others aboard the ship rely upon your work as well. The crew requires food, and the club manager seeks to provide. Though the manager cannot make food without fresh produce grown from the church's holy garden.<br>\
@@ -175,8 +169,6 @@
 		STAT_BIO = 10,
 		STAT_VIG = 15
 	)
-
-	perks = list(/datum/perk/sanityboost)
 
 	software_on_spawn = list(/datum/computer_file/program/camera_monitor)
 
