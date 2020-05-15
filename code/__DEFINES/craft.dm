@@ -7,3 +7,6 @@
 #define CRAFT_WITH_USER_DIR  0
 #define CRAFT_TOWARD_USER    1
 #define CRAFT_DEFAULT_DIR    2
+
+#define CRAFT_REFERENCE 0
+#define CRAFT_VARIATION 1

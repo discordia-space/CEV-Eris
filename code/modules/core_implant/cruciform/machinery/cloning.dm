@@ -55,14 +55,14 @@
 
 /obj/machinery/neotheology/cloner/RefreshParts()
 	var/mn_rating = 0
+	var/mn_ammount = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		mn_rating += M.rating
-	time_multiplier = round((3 * initial(time_multiplier))/mn_rating)
-
-
-/obj/machinery/neotheology/cloner/proc/get_progress(var/prg = progress)
-	return round(prg / time_multiplier)
-
+		mn_ammount++
+	if (mn_ammount != 0) // Fail-check so we wont divide by 0 in future and get runtimes
+		time_multiplier = round(initial(time_multiplier)*(mn_rating/mn_ammount))
+	else
+		time_multiplier = 0 // ... so it wont work without manipulators
 
 /obj/machinery/neotheology/cloner/proc/find_container()
 	for(var/obj/machinery/neotheology/biomass_container/BC in orange(1,src))
@@ -116,13 +116,12 @@
 
 	return TRUE
 
-
 /obj/machinery/neotheology/cloner/proc/eject_contents()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant = null
 	else
-		if(get_progress(progress) >= CLONING_MEAT)
+		if(progress >= CLONING_MEAT)
 			new /obj/item/weapon/reagent_containers/food/snacks/meat(loc)
 
 	update_icon()
@@ -184,6 +183,9 @@
 /obj/machinery/neotheology/cloner/Process()
 	if(stat & NOPOWER)
 		return
+	
+	if(time_multiplier == 0) // We dont want to start if we wont have manipulators
+		return
 
 	if(cloning)
 		if(!reader || reader.loc != reader_loc || !reader.implant || !container || container.loc != container_loc)
@@ -192,8 +194,7 @@
 			update_icon()
 			return
 
-		progress++
-		var/progress_percent = get_progress()
+		progress += time_multiplier // I.e. 3 manipulators of tier 1 will increase progress by 1, 3 manipulators of tier 2 by 2 and so on
 
 		if(progress <= CLONING_DONE)
 			if(container)
@@ -203,8 +204,8 @@
 				stop()
 
 		if(occupant && ishuman(occupant))
-			occupant.setCloneLoss(CLONING_DONE-progress_percent)
-			occupant.setBrainLoss(CLONING_DONE-progress_percent)
+			occupant.setCloneLoss(CLONING_DONE-progress)
+			occupant.setBrainLoss(CLONING_DONE-progress)
 
 			occupant.adjustOxyLoss(-4)
 			occupant.Paralyse(4)
@@ -212,7 +213,7 @@
 			occupant.updatehealth()
 
 
-		if(progress_percent >= CLONING_MEAT && !occupant)
+		if(progress >= CLONING_MEAT && !occupant)
 			var/datum/core_module/cruciform/cloning/R = reader.implant.get_module(CRUCIFORM_CLONING)
 			if(!R)
 				open_anim()
@@ -230,16 +231,16 @@
 			occupant.sync_organ_dna()
 			occupant.flavor_text = R.flavor
 
-		if(progress == CLONING_BODY*time_multiplier)
+		if(progress == CLONING_BODY || progress <= CLONING_BODY && progress > CLONING_BODY-10)
 			var/datum/effect/effect/system/spark_spread/s = new
 			s.set_up(3, 1, src)
 			s.start()
 
-		if(progress == CLONING_DONE*time_multiplier)
+		if(progress == CLONING_DONE || progress >= CLONING_DONE-5)
 			open_anim()
 			closed = FALSE
 
-		if(progress >= CLONING_DONE*time_multiplier + 2)
+		if(progress >= CLONING_DONE + 2)
 			done()
 
 		update_icon()
@@ -281,7 +282,7 @@
 
 
 	/////////BODY
-	var/P = get_progress()
+	var/P = progress
 	if(cloning && P >= CLONING_START)
 		var/icon/IC = icon(icon, "clone_bones")
 		var/crop = 32-min(32,round(((P-CLONING_START)/(CLONING_BONES-CLONING_START))*32))

@@ -162,7 +162,7 @@
 		user.kill_CH()
 		return 0
 	if (istype(user.loc, /mob/living/exosuit))
-		to_chat(user, "Cannot use [handler_name] in mecha!")
+		to_chat(user, "Cannot use [handler_name] in exosuit!")
 		user.kill_CH()
 		return 0
 

@@ -113,7 +113,7 @@
 			"Whenever you see a mirror, you feel like you can just reach out� and step through it.",
 			"THEY ARE COMING THEY ARE COMING THEY ARE COMING",
 			"No. Parts of you are crumbling. No. No!",
-			"What is this? No� No!",
+			"What is this? No! No!",
 			"Something is scratching from behind your eyes, aching to get out.",
 			"SHE EMBRACES ALL CHILDREN SHE EMBRACES ALL CHILDREN SHE EMBRACES ALL CHILDREN",
 			"Shadows lie still, here where there is no sun to move them. Sometimes they shiver in the fluorescent light.",

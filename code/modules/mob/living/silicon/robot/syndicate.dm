@@ -24,4 +24,4 @@
 	radio.keyslot = new /obj/item/device/encryptionkey/syndicate(radio)
 	radio.recalculateChannels()
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(loc, 'sound/mechs/nominalsyndi.ogg', 75, 0)

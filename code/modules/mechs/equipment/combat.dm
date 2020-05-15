@@ -19,8 +19,9 @@
 /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
-	twohanded = FALSE
 	self_recharge = TRUE
+	twohanded = FALSE
+	charge_cost = MECH_WEAPON_POWER_COST
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -32,8 +33,9 @@
 /obj/item/weapon/gun/energy/ionrifle/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
-	twohanded = FALSE
 	self_recharge = TRUE
+	twohanded = FALSE
+	charge_cost = MECH_WEAPON_POWER_COST * 2
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -43,11 +45,12 @@
 	matter = list(MATERIAL_PLASTEEL = 26, MATERIAL_SILVER = 5)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 /obj/item/weapon/gun/energy/laser/mounted/mech
+	name = "\improper CH-PS \"Immolator\" laser"
 	use_external_power = TRUE
 	restrict_safety = TRUE
-	twohanded = FALSE
 	self_recharge = TRUE
-	name = "\improper CH-PS \"Immolator\" laser"
+	twohanded = FALSE
+	charge_cost = MECH_WEAPON_POWER_COST * 1.75
 
 /obj/item/mech_equipment/mounted_system/taser/plasma
 	name = "mounted plasma cutter"
@@ -62,3 +65,4 @@
 	restrict_safety = TRUE
 	twohanded = FALSE
 	self_recharge = FALSE
+	charge_cost = MECH_WEAPON_POWER_COST * 1.5

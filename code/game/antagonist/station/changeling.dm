@@ -8,13 +8,8 @@
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
 	antaghud_indicator = "hudchangeling"
 
-	possible_objectives = list(
-	/datum/objective/absorb = 60,
-	/datum/objective/assassinate = 60,
-	/datum/objective/steal = 30,
-	)
 
-	survive_objective = /datum/objective/escape
+	survive_objective = null
 	allow_neotheology = FALSE
 
 	stat_modifiers = list(

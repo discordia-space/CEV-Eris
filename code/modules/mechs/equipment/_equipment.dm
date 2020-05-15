@@ -2,7 +2,7 @@
 // Used by the exosuit HUD to get a 1-10 value representing charge, ammo, etc.
 /obj/item/mech_equipment
 	name = "exosuit hardpoint system"
-	icon = MECHA_EQUIPMENT_ICON
+	icon = MECH_EQUIPMENT_ICON
 	icon_state = ""
 	matter = list(MATERIAL_STEEL = 40)
 	force = 10

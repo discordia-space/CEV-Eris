@@ -1170,3 +1170,6 @@
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
 		return 1
 	return ..()
+
+/mob/living/silicon/robot/get_cell()
+	return cell

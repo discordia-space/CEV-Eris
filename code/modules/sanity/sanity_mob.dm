@@ -238,6 +238,9 @@
 	if(resting)
 		add_rest(INSIGHT_DESIRE_DRUGS, 4 * multiplier)
 
+/datum/sanity/proc/onToxin(datum/reagent/toxin/R, multiplier)
+	changeLevel(-R.sanityloss * multiplier)
+
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
 	if(resting)

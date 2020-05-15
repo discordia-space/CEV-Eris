@@ -5,8 +5,7 @@
 	. = ..()
 	if(!.)
 		var/mob/living/exosuit/E = loc
-		if(istype(E))
-			return E.get_cell()
+		if(istype(E)) return E.get_cell()
 
 /obj/item/device/radio/exosuit/nano_host()
 	var/mob/living/exosuit/E = loc

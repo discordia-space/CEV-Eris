@@ -1,7 +1,13 @@
 /mob/living/exosuit/MouseDrop_T(atom/dropping, mob/user)
-	var/obj/machinery/portable_atmospherics/canister/C = dropping
-	if(istype(C))
+	if(istype(dropping, /obj/machinery/portable_atmospherics/canister))
 		body.MouseDrop_T(dropping, user)
+	else if(user != src && user == dropping)
+		if(body)
+			if(user.mob_size >= body.min_pilot_size && user.mob_size <= body.max_pilot_size)
+				if(enter(user)) return 0
+			else
+				to_chat(user, SPAN_WARNING("You cannot pilot a exosuit of this size."))
+				return 0
 	else . = ..()
 
 /mob/living/exosuit/setClickCooldown(timeout)
@@ -171,7 +177,7 @@
 	LAZYOR(pilots, user)
 	sync_access()
 	playsound(get_turf(src), 'sound/machines/windowdoor.ogg', 50, 1)
-	user.playsound_local(null, 'sound/mecha/nominal.ogg', 50)
+	user.playsound_local(null, 'sound/mechs/nominal.ogg', 50)
 	//LAZYOR(user.additional_vision_handlers, src)
 	update_pilots()
 	return 1
