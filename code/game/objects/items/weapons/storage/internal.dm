@@ -75,18 +75,18 @@
 /obj/item/weapon/melee/needle
 	name = "needle and thread"
 	desc = "used to sow shut things, wonder what you could use it on"
-	icon = "icons/obj/items.dmi"
+	icon = 'icons/obj/items.dmi'
 	icon_state = "needle"
 /obj/item/weapon/teddy
 	name = "teddy bear"
 	desc = "Here to provide help at anytime"
-	icon = 'icons/obj/oddities.dmi'
+	icon = 'icons/obj/items.dmi'
 	icon_state = "teddy"
 	var/max_w_class = ITEM_SIZE_SMALL
 	var/max_storage_space = 5
 	var/open = FALSE
-	var/icon_open = "ripped"
-	var/icon_closed = "bear"
+	var/icon_open = "teddy-ripped"
+	var/icon_closed = "teddy"
 	var/key = /obj/item/weapon/melee/needle
 	var/obj/item/weapon/storage/internal/container
 
