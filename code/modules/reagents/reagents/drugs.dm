@@ -220,3 +220,27 @@
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
+
+
+/datum/reagent/drug/mindwipe
+	name = "Mindwipe"
+	id = "mindwipe"
+	description = "Shocks the user's brain hard enough to make him forget about his quirks. Is ill-advised because of side effects"
+	taste_description = "bitter"
+	reagent_state = LIQUID
+	color = "#bfff00"
+	metabolism = REM
+	overdose = REAGENTS_OVERDOSE * 3
+	nerve_system_accumulations = 95
+	addiction_chance = 20
+
+/datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	if (ishuman(M))
+		var/mob/living/carbon/human/affected = M
+		if(prob(1))
+			for (var/datum/breakdown/B in affected.sanity.breakdowns)
+				B.destroy()
+				to_chat(M, "<span class='notice'>You feel that something eases the strain on your sanity. But at which price?</span>")
+		affected.sanity.insight = 0
+		affected.sanity.level = 35
+

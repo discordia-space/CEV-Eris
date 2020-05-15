@@ -36,7 +36,6 @@
 	taste_description = "plastic"
 	reagent_state = LIQUID
 	color = "#CF3600"
-	strength = 0.6
 
 /datum/reagent/toxin/oil
 	name = "Oil"
@@ -90,7 +89,7 @@
 	if(prob(80))
 		M.adjustBrainLoss(2)
 	if(strength)
-		if(issmall(M)) 
+		if(issmall(M))
 			M.adjustToxLoss(strength)
 		else
 			M.adjustToxLoss(strength)
@@ -259,7 +258,7 @@
 	color = "#8E18A9"
 	power = 10
 	meltdose = 4
-	
+
 
 /datum/reagent/toxin/lexorin
 	name = "Lexorin"
@@ -493,7 +492,7 @@
 	var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[BP_LIVER]
 	if (istype(L))
 		L.take_damage(strength, 0)
-	if(issmall(M)) 
+	if(issmall(M))
 		M.adjustToxLoss(strength * 2)
 	else
 		M.adjustToxLoss(strength)
@@ -580,7 +579,7 @@
 
 /datum/reagent/toxin/gewaltine/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustCloneLoss(2)
-		
+
 /datum/reagent/toxin/fuhrerole
 	name = "Fuhrerole"
 	id = "fuhrerole"

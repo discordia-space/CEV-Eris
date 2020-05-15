@@ -319,7 +319,9 @@ var/list/rank_prefix = list(\
 
 	var/obj/item/organ/external/affected_organ = get_organ(check_zone(def_zone))
 	siemens_coeff *= get_siemens_coefficient_organ(affected_organ)
-
+	if((shock_damage * siemens_coeff) > 10)
+		for(var/datum/breakdown/common/high_voltage/B in src.sanity.breakdowns)
+			B.conclude()
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 
