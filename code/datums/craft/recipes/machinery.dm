@@ -37,6 +37,7 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(CRAFT_MATERIAL, 4, MATERIAL_GLASS),
 	)
+	dir_type = CRAFT_TOWARD_USER  // spawn modular console toward the user
 
 /datum/craft_recipe/machinery/computer/modularlaptop
 	name = "modular laptop frame"
