@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - code_imp: New way to define in which direction a craft should be spawned

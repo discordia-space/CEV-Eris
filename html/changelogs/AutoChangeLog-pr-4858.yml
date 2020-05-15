@@ -1,6 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Fixes Ztravel making you invisible if you spammed it.
-  - bugfix: Fixes the can_climbs for some Ztravel methods not working properly.
-  - tweak: Some Ztravel methods now give more player feedback.

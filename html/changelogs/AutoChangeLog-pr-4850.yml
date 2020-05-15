@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: Fixed cyborgs not being able to pick up items (ores, sheets, ...)
