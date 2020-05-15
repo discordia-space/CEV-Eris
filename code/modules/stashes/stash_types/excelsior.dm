@@ -8,7 +8,6 @@
 	loot_type = "Excelsior"
 	nonmaint_reroll = 100
 	contents_list_base = list(/obj/item/weapon/circuitboard/excelsiorautolathe = 1,
-	 /obj/item/weapon/circuitboard/excelsior_teleporter = 1,
 	 /obj/item/weapon/implanter/excelsior/broken = 2)
 
 	contents_list_random = list(/obj/item/weapon/implantcase/excelsior/broken = 70,
@@ -17,7 +16,8 @@
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
 	/obj/item/ammo_magazine/lrifle = 50,
-	/obj/item/ammo_magazine/lrifle = 50,)
+	/obj/item/ammo_magazine/lrifle = 50,
+	/obj/item/weapon/circuitboard/excelsior_teleporter = 30)
 	weight = 0.5
 
 /datum/stash/excelsior/shipyard
