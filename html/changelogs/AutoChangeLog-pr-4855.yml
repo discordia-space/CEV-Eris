@@ -1,0 +1,4 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - tweak: Radio prefix will now work with any capitalization
