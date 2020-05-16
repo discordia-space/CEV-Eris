@@ -57,6 +57,7 @@
 				/obj/item/weapon/storage/box/ids = 2,
 				/obj/item/weapon/storage/briefcase/crimekit = 2,
 				/obj/item/weapon/storage/box/drinkingglasses = 2,
+				/obj/item/weapon/storage/freezer/contains_food = 1,
 				/obj/item/weapon/hatton_magazine = 2,
 				/obj/item/weapon/hand_labeler = 2,
 				/obj/item/weapon/tool/bonesetter = 2,

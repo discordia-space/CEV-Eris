@@ -59597,6 +59597,8 @@
 /area/eris/crew_quarters/bar)
 "cCH" = (
 /obj/structure/closet/crate,
+/obj/item/weapon/storage/freezer,
+/obj/item/weapon/storage/freezer,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCI" = (
@@ -80857,10 +80859,7 @@
 /area/eris/engineering/foyer)
 "dyU" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita{
-	desc = "No one knows how long this has been here.";
-	name = "old cold pizza"
-	},
+/obj/item/weapon/storage/freezer/contains_food,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dyV" = (
@@ -82309,6 +82308,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 1
 	},
+/obj/item/weapon/storage/freezer/medical,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/surgery)
 "dCe" = (
@@ -101874,6 +101874,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
+/obj/item/weapon/storage/freezer/contains_food,
 /turf/simulated/floor/carpet/oracarpet,
 /area/eris/quartermaster/misc)
 "eub" = (
@@ -108410,6 +108411,13 @@
 /obj/item/weapon/storage/box,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"kPN" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/weapon/storage/freezer/contains_food,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/rnd/research)
 "lcL" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white/brown_platform,
@@ -109168,6 +109176,11 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"xAZ" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/freezer/contains_food,
+/turf/simulated/floor/wood,
+/area/eris/command/bridgebar)
 "xQh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
@@ -247217,7 +247230,7 @@ dea
 deo
 deK
 dfi
-deL
+xAZ
 dfP
 dgl
 dgy
@@ -254529,7 +254542,7 @@ doI
 dcm
 deU
 dlr
-dlK
+kPN
 dlW
 cjr
 dna
