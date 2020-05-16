@@ -176,6 +176,11 @@
 	name = "FS GL \"Lenar\""
 	build_path = /obj/item/weapon/gun/launcher/grenade/lenar
 
+/datum/design/autolathe/gun/grenade_launcher_china_lake
+	name = "FS GL \"China Lake\""
+	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/china
+
+
 // Energy small arms
 
 /datum/design/autolathe/gun/taser

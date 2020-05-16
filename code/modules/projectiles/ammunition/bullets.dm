@@ -213,31 +213,35 @@
 
 /obj/item/ammo_casing/grenade
 	name = "baton round"
-	desc = "A less-lethal rubber round, designed to be fired from grenade launchers"
+	desc = "A less-lethal plastic baton round, designed to be fired from grenade launchers"
 	icon_state = "baton-round"
 	spent_icon = "grenadeshell"
 	projectile_type = /obj/item/projectile/bullet/batonround
 	w_class = ITEM_SIZE_SMALL
 	caliber = CAL_GRENADE
 	maxamount = 1
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 
 /obj/item/ammo_casing/grenade/blast
 	name = "blast grenade shell"
 	desc = "An explosive grenade shell, designed to be fired from grenade launchers"
 	icon_state = "blast"
 	projectile_type = /obj/item/projectile/bullet/grenade
+	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASMA = 3)
 
 /obj/item/ammo_casing/grenade/frag
 	name = "frag grenade shell"
 	desc = "A frag grenade shell, designed to be fired from grenade launchers"
 	icon_state = "frag"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASMA = 2)
 
 /obj/item/ammo_casing/grenade/emp
 	name = "emp grenade shell"
 	desc = "An EMP grenade shell, designed to be fired from grenade launchers"
 	icon_state = "emp"
 	projectile_type = /obj/item/projectile/bullet/grenade/emp
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_URANIUM = 0.5)
 
 //// Other ////
 

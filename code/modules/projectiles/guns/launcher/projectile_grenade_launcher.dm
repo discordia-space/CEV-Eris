@@ -1,8 +1,8 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/china
-    name = "China Lake"
+    name = "FS GL \"China Lake\""
     desc = "This centuries-old design was recently rediscovered and adapted for use in modern battlefields. \
         Working similar to a pump-action combat shotgun, its light weight and robust design quickly made it a popular weapon. \
-        It uses specialised grenade shells."
+        It holds up to 4 grenade shells."
     icon = 'icons/obj/guns/projectile/chinalake.dmi'
     icon_state = "china_lake"
     item_state = "china_lake"
@@ -23,7 +23,7 @@
 
 /obj/item/weapon/gun/projectile/grenade
 	name = "NT GL \"Protector\""
-	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	desc = "A bulky pump-action grenade launcher. Holds up to 6 grenade shells in a revolving magazine."
 	icon = 'icons/obj/guns/launcher/riotgun.dmi'
 	icon_state = "riotgun"
 	item_state = "riotgun"
@@ -32,7 +32,9 @@
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 	caliber = CAL_GRENADE
 	load_method = SINGLE_CASING
+	origin_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 2)
 	handle_casings = EJECT_CASINGS
+	price_tag = 5500
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"
 	recoil_buildup = 20
@@ -68,7 +70,7 @@
 
 /obj/item/weapon/gun/projectile/grenade/lenar
 	name = "FS GL \"Lenar\""
-	desc = "A more than bulky pump-action grenade launcher. Holds up to 6 grenades in a revolving magazine."
+	desc = "A more than bulky pump-action grenade launcher. Holds up to 6 grenade shells in a revolving magazine."
 	icon = 'icons/obj/guns/launcher/grenadelauncher.dmi'
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "pneumatic"

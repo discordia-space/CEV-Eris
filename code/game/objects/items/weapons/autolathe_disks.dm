@@ -502,6 +502,18 @@
 		/datum/design/autolathe/ammo/lrifle_ammobox,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_grenade_shells
+	disk_name = "Frozen Star Grenade Shells"
+	icon_state = "frozenstar"
+
+	license = 20
+	designs = list(
+		/datum/design/autolathe/ammo/grenade,
+		/datum/design/autolathe/ammo/grenade/emp = 2,
+		/datum/design/autolathe/ammo/grenade/frag = 2,
+		/datum/design/autolathe/ammo/grenade/blast = 2,
+	)
+
 // Excelsior
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior
 	disk_name = "Excelsior Means of Production"
@@ -953,7 +965,9 @@
 
 	license = 15
 	designs = list(
-		/datum/design/autolathe/gun/grenade_launcher = 3, // "NT GL \"Protector\""
+		/datum/design/autolathe/gun/grenade_launcher = 3,  // "NT GL \"Protector\""
+		/datum/design/autolathe/ammo/grenade,
+		/datum/design/autolathe/ammo/grenade/emp = 2,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar
@@ -963,7 +977,21 @@
 	license = 15
 	designs = list(
 		/datum/design/autolathe/gun/grenade_launcher_lenar = 3, // "FS GL \"Lenar\""
+		/datum/design/autolathe/ammo/grenade,
+		/datum/design/autolathe/ammo/grenade/emp = 2,
 	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_china_lake
+	disk_name = "Frozen Star - China Lake"
+	icon_state = "frozenstar"
+
+	license = 15
+	designs = list(
+		/datum/design/autolathe/gun/grenade_launcher_china_lake = 3,  // "FS GL \"China Lake\""
+		/datum/design/autolathe/ammo/grenade,
+		/datum/design/autolathe/ammo/grenade/emp = 2,
+	)
+
 
 // ENERGY SMALL ARMS
 

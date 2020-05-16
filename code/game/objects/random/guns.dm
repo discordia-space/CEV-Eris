@@ -50,7 +50,8 @@
 				/obj/item/weapon/gun/energy/plasma/cassad = 2,
 				/obj/item/weapon/gun_upgrade/trigger/dangerzone = 1,
 				/obj/item/weapon/gun_upgrade/trigger/cop_block = 1,
-				/obj/item/weapon/gun_upgrade/mechanism/overshooter = 1))
+				/obj/item/weapon/gun_upgrade/mechanism/overshooter = 1,
+				/obj/item/weapon/gun/projectile/shotgun/pump/china = 1,))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"

@@ -44,10 +44,13 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun = 4,
 
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_china_lake = 1,
+
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 7,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 5,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_grenade_shells = 3,))
 
 /obj/random/lathe_disk/low_chance
 	name = "low chance random lathe disk"
@@ -90,6 +93,7 @@
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_heavysniper = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pk = 1,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_china_lake = 2,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_protector = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lenar = 1,
 
@@ -111,7 +115,8 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 5,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms = 4,
-				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,))
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_grenade_shells = 3,))
 
 /obj/random/lathe_disk/advanced/low_chance
 	name = "low chance advanced lathe disk"

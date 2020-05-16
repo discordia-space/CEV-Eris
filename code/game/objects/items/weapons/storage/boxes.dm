@@ -294,6 +294,42 @@
 	for(var/i in 1 to 5)
 		new /obj/item/weapon/grenade/anti_photon(src)
 
+/obj/item/weapon/storage/box/baton_rounds
+	name = "box of baton rounds"
+	desc = "A box containing 6 baton rounds. Designed to be fired from a grenade launcher."
+	illustration = "flashbang"
+
+/obj/item/weapon/storage/box/baton_rounds/populate_contents()
+	for(var/i in 1 to 6)
+		new  /obj/item/ammo_casing/grenade(src)
+
+/obj/item/weapon/storage/box/emp_grenade_shells
+	name = "box of emp grenade shells"
+	desc = "A box containing 6 emp grenade shells. Designed to be fired from a grenade launcher."
+	illustration = "flashbang"
+
+/obj/item/weapon/storage/box/emp_grenade_shells/populate_contents()
+	for(var/i in 1 to 6)
+		new  /obj/item/ammo_casing/grenade/emp(src)
+
+/obj/item/weapon/storage/box/frag_grenade_shells
+	name = "box of frag grenade shells"
+	desc = "A box containing 6 frag grenade shells. Designed to be fired from a grenade launcher."
+	illustration = "flashbang"
+
+/obj/item/weapon/storage/box/frag_grenade_shells/populate_contents()
+	for(var/i in 1 to 6)
+		new  /obj/item/ammo_casing/grenade/frag(src)
+
+/obj/item/weapon/storage/box/blast_grenade_shells
+	name = "box of blast grenade shells"
+	desc = "A box containing 6 blast grenade shells. Designed to be fired from a grenade launcher."
+	illustration = "flashbang"
+
+/obj/item/weapon/storage/box/blast_grenade_shells/populate_contents()
+	for(var/i in 1 to 6)
+		new  /obj/item/ammo_casing/grenade/blast(src)
+
 /obj/item/weapon/storage/box/trackimp
 	name = "boxed tracking implant kit"
 	desc = "Box full of scum-bag tracking utensils."
