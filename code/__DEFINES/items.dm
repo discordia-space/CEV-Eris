@@ -90,7 +90,7 @@
 #define GUN_SOL "Is a FS CAR .25 CS \"Sol\""
 
 // A rare, random item
-#define RANDOM_RARE_ITEM pickweight(list(\
+#define RANDOM_RARE_ITEM list(\
 					/obj/random/common_oddities = 8,\
 					/obj/random/material_rare = 3,\
 					/obj/random/tool/advanced = 5,\
@@ -107,4 +107,4 @@
 					/obj/random/credits/c1000 = 3,\
 					/obj/random/exosuit_equipment = 3,\
 					/obj/random/cloth/holster = 4,\
-					/obj/item/stash_spawner = 4))
+					/obj/item/stash_spawner = 4)

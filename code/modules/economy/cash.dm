@@ -105,7 +105,6 @@
 /obj/item/weapon/spacecash/bundle/proc/return_stats()
 	RETURN_TYPE(/list)
 	var/points = min(worth/CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
-	to_chat(world, "BEING CALLED POINTS [points]")
 	var/list/stats = list()
 	// Distribute points evenly with random statistics. Just skips the loop if there's not enough money in the bundle, resulting in an empty list.
 	while(points)

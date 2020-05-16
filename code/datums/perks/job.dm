@@ -71,8 +71,11 @@
 	var/list/choices = list(CHOICE_RAREOBJ)
 	if(GLOB.all_antag_contracts.len)
 		choices += CHOICE_TCONTRACT
-	if(GLOB.all_stash_datums.len)
-		choices += CHOICE_STASHPAPER
+	var/datum/stash/stash = pick_n_take_stash_datum()
+	if(stash)
+		stash.select_location()
+		if(stash.stash_location)
+			choices += CHOICE_STASHPAPER
 	// Let's see if an additional language is feasible. If the user has them all already somehow, we aren't gonna choose this. 
 	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN) // Not static, because we're gonna remove languages already known by the user
 	for(var/l in valid_languages)
@@ -93,14 +96,15 @@
 			holder.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the station. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
 		if(CHOICE_STASHPAPER)
 			desc += " You have a special note in your storage."
-			var/category = pick(GLOB.all_stash_datums)
-			var/datum/stash/S = pick(GLOB.all_stash_datums[category]) // Random stash of random category // LIST IS EMPTY FOR SOME REASONS, SOLVE
-			var/note = S.spawn_note()
-			holder.equip_to_storage_or_drop(note)
+			stash.spawn_stash()
+			var/obj/item/weapon/paper/stash_note = stash.spawn_note()
+			holder.equip_to_storage_or_drop(stash_note)
 		if(CHOICE_RAREOBJ)
 			desc += " You managed to smuggle a rare item aboard."
-			var/obj/O = RANDOM_RARE_ITEM
-			holder.equip_to_storage_or_drop(new O)
+			var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
+			var/obj/item/weapon/storage/box/B = new
+			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
+			holder.equip_to_storage_or_drop(B)
 
 
 #undef CHOICE_LANG

@@ -113,7 +113,7 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "box-orange"
 
 /obj/random/pack/rare/item_to_spawn()
-	return RANDOM_RARE_ITEM // made into a define so that rare objects can be spawned for mobs too
+	return pickweight(RANDOM_RARE_ITEM) // made into a define so that rare objects can be spawned for mobs too
 
 /obj/random/pack/rare/low_chance
 	name = "low chance rare loot"
