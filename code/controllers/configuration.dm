@@ -207,6 +207,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/emojis = 0
 
+	var/paper_input = TRUE
+
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
 
 	var/webhook_url
@@ -672,6 +674,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("emojis")
 					config.emojis = 1
+
+				if("paper_input")
+					config.paper_input = text2num(value)
 
 				if("enable_mob_sleep")
 					config.enable_mob_sleep = 1
