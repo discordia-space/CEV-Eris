@@ -17,6 +17,8 @@
 	breakdown_sound = 'sound/sanity/insane.ogg'
 
 
+
+
 #define STALWART_THRESHOLD 30 // How damaged should owner be for Stalwart to be able to trigger
 
 /datum/breakdown/positive/stalwart
@@ -196,10 +198,6 @@
 					holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
 
 /datum/breakdown/negative/selfharm/occur()
-	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
-	holder.owner << img
-	flick(icon_state, img)
-	spawn(600)
 	++holder.owner.suppress_communication
 	return ..()
 
@@ -237,10 +235,6 @@
 		holder.owner.emote("cry")
 
 /datum/breakdown/negative/hysteric/occur()
-	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
-	holder.owner << img
-	flick(icon_state, img)
-	spawn(600)
 	holder.owner.SetWeakened(4)
 	holder.owner.SetStunned(4)
 	++holder.owner.suppress_communication
@@ -256,7 +250,7 @@
 
 
 /datum/breakdown/negative/delusion
-	name = "Delusion"
+	//name = "Delusion"
 	duration = 1 MINUTES
 	restore_sanity_post = 50
 
@@ -313,7 +307,6 @@
 
 /datum/breakdown/negative/fabric/conclude()
 	--holder.owner.language_blackout
-	holder.insight += 95
 	holder.owner.client?.images -= images
 	UnregisterSignal(SSdcs, COMSIG_GLOB_FABRIC_NEW)
 	UnregisterSignal(holder.owner, COMSIG_MOB_LOGIN)
@@ -346,7 +339,6 @@
 	holder.positive_prob = max(holder.positive_prob - 10, 0)
 	holder.negative_prob = min(holder.negative_prob + 20, 100)
 	holder.max_level = max(holder.max_level - 20, 0)
-	holder.insight -= 10
 	..()
 
 
@@ -370,22 +362,21 @@
 		"You feel at ease again, suddenly."
 	)
 
-/datum/breakdown/common/obsession/New()
-	..()
-	if(prob(100))////Change the probability after Erismed is implemented, with state of current medicine obsession with organs or limbs is free kill ticket.
-		var/list/candidates = list(subtypesof(/obj/item/weapon/oddity/common))
-		while(candidates.len)
-			target = pick(candidates)
-			if(!locate(target))
-				candidates -= target
-				target = null
-				continue
-			objectname = initial(target.name)
-			break
-	if(!target)
-		return
-	//Here should go organ desire code as soon as Erismed is done. For now that code would never run.
+/datum/breakdown/common/obsession/can_occur()
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
+	candidates = shuffle(candidates)
+	while(candidates.len)
+		var/mob/living/carbon/human/H = pick(candidates)
+		candidates.Remove(H)
+		var/list/contents = H.get_contents()
+		target = locate(/obj/item/weapon/oddity) in contents
+		if(!target)
+			target = pick(H.organs - H.organs_by_name[BP_CHEST])
 
+		if(target)
+			objectname = "[H.real_name]'s [target.name]"
+			break
+	return !!target
 
 /datum/breakdown/common/obsession/update()
 	. = ..()
@@ -420,7 +411,6 @@
 			"You know that only salvation from your sins is [objectname]."
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
-		holder.insight += 100
 
 /datum/breakdown/common/obsession/occur()
 	for(var/stat in ALL_STATS)
@@ -431,95 +421,6 @@
 	for(var/stat in ALL_STATS)
 		holder.owner.stats.removeTempStat(stat, "Obsession")
 	..()
-
-
-/datum/breakdown/common/nostalgia
-	name = "Nostalgia"
-	restore_sanity_post = 40
-	var/area/nostalgic_target
-
-
-	start_messages = list(
-		"You feel that you've left something somewhere aboard. Something important...",
-		"There is a place where I understood my true self. I should get there again.",
-		"You suddenly feel that some place is pulling you towards itself slowly yet powerfully..."
-	)
-	end_messages = list(
-		"Finally, I am here."
-	)
-
-
-
-/datum/breakdown/common/nostalgia/New()
-	..()
-	nostalgic_target = pick(ship_areas)
-
-/datum/breakdown/common/nostalgia/update()
-	. = ..()
-	if (get_area(holder.owner) == nostalgic_target)
-		conclude()
-
-
-/datum/breakdown/common/high_as_hell
-	name = "High as Hell"
-	restore_sanity_post = 100
-
-	start_messages = list(
-		"Alcohol doesn't kick it anymore for you. Or maybe you just drink too little?",
-		"That last pill felt dull. You need something much more tasty.",
-		"Why should you limit yourself by concepts of health and sanity? That little pill would fly you right to Heaven."
-	)
-	end_messages = list(
-		"OH FUCK.",
-		"FUCK YEAH",
-		"I need to rethink my life choices."
-	)
-
-
-/datum/breakdown/common/high_voltage
-	name = "High voltage"
-	restore_sanity_post = 100
-
-	start_messages = list(
-	"I need more power. Buzzing type."
-	)
-
-	end_messages = list(
-	"That's enough."
-	)
-
-/datum/breakdown/common/mechanicus
-	name ="Lust for Chrome"
-	restore_sanity_post = 80
-
-	start_messages = list(
-	"The flesh is weak, I need to replace it.",
-	"I yearn for the strength of metal, over the weakness of the flesh.",
-	"This body will not last long in its organic state, I must transcend it."
-	)
-
-	end_messages = list(
-	"0100011001101001011011100110000101101100011011000111100100101100001000000111011101100101001000000110000101110010011001010010000001100110011100100110010101100101"
-	)
-
-	var/list/old_trash
-
-/datum/breakdown/common/mechanicus/New()
-	..()
-	old_trash = holder.owner.get_visible_implants()
-
-/datum/breakdown/common/mechanicus/update()
-	. = ..()
-	var/list/new_trash = holder.owner.get_visible_implants()
-	if(new_trash.len > old_trash.len)
-		conclude()
-
-
-
-
-
-
-
 
 #define KLEPTOMANIA_COOLDOWN rand(30 SECONDS, 60 SECONDS)
 
@@ -560,7 +461,7 @@
 
 
 /datum/breakdown/common/signs
-	name = "Signs"
+	//name = "Signs"
 	restore_sanity_post = 70
 	var/message
 
@@ -595,7 +496,6 @@
 	return ..()
 
 /datum/breakdown/common/signs/conclude()
-	holder.insight += 15
 	UnregisterSignal(holder.owner, COMSIG_HUMAN_SAY)
 	..()
 

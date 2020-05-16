@@ -4,7 +4,7 @@
 
 /datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class)
 	..(max, parent_mob)
-
+	
 	metabolism_class = met_class
 	if(istype(parent_mob))
 		parent = parent_mob
@@ -49,7 +49,7 @@
 	for(var/i in nerve_system_accumulations)
 		if(findtext(i, tag, 1, 0) == 1)
 			nerve_system_accumulations.Remove(i)
-
+		
 
 /datum/metabolism_effects/proc/get_nsa_value(tag)
 	if(nerve_system_accumulations[tag])
@@ -79,10 +79,6 @@
 		var/stat_mod = get_nsa() > 140 ? -20 : -10
 		for(var/stat in ALL_STATS)
 			parent.stats.addTempStat(stat, stat_mod, INFINITY, "nsa_breach")
-		if(ishuman(parent))
-			var/mob/living/carbon/human/H = parent
-			for(var/datum/breakdown/common/high_as_hell/B in H.sanity.breakdowns)
-				B.conclude()
 	else
 		for(var/stat in ALL_STATS)
 			parent.stats.removeTempStat(stat, "nsa_breach")
@@ -117,7 +113,7 @@
 /datum/metabolism_effects/proc/check_reagent(datum/reagent/R, metabolism_class)
 	present_reagent_ids += R.id
 
-	//Nerve System Accumulation
+	//Nerve System Accumulation 
 	parent.metabolism_effects.adjust_nsa(R.nerve_system_accumulations, "[R.id]_[metabolism_class]")
 
 	// Withdrawals
@@ -159,7 +155,7 @@
 /datum/metabolism_effects/proc/process()
 	process_withdrawals()
 	handle_nsa()
-
+	
 	if(addiction_tick == 6)
 		addiction_tick = 1
 		process_addictions()

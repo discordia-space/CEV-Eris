@@ -12,10 +12,6 @@
 	onInstall(E)
 
 /obj/item/organ_module/proc/onInstall(obj/item/organ/external/E)
-	if(ishuman(E.owner))
-		var/mob/living/carbon/human/H = E.owner
-		for(var/datum/breakdown/common/mechanicus/B in H.sanity.breakdowns)
-			B.conclude()
 
 /obj/item/organ_module/proc/remove(obj/item/organ/external/E)
 	E.module = null
