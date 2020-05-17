@@ -1,0 +1,4 @@
+author: Kurgis
+delete-after: true
+changes:
+  - bugfix: Zippos no longer invisible when you flick them on.
