@@ -1,6 +1,0 @@
-author: Smokingsquirrel
-delete-after: true
-changes:
-  - tweak: Gave CM maintenance access
-  - tweak: Fixed wigs and maska helmets eating facial hair
-  - code_imp: civilian.dm, misc.dm, armor.dm
