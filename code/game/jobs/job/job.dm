@@ -68,8 +68,7 @@
 			target.stats.changeStat(name, stat_modifiers[name])
 
 	for(var/perk in perks)
-		var/datum/perk/P = new perk
-		P.teach(target.stats)
+		target.stats.addPerk(perk)
 
 	return TRUE
 

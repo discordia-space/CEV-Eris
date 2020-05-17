@@ -39,6 +39,7 @@
 	var/flags
 	var/mob/living/carbon/human/owner
 
+	var/sanity_passive_gain_multiplier = 1
 	var/sanity_invulnerability = 0
 	var/level
 	var/max_level = 100
@@ -48,6 +49,7 @@
 	var/insight_rest = 0
 	var/resting = 0
 
+	var/list/valid_inspirations = list(/obj/item/weapon/oddity)
 	var/list/desires = list()
 
 	var/positive_prob = 20
@@ -58,6 +60,8 @@
 	var/say_time = 0
 	var/breakdown_time = 0
 	var/spook_time = 0
+
+	var/death_view_multiplier = 1
 
 	var/list/datum/breakdown/breakdowns = list()
 
@@ -71,7 +75,7 @@
 /datum/sanity/proc/onLife()
 	if(owner.stat == DEAD || owner.in_stasis)
 		return
-	var/affect = SANITY_PASSIVE_GAIN
+	var/affect = SANITY_PASSIVE_GAIN * sanity_passive_gain_multiplier
 	if(owner.stat)
 		changeLevel(affect)
 		return
@@ -208,15 +212,20 @@
 	resting = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)
-	var/list/obj/item/weapon/oddity/oddities = list()
-	for(var/obj/item/weapon/oddity/O in owner.get_contents())
-		oddities += O
-	if(oddities.len)
-		var/obj/item/weapon/oddity/O = oddities.len > 1 ? owner.client ? input(owner, "Select oddity to use as inspiration", "Level up") in oddities : pick(oddities) : oddities[1]
+	var/list/inspiration_items = list()
+	for(var/O in owner.get_contents())
+		if(is_type_in_list(O, valid_inspirations))
+			inspiration_items += O
+	if(inspiration_items.len)
+		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 		if(!O)
 			return
-		for(var/stat in O.oddity_stats)
-			owner.stats.changeStat(stat, O.oddity_stats[stat] * multiplier)
+		var/datum/component/inspiration/I = O.GetComponent(/datum/component/inspiration) // If it's a valid inspiration, it should have this component. If not, runtime
+		var/list/L = I.calculate_statistics()
+		for(var/stat in L)
+			var/stat_up = L[stat] * multiplier
+			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+			owner.stats.changeStat(stat, stat_up)
 
 
 /datum/sanity/proc/onDamage(amount)
@@ -227,7 +236,8 @@
 
 /datum/sanity/proc/onSeeDeath(mob/M)
 	if(ishuman(M))
-		changeLevel(-SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG)))
+		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
+		changeLevel(penalty*death_view_multiplier)
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))

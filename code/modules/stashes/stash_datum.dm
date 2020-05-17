@@ -322,7 +322,7 @@ This file contains the underlying code for stash datums
 //Creates the note that tells the player how to reach the goodies
 /datum/stash/proc/spawn_note(var/atom/spawner)
 	//The passed spawner is where we will create the note
-	var/obj/item/weapon/paper/note = new note_paper_type(spawner.loc)
+	var/obj/item/weapon/paper/note = new note_paper_type(spawner)
 	create_note_content()
 	note.info = lore
 	note.update_icon()
@@ -330,9 +330,40 @@ This file contains the underlying code for stash datums
 	//If theres a photo, attach it to the note
 	if (map_image)
 		note.attackby(map_image)
+	return note
 
 //Does final creation on lore, override this to do fancy things
 /datum/stash/proc/create_note_content()
 	lore = replacetext(lore, "%D", direction_string)
 	//Todo, find out why textclass isnt working
 	lore = "<div [textclass ? "class='[textclass]'" : ""] style='font-size: [text_size]px; padding: [padding]px'>[lore]</div>"
+
+/*
+	Helper procs
+*/
+
+//Selecting a datum is done in two pickweight stages
+//First, the categories are weighted against each other
+//Then everything within that category is weighted
+/proc/pick_n_take_stash_datum()
+	//First of all, we pick our category
+	var/list/possible_categories = GLOB.stash_categories.Copy()
+	var/category_resolved = FALSE
+	var/category = null
+	var/list/possible_stashes = list()
+	while (category_resolved == FALSE)
+		if (!possible_categories.len)
+			break
+
+		category = pickweight_n_take(possible_categories)
+
+		//Now lets check that this category actually has any stashes left in it
+		possible_stashes = GLOB.all_stash_datums[category]
+		if (possible_stashes.len)
+			category_resolved = TRUE
+		else
+			category = null //Go around again
+
+	//Now we pickweight our datum
+	if (category)
+		return pickweight_n_take(possible_stashes)

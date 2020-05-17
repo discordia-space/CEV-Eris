@@ -223,7 +223,6 @@
 
 			occupant = new/mob/living/carbon/human(src)
 			occupant.dna = R.dna.Clone()
-			occupant.stats = R.mind.stats.Clone()
 			occupant.set_species()
 			occupant.real_name = R.dna.real_name
 			occupant.age = R.age

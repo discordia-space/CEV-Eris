@@ -112,6 +112,9 @@ var/list/mob_hat_cache = list()
 
 	..()
 
+	//Stats must be initialised before creating the module
+	if(!module) module = new module_type(src)
+
 	verbs += /mob/living/proc/hide
 	remove_language(LANGUAGE_ROBOT)
 	add_language(LANGUAGE_ROBOT, 0)
@@ -140,10 +143,6 @@ var/list/mob_hat_cache = list()
 	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = "d"
 	if(!laws) laws = new law_type
-
-	//Stats must be initialised before creating the module
-	stats = new /datum/stat_holder
-	if(!module) module = new module_type(src)
 
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
