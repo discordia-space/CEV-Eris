@@ -34,7 +34,6 @@
 	for(var/stat in src.stat_modifiers)
 		character.stats.changeStat(stat, stat_modifiers[stat])
 	for(var/perk in src.perks)
-		var/datum/perk/P = new perk
-		P.teach(character.stats)
+		character.stats.addPerk(perk)
 
 /datum/category_item/setup_option/proc/get_icon()

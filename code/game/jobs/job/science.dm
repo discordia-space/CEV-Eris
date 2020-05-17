@@ -30,6 +30,8 @@
 		STAT_BIO = 25,
 	)
 
+	perks = list(/datum/perk/selfmedicated)
+
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							///datum/computer_file/program/aidiag,
@@ -83,6 +85,8 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 		STAT_COG = 30,
 		STAT_BIO = 20,
 	)
+
+	perks = list(/datum/perk/selfmedicated)
 
 	description = "You are a scientist, standing at the frontier of human advancement. Here representing Moebius corp, to find new research opportunities in deep space. The science wing is located in the second section, starboard side, opposite medical, and your medical colleagues should be fast friends. The medical wing is part of Moebius too, and so you fully share access with each other, and are free to use each others' supplies.<br>\
 <br>\
@@ -140,7 +144,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 		STAT_BIO = 25,
 	)
 
-
+	perks = list(/datum/perk/selfmedicated)
 
 	description = "As a roboticist, you are probably the busiest person in the research wing. For it is the only area of the department that focuses on providing services to others.<br>\
 <br>\

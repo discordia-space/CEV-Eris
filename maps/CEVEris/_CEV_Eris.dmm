@@ -9154,13 +9154,15 @@
 	},
 /area/shuttle/escape_pod1/station)
 "auu" = (
-/obj/structure/closet/walllocker/emerglocker/north,
-/obj/structure/closet/walllocker/emerglocker/north{
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
 	dir = 1;
 	pixel_y = -32
 	},
 /obj/machinery/camera/network/crescent{
 	dir = 8
+	},
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -13470,13 +13472,15 @@
 	},
 /area/shuttle/escape_pod2/station)
 "aET" = (
-/obj/structure/closet/walllocker/emerglocker/north,
-/obj/structure/closet/walllocker/emerglocker/north{
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
 	dir = 1;
 	pixel_y = -32
 	},
 /obj/machinery/camera/network/crescent{
 	dir = 8
+	},
+/obj/structure/closet/wall_mounted/emcloset/escape_pods{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -37187,6 +37191,9 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bFj" = (
@@ -44529,8 +44536,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
 "bUn" = (
+/obj/effect/window_lwall_spawn/smartspawnplasma,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/sleep/cryo)
 "bUo" = (
@@ -49100,6 +49107,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "cex" = (
@@ -49247,10 +49257,6 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
-"ceK" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/eris/crew_quarters/sleep/cryo)
 "ceL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -91406,7 +91412,7 @@
 /turf/simulated/open,
 /area/eris/neotheology/chapel)
 "dWx" = (
-/obj/structure/closet/walllocker/emerglocker/north,
+/obj/structure/closet/wall_mounted/emcloset/escape_pods,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dWy" = (
@@ -101438,10 +101444,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
-"eth" = (
-/obj/structure/closet/firecloset,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/eris/hallway/side/cryo)
 "eti" = (
 /obj/structure/table/bar_special,
 /obj/machinery/light{
@@ -108228,6 +108230,12 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"hNy" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -108351,6 +108359,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"jRq" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck4central)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
@@ -108592,6 +108606,13 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"nYI" = (
+/obj/structure/catwalk,
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck3port)
 "nZb" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -108751,6 +108772,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
+"qnS" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/sleep/cryo)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -108778,6 +108805,12 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"rjC" = (
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/maintenance/section2deck3port)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -165387,7 +165420,7 @@ cyw
 aYx
 aZW
 bay
-cvH
+jRq
 aLc
 aUS
 aWX
@@ -167298,7 +167331,7 @@ bQJ
 bQR
 bRa
 bPd
-aad
+aaa
 aaa
 aaa
 aaa
@@ -167500,7 +167533,7 @@ bQK
 bQT
 bRb
 bPd
-aad
+aaa
 aaa
 aaa
 aaa
@@ -167702,11 +167735,11 @@ bPd
 bPd
 bPd
 bPd
-aaA
-aad
-aaA
-aaA
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -167902,14 +167935,14 @@ aaa
 aaa
 aaa
 aaa
-aad
-aaa
-aaA
 aaa
 aaa
 aaa
-aaA
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -168106,12 +168139,12 @@ bUn
 bON
 bON
 aaa
-aaA
 aaa
 aaa
 aaa
 aaa
-abq
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -168308,12 +168341,12 @@ bMZ
 bMZ
 bON
 aaa
-aaA
 aaa
 aaa
 aaa
 aaa
-abq
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -168511,11 +168544,11 @@ bOE
 bON
 bON
 bON
-aad
-aad
-aaA
-aad
-abq
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -168715,9 +168748,9 @@ cJO
 bUn
 aaa
 aaa
-aaA
 aaa
-aad
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -168905,7 +168938,7 @@ aaa
 aaa
 bON
 bfa
-bfA
+hNy
 bTh
 bfA
 bfA
@@ -168917,9 +168950,9 @@ dXY
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -169119,9 +169152,9 @@ bRJ
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -169321,9 +169354,9 @@ bRL
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -169521,11 +169554,11 @@ bRy
 bUv
 bON
 bON
-aad
-aad
-aaA
 aaa
-aaA
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -169725,9 +169758,9 @@ btD
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -169927,9 +169960,9 @@ btL
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -170127,11 +170160,11 @@ bRy
 bUw
 bON
 bON
-aad
-aad
-aaA
 aaa
-aaA
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -170331,9 +170364,9 @@ bRM
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -170533,9 +170566,9 @@ bNH
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -170723,7 +170756,7 @@ aaa
 aaa
 bON
 bfa
-bfA
+qnS
 bTh
 bfA
 bfA
@@ -170735,9 +170768,9 @@ dXZ
 bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -170937,9 +170970,9 @@ cJP
 bUn
 aaa
 aaa
-aaA
 aaa
-aad
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -171137,11 +171170,11 @@ bQf
 bON
 bON
 bON
-aad
-aad
-aaA
-aad
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -171338,12 +171371,12 @@ bOk
 bOk
 bON
 aaa
-aad
 aaa
 aaa
 aaa
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -171529,7 +171562,7 @@ aDf
 aDf
 aaa
 aaa
-aad
+aaa
 aaa
 aaa
 bON
@@ -171540,12 +171573,12 @@ bUn
 bON
 bON
 aaa
-aad
 aaa
 aaa
 aaa
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -171731,23 +171764,23 @@ abF
 aaa
 aaa
 aaa
-aad
-aaa
-aaa
-aad
 aaa
 aaa
 aaa
 aaa
 aaa
-aad
-aaa
-aad
 aaa
 aaa
 aaa
 aaa
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -171933,23 +171966,23 @@ abF
 aaa
 aaa
 aaa
-aaA
-abq
-abq
-aaA
 aaa
 aaa
 aaa
 aaa
 aaa
-aaA
-aaA
-aaA
 aaa
 aaa
 aaa
 aaa
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -172138,20 +172171,20 @@ aaa
 aaa
 aaa
 aaa
-aad
 aaa
 aaa
 aaa
 aaa
 aaa
-aad
-aaa
-aad
 aaa
 aaa
 aaa
-aaA
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -172340,19 +172373,19 @@ aaa
 aaa
 aaa
 aaa
-aaA
-aaA
-aaA
-aaA
-aaA
-aaA
-aaA
 aaa
-aaA
-aaA
-aaA
-aaA
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -204787,7 +204820,7 @@ aTG
 abF
 bSx
 bSx
-bSV
+rjC
 cgI
 cll
 cIx
@@ -208103,11 +208136,11 @@ dav
 cwU
 cwU
 abF
-aad
-aaA
-aaA
-aaA
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -208305,12 +208338,12 @@ cUT
 cwU
 aaa
 aaa
-aad
 aaa
 aaa
 aaa
-aaA
-aaA
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -208507,12 +208540,12 @@ bON
 bON
 bON
 aaa
-aad
 aaa
 aaa
 aaa
 aaa
-abq
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -208709,12 +208742,12 @@ cZz
 cZz
 bON
 aaa
-aad
 aaa
 aaa
 aaa
 aaa
-abq
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -208912,11 +208945,11 @@ cZz
 bON
 bON
 bON
-aad
-aad
-aaA
-aad
-abq
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -209113,12 +209146,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aad
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -209315,12 +209348,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -209460,7 +209493,7 @@ aaa
 aaa
 duu
 duu
-dgG
+nYI
 dgG
 buH
 evw
@@ -209517,12 +209550,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -209719,12 +209752,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -209922,11 +209955,11 @@ bON
 bON
 bON
 bON
-aad
-aad
-aaA
 aaa
-aaA
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -210123,12 +210156,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -210325,12 +210358,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -210528,11 +210561,11 @@ bON
 bON
 bON
 bON
-aad
-aad
-aaA
 aaa
-aaA
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -210729,12 +210762,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -210931,12 +210964,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -211133,12 +211166,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -211335,12 +211368,12 @@ cZz
 cZz
 cZz
 cZz
-ceK
+bUn
 aaa
 aaa
-aaA
 aaa
-aad
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -211538,11 +211571,11 @@ cZz
 bON
 bON
 bON
-aad
-aad
-aaA
-aad
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -211730,7 +211763,7 @@ cNN
 bzX
 bzX
 bzX
-eth
+cxN
 cRE
 cZz
 cZz
@@ -211744,7 +211777,7 @@ aaa
 aaa
 aaa
 aaa
-aaA
+aaa
 aaa
 aaa
 aaa
@@ -211935,9 +211968,9 @@ cLW
 cLW
 bON
 bON
-bON
-bON
-bON
+bUn
+bUn
+bUn
 bON
 bON
 aaa
@@ -211945,8 +211978,8 @@ aaa
 aaa
 aaa
 aaa
-aaA
-aaA
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -212141,13 +212174,13 @@ aaa
 aaa
 aaa
 aaa
-aad
-aad
-aad
-aaA
-aaA
-aaA
-aaA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa

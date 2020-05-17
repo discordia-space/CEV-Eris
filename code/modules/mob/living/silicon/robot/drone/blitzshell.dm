@@ -1,7 +1,7 @@
 /mob/living/silicon/robot/drone/blitzshell
 	icon_state = "blitzshell"
 	law_type = /datum/ai_laws/blitzshell
-	module_type = /obj/item/weapon/robot_module/drone/blitzshell
+	module_type = /obj/item/weapon/robot_module/blitzshell
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_size = ITEM_SIZE_HUGE
@@ -40,10 +40,11 @@
 /mob/living/silicon/robot/drone/blitzshell/get_scooped()
 	return
 
-/obj/item/weapon/robot_module/drone/blitzshell
+/obj/item/weapon/robot_module/blitzshell
 	networks = list()
+	health = 35
 
-/obj/item/weapon/robot_module/drone/blitzshell/New()
+/obj/item/weapon/robot_module/blitzshell/New()
 	//modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src) //Deemed too strong
 	modules += new /obj/item/weapon/gun/energy/plasma/mounted/blitz(src)
 	modules += new /obj/item/weapon/tool/knife/tacknife(src) //For claiming heads for assassination missions
@@ -55,6 +56,7 @@
 	//Misc equipment
 	modules += new /obj/item/weapon/card/id/syndicate(src) //This is our access. Scan cards to get better access
 	modules += new /obj/item/device/nanite_container(src) //For self repair. Get more charges via the contract system
+	..()
 
 /obj/item/weapon/gripper/antag
 	name = "Objective Gripper"
@@ -66,6 +68,8 @@
 		/obj/item/weapon/spacecash,
 		/obj/item/device/mind_fryer,
 		/obj/item/organ/external/head,
+		/obj/item/weapon/oddity/secdocs,
+		/obj/item/stack/telecrystal //To reload the uplink
 		)
 
 /obj/item/weapon/gripper/antag/New()

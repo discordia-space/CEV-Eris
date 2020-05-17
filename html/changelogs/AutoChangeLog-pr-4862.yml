@@ -1,6 +1,0 @@
-author: Kurgis
-delete-after: true
-changes:
-  - code_imp: The unincluded mecha module has been fully removed from the codebase,
-      along with changing many naming conventions used in code to be closer to Baystation.
-      This should have no effect in-game.

@@ -74,6 +74,11 @@ A small pool of thematically appropriate religious items that are generally chea
 	item_cost = 3
 	path = /obj/item/clothing/suit/neotheology_coat
 
+/datum/uplink_item/item/neotheology/hat
+	name = "Preacher Hat"
+	item_cost = 3
+	path = /obj/item/clothing/head/preacher
+
 /*
 	Guns: All taken from the NeoTheology Armory of the New Testament
 	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
