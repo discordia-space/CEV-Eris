@@ -393,7 +393,7 @@
 	desc = "Green titanium helmet of serbian origin. Still widely used despite of its discontinued production."
 	icon_state = "altyn"
 	armor = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHEADHAIR
 	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
