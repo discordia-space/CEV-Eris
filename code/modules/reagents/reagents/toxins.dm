@@ -10,6 +10,7 @@
 	color = "#CF3600"
 	metabolism = REM * 0.05 // 0.01 by default. They last a while and slowly kill you.
 	var/strength = 0.05 // How much damage it deals per unit
+	var/sanityloss = 0
 	reagent_type = "Toxin"
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -18,6 +19,10 @@
 		if(issmall(M))  // Small bodymass, more effect from lower volume.
 			multi *= 2
 		M.adjustToxLoss(strength * multi)
+		if(sanityloss)
+			var/mob/living/carbon/human/H = M
+			if(istype(H))
+				H.sanity.onToxin(src, effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, 1)
 
 /datum/reagent/toxin/overdose(var/mob/living/carbon/M, var/alien)
@@ -452,17 +457,13 @@
 	taste_description = "sludge"
 	reagent_state = LIQUID
 	color = "#a37d9c"
+	metabolism = REM * 2
 	overdose = REAGENTS_OVERDOSE/3
-	addiction_chance = 10
 	nerve_system_accumulations = 5
-	strength = 0.1
+	strength = 0.01
+	sanityloss = 3
 	heating_point = 523
 	heating_products = list("toxin")
-
-/datum/reagent/toxin/pararein/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	..()
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "pararein")
-	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "pararein")
 
 /datum/reagent/toxin/diplopterum
 	name = "Diplopterum"

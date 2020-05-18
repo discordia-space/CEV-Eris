@@ -24,6 +24,9 @@
 		STAT_MEC = 15,
 		STAT_VIG = 10
 	)
+
+	perks = list(/datum/perk/merchant, /datum/perk/deep_connection)
+
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
 A staunch entrepreneur, you are motivated by profit, for the guild and especially for yourself. You are here firstly to make as much money as you can, and secondly to keep the crew supplied. You can order things at cargo using the local guild funds, these will not magically replenish so you will run out of money quickly if you don't charge. Take payments by card or cash, and deposit them into the guild account to enable more purchases.<br>\
 <br>\
@@ -52,8 +55,6 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 							 /datum/computer_file/program/reports)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/merchant
-
-	perks = list(/datum/perk/timeismoney)
 
 /obj/landmark/join/start/merchant
 	name = "Guild Merchant"
@@ -87,6 +88,8 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 		STAT_TGH = 10,
 		STAT_VIG = 10,
 	)
+
+	perks = list(/datum/perk/deep_connection)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
@@ -161,6 +164,8 @@ Character Expectations:<br>\
 		STAT_VIG = 15,
 		STAT_MEC = 15
 	)
+
+	perks = list(/datum/perk/deep_connection)
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,

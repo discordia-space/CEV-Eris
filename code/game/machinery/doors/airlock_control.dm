@@ -117,8 +117,8 @@
 /obj/machinery/door/airlock/Bumped(atom/AM)
 	..(AM)
 	if(istype(AM, /mob/living/exosuit))
-		var/mob/living/exosuit/mecha = AM
-		if(density && radio_connection && mecha.pilots && (allowed(mecha.pilots[1]) || check_access_list(mecha.saved_access)))
+		var/mob/living/exosuit/exosuit = AM
+		if(density && radio_connection && exosuit.pilots && (allowed(exosuit.pilots[1]) || check_access_list(exosuit.saved_access)))
 			send_status(1)
 	return
 

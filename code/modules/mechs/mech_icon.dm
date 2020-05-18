@@ -10,7 +10,7 @@
 				var/template_key = "template-[cache_key]"
 				if(!GLOB.mech_icon_cache[template_key])
 					GLOB.mech_icon_cache[template_key] = icon(cache_icon, "[cache_key]_mask")
-				var/icon/decal_icon = icon(MECHA_DECALS_ICON, decal)
+				var/icon/decal_icon = icon(MECH_DECALS_ICON, decal)
 				decal_icon.Blend(GLOB.mech_icon_cache[template_key], ICON_MULTIPLY)
 				GLOB.mech_icon_cache[decal_key] = decal_icon
 			I.overlays += get_mech_image(null, decal_key, GLOB.mech_icon_cache[decal_key])
@@ -42,7 +42,7 @@
 		if(hardpoint_object)
 			var/use_icon_state = "[hardpoint_object.icon_state]_[hardpoint]"
 			if(use_icon_state in GLOB.mech_weapon_overlays)
-				new_overlays += get_mech_image(null, use_icon_state, MECHA_WEAPON_OVERLAYS_ICON, null, hardpoint_object.mech_layer )
+				new_overlays += get_mech_image(null, use_icon_state, MECH_WEAPON_OVERLAYS_ICON, null, hardpoint_object.mech_layer )
 	overlays = new_overlays
 
 /mob/living/exosuit/proc/update_pilots(var/update_overlays = TRUE)
