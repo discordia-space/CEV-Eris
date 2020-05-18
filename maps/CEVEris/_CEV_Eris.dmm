@@ -16985,6 +16985,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
+"aNS" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/beakers,
+/turf/simulated/floor/dirt,
+/area/eris/crew_quarters/hydroponics)
 "aNT" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -26958,6 +26963,11 @@
 /obj/random/booze/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
+"biy" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/makeshift_grinder,
+/turf/simulated/floor/grass,
+/area/eris/crew_quarters/hydroponics)
 "biz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -41747,6 +41757,11 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
+"bOi" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/data_disk,
+/turf/simulated/floor/dirt,
+/area/eris/crew_quarters/hydroponics)
 "bOj" = (
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
@@ -55558,9 +55573,6 @@
 /obj/machinery/computer/robotics,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
-"ctS" = (
-/turf/simulated/floor/carpet/purcarpet,
-/area/eris/command/meo)
 "ctT" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -60349,9 +60361,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
-"cEw" = (
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/eris/command/bridge)
 "cEx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/red{
 	tag = "icon-map (WEST)";
@@ -165006,8 +165015,8 @@ bQD
 bRH
 bxH
 bQZ
-bRg
-bQZ
+aNS
+biy
 bQn
 bQq
 bQn
@@ -165209,7 +165218,7 @@ bRH
 bxH
 bRg
 bTz
-bRg
+bOi
 bQn
 bTA
 bUT
@@ -213270,7 +213279,7 @@ crb
 clF
 clF
 cmG
-ctS
+cvj
 crx
 cDW
 cvj
@@ -288563,7 +288572,7 @@ aaa
 abq
 aad
 dUv
-cEw
+cHg
 cIp
 dVP
 dWh
