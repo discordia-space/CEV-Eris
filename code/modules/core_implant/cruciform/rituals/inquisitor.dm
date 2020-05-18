@@ -158,7 +158,7 @@
 		fail("Target not found.",user,C,targets)
 		return FALSE
 
-	//Checking turfs allows this to be done in unusual circumstances, like if both are inside the same mecha
+	//Checking turfs allows this to be done in unusual circumstances
 	var/turf/T = get_turf(user)
 	if (!(T.Adjacent(get_turf(H))))
 		to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))

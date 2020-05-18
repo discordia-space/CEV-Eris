@@ -23,8 +23,13 @@
 	var/nt_buff_cd = 3
 
 	var/static/stat_buff
+	var/list/currently_affected = list()
 
-/obj/machinery/power/nt_obelisk/New()
+/obj/machinery/power/nt_obelisk/Destroy()
+	for(var/i in currently_affected)
+		var/mob/living/carbon/human/H = i
+		H.stats.removePerk(/datum/perk/sanityboost)
+	currently_affected = null
 	..()
 
 /obj/machinery/power/nt_obelisk/attack_hand(mob/user)
@@ -72,9 +77,17 @@
 
 /obj/machinery/power/nt_obelisk/proc/check_for_faithful(list/affected)
 	var/got_neoteo = FALSE
+	var/list/no_longer_affected = currently_affected - affected
+	for(var/i in no_longer_affected)
+		var/mob/living/carbon/human/H = i
+		H.stats.removePerk(/datum/perk/sanityboost)
+	currently_affected -= no_longer_affected
 	for(var/mob/living/carbon/human/mob in affected)
 		var/obj/item/weapon/implant/core_implant/I = mob.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
+			if(!(mob in currently_affected)) // the mob just entered the range of the obelisk
+				mob.stats.addPerk(/datum/perk/sanityboost)
+				currently_affected += mob
 			if(I.power < I.max_power)	I.power += nt_buff_power
 			for(var/r_tag in mob.personal_ritual_cooldowns)
 				mob.personal_ritual_cooldowns[r_tag] -= nt_buff_cd

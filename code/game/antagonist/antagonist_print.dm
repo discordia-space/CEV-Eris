@@ -2,7 +2,10 @@
 	if(!owner || !owner.current)
 		return
 
-	var/text = "<b>Your [role_text] current objectives:</b>"
+	var/text
+
+	if (objectives.len)
+		text = "<b>Your [role_text] current objectives:</b>"
 
 	if(faction)
 		text = "<b>Your [faction.name] faction current objectives:</b>"

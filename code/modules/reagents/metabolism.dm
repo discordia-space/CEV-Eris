@@ -38,6 +38,8 @@
 	var/list/datum/reagent/active_withdrawals = list()
 	var/list/datum/reagent/addiction_list = list()
 	var/addiction_tick = 1
+	/// The final chance for an addiction to manifest is multiplied by this value before being passed to prob.
+	var/addiction_chance_multiplier = 1
 
 /datum/metabolism_effects/proc/adjust_nsa(value, tag)
 	if(!tag)
@@ -87,20 +89,20 @@
 	hud?.update_icon()
 
 /datum/metabolism_effects/proc/nsa_breached_effect()
-	if(get_nsa() < 120)
+	if(get_nsa() < nsa_threshold*1.2) // 20% more
 		return
 	parent.vomit()
 
-	if(get_nsa() < 160)
+	if(get_nsa() < nsa_threshold*1.6)
 		return
 	parent.drop_l_hand()
 	parent.drop_r_hand()
 
-	if(get_nsa() < 180)
+	if(get_nsa() < nsa_threshold*1.8)
 		return
 	parent.adjustToxLoss(1)
 
-	if(get_nsa() < 200)
+	if(get_nsa() < nsa_threshold*2)
 		return
 	parent.Sleeping(2)
 
@@ -134,7 +136,7 @@
 		var/add_addiction_flag = R.volume >= R.addiction_threshold
 
 		if(!add_addiction_flag && R.addiction_chance)
-			var/percent = (R.addiction_chance + parent.metabolism_effects.get_nsa()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))
+			var/percent = ((R.addiction_chance + parent.metabolism_effects.get_nsa()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))) * addiction_chance_multiplier
 			percent = CLAMP(percent, 1, 100)
 			add_addiction_flag = prob(percent)
 

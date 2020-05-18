@@ -3597,7 +3597,7 @@
 	},
 /area/shuttle/mercenary)
 "kg" = (
-/obj/structure/closet/walllocker/emerglocker{
+/obj/structure/closet/wall_mounted/emcloset{
 	pixel_x = 28
 	},
 /obj/structure/table/standard,

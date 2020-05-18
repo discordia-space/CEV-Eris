@@ -169,15 +169,6 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_ROBOT, 1)
 	add_language(LANGUAGE_COMMON, 1)
 
-	//Stats
-	//The AI gets 100 in all three knowledge stats.
-		//These are only ever used to operate machinery and software
-	//It doesnt get any physical stats, like robustness, since its a disembodied mind
-	stats = new /datum/stat_holder
-	stats.changeStat(STAT_BIO, 100)
-	stats.changeStat(STAT_MEC, 100)
-	stats.changeStat(STAT_COG, 100)
-
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			empty_playable_ai_cores += new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
@@ -204,6 +195,14 @@ var/list/ai_verbs_default = list(
 	ai_list += src
 
 	..()
+
+	//Stats
+	//The AI gets 100 in all three knowledge stats.
+	//These are only ever used to operate machinery and software
+	//It doesnt get any physical stats, like robustness, since its a disembodied mind
+	stats.changeStat(STAT_BIO, 100)
+	stats.changeStat(STAT_MEC, 100)
+	stats.changeStat(STAT_COG, 100)
 
 /mob/living/silicon/ai/proc/on_mob_init()
 	to_chat(src, "<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>")

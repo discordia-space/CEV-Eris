@@ -1,10 +1,10 @@
-#define MECHA_WEAPON_OVERLAYS_ICON			'icons/mecha2/mech_weapon_overlays.dmi'
-#define MECHA_DECALS_ICON					'icons/mecha2/mech_decals.dmi'
-#define MECHA_PARTS_HELD_ICON				'icons/mecha2/mech_parts_held.dmi'
-#define MECHA_PARTS_ICON					'icons/mecha2/mech_parts.dmi'
-#define MECHA_WRECKAGE_ICON					'icons/mecha2/mech_wreckage.dmi'
-#define MECHA_EQUIPMENT_ICON				'icons/mecha2/mech_equipment.dmi'
-#define MECHA_HUD_ICON						'icons/mecha2/mech_hud.dmi'
+#define MECH_WEAPON_OVERLAYS_ICON			'icons/mechs/mech_weapon_overlays.dmi'
+#define MECH_DECALS_ICON					'icons/mechs/mech_decals.dmi'
+#define MECH_PARTS_HELD_ICON				'icons/mechs/mech_parts_held.dmi'
+#define MECH_PARTS_ICON						'icons/mechs/mech_parts.dmi'
+#define MECH_WRECKAGE_ICON					'icons/mechs/mech_wreckage.dmi'
+#define MECH_EQUIPMENT_ICON					'icons/mechs/mech_equipment.dmi'
+#define MECH_HUD_ICON						'icons/mechs/mech_hud.dmi'
 
 #define HARDPOINT_BACK						"back"
 #define HARDPOINT_LEFT_HAND					"left hand"
@@ -49,4 +49,4 @@ GLOBAL_LIST_INIT(hardpoint_bar_cache,			new)
 GLOBAL_LIST_INIT(mech_damage_overlay_cache,		new)
 GLOBAL_LIST_INIT(mech_image_cache,				new)
 GLOBAL_LIST_INIT(mech_icon_cache,				new)
-GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECHA_WEAPON_OVERLAYS_ICON))
+GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECH_WEAPON_OVERLAYS_ICON))
