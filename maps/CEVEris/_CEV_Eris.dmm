@@ -108175,6 +108175,10 @@
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"gcW" = (
+/obj/machinery/beehive,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "gsO" = (
 /obj/machinery/door/airlock/glass_medical{
 	id_tag = null;
@@ -108303,6 +108307,11 @@
 	},
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"jvV" = (
+/obj/structure/table/woodentable,
+/obj/item/bee_smoker,
+/turf/simulated/floor/grass,
+/area/eris/crew_quarters/hydroponics)
 "jDU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
@@ -108500,6 +108509,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"mvG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/botany/editor,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "mCf" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -108768,6 +108787,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"rme" = (
+/obj/item/beehive_assembly,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -108825,6 +108848,16 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"sGU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/botany/extractor,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "sJL" = (
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
@@ -108913,6 +108946,10 @@
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
+"usz" = (
+/obj/item/bee_pack,
+/turf/simulated/floor/grass,
+/area/eris/crew_quarters/hydroponics)
 "utr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -164824,7 +164861,7 @@ bUT
 bUT
 bUT
 bQq
-bXi
+mvG
 bxH
 bQn
 bQn
@@ -165018,7 +165055,7 @@ bQZ
 aNS
 biy
 bQn
-bQq
+rme
 bQn
 auS
 auS
@@ -165026,7 +165063,7 @@ auS
 auS
 bQn
 bQq
-bXi
+sGU
 bxH
 bQS
 bXR
@@ -165227,7 +165264,7 @@ bUT
 bUT
 bUT
 bUT
-bQq
+gcW
 bXk
 bIs
 bXn
@@ -165420,8 +165457,8 @@ bRH
 bxH
 bQZ
 bRg
-bQZ
-bQn
+jvV
+usz
 bQq
 bUT
 bUT
@@ -165429,7 +165466,7 @@ bUT
 bUT
 bUT
 bUT
-bQq
+gcW
 bXi
 bxH
 bXC
