@@ -1,17 +1,9 @@
-/obj/item/frame_holder
-	matter = list(MATERIAL_STEEL = 175000, MATERIAL_PLASTIC = 50000, MATERIAL_OSMIUM = 30000)
-
-/obj/item/frame_holder/Initialize(mapload, var/newloc)
-	..()
-	new /obj/structure/heavy_vehicle_frame(newloc)
-	return  INITIALIZE_HINT_QDEL
-
 /obj/structure/heavy_vehicle_frame
 	name = "exosuit frame"
 	desc = "The frame for an exosuit, apparently."
 	icon = MECH_PARTS_ICON
 	icon_state = "backbone"
-	density = 1
+	density = TRUE
 	pixel_x = -8
 
 	// Holders for the final product.
@@ -23,7 +15,17 @@
 	var/is_reinforced = 0
 	var/set_name
 	dir = SOUTH
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+
 	var/material/material = null
+
+// Return reinforcement material too, if any.
+/obj/structure/heavy_vehicle_frame/get_matter()
+	var/list/matter = ..()
+	. = matter.Copy()
+
+	if(material)
+		LAZYAPLUS(., material.name, 10)
 
 /obj/structure/heavy_vehicle_frame/proc/set_colour(var/new_colour)
 	var/painted_component = FALSE
