@@ -26,6 +26,7 @@
 	if(oddity_stats)
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
+	AddComponent(/datum/component/inspiration, oddity_stats)
 
 
 /obj/item/weapon/oddity/examine(user)

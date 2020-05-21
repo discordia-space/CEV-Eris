@@ -64,8 +64,6 @@
 
 	var/list/initial_email_login = list("login" = "", "password" = "")
 
-	var/datum/stat_holder/stats = null
-
 	var/last_activity = 0
 
 	var/list/knownCraftRecipes = list()
@@ -319,7 +317,6 @@
 		SSticker.minds += mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
-	mind.stats = src.stats
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()

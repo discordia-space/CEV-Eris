@@ -65,8 +65,8 @@
 
 /mob/living/exosuit/proc/give_power(amount)
 	var/obj/item/weapon/cell/c = get_cell()
-	if(!c)
-		c?.give(amount)
+	if(c)
+		c.give(amount)
 		return TRUE
 	return FALSE
 
@@ -194,5 +194,9 @@
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
 
+/mob/living/exosuit/proc/get_pilots()
+	return pilots?.len ? pilots : null
+
 /mob/living/exosuit/get_mob()
-	return pilots[1]
+	if(length(pilots))
+		return pick(pilots)

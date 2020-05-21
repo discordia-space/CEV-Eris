@@ -11,7 +11,7 @@
 
 
 /obj/item/stash_spawner/Initialize()
-	select_datum()
+	datum = pick_n_take_stash_datum()
 	if (!datum)
 		//If it failed to get a datum, we can't do anything
 		return INITIALIZE_HINT_QDEL
@@ -26,36 +26,6 @@
 		return INITIALIZE_HINT_QDEL
 
 	datum.spawn_stash()
-	datum.spawn_note(src)
-
-
-
-	//Aaaand we are done
+	datum.spawn_note(loc)
+	//Aaaand we are done -- would've never guessed that
 	return INITIALIZE_HINT_QDEL
-
-
-//Selecting a datum is done in two pickweight stages
-//First, the categories are weighted against each other
-//Then everything within that category is weighted
-/obj/item/stash_spawner/proc/select_datum()
-	//First of all, we pick our category
-	var/list/possible_categories = GLOB.stash_categories.Copy()
-	var/category_resolved = FALSE
-	var/category = null
-	var/list/possible_stashes = list()
-	while (category_resolved == FALSE)
-		if (!possible_categories.len)
-			break
-
-		category = pickweight_n_take(possible_categories)
-
-		//Now lets check that this category actually has any stashes left in it
-		possible_stashes = GLOB.all_stash_datums[category]
-		if (possible_stashes.len)
-			category_resolved = TRUE
-		else
-			category = null //Go around again
-
-	//Now we pickweight our datum
-	if (category)
-		datum = pickweight_n_take(possible_stashes)

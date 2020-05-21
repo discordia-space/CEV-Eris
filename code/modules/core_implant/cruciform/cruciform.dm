@@ -1,3 +1,5 @@
+#define OBELISK_UPDATE_TIME 5 SECONDS
+
 var/list/disciples = list()
 
 /obj/item/weapon/implant/core_implant/cruciform
@@ -12,6 +14,15 @@ var/list/disciples = list()
 	max_power = 50
 	power_regen = 0.5
 	price_tag = 500
+
+/obj/item/weapon/implant/core_implant/cruciform/install(mob/living/target, organ, mob/user)
+	. = ..()
+	if(.)
+		target.stats.addPerk(/datum/perk/sanityboost)
+
+/obj/item/weapon/implant/core_implant/cruciform/uninstall()
+	wearer.stats.removePerk(/datum/perk/sanityboost)
+	return ..()
 
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender)
 	gender = (gender == MALE) ? "m" : "f"

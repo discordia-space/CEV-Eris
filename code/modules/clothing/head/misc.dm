@@ -187,7 +187,7 @@
 	name = "witch costume wig"
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/chicken
@@ -206,7 +206,7 @@
 	name = "bear pelt hat"
 	desc = "Fuzzy."
 	icon_state = "bearpelt"
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/head/xenos
@@ -229,7 +229,7 @@
 		slot_l_hand_str = "pwig",
 		slot_r_hand_str = "pwig",
 		)
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	siemens_coefficient = 2.0 //why is it so conductive?!
 	body_parts_covered = 0
 

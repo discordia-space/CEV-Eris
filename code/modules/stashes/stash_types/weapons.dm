@@ -103,7 +103,7 @@
  Half of the crew wants to hit the pods, the other half wants their bonus pay. I know what half I'm in, and we're meeting at %D. Fuck this captain. Once we find some softsuits, that is."
 
 
- /datum/stash/weapon/mutiny/warden
+/datum/stash/weapon/mutiny/warden
 	contents_list_extra = list(/obj/random/gun_normal = 3, /obj/random/ammo = 6)
 	directions = DIRECTION_IMAGE
 	lore = "Warden,<br>\
@@ -113,7 +113,7 @@
 
 
 
- /datum/stash/weapon/mutiny/starvation
+/datum/stash/weapon/mutiny/starvation
  	//Make sure there's a shotgun with slugs in the stash, as described in the text.
  	//Also the wardens were hoarding food
  	contents_list_extra = list(/obj/random/gun_shotgun = 1, /obj/item/weapon/storage/box/shotgunammo/slug = 1, /obj/random/rations = 6)
