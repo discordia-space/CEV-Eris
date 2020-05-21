@@ -1602,7 +1602,7 @@
 #include "code\modules\materials\material_synth.dm"
 #include "code\modules\materials\materials.dm"
 #include "code\modules\mechs\_mech_defines.dm"
-#include "code\modules\mechs\_mech.dm"
+#include "code\modules\mechs\mech.dm"
 #include "code\modules\mechs\mech_construction.dm"
 #include "code\modules\mechs\mech_damage.dm"
 #include "code\modules\mechs\mech_damage_immunity.dm"
