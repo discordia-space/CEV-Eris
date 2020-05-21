@@ -20,7 +20,7 @@ LINEN BINS
 	var/inuse = FALSE
 
 /obj/item/weapon/bedsheet/afterattack(atom/A, mob/user)
-	if(!user || user.incapacitated() || !user.Adjacent(A))
+	if(!user || user.incapacitated() || !user.Adjacent(A) || istype(A, /obj/structure/bedsheetbin) || istype(A, /obj/item/weapon/storage/))
 		return
 	if(toggle_fold(user))
 		user.drop_item()
