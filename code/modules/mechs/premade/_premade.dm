@@ -3,29 +3,37 @@
 /mob/living/exosuit/premade
 	name = "impossible exosuit"
 	desc = "It seems to be saying 'please let me die'."
+	var/exosuit_color
 	var/decal
+	var/list/installed_software = list()
+	var/list/installed_systems = list(
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light
+	)
 
 /mob/living/exosuit/premade/Initialize()
-	if(arms)
-		arms.decal = decal
-		arms.prebuild()
-	if(legs)
-		legs.decal = decal
-		legs.prebuild()
-	if(head)
-		head.decal = decal
-		head.prebuild()
-	if(body)
-		body.decal = decal
-		body.prebuild()
+	// Paint and equip all body parts
+	for(var/obj/item/mech_component/C in list(arms, legs, head, body))
+		if(decal)
+			C.decal = decal
+		if(exosuit_color)
+			C.color = exosuit_color
+		C.prebuild()
+
+	if(head && head.software)
+		head.software.installed_software = installed_software.Copy()
+
 	. = ..()
-	install_system(new /obj/item/mech_equipment/light(src), HARDPOINT_HEAD)
+
+	for(var/hardpoint in installed_systems)
+		var/system_type = installed_systems[hardpoint]
+		install_system(new system_type(src), hardpoint)
+
 
 /mob/living/exosuit/premade/random
 	name = "mismatched exosuit"
 	desc = "It seems to have been roughly thrown together and then spraypainted a single colour."
 
-/mob/living/exosuit/premade/random/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame, var/super_random = FALSE, var/using_boring_colours = FALSE)
+/mob/living/exosuit/premade/random/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame, super_random = FALSE, using_boring_colours = FALSE)
 	//if(!prob(100/(LAZYLEN(GLOB.mech_decals)+1)))
 	//	decal = pick(GLOB.mech_decals)
 
@@ -121,31 +129,33 @@
 			"#4b0082"
 		)
 
-	var/mech_colour = super_random ? FALSE : pick(use_colours)
 	if(!arms)
-		var/armstype = pick(typesof(/obj/item/mech_component/manipulators)-/obj/item/mech_component/manipulators)
+		var/armstype = pick(subtypesof(/obj/item/mech_component/manipulators))
 		arms = new armstype(src)
-		arms.color = mech_colour ? mech_colour : pick(use_colours)
 	if(!legs)
-		var/legstype = pick(typesof(/obj/item/mech_component/propulsion)-/obj/item/mech_component/propulsion)
+		var/legstype = pick(subtypesof(/obj/item/mech_component/propulsion))
 		legs = new legstype(src)
-		legs.color = mech_colour ? mech_colour : pick(use_colours)
 	if(!head)
-		var/headtype = pick(typesof(/obj/item/mech_component/sensors)-/obj/item/mech_component/sensors)
+		var/headtype = pick(subtypesof(/obj/item/mech_component/sensors))
 		head = new headtype(src)
-		head.color = mech_colour ? mech_colour : pick(use_colours)
 	if(!body)
-		var/bodytype = pick(typesof(/obj/item/mech_component/chassis)-/obj/item/mech_component/chassis)
+		var/bodytype = pick(subtypesof(/obj/item/mech_component/chassis))
 		body = new bodytype(src)
-		body.color = mech_colour ? mech_colour : pick(use_colours)
+
+	if(super_random)
+		for(var/obj/item/mech_component/C in list(arms, legs, head, body))
+			C.color = pick(use_colours)
+	else
+		exosuit_color = pick(use_colours)
+
 	. = ..()
 
 // Used for spawning/debugging.
 /mob/living/exosuit/premade/random/normal
 
-/mob/living/exosuit/premade/random/boring/New(var/newloc, var/obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/premade/random/boring/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
 	..(newloc, source_frame, FALSE, TRUE)
 
-/mob/living/exosuit/premade/random/extra/New(var/newloc, var/obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
 	..(newloc, source_frame, TRUE)
 

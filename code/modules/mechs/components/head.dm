@@ -30,6 +30,7 @@
 /obj/item/mech_component/sensors/prebuild()
 	radio = new(src)
 	camera = new(src)
+	software = new(src)
 
 /obj/item/mech_component/sensors/update_components()
 	radio = locate() in src
@@ -81,6 +82,7 @@
 	icon_state = "control"
 	icon = MECH_EQUIPMENT_ICON
 	gender = NEUTER
+	color = null
 	var/list/installed_software = list()
 	var/max_installed_software = 2
 
@@ -112,7 +114,7 @@
 
 	if(user)
 		to_chat(user, SPAN_NOTICE("You load \the [software] into \the [src]'s memory."))
-		
+
 	software.forceMove(src)
 	update_software()
 

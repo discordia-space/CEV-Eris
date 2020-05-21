@@ -2,25 +2,29 @@
 	name = "light exosuit"
 	desc = "A light and agile exosuit."
 
+	exosuit_color = COLOR_OFF_WHITE
+	installed_software = list(
+		MECH_SOFTWARE_UTILITY,
+		MECH_SOFTWARE_MEDICAL
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/catapult,
+		HARDPOINT_BACK = /obj/item/mech_equipment/sleeper,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
+
 /mob/living/exosuit/premade/light/Initialize()
 	if(!arms)
 		arms = new /obj/item/mech_component/manipulators/light(src)
-		arms.color = COLOR_OFF_WHITE
 	if(!legs)
 		legs = new /obj/item/mech_component/propulsion/light(src)
-		legs.color = COLOR_OFF_WHITE
 	if(!head)
 		head = new /obj/item/mech_component/sensors/light(src)
-		head.color = COLOR_OFF_WHITE
 	if(!body)
 		body = new /obj/item/mech_component/chassis/light(src)
-		body.color = COLOR_OFF_WHITE
 
 	. = ..()
 
-	install_system(new /obj/item/mech_equipment/catapult(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/sleeper(src), HARDPOINT_BACK)
-	install_system(new /obj/item/mech_equipment/light(src), HARDPOINT_HEAD)
 
 /obj/item/mech_component/manipulators/light
 	name = "light arms"
@@ -40,7 +44,7 @@
 	move_delay = 2
 	max_damage = 40
 	power_use = 5
-	desc = "The electrical systems driving these legs are almost totally silent. Unfortunately slamming a plate of metal against the ground is not."
+	desc = "The electrical systems driving these legs are almost totally silent. Unfortunately, slamming a plate of metal against the ground is not."
 	matter = list(MATERIAL_STEEL = 10)
 
 /obj/item/mech_component/sensors/light
@@ -54,11 +58,6 @@
 	power_use = 50
 	desc = "A series of high resolution optical sensors. They can overlay several images to give the pilot a sense of location even in total darkness."
 	matter = list(MATERIAL_STEEL = 8)
-
-/obj/item/mech_component/sensors/light/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_UTILITY, MECH_SOFTWARE_MEDICAL)
 
 /obj/item/mech_component/chassis/light
 	name = "light exosuit chassis"

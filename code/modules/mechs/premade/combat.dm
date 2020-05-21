@@ -2,24 +2,29 @@
 	name = "combat exosuit"
 	desc = "A sleek, modern combat exosuit."
 
+	exosuit_color = COLOR_DARK_GUNMETAL
+	installed_software = list(
+		MECH_SOFTWARE_WEAPONS,
+		MECH_SOFTWARE_ADVWEAPONS
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
+
 /mob/living/exosuit/premade/combat/Initialize()
 	if(!arms)
 		arms = new /obj/item/mech_component/manipulators/combat(src)
-		arms.color = COLOR_DARK_GUNMETAL
 	if(!legs)
 		legs = new /obj/item/mech_component/propulsion/combat(src)
-		legs.color = COLOR_DARK_GUNMETAL
 	if(!head)
 		head = new /obj/item/mech_component/sensors/combat(src)
-		head.color = COLOR_DARK_GUNMETAL
 	if(!body)
 		body = new /obj/item/mech_component/chassis/combat(src)
-		body.color = COLOR_DARK_GUNMETAL
 
 	. = ..()
 
-	install_system(new /obj/item/mech_equipment/mounted_system/taser(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/mounted_system/taser/ion(src), HARDPOINT_RIGHT_HAND)
 
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
@@ -58,11 +63,6 @@
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
 
-/obj/item/mech_component/sensors/combat/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_WEAPONS, MECH_SOFTWARE_ADVWEAPONS)
-
 /obj/item/mech_component/chassis/combat/prebuild()
 	. = ..()
 	armor = new /obj/item/robot_parts/robot_component/armour/exosuit/combat(src)
@@ -76,5 +76,5 @@
 			"[WEST]"  = list("x" = 12, "y" = 8)
 		)
 	)
-	
+
 	. = ..()

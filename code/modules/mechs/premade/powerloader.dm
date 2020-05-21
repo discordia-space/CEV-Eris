@@ -2,26 +2,29 @@
 	name = "power loader"
 	desc = "An ancient, but well-liked cargo handling exosuit."
 
+	exosuit_color = "#ffbc37"
+	installed_software = list(
+		MECH_SOFTWARE_UTILITY,
+		MECH_SOFTWARE_ENGINEERING
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/clamp,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
+
 /mob/living/exosuit/premade/powerloader/Initialize()
 	if(!arms)
 		arms = new /obj/item/mech_component/manipulators/powerloader(src)
-		arms.color = "#ffbc37"
 	if(!legs)
 		legs = new /obj/item/mech_component/propulsion/powerloader(src)
-		legs.color = "#ffbc37"
 	if(!head)
 		head = new /obj/item/mech_component/sensors/powerloader(src)
-		head.color = "#ffbc37"
 	if(!body)
 		body = new /obj/item/mech_component/chassis/powerloader(src)
-		body.color = "#ffdc37"
-
-	body.armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 
 	. = ..()
 
-	install_system(new /obj/item/mech_equipment/drill(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/clamp(src), HARDPOINT_RIGHT_HAND)
 
 /obj/item/mech_component/manipulators/powerloader
 	name = "exosuit arms"
@@ -45,11 +48,6 @@
 	desc = "A primitive set of sensors designed to work in tandem with most MKI Eyeball platforms."
 	max_damage = 100
 	power_use = 0
-
-/obj/item/mech_component/sensors/powerloader/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_UTILITY, MECH_SOFTWARE_ENGINEERING)
 
 /obj/item/mech_component/chassis/powerloader
 	name = "open exosuit chassis"
@@ -92,33 +90,13 @@
 	decal = "flames_blue"
 
 
-/mob/living/exosuit/premade/firefighter
+/mob/living/exosuit/premade/powerloader/firefighter
 	name = "firefighting exosuit"
 	desc = "A mix and match of industrial parts designed to withstand fires."
 
-/mob/living/exosuit/premade/firefighter/New()
-	if(!arms)
-		arms = new /obj/item/mech_component/manipulators/powerloader(src)
-		arms.color = "#385b3c"
-	if(!legs)
-		legs = new /obj/item/mech_component/propulsion/powerloader(src)
-		legs.color = "#385b3c"
-	if(!head)
-		head = new /obj/item/mech_component/sensors/powerloader(src)
-		head.color = "#385b3c"
-	if(!body)
-		body = new /obj/item/mech_component/chassis/heavy(src)
-		body.color = "#385b3c"
-
-	. = ..()
-
-	install_system(new /obj/item/mech_equipment/drill(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/mounted_system/extinguisher(src), HARDPOINT_RIGHT_HAND)
-
-
-
-
-/obj/item/mech_component/sensors/firefighter/prebuild()
-	. = ..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_UTILITY, MECH_SOFTWARE_ENGINEERING)
+	exosuit_color = "#385b3c"
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/extinguisher,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
