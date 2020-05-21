@@ -281,8 +281,11 @@
 			insert_beaker(usr)
 		return 1
 
-	if(href_list["category"] && categories && (href_list["category"] in categories))
-		show_category = href_list["category"]
+	if(href_list["category"] && categories)
+		var/new_category = text2num(href_list["category"])
+
+		if(new_category && new_category <= length(categories))
+			show_category = categories[new_category]
 		return 1
 
 	if(href_list["eject_material"] && (!current_file || paused || error))
