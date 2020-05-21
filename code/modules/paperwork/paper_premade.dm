@@ -109,7 +109,7 @@
 	Either way, have fun!
 	
 	Best regards,
-	<font face=\"[signfont]\"><i>[Billy Bob Johnson]</i></font>.
+	<font face=\"Times New Roman\"><i>Billy Bob Johnson</i></font>.
 	
 	PS.
 	Here's a few tips:
