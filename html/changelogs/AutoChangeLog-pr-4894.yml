@@ -1,8 +1,0 @@
-author: AlexMorgan3817
-delete-after: true
-changes:
-  - bugfix: fixed MC crash caused by wrong simple_animal-AI logic for exosuits.
-  - bugfix: mobs without client now won't be able to become ghost.
-  - bugfix: fixed exosuits' recharging.
-  - rscdel: exosuits' personal cells replaced by large/high cells.
-  - code_imp: removed some `src.`-shit.
