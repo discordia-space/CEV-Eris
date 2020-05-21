@@ -1,0 +1,23 @@
+"b" = (/obj/random/junk,/turf/template_noop,/area/template_noop)
+"d" = (/obj/random/common_oddities,/obj/random/junk,/turf/template_noop,/area/template_noop)
+"e" = (/obj/machinery/floodlight,/turf/template_noop,/area/template_noop)
+"f" = (/obj/machinery/mining/brace,/turf/template_noop,/area/template_noop)
+"g" = (/obj/structure/ore_box,/turf/template_noop,/area/template_noop)
+"j" = (/obj/random/tool,/turf/template_noop,/area/template_noop)
+"k" = (/obj/machinery/mining/drill,/turf/template_noop,/area/template_noop)
+"l" = (/turf/template_noop,/area/template_noop)
+"n" = (/obj/random/booze,/turf/template_noop,/area/template_noop)
+"s" = (/obj/random/common_oddities,/turf/template_noop,/area/template_noop)
+"y" = (/obj/random/cloth/head,/turf/template_noop,/area/template_noop)
+"H" = (/obj/random/powercell,/turf/template_noop,/area/template_noop)
+"O" = (/obj/random/toolbox,/turf/template_noop,/area/template_noop)
+
+(1,1,1) = {"
+llbllll
+bldleHl
+lfglbbl
+lllsllb
+jbklljl
+lnllbbl
+llOllyl
+"}

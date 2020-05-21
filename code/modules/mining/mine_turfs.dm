@@ -111,7 +111,9 @@
 		icon_state = "rock"
 		return
 	name = "\improper [mineral.display_name] deposit"
-	new /obj/effect/mineral(src, mineral)
+	var/obj/effect/mineral/M = new /obj/effect/mineral(src, mineral)
+	spawn(1)
+		M.color = color
 
 //Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/I, mob/living/user)

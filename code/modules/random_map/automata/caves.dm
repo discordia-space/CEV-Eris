@@ -7,6 +7,7 @@
 	var/mineral_sparse =  /turf/simulated/mineral/random
 	var/mineral_rich = /turf/simulated/mineral/random/high_chance
 	var/list/ore_turfs = list()
+//	var/mineral_turf = /turf/simulated/mineral/random
 
 /datum/random_map/automata/cave_system/get_appropriate_path(var/value)
 	switch(value)
