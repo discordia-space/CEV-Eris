@@ -14,7 +14,6 @@
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
 	icon_state = "oxygen"
-	item_state = "oxygen"
 	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
@@ -26,15 +25,13 @@
 		to_chat(user, text(SPAN_WARNING("The meter on \the [src] indicates you are almost out of oxygen!")))
 
 
-/obj/item/weapon/tank/oxygen/yellow
-	desc = "A tank of oxygen, this one is yellow."
-	icon_state = "oxygen_f"
-	item_state = "oxygen_f"
-
 /obj/item/weapon/tank/oxygen/red
 	desc = "A tank of oxygen, this one is red."
-	icon_state = "oxygen_fr"
-	item_state = "oxygen_fr"
+	icon_state = "oxygen_red"
+
+/obj/item/weapon/tank/oxygen/yellow
+	desc = "A tank of oxygen, this one is yellow."
+	icon_state = "oxygen_yellow"
 
 
 /*
@@ -44,7 +41,6 @@
 	name = "anesthetic tank"
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
-	item_state = "an_tank"
 	default_pressure = 3*ONE_ATMOSPHERE
 
 /obj/item/weapon/tank/anesthetic/spawn_gas()
@@ -60,9 +56,10 @@
 /obj/item/weapon/tank/air
 	name = "air tank"
 	desc = "Mixed anyone?"
-	icon_state = "oxygen"
+	icon_state = "air"
 	force = WEAPON_FORCE_PAINFUL
 	default_pressure = 6*ONE_ATMOSPHERE
+	slot_flags = SLOT_BACK
 
 /obj/item/weapon/tank/air/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 1 && loc==user)
@@ -126,16 +123,28 @@
 	gauge_icon = "indicator-tank-double"
 	volume = 10
 
+/obj/item/weapon/tank/emergency_oxygen/nitrogen
+	name = "emergency nitrogen tank"
+	desc = "What kind of emergency would a tank of inert nitrogen prepare for?"
+	icon_state = "emergency_nitrogen"
+	default_pressure = 6*ONE_ATMOSPHERE
+	default_gas = "nitrogen"
+
+/obj/item/weapon/tank/emergency_oxygen/nitrogen/examine(mob/user)
+	if(..(user, 0) && air_contents.gas["nitrogen"] < 0.2 && loc==user)
+		to_chat(user, text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of nitrogen!")))
+		user << sound('sound/effects/alert.ogg')
+
 /*
  * Nitrogen
  */
 /obj/item/weapon/tank/nitrogen
 	name = "nitrogen tank"
-	desc = "A tank of nitrogen."
+	desc = "Many a death for mistaking it for a fire extinguisher."
 	force = WEAPON_FORCE_PAINFUL
-	icon_state = "oxygen_fr"
+	icon_state = "nitrogen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	default_pressure = 3*ONE_ATMOSPHERE
+	default_pressure = 9*ONE_ATMOSPHERE
 	default_gas = "nitrogen"
 
 /obj/item/weapon/tank/nitrogen/examine(mob/user)
