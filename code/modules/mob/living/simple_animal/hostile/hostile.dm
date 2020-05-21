@@ -45,15 +45,14 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.faction == src.faction && !attack_same)
+			if(L.faction == faction && !attack_same)
 				continue
 			else if(L in friends)
 				continue
-			else
-				if(!SA_attackable(L))
-					stance = HOSTILE_STANCE_ATTACK
-					T = L
-					break
+			else if(!SA_attackable(L))
+				stance = HOSTILE_STANCE_ATTACK
+				T = L
+				break
 
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
@@ -176,7 +175,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	var/list/L = hearers(src, dist)
 
 	for (var/mob/living/exosuit/M in mechas_list)
-		if (M.z == src.z && get_dist(src, M) <= dist)
+		if (M.z == z && get_dist(src, M) <= dist)
 			L += M
 
 	return L
@@ -216,19 +215,19 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 	if(rapid)
 		spawn(1)
-			Shoot(target, src.loc, src)
+			Shoot(target, loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 		spawn(4)
-			Shoot(target, src.loc, src)
+			Shoot(target, loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 		spawn(6)
-			Shoot(target, src.loc, src)
+			Shoot(target, loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 	else
-		Shoot(target, src.loc, src)
+		Shoot(target, loc, src)
 		if(casingtype)
 			new casingtype
 
