@@ -1,0 +1,4 @@
+author: hyperioo
+delete-after: true
+changes:
+  - bugfix: Fixed bedsheet duplication and storage issues
