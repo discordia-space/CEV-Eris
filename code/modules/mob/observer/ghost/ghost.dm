@@ -138,7 +138,7 @@ Works together with spawning an observer, noted above.
 	return 1
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
-	if(key && client)
+	if(key)
 		var/mob/observer/ghost/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.stat == DEAD ? src.timeofdeath : world.time
