@@ -167,15 +167,6 @@
 			if(!thing)
 				continue
 			var/damage_string = "destroyed"
-			switch(thing.damage_state)
-				if(MECH_COMPONENT_DAMAGE_UNDAMAGED)
-					damage_string = "undamaged"
-				if(MECH_COMPONENT_DAMAGE_DAMAGED)
-					damage_string = "damaged"
-				if(MECH_COMPONENT_DAMAGE_DAMAGED_BAD)
-					damage_string = "badly damaged"
-				if(MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
-					damage_string = "almost destroyed"
 			to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
 		material ? to_chat(user, "It menaces with reinforcements of [material].") : null
