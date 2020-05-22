@@ -2358,6 +2358,8 @@
 #include "code\modules\research\designs\structures.dm"
 #include "code\modules\research\designs\weapon.dm"
 #include "code\modules\research\designs\mechs2\_exosuits.dm"
+#include "code\modules\research\designs\mechs2\exosuits_components.dm"
+#include "code\modules\research\designs\mechs2\exosuits_equipment.dm"
 #include "code\modules\research\nodes\biotech.dm"
 #include "code\modules\research\nodes\bluespace.dm"
 #include "code\modules\research\nodes\combat.dm"

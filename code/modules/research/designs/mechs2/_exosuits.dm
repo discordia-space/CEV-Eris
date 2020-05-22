@@ -9,6 +9,3 @@
 
 /datum/design/research/item/mechfab/exosuit
 	category = CAT_MECH
-
-#include "exosuits_components.dm"
-#include "exosuits_equipment.dm"
