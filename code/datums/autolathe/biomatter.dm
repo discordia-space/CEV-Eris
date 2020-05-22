@@ -103,6 +103,16 @@
 	name = "Champion belt"
 	build_path = /obj/item/weapon/storage/belt/champion
 	materials = list("biomatter" = 50)
+
+/datum/design/bioprinter/backpack
+	name = "grey duffelbag"
+	build_path = /obj/item/weapon/storage/backpack
+	materials = list("biomatter" = 40)
+
+/datum/design/bioprinter/backpack/duffelbag
+	name = "grey duffelbag"
+	build_path = /obj/item/weapon/storage/backpack/duffelbag
+	materials = list("biomatter" = 65)
 //[/THINGS]
 
 //[MED]
