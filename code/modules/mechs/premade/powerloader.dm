@@ -88,12 +88,19 @@
 
 
 /mob/living/exosuit/premade/powerloader/firefighter
-	name = "firefighting exosuit"
-	desc = "A mix and match of industrial parts designed to withstand fires."
+	name = "APLU \"Firefighter\""
+	desc = "A mix and match of industrial parts designed to withstand heavy fires."
 
-	exosuit_color = "#385b3c"
+	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
+	exosuit_color = "#819a73"
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
 		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/extinguisher,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
 	)
+
+/mob/living/exosuit/premade/powerloader/firefighter/Initialize()
+	if(!body)
+		body = new /obj/item/mech_component/chassis/heavy(src) // Sealed chassis to protect the pilot from fire
+
+	. = ..()
