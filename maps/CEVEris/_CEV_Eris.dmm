@@ -108206,6 +108206,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"gHH" = (
+/obj/random/junk/low_chance,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "gPD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -108390,11 +108395,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
-"kuy" = (
-/obj/random/junk/low_chance,
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/maintenance/section2deck1port)
 "kEW" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -108501,6 +108501,15 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"mrL" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "msv" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	icon_state = "intact";
@@ -108788,13 +108797,7 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
-"qEu" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
+"qxk" = (
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section2deck1port)
 "qTX" = (
@@ -109075,9 +109078,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
-"vzu" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/maintenance/section2deck1port)
 "vIB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -283840,7 +283840,7 @@ aaa
 abF
 alb
 dVh
-vzu
+qxk
 alb
 abF
 alb
@@ -284042,7 +284042,7 @@ aaa
 abF
 alb
 dVh
-vzu
+qxk
 alb
 abF
 alb
@@ -284243,7 +284243,7 @@ abF
 abF
 abF
 alb
-qEu
+mrL
 dVz
 alb
 abF
@@ -284446,7 +284446,7 @@ abF
 abF
 alb
 dVi
-vzu
+qxk
 alb
 abF
 abF
@@ -284648,7 +284648,7 @@ alb
 alb
 alb
 dVh
-vzu
+qxk
 alb
 abF
 abF
@@ -284850,7 +284850,7 @@ dLA
 dUS
 apq
 dVm
-kuy
+gHH
 alb
 abF
 abF
