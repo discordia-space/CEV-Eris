@@ -89,11 +89,11 @@
 
 /datum/design/bioprinter/belt/security
 	name = "Tactical belt"
-	build_path = /obj/item/weapon/storage/belt/security
+	build_path = /obj/item/weapon/storage/belt/tactical
 
 /datum/design/bioprinter/belt/security/neotheology
 	name = "Neotheologian tactical belt"
-	build_path = /obj/item/weapon/storage/belt/security/neotheology
+	build_path = /obj/item/weapon/storage/belt/tactical/neotheology
 
 /datum/design/bioprinter/belt/medical/emt
 	name = "EMT belt"
