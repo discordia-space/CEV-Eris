@@ -7,6 +7,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
+	contained_sprite = TRUE
 
 	var/gauge_icon = "indicator-tank-big"
 	var/last_gauge_pressure
@@ -17,7 +18,7 @@ var/list/global/tank_gauge_cache = list()
 	w_class = ITEM_SIZE_NORMAL
 
 	force = WEAPON_FORCE_NORMAL
-	throwforce = 10.0
+	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4
 
@@ -32,6 +33,10 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/weapon/tank/Initialize(mapload, ...)
 	. = ..()
+
+	if (!item_state)
+		item_state = icon_state
+
 	air_contents = new /datum/gas_mixture(volume)
 	air_contents.temperature = T20C
 	spawn_gas()

@@ -6,7 +6,6 @@
 	icon_state = "jetpack"
 	gauge_icon = null
 	w_class = ITEM_SIZE_BULKY
-	item_state = "jetpack"
 	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
@@ -17,18 +16,14 @@
 
 	var/thrust_cost = JETPACK_MOVE_COST
 
-
 	//Vars used for stabilisation visual effects
 
 	var/stabilize_done = FALSE
 	//This is set false when a stabilisation check is queued, and set true when it resolves
 	//Used to prevent multiple scheduled checks in a row from resolving, and causing the effect+cost to happen many times
 
-
 	var/obj/item/weapon/tank/gastank = null //The tank we actually draw gas from. This is generally ourselves
 	//but Rig backpacks draw from a seperate tank
-
-
 
 	//Used for normal jet thrust effects
 	var/thrust_fx_done = FALSE
@@ -40,28 +35,20 @@
 	name = "void jetpack (oxygen)"
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
-	item_state = "jetpack-void"
 	default_gas = "oxygen"
-
 
 /obj/item/weapon/tank/jetpack/oxygen
 	name = "jetpack (oxygen)"
 	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
-	item_state = "jetpack"
 	default_gas = "oxygen"
-
 
 /obj/item/weapon/tank/jetpack/carbondioxide
 	name = "jetpack (carbon dioxide)"
 	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."
 	icon_state = "jetpack-black"
-	item_state = "jetpack-black"
 	distribute_pressure = 0
 	default_gas = "carbon_dioxide"
-
-
-
 
 /*****************************
 	Core Functionality
@@ -85,8 +72,6 @@
 		to_chat(user, SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!"))
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
-
-
 /*****************************
 	Mode Setting
 *****************************/
@@ -102,7 +87,6 @@
 	else
 		enable_stabilizer()
 
-
 /obj/item/weapon/tank/jetpack/proc/enable_stabilizer()
 	if (stabilize(usr, usr.l_move_time, TRUE))
 		stabilization_on = TRUE
@@ -114,7 +98,6 @@
 		else
 			to_chat(usr, SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser."))
 		return FALSE
-
 
 /obj/item/weapon/tank/jetpack/proc/disable_stabilizer()
 	stabilization_on = FALSE
@@ -136,9 +119,6 @@
 
 	return TRUE
 
-
-
-
 //Toggling does as little as possible, to make jetpacks more modular.
 //All the work is done in the enable/disable procs
 /obj/item/weapon/tank/jetpack/verb/toggle()
@@ -149,7 +129,6 @@
 		disable_thruster()
 	else
 		enable_thruster()
-
 
 /obj/item/weapon/tank/jetpack/proc/enable_thruster()
 	on = TRUE
@@ -162,7 +141,6 @@
 		to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 	return TRUE
 
-
 /obj/item/weapon/tank/jetpack/proc/disable_thruster()
 	on = FALSE
 	icon_state = initial(icon_state)
@@ -173,15 +151,7 @@
 		M.update_action_buttons()
 		to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 
-
-
 	return TRUE
-
-
-
-
-
-
 
 /*****************************
 	Thrust Handling
@@ -238,13 +208,11 @@
 
 */
 
-
 /obj/item/weapon/tank/jetpack/proc/stabilize(var/mob/living/user, var/schedule_time, var/enable_stabilize = FALSE)
 	//First up, lets check we still have the user and they're still wearing this jetpack
 
 	if (!operational_safety(user))
 		return 0
-
 
 
 	//If we're not currently trying to turn stabilisation on, then we do some additional checks
@@ -257,11 +225,9 @@
 		if (!stabilization_on)
 			return FALSE
 
-
 		//If the time since their last move is 50% more than their movement delay, then they've probably stopped
 		if ((world.time - user.l_move_time) < user.total_movement_delay()*1.25)
 			return FALSE
-
 
 	//Ok now lets be sure we have enough gas to do stabilisation
 	if (!allow_thrust(thrust_cost, user, stabilization_check = TRUE))
@@ -269,7 +235,6 @@
 
 	//Great, everything works fine, the user is now stable
 	user.inertia_dir = 0
-
 
 
 	//Lets do a little visual effect, a burst of thrust which opposes the user's last movement
@@ -281,11 +246,6 @@
 	//A little rebound animation
 	user.do_attack_animation(get_step(user, reverse_dir[user.last_move]), FALSE, 3)
 	return TRUE
-
-
-
-
-
 
 /*****************************
 	Tank Interface
@@ -321,7 +281,6 @@
 
 	return TRUE
 
-
 //Safety checks for thrust and stabilisation are seperated into a seperate proc, for overriding
 /obj/item/weapon/tank/jetpack/proc/operational_safety(var/mob/living/user)
 	if (!user || loc != user)
@@ -330,9 +289,6 @@
 
 /obj/item/weapon/tank/jetpack/ui_action_click()
 	toggle()
-
-
-
 
 /*******************************
 	Rig jetpack
@@ -344,14 +300,10 @@
 //The rig jetpack uses the suit's gastank, this is set during the install proc for the rig module
 
 
-
 /obj/item/weapon/tank/jetpack/rig/operational_safety(var/mob/living/user)
 	if (!user || holder.loc != user)
 		return FALSE
 	return TRUE
-
-
-
 
 /****************************
 	SYNTHETIC JETPACK
@@ -402,7 +354,6 @@
 		return FALSE
 	return TRUE
 
-
 //This process will constantly attempt to find a pressurised environment, and when it does, start sucking up air
 //Until our tank is full enough
 /obj/item/weapon/tank/jetpack/synthetic/proc/draw_air()
@@ -416,7 +367,6 @@
 	var/pressure = environment.return_pressure()
 	if (pressure < minimum_pressure)
 		return
-
 
 	//Ok we've got a sufficiently pressurised environment, now lets make sure we have the power
 	var/mob/living/silicon/robot/R = get_holding_mob()
@@ -454,8 +404,6 @@
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
 
-
-
 //Returns the jetpack associated with this atom.
 //Being an atom proc allows it to be overridden by non mob types, like mechas
 //The user proc optionally allows us to state who we're getting it for.
@@ -481,7 +429,5 @@
 		for (var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 			return module.jets
 
-
 /mob/living/silicon/robot/get_jetpack(var/mob/user)
 	return jetpack
-
