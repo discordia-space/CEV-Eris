@@ -2,7 +2,9 @@
 	name = "combat exosuit"
 	desc = "A sleek, modern combat exosuit."
 
+	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_DARK_GUNMETAL
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software = list(
 		MECH_SOFTWARE_WEAPONS,
 		MECH_SOFTWARE_ADVWEAPONS
@@ -40,11 +42,23 @@
 	name = "sealed exosuit chassis"
 	hatch_descriptor = "canopy"
 	pilot_coverage = 100
-	transparent_cabin =  TRUE
-	exosuit_desc_string = "an armoured chassis"
+	transparent_cabin = TRUE
+	exosuit_desc_string = "an armored chassis"
 	icon_state = "combat_body"
 	power_use = 40
 	matter = list(MATERIAL_STEEL = 45)
+
+/obj/item/mech_component/chassis/combat/Initialize()
+	pilot_positions = list(
+		list(
+			"[NORTH]" = list("x" = 8,  "y" = 8),
+			"[SOUTH]" = list("x" = 8,  "y" = 8),
+			"[EAST]"  = list("x" = 4,  "y" = 8),
+			"[WEST]"  = list("x" = 12, "y" = 8)
+		)
+	)
+
+	. = ..()
 
 /obj/item/mech_component/manipulators/combat
 	name = "combat arms"
@@ -62,19 +76,3 @@
 	move_delay = 3
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
-
-/obj/item/mech_component/chassis/combat/prebuild()
-	. = ..()
-	armor = new /obj/item/robot_parts/robot_component/armour/exosuit/combat(src)
-
-/obj/item/mech_component/chassis/combat/Initialize()
-	pilot_positions = list(
-		list(
-			"[NORTH]" = list("x" = 8,  "y" = 8),
-			"[SOUTH]" = list("x" = 8,  "y" = 8),
-			"[EAST]"  = list("x" = 4,  "y" = 8),
-			"[WEST]"  = list("x" = 12, "y" = 8)
-		)
-	)
-
-	. = ..()

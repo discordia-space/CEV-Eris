@@ -2,7 +2,9 @@
 	name = "heavy exosuit"
 	desc = "A heavily armored combat exosuit."
 
+	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_TITANIUM
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software = list(
 		MECH_SOFTWARE_WEAPONS,
 		MECH_SOFTWARE_ADVWEAPONS
@@ -68,10 +70,3 @@
 	max_damage = 90
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20)
-
-/obj/item/mech_component/chassis/heavy/prebuild()
-	. = ..()
-	armor = new /obj/item/robot_parts/robot_component/armour/exosuit/combat(src)
-
-
-

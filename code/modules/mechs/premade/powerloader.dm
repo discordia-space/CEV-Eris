@@ -2,6 +2,7 @@
 	name = "power loader"
 	desc = "An ancient, but well-liked cargo handling exosuit."
 
+	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
 	installed_software = list(
 		MECH_SOFTWARE_UTILITY,
@@ -57,10 +58,6 @@
 	desc = "A Xion industrial brand roll cage. Technically OSHA compliant. Technically."
 	max_damage = 100
 	power_use = 0
-
-/obj/item/mech_component/chassis/powerloader/prebuild()
-	. = ..()
-	armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(

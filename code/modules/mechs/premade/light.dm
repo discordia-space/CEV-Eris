@@ -2,7 +2,9 @@
 	name = "light exosuit"
 	desc = "A light and agile exosuit."
 
+	material = MATERIAL_PLASTIC
 	exosuit_color = COLOR_OFF_WHITE
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/radproof
 	installed_software = list(
 		MECH_SOFTWARE_UTILITY,
 		MECH_SOFTWARE_MEDICAL
@@ -72,10 +74,6 @@
 	has_hardpoints = list(HARDPOINT_BACK)
 	desc = "The Veymed Odysseus series cockpits combine ultralight materials clear aluminum laminates to provide an optimized cockpit experience."
 	matter = list(MATERIAL_STEEL = 30)
-
-/obj/item/mech_component/chassis/light/prebuild()
-	. = ..()
-	armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit/radproof(src)
 
 /obj/item/mech_component/chassis/light/Initialize()
 	pilot_positions = list(

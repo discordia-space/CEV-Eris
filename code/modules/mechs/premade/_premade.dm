@@ -3,12 +3,16 @@
 /mob/living/exosuit/premade
 	name = "impossible exosuit"
 	desc = "It seems to be saying 'please let me die'."
+
+	material = MATERIAL_STEEL
 	var/exosuit_color
 	var/decal
+	var/installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit
 	var/list/installed_software = list()
 	var/list/installed_systems = list(
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light
 	)
+
 
 /mob/living/exosuit/premade/Initialize()
 	// Paint and equip all body parts
@@ -22,6 +26,10 @@
 	if(head && head.software)
 		head.software.installed_software = installed_software.Copy()
 
+	if(body && body.armor?.type != installed_armor)
+		QDEL_NULL(body.armor) // Delete old armor, if any
+		body.armor = new installed_armor(src)
+
 	. = ..()
 
 	for(var/hardpoint in installed_systems)
@@ -31,7 +39,7 @@
 
 /mob/living/exosuit/premade/random
 	name = "mismatched exosuit"
-	desc = "It seems to have been roughly thrown together and then spraypainted a single colour."
+	desc = "It seems to have been roughly thrown together and then spraypainted in a single color."
 
 /mob/living/exosuit/premade/random/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame, super_random = FALSE, using_boring_colours = FALSE)
 	//if(!prob(100/(LAZYLEN(GLOB.mech_decals)+1)))
@@ -147,6 +155,22 @@
 			C.color = pick(use_colours)
 	else
 		exosuit_color = pick(use_colours)
+
+	material = pickweight(list(
+		MATERIAL_STEEL = 50,
+		MATERIAL_PLASTEEL = 20,
+		MATERIAL_PLASTIC = 20,
+		MATERIAL_URANIUM = 7,
+		MATERIAL_GOLD = 2,
+		MATERIAL_DIAMOND = 1
+	))
+
+	installed_armor = pickweight(list(
+		/obj/item/robot_parts/robot_component/armour/exosuit = 50,
+		/obj/item/robot_parts/robot_component/armour/exosuit/combat = 30,
+		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = 10,
+		/obj/item/robot_parts/robot_component/armour/exosuit/em = 10
+	))
 
 	. = ..()
 
