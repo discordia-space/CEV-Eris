@@ -108344,6 +108344,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/chemstor)
+"jIq" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "jKG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -108553,6 +108562,9 @@
 	tag = "icon-hullcenter18"
 	},
 /area/space)
+"mVq" = (
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "mWv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -108907,6 +108919,11 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"tqZ" = (
+/obj/random/junk/low_chance,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "tss" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/standard{
@@ -280783,7 +280800,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ear
 aaa
 aaa
 aaa
@@ -281995,7 +282012,7 @@ aaa
 aaa
 aaa
 aaa
-ear
+aaa
 aaa
 aaa
 aaa
@@ -282408,10 +282425,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVb
+dVr
+alb
 aaa
 aaa
 aaa
@@ -282610,10 +282627,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVe
+dVs
+alb
 aaa
 aaa
 aaa
@@ -282812,10 +282829,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVf
+dVt
+alb
 aaa
 aaa
 aaa
@@ -283014,10 +283031,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVh
+dVv
+alb
 aaa
 aaa
 aaa
@@ -283216,10 +283233,10 @@ aaa
 aaa
 aaa
 abF
-abF
-abF
-abF
-abF
+alb
+dVh
+dVx
+alb
 abF
 abF
 abF
@@ -283418,10 +283435,10 @@ aaa
 aaa
 aaa
 abF
-abF
-abF
-abF
-abF
+alb
+dVi
+dVy
+alb
 abF
 alb
 alb
@@ -283621,8 +283638,8 @@ aaa
 aaa
 abF
 alb
-dVb
-dVr
+dVh
+dVz
 alb
 abF
 alb
@@ -283823,8 +283840,8 @@ aaa
 aaa
 abF
 alb
-dVe
-dVs
+dVh
+mVq
 alb
 abF
 alb
@@ -284025,8 +284042,8 @@ aaa
 aaa
 abF
 alb
-dVf
-dVt
+dVh
+mVq
 alb
 abF
 alb
@@ -284227,8 +284244,8 @@ abF
 abF
 abF
 alb
-dVh
-dVv
+jIq
+dVz
 alb
 abF
 alb
@@ -284429,8 +284446,8 @@ abF
 abF
 abF
 alb
-dVh
-dVx
+dVi
+mVq
 alb
 abF
 abF
@@ -284631,8 +284648,8 @@ alb
 alb
 alb
 alb
-dVi
-dVy
+dVh
+mVq
 alb
 abF
 abF
@@ -284834,7 +284851,7 @@ dLA
 dUS
 apq
 dVm
-dVz
+tqZ
 alb
 abF
 abF
