@@ -9,6 +9,13 @@
 	armor = list(melee = 75, bullet = 33, laser = 50, energy = 10, bomb = 25, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 7)
+
+/obj/item/robot_parts/robot_component/armour/exosuit/Initialize(newloc)
+	. = ..()
+	// HACK
+	// All robot components add "robot" to the name on init - remove that on exosuit armor
+	name = initial(name)
+
 /*
 /obj/item/robot_parts/robot_component/armour/exosuit/Initialize()
 	. = ..()
