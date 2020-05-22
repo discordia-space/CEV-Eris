@@ -56109,7 +56109,6 @@
 	icon_state = "alarm0";
 	pixel_x = -26
 	},
-/obj/item/weapon/bluespace_harpoon,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -108344,15 +108343,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/chemstor)
-"jIq" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/maintenance/section2deck1port)
 "jKG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -108400,6 +108390,11 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"kuy" = (
+/obj/random/junk/low_chance,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "kEW" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -108562,9 +108557,6 @@
 	tag = "icon-hullcenter18"
 	},
 /area/space)
-"mVq" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/maintenance/section2deck1port)
 "mWv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -108796,6 +108788,15 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
+"qEu" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -108919,11 +108920,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
-"tqZ" = (
-/obj/random/junk/low_chance,
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/eris/maintenance/section2deck1port)
 "tss" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/standard{
@@ -109079,6 +109075,9 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"vzu" = (
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "vIB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -283841,7 +283840,7 @@ aaa
 abF
 alb
 dVh
-mVq
+vzu
 alb
 abF
 alb
@@ -284043,7 +284042,7 @@ aaa
 abF
 alb
 dVh
-mVq
+vzu
 alb
 abF
 alb
@@ -284244,7 +284243,7 @@ abF
 abF
 abF
 alb
-jIq
+qEu
 dVz
 alb
 abF
@@ -284447,7 +284446,7 @@ abF
 abF
 alb
 dVi
-mVq
+vzu
 alb
 abF
 abF
@@ -284649,7 +284648,7 @@ alb
 alb
 alb
 dVh
-mVq
+vzu
 alb
 abF
 abF
@@ -284851,7 +284850,7 @@ dLA
 dUS
 apq
 dVm
-tqZ
+kuy
 alb
 abF
 abF
