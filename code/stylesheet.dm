@@ -52,7 +52,7 @@ em						{font-style: normal;font-weight: bold;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #A66300;}
-.medradio				{color: #81d8d0;}
+.medradio				{color: #57b8f0;}
 .sciradio				{color: #993399;}
 .supradio				{color: #5F4519;}
 .srvradio				{color: #6eaa2c;}
