@@ -1,6 +1,6 @@
 /obj/structure/heavy_vehicle_frame
 	name = "exosuit frame"
-	desc = "The frame for an exosuit, apparently."
+	desc = "The frame for an exosuit."
 	icon = MECH_PARTS_ICON
 	icon_state = "backbone"
 	density = TRUE

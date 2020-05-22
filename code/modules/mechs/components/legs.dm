@@ -1,5 +1,5 @@
 /obj/item/mech_component/propulsion
-	name = "legs"
+	name = "exosuit legs"
 	pixel_y = 12
 	icon_state = "loader_legs"
 	var/move_delay = 5

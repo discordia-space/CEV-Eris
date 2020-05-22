@@ -54,9 +54,9 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 
 
-//POWERLOADER
+//RIPLEY
 /datum/design/research/item/mechfab/exosuit/powerloader
-	category = "PowerLoader"
+	category = "APLU \"Ripley\""
 	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/exosuit/powerloader/head

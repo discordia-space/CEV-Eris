@@ -63,8 +63,8 @@
 
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
-	exosuit_desc_string = "heavy hydraulic legs"
-	desc = "Oversized actuators struggle to move these armoured legs. "
+	exosuit_desc_string = "heavy legs"
+	desc = "Exosuit actuators struggle to move these armored legs."
 	icon_state = "heavy_legs"
 	move_delay = 5
 	max_damage = 90

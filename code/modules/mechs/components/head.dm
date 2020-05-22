@@ -1,5 +1,5 @@
 /obj/item/mech_component/sensors
-	name = "head"
+	name = "exosuit head"
 	icon_state = "loader_head"
 	gender = NEUTER
 
@@ -25,7 +25,7 @@
 	if(!camera)
 		to_chat(user, SPAN_WARNING("It is missing a camera."))
 	if(!software)
-		to_chat(user, SPAN_WARNING("It is missing a software control module."))
+		to_chat(user, SPAN_WARNING("It is missing a control module."))
 
 /obj/item/mech_component/sensors/prebuild()
 	radio = new(src)

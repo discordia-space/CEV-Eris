@@ -1,5 +1,5 @@
 /obj/item/mech_component/manipulators
-	name = "arms"
+	name = "exosuit arms"
 	pixel_y = -12
 	icon_state = "loader_arms"
 	has_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
