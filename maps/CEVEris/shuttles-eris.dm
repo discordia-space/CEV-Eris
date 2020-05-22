@@ -231,7 +231,7 @@
 	landmark_tag = "nav_merc_transition"
 
 /obj/effect/shuttle_landmark/merc/dock
-	name = "Docking Port Deck 1"
+	name = "Docking Port Deck 5"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_dock"
 	dock_target = "second_sec_1_access_console"
