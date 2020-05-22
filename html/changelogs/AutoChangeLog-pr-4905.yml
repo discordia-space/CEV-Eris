@@ -1,0 +1,4 @@
+author: Anonmare
+delete-after: true
+changes:
+  - server: Fixes an exploit to prevent filesystem access
