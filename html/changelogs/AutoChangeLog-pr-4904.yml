@@ -1,0 +1,9 @@
+author: Kurgis, WatlerJe
+delete-after: true
+changes:
+  - rscadd: There's a new Treatment locker within the PermaBrig. Keeping someone detained
+      against their will is aggression, violating the NAP. So now anyone can leave
+      if they wish to do so voluntarily.
+  - imageadd: New tank & belt icons for utility and tactical belts.
+  - imagedel: Deleted some unused assets, and replaced many.
+  - spellcheck: Pre-made paper is no longer a horrible mess to read in-game.
