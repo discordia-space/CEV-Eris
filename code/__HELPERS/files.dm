@@ -18,7 +18,6 @@
 		src << browse_rsc(file)
 
 /client/proc/browse_files(root="data/logs/", max_iterations=10, list/valid_extensions=list(".txt", ".log", ".htm"))
-	root = "data/logs/"
 	var/path = root
 
 	for(var/i=0, i<max_iterations, i++)
