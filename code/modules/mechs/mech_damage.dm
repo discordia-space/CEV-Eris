@@ -86,5 +86,3 @@
 				for(var/thing in pilots)
 					var/mob/pilot = thing
 					pilot.emp_act(severity)
-
-/mob/living/exosuit/proc/update_armor()

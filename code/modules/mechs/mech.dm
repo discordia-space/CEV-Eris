@@ -63,13 +63,6 @@
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
 
-/mob/living/exosuit/proc/give_power(amount)
-	var/obj/item/weapon/cell/c = get_cell()
-	if(c)
-		c.give(amount)
-		return TRUE
-	return FALSE
-
 /*
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
@@ -194,9 +187,6 @@
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
 
-/mob/living/exosuit/proc/get_pilots()
-	return pilots?.len ? pilots : null
-
 /mob/living/exosuit/get_mob()
 	if(length(pilots))
-		return pick(pilots)
+		return pilots[1]

@@ -248,7 +248,6 @@
 			var/to_remove = input("Which component would you like to remove") as null|anything in parts
 
 			if(remove_system(to_remove, user))
-				update_armor()
 				return
 			to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
 			return

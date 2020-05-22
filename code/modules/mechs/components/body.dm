@@ -89,28 +89,28 @@
 
 /obj/item/mech_component/chassis/prebuild()
 	diagnostics = new(src)
-	cell = new/obj/item/weapon/cell/large/high(src)
-	cell.charge = cell.maxcharge
+	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
+	cell = new /obj/item/weapon/cell/large/high(src)
 
 /obj/item/mech_component/chassis/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/robot_parts/robot_component/diagnosis_unit))
 		if(diagnostics)
 			to_chat(user, SPAN_WARNING("\The [src] already has a diagnostic system installed."))
 			return
-		if(install_component(thing, user)) diagnostics = thing
-	else if(istype(thing, /obj/item/weapon/cell))
+		if(install_component(thing, user))
+			diagnostics = thing
+	else if(istype(thing, /obj/item/weapon/cell/large))
 		if(cell)
 			to_chat(user, SPAN_WARNING("\The [src] already has a cell installed."))
 			return
-		if(install_component(thing,user)) cell = thing
+		if(install_component(thing, user))
+			cell = thing
 	else if(istype(thing, /obj/item/robot_parts/robot_component/armour/exosuit))
 		if(armor_plate)
-			to_chat(user, SPAN_WARNING("\The [src] already has armour installed."))
+			to_chat(user, SPAN_WARNING("\The [src] already has armor installed."))
 			return
 		else if(install_component(thing, user))
 			armor_plate = thing
-			var/mob/living/exosuit/E = loc
-			E.update_armor()
 	else
 		return ..()
 
