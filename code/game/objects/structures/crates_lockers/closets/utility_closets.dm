@@ -61,9 +61,13 @@
 	icon_state = "fire"
 
 /obj/structure/closet/firecloset/populate_contents()
-	new /obj/item/weapon/storage/firstaid/fire(src)
+	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/suit/fire(src)
+	new /obj/item/clothing/head/hardhat/red(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/weapon/storage/backpack/duffelbag/firesafety(src)
+	new /obj/item/weapon/tank/oxygen/red(src)
+	new /obj/item/weapon/extinguisher(src)
+	new /obj/item/weapon/extinguisher(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
 
 /*

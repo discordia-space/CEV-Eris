@@ -335,11 +335,3 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.5
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
 	equip_access = FALSE
-
-/obj/item/weapon/storage/backpack/duffelbag/firesafety/populate_contents()
-	new /obj/item/clothing/gloves/thick(src)
-	new /obj/item/clothing/suit/fire(src)
-	new /obj/item/weapon/tank/oxygen/red(src)
-	new /obj/item/weapon/extinguisher(src)
-	new /obj/item/weapon/extinguisher(src)
-	new /obj/item/clothing/head/hardhat/red(src)
