@@ -12,7 +12,7 @@
 /obj/structure/mech_wreckage/New(var/newloc, var/mob/living/exosuit/exosuit, var/gibbed)
 	if(exosuit)
 		name = "wreckage of \the [exosuit.name]"
-		material = exosuit.material ? exosuit.material : MATERIAL_OSMIUM
+		material = exosuit.material ? exosuit.material : MATERIAL_STEEL
 		if(!gibbed)
 			for(var/obj/item/thing in list(exosuit.arms, exosuit.legs, exosuit.head, exosuit.body))
 				if(thing && prob(40))
