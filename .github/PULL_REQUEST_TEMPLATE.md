@@ -11,7 +11,7 @@
 
 ## Changelog
 :cl:
-add: Added more things
+add: Added new things
 del: Removed old things
 tweak: tweaked a few things
 balance: rebalanced something
