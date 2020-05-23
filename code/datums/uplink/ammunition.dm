@@ -189,6 +189,31 @@
 	item_cost = 2
 	path = /obj/item/ammo_magazine/m12/pellet
 
+////Grenade Shells////
+
+/datum/uplink_item/item/ammo/grenade_baton
+	name = "6xbaton rounds"
+	desc = "A box containing 6 baton rounds. Designed to be fired from a grenade launcher."
+	item_cost = 4
+	path = /obj/item/weapon/storage/box/baton_rounds
+/datum/uplink_item/item/ammo/grenade_emp
+	name = "6xemp grenade shells"
+	desc = "A box containing 6 emp grenade shells. Designed to be fired from a grenade launcher."
+	item_cost = 5
+	path = /obj/item/weapon/storage/box/emp_grenade_shells
+
+/datum/uplink_item/item/ammo/grenade_frag
+	name = "6xfrag grenade shells"
+	desc = "A box containing 6 frag grenade shells. Designed to be fired from a grenade launcher."
+	item_cost = 6
+	path = /obj/item/weapon/storage/box/frag_grenade_shells
+
+/datum/uplink_item/item/ammo/grenade_blast
+	name = "6xblast grenade shells"
+	desc = "A box containing 6 blast grenade shells. Designed to be fired from a grenade launcher."
+	item_cost = 8
+	path = /obj/item/weapon/storage/box/blast_grenade_shells
+
 ////special////
 
 /datum/uplink_item/item/ammo/sniperammo

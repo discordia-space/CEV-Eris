@@ -170,16 +170,15 @@
 
 /datum/design/autolathe/gun/grenade_launcher
 	name = "NT GL \"Protector\""
-	build_path = /obj/item/weapon/gun/launcher/grenade
+	build_path = /obj/item/weapon/gun/projectile/grenade
 
 /datum/design/autolathe/gun/grenade_launcher_lenar
 	name = "FS GL \"Lenar\""
-	build_path = /obj/item/weapon/gun/launcher/grenade/lenar
+	build_path = /obj/item/weapon/gun/projectile/grenade/lenar
 
 /datum/design/autolathe/gun/grenade_launcher_china_lake
 	name = "FS GL \"China Lake\""
 	build_path = /obj/item/weapon/gun/projectile/shotgun/pump/china
-
 
 // Energy small arms
 
