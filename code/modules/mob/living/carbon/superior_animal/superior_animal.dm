@@ -69,7 +69,7 @@
 	var/list/friends = list() //list of mobs to consider friends, not types
 	var/environment_smash = 1
 	var/destroy_surroundings = 1
-	var/break_stuff_probability = 10
+	var/break_stuff_probability = 100
 	can_burrow = TRUE
 	var/extra_burrow_chance = 1 //The chance that this animal will spawn another burrow in its vicinity
 	//This is in addition to the single guaranteed burrow that always exists in sight of any burrowing mob
