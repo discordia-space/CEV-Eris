@@ -36,7 +36,7 @@
 
 /obj/item/weapon/cell/Process()
 	charge_tick++
-	if(charge_tick < recharge_time) return 0
+	if(charge_tick < recharge_time) return FALSE
 	charge_tick = 0
 	give(maxcharge * autorecharge_rate)
 
@@ -45,7 +45,7 @@
 		var/obj/item/weapon/gun/energy/I = loc
 		I.update_icon()
 
-	return 1
+	return TRUE
 
 //Newly manufactured cells start off empty. You can't create energy
 /obj/item/weapon/cell/Created()
@@ -55,10 +55,10 @@
 /obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
 
 	if(drain_check)
-		return 1
+		return TRUE
 
 	if(charge <= 0)
-		return 0
+		return FALSE
 
 	var/cell_amt = power * CELLRATE
 
@@ -102,7 +102,7 @@
 /obj/item/weapon/cell/proc/use(var/amount)
 	if(rigged && amount > 0)
 		explode()
-		return 0
+		return FALSE
 	var/used = min(charge, amount)
 	charge -= used
 	update_icon()
@@ -112,17 +112,17 @@
 // from the cell and returns 1. Otherwise does nothing and returns 0.
 /obj/item/weapon/cell/proc/checked_use(var/amount)
 	if(!check_charge(amount))
-		return 0
+		return FALSE
 	use(amount)
-	return 1
+	return TRUE
 
 // recharge the cell
 /obj/item/weapon/cell/proc/give(var/amount)
 	if(rigged && amount > 0)
 		explode()
-		return 0
+		return FALSE
 
-	if(maxcharge < amount)	return 0
+	if(maxcharge < amount)	return FALSE
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
 	update_icon()
@@ -134,7 +134,7 @@
 		return
 
 	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-	to_chat(user, "The charge meter reads [round(src.percent() )]%.")
+	to_chat(user, "The charge meter reads [round(percent() )]%.")
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
@@ -154,7 +154,7 @@
 
 
 /obj/item/weapon/cell/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
  * 2500-cell	explosion(T, -1, 0, 1, 1)
@@ -244,7 +244,7 @@
 		if (10 to 100) // Low S-class
 			return min(rand(1,10),rand(1,10))
 		else
-			return 0
+			return FALSE
 
 /obj/item/weapon/cell/get_cell()
 	return src
