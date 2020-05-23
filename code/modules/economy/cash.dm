@@ -107,7 +107,7 @@
 	var/points = min(worth/CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
 	var/list/stats = list()
 	// Distribute points evenly with random statistics. Just skips the loop if there's not enough money in the bundle, resulting in an empty list.
-	while(points)
+	while(points > 0)
 		stats[pick(ALL_STATS)] += 1 // Picks a random stat, if not present it adds it with a value of 1, else it increases the value by 1
 		points--
 	worth -= points*CASH_PER_STAT
