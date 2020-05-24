@@ -49,10 +49,10 @@
 
 
 // Returns 0 on failure and 1 on success
-/obj/machinery/floodlight/proc/turn_on(var/loud = 0)
+/obj/machinery/floodlight/proc/turn_on(loud = 0)
 	if(!cell)
 		return FALSE
-	if(cell.charge < (use * CELLRATE))
+	if(!cell.check_charge(use * CELLRATE))
 		return FALSE
 
 	on = TRUE
@@ -62,7 +62,7 @@
 		visible_message("\The [src] turns on.")
 	return TRUE
 
-/obj/machinery/floodlight/proc/turn_off(var/loud = 0)
+/obj/machinery/floodlight/proc/turn_off(loud = 0)
 	on = FALSE
 	set_light(0, 0)
 	update_icon()

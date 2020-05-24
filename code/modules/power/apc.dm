@@ -1063,7 +1063,7 @@
 	else
 		main_status = 2
 
-	if(!cell || cell.charge <= 0)
+	if(!cell || cell.empty())
 		if(need_sound == TRUE)
 			playsound(loc, 'sound/machines/Custom_apcnopower.ogg', 75, 0)
 			need_sound = FALSE

@@ -19,6 +19,6 @@
 		for(var/obj/machinery/ai_status_display/O in SSmachines.machinery) //change status
 			O.mode = 1
 			O.emotion = "Neutral"
-	src.view_core()
+	view_core()
 	
 	client.CAN_MOVE_DIAGONALLY = TRUE

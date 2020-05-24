@@ -3,9 +3,9 @@
 	desc = "A ridable electric car designed for pulling cargo trolleys."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
-	on = 0
-	powered = 1
-	locked = 0
+	on = FALSE
+	powered = TRUE
+	locked = FALSE
 
 	load_item_visible = 1
 	load_offset_x = 0
@@ -26,9 +26,9 @@
 	name = "cargo train trolley"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 0
-	locked = 0
+	locked = FALSE
 
 	load_item_visible = 1
 	load_offset_x = 0
@@ -54,11 +54,11 @@
 			to_chat(load, "The drive motor briefly whines, then drones to a stop.")
 
 	if(is_train_head() && !on)
-		return 0
+		return FALSE
 
 	//space check ~no flying space trains sorry
 	if(on && istype(NewLoc, /turf/space))
-		return 0
+		return FALSE
 
 	return ..()
 
@@ -320,7 +320,7 @@
 		C.pixel_y = initial(C.pixel_y)
 		C.layer = initial(C.layer)
 
-/obj/vehicle/train/cargo/trolley/unload(var/mob/user, var/direction)
+/obj/vehicle/train/cargo/trolley/unload(mob/user, direction)
 	if(istype(load, /datum/vehicle_dummy_load))
 		var/datum/vehicle_dummy_load/dummy_load = load
 		load = dummy_load.actual_load
@@ -360,7 +360,7 @@
 // more engines increases this limit by car_limit per
 // engine.
 //-------------------------------------------------------
-/obj/vehicle/train/cargo/engine/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/cargo/engine/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
@@ -372,11 +372,11 @@
 		move_delay *= (1 / max(1, active_engines)) * 2 										//overweight penalty (scaled by the number of engines)
 		move_delay *= 1.1																	//makes cargo trains 10% slower than running when not overweight
 
-/obj/vehicle/train/cargo/trolley/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/cargo/trolley/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE

@@ -52,12 +52,12 @@
 	charge = 0
 	update_icon()
 
-/obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
+/obj/item/weapon/cell/drain_power(drain_check, surge, power = 0)
 
 	if(drain_check)
 		return TRUE
 
-	if(charge <= 0)
+	if(empty())
 		return FALSE
 
 	var/cell_amt = power * CELLRATE
@@ -87,19 +87,23 @@
 
 	last_charge_status = charge_status
 
+/obj/item/weapon/cell/proc/empty()
+	if(charge <= 0)
+		return TRUE
+	return FALSE
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	return 100*charge/maxcharge
 
 /obj/item/weapon/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/weapon/cell/proc/check_charge(var/amount)
+/obj/item/weapon/cell/proc/check_charge(amount)
 	return (charge >= amount)
 
 // use power from a cell, returns the amount actually used
-/obj/item/weapon/cell/proc/use(var/amount)
+/obj/item/weapon/cell/proc/use(amount)
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
@@ -110,14 +114,14 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/weapon/cell/proc/checked_use(var/amount)
+/obj/item/weapon/cell/proc/checked_use(amount)
 	if(!check_charge(amount))
 		return FALSE
 	use(amount)
 	return TRUE
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/weapon/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
@@ -161,7 +165,7 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (charge==0)
+	if (empty())
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = round(sqrt(charge)/60)
@@ -201,16 +205,16 @@
 /obj/item/weapon/cell/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
 			if (prob(50))
 				corrupt()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				qdel(src)
 				return
