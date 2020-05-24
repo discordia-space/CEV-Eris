@@ -35,6 +35,9 @@
 
 	sanity_damage = 0.5
 
+	var/busy = 0 // status of the roach for the corpse-eating mechanics
+	var/atom/eat_target // target that the roach wants to eat
+
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
