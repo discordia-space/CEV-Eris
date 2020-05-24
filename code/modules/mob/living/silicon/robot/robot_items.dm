@@ -427,3 +427,7 @@
 /obj/item/weapon/tool/weldingtool/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
+
+/obj/item/weapon/tool/shovel/robotic
+	icon = 'icons/obj/robot_items.dmi'
+	tool_qualities = list(QUALITY_SHOVELING = 40, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 20, QUALITY_HAMMERING = 20)
