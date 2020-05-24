@@ -6,8 +6,8 @@
 
 /obj/item/weapon/grenade/smokebomb/New()
 	..()
-	src.smoke = new
-	src.smoke.attach(src)
+	smoke = new
+	smoke.attach(src)
 
 /obj/item/weapon/grenade/smokebomb/Destroy()
 	qdel(smoke)
@@ -15,16 +15,16 @@
 	return ..()
 
 /obj/item/weapon/grenade/smokebomb/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
-	src.smoke.set_up(10, 0, usr.loc)
+	playsound(loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	smoke.set_up(10, 0, usr.loc)
 	spawn(0)
-		src.smoke.start()
+		smoke.start()
 		sleep(10)
-		src.smoke.start()
+		smoke.start()
 		sleep(10)
-		src.smoke.start()
+		smoke.start()
 		sleep(10)
-		src.smoke.start()
+		smoke.start()
 
 	for(var/obj/effect/blob/B in view(8,src))
 		var/damage = round(30/(get_dist(B,src)+1))

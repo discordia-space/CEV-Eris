@@ -22,14 +22,14 @@
 		B.health -= damage
 		B.update_icon()
 
-	new/obj/effect/sparks(src.loc)
-	new/obj/effect/effect/smoke/illumination(src.loc, brightness=15)
+	new/obj/effect/sparks(loc)
+	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	qdel(src)
 	return
 
 /obj/item/weapon/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
 	to_chat(M, SPAN_DANGER("BANG"))								// Called during the loop that bangs people in lockers/containers and when banging
-	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
+	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
 
 //Checking for protections
@@ -55,14 +55,14 @@
 
 
 //Now applying sound
-	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+	if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
 		if(ear_safety > 0)
 			M.Stun(2)
 			M.Weaken(1)
 		else
 			M.Stun(10)
 			M.Weaken(3)
-			if ((prob(14) || (M == src.loc && prob(70))))
+			if ((prob(14) || (M == loc && prob(70))))
 				M.ear_damage += rand(1, 10)
 			else
 				M.ear_damage += rand(0, 5)
