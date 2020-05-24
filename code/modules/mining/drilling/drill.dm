@@ -33,7 +33,7 @@
 	var/harvest_speed
 	var/capacity
 	var/charge_use
-	var/obj/item/weapon/cell/large/cell = null
+	var/obj/item/weapon/cell/large/cell
 
 	//Flags
 	var/need_update_field = 0

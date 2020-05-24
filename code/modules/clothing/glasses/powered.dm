@@ -7,7 +7,7 @@
 	prescription = TRUE
 	active = FALSE
 	var/tick_cost = 1
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/clothing/glasses/powered/Initialize()

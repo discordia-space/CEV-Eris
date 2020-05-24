@@ -16,7 +16,7 @@
 	var/transforming = FALSE	// mode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
 	var/teleport_offset = 8		//radius of wrong place
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	var/Using = FALSE				//If its being used
 

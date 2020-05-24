@@ -52,7 +52,7 @@
 
 	var/obj/item/device/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/large/cell = null
+	var/obj/item/weapon/cell/large/cell
 	var/obj/machinery/camera/camera = null
 	var/obj/item/weapon/tank/jetpack/synthetic/jetpack = null
 
