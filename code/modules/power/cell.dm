@@ -19,7 +19,7 @@
 	var/max_chargerate = 0.08 //Power cells are limited in how much power they can intake per charge tick, to prevent small cells from charging almost instantly
 	//Default 8% of maximum
 	//A tick is roughly 2 seconds, so this means a cell will take a minimum of 25 seconds to charge
-	var/rigged = 0		// true if rigged to explode
+	var/rigged = FALSE		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
 	var/autorecharge_rate = 0.03
@@ -149,7 +149,7 @@
 
 		if(S.reagents.has_reagent("plasma", 5))
 
-			rigged = 1
+			rigged = TRUE
 
 			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
@@ -172,7 +172,7 @@
 	var/light_impact_range = round(sqrt(charge)/30)
 	var/flash_range = light_impact_range
 	if (light_impact_range==0)
-		rigged = 0
+		rigged = FALSE
 		corrupt()
 		return
 	//explosion(T, 0, 1, 2, 2)
@@ -188,7 +188,7 @@
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
-		rigged = 1 //broken batterys are dangerous
+		rigged = TRUE //broken batterys are dangerous
 
 /obj/item/weapon/cell/emp_act(severity)
 	//remove this once emp changes on dev are merged in

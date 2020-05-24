@@ -1075,8 +1075,7 @@
 
 	if(cell && !shorted)
 		// draw power from cell as before to power the area
-		var/cellused = min(cell.charge, CELLRATE * lastused_total)	// clamp deduction to a max, amount left in cell
-		cell.use(cellused)
+		var/cellused = cell.use(CELLRATE * lastused_total)	// clamp deduction to a max, amount left in cell
 
 		if(excess > lastused_total)		// if power excess recharge the cell
 										// by the same amount just used

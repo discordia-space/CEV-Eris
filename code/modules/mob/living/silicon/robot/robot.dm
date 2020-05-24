@@ -204,11 +204,10 @@
 	// Actual amount to drain from cell, using CELLRATE
 	var/cell_amount = (amount * CELLRATE)/power_efficiency
 
-	if(cell.check_charge(cell_amount))
+	if(cell.checked_use(cell_amount))
 		// Spam Protection
 		if(prob(10))
 			to_chat(src, SPAN_DANGER("Warning: Unauthorized access through power channel [rand(11,29)] detected!"))
-		cell.use(cell_amount)
 		return amount
 	return FALSE
 
