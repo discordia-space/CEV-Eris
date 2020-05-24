@@ -214,10 +214,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	var/obj/structure/burrow/candidate
 
 	switch (GLOB.storyteller.config_tag)
-		if ("jester") // Jester is much more likely to not reroll the maintenance check.
-			reroll_prob = 59.5
+		if ("jester") // Jester will most likely not reroll the maintenance area check.
+			reroll_prob = 0.05
 		if ("warrior")
-			reroll_prob = 98.5
+			reroll_prob = 80
 
 	//Lets copy the list into a candidates buffer
 	var/list/candidates = all_burrows.Copy(1,0)
