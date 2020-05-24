@@ -1,4 +1,4 @@
-/mob/living/carbon/human/gib(keep_only_robotics=FALSE)
+/mob/living/carbon/human/gib(max_range=3, keep_only_robotics=FALSE)
 
 	var/on_turf = istype(loc, /turf)
 
@@ -6,13 +6,13 @@
 		if (!(keep_only_robotics && !(I.nature == MODIFICATION_SILICON)))
 			I.removed()
 			if(on_turf)
-				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
 	for(var/obj/item/organ/external/E in src.organs)
 		if (!(keep_only_robotics && !(E.nature == MODIFICATION_SILICON)))
 			E.droplimb(TRUE, DROPLIMB_EDGE, 1)
 			if(on_turf)
-				E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
 	sleep(1)
 
@@ -21,7 +21,7 @@
 			continue
 		else
 			drop_from_inventory(D)
-			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/D.w_class))
+			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.w_class))
 
 	if (!keep_only_robotics)
 		..(species.gibbed_anim)
