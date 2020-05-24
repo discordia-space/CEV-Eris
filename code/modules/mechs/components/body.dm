@@ -5,8 +5,8 @@
 
 	var/mech_health = 300
 	var/obj/item/weapon/cell/cell
-	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
 	var/obj/item/robot_parts/robot_component/armour/exosuit/armor_plate
+	var/obj/item/robot_parts/robot_component/exosuit_control/computer
 	var/obj/machinery/portable_atmospherics/canister/air_supply
 	var/datum/gas_mixture/cockpit
 	var/transparent_cabin = FALSE
@@ -37,25 +37,25 @@
 
 /obj/item/mech_component/chassis/Destroy()
 	QDEL_NULL(cell)
-	QDEL_NULL(diagnostics)
+	QDEL_NULL(computer)
 	QDEL_NULL(armor_plate)
 	QDEL_NULL(air_supply)
 	. = ..()
 
 /obj/item/mech_component/chassis/update_components()
 	. = ..()
-	diagnostics = locate() in src
 	cell =        locate() in src
+	computer =    locate() in src
 	armor_plate = locate() in src
 	air_supply =  locate() in src
 
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
 	if(!cell)
 		to_chat(user, SPAN_WARNING("It is missing a power cell."))
-	if(!diagnostics)
-		to_chat(user, SPAN_WARNING("It is missing a diagnostics unit."))
 	if(!armor_plate)
 		to_chat(user, SPAN_WARNING("It is missing exosuit armor plating."))
+	if(!computer)
+		to_chat(user, SPAN_WARNING("It is missing a control computer."))
 
 /obj/item/mech_component/chassis/Initialize()
 	. = ..()
@@ -64,7 +64,7 @@
 		cockpit.equalize(loc.return_air())
 	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 
-/obj/item/mech_component/chassis/proc/update_air(var/take_from_supply)
+/obj/item/mech_component/chassis/proc/update_air(take_from_supply)
 
 	var/changed
 	if(!take_from_supply || pilot_coverage < 100)
@@ -85,20 +85,20 @@
 		cockpit.react()
 
 /obj/item/mech_component/chassis/ready_to_install()
-	return (cell && diagnostics && armor_plate)
+	return (cell && armor_plate && computer)
 
 /obj/item/mech_component/chassis/prebuild()
-	diagnostics = new(src)
+	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
 	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 	cell = new /obj/item/weapon/cell/large/high(src)
 
 /obj/item/mech_component/chassis/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/robot_parts/robot_component/diagnosis_unit))
-		if(diagnostics)
-			to_chat(user, SPAN_WARNING("\The [src] already has a diagnostic system installed."))
+	if(istype(thing, /obj/item/robot_parts/robot_component/exosuit_control))
+		if(computer)
+			to_chat(user, SPAN_WARNING("\The [src] already has a control computer installed."))
 			return
 		if(install_component(thing, user))
-			diagnostics = thing
+			computer = thing
 	else if(istype(thing, /obj/item/weapon/cell/large))
 		if(cell)
 			to_chat(user, SPAN_WARNING("\The [src] already has a cell installed."))

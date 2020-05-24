@@ -1,36 +1,20 @@
-/datum/design/research/item/mechfab/exosuit/control_module
-	name = "exosuit control module"
-	build_path = /obj/item/mech_component/control_module
-	materials = list(MATERIAL_STEEL = 5)
-
 /datum/design/research/item/mechfab/exosuit/basics
 	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/exosuit/basics/frame
-	name = "exosuit frame"
 	build_path = /obj/structure/heavy_vehicle_frame
-	time = 70
 
-/datum/design/research/item/mechfab/exosuit/basics/head
-	name = "exosuit head"
-	build_path = /obj/item/mech_component/sensors
-	time = 70
+/datum/design/research/item/mechfab/exosuit/basics/actuator
+	build_path = /obj/item/robot_parts/robot_component/actuator
 
-/datum/design/research/item/mechfab/exosuit/basics/chassis
-	name = "exosuit chassis"
-	build_path = /obj/item/mech_component/chassis
-	time = 70
+/datum/design/research/item/mechfab/exosuit/basics/control_module
+	build_path = /obj/item/robot_parts/robot_component/exosuit_control
 
-/datum/design/research/item/mechfab/exosuit/basics/arms
-	name = "exosuit arms"
-	build_path = /obj/item/mech_component/manipulators
-	time = 70
+/datum/design/research/item/mechfab/exosuit/basics/camera
+	build_path = /obj/item/robot_parts/robot_component/camera
 
-/datum/design/research/item/mechfab/exosuit/basics/legs
-	name = "exosuit legs"
-	build_path = /obj/item/mech_component/propulsion
-	time = 70
-
+/datum/design/research/item/mechfab/exosuit/basics/radio
+	build_path = /obj/item/robot_parts/robot_component/radio
 
 //ARMOR
 /datum/design/research/item/mechfab/exosuit/armour

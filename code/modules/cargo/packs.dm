@@ -677,11 +677,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		/obj/item/mech_equipment/drill,
 		/obj/item/mech_equipment/clamp,
 		/obj/item/mech_equipment/light,
-		/obj/item/mech_component/sensors,
-		/obj/item/mech_component/control_module,
-		/obj/item/mech_component/chassis,
+		/obj/item/mech_component/sensors/powerloader,
+		/obj/item/mech_component/chassis/powerloader,
 		/obj/item/mech_component/manipulators/powerloader,
 		/obj/item/mech_component/propulsion/powerloader,
+		/obj/item/robot_parts/robot_component/exosuit_control,
 		/obj/item/robot_parts/robot_component/armour/exosuit
 	)
 	cost = 3000

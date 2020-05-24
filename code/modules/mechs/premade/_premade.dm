@@ -23,8 +23,8 @@
 			C.color = exosuit_color
 		C.prebuild()
 
-	if(head && head.software)
-		head.software.installed_software = installed_software.Copy()
+	if(body && body.computer)
+		body.computer.installed_software = installed_software.Copy()
 
 	if(body && body.armor?.type != installed_armor)
 		QDEL_NULL(body.armor) // Delete old armor, if any

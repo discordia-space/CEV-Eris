@@ -1,4 +1,4 @@
-/obj/item/mech_component/control_module
+/obj/item/robot_parts/robot_component/exosuit_control
 	name = "exosuit control computer"
 	desc = "An arrangement of screens, circuitry and software disk ports used to operate an exosuit."
 	icon_state = "control"
@@ -9,12 +9,18 @@
 	var/list/installed_software = list()
 	var/max_installed_software = 2
 
-/obj/item/mech_component/control_module/examine(var/mob/user)
+/obj/item/robot_parts/robot_component/exosuit_control/Initialize(newloc)
+	. = ..()
+	// HACK
+	// All robot components add "robot" to the name on init - remove that on exosuit computer
+	name = initial(name)
+
+/obj/item/robot_parts/robot_component/exosuit_control/examine(mob/user)
 	. = ..()
 	if(.)
-		to_chat(user, SPAN_NOTICE("It has [max_installed_software - LAZYLEN(installed_software)] empty slot\s remaining out of [max_installed_software]."))
+		to_chat(user, SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software]."))
 
-/obj/item/mech_component/control_module/attackby(obj/item/thing, mob/user)
+/obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/thing, mob/user)
 	if(istype(thing, /obj/item/weapon/circuitboard/exosystem))
 		install_software(thing, user)
 		return
@@ -26,7 +32,7 @@
 	else
 		return ..()
 
-/obj/item/mech_component/control_module/proc/install_software(obj/item/weapon/circuitboard/exosystem/software, mob/user)
+/obj/item/robot_parts/robot_component/exosuit_control/proc/install_software(obj/item/weapon/circuitboard/exosystem/software, mob/user)
 	if(installed_software.len >= max_installed_software)
 		if(user)
 			to_chat(user, SPAN_WARNING("\The [src] can only hold [max_installed_software] software modules."))
@@ -40,7 +46,7 @@
 	software.forceMove(src)
 	update_software()
 
-/obj/item/mech_component/control_module/proc/update_software()
+/obj/item/robot_parts/robot_component/exosuit_control/proc/update_software()
 	installed_software = list()
 	for(var/obj/item/weapon/circuitboard/exosystem/program in contents)
 		installed_software |= program.contains_software

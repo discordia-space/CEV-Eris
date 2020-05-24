@@ -73,13 +73,16 @@
 	if(istype(ME))
 		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints)) return FALSE
 		if(ME.restricted_software)
-			if(!head || !head.software) return FALSE
-			var/found
+			if(!body || !body.computer)
+				return FALSE
+
+			var/found = FALSE
 			for(var/software in ME.restricted_software)
-				if(software in head.software.installed_software)
+				if(software in body.computer.installed_software)
 					found = TRUE
 					break
-			if(!found) return FALSE
+			if(!found)
+				return FALSE
 		ME.installed(src)
 		GLOB.destroyed_event.register(system, src, .proc/forget_module)
 
