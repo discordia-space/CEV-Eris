@@ -22,7 +22,6 @@
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
 	var/affected_area = 3
-	var/no_splash = FALSE //If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
 
 /obj/item/weapon/grenade/chem_grenade/Initialize()
 	create_reagents(1000)
@@ -226,8 +225,11 @@
 					for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
 						S.reagents.trans_to(G, S.reagents.total_volume)
 				else
-					S.forceMove(get_turf(src))
-					no_splash = TRUE
+				//	S.forceMove(get_turf(src))
+					if(beakers.len)
+						for(var/obj/item/slime_extract/O in beakers)
+							O.forceMove(get_turf(src))
+	beakers = list()
 	..()
 
 
