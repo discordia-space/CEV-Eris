@@ -68,7 +68,5 @@
 
 //ENGINEERING
 /datum/design/research/item/exosuit/rcd
-	name = "RCD"
-	time = 90
-	materials = list(MATERIAL_STEEL = 30, MATERIAL_PLASMA = 25, MATERIAL_GOLD = 15)
+	name = "mounted RCD"
 	build_path = /obj/item/mech_equipment/mounted_system/rcd

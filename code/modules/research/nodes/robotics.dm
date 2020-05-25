@@ -18,11 +18,11 @@
 			/datum/design/research/item/mmi
 		)
 
-//EXOSUIT BRANCH___________________________________________________________________________________________________________________________________________________________________________
+//EXOSUIT BRANCH____________________________________________________________________________________________________________________________________________
 
 /datum/technology/exosuit_robotics
-	name = "Basics of Exosuits"
-	desc = "Exosuit production and control systems."
+	name = "Exosuits"
+	desc = "Basics of exosuit production."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
@@ -35,33 +35,17 @@
 
 	unlocks_designs = list(
 		/datum/design/research/circuit/mechfab,
-		/datum/design/research/item/mechfab/exosuit/control_module,
-		)
-
-/datum/technology/mech_basic_armor
-	name = "Basic Armor"
-	desc = "Exosuit basic armor plates."
-	tech_type = RESEARCH_ROBOTICS
-
-	x = 0.5
-	y = 0.8
-	icon = "mecharmor"
-
-	required_technologies = list(/datum/technology/exosuit_robotics)
-	required_tech_levels = list()
-	cost = 500
-
-	unlocks_designs = list(
-			/datum/design/research/item/mechfab/exosuit/armour/basic
+		/datum/design/research/item/exosuit/floodlight,
+		/datum/design/research/circuit/exosuit/utility,
 		)
 
 /datum/technology/mech_odysseus
-	name = "Light"
-	desc = "Light Exosuits' components"
+	name = "Light Exosuit"
+	desc = "Light Exosuit components"
 	tech_type = RESEARCH_ROBOTICS
 
-	x = 0.7
-	y = 0.5
+	x = 0.5
+	y = 0.6
 	icon = "odyssey"
 
 	required_technologies = list(/datum/technology/exosuit_robotics)
@@ -77,12 +61,12 @@
 
 
 /datum/technology/mech_combat
-	name = "Combat"
-	desc = "Combat Exosuits' components"
+	name = "Combat Exosuit"
+	desc = "Combat Exosuit components"
 	tech_type = RESEARCH_ROBOTICS
 
-	x = 0.6
-	y = 0.6
+	x = 0.7
+	y = 0.5
 	icon = "gygax"
 
 	required_technologies = list(/datum/technology/exosuit_robotics)
@@ -98,16 +82,15 @@
 
 /datum/technology/mech_combat_armor
 	name = "Combat Armor"
-	desc = "Exosuit combat armor plates reinforced with " + MATERIAL_TITANIUM
+	desc = "Exosuit combat armor plates."
 	tech_type = RESEARCH_ROBOTICS
 
-	x = 0.6
-	y = 0.8
+	x = 0.7
+	y = 0.9
 	icon = "mecharmor"
 
 	required_technologies = list(
-		/datum/technology/mech_basic_armor,
-		/datum/technology/mech_combat
+		/datum/technology/mech_weaponry_modules
 	)
 	required_tech_levels = list()
 	cost = 3000
@@ -134,12 +117,12 @@
 */
 
 /datum/technology/mech_heavy
-	name = "Heavy"
-	desc = "Heavy exosuits' components"
+	name = "Heavy Exosuit"
+	desc = "Heavy exosuit components"
 	tech_type = RESEARCH_ROBOTICS
 
-	x = 0.7
-	y = 0.6
+	x = 0.9
+	y = 0.5
 	icon = "durand"
 
 	required_technologies = list(
@@ -184,43 +167,25 @@
 */
 
 //Mech Modules
-/datum/technology/mech_modules_core
-	name = "Mech modular systems"
-	desc = "Roots of exosuits' modularity and miner modules."
-	tech_type = RESEARCH_ROBOTICS
-
-	x = 0.4
-	y = 0.6
-	icon = "borgmodule"
-
-	required_technologies = list(/datum/technology/exosuit_robotics)
-	required_tech_levels = list()
-	cost = 500
-
-	unlocks_designs = list(
-		/datum/design/research/item/exosuit/floodlight,
-		/datum/design/research/item/exosuit/soft/utility,
-	)
-
 /datum/technology/mech_medical_modules
 	name = "Medical Modules"
-	desc = "Exosuit's medical systems"
+	desc = "Exosuit medical systems"
 
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.3
-	y = 0.6
+	y = 0.5
 	icon = "sleeper"
 
 	required_technologies = list(
-		/datum/technology/mech_modules_core
+		/datum/technology/exosuit_robotics
 	)
 
 	required_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(
-		/datum/design/research/item/exosuit/soft/medical,
+		/datum/design/research/circuit/exosuit/medical,
 		/datum/design/research/item/exosuit/sleeper
 	)
 
@@ -230,11 +195,11 @@
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.4
-	y = 0.7
+	y = 0.6
 	icon = "cyborganalyzer"
 
 	required_technologies = list(
-		/datum/technology/mech_modules_core
+		/datum/technology/exosuit_robotics
 	)
 
 	required_tech_levels = list()
@@ -252,7 +217,7 @@
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.3
-	y = 0.7
+	y = 0.6
 	icon = "mechteleporter"
 
 	required_technologies = list(/datum/technology/mech_utility_modules)
@@ -271,7 +236,7 @@
 	icon = "mecharmor"
 
 	required_technologies = list(
-		/datum/technology/mech_basic_armor,
+		/datum/technology/exosuit_robotics,
 		/datum/technology/mech_utility_modules
 	)
 	required_tech_levels = list()
@@ -284,30 +249,33 @@
 
 /datum/technology/mech_weaponry_modules
 	name = "Combat Systems"
-	desc = "Exosuits' basics of combat systems."
+	desc = "Exosuit-mounted weapons."
 	tech_type = RESEARCH_ROBOTICS
 
-	x = 0.4
-	y = 0.5
+	x = 0.7
+	y = 0.7
 	icon = "mechgrenadelauncher"
 
-	required_technologies = list(/datum/technology/mech_modules_core)
+	required_technologies = list(
+		/datum/technology/exosuit_robotics,
+		/datum/technology/mech_combat
+		)
 	required_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
-			/datum/design/research/item/exosuit/soft/ballistics,
+			/datum/design/research/circuit/exosuit/ballistics,
 			/datum/design/research/item/exosuit/taser,
 			/datum/design/research/item/exosuit/weapon/ion
 		)
 
 /datum/technology/mech_heavy_weaponry_modules
-	name = "Exosuit Advanced Weaponry"
-	desc = "Integration of hand-lethal weapon in exosuit system."
+	name = "Advanced Weaponry"
+	desc = "Exosuit-mounted heaavy energy weapons."
 	tech_type = RESEARCH_ROBOTICS
 
-	x = 0.4
-	y = 0.4
+	x = 0.9
+	y = 0.7
 	icon = "mechlaser"
 
 	required_technologies = list(/datum/technology/mech_weaponry_modules)
@@ -319,7 +287,7 @@
 			/datum/design/research/item/exosuit/weapon/laser
 		)
 
-//AI BRANCH___________________________________________________________________________________________________________________________________________________________________________
+//AI BRANCH_________________________________________________________________________________________________________________________________________________
 
 /datum/technology/cyborg_robo
 	name = "AI Robotics"
