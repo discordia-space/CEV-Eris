@@ -361,8 +361,8 @@
 // engine.
 //-------------------------------------------------------
 /obj/vehicle/train/cargo/engine/update_car(train_length, active_engines)
-	train_length = train_length
-	active_engines = active_engines
+	src.train_length = train_length
+	src.active_engines = active_engines
 
 	//Update move delay
 	if(!is_train_head() || !on)
