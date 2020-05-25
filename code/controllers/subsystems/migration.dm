@@ -215,7 +215,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 	switch (GLOB.storyteller.config_tag)
 		if ("jester") // Jester will most likely not reroll the maintenance area check.
-			reroll_prob = 0.05
+			reroll_prob = 19.5
 		if ("warrior")
 			reroll_prob = 80
 
