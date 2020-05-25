@@ -629,7 +629,7 @@
 
 /obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/initiator, var/deploy_mode)
 
-	if(sealing || !cell || !cell.charge)
+	if(sealing || !cell || cell.empty())
 		return
 
 	if(!istype(wearer) || !wearer.back == src)
@@ -858,7 +858,7 @@
 			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
 			return 0
 
-	if(offline || !cell || !cell.charge || locked_down)
+	if(offline || !cell || cell.empty() || locked_down)
 		if(user) user << SPAN_WARNING("Your host rig is unpowered and unresponsive.")
 		return 0
 	if(!wearer || wearer.back != src)

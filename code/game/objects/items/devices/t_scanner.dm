@@ -373,7 +373,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 //Returns an estimate of how long the scanner will run on its current remaining battery
 /obj/item/device/t_scanner/proc/get_lifetime()
-	if (!cell || !cell.charge)
+	if (!cell || cell.empty())
 		return "00:00"
 
 	var/numseconds = cell.charge / get_power_cost()
