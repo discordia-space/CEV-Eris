@@ -21,7 +21,7 @@
 	var/scan_range = 1
 
 	//TODO: Make devices have cell support as an inherent behaviour
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 	var/active_power_usage = 25 //Watts
 
@@ -133,7 +133,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 /obj/item/device/t_scanner/proc/get_scanned_objects(var/scan_dist)
 	. = list()
 
-	var/turf/center = get_turf(src.loc)
+	var/turf/center = get_turf(loc)
 	if(!center) return
 
 	for(var/turf/T in trange(scan_range, center))
@@ -234,12 +234,12 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 /obj/item/device/t_scanner/proc/set_enabled(var/targetstate)
 	//Check power here#
 	if (targetstate == FALSE && enabled)
-		playsound(src.loc, turn_on_sound, 55, 1,-2)
+		playsound(loc, turn_on_sound, 55, 1,-2)
 	enabled = FALSE
 	if (targetstate == TRUE)
 		if(cell && cell.checked_use(active_power_usage*(scan_range+2)*CELLRATE))
 			enabled = TRUE
-			playsound(src.loc, turn_on_sound, 55, 1, -2)
+			playsound(loc, turn_on_sound, 55, 1, -2)
 
 	if (enabled)
 		START_PROCESSING(SSobj, src)
@@ -373,7 +373,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 
 //Returns an estimate of how long the scanner will run on its current remaining battery
 /obj/item/device/t_scanner/proc/get_lifetime()
-	if (!cell || !cell.charge)
+	if (!cell || cell.empty())
 		return "00:00"
 
 	var/numseconds = cell.charge / get_power_cost()
@@ -409,11 +409,11 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	return active_power_usage*(2+(scan_range*0.8))*CELLRATE
 
 /obj/item/device/t_scanner/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 	else
 		return ..()
 
 /obj/item/device/t_scanner/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
+		cell = C

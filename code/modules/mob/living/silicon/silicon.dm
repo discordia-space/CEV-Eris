@@ -71,12 +71,12 @@
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)
-			src.take_organ_damage(0,20,emp=1)
+			take_organ_damage(0,20,emp=1)
 			Stun(rand(5,10))
 		if(2)
-			src.take_organ_damage(0,10,emp=1)
+			take_organ_damage(0,10,emp=1)
 			confused = (min(confused + 2, 30))
-//	flick("noise", src.flash)
+//	flick("noise", flash)
 	if (HUDtech.Find("flash"))
 		flick("noise", HUDtech["flash"])
 	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
@@ -135,7 +135,7 @@
 
 // this function shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
-	if(!src.stat)
+	if(!stat)
 		stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
 	else
 		stat(null, text("Systems nonfunctional"))
@@ -170,7 +170,7 @@
 //Silicon mob language procs
 
 /mob/living/silicon/can_speak(datum/language/speaking)
-	return universal_speak || (speaking in src.speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
+	return universal_speak || (speaking in speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
 	var/datum/language/added_language = all_languages[language]

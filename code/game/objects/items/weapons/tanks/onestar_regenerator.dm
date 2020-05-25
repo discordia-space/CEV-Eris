@@ -2,7 +2,6 @@
 	name = "OS Type - 13 \"Tiantipenquan\""
 	desc = "This oxygen regenerator can provide seemingly endless supply for one human to breathe."
 	icon_state = "onestar_regenerator"
-	item_state = "onestar_regenerator"
 	gauge_icon = null
 	gauge_cap = 4
 	flags = CONDUCT

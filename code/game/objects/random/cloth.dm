@@ -419,8 +419,8 @@
 /obj/random/cloth/belt/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/storage/belt/medical = 8,
 				/obj/item/weapon/storage/belt/medical/emt = 8,
-				/obj/item/weapon/storage/belt/security = 4,
-				/obj/item/weapon/storage/belt/security/neotheology = 2,
+				/obj/item/weapon/storage/belt/tactical = 4,
+				/obj/item/weapon/storage/belt/tactical/neotheology = 2,
 				/obj/item/weapon/storage/belt/utility = 8,
 				/obj/item/weapon/storage/belt/utility/neotheology = 4))
 

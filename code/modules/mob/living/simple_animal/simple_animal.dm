@@ -440,20 +440,22 @@
 
 
 
-/mob/living/simple_animal/proc/SA_attackable(target_mob)
-	if (isliving(target_mob))
-		var/mob/living/L = target_mob
-		if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
-			return (0)
-	if (istype(target_mob, /mob/living/exosuit))
-		var/mob/living/exosuit/M = target_mob
-		if (M.pilots[1])
-			return (0)
-	if (istype(target_mob,/obj/machinery/bot))
-		var/obj/machinery/bot/B = target_mob
+/mob/living/simple_animal/proc/SA_attackable(_target_mob)
+	. = TRUE
+
+	if(isliving(_target_mob))
+		var/mob/living/L = _target_mob
+		if(istype(_target_mob, /mob/living/exosuit))
+			var/mob/living/exosuit/M = _target_mob
+			if(length(M.pilots))
+				return FALSE
+		else if(!L.stat || L.health >= (ishuman(L) ? HEALTH_THRESHOLD_CRIT : 0))
+			return FALSE
+
+	if(istype(_target_mob, /obj/machinery/bot))
+		var/obj/machinery/bot/B = _target_mob
 		if(B.health > 0)
-			return (0)
-	return 1
+			return FALSE
 
 /mob/living/simple_animal/get_speech_ending(verb, var/ending)
 	return verb

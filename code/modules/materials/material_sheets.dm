@@ -42,6 +42,9 @@
 /obj/item/stack/material/get_material()
 	return material
 
+/obj/item/stack/material/proc/get_default_type()
+	return default_type
+
 /obj/item/stack/material/proc/update_strings()
 	// Update from material datum.
 	singular_name = material.sheet_singular_name

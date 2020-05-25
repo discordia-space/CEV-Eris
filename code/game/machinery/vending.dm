@@ -1213,6 +1213,7 @@
 					/obj/item/ammo_magazine/ammobox/clrifle_small/rubber = 4,
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,
+					/obj/item/device/holowarrant = 8,
 					/obj/item/weapon/storage/box/evidence = 2)
 	contraband = list(/obj/item/weapon/tool/knife/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE

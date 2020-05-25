@@ -678,9 +678,9 @@
 /area/eris/security/armory)
 "abQ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
+/obj/item/weapon/storage/belt/tactical/ironhammer,
+/obj/item/weapon/storage/belt/tactical/ironhammer,
+/obj/item/weapon/storage/belt/tactical/ironhammer,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "abR" = (
@@ -3309,6 +3309,8 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/item/weapon/tank/nitrogen,
+/obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/exerooms)
 "ahL" = (
@@ -96259,7 +96261,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "research_shuttle";
+	master_tag = "vasiliy_dokuchaev_shuttle";
 	name = "exterior access button";
 	pixel_x = 0;
 	pixel_y = 25;
@@ -96309,7 +96311,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "research_shuttle";
+	master_tag = "vasiliy_dokuchaev_shuttle";
 	name = "interior access button";
 	pixel_x = 0;
 	pixel_y = 25;
@@ -108342,6 +108344,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/chemstor)
+"jIq" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "jKG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -108551,6 +108562,9 @@
 	tag = "icon-hullcenter18"
 	},
 /area/space)
+"mVq" = (
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "mWv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -108736,6 +108750,10 @@
 /obj/machinery/portable_atmospherics/canister/plasma,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"ptL" = (
+/obj/structure/closet/self_pacification,
+/turf/simulated/floor/tiled/dark/techfloor_grid,
+/area/eris/security/prison)
 "pJI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -108901,6 +108919,11 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"tqZ" = (
+/obj/random/junk/low_chance,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/eris/maintenance/section2deck1port)
 "tss" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/standard{
@@ -128433,7 +128456,7 @@ enY
 aaG
 aaa
 abH
-adN
+ptL
 aei
 aei
 aei
@@ -280777,7 +280800,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ear
 aaa
 aaa
 aaa
@@ -281989,7 +282012,7 @@ aaa
 aaa
 aaa
 aaa
-ear
+aaa
 aaa
 aaa
 aaa
@@ -282402,10 +282425,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVb
+dVr
+alb
 aaa
 aaa
 aaa
@@ -282604,10 +282627,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVe
+dVs
+alb
 aaa
 aaa
 aaa
@@ -282806,10 +282829,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVf
+dVt
+alb
 aaa
 aaa
 aaa
@@ -283008,10 +283031,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+alb
+dVh
+dVv
+alb
 aaa
 aaa
 aaa
@@ -283210,10 +283233,10 @@ aaa
 aaa
 aaa
 abF
-abF
-abF
-abF
-abF
+alb
+dVh
+dVx
+alb
 abF
 abF
 abF
@@ -283412,10 +283435,10 @@ aaa
 aaa
 aaa
 abF
-abF
-abF
-abF
-abF
+alb
+dVi
+dVy
+alb
 abF
 alb
 alb
@@ -283615,8 +283638,8 @@ aaa
 aaa
 abF
 alb
-dVb
-dVr
+dVh
+dVz
 alb
 abF
 alb
@@ -283817,8 +283840,8 @@ aaa
 aaa
 abF
 alb
-dVe
-dVs
+dVh
+mVq
 alb
 abF
 alb
@@ -284019,8 +284042,8 @@ aaa
 aaa
 abF
 alb
-dVf
-dVt
+dVh
+mVq
 alb
 abF
 alb
@@ -284221,8 +284244,8 @@ abF
 abF
 abF
 alb
-dVh
-dVv
+jIq
+dVz
 alb
 abF
 alb
@@ -284423,8 +284446,8 @@ abF
 abF
 abF
 alb
-dVh
-dVx
+dVi
+mVq
 alb
 abF
 abF
@@ -284625,8 +284648,8 @@ alb
 alb
 alb
 alb
-dVi
-dVy
+dVh
+mVq
 alb
 abF
 abF
@@ -284828,7 +284851,7 @@ dLA
 dUS
 apq
 dVm
-dVz
+tqZ
 alb
 abF
 abF
