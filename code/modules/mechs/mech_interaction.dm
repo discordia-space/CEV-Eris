@@ -195,8 +195,10 @@
 			if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 			return
 		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
-		if(H && istype(H)) H.toggled()
-		if(!silent) to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+		if(H && istype(H))
+			H.toggled()
+		if(!silent)
+			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
 	else if(!silent)
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
@@ -206,7 +208,10 @@
 		a_intent = I_HURT
 		LAZYREMOVE(pilots, user)
 		update_pilots()
-	if(user.client) update_mech_hud_4(user)
+	if(user.client)
+		update_mech_hud_4(user)
+		user.client.eye = user.client.mob
+		user.client.perspective = MOB_PERSPECTIVE
 	return 1
 
 /mob/living/exosuit/attackby(var/obj/item/thing, var/mob/user)
