@@ -2,7 +2,7 @@
     name = "FS GL \"China Lake\""
     desc = "This centuries-old design was recently rediscovered and adapted for use in modern battlefields. \
         Working similar to a pump-action combat shotgun, its light weight and robust design quickly made it a popular weapon. \
-        It holds up to 4 grenade shells."
+        It holds up to 4 grenade shells, one in the chamber, and three in its tubular magazine."
     icon = 'icons/obj/guns/projectile/chinalake.dmi'
     icon_state = "china_lake"
     item_state = "china_lake"
