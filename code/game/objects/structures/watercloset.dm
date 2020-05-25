@@ -84,7 +84,7 @@
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
-	if(!target.loc == src.loc)
+	if(!target.loc == loc)
 		to_chat(user, SPAN_NOTICE("[target] needs to be on the toilet."))
 		return FALSE
 	if(open && !swirlie)
@@ -129,7 +129,7 @@
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
-	if(!target.loc == src.loc)
+	if(!target.loc == loc)
 		to_chat(user, SPAN_NOTICE("[target] needs to be on the urinal."))
 		return
 	user.visible_message(
@@ -181,7 +181,7 @@
 		if (M.loc == loc)
 			wash(M)
 			process_heat(M)
-		for (var/atom/movable/G in src.loc)
+		for (var/atom/movable/G in loc)
 			G.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user)
@@ -377,7 +377,7 @@
 		return
 	if(!thing.reagents || thing.reagents.total_volume == 0)
 		to_chat(usr, SPAN_WARNING("\The [thing] is empty."))
-		return 0
+		return FALSE
 	// Clear the vessel.
 	visible_message(SPAN_NOTICE("\The [usr] tips the contents of \the [thing] into \the [src]."))
 	thing.reagents.clear_reagents()

@@ -97,6 +97,17 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/githuburl
 	var/discordurl
 
+	var/static/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
+	var/static/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
+	var/static/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+	var/static/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+	var/static/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/static/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
+	var/static/ipqualityscore_apikey		//API key for ipqualityscore.com. Optional additional service that can be used if an API key is provided.
+
+	var/static/panic_bunker = FALSE			//Only allow ckeys who have already been seen by the DB. Only makes sense if you have a DB.
+	var/static/paranoia_logging = FALSE		//Log new byond accounts and first-time joins
+
 	//Alert level description
 	var/alert_desc_green = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
@@ -415,6 +426,33 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if("ip_reputation")
+					config.ip_reputation = 1
+
+				if("ipr_email")
+					config.ipr_email = value
+
+				if("ipr_block_bad_ips")
+					config.ipr_block_bad_ips = 1
+
+				if("ipr_bad_score")
+					config.ipr_bad_score = text2num(value)
+
+				if("ipr_allow_existing")
+					config.ipr_allow_existing = 1
+
+				if("ipr_minimum_age")
+					config.ipr_minimum_age = text2num(value)
+			
+				if ("ipqualityscore_apikey")
+					config.ipqualityscore_apikey = value
+
+				if ("panic_bunker")
+					config.panic_bunker = 1
+
+				if ("paranoia_logging")
+					config.paranoia_logging = 1
 
 				if ("ghosts_can_possess_animals")
 					config.ghosts_can_possess_animals = value
