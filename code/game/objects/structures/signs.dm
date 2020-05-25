@@ -569,7 +569,7 @@
 
 /obj/structure/sign/faction/technomancers
 	name = "Technomancer League"
-	desc = "Technomancer League - anarchistic community ruled by powerful clans."
+	desc = "Technomancer League - a tribal monarchy ruled by the all powerful empress"
 	icon_state = "technomancers"
 
 /obj/structure/sign/faction/excelsior
