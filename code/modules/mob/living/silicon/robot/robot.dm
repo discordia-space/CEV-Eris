@@ -12,7 +12,7 @@
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
 
-	var/lights_on = 0 // Is our integrated light on?
+	var/lights_on = FALSE // Is our integrated light on?
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
 	var/custom_name = ""
@@ -22,7 +22,7 @@
 	var/integrated_light_power = 6
 	var/datum/wires/robot/wires
 	var/ai_access = TRUE
-	var/power_efficiency = 1.0
+	var/power_efficiency = 1
 
 
 	mob_size = MOB_LARGE
@@ -52,7 +52,7 @@
 
 	var/obj/item/device/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/large/cell = null
+	var/obj/item/weapon/cell/large/cell
 	var/obj/machinery/camera/camera = null
 	var/obj/item/weapon/tank/jetpack/synthetic/jetpack = null
 
@@ -65,10 +65,10 @@
 
 	var/obj/item/weapon/stock_parts/matter_bin/storage = null
 
-	var/opened = 0
-	var/emagged = 0
-	var/wiresexposed = 0
-	var/locked = 1
+	var/opened = FALSE
+	var/emagged = FALSE
+	var/wiresexposed = FALSE
+	var/locked = TRUE
 	var/has_power = 1
 	var/death_notified = FALSE
 
@@ -85,7 +85,7 @@
 	var/killswitch_time = 60
 	var/weapon_lock = 0
 	var/weaponlock_time = 120
-	var/lawupdate = 1 //Cyborgs will sync their laws with their AI by default
+	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
 	var/lockcharge //Used when locking down a borg to preserve cell charge
 	var/speed = 0.25
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
@@ -176,10 +176,10 @@
 	laws = new /datum/ai_laws/eris()
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
-		lawupdate = 1
+		lawupdate = TRUE
 		connect_to_ai(new_ai)
 	else
-		lawupdate = 0
+		lawupdate = FALSE
 
 	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 	AddMovementHandler(/datum/movement_handler/robot/use_power, /datum/movement_handler/mob/space)
@@ -196,21 +196,20 @@
 /mob/living/silicon/robot/drain_power(var/drain_check, var/surge, var/amount = 0)
 
 	if(drain_check)
-		return 1
+		return TRUE
 
-	if(!cell || !cell.charge)
-		return 0
+	if(!cell || cell.empty())
+		return FALSE
 
 	// Actual amount to drain from cell, using CELLRATE
 	var/cell_amount = (amount * CELLRATE)/power_efficiency
 
-	if(cell.charge > cell_amount)
+	if(cell.checked_use(cell_amount))
 		// Spam Protection
 		if(prob(10))
 			to_chat(src, SPAN_DANGER("Warning: Unauthorized access through power channel [rand(11,29)] detected!"))
-		cell.use(cell_amount)
 		return amount
-	return 0
+	return FALSE
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
@@ -240,7 +239,7 @@
 		if (custom_sprite == 1)
 			var/list/valid_states = icon_states(CUSTOM_ITEM_SYNTH)
 			if("[ckey]-[modtype]" in valid_states)
-				module_sprites["Custom"] = "[src.ckey]-[modtype]"
+				module_sprites["Custom"] = "[ckey]-[modtype]"
 				icon = CUSTOM_ITEM_SYNTH
 				icontype = "Custom"
 			else
@@ -343,7 +342,7 @@
 /mob/living/silicon/robot/verb/Namepick()
 	set category = "Silicon Commands"
 	if(custom_name)
-		return 0
+		return FALSE
 
 	spawn(0)
 		var/newname
@@ -364,7 +363,7 @@
 	if(!is_component_functioning("diagnosis unit"))
 		return null
 
-	var/dat = "<HEAD><TITLE>[src.name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
+	var/dat = "<HEAD><TITLE>[name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
 	for (var/V in components)
 		var/datum/robot_component/C = components[V]
 		dat += {"
@@ -475,7 +474,7 @@
 				stat("[ms.name]: [ms.energy]/[ms.max_energy_multiplied]")
 
 /mob/living/silicon/robot/restrained()
-	return 0
+	return FALSE
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
 	..(Proj)
@@ -628,7 +627,7 @@
 				switch(alert(user,"What are you trying to interact with?",,"Tools","Radio"))
 					if("Tools")
 						var/list/robotools = list()
-						for(var/obj/item/weapon/tool/robotool in src.module.modules)
+						for(var/obj/item/weapon/tool/robotool in module.modules)
 							robotools.Add(robotool)
 						if(robotools.len)
 							var/obj/item/weapon/tool/chosen_tool = input(user,"Which tool are you trying to modify?","Tool Modification","Cancel") in robotools + "Cancel"
@@ -716,7 +715,7 @@
 		var/obj/item/borg/upgrade/U = I
 		if(!opened)
 			to_chat(usr, "You must access the borgs internals!")
-		else if(!src.module && U.require_module)
+		else if(!module && U.require_module)
 			to_chat(usr, "The borg must choose a module before he can be upgraded!")
 		else if(U.locked)
 			to_chat(usr, "The upgrade is locked and cannot be used yet!")
@@ -786,7 +785,7 @@
 		overlays += "eyes-[module_sprites[icontype]]"
 
 	if(opened)
-		var/panelprefix = custom_sprite ? src.ckey : "ov"
+		var/panelprefix = custom_sprite ? ckey : "ov"
 		if(wiresexposed)
 			overlays += "[panelprefix]-openpanel +w"
 		else if(cell)
@@ -846,31 +845,31 @@
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 	if(usr != src)
-		return 1
+		return TRUE
 
 	if (href_list["showalerts"])
 		open_subsystem(/datum/nano_module/alarm_monitor/all)
-		return 1
+		return TRUE
 
 	if (href_list["mod"])
 		var/obj/item/O = locate(href_list["mod"])
 		if (istype(O) && (O.loc == src))
 			O.attack_self(src)
-		return 1
+		return TRUE
 
 	if (href_list["act"])
 		var/obj/item/O = locate(href_list["act"])
 		if (!istype(O))
-			return 1
+			return TRUE
 
-		if(!((O in src.module.modules) || (O == src.module.emag)))
-			return 1
+		if(!((O in module.modules) || (O == module.emag)))
+			return TRUE
 
 		if(activated(O))
 			to_chat(src, "Already activated")
-			return 1
+			return TRUE
 		if(!module_state_1)
 			module_state_1 = O
 			O.layer = 20
@@ -892,7 +891,7 @@
 		else
 			to_chat(src, "You need to disable a module first!")
 		installed_modules()
-		return 1
+		return TRUE
 
 	if (href_list["deact"])
 		var/obj/item/O = locate(href_list["deact"])
@@ -911,7 +910,7 @@
 		else
 			to_chat(src, "Module isn't activated")
 		installed_modules()
-		return 1
+		return TRUE
 	return
 
 /mob/living/silicon/robot/proc/radio_menu()
@@ -959,13 +958,13 @@
 
 /mob/living/silicon/robot/proc/UnlinkSelf()
 	disconnect_from_ai()
-	lawupdate = 0
+	lawupdate = FALSE
 	lockcharge = 0
-	canmove = 1
+	canmove = TRUE
 	scrambledcodes = 1
 	//Disconnect it's camera so it's not so easily tracked.
-	if(src.camera)
-		src.camera.clear_all_networks()
+	if(camera)
+		camera.clear_all_networks()
 
 
 /mob/living/silicon/robot/proc/ResetSecurityCodes()
@@ -978,7 +977,7 @@
 	if(R)
 		R.UnlinkSelf()
 		to_chat(R, "Buffers flushed and reset. Camera system shutdown.  All systems operational.")
-		src.verbs -= /mob/living/silicon/robot/proc/ResetSecurityCodes
+		verbs -= /mob/living/silicon/robot/proc/ResetSecurityCodes
 
 /mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
 	// They stay locked down if their wire is cut.
@@ -1005,7 +1004,7 @@
 	if(!module_sprites.len)
 		to_chat(src, "Something is badly wrong with the sprite selection. Harass a coder.")
 		return
-	if (icon_selected == TRUE)
+	if (icon_selected == 1)
 		verbs -= /mob/living/silicon/robot/proc/choose_icon
 		return
 
@@ -1018,7 +1017,7 @@
 	else
 		var/list/options = list()
 		for(var/i in module_sprites)
-			options[i] = image(icon = src.icon, icon_state = module_sprites[i])
+			options[i] = image(icon = icon, icon_state = module_sprites[i])
 		icontype = show_radial_menu(src, src, options, radius = 42)
 	if(!icontype)
 		return
@@ -1028,7 +1027,7 @@
 	if(alert("Do you like this icon?",null, "No","Yes") == "No")
 		return choose_icon()
 
-	icon_selected = TRUE
+	icon_selected = 1
 	verbs -= /mob/living/silicon/robot/proc/choose_icon
 	to_chat(src, "Your icon has been set. You now require a module reset to change it.")
 
@@ -1039,34 +1038,34 @@
 	toggle_sensor_mode()
 
 /mob/living/silicon/robot/proc/add_robot_verbs()
-	src.verbs |= robot_verbs_default
+	verbs |= robot_verbs_default
 
 /mob/living/silicon/robot/proc/remove_robot_verbs()
-	src.verbs -= robot_verbs_default
+	verbs -= robot_verbs_default
 
 // Uses power from cyborg's cell. Returns 1 on success or 0 on failure.
 // Properly converts using CELLRATE now! Amount is in Joules.
 /mob/living/silicon/robot/proc/cell_use_power(var/amount = 0)
 	// No cell inserted
 	if(!cell)
-		return 0
+		return FALSE
 
 	// Power cell is empty.
-	if(cell.charge == 0)
-		return 0
+	if(cell.empty())
+		return FALSE
 
 	var/power_use = (amount * CYBORG_POWER_USAGE_MULTIPLIER) / power_efficiency
 	if(cell.checked_use(CELLRATE * power_use))
 		used_power_this_tick += power_use
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /mob/living/silicon/robot/binarycheck()
 	if(is_component_functioning("comms"))
 		var/datum/robot_component/RC = get_component("comms")
 		use_power(RC.active_usage)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /mob/living/silicon/robot/proc/notify_ai(var/notifytype, var/first_arg, var/second_arg)
 	if(!connected_ai)
@@ -1107,7 +1106,7 @@
 			else
 				to_chat(user, "You fail to emag the cover lock.")
 				to_chat(src, "Hack attempt detected.")
-			return 1
+			return TRUE
 		else
 			to_chat(user, "The cover is already unlocked.")
 		return
@@ -1120,8 +1119,8 @@
 		else
 			sleep(6)
 			if(prob(50))
-				emagged = 1
-				lawupdate = 0
+				emagged = TRUE
+				lawupdate = FALSE
 				disconnect_from_ai()
 				to_chat(user, "You emag [src]'s interface.")
 				message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
@@ -1150,25 +1149,25 @@
 					to_chat(src, "<b>Obey these laws:</b>")
 					laws.show_laws(src)
 					to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands."))
-					if(src.module)
+					if(module)
 						var/rebuild = 0
-						for(var/obj/item/weapon/tool/pickaxe/drill/D in src.module.modules)
+						for(var/obj/item/weapon/tool/pickaxe/drill/D in module.modules)
 							qdel(D)
 							rebuild = 1
 						if(rebuild)
-							src.module.modules += new /obj/item/weapon/tool/pickaxe/diamonddrill(src.module)
-							src.module.rebuild()
+							module.modules += new /obj/item/weapon/tool/pickaxe/diamonddrill(module)
+							module.rebuild()
 					updateicon()
 			else
 				to_chat(user, "You fail to hack [src]'s interface.")
 				to_chat(src, "Hack attempt detected.")
-			return 1
+			return TRUE
 
 /mob/living/silicon/robot/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && (lockcharge || !is_component_functioning("actuator")))
-		return 1
+		return TRUE
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && !is_component_functioning("actuator"))
-		return 1
+		return TRUE
 	return ..()
 
 /mob/living/silicon/robot/get_cell()

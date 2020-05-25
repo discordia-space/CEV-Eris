@@ -64,7 +64,7 @@ RSF
 
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
-		if(R.stat || !R.cell || R.cell.charge <= 0)
+		if(R.stat || !R.cell || R.cell.empty())
 			return
 	else
 		if(stored_matter <= 0)

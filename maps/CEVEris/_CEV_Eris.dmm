@@ -108182,6 +108182,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/reception)
+"fMl" = (
+/obj/effect/shuttle_landmark/merc/sec3east4,
+/turf/space,
+/area/space)
 "fZX" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 1
@@ -108291,6 +108295,10 @@
 	},
 /turf/space,
 /area/space)
+"iIc" = (
+/obj/effect/shuttle_landmark/merc/sec3east5,
+/turf/space,
+/area/space)
 "iLh" = (
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled/steel/panels,
@@ -108301,6 +108309,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"iXv" = (
+/obj/effect/shuttle_landmark/merc/engine,
+/turf/space,
+/area/space)
 "jak" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green,
 /obj/structure/cable/yellow{
@@ -108310,6 +108322,10 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"jbk" = (
+/obj/effect/shuttle_landmark/merc/mining,
+/turf/space,
+/area/space)
 "jtf" = (
 /obj/structure/table/standard,
 /obj/machinery/chem_heater,
@@ -108323,6 +108339,10 @@
 	},
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"jBr" = (
+/obj/effect/shuttle_landmark/merc/armory,
+/turf/space,
+/area/space)
 "jDU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
@@ -108376,6 +108396,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
+"jUO" = (
+/obj/effect/shuttle_landmark/merc/atmos,
+/turf/space,
+/area/space)
 "kcK" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
@@ -108500,6 +108524,10 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
+"lIn" = (
+/obj/effect/shuttle_landmark/merc/junk,
+/turf/space,
+/area/space)
 "lUc" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -108577,6 +108605,10 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"ncx" = (
+/obj/effect/shuttle_landmark/merc/medbay,
+/turf/space,
+/area/space)
 "nde" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -108796,6 +108828,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
+"qor" = (
+/obj/effect/shuttle_landmark/merc/engieva,
+/turf/space,
+/area/space)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -108886,6 +108922,10 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"sGt" = (
+/obj/effect/shuttle_landmark/merc/sec2east,
+/turf/space,
+/area/space)
 "sJL" = (
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
@@ -109191,6 +109231,10 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"xLv" = (
+/obj/effect/shuttle_landmark/merc/sec2west,
+/turf/space,
+/area/space)
 "xQh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
@@ -119394,7 +119438,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+xLv
 aaa
 aaa
 aaa
@@ -125139,7 +125183,7 @@ aQG
 aaa
 aaa
 aaa
-aaa
+jUO
 aaa
 aaa
 aaa
@@ -138344,7 +138388,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+jBr
 aaa
 aaa
 aaa
@@ -139799,7 +139843,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+sGt
 aaa
 aaa
 aaa
@@ -140846,7 +140890,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+lIn
 aaa
 aaa
 aaa
@@ -198856,7 +198900,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+qor
 aaa
 aaa
 aaa
@@ -218036,7 +218080,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+jbk
 aaa
 aaa
 aaa
@@ -237821,7 +237865,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+iXv
 aaa
 aaa
 aaa
@@ -239998,7 +240042,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ncx
 aaa
 aaa
 aaa
@@ -262660,7 +262704,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+fMl
 aaa
 aaa
 aaa
@@ -299646,7 +299690,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+iIc
 aaa
 aaa
 aaa

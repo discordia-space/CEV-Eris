@@ -103,22 +103,28 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 /hook/startup/proc/loadAdmins()
 	clear_admin_datums()
 
+	if(config.admin_legacy_system)
+		load_admins_legacy()
+		return TRUE
+
 	establish_db_connection()
 	if(!dbcon.IsConnected())
 		error("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
 		load_admins_legacy()
-		return
+		return FALSE
 
 	else
 		load_admins()
 
-		if(!admin_datums)
+		if(!LAZYLEN(admin_datums))
 			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			config.admin_legacy_system = 1
 			load_admins_legacy()
-			return
+			return FALSE
+	
+	return TRUE
 
 /proc/load_admins()
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM players WHERE rank != 'player'")

@@ -62,7 +62,7 @@
 	var/list/new_overlays = list()
 
 	var/obj/item/weapon/cell/C = owner.get_cell()
-	if(!C || (C.charge <= 0))
+	if(!C || (C.empty()))
 		overlays.Cut()
 		return
 
@@ -230,7 +230,7 @@
 	. = ..()
 	overlays.Cut()
 	var/obj/item/weapon/cell/C = owner.get_cell()
-	if(!owner.body || !C || (C.charge <= 0))
+	if(!owner.body || !C || C.empty())
 		return
 
 	if(!owner.body.diagnostics || !owner.body.diagnostics.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))

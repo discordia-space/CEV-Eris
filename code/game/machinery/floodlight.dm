@@ -4,12 +4,12 @@
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
-	var/on = 0
-	var/obj/item/weapon/cell/large/cell = null
+	density = TRUE
+	var/on = FALSE
+	var/obj/item/weapon/cell/large/cell
 	var/use = 200 // 200W light
-	var/unlocked = 0
-	var/open = 0
+	var/unlocked = FALSE
+	var/open = FALSE
 	var/brightness_on = 8		//can't remember what the maxed out value is
 	light_power = 2
 
@@ -34,7 +34,7 @@
 	if(!on)
 		return
 
-	if(!cell || (cell.charge < (use * CELLRATE)))
+	if(!cell || (!cell.check_charge(use * CELLRATE)))
 		turn_off(1)
 		return
 
@@ -49,21 +49,21 @@
 
 
 // Returns 0 on failure and 1 on success
-/obj/machinery/floodlight/proc/turn_on(var/loud = 0)
+/obj/machinery/floodlight/proc/turn_on(loud = 0)
 	if(!cell)
-		return 0
-	if(cell.charge < (use * CELLRATE))
-		return 0
+		return FALSE
+	if(!cell.check_charge(use * CELLRATE))
+		return FALSE
 
-	on = 1
+	on = TRUE
 	set_light(brightness_on, brightness_on / 2)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] turns on.")
-	return 1
+	return TRUE
 
-/obj/machinery/floodlight/proc/turn_off(var/loud = 0)
-	on = 0
+/obj/machinery/floodlight/proc/turn_off(loud = 0)
+	on = FALSE
 	set_light(0, 0)
 	update_icon()
 	if(loud)
@@ -90,8 +90,8 @@
 		cell.add_fingerprint(user)
 		cell.update_icon()
 
-		src.cell = null
-		on = 0
+		cell = null
+		on = FALSE
 		set_light(0)
 		to_chat(user, "You remove the power cell")
 		update_icon()
@@ -119,12 +119,12 @@
 			if(unlocked)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 					if(open)
-						open = 0
+						open = FALSE
 						overlays = null
 						to_chat(user, SPAN_NOTICE("You crowbar the battery panel in place."))
 					else
 						if(unlocked)
-							open = 1
+							open = TRUE
 							to_chat(user, SPAN_NOTICE("You remove the battery panel."))
 					update_icon()
 				return

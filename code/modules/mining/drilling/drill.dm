@@ -1,8 +1,8 @@
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
-	anchored = 0
-	use_power = 0 //The drill takes power directly from a cell.
-	density = 1
+	anchored = FALSE
+	use_power = FALSE //The drill takes power directly from a cell.
+	density = TRUE
 	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
 /obj/machinery/mining/drill
@@ -12,8 +12,8 @@
 	circuit = /obj/item/weapon/circuitboard/miningdrill
 	var/braces_needed = 2
 	var/list/supports = list()
-	var/supported = 0
-	var/active = 0
+	var/supported = FALSE
+	var/active = FALSE
 	var/list/resource_field = list()
 
 	var/ore_types = list(
@@ -33,11 +33,11 @@
 	var/harvest_speed
 	var/capacity
 	var/charge_use
-	var/obj/item/weapon/cell/large/cell = null
+	var/obj/item/weapon/cell/large/cell
 
 	//Flags
-	var/need_update_field = 0
-	var/need_player_check = 0
+	var/need_update_field = FALSE
+	var/need_player_check = FALSE
 
 
 /obj/machinery/mining/drill/Process()
@@ -76,7 +76,7 @@
 		var/turf/simulated/harvesting = pick(resource_field)
 
 		while(resource_field.len && !harvesting.resources)
-			harvesting.has_resources = 0
+			harvesting.has_resources = FALSE
 			harvesting.resources = null
 			resource_field -= harvesting
 			harvesting = pick(resource_field)
@@ -101,7 +101,7 @@
 			if(total_harvest <= 0) break
 			if(harvesting.resources[metal])
 
-				found_resource  = 1
+				found_resource  = TRUE
 
 				var/create_ore = 0
 				if(harvesting.resources[metal] >= total_harvest)
@@ -122,8 +122,8 @@
 			harvesting.resources = null
 			resource_field -= harvesting
 	else
-		active = 0
-		need_player_check = 1
+		active = FALSE
+		need_player_check = TRUE
 		update_icon()
 
 /obj/machinery/mining/drill/attackby(obj/item/I, mob/user as mob)
@@ -208,26 +208,26 @@
 
 /obj/machinery/mining/drill/proc/check_supports()
 
-	supported = 0
+	supported = FALSE
 
 	if((!supports || !supports.len) && initial(anchored) == 0)
 		icon_state = "mining_drill"
-		anchored = 0
-		active = 0
+		anchored = FALSE
+		active = FALSE
 	else
-		anchored = 1
+		anchored = TRUE
 
 	if(supports && supports.len >= braces_needed)
-		supported = 1
+		supported = TRUE
 
 	update_icon()
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
-		src.visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
-	need_player_check = 1
-	active = 0
+		visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
+	need_player_check = TRUE
+	active = FALSE
 	update_icon()
 
 /obj/machinery/mining/drill/proc/get_resource_field()
@@ -251,11 +251,10 @@
 		system_error("resources depleted")
 
 /obj/machinery/mining/drill/proc/use_cell_power()
-	if(!cell) return 0
-	if(cell.charge >= charge_use)
-		cell.use(charge_use)
-		return 1
-	return 0
+	if(!cell) return FALSE
+	if(cell.checked_use(charge_use))
+		return TRUE
+	return FALSE
 
 /obj/machinery/mining/drill/verb/unload()
 	set name = "Unload Drill"
@@ -322,7 +321,7 @@
 
 /obj/machinery/mining/brace/proc/connect()
 
-	var/turf/T = get_step(get_turf(src), src.dir)
+	var/turf/T = get_step(get_turf(src), dir)
 
 	for(var/thing in T.contents)
 		if(istype(thing, /obj/machinery/mining/drill))
@@ -359,9 +358,9 @@
 
 	if(usr.stat) return
 
-	if (src.anchored)
+	if (anchored)
 		to_chat(usr, "It is anchored in place!")
-		return 0
+		return FALSE
 
-	src.set_dir(turn(src.dir, 90))
-	return 1
+	set_dir(turn(dir, 90))
+	return TRUE
