@@ -384,7 +384,7 @@
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 	
-	if(id < 0)
+	if(text2num(id) < 0)
 		src.register_in_db()
 
 #undef UPLOAD_LIMIT
