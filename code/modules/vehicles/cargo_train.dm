@@ -373,8 +373,8 @@
 		move_delay *= 1.1																	//makes cargo trains 10% slower than running when not overweight
 
 /obj/vehicle/train/cargo/trolley/update_car(train_length, active_engines)
-	train_length = train_length
-	active_engines = active_engines
+	src.train_length = train_length
+	src.active_engines = active_engines
 
 	if(!lead && !tow)
 		anchored = FALSE
