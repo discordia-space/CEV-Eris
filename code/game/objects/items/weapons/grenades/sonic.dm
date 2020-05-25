@@ -4,7 +4,7 @@
 	icon_state = "screamer"
 
 /obj/item/weapon/grenade/sonic/prime()
-	playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+	playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 
 	visible_message(SPAN_DANGER("\The [src] emits a horrifying wail!"))
 
