@@ -672,10 +672,10 @@
 			qdel(M.client)
 		if("Cancel")
 			return
+
 /datum/admin_topic/sendbacktolobby
 	keyword = "sendbacktolobby"
 	require_perms = list(R_ADMIN)
-
 
 /datum/admin_topic/sendbacktolobby/Run(list/input)
 	var/mob/M = locate(input["sendbacktolobby"])
