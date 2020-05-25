@@ -161,6 +161,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//This could only happen if all the burrows on the map were collapsed
 			return
 
+		if (!B.population.len)
+			// There is no mob nearby for the migration
+			// Avoid division by 0 in summon_mobs
+			continue
 
 		//Alright now we know where to go, next up, how many are we sending?
 		var/percentage = migration_percentage()
