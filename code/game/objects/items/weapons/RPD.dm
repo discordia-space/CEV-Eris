@@ -17,7 +17,7 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 5) //Redundant values that yer free ta' change later.
 	price_tag = 500 //Redundant values that yer free ta' change later.
 	var/use_power_cost = 1.5
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	var/wait = 0
 	var/pipe_type = 0

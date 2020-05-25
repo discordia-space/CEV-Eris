@@ -20,19 +20,19 @@
 		if(C.installed != 0) amount += C.electronics_damage
 	return amount
 
-/mob/living/silicon/robot/adjustBruteLoss(var/amount)
+/mob/living/silicon/robot/adjustBruteLoss(amount)
 	if(amount > 0)
 		take_overall_damage(amount, 0)
 	else
 		heal_overall_damage(-amount, 0)
 
-/mob/living/silicon/robot/adjustFireLoss(var/amount)
+/mob/living/silicon/robot/adjustFireLoss(amount)
 	if(amount > 0)
 		take_overall_damage(0, amount)
 	else
 		heal_overall_damage(0, -amount)
 
-/mob/living/silicon/robot/proc/get_damaged_components(var/brute, var/burn, var/destroyed = 0)
+/mob/living/silicon/robot/proc/get_damaged_components(brute, burn, destroyed = 0)
 	var/list/datum/robot_component/parts = list()
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
@@ -71,15 +71,14 @@
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = module_active
 		//Shields absorb a certain percentage of damage based on their power setting.
-		var/absorb_brute = brute*shield.shield_level
-		var/absorb_burn = burn*shield.shield_level
-		var/cost = (absorb_brute+absorb_burn)*100
+		var/absorb_brute_cost = (brute*shield.shield_level)*100
+		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
-		cell.charge -= cost
-		if(cell.charge <= 0)
-			cell.charge = 0
+		if(cell.empty())
 			to_chat(src, "\red Your shield has overloaded!")
 		else
+			var/absorb_brute = cell.use(absorb_brute_cost)/100
+			var/absorb_burn = cell.use(absorb_burn_cost)/100
 			brute -= absorb_brute
 			burn -= absorb_burn
 			to_chat(src, "\red Your shield absorbs some of the impact!")
@@ -109,7 +108,7 @@
 
 		parts -= picked
 
-/mob/living/silicon/robot/take_overall_damage(var/brute = 0, var/burn = 0, var/sharp = 0, var/used_weapon = null)
+/mob/living/silicon/robot/take_overall_damage(brute = 0, burn = 0, sharp = 0, used_weapon = null)
 	if(status_flags & GODMODE)	return	//godmode
 	var/list/datum/robot_component/parts = get_damageable_components()
 
@@ -117,15 +116,14 @@
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
 		var/obj/item/borg/combat/shield/shield = module_active
 		//Shields absorb a certain percentage of damage based on their power setting.
-		var/absorb_brute = brute*shield.shield_level
-		var/absorb_burn = burn*shield.shield_level
-		var/cost = (absorb_brute+absorb_burn)*100
+		var/absorb_brute_cost = (brute*shield.shield_level)*100
+		var/absorb_burn_cost = (burn*shield.shield_level)*100
 
-		cell.charge -= cost
-		if(cell.charge <= 0)
-			cell.charge = 0
+		if(cell.empty())
 			to_chat(src, "\red Your shield has overloaded!")
 		else
+			var/absorb_brute = cell.use(absorb_brute_cost)/100
+			var/absorb_burn = cell.use(absorb_burn_cost)/100
 			brute -= absorb_brute
 			burn -= absorb_burn
 			to_chat(src, "\red Your shield absorbs some of the impact!")
@@ -154,7 +152,7 @@
 
 
 
-/mob/living/silicon/robot/get_fall_damage(var/turf/from, var/turf/dest)
+/mob/living/silicon/robot/get_fall_damage(turf/from, turf/dest)
 	//Robots should not be falling! Their bulky inarticulate frames lack shock absorbers, and gravity turns their armor plating against them
 	//Falling down a floor is extremely painful for robots, and for anything under them, including the floor
 
@@ -169,7 +167,7 @@
 
 
 //On impact, robots will damage everything in the tile and surroundings
-/mob/living/silicon/robot/fall_impact(var/turf/from, var/turf/dest)
+/mob/living/silicon/robot/fall_impact(turf/from, turf/dest)
 	take_overall_damage(get_fall_damage(from, dest))
 
 	Stun(5)

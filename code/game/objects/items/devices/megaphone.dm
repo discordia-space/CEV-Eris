@@ -7,7 +7,7 @@
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 	var/emagged = FALSE
 	var/insults = 0
@@ -46,7 +46,7 @@
 		return
 	message = capitalize(message)
 	log_say("[user.name]/[user.key]  (megaphone) : [message]")
-	if ((src.loc == user && usr.stat == 0))
+	if ((loc == user && usr.stat == 0))
 		if(emagged)
 			if(insults)
 				for(var/mob/O in (viewers(user)))
@@ -60,12 +60,12 @@
 		return
 
 /obj/item/device/megaphone/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 
 /obj/item/device/megaphone/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
+		cell = C
 
 /obj/item/device/megaphone/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)

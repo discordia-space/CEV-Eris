@@ -19,7 +19,7 @@
 	var/max_chargerate = 0.08 //Power cells are limited in how much power they can intake per charge tick, to prevent small cells from charging almost instantly
 	//Default 8% of maximum
 	//A tick is roughly 2 seconds, so this means a cell will take a minimum of 25 seconds to charge
-	var/rigged = 0		// true if rigged to explode
+	var/rigged = FALSE		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/autorecharging = FALSE //For nucclear cells
 	var/autorecharge_rate = 0.03
@@ -36,7 +36,7 @@
 
 /obj/item/weapon/cell/Process()
 	charge_tick++
-	if(charge_tick < recharge_time) return 0
+	if(charge_tick < recharge_time) return FALSE
 	charge_tick = 0
 	give(maxcharge * autorecharge_rate)
 
@@ -45,20 +45,20 @@
 		var/obj/item/weapon/gun/energy/I = loc
 		I.update_icon()
 
-	return 1
+	return TRUE
 
 //Newly manufactured cells start off empty. You can't create energy
 /obj/item/weapon/cell/Created()
 	charge = 0
 	update_icon()
 
-/obj/item/weapon/cell/drain_power(var/drain_check, var/surge, var/power = 0)
+/obj/item/weapon/cell/drain_power(drain_check, surge, power = 0)
 
 	if(drain_check)
-		return 1
+		return TRUE
 
-	if(charge <= 0)
-		return 0
+	if(empty())
+		return FALSE
 
 	var/cell_amt = power * CELLRATE
 
@@ -87,22 +87,26 @@
 
 	last_charge_status = charge_status
 
+/obj/item/weapon/cell/proc/empty()
+	if(charge <= 0)
+		return TRUE
+	return FALSE
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	return 100*charge/maxcharge
 
 /obj/item/weapon/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
-/obj/item/weapon/cell/proc/check_charge(var/amount)
+/obj/item/weapon/cell/proc/check_charge(amount)
 	return (charge >= amount)
 
 // use power from a cell, returns the amount actually used
-/obj/item/weapon/cell/proc/use(var/amount)
+/obj/item/weapon/cell/proc/use(amount)
 	if(rigged && amount > 0)
 		explode()
-		return 0
+		return FALSE
 	var/used = min(charge, amount)
 	charge -= used
 	update_icon()
@@ -110,19 +114,19 @@
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
 // from the cell and returns 1. Otherwise does nothing and returns 0.
-/obj/item/weapon/cell/proc/checked_use(var/amount)
+/obj/item/weapon/cell/proc/checked_use(amount)
 	if(!check_charge(amount))
-		return 0
+		return FALSE
 	use(amount)
-	return 1
+	return TRUE
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/weapon/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
-		return 0
+		return FALSE
 
-	if(maxcharge < amount)	return 0
+	if(maxcharge < amount)	return FALSE
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
 	update_icon()
@@ -134,7 +138,7 @@
 		return
 
 	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-	to_chat(user, "The charge meter reads [round(src.percent() )]%.")
+	to_chat(user, "The charge meter reads [round(percent() )]%.")
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()
@@ -145,7 +149,7 @@
 
 		if(S.reagents.has_reagent("plasma", 5))
 
-			rigged = 1
+			rigged = TRUE
 
 			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
@@ -154,21 +158,21 @@
 
 
 /obj/item/weapon/cell/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
  * 2500-cell	explosion(T, -1, 0, 1, 1)
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (charge==0)
+	if (empty())
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = round(sqrt(charge)/60)
 	var/light_impact_range = round(sqrt(charge)/30)
 	var/flash_range = light_impact_range
 	if (light_impact_range==0)
-		rigged = 0
+		rigged = FALSE
 		corrupt()
 		return
 	//explosion(T, 0, 1, 2, 2)
@@ -184,7 +188,7 @@
 	charge /= 2
 	maxcharge /= 2
 	if (prob(10))
-		rigged = 1 //broken batterys are dangerous
+		rigged = TRUE //broken batterys are dangerous
 
 /obj/item/weapon/cell/emp_act(severity)
 	//remove this once emp changes on dev are merged in
@@ -201,16 +205,16 @@
 /obj/item/weapon/cell/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
 			if (prob(50))
 				corrupt()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				qdel(src)
 				return
@@ -244,7 +248,7 @@
 		if (10 to 100) // Low S-class
 			return min(rand(1,10),rand(1,10))
 		else
-			return 0
+			return FALSE
 
 /obj/item/weapon/cell/get_cell()
 	return src

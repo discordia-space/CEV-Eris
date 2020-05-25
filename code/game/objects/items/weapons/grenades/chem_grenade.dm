@@ -1,3 +1,7 @@
+#define EMPTY 0
+#define WIRED 1
+#define READY 2
+
 /obj/item/weapon/grenade/chem_grenade
 	name = "grenade casing"
 	icon_state = "chemg"
@@ -11,10 +15,10 @@
 	variance = 0.25
 
 	var/can_be_modified = TRUE
-	var/stage = 0
+	var/stage = EMPTY
 	var/state = 0
 	var/path = 0
-	var/obj/item/device/assembly_holder/detonator = null
+	var/obj/item/device/assembly_holder/detonator
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
 	var/affected_area = 3
@@ -24,21 +28,21 @@
 	. = ..()
 
 /obj/item/weapon/grenade/chem_grenade/attack_self(mob/user as mob)
-	if(!stage || stage==1)
+	if(stage != READY)
 		if(detonator)
-//				detonator.loc=src.loc
+//				detonator.loc=loc
 			detonator.detached()
 			usr.put_in_hands(detonator)
-			detonator=null
+			detonator = null
 			det_time = null
-			stage=0
+			stage = EMPTY
 			icon_state = initial(icon_state)
 		else if(beakers.len)
 			for(var/obj/B in beakers)
 				beakers -= B
 				user.put_in_hands(B)
 		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-	if(stage > 1 && !active && clown_check(user))
+	if(stage == READY && !active && clown_check(user))
 		to_chat(user, SPAN_WARNING("You prime \the [name]!"))
 
 		activate()
@@ -52,7 +56,7 @@
 	if(!can_be_modified)
 		to_chat(user, SPAN_WARNING("This grenade is sealed and can't be modified."))
 		return
-	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
+	if(istype(W,/obj/item/device/assembly_holder) && stage != READY && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.left_assembly,det.right_assembly.type) || (!is_igniter(det.left_assembly) && !is_igniter(det.right_assembly)))
 			to_chat(user, SPAN_WARNING("Assembly must contain one igniter."))
@@ -62,7 +66,7 @@
 			return
 		path = 1
 		to_chat(user, SPAN_NOTICE("You add [W] to the metal casing."))
-		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
+		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, -3)
 		user.remove_from_mob(det)
 		det.loc = src
 		detonator = det
@@ -74,9 +78,9 @@
 			det_time = 10*T.time
 		icon_state = initial(icon_state) +"_ass"
 		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
-		stage = 1
+		stage = WIRED
 	else if(istype(W,/obj/item/weapon/tool/screwdriver) && path != 2)
-		if(stage == 1)
+		if(stage == WIRED)
 			path = 1
 			if(beakers.len)
 				to_chat(user, SPAN_NOTICE("You lock the assembly."))
@@ -84,22 +88,22 @@
 			else
 				to_chat(user, SPAN_NOTICE("You lock the empty assembly."))
 				name = "fake grenade"
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 			icon_state = initial(icon_state) +"_locked"
-			stage = 2
-		else if(stage == 2)
+			stage = READY
+		else if(stage == READY)
 			if(active && prob(95))
 				to_chat(user, SPAN_WARNING("You trigger the assembly!"))
 				prime()
 				return
 			else
 				to_chat(user, SPAN_NOTICE("You unlock the assembly."))
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, -3)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 				icon_state = initial(icon_state) + (detonator?"_ass":"")
-				stage = 1
-				active = 0
-	else if(is_type_in_list(W, allowed_containers) && (!stage || stage==1) && path != 2)
+				stage = WIRED
+				active = FALSE
+	else if(is_type_in_list(W, allowed_containers) && (stage != READY) && path != 2)
 		path = 1
 		if(beakers.len == 2)
 			to_chat(user, SPAN_WARNING("The grenade can not hold more containers."))
@@ -110,7 +114,7 @@
 				user.drop_item()
 				W.loc = src
 				beakers += W
-				stage = 1
+				stage = WIRED
 				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			else
 				to_chat(user, SPAN_WARNING("\The [W] is empty."))
@@ -126,11 +130,11 @@
 	if(detonator)
 		if(!is_igniter(detonator.left_assembly))
 			detonator.left_assembly.activate()
-			active = 1
+			active = TRUE
 			log_and_message_admins("primed via detonator \a [src]")
 		if(!is_igniter(detonator.right_assembly))
 			detonator.right_assembly.activate()
-			active = 1
+			active = TRUE
 			log_and_message_admins("primed via detonator \a [src]")
 	if(active)
 		icon_state = initial(icon_state) + "_active"
@@ -140,21 +144,21 @@
 
 	return
 
-/obj/item/weapon/grenade/chem_grenade/proc/primed(var/primed = 1)
+/obj/item/weapon/grenade/chem_grenade/proc/primed(primed = 1)
 	if(active)
 		icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
 /obj/item/weapon/grenade/chem_grenade/prime()
-	if(!stage || stage<2) return
+	if(stage != READY) return
 
-	var/has_reagents = 0
+	var/has_reagents = FALSE
 	for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
-		if(G.reagents.total_volume) has_reagents = 1
+		if(G.reagents.total_volume) has_reagents = TRUE
 
-	active = 0
+	active = FALSE
 	if(!has_reagents)
 		icon_state = initial(icon_state) +"_locked"
-		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, 1)
+		playsound(loc, 'sound/items/Screwdriver2.ogg', 50, 1)
 		spawn(0) //Otherwise det_time is erroneously set to 0 after this
 			if(is_timer(detonator.left_assembly)) //Make sure description reflects that the timer has been reset
 				var/obj/item/device/assembly/timer/T = detonator.left_assembly
@@ -164,7 +168,7 @@
 				det_time = 10*T.time
 		return
 
-	playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)
+	playsound(loc, 'sound/effects/bamf.ogg', 50, 1)
 
 	for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
 		G.reagents.trans_to_obj(src, G.reagents.total_volume)
@@ -186,10 +190,48 @@
 	name = "large chem grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
-	allowed_containers = list(/obj/item/weapon/reagent_containers/glass)
+	allowed_containers = list(/obj/item/weapon/reagent_containers/glass, )
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	affected_area = 4
 	matter = list(MATERIAL_STEEL = 5)
+
+	//I tried to just put it in the allowed_containers list but
+	//if you do that it must have reagents.  If you're going to
+	//make a special case you might as well do it explicitly. -Sayu
+/obj/item/weapon/grenade/chem_grenade/large/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/slime_extract) && stage == WIRED)
+		to_chat(user, "<span class='notice'>You add [I] to the assembly.</span>")
+		user.drop_item()
+		I.loc = src
+		beakers += I
+	else
+		return ..()
+
+/obj/item/weapon/grenade/chem_grenade/large/prime()
+	if(stage != READY)
+		return
+
+	for(var/obj/item/slime_extract/S in beakers)
+		if(S.Uses)
+			for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
+				G.reagents.trans_to(S, G.reagents.total_volume)
+
+			//If there is still a core (sometimes it's used up)
+			//and there are reagents left, behave normally,
+			//otherwise drop it on the ground for timed reactions like gold.
+
+			if(S)
+				if(S.reagents && S.reagents.total_volume)
+					for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
+						S.reagents.trans_to(G, S.reagents.total_volume)
+				else
+				//	S.forceMove(get_turf(src))
+					if(beakers.len)
+						for(var/obj/item/slime_extract/O in beakers)
+							O.forceMove(get_turf(src))
+	beakers = list()
+	..()
+
 
 /obj/item/weapon/grenade/chem_grenade/metalfoam
 	name = "Asters \"Stop-Space\""
@@ -197,7 +239,7 @@
 	desc = "Used for emergency sealing of air breaches."
 	can_be_modified = FALSE
 	path = 1
-	stage = 2
+	stage = READY
 
 /obj/item/weapon/grenade/chem_grenade/metalfoam/Initialize()
 	. = ..()
@@ -219,7 +261,7 @@
 	icon_state = "incendiary"
 	can_be_modified = FALSE
 	path = 1
-	stage = 2
+	stage = READY
 
 /obj/item/weapon/grenade/chem_grenade/incendiary/Initialize()
 	. = ..()
@@ -243,7 +285,7 @@
 	icon_state = "foam"
 	can_be_modified = FALSE
 	path = 1
-	stage = 2
+	stage = READY
 
 /obj/item/weapon/grenade/chem_grenade/antiweed/Initialize()
 	. = ..()
@@ -266,7 +308,7 @@
 	icon_state = "foam"
 	desc = "Dirt? Grime? Blood and criminal evidence? Say good-fucking-bye to all of those things with one simple throw!"
 	can_be_modified = FALSE
-	stage = 2
+	stage = READY
 	path = 1
 
 /obj/item/weapon/grenade/chem_grenade/cleaner/Initialize()
@@ -288,7 +330,7 @@
 	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
 	can_be_modified = FALSE
 	icon_state = "grenade"
-	stage = 2
+	stage = READY
 	path = 1
 
 /obj/item/weapon/grenade/chem_grenade/teargas/Initialize()
@@ -306,3 +348,7 @@
 
 	beakers += B1
 	beakers += B2
+
+#undef EMPTY
+#undef WIRED
+#undef READY

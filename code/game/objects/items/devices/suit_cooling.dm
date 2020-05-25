@@ -62,9 +62,7 @@
 
 	H.bodytemperature -= temp_adj*efficiency
 
-	cell.use(charge_usage)
-
-	if(cell.charge <= 0)
+	if(!cell.checked_use(charge_usage))
 		turn_off()
 
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
@@ -94,24 +92,24 @@
 	var/mob/living/carbon/human/H = M
 
 	if (!H.wear_suit || H.s_store != src)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/device/suit_cooling_unit/proc/turn_on()
 	if(!cell)
 		return
-	if(cell.charge <= 0)
+	if(cell.empty())
 		return
 
-	on = 1
+	on = TRUE
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if (ismob(loc))
+		var/mob/M = loc
 		M.show_message("\The [src] clicks and whines as it powers down.", 2)	//let them know in case it's run out of power.
-	on = 0
+	on = FALSE
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/attack_self(mob/user as mob)
@@ -124,8 +122,8 @@
 		cell.add_fingerprint(user)
 		cell.update_icon()
 
-		to_chat(user, "You remove the [src.cell].")
-		src.cell = null
+		to_chat(user, "You remove the [cell].")
+		cell = null
 		updateicon()
 		return
 
@@ -140,10 +138,10 @@
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/tool/screwdriver))
 		if(cover_open)
-			cover_open = 0
+			cover_open = FALSE
 			to_chat(user, "You screw the panel into place.")
 		else
-			cover_open = 1
+			cover_open = TRUE
 			to_chat(user, "You unscrew the panel.")
 		updateicon()
 		return
@@ -176,7 +174,7 @@
 		return
 
 	if (on)
-		if (attached_to_suit(src.loc))
+		if (attached_to_suit(loc))
 			to_chat(user, "It's switched on and running.")
 		else
 			to_chat(user, "It's switched on, but not attached to anything.")
