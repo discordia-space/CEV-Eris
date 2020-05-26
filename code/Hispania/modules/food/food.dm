@@ -5,10 +5,8 @@
 	icon = 'icons/hispania/obj/food/food.dmi'
 	icon_state = "drake_ribs"
 	filling_color = "#EC3924"
-	cooked = FALSE
 	bitesize = 5
 	w_class = ITEM_SIZE_HUGE
-	sanity_gain = 0.5
 
 	preloaded_reagents = list("protein" = 6)
 
@@ -18,9 +16,7 @@
 	icon = 'icons/hispania/obj/food/food.dmi'
 	icon_state = "cookeddrake_ribs"
 	filling_color = "#EC3924"
-	bitesize = 5
 	cooked = TRUE
 	w_class = ITEM_SIZE_HUGE
-	sanity_gain = 0.5
 
 	preloaded_reagents = list("protein" = 6)
