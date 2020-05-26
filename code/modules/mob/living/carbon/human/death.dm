@@ -23,8 +23,7 @@
 			drop_from_inventory(D)
 			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.w_class))
 
-	if (!keep_only_robotics)
-		..(species.gibbed_anim)
+	..(species.gibbed_anim)
 	gibs(loc, dna, null, species.flesh_color, species.blood_color)
 
 /mob/living/carbon/human/dust()

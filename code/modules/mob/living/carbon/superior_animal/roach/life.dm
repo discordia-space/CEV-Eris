@@ -1,5 +1,6 @@
 #define MOVING_TO_TARGET 1
 #define EATING_TARGET 2
+#define LAYING_EGG 3
 
 /mob/living/carbon/superior_animal/roach/proc/GiveUp(var/C)
 	spawn(100)
@@ -13,12 +14,12 @@
 	. = ..()
 	if(!stat) // if the roach is conscious
 		if(stance == HOSTILE_STANCE_IDLE)
-			// 5% chance that the roach is hungry
+			// 5 percents chance that the roach is hungry
 			if(!busy && prob(5))
 				//first, check for potential food nearby
 				var/list/eatTargets = new
-				for(var/mob/living/C in getObjectsInView())
-					if(C.stat == DEAD)
+				for(var/mob/living/carbon/C in getObjectsInView())
+					if ((C.stat == DEAD) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
 						eatTargets += C
 
 				eat_target = safepick(nearestObjectsInList(eatTargets,src,1))
@@ -42,16 +43,13 @@
 						if(busy == EATING_TARGET)
 							if(eat_target && istype(eat_target.loc, /turf) && get_dist(src,eat_target) <= 1)
 								var/turf/targetTurf = eat_target.loc
+								var/mob/living/carbon/M = eat_target
 
-								for(var/mob/living/M in targetTurf)
-									if((M.stat != DEAD)) // Don't try to eat someone that is alive
-										continue
+								if((M.stat == DEAD)) // Don't try to eat something that is alive
+									if ((istype(M, /mob/living/carbon/human)) && (M.icon)) // Eating a human
+										// Icon check is to check if another roach has already finished eating this human
 
-									if (istype(M, /mob/living/carbon/human)) // Eat only humans
 										var/mob/living/carbon/human/H = M
-
-										if (!H.icon) // Another roach has already finished eating this human
-											break
 
 										// Process Cruciform
 										var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform, FALSE)
@@ -67,18 +65,40 @@
 										var/remainsType = /obj/item/remains/human
 										new remainsType(targetTurf)
 
-										// Hide the remaining part of the corpse (all flesh parts are not gibbed)
-										H.canmove = 0
-										H.icon = null
-										H.invisibility = 101
+										// End message
+										src.visible_message(SPAN_WARNING("\The [src] finishes eating \the [eat_target], leaving only bones."))
+
+										// Get fed
+										fed += rand(4,6)
+
+									else if (istype(M, /mob/living/carbon/superior_animal) && (M.icon)) // Eating a spider or roach
+
+										// Gib victim
+										M.gib(null, FALSE)
+										gibs(targetTurf, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
 
 										// End message
 										src.visible_message(SPAN_WARNING("\The [src] finishes eating \the [eat_target], leaving only bones."))
 
-									break
+										// Get fed
+										fed += rand(1,2)
 
 								eat_target = null
 
+							busy = 0
+							stop_automated_movement = 0
+
+			else if (!busy && prob(probability_egg_laying)) // chance to lay an egg
+				if((fed > 0) && !(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
+					busy = LAYING_EGG
+					src.visible_message(SPAN_NOTICE("\The [src] begins to lay an egg."))
+					stop_automated_movement = 1
+					spawn(50)
+						if(busy == LAYING_EGG)
+							if(!(locate(/obj/effect/roach/roach_egg) in get_turf(src)))
+								new /obj/effect/roach/roach_egg(loc, src)
+								fed--
+								update_openspace()
 							busy = 0
 							stop_automated_movement = 0
 		else
@@ -87,3 +107,4 @@
 
 #undef MOVING_TO_TARGET
 #undef EATING_TARGET
+#undef LAYING_EGG
