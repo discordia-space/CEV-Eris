@@ -19057,12 +19057,12 @@
 /area/eris/maintenance/section1deck4central)
 "aSp" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/launcher/grenade/lenar,
-/obj/item/weapon/gun/launcher/grenade/lenar,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
+/obj/item/weapon/gun/projectile/grenade/lenar,
+/obj/item/weapon/gun/projectile/grenade/lenar,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSq" = (
@@ -19351,6 +19351,9 @@
 /obj/item/weapon/grenade/frag,
 /obj/item/weapon/grenade/frag,
 /obj/item/weapon/grenade/frag,
+/obj/item/weapon/storage/box/baton_rounds,
+/obj/item/weapon/storage/box/baton_rounds,
+/obj/item/weapon/storage/box/frag_grenade_shells,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSX" = (
