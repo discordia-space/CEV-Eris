@@ -11,16 +11,16 @@
 
 /mob/living/carbon/superior_animal/roach/Life()
 	. = ..()
-	if(!stat) // if is conscious
+	if(!stat) // if the roach is conscious
 		if(stance == HOSTILE_STANCE_IDLE)
-			//30% chance to stop wandering and do something
-			if(!busy && prob(30))
+			// 5% chance that the roach is hungry
+			if(!busy && prob(5))
 				//first, check for potential food nearby
 				var/list/eatTargets = new
 				for(var/mob/living/C in getObjectsInView())
 					if(C.stat != CONSCIOUS)
 						eatTargets += C
-				
+
 				eat_target = safepick(nearestObjectsInList(eatTargets,src,1))
 				if (eat_target)
 					busy = MOVING_TO_TARGET
@@ -35,7 +35,10 @@
 					stop_automated_movement = 1
 					src.visible_message(SPAN_NOTICE("\The [src] begins to eat \the [eat_target]."))
 					walk(src,0)
-					spawn(250)
+					spawn(3000) // how much time it takes to it a corpse, in tenths of second 
+					    // Set to 5 minutes to let the crew enough time to get the corpse
+						// Several roaches eating at the same time do not speed up the process
+						// If disturbed the roach has to start back from 0
 						if(busy == EATING_TARGET)
 							if(eat_target && istype(eat_target.loc, /turf) && get_dist(src,eat_target) <= 1)
 								var/turf/targetTurf = eat_target.loc
@@ -46,7 +49,10 @@
 
 									if (istype(M, /mob/living/carbon/human)) // Eat only humans
 										var/mob/living/carbon/human/H = M
-										
+
+										if (!H.icon) // Another roach has already finished eating this human
+											break
+
 										// Process Cruciform
 										var/obj/item/weapon/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform, FALSE)
 										if (CI)
