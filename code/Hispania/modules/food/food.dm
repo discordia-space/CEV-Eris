@@ -5,7 +5,6 @@
 	icon = 'icons/hispania/obj/food/food.dmi'
 	icon_state = "drake_ribs"
 	filling_color = "#EC3924"
-	bitesize = 5
 	w_class = ITEM_SIZE_HUGE
 
 	preloaded_reagents = list("protein" = 6)
