@@ -16,7 +16,6 @@
 	spawn_nothing_percentage = 60
 
 
-
 /obj/random/junkfood
 	name = "random junkfood"
 	icon_state = "food-red"
@@ -45,8 +44,10 @@
 	icon_state = "food-red"
 
 /obj/random/pizza/item_to_spawn()
-	for(var/pizza in subtypesof(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza))
-		return pizza
+	return pickweight(list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita = 1,
+				/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza = 1,
+				/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 1,
+				/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 1))
 
 /obj/random/pizza/low_chance
 	name = "low chance pizza"
@@ -59,8 +60,18 @@
 	icon_state = "food-red"
 
 /obj/random/soda/item_to_spawn()
-	for(var/soda in subtypesof(/obj/item/weapon/reagent_containers/food/drinks/cans))
-		return soda
+	return pickweight(list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_lime = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/tonic = 1,
+				/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater = 1))
 
 /obj/random/soda/low_chance
 	name = "low chance soda"
