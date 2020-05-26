@@ -18,7 +18,7 @@
 				//first, check for potential food nearby
 				var/list/eatTargets = new
 				for(var/mob/living/C in getObjectsInView())
-					if(C.stat != CONSCIOUS)
+					if(C.stat == DEAD)
 						eatTargets += C
 
 				eat_target = safepick(nearestObjectsInList(eatTargets,src,1))
@@ -44,7 +44,7 @@
 								var/turf/targetTurf = eat_target.loc
 
 								for(var/mob/living/M in targetTurf)
-									if((M.stat == CONSCIOUS)) // Don't try to eat someone that is alive
+									if((M.stat != DEAD)) // Don't try to eat someone that is alive
 										continue
 
 									if (istype(M, /mob/living/carbon/human)) // Eat only humans
