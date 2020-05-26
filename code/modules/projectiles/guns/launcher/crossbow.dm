@@ -62,7 +62,7 @@
 	var/tension = 0                         // Current draw on the bow.
 	var/max_tension = 5                     // Highest possible tension.
 	var/release_speed = 5                   // Speed per unit of tension.
-	var/obj/item/weapon/cell/large/cell = null    // Used for firing superheated rods.
+	var/obj/item/weapon/cell/large/cell    // Used for firing superheated rods.
 	var/current_user                        // Used to check if the crossbow has changed hands since being drawn.
 	var/draw_time = 20							// How long it takes to increase the draw on the bow by one "tension"
 
@@ -148,7 +148,7 @@
 			var/obj/item/stack/rods/R = I
 			if (R.use(1))
 				bolt = new /obj/item/weapon/arrow/rod(src)
-				bolt.fingerprintslast = src.fingerprintslast
+				bolt.fingerprintslast = fingerprintslast
 				bolt.loc = src
 				update_icon()
 				user.visible_message("[user] jams [bolt] into [src].","You jam [bolt] into [src].")
@@ -179,7 +179,7 @@
 
 /obj/item/weapon/gun/launcher/crossbow/proc/superheat_rod(var/mob/user)
 	if(!user || !cell || !bolt) return
-	if(cell.charge < 500) return
+	if(!cell.check_charge(500)) return
 	if(bolt.throwforce >= 15) return
 	if(!istype(bolt,/obj/item/weapon/arrow/rod)) return
 
@@ -340,7 +340,7 @@
 			return
 		stored_matter += 20
 		qdel(W)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
 		update_icon()
 		return
@@ -351,7 +351,7 @@
 			return
 		stored_matter += 5
 		qdel(A)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>Flashforged bolt reclaimed. The RXD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
 		update_icon()
 		return

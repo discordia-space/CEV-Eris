@@ -3,7 +3,6 @@
 	desc = "Can hold various things."
 	icon = 'icons/inventory/belt/icon.dmi'
 	icon_state = "utility"
-	item_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
@@ -12,6 +11,11 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/show_above_suit = 0
+
+/obj/item/weapon/storage/belt/Initialize()
+	. = ..()
+	if (!item_state)
+		item_state = icon_state
 
 /obj/item/weapon/storage/belt/verb/toggle_layer()
 	set name = "Switch Belt Layer"
@@ -33,7 +37,6 @@
 	name = "tool belt"
 	desc = "Can hold various tools."
 	icon_state = "utility"
-	item_state = "utility"
 	can_hold = list(
 		/obj/item/weapon/tool,
 		/obj/item/device/lightreplacer,
@@ -110,13 +113,11 @@
 	name = "EMT utility belt"
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
-	item_state = "emsbelt"
 
-/obj/item/weapon/storage/belt/security
+/obj/item/weapon/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
-	icon_state = "security"
-	item_state = "security"
+	icon_state = "tactical"
 	can_hold = list(
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
@@ -146,7 +147,11 @@
 		/obj/item/taperoll
 	)
 
-/obj/item/weapon/storage/belt/security/neotheology
+/obj/item/weapon/storage/belt/tactical/ironhammer
+	name = "ironhammer tactical belt"
+	icon_state = "tactical_ironhammer"
+
+/obj/item/weapon/storage/belt/tactical/neotheology
 	name = "neotheologian tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"

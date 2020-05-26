@@ -1,82 +1,30 @@
-/obj/effect/statclick/perk
-	var/datum/perk/target_perk
-
-/obj/effect/statclick/perk/Initialize(_, datum/perk/perk)
-	target_perk = perk
-	return ..(_, perk.name, perk)
-
-/obj/effect/statclick/perk/update()
-	name = target_perk.name
-	desc = target_perk.desc
-	icon = target_perk.icon
-	icon_state = target_perk.icon_state + (target_perk.is_active() ? "-on" : "-off")
-
-/obj/effect/statclick/perk/Click()
-	target_perk.on_click()
-
+/**
+  * The root perk datum. All perks inherit properties from this one.
+  *
+  * A perk is basically a talent that livings may have. This talent could be something like damage reduction, or some other passive benefit.
+  * Some jobs have perks that are assigned to the human during role assignment.
+  * Perks can be assigned or removed. To handle this, use the mob stats datum, with the helper procs addPerk, removePerk and getPerk.
+  * The static effects are given in assign, and removed in remove.
+  * Perks are stored in a list within a stat_holder datum.
+  */
 /datum/perk
 	var/name = "Perk"
 	var/desc = ""
-	var/icon
+	var/icon = 'icons/effects/perks.dmi'
 	var/icon_state = ""
-	var/datum/stat_holder/holder
-	var/active = TRUE
-	var/toggleable = FALSE
-	var/obj/effect/statclick/perk/statclick
-
-/datum/perk/proc/update_stat()
-	statclick.update()
-
-/datum/perk/New()
-	..()
-	statclick = new(null, src)
+	var/mob/living/carbon/human/holder
 
 /datum/perk/Destroy()
-	holder?.perk_stat -= statclick
-	holder?.perks -= src
-	qdel(statclick)
-	. = ..()
+	holder = null
+	return ..()
 
-/datum/perk/proc/on_click()
-	if(toggleable)
-		toggle(usr)
+/// Proc called when the perk is assigned to a human. Should be the first thing to be called.
+/datum/perk/proc/assign(mob/living/carbon/human/H)
+	SHOULD_CALL_PARENT(TRUE)
+	holder = H
 
-/datum/perk/proc/toggle()
-	if(is_active() && deactivate(holder))
-		to_chat(usr, "You deactivate [src]")
-	else if(activate(holder))
-		to_chat(usr, "You activate [src]")
-
-/datum/perk/proc/teach(datum/stat_holder/S)
-	if(S.getPerk(type))
-		return
-	holder = S
-	holder.perks += src
-	holder.perk_stat += statclick
-	update_stat()
-	return TRUE
-
+/// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()
-	on_remove()
+	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
-/datum/perk/proc/on_remove()
-	if(is_active())
-		deactivate()
-
-/datum/perk/proc/activate()
-	if(is_active())
-		return FALSE
-	active = TRUE
-	update_stat()
-	return TRUE
-
-/datum/perk/proc/deactivate()
-	if(!is_active())
-		return FALSE
-	active = FALSE
-	update_stat()
-	return TRUE
-
-/datum/perk/proc/is_active()
-	return active

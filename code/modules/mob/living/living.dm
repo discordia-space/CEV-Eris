@@ -825,7 +825,7 @@ default behaviour is:
 
 	//Some mobs may need to create their stats datum farther up
 	if (!stats)
-		stats = new /datum/stat_holder
+		stats = new /datum/stat_holder(src)
 
 	generate_static_overlay()
 	for(var/mob/observer/eye/angel/A in GLOB.player_list)

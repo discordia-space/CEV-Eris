@@ -21,7 +21,8 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	armor_penetration = ARMOR_PEN_DEEP
 	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_DANGEROUS
+	force_wielded = WEAPON_FORCE_ROBUST
+	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)

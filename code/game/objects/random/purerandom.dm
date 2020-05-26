@@ -21,7 +21,7 @@
 				/obj/item/device/scanner/health = 2,
 				/obj/item/weapon/storage/belt/utility/full = 6,
 				/obj/item/weapon/storage/belt/medical = 6,
-				/obj/item/weapon/storage/belt/security = 6,
+				/obj/item/weapon/storage/belt/tactical = 6,
 				/obj/item/weapon/tool/pickaxe = 3,
 				/obj/item/weapon/pen = 3,
 				/obj/item/weapon/storage/box/donkpockets = 3,

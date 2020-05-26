@@ -43,6 +43,7 @@
 /obj/item/weapon/robot_module/blitzshell
 	networks = list()
 	health = 35
+	hide_on_manifest = TRUE
 
 /obj/item/weapon/robot_module/blitzshell/New()
 	//modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src) //Deemed too strong

@@ -3343,9 +3343,9 @@
 /area/shuttle/mercenary)
 "jB" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
+/obj/item/weapon/storage/belt/tactical,
+/obj/item/weapon/storage/belt/tactical,
+/obj/item/weapon/storage/belt/tactical,
 /obj/item/weapon/storage/pouch/large_generic,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
