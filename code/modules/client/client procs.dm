@@ -277,6 +277,10 @@
 
 
 /client/proc/register_in_db()
+	// Prevents the crash if the DB isn't connected.
+	if(!dbcon.IsConnected())
+		return
+	
 	registration_date = src.get_registration_date()
 	src.get_country()
 	src.get_byond_age() // Get days since byond join
@@ -384,7 +388,7 @@
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 	
-	if(text2num(id) < 0 && dbcon.IsConnected())
+	if(text2num(id) < 0)
 		src.register_in_db()
 
 #undef UPLOAD_LIMIT
