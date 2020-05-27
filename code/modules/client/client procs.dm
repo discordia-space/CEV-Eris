@@ -216,6 +216,7 @@
 	// Return data:
 	// Success: "2017-07-28"
 	// Fail: null
+
 	var/http[] = world.Export("http://byond.com/members/[src.ckey]?format=text")
 	if(http)
 		var/F = file2text(http["CONTENT"])
@@ -299,7 +300,7 @@
 		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[dateSQL]')")
 		if(query_datediff.Execute() && query_datediff.NextRow())
 			src.first_seen_days_ago = text2num(query_datediff.item[1])
-
+	
 	if(config.paranoia_logging && isnum(src.first_seen_days_ago) && src.first_seen_days_ago == 0)
 		log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
 	return src.first_seen_days_ago
@@ -322,38 +323,36 @@
 		return
 
 	establish_db_connection()
-	if(!dbcon.IsConnected())
-		//No database exists to interact with. Continuing would cause a crash.
-		return
-	// Get existing player from DB
-	var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
-	if(!query.Execute())
-		log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
+	if(dbcon.IsConnected())
+		// Get existing player from DB
+		var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
+		if(!query.Execute())
+			log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
+		
+		// Not their first time here
+		else if(query.NextRow())
+			// client already registered so we fetch all needed data
+			query = dbcon.NewQuery("SELECT id, registered, first_seen FROM players WHERE id = [query.item[1]]")
+			query.Execute()
+			if(query.NextRow())
+				src.id = query.item[1]
+				src.registration_date = query.item[2]
+				src.first_seen = query.item[3]
+				src.get_country()
 
-	// Not their first time here
-	else if(query.NextRow())
-		// client already registered so we fetch all needed data
-		query = dbcon.NewQuery("SELECT id, registered, first_seen FROM players WHERE id = [query.item[1]]")
-		query.Execute()
-		if(query.NextRow())
-			src.id = query.item[1]
-			src.registration_date = query.item[2]
-			src.first_seen = query.item[3]
-			src.get_country()
-
-			//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
-			var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
-
-			if(!query_update.Execute())
-				log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
-
-	//Panic bunker - player not in DB, so they get kicked
-	else if(config.panic_bunker && !holder && !deadmin_holder)
-		log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
-		message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-		to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
-		qdel(src)
-		return 0
+				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
+				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
+				
+				if(!query_update.Execute())
+					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
+		
+		//Panic bunker - player not in DB, so they get kicked
+		else if(config.panic_bunker && !holder && !deadmin_holder)
+			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
+			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
+			qdel(src)
+			return 0
 
 	src.get_byond_age() // Get days since byond join
 	src.get_player_age() // Get days since first seen
@@ -384,7 +383,8 @@
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
-	if(text2num(id) < 0)
+	
+	if(text2num(id) < 0 && dbcon.IsConnected())
 		src.register_in_db()
 
 #undef UPLOAD_LIMIT
