@@ -123,7 +123,7 @@
 
 	if(!config.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
-		del(src)
+		qdel(src)
 		return
 
 	// Change the way they should download resources.
@@ -277,6 +277,10 @@
 
 
 /client/proc/register_in_db()
+	// Prevents the crash if the DB isn't connected.
+	if(!dbcon.IsConnected())
+		return
+	
 	registration_date = src.get_registration_date()
 	src.get_country()
 	src.get_byond_age() // Get days since byond join
@@ -351,7 +355,7 @@
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
 			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
-			del(src)
+			qdel(src)
 			return 0
 
 	src.get_byond_age() // Get days since byond join
@@ -375,11 +379,11 @@
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
 					to_chat(src, "Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
-					del(src)
+					qdel(src)
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
 					to_chat(src, "Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you think this is in error, contact an administrator out of game.")
-					del(src)
+					qdel(src)
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
