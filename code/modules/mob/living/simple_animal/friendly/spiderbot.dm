@@ -200,7 +200,7 @@
 	if(camera)
 		camera.status = 0
 
-	if (held_item): // if the spiderbot is holding an item
+	if (held_item) // if the spiderbot is holding an item
 		held_item.loc = src.loc
 		held_item = null
 
