@@ -134,6 +134,13 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids)
 	)
 
+	//HOLOMAP
+	var/list/holomap_smoosh // List of lists of zlevels to smoosh into single icons
+	var/list/holomap_offset_x = list()
+	var/list/holomap_offset_y = list()
+	var/list/holomap_legend_x = list()
+	var/list/holomap_legend_y = list()
+
 /datum/maps_data/proc/character_save_path(var/slot)
 	return "/[path]/character[slot]"
 

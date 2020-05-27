@@ -22,6 +22,7 @@ var/list/global_huds
 	var/obj/screen/thermal
 	var/obj/screen/meson
 	var/obj/screen/science
+	var/obj/screen/holomap
 
 /datum/global_hud/New()
 	//420erryday psychedellic colours screen overlay for when you are high

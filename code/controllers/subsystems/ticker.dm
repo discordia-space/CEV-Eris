@@ -73,7 +73,8 @@ SUBSYSTEM_DEF(ticker)
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
-		global_hud.science)
+		global_hud.science,
+		global_hud.holomap)
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)

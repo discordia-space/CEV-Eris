@@ -210,6 +210,7 @@
 /area/eris/hallway
 	sound_env = LARGE_ENCLOSED
 	icon_state = "erisgreen"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
 
 /area/eris/hallway/main/section1
 	name = "First Section Hallway"
@@ -267,6 +268,7 @@
 /area/eris/command
 	name = "\improper Command"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 /area/eris/command/bridge
 	name = "\improper Bridge"
@@ -373,6 +375,7 @@
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
 /area/eris/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
@@ -539,6 +542,7 @@
 	name = "\improper Engineering"
 	icon_state = "engineering"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/eris/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -691,6 +695,7 @@
 	name = "\improper Medical"
 	icon_state = "erisgreen"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/eris/medical/medbay
 	name = "\improper Medbay"
@@ -847,6 +852,7 @@
 	name = "Security"
 	icon_state = "security"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/eris/security/main
 	name = "\improper Security Office"
@@ -982,6 +988,7 @@
 	name = "\improper Merchants"
 	icon_state = "quart"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_CARGO
 
 /area/eris/quartermaster/office
 	name = "\improper Cargo Office"
@@ -1016,6 +1023,7 @@
 
 /area/eris/rnd
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/eris/rnd/research
 	name = "\improper Research and Development"
