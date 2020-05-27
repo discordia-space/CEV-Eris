@@ -2,8 +2,6 @@
 ** Holomap vars and procs on /area
 */
 
-/area
-	var/holomap_color // Color of this area on station holomap
 
 /area/rnd
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
