@@ -76,7 +76,7 @@
 // This seems to do the drawing thing, but draws only the areas, having nothing to do with the tiles.
 // Leshana: I'm guessing this map will get overlayed on top of the base map at runtime? We'll see.
 // Wait, seems we actually blend the area map on top of it right now! Huh.
-/datum/controller/subsystem/holomaps/proc/generateStationMinimap(var/zLevel)
+/datum/controller/subsystem/holomaps/proc/generateStationMinimap(zLevel)
 	// Save these values now to avoid a bazillion array lookups
 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)

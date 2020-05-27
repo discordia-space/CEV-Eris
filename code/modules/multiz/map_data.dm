@@ -1,46 +1,46 @@
 var/datum/maps_data/maps_data = new
 
-/proc/isStationLevel(var/level)
+/proc/isStationLevel(level)
 	return level in maps_data.station_levels
 
-/proc/isNotStationLevel(var/level)
+/proc/isNotStationLevel(level)
 	return !isStationLevel(level)
 
-/proc/isOnStationLevel(var/atom/A)
+/proc/isOnStationLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isStationLevel(T.z)
 
-/proc/isPlayerLevel(var/level)
+/proc/isPlayerLevel(level)
 	return level in maps_data.player_levels
 
-/proc/isOnPlayerLevel(var/atom/A)
+/proc/isOnPlayerLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isPlayerLevel(T.z)
 
-/proc/isContactLevel(var/level)
+/proc/isContactLevel(level)
 	return level in maps_data.player_levels
 
-/proc/isOnContactLevel(var/atom/A)
+/proc/isOnContactLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isContactLevel(T.z)
 
-/proc/isAdminLevel(var/level)
+/proc/isAdminLevel(level)
 	return level in maps_data.admin_levels
 
-/proc/isNotAdminLevel(var/level)
+/proc/isNotAdminLevel(level)
 	return !isAdminLevel(level)
 
 /proc/isOnAdminLevel(var/atom/A)
 	var/turf/T = get_turf(A)
 	return T && isAdminLevel(T.z)
 
-/proc/get_level_name(var/level)
+/proc/get_level_name(level)
 	return (maps_data.names.len >= level && maps_data.names[level]) || level
 
 /proc/max_default_z_level()
 	return maps_data.all_levels.len
 
-/proc/is_on_same_plane_or_station(var/z1, var/z2)
+/proc/is_on_same_plane_or_station(z1, z2)
 	if(z1 == z2)
 		return TRUE
 	if(isStationLevel(z1) && isStationLevel(z2))
@@ -141,23 +141,23 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 
-/datum/maps_data/proc/character_save_path(var/slot)
+/datum/maps_data/proc/character_save_path(slot)
 	return "/[path]/character[slot]"
 
-/datum/maps_data/proc/character_load_path(var/savefile/S, var/slot)
+/datum/maps_data/proc/character_load_path(savefile/S, slot)
 	var/original_cd = S.cd
 	S.cd = "/"
 	. = private_use_legacy_saves(S, slot) ? "/character[slot]" : "/[path]/character[slot]"
 	S.cd = original_cd // Attempting to make this call as side-effect free as possible
 
-/datum/maps_data/proc/private_use_legacy_saves(var/savefile/S, var/slot)
+/datum/maps_data/proc/private_use_legacy_saves(savefile/S, slot)
 	if(!S.dir.Find(path)) // If we cannot find the map path folder, load the legacy save
 		return TRUE
 	S.cd = "/[path]" // Finally, if we cannot find the character slot in the map path folder, load the legacy save
 	return !S.dir.Find("character[slot]")
 
 
-/datum/maps_data/proc/registrate(var/obj/map_data/MD)
+/datum/maps_data/proc/registrate(obj/map_data/MD)
 	var/level = MD.z_level
 	if(level in all_levels)
 		WARNING("[level] is already in all_levels list!")
@@ -206,7 +206,14 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/original_level = -1
 	var/height = -1
 
-/proc/add_z_level(var/level, var/original, var/height)
+	// Holomaps
+	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	var/holomap_legend_x = 96	// x position of the holomap legend for this z
+	var/holomap_legend_y = 96	// y position of the holomap legend for this z
+
+
+/proc/add_z_level(level, original, height)
 	var/datum/level_data/ldata = new
 	ldata.level = level
 	ldata.original_level = original
@@ -219,6 +226,17 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		if(z_levels[level] == null)
 			z_levels[level] = ldata
 
+	// Holomaps
+	// Auto-center the map if needed (Guess based on maxx/maxy)
+	if (ldata.holomap_offset_x < 0)
+		ldata.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
+	if (ldata.holomap_offset_x < 0)
+		ldata.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
+	// Assign them to the map lists
+	LIST_NUMERIC_SET(maps_data.holomap_offset_x, level, ldata.holomap_offset_x)
+	LIST_NUMERIC_SET(maps_data.holomap_offset_y, level, ldata.holomap_offset_y)
+	LIST_NUMERIC_SET(maps_data.holomap_legend_x, level, ldata.holomap_legend_x)
+	LIST_NUMERIC_SET(maps_data.holomap_legend_y, level, ldata.holomap_legend_y)
 
 /obj/map_data
 	name = "Map data"
