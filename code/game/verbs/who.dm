@@ -15,18 +15,19 @@
 				entry += " - Ready as [C.prefs.real_name]"
 			else
 				entry += " - Playing as [C.mob.real_name]"
-			switch(C.mob.stat)
-				if(UNCONSCIOUS)
-					entry += " - <font color='darkgray'><b>Unconscious</b></font>"
-				if(DEAD)
-					if(isghost(C.mob))
-						var/mob/observer/ghost/O = C.mob
-						if(O.started_as_observer)
-							entry += " - <font color='gray'>Observing</font>"
+			if (C.mob) // check if the client has a mob component otherwise we cannot read null.stat
+				switch(C.mob.stat)
+					if(UNCONSCIOUS)
+						entry += " - <font color='darkgray'><b>Unconscious</b></font>"
+					if(DEAD)
+						if(isghost(C.mob))
+							var/mob/observer/ghost/O = C.mob
+							if(O.started_as_observer)
+								entry += " - <font color='gray'>Observing</font>"
+							else
+								entry += " - <font color='black'><b>DEAD</b></font>"
 						else
 							entry += " - <font color='black'><b>DEAD</b></font>"
-					else
-						entry += " - <font color='black'><b>DEAD</b></font>"
 
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
