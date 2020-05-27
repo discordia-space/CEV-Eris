@@ -3,7 +3,7 @@
 */
 
 /area
-	var/holomap_color = null // Color of this area on station holomap
+	var/holomap_color // Color of this area on station holomap
 
 /area/rnd
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE

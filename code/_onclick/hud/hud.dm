@@ -43,11 +43,9 @@ var/list/global_huds
 	// Why do they work this way? I don't know really, that is how /vg designed them, but since they DO
 	// work this way, we can take advantage of their immutability by making them part of
 	// the global_hud (something we have and /vg doesn't) instead of an instance per mob.
-	holomap = new /obj/screen()
+	holomap = new /obj/screen/fullscreen()
 	holomap.name = "holomap"
 	holomap.icon = null
-	holomap.screen_loc = ui_holomap
-	holomap.mouse_opacity = 0
 
 	//that nasty looking dither you  get when you're short-sighted
 	vimpaired = newlist(
