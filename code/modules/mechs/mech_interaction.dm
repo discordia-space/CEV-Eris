@@ -10,9 +10,13 @@
 				return 0
 	else . = ..()
 
+/mob/living/exosuit/proc/arms_action_delay()
+	return arms ? arms.action_delay : 15
+
 /mob/living/exosuit/setClickCooldown(timeout)
 	. = ..()
-	for(var/mob/p in pilots) p.setClickCooldown(timeout)
+	for(var/mob/p in pilots)
+		p.setClickCooldown(timeout)
 
 /mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
 	if(!user || incapacitated() || user.incapacitated())
@@ -42,9 +46,17 @@
 		to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
 		setClickCooldown(15)
 		return
-	var/obj/item/weapon/cell/c = get_cell()
-	if(!c.checked_use(arms.power_use * CELLRATE))
+
+	var/obj/item/weapon/cell/cell = get_cell()
+	if(!cell)
+		to_chat(user, SPAN_WARNING("Error: Power cell missing."))
+		setClickCooldown(3)
+		return
+
+	if(!cell.checked_use(arms.power_use * CELLRATE))
 		to_chat(user, SPAN_WARNING("Error: Power levels insufficient."))
+		setClickCooldown(3)
+		return
 
 	// User is not necessarily the exosuit, or the same person, so update intent.
 	if(user != src)
@@ -52,7 +64,8 @@
 		targeted_organ = user.targeted_organ
 	// You may attack the target with your exosuit FIST if you're malfunctioning.
 	var/failed = FALSE
-	var/prob_fail = rand(0, 5)
+	var/prob_fail = rand(0, 5) // TODO: make this actually count skill values
+
 	if(prob(prob_fail))
 		to_chat(user, SPAN_DANGER("Your incompetence leads you to target the wrong thing with the exosuit!"))
 		failed = TRUE
@@ -60,74 +73,78 @@
 		to_chat(user, SPAN_DANGER("The wiring sparks as you attempt to control the exosuit!"))
 		failed = TRUE
 
-	if(!failed)
-		if(selected_system)
-			if(selected_system == A)
-				selected_system.attack_self(user)
-				setClickCooldown(5)
-				return
-
-			// Mounted non-exosuit systems have some hacky loc juggling
-			// to make sure that they work.
-			var/system_moved = FALSE
-			var/obj/item/temp_system
-			var/obj/item/mech_equipment/ME
-			if(istype(selected_system, /obj/item/mech_equipment))
-				ME = selected_system
-				temp_system = ME.get_effective_obj()
-				if(temp_system in ME)
-					system_moved = 1
-					temp_system.forceMove(src)
-			else
-				temp_system = selected_system
-
-			// Slip up and attack yourself maybe.
-			failed = FALSE
-			if(prob(prob_fail))
-				to_chat(user, SPAN_DANGER("You artlessly shove the exosuit controls the wrong way!"))
-				failed = TRUE
-			else if(emp_damage>EMP_MOVE_DISRUPT && prob(10))
-				failed = TRUE
-
-			if(failed)
-				var/list/other_atoms = orange(1, A)
-				A = null
-				while(LAZYLEN(other_atoms))
-					var/atom/picked = pick_n_take(other_atoms)
-					if(istype(picked) && picked.simulated)
-						A = picked
-						break
-				if(!A)
-					A = src
-				adj = A.Adjacent(src)
-
-			var/resolved
-
-			if(adj) resolved = A.attackby(temp_system, src)
-			if(!resolved && A && temp_system)
-				var/mob/ruser = src
-				if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
-					ruser = user
-				temp_system.afterattack(A,ruser,adj,params)
-			if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
-				log_attack("[user] used [temp_system] targetting [A]")
-			//Mech equipment subtypes can add further click delays
-			var/extra_delay = 0
-			if(ME != null)
-				ME = selected_system
-				extra_delay = ME.equipment_delay
-			setClickCooldown(arms ? arms.action_delay + extra_delay : 15 + extra_delay)
-			if(system_moved)
-				temp_system.forceMove(selected_system)
+	if(!failed && selected_system)
+		if(selected_system == A)
+			selected_system.attack_self(user)
+			setClickCooldown(5)
 			return
+
+		// Mounted non-exosuit systems have some hacky loc juggling
+		// to make sure that they work.
+		var/system_moved = FALSE
+		var/obj/item/temp_system
+		var/obj/item/mech_equipment/ME
+		if(istype(selected_system, /obj/item/mech_equipment))
+			ME = selected_system
+			temp_system = ME.get_effective_obj()
+			if(temp_system in ME)
+				system_moved = TRUE
+				temp_system.forceMove(src)
+		else
+			temp_system = selected_system
+
+		// Slip up and attack yourself maybe.
+		failed = FALSE
+		if(prob(prob_fail))
+			to_chat(user, SPAN_DANGER("You artlessly shove the exosuit controls the wrong way!"))
+			failed = TRUE
+		else if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
+			failed = TRUE
+
+		if(failed)
+			var/list/other_atoms = orange(1, A)
+			A = null
+			while(LAZYLEN(other_atoms))
+				var/atom/picked = pick_n_take(other_atoms)
+				if(istype(picked) && picked.simulated)
+					A = picked
+					break
+			if(!A)
+				A = src
+			adj = A.Adjacent(src)
+
+		var/resolved
+		if(adj)
+			resolved = A.attackby(temp_system, src)
+
+		if(!resolved && A && temp_system)
+			var/mob/ruser = src
+			if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
+				ruser = user
+			temp_system.afterattack(A,ruser,adj,params)
+		if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
+			log_attack("[user] used [temp_system] targetting [A]")
+
+		// Mech equipment subtypes can add further click delays
+		var/extra_delay = 0
+		if(ME != null)
+			ME = selected_system
+			extra_delay = ME.equipment_delay
+		setClickCooldown(arms_action_delay() + extra_delay)
+
+		// If hacky loc juggling was performed, move the system back where it belongs
+		if(system_moved)
+			temp_system.forceMove(selected_system)
+		return
 
 	if(A == src)
 		setClickCooldown(5)
 		return attack_self(user)
 	else if(adj)
-		setClickCooldown(arms ? arms.action_delay : 15)
-		return A.attack_generic(src, arms.melee_damage, "attacked")
-	return
+		setClickCooldown(arms_action_delay())
+		if(arms)
+			return A.attack_generic(src, arms.melee_damage, "attacked")
+
 
 /mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
 	clear_selected_hardpoint()
@@ -166,11 +183,13 @@
 	return TRUE
 
 /mob/living/exosuit/proc/enter(var/mob/user)
-	if(!check_enter(user)) return
+	if(!check_enter(user))
+		return
 	to_chat(user, SPAN_NOTICE("You start climbing into \the [src]..."))
-	if(!do_after(user, 25)) return
-	if(!check_enter(user)) return
+	if(!do_after(user, 25) || !check_enter(user))
+		return
 	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
+
 	user.drop_r_hand()
 	user.drop_l_hand()
 	user.forceMove(src)
@@ -184,9 +203,10 @@
 
 /mob/living/exosuit/proc/sync_access()
 	access_card.access = saved_access.Copy()
-	if(sync_access) for(var/mob/pilot in pilots)
-		access_card.access |= pilot.GetAccess()
-		to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
+	if(sync_access)
+		for(var/mob/pilot in pilots)
+			access_card.access |= pilot.GetAccess()
+			to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
 
 /mob/living/exosuit/proc/eject(var/mob/user, var/silent)
 	if(!user || !(user in src.contents)) return
@@ -236,8 +256,10 @@
 		var/obj/item/device/kit/paint/P = thing
 		SetName(P.new_name)
 		desc = P.new_desc
-		for(var/obj/item/mech_component/comp in list(arms, legs, head, body)) comp.decal = P.new_icon
-		if(P.new_icon_file) icon = P.new_icon_file
+		for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
+			comp.decal = P.new_icon
+		if(P.new_icon_file)
+			icon = P.new_icon_file
 		update_icon()
 		P.use(1, user)
 		return 1
@@ -249,7 +271,9 @@
 				return
 
 			var/list/parts = list()
-			for(var/hardpoint in hardpoints) if(hardpoints[hardpoint]) parts += hardpoint
+			for(var/hardpoint in hardpoints)
+				if(hardpoints[hardpoint])
+					parts += hardpoint
 			var/to_remove = input("Which component would you like to remove") as null|anything in parts
 
 			if(remove_system(to_remove, user))
@@ -262,7 +286,8 @@
 				return
 
 			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
-			if(!do_after(user, 60) || !maintenance_protocols) return
+			if(!do_after(user, 60) || !maintenance_protocols)
+				return
 			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
 			dismantle()
 			return
