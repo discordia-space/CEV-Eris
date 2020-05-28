@@ -116,28 +116,22 @@
 			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
-			to_chat(user, "<span class='warning'>paso el holomapdatum en el watching client.</span>")
 			flick("station_map_activate", src)
-			to_chat(user, "<span class='warning'>paso el flick.</span>")
 			// Wait, if wea re not modifying the holomap_obj... can't it be part of the global hud?
 			user.client.screen |= global_hud.holomap // TODO - HACK! This should be there permenently really.
-			to_chat(user, "<span class='warning'>paso el global hud.</span>")
 			user.client.images |= holomap_datum.station_map
-			to_chat(user, "<span class='warning'>paso el holomapdatum.</span>")
 			watching_mob = user
 			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
 			update_use_power(ACTIVE_POWER_USE)
-			to_chat(user, "<span class='warning'>entro en el watching segundo nivel.</span>")
 			if(bogus)
 				to_chat(user, "<span class='warning'>The holomap failed to initialize. This area of space cannot be mapped.</span>")
 			else
 				to_chat(user, "<span class='notice'>A hologram of the station appears before your eyes.</span>")
-	to_chat(user, "<span class='warning'>entro en el watching lvl final.</span>")
 
-/obj/machinery/station_map/attack_ai(var/mob/living/silicon/robot/user)
-	return // TODO - Implement for AI ~Leshana
+/obj/machinery/station_map/attack_ai(mob/living/silicon/robot/user)
+	return // TODO
 	// user.station_holomap.toggleHolomap(user, isAI(user))
 
 /obj/machinery/station_map/Process()

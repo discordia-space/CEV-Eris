@@ -4,13 +4,13 @@
 	var/image/cursor
 	var/image/legend
 
-/datum/station_holomap/proc/initialize_holomap(var/turf/T, var/isAI = null, var/mob/user = null, var/reinit = FALSE)
+/datum/station_holomap/proc/initialize_holomap(turf/T, isAI = null, mob/user = null, reinit = FALSE)
 	if(!station_map || reinit)
 		station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[T.z]"])
 	if(!cursor || reinit)
 		cursor = image('icons/holomap_markers.dmi', "you")
 	if(!legend || reinit)
-		legend = image('icons/effects/64x64.dmi', "legend_sc")
+		legend = image('icons/effects/64x64.dmi', "legend")
 
 	if(isAI)
 		T = get_turf(user.client.eye)
