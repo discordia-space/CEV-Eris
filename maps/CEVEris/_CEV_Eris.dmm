@@ -29500,6 +29500,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bnC" = (
@@ -29722,6 +29725,11 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bof" = (
@@ -30703,10 +30711,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bqx" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/station_map{
+	dir = 8;
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bqy" = (
@@ -31529,10 +31538,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bsG" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bsH" = (
@@ -43241,10 +43251,6 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
-"bRy" = (
-/obj/machinery/holoposter,
-/turf/simulated/wall,
-/area/eris/crew_quarters/sleep/cryo)
 "bRz" = (
 /obj/structure/table/rack,
 /obj/random/medical_lowcost,
@@ -108981,6 +108987,13 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"tFA" = (
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/eschangara)
 "tMc" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -129389,7 +129402,7 @@ aaa
 aaa
 aMl
 cgr
-auY
+tFA
 avd
 avg
 avm
@@ -169617,7 +169630,7 @@ bON
 bON
 bPR
 bPR
-bRy
+bPR
 bUv
 bON
 bON
@@ -170223,7 +170236,7 @@ bON
 bON
 bPR
 bPR
-bRy
+bPR
 bUw
 bON
 bON
