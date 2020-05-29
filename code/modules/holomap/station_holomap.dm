@@ -108,11 +108,8 @@
 	// EH JUST HACK IT FOR NOW SO WE CAN SEE HOW IT LOOKS! STOP OBSESSING, ITS BEEN AN HOUR NOW!
 
 	// TODO - This part!!
-	to_chat(user, "<span class='warning'>entro en el watching.</span>")
-	if(isliving(user) && anchored)
-		to_chat(user, "<span class='warning'>entro en el watching user y anchored.</span>")
+	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)))
 		if(user.client)	
-			to_chat(user, "<span class='warning'>entro en el watching client.</span>")
 			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
