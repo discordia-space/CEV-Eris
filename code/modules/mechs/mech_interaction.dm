@@ -256,19 +256,6 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
-	else if(istype(I, /obj/item/device/kit/paint))
-		user.visible_message(SPAN_NOTICE("\The [user] opens \the [I] and spends some quality time customising \the [src]."))
-		var/obj/item/device/kit/paint/P = I
-		SetName(P.new_name)
-		desc = P.new_desc
-		for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
-			comp.decal = P.new_icon
-		if(P.new_icon_file)
-			icon = P.new_icon_file
-		update_icon()
-		P.use(1, user)
-		return 1
-
 	else if(user.a_intent != I_HURT)
 		if(attack_tool(I, user))
 			return
@@ -280,9 +267,9 @@
 			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
 			return TRUE
 
-		var/obj/item/weapon/cell/C = get_cell()
-		if(C)
-			to_chat(user, SPAN_WARNING("\The [src] already has [C] installed!"))
+		var/obj/item/weapon/cell/cell = get_cell()
+		if(cell)
+			to_chat(user, SPAN_WARNING("\The [src] already has [cell] installed!"))
 			return TRUE
 
 		to_chat(user, SPAN_NOTICE("You start inserting [I] into \the [src]."))
@@ -291,35 +278,59 @@
 
 		return TRUE
 
-	if(isMultitool(I))
-		if(hardpoints_locked)
-			to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
-			return TRUE
-
-		var/list/parts = list()
-		for(var/hardpoint in hardpoints)
-			if(hardpoints[hardpoint])
-				parts += hardpoint
-
-		if(!length(parts))
-			to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
-			return TRUE
-
-		var/to_remove = input("Which component would you like to remove") as null|anything in parts
-		remove_system(to_remove, user)
+	else if(istype(I, /obj/item/device/kit/paint))
+		user.visible_message(
+			SPAN_NOTICE("\The [user] opens \the [I] and spends some quality time customising \the [src]."),
+			SPAN_NOTICE("You open \the [I] and spends some quality time customising \the [src].")
+			)
+		var/obj/item/device/kit/paint/P = I
+		SetName(P.new_name)
+		desc = P.new_desc
+		for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
+			comp.decal = P.new_icon
+		if(P.new_icon_file)
+			icon = P.new_icon_file
+		update_icon()
+		P.use(1, user)
 		return TRUE
 
-	else if(isWrench(I))
-		if(!maintenance_protocols)
-			to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+
+	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	switch(tool_type)
+		if(QUALITY_PULSING)
+			if(hardpoints_locked)
+				to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+				return TRUE
+
+			var/list/parts = list()
+			for(var/hardpoint in hardpoints)
+				if(hardpoints[hardpoint])
+					parts += hardpoint
+
+			if(!length(parts))
+				to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+				return TRUE
+
+			var/to_remove = input("Which component would you like to remove") as null|anything in parts
+			remove_system(to_remove, user)
 			return TRUE
 
-		visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
-		if(!do_mob(user, src, 60) || !maintenance_protocols)
+		if(QUALITY_BOLT_TURNING)
+			if(!maintenance_protocols)
+				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+				return TRUE
+
+			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
+			if(!do_mob(user, src, 60) || !maintenance_protocols)
+				return TRUE
+			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
+			dismantle()
 			return TRUE
-		visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
-		dismantle()
-		return TRUE
+
+		if(ABORT_CHECK)
+			return
 
 
 /mob/living/exosuit/MouseDrop(atom/over_object)
