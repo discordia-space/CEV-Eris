@@ -5,10 +5,11 @@
 
 	var/vision_flags = NONE
 	var/see_invisible = 0
+	var/active_sensors = FALSE
+
 	var/obj/item/robot_parts/robot_component/radio/radio
 	var/obj/item/robot_parts/robot_component/camera/camera
 	has_hardpoints = list(HARDPOINT_HEAD)
-	var/active_sensors = 0
 	power_use = 15
 	matter = list(MATERIAL_STEEL = 5)
 
@@ -50,16 +51,18 @@
 /obj/item/mech_component/sensors/ready_to_install()
 	return (radio && camera)
 
-/obj/item/mech_component/sensors/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing,/obj/item/robot_parts/robot_component/radio))
+/obj/item/mech_component/sensors/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/robot_parts/robot_component/radio))
 		if(radio)
 			to_chat(user, SPAN_WARNING("\The [src] already has a radio installed."))
 			return
-		if(install_component(thing, user)) radio = thing
-	else if(istype(thing,/obj/item/robot_parts/robot_component/camera))
+		if(insert_item(I, user))
+			radio = I
+	else if(istype(I, /obj/item/robot_parts/robot_component/camera))
 		if(camera)
 			to_chat(user, SPAN_WARNING("\The [src] already has a camera installed."))
 			return
-		if(install_component(thing, user)) camera = thing
+		if(insert_item(I, user))
+			camera = I
 	else
 		return ..()

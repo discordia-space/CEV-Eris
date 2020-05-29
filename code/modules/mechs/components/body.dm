@@ -41,6 +41,17 @@
 	QDEL_NULL(air_supply)
 	. = ..()
 
+/obj/item/mech_component/chassis/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+	if(A == computer)
+		computer = null
+	if(A == armor_plate)
+		armor_plate = null
+	if(A == air_supply)
+		air_supply = null
+
 /obj/item/mech_component/chassis/update_components()
 	. = ..()
 	cell =        locate() in src
@@ -91,25 +102,25 @@
 	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 	cell = new /obj/item/weapon/cell/large/high(src)
 
-/obj/item/mech_component/chassis/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/robot_parts/robot_component/exosuit_control))
+/obj/item/mech_component/chassis/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/robot_parts/robot_component/exosuit_control))
 		if(computer)
 			to_chat(user, SPAN_WARNING("\The [src] already has a control computer installed."))
 			return
-		if(install_component(thing, user))
-			computer = thing
-	else if(istype(thing, /obj/item/weapon/cell/large))
+		if(insert_item(I, user))
+			computer = I
+	else if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
 			to_chat(user, SPAN_WARNING("\The [src] already has a cell installed."))
 			return
-		if(install_component(thing, user))
-			cell = thing
-	else if(istype(thing, /obj/item/robot_parts/robot_component/armour/exosuit))
+		if(insert_item(I, user))
+			cell = I
+	else if(istype(I, /obj/item/robot_parts/robot_component/armour/exosuit))
 		if(armor_plate)
 			to_chat(user, SPAN_WARNING("\The [src] already has armor installed."))
 			return
-		else if(install_component(thing, user))
-			armor_plate = thing
+		else if(insert_item(I, user))
+			armor_plate = I
 	else
 		return ..()
 

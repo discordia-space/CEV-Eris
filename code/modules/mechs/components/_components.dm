@@ -45,12 +45,6 @@
 /obj/item/mech_component/proc/prebuild()
 	return
 
-/obj/item/mech_component/proc/install_component(obj/item/thing, mob/living/user)
-	if(user.unEquip(thing, src))
-		user.visible_message(SPAN_NOTICE("\The [user] installs \the [thing] in \the [src]."))
-		playsound(user.loc, 'sound/effects/pop.ogg', 50, 0)
-		return 1
-
 /obj/item/mech_component/proc/update_health()
 	total_damage = brute_damage + burn_damage
 	if(total_damage > max_damage) total_damage = max_damage
@@ -88,14 +82,12 @@
 	if(RC.take_damage(brute, burn))
 		qdel(RC)
 
-/obj/item/mech_component/attackby(obj/item/thing, mob/user)
+/obj/item/mech_component/attackby(obj/item/thing, mob/living/user)
 	if(isScrewdriver(thing))
 		if(contents.len)
 			var/obj/item/removed = pick(contents)
-			user.visible_message(SPAN_NOTICE("\The [user] removes \the [removed] from \the [src]."))
-			removed.forceMove(user.loc)
-			playsound(user.loc, 'sound/effects/pop.ogg', 50, 0)
-			update_components()
+			if(eject_item(removed, user))
+				update_components()
 		else
 			to_chat(user, SPAN_WARNING("There is nothing to remove."))
 		return
