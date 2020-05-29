@@ -1,8 +1,9 @@
 /mob/living/exosuit/proc/dismantle()
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-	var/obj/structure/heavy_vehicle_frame/frame = new/obj/structure/heavy_vehicle_frame(get_turf(src))
-	for(var/hardpoint in hardpoints) remove_system(hardpoint, force = 1)
+	var/obj/structure/heavy_vehicle_frame/frame = new /obj/structure/heavy_vehicle_frame(drop_location())
+	for(var/hardpoint in hardpoints)
+		remove_system(hardpoint, force=TRUE)
 	hardpoints.Cut()
 
 	if(arms)
@@ -30,7 +31,7 @@
 
 	qdel(src)
 
-/mob/living/exosuit/proc/forget_module(var/obj/item/mech_equipment/module_to_forget)
+/mob/living/exosuit/proc/forget_module(obj/item/mech_equipment/module_to_forget)
 	//Realistically a module disappearing without being uninstalled is wrong and a bug or adminbus
 	var/target = null
 	for(var/hardpoint in hardpoints)
@@ -54,9 +55,10 @@
 	check_HUD()
 	update_icon()
 
-/mob/living/exosuit/proc/install_system(var/obj/item/system, var/system_hardpoint, var/mob/user)
+/mob/living/exosuit/proc/install_system(obj/item/system, system_hardpoint, mob/user)
 
-	if(hardpoints_locked || hardpoints[system_hardpoint]) return FALSE
+	if(hardpoints_locked || hardpoints[system_hardpoint])
+		return FALSE
 
 	if(user)
 		var/mech_skill = user.stats.getStat(STAT_MEC) < 0 ? 0 : user.stats.getStat(STAT_MEC)
@@ -107,9 +109,9 @@
 
 	return 1
 
-/mob/living/exosuit/proc/remove_system(var/system_hardpoint, var/mob/user, var/force)
-
-	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint]) return 0
+/mob/living/exosuit/proc/remove_system(system_hardpoint, mob/user, force)
+	if((hardpoints_locked && !force) || !hardpoints[system_hardpoint])
+		return 0
 
 	var/obj/item/system = hardpoints[system_hardpoint]
 	if(user)
@@ -139,7 +141,6 @@
 	update_icon()
 
 	if(user)
-		system.forceMove(get_turf(user))
 		user.put_in_hands(system)
 		to_chat(user, SPAN_NOTICE("You remove \the [system] from \the [src]'s [system_hardpoint]."))
 		playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)

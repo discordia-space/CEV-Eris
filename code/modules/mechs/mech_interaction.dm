@@ -234,26 +234,31 @@
 		user.client.perspective = MOB_PERSPECTIVE
 	return 1
 
-/mob/living/exosuit/attackby(var/obj/item/thing, var/mob/user)
+/mob/living/exosuit/attackby(obj/item/I, mob/living/user)
 
-	if(user.a_intent != I_HURT && istype(thing, /obj/item/mech_equipment))
+	if(user.a_intent != I_HURT && istype(I, /obj/item/mech_equipment))
 		if(hardpoints_locked)
 			to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
 			return
 
-		var/obj/item/mech_equipment/realThing = thing
-		if(realThing.owner) return
+		var/obj/item/mech_equipment/realThing = I
+		if(realThing.owner)
+			return
 
 		var/free_hardpoints = list()
-		for(var/hardpoint in hardpoints) if(hardpoints[hardpoint] == null) free_hardpoints += hardpoint
+		for(var/hardpoint in hardpoints)
+			if(hardpoints[hardpoint] == null)
+				free_hardpoints += hardpoint
+
 		var/to_place = input("Where would you like to install it?") as null|anything in (realThing.restricted_hardpoints & free_hardpoints)
-		if(install_system(thing, to_place, user)) return
-		to_chat(user, SPAN_WARNING("\The [src] could not be installed in that hardpoint."))
+		if(install_system(I, to_place, user))
+			return
+		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
-	else if(istype(thing, /obj/item/device/kit/paint))
-		user.visible_message(SPAN_NOTICE("\The [user] opens \the [thing] and spends some quality time customising \the [src]."))
-		var/obj/item/device/kit/paint/P = thing
+	else if(istype(I, /obj/item/device/kit/paint))
+		user.visible_message(SPAN_NOTICE("\The [user] opens \the [I] and spends some quality time customising \the [src]."))
+		var/obj/item/device/kit/paint/P = I
 		SetName(P.new_name)
 		desc = P.new_desc
 		for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
@@ -265,35 +270,82 @@
 		return 1
 
 	else if(user.a_intent != I_HURT)
-		if(isMultitool(thing))
-			if(hardpoints_locked)
-				to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
-				return
-
-			var/list/parts = list()
-			for(var/hardpoint in hardpoints)
-				if(hardpoints[hardpoint])
-					parts += hardpoint
-			var/to_remove = input("Which component would you like to remove") as null|anything in parts
-
-			if(remove_system(to_remove, user))
-				return
-			to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
-			return
-		else if(isWrench(thing))
-			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
-				return
-
-			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
-			if(!do_after(user, 60) || !maintenance_protocols)
-				return
-			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
-			dismantle()
+		if(attack_tool(I, user))
 			return
 	return ..()
 
-/mob/living/exosuit/attack_hand(var/mob/user)
+/mob/living/exosuit/proc/attack_tool(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/weapon/cell))
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+			return TRUE
+
+		var/obj/item/weapon/cell/C = get_cell()
+		if(C)
+			to_chat(user, SPAN_WARNING("\The [src] already has [C] installed!"))
+			return TRUE
+
+		to_chat(user, SPAN_NOTICE("You start inserting [I] into \the [src]."))
+		if(do_mob(user, src, 30) && body.insert_item(I, user))
+			body.cell = I
+
+		return TRUE
+
+	if(isMultitool(I))
+		if(hardpoints_locked)
+			to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+			return TRUE
+
+		var/list/parts = list()
+		for(var/hardpoint in hardpoints)
+			if(hardpoints[hardpoint])
+				parts += hardpoint
+
+		if(!length(parts))
+			to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+			return TRUE
+
+		var/to_remove = input("Which component would you like to remove") as null|anything in parts
+		remove_system(to_remove, user)
+		return TRUE
+
+	else if(isWrench(I))
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+			return TRUE
+
+		visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
+		if(!do_mob(user, src, 60) || !maintenance_protocols)
+			return TRUE
+		visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
+		dismantle()
+		return TRUE
+
+
+/mob/living/exosuit/MouseDrop(atom/over_object)
+	var/mob/living/carbon/human/user = usr
+
+	// Clickdragging, either onto a mob or into inventory hand
+	if(istype(user) && user.Adjacent(src) && (over_object == user || istype(over_object, /obj/screen/inventory/hand)))
+		// Ejecting exosuit power cell
+		var/obj/item/weapon/cell/cell = get_cell()
+		if(cell)
+			if(!maintenance_protocols)
+				to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+				return
+
+			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
+			if(do_mob(user, src, 30) && body.eject_item(cell, user))
+				body.cell = null
+			return
+
+
+
+		return
+
+	return ..()
+
+/mob/living/exosuit/attack_hand(mob/living/user)
 	// Drag the pilot out if possible.
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
@@ -317,10 +369,10 @@
 	update_icon()
 	return
 
-/mob/living/exosuit/proc/attack_self(var/mob/user)
+/mob/living/exosuit/proc/attack_self(mob/user)
 	return visible_message("\The [src] pokes itself.")
 
-/mob/living/exosuit/proc/rename(var/mob/user)
+/mob/living/exosuit/proc/rename(mob/user)
 	if(user != src && !(user in pilots))
 		return
 	var/new_name = sanitize(input("Enter a new exosuit designation.", "Exosuit Name") as text|null, max_length = MAX_NAME_LEN)

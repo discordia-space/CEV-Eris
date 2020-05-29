@@ -32,7 +32,6 @@
 		)
 
 /obj/item/mech_component/chassis/get_cell()
-	update_components()
 	return cell
 
 /obj/item/mech_component/chassis/Destroy()
