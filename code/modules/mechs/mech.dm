@@ -20,7 +20,7 @@
 
 	var/obj/item/device/radio/exosuit/radio
 
-	var/wreckage_path = /obj/structure/mech_wreckage
+	var/wreckage_path = /obj/structure/exosuit_wreckage
 	var/mech_turn_sound = 'sound/mechs/mechturn.ogg'
 	var/mech_step_sound = 'sound/mechs/mechstep.ogg'
 
