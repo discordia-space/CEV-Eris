@@ -32,19 +32,11 @@
 #define HOLOMAP_LEGEND_X(zLevel) ((maps_data.holomap_legend_x.len >= zLevel) ? maps_data.holomap_legend_x[zLevel] : 96)
 #define HOLOMAP_LEGEND_Y(zLevel) ((maps_data.holomap_legend_y.len >= zLevel) ? maps_data.holomap_legend_y[zLevel] : 96)
 
-// VG stuff we probably won't use
-// #define HOLOMAP_FILTER_DEATHSQUAD				1
-// #define HOLOMAP_FILTER_ERT						2
-// #define HOLOMAP_FILTER_NUKEOPS					4
-// #define HOLOMAP_FILTER_ELITESYNDICATE			8
-// #define HOLOMAP_FILTER_VOX						16
-// #define HOLOMAP_FILTER_STATIONMAP				32
-// #define HOLOMAP_FILTER_STATIONMAP_STRATEGIC		64//features markers over the captain's office, the armory, the SMES
-
-// #define HOLOMAP_MARKER_SMES				"smes"
-// #define HOLOMAP_MARKER_DISK				"diskspawn"
-// #define HOLOMAP_MARKER_SKIPJACK			"skipjack"
-// #define HOLOMAP_MARKER_SYNDISHUTTLE		"syndishuttle"
+// For making the 5-in-1  Eris holomap, we calculate some offsets
+#define ERIS_MAP_SIZE 135 // Width and height of compiled in ERIS z levels.
+#define ERIS_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
+#define ERIS_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*ERIS_MAP_SIZE) - ERIS_HOLOMAP_CENTER_GUTTER) / 3)
+#define ERIS_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*ERIS_MAP_SIZE)) / 10)
 
 #define HOLOMAP_EXTRA_STATIONMAP			"stationmapformatted"
 #define HOLOMAP_EXTRA_STATIONMAPAREAS		"stationareas"

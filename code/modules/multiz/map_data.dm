@@ -76,12 +76,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	else
 		to_chat(mob, "This isn't asteroid level")
 
-// For making the 6-in-1 holomap, we calculate some offsets
-#define ERIS_MAP_SIZE 135 // Width and height of compiled in ERIS z levels.
-#define ERIS_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
-#define ERIS_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*ERIS_MAP_SIZE) - ERIS_HOLOMAP_CENTER_GUTTER) / 3)
-#define ERIS_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*ERIS_MAP_SIZE)) / 10)
-
 /datum/maps_data
 	var/list/all_levels        = new
 	var/list/station_levels    = new // Z-levels the station exists on
@@ -197,9 +191,29 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	if(MD.is_sealed)
 		sealed_levels += level
-
+	//holomaps
 	if(MD.holomap_smoosh)
 		holomap_smoosh = MD.holomap_smoosh
+
+	if(MD.is_station_level)
+		if(ISODD(level))
+			MD.holomap_offset_x = MD.holomap_legend_y - ERIS_HOLOMAP_CENTER_GUTTER - ERIS_MAP_SIZE
+			MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*((level-1)/2)
+		else
+			MD.holomap_offset_x = MD.holomap_legend_y + ERIS_HOLOMAP_CENTER_GUTTER
+			MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*(level/2 - 0.5)
+
+	// Auto-center the map if needed (Guess based on maxx/maxy)
+	if (MD.holomap_offset_x < 0)
+		MD.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
+	if (MD.holomap_offset_x < 0)
+		MD.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
+	// Assign them to the map lists
+
+	LIST_NUMERIC_SET(holomap_offset_x, level, MD.holomap_offset_x)
+	LIST_NUMERIC_SET(holomap_offset_y, level, MD.holomap_offset_y)
+	LIST_NUMERIC_SET(holomap_legend_x, level, MD.holomap_legend_x)
+	LIST_NUMERIC_SET(holomap_legend_y, level, MD.holomap_legend_y)
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
@@ -215,12 +229,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/original_level = -1
 	var/height = -1
 
-	// Holomaps
-	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
-	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
-	var/holomap_legend_x = 200	// x position of the holomap legend for this z
-	var/holomap_legend_y = 200	// y position of the holomap legend for this z
-
 /proc/add_z_level(level, original, height)
 	var/datum/level_data/ldata = new
 	ldata.level = level
@@ -234,25 +242,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		if(z_levels[level] == null)
 			z_levels[level] = ldata
 
-	if(isStationLevel(level))
-		if(ISODD(level))
-			ldata.holomap_offset_x = ldata.holomap_legend_y - ERIS_HOLOMAP_CENTER_GUTTER - ERIS_MAP_SIZE
-			ldata.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*((level-1)/2)
-		else
-			ldata.holomap_offset_x = ldata.holomap_legend_y + ERIS_HOLOMAP_CENTER_GUTTER
-			ldata.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*(level/2 - 0.5)
 
-	// Holomaps
-	// Auto-center the map if needed (Guess based on maxx/maxy)
-	if (ldata.holomap_offset_x < 0)
-		ldata.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
-	if (ldata.holomap_offset_x < 0)
-		ldata.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
-	// Assign them to the map lists
-	LIST_NUMERIC_SET(maps_data.holomap_offset_x, level, ldata.holomap_offset_x)
-	LIST_NUMERIC_SET(maps_data.holomap_offset_y, level, ldata.holomap_offset_y)
-	LIST_NUMERIC_SET(maps_data.holomap_legend_x, level, ldata.holomap_legend_x)
-	LIST_NUMERIC_SET(maps_data.holomap_legend_y, level, ldata.holomap_legend_y)
 
 /obj/map_data
 	name = "Map data"
@@ -273,6 +263,11 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
+	// Holomaps
+	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	var/holomap_legend_x = 96	// x position of the holomap legend for this z
+	var/holomap_legend_y = 96	// y position of the holomap legend for this z
 	var/list/holomap_smoosh
 
 // If the height is more than 1, we mark all contained levels as connected.
@@ -303,6 +298,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	height = 5
 	holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
 	holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	holomap_legend_x = 200	// x position of the holomap legend for this z
+	holomap_legend_y = 200	// y position of the holomap legend for this z
 	holomap_smoosh = list(list(1,2,3,4,5))
 
 /obj/map_data/admin
