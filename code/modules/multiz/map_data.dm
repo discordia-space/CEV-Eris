@@ -77,10 +77,10 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		to_chat(mob, "This isn't asteroid level")
 
 // For making the 6-in-1 holomap, we calculate some offsets
-#define ERIS_MAP_SIZE 140 // Width and height of compiled in ERIS z levels.
+#define ERIS_MAP_SIZE 135 // Width and height of compiled in ERIS z levels.
 #define ERIS_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
-#define ERIS_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*ERIS_MAP_SIZE) - ERIS_HOLOMAP_CENTER_GUTTER) / 2)
-#define ERIS_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*ERIS_MAP_SIZE)) / 2)
+#define ERIS_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*ERIS_MAP_SIZE) - ERIS_HOLOMAP_CENTER_GUTTER) / 3)
+#define ERIS_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*ERIS_MAP_SIZE)) / 10)
 
 /datum/maps_data
 	var/list/all_levels        = new
@@ -198,6 +198,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	if(MD.is_sealed)
 		sealed_levels += level
 
+	if(MD.holomap_smoosh)
+		holomap_smoosh = MD.holomap_smoosh
+
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
 		world.maxz++
@@ -215,9 +218,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	// Holomaps
 	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
 	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
-	var/holomap_legend_x = 96	// x position of the holomap legend for this z
-	var/holomap_legend_y = 96	// y position of the holomap legend for this z
-
+	var/holomap_legend_x = 200	// x position of the holomap legend for this z
+	var/holomap_legend_y = 200	// y position of the holomap legend for this z
 
 /proc/add_z_level(level, original, height)
 	var/datum/level_data/ldata = new
@@ -231,12 +233,13 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	else
 		if(z_levels[level] == null)
 			z_levels[level] = ldata
+
 	if(isStationLevel(level))
 		if(ISODD(level))
-			ldata.holomap_offset_x = ERIS_HOLOMAP_MARGIN_X
+			ldata.holomap_offset_x = ldata.holomap_legend_y - ERIS_HOLOMAP_CENTER_GUTTER - ERIS_MAP_SIZE
 			ldata.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*((level-1)/2)
 		else
-			ldata.holomap_offset_x = HOLOMAP_ICON_SIZE - ERIS_HOLOMAP_MARGIN_X - ERIS_MAP_SIZE
+			ldata.holomap_offset_x = ldata.holomap_legend_y + ERIS_HOLOMAP_CENTER_GUTTER
 			ldata.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*(level/2 - 0.5)
 
 	// Holomaps
@@ -270,6 +273,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
+	var/list/holomap_smoosh
+
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/map_data/New(var/atom/nloc)
 	..()
@@ -296,6 +301,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
 	height = 5
+	holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	holomap_smoosh = list(list(1,2,3,4,5))
 
 /obj/map_data/admin
 	name = "Admin Level"
