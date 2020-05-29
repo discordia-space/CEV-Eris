@@ -26,7 +26,7 @@
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
 	// Build the base map for each z level
-	for (var/z = 1 to world.maxz)
+	for (var/z = 1 to maps_data.station_levels.len)
 		holoMiniMaps |= z // hack, todo fix
 		holoMiniMaps[z] = generateHoloMinimap(z)
 
@@ -46,7 +46,7 @@
 		S.setup_holomap()
 
 // Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.
-/datum/controller/subsystem/holomaps/proc/generateHoloMinimap(var/zLevel = 1)
+/datum/controller/subsystem/holomaps/proc/generateHoloMinimap(zLevel)
 	// Save these values now to avoid a bazillion array lookups
 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
@@ -123,7 +123,7 @@
 	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
 
 // For tiny multi-z maps like the tether, we want to smoosh em together into a nice big one!
-/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(var/list/zlevels)
+/datum/controller/subsystem/holomaps/proc/smooshTetherHolomaps(list/zlevels)
 	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
 	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
 	// For each zlevel in turn, overlay them on top of each other
