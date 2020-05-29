@@ -33,9 +33,10 @@
 		rotate()
 
 /obj/structure/computerframe/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(state >= 4)
-		.[MATERIAL_GLASS] = 2
+		LAZYAPLUS(., MATERIAL_GLASS, 2)
 
 /obj/structure/computerframe/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list()
