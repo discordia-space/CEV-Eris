@@ -1,0 +1,4 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Migration events should be more aggressive when The Jester is selected.
