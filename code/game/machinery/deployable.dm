@@ -74,7 +74,8 @@ for reference:
 	health = maxhealth
 
 /obj/structure/barricade/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(material)
 		LAZYAPLUS(., material.name, 5)
 

@@ -27,9 +27,10 @@
 
 //Used in recycling or deconstruction
 /obj/structure/girder/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(reinf_material)
-		.[reinf_material.name] = 2
+		LAZYAPLUS(., reinf_material.name, 2)
 
 /obj/structure/girder/attack_generic(var/mob/user, var/damage, var/attack_message = "smashes apart", var/wallbreaker)
 	if(!damage || !wallbreaker)

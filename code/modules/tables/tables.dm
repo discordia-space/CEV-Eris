@@ -41,7 +41,8 @@ var/list/custom_table_appearance = list(
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
 /obj/structure/table/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(material)
 		LAZYAPLUS(., material.name, 1)
 	if(reinforced)
