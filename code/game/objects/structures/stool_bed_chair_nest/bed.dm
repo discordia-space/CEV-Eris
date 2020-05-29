@@ -38,7 +38,8 @@
 	return material
 
 /obj/structure/bed/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(material)
 		LAZYAPLUS(., material.name, 5)
 	if(padding_material)
