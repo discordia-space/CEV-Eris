@@ -9,18 +9,13 @@
 	anchored = TRUE
 	density = FALSE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
-	active_power_usage = 500
-	circuit = /obj/item/weapon/circuitboard/station_map
+	idle_power_usage = 80
+	active_power_usage = 3000
 
-	// TODO - Port use_auto_lights from /vg - for now declare here
 	var/use_auto_lights = 1
 	var/light_power_on = 1
 	var/light_range_on = 2
 	light_color = "#64C864"
-
-	//plane = TURF_PLANE
-	//layer = ABOVE_TURF_LAYER
 
 	var/mob/watching_mob
 	var/image/small_station_map
@@ -30,18 +25,34 @@
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
 	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
+	var/buildstage = 2
+	var/wiresexposed = FALSE
 
-/obj/machinery/station_map/New()
+/obj/machinery/station_map/New(turf/loc, ndir, building)
 	..()
 	flags |= ON_BORDER // Why? It doesn't help if its not density
+
+	if(loc)
+		src.loc = loc
+
+	if(building)
+		if(ndir)
+			src.set_dir(ndir)
+		buildstage = 0
+		wiresexposed = TRUE
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
+		pixel_y = (dir & 3)? (dir ==1 ? -32 : 32) : 0
+		update_icon()
+
+	if(!building)
+		if(SSholomaps.holomaps_initialized)
+			setup_holomap()
 
 /obj/machinery/station_map/Initialize()
 	. = ..()
 	holomap_datum = new()
 	original_zLevel = loc.z
 	SSholomaps.station_holomaps += src
-	if(SSholomaps.holomaps_initialized)
-		setup_holomap()
 
 /obj/machinery/station_map/Destroy()
 	SSholomaps.station_holomaps -= src
@@ -108,8 +119,8 @@
 	// EH JUST HACK IT FOR NOW SO WE CAN SEE HOW IT LOOKS! STOP OBSESSING, ITS BEEN AN HOUR NOW!
 
 	// TODO - This part!!
-	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)))
-		if(user.client)	
+	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)) || buildstage < 2 || wiresexposed)
+		if(user.client)
 			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
@@ -132,7 +143,7 @@
 	// user.station_holomap.toggleHolomap(user, isAI(user))
 
 /obj/machinery/station_map/Process()
-	if((stat & (NOPOWER|BROKEN)) || !anchored)
+	if((stat & (NOPOWER|BROKEN)) || !anchored || buildstage < 2 || wiresexposed)
 		stopWatching()
 
 /obj/machinery/station_map/proc/checkPosition()
@@ -168,8 +179,25 @@
 /obj/machinery/station_map/update_icon()
 	if(!holomap_datum)
 		return //Not yet.
-		
+
 	overlays.Cut()
+
+	if(panel_open)
+		overlays += "station_map-panel"
+	else
+		overlays -= "station_map-panel"
+
+	if(wiresexposed)
+		switch(buildstage)
+			if(2)
+				icon_state = "station_map_frame_[buildstage]"
+			if(1)
+				icon_state = "station_map_frame_[buildstage]"
+			if(0)
+				icon_state = "station_map_frame_[buildstage]"
+		set_light(0)
+		return
+
 	if(stat & BROKEN)
 		icon_state = "station_mapb"
 	else if((stat & NOPOWER) || !anchored)
@@ -191,17 +219,88 @@
 		floor_markings.pixel_y = -src.pixel_y
 		overlays += floor_markings
 
-	if(panel_open)
-		overlays += "station_map-panel"
-	else
-		overlays -= "station_map-panel"
-
-/obj/machinery/station_map/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/station_map/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
-	/*if(default_deconstruction_screwdriver(user, W))
-		return
-	if(default_deconstruction_crowbar(user, W))
-		return*/
+
+	var/list/usable_qualities = list()
+	if(buildstage == 2)
+		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+	if(wiresexposed)
+		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+	if(buildstage == 1)
+		usable_qualities.Add(QUALITY_PRYING)
+	if(buildstage == 0)
+		usable_qualities.Add(QUALITY_BOLT_TURNING)
+
+
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	switch(tool_type)
+
+		if(QUALITY_SCREW_DRIVING)
+			if(buildstage == 2)
+				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
+					wiresexposed = !wiresexposed
+					to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
+					update_icon()
+					return
+			return
+
+		if(QUALITY_WIRE_CUTTING)
+			if(wiresexposed && buildstage == 2)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					new/obj/item/stack/cable_coil(get_turf(user), 5)
+					buildstage = 1
+					stopWatching()
+					update_icon()
+					return
+			return
+
+		if(QUALITY_PRYING)
+			if(buildstage == 1)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					to_chat(user, "You pry out the circuit!")
+					var/obj/item/weapon/circuitboard/station_map/circuit = new /obj/item/weapon/circuitboard/station_map()
+					circuit.loc = user.loc
+					buildstage = 0
+					update_icon()
+					return
+			return
+
+		if(QUALITY_BOLT_TURNING)
+			if(buildstage == 0)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					to_chat(user, "You remove the [src] assembly from the wall!")
+					new /obj/item/frame/station_holomap(get_turf(user))
+					qdel(src)
+			return
+
+		if(ABORT_CHECK)
+			return
+
+	switch(buildstage)
+		if(1)
+			if(istype(I, /obj/item/stack/cable_coil))
+				var/obj/item/stack/cable_coil/C = I
+				if(C.use(5))
+					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+					buildstage = 2
+					update_icon()
+					setup_holomap()
+					return
+				else
+					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
+					return
+
+		if(0)
+			if(istype(I, /obj/item/weapon/circuitboard/station_map))
+				to_chat(user, "You insert the circuit!")
+				qdel(I)
+				buildstage = 1
+				update_icon()
+				return
+
 	return ..()
 
 /obj/machinery/station_map/ex_act(severity)
@@ -217,34 +316,15 @@
 			if (prob(25))
 				set_broken()
 
-/*
-/datum/frame/frame_types/station_map
-	name = "Station Map Frame"
-	frame_class = "display"
-	frame_size = 3
-	frame_style = "wall"
-	x_offset = WORLD_ICON_SIZE
-	y_offset = WORLD_ICON_SIZE
-	circuit = /obj/item/weapon/circuitboard/station_map
-	icon_override = 'icons/obj/machines/stationmap.dmi'
-
-/datum/frame/frame_types/station_map/get_icon_state(var/state)
-	return "station_map_frame_[state]"
-
-/obj/structure/frame
-	layer = ABOVE_WINDOW_LAYER
-*/
+/obj/item/frame/station_holomap
+	name = "\improper station holomap frame"
+	desc = "Used for repairing or building stations holomap"
+	icon = 'icons/obj/machines/stationmap.dmi'
+	icon_state = "station_map_frame_0"
+	build_machine_type = /obj/machinery/station_map
 
 /obj/item/weapon/circuitboard/station_map
 	name = T_BOARD("Station Map")
-	board_type = "machine"
-	build_path = /obj/machinery/station_map
+	desc = "Looks like a circuit. Probably is."
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
-	req_components = list()
-
-// TODO
-// //Portable holomaps, currently AI/Borg/MoMMI only
-
-// TODO
-// OHHHH YEAH - STRATEGIC HOLOMAP! NICE!
-// It will need to wait until later tho.
+	w_class = ITEM_SIZE_SMALL

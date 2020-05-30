@@ -18,10 +18,11 @@
 			for(var/level in maps_data.station_levels)
 				deck_name = image(HOLO_DECK_NAME, "deck[level]")
 				if(ISODD(level))
-					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) - ERIS_HOLOMAP_CENTER_GUTTER
+					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) - 2*ERIS_HOLOMAP_CENTER_GUTTER
+					deck_name.pixel_y = HOLOMAP_PIXEL_OFFSET_Y(level) + 2
 				else
-					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) + ERIS_HOLOMAP_CENTER_GUTTER
-				deck_name.pixel_y = HOLOMAP_PIXEL_OFFSET_Y(level)
+					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) + 2*ERIS_HOLOMAP_CENTER_GUTTER
+					deck_name.pixel_y = HOLOMAP_PIXEL_OFFSET_Y(level)
 				station_map.overlays += deck_name
 
 	if(isAI)
