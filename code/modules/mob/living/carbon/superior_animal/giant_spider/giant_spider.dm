@@ -8,8 +8,6 @@
 
 	mob_size = MOB_MEDIUM
 
-	density = 1 //Swarming spiders! They also more robust that way.
-
 	maxHealth = 120
 	health = 120
 
