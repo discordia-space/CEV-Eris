@@ -55,6 +55,17 @@
 	check_HUD()
 	update_icon()
 
+
+/mob/living/exosuit/proc/check_equipment_software(obj/item/mech_equipment/ME)
+	if(length(ME.restricted_software))
+		if(!body?.computer)
+			return FALSE
+
+		return length(ME.restricted_software & body.computer.installed_software)
+
+	return TRUE
+
+
 /mob/living/exosuit/proc/install_system(obj/item/system, system_hardpoint, mob/user)
 
 	if(hardpoints_locked || hardpoints[system_hardpoint])
@@ -73,18 +84,11 @@
 
 	var/obj/item/mech_equipment/ME = system
 	if(istype(ME))
-		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints)) return FALSE
-		if(ME.restricted_software)
-			if(!body || !body.computer)
-				return FALSE
+		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints))
+			return FALSE
+		if(!check_equipment_software(ME))
+			return FALSE
 
-			var/found = FALSE
-			for(var/software in ME.restricted_software)
-				if(software in body.computer.installed_software)
-					found = TRUE
-					break
-			if(!found)
-				return FALSE
 		ME.installed(src)
 		GLOB.destroyed_event.register(system, src, .proc/forget_module)
 

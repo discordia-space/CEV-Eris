@@ -8,7 +8,7 @@
 	var/exosuit_color
 	var/decal
 	var/installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit
-	var/list/installed_software = list()
+	var/list/installed_software_boards = list()
 	var/list/installed_systems = list(
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light
 	)
@@ -23,8 +23,10 @@
 			C.color = exosuit_color
 		C.prebuild()
 
-	if(body && body.computer)
-		body.computer.installed_software = installed_software.Copy()
+	if(body && body.computer && length(installed_software_boards))
+		for(var/board_path in installed_software_boards)
+			new board_path(body.computer)
+		body.computer.update_software()
 
 	if(body && body.armor?.type != installed_armor)
 		QDEL_NULL(body.armor) // Delete old armor, if any

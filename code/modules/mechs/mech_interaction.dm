@@ -58,6 +58,11 @@
 		setClickCooldown(3)
 		return
 
+	if(istype(selected_system, /obj/item/mech_equipment) && !check_equipment_software(selected_system))
+		to_chat(user, SPAN_WARNING("Error: No control software was found for [selected_system]."))
+		setClickCooldown(3)
+		return
+
 	// User is not necessarily the exosuit, or the same person, so update intent.
 	if(user != src)
 		a_intent = user.a_intent
@@ -278,6 +283,18 @@
 
 		return TRUE
 
+	else if(istype(I, /obj/item/weapon/circuitboard/exosystem))
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+			return TRUE
+
+		if(!body.computer)
+			to_chat(user, SPAN_WARNING("The control computer is missing!"))
+			return TRUE
+
+		body.computer.install_software(I, user)
+		return TRUE
+
 	else if(istype(I, /obj/item/device/kit/paint))
 		user.visible_message(
 			SPAN_NOTICE("\The [user] opens \the [I] and spends some quality time customising \the [src]."),
@@ -346,11 +363,19 @@
 				return
 
 			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
-			if(do_mob(user, src, 30) && body.eject_item(cell, user))
+			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
 				body.cell = null
-			return
 
+		// Removing software boards
+		else if(length(body.computer?.contents))
+			if(!maintenance_protocols)
+				to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+				return
 
+			var/obj/item/board = body.computer.contents[length(body.computer.contents)]
+			to_chat(user, SPAN_NOTICE("You start removing [board] from \the [src]."))
+			if(do_mob(user, src, 30) && (board in body.computer) && body.computer?.eject_item(board, user))
+				body.computer.update_software()
 
 		return
 

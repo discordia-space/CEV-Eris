@@ -32,7 +32,7 @@
 	else
 		return ..()
 
-/obj/item/robot_parts/robot_component/exosuit_control/proc/install_software(obj/item/weapon/circuitboard/exosystem/software, mob/user)
+/obj/item/robot_parts/robot_component/exosuit_control/proc/install_software(obj/item/weapon/circuitboard/exosystem/software, mob/living/user)
 	if(installed_software.len >= max_installed_software)
 		if(user)
 			to_chat(user, SPAN_WARNING("\The [src] can only hold [max_installed_software] software modules."))
