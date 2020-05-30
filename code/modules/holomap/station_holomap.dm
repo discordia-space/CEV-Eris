@@ -119,7 +119,7 @@
 	// EH JUST HACK IT FOR NOW SO WE CAN SEE HOW IT LOOKS! STOP OBSESSING, ITS BEEN AN HOUR NOW!
 
 	// TODO - This part!!
-	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)) || buildstage < 2 || wiresexposed)
+	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)) && buildstage == 2 && !wiresexposed)
 		if(user.client)
 			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
