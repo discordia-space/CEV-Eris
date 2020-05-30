@@ -59615,6 +59615,8 @@
 /area/eris/crew_quarters/bar)
 "cCH" = (
 /obj/structure/closet/crate,
+/obj/item/weapon/storage/freezer,
+/obj/item/weapon/storage/freezer,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCI" = (
@@ -80883,10 +80885,7 @@
 /area/eris/engineering/foyer)
 "dyU" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita{
-	desc = "No one knows how long this has been here.";
-	name = "old cold pizza"
-	},
+/obj/item/weapon/storage/freezer/contains_food,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/medical/medbreak)
 "dyV" = (
@@ -101904,6 +101903,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
+/obj/item/weapon/storage/freezer/contains_food,
 /turf/simulated/floor/carpet/oracarpet,
 /area/eris/quartermaster/misc)
 "eub" = (
@@ -108538,6 +108538,13 @@
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"ldj" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/weapon/storage/freezer/contains_food,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/rnd/research)
 "liQ" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -108902,6 +108909,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/bridge)
+"oTl" = (
+/obj/structure/table/glass,
+/obj/item/weapon/storage/freezer/medical,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/eris/medical/surgery)
 "paj" = (
 /obj/structure/sign/faction/moebius{
 	pixel_y = -32
@@ -204458,7 +204470,7 @@ cjK
 cjK
 cnj
 cIx
-cll
+oTl
 coI
 cry
 bUr
@@ -205060,7 +205072,7 @@ bSx
 bSx
 rjC
 cgI
-cll
+oTl
 cIx
 cnj
 cqN
@@ -254767,7 +254779,7 @@ doI
 dcm
 deU
 dlr
-dlK
+ldj
 dlW
 cjr
 dna
