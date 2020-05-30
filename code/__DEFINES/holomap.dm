@@ -6,6 +6,7 @@
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32	// Convert from normal icon size of 32 to whatever insane thing this server is using.
 #define HOLOMAP_ICON 'icons/480x480.dmi' // Icon file to start with when drawing holomaps (to get a 480x480 canvas).
 #define HOLOMAP_ICON_SIZE 480 // Pixel width & height of the holomap icon.  Used for auto-centering etc.
+#define HOLO_DECK_NAME 'icons/effects/holo_decks_name.dmi'
 
 // Holomap colors
 #define HOLOMAP_OBSTACLE	"#FFFFFFDD"	// Color of walls and barriers

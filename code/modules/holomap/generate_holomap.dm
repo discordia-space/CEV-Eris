@@ -101,11 +101,15 @@
 
 	var/icon/map_base = icon(holoMiniMaps[zLevel])
 	map_base.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY)
+	
 
 	// Generate the full sized map by blending the base and areas onto the backdrop
 	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
+	var/icon/deck_name = icon(HOLO_DECK_NAME, "deck")
+	deck_name.Blend(deck_name, ICON_OVERLAY, zLevel)
 	big_map.Blend(map_base, ICON_OVERLAY)
 	big_map.Blend(canvas, ICON_OVERLAY)
+
 	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[zLevel]"] = big_map
 
 	// Generate the "small" map (I presume for putting on wall map things?)
@@ -135,7 +139,7 @@
 		var/icon/z_areas = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"]
 		big_map.Blend(z_areas, ICON_OVERLAY)
 		small_map.Blend(z_areas, ICON_OVERLAY)
-
+	
 	// Then scale and rotate to make the actual small map we will use
 	small_map.Scale(WORLD_ICON_SIZE, WORLD_ICON_SIZE)
 	var/icon/actual_small_map = icon(small_map)

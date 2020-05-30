@@ -197,10 +197,10 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	if(MD.is_station_level)
 		if(ISODD(level))
-			MD.holomap_offset_x = MD.holomap_legend_y - ERIS_HOLOMAP_CENTER_GUTTER - ERIS_MAP_SIZE
+			MD.holomap_offset_x = MD.holomap_legend_x - ERIS_HOLOMAP_CENTER_GUTTER - ERIS_MAP_SIZE
 			MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*((level-1)/2)
 		else
-			MD.holomap_offset_x = MD.holomap_legend_y + ERIS_HOLOMAP_CENTER_GUTTER
+			MD.holomap_offset_x = MD.holomap_legend_x + ERIS_HOLOMAP_CENTER_GUTTER
 			MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*(level/2 - 0.5)
 
 	// Auto-center the map if needed (Guess based on maxx/maxy)

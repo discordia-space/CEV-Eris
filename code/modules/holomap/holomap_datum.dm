@@ -3,6 +3,7 @@
 	var/image/station_map
 	var/image/cursor
 	var/image/legend
+	var/image/deck_name
 
 /datum/station_holomap/proc/initialize_holomap(turf/T, isAI = null, mob/user = null, reinit = FALSE)
 	if(!station_map || reinit)
@@ -11,7 +12,10 @@
 		cursor = image('icons/holomap_markers.dmi', "you")
 	if(!legend || reinit)
 		legend = image('icons/effects/64x64.dmi', "legend")
-
+	if(isStationLevel(T.z))
+		if(!deck_name || reinit)
+			deck_name = image(HOLO_DECK_NAME, "deck")
+				for(var/zlevel in istation
 	if(isAI)
 		T = get_turf(user.client.eye)
 	cursor.pixel_x = (T.x - 6 + HOLOMAP_PIXEL_OFFSET_X(T.z)) * PIXEL_MULTIPLIER
@@ -22,6 +26,10 @@
 
 	station_map.overlays |= cursor
 	station_map.overlays |= legend
+
+	deck_name.pixel_x = HOLOMAP_PIXEL_OFFSET_X(T.z) + ERIS_HOLOMAP_CENTER_GUTTER
+	deck_name.pixel_y = HOLOMAP_PIXEL_OFFSET_Y(T.z)
+	station_map.overlays |= deck_name
 
 /datum/station_holomap/proc/initialize_holomap_bogus()
 	station_map = image('icons/480x480.dmi', "stationmap")
