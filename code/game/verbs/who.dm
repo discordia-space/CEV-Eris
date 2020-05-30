@@ -15,7 +15,7 @@
 				entry += " - Ready as [C.prefs.real_name]"
 			else
 				entry += " - Playing as [C.mob.real_name]"
-			if (C.mob) // check if the client has a mob component otherwise we cannot read null.stat
+			if (!istype(C.mob, /mob/new_player)) // /mob/new_player has no stat (happens if client is a new player)
 				switch(C.mob.stat)
 					if(UNCONSCIOUS)
 						entry += " - <font color='darkgray'><b>Unconscious</b></font>"
