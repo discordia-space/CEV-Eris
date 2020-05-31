@@ -5,6 +5,7 @@
 	circuit = /obj/item/weapon/circuitboard/mechfab
 
 	build_type = MECHFAB
+	queue_max = 12
 	storage_capacity = 240
 	speed = 3
 

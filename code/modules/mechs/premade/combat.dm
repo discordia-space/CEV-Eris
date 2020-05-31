@@ -2,24 +2,31 @@
 	name = "combat exosuit"
 	desc = "A sleek, modern combat exosuit."
 
+	material = MATERIAL_PLASTEEL
+	exosuit_color = COLOR_DARK_GUNMETAL
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
+	installed_software_boards = list(
+		/obj/item/weapon/circuitboard/exosystem/weapons,
+		/obj/item/weapon/circuitboard/exosystem/advweapons
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
+
 /mob/living/exosuit/premade/combat/Initialize()
 	if(!arms)
 		arms = new /obj/item/mech_component/manipulators/combat(src)
-		arms.color = COLOR_DARK_GUNMETAL
 	if(!legs)
 		legs = new /obj/item/mech_component/propulsion/combat(src)
-		legs.color = COLOR_DARK_GUNMETAL
 	if(!head)
 		head = new /obj/item/mech_component/sensors/combat(src)
-		head.color = COLOR_DARK_GUNMETAL
 	if(!body)
 		body = new /obj/item/mech_component/chassis/combat(src)
-		body.color = COLOR_DARK_GUNMETAL
 
 	. = ..()
 
-	install_system(new /obj/item/mech_equipment/mounted_system/taser(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/mounted_system/taser/ion(src), HARDPOINT_RIGHT_HAND)
 
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
@@ -35,11 +42,23 @@
 	name = "sealed exosuit chassis"
 	hatch_descriptor = "canopy"
 	pilot_coverage = 100
-	transparent_cabin =  TRUE
-	exosuit_desc_string = "an armoured chassis"
+	transparent_cabin = TRUE
+	exosuit_desc_string = "an armored chassis"
 	icon_state = "combat_body"
 	power_use = 40
 	matter = list(MATERIAL_STEEL = 45)
+
+/obj/item/mech_component/chassis/combat/Initialize()
+	pilot_positions = list(
+		list(
+			"[NORTH]" = list("x" = 8,  "y" = 8),
+			"[SOUTH]" = list("x" = 8,  "y" = 8),
+			"[EAST]"  = list("x" = 4,  "y" = 8),
+			"[WEST]"  = list("x" = 12, "y" = 8)
+		)
+	)
+
+	. = ..()
 
 /obj/item/mech_component/manipulators/combat
 	name = "combat arms"
@@ -57,24 +76,3 @@
 	move_delay = 3
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
-
-/obj/item/mech_component/sensors/combat/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_WEAPONS, MECH_SOFTWARE_ADVWEAPONS)
-
-/obj/item/mech_component/chassis/combat/prebuild()
-	. = ..()
-	armor = new /obj/item/robot_parts/robot_component/armour/exosuit/combat(src)
-
-/obj/item/mech_component/chassis/combat/Initialize()
-	pilot_positions = list(
-		list(
-			"[NORTH]" = list("x" = 8,  "y" = 8),
-			"[SOUTH]" = list("x" = 8,  "y" = 8),
-			"[EAST]"  = list("x" = 4,  "y" = 8),
-			"[WEST]"  = list("x" = 12, "y" = 8)
-		)
-	)
-	
-	. = ..()
