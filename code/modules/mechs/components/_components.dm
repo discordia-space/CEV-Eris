@@ -82,8 +82,8 @@
 	if(RC.take_damage(brute, burn))
 		qdel(RC)
 
-/obj/item/mech_component/attackby(obj/item/thing, mob/living/user)
-	if(isScrewdriver(thing))
+/obj/item/mech_component/attackby(obj/item/I, mob/living/user)
+	if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO))
 		if(contents.len)
 			var/obj/item/removed = pick(contents)
 			if(eject_item(removed, user))

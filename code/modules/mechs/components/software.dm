@@ -20,12 +20,12 @@
 	if(.)
 		to_chat(user, SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software]."))
 
-/obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/thing, mob/user)
-	if(istype(thing, /obj/item/weapon/circuitboard/exosystem))
-		install_software(thing, user)
+/obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/weapon/circuitboard/exosystem))
+		install_software(I, user)
 		return
 
-	if(isScrewdriver(thing))
+	if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_ZERO))
 		var/result = ..()
 		update_software()
 		return result
