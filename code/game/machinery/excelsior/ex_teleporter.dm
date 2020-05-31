@@ -254,6 +254,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 		return
 
 	visible_message("[user] starts stuffing [affecting] into \the [src].")
+	src.add_fingerprint(user)
 
 	if(!do_after(user, 20, src))
 		return
@@ -276,8 +277,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 			affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
 			affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 			qdel(affecting)
+			return
 	
 	visible_message("\the [src] blinks, refusing [affecting].")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
-	
-	src.add_fingerprint(user)
