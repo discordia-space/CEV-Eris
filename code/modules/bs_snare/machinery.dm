@@ -19,7 +19,7 @@
 
 /obj/machinery/bssilk_hub/attackby(obj/item/I, mob/user)
 	sync_with_parts()
-	if(isMultitool(I))
+	if(QUALITY_PULSING in I.tool_qualities)
 		switch(alert("What you want to configure console ID or snare ID?", "BS Snare Hub ID system", "Snare", "Console"))
 			if("Snare")
 				var/input_id = input("Enter new BS Snare ID", "Snare ID", silk_id)
