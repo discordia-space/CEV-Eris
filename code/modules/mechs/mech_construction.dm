@@ -25,6 +25,7 @@
 
 	frame.is_wired = FRAME_WIRED_ADJUSTED
 	frame.is_reinforced = FRAME_REINFORCED_WELDED
+	frame.material = material
 	frame.set_name = name
 	frame.name = "frame of \the [frame.set_name]"
 	frame.update_icon()
