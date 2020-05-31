@@ -199,10 +199,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 
 /obj/machinery/complant_teleporter/proc/update_nano_data()
 	nanoui_data["menu"] = nanoui_menu
-	if (nanoui_menu == 0)
-		nanoui_menu = 0
-	
-	else if (nanoui_menu == 1)
+	if (nanoui_menu == 1)
 		var/list/available_mandates = list()
 		var/list/completed_mandates = list()
 		for(var/datum/antag_contract/M in GLOB.excel_antag_contracts)
