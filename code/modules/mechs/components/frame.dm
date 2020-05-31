@@ -164,6 +164,7 @@
 		if(QUALITY_PRYING)
 			// Removing reinforcements
 			if(is_reinforced == FRAME_REINFORCED)
+				user.visible_message(SPAN_NOTICE("\The [user] starts prying the reinforcements off \the [src]."))
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC) && is_reinforced == FRAME_REINFORCED)
 					user.visible_message(SPAN_NOTICE("\The [user] pries the reinforcements off \the [src]."))
 					material.place_sheet(drop_location(), 10)
@@ -180,7 +181,7 @@
 			if(!to_remove || !(to_remove in list(arms, body, legs, head)))
 				return
 
-			if(!I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			if(!I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				return
 
 			if(!(to_remove in list(arms, body, legs, head)))

@@ -339,8 +339,12 @@
 				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
 				return TRUE
 
+			if(length(pilots))
+				to_chat(user, SPAN_WARNING("You cannot dismantle \the [src] with a pilot still inside!"))
+				return TRUE
+
 			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
-			if(!do_mob(user, src, 60) || !maintenance_protocols)
+			if(!do_mob(user, src, 60) || !maintenance_protocols || length(pilots))
 				return TRUE
 			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
 			dismantle()
