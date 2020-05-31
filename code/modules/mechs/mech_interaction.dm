@@ -67,14 +67,10 @@
 	if(user != src)
 		a_intent = user.a_intent
 		targeted_organ = user.targeted_organ
+
 	// You may attack the target with your exosuit FIST if you're malfunctioning.
 	var/failed = FALSE
-	var/prob_fail = rand(0, 5) // TODO: make this actually count skill values
-
-	if(prob(prob_fail))
-		to_chat(user, SPAN_DANGER("Your incompetence leads you to target the wrong thing with the exosuit!"))
-		failed = TRUE
-	else if(emp_damage > EMP_ATTACK_DISRUPT && prob(emp_damage*2))
+	if(emp_damage > EMP_ATTACK_DISRUPT && prob(emp_damage*2))
 		to_chat(user, SPAN_DANGER("The wiring sparks as you attempt to control the exosuit!"))
 		failed = TRUE
 
@@ -100,10 +96,7 @@
 
 		// Slip up and attack yourself maybe.
 		failed = FALSE
-		if(prob(prob_fail))
-			to_chat(user, SPAN_DANGER("You artlessly shove the exosuit controls the wrong way!"))
-			failed = TRUE
-		else if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
+		if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
 			failed = TRUE
 
 		if(failed)
