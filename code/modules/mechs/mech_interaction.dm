@@ -213,7 +213,7 @@
 			access_card.access |= pilot.GetAccess()
 			to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
 
-/mob/living/exosuit/proc/eject(var/mob/user, var/silent)
+/mob/living/exosuit/proc/eject(mob/living/user, silent)
 	if(!user || !(user in src.contents)) return
 	if(hatch_closed)
 		if(hatch_locked)
