@@ -1,0 +1,4 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - bugfix: Missing sound for catwalks in space.
