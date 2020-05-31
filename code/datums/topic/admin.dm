@@ -673,6 +673,31 @@
 		if("Cancel")
 			return
 
+/datum/admin_topic/sendbacktolobby
+	keyword = "sendbacktolobby"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/sendbacktolobby/Run(list/input)
+	var/mob/M = locate(input["sendbacktolobby"])
+
+	if(!isobserver(M))
+		to_chat(usr, "<span class='notice'>You can only send ghost players back to the Lobby.</span>")
+		return
+
+	if(!M.client)
+		to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
+		return
+
+	if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
+		return
+
+	log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+	message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] back to the Lobby.")
+
+	var/mob/new_player/NP = new()
+	GLOB.player_list -= M.ckey
+	NP.ckey = M.ckey
+	qdel(M)
 
 /datum/admin_topic/mute
 	keyword = "mute"
