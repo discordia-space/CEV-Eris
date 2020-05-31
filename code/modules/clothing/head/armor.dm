@@ -406,6 +406,10 @@
 /obj/item/clothing/head/armor/altyn/Initialize()
 	. = ..()
 	armor = up ? armor_up : armor_down
+	update_icon()
+
+/obj/item/clothing/head/armor/altyn/update_icon()
+	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 /obj/item/clothing/head/armor/altyn/attack_self()
 	toggle()
@@ -423,18 +427,17 @@
 			body_parts_covered &= ~(EYES|FACE)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = FLASH_PROTECTION_NONE
-			icon_state = "[initial(icon_state)]_up"
 			armor = armor_up
 			to_chat(usr, "You push the [src] up out of your face.")
 		else
 			body_parts_covered |= (EYES|FACE)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = initial(flash_protection)
-			icon_state = initial(icon_state)
 			armor = armor_down
 			to_chat(usr, "You flip the [src] down to protect your face.")
 
-		update_wear_icon()	//so our mob-overlays
+		update_icon()
+		update_wear_icon()	//update our mob overlays
 		usr.update_action_buttons()
 
 
