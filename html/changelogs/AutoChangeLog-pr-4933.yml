@@ -1,0 +1,4 @@
+author: Hyperio
+delete-after: true
+changes:
+  - tweak: Tweak roach and spider behavior with windows
