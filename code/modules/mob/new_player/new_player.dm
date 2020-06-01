@@ -10,11 +10,11 @@
 
 	invisibility = 101
 
-	density = 0
+	density = FALSE
 	stat = DEAD
 	movement_handlers = list()
 
-	anchored = 1	//  don't get pushed around
+	anchored = TRUE	//  don't get pushed around
 /*
 /mob/new_player/New()
 	mob_list += src*/
@@ -48,15 +48,15 @@
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
 		if(dbcon.IsConnected())
-			var/isadmin = 0
+			var/isadmin = FALSE
 			if(src.client && src.client.holder)
-				isadmin = 1
+				isadmin = TRUE
 			// TODO: reimplement database interaction
 			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
 			query.Execute()
-			var/newpoll = 0
+			var/newpoll = FALSE
 			while(query.NextRow())
-				newpoll = 1
+				newpoll = TRUE
 				break
 
 			if(newpoll)
