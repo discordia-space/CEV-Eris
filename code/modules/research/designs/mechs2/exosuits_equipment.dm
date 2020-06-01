@@ -1,21 +1,24 @@
 //MODULES' SOFTWARE
-/datum/design/research/item/exosuit/soft/engineering
+/datum/design/research/circuit/exosuit
+	category = CAT_MECH
+
+/datum/design/research/circuit/exosuit/engineering
 	name = "engineering system control"
 	build_path = /obj/item/weapon/circuitboard/exosystem/engineering
 
-/datum/design/research/item/exosuit/soft/utility
+/datum/design/research/circuit/exosuit/utility
 	name = "utility system control"
 	build_path = /obj/item/weapon/circuitboard/exosystem/utility
 
-/datum/design/research/item/exosuit/soft/medical
+/datum/design/research/circuit/exosuit/medical
 	name = "medical system control"
 	build_path = /obj/item/weapon/circuitboard/exosystem/medical
 
-/datum/design/research/item/exosuit/soft/ballistics
+/datum/design/research/circuit/exosuit/ballistics
 	name = "ballistic weapon control"
 	build_path = /obj/item/weapon/circuitboard/exosystem/weapons
 
-/datum/design/research/item/exosuit/soft/advweapons
+/datum/design/research/circuit/exosuit/advweapons
 	name = "advanced weapon control"
 	build_path = /obj/item/weapon/circuitboard/exosystem/advweapons
 
@@ -65,7 +68,5 @@
 
 //ENGINEERING
 /datum/design/research/item/exosuit/rcd
-	name = "RCD"
-	time = 90
-	materials = list(MATERIAL_STEEL = 30, MATERIAL_PLASMA = 25, MATERIAL_GOLD = 15)
+	name = "mounted RCD"
 	build_path = /obj/item/mech_equipment/mounted_system/rcd

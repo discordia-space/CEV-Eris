@@ -280,7 +280,7 @@
 	// Prevents the crash if the DB isn't connected.
 	if(!dbcon.IsConnected())
 		return
-	
+
 	registration_date = src.get_registration_date()
 	src.get_country()
 	src.get_byond_age() // Get days since byond join
@@ -304,7 +304,7 @@
 		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[dateSQL]')")
 		if(query_datediff.Execute() && query_datediff.NextRow())
 			src.first_seen_days_ago = text2num(query_datediff.item[1])
-	
+
 	if(config.paranoia_logging && isnum(src.first_seen_days_ago) && src.first_seen_days_ago == 0)
 		log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
 	return src.first_seen_days_ago
@@ -332,7 +332,7 @@
 		var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
 		if(!query.Execute())
 			log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
-		
+
 		// Not their first time here
 		else if(query.NextRow())
 			// client already registered so we fetch all needed data
@@ -346,16 +346,16 @@
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 				var/DBQuery/query_update = dbcon.NewQuery("UPDATE players SET last_seen = Now(), ip = '[src.address]', cid = '[src.computer_id]', byond_version = '[src.byond_version]', country = '[src.country_code]' WHERE id = [src.id]")
-				
+
 				if(!query_update.Execute())
 					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
-		
+
 		//Panic bunker - player not in DB, so they get kicked
 		else if(config.panic_bunker && !holder && !deadmin_holder)
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
 			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
-			qdel(src)
+			del(src) // Hard del the client. This terminates the connection.
 			return 0
 
 	src.get_byond_age() // Get days since byond join
@@ -379,15 +379,15 @@
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
 					to_chat(src, "Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
-					qdel(src)
+					del(src) // Hard del the client. This terminates the connection.
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
 					to_chat(src, "Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you think this is in error, contact an administrator out of game.")
-					qdel(src)
+					del(src) // Hard del the client. This terminates the connection.
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
-	
+
 	if(text2num(id) < 0)
 		src.register_in_db()
 

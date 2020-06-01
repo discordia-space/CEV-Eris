@@ -28,7 +28,7 @@
 	data["is_owner"] = owner && (owner == user.mind)
 	data["contracts"] = list()
 
-	for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/item/C in GLOB.various_antag_contracts)
 		if(C.completed || !C.check(src))
 			continue
 		data["contracts"].Add(list(list(
@@ -56,7 +56,7 @@
 		if(!can_launch())
 			return
 
-		for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
+		for(var/datum/antag_contract/item/C in GLOB.various_antag_contracts)
 			if(C.completed)
 				continue
 			C.on_container(src)

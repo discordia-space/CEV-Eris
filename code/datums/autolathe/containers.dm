@@ -45,3 +45,11 @@
 /datum/design/autolathe/container/pill_bottle
 	name = "pill bottle"
 	build_path = /obj/item/weapon/storage/pill_bottle
+
+/datum/design/autolathe/container/freezer
+	name = "portable freezer"
+	build_path = /obj/item/weapon/storage/freezer
+
+/datum/design/autolathe/container/freezer_medical
+	name = "organ freezer"
+	build_path = /obj/item/weapon/storage/freezer/medical

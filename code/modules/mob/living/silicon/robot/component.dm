@@ -254,10 +254,10 @@
 // Spawned when a robot component breaks
 // Has default name/icon/materials, replaced by the component itself when it breaks
 /obj/item/trash/broken_robot_part
-	name = "broken component"
+	name = "broken actuator"
 	desc = "A robot part, broken beyond repair. Can be recycled in an autolathe."
 	icon = 'icons/obj/robot_component.dmi'
-	icon_state = "broken"
+	icon_state = "motor_broken"
 	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/robot_parts/robot_component

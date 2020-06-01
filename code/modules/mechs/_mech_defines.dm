@@ -13,7 +13,7 @@
 #define HARDPOINT_RIGHT_SHOULDER			"right shoulder"
 #define HARDPOINT_HEAD						"head"
 
-// No software required: taser. light, radio.
+// No software required: taser, light.
 #define MECH_SOFTWARE_UTILITY				"utility equipment"				// Plasma torch, clamp, drill.
 #define MECH_SOFTWARE_MEDICAL				"medical support systems"		// Sleeper.
 #define MECH_SOFTWARE_WEAPONS				"standard weapon systems"		// Ballistics and energy weapons.

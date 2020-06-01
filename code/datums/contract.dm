@@ -1,4 +1,5 @@
-GLOBAL_LIST_EMPTY(all_antag_contracts)
+GLOBAL_LIST_EMPTY(various_antag_contracts)	//Contracts from "Various" emloyers, currently used by Traitors, Changelings and Blitzshells
+GLOBAL_LIST_EMPTY(excel_antag_contracts)	//Excelsior contracts
 GLOBAL_LIST_INIT(antag_item_targets,list(
 		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
 		"a hand teleporter" = /obj/item/weapon/hand_tele,
@@ -20,6 +21,28 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
 		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
 	))
+GLOBAL_LIST_INIT(excel_item_targets,list(
+		"a Miller revolver" = /obj/item/weapon/gun/projectile/revolver,
+		"a Consul revolver" = /obj/item/weapon/gun/projectile/revolver/consul,
+		"a Gladstone shotgun" = /obj/item/weapon/gun/projectile/shotgun/pump/gladstone,
+		"a Kammerer shotgun" = /obj/item/weapon/gun/projectile/shotgun/pump,
+		"a Cassad plasma rifle" = /obj/item/weapon/gun/energy/plasma/cassad,
+		"a Spider Rose energy gun" = /obj/item/weapon/gun/energy/gun,
+		"a Molly machine pistol" = /obj/item/weapon/gun/projectile/automatic/molly,
+		"an Atreides sub machine gun" = /obj/item/weapon/gun/projectile/automatic/atreides,
+		"a Straylight sub machine gun" = /obj/item/weapon/gun/projectile/automatic/straylight,
+		"a Sol carbine" = /obj/item/weapon/gun/projectile/automatic/sol,
+		"a Colt handgun" = /obj/item/weapon/gun/projectile/colt,
+		"a Lenar granade launcher" = /datum/design/autolathe/gun/grenade_launcher_lenar,
+		"an RCD" = /obj/item/weapon/rcd,
+		"a cruciform" = /obj/item/weapon/implant/core_implant/cruciform,
+		"the station blueprints" = /obj/item/blueprints,
+		"a hand teleporter" = /obj/item/weapon/hand_tele,
+		"a bluespace Harpoon" = /obj/item/weapon/bluespace_harpoon,
+		"a rocket-powered charge hammer" = /obj/item/weapon/tool/hammer/charge,
+		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
+
+	))
 /datum/antag_contract
 	var/name
 	var/desc
@@ -30,16 +53,16 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 
 /datum/antag_contract/proc/can_place()
 	if(unique)
-		for(var/datum/antag_contract/C in GLOB.all_antag_contracts)
+		for(var/datum/antag_contract/C in GLOB.various_antag_contracts)
 			if(istype(C, type) && !C.completed)
 				return FALSE
 	return !!name
 
 /datum/antag_contract/proc/place()
-	GLOB.all_antag_contracts += src
+	GLOB.various_antag_contracts += src
 
 /datum/antag_contract/proc/remove()
-	GLOB.all_antag_contracts -= src
+	GLOB.various_antag_contracts -= src
 
 // Called on every contract when a mob is despawned - currently, this can only happen when someone cryos
 /datum/antag_contract/proc/on_mob_despawned(datum/mind/M)
@@ -101,7 +124,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 	var/list/candidates = SSticker.minds.Copy()
 
 	// Don't target the same player twice
-	for(var/datum/antag_contract/implant/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/implant/C in GLOB.various_antag_contracts)
 		candidates -= C.target_mind
 
 	while(candidates.len)
@@ -144,7 +167,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 
 /datum/antag_contract/recon/New()
 	var/list/candidates = ship_areas.Copy()
-	for(var/datum/antag_contract/recon/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/recon/C in GLOB.various_antag_contracts)
 		if(C.completed)
 			continue
 		candidates -= C.targets
@@ -193,7 +216,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 /datum/antag_contract/item/assasinate/New()
 	..()
 	var/list/candidates = SSticker.minds.Copy()
-	for(var/datum/antag_contract/item/assasinate/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/item/assasinate/C in GLOB.various_antag_contracts)
 		candidates -= C.target_mind
 	while(candidates.len)
 		target_mind = pick(candidates)
@@ -228,7 +251,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 	..()
 	if(!target_type)
 		var/list/candidates = GLOB.antag_item_targets.Copy()
-		for(var/datum/antag_contract/item/steal/C in GLOB.all_antag_contracts)
+		for(var/datum/antag_contract/item/steal/C in GLOB.various_antag_contracts)
 			candidates.Remove(C.target_desc)
 		if(candidates.len)
 			target_desc = pick(candidates)
@@ -301,7 +324,7 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 /datum/antag_contract/item/file/research/New()
 	..()
 	var/list/candidates = SSresearch.all_designs.Copy()
-	for(var/datum/antag_contract/item/file/research/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/item/file/research/C in GLOB.various_antag_contracts)
 		candidates -= C.targets
 	while(candidates.len && targets.len < 8)
 		var/datum/design/D = pick(candidates)
@@ -321,3 +344,129 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 		if(!D.copy_protected && (D.design in targets))
 			return TRUE
 	return FALSE
+
+// Excelsior contracts
+
+/datum/antag_contract/excel
+
+/datum/antag_contract/excel/place()
+	GLOB.excel_antag_contracts += src
+
+/datum/antag_contract/excel/remove()
+	GLOB.excel_antag_contracts -= src
+
+/datum/antag_contract/excel/complete(user)
+	if(completed)
+		warning("Mandete completed twice: [name] [desc]")
+	completed = TRUE
+
+	if(user)
+		to_chat(user, SPAN_NOTICE("Mandete completed: [name] ([reward] energy)"))
+
+	excelsior_energy += reward
+	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
+		t.update_nano_data()
+	
+/datum/antag_contract/excel/appropriate
+	name = "Appropriate"
+	reward = 400
+	var/target_desc
+	var/target_type
+
+/datum/antag_contract/excel/appropriate/New()
+	..()
+	if(!target_type)
+		var/list/candidates = GLOB.excel_item_targets.Copy()
+		for(var/datum/antag_contract/excel/appropriate/C in GLOB.excel_antag_contracts)
+			candidates.Remove(C.target_desc)
+		if(candidates.len)
+			target_desc = pick(candidates)
+			target_type = candidates[target_desc]
+			desc = "Appropriate [target_desc] by sending it in the teleporter."
+
+/datum/antag_contract/excel/appropriate/can_place()
+	return ..() && target_type
+
+
+// Mandates that target specific crew members
+/datum/antag_contract/excel/targeted  //Base targeted contract is mobilize
+	name = "Moblize"
+	reward = 1200
+	var/datum/mind/target_mind
+	var/cruciform_check = FALSE
+	var/desc_text = "by stuffing them alive in the teleporter" // Text for the end of desc, a bit hacky
+	var/command_bias = 15 //Bonus chance for targeting heads and IH
+
+/datum/antag_contract/excel/targeted/New()
+	..()
+	var/list/candidates = SSticker.minds.Copy()
+	var/targets_command = prob(command_bias)
+	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts)
+		candidates -= M.target_mind
+	
+	while(candidates.len)
+		var/datum/mind/candidate_mind = pick(candidates)
+		candidates -= candidate_mind
+		
+		if(player_is_antag_id(candidate_mind, ROLE_EXCELSIOR_REV))
+			continue
+
+		var/mob/living/carbon/human/H = candidate_mind.current
+		if(!istype(H) || H.stat == DEAD || !isOnStationLevel(H))
+			continue
+		
+		if (targets_command)
+			if(!(candidate_mind.assigned_role in list(JOBS_COMMAND + JOBS_SECURITY)))
+				continue
+		
+		if (cruciform_check)
+			var/cruciform = H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+			if(cruciform)
+				continue
+		
+		target_mind = candidate_mind
+		desc = "[name] [target_mind.current.real_name] [desc_text]"
+		break
+
+/datum/antag_contract/excel/targeted/can_place()
+	return ..() && target_mind
+
+/datum/antag_contract/excel/targeted/on_mob_despawned(datum/mind/M)
+	if(M == target_mind)
+		remove()
+
+//Cheks for theses mandates are in /datum/controller/subsystem/ticker/proc/excel_check()
+/datum/antag_contract/excel/targeted/overthrow  //Base targeted contract is mobilize
+	name = "Overthrow"
+	reward = 1000
+	command_bias = 100 //Also a bit hacky
+	desc_text = "and destabilize the ship by either killing or converting them."
+
+/datum/antag_contract/excel/targeted/liberate
+	name = "Liberate"
+	reward = 800
+	cruciform_check = TRUE
+	desc_text = "by converting them to excelsior."
+
+/datum/antag_contract/excel/propaganda
+	name = "Propaganda"
+	reward = 600
+	var/list/area/targets = list()
+	
+/datum/antag_contract/excel/propaganda/New()
+	var/list/candidates = ship_areas.Copy()
+	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
+		if(M.completed)
+			continue
+		candidates -= M.targets
+	while(candidates.len && targets.len < 4) //3 out of 4 locations needed
+		var/area/target = pick(candidates)
+		if(target.is_maintenance)
+			candidates -= target
+			continue
+		targets += target
+	desc = "Activate propaganda chips in 3 different areas: [english_list(targets, and_text = " or ")] and let them spread the revolution!."
+	..()
+
+/datum/antag_contract/excel/propaganda/can_place()
+	return ..() && targets.len

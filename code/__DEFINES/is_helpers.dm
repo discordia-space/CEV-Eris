@@ -70,16 +70,4 @@
 
 #define istool(A) istype(A, /obj/item/weapon/tool)
 
-#define isWrench(A) istype(A, /obj/item/weapon/tool/wrench)
-
-#define isWelder(A) istype(A, /obj/item/weapon/tool/weldingtool)
-
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)
-
-#define isWirecutter(A) istype(A, /obj/item/weapon/tool/wirecutters)
-
-#define isScrewdriver(A) istype(A, /obj/item/weapon/tool/screwdriver)
-
-#define isMultitool(A) istype(A, /obj/item/weapon/tool/multitool)
-
-#define isCrowbar(A) istype(A, /obj/item/weapon/tool/crowbar)
