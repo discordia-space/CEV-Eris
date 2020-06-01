@@ -1,7 +1,0 @@
-author: TheShown911, TonnyJest
-delete-after: true
-changes:
-  - rscadd: New mandate system for excelsiors
-  - rscdel: Old excelsior objectives
-  - tweak: Excelsior teleporters now share power and maximum power, base cost of materials
-      doubled.
