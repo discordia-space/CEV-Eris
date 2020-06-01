@@ -22,6 +22,7 @@ var/list/global_huds
 	var/obj/screen/thermal
 	var/obj/screen/meson
 	var/obj/screen/science
+	var/obj/screen/holomap
 
 /datum/global_hud/New()
 	//420erryday psychedellic colours screen overlay for when you are high
@@ -35,6 +36,16 @@ var/list/global_huds
 	thermal = new /obj/screen/fullscreen("thermal_hud")
 	meson = new /obj/screen/fullscreen("meson_hud")
 	science = new /obj/screen/fullscreen("science_hud")
+
+	// The holomap screen object is actually totally invisible.
+	// Station maps work by setting it as an images location before sending to client, not
+	// actually changing the icon or icon state of the screen object itself!
+	// Why do they work this way? I don't know really, that is how /vg designed them, but since they DO
+	// work this way, we can take advantage of their immutability by making them part of
+	// the global_hud (something we have and /vg doesn't) instead of an instance per mob.
+	holomap = new /obj/screen/fullscreen()
+	holomap.name = "holomap"
+	holomap.icon = null
 
 	//that nasty looking dither you  get when you're short-sighted
 	vimpaired = newlist(
