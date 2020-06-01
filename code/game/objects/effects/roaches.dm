@@ -9,9 +9,9 @@
 
 /obj/effect/roach/attackby(var/obj/item/I, var/mob/user)
 	if(I.attack_verb.len)
-		visible_message("<span class='warning'>\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]</span>")
+		visible_message(SPAN_WARNING("\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]"))
 	else
-		visible_message("<span class='warning'>\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]</span>")
+		visible_message(SPAN_WARNING("\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]"))
 
 	health -= (I.force / 2.0)
 	healthcheck()
@@ -23,7 +23,7 @@
 
 /obj/effect/roach/proc/healthcheck()
 	if(health <= 0)
-		visible_message("<span class='alert'>[src] is squished!</span>")
+		visible_message(SPAN_WARNING("[src] is squished!"))
 		new /obj/effect/decal/cleanable/roach_egg_remains(loc)
 		qdel(src)
 
@@ -59,7 +59,7 @@
 		var/obj/item/organ/external/O = null
 		if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!
 			O = loc
-			src.visible_message("<span class='warning'>A roachling makes its way out of [O.owner ? "[O.owner]'s [O.name]" : "\the [O]"]!</span>")
+			src.visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))
 			if(O.owner)
 				O.owner.apply_damage(1, BRUTE, O.organ_tag, used_weapon = src)
 			O.implants -= src // Remove from implants and spawn the roachling on the ground
