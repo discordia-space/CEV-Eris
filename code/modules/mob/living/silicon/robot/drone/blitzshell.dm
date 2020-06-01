@@ -54,6 +54,7 @@
 	modules += new /obj/item/weapon/gripper/antag(src) //For picking up item contracts
 	modules += new /obj/item/weapon/reagent_containers/syringe(src) //Blood extraction
 	modules += new /obj/item/device/drone_uplink(src)
+	modules += new /obj/item/weapon/tool/saw/circular(src)
 	//Misc equipment
 	modules += new /obj/item/weapon/card/id/syndicate(src) //This is our access. Scan cards to get better access
 	modules += new /obj/item/device/nanite_container(src) //For self repair. Get more charges via the contract system
