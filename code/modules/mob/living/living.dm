@@ -465,7 +465,7 @@ default behaviour is:
 			qdel(O)
 
 	//Same for contract-based objectives.
-	for(var/datum/antag_contract/contract in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/contract in (GLOB.various_antag_contracts + GLOB.excel_antag_contracts))
 		contract.on_mob_despawned(src.mind)
 
 	if(src.mind)
