@@ -19,7 +19,6 @@
 
 	var/mob/watching_mob
 	var/image/small_station_map
-	var/image/floor_markings
 	var/image/panel
 
 	var/original_zLevel = 1	// zLevel on which the station map was initialized.
@@ -73,9 +72,6 @@
 	holomap_datum.initialize_holomap(T, reinit = TRUE)
 
 	small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
-
-	floor_markings = image('icons/obj/machines/stationmap.dmi', "decal_station_map")
-	floor_markings.dir = src.dir
 
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
@@ -211,13 +207,6 @@
 			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
 			overlays |= small_station_map
 			holomap_datum.initialize_holomap(get_turf(src))
-
-	// Put the little "map" overlay down where it looks nice
-	if(floor_markings)
-		floor_markings.dir = src.dir
-		floor_markings.pixel_x = -src.pixel_x
-		floor_markings.pixel_y = -src.pixel_y
-		overlays += floor_markings
 
 /obj/machinery/station_map/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
