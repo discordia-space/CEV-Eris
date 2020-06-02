@@ -357,11 +357,11 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 /datum/antag_contract/excel/complete(user)
 	if(completed)
-		warning("Mandete completed twice: [name] [desc]")
+		warning("Mandate completed twice: [name] [desc]")
 	completed = TRUE
 
 	if(user)
-		to_chat(user, SPAN_NOTICE("Mandete completed: [name] ([reward] energy)"))
+		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
 
 	excelsior_energy += reward
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 // Mandates that target specific crew members
 /datum/antag_contract/excel/targeted  //Base targeted contract is mobilize
-	name = "Moblize"
+	name = "Mobilize"
 	reward = 1200
 	var/datum/mind/target_mind
 	var/cruciform_check = FALSE
