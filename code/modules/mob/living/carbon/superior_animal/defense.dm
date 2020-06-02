@@ -7,7 +7,9 @@
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
 			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
-			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
+			var/obj/effect/decal/cleanable/blood/blood_effect = new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
+			blood_effect.basecolor = bloodcolor
+			blood_effect.update_icon()
 			qdel(src)
 		else
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
@@ -201,7 +203,9 @@
 		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
-	. = ..(anim,do_gibs)
+	if (do_gibs)
+		gibs(src.loc, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
+	. = ..(anim,FALSE)
 
 /mob/living/carbon/superior_animal/dust(var/anim = icon_dust, var/remains = dust_remains)
 	if (!anim)

@@ -77,6 +77,12 @@
 	var/bad_environment = FALSE //Briefly set true whenever anything in the atmosphere damages this mob
 	//When this is true, mobs will attempt to evacuate via the nearest burrow
 
+	var/busy = 0 // status of the animal, if it is doing a special task (eating, spinning web) we still want it
+	// in HOSTILE_STANCE_IDLE to react to threat but we don't want stop_automated_movement set back to 0 in Life()
+
+	var/fleshcolor = "#666600"
+	var/bloodcolor = "#666600"
+
 /mob/living/carbon/superior_animal/New()
 	..()
 	if(!icon_living)

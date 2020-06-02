@@ -1,22 +1,27 @@
-/mob/living/carbon/human/gib()
+/mob/living/carbon/human/gib(max_range=3, keep_only_robotics=FALSE)
 
 	var/on_turf = istype(loc, /turf)
 
 	for(var/obj/item/organ/I in internal_organs)
-		I.removed()
-		if(on_turf)
-			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+		if (!(keep_only_robotics && !(I.nature == MODIFICATION_SILICON)))
+			I.removed()
+			if(on_turf)
+				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
 	for(var/obj/item/organ/external/E in src.organs)
-		E.droplimb(TRUE, DROPLIMB_EDGE, 1)
-		if(on_turf)
-			E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+		if (!(keep_only_robotics && !(E.nature == MODIFICATION_SILICON)))
+			E.droplimb(TRUE, DROPLIMB_EDGE, 1)
+			if(on_turf)
+				E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
 	sleep(1)
 
-	for(var/obj/item/I in src)
-		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
+	for(var/obj/item/D in src)
+		if (keep_only_robotics && istype(D, /obj/item/organ))
+			continue
+		else
+			drop_from_inventory(D)
+			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.w_class))
 
 	..(species.gibbed_anim)
 	gibs(loc, dna, null, species.flesh_color, species.blood_color)
