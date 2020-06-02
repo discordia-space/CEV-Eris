@@ -1,9 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - rscadd: Roaches will now eat human, spider and roach corpses, leaving only gibs,
-      bones, inventory and prosthetics organs.
-  - rscadd: Fed roaches will now lay roach eggs. Roach eggs grow into roachlings which
-      grow into a random adult roach. If a roachling eats a corpse it evolves into
-      a fuhrer.
-  - tweak: Roaches and spiders now have green-brown blood and gibs
