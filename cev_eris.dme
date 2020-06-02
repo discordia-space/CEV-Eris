@@ -802,6 +802,7 @@
 #include "code\game\objects\items\devices\camera_bug.dm"
 #include "code\game\objects\items\devices\chameleonproj.dm"
 #include "code\game\objects\items\devices\debugger.dm"
+#include "code\game\objects\items\devices\decapitation_device.dm"
 #include "code\game\objects\items\devices\device.dm"
 #include "code\game\objects\items\devices\flash.dm"
 #include "code\game\objects\items\devices\floor_painter.dm"
