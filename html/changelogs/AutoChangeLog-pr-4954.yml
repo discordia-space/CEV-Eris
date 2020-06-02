@@ -1,0 +1,5 @@
+author: DarkLevel
+delete-after: true
+changes:
+  - bugfix: Blitzshell drone can now do blood extraction contracts.
+  - bugfix: Ancient teleporter will teleport exosuits as well.
