@@ -16,6 +16,8 @@
 	var/jacket = list(
 		"Bomber"		=	/obj/item/clothing/suit/storage/toggle/bomber,
 		"Leather"		=	/obj/item/clothing/suit/storage/leather_jacket,
+		"White"			=	/obj/item/clothing/suit/storage/drive_jacket,
+		"Violet"		=	/obj/item/clothing/suit/storage/violet_jacket
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 
@@ -52,4 +54,9 @@
 /datum/gear/suit/cyberpunksleek_long
 	display_name = "sleek modern longcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek_long
+	cost = 2
+
+/datum/gear/suit/bladerunner
+	display_name = "old leather coat"
+	path = /obj/item/clothing/suit/storage/bladerunner
 	cost = 2

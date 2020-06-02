@@ -254,3 +254,32 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/suit/storage/bladerunner
+	name = "leather coat"
+	desc = "Old leather coat. Probably saw things you wouldn't believe"
+	icon_state = "bladerunner_coat"
+	item_state = "bladerunner_coat"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/suit/storage/drive_jacket
+	name = "white jacket"
+	desc = "With warmth of this jacket you feel like you're a real human being."
+	icon_state = "drive_jacket"
+	item_state = "drive_jacket"
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/violet_jacket
+	name = "violet jacket"
+	desc = "Coat that you ride like lightning, and will crash with you like thunder."
+	icon_state = "violet_jacket"
+	item_state = "violet_jacket"
+	body_parts_covered = UPPER_TORSO|ARMS
