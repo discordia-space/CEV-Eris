@@ -49,7 +49,9 @@
 //		decls_repository.get_decl(/decl/hierarchy/skill)
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
-	real_name = random_name(gender,species)
+	real_first_name = random_first_name(gender,species)
+	real_last_name = random_last_name(gender,species)
+	real_name = real_first_name + " " + real_last_name
 	b_type = RANDOM_BLOOD_TYPE
 
 	if(client && !IsGuestKey(client.key))
@@ -150,7 +152,7 @@
 		close_load_dialog(usr)
 	else if(href_list["resetslot"])
 		if(real_name != input("This will reset the current slot. Enter the character's full name to confirm."))
-			return 0
+			return FALSE
 		load_character(SAVE_RESET)
 		sanitize_preferences()
 	else
@@ -165,16 +167,17 @@
 	character.set_species(species)
 
 	if(be_random_name)
-		real_name = random_name(gender,species)
+		real_first_name = random_first_name(gender, species)
+		real_last_name = random_last_name(gender, species)
+		real_name = real_first_name + " " + real_last_name
 
 	if(config.humans_need_surnames)
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
-			real_name += " [pick(GLOB.last_names)]"
-		else if(firstspace == name_length)
-			real_name += "[pick(GLOB.last_names)]"
+		if(!real_last_name)	//we need a surname
+			real_last_name = "[pick(GLOB.last_names)]"
+			real_name += " [real_last_name]"
 	character.fully_replace_character_name(newname = real_name)
+	character.first_name = real_first_name
+	character.last_name = real_last_name
 	character.gender = gender
 	character.age = age
 	character.b_type = b_type
