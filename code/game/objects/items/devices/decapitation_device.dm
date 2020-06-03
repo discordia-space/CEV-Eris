@@ -66,7 +66,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
 
-	if(!do_after(user, 300, M))
+	if(!do_after(user, 150, M))
 		return
 
 	head_to_cut.droplimb(TRUE, DROPLIMB_EDGE)
