@@ -240,6 +240,22 @@
 		return 1
 	return 0
 
+/datum/uplink_item/item/tools/blitz_shotgun
+	name = "Blitzshell electro-shrapnel cannon"
+	desc = "Activates the embedded particle weapon system."
+	item_cost = 30
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_shotgun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/weapon/gun/energy/shrapnel/mounted) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a shrapnel cannon installed."))
+			return 0
+		BS.module.modules += new /obj/item/weapon/gun/energy/shrapnel/mounted(BS.module)
+		return 1
+	return 0
+
 /datum/uplink_item/item/tools/blitz_nanorepair
 	name = "Blitzshell Nanorepair Capsule"
 	desc = "Reload your nanorepair system, gaining extra charges."

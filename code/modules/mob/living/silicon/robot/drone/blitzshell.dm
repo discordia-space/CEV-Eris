@@ -42,7 +42,8 @@
 
 /obj/item/weapon/robot_module/blitzshell
 	networks = list()
-	health = 35
+	health = 90 //Able to take 3-4 bullets
+	speed_factor = 1.2
 	hide_on_manifest = TRUE
 
 /obj/item/weapon/robot_module/blitzshell/New()
@@ -135,7 +136,7 @@
 
 /obj/item/device/drone_uplink/New()
 	..()
-	hidden_uplink = new(src, telecrystals = 0)
+	hidden_uplink = new(src, telecrystals = 25)
 
 /obj/item/device/drone_uplink/attack_self(mob/user)
 	if(hidden_uplink)
