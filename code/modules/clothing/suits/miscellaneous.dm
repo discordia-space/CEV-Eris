@@ -257,7 +257,7 @@
 
 /obj/item/clothing/suit/storage/bladerunner
 	name = "leather coat"
-	desc = "Old leather coat. Probably saw things you wouldn't believe"
+	desc = "An old leather coat. Has probably seen things you wouldn't believe."
 	icon_state = "bladerunner_coat"
 	item_state = "bladerunner_coat"
 	armor = list(
@@ -272,7 +272,7 @@
 
 /obj/item/clothing/suit/storage/drive_jacket
 	name = "white jacket"
-	desc = "With warmth of this jacket you feel like you're a real human being."
+	desc = "With the warmth of this jacket you feel like you're a real human being."
 	icon_state = "drive_jacket"
 	item_state = "drive_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
