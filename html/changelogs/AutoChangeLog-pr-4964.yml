@@ -1,0 +1,5 @@
+author: DarkLevel
+delete-after: true
+changes:
+  - bugfix: Removing useless "return" in bsdm/pernament.
+  - bugfix: Adding check for victim head to objective gripper.
