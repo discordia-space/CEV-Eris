@@ -22,7 +22,8 @@
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
-			stop_automated_movement = 0
+			if (!busy) // if not busy with a special task
+				stop_automated_movement = 0
 			target_mob = findTarget()
 			if (target_mob)
 				stance = HOSTILE_STANCE_ATTACK

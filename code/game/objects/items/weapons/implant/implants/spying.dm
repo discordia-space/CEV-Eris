@@ -26,7 +26,7 @@
 /obj/item/weapon/implant/spying/proc/report()
 	if(!wearer)
 		return
-	for(var/datum/antag_contract/implant/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/implant/C in GLOB.various_antag_contracts)
 		if(C.completed)
 			continue
 		C.check(src)

@@ -69,7 +69,7 @@
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)
 	..()
 	var/list/choices = list(CHOICE_RAREOBJ)
-	if(GLOB.all_antag_contracts.len)
+	if(GLOB.various_antag_contracts.len)
 		choices += CHOICE_TCONTRACT
 	var/datum/stash/stash = pick_n_take_stash_datum()
 	if(stash)
@@ -91,7 +91,7 @@
 			holder.add_language(language)
 			desc += " In particular, you happen to know [language]."
 		if(CHOICE_TCONTRACT)
-			var/datum/antag_contract/A = pick(GLOB.all_antag_contracts)
+			var/datum/antag_contract/A = pick(GLOB.various_antag_contracts)
 			desc += " You feel like you remembered something important."
 			holder.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the station. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
 		if(CHOICE_STASHPAPER)

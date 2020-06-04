@@ -581,8 +581,7 @@
 			to_chat(M, "\red You have been kicked from the server: [reason]")
 		log_admin("[key_name(usr)] booted [key_name(M)].")
 		message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
-		//M.client = null
-		qdel(M.client)
+		del(M.client)
 
 
 /datum/admin_topic/removejobban
@@ -645,7 +644,7 @@
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
-			qdel(M.client)
+			del(M.client)
 			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 		if("No")
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
@@ -669,7 +668,7 @@
 
 			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 
-			qdel(M.client)
+			del(M.client)
 		if("Cancel")
 			return
 

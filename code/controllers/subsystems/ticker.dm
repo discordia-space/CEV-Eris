@@ -73,7 +73,8 @@ SUBSYSTEM_DEF(ticker)
 		global_hud.nvg,
 		global_hud.thermal,
 		global_hud.meson,
-		global_hud.science)
+		global_hud.science,
+		global_hud.holomap)
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
@@ -243,6 +244,8 @@ SUBSYSTEM_DEF(ticker)
 			N.new_player_panel_proc()
 
 		generate_contracts(min(6 + round(minds.len / 5), 12))
+		generate_excel_contracts(min(6 + round(minds.len / 5), 12))
+		excel_check()
 		addtimer(CALLBACK(src, .proc/contract_tick), 15 MINUTES)
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
@@ -368,7 +371,7 @@ SUBSYSTEM_DEF(ticker)
 			SSticker.minds |= player.mind
 
 /datum/controller/subsystem/ticker/proc/generate_contracts(count)
-	var/list/candidates = subtypesof(/datum/antag_contract)
+	var/list/candidates = (subtypesof(/datum/antag_contract) - typesof(/datum/antag_contract/excel))
 	while(count--)
 		while(candidates.len)
 			var/contract_type = pick(candidates)
@@ -382,8 +385,49 @@ SUBSYSTEM_DEF(ticker)
 				candidates -= contract_type
 			break
 
+/datum/controller/subsystem/ticker/proc/generate_excel_contracts(count)
+	var/list/candidates = subtypesof(/datum/antag_contract/excel)
+	while(count--)
+		while(candidates.len)
+			var/contract_type = pick(candidates)
+			var/datum/antag_contract/C = new contract_type
+			if(!C.can_place())
+				candidates -= contract_type
+				qdel(C)
+				continue
+			C.place()
+			if(C.unique)
+				candidates -= contract_type
+			break
+
+/datum/controller/subsystem/ticker/proc/excel_check()
+
+	for(var/datum/antag_contract/excel/targeted/overthrow/M in GLOB.excel_antag_contracts)
+		var/mob/living/carbon/human/H = M.target_mind.current
+		if (H.stat == DEAD || is_excelsior(H))
+			M.complete()
+
+	for(var/datum/antag_contract/excel/targeted/liberate/M in GLOB.excel_antag_contracts)
+		var/mob/living/carbon/human/H = M.target_mind.current
+		if (is_excelsior(H))
+			M.complete()
+
+	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
+		var/list/area/targets = M.targets
+		var/marked_areas = 0
+		if(M.completed)
+			return
+		for (var/obj/item/device/propaganda_chip/C in world)
+			if (C.active)
+				if (get_area(C) in targets)
+					marked_areas += 1
+		if (marked_areas >= 3)
+			M.complete()
+	addtimer(CALLBACK(src, .proc/excel_check), 3 MINUTES)
+
 /datum/controller/subsystem/ticker/proc/contract_tick()
 	generate_contracts(1)
+	generate_excel_contracts(1)
 	addtimer(CALLBACK(src, .proc/contract_tick), 15 MINUTES)
 
 

@@ -186,6 +186,7 @@
 
 /area/eris/maintenance/substation/engineering
 	name = "Engineering Substation"
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/eris/maintenance/substation/section1
 	name = "First Section Substation"
@@ -210,6 +211,7 @@
 /area/eris/hallway
 	sound_env = LARGE_ENCLOSED
 	icon_state = "erisgreen"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
 
 /area/eris/hallway/main/section1
 	name = "First Section Hallway"
@@ -255,10 +257,12 @@
 /area/eris/hallway/side/eschangara
 	name = "Escape Hangar A"
 	icon_state = "erisred"
+	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
 /area/eris/hallway/side/eschangarb
 	name = "Escape Hangar B"
 	icon_state = "erisred"
+	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
 
 
@@ -267,6 +271,7 @@
 /area/eris/command
 	name = "\improper Command"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
 /area/eris/command/bridge
 	name = "\improper Bridge"
@@ -304,6 +309,7 @@
 	name = "\improper Research - MEO's Office"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/eris/command/meo/quarters
 	name = "\improper Research - MEO's Quarters"
@@ -315,6 +321,7 @@
 	name = "\improper Engineering - Exultant Office"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/eris/command/exultant/quarters
 	name = "\improper Engineering - Exultant Quarters"
@@ -326,6 +333,7 @@
 	name = "\improper Medbay - MBO's Office"
 	icon_state = "head_quarters"
 	sound_env = SMALL_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/eris/command/mbo/quarters
 	name = "\improper Medbay - MBO's Quarters"
@@ -338,15 +346,18 @@
 	icon_state = "hammerred"
 	sound_env = SMALL_SOFTFLOOR
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/eris/command/merchant
 	name = "\improper Cargo - Merchant Office"
 	icon_state = "quart"
 	sound_env = SMALL_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_CARGO
 
 /area/eris/command/teleporter
 	name = "\improper Teleporter"
 	icon_state = "teleporter"
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/eris/command/tcommsat
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
@@ -365,14 +376,12 @@
 	icon_state = "courtroom"
 
 
-
 //Crew Quarters
-
-
 /area/eris/crew_quarters
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
 	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
 /area/eris/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
@@ -386,6 +395,7 @@
 /area/eris/crew_quarters/toilet/medbay
 	name = "Medbay Toilet"
 	icon_state = "erisyellow"
+	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/eris/crew_quarters/sleep
 	name = "\improper Dormitories"
@@ -395,6 +405,7 @@
 	name = "\improper Engineering Washroom"
 	icon_state = "toilet"
 	sound_env = SMALL_ENCLOSED
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/eris/crew_quarters/sleep/bedrooms
 	name = "\improper Dormitory Bedroom One"
@@ -498,10 +509,10 @@
 	icon_state = "erisblue"
 
 
-
 /area/eris/neotheology
 	icon_state = "erisgreen"
 	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+	holomap_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
 
 /area/eris/neotheology/chapel
 	name = "\improper Chapel"
@@ -528,17 +539,13 @@
 	name = "Chapel Rituals Room"
 	icon_state = "erisgreen"
 
-
-
-
-
-
 //Engineering
 
 /area/eris/engineering
 	name = "\improper Engineering"
 	icon_state = "engineering"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 
 /area/eris/engineering/gravity_generator
 	name = "Gravity Generator Room"
@@ -583,7 +590,6 @@
 /area/eris/engineering/engine_airlock
 	name = "\improper Engine Room Airlock"
 	icon_state = "engine"
-
 
 /area/eris/engineering/engine_monitoring
 	name = "\improper Engine Monitoring Room"
@@ -684,13 +690,12 @@
 /area/eris/engineering/propulsion/right
 	name = "Right Propulsion Hangar"
 
-
 //MedBay
-
 /area/eris/medical/medbay
 	name = "\improper Medical"
 	icon_state = "erisgreen"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/eris/medical/medbay
 	name = "\improper Medbay"
@@ -847,6 +852,7 @@
 	name = "Security"
 	icon_state = "security"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/eris/security/main
 	name = "\improper Security Office"
@@ -975,13 +981,11 @@
 	is_maintenance = TRUE
 
 
-
-
-
 /area/eris/quartermaster
 	name = "\improper Merchants"
 	icon_state = "quart"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_CARGO
 
 /area/eris/quartermaster/office
 	name = "\improper Cargo Office"
@@ -1009,13 +1013,10 @@
 	name = "\improper Cargo Barracks"
 	icon_state = "erisyellow"
 
-
-
-
 //Research and Development
-
 /area/eris/rnd
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/eris/rnd/research
 	name = "\improper Research and Development"
@@ -1107,11 +1108,7 @@
 	flags = AREA_FLAG_RAD_SHIELDED
 	icon_state = "server"
 
-
-
 //Storage
-
-
 /area/eris/storage/primary
 	name = "Primary Tool Storage"
 	icon_state = "primarystorage"
