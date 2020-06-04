@@ -87,5 +87,3 @@
 			trans = syringe_blitzshell.reagents.trans_to(vial_blitzshell, syringe_blitzshell.reagents.total_volume)
 			to_chat(user ,SPAN_NOTICE("You transfer [trans] units of the solution from [syringe_blitzshell] to [src]"))
 			return handle_item_insertion(vial_blitzshell)
-
-	return handle_item_insertion(W)

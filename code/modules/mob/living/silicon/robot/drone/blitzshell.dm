@@ -79,14 +79,17 @@
 	if(istype(target, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = target
 		if(H.stat == DEAD)
-			var/obj/item/organ/external/E = H.get_organ(BP_HEAD)
-			user.visible_message(SPAN_DANGER("[user] is beginning to rip the [H]'s head off!"),SPAN_DANGER("You are beginning to rip the [H]'s head off."))
-			if(!do_mob(user, H, 16 SECONDS))
-				to_chat(user, SPAN_DANGER("You was interrupted!"))
-				return
-			user.visible_message(SPAN_DANGER("[user] is rip the [H]'s head off!"),SPAN_DANGER("You rip the [H]'s head off."))
-			E.droplimb(TRUE, DROPLIMB_EDGE)
-			grip_item(E, user)
+			if(H.get_organ(BP_HEAD))
+				var/obj/item/organ/external/E = H.get_organ(BP_HEAD)
+				user.visible_message(SPAN_DANGER("[user] is beginning to rip the [H]'s head off!"),SPAN_DANGER("You are beginning to rip the [H]'s head off."))
+				if(!do_mob(user, H, 16 SECONDS))
+					to_chat(user, SPAN_DANGER("You was interrupted!"))
+					return
+				user.visible_message(SPAN_DANGER("[user] is rip the [H]'s head off!"),SPAN_DANGER("You rip the [H]'s head off."))
+				E.droplimb(TRUE, DROPLIMB_EDGE)
+				grip_item(E, user)
+			else
+				to_chat(user, SPAN_DANGER("[H] missing his head!"))
 		else
 			to_chat(user, SPAN_DANGER("You cannot rip someone head while they alive!"))
 
