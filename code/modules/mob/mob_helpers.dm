@@ -239,7 +239,7 @@ proc/slur(phrase)
 						n_letter = text("[n_letter]-[n_letter]")
 		t += n_letter //since the above is ran through for each letter, the text just adds up back to the original word.
 		p++//for each letter p is increased to find where the next letter will be.
-	return jointext(t, null)
+	return sanitize(jointext(t, null))
 
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
