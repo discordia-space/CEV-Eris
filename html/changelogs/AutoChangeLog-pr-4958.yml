@@ -1,6 +1,0 @@
-author: LaMiga
-delete-after: true
-changes:
-  - bugfix: Corrected the AI greeting to clearly state spaceship instead of station.
-  - bugfix: Changed beams from brute to burn for beams weapons of a drone
-  - bugfix: Corrected other references to the ship
