@@ -1,0 +1,4 @@
+author: FreimK
+delete-after: true
+changes:
+  - bugfix: Stammering now can handle '.
