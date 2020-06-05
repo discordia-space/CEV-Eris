@@ -9,6 +9,11 @@
 	if(. && !istype(loc, /turf/space))
 		playsound(src.loc, mech_step_sound, 40, 1)
 
+/mob/living/exosuit/update_plane()
+	. = ..()
+	for(var/mob/M in pilots)
+		M.update_plane()
+
 //Override this and space move once a way to travel vertically is in
 ///mob/living/exosuit/can_ztravel()
 //	if(allow_spacemove()) //Handle here

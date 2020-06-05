@@ -1,68 +1,63 @@
 /mob/living/exosuit/premade/powerloader
-	name = "power loader"
-	desc = "An ancient, but well-liked cargo handling exosuit."
+	name = "APLU \"Ripley\""
+	desc = "An old but well-liked utility exosuit. Once manufactured by Nanotrasen, this design was made omnipresent by data leaks that followed the Fall."
+
+	material = MATERIAL_STEEL
+	exosuit_color = "#ffbc37"
+	installed_software_boards = list(
+		/obj/item/weapon/circuitboard/exosystem/utility,
+		/obj/item/weapon/circuitboard/exosystem/engineering
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/clamp,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
 
 /mob/living/exosuit/premade/powerloader/Initialize()
 	if(!arms)
 		arms = new /obj/item/mech_component/manipulators/powerloader(src)
-		arms.color = "#ffbc37"
 	if(!legs)
 		legs = new /obj/item/mech_component/propulsion/powerloader(src)
-		legs.color = "#ffbc37"
 	if(!head)
 		head = new /obj/item/mech_component/sensors/powerloader(src)
-		head.color = "#ffbc37"
 	if(!body)
 		body = new /obj/item/mech_component/chassis/powerloader(src)
-		body.color = "#ffdc37"
-
-	body.armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 
 	. = ..()
 
-	install_system(new /obj/item/mech_equipment/drill(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/clamp(src), HARDPOINT_RIGHT_HAND)
 
 /obj/item/mech_component/manipulators/powerloader
-	name = "exosuit arms"
-	exosuit_desc_string = "heavy-duty industrial lifters"
+	name = "lifter exosuit arms"
+	exosuit_desc_string = "industrial lifter arms"
 	max_damage = 70
 	power_use = 30
-	desc = "The Xion Industrial Digital Interaction Manifolds allow you poke untold dangers from the relative safety of your cockpit."
+	desc = "Reinforced lifter arms that allow you to poke untold dangers from the relative safety of your cockpit."
 
 /obj/item/mech_component/propulsion/powerloader
-	name = "exosuit legs"
-	exosuit_desc_string = "reinforced hydraulic legs"
-	desc = "Wide and stable but not particularly fast."
+	name = "lifter exosuit legs"
+	exosuit_desc_string = "reinforced lifter legs"
+	desc = "Wide and stable, but not particularly fast."
 	max_damage = 70
 	move_delay = 4
 	power_use = 10
 
 /obj/item/mech_component/sensors/powerloader
-	name = "exosuit sensors"
+	name = "simple exosuit sensors"
 	gender = PLURAL
-	exosuit_desc_string = "simple collision detection sensors"
+	exosuit_desc_string = "simple sensors"
 	desc = "A primitive set of sensors designed to work in tandem with most MKI Eyeball platforms."
 	max_damage = 100
 	power_use = 0
-
-/obj/item/mech_component/sensors/powerloader/prebuild()
-	..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_UTILITY, MECH_SOFTWARE_ENGINEERING)
 
 /obj/item/mech_component/chassis/powerloader
 	name = "open exosuit chassis"
 	hatch_descriptor = "roll cage"
 	pilot_coverage = 40
-	exosuit_desc_string = "an industrial rollcage"
-	desc = "A Xion industrial brand roll cage. Technically OSHA compliant. Technically."
+	exosuit_desc_string = "an industrial roll cage"
+	desc = "An industrial roll cage. Technically compliant with Nanotrasen era safety regulations."
 	max_damage = 100
 	power_use = 0
-
-/obj/item/mech_component/chassis/powerloader/prebuild()
-	. = ..()
-	armor_plate = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(
@@ -83,42 +78,29 @@
 
 /mob/living/exosuit/premade/powerloader/flames_red
 	name = "APLU \"Firestarter\""
-	desc = "An ancient, but well-liked cargo handling exosuit. This one has cool red flames."
+	desc = "An old but well-liked utility exosuit. This one has cool red flames."
 	decal = "flames_red"
 
 /mob/living/exosuit/premade/powerloader/flames_blue
 	name = "APLU \"Burning Chrome\""
-	desc = "An ancient, but well-liked cargo handling exosuit. This one has cool blue flames."
+	desc = "An old but well-liked utility exosuit. This one has cool blue flames."
 	decal = "flames_blue"
 
 
-/mob/living/exosuit/premade/firefighter
-	name = "firefighting exosuit"
-	desc = "A mix and match of industrial parts designed to withstand fires."
+/mob/living/exosuit/premade/powerloader/firefighter
+	name = "APLU \"Firefighter\""
+	desc = "A mix and match of industrial parts designed to withstand heavy fires."
 
-/mob/living/exosuit/premade/firefighter/New()
-	if(!arms)
-		arms = new /obj/item/mech_component/manipulators/powerloader(src)
-		arms.color = "#385b3c"
-	if(!legs)
-		legs = new /obj/item/mech_component/propulsion/powerloader(src)
-		legs.color = "#385b3c"
-	if(!head)
-		head = new /obj/item/mech_component/sensors/powerloader(src)
-		head.color = "#385b3c"
+	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
+	exosuit_color = "#819a73"
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/extinguisher,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
+
+/mob/living/exosuit/premade/powerloader/firefighter/Initialize()
 	if(!body)
-		body = new /obj/item/mech_component/chassis/heavy(src)
-		body.color = "#385b3c"
+		body = new /obj/item/mech_component/chassis/heavy(src) // Sealed chassis to protect the pilot from fire
 
 	. = ..()
-
-	install_system(new /obj/item/mech_equipment/drill(src), HARDPOINT_LEFT_HAND)
-	install_system(new /obj/item/mech_equipment/mounted_system/extinguisher(src), HARDPOINT_RIGHT_HAND)
-
-
-
-
-/obj/item/mech_component/sensors/firefighter/prebuild()
-	. = ..()
-	software = new(src)
-	software.installed_software = list(MECH_SOFTWARE_UTILITY, MECH_SOFTWARE_ENGINEERING)

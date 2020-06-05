@@ -265,8 +265,11 @@ var/const/enterloopsanity = 100
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
 		sound = footstep_sound("catwalk")
-	else
-		sound =  footstep_sound(flooring.footstep_sound)
+	else if(flooring)
+		sound = footstep_sound(flooring.footstep_sound)
+	else if(initial_flooring)
+		var/decl/flooring/floor = initial_flooring
+		sound = footstep_sound(floor.footstep_sound)
 
 	return sound
 

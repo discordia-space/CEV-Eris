@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 		find_contract()
 
 /obj/item/device/mind_fryer/proc/find_contract()
-	for(var/datum/antag_contract/derail/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/derail/C in GLOB.various_antag_contracts)
 		if(C.completed)
 			continue
 		contract = C

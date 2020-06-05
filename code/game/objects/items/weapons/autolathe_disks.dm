@@ -84,6 +84,7 @@
 		/datum/design/autolathe/container/beaker_large,
 		/datum/design/autolathe/container/pill_bottle,
 		/datum/design/autolathe/container/spray,
+		/datum/design/autolathe/container/freezer,
 		/datum/design/autolathe/misc/cane,
 		/datum/design/autolathe/misc/floor_light,
 		/datum/design/autolathe/misc/tube,
@@ -238,6 +239,7 @@
 		/datum/design/autolathe/container/beaker_large,
 		/datum/design/autolathe/container/pill_bottle,
 		/datum/design/autolathe/container/spray,
+		/datum/design/autolathe/container/freezer_medical,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/container/syringegun_ammo,
 	)
@@ -553,6 +555,7 @@
 		/datum/design/autolathe/device/excelsiormine,				//security
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/device/implanter,					//misc
+		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/clothing/excelsior_armor,
 		/datum/design/autolathe/device/excelbaton,
 	)

@@ -111,13 +111,13 @@
 	#if DM_VERSION >= 512
 	if(byond_version < config.minimum_byond_version || byond_build < config.minimum_byond_build)		//BYOND out of date.
 		to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
-		qdel(src)
+		del(src)
 		return
 
 	if("[byond_version].[byond_build]" in config.forbidden_versions)
 		log_and_message_admins("[ckey] Tried to connect with broken and possibly exploitable BYOND build.")
 		to_chat(src, "You are attempting to connect with a broken and possibly exploitable BYOND build. Please update to the latest version at http://www.byond.com/ before trying again.")
-		qdel(src)
+		del(src)
 		return
 	#endif
 
@@ -277,8 +277,13 @@
 
 
 /client/proc/register_in_db()
+	// Prevents the crash if the DB isn't connected.
+	if(!dbcon.IsConnected())
+		return
+
 	registration_date = src.get_registration_date()
 	src.get_country()
+	src.get_byond_age() // Get days since byond join
 
 	var/DBQuery/query_insert = dbcon.NewQuery("INSERT INTO players (ckey, first_seen, last_seen, registered, ip, cid, rank, byond_version, country) VALUES ('[src.ckey]', Now(), Now(), '[registration_date]', '[sql_sanitize_text(src.address)]', '[sql_sanitize_text(src.computer_id)]', 'player', [src.byond_version], '[src.country_code]')")
 	if(!query_insert.Execute())
@@ -286,34 +291,57 @@
 		return
 
 	else
-		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[src.ckey]'")
+		var/DBQuery/get_player_id = dbcon.NewQuery("SELECT id, first_seen FROM players WHERE ckey = '[src.ckey]'")
 		get_player_id.Execute()
 		if(get_player_id.NextRow())
 			src.id = get_player_id.item[1]
+			src.first_seen = get_player_id.item[2]
 
+//Not actually age, but rather time since first seen in days
+/client/proc/get_player_age()
+	if(first_seen && dbcon.IsConnected())
+		var/dateSQL = sanitizeSQL(first_seen)
+		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[dateSQL]')")
+		if(query_datediff.Execute() && query_datediff.NextRow())
+			src.first_seen_days_ago = text2num(query_datediff.item[1])
+
+	if(config.paranoia_logging && isnum(src.first_seen_days_ago) && src.first_seen_days_ago == 0)
+		log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
+	return src.first_seen_days_ago
+
+//Days since they signed up for their byond account
+/client/proc/get_byond_age()
+	if(!registration_date)
+		get_registration_date()
+	if(registration_date && dbcon.IsConnected())
+		var/dateSQL = sanitizeSQL(registration_date)
+		var/DBQuery/query_datediff = dbcon.NewQuery("SELECT DATEDIFF(Now(),'[dateSQL]')")
+		if(query_datediff.Execute() && query_datediff.NextRow())
+			src.account_age_in_days = text2num(query_datediff.item[1])
+	if(config.paranoia_logging && isnum(src.account_age_in_days) && src.account_age_in_days <= 2)
+		log_and_message_admins("PARANOIA: [key_name(src)] has a very new Byond account. ([src.account_age_in_days] days old)")
+	return src.account_age_in_days
 
 /client/proc/log_client_to_db()
 	if(IsGuestKey(src.key))
 		return
 
 	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return
+	if(dbcon.IsConnected())
+		// Get existing player from DB
+		var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
+		if(!query.Execute())
+			log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
 
-	// check if client already registered in db
-	var/DBQuery/query = dbcon.NewQuery("SELECT id from players WHERE ckey = '[src.ckey]'")
-	if(!query.Execute())
-		log_world("Failed to get player record for user with ckey '[src.ckey]'. Error message: [query.ErrorMsg()].")
-		// don't know how to properly handle this case so let's just quit
-		return
-	else
-		if(query.NextRow())
+		// Not their first time here
+		else if(query.NextRow())
 			// client already registered so we fetch all needed data
-			query = dbcon.NewQuery("SELECT id, registered FROM players WHERE id = [query.item[1]]")
+			query = dbcon.NewQuery("SELECT id, registered, first_seen FROM players WHERE id = [query.item[1]]")
 			query.Execute()
 			if(query.NextRow())
 				src.id = query.item[1]
 				src.registration_date = query.item[2]
+				src.first_seen = query.item[3]
 				src.get_country()
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
@@ -321,9 +349,47 @@
 
 				if(!query_update.Execute())
 					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
-					return
+
+		//Panic bunker - player not in DB, so they get kicked
+		else if(config.panic_bunker && !holder && !deadmin_holder)
+			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
+			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
+			del(src) // Hard del the client. This terminates the connection.
+			return 0
+
+	src.get_byond_age() // Get days since byond join
+	src.get_player_age() // Get days since first seen
+
+	// IP Reputation Check
+	if(config.ip_reputation)
+		if(config.ipr_allow_existing && first_seen_days_ago >= config.ipr_minimum_age)
+			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
+		else if(holder)
+			log_admin("Skipping IP reputation check on [key] with [address] because they have a staff rank")
+		else if(update_ip_reputation()) //It is set now
+			if(ip_reputation >= config.ipr_bad_score) //It's bad
+
+				//Log it
+				if(config.paranoia_logging) //We don't block, but we want paranoia log messages
+					log_and_message_admins("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
+				else //We just log it
+					log_admin("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
+
+				//Take action if required
+				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
+					to_chat(src, "Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
+					del(src) // Hard del the client. This terminates the connection.
+					return 0
+				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
+					to_chat(src, "Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you think this is in error, contact an administrator out of game.")
+					del(src) // Hard del the client. This terminates the connection.
+					return 0
 		else
-			src.register_in_db()
+			log_admin("Couldn't perform IP check on [key] with [address]")
+
+	if(text2num(id) < 0)
+		src.register_in_db()
 
 #undef UPLOAD_LIMIT
 
@@ -428,3 +494,110 @@
 	if(UI)
 		qdel(UI)
 		UI = null
+
+//Uses a couple different services
+/client/proc/update_ip_reputation()
+	var/list/scores = list("GII" = ipr_getipintel())
+	if(config.ipqualityscore_apikey)
+		scores["IPQS"] = ipr_ipqualityscore()
+	/* Can add other systems if desirable
+	if(config.blah_apikey)
+		scores["blah"] = some_proc()
+	*/
+
+	var/log_output = "IP Reputation [key] from [address]"
+	var/worst = 0
+
+	for(var/service in scores)
+		var/score = scores[service]
+		if(score > worst)
+			worst = score
+		log_output += " - [service] ([num2text(score)])"
+
+	log_admin(log_output)
+	ip_reputation = worst
+	return TRUE
+
+//Service returns a single float in html body
+/client/proc/ipr_getipintel()
+	if(!config.ipr_email)
+		return -1
+
+	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config.ipr_email]"
+	var/http[] = world.Export(request)
+
+	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.
+		log_admin("Couldn't connect to getipintel.net to check [address] for [key]")
+		return -1
+
+	//429 is rate limit exceeded
+	if(text2num(http["STATUS"]) == 429)
+		log_and_message_admins("getipintel.net reports HTTP status 429. IP reputation checking is now disabled. If you see this, let a developer know.")
+		config.ip_reputation = FALSE
+		return -1
+
+	var/content = file2text(http["CONTENT"]) //world.Export actually returns a file object in CONTENT
+	var/score = text2num(content)
+	if(isnull(score))
+		return -1
+
+	//Error handling
+	if(score < 0)
+		var/fatal = TRUE
+		var/ipr_error = "getipintel.net IP reputation check error while checking [address] for [key]: "
+		switch(score)
+			if(-1)
+				ipr_error += "No input provided"
+			if(-2)
+				fatal = FALSE
+				ipr_error += "Invalid IP provided"
+			if(-3)
+				fatal = FALSE
+				ipr_error += "Unroutable/private IP (spoofing?)"
+			if(-4)
+				fatal = FALSE
+				ipr_error += "Unable to reach database"
+			if(-5)
+				ipr_error += "Our IP is banned or otherwise forbidden"
+			if(-6)
+				ipr_error += "Missing contact info"
+
+		log_and_message_admins(ipr_error)
+		if(fatal)
+			config.ip_reputation = FALSE
+			log_and_message_admins("With this error, IP reputation checking is disabled for this shift. Let a developer know.")
+		return -1
+
+	//Went fine
+	else
+		return score
+
+//Service returns JSON in html body
+/client/proc/ipr_ipqualityscore()
+	if(!config.ipqualityscore_apikey)
+		return -1
+
+	var/request = "http://www.ipqualityscore.com/api/json/ip/[config.ipqualityscore_apikey]/[address]?strictness=1&fast=true&byond_key=[key]"
+	var/http[] = world.Export(request)
+
+	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.
+		log_admin("Couldn't connect to ipqualityscore.com to check [address] for [key]")
+		return -1
+
+	var/content = file2text(http["CONTENT"]) //world.Export actually returns a file object in CONTENT
+	var/response = json_decode(content)
+	if(isnull(response))
+		return -1
+
+	//Error handling
+	if(!response["success"])
+		log_admin("IPQualityscore.com returned an error while processing [key] from [address]: " + response["message"])
+		return -1
+
+	var/score = 0
+	if(response["proxy"])
+		score = 100
+	else
+		score = response["fraud_score"]
+
+	return score/100 //To normalize with the 0.0 to 1.0 scores.

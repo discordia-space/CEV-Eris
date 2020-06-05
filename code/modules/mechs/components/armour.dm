@@ -5,10 +5,17 @@
 	. = ..()
 */
 /obj/item/robot_parts/robot_component/armour/exosuit
-	name = "exosuit armour plating"
+	name = "exosuit armor plating"
 	armor = list(melee = 75, bullet = 33, laser = 50, energy = 10, bomb = 25, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 7)
+
+/obj/item/robot_parts/robot_component/armour/exosuit/Initialize(newloc)
+	. = ..()
+	// HACK
+	// All robot components add "robot" to the name on init - remove that on exosuit armor
+	name = initial(name)
+
 /*
 /obj/item/robot_parts/robot_component/armour/exosuit/Initialize()
 	. = ..()
@@ -16,22 +23,22 @@
 */
 
 /obj/item/robot_parts/robot_component/armour/exosuit/radproof
-	name = "radiation-proof armour plating"
-	desc = "A fully enclosed radiation hardened shell designed to protect the pilot from radiation"
+	name = "radiation-proof exosuit armor plating"
+	desc = "A fully enclosed radiation hardened shell designed to protect the pilot from radiation."
 	armor = list(melee = 75, bullet = 33, laser = 50, energy = 25, bomb = 25, bio = 100, rad = 100)
 	origin_tech = list(TECH_MATERIAL = 3)
 	matter = list(MATERIAL_STEEL = 12)
 
 /obj/item/robot_parts/robot_component/armour/exosuit/em
-	name = "EM-shielded armour plating"
-	desc = "A shielded plating that sorrounds the eletronics and protects them from electromagnetic radiation"
+	name = "EM-shielded exosuit armor plating"
+	desc = "A shielded plating that surrounds the eletronics and protects them from electromagnetic radiation."
 	armor = list(melee = 65, bullet = 20, laser = 25, energy = 100, bomb = 10, bio = 100, rad = 60)
 	origin_tech = list(TECH_MATERIAL = 3)
 	matter = list(MATERIAL_STEEL = 12)
 
 /obj/item/robot_parts/robot_component/armour/exosuit/combat
-	name = "heavy combat plating"
-	desc = "Plating designed to deflect incoming attacks and explosions"
+	name = "heavy combat exosuit plating"
+	desc = "Plating designed to deflect incoming attacks and explosions."
 	armor = list(melee = 85, bullet = 70, laser = 60, energy = 10, bomb = 70, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 5)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5)

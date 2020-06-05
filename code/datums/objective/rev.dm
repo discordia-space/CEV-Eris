@@ -1,5 +1,5 @@
 /////////////////////////////////////////////
-//NOT USED BECAUSE OF NEW REVOLUTION SYSTEM//
+//NOT USED BECAUSE OF NEW REVOLUTION SYSTEM// - Now true
 /////////////////////////////////////////////
 
 /datum/objective/faction/excelsior/get_panel_entry()
@@ -33,5 +33,3 @@
 		return TRUE
 
 	return FALSE
-
-

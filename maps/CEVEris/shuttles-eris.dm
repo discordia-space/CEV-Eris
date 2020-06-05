@@ -177,6 +177,17 @@
 		"nav_merc_southwest",
 		"nav_merc_dock",
 		"nav_merc_start",
+		"nav_merc_atmos",
+		"nav_merc_sec2west",
+		"nav_merc_sec2east",
+		"nav_merc_junk",
+		"nav_merc_armory",
+		"nav_merc_engieva",
+		"nav_merc_mining",
+		"nav_merc_medbay",
+		"nav_merc_engine",
+		"nav_merc_sec3east4",
+		"nav_merc_sec3east5"
 		)
 	shuttle_area = /area/shuttle/mercenary
 	default_docking_controller = "merc_shuttle"
@@ -220,20 +231,75 @@
 	landmark_tag = "nav_merc_transition"
 
 /obj/effect/shuttle_landmark/merc/dock
-	name = "Docking Port"
+	name = "Docking Port Deck 5"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_dock"
 	dock_target = "second_sec_1_access_console"
 
 /obj/effect/shuttle_landmark/merc/northeast
-	name = "Northeast of the Vessel"
+	name = "Northeast of the Vessel Deck 5"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_northeast"
 
 /obj/effect/shuttle_landmark/merc/southwest
-	name = "Southwest of the Vessel"
+	name = "Southwest of the Vessel Deck 5"
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_southwest"
+
+/obj/effect/shuttle_landmark/merc/atmos
+	name = "Atmospherics Deck 1"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_atmos"
+
+/obj/effect/shuttle_landmark/merc/sec2west
+	name = "Section II Deck 1 West"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_sec2west"
+
+/obj/effect/shuttle_landmark/merc/sec2east
+	name = "Section II Deck 1 East"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_sec2east"
+
+/obj/effect/shuttle_landmark/merc/junk
+	name = "Junk Beacon Deck 1"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_junk"
+
+/obj/effect/shuttle_landmark/merc/armory
+	name = "Armory Deck 1"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_armory"
+
+/obj/effect/shuttle_landmark/merc/engieva
+	name = "Engineering EVA Deck 3"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_engieva"
+
+/obj/effect/shuttle_landmark/merc/mining
+	name = "Mining Dock Deck 3"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_mining"
+
+/obj/effect/shuttle_landmark/merc/medbay
+	name = "Medbay Deck 4"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_medbay"
+
+/obj/effect/shuttle_landmark/merc/engine
+	name = "Engine Deck 4"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_engine"
+
+/obj/effect/shuttle_landmark/merc/sec3east4
+	name = "Section III Deck 4 East"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_sec3east4"
+
+/obj/effect/shuttle_landmark/merc/sec3east5
+	name = "Section III Deck 5 East"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_merc_sec3east5"
 
 
 //Cargo shuttle

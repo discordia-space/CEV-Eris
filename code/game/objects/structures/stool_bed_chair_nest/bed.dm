@@ -38,7 +38,8 @@
 	return material
 
 /obj/structure/bed/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(material)
 		LAZYAPLUS(., material.name, 5)
 	if(padding_material)
@@ -236,8 +237,8 @@
 	else
 		icon_state = "down"
 
-/obj/structure/bed/roller/attackby(obj/item/I as obj, mob/user as mob)
-	if(isWrench(I) || istype(I, /obj/item/stack) || isWirecutter(I))
+/obj/structure/bed/roller/attackby(obj/item/I, mob/living/user)
+	if((QUALITY_BOLT_TURNING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || istype(I, /obj/item/stack))
 		return
 	..()
 
