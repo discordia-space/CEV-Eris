@@ -206,6 +206,23 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 
+/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
+	name = "Sleek leather Jacket"
+	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
+	icon_state = "tunnelsnake_blank"
+	item_state = "tunnelsnake"
+
+/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
+	name = "Jaeger leather Jacket"
+	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. This jacket has a Jaeger roach pictured on the back. Jaeger Roach rules!"
+	icon_state = "tunnelsnake_jager"
+	item_state = "tunnelsnake"
+
+/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake
+	name = "Tunnelsnake Jacket"
+	desc = "Tunnelsnakes Rule! That's us! And we Rule!"
+	icon_state = "tunnelsnake"
+	item_state = "tunnelsnake"
 
 /obj/item/clothing/suit/storage/toggle/hoodie
 	name = "grey hoodie"
@@ -240,6 +257,36 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
+/obj/item/clothing/suit/storage/cyberpunksleek/gray
+	name = "Enforcer's gray overcoat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_gray"
+	item_state = "cyberpunksleek_gray"
+
+/obj/item/clothing/suit/storage/cyberpunksleek/green
+	name = "Enforcer's gray overcoat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_green"
+	item_state = "cyberpunksleek_green"
+
+/obj/item/clothing/suit/storage/cyberpunksleek/blue
+	name = "Enforcer's gray overcoat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_blue"
+	item_state = "cyberpunksleek_blue"
+
+/obj/item/clothing/suit/storage/cyberpunksleek/black
+	name = "Enforcer's gray overcoat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_black"
+	item_state = "cyberpunksleek_black"
+
+/obj/item/clothing/suit/storage/cyberpunksleek/white
+	name = "Enforcer's gray overcoat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_white"
+	item_state = "cyberpunksleek_white"
+
 /obj/item/clothing/suit/storage/cyberpunksleek_long
 	name = "\improper Enforcer's long Overcoat"
 	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
@@ -254,6 +301,36 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/suit/storage/cyberpunksleek_long/gray
+	name = "Enforcer's long gray overcoat"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_long_gray"
+	item_state = "cyberpunksleek_long_gray"
+
+/obj/item/clothing/suit/storage/cyberpunksleek_long/green
+	name = "Enforcer's long green overcoat"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_long_green"
+	item_state = "cyberpunksleek_long_green"
+
+/obj/item/clothing/suit/storage/cyberpunksleek_long/blue
+	name = "Enforcer's long blue overcoat"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_long_blue"
+	item_state = "cyberpunksleek_long_blue"
+
+/obj/item/clothing/suit/storage/cyberpunksleek_long/black
+	name = "Enforcer's long black overcoat"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_long_black"
+	item_state = "cyberpunksleek_long_black"
+
+/obj/item/clothing/suit/storage/cyberpunksleek_long/white
+	name = "Enforcer's long white overcoat"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon_state = "cyberpunksleek_long_white"
+	item_state = "cyberpunksleek_long_white"
 
 /obj/item/clothing/suit/storage/bladerunner
 	name = "leather coat"
