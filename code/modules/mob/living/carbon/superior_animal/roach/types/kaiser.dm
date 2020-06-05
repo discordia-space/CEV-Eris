@@ -8,7 +8,6 @@ Has ability of every roach.
 	desc = "A glorious emperor of roaches."
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "kaiser_roach"
-	pixel_x = -16
 	density = TRUE
 
 	turns_per_move = 4
@@ -25,7 +24,6 @@ Has ability of every roach.
 
 	var/distress_call_stage = 3
 
-	// TODO: Make Kaiser call reinforcements only when he achieves one of health markers
 	var/health_marker_1 = 1500
 	var/health_marker_2 = 1000
 	var/health_marker_3 = 500
@@ -40,6 +38,9 @@ Has ability of every roach.
 /mob/living/carbon/superior_animal/roach/kaiser/New()
 	..()
 	gas_sac = new /datum/reagents(100, src)
+	pixel_x = -16  // For some reason it doesn't work when I overload them in class definition, so here it is.
+	pixel_y = -16
+
 
 /mob/living/carbon/superior_animal/roach/kaiser/Life()
 	. = ..()
@@ -49,13 +50,7 @@ Has ability of every roach.
 	if(stat != AI_inactive)
 		return
 	
-	// TODO: Make this part of code work and don't look like piece of shit.
-	if(health_marker_1 >= health > health_marker_2 && distress_call_stage == 3)
-		log_and_message_admins("HERE HERE HERE HERE")
-		distress_call()
-	if(health_marker_2 >= health > health_marker_3 && distress_call_stage == 2)
-		distress_call()
-	if(health_marker_3 >= health > 0 && distress_call_stage == 1)
+	if(can_call_reinforcements())
 		distress_call()
 
 	gas_sac.add_reagent("blattedin", 1)
@@ -112,15 +107,24 @@ Has ability of every roach.
 		playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-			//Playing the sound twice will make it sound really horrible
-
 		visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
-		//Add all nearby burrows to the distressed burrows list
-
-		for (var/obj/structure/burrow/B in find_nearby_burrows())
+		for (var/obj/structure/burrow/B in find_nearby_burrows(src))
 			B.distress(TRUE)
 
-// If Kaiser slipped on water or soap it would be funncy as hell.
+
+/mob/living/carbon/superior_animal/roach/kaiser/proc/can_call_reinforcements()
+	if(health_marker_1 >= health && health > health_marker_2 && distress_call_stage == 3)
+		log_and_message_admins("[src] calls for reinforcements fisrt time.")
+		return TRUE
+	if(health_marker_2 >= health && health > health_marker_3 && distress_call_stage == 2)
+		log_and_message_admins("[src] calls for reinforcements second time.")
+		return TRUE
+	if(health_marker_3 >= health && health > 0 && distress_call_stage == 1)
+		log_and_message_admins("[src] calls for reinforcemets last time")
+		return TRUE
+	return FALSE
+
+// If Kaiser slipped on water or soap it would be funny as hell.
 /mob/living/carbon/superior_animal/roach/kaiser/slip(var/slipped_on)
 	return FALSE
 
