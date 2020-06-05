@@ -52,7 +52,7 @@
 	//Objective stuff
 	modules += new /obj/item/weapon/storage/bsdm/permanent(src) //for sending off item contracts
 	modules += new /obj/item/weapon/gripper/antag(src) //For picking up item contracts
-	modules += new /obj/item/weapon/reagent_containers/syringe(src) //Blood extraction
+	modules += new /obj/item/weapon/reagent_containers/syringe/blitzshell(src) //Blood extraction
 	modules += new /obj/item/device/drone_uplink(src)
 	//Misc equipment
 	modules += new /obj/item/weapon/card/id/syndicate(src) //This is our access. Scan cards to get better access
@@ -61,6 +61,7 @@
 
 /obj/item/weapon/gripper/antag
 	name = "Objective Gripper"
+	desc = "A special grasping tool specialized in 'dirty' work. Can rip someone's head off if you need it."
 	can_hold = list(
 		/obj/item/weapon/implanter,
 		/obj/item/device/spy_sensor,
@@ -72,6 +73,25 @@
 		/obj/item/weapon/oddity/secdocs,
 		/obj/item/stack/telecrystal //To reload the uplink
 		)
+
+/obj/item/weapon/gripper/antag/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+	..()
+	if(istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = target
+		if(H.stat == DEAD)
+			if(H.get_organ(BP_HEAD))
+				var/obj/item/organ/external/E = H.get_organ(BP_HEAD)
+				user.visible_message(SPAN_DANGER("[user] is beginning to rip the [H]'s head off!"),SPAN_DANGER("You are beginning to rip the [H]'s head off."))
+				if(!do_mob(user, H, 16 SECONDS))
+					to_chat(user, SPAN_DANGER("You was interrupted!"))
+					return
+				user.visible_message(SPAN_DANGER("[user] is rip the [H]'s head off!"),SPAN_DANGER("You rip the [H]'s head off."))
+				E.droplimb(TRUE, DROPLIMB_EDGE)
+				grip_item(E, user)
+			else
+				to_chat(user, SPAN_DANGER("[H] missing his head!"))
+		else
+			to_chat(user, SPAN_DANGER("You cannot rip someone head while they alive!"))
 
 /obj/item/weapon/gripper/antag/New()
 	..()

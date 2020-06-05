@@ -111,19 +111,19 @@
 	#if DM_VERSION >= 512
 	if(byond_version < config.minimum_byond_version || byond_build < config.minimum_byond_build)		//BYOND out of date.
 		to_chat(src, "You are attempting to connect with a out of date version of BYOND. Please update to the latest version at http://www.byond.com/ before trying again.")
-		qdel(src)
+		del(src)
 		return
 
 	if("[byond_version].[byond_build]" in config.forbidden_versions)
 		log_and_message_admins("[ckey] Tried to connect with broken and possibly exploitable BYOND build.")
 		to_chat(src, "You are attempting to connect with a broken and possibly exploitable BYOND build. Please update to the latest version at http://www.byond.com/ before trying again.")
-		qdel(src)
+		del(src)
 		return
 	#endif
 
 	if(!config.guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
-		qdel(src)
+		del(src)
 		return
 
 	// Change the way they should download resources.
