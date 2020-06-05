@@ -57,11 +57,9 @@
 /datum/gear/suit/coat/New()
 	..()
 	var/coat = list(
-		"Gray"			=	/obj/item/clothing/suit/storage/cyberpunksleek/gray,
 		"Green"			=	/obj/item/clothing/suit/storage/cyberpunksleek/green,
-		"Blue"			=	/obj/item/clothing/suit/storage/cyberpunksleek/blue,
 		"Black"			=	/obj/item/clothing/suit/storage/cyberpunksleek/black,
-		"White"			=	/obj/item/clothing/suit/storage/cyberpunksleek/white
+		"White"			=	/obj/item/clothing/suit/storage/cyberpunksleek/white,
 		"Brown"			=	/obj/item/clothing/suit/storage/cyberpunksleek
 	)
 	gear_tweaks += new /datum/gear_tweak/path(coat)
@@ -74,11 +72,9 @@
 /datum/gear/suit/longcoat/New()
 	..()
 	var/longcoat = list(
-		"Gray"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/gray,
 		"Green"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/green,
-		"Blue"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/blue,
 		"Black"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/black,
-		"White"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/white
+		"White"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/white,
 		"Brown"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long
 	)
 	gear_tweaks += new /datum/gear_tweak/path(longcoat)
