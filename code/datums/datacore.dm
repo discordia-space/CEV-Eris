@@ -246,8 +246,31 @@ var/global/ManifestJSON
 		facial.Blend(H.facial_color, ICON_ADD)
 		temp.Blend(facial, ICON_OVERLAY)
 
-	preview_icon.Blend(temp, ICON_OVERLAY)
+	//Head Accessory
+	var/datum/sprite_accessory/head_accessory_style = GLOB.head_accessory_styles_list[H.ha_style]
+	if(head_accessory_style && head_accessory_style.species_allowed)
+		var/icon/head_accessory_s = new/icon("icon" = head_accessory_style.icon, "icon_state" = "[head_accessory_style.icon_state]_s")
+		head_accessory_s.Blend(H.headacc_colour, ICON_ADD)
+		temp.Blend(head_accessory_s, ICON_OVERLAY)
 
+	//Markings
+	var/body_marking = H.m_styles["body"]
+	var/datum/sprite_accessory/body_marking_style = GLOB.marking_styles_list[body_marking]
+	if(body_marking_style && body_marking_style.species_allowed)
+		var/icon/b_marking_s = new/icon("icon" = body_marking_style.icon, "icon_state" = "[body_marking_style.icon_state]_s")
+		b_marking_s.Blend(H.m_colours["body"], ICON_ADD)
+		temp.Blend(b_marking_s, ICON_OVERLAY)
+
+	 //Head markings.
+	var/head_marking = H.m_styles["head"]
+	var/datum/sprite_accessory/head_marking_style = GLOB.marking_styles_list[head_marking]
+	if(head_marking_style && head_marking_style.species_allowed)
+		var/icon/h_marking_s = new/icon("icon" = head_marking_style.icon, "icon_state" = "[head_marking_style.icon_state]_s")
+		h_marking_s.Blend(H.m_colours["head"], ICON_ADD)
+		temp.Blend(h_marking_s, ICON_OVERLAY)
+
+	preview_icon.Blend(temp, ICON_OVERLAY)
+		
 
 	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
 	if(J)

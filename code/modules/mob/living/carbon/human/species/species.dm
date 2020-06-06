@@ -2,6 +2,7 @@
 	Datum-based species. Should make for much cleaner and easier to maintain race code.
 */
 #define SPECIES_BLOOD_DEFAULT 560
+
 /datum/species
 
 	// Descriptors and strings.
@@ -65,6 +66,16 @@
 
 	var/list/hair_styles
 	var/list/facial_hair_styles
+
+	//Marking colour and style
+	var/list/m_colours = DEFAULT_MARKING_COLOURS //All colours set to #000000.
+	var/list/m_styles = DEFAULT_MARKING_STYLES //All markings set to None.
+
+	//Head accessory colour and style
+	var/default_headacc				//Default head accessory style for newly created humans unless otherwise set.
+	var/default_headacc_colour
+	var/headacc_colour = "#000000"
+	var/ha_style = "None"
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/human

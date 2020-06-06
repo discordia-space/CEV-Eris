@@ -181,6 +181,14 @@
 
 	character.h_style = h_style
 	character.f_style = f_style
+	var/datum/species/mob_species = all_species[species]
+	if(mob_species && (mob_species.appearance_flags & HAS_HEAD_ACCESSORY))
+		character.headacc_colour = hacc_colour
+		character.ha_style = ha_style
+
+	if(mob_species && ((mob_species.appearance_flags & HAS_BODY_MARKINGS) || (mob_species.appearance_flags & HAS_HEAD_MARKINGS)))
+		character.m_colours = m_colours
+		character.m_styles = m_styles
 
 	// Build mob body from prefs
 	character.rebuild_organs(src)

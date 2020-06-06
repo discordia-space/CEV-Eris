@@ -10,3 +10,4 @@
 	name = "None"
 	species_allowed = list(SPECIES_HUMAN, SPECIES_KIDAN)
 	icon_state = "accessory_none"
+
