@@ -1,7 +1,0 @@
-author: Smokingsquirrel
-delete-after: true
-changes:
-  - rscadd: New color variants for cyberpunk coats, long and short version
-  - rscadd: New tunnelsnake jacket in three variants.
-  - rscadd: Sprite versions to suit - icon.dmi, mob.dmi and mob_fem.dmi
-  - code_imp: Suits, Cloth, Biomatter, Loadout
