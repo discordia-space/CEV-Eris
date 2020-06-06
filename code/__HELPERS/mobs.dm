@@ -386,10 +386,6 @@ proc/random_marking_style(location = BP_CHEST, species = SPECIES_HUMAN, body_acc
 			continue
 		if(!(species in S.species_allowed)) //If the user's head is not of a species the marking style allows, skip it. Otherwise, add it to the list.
 			continue
-		if(location == BP_HEAD)
-			var/datum/sprite_accessory/body_markings/head/M = GLOB.marking_styles_list[S.name]
-			if(M.heads_allowed && !("All" in M.heads_allowed))
-				continue
 		valid_markings += marking
 
 	if(valid_markings.len)
