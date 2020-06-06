@@ -28,7 +28,7 @@ Has ability of every roach.
 	var/health_marker_2 = 1000
 	var/health_marker_3 = 500
 
-	blattedin_revives_left = 0 // Kaiser is a giant roach, there is no way to revive him
+	blattedin_revives_left = 0
 
 	// TODO: Add a special type of meat for Kaiser
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
@@ -114,18 +114,18 @@ Has ability of every roach.
 
 /mob/living/carbon/superior_animal/roach/kaiser/proc/can_call_reinforcements()
 	if(health_marker_1 >= health && health > health_marker_2 && distress_call_stage == 3)
-		log_and_message_admins("[src] calls for reinforcements fisrt time.")
 		return TRUE
 	if(health_marker_2 >= health && health > health_marker_3 && distress_call_stage == 2)
-		log_and_message_admins("[src] calls for reinforcements second time.")
 		return TRUE
 	if(health_marker_3 >= health && health > 0 && distress_call_stage == 1)
-		log_and_message_admins("[src] calls for reinforcemets last time")
 		return TRUE
 	return FALSE
 
-// If Kaiser slipped on water or soap it would be funny as hell.
 /mob/living/carbon/superior_animal/roach/kaiser/slip(var/slipped_on)
 	return FALSE
 
-// TODO: Make him immune for flashes.
+// Kaiser has no death sprite, so he explodes when dies. 
+/mob/living/carbon/superior_animal/roach/kaiser/death()
+	. = ..()
+	if(.)
+		gib()
