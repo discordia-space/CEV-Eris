@@ -219,7 +219,7 @@
 /datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		BS.speed_factor += 1
+		BS.speed_factor += 0.5
 		return 1
 	return 0
 
@@ -242,7 +242,7 @@
 
 /datum/uplink_item/item/tools/blitz_shotgun
 	name = "Blitzshell electro-shrapnel cannon"
-	desc = "Activates the embedded particle weapon system."
+	desc = "Activates the embedded pneumatic weapon system."
 	item_cost = 30
 	antag_roles = list(ROLE_BLITZ)
 

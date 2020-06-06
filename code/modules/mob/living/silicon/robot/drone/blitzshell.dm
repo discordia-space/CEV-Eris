@@ -40,14 +40,18 @@
 /mob/living/silicon/robot/drone/blitzshell/get_scooped()
 	return
 
+/mob/living/silicon/robot/drone/blitzshell/allowed()
+	return FALSE
+
 /obj/item/weapon/robot_module/blitzshell
 	networks = list()
 	health = 90 //Able to take 3-4 bullets
 	speed_factor = 1.2
 	hide_on_manifest = TRUE
 
+
 /obj/item/weapon/robot_module/blitzshell/New()
-	//modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src) //Deemed too strong
+	//modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src) //Deemed too strong for initial loadout
 	modules += new /obj/item/weapon/gun/energy/plasma/mounted/blitz(src)
 	modules += new /obj/item/weapon/tool/knife/tacknife(src) //For claiming heads for assassination missions
 	//Objective stuff
