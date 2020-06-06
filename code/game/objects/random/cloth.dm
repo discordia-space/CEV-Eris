@@ -105,7 +105,10 @@
 				/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 3,
 				/obj/item/clothing/suit/storage/qm_coat = 2,
 				/obj/item/clothing/suit/storage/cyberpunksleek = 8,
-				/obj/item/clothing/suit/storage/bladerunner=8))
+				/obj/item/clothing/suit/storage/bladerunner=8,
+				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake=2,
+				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake=2,
+				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager=2))
 
 /obj/random/cloth/suit/low_chance
 	name = "low chance random suit"
