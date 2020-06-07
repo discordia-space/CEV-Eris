@@ -1,6 +1,6 @@
 /datum/species/kidan
-	name = "Kidan"
-	name_plural = "Kidan"
+	name = SPECIES_KIDAN
+	name_plural = SPECIES_KIDAN
 	icobase = 'icons/mob/human_races/r_kidan.dmi'
 	deform = 'icons/mob/human_races/r_def_kidan.dmi'
 	blurb = "The Kidan are ant-like creatures who posses an exoskeleton. \
@@ -24,7 +24,7 @@
 	radiation_mod = 0.5
 	toxins_mod = 0.5
 
-	appearance_flags = HAS_HEAD_ACCESSORY | HAS_HEAD_MARKINGS | HAS_BODY_MARKINGS | HAS_EYE_COLOR
+	appearance_flags = HAS_HEAD_ACCESSORY
 	eyes = "kidan_eyes_s"
 	flesh_color = "#ba7814"
 	blood_color = "#FB9800"

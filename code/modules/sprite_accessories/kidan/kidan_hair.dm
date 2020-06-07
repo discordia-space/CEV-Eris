@@ -2,7 +2,6 @@
 /datum/sprite_accessory/hair/kidan
 	icon = 'icons/mob/human_races/species/kidan/kidan_hair.dmi'
 	species_allowed = list(SPECIES_KIDAN)
-	glasses_over = 1
 	do_colouration = 0
 
 /datum/sprite_accessory/hair/kidan/hollow_horns
