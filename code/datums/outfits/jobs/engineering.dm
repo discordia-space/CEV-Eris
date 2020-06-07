@@ -25,7 +25,7 @@
 /decl/hierarchy/outfit/job/engineering/engineer
 	name = OUTFIT_JOB_NAME("Technomancer")
 	head = /obj/item/clothing/head/hardhat
-	uniform = /obj/item/clothing/under/rank/engineer
+	uniform = /obj/item/clothing/under/rank/engineer/technomancer
 	suit = /obj/item/clothing/suit/storage/hazardvest/orange
 	head = /obj/item/clothing/head/hardhat
 	id_type = /obj/item/weapon/card/id/engie
