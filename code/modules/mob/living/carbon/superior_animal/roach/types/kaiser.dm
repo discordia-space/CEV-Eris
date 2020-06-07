@@ -66,7 +66,7 @@ Has ability of every roach.
 		var/mob/living/L = A
 		if(istype(L) && prob(10))
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
-			L.adjustToxLoss(damage)
+			L.damage_through_armor(damage, TOX)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 			L.visible_message(SPAN_DANGER("\the [src] globs up some toxic bile all over \the [L]!"))
 
@@ -122,6 +122,37 @@ Has ability of every roach.
 	return FALSE
 
 /mob/living/carbon/superior_animal/roach/kaiser/slip(var/slipped_on)
+	return FALSE
+
+//RIDING
+/mob/living/carbon/superior_animal/roach/kaiser/try_tame(var/mob/living/carbon/user, var/obj/item/weapon/reagent_containers/food/snacks/grown/thefood)
+	if(!istype(thefood))
+		return FALSE
+	if(prob(40))
+		// TODO: Make Kaiser bite user's arm off here.
+		visible_message("[src] hesitates for a moment... and then charges at [user]!")
+		return FALSE //Sometimes roach just be like that
+	//fruits and veggies are not there own type, they are all the grown type and contain certain reagents. This is why it didnt work before
+	if(isnull(thefood.seed.chems["singulo"]))
+		return FALSE
+	visible_message("[src] scuttles towards [user], examining the [thefood] they have in their hand.")
+	can_buckle = TRUE
+	if(do_after(src, taming_window, src)) //Here's your window to climb onto it.
+		if(!buckled_mob || user != buckled_mob) //They need to be riding us
+			can_buckle = FALSE
+			visible_message("[src] snaps out of its trance and rushes at [user]!")
+			return FALSE
+		visible_message("[src] bucks around wildly, trying to shake [user] off!") //YEEEHAW
+		if(prob(60))
+			visible_message("[src] thrashes around and, throws [user] clean off!")
+			user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+			unbuckle_mob()
+			can_buckle = FALSE
+			return FALSE
+		friends += user
+		visible_message("[src] reluctantly stops thrashing around...")
+		return TRUE
+	visible_message("[src] snaps out of its trance and rushes at [user]!")
 	return FALSE
 
 // Kaiser has no death sprite, so he explodes when dies. 
