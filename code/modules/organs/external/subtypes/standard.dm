@@ -17,16 +17,6 @@
 		if(owner) // In case owner was destroyed already - gibbed, for example
 			owner.update_hair()
 	..()
-	//hispania//
-	//Head markings, duplicated (sadly) below.
-	for(var/M in markings)
-		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-		if (mark_style.draw_target == MARKING_TARGET_SKIN)
-			var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-			mark_s.Blend(markings[M]["color"], mark_style.blend)
-			overlays |= mark_s //So when it's not on your body, it has icons
-			mob_icon.Blend(mark_s, mark_style.layer_blend) //So when it's on your body, it has icons
-	//fin hispania//
 
 /obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), silent)
 	. = ..()

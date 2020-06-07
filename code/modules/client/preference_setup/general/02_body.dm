@@ -58,7 +58,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["skin_color"], pref.skin_color)
 	to_file(S["hair_color"], pref.hair_color)
 	to_file(S["facial_color"], pref.facial_color)
-	to_file(S["body_markings"], pref.body_markings)
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
@@ -80,13 +79,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "black"
-
-	//hispania
-	if(!istype(pref.body_markings))
-		pref.body_markings = list()
-	else
-		pref.body_markings &= GLOB.body_marking_styles_list
-	//fin hispania
 
 /datum/category_item/player_setup_item/physical/body/content(mob/user)
 	if(!pref.preview_icon)
@@ -275,34 +267,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		mob_species = all_species[pref.species]
 		if(new_f_style && CanUseTopic(user) && mob_species.get_facial_hair_styles(pref.gender))
 			pref.f_style = new_f_style
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["marking_style"])
-		var/list/disallowed_markings = list()
-		for (var/M in pref.body_markings)
-			var/datum/sprite_accessory/marking/mark_style = GLOB.body_marking_styles_list[M]
-			disallowed_markings |= mark_style.disallows
-		var/list/usable_markings = pref.body_markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
-		for(var/M in usable_markings)
-			var/datum/sprite_accessory/S = usable_markings[M]
-			if(is_type_in_list(S, disallowed_markings) || (S.species_allowed && !(mob_species.get_bodytype() in S.species_allowed)))
-				usable_markings -= M
-
-		var/new_marking = input(user, "Choose a body marking:", CHARACTER_PREFERENCE_INPUT_TITLE)  as null|anything in usable_markings
-		if(new_marking && CanUseTopic(user))
-			pref.body_markings[new_marking] = "#000000" //New markings start black
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["marking_remove"])
-		var/M = href_list["marking_remove"]
-		pref.body_markings -= M
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["marking_color"])
-		var/M = href_list["marking_color"]
-		var/mark_color = input(user, "Choose the [M] color: ", CHARACTER_PREFERENCE_INPUT_TITLE, pref.body_markings[M]) as color|null
-		if(mark_color && CanUseTopic(user))
-			pref.body_markings[M] = "[mark_color]"
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["disabilities"])

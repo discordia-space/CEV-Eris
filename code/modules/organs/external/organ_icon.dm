@@ -75,14 +75,6 @@ var/global/list/limb_icon_cache = list()
 /obj/item/organ/external/head/removed_mob()
 	update_icon(1)
 	..()
-		//Head markings, duplicated (sadly) below.
-	for(var/M in markings)
-		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-		if (mark_style.draw_target == MARKING_TARGET_SKIN)
-			var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-			mark_s.Blend(markings[M]["color"], mark_style.blend)
-			overlays |= mark_s //So when it's not on your body, it has icons
-			mob_icon.Blend(mark_s, mark_style.layer_blend) //So when it's on your body, it has icons
 
 /obj/item/organ/external/head/update_icon()
 
@@ -119,14 +111,6 @@ var/global/list/limb_icon_cache = list()
 				if(hair_style.do_colouration)
 					hair.Blend(hair_col, ICON_ADD)
 				overlays |= hair
-
-		for (var/M in markings)
-			var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-			if (mark_style.draw_target == MARKING_TARGET_HAIR)
-				var/icon/mark_icon = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]")
-				if (!mark_style.do_colouration && owner.h_style)
-					mark_icon.Blend(markings[M]["color"], ICON_ADD)
-				overlays |= mark_icon
 
 	return mob_icon
 
@@ -172,15 +156,6 @@ var/global/list/limb_icon_cache = list()
 		else
 			if(skin_col)
 				mob_icon.Blend(skin_col, ICON_ADD)
-
-	//Body markings, does not include head, duplicated (sadly) above.
-	for(var/M in markings)
-		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-		if (mark_style.draw_target == MARKING_TARGET_SKIN)
-			var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-			mark_s.Blend(markings[M]["color"], mark_style.blend)
-			overlays |= mark_s //So when it's not on your body, it has icons
-			mob_icon.Blend(mark_s, mark_style.layer_blend) //So when it's on your body, it has icons
 
 	dir = EAST
 	icon = mob_icon
