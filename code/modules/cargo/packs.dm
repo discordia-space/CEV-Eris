@@ -951,6 +951,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Hydroponics crate"
 	group = "Hydroponics"
 
+// Bees
+/datum/supply_pack/bees
+	name = "Bee crate"
+	contains = list(/obj/item/bee_pack)
+	cost = 700
+	containertype = /obj/structure/closet/crate/hydroponics
+	crate_name = "Bee crate"
+	group = "Hydroponics"
+
 //farm animals - useless and annoying, but potentially a good source of food
 /datum/supply_pack/cow
 	name = "Cow crate"
