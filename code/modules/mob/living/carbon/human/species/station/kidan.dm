@@ -11,6 +11,7 @@
 	name_language = LANGUAGE_KIDAN
 	language = LANGUAGE_KIDAN           // Default racial language, if any.
 	spawn_flags = CAN_JOIN
+	appearance_flags = HAS_SKIN_TONE
 	num_alternate_languages = 1
 	min_age = 18
 	max_age = 60
@@ -24,7 +25,6 @@
 	radiation_mod = 0.5
 	toxins_mod = 0.5
 
-	appearance_flags = HAS_HEAD_ACCESSORY
 	eyes = "kidan_eyes_s"
 	flesh_color = "#ba7814"
 	blood_color = "#FB9800"

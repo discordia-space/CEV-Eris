@@ -111,6 +111,7 @@
 	key = "4"
 	flags = RESTRICTED | WHITELISTED
 	syllables = list("click","clack")
+	shorthand = "CHI"
 
 /datum/language/kidan/get_random_name()
 	var/new_name = "[pick(list("Vrax", "Krek", "Vriz", "Zrik", "Zarak", "Click", "Zerk", "Drax", "Zven", "Drexx"))]"

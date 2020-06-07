@@ -5,9 +5,9 @@
 /datum/sprite_accessory/marking/kidan/outline_kid
 	name = "Kidan Outline"
 	icon_state = "outline"
-	body_parts = BP_CHEST
+	body_parts = list(BP_CHEST)
 
 /datum/sprite_accessory/marking/kidan/outline_head_kid
 	name = "Kidan Outline Head"
 	icon_state = "outline"
-	body_parts = BP_HEAD
+	body_parts = list(BP_HEAD)

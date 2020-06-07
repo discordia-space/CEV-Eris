@@ -12,6 +12,7 @@
 /datum/sprite_accessory/hair/bald
 	name = "Bald"
 	icon_state = "bald"
+	species_allowed = list(SPECIES_HUMAN,SPECIES_KIDAN)
 	gender = MALE
 
 /datum/sprite_accessory/hair/afro

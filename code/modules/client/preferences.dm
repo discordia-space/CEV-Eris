@@ -181,11 +181,15 @@
 
 	character.h_style = h_style
 	character.f_style = f_style
-	var/datum/species/mob_species = all_species[species]
-	if(mob_species && (mob_species.appearance_flags & HAS_HEAD_ACCESSORY))
-		character.ha_style = ha_style
-		character.headacc_colour = hacc_colour
 
+	for(var/M in body_markings)
+		var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[M]
+		var/mark_color = "[body_markings[M]]"
+
+		for(var/BP in mark_datum.body_parts)
+			var/obj/item/organ/external/O = character.organs_by_name[BP]
+			if(O)
+				O.markings[M] = list("color" = mark_color, "datum" = mark_datum)
 
 	// Build mob body from prefs
 	character.rebuild_organs(src)

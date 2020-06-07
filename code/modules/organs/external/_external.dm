@@ -77,6 +77,9 @@
 	// Used for spawned robotic organs
 	var/default_description = null
 
+	var/list/markings = list()         // Markings (body_markings) to apply to the icon
+
+
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
 		set_description(OD)

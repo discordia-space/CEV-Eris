@@ -112,6 +112,14 @@ var/global/list/limb_icon_cache = list()
 					hair.Blend(hair_col, ICON_ADD)
 				overlays |= hair
 
+		for (var/M in markings)
+			var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
+			if (mark_style.draw_target == MARKING_TARGET_HAIR)
+				var/icon/mark_icon = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]")
+				if (!mark_style.do_colouration && owner.h_style)
+					mark_icon.Blend(markings[M]["color"], ICON_ADD)
+				overlays |= mark_icon
+
 	return mob_icon
 
 /obj/item/organ/external/update_icon(regenerate = 0)

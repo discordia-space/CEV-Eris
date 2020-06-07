@@ -15,8 +15,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/facial_color = "#000000"		//Face hair color
 	var/skin_color = "#000000"			//Skin color
 	var/eyes_color = "#000000"			//Eye color
-	var/ha_style = "None"				//Head accessory style
-	var/hacc_colour = "#000000"			//Head accessory colour
 	var/list/body_markings = list()	//Marking styles.
 
 	var/disabilities = 0
@@ -45,8 +43,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["skin_color"], pref.skin_color)
 	from_file(S["hair_color"], pref.hair_color)
 	from_file(S["facial_color"], pref.facial_color)
-	from_file(S["ha_style"], pref.ha_style)
-	from_file(S["hacc_colour"], pref.hacc_colour)
 	from_file(S["body_markings"], pref.body_markings)
 
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
@@ -62,8 +58,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["skin_color"], pref.skin_color)
 	to_file(S["hair_color"], pref.hair_color)
 	to_file(S["facial_color"], pref.facial_color)
-	to_file(S["ha_style"], pref.ha_style)
-	to_file(S["hacc_colour"], pref.hacc_colour)
 	to_file(S["body_markings"], pref.body_markings)
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
@@ -75,16 +69,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.skin_color		= iscolor(pref.skin_color) ? pref.skin_color : "#000000"
 	pref.eyes_color		= iscolor(pref.eyes_color) ? pref.eyes_color : "#000000"
 
-	pref.ha_style		= sanitize_inlist(pref.ha_style, GLOB.head_accessory_styles_list, initial(pref.ha_style))
-	pref.hacc_colour	= iscolor(pref.hacc_colour) ? pref.hacc_colour : "#000000"
-
 	if(!pref.species || !(pref.species in playable_species))
 		pref.species = SPECIES_HUMAN
-
-	var/mob/living/carbon/human/mob_species = all_species[pref.species]
-	if(!has_flag(mob_species, HAS_HEAD_ACCESSORY)) //Species that have head accessories.
-		pref.ha_style		= initial(pref.ha_style)
-		pref.hacc_colour	=  "#000000"
 
 	sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
 
@@ -95,11 +81,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "black"
 
+	//hispania
 	if(!istype(pref.body_markings))
 		pref.body_markings = list()
 	else
 		pref.body_markings &= GLOB.body_marking_styles_list
-
+	//fin hispania
 
 /datum/category_item/player_setup_item/physical/body/content(mob/user)
 	if(!pref.preview_icon)
@@ -118,7 +105,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "Base Colour: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
 
-	. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
+	if(has_flag(mob_species, HAS_SKIN_TONE))
+		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
 
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br><br>"
 
@@ -139,12 +127,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color: </b>"
 		. += "<a href='?src=\ref[src];skin_color=1'><span class='color_holder_box' style='background-color:[pref.skin_color]'></span></a><br>"
-
-	if(has_flag(mob_species, HAS_HEAD_ACCESSORY)) //Species that have head accessories.
-		var/headaccessoryname = "Head Accessory: "
-		. += "<b>[headaccessoryname]</b>"
-		. += "<a href='?src=\ref[src];ha_style=1'>[pref.ha_style]</a> "
-		. += "<a href='?src=\ref[src];headaccessory=1'><span class='color_holder_box' style='background-color:[pref.hacc_colour]'</span></a><br>"
 
 	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
 	for(var/M in pref.body_markings)
@@ -269,7 +251,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["skin_tone"])
 		//var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to [mob_species.max_skin_tone()]", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
-		var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to 225", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
+		var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to 220", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
 
 		mob_species = all_species[pref.species]
 		if(new_s_tone && CanUseTopic(user))
