@@ -108,7 +108,7 @@
 	ask_verb = "rubs its antennae together"
 	exclaim_verb = "rubs its antennae together"
 	colour = "kidan"
-	key = "4"
+	key = "k"
 	flags = RESTRICTED | WHITELISTED
 	syllables = list("click","clack")
 	shorthand = "CHI"

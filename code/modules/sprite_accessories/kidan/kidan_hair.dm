@@ -21,7 +21,7 @@
 	icon_state = "curled_horns"
 
 /datum/sprite_accessory/hair/kidan/curled_horns_mopey
-	name = "Mopey Hawk Horn"
+	name = "Mopey Curled Horn"
 	icon_state = "mopey_curled_horns"
 
 /datum/sprite_accessory/hair/kidan/hawk_horn
@@ -30,7 +30,7 @@
 
 /datum/sprite_accessory/hair/kidan/hawk_horn_mopey
 	name = "Mopey Hawk Horn"
-	icon_state = "mopey_hawk_horn"
+	icon_state = "hawk_horn_mopey"
 
 /datum/sprite_accessory/hair/kidan/kidan_bull_horns
 	name = "Bull Horns"
@@ -86,11 +86,11 @@
 	name = "Mantie Long"
 	icon_state = "Mantie_Long"
 
-/datum/sprite_accessory/marking/hair/horns/kidan_Mantie_Curled
+/datum/sprite_accessory/hair/hair/horns/kidan_Mantie_Curled
 	name = "Mantie Curled"
 	icon_state = "Mantie_Curled"
 
-/datum/sprite_accessory/marking/hair/horns/kidan_very_short
+/datum/sprite_accessory/hair/hair/horns/kidan_very_short
 	name = "Very Short"
 	icon_state = "very_short"
 // End

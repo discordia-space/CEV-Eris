@@ -52,8 +52,4 @@
 /datum/sprite_accessory/marking/kidan/horns/kidan_Mantie_Curled
 	name = "Mantie Curled"
 	icon_state = "Mantie_Curled"
-
-/datum/sprite_accessory/marking/kidan/horns/kidan_very_short
-	name = "Very Short"
-	icon_state = "very_short"
 // End
