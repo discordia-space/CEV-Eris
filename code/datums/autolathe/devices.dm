@@ -50,6 +50,10 @@
 	name = "excelsior mine"
 	build_path = /obj/item/weapon/mine
 
+/datum/design/autolathe/device/propaganda_chip
+	name = "propaganda chip"
+	build_path = /obj/item/device/propaganda_chip
+
 /datum/design/autolathe/device/flamethrower
 	name = "flamethrower"
 	build_path = /obj/item/weapon/flamethrower

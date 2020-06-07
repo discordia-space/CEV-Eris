@@ -20,8 +20,8 @@
 	if(do_gibs) gibs(loc, dna)
 
 
-
-	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+	if (anim)
+		addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 /mob/proc/check_delete(var/atom/movable/overlay/animation)
 	if(animation)	qdel(animation)

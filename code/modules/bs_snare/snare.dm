@@ -15,7 +15,7 @@
 	removable = !removable*/
 
 /obj/item/clothing/accessory/bs_silk/attackby(obj/item/I, mob/user)
-	if(isMultitool(I))// || removable)
+	if((QUALITY_PULSING in I.tool_qualities))// || removable)
 		var/input_id = input("Enter new BS Snare ID", "Snare ID", silk_id)
 		silk_id = input_id
 		return

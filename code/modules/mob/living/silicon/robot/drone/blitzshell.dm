@@ -52,7 +52,7 @@
 	//Objective stuff
 	modules += new /obj/item/weapon/storage/bsdm/permanent(src) //for sending off item contracts
 	modules += new /obj/item/weapon/gripper/antag(src) //For picking up item contracts
-	modules += new /obj/item/weapon/reagent_containers/syringe(src) //Blood extraction
+	modules += new /obj/item/weapon/reagent_containers/syringe/blitzshell(src) //Blood extraction
 	modules += new /obj/item/device/drone_uplink(src)
 	//Misc equipment
 	modules += new /obj/item/weapon/card/id/syndicate(src) //This is our access. Scan cards to get better access

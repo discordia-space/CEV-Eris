@@ -1,46 +1,46 @@
 var/datum/maps_data/maps_data = new
 
-/proc/isStationLevel(var/level)
+/proc/isStationLevel(level)
 	return level in maps_data.station_levels
 
-/proc/isNotStationLevel(var/level)
+/proc/isNotStationLevel(level)
 	return !isStationLevel(level)
 
-/proc/isOnStationLevel(var/atom/A)
+/proc/isOnStationLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isStationLevel(T.z)
 
-/proc/isPlayerLevel(var/level)
+/proc/isPlayerLevel(level)
 	return level in maps_data.player_levels
 
-/proc/isOnPlayerLevel(var/atom/A)
+/proc/isOnPlayerLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isPlayerLevel(T.z)
 
-/proc/isContactLevel(var/level)
+/proc/isContactLevel(level)
 	return level in maps_data.player_levels
 
-/proc/isOnContactLevel(var/atom/A)
+/proc/isOnContactLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isContactLevel(T.z)
 
-/proc/isAdminLevel(var/level)
+/proc/isAdminLevel(level)
 	return level in maps_data.admin_levels
 
-/proc/isNotAdminLevel(var/level)
+/proc/isNotAdminLevel(level)
 	return !isAdminLevel(level)
 
-/proc/isOnAdminLevel(var/atom/A)
+/proc/isOnAdminLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isAdminLevel(T.z)
 
-/proc/get_level_name(var/level)
+/proc/get_level_name(level)
 	return (maps_data.names.len >= level && maps_data.names[level]) || level
 
 /proc/max_default_z_level()
 	return maps_data.all_levels.len
 
-/proc/is_on_same_plane_or_station(var/z1, var/z2)
+/proc/is_on_same_plane_or_station(z1, z2)
 	if(z1 == z2)
 		return TRUE
 	if(isStationLevel(z1) && isStationLevel(z2))
@@ -134,23 +134,30 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids)
 	)
 
-/datum/maps_data/proc/character_save_path(var/slot)
+	//HOLOMAP
+	var/list/holomap_smoosh // List of lists of zlevels to smoosh into single icons
+	var/list/holomap_offset_x = list()
+	var/list/holomap_offset_y = list()
+	var/list/holomap_legend_x = list()
+	var/list/holomap_legend_y = list()
+
+/datum/maps_data/proc/character_save_path(slot)
 	return "/[path]/character[slot]"
 
-/datum/maps_data/proc/character_load_path(var/savefile/S, var/slot)
+/datum/maps_data/proc/character_load_path(savefile/S, slot)
 	var/original_cd = S.cd
 	S.cd = "/"
 	. = private_use_legacy_saves(S, slot) ? "/character[slot]" : "/[path]/character[slot]"
 	S.cd = original_cd // Attempting to make this call as side-effect free as possible
 
-/datum/maps_data/proc/private_use_legacy_saves(var/savefile/S, var/slot)
+/datum/maps_data/proc/private_use_legacy_saves(savefile/S, slot)
 	if(!S.dir.Find(path)) // If we cannot find the map path folder, load the legacy save
 		return TRUE
 	S.cd = "/[path]" // Finally, if we cannot find the character slot in the map path folder, load the legacy save
 	return !S.dir.Find("character[slot]")
 
 
-/datum/maps_data/proc/registrate(var/obj/map_data/MD)
+/datum/maps_data/proc/registrate(obj/map_data/MD)
 	var/level = MD.z_level
 	if(level in all_levels)
 		WARNING("[level] is already in all_levels list!")
@@ -184,6 +191,29 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	if(MD.is_sealed)
 		sealed_levels += level
+	//holomaps
+	if(MD.holomap_smoosh)
+		holomap_smoosh = MD.holomap_smoosh
+
+	if(MD.is_station_level)
+		if(ISODD(level))
+			MD.holomap_offset_x = MD.holomap_legend_x - ERIS_HOLOMAP_CENTER_GUTTER - ERIS_MAP_SIZE
+			MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*((level-1)/2)
+		else
+			MD.holomap_offset_x = MD.holomap_legend_x + ERIS_HOLOMAP_CENTER_GUTTER
+			MD.holomap_offset_y = ERIS_HOLOMAP_MARGIN_Y + ERIS_MAP_SIZE*(level/2 - 0.5)
+
+	// Auto-center the map if needed (Guess based on maxx/maxy)
+	if (MD.holomap_offset_x < 0)
+		MD.holomap_offset_x = ((HOLOMAP_ICON_SIZE - world.maxx) / 2)
+	if (MD.holomap_offset_x < 0)
+		MD.holomap_offset_y = ((HOLOMAP_ICON_SIZE - world.maxy) / 2)
+	// Assign them to the map lists
+
+	LIST_NUMERIC_SET(holomap_offset_x, level, MD.holomap_offset_x)
+	LIST_NUMERIC_SET(holomap_offset_y, level, MD.holomap_offset_y)
+	LIST_NUMERIC_SET(holomap_legend_x, level, MD.holomap_legend_x)
+	LIST_NUMERIC_SET(holomap_legend_y, level, MD.holomap_legend_y)
 
 /datum/maps_data/proc/get_empty_zlevel()
 	if(empty_levels == null)
@@ -199,7 +229,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/original_level = -1
 	var/height = -1
 
-/proc/add_z_level(var/level, var/original, var/height)
+/proc/add_z_level(level, original, height)
 	var/datum/level_data/ldata = new
 	ldata.level = level
 	ldata.original_level = original
@@ -211,6 +241,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	else
 		if(z_levels[level] == null)
 			z_levels[level] = ldata
+
 
 
 /obj/map_data
@@ -232,6 +263,12 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
+	// Holomaps
+	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	var/holomap_legend_x = 96	// x position of the holomap legend for this z
+	var/holomap_legend_y = 96	// y position of the holomap legend for this z
+	var/list/holomap_smoosh
 
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/map_data/New(var/atom/nloc)
@@ -259,6 +296,11 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
 	height = 5
+	holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
+	holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
+	holomap_legend_x = 200	// x position of the holomap legend for this z
+	holomap_legend_y = 200	// y position of the holomap legend for this z
+	holomap_smoosh = list(list(1,2,3,4,5))
 
 /obj/map_data/admin
 	name = "Admin Level"

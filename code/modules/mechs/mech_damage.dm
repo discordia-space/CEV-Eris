@@ -1,4 +1,4 @@
-/mob/living/exosuit/apply_effect(var/effect = 0, var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
+/mob/living/exosuit/apply_effect(effect = 0, effecttype = STUN, armor_value = 0, check_protection = TRUE)
 	if(!effect || (armor_value >= 100))
 		return 0
 	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
@@ -9,7 +9,7 @@
 	if(!(effecttype in list(AGONY, STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
 		. = ..()
 
-/mob/living/exosuit/resolve_item_attack(var/obj/item/I, var/mob/living/user, var/def_zone)
+/mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
 	if(!I.force)
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
@@ -55,20 +55,17 @@
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
 	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
-		if(MC)
-			total += MC.burn_damage
+		total += MC.burn_damage
 	return total
 
 /mob/living/exosuit/getBruteLoss()
 	var/total = 0
 	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
-		if(MC)
-			total += MC.brute_damage
+		total += MC.brute_damage
 	return total
 
-/mob/living/exosuit/emp_act(var/severity)
-
-	var/ratio = getarmor(null, BURN)
+/mob/living/exosuit/emp_act(severity)
+	var/ratio = getarmor(null, ARMOR_ENERGY)
 
 	if(ratio >= 1)
 		for(var/mob/living/m in pilots)
@@ -86,5 +83,3 @@
 				for(var/thing in pilots)
 					var/mob/pilot = thing
 					pilot.emp_act(severity)
-
-/mob/living/exosuit/proc/update_armor()

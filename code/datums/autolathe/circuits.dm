@@ -16,6 +16,10 @@
 	name = "power control module"
 	build_path = /obj/item/weapon/circuitboard/apc
 
+/datum/design/autolathe/circuit/station_map
+	name = "power control module"
+	build_path = /obj/item/weapon/circuitboard/station_map
+
 /datum/design/autolathe/circuit/vending
 	name = "custom Vendomat"
 	build_path = /obj/item/weapon/circuitboard/vending
@@ -130,5 +134,3 @@
 /datum/design/autolathe/circuit/bioreactor_platform
 	name = "NeoTheology Biomatter Reactor, Platform"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_platform
-	
-

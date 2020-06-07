@@ -69,13 +69,19 @@
 	var/list/friends = list() //list of mobs to consider friends, not types
 	var/environment_smash = 1
 	var/destroy_surroundings = 1
-	var/break_stuff_probability = 10
+	var/break_stuff_probability = 100
 	can_burrow = TRUE
 	var/extra_burrow_chance = 1 //The chance that this animal will spawn another burrow in its vicinity
 	//This is in addition to the single guaranteed burrow that always exists in sight of any burrowing mob
 
 	var/bad_environment = FALSE //Briefly set true whenever anything in the atmosphere damages this mob
 	//When this is true, mobs will attempt to evacuate via the nearest burrow
+
+	var/busy = 0 // status of the animal, if it is doing a special task (eating, spinning web) we still want it
+	// in HOSTILE_STANCE_IDLE to react to threat but we don't want stop_automated_movement set back to 0 in Life()
+
+	var/fleshcolor = "#666600"
+	var/bloodcolor = "#666600"
 
 /mob/living/carbon/superior_animal/New()
 	..()

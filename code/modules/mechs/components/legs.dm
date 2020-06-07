@@ -1,5 +1,5 @@
 /obj/item/mech_component/propulsion
-	name = "legs"
+	name = "exosuit legs"
 	pixel_y = 12
 	icon_state = "loader_legs"
 	var/move_delay = 5
@@ -21,12 +21,13 @@
 /obj/item/mech_component/propulsion/update_components()
 	motivator = locate() in src
 
-/obj/item/mech_component/propulsion/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing,/obj/item/robot_parts/robot_component/actuator))
+/obj/item/mech_component/propulsion/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/robot_parts/robot_component/actuator))
 		if(motivator)
 			to_chat(user, SPAN_WARNING("\The [src] already has an actuator installed."))
 			return
-		if(install_component(thing, user)) motivator = thing
+		if(insert_item(I, user))
+			motivator = I
 	else
 		return ..()
 

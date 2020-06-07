@@ -581,8 +581,7 @@
 			to_chat(M, "\red You have been kicked from the server: [reason]")
 		log_admin("[key_name(usr)] booted [key_name(M)].")
 		message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
-		//M.client = null
-		qdel(M.client)
+		del(M.client)
 
 
 /datum/admin_topic/removejobban
@@ -645,7 +644,7 @@
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
-			qdel(M.client)
+			del(M.client)
 			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 		if("No")
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
@@ -669,10 +668,35 @@
 
 			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 
-			qdel(M.client)
+			del(M.client)
 		if("Cancel")
 			return
 
+/datum/admin_topic/sendbacktolobby
+	keyword = "sendbacktolobby"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/sendbacktolobby/Run(list/input)
+	var/mob/M = locate(input["sendbacktolobby"])
+
+	if(!isobserver(M))
+		to_chat(usr, "<span class='notice'>You can only send ghost players back to the Lobby.</span>")
+		return
+
+	if(!M.client)
+		to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
+		return
+
+	if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
+		return
+
+	log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+	message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] back to the Lobby.")
+
+	var/mob/new_player/NP = new()
+	GLOB.player_list -= M.ckey
+	NP.ckey = M.ckey
+	qdel(M)
 
 /datum/admin_topic/mute
 	keyword = "mute"
