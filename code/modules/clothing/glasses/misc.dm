@@ -25,6 +25,12 @@
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
 	icon_state = "uzenwa_sissra_1"
 
+/obj/item/clothing/glasses/regular/yellow
+	name = "Yellow Goggles"
+	desc = "A very oddly shaped pair of yellow goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
+	icon_state = "yellow_goggles"
+	item_state = "yellow_goggles"
+
 /obj/item/clothing/glasses/regular/hipster
 	name = "Prescription Glasses"
 	desc = "Made by Uncool. Co."

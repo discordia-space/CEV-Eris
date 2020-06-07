@@ -324,7 +324,8 @@
 				/obj/item/clothing/glasses/hud/security = 2,
 				/obj/item/clothing/glasses/sunglasses/sechud/tactical = 2,
 				/obj/item/clothing/glasses/threedglasses = 4,
-				/obj/item/clothing/glasses/welding = 4))
+				/obj/item/clothing/glasses/welding = 4,
+				/obj/item/clothing/glasses/regular/yellow = 4))
 
 /obj/random/cloth/glasses/low_chance
 	name = "low chance random glasses"

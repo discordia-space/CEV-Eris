@@ -19,6 +19,55 @@
 	)
 	twohanded = TRUE
 
+/obj/item/weapon/gun/energy/laser/railgun
+	name = "TL RG \"Prolom\""
+	desc = "\"Technomancer League\" brand rail gun. This gun features a sleek and deadly design."
+	icon = 'icons/obj/guns/energy/railgun.dmi'
+	icon_state = "railgun"
+	item_state = "railgun"
+	fire_sound = 'sound/weapons/rail.ogg'
+	suitable_cell = /obj/item/weapon/cell/medium
+	slot_flags = SLOT_BELT|SLOT_BACK
+	w_class = ITEM_SIZE_NORMAL
+	force = WEAPON_FORCE_PAINFUL
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 4)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 8, MATERIAL_SILVER = 10)
+	fire_delay = 14
+	charge_cost = 100
+	recoil_buildup = 1 //pulse weapons have a bit more recoil
+	price_tag = 3500
+	projectile_type = /obj/item/projectile/beam/midlaser
+	gun_tags = list(GUN_LASER)
+	init_firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+	)
+	twohanded = TRUE
+
+/obj/item/weapon/gun/energy/laser/railgun/pistol // currently unobtainable aside from adminspawn
+	name = "TL RP \"Zabit\""
+	desc = "\"Technomancer League\" brand rail pistol. This gun features a sleek and deadly design."
+	icon = 'icons/obj/guns/energy/railpistol.dmi'
+	icon_state = "railpistol"
+	item_state = "railpistol"
+	fire_sound = 'sound/weapons/rail.ogg'
+	suitable_cell = /obj/item/weapon/cell/small
+	slot_flags = SLOT_BELT
+	w_class = ITEM_SIZE_SMALL
+	force = WEAPON_FORCE_NORMAL
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 4)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 8, MATERIAL_SILVER = 10)
+	fire_delay = 12
+	charge_cost = 50 //Gives us  shots per high medium-sized cell
+	recoil_buildup = 1 //pulse weapons have a bit more recoil
+	price_tag = 2500
+	projectile_type = /obj/item/projectile/beam/midlaser
+	gun_tags = list(GUN_LASER)
+	init_firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+	)
+
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = TRUE
 	use_external_power = TRUE

@@ -25,6 +25,10 @@
 	display_name = "scanning goggles"
 	path = /obj/item/clothing/glasses/regular/scanners
 
+/datum/gear/eyes/yellow_goggles
+	display_name = "yellow goggles"
+	path = /obj/item/clothing/glasses/regular/yellow
+
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"
 	path = /obj/item/clothing/glasses/powered/science
