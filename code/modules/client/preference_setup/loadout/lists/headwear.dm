@@ -89,7 +89,7 @@
 
 /datum/gear/head/hardhat/color_presets
 	display_name = "hardhat, color presets"
-	path = /obj/item/clothing/head/hardhat/dblue
+	path = /obj/item/clothing/head/hardhat/blue
 	cost = 2
 
 /datum/gear/head/hardhat/color_presets/New()
@@ -98,7 +98,7 @@
 		"Red"		=	/obj/item/clothing/head/hardhat/red,
 		"Orange"	=	/obj/item/clothing/head/hardhat/orange,
 		"Yellow"	=	/obj/item/clothing/head/hardhat,
-		"Blue"		=	/obj/item/clothing/head/hardhat/dblue,
+		"Blue"		=	/obj/item/clothing/head/hardhat/blue,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(hardhat)
 
