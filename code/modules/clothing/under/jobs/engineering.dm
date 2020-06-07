@@ -36,7 +36,7 @@
 /obj/item/clothing/under/rank/engineer/technomancer
 	name = "technomancer's jumpsuit"
 	desc = "It's a yellow jumpsuit worn by technomancers. It has minor radiation shielding."
-	icon_state = "engineer"
+	icon_state = "engineer_technomancer"
 	item_state = "engi_suit"
 
 /obj/item/clothing/under/rank/atmospheric_technician

@@ -17,17 +17,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 30
 
-/obj/item/clothing/head/hardhat/update_icon()
-	. = ..()
-
-	if (on)
-		icon_state = "[initial(icon_state)]_on"
-	
-	else
-		icon_state = "[initial(icon_state)]_off"
-	
-	item_state = icon_state
-
 /obj/item/clothing/head/hardhat/visor
 	name = "visored hard hat"
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight and visor, which may protect eyes."
