@@ -15,12 +15,6 @@
 	//Skin colour
 	var/skin_color = "#000000"
 
-	//Head accessory colour and style
-	var/default_headacc				//Default head accessory style for newly created humans unless otherwise set.
-	var/default_headacc_colour
-	var/headacc_colour = "#000000"
-	var/ha_style = "None"
-
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place

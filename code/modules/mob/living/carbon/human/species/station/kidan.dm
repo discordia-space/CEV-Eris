@@ -17,8 +17,6 @@
 	max_age = 60
 	unarmed_types = list(/datum/unarmed_attack/claws, /datum/unarmed_attack/stomp,  /datum/unarmed_attack/kick, /datum/unarmed_attack/bite)
 	reagent_tag = IS_KIDAN
-	//Default styles for created mobs.
-	default_headacc = "Normal Antennae"
 	breath_pressure = 10 //deafault 16
 	brute_mod = 0.8
 	burn_mod = 1.5

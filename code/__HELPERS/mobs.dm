@@ -358,37 +358,3 @@ Proc for attack log creation, because really why not
 		return
 
 	return mind.assigned_job.head_position
-
-proc/random_head_accessory(species = "Human")
-	var/ha_style = "None"
-	var/list/valid_head_accessories = list()
-	for(var/head_accessory in GLOB.head_accessory_styles_list)
-		var/datum/sprite_accessory/S = GLOB.head_accessory_styles_list[head_accessory]
-
-		if(!(species in S.species_allowed))
-			continue
-		valid_head_accessories += head_accessory
-
-	if(valid_head_accessories.len)
-		ha_style = pick(valid_head_accessories)
-
-	return ha_style
-
-proc/random_marking_style(location = BP_CHEST, species = SPECIES_HUMAN, body_accessory)
-	var/m_style = "None"
-	var/list/valid_markings = list()
-	for(var/marking in GLOB.body_marking_styles_list)
-		var/datum/sprite_accessory/marking/S = GLOB.body_marking_styles_list[marking]
-		if(S.name == "None")
-			valid_markings += marking
-			continue
-		if(S.body_parts != location) //If the marking isn't for the location we desire, skip.
-			continue
-		if(!(species in S.species_allowed)) //If the user's head is not of a species the marking style allows, skip it. Otherwise, add it to the list.
-			continue
-		valid_markings += marking
-
-	if(valid_markings.len)
-		m_style = pick(valid_markings)
-
-	return m_style

@@ -1,4 +1,3 @@
-
 /datum/sprite_accessory/marking/kidan/horns
 	icon = 'icons/mob/human_races/species/kidan/kidan_head_accessories.dmi'
 	species_allowed = list(SPECIES_KIDAN)

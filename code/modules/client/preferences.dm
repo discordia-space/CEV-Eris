@@ -190,6 +190,7 @@
 			var/obj/item/organ/external/O = character.organs_by_name[BP]
 			if(O)
 				O.markings[M] = list("color" = mark_color, "datum" = mark_datum)
+				O.update_icon()
 
 	// Build mob body from prefs
 	character.rebuild_organs(src)
