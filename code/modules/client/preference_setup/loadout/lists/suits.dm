@@ -16,6 +16,11 @@
 	var/jacket = list(
 		"Bomber"		=	/obj/item/clothing/suit/storage/toggle/bomber,
 		"Leather"		=	/obj/item/clothing/suit/storage/leather_jacket,
+		"White"			=	/obj/item/clothing/suit/storage/drive_jacket,
+		"Violet"		=	/obj/item/clothing/suit/storage/violet_jacket,
+		"Tunnelsnake"	=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
+		"Sleek"			=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
+		"Jaeger"		=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 
@@ -44,12 +49,37 @@
 	path = /obj/item/clothing/suit/poncho
 	cost = 1
 
-/datum/gear/suit/cyberpunksleek
-	display_name = "sleek modern overcoat"
+/datum/gear/suit/coat
+	display_name = "Modern overcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek
 	cost = 2
 
-/datum/gear/suit/cyberpunksleek_long
-	display_name = "sleek modern longcoat"
+/datum/gear/suit/coat/New()
+	..()
+	var/coat = list(
+		"Green"			=	/obj/item/clothing/suit/storage/cyberpunksleek/green,
+		"Black"			=	/obj/item/clothing/suit/storage/cyberpunksleek/black,
+		"White"			=	/obj/item/clothing/suit/storage/cyberpunksleek/white,
+		"Brown"			=	/obj/item/clothing/suit/storage/cyberpunksleek
+	)
+	gear_tweaks += new /datum/gear_tweak/path(coat)
+
+/datum/gear/suit/longcoat
+	display_name = "Modern long overcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek_long
+	cost = 2
+
+/datum/gear/suit/longcoat/New()
+	..()
+	var/longcoat = list(
+		"Green"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/green,
+		"Black"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/black,
+		"White"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long/white,
+		"Brown"			=	/obj/item/clothing/suit/storage/cyberpunksleek_long
+	)
+	gear_tweaks += new /datum/gear_tweak/path(longcoat)
+
+/datum/gear/suit/bladerunner
+	display_name = "old leather coat"
+	path = /obj/item/clothing/suit/storage/bladerunner
 	cost = 2
