@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/faci
 	//Head accessory styles
 GLOBAL_LIST_INIT(head_accessory_styles_list, list()) //stores /datum/sprite_accessory/head_accessory indexed by name
 	//Marking styles
-GLOBAL_LIST_INIT(marking_styles_list, list()) //stores /datum/sprite_accessory/body_markings indexed by name
+GLOBAL_LIST_INIT(body_marking_styles_list, list()) //stores /datum/sprite_accessory/marking indexed by name
 
 
 GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
@@ -166,10 +166,10 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		GLOB.facial_hair_styles_list[H.name] = H
 	
 	//BODY MARKIGNS
-	paths = subtypesof(/datum/sprite_accessory/body_markings)
+	paths = typesof(/datum/sprite_accessory/marking) - /datum/sprite_accessory/marking
 	for(var/path in paths)
-		var/datum/sprite_accessory/body_markings/H = new path()
-		GLOB.marking_styles_list[H.name] = H
+		var/datum/sprite_accessory/marking/H = new path()
+		GLOB.body_marking_styles_list[H.name] = H
 
 	//HEAD_ACCESSORY
 	paths = subtypesof(/datum/sprite_accessory/head_accessory)

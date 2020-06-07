@@ -25,4 +25,3 @@
 	var/list/species_allowed = list(SPECIES_HUMAN) // Restrict some styles to specific species
 	var/do_colouration = 1                         // Whether or not the accessory can be affected by colouration
 	var/blend = ICON_ADD
-	var/marking_location

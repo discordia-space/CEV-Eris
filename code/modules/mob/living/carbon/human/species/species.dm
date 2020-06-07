@@ -67,10 +67,6 @@
 	var/list/hair_styles
 	var/list/facial_hair_styles
 
-	//Marking colour and style
-	var/list/m_colours = DEFAULT_MARKING_COLOURS //All colours set to #000000.
-	var/list/m_styles = DEFAULT_MARKING_STYLES //All markings set to None.
-
 	//Head accessory colour and style
 	var/default_headacc				//Default head accessory style for newly created humans unless otherwise set.
 	var/default_headacc_colour
@@ -383,7 +379,7 @@
 		LAZYSET(hair_styles, type, L)
 		for(var/hairstyle in GLOB.hair_styles_list)
 			var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
-			if(!(get_bodytype() in S.species_allowed))
+			if(S.species_allowed && !(get_bodytype() in S.species_allowed))
 				continue
 			ADD_SORTED(L, hairstyle, /proc/cmp_text_asc)
 			L[hairstyle] = S

@@ -377,12 +377,12 @@ proc/random_head_accessory(species = "Human")
 proc/random_marking_style(location = BP_CHEST, species = SPECIES_HUMAN, body_accessory)
 	var/m_style = "None"
 	var/list/valid_markings = list()
-	for(var/marking in GLOB.marking_styles_list)
-		var/datum/sprite_accessory/body_markings/S = GLOB.marking_styles_list[marking]
+	for(var/marking in GLOB.body_marking_styles_list)
+		var/datum/sprite_accessory/marking/S = GLOB.body_marking_styles_list[marking]
 		if(S.name == "None")
 			valid_markings += marking
 			continue
-		if(S.marking_location != location) //If the marking isn't for the location we desire, skip.
+		if(S.body_parts != location) //If the marking isn't for the location we desire, skip.
 			continue
 		if(!(species in S.species_allowed)) //If the user's head is not of a species the marking style allows, skip it. Otherwise, add it to the list.
 			continue

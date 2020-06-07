@@ -17,14 +17,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/eyes_color = "#000000"			//Eye color
 	var/ha_style = "None"				//Head accessory style
 	var/hacc_colour = "#000000"			//Head accessory colour
-	var/list/m_styles = list(
-		"head" = "None",
-		"body" = "None"
-		)			//Marking styles.
-	var/list/m_colours = list(
-		"head" = "#000000",
-		"body" = "#000000"
-		)		//Marking colours.
+	var/list/body_markings = list()	//Marking styles.
 
 	var/disabilities = 0
 
@@ -54,10 +47,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["facial_color"], pref.facial_color)
 	from_file(S["ha_style"], pref.ha_style)
 	from_file(S["hacc_colour"], pref.hacc_colour)
-	from_file(S["m_stylesb"], pref.m_styles["body"])
-	from_file(S["m_stylesh"], pref.m_styles["head"])
-	from_file(S["m_coloursb"], pref.m_colours["body"])
-	from_file(S["m_coloursh"], pref.m_colours["head"])
+	from_file(S["body_markings"], pref.body_markings)
 
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
 	to_file(S["species"], pref.species)
@@ -74,16 +64,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["facial_color"], pref.facial_color)
 	to_file(S["ha_style"], pref.ha_style)
 	to_file(S["hacc_colour"], pref.hacc_colour)
-	to_file(S["m_stylesb"], pref.m_styles["body"])
-	to_file(S["m_stylesh"], pref.m_styles["head"])
-	to_file(S["m_coloursb"], pref.m_colours["body"])
-	to_file(S["m_coloursh"], pref.m_colours["head"])
+	to_file(S["body_markings"], pref.body_markings)
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
-
-	if(!pref.species || !(pref.species in playable_species))
-		pref.species = SPECIES_HUMAN
-
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
@@ -94,23 +77,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	pref.ha_style		= sanitize_inlist(pref.ha_style, GLOB.head_accessory_styles_list, initial(pref.ha_style))
 	pref.hacc_colour	= iscolor(pref.hacc_colour) ? pref.hacc_colour : "#000000"
-	pref.m_styles["head"]		= sanitize_inlist(pref.m_styles["head"], GLOB.marking_styles_list, initial(pref.m_styles["head"]))
-	pref.m_colours["head"]		= iscolor(pref.m_colours["head"]) ? pref.m_colours["head"] : "#000000"
-	pref.m_styles["body"]		= sanitize_inlist(pref.m_styles["body"], GLOB.marking_styles_list, initial(pref.m_styles["body"]))
-	pref.m_colours["body"]		= iscolor(pref.m_colours["body"]) ? pref.m_colours["body"] : "#000000"
+
+	if(!pref.species || !(pref.species in playable_species))
+		pref.species = SPECIES_HUMAN
 
 	var/mob/living/carbon/human/mob_species = all_species[pref.species]
 	if(!has_flag(mob_species, HAS_HEAD_ACCESSORY)) //Species that have head accessories.
 		pref.ha_style		= initial(pref.ha_style)
 		pref.hacc_colour	=  "#000000"
-
-	if(!has_flag(mob_species, HAS_HEAD_MARKINGS)) //Species that have head markings.
-		pref.m_styles["head"] = initial(pref.m_styles["head"])
-		pref.m_colours["head"] =  "#000000"
-
-	if(!has_flag(mob_species, HAS_BODY_MARKINGS)) //Species with body markings/tattoos.
-		pref.m_styles["body"] = initial(pref.m_styles["body"])
-		pref.m_colours["body"] =  "#000000"
 
 	sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
 
@@ -121,12 +95,19 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "black"
 
+	if(!istype(pref.body_markings))
+		pref.body_markings = list()
+	else
+		pref.body_markings &= GLOB.body_marking_styles_list
+
+
 /datum/category_item/player_setup_item/physical/body/content(mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon()
 	user << browse_rsc(pref.preview_icon, "previewicon.png")
 
 	var/datum/species/mob_species = all_species[pref.species]
+	. += "<b>Species:</b> <a href='?src=\ref[src];set_species=1'>[mob_species.name]</a><br>"
 	. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
 	. += "<hr>"
 	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Body</b> "
@@ -165,15 +146,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<a href='?src=\ref[src];ha_style=1'>[pref.ha_style]</a> "
 		. += "<a href='?src=\ref[src];headaccessory=1'><span class='color_holder_box' style='background-color:[pref.hacc_colour]'</span></a><br>"
 
-	if(has_flag(mob_species, HAS_HEAD_MARKINGS)) //Species with head markings.
-		. += "<b>Head Markings:</b> "
-		. += "<a href='?src=\ref[src];m_style_head=1'>[pref.m_styles["head"]]</a>"
-		. += "<a href='?src=\ref[src];m_head_colour=1'><span class='color_holder_box' style='background-color:[pref.m_colours["head"]]'</span></a><br>"
-
-	if(has_flag(mob_species, HAS_BODY_MARKINGS)) //Species with body markings/tattoos.
-		. += "<b>Body Markings:</b> "
-		. += "<a href='?src=\ref[src];m_style_body=1'>[pref.m_styles["body"]]</a>"
-		. += "<a href='?src=\ref[src];m_body_colour=1'><span class='color_holder_box' style='background-color:[pref.m_colours["body"]]'</span></a><br>"
+	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
+	for(var/M in pref.body_markings)
+		. += "[M] <a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Color</a>"
+		. += "<font face='fixedsys' size='3' color='[pref.body_markings[M]]'><table style='display:inline;' bgcolor='[pref.body_markings[M]]'><tr><td>__</td></tr></table></font>"
+		. += "<br>"
 
 	. += "</td><td style = 'text-align:center;' width = 35%><b>Preview</b><br>"
 	. += "<div style ='padding-bottom:-2px;' class='statusDisplay'><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></div>"
@@ -213,23 +190,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.b_type = new_b_type
 			return TOPIC_REFRESH
 
-	/*else if(href_list["show_species"])
-		var/choice = input("Which species would you like to look at?") as null|anything in playable_species
-		if(choice)
-			var/datum/species/current_species = all_species[choice]
-			user << browse(current_species.get_description(), "window=species;size=700x400")
-			return TOPIC_HANDLED
-
 	else if(href_list["set_species"])
-
 		var/list/species_to_pick = list()
 		for(var/species in playable_species)
-			if(!check_rights(R_ADMIN, 0) && config.usealienwhitelist)
+			if(!check_rights(R_ADMIN, 0))
 				var/datum/species/current_species = all_species[species]
-				if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
+				if(!(current_species.spawn_flags & CAN_JOIN))
 					continue
-				else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
-					continue
+				//else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
+				//	continue
 			species_to_pick += species
 
 		var/choice = input("Select a species to play as.") as null|anything in species_to_pick
@@ -245,23 +214,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 			ResetAllHair()
 
-			//reset hair colour and skin colour
-			pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
-			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
-			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
+			//reset skin colour
 			pref.s_tone = 0
 			pref.age = max(min(pref.age, mob_species.max_age), mob_species.min_age)
 
-			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
+			//reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 			pref.body_markings.Cut() // Basically same as above.
 
-			//prune_occupation_prefs()
-			pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)
+			prune_occupation_prefs()
+			//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)
 
-			pref.cultural_info = mob_species.default_cultural_info.Copy()
+			//pref.cultural_info = mob_species.default_cultural_info.Copy()
 
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-	*/
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
@@ -329,60 +295,33 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.f_style = new_f_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["m_style_head"])
-		if(has_flag(mob_species, HAS_HEAD_MARKINGS)) //Species with head markings.
-			var/list/valid_markings = list()
-			valid_markings["None"] = GLOB.marking_styles_list["None"]
-			for(var/markingstyle in GLOB.marking_styles_list)
-				var/datum/sprite_accessory/body_markings/head/M = GLOB.marking_styles_list[markingstyle]
-				if(!(pref.species in M.species_allowed))
-					continue
-				if(M.marking_location != BP_HEAD)
-					continue
-				valid_markings += markingstyle
-			sortTim(valid_markings, /proc/cmp_text_asc)
-			var/new_marking_style = input(user, "Choose the style of your character's head markings:", "Character Preference", pref.m_styles["head"]) as null|anything in valid_markings
-			if(new_marking_style)
-				pref.m_styles["head"] = new_marking_style
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-		return TOPIC_NOACTION
+	else if(href_list["marking_style"])
+		var/list/disallowed_markings = list()
+		for (var/M in pref.body_markings)
+			var/datum/sprite_accessory/marking/mark_style = GLOB.body_marking_styles_list[M]
+			disallowed_markings |= mark_style.disallows
+		var/list/usable_markings = pref.body_markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
+		for(var/M in usable_markings)
+			var/datum/sprite_accessory/S = usable_markings[M]
+			if(is_type_in_list(S, disallowed_markings) || (S.species_allowed && !(mob_species.get_bodytype() in S.species_allowed)))
+				usable_markings -= M
 
-	else if(href_list["m_head_colour"])
-		if(has_flag(mob_species, HAS_HEAD_MARKINGS)) //Species with head markings.
-			var/input = "Choose the colour of your your character's head markings:"
-			var/new_markings = input(user, input, "Character Preference", pref.m_colours["head"]) as color|null
-			if(new_markings)
-				pref.m_colours["head"] = new_markings
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-		return TOPIC_NOACTION
+		var/new_marking = input(user, "Choose a body marking:", CHARACTER_PREFERENCE_INPUT_TITLE)  as null|anything in usable_markings
+		if(new_marking && CanUseTopic(user))
+			pref.body_markings[new_marking] = "#000000" //New markings start black
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["m_style_body"])
-		if(has_flag(mob_species, HAS_BODY_MARKINGS)) //Species with body markings/tattoos.
-			var/list/valid_markings = list()
-			valid_markings["None"] = GLOB.marking_styles_list["None"]
-			for(var/markingstyle in GLOB.marking_styles_list)
-				var/datum/sprite_accessory/M = GLOB.marking_styles_list[markingstyle]
-				if(!(pref.species in M.species_allowed))
-					continue
-				if(M.marking_location != BP_CHEST)
-					continue
+	else if(href_list["marking_remove"])
+		var/M = href_list["marking_remove"]
+		pref.body_markings -= M
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-				valid_markings += markingstyle
-			sortTim(valid_markings, /proc/cmp_text_asc)
-			var/new_marking_style = input(user, "Choose the style of your character's body markings:", "Character Preference", pref.m_styles["body"]) as null|anything in valid_markings
-			if(new_marking_style)
-				pref.m_styles["body"] = new_marking_style
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-		return TOPIC_NOACTION
-
-	else if(href_list["m_body_colour"])
-		if(has_flag(mob_species, HAS_BODY_MARKINGS))  //Species with body markings/tattoos.
-			var/input = "Choose the colour of your your character's body markings:"
-			var/new_markings = input(user, input, "Character Preference", pref.m_colours["body"]) as color|null
-			if(new_markings)
-				pref.m_colours["body"] = new_markings
-				return TOPIC_REFRESH_UPDATE_PREVIEW
-		return TOPIC_NOACTION
+	else if(href_list["marking_color"])
+		var/M = href_list["marking_color"]
+		var/mark_color = input(user, "Choose the [M] color: ", CHARACTER_PREFERENCE_INPUT_TITLE, pref.body_markings[M]) as color|null
+		if(mark_color && CanUseTopic(user))
+			pref.body_markings[M] = "[mark_color]"
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["disabilities"])
 		var/disability_flag = text2num(href_list["disabilities"])

@@ -9,19 +9,22 @@
 	After unconditional surrender the kidan were strictly controlled and under sanctions. \
 	Most of the kidan in Canis Major are now refugees."
 	name_language = LANGUAGE_KIDAN
+	language = LANGUAGE_KIDAN           // Default racial language, if any.
 	spawn_flags = CAN_JOIN
 	num_alternate_languages = 1
 	min_age = 18
 	max_age = 60
 	unarmed_types = list(/datum/unarmed_attack/claws, /datum/unarmed_attack/stomp,  /datum/unarmed_attack/kick, /datum/unarmed_attack/bite)
 	reagent_tag = IS_KIDAN
+	//Default styles for created mobs.
+	default_headacc = "Normal Antennae"
 	breath_pressure = 10 //deafault 16
 	brute_mod = 0.8
 	burn_mod = 1.5
 	radiation_mod = 0.5
 	toxins_mod = 0.5
 
-	appearance_flags = HAS_HEAD_ACCESSORY | HAS_HEAD_MARKINGS | HAS_BODY_MARKINGS | HAS_LIPS | HAS_EYE_COLOR
+	appearance_flags = HAS_HEAD_ACCESSORY | HAS_HEAD_MARKINGS | HAS_BODY_MARKINGS | HAS_EYE_COLOR
 	eyes = "kidan_eyes_s"
 	flesh_color = "#ba7814"
 	blood_color = "#FB9800"
@@ -37,4 +40,4 @@
 		)
 
 /datum/species/kidan/get_bodytype()
-	return "Kidan"
+	return SPECIES_KIDAN

@@ -50,7 +50,6 @@ datum/preferences
 	. += "<hr>"
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
-	. += "<b>Species:</b> <a href='?src=\ref[src];species=1'>[pref.species]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	
 	. = jointext(.,null)
@@ -90,29 +89,6 @@ datum/preferences
 			pref.age = max(min(round(text2num(new_age)), S.max_age), S.min_age)
 			//pref.skills_allocated = pref.sanitize_skills(pref.skills_allocated)		// The age may invalidate skill loadouts
 			return TOPIC_REFRESH
-
-	else if(href_list["species"])
-		var/list/species_to_pick = list()
-		for(var/species in playable_species)
-			if(!check_rights(R_ADMIN, 0))
-				var/datum/species/current_species = all_species[species]
-				if(!(current_species.spawn_flags & CAN_JOIN))
-					continue
-			species_to_pick += species
-
-		var/choice = input("Select a species to play as.") as null|anything in species_to_pick
-		if(!choice || !(choice in all_species))
-			return
-
-		var/prev_species = pref.species
-		pref.species = choice
-		if(prev_species != pref.species)
-			S = all_species[pref.species]
-			if(!(pref.gender in S.genders))
-				pref.gender = S.genders[1]
-
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
 
 	else if(href_list["spawnpoint"])
 		var/list/spawnkeys = list()

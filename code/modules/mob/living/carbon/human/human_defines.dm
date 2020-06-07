@@ -15,10 +15,6 @@
 	//Skin colour
 	var/skin_color = "#000000"
 
-	//Marking colour and style
-	var/list/m_colours = DEFAULT_MARKING_COLOURS //All colours set to #000000.
-	var/list/m_styles = DEFAULT_MARKING_STYLES //All markings set to None.
-
 	//Head accessory colour and style
 	var/default_headacc				//Default head accessory style for newly created humans unless otherwise set.
 	var/default_headacc_colour
