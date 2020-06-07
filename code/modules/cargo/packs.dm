@@ -954,9 +954,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 // Bees
 /datum/supply_pack/bees
 	name = "Bee crate"
-	contains = list(/obj/item/bee_pack)
+	contains = list(/obj/item/bee_pack,
+					/obj/item/bee_smoker)
 	cost = 700
-	containertype = /obj/structure/closet/crate/hydroponics
+	containertype = /obj/structure/closet/crate
 	crate_name = "Bee crate"
 	group = "Hydroponics"
 
