@@ -33,7 +33,6 @@
 	var/poison_type = "pararein"
 	pass_flags = PASSTABLE
 	faction = "spiders"
-	var/busy = 0
 
 /mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
 	get_light_and_color(parent)

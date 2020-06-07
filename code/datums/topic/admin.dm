@@ -581,8 +581,7 @@
 			to_chat(M, "\red You have been kicked from the server: [reason]")
 		log_admin("[key_name(usr)] booted [key_name(M)].")
 		message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
-		//M.client = null
-		qdel(M.client)
+		del(M.client)
 
 
 /datum/admin_topic/removejobban

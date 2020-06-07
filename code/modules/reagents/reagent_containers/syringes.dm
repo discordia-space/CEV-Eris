@@ -21,6 +21,7 @@
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
 	var/mode = SYRINGE_DRAW
+	var/breakable = TRUE
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
 	var/time = 30
@@ -291,6 +292,9 @@
 	break_syringe(target, user)
 
 /obj/item/weapon/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
+	if(!breakable)
+		return
+
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	if(target)
@@ -298,6 +302,11 @@
 	if(user)
 		add_fingerprint(user)
 	update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/blitzshell
+	name = "blitzshell syringe"
+	desc = "A blitzshell syringe."
+	breakable = FALSE
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
 	name = "lethal injection syringe"

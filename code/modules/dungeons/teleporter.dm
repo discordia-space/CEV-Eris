@@ -112,6 +112,9 @@
 	for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
 		victims_to_teleport += R
 
+	for(var/mob/living/exosuit/E in range(8, src))//And exosuits too
+		victims_to_teleport += E
+
 	for(var/mob/living/M in victims_to_teleport)
 		M.forceMove(get_turf(target))
 

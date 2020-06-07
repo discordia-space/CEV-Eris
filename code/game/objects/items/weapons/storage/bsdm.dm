@@ -75,3 +75,15 @@
 
 /obj/item/weapon/storage/bsdm/permanent
 	del_on_send = FALSE
+
+/obj/item/weapon/storage/bsdm/permanent/attackby(obj/item/W as obj, mob/user as mob)
+	..()
+
+	if(istype(W, /obj/item/weapon/reagent_containers/syringe/blitzshell))
+		var/obj/item/weapon/reagent_containers/syringe/blitzshell/syringe_blitzshell = W
+		if(syringe_blitzshell.reagents.total_volume)
+			var/trans
+			var/obj/item/weapon/reagent_containers/glass/beaker/vial/vial_blitzshell = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
+			trans = syringe_blitzshell.reagents.trans_to(vial_blitzshell, syringe_blitzshell.reagents.total_volume)
+			to_chat(user ,SPAN_NOTICE("You transfer [trans] units of the solution from [syringe_blitzshell] to [src]"))
+			return handle_item_insertion(vial_blitzshell)
