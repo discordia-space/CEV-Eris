@@ -16,7 +16,7 @@
 		if (I.implanted)
 			I.trigger(act, src)
 
-	if(src.stat == 2.0 && (act != "deathgasp"))
+	if(src.stat == 2 && (act != "deathgasp"))
 		return
 
 	var/cloud_emote = ""
@@ -52,7 +52,7 @@
 					message = "bows."
 			m_type = 1
 
-		if("clack", "clacks")
+		if("clack" || "clacks")
 			if(iskidan(src))
 				return
 			var/M = handle_emote_param(param)
@@ -61,7 +61,7 @@
 			playsound(loc, 'sound/hispania/effects/Kidanclack.ogg', 50, 1, frequency = get_age_pitch()) //Credit to DrMinky (freesound.org) for the sound.
 			m_type = 2
 
-		if("click", "clicks")
+		if("click" || "clicks")
 			if(iskidan(src))
 				return
 			var/M = handle_emote_param(param)
