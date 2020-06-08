@@ -2,7 +2,6 @@
 	Datum-based species. Should make for much cleaner and easier to maintain race code.
 */
 #define SPECIES_BLOOD_DEFAULT 560
-
 /datum/species
 
 	// Descriptors and strings.
