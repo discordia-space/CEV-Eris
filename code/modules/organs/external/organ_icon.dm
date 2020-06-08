@@ -157,6 +157,7 @@ var/global/list/limb_icon_cache = list()
 			if(skin_col)
 				mob_icon.Blend(skin_col, ICON_ADD)
 
+
 	dir = EAST
 	icon = mob_icon
 
