@@ -35,7 +35,6 @@
 //Human sub-species
 #define ishumanrace(A) istype(A, /datum/species/human)
 #define iskidan(A) is_species(A, /datum/species/kidan)
-
 //fin hispania
 
 //---------------------------------------------------
