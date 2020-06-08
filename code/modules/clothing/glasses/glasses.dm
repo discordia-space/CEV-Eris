@@ -8,6 +8,7 @@
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
 	var/obj/screen/overlay = null
 	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
+	species_restricted = list("exclude", SPECIES_KIDAN)
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
