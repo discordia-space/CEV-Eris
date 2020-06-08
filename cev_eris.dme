@@ -1188,7 +1188,7 @@
 #include "code\game\verbs\fit_viewport.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\who.dm"
-#include "code\hispania\modules\food\food2.dm"
+#include "code\hispania\modules\food\food.dm"
 #include "code\hispania\modules\mob\language\station.dm"
 #include "code\hispania\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\hispania\modules\organs\internal\kidan.dm"
