@@ -1190,6 +1190,7 @@
 #include "code\game\verbs\who.dm"
 #include "code\hispania\modules\food\food.dm"
 #include "code\hispania\modules\mob\language\station.dm"
+#include "code\hispania\modules\mob\living\carbon\human\emote.dm"
 #include "code\hispania\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\hispania\modules\organs\internal\kidan.dm"
 #include "code\hispania\modules\sprite_accessories\kidan\kidan_facial.dm"

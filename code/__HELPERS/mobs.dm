@@ -358,3 +358,12 @@ Proc for attack log creation, because really why not
 		return
 
 	return mind.assigned_job.head_position
+
+//hispania//
+/proc/is_species(A, species_datum)
+	. = FALSE
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(istype(H.species, species_datum))
+			. = TRUE
+//fin hispania//

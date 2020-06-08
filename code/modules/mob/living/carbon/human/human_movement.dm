@@ -52,7 +52,7 @@
 				return TRUE
 			return -1
 
-	else if(species.name == SPECIES_KIDAN)
+	else if(iskidan(src))
 		var/turf/T = get_turf(src)
 		if(T)
 			//se asegura de que haya presion
