@@ -51,6 +51,7 @@
 			if (thrust.stabilization_on)
 				return TRUE
 			return -1
+
 	else if(species.name == SPECIES_KIDAN)
 		var/turf/T = get_turf(src)
 		if(T)
