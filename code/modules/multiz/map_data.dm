@@ -103,6 +103,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 						/datum/job/scientist, /datum/job/roboticist,
 						/datum/job/ai, /datum/job/cyborg,
 						/datum/job/assistant
+
 						)
 
 	var/specie_job_blacklist = list(/datum/species/kidan)
