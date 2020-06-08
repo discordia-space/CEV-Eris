@@ -42,7 +42,6 @@
 #define LANGUAGE_BLITZ "Blitzshell Communique"
 #define LANGUAGE_KIDAN "Chittin" //hispania
 
-
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.
 #define RESTRICTED   2   // Language can only be acquired by spawning or an admin.
