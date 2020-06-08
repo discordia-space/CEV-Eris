@@ -18,6 +18,7 @@
 				//ASSIGN_LIST_TO_COLORS(current_species.get_random_skin_color(), r_skin, g_skin, b_skin)
 			if(current_species.appearance_flags & HAS_HAIR_COLOR)
 				randomize_hair_color("hair")
+			if(current_species.appearance_flags & HAS_FACIAL_COLOR)
 				randomize_hair_color("facial")
 				/*
 				//var/hair_colors = current_species.get_random_hair_color()

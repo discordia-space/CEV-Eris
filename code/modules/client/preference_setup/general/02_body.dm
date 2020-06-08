@@ -106,9 +106,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.hair_color]'></span></a><br>"
 
+	mob_species = all_species[pref.species]
 	. += "<br><b>Facial:</b><br>"
 	. += " Style: <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
-	if(has_flag(mob_species, HAS_HAIR_COLOR))
+	if(has_flag(mob_species, HAS_FACIAL_COLOR))
 		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 
 	if(has_flag(mob_species, HAS_EYE_COLOR))
@@ -210,19 +211,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
+		mob_species = all_species[pref.species]
 		var/list/valid_hairstyles = mob_species.get_hair_styles()
 		var/new_h_style = input(user, "Choose your character's hair style:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.h_style)  as null|anything in valid_hairstyles
 
-		mob_species = all_species[pref.species]
 		if(new_h_style && CanUseTopic(user) && (new_h_style in mob_species.get_hair_styles()))
 			pref.h_style = new_h_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["facial_color"])
-		if(!has_flag(mob_species, HAS_HAIR_COLOR))
+		mob_species = all_species[pref.species]
+		if(!has_flag(mob_species, HAS_FACIAL_COLOR))
 			return TOPIC_NOACTION
 		var/new_facial = input(user, "Choose your character's facial-hair colour:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.facial_color) as color|null
-		if(new_facial && has_flag(all_species[pref.species], HAS_HAIR_COLOR) && CanUseTopic(user))
+		if(new_facial && has_flag(all_species[pref.species], HAS_FACIAL_COLOR) && CanUseTopic(user))
 			pref.facial_color = new_facial
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -241,13 +243,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["skin_tone"])
-		//var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to [mob_species.max_skin_tone()]", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
-		var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to 220", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
-
 		mob_species = all_species[pref.species]
+		var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to [mob_species.max_skin_tone]", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
+		//var/new_s_tone = input(user, "Choose your character's skin-tone. Lower numbers are lighter, higher are darker. Range: 1 to 220", CHARACTER_PREFERENCE_INPUT_TITLE, (-pref.s_tone) + 35) as num|null
+
 		if(new_s_tone && CanUseTopic(user))
-			//pref.s_tone = 35 - max(min(round(new_s_tone), mob_species.max_skin_tone()), 1)
-			pref.s_tone = 35 - max(min(round(new_s_tone), 220), 1)
+			pref.s_tone = 35 - max(min(round(new_s_tone), mob_species.max_skin_tone), 1)
+			//pref.s_tone = 35 - max(min(round(new_s_tone), 220), 1)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["skin_color"])
