@@ -184,6 +184,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 			ResetAllHair()
 
+			//reset hair colour and skin colour
+			//pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
+			//pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
+			//pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
 			//reset skin colour
 			pref.s_tone = 0
 			pref.age = max(min(pref.age, mob_species.max_age), mob_species.min_age)
