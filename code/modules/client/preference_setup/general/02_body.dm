@@ -43,6 +43,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["hair_color"], pref.hair_color)
 	from_file(S["facial_color"], pref.facial_color)
 
+
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
 	to_file(S["species"], pref.species)
 	to_file(S["skin_tone"], pref.s_tone)
@@ -124,6 +125,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Hide job gear" : "Show job gear"]</a>"
 	. += "</td></tr></table>"
+
+
+
 
 /datum/category_item/player_setup_item/physical/body/proc/has_flag(var/datum/species/mob_species, var/flag)
 	return mob_species && (mob_species.appearance_flags & flag)
