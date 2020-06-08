@@ -23,7 +23,7 @@
 	burn_mod = 1.5
 	radiation_mod = 0.5
 	toxins_mod = 0.5
-	max_skin_tone = 100
+	max_skin_tone = 90
 
 	eyes = "kidan_eyes"
 	flesh_color = "#ba7814"
