@@ -1,5 +1,5 @@
 /datum/sprite_accessory/facial_hair/kidan
-	icon = 'icons/mob/human_races/species/kidan/kidan_facial.dmi'
+	icon = 'icons/hispania/mob/human_races/species/kidan/kidan_facial.dmi'
 	species_allowed = list(SPECIES_KIDAN)
 
 /datum/sprite_accessory/facial_hair/kidan/perked_antennae

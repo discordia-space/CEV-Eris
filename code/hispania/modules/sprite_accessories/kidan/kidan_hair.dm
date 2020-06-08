@@ -1,6 +1,6 @@
 //Kidan Hairstyles with sprites by Travelling Merchant
 /datum/sprite_accessory/hair/kidan
-	icon = 'icons/mob/human_races/species/kidan/kidan_hair.dmi'
+	icon = 'icons/hispania/mob/human_races/species/kidan/kidan_hair.dmi'
 	species_allowed = list(SPECIES_KIDAN)
 	do_colouration = 0
 

@@ -106,8 +106,6 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 						)
 
-	var/specie_job_blacklist = list(/datum/species/kidan)
-
 	var/overmap_z
 	var/overmap_size = 50
 	var/overmap_event_areas = 40

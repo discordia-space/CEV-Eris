@@ -1,8 +1,8 @@
 /datum/species/kidan
 	name = SPECIES_KIDAN
 	name_plural = SPECIES_KIDAN
-	icobase = 'icons/mob/human_races/r_kidan.dmi'
-	deform = 'icons/mob/human_races/r_def_kidan.dmi'
+	icobase = 'icons/hispania/mob/human_races/r_kidan.dmi'
+	deform = 'icons/hispania/mob/human_races/r_def_kidan.dmi'
 	blurb = "The Kidan are ant-like creatures who posses an exoskeleton. \
 	They originate from the world of Aurum, a harsh world with a poor atmosphere now lost with the destruction of the Milky Way. \
 	The last Kidan Empress was killed and their planets conquered at least a century ago in a war with humanity. \
