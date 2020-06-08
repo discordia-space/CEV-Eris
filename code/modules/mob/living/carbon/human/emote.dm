@@ -53,7 +53,7 @@
 			m_type = 1
 
 		if("clack" || "clacks")
-			if(iskidan(src))
+			if(!iskidan(src))
 				return
 			var/M = handle_emote_param(param)
 
@@ -62,7 +62,7 @@
 			m_type = 2
 
 		if("click" || "clicks")
-			if(iskidan(src))
+			if(!iskidan(src))
 				return
 			var/M = handle_emote_param(param)
 
