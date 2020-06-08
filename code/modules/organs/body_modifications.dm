@@ -34,7 +34,7 @@ var/global/list/modifications_types = list(
 	var/list/body_parts = list(				// For sorting'n'selection optimization.
 		BP_CHEST, "chest2", BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG,\
 		BP_HEART, BP_LUNGS, BP_LIVER, BP_BRAIN, BP_EYES)
-	var/list/allowed_species = list("Human")// Species restriction.
+	var/list/allowed_species = list(SPECIES_HUMAN, SPECIES_KIDAN)// Species restriction.
 	var/replace_limb = null					// To draw usual limb or not.
 	var/mob_icon = ""
 	var/icon/icon = 'icons/mob/human_races/body_modification.dmi'
@@ -57,6 +57,9 @@ var/global/list/modifications_types = list(
 			if(parent.nature > nature)
 				to_chat(usr, "[name] can't be attached to [parent.name]")
 				return FALSE
+
+	if(!(P.species in allowed_species))
+		return FALSE
 
 	if(!allow_nt)
 		if(H?.mind?.assigned_job.department == DEPARTMENT_CHURCH)
@@ -210,6 +213,7 @@ var/global/list/modifications_types = list(
 	body_parts = list(BP_EYES)
 	hascolor = TRUE
 	replace_limb = /obj/item/organ/internal/eyes/oneeye
+	allowed_species = list(SPECIES_HUMAN)
 
 /datum/body_modification/organ/oneeye/get_mob_icon(organ, color, gender, species)
 	var/datum/species/S = all_species[species]
@@ -241,6 +245,7 @@ var/global/list/modifications_types = list(
 	desc = "Special color for left eye."
 	body_parts = list(BP_EYES)
 	hascolor = TRUE
+	allowed_species = list(SPECIES_HUMAN)
 
 /datum/body_modification/organ/heterochromia/get_mob_icon(organ, color, gender, species)
 	var/datum/species/S = all_species[species]
