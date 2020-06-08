@@ -247,7 +247,6 @@ var/global/ManifestJSON
 		temp.Blend(facial, ICON_OVERLAY)
 
 	preview_icon.Blend(temp, ICON_OVERLAY)
-		
 
 	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
 	if(J)
