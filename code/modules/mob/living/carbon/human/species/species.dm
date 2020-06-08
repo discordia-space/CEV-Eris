@@ -38,6 +38,7 @@
 
 	var/min_age = 17
 	var/max_age = 70
+	var/max_skin_tone = 220
 
 	// Language/culture vars.
 	var/default_language = LANGUAGE_COMMON   // Default language is used when 'say' is used without modifiers.

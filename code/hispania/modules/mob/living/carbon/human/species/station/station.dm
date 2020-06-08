@@ -3,6 +3,7 @@
 	name_plural = SPECIES_KIDAN
 	icobase = 'icons/hispania/mob/human_races/r_kidan.dmi'
 	deform = 'icons/hispania/mob/human_races/r_def_kidan.dmi'
+	faceicobase = 'icons/hispania/mob/kidan_face.dmi'
 	blurb = "The Kidan are ant-like creatures who posses an exoskeleton. \
 	They originate from the world of Aurum, a harsh world with a poor atmosphere now lost with the destruction of the Milky Way. \
 	The last Kidan Empress was killed and their planets conquered at least a century ago in a war with humanity. \
@@ -22,6 +23,7 @@
 	burn_mod = 1.5
 	radiation_mod = 0.5
 	toxins_mod = 0.5
+	max_skin_tone = 150
 
 	eyes = "kidan_eyes"
 	flesh_color = "#ba7814"
