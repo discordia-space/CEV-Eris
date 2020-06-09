@@ -209,10 +209,10 @@
 			if(covered)
 				to_chat(H, SPAN_DANGER("[pick(heat_discomfort_strings)]"))
 
-/datum/species/proc/sanitize_name(var/name)
+/datum/species/proc/sanitize_name(name)
 	return sanitizeName(name)
 
-/datum/species/proc/get_random_name(var/gender)
+/datum/species/proc/get_random_name(gender)
 	if(!name_language)
 		if(gender == FEMALE)
 			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
@@ -226,10 +226,39 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/datum/species/proc/organs_spawned(var/mob/living/carbon/human/H)
+/datum/species/proc/get_random_first_name(gender)
+	if(!name_language)
+		if(gender == FEMALE)
+			return capitalize(pick(GLOB.first_names_female))
+		else
+			return capitalize(pick(GLOB.first_names_male))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_name(gender)
+
+/datum/species/proc/get_random_last_name(gender)
+	if(!name_language)
+		if(gender == FEMALE)
+			return capitalize(pick(GLOB.last_names))
+		else
+			return capitalize(pick(GLOB.last_names))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_name(gender)
+
+
+/datum/species/proc/organs_spawned(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
+/datum/species/proc/hug(mob/living/carbon/human/H,var/mob/living/target)
 
 	var/t_him = "them"
 	switch(target.gender)

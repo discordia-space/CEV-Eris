@@ -38,12 +38,12 @@
 		f_style = pick(valid_facialhairstyles)
 		return f_style
 
-/proc/sanitize_name(name, species = "Human")
+/proc/sanitize_name(name, species = "Human", max_length = MAX_NAME_LEN)
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
 
-	return current_species ? current_species.sanitize_name(name) : sanitizeName(name)
+	return current_species ? current_species.sanitize_name(name) : sanitizeName(name, max_length)
 
 /proc/random_name(gender, species = "Human")
 
@@ -58,6 +58,34 @@
 			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
 		return current_species.get_random_name(gender)
+
+/proc/random_first_name(gender, species = "Human")
+
+	var/datum/species/current_species
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		if(gender==FEMALE)
+			return capitalize(pick(GLOB.first_names_female))
+		else
+			return capitalize(pick(GLOB.first_names_male))
+	else
+		return current_species.get_random_first_name(gender)
+
+/proc/random_last_name(gender, species = "Human")
+
+	var/datum/species/current_species
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		if(gender==FEMALE)
+			return capitalize(pick(GLOB.last_names))
+		else
+			return capitalize(pick(GLOB.last_names))
+	else
+		return current_species.get_random_last_name(gender)
 
 /proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))

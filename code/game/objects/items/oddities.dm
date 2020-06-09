@@ -15,8 +15,8 @@
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
-
 	var/sanity_value = 1
+	var/perk
 
 
 /obj/item/weapon/oddity/Initialize()
@@ -27,7 +27,6 @@
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 	AddComponent(/datum/component/inspiration, oddity_stats)
-
 
 /obj/item/weapon/oddity/examine(user)
 	..()
@@ -65,6 +64,7 @@
 	name = "strange coin"
 	desc = "It appears to be more of a collectible than any sort of actual currency. What metal it's made from seems to be a mystery."
 	icon_state = "coin"
+	perk = PERK_FAST_FINGERS
 	oddity_stats = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,
@@ -102,6 +102,7 @@
 	name = "old newspaper"
 	desc = "It contains a report on some old and strange phenomenon. Maybe it's lies, maybe it's corporate experiments gone wrong."
 	icon_state = "old_newspaper"
+	//perk = PERK_ASS_OFF_CONCRETE
 	oddity_stats = list(
 		STAT_MEC = 4,
 		STAT_COG = 4,
@@ -112,6 +113,7 @@
 	name = "turn-out page"
 	desc = "This ALMOST makes sense."
 	icon_state = "paper_crumpled"
+	//perk = Unfinished_Delivery
 	oddity_stats = list(
 		STAT_MEC = 6,
 		STAT_COG = 6,
@@ -132,6 +134,7 @@
 	name = "observer book"
 	desc = "This book details information on some cyber creatures. Who did this, how this is even possible?"
 	icon_state = "book_eyes"
+	//perk = Sure_Step
 	oddity_stats = list(
 		STAT_ROB = 9,
 		STAT_TGH = 9,
@@ -152,6 +155,7 @@
 	name = "old bible"
 	desc = "Oh, how quickly we forgot."
 	icon_state = "book_bible"
+	//perk = Charming_Personality
 	oddity_stats = list(
 		STAT_ROB = 5,
 		STAT_VIG = 5,
@@ -171,6 +175,7 @@
 	desc = "It's broken and stuck on some really strange readings. Was this even human?"
 	icon_state = "healthscanner"
 	item_state = "electronic"
+	//perk = Toxic_Revenger
 	oddity_stats = list(
 		STAT_COG = 8,
 		STAT_BIO = 8,
@@ -199,6 +204,7 @@
 	name = "teddy bear"
 	desc = "He will be there for you, even in tough times."
 	icon_state = "teddy"
+	//perk = Space_Asshole
 	oddity_stats = list(
 		STAT_ROB = 7,
 		STAT_TGH = 7,
@@ -215,9 +221,9 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	slot_flags = SLOT_BELT
-	sharp = 1
+	sharp = TRUE
 	edge = 1
-
+	//perk = Horrible_Deeds
 	oddity_stats = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,

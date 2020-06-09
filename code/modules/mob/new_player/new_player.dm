@@ -355,7 +355,9 @@
 
 	if(SSticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = random_name(new_character.gender)
+		client.prefs.real_first_name = random_first_name(new_character.gender)
+		client.prefs.real_last_name = random_first_name(new_character.gender)
+		client.prefs.real_name = client.prefs.real_first_name + " " + client.prefs.real_last_name
 		client.prefs.randomize_appearance_and_body_for(new_character)
 	else
 		client.prefs.copy_to(new_character)

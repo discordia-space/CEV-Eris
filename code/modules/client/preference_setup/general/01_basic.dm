@@ -3,23 +3,29 @@ datum/preferences
 	var/age = 30						//age of character
 	var/spawnpoint = "Aft Cryogenic Storage" 			//where this character will spawn
 	var/real_name						//our character's name
+	var/real_first_name
+	var/real_last_name
 	var/be_random_name = 0				//whether we are a random name every round
 
 /datum/category_item/player_setup_item/physical/basic
 	name = "Basic"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/physical/basic/load_character(var/savefile/S)
+/datum/category_item/player_setup_item/physical/basic/load_character(savefile/S)
 	from_file(S["gender"],                pref.gender)
 	from_file(S["age"],                   pref.age)
 	from_file(S["spawnpoint"],            pref.spawnpoint)
+	from_file(S["real_first_name"],       pref.real_first_name)
+	from_file(S["real_last_name"],        pref.real_last_name)
 	from_file(S["real_name"],             pref.real_name)
 	from_file(S["name_is_always_random"], pref.be_random_name)
 
-/datum/category_item/player_setup_item/physical/basic/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/physical/basic/save_character(savefile/S)
 	to_file(S["gender"],                  pref.gender)
 	to_file(S["age"],                     pref.age)
 	to_file(S["spawnpoint"],              pref.spawnpoint)
+	to_file(S["real_first_name"],         pref.real_first_name)
+	to_file(S["real_last_name"],          pref.real_last_name)
 	to_file(S["real_name"],               pref.real_name)
 	to_file(S["name_is_always_random"],   pref.be_random_name)
 
@@ -43,8 +49,10 @@ datum/preferences
 	*/
 /datum/category_item/player_setup_item/physical/basic/content()
 	. = list()
-	. += "<b>Name:</b> "
-	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
+	. += "<b>First name:</b> "
+	. += "<a href='?src=\ref[src];fname=1'><b>[pref.real_first_name]</b></a><br>"
+	. += "<b>Last name:</b> "
+	. += "<a href='?src=\ref[src];lname=1'><b>[pref.real_last_name]</b></a><br>"
 	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
 	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a>"
 	. += "<hr>"
@@ -54,22 +62,43 @@ datum/preferences
 
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/physical/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/physical/basic/OnTopic(href, href_list, mob/user)
 	var/datum/species/S = all_species[pref.species]
 
-	if(href_list["rename"])
-		var/raw_name = input(user, "Choose your character's name:", "Character Name", pref.real_name)  as text|null
-		if (!isnull(raw_name) && CanUseTopic(user))
-			var/new_name = sanitize_name(raw_name, pref.species)
-			if(new_name)
-				pref.real_name = new_name
+	if(href_list["fname"])
+		var/raw_first_name = input(user, "Choose your character's first name:", "Character First Name", pref.real_first_name)  as text|null
+		if (!isnull(raw_first_name) && CanUseTopic(user))
+			var/new_fname = sanitize_name(raw_first_name, pref.species, 14)
+			if(new_fname)
+				pref.real_first_name = new_fname
+				pref.real_name = pref.real_first_name + " " + pref.real_last_name
 				return TOPIC_REFRESH
 			else
-				to_chat(user, SPAN_WARNING("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
+				to_chat(user, SPAN_WARNING("Invalid first name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 				return TOPIC_NOACTION
 
+	if(href_list["lname"])
+		var/last_name_max_length = 14
+		var/raw_last_name = input(user, "Choose your character's last name:", "Character Last Name", pref.real_last_name)  as text|null
+		if(CanUseTopic(user))
+			if(isnull(raw_last_name) || raw_last_name == "")
+				pref.real_last_name = null
+				pref.real_name = pref.real_first_name
+				return TOPIC_REFRESH
+			else
+				var/new_lname = sanitize_name(raw_last_name, pref.species, last_name_max_length)
+				if(new_lname)
+					pref.real_last_name = new_lname
+					pref.real_name = pref.real_first_name + " " + pref.real_last_name
+					return TOPIC_REFRESH
+				else
+					to_chat(user, SPAN_WARNING("Invalid last name. Your name should be at least 2 and at most [last_name_max_length] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
+					return TOPIC_NOACTION
+
 	else if(href_list["random_name"])
-		pref.real_name = random_name(pref.gender, pref.species)
+		pref.real_first_name = random_first_name(pref.gender, pref.species)
+		pref.real_last_name = random_last_name(pref.gender, pref.species)
+		pref.real_name = pref.real_first_name + " " + pref.real_last_name 
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name"])
