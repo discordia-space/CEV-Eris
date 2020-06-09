@@ -10,6 +10,8 @@
 		f_style = random_facial_hair_style(gender, species)
 		if(current_species)
 			s_tone = random_skin_tone()
+			if(species != SPECIES_HUMAN)
+				s_tone = min(max( .+rand(-25, 25), -current_species.max_skin_tone), 34)
 			if(current_species.appearance_flags & HAS_EYE_COLOR)
 			//ASSIGN_LIST_TO_COLORS(current_species.get_random_eye_color(), r_eyes, g_eyes, b_eyes)
 				randomize_eyes_color()
