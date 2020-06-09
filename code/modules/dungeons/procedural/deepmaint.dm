@@ -164,7 +164,6 @@ var/global/list/free_deepmaint_ladders = list()
 
 
 /obj/procedural/dungenerator/deepmaint/New()
-	set background = 1
 	while(1)
 		if(Master.current_runlevel)
 			break

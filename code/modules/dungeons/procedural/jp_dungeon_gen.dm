@@ -646,7 +646,8 @@
 			if(regions.len>1)
 				continue
 
-		if(!(region1.getBorder().len))
+		var/list/regBord = region1.getBorder()
+		if(!regBord.len)
 			regions -= region1
 			continue
 
