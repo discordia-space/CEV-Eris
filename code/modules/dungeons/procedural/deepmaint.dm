@@ -118,6 +118,8 @@ var/global/list/free_deepmaint_ladders = list()
 				var/obj/machinery/light/small/autoattach/L = locate(/obj/machinery/light/small/autoattach, W)
 				qdel(L)
 			W.ChangeTurf(/turf/simulated/floor/tiled/techmaint_perforated)
+			for(var/turf/simulated/wall/A in getAdjacent(W))
+				A.update_connections(1)
 			if(prob(70))
 				new /obj/random/pack/machine(W)
 		return TRUE
