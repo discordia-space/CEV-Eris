@@ -184,26 +184,29 @@
 		text += A.print_player()
 
 	text += "<br>"
-	var/failed = FALSE
-	var/num = 1
 
-	for(var/datum/objective/O in objectives)
-		text += "<br><b>Objective [num]:</b> [O.explanation_text] "
-		if(O.check_completion())
-			text += "<font color='green'><B>Success!</B></font>"
+	if (objectives.len)
+		var/failed = FALSE
+		var/num = 1
+
+		for(var/datum/objective/O in objectives)
+			text += "<br><b>Objective [num]:</b> [O.explanation_text] "
+			if(O.check_completion())
+				text += "<font color='green'><B>Success!</B></font>"
+			else
+				text += "<font color='red'>Fail.</font>"
+				failed = TRUE
+			num++
+
+		if(failed)
+			text += "<br><font color='red'><B>The members of the [name] failed their tasks.</B></font>"
 		else
-			text += "<font color='red'>Fail.</font>"
-			failed = TRUE
-		num++
-
-	if(failed)
-		text += "<br><font color='red'><B>The members of the [name] failed their tasks.</B></font>"
-	else
-		text += "<br><font color='green'><B>The members of the [name] accomplished their tasks!</B></font>"
-
+			text += "<br><font color='green'><B>The members of the [name] accomplished their tasks!</B></font>"
+	text += print_success_extra()
 	// Display the results.
 	return text
-
+/datum/faction/proc/print_success_extra() //Placeholder for extra data for print_succes proc
+	return ""
 /datum/faction/proc/get_indicator(var/datum/antagonist/A)
 	if(A in leaders)
 		return get_leader_indicator()

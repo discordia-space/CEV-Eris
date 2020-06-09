@@ -1,7 +1,6 @@
 /datum/design/research/item/exosuit
 	category = CAT_MECH + " Equipment"
-	time = 10
-	materials = list(MATERIAL_STEEL = 10)
+	build_type = AUTOLATHE | MECHFAB
 
 /datum/design/research/item/mechfab/exosuit/AssembleDesignDesc()
 	if(!desc)
@@ -9,6 +8,3 @@
 
 /datum/design/research/item/mechfab/exosuit
 	category = CAT_MECH
-
-#include "exosuits_components.dm"
-#include "exosuits_equipment.dm"

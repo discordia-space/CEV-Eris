@@ -73,13 +73,12 @@
 	name = "egg cluster"
 	desc = "They seem to pulse slightly with an inner life"
 	icon_state = "eggs"
-	var/amount_grown = 0
-	New()
-		pixel_x = rand(3,-3)
-		pixel_y = rand(3,-3)
-		START_PROCESSING(SSobj, src)
+	var/amount_grown = 0		
 
 /obj/effect/spider/eggcluster/New(var/location, var/atom/parent)
+	pixel_x = rand(3,-3)
+	pixel_y = rand(3,-3)
+	START_PROCESSING(SSobj, src)
 	get_light_and_color(parent)
 	..()
 

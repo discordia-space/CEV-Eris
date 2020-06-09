@@ -13,8 +13,8 @@
 /obj/item/robot_parts/set_dir()
 	return
 
-/obj/item/robot_parts/New(var/newloc, var/model)
-	..(newloc)
+/obj/item/robot_parts/Initialize(newloc)
+	. = ..()
 	name = "robot [initial(name)]"
 
 /obj/item/robot_parts/proc/is_ready(var/mob/living/user)

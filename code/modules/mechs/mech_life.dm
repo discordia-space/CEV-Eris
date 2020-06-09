@@ -28,7 +28,7 @@
 	lying = FALSE // Fuck off, carp.
 
 /mob/living/exosuit/get_cell()
-	return body ? body.get_cell() : null
+	return body?.get_cell()
 
 /mob/living/exosuit/proc/calc_power_draw()
 	//Passive power stuff here. You can also recharge cells or hardpoints if those make sense
@@ -60,10 +60,14 @@
 			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))
 
 
-/mob/living/exosuit/death(var/gibbed)
+/mob/living/exosuit/death(gibbed)
+	// Eject the pilots
+	hatch_locked = FALSE // So they can get out
+	for(var/pilot in pilots)
+		eject(pilot, silent=TRUE)
 
 	// Salvage moves into the wreck unless we're exploding violently.
-	var/obj/wreck = new wreckage_path(get_turf(src), src, gibbed)
+	var/obj/wreck = new wreckage_path(drop_location(), src, gibbed)
 	wreck.name = "wreckage of \the [name]"
 	if(!gibbed)
 		if(arms.loc != src)
@@ -75,15 +79,10 @@
 		if(body.loc != src)
 			body = null
 
-	// Eject the pilot.
-	if(LAZYLEN(pilots))
-		hatch_locked = 0 // So they can get out.
-		for(var/pilot in pilots)
-			eject(pilot, silent=1)
-
 	// Handle the rest of things.
 	..(gibbed, (gibbed ? "explodes!" : "grinds to a halt before collapsing!"))
-	if(!gibbed) qdel(src)
+	if(!gibbed)
+		qdel(src)
 
 /mob/living/exosuit/gib()
 	death(1)

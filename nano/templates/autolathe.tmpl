@@ -60,8 +60,8 @@ Used In File(s): \code\game\machinery\autolathe.dm
 <div class="fixedWidest" style="width:100%; display: table-row">
 	<div class="block" style="padding: 0px 4px 2px 4px">
 		<div class="item">
-			{{for data.categories}}
-				{{:helper.link(value, null, {'category' : value}, value == data.show_category ? 'selected' : null)}}
+			{{for data.categories :category:category_i}}
+				{{:helper.link(category, null, {'category' : category_i+1}, category == data.show_category ? 'selected' : null)}}
 			{{empty}}
 			There are no known designs
 			{{/for}}

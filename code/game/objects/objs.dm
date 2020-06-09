@@ -198,23 +198,23 @@
 /obj/proc/remove_hearing()
 	hearing_objects.Remove(src)
 
-/obj/proc/eject_item(var/obj/item/I, var/mob/living/M)
-	if(!I || !M.IsAdvancedToolUser())
+/obj/proc/eject_item(obj/item/I, mob/living/user)
+	if(!I || !user.IsAdvancedToolUser())
 		return FALSE
-	M.put_in_hands(I)
+	user.put_in_hands(I)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
-	M.visible_message(
-		"[M] remove [I] from [src].",
+	user.visible_message(
+		"[user] removes [I] from [src].",
 		SPAN_NOTICE("You remove [I] from [src].")
 	)
 	return TRUE
 
-/obj/proc/insert_item(var/obj/item/I, var/mob/living/M)
-	if(!I || !M.unEquip(I))
+/obj/proc/insert_item(obj/item/I, mob/living/user)
+	if(!I || !user.unEquip(I))
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-	to_chat(M, SPAN_NOTICE("You insert [I] into [src]."))
+	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 	return TRUE
 
 
