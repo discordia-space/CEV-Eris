@@ -28,7 +28,7 @@
 
 	var/numRooms //The upper limit of the number of 'rooms' placed in the dungeon. NOT GUARANTEED TO BE REACHED
 	var/numExtraPaths //The upper limit on the number of extra paths placed beyond those required to ensure connectivity. NOT GUARANTEED TO BE REACHED
-	var/maximumIterations = 150 //The number of do-nothing iterations before the generator gives up with an error.
+	var/maximumIterations = 100 //The number of do-nothing iterations before the generator gives up with an error.
 	var/roomMinSize //The minimum 'size' passed to rooms.
 	var/roomMaxSize //The maximum 'size' passed to rooms.
 	var/maxPathLength //The absolute maximum length paths are allowed to be.
@@ -42,6 +42,8 @@
 	var/list/border_turfs //Internal list. No touching, unless you really know what you're doing.
 
 	var/list/examined //Internal list, used for pre-existing region stuff
+
+	var/list/path_turfs = list()
 
 	var/out_numRooms //The number of rooms the generator managed to place
 	var/out_numPaths //The total number of paths the generator managed to place. This includes those required for reachability as well as 'extra' paths, as well as all long paths.
@@ -198,13 +200,13 @@
 
 
 /*
-	Returns 'true' if the turf 't' is of one of the types specified as a wall by the
-	parameters of the generator. False otherwise.
+	Returns 'true' if the turf 't' is a wall. False otherwise.
 */
-/obj/procedural/jp_DungeonGenerator/proc/isWall(turf/t)
+/*
+/obj/procedural/jp_DungeonGenerator/proc/iswall(turf/t)
 //	if(islist(walltype)) return t.type in walltype
 	return t.is_wall
-
+*/
 /*
 	Returns 'true' if l is a list, false otherwise
 */
@@ -269,10 +271,10 @@
 /obj/procedural/jp_DungeonGenerator/proc/getNumRooms()
 	return numRooms
 
-	/*
-		Sets the number of 'extra' paths that will be placed in the dungeon - 'extra'
-		in that they aren't required to ensure reachability
-	*/
+/*
+	Sets the number of 'extra' paths that will be placed in the dungeon - 'extra'
+	in that they aren't required to ensure reachability
+*/
 /obj/procedural/jp_DungeonGenerator/proc/setExtraPaths(p)
 	numExtraPaths = p
 
@@ -569,7 +571,7 @@
 	if(usePreexistingRegions)
 		examined = list()
 		for(var/turf/t in block(locate(getMinX(), getMinY(), getZ()), locate(getMaxX(), getMaxY(), getZ())))
-			if(!isWall(t)) if(!(t in examined)) rooms+=regionCreate(t)
+			if(!iswall(t)) if(!(t in examined)) rooms+=regionCreate(t)
 
 	for(var/k in allowedRooms)
 		nextentry = allowedRooms[k]
@@ -605,12 +607,13 @@
 
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
 		if(!r.doesMultiborder())
+			if(r.border.len == 0)
+				continue
 			var/obj/procedural/jp_DungeonRegion/reg = new /obj/procedural/jp_DungeonRegion(src)
 			reg.addTurfs(r.getTurfs(), 1)
 			reg.addBorder(r.getBorder())
 			regions+=reg
 			border_turfs+=reg.getBorder()
-			sleep(1)
 		else
 			for(var/l in r.getMultiborder())
 				var/obj/procedural/jp_DungeonRegion/reg = new /obj/procedural/jp_DungeonRegion(src)
@@ -621,9 +624,9 @@
 
 	for(var/turf/t in border_turfs)
 		for(var/turf/t2 in range(t, 1))
-			if(isWall(t2)&&!(t2 in border_turfs))
+			if(iswall(t2)&&!(t2 in border_turfs))
 				for(var/turf/t3 in range(t2, 1))
-					if(!isWall(t3))
+					if(!iswall(t3))
 						border_turfs+=t2
 						break
 
@@ -639,7 +642,13 @@
 		region1 = pick(regions)
 		region2 = pick(regions)
 
-		if(region1==region2) if(regions.len>1) continue
+		if(region1==region2)
+			if(regions.len>1)
+				continue
+
+		if(!(region1.getBorder().len))
+			regions -= region1
+			continue
 
 		var/list/turf/path = getPath(region1, region2, regions)
 
@@ -656,6 +665,7 @@
 				spawn(5)
 					AddLight(t)
 			path+= t
+			path_turfs += t
 
 		region1.addTurfs(path)
 
@@ -671,17 +681,15 @@
 		r.finalise()
 
 	initializeSubmaps()
-
-
 	updateWallConnections()
-
-
 
 	out_time = (world.timeofday-timer)
 	out_rooms = rooms
 	out_region = region1
 	out_numRooms = out_rooms.len
 	rand_seed(tempseed)
+
+
 
 
 
@@ -715,7 +723,7 @@
 		next-=nt
 		examined+=nt
 		if(nt.x<getMinX() || nt.x>getMaxX() || nt.y<getMinY() || nt.y>getMaxY()) continue
-		if(isWall(nt))
+		if(iswall(nt))
 			border+=nt
 			continue
 
@@ -747,7 +755,7 @@
 /obj/procedural/jp_DungeonGenerator/proc/intersects(var/obj/procedural/jp_DungeonRoom/newroom, var/list/obj/procedural/jp_DungeonRoom/rooms)
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
 		. = newroom.getSize() + r.getSize() + 4
-		if((. > abs(newroom.getX() - r.getX() + 2)) && (. > abs(newroom.getY() - r.getY() + 2)))
+		if((. > abs(newroom.getX() - r.getX())) && (. > abs(newroom.getY() - r.getY())))
 			if(!doAccurateRoomPlacementCheck) return TRUE
 			if(!(newroom.doesAccurate() && r.doesAccurate())) return TRUE
 
@@ -756,15 +764,15 @@
 			var/inty1=-1
 			var/inty2=-1
 
-			var/rx1 = r.getX()-r.getSize()-1
-			var/rx2 = r.getX()+r.getSize()+1
-			var/sx1 = newroom.getX()-newroom.getSize()-1
-			var/sx2 = newroom.getX()+newroom.getSize()+1
+			var/rx1 = r.getX()-r.getSize()-1 * (pathWidth + 1)
+			var/rx2 = r.getX()+r.getSize()+1 * (pathWidth + 1)
+			var/sx1 = newroom.getX()-newroom.getSize()-1 * (pathWidth + 1)
+			var/sx2 = newroom.getX()+newroom.getSize()+1 * (pathWidth + 1)
 
-			var/ry1 = r.getY()-r.getSize()-1
-			var/ry2 = r.getY()+r.getSize()+1
-			var/sy1 = newroom.getY()-newroom.getSize()-1
-			var/sy2 = newroom.getY()+newroom.getSize()+1
+			var/ry1 = r.getY()-r.getSize()-1 * (pathWidth + 1)
+			var/ry2 = r.getY()+r.getSize()+1 * (pathWidth + 1)
+			var/sy1 = newroom.getY()-newroom.getSize()-1 * (pathWidth + 1)
+			var/sy2 = newroom.getY()+newroom.getSize()+1 * (pathWidth + 1)
 
 			if(rx1>=sx1 && rx1<=sx2) intx1 = rx1
 			if(rx2>=sx1 && rx2<=sx2)
@@ -806,6 +814,7 @@
 	Constructs a path between two jp_DungeonRegions.
 */
 /obj/procedural/jp_DungeonGenerator/proc/getPath(var/obj/procedural/jp_DungeonRegion/region1, var/obj/procedural/jp_DungeonRegion/region2)
+	set background = 1
 	var/turf/start = pick(region1.getBorder())
 	var/turf/end
 	var/long = FALSE
@@ -834,7 +843,7 @@
 
 	next-=borders
 	for(var/turf/t in next)
-		if(!isWall(t)) next-=t
+		if(!iswall(t)) next-=t
 		previous["\ref[t]"] = start
 		cost["\ref[t]"]=1
 	if(!next.len) return list()
@@ -865,7 +874,7 @@
 		for(var/turf/t in getAdjacent(min))
 			var/stop_looking = FALSE
 			for(var/turf/t1 in GetSquare(t, pathWidth + 1))
-				if(!(isWall(t1) && !(t1 in borders)))
+				if(!(iswall(t1) && !(t1 in borders)))
 					stop_looking = TRUE
 					break
 			if(stop_looking)
@@ -988,7 +997,7 @@ Make a new jp_DungeonRegion, and set its reference to its generator object
 			contained+=t
 			if(!noborder)
 				for(var/turf/t2 in gen.getAdjacent(t))
-					if(gen.isWall(t2) && !(t2 in border)) border+=t2
+					if(iswall(t2) && !(t2 in border)) border+=t2
 
 /*
 	Adds a list of turfs to the border of the region.
@@ -1118,22 +1127,15 @@ Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 
 /*
 Class for a simple square room, size*2+1 by size*2+1 units. Border is all turfs adjacent
-to the floor that return true from isWall().
+to the floor that return true from iswall().
 */
 /obj/procedural/jp_DungeonRoom/preexist/square
 	name = "square"
 
 /obj/procedural/jp_DungeonRoom/preexist/square/doesAccurate()
 	return TRUE
-/*
-/obj/procedural/jp_DungeonRoom/preexist/square/proc/getCorners()
-	var/list/corners = list()
-	corners += gen.GetSquare(locate(centre.x + (size - 1), centre.y + (size - 1), centre.z))
-	corners += gen.GetSquare(locate(centre.x - (size - 1), centre.y + (size - 1), centre.z))
-	corners += gen.GetSquare(locate(centre.x + (size - 1), centre.y - (size - 1), centre.z))
-	corners += gen.GetSquare(locate(centre.x - (size - 1), centre.y - (size - 1), centre.z))
-	return corners
-*/
+
+
 /obj/procedural/jp_DungeonRoom/preexist/square/New(s, c, g)
 	..(s, c, g)
 
@@ -1143,7 +1145,7 @@ to the floor that return true from isWall().
 		for(var/turf/t2 in gen.getAdjacent(t))
 			if(t2 in turfs)
 				continue
-			if(gen.isWall(t2) && !(t2 in border))
+			if(iswall(t2) && !(t2 in border))
 				border += t2
 
 /obj/procedural/jp_DungeonRoom/preexist/square/place()
@@ -1154,7 +1156,7 @@ to the floor that return true from isWall().
 
 /*
 A simple circle of radius 'size' units. Border is all turfs adjacent to the floor that
-return true from isWall()
+return true from iswall()
 */
 /obj/procedural/jp_DungeonRoom/preexist/circle
 	name = "round square"
@@ -1180,7 +1182,7 @@ return true from isWall()
 		for(var/turf/t2 in gen.getAdjacent(t))
 			if(t2 in turfs)
 				continue
-			if(gen.isWall(t2) && !(t2 in border))
+			if(iswall(t2) && !(t2 in border))
 				border+=t2
 
 /obj/procedural/jp_DungeonRoom/preexist/circle/place()
@@ -1206,7 +1208,7 @@ the arms of the plus sign - there are only four.
 
 	for(var/turf/t in range(centre, size+1))
 		if(t in turfs) continue
-		if(gen.isWall(t) && (t.x == getX() || t.y == getY()))
+		if(iswall(t) && (t.x == getX() || t.y == getY()))
 			border+=t
 
 /obj/procedural/jp_DungeonRoom/preexist/cross/place()
@@ -1237,7 +1239,13 @@ the arms of the plus sign - there are only four.
 	..(s, c, g)
 	my_map = pick(gen.room_templates)
 
+	if(!my_map)
+		testing("[centre.x], [centre.y] - NO MAP TEMPLATE!!!")
+
+
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/finalise()
+	if(border.len < 1)
+		testing("ROOM [my_map.name] HAS NO BORDERS! at [centre.x], [centre.y]!")
 	if(my_map)
 		my_map.load(centre, centered = TRUE, orientation = SOUTH, post_init = 1)
 	else

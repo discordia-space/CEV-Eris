@@ -2,8 +2,8 @@
 //165 secs
 /obj/procedural/dungenerator
 	var/obj/procedural/jp_DungeonGenerator/generate = null //The actual generator.
-	var/width_x = 110
-	var/height_y = 110
+	var/width_x = 136
+	var/height_y = 136
 
 /obj/procedural/dungenerator/New()
 	var/obj/procedural/jp_DungeonGenerator/generate = new /obj/procedural/jp_DungeonGenerator(src)
