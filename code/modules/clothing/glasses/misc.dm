@@ -26,10 +26,16 @@
 	icon_state = "uzenwa_sissra_1"
 
 /obj/item/clothing/glasses/regular/goggles
-	name = "Yellow Goggles"
-	desc = "A very oddly shaped pair of yellow goggles with bits of wire poking out the sides. This is the future!"
-	icon_state = "yellow_goggles"
-	item_state = "yellow_goggles"
+	name = "Green Goggles"
+	desc = "A very oddly shaped pair of green goggles with bits of wire poking out the sides. This is the future!"
+	icon_state = "green_goggles"
+	item_state = "green_goggles"
+
+/obj/item/clothing/glasses/regular/goggles/black
+	name = "Black Goggles"
+	desc = "A very oddly shaped pair of black goggles with bits of wire poking out the sides. This is the future!"
+	icon_state = "black_goggles"
+	item_state = "black_goggles"
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "Prescription Glasses"
