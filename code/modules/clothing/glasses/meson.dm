@@ -5,6 +5,7 @@
 	item_state = "glasses"
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
+	flash_protection = FLASH_PROTECTION_MAJOR
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	price_tag = 500
