@@ -140,14 +140,55 @@
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
 
-//one star stock parts (rating 4)
+//excelsior stock parts (rating 4)
+/obj/item/weapon/stock_parts/capacitor/excelsior
+	name = "excelsior capacitor"
+	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
+	icon_state = "excel_capacitor"
+	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/scanning_module/excelsior
+	name = "excelsior scanning module"
+	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
+	icon_state = "excel_scan_module"
+	origin_tech = list(TECH_MAGNET = 5)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/manipulator/excelsior
+	name = "excelsior manipulator"
+	desc = "A tiny little manipulator used in the construction of certain devices."
+	icon_state = "excel_mani"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+
+/obj/item/weapon/stock_parts/micro_laser/excelsior
+	name = "excelsior micro-laser"
+	icon_state = "excel_laser"
+	desc = "A tiny laser used in certain devices."
+	origin_tech = list(TECH_MAGNET = 5)
+	rating = 4
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+
+/obj/item/weapon/stock_parts/matter_bin/excelsior
+	name = "excelsior matter bin"
+	desc = "A container for holding compressed matter awaiting re-construction."
+	icon_state = "excel_matter"
+	origin_tech = list(TECH_MATERIAL = 5)
+	rating = 4
+	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+
+//one star stock parts (rating 5)
 
 /obj/item/weapon/stock_parts/capacitor/one_star
 	name = "one star capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
 	icon_state = "one_capacitor"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	rating = 4
+	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/scanning_module/one_star
@@ -155,7 +196,7 @@
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
 	icon_state = "one_scan_module"
 	origin_tech = list(TECH_MAGNET = 5)
-	rating = 4
+	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/manipulator/one_star
@@ -163,7 +204,7 @@
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "one_mani"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
-	rating = 4
+	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/weapon/stock_parts/micro_laser/one_star
@@ -171,7 +212,7 @@
 	icon_state = "one_laser"
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
-	rating = 4
+	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/weapon/stock_parts/matter_bin/one_star
@@ -179,7 +220,7 @@
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "one_matter"
 	origin_tech = list(TECH_MATERIAL = 5)
-	rating = 4
+	rating = 5
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
 

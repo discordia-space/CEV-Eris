@@ -227,6 +227,9 @@
 	build_path = /obj/item/weapon/gun/energy/plasma/cassad
 
 // Special
+/datum/design/autolathe/gun/reclaimer
+	name = "Excelsior reclaimer"
+	build_path = /obj/item/weapon/gun/matter/launcher/reclaimer
 
 /datum/design/autolathe/gun/nt_sprayer
 	name = "NT cleansing carbine"
