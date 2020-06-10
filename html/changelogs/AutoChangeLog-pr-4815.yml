@@ -1,5 +1,0 @@
-author: drexample
-delete-after: true
-changes:
-  - rscadd: Added deep maintenance.
-  - bugfix: Fixes some of the machinery breaking during submap load
