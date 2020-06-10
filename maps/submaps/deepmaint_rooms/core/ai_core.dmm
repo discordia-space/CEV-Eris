@@ -1,0 +1,91 @@
+"aa" = (/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"ab" = (/turf/simulated/wall/r_wall,/area/deepmaint)
+"ac" = (/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
+"ad" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"ae" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"af" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
+"ag" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"ah" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"ai" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aj" = (/obj/structure/barricade,/turf/simulated/floor/tiled/dark/gray_platform,/area/deepmaint)
+"ak" = (/obj/structure/barricade,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/dark/gray_platform,/area/deepmaint)
+"al" = (/turf/simulated/floor/plating/under,/area/deepmaint)
+"am" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"an" = (/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"ao" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"ap" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
+"aq" = (/obj/effect/window_lwall_spawn/reinforced,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/deepmaint)
+"ar" = (/turf/simulated/floor/bluegrid,/area/deepmaint)
+"as" = (/obj/machinery/porta_turret,/turf/simulated/floor/plating/under,/area/deepmaint)
+"at" = (/obj/structure/disposalpipe/segment,/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"au" = (/turf/simulated/floor/reinforced,/area/deepmaint)
+"av" = (/obj/machinery/power/smes/buildable,/turf/simulated/floor/bluegrid,/area/deepmaint)
+"aw" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
+"ax" = (/obj/structure/AIcore,/turf/simulated/floor/bluegrid,/area/deepmaint)
+"ay" = (/obj/structure/AIcore,/turf/simulated/floor/bluegrid,/area/space)
+"az" = (/obj/machinery/button/remote/blast_door{dir = 2; id = "deep_maint_AI_core"; name = "AI Core Door Control"; pixel_x = 0; pixel_y = -24},/turf/simulated/floor/bluegrid,/area/deepmaint)
+"aA" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aB" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aC" = (/obj/machinery/door/blast/shutters{dir = 2; id = "deep_maint_AI_core"; name = "AI Core"},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
+"aD" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aE" = (/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aF" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4; anchored = 1},/turf/simulated/floor/plating/under,/area/deepmaint)
+"aG" = (/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aH" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
+"aI" = (/obj/machinery/door/blast/shutters{dir = 2; id = "deep_maint_AI_core"; name = "AI Core"},/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
+"aJ" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/wall/r_wall,/area/deepmaint)
+"aK" = (/obj/random/junk,/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
+"aL" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"aM" = (/obj/structure/table/reinforced,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"aN" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"aO" = (/obj/random/junk,/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"aP" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/obj/machinery/light,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aQ" = (/obj/random/junk,/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aR" = (/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aS" = (/obj/random/scrap/dense_even,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aT" = (/obj/structure/barricade,/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"aU" = (/obj/structure/table/reinforced,/obj/random/pack/rare,/obj/random/pack/rare,/obj/random/pack/rare/low_chance,/obj/random/pack/rare/low_chance,/turf/simulated/floor/bluegrid,/area/deepmaint)
+"aV" = (/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/gun_loot,/obj/random/pack/gun_loot,/turf/simulated/floor/bluegrid,/area/deepmaint)
+"aW" = (/obj/structure/girder,/turf/simulated/floor/plating,/area/deepmaint)
+"aX" = (/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/gun_loot,/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"aY" = (/obj/structure/disposalpipe/segment,/obj/structure/catwalk,/obj/random/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"aZ" = (/obj/random/scrap/dense_even,/turf/simulated/floor/plating,/area/deepmaint)
+"ba" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/reinforced,/area/deepmaint)
+"bb" = (/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/gun_loot,/obj/random/pack/gun_loot,/obj/machinery/light{dir = 8},/turf/simulated/floor/reinforced,/area/deepmaint)
+"bc" = (/obj/structure/disposalpipe/segment,/obj/structure/catwalk,/obj/random/scrap/dense_even,/turf/simulated/floor/plating/under,/area/deepmaint)
+"bd" = (/obj/random/junk,/obj/random/junk,/turf/simulated/floor/plating,/area/deepmaint)
+"be" = (/obj/random/junk,/turf/simulated/wall/r_wall,/area/deepmaint)
+"bf" = (/obj/random/junk,/turf/simulated/floor/plating,/area/deepmaint)
+"bg" = (/turf/simulated/floor/plating,/area/deepmaint)
+"bh" = (/obj/item/modular_computer/console/preset/command{icon_state = "console"; dir = 4},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"bi" = (/obj/item/modular_computer/console/preset/command{icon_state = "console"; dir = 8},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"bj" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/obj/structure/catwalk,/obj/machinery/light{dir = 1},/turf/simulated/floor/plating/under,/area/deepmaint)
+"bk" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"bl" = (/obj/item/modular_computer/console/preset/command{icon_state = "console"; dir = 4},/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
+"bm" = (/obj/item/modular_computer/console/preset/command{icon_state = "console"; dir = 8},/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
+"bn" = (/obj/random/junk,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
+"bo" = (/obj/machinery/door/airlock/vault{icon_state = "door_locked"; locked = 1; name = "AI Core"},/turf/simulated/floor/tiled/steel/bar_dance,/area/space)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+adabaKacabababababacaKacabababababacacabaL
+aaabaaaaaMaMaMaMaNaaaOaaaNaMaMaMaMaaaOabaa
+aaabaaaeafafaPafafagafafafafaPafafahaaabaa
+aaabaaaiabababababababababababababaiaaabaa
+aaabajakabaQaRaSaRaQaRaSaRaRaRaSabakajabaa
+aaabamanabaRabababababababababaRabaoapabaO
+aTabaqababaRabaUaUaVasaraUaUabaRaWabaqabaa
+aaaXatabaSaQabasauaravarauasabaRaRaWaYaOaa
+aaaaatabaRababacauabababauacababaQaZaYaaaO
+aaaaatabaQabaxacbaabayabbbacaxabaSaZbcbdaa
+aaaaatabaSababacaracacacaracabbeaRaWbcalaO
+aaaaatabaSaQabasaraVauararasabaRaRabawbfbg
+aTabaqababaSabbharararazarbiabaRababaqabbf
+aaabaAaBabaSababababaCababababaSabaDaEabaO
+aaabaaatabaSaSaSaRaFaGaHaRaRaSaSabataaaWaa
+aaabaaatababababababaIababababababataObfaO
+aaabaOaAbjagagaJasaaaabkasaJagagbjaEaaaWaa
+aaabaaaNaNaNaNabblaaaaaabmabaNaNaNaNaaabaO
+bnabacabababababababboabababababababacabaL
+aOaaaaaaaOaaaabkaaaaaaaaaabkaaaaaaaaaaaOaa
+"}
