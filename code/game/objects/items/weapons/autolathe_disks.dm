@@ -517,6 +517,7 @@
 		/datum/design/autolathe/gun/vintorez,
 		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/gun/reclaimer,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/pistol_ammobox,
@@ -539,6 +540,7 @@
 		/datum/design/autolathe/circuit/shieldgen_excelsior,
 		/datum/design/autolathe/circuit/reconstructor_excelsior,
 		/datum/design/autolathe/circuit/diesel_excelsior,
+		/datum/design/autolathe/circuit/excelsior_boombox,
 		/datum/design/autolathe/circuit/turret_excelsior,
 		/datum/design/autolathe/circuit/autolathe_disk_cloner,
 		/datum/design/research/item/part/micro_mani,				//machine parts

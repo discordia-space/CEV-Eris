@@ -40,6 +40,15 @@
 		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
+/obj/item/weapon/circuitboard/excelsior_boombox
+	name = T_BOARD("excelsior boombox")
+	build_path = /obj/machinery/excelsior_boombox
+	board_type = "machine"
+	origin_tech = list(TECH_DATA = 3, TECH_ILLEGAL = 1)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1
+	)
 
 /obj/item/weapon/circuitboard/excelsior_teleporter
 	name = T_BOARD("excelsior teleporter")
