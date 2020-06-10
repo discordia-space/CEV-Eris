@@ -1,0 +1,10 @@
+author: 'TheShown911, TonnyJest, MatejaTadic '
+delete-after: true
+changes:
+  - rscadd: Items can be ordered at the teleporter, including excelsior boards.
+  - rscadd: Excelsior reclaimer.
+  - rscadd: Excelsior stock prats.
+  - rscadd: Excelsior boombox.
+  - rscadd: Excelsior jumsuits.
+  - code_imp: One star stock parts buffed to accommodate new excel parts.
+  - refactor: Some teleporter code updated.
