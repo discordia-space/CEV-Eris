@@ -1,0 +1,36 @@
+"a" = (/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"b" = (/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"c" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"d" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"e" = (/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"f" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"g" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"h" = (/turf/simulated/wall,/area/deepmaint)
+"i" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"j" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"k" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"l" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"m" = (/obj/structure/catwalk,/obj/random/traps/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
+"n" = (/obj/structure/railing,/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"o" = (/obj/structure/railing,/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"p" = (/obj/random/scrap/moderate_weighted,/obj/structure/railing,/turf/simulated/floor/plating/under,/area/deepmaint)
+"q" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4; anchored = 1},/obj/structure/railing,/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"r" = (/obj/random/junk/low_chance,/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
+"s" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"t" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"u" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"v" = (/obj/random/traps/low_chance,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaa
+ahtbcbbbuhd
+aceeeeeeeba
+abefgggieba
+abejkhklmba
+acejhhhleba
+abejkhkleba
+sbenopoqmbs
+abeeeeereba
+ahvbbbbbuha
+aaaaaaaaaaa
+"}

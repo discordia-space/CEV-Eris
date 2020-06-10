@@ -1,0 +1,40 @@
+"a" = (/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"b" = (/obj/item/remains/xeno,/obj/random/junk,/turf/simulated/floor/tiled/white/techfloor_grid,/area/deepmaint)
+"c" = (/turf/simulated/wall,/area/deepmaint)
+"d" = (/obj/structure/kitchenspike,/turf/simulated/floor/tiled/white/techfloor_grid,/area/deepmaint)
+"e" = (/obj/machinery/gibber,/turf/simulated/floor/tiled/white/techfloor_grid,/area/deepmaint)
+"f" = (/obj/item/remains/human,/obj/random/junk,/turf/simulated/floor/tiled/white/techfloor_grid,/area/deepmaint)
+"g" = (/obj/item/remains/mouse,/obj/random/junk,/turf/simulated/floor/tiled/white/gray_platform,/area/deepmaint)
+"h" = (/obj/random/junk,/obj/random/junk,/turf/simulated/floor/tiled/white/gray_platform,/area/deepmaint)
+"i" = (/obj/random/junk,/turf/simulated/floor/tiled/white/gray_platform,/area/deepmaint)
+"j" = (/obj/item/remains/human,/obj/random/junk,/turf/simulated/floor/tiled/white/gray_platform,/area/deepmaint)
+"k" = (/obj/machinery/door/airlock{name = "Kitchen Freezer"; req_access = list(28)},/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
+"l" = (/obj/random/junk,/turf/simulated/floor/tiled/white/cargo,/area/deepmaint)
+"m" = (/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
+"n" = (/obj/random/junk,/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
+"o" = (/obj/item/remains/human,/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
+"p" = (/turf/simulated/floor/tiled/white/cargo,/area/deepmaint)
+"q" = (/obj/random/junk,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"r" = (/obj/random/junk,/obj/random/junk,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"s" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
+"t" = (/obj/structure/table/standard,/obj/random/junk,/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
+"u" = (/turf/simulated/floor/tiled/white/panels,/area/deepmaint)
+"v" = (/obj/random/junk,/turf/simulated/floor/tiled/white/panels,/area/deepmaint)
+"w" = (/obj/item/remains/mouse,/turf/simulated/floor/tiled/white/panels,/area/deepmaint)
+"x" = (/obj/item/remains/mouse,/obj/random/junk,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/white/gray_platform,/area/deepmaint)
+"y" = (/obj/random/junk,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/white/gray_platform,/area/deepmaint)
+"z" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/white/cargo,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaa
+accccccccca
+acdedcdedca
+acdbdcdfdca
+acxhicigyca
+acijiciigca
+acckccckcca
+almnoznmnpq
+rcstscsssca
+auvwvuuvwvq
+qqraaqqqqaa
+"}
