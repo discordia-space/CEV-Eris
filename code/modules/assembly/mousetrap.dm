@@ -4,7 +4,8 @@
 	icon_state = "mousetrap"
 	origin_tech = list(TECH_COMBAT = 1)
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)
-	var/armed = 0
+	var/armed = FALSE
+	var/prob_catch = 100
 
 
 	examine(mob/user)
@@ -49,7 +50,7 @@
 
 	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2
-	armed = 0
+	armed = FALSE
 	update_icon()
 	pulse(0)
 
@@ -91,6 +92,12 @@
 			triggered(AM)
 		else if(istype(AM, /mob/living))
 			var/mob/living/L = AM
+			prob_catch = initial(prob_catch)
+			prob_catch *= L.stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE)
+
+			if(!prob(prob_catch) || L.stats.getPerk(PERK_RAT))
+				return ..()
+
 			triggered(L)
 			L.visible_message("<span class='warning'>[L] accidentally steps on [src].</span>", \
 							  "<span class='warning'>You accidentally step on [src]</span>")
@@ -103,8 +110,8 @@
 		finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
 							   "<span class='warning'>You accidentally trigger [src]!</span>")
 		triggered(finder, finder.hand ? "l_hand" : "r_hand")
-		return 1	//end the search!
-	return 0
+		return TRUE	//end the search!
+	return FALSE
 
 
 /obj/item/device/assembly/mousetrap/hitby(A as mob|obj)
@@ -116,7 +123,7 @@
 
 /obj/item/device/assembly/mousetrap/armed
 	icon_state = "mousetraparmed"
-	armed = 1
+	armed = TRUE
 
 
 /obj/item/device/assembly/mousetrap/verb/hide_under()

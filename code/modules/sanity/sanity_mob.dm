@@ -40,6 +40,7 @@
 	var/mob/living/carbon/human/owner
 
 	var/sanity_passive_gain_multiplier = 1
+	var/insight_passive_gain_multiplier = 1
 	var/sanity_invulnerability = 0
 	var/level
 	var/max_level = 100
@@ -110,7 +111,7 @@
 			breakdowns -= B
 
 /datum/sanity/proc/handle_insight()
-	insight += INSIGHT_GAIN(level_change)
+	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 		++resting
@@ -227,7 +228,6 @@
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
 
-
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
 
@@ -241,7 +241,6 @@
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))
-
 
 /datum/sanity/proc/onDrug(datum/reagent/drug/R, multiplier)
 	changeLevel(R.sanity_gain * multiplier)
@@ -271,7 +270,6 @@
 		return
 	say_time = world.time + SANITY_COOLDOWN_SAY
 	changeLevel(SANITY_GAIN_SAY)
-
 
 /datum/sanity/proc/changeLevel(amount)
 	if(sanity_invulnerability && amount < 0)

@@ -3,65 +3,54 @@
 	desc = "After seeing the death of many acquaintances and friends, witnessing death doesn't shock you as much as before."
 	icon_state = "survivor" // https://game-icons.net/1x1/lorc/one-eyed.html
 
-/datum/perk/survivor/on_add()
-	if(!holder)
-		return
+/datum/perk/survivor/assign(mob/living/carbon/human/H)
+	..()
 	holder.sanity.death_view_multiplier *= 0.5
 
-/datum/perk/survivor/on_remove()
-	if(!holder)
-		return
+/datum/perk/survivor/remove()
 	holder.sanity.death_view_multiplier *= 2
-
+	..()
 
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself!"
 	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
-/datum/perk/selfmedicated/on_add()
-	if(!holder)
-		return
+/datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
+	..()
 	holder.metabolism_effects.addiction_chance_multiplier = 0.5
 	holder.metabolism_effects.nsa_threshold += 10
 
-/datum/perk/selfmedicated/on_remove()
-	if(!holder)
-		return
+/datum/perk/selfmedicated/remove()
 	holder.metabolism_effects.addiction_chance_multiplier = 1
 	holder.metabolism_effects.nsa_threshold -= 10
-
+	..()
 
 /datum/perk/vagabond
 	name = "Vagabond"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant."
 	icon_state = "vagabond" // https://game-icons.net/1x1/lorc/eye-shield.html
 
-/datum/perk/vagabond/on_add()
-	if(!holder)
-		return
+/datum/perk/vagabond/assign(mob/living/carbon/human/H)
+	..()
 	holder.sanity.view_damage_threshold += 20
 
-/datum/perk/vagabond/on_remove()
-	if(!holder)
-		return
+/datum/perk/vagabond/remove()
 	holder.sanity.view_damage_threshold -= 20
-
+	..()
 
 /datum/perk/merchant
 	name = "Merchant"
 	desc = "Money is what matters for you, and it's so powerful it lets you improve your skills."
 	icon_state = "merchant" // https://game-icons.net/1x1/lorc/cash.html and https://game-icons.net/1x1/delapouite/graduate-cap.html slapped on https://game-icons.net/1x1/lorc/trade.html
 
-/datum/perk/merchant/on_add()
-	if(!holder)
-		return
+/datum/perk/merchant/assign(mob/living/carbon/human/H)
+	..()
 	holder.sanity.valid_inspirations += /obj/item/weapon/spacecash/bundle
 
-/datum/perk/merchant/on_remove()
-	if(!holder)
-		return
+/datum/perk/merchant/remove()
 	holder.sanity.valid_inspirations -= /obj/item/weapon/spacecash/bundle
+	..()
 
 #define CHOICE_LANG "language" // Random language chosen from a pool
 #define CHOICE_TCONTRACT "tcontract" // Traitor contract
@@ -74,9 +63,8 @@
 	desc = "With the help of your numerous trustworthy contacts, you manage to collect some useful information."
 	icon_state = "deepconnection" // https://game-icons.net/1x1/quoting/card-pickup.html
 
-/datum/perk/deep_connection/on_add()
-	if(!holder)
-		return
+/datum/perk/deep_connection/assign(mob/living/carbon/human/H)
+	..()
 	var/list/choices = list(CHOICE_RAREOBJ)
 	if(GLOB.various_antag_contracts.len)
 		choices += CHOICE_TCONTRACT
@@ -115,7 +103,6 @@
 			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
 			holder.equip_to_storage_or_drop(B)
 
-
 #undef CHOICE_LANG
 #undef CHOICE_TCONTRACT
 #undef CHOICE_STASHPAPER
@@ -126,15 +113,13 @@
 	desc = "When near an obelisk, you feel your mind at ease. Your sanity regeneration is boosted."
 	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
 
-/datum/perk/sanityboost/on_add()
-	if(!holder)
-		return
+/datum/perk/sanityboost/assign(mob/living/carbon/human/H)
+	..()
 	holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
-/datum/perk/sanityboost/on_remove()
-	if(!holder)
-		return
+/datum/perk/sanityboost/remove()
 	holder.sanity.sanity_passive_gain_multiplier /= 1.5
+	..()
 
 /// Basically a marker perk. If the user has this perk, another will be given in certain conditions.
 /datum/perk/inspiration
@@ -146,14 +131,12 @@
 	name = "Exotic Inspiration (Active)"
 	icon_state = "inspiration_active" // https://game-icons.net/1x1/lorc/enlightenment.html
 
-/datum/perk/active_inspiration/on_add()
-	if(!holder)
-		return
+/datum/perk/active_inspiration/assign(mob/living/carbon/human/H)
+	..()
 	holder.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
 	holder.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
 
-/datum/perk/active_inspiration/on_remove()
-	if(!holder)
-		return
+/datum/perk/active_inspiration/remove()
 	holder.stats.removeTempStat(STAT_COG, "Exotic Inspiration")
 	holder.stats.removeTempStat(STAT_MEC, "Exotic Inspiration")
+	..()

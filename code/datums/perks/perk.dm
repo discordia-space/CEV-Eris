@@ -12,47 +12,39 @@
 	var/desc = ""
 	var/icon = 'icons/effects/perks.dmi'
 	var/icon_state = ""
-	var/human_only = TRUE
 	var/mob/living/carbon/human/holder
 	var/gain_text
 	var/lose_text
 
-/datum/perk/New(mob/living/perk_holder)
-	..()
-	if(!perk_holder || qualify(perk_holder))
-		qdel(src)
-		return
-	src.holder = perk_holder
-	to_chat(holder, gain_text)
-	on_add()
-
 /datum/perk/proc/qualify(mob/living/try_holder)
-	if(try_holder.stats.getPerk(type))
-		return FALSE
-	if(human_only && !ishuman(try_holder))
-		return FALSE
+	SHOULD_CALL_PARENT(TRUE)
 	return TRUE
 
 /datum/perk/Destroy()
 	if(holder)
 		to_chat(holder, lose_text)
-	on_remove()
 	holder = null
 	return ..()
 
-/// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
-/datum/perk/proc/remove()
-	SHOULD_CALL_PARENT(TRUE)
-	qdel(src)
-
 /datum/perk/Process()
 	if(QDELETED(holder))
-		remove()
 		return
 	if(holder.stat == DEAD)
 		return
 	on_process()
 
+/// Proc called in Process. Should be the first thing to be called.
 /datum/perk/proc/on_process()
-/datum/perk/proc/on_add()
-/datum/perk/proc/on_remove()
+	SHOULD_CALL_PARENT(TRUE)
+	if(!holder)
+		return FALSE
+
+/// Proc called when the perk is assigned to a human. Should be the first thing to be called.
+/datum/perk/proc/assign(mob/living/carbon/human/H)
+	SHOULD_CALL_PARENT(TRUE)
+	holder = H
+
+/// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
+/datum/perk/proc/remove()
+	SHOULD_CALL_PARENT(TRUE)
+	qdel(src)

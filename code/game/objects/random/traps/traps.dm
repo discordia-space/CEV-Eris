@@ -17,7 +17,6 @@
 		else
 			possible_traps -= trap
 
-
 /obj/random/traps/low_chance
 	icon_state = "trap-red-low"
 	spawn_nothing_percentage = 80
@@ -37,7 +36,7 @@
 
 
 //Checks if a trap can spawn in this location
-/proc/can_spawn_trap(var/turf/T, var/trap)
+/proc/can_spawn_trap(turf/T, trap)
 	.=TRUE
 	if(ispath(trap, /obj/structure/wire_splicing))
 		if (locate(/obj/structure/cable) in dview(3, T))
