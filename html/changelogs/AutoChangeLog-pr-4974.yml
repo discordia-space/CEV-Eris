@@ -1,0 +1,9 @@
+author: Smokingsquirrel
+delete-after: true
+changes:
+  - rscadd: New Technomancer jumpsuit
+  - rscadd: New goggles for the loadout
+  - rscadd: New meson sprites
+  - code_imp: changed jumpsuit icon names in the code to have engineers spawn with
+      those
+  - code_imp: added goggles to loadout code
