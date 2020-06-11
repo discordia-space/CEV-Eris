@@ -34,6 +34,7 @@
 //Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
 #define GUN_UPGRADE_PEN_MULT "penetration_mult"
+#define GUN_UPGRADE_PIERC_MULT "pierce_mult"
 #define GUN_UPGRADE_FIRE_DELAY_MULT "fire_delay_mult"
 #define GUN_UPGRADE_MOVE_DELAY_MULT "move_delay_mult"
 #define GUN_UPGRADE_RECOIL "recoil_mult"

@@ -26,6 +26,7 @@
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
+	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -286,6 +287,8 @@
 		projectile.multiply_projectile_damage(damage_multiplier)
 
 		projectile.multiply_projectile_penetration(penetration_multiplier)
+
+		projectile.multiply_pierce_penetration(pierce_multiplier)
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 

@@ -141,6 +141,24 @@
 					M.close()
 					return
 
+
+/obj/machinery/button/remote/blast_door/id_card
+	name = "remote blast id card door-control"
+	desc = "It controls blast doors, remotely. But need id_card with access to it."
+
+/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/id_card = W
+		if(has_access(req_access, list(), id_card.access))
+			trigger(user)
+		else
+			to_chat(user, SPAN_WARNING("Access Denied"))
+	else
+		to_chat(user, SPAN_WARNING("You need a id card to operate."))
+
+/obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
+	to_chat(user, SPAN_WARNING("You need a id card to operate."))
+
 /*
 	Emitter remote control
 */

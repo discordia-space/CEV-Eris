@@ -22,7 +22,9 @@
 		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer
+		"an Ironhammer hardsuit control module" = /obj/item/weapon/rig/combat/ironhammer,
+		"a Bluespace Biosyphon" = /obj/item/biosyphon,
+		"a FS REV .35 Auto \"Sky Driver\"" = /obj/item/weapon/gun/projectile/revolver/sky_driver
 	)
 
 	var/global/possible_items_special[] = list(
