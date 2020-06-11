@@ -816,6 +816,7 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/getPath(var/obj/procedural/jp_DungeonRegion/region1, var/obj/procedural/jp_DungeonRegion/region2)
 	set background = 1
+	//We pick our start on the border of our first room
 	var/turf/start = pick(region1.getBorder())
 	var/turf/end
 	var/long = FALSE
@@ -824,6 +825,7 @@
 		minlength=minLongPathLength
 		long = TRUE
 
+	//We exclude all other border turfs of other rooms, minus our targets, and where we start
 	var/list/borders=list()
 	borders.Add(border_turfs)
 	borders.Remove(region2.getBorder())
@@ -836,18 +838,19 @@
 	var/list/turf/cost = list("\ref[start]"=0)
 
 	if(minlength<=0)
-		if(start in region2.getBorder())
+		if(start in region2.getBorder()) //We've somehow managed to link the two rooms in a single turf
 			out_numPaths++
 			if(long) out_numLongPaths++
 			end = start
-			goto endloop //Oooo, I feel naughty.
+			return retPath(end, previous, pathWidth, start, end)
 
 	next-=borders
 	for(var/turf/t in next)
 		if(!iswall(t)) next-=t
 		previous["\ref[t]"] = start
 		cost["\ref[t]"]=1
-	if(!next.len) return list()
+
+	if(!next.len) return list() //We've somehow found a route that can not be continued.
 
 	while(1)
 		var/turf/min
@@ -858,12 +861,12 @@
 				min = t
 				mincost=cost["\ref[t]"]
 
-		if(!min) return list()
+		if(!min) return list() //We've managed to outgrow our cost
 
 		done += min
 		next -= min
 
-		if(min in region2.getBorder())
+		if(min in region2.getBorder()) //We've reached our destination
 			if(mincost>minlength && prob(pathEndChance))
 				out_numPaths++
 				if(long) out_numLongPaths++
@@ -884,8 +887,10 @@
 				next+=t
 				previous["\ref[t]"] = min
 				cost["\ref[t]"] = mincost+1
+		CHECK_TICK
+	return retPath(end, previous, pathWidth, start, end)
 
-	endloop:
+/obj/procedural/jp_DungeonGenerator/proc/retPath(var/list/end, var/list/previous, var/pathWidth, var/turf/start, var/turf/end)
 	var/list/ret = list()
 	ret += GetSquare(end, pathWidth)
 	var/turf/last = end
