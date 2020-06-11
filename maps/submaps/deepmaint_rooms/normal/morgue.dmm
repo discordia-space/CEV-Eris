@@ -1,0 +1,34 @@
+"a" = (/turf/simulated/floor/tiled/dark,/area/deepmaint)
+"b" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/dark,/area/deepmaint)
+"c" = (/turf/simulated/wall,/area/deepmaint)
+"d" = (/obj/structure/table/rack,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"e" = (/obj/structure/table/rack,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"f" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"g" = (/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
+"h" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/deepmaint)
+"i" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"j" = (/obj/structure/morgue{icon_state = "morgue1"; dir = 8},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"k" = (/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"l" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/dark,/area/deepmaint)
+"m" = (/obj/structure/table/standard,/obj/item/weapon/autopsy_scanner{pixel_x = 1; pixel_y = 1},/obj/item/weapon/tool/scalpel,/obj/item/weapon/tool/cautery{pixel_y = 4},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"n" = (/obj/machinery/optable,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"o" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/deepmaint)
+"p" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
+"q" = (/obj/machinery/bodyscanner,/obj/machinery/camera/network/medbay{dir = 4},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"r" = (/obj/machinery/body_scanconsole,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"s" = (/obj/structure/table/rack,/obj/random/medical,/obj/random/medical/low_chance,/obj/random/medical/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"t" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/deepmaint)
+
+(1,1,1) = {"
+abaabaaaaaa
+accccaddeea
+acffcacccca
+aaggaahijca
+aaggaahkjca
+achhcahkjcl
+acmncockjca
+ackkpapkjca
+acqrcacccca
+accccassssa
+ataataaaaaa
+"}

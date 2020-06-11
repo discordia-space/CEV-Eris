@@ -220,7 +220,7 @@ proc/slur(phrase)
 	return html_encode(newphrase)
 
 /proc/stutter(n)
-	var/te = n
+	var/te = html_decode(n)
 	n = length(n)//length of the entire word
 	var/list/t = list()
 	var/p = 1//1 is the start of any word
@@ -239,8 +239,7 @@ proc/slur(phrase)
 						n_letter = text("[n_letter]-[n_letter]")
 		t += n_letter //since the above is ran through for each letter, the text just adds up back to the original word.
 		p++//for each letter p is increased to find where the next letter will be.
-	return sanitize(jointext(t,null))
-
+	return sanitize(jointext(t, null))
 
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */

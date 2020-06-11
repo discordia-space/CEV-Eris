@@ -262,6 +262,27 @@
 /datum/reagent/other/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustFireLoss(3 * 0.6)
 
+/datum/reagent/other/matter_deconstructor //Currently uncraftable, used in excelsior reclaimer
+	name = "Matter deconstructor"
+	id = "deconstructor"
+	description = "A celluose based combound able to deconstruct matter into it's base components, not 100% effective."
+	taste_description = "sourness"
+	reagent_state = LIQUID
+	color = "#DC7633"
+	touch_met = 50
+
+/datum/reagent/other/matter_deconstructor/touch_obj(var/obj/O)
+	var/list/matter = O.matter
+	if(length(matter))
+		for(var/i in matter)
+			var/material/M = get_material_by_name(i)
+			var/matter_ammount = round(matter[i] * 0.75) // around 75% matterials back
+			if (matter_ammount < 1)
+				continue
+			var/obj/item/stack/material/MS = new M.stack_type(O.drop_location())
+			MS.amount = matter_ammount
+		O.Destroy()
+
 /datum/reagent/other/space_cleaner
 	name = "Space cleaner"
 	id = "cleaner"

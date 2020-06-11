@@ -65,6 +65,10 @@
 	name = "excelsior diesel generator"
 	build_path = /obj/item/weapon/circuitboard/diesel
 
+/datum/design/autolathe/circuit/excelsior_boombox
+	name = "excelsior boombox"
+	build_path = /obj/item/weapon/circuitboard/excelsior_boombox
+
 /datum/design/autolathe/circuit/teleporter_excelsior
 	name = "excelsior long-range teleporter"
 	build_path = /obj/item/weapon/circuitboard/excelsior_teleporter
