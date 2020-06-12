@@ -1166,8 +1166,9 @@ to the floor that return true from iswall().
 	var/turf/c3 = locate(centre.x + bordersize, centre.y - bordersize, centre.z)
 	var/turf/c4 = locate(centre.x - bordersize, centre.y + bordersize, centre.z)
 	return list(gen.getAdjacent(c1), gen.getAdjacent(c2), gen.getAdjacent(c3), gen.getAdjacent(c4))
-/obj/procedural/jp_DungeonRoom/preexist/square/New(s, c, g)
-	..(s, c, g)
+
+/obj/procedural/jp_DungeonRoom/preexist/square/New()
+	..()
 
 	for(var/turf/t in range(centre, size)) turfs += t
 
@@ -1196,8 +1197,8 @@ return true from iswall()
 /obj/procedural/jp_DungeonRoom/preexist/circle/doesAccurate()
 	return TRUE
 
-/obj/procedural/jp_DungeonRoom/preexist/circle/New(s, c, g)
-	..(s, c, g)
+/obj/procedural/jp_DungeonRoom/preexist/circle/New()
+	..()
 	var/radsqr = size*size
 
 	for(var/turf/t in range(centre, size))
@@ -1232,8 +1233,8 @@ the arms of the plus sign - there are only four.
 /obj/procedural/jp_DungeonRoom/preexist/cross/doesAccurate()
 	return TRUE
 
-/obj/procedural/jp_DungeonRoom/preexist/cross/New(s, c, g)
-	..(s, c, g)
+/obj/procedural/jp_DungeonRoom/preexist/cross/New()
+	..()
 	for(var/turf/t in range(centre, size))
 		if(t.x == getX() || t.y == getY())
 			turfs += t
@@ -1267,8 +1268,8 @@ the arms of the plus sign - there are only four.
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/doesSubmaps()
 	return TRUE
 
-/obj/procedural/jp_DungeonRoom/preexist/square/submap/New(s, c, g)
-	..(s, c, g)
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/New()
+	..()
 
 
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/finalise()

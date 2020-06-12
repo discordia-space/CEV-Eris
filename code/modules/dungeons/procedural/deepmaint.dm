@@ -25,15 +25,15 @@ var/global/list/big_deepmaint_room_templates = list()
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint
 	name = "deepmaint room"
 
-/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/New(s, c, g)
-	..(s, c, g)
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/New()
+	..()
 	my_map = pick(small_deepmaint_room_templates)
 
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big
 	name = "deepmaint core room"
 
-/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big/New(s, c, g)
-	..(s, c, g)
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big/New()
+	..()
 	my_map = pick(big_deepmaint_room_templates)
 
 
