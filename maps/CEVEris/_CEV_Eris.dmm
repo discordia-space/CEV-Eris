@@ -43269,10 +43269,6 @@
 	pixel_x = -28;
 	req_access = list(58)
 	},
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "Sky_Driver"
-	},
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
 "bRz" = (
@@ -52225,13 +52221,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/medbay)
-"clK" = (
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "Bluespace_Biosyphon"
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/security/main)
 "clL" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -168129,7 +168118,7 @@ aac
 aac
 aac
 aab
-clK
+aBi
 aab
 aVt
 aVN
