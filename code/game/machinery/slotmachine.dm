@@ -60,10 +60,10 @@
 
 /obj/machinery/slotmachine/attack_hand(mob/user as mob)
 	if (spinning)
-		usr << "\red It's active."
+		to_chat(usr, SPAN_WARNING("It is currently spinning."))
 		return
 	if (bet == 0)
-		usr << SPAN_NOTICE("Today's jackpot: $[jackpot]. Insert 1-1000 Credits.")
+		to_chat(user, SPAN_NOTICE("Today's jackpot: $[jackpot]. Insert 1-1000 Credits."))
 	else
 		spinning = 1
 		plays++
@@ -85,7 +85,7 @@
 				last_slot = slots[slot]
 			icon_state = "[icon_type]"
 			update_icon()
-			src.visible_message(SPAN_NOTICE("Reel stops.. \the [slots[slot]]."))
+			visible_message(SPAN_NOTICE("The reel stops at... \the [slots[slot]]!"))
 			playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
 		sleep(5)
 		if (check_win())
