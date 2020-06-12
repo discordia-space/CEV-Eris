@@ -206,8 +206,9 @@ var/global/list/big_deepmaint_room_templates = list()
 		else
 			sleep(150)
 	spawn()
+		var/start = REALTIMEOFDAY
 		var/obj/procedural/jp_DungeonGenerator/deepmaint/generate = new /obj/procedural/jp_DungeonGenerator/deepmaint(src)
-		testing("Beggining procedural generation of [name] -  Z-level [z].")
+		testing("Beginning procedural generation of [name] -  Z-level [z].")
 		generate.name = name
 		generate.setArea(locate(50, 50, z), locate(110, 110, z))
 		generate.setWallType(/turf/simulated/wall)
@@ -245,5 +246,5 @@ var/global/list/big_deepmaint_room_templates = list()
 		generate.generate()
 		generate.populateCorridors()
 		generate.makeLadders()
-		testing("Finished procedural generation of [name]. [generate.errString(generate.out_error)] -  Z-level [z]")
+		testing("Finished procedural generation of [name]. [generate.errString(generate.out_error)] -  Z-level [z], in [(REALTIMEOFDAY - start) / 10] seconds.")
 
