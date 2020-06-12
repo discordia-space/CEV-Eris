@@ -242,7 +242,7 @@ obj/structure/salvageable/personal/Initialize()
 		/obj/item/weapon/computer_hardware/processor_unit/adv = 60,
 		/obj/item/weapon/computer_hardware/hard_drive/cluster = 50,
 		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/shady = 50,
-		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/nuke = 50.
+		/obj/item/weapon/computer_hardware/hard_drive/portable/advanced/nuke = 50,
 		/obj/item/weapon/stock_parts/capacitor/excelsior = 20,
 		/obj/item/weapon/stock_parts/scanning_module/excelsior = 20,
 		/obj/item/weapon/stock_parts/manipulator/excelsior = 20,
