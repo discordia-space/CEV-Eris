@@ -4,6 +4,39 @@
 */
 
 var/global/list/free_deepmaint_ladders = list()
+
+var/global/list/small_deepmaint_room_templates = list()
+
+var/global/list/big_deepmaint_room_templates = list()
+
+/proc/populateDeepMaintMapLists()
+	if(big_deepmaint_room_templates.len || small_deepmaint_room_templates.len)
+		return
+	for(var/item in subtypesof(/datum/map_template/deepmaint_template/room))
+		var/datum/map_template/deepmaint_template/submap = item
+		var/datum/map_template/deepmaint_template/S = new submap()
+		small_deepmaint_room_templates += S
+
+	for(var/item in subtypesof(/datum/map_template/deepmaint_template/big))
+		var/datum/map_template/deepmaint_template/submap = item
+		var/datum/map_template/deepmaint_template/S = new submap()
+		big_deepmaint_room_templates += S
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint
+	name = "deepmaint room"
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/New()
+	..()
+	my_map = pick(small_deepmaint_room_templates)
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big
+	name = "deepmaint core room"
+
+/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big/New()
+	..()
+	my_map = pick(big_deepmaint_room_templates)
+
+
 /proc/check_deepmaint_list()
 	return (free_deepmaint_ladders.len)
 
@@ -168,6 +201,7 @@ var/global/list/free_deepmaint_ladders = list()
 /obj/procedural/dungenerator/deepmaint/New()
 	while(1)
 		if(Master.current_runlevel)
+			populateDeepMaintMapLists() //It's not a hook because mapping subsystem has to intialize first
 			break
 		else
 			sleep(150)
@@ -175,12 +209,11 @@ var/global/list/free_deepmaint_ladders = list()
 		var/obj/procedural/jp_DungeonGenerator/deepmaint/generate = new /obj/procedural/jp_DungeonGenerator/deepmaint(src)
 		testing("Beggining procedural generation of [name] -  Z-level [z].")
 		generate.name = name
-		generate.setArea(locate(60, 60, z), locate(100, 100, z))
+		generate.setArea(locate(50, 50, z), locate(110, 110, z))
 		generate.setWallType(/turf/simulated/wall)
 		generate.setLightChance(2)
 		generate.setFloorType(/turf/simulated/floor/tiled/techmaint_perforated)
-		generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap))
-		generate.setSubmapPath(/datum/map_template/deepmaint_template/big)
+		generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint/big))
 		generate.setNumRooms(1)
 		generate.setExtraPaths(0)
 		generate.setMinPathLength(0)
@@ -195,16 +228,15 @@ var/global/list/free_deepmaint_ladders = list()
 
 		sleep(90)
 
-		generate.setArea(locate(30, 30, z), locate(130, 130, z))
-		generate.setSubmapPath(/datum/map_template/deepmaint_template/room)
-	//	testing("Set Submap Path to [list2params(generate.room_templates)]")
+		generate.setArea(locate(20, 20, z), locate(150, 150, z))
+		generate.setAllowedRooms(list(/obj/procedural/jp_DungeonRoom/preexist/square/submap/deepmaint))
 		generate.setNumRooms(15)
-		generate.setExtraPaths(8)
+		generate.setExtraPaths(5)
 		generate.setMinPathLength(0)
-		generate.setMaxPathLength(80)
-		generate.setMinLongPathLength(25)
-		generate.setLongPathChance(15)
-		generate.setPathEndChance(30)
+		generate.setMaxPathLength(120)
+		generate.setMinLongPathLength(0)
+		generate.setLongPathChance(0)
+		generate.setPathEndChance(100)
 		generate.setRoomMinSize(5)
 		generate.setRoomMaxSize(5)
 		generate.setPathWidth(2)
