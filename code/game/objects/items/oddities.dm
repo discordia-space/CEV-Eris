@@ -16,7 +16,6 @@
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
 	var/sanity_value = 1
-	var/perk
 
 
 /obj/item/weapon/oddity/Initialize()
@@ -64,7 +63,6 @@
 	name = "strange coin"
 	desc = "It appears to be more of a collectible than any sort of actual currency. What metal it's made from seems to be a mystery."
 	icon_state = "coin"
-	perk = PERK_FAST_FINGERS
 	oddity_stats = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,
