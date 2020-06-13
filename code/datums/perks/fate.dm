@@ -41,7 +41,7 @@
 
 /datum/perk/nihilist
 	name = "Nihilist"
-	icon_state = "nihilist" //https://game-icons.net/1x1/lorc/tear-tracks.html
+	icon_state = "eye" //https://game-icons.net/1x1/lorc/tear-tracks.html
 
 /datum/perk/nihilist/assign(mob/living/carbon/human/H)
 	..()
@@ -167,8 +167,8 @@
 	..()
 
 /datum/perk/oborin_syndrome
-	name = "Oborin Syndrome" //https://game-icons.net
-	icon_state = "syndrome"
+	name = "Oborin Syndrome" //https://game-icons.net/1x1/delapouite/prism.html
+	icon_state = "prism"
 	desc = "You see world in negative, as if it was an old noir movie."
 
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
