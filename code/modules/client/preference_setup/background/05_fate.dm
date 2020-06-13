@@ -15,13 +15,6 @@
 	for(var/datum/category_group/setup_option_category/background/BG in SScharacter_setup.setup_options.categories)
 		pref.sanitize_option(BG)
 
-/datum/category_item/player_setup_item/background/fate/content(mob/user)
-	. = list()
-	. += "<b>Background</b><br>"
-	for(var/datum/category_group/setup_option_category/background/BG in SScharacter_setup.setup_options.categories)
-		. += "[BG]: <a href='?src=\ref[src];options_popup=[BG]'>[pref.setup_options[BG.name]]</a><br>"
-	. = jointext(.,null)
-
 /datum/category_item/player_setup_item/background/fate/get_title()
 	return ..() + ": [option_category]"
 
