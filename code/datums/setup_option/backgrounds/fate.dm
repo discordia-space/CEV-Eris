@@ -4,7 +4,7 @@
 
 /datum/category_item/setup_option/background/fate
 
-/datum/category_item/setup_option/background/fate/rat
+/datum/category_item/setup_option/background/fate/paper_worm
 	name = "Paper Worm"
 	desc = "Papers and bureaucracy were your life, cramped offices with angry people is where your personality was forged. \
 			Coffee is your blood, your mind is corporate slogans, and personal life is nonexistent. \
@@ -66,7 +66,7 @@
 			Those were captains and bridge crew of the colony ships, a CEO of first corporations, an admirals and generals. \
 			All of them decided to entrench their accomplishments by creating noble leaninges, and here you are, a lost soul of high origin. \
 			What does it makes you?"
-	
+
 	perks = list(PERK_NOBLE)
 
 /datum/category_item/setup_option/background/fate/rat
