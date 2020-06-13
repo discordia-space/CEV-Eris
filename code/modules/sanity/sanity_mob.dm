@@ -57,6 +57,8 @@
 	var/negative_prob = 30
 
 	var/view_damage_threshold = 20
+	var/environment_cap = 1
+
 
 	var/say_time = 0
 	var/breakdown_time = 0
@@ -84,7 +86,10 @@
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect, min(view_damage_threshold - level, 0)))
+	if(environment_cap > 1)
+		changeLevel(max(affect, min(view_damage_threshold - level, 0)))
+	else
+		changeLevel(affect)
 	handle_breakdowns()
 	handle_insight()
 	handle_level()

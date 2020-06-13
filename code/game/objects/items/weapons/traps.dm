@@ -315,8 +315,9 @@ Very rarely it might escape
 			return ..()
 		prob_catch = initial(prob_catch)
 		prob_catch *= L.stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE)
-
-		if(!prob(prob_catch) || L.stats.getPerk(PERK_RAT))
+		if(L.stats.getPerk(PERK_RAT))
+			prob_catch /= 2
+		if(!prob(prob_catch))
 			return ..()
 		L.visible_message(
 			SPAN_DANGER("[L] steps on \the [src]."),

@@ -94,10 +94,10 @@
 			var/mob/living/L = AM
 			prob_catch = initial(prob_catch)
 			prob_catch *= L.stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE)
-
-			if(!prob(prob_catch) || L.stats.getPerk(PERK_RAT))
+			if(L.stats.getPerk(PERK_RAT))
+				prob_catch /= 2
+			if(!prob(prob_catch))
 				return ..()
-
 			triggered(L)
 			L.visible_message("<span class='warning'>[L] accidentally steps on [src].</span>", \
 							  "<span class='warning'>You accidentally step on [src]</span>")

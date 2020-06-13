@@ -207,7 +207,7 @@
 	return FALSE
 
 
-/datum/storyevent/roleset/proc/create_objectives(var/datum/antagonist/A)
+/datum/storyevent/roleset/proc/create_objectives(datum/antagonist/A)
 	A.objectives.Cut()
 	A.create_objectives(survive = TRUE)
 	A.greet()

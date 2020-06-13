@@ -84,8 +84,10 @@
 			chance_to_shock -= 30
 		if(locate(/obj/structure/catwalk) in T)
 			chance_to_shock -= 20
+		if(L.stats.getPerk(PERK_RAT))
+			chance_to_shock /= 2
 		chance_to_shock *= L.stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE)
-		if(prob(chance_to_shock) && !L.stats.getPerk(PERK_RAT))
+		if(prob(chance_to_shock))
 			shock(L, FALSE)
 
 /obj/structure/wire_splicing/proc/shock(mob/user as mob, using_hands = TRUE)
