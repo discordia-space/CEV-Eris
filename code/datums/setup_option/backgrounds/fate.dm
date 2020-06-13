@@ -39,9 +39,7 @@
 /datum/category_item/setup_option/background/fate/moralist
 	name = "Moralist"
 	desc = "No matter how hard it is, you faith in humanity will always be strong. \
-	Carry this torch with you, and light the way for others. \
-	me, one must make the choice: to remain free and die impoverished and starving, or join the cult of NeoTheology to survive with a stable job and a place to live."
-
+	Carry this torch with you, and light the way for others."
 	perks = list(PERK_MORALIST)
 
 
