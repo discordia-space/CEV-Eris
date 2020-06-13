@@ -58,6 +58,7 @@
 	desc = "You saw escape at the bottom of the bottle, but you found none. \
 			Which never stopped you from trying again and again, poisoning your mind until your pants are piss soaked, and face looks like a one of corpse. \
 			But there is a balance for you in this state."
+
 	stat_modifiers = list(STAT_COG = -10)
 	perks = list(PERK_ALCOHOLIC)
 
@@ -68,7 +69,7 @@
 			All of them decided to entrench their accomplishments by creating noble leaninges, and here you are, a lost soul of high origin. \
 			What does it makes you?"
 	
-	perks = list(PERK_ALCOHOLIC)
+	perks = list(PERK_NOBLE)
 
 /datum/category_item/setup_option/background/fate/rat
 	name = "Rat"

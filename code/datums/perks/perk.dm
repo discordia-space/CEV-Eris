@@ -16,12 +16,9 @@
 	var/gain_text
 	var/lose_text
 
-/datum/perk/proc/qualify(mob/living/try_holder)
-	SHOULD_CALL_PARENT(TRUE)
-	return TRUE
-
 /datum/perk/Destroy()
 	if(holder)
+		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
 		to_chat(holder, lose_text)
 	holder = null
 	return ..()
