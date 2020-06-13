@@ -170,8 +170,17 @@
 
 /datum/perk/oborin_syndrome
 	name = "Oborin Syndrome" //https://game-icons.net
+	icon_state = "syndrome"
 
 
+/datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
+	..()
+	holder.sanity.max_level += 20
+	holder.species.taste_sensitivity = TASTE_NUMB
+
+/datum/perk/oborin_syndrome/remove()
+	holder.sanity.max_level -= 20
+	..()
 
 /datum/perk/lowborn
 	name = "lowborn"
