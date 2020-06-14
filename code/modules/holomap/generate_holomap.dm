@@ -26,16 +26,16 @@
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
 	// Build the base map for each z level
-	for (var/z = 1 to maps_data.station_levels.len)
+	for (var/z = 1 to GLOB.maps_data.station_levels.len)
 		holoMiniMaps |= z // hack, todo fix
 		holoMiniMaps[z] = generateHoloMinimap(z)
 
 	// Generate the area overlays, small maps, etc for the station levels.
-	for (var/level in maps_data.station_levels)
+	for (var/level in GLOB.maps_data.station_levels)
 		generateStationMinimap(level)
 
-	if(maps_data.holomap_smoosh)
-		for(var/smoosh_list in maps_data.holomap_smoosh)
+	if(GLOB.maps_data.holomap_smoosh)
+		for(var/smoosh_list in GLOB.maps_data.holomap_smoosh)
 			smooshTetherHolomaps(smoosh_list)
 
 	holomaps_initialized = TRUE
@@ -101,7 +101,7 @@
 
 	var/icon/map_base = icon(holoMiniMaps[zLevel])
 	map_base.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY)
-	
+
 
 	// Generate the full sized map by blending the base and areas onto the backdrop
 	var/icon/big_map = icon(HOLOMAP_ICON, "stationmap")
@@ -139,7 +139,7 @@
 		var/icon/z_areas = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"]
 		big_map.Blend(z_areas, ICON_OVERLAY)
 		small_map.Blend(z_areas, ICON_OVERLAY)
-	
+
 	// Then scale and rotate to make the actual small map we will use
 	small_map.Scale(WORLD_ICON_SIZE, WORLD_ICON_SIZE)
 	var/icon/actual_small_map = icon(small_map)

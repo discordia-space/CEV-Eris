@@ -260,7 +260,7 @@
 	return
 
 /atom/movable/proc/touch_map_edge()
-	if(z in maps_data.sealed_levels)
+	if(z in GLOB.maps_data.sealed_levels)
 		return
 
 	if(config.use_overmap)
@@ -291,12 +291,12 @@
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
-	var/list/candidates = maps_data.accessable_levels.Copy()
+	var/list/candidates = GLOB.maps_data.accessable_levels.Copy()
 	candidates.Remove("[src.z]")
 
 	//If something was ejected from the ship, it does not end up on another part of the ship.
-	if (z in maps_data.station_levels)
-		for (var/n in maps_data.station_levels)
+	if (z in GLOB.maps_data.station_levels)
+		for (var/n in GLOB.maps_data.station_levels)
 			candidates.Remove("[n]")
 
 	if(!candidates.len)

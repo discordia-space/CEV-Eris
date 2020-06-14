@@ -31,7 +31,7 @@
 		icon_state = "glitch"
 		new_color = COLOR_LIGHTING_SCI_BRIGHT
 	else
-		var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+		var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
 		if(security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level))
 			icon_state = "attention"
 			new_color =  "#AA7039"
