@@ -86,7 +86,7 @@ obj/item/device/propaganda_chip/Destroy()
 		"A clown could beat IH, lets get them",
 		"Command cares more about roaches than us",
 		"Ian has more liberty than any of us",
-		"IH gets more money than anyone and all they do is sit around",
+		"IH gets more money than anyone and all they do is sit around"
 	)
 	var/message_text = pick(messages)
 	var/message = " <b>[crew_name]</b> says,<FONT SIZE =-2>  \"[message_text]\"</FONT>"
