@@ -71,7 +71,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 	to_chat(mob, "isAcessableLevel: [maps_data.accessable_levels[num2text(mob.z)]]")
 
-	if(maps_data.asteroid_leves[num2text(T.z)])
+	if(maps_data.asteroid_levels[num2text(T.z)])
 		to_chat(mob, "Asteroid will be generated here")
 	else
 		to_chat(mob, "This isn't asteroid level")
@@ -83,7 +83,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/list/player_levels     = new // Z-levels a character can typically reach
 	var/list/contact_levels    = new // Z-levels that can be contacted from the station, for eg announcements
 	var/list/sealed_levels	   = new // Z-levels that don't allow random transit at edge
-	var/list/asteroid_leves    = new
+	var/list/asteroid_levels   = new
 	var/list/accessable_levels = new
 	var/list/empty_levels = null     // Empty Z-levels that may be used for various things
 	var/list/names = new
@@ -184,7 +184,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		contact_levels += level
 
 	if(MD.generate_asteroid)
-		asteroid_leves += level
+		asteroid_levels += level
 
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level

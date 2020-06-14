@@ -13,8 +13,8 @@ SUBSYSTEM_DEF(mapping)
 	if(config.generate_asteroid)
 		// These values determine the specific area that the map is applied to.
 		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
-		if(maps_data.asteroid_leves)
-			for(var/z_level in maps_data.asteroid_leves)
+		if(maps_data.asteroid_levels)
+			for(var/z_level in maps_data.asteroid_levels)
 				if(!isnum(z_level))
 					// If it's still not a number, we probably got fed some nonsense string.
 					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
