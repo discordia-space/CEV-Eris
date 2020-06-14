@@ -1,6 +1,6 @@
 /obj/machinery/excelsior_boombox
 	name = "excelsior boombox"
-	desc = "A powerful teleporter that allows shipping matter in and out. Takes a long time to charge."
+	desc = "A powerful sound propagation system designed to boost Excelsior and lower enemy morale. Plays some sick tunes."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/boombox.dmi'
