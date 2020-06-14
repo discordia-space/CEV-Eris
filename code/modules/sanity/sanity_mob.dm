@@ -65,7 +65,6 @@
 	var/spook_time = 0
 
 	var/death_view_multiplier = 1
-	var/special_death_view_effect = 0
 
 	var/list/datum/breakdown/breakdowns = list()
 
@@ -255,7 +254,7 @@
 /datum/sanity/proc/onSeeDeath(mob/M)
 	if(ishuman(M))
 		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
-		if(special_death_view_effect)
+		if(M.stats.getPerk(PERK_NIHILIST))
 			var/effect_prob = rand(1, 100)
 			switch(effect_prob)
 				if(1 to 25)

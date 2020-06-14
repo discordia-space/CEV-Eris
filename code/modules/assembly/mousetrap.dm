@@ -93,10 +93,7 @@
 		else if(istype(AM, /mob/living))
 			var/mob/living/L = AM
 			prob_catch = initial(prob_catch)
-			if(MOVING_DELIBERATELY(L))
-				prob_catch += - prob_catch*L.stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE) + 20 * L.get_max_w_class()/ITEM_SIZE_TITANIC
-				if(L.stats.getPerk(PERK_RAT))
-					prob_catch /= 2
+			prob_catch -= L.skill_to_evade_traps(prob_catch)
 			if(!prob(prob_catch))
 				return ..()
 			triggered(L)

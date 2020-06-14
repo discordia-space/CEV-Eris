@@ -1,5 +1,5 @@
 /datum/perk/paper_worm
-	name = "Paper Worms"
+	name = "Paper Worm"
 	desc = "You always look at the bright side of life but seems there's something you'd forgotten" 
 	icon_state = "paper"
 
@@ -55,12 +55,12 @@
 	..()
 
 /datum/perk/moralist
-	name = "Moralist."
+	name = "Moralist"
 	icon_state = "moralist" //https://game-icons.net/
 	desc = "You are good human being. Love life and life will love you back. Love people and they will love you back."
 
 /datum/perk/drug_addict
-	name = "Drug Addict."
+	name = "Drug Addict"
 	icon_state = "medicine" //https://game-icons.net/1x1/delapouite/medicines.html
 	desc = "You have absolutely no pleasure in the stimulants you indulge. It's a desperate attempt to escape from the dread of some strange impending doom"
 
@@ -135,7 +135,7 @@
 	..()
 
 /datum/perk/rat
-	name = "rat"
+	name = "Rat"
 	desc = "You have been always clever, but it is one thing to be clever and another to be wise."
 	icon_state = "rat"
 
@@ -148,7 +148,7 @@
 	..()
 
 /datum/perk/rejected_genius
-	name = "rejected genius"
+	name = "Rejected genius"
 	icon_state = "knowledge"
 	desc = "Your dreams are undisturbed by reality and you are in search of the philosopher’s stone and the elixir of life."
 
@@ -183,6 +183,6 @@
 	..()
 
 /datum/perk/lowborn
-	name = "lowborn"
+	name = "Lowborn"
 	icon_state = "ladder" //https://game-icons.net/1x1/delapouite/hole-ladder.html
 	desc = "For them you are a paria, thrash — untouchable! That’s the word! You are an Untouchable!"
