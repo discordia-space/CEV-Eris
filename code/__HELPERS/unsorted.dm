@@ -662,6 +662,16 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	var/x_pos = null
 	var/y_pos = null
 	var/z_pos = null
+	var/area_name = null
+
+/datum/coords/New(turf/loc)
+	if(loc)
+		x_pos = loc.x
+		y_pos = loc.y
+		z_pos = loc.z
+		var/area/A = get_area(loc)
+		area_name = A?.name
+
 
 /area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction = null)
 	//Takes: Area. Optional: turf type to leave behind.

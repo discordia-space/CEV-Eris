@@ -14,14 +14,10 @@ GLOBAL_LIST_EMPTY(gps_trackers)
 	GLOB.gps_trackers -= src
 
 /datum/gps_data/proc/get_coords()
-	var/datum/coords/C = new
-	var/turf/t = get_turf(holder)
-	if (!t)
+	var/turf/T = get_turf(holder)
+	if (!T)
 		return FALSE
-	C.x_pos = t.x
-	C.y_pos = t.y
-	C.z_pos = t.z
-	return C
+	return new /datum/coords(T)
 
 /datum/gps_data/proc/get_direction(var/atom/source = holder, var/atom/target)
 	if (!target)
