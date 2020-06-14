@@ -187,3 +187,11 @@
 	name = "Lowborn"
 	icon_state = "ladder" //https://game-icons.net/1x1/delapouite/hole-ladder.html
 	desc = "For them you are a paria, thrash — untouchable! That’s the word! You are an Untouchable!"
+
+/datum/perk/lowborn/assign(mob/living/carbon/human/H)
+	..()
+	holder.sanity.max_level += 10
+
+/datum/perk/lowborn/remove()
+	holder.sanity.max_level -= 10
+	..()
