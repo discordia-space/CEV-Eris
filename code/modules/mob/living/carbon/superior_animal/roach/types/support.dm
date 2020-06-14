@@ -29,7 +29,7 @@
 		S.start()
 
 	gas_sac.clear_reagents()
-	return 1
+	return TRUE
 
 /mob/living/carbon/superior_animal/roach/support/Life()
 	. = ..()

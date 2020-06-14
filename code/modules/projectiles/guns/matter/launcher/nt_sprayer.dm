@@ -35,5 +35,7 @@
 	..()
 	create_reagents(5)
 	reagents.add_reagent("plantbgone", 1)
-	reagents.add_reagent("surfuctant", 2)
+	reagents.add_reagent("surfactant", 2)
 	reagents.add_reagent("water", 2)
+
+	qdel(src)
