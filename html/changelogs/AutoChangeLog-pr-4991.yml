@@ -1,0 +1,5 @@
+author: infraredbaron
+delete-after: true
+changes:
+  - rscdel: Removed IHS suits from random suits;
+  - rscdel: Removed rigged cells from the possible damage dealt to suits;
