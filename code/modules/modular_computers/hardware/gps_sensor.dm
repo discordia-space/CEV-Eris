@@ -13,7 +13,7 @@
 
 /obj/item/weapon/computer_hardware/gps_sensor/Initialize()
 	. = ..()
-	gps = new /datum/gps_data(src)
+	gps = new /datum/gps_data(src, prefix="PDA")
 
 /obj/item/weapon/computer_hardware/gps_sensor/Destroy()
 	QDEL_NULL(gps)
@@ -21,10 +21,10 @@
 
 /obj/item/weapon/computer_hardware/gps_sensor/examine(mob/user)
 	..()
-	to_chat(user, "Serial number is [gps.serialNumber].")
+	to_chat(user, "Serial number is [gps.serial_number].")
 
 /obj/item/weapon/computer_hardware/gps_sensor/check_functionality()
-	if (!gps || !gps.serialNumber )
+	if (!gps || !gps.serial_number)
 		return FALSE
 	return ..()
 
