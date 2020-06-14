@@ -41,6 +41,7 @@
 
 /datum/perk/nihilist
 	name = "Nihilist"
+	desc= "You have lost faith in this world and in its people."
 	icon_state = "eye" //https://game-icons.net/1x1/lorc/tear-tracks.html
 
 /datum/perk/nihilist/assign(mob/living/carbon/human/H)
