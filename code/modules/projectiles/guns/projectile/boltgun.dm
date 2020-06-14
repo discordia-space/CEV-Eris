@@ -27,7 +27,6 @@
 	var/item_suffix = ""
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
 	sharp = 1
-	gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
 
 /obj/item/weapon/gun/projectile/boltgun/update_icon()
 	..()
