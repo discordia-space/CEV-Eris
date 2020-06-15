@@ -417,10 +417,9 @@ SUBSYSTEM_DEF(ticker)
 		var/marked_areas = 0
 		if(M.completed)
 			return
-		for (var/obj/item/device/propaganda_chip/C in world)
-			if (C.active)
-				if (get_area(C) in targets)
-					marked_areas += 1
+		for (var/obj/item/device/propaganda_chip/C in SSobj.processing) // Doubles as an active check
+			if (get_area(C) in targets)
+				marked_areas += 1
 		if (marked_areas >= 3)
 			M.complete()
 	addtimer(CALLBACK(src, .proc/excel_check), 3 MINUTES)
