@@ -108,7 +108,7 @@
 /obj/structure/multiz/ladder/attack_generic(var/mob/M)
 	attack_hand(M)
 
-/obj/structure/multiz/ladder/attack_hand(var/mob/M)
+/obj/structure/multiz/ladder/attack_hand(mob/M)
 	if (isrobot(M) && !isdrone(M))
 		var/mob/living/silicon/robot/R = M
 		climb(M, (climb_delay*6)/R.speed_factor) //Robots are not built for climbing, they should go around where possible
@@ -117,7 +117,7 @@
 		climb(M, climb_delay)
 
 
-/obj/structure/multiz/ladder/proc/climb(var/mob/M, var/delay)
+/obj/structure/multiz/ladder/proc/climb(mob/M, delay)
 	if(!target || !istype(target.loc, /turf))
 		to_chat(M, SPAN_NOTICE("\The [src] is incomplete and can't be climbed."))
 		return

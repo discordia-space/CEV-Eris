@@ -12,7 +12,7 @@
 	var/sound_interval = 20
 	slip_chance = 35 //Risky without something to hold you to the wall
 
-/datum/vertical_travel_method/climb/can_perform(var/mob/living/L, var/dir)
+/datum/vertical_travel_method/climb/can_perform(mob/living/L, dir)
 	.=..()
 	if (.)
 		if (isrobot(M))
@@ -83,7 +83,7 @@
 
 
 
-/datum/vertical_travel_method/climb/mag/can_perform(var/dir)
+/datum/vertical_travel_method/climb/mag/can_perform(dir)
 	.=..()
 	if(.)
 		if (!ishuman(M))

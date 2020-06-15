@@ -16,9 +16,9 @@ var/list/custom_table_appearance = list(
 	icon = 'icons/obj/tables.dmi'
 	icon_state = "frame"
 	desc = "It's a table, for putting things on. Or standing on, if you really want to."
-	density = 1
-	anchored = 1
-	climbable = 1
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	throwpass = 1
 	matter = list(MATERIAL_STEEL = 2)
