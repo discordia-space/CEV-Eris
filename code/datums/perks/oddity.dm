@@ -9,6 +9,7 @@
 #define PERK_CHARMING_PERSONALITY /datum/perk/charming_personality
 #define PERK_HORRIBLE_DEEDS /datum/perk/horrible_deeds
 #define PERK_CHAINGUN_SMOKER /datum/perk/chaingun_smoker
+#define PERK_NIGHTCRAWLER /datum/perk/nightcrawler
 
 
 /datum/perk/fast_walker
@@ -122,3 +123,8 @@
 	name = "Chaingun Smoker"
 	desc = "Nicotine does not only helps your sanity now, it also a painkiller and weak antitoxin for you."
 	icon = "lungs" // https://game-icons.net
+
+/datum/perk/nightcrawler
+	name = "Nightcrawler"
+	desc = "Dark does not slow you down, you actually move faster in it."
+	icon = "nightcrawler" // https://game-icons.net

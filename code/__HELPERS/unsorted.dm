@@ -1192,7 +1192,7 @@ var/list/FLOORITEMS = list(
 	crash_with("Prevented attempt to delete dview mob: [log_info_line(src)]")
 	return QDEL_HINT_LETMELIVE // Prevents destruction
 
-/atom/proc/get_light_and_color(var/atom/origin)
+/atom/proc/get_light_and_color(atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)

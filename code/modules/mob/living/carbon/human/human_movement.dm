@@ -1,5 +1,4 @@
 /mob/living/carbon/human/movement_delay()
-
 	var/tally = ..()
 	if(species.slowdown)
 		tally += species.slowdown
@@ -11,8 +10,10 @@
 	if(CE_SPEEDBOOST in chem_effects)
 		tally -= chem_effects[CE_SPEEDBOOST]
 
-
-
+	if(isturf(loc) && !ststs.getPerk(PERK_NIGHTCRAWLER)
+		var/turf/T = loc
+		if(T.get_lumcount() < 1)
+			tally += 0.5
 
 	var/health_deficiency = (maxHealth - health)
 	var/hunger_deficiency = (max_nutrition - nutrition) //400 = max for humans.
