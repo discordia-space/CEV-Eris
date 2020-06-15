@@ -1017,7 +1017,8 @@
 					/obj/item/clothing/accessory/holster/waist = 5,
 					/obj/item/clothing/accessory/holster/hip = 5,
 					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
-					
+				
+				
 	contraband = list(
 					/obj/item/ammo_magazine/slpistol = 20,
 					/obj/item/ammo_magazine/pistol = 20,
@@ -1030,7 +1031,7 @@
 	prices = list(
 					/obj/item/device/flash = 600,
 					/obj/item/weapon/reagent_containers/spray/pepper = 800,
-					/obj/item/weapon/gun/projectile/pistol/colt = 800
+					/obj/item/weapon/gun/projectile/pistol/colt = 800,
 					/obj/item/weapon/gun/projectile/olivaw = 1200,
 					/obj/item/weapon/gun/projectile/giskard = 600,
 					/obj/item/weapon/gun/energy/gun/martin = 1200,
