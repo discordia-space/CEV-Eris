@@ -672,6 +672,18 @@ proc/GaussRandRound(var/sigma, var/roundto)
 		var/area/A = get_area(loc)
 		area_name = A?.name
 
+/datum/coords/proc/get_text(display_area=TRUE)
+	var/displayed_area = display_area && area_name ? " - [strip_improper(area_name)]" : ""
+	var/displayed_x = "[x_pos]"
+	var/displayed_y = "[y_pos]"
+	var/displayed_z = "[z_pos]"
+
+	var/obj/map_data/M = GLOB.maps_data.all_levels[z_pos]
+	if(M.custom_z_names)
+		return "[displayed_x]:[displayed_y], [M.custom_z_name(z_pos)][displayed_area]"
+
+	return "[displayed_x]:[displayed_y]:[displayed_z][displayed_area]"
+
 
 /area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction = null)
 	//Takes: Area. Optional: turf type to leave behind.

@@ -38,7 +38,11 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 		return null
 	return new /datum/coords(T)
 
-/datum/gps_data/proc/get_direction(var/atom/source = holder, var/atom/target)
+/datum/gps_data/proc/get_coordinates_text()
+	var/datum/coords/C = get_coords()
+	return C ? C.get_text() : ""
+
+/datum/gps_data/proc/get_direction(atom/source = holder, atom/target)
 	if (!target)
 		return FALSE
 	return get_dir(source,target)

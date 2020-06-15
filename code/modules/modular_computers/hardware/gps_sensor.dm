@@ -1,7 +1,7 @@
 
 /obj/item/weapon/computer_hardware/gps_sensor
-	name = "gps sensor"
-	desc = "GPS sensors are receivers with antenna that use a ship navigation system."
+	name = "relay positioning receiver"
+	desc = "A module that connects a computer to the ship navigation system, commonly installed in PDAs."
 	power_usage = 5 //W
 	icon_state = "gps_basic"
 	hardware_size = 1
@@ -30,10 +30,9 @@
 
 /obj/item/weapon/computer_hardware/gps_sensor/proc/get_position_text()
 	var/text
-	if(!check_functionality())
-		text = "<span class='average'>ERROR:Unable to recive GPS location.</span>"
-		return text
-	var/datum/coords/C = gps.get_coords()
-	var/area/A = get_area(src)
-	text = "[C.x_pos]:[C.y_pos]:[C.z_pos] - [strip_improper(A.name)]"
+	if(check_functionality())
+		text = gps.get_coordinates_text()
+
+	if(!text)
+		return "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"
 	return text
