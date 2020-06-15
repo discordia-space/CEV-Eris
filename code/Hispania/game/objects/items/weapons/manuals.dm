@@ -1,5 +1,5 @@
 /*********************MANUALS (BOOKS)***********************/
-/* Commented so that it loads Hispania manuals.dm
+
 /obj/item/weapon/book/manual
 	icon = 'icons/obj/library.dmi'
 	due_date = 0 // Game time in 1/10th seconds
@@ -200,7 +200,7 @@
     			}
 			</script>
 			<p id='loading'>You start skimming through the manual...</p>
-			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[config.wikiurl]/[page_link]_Eris[config.language]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[config.wikiurl]/[page_link].html" frameborder="0" id="main_frame"></iframe>
 			</body>
 			</html>
 			"}
@@ -317,6 +317,3 @@
 	author = "Victoria Ponsonby"
 	title = "Chef Recipes"
 	page_link = "Guide_to_Food_and_Drinks"
-
-
-*/

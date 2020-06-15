@@ -1189,6 +1189,7 @@
 #include "code\game\verbs\fit_viewport.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\who.dm"
+#include "code\Hispania\game\objects\items\weapons\manuals.dm"
 #include "code\Hispania\modules\food\food.dm"
 #include "code\js\byjax.dm"
 #include "code\js\menus.dm"
