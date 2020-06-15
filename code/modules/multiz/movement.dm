@@ -249,6 +249,8 @@
 				moveWithMob += G.affecting
 		if(moveWithMob.len)
 			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
+			if(target)
+				pull_target = get_turf(target)
 			if(!pull_target)
 				pull_target = get_turf(M)
 			for(var/Elem in moveWithMob)

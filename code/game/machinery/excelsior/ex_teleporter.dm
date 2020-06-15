@@ -4,7 +4,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
-	desc = "A powerful one way teleporter that allows shipping in construction materials. Takes a long time to charge."
+	desc = "A powerful teleporter that allows shipping matter in and out. Takes a long time to charge."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/excelsior/teleporter.dmi'
@@ -22,16 +22,38 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	var/time_until_scan
 
 	var/list/nanoui_data = list()			// Additional data for NanoUI use
-	var/list/buy_list = list(
-		MATERIAL_STEEL = list("amount" = 30, "price" = 100), //base prices doubled untill new item are in
-		MATERIAL_WOOD = list("amount" = 30, "price" = 100),
-		MATERIAL_PLASTIC = list("amount" = 30, "price" = 100),
-		MATERIAL_GLASS = list("amount" = 30, "price" = 100),
-		MATERIAL_SILVER = list("amount" = 10, "price" = 200),
-		MATERIAL_PLASTEEL = list("amount" = 10, "price" = 400),
-		MATERIAL_GOLD = list("amount" = 10, "price" = 400),
-		MATERIAL_URANIUM = list("amount" = 10, "price" = 600),
-		MATERIAL_DIAMOND = list("amount" = 10, "price" = 800),
+	var/list/materials_list = list(
+		MATERIAL_STEEL = list("amount" = 30, "price" = 50), //base prices doubled untill new item are in
+		MATERIAL_WOOD = list("amount" = 30, "price" = 50),
+		MATERIAL_PLASTIC = list("amount" = 30, "price" = 50),
+		MATERIAL_GLASS = list("amount" = 30, "price" = 50),
+		MATERIAL_SILVER = list("amount" = 10, "price" = 100),
+		MATERIAL_PLASTEEL = list("amount" = 10, "price" = 200),
+		MATERIAL_GOLD = list("amount" = 10, "price" = 200),
+		MATERIAL_URANIUM = list("amount" = 10, "price" = 300),
+		MATERIAL_DIAMOND = list("amount" = 10, "price" = 400)
+		)
+
+	var/list/parts_list = list(
+		/obj/item/weapon/stock_parts/console_screen = 50,
+		/obj/item/weapon/stock_parts/capacitor = 100,
+		/obj/item/weapon/stock_parts/scanning_module = 100,
+		/obj/item/weapon/stock_parts/manipulator = 100,
+		/obj/item/weapon/stock_parts/micro_laser = 100,
+		/obj/item/weapon/stock_parts/matter_bin = 100,
+		/obj/item/weapon/stock_parts/capacitor/excelsior = 350,
+		/obj/item/weapon/stock_parts/scanning_module/excelsior = 350,
+		/obj/item/weapon/stock_parts/manipulator/excelsior = 350,
+		/obj/item/weapon/stock_parts/micro_laser/excelsior = 350,
+		/obj/item/weapon/stock_parts/matter_bin/excelsior = 350,
+		/obj/item/clothing/under/excelsior = 100,
+		/obj/item/weapon/circuitboard/excelsior_teleporter = 500,
+		/obj/item/weapon/circuitboard/excelsiorautolathe = 150,
+		/obj/item/weapon/circuitboard/excelsiorreconstructor = 150,
+		/obj/item/weapon/circuitboard/excelsior_turret = 150,
+		/obj/item/weapon/circuitboard/excelsiorshieldwallgen = 150,
+		/obj/item/weapon/circuitboard/excelsior_boombox = 150,
+		/obj/item/weapon/circuitboard/diesel = 150
 		)
 
 /obj/machinery/complant_teleporter/Initialize()
@@ -145,18 +167,31 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	data["time_until_scan"] = time_until_scan
 	data += nanoui_data
 
-	var/list/order_list = list()
-	for(var/item in buy_list)
-		order_list += list(
+	var/list/order_list_m = list()
+	for(var/item in materials_list)
+		order_list_m += list(
 			list(
 				"title" = material_display_name(item),
-				"amount" = buy_list[item]["amount"],
-				"price" = buy_list[item]["price"],
+				"amount" = materials_list[item]["amount"],
+				"price" = materials_list[item]["price"],
 				"commands" = list("order" = item)
 				)
 			) // list in a list because Byond merges the first list...
 
-	data["buy_list"] = order_list
+	data["materials_list"] = order_list_m
+	
+	var/list/order_list_p = list()
+	for(var/item in parts_list)
+		var/obj/item/I = item
+		order_list_p += list(
+			list(
+				"name_p" = initial(I.name),
+				"price_p" = parts_list[item],
+				"commands_p" = list("order_p" = item)
+			)
+		)
+
+	data["list_of_parts"] = order_list_p
 
 	return data
 
@@ -170,21 +205,17 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 
 	if(href_list["order"])
 		var/ordered_item = href_list["order"]
-		if (buy_list.Find(ordered_item))
-			var/order_energy_cost = buy_list[ordered_item]["price"]
-			if(order_energy_cost > excelsior_energy)
-				to_chat(usr, SPAN_WARNING("Not enough energy."))
-				return 0
-
-			processing_order = TRUE
-			excelsior_energy = max(excelsior_energy - order_energy_cost, 0)
-
+		if (materials_list.Find(ordered_item))
+			var/order_energy_cost = materials_list[ordered_item]["price"]
 			var/order_path = material_stack_type(ordered_item)
-			var/order_amount = buy_list[ordered_item]["amount"]
+			var/order_amount = materials_list[ordered_item]["amount"]
+			send_order(order_path, order_energy_cost, order_amount)
 
-			flick("teleporting", src)
-			spawn(17)
-				complete_order(order_path, order_amount)
+	if(href_list["order_p"])
+		var/ordered_item = text2path(href_list["order_p"])
+		if (parts_list.Find(ordered_item))
+			var/order_energy_cost = parts_list[ordered_item]
+			send_order(ordered_item, order_energy_cost, 1)
 
 	if(href_list["open_menu"])
 		nanoui_menu = 1
@@ -215,6 +246,17 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 				completed_mandates.Add(entry)
 		nanoui_data["available_mandates"] = available_mandates
 		nanoui_data["completed_mandates"] = completed_mandates
+
+/obj/machinery/complant_teleporter/proc/send_order(order_path, order_cost, amount)
+	if(order_cost > excelsior_energy)
+		to_chat(usr, SPAN_WARNING("Not enough energy."))
+		return 0
+
+	processing_order = TRUE
+	excelsior_energy = max(excelsior_energy - order_cost, 0)
+	flick("teleporting", src)
+	spawn(17)
+		complete_order(order_path, amount)
 
 /obj/machinery/complant_teleporter/proc/complete_order(order_path, amount)
 	use_power(active_power_usage * 3)

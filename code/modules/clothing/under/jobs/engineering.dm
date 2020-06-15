@@ -17,7 +17,7 @@
 	desc = "It's a yellow jumpsuit worn by engineers. It has minor radiation shielding."
 	name = "technomancer's jumpsuit"
 	icon_state = "engine"
-	item_state = "engi_suit"
+	item_state = "engine"
 	armor = list(
 		melee = 0,
 		bullet = 0,

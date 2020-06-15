@@ -3,7 +3,7 @@
 	icon = 'icons/inventory/eyes/icon.dmi'
 	var/prescription = FALSE
 	var/toggleable = FALSE
-	var/off_state = "degoggles"
+	var/off_state = "black_goggles"
 	var/active = TRUE
 	var/activation_sound = 'sound/items/goggles_charge.ogg'
 	var/obj/screen/overlay = null

@@ -172,6 +172,7 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
+	var/autoattach = 0			//If this attaches to a wall automatically
 	var/brightness_range = 7	// luminosity when on, also used in power calculation
 	var/brightness_power = 2
 	var/brightness_color = COLOR_LIGHTING_DEFAULT_BRIGHT
@@ -185,6 +186,7 @@
 	var/rigged = 0				// true if rigged to explode
 	var/firealarmed = 0
 	var/atmosalarmed = 0
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/floor
@@ -201,6 +203,9 @@
 	brightness_power = 2
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
+
+/obj/machinery/light/small/autoattach
+	autoattach = 1
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -227,14 +232,21 @@
 // create a new lighting fixture
 /obj/machinery/light/Initialize()
 	. = ..()
+	if(autoattach)
+		auto_turn_destructive()
+		dir = reverse_dir[dir]
+
+	if(!src)
+		return 0
 
 	var/area/A = get_area(src)
 	if(A && !A.requires_power)
 		on = 1
 
 	var/area/location = get_area(loc)
-	if(location.area_light_color)
-		brightness_color = location.area_light_color
+	if(location)
+		if(location.area_light_color)
+			brightness_color = location.area_light_color
 
 	update(0)
 
@@ -790,3 +802,27 @@
 		sharp = 1
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()
+
+
+/atom/proc/auto_turn_destructive()
+	//Automatically turns based on nearby walls, destroys if not found.
+	var/turf/simulated/wall/T = null
+	var/gotdir = 0
+	for(var/i = 1, i <= 8; i += i)
+		T = get_ranged_target_turf(src, i, 1)
+
+		if(istype(T))
+			//If someone knows a better way to do this, let me know. -Giacom
+			switch(i)
+				if(NORTH)
+					src.set_dir(SOUTH)
+				if(SOUTH)
+					src.set_dir(NORTH)
+				if(WEST)
+					src.set_dir(EAST)
+				if(EAST)
+					src.set_dir(WEST)
+			gotdir = dir
+			break
+	if(!gotdir)
+		qdel(src)

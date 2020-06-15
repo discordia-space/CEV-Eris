@@ -89,7 +89,8 @@
 				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,
 				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,
 				/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 1,
-				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1))
+				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1,
+				/obj/item/weapon/gun/energy/shrapnel = 1))
 
 /obj/random/gun_shotgun/low_chance
 	name = "low chance random shotgun"

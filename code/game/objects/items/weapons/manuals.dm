@@ -1,5 +1,5 @@
 /*********************MANUALS (BOOKS)***********************/
-
+/* Commented so that it loads Hispania manuals.dm
 /obj/item/weapon/book/manual
 	icon = 'icons/obj/library.dmi'
 	due_date = 0 // Game time in 1/10th seconds
@@ -317,3 +317,6 @@
 	author = "Victoria Ponsonby"
 	title = "Chef Recipes"
 	page_link = "Guide_to_Food_and_Drinks"
+
+
+*/
