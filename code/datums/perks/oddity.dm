@@ -8,6 +8,8 @@
 #define PERK_PARKOUR /datum/perk/parkour
 #define PERK_CHARMING_PERSONALITY /datum/perk/charming_personality
 #define PERK_HORRIBLE_DEEDS /datum/perk/horrible_deeds
+#define PERK_CHAINGUN_SMOKER /datum/perk/chaingun_smoker
+
 
 /datum/perk/fast_walker
 	name = "Fast walker"
@@ -115,3 +117,8 @@
 /datum/perk/horrible_deeds/remove()
 	holder.sanity_damage -= 4
 	..()
+
+/datum/perk/chaingun_smoker
+	name = "Chaingun Smoker"
+	desc = "Nicotine does not only helps your sanity now, it also a painkiller and weak antitoxin for you."
+	icon = "lungs" // https://game-icons.net
