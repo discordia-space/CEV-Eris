@@ -1190,7 +1190,7 @@
 #include "code\game\verbs\fit_viewport.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\who.dm"
-#include "code\hispania\game\objects\items\weapons\manuals.dm"
+#include "code\hispania\game\objects\items\weapons\manuals2.dm"
 #include "code\hispania\modules\clothing\clothing.dm"
 #include "code\hispania\modules\food\food.dm"
 #include "code\hispania\modules\mob\language\station.dm"
