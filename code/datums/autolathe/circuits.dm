@@ -16,9 +16,9 @@
 	name = "power control module"
 	build_path = /obj/item/weapon/circuitboard/apc
 
-/datum/design/autolathe/circuit/station_map
-	name = "power control module"
-	build_path = /obj/item/weapon/circuitboard/station_map
+/datum/design/autolathe/circuit/holomap
+	name = "holomap electronics"
+	build_path = /obj/item/weapon/circuitboard/holomap
 
 /datum/design/autolathe/circuit/vending
 	name = "custom Vendomat"

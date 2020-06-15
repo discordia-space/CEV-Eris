@@ -42,7 +42,7 @@
 	admin_notice("<span class='notice'>Holomaps initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>", R_DEBUG)
 
 	// TODO - Check - They had a delayed init perhaps?
-	for (var/obj/machinery/station_map/S in station_holomaps)
+	for (var/obj/machinery/holomap/S in station_holomaps)
 		S.setup_holomap()
 
 // Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.

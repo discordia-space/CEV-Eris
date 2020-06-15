@@ -1,9 +1,9 @@
 //
 // Wall mounted holomap of the station
 //
-/obj/machinery/station_map
-	name = "station holomap"
-	desc = "A virtual map of the surrounding station."
+/obj/machinery/holomap
+	name = "holomap"
+	desc = "A virtual map of the CEV \"Eris\"."
 	icon = 'icons/obj/machines/stationmap.dmi'
 	icon_state = "station_map"
 	anchored = TRUE
@@ -27,7 +27,7 @@
 	var/buildstage = 2
 	var/wiresexposed = FALSE
 
-/obj/machinery/station_map/New(turf/loc, ndir, building)
+/obj/machinery/holomap/New(turf/loc, ndir, building)
 	..()
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 
@@ -47,19 +47,19 @@
 		if(SSholomaps.holomaps_initialized)
 			setup_holomap()
 
-/obj/machinery/station_map/Initialize()
+/obj/machinery/holomap/Initialize()
 	. = ..()
 	holomap_datum = new()
 	original_zLevel = loc.z
 	SSholomaps.station_holomaps += src
 
-/obj/machinery/station_map/Destroy()
+/obj/machinery/holomap/Destroy()
 	SSholomaps.station_holomaps -= src
 	stopWatching()
 	holomap_datum = null
 	. = ..()
 
-/obj/machinery/station_map/proc/setup_holomap()
+/obj/machinery/holomap/proc/setup_holomap()
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
@@ -76,31 +76,31 @@
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
 
-/obj/machinery/station_map/attack_hand(var/mob/user)
+/obj/machinery/holomap/attack_hand(var/mob/user)
 	if(watching_mob && (watching_mob != user))
-		to_chat(user, "<span class='warning'>Someone else is currently watching the holomap.</span>")
+		to_chat(user, SPAN_WARNING("Someone else is currently watching the holomap."))
 		return
 	if(user.loc != loc)
-		to_chat(user, "<span class='warning'>You need to stand in front of \the [src].</span>")
+		to_chat(user, SPAN_WARNING("You need to stand in front of \the [src]."))
 		return
 	startWatching(user)
 
 // Let people bump up against it to watch
-/obj/machinery/station_map/Bumped(var/atom/movable/AM)
+/obj/machinery/holomap/Bumped(var/atom/movable/AM)
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
 // In order to actually get Bumped() we need to block movement.  We're (visually) on a wall, so people
 // couldn't really walk into us anyway.  But in reality we are on the turf in front of the wall, so bumping
 // against where we seem is actually trying to *exit* our real loc
-/obj/machinery/station_map/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/machinery/holomap/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	// log_debug("[src] (dir=[dir]) CheckExit([mover], [target])  get_dir() = [get_dir(target, loc)]")
 	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are visually in the next turf over
 		return FALSE
 	else
 		return TRUE
 
-/obj/machinery/station_map/proc/startWatching(mob/user)
+/obj/machinery/holomap/proc/startWatching(mob/user)
 	// Okay, does this belong on a screen thing or what?
 	// One argument is that this is an "in game" object becuase its in the world.
 	// But I think it actually isn't.  The map isn't holo projected into the whole room, (maybe strat one is!)
@@ -125,28 +125,28 @@
 			user.client.screen |= global_hud.holomap // TODO - HACK! This should be there permenently really.
 			user.client.images |= holomap_datum.station_map
 			watching_mob = user
-			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
-			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
-			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
+			GLOB.moved_event.register(watching_mob, src, /obj/machinery/holomap/proc/checkPosition)
+			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/holomap/proc/checkPosition)
+			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/holomap/proc/stopWatching)
 			update_use_power(ACTIVE_POWER_USE)
 			if(bogus)
-				to_chat(user, "<span class='warning'>The holomap failed to initialize. This area of space cannot be mapped.</span>")
+				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be mapped."))
 			else
-				to_chat(user, "<span class='notice'>A hologram of the station appears before your eyes.</span>")
+				to_chat(user, SPAN_NOTICE("A hologram of CEV \"Eris\" appears before your eyes."))
 
-/obj/machinery/station_map/attack_ai(mob/living/silicon/robot/user)
+/obj/machinery/holomap/attack_ai(mob/living/silicon/robot/user)
 	return // TODO
 	// user.station_holomap.toggleHolomap(user, isAI(user))
 
-/obj/machinery/station_map/Process()
+/obj/machinery/holomap/Process()
 	if((stat & (NOPOWER|BROKEN)) || !anchored || buildstage < 2 || wiresexposed)
 		stopWatching()
 
-/obj/machinery/station_map/proc/checkPosition()
+/obj/machinery/holomap/proc/checkPosition()
 	if(!watching_mob || (watching_mob.loc != loc) || (dir != watching_mob.dir))
 		stopWatching()
 
-/obj/machinery/station_map/proc/stopWatching()
+/obj/machinery/holomap/proc/stopWatching()
 	if(watching_mob)
 		if(watching_mob.client)
 			animate(holomap_datum.station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
@@ -159,7 +159,7 @@
 	watching_mob = null
 	update_use_power(IDLE_POWER_USE)
 
-/obj/machinery/station_map/power_change()
+/obj/machinery/holomap/power_change()
 	. = ..()
 	update_icon()
 	// TODO - Port use_auto_lights from /vg - For now implement it manually here
@@ -168,11 +168,11 @@
 	else
 		set_light(light_range_on, light_power_on)
 
-/obj/machinery/station_map/proc/set_broken()
+/obj/machinery/holomap/proc/set_broken()
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/station_map/update_icon()
+/obj/machinery/holomap/update_icon()
 	if(!holomap_datum)
 		return //Not yet.
 
@@ -208,7 +208,7 @@
 			overlays |= small_station_map
 			holomap_datum.initialize_holomap(get_turf(src))
 
-/obj/machinery/station_map/attackby(obj/item/I, mob/user)
+/obj/machinery/holomap/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 
 	var/list/usable_qualities = list()
@@ -250,8 +250,7 @@
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/weapon/circuitboard/station_map/circuit = new /obj/item/weapon/circuitboard/station_map()
-					circuit.loc = user.loc
+					new /obj/item/weapon/circuitboard/holomap(get_turf(user))
 					buildstage = 0
 					update_icon()
 					return
@@ -261,7 +260,7 @@
 			if(buildstage == 0)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You remove the [src] assembly from the wall!")
-					new /obj/item/frame/station_holomap(get_turf(user))
+					new /obj/item/frame/holomap(get_turf(user))
 					qdel(src)
 			return
 
@@ -283,7 +282,7 @@
 					return
 
 		if(0)
-			if(istype(I, /obj/item/weapon/circuitboard/station_map))
+			if(istype(I, /obj/item/weapon/circuitboard/holomap))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -292,7 +291,7 @@
 
 	return ..()
 
-/obj/machinery/station_map/ex_act(severity)
+/obj/machinery/holomap/ex_act(severity)
 	switch(severity)
 		if(1)
 			qdel(src)
@@ -305,15 +304,15 @@
 			if (prob(25))
 				set_broken()
 
-/obj/item/frame/station_holomap
-	name = "\improper station holomap frame"
-	desc = "Used for repairing or building stations holomap"
+/obj/item/frame/holomap
+	name = "\improper holomap frame"
+	desc = "Used for building a holomap."
 	icon = 'icons/obj/machines/stationmap.dmi'
 	icon_state = "station_map_frame_0"
-	build_machine_type = /obj/machinery/station_map
+	build_machine_type = /obj/machinery/holomap
 
-/obj/item/weapon/circuitboard/station_map
-	name = T_BOARD("Station Map")
+/obj/item/weapon/circuitboard/holomap
+	name = T_BOARD("Holomap")
 	desc = "Looks like a circuit. Probably is."
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	w_class = ITEM_SIZE_SMALL
