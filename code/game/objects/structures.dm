@@ -16,7 +16,7 @@
  *
  * Values are found in code/__defines/inventory_sizes.dm
  */
-/obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/get_fall_damage(turf/from, turf/dest)
 	var/damage = w_class * 10
 
 	if (from && dest)
@@ -83,19 +83,19 @@
 	else
 		return ..()
 
-/obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
+/obj/structure/proc/can_climb(mob/living/user, post_climb_check=0)
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
-		return 0
+		return FALSE
 
 	if (!user.Adjacent(src))
 		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
-		return 0
+		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
@@ -124,14 +124,14 @@
 				return 0
 	return 1
 
-/obj/structure/proc/do_climb(var/mob/living/user)
+/obj/structure/proc/do_climb(mob/living/user)
 	if (!can_climb(user))
 		return
 
 	usr.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
-	var/delay = (issmall(user) ? 20 : 34)
+	var/delay = (issmall(user) ? 20 : 34) * user.mod_climb_delay
 	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src))
 		climbers -= user

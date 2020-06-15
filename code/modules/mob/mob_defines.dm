@@ -4,6 +4,7 @@
 	animate_movement = 2
 	flags = PROXMOVE
 	var/datum/mind/mind
+	var/mod_climb_delay = 1 // delay for climb
 
 	movement_handlers = list(
 	/datum/movement_handler/mob/relayed_movement,

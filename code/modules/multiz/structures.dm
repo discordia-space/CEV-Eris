@@ -105,7 +105,7 @@
 		qdel(target)
 	return ..()
 
-/obj/structure/multiz/ladder/attack_generic(var/mob/M)
+/obj/structure/multiz/ladder/attack_generic(mob/M)
 	attack_hand(M)
 
 /obj/structure/multiz/ladder/attack_hand(mob/M)
@@ -121,7 +121,7 @@
 	if(!target || !istype(target.loc, /turf))
 		to_chat(M, SPAN_NOTICE("\The [src] is incomplete and can't be climbed."))
 		return
-
+	delay *= M.mod_climb_delay
 	var/turf/T = target.loc
 	var/mob/tempMob
 	for(var/atom/A in T)

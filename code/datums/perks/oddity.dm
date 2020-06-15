@@ -5,6 +5,9 @@
 #define PERK_LUNGS_OF_IRON /datum/perk/lungs_of_iron
 #define PERK_BLOOD_OF_LEAD /datum/perk/blood_of_lead
 #define PERK_SPACE_ASSHOLE /datum/perk/space_asshole
+#define PERK_PARKOUR /datum/perk/parkour
+#define PERK_CHARMING_PERSONALITY /datum/perk/charming_personality
+#define PERK_HORRIBLE_DEEDS /datum/perk/horrible_deeds
 
 /datum/perk/fast_walker
 	name = "Fast walker"
@@ -26,7 +29,7 @@
 
 /datum/perk/terrible_fate
 	name = "Terrible Fate"
-	icon_state = "dual_shot" // https://game-icons.net/1x1/delapouite/bullet-impacts.html
+	icon_state = "murder" // https://game-icons.net/1x1/delapouite/chalk-outline-murder.html
 
 /datum/perk/unfinished_delivery
 	name = "Unfinished Delivery"
@@ -60,17 +63,55 @@
 	..()
 
 /datum/perk/space_asshole
-	name = "Lungs_of Iron"
-	desc = "You receive only 50% of oxygen damage."
+	name = "Space asshole"
+	desc = "You have some basic protection from explosives, as well as fall damage."
 	icon = "lungs"
 
 /datum/perk/space_asshole/assign(mob/living/carbon/human/H)
 	..()
 	holder.species.bomb_defense += 10
-	holder.species.falls_mod -= 0.3
+	holder.species.falls_mod -= 0.4
 
 /datum/perk/space_asshole/remove()
 	holder.species.bomb_defense -= 10
-	holder.species.falls_mod += 0.3
+	holder.species.falls_mod += 0.4
 	..()
 
+/datum/perk/parkour
+	name = "Parkour"
+	desc = "You are faster climbing ladders and tables."
+	icon = "lungs"
+
+/datum/perk/parkour/assign(mob/living/carbon/human/H)
+	..()
+	holder.mod_climb_delay -= -0.8
+
+/datum/perk/parkour/remove()
+	holder.mod_climb_delay += 0.8
+	..()
+
+/datum/perk/charming_personality
+	name = "Charming personality"
+	desc = "You are faster climbing ladders and tables."
+	icon = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
+
+/datum/perk/charming_personality/assign(mob/living/carbon/human/H)
+	..()
+	holder.sanity_damage -= 4
+
+/datum/perk/charming_personality/remove()
+	holder.sanity_damage += 4
+	..()
+
+/datum/perk/horrible_deeds
+	name = "Horrible Deeds"
+	desc = "You are faster climbing ladders and tables."
+	icon = "lungs" // https://game-icons.net
+
+/datum/perk/horrible_deeds/assign(mob/living/carbon/human/H)
+	..()
+	holder.sanity_damage += 4
+
+/datum/perk/horrible_deeds/remove()
+	holder.sanity_damage -= 4
+	..()

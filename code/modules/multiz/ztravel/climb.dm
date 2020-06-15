@@ -80,9 +80,6 @@
 	soundfile = "catwalk"
 	var/atom/magboots //The boots you're using
 
-
-
-
 /datum/vertical_travel_method/climb/mag/can_perform(dir)
 	.=..()
 	if(.)
@@ -106,8 +103,6 @@
 
 
 /datum/vertical_travel_method/climb/mag/start_animation()
-
-
 	//Turn the player at an angle away from the wall
 	var/matrix/mat = M.transform
 	if (surface.x > M.x)
