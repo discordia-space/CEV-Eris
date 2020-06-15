@@ -992,7 +992,8 @@
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
 	no_criminals = TRUE
-	products = list(/obj/item/device/flash = 6,
+	products = list(
+					/obj/item/device/flash = 6,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,
 					/obj/item/weapon/gun/projectile/pistol/colt = 5,
 					/obj/item/weapon/gun/projectile/olivaw = 5,
@@ -1017,7 +1018,8 @@
 					/obj/item/clothing/accessory/holster/hip = 5,
 					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
 					
-	contraband = list(/obj/item/ammo_magazine/slpistol = 20,
+	contraband = list(
+					/obj/item/ammo_magazine/slpistol = 20,
 					/obj/item/ammo_magazine/pistol = 20,
 					/obj/item/ammo_magazine/hpistol = 5,
 					/obj/item/ammo_magazine/smg = 15,
@@ -1025,12 +1027,13 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 10,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
 					/obj/item/weapon/tool/knife/tacknife = 6)
-	prices = list(/obj/item/device/flash = 600,
+	prices = list(
+					/obj/item/device/flash = 600,
 					/obj/item/weapon/reagent_containers/spray/pepper = 800,
 					/obj/item/weapon/gun/projectile/pistol/colt = 800
 					/obj/item/weapon/gun/projectile/olivaw = 1200,
 					/obj/item/weapon/gun/projectile/giskard = 600,
-					/obj/item/weapon/gun/energy/gun/martin = 1500,
+					/obj/item/weapon/gun/energy/gun/martin = 1200,
 					/obj/item/weapon/gun/projectile/revolver/havelock = 1200,
 					/obj/item/weapon/gun/projectile/automatic/atreides = 1500,
 					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
