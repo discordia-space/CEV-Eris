@@ -392,6 +392,7 @@
 #include "code\datums\outfits\jobs\science.dm"
 #include "code\datums\outfits\jobs\security.dm"
 #include "code\datums\perks\job.dm"
+#include "code\datums\perks\oddity.dm"
 #include "code\datums\perks\perk.dm"
 #include "code\datums\proximity_trigger\proximity_trigger.dm"
 #include "code\datums\proximity_trigger\turf_selection.dm"

@@ -595,9 +595,9 @@
 
 /mob/living/carbon/human/handle_regular_status_updates()
 	if(!handle_some_updates())
-		return 0
+		return FALSE
 
-	if(status_flags & GODMODE)	return 0
+	if(status_flags & GODMODE)	return FALSE
 
 	//SSD check, if a logged player is awake put them back to sleep!
 	if(species.show_ssd && !client && !teleop)
@@ -608,11 +608,22 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[BP_BRAIN] && !has_brain()))
-			death()
-			blinded = 1
-			silent = 0
-			return 1
+		if(health <= HEALTH_THRESHOLD_DEAD)
+			if(species.has_organ[BP_BRAIN] && has_brain())
+				if(stats.getPerk(PERK_UNFINISHED_DELIVERY))
+					if(prob(33))
+						adjustBruteLoss(-20)
+						adjustFireLoss(-20)
+						adjustOxyLoss(-20)
+						adjustToxLoss(-20)
+						AdjustSleeping(rand(20,30))
+						updatehealth()
+						stats.removePerk(PERK_UNFINISHED_DELIVERY)
+					return TRUE
+				death()
+				blinded = 1
+				silent = 0
+				return TRUE
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))

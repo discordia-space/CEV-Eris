@@ -23,7 +23,7 @@
 	if (anim)
 		addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
-/mob/proc/check_delete(var/atom/movable/overlay/animation)
+/mob/proc/check_delete(atom/movable/overlay/animation)
 	if(animation)	qdel(animation)
 	if(src)			qdel(src)
 
@@ -60,7 +60,7 @@
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")
 	if(stat == DEAD)
-		return 0
+		return FALSE
 
 	facing_dir = null
 

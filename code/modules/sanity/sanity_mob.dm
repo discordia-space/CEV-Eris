@@ -238,6 +238,9 @@
 	if(ishuman(M))
 		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
 		changeLevel(penalty*death_view_multiplier)
+		if(M.stats.getPerk(PERK_TERRIBLE_FATE))
+			if(prob(100-owner.stats.getStat(STAT_VIG)))
+				setLevel(0)
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))
