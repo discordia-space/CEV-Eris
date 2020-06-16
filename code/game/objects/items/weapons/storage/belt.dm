@@ -122,6 +122,7 @@
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
 		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/flash,
 		/obj/item/clothing/gloves,
 		/obj/item/clothing/glasses,
