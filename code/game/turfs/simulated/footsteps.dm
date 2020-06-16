@@ -1,8 +1,8 @@
 //Only humans make footstep sounds
-/mob/proc/handle_footstep(var/turf/simulated/T)
+/mob/proc/handle_footstep(turf/simulated/T)
 	return
 
-/mob/living/carbon/human/handle_footstep(var/turf/simulated/T)
+/mob/living/carbon/human/handle_footstep(turf/simulated/T)
 	if(!istype(T))
 		return
 
@@ -35,5 +35,6 @@
 		if(!shoes)
 			volume -= 60
 			range -= 0.333
-
+		if(stats.getPerk(PERK_QUIET_AS_MOUSE))
+			volume = 0
 		playsound(T, footsound, volume, 1, range)

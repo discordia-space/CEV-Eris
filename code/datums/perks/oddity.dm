@@ -11,6 +11,7 @@
 #define PERK_CHAINGUN_SMOKER /datum/perk/chaingun_smoker
 #define PERK_NIGHTCRAWLER /datum/perk/nightcrawler
 #define PERK_FAST_FINGERS /datum/perk/fast_fingers
+#define PERK_QUIET_AS_MOUSE /datum/perk/quiet_as_mouse
 
 /datum/perk/fast_walker
 	name = "Fast walker"
@@ -132,4 +133,9 @@
 /datum/perk/fast_fingers
 	name = "Fast fingers"
 	desc = "Dark does not slow you down, you actually move faster in it."
+	icon_state = "nightcrawler" // https://game-icons.net
+
+/datum/perk/quiet_as_mouse
+	name = "Quiet as mouse"
+	desc = "your footsteps are totally silent."
 	icon_state = "nightcrawler" // https://game-icons.net

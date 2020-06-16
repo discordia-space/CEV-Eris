@@ -287,7 +287,7 @@ var/list/rummage_sound = list(\
 		'sound/effects/interaction/rummage6.ogg')
 
 
-/proc/footstep_sound(var/sound)
+/proc/footstep_sound(sound)
 	var/toplay
 	switch (sound)
 		if ("asteroid")
@@ -343,7 +343,7 @@ var/list/rummage_sound = list(\
 
 var/const/FALLOFF_SOUNDS = 0.5
 
-/mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure = TRUE)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure = TRUE)
 	if(!src.client || ear_deaf > 0)
 		return
 
@@ -361,7 +361,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			S.frequency = get_rand_frequency()
 
 	//sound volume falloff with pressure
-	var/pressure_factor = 1.0
+	var/pressure_factor = 1
 	
 	var/turf/T = get_turf(src)
 	// 3D sounds, the technology is here!
@@ -435,8 +435,6 @@ var/const/FALLOFF_SOUNDS = 0.5
 	S.echo = echo_list
 
 	sound_to(src, S)
-
-
 
 
 /proc/get_rand_frequency()
@@ -513,7 +511,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 
 	var/self_id
 
-/datum/repeating_sound/New(var/_interval, var/duration, var/interval_variance = 0, var/atom/_source, var/_soundin, var/_vol, var/_vary, var/_extrarange, var/_falloff, var/_is_global, var/_use_pressure = TRUE)
+/datum/repeating_sound/New(_interval, duration, interval_variance = 0, atom/_source, _soundin, _vol, _vary, _extrarange, _falloff, _is_global, _use_pressure = TRUE)
 	end_time = world.time + duration
 	source = "\ref[_source]"
 	interval = _interval
