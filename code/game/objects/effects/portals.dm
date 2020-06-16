@@ -170,3 +170,36 @@ var/list/portal_cache = list()
 		//Portals ignore armor when messing you up, it's logical
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
 	do_teleport(M, get_destination(get_turf(M)), 1)
+
+
+
+/obj/effect/portal/rift
+	name = "bluespace rift"
+	failchance = 0
+	var/usages_left
+
+/obj/effect/portal/rift/New(loc, usages)
+	..()
+	deltimer(lifetime)
+	usages_left = usages
+
+/obj/effect/portal/rift/proc/pair(target_rift)
+	if(!istype(target_rift, /obj/effect/portal/rift))
+		return
+	var/obj/effect/portal/rift/T = target_rift
+	target = T
+	T.target = src
+	T.usages_left = usages_left
+
+/obj/effect/portal/rift/close()
+	if(usages_left <= 0)
+		qdel(src.target)
+		qdel(src)
+
+/obj/effect/portal/rift/teleport(atom/movable/M)
+	. = ..(M)
+	if(.)
+		var/obj/effect/portal/rift/T = target
+		usages_left -= 1
+		T.usages_left -= 1
+		close()
