@@ -45,7 +45,7 @@
 
 
 //Delayed equipping
-/obj/item/clothing/pre_equip(var/mob/user, var/slot)
+/obj/item/clothing/pre_equip(mob/user, slot)
 	..(user, slot)
 	if (equip_delay > 0)
 		//If its currently worn, we must be taking it off
@@ -72,7 +72,7 @@
 	if(!pre_equip(usr, over_object))
 		..()
 
-/proc/body_part_coverage_to_string(var/body_parts)
+/proc/body_part_coverage_to_string(body_parts)
 	var/list/body_partsL = list()
 	if(body_parts & HEAD)
 		body_partsL.Add("head")

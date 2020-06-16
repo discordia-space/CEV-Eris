@@ -155,7 +155,7 @@
 	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(5)
 
-/datum/reagent/stim/steady/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/stim/steady/overdose(mob/living/carbon/M, alien)
 	if(prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[BP_HEART]
@@ -326,7 +326,7 @@
 	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 
-/datum/reagent/stim/turbo/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/stim/turbo/overdose(mob/living/carbon/M, alien)
 	if(prob(80 - (30 * M.stats.getMult(STAT_TGH))))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[BP_HEART]
@@ -347,7 +347,7 @@
 	nerve_system_accumulations = 70
 	addiction_chance = 50
 
-/datum/reagent/stim/party_drops/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/stim/party_drops/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
 	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
@@ -362,7 +362,7 @@
 	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 
-/datum/reagent/stim/party_drops/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/stim/party_drops/overdose(mob/living/carbon/M, alien)
 	M.adjustBrainLoss(2)
 	M.slurring = max(M.slurring, 30)
 	if(prob(5))

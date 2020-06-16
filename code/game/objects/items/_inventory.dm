@@ -39,7 +39,7 @@
 				return TRUE
 
 
-/obj/item/proc/pre_equip(var/mob/user, var/slot)
+/obj/item/proc/pre_equip(mob/user, slot)
 	//Some inventory sounds.
 	//occurs when you equip something
 	if(item_flags & EQUIP_SOUNDS)
@@ -52,9 +52,7 @@
 			user.drop_from_inventory(equipped)
 			equipped.forceMove(src)
 
-
-
-/obj/item/proc/equipped(var/mob/user, var/slot)
+/obj/item/proc/equipped(mob/user, slot)
 	equip_slot = slot
 	if(user.pulling == src)
 		user.stop_pulling()
@@ -67,8 +65,6 @@
 	if(wielded)
 		unwield(user)
 
-
-
 /obj/item/proc/dropped(mob/user)
 	if(zoom) //binoculars, scope, etc
 		zoom()
@@ -77,14 +73,11 @@
 		remove_overslot_contents(user)
 
 
-
 /obj/item/proc/remove_overslot_contents(mob/user)
 	if(overslot_contents)
 		if(!user.equip_to_appropriate_slot(overslot_contents))
 			overslot_contents.forceMove(get_turf(src))
 		overslot_contents = null
-
-
 
 /obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
 	if(!slot) return 0
@@ -96,11 +89,9 @@
 		return 0
 	return 1
 
-
 /obj/item/proc/is_equipped()
 	if (ismob(loc))
 		return (equip_slot != slot_none)
-
 
 /obj/item/proc/is_worn()
 	//If equip_slot is zero then it has never been equipped
@@ -110,7 +101,6 @@
 	if (ismob(loc))
 		return !(equip_slot in unworn_slots)
 
-
 /obj/item/proc/is_held()
 	//If equip_slot is zero then it has never been equipped
 	if (equip_slot == slot_none)
@@ -119,20 +109,17 @@
 	if (ismob(loc))
 		return equip_slot in list(slot_l_hand, slot_r_hand,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
 
-
 /obj/item/proc/get_equip_slot()
 	if (ismob(loc))
 		return equip_slot
 	else
 		return slot_none
 
-
 /obj/item/MouseDrop(obj/over_object)
 	if(item_flags & DRAG_AND_DROP_UNEQUIP && isliving(usr))
 		if(try_uneqip(over_object, usr))
 			return
 	return ..()
-
 
 /obj/item/proc/try_uneqip(target, mob/living/user)
 	if(loc == user && ishuman(user))

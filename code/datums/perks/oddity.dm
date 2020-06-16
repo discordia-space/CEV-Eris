@@ -10,7 +10,7 @@
 #define PERK_HORRIBLE_DEEDS /datum/perk/horrible_deeds
 #define PERK_CHAINGUN_SMOKER /datum/perk/chaingun_smoker
 #define PERK_NIGHTCRAWLER /datum/perk/nightcrawler
-
+#define PERK_FAST_FINGERS /datum/perk/fast_fingers
 
 /datum/perk/fast_walker
 	name = "Fast walker"
@@ -19,10 +19,10 @@
 
 /datum/perk/fast_walker/assign(mob/living/carbon/human/H)
 	..()
-	holder.species.slowdown -= 0.3
+	holder.species.slowdown -= 0.5
 
 /datum/perk/fast_walker/remove()
-	holder.species.slowdown += 0.3
+	holder.species.slowdown += 0.5
 	..()
 
 /datum/perk/gunslinger
@@ -42,7 +42,7 @@
 /datum/perk/lungs_of_iron
 	name = "Lungs of Iron"
 	desc = "You receive only 50% of oxygen damage."
-	icon = "lungs" // https://game-icons.net/1x1/lorc/one-eyed.html
+	icon_state = "lungs" // https://game-icons.net/1x1/lorc/one-eyed.html
 
 /datum/perk/lungs_of_iron/assign(mob/living/carbon/human/H)
 	..()
@@ -55,7 +55,7 @@
 /datum/perk/blood_of_lead
 	name = "Blood of lead"
 	desc = "Toxins provide only 50% of the damage they should."
-	icon = "liver"
+	icon_state = "liver"
 
 /datum/perk/blood_of_lead/assign(mob/living/carbon/human/H)
 	..()
@@ -68,7 +68,7 @@
 /datum/perk/space_asshole
 	name = "Space asshole"
 	desc = "You have some basic protection from explosives, as well as fall damage."
-	icon = "lungs"
+	icon_state = "lungs"
 
 /datum/perk/space_asshole/assign(mob/living/carbon/human/H)
 	..()
@@ -83,7 +83,7 @@
 /datum/perk/parkour
 	name = "Parkour"
 	desc = "You are faster climbing ladders and tables."
-	icon = "lungs"
+	icon_state = "lungs"
 
 /datum/perk/parkour/assign(mob/living/carbon/human/H)
 	..()
@@ -96,7 +96,7 @@
 /datum/perk/charming_personality
 	name = "Charming personality"
 	desc = "You are faster climbing ladders and tables."
-	icon = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
+	icon_state = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
 
 /datum/perk/charming_personality/assign(mob/living/carbon/human/H)
 	..()
@@ -109,7 +109,7 @@
 /datum/perk/horrible_deeds
 	name = "Horrible Deeds"
 	desc = "You are faster climbing ladders and tables."
-	icon = "lungs" // https://game-icons.net
+	icon_state = "lungs" // https://game-icons.net
 
 /datum/perk/horrible_deeds/assign(mob/living/carbon/human/H)
 	..()
@@ -120,11 +120,16 @@
 	..()
 
 /datum/perk/chaingun_smoker
-	name = "Chaingun Smoker"
+	name = "Chaingun smoker"
 	desc = "Nicotine does not only helps your sanity now, it also a painkiller and weak antitoxin for you."
-	icon = "lungs" // https://game-icons.net
+	icon_state = "lungs" // https://game-icons.net
 
 /datum/perk/nightcrawler
 	name = "Nightcrawler"
 	desc = "Dark does not slow you down, you actually move faster in it."
-	icon = "nightcrawler" // https://game-icons.net
+	icon_state = "nightcrawler" // https://game-icons.net
+
+/datum/perk/fast_fingers
+	name = "Fast fingers"
+	desc = "Dark does not slow you down, you actually move faster in it."
+	icon_state = "nightcrawler" // https://game-icons.net

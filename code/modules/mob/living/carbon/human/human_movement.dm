@@ -10,9 +10,9 @@
 	if(CE_SPEEDBOOST in chem_effects)
 		tally -= chem_effects[CE_SPEEDBOOST]
 
-	if(isturf(loc) && !ststs.getPerk(PERK_NIGHTCRAWLER)
+	if(isturf(loc) && !stats.getPerk(PERK_NIGHTCRAWLER))
 		var/turf/T = loc
-		if(T.get_lumcount() < 1)
+		if(T.get_lumcount() < 0.6)
 			tally += 0.5
 
 	var/health_deficiency = (maxHealth - health)
@@ -42,7 +42,7 @@
 
 /mob/living/carbon/human/allow_spacemove()
 	//Can we act?
-	if(restrained())	return 0
+	if(restrained())	return FALSE
 
 	//Do we have a working jetpack?
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
@@ -56,9 +56,9 @@
 	//If no working jetpack then use the other checks
 	return ..()
 
-/mob/living/carbon/human/slip_chance(var/prob_slip = 5)
+/mob/living/carbon/human/slip_chance(prob_slip = 5)
 	if(!..())
-		return 0
+		return FALSE
 
 	//Check hands and mod slip
 	if(!l_hand)
@@ -74,8 +74,7 @@
 
 /mob/living/carbon/human/check_shoegrip()
 	if(species.flags & NO_SLIP)
-		return 1
+		return TRUE
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
-		return 1
-	return 0
-
+		return TRUE
+	return FALSE
