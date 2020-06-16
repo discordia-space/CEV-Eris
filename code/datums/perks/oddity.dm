@@ -12,6 +12,10 @@
 #define PERK_NIGHTCRAWLER /datum/perk/nightcrawler
 #define PERK_FAST_FINGERS /datum/perk/fast_fingers
 #define PERK_QUIET_AS_MOUSE /datum/perk/quiet_as_mouse
+#define PERK_EAR_OF_QUICKSILVER /datum/perk/ear_of_quicksilver
+#define PERK_BALLS_OF_PLASTEEL /datum/perk/balls_of_plasteel
+#define PERK_JUNKBORN /datum/perk/junkborn
+#define PERK_ASS_OF_CONCRETE /datum/perk/ass_of_concrete
 
 /datum/perk/fast_walker
 	name = "Fast walker"
@@ -101,10 +105,10 @@
 
 /datum/perk/charming_personality/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity_damage -= 4
+	holder.sanity_damage -= 2
 
 /datum/perk/charming_personality/remove()
-	holder.sanity_damage += 4
+	holder.sanity_damage += 2
 	..()
 
 /datum/perk/horrible_deeds
@@ -114,10 +118,10 @@
 
 /datum/perk/horrible_deeds/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity_damage += 4
+	holder.sanity_damage += 2
 
 /datum/perk/horrible_deeds/remove()
-	holder.sanity_damage -= 4
+	holder.sanity_damage -= 2
 	..()
 
 /datum/perk/chaingun_smoker
@@ -139,3 +143,29 @@
 	name = "Quiet as mouse"
 	desc = "your footsteps are totally silent."
 	icon_state = "nightcrawler" // https://game-icons.net
+
+/datum/perk/ear_of_quicksilver
+	name = "Ear of Quicksilver"
+	desc = "You can pick up voices from more distant ranges"
+	icon_state = "ear" // https://game-icons.net
+
+/datum/perk/balls_of_plasteel
+	name = "Balls of plasteel"
+	desc = "You need to receive additional 20 points of pain to drop into pain cri"
+	icon_state = "ball"
+
+/datum/perk/junkborn
+	name = "Junkborn"
+	desc = "You have 20% chance to spawn somewhat rare item on clearing the junkpile."
+	icon_state = "junkborn"
+
+/datum/perk/ass_of_concrete
+	name = "Ass of Concrete"
+
+/datum/perk/ass_of_concrete/assign(mob/living/carbon/human/H)
+	..()
+	holder.mob_bump_flag = HEAVY
+
+/datum/perk/ass_of_concrete/remove(mob/living/carbon/human/H)
+	holder.mob_bump_flag = HEAVY
+	..()

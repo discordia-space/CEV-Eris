@@ -23,11 +23,9 @@
 	var/coughedtime = null
 	var/lastpuke = 0
 
-	var/cpr_time = 1.0
-	nutrition = 400.0//Carbon
-
+	var/cpr_time = 1
+	nutrition = 400//Carbon
 
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
 
 	//TODO: move to brain
-

@@ -794,15 +794,17 @@
 	..()
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(species && species.flags & NO_PAIN) return
-
-	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH)))// health 0 - stat makes you immediately collapse
+	var/health_threshold_softcrit = HEALTH_THRESHOLD_SOFTCRIT - stats.getStat(STAT_TGH)
+	if(stats.getPerk(PERK_BALLS_OF_PLASTEEL))
+		health_threshold_softcrit -= 20
+	if(health < health_threshold_softcrit)// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 	else if(shock_resist)
 		shock_stage = min(shock_stage, 58)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH))
+	else if(health < health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)

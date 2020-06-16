@@ -324,7 +324,7 @@ var/list/rummage_sound = list(\
 
 	var/turf/turf_source = get_turf(source)
 	var/maxdistance = (world.view + extrarange) * 2
-
+	var/init_vol = vol
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/list/listeners = GLOB.player_list
 	if(!ignore_walls) //these sounds don't carry through walls
@@ -334,8 +334,10 @@ var/list/rummage_sound = list(\
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
-
-		if(get_dist(M, turf_source) <= maxdistance)
+		vol = init_vol
+		if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+			vol *= 1.2
+		if(get_dist(M, turf_source) <= maxdistance || M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
 			var/turf/T = get_turf(M)
 
 			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))

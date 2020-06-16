@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
-	var/loot_generated = 0
+	var/loot_generated = FALSE
 	var/icontype = "general"
 	icon_state = "small"
 	icon = 'icons/obj/structures/scrap/base.dmi'
@@ -33,6 +33,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
 	sanity_damage = 0.1
+	var/prob_old_item = 66
 
 /obj/structure/scrap/proc/make_cube()
 	var/obj/container = new /obj/structure/scrap_cube(loc, loot_max)
@@ -54,8 +55,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	name = "This thing shoots scrap everywhere with a delay"
 	desc = "no data"
 	invisibility = 101
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 /obj/effect/scrapshot/Initialize(mapload, severity = 1)
 	..()
@@ -98,7 +99,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		else
 			big_item = CATCH.get_item(/obj/random/pack/junk_machine)
 		big_item.forceMove(src)
-		if(prob(66))
+		if(prob(prob_old_item))
 			big_item.make_old()
 		qdel(CATCH)
 
@@ -115,7 +116,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		new loot_path(src)
 
 	for(var/obj/item/loot in contents)
-		if(prob(66))
+		if(prob(prob_old_item))
 			loot.make_old()
 
 	loot = new(src)
@@ -252,6 +253,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(hurt_hand(user))
 		return
+	prob_old_item = initial(prob_old_item)
+	if(user.stats.getPerk(PERK_JUNKBORN))
+		prob_old_item += 20
 	try_make_loot()
 	loot.open(user)
 	playsound(src, "rummage", 50, 1)
@@ -295,6 +299,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/attackby(obj/item/W, mob/user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+	prob_old_item = initial(prob_old_item)
+	if(user.stats.getPerk(PERK_JUNKBORN))
+		prob_old_item += 20
 	if((W.has_quality(QUALITY_SHOVELING)) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB, forced_sound = "rummage"))
 		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)

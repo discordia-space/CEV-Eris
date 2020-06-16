@@ -278,7 +278,7 @@ Like for example singulo act and whatever.
 
 
 // Special treatment for meteors because they would otherwise penetrate right through the shield.
-/obj/effect/shield/Bumped(var/atom/movable/mover)
+/obj/effect/shield/Bumped(atom/movable/mover)
 	if(!gen)
 		qdel(src)
 		return 0

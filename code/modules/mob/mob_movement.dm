@@ -3,7 +3,7 @@
 		return // Moved here to avoid nullrefs below
 	return mob.SelfMove(direction)
 
-/mob/proc/SelfMove(var/direction)
+/mob/proc/SelfMove(direction)
 	if(DoMove(direction, src) & MOVEMENT_HANDLED)
 		return TRUE // Doesn't necessarily mean the mob physically moved
 
@@ -12,7 +12,7 @@
 	var/moving           = FALSE
 
 
-/mob/proc/set_move_cooldown(var/timeout)
+/mob/proc/set_move_cooldown(timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.SetDelay(timeout)
@@ -28,7 +28,7 @@
 	else
 		return (!mover.density || !density || lying)
 
-/mob/proc/add_move_cooldown(var/timeout)
+/mob/proc/add_move_cooldown(timeout)
 	var/datum/movement_handler/mob/delay/delay = GetMovementHandler(/datum/movement_handler/mob/delay)
 	if(delay)
 		delay.AddDelay(timeout)
@@ -94,7 +94,6 @@
 	return
 
 
-
 /client/verb/attack_self()
 	set hidden = 1
 	if(mob)
@@ -140,21 +139,21 @@
 		to_chat(src, SPAN_WARNING("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Checks if a mob has solid ground to stand on
 //If there's no gravity then there's no up or down so naturally you can't stand on anything.
 //For the same reason lattices in space don't count - those are things you grip, presumably.
 /mob/proc/check_gravity()
 	if(istype(loc, /turf/space))
-		return 0
+		return FALSE
 
 	lastarea = get_area(src)
 	if(!lastarea || !lastarea.has_gravity)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
@@ -191,7 +190,7 @@
 /mob/proc/check_shoegrip()
 	return 0
 
-/mob/proc/slip_chance(var/prob_slip = 5)
+/mob/proc/slip_chance(prob_slip = 5)
 	if(stat)
 		return 0
 	if(check_shoegrip())

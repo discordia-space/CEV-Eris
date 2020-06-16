@@ -257,7 +257,7 @@ var/list/mob/living/forced_ambiance_list = new
 	L.lastarea = newarea
 	play_ambience(L)
 
-/area/proc/play_ambience(var/mob/living/L)
+/area/proc/play_ambience(mob/living/L)
     // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.client && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
 
@@ -325,7 +325,8 @@ var/list/mob/living/forced_ambiance_list = new
 		var/mob/living/carbon/human/H = mob
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
-
+		if(H.stats.getPerk(PERK_ASS_OF_CONCRETE))
+			return
 		if(MOVING_QUICKLY(H))
 			H.AdjustStunned(2)
 			H.AdjustWeakened(2)

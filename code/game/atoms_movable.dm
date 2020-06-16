@@ -40,7 +40,7 @@
 			pulledby.pulling = null
 		pulledby = null
 
-/atom/movable/Bump(var/atom/A, yes)
+/atom/movable/Bump(atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
 		src.throwing = 0
@@ -53,7 +53,7 @@
 	..()
 	return
 
-/atom/movable/proc/entered_with_container(var/atom/old_loc)
+/atom/movable/proc/entered_with_container(atom/old_loc)
 	return
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)

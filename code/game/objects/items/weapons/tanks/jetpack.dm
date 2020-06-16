@@ -208,7 +208,7 @@
 
 */
 
-/obj/item/weapon/tank/jetpack/proc/stabilize(var/mob/living/user, var/schedule_time, var/enable_stabilize = FALSE)
+/obj/item/weapon/tank/jetpack/proc/stabilize(mob/living/user, schedule_time, enable_stabilize = FALSE)
 	//First up, lets check we still have the user and they're still wearing this jetpack
 
 	if (!operational_safety(user))

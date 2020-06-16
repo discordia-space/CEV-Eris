@@ -27,7 +27,7 @@ default behaviour is:
  - passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
  - if si, the proc returns
 */
-/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
+/mob/living/proc/can_move_mob(mob/living/swapped, swapping = 0, passive = 0)
 	if(!swapped)
 		return TRUE
 	if(!passive)
