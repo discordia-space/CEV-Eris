@@ -5312,7 +5312,7 @@
 /area/eris/rnd/podbay)
 "ama" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel,
@@ -30712,7 +30712,7 @@
 /area/eris/maintenance/section1deck3central)
 "bqx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -31539,7 +31539,7 @@
 /area/eris/crew_quarters/sleep/cryo)
 "bsG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -34240,7 +34240,7 @@
 /obj/structure/sign/department/chem{
 	pixel_x = -32
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -45453,7 +45453,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -51880,7 +51880,7 @@
 /area/eris/medical/medbay/uppercor)
 "ckV" = (
 /obj/machinery/light/small,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark/golden,
@@ -59734,7 +59734,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -77755,7 +77755,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -85038,7 +85038,7 @@
 	icon_state = "alarm0";
 	pixel_x = -26
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108109,7 +108109,7 @@
 	},
 /area/space)
 "eMe" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108210,14 +108210,14 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "fBx" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "fBO" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108243,7 +108243,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "gjm" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel,
@@ -108292,7 +108292,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "hMo" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -108347,7 +108347,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108486,7 +108486,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108501,7 +108501,7 @@
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
 "klx" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108577,7 +108577,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "ltJ" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108638,7 +108638,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "mjD" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108731,7 +108731,7 @@
 /area/eris/medical/chemstor)
 "nlx" = (
 /obj/machinery/light,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108867,7 +108867,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108903,7 +108903,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "oLk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109065,7 +109065,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "suD" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -109096,7 +109096,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "tbl" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109154,7 +109154,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "ubu" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -109312,7 +109312,7 @@
 "vLR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109412,7 +109412,7 @@
 /turf/space,
 /area/space)
 "xPv" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
