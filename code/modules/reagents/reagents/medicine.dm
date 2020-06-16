@@ -91,6 +91,10 @@
 	holder.remove_reagent("pararein", 0.2 )
 	holder.remove_reagent("blattedin", 0.2 )
 
+/datum/reagent/medicine/dylovene/sleeper
+	name = "Synth-Dylovene"
+	id = "anti_toxin2"
+
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
 	id = "dexalin"
@@ -347,7 +351,7 @@
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#022000"
-	
+
 
 /datum/reagent/medicine/positive_ling
 	name = "Positive Paragenetic Marker"
