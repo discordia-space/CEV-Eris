@@ -176,6 +176,14 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/device/encryptionkey/binary
 	sort_string = "VASAA"
 
+/datum/design/research/item/glowstick
+	name = "Undark Glowstick"
+	desc = "A refined cocktail of all the needed things to glow in the dark!"
+	build_path = /obj/item/device/lighting/glowstick/undark //Yes 1920s were a wild time
+	sort_string = "VASAB"
+	chemicals = list("radium" = 5, "phosphorus" = 10)
+	materials = list(MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 15)
+
 //Why is there a science design to craft a cardboard box full of things? That is not how this works
 /*
 /datum/design/research/item/chameleon
