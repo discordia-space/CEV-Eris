@@ -167,7 +167,7 @@
 			APC_entry["total_load"] = power_to_text(A.lastused_total)
 			// Hopefully removes those goddamn \improper s which are screwing up the UI
 			var/N = A.area.name
-			if(findtext(N, "�"))
+			if(findtext(N, "ÿ"))
 				N = copytext(N, 3)
 			APC_entry["name"] = N
 			// Add data into main list of APC data.
