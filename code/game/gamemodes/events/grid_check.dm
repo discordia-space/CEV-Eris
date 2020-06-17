@@ -29,7 +29,7 @@ So sometimes this event can result in people finding new and interesting things
 	var/strength = 1
 	if (severity == EVENT_LEVEL_MODERATE)
 		strength = 2
-	power_failure(0, strength, maps_data.contact_levels)
+	power_failure(0, strength, GLOB.maps_data.contact_levels)
 
 /datum/event/grid_check/announce()
 	command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Automated Grid Check", new_sound = 'sound/AI/poweroff.ogg')
