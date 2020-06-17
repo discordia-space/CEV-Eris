@@ -15,7 +15,8 @@
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
-
+	var/perk
+	var/perk_prob = 60
 	var/sanity_value = 1
 
 
@@ -27,7 +28,9 @@
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 	AddComponent(/datum/component/inspiration, oddity_stats)
-
+	if(!perk)
+		if(perk_prob)
+			perk = pick(subtypesof(/datum/perk/oddity))
 
 /obj/item/weapon/oddity/examine(user)
 	..()

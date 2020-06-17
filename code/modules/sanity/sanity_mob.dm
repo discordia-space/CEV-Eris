@@ -226,11 +226,15 @@
 			return
 		var/datum/component/inspiration/I = O.GetComponent(/datum/component/inspiration) // If it's a valid inspiration, it should have this component. If not, runtime
 		var/list/L = I.calculate_statistics()
+		if(istype(O, /obj/item/weapon/oddity))
+			var/obj/item/weapon/oddity/OD = O
+			if(OD.perk)
+				owner.stats.addPerk(OD.perk)
 		for(var/stat in L)
 			var/stat_up = L[stat] * multiplier
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
-
+			
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
