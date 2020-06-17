@@ -230,7 +230,7 @@
 	desc = "A little medical robot. He looks somewhat underwhelmed. Wait a minute, is that a blade?"
 	icon_state = "slicer"
 	attacktext = "slice"
-	density = 0
+	density = FALSE
 	speak_chance = 3
 	malfunction_chance = 15
 	mob_size = MOB_SMALL
@@ -272,7 +272,7 @@
 	name = "probe"
 	desc = "This hovering cyborg emits a faint smell of welding fuel."
 	icon_state = "bomber"
-	density = 0
+	density = FALSE
 	speak_chance = 3
 	malfunction_chance = 15
 	mob_size = MOB_SMALL

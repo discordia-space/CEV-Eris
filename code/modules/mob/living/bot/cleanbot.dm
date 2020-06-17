@@ -174,7 +174,7 @@
 	update_icons()
 
 /mob/living/bot/cleanbot/explode()
-	on = 0
+	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 	playsound(loc, "robot_talk_light", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
@@ -205,7 +205,7 @@
 
 /mob/living/bot/cleanbot/attack_hand(var/mob/user)
 	var/dat
-	dat += "<TT><B>Automatic Station Cleaner v1.0</B></TT><BR><BR>"
+	dat += "<TT><B>Automatic Station Cleaner v1</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
 	dat += "Maintenance panel is [open ? "opened" : "closed"]"
@@ -216,7 +216,7 @@
 		dat += "Odd looking screw twiddled: <A href='?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A><BR>"
 		dat += "Weird button pressed: <A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"
 
-	user << browse("<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
+	user << browse("<HEAD><TITLE>Cleaner v1 controls</TITLE></HEAD>[dat]", "window=autocleaner")
 	onclose(user, "autocleaner")
 	return
 
@@ -299,8 +299,8 @@
 	name = "proxy bucket"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "bucket_proxy"
-	force = 3.0
-	throwforce = 10.0
+	force = 3
+	throwforce = 10
 	throw_speed = 2
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL

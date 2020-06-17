@@ -6,7 +6,7 @@
 	layer = CLOSED_TURF_LAYER
 	opacity = 1
 	density = TRUE
-	blocks_air = 1
+	blocks_air = TRUE
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
@@ -372,11 +372,11 @@
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(rand(500, 800))
-		if(2.0)
+		if(2)
 			take_damage(rand(200, 500))
-		if(3.0)
+		if(3)
 			take_damage(rand(90, 250))
 		else
 	return
@@ -396,8 +396,8 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.layer = 5
 
 	src.ChangeTurf(/turf/simulated/floor/plating)

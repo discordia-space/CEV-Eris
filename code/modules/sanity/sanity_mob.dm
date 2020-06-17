@@ -95,6 +95,10 @@
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(A.sanity_damage)
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+		if(ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(!H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal)
+				owner.reagents.add_reagent("toxin", 0.5)
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)

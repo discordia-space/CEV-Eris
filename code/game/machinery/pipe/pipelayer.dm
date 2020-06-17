@@ -3,10 +3,10 @@
 	name = "automatic pipe layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
+	density = TRUE
 	var/turf/old_turf
 	var/old_dir
-	var/on = 0
+	var/on = FALSE
 	var/a_dis = 0
 	var/P_type = 0
 	var/P_type_t = ""

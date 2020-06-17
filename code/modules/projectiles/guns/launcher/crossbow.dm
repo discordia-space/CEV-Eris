@@ -8,8 +8,8 @@
 	item_state = "bolt"
 	throwforce = 8
 	w_class = ITEM_SIZE_NORMAL
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
 
 /obj/item/weapon/arrow/proc/removed() //Helper for metal rods falling apart.
 	return
@@ -17,8 +17,8 @@
 /obj/item/weapon/spike
 	name = "alloy spike"
 	desc = "A foot-long pointed stick made of a strange, silvery metal."
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
 	throwforce = 5
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/obj/weapons.dmi'

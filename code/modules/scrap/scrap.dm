@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of industrial debris. It could use a shovel and pair of hands in gloves."
 	appearance_flags = TILE_BOUND
 	anchored = TRUE
-	opacity = FALSE
+	opacity = 0
 	density = FALSE
 	var/loot_generated = FALSE
 	var/icontype = "general"
@@ -311,7 +311,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/large
 	name = "large scrap pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 9
@@ -426,7 +426,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/poor/large
 	name = "large mixed rubbish"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 11
@@ -440,7 +440,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/vehicle/large
 	name = "large industrial debris pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 11
@@ -455,7 +455,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/food/large
 	name = "large food trash pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 13
@@ -470,7 +470,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/medical/large
 	name = "large medical refuse pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 7
@@ -485,7 +485,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/guns/large
 	name = "large gun refuse pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 10
@@ -500,7 +500,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/science/large
 	name = "large scientific trash pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 11
@@ -515,7 +515,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/cloth/large
 	name = "large cloth pile"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "big"
 	loot_min = 7
@@ -530,7 +530,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap/poor/structure
 	name = "large mixed rubbish"
-	opacity = TRUE
+	opacity = 1
 	density = TRUE
 	icon_state = "med"
 	loot_min = 4

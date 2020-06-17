@@ -4,8 +4,8 @@
 	icon_state = "catwalk"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
-	density = 0
-	anchored = 1.0
+	density = FALSE
+	anchored = TRUE
 
 
 /obj/structure/catwalk/New()
@@ -65,9 +65,9 @@
 
 /obj/structure/catwalk/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
-		if(2.0)
+		if(2)
 			qdel(src)
 	return
 

@@ -11,7 +11,6 @@
 	holder.sanity.death_view_multiplier *= 2
 	..()
 
-
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself!"

@@ -112,8 +112,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	desc = "A standard newsfeed handler. All the news you absolutely have no use for, in one place!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "newscaster_normal"
-	var/isbroken = 0  //1 if someone banged it with something heavy
-	var/ispowered = 1 //starts powered, changes with power_change()
+	var/isbroken = FALSE  //1 if someone banged it with something heavy
+	var/ispowered = TRUE //starts powered, changes with power_change()
 	//var/list/datum/feed_channel/channel_list = list() //This list will contain the names of the feed channels. Each name will refer to a data region where the messages of the feed channels are stored.
 	//OBSOLETE: We're now using a global news network
 	var/screen = 0                  //Or maybe I'll make it into a list within a list afterwards... whichever I prefer, go fuck yourselves :3
@@ -151,7 +151,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/hitstaken = 0      //Death at 3 hits from an item with force>=15
 	var/datum/feed_channel/viewing_channel = null
 	light_range = 0
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/machinery/newscaster/security_unit                   //Security unit
@@ -198,21 +198,21 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		return
 	..()
 	if( !(stat & NOPOWER) )
-		src.ispowered = 1
+		src.ispowered = TRUE
 		src.update_icon()
 	else
 		spawn(rand(0, 15))
-			src.ispowered = 0
+			src.ispowered = FALSE
 			src.update_icon()
 
 
 /obj/machinery/newscaster/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
-			src.isbroken = 1
+		if(2)
+			src.isbroken = TRUE
 			if(prob(50))
 				qdel(src)
 			else
@@ -220,7 +220,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			return
 		else
 			if(prob(50))
-				src.isbroken = 1
+				src.isbroken = TRUE
 			src.update_icon()
 
 /obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############

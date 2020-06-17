@@ -17,7 +17,7 @@
 
 	//Properties for both
 	var/temperature = T20C      // Initial turf temperature.
-	var/blocks_air = 0          // Does this turf contain air/let air through?
+	var/blocks_air = FALSE          // Does this turf contain air/let air through?
 
 	// General properties.
 	var/icon_old = null

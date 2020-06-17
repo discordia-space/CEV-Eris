@@ -15,8 +15,8 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "immrod"
 	throwforce = 100
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	Bump(atom/clong)
 		if(istype(clong, /turf/simulated/shuttle)) //Skip shuttles without actually deleting the rod

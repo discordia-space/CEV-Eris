@@ -36,7 +36,7 @@
  * @return	TRUE if the mob has been successfully moved a Z-level.
  *			FALSE otherwise.
  */
-/mob/proc/zMove(direction, var/method = 0)
+/mob/proc/zMove(direction, method = 0)
 	// In the case of an active eyeobj, move that instead.
 	if (eyeobj)
 		return eyeobj.zMove(direction)

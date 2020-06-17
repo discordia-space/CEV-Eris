@@ -2,7 +2,7 @@
 	name = "canister"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
-	density = 1
+	density = TRUE
 	var/health = 100.0
 	flags = CONDUCT
 	w_class = ITEM_SIZE_HUGE
@@ -174,7 +174,7 @@ update_flag
 
 		src.destroyed = 1
 		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
-		src.density = 0
+		src.density = FALSE
 		update_icon()
 
 		if (src.holding)

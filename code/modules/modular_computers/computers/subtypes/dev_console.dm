@@ -6,7 +6,7 @@
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_CONSOLE
 	anchored = TRUE
-	density = 1
+	density = TRUE
 	w_class = ITEM_SIZE_GARGANTUAN
 	base_idle_power_usage = 100
 	base_active_power_usage = 500

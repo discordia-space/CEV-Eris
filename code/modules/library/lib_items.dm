@@ -18,7 +18,7 @@
 	matter = list(MATERIAL_WOOD = 10)
 	anchored = TRUE
 	density = TRUE
-	opacity = TRUE
+	opacity = 1
 
 /obj/structure/bookcase/Initialize()
 	. = ..()

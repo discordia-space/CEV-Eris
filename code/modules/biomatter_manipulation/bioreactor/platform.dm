@@ -225,10 +225,10 @@
 	contamination_level += amount
 	if(contamination_level >= max_contamination_lvl)
 		contamination_level = max_contamination_lvl
-		opacity = FALSE
+		opacity = 0
 	if(contamination_level <= 0)
 		contamination_level = 0
-		opacity = TRUE
+		opacity = 1
 	update_icon()
 
 

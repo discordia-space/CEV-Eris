@@ -111,17 +111,17 @@
 	var/b_loss = null
 	var/f_loss = null
 	switch (severity)
-		if (1.0)
+		if (1)
 			gib()
 			return
 
-		if (2.0)
+		if (2)
 			b_loss += 60
 			f_loss += 60
 			ear_damage += 30
 			ear_deaf += 120
 
-		if (3.0)
+		if (3)
 			b_loss += 30
 			if (prob(50))
 				Paralyse(1)
@@ -221,7 +221,7 @@
 		stop_automated_movement = initial(stop_automated_movement)
 		walk(src, 0)
 
-		density = 0
+		density = FALSE
 		layer = LYING_MOB_LAYER
 
 	. = ..()

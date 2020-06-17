@@ -18,8 +18,8 @@ field_generator power level display
 	desc = "A large thermal battery that projects a high amount of energy when powered."
 	icon = 'icons/obj/machines/field_generator.dmi'
 	icon_state = "Field_Gen"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = 0
 	var/const/num_power_levels = 6	// Total number of power level icon has
 	var/Varedit_start = 0
@@ -67,7 +67,7 @@ field_generator power level display
 			active = 1
 			state = 2
 			power = field_generator_max_power
-			anchored = 1
+			anchored = TRUE
 			warming_up = 3
 			start_fields()
 			update_icon()
@@ -118,7 +118,7 @@ field_generator power level display
 					user.visible_message("[user.name] secures [src.name] to the floor.", \
 						"You secure the external reinforcing bolts to the floor.", \
 						"You hear ratchet")
-					anchored = 1
+					anchored = TRUE
 					state = 1
 					return
 			if(state == 1)
@@ -126,7 +126,7 @@ field_generator power level display
 					user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
 						"You undo the external reinforcing bolts.", \
 						"You hear ratchet")
-					anchored = 0
+					anchored = FALSE
 					state = 0
 					return
 			return

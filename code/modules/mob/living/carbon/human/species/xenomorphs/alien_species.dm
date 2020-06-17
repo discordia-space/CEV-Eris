@@ -251,7 +251,7 @@
 		/mob/living/carbon/human/proc/regurgitate,
 	)
 
-/datum/species/xenos/queen/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/queen/handle_login_special(mob/living/carbon/human/H)
 	..()
 	// Make sure only one official queen exists at any point.
 	if(!alien_queen_exists(1,H))

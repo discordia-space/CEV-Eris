@@ -1,4 +1,4 @@
-/proc/alien_queen_exists(var/ignore_self,var/mob/living/carbon/human/self)
+/proc/alien_queen_exists(ignore_self, mob/living/carbon/human/self)
 	for(var/mob/living/carbon/human/Q in GLOB.living_mob_list)
 		if(self && ignore_self && self == Q)
 			continue

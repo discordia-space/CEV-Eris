@@ -66,7 +66,7 @@
 	desc = "A control terminal for the area electrical systems."
 
 	icon_state = "apc0"
-	anchored = 1
+	anchored = TRUE
 	use_power = 0
 	req_access = list(access_engine_equip)
 	var/need_sound
@@ -223,7 +223,7 @@
 	// is starting with a power cell installed, create it and set its charge level
 	if(cell_type)
 		cell = new cell_type(src)
-		cell.charge = start_charge * cell.maxcharge / 100.0 		// (convert percentage to actual value)
+		cell.charge = start_charge * cell.maxcharge / 100 		// (convert percentage to actual value)
 
 	var/area/A = loc.loc
 
@@ -1221,22 +1221,22 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 /obj/machinery/power/apc/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			//set_broken() //now qdel() do what we need
 			if (cell)
-				cell.ex_act(1.0) // more lags woohoo
+				cell.ex_act(1) // more lags woohoo
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				set_broken()
 				if (cell && prob(50))
-					cell.ex_act(2.0)
-		if(3.0)
+					cell.ex_act(2)
+		if(3)
 			if (prob(25))
 				set_broken()
 				if (cell && prob(25))
-					cell.ex_act(3.0)
+					cell.ex_act(3)
 	return
 
 /obj/machinery/power/apc/disconnect_terminal()
@@ -1264,7 +1264,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 		spawn(0)
 			for(var/obj/machinery/light/L in area)
 				if(prob(chance))
-					L.on = 1
+					L.on = TRUE
 					L.broken()
 				sleep(1)
 

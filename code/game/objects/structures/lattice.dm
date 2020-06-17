@@ -3,7 +3,7 @@
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
-	density = 0
+	density = FALSE
 	plane = FLOOR_PLANE
 	anchored = TRUE
 	w_class = ITEM_SIZE_NORMAL
@@ -38,13 +38,13 @@
 
 /obj/structure/lattice/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			qdel(src)
 			return
-		if(3.0)
+		if(3)
 			return
 		else
 	return

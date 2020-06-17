@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	return 1
 
 // Print a message to all ghosts with the right prefs/lack of bans.
-/datum/ghosttrap/proc/request_player(var/mob/target, var/request_string, var/respawn_type, var/request_timeout)
+/datum/ghosttrap/proc/request_player(mob/target, request_string, respawn_type, request_timeout)
 	if(request_timeout)
 		request_timeouts[target] = world.time + request_timeout
 		GLOB.destroyed_event.register(target, src, /datum/ghosttrap/proc/target_destroyed)
@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	list_as_special_role = FALSE
 	can_only_use_once = TRUE // No endless free respawns
 
-/datum/ghosttrap/borer/welcome_candidate(var/mob/target)
+/datum/ghosttrap/borer/welcome_candidate(mob/target)
 	to_chat(target, "<span class='notice'>You are a cortical borer!</span> You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm.")

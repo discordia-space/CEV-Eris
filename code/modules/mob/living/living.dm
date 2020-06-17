@@ -672,16 +672,16 @@ default behaviour is:
 	ear_deaf = max(0, ear_deaf + deaf)
 
 //pass a negative argument to skip one of the variable
-/mob/living/setEarDamage(var/damage, var/deaf)
+/mob/living/setEarDamage(damage, deaf)
 	if(damage >= 0)
 		ear_damage = damage
 	if(deaf >= 0)
 		ear_deaf = deaf
 
-/mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
+/mob/proc/can_be_possessed_by(mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
 
-/mob/living/can_be_possessed_by(var/mob/observer/ghost/possessor)
+/mob/living/can_be_possessed_by(mob/observer/ghost/possessor)
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
@@ -694,7 +694,7 @@ default behaviour is:
 		return FALSE
 	return TRUE
 
-/mob/living/proc/do_possession(var/mob/observer/ghost/possessor)
+/mob/living/proc/do_possession(mob/observer/ghost/possessor)
 
 	if(!(istype(possessor) && possessor.ckey))
 		return FALSE
@@ -750,7 +750,7 @@ default behaviour is:
 			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
 			HUD.update_icon()
 
-/mob/living/start_pulling(var/atom/movable/AM)
+/mob/living/start_pulling(atom/movable/AM)
 
 	if (!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return

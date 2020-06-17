@@ -103,9 +103,9 @@ Their only special behaviour atm is to delete themselves shortly after creation
 /obj/effect/trail_particle
 	var/lifetime = 10
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = FALSE
+	mouse_opacity = 0
 	density = FALSE
-	opacity = FALSE
+	opacity = 0
 
 /obj/effect/trail_particle/Initialize()
 	addtimer(CALLBACK(src, .proc/finish, TRUE), lifetime)
@@ -121,7 +121,7 @@ Their only special behaviour atm is to delete themselves shortly after creation
 /obj/effect/trail_particle/ion_trails
 	name = "ion trails"
 	icon_state = "ion_fade"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/trail_particle/fire
 	name = "fire trail"

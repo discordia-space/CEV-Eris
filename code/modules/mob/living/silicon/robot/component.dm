@@ -2,7 +2,7 @@
 /datum/robot_component
 	var/name
 	var/installed = 0
-	var/powered = 0
+	var/powered = FALSE
 	var/toggled = 1
 	var/brute_damage = 0
 	var/electronics_damage = 0
@@ -67,13 +67,13 @@
 
 /datum/robot_component/proc/update_power_state()
 	if(toggled == 0)
-		powered = 0
+		powered = FALSE
 		return
 	if(owner.cell && owner.cell.charge >= idle_usage)
 		owner.cell_use_power(idle_usage)
-		powered = 1
+		powered = TRUE
 	else
-		powered = 0
+		powered = FALSE
 
 
 // ARMOUR

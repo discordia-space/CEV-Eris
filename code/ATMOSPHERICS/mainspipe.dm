@@ -543,7 +543,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 	name = "mains shutoff valve"
 	desc = "A mains pipe valve"
 
-	var/open = 1
+	var/open = TRUE
 
 	dir = SOUTH
 	initialize_mains_directions = SOUTH|NORTH
@@ -603,7 +603,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 	proc/open()
 		if(open) return 0
 
-		open = 1
+		open = TRUE
 		update_icon()
 
 		atmos_init()
@@ -613,7 +613,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 	proc/close()
 		if(!open) return 0
 
-		open = 0
+		open = FALSE
 		update_icon()
 
 		for(var/obj/machinery/atmospherics/pipe/mains_component/node in src)

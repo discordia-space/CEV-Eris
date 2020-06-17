@@ -5,7 +5,7 @@
 	icon_state = "power_mod"
 	var/obj/item/device/pda/hostpda = null
 
-	var/on = 0 //Are we currently active??
+	var/on = FALSE //Are we currently active??
 	var/menu_message = ""
 
 	New()
@@ -210,7 +210,7 @@
 
 /obj/item/radio/integrated/signal
 	var/frequency = 1457
-	var/code = 30.0
+	var/code = 30
 	var/last_transmission
 	var/datum/radio_frequency/radio_connection
 

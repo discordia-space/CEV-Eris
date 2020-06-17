@@ -2,8 +2,8 @@
 	name = "fire axe cabinet"
 	desc = "There is small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
 	icon_state = "fireaxe"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 	var/damage_threshold = 15
 	var/open
@@ -22,7 +22,7 @@
 		return
 	shattered = 1
 	unlocked = 1
-	open = 1
+	open = TRUE
 	playsound(user, 'sound/effects/Glassbr3.ogg', 100, 1)
 	update_icon()
 
@@ -102,7 +102,7 @@
 
 /obj/structure/fireaxecabinet/proc/toggle_open(var/mob/user)
 	if(shattered)
-		open = 1
+		open = TRUE
 		unlocked = 1
 	else
 		user.setClickCooldown(10)
@@ -117,7 +117,7 @@
 		return
 
 	if(shattered)
-		open = 1
+		open = TRUE
 		unlocked = 1
 	else
 		user.setClickCooldown(10)

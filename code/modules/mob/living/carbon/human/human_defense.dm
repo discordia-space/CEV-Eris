@@ -141,7 +141,7 @@ meteor_act
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
 	if (!def_zone)
-		return 1.0
+		return 1
 
 	var/siemens_coefficient = species.siemens_coefficient
 
@@ -402,7 +402,7 @@ meteor_act
 				if(T)
 					src.loc = T
 					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
 
 /mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)

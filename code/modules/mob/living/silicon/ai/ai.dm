@@ -47,8 +47,8 @@ var/list/ai_verbs_default = list(
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
-	anchored = 1 // -- TLE
-	density = 1
+	anchored = TRUE // -- TLE
+	density = TRUE
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 //	shouldnt_see = list()
 	universal_understand = TRUE
@@ -141,9 +141,9 @@ var/list/ai_verbs_default = list(
 				pickedName = null
 
 	SetName(pickedName)
-	anchored = 1
+	anchored = TRUE
 	canmove = 0
-	density = 1
+	density = TRUE
 	loc = loc
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
@@ -619,7 +619,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message(SPAN_NOTICE("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(SPAN_NOTICE("\The [user] finishes unfastening \the [src]!"))
-			anchored = 0
+			anchored = FALSE
 			return
 		else
 			user.visible_message(SPAN_NOTICE("\The [user] starts to bolt \the [src] to the plating..."))
@@ -627,7 +627,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message(SPAN_NOTICE("\The [user] decides not to bolt \the [src]."))
 				return
 			user.visible_message(SPAN_NOTICE("\The [user] finishes fastening down \the [src]!"))
-			anchored = 1
+			anchored = TRUE
 			return
 	else
 		return ..()
@@ -679,8 +679,8 @@ var/list/ai_verbs_default = list(
 	return istype(loc, /turf)
 
 
-/mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1.0)
+/mob/living/silicon/ai/ex_act(severity)
+	if(severity == 1)
 		qdel(src)
 		return
 	..()

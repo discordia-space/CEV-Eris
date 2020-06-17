@@ -1,4 +1,4 @@
-proc/create_new_xenomorph(var/alien_caste,var/target)
+proc/create_new_xenomorph(alien_caste, target)
 
 	target = get_turf(target)
 	if(!target || !alien_caste) return

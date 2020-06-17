@@ -16,10 +16,10 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
-	density = 1
+	density = TRUE
 	var/obj/structure/m_tray/connected = null
 	var/open = FALSE
-	anchored = 1.0
+	anchored = TRUE
 	var/mob/living/occupant
 	var/max_capacity = 150
 	var/current_storage = 0
@@ -44,20 +44,20 @@
 
 /obj/structure/morgue/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
@@ -250,10 +250,10 @@
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
-	density = 1
+	density = TRUE
 	layer = LOW_OBJ_LAYER
 	var/obj/structure/morgue/connected = null
-	anchored = 1
+	anchored = TRUE
 	throwpass = 1
 
 /obj/structure/m_tray/Destroy()
@@ -290,9 +290,9 @@
 	desc = "A human incinerator. Works well on barbeque nights."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "crema1"
-	density = 1
+	density = TRUE
 	var/obj/structure/c_tray/connected = null
-	anchored = 1.0
+	anchored = TRUE
 	var/cremating = 0
 	var/id = 1
 	var/locked = 0
@@ -325,20 +325,20 @@
 
 /obj/structure/crematorium/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
@@ -417,7 +417,7 @@
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
-//		if(var/on == 1)
+//		if(var/on = TRUE)
 //		return
 	if(cremating)
 		return //don't let you cremate something twice or w/e
@@ -474,10 +474,10 @@
 	desc = "Apply body before burning."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "cremat"
-	density = 1
-	layer = 2.0
+	density = TRUE
+	layer = 2
 	var/obj/structure/crematorium/connected = null
-	anchored = 1
+	anchored = TRUE
 	throwpass = 1
 
 /obj/structure/c_tray/Destroy()

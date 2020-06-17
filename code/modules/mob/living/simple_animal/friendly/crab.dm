@@ -17,7 +17,7 @@
 	mob_size = 5
 	var/obj/item/inventory_head
 	var/obj/item/inventory_mask
-	possession_candidate = 1
+	possession_candidate = TRUE
 
 /mob/living/simple_animal/crab/Life()
 	..()

@@ -3,8 +3,8 @@
 	icon = 'icons/obj/mining.dmi'
 	desc = "Shiny."
 	mouse_opacity = 0
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = FLASH_LAYER
 	var/ore_key
 	var/image/scanner_image

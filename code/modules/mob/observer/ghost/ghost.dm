@@ -8,7 +8,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	icon_state = "ghost"
 	canmove = 0
 	blinded = 0
-	anchored = 1	//  don't get pushed around
+	anchored = TRUE	//  don't get pushed around
 	layer = GHOST_LAYER
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal)
 

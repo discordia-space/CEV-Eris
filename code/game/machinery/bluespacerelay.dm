@@ -4,11 +4,11 @@
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "bspacerelay"
 
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 1
 	circuit = /obj/item/weapon/circuitboard/bluespacerelay
-	var/on = 1
+	var/on = TRUE
 
 	idle_power_usage = 15000
 	active_power_usage = 15000
@@ -29,9 +29,9 @@
 /obj/machinery/bluespacerelay/proc/update_power()
 
 	if(stat & (BROKEN|NOPOWER|EMPED))
-		on = 0
+		on = FALSE
 	else
-		on = 1
+		on = TRUE
 
 /obj/machinery/bluespacerelay/attackby(var/obj/item/I, var/mob/user as mob)
 

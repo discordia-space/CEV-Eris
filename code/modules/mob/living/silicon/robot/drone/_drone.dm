@@ -1,5 +1,5 @@
 var/list/mob_hat_cache = list()
-/proc/get_hat_icon(var/obj/item/hat, var/offset_x = 0, var/offset_y = 0)
+/proc/get_hat_icon(obj/item/hat, offset_x = 0, offset_y = 0)
 	var/t_state = hat.icon_state
 	if(hat.item_state_slots && hat.item_state_slots[slot_head_str])
 		t_state = hat.item_state_slots[slot_head_str]
@@ -32,11 +32,11 @@ var/list/mob_hat_cache = list()
 	pass_flags = PASSTABLE
 	braintype = "Robot"
 	lawupdate = 0
-	density = 0
+	density = FALSE
 	req_access = list(access_engine, access_robotics)
 	integrated_light_power = 3
 	local_transmit = 1
-	possession_candidate = 1
+	possession_candidate = TRUE
 	speed = -0.25
 
 	can_pull_size = ITEM_SIZE_NORMAL
@@ -81,7 +81,7 @@ var/list/mob_hat_cache = list()
 		return 0
 	return 1
 
-/mob/living/silicon/robot/drone/do_possession(var/mob/observer/ghost/possessor)
+/mob/living/silicon/robot/drone/do_possession(mob/observer/ghost/possessor)
 	if(!(istype(possessor) && possessor.ckey))
 		return 0
 	if(src.ckey || src.client)

@@ -9,7 +9,6 @@
 			return TRUE
 	return FALSE
 
-
 /datum/objective/borer_reproduce
 	explanation_text = "Reproduce at least once."
 

@@ -22,7 +22,7 @@
 	dropped.pixel_x = rand(-150, 150)
 	dropped.pixel_y = 500 // When you think that pixel_z is height but you are wrong
 	dropped.density = FALSE
-	dropped.opacity = FALSE
+	dropped.opacity = 0
 	animate(dropped, pixel_y = initial_y, pixel_x = initial_x , time = 7)
 	addtimer(CALLBACK(dropped, /atom/movable.proc/end_fall), 7)
 	qdel(src)

@@ -18,7 +18,7 @@
 	icon_state = "wall1"
 	opacity = 1
 	density = TRUE
-	blocks_air = 1
+	blocks_air = TRUE
 
 /turf/simulated/shuttle/wall/cargo
 	name = "Cargo Transport Shuttle (A5)"
@@ -43,7 +43,7 @@
 /obj/structure/shuttle_part //For placing them over space, if sprite covers not whole tile.
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/structure/shuttle_part/cargo

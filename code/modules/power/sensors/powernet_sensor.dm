@@ -10,8 +10,8 @@
 /obj/machinery/power/sensor
 	name = "Powernet Sensor"
 	desc = "Small machine which transmits data about specific powernet"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	level = BELOW_PLATING_LEVEL
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_beacon" // If anyone wants to make better sprite, feel free to do so without asking me.
@@ -167,7 +167,7 @@
 			APC_entry["total_load"] = power_to_text(A.lastused_total)
 			// Hopefully removes those goddamn \improper s which are screwing up the UI
 			var/N = A.area.name
-			if(findtext(N, "ÿ"))
+			if(findtext(N, "ï¿½"))
 				N = copytext(N, 3)
 			APC_entry["name"] = N
 			// Add data into main list of APC data.

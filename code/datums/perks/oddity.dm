@@ -1,22 +1,3 @@
-#define PERK_FAST_WALKER /datum/perk/fast_walker
-#define PERK_GUNSLINGER /datum/perk/gunslinger
-#define PERK_TERRIBLE_FATE /datum/perk/terrible_fate
-#define PERK_UNFINISHED_DELIVERY /datum/perk/unfinished_delivery
-#define PERK_LUNGS_OF_IRON /datum/perk/lungs_of_iron
-#define PERK_BLOOD_OF_LEAD /datum/perk/blood_of_lead
-#define PERK_SPACE_ASSHOLE /datum/perk/space_asshole
-#define PERK_PARKOUR /datum/perk/parkour
-#define PERK_CHARMING_PERSONALITY /datum/perk/charming_personality
-#define PERK_HORRIBLE_DEEDS /datum/perk/horrible_deeds
-#define PERK_CHAINGUN_SMOKER /datum/perk/chaingun_smoker
-#define PERK_NIGHTCRAWLER /datum/perk/nightcrawler
-#define PERK_FAST_FINGERS /datum/perk/fast_fingers
-#define PERK_QUIET_AS_MOUSE /datum/perk/quiet_as_mouse
-#define PERK_EAR_OF_QUICKSILVER /datum/perk/ear_of_quicksilver
-#define PERK_BALLS_OF_PLASTEEL /datum/perk/balls_of_plasteel
-#define PERK_JUNKBORN /datum/perk/junkborn
-#define PERK_ASS_OF_CONCRETE /datum/perk/ass_of_concrete
-
 /datum/perk/fast_walker
 	name = "Fast walker"
 	desc = "You general speed is a bit higher."
@@ -145,7 +126,7 @@
 	icon_state = "nightcrawler" // https://game-icons.net
 
 /datum/perk/ear_of_quicksilver
-	name = "Ear of Quicksilver"
+	name = "Ear of quicksilver"
 	desc = "You can pick up voices from more distant ranges"
 	icon_state = "ear" // https://game-icons.net
 
@@ -160,12 +141,27 @@
 	icon_state = "junkborn"
 
 /datum/perk/ass_of_concrete
-	name = "Ass of Concrete"
+	name = "Ass of concrete"
 
 /datum/perk/ass_of_concrete/assign(mob/living/carbon/human/H)
 	..()
 	holder.mob_bump_flag = HEAVY
 
 /datum/perk/ass_of_concrete/remove(mob/living/carbon/human/H)
-	holder.mob_bump_flag = HEAVY
+	holder.mob_bump_flag = ~HEAVY
 	..()
+
+/datum/perk/toxic_revenger
+	name = "Toxic Revenger"
+	desc = "This ship did something to you, and now you are danger for everyone around."
+	icon_state = "toxic_revenger"
+
+/datum/perk/absolute_grab
+	name = "Absolute grab"
+
+/datum/perk/absolute_grab/assign(mob/living/carbon/human/H)
+	..()
+	holder.species.inherent_verbs += /mob/living/carbon/human/proc/leap
+	holder.species.add_inherent_verbs(holder)
+
+

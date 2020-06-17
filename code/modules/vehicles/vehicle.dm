@@ -8,26 +8,26 @@
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
 	layer = MOB_LAYER + 0.1 //so it sits above objects including mobs
-	density = 1
-	anchored = 1
-	animate_movement=1
+	density = TRUE
+	anchored = TRUE
+	animate_movement = 1
 	light_range = 3
 
-	can_buckle = 1
-	buckle_movable = 1
+	can_buckle = TRUE
+	buckle_movable = TRUE
 	buckle_lying = 0
 
 	var/attack_log = null
-	var/on = 0
+	var/on = FALSE
 	var/health = 0	//do not forget to set health for your vehicle!
 	var/maxhealth = 0
-	var/fire_dam_coeff = 1.0
-	var/brute_dam_coeff = 1.0
-	var/open = 0	//Maint panel
+	var/fire_dam_coeff = 1
+	var/brute_dam_coeff = 1
+	var/open = FALSE	//Maint panel
 	var/locked = 1
 	var/stat = 0
 	var/emagged = 0
-	var/powered = 0		//set if vehicle is powered and should use fuel when moving
+	var/powered = FALSE		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 
 	var/passenger_allowed = 1
@@ -55,7 +55,7 @@
 			turn_off()
 
 		var/init_anc = anchored
-		anchored = 0
+		anchored = FALSE
 		if(!(. = ..()))
 			anchored = init_anc
 			return
@@ -147,15 +147,15 @@
 
 /obj/vehicle/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			explode()
 			return
-		if(2.0)
+		if(2)
 			health -= rand(5,10)*fire_dam_coeff
 			health -= rand(10,20)*brute_dam_coeff
 			healthcheck()
 			return
-		if(3.0)
+		if(3)
 			if (prob(50))
 				health -= rand(1,5)*fire_dam_coeff
 				health -= rand(1,5)*brute_dam_coeff
@@ -191,13 +191,13 @@
 		return 0
 	if(powered && cell.charge < charge_use)
 		return 0
-	on = 1
+	on = TRUE
 	set_light(initial(light_range))
 	update_icon()
 	return 1
 
 /obj/vehicle/proc/turn_off()
-	on = 0
+	on = FALSE
 	set_light(0)
 	update_icon()
 
@@ -302,7 +302,7 @@
 
 	C.forceMove(loc)
 	C.set_dir(dir)
-	C.anchored = 1
+	C.anchored = TRUE
 
 	load = C
 
@@ -352,7 +352,7 @@
 
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
-	load.anchored = 0		//we can only load non-anchored items, so it makes sense to set this to false
+	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
 	load.pixel_x = initial(load.pixel_x)
 	load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)

@@ -6,7 +6,7 @@
 
 /obj/structure/alien/proc/healthcheck()
 	if(health <=0)
-		density = 0
+		density = FALSE
 		qdel(src)
 	return
 
@@ -18,11 +18,11 @@
 
 /obj/structure/alien/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			health-=50
-		if(2.0)
+		if(2)
 			health-=50
-		if(3.0)
+		if(3)
 			if (prob(50))
 				health-=50
 			else

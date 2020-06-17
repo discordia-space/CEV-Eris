@@ -9,7 +9,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 
-	var/open = 0
+	var/open = FALSE
 	var/openDuringInit = 0
 
 
@@ -17,7 +17,7 @@
 	var/datum/pipe_network/network_node2
 
 /obj/machinery/atmospherics/valve/open
-	open = 1
+	open = TRUE
 	icon_state = "map_valve1"
 
 /obj/machinery/atmospherics/valve/update_icon(animation)
@@ -89,7 +89,7 @@
 /obj/machinery/atmospherics/valve/proc/open()
 	if(open) return 0
 
-	open = 1
+	open = TRUE
 	update_icon()
 
 	if(network_node1&&network_node2)
@@ -107,7 +107,7 @@
 	if(!open)
 		return 0
 
-	open = 0
+	open = FALSE
 	update_icon()
 
 	if(network_node1)
@@ -244,7 +244,7 @@
 	..()
 
 /obj/machinery/atmospherics/valve/digital/open
-	open = 1
+	open = TRUE
 	icon_state = "map_valve1"
 
 /obj/machinery/atmospherics/valve/digital/power_change()

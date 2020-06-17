@@ -14,7 +14,7 @@
 	else if(flooring.has_damage_range)
 		broken = rand(0,flooring.has_damage_range)
 	else
-		broken = 0
+		broken = FALSE
 	update_icon()
 
 /turf/simulated/floor/proc/burn_tile()

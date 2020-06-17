@@ -1,8 +1,8 @@
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/weapon/circuitboard/chemmaster
 	icon = 'icons/obj/chemical.dmi'

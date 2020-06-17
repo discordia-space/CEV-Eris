@@ -22,7 +22,7 @@
 // Admin object possession
 /datum/movement_handler/mob/admin_possess
 	var/nextmove = 0
-/datum/movement_handler/mob/admin_possess/DoMove(var/direction)
+/datum/movement_handler/mob/admin_possess/DoMove(direction)
 	if(QDELETED(mob.control_object))
 		return MOVEMENT_REMOVE
 
@@ -36,7 +36,7 @@
 		control_object.set_dir(direction)
 	nextmove = world.time + 2.5
 
-/datum/movement_handler/mob/admin_possess/MayMove(var/mob/mover, var/is_external)
+/datum/movement_handler/mob/admin_possess/MayMove(mob/mover, is_external)
 	if (world.time > nextmove)
 		return MOVEMENT_PROCEED
 	return MOVEMENT_STOP
@@ -53,7 +53,7 @@
 // Incorporeal/Ghost movement
 /datum/movement_handler/mob/incorporeal
 	var/nextmove
-/datum/movement_handler/mob/incorporeal/DoMove(var/direction)
+/datum/movement_handler/mob/incorporeal/DoMove(direction)
 	. = MOVEMENT_HANDLED
 	direction = mob.AdjustMovementDirection(direction)
 
@@ -80,7 +80,7 @@
 	return
 
 // Eye movement
-/datum/movement_handler/mob/eye/DoMove(var/direction, var/mob/mover)
+/datum/movement_handler/mob/eye/DoMove(direction, mob/mover)
 	if(IS_NOT_SELF(mover)) // We only care about direct movement
 		return
 	if(!mob.eyeobj)
@@ -88,7 +88,7 @@
 	mob.eyeobj.EyeMove(direction)
 	return MOVEMENT_HANDLED
 
-/datum/movement_handler/mob/eye/MayMove(var/mob/mover, var/is_external)
+/datum/movement_handler/mob/eye/MayMove(mob/mover, is_external)
 	if(IS_NOT_SELF(mover))
 		return MOVEMENT_PROCEED
 	if(is_external)
@@ -118,7 +118,7 @@
 	return MOVEMENT_PROCEED
 
 // Buckle movement
-/datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
+/datum/movement_handler/mob/buckle_relay/DoMove(direction, mover)
 	// TODO: Datumlize buckle-handling
 	if(istype(mob.buckled, /obj/vehicle))
 		//drunk driving

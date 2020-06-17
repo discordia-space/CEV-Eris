@@ -5,11 +5,11 @@ client
 		KeyUp(KeyCode,shift)
 KeyState
 	var/key_repeat = 0
-	var/open = 1
+	var/open = TRUE
 	proc
 		open()
-			open = 1
+			open = TRUE
 			if(client)client.KeyFocus()
 		close()
-			open = 0
+			open = FALSE
 			if(client)client<<browse(null,null)

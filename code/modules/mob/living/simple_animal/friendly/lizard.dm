@@ -13,7 +13,7 @@
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
 	mob_size = MOB_MINISCULE
-	possession_candidate = 1
+	possession_candidate = TRUE
 	seek_speed = 0.75
 
 /mob/living/simple_animal/lizard/New()

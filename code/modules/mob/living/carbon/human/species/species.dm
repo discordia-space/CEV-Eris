@@ -166,7 +166,7 @@
 
 	var/pass_flags = 0
 
-/datum/species/proc/get_eyes(var/mob/living/carbon/human/H)
+/datum/species/proc/get_eyes(mob/living/carbon/human/H)
 	return
 
 /datum/species/New()

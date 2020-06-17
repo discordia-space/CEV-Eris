@@ -7,7 +7,7 @@
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
 	icon_state = "syndicate"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/closet/gimmick/russian
 	name = "russian surplus closet"
@@ -31,7 +31,7 @@
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
 	icon_state = "syndicate"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/closet/thunderdome/New()
 	..()

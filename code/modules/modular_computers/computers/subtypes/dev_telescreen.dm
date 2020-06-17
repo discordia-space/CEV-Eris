@@ -6,7 +6,7 @@
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TELESCREEN
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	base_idle_power_usage = 75
 	base_active_power_usage = 300
 	max_hardware_size = 2
@@ -56,7 +56,7 @@
 						valid = TRUE
 
 				if(valid)
-					anchored = 1
+					anchored = TRUE
 					screen_on = TRUE
 					to_chat(user, "You secure \the [src].")
 				return

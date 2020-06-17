@@ -19,7 +19,7 @@
 	max_nutrition = 250//Dogs are insatiable eating monsters. This scales with their mob size too
 	stomach_size_mult = 30
 	seek_speed = 6
-	possession_candidate = 1
+	possession_candidate = TRUE
 	holder_type = /obj/item/weapon/holder/corgi
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back

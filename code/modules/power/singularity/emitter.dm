@@ -5,8 +5,8 @@
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
 
@@ -14,7 +14,7 @@
 	active_power_usage = 30000	//30 kW laser. I guess that means 30 kJ per shot.
 
 	var/active = 0
-	var/powered = 0
+	var/powered = FALSE
 	var/fire_delay = 100
 	var/max_burst_delay = 100
 	var/min_burst_delay = 20
@@ -28,7 +28,7 @@
 	var/datum/wifi/receiver/button/emitter/wifi_receiver
 
 /obj/machinery/power/emitter/anchored
-	anchored = 1
+	anchored = TRUE
 	state = 2
 
 /obj/machinery/power/emitter/verb/rotate()
@@ -116,12 +116,12 @@
 		var/actual_load = draw_power(active_power_usage)
 		if(actual_load >= active_power_usage) //does the laser have enough power to shoot?
 			if(!powered)
-				powered = 1
+				powered = TRUE
 				update_icon()
 				investigate_log("regained power and turned <font color='green'>on</font>","singulo")
 		else
 			if(powered)
-				powered = 0
+				powered = FALSE
 				update_icon()
 				investigate_log("lost power and turned <font color='red'>off</font>","singulo")
 			return

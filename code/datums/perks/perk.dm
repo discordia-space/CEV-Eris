@@ -27,4 +27,3 @@
 /datum/perk/proc/remove()
 	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
-

@@ -62,7 +62,11 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/M in view(6,src))
+	var/leap_range = 6
+
+	if(stats.getPerk(PERK_ABSOLUTE_GRAB))
+		leap_range = 2
+	for(var/mob/living/M in view(leap_range,src))
 		if(!issilicon(M))
 			choices += M
 	choices -= src

@@ -3,8 +3,8 @@
 	name = "roach effect"
 	desc = "A cockroach effect."
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/health = 5
 
 /obj/effect/roach/attackby(var/obj/item/I, var/mob/user)
@@ -13,7 +13,7 @@
 	else
 		visible_message(SPAN_WARNING("\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]"))
 
-	health -= (I.force / 2.0)
+	health -= (I.force / 2)
 	healthcheck()
 
 /obj/effect/roach/bullet_act(var/obj/item/projectile/Proj)

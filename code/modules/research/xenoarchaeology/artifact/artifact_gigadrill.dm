@@ -7,7 +7,7 @@
 	var/active = 0
 	var/drill_time = 10
 	var/turf/drilling_turf
-	density = 1
+	density = TRUE
 	layer = 3.1		//to go over ores
 
 /obj/machinery/giga_drill/attack_hand(mob/user as mob)
@@ -26,10 +26,10 @@
 			var/turf/simulated/mineral/M = A
 			drilling_turf = get_turf(src)
 			src.visible_message("\red <b>[src] begins to drill into [M]!</b>")
-			anchored = 1
+			anchored = TRUE
 			spawn(drill_time)
 				if(get_turf(src) == drilling_turf && active)
 					M.GetDrilled()
 					src.loc = M
 				drilling_turf = null
-				anchored = 0
+				anchored = FALSE

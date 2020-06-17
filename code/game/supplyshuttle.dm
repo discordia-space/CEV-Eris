@@ -28,8 +28,8 @@ var/list/mechtoys = list(
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
 	explosion_resistance = 5
 	var/list/mobs_can_pass = list(
@@ -87,7 +87,7 @@ var/list/mechtoys = list(
 	var/turf/T = get_turf(loc)
 	if(T)
 		if(should_pass)
-			T.blocks_air = 1
+			T.blocks_air = TRUE
 		else
 			if(istype(T, /turf/simulated/floor))
-				T.blocks_air = 0
+				T.blocks_air = FALSE

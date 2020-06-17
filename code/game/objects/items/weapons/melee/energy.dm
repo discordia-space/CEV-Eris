@@ -3,8 +3,8 @@
 	var/active_force
 	var/active_throwforce
 	var/active_w_class
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	armor_penetration = ARMOR_PEN_HALF
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
@@ -16,20 +16,20 @@
 		return heat
 
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
-	anchored = 1
+	anchored = TRUE
 	if(active)
 		return
 	active = 1
 	force = active_force
 	throwforce = active_throwforce
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = active_w_class
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 	update_wear_icon()
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
-	anchored = 0
+	anchored = FALSE
 	if(!active)
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
@@ -70,8 +70,8 @@
 	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	icon_state = "axe1"
@@ -101,8 +101,8 @@
 	w_class = ITEM_SIZE_SMALL
 	flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	var/blade_color
 
 /obj/item/weapon/melee/energy/sword/dropped(var/mob/user)
@@ -181,9 +181,9 @@
 	icon_state = "blade"
 	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
-	sharp = 1
-	edge = 1
-	anchored = 1    // Never spawned outside of inventory, should be fine.
+	sharp = TRUE
+	edge = TRUE
+	anchored = TRUE    // Never spawned outside of inventory, should be fine.
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1

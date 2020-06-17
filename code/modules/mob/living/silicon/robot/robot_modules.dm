@@ -16,7 +16,7 @@ var/global/list/robot_modules = list(
 	name = "robot module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
-	w_class = 100.0
+	w_class = 100
 	item_state = "electronic"
 	flags = CONDUCT
 	var/hide_on_manifest = FALSE
@@ -37,8 +37,8 @@ var/global/list/robot_modules = list(
 					LANGUAGE_AZAZIBA = 0
 					)
 	var/sprites = list()
-	var/can_be_pushed = 1
-	var/no_slip = 0
+	var/can_be_pushed = TRUE
+	var/no_slip = FALSE
 	var/list/modules = list()
 	var/list/datum/matter_synth/synths = list()
 	var/obj/item/emag = null
@@ -53,8 +53,8 @@ var/global/list/robot_modules = list(
 
 	//Module stats, these are applied to the robot
 	health = 200 //Max health. Apparently this is already defined in item.dm
-	var/speed_factor = 1.0 //Speed factor, applied as a divisor on movement delay
-	var/power_efficiency = 1.0 //Power efficiency, applied as a divisor on power taken from the internal cell
+	var/speed_factor = 1 //Speed factor, applied as a divisor on movement delay
+	var/power_efficiency = 1 //Power efficiency, applied as a divisor on power taken from the internal cell
 
 	//Stat modifiers for skillchecks
 	var/list/stat_modifiers = list(
@@ -286,7 +286,7 @@ var/global/list/robot_modules = list(
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 
-	can_be_pushed = 0
+	can_be_pushed = FALSE
 	sprites = list(
 				"Basic" = "robotmedi",
 				"Classic" = "medbot",
@@ -492,7 +492,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/engineering/construction
 	name = "construction robot module"
-	no_slip = 1
+	no_slip = TRUE
 	health = 270 //tough
 	speed_factor = 0.65 //Very slow!
 	power_efficiency = 1.3 //Good for the long haul
@@ -664,7 +664,7 @@ var/global/list/robot_modules = list(
 	name = "security robot module"
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
-	can_be_pushed = 0
+	can_be_pushed = FALSE
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler,/obj/item/borg/upgrade/jetpack)
 
 	health = 300 //Very tanky!
@@ -918,7 +918,7 @@ var/global/list/robot_modules = list(
 					)
 
 	health = 160 //Weak
-	speed_factor = 1.0 //Average
+	speed_factor = 1 //Average
 	power_efficiency = 0.75 //Poor efficiency
 
 	desc = "Built for working in a well-equipped lab, and designed to handle a wide variety of research \
@@ -1009,7 +1009,7 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_SECURITY)
 	subsystems = list(/datum/nano_module/crew_monitor)
 	sprites = list("Roller" = "droid-combat")
-	can_be_pushed = 0
+	can_be_pushed = FALSE
 
 /obj/item/weapon/robot_module/combat/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)
@@ -1025,7 +1025,7 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/drone
 	name = "drone module"
 	hide_on_manifest = TRUE
-	no_slip = 1
+	no_slip = TRUE
 	networks = list(NETWORK_ENGINEERING)
 	channels = list("Engineering" = 1, "Common" = 1)
 	stat_modifiers = list(

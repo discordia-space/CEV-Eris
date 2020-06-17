@@ -117,7 +117,7 @@
 	verbs -= /mob/verb/observe
 
 	if (mob_size)
-		nutrition_step = mob_size * 0.03 * metabolic_factor
+		nutrition_step = mob_size * 03 * metabolic_factor
 		bite_factor = mob_size * 0.1
 		max_nutrition *= 1 + (nutrition_step*4)//Max nutrition scales faster than costs, so bigger creatures eat less often
 		reagents = new/datum/reagents(stomach_size_mult*mob_size, src)
@@ -418,7 +418,7 @@
 	walk_to(src,0)
 	movement_target = null
 	icon_state = icon_dead
-	density = 0
+	density = FALSE
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/ex_act(severity)
@@ -426,16 +426,16 @@
 		if (HUDtech.Find("flash"))
 			flick("flash", HUDtech["flash"])
 	switch (severity)
-		if (1.0)
+		if (1)
 			adjustBruteLoss(500)
 			gib()
 			return
 
-		if (2.0)
+		if (2)
 			adjustBruteLoss(60)
 
 
-		if(3.0)
+		if(3)
 			adjustBruteLoss(30)
 
 

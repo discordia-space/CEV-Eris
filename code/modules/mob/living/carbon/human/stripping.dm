@@ -127,7 +127,7 @@
 			to_chat(user, SPAN_WARNING("\The [src] has no splints to remove."))
 
 // Set internals on or off.
-/mob/living/carbon/human/proc/toggle_internals(var/mob/living/user)
+/mob/living/carbon/human/proc/toggle_internals(mob/living/user)
 	if(internal)
 		visible_message(SPAN_DANGER("\The [user] disables \the [src]'s internals!"))
 		internal.add_fingerprint(user)

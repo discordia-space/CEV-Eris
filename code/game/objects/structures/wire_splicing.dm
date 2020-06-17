@@ -3,8 +3,8 @@
 	desc = "Looks like someone was very drunk when doing this, or just didn't care. This can be removed by wirecutters."
 	icon = 'icons/obj/traps.dmi'
 	icon_state = "wire_splicing1"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	flags = CONDUCT
 	layer = TURF_LAYER + 0.45
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock

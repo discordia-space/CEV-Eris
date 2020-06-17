@@ -81,7 +81,7 @@
 	name = "generic sector"
 	desc = "Sector with some stuff in it."
 	icon_state = "sector"
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overmap/sector/Initialize()
 	. = ..()

@@ -5,7 +5,7 @@
 /obj/structure/multiz
 	name = "ladder"
 	density = FALSE
-	opacity = FALSE
+	opacity = 0
 	anchored = TRUE
 	icon = 'icons/obj/stairs.dmi'
 	var/istop = TRUE

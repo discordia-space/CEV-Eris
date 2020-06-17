@@ -6,8 +6,8 @@
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "control_box"
 	reference = "control_box"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = 0
 	idle_power_usage = 500
 	active_power_usage = 70000 //70 kW per unit of strength
@@ -47,7 +47,7 @@
 		active = 0
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = null
-			part.powered = 0
+			part.powered = FALSE
 			part.update_icon()
 		connected_parts = list()
 		return
@@ -219,13 +219,13 @@
 		update_use_power(2)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = src.strength
-			part.powered = 1
+			part.powered = TRUE
 			part.update_icon()
 	else
 		update_use_power(1)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = null
-			part.powered = 0
+			part.powered = FALSE
 			part.update_icon()
 	return 1
 

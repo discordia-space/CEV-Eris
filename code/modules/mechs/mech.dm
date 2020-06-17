@@ -4,7 +4,7 @@
 	name = "exosuit"
 	desc = "A powerful machine piloted from a cockpit, but worn like a suit of armour."
 	density = TRUE
-	opacity = TRUE
+	opacity = 1
 	anchored = TRUE
 	default_pixel_x = -8
 	default_pixel_y = 0

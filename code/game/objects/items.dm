@@ -6,7 +6,7 @@
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
 	var/abstract = 0
-	var/r_speed = 1.0
+	var/r_speed = 1
 	var/health = null
 	var/max_health = null
 	var/burn_point = null
@@ -94,14 +94,14 @@
 
 /obj/item/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				qdel(src)
 				return
