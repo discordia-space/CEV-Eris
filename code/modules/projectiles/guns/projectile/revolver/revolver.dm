@@ -23,7 +23,6 @@
 	damage_multiplier = 1.75
 	armor_penetration = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
 	recoil_buildup = 50
-	gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
@@ -60,3 +59,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/update_icon()
 	update_charge()
+
+/obj/item/weapon/gun/projectile/revolver/generate_guntags()
+	..()
+	gun_tags |= GUN_REVOLVER

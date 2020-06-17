@@ -20,7 +20,7 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	damage_multiplier = 1.1
 	recoil_buildup = 20
-	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35, GUN_SILENCABLE)
+	gun_tags = list(GUN_SILENCABLE)
 
 /obj/item/weapon/gun/projectile/paco/update_icon()
 	..()
