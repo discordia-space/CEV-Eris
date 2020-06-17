@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/revolver/sky_driver
-	name = "FS REV .35 Auto \"Sky Driver\""
+	name = "S REV .35 Auto \"Sky Driver\""
 	desc = "Old, Syndicate revolver made on lost tech before the Corporate war. Uses .35 special rounds."
 	icon = 'icons/obj/guns/projectile/sky_driver.dmi'
 	icon_state = "sky_driver"
