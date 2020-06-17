@@ -28,13 +28,10 @@ They are unstable and be used only few times, and after that they die out on bot
 	prepare_event_areas(rift_number)
 
 /datum/event/bluespace_rift/start()
-	for(var/area/A in event_areas)
-		rifts.Add(new /obj/effect/portal/rift(A.random_space(), rand(3, 10)))
 	for(var/i=0, i<pair_number, i++)
-		var/obj/effect/portal/rift/enter = pick_n_take(rifts)
-		var/obj/effect/portal/rift/exit = pick_n_take(rifts)
-		enter.pair(exit)
-		log_and_message_admins("Bluespace rift created between [jumplink(enter)] and [jumplink(exit)] with [enter.usages_left] teleportations left.")
+		var/area/enterence = pick_n_take(event_areas)
+		var/area/exit = pick_n_take(event_areas)
+		new /obj/effect/portal/wormhole/rift(enterence.random_space(), exit.random_space())
 
 
 /datum/event/bluespace_rift/proc/prepare_event_areas(var/number)
