@@ -13,6 +13,22 @@
 
 	unlocks_designs = list(/datum/design/research/item/binaryencrypt)
 
+/datum/technology/night_sight
+	name = "Undark Vision"
+	desc = "A better look into the shadows that hunt the station, allows for the manufacturing of night vision goggles and RIG night vison huds "
+	tech_type = RESEARCH_ILLEGAL
+
+	x = 0.1
+	y = 0.7
+	icon = "night"
+
+	required_technologies = list(/datum/technology/binary_encryption_key)
+	required_tech_levels = list(RESEARCH_ENGINEERING = 5)
+	cost = 3000
+
+	unlocks_designs = list(/datum/design/research/item/night_goggles,
+					/datum/design/research/item/rig_nvgoggles)
+
 /datum/technology/chameleon_kit
 	name = "Chameleon Kit"
 	desc = "Chameleon Kit"
