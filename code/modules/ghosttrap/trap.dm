@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	return 1
 
 // Fluff!
-/datum/ghosttrap/proc/welcome_candidate(var/mob/target)
+/datum/ghosttrap/proc/welcome_candidate(mob/target)
 	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
 	to_chat(target, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
 	to_chat(target, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	P.icon_state = "posibrain-occupied"
 
 // Allows people to set their own name. May or may not need to be removed for posibrains if people are dumbasses.
-/datum/ghosttrap/proc/set_new_name(var/mob/target)
+/datum/ghosttrap/proc/set_new_name(mob/target)
 	if(!can_set_own_name)
 		return
 
@@ -181,12 +181,12 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	minutes_since_death = DRONE_SPAWN_DELAY
 	..()
 
-datum/ghosttrap/drone/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer)
+datum/ghosttrap/drone/assess_candidate(mob/observer/ghost/candidate, mob/target, check_respawn_timer)
 	. = ..()
 	if(. && !target.can_be_possessed_by(candidate))
 		return 0
 
-datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
+datum/ghosttrap/drone/transfer_personality(mob/candidate, mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	if(!assess_candidate(candidate))
 		return 0
 	drone.transfer_personality(candidate.client)
@@ -200,10 +200,10 @@ datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/sil
 	ghost_trap_message = "They are occupying a pAI now."
 	ghost_trap_role = "pAI"
 
-datum/ghosttrap/pai/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer)
+datum/ghosttrap/pai/assess_candidate(mob/observer/ghost/candidate, mob/target, check_respawn_timer)
 	return 0
 
-datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
+datum/ghosttrap/pai/transfer_personality(mob/candidate, mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	return 0
 
 /**************

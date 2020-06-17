@@ -335,9 +335,18 @@ var/list/rummage_sound = list(\
 		if(!M || !M.client)
 			continue
 		vol = init_vol
-		if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
-			vol *= 1.2
-		if(get_dist(M, turf_source) <= maxdistance || M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+		var/hear_sound = FALSE
+		if(get_dist(M, turf_source) <= maxdistance)
+			hear_sound = TRUE
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H)
+				if(H.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+					vol *= 1.2
+					hear_sound = TRUE
+
+		if(hear_sound)
 			var/turf/T = get_turf(M)
 
 			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))

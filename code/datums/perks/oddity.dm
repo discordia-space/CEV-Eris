@@ -158,10 +158,3 @@
 
 /datum/perk/absolute_grab
 	name = "Absolute grab"
-
-/datum/perk/absolute_grab/assign(mob/living/carbon/human/H)
-	..()
-	holder.species.inherent_verbs += /mob/living/carbon/human/proc/leap
-	holder.species.add_inherent_verbs(holder)
-
-

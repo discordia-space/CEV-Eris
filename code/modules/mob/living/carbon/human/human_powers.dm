@@ -63,9 +63,8 @@
 
 	var/list/choices = list()
 	var/leap_range = 6
+	a_intent = I_GRAB
 
-	if(stats.getPerk(PERK_ABSOLUTE_GRAB))
-		leap_range = 2
 	for(var/mob/living/M in view(leap_range,src))
 		if(!issilicon(M))
 			choices += M
@@ -97,31 +96,23 @@
 
 	if(!src.Adjacent(T))
 		to_chat(src, SPAN_WARNING("You miss!"))
+		Weaken(5)
 		return
 
 	T.Weaken(3)
 
-	// Pariahs are not good at leaping. This is snowflakey, pls fix.
-	if(species.name == "Vox Pariah")
-		src.Weaken(5)
-		return
-
-	var/use_hand = "left"
 	if(l_hand)
 		if(r_hand)
 			to_chat(src, SPAN_DANGER("You need to have one hand free to grab someone."))
 			return
-		else
-			use_hand = "right"
 
 	src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
 
-	var/obj/item/weapon/grab/G = new(src,T)
-	if(use_hand == "left")
-		l_hand = G
-	else
-		r_hand = G
+	var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(src,T)
+	if(!G)	//the grab will delete itself in New if affecting is anchored
+		return
 
+	put_in_active_hand(G)
 	G.state = GRAB_PASSIVE
 	G.icon_state = "grabbed1"
 	G.synch()

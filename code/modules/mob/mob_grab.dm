@@ -30,10 +30,10 @@
 	item_state = "nothing"
 	w_class = ITEM_SIZE_COLOSSAL
 
-/obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
+/obj/proc/affect_grab(mob/user, mob/target, state)
 	return FALSE
 
-/obj/item/weapon/grab/resolve_attackby(obj/O, mob/user, var/click_params)
+/obj/item/weapon/grab/resolve_attackby(obj/O, mob/user, click_params)
 	if(ismob(O))
 		return ..()
 	if(!istype(O) || get_dist(O, affecting) > 1)
