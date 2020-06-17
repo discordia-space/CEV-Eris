@@ -12,10 +12,10 @@
 	name = "shield impact"
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield_impact"
-	anchored = 1
+	anchored = TRUE
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
-	density = 0
+	density = FALSE
 
 /obj/effect/shield_impact/New()
 	spawn(2 SECONDS)
@@ -27,10 +27,10 @@
 	desc = "An impenetrable field of energy, capable of blocking anything as long as it's active."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield_normal"
-	anchored = 1
+	anchored = TRUE
 	plane = GAME_PLANE
 	layer = BELOW_OBJ_LAYER
-	density = 1
+	density = TRUE
 	invisibility = 0
 	var/obj/machinery/power/shield_generator/gen = null
 	var/disabled_for = 0

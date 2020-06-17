@@ -221,7 +221,7 @@
 		stop_automated_movement = initial(stop_automated_movement)
 		walk(src, 0)
 
-		density = 0
+		density = FALSE
 		layer = LYING_MOB_LAYER
 
 	. = ..()

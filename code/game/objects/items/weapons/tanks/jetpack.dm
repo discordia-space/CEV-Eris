@@ -10,7 +10,7 @@
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
 	var/datum/effect/effect/system/trail/jet/trail
-	var/on = 0.0
+	var/on = FALSE
 	var/stabilization_on = 0
 	action_button_name = "Toggle Jetpack"
 

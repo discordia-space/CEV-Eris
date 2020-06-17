@@ -3,7 +3,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
 	layer = TURF_LAYER+0.2
-	anchored = 1
+	anchored = TRUE
 	var/amount = 1
 
 /obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,_amount=1,nologs=0)

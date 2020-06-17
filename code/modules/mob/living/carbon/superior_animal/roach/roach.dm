@@ -6,7 +6,7 @@
 
 	mob_size = MOB_SMALL
 
-	density = 0 //Swarming roaches! They also more robust that way.
+	density = FALSE //Swarming roaches! They also more robust that way.
 
 	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 	emote_see = list("chirps loudly.", "cleans its whiskers with forelegs.")

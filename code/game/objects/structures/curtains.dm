@@ -3,7 +3,7 @@
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
 	opacity = 1
-	density = 0
+	density = FALSE
 	layer = WALL_OBJ_LAYER
 
 /obj/structure/curtain/open

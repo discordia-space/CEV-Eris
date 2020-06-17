@@ -66,7 +66,7 @@
 	desc = "A control terminal for the area electrical systems."
 
 	icon_state = "apc0"
-	anchored = 1
+	anchored = TRUE
 	use_power = 0
 	req_access = list(access_engine_equip)
 	var/need_sound
@@ -1264,7 +1264,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 		spawn(0)
 			for(var/obj/machinery/light/L in area)
 				if(prob(chance))
-					L.on = 1
+					L.on = TRUE
 					L.broken()
 				sleep(1)
 

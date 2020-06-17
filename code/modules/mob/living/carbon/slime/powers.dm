@@ -32,7 +32,7 @@
 	Victim = M
 	loc = M.loc
 	canmove = 0
-	anchored = 1
+	anchored = TRUE
 
 	regenerate_icons()
 

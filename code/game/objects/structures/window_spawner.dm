@@ -7,8 +7,8 @@
 	name = "window spawner"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "sp_full_window"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/win_path = /obj/structure/window/basic/full
 	var/wall_path = /obj/structure/low_wall
 	var/activated = FALSE

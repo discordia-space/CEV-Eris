@@ -4,8 +4,8 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	w_class = ITEM_SIZE_BULKY
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	reagent_flags = OPENCONTAINER
 	climbable = TRUE
 	//copypaste sorry
@@ -300,8 +300,8 @@
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	reagent_flags = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite

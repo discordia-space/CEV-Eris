@@ -296,7 +296,7 @@ BLIND     // can't see anything
 	var/light_overlay = "helmet_light"
 	var/light_applied
 	var/brightness_on
-	var/on = 0
+	var/on = FALSE
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)

@@ -220,8 +220,8 @@
 	name = "pepper spray refiller"
 	desc = "Contains condensed capsaicin for use in law \"enforcement.\""
 	icon_state = "peppertank"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	amount_per_transfer_from_this = 45
 	volume = 1000
 	starting_reagent = "condensedcapsaicin"
@@ -234,7 +234,7 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
-	anchored = 1
+	anchored = TRUE
 	volume = 500
 	starting_reagent = "water"
 
@@ -279,8 +279,8 @@
 	desc = "A dispenser of virus food."
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	volume = 1000
 	starting_reagent = "virusfood"
 
@@ -289,8 +289,8 @@
 	desc = "A dispenser of acid for industrial processes."
 	icon_state = "acidtank"
 	amount_per_transfer_from_this = 10
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	volume = 1000
 	starting_reagent = "sacid"
 
@@ -306,7 +306,7 @@
 	possible_transfer_amounts = list(10,30,60,120,200)
 	var/filling_states = list(10,20,30,40,50,60,70,80,100)
 	unacidable = 1
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	volume = 600
 	var/lid = TRUE

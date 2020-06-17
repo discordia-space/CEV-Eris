@@ -2,7 +2,7 @@
 	name = "wheelchair"
 	desc = "Now we're getting somewhere."
 	icon_state = "wheelchair"
-	anchored = 0
+	anchored = FALSE
 	buckle_movable = 1
 
 	var/driving = 0

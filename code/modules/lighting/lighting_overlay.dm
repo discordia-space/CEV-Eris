@@ -10,7 +10,7 @@
 	invisibility     = INVISIBILITY_LIGHTING
 
 	simulated = 0
-	anchored = 1
+	anchored = TRUE
 
 	blend_mode       = BLEND_OVERLAY
 

@@ -31,7 +31,7 @@
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
 	icon_state = "syndicate"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/closet/thunderdome/New()
 	..()

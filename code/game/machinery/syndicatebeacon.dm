@@ -12,8 +12,8 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 
 	var/temptext = ""
@@ -83,8 +83,8 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "beacon"
 
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	layer = LOW_OBJ_LAYER
 	stat = 0
 
@@ -135,7 +135,7 @@
 			return
 
 		if(anchored)
-			anchored = 0
+			anchored = FALSE
 			user << SPAN_NOTICE("You unscrew the beacon from the floor.")
 			disconnect_from_network()
 			return
@@ -143,7 +143,7 @@
 			if(!connect_to_network())
 				user << "This device must be placed over an exposed cable."
 				return
-			anchored = 1
+			anchored = TRUE
 			user << SPAN_NOTICE("You screw the beacon to the floor and attach the cable.")
 			return
 	..()

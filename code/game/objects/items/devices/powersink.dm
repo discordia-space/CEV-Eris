@@ -41,7 +41,7 @@
 						to_chat(user, "No exposed cable here to attach to.")
 						return
 					else
-						anchored = 1
+						anchored = TRUE
 						mode = 1
 						src.visible_message(SPAN_NOTICE("[user] attaches [src] to the cable!"))
 						return

@@ -4,10 +4,10 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "bspacerelay"
 
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 1
-	var/on = 1
+	var/on = TRUE
 
 	idle_power_usage = 15000
 	active_power_usage = 15000
@@ -28,7 +28,7 @@
 /obj/machinery/bluespacerelay/proc/update_power()
 
 	if(stat & (BROKEN|NOPOWER|EMPED))
-		on = 0
+		on = FALSE
 	else
-		on = 1
+		on = TRUE
 

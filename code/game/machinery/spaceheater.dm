@@ -1,12 +1,12 @@
 /obj/machinery/space_heater
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	var/obj/item/weapon/cell/large/cell
-	var/on = 0
+	var/on = FALSE
 	var/set_temperature = T0C + 50	//K
 	var/heating_power = 40000
 
@@ -191,6 +191,6 @@
 
 				env.merge(removed)
 		else
-			on = 0
+			on = FALSE
 			power_change()
 			update_icon()

@@ -5,7 +5,7 @@
 	icon_state = "register_idle"
 	flags = NOBLUDGEON
 	req_access = list()
-	anchored = 1
+	anchored = TRUE
 
 	var/locked = 1
 	var/cash_locked = 1

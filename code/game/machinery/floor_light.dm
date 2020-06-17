@@ -7,7 +7,7 @@ var/list/floor_light_cache = list()
 	desc = "A backlit floor panel."
 	plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
-	anchored = 0
+	anchored = FALSE
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
@@ -21,7 +21,7 @@ var/list/floor_light_cache = list()
 	var/default_light_colour = COLOR_LIGHTING_DEFAULT_BRIGHT
 
 /obj/machinery/floor_light/prebuilt
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/floor_light/attackby(var/obj/item/I, var/mob/user)
 
@@ -105,7 +105,7 @@ var/list/floor_light_cache = list()
 	var/need_update
 	if((!anchored || broken()) && on)
 		use_power = 0
-		on = 0
+		on = FALSE
 		need_update = 1
 	else if(use_power && !on)
 		use_power = 0
@@ -172,5 +172,5 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		on = 0
+		on = FALSE
 	. = ..()

@@ -19,9 +19,9 @@
 		They have no "underneath" space, nothing can be placed under them, creatures can't crawl under them
 */
 /obj/structure/low_wall
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	layer = LOW_WALL_LAYER
 	icon = 'icons/obj/structures/low_wall.dmi'
 	icon_state = "metal"

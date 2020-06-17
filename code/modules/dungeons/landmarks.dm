@@ -8,7 +8,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
 	invisibility = 101
-	anchored = 1
+	anchored = TRUE
 	var/datum/rogue/asteroid/myasteroid
 
 /obj/asteroid_spawner/New()
@@ -21,7 +21,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	invisibility = 101
-	anchored = 1
+	anchored = TRUE
 	var/mob/mymob
 
 /obj/rogue_mobspawner/New()
@@ -34,7 +34,7 @@
 	icon = 'icons/mob/eye.dmi'
 	icon_state = "default-eye"
 	invisibility = 101
-	anchored = 1
+	anchored = TRUE
 
 /obj/asteroid_spawner/rogue_teleporter/New()
 	if(loc && istype(loc,/turf/space) && istype(loc.loc,/area/asteroid/rogue))
