@@ -1,0 +1,6 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: Boss mobs no longer fit inside lockers
+  - tweak: The kaiser roach no longer gibs on death, so you can butcher it for its
+      meat
