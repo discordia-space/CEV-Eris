@@ -70,7 +70,7 @@
 "br" = (/obj/item/remains/human,/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/gun_loot,/turf/simulated/floor/wood,/area/deepmaint)
 "bs" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "bt" = (/obj/random/junk,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
-"bu" = (/obj/structure/bed/chair{dir = 1},/obj/random/junk,/turf/simulated/floor/tiled/steel/gray_platform,/area/space)
+"bu" = (/obj/structure/bed/chair{dir = 1},/obj/random/junk,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "bv" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "bw" = (/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/gun_loot,/turf/simulated/floor/wood,/area/deepmaint)
 "bx" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood,/obj/random/junk,/turf/simulated/floor/wood,/area/deepmaint)
