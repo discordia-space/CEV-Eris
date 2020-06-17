@@ -185,11 +185,12 @@ var/list/portal_cache = list()
 	admin_announce_new = FALSE
 	var/teleportations_left
 
-/obj/effect/portal/wormhole/rift/New(loc, exit)
+/obj/effect/portal/wormhole/rift/New(loc, exit, msg_admins=TRUE)
 	teleportations_left = rand(3, 10)
 	..(loc, 0, exit)
 	deltimer(lifetime)
-	message_admins("Bluespace rift created between [jumplink(src)] and [jumplink(src.target)]")
+	if(msg_admins)
+		message_admins("Bluespace rift created between [jumplink(src)] and [jumplink(src.target)] with [teleportations_left] teleportations left")
 
 /obj/effect/portal/wormhole/rift/pair()
 	partner = null
@@ -200,7 +201,7 @@ var/list/portal_cache = list()
 	partner = (locate(/obj/effect/portal/wormhole/rift) in T)
 
 	if (!partner)
-		partner = new /obj/effect/portal/wormhole/rift(T, loc)
+		partner = new /obj/effect/portal/wormhole/rift(T, loc, FALSE)
 	var/obj/effect/portal/wormhole/rift/P = partner
 	P.teleportations_left = teleportations_left
 
