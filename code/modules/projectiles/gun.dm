@@ -617,6 +617,7 @@
 /obj/item/weapon/gun/ui_data(mob/user)
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
+	data["pierce_multiplier"] = pierce_multiplier
 	data["penetration_multiplier"] = penetration_multiplier
 
 	data["fire_delay"] = fire_delay //time between shot, in ms
@@ -666,6 +667,7 @@
 	//First of all, lets reset any var that could possibly be altered by an upgrade
 	damage_multiplier = initial(damage_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
+	pierce_multiplier = initial(pierce_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
 	fire_delay = initial(fire_delay)
 	move_delay = initial(move_delay)
