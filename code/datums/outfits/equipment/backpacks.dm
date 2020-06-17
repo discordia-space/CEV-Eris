@@ -25,6 +25,10 @@
 	path = /obj/item/weapon/storage/backpack/satchel
 	is_default = TRUE
 
+/decl/backpack_outfit/duffelbag
+	name = "Duffelbag"
+	path = /obj/item/weapon/storage/backpack/duffelbag
+
 /* Code */
 /decl/backpack_outfit
 	var/flags
