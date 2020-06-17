@@ -74,7 +74,7 @@
 	color = "#49F37C"
 	icon_state = "glowstick"
 	action_button_name = null
-	brightness_on = 7 //Same as a flare
+	brightness_on = 4 //Same as a flare
 	max_fuel = 4000
 
 /obj/item/device/lighting/glowstick/red
