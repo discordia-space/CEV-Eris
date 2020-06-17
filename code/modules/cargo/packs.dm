@@ -244,10 +244,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 */
 /datum/supply_pack/ballisticarmor
 	name = "IH Ballistic Armor"
-	contains = list(/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/suit/armor/bulletproof,
-					/obj/item/clothing/head/helmet,
-					/obj/item/clothing/head/helmet)
+	contains = list(/obj/item/clothing/suit/armor/bulletproof/ironhammer,
+					/obj/item/clothing/suit/armor/ironhammer,
+					/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg,
+					/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg)
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "FS Close Quarters Pack"
@@ -293,8 +293,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "IH Ablative Armor"
 	contains = list(/obj/item/clothing/suit/armor/laserproof,
 					/obj/item/clothing/suit/armor/laserproof,
-					/obj/item/clothing/head/helmet,
-					/obj/item/clothing/head/helmet)
+					/obj/item/clothing/suit/armor/laserproof,
+					/obj/item/clothing/head/armor/laserproof,
+					/obj/item/clothing/head/armor/laserproof)
 	cost = 3500
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "IH Ablative Armor crate"
