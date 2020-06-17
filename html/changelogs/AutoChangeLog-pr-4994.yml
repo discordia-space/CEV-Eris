@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: The ergonomic grip can now be attached to guns that require two hands
+      to fire accurately.
