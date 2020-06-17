@@ -257,26 +257,25 @@
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	body_parts_covered = HEAD|FACE|EARS
-	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
-		bio = 0,
-		rad = 0
-	)
+	var/list/armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
+	var/list/armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	tint = TINT_MODERATE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
-	var/base_state
 	price_tag = 150
 
+/obj/item/clothing/head/armor/riot/Initialize()
+	. = ..()
+	armor = up ? armor_up : armor_down
+	update_icon()
+
 /obj/item/clothing/head/armor/riot/attack_self()
-	if(!base_state)
-		base_state = icon_state
 	toggle()
+
+/obj/item/clothing/head/armor/riot/update_icon()
+	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 /obj/item/clothing/head/armor/riot/verb/toggle()
 	set category = "Object"
@@ -284,24 +283,27 @@
 	set src in usr
 
 	if(!usr.incapacitated())
+		src.up = !src.up
+
 		if(src.up)
-			src.up = !src.up
-			body_parts_covered |= (EYES|FACE)
-			tint = initial(tint)
-			flash_protection = initial(flash_protection)
-			icon_state = base_state
-			armor = initial(armor)
-			to_chat(usr, "You flip the [src] down to protect your face.")
-		else
-			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
 			tint = TINT_NONE
+			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = FLASH_PROTECTION_NONE
-			icon_state = "[base_state]_up"
-			armor = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
+			armor = armor_up
 			to_chat(usr, "You push the [src] up out of your face.")
-		update_wear_icon()	//so our mob-overlays
+		else
+			body_parts_covered |= (EYES|FACE)
+			tint = initial(tint)
+			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			flash_protection = initial(flash_protection)
+			armor = armor_down
+			to_chat(usr, "You flip the [src] down to protect your face.")
+
+		update_icon()
+		update_wear_icon()	//update our mob overlays
 		usr.update_action_buttons()
+
 
 /*
  * Ironhammer riot helmet with HUD
