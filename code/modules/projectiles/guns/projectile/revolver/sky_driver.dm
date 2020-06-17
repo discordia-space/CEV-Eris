@@ -15,4 +15,3 @@
 	penetration_multiplier = 20
 	pierce_multiplier =  5
 	recoil_buildup = 50
-	gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
