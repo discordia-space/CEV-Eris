@@ -41,7 +41,7 @@
 /datum/perk/blood_of_lead
 	name = "Blood of lead"
 	desc = "Toxins provide only 50% of the damage they should."
-	icon_state = "liver"
+	icon_state = "liver" // https://game-icons.net
 
 /datum/perk/blood_of_lead/assign(mob/living/carbon/human/H)
 	..()
@@ -54,7 +54,7 @@
 /datum/perk/space_asshole
 	name = "Space asshole"
 	desc = "You have some basic protection from explosives, as well as fall damage."
-	icon_state = "lungs"
+	icon_state = "bomb" // https://game-icons.net
 
 /datum/perk/space_asshole/assign(mob/living/carbon/human/H)
 	..()
@@ -69,7 +69,7 @@
 /datum/perk/parkour
 	name = "Parkour"
 	desc = "You are faster climbing ladders and tables."
-	icon_state = "lungs"
+	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
 /datum/perk/parkour/assign(mob/living/carbon/human/H)
 	..()
@@ -123,7 +123,7 @@
 /datum/perk/quiet_as_mouse
 	name = "Quiet as mouse"
 	desc = "your footsteps are totally silent."
-	icon_state = "nightcrawler" // https://game-icons.net
+	icon_state = "footsteps" // https://game-icons.net
 
 /datum/perk/ear_of_quicksilver
 	name = "Ear of quicksilver"
@@ -133,15 +133,17 @@
 /datum/perk/balls_of_plasteel
 	name = "Balls of plasteel"
 	desc = "You need to receive additional 20 points of pain to drop into pain cri"
-	icon_state = "ball"
+	icon_state = "golem" // https://game-icons.net
 
 /datum/perk/junkborn
 	name = "Junkborn"
 	desc = "You have 20% chance to spawn somewhat rare item on clearing the junkpile."
-	icon_state = "junkborn"
+	icon_state = "treasure" // https://game-icons.net
 
 /datum/perk/ass_of_concrete
 	name = "Ass of concrete"
+	desc = "Others cannot push you while walking, and gravitation will not drop you."
+	icon_state = "muscular" // https://game-icons.net
 
 /datum/perk/ass_of_concrete/assign(mob/living/carbon/human/H)
 	..()
@@ -154,7 +156,8 @@
 /datum/perk/toxic_revenger
 	name = "Toxic Revenger"
 	desc = "This ship did something to you, and now you are danger for everyone around."
-	icon_state = "toxic_revenger"
+	icon_state = "Hazmat" // https://game-icons.net
 
 /datum/perk/absolute_grab
 	name = "Absolute grab"
+	icon_state = "grab" // https://game-icons.net
