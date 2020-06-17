@@ -1,0 +1,7 @@
+author: DarkLevel
+delete-after: true
+changes:
+  - rscadd: Adding new item Bluespace Biosyphon.
+  - rscadd: Adding new gun Sky Driver.
+  - rscadd: Id lock for blast doors.
+  - code_imp: Adding possibility to coding wall penetration mods for guns.
