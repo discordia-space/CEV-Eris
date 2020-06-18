@@ -165,11 +165,11 @@
 	if(href_list["node1_c"])
 		var/value = text2num(href_list["node1_c"])
 		src.mixing_inputs[air1] = max(0, min(1, src.mixing_inputs[air1] + value))
-		src.mixing_inputs[air2] = 1.0 - mixing_inputs[air1]
+		src.mixing_inputs[air2] = 1 - mixing_inputs[air1]
 	if(href_list["node2_c"])
 		var/value = text2num(href_list["node2_c"])
 		src.mixing_inputs[air2] = max(0, min(1, src.mixing_inputs[air2] + value))
-		src.mixing_inputs[air1] = 1.0 - mixing_inputs[air2]
+		src.mixing_inputs[air1] = 1 - mixing_inputs[air2]
 	src.update_icon()
 	src.updateUsrDialog()
 	return

@@ -826,7 +826,7 @@
 	las_rating -= las_amount
 
 	speed = initial(speed) + man_rating + las_rating
-	mat_efficiency = max(0.2, 1.0 - (man_rating * 0.1))
+	mat_efficiency = max(0.2, 1 - (man_rating * 0.1))
 
 
 
