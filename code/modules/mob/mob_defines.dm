@@ -128,7 +128,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
 
-	var/radiation = 0.0//Carbon
+	var/radiation = 0//Carbon
 
 	var/voice_name = "unidentifiable voice"
 
@@ -172,7 +172,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/paralysis = 0
 	var/stunned = 0
 	var/weakened = 0
-	var/drowsyness = 0.0//Carbon
+	var/drowsyness = 0//Carbon
 
 	var/memory = ""
 	var/flavor_text = ""

@@ -24,7 +24,7 @@
 	var/lastpuke = 0
 
 	var/cpr_time = 1
-	nutrition = 400.0//Carbon
+	nutrition = 400//Carbon
 
 
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
