@@ -49,8 +49,8 @@
 	if (armed)
 		if (isliving(AM))
 			prob_explode = initial(prob_explode)
-			prob_explode *= AM.stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE)
-			if(prob(prob_explode) && !AM.stats.getPerk(PERK_RAT) && !is_excelsior(AM))
+			prob_explode -= AM.skill_to_evade_traps(prob_explode)
+			if(prob(prob_explode) && !is_excelsior(AM))
 				explode()
 				return
 	.=..()
