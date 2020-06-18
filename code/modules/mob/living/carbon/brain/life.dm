@@ -60,13 +60,13 @@
 	if(exposed_temperature > bodytemperature)
 		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1)
 		//adjustFireLoss(2.5*discomfort)
-		//adjustFireLoss(5.0*discomfort)
-		adjustFireLoss(20.0*discomfort)
+		//adjustFireLoss(5*discomfort)
+		adjustFireLoss(20*discomfort)
 
 	else
 		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1)
 		//adjustFireLoss(2.5*discomfort)
-		adjustFireLoss(5.0*discomfort)
+		adjustFireLoss(5*discomfort)
 
 
 /mob/living/carbon/brain/handle_chemicals_in_body()
