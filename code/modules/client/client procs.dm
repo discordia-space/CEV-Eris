@@ -600,4 +600,4 @@
 	else
 		score = response["fraud_score"]
 
-	return score/100 //To normalize with the 0.0 to 1.0 scores.
+	return score/100 //To normalize with the 0 to 1 scores.

@@ -81,7 +81,7 @@
 	access_security = 1
 
 /obj/item/weapon/cartridge/clown
-	name = "\improper Honkworks 5.0 cartridge"
+	name = "\improper Honkworks 5 cartridge"
 	icon_state = "cart-clown"
 	access_clown = 1
 	charges = 5

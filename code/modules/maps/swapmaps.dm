@@ -593,7 +593,7 @@ proc/SwapMaps_CreateFromTemplate(template_id)
 	/*
 		This hacky workaround is needed because S >> M will create a brand new
 		M to fill with data. There's no way to control the Read() process
-		properly otherwise. The //.0 path should always match the map, however.
+		properly otherwise. The // path should always match the map, however.
 	 */
 	S.cd="//.0"
 	M.Read(S,M)
@@ -620,7 +620,7 @@ proc/SwapMaps_LoadChunk(chunk_id,turf/locorner)
 	/*
 		This hacky workaround is needed because S >> M will create a brand new
 		M to fill with data. There's no way to control the Read() process
-		properly otherwise. The //.0 path should always match the map, however.
+		properly otherwise. The // path should always match the map, however.
 	 */
 	S.cd="//.0"
 	M.Read(S,M,locorner)
@@ -665,7 +665,7 @@ proc/SwapMaps_GetSize(id)
 		S=new
 		S.ImportText("/",file("map_[id].txt"))
 	/*
-		The //.0 path should always be the map. There's no other way to
+		The // path should always be the map. There's no other way to
 		read this data.
 	 */
 	S.cd="//.0"
