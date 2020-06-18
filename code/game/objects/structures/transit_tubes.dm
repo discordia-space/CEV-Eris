@@ -59,14 +59,14 @@
 // When destroyed by explosions, properly handle contents.
 obj/structure/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/AM in contents)
 				AM.loc = loc
 				AM.ex_act(severity++)
 
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				for(var/atom/movable/AM in contents)
 					AM.loc = loc
@@ -74,7 +74,7 @@ obj/structure/ex_act(severity)
 
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			return
 
 

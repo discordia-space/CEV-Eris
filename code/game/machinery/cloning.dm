@@ -296,20 +296,20 @@
 
 /obj/machinery/clonepod/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A in src)
 				A.loc = loc
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				for(var/atom/movable/A in src)
 					A.loc = loc
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if(prob(25))
 				for(var/atom/movable/A in src)
 					A.loc = loc

@@ -104,7 +104,7 @@
 
 	return FALSE
 
-/datum/storyevent/proc/cancel(var/type, var/completion = 0.0)
+/datum/storyevent/proc/cancel(var/type, var/completion = 0)
 	//This proc refunds the cost of this event
 	if (GLOB.storyteller)
 		GLOB.storyteller.modify_points(get_cost(type)*(1 - completion), type)

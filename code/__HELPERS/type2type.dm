@@ -65,10 +65,10 @@
 // Turns a direction into text
 /proc/num2dir(direction)
 	switch (direction)
-		if (1.0) return NORTH
-		if (2.0) return SOUTH
-		if (4.0) return EAST
-		if (8.0) return WEST
+		if (1) return NORTH
+		if (2) return SOUTH
+		if (4) return EAST
+		if (8) return WEST
 		else
 			log_world("UNKNOWN DIRECTION: [direction]")
 
