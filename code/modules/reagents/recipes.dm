@@ -35,7 +35,7 @@
 
 //helper that ensures the reaction rate holds after iterating
 //Ex. REACTION_RATE(0.3) means that 30% of the reagents will react each chemistry tick (~2 seconds by default).
-#define REACTION_RATE(rate) (1 - (1.0-rate)**(1.0/PROCESS_REACTION_ITER))
+#define REACTION_RATE(rate) (1 - (1-rate)**(1.0/PROCESS_REACTION_ITER))
 
 //helper to define reaction rate in terms of half-life
 //Ex.
