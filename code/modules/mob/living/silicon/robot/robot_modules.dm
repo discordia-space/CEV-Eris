@@ -53,8 +53,8 @@ var/global/list/robot_modules = list(
 
 	//Module stats, these are applied to the robot
 	health = 200 //Max health. Apparently this is already defined in item.dm
-	var/speed_factor = 1.0 //Speed factor, applied as a divisor on movement delay
-	var/power_efficiency = 1.0 //Power efficiency, applied as a divisor on power taken from the internal cell
+	var/speed_factor = 1 //Speed factor, applied as a divisor on movement delay
+	var/power_efficiency = 1 //Power efficiency, applied as a divisor on power taken from the internal cell
 
 	//Stat modifiers for skillchecks
 	var/list/stat_modifiers = list(
@@ -918,7 +918,7 @@ var/global/list/robot_modules = list(
 					)
 
 	health = 160 //Weak
-	speed_factor = 1.0 //Average
+	speed_factor = 1 //Average
 	power_efficiency = 0.75 //Poor efficiency
 
 	desc = "Built for working in a well-equipped lab, and designed to handle a wide variety of research \
