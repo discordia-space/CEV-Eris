@@ -59,7 +59,7 @@
 		return
 	return ..()
 
-/obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/clothing/accessory/badge/holo/emag_act(remaining_charges, mob/user)
 	if (emagged)
 		to_chat(user, SPAN_DANGER("\The [src] is already cracked."))
 		return
@@ -68,7 +68,7 @@
 		to_chat(user, SPAN_DANGER("You crack the holobadge security checks."))
 		return 1
 
-/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/clothing/accessory/badge/holo/attackby(obj/item/O as obj, mob/user as mob)
 	var/obj/item/weapon/card/id/id_card = O.GetIdCard()
 	if(!id_card)
 		return

@@ -2,7 +2,7 @@
 //**Cham Jumpsuit**
 //*****************
 
-/obj/item/proc/disguise(var/newtype, var/mob/user)
+/obj/item/proc/disguise(newtype, mob/user)
 	if(!user || user.incapacitated())
 		return
 	//this is necessary, unfortunately, as initial() does not play well with list vars

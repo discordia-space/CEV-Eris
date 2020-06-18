@@ -45,7 +45,7 @@
 
 
 //Delayed equipping
-/obj/item/clothing/pre_equip(var/mob/user, var/slot)
+/obj/item/clothing/pre_equip(mob/user, slot)
 	..(user, slot)
 	if (equip_delay > 0)
 		//If its currently worn, we must be taking it off
@@ -262,7 +262,7 @@ BLIND     // can't see anything
 	attack_verb = list("challenged")
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
 	return 0 // return 1 to cancel attack_hand()
 
 /obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
@@ -445,7 +445,7 @@ BLIND     // can't see anything
 	else
 		..()
 
-/obj/item/clothing/shoes/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/shoes/attackby(obj/item/I, mob/user)
 	var/global/knifes
 	if(istype(I,/obj/item/noslipmodule))
 		if (item_flags != 0)
@@ -500,7 +500,7 @@ BLIND     // can't see anything
 		overlays += image(icon, "[icon_state]_knife")
 	return ..()
 
-/obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
+/obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)
 	return
 
 

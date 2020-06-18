@@ -430,7 +430,7 @@
 	loc = location
 	. = ..()
 
-/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
 	. = ..()
@@ -444,7 +444,7 @@
 		return 1
 	return 0
 
-/obj/structure/window/proc/set_anchored(var/new_anchored)
+/obj/structure/window/proc/set_anchored(new_anchored)
 	if(anchored == new_anchored)
 		return
 	anchored = new_anchored

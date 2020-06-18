@@ -231,13 +231,13 @@ update_flag
 		return GM.return_pressure()
 	return 0
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/canister/bullet_act(obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
 		src.health -= round(Proj.get_structure_damage() / 2)
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/weapon/I, var/mob/user)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/weapon/I, mob/user)
 
 	if(isrobot(user) && istype(I, /obj/item/weapon/tank/jetpack))
 		var/datum/gas_mixture/thejetpack = I:air_contents

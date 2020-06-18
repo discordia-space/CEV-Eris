@@ -8,7 +8,7 @@
 			if (AC.slot == A.slot)
 				return 0
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 
 		if(!valid_accessory_slots || !valid_accessory_slots.len)

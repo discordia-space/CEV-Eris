@@ -52,7 +52,7 @@ var/global/list/breach_burn_descriptors = list(
 		descriptor = breach_brute_descriptors[class]
 
 //Repair a certain amount of brute or burn damage to the suit.
-/obj/item/clothing/suit/space/proc/repair_breaches(var/damtype, var/amount, var/mob/user)
+/obj/item/clothing/suit/space/proc/repair_breaches(damtype, amount, mob/user)
 
 	if(!can_breach || !breaches || !breaches.len || !damage)
 		to_chat(user, "There are no breaches to repair on \the [src].")

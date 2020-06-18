@@ -154,7 +154,7 @@
 /obj/item/clothing/mask/ai/New()
 	eye = new(src)
 
-/obj/item/clothing/mask/ai/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/ai/equipped(mob/user, slot)
 	..(user, slot)
 	if(slot == slot_wear_mask)
 		eye.owner = user
@@ -186,7 +186,7 @@
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20
 
-/obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/bandana/equipped(mob/user, slot)
 	switch(slot)
 		if(slot_wear_mask) //Mask is the default for all the settings
 			flags_inv = HIDEFACE

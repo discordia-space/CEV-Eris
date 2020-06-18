@@ -65,7 +65,7 @@
 			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
+/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, proximity)
 	if(!status)
 		return FALSE
 	if(!istype(L) || !proximity)
