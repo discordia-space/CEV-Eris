@@ -309,7 +309,7 @@ var/list/rank_prefix = list(\
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)

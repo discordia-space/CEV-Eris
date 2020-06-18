@@ -19,11 +19,11 @@
 	var/icon/I = icon(input)
 
 	I.MapColors(
-		(rr1 * r + rr2 * i) / 255.0, (rg1 * r + rg2 * i) / 255.0, (rb1 * r + rb2 * i) / 255.0, (ra1 * r + ra2 * i) / 255.0,
-		(gr1 * r + gr2 * i) / 255.0, (gg1 * r + gg2 * i) / 255.0, (gb1 * r + gb2 * i) / 255.0, (ga1 * r + ga2 * i) / 255.0,
-		(br1 * r + br2 * i) / 255.0, (bg1 * r + bg2 * i) / 255.0, (bb1 * r + bb2 * i) / 255.0, (ba1 * r + ba2 * i) / 255.0,
-		(ar1 * r + ar2 * i) / 255.0, (ag1 * r + ag2 * i) / 255.0, (ab1 * r + ab2 * i) / 255.0, (aa1 * r + aa2 * i) / 255.0,
-		(zr1 * r + zr2 * i) / 255.0, (zg1 * r + zg2 * i) / 255.0, (zb1 * r + zb2 * i) / 255.0, (za1 * r + za2 * i) / 255)
+		(rr1 * r + rr2 * i) / 255, (rg1 * r + rg2 * i) / 255, (rb1 * r + rb2 * i) / 255, (ra1 * r + ra2 * i) / 255,
+		(gr1 * r + gr2 * i) / 255, (gg1 * r + gg2 * i) / 255, (gb1 * r + gb2 * i) / 255, (ga1 * r + ga2 * i) / 255,
+		(br1 * r + br2 * i) / 255, (bg1 * r + bg2 * i) / 255, (bb1 * r + bb2 * i) / 255, (ba1 * r + ba2 * i) / 255,
+		(ar1 * r + ar2 * i) / 255, (ag1 * r + ag2 * i) / 255, (ab1 * r + ab2 * i) / 255, (aa1 * r + aa2 * i) / 255,
+		(zr1 * r + zr2 * i) / 255, (zg1 * r + zg2 * i) / 255, (zb1 * r + zb2 * i) / 255, (za1 * r + za2 * i) / 255)
 
 	return I
 

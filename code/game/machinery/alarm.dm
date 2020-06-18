@@ -65,10 +65,10 @@
 /obj/machinery/alarm/server/New()
 	..()
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
-	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1) // Partial pressure, kpa
-	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1) // Partial pressure, kpa
+	TLV["oxygen"] =			list(-1, -1,-1,-1) // Partial pressure, kpa
+	TLV["carbon dioxide"] = list(-1, -1,   5,  10) // Partial pressure, kpa
+	TLV["plasma"] =			list(-1, -1, 0.2, 0.5) // Partial pressure, kpa
+	TLV["other"] =			list(-1, -1, 0.5, 1) // Partial pressure, kpa
 	TLV["pressure"] =		list(0, ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
 	target_temperature = 90
@@ -109,9 +109,9 @@
 
 	// breathable air according to human/Life()
 	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1) // Partial pressure, kpa
+	TLV["carbon dioxide"] = list(-1, -1, 5, 10) // Partial pressure, kpa
+	TLV["plasma"] =			list(-1, -1, 0.2, 0.5) // Partial pressure, kpa
+	TLV["other"] =			list(-1, -1, 0.5, 1) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 

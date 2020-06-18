@@ -22,7 +22,7 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 
 	var/env_settings_available = 1
 
-	var/list/env_default = list(7.5, 1.0, -1000, -100, 0, 1.49, 0.83, 1.0, -2602, 0.0007, 200, 0.011, 0.25, 0.0, 0.25, 0.0, -5.0, 5000, 250.0, 0.0, 100, 100, 63)
+	var/list/env_default = list(7.5, 1, -1000, -100, 0, 1.49, 0.83, 1, -2602, 0.0007, 200, 0.011, 0.25, 0, 0.25, 0, -5, 5000, 250, 0, 100, 100, 63)
 	var/list/list/env_params_bounds = list(
 			list(1, 100, 1),
 			list(0, 1, 1),
@@ -30,17 +30,17 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 			list(-10000, 0, 1),
 			list(-10000, 0, 1),
 			list(0.1, 20, 1),
-			list(0.1, 2.0, 1),
-			list(0.1, 2.0, 1),
+			list(0.1, 2, 1),
+			list(0.1, 2, 1),
 			list(-10000, 1000, 0),
 			list(0, 0.3, 1),
 			list(-10000, 2000, 0),
 			list(0, 0.1, 1),
 			list(0.075, 0.25, 1),
 			list(0, 1, 1),
-			list(0.04, 4.0, 1),
+			list(0.04, 4, 1),
 			list(0, 1, 1),
-			list(-100, 0.0, 1),
+			list(-100, 0, 1),
 			list(1000, 20000, 0),
 			list(20, 1000, 1),
 			list(0, 10, 1),
@@ -134,7 +134,7 @@ Bit flags that modify the behavior of above properties
 �64 - 'EnvSize' affects echo time
 �128 - 'EnvSize' affects modulation time"})
 
-	var/list/echo_default = list(0, 0, 0, 0, 0, 0.0, 0, 0.25, 1.5, 1.0, 0, 1.0, 0, 0.0, 0.0, 0.0, 1.0, 7)
+	var/list/echo_default = list(0, 0, 0, 0, 0, 0, 0, 0.25, 1.5, 1, 0, 1, 0, 0, 0, 0, 1, 7)
 	var/list/list/echo_params_bounds = list(
 			list(-10000, 1000, 0),
 			list(-10000, 0, 0),

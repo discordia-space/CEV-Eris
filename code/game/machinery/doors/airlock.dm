@@ -1390,7 +1390,7 @@ There are 9 wires.
 		quiet ? null : playsound(src.loc, hitsound, 20, 1)
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
-		playsound(src.loc, hitsound, quiet? 3: calc_damage*2.0, 1, 3,quiet?-5 :2)
+		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
 		take_damage(W.force)
 
 
