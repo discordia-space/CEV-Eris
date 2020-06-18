@@ -515,7 +515,7 @@
 	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
-	damage_per_fire_tick = 3.0	// Was 2. Made weaker than rglass per tick.
+	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
 	maxhealth = 15
 	resistance = RESISTANCE_NONE
 
