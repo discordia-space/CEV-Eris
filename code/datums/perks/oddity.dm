@@ -95,7 +95,7 @@
 /datum/perk/oddity/horrible_deeds
 	name = "Horrible Deeds"
 	desc = "You lower the sanity of everyone around you."
-	icon_state = "bad-breath" // https://game-icons.net
+	icon_state = "bad_breath" // https://game-icons.net
 
 /datum/perk/oddity/horrible_deeds/assign(mob/living/carbon/human/H)
 	..()
