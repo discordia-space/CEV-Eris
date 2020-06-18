@@ -61,6 +61,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 	icon_state = "synth-cyan"
 	join_tag = "late_cyborg"
 	message = "has been activated from storage"
+	spawn_datum_type = /datum/spawnpoint/nosearch
 	restrict_job = list("Robot")
 
 /obj/landmark/join/observer

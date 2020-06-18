@@ -30,7 +30,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevels = maps_data.contact_levels)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevels = GLOB.maps_data.contact_levels)
 	if(!message)
 		return
 	var/message_title = new_title ? new_title : title
@@ -45,7 +45,7 @@
 		NewsCast(message, message_title)
 
 	for(var/mob/M in GLOB.player_list)
-		if((M.z in (zlevels | maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
+		if((M.z in (zlevels | GLOB.maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
 			sound_to(M, message_sound)
 	Log(message, message_title)
 

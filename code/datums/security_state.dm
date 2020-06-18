@@ -189,7 +189,7 @@
 
 /decl/security_level/default/proc/notify_station()
 	for(var/obj/machinery/firealarm/FA in SSmachines.machinery)
-		if(FA.z in maps_data.contact_levels)
+		if(FA.z in GLOB.maps_data.contact_levels)
 			FA.update_icon()
 	post_status("alert")
 

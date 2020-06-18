@@ -112,8 +112,8 @@
 	result = /obj/item/frame/fire_alarm
 
 /datum/craft_recipe/machinery/wall/station_holomap
-	name = "station holomap frame"
-	result = /obj/item/frame/station_holomap
+	name = "holomap frame"
+	result = /obj/item/frame/holomap
 
 /datum/craft_recipe/machinery/AI_core
 	name = "AI core"

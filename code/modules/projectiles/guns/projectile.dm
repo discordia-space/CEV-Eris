@@ -38,7 +38,6 @@
 	var/auto_eject_sound = null
 	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
 	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
-	gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/weapon/gun/projectile/Destroy()
 	QDEL_NULL(chambered)
@@ -344,3 +343,13 @@
 /obj/item/weapon/gun/projectile/refresh_upgrades()
 	max_shells = initial(max_shells)
 	..()
+
+/obj/item/weapon/gun/projectile/generate_guntags()
+	..()
+	gun_tags |= GUN_PROJECTILE
+	switch(caliber)
+		if(CAL_PISTOL)
+			gun_tags |= GUN_CALIBRE_35
+		//Others to be implemented when needed
+	if(max_shells)
+		gun_tags |= GUN_INTERNAL_MAG

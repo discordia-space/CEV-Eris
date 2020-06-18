@@ -18,10 +18,10 @@
 	damage_multiplier = 0.8 	 //25,6 lethal, 28 HV //damage
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
 	recoil_buildup = 6
-	
+
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
-	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_300,

@@ -311,8 +311,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	src.updateUsrDialog()
 
 /obj/machinery/gravity_generator/main/proc/grav_on()
-	if(!maps_data.station_levels.len)
-		message_admins("maps_data.station_levels is blank. Gravgen isn't properly established.")
+	if(!GLOB.maps_data.station_levels.len)
+		message_admins("GLOB.maps_data.station_levels is blank. Gravgen isn't properly established.")
 		return
 
 	gravity_is_on = 1
@@ -323,8 +323,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	message_admins("The gravity generator was brought fully online. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>[area.name]</a>)")
 
 /obj/machinery/gravity_generator/main/proc/grav_off()
-	if(!maps_data.station_levels.len)
-		message_admins("maps_data.station_levels is blank. Gravgen isn't properly established.")
+	if(!GLOB.maps_data.station_levels.len)
+		message_admins("GLOB.maps_data.station_levels is blank. Gravgen isn't properly established.")
 		return
 
 	gravity_is_on = 0

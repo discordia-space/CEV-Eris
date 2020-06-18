@@ -72,8 +72,7 @@
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
-	damage_types = list(TOX = 1)
-	weaken = 5
+	damage_types = list(TOX = 20)
 
 
 /obj/item/projectile/energy/bolt

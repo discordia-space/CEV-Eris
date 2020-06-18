@@ -21,7 +21,7 @@
 	penetration_multiplier = 0.5 //practically no AP, 2.5 with regular rounds and 5 with HV. Still deadly to unarmored targets.
 	recoil_buildup = 3
 	one_hand_penalty = 5 //smg level
-	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_600,
