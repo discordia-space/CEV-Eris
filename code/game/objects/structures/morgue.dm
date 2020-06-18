@@ -475,7 +475,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "cremat"
 	density = TRUE
-	layer = 2.0
+	layer = 2
 	var/obj/structure/crematorium/connected = null
 	anchored = TRUE
 	throwpass = 1

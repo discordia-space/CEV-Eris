@@ -5,7 +5,7 @@ A BYOND library for manipulating icons and colors
 
 by Lummox JR
 
-version 1.0
+version 1
 
 The IconProcs library was made to make a lot of common icon operations much easier. BYOND's icon manipulation
 routines are very capable but some of the advanced capabilities like using alpha transparency can be unintuitive to beginners.

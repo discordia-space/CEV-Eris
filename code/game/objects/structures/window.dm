@@ -556,7 +556,7 @@
 	basestate = "rwindow"
 	reinf = 1
 	maximal_heat = T0C + 750	// Fused quartz.
-	damage_per_fire_tick = 2.0
+	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
 
 	maxhealth = 50

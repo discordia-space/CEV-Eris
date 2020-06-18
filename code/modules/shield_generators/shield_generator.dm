@@ -198,7 +198,7 @@
 
 // Recalculates and updates the upkeep multiplier
 /obj/machinery/power/shield_generator/proc/update_upkeep_multiplier()
-	var/new_upkeep = 1.0
+	var/new_upkeep = 1
 	for(var/datum/shield_mode/SM in mode_list)
 		if(check_flag(SM.mode_flag))
 			new_upkeep *= SM.multiplier

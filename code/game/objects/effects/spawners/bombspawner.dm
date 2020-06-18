@@ -136,7 +136,7 @@
 	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
 	var/plasma_amt = 10.96
 	var/oxygen_amt = 16.44
-	var/carbon_amt = 0.0
+	var/carbon_amt = 0
 
 /obj/effect/spawner/newbomb/timer
 	name = "TTV bomb - timer"

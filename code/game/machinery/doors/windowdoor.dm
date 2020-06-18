@@ -11,7 +11,7 @@
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxhealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	health = 100
-	visible = 0.0
+	visible = 0
 	use_power = 0
 	flags = ON_BORDER
 	opacity = 0

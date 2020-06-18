@@ -224,7 +224,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = ITEM_SIZE_NORMAL
-	var/amount = 25.0
+	var/amount = 25
 
 
 /obj/item/weapon/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)

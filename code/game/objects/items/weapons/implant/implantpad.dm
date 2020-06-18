@@ -11,7 +11,7 @@
 	w_class = ITEM_SIZE_SMALL
 	var/obj/item/weapon/implantcase/case = null
 	var/broadcasting = null
-	var/listening = 1.0
+	var/listening = 1
 
 
 /obj/item/weapon/implantpad/proc/update()

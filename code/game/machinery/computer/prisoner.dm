@@ -8,11 +8,11 @@
 	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_access = list(access_armory)
 	circuit = /obj/item/weapon/circuitboard/prisoner
-	var/id = 0.0
+	var/id = 0
 	var/temp = null
 	var/status = 0
 	var/timeleft = 60
-	var/stop = 0.0
+	var/stop = 0
 	var/screen = 0 // 0 - No Access Denied, 1 - Access allowed
 
 

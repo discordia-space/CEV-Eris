@@ -14,7 +14,7 @@
 	matter = list(MATERIAL_STEEL = 20)
 	price_tag = 1500
 	projectile_type = /obj/item/projectile/temp
-	zoom_factor = 2.0
+	zoom_factor = 2
 
 
 /obj/item/weapon/gun/energy/temperature/Initialize()

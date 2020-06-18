@@ -1,7 +1,7 @@
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
 	desc = "Track with this."
-	var/id = 1.0
+	var/id = 1
 	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=2, TECH_DATA=2, TECH_BIO=2)
 
 /obj/item/weapon/implant/tracking/get_data()

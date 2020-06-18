@@ -81,7 +81,7 @@
 
 			if(B)
 				var/target = text2num(target_name)
-				var/found_amount = 0.0
+				var/found_amount = 0
 				for(var/obj/item/weapon/coin/C in B)
 					found_amount++
 				return found_amount>=target

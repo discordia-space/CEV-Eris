@@ -37,7 +37,7 @@
 	icon_state = "wall"
 
 	var/undeploy_path = null
-	var/health = 50.0
+	var/health = 50
 
 /obj/structure/inflatable/wall
 	name = "inflatable wall"

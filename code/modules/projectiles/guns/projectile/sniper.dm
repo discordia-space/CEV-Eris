@@ -21,7 +21,7 @@
 	one_hand_penalty = 10
 	var/bolt_open = 0
 	var/item_suffix = ""
-	zoom_factor = 2.0
+	zoom_factor = 2
 	twohanded = TRUE
 
 /obj/item/weapon/gun/projectile/heavysniper/update_icon()

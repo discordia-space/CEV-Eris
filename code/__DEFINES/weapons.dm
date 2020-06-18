@@ -38,11 +38,11 @@
 //Drills, fireaxes and energy melee weapons are the high end
 #define STRUCTURE_DAMAGE_BLADE 			0.5
 #define STRUCTURE_DAMAGE_WEAK 			0.8
-#define STRUCTURE_DAMAGE_NORMAL 		1.0
+#define STRUCTURE_DAMAGE_NORMAL 		1
 #define STRUCTURE_DAMAGE_BLUNT 			1.3
 #define STRUCTURE_DAMAGE_HEAVY 			1.5
 #define STRUCTURE_DAMAGE_BREACHING 		1.8
-#define STRUCTURE_DAMAGE_DESTRUCTIVE 	2.0
+#define STRUCTURE_DAMAGE_DESTRUCTIVE 	2
 #define STRUCTURE_DAMAGE_BORING 		3
 
 //Quick defines for fire modes

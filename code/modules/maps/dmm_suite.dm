@@ -3,7 +3,7 @@ var/global/dmm_suite/maploader = new
 dmm_suite{
 	/*
 
-		dmm_suite version 1.0
+		dmm_suite version 1
 			Released January 30th, 2011.
 
 		defines the object /dmm_suite

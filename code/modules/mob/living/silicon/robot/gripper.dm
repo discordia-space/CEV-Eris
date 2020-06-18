@@ -120,7 +120,7 @@
 /obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 		force_holder = wrapped.force
-		wrapped.force = 0.0
+		wrapped.force = 0
 		wrapped.attack(M,user)
 		if(QDELETED(wrapped))
 			wrapped = null
