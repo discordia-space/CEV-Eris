@@ -10,10 +10,14 @@
 	if(CE_SPEEDBOOST in chem_effects)
 		tally -= chem_effects[CE_SPEEDBOOST]
 
-	if(isturf(loc) && !stats.getPerk(PERK_NIGHTCRAWLER))
+	if(isturf(loc))
 		var/turf/T = loc
 		if(T.get_lumcount() < 0.6)
-			tally += 0.5
+			if(!stats.getPerk(PERK_NIGHTCRAWLER))
+				tally += 0.5
+			else
+				tally -= 0.5
+
 
 	var/health_deficiency = (maxHealth - health)
 	var/hunger_deficiency = (max_nutrition - nutrition) //400 = max for humans.

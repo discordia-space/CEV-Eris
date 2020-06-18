@@ -81,7 +81,7 @@
 
 /datum/perk/oddity/charming_personality
 	name = "Charming personality"
-	desc = "You are faster climbing ladders and tables."
+	desc = "You improve the sanity of everyone around you."
 	icon_state = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
 
 /datum/perk/oddity/charming_personality/assign(mob/living/carbon/human/H)
@@ -94,8 +94,8 @@
 
 /datum/perk/oddity/horrible_deeds
 	name = "Horrible Deeds"
-	desc = "You are faster climbing ladders and tables."
-	icon_state = "lungs" // https://game-icons.net
+	desc = "You lower the sanity of everyone around you."
+	icon_state = "bad-breath" // https://game-icons.net
 
 /datum/perk/oddity/horrible_deeds/assign(mob/living/carbon/human/H)
 	..()
@@ -108,17 +108,17 @@
 /datum/perk/oddity/chaingun_smoker
 	name = "Chaingun smoker"
 	desc = "Nicotine does not only helps your sanity now, it also a painkiller and weak antitoxin for you."
-	icon_state = "lungs" // https://game-icons.net
+	icon_state = "cigarette" // https://game-icons.net
 
 /datum/perk/oddity/nightcrawler
 	name = "Nightcrawler"
 	desc = "Dark does not slow you down, you actually move faster in it."
-	icon_state = "nightcrawler" // https://game-icons.net
+	icon_state = "night" // https://game-icons.net/1x1/lorc/night-sky.html
 
 /datum/perk/oddity/fast_fingers
 	name = "Fast fingers"
-	desc = "Dark does not slow you down, you actually move faster in it."
-	icon_state = "nightcrawler" // https://game-icons.net
+	desc = "hen you remove items from people, or emptying their pockets, it does not provides a message in the chat."
+	icon_state = "robber_hand" // https://game-icons.net/1x1/darkzaitzev/robber-hand.html
 
 /datum/perk/oddity/quiet_as_mouse
 	name = "Quiet as mouse"
@@ -160,4 +160,5 @@
 
 /datum/perk/oddity/absolute_grab
 	name = "Absolute grab"
+	desc = "You can grab people with +1 radius"
 	icon_state = "grab" // https://game-icons.net
