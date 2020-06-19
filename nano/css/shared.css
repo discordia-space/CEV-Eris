@@ -871,11 +871,13 @@ img.sciTechTreeIconToolTip {
 .icon-bluespacematterbin { background-position: 0px -64px; }
 .icon-rped { background-position: -32px -64px; }
 .icon-jawsoflife { background-position: -64px -64px; }
+.icon-Moebius_box1 { background-position: -256px -0px; }
 .icon-healthanalyzer { background-position: -96px -64px; }
 .icon-hydroponics { background-position: -128px -64px; }
 .icon-microwave { background-position: -160px -64px; }
 .icon-candymachine { background-position: -192px -64px; }
 .icon-operationcomputer { background-position: -224px -64px; }
+.icon-autolathe { background-position: -256px -64px; }
 
 .icon-vialbox { background-position: 0px -96px; }
 .icon-sleeper { background-position: -32px -96px; }
@@ -935,6 +937,7 @@ img.sciTechTreeIconToolTip {
 .icon-fusion { background-position: -32px -288px; }
 .icon-chemdisp { background-position: -64px -288px; }
 .icon-binarykey { background-position: -96px -288px; }
+.icon-night { background-position: -256px -32px; }
 .icon-chamelion { background-position: -128px -288px; }
 .icon-freedom { background-position: -160px -288px; }
 .icon-module { background-position: -192px -288px; }
@@ -944,4 +947,3 @@ img.sciTechTreeIconToolTip {
     width: 300px;
     float: left;
 }
-

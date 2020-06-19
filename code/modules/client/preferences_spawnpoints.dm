@@ -150,6 +150,8 @@
 		M.buckled.set_dir(M.dir)
 	return TRUE
 
+/datum/spawnpoint/nosearch //for when we want people to start on the exact tile of the spawn landmark
+	search_range = 0
 
 /**********************
 	Cryostorage Spawning

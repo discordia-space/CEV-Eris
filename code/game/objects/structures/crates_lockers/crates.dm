@@ -108,6 +108,8 @@
 	name = "trash cart"
 	desc = "A heavy, metal trashcart with wheels."
 	icon_state = "trashcart"
+	storage_capacity = 6 * MOB_MEDIUM //3x Storage
+	max_mob_size = 4 //2 more mobs then normal. Makes clearing mobs faster
 
 /*these aren't needed anymore
 /obj/structure/closet/crate/hat
