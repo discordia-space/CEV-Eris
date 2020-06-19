@@ -162,3 +162,8 @@
 	name = "Absolute grab"
 	desc = "You can grab people with +1 radius"
 	icon_state = "grab" // https://game-icons.net
+
+/datum/perk/oddity/sure_step
+	name = "Sure step"
+	desc = " You receive additional chance to avoid trap"
+	icon_state = "mantrap"

@@ -633,5 +633,7 @@ proc/is_blind(A)
 		prob_evade = 25
 		if(stats.getPerk(PERK_RAT))
 			prob_evade *= 2
-		prob_evade += prob_catch*stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE) - 40 * get_max_w_class()/ITEM_SIZE_TITANIC
+		prob_evade += 50/stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE) - 40 * get_max_w_class()/ITEM_SIZE_TITANIC
+		if(stats.getPerk(PERK_SURE_STEP))
+			prob_evade += 50*30/STAT_LEVEL_GODLIKE
 	return prob_evade

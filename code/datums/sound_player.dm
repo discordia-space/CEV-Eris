@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 		GLOB.sound_channels.release(channel)
 		sound_tokens_by_sound_id -= sound_id
 
-/decl/sound_player/proc/get_channel(var/datum/sound_token/sound_token)
+/decl/sound_player/proc/get_channel(datum/sound_token/sound_token)
 	var/sound_id = sound_token.sound_id
 
 	. = GLOB.sound_channels.get_by_key(sound_id)
@@ -62,7 +62,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	var/datum/proximity_trigger/square/proxy_listener
 	var/list/can_be_heard_from
 
-/datum/sound_token/New(var/atom/source, var/sound_id, var/sound/sound, var/range = 4, var/prefer_mute = FALSE)
+/datum/sound_token/New(atom/source, sound_id, sound/sound, range = 4, prefer_mute = FALSE)
 	..()
 	if(!istype(source))
 		CRASH("Invalid sound source: [log_info_line(source)]")
@@ -135,7 +135,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 	GLOB.sound_player.stop_sound(src)
 
-/datum/sound_token/proc/locate_listeners(var/list/prior_turfs, var/list/current_turfs)
+/datum/sound_token/proc/locate_listeners(list/prior_turfs, list/current_turfs)
 	if(status & SOUND_STOPPED)
 		return
 
@@ -153,13 +153,13 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	for(var/listener in current_listeners)
 		update_listener_loc(listener)
 
-/datum/sound_token/proc/set_status(var/new_status)
+/datum/sound_token/proc/set_status(new_status)
 	if((status & SOUND_STOPPED) || (new_status == status))
 		return
 	status = new_status
 	update_listeners()
 
-/datum/sound_token/proc/add_listener(var/atom/listener)
+/datum/sound_token/proc/add_listener(atom/listener)
 	if(istype(listener, /mob))
 		var/mob/l_mob = listener
 		if(l_mob.ear_deaf > 0)

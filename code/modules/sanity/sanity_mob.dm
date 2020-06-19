@@ -106,8 +106,8 @@
 			if(!H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal)
 				owner.reagents.add_reagent("toxin", 0.5)
 			if(owner.stats.getPerk(PERK_MORALIST))
-					if(H.sanity.level < 30 || H.health < 50)
-						. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+				if(H.sanity.level < 30 || H.health < 50)
+					. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)

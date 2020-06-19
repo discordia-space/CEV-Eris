@@ -11,7 +11,7 @@
 /mob/get_mob()
 	return src
 
-/proc/mobs_in_view(var/range, var/source)
+/proc/mobs_in_view(range, source)
 	var/list/mobs = list()
 	for(var/atom/movable/AM in view(range, source))
 		var/M = AM.get_mob()

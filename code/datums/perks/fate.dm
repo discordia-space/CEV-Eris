@@ -168,8 +168,8 @@
 	..()
 
 /datum/perk/oborin_syndrome
-	name = "Oborin Syndrome" //https://game-icons.net/1x1/delapouite/prism.html
-	icon_state = "prism"
+	name = "Oborin Syndrome"
+	icon_state = "prism" //https://game-icons.net/1x1/delapouite/prism.html
 	desc = "You're often told you see the world in black and whites. But they're wrong, you see the greys, you live in the greys. Not the 'colors' though, those are just venus traps for the dumb flies, you're smarter than that. Only grey."
 
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)

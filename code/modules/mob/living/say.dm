@@ -108,7 +108,7 @@ var/list/channel_to_radio_key = new
 		volume ++
 	return volume
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="")
+/mob/living/say(message, datum/language/speaking = null, verb="says", alt_name="")
 	if(client)
 		if(client.prefs.muted&MUTE_IC)
 			to_chat(src, "\red You cannot speak in IC (Muted).")
@@ -297,7 +297,7 @@ var/list/channel_to_radio_key = new
 	animate(I, alpha = 0, time = 5, easing = EASE_IN)
 
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
+/mob/living/proc/say_signlang(message, verb="gestures", datum/language/language)
 	for (var/mob/O in viewers(src, null))
 		O.hear_signlang(message, verb, language, src)
 	return 1

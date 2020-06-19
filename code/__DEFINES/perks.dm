@@ -1,3 +1,18 @@
+//fate perks
+#define PERK_PAPER_WORM /datum/perk/paper_worm
+#define PERK_FREELACER /datum/perk/freelancer
+#define PERK_NIHILIST /datum/perk/nihilist
+#define PERK_MORALIST /datum/perk/moralist
+#define PERK_ALCOHOLIC /datum/perk/alcoholic
+#define PERK_ALCOHOLIC_ACTIVE /datum/perk/alcoholic_active
+#define PERK_DRUG_ADDICT /datum/perk/drug_addict
+#define PERK_NOBLE /datum/perk/noble
+#define PERK_RAT /datum/perk/rat
+#define PERK_REJECTED_GENIUS /datum/perk/rejected_genius
+#define PERK_OBORIN_SYNDROME /datum/perk/oborin_syndrome
+#define PERK_LOWBORN /datum/perk/lowborn
+
+// oddity perks
 #define PERK_FAST_WALKER /datum/perk/oddity/fast_walker
 #define PERK_GUNSLINGER /datum/perk/oddity/gunslinger
 #define PERK_TERRIBLE_FATE /datum/perk/oddity/terrible_fate
@@ -18,3 +33,5 @@
 #define PERK_ASS_OF_CONCRETE /datum/perk/oddity/ass_of_concrete
 #define PERK_TOXIC_REVENGER /datum/perk/oddity/toxic_revenger
 #define PERK_ABSOLUTE_GRAB /datum/perk/oddity/absolute_grab
+#define PERK_SURE_STEP /datum/perk/oddity/sure_step
+
