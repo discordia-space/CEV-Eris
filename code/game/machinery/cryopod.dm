@@ -17,7 +17,7 @@
 	light_power = 1.5
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
-	density = 0
+	density = FALSE
 	interact_offline = 1
 	var/mode = null
 
@@ -141,8 +141,8 @@
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	dir = WEST
 
 //Cryopods themselves.
@@ -151,8 +151,8 @@
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryopod"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	dir = WEST
 
 	var/on_store_message = "has entered long-term storage."

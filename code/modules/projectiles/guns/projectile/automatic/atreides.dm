@@ -20,7 +20,7 @@
 	damage_multiplier = 0.8
 	recoil_buildup = 4
 	one_hand_penalty = 5 //smg level
-	gun_tags = list(GUN_PROJECTILE, GUN_SILENCABLE)
+	gun_tags = list(GUN_SILENCABLE)
 
 	init_firemodes = list(
 		FULL_AUTO_400,

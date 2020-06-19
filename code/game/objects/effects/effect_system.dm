@@ -79,7 +79,7 @@ steam.start() -- spawns the effect
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "jet"
-	density = 0
+	density = FALSE
 
 /datum/effect/effect/system/steam_spread
 
@@ -120,7 +120,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 	var/amount = 6.0
-	anchored = 1.0
+	anchored = TRUE
 	mouse_opacity = 0
 
 /obj/effect/sparks/New()
@@ -195,7 +195,7 @@ steam.start() -- spawns the effect
 	name = "smoke"
 	icon_state = "smoke"
 	opacity = 1
-	anchored = 0.0
+	anchored = FALSE
 	mouse_opacity = 0
 	var/amount = 6.0
 	var/time_to_live = 100

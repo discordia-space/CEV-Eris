@@ -5,10 +5,10 @@
 	desc = "Impenetrable field of energy, capable of blocking anything as long as it's active."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield_normal"
-	anchored = 1
+	anchored = TRUE
 	plane = GAME_PLANE
 	layer = ABOVE_ALL_MOB_LAYER
-	density = 0
+	density = FALSE
 	invisibility = 101
 	var/strength = 0
 	var/ticks_recovering = 10

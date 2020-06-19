@@ -6,13 +6,13 @@
 	desc = "It turns lights on and off. What are you, simple?"
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "light1"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 	power_channel = LIGHT
 	var/slow_turning_on = FALSE
 	var/forceful_toggle = FALSE
-	var/on = 1
+	var/on = TRUE
 	var/area/area = null
 	var/otherarea = null
 	var/next_check = 0 // A time at which another mob check will occure.

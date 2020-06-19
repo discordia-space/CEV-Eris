@@ -3,8 +3,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "tele0"
 	w_class = ITEM_SIZE_GARGANTUAN
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	interact_offline = 1
 
 	var/silk_id = ""

@@ -11,9 +11,9 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
-	anchored = 1
+	anchored = TRUE
 
-	density = 0
+	density = FALSE
 	use_power = 1				//this turret uses and requires power
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
@@ -342,7 +342,7 @@ var/list/turret_icons
 						to_chat(user, SPAN_NOTICE("The turret is still recalibrating. Wait some time before trying to move it."))
 						return
 					playsound(loc, 'sound/items/Ratchet.ogg', 100, 1)
-					anchored = 0
+					anchored = FALSE
 					disabled = TRUE
 					to_chat(user, SPAN_NOTICE("You unsecure the exterior bolts on the turret."))
 					update_icon()
@@ -797,13 +797,13 @@ var/list/turret_icons
 			if(build_step == 0 && !anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You secure the external bolts."))
-					anchored = 1
+					anchored = TRUE
 					build_step = 1
 					return
 			if(build_step == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You unfasten the external bolts."))
-					anchored = 0
+					anchored = FALSE
 					build_step = 0
 					return
 			if(build_step == 2)

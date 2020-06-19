@@ -249,7 +249,7 @@
 				if(access_type in get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
 					for(var/access in user_id_card.access)
 						var/region_type = get_access_region_by_id(access_type)
-						if(access in maps_data.access_modify_region[region_type])
+						if(access in GLOB.maps_data.access_modify_region[region_type])
 							id_card.access -= access_type
 							if(!access_allowed)
 								id_card.access += access_type

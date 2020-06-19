@@ -46,7 +46,7 @@
 		.+=360
 
 //Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = 0, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
+/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
 Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
 Random error in tile placement x, error in tile placement y, and block offset.
@@ -753,8 +753,8 @@ proc/GaussRandRound(var/sigma, var/roundto)
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
 						corner.loc = X
-						corner.density = 1
-						corner.anchored = 1
+						corner.density = TRUE
+						corner.anchored = TRUE
 						corner.icon = X.icon
 						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
@@ -1074,7 +1074,7 @@ var/list/WALLITEMS = list(
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard,
 	/obj/item/weapon/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/item/modular_computer/telescreen,
-	/obj/machinery/light_construct, /obj/machinery/light, /obj/machinery/station_map
+	/obj/machinery/light_construct, /obj/machinery/light, /obj/machinery/holomap
 	)
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
@@ -1181,9 +1181,9 @@ var/list/FLOORITEMS = list(
 
 /mob/dview
 	invisibility = 101
-	density = 0
+	density = FALSE
 
-	anchored = 1
+	anchored = TRUE
 	simulated = 0
 
 	see_in_dark = 1e6

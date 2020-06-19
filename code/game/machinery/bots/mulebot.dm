@@ -10,8 +10,8 @@
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
 	layer = MOB_LAYER
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	animate_movement=1
 	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
 	maxhealth = 150
@@ -110,7 +110,7 @@
 		open = !open
 		if(open)
 			src.visible_message("[user] opens the maintenance hatch of [src]", SPAN_NOTICE("You open [src]'s maintenance hatch."))
-			on = 0
+			on = FALSE
 			icon_state="mulebot-hatch"
 		else
 			src.visible_message("[user] closes the maintenance hatch of [src]", SPAN_NOTICE("You close [src]'s maintenance hatch."))
@@ -490,7 +490,7 @@
 
 /obj/machinery/bot/mulebot/Process()
 	if(!has_power())
-		on = 0
+		on = FALSE
 		return
 	if(on)
 		var/speed = (wires.Motor1() ? 1:0) + (wires.Motor2() ? 2:0)

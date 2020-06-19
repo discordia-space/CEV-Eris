@@ -22,12 +22,12 @@ other types of metals and chemistry for reagents).
 	starts_unlocked = FALSE
 
 /datum/design/research/item
+	category = "Misc" //We default to misc so that we are sorted
 	build_type = AUTOLATHE | PROTOLATHE
 
 /datum/design/research/item/mechfab
 	build_type = MECHFAB
 	category = "Misc"
-
 
 /datum/design/research/item/flash
 	name = "flash"
@@ -46,6 +46,7 @@ other types of metals and chemistry for reagents).
 	name = "health scanner"
 	build_path = /obj/item/clothing/glasses/hud/health
 	sort_string = "GAAAA"
+	category = "Medical"
 
 /datum/design/research/item/hud/security
 	name = "security records"
@@ -58,10 +59,9 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/clothing/glasses/powered/meson
 	sort_string = "GAAAC"
 
-
-
 /datum/design/research/item/medical
 	name_category = "biotech device prototype"
+	category = "Medical"
 
 /datum/design/research/item/medical/robot_scanner
 	desc = "A hand-held scanner able to diagnose robotic injuries."
@@ -90,6 +90,7 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/beaker
 	name_category = "beaker prototype"
+	category = "Medical"
 
 /datum/design/research/item/beaker/noreact
 	name = "cryostasis"
@@ -120,9 +121,6 @@ other types of metals and chemistry for reagents).
 	sort_string = "MBBAA"
 
 
-
-
-
 /datum/design/research/item/light_replacer
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
@@ -144,21 +142,21 @@ other types of metals and chemistry for reagents).
 	name = "Positronic brain"
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/device/mmi/digital/posibrain
-	category = "Misc"
+	category = "Medical"
 	sort_string = "VACAB"
 
 /datum/design/research/item/mmi
 	name = "Man-machine interface"
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/device/mmi
-	category = "Misc"
+	category = "Medical"
 	sort_string = "VACBA"
 
 /datum/design/research/item/mmi_radio
 	name = "Radio-enabled man-machine interface"
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/device/mmi/radio_enabled
-	category = "Misc"
+	category = "Medical"
 	sort_string = "VACBB"
 
 /datum/design/research/item/beacon
@@ -177,6 +175,14 @@ other types of metals and chemistry for reagents).
 	desc = "Allows for deciphering the binary channel on-the-fly."
 	build_path = /obj/item/device/encryptionkey/binary
 	sort_string = "VASAA"
+
+/datum/design/research/item/glowstick
+	name = "Undark Glowstick"
+	desc = "A refined cocktail of all the needed things to glow in the dark!"
+	build_path = /obj/item/device/lighting/glowstick/undark //Yes 1920s were a wild time
+	sort_string = "VASAB"
+	chemicals = list("radium" = 5, "phosphorus" = 10)
+	materials = list(MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 15)
 
 //Why is there a science design to craft a cardboard box full of things? That is not how this works
 /*

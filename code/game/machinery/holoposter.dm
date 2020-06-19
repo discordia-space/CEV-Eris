@@ -3,7 +3,7 @@
 	desc = "A wall-mounted holographic projector displaying advertisements by all manner of factions. How much do they pay to advertise here?"
 	icon = 'icons/obj/holoposter.dmi'
 	icon_state = "off"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 80
 	power_channel = ENVIRON
@@ -31,7 +31,7 @@
 		icon_state = "glitch"
 		new_color = COLOR_LIGHTING_SCI_BRIGHT
 	else
-		var/decl/security_state/security_state = decls_repository.get_decl(maps_data.security_state)
+		var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
 		if(security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level))
 			icon_state = "attention"
 			new_color =  "#AA7039"

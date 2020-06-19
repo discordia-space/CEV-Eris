@@ -7,10 +7,10 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
 	opacity = 0
-	density = 0
-	anchored = 0.0
-	force = 1.0
-	throwforce = 1.0
+	density = FALSE
+	anchored = FALSE
+	force = 1
+	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
