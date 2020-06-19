@@ -48,6 +48,8 @@
 			else
 				continue
 		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+	if(perk)
+		to_chat(user, SPAN_NOTICE("emits a <span class='gold'>strange</span> sensation."))
 
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
