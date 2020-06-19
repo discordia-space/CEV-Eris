@@ -76,7 +76,7 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-datum/announcement/proc/PlaySound(var/message_sound)
+datum/announcement/proc/PlaySound(message_sound)
 	if(!message_sound)
 		return
 	for(var/mob/M in GLOB.player_list)

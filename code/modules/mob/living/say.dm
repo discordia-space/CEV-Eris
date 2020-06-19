@@ -240,6 +240,11 @@ var/list/channel_to_radio_key = new
 				listening |= M
 				continue //To avoid seeing BOTH normal message and quiet message
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					if(H.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+						listening |= M
+						continue
 				listening_falloff |= M
 
 		for(var/X in hearing_objects)

@@ -100,7 +100,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	stop()
 	return ..()
 
-/datum/sound_token/proc/set_volume(var/new_volume)
+/datum/sound_token/proc/set_volume(new_volume)
 	new_volume = CLAMP(new_volume, 0, 100)
 	if(sound.volume != new_volume)
 		sound.volume = new_volume

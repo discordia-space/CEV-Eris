@@ -324,7 +324,6 @@ var/list/rummage_sound = list(\
 
 	var/turf/turf_source = get_turf(source)
 	var/maxdistance = (world.view + extrarange) * 2
-	var/init_vol = vol
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/list/listeners = GLOB.player_list
 	if(!ignore_walls) //these sounds don't carry through walls
@@ -334,23 +333,22 @@ var/list/rummage_sound = list(\
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
-		vol = init_vol
 		var/hear_sound = FALSE
 		if(get_dist(M, turf_source) <= maxdistance)
 			hear_sound = TRUE
 
-		if(ishuman(M))
+		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H)
 				if(H.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
-					vol *= 1.2
-					hear_sound = TRUE
+					if(get_dist(M, turf_source) <= maxdistance + 5)
+						hear_sound = TRUE
 
 		if(hear_sound)
 			var/turf/T = get_turf(M)
-
-			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure)
+			if(T)
+				if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))
+					M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure)
 
 var/const/FALLOFF_SOUNDS = 0.5
 
