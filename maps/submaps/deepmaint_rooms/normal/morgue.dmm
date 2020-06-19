@@ -14,7 +14,7 @@
 "n" = (/obj/machinery/optable,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "o" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/deepmaint)
 "p" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
-"q" = (/obj/machinery/bodyscanner,/obj/machinery/camera/network/medbay{dir = 4},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"q" = (/obj/machinery/bodyscanner,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "r" = (/obj/machinery/body_scanconsole,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "s" = (/obj/structure/table/rack,/obj/random/medical,/obj/random/medical/low_chance,/obj/random/medical/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "t" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/deepmaint)

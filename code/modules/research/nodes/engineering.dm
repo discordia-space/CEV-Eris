@@ -224,7 +224,7 @@
 
 	x = 0.7
 	y = 0.5
-	icon = "jawsoflife"
+	icon = "Moebius_box1"
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()

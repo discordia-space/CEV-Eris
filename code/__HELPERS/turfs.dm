@@ -190,7 +190,7 @@
 
 /proc/isOnShipLevel(var/atom/A)
 	if (A && istype(A))
-		if (A.z in maps_data.station_levels)
+		if (A.z in GLOB.maps_data.station_levels)
 			return TRUE
 	return FALSE
 

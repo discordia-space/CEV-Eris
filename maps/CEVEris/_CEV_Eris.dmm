@@ -5312,7 +5312,7 @@
 /area/eris/rnd/podbay)
 "ama" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel,
@@ -12095,9 +12095,16 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "aBx" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/tiled/steel,
-/area/eris/security/main)
+/obj/structure/table/rack,
+/obj/item/weapon/gun/projectile/revolver/sky_driver,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Sky_Driver"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
 "aBy" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -30712,7 +30719,7 @@
 /area/eris/maintenance/section1deck3central)
 "bqx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -31539,7 +31546,7 @@
 /area/eris/crew_quarters/sleep/cryo)
 "bsG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -34240,7 +34247,7 @@
 /obj/structure/sign/department/chem{
 	pixel_x = -32
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -43255,6 +43262,15 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"bRy" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Sky_Driver";
+	name = "Sky Driver id lock";
+	pixel_x = -28;
+	req_access = list(58)
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
 "bRz" = (
 /obj/structure/table/rack,
 /obj/random/medical_lowcost,
@@ -45453,7 +45469,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -47483,6 +47499,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/command/tcommsat/chamber)
+"cba" = (
+/obj/structure/multiz/stairs/enter/bottom{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
 "cbb" = (
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/tcommsat/chamber)
@@ -49272,6 +49297,15 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
+"ceK" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Bluespace_Biosyphon";
+	name = "Bluespace Biosyphon id lock";
+	pixel_x = -28;
+	req_access = list(1)
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/security/main)
 "ceL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -49434,6 +49468,18 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
+"ceZ" = (
+/obj/structure/table/rack,
+/obj/item/biosyphon,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Bluespace_Biosyphon"
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/security/main)
 "cfa" = (
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/tech)
@@ -51880,7 +51926,7 @@
 /area/eris/medical/medbay/uppercor)
 "ckV" = (
 /obj/machinery/light/small,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark/golden,
@@ -59734,7 +59780,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -77755,7 +77801,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -85038,7 +85084,7 @@
 	icon_state = "alarm0";
 	pixel_x = -26
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108109,7 +108155,7 @@
 	},
 /area/space)
 "eMe" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108210,14 +108256,14 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "fBx" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "fBO" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108243,7 +108289,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "gjm" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel,
@@ -108292,7 +108338,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "hMo" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -108347,7 +108393,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108486,7 +108532,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108501,7 +108547,7 @@
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
 "klx" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108577,7 +108623,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "ltJ" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108638,7 +108684,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "mjD" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108731,7 +108777,7 @@
 /area/eris/medical/chemstor)
 "nlx" = (
 /obj/machinery/light,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108867,7 +108913,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108903,7 +108949,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "oLk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109065,7 +109111,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "suD" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -109096,7 +109142,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "tbl" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109154,7 +109200,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "ubu" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -109312,7 +109358,7 @@
 "vLR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109412,7 +109458,7 @@
 /turf/space,
 /area/space)
 "xPv" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -132931,7 +132977,7 @@ dzq
 abA
 dzn
 afs
-agb
+cba
 agb
 afs
 afP
@@ -133331,8 +133377,8 @@ acO
 adz
 aaR
 abF
-dzi
-dzi
+afs
+afs
 afs
 afD
 agd
@@ -133533,10 +133579,10 @@ acP
 aaR
 aaR
 abF
-aaa
-aaa
 afs
-afE
+aBx
+bRy
+agd
 agd
 agw
 afb
@@ -133735,8 +133781,8 @@ acQ
 adn
 abF
 abF
-aaa
-aaa
+afs
+afs
 afs
 afF
 age
@@ -167263,8 +167309,8 @@ aaa
 csS
 aIC
 aKT
-csS
-csS
+cyx
+cyx
 abH
 aVc
 aVc
@@ -167465,8 +167511,8 @@ aaa
 csS
 czd
 aKU
-csS
-aaa
+cyx
+cyx
 abH
 aVc
 aVc
@@ -167667,8 +167713,8 @@ aaA
 csS
 csS
 csS
-csS
-aaa
+aab
+aab
 abH
 aVc
 aVc
@@ -167869,8 +167915,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+aab
+ceZ
 abH
 aVc
 aVM
@@ -168071,8 +168117,8 @@ aac
 aac
 aac
 aac
-aac
 aab
+aBi
 aab
 aVt
 aVN
@@ -168273,8 +168319,8 @@ aRe
 aRe
 aXs
 aRe
-aRe
-aBx
+ceK
+aBi
 bak
 aVc
 aVO
@@ -173935,7 +173981,7 @@ aST
 aVu
 aaf
 aaf
-aaa
+abF
 abF
 csS
 csS
@@ -174136,8 +174182,8 @@ aag
 aag
 aaf
 aaf
-aaa
-aaa
+abF
+abF
 abF
 csS
 aTi

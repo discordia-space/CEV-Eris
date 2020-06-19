@@ -417,7 +417,7 @@
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
-//		if(var/on = TRUE)
+//		if(var/on == TRUE)
 //		return
 	if(cremating)
 		return //don't let you cremate something twice or w/e

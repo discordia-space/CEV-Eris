@@ -26,6 +26,7 @@
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
+	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -108,7 +109,7 @@
 		item_icons = item_icons_cache[type]
 	if(one_hand_penalty && (!wielded_item_state))//If the gun has a one handed penalty but no wielded item state then use this generic one.
 		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
-
+	generate_guntags()
 	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info
 	action.owner = src
 	hud_actions += action
@@ -286,6 +287,8 @@
 		projectile.multiply_projectile_damage(damage_multiplier)
 
 		projectile.multiply_projectile_penetration(penetration_multiplier)
+
+		projectile.multiply_pierce_penetration(pierce_multiplier)
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
@@ -617,6 +620,7 @@
 /obj/item/weapon/gun/ui_data(mob/user)
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
+	data["pierce_multiplier"] = pierce_multiplier
 	data["penetration_multiplier"] = penetration_multiplier
 
 	data["fire_delay"] = fire_delay //time between shot, in ms
@@ -666,6 +670,7 @@
 	//First of all, lets reset any var that could possibly be altered by an upgrade
 	damage_multiplier = initial(damage_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
+	pierce_multiplier = initial(pierce_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
 	fire_delay = initial(fire_delay)
 	move_delay = initial(move_delay)
@@ -687,3 +692,7 @@
 	update_icon()
 	//then update any UIs with the new stats
 	SSnano.update_uis(src)
+
+/obj/item/weapon/gun/proc/generate_guntags()
+	if(one_hand_penalty)
+		gun_tags |= GUN_GRIP

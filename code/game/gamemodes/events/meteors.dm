@@ -181,7 +181,7 @@
 		if (zlevel)
 			target_level = zlevel
 		else
-			target_level = pick(maps_data.station_levels)
+			target_level = pick(GLOB.maps_data.station_levels)
 		spawn_meteor(meteortypes, startSide, target_level)
 
 /proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)

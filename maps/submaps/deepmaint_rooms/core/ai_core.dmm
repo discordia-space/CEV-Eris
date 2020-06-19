@@ -22,7 +22,7 @@
 "av" = (/obj/machinery/power/smes/buildable,/turf/simulated/floor/bluegrid,/area/deepmaint)
 "aw" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
 "ax" = (/obj/structure/AIcore,/turf/simulated/floor/bluegrid,/area/deepmaint)
-"ay" = (/obj/structure/AIcore,/turf/simulated/floor/bluegrid,/area/space)
+"ay" = (/obj/machinery/door/airlock/vault{icon_state = "door_locked"; locked = 1; name = "AI Core"},/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
 "az" = (/obj/machinery/button/remote/blast_door{dir = 2; id = "deep_maint_AI_core"; name = "AI Core Door Control"; pixel_x = 0; pixel_y = -24},/turf/simulated/floor/bluegrid,/area/deepmaint)
 "aA" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
 "aB" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
@@ -64,7 +64,6 @@
 "bl" = (/obj/item/modular_computer/console/preset/command{icon_state = "console"; dir = 4},/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
 "bm" = (/obj/item/modular_computer/console/preset/command{icon_state = "console"; dir = 8},/turf/simulated/floor/tiled/steel/bar_dance,/area/deepmaint)
 "bn" = (/obj/random/junk,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel/bar_flat,/area/deepmaint)
-"bo" = (/obj/machinery/door/airlock/vault{icon_state = "door_locked"; locked = 1; name = "AI Core"},/turf/simulated/floor/tiled/steel/bar_dance,/area/space)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -77,7 +76,7 @@ aaabamanabaRabababababababababaRabaoapabaO
 aTabaqababaRabaUaUaVasaraUaUabaRaWabaqabaa
 aaaXatabaSaQabasauaravarauasabaRaRaWaYaOaa
 aaaaatabaRababacauabababauacababaQaZaYaaaO
-aaaaatabaQabaxacbaabayabbbacaxabaSaZbcbdaa
+aaaaatabaQabaxacbaabaxabbbacaxabaSaZbcbdaa
 aaaaatabaSababacaracacacaracabbeaRaWbcalaO
 aaaaatabaSaQabasaraVauararasabaRaRabawbfbg
 aTabaqababaSabbharararazarbiabaRababaqabbf
@@ -86,6 +85,6 @@ aaabaaatabaSaSaSaRaFaGaHaRaRaSaSabataaaWaa
 aaabaaatababababababaIababababababataObfaO
 aaabaOaAbjagagaJasaaaabkasaJagagbjaEaaaWaa
 aaabaaaNaNaNaNabblaaaaaabmabaNaNaNaNaaabaO
-bnabacabababababababboabababababababacabaL
+bnabacabababababababayabababababababacabaL
 aOaaaaaaaOaaaabkaaaaaaaaaabkaaaaaaaaaaaOaa
 "}
