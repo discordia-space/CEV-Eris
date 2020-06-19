@@ -4,6 +4,9 @@
 	storage_slots = 7
 	icon_state = "wallet"
 	w_class = ITEM_SIZE_SMALL
+	cant_hold = list(
+		/obj/item/weapon/tool/screwdriver/combi_driver,
+		/obj/item/weapon/tool/screwdriver/combi_driver/onestar) //We can not hold these do to being bigger then the wallet itself
 	can_hold = list(
 		/obj/item/weapon/spacecash,
 		/obj/item/weapon/card,
