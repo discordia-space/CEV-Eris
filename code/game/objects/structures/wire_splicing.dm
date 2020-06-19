@@ -9,7 +9,7 @@
 	layer = TURF_LAYER + 0.45
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
-/obj/structure/wire_splicing/Initialize(var/roundstart)
+/obj/structure/wire_splicing/Initialize(roundstart)
 	.=..()
 
 
@@ -80,14 +80,13 @@
 		var/mob/living/L = AM
 		var/turf/T = get_turf(src)
 		var/chance_to_shock = messiness * 10
-		if(MOVING_DELIBERATELY(L))
-			chance_to_shock = chance_to_shock - 30
+		chance_to_shock -= L.skill_to_evade_traps(chance_to_shock)
 		if(locate(/obj/structure/catwalk) in T)
-			chance_to_shock = chance_to_shock - 20
+			chance_to_shock -= 20
 		if(prob(chance_to_shock))
 			shock(L, FALSE)
 
-/obj/structure/wire_splicing/proc/shock(mob/user as mob, var/using_hands = TRUE)
+/obj/structure/wire_splicing/proc/shock(mob/user as mob, using_hands = TRUE)
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
 		return FALSE
 	var/turf/T = get_turf(src)

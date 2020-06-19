@@ -39,12 +39,12 @@ GLOBAL_LIST_EMPTY(faction_types)
 	for(var/datum/antagonist/A in player.antagonist)
 		A.remove_antagonist()
 
-/proc/clear_antagonist_type(var/datum/mind/player, var/a_id)
+/proc/clear_antagonist_type(datum/mind/player, a_id)
 	for(var/datum/antagonist/A in player.antagonist)
 		if(A.id == a_id)
 			A.remove_antagonist()
 
-/proc/create_antag_instance(var/a_id)
+/proc/create_antag_instance(a_id)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
 	if(all_antag_types[a_id])
 		var/atype = all_antag_types[a_id].type
