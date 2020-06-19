@@ -58,7 +58,7 @@
 /datum/perk/moralist
 	name = "Moralist"
 	icon_state = "moralist" //https://game-icons.net/
-	desc = "You are good human being. Love life and life will love you back. Love people and they will love you back."
+	desc = "You are a good human being. Love life, and life will love you back. Love people, and they will love you back."
 
 /datum/perk/drug_addict
 	name = "Drug Addict"
@@ -126,7 +126,7 @@
 				/obj/item/weapon/tool/sword = 0.2,
 				/obj/item/weapon/tool/sword/katana = 0.2,
 				/obj/item/weapon/tool/knife/butch = 2,
-				/obj/item/weapon/tool/knife/dagger = 0.8))
+				/obj/item/weapon/tool/knife/dagger/ceremonial = 0.8))
 	W = new W(T)
 	W.name = "[holder.last_name] family [W.name]"
 	holder.put_in_hands(W)
@@ -150,8 +150,8 @@
 
 /datum/perk/rejected_genius
 	name = "Rejected genius"
+	desc = "Your dreams are undisturbed by reality, your search for the impossible continues regardless of your peers."
 	icon_state = "knowledge"
-	desc = "Your dreams are undisturbed by reality and you are in search of the philosopher’s stone and the elixir of life."
 
 /datum/perk/rejected_genius/assign(mob/living/carbon/human/H)
 	..()
@@ -186,7 +186,7 @@
 /datum/perk/lowborn
 	name = "Lowborn"
 	icon_state = "ladder" //https://game-icons.net/1x1/delapouite/hole-ladder.html
-	desc = "For them you are a paria, thrash — untouchable! That’s the word! You are an Untouchable!"
+	desc = "For them you are a pariah, trash — untouchable! That’s the word! You are an Untouchable!"
 
 /datum/perk/lowborn/assign(mob/living/carbon/human/H)
 	..()

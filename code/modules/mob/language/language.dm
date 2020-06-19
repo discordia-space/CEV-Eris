@@ -77,19 +77,13 @@
 
 	return "[trim(full_name)]"
 
-/datum/language/proc/get_random_last_name(gender, name_count=1, syllable_count=4, syllable_divisor=2)
+/datum/language/proc/get_random_last_name(name_count=1, syllable_count=4, syllable_divisor=2)
 	//This language has its own name lists
 	if (name_lists)
-		if(gender==FEMALE)
-			return capitalize(pick(last_names))
-		else
-			return capitalize(pick(last_names))
+		return capitalize(pick(last_names))
 
 	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
-			return capitalize(pick(GLOB.last_names))
-		else
-			return capitalize(pick(GLOB.last_names))
+		return capitalize(pick(GLOB.last_names))
 
 	var/full_name = ""
 	var/new_name = ""
@@ -98,7 +92,7 @@
 		new_name = ""
 		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
 			new_name += pick(syllables)
-		full_name += " [capitalize(lowertext(new_name))]"
+		full_name += "[capitalize(lowertext(new_name))]"
 
 	return "[trim(full_name)]"
 

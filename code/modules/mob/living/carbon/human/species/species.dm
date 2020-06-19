@@ -240,12 +240,9 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/datum/species/proc/get_random_last_name(gender)
+/datum/species/proc/get_random_last_name()
 	if(!name_language)
-		if(gender == FEMALE)
-			return capitalize(pick(GLOB.last_names))
-		else
-			return capitalize(pick(GLOB.last_names))
+		return capitalize(pick(GLOB.last_names))
 
 	var/datum/language/species_language = all_languages[name_language]
 	if(!species_language)

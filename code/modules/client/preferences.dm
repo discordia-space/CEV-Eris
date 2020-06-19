@@ -50,7 +50,7 @@
 	player_setup = new(src)
 	gender = pick(MALE, FEMALE)
 	real_first_name = random_first_name(gender,species)
-	real_last_name = random_last_name(gender,species)
+	real_last_name = random_last_name(species)
 	real_name = real_first_name + " " + real_last_name
 	b_type = RANDOM_BLOOD_TYPE
 
