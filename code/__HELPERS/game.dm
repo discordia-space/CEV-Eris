@@ -32,9 +32,9 @@
 
 /proc/in_range(source, user)
 	if(get_dist(source, user) <= 1)
-		return 1
+		return TRUE
 
-	return 0 //not in range and not telekinetic
+	return FALSE //not in range and not telekinetic
 
 // Like view but bypasses luminosity check
 

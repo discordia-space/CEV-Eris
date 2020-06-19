@@ -40,6 +40,7 @@
 	var/mob/living/carbon/human/owner
 
 	var/sanity_passive_gain_multiplier = 1
+	var/insight_passive_gain_multiplier = 1
 	var/sanity_invulnerability = 0
 	var/level
 	var/max_level = 100
@@ -51,11 +52,13 @@
 
 	var/list/valid_inspirations = list(/obj/item/weapon/oddity)
 	var/list/desires = list()
-
 	var/positive_prob = 20
+	var/positive_prob_multiplier = 1
 	var/negative_prob = 30
 
 	var/view_damage_threshold = 20
+	var/environment_cap = 1
+
 
 	var/say_time = 0
 	var/breakdown_time = 0
@@ -82,7 +85,10 @@
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect, min(view_damage_threshold - level, 0)))
+	if(environment_cap > 1)
+		changeLevel(max(affect, min(view_damage_threshold - level, 0)))
+	else
+		changeLevel(affect)
 	handle_breakdowns()
 	handle_insight()
 	handle_level()
@@ -99,6 +105,9 @@
 			var/mob/living/carbon/human/H = A
 			if(!H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal)
 				owner.reagents.add_reagent("toxin", 0.5)
+			if(owner.stats.getPerk(PERK_MORALIST))
+					if(H.sanity.level < 30 || H.health < 50)
+						. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
@@ -114,7 +123,14 @@
 			breakdowns -= B
 
 /datum/sanity/proc/handle_insight()
-	insight += INSIGHT_GAIN(level_change)
+	var/moralist_factor = 1
+	if(owner)
+		if(owner.stats.getPerk(PERK_MORALIST))
+			for(var/mob/living/carbon/human/H in view(owner))
+				if(H)
+					if(H.sanity.level > 60)
+						moralist_factor += 0.02
+	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 		++resting
@@ -234,7 +250,6 @@
 			var/stat_up = L[stat] * multiplier
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
-			
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -245,6 +260,17 @@
 /datum/sanity/proc/onSeeDeath(mob/M)
 	if(ishuman(M))
 		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
+		if(M.stats.getPerk(PERK_NIHILIST))
+			var/effect_prob = rand(1, 100)
+			switch(effect_prob)
+				if(1 to 25)
+					M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate Nihilist")
+				if(26 to 50)
+					M.stats.removeTempStat(STAT_COG, "Fate Nihilist")
+				if(51 to 75)
+					penalty *= -1
+				if(76 to 100)
+					penalty *= 0
 		changeLevel(penalty*death_view_multiplier)
 		if(M.stats.getPerk(PERK_TERRIBLE_FATE))
 			if(prob(100-owner.stats.getStat(STAT_VIG)))
@@ -252,7 +278,6 @@
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))
-
 
 /datum/sanity/proc/onDrug(datum/reagent/drug/R, multiplier)
 	changeLevel(R.sanity_gain * multiplier)
@@ -282,7 +307,6 @@
 		return
 	say_time = world.time + SANITY_COOLDOWN_SAY
 	changeLevel(SANITY_GAIN_SAY)
-
 
 /datum/sanity/proc/changeLevel(amount)
 	if(sanity_invulnerability && amount < 0)
@@ -317,7 +341,7 @@
 			M.reg_break(owner)
 
 	var/list/possible_results
-	if(prob(positive_prob))
+	if(prob(positive_prob) && positive_prob_multiplier > 0)
 		possible_results = subtypesof(/datum/breakdown/positive)
 	else if(prob(negative_prob))
 		possible_results = subtypesof(/datum/breakdown/negative)

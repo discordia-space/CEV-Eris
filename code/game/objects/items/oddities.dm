@@ -220,7 +220,6 @@
 	slot_flags = SLOT_BELT
 	sharp = TRUE
 	edge = TRUE
-
 	oddity_stats = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,

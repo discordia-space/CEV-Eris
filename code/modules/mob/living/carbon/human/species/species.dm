@@ -228,10 +228,36 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
+/datum/species/proc/get_random_first_name(gender)
+	if(!name_language)
+		if(gender == FEMALE)
+			return capitalize(pick(GLOB.first_names_female))
+		else
+			return capitalize(pick(GLOB.first_names_male))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_name(gender)
+
+/datum/species/proc/get_random_last_name()
+	if(!name_language)
+		return capitalize(pick(GLOB.last_names))
+
+	var/datum/language/species_language = all_languages[name_language]
+	if(!species_language)
+		species_language = all_languages[default_language]
+	if(!species_language)
+		return "unknown"
+	return species_language.get_random_name()
+
+
 /datum/species/proc/organs_spawned(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/hug(mob/living/carbon/human/H,mob/living/target)
+/datum/species/proc/hug(mob/living/carbon/human/H,var/mob/living/target)
 
 	var/t_him = "them"
 	switch(target.gender)

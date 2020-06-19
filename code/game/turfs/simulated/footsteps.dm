@@ -35,6 +35,9 @@
 		if(!shoes)
 			volume -= 60
 			range -= 0.333
+		if(stats.getPerk(PERK_RAT))
+			volume -= 20
+			range -= 0.333
 		if(stats.getPerk(PERK_QUIET_AS_MOUSE))
 			volume = 0
 		playsound(T, footsound, volume, 1, range)

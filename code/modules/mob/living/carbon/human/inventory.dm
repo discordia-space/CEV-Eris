@@ -358,3 +358,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(s_store)    items += s_store
 
 	return items
+
+/mob/living/carbon/human/get_max_w_class()
+	var/get_max_w_class = 0
+	for(var/obj/item/clothing/C in get_equipped_items())
+		if(C)
+			if(C.w_class > ITEM_SIZE_TINY)
+				get_max_w_class = C.w_class
+	return get_max_w_class

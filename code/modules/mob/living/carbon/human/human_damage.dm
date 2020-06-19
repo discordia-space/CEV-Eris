@@ -342,7 +342,7 @@ This function restores all organs.
 	return
 
 
-/mob/living/carbon/human/proc/get_organ(var/zone)
+/mob/living/carbon/human/proc/get_organ(zone)
 	RETURN_TYPE(/obj/item/organ/external)
 	if(!zone)
 		zone = BP_CHEST
@@ -350,7 +350,7 @@ This function restores all organs.
 		zone = BP_HEAD
 	return organs_by_name[zone]
 
-/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/sharp = FALSE, var/edge = FALSE, var/obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
