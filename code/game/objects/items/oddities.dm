@@ -215,8 +215,8 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	slot_flags = SLOT_BELT
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 	oddity_stats = list(
 		STAT_ROB = 5,

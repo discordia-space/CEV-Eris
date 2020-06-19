@@ -2,7 +2,7 @@
 	name = "station intercom (General)"
 	desc = "Talk through this."
 	icon_state = "intercom"
-	anchored = 1
+	anchored = TRUE
 	slot_flags = null
 	w_class = ITEM_SIZE_BULKY
 	canhear_range = 2
@@ -97,11 +97,11 @@
 		last_tick = world.timeofday
 
 		if(!src.loc)
-			on = 0
+			on = FALSE
 		else
 			var/area/A = get_area(src)
 			if(!A)
-				on = 0
+				on = FALSE
 			else
 				on = A.powered(EQUIP) // set "on" to the power status
 

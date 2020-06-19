@@ -3,7 +3,7 @@
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
-	density = 0
+	density = FALSE
 	plane = FLOOR_PLANE
 	anchored = TRUE
 	w_class = ITEM_SIZE_NORMAL

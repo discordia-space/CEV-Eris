@@ -10,11 +10,11 @@
 
 	invisibility = 101
 
-	density = 0
+	density = FALSE
 	stat = DEAD
 	movement_handlers = list()
 
-	anchored = 1	//  don't get pushed around
+	anchored = TRUE	//  don't get pushed around
 /*
 /mob/new_player/New()
 	mob_list += src*/

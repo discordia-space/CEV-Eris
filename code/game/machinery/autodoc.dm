@@ -5,8 +5,8 @@
 	name = "Autodoc"
 	icon = 'icons/obj/autodoc.dmi'
 	icon_state = "powered_off"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	circuit = /obj/item/weapon/circuitboard/autodoc
 	use_power = 1

@@ -140,9 +140,9 @@
 
 	if(radio)
 		if(!is_component_functioning("radio"))
-			radio.on = 0
+			radio.on = FALSE
 		else
-			radio.on = 1
+			radio.on = TRUE
 
 	if(is_component_functioning("camera"))
 		src.blinded = 0

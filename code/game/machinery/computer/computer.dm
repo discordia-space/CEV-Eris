@@ -2,8 +2,8 @@
 	name = "computer"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
@@ -103,7 +103,7 @@
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 			A.dir = src.dir
 			A.circuit = circuit
-			A.anchored = 1
+			A.anchored = TRUE
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)

@@ -1,8 +1,8 @@
 /obj/structure/girder
 	name = "wall grider"
 	icon_state = "girder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
@@ -14,7 +14,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	health = 50
 	cover = 25
 
@@ -57,7 +57,7 @@
 	return
 
 /obj/structure/girder/proc/reset_girder()
-	anchored = 1
+	anchored = TRUE
 	cover = initial(cover)
 	health = min(health,initial(health))
 	state = 0
@@ -122,7 +122,7 @@
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You dislodged the girder!"))
 					icon_state = "displaced"
-					anchored = 0
+					anchored = FALSE
 					health = 50
 					cover = 25
 					return

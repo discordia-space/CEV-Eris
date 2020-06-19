@@ -1,5 +1,5 @@
 /atom
-	var/can_buckle = 0
+	var/can_buckle = FALSE
 	var/buckle_movable = 0
 	var/buckle_dir = 0
 	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1

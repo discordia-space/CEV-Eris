@@ -46,8 +46,8 @@
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 	opacity = 0
-	density = 1
-	var/on = 1
+	density = TRUE
+	var/on = TRUE
 	var/datum/ship_engine/gas_thruster/controller
 	var/thrust_limit = 1	//Value between 1 and 0 to limit the resulting thrust
 	var/moles_per_burn = 5
@@ -114,7 +114,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)
 	..(nloc)

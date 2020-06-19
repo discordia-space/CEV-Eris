@@ -2,8 +2,8 @@
 	name = "antigrav generator"
 	desc = "It temporarily disables gravity around."
 	icon_state = "GraviMobile"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	use_power = 1
 	idle_power_usage = 0
 	active_power_usage = 10000
@@ -82,7 +82,7 @@
 						SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 						SPAN_NOTICE("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
 						"You hear ratchet.")
-					src.anchored = 0
+					src.anchored = FALSE
 			else
 				to_chat(user, SPAN_WARNING("Turn off \the [src] first."))
 		else
@@ -92,7 +92,7 @@
 					SPAN_NOTICE("\The [user] fastens \the [src]."), \
 					SPAN_NOTICE("You have fastened \the [src]. Now it can counteract gravity."), \
 					"You hear ratchet.")
-				src.anchored = 1
+				src.anchored = TRUE
 		update_icon()
 	else
 		return ..()

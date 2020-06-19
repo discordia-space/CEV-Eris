@@ -234,7 +234,7 @@
 					SStun = 0
 
 				Victim = null
-				anchored = 0
+				anchored = FALSE
 				step_away(src,M)
 
 			return
@@ -260,7 +260,7 @@
 					SStun = 0
 
 				Victim = null
-				anchored = 0
+				anchored = FALSE
 				step_away(src,M)
 
 			return
@@ -295,7 +295,7 @@
 					if(Victim || Target)
 						Victim = null
 						Target = null
-						anchored = 0
+						anchored = FALSE
 						if(prob(80) && !client)
 							Discipline++
 					spawn(0)
@@ -331,7 +331,7 @@
 
 					Victim = null
 					Target = null
-					anchored = 0
+					anchored = FALSE
 
 					SStun = 1
 					spawn(rand(5,20))
@@ -360,7 +360,7 @@
 
 					Victim = null
 					Target = null
-					anchored = 0
+					anchored = FALSE
 
 					spawn(0)
 						if(user)

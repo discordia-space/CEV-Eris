@@ -68,9 +68,9 @@
 	//Perform the connection
 	connected_port = new_port
 	connected_port.connected_device = src
-	connected_port.on = 1 //Activate port updates
+	connected_port.on = TRUE //Activate port updates
 
-	anchored = 1 //Prevent movement
+	anchored = TRUE //Prevent movement
 
 	//Actually enforce the air sharing
 	var/datum/pipe_network/network = connected_port.return_network(src)
@@ -88,7 +88,7 @@
 	if(network)
 		network.gases -= air_contents
 
-	anchored = 0
+	anchored = FALSE
 
 	connected_port.connected_device = null
 	connected_port = null
