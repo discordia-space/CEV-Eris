@@ -249,7 +249,7 @@
 		species_language = all_languages[default_language]
 	if(!species_language)
 		return "unknown"
-	return species_language.get_random_name(gender)
+	return species_language.get_random_name()
 
 
 /datum/species/proc/organs_spawned(mob/living/carbon/human/H)

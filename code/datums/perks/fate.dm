@@ -137,7 +137,7 @@
 
 /datum/perk/rat
 	name = "Rat"
-	desc = "You have been always clever, but it is one thing to be clever and another to be wise."
+	desc = "Early bird gets the worm, but the second rat gets the cheese."
 	icon_state = "rat"
 
 /datum/perk/rat/assign(mob/living/carbon/human/H)
@@ -170,7 +170,7 @@
 /datum/perk/oborin_syndrome
 	name = "Oborin Syndrome" //https://game-icons.net/1x1/delapouite/prism.html
 	icon_state = "prism"
-	desc = "You see world in negative, as if it was an old noir movie."
+	desc = "You're often told you see the world in black and whites. But they're wrong, you see the greys, you live in the greys. Not the 'colors' though, those are just venus traps for the dumb flies, you're smarter than that. Only grey."
 
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
 	..()
