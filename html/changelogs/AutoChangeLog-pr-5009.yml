@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - code_imp: The variables anchored, sharp, edge, density and can_buckle are now
+      boolean.
