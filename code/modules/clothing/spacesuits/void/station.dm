@@ -3,8 +3,8 @@
 /obj/item/clothing/head/space/void/engineering
 	name = "Technomancer voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
-	icon_state = "technohelmet"
-	item_state = "technohelmet"
+	icon_state = "technohelmet_void"
+	item_state = "technohelmet_void"
 	item_state_slots = list(
 		slot_l_hand_str = "eng_helm",
 		slot_r_hand_str = "eng_helm",

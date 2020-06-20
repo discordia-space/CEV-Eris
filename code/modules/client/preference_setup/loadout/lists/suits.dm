@@ -83,3 +83,8 @@
 	display_name = "old leather coat"
 	path = /obj/item/clothing/suit/storage/bladerunner
 	cost = 2
+
+/datum/gear/suit/bomj
+	display_name = "bomj coat"
+	path = /obj/item/clothing/suit/bomj
+	cost = 2

@@ -139,6 +139,16 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
 
+/obj/item/clothing/suit/bomj
+	name = "bomj coat"
+	desc = "A coat padded with synthetic insulation."
+	icon_state = "bomj"
+	item_state = "bomj"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+
 
 //swimsuit
 /obj/item/clothing/under/swimsuit/

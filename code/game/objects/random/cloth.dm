@@ -85,6 +85,7 @@
 
 /obj/random/cloth/suit/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/suit/poncho = 10,
+				/obj/item/clothing/suit/bomj = 5,
 				/obj/item/clothing/suit/storage/ass_jacket = 10,
 				/obj/item/clothing/suit/storage/cargo_jacket = 10,
 				/obj/item/clothing/suit/storage/detective = 5,
