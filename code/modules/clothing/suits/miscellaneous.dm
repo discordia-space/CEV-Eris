@@ -144,8 +144,8 @@
 	desc = "A coat padded with synthetic insulation."
 	icon_state = "bomj"
 	item_state = "bomj"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 

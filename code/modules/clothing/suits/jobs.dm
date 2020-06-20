@@ -172,7 +172,7 @@
 	icon_state = "te_coat"
 	item_state = "te_coat"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,
 		bullet = 20,
