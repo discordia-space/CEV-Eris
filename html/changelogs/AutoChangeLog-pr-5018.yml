@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: Sanity no longer tanks from a single drop of blood
