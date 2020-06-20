@@ -1,0 +1,5 @@
+author: SolatK
+delete-after: true
+changes:
+  - bugfix: every ban have a cid
+  - bugfix: IP ban do not remembers ip if you choose no
