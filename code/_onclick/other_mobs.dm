@@ -66,6 +66,39 @@
 				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
 			return
 
+	//PERK_ABSOLUTE_GRAB
+	if(ishuman(A))
+		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
+			if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+				to_chat(src, "You cannot leap in your current state.")
+				return
+			if(l_hand && r_hand)
+				to_chat(src, SPAN_DANGER("You need to have one hand free to grab someone."))
+				return
+
+			var/mob/living/carbon/human/T = A
+			if(!T || !src || src.stat)
+				return
+			if(get_dist(get_turf(T), get_turf(src)) != 2)
+				return
+			if(last_special > world.time)
+				return
+			last_special = world.time + 75
+			status_flags |= LEAPING
+			src.visible_message(SPAN_DANGER("\The [src] leaps at [T]!"))
+			src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
+			playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+			sleep(5)
+			if(status_flags & LEAPING)
+				status_flags &= ~LEAPING
+
+			if(!src.Adjacent(T))
+				to_chat(src, SPAN_WARNING("You miss!"))
+				Weaken(3)
+				return
+			T.Weaken(1)
+			T.attack_hand(src)
+
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == I_HURT)
