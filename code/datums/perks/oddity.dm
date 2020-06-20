@@ -122,8 +122,16 @@
 
 /datum/perk/oddity/quiet_as_mouse
 	name = "Quiet as mouse"
-	desc = "your footsteps are totally silent."
+	desc = "Your noise coefficient is permanently lower."
 	icon_state = "footsteps" // https://game-icons.net
+
+/datum/perk/oddity/quiet_as_mouse/assign(mob/living/carbon/human/H)
+	..()
+	holder.noise_coeff -= 0.5
+
+/datum/perk/oddity/quiet_as_mouse/remove()
+	holder.noise_coeff += 0.5
+	..()
 
 /datum/perk/oddity/ear_of_quicksilver
 	name = "Ear of quicksilver"
@@ -149,7 +157,7 @@
 	..()
 	holder.mob_bump_flag = HEAVY
 
-/datum/perk/oddity/ass_of_concrete/remove(mob/living/carbon/human/H)
+/datum/perk/oddity/ass_of_concrete/remove()
 	holder.mob_bump_flag = ~HEAVY
 	..()
 

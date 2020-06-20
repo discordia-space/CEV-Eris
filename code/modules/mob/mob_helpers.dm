@@ -637,3 +637,9 @@ proc/is_blind(A)
 		if(stats.getPerk(PERK_RAT))
 			prob_evade *= 2
 	return prob_evade
+
+/mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+	vol *= noise_coeff
+	extrarange *= noise_coeff
+	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)
+
