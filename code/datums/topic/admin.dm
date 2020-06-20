@@ -647,6 +647,7 @@
 			del(M.client)
 			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 		if("No")
+			var/no_ip = 0
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 			if(!reason)
 				return
@@ -656,6 +657,7 @@
 					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
 				if("No")
 					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
+					no_ip = 1
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 			to_chat(M, "\red This is a permanent ban.")
 			if(config.banappeals)
@@ -665,8 +667,10 @@
 			ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-
-			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason)
+			if(no_ip)
+				source.DB_ban_record(BANTYPE_PERMA, M, -1, reason, banip = -1)
+			else
+				source.DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 
 			del(M.client)
 		if("Cancel")
