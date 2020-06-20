@@ -35,6 +35,7 @@
 //Checking for protections
 	var/eye_safety = 0
 	var/ear_safety = 0
+	var/ear_stun_mult = 1
 	if(iscarbon(M))
 		eye_safety = M.eyecheck()
 		if(ishuman(M))
@@ -44,6 +45,8 @@
 				ear_safety += 1
 			if(istype(M:head, /obj/item/clothing/head/armor/helmet))
 				ear_safety += 1
+			if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+				ear_stun_mult *= 2
 
 //Flashing everyone
 	if(eye_safety < FLASH_PROTECTION_MODERATE)
@@ -57,11 +60,11 @@
 //Now applying sound
 	if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
 		if(ear_safety > 0)
-			M.Stun(2)
-			M.Weaken(1)
+			M.Stun(2*ear_stun_mult)
+			M.Weaken(1*ear_stun_mult)
 		else
-			M.Stun(10)
-			M.Weaken(3)
+			M.Stun(10*ear_stun_mult)
+			M.Weaken(3*ear_stun_mult)
 			if ((prob(14) || (M == loc && prob(70))))
 				M.ear_damage += rand(1, 10)
 			else
@@ -70,12 +73,12 @@
 
 	else if(get_dist(M, T) <= 5)
 		if(!ear_safety)
-			M.Stun(8)
+			M.Stun(8*ear_stun_mult)
 			M.ear_damage += rand(0, 3)
 			M.ear_deaf = max(M.ear_deaf,10)
 
 	else if(!ear_safety)
-		M.Stun(4)
+		M.Stun(4*ear_stun_mult)
 		M.ear_damage += rand(0, 1)
 		M.ear_deaf = max(M.ear_deaf,5)
 

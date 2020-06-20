@@ -16,6 +16,8 @@
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
 	var/sanity_value = 1
+	var/perk
+	var/perk_prob = 60
 
 
 /obj/item/weapon/oddity/Initialize()
@@ -26,6 +28,9 @@
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 	AddComponent(/datum/component/inspiration, oddity_stats)
+	if(!perk)
+		if(perk_prob)
+			perk = pick(subtypesof(/datum/perk/oddity))
 
 /obj/item/weapon/oddity/examine(user)
 	..()
@@ -43,6 +48,8 @@
 			else
 				continue
 		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+		if(perk)
+			to_chat(user, SPAN_NOTICE("emits a <span style='color:orange'>strange</span> sensation."))
 
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important

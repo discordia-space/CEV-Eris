@@ -58,12 +58,12 @@
 
 /datum/perk/oddity/space_asshole/assign(mob/living/carbon/human/H)
 	..()
-	holder.species.bomb_defense += 25
-	holder.species.falls_mod -= 0.4
+	holder.mob_bomb_defense += 25
+	holder.falls_mod -= 0.4
 
 /datum/perk/oddity/space_asshole/remove()
-	holder.species.bomb_defense -= 25
-	holder.species.falls_mod += 0.4
+	holder.mob_bomb_defense -= 25
+	holder.falls_mod += 0.4
 	..()
 
 /datum/perk/oddity/parkour

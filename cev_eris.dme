@@ -50,6 +50,7 @@
 #include "code\__DEFINES\mobs.dm"
 #include "code\__DEFINES\movement.dm"
 #include "code\__DEFINES\nanoui.dm"
+#include "code\__DEFINES\perks.dm"
 #include "code\__DEFINES\process_scheduler.dm"
 #include "code\__DEFINES\qdel.dm"
 #include "code\__DEFINES\reagents.dm"

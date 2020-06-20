@@ -95,14 +95,21 @@
 	if(sanity_invulnerability)
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
+	var/sanity_damage_view = 0
 	for(var/atom/A in view(owner.client ? owner.client : owner))
-		if(A.sanity_damage) //If this thing is not nice to behold
-			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
-
-		if(owner.stats.getPerk(PERK_MORALIST) && istype(A, /mob/living/carbon/human)) //Moralists react negatively to people in distress
+		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
-			if(H.sanity.level < 30 || H.health < 50)
-				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+			if(!H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal)
+				owner.reagents.add_reagent("toxin", 0.5)
+			if(owner.stats.getPerk(PERK_MORALIST)) //Moralists react negatively to people in distress
+				if(H.sanity.level < 30 || H.health < 50)
+					sanity_damage_view += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+
+		if(A.sanity_damage) //If this thing is not nice to behold
+			sanity_damage_view += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+
+		if(sanity_damage_view)
+			. += sanity_damage_view
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
@@ -241,6 +248,10 @@
 			var/stat_up = L[stat] * multiplier
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
+		if(istype(O, /obj/item/weapon/oddity))
+			var/obj/item/weapon/oddity/OD = O
+			if(OD.perk)
+				owner.stats.addPerk(OD.perk)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -262,7 +273,10 @@
 					penalty *= -1
 				if(76 to 100)
 					penalty *= 0
-		changeLevel(penalty*death_view_multiplier)
+		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
+			setLevel(0)
+		else
+			changeLevel(penalty*death_view_multiplier)
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))

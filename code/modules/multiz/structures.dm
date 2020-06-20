@@ -117,11 +117,13 @@
 		climb(M, climb_delay)
 
 
-/obj/structure/multiz/ladder/proc/climb(var/mob/M, var/delay)
+/obj/structure/multiz/ladder/proc/climb(mob/M, delay)
 	if(!target || !istype(target.loc, /turf))
 		to_chat(M, SPAN_NOTICE("\The [src] is incomplete and can't be climbed."))
 		return
-
+	if(isliving(M))
+		var/mob/living/L = M
+		delay *= L.mod_climb_delay
 	var/turf/T = target.loc
 	var/mob/tempMob
 	for(var/atom/A in T)
