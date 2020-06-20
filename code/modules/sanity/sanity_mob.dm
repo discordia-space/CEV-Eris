@@ -57,7 +57,7 @@
 	var/negative_prob = 30
 
 	var/view_damage_threshold = 20
-	var/environment_cap = 1
+	var/environment_cap_coeff = 1 //How much we are affected by environmental cognitohazards. Multiplies the above threshold
 
 
 	var/say_time = 0
@@ -79,16 +79,13 @@
 	if(owner.stat == DEAD || owner.in_stasis)
 		return
 	var/affect = SANITY_PASSIVE_GAIN * sanity_passive_gain_multiplier
-	if(owner.stat)
+	if(owner.stat) //If we're unconscious
 		changeLevel(affect)
 		return
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	if(environment_cap > 1)
-		changeLevel(max(affect, min(view_damage_threshold - level, 0)))
-	else
-		changeLevel(affect)
+	changeLevel(max(affect, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_breakdowns()
 	handle_insight()
 	handle_level()
@@ -99,13 +96,13 @@
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
-		if(A.sanity_damage)
+		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
-		if(owner.stats.getPerk(PERK_MORALIST))
-			if(istype(A, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = A
-				if(H.sanity.level < 30 || H.health < 50)
-					. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+
+		if(owner.stats.getPerk(PERK_MORALIST) && istype(A, /mob/living/carbon/human)) //Moralists react negatively to people in distress
+			var/mob/living/carbon/human/H = A
+			if(H.sanity.level < 30 || H.health < 50)
+				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)

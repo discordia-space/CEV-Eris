@@ -1,6 +1,6 @@
 /datum/perk/paper_worm
 	name = "Paper Worm"
-	desc = "You always look at the bright side of life but seems there's something you'd forgotten" 
+	desc = "You always look at the bright side of life but seems there's something you'd forgotten"
 	icon_state = "paper"
 
 /datum/perk/paper_worm/assign(mob/living/carbon/human/H)
@@ -114,7 +114,7 @@
 	..()
 	if(!holder.last_name)
 		qdel(src)
-	holder.sanity.environment_cap -= 1
+	holder.sanity.environment_cap_coeff -= 1
 	var/turf/T = get_turf(holder)
 	var/obj/item/W = pickweight(list(/obj/item/weapon/tool/knife/butterfly = 1,
 				/obj/item/weapon/tool/knife/switchblade = 1,
@@ -132,7 +132,7 @@
 	holder.put_in_hands(W)
 
 /datum/perk/noble/remove()
-	holder.sanity.environment_cap += 1
+	holder.sanity.environment_cap_coeff += 1
 	..()
 
 /datum/perk/rat
@@ -155,13 +155,13 @@
 
 /datum/perk/rejected_genius/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.environment_cap -= 1
+	holder.sanity.environment_cap_coeff -= 1
 	holder.sanity.positive_prob_multiplier -= 1
 	holder.sanity.insight_passive_gain_multiplier *= 1.5
 	holder.sanity.max_level -= 20
 
 /datum/perk/rejected_genius/remove()
-	holder.sanity.environment_cap += 1
+	holder.sanity.environment_cap_coeff += 1
 	holder.sanity.positive_prob_multiplier += 1
 	holder.sanity.insight_passive_gain_multiplier /= 1.5
 	holder.sanity.max_level += 20
