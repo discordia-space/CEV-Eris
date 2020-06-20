@@ -6,4 +6,4 @@
 	layer = ABOVE_LIGHTING_LAYER
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
-	mouse_opacity = 0
+	mouse_opacity = FALSE
