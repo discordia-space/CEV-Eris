@@ -288,3 +288,8 @@
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define NEWorINITIAL(variable, newvalue) variable = newvalue ? newvalue : initial(variable)
+
+//Matricies
+#define MATRIX_GREYSCALE list(0.33, 0.33, 0.33,\
+                              0.33, 0.33, 0.33,\
+                              0.33, 0.33, 0.33)

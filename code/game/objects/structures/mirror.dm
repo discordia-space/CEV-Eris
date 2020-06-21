@@ -4,8 +4,8 @@
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/shattered = 0
 	var/list/ui_users = list()
 	var/appearance_changer_flags = APPEARANCE_ALL_HAIR

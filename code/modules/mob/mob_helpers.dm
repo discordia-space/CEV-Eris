@@ -626,3 +626,12 @@ proc/is_blind(A)
 				I.on_embed_removal(src)
 			A.tumble()
 	embedded = list()
+
+/mob/proc/skill_to_evade_traps(prob_catch)
+	var/prob_evade = 0
+	if(MOVING_DELIBERATELY(src))
+		prob_evade = 25
+		prob_evade += prob_evade/stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE) - prob_evade*get_max_w_class()/ITEM_SIZE_TITANIC
+		if(stats.getPerk(PERK_RAT))
+			prob_evade *= 2
+	return prob_evade

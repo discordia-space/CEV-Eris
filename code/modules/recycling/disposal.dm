@@ -14,8 +14,8 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = LOW_OBJ_LAYER //This allows disposal bins to be underneath tables
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
@@ -109,8 +109,8 @@
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_BIN
-					C.anchored = 1
-					C.density = 1
+					C.anchored = TRUE
+					C.density = TRUE
 					C.update()
 					qdel(src)
 			return
@@ -698,8 +698,8 @@
 	desc = "An underfloor disposal pipe."
 	plane = FLOOR_PLANE
 	layer = DISPOSAL_PIPE_LAYER
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 	level = BELOW_PLATING_LEVEL			// underfloor only
 	var/pipe_dir = 0		// bitmask of pipe directions
@@ -1448,8 +1448,8 @@
 	desc = "An outlet for the pneumatic disposal system."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "outlet"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER //So we can see things that are being ejected
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
@@ -1523,8 +1523,8 @@
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_OUTLET
-					C.anchored = 1
-					C.density = 1
+					C.anchored = TRUE
+					C.density = TRUE
 					C.update()
 					qdel(src)
 			return

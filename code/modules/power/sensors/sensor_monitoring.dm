@@ -11,8 +11,8 @@
 	light_color = COLOR_LIGHTING_ORANGE_MACHINERY
 
 	//computer stuff
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/powermonitor
 	var/alerting = 0
 	use_power = 1

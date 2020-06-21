@@ -78,7 +78,7 @@
 	restricted_hardpoints = list(HARDPOINT_HEAD)
 	mech_layer = MECH_INTERMEDIATE_LAYER
 
-	var/on = 0
+	var/on = FALSE
 	var/l_max_bright = 0.9
 	var/l_inner_range = 1
 	var/l_outer_range = 6

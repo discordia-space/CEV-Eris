@@ -4,8 +4,8 @@
 	desc = "An esoteric and very complicated device designed to produce a gravitational singularity when stimulated by Alpha particles. Handle with care."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = 0
 	var/energy = 0
 

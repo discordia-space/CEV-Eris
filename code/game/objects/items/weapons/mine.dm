@@ -6,6 +6,7 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
+	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
 
@@ -38,16 +39,18 @@
 	if(armed)
 		overlays.Add(image(icon,"mine_light"))
 
-/obj/item/weapon/mine/attack_self(var/mob/user)
+/obj/item/weapon/mine/attack_self(mob/user)
 	armed = !armed
 	if (armed)
 		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	update_icon()
 
-/obj/item/weapon/mine/Crossed(var/mob/AM)
+/obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
-			if (!is_excelsior(AM))
+			prob_explode = initial(prob_explode)
+			prob_explode -= AM.skill_to_evade_traps(prob_explode)
+			if(prob(prob_explode) && !is_excelsior(AM))
 				explode()
 				return
 	.=..()

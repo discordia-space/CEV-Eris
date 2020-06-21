@@ -402,7 +402,7 @@ meteor_act
 				if(T)
 					src.loc = T
 					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
 
 /mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)

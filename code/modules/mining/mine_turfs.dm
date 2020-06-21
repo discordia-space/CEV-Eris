@@ -4,7 +4,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
 	blocks_air = 1
-	density = 1
+	density = TRUE
 	layer = EDGED_TURF_LAYER
 
 /turf/simulated/mineral //wall piece
@@ -14,7 +14,7 @@
 	oxygen = 0
 	nitrogen = 0
 	opacity = 1
-	density = 1
+	density = TRUE
 	layer = EDGED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C

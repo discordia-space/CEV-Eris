@@ -8,9 +8,9 @@
 	icon = 'icons/mob/alien.dmi'
 	layer = ABOVE_NORMAL_TURF_LAYER
 
-	density = 0
+	density = FALSE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 
 	var/atom/target
 	var/ticks = 0

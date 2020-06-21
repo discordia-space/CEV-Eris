@@ -39,7 +39,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	force = 3
-	var/on = 0
+	var/on = FALSE
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 

@@ -24,7 +24,7 @@
 		to_chat(user, SPAN_NOTICE("You carefully insert [syringe] into [src]."))
 		user.remove_from_mob(syringe)
 		syringe.loc = src
-		sharp = 1
+		sharp = TRUE
 		name = "syringe dart"
 		update_icon()
 

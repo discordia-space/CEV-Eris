@@ -3,8 +3,8 @@
 	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 50
 	circuit = /obj/item/weapon/circuitboard/recharge_station

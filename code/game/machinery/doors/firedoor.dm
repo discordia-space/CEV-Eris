@@ -15,7 +15,7 @@
 	icon_state = "door_open"
 	req_one_access = list(access_atmospherics, access_engine_equip, access_medical_equip)
 	opacity = 0
-	density = 0
+	density = FALSE
 	layer = BELOW_OPEN_DOOR_LAYER
 	open_layer = BELOW_OPEN_DOOR_LAYER // Just below doors when open
 	closed_layer = CLOSED_FIREDOOR_LAYER // Just above doors when closed
@@ -214,8 +214,8 @@
 					else
 						new/obj/item/weapon/airalarm_electronics(src.loc)
 					var/obj/structure/firedoor_assembly/FA = new/obj/structure/firedoor_assembly(src.loc)
-					FA.anchored = 1
-					FA.density = 1
+					FA.anchored = TRUE
+					FA.density = TRUE
 					FA.wired = 1
 					FA.update_icon()
 					qdel(src)

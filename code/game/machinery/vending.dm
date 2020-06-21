@@ -81,8 +81,8 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	layer = BELOW_OBJ_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
