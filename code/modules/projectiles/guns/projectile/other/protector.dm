@@ -18,7 +18,30 @@
 	recoil_buildup = 20
 	max_shells = 6
 	zoom_factor = 2.0
+	var/throw_distance = 7
+	var/release_force = 5
 	twohanded = TRUE
+
+/obj/item/weapon/gun/projectile/grenade/proc/load_grenade(obj/item/weapon/grenade/A, mob/user)  //For loading hand grenades, not ammo
+	if(!A.loadable)
+		to_chat(user, SPAN_WARNING("\The [A] doesn't seem to fit in \the [src]!"))
+		return
+	if(loaded.len >= max_shells)
+		to_chat(user, SPAN_WARNING("\The [src] is full."))
+		return
+	user.remove_from_mob(A)
+	A.forceMove(src)
+	loaded.Insert(1, A) //add to the head of the list, so that it is loaded on the next pump
+	user.visible_message("\The [user] inserts \a [A] into \the [src].", SPAN_NOTICE("You insert \a [A] into \the [src]."))
+	pump(user)
+	update_icon()
+
+/obj/item/weapon/gun/projectile/grenade/load_ammo(var/obj/item/A, mob/user)  //Allows us to load both hand grenades and grenade shells
+	if(istype(A, /obj/item/weapon/grenade))
+		load_grenade(A, user)
+	else
+		..()
+
 
 //revolves the magazine, allowing players to choose between multiple grenade types
 /obj/item/weapon/gun/projectile/grenade/proc/pump(mob/user as mob)
