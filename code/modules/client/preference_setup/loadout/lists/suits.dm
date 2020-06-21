@@ -86,5 +86,5 @@
 
 /datum/gear/suit/bomj
 	display_name = "bomj coat"
-	path = /obj/item/clothing/suit/bomj
+	path = /obj/item/clothing/suit/storage/bomj
 	cost = 2
