@@ -1,8 +1,9 @@
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/banckey = null, var/banip = null, var/bancid = null)
+datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/banckey = null, var/banip = null, var/bancid = null, var/delayed_ban = 0)
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))
 		return
+
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -84,6 +85,10 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		if(get_cid.NextRow())
 			computerid = get_cid.item[1]
 	var/sql
+	if(delayed_ban)
+		var/datum/delayed_ban/ban = new(target_id, server, bantype_str , reason, job, duration, computerid, banned_by_id, ip)
+		GLOB.delayed_bans += ban
+		return
 	if(banip == -1)
 		sql = "INSERT INTO bans (target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) VALUES ([target_id], Now(), '[server]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[computerid]', NULL, [banned_by_id])"
 	else
@@ -94,6 +99,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		log_world("[key_name_admin(usr)] attempted to ban [ckey] but got error: [query_insert.ErrorMsg()].")
 		return
 	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.")
+
 
 
 datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
