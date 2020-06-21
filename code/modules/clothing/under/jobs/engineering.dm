@@ -1,6 +1,6 @@
 //Contains: Engineering department jumpsuits
 /obj/item/clothing/under/rank/exultant
-	desc = "It's a blue-green jumpsuit worn by engineers. It has minor radiation shielding."
+	desc = "It's a yellow-crimson jumpsuit worn by engineers. It has minor radiation shielding."
 	name = "exultant jumpsuit"
 	icon_state = "chiefengineer"
 	item_state = "g_suit"

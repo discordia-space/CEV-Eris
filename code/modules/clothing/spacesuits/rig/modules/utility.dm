@@ -445,3 +445,13 @@
 
 /obj/item/rig_module/autodoc/commercial
 	autodoc_type = /datum/autodoc/capitalist_autodoc
+
+/obj/item/rig_module/cape
+	name = "cape"
+	desc = "A cape designed to be attached to hardsuits."
+
+/obj/item/rig_module/cape/te
+	name = "technomancer cape"
+	desc = "A tough regal cape, imprinted with the emblem of the Technomancer League."
+	suit_overlay_active = "cape_te"
+	suit_overlay_inactive = "cape_te"
