@@ -15,7 +15,6 @@
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
-
 	var/sanity_value = 1
 
 
@@ -27,7 +26,6 @@
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 	AddComponent(/datum/component/inspiration, oddity_stats)
-
 
 /obj/item/weapon/oddity/examine(user)
 	..()
@@ -215,9 +213,8 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	slot_flags = SLOT_BELT
-	sharp = 1
-	edge = 1
-
+	sharp = TRUE
+	edge = TRUE
 	oddity_stats = list(
 		STAT_ROB = 5,
 		STAT_TGH = 5,

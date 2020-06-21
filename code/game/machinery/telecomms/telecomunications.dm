@@ -32,7 +32,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	var/machinetype = 0 // just a hacky way of preventing alike machines from pairing
 	var/toggled = 1 	// Is it toggled on
-	var/on = 1
+	var/on = TRUE
 	var/integrity = 100 // basically HP, loses integrity by heat
 	var/produces_heat = 1	//whether the machine will produce heat when on.
 	var/delay = 10 // how many process() ticks to delay per heat
@@ -193,11 +193,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	if(toggled)
 		if(stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
-			on = 0
+			on = FALSE
 		else
-			on = 1
+			on = TRUE
 	else
-		on = 0
+		on = FALSE
 
 /obj/machinery/telecomms/Process()
 	update_power()

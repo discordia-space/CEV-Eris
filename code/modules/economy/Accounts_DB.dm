@@ -4,9 +4,9 @@
 	desc = "Access transaction logs, account data and all kinds of other financial records."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "account_computer"
-	density = 1
+	density = TRUE
 	req_one_access = list(access_hop, access_captain, access_cent_captain)
-	anchored = 1
+	anchored = TRUE
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card

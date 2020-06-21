@@ -6,7 +6,7 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "cabinet_closed"
 	w_class = ITEM_SIZE_NORMAL
-	density = 1
+	density = TRUE
 
 	var/static/list/amount_of_underwear_by_id_card
 

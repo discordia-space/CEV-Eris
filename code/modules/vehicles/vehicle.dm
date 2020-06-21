@@ -8,17 +8,17 @@
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
 	layer = MOB_LAYER + 0.1 //so it sits above objects including mobs
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	animate_movement=1
 	light_range = 3
 
-	can_buckle = 1
+	can_buckle = TRUE
 	buckle_movable = 1
 	buckle_lying = 0
 
 	var/attack_log = null
-	var/on = 0
+	var/on = FALSE
 	var/health = 0	//do not forget to set health for your vehicle!
 	var/maxhealth = 0
 	var/fire_dam_coeff = 1.0
@@ -55,7 +55,7 @@
 			turn_off()
 
 		var/init_anc = anchored
-		anchored = 0
+		anchored = FALSE
 		if(!(. = ..()))
 			anchored = init_anc
 			return
@@ -191,13 +191,13 @@
 		return 0
 	if(powered && cell.charge < charge_use)
 		return 0
-	on = 1
+	on = TRUE
 	set_light(initial(light_range))
 	update_icon()
 	return 1
 
 /obj/vehicle/proc/turn_off()
-	on = 0
+	on = FALSE
 	set_light(0)
 	update_icon()
 
@@ -302,7 +302,7 @@
 
 	C.forceMove(loc)
 	C.set_dir(dir)
-	C.anchored = 1
+	C.anchored = TRUE
 
 	load = C
 
@@ -352,7 +352,7 @@
 
 	load.forceMove(dest)
 	load.set_dir(get_dir(loc, dest))
-	load.anchored = 0		//we can only load non-anchored items, so it makes sense to set this to false
+	load.anchored = FALSE		//we can only load non-anchored items, so it makes sense to set this to false
 	load.pixel_x = initial(load.pixel_x)
 	load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)

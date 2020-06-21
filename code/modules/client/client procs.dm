@@ -601,3 +601,6 @@
 		score = response["fraud_score"]
 
 	return score/100 //To normalize with the 0.0 to 1.0 scores.
+
+/client/proc/colour_transition(list/colour_to = null, time = 10) //Call this with no parameters to reset to default.
+	animate(src, color = colour_to, time = time, easing = SINE_EASING)

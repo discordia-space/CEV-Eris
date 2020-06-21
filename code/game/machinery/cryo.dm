@@ -4,13 +4,13 @@
 	name = "cryo cell"
 	icon = 'icons/obj/cryogenics.dmi' // map only
 	icon_state = "pod_preview"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	layer = ABOVE_WINDOW_LAYER
 	plane = GAME_PLANE
 	interact_offline = 1
 
-	var/on = 0
+	var/on = FALSE
 	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 200
@@ -152,11 +152,11 @@
 		return 0 // don't update UIs attached to this object
 
 	if(href_list["switchOn"])
-		on = 1
+		on = TRUE
 		update_icon()
 
 	if(href_list["switchOff"])
-		on = 0
+		on = FALSE
 		update_icon()
 
 	if(href_list["ejectBeaker"])

@@ -1,14 +1,14 @@
 /obj/machinery/disease2/incubator/
 	name = "pathogenic incubator"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "incubator"
 	var/obj/item/weapon/virusdish/dish
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/radiation = 0
 
-	var/on = 0
+	var/on = FALSE
 	var/power = 0
 
 	var/foodsupply = 0
@@ -92,7 +92,7 @@
 	if(dish && on && dish.virus2)
 		use_power(50,EQUIP)
 		if(!powered(EQUIP))
-			on = 0
+			on = FALSE
 			icon_state = "incubator"
 
 		if(foodsupply)
@@ -123,7 +123,7 @@
 			dish.virus2 = null
 			SSnano.update_uis(src)
 	else if(!dish)
-		on = 0
+		on = FALSE
 		icon_state = "incubator"
 		SSnano.update_uis(src)
 

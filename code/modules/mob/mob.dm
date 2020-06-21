@@ -714,14 +714,14 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		lying = 0
 		canmove = TRUE //TODO: Remove this
 	else if(buckled)
-		anchored = 1
+		anchored = TRUE
 		if(istype(buckled))
 			if(buckled.buckle_lying == -1)
 				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
 			else
 				lying = buckled.buckle_lying
 			if(buckled.buckle_movable)
-				anchored = 0
+				anchored = FALSE
 		canmove = FALSE //TODO: Remove this
 	else
 		lying = incapacitated(INCAPACITATION_KNOCKDOWN)
@@ -994,7 +994,7 @@ mob/proc/yank_out_object()
 		if(O == selection)
 			pinned -= O
 		if(!pinned.len)
-			anchored = 0
+			anchored = FALSE
 	return 1
 
 /mob/living/proc/handle_statuses()

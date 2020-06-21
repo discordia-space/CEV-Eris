@@ -4,7 +4,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "cameracase"
 	w_class = ITEM_SIZE_SMALL
-	anchored = 0
+	anchored = FALSE
 
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 3)
 

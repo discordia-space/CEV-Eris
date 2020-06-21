@@ -11,7 +11,6 @@
 	holder.sanity.death_view_multiplier *= 2
 	..()
 
-
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself!"
@@ -27,7 +26,6 @@
 	holder.metabolism_effects.nsa_threshold -= 10
 	..()
 
-
 /datum/perk/vagabond
 	name = "Vagabond"
 	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant."
@@ -40,7 +38,6 @@
 /datum/perk/vagabond/remove()
 	holder.sanity.view_damage_threshold -= 20
 	..()
-
 
 /datum/perk/merchant
 	name = "Merchant"
@@ -106,7 +103,6 @@
 			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
 			holder.equip_to_storage_or_drop(B)
 
-
 #undef CHOICE_LANG
 #undef CHOICE_TCONTRACT
 #undef CHOICE_STASHPAPER
@@ -119,7 +115,7 @@
 
 /datum/perk/sanityboost/assign(mob/living/carbon/human/H)
 	..()
-	H.sanity.sanity_passive_gain_multiplier *= 1.5
+	holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
 /datum/perk/sanityboost/remove()
 	holder.sanity.sanity_passive_gain_multiplier /= 1.5

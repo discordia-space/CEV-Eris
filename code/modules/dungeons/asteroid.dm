@@ -165,7 +165,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x3"
 	alpha = 120
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
 	simulated = 0
 	invisibility = 101

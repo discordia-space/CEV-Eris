@@ -3,11 +3,11 @@
 
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
+	density = TRUE
 	var/obj/structure/cable/last_piece
 	var/obj/item/stack/cable_coil/cable
 	var/max_cable = 100
-	var/on = 0
+	var/on = FALSE
 
 /obj/machinery/cablelayer/New()
 	cable = new(src)

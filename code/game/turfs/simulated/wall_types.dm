@@ -43,7 +43,7 @@
 /obj/structure/shuttle_part //For placing them over space, if sprite covers not whole tile.
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/structure/shuttle_part/cargo

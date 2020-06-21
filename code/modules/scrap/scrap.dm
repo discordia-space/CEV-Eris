@@ -54,8 +54,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	name = "This thing shoots scrap everywhere with a delay"
 	desc = "no data"
 	invisibility = 101
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 /obj/effect/scrapshot/Initialize(mapload, severity = 1)
 	..()

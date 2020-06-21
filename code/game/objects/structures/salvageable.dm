@@ -2,8 +2,8 @@
 	name = "broken macninery"
 	desc = "Broken beyond repair, but looks like you can still salvage something from this."
 	icon = 'icons/obj/salvageable.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/salvageable_parts = list()
 
 /obj/structure/salvageable/proc/dismantle()
