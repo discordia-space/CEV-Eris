@@ -99,7 +99,7 @@
 	for(var/atom/A in view(owner.client ? owner.client : owner))
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
-			if(!H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal)
+			if(H.stat != DEAD && !H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal && !owner.stats.getPerk(PERK_TOXIC_REVENGER))
 				owner.reagents.add_reagent("toxin", 0.5)
 			if(owner.stats.getPerk(PERK_MORALIST)) //Moralists react negatively to people in distress
 				if(H.sanity.level < 30 || H.health < 50)

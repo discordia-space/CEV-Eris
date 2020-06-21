@@ -397,7 +397,7 @@ This function restores all organs.
 
 //Falling procs
 /mob/living/carbon/human/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = 15
+	var/damage = 15 * falls_mod
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
