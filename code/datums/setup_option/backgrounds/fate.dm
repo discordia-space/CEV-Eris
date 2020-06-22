@@ -103,9 +103,3 @@
 			You did not knew your parents, and was just lucky enough to learn how to read, and that, in time, landed you on position at this ship."
 	restricted_jobs = list(/datum/job/captain, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/ihc)
 	perks = list(PERK_LOWBORN)
-
-/datum/category_item/setup_option/background/fate/veteran
-	name = "Veteran"
-	desc = "At some point in your life gears of war drag you in, used you and break you, \
-			just to spill you back into the civil world, with zero thoughts put into what will happen \
-			with you next. Was it Corporate War, or one of the many End Point conflict? Does it even matter at this point?"
