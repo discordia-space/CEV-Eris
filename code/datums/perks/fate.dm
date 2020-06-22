@@ -137,7 +137,7 @@
 		final_oddity[stat] = rand(1,7)
 	W.AddComponent(/datum/component/inspiration, final_oddity)
 	W.AddComponent(/datum/component/atom_sanity, 1, "")
- 	spawn(1)
+	spawn(1)
 		holder.equip_to_storage_or_drop(W)
 
 /datum/perk/noble/remove()
@@ -158,7 +158,7 @@
 	..()
 
 /datum/perk/rejected_genius
-	name = "Rejected genius"
+	name = "Rejected Genius"
 	desc = "Your dreams are undisturbed by reality, your search for the impossible continues regardless of your peers."
 	icon_state = "knowledge"
 
