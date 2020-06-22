@@ -2,6 +2,7 @@
 	camera_networks = list(NETWORK_MINE)
 
 /obj/item/clothing/head/space/rig/ce
+	light_overlay = "helmet_light_dual"
 	camera_networks = list(NETWORK_ENGINEERING)
 
 /obj/item/clothing/head/space/rig/eva
@@ -144,7 +145,8 @@ Advanced Voidsuit: Technomancer Exultant
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/rcd,
 		/obj/item/rig_module/vision/meson,
-		/obj/item/rig_module/storage
+		/obj/item/rig_module/storage,
+		/obj/item/rig_module/cape/te
 		)
 
 /obj/item/clothing/gloves/rig/ce

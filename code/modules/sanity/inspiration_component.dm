@@ -24,6 +24,25 @@
 	else
 		return COMPONENT_INCOMPATIBLE
 
+/datum/component/inspiration/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
+
+/datum/component/inspiration/proc/on_examine(var/mob/user)
+	for(var/stat in stats)
+		var/aspect
+		switch(stats[stat])
+			if(10 to INFINITY)
+				aspect = "an <span style='color:#d0b050;'>overwhelming</span>"
+			if(6 to 10)
+				aspect = "a <span class='red'>strong</span>"
+			if(3 to 6)
+				aspect = "a <span class='green'>medium</span>"
+			if(1 to 3)
+				aspect = "a <span class='blue'>weak</span>"
+			else
+				continue
+		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()
 	if(stats)

@@ -984,6 +984,13 @@ var/global/list/damage_icon_parts = list()
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
 		standing.color = back.color
 
+		//Rig module overlays on mob.
+		if(istype(back, /obj/item/weapon/rig))
+			var/obj/item/weapon/rig/rig = back//Maybe add if(rig.installed_modules.len) below this since the code for accessories does that far as I know.
+			for(var/obj/item/rig_module/module in rig.installed_modules)
+				if(module.suit_overlay)
+					standing.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay)
+
 		//create the image
 		overlays_standing[BACK_LAYER] = standing
 
