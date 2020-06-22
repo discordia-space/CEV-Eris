@@ -11,7 +11,7 @@
 	reagent_flags = OPENCONTAINER
 	price_tag = 20000
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
-	unacidable = 1 //glass doesn't dissolve in acid
+	unacidable = TRUE //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)
 	var/blood_amout = 0
 
@@ -63,6 +63,6 @@
 	if(!flag)
 		return
 	if(standard_pour_into(user, target))
-		return 1
+		return TRUE
 	if(standard_dispenser_refill(user, target))
-		return 1
+		return TRUE
