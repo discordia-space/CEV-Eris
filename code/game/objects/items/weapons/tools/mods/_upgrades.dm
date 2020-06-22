@@ -64,6 +64,7 @@
 /datum/component/item_upgrade/proc/check_robot(var/mob/living/silicon/robot/R, var/mob/living/user)
 	if(!R.opened)
 		to_chat(user, SPAN_WARNING("You need to open [R]'s panel to access its tools."))
+		return FALSE
 	var/list/robotools = list()
 	for(var/obj/item/weapon/tool/robotool in R.module.modules)
 		robotools.Add(robotool)
