@@ -13,7 +13,7 @@ Pipelines + Other Objects -> Pipe network
 
 	auto_init = 0
 
-	anchored = 1
+	anchored = TRUE
 	idle_power_usage = 0
 	active_power_usage = 0
 	power_channel = ENVIRON

@@ -396,8 +396,8 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.layer = 5
 
 	src.ChangeTurf(/turf/simulated/floor/plating)

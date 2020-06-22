@@ -27,7 +27,7 @@ var/global/list/default_medbay_channels = list(
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
 
-	var/on = 1 // 0 for off
+	var/on = TRUE // 0 for off
 	var/last_transmission
 	var/frequency = PUB_FREQ //common chat
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies

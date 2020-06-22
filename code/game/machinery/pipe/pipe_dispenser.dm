@@ -2,8 +2,8 @@
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/wait = 0
 
 /obj/machinery/pipedispenser/attack_hand(user as mob)
@@ -126,8 +126,8 @@
 	name = "Disposal Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /*
 //Allow you to push disposal pipes into it (for those with density 1)
@@ -206,13 +206,13 @@ Nah
 					C.pipe_type = PIPE_TYPE_TRUNK
 				if(5)
 					C.pipe_type = PIPE_TYPE_BIN
-					C.density = 1
+					C.density = TRUE
 				if(6)
 					C.pipe_type = PIPE_TYPE_OUTLET
-					C.density = 1
+					C.density = TRUE
 				if(7)
 					C.pipe_type = PIPE_TYPE_INTAKE
-					C.density = 1
+					C.density = TRUE
 				if(8)
 					C.pipe_type = PIPE_TYPE_JUNC_SORT
 					C.sort_mode = SORT_TYPE_NORMAL
@@ -241,7 +241,7 @@ Nah
 
 // adding a pipe dispensers that spawn unhooked from the ground
 /obj/machinery/pipedispenser/orderable
-	anchored = 0
+	anchored = FALSE
 
 /obj/machinery/pipedispenser/disposal/orderable
-	anchored = 0
+	anchored = FALSE

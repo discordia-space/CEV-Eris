@@ -21,9 +21,9 @@
 	var/turfs_around = list()
 	var/victims_to_teleport = list()
 	var/obj/crawler/spawnpoint/target = null
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
-	density = 1
+	density = TRUE
 
 /obj/rogue/teleporter/New()
 	for(var/turf/T in orange(7, src))
@@ -208,9 +208,9 @@
 	var/turf/target = null
 	var/active = FALSE
 	w_class = ITEM_SIZE_GARGANTUAN
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
-	density = 1
+	density = TRUE
 	var/t_x
 	var/t_y
 	var/t_z

@@ -4,5 +4,5 @@
 	desc = "It's a ... present?"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "strangepresent"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE

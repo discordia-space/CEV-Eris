@@ -48,14 +48,14 @@
 	if(operating == -1)
 		ae.icon_state = "door_electronics_smoked"
 		operating = 0
-	src.density = 0
+	src.density = FALSE
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
 	qdel(src)
 
 /obj/machinery/door/window/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	. = ..()
 
@@ -115,7 +115,7 @@
 	sleep(10)
 
 	explosion_resistance = 0
-	src.density = 0
+	src.density = FALSE
 //	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
@@ -131,7 +131,7 @@
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = src.base_state
 
-	src.density = 1
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 //	if(src.visible)
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn

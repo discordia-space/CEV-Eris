@@ -37,7 +37,7 @@
 	desc = "A strangely translucent and iridescent crystal. \red You get headaches just from looking at it."
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
-	density = 1
+	density = TRUE
 	anchored = 0
 	light_range = 4
 
@@ -109,7 +109,7 @@
 
 /obj/machinery/power/supermatter/proc/explode()
 	log_and_message_admins("Supermatter exploded at [x] [y] [z]")
-	anchored = 1
+	anchored = TRUE
 	grav_pulling = 1
 	exploded = 1
 	for(var/mob/living/mob in GLOB.living_mob_list)

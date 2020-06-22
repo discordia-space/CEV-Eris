@@ -26,7 +26,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps on"
-	density = 0
+	density = FALSE
 	layer = MOB_LAYER
 	mob_size = MOB_MINISCULE
 	min_oxy = 16 //Require atleast 16kPA oxygen

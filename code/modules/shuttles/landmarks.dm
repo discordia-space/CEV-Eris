@@ -4,7 +4,7 @@
 	icon = 'icons/misc/landmarks.dmi'
 	icon_state = "shuttle-blue"
 	alpha = 120
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
 	simulated = 0
 	invisibility = 101
@@ -136,7 +136,7 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src,T)
-	anchored = 1
+	anchored = TRUE
 	T.hotspot_expose(1500, 5)
 	update_icon()
 

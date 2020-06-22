@@ -6,8 +6,8 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
 	layer = BELOW_OBJ_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	// The actual laptop/tablet
 	var/obj/item/modular_computer/fabricated_device = null
@@ -280,7 +280,7 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 				if(devtype == 1)
 					fabricated_device.screen_on = 0
-					fabricated_device.anchored = 0
+					fabricated_device.anchored = FALSE
 
 				fabricated_device = null
 			ping("Enjoy your new product!")

@@ -43,5 +43,3 @@
 	else
 		flavors[AS.desc] -= 1
 	update()
-
-

@@ -104,7 +104,7 @@
 		overlays.Cut()
 		flick("opening[ratio]", src)
 
-	density = 0
+	density = FALSE
 	operating = FALSE
 	update_icon()
 
@@ -128,7 +128,7 @@
 		ratio = CEILING(ratio * 4, 1) * 25
 		flick("closing[ratio]", src)
 
-	density = 1
+	density = TRUE
 	update_icon()
 	crush()
 	operating = FALSE

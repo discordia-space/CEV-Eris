@@ -14,8 +14,8 @@
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10

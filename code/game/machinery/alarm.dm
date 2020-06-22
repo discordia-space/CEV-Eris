@@ -905,7 +905,7 @@ FIRE ALARM
 	var/time = 10.0
 	var/timing = 0.0
 	var/lockdownbyai = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -1194,12 +1194,12 @@ Just a object used in constructing fire alarms
 	desc = "Cuban Pete is in the house!"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	var/detecting = 1.0
-	var/working = 1.0
-	var/time = 10.0
-	var/timing = 0.0
+	var/detecting = 1
+	var/working = 1
+	var/time = 10
+	var/timing = 0
 	var/lockdownbyai = 0
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6

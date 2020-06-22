@@ -21,4 +21,4 @@
 		to_chat(R, "<span class='notice'>You lost signal from your master [src.name].</span>")
 		
 	. = ..(gibbed,"gives one shrill beep before falling lifeless.")
-	density = 1
+	density = TRUE

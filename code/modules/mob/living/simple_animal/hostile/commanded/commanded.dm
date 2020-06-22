@@ -6,7 +6,7 @@
 	stance = COMMANDED_STOP
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	density = 0
+	density = FALSE
 	attacktext = "swarmed"
 	var/list/command_buffer = list()
 	var/list/known_commands = list("stay", "stop", "attack", "follow")

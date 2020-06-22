@@ -2,8 +2,8 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "hydrotray"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	reagent_flags = OPENCONTAINER
 	volume = 100
 
