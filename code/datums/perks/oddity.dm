@@ -1,5 +1,5 @@
 /datum/perk/oddity/fast_walker
-	name = "Fast walker"
+	name = "Fast Walker"
 	desc = "Slow and steady wins the race. Prove them wrong."
 	icon_state = "fast" // https://game-icons.net/1x1/delapouite/fast-forward-button.html
 
@@ -12,7 +12,7 @@
 	..()
 
 /datum/perk/oddity/ear_of_quicksilver
-	name = "Ear of quicksilver"
+	name = "Ear of Quicksilver"
 	desc = "Secrets do not escape your ears. Walls, hushed whispers, floors - these things are nothing to you. Beware; loud noises are quite fond of this gift."
 	icon_state = "ear" // https://game-icons.net
 
@@ -45,7 +45,7 @@
 	..()
 
 /datum/perk/oddity/blood_of_lead
-	name = "Blood of lead"
+	name = "Blood of Lead"
 	desc = "Rotten food, disgusting garbage, poisons - all is less harmful to you now."
 	icon_state = "liver" // https://game-icons.net
 
@@ -58,7 +58,7 @@
 	..()
 
 /datum/perk/oddity/space_asshole
-	name = "Space asshole"
+	name = "Space Asshole"
 	desc = "Bombs, holes, falling in holes, being hit with bombs, I'm just used to it by now."
 	icon_state = "bomb" // https://game-icons.net
 
@@ -86,7 +86,7 @@
 	..()
 
 /datum/perk/oddity/charming_personality
-	name = "Charming personality"
+	name = "Charming Personality"
 	desc = "A little wink and a confident smile goes far in this place. People are more comfortable with your company."
 	icon_state = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
 
@@ -150,7 +150,7 @@
 	icon_state = "treasure" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete
-	name = "Ass of concrete"
+	name = "Ass of Concrete"
 	desc = "I can't take it anymore! What..how did I land on my feet?! I feel immovable! No one can push me around anymore!"
 	icon_state = "muscular" // https://game-icons.net
 
@@ -168,7 +168,7 @@
 	icon_state = "Hazmat" // https://game-icons.net
 
 /datum/perk/oddity/absolute_grab
-	name = "Absolute grab"
+	name = "Absolute Grab"
 	desc = "It pays to be a predator. You don't grab, You lunge."
 	icon_state = "grab" // https://game-icons.net
 

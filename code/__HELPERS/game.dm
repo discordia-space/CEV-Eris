@@ -42,8 +42,20 @@
 
 	var/lum = source.luminosity
 	source.luminosity = world.view
-
 	var/list/heard = view(range, source)
+	for(var/ear in view(range+3, source))
+		if(!ear)
+			continue
+		if(ear in heard)
+			continue
+		if(!ishuman(ear))
+			continue
+		var/mob/living/carbon/human/H = ear
+		if(get_dist(H.loc, source) < range)
+			continue
+		if(!H.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+			continue
+		heard += ear
 	source.luminosity = lum
 
 	return heard

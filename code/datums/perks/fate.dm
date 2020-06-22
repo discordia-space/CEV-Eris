@@ -149,7 +149,7 @@
 	..()
 
 /datum/perk/rejected_genius
-	name = "Rejected genius"
+	name = "Rejected Genius"
 	desc = "Your dreams are undisturbed by reality, your search for the impossible continues regardless of your peers."
 	icon_state = "knowledge" //https://game-icons.net/
 

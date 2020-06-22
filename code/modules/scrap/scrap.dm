@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
 	sanity_damage = 0.1
-	var/prob_old_item = 66
+	var/rare_item = FALSE
 
 /obj/structure/scrap/proc/make_cube()
 	var/obj/container = new /obj/structure/scrap_cube(loc, loot_max)
@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		else
 			big_item = CATCH.get_item(/obj/random/pack/junk_machine)
 		big_item.forceMove(src)
-		if(prob(prob_old_item))
+		if(prob(66))
 			big_item.make_old()
 		qdel(CATCH)
 
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		new loot_path(src)
 
 	for(var/obj/item/loot in contents)
-		if(prob(prob_old_item))
+		if(prob(66))
 			loot.make_old()
 
 	loot = new(src)
@@ -253,9 +253,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(hurt_hand(user))
 		return
-	prob_old_item = initial(prob_old_item)
-	if(user.stats.getPerk(PERK_JUNKBORN))
-		prob_old_item = 80
 	try_make_loot()
 	loot.open(user)
 	playsound(src, "rummage", 50, 1)
@@ -295,13 +292,21 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		visible_message("<span class='notice'>\A hidden [big_item] is uncovered from beneath the [src]!</span>")
 		big_item.forceMove(get_turf(src))
 		big_item = null
+	else if(rare_item && prob(50))
+		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
+		visible_message("<span class='notice'>\A hidden [O.name] is uncovered from beneath the [src]!</span>")
+		new O(get_turf(src))
 	qdel(src)
 
-/obj/structure/scrap/attackby(obj/item/W, mob/user)
+/obj/structure/scrap/attackby(obj/item/W, mob/living/carbon/human/user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	if((W.has_quality(QUALITY_SHOVELING)) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB, forced_sound = "rummage"))
 		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)
+		if(user.stats.getPerk(PERK_JUNKBORN))
+			rare_item = TRUE
+		else
+			rare_item = FALSE
 		dig_out_lump(user.loc, 0)
 		shuffle_loot()
 		clear_if_empty()
