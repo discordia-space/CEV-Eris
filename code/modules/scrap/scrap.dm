@@ -295,8 +295,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		big_item = null
 	else if(rare_item && prob(rare_item_chance))
 		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
-		visible_message("<span class='notice'>\A hidden [O.name] is uncovered from beneath the [src]!</span>")
-		new O(get_turf(src))
+		O = new O(get_turf(src))
+		visible_message("<span class='notice'>\A hidden [O] is uncovered from beneath the [src]!</span>")
 	qdel(src)
 
 /obj/structure/scrap/attackby(obj/item/W, mob/living/carbon/human/user)

@@ -335,7 +335,7 @@ var/list/rummage_sound = list(\
 		if(!M || !M.client)
 			continue
 		var/dist = get_dist(M, turf_source)
-		if(dist <= maxdistance + 5)
+		if(dist <= maxdistance + 3)
 			if(dist > maxdistance)
 				if(!ishuman(M))
 					continue

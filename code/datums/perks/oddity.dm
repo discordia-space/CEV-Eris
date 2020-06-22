@@ -13,7 +13,7 @@
 
 /datum/perk/oddity/ear_of_quicksilver
 	name = "Ear of Quicksilver"
-	desc = "Secrets do not escape your ears. Walls, hushed whispers, floors - these things are nothing to you. Beware; loud noises are quite fond of this gift."
+	desc = "Secrets do not escape your ears. Beware, loud noises are especially dangerous to you."
 	icon_state = "ear" // https://game-icons.net
 
 /datum/perk/oddity/gunslinger
@@ -118,7 +118,7 @@
 
 /datum/perk/oddity/nightcrawler
 	name = "Nightcrawler"
-	desc = "You are one with the shadows."
+	desc = "You are faster in the darkness."
 	icon_state = "night" // https://game-icons.net/1x1/lorc/night-sky.html
 
 /datum/perk/oddity/fast_fingers
