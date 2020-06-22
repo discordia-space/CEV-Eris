@@ -1,9 +1,0 @@
-author: Trexdude
-delete-after: true
-changes:
-  - rscadd: TE cape now has interface name and description
-  - tweak: TM helmet now blocks flashes, hair, and facial features and has a price
-      tag
-  - tweak: TE cape no longer appears overlayed in inventory
-  - refactor: rig modules now have an option for whether or not their overlay only
-      appears on the mob
