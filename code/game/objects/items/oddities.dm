@@ -34,7 +34,7 @@
 /obj/item/weapon/oddity/examine(user)
 	..()
 	if(perk)
-		to_chat(user, SPAN_NOTICE("emits a <span style='color:orange'>strange</span> sensation."))
+		to_chat(user, SPAN_NOTICE("Emits a <span style='color:orange'>strange</span> sensation."))
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
