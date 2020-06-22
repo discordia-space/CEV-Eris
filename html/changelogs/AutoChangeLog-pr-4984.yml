@@ -1,0 +1,9 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - rscadd: Bliss console - Now can at 5% odds drop level 4 parts, *this is a legit
+      20% on a 2%*
+  - rscadd: Autolathe can now at 5% drop 3 uranium and a 1% to drop 1 diamond.
+  - rscadd: Autolathe have a 5% to drop a autolathe board
+  - rscadd: broken machine now at 5%'s can drop t3 parts
+  - rscadd: broken computer now at 5%'s can drop t3 parts
