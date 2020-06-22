@@ -16,8 +16,7 @@
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
 	var/sanity_value = 1
-	var/perk
-	var/perk_prob = 60
+	var/datum/perk/oddity/perk
 
 
 /obj/item/weapon/oddity/Initialize()
@@ -28,13 +27,13 @@
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 	AddComponent(/datum/component/inspiration, oddity_stats)
-	if(!perk && prob(perk_prob))
+	if(!perk)
 		perk = pick(subtypesof(/datum/perk/oddity))
 
 /obj/item/weapon/oddity/examine(user)
 	..()
 	if(perk)
-		to_chat(user, SPAN_NOTICE("Emits a <span style='color:orange'>strange</span> sensation."))
+		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[GLOB.all_perks[perk]]</span>."))
 
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
