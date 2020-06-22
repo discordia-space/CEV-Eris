@@ -24766,17 +24766,23 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/warden)
 "bdw" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28;
-	pixel_y = 0
-	},
 /obj/structure/cable/green{
+	d1 = 1;
 	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "1-4"
 	},
-/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Von-Krabin";
+	name = "Von-Krabin Stimulator id lock";
+	pixel_x = -28;
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bdx" = (
@@ -45092,20 +45098,21 @@
 /turf/simulated/floor/plating,
 /area/eris/hallway/main/section1)
 "bVD" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27;
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28;
 	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/rack,
+/obj/item/device/von_krabin,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Von-Krabin"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
@@ -52221,12 +52228,26 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/medbay)
+"clK" = (
+/obj/structure/railing{
+	tag = "icon-railing0 (WEST)";
+	icon_state = "railing0";
+	dir = 8;
+	anchored = 1
+	},
+/obj/structure/railing,
+/turf/simulated/open,
+/area/eris/command/mbo)
 "clL" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"clM" = (
+/obj/structure/railing,
+/turf/simulated/open,
+/area/eris/command/mbo)
 "clN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4;
@@ -52432,6 +52453,15 @@
 "cmi" = (
 /obj/machinery/light/small{
 	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/command/mbo)
+"cmj" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Enricher";
+	name = "Molitor-Riedel Enricher id lock";
+	pixel_y = -28;
+	req_access = list(40)
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/command/mbo)
@@ -52729,6 +52759,14 @@
 /obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
+"cmU" = (
+/obj/structure/table/rack,
+/obj/item/weapon/reagent_containers/enricher,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Enricher"
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/command/mbo)
 "cmV" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
@@ -172197,8 +172235,8 @@ bhb
 aRC
 bhU
 bpW
-bVD
 bdw
+bVD
 bag
 baE
 bfq
@@ -249969,8 +250007,8 @@ dzy
 dzy
 dzy
 dzy
-dzy
-dzy
+clK
+cmj
 chl
 dcg
 dcI
@@ -250171,8 +250209,8 @@ dzA
 dzA
 dzA
 dzA
-dzA
-dzA
+clM
+cmU
 chl
 dmN
 doW
