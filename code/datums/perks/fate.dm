@@ -116,22 +116,28 @@
 	..()
 	if(!holder.last_name)
 		qdel(src)
+		return
 	holder.sanity.environment_cap_coeff -= 1
 	var/turf/T = get_turf(holder)
-	var/obj/item/W = pickweight(list(/obj/item/weapon/tool/knife/butterfly = 1,
-				/obj/item/weapon/tool/knife/switchblade = 1,
-				/obj/item/weapon/tool/knife = 1,
-				/obj/item/weapon/tool/knife/boot = 0.5,
-				/obj/item/weapon/tool/knife/hook = 2,
+	var/obj/item/W = pickweight(list(
 				/obj/item/weapon/tool/knife/ritual = 0.5,
-				/obj/item/weapon/tool/scythe = 0.3,
 				/obj/item/weapon/tool/sword = 0.2,
 				/obj/item/weapon/tool/sword/katana = 0.2,
-				/obj/item/weapon/tool/knife/butch = 2,
-				/obj/item/weapon/tool/knife/dagger/ceremonial = 0.8))
+				/obj/item/weapon/tool/knife/dagger/ceremonial = 0.8,
+				/obj/item/weapon/gun/projectile/revolver = 0.4))
 	W = new W(T)
 	W.name = "[holder.last_name] family [W.name]"
-	spawn(1)
+	var/oddities = rand(2,4)
+	var/list/stats = ALL_STATS
+	var/list/final_oddity = list()
+	for(var/i = 0 to oddities)
+		var/stat = pick(stats)
+		stats.Remove(stat)
+		final_oddity += stat
+		final_oddity[stat] = rand(1,7)
+	W.AddComponent(/datum/component/inspiration, final_oddity)
+	W.AddComponent(/datum/component/atom_sanity, 1, "")
+ 	spawn(1)
 		holder.equip_to_storage_or_drop(W)
 
 /datum/perk/noble/remove()
