@@ -1,6 +1,7 @@
 ADMIN_VERB_ADD(/datum/DB_search/verb/new_search, R_ADMIN, FALSE)
 /datum/DB_search
 	var/datum/browser/panel
+	var/empty = 1
 
 
 /datum/DB_search/verb/new_search()
@@ -53,7 +54,35 @@ ADMIN_VERB_ADD(/datum/DB_search/verb/new_search, R_ADMIN, FALSE)
 	var/dbsearchip_search = href_list["dbsearchip_search"]
 	var/dbsearchcid_search = href_list["dbsearchcid_search"]
 	var/output
+	if(!empty)
+		output = {"
+<div align='center'>
+	<form action='byond://'><table width='60%'><td colspan='3' align='center'>
+		<input type='hidden' name='src' value='\ref[src]'>
+		<b>Search:</b>
+		<table width='90%'>
+			<tr>
+			<td align='right'><b>Ckey:</b> <input type='text' name='dbsearchckey_search'></td>
+			<td align='right'><b>IP:</b> <input type='text' name='dbsearchip_search'></td>
+			<td align='right'><b>CID:</b> <input type='text' name='dbsearchcid_search'></td></tr>
+			<br>
+				<input type='submit' value='search'>
+			<br>
+		<table>
+		<hr>
+	</form>
+	<table border='1'>
+	<tr>
+		<th>CKey</th>
+		<th>IP</th>
+		<th>CID</th>
+		<th>last online</th>
+	</tr>"}
+
+		hsrc.panel.set_content(output)
+		hsrc.empty = 1
 	if(dbsearchckey_search || dbsearchip_search || dbsearchcid_search)
+		hsrc.empty = 0
 		var/DBQuery/search_query = dbcon.NewQuery("SELECT ckey, ip, cid, last_seen FROM players WHERE ckey = '[dbsearchckey_search]' OR ip = '[dbsearchip_search]' OR cid = '[dbsearchcid_search]'")
 		search_query.Execute()
 		while(search_query.NextRow())
