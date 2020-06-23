@@ -251,6 +251,13 @@ var/list/rank_prefix = list(\
 	"Ironhammer Gunnery Sergeant" = "Sergeant",\
 	"Ironhammer Commander" = "Lieutenant",\
 	"Captain" = "Captain",\
+	"Moebius Doctor" = "Dr.",\
+	"Moebius Chemist" = "Dr.",\
+	"Moebius Psychiatrist" = "Dr.",\
+	"Moebius Biolab Officer" = "Prof.",\
+	"Moebius Roboticist" = "Dr.",\
+	"Moebius Scientist" = "Dr.",\
+	"Moebius Expedition Overseer" = "Prof.",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
