@@ -1,7 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: items created by Fates are now spawned in the backpack
-  - rscdel: Fate veteran
-  - bugfix: Fate perk visualization
-  - bugfix: Fate Perk Nihilist
