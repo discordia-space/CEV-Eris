@@ -146,13 +146,14 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
+	item_obj = /obj/item/clothing/mask/smokable/cigarette
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
 	icon_type = "cigarette"
 	reagent_flags = REFILLABLE | NO_REACT
 
 /obj/item/weapon/storage/fancy/cigarettes/populate_contents()
 	for(var/i in 1 to storage_slots)
-		new /obj/item/clothing/mask/smokable/cigarette(src)
+		new item_obj(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
