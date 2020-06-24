@@ -1196,6 +1196,7 @@
 #include "code\game\verbs\who.dm"
 #include "code\hispania\__HELPERS\mobs.dm"
 #include "code\hispania\game\objects\items\weapons\manuals.dm"
+#include "code\hispania\modules\clothing\clothing.dm"
 #include "code\hispania\modules\food\food.dm"
 #include "code\hispania\modules\mob\language\station.dm"
 #include "code\hispania\modules\mob\living\carbon\human\emote.dm"
