@@ -233,7 +233,7 @@
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
 
-/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+/obj/item/weapon/storage/fancy/cigcartoons/dromedaryco/populate_contents()
 	for(var/i in 1 to storage_slots)
 		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
 	update_icon()
@@ -244,7 +244,7 @@
 	icon_state = "Bpacketcarton"
 	item_state = "Bpacketcarton"
 
-/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+/obj/item/weapon/storage/fancy/cigcartoons/killthroat/populate_contents()
 	for(var/i in 1 to storage_slots)
 		new /obj/item/weapon/storage/fancy/cigarettes/killthroat(src)
 	update_icon()
@@ -255,7 +255,7 @@
 	icon_state = "Cpacketcarton"
 	item_state = "Cpacketcarton"
 
-/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+/obj/item/weapon/storage/fancy/cigcartoons/homeless/populate_contents()
 	for(var/i in 1 to storage_slots)
 		new /obj/item/weapon/storage/fancy/cigarettes/homeless(src)
 	update_icon()
