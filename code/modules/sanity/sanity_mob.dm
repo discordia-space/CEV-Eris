@@ -99,7 +99,7 @@
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
 
-		if(owner.stats.getPerk(PERK_MORALIST) && istype(A, /mob/living/carbon/human)) //Moralists react negatively to people in distress
+		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
 			if(H.sanity.level < 30 || H.health < 50)
 				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
@@ -119,12 +119,11 @@
 
 /datum/sanity/proc/handle_insight()
 	var/moralist_factor = 1
-	if(owner)
-		if(owner.stats.getPerk(PERK_MORALIST))
-			for(var/mob/living/carbon/human/H in view(owner))
-				if(H)
-					if(H.sanity.level > 60)
-						moralist_factor += 0.02
+	if(owner.stats.getPerk(PERK_MORALIST))
+		for(var/mob/living/carbon/human/H in view(owner))
+			if(H)
+				if(H.sanity.level > 60)
+					moralist_factor += 0.02
 	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
@@ -251,7 +250,7 @@
 /datum/sanity/proc/onSeeDeath(mob/M)
 	if(ishuman(M))
 		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
-		if(M.stats.getPerk(PERK_NIHILIST))
+		if(owner.stats.getPerk(PERK_NIHILIST))
 			var/effect_prob = rand(1, 100)
 			switch(effect_prob)
 				if(1 to 25)
