@@ -57,7 +57,7 @@
 		error("Trying to create existing spawnpoint.")
 	return SP
 
-/proc/get_datum_spawn_locations(name = maps_data.default_spawn, free_only = TRUE, late = FALSE)
+/proc/get_datum_spawn_locations(name = GLOB.maps_data.default_spawn, free_only = TRUE, late = FALSE)
 	var/datum/spawnpoint/SP = get_spawn_point(name, late)
 	if (SP)
 		return SP.get_spawn_locations()
@@ -150,6 +150,8 @@
 		M.buckled.set_dir(M.dir)
 	return TRUE
 
+/datum/spawnpoint/nosearch //for when we want people to start on the exact tile of the spawn landmark
+	search_range = 0
 
 /**********************
 	Cryostorage Spawning

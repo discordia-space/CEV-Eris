@@ -38,12 +38,12 @@
 		f_style = pick(valid_facialhairstyles)
 		return f_style
 
-/proc/sanitize_name(name, species = "Human")
+/proc/sanitize_name(name, species = "Human", max_length = MAX_NAME_LEN)
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
 
-	return current_species ? current_species.sanitize_name(name) : sanitizeName(name)
+	return current_species ? current_species.sanitize_name(name) : sanitizeName(name, max_length)
 
 /proc/random_name(gender, species = "Human")
 
@@ -58,6 +58,31 @@
 			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
 		return current_species.get_random_name(gender)
+
+/proc/random_first_name(gender, species = "Human")
+
+	var/datum/species/current_species
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		if(gender==FEMALE)
+			return capitalize(pick(GLOB.first_names_female))
+		else
+			return capitalize(pick(GLOB.first_names_male))
+	else
+		return current_species.get_random_first_name(gender)
+
+/proc/random_last_name(species = "Human")
+
+	var/datum/species/current_species
+	if(species)
+		current_species = all_species[species]
+
+	if(!current_species || current_species.name_language == null)
+		return capitalize(pick(GLOB.last_names))
+	else
+		return current_species.get_random_last_name()
 
 /proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))
@@ -359,6 +384,19 @@ Proc for attack log creation, because really why not
 
 	return mind.assigned_job.head_position
 
+/mob/proc/update_client_colour(time = 10) //Update the mob's client.color with an animation the specified time in length.
+	if(!client) //No client_colour without client. If the player logs back in they'll be back through here anyway.
+		return
+	client.colour_transition(get_screen_colour(), time = time) //Get the colour matrix we're going to transition to depending on relevance (magic glasses first, eyes second).
+
+/mob/living/carbon/human/get_screen_colour() //Fetch the colour matrix from wherever (e.g. eyes) so it can be compared to client.color.
+	. = ..()
+	if(.)
+		return .
+	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[BP_EYES]
+	if(eyes) //If they're not, check to see if their eyes got one of them there colour matrices. Will be null if eyes are robotic/the mob isn't colourblind and they have no default colour matrix.
+		return eyes.get_colourmatrix()
+
 //hispania//
 /proc/is_species(A, species_datum)
 	. = FALSE
@@ -367,3 +405,4 @@ Proc for attack log creation, because really why not
 		if(istype(H.species, species_datum))
 			. = TRUE
 //fin hispania//
+/mob/proc/get_screen_colour()

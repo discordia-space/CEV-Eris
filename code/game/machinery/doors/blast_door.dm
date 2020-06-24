@@ -70,7 +70,7 @@
 	src.operating = 1
 	flick(icon_state_opening, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
-	src.density = 0
+	src.density = FALSE
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(0)
@@ -86,7 +86,7 @@
 	src.layer = closed_layer
 	flick(icon_state_closing, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
-	src.density = 1
+	src.density = TRUE
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(1)
@@ -186,7 +186,7 @@
 
 /obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
-	density = 0
+	density = FALSE
 	opacity = 0
 
 // SUBTYPE: Shutters

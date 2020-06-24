@@ -24,8 +24,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	name = "visitor computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/screenstate = 0
 	var/title
 	var/category = "Any"
@@ -118,8 +118,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	name = "Check-In/Out Computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	var/sortby = "author"
 	var/buffer_book
@@ -393,8 +393,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	name = "scanner"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/obj/item/weapon/book/cache		// Last scanned book
 
 /obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
@@ -443,8 +443,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	name = "Book Binder"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper))

@@ -6,8 +6,8 @@
 	name = "foam"
 	icon_state = "foam"
 	opacity = 0
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	layer = EDGED_TURF_LAYER
 	mouse_opacity = 0
 	animate_movement = 0
@@ -132,9 +132,9 @@
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
-	density = 1
+	density = TRUE
 	opacity = 1 // changed in New()
-	anchored = 1
+	anchored = TRUE
 	layer = EDGED_TURF_LAYER
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
@@ -145,7 +145,7 @@
 	update_nearby_tiles(1)
 
 /obj/structure/foamedmetal/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles(1)
 	. = ..()
 

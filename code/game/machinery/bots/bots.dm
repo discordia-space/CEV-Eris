@@ -6,7 +6,7 @@
 	light_range = 3
 	use_power = 0
 	var/obj/item/weapon/card/id/botcard			// the ID card that the bot "holds"
-	var/on = 1
+	var/on = TRUE
 	var/health = 0 //do not forget to set health for your bot!
 	var/maxhealth = 0
 	var/fire_dam_coeff = 1.0
@@ -17,12 +17,12 @@
 
 /obj/machinery/bot/proc/turn_on()
 	if(stat)	return 0
-	on = 1
+	on = TRUE
 	set_light(initial(light_range))
 	return 1
 
 /obj/machinery/bot/proc/turn_off()
-	on = 0
+	on = FALSE
 	set_light(0)
 
 /obj/machinery/bot/proc/explode()

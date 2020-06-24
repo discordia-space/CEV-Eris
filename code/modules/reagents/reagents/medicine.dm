@@ -366,7 +366,7 @@
 	color = "#605048"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/medicine/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/medicine/ethylredoxrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
@@ -707,7 +707,7 @@
 	scannable = 1
 	metabolism = REM/2
 
-/datum/reagent/medicine/addictol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/medicine/addictol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	var/mob/living/carbon/C = M
 	if(istype(C) && C.metabolism_effects.addiction_list.len)
 		if(prob(5 * effect_multiplier + dose))

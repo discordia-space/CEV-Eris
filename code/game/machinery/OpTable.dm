@@ -5,8 +5,8 @@
 	icon_state = "optable-idle"
 
 	layer = TABLE_LAYER
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
@@ -43,7 +43,7 @@
 				return
 		if(3.0)
 			if (prob(25))
-				density = 0
+				density = FALSE
 		else
 	return
 
@@ -55,7 +55,7 @@
 		return
 	if (HULK in usr.mutations)
 		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
-		density = 0
+		density = FALSE
 		qdel(src)
 
 /obj/machinery/optable/unbuckle_mob()

@@ -30,8 +30,8 @@
 /obj/structure/inflatable
 	name = "inflatable"
 	desc = "An inflated membrane. Do not puncture."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = 0
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
@@ -141,8 +141,8 @@
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = FALSE
 
 	icon_state = "door_closed"
@@ -193,7 +193,7 @@
 	isSwitchingStates = 1
 	flick("door_opening", src)
 	sleep(10)
-	density = 0
+	density = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -202,7 +202,7 @@
 	isSwitchingStates = 1
 	flick("door_closing", src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

@@ -1,5 +1,5 @@
 /mob
-	density = 1
+	density = TRUE
 	layer = 4.0
 	animate_movement = 2
 	flags = PROXMOVE
@@ -36,7 +36,7 @@
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
 	var/obj/machinery/machine = null
-	var/poll_answer = 0.0
+	var/poll_answer = 0
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 

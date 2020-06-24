@@ -96,7 +96,10 @@ var/savefile/Banlist
 	return 1
 
 
-/proc/AddBan(ckey, computerid, reason, bannedby, temp, minutes, address)
+/proc/AddBan(ckey, computerid, reason, bannedby, temp, minutes, address, delayed_ban)
+
+	if(delayed_ban) //ban will be loaded at the next roundstart from DB
+		return
 
 	var/bantimestamp
 

@@ -68,6 +68,15 @@
 	if(.)
 		START_PROCESSING(SSobj, src)
 
+/obj/item/device/lighting/glowstick/undark
+	name = "undark glowstick"
+	desc = "A military-grade refined cocktail of chemicals in a stick that glows."
+	color = "#49F37C"
+	icon_state = "glowstick"
+	action_button_name = null
+	brightness_on = 4 //Same as a flare
+	max_fuel = 4000
+
 /obj/item/device/lighting/glowstick/red
 	name = "red glowstick"
 	color = "#FC0F29"

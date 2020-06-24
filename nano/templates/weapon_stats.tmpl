@@ -10,6 +10,14 @@
 				 {{:data.damage_multiplier}}x
 			</div>
 		{{/if}}
+		{{if data.pierce_multiplier != 0}}
+			<div class="itemLabel">
+				Projectile walls penetration:
+			</div>
+			<div class="itemContent">
+				{{:data.pierce_multiplier}} walls
+			</div>
+		{{/if}}
 		{{if data.penetration_multiplier != 1}}
 			<div class="itemLabel">
 				Projectile penetration multiplier: 

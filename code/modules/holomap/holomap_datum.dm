@@ -15,7 +15,7 @@
 	if(isStationLevel(T.z))
 		if(!deck_name || reinit)
 			deck_name = image(HOLO_DECK_NAME, "deck")
-			for(var/level in maps_data.station_levels)
+			for(var/level in GLOB.maps_data.station_levels)
 				deck_name = image(HOLO_DECK_NAME, "deck[level]")
 				if(ISODD(level))
 					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) - 2*ERIS_HOLOMAP_CENTER_GUTTER

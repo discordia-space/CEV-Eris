@@ -8,6 +8,8 @@ Has ability of every roach.
 	desc = "A glorious emperor of roaches."
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "kaiser_roach"
+	icon_living = "kaiser_roach"
+	icon_dead = "kiaser_roach_dead"
 	density = TRUE
 
 	turns_per_move = 4
@@ -20,7 +22,7 @@ Has ability of every roach.
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	move_to_delay = 8
-	mob_size =  3  // The same as Hivemind Tyrant
+	mob_size = MOB_HUGE
 
 	var/distress_call_stage = 3
 
@@ -49,7 +51,7 @@ Has ability of every roach.
 
 	if(stat != AI_inactive)
 		return
-	
+
 	if(can_call_reinforcements())
 		distress_call()
 
@@ -154,9 +156,3 @@ Has ability of every roach.
 		return TRUE
 	visible_message("[src] snaps out of its trance and rushes at [user]!")
 	return FALSE
-
-// Kaiser has no death sprite, so he explodes when dies. 
-/mob/living/carbon/superior_animal/roach/kaiser/death()
-	. = ..()
-	if(.)
-		gib()

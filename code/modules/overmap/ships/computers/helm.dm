@@ -32,7 +32,7 @@
 /obj/machinery/computer/helm/Process()
 	..()
 	if (autopilot && dx && dy)
-		var/turf/T = locate(dx,dy,maps_data.overmap_z)
+		var/turf/T = locate(dx,dy,GLOB.maps_data.overmap_z)
 		if(linked.loc == T)
 			if(linked.is_still())
 				autopilot = 0

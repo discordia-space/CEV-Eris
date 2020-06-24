@@ -181,7 +181,7 @@
 		if (zlevel)
 			target_level = zlevel
 		else
-			target_level = pick(maps_data.station_levels)
+			target_level = pick(GLOB.maps_data.station_levels)
 		spawn_meteor(meteortypes, startSide, target_level)
 
 /proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)
@@ -310,8 +310,8 @@
 	desc = "You should probably run instead of gawking at this."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/hits = 4
 	var/hitpwr = 2 //Level of ex_act to be called on hit.
 	var/dest

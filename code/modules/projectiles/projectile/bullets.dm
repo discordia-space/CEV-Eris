@@ -5,7 +5,7 @@
 	nodamage = 0
 	check_armour = ARMOR_BULLET
 	embed = TRUE
-	sharp = 0
+	sharp = FALSE
 	hitsound_wall = "ric_sound"
 	var/mob_passthrough_check = 0
 

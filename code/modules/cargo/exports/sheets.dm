@@ -145,7 +145,7 @@
 // Uranium. Still useful for both power generation and nuclear annihilation.
 /datum/export/stack/uranium
 	cost = 20
-	export_types = list(/obj/item/stack/material/diamond)
+	export_types = list(/obj/item/stack/material/uranium)
 	message = "of uranium"
 
 // Gold. Used in electronics and corrosion-resistant plating.

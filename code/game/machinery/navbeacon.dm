@@ -12,7 +12,7 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 	desc = "A radio beacon used for bot navigation."
 	level = BELOW_PLATING_LEVEL		// underfloor
 	layer = LOW_OBJ_LAYER
-	anchored = 1
+	anchored = TRUE
 
 	var/open = 0		// true if cover is open
 	var/locked = 1		// true if controls are locked

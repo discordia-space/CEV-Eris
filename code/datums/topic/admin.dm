@@ -616,6 +616,9 @@
 
 	if(M.client && M.client.holder)
 		return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
+	var/delayed = 0
+	if(alert("Delayed Ban?", "Ban after roundend. Work with DB only.", "Yes", "No") == "Yes")
+		delayed = 1
 
 	switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 		if("Yes")
@@ -630,12 +633,12 @@
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 			if(!reason)
 				return
-			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
+			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins, delayed_ban = delayed)
 			ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 			to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
 
-			source.DB_ban_record(BANTYPE_TEMP, M, mins, reason)
+			source.DB_ban_record(BANTYPE_TEMP, M, mins, reason, delayed_ban = delayed)
 
 			if(config.banappeals)
 				to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
@@ -647,15 +650,17 @@
 			del(M.client)
 			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 		if("No")
+			var/no_ip = 0
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 			if(!reason)
 				return
 			switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
 				if("Cancel")	return
 				if("Yes")
-					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
+					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP, delayed_ban = delayed)
 				if("No")
-					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
+					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, delayed_ban = delayed)
+					no_ip = 1
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 			to_chat(M, "\red This is a permanent ban.")
 			if(config.banappeals)
@@ -665,8 +670,9 @@
 			ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
+			var/banip = no_ip ? null : -1
+			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason, banip, delayed_ban = delayed)
 
-			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 
 			del(M.client)
 		if("Cancel")
