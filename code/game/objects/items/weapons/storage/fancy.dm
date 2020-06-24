@@ -156,7 +156,6 @@
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
-	return
 
 /obj/item/weapon/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
 	// Don't try to transfer reagents to lighters
@@ -200,8 +199,8 @@
 /obj/item/weapon/storage/fancy/cigarettes/homeless
 	name = "\improper Nomads packet"
 	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is more extra hard"
-	icon_state = "Bpacket"
-	item_state = "Bpacket"
+	icon_state = "Cpacket"
+	item_state = "Cpacket"
 
 /obj/item/weapon/storage/fancy/cigarettes/homeless/Initialize()
 	. = ..()
@@ -217,8 +216,11 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	storage_slots = 10
 	can_hold = list(/obj/item/weapon/storage/fancy/cigarettes)
-	icon_type = "cigpacket"
+	icon_type = "packet"
 	reagent_flags = REFILLABLE | NO_REACT
+
+/obj/item/weapon/storage/fancy/cigcartoons/update_icon()
+	icon_state = "[initial(icon_state)][contents.len]"
 
 /obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
 	for(var/i in 1 to storage_slots)
@@ -230,7 +232,6 @@
 	desc = "A box containing 10 packets of dromedarycos cigarettes."
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
-	icon_type = "Dpacket"
 
 /obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
 	for(var/i in 1 to storage_slots)
@@ -242,7 +243,6 @@
 	desc = "A box containing 10 packets of AcmeCo cigarettes."
 	icon_state = "Bpacketcarton"
 	item_state = "Bpacketcarton"
-	icon_type = "Bpacket"
 
 /obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
 	for(var/i in 1 to storage_slots)
@@ -254,7 +254,6 @@
 	desc = "A box containing 10 packets of Nomad cigarettes."
 	icon_state = "Cpacketcarton"
 	item_state = "Cpacketcarton"
-	icon_type = "Cpacket"
 
 /obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
 	for(var/i in 1 to storage_slots)
