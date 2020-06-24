@@ -20,7 +20,7 @@
 	name = "donut box"
 	max_storage_space = 8
 	var/icon_type = "donut"
-	var/item_obj
+	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
