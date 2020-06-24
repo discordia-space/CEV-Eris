@@ -20,6 +20,7 @@
 	name = "donut box"
 	max_storage_space = 8
 	var/icon_type = "donut"
+	var/item_obj
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
@@ -215,6 +216,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	throwforce = WEAPON_FORCE_HARMLESS
 	storage_slots = 10
+	item_obj = /obj/item/weapon/storage/fancy/cigarettes
 	can_hold = list(/obj/item/weapon/storage/fancy/cigarettes)
 	icon_type = "packet"
 	reagent_flags = REFILLABLE | NO_REACT
@@ -224,7 +226,7 @@
 
 /obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
 	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/storage/fancy/cigarettes(src)
+		new item_obj(src)
 	update_icon()
 
 /obj/item/weapon/storage/fancy/cigcartoons/dromedaryco
@@ -232,33 +234,21 @@
 	desc = "A box containing 10 packets of dromedarycos cigarettes."
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
-
-/obj/item/weapon/storage/fancy/cigcartoons/dromedaryco/populate_contents()
-	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
-	update_icon()
+	item_obj = /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
 
 /obj/item/weapon/storage/fancy/cigcartoons/killthroat
 	name = "cartoon of AcmeCo cigarettes"
 	desc = "A box containing 10 packets of AcmeCo cigarettes."
 	icon_state = "Bpacketcarton"
 	item_state = "Bpacketcarton"
-
-/obj/item/weapon/storage/fancy/cigcartoons/killthroat/populate_contents()
-	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/storage/fancy/cigarettes/killthroat(src)
-	update_icon()
+	item_obj = /obj/item/weapon/storage/fancy/cigarettes/killthroat
 
 /obj/item/weapon/storage/fancy/cigcartoons/homeless
 	name = "cartoon of Nomad cigarettes"
 	desc = "A box containing 10 packets of Nomad cigarettes."
 	icon_state = "Cpacketcarton"
 	item_state = "Cpacketcarton"
-
-/obj/item/weapon/storage/fancy/cigcartoons/homeless/populate_contents()
-	for(var/i in 1 to storage_slots)
-		new /obj/item/weapon/storage/fancy/cigarettes/homeless(src)
-	update_icon()
+	item_obj = /obj/item/weapon/storage/fancy/cigarettes/homeless
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
