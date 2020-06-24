@@ -197,6 +197,70 @@
 	. = ..()
 	fill_cigarre_package(src, list("fuel" = 15))
 
+/obj/item/weapon/storage/fancy/cigarettes/homeless
+	name = "\improper Nomads packet"
+	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is more extra hard"
+	icon_state = "Bpacket"
+	item_state = "Bpacket"
+
+/obj/item/weapon/storage/fancy/cigarettes/homeless/Initialize()
+	. = ..()
+	fill_cigarre_package(src, list("adrenaline" = 6))
+
+/obj/item/weapon/storage/fancy/cigcartoons
+	name = "cartoon of cigarettes"
+	desc = "A box containing 10 packets of cigarettes."
+	icon_state = "cigpacketcarton"
+	item_state = "cigpacketcarton"
+	icon = 'icons/obj/cigarettes.dmi'
+	w_class = ITEM_SIZE_NORMAL
+	throwforce = WEAPON_FORCE_HARMLESS
+	storage_slots = 10
+	can_hold = list(/obj/item/weapon/storage/fancy/cigarettes)
+	icon_type = "cigpacket"
+	reagent_flags = REFILLABLE | NO_REACT
+
+/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/weapon/storage/fancy/cigarettes(src)
+	update_icon()
+
+/obj/item/weapon/storage/fancy/cigcartoons/dromedaryco
+	name = "cartoon of dromedaryco cigarettes"
+	desc = "A box containing 10 packets of dromedarycos cigarettes."
+	icon_state = "Dpacketcarton"
+	item_state = "Dpacketcarton"
+	icon_type = "Dpacket"
+
+/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
+	update_icon()
+
+/obj/item/weapon/storage/fancy/cigcartoons/killthroat
+	name = "cartoon of AcmeCo cigarettes"
+	desc = "A box containing 10 packets of AcmeCo cigarettes."
+	icon_state = "Bpacketcarton"
+	item_state = "Bpacketcarton"
+	icon_type = "Bpacket"
+
+/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/weapon/storage/fancy/cigarettes/killthroat(src)
+	update_icon()
+
+/obj/item/weapon/storage/fancy/cigcartoons/homeless
+	name = "cartoon of Nomad cigarettes"
+	desc = "A box containing 10 packets of Nomad cigarettes."
+	icon_state = "Cpacketcarton"
+	item_state = "Cpacketcarton"
+	icon_type = "Cpacket"
+
+/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+	for(var/i in 1 to storage_slots)
+		new /obj/item/weapon/storage/fancy/cigarettes/homeless(src)
+	update_icon()
+
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
