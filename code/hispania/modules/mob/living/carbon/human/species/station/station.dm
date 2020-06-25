@@ -11,7 +11,6 @@
 	Most of the kidan in Canis Major are now refugees."
 	name_language = LANGUAGE_KIDAN
 	language = LANGUAGE_KIDAN           // Default racial language, if any.
-	spawn_flags = CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_EYE_COLOR
 	num_alternate_languages = 1
 	min_age = 18
