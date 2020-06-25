@@ -5,8 +5,8 @@
 	icon_state = "enricher"
 	item_state = "enricher"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120)
-	volume = 500
+	possible_transfer_amounts = list(5,10,15,25,30,60,120,200)
+	volume = 200
 	w_class = ITEM_SIZE_HUGE
 	reagent_flags = OPENCONTAINER
 	price_tag = 20000
@@ -29,20 +29,14 @@
 				reagent.remove_self(reagent_amout) //Purge useless reagents out
 
 		if(blood_amout)
-			while(blood_amout)
-				if(blood_amout > 200)
-					var/obj/item/weapon/reagent_containers/blood/OMinus/blood_pack = new /obj/item/weapon/reagent_containers/blood/OMinus(get_turf(src))
-					blood_amout -= 200
-					visible_message(SPAN_NOTICE("[name] drop [blood_pack]."))
-				else
-					var/obj/item/weapon/reagent_containers/blood/empty/blood_pack = new /obj/item/weapon/reagent_containers/blood/empty(get_turf(src))
-					blood_pack.reagents.add_reagent("blood", blood_amout, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
-					blood_amout = 0
-					visible_message(SPAN_NOTICE("[name] drop [blood_pack]."))
+			var/obj/item/weapon/reagent_containers/blood/empty/blood_pack = new /obj/item/weapon/reagent_containers/blood/empty(get_turf(src))
+			blood_pack.reagents.add_reagent("blood", blood_amout, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+			blood_amout = 0
+			visible_message(SPAN_NOTICE("[src] drop [blood_pack]."))
 		else
-			visible_message("[name] beeps, \"Not enough nutriment to produce blood\"")
+			visible_message("\The [src] beeps, \"Not enough nutriment to produce blood.\".")
 	else
-		visible_message("[name] beeps, \"Don't have any reagents to produce blood\"")
+		visible_message("\The [src] beeps, \"Insufficient reagents to produce blood.\".")
 
 /obj/item/weapon/reagent_containers/enricher/pre_attack(atom/A, mob/user, params)
 	if(user.a_intent == I_HURT)

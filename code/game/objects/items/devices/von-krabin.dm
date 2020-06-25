@@ -1,6 +1,6 @@
 /obj/item/device/von_krabin
 	name = "Von-Krabin Stimulator"
-	desc = "The Von-Krabin Stimulator."
+	desc = "Psionic stimulator that make your brain work better."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "von-krabin"
 	item_state = "von-krabin"
@@ -51,7 +51,7 @@
 	for(var/mob/living/carbon/human/H in no_longer_affected)
 		for(var/stat in stats_buff)
 			H.stats.removeTempStat(stat, "von_krabin")
-			to_chat(H, SPAN_NOTICE("Your knowledge of [stat] slightly decreese."))
+			to_chat(H, SPAN_NOTICE("Your knowledge of [stat] slightly decreases once you leave the von krabin's influence."))
 	for(var/mob/living/carbon/human/mob in affected)
 		if(stats_buff)
 			var/message
