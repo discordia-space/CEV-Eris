@@ -1,7 +1,41 @@
 ADMIN_VERB_ADD(/datum/DB_search/verb/new_search, R_ADMIN, FALSE)
+ADMIN_VERB_ADD(/datum/DB_search/verb/new_search_related, R_ADMIN, FALSE)
+
+
 /datum/DB_search
 	var/datum/browser/panel
 	var/empty = 1
+
+/datum/DB_search/verb/new_search_related(var/ckey as text)
+	set category = "Admin"
+	set name = "Search related accounts"
+	set desc = "Search players with same IP or CID"
+
+	var/list/ip_related_ckeys = list()
+	var/list/cid_related_ckeys = list()
+	var/DBQuery/search_query = dbcon.NewQuery("SELECT ip_related_ids, cid_related_ids FROM players WHERE ckey = '[ckey]'")
+	search_query.Execute()
+	if(search_query.NextRow())
+		ip_related_ckeys = splittext(search_query.item[1], ",")
+		cid_related_ckeys = splittext(search_query.item[2], ",")
+		search_query = dbcon.NewQuery("SELECT ckey FROM players WHERE id IN ([jointext(ip_related_ckeys, ",")])")
+		search_query.Execute()
+		ip_related_ckeys = list()
+		while(search_query.NextRow())
+			ip_related_ckeys += search_query.item[1]
+		search_query = dbcon.NewQuery("SELECT ckey FROM players WHERE id IN ([jointext(cid_related_ckeys, ",")])")
+		search_query.Execute()
+		cid_related_ckeys = list()
+		while(search_query.NextRow())
+			cid_related_ckeys += search_query.item[1]
+		if(ip_related_ckeys || cid_related_ckeys)
+			to_chat(usr,{"Player [ckey] has:\n
+			IP related accouts: [jointext(ip_related_ckeys, ", ")].\n
+			CID related accounts: [jointext(cid_related_ckeys, ", ")]."})
+		else
+			to_chat(usr,"Player [ckey] has no related accounts")
+	else
+		to_chat(usr,"No player with ckey = [ckey] found.")
 
 
 /datum/DB_search/verb/new_search()
