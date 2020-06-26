@@ -67,19 +67,21 @@
 
 /datum/perk/drug_addict/assign(mob/living/carbon/human/H)
 	..()
-	var/turf/T = get_turf(holder)
-	var/drugtype = pick(subtypesof(/datum/reagent/drug))
-	if(!(drugtype in holder.metabolism_effects.addiction_list))
-		var/datum/reagent/drug = new drugtype
-		holder.metabolism_effects.addiction_list.Add(drug)
-		var/obj/item/weapon/storage/pill_bottle/PB = new /obj/item/weapon/storage/pill_bottle(T)
-		PB.name = "bottle of happiness"
-		for(var/i=1 to 7)
-			var/obj/item/weapon/reagent_containers/pill/pill = new /obj/item/weapon/reagent_containers/pill(T)
-			pill.reagents.add_reagent(drug.id, pill.volume)
-			pill.name = "happy pill"
-			PB.handle_item_insertion(pill)
-		holder.put_in_hands(PB)
+	spawn(1)
+		var/turf/T = get_turf(holder)
+		var/drugtype = pick(subtypesof(/datum/reagent/drug))
+		if(!(drugtype in holder.metabolism_effects.addiction_list))
+			var/datum/reagent/drug = new drugtype
+			holder.metabolism_effects.addiction_list.Add(drug)
+			for(var/j= 1 to 2)
+				var/obj/item/weapon/storage/pill_bottle/PB = new /obj/item/weapon/storage/pill_bottle(T)
+				PB.name = "bottle of happiness"
+				for(var/i=1 to 7)
+					var/obj/item/weapon/reagent_containers/pill/pill = new /obj/item/weapon/reagent_containers/pill(T)
+					pill.reagents.add_reagent(drug.id, pill.volume)
+					pill.name = "happy pill"
+					PB.handle_item_insertion(pill)
+				holder.equip_to_storage_or_drop(PB)
 
 /datum/perk/alcoholic
 	name = "Alcoholic"
@@ -135,7 +137,8 @@
 		final_oddity[stat] = rand(1,7)
 	W.AddComponent(/datum/component/inspiration, final_oddity)
 	W.AddComponent(/datum/component/atom_sanity, 1, "")
-	holder.put_in_hands(W)
+	spawn(1)
+		holder.equip_to_storage_or_drop(W)
 
 /datum/perk/noble/remove()
 	holder.sanity.environment_cap_coeff += 1
