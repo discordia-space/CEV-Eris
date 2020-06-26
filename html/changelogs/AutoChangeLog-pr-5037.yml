@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - tweak: Cable coil sprites now have a weak alpha added to them, so they are easier
-      to click
