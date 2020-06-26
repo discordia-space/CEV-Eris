@@ -254,10 +254,10 @@ var/list/rank_prefix = list(\
 	"Moebius Doctor" = "Dr.",\
 	"Moebius Chemist" = "Dr.",\
 	"Moebius Psychiatrist" = "Dr.",\
-	"Moebius Biolab Officer" = "Prof.",\
+	"Moebius Biolab Officer" = "Professor",\
 	"Moebius Roboticist" = "Dr.",\
 	"Moebius Scientist" = "Dr.",\
-	"Moebius Expedition Overseer" = "Prof.",\
+	"Moebius Expedition Overseer" = "Professor",\
 	)
 
 /mob/living/carbon/human/proc/rank_prefix_name(name)
