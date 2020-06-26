@@ -612,9 +612,8 @@
 		updatehealth()	//TODO
 
 		if((health <= HEALTH_THRESHOLD_DEAD) && !(species.has_organ[BP_BRAIN] && !has_brain()) && (stats.getPerk(PERK_UNFINISHED_DELIVERY)) && prob(33))
-			adjustBruteLoss(-20)
-			adjustFireLoss(-20)
-			adjustOxyLoss(-20)
+			heal_organ_damage(20, 20)
+			adjustOxyLoss(-100)
 			adjustToxLoss(-20)
 			AdjustSleeping(rand(20,30))
 			updatehealth()
