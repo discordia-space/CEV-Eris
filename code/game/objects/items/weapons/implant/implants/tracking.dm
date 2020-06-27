@@ -1,8 +1,12 @@
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
-	desc = "Track with this."
-	var/id = 1.0
+	desc = "Track people with this."
 	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=2, TECH_DATA=2, TECH_BIO=2)
+	var/datum/gps_data/gps
+
+/obj/item/weapon/implant/tracking/Initialize()
+	. = ..()
+	gps = new /datum/gps_data/implant(src)
 
 /obj/item/weapon/implant/tracking/get_data()
 	var/data = {"<b>Implant Specifications:</b><BR>
@@ -18,7 +22,9 @@
 		disintegrate into bio-safe elements.<BR>
 		<b>Integrity:</b> Gradient creates slight risk of being overcharged and frying the
 		circuitry. As a result neurotoxins can cause massive damage.<HR>
-		Implant Specifics:<BR>"}
+		Implant Specifics:<BR>
+		<b>Tracking ID:</b> [gps.serial_number]<BR>"}
+
 	return data
 
 /obj/item/weapon/implant/tracking/emp_act(severity)
@@ -31,12 +37,41 @@
 		if(1)
 			if(prob(60))
 				meltdown()
+			else
+				delay = rand(10 MINUTES, 30 MINUTES)
 		if(2)
-			delay = rand(5*60*10,15*60*10)	//from 5 to 15 minutes of free time
+			delay = rand(5 MINUTES, 15 MINUTES)
+		if(3)
+			delay = rand(2 MINUTES, 5 MINUTES)
 
 	spawn(delay)
 		malfunction = MALFUNCTION_NONE
 
+/datum/gps_data/implant
+	prefix = "IMP"
+
+/datum/gps_data/implant/is_functioning()
+	var/obj/item/weapon/implant/I = holder
+	if(!I.wearer)
+		return FALSE
+
+	// The implant broadcasts for 10 minutes after death
+	if(I.wearer.stat == DEAD && I.wearer.timeofdeath + 10 MINUTES > world.time)
+		return FALSE
+
+	return ..()
+
+/datum/gps_data/implant/get_coords()
+	var/obj/item/weapon/implant/I = holder
+
+	// EMPed - pick a fake location
+	if(I.malfunction)
+		var/area/A = SSmapping.teleportlocs[pick(SSmapping.teleportlocs)]
+		var/turf/T = get_turf(pick(A.contents))
+		if(istype(T))
+			return new /datum/coords(T)
+
+	return ..()
 
 /obj/item/weapon/implantcase/tracking
 	name = "glass case - 'tracking'"

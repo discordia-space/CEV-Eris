@@ -1,7 +1,5 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 /obj/item/weapon/implantpad
-	name = "implantpad"
+	name = "implant pad"
 	desc = "Used to modify implants."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantpad-0"
@@ -10,57 +8,39 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	var/obj/item/weapon/implantcase/case = null
-	var/broadcasting = null
-	var/listening = 1.0
 
 
-/obj/item/weapon/implantpad/proc/update()
-	if (src.case)
-		src.icon_state = "implantpad-1"
-	else
-		src.icon_state = "implantpad-0"
-	return
+/obj/item/weapon/implantpad/update_icon()
+	icon_state = case ? "implantpad-0" : "implantpad-1"
 
-
-/obj/item/weapon/implantpad/attack_hand(mob/user as mob)
+/obj/item/weapon/implantpad/attack_hand(mob/living/user)
 	if ((src.case && (user.l_hand == src || user.r_hand == src)))
 		user.put_in_active_hand(case)
+		case = null
 
-		src.case.add_fingerprint(user)
-		src.case = null
-
-		src.add_fingerprint(user)
-		update()
+		add_fingerprint(user)
+		update_icon()
 	else
 		return ..()
 	return
 
 
-/obj/item/weapon/implantpad/attackby(obj/item/weapon/implantcase/C as obj, mob/user as mob)
+/obj/item/weapon/implantpad/attackby(obj/item/weapon/implantcase/C, mob/living/user)
 	..()
 	if(istype(C, /obj/item/weapon/implantcase))
-		if(!( src.case ))
+		if(!case)
 			user.drop_item()
-			C.loc = src
-			src.case = C
-			src.update()
+			C.forceMove(src)
+			case = C
+			update_icon()
 	return
 
 
-/obj/item/weapon/implantpad/attack_self(mob/user as mob)
+/obj/item/weapon/implantpad/attack_self(mob/living/user)
 	user.set_machine(src)
 	var/dat = "<B>Implant Mini-Computer:</B><HR>"
 	if (src.case)
-		if(src.case.implant)
-			if(istype(src.case.implant, /obj/item/weapon/implant))
-				dat += src.case.implant.get_data()
-				if(istype(src.case.implant, /obj/item/weapon/implant/tracking))
-					dat += {"ID (1-100):
-					<A href='byond://?src=\ref[src];tracking_id=-10'>-</A>
-					<A href='byond://?src=\ref[src];tracking_id=-1'>-</A> [case.implant:id]
-					<A href='byond://?src=\ref[src];tracking_id=1'>+</A>
-					<A href='byond://?src=\ref[src];tracking_id=10'>+</A><BR>"}
-		else
+		if(!src.case.implant)
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
@@ -75,12 +55,6 @@
 		return
 	if ((usr.contents.Find(src)) || ((in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
-		if (href_list["tracking_id"])
-			var/obj/item/weapon/implant/tracking/T = src.case.implant
-			T.id += text2num(href_list["tracking_id"])
-			T.id = min(100, T.id)
-			T.id = max(1, T.id)
-
 		if (ismob(loc))
 			attack_self(src.loc)
 		else
