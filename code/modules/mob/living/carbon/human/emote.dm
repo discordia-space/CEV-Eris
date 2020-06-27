@@ -223,7 +223,7 @@
 
 		if ("deathgasp")
 			if(stats.getPerk(PERK_TERRIBLE_FATE))
-				message = "his inert body emits a strange sensation and a cold invades your body. His screams before dying recount in your mind."
+				message = "their inert body emits a strange sensation and a cold invades your body. His screams before dying recount in your mind."
 			else
 				message = "[species.death_message]"
 			m_type = 1

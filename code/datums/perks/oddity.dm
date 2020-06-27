@@ -150,5 +150,5 @@
 
 /datum/perk/oddity/sure_step
 	name = "Sure step"
-	desc = " You receive additional chance to avoid trap"
+	desc = " You are more likely to avoid traps."
 	icon_state = "mantrap"
