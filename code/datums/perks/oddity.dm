@@ -18,14 +18,6 @@
 	desc = "You realize the painful truth of death. You don't want to die, and despise death - dying is a unmistakable horror to you."
 	icon_state = "murder" // https://game-icons.net/1x1/delapouite/chalk-outline-murder.html
 
-/datum/perk/oddity/terrible_fate/assign(mob/living/carbon/human/H)
-	..()
-	holder.species.death_message = "his inert body emits a strange sensation and a cold invades your body. His screams before dying recount in your mind."
-
-/datum/perk/oddity/terrible_fate/remove()
-	holder.species.death_message = initial(holder.species.death_message)
-	..()
-
 /datum/perk/oddity/unfinished_delivery
 	name = "Unfinished Delivery"
 	desc = "It..it's not over? But I have no Cruciform, do I? How...why do I feel such a strong grip on life?"
