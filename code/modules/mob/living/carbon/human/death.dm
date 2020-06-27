@@ -67,8 +67,10 @@
 		wearing_rig.notify_ai(
 			SPAN_DANGER("Warning: user death event. Mobility control passed to integrated intelligence system.")
 		)
-
-	. = ..(gibbed,species.death_message)
+	var/message = species.death_message
+	if(stats.getPerk(PERK_TERRIBLE_FATE))
+		message = "his inert body emits a strange sensation and a cold invades your body. His screams before dying recount in your mind."
+	. = ..(gibbed,message)
 	if(!gibbed)
 		dizziness = 0
 		jitteriness = 0

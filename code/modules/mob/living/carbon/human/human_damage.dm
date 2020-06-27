@@ -193,11 +193,13 @@
 		oxyloss = 0
 	return ..()
 
-/mob/living/carbon/human/adjustOxyLoss(var/amount)
+/mob/living/carbon/human/adjustOxyLoss(amount)
 	if(species.flags & NO_BREATHE)
 		oxyloss = 0
 	else
 		amount = amount*species.oxy_mod
+		if(stats.getPerk(PERK_LUNGS_OF_IRON))
+			amount *= 0.5
 		..(amount)
 
 /mob/living/carbon/human/setOxyLoss(var/amount)
@@ -216,6 +218,8 @@
 		toxloss = 0
 	else
 		amount = amount*species.toxins_mod
+		if(stats.getPerk(PERK_BLOOD_OF_LEAD))
+			amount *= 0.5
 		..(amount)
 
 /mob/living/carbon/human/setToxLoss(var/amount)

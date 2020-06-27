@@ -36,26 +36,10 @@
 	desc = "Why am I in space, when I could win a swimming contest with such mighty breathing?"
 	icon_state = "lungs" // https://game-icons.net/1x1/lorc/one-eyed.html
 
-/datum/perk/oddity/lungs_of_iron/assign(mob/living/carbon/human/H)
-	..()
-	holder.species.oxy_mod -= 0.5
-
-/datum/perk/oddity/lungs_of_iron/remove()
-	holder.species.oxy_mod += 0.5
-	..()
-
 /datum/perk/oddity/blood_of_lead
 	name = "Blood of Lead"
 	desc = "Rotten food, disgusting garbage, poisons - all is less harmful to you now."
 	icon_state = "liver" // https://game-icons.net
-
-/datum/perk/oddity/blood_of_lead/assign(mob/living/carbon/human/H)
-	..()
-	holder.species.toxins_mod -= 0.5
-
-/datum/perk/oddity/blood_of_lead/remove()
-	holder.species.toxins_mod += 0.5
-	..()
 
 /datum/perk/oddity/space_asshole
 	name = "Space Asshole"
