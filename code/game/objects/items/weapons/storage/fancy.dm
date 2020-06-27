@@ -223,7 +223,10 @@
 	reagent_flags = REFILLABLE | NO_REACT
 
 /obj/item/weapon/storage/fancy/cigcartoons/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
+	if( contents.len > 0 )
+		icon_state = "[initial(icon_state)]1"
+	else
+		icon_state = "[initial(icon_state)]"
 
 /obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
 	for(var/i in 1 to storage_slots)
