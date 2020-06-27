@@ -67,6 +67,9 @@
 	name = "technomancer helmet"
 	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "technohelmet"
+	body_parts_covered = HEAD|EARS|EYES|FACE
+	item_flags = THICKMATERIAL
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	action_button_name = "Toggle Headlamp"
 	brightness_on = 4
 	armor = list(
@@ -77,6 +80,8 @@
 		bio = 15,
 		rad = 30
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
+	flash_protection = FLASH_PROTECTION_MAJOR
+	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"

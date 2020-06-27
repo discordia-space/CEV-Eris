@@ -244,6 +244,15 @@
 		/datum/design/autolathe/container/syringegun_ammo,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/surgery
+	disk_name = "Back Alley Organs"
+	icon_state = "moebius"
+
+	license = 5
+	designs = list(
+		/datum/design/bioprinter/lungs
+	)
+
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/computer
 	disk_name = "Moebius Computer Parts"
 	icon_state = "moebius"

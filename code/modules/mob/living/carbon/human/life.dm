@@ -311,6 +311,12 @@
 			HUDelm.update_icon()
 	return null
 
+/mob/living/carbon/human/get_breath_modulo()
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
+	if(L)
+		return L.breath_modulo
+	return ..()
+
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
 		return
@@ -954,7 +960,7 @@
 		holder.icon_state = "hudblank"
 		if(mind && mind.antagonist.len != 0)
 			var/datum/antagonist/antag = mind.antagonist[1]	//only display the first antagonist role
-			if(hud_icon_reference[antag.role_text]) 
+			if(hud_icon_reference[antag.role_text])
 				holder.icon_state = hud_icon_reference[antag.role_text]
 			else
 				holder.icon_state = "hudsyndicate"
