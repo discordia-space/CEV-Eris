@@ -82,7 +82,7 @@
 
 /datum/perk/oddity/parkour
 	name = "Parkour"
-	desc = "Jump, climb, flip! It's fun to be an acrobat! "
+	desc = "You can climb tables and ladders faster."
 	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
 /datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)
