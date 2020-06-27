@@ -26,7 +26,7 @@
 	if(eyes_color)
 		owner.eyes_color = eyes_color
 		owner.update_eyes()
-	owner.update_client_colour() 
+	owner.update_client_colour()
 
 /obj/item/organ/internal/eyes/proc/update_colour()
 	if(!owner)

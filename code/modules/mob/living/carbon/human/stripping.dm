@@ -15,7 +15,7 @@
 			if(!user.stats.getPerk(PERK_FAST_FINGERS))
 				visible_message(SPAN_DANGER("\The [user] is trying to empty \the [src]'s pockets!"))
 			else
-				to_chat(user, SPAN_NOTICE("You try to empty \the [src]'s pockets."))	
+				to_chat(user, SPAN_NOTICE("You silently try to empty \the [src]'s pockets."))	
 			if(do_mob(user,src,HUMAN_STRIP_DELAY,progress = 1))
 				empty_pockets(user)
 			return
@@ -66,12 +66,12 @@
 
 	if(stripping)
 		if((target_slot == r_hand || target_slot == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
-			to_chat(user, SPAN_NOTICE("You try to remove \the [src]'s [target_slot.name]."))
+			to_chat(user, SPAN_NOTICE("You silently try to remove \the [src]'s [target_slot.name]."))
 		else
 			visible_message(SPAN_DANGER("\The [user] is trying to remove \the [src]'s [target_slot.name]!"))
 	else
 		if((slot_to_strip == r_hand || slot_to_strip == l_hand) && user.stats.getPerk(PERK_FAST_FINGERS))
-			to_chat(user, SPAN_NOTICE("You try to put \a [held] on \the [src]."))
+			to_chat(user, SPAN_NOTICE("You silently try to put \a [held] on \the [src]."))
 		else
 			visible_message(SPAN_DANGER("\The [user] is trying to put \a [held] on \the [src]!"))
 

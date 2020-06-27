@@ -189,6 +189,10 @@
 		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
 
 /datum/perk/oborin_syndrome/remove()
+	holder.species.taste_sensitivity = TASTE_NORMAL
+	..()
+
+/datum/perk/oborin_syndrome/remove()
 	holder.sanity.max_level -= 20
 	..()
 
