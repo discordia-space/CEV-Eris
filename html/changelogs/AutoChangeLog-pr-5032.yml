@@ -1,6 +1,0 @@
-author: DarkLevel
-delete-after: true
-changes:
-  - rscadd: Faction item/Von-Krabin Stimulator
-  - rscadd: Faction item/Molitor-Riedel Enricher
-  - bugfix: biosyphon can now spawn item while in hand
