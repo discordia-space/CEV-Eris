@@ -208,8 +208,8 @@
 	. = ..()
 	fill_cigarre_package(src, list("adrenaline" = 6))
 
-/obj/item/weapon/storage/fancy/cigcartoons
-	name = "cartoon of cigarettes"
+/obj/item/weapon/storage/fancy/cigcartons
+	name = "carton of cigarettes"
 	desc = "A box containing 10 packets of cigarettes."
 	icon_state = "cigpacketcarton"
 	item_state = "cigpacketcarton"
@@ -222,33 +222,33 @@
 	icon_type = "packet"
 	reagent_flags = REFILLABLE | NO_REACT
 
-/obj/item/weapon/storage/fancy/cigcartoons/update_icon()
+/obj/item/weapon/storage/fancy/cigcartons/update_icon()
 	if( contents.len > 0 )
 		icon_state = "[initial(icon_state)]1"
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/weapon/storage/fancy/cigcartoons/populate_contents()
+/obj/item/weapon/storage/fancy/cigcartons/populate_contents()
 	for(var/i in 1 to storage_slots)
 		new item_obj(src)
 	update_icon()
 
-/obj/item/weapon/storage/fancy/cigcartoons/dromedaryco
-	name = "cartoon of dromedaryco cigarettes"
+/obj/item/weapon/storage/fancy/cigcartons/dromedaryco
+	name = "carton of dromedaryco cigarettes"
 	desc = "A box containing 10 packets of dromedarycos cigarettes."
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
 	item_obj = /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
 
-/obj/item/weapon/storage/fancy/cigcartoons/killthroat
-	name = "cartoon of AcmeCo cigarettes"
+/obj/item/weapon/storage/fancy/cigcartons/killthroat
+	name = "carton of AcmeCo cigarettes"
 	desc = "A box containing 10 packets of AcmeCo cigarettes."
 	icon_state = "Bpacketcarton"
 	item_state = "Bpacketcarton"
 	item_obj = /obj/item/weapon/storage/fancy/cigarettes/killthroat
 
-/obj/item/weapon/storage/fancy/cigcartoons/homeless
-	name = "cartoon of Nomad cigarettes"
+/obj/item/weapon/storage/fancy/cigcartons/homeless
+	name = "carton of Nomad cigarettes"
 	desc = "A box containing 10 packets of Nomad cigarettes."
 	icon_state = "Cpacketcarton"
 	item_state = "Cpacketcarton"
