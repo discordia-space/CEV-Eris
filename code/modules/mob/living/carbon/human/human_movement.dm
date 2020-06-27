@@ -17,6 +17,8 @@
 				tally += 0.5
 			else
 				tally -= 0.5
+	if(stats.getPerk(PERK_FAST_WALKER))
+		tally -= 0.5
 
 	var/health_deficiency = (maxHealth - health)
 	var/hunger_deficiency = (max_nutrition - nutrition) //400 = max for humans.

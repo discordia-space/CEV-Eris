@@ -3,14 +3,6 @@
 	desc = "Slow and steady wins the race. Prove them wrong."
 	icon_state = "fast" // https://game-icons.net/1x1/delapouite/fast-forward-button.html
 
-/datum/perk/oddity/fast_walker/assign(mob/living/carbon/human/H)
-	..()
-	holder.species.slowdown -= 0.5
-
-/datum/perk/oddity/fast_walker/remove()
-	holder.species.slowdown += 0.5
-	..()
-
 /datum/perk/oddity/ear_of_quicksilver
 	name = "Ear of Quicksilver"
 	desc = "Secrets do not escape your ears. Beware, loud noises are especially dangerous to you."
