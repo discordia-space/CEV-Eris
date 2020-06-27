@@ -184,7 +184,6 @@
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
 	..()
 	holder.sanity.max_level += 20
-	holder.species.taste_sensitivity = TASTE_NUMB
 	spawn(1)
 		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
 
