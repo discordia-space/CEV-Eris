@@ -1,4 +1,3 @@
-
 /obj/item/weapon/computer_hardware/gps_sensor
 	name = "relay positioning receiver"
 	desc = "A module that connects a computer to the ship navigation system, commonly installed in PDAs."
@@ -13,7 +12,13 @@
 
 /obj/item/weapon/computer_hardware/gps_sensor/Initialize()
 	. = ..()
-	gps = new /datum/gps_data(src, prefix="PDA")
+	var/prefix = "MPC"
+	if(istype(loc, /obj/item/modular_computer/pda))
+		prefix = "PDA"
+	else if(istype(loc, /obj/item/modular_computer/tablet))
+		prefix = "TAB"
+
+	gps = new /datum/gps_data/modular_pc(src, new_prefix=prefix)
 
 /obj/item/weapon/computer_hardware/gps_sensor/Destroy()
 	QDEL_NULL(gps)
@@ -23,16 +28,17 @@
 	..()
 	to_chat(user, "Serial number is [gps.serial_number].")
 
-/obj/item/weapon/computer_hardware/gps_sensor/check_functionality()
-	if (!gps || !gps.serial_number)
-		return FALSE
-	return ..()
-
 /obj/item/weapon/computer_hardware/gps_sensor/proc/get_position_text()
-	var/text
-	if(check_functionality())
-		text = gps.get_coordinates_text()
+	var/error_text = "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"
+	return gps.get_coordinates_text(default=error_text)
 
-	if(!text)
-		return "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"
-	return text
+
+// Only works if installed in MPC, enabled and not too damaged
+/datum/gps_data/modular_pc
+
+/datum/gps_data/modular_pc/is_functioning()
+	var/obj/item/weapon/computer_hardware/H = holder
+	if(!H.holder2?.enabled || !H.check_functionality())
+		return FALSE
+
+	return ..()

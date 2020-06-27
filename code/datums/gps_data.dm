@@ -2,14 +2,16 @@ GLOBAL_LIST_EMPTY(gps_trackers)
 GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 
 /datum/gps_data
-	var/prefix
+	var/prefix = "COM"
 	var/serial_number
 	var/atom/holder
 
-/datum/gps_data/New(source, prefix="COM")
+/datum/gps_data/New(source, new_prefix)
 	. = ..()
+	if(new_prefix)
+		prefix = new_prefix
+
 	holder = source
-	src.prefix = prefix
 	serial_number = "[prefix]-[random_id("gps_id",1000,9999)]"
 	GLOB.gps_trackers += src
 	GLOB.gps_trackers_by_serial[serial_number] = src
@@ -32,15 +34,22 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 	GLOB.gps_trackers_by_serial[serial_number] = src
 	return TRUE
 
+// You can override this in subtypes to make it check holder cell charge or something like that
+/datum/gps_data/proc/is_functioning()
+	return TRUE
+
 /datum/gps_data/proc/get_coords()
+	if(!is_functioning())
+		return null
+
 	var/turf/T = get_turf(holder)
 	if (!T)
 		return null
 	return new /datum/coords(T)
 
-/datum/gps_data/proc/get_coordinates_text()
+/datum/gps_data/proc/get_coordinates_text(default="")
 	var/datum/coords/C = get_coords()
-	return C ? C.get_text() : ""
+	return C ? C.get_text() : default
 
 /datum/gps_data/proc/get_direction(atom/source = holder, atom/target)
 	if (!target)

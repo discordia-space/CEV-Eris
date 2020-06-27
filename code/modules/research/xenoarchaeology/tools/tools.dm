@@ -16,21 +16,21 @@
 	var/gps_prefix = "COM"
 	var/datum/gps_data/gps
 
-	// Avoid displaying PDAs, tracking implants and spying implants
-	var/list/hide_prefixes = list("PDA", "IMP", "SPY")
+	// Avoid displaying PDAs, tablets, computers, tracking implants and spying implants
+	var/list/hide_prefixes = list("PDA", "TAB", "MPC", "IMP", "SPY")
 
 	var/emped = FALSE
 	var/turf/locked_location
 
-/obj/item/device/gps/proc/get_coordinates()
-	if(emped)
-		return "ERROR"
-	var/text = gps.get_coordinates_text()
-	return text ? text : "N/A"
+/datum/gps_data/device/is_functioning()
+	var/obj/item/device/gps/G = holder
+	if(G.emped)
+		return FALSE
+	return ..()
 
 /obj/item/device/gps/Initialize()
 	. = ..()
-	gps = new /datum/gps_data(src, prefix=gps_prefix)
+	gps = new /datum/gps_data/device(src, new_prefix=gps_prefix)
 	update_name()
 	overlays += image(icon, "working")
 
@@ -56,7 +56,7 @@
 	overlays += image(icon, "working")
 
 /obj/item/device/gps/proc/can_show_gps(datum/gps_data/G)
-	return G.holder != src && !(G.prefix in hide_prefixes)
+	return G.is_functioning() && G.holder != src && !(G.prefix in hide_prefixes)
 
 /obj/item/device/gps/attack_self(mob/user)
 	var/t = ""
@@ -74,10 +74,8 @@
 
 		for(var/g in GLOB.gps_trackers)
 			var/datum/gps_data/G = g
-			var/coord_text = G.get_coordinates_text()
-
-			if(coord_text && can_show_gps(G))
-				t += "<BR>[G.serial_number]: [coord_text]"
+			if(can_show_gps(G))
+				t += "<BR>[G.serial_number]: [G.get_coordinates_text(default="ERROR")]"
 				gps_window_height += 20
 
 	var/datum/browser/popup = new(user, "GPS", name, 450, min(gps_window_height, 800))
@@ -97,7 +95,7 @@
 
 /obj/item/device/gps/examine(var/mob/user)
 	..()
-	to_chat(user, "<span class='notice'>\The [src]'s screen shows: <i>[get_coordinates()]</i>.</span>")
+	to_chat(user, "<span class='notice'>\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.</span>")
 
 
 /obj/item/device/gps/science
