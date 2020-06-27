@@ -611,19 +611,24 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if((health <= HEALTH_THRESHOLD_DEAD) && !(species.has_organ[BP_BRAIN] && !has_brain()) && (stats.getPerk(PERK_UNFINISHED_DELIVERY)) && prob(33))
-			heal_organ_damage(20, 20)
-			adjustOxyLoss(-100)
-			adjustToxLoss(-20)
-			AdjustSleeping(rand(20,30))
-			updatehealth()
-			stats.removePerk(PERK_UNFINISHED_DELIVERY)
-			return TRUE
-		else if((health <= HEALTH_THRESHOLD_DEAD) || (species.has_organ[BP_BRAIN] && !has_brain()))
+		if(species.has_organ[BP_BRAIN] && !has_brain()) //No brain = death
 			death()
 			blinded = 1
 			silent = 0
 			return 1
+		if(health <= HEALTH_THRESHOLD_DEAD) //No health = death
+			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
+				heal_organ_damage(20, 20)
+				adjustOxyLoss(-100)
+				adjustToxLoss(-20)
+				AdjustSleeping(rand(20,30))
+				updatehealth()
+				stats.removePerk(PERK_UNFINISHED_DELIVERY)
+			else
+				death()
+				blinded = 1
+				silent = 0
+				return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))

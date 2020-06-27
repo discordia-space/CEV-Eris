@@ -122,7 +122,7 @@
 
 /datum/perk/oddity/junkborn
 	name = "Junkborn"
-	desc = "Some called you paranoid. Those people are now dead from ancient landmines. Avoiding danger is easier now."
+	desc = "And they said you couldn't find a grail in the garbage!"
 	icon_state = "treasure" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete

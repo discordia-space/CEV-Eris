@@ -198,7 +198,7 @@
 		oxyloss = 0
 	else
 		amount = amount*species.oxy_mod
-		if(stats.getPerk(PERK_LUNGS_OF_IRON))
+		if(stats.getPerk(PERK_LUNGS_OF_IRON) && amount > 0)
 			amount *= 0.5
 		..(amount)
 
@@ -218,7 +218,7 @@
 		toxloss = 0
 	else
 		amount = amount*species.toxins_mod
-		if(stats.getPerk(PERK_BLOOD_OF_LEAD))
+		if(stats.getPerk(PERK_BLOOD_OF_LEAD) && amount > 0)
 			amount *= 0.5
 		..(amount)
 
