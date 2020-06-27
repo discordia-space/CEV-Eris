@@ -13,25 +13,25 @@
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
 	unacidable = TRUE //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)
-	var/blood_amout = 0
+	var/blood_amount = 0
 
 /obj/item/weapon/reagent_containers/enricher/attack_self()
 	if(reagents.total_volume)
 		for(var/datum/reagent/reagent in reagents.reagent_list)
-			var/reagent_amout = 0
+			var/reagent_amount = 0
 			if(istype(reagent, /datum/reagent/organic/nutriment))
 				var/datum/reagent/organic/nutriment/N = reagent
-				reagent_amout = N.volume
-				N.remove_self(reagent_amout)
-				blood_amout += reagent_amout
+				reagent_amount = N.volume
+				N.remove_self(reagent_amount)
+				blood_amount += reagent_amount
 			else
-				reagent_amout = reagent.volume
-				reagent.remove_self(reagent_amout) //Purge useless reagents out
+				reagent_amount = reagent.volume
+				reagent.remove_self(reagent_amount) //Purge useless reagents out
 
-		if(blood_amout)
+		if(blood_amount)
 			var/obj/item/weapon/reagent_containers/blood/empty/blood_pack = new /obj/item/weapon/reagent_containers/blood/empty(get_turf(src))
-			blood_pack.reagents.add_reagent("blood", blood_amout, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
-			blood_amout = 0
+			blood_pack.reagents.add_reagent("blood", blood_amount, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+			blood_amount = 0
 			visible_message(SPAN_NOTICE("[src] drop [blood_pack]."))
 		else
 			visible_message("\The [src] beeps, \"Not enough nutriment to produce blood.\".")
