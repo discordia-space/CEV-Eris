@@ -4,6 +4,7 @@
 	organ_tag = BP_LIVER
 	parent_organ = BP_GROIN
 	price_tag = 900
+	var/alcohol_mod_damage = 1
 
 /obj/item/organ/internal/liver/Process()
 
@@ -45,7 +46,7 @@
 
 
 	if(owner.chem_effects[CE_ALCOHOL_TOXIC])
-		take_internal_damage(owner.chem_effects[CE_ALCOHOL_TOXIC], prob(90)) // Chance to warn them
+		take_internal_damage(owner.chem_effects[CE_ALCOHOL_TOXIC] * alcohol_mod_damage, prob(90)) // Chance to warn them
 
 	
 

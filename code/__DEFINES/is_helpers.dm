@@ -30,6 +30,13 @@
 #define isbrain(A) istype(A, /mob/living/carbon/brain)
 
 #define ishuman(A) istype(A, /mob/living/carbon/human)
+
+//hispania
+//Human sub-species
+#define ishumanrace(A) is_species(A, /datum/species/human)
+#define iskidan(A) is_species(A, /datum/species/kidan)
+//fin hispania
+
 //---------------------------------------------------
 
 #define isanimal(A) istype(A, /mob/living/simple_animal)

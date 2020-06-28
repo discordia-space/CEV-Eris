@@ -38,6 +38,7 @@
 
 	var/min_age = 17
 	var/max_age = 70
+	var/max_skin_tone = 220
 
 	// Language/culture vars.
 	var/default_language = LANGUAGE_COMMON   // Default language is used when 'say' is used without modifiers.
@@ -65,6 +66,12 @@
 
 	var/list/hair_styles
 	var/list/facial_hair_styles
+
+	//Head accessory colour and style
+	var/default_headacc				//Default head accessory style for newly created humans unless otherwise set.
+	var/default_headacc_colour
+	var/headacc_colour = "#000000"
+	var/ha_style = "None"
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/human
@@ -398,7 +405,7 @@
 		LAZYSET(hair_styles, type, L)
 		for(var/hairstyle in GLOB.hair_styles_list)
 			var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
-			if(!(get_bodytype() in S.species_allowed))
+			if(S.species_allowed && !(get_bodytype() in S.species_allowed))
 				continue
 			ADD_SORTED(L, hairstyle, /proc/cmp_text_asc)
 			L[hairstyle] = S

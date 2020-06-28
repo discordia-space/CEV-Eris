@@ -134,6 +134,8 @@
 			bad_message = "\[MINIMUM CHARACTER AGE: [job.minimum_character_age]]"
 		else if(user.client && job.is_setup_restricted(user.client.prefs.setup_options))
 			bad_message = "\[SETUP RESTRICTED]"
+		else if(job.only_human && !ishumanrace(all_species[pref.species]))
+			bad_message = "\[ONLY HUMAN]"
 
 		if((ASSISTANT_TITLE in pref.job_low) && (rank != ASSISTANT_TITLE))
 			. += "<a href='?src=\ref[src];set_skills=[rank]'><font color=grey>[rank]</font></a></td><td></td></tr>"

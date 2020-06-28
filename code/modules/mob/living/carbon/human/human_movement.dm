@@ -52,6 +52,14 @@
 				return TRUE
 			return -1
 
+	else if(iskidan(src))
+		var/turf/T = get_turf(src)
+		if(T)
+			//se asegura de que haya presion
+			var/datum/gas_mixture/environment = T.return_air()
+			var/pressure = (environment) ? environment.return_pressure() : 0
+			if(pressure >= 40)
+				return TRUE
 	//If no working jetpack then use the other checks
 	return ..()
 

@@ -1,4 +1,4 @@
-/mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
+/mob/living/carbon/human/emote(act,m_type=1,message = null)
 	var/param = null
 
 	if (findtext(act, "-", 1, null))
@@ -16,7 +16,7 @@
 		if (I.implanted)
 			I.trigger(act, src)
 
-	if(src.stat == 2.0 && (act != "deathgasp"))
+	if(src.stat == 2 && (act != "deathgasp"))
 		return
 
 	var/cloud_emote = ""
@@ -51,6 +51,24 @@
 				else
 					message = "bows."
 			m_type = 1
+
+		if("clack" || "clacks")
+			if(!iskidan(src))
+				return
+			var/M = handle_emote_param(param)
+
+			message = "<B>[src]</B> clacks [p_their()] mandibles[M ? " at [M]" : ""]."
+			playsound(loc, 'sound/hispania/effects/Kidanclack.ogg', 50, 1, frequency = get_age_pitch()) //Credit to DrMinky (freesound.org) for the sound.
+			m_type = 2
+
+		if("click" || "clicks")
+			if(!iskidan(src))
+				return
+			var/M = handle_emote_param(param)
+
+			message = "<B>[src]</B> clicks [p_their()] mandibles[M ? " at [M]" : ""]."
+			playsound(loc, 'sound/hispania/effects/Kidanclack2.ogg', 50, 1, frequency = get_age_pitch()) //Credit to DrMinky (freesound.org) for the sound.
+			m_type = 2
 
 		if ("custom")
 			var/input = sanitize(input("Choose an emote to display.") as text|null)

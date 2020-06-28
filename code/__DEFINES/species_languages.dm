@@ -21,6 +21,7 @@
 #define HAS_UNDERWEAR     0x8    // Underwear is drawn onto the mob icon.
 #define HAS_EYE_COLOR     0x10   // Eye colour selectable in chargen. (RGB)
 #define HAS_HAIR_COLOR    0x20   // Hair colour selectable in chargen. (RGB)
+#define HAS_FACIAL_COLOR  0x40   // Facial Hair colour selectable in chargen. (RGB) //hispania
 
 // Languages.
 #define LANGUAGE_COMMON "English Common"
@@ -40,6 +41,7 @@
 #define LANGUAGE_CULT "Cult"
 #define LANGUAGE_OCCULT "Occult"
 #define LANGUAGE_BLITZ "Blitzshell Communique"
+#define LANGUAGE_KIDAN "Chittin" //hispania
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

@@ -65,7 +65,7 @@
 
 	//A quick hack. Todo: Draw this from species or culture or something
 	free_languages[LANGUAGE_COMMON] = TRUE
-
+	var/datum/species/mob_species = all_species[pref.species]
 	/*
 	for(var/thing in pref.cultural_info)
 		var/decl/cultural_info/culture = SSculture.get_culture(pref.cultural_info[thing])
@@ -83,6 +83,8 @@
 		var/datum/language/lang = all_languages[thing]
 		if(!(lang.flags & RESTRICTED))
 			allowed_languages[thing] = TRUE
+	if(mob_species.name_language)
+		free_languages[mob_species.name_language] = TRUE
 
 /datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(var/mob/user, var/datum/language/lang)
 	if(isnull(allowed_languages) || isnull(free_languages))

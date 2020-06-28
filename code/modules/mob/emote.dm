@@ -1,7 +1,7 @@
 // All mobs should have custom emote, really..
 //m_type == 1 --> visual.
 //m_type == 2 --> audible
-/mob/proc/custom_emote(var/m_type=1,var/message = null)
+/mob/proc/custom_emote(m_type=1,message = null)
 	if(usr && stat || !use_me && usr == src)
 		to_chat(src, "You are unable to emote.")
 		return

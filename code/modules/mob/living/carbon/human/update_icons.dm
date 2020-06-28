@@ -217,7 +217,7 @@ var/global/list/damage_icon_parts = list()
 
 	appearance_test.Log("ENTED update_body for \"[real_name]\"")
 
-	var/husk_color_mod = rgb(96,88,80)
+	var/husk_color_mod = rgb(68, 67, 66)
 	var/hulk_color_mod = rgb(48,224,40)
 
 	var/husk = (HUSK in src.mutations)
@@ -352,7 +352,12 @@ var/global/list/damage_icon_parts = list()
 			var/icon/facial_s = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(facial_color, ICON_ADD)
-
+				if(species && !(species.appearance_flags & HAS_FACIAL_COLOR) && (species.appearance_flags & HAS_SKIN_TONE))
+					if(s_tone)
+						if(s_tone >= 0)
+							facial_s.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
+						else
+							facial_s.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
