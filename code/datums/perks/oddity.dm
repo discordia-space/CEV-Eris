@@ -145,7 +145,7 @@
 	name = "Toxic Revenger"
 	desc = "A heart of gold does not matter when blood is toxic. Those who breathe your air, share your fate."
 	icon_state = "Hazmat" // https://game-icons.net
-	var/colldown = 1 MINUTES
+	var/cooldown = 1 MINUTES
 	var/initial_time
 
 /datum/perk/oddity/toxic_revenger/assign(mob/living/carbon/human/H)
@@ -157,7 +157,7 @@
 		return
 	if(holder.species.flags & NO_BREATHE || holder.internal)
 		return
-	if(world.time < initial_time + colldown)
+	if(world.time < initial_time + cooldown)
 		return
 	initial_time = world.time
 	for(var/mob/living/L in viewers(holder, 5))
