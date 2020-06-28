@@ -332,7 +332,7 @@
 	var/obj/item/projectile/beam/LE = new (T)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
-	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
+	mob_playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
 	LE.launch(A)
 
 /mob/living/carbon/human/LaserEyes()
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 	status_flags |= LEAPING
 	src.visible_message(SPAN_DANGER("\The [src] leaps at [T]!"))
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
-	playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+	mob_playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 	sleep(5)
 	if(status_flags & LEAPING)
 		status_flags &= ~LEAPING
@@ -434,5 +434,4 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 			to_chat(src, SPAN_WARNING("You miss!"))
 			Weaken(3)
 			return
-		T.Weaken(1)
 		T.attack_hand(src)

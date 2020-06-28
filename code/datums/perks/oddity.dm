@@ -1,3 +1,6 @@
+/datum/perk/oddity
+	gain_text = "You feel different. Exposure to oddities has changed you. Now you can't go back."
+
 /datum/perk/oddity/fast_walker
 	name = "Fast Walker"
 	desc = "Slow and steady wins the race. Prove them wrong."
@@ -142,6 +145,31 @@
 	name = "Toxic Revenger"
 	desc = "A heart of gold does not matter when blood is toxic. Those who breathe your air, share your fate."
 	icon_state = "Hazmat" // https://game-icons.net
+	var/colldown = 1 MINUTES
+	var/initial_time
+
+/datum/perk/oddity/toxic_revenger/assign(mob/living/carbon/human/H)
+	..()
+	initial_time = world.time
+
+/datum/perk/oddity/toxic_revenger/on_process()
+	if(!..())
+		return
+	if(holder.species.flags & NO_BREATHE || holder.internal)
+		return
+	if(world.time < initial_time + colldown)
+		return
+	initial_time = world.time
+	for(var/mob/living/L in viewers(holder, 5))
+		if(!L)
+			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.stat == DEAD || H.internal || H.stats.getPerk(PERK_TOXIC_REVENGER) || (H.species.flags & NO_BREATHE))
+				continue
+		L.reagents.add_reagent("toxin", 5)
+		L.emote("cough")
+		to_chat(L, SPAN_WARNING("[holder] emits a strange smell."))
 
 /datum/perk/oddity/absolute_grab
 	name = "Absolute Grab"

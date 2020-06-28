@@ -97,13 +97,10 @@
 	var/vig = owner.stats.getStat(STAT_VIG)
 	var/sanity_damage_view = 0
 	for(var/atom/A in view(owner.client ? owner.client : owner))
-		if(ishuman(A))
+		if(ishuman(A) && owner.stats.getPerk(PERK_MORALIST)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
-			if(H.stat != DEAD && !H.internal && H.stats.getPerk(PERK_TOXIC_REVENGER) && !owner.internal && !owner.stats.getPerk(PERK_TOXIC_REVENGER))
-				owner.reagents.add_reagent("toxin", 0.5)
-			if(owner.stats.getPerk(PERK_MORALIST)) //Moralists react negatively to people in distress
-				if(H.sanity.level < 30 || H.health < 50)
-					sanity_damage_view += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+			if(H.sanity.level < 30 || H.health < 50)
+				sanity_damage_view += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
 
 		if(A.sanity_damage) //If this thing is not nice to behold
 			sanity_damage_view += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))

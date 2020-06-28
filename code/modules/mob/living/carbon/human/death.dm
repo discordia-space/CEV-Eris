@@ -69,7 +69,7 @@
 		)
 	var/message = species.death_message
 	if(stats.getPerk(PERK_TERRIBLE_FATE))
-		message = "their inert body emits a strange sensation and a cold invades your body. His screams before dying recount in your mind."
+		message = "their inert body emits a strange sensation and a cold invades your body. Their screams before dying recount in your mind."
 	. = ..(gibbed,message)
 	if(!gibbed)
 		dizziness = 0
@@ -77,7 +77,7 @@
 		handle_organs()
 		dead_HUD()
 		if(species.death_sound)
-			playsound(loc, species.death_sound, 80, 1, 1)
+			mob_playsound(loc, species.death_sound, 80, 1, 1)
 	handle_hud_list()
 
 
