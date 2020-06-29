@@ -115,6 +115,19 @@
 /obj/item/device/gps/traitor
 	hide_prefixes = list()
 
+// Locator
+// A GPS device that tracks beacons and implants
+/obj/item/device/gps/locator
+	name = "locator"
+	desc = "A device used to locate tracking beacons and people with tracking implants."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "locator"
+	gps_prefix = "SEC"
+
+/obj/item/device/gps/locator/can_show_gps(datum/gps_data/G)
+	return G.is_functioning() && G.holder != src && (G.prefix in list("SEC", "LOC", "TBC"))
+
+
 /obj/item/device/measuring_tape
 	name = "measuring tape"
 	desc = "A coiled metallic tape used to check dimensions and lengths."
