@@ -107,7 +107,7 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
-	var/bomb_defense = getarmor(null, ARMOR_BOMB)
+	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
 		if (1.0)
 			b_loss += 500

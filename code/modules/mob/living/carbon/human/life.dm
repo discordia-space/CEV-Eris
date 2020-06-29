@@ -617,11 +617,24 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[BP_BRAIN] && !has_brain()))
+		if(species.has_organ[BP_BRAIN] && !has_brain()) //No brain = death
 			death()
 			blinded = 1
 			silent = 0
 			return 1
+		if(health <= HEALTH_THRESHOLD_DEAD) //No health = death
+			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
+				heal_organ_damage(20, 20)
+				adjustOxyLoss(-100)
+				adjustToxLoss(-20)
+				AdjustSleeping(rand(20,30))
+				updatehealth()
+				stats.removePerk(PERK_UNFINISHED_DELIVERY)
+			else
+				death()
+				blinded = 1
+				silent = 0
+				return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))
@@ -793,14 +806,17 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(species && species.flags & NO_PAIN) return
 
-	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH)))// health 0 - stat makes you immediately collapse
+	var/health_threshold_softcrit = HEALTH_THRESHOLD_SOFTCRIT - stats.getStat(STAT_TGH)
+	if(stats.getPerk(PERK_BALLS_OF_PLASTEEL))
+		health_threshold_softcrit -= 20
+	if(health < health_threshold_softcrit)// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 	else if(shock_resist)
 		shock_stage = min(shock_stage, 58)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH))
+	else if(health < health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)
