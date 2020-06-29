@@ -4,8 +4,7 @@ GLOBAL_LIST_EMPTY(sanity_foods)
 /proc/init_sanity_drinks()
 	var/list/drink_types = subtypesof(/datum/reagent/ethanol)
 	for(var/candidate in drink_types)
-		var/datum/reagent/R = candidate
-		if(!subtypesof(R))
+		if(!subtypesof(candidate).len)
 			GLOB.sanity_drinks += candidate
 	return GLOB.sanity_drinks.Copy()
 
