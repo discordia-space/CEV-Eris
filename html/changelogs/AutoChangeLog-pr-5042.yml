@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - bugfix: You should no longer get duplicate food or drink desires
