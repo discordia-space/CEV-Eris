@@ -69,12 +69,11 @@
 		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
-		if(smoke)
-			if(smoke.reagents.total_volume)
-				smoke.reagents.trans_to_mob(src, 5, CHEM_INGEST, copy = 1)
-				smoke.reagents.trans_to_mob(src, 5, CHEM_BLOOD, copy = 1)
-				// I dunno, maybe the reagents enter the blood stream through the lungs?
-				break // If they breathe in the nasty stuff once, no need to continue checking
+		if(smoke.reagents.total_volume)
+			smoke.reagents.trans_to_mob(src, 5, CHEM_INGEST, copy = 1)
+			smoke.reagents.trans_to_mob(src, 5, CHEM_BLOOD, copy = 1)
+			// I dunno, maybe the reagents enter the blood stream through the lungs?
+			break // If they breathe in the nasty stuff once, no need to continue checking
 
 /mob/living/carbon/proc/handle_breath(datum/gas_mixture/breath)
 	return
