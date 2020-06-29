@@ -44,7 +44,7 @@
 	source.luminosity = world.view
 	var/list/heard = view(range, source)
 	var/list/extra_heard = view(range+3, source) - heard
-	if(extra_heard)
+	if(extra_heard.len)
 		for(var/ear in extra_heard)
 			if(!ishuman(ear))
 				continue
