@@ -10,7 +10,7 @@
 "j" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/random/powercell,/obj/random/powercell,/obj/random/powercell,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "k" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "l" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
-"m" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"m" = (/obj/random/cluster/roaches/low_chance,/obj/machinery/repair_station,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "n" = (/obj/machinery/recharge_station,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "o" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "p" = (/obj/structure/reagent_dispensers/fueltank,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
