@@ -13,12 +13,12 @@
 	)
 
 	armor = list(
-		melee = 50,
-		bullet =50,
-		energy = 50,
-		bomb = 30,
+		melee = 35,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
 		bio = 100,
-		rad = 90
+		rad = 75
 	)
 	siemens_coefficient = 0
 	species_restricted = list("Human")
@@ -33,12 +33,12 @@
 	slowdown = 0.2
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 60,
-		bullet = 60,
-		energy = 50,
-		bomb = 30,
+		melee = 35,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
 		bio = 100,
-		rad = 90
+		rad = 75
 	)
 	siemens_coefficient = 0 //Shockproof!
 	breach_threshold = 6
