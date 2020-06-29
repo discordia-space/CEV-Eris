@@ -1,0 +1,5 @@
+author: Smokingsquirrel
+delete-after: true
+changes:
+  - rscadd: Sprite for new paramedic jumpsuit.
+  - code_imp: medsci, medical and the typical dmis
