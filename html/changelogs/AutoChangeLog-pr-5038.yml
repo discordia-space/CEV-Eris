@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - rscadd: Adds the cyborg auto repair platform. Repairs cyborgs that stand on top
-      of them.
