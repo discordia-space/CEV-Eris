@@ -46,10 +46,6 @@
 	var/list/extra_heard = view(range+3, source) - heard
 	if(extra_heard)
 		for(var/ear in extra_heard)
-			if(!ear)
-				continue
-			if(ear in heard)
-				continue
 			if(!ishuman(ear))
 				continue
 			var/mob/living/carbon/human/H = ear
