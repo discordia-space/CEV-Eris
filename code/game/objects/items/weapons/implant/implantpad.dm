@@ -11,7 +11,7 @@
 
 
 /obj/item/weapon/implantpad/update_icon()
-	icon_state = case ? "implantpad-0" : "implantpad-1"
+	icon_state = case ? "implantpad-1" : "implantpad-0"
 
 /obj/item/weapon/implantpad/attack_hand(mob/living/user)
 	if ((src.case && (user.l_hand == src || user.r_hand == src)))
