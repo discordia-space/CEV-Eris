@@ -95,18 +95,15 @@
 	if(sanity_invulnerability)
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
-	var/sanity_damage_view = 0
 	for(var/atom/A in view(owner.client ? owner.client : owner))
-		if(ishuman(A) && owner.stats.getPerk(PERK_MORALIST)) //Moralists react negatively to people in distress
+		if(A.sanity_damage) //If this thing is not nice to behold
+			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+
+		if(owner.stats.getPerk(PERK_MORALIST) && istype(A, /mob/living/carbon/human)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
 			if(H.sanity.level < 30 || H.health < 50)
-				sanity_damage_view += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
 
-		if(A.sanity_damage) //If this thing is not nice to behold
-			sanity_damage_view += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
-
-		if(sanity_damage_view)
-			. += sanity_damage_view
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
