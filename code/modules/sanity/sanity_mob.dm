@@ -99,7 +99,7 @@
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
 
-		if(owner.stats.getPerk(PERK_MORALIST) && istype(A, /mob/living/carbon/human)) //Moralists react negatively to people in distress
+		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
 			var/mob/living/carbon/human/H = A
 			if(H.sanity.level < 30 || H.health < 50)
 				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
