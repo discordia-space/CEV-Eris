@@ -104,6 +104,7 @@
 			if(H.sanity.level < 30 || H.health < 50)
 				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
 
+
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
 	if(!my_area)
@@ -164,30 +165,24 @@
 	)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
+		var/list/potential_desires
 		switch(desire)
 			if(INSIGHT_DESIRE_FOOD)
-				var/static/list/food_types = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
-				var/desire_count = 0
-				while(desire_count < 5)
-					var/obj/item/weapon/reagent_containers/food/snacks/candidate = pick(food_types)
-					if(!initial(candidate.cooked))
-						food_types -= candidate
-						continue
-					desires += candidate
-					++desire_count
+				potential_desires = GLOB.sanity_foods.Copy()
+				if(!potential_desires.len)
+					potential_desires = init_sanity_foods()
 			if(INSIGHT_DESIRE_ALCOHOL)
-				var/static/list/ethanol_types = subtypesof(/datum/reagent/ethanol)
-				var/desire_count = 0
-				while(desire_count < 5)
-					var/candidate = pick(ethanol_types)
-					var/list/categories = subtypesof(candidate)
-					if(categories.len) //Exclude categories
-						ethanol_types -= candidate
-						continue
-					desires += candidate
-					++desire_count
+				potential_desires = GLOB.sanity_drinks.Copy()
+				if(!potential_desires.len)
+					potential_desires = init_sanity_drinks()
 			else
 				desires += desire
+				continue
+		var/desire_count = 0
+		while(desire_count < 5)
+			var/candidate = pick_n_take(potential_desires)
+			desires += candidate
+			++desire_count
 	print_desires()
 
 /datum/sanity/proc/print_desires()
@@ -240,6 +235,10 @@
 			var/stat_up = L[stat] * multiplier
 			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
 			owner.stats.changeStat(stat, stat_up)
+		if(istype(O, /obj/item/weapon/oddity))
+			var/obj/item/weapon/oddity/OD = O
+			if(OD.perk)
+				owner.stats.addPerk(OD.perk)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -261,7 +260,10 @@
 					penalty *= -1
 				if(76 to 100)
 					penalty *= 0
-		changeLevel(penalty*death_view_multiplier)
+		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
+			setLevel(0)
+		else
+			changeLevel(penalty*death_view_multiplier)
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))

@@ -317,7 +317,10 @@
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.set_move_cooldown(move_delay)
-	next_fire_time = world.time + fire_delay
+	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
+		next_fire_time = world.time + fire_delay - fire_delay * 0.33
+	else
+		next_fire_time = world.time + fire_delay
 
 	if(muzzle_flash)
 		set_light(0)

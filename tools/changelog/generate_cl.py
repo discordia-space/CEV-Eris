@@ -46,7 +46,7 @@ pr_list = commit.get_pulls()
 
 if not pr_list.totalCount:
     print("Direct commit detected")
-    exit(1) # Change to '0' if you do not want the action to fail when a direct commit is detected
+    exit(0) # Change to '0' if you do not want the action to fail when a direct commit is detected
 
 pr = pr_list[0]
 
@@ -60,7 +60,7 @@ try:
     cl_list = CL_SPLIT.findall(cl.group(2))
 except AttributeError:
     print("No CL found!")
-    exit(1) # Change to '0' if you do not want the action to fail when no CL is provided
+    exit(0) # Change to '0' if you do not want the action to fail when no CL is provided
 
 
 if cl.group(1) is not None:

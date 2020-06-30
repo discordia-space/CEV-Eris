@@ -94,7 +94,7 @@
 		if ("purple")
 			new /obj/item/clothing/under/rank/medical/purple(src)
 			new /obj/item/clothing/head/surgery/purple(src)
-	new /obj/item/clothing/under/rank/medical(src)
+	new /obj/item/clothing/under/rank/paramedic(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
 	new /obj/item/device/radio(src)
