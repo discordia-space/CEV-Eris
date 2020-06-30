@@ -17,7 +17,7 @@
 	max_age = 60
 	unarmed_types = list(/datum/unarmed_attack/claws, /datum/unarmed_attack/stomp,  /datum/unarmed_attack/kick, /datum/unarmed_attack/bite)
 	reagent_tag = IS_KIDAN
-	spawn_flags = IS_RESTRICTED
+	spawn_flags = CAN_JOIN
 	breath_pressure = 10 //deafault 16
 	brute_mod = 0.8
 	burn_mod = 1.5
