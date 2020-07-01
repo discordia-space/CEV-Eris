@@ -39,8 +39,10 @@
 /obj/item/weapon/implantpad/attack_self(mob/living/user)
 	user.set_machine(src)
 	var/dat = "<B>Implant Mini-Computer:</B><HR>"
-	if (src.case)
-		if(!src.case.implant)
+	if(case)
+		if(case.implant)
+			dat += case.implant.get_data()
+		else
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
