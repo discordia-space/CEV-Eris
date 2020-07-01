@@ -11,6 +11,10 @@
 	. = ..()
 	gps = new /datum/gps_data(src, "TBC")
 
+/obj/item/device/radio/beacon/Destroy()
+	QDEL_NULL(gps)
+	return ..()
+
 /obj/item/device/radio/beacon/hear_talk()
 	return
 

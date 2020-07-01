@@ -27,6 +27,10 @@
 
 	return data
 
+/obj/item/weapon/implant/tracking/Destroy()
+	QDEL_NULL(gps)
+	return ..()
+
 /obj/item/weapon/implant/tracking/emp_act(severity)
 	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
 		return
