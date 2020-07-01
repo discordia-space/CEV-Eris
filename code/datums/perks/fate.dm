@@ -125,6 +125,7 @@
 				/obj/item/weapon/tool/sword/katana = 0.2,
 				/obj/item/weapon/tool/knife/dagger/ceremonial = 0.8,
 				/obj/item/weapon/gun/projectile/revolver = 0.4))
+	holder.sanity.valid_inspirations += W
 	W = new W(T)
 	W.name = "[holder.last_name] family [W.name]"
 	var/oddities = rand(2,4)
