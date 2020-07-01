@@ -98,8 +98,6 @@
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
-	else if(mind)
-		statpanel("Perks",src.stats.perk_stat)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -109,7 +107,7 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
-	var/bomb_defense = getarmor(null, ARMOR_BOMB)
+	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
 		if (1.0)
 			b_loss += 500

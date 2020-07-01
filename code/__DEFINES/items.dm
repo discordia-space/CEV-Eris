@@ -34,6 +34,7 @@
 //Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
 #define GUN_UPGRADE_PEN_MULT "penetration_mult"
+#define GUN_UPGRADE_PIERC_MULT "pierce_mult"
 #define GUN_UPGRADE_FIRE_DELAY_MULT "fire_delay_mult"
 #define GUN_UPGRADE_MOVE_DELAY_MULT "move_delay_mult"
 #define GUN_UPGRADE_RECOIL "recoil_mult"
@@ -88,3 +89,23 @@
 #define GUN_CALIBRE_35 "caliber .35"
 
 #define GUN_SOL "Is a FS CAR .25 CS \"Sol\""
+
+// A rare, random item
+#define RANDOM_RARE_ITEM list(\
+					/obj/random/common_oddities = 8,\
+					/obj/random/material_rare = 3,\
+					/obj/random/tool/advanced = 5,\
+					/obj/random/gun_normal = 3,\
+					/obj/random/lathe_disk/advanced = 2,\
+					/obj/item/weapon/cell/small/moebius/nuclear = 1,\
+					/obj/item/weapon/cell/medium/moebius/hyper = 1,\
+					/obj/random/rig = 1.5,\
+					/obj/random/rig/damaged = 1.5,\
+					/obj/random/voidsuit = 4,\
+					/obj/random/pouch = 2,\
+					/obj/random/tool_upgrade/rare = 4,\
+					/obj/random/rig_module/rare = 4,\
+					/obj/random/credits/c1000 = 3,\
+					/obj/random/exosuit_equipment = 3,\
+					/obj/random/cloth/holster = 4,\
+					/obj/item/stash_spawner = 4)

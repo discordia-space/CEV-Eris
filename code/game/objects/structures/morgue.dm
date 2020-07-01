@@ -16,10 +16,10 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
-	density = 1
+	density = TRUE
 	var/obj/structure/m_tray/connected = null
 	var/open = FALSE
-	anchored = 1.0
+	anchored = TRUE
 	var/mob/living/occupant
 	var/max_capacity = 150
 	var/current_storage = 0
@@ -147,11 +147,12 @@
 		if (M.get_respawn_bonus("CORPSE_HANDLING"))
 			return // we got this one already
 		//We send a message to the occupant's current mob - probably a ghost, but who knows.
-		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 8 minutes."))
+		to_chat(M, SPAN_NOTICE("Your remains have been collected and properly stored. Your crew respawn time is reduced by 10 minutes."))
+		
 		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
-		M.set_respawn_bonus("CORPSE_HANDLING", 8 MINUTES)
-
+		M.set_respawn_bonus("CORPSE_HANDLING", 10 MINUTES)
+		to_chat(user, SPAN_NOTICE("The corpse's spirit feels soothed and pleased."))
 
 
 
@@ -249,10 +250,10 @@
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
-	density = 1
+	density = TRUE
 	layer = LOW_OBJ_LAYER
 	var/obj/structure/morgue/connected = null
-	anchored = 1
+	anchored = TRUE
 	throwpass = 1
 
 /obj/structure/m_tray/Destroy()
@@ -289,9 +290,9 @@
 	desc = "A human incinerator. Works well on barbeque nights."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "crema1"
-	density = 1
+	density = TRUE
 	var/obj/structure/c_tray/connected = null
-	anchored = 1.0
+	anchored = TRUE
 	var/cremating = 0
 	var/id = 1
 	var/locked = 0
@@ -416,7 +417,7 @@
 
 /obj/structure/crematorium/proc/cremate(atom/A, mob/user as mob)
 //	for(var/obj/machinery/crema_switch/O in src) //trying to figure a way to call the switch, too drunk to sort it out atm
-//		if(var/on == 1)
+//		if(var/on == TRUE)
 //		return
 	if(cremating)
 		return //don't let you cremate something twice or w/e
@@ -473,10 +474,10 @@
 	desc = "Apply body before burning."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "cremat"
-	density = 1
+	density = TRUE
 	layer = 2.0
 	var/obj/structure/crematorium/connected = null
-	anchored = 1
+	anchored = TRUE
 	throwpass = 1
 
 /obj/structure/c_tray/Destroy()

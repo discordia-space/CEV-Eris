@@ -20,6 +20,7 @@
 	body_parts_covered = HEAD
 	attack_verb = list("bapped")
 	matter = list(MATERIAL_BIOMATTER = 1)
+	contained_sprite = TRUE
 
 	var/info		//What's actually written on the paper.
 	var/info_links	//A different version of the paper which includes html links at fields and EOF
@@ -272,6 +273,10 @@
 		return
 
 	if(href_list["write"])
+		if(!config.paper_input)
+			to_chat(usr, SPAN_WARNING("No matter how hard you try to write on \the [src], nothing shows up! (Paper input disabled in config.)"))
+			return
+
 		var/id = href_list["write"]
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 

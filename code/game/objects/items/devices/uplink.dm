@@ -213,7 +213,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT) : !!length(owner_roles & ROLES_CONTRACT)))
 		var/list/available_contracts = list()
 		var/list/completed_contracts = list()
-		for(var/datum/antag_contract/C in GLOB.all_antag_contracts)
+		for(var/datum/antag_contract/C in GLOB.various_antag_contracts)
 			var/list/entry = list(list(
 				"name" = C.name,
 				"desc" = C.desc,

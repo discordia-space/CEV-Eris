@@ -6,7 +6,7 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
 	anchored = 0
-	density = 1
+	density = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
 
@@ -28,7 +28,7 @@
 	var/datum/wifi/receiver/button/emitter/wifi_receiver
 
 /obj/machinery/power/emitter/anchored
-	anchored = 1
+	anchored = TRUE
 	state = 2
 
 /obj/machinery/power/emitter/verb/rotate()

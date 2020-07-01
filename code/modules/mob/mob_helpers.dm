@@ -220,7 +220,7 @@ proc/slur(phrase)
 	return html_encode(newphrase)
 
 /proc/stutter(n)
-	var/te = n
+	var/te = html_decode(n)
 	n = length(n)//length of the entire word
 	var/list/t = list()
 	var/p = 1//1 is the start of any word
@@ -239,8 +239,7 @@ proc/slur(phrase)
 						n_letter = text("[n_letter]-[n_letter]")
 		t += n_letter //since the above is ran through for each letter, the text just adds up back to the original word.
 		p++//for each letter p is increased to find where the next letter will be.
-	return sanitize(jointext(t,null))
-
+	return sanitize(jointext(t, null))
 
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
@@ -627,3 +626,21 @@ proc/is_blind(A)
 				I.on_embed_removal(src)
 			A.tumble()
 	embedded = list()
+
+/mob/proc/skill_to_evade_traps(prob_catch)
+	var/prob_evade = 0
+	if(MOVING_DELIBERATELY(src))
+		prob_evade = 25
+		prob_evade += prob_evade/stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE) - prob_evade*get_max_w_class()/ITEM_SIZE_TITANIC
+		if(stats.getPerk(PERK_SURE_STEP))
+			prob_evade += prob_evade*30/STAT_LEVEL_GODLIKE
+		if(stats.getPerk(PERK_RAT))
+			prob_evade *= 2
+	return prob_evade
+
+/mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+	if(isliving(src))
+		var/mob/living/L = src
+		vol *= L.noise_coeff
+		extrarange *= L.noise_coeff
+	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)

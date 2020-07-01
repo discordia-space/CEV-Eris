@@ -1,15 +1,15 @@
 /mob/living/silicon/ai/Life()
-	if (src.stat == DEAD)
+	if (stat == DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
 		//Being dead doesn't mean your temperature never changes
 		var/turf/T = get_turf(src)
 
-		if (src.stat!=CONSCIOUS)
-			src.cameraFollow = null
-			src.reset_view(null)
+		if (stat!=CONSCIOUS)
+			cameraFollow = null
+			reset_view(null)
 
-		src.updatehealth()
+		updatehealth()
 
 		if (!hardware_integrity() || !backup_capacitor())
 			death()
@@ -42,18 +42,18 @@
 			if (aiRestorePowerRoutine==2)
 				to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 				aiRestorePowerRoutine = 0
-//				src.blind.alpha = 0
+//				blind.alpha = 0
 				updateicon()
 				return
 			else if (aiRestorePowerRoutine==3)
 				to_chat(src, "Alert cancelled. Power has been restored.")
 				aiRestorePowerRoutine = 0
-//				src.blind.alpha = 0
+//				blind.alpha = 0
 				updateicon()
 				return
 			else if (APU_power)
 				aiRestorePowerRoutine = 0
-//				src.blind.alpha = 0
+//				blind.alpha = 0
 				updateicon()
 				return
 		else
@@ -73,7 +73,7 @@
 							if (!istype(T, /turf/space))
 								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 								aiRestorePowerRoutine = 0
-//								src.blind.alpha = 0
+//								blind.alpha = 0
 								return
 						to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
 						sleep(20)
@@ -103,7 +103,7 @@
 								if (!istype(T, /turf/space))
 									to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 									aiRestorePowerRoutine = 0
-//									src.blind.alpha = 0 //This, too, is a fix to issue 603
+//									blind.alpha = 0 //This, too, is a fix to issue 603
 									return
 							switch(PRP)
 								if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."
@@ -126,18 +126,18 @@
 
 	process_queued_alarms()
 	handle_regular_hud_updates()
-	switch(src.sensor_mode)
+	switch(sensor_mode)
 		if (SEC_HUD)
-			process_sec_hud(src,0,src.eyeobj)
+			process_sec_hud(src,0,eyeobj)
 		if (MED_HUD)
-			process_med_hud(src,0,src.eyeobj)
+			process_med_hud(src,0,eyeobj)
 
 /mob/living/silicon/ai/proc/lacks_power()
 	if(APU_power)
 		return 0
 	var/turf/T = get_turf(src)
 	var/area/A = get_area(src)
-	return ((!A.power_equip) && A.requires_power == 1 || istype(T, /turf/space)) && !istype(src.loc,/obj/item)
+	return ((!A.power_equip) && A.requires_power == 1 || istype(T, /turf/space)) && !istype(loc,/obj/item)
 
 /mob/living/silicon/ai/updatehealth()
 	if(status_flags & GODMODE)
@@ -154,19 +154,19 @@
 /mob/living/silicon/ai/update_sight()
 	if(is_blinded())
 		updateicon()
-//		src.blind.screen_loc = ui_entire_screen
-//		if (src.blind.alpha!=255)
-//			src.blind.alpha = 255
-		src.sight = src.sight&~SEE_TURFS
-		src.sight = src.sight&~SEE_MOBS
-		src.sight = src.sight&~SEE_OBJS
-		src.see_in_dark = 0
-		src.see_invisible = SEE_INVISIBLE_LIVING
+//		blind.screen_loc = ui_entire_screen
+//		if (blind.alpha!=255)
+//			blind.alpha = 255
+		sight = sight&~SEE_TURFS
+		sight = sight&~SEE_MOBS
+		sight = sight&~SEE_OBJS
+		see_in_dark = 0
+		see_invisible = SEE_INVISIBLE_LIVING
 	else
 		update_dead_sight()
 
 /mob/living/silicon/ai/proc/is_blinded()
 	var/area/A = get_area(src)
-	if (A && !A.power_equip && !istype(src.loc,/obj/item) && !APU_power)
+	if (A && !A.power_equip && !istype(loc,/obj/item) && !APU_power)
 		return 1
 	return 0

@@ -15,7 +15,7 @@
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	layer = WALL_OBJ_LAYER
 	var/stage = 1
 	var/fixture_type = "tube"
@@ -146,7 +146,7 @@
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	layer = 5
 	stage = 1
 	fixture_type = "bulb"
@@ -164,14 +164,15 @@
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
-	anchored = 1
+	anchored = TRUE
 	layer = WALL_OBJ_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = 0					// 1 if on, 0 if off
+	var/on = FALSE					// 1 if on, 0 if off
 	var/on_gs = 0
+	var/autoattach = 0			//If this attaches to a wall automatically
 	var/brightness_range = 7	// luminosity when on, also used in power calculation
 	var/brightness_power = 2
 	var/brightness_color = COLOR_LIGHTING_DEFAULT_BRIGHT
@@ -185,6 +186,7 @@
 	var/rigged = 0				// true if rigged to explode
 	var/firealarmed = 0
 	var/atmosalarmed = 0
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/floor
@@ -201,6 +203,9 @@
 	brightness_power = 2
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
+
+/obj/machinery/light/small/autoattach
+	autoattach = 1
 
 /obj/machinery/light/spot
 	name = "spotlight"
@@ -227,21 +232,28 @@
 // create a new lighting fixture
 /obj/machinery/light/Initialize()
 	. = ..()
+	if(autoattach)
+		auto_turn_destructive()
+		dir = reverse_dir[dir]
+
+	if(!src)
+		return 0
 
 	var/area/A = get_area(src)
 	if(A && !A.requires_power)
-		on = 1
+		on = TRUE
 
 	var/area/location = get_area(loc)
-	if(location.area_light_color)
-		brightness_color = location.area_light_color
+	if(location)
+		if(location.area_light_color)
+			brightness_color = location.area_light_color
 
 	update(0)
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		on = 0
+		on = FALSE
 //		A.update_lights()
 	. = ..()
 
@@ -257,13 +269,13 @@
 				icon_state = "[base_state][on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
-			on = 0
+			on = FALSE
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			on = 0
+			on = FALSE
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-			on = 0
+			on = FALSE
 	return
 
 /obj/machinery/light/proc/set_blue()
@@ -302,7 +314,7 @@
 /obj/machinery/light/proc/update(var/trigger = 1)
 
 	update_icon()
-	if(on == 1)
+	if(on == TRUE)
 		if(needsound == 1)
 			playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, 1)
 			needsound = 0
@@ -322,7 +334,7 @@
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
-					on = 0
+					on = FALSE
 					set_light(0)
 			else
 				use_power = 2
@@ -609,7 +621,7 @@
 	if(status == LIGHT_OK)
 		return
 	status = LIGHT_OK
-	on = 1
+	on = TRUE
 	update()
 
 // explosion effect
@@ -787,6 +799,30 @@
 		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN
 		force = WEAPON_FORCE_WEAK
-		sharp = 1
+		sharp = TRUE
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()
+
+
+/atom/proc/auto_turn_destructive()
+	//Automatically turns based on nearby walls, destroys if not found.
+	var/turf/simulated/wall/T = null
+	var/gotdir = 0
+	for(var/i = 1, i <= 8; i += i)
+		T = get_ranged_target_turf(src, i, 1)
+
+		if(istype(T))
+			//If someone knows a better way to do this, let me know. -Giacom
+			switch(i)
+				if(NORTH)
+					src.set_dir(SOUTH)
+				if(SOUTH)
+					src.set_dir(NORTH)
+				if(WEST)
+					src.set_dir(EAST)
+				if(EAST)
+					src.set_dir(WEST)
+			gotdir = dir
+			break
+	if(!gotdir)
+		qdel(src)

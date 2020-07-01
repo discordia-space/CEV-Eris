@@ -20,7 +20,7 @@ LINEN BINS
 	var/inuse = FALSE
 
 /obj/item/weapon/bedsheet/afterattack(atom/A, mob/user)
-	if(!user || user.incapacitated() || !user.Adjacent(A))
+	if(!user || user.incapacitated() || !user.Adjacent(A) || istype(A, /obj/structure/bedsheetbin) || istype(A, /obj/item/weapon/storage/))
 		return
 	if(toggle_fold(user))
 		user.drop_item()
@@ -203,7 +203,7 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "linenbin-full"
-	anchored = 1
+	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()
 	var/obj/item/hidden = null

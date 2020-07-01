@@ -254,19 +254,38 @@
 // Spawned when a robot component breaks
 // Has default name/icon/materials, replaced by the component itself when it breaks
 /obj/item/trash/broken_robot_part
-	name = "broken component"
+	name = "broken actuator"
 	desc = "A robot part, broken beyond repair. Can be recycled in an autolathe."
 	icon = 'icons/obj/robot_component.dmi'
-	icon_state = "broken"
+	icon_state = "motor_broken"
 	matter = list(MATERIAL_STEEL = 5)
 
 /obj/item/robot_parts/robot_component
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "working"
+	var/icon_state_broken = "broken"
 	matter = list(MATERIAL_STEEL = 5)
+
 	var/brute = 0
 	var/burn = 0
-	var/icon_state_broken = "broken"
+	var/total_dam = 0
+	var/max_dam = 30
+
+/obj/item/robot_parts/robot_component/proc/take_damage(var/brute_amt, var/burn_amt)
+	brute += brute_amt
+	burn += burn_amt
+	total_dam = brute+burn
+	if(total_dam >= max_dam)
+		var/obj/item/weapon/circuitboard/broken/broken_device = new (get_turf(src))
+		if(icon_state_broken != "broken")
+			broken_device.icon = icon
+			broken_device.icon_state = icon_state_broken
+		broken_device.name = "broken [name]"
+		return broken_device
+	return 0
+
+/obj/item/robot_parts/robot_component/proc/is_functional()
+	return ((brute + burn) < max_dam)
 
 /obj/item/robot_parts/robot_component/binary_communication_device
 	name = "binary communication device"

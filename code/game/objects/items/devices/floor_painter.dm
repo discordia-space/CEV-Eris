@@ -53,6 +53,21 @@
 		to_chat(user, SPAN_WARNING("\The [src] cannot paint broken or missing tiles."))
 		return
 
+	var/mob/living/exosuit/ES = A
+	if(istype(ES))
+		to_chat(user, SPAN_WARNING("You can't paint an active exosuit. Dismantle it first."))
+		return
+
+	var/obj/structure/heavy_vehicle_frame/EF = A
+	if(istype(EF))
+		EF.set_colour(paint_colour)
+		return
+
+	var/obj/item/mech_component/MC = A
+	if(istype(MC))
+		MC.set_colour(paint_colour)
+		return
+
 	var/list/decal_data = decals[decal]
 	var/config_error
 	if(!islist(decal_data))

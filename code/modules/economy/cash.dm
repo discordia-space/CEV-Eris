@@ -1,3 +1,5 @@
+#define CASH_PER_STAT 5000 // The cost of a single level of a statistic
+
 /obj/item/weapon/spacecash
 	name = "0 credit"
 	desc = "It's worth 0 credits."
@@ -5,10 +7,10 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
 	opacity = 0
-	density = 0
-	anchored = 0.0
-	force = 1.0
-	throwforce = 1.0
+	density = FALSE
+	anchored = FALSE
+	force = 1
+	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
@@ -95,6 +97,25 @@
 	if(!worth)
 		qdel(src)
 
+/obj/item/weapon/spacecash/bundle/Initialize()
+	. = ..()
+	AddComponent(/datum/component/inspiration, CALLBACK(src, .proc/return_stats))
+
+/// Returns a list to use with inspirations. It can be empty if there's not enough money in the bundle. Important side-effects: converts worth to points, thus reducing worth.
+/obj/item/weapon/spacecash/bundle/proc/return_stats()
+	RETURN_TYPE(/list)
+	var/points = min(worth/CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
+	var/list/stats = list()
+	// Distribute points evenly with random statistics. Just skips the loop if there's not enough money in the bundle, resulting in an empty list.
+	while(points > 0)
+		stats[pick(ALL_STATS)] += 1 // Picks a random stat, if not present it adds it with a value of 1, else it increases the value by 1
+		points--
+	worth -= points*CASH_PER_STAT
+	update_icon()
+	if(!worth)
+		qdel(src)
+	return stats
+
 /obj/item/weapon/spacecash/bundle/c1
 	name = "1 credit"
 	icon_state = "spacecash1"
@@ -167,3 +188,5 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	..(user)
 	if (!(user in view(2)) && user!=src.loc) return
 	to_chat(user, "\blue Charge card's owner: [src.owner_name]. Credits remaining: [src.worth].")
+
+#undef CASH_PER_STAT

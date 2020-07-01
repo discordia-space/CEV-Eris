@@ -14,8 +14,8 @@
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -212,7 +212,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 550, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 600, 700)
 
 		// template keys starting with _ are not appended to the UI automatically and have to be called manually
 		ui.add_template("_materials", "autolathe_materials.tmpl")
@@ -281,8 +281,11 @@
 			insert_beaker(usr)
 		return 1
 
-	if(href_list["category"] && categories && (href_list["category"] in categories))
-		show_category = href_list["category"]
+	if(href_list["category"] && categories)
+		var/new_category = text2num(href_list["category"])
+
+		if(new_category && new_category <= length(categories))
+			show_category = categories[new_category]
 		return 1
 
 	if(href_list["eject_material"] && (!current_file || paused || error))

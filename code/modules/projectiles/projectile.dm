@@ -96,6 +96,9 @@
 /obj/item/projectile/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
 
+/obj/item/projectile/multiply_pierce_penetration(newmult)
+	penetrating = initial(penetrating) + newmult
+
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult
@@ -804,7 +807,7 @@
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return
-	if(isliving(A) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
+	if(isliving(A) || istype(A, /mob/living/exosuit) || istype(A, /obj/vehicle))
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1

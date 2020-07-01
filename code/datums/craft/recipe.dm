@@ -9,6 +9,14 @@
 	var/time = 30 //Used when no specific time is set
 	var/related_stats = list(STAT_COG)	// used to decrease crafting time for non tool steps
 	var/avaliableToEveryone = TRUE
+	var/dir_type = CRAFT_WITH_USER_DIR  // spawn the result in the user's direction by default
+	// set it to CRAFT_TOWARD_USER to spawn the result towards the user
+	// set it to CRAFT_DEFAULT_DIR to spawn the result in its default direction (stored in dir_default)
+	var/dir_default = 2  // south is default for recipes with dir_type = CRAFT_DEFAULT_DIR
+
+	var/variation_type = CRAFT_REFERENCE  // if the object is the reference of a subtype
+	// set it to CRAFT_VARIATION if the object is a variation of the reference
+	var/name_craft_menu  // name of the subtype formed by a reference and its variations
 
 /datum/craft_recipe/New()
 	var/step_definations = steps
@@ -22,7 +30,13 @@
 /datum/craft_recipe/proc/spawn_result(obj/item/craft/C, mob/living/user)
 	var/atom/movable/M = new result(get_turf(C))
 	M.Created(user)
-	M.dir = user.dir
+	switch (C.recipe.dir_type)
+		if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
+			M.dir = user.dir
+		if (CRAFT_TOWARD_USER)  // spawn the result towards the user
+			M.dir = reverse_dir[user.dir]
+		else  // spawn the result in its default direction
+			M.dir = C.recipe.dir_default
 	var/slot = user.get_inventory_slot(C)
 	qdel(C)
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
@@ -109,7 +123,13 @@
 	var/obj/item/CR
 	if(steps.len <= 1)
 		CR = new result(null)
-		CR.dir = user.dir
+		switch (dir_type)
+			if (CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
+				CR.dir = user.dir
+			if (CRAFT_TOWARD_USER)  // spawn the result towards the user
+				CR.dir = reverse_dir[user.dir]
+			else  // spawn the result in its default direction
+				CR.dir = dir_default
 		CR.Created(user)
 	else
 		CR = new /obj/item/craft (null, src)

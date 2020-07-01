@@ -194,7 +194,8 @@
 	unlocks_designs = list(	/datum/design/research/circuit/miningdrill,
 							/datum/design/research/circuit/miningdrillbrace,
 							/datum/design/research/item/weapon/mining/drill_diamond,
-							/datum/design/research/item/weapon/mining/jackhammer
+							/datum/design/research/item/weapon/mining/jackhammer,
+							/datum/design/research/item/weapon/mining/scanner
 							)
 
 /datum/technology/adv_tools
@@ -224,7 +225,7 @@
 
 	x = 0.7
 	y = 0.5
-	icon = "jawsoflife"
+	icon = "Moebius_box1"
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()

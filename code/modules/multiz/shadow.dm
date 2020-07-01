@@ -6,9 +6,9 @@
 /mob/shadow
 	name = "shadow"
 	desc = "Z-level shadow"
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
-	density = 0
+	density = FALSE
 	alpha = 0
 	original_plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER

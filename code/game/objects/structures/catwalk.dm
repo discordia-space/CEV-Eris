@@ -4,8 +4,8 @@
 	icon_state = "catwalk"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
-	density = 0
-	anchored = 1.0
+	density = FALSE
+	anchored = TRUE
 
 
 /obj/structure/catwalk/New()

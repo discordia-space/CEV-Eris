@@ -8,6 +8,7 @@
 	max_w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_ILLEGAL = 3)
 	matter = list(MATERIAL_STEEL = 6)
+	var/del_on_send = TRUE
 	var/datum/mind/owner
 
 /obj/item/weapon/storage/bsdm/proc/can_launch()
@@ -27,7 +28,7 @@
 	data["is_owner"] = owner && (owner == user.mind)
 	data["contracts"] = list()
 
-	for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
+	for(var/datum/antag_contract/item/C in GLOB.various_antag_contracts)
 		if(C.completed || !C.check(src))
 			continue
 		data["contracts"].Add(list(list(
@@ -55,14 +56,15 @@
 		if(!can_launch())
 			return
 
-		if(ismob(loc))
-			to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
-
-		for(var/datum/antag_contract/item/C in GLOB.all_antag_contracts)
+		for(var/datum/antag_contract/item/C in GLOB.various_antag_contracts)
 			if(C.completed)
 				continue
 			C.on_container(src)
-		qdel(src)
+		QDEL_CLEAR_LIST(contents)
+		if(del_on_send)
+			if(ismob(loc))
+				to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
+			qdel(src)
 
 	else if(href_list["owner"])
 		owner = usr.mind
@@ -70,3 +72,18 @@
 
 	if(.)
 		SSnano.update_uis(src)
+
+/obj/item/weapon/storage/bsdm/permanent
+	del_on_send = FALSE
+
+/obj/item/weapon/storage/bsdm/permanent/attackby(obj/item/W as obj, mob/user as mob)
+	..()
+
+	if(istype(W, /obj/item/weapon/reagent_containers/syringe/blitzshell))
+		var/obj/item/weapon/reagent_containers/syringe/blitzshell/syringe_blitzshell = W
+		if(syringe_blitzshell.reagents.total_volume)
+			var/trans
+			var/obj/item/weapon/reagent_containers/glass/beaker/vial/vial_blitzshell = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src)
+			trans = syringe_blitzshell.reagents.trans_to(vial_blitzshell, syringe_blitzshell.reagents.total_volume)
+			to_chat(user ,SPAN_NOTICE("You transfer [trans] units of the solution from [syringe_blitzshell] to [src]"))
+			return handle_item_insertion(vial_blitzshell)

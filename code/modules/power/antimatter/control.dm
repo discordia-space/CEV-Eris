@@ -3,8 +3,8 @@
 	desc = "This device injects antimatter into connected shielding units. The more antimatter injected into it, the more power it produces.  Wrench the device to set it up."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "control"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 1
 	idle_power_usage = 100
 	active_power_usage = 1000
@@ -142,7 +142,7 @@
 				user.visible_message("[user.name] secures the [src.name] to the floor.", \
 					"You secure the anchor bolts to the floor.", \
 					"You hear a ratchet")
-				src.anchored = 1
+				src.anchored = TRUE
 				connect_to_network()
 			else if(!linked_shielding.len > 0)
 				user.visible_message("[user.name] unsecures the [src.name].", \

@@ -23,7 +23,7 @@
 	//This means that carp will only be spawned in places where someone could see them
 	var/area/spess = locate(/area/space) in world
 	for (var/turf/T in spess)
-		if (!(T.z in maps_data.station_levels))
+		if (!(T.z in GLOB.maps_data.station_levels))
 			continue
 
 		if (locate(/obj/effect/shield) in T)

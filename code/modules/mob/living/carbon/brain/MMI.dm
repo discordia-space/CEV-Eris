@@ -31,7 +31,6 @@
 	var/locked = 0
 	var/mob/living/carbon/brain/brainmob = null//The current occupant.
 	var/obj/item/organ/internal/brain/brainobj = null	//The current brain organ.
-	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
 /obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
@@ -140,7 +139,7 @@
 	var/obj/item/device/radio/radio = null//Let's give it a radio.
 
 /obj/item/device/mmi/radio_enabled/New()
-	..()
+	. = ..()
 	radio = new(src)//Spawns a radio inside the MMI.
 	radio.broadcasting = 1//So it's broadcasting from the start.
 

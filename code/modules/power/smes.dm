@@ -9,8 +9,8 @@
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 0
 
 	var/capacity = 5e6 // maximum charge
@@ -391,10 +391,10 @@
 				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
-			smoke.set_up(3, 0, src.loc)
+			smoke.set_up(3, 0, loc)
 			smoke.attach(src)
 			smoke.start()
-			explosion(src.loc, -1, 0, 1, 3, 1, 0)
+			explosion(loc, -1, 0, 1, 3, 1, 0)
 			qdel(src)
 			return
 		else if(prob(15)) //Power drain
@@ -407,7 +407,7 @@
 				emp_act(2)
 		else if(prob(5)) //smoke only
 			var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
-			smoke.set_up(3, 0, src.loc)
+			smoke.set_up(3, 0, loc)
 			smoke.attach(src)
 			smoke.start()
 		else

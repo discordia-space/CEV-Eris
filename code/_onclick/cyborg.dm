@@ -92,16 +92,23 @@
 		return
 
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc && isturf(A.loc.loc))
-	if(isturf(A) || isturf(A.loc))
+	var/sdepth = A.storage_depth_turf()
+	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
 		if(A.Adjacent(src)) // see adjacent.dm
-
-			var/resolved = A.attackby(W, src)
-			if(!resolved && A && W)
-				W.afterattack(A, src, 1, params)
+			if (W)
+				var/resolved = (SEND_SIGNAL(W, COMSIG_IATTACK, A, src, params)) || (SEND_SIGNAL(A, COMSIG_ATTACKBY, W, src, params)) || W.resolve_attackby(A, src, params)
+				if(!resolved && A && W)
+					W.afterattack(A, src, 1, params)
+			else
+				if(ismob(A))
+					setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+				UnarmedAttack(A, 1)
 			return
 		else
-			W.afterattack(A, src, 0, params)
-			return
+			if (W)
+				W.afterattack(A, src, 0, params)
+			else
+				RangedAttack(A, params)
 	return
 
 
@@ -155,16 +162,24 @@
 //Give cyborgs hotkey clicks without breaking existing uses of hotkey clicks
 // for non-doors/apcs
 /mob/living/silicon/robot/CtrlShiftClickOn(var/atom/A)
-	A.BorgCtrlShiftClick(src)
+	if(ai_access)
+		return A.BorgCtrlShiftClick(src)
+	..()
 
 /mob/living/silicon/robot/ShiftClickOn(var/atom/A)
-	A.BorgShiftClick(src)
+	if(ai_access)
+		return A.BorgShiftClick(src)
+	..()
 
 /mob/living/silicon/robot/CtrlClickOn(var/atom/A)
-	A.BorgCtrlClick(src)
+	if(ai_access)
+		return A.BorgCtrlClick(src)
+	..()
 
 /mob/living/silicon/robot/AltClickOn(var/atom/A)
-	A.BorgAltClick(src)
+	if(ai_access)
+		return A.BorgAltClick(src)
+	..()
 
 /atom/proc/BorgCtrlShiftClick(var/mob/living/silicon/robot/user) //forward to human click if not overriden
 	CtrlShiftClick(user)

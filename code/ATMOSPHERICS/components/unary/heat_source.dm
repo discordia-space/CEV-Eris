@@ -6,8 +6,8 @@
 	desc = "Heats gas when connected to a pipe network"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "heater_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 0
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
 	circuit = /obj/item/weapon/circuitboard/unary_atmos/heater

@@ -81,8 +81,8 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	layer = BELOW_OBJ_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -1213,6 +1213,7 @@
 					/obj/item/ammo_magazine/ammobox/clrifle_small/rubber = 4,
 					/obj/item/device/hailer = 8,
 					/obj/item/taperoll/police = 8,
+					/obj/item/device/holowarrant = 8,
 					/obj/item/weapon/storage/box/evidence = 2)
 	contraband = list(/obj/item/weapon/tool/knife/tacknife = 4,/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 12)
 	auto_price = FALSE
@@ -1243,7 +1244,7 @@
 					/obj/item/seeds/sunflowerseed = 3,/obj/item/seeds/tomatoseed = 3,/obj/item/seeds/towermycelium = 3,/obj/item/seeds/wheatseed = 3,/obj/item/seeds/appleseed = 3,
 					/obj/item/seeds/poppyseed = 3,/obj/item/seeds/sugarcaneseed = 3,/obj/item/seeds/ambrosiavulgarisseed = 3,/obj/item/seeds/peanutseed = 3,/obj/item/seeds/whitebeetseed = 3,/obj/item/seeds/watermelonseed = 3,/obj/item/seeds/limeseed = 3,
 					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
-					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
+					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3, /obj/item/seeds/tobaccoseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
 	premium = list(/obj/item/toy/waterflower = 1)
@@ -1316,7 +1317,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10)
+	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10,/obj/item/weapon/rpd = 3)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	auto_price = FALSE

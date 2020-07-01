@@ -1,3 +1,5 @@
+#define OBELISK_UPDATE_TIME 5 SECONDS
+
 var/list/disciples = list()
 
 /obj/item/weapon/implant/core_implant/cruciform
@@ -13,6 +15,15 @@ var/list/disciples = list()
 	power_regen = 0.5
 	price_tag = 500
 
+/obj/item/weapon/implant/core_implant/cruciform/install(mob/living/target, organ, mob/user)
+	. = ..()
+	if(.)
+		target.stats.addPerk(/datum/perk/sanityboost)
+
+/obj/item/weapon/implant/core_implant/cruciform/uninstall()
+	wearer.stats.removePerk(/datum/perk/sanityboost)
+	return ..()
+
 /obj/item/weapon/implant/core_implant/cruciform/get_mob_overlay(gender)
 	gender = (gender == MALE) ? "m" : "f"
 	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender]")
@@ -26,7 +37,7 @@ var/list/disciples = list()
 	H.adjustBrainLoss(55+rand(5))
 	H.adjustOxyLoss(100+rand(50))
 	if(part)
-		H.apply_damage(100+rand(75), BURN, part)
+		H.apply_damage(100+rand(75), BURN, part, used_weapon = src)
 	H.apply_effect(40+rand(20), IRRADIATE, check_protection = 0)
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)

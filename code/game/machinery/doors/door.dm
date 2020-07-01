@@ -6,9 +6,9 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	anchored = 1
+	anchored = TRUE
 	opacity = 1
-	density = 1
+	density = TRUE
 	layer = OPEN_DOOR_LAYER
 	var/open_layer = OPEN_DOOR_LAYER
 	var/closed_layer = CLOSED_DOOR_LAYER
@@ -78,7 +78,7 @@
 	return
 
 /obj/machinery/door/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 
 	return ..()
@@ -125,10 +125,10 @@
 				open()
 		return
 
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
+	if(istype(AM, /mob/living/exosuit))
+		var/mob/living/exosuit/exosuit = AM
 		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+			if(exosuit.pilots.len && (allowed(exosuit.pilots[1]) || check_access_list(exosuit.saved_access)))
 				open()
 			else
 				do_animate("deny")
@@ -431,7 +431,7 @@
 	do_animate("opening")
 	icon_state = "door0"
 	sleep(3)
-	src.density = 0
+	src.density = FALSE
 	update_nearby_tiles()
 	sleep(7)
 	src.layer = open_layer
@@ -457,7 +457,7 @@
 	close_door_at = 0
 	do_animate("closing")
 	sleep(3)
-	src.density = 1
+	src.density = TRUE
 	update_nearby_tiles()
 	sleep(7)
 	src.layer = closed_layer

@@ -16,6 +16,19 @@ NanoBaseHelpers = function ()
 
 				return '';
 			},
+            // change ui styling to "excelsior mode"
+			excelsiorMode: function() {
+				$('body').css("background-color","#d0854c");
+				$('body').css("background-image","url('uiBackground-Excelsior.png')");
+				$('body').css("background-position","50% 0");
+				$('body').css("background-repeat","repeat-x");
+
+				$('#uiTitleFluff').css("background-image","url('uiTitleFluff-Excelsior.png')");
+				$('#uiTitleFluff').css("background-position","50% 50%");
+				$('#uiTitleFluff').css("background-repeat", "no-repeat");
+
+				return '';
+			},
 			// Generate a Byond link
 			link: function( text, icon, parameters, status, elementClass, elementId) {
 

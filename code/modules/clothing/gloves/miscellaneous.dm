@@ -5,18 +5,11 @@
 	item_state = "egloves"
 	price_tag = 500
 
-/obj/item/clothing/gloves/cyborg
-	desc = "beep boop borp"
-	name = "cyborg gloves"
-	icon_state = "robohands"
-	item_state = "r_hands"
-	siemens_coefficient = 1
-
 /obj/item/clothing/gloves/insulated
 	desc = "These gloves will protect the wearer from electric shock."
 	name = "insulated gloves"
 	icon_state = "yellow"
-	item_state = "ygloves"
+	item_state = "yellow"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	price_tag = 200
@@ -36,7 +29,7 @@
 	desc = "These work gloves are thick and fire-resistant."
 	name = "black gloves"
 	icon_state = "black"
-	item_state = "bgloves"
+	item_state = "black"
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.05
 	price_tag = 100
@@ -47,10 +40,10 @@
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/security
-	desc = "Padded security gloves."
 	name = "security gloves"
+	desc = "Padded security gloves."
 	icon_state = "security"
-	item_state = "combat"
+	item_state = "security"
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.05
 	cold_protection = ARMS
@@ -62,13 +55,13 @@
 /obj/item/clothing/gloves/security/ironhammer
 	name = "operator's gloves"
 	icon_state = "security_ironhammer"
-	item_state = "combat"
+	item_state = "security_ironhammer"
 
 /obj/item/clothing/gloves/security/tactical
-	desc = "These tactical gloves are somewhat fire and impact resistant."
 	name = "tactical gloves"
-	icon_state = "security"
-	item_state = "swat_gl"
+	desc = "These tactical gloves are somewhat fire and impact resistant."
+	icon_state = "security_tactical"
+	item_state = "security_tactical"
 	siemens_coefficient = 0
 	price_tag = 500
 
@@ -76,11 +69,17 @@
 	name = "latex gloves"
 	desc = "Sterile latex gloves."
 	icon_state = "latex"
-	item_state = "lgloves"
-	siemens_coefficient = 1.0 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
+	item_state = "latex"
+	siemens_coefficient = 1 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
 	permeability_coefficient = 0.01
 	germ_level = 0
 	price_tag = 50
+
+/obj/item/clothing/gloves/latex/nitrile
+	name = "nitrile gloves"
+	desc = "Sterile nitrile gloves."
+	icon_state = "nitrile"
+	item_state = "nitrile"
 
 /obj/item/clothing/gloves/botanic_leather
 	desc = "These leather work gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin."

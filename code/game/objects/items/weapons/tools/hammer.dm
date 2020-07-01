@@ -14,14 +14,15 @@
 
 /obj/item/weapon/tool/hammer/homewrecker
 	name = "homewrecker"
-	desc = "A large steel chunk welded to a long handle which resembles sledgehammer. Extremely heavy."
-	icon_state = "homewrecker"
+	desc = "A large steel chunk welded to a long handle which resembles a sledgehammer. Extremely heavy."
+	icon_state = "homewrecker0"
 	item_state = "homewrecker"
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	armor_penetration = ARMOR_PEN_DEEP
 	force_unwielded = WEAPON_FORCE_NORMAL
-	force_wielded = WEAPON_FORCE_DANGEROUS
+	force_wielded = WEAPON_FORCE_ROBUST
+	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)

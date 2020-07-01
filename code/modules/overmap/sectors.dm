@@ -27,20 +27,20 @@
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
 
-	start_x = start_x || rand(OVERMAP_EDGE, maps_data.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, maps_data.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
 
-	forceMove(locate(start_x, start_y, maps_data.overmap_z))
+	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
 	testing("Located sector \"[name]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
 
-	maps_data.player_levels |= map_z
+	GLOB.maps_data.player_levels |= map_z
 
 	if(!in_space)
-		maps_data.sealed_levels |= map_z
+		GLOB.maps_data.sealed_levels |= map_z
 
 	if(base)
-		maps_data.station_levels |= map_z
-		maps_data.contact_levels |= map_z
+		GLOB.maps_data.station_levels |= map_z
+		GLOB.maps_data.contact_levels |= map_z
 
 
 	//handle automatic waypoints that spawned before us
@@ -81,7 +81,7 @@
 	name = "generic sector"
 	desc = "Sector with some stuff in it."
 	icon_state = "sector"
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overmap/sector/Initialize()
 	. = ..()

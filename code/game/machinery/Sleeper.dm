@@ -3,8 +3,8 @@
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
@@ -15,12 +15,9 @@
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
-/obj/machinery/sleeper/New()
-	..()
-	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
-
 /obj/machinery/sleeper/Initialize()
 	. = ..()
+	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	update_icon()
 
 /obj/machinery/sleeper/Process()
@@ -195,7 +192,7 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = loc
+	occupant.forceMove(get_turf(src))
 	occupant = null
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker)

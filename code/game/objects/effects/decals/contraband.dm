@@ -25,7 +25,7 @@
 
 /obj/item/weapon/contraband/poster/placed
 	icon_state = "random"
-	anchored = 1
+	anchored = TRUE
 	New(turf/loc)
 		if(icon_state != "random")
 			for(var/datum/poster/new_design in poster_designs)
@@ -88,7 +88,7 @@
 	if (!adjacent)
 		return
 
-	//must place on a wall and user must not be inside a closet/mecha/whatever
+	//must place on a wall and user must not be inside a closet/whatever
 	if (!istype(W) || !W.Adjacent(user))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return
@@ -131,7 +131,7 @@
 			pixel_x = 32
 		else if(placement_dir&EAST)
 			pixel_x = -32
-		anchored = 1
+		anchored = TRUE
 		flick("poster_being_set", src)
 		playsound(W, 'sound/items/poster_being_created.ogg', 100, 1)
 		design.set_design(src)

@@ -36,7 +36,7 @@
 /datum/vertical_travel_method/jetpack/calculate_time()
 	if (isrobot(M))
 		base_time *= 2 //Robots are heavy and slow, but they can use jetpacks
-	else if (istype(M, /obj/mecha))
+	else if (istype(M, /mob/living/exosuit))
 		base_time *= 2.5 //Heavier still
 	.=..()
 
@@ -48,12 +48,14 @@
 
 
 		if (!thrust.on)
-			return "You could go [dir2text(direction)]ward with your [thrust.name], if it were turned on!"
+			to_chat(M, SPAN_NOTICE("You could go [dir2text(direction)]ward with your [thrust.name], if it were turned on!"))
+			return FALSE
 
 
 		//If the jetpack is empty then we fail. But only if its empty
 		if (!thrust.check_thrust(JETPACK_MOVE_COST, M))
-			return "Your [thrust.name] doesn't have enough left in it to get you anywhere!"
+			to_chat(M, SPAN_NOTICE("Your [thrust.name] doesn't have enough left in it to get you anywhere!"))
+			return FALSE
 
 		//If the user has some gas, but not enough to make the journey, we'll let them try anyway.
 		//Running out halfway through and falling will be funny

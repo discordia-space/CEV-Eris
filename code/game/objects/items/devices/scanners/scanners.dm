@@ -12,7 +12,7 @@
 
 	origin_tech = null
 
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 
 	var/scan_title

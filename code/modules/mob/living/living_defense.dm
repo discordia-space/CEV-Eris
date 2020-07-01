@@ -5,7 +5,7 @@
 //If you need to do something else with armor - just use getarmor() proc and do with those numbers all you want
 //Random absorb system was a cancer, and was removed from all across the codebase. Don't recreate it. Clockrigger 2019
 
-/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+/mob/living/proc/damage_through_armor(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/attack_flag = ARMOR_MELEE, var/armour_pen = 0, var/used_weapon = null, var/sharp = FALSE, var/edge = FALSE)
 
 	if(damage == 0)
 		return FALSE
@@ -22,8 +22,8 @@
 
 	//Here we can remove edge or sharpness from the blow
 	if ( (sharp || edge) && prob ( getarmor (def_zone, attack_flag) ) )
-		sharp = 0
-		edge = 0
+		sharp = FALSE
+		edge = FALSE
 
 
 	//Feedback
@@ -43,7 +43,7 @@
 
 	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
-		apply_damage(effective_damage, damagetype, def_zone, used_weapon, sharp, edge)
+		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
 
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
 	else
@@ -55,7 +55,7 @@
 
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
-		apply_damage(actual_damage, damagetype, def_zone, used_weapon, sharp, edge)
+		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
 		return actual_damage
 	return effective_damage
 
@@ -229,7 +229,7 @@
 				if(T)
 					src.loc = T
 					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
 
 /mob/living/proc/embed(var/obj/item/O, var/def_zone=null)

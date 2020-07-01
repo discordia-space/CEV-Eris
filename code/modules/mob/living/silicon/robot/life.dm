@@ -140,9 +140,9 @@
 
 	if(radio)
 		if(!is_component_functioning("radio"))
-			radio.on = 0
+			radio.on = FALSE
 		else
-			radio.on = 1
+			radio.on = TRUE
 
 	if(is_component_functioning("camera"))
 		src.blinded = 0
@@ -191,7 +191,7 @@
 		update_dead_sight()
 	else
 		if (is_ventcrawling)
-			sight |= SEE_TURFS|SEE_OBJS|BLIND
+			sight |= SEE_TURFS|SEE_OBJS
 
 		if ((src.sight_mode & BORGXRAY))
 			src.sight |= SEE_TURFS

@@ -342,6 +342,18 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_to_pickup = TRUE
 
+/obj/item/weapon/storage/freezer/contains_food/populate_contents()
+	new /obj/random/pizza/low_chance(src)
+	new /obj/random/soda(src)
+	new /obj/random/soda/low_chance(src)
+	new /obj/random/rations/low_chance(src)
+	new /obj/random/junkfood(src)
+	new /obj/random/junkfood(src)
+	new /obj/random/junkfood(src)
+	new /obj/random/junkfood/low_chance(src)
+	new /obj/random/junkfood/low_chance(src)
+	new /obj/random/booze/low_chance(src)
+
 /obj/item/weapon/storage/freezer/medical
 	name = "organ freezer"
 	icon_state = "freezer_red"

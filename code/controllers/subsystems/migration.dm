@@ -161,6 +161,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//This could only happen if all the burrows on the map were collapsed
 			return
 
+		if (!B.population.len)
+			// There is no mob nearby for the migration
+			// Avoid division by 0 in summon_mobs
+			continue
 
 		//Alright now we know where to go, next up, how many are we sending?
 		var/percentage = migration_percentage()
@@ -210,10 +214,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	var/obj/structure/burrow/candidate
 
 	switch (GLOB.storyteller.config_tag)
-		if ("jester") // Jester is much more likely to not reroll the maintenance check.
-			reroll_prob = 59.5
+		if ("jester") // Jester will most likely not reroll the maintenance area check.
+			reroll_prob = 19.5
 		if ("warrior")
-			reroll_prob = 98.5
+			reroll_prob = 80
 
 	//Lets copy the list into a candidates buffer
 	var/list/candidates = all_burrows.Copy(1,0)

@@ -3,8 +3,8 @@
 	desc = ""
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-stand"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 40
 	var/processing = 0
@@ -31,7 +31,7 @@
 			list(name="Leather jacket", cost=400, /obj/item/clothing/suit/storage/leather_jacket),
 			list(name="Cash Bag", cost=400, path=/obj/item/weapon/storage/bag/money),
 			list(name="Medical belt", cost=300, path=/obj/item/weapon/storage/belt/medical),
-			list(name="Security belt", cost=300, path=/obj/item/weapon/storage/belt/security),
+			list(name="Tactical belt", cost=300, path=/obj/item/weapon/storage/belt/tactical),
 			list(name="EMT belt", cost=300, path=/obj/item/weapon/storage/belt/medical/emt),
 			list(name="Champion belt", cost=500, path=/obj/item/weapon/storage/belt/champion),
 		"Medicine",

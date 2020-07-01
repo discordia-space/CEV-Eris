@@ -119,7 +119,7 @@
 	return
 
 /obj/item/weapon/reagent_containers/proc/standard_feed_mob(mob/user, mob/target) // This goes into attack
-	if(!istype(target))
+	if(!istype(target) || !target?.can_be_fed)
 		return FALSE
 
 	if(!is_drainable() && !istype(src, /obj/item/weapon/reagent_containers/pill)) // Pills are swallowed whole

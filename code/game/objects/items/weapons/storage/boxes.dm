@@ -214,7 +214,7 @@
 		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
 
 /obj/item/weapon/storage/box/sniperammo
-	name = "box of 14.5mm shells"
+	name = "box of .60 Anti Material shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 

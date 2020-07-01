@@ -39,7 +39,7 @@
 	name = "berries"
 	seed_name = "berry"
 	display_name = "berry bush"
-	mutants = list("glowberries","poisonberries")
+	mutants = list("glowberries","poisonberries", "atroberry")
 	chems = list("nutriment" = list(1,10), "berryjuice" = list(10,10))
 	kitchen_tag = "berries"
 
@@ -104,6 +104,18 @@
 	set_trait(TRAIT_POTENCY,50)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#7A5454")
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.35)
+/datum/seed/berry/atroberry
+	name = "atroberry"
+	seed_name = "Atropa belladonna"
+	display_name = "Atropa belladonna bush"
+	chems = list("nutriment" = list(1,5), "atropine" = list(1,5))
+	mutants = list()
+
+/datum/seed/berry/atroberry/New()
+	..()
+	set_trait(TRAIT_YIELD,3)
+	set_trait(TRAIT_POTENCY,40)
+	set_trait(TRAIT_PRODUCT_COLOUR,"#2f054b")
 
 // Nettles/variants.
 /datum/seed/nettle
@@ -1277,3 +1289,26 @@
 	set_trait(TRAIT_SPREAD,3)
 	set_trait(TRAIT_POTENCY,50)
 	set_trait(TRAIT_INVASIVE,1)
+
+// Tobacco
+/datum/seed/tobacco
+	name = "tobacco"
+	seed_name = "tobacco"
+	display_name = "tobacco leaves"
+	chems = list("nicotine" = list(1,10))
+	kitchen_tag = "tobacco"
+
+/datum/seed/tobacco/New()
+	..()
+	set_trait(TRAIT_MATURATION,6)
+	set_trait(TRAIT_PRODUCTION,6)
+	set_trait(TRAIT_YIELD,5)
+	set_trait(TRAIT_PRODUCT_ICON,"tobacco")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#749733")
+	set_trait(TRAIT_PLANT_COLOUR,"#749733")
+	set_trait(TRAIT_PLANT_ICON,"vine2")
+	set_trait(TRAIT_IDEAL_HEAT, 299)
+	set_trait(TRAIT_IDEAL_LIGHT, 7)
+	set_trait(TRAIT_WATER_CONSUMPTION, 6)
+	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
+

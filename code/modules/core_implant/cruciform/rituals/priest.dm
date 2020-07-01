@@ -277,8 +277,11 @@
 
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
-	participant.stats.changeStat(stat, -amount)
-	to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
+	// take_boost is automatically triggered by a callback function when the boost ends but the participant 
+	// may have been deleted during the duration of the boost
+	if (participant) // check if participant still exists otherwise we cannot read null.stats
+		participant.stats.changeStat(stat, -amount)
+		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
 
 /datum/ritual/cruciform/priest/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)

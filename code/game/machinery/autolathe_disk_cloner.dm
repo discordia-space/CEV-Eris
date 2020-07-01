@@ -4,8 +4,8 @@
 	icon = 'icons/obj/machines/disk_cloner.dmi'
 	icon_state = "disk_cloner"
 	circuit = /obj/item/weapon/circuitboard/autolathe_disk_cloner
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 500

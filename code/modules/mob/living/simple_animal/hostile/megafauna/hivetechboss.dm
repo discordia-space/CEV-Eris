@@ -3,7 +3,7 @@
 	desc = "Hivemind's will, manifested in flesh and metal."
 
 	faction = "hive"
-
+	mob_size = MOB_HUGE
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "hivemind_tyrant"
 	icon_living = "hivemind_tyrant"

@@ -19,6 +19,7 @@
 	var/allow_quick_gather = null //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
+	var/is_tray_hidden = FALSE //hides from even t-rays
 
 /obj/item/weapon/storage/New()
 	can_hold |= can_hold_extra

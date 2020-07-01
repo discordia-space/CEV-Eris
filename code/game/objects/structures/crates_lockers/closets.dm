@@ -3,7 +3,7 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
-	density = 1
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_GARGANTUAN
 	matter = list(MATERIAL_STEEL = 10)
@@ -214,7 +214,7 @@
 	opened = FALSE
 	update_icon()
 	playsound(src.loc, close_sound, 100, 1, -3)
-	density = 1
+	density = TRUE
 	update_openspace()
 	return 1
 

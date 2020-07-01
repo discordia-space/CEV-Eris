@@ -65,7 +65,7 @@
 	density = FALSE //Normal blobs can be walked over, but it's not a good idea
 
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 2
 
 	var/maxHealth = 20
@@ -236,7 +236,7 @@
 		if (L.stat != DEAD)
 			return TRUE
 
-	for (var/obj/mecha/M in loc)
+	for (var/mob/living/exosuit/M in loc)
 		return TRUE
 
 	return FALSE
@@ -353,11 +353,6 @@
 	if(B)
 		B.ex_act(2)
 		return
-	var/obj/mecha/M = locate() in T
-	if(M)
-		M.visible_message(SPAN_DANGER("The blob attacks \the [M]!"))
-		M.take_damage(40)
-		return
 
 	T.Enter(src) //This should make them travel down stairs
 
@@ -457,12 +452,6 @@
 			R.trans_to(L, R.total_volume)
 			qdel(R)
 
-		return TRUE
-
-	var/obj/mecha/M = (locate(/obj/mecha) in loc)
-	if(M)
-		M.visible_message(SPAN_DANGER("The blob attacks \the [M]!"))
-		M.take_damage(5)
 		return TRUE
 
 	//If we get here, nobody was harmed

@@ -9,10 +9,6 @@
 	display_name = "Glasses, prescription"
 	path = /obj/item/clothing/glasses/regular
 
-/datum/gear/eyes/glasses/green
-	display_name = "Glasses, green"
-	path = /obj/item/clothing/glasses/gglasses
-
 /datum/gear/eyes/glasses/prescriptionhipster
 	display_name = "Glasses, hipster"
 	path = /obj/item/clothing/glasses/regular/hipster
@@ -24,6 +20,14 @@
 /datum/gear/eyes/scanning_goggles
 	display_name = "scanning goggles"
 	path = /obj/item/clothing/glasses/regular/scanners
+
+/datum/gear/eyes/green_goggles
+	display_name = "green goggles"
+	path = /obj/item/clothing/glasses/regular/goggles
+
+/datum/gear/eyes/yellow_goggles
+	display_name = "black goggles"
+	path = /obj/item/clothing/glasses/regular/goggles/black
 
 /datum/gear/eyes/sciencegoggles
 	display_name = "Science Goggles"

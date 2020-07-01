@@ -6,7 +6,7 @@
 
 	mob_size = MOB_SMALL
 
-	density = 0 //Swarming roaches! They also more robust that way.
+	density = FALSE //Swarming roaches! They also more robust that way.
 
 	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 	emote_see = list("chirps loudly.", "cleans its whiskers with forelegs.")
@@ -34,6 +34,10 @@
 	overkill_gib = 16
 
 	sanity_damage = 0.5
+
+	var/atom/eat_target // target that the roach wants to eat
+	var/fed = 0 // roach gets fed after eating a corpse
+	var/probability_egg_laying = 25 // probability to lay an egg
 
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()

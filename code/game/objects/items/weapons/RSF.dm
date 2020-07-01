@@ -10,8 +10,8 @@ RSF
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"
 	opacity = 0
-	density = 0
-	anchored = 0.0
+	density = FALSE
+	anchored = FALSE
 	var/stored_matter = 30
 	var/mode = 1
 	w_class = ITEM_SIZE_NORMAL
@@ -64,7 +64,7 @@ RSF
 
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
-		if(R.stat || !R.cell || R.cell.charge <= 0)
+		if(R.stat || !R.cell || R.cell.empty())
 			return
 	else
 		if(stored_matter <= 0)

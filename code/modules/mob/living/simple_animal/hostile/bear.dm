@@ -131,39 +131,10 @@
 		var/mob/living/carbon/human/H = target_mob
 		var/dam_zone = pick(BP_CHEST, BP_L_ARM, BP_R_ARM, BP_L_LEG , BP_R_LEG)
 		var/obj/item/organ/external/affecting = H.get_organ(ran_zone(dam_zone))
-		H.damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, 0, 0, sharp = 1, edge = 1)
+		H.damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, 0, 0, sharp = TRUE, edge = TRUE)
 
 		return H
 	else if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		L.adjustBruteLoss(damage)
 		return L
-	//else if(istype(target_mob,/obj/mecha))
-		//var/obj/mecha/M = target_mob
-		//M.attack_animal(src)
-		//return M
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -459,8 +459,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(user.r_hand == src || user.l_hand == src)
 		if(!lit)
 			lit = 1
-			icon_state = "[base_state]on"
-			item_state = "[base_state]on"
+			icon_state = "[base_state]-on"
+			item_state = "[base_state]-on"
 			if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 				playsound(src, 'sound/items/zippo.ogg', 20, 1, 1)
 				user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
@@ -471,9 +471,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				else
 					to_chat(user, SPAN_WARNING("You burn yourself while lighting the lighter."))
 					if (user.l_hand == src)
-						user.apply_damage(2, BURN, BP_L_ARM)
+						user.apply_damage(2, BURN, BP_L_ARM, used_weapon = src)
 					else
-						user.apply_damage(2, BURN, BP_R_ARM)
+						user.apply_damage(2, BURN, BP_R_ARM, used_weapon = src)
 					user.visible_message(SPAN_NOTICE("After a few attempts, [user] manages to light the [src], they however burn their finger in the process."))
 			tool_qualities = list(QUALITY_CAUTERIZING = 10)
 			set_light(2)

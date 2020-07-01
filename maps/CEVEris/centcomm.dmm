@@ -3343,9 +3343,9 @@
 /area/shuttle/mercenary)
 "jB" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
+/obj/item/weapon/storage/belt/tactical,
+/obj/item/weapon/storage/belt/tactical,
+/obj/item/weapon/storage/belt/tactical,
 /obj/item/weapon/storage/pouch/large_generic,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -3597,7 +3597,7 @@
 	},
 /area/shuttle/mercenary)
 "kg" = (
-/obj/structure/closet/walllocker/emerglocker{
+/obj/structure/closet/wall_mounted/emcloset{
 	pixel_x = 28
 	},
 /obj/structure/table/standard,

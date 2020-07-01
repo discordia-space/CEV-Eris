@@ -9,7 +9,7 @@
 	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/clothing/gloves/stungloves/Initialize()
@@ -52,7 +52,7 @@
 		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
-	if(cell && cell.charge > hitcost)
+	if(cell && cell.check_charge(hitcost))
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 75, 1, -1)

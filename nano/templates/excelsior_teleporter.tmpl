@@ -1,31 +1,103 @@
 <!-- 
 Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
  -->
-<div class="item">
-	<div class="itemLabel">
-		Energy:
+{{:helper.excelsiorMode()}} 
+<h2>Welcome Comrade</h2>
+{{if data.menu == 0}}
+	<div class="item">
+		<div class="itemLabel">
+			Energy:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Power')}}
+		</div>
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Units')}}
+	<hr>
+	{{if data.excel_user}}
+		<div class="item">
+			<div class="itemLabel">
+				Scan in:
+			</div>
+			<div class="itemContent">
+				- {{:data.time_until_scan}}
+			</div>
+		</div>		
+		<div class="item">
+			<div class="itemLabel">
+				Mandates:
+			</div>
+			<div class="itemContent">
+				{{:helper.link('Mandates', 'radiation', {'open_menu' : 1}, null, 'fixedLeft')}}
+			</div>
+		</div>
+	{{/if}}
+	<div class="item">
+		<div class="itemLabel" style="width: 100%;">
+			Materials:
+		</div>
 	</div>
-</div>
-<hr>
-<div class="item">
-	<div class="itemLabel" style="width: 100%;">
-		Order List:
-	</div>
-</div>
-<table class='itemContent' style="width: 100%;">
-	<tr>
-		<td><b>Name</b></td>
-		<td><b>Amount</b></td>
-		<td><b>Energy Cost</b></td>
-	</tr>
-	{{for data.buy_list}}
+	<table class='itemContent' style="width: 100%;">
 		<tr>
-		<td>{{:value.title}}</td>
-		<td>{{:value.amount}}</td>
-		<td>{{:helper.link(value.price, 'circle-arrow-s', value.commands, null, null)}}</td>
+			<td><b>Name</b></td>
+			<td><b>Amount</b></td>
+			<td><b>Energy Cost</b></td>
+		</tr>
+		{{for data.materials_list}}
+			<tr>
+			<td>{{:value.title}}</td>
+			<td>{{:value.amount}}</td>
+			<td>{{:helper.link(value.price, 'circle-arrow-s', value.commands, null, 'fixedLeft')}}</td>
+			</tr>
+		{{/for}}
+	</table>
+	</div>
+	<div class="item">
+		<div class="itemLabel" style="width: 100%;">
+			Parts:
+		</div>
+	</div>
+	<table class='itemContent' style="width: 100%;">
+		<tr>
+			<td><b>Name</b></td>
+			<td><b>Energy Cost</b></td>
+		</tr>
+		{{for data.list_of_parts}}
+			<tr>
+			<td>{{:value.name_p}}</td>
+			<td>{{:helper.link(value.price_p, 'circle-arrow-s', value.commands_p, null, 'fixedLeft')}}</td>
+			</tr>
+		{{/for}}
+	</table>
+	
+{{else data.menu == 1}}
+	<h2>Available Mandates:</h2>
+	<div class="item">
+		<div class="itemContent">
+			{{:helper.link('Close', 'radiation', {'close_menu' : 1}, null, 'fixedLeft')}}
+		</div>
+	</div>
+	<table style="width:100%">
+	<tr>
+	<td>Title</td>
+	<th style="width:50%">Description</th>
+	<th style="width:12%">Reward</th>
+	<th style="width:12%">Status</th>
+	</tr>
+	{{for data.available_mandates}}
+		<tr class="candystripe">
+		<td style="background-color: #198eea;">{{:value.name}}</td>
+		<td style="background-color: #198eea;">{{:value.desc}}</td>
+		<td style="background-color: #198eea;">{{:value.reward}}</td>
+		<td style="background-color: #198eea;">{{:value.status}}</td>
 		</tr>
 	{{/for}}
-</table>
+	{{for data.completed_mandates}}
+		<tr class="candystripe">
+		<td style="background-color: #e16701 ;">{{:value.name}}</td>
+		<td style="background-color: #e16701 ;">{{:value.desc}}</td>
+		<td style="background-color: #e16701 ;">{{:value.reward}}</td>
+		<td style="background-color: #e16701 ;">{{:value.status}}</td>
+		</tr>
+	{{/for}}
+	</table>
+{{/if}}

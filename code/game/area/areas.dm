@@ -325,7 +325,8 @@ var/list/mob/living/forced_ambiance_list = new
 		var/mob/living/carbon/human/H = mob
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
-
+		if(H.stats.getPerk(PERK_ASS_OF_CONCRETE))
+			return
 		if(MOVING_QUICKLY(H))
 			H.AdjustStunned(2)
 			H.AdjustWeakened(2)

@@ -110,7 +110,7 @@
 	glass_desc = "A well-known alcohol with a variety of applications."
 	reagent_type = "Alchohol"
 
-/datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/ethanol/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 

@@ -3,8 +3,8 @@
 	name = "grille"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	flags = CONDUCT
 	layer = BELOW_OBJ_LAYER
 	explosion_resistance = 1
@@ -177,7 +177,7 @@
 /obj/structure/grille/proc/healthcheck()
 	if(health <= 0)
 		if(!destroyed)
-			density = 0
+			density = FALSE
 			destroyed = 1
 			update_icon()
 			new /obj/item/stack/rods(get_turf(src))
@@ -250,7 +250,7 @@
 /obj/structure/grille/broken
 	destroyed = 1
 	icon_state = "grille-b"
-	density = 0
+	density = FALSE
 	New()
 		..()
 		health = rand(-5, -1) //In the destroyed but not utterly threshold.

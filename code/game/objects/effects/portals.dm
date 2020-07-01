@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
 	var/mask = "portal_mask"
-	density = 1
+	density = TRUE
 	unacidable = 1//Can't destroy energy portals.
 	var/failchance = 5
 	var/atom/target = null
@@ -79,7 +79,7 @@ var/list/portal_cache = list()
 		return
 	if (istype(M, /obj/effect/effect/light)) //lights from flashlights too.
 		return
-	if (M.anchored && !istype(M, /obj/mecha))
+	if (M.anchored && !istype(M, /mob/living/exosuit))
 		return
 	if (!( target ))
 		qdel(src)
@@ -108,9 +108,11 @@ var/list/portal_cache = list()
 	failchance = 0
 	var/obj/effect/portal/wormhole/partner
 	var/processing = FALSE
+	var/admin_announce_new = TRUE
 
 /obj/effect/portal/wormhole/New(loc, lifetime, exit)
-	message_admins("Wormhole with lifetime [time2text(lifetime, "hh hours, mm minutes and ss seconds")] created at ([jumplink(src)])", 0, 1)
+	if(admin_announce_new)
+		message_admins("Wormhole with lifetime [time2text(lifetime, "hh hours, mm minutes and ss seconds")] created at ([jumplink(src)])", 0, 1)
 	..(loc, lifetime)
 	set_target(exit)
 	pair()
@@ -170,3 +172,51 @@ var/list/portal_cache = list()
 		//Portals ignore armor when messing you up, it's logical
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
 	do_teleport(M, get_destination(get_turf(M)), 1)
+
+
+
+/obj/effect/portal/wormhole/rift
+	name = "rift"
+	desc = "It's blue and round. Probably a portal."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "portal"
+	mask = "portal_mask"
+	failchance = 0
+	admin_announce_new = FALSE
+	var/teleportations_left
+
+/obj/effect/portal/wormhole/rift/New(loc, exit, msg_admins=TRUE)
+	teleportations_left = rand(3, 10)
+	..(loc, 0, exit)
+	deltimer(lifetime)
+	if(msg_admins)
+		message_admins("Bluespace rift created between [jumplink(src)] and [jumplink(src.target)] with [teleportations_left] teleportations left")
+
+/obj/effect/portal/wormhole/rift/pair()
+	partner = null
+	if (!target)
+		return
+
+	var/turf/T = get_turf(target)
+	partner = (locate(/obj/effect/portal/wormhole/rift) in T)
+
+	if (!partner)
+		partner = new /obj/effect/portal/wormhole/rift(T, loc, FALSE)
+	var/obj/effect/portal/wormhole/rift/P = partner
+	P.teleportations_left = teleportations_left
+
+/obj/effect/portal/wormhole/rift/close()
+	if(teleportations_left <= 0)
+		qdel(src.target)
+		qdel(src)
+
+/obj/effect/portal/wormhole/rift/teleport(atom/movable/M)
+	. = ..(M)
+	failchance = 0
+	if(.)
+		var/obj/effect/portal/wormhole/rift/P = partner
+		teleportations_left -= 1
+		P.teleportations_left -= 1
+		close()
+
+/obj/effect/portal/wormhole/update_icon()

@@ -4,7 +4,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
 	blocks_air = 1
-	density = 1
+	density = TRUE
 	layer = EDGED_TURF_LAYER
 
 /turf/simulated/mineral //wall piece
@@ -14,7 +14,7 @@
 	oxygen = 0
 	nitrogen = 0
 	opacity = 1
-	density = 1
+	density = TRUE
 	layer = EDGED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
@@ -87,10 +87,11 @@
 			if(QUALITY_DIGGING in I.tool_qualities)
 				attackby(I,R)
 
-	else if(istype(AM,/obj/mecha))
-		var/obj/mecha/M = AM
-		if(istype(M.selected,/obj/item/mecha_parts/mecha_equipment/tool/drill))
-			M.selected.action(src)
+	else if(istype(AM,/mob/living/exosuit))
+		var/mob/living/exosuit/M = AM
+		if(istype(M.selected_hardpoint, /obj/item/mech_equipment/drill))
+			var/obj/item/mech_equipment/drill/D = M.selected_hardpoint
+			D.afterattack(src)
 
 /turf/simulated/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)

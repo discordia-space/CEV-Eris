@@ -84,6 +84,7 @@
 		/datum/design/autolathe/container/beaker_large,
 		/datum/design/autolathe/container/pill_bottle,
 		/datum/design/autolathe/container/spray,
+		/datum/design/autolathe/container/freezer,
 		/datum/design/autolathe/misc/cane,
 		/datum/design/autolathe/misc/floor_light,
 		/datum/design/autolathe/misc/tube,
@@ -176,7 +177,8 @@
 		/datum/design/autolathe/tool/combi_driver,
 		/datum/design/autolathe/tool/armature_cutter,
 		/datum/design/autolathe/tool/weldertool_adv,
-		/datum/design/autolathe/part/diamondblade
+		/datum/design/autolathe/part/diamondblade,
+		/datum/design/autolathe/tool/rpd,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
@@ -237,8 +239,18 @@
 		/datum/design/autolathe/container/beaker_large,
 		/datum/design/autolathe/container/pill_bottle,
 		/datum/design/autolathe/container/spray,
+		/datum/design/autolathe/container/freezer_medical,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/container/syringegun_ammo,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/surgery
+	disk_name = "Back Alley Organs"
+	icon_state = "moebius"
+
+	license = 5
+	designs = list(
+		/datum/design/bioprinter/lungs
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/computer
@@ -514,6 +526,7 @@
 		/datum/design/autolathe/gun/vintorez,
 		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/gun/reclaimer,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/pistol_ammobox,
@@ -536,6 +549,7 @@
 		/datum/design/autolathe/circuit/shieldgen_excelsior,
 		/datum/design/autolathe/circuit/reconstructor_excelsior,
 		/datum/design/autolathe/circuit/diesel_excelsior,
+		/datum/design/autolathe/circuit/excelsior_boombox,
 		/datum/design/autolathe/circuit/turret_excelsior,
 		/datum/design/autolathe/circuit/autolathe_disk_cloner,
 		/datum/design/research/item/part/micro_mani,				//machine parts
@@ -552,6 +566,7 @@
 		/datum/design/autolathe/device/excelsiormine,				//security
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/device/implanter,					//misc
+		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/clothing/excelsior_armor,
 		/datum/design/autolathe/device/excelbaton,
 	)

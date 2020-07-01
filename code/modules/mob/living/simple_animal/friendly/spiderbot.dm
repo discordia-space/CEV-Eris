@@ -9,7 +9,7 @@
 
 	var/obj/item/device/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/weapon/cell/large/cell = null
+	var/obj/item/weapon/cell/large/cell
 	var/obj/machinery/camera/camera = null
 	var/obj/item/device/mmi/mmi = null
 	var/list/req_access = list(access_robotics) //Access needed to pop out the brain.
@@ -200,8 +200,9 @@
 	if(camera)
 		camera.status = 0
 
-	held_item.loc = src.loc
-	held_item = null
+	if (held_item) // if the spiderbot is holding an item
+		held_item.loc = src.loc
+		held_item = null
 
 	gibs(loc, null, null, /obj/effect/gibspawner/robot) //TODO: use gib() or refactor spiderbots into synthetics.
 	qdel(src)

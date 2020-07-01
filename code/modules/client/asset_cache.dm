@@ -289,6 +289,14 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		assets[filename] = I
 	..()
 
+/datum/asset/simple/perks/register()
+	for(var/type in subtypesof(/datum/perk))
+		var/datum/perk/P = new type
+		var/filename = sanitizeFileName("[type].png")
+		var/icon/I = icon(P.icon, P.icon_state)
+		assets[filename] = I
+	..()
+
 
 /datum/asset/directories/nanoui
 	isTrivial = FALSE
@@ -307,7 +315,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 /datum/asset/images_map/register()
 	var/list/mapnames = list()
-	for(var/z in maps_data.station_levels)
+	for(var/z in GLOB.maps_data.station_levels)
 		mapnames += map_image_file_name(z)
 
 	var/list/filenames = flist(MAP_IMAGE_PATH)
