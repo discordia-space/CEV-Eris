@@ -81,7 +81,7 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
 
-//Medical Rig
+//Medical
 /obj/item/clothing/head/space/void/medical
 	name = "medical voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has minor radiation shielding."
@@ -124,6 +124,46 @@
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
+
+/obj/item/clothing/head/space/void/paramedic
+	name = "Moebius Paramedic's Voidsuit Helmet"
+	desc = "A helmet designed by Moebius Medical. It offers a wider field of view for easier work and location of victims."
+	icon_state = "paramedic_void"
+	item_state = "paramedic_void"
+	item_state_slots = list(
+		slot_l_hand_str = "paramedic_void",
+		slot_r_hand_str = "paramedic_void"
+		)
+
+	armor = list(
+		melee = 35,
+		bullet = 30,
+		energy = 40,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
+	siemens_coefficient = 0.7
+	light_overlay = "helmet_light_ihs"
+
+/obj/item/clothing/suit/space/void/paramedic
+	name = "Moebius Paramedic's Voidsuit"
+	icon_state = "paramedic_void"
+	desc = "A utility voidsuit made by Moebius Medical for Paramedics to recover victims in hazardous environments."
+	item_state = "paramedic_void"
+	armor = list(
+		melee = 35,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
+	siemens_coefficient = 0.7
+	helmet = /obj/item/clothing/head/space/void/paramedic
+
+/obj/item/clothing/suit/space/void/paramedic/equipped
+	tank = /obj/item/weapon/tank/jetpack/oxygen
 
 	//Security
 /obj/item/clothing/head/space/void/security
