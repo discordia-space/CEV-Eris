@@ -136,7 +136,7 @@
 		)
 
 	armor = list(
-		melee = 35,
+		melee = 30,
 		bullet = 30,
 		energy = 40,
 		bomb = 25,
@@ -152,9 +152,9 @@
 	desc = "A utility voidsuit made by Moebius Medical for Paramedics to recover victims in hazardous environments."
 	item_state = "paramedic_void"
 	armor = list(
-		melee = 35,
-		bullet = 40,
-		energy = 30,
+		melee = 30,
+		bullet = 30,
+		energy = 40,
 		bomb = 25,
 		bio = 100,
 		rad = 75
