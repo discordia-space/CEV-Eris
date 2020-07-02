@@ -223,7 +223,7 @@
 /datum/sanity/proc/oddity_stat_up(multiplier)
 	var/list/inspiration_items = list()
 	for(var/obj/item/I in owner.get_contents())
-		if(I.GetComponent(/datum/component/inspiration))
+		if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
 			inspiration_items += I
 	if(inspiration_items.len)
 		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
