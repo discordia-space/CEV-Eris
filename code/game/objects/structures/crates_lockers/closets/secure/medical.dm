@@ -96,7 +96,6 @@
 			new /obj/item/clothing/head/surgery/purple(src)
 	new /obj/item/clothing/under/rank/paramedic(src)
 	new /obj/item/device/flash(src)
-	new /obj/item/clothing/suit/space/void/paramedic(src)
 	new /obj/item/device/lighting/toggleable/flashlight(src)
 	new /obj/item/device/radio(src)
 	new /obj/item/weapon/tool/crowbar(src)
