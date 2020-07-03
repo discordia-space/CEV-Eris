@@ -1,6 +1,6 @@
 /datum/perk/paper_worm
 	name = "Paper Worm"
-	desc = "You always look at the bright side of life but seems there's something you'd forgotten"
+	desc = "You always look at the bright side of life but it seems there's something you'd forgotten"
 	icon_state = "paper"
 
 /datum/perk/paper_worm/assign(mob/living/carbon/human/H)
@@ -41,7 +41,7 @@
 
 /datum/perk/nihilist
 	name = "Nihilist"
-	desc= "You have lost faith in this world and in its people."
+	desc= "You have lost faith in this world and in it's people."
 	icon_state = "eye" //https://game-icons.net/1x1/lorc/tear-tracks.html
 
 /datum/perk/nihilist/assign(mob/living/carbon/human/H)
@@ -58,7 +58,7 @@
 /datum/perk/moralist
 	name = "Moralist"
 	icon_state = "moralist" //https://game-icons.net/
-	desc = "You are a good human being. Love life, and life will love you back. Love people, and they will love you back."
+	desc = "You are a good human being. Love life and life will love you back. Love people and people will love you back."
 
 /datum/perk/drug_addict
 	name = "Drug Addict"
@@ -86,7 +86,7 @@
 /datum/perk/alcoholic
 	name = "Alcoholic"
 	icon_state = "beer" //https://game-icons.net/1x1/delapouite/beer-bottle.html
-	desc = "For you it's alcohol: the cause of, and solution to, all of life's problems."
+	desc = "For you alcohol is the cause of, and solution to, all of life's problems."
 
 /datum/perk/alcoholic/assign(mob/living/carbon/human/H)
 	..()
@@ -110,7 +110,7 @@
 /datum/perk/noble
 	name = "Noble"
 	icon_state = "family" //https://game-icons.net
-	desc = "You're a noble, a graceful ornament to the civil order. The jewel of society. Waiting to be stolen."
+	desc = "You're a noble, a graceful ornament to the civil order. You are the jewel of society, just waiting to have its glow darkened and be shattered forever."
 
 /datum/perk/noble/assign(mob/living/carbon/human/H)
 	..()
@@ -146,7 +146,7 @@
 
 /datum/perk/rat
 	name = "Rat"
-	desc = "Early bird gets the worm, but the second rat gets the cheese."
+	desc = "While the early bird catches the worm, the second rat steals the cheese."
 	icon_state = "rat" //https://game-icons.net/
 
 /datum/perk/rat/assign(mob/living/carbon/human/H)
@@ -179,7 +179,7 @@
 /datum/perk/oborin_syndrome
 	name = "Oborin Syndrome"
 	icon_state = "prism" //https://game-icons.net/1x1/delapouite/prism.html
-	desc = "You're often told you see the world in black and whites. But they're wrong, you see the greys, you live in the greys. Not the 'colors' though, those are just venus traps for the dumb flies, you're smarter than that. Only grey."
+	desc = "You're often told you see the world in black and white, but they are mistaken. You see the all the shades of grey, you live in them. There is nothing to gain in the misleading colors of the narrow world. There is only grey."
 
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
 	..()
@@ -194,7 +194,7 @@
 /datum/perk/lowborn
 	name = "Lowborn"
 	icon_state = "ladder" //https://game-icons.net/1x1/delapouite/hole-ladder.html
-	desc = "For them you are a pariah, trash — untouchable! That’s the word! You are an Untouchable!"
+	desc = "For them you are a pariah, trash — untouchable! That’s the word! You are an untouchable!"
 
 /datum/perk/lowborn/assign(mob/living/carbon/human/H)
 	..()
