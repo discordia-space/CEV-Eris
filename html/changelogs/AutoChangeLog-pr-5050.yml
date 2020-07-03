@@ -1,4 +1,0 @@
-author: Carbonhell
-delete-after: true
-changes:
-  - bugfix: Only merchants with the right perk can use money as an inspiration now.
