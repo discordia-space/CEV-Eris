@@ -1,0 +1,6 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: Dark slowdown is canceled by night vision.
+  - bugfix: Oborin Syndrome perk no longer remains after death.
+  - bugfix: Noble perk.
