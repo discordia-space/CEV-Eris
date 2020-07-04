@@ -21,19 +21,19 @@
 
 /datum/perk/oddity/terrible_fate
 	name = "Terrible Fate"
-	desc = "You realize the painful truth of death. You don't want to die, and despise death - dying is a unmistakable horror to you. \
+	desc = "You realize the painful truth of death. You don't want to die and despise death - dying is a unmistakable horror to you. \
 			Anyone who is around you at the moment of your death must roll a Vigilance sanity check. If they fail, their sanity will instantly be dropped to 0."
 	icon_state = "murder" // https://game-icons.net/1x1/delapouite/chalk-outline-murder.html
 
 /datum/perk/oddity/unfinished_delivery
 	name = "Unfinished Delivery"
-	desc = "It..it's not over? But I have no Cruciform, do I? How...why do I feel such a strong grip on life? \
+	desc = "Even though destination is your death, you have not reached it yet. \
 			You have a 33% to get revived after death."
 	icon_state = "regrowth" // https://game-icons.net/1x1/delapouite/stump-regrowth.html
 
 /datum/perk/oddity/lungs_of_iron
 	name = "Lungs of Iron"
-	desc = "Why am I in space, when I could win a swimming contest with such mighty breathing? \
+	desc = "Your lungs have improved volume. You could easily win a diving contest. \
 			You take only half breathing damage."
 	icon_state = "lungs" // https://game-icons.net/1x1/lorc/one-eyed.html
 
@@ -45,7 +45,7 @@
 
 /datum/perk/oddity/space_asshole
 	name = "Space Asshole"
-	desc = "Bombs, holes, falling in holes, being hit with bombs, I'm just used to it by now. \
+	desc = "Holes, gravity, falling, tumbling. It's all the same. \
 			You take less damage from falling."
 	icon_state = "bomb" // https://game-icons.net
 
@@ -88,7 +88,7 @@
 
 /datum/perk/oddity/horrible_deeds
 	name = "Horrible Deeds"
-	desc = "The twitch. The blood. They see the truth in your actions and are horrified. \
+	desc = "The itch. The blood. They see the truth in your actions and are horrified. \
 			People around you lose sanity."
 	icon_state = "bad_breath" // https://game-icons.net
 
@@ -102,7 +102,7 @@
 
 /datum/perk/oddity/chaingun_smoker
 	name = "Chaingun Smoker"
-	desc = "The cigarette is a way of life. Literally - it makes you feel less sick and tougher when you chomp on cigars. \
+	desc = "The cigarette is your way of life. It makes you feel less sick and tougher when you chomp down on cigars. \
 			You heal a slight amount by smoking and recover sanity more quickly."
 	icon_state = "cigarette" // https://game-icons.net
 
@@ -113,7 +113,7 @@
 
 /datum/perk/oddity/fast_fingers
 	name = "Fast Fingers"
-	desc = "Pockets, ears, hands...just not the clothes! My legerdemain is legendary! \
+	desc = "Nothing is safe around your hands. You are a true kleptomaniac. \
 			Taking items off others is without sound and prompts, it's also quicker."
 	icon_state = "robber_hand" // https://game-icons.net/1x1/darkzaitzev/robber-hand.html
 
@@ -133,13 +133,13 @@
 
 /datum/perk/oddity/balls_of_plasteel
 	name = "Balls of Plasteel"
-	desc = "Pain comes and goes. Better to have less of it. \
+	desc = "Pain comes and goes. You have gotten used to it. \
 			Your paincrit tolerance is higher."
 	icon_state = "golem" // https://game-icons.net
 
 /datum/perk/oddity/junkborn
 	name = "Junkborn"
-	desc = "And they said you couldn't find a grail in the garbage! \
+	desc = "One man's trash is a another man's comeup. \
 			You have a higher chance of finding a rare item in trash piles."
 	icon_state = "treasure" // https://game-icons.net
 
