@@ -101,7 +101,7 @@
 	..()
 
 /datum/perk/oddity/chaingun_smoker
-	name = "Chaingun smoker"
+	name = "Chaingun Smoker"
 	desc = "The cigarette is a way of life. Literally - it makes you feel less sick and tougher when you chomp on cigars. \
 			You heal a slight amount by smoking and recover sanity more quickly."
 	icon_state = "cigarette" // https://game-icons.net
@@ -112,13 +112,13 @@
 	icon_state = "night" // https://game-icons.net/1x1/lorc/night-sky.html
 
 /datum/perk/oddity/fast_fingers
-	name = "Fast fingers"
+	name = "Fast Fingers"
 	desc = "Pockets, ears, hands...just not the clothes! My legerdemain is legendary! \
 			Taking items off others is without sound and prompts, it's also quicker."
 	icon_state = "robber_hand" // https://game-icons.net/1x1/darkzaitzev/robber-hand.html
 
 /datum/perk/oddity/quiet_as_mouse
-	name = "Quiet as mouse"
+	name = "Quiet as a Mouse"
 	desc = "Being deadly, easy. Silent? Even easier now. \
 			You are 50% more quiet."
 	icon_state = "footsteps" // https://game-icons.net
@@ -132,7 +132,7 @@
 	..()
 
 /datum/perk/oddity/balls_of_plasteel
-	name = "Balls of plasteel"
+	name = "Balls of Plasteel"
 	desc = "Pain comes and goes. Better to have less of it. \
 			Your paincrit tolerance is higher."
 	icon_state = "golem" // https://game-icons.net
@@ -144,7 +144,7 @@
 	icon_state = "treasure" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete
-	name = "Ass of concrete"
+	name = "Ass of Concrete"
 	desc = "Years of training your body made you a hulk of a person. No more pushing around. \
 			Nobody can move past you, even on help intent. You wont slip in gravity."
 	icon_state = "muscular" // https://game-icons.net
@@ -195,6 +195,6 @@
 	icon_state = "grab" // https://game-icons.net
 
 /datum/perk/oddity/sure_step
-	name = "Sure step"
+	name = "Sure Step"
 	desc = " You are more likely to avoid traps."
 	icon_state = "mantrap"
