@@ -38,7 +38,7 @@
 	icon_state = "lungs" // https://game-icons.net/1x1/lorc/one-eyed.html
 
 /datum/perk/oddity/blood_of_lead
-	name = "Leaded Blood"
+	name = "Blood of Lead"
 	desc = "Rotten food, disgusting garbage, poisons - all is less harmful to you now. \
 			You only take half toxin damage."
 	icon_state = "liver" // https://game-icons.net
@@ -144,7 +144,7 @@
 	icon_state = "treasure" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete
-	name = "Bulky"
+	name = "Ass of concrete"
 	desc = "Years of training your body made you a hulk of a person. No more pushing around. \
 			Nobody can move past you, even on help intent. You wont slip in gravity."
 	icon_state = "muscular" // https://game-icons.net

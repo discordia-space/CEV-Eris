@@ -64,9 +64,7 @@
 
 /datum/category_item/setup_option/background/fate/noble
 	name = "Noble"
-	desc = "You are a descendant of a long-lasting family, bearing a name of high status that can be traced back to the early civilization of your domain. \
-			You lineage can be traced back to captains and bridge crews of the colony ships or chairmen of lucrative corporations, and had a long tradition of admirals and generals. \
-			All of them left a legacy. Now, here you are, a lost soul of high origin. \
+	desc = "You are a descendant of a long-lasting family, being part of a lineage of high status that can be traced back to the early civilization of your domain. \
 			What legacy will you build? \
 			Start with an heirloom weapon, higher chance to be on traitor contracts and removed sanity cap. Stay clear of filth and danger."
 			
