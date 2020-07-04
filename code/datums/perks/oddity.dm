@@ -145,7 +145,7 @@
 
 /datum/perk/oddity/ass_of_concrete
 	name = "Bulky"
-	desc = "I can't take it anymore! What..how did I land on my feet?! I feel immovable! No one can push me around anymore! \
+	desc = "Years of training your body made you a hulk of a person. No more pushing around. \
 			Nobody can move past you, even on help intent. You wont slip in gravity."
 	icon_state = "muscular" // https://game-icons.net
 
