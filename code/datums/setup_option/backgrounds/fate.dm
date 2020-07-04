@@ -8,8 +8,7 @@
 	name = "Paper Worm"
 	desc = "You were a clerk and bureaucrat for all your life. Cramped offices with angry people is where your personality was forged. \
 			Coffee is your blood, your mind is corporate slogans, and personal life is nonexistent. \
-			But here you are, on a spaceship flying to hell. There is something more to you, something that may come to light later. \
-			You have lower stats all around, but have a higher chance to have increased stat growth on level up."
+			But here you are, on a spaceship flying to hell. There is something more to you, something that may come to light later."
 
 	stat_modifiers = list(
 		STAT_ROB = -10,
@@ -25,8 +24,7 @@
 	name = "Freelancer"
 	desc = "Whatever was your job, you never stayed in one place for too long or had lasting contracts. \
 			You were always on the move, looking for a brighter future on the other side. \
-			And because of that you never specialised as much as you should, but have broader array of other skills. \
-			This perk checks your highest stat, lowers it by 10 and improves all others by 4."
+			And because of that you never specialised as much as you should, but have broader array of other skills."
 
 	perks = list(PERK_FREELACER)
 
@@ -34,9 +32,7 @@
 	name = "Nihilist"
 	desc = "You simply ran out of fucks to give at some point in your life. \
 			Deciding to ignore the illusion of morals and justice, you realize there is only one thing of worth. You. \
-			Will you still be loyal only to yourself when the gates of hell open? \
-			This increases chance of positive breakdowns by 10% and negative breakdowns by 20%. Seeing someone die has a random effect on you: \
-			sometimes you won’t take any sanity loss and you can even gain back sanity, or get a boost to your cognition."
+			Will you still be loyal only to yourself when the gates of hell open?"
 
 	perks = list(PERK_NIHILIST)
 
@@ -44,9 +40,7 @@
 	name = "Moralist"
 	desc = "A day may come when the courage of men fails, when we forsake our friends and break all bonds of fellowship. \
 			But it is not this day. This day you fight! \
-			Carry this fire with you - light the way for others. \
-			Your Insight gain is faster when you are around sane people and they will recover sanity when around you. \
-			When you are around people that are low on health or sanity, you will take sanity damage."
+			Carry this fire with you - light the way for others."
 
 	perks = list(PERK_MORALIST)
 
@@ -54,8 +48,7 @@
 /datum/category_item/setup_option/background/fate/drug_addict
 	name = "Drug Addict"
 	desc = "For reasons you cannot remember, you decided to resort to major drug use. You have lost the battle, and now you suffer the consequences. \
-			Now it is all you that drives you forward. All you have left to fight the cruel reality, or escape from it for some time. \
-			You will start with an addiction to a random drug, as well as a bottle of pills containing the drug."
+			Now it is all you that drives you forward. All you have left to fight the cruel reality, or escape from it for some time."
 
 	perks = list(PERK_DRUG_ADDICT)
 
@@ -64,8 +57,7 @@
 	name = "Alcoholic"
 	desc = "You imagined the egress from all your trouble and pain at the bottom of the bottle, but the way only led to a labyrinth. \
 			You never stopped from coming back to it, trying again and again, poisoning your mind until you lost control. Now your face bears witness to your self-destruction. \
-			There is only one key to survival, and it is the liquid that has shown you the way down. \
-			You start with an alcohol addiction, which gives you a boost to robustness while under the influence and lowers your cognition permanently."
+			There is only one key to survival, and it is the liquid that has shown you the way down."
 
 	stat_modifiers = list(STAT_COG = -10)
 	perks = list(PERK_ALCOHOLIC)
@@ -83,9 +75,7 @@
 /datum/category_item/setup_option/background/fate/rat
 	name = "Rat"
 	desc = "For all you know, taking what isn't yours is what you were best at. Be that roguery, theft or murder. It’s all the same no matter how you name it, after all. \
-			You know the ways of infiltration, salvaging and getting away unharmed and with heavier pockets.\
-			You start with a +10 to Mechanical stat and -10 to Vigilance. You will have a -10 to overall sanity health, meaning you will incur a breakdown faster than most. \
-			Additionally you have more quiet footsteps and a chance to not trigger traps on the ground."
+			You know the ways of infiltration, salvaging and getting away unharmed and with heavier pockets."
 
 	perks = list(PERK_RAT)
 	stat_modifiers = list(
@@ -98,9 +88,7 @@
 	desc = "You see the world in different shapes and colors. \
 			You know that the truth is out there, that you only need that one last push to uncover the terrible truth beyond.\
 			So you pressed on, never stopping the pursuit of knowledge, to absorb all life and death had to offer. \
-			Finally this expedition will reveal the secrets of the universe. Or break you forever. \
-			Your sanity loss cap is removed, so stay clear of corpses or filth. You have less maximum sanity and no chance to have positive breakdowns. \
-			As tradeoff, you have 50% faster insight gain."
+			Finally this expedition will reveal the secrets of the universe. Or break you forever."
 
 	perks = list(PERK_REJECTED_GENIUS)
 
@@ -108,8 +96,7 @@
 	name = "Oborin Syndrome"
 	desc = "A condition manifested at some recent point in human history. \
 			It’s origin and prevalence are unknown, but it is speculated to be a psyionic phenomenom.\
-			You are affected by this so called Oborin Syndrome and are unable to see the colors of the world. You see what lies beyond them. \
-			Your sanity pool is higher than that of others."
+			You are affected by this so called Oborin Syndrome and are unable to see the colors of the world. You see what lies beyond them."
 
 	perks = list(PERK_OBORIN_SYNDROME)
 

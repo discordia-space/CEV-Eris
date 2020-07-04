@@ -1,6 +1,6 @@
 /datum/perk/paper_worm
 	name = "Paper Worm"
-	desc = "You always look at the bright side of life but it seems there's something you'd forgotten"
+	desc = "You have lower stats all around, but have a higher chance to have increased stat growth on level up."
 	icon_state = "paper"
 
 /datum/perk/paper_worm/assign(mob/living/carbon/human/H)
@@ -14,7 +14,7 @@
 /datum/perk/freelancer
 	name = "Freelancer"
 	icon_state = "skills"
-	desc = "You're a jack of all trades but master of none"
+	desc = "This perk checks your highest stat, lowers it by 10 and improves all others by 4."
 
 /datum/perk/freelancer/assign(mob/living/carbon/human/H)
 	..()
@@ -41,7 +41,8 @@
 
 /datum/perk/nihilist
 	name = "Nihilist"
-	desc= "You have lost faith in this world and in it's people."
+	desc= "This increases chance of positive breakdowns by 10% and negative breakdowns by 20%. Seeing someone die has a random effect on you: \
+			sometimes you won’t take any sanity loss and you can even gain back sanity, or get a boost to your cognition."
 	icon_state = "eye" //https://game-icons.net/1x1/lorc/tear-tracks.html
 
 /datum/perk/nihilist/assign(mob/living/carbon/human/H)
@@ -58,12 +59,13 @@
 /datum/perk/moralist
 	name = "Moralist"
 	icon_state = "moralist" //https://game-icons.net/
-	desc = "You are a good human being. Love life and life will love you back. Love people and people will love you back."
+	desc = "Your Insight gain is faster when you are around sane people and they will recover sanity when around you. \
+			When you are around people that are low on health or sanity, you will take sanity damage."
 
 /datum/perk/drug_addict
 	name = "Drug Addict"
 	icon_state = "medicine" //https://game-icons.net/1x1/delapouite/medicines.html
-	desc = "You have absolutely no pleasure in the stimulants you indulge. It's a desperate attempt to escape from the dread of some strange impending doom"
+	desc = "You start with an addiction to a random drug, as well as a bottle of pills containing the drug."
 
 /datum/perk/drug_addict/assign(mob/living/carbon/human/H)
 	..()
@@ -86,7 +88,7 @@
 /datum/perk/alcoholic
 	name = "Alcoholic"
 	icon_state = "beer" //https://game-icons.net/1x1/delapouite/beer-bottle.html
-	desc = "For you alcohol is the cause of, and solution to, all of life's problems."
+	desc = "You have an alcohol addiction, which gives you a boost to robustness while under the influence and lowers your cognition permanently."
 
 /datum/perk/alcoholic/assign(mob/living/carbon/human/H)
 	..()
@@ -110,7 +112,7 @@
 /datum/perk/noble
 	name = "Noble"
 	icon_state = "family" //https://game-icons.net
-	desc = "You're a noble, a graceful ornament to the civil order. You are the jewel of society, just waiting to have its glow darkened and be shattered forever."
+	desc = "Start with an heirloom weapon, higher chance to be on traitor contracts and removed sanity cap. Stay clear of filth and danger."
 
 /datum/perk/noble/assign(mob/living/carbon/human/H)
 	..()
@@ -146,7 +148,8 @@
 
 /datum/perk/rat
 	name = "Rat"
-	desc = "While the early bird catches the worm, the second rat steals the cheese."
+	desc = "You start with a +10 to Mechanical stat and -10 to Vigilance. You will have a -10 to overall sanity health, meaning you will incur a breakdown faster than most. \
+			Additionally you have more quiet footsteps and a chance to not trigger traps on the ground."
 	icon_state = "rat" //https://game-icons.net/
 
 /datum/perk/rat/assign(mob/living/carbon/human/H)
@@ -159,7 +162,8 @@
 
 /datum/perk/rejected_genius
 	name = "Rejected Genius"
-	desc = "Your dreams are undisturbed by reality, your search for the impossible continues regardless of your peers."
+	desc = "Your sanity loss cap is removed, so stay clear of corpses or filth. You have less maximum sanity and no chance to have positive breakdowns. \
+			As tradeoff, you have 50% faster insight gain."
 	icon_state = "knowledge" //https://game-icons.net/
 
 /datum/perk/rejected_genius/assign(mob/living/carbon/human/H)
@@ -179,7 +183,7 @@
 /datum/perk/oborin_syndrome
 	name = "Oborin Syndrome"
 	icon_state = "prism" //https://game-icons.net/1x1/delapouite/prism.html
-	desc = "You're often told you see the world in black and white, but they are mistaken. You see the all the shades of grey, you live in them. There is nothing to gain in the misleading colors of the narrow world. There is only grey."
+	desc = "Your sanity pool is higher than that of others at the cost of the colors of the world."
 
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
 	..()
@@ -194,7 +198,7 @@
 /datum/perk/lowborn
 	name = "Lowborn"
 	icon_state = "ladder" //https://game-icons.net/1x1/delapouite/hole-ladder.html
-	desc = "For them you are a pariah, trash — untouchable! That’s the word! You are an untouchable!"
+	desc = "You cannot be a person of authority. Additionally, you have the ability to have a name without a last name and have an increased sanity pool."
 
 /datum/perk/lowborn/assign(mob/living/carbon/human/H)
 	..()
