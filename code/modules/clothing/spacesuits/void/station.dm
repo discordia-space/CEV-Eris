@@ -81,12 +81,12 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
 
-//Medical Rig
+//Medical
 /obj/item/clothing/head/space/void/medical
 	name = "medical voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has minor radiation shielding."
-	icon_state = "rig0-medical"
-	item_state = "medical_helm"
+	icon_state = "rig-medical"
+	item_state = "rig-medical"
 	item_state_slots = list(
 		slot_l_hand_str = "medical_helm",
 		slot_r_hand_str = "medical_helm",
@@ -101,10 +101,10 @@
 	)
 
 /obj/item/clothing/suit/space/void/medical
-	icon_state = "rig-medical"
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
-	item_state = "medical_voidsuit"
+	icon_state = "rig-medical"
+	item_state = "rig-medical"
 	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
