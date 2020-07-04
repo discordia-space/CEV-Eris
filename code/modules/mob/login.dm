@@ -61,3 +61,5 @@
 		client.CAN_MOVE_DIAGONALLY = FALSE
 
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
+
+	update_client_colour(0)
