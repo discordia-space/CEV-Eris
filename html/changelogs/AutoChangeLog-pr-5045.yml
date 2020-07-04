@@ -1,0 +1,5 @@
+author: Fikou
+delete-after: true
+changes:
+  - balance: removes melee/bullet/energy armor from paramedic jumpsuit and nerfs bio
+      from 30 to 10
