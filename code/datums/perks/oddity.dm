@@ -8,7 +8,7 @@
 	icon_state = "fast" // https://game-icons.net/1x1/delapouite/fast-forward-button.html
 
 /datum/perk/oddity/ear_of_quicksilver
-	name = "Impeccable hearing"
+	name = "Ear of Silver"
 	desc = "Secrets do not escape your ears. Beware, loud noises are especially dangerous to you. \
 			You have further listening range, but flashbangs stun you for double the time."
 	icon_state = "ear" // https://game-icons.net
