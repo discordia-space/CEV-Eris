@@ -78,7 +78,7 @@
 	set name = "Gulp Down"
 	set src in view(1)
 
-	if(isghost(usr)
+	if(isghost(usr))
 		to_chat(usr, "You ghost!")
 		return
 
