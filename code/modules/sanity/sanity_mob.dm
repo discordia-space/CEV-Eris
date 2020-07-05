@@ -3,7 +3,7 @@
 #define SANITY_DAMAGE_MOD 0.6
 
 // Damage received from unpleasant stuff in view
-#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
+#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.1 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
 // Damage received from body damage
 #define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
