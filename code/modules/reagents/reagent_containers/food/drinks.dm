@@ -79,7 +79,7 @@
 	set src in view(1)
 
 	if(isghost(usr)
-		to_chat(H, "You ghost!")
+		to_chat(usr, "You ghost!")
 		return
 
 	if(is_drainable())
