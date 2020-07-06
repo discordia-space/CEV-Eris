@@ -10,18 +10,16 @@
 	update_lying_buckled_and_verb_status()
 	GLOB.dead_mob_list -= src
 
-	var/atom/movable/overlay/animation = null
-	animation = new(loc)
-	animation.icon_state = "blank"
-	animation.icon = 'icons/mob/mob.dmi'
-	animation.master = src
-
-	flick(anim, animation)
 	if(do_gibs) gibs(loc, dna)
 
-
+	var/atom/movable/overlay/animation = null
 	if (anim)
-		addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+		animation = new(loc)
+		animation.icon_state = "blank"
+		animation.icon = 'icons/mob/mob.dmi'
+		animation.master = src
+		flick(anim, animation)
+	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 /mob/proc/check_delete(var/atom/movable/overlay/animation)
 	if(animation)	qdel(animation)
@@ -36,26 +34,23 @@
 		var/obj/item/weapon/holder/H = loc
 		H.release_mob()
 
-	var/atom/movable/overlay/animation = null
 	transforming = TRUE
 	ADD_TRANSFORMATION_MOVEMENT_HANDLER(src)
 	canmove = 0
 	icon = null
 	invisibility = 101
 
-	animation = new(loc)
-	animation.icon_state = "blank"
-	animation.icon = iconfile
-	animation.master = src
-
-	flick(anim, animation)
 	new remains(loc)
 
-
-
 	remove_from_dead_mob_list()
+	var/atom/movable/overlay/animation = null
+	if(anim)
+		animation = new(loc)
+		animation.icon_state = "blank"
+		animation.icon = iconfile
+		animation.master = src
+		flick(anim, animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
-
 
 
 /mob/proc/death(gibbed,deathmessage="seizes up and falls limp...",show_dead_message = "You have died.")

@@ -1,6 +1,7 @@
 /datum/perk/paper_worm
 	name = "Paper Worm"
-	desc = "You always look at the bright side of life but seems there's something you'd forgotten"
+	desc = "You were a clerk and bureaucrat for all your life. Cramped offices with angry people is where your personality was forged. \
+			You have lower stats all around, but have a higher chance to have increased stat growth on level up."
 	icon_state = "paper"
 
 /datum/perk/paper_worm/assign(mob/living/carbon/human/H)
@@ -14,7 +15,8 @@
 /datum/perk/freelancer
 	name = "Freelancer"
 	icon_state = "skills"
-	desc = "You're a jack of all trades but master of none"
+	desc = "Whatever was your job, you never stayed in one place for too long or had lasting contracts. \
+			This perk checks your highest stat, lowers it by 10 and improves all others by 4."
 
 /datum/perk/freelancer/assign(mob/living/carbon/human/H)
 	..()
@@ -41,7 +43,9 @@
 
 /datum/perk/nihilist
 	name = "Nihilist"
-	desc= "You have lost faith in this world and in its people."
+	desc = 	"You simply ran out of fucks to give at some point in your life. \
+			This increases chance of positive breakdowns by 10% and negative breakdowns by 20%. Seeing someone die has a random effect on you: \
+			sometimes you won’t take any sanity loss and you can even gain back sanity, or get a boost to your cognition."
 	icon_state = "eye" //https://game-icons.net/1x1/lorc/tear-tracks.html
 
 /datum/perk/nihilist/assign(mob/living/carbon/human/H)
@@ -58,33 +62,40 @@
 /datum/perk/moralist
 	name = "Moralist"
 	icon_state = "moralist" //https://game-icons.net/
-	desc = "You are a good human being. Love life, and life will love you back. Love people, and they will love you back."
+	desc = "A day may come when the courage of men fails, when we forsake our friends and break all bonds of fellowship. \
+			But it is not this day. This day you fight! \
+			Your Insight gain is faster when you are around sane people and they will recover sanity when around you. \
+			When you are around people that are low on health or sanity, you will take sanity damage."
 
 /datum/perk/drug_addict
 	name = "Drug Addict"
 	icon_state = "medicine" //https://game-icons.net/1x1/delapouite/medicines.html
-	desc = "You have absolutely no pleasure in the stimulants you indulge. It's a desperate attempt to escape from the dread of some strange impending doom"
+	desc = "For reasons you cannot remember, you decided to resort to major drug use. You have lost the battle, and now you suffer the consequences. \
+			You start with an addiction to a random drug, as well as a bottle of pills containing the drug."
 
 /datum/perk/drug_addict/assign(mob/living/carbon/human/H)
 	..()
-	var/turf/T = get_turf(holder)
-	var/drugtype = pick(subtypesof(/datum/reagent/drug))
-	if(!(drugtype in holder.metabolism_effects.addiction_list))
-		var/datum/reagent/drug = new drugtype
-		holder.metabolism_effects.addiction_list.Add(drug)
-		var/obj/item/weapon/storage/pill_bottle/PB = new /obj/item/weapon/storage/pill_bottle(T)
-		PB.name = "bottle of happiness"
-		for(var/i=1 to 7)
-			var/obj/item/weapon/reagent_containers/pill/pill = new /obj/item/weapon/reagent_containers/pill(T)
-			pill.reagents.add_reagent(drug.id, pill.volume)
-			pill.name = "happy pill"
-			PB.handle_item_insertion(pill)
-		holder.put_in_hands(PB)
+	spawn(1)
+		var/turf/T = get_turf(holder)
+		var/drugtype = pick(subtypesof(/datum/reagent/drug))
+		if(!(drugtype in holder.metabolism_effects.addiction_list))
+			var/datum/reagent/drug = new drugtype
+			holder.metabolism_effects.addiction_list.Add(drug)
+			for(var/j= 1 to 2)
+				var/obj/item/weapon/storage/pill_bottle/PB = new /obj/item/weapon/storage/pill_bottle(T)
+				PB.name = "bottle of happiness"
+				for(var/i=1 to 7)
+					var/obj/item/weapon/reagent_containers/pill/pill = new /obj/item/weapon/reagent_containers/pill(T)
+					pill.reagents.add_reagent(drug.id, pill.volume)
+					pill.name = "happy pill"
+					PB.handle_item_insertion(pill)
+				holder.equip_to_storage_or_drop(PB)
 
 /datum/perk/alcoholic
 	name = "Alcoholic"
 	icon_state = "beer" //https://game-icons.net/1x1/delapouite/beer-bottle.html
-	desc = "For you it's alcohol: the cause of, and solution to, all of life's problems."
+	desc = "You imagined the egress from all your trouble and pain at the bottom of the bottle, but the way only led to a labyrinth. \
+			You have an alcohol addiction, which gives you a boost to robustness while under the influence and lowers your cognition permanently."
 
 /datum/perk/alcoholic/assign(mob/living/carbon/human/H)
 	..()
@@ -108,7 +119,8 @@
 /datum/perk/noble
 	name = "Noble"
 	icon_state = "family" //https://game-icons.net
-	desc = "You're a noble, a graceful ornament to the civil order. The jewel of society. Waiting to be stolen."
+	desc = "You are a descendant of a long-lasting family, bearing a name of high status that can be traced back to the early civilization of your domain. \
+			Start with an heirloom weapon, higher chance to be on traitor contracts and removed sanity cap. Stay clear of filth and danger."
 
 /datum/perk/noble/assign(mob/living/carbon/human/H)
 	..()
@@ -123,6 +135,7 @@
 				/obj/item/weapon/tool/sword/katana = 0.2,
 				/obj/item/weapon/tool/knife/dagger/ceremonial = 0.8,
 				/obj/item/weapon/gun/projectile/revolver = 0.4))
+	holder.sanity.valid_inspirations += W
 	W = new W(T)
 	W.name = "[holder.last_name] family [W.name]"
 	var/oddities = rand(2,4)
@@ -135,7 +148,8 @@
 		final_oddity[stat] = rand(1,7)
 	W.AddComponent(/datum/component/inspiration, final_oddity)
 	W.AddComponent(/datum/component/atom_sanity, 1, "")
-	holder.put_in_hands(W)
+	spawn(1)
+		holder.equip_to_storage_or_drop(W)
 
 /datum/perk/noble/remove()
 	holder.sanity.environment_cap_coeff += 1
@@ -143,8 +157,10 @@
 
 /datum/perk/rat
 	name = "Rat"
-	desc = "Early bird gets the worm, but the second rat gets the cheese."
-	icon_state = "rat"
+	desc = "For all you know, taking what isn't yours is what you were best at. Be that roguery, theft or murder. It’s all the same no matter how you name it, after all. \
+			You start with a +10 to Mechanical stat and -10 to Vigilance. You will have a -10 to overall sanity health, meaning you will incur a breakdown faster than most. \
+			Additionally you have more quiet footsteps and a chance to not trigger traps on the ground."
+	icon_state = "rat" //https://game-icons.net/
 
 /datum/perk/rat/assign(mob/living/carbon/human/H)
 	..()
@@ -155,9 +171,11 @@
 	..()
 
 /datum/perk/rejected_genius
-	name = "Rejected genius"
-	desc = "Your dreams are undisturbed by reality, your search for the impossible continues regardless of your peers."
-	icon_state = "knowledge"
+	name = "Rejected Genius"
+	desc = "You see the world in different shapes and colors. \
+			Your sanity loss cap is removed, so stay clear of corpses or filth. You have less maximum sanity and no chance to have positive breakdowns. \
+			As tradeoff, you have 50% faster insight gain."
+	icon_state = "knowledge" //https://game-icons.net/
 
 /datum/perk/rejected_genius/assign(mob/living/carbon/human/H)
 	..()
@@ -174,14 +192,15 @@
 	..()
 
 /datum/perk/oborin_syndrome
-	name = "Oborin Syndrome" //https://game-icons.net/1x1/delapouite/prism.html
-	icon_state = "prism"
-	desc = "You're often told you see the world in black and whites. But they're wrong, you see the greys, you live in the greys. Not the 'colors' though, those are just venus traps for the dumb flies, you're smarter than that. Only grey."
+	name = "Oborin Syndrome"
+	icon_state = "prism" //https://game-icons.net/1x1/delapouite/prism.html
+	desc = "A condition manifested at some recent point in human history. \
+			It’s origin and prevalence are unknown, but it is speculated to be a psyionic phenomenom.\
+			Your sanity pool is higher than that of others at the cost of the colors of the world."
 
 /datum/perk/oborin_syndrome/assign(mob/living/carbon/human/H)
 	..()
 	holder.sanity.max_level += 20
-	holder.species.taste_sensitivity = TASTE_NUMB
 	spawn(1)
 		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
 
@@ -192,7 +211,8 @@
 /datum/perk/lowborn
 	name = "Lowborn"
 	icon_state = "ladder" //https://game-icons.net/1x1/delapouite/hole-ladder.html
-	desc = "For them you are a pariah, trash — untouchable! That’s the word! You are an Untouchable!"
+	desc = "You are the bottom of society. The dirt and grime on the heel of a boot. You had one chance. You took it. \
+			You cannot be a person of authority. Additionally, you have the ability to have a name without a last name and have an increased sanity pool."
 
 /datum/perk/lowborn/assign(mob/living/carbon/human/H)
 	..()

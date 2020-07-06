@@ -334,8 +334,13 @@ var/list/rummage_sound = list(\
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
-
-		if(get_dist(M, turf_source) <= maxdistance)
+		var/dist = get_dist(M, turf_source)
+		if(dist <= maxdistance + 3)
+			if(dist > maxdistance)
+				if(!ishuman(M))
+					continue
+				else if(!M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+					continue
 			var/turf/T = get_turf(M)
 
 			if(T && (T.z == turf_source.z || zrange && abs(T.z - turf_source.z) <= zrange))

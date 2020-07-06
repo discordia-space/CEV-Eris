@@ -14,6 +14,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/medical = 8,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/computer = 8,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 6,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/surgery = 1,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_mk58 = 3,

@@ -107,7 +107,7 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
-	var/bomb_defense = getarmor(null, ARMOR_BOMB)
+	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
 		if (1.0)
 			b_loss += 500
@@ -1080,6 +1080,8 @@ var/list/rank_prefix = list(\
 	species.handle_post_spawn(src)
 
 	maxHealth = species.total_health
+
+	update_client_colour(0)
 
 	spawn(0)
 		regenerate_icons()

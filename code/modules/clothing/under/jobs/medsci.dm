@@ -116,3 +116,18 @@
 	name = "moebius psychologist's turtleneck"
 	icon_state = "psychturtle"
 	item_state = "b_suit"
+
+/obj/item/clothing/under/rank/paramedic
+	desc = "Jumpsuit of Moebius Medical paramedics. It's made with reinforced fiber to offer more protection for recovery operators."
+	name = "moebius paramedic's jumpsuit"
+	icon_state = "paramedic"
+	item_state = "paramedic"
+	permeability_coefficient = 0.50
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
+	)

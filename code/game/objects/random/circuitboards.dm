@@ -39,6 +39,7 @@
 				/obj/item/weapon/circuitboard/rdserver = 2,
 				/obj/item/weapon/circuitboard/rdservercontrol = 2,
 				/obj/item/weapon/circuitboard/recharge_station = 2,
+				/obj/item/weapon/circuitboard/repair_station = 2,
 				/obj/item/weapon/circuitboard/robotics = 1,
 				/obj/item/weapon/circuitboard/smes = 2,
 				/obj/item/weapon/circuitboard/solar_control = 1,
