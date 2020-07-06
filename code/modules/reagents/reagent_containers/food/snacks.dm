@@ -18,7 +18,7 @@
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
 
-	var/sanity_gain = 0.2
+	var/sanity_gain = 0.2 //per nutriment
 	var/cooked = FALSE
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
@@ -26,35 +26,38 @@
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
 
-/obj/item/weapon/reagent_containers/food/snacks/proc/get_sanity_gain(mob/living/eater) //sanity_gain Per bite
-	var/sanity_gain_pb = 0
-	var/message = "You are satisfied and you don't need to eat more."
-	if(!eater)
-		return  list(sanity_gain_pb, message)
+/obj/item/weapon/reagent_containers/food/snacks/proc/get_sanity_gain(mob/living/carbon/eater) //sanity_gain Per bite
+	var/current_nutriment = reagents.get_reagent_amount("nutriment")
+	var/nutriment_percent = current_nutriment/reagents.total_volume
+	var/nutriment_eaten = min(reagents.total_volume, bitesize) * nutriment_percent
+	var/base_sanity_gain_pb = nutriment_eaten * sanity_gain
+	var/message
+	if(!iscarbon(eater))
+		return  list(0, message)
 	if(eater.nutrition > eater.max_nutrition*0.95)
-		return  list(sanity_gain_pb, message)
-	var/base_sanity_gain = sanity_gain*bitesize
-	sanity_gain_pb = base_sanity_gain
-	if(!sanity_gain_pb)
+		message = "You are satisfied and you don't need to eat more."
+		return  list(0, message)
+	if(!base_sanity_gain_pb)
 		message = "This food does not help calm your nerves."
-		return  list(sanity_gain_pb, message)
+		return  list(0, message)
+	var/sanity_gain_pb = base_sanity_gain_pb
 	message = "Food helps you relax."
 	if(cooked)
-		sanity_gain_pb += base_sanity_gain * 0.5
+		sanity_gain_pb += base_sanity_gain_pb * 0.3
 	if(junk_food || !cooked)
 		return  list(sanity_gain_pb, message)
 	var/table = FALSE
 	var/companions = FALSE
 	var/view_death = FALSE
-	for(var/C in circleview(eater, 4))
+	for(var/C in circleview(eater, 3))
 		if(istype(C, /obj/structure/table))
 			if(!in_range(C, eater) || table)
 				continue
 			table = TRUE
-			message += "Eating is more comfortable using a table."
-			sanity_gain_pb += base_sanity_gain * 0.1
+			message += " Eating is more comfortable using a table."
+			sanity_gain_pb += base_sanity_gain_pb * 0.1
 
-		if(ishuman(C))
+		else if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if(H == eater)
 				continue
@@ -62,8 +65,8 @@
 				view_death = TRUE
 			companions = TRUE
 	if(companions)
-		sanity_gain_pb += base_sanity_gain * 0.2
-		message += "The company make the food taste much better."
+		sanity_gain_pb += base_sanity_gain_pb * 0.2
+		message += " The company make the food taste much better."
 		if(view_death && !eater.stats.getPerk(PERK_NIHILIST))
 			message = "You gaze at the cadaver... Your food doesn't taste so good anymore."
 			sanity_gain_pb = 0
@@ -153,10 +156,10 @@
 			playsound(M.loc,pick(M.eat_sounds), rand(10,50), 1)
 			if(reagents.total_volume)
 				var/amount_eaten = min(reagents.total_volume, bitesize)
+				var/list/sanity_vars = get_sanity_gain(M)
 				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
 				var/mob/living/carbon/human/H = M
 				if(istype(H))
-					var/list/sanity_vars = get_sanity_gain(H)
 					H.sanity.onEat(src, sanity_vars[1])
 					to_chat(H, SPAN_NOTICE("[sanity_vars[2]]"))
 				bitecount++

@@ -283,9 +283,8 @@
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain)
 	changeLevel(snack_sanity_gain)
-	to_chat(owner, "tu ganas [snack_sanity_gain]")
 	if(snack.cooked && resting)
-		add_rest(snack.type, snack_sanity_gain * 10)
+		add_rest(snack.type, snack_sanity_gain * 40)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
