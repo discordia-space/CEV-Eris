@@ -795,14 +795,14 @@
 // SMGs
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_paco
-	disk_name = "Frozen Star - .35 Paco SMG"
+	disk_name = "Frozen Star - .35 Paco HG"
 	icon_state = "frozenstar"
 
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/paco = 3, // "FS HG .35 \"Paco\""
-		/datum/design/autolathe/ammo/smg/practice,
-		/datum/design/autolathe/ammo/smg/rubber,
+		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight
