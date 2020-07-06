@@ -8,6 +8,7 @@
 	restore_sanity_pre = 25
 	icon_state = "negative"
 	breakdown_sound = 'sound/sanity/insane.ogg'
+	duration = 30 MINUTES
 
 
 /datum/breakdown/common
