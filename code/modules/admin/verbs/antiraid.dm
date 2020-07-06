@@ -56,7 +56,7 @@ ADMIN_VERB_ADD(/client/proc/toggle_vpn_white, R_ADMIN, FALSE)
 		to_chat(usr,"The database is not connected!")
 		return
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[ckey]'")
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[sanitizeSQL(ckey)]'")
 	query.Execute()
 	if(query.NextRow())
 		var/temp_id = query.item[1]
