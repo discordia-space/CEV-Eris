@@ -105,6 +105,7 @@
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/weapon/mop(src)
 	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
 
@@ -127,4 +128,5 @@
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)

@@ -54,7 +54,7 @@
 	)
 	siemens_coefficient = 0.8
 
-//Botonist
+//Botanist
 /obj/item/clothing/suit/apron
 	name = "apron"
 	desc = "A basic blue apron."
@@ -99,6 +99,13 @@
 		bio = 0,
 		rad = 0
 	)
+
+/obj/item/clothing/suit/storage/neotheosports
+	name = "neotheology sports jacket"
+	desc = "NeoTheology styled sports jacket to keep the faithful always on their feet."
+	icon_state = "nt_sportsjacket"
+	item_state = "nt_sportsjacket"
+	body_parts_covered = UPPER_TORSO|ARMS
 
 //Chaplain
 /obj/item/clothing/suit/nun
