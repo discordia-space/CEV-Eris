@@ -327,7 +327,6 @@
 	holder.owner.client?.images |= images
 
 
-
 /datum/breakdown/negative/spiral
 	name = "Downward-spiral"
 	duration = 0
@@ -347,6 +346,40 @@
 	holder.max_level = max(holder.max_level - 20, 0)
 	..()
 
+
+/datum/breakdown/common/power_hungry
+	name = "Power Hungry"
+	duration = 10 MINUTES
+	isight_reward = 20
+	restore_sanity_post = 80
+	/*start_messages = list(
+		"You feel like there is no point in any of this!",
+		"You brain refuses to comprehend any of this!",
+		"You feel like you don't want to continue whatever you're doing!",
+		"You feel like your best days are gone forever!",
+		"You feel it. You know it. There is no turning back!"
+	)
+		end_messages = list(
+		"You feel at ease again, suddenly."
+	)*/
+
+
+/datum/breakdown/common/power_hungry/can_occur()
+	return holder.owner.species.siemens_coefficient > 0
+
+
+/datum/breakdown/common/power_hungry/occur()
+	RegisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE, .proc/check_shock)
+	RegisterSignal(holder.owner, COMSIG_LIVING_STUN_EFFECT, .proc/check_shock)
+	return ..()
+
+/datum/breakdown/common/power_hungry/conclude()
+	UnregisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE)
+	UnregisterSignal(holder.owner, COMSIG_LIVING_STUN_EFFECT)
+	..()
+
+/datum/breakdown/common/power_hungry/proc/check_shock()
+	finished = TRUE
 
 
 #define OBSESSION_COOLDOWN rand(30 SECONDS, 120 SECONDS)

@@ -50,8 +50,10 @@
 #define COMSIG_MOB_LOGIN "mob_login"                            //from mob/Login()
 
 // /mob/living signals
+#define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"             //mob/living/proc/stun_effect_act
 
 // /mob/living/carbon signals
+#define COMSIG_CARBON_ELECTROCTE "carbon_electrocute_act"       //mob/living/carbon/electrocute_act
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_SAY "human_say"                            //from mob/living/carbon/human/say(): (message)
