@@ -19,6 +19,7 @@
 	new /obj/item/clothing/suit/neotheology_jacket(src)
 	new /obj/item/clothing/suit/neotheology_jacket(src)
 	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
 	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)

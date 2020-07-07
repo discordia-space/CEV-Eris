@@ -43,6 +43,12 @@
 	icon_state = "church"
 	item_state = "church"
 
+/obj/item/clothing/under/rank/church/sport
+	desc = "smells like lilac."
+	name = "church sports vestment"
+	icon_state = "nt_sports"
+	item_state = "nt_sports"
+
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
 	name = "chef's uniform"

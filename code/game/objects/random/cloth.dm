@@ -183,7 +183,13 @@
 				/obj/item/clothing/under/suit_jacket/red = 5,
 				/obj/item/clothing/under/suit_jacket = 5,
 				/obj/item/clothing/under/turtleneck = 5,
-				/obj/item/clothing/under/syndicate = 5))
+				/obj/item/clothing/under/syndicate = 5,
+				/obj/item/clothing/under/summerdress = 5,
+				/obj/item/clothing/under/summerdress/blue = 5,
+				/obj/item/clothing/under/summerdress/red = 5,
+				/obj/item/clothing/under/leisure = 5,
+				/obj/item/clothing/under/leisure/white = 5,
+				/obj/item/clothing/under/leisure/pullover = 5))
 
 /obj/random/cloth/under/low_chance
 	name = "low chance random under"
