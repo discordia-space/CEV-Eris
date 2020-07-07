@@ -1288,11 +1288,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Miscellaneous"
 
 /datum/supply_pack/discs
-	contains = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design
-					/obj/item/weapon/computer_hardware/hard_drive/portable/design
+	contains = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design,
+					/obj/item/weapon/computer_hardware/hard_drive/portable/design,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design)
 	name = "Empty Design Disk Crate"
 	cost = 1000
