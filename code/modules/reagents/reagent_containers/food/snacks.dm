@@ -43,7 +43,7 @@
 	var/sanity_gain_pb = base_sanity_gain_pb
 	message = "Food helps you relax."
 	if(cooked)
-		sanity_gain_pb += base_sanity_gain_pb * 0.3
+		sanity_gain_pb += base_sanity_gain_pb * 0.2
 	if(junk_food || !cooked)
 		return  list(sanity_gain_pb, message)
 	var/table = FALSE
@@ -65,7 +65,7 @@
 				view_death = TRUE
 			companions = TRUE
 	if(companions)
-		sanity_gain_pb += base_sanity_gain_pb * 0.2
+		sanity_gain_pb += base_sanity_gain_pb * 0.3
 		message += " The company make the food taste much better."
 		if(view_death && !eater.stats.getPerk(PERK_NIHILIST))
 			message = "You gaze at the cadaver... Your food doesn't taste so good anymore."
