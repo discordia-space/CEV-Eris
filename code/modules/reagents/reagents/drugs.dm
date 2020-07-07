@@ -124,7 +124,6 @@
 			for(var/datum/breakdown/B in affected.sanity.breakdowns)
 				if(B)
 					B.finished = TRUE
-					B.conclude()
 					to_chat(M, "<span class='notice'>You feel that something eases the strain on your sanity. But at which price?</span>")
 
 /datum/reagent/drug/psilocybin
