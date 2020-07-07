@@ -51082,11 +51082,17 @@
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
 	},
+/obj/structure/nt_pedestal,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
 "ciU" = (
 /obj/machinery/firealarm{
 	pixel_y = 28
+	},
+/obj/structure/table/rack,
+/obj/item/device/last_shelter,
+/obj/machinery/door/blast/shutters/glass{
+	id = "last_shelter"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
@@ -51111,10 +51117,17 @@
 /turf/simulated/floor/tiled/white/danger,
 /area/eris/rnd/mixing)
 "ciY" = (
-/obj/structure/table/standard,
-/obj/item/device/scanner/price,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/quartermaster/storage)
+/obj/structure/multiz/stairs/enter/bottom{
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "last_shelter";
+	name = "Last Shelter id lock";
+	pixel_y = 28;
+	req_access = list(74)
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/neotheology/chapelritualroom)
 "ciZ" = (
 /obj/machinery/camera/network/research{
 	dir = 4
@@ -52841,6 +52854,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck3port)
+"cnf" = (
+/obj/structure/table/standard,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "random_radio";
+	name = "Random wave radio id lock";
+	req_access = list(31)
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/quartermaster/storage)
 "cng" = (
 /obj/machinery/computer/operating,
 /turf/simulated/floor/tiled/white/brown_perforated,
@@ -55695,6 +55717,14 @@
 /obj/machinery/computer/robotics,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
+"ctS" = (
+/obj/structure/table/rack,
+/obj/item/device/radio/random_radio,
+/obj/machinery/door/blast/shutters/glass{
+	id = "random_radio"
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/quartermaster/storage)
 "ctT" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -56196,6 +56226,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/oldtele)
+"cvg" = (
+/obj/structure/table/standard,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
+/obj/item/device/scanner/price,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/eris/quartermaster/storage)
 "cvh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -57746,6 +57782,16 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
+"cyJ" = (
+/obj/machinery/light,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "atomic_distillery";
+	name = "Atomic Distillery id lock";
+	pixel_y = -28;
+	req_access = list(57)
+	},
+/turf/simulated/floor/wood,
+/area/eris/command/bridgebar)
 "cyK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	tag = "icon-intact (SOUTHEAST)";
@@ -58391,10 +58437,13 @@
 	},
 /area/eris/security/lobby)
 "cAc" = (
-/obj/structure/table/standard,
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/eris/quartermaster/storage)
+/obj/structure/table/rack,
+/obj/item/weapon/reagent_containers/atomic_distillery,
+/obj/machinery/door/blast/shutters/glass{
+	id = "atomic_distillery"
+	},
+/turf/simulated/floor/wood,
+/area/eris/command/bridgebar)
 "cAd" = (
 /obj/structure/railing,
 /obj/structure/lattice,
@@ -60489,6 +60538,19 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
+"cEw" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "CargoTotalLockdown";
+	layer = 2.6;
+	name = "Cargo Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/quartermaster/office)
 "cEx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/red{
 	tag = "icon-map (WEST)";
@@ -60527,6 +60589,17 @@
 /obj/random/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
+"cEB" = (
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "maneki_neko";
+	name = "Maneki Neko id lock";
+	req_access = list(41)
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/quartermaster/office)
 "cEC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -62421,6 +62494,14 @@
 	dir = 8
 	},
 /area/eris/hallway/main/section4)
+"cIX" = (
+/obj/structure/table/rack,
+/obj/item/weapon/maneki_neko,
+/obj/machinery/door/blast/shutters/glass{
+	id = "maneki_neko"
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/quartermaster/office)
 "cIY" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -62557,6 +62638,15 @@
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4port)
+"cJq" = (
+/obj/structure/catwalk,
+/obj/structure/table/rack,
+/obj/item/device/techno_tribalism,
+/obj/machinery/door/blast/shutters/glass{
+	id = "techno_tribalism"
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/engineering/breakroom)
 "cJr" = (
 /obj/machinery/vending/engineering,
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -62593,11 +62683,14 @@
 /turf/simulated/wall,
 /area/eris/maintenance/substation/section3)
 "cJx" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/eris/quartermaster/office)
+/obj/structure/catwalk,
+/obj/structure/table/rack,
+/obj/random/tool_upgrade/rare/low_chance,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/engineering/breakroom)
 "cJy" = (
 /obj/random/pack/machine,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -63171,6 +63264,12 @@
 	tag = "icon-hullcenter18"
 	},
 /area/space)
+"cKI" = (
+/obj/structure/catwalk,
+/obj/structure/table/rack,
+/obj/random/tool_upgrade/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/engineering/breakroom)
 "cKJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -63730,12 +63829,26 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/medical/medbay)
+"cMc" = (
+/obj/structure/catwalk,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "techno_tribalism";
+	name = "Techno Tribalism id lock";
+	pixel_x = -28;
+	req_access = list(23)
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/engineering/breakroom)
 "cMd" = (
 /obj/structure/table/standard,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
+"cMe" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/eris/engineering/breakroom)
 "cMf" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
@@ -63955,6 +64068,28 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
 /area/eris/maintenance/section2deck2port)
+"cMI" = (
+/obj/structure/catwalk,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "complicator";
+	name = "Reality Complicator id lock";
+	pixel_x = 28;
+	req_access = list(56)
+	},
+/turf/simulated/open,
+/area/eris/engineering/engine_room)
+"cMJ" = (
+/obj/structure/table/rack,
+/obj/item/weapon/complicator,
+/obj/machinery/door/blast/shutters/glass{
+	id = "complicator"
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/eris/engineering/engine_room)
 "cMK" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/steel/techfloor,
@@ -63989,6 +64124,10 @@
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/storage)
+"cMP" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/wall/r_wall,
+/area/eris/engineering/engine_room)
 "cMQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	tag = "icon-intact (NORTHEAST)";
@@ -70872,6 +71011,10 @@
 "dcQ" = (
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
+"dcR" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/hull,
+/area/eris/engineering/engine_room)
 "dcS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/railing{
@@ -72088,15 +72231,24 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/structure/displaycase,
+/obj/structure/table/rack,
+/obj/item/weapon/gun/energy/captain,
+/obj/machinery/door/blast/shutters/glass{
+	id = "captain_laser"
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfz" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/card/id/captains_spare,
 /obj/machinery/camera/network/command{
 	dir = 1
 	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "captain_laser";
+	name = "Destiny id lock";
+	req_access = list(20)
+	},
+/obj/item/weapon/card/id/captains_spare,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfA" = (
@@ -72222,10 +72374,6 @@
 /obj/machinery/holoposter{
 	pixel_x = -32
 	},
-/turf/simulated/floor/wood,
-/area/eris/command/bridgebar)
-"dfQ" = (
-/obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/eris/command/bridgebar)
 "dfR" = (
@@ -164376,7 +164524,7 @@ aaa
 aaa
 ccU
 ccU
-bQd
+ciY
 ccU
 bQy
 cBo
@@ -214078,7 +214226,7 @@ cgO
 cgO
 evU
 cie
-ciY
+cnf
 cyb
 cyb
 cyb
@@ -214282,9 +214430,9 @@ cuX
 cie
 cwN
 cyo
-cyo
+ctS
 czF
-cAc
+cvg
 cie
 dFY
 bgH
@@ -247754,7 +247902,7 @@ deb
 deb
 deb
 deb
-dfQ
+cyJ
 dgl
 dgz
 dgO
@@ -247956,7 +248104,7 @@ dec
 dec
 dAn
 dec
-dec
+cAc
 dgl
 dgA
 dgO
@@ -252862,9 +253010,9 @@ exG
 etZ
 ctr
 dmj
-dmj
-dmj
-dmj
+cEw
+cEw
+cEw
 dmj
 bZc
 cTZ
@@ -253065,7 +253213,7 @@ dzb
 ctr
 ctr
 cxI
-cxI
+cIX
 cxI
 ctr
 bZc
@@ -253468,7 +253616,7 @@ btI
 exJ
 cHE
 cIO
-cJx
+cEB
 cKk
 cKz
 cKj
@@ -285618,7 +285766,7 @@ cPi
 cPi
 cPi
 bNn
-abF
+dcR
 abF
 eDW
 eDW
@@ -285818,9 +285966,9 @@ cPh
 dVd
 cPh
 cPh
-cPi
-bIP
-abF
+cMI
+cMJ
+dcR
 abF
 eDV
 dvV
@@ -286015,14 +286163,14 @@ erS
 erS
 eyM
 eyM
-bNn
+bIP
 bIP
 etN
 bIP
 bNn
 bIP
-bIP
-abF
+cMP
+cMP
 abF
 eDU
 dwc
@@ -286217,8 +286365,8 @@ cLY
 cMD
 cNC
 eyM
-abF
-esQ
+cJq
+cMc
 dVj
 esQ
 abF
@@ -286419,8 +286567,8 @@ cMr
 cMr
 uiU
 eyM
-abF
-esQ
+cJx
+cMe
 dVj
 esQ
 abF
@@ -286621,8 +286769,8 @@ rYg
 rYg
 cND
 eyM
-abF
-esQ
+cKI
+cKI
 dVj
 esQ
 abF
@@ -286823,7 +286971,7 @@ cMx
 cME
 cNE
 eyM
-erS
+eyM
 eyM
 ett
 eyM

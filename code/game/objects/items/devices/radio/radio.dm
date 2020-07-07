@@ -14,6 +14,10 @@ var/global/list/default_internal_channels = list(
 	num2text(SRV_FREQ) = list(access_janitor, access_hydroponics)
 )
 
+var/global/list/unique_internal_channels = list(
+	num2text(DTH_FREQ) = list(access_cent_specops)
+)
+
 var/global/list/default_medbay_channels = list(
 	num2text(PUB_FREQ) = list(),
 	num2text(MED_FREQ) = list(access_medical_equip),
@@ -62,6 +66,8 @@ var/global/list/default_medbay_channels = list(
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
+	if(syndie)
+		internal_channels += unique_internal_channels.Copy()
 	add_hearing()
 
 /obj/item/device/radio/Destroy()
@@ -506,6 +512,7 @@ var/global/list/default_medbay_channels = list(
 			return -1
 	if (!on)
 		return -1
+
 	if (!freq) //recieved on main frequency
 		if (!listening)
 			return -1
@@ -517,6 +524,7 @@ var/global/list/default_medbay_channels = list(
 				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
 					accept = 1
 					break
+
 		if (!accept)
 			return -1
 	return canhear_range
@@ -746,3 +754,102 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/phone/medbay/New()
 	..()
 	internal_channels = default_medbay_channels.Copy()
+
+/obj/item/device/radio/random_radio
+	name = "Random wave radio"
+	desc = "Radio that can pick up message from secure channels."
+	icon = 'icons/obj/faction_item.dmi'
+	icon_state = "random_radio"
+	item_state = "random_radio"
+	slot_flags = FALSE
+	canhear_range = 4
+	var/random_hear = 20
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
+	price_tag = 20000
+	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_ILLEGAL = 5)
+	var/list/obj/item/weapon/oddity/used_oddity = list()
+	w_class = ITEM_SIZE_BULKY
+
+/obj/item/device/radio/random_radio/receive_range(freq, level)
+
+	if (wires.IsIndexCut(WIRE_RECEIVE))
+		return -1
+	if(!listening)
+		return -1
+	if(!(0 in level))
+		var/turf/position = get_turf(src)
+		if(!position || !(position.z in level))
+			return -1
+	if(freq in ANTAG_FREQS)
+		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+			return -1
+	if (!on)
+		return -1
+
+	if(random_hear)
+		if(prob(random_hear))
+			return canhear_range
+
+/obj/item/device/radio/random_radio/emag_act(mob/user)
+	if(!syndie)
+		syndie = TRUE
+		channels |= list("Mercenary" = 1)
+		playsound(loc, "sparks", 75, 1, -1)
+		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+	else
+		to_chat(user, SPAN_NOTICE("The [name] already have been emaged."))
+		return NO_EMAG_ACT
+
+/obj/item/device/radio/random_radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	user.set_machine(src)
+
+	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
+		if(W.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			b_stat = !( b_stat )
+			if (b_stat)
+				to_chat(user, SPAN_NOTICE("\The [src] can now be attached and modified!"))
+			else
+				to_chat(user, SPAN_NOTICE("\The [src] can no longer be modified or attached!"))
+			updateDialog()
+			add_fingerprint(user)
+			return
+
+	else if(istype(W, /obj/item/weapon/oddity) && b_stat)
+		var/obj/item/weapon/oddity/D = W
+		if(D.oddity_stats)
+			var/usefull = FALSE
+			if(D in used_oddity)
+				to_chat(user, SPAN_WARNING("You already use [D] to repair [src]"))
+				return
+
+			if(random_hear >= 100)
+				to_chat(user, SPAN_WARNING("The [src] are repaired at it's maxium."))
+				return
+
+			to_chat(user, SPAN_NOTICE("You starting repairing [src] using [D]."))
+
+			if(!do_after(user, 20 SECONDS, src))
+				to_chat(user, SPAN_WARNING("You stoped repairing [src]."))
+				return
+
+			if(!istype(user, /mob/living/carbon))
+				to_chat(user, SPAN_WARNING("Your brains are too small for repairing [src]."))
+				return
+
+			var/mob/living/carbon/H = user
+
+			if(H.stats.getStat(STAT_MEC) < (random_hear / 2))
+				to_chat(user, SPAN_WARNING("You don't have enough knowledge to repaire [src]."))
+				return
+
+			for(var/stat in D.oddity_stats)
+				if(stat == STAT_MEC)
+					random_hear += D.oddity_stats[stat]
+					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [D.oddity_stats[stat]]%."))
+					used_oddity += D
+					return
+
+			if(!usefull)
+				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to engineering to repair this?"))
+		else
+			to_chat(user, SPAN_WARNING("The [D] is useless here. Try to find another one."))

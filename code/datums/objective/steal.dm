@@ -26,7 +26,14 @@
 		"a Bluespace Biosyphon" = /obj/item/biosyphon,
 		"a S REV .35 Auto \"Sky Driver\"" = /obj/item/weapon/gun/projectile/revolver/sky_driver,
 		"Von-Krabin Stimulator" = /obj/item/device/von_krabin,
-		"Molitor-Riedel Enricher" = /obj/item/weapon/reagent_containers/enricher
+		"Molitor-Riedel Enricher" = /obj/item/weapon/reagent_containers/enricher,
+		"Ancient Maneki Neko" = /obj/item/weapon/maneki_neko,
+		"Reality Complicator" = /obj/item/weapon/complicator,
+		"Techno-Tribalism Enforcer" = /obj/item/device/techno_tribalism,
+		"Random wave radio" = /obj/item/device/radio/random_radio,
+		"Sword of Truth" = /obj/item/weapon/tool/sword/nt_sword,
+		"Last Shelter" = /obj/item/device/last_shelter,
+		"Atomic Distillery" = /obj/item/weapon/reagent_containers/atomic_distillery
 	)
 
 	var/global/possible_items_special[] = list(
