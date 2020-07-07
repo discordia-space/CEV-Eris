@@ -9,12 +9,16 @@
 	var/list/start_messages
 	var/list/end_messages
 
-	var/duration
+	var/duration = 30 MINUTES //by default
 	var/end_time
+	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/finished = FALSE
+	var/has_objetives = FALSE //if demandsomet hing from you
+	var/finished = FALSE //if the objetives were fulfilled.
+	var/isight_reward = 5 //Amount of isight for fulfilling the objetives
 	var/restore_sanity_pre
 	var/restore_sanity_post
+	var/is_negative = FALSE
 
 /datum/breakdown/New(datum/sanity/S)
 	..()
@@ -56,4 +60,9 @@
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
 	if(restore_sanity_post)
 		holder.restoreLevel(restore_sanity_post)
+	if(has_objetives)
+		if(finished)
+			holder.insight += isight_reward
+		else if(is_negative)
+			holder.changeLevel(-rand(20,30))
 	qdel(src)
