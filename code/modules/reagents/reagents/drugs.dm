@@ -104,6 +104,28 @@
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 
+/datum/reagent/drug/mindwipe
+	name = "Mindwipe"
+	id = "mindwipe"
+	description = "Shocks the user's brain hard enough to make him forget about his quirks. Is ill-advised because of side effects"
+	taste_description = "bitter"
+	reagent_state = LIQUID
+	color = "#bfff00"
+	metabolism = REM * 0.5
+	overdose = REAGENTS_OVERDOSE
+	nerve_system_accumulations = 120
+	addiction_chance = 30
+
+/datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+	if (ishuman(M))
+		var/mob/living/carbon/human/affected = M
+		if(prob(1))
+			for(var/datum/breakdown/B in affected.sanity.breakdowns)
+				if(B)
+					B.finished = TRUE
+					B.conclude()
+					to_chat(M, "<span class='notice'>You feel that something eases the strain on your sanity. But at which price?</span>")
 
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"

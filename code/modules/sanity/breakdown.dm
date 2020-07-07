@@ -47,6 +47,8 @@
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)
 		holder.restoreLevel(restore_sanity_pre)
+	if(delay > 0)
+		duration += delay
 	if(duration == 0)
 		conclude()
 		return FALSE

@@ -144,7 +144,7 @@
 
 /datum/breakdown/negative/selfharm
 	name = "Self-harm"
-	duration = 60 SECONDS
+	duration = 1 MINUTES
 	delay = 10 SECONDS
 	restore_sanity_post = 70
 
@@ -213,7 +213,7 @@
 
 /datum/breakdown/negative/hysteric
 	name = "Hysteric"
-	duration = 100 SECONDS
+	duration = 1.5 MINUTES
 	delay = 10 SECONDS
 	restore_sanity_post = 50
 
@@ -354,6 +354,7 @@
 /datum/breakdown/common/obsession
 	name = "Obsession"
 	has_objetives = TRUE
+	isight_reward = 15
 	var/obj/item/target
 	var/objectname
 	var/message_time = 0
