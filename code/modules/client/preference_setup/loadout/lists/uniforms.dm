@@ -48,29 +48,23 @@
 	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/under/color/white
 
-/datum/gear/uniform/leisuresuit
-	display_name = "brown leisure suit"
-	path = /obj/item/clothing/under/leisure
+/datum/gear/uniform/leisure/New()
+	..()
+	var/leisure = list(
+		"Brown Jacket"			=	/obj/item/clothing/under/leisure,
+		"White Blazer"			=	/obj/item/clothing/under/leisure/white,
+		"Patterned Pullover"	=	/obj/item/clothing/under/leisure/pullover
+	)
+	gear_tweaks += new /datum/gear_tweak/path(leisure)
 
-/datum/gear/uniform/leisuresuit
-	display_name = "white blazer"
-	path = /obj/item/clothing/under/leisure/white
-
-/datum/gear/uniform/leisuresuit
-	display_name = "patterned pullover"
-	path = /obj/item/clothing/under/leisure/pullover
-
-/datum/gear/uniform/graydress
-	display_name = "gray dress"
-	path = /obj/item/clothing/under/summerdress
-
-/datum/gear/uniform/graydress
-	display_name = "blue dress"
-	path = /obj/item/clothing/under/summerdress/blue
-
-/datum/gear/uniform/graydress
-	display_name = "red dress"
-	path = /obj/item/clothing/under/summerdress/red
+/datum/gear/uniform/dress/New()
+	..()
+	var/dress = list(
+		"Gray Dress"			=	/obj/item/clothing/under/dress,
+		"Blue Dress"			=	/obj/item/clothing/under/dress/blue,
+		"Red Dress"				=	/obj/item/clothing/under/dress/red
+	)
+	gear_tweaks += new /datum/gear_tweak/path(dress)
 
 /datum/gear/uniform/security_skirt
 	display_name = "jumpskirt, operative"

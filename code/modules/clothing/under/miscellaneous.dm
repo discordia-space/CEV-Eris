@@ -146,19 +146,19 @@
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
-/obj/item/clothing/under/summerdress
+/obj/item/clothing/under/dress
 	name = "gray summerdress"
 	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
 	icon_state = "summerdress"
 	item_state = "summerdress"
 
-/obj/item/clothing/under/summerdress/blue
+/obj/item/clothing/under/dress/blue
 	name = "blue summerdress"
 	desc = "a blue dress worn by mostly those of east asian descendance"
 	icon_state = "summerdress2"
 	item_state = "summerdress2"
 
-/obj/item/clothing/under/summerdress/red
+/obj/item/clothing/under/dress/red
 	name = "red summerdress"
 	desc = "A red dress worn mostly by those of east asian descendance."
 	icon_state = "summerdress3"
