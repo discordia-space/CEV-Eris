@@ -113,18 +113,21 @@
 	color = "#bfff00"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
-	nerve_system_accumulations = 120
+	nerve_system_accumulations = 90
 	addiction_chance = 30
-	sanity_gain = 1.5
+	sanity_gain = 2
 
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 	M.druggy = max(M.druggy, 5 * effect_multiplier)
+	M.make_jittery(10 * effect_multiplier)
+	M.make_dizzy(10 * effect_multiplier)
+	M.confused = max(M.confused, 20 * effect_multiplier)
 	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
 		step(M, pick(cardinal))
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/affected = M
-		if(prob(1))
+		if(prob(5 * effect_multiplier))
 			for(var/datum/breakdown/B in affected.sanity.breakdowns)
 				if(B)
 					B.finished = TRUE

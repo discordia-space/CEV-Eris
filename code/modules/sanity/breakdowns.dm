@@ -145,7 +145,7 @@
 /datum/breakdown/negative/selfharm
 	name = "Self-harm"
 	duration = 1 MINUTES
-	delay = 10 SECONDS
+	delay = 30 SECONDS
 	restore_sanity_post = 70
 
 	start_messages = list(
@@ -163,7 +163,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(world.time + duration > end_time + delay)
+	if(init_update())
 		var/datum/gender/G = gender_datums[holder.owner.gender]
 		if(prob(50))
 			var/emote = pick(list(
@@ -201,7 +201,6 @@
 						holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
 
 /datum/breakdown/negative/selfharm/occur()
-	holder.owner.make_jittery(max(delay, 110))
 	spawn(delay)
 		++holder.owner.suppress_communication
 	return ..()
@@ -215,7 +214,7 @@
 /datum/breakdown/negative/hysteric
 	name = "Hysteric"
 	duration = 1.5 MINUTES
-	delay = 10 SECONDS
+	delay = 30 SECONDS
 	restore_sanity_post = 50
 
 	start_messages = list(
@@ -233,7 +232,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(world.time + duration > end_time + delay)
+	if(init_update())
 		holder.owner.Weaken(3)
 		holder.owner.Stun(3)
 		if(prob(50))
@@ -242,7 +241,6 @@
 			holder.owner.emote("cry")
 
 /datum/breakdown/negative/hysteric/occur()
-	holder.owner.make_jittery(max(delay, 110))
 	spawn(delay)
 		holder.owner.SetWeakened(4)
 		holder.owner.SetStunned(4)

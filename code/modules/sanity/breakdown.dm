@@ -37,10 +37,19 @@
 		return FALSE
 	return TRUE
 
-/datum/breakdown/proc/occur()
+/datum/breakdown/proc/init_update()
+	if(world.time + duration >= end_time + delay)
+		return TRUE
+	occur_animation()
+	return FALSE
+
+/datum/breakdown/proc/occur_animation()
 	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
 	holder.owner << img
 	flick(icon_state, img)
+
+/datum/breakdown/proc/occur()
+	occur_animation()
 	holder.owner.playsound_local(get_turf(holder.owner), breakdown_sound, 100)
 	if(start_messages)
 		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration/10] seconds.")
