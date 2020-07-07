@@ -201,6 +201,7 @@
 						holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
 
 /datum/breakdown/negative/selfharm/occur()
+	holder.owner.make_jittery(delay * 0.9)
 	spawn(delay * 0.9)
 		++holder.owner.suppress_communication
 	return ..()
@@ -241,6 +242,7 @@
 			holder.owner.emote("cry")
 
 /datum/breakdown/negative/hysteric/occur()
+	holder.owner.make_jittery(delay * 0.9)
 	spawn(delay * 0.9)
 		holder.owner.SetWeakened(4)
 		holder.owner.SetStunned(4)
