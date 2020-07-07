@@ -383,7 +383,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask = 2,/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 30,/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor = 2,/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe = 1)
-	cost = 2000
+	cost = 3000
 	containertype = /obj/structure/closet/crate/freezer
 	crate_name = "bartending resupply crate"
 	group = "Hospitality"
