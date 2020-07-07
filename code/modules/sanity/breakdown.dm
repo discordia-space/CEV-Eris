@@ -69,8 +69,9 @@
 	if(end_messages)
 		log_and_message_admins("[holder.owner] is no longer affected by [name]")
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
-	if(restore_sanity_post)
-		holder.restoreLevel(restore_sanity_post)
+	if((restore_sanity_post)
+		if(has_objetives && finished) || !has_objetives)
+			holder.restoreLevel(restore_sanity_post)
 	if(has_objetives)
 		if(finished)
 			holder.insight += isight_reward

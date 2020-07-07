@@ -365,8 +365,9 @@
 
 
 /datum/breakdown/common/power_hungry/can_occur()
-	return holder.owner.species.siemens_coefficient > 0
-
+	if(holder.owner.species.siemens_coefficient > 0)
+		return TTRUE
+	return FALSE
 
 /datum/breakdown/common/power_hungry/occur()
 	RegisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE, .proc/check_shock)
