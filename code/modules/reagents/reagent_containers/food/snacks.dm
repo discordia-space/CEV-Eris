@@ -160,8 +160,7 @@
 				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
 				var/mob/living/carbon/human/H = M
 				if(istype(H))
-					H.sanity.onEat(src, sanity_vars[1])
-					to_chat(H, SPAN_NOTICE("[sanity_vars[2]]"))
+					H.sanity.onEat(src, sanity_vars[1], sanity_vars[2])
 				bitecount++
 				On_Consume(M, user)
 			return 1
