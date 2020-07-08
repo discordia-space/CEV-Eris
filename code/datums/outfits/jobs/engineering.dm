@@ -15,7 +15,7 @@
 /decl/hierarchy/outfit/job/engineering/exultant
 	name = OUTFIT_JOB_NAME("Technomancer Exultant")
 	head = /obj/item/clothing/head/hardhat/white
-	uniform = /obj/item/clothing/under/rank/chief_engineer/technomancer
+	uniform = /obj/item/clothing/under/rank/exultant
 	head = /obj/item/clothing/head/hardhat/white
 	suit = /obj/item/clothing/suit/storage/te_coat
 	l_ear = /obj/item/device/radio/headset/heads/ce
@@ -25,7 +25,7 @@
 /decl/hierarchy/outfit/job/engineering/engineer
 	name = OUTFIT_JOB_NAME("Technomancer")
 	head = /obj/item/clothing/head/hardhat
-	uniform = /clothing/under/rank/engineer
+	uniform = /obj/item/clothing/under/rank/engineer
 	suit = /obj/item/clothing/suit/storage/vest/insulated
 	head = /obj/item/clothing/head/hardhat
 	id_type = /obj/item/weapon/card/id/engie
