@@ -120,12 +120,13 @@
 
 /datum/sanity/proc/handle_insight()
 	var/moralist_factor = 1
+	var/style_factor = owner.get_style_factor()
 	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H)
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
-	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor
+	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 		++resting

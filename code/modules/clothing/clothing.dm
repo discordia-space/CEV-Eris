@@ -16,6 +16,8 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
+	var/style = 2 //for sanity, 2 max, 0 min
+
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
 
@@ -38,11 +40,33 @@
 	accessories = null
 	return ..()
 
+/obj/item/clothing/proc/get_style()
+	if(style > 2)
+		style = 2
+	else if(style < 0)
+		style = 0
+	var/real_style = style
+	if(accessories.len)
+		real_style += 1
+	if(blood_DNA)
+		real_style -= 1
+	return real_style
+
+/obj/item/clothing/proc/get_max_style()
+	var/max_style = 2
+	if(valid_accessory_slots.len)
+		max_style += 1
+	return max_style
+
+/obj/item/clothing/proc/get_min_style()
+	var/min_style = 0
+	min_style -= 1
+	return min_style
+
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
 	. = ..()
 	gunshot_residue = null
-
 
 //Delayed equipping
 /obj/item/clothing/pre_equip(var/mob/user, var/slot)

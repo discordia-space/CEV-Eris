@@ -8,6 +8,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	price_tag = 200
+	style = 1
 
 /*
  * Vests
@@ -234,6 +235,7 @@
 	)
 	equip_delay = 2 SECONDS
 	price_tag = 250
+	style = 0
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
