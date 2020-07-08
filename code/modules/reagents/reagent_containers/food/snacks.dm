@@ -4,6 +4,8 @@
 	desc = "yummy"
 	icon = 'icons/obj/food.dmi'
 	icon_state = null
+	center_of_mass = list("x"=16, "y"=16)
+	w_class = ITEM_SIZE_SMALL
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -12,13 +14,11 @@
 	var/dried_type = null
 	var/dry = 0
 	var/dryness = 0 //Used by drying rack. Represents progress towards Dry state
-	var/junk_food = FALSE
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
-	center_of_mass = list("x"=16, "y"=16)
-	w_class = ITEM_SIZE_SMALL
 
 	var/sanity_gain = 0.2 //per nutriment
+	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
 	var/cooked = FALSE
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()

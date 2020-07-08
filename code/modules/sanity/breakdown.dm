@@ -13,12 +13,13 @@
 	var/end_time
 	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/has_objetives = FALSE //if demandsomet hing from you
+	var/has_objetives = FALSE //if this demands something from you.
 	var/finished = FALSE //if the objetives were fulfilled.
-	var/isight_reward = 5 //Amount of isight for fulfilling the objetives
+	var/isight_reward = 5 //Amount of isight for fulfilling the objetives.
+	var/is_negative = FALSE
+
 	var/restore_sanity_pre
 	var/restore_sanity_post
-	var/is_negative = FALSE
 
 /datum/breakdown/New(datum/sanity/S)
 	..()
