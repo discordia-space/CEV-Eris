@@ -1,0 +1,5 @@
+author: HentaiStorm
+delete-after: true
+changes:
+  - bugfix: Fixed an error when the autholate eject zero stack, and bug with ejected
+      icon.
