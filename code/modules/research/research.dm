@@ -243,8 +243,8 @@ Procs:
 	desc = "Research into the exosuits"
 
 /datum/tech/illegal
-	name = "Illegal Technologies Research"
-	shortname = "Illegal Tech"
+	name = "Covert Technologies Research"
+	shortname = "Covert Tech"
 	desc = "The study of technologies that violate standard Nanotrasen regulations."
 	rare = 3
 	shown = FALSE
