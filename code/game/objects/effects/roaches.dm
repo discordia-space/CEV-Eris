@@ -3,8 +3,8 @@
 	name = "roach effect"
 	desc = "A cockroach effect."
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/health = 5
 
 /obj/effect/roach/attackby(var/obj/item/I, var/mob/user)

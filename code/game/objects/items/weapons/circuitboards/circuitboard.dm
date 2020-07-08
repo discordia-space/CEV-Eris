@@ -12,8 +12,8 @@
 	origin_tech = list(TECH_DATA = 2)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 2)
 	matter_reagents = list("silicon" = 10)
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	force = WEAPON_FORCE_HARMLESS

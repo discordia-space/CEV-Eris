@@ -1,7 +1,8 @@
-var/datum/maps_data/maps_data = new
+GLOBAL_DATUM_INIT(maps_data, /datum/maps_data, new)
+
 
 /proc/isStationLevel(level)
-	return level in maps_data.station_levels
+	return level in GLOB.maps_data.station_levels
 
 /proc/isNotStationLevel(level)
 	return !isStationLevel(level)
@@ -11,21 +12,21 @@ var/datum/maps_data/maps_data = new
 	return T && isStationLevel(T.z)
 
 /proc/isPlayerLevel(level)
-	return level in maps_data.player_levels
+	return level in GLOB.maps_data.player_levels
 
 /proc/isOnPlayerLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isPlayerLevel(T.z)
 
 /proc/isContactLevel(level)
-	return level in maps_data.player_levels
+	return level in GLOB.maps_data.player_levels
 
 /proc/isOnContactLevel(atom/A)
 	var/turf/T = get_turf(A)
 	return T && isContactLevel(T.z)
 
 /proc/isAdminLevel(level)
-	return level in maps_data.admin_levels
+	return level in GLOB.maps_data.admin_levels
 
 /proc/isNotAdminLevel(level)
 	return !isAdminLevel(level)
@@ -35,10 +36,10 @@ var/datum/maps_data/maps_data = new
 	return T && isAdminLevel(T.z)
 
 /proc/get_level_name(level)
-	return (maps_data.names.len >= level && maps_data.names[level]) || level
+	return (GLOB.maps_data.names.len >= level && GLOB.maps_data.names[level]) || level
 
 /proc/max_default_z_level()
-	return maps_data.all_levels.len
+	return GLOB.maps_data.all_levels.len
 
 /proc/is_on_same_plane_or_station(z1, z2)
 	if(z1 == z2)
@@ -69,9 +70,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	to_chat(mob, "isNotAdminLevel: [isNotAdminLevel(mob.z)]")
 	to_chat(mob, "isOnAdminLevel: [isOnAdminLevel(mob)]")
 
-	to_chat(mob, "isAcessableLevel: [maps_data.accessable_levels[num2text(mob.z)]]")
+	to_chat(mob, "isAcessableLevel: [GLOB.maps_data.accessable_levels[num2text(mob.z)]]")
 
-	if(maps_data.asteroid_leves[num2text(T.z)])
+	if(GLOB.maps_data.asteroid_levels[num2text(T.z)])
 		to_chat(mob, "Asteroid will be generated here")
 	else
 		to_chat(mob, "This isn't asteroid level")
@@ -83,7 +84,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/list/player_levels     = new // Z-levels a character can typically reach
 	var/list/contact_levels    = new // Z-levels that can be contacted from the station, for eg announcements
 	var/list/sealed_levels	   = new // Z-levels that don't allow random transit at edge
-	var/list/asteroid_leves    = new
+	var/list/asteroid_levels   = new
 	var/list/accessable_levels = new
 	var/list/empty_levels = null     // Empty Z-levels that may be used for various things
 	var/list/names = new
@@ -184,7 +185,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		contact_levels += level
 
 	if(MD.generate_asteroid)
-		asteroid_leves += level
+		asteroid_levels += level
 
 	if(MD.is_accessable_level)
 		accessable_levels[num2text(level)] = MD.is_accessable_level
@@ -285,7 +286,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 		var/z_level_r = original_level + shift - 1
 		z_level = z_level_r
 		name = "[original_name] stage [shift]"
-		maps_data.registrate(src)
+		GLOB.maps_data.registrate(src)
 
 		add_z_level(z_level_r, original_level, height)
 

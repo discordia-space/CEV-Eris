@@ -10,8 +10,8 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	level = BELOW_PLATING_LEVEL
 	var/alarm = 0
 	var/enabled = 1

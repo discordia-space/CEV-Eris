@@ -5,8 +5,8 @@
 	desc = "Dozens of tiny glowing lights zooming at incredible speeds."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "particle"//Need a new icon for this
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/movement_range = 10
 	var/energy = 10		//energy in eV
 	var/mega_energy = 0	//energy in MeV

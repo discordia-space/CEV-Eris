@@ -5312,7 +5312,7 @@
 /area/eris/rnd/podbay)
 "ama" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel,
@@ -12095,9 +12095,16 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "aBx" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/tiled/steel,
-/area/eris/security/main)
+/obj/structure/table/rack,
+/obj/item/weapon/gun/projectile/revolver/sky_driver,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Sky_Driver"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
 "aBy" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -24759,17 +24766,23 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/warden)
 "bdw" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28;
-	pixel_y = 0
-	},
 /obj/structure/cable/green{
+	d1 = 1;
 	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "1-4"
 	},
-/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Von-Krabin";
+	name = "Von-Krabin Stimulator id lock";
+	pixel_x = -28;
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bdx" = (
@@ -30712,7 +30725,7 @@
 /area/eris/maintenance/section1deck3central)
 "bqx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -31539,7 +31552,7 @@
 /area/eris/crew_quarters/sleep/cryo)
 "bsG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -34240,7 +34253,7 @@
 /obj/structure/sign/department/chem{
 	pixel_x = -32
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -43255,6 +43268,15 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"bRy" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Sky_Driver";
+	name = "Sky Driver id lock";
+	pixel_x = -28;
+	req_access = list(58)
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
 "bRz" = (
 /obj/structure/table/rack,
 /obj/random/medical_lowcost,
@@ -45076,20 +45098,21 @@
 /turf/simulated/floor/plating,
 /area/eris/hallway/main/section1)
 "bVD" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27;
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "West APC";
+	pixel_x = -28;
 	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/rack,
+/obj/item/device/von_krabin,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Von-Krabin"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
@@ -45453,7 +45476,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -47483,6 +47506,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/command/tcommsat/chamber)
+"cba" = (
+/obj/structure/multiz/stairs/enter/bottom{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
+/area/eris/security/prisoncells)
 "cbb" = (
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/tcommsat/chamber)
@@ -49272,6 +49304,15 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
+"ceK" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Bluespace_Biosyphon";
+	name = "Bluespace Biosyphon id lock";
+	pixel_x = -28;
+	req_access = list(1)
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/security/main)
 "ceL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -49434,6 +49475,18 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
+"ceZ" = (
+/obj/structure/table/rack,
+/obj/item/biosyphon,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Bluespace_Biosyphon"
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/security/main)
 "cfa" = (
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/tech)
@@ -51880,7 +51933,7 @@
 /area/eris/medical/medbay/uppercor)
 "ckV" = (
 /obj/machinery/light/small,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark/golden,
@@ -52175,12 +52228,26 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/medbay)
+"clK" = (
+/obj/structure/railing{
+	tag = "icon-railing0 (WEST)";
+	icon_state = "railing0";
+	dir = 8;
+	anchored = 1
+	},
+/obj/structure/railing,
+/turf/simulated/open,
+/area/eris/command/mbo)
 "clL" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"clM" = (
+/obj/structure/railing,
+/turf/simulated/open,
+/area/eris/command/mbo)
 "clN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4;
@@ -52386,6 +52453,15 @@
 "cmi" = (
 /obj/machinery/light/small{
 	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/command/mbo)
+"cmj" = (
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "Enricher";
+	name = "Molitor-Riedel Enricher id lock";
+	pixel_y = -28;
+	req_access = list(40)
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/command/mbo)
@@ -52683,6 +52759,14 @@
 /obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
+"cmU" = (
+/obj/structure/table/rack,
+/obj/item/weapon/reagent_containers/enricher,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Enricher"
+	},
+/turf/simulated/floor/tiled/white,
+/area/eris/command/mbo)
 "cmV" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
@@ -59734,7 +59818,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -77755,7 +77839,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -85038,7 +85122,7 @@
 	icon_state = "alarm0";
 	pixel_x = -26
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108109,7 +108193,7 @@
 	},
 /area/space)
 "eMe" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108210,14 +108294,14 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "fBx" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "fBO" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108243,7 +108327,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "gjm" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel,
@@ -108292,7 +108376,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "hMo" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -108347,7 +108431,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108486,7 +108570,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108501,7 +108585,7 @@
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
 "klx" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108577,7 +108661,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "ltJ" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108638,7 +108722,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
 "mjD" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108731,7 +108815,7 @@
 /area/eris/medical/chemstor)
 "nlx" = (
 /obj/machinery/light,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -108867,7 +108951,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -108903,7 +108987,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "oLk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109065,7 +109149,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "suD" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -109096,7 +109180,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "tbl" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109154,7 +109238,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "ubu" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/steel/bluecorner,
@@ -109312,7 +109396,7 @@
 "vLR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 4;
 	pixel_x = -32
 	},
@@ -109412,7 +109496,7 @@
 /turf/space,
 /area/space)
 "xPv" = (
-/obj/machinery/station_map{
+/obj/machinery/holomap{
 	dir = 8;
 	pixel_x = 32
 	},
@@ -132931,7 +133015,7 @@ dzq
 abA
 dzn
 afs
-agb
+cba
 agb
 afs
 afP
@@ -133331,8 +133415,8 @@ acO
 adz
 aaR
 abF
-dzi
-dzi
+afs
+afs
 afs
 afD
 agd
@@ -133533,10 +133617,10 @@ acP
 aaR
 aaR
 abF
-aaa
-aaa
 afs
-afE
+aBx
+bRy
+agd
 agd
 agw
 afb
@@ -133735,8 +133819,8 @@ acQ
 adn
 abF
 abF
-aaa
-aaa
+afs
+afs
 afs
 afF
 age
@@ -167263,8 +167347,8 @@ aaa
 csS
 aIC
 aKT
-csS
-csS
+cyx
+cyx
 abH
 aVc
 aVc
@@ -167465,8 +167549,8 @@ aaa
 csS
 czd
 aKU
-csS
-aaa
+cyx
+cyx
 abH
 aVc
 aVc
@@ -167667,8 +167751,8 @@ aaA
 csS
 csS
 csS
-csS
-aaa
+aab
+aab
 abH
 aVc
 aVc
@@ -167869,8 +167953,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+aab
+ceZ
 abH
 aVc
 aVM
@@ -168071,8 +168155,8 @@ aac
 aac
 aac
 aac
-aac
 aab
+aBi
 aab
 aVt
 aVN
@@ -168273,8 +168357,8 @@ aRe
 aRe
 aXs
 aRe
-aRe
-aBx
+ceK
+aBi
 bak
 aVc
 aVO
@@ -172151,8 +172235,8 @@ bhb
 aRC
 bhU
 bpW
-bVD
 bdw
+bVD
 bag
 baE
 bfq
@@ -173935,7 +174019,7 @@ aST
 aVu
 aaf
 aaf
-aaa
+abF
 abF
 csS
 csS
@@ -174136,8 +174220,8 @@ aag
 aag
 aaf
 aaf
-aaa
-aaa
+abF
+abF
 abF
 csS
 aTi
@@ -249923,8 +250007,8 @@ dzy
 dzy
 dzy
 dzy
-dzy
-dzy
+clK
+cmj
 chl
 dcg
 dcI
@@ -250125,8 +250209,8 @@ dzA
 dzA
 dzA
 dzA
-dzA
-dzA
+clM
+cmU
 chl
 dmN
 doW

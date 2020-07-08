@@ -32,9 +32,9 @@
 
 /proc/in_range(source, user)
 	if(get_dist(source, user) <= 1)
-		return 1
+		return TRUE
 
-	return 0 //not in range and not telekinetic
+	return FALSE //not in range and not telekinetic
 
 // Like view but bypasses luminosity check
 
@@ -42,8 +42,16 @@
 
 	var/lum = source.luminosity
 	source.luminosity = world.view
-
 	var/list/heard = view(range, source)
+	var/list/extra_heard = view(range+3, source) - heard
+	if(extra_heard.len)
+		for(var/ear in extra_heard)
+			if(!ishuman(ear))
+				continue
+			var/mob/living/carbon/human/H = ear
+			if(!H.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+				continue
+			heard += ear
 	source.luminosity = lum
 
 	return heard

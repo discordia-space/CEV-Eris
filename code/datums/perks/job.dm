@@ -1,6 +1,7 @@
 /datum/perk/survivor
 	name = "Survivor"
-	desc = "After seeing the death of many acquaintances and friends, witnessing death doesn't shock you as much as before."
+	desc = "After seeing the death of many acquaintances and friends, witnessing death doesn't shock you as much as before. \
+			Halves sanity loss from seeing people die."
 	icon_state = "survivor" // https://game-icons.net/1x1/lorc/one-eyed.html
 
 /datum/perk/survivor/assign(mob/living/carbon/human/H)
@@ -11,10 +12,10 @@
 	holder.sanity.death_view_multiplier *= 2
 	..()
 
-
 /datum/perk/selfmedicated
 	name = "Self-medicated"
-	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself!"
+	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself! \
+			You total NSA is increased and chance to gain an addiction decreased."
 	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
 /datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
@@ -27,10 +28,10 @@
 	holder.metabolism_effects.nsa_threshold -= 10
 	..()
 
-
 /datum/perk/vagabond
 	name = "Vagabond"
-	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant."
+	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \
+			This perk reduces the total sanity damage you can take from what is happening around you."
 	icon_state = "vagabond" // https://game-icons.net/1x1/lorc/eye-shield.html
 
 /datum/perk/vagabond/assign(mob/living/carbon/human/H)
@@ -41,10 +42,10 @@
 	holder.sanity.view_damage_threshold -= 20
 	..()
 
-
 /datum/perk/merchant
 	name = "Merchant"
-	desc = "Money is what matters for you, and it's so powerful it lets you improve your skills."
+	desc = "Money is what matters for you, and it's so powerful it lets you improve your skills. \
+			This perk lets you use money for leveling up. The credits need to be in your backpack."
 	icon_state = "merchant" // https://game-icons.net/1x1/lorc/cash.html and https://game-icons.net/1x1/delapouite/graduate-cap.html slapped on https://game-icons.net/1x1/lorc/trade.html
 
 /datum/perk/merchant/assign(mob/living/carbon/human/H)
@@ -63,7 +64,8 @@
 // ALERT: This perk has no removal method. Mostly because 3 out of 4 choices give knowledge to the player in the form of text, that would be pointless to remove.
 /datum/perk/deep_connection
 	name = "Deep connection"
-	desc = "With the help of your numerous trustworthy contacts, you manage to collect some useful information."
+	desc = "With the help of your numerous trustworthy contacts, you manage to collect some useful information. \
+			Provides you with 1 of 4 boons: Language, Traitor Contract, a stash location or a special item in a box."
 	icon_state = "deepconnection" // https://game-icons.net/1x1/quoting/card-pickup.html
 
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)
@@ -106,7 +108,6 @@
 			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
 			holder.equip_to_storage_or_drop(B)
 
-
 #undef CHOICE_LANG
 #undef CHOICE_TCONTRACT
 #undef CHOICE_STASHPAPER
@@ -119,7 +120,7 @@
 
 /datum/perk/sanityboost/assign(mob/living/carbon/human/H)
 	..()
-	H.sanity.sanity_passive_gain_multiplier *= 1.5
+	holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
 /datum/perk/sanityboost/remove()
 	holder.sanity.sanity_passive_gain_multiplier /= 1.5
@@ -128,7 +129,7 @@
 /// Basically a marker perk. If the user has this perk, another will be given in certain conditions.
 /datum/perk/inspiration
 	name = "Exotic Inspiration"
-	desc = "Alcohol boosts your IQ somehow."
+	desc = "Boosts your Cognition and Mechanical stats any time you imbibe any alcohol."
 	icon_state = "inspiration" // https://game-icons.net/1x1/delapouite/booze.html
 
 /datum/perk/active_inspiration

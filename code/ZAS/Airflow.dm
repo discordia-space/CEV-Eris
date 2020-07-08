@@ -101,7 +101,7 @@ obj/item/check_airflow_movable(n)
 
 	airflow_dest = null
 	if(!density)
-		density = 1
+		density = TRUE
 		od = 1
 	while(airflow_speed > 0)
 		if(airflow_speed <= 0) break
@@ -110,14 +110,14 @@ obj/item/check_airflow_movable(n)
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
 				if(od)
-					density = 0
+					density = FALSE
 				sleep(1 * (config.Ticklag*2))
 		else
 			if(od)
-				density = 0
+				density = FALSE
 			sleep(max(1,10-(airflow_speed+3)) * (config.Ticklag*2))
 		if(od)
-			density = 1
+			density = TRUE
 		if ((!( src.airflow_dest ) || src.loc == src.airflow_dest))
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if ((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))
@@ -132,7 +132,7 @@ obj/item/check_airflow_movable(n)
 	airflow_speed = 0
 	airflow_time = 0
 	if(od)
-		density = 0
+		density = FALSE
 
 
 /atom/movable/proc/RepelAirflowDest(n)
@@ -161,7 +161,7 @@ obj/item/check_airflow_movable(n)
 	
 	airflow_dest = null
 	if(!density)
-		density = 1
+		density = TRUE
 		od = 1
 	while(airflow_speed > 0)
 		if(airflow_speed <= 0) return
@@ -186,7 +186,7 @@ obj/item/check_airflow_movable(n)
 	airflow_speed = 0
 	airflow_time = 0
 	if(od)
-		density = 0
+		density = FALSE
 
 /atom/movable/Bump(atom/A)
 	if(airflow_speed > 0 && airflow_dest)

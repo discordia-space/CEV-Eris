@@ -7,8 +7,8 @@
 	desc = "A huge pipe segment used for constructing disposal systems."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	matter = list(MATERIAL_STEEL = 6)
 	level = ABOVE_PLATING_LEVEL
 	var/sortType = list()
@@ -259,21 +259,21 @@
 
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				if(anchored)
-					anchored = 0
+					anchored = FALSE
 					if(is_pipe)
 						level = ABOVE_PLATING_LEVEL
-						density = 0
+						density = FALSE
 					else
-						density = 1
+						density = TRUE
 					to_chat(user, "You detach the [nice_type] from the underfloor.")
 					return
 				else
-					anchored = 1
+					anchored = TRUE
 					if(is_pipe)
 						level = BELOW_PLATING_LEVEL // We don't want disposal bins to disappear under the floors
-						density = 0
+						density = FALSE
 					else
-						density = 1 // We don't want disposal bins or outlets to go density 0
+						density = TRUE // We don't want disposal bins or outlets to go density 0
 					to_chat(user, "You attach the [nice_type] to the underfloor.")
 					return
 			return

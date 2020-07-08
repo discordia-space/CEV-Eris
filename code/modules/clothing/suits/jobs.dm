@@ -174,6 +174,24 @@
 	icon_state = "hazard_black"
 	item_state = "hazard_black"
 
+//Chief Engineer/Technomancer Exultant
+/obj/item/clothing/suit/storage/te_coat
+	name = "exultant coat"
+	desc = "A sturdy and proud crimson coat. Lightly armored, with some protection against radiation."
+	icon_state = "te_coat"
+	item_state = "te_coat"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(
+		melee = 25,
+		bullet = 20,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 10
+	)
+	price_tag = 250
+
 //Roboticist
 /obj/item/clothing/suit/storage/robotech_jacket
 	name = "robotech jacket"

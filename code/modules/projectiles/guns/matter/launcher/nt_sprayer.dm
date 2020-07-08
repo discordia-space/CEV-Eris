@@ -8,21 +8,33 @@
 
 	matter_type = MATERIAL_BIOMATTER
 
+	init_firemodes = list(
+		list(mode_name="clean", projectile_type=/obj/item/weapon/arrow/neotheo/cleansing, icon="stun"),
+		list(mode_name="de-weed", projectile_type=/obj/item/weapon/arrow/neotheo/weedkiller, icon="kill"),
+	)
 	projectile_cost = 0.5
-	projectile_type = /obj/item/weapon/arrow/cleansing
+	projectile_type = /obj/item/weapon/arrow/neotheo/cleansing
 
 
-/obj/item/weapon/arrow/cleansing
+/obj/item/weapon/arrow/neotheo
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "toxin"
 	throwforce = 1
 	sharp = FALSE
 
-/obj/item/weapon/arrow/cleansing/throw_impact()
+/obj/item/weapon/arrow/neotheo/cleansing/throw_impact()
 	..()
-
 	create_reagents(5)
 	reagents.add_reagent("cleaner", 1)
+	reagents.add_reagent("surfactant", 2)
+	reagents.add_reagent("water", 2)
+
+	qdel(src)
+
+/obj/item/weapon/arrow/neotheo/weedkiller/throw_impact()
+	..()
+	create_reagents(5)
+	reagents.add_reagent("plantbgone", 1)
 	reagents.add_reagent("surfactant", 2)
 	reagents.add_reagent("water", 2)
 

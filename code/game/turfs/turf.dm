@@ -41,7 +41,7 @@
 	turfs += src
 	var/area/A = loc
 	if (!A.ship_area)
-		if (z in maps_data.station_levels)
+		if (z in GLOB.maps_data.station_levels)
 			A.set_ship_area()
 
 	. = ..()

@@ -17,7 +17,7 @@
 	head = /obj/item/clothing/head/hardhat/white
 	uniform = /obj/item/clothing/under/rank/chief_engineer/technomancer
 	head = /obj/item/clothing/head/hardhat/white
-	suit = /obj/item/clothing/suit/storage/hazardvest/orange
+	suit = /obj/item/clothing/suit/storage/te_coat
 	l_ear = /obj/item/device/radio/headset/heads/ce
 	id_type = /obj/item/weapon/card/id/ce
 	pda_type = /obj/item/modular_computer/pda/heads/ce
@@ -25,8 +25,8 @@
 /decl/hierarchy/outfit/job/engineering/engineer
 	name = OUTFIT_JOB_NAME("Technomancer")
 	head = /obj/item/clothing/head/hardhat
-	uniform = /obj/item/clothing/under/rank/engineer/technomancer
-	suit = /obj/item/clothing/suit/storage/hazardvest/orange
+	uniform = /clothing/under/rank/engineer
+	suit = /obj/item/clothing/suit/storage/vest/insulated
 	head = /obj/item/clothing/head/hardhat
 	id_type = /obj/item/weapon/card/id/engie
 	pda_type = /obj/item/modular_computer/pda/engineering

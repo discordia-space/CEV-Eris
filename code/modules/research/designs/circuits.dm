@@ -203,6 +203,12 @@
 	sort_string = "HACAC"
 	category = CAT_MACHINE
 
+/datum/design/research/circuit/repair_station
+	name = "cyborg auto-repair platform"
+	build_path = /obj/item/weapon/circuitboard/repair_station
+	sort_string = "HACAE"
+	category = CAT_MACHINE
+
 /datum/design/research/circuit/recharger
 	name = "recharger"
 	build_path = /obj/item/weapon/circuitboard/recharger
@@ -399,18 +405,22 @@
 	name = "TeleSci Console"
 	build_path = /obj/item/weapon/circuitboard/telesci_console
 	sort_string = "VAAAD"
+	category = CAT_BLUE
 
 /datum/design/research/circuit/telesci/hub
 	name = "TeleSci Pad"
 	build_path = /obj/item/weapon/circuitboard/telesci_pad
 	sort_string = "VAAAE"
+	category = CAT_BLUE
 
 /datum/design/research/circuit/bssilk/console
 	name = "Bluespace Snare Control Console"
 	build_path = /obj/item/weapon/circuitboard/bssilk_cons
 	sort_string = "VAAAK"
+	category = CAT_BLUE
 
 /datum/design/research/circuit/bssilk/hub
 	name = "Bluespace Snare Hub"
 	build_path = /obj/item/weapon/circuitboard/bssilk_hub
 	sort_string = "VAAAG"
+	category = CAT_BLUE

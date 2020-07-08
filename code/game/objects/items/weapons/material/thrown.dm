@@ -6,7 +6,7 @@
 	thrown_force_divisor = 0.75 // 15 with weight 20 (steel)
 	throw_speed = 10
 	throw_range = 15
-	sharp = 1
+	sharp = TRUE
 	edge =  1
 	embed_mult = 5 //We want these to embed
 

@@ -15,7 +15,7 @@
 
 	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2)
 
-	var/on = 0				//is it turned on?
+	var/on = FALSE				//is it turned on?
 	var/cover_open = 0		//is the cover open?
 	var/obj/item/weapon/cell/large/cell
 	var/max_cooling = 12				//in degrees per second - probably don't need to mess with heat capacity here

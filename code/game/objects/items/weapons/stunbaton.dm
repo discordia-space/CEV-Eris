@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFUL
 	sharp = FALSE
-	edge = 0
+	edge = FALSE
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)

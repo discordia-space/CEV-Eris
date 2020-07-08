@@ -30,7 +30,7 @@
 
 /datum/event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in SSmachines.machinery)
-		if(!(V.z in maps_data.station_levels))
+		if(!(V.z in GLOB.maps_data.station_levels))
 			continue
 		vendingMachines.Add(V)
 

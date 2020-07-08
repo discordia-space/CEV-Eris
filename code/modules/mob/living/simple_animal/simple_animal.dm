@@ -418,7 +418,7 @@
 	walk_to(src,0)
 	movement_target = null
 	icon_state = icon_dead
-	density = 0
+	density = FALSE
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/ex_act(severity)

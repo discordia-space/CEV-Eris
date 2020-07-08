@@ -4,7 +4,7 @@
 	icon = 'icons/obj/crate.dmi'
 	icon_state = "densecrate"
 	matter = list(MATERIAL_WOOD = 10)
-	density = 1
+	density = TRUE
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))

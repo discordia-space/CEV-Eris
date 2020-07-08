@@ -96,6 +96,9 @@
 /obj/item/projectile/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
 
+/obj/item/projectile/multiply_pierce_penetration(newmult)
+	penetrating = initial(penetrating) + newmult
+
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
 		step_delay = initial(step_delay) * newmult

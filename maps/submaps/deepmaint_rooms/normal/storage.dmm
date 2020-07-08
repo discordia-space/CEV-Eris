@@ -1,0 +1,29 @@
+"a" = (/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
+"b" = (/turf/simulated/wall,/area/deepmaint)
+"c" = (/turf/simulated/floor/tiled/steel/monofloor,/area/deepmaint)
+"d" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/steel/techfloor,/area/deepmaint)
+"e" = (/obj/structure/table/rack/shelf,/obj/random/medical/low_chance,/obj/random/medical/low_chance,/obj/random/medical/low_chance,/obj/random/medical/low_chance,/turf/simulated/floor/tiled/steel/techfloor,/area/deepmaint)
+"f" = (/turf/simulated/floor/tiled/steel/techfloor,/area/deepmaint)
+"g" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
+"h" = (/obj/structure/table/rack/shelf,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/steel/techfloor,/area/deepmaint)
+"i" = (/obj/structure/table/rack/shelf,/obj/random/pack/gun_loot,/obj/random/pack/gun_loot,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/steel/techfloor,/area/deepmaint)
+"j" = (/obj/structure/table/rack/shelf,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"k" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
+"l" = (/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
+"m" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
+"n" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/steel/techfloor,/area/deepmaint)
+"o" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
+
+(1,1,1) = {"
+aaaamaaaaaa
+abbbbcbbbba
+abddbcbeeba
+abfngcgnfba
+abbbbcbbbba
+abhhbcbiiba
+abfngcgnfba
+abbbbcbbbba
+abjjbcbjjba
+aklloclllka
+aaaaaaaaaaa
+"}

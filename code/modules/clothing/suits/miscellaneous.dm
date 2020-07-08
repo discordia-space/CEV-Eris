@@ -139,7 +139,6 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
 
-
 //swimsuit
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
@@ -209,13 +208,13 @@
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
 	name = "Sleek leather Jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
-	icon_state = "tunnelsnake_blank"
+	icon_state = "tunnelsnake"
 	item_state = "tunnelsnake"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
 	name = "Jaeger leather Jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. This jacket has a Jaeger roach pictured on the back. Jaeger Roach rules!"
-	icon_state = "tunnelsnake_jager"
+	icon_state = "tunnelsnake"
 	item_state = "tunnelsnake"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake
@@ -340,3 +339,21 @@
 	icon_state = "violet_jacket"
 	item_state = "violet_jacket"
 	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/bomj
+	name = "bomj coat"
+	desc = "A coat padded with synthetic insulation."
+	icon_state = "bomj"
+	item_state = "bomj"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
