@@ -49,7 +49,7 @@
 		var/atom/A = new build_path(T)
 		if(istype(A, /obj/item/weapon/reagent_containers/food/snacks))
 			if(prob(50))
-				var/obj/item/weapon/weapon/reagent_containers/food/snacks/S = A
+				var/obj/item/weapon/reagent_containers/food/snacks/S = A
 				S.reagents.add_reagent("toxin", 5)
 		spawns.Add(A)
 	return spawns
