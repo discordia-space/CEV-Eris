@@ -41,27 +41,10 @@
 	return ..()
 
 /obj/item/clothing/proc/get_style()
-	if(style > 2)
-		style = 2
-	else if(style < 0)
-		style = 0
 	var/real_style = style
-	if(accessories.len)
-		real_style += 1
 	if(blood_DNA)
 		real_style -= 1
 	return real_style
-
-/obj/item/clothing/proc/get_max_style()
-	var/max_style = 2
-	if(valid_accessory_slots.len)
-		max_style += 1
-	return max_style
-
-/obj/item/clothing/proc/get_min_style()
-	var/min_style = 0
-	min_style -= 1
-	return min_style
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()

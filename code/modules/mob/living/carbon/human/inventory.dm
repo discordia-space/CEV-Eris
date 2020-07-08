@@ -369,6 +369,9 @@ This saves us from having to call add_fingerprint() any time something is put in
 				get_max_w_class = C.w_class
 	return get_max_w_class
 
+#define MAX_HUMAN_STYLE 20
+#define MIN_HUMAN_SYLE -10
+
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
 	for(var/obj/item/clothing/C in get_equipped_items())
@@ -382,29 +385,19 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor -= 1
 	return style_factor
 
-/mob/living/carbon/human/proc/get_max_style()
-	var/max_style = 0
-	for(var/obj/item/clothing/C in get_equipped_items())
-		if(C)
-			max_style += C.get_max_style()
-	return max_style
-
-/mob/living/carbon/human/proc/get_min_style()
-	var/min_style = 0
-	for(var/obj/item/clothing/C in get_equipped_items())
-		if(C)
-			min_style += C.get_min_style()
-	min_style -= 3
-	return min_style
+/mob/living/carbon/human/proc/get_actual_style()
+	var/actual_style = get_total_style()
+	if(actual_style > MAX_HUMAN_STYLE)
+		actual_style = MAX_HUMAN_STYLE
+	else if(actual_style < MIN_HUMAN_SYLE)
+		actual_style = MIN_HUMAN_SYLE
+	return actual_style
 
 /mob/living/carbon/human/proc/get_style_factor()
 	var/style_factor = 1
-	if(get_total_style() > 0 && get_max_style() != 0)
-		style_factor += 0.2 * abs(get_total_style()/get_max_style())
-	else if(get_total_style() < 0 && get_min_style() != 0)
-		style_factor -= 0.2 * abs(get_total_style()/get_min_style())
-	if(style_factor < 0.8)
-		style_factor = 0.8
-	else if(style_factor > 1.2)
-		style_factor = 1.2
+	var/actual_style = get_actual_style()
+	if(actual_style => 0)
+		style_factor += 0.2 * actual_style/MAX_HUMAN_STYLE
+	else 
+		style_factor -= 0.2 * actual_style/MAX_HUMAN_STYLE
 	return style_factor
