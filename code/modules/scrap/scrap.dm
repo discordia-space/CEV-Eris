@@ -119,6 +119,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	for(var/obj/item/loot in contents)
 		if(prob(66))
 			loot.make_old()
+		if(istype(loot, /obj/item/weapon/reagent_containers/food/snacks))
+			var/obj/item/weapon/reagent_containers/food/snacks/S = loot
+			S.junk_food = TRUE
+			if(prob(20))
+				S.reagents.add_reagent("toxin", rand(2, 15))
 
 	loot = new(src)
 	loot.max_w_class = ITEM_SIZE_HUGE
