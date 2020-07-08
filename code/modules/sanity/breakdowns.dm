@@ -366,7 +366,7 @@
 
 /datum/breakdown/common/power_hungry/can_occur()
 	if(holder.owner.species.siemens_coefficient > 0)
-		return TTRUE
+		return TRUE
 	return FALSE
 
 /datum/breakdown/common/power_hungry/occur()
@@ -381,6 +381,60 @@
 
 /datum/breakdown/common/power_hungry/proc/check_shock()
 	finished = TRUE
+
+#define FALSE_NOSTALGY_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+/datum/breakdown/common/false_nostalgy
+	name = "False Nostalgy"
+	name = "Power Hungry"
+	duration = 10 MINUTES
+	isight_reward = 10
+	restore_sanity_post = 50
+	has_objetives = TRUE
+	var/message_time = 0
+	var/area/target
+	var/message
+
+	start_messages = list(
+		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
+		"Your mind is impaled with the sickening need to hold something.",
+		"Your mind whispers one of its secrets to you - but you need a token to access its true treasures...",
+		"You feel like the old saying is true - the key to true power is real...",
+		"You feel under constant pressure, but there is a way to ease the pain..."
+	)
+	end_messages = list(
+		"You feel at ease again, suddenly."
+	)
+
+/datum/breakdown/common/false_nostalgy/occur()
+	var/list/candidates = ship_areas.Copy()
+	message_time = world.time + FALSE_NOSTALGY_COOLDOWN
+	for(var/area/A in candidates)
+		if(A.is_maintenance)
+			candidates -= A
+			continue
+	target = pick(candidates)
+	message = pick(list(
+			"Quieres ir a [target]",
+			"tienes un fuerte deseo de visitar [target]",
+			"te inundan las ganas de visitar [target]"))
+	to_chat(holder.owner, SPAN_NOTICE(message))
+	message_time = world.time + FALSE_NOSTALGY_COOLDOWN
+
+/datum/breakdown/common/false_nostalgy/update()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(get_area(holder.owner) == target)
+		finished = TRUE
+		return FALSE
+	if(world.time >= message_time)
+		message_time = world.time + FALSE_NOSTALGY_COOLDOWN
+		message = pick(list(
+				"Quieres ir a [target]",
+				"tienes un fuerte deseo de visitar [target]",
+				"te inundan las ganas de visitar [target]"))
+		to_chat(holder.owner, SPAN_NOTICE(message))
+
 
 
 #define OBSESSION_COOLDOWN rand(30 SECONDS, 120 SECONDS)
@@ -423,7 +477,7 @@
 /datum/breakdown/common/obsession/update()
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	if(QDELETED(target))
 		to_chat(holder.owner, SPAN_WARNING("\The [objectname] is lost!"))
 		finished = TRUE

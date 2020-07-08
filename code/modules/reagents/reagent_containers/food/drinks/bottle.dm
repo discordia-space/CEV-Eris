@@ -365,7 +365,7 @@
 	icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=12)
 	preloaded_reagents = list("beer" = 30)
-	taste_tag = "Bubbly"
+	taste_tag = "bubbly"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
@@ -374,3 +374,4 @@
 	item_state = "beer"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("ale" = 30)
+	taste_tag = "bubbly"
