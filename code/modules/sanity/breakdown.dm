@@ -13,12 +13,13 @@
 	var/end_time
 	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/has_objetives = FALSE //if demandsomet hing from you
+	var/has_objetives = FALSE //if this demands something from you.
 	var/finished = FALSE //if the objetives were fulfilled.
-	var/isight_reward = 5 //Amount of isight for fulfilling the objetives
+	var/isight_reward = 5 //Amount of isight for fulfilling the objetives.
+	var/is_negative = FALSE
+
 	var/restore_sanity_pre
 	var/restore_sanity_post
-	var/is_negative = FALSE
 
 /datum/breakdown/New(datum/sanity/S)
 	..()
@@ -69,12 +70,13 @@
 	if(end_messages)
 		log_and_message_admins("[holder.owner] is no longer affected by [name]")
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
-	if(restore_sanity_post)
-		if((has_objetives && finished) || !has_objetives)
-			holder.restoreLevel(restore_sanity_post)
 	if(has_objetives)
 		if(finished)
 			holder.insight += isight_reward
+			if(restore_sanity_post)
+				holder.restoreLevel(restore_sanity_post)
 		else if(is_negative)
 			holder.changeLevel(-rand(20,30))
+	else if(restore_sanity_post)
+		holder.restoreLevel(restore_sanity_post)
 	qdel(src)
