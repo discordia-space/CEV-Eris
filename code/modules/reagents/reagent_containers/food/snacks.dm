@@ -1218,6 +1218,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=15, "y"=9)
 	preloaded_reagents = list("protein" = 4, "ammonia" = 2)
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
 	name = "4no Raisins"

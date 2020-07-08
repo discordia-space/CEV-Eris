@@ -7,4 +7,5 @@
 	volume = 50 //Sets the default container amount for all food items.
 	var/filling_color = "#FFFFFF" //Used by sandwiches.
 	matter = list(MATERIAL_BIOMATTER = 10)
+	var/taste_tag 
 
