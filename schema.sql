@@ -106,6 +106,9 @@ CREATE TABLE `players` (
   `flags` int(11) NOT NULL DEFAULT '0',
   `byond_version` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
+  `VPN_check_white` tinyint(4) NOT NULL DEFAULT '0',
+  `ip_related_ids` tinytext,
+  `cid_related_ids` tinytext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
