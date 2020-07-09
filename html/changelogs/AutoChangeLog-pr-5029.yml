@@ -1,0 +1,8 @@
+author: SolatK
+delete-after: true
+changes:
+  - rscadd: The server now have whitelist  for VPN checking.
+  - rscadd: Admins now can search players in the server DB.
+  - rscadd: server now check if a player have same ip or cid with somebody else from
+      BD and remember it FOREVER.
+  - bugfix: delayed ban kick player
