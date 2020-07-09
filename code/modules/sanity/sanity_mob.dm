@@ -171,36 +171,24 @@
 	)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
-		var/list/potential_desires
+		var/list/potential_desires = list()
 		switch(desire)
 			if(INSIGHT_DESIRE_FOOD)
-				potential_desires = GLOB.sanity_foods.Copy()
-				if(!potential_desires.len)
-					potential_desires = init_sanity_foods()
+				potential_desires = all_types_food.Copy()
 			if(INSIGHT_DESIRE_ALCOHOL)
 				potential_desires = all_taste_drinks.Copy()
 			else
 				desires += desire
 				continue
 		if(potential_desires.len)
-			var/desire_count = 0
-			while(desire_count < 2)
-				var/candidate = pick_n_take(potential_desires)
-				desires += candidate
-				++desire_count
+			var/candidate = pick(potential_desires)
+			desires += candidate
 	print_desires()
 
 /datum/sanity/proc/print_desires()
 	if(!resting)
 		return
-	var/list/desire_names = list()
-	for(var/desire in desires)
-		if(ispath(desire))
-			var/atom/A = desire
-			desire_names += initial(A.name)
-		else
-			desire_names += desire
-	to_chat(owner, SPAN_NOTICE("You desire [english_list(desire_names)]."))
+	to_chat(owner, SPAN_NOTICE("You desire [english_list(desires)]."))
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
@@ -296,8 +284,8 @@
 		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
 		to_chat(owner, SPAN_NOTICE("[snack_sanity_message]"))
 	changeLevel(snack_sanity_gain)
-	if(snack.cooked && resting)
-		add_rest(snack.type, snack_sanity_gain * 45)
+	if(snack.cooked && resting && snack.taste_tag)
+		add_rest(taste_tag, snack_sanity_gain * 45)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
