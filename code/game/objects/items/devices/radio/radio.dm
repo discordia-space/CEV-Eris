@@ -757,7 +757,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio
 	name = "Random wave radio"
-	desc = "Radio that can pick up message from secure channels."
+	desc = "Radio that can pick up message from secure channels, but with small chance. It can be repaired by atifact, that have knowledge of mechanics."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "random_radio"
 	item_state = "random_radio"
@@ -766,7 +766,7 @@ var/global/list/default_medbay_channels = list(
 	var/random_hear = 20
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
 	price_tag = 20000
-	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_ILLEGAL = 5)
+	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_ILLEGAL = 7)
 	var/list/obj/item/weapon/oddity/used_oddity = list()
 	w_class = ITEM_SIZE_BULKY
 
@@ -803,18 +803,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/random_radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	user.set_machine(src)
 
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		if(W.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			b_stat = !( b_stat )
-			if (b_stat)
-				to_chat(user, SPAN_NOTICE("\The [src] can now be attached and modified!"))
-			else
-				to_chat(user, SPAN_NOTICE("\The [src] can no longer be modified or attached!"))
-			updateDialog()
-			add_fingerprint(user)
-			return
-
-	else if(istype(W, /obj/item/weapon/oddity) && b_stat)
+	if(istype(W, /obj/item/weapon/oddity))
 		var/obj/item/weapon/oddity/D = W
 		if(D.oddity_stats)
 			var/usefull = FALSE
@@ -832,24 +821,15 @@ var/global/list/default_medbay_channels = list(
 				to_chat(user, SPAN_WARNING("You stoped repairing [src]."))
 				return
 
-			if(!istype(user, /mob/living/carbon))
-				to_chat(user, SPAN_WARNING("Your brains are too small for repairing [src]."))
-				return
-
-			var/mob/living/carbon/H = user
-
-			if(H.stats.getStat(STAT_MEC) < (random_hear / 2))
-				to_chat(user, SPAN_WARNING("You don't have enough knowledge to repaire [src]."))
-				return
-
 			for(var/stat in D.oddity_stats)
 				if(stat == STAT_MEC)
-					random_hear += D.oddity_stats[stat]
-					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [D.oddity_stats[stat]]%."))
+					random_hear += D.oddity_stats[stat] * 3
+					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [D.oddity_stats[stat] * 3]%."))
+					usefull = TRUE
 					used_oddity += D
 					return
 
 			if(!usefull)
-				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to engineering to repair this?"))
+				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to mechanic to repair this?"))
 		else
 			to_chat(user, SPAN_WARNING("The [D] is useless here. Try to find another one."))

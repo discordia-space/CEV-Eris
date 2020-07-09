@@ -57,4 +57,5 @@
 		H.sanity.level = 0
 		for(var/stat in ALL_STATS)
 			H.stats.changeStat(stat, -10)
-		to_chat(H, SPAN_DANGER(pick("LIFE IS RUINED FOR ME!", "SOMETHING TERRIBLE HAPPENS!", "I'M GOING INSANE!", "WHY THIS HAPPEND TO ME?")))
+		var/neko = uppertext(src.name)
+		to_chat(H, SPAN_DANGER(pick("LIFE IS RUINED FOR ME! I CANNOT FIND [neko]!", "WHO STEAL MY [neko]!", "WHERE IS [neko]?!", "WHY I CANNOT FIND [neko]?!")))
