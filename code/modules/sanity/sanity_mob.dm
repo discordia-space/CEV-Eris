@@ -193,9 +193,9 @@
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
 		amount /= 16
-		to_chat(owner, "esto no es, idiota!")
+		to_chat(owner, "esto no es, idiota!")//remove it
 	else 
-		to_chat(owner, "esto sí que sí.")
+		to_chat(owner, "esto sí que sí.") //remove it
 	insight_rest += amount
 	if(insight_rest >= 100)
 		insight_rest = 0
@@ -277,7 +277,10 @@
 	if(resting)
 		if(E.taste_tag.len)
 			for(var/taste_tag in E.taste_tag)
-				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
+				if(E.taste_tag.len > 1)
+					add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
+				else
+					add_rest(taste_tag, 3 * multiplier)
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
@@ -285,7 +288,7 @@
 		to_chat(owner, SPAN_NOTICE("[snack_sanity_message]"))
 	changeLevel(snack_sanity_gain)
 	if(snack.cooked && resting && snack.taste_tag)
-		add_rest(taste_tag, snack_sanity_gain * 45)
+		add_rest(snack.taste_tag, snack_sanity_gain * 45)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)

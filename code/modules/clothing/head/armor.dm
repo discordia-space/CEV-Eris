@@ -13,7 +13,7 @@
 	siemens_coefficient = 0.6
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
-	style = 1
+	style = 0
 
 /*
  * Helmets
