@@ -1,6 +1,0 @@
-author: Kurgis, WatlerJe
-delete-after: true
-changes:
-  - imageadd: New sprites for hard hats, their objects will take up a greater presence
-      now.
-  - imageadd: Workboots and hazard vests touched-up to NewStyle.
