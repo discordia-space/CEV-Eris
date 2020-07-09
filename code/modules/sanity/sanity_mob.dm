@@ -178,17 +178,16 @@
 				if(!potential_desires.len)
 					potential_desires = init_sanity_foods()
 			if(INSIGHT_DESIRE_ALCOHOL)
-				potential_desires = GLOB.sanity_drinks.Copy()
-				if(!potential_desires.len)
-					potential_desires = init_sanity_drinks()
+				potential_desires = all_taste_drinks.Copy()
 			else
 				desires += desire
 				continue
-		var/desire_count = 0
-		while(desire_count < 5)
-			var/candidate = pick_n_take(potential_desires)
-			desires += candidate
-			++desire_count
+		if(potential_desires.len)
+			var/desire_count = 0
+			while(desire_count < 2)
+				var/candidate = pick_n_take(potential_desires)
+				desires += candidate
+				++desire_count
 	print_desires()
 
 /datum/sanity/proc/print_desires()
@@ -205,7 +204,10 @@
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
-		amount /= 4
+		amount /= 16
+		to_chat(owner, "esto no es, idiota!")
+	else 
+		to_chat(owner, "esto sí que sí.")
 	insight_rest += amount
 	if(insight_rest >= 100)
 		insight_rest = 0
@@ -285,7 +287,9 @@
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
 	if(resting)
-		add_rest(E.type, 3 * multiplier)
+		if(E.taste_tag.len)
+			for(var/taste_tag in E.taste_tag)
+				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
