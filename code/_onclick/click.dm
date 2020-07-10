@@ -417,7 +417,9 @@ GLOBAL_LIST_INIT(click_catchers, create_click_catcher())
 
 	if(!T || !src || src.stat)
 		return
-	if(get_dist(get_turf(T), get_turf(src)) != 2)
+	if(get_dist(get_turf(T), get_turf(src)) < 2)
+		return
+	if(get_dist_euclidian(get_turf(T), get_turf(src)) >= 3)
 		return
 	if(last_special > world.time)
 		return
