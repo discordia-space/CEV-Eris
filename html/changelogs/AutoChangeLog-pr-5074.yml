@@ -1,0 +1,4 @@
+author: seekin4u
+delete-after: true
+changes:
+  - rscadd: Russiano radio keys are now available. `:ы` `:ь` `:р` `:з` `:н`
