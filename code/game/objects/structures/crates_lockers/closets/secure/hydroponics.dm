@@ -51,6 +51,8 @@
 	new /obj/item/weapon/tool/minihoe(src)
 	new /obj/item/weapon/tool/hatchet(src)
 	new /obj/item/weapon/tool/wirecutters(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
 	new /obj/item/clothing/suit/space/void/agrolyte(src)
 	new /obj/item/clothing/gloves/botanic_leather(src)
