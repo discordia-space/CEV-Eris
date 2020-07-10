@@ -1,0 +1,10 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: Environmental damage for sanity has been lowered
+  - tweak: Food only increases sanity when you eating not junk food.
+  - tweak: Sanity regeneration from food now purely depends on nutrition, and not
+      calculated per bite.
+  - tweak: Breakdowns reward insight for fulfilled their objectives.
+  - rscadd: Mindwipe drug that stops breakdowns
+  - tweak: All food in trash piles have a chance to have toxins,
