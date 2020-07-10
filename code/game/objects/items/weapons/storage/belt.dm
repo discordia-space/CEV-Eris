@@ -78,6 +78,8 @@
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform
+		/obj/item/weapon/soap
+		/obj/item/weapon/reagent_containers/spray/cleaner
 	)
 
 /obj/item/weapon/storage/belt/medical
