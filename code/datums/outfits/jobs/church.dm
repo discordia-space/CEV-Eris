@@ -38,4 +38,3 @@
 	uniform = /obj/item/clothing/under/rank/church
 	shoes = /obj/item/clothing/shoes/jackboots/custodian
 	gloves = /obj/item/clothing/gloves/thick
-	
