@@ -1,0 +1,105 @@
+</div class="item" style="padding: 2px;">
+	<div class="statusDisplay" style="overflow:auto;">
+		<div class="item">
+			<div class="statusDisplay" style="background-color:DarkBlue;">
+				<div class="itemLabel" style="background-color:none; padding-right: 4px;">
+					<div style="padding: 1px; overflow:auto;text-align:center;">
+						<img src='moebus_logo.png' style ="float: left; width: 20%;">
+						<h3>Sanity:</h3>
+					</div>
+					<div>
+						Your style has a minimum value of -10 and a maximum of 20. You gain style by wearing cool clothes.<br> 
+						If your style is positive, your passive gain insight increases, otherwise it decreases.<br> 
+						If you are dirty, your style will decrease.
+					</div>
+				</div>
+				<div class="itemContent" style="background-color:none;">
+					<br><br><br><br><br>
+						<div style="padding: 1px; overflow:auto;">
+							<h3>Rest progress:</h3>
+						</div>
+					{{:helper.displayBar(data.sanity, 0, 100, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average', data.sanity)}}
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="item">
+			<div class="statusDisplay" style="background-color:Cyan;">
+				<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+					<div style="padding: 1px; overflow:auto;text-align:center;">
+						<img src='moebus_logo.png' style ="margin: auto; float: left; width: 30%; padding: 2px;">
+						<h3>Insight:</h3>
+					</div>
+					<div>
+						Your style has a minimum value of -8 and a maximum of 15. You gain style by wearing cool clothes. If your style is positive, your passive gain insight increases, otherwise it decreases. If you are dirty, your style will decrease.
+					</div>
+				</div>
+				<div class="itemContent"  style="background-color:none;">
+					<br><br><br><br><br>
+						<div style="padding: 1px; overflow:auto;">
+							<h3>Rest progress:</h3>
+						</div>
+					{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight)}}
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="item">
+			<div class="statusDisplay"  style="background-color:DarkOliveGreen;">
+				<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+					<div style="padding: 1px; overflow:auto;text-align:center;">
+						<img src='moebus_logo.png' style ="float: left; width: 40%; padding-right: 2px;">
+						<h3>Style:</h3>
+					</div>
+					<div>
+						Your style has a minimum value of {{data.min_style}} and a maximum of {{data.max_style}}. You gain style by wearing cool clothes. If your style is positive, your passive gain insight increases, otherwise it decreases. If you are dirty, your style will decrease.
+					</div>
+				</div>
+				<div class="itemContent" style="background-color:none;">
+					<br><br>
+						<div style="padding: 1px; overflow:auto;">
+							<h3>Rest progress:</h3>
+						</div>
+					{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average', data.style)}}
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="item">
+			<div class="statusDisplay" style="background-color:red;padding: 1px; overflow:auto;">
+				<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+					<div style="padding: 1px; overflow:auto;text-align:center;">
+						<img src='ironhammer.png' style ="float: left; width: 10%;">
+						<h3>Desires:</h3>
+					</div>
+					<div>
+						Your style has a minimum value of -10 and a maximum of 20. You gain style by wearing cool clothes. If your style is positive, your passive gain insight increases, otherwise it decreases. If you are dirty, your style will decrease.
+					</div>
+				</div>
+				<div class="itemContent" style="background-color:none;">
+					<h3>List of current desires:</h3>
+					<div>
+						{{if data.rest}}
+							{{for data.desires :val:val_i}}
+								|{{:val}} &nbsp &nbsp
+							{{/for}}
+							|
+						{{else}}
+							actualy you no have desires
+						{{/if}}
+					</div>
+				</div>
+				{{if data.rest}}
+					<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+						<div style="padding: 1px; overflow:auto;">
+							<h3>Rest progress:</h3>
+						</div>
+					</div>
+					<div class="itemContent" style="background-color:none;"><br>
+						{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average', data.insight_rest)}}
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</div>
