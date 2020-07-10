@@ -52855,13 +52855,23 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck3port)
 "cnf" = (
-/obj/structure/table/standard,
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "random_radio";
-	name = "Random wave radio id lock";
-	req_access = list(31)
+/obj/structure/railing{
+	tag = "icon-railing0 (NORTH)";
+	icon_state = "railing0";
+	dir = 1;
+	anchored = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/obj/structure/lattice,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/railing{
+	tag = "icon-railing0 (EAST)";
+	icon_state = "railing0";
+	dir = 4;
+	anchored = 1
+	},
+/turf/simulated/open,
 /area/eris/quartermaster/storage)
 "cng" = (
 /obj/machinery/computer/operating,
@@ -55718,12 +55728,17 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
 "ctS" = (
-/obj/structure/table/rack,
-/obj/item/device/radio/random_radio,
-/obj/machinery/door/blast/shutters/glass{
-	id = "random_radio"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/obj/structure/catwalk,
+/obj/structure/table/standard,
+/obj/machinery/button/remote/blast_door/id_card{
+	id = "random_radio";
+	name = "Random wave radio id lock";
+	req_access = list(31)
+	},
+/turf/simulated/open,
 /area/eris/quartermaster/storage)
 "ctT" = (
 /obj/machinery/power/apc{
@@ -56939,15 +56954,14 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engeva)
 "cwR" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
-	dir = 1;
-	anchored = 1
-	},
-/obj/structure/lattice,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/table/rack,
+/obj/item/device/radio/random_radio,
+/obj/machinery/door/blast/shutters/glass{
+	id = "random_radio"
 	},
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
@@ -56958,8 +56972,15 @@
 	dir = 1;
 	anchored = 1
 	},
+/obj/structure/lattice,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/railing{
+	tag = "icon-railing0 (WEST)";
+	icon_state = "railing0";
+	dir = 8;
+	anchored = 1
 	},
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
@@ -57783,15 +57804,15 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "cyJ" = (
-/obj/machinery/light,
-/obj/machinery/button/remote/blast_door/id_card{
-	id = "atomic_distillery";
-	name = "Atomic Distillery id lock";
-	pixel_y = -28;
-	req_access = list(57)
+/obj/structure/lattice,
+/obj/structure/railing{
+	tag = "icon-railing0 (NORTH)";
+	icon_state = "railing0";
+	dir = 1;
+	anchored = 1
 	},
-/turf/simulated/floor/wood,
-/area/eris/command/bridgebar)
+/turf/simulated/open,
+/area/eris/quartermaster/storage)
 "cyK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	tag = "icon-intact (SOUTHEAST)";
@@ -60539,18 +60560,16 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cEw" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "CargoTotalLockdown";
-	layer = 2.6;
-	name = "Cargo Total Lockdown";
-	opacity = 0
+/obj/machinery/light,
+/obj/machinery/button/remote/blast_door/id_card{
+	dir = 1;
+	id = "atomic_distillery";
+	name = "Atomic Distillery id lock";
+	pixel_y = -28;
+	req_access = list(57)
 	},
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/eris/quartermaster/office)
+/turf/simulated/floor/wood,
+/area/eris/command/bridgebar)
 "cEx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/red{
 	tag = "icon-map (WEST)";
@@ -63590,7 +63609,16 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cLz" = (
-/obj/machinery/photocopier,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "CargoTotalLockdown";
+	layer = 2.6;
+	name = "Cargo Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
 "cLA" = (
@@ -63832,6 +63860,7 @@
 "cMc" = (
 /obj/structure/catwalk,
 /obj/machinery/button/remote/blast_door/id_card{
+	dir = 4;
 	id = "techno_tribalism";
 	name = "Techno Tribalism id lock";
 	pixel_x = -28;
@@ -214226,7 +214255,7 @@ cgO
 cgO
 evU
 cie
-cnf
+cwI
 cyb
 cyb
 cyb
@@ -214430,7 +214459,7 @@ cuX
 cie
 cwN
 cyo
-ctS
+cyo
 czF
 cvg
 cie
@@ -214832,7 +214861,7 @@ ciC
 cjm
 cie
 cie
-cwR
+cnf
 cys
 ciD
 ciD
@@ -215034,8 +215063,8 @@ ciC
 cjm
 cie
 cie
-cwS
-ciD
+ctS
+cyJ
 ciC
 ciD
 ciC
@@ -215236,8 +215265,8 @@ ciC
 cjm
 cie
 cie
-cwS
-ciD
+cwR
+cyJ
 ciC
 ciD
 ciC
@@ -215438,7 +215467,7 @@ ciC
 cjm
 cie
 cie
-cwR
+cwS
 cys
 ciD
 ciD
@@ -247699,7 +247728,7 @@ dea
 deo
 deK
 dfi
-deL
+cAc
 dfP
 dgl
 dgy
@@ -247902,7 +247931,7 @@ deb
 deb
 deb
 deb
-cyJ
+cEw
 dgl
 dgz
 dgO
@@ -248104,7 +248133,7 @@ dec
 dec
 dAn
 dec
-cAc
+dec
 dgl
 dgA
 dgO
@@ -253010,9 +253039,9 @@ exG
 etZ
 ctr
 dmj
-cEw
-cEw
-cEw
+dmj
+dmj
+dmj
 dmj
 bZc
 cTZ
@@ -253213,7 +253242,7 @@ dzb
 ctr
 ctr
 cxI
-cIX
+cLz
 cxI
 ctr
 bZc
@@ -253821,7 +253850,7 @@ eEm
 exV
 cGM
 cKz
-cLz
+cIX
 cQc
 ctr
 cVW

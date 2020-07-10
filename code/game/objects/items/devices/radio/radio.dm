@@ -757,7 +757,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio
 	name = "Random wave radio"
-	desc = "Radio that can pick up message from secure channels, but with small chance. It can be repaired by atifact, that have knowledge of mechanics."
+	desc = "Radio that can pick up message from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by atifact, that have knowledge of mechanics."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "random_radio"
 	item_state = "random_radio"
@@ -768,7 +768,28 @@ var/global/list/default_medbay_channels = list(
 	price_tag = 20000
 	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_ILLEGAL = 7)
 	var/list/obj/item/weapon/oddity/used_oddity = list()
+	var/last_produce = 0
+	var/cooldown = 40 MINUTES
+	var/max_cooldown = 40 MINUTES
+	var/min_cooldown = 15 MINUTES
 	w_class = ITEM_SIZE_BULKY
+
+/obj/item/device/radio/random_radio/New()
+	..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/device/radio/random_radio/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/device/radio/random_radio/Process()
+	if(world.time >= (last_produce + cooldown))
+		var/datum/stash/stash = pick_n_take_stash_datum()
+		stash.select_location()
+		stash.spawn_stash()
+		var/obj/item/weapon/paper/stash_note = stash.spawn_note(get_turf(src))
+		visible_message(SPAN_NOTICE("[src] drop [stash_note]."))
+		last_produce = world.time
 
 /obj/item/device/radio/random_radio/receive_range(freq, level)
 
@@ -823,11 +844,18 @@ var/global/list/default_medbay_channels = list(
 
 			for(var/stat in D.oddity_stats)
 				if(stat == STAT_MEC)
-					random_hear += D.oddity_stats[stat] * 3
-					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [D.oddity_stats[stat] * 3]%."))
+					var/increece = D.oddity_stats[stat] * 3
+					random_hear += increece
+					if(random_hear > 100)
+						random_hear = 100
+					cooldown -= (D.oddity_stats[stat]) MINUTES
+					if(cooldown < min_cooldown)
+						cooldown = min_cooldown
+					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [increece]%."))
 					usefull = TRUE
 					used_oddity += D
 					return
+
 
 			if(!usefull)
 				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to mechanic to repair this?"))
