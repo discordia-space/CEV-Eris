@@ -5,7 +5,6 @@
 
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
-var/global/datum/DB_search/db_search = new()
 var/global/list/all_areas                = list()
 var/global/list/ship_areas                = list()
 

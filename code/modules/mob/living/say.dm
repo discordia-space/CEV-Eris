@@ -1,36 +1,20 @@
 var/list/department_radio_keys = list(
-	"r" = "right ear",   "R" = "right ear",
-	"l" = "left ear",    "L" = "left ear",
-	"i" = "intercom",    "I" = "intercom",
-	"h" = "department",  "H" = "department",
+	"r" = "right ear",
+	"l" = "left ear",
+	"i" = "intercom",
+	"h" = "department",
 	"+" = "special",	 //activate radio-specific special functions
-	"c" = "Command",     "C" = "Command",
-	"n" = "Science",     "N" = "Science",
-	"m" = "Medical",     "M" = "Medical",
-	"e" = "Engineering", "E" = "Engineering",
-	"s" = "Security",    "S" = "Security",
-	"w" = "whisper",     "W" = "whisper",
-	"y" = "Mercenary",   "Y" = "Mercenary",
-	"u" = "Supply",      "U" = "Supply",
-	"v" = "Service",     "V" = "Service",
-	"p" = "AI Private",  "P" = "AI Private",
-	"t" = "NT Voice",    "T" = "NT Voice",
-
-	"к" = "right ear",   "К" = "right ear",
-	"д" = "left ear",    "Д" = "left ear",
-	"ш" = "intercom",    "Ш" = "intercom",
-	"р" = "department",  "Р" = "department",
-	"с" = "Command",     "С" = "Command",
-	"т" = "Science",     "Т" = "Science",
-	"ь" = "Medical",     "Ь" = "Medical",
-	"у" = "Engineering", "У" = "Engineering",
-	"ы" = "Security",    "Ы" = "Security",
-	"ц" = "whisper",     "Ц" = "whisper",
-	"н" = "Mercenary",   "Н" = "Mercenary",
-	"г" = "Supply",      "Г" = "Supply",
-	"м" = "Service",     "М" = "Service",
-	"з" = "AI Private",  "З" = "AI Private",
-	"е" = "NT Voice",    "Е" = "NT Voice",
+	"c" = "Command",
+	"n" = "Science",
+	"m" = "Medical",
+	"e" = "Engineering",
+	"s" = "Security",
+	"w" = "whisper",
+	"y" = "Mercenary",
+	"u" = "Supply",
+	"v" = "Service",
+	"p" = "AI Private",
+	"t" = "NT Voice",
 )
 
 
@@ -151,10 +135,11 @@ var/list/channel_to_radio_key = new
 	//parse the radio code and consume it
 	var/message_mode = parse_message_mode(message, "headset")
 	if (message_mode)
+		//it would be really nice if the parse procs could do this for us.
 		if (message_mode == "headset")
-			message = copytext(message,2)//parse ;
+			message = copytext(message,2)
 		else
-			message = copytext_char(message,3)//parse :s 
+			message = copytext(message,3)
 
 	message = trim_left(message)
 

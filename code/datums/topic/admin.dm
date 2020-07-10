@@ -647,8 +647,7 @@
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
-			if(!delayed)
-				del(M.client)
+			del(M.client)
 			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 		if("No")
 			var/no_ip = 0
@@ -674,8 +673,8 @@
 			var/banip = no_ip ? null : -1
 			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason, banip, delayed_ban = delayed)
 
-			if(!delayed)
-				del(M.client)
+
+			del(M.client)
 		if("Cancel")
 			return
 

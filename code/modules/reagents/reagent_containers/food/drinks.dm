@@ -78,10 +78,6 @@
 	set name = "Gulp Down"
 	set src in view(1)
 
-	if(isghost(usr))
-		to_chat(usr, "You ghost!")
-		return
-
 	if(is_drainable())
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
