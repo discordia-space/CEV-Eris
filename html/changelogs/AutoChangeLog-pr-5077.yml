@@ -1,0 +1,5 @@
+author: Pariah919
+delete-after: true
+changes:
+  - rscadd: Added new kitchen ~~gun~~ knife sprite
+  - rscdel: Removed old kitchen knife sprite
