@@ -35,7 +35,7 @@
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
+	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
 
 
 /obj/item/clothing/glasses/powered/thermal/onestar
@@ -87,7 +87,7 @@
 		see_invisible = SEE_INVISIBLE_NOLIGHTING
 		protection = flash_protection
 		flash_protection = FLASH_PROTECTION_REDUCED
-		origin_tech = list(TECH_ILLEGAL = 3)
+		origin_tech = list(TECH_COVERT = 3)
 		to_chat(usr, "You attached your lenses to your glasses")
 		have_lenses = 1
 		qdel(Z)
