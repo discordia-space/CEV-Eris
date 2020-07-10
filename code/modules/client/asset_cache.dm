@@ -22,6 +22,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
 	var/list/sending = list()
 	var/last_asset_job = 0 // Last job done.
+	var/VPN_whitelist //avoid vpn cheking
+
+	var/list/related_ip = list()
+	var/list/related_cid = list()
 
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false

@@ -185,6 +185,15 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
 
+/obj/item/clothing/suit/storage/hazardvest/orange
+	icon_state = "hazard_orange"
+	item_state = "hazard_orange"
+
+//Paramedics
+/obj/item/clothing/suit/storage/hazardvest/black
+	icon_state = "hazard_black"
+	item_state = "hazard_black"
+
 //Chief Engineer/Technomancer Exultant
 /obj/item/clothing/suit/storage/te_coat
 	name = "exultant coat"

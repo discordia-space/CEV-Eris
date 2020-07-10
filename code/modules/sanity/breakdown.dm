@@ -9,10 +9,15 @@
 	var/list/start_messages
 	var/list/end_messages
 
-	var/duration
+	var/duration = 30 MINUTES //by default
 	var/end_time
+	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/finished = FALSE
+	var/has_objetives = FALSE //if this demands something from you.
+	var/finished = FALSE //if the objetives were fulfilled.
+	var/isight_reward = 5 //Amount of isight for fulfilling the objetives.
+	var/is_negative = FALSE
+
 	var/restore_sanity_pre
 	var/restore_sanity_post
 
@@ -33,16 +38,27 @@
 		return FALSE
 	return TRUE
 
-/datum/breakdown/proc/occur()
+/datum/breakdown/proc/init_update()
+	if(world.time + duration >= end_time + delay)
+		return TRUE
+	occur_animation()
+	return FALSE
+
+/datum/breakdown/proc/occur_animation()
 	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
 	holder.owner << img
 	flick(icon_state, img)
+
+/datum/breakdown/proc/occur()
+	occur_animation()
 	holder.owner.playsound_local(get_turf(holder.owner), breakdown_sound, 100)
 	if(start_messages)
 		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration/10] seconds.")
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)
 		holder.restoreLevel(restore_sanity_pre)
+	if(delay > 0)
+		duration += delay
 	if(duration == 0)
 		conclude()
 		return FALSE
@@ -54,6 +70,13 @@
 	if(end_messages)
 		log_and_message_admins("[holder.owner] is no longer affected by [name]")
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
-	if(restore_sanity_post)
+	if(has_objetives)
+		if(finished)
+			holder.insight += isight_reward
+			if(restore_sanity_post)
+				holder.restoreLevel(restore_sanity_post)
+		else if(is_negative)
+			holder.changeLevel(-rand(20,30))
+	else if(restore_sanity_post)
 		holder.restoreLevel(restore_sanity_post)
 	qdel(src)

@@ -130,3 +130,10 @@
 /obj/item/device/encryptionkey/entertainment
 	name = "entertainment radio key"
 	channels = list("Entertainment" = 1)
+
+//addition to /obj/item/weapon/card/id/all_access
+/obj/item/device/encryptionkey/heads/admin
+	name = "Admin encryption key"
+	desc = "Full powers encryption key"
+	icon_state = "cap_cypherkey"
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1, "Mercenary" = 1)
