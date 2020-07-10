@@ -7,10 +7,16 @@
 	item_state = "assistant"
 
 /obj/item/clothing/under/rank/bartender
-	desc = "It looks like it could use some more flair."
+	desc = "Expensive shirt and tie with tailored pants."
 	name = "bartender's uniform"
 	icon_state = "ba_suit"
 	item_state = "ba_suit"
+
+/obj/item/clothing/under/rank/bartender/skirt
+	desc = "Expensive shirt and tie with a tailored skirt."
+	name = "bartender's skirtsuit"
+	icon_state = "ba_skirt"
+	item_state = "ba_skirt"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."

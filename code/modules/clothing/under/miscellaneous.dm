@@ -17,6 +17,11 @@
 	icon_state = "waiter"
 	item_state = "waiter"
 
+/obj/item/clothing/under/waiter/skirt
+	name = "waiter's skirtsuit"
+	desc = "It's a very smart uniform with a special pocket for tip and a skirt for female waiters."
+	icon_state = "waiter_skirt"
+	item_state = "waiter_skirt"
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"

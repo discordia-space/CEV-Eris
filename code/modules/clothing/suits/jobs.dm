@@ -68,6 +68,19 @@
 		/obj/item/weedkiller
 	)
 
+//Civillian
+/obj/item/clothing/suit/storage/toggle/club
+	name = "Manager's jacket"
+	desc = "A well tailored and rich jacket of the club manager"
+	icon_state = "cm_coat"
+	item_state = "cm_coat"
+	icon_open = "cm_coat_open"
+	icon_closed = "cm_coat"
+	body_parts_covered = UPPER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+
 //Chaplain
 /obj/item/clothing/suit/neotheology_jacket
 	name = "acolyte jacket"

@@ -175,6 +175,13 @@
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
 
+/obj/item/clothing/suit/poncho/tactical
+	name = "blue poncho"
+	desc = "A simple, comfortable poncho in blue colors."
+	icon_state = "tacticalponcho"
+	item_state = "tacticalponcho"
+
+
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
