@@ -1,3 +1,8 @@
+//for style
+#define MAX_HUMAN_STYLE 20
+#define MIN_HUMAN_SYLE -10
+
+//for desires
 #define TASTE_SOUR "sour drink"
 #define TASTE_BITTER "bitter drink"
 #define TASTE_SWEET "sweet drink"
