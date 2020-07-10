@@ -17,6 +17,16 @@
 	siemens_coefficient = 0.6
 	can_hold_knife = TRUE
 
+/obj/item/clothing/shoes/jackboots/custodian
+	name = "custodian's jackboots"
+	desc = "Specially altered combat-boots for NeoTheology custodians to prevent them from slipping."
+	icon_state = "jackboots"
+	item_state = "jackboots"
+	force = WEAPON_FORCE_HARMLESS
+	item_flags = NOSLIP
+	siemens_coefficient = 0.6
+	can_hold_knife = TRUE
+
 /obj/item/clothing/shoes/jackboots/ironhammer
 	icon_state = "jackboots_ironhammer"
 

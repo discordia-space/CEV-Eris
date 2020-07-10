@@ -72,7 +72,7 @@
 	name = "Custodian armor"
 	desc = "Someone's gotta clean this mess."
 	icon_state = "custodian"
-	slowdown = 0.15
+	slowdown = 0.1
 	armor = list(
 		melee = 20,
 		bullet = 10,
