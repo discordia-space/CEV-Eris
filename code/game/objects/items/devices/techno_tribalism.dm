@@ -16,59 +16,75 @@
 	if(items_count < max_count)
 		if(istype(W, /obj/item/weapon/tool))
 
-			if(istype(W, /obj/item/weapon/tool/sword) || istype(W, /obj/item/weapon/tool/knife) || istype(W, /obj/item/weapon/tool/hammer))
-				oddity_stats[STAT_ROB] += 3
+			if(W.tool_qualities)
 
-			else if(istype(W, /obj/item/weapon/tool/saw/circular/advanced) || istype(W, /obj/item/weapon/tool/saw/hyper))
-				oddity_stats[STAT_ROB] += 2
-				oddity_stats[STAT_MEC] += 1
-				oddity_stats[STAT_BIO] += 1
+				for(var/qualitie in W.tool_qualities)
 
-			else if(istype(W, /obj/item/weapon/tool/crowbar/onestar) || istype(W, /obj/item/weapon/tool/crowbar/pneumatic))
-				oddity_stats[STAT_TGH] += 2
-				oddity_stats[STAT_ROB] += 2
+					if(W.tool_qualities[qualitie] >= 15)
+						var/stat_cost = round(W.tool_qualities[qualitie] / 15)
 
-			else if(istype(W, /obj/item/weapon/tool/scalpel/laser))
-				oddity_stats[STAT_BIO] += 2
-				oddity_stats[STAT_VIG] += 2
+						if(qualitie == QUALITY_BOLT_TURNING)
+							oddity_stats[STAT_COG] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/scalpel/advanced))
-				oddity_stats[STAT_BIO] += 2
-				oddity_stats[STAT_VIG] += 1
+						else if (qualitie == QUALITY_PULSING)
+							oddity_stats[STAT_MEC] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/scalpel) || istype(W, /obj/item/weapon/tool/bonesetter) || istype(W, /obj/item/weapon/tool/cautery) || istype(W, /obj/item/weapon/tool/hemostat) || istype(W, /obj/item/weapon/tool/retractor) || istype(W, /obj/item/weapon/tool/surgicaldrill))
-				oddity_stats[STAT_BIO] += 1
-				oddity_stats[STAT_VIG] += 1
+						else if (qualitie == QUALITY_PRYING)
+							oddity_stats[STAT_ROB] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/weldingtool/advanced) || istype(W, /obj/item/weapon/tool/weldingtool/onestar))
-				oddity_stats[STAT_VIG] += 3
-				oddity_stats[STAT_MEC] += 1
+						else if (qualitie == QUALITY_WELDING)
+							oddity_stats[STAT_VIG] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/wrench/big_wrench))
-				oddity_stats[STAT_ROB] += 2
-				oddity_stats[STAT_MEC] += 2
+						else if (qualitie == QUALITY_SCREW_DRIVING)
+							oddity_stats[STAT_COG] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/pickaxe/diamonddrill) || istype(W, /obj/item/weapon/tool/pickaxe/drill/onestar))
-				oddity_stats[STAT_VIG] += 2
-				oddity_stats[STAT_ROB] += 2
+						else if (qualitie == QUALITY_WIRE_CUTTING)
+							oddity_stats[STAT_VIG] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/pickaxe/jackhammer))
-				oddity_stats[STAT_VIG] += 1
-				oddity_stats[STAT_ROB] += 2
+						else if (qualitie == QUALITY_CLAMPING)
+							oddity_stats[STAT_BIO] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/pickaxe))
-				oddity_stats[STAT_ROB] += 2
+						else if (qualitie == QUALITY_CAUTERIZING)
+							oddity_stats[STAT_BIO] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/hammer/charge) || istype(W, /obj/item/weapon/tool/hammer/powered_hammer))
-				oddity_stats[STAT_ROB] += 4
-				oddity_stats[STAT_VIG] -= 1
+						else if (qualitie == QUALITY_RETRACTING)
+							oddity_stats[STAT_BIO] += stat_cost
 
+						else if (qualitie == QUALITY_DRILLING)
+							oddity_stats[STAT_TGH] += stat_cost
 
-			else if(istype(W, /obj/item/weapon/tool/hammer))
-				oddity_stats[STAT_ROB] += 3
+						else if (qualitie == QUALITY_HAMMERING)
+							oddity_stats[STAT_ROB] += stat_cost
 
-			else
-				oddity_stats[STAT_MEC] += 1
+						else if (qualitie == QUALITY_SAWING)
+							oddity_stats[STAT_VIG] += stat_cost
+
+						else if (qualitie == QUALITY_BONE_SETTING)
+							oddity_stats[STAT_BIO] += stat_cost
+
+						else if (qualitie == QUALITY_SHOVELING)
+							oddity_stats[STAT_TGH] += stat_cost
+
+						else if (qualitie == QUALITY_DIGGING)
+							oddity_stats[STAT_ROB] += stat_cost
+
+						else if (qualitie == QUALITY_EXCAVATION)
+							oddity_stats[STAT_TGH] += stat_cost
+
+						else if (qualitie == QUALITY_CUTTING)
+							oddity_stats[STAT_COG] += stat_cost
+
+						else if (qualitie == QUALITY_LASER_CUTTING)
+							oddity_stats[STAT_VIG] += stat_cost
+
+						else if (qualitie == QUALITY_ADHESIVE)
+							oddity_stats[STAT_MEC] += stat_cost
+
+						else if (qualitie == QUALITY_SEALING)
+							oddity_stats[STAT_MEC] += stat_cost
+
+					else
+						continue
 
 
 		else if(istype(W, /obj/item/weapon/tool_upgrade))
@@ -126,6 +142,7 @@
 				T.oddity_stats = src.oddity_stats
 				T.AddComponent(/datum/component/inspiration, T.oddity_stats)
 				items_count = 0
+				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
 				last_produce = world.time
 				user.put_in_hands(T)
 			else
