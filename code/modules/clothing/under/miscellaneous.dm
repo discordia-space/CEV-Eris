@@ -172,8 +172,8 @@
 obj/item/clothing/under/leisure
 	name = "leisure outfit"
 	desc = "A leisure outfit with brown jacket. Sometimes you just want to wear what is comfortable."
-	icon_state = "leisuroutfit"
-	item_state = "leisuroutfit"
+	icon_state = "leisureoutfit"
+	item_state = "leisureoutfit"
 
 obj/item/clothing/under/leisure/white
 	name = "white blouse"
