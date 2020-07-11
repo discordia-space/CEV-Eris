@@ -3,14 +3,14 @@
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "maneki_neko"
 	item_state = "maneki_neko"
-	desc = " Costs a lot of money, this is ancient relic with no practical purpose. Fragile."
+	desc = "Costs a lot of money, this is ancient relic with no practical purpose. Feels like it's looking at you, with menacingly gaze. Fragile."
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 15
-	price_tag = 50000
+	price_tag = 20000
 	origin_tech = list(TECH_MATERIAL = 10)
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 5, MATERIAL_DIAMOND = 1)
 	var/list/mob/living/carbon/human/followers = list()

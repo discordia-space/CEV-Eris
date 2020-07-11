@@ -1,6 +1,6 @@
 /obj/item/device/last_shelter
 	name = "Last Shelter"
-	desc = "Powerful scanner that can teleport a cruciforms of people died in this space."
+	desc = "Powerful scanner that can teleport a cruciforms of pilgrims lost in this sector of space."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "last_shelter"
 	item_state = "last_shelter"
@@ -39,6 +39,8 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	for(var/stat in ALL_STATS)
 		H.stats.changeStat(stat, rand(STAT_LEVEL_ADEPT, STAT_LEVEL_PROF))
+	var/datum/perk/perk_random = pick(subtypesof(/datum/perk/oddity))
+	H.stats.addPerk(perk_random)
 	var/obj/item/weapon/implant/core_implant/cruciform/cruciform = new /obj/item/weapon/implant/core_implant/cruciform(src)
 	for(var/datum/core_module/cruciform/cloning/M in cruciform.modules)
 		M.write_wearer(H)

@@ -757,7 +757,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio
 	name = "Random wave radio"
-	desc = "Radio that can pick up message from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by atifact, that have knowledge of mechanics."
+	desc = "Radio that can pick up message from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "random_radio"
 	item_state = "random_radio"
