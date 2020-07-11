@@ -11,13 +11,13 @@ There are important things regarding this file:
 */
 //Low-caliber pistols and SMGs .35
 /obj/item/projectile/bullet/pistol
-	damage_types = list(BRUTE = 24)
-	armor_penetration = 5
+	damage_types = list(BRUTE = 28)
+	armor_penetration = 10
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/pistol/hv
-	damage_types = list(BRUTE = 28)
-	armor_penetration = 10
+	damage_types = list(BRUTE = 32)
+	armor_penetration = 20
 	penetrating = 1
 	step_delay = 0.75
 
@@ -33,7 +33,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pistol/rubber
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 3)
-	agony = 22
+	agony = 25
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
@@ -141,7 +141,7 @@ There are important things regarding this file:
 
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
-	damage_types = list(BRUTE = 32)
+	damage_types = list(BRUTE = 34)
 	armor_penetration = 15
 	can_ricochet = TRUE
 
@@ -155,7 +155,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/magnum/hv
-	damage_types = list(BRUTE = 35)
+	damage_types = list(BRUTE = 39)
 	armor_penetration = 20
 	penetrating = 1
 	step_delay = 0.75

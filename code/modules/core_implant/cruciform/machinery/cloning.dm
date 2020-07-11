@@ -183,7 +183,7 @@
 /obj/machinery/neotheology/cloner/Process()
 	if(stat & NOPOWER)
 		return
-	
+
 	if(time_multiplier == 0) // We dont want to start if we wont have manipulators
 		return
 
@@ -229,6 +229,7 @@
 			occupant.UpdateAppearance()
 			occupant.sync_organ_dna()
 			occupant.flavor_text = R.flavor
+			occupant.stats = R.stats
 
 		if(progress == CLONING_BODY || progress <= CLONING_BODY && progress > CLONING_BODY-10)
 			var/datum/effect/effect/system/spark_spread/s = new

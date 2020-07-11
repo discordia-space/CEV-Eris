@@ -2,8 +2,10 @@
 
 #define SANITY_DAMAGE_MOD 0.6
 
+#define SANITY_VIEW_DAMAGE_MOD 0.4
+
 // Damage received from unpleasant stuff in view
-#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
+#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
 // Damage received from body damage
 #define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
@@ -34,6 +36,9 @@
 #define INSIGHT_DESIRE_ALCOHOL "alcohol"
 #define INSIGHT_DESIRE_SMOKING "smoking"
 #define INSIGHT_DESIRE_DRUGS "drugs"
+
+
+#define EAT_COOLDOWN_MESSAGE 15 SECONDS
 
 /datum/sanity
 	var/flags
@@ -67,6 +72,8 @@
 	var/death_view_multiplier = 1
 
 	var/list/datum/breakdown/breakdowns = list()
+
+	var/eat_time_message = 0
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
@@ -281,10 +288,13 @@
 	if(resting)
 		add_rest(E.type, 3 * multiplier)
 
-/datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, amount_eaten)
-	changeLevel(snack.sanity_gain * amount_eaten / snack.bitesize)
+/datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
+	if(world.time > eat_time_message && snack_sanity_message)
+		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
+		to_chat(owner, SPAN_NOTICE("[snack_sanity_message]"))
+	changeLevel(snack_sanity_gain)
 	if(snack.cooked && resting)
-		add_rest(snack.type, 20 * amount_eaten / snack.bitesize)
+		add_rest(snack.type, snack_sanity_gain * 45)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)

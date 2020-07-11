@@ -58,7 +58,10 @@
 	var/knockback = 0
 
 	var/hitscan = FALSE		// whether the projectile should be hitscan
-	var/step_delay = 1	// the delay between iterations if not a hitscan projectile
+
+	var/step_delay = 0.8	// the delay between iterations if not a hitscan projectile
+							// This thing right here goes to sleep(). We should not send non decimal things to sleep(),
+							// but it was doing it for a while, it works, and this whole shit should be rewriten or ported from another codebase.
 
 	// effect types to be used
 	var/muzzle_type

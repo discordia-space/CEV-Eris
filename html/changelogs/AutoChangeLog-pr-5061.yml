@@ -1,5 +1,0 @@
-author: HentaiStorm
-delete-after: true
-changes:
-  - bugfix: Rename disk_name (Frozen Star - .35 Paco SMG -> Frozen Star - .35 Paco
-      HG) and replace ammo in designs (smg -> magazine_pistol).

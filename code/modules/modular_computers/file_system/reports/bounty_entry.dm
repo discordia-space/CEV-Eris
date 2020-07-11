@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 				if(!tried_account_num || !tried_pin)
 					to_chat(user, "<span class='warning'>You must enter a valid bank account + PIN to create a bounty!</span>")
 					return
-				authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
+				authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1, TRUE)
 			if(authenticated_account)
 				//TODO FEE that captain can set
 				/*var/fee = (reward*fee_multiplier) //Service charge. Craptain can configure, defaults to 5%
