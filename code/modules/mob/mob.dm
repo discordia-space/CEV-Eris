@@ -500,7 +500,7 @@
 	if(href_list["flavor_more"])
 		if(src in view(usr))
 			var/dat = {"
-				<html><head><title>[name]</title></head>
+				<html><meta charset=\"utf-8\"><head><title>[name]</title></head>
 				<body><tt>[replacetext(flavor_text, "\n", "<br>")]</tt></body>
 				</html>
 			"}
