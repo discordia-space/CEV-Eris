@@ -256,7 +256,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if (!L || L.mob_size < min_size)
 		return
 
-	if (istype(L, /mob/living/exosuit/premade))
+	if ismech(L)
 		deployed = FALSE
 		playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)
 		return
