@@ -48,6 +48,7 @@
 /decl/hierarchy/outfit/job/medical/paramedic
 	name = OUTFIT_JOB_NAME("Moebius Paramedic")
 	uniform = /obj/item/clothing/under/rank/paramedic
+	suit = /obj/item/clothing/suit/storage/hazardvest/black
 	shoes = /obj/item/clothing/shoes/jackboots
 	l_hand = /obj/item/weapon/storage/firstaid/adv
 	belt = /obj/item/weapon/storage/belt/medical/emt

@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_SMALL
 	can_dual = 1
 	item_state = "crossbow"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 2, TECH_ILLEGAL = 5)
+	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 2, TECH_COVERT = 5)
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 6, MATERIAL_URANIUM = 6)
 	slot_flags = SLOT_BELT
 	silenced = 1

@@ -17,6 +17,11 @@
 	icon_state = "waiter"
 	item_state = "waiter"
 
+/obj/item/clothing/under/waiter/skirt
+	name = "waiter's skirtsuit"
+	desc = "It's a very smart uniform with a special pocket for tip and a skirt for female waiters."
+	icon_state = "waiter_skirt"
+	item_state = "waiter_skirt"
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"
@@ -145,3 +150,39 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
+
+/obj/item/clothing/under/dress
+	name = "gray summerdress"
+	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
+	icon_state = "summerdress"
+	item_state = "summerdress"
+
+/obj/item/clothing/under/dress/blue
+	name = "blue summerdress"
+	desc = "a blue dress worn by mostly those of east asian descendance"
+	icon_state = "summerdress2"
+	item_state = "summerdress2"
+
+/obj/item/clothing/under/dress/red
+	name = "red summerdress"
+	desc = "A red dress worn mostly by those of east asian descendance."
+	icon_state = "summerdress3"
+	item_state = "summerdress3"
+
+obj/item/clothing/under/leisure
+	name = "leisure outfit"
+	desc = "A leisure outfit with brown jacket. Sometimes you just want to wear what is comfortable."
+	icon_state = "leisuroutfit"
+	item_state = "leisuroutfit"
+
+obj/item/clothing/under/leisure/white
+	name = "white blouse"
+	desc = "A white blouse with a red shirt underneath. You look like a hallway ornament with this."
+	icon_state = "shirtsuit"
+	item_state = "shirtsuit"
+
+obj/item/clothing/under/leisure/pullover
+	name = "patterned pullover"
+	desc = "Brown pullover with indeterminable pattern."
+	icon_state = "pullover"
+	item_state = "pullover"
