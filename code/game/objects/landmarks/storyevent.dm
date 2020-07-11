@@ -17,7 +17,9 @@
 	alpha = 124
 	var/navigation = ""
 
+/obj/landmark/storyevent/midgame_stash_spawn/Initialize()
 	var/proposition = get_landmark_area()
+	navigation = "But you forgot where you left it. Oops. Maybe it's somewhere near [proposition]?"
 
 /obj/landmark/storyevent/hidden_vent_antag
 	name = "hidden-vent-antag"
