@@ -1034,14 +1034,14 @@
 					/obj/item/weapon/storage/box/shotgunammo/flashshells = 300,
 					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
 					/obj/item/ammo_magazine/sllrifle = 400,
-					/obj/item/ammo_magazine/slpistol = 800,
+					/obj/item/ammo_magazine/slpistol = 500,
 					/obj/item/ammo_magazine/smg/rubber = 300,
 					/obj/item/ammo_magazine/smg = 400,
 					/obj/item/ammo_magazine/ammobox/pistol = 700,
 					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
 					/obj/item/weapon/tool/knife/tacknife = 600,
-					/obj/item/ammo_magazine/pistol = 400,)
+					/obj/item/ammo_magazine/pistol = 600,)
 
 //This one's from bay12
 /obj/machinery/vending/cart
