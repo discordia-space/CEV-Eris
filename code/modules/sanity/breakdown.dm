@@ -13,9 +13,8 @@
 	var/end_time
 	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/has_objetives = FALSE //if this demands something from you.
 	var/finished = FALSE //if the objetives were fulfilled.
-	var/isight_reward = 5 //Amount of isight for fulfilling the objetives.
+	var/isight_reward	//Amount of isight for fulfilling the objetives.
 	var/is_negative = FALSE
 
 	var/restore_sanity_pre
@@ -70,7 +69,7 @@
 	if(end_messages)
 		log_and_message_admins("[holder.owner] is no longer affected by [name]")
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
-	if(has_objetives)
+	if(isight_reward)
 		if(finished)
 			holder.insight += isight_reward
 			if(restore_sanity_post)

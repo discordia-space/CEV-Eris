@@ -193,9 +193,6 @@
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
 		amount /= 16
-		to_chat(owner, "esto no es, idiota!")//remove it
-	else 
-		to_chat(owner, "esto sí que sí.") //remove it
 	insight_rest += amount
 	if(insight_rest >= 100)
 		insight_rest = 0

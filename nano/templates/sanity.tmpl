@@ -2,21 +2,23 @@
 	<div class="statusDisplay" style="overflow:auto;">
 		<div class="item">
 			<div class="statusDisplay" style="background-color:DarkBlue;">
-				<div class="itemLabel" style="background-color:none; padding-right: 4px;">
+				<div class="itemLabel" style="background-color:none; padding-right: 4px; color:white;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
-						<img src='moebus_logo.png' style ="float: left; width: 20%;">
-						<h3>Sanity:</h3>
+						<h3>
+							<img src='ironhammer.png' style ="float: left; width: 40%;">
+							<br>
+							Sanity:
+						</h3>
 					</div>
 					<div>
-						Your style has a minimum value of -10 and a maximum of 20. You gain style by wearing cool clothes.<br> 
-						If your style is positive, your passive gain insight increases, otherwise it decreases.<br> 
-						If you are dirty, your style will decrease.
+						Your sanity rises at a passive rate when there is nothing damaging it.<br>
+						It recovers quicker when you consume food, drugs and alcohol.
 					</div>
 				</div>
-				<div class="itemContent" style="background-color:none;">
+				<div class="itemContent" style="background-color:none; color:white;">
 					<br><br><br><br><br>
 						<div style="padding: 1px; overflow:auto;">
-							<h3>Rest progress:</h3>
+							<h3> Sanity level:</h3>
 						</div>
 					{{:helper.displayBar(data.sanity, 0, 100, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average', data.sanity)}}
 				</div>
@@ -25,19 +27,22 @@
 		<br>
 		<div class="item">
 			<div class="statusDisplay" style="background-color:Cyan;">
-				<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+				<div class="itemLabel" style="background-color:none; padding-right: 4px; color:black;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
-						<img src='moebus_logo.png' style ="margin: auto; float: left; width: 30%; padding: 2px;">
-						<h3>Insight:</h3>
+						<h3 style="color:black;">
+							<img src='ironhammer.png' style ="margin: auto; float: left; width: 40%; padding-right: 2px;">
+							<br>
+							Insight:
+						</h3>
 					</div>
 					<div>
 						Your style has a minimum value of -8 and a maximum of 15. You gain style by wearing cool clothes. If your style is positive, your passive gain insight increases, otherwise it decreases. If you are dirty, your style will decrease.
 					</div>
 				</div>
-				<div class="itemContent"  style="background-color:none;">
+				<div class="itemContent"  style="background-color:none; color:black;">
 					<br><br><br><br><br>
 						<div style="padding: 1px; overflow:auto;">
-							<h3>Rest progress:</h3>
+							<h3 style="color:black;">Insight progress:</h3>
 						</div>
 					{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight)}}
 				</div>
@@ -46,19 +51,30 @@
 		<br>
 		<div class="item">
 			<div class="statusDisplay"  style="background-color:DarkOliveGreen;">
-				<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+				<div class="itemLabel" style="background-color:none; padding-right: 4px; color:white;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
-						<img src='moebus_logo.png' style ="float: left; width: 40%; padding-right: 2px;">
-						<h3>Style:</h3>
+						<h3>
+							<img src='ironhammer.png' style ="float: left; width: 40%; padding-right: 2px;margin: auto;">
+							<br>
+							Style:
+						</h3>
 					</div>
 					<div>
-						Your style has a minimum value of {{data.min_style}} and a maximum of {{data.max_style}}. You gain style by wearing cool clothes. If your style is positive, your passive gain insight increases, otherwise it decreases. If you are dirty, your style will decrease.
+						Your style has a minimum<br>
+						value of {{:data.min_style}} and a maximum<br>
+						of {{:data.max_style}}. You gain style by<br>
+						wearing cool clothes.<br>
+						If your style is<br>
+						positive, your passive<br>
+						gain insight increases, otherwise<br>
+						it decreases. If you are<br>
+						dirty, your style will decrease.
 					</div>
 				</div>
-				<div class="itemContent" style="background-color:none;">
-					<br><br>
+				<div class="itemContent" style="background-color:none; color:white;">
+					<br><br><br><br><br>
 						<div style="padding: 1px; overflow:auto;">
-							<h3>Rest progress:</h3>
+							<h3>Current style:</h3>
 						</div>
 					{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average', data.style)}}
 				</div>
@@ -67,21 +83,25 @@
 		<br>
 		<div class="item">
 			<div class="statusDisplay" style="background-color:red;padding: 1px; overflow:auto;">
-				<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+				<div class="itemLabel" style="background-color:none; padding-right:3px; color:white;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
-						<img src='ironhammer.png' style ="float: left; width: 10%;">
-						<h3>Desires:</h3>
+						<h3>
+							<img src='ironhammer.png' style ="float: left; width: 40%;margin: auto; ">
+							<br>
+							Desires:
+						</h3>
 					</div>
 					<div>
 						Your style has a minimum value of -10 and a maximum of 20. You gain style by wearing cool clothes. If your style is positive, your passive gain insight increases, otherwise it decreases. If you are dirty, your style will decrease.
 					</div>
 				</div>
-				<div class="itemContent" style="background-color:none;">
+				<div class="itemContent" style="background-color:none; color:white;">
+					<br><br><br>
 					<h3>List of current desires:</h3>
 					<div>
 						{{if data.rest}}
 							{{for data.desires :val:val_i}}
-								|{{:val}} &nbsp &nbsp
+								| &nbsp &nbsp {{:val}} &nbsp &nbsp
 							{{/for}}
 							|
 						{{else}}
@@ -90,13 +110,14 @@
 					</div>
 				</div>
 				{{if data.rest}}
-					<div class="itemLabel" style="background-color:none; padding-right: 3px;">
+					<div class="itemLabel" style="background-color:none; padding-right: 4px; color:black;">
 						<div style="padding: 1px; overflow:auto;">
 							<h3>Rest progress:</h3>
 						</div>
 					</div>
-					<div class="itemContent" style="background-color:none;"><br>
+					<div class="itemContent" style="background-color:none; color:black;"><br>
 						{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average', data.insight_rest)}}
+						<br><br>
 					</div>
 				{{/if}}
 			</div>
