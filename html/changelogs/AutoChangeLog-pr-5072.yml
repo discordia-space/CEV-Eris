@@ -1,0 +1,4 @@
+author: HentaiStorm
+delete-after: true
+changes:
+  - bugfix: Traps don't stop mech anymore.
