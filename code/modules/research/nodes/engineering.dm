@@ -235,6 +235,41 @@
 							/datum/design/research/item/ammo/hatton
 							)
 
+/datum/technology/toolmods
+	name = "Toolmods"
+	desc = "High-tech toolmods."
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.6
+	y = 0.5
+	icon = "wrench"
+
+	required_technologies = list(/datum/technology/adv_tools)
+	required_tech_levels = list()
+	cost = 2500
+
+	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/stick_ht,
+							/datum/design/research/item/weapon/toolmod/heatsink_ht,
+							/datum/design/research/item/weapon/toolmod/plating_ht,
+							/datum/design/research/item/weapon/toolmod/guard_ht,
+							/datum/design/research/item/weapon/toolmod/ergonomicgrip_ht,
+							/datum/design/research/item/weapon/toolmod/ratchet_ht,
+							/datum/design/research/item/weapon/toolmod/redpaint_ht,
+							/datum/design/research/item/weapon/toolmod/whetstone_ht,
+							/datum/design/research/item/weapon/toolmod/dblade_ht,
+							/datum/design/research/item/weapon/toolmod/oxyjet_ht,
+							/datum/design/research/item/weapon/toolmod/motor_ht,
+							/datum/design/research/item/weapon/toolmod/laserguide_ht,
+							/datum/design/research/item/weapon/toolmod/stabilizedgrip_ht,
+							/datum/design/research/item/weapon/toolmod/magbit_ht,
+							/datum/design/research/item/weapon/toolmod/portedbarrel_ht,
+							/datum/design/research/item/weapon/toolmod/cellmount_ht,
+							/datum/design/research/item/weapon/toolmod/fueltank_ht,
+							/datum/design/research/item/weapon/toolmod/expansion_ht,
+							/datum/design/research/item/weapon/toolmod/spikes_ht,
+							/datum/design/research/item/weapon/toolmod/hammeraddon_ht
+							)
+
 /*
 /datum/technology/basic_handheld
 	name = "Basic Handheld"

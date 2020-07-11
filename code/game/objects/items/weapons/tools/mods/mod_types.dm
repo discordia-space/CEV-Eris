@@ -27,6 +27,19 @@
 	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_PRYING, QUALITY_SAWING,QUALITY_SHOVELING,QUALITY_DIGGING,QUALITY_EXCAVATION)
 	I.prefix = "braced"
 
+// High-tech version of the stick
+/obj/item/weapon/tool_upgrade/reinforcement/stick/hightech
+	name = "high-tech brace bar"
+	desc = "A high-tech sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools."
+
+/obj/item/weapon/tool_upgrade/reinforcement/stick/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+		UPGRADE_DEGRADATION_MULT = 0.45,
+		UPGRADE_FORCE_MOD = 2,
+		)
+
 //Heatsink can be attached to any tool that uses fuel or power
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink
 	name = "heatsink"
@@ -44,6 +57,18 @@
 	I.prefix = "heatsunk"
 	I.req_fuel_cell = REQ_FUEL_OR_CELL
 
+// High-tech version of the heatsink
+/obj/item/weapon/tool_upgrade/reinforcement/heatsink/hightech
+	name = "high-tech heatsink"
+	desc = "A high-tech array of plasteel fins which dissipates heat, reducing damage and extending the lifespan of power tools."
+
+/obj/item/weapon/tool_upgrade/reinforcement/heatsink/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+		UPGRADE_DEGRADATION_MULT = 0.45,
+		UPGRADE_HEALTH_THRESHOLD = 20,
+		)
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating
 	name = "reinforced plating"
@@ -62,6 +87,21 @@
 	UPGRADE_HEALTH_THRESHOLD = 10)
 	I.prefix = "reinforced"
 
+// High-tech version of the plating
+/obj/item/weapon/tool_upgrade/reinforcement/plating/hightech
+	name = "high-tech reinforced plating"
+	desc = "A high-tech sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky."
+
+/obj/item/weapon/tool_upgrade/reinforcement/plating/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_DEGRADATION_MULT = 0.35,
+	UPGRADE_FORCE_MOD = 2,
+	UPGRADE_PRECISION = -5,
+	UPGRADE_BULK = 1,
+	UPGRADE_HEALTH_THRESHOLD = 20
+	)
 
 /obj/item/weapon/tool_upgrade/reinforcement/guard
 	name = "metal guard"
@@ -80,7 +120,19 @@
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING, QUALITY_HAMMERING)
 	I.prefix = "shielded"
 
+// High-tech version of the guard
+/obj/item/weapon/tool_upgrade/reinforcement/guard/hightech
+	name = "high-tech metal guard"
+	desc = "A high-tech bent piece of metal that wraps around sensitive parts of a tool, protecting it from impacts, debris, and stray fingers."
 
+/obj/item/weapon/tool_upgrade/reinforcement/guard/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_DEGRADATION_MULT = 0.55,
+	UPGRADE_PRECISION = 10,
+	UPGRADE_HEALTH_THRESHOLD = 20
+	)
 
 // 	 PRODUCTIVITY: INCREASES WORKSPEED
 //------------------------------------------------
@@ -104,6 +156,20 @@
 
 	I.prefix = "ergonomic"
 
+// High-tech version of the ergonomic grip
+/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip/hightech
+	name = "high-tech ergonomic grip"
+	desc = "A high-tech replacement grip for a tool which allows it to be more precisely controlled with one hand."
+
+/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.25
+	)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_RECOIL = 0.8,
+	)
 
 /obj/item/weapon/tool_upgrade/productivity/ratchet
 	name = "ratcheting mechanism"
@@ -120,7 +186,17 @@
 	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_SCREW_DRIVING)
 	I.prefix = "ratcheting"
 
+// High-tech version of the ratchet
+/obj/item/weapon/tool_upgrade/productivity/ratchet/hightech
+	name = "high-tech ratcheting mechanism"
+	desc = "A high-tech mechanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction."
 
+/obj/item/weapon/tool_upgrade/productivity/ratchet/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.35
+	)
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint
 	name = "red paint"
@@ -138,6 +214,19 @@
 	)
 	I.prefix = "red"
 
+// High-tech version of the red paint
+/obj/item/weapon/tool_upgrade/productivity/red_paint/hightech
+	name = "high-tech red paint"
+	desc = "Do red tools really work faster, or is the effect purely psychological."
+
+/obj/item/weapon/tool_upgrade/productivity/red_paint/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.30,
+	UPGRADE_PRECISION = -10,
+	UPGRADE_COLOR = "#FF4444"
+	)
 
 /obj/item/weapon/tool_upgrade/productivity/whetstone
 	name = "sharpening block"
@@ -156,6 +245,20 @@
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_SHOVELING, QUALITY_WIRE_CUTTING)
 	I.negative_qualities = list(QUALITY_WELDING, QUALITY_LASER_CUTTING)
 	I.prefix = "sharpened"
+
+// High-version of the whetstone
+/obj/item/weapon/tool_upgrade/productivity/whetstone/hightech
+	name = "high-tech sharpening block"
+	desc = "A high-tech single-use block to sharpen a blade. The honed edge cuts smoothly."
+
+/obj/item/weapon/tool_upgrade/productivity/whetstone/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.25,
+	UPGRADE_PRECISION = 10,
+	UPGRADE_FORCE_MULT = 1.25
+	)
 
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade
 	name = "Asters \"Gleaming Edge\": Diamond blade"
@@ -177,6 +280,19 @@
 	I.negative_qualities = list(QUALITY_WELDING, QUALITY_LASER_CUTTING)
 	I.prefix = "diamond-edged"
 
+// High-version of the diamond_blade
+/obj/item/weapon/tool_upgrade/productivity/diamond_blade/hightech
+	name = "high-tech diamond blade"
+	desc = "An adaptable high-tech cutting disc, with diamond dust worked into the metal. Exceptionally durable."
+
+/obj/item/weapon/tool_upgrade/productivity/diamond_blade/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.35,
+	UPGRADE_DEGRADATION_MULT = 0.75,
+	UPGRADE_FORCE_MULT = 1.20,
+	)
 
 /obj/item/weapon/tool_upgrade/productivity/oxyjet
 	name = "oxyjet canister"
@@ -197,6 +313,20 @@
 	I.required_qualities = list(QUALITY_WELDING)
 	I.prefix = "oxyjet"
 
+// High-tech version of the oxyjet
+/obj/item/weapon/tool_upgrade/productivity/oxyjet/hightech
+	name = "high-tech oxyjet canister"
+	desc = "A high-tech canister of pure, compressed oxygen with adapters for mounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures."
+
+/obj/item/weapon/tool_upgrade/productivity/oxyjet/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.30,
+	UPGRADE_FORCE_MULT = 1.25,
+	UPGRADE_DEGRADATION_MULT = 1.1,
+	UPGRADE_HEALTH_THRESHOLD = -10
+	)
 
 //Enhances power tools majorly, but also increases costs
 /obj/item/weapon/tool_upgrade/productivity/motor
@@ -221,6 +351,23 @@
 	I.prefix = "high-power"
 	I.req_fuel_cell = REQ_FUEL_OR_CELL
 
+// High-tech version of the motor
+/obj/item/weapon/tool_upgrade/productivity/motor/hightech
+	name = "high-tech high power motor"
+	desc = "A high-tech motor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but more expensive to run and harder to control."
+
+/obj/item/weapon/tool_upgrade/productivity/motor/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = 0.6,
+	UPGRADE_FORCE_MULT = 1.25,
+	UPGRADE_DEGRADATION_MULT = 1.1,
+	UPGRADE_POWERCOST_MULT = 1.25,
+	UPGRADE_FUELCOST_MULT = 1.25,
+	UPGRADE_PRECISION = -10,
+	UPGRADE_HEALTH_THRESHOLD = -10
+	)
 
 // 	 REFINEMENT: INCREASES PRECISION
 //------------------------------------------------
@@ -239,6 +386,18 @@
 	GUN_UPGRADE_RECOIL = 0.9)
 	I.prefix = "laser-guided"
 
+// High-tech version of the laserguide
+/obj/item/weapon/tool_upgrade/refinement/laserguide/hightech
+	name = "high-tech laser guide"
+	desc = "A small high-tech visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
+
+/obj/item/weapon/tool_upgrade/refinement/laserguide/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_PRECISION = 20)
+	I.weapon_upgrades = list(
+	GUN_UPGRADE_RECOIL = 0.8)
 
 //Fits onto generally small tools that require precision, especially surgical tools
 //Doesn't work onlarger things like crowbars and drills
@@ -257,6 +416,18 @@
 	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
 	I.prefix = "stabilized"
 
+// High-tech version of the stabilized grip
+/obj/item/weapon/tool_upgrade/refinement/stabilized_grip/hightech
+	name = "high-tech gyrostabilized grip"
+	desc = "A fancy high-tech mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand."
+
+/obj/item/weapon/tool_upgrade/refinement/stabilized_grip/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_PRECISION = 20,
+	UPGRADE_HEALTH_THRESHOLD = 10)
+
 /obj/item/weapon/tool_upgrade/refinement/magbit
 	name = "magnetic bit"
 	desc = "Magnetises tools used for handling small objects, reducing instances of dropping screws and bolts."
@@ -272,6 +443,17 @@
 	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING, QUALITY_CLAMPING, QUALITY_BONE_SETTING)
 	I.prefix = "magnetic"
 
+// High-tech version of the magbit
+/obj/item/weapon/tool_upgrade/refinement/magbit/hightech
+	name = "high-tech magnetic bit"
+	desc = "Magnetises tools used for handling small objects, reducing instances of dropping screws and bolts."
+
+/obj/item/weapon/tool_upgrade/refinement/magbit/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_PRECISION = 20
+	)
 
 /obj/item/weapon/tool_upgrade/refinement/ported_barrel
 	name = "ported barrel"
@@ -290,6 +472,20 @@
 	I.required_qualities = list(QUALITY_WELDING)
 	I.prefix = "ported"
 
+// High-tech version of the ported barrel
+/obj/item/weapon/tool_upgrade/refinement/ported_barrel/hightech
+	name = "high-tech ported barrel"
+	desc = "A high-tech barrel extension for a welding tool which helps manage gas pressure and keep the torch steady."
+
+/obj/item/weapon/tool_upgrade/refinement/ported_barrel/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_PRECISION = 20,
+	UPGRADE_DEGRADATION_MULT = 1.1,
+	UPGRADE_BULK = 1,
+	UPGRADE_HEALTH_THRESHOLD = 10
+	)
 
 // 		AUGMENTS: MISCELLANEOUS AND UTILITY
 //------------------------------------------------
@@ -313,6 +509,21 @@
 	I.prefix = "medium-cell"
 	I.req_fuel_cell = REQ_CELL
 
+// High-tech version of the cell mount
+/obj/item/weapon/tool_upgrade/augment/cell_mount/hightech
+	name = "high-tech heavy cell mount"
+	desc = "A high-tech adapter which allows oversized power cells to be installed into small tools."
+
+/obj/item/weapon/tool_upgrade/augment/cell_mount/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_BULK = 1,
+	UPGRADE_DEGRADATION_MULT = 1.05,
+	UPGRADE_HEALTH_THRESHOLD = -5,
+	UPGRADE_CELLPLUS = 1
+	)
+
 //Stores moar fuel!
 /obj/item/weapon/tool_upgrade/augment/fuel_tank
 	name = "Expanded fuel tank"
@@ -330,6 +541,20 @@
 	UPGRADE_MAXFUEL = 100)
 	I.prefix = "expanded"
 	I.req_fuel_cell = REQ_FUEL
+
+// High-tech version of the fuel tank
+/obj/item/weapon/tool_upgrade/augment/fuel_tank/hightech
+	name = "high-tech expanded fuel tank"
+	desc = "An auxiliary tank which stores 150 extra units of fuel at the cost of degradation."
+
+/obj/item/weapon/tool_upgrade/augment/fuel_tank/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_BULK = 1,
+	UPGRADE_DEGRADATION_MULT = 1.1,
+	UPGRADE_HEALTH_THRESHOLD = -10,
+	UPGRADE_MAXFUEL = 150)
 
 //OneStar fuel mod
 /obj/item/weapon/tool_upgrade/augment/holding_tank
@@ -370,6 +595,21 @@
 	)
 	I.prefix = "custom"
 
+// High-tech version of the expansion
+/obj/item/weapon/tool_upgrade/augment/expansion/hightech
+	name = "high-tech expansion port"
+	desc = "A high-tech adapter which more modifications to be attached to the tool.  A bit fragile but you can compensate."
+
+/obj/item/weapon/tool_upgrade/augment/expansion/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_BULK = 2,
+	UPGRADE_DEGRADATION_MULT = 1.2,
+	UPGRADE_PRECISION = -5,
+	UPGRADE_HEALTH_THRESHOLD = -20,
+	UPGRADE_MAXUPGRADES = 3
+	)
 
 /obj/item/weapon/tool_upgrade/augment/spikes
 	name = "spikes"
@@ -390,6 +630,23 @@
 	)
 	I.prefix = "spiked"
 
+// High-tech version of spikes
+/obj/item/weapon/tool_upgrade/augment/spikes/hightech
+	name = "high-tech spikes"
+	desc = "A high-tech array of sharp bits of plasteel, seemingly adapted for easy affixing to a tool. Would make it into a better weapon, but won't do much for productivity."
+
+/obj/item/weapon/tool_upgrade/augment/spikes/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_FORCE_MOD = 4,
+	UPGRADE_PRECISION = -5,
+	UPGRADE_DEGRADATION_MULT = 1.05,
+	UPGRADE_WORKSPEED = -0.05,
+	UPGRADE_HEALTH_THRESHOLD = -10,
+	UPGRADE_SHARP = TRUE
+	)
+
 /obj/item/weapon/tool_upgrade/augment/hammer_addon
 	name = "Flat surface"
 	icon_state = "hammer_addon"
@@ -406,7 +663,19 @@
 	)
 	I.prefix = "flattened"
 
+// High-tech version of hammer addon
+/obj/item/weapon/tool_upgrade/augment/hammer_addon/hightech
+	name = "high-tech flat surface"
+	desc = "A high-tech attachment that fits on almost everything, that gives a simple flat surface to employ the tool for hammering."
 
+/obj/item/weapon/tool_upgrade/augment/hammer_addon/hightech/New()
+	..()
+	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
+	I.tool_upgrades = list(
+	UPGRADE_WORKSPEED = -0.05,
+	UPGRADE_HEALTH_THRESHOLD = 5,
+	tool_qualities = list(QUALITY_HAMMERING = 20)
+	)
 
 //Vastly reduces tool sounds, for stealthy hacking
 /obj/item/weapon/tool_upgrade/augment/dampener
