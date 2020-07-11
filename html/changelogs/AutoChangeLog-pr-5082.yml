@@ -1,0 +1,4 @@
+author: Vlad777
+delete-after: true
+changes:
+  - bugfix: Fixed creating bounties with wrong PIN.
