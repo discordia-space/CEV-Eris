@@ -2,7 +2,7 @@
 	name = "FS HG .25 CS \"Mandella\""
 	desc = "A rugged, robust operator handgun with inbuilt silencer. Chambered in rifle caseless ammunition, this time-tested handgun is \
 			your absolute choise if you need to take someone down silently, as it's deadly, produces no sound and leaves no traces. \
-			Build to enhance armor penetration abilities of ammo. \
+			Built to have enhanced armor penetration abilities. \
 			Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/mandella.dmi'
 	icon_state = "mandella"
