@@ -484,10 +484,10 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/pistol_ammobox,
-		/datum/design/autolathe/ammo/pistol_ammobox/practice,
+		/datum/design/autolathe/ammo/pistol_ammobox/practice = 0,
 		/datum/design/autolathe/ammo/pistol_ammobox/rubber,
 		/datum/design/autolathe/ammo/magnum_ammobox,
-		/datum/design/autolathe/ammo/magnum_ammobox/practice,
+		/datum/design/autolathe/ammo/magnum_ammobox/practice = 0,
 		/datum/design/autolathe/ammo/magnum_ammobox/rubber,
 	)
 
@@ -498,17 +498,17 @@
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/srifle_ammobox_small,
-		/datum/design/autolathe/ammo/srifle_ammobox_small/practice,
+		/datum/design/autolathe/ammo/srifle_ammobox_small/practice = 0,
 		/datum/design/autolathe/ammo/srifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/srifle_ammobox,
 		/datum/design/autolathe/ammo/srifle_ammobox/rubber,
 		/datum/design/autolathe/ammo/clrifle_ammobox_small,
-		/datum/design/autolathe/ammo/clrifle_ammobox_small/practice,
+		/datum/design/autolathe/ammo/clrifle_ammobox_small/practice = 0,
 		/datum/design/autolathe/ammo/clrifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/clrifle_ammobox,
 		/datum/design/autolathe/ammo/clrifle_ammobox/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small,
-		/datum/design/autolathe/ammo/lrifle_ammobox_small/practice,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/practice = 0,
 		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox,
 	)
@@ -620,9 +620,10 @@
 		/datum/design/autolathe/gun/olivaw = 3,
 		/datum/design/autolathe/gun/clarissa = 3,
 		/datum/design/autolathe/gun/havelock = 3,
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
-		/datum/design/autolathe/ammo/sl_pistol/practice,
+		/datum/design/autolathe/ammo/sl_pistol/practice = 0,
 		/datum/design/autolathe/ammo/sl_pistol/rubber,
 		)
 
@@ -634,7 +635,8 @@
 	designs = list(
 		/datum/design/autolathe/gun/mk58 = 3,
 		/datum/design/autolathe/gun/mk58_wood = 3,
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
 
@@ -645,7 +647,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/colt = 3, //"FS HG .35 Auto \"Colt M1911\""
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
 
@@ -656,7 +659,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/mandella = 3, // "FS HG .25 Caseless \"Mandella\""
-		/datum/design/autolathe/ammo/cspistol/practice,
+		/datum/design/autolathe/ammo/cspistol,
+		/datum/design/autolathe/ammo/cspistol/practice = 0,
 		/datum/design/autolathe/ammo/cspistol/rubber,
 	)
 
@@ -669,7 +673,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/revolver = 3, // "FS REV .40 \"Miller\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/practice = 0,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
 
@@ -680,7 +685,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/revolver_consul = 3, // "FS REV .40 \"Consul\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/practice = 0,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
 
@@ -691,7 +697,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/revolver_deckard = 3, // "FS REV .40 \"Deckard\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/practice = 0,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
 
@@ -702,7 +709,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/revolver_mateba = 3, // "FS REV .40 Magnum \"Mateba\""
-		/datum/design/autolathe/ammo/sl_magnum/practice,
+		/datum/design/autolathe/ammo/sl_magnum,
+		/datum/design/autolathe/ammo/sl_magnum/practice = 0,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
 		)
 
@@ -715,7 +723,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/lamia = 3, // "FS HG .40 \"Lamia\""
-		/datum/design/autolathe/ammo/mg_magnum/practice,
+		/datum/design/autolathe/ammo/mg_magnum,
+		/datum/design/autolathe/ammo/mg_magnum/practice = 0,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
 		)
 
@@ -726,7 +735,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/avasarala = 3, // "FS HG .40 \"Avasarala\""
-		/datum/design/autolathe/ammo/mg_magnum/practice,
+		/datum/design/autolathe/ammo/mg_magnum,
+		/datum/design/autolathe/ammo/mg_magnum/practice = 0,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
 		)
 
@@ -739,6 +749,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/doublebarrel = 3, // "double-barreled shotgun"
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -751,6 +763,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/pump_shotgun = 3, // "FS SG \"Kammerer\""
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -763,6 +777,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/regulator = 3, // "NT SG \"Regulator 1000\""
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -775,6 +791,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/gladstone = 3, // "FS SG \"Gladstone\""
+		/datum/design/autolathe/ammo/shotgun_pellet,
+		/datum/design/autolathe/ammo/shotgun,
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_blanks,
 		/datum/design/autolathe/ammo/shotgun_flash,
@@ -801,7 +819,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/paco = 3, // "FS HG .35 \"Paco\""
-		/datum/design/autolathe/ammo/magazine_pistol/practice,
+		/datum/design/autolathe/ammo/magazine_pistol,
+		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
 
@@ -812,7 +831,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/straylight = 3, // "FS SMG .35 \"Straylight\""
-		/datum/design/autolathe/ammo/smg/practice,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/practice = 0,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
 
@@ -823,7 +843,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/molly = 3, // "FS MP .35 \"Molly\""
-		/datum/design/autolathe/ammo/smg/practice,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/practice = 0,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
 
@@ -834,7 +855,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/zoric = 3, // "SA SMG .40 \"Zoric\""
-		/datum/design/autolathe/ammo/msmg/practice,
+		/datum/design/autolathe/ammo/msmg,
+		/datum/design/autolathe/ammo/msmg/practice = 0,
 		/datum/design/autolathe/ammo/msmg/rubber,
 	)
 
@@ -845,7 +867,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/atreides = 3, // "FS SMG .35 \"Atreides\""
-		/datum/design/autolathe/ammo/smg/practice,
+		/datum/design/autolathe/ammo/smg,
+		/datum/design/autolathe/ammo/smg/practice = 0,
 		/datum/design/autolathe/ammo/smg/rubber,
 	)
 
@@ -873,7 +896,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/z8 = 3, // "FS CAR .20 \"Z8 Bulldog\""
-		/datum/design/autolathe/ammo/srifle/practice,
+		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/srifle/practice = 0,
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
 
@@ -884,7 +908,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/wintermute = 3, // "FS BR .20 \"Wintermute\""
-		/datum/design/autolathe/ammo/srifle/practice,
+		/datum/design/autolathe/ammo/srifle,
+		/datum/design/autolathe/ammo/srifle/practice = 0,
 		/datum/design/autolathe/ammo/srifle/rubber,
 	)
 
@@ -897,7 +922,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/sol = 3, // "FS CAR .25 caseless \"Sol\""
-		/datum/design/autolathe/ammo/ihclrifle/practice,
+		/datum/design/autolathe/ammo/ihclrifle,
+		/datum/design/autolathe/ammo/ihclrifle/practice = 0,
 		/datum/design/autolathe/ammo/ihclrifle/rubber,
 	)
 
@@ -931,7 +957,8 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/ak47_fs = 3, // "FS AR .30 \"Kalashnikov\""
-		/datum/design/autolathe/ammo/lrifle/practice,
+		/datum/design/autolathe/ammo/lrifle,
+		/datum/design/autolathe/ammo/lrifle/practice = 0,
 		/datum/design/autolathe/ammo/lrifle/rubber,
 	)
 

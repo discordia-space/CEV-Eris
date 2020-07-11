@@ -88,7 +88,7 @@
 // SMGs
 
 /datum/design/autolathe/gun/zoric
-	name = "FS SMG .35 \"Zoric\""
+	name = "FS SMG .40 \"Zoric\""
 	build_path = /obj/item/weapon/gun/projectile/automatic/zoric
 
 /datum/design/autolathe/gun/atreides

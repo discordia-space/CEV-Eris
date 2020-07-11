@@ -58,6 +58,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/tool_upgrade = 30,
 					/obj/random/toolbox = 5,
 					/obj/random/voidsuit = 3,
+					/obj/random/gun_upgrade = 2
 				))
 
 /obj/random/pack/tech_loot/low_chance
@@ -96,6 +97,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/ammo/shotgun = 15,
 					/obj/random/ammo_ihs = 15,
 					/obj/random/ammo_lowcost = 18,
+					/obj/random/gun_upgrade = 10,
 					/obj/random/cloth/holster = 8
 				))
 
