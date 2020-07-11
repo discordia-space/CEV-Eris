@@ -18,13 +18,13 @@
 /obj/item/device/encryptionkey/syndicate
 	icon_state = "cypherkey"
 	channels = list("Mercenary" = 1)
-	origin_tech = list(TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_COVERT = 3)
 	syndie = 1//Signifies that it de-crypts Syndicate transmissions
 
 /obj/item/device/encryptionkey/binary
 	icon_state = "cypherkey"
 	translate_binary = 1
-	origin_tech = list(TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_COVERT = 3)
 
 /obj/item/device/encryptionkey/headset_sec
 	name = "ironhammer radio encryption key"

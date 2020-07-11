@@ -12,7 +12,7 @@
 	item_state = "brown"
 	permeability_coefficient = 0.05
 	item_flags = NOSLIP | SILENT
-	origin_tech = list(TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_COVERT = 3)
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0 // DAMN BOI
 	species_restricted = null

@@ -2,7 +2,7 @@
 	name = "excelsior implant"
 	implant_color = "r"
 	allowed_organs = list(BP_HEAD)
-	origin_tech = list(TECH_ILLEGAL = 2)
+	origin_tech = list(TECH_COVERT = 2)
 	var/antag_id = ROLE_EXCELSIOR_REV
 	var/faction_id = FACTION_EXCELSIOR
 	var/global/possible_disguises = list(
