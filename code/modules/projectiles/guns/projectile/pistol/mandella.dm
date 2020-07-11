@@ -2,6 +2,7 @@
 	name = "FS HG .25 CS \"Mandella\""
 	desc = "A rugged, robust operator handgun with inbuilt silencer. Chambered in rifle caseless ammunition, this time-tested handgun is \
 			your absolute choise if you need to take someone down silently, as it's deadly, produces no sound and leaves no traces. \
+			Build to enhance armor penetration abilities of ammo. \
 			Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/mandella.dmi'
 	icon_state = "mandella"
@@ -16,8 +17,8 @@
 	price_tag = 1500
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	damage_multiplier = 1			//27 with lethal, 32 with hv
-	penetration_multiplier = 0.8	//12 with lethal, 16 with hv
+	damage_multiplier = 1.2
+	penetration_multiplier = 1.7
 	recoil_buildup = 19
 
 

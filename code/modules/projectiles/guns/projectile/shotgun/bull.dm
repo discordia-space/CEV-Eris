@@ -16,7 +16,7 @@
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	price_tag = 2800 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
+	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
 	one_hand_penalty = 10 //compact shotgun level

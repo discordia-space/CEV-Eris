@@ -1058,6 +1058,7 @@
 #include "code\game\objects\random\exosuit.dm"
 #include "code\game\objects\random\flora.dm"
 #include "code\game\objects\random\food.dm"
+#include "code\game\objects\random\gun_upgrade.dm"
 #include "code\game\objects\random\guns.dm"
 #include "code\game\objects\random\junk.dm"
 #include "code\game\objects\random\lathe_disks.dm"
