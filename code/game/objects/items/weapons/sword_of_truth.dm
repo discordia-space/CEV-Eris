@@ -149,7 +149,7 @@
 				anchored = FALSE
 	if(istype(I, /obj/item/weapon/tool/sword/nt_sword))
 		if(sword)
-			to_chat(user, SPAN_WARNING("[src] already have a sword in it!"))
+			to_chat(user, SPAN_WARNING("[src] already has a sword in it!"))
 		insert_item(I, user)
 		sword = I
 		update_icon()
@@ -169,15 +169,15 @@
 
 		visible_message(SPAN_WARNING("[user] is trying to remove [sword] from the [src]!"))
 		if(!do_after(user, 30 SECONDS))
-			to_chat(src, SPAN_DANGER("You was interrupted!"))
+			to_chat(src, SPAN_DANGER("You were interrupted!"))
 			return
 		if(H.stats.getStat(STAT_ROB) >= 60)
 			H.put_in_hands(sword)
-			visible_message(SPAN_DANGER("[user] is succsesufully removed [sword] from the [src]!"))
+			visible_message(SPAN_DANGER("[user] succsesufully removed [sword] from the [src]!"))
 			sword = null
 			update_icon()
 		else
-			visible_message(SPAN_WARNING("[user] is failed to remove [sword] from the [src]"))
+			visible_message(SPAN_WARNING("[user] failed to remove [sword] from the [src]"))
 
 /obj/structure/nt_pedestal/update_icon()
 	icon_state = "nt_pedestal[sword?"1":"0"]"

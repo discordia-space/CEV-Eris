@@ -766,7 +766,7 @@ var/global/list/default_medbay_channels = list(
 	var/random_hear = 20
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
 	price_tag = 20000
-	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_ILLEGAL = 7)
+	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_COVERT = 7)
 	var/list/obj/item/weapon/oddity/used_oddity = list()
 	var/last_produce = 0
 	var/cooldown = 40 MINUTES
@@ -818,7 +818,7 @@ var/global/list/default_medbay_channels = list(
 		playsound(loc, "sparks", 75, 1, -1)
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 	else
-		to_chat(user, SPAN_NOTICE("The [name] already have been emaged."))
+		to_chat(user, SPAN_NOTICE("The [name] has already been emaged."))
 		return NO_EMAG_ACT
 
 /obj/item/device/radio/random_radio/attackby(obj/item/weapon/W as obj, mob/user as mob)

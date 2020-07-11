@@ -1,6 +1,6 @@
 /obj/item/device/techno_tribalism
 	name = "Techno-Tribalism Enforcer"
-	desc = "Feeds on rare tools, tool mods and other tech items. After feeded enough, will produce a strange technological part, that will usefull to train your skills overtime."
+	desc = "Feeds on rare tools, tool mods and other tech items. After being fed enough, will produce a strange technological part, that will be useful to train your skills overtime."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "techno_tribalism"
 	item_state = "techno_tribalism"
@@ -18,73 +18,74 @@
 
 			if(W.tool_qualities)
 
-				for(var/qualitie in W.tool_qualities)
+				for(var/quality in W.tool_qualities)
 
-					if(W.tool_qualities[qualitie] >= 15)
-						var/stat_cost = round(W.tool_qualities[qualitie] / 15)
+					if(W.tool_qualities[quality] >= 35)
+						var/stat_cost = round(W.tool_qualities[quality] / 15)
 
-						if(qualitie == QUALITY_BOLT_TURNING)
+						if(quality == QUALITY_BOLT_TURNING)
 							oddity_stats[STAT_COG] += stat_cost
 
-						else if (qualitie == QUALITY_PULSING)
+						else if (quality == QUALITY_PULSING)
 							oddity_stats[STAT_MEC] += stat_cost
 
-						else if (qualitie == QUALITY_PRYING)
+						else if (quality == QUALITY_PRYING)
 							oddity_stats[STAT_ROB] += stat_cost
 
-						else if (qualitie == QUALITY_WELDING)
+						else if (quality == QUALITY_WELDING)
 							oddity_stats[STAT_VIG] += stat_cost
 
-						else if (qualitie == QUALITY_SCREW_DRIVING)
+						else if (quality == QUALITY_SCREW_DRIVING)
 							oddity_stats[STAT_COG] += stat_cost
 
-						else if (qualitie == QUALITY_WIRE_CUTTING)
+						else if (quality == QUALITY_WIRE_CUTTING)
 							oddity_stats[STAT_VIG] += stat_cost
 
-						else if (qualitie == QUALITY_CLAMPING)
+						else if (quality == QUALITY_CLAMPING)
 							oddity_stats[STAT_BIO] += stat_cost
 
-						else if (qualitie == QUALITY_CAUTERIZING)
+						else if (quality == QUALITY_CAUTERIZING)
 							oddity_stats[STAT_BIO] += stat_cost
 
-						else if (qualitie == QUALITY_RETRACTING)
+						else if (quality == QUALITY_RETRACTING)
 							oddity_stats[STAT_BIO] += stat_cost
 
-						else if (qualitie == QUALITY_DRILLING)
+						else if (quality == QUALITY_DRILLING)
 							oddity_stats[STAT_TGH] += stat_cost
 
-						else if (qualitie == QUALITY_HAMMERING)
+						else if (quality == QUALITY_HAMMERING)
 							oddity_stats[STAT_ROB] += stat_cost
 
-						else if (qualitie == QUALITY_SAWING)
+						else if (quality == QUALITY_SAWING)
 							oddity_stats[STAT_VIG] += stat_cost
 
-						else if (qualitie == QUALITY_BONE_SETTING)
+						else if (quality == QUALITY_BONE_SETTING)
 							oddity_stats[STAT_BIO] += stat_cost
 
-						else if (qualitie == QUALITY_SHOVELING)
+						else if (quality == QUALITY_SHOVELING)
 							oddity_stats[STAT_TGH] += stat_cost
 
-						else if (qualitie == QUALITY_DIGGING)
+						else if (quality == QUALITY_DIGGING)
 							oddity_stats[STAT_ROB] += stat_cost
 
-						else if (qualitie == QUALITY_EXCAVATION)
+						else if (quality == QUALITY_EXCAVATION)
 							oddity_stats[STAT_TGH] += stat_cost
 
-						else if (qualitie == QUALITY_CUTTING)
+						else if (quality == QUALITY_CUTTING)
 							oddity_stats[STAT_COG] += stat_cost
 
-						else if (qualitie == QUALITY_LASER_CUTTING)
+						else if (quality == QUALITY_LASER_CUTTING)
 							oddity_stats[STAT_VIG] += stat_cost
 
-						else if (qualitie == QUALITY_ADHESIVE)
+						else if (quality == QUALITY_ADHESIVE)
 							oddity_stats[STAT_MEC] += stat_cost
 
-						else if (qualitie == QUALITY_SEALING)
+						else if (quality == QUALITY_SEALING)
 							oddity_stats[STAT_MEC] += stat_cost
 
 					else
-						continue
+						to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+						return
 
 
 		else if(istype(W, /obj/item/weapon/tool_upgrade))
