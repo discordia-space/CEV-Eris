@@ -95,7 +95,7 @@
 
 // Serbian flak vests
 /obj/item/clothing/suit/armor/flak
-	name = "black flakvest vest"
+	name = "black flakvest"
 	desc = "An armored vest that protects against high-velocity solid projectiles."
 	icon_state = "flakvest"
 	item_state = "armor"

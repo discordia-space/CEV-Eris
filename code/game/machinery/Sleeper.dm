@@ -221,3 +221,14 @@
 			to_chat(user, "The subject has too many chemicals.")
 	else
 		to_chat(user, "There's no suitable occupant in \the [src].")
+
+/obj/machinery/sleeper/verb/eject_occupant_verb()
+	set name = "Eject Occupant"
+	set desc = "Force eject occupant."
+	set category = "Object"
+	set src in view(1)
+
+	if (usr.incapacitated() || occupant == usr)
+		return
+
+	go_out()
