@@ -133,6 +133,6 @@
 	new /obj/item/clothing/under/rank/church/sport(src)
 	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)
-	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/weapon/gun/energy/gun/martin(src)
 	new /obj/item/weapon/cell/small/super(src)
 	new /obj/item/weapon/cell/medium/super(src)
