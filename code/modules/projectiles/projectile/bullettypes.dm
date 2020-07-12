@@ -102,7 +102,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/clrifle/rubber
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 3)
-	agony = 16
+	agony = 22
 	armor_penetration = 0
 	embed = FALSE
 	sharp = FALSE
