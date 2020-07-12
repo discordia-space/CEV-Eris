@@ -73,12 +73,11 @@ This file contains the underlying code for stash datums
 
 	//How can we direct the user to this stash?
 	//Every stash should allow coords at least, unless you want to specifiy one particular method
-	var/directions = (DIRECTION_COORDS | DIRECTION_LANDMARK | DIRECTION_IMAGE)
+	var/directions = (DIRECTION_COORDS | DIRECTION_LANDMARK)
 
 	//These can be overridden to adjust how the direction is communicated
 	var/direction_string_base_coords = "can be found at these coordinates: %X, %Y, on deck %Z"
 	var/direction_string_base_landmark = "%L"
-	var/direction_string_base_image = "<br>(there is a photo attached)<br>"
 
 	//What type of container will be spawned to hold the stash items. Default is a burlap sack
 	//You can also set this blank and the objects will be spawned without a container
@@ -117,7 +116,6 @@ This file contains the underlying code for stash datums
 	var/selected_direction //What direction method we've selected
 	var/direction_string = ""
 	var/atom/stash_location //Probably a turf, but could be inside something
-	var/map_image = FALSE //Whether we spawn a photo when creating the stash note
 
 	var/atom/stash_container = null //Reference to the container our stash is inside
 
@@ -164,15 +162,12 @@ This file contains the underlying code for stash datums
 	//First of all, lets select how we're going to direct the user. This is not purely random
 
 	//If there's only one possible direction, then we take that
-	if (directions == DIRECTION_COORDS || directions == DIRECTION_LANDMARK || directions == DIRECTION_IMAGE)
+	if (directions == DIRECTION_COORDS || directions == DIRECTION_LANDMARK)
 		selected_direction = directions
 
 	else
-		if ((directions & DIRECTION_IMAGE) && prob(50))
-			//Image is interesting, so 50% chance to do that if allowed
-			selected_direction = DIRECTION_IMAGE
-		else if ((directions & DIRECTION_LANDMARK) && prob(75))
-			//Landmark is also interesting, high probability to do that
+		if ((directions & DIRECTION_LANDMARK) && prob(50))
+			//Landmark is interesting, high probability to do that
 			selected_direction = DIRECTION_LANDMARK
 		else
 			//Coords is the fallback
@@ -181,9 +176,6 @@ This file contains the underlying code for stash datums
 
 //This proc is called after location is set, it creates the necessary info to direct the user
 /datum/stash/proc/create_direction()
-	if (selected_direction == DIRECTION_IMAGE)
-		map_image = TRUE
-		create_direction_string()
 	if (selected_direction == DIRECTION_COORDS)
 		create_direction_string(stash_location)
 	if (selected_direction == DIRECTION_LANDMARK)
@@ -210,11 +202,6 @@ This file contains the underlying code for stash datums
 		direction_string = replacetext(direction_string, "%X", "[T.x]")
 		direction_string = replacetext(direction_string, "%Y", "[T.y]")
 		direction_string = replacetext(direction_string, "%Z", "[T.z]")
-
-	else if (selected_direction == DIRECTION_IMAGE)
-		//No data for this one, most of the info is pictoral
-		direction_string = direction_string_base_image
-
 
 
 /*************************
@@ -326,9 +313,6 @@ This file contains the underlying code for stash datums
 	note.info = lore
 	note.update_icon()
 
-	//If theres a photo, attach it to the note
-	if (map_image)
-		note.attackby(createpicture(stash_location, null, CAPTURE_MODE_HISTORICAL, radius = 3))
 	return note
 
 //Does final creation on lore, override this to do fancy things

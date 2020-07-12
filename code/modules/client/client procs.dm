@@ -336,12 +336,13 @@
 		// Not their first time here
 		else if(query.NextRow())
 			// client already registered so we fetch all needed data
-			query = dbcon.NewQuery("SELECT id, registered, first_seen FROM players WHERE id = [query.item[1]]")
+			query = dbcon.NewQuery("SELECT id, registered, first_seen, VPN_check_white FROM players WHERE id = [query.item[1]]")
 			query.Execute()
 			if(query.NextRow())
 				src.id = query.item[1]
 				src.registration_date = query.item[2]
 				src.first_seen = query.item[3]
+				src.VPN_whitelist = query.item[4]
 				src.get_country()
 
 				//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
@@ -357,6 +358,28 @@
 			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
 			del(src) // Hard del the client. This terminates the connection.
 			return 0
+		query = dbcon.NewQuery("SELECT ip_related_ids, cid_related_ids FROM players WHERE id = '[src.id]'")
+		query.Execute()
+		if(query.NextRow())
+			related_ip = splittext(query.item[1], ",")
+			related_cid = splittext(query.item[2], ",")
+		query = dbcon.NewQuery("SELECT id, ip, cid FROM players WHERE (ip = '[address]' OR cid = '[computer_id]') AND id <> '[src.id]'")
+		query.Execute()
+		var/changed = 0
+		while(query.NextRow())
+			var/temp_id = query.item[1]
+			var/temp_ip = query.item[2]
+			var/temp_cid = query.item[3]
+			if(temp_ip == address)
+				changed = 1
+				related_ip |= temp_id
+			if(temp_cid == computer_id)
+				changed = 1
+				related_cid |= temp_id
+		if(changed)
+			query = dbcon.NewQuery("UPDATE players SET cid_related_ids = '[jointext(related_cid, ",")]', ip_related_ids = '[jointext(related_ip, ",")]' WHERE id = '[src.id]'")
+			query.Execute()
+
 
 	src.get_byond_age() // Get days since byond join
 	src.get_player_age() // Get days since first seen
@@ -367,6 +390,8 @@
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(holder)
 			log_admin("Skipping IP reputation check on [key] with [address] because they have a staff rank")
+		else if(VPN_whitelist)
+			log_admin("Skipping IP reputation check on [key] with [address] because they have a VPN whitelist")
 		else if(update_ip_reputation()) //It is set now
 			if(ip_reputation >= config.ipr_bad_score) //It's bad
 
@@ -390,6 +415,8 @@
 
 	if(text2num(id) < 0)
 		src.register_in_db()
+
+
 
 #undef UPLOAD_LIMIT
 

@@ -242,13 +242,13 @@ Procs:
 	shortname = "Robotics"
 	desc = "Research into the exosuits"
 
-/datum/tech/illegal
-	name = "Illegal Technologies Research"
-	shortname = "Illegal Tech"
-	desc = "The study of technologies that violate standard Nanotrasen regulations."
+/datum/tech/covert
+	name = "Covert Technologies Research"
+	shortname = "Covert Tech"
+	desc = "The study of technologies that violate standard regulations."
 	rare = 3
 	shown = FALSE
-	item_tech_req = TECH_ILLEGAL // research any traitor item and this tech will show up
+	item_tech_req = TECH_COVERT // research any traitor item and this tech will show up
 
 /datum/technology
 	var/name = "name"

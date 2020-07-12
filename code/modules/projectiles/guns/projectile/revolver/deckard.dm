@@ -9,6 +9,6 @@
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 3100 //one of most robust revolvers here
-	damage_multiplier = 1.35
+	damage_multiplier = 1.45
 	penetration_multiplier = 1.65
 	recoil_buildup = 40

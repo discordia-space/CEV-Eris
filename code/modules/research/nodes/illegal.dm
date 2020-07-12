@@ -1,7 +1,7 @@
 /datum/technology/binary_encryption_key
 	name = "Binary Encrpytion Key"
 	desc = "Encrpytion Key that allow to receive binary communication (This type of communication using by AI and cyborgs)."
-	tech_type = RESEARCH_ILLEGAL
+	tech_type = RESEARCH_COVERT
 
 	x = 0.1
 	y = 0.5
@@ -16,7 +16,7 @@
 /datum/technology/night_sight
 	name = "Undark Vision"
 	desc = "A better look into the shadows that hunt the station, allows for the manufacturing of night vision goggles and RIG night vison huds "
-	tech_type = RESEARCH_ILLEGAL
+	tech_type = RESEARCH_COVERT
 
 	x = 0.1
 	y = 0.7
@@ -33,7 +33,7 @@
 /datum/technology/chameleon_kit
 	name = "Chameleon Kit"
 	desc = "Chameleon Kit"
-	tech_type = RESEARCH_ILLEGAL
+	tech_type = RESEARCH_COVERT
 
 	x = 0.3
 	y = 0.5
@@ -48,7 +48,7 @@
 /datum/technology/freedom_implant
 	name = "Glass Case- 'Freedom'"
 	desc = "Freedom' implant releases EM impulse in the owner body, that destroy all implants of slaving in, breaking chains."
-	tech_type = RESEARCH_ILLEGAL
+	tech_type = RESEARCH_COVERT
 
 	x = 0.5
 	y = 0.5
@@ -66,7 +66,7 @@
 			2. Act with discipline.<br>\
 			3. Help only those who help you maintain or improve your status.<br>\
 			4. Punish those who challenge authority unless they are more fit to hold that authority."
-	tech_type = RESEARCH_ILLEGAL
+	tech_type = RESEARCH_COVERT
 
 	x = 0.7
 	y = 0.5
@@ -81,7 +81,7 @@
 /datum/technology/borg_syndicate_module
 	name = "Borg Illegal Weapons Upgrade"
 	desc = "Borg Illegal Weapons Upgrade"
-	tech_type = RESEARCH_ILLEGAL
+	tech_type = RESEARCH_COVERT
 
 	x = 0.9
 	y = 0.5

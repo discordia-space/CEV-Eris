@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		TECH_COMBAT = 500,
 		TECH_MAGNET = 350,
 		TECH_DATA = 400,
-		TECH_ILLEGAL = 5000,
+		TECH_COVERT = 5000,
 	)
 
 	// So we don't give points for researching non-artifact item

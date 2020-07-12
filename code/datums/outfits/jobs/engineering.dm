@@ -2,7 +2,7 @@
 	hierarchy_type = /decl/hierarchy/outfit/job/engineering
 	belt = /obj/item/weapon/storage/belt/utility/full
 	l_ear = /obj/item/device/radio/headset/headset_eng
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/workboots
 	gloves = /obj/item/clothing/gloves/thick
 	pda_slot = slot_l_store
 	r_pocket = /obj/item/device/t_scanner

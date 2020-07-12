@@ -2,7 +2,7 @@ ADMIN_VERB_ADD(/client/proc/panicbunker, R_ADMIN, FALSE)
 /client/proc/panicbunker()
 	set category = "Server"
 	set name = "Toggle Panic Bunker"
-	
+
 	if(!check_rights(R_ADMIN))
 		return
 
@@ -43,3 +43,25 @@ ADMIN_VERB_ADD(/client/proc/ip_reputation, R_ADMIN, FALSE)
 	log_and_message_admins("[key_name(usr)] has toggled IP reputation checks, it is now [(config.ip_reputation?"on":"off")].")
 	if (config.ip_reputation && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The database is not connected! IP reputation logging will not be able to allow existing players to bypass the reputation checks (if that is enabled).")
+
+ADMIN_VERB_ADD(/client/proc/toggle_vpn_white, R_ADMIN, FALSE)
+/client/proc/toggle_vpn_white(var/ckey as text)
+	set category = "Server"
+	set name = "Toggle VPN Checks"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if (!dbcon || !dbcon.IsConnected())
+		to_chat(usr,"The database is not connected!")
+		return
+
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[sanitizeSQL(ckey)]'")
+	query.Execute()
+	if(query.NextRow())
+		var/temp_id = query.item[1]
+		log_and_message_admins("[key_name(usr)] has toggled VPN checks for [ckey].")
+		query = dbcon.NewQuery("UPDATE players SET VPN_check_white = !VPN_check_white WHERE id = '[temp_id]'")
+		query.Execute()
+	else
+		to_chat(usr,"Player [ckey] not found!")

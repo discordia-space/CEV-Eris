@@ -189,7 +189,7 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/chameleon
 	name = "Holographic equipment kit"
 	desc = "A kit of dangerous, high-tech equipment with changeable looks."
-	req_tech = list(TECH_ILLEGAL = 2)
+	req_tech = list(TECH_COVERT = 2)
 	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 	sort_string = "VASBA"
 */

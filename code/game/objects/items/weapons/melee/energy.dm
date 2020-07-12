@@ -100,7 +100,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	flags = NOBLOODY
-	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
+	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
 	sharp = TRUE
 	edge = TRUE
 	var/blade_color

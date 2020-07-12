@@ -97,6 +97,7 @@
 	touch_met = 5
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
+	var/strength_mod = 1
 	var/toxicity = 1
 
 	var/druggy = 0
@@ -121,12 +122,14 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-	var/strength_mod = 1
 
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot
 	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))
+
+	if(M.stats.getPerk(/datum/perk/sommelier))
+		tolerance *= 10
 
 	if(dose * strength_mod >= tolerance) // Early warning
 		M.make_dizzy(6) // It is decreased at the speed of 3 per tick
