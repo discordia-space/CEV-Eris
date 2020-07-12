@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: Alcohol Perk no longer permanently increases your ROB.
