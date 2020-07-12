@@ -1,8 +1,8 @@
 </div class="item" style="padding: 2px;">
 	<div class="statusDisplay" style="overflow:auto;">
 		<div class="item">
-			<div class="statusDisplay" style="background-color:DarkBlue;">
-				<div class="itemLabel" style="background-color:none; padding-right: 4px; color:white;">
+			<div class="statusDisplay">
+				<div class="itemLabel" style="padding-right: 4px;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
 						<h3>
 							<img src='ironhammer.png' style ="float: left; width: 40%;padding-right: 1px;">
@@ -23,7 +23,7 @@
 						lowers your sanity.
 					</div>
 				</div>
-				<div class="itemContent" style="background-color:none; color:white;">
+				<div class="itemContent">
 					<br><br><br><br><br><br>
 						<div style="padding: 1px; overflow:auto;">
 							<h3> Sanity level:</h3>
@@ -34,10 +34,10 @@
 		</div>
 		<br>
 		<div class="item">
-			<div class="statusDisplay" style="background-color:Cyan;">
-				<div class="itemLabel" style="background-color:none; padding-right: 4px; color:black;">
+			<div class="statusDisplay">
+				<div class="itemLabel" style="padding-right: 4px;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
-						<h3 style="color:black;">
+						<h3>
 							<img src='ironhammer.png' style ="margin: auto; float: left; width: 40%; padding-right: 1px;">
 							<br>
 							Insight:
@@ -52,10 +52,10 @@
 						and exploring maintenance.
 					</div>
 				</div>
-				<div class="itemContent"  style="background-color:none; color:black;">
+				<div class="itemContent">
 					<br><br><br><br>
 						<div style="padding: 1px; overflow:auto;">
-							<h3 style="color:black;">Insight progress:</h3>
+							<h3>Insight progress:</h3>
 						</div>
 					{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight)}}
 				</div>
@@ -63,8 +63,8 @@
 		</div>
 		<br>
 		<div class="item">
-			<div class="statusDisplay"  style="background-color:DarkOliveGreen;">
-				<div class="itemLabel" style="background-color:none; padding-right: 4px; color:white;">
+			<div class="statusDisplay">
+				<div class="itemLabel" style="padding-right: 4px;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
 						<h3>
 							<img src='ironhammer.png' style ="float: left; width: 40%; padding-right: 1px;margin: auto;">
@@ -80,7 +80,7 @@
 						will decrease your style value.
 					</div>
 				</div>
-				<div class="itemContent" style="background-color:none; color:white;">
+				<div class="itemContent">
 					<br><br><br><br>
 						<div style="padding: 1px; overflow:auto;">
 							<h3>Current style:</h3>
@@ -91,8 +91,8 @@
 		</div>
 		<br>
 		<div class="item">
-			<div class="statusDisplay" style="background-color:red;padding: 1px; overflow:auto;">
-				<div class="itemLabel" style="background-color:none; padding-right:3px; color:white;">
+			<div class="statusDisplay" style="padding: 1px; overflow:auto;">
+				<div class="itemLabel" style="padding-right:3px;">
 					<div style="padding: 1px; overflow:auto;text-align:center;">
 						<h3>
 							<img src='ironhammer.png' style ="float: left; width: 40%;margin: auto;padding-right: 1px; ">
@@ -108,7 +108,7 @@
 						to fulfill.
 					</div>
 				</div>
-				<div class="itemContent" style="background-color:none; color:white;">
+				<div class="itemContent">
 					<br><br><br>
 					<h3>Current desires:</h3>
 					<div>
@@ -123,12 +123,12 @@
 					</div>
 				</div>
 				{{if data.rest}}
-					<div class="itemLabel" style="background-color:none; padding-right: 3px; color:black;">
+					<div class="itemLabel" style="padding-right: 3px;">
 						<div style="padding: 1px; overflow:auto;">
 							<h3>Rest progress:</h3>
 						</div>
 					</div>
-					<div class="itemContent" style="background-color:none; color:black;"><br>
+					<div class="itemContent"><br>
 						{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average', data.insight_rest)}}
 						<br><br>
 					</div>
