@@ -234,8 +234,8 @@
 	update_icon()
 
 /obj/item/weapon/storage/fancy/cigcartons/dromedaryco
-	name = "carton of dromedaryco cigarettes"
-	desc = "A box containing 10 packets of dromedarycos cigarettes."
+	name = "carton of Dromedaryco cigarettes"
+	desc = "A box containing 10 packets of Dromedarycos cigarettes."
 	icon_state = "Dpacketcarton"
 	item_state = "Dpacketcarton"
 	item_obj = /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
