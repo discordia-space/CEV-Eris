@@ -113,7 +113,7 @@
 	holder.stats.addTempStat(STAT_ROB, 10, INFINITY, "Fate Alcoholic")
 
 /datum/perk/alcoholic_active/remove()
-	holder.stats.addTempStat(STAT_ROB, "Fate Alcoholic")
+	holder.stats.removeTempStat(STAT_ROB, "Fate Alcoholic")
 	..()
 
 /datum/perk/noble
