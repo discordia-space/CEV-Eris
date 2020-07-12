@@ -1,3 +1,5 @@
+#define BEREAKDOWN_ALTERT_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+
 /datum/breakdown/positive
 	start_message_span = "bold notice"
 	icon_state = "positive"
@@ -9,7 +11,6 @@
 	icon_state = "negative"
 	breakdown_sound = 'sound/sanity/insane.ogg'
 	is_negative = TRUE
-
 
 /datum/breakdown/common
 	start_message_span = "danger"
@@ -274,7 +275,7 @@
 /datum/breakdown/negative/delusion/update()
 	. = ..()
 	if(!.)
-		return
+		return	FALSE
 	if(prob(10))
 		var/power = rand(9,27)
 		holder.owner.playsound_local(holder.owner, 'sound/effects/explosionfar.ogg', 100, 1, round(power*2,1) )
@@ -347,10 +348,10 @@
 	..()
 
 
-/datum/breakdown/common/power_hungry
+/datum/breakdown/common/power_hungry//work fine
 	name = "Power Hungry"
 	duration = 10 MINUTES
-	isight_reward = 20
+	insight_reward = 20
 	restore_sanity_post = 80
 	/*start_messages = list(
 		"You feel like there is no point in any of this!",
@@ -362,6 +363,8 @@
 		end_messages = list(
 		"You feel at ease again, suddenly."
 	)*/
+	start_messages = list("comenzo el break power_hungry")
+	end_messages = list("termino el break power_hungry")
 
 
 /datum/breakdown/common/power_hungry/can_occur()
@@ -382,18 +385,155 @@
 /datum/breakdown/common/power_hungry/proc/check_shock()
 	finished = TRUE
 
-#define FALSE_NOSTALGY_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+
+/datum/breakdown/negative/glassification
+	name = "Glassification"
+	duration = 5 MINUTES
+	restore_sanity_post = 40
+	/*start_messages = list(
+		"You feel like there is no point in any of this!",
+		"You brain refuses to comprehend any of this!",
+		"You feel like you don't want to continue whatever you're doing!",
+		"You feel like your best days are gone forever!",
+		"You feel it. You know it. There is no turning back!"
+	)
+		end_messages = list(
+		"You feel at ease again, suddenly."
+	)*/
+	var/time
+	var/cooldown = 15 SECONDS
+	var/time_view = 5 SECONDS
+	var/active_view = FALSE
+	var/mob/living/carbon/human/target
+	start_messages = list("comenzo el break glassification")
+	end_messages = list("termino el break glassification")
+
+/datum/breakdown/negative/glassification/occur()
+	time = world.time
+	return ..()
+
+/datum/breakdown/negative/glassification/update()
+	if(world.time < time)
+		return TRUE
+	if(active_view)
+		holder.owner.remoteviewer = FALSE
+		holder.owner.remoteview_target = null
+		holder.owner.reset_view(0)
+		target.remoteviewer = FALSE
+		target.remoteview_target = null
+		target.reset_view(0)
+		target = null
+		active_view = FALSE
+		target = null
+		time = world.time + cooldown
+		return TRUE
+	. = ..()
+	if(!.)
+		return FALSE
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/H in GLOB.living_mob_list)
+		if(H == holder.owner)
+			continue
+		//if(H.stat == CONSCIOUS)
+			//targets += H
+		targets += H
+
+	if(targets.len)
+		target = pick(targets)
+		holder.owner.remoteviewer = TRUE
+		holder.owner.remoteview_target = target
+		holder.owner.reset_view(target)
+		to_chat(holder.owner, "ahora miras a [target.name]")
+		target.remoteviewer = TRUE
+		target.remoteview_target = holder.owner
+		target.reset_view(holder.owner)
+		target.sanity.changeLevel(-rand(5,10))
+		active_view = TRUE
+		time = world.time + time_view
+
+/datum/breakdown/common/herald
+	name = "Herald"
+	restore_sanity_pre = 5
+	restore_sanity_post = 45
+	/*start_messages = list(
+		"You feel like there is no point in any of this!",
+		"You brain refuses to comprehend any of this!",
+		"You feel like you don't want to continue whatever you're doing!",
+		"You feel like your best days are gone forever!",
+		"You feel it. You know it. There is no turning back!"
+	)
+		end_messages = list(
+		"You feel at ease again, suddenly."
+	)*/
+	duration = 5 MINUTES
+	start_messages = list("BREAK HERALD")
+	end_messages = list("BREAK HERALD END")
+	var/messages = list("tonto", "gafo", "idiota")
+	var/message_time = 0
+
+
+/datum/breakdown/common/herald/can_occur()
+	if(holder.owner.sanity.level <= 20)
+		return TRUE
+	return FALSE
+
+/datum/breakdown/common/herald/update()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(holder.level > 30)
+		finished = TRUE
+		conclude()
+		return FALSE
+	if(world.time >= message_time)
+		message_time = world.time + 10 SECONDS
+		holder.owner.say(pick(messages))
+
+/datum/breakdown/common/desire_for_chrome//funciona bien el desire for chrome
+	name = "Desire for Chrome"
+	insight_reward = 30
+	restore_sanity_post = 60
+	/*start_messages = list(
+		"You feel like there is no point in any of this!",
+		"You brain refuses to comprehend any of this!",
+		"You feel like you don't want to continue whatever you're doing!",
+		"You feel like your best days are gone forever!",
+		"You feel it. You know it. There is no turning back!"
+	)
+		end_messages = list(
+		"You feel at ease again, suddenly."
+	)*/
+	start_messages = list("tu cuerpo de carne te repugna, quieres algo mejor")
+	end_messages = list("termino el break Desire for Chrome")
+
+
+/datum/breakdown/common/desire_for_chrome/can_occur()
+	for(var/obj/item/organ/external/Ex in holder.owner.organs)
+		if(!BP_IS_ROBOTIC(Ex))
+			return TRUE
+	return FALSE
+
+/datum/breakdown/common/desire_for_chrome/occur()
+	RegisterSignal(holder.owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION, .proc/check_organ)
+	return ..()
+
+/datum/breakdown/common/desire_for_chrome/conclude()
+	UnregisterSignal(holder.owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
+	..()
+
+/datum/breakdown/common/desire_for_chrome/proc/check_organ()
+	finished = TRUE
+
+
 /datum/breakdown/common/false_nostalgy
 	name = "False Nostalgy"
-	name = "Power Hungry"
 	duration = 10 MINUTES
-	isight_reward = 10
+	insight_reward = 10
 	restore_sanity_post = 50
-	has_objetives = TRUE
 	var/message_time = 0
 	var/area/target
-	var/message
-
+	var/messages
+	/*
 	start_messages = list(
 		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
 		"Your mind is impaled with the sickening need to hold something.",
@@ -403,22 +543,26 @@
 	)
 	end_messages = list(
 		"You feel at ease again, suddenly."
-	)
+	)*/
+
+
+	start_messages = list("comenzo el break false_nostalgy.")
+	end_messages = list("termino el break false_nostalgy.")
 
 /datum/breakdown/common/false_nostalgy/occur()
 	var/list/candidates = ship_areas.Copy()
-	message_time = world.time + FALSE_NOSTALGY_COOLDOWN
+	message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
 	for(var/area/A in candidates)
 		if(A.is_maintenance)
 			candidates -= A
 			continue
 	target = pick(candidates)
-	message = pick(list(
+	messages = list(
 			"Quieres ir a [target]",
 			"tienes un fuerte deseo de visitar [target]",
-			"te inundan las ganas de visitar [target]"))
-	to_chat(holder.owner, SPAN_NOTICE(message))
-	message_time = world.time + FALSE_NOSTALGY_COOLDOWN
+			"te inundan las ganas de visitar [target]")
+	to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
+	return ..()
 
 /datum/breakdown/common/false_nostalgy/update()
 	. = ..()
@@ -426,23 +570,42 @@
 		return FALSE
 	if(get_area(holder.owner) == target)
 		finished = TRUE
+		conclude()
 		return FALSE
 	if(world.time >= message_time)
-		message_time = world.time + FALSE_NOSTALGY_COOLDOWN
-		message = pick(list(
-				"Quieres ir a [target]",
-				"tienes un fuerte deseo de visitar [target]",
-				"te inundan las ganas de visitar [target]"))
-		to_chat(holder.owner, SPAN_NOTICE(message))
+		message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
+		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
 
+/datum/breakdown/common/new_heights
+	name = "New Heights"
+	duration = 10 MINUTES
+	insight_reward = 25
+	restore_sanity_post = 80
+	/*start_messages = list(
+		"You feel like there is no point in any of this!",
+		"You brain refuses to comprehend any of this!",
+		"You feel like you don't want to continue whatever you're doing!",
+		"You feel like your best days are gone forever!",
+		"You feel it. You know it. There is no turning back!"
+	)
+		end_messages = list(
+		"You feel at ease again, suddenly."
+	)*/
+	start_messages = list("comenzo el new_heights", "init newheightts")
+	end_messages = list("termino el new_heights", "fin newheights")
 
-
-#define OBSESSION_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+/datum/breakdown/common/new_heights/update()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(holder.owner.metabolism_effects.nsa_current >= 100)
+		finished = TRUE
+		conclude()
+		return FALSE
 
 /datum/breakdown/common/obsession
 	name = "Obsession"
-	has_objetives = TRUE
-	isight_reward = 15
+	insight_reward = 15
 	var/obj/item/target
 	var/objectname
 	var/message_time = 0
@@ -495,7 +658,7 @@
 		conclude()
 		return FALSE
 	if(world.time >= message_time)
-		message_time = world.time + OBSESSION_COOLDOWN
+		message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
 		var/message = pick(list(
 			"You knew it. The [objectname] will ease your journey to the stars.",
 			"You look all around, but the only thing you can see is the [objectname].",
@@ -561,7 +724,7 @@
 /datum/breakdown/common/signs
 	//name = "Signs"
 	restore_sanity_post = 70
-	has_objetives = TRUE
+	insight_reward = 5
 	var/message
 
 	start_messages = list(
