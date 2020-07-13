@@ -20,7 +20,7 @@
 
 
 
-
+/*
 #define STALWART_THRESHOLD 30 // How damaged should owner be for Stalwart to be able to trigger
 
 /datum/breakdown/positive/stalwart
@@ -363,7 +363,7 @@
 		end_messages = list(
 		"You feel at ease again, suddenly."
 	)*/
-	start_messages = list("comenzo el break power_hungry")
+	start_messages = list("You think this doesn’t feel real... But reality hurts! Ensure that you will feel again!")
 	end_messages = list("termino el break power_hungry")
 
 
@@ -408,9 +408,11 @@
 	start_messages = list("comenzo el break glassification")
 	end_messages = list("termino el break glassification")
 
-/datum/breakdown/negative/glassification/occur()
-	time = world.time
-	return ..()
+/datum/breakdown/negative/glassification/can_occur()
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
+	if(candidates.len)
+		return TRUE
+	return FALSE
 
 /datum/breakdown/negative/glassification/update()
 	if(world.time < time)
@@ -430,14 +432,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/list/targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.living_mob_list)
-		if(H == holder.owner)
-			continue
-		//if(H.stat == CONSCIOUS)
-			//targets += H
-		targets += H
-
+	var/list/targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
 	if(targets.len)
 		target = pick(targets)
 		holder.owner.remoteviewer = TRUE
@@ -533,21 +528,7 @@
 	var/message_time = 0
 	var/area/target
 	var/messages
-	/*
-	start_messages = list(
-		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
-		"Your mind is impaled with the sickening need to hold something.",
-		"Your mind whispers one of its secrets to you - but you need a token to access its true treasures...",
-		"You feel like the old saying is true - the key to true power is real...",
-		"You feel under constant pressure, but there is a way to ease the pain..."
-	)
-	end_messages = list(
-		"You feel at ease again, suddenly."
-	)*/
-
-
-	start_messages = list("comenzo el break false_nostalgy.")
-	end_messages = list("termino el break false_nostalgy.")
+	end_messages = list("Just like you remembered it.")
 
 /datum/breakdown/common/false_nostalgy/occur()
 	var/list/candidates = ship_areas.Copy()
@@ -557,10 +538,8 @@
 			candidates -= A
 			continue
 	target = pick(candidates)
-	messages = list(
-			"Quieres ir a [target]",
-			"tienes un fuerte deseo de visitar [target]",
-			"te inundan las ganas de visitar [target]")
+	messages = list("Remember your last time in [target], those were the days",
+					"You feel like you’re drawn to [target] because you were always happy there. Right...?")
 	to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
 	return ..()
 
@@ -591,7 +570,7 @@
 		end_messages = list(
 		"You feel at ease again, suddenly."
 	)*/
-	start_messages = list("comenzo el new_heights", "init newheightts")
+	start_messages = list("This no longer suffices. You turned stale and gray. You need more! Reach for a new horizon!")
 	end_messages = list("termino el new_heights", "fin newheights")
 
 /datum/breakdown/common/new_heights/update()
@@ -602,76 +581,56 @@
 		finished = TRUE
 		conclude()
 		return FALSE
-
+*/
 /datum/breakdown/common/obsession
 	name = "Obsession"
-	insight_reward = 15
-	var/obj/item/target
-	var/objectname
+	insight_reward = 20
+	restore_sanity_post = 70
+	var/mob/living/carbon/human/target
 	var/message_time = 0
+	var/obsession_time = 3 MINUTES
+	var/last_time
+	var/delta_time
 
-	start_messages = list(
-		"You hear a sickening, raspy voice in your head. It requires one small task of you...",
-		"Your mind is impaled with the sickening need to hold something.",
-		"Your mind whispers one of its secrets to you - but you need a token to access its true treasures...",
-		"You feel like the old saying is true - the key to true power is real...",
-		"You feel under constant pressure, but there is a way to ease the pain..."
-	)
+
 	end_messages = list(
 		"You feel at ease again, suddenly."
 	)
 
 /datum/breakdown/common/obsession/can_occur()
 	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
-	candidates = shuffle(candidates)
-	while(candidates.len)
-		var/mob/living/carbon/human/H = pick(candidates)
-		candidates.Remove(H)
-		var/list/contents = H.get_contents()
-		target = locate(/obj/item/weapon/oddity) in contents
-		if(!target)
-			target = pick(H.organs - H.organs_by_name[BP_CHEST])
-
-		if(target)
-			objectname = "[H.real_name]'s [target.name]"
-			break
-	return !!target
+	if(candidates.len)
+		target = pick(candidates)
+		start_messages = list("[target.name] knows the way out. [target.name] is hiding something. [target.name] is the key! [target.name] is yours!")
+		return TRUE
+	return FALSE
 
 /datum/breakdown/common/obsession/update()
 	. = ..()
 	if(!.)
 		return FALSE
 	if(QDELETED(target))
-		to_chat(holder.owner, SPAN_WARNING("\The [objectname] is lost!"))
+		to_chat(holder.owner, SPAN_WARNING("[target.name] is lost!"))
 		finished = TRUE
 		conclude()
 		return FALSE
-	if(target.loc == holder.owner)
-		var/message = pick(list(
-			"Your mind convulses in the ecstasy. The sacred [objectname] is now yours!",
-			"You feel the warmth of the [objectname] in your head.",
-			"You suffered so long to achieve greatness! The sacred [objectname] is now yours. Only yours."
-		))
-		to_chat(holder.owner, SPAN_NOTICE(message))
-		holder.restoreLevel(70)
-		finished = TRUE
-		conclude()
-		return FALSE
-	if(world.time >= message_time)
-		message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
-		var/message = pick(list(
-			"You knew it. The [objectname] will ease your journey to the stars.",
-			"You look all around, but the only thing you can see is the [objectname].",
-			"Your thoughts are all about the [objectname].",
-			"You imagine how you will pour your hands into the still warm [objectname].",
-			"Vivid imagery of the [objectname] fills your brain.",
-			"You know it. It is the key to your salvation. [capitalize(objectname)]. [capitalize(objectname)]. [capitalize(objectname)]!",
-			"The voice within you demands only one thing: the [objectname].",
-			"It hurts you to keep pretending that your life without the [objectname] has meaning.",
-			"Your mind whispers to you with the only words in its silent throat: [objectname].",
-			"You know that only salvation from your sins is [objectname]."
-		))
-		to_chat(holder.owner, SPAN_NOTICE(message))
+	if(target in view(holder.owner))
+		delta_time += abs(world.time - last_time)
+		last_time = world.time
+		holder.owner.whisper_say("[target.name]")
+		if(delta_time >= obsession_time)
+			finished = TRUE
+			conclude()
+			return FALSE
+	else
+		last_time = world.time
+		if(world.time >= message_time)
+			message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
+			var/message = pick(list("[target.name] knows the way out.",
+									"[target.name] is hiding something.",
+									"[target.name] is the key!"
+									))
+			to_chat(holder.owner, SPAN_NOTICE(message))
 
 /datum/breakdown/common/obsession/occur()
 	for(var/stat in ALL_STATS)
@@ -682,7 +641,7 @@
 	for(var/stat in ALL_STATS)
 		holder.owner.stats.removeTempStat(stat, "Obsession")
 	..()
-
+/*
 #define KLEPTOMANIA_COOLDOWN rand(30 SECONDS, 60 SECONDS)
 
 /datum/breakdown/common/kleptomania
@@ -764,3 +723,4 @@
 /datum/breakdown/common/signs/proc/check_message(msg)
 	if(msg == message)
 		finished = TRUE
+*/
