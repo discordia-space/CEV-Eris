@@ -275,18 +275,16 @@
 	changeLevel(E.sanity_gain_ingest * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
-			if(E.taste_tag.len > 1)
-				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
-			else
-				add_rest(taste_tag, 3 * multiplier)
+			add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
 		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
 		to_chat(owner, SPAN_NOTICE("[snack_sanity_message]"))
 	changeLevel(snack_sanity_gain)
-	if(snack.cooked && resting && snack.taste_tag)
-		add_rest(snack.taste_tag, snack_sanity_gain * 45)
+	if(snack.cooked && resting && snack.taste_tag.len)
+		for(var/taste in snack.taste_tag)
+			add_rest(taste, snack_sanity_gain * 50/snack.taste_tag.len)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
