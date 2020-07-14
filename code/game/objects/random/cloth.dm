@@ -238,7 +238,7 @@
 
 /obj/random/cloth/head/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/head/kitty = 1,    //God forgive us
-				/obj/item/clothing/head/greenbandana = 5,
+				/obj/item/clothing/head/bandana/green = 5,
 				/obj/item/clothing/head/beret = 5,
 				/obj/item/clothing/head/HoS = 1,
 				/obj/item/clothing/head/bearpelt = 5,
@@ -255,8 +255,8 @@
 				/obj/item/clothing/head/hardhat = 5,
 				/obj/item/clothing/head/nun_hood = 5,
 				/obj/item/clothing/head/philosopher_wig = 5,
-				/obj/item/clothing/head/orangebandana = 5,
-				/obj/item/clothing/head/greenbandana = 5,
+				/obj/item/clothing/head/bandana/orange = 5,
+				/obj/item/clothing/head/bandana/green = 5,
 				/obj/item/clothing/head/nun_hood = 5,
 				/obj/item/clothing/head/det/grey = 5,
 				/obj/item/clothing/head/det = 5,

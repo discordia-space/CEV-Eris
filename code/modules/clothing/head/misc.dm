@@ -17,6 +17,7 @@
 	desc = "Smells nice."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
+	style = 1
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -74,7 +75,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	item_flags = COVER_PREVENT_MANIPULATION
 
-/obj/item/clothing/head/greenbandana
+/obj/item/clothing/head/bandana/green
 	name = "green bandana"
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
@@ -141,12 +142,14 @@
 	name = "pirate bandana"
 	desc = "Yarr."
 	icon_state = "bandana"
+	style = 1
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
 	desc = "Gentleman, elite aboard!"
 	icon_state = "bowler"
 	body_parts_covered = 0
+	style = 1
 
 //stylish bs12 hats
 
@@ -170,6 +173,7 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
+	style = 2
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
@@ -180,6 +184,7 @@
 	name = "fez"
 	icon_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."
+	style = 1
 
 //end bs12 hats
 
@@ -233,7 +238,7 @@
 	siemens_coefficient = 2.0 //why is it so conductive?!
 	body_parts_covered = 0
 
-/obj/item/clothing/head/orangebandana //themij: Taryn Kifer
+/obj/item/clothing/head/bandana/orange //themij: Taryn Kifer
 	name = "orange bandana"
 	desc = "An orange piece of cloth, worn on the head."
 	icon_state = "orange_bandana"

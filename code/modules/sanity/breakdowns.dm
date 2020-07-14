@@ -445,34 +445,24 @@
 	duration = 5 MINUTES
 	start_messages = list("You've seen the abyss too long, and now forbidden knowledge haunts you.")
 	end_messages = list("You feel like you've forgotten something important. But this comforts you.")
-	var/list/messages = list("The Feast is over, and the lamps expire.",
-						"When the stars were right, They could plunge from world to world through the sky; but when the stars were wrong, They could not live.",
-						"In his house at R'lyeh dead Cthulhu waits dreaming.")
 	var/message_time = 0
+	var/cooldown_message = 10 SECONDS
 
-
-/datum/breakdown/common/herald/can_occur()
-	if(holder.owner.sanity.level <= 20)
-		return TRUE
-	return FALSE
 
 /datum/breakdown/common/herald/update()
 	. = ..()
 	if(!.)
 		return FALSE
-	if(holder.level > 30)
-		finished = TRUE
-		conclude()
-		return FALSE
 	if(world.time >= message_time)
-		message_time = world.time + 10 SECONDS
-		holder.owner.say(pick(messages))
+		message_time = world.time + cooldown_message
+		var/chance = rand(1, 100)
+		holder.owner.say(chance <= 50 ? "[holder.pick_quote_20()]" : "[holder.pick_quote_40()]")
 
 /datum/breakdown/common/desire_for_chrome
 	name = "Desire for Chrome"
 	insight_reward = 30
 	restore_sanity_post = 60
-	start_messages = list("La carne es debil, te repugna la debilidad de tu propio cuerpo.")
+	start_messages = list("Flesh is weak, you are disgusted by the weakness of your own body.")
 	end_messages = list("Nothing like a mechanical upgrade to feel like new.")
 
 
