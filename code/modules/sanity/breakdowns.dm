@@ -1,4 +1,4 @@
-#define BEREAKDOWN_ALTERT_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+#define BREAKDOWN_ALTERT_COOLDOWN rand(30 SECONDS, 120 SECONDS)
 
 /datum/breakdown/positive
 	start_message_span = "bold notice"
@@ -506,7 +506,7 @@
 
 /datum/breakdown/common/false_nostalgy/occur()
 	var/list/candidates = ship_areas.Copy()
-	message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
+	message_time = world.time + BREAKDOWN_ALTERT_COOLDOWN
 	for(var/area/A in candidates)
 		if(A.is_maintenance)
 			candidates -= A
@@ -526,7 +526,7 @@
 		conclude()
 		return FALSE
 	if(world.time >= message_time)
-		message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
+		message_time = world.time + BREAKDOWN_ALTERT_COOLDOWN
 		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
 
 /datum/breakdown/common/new_heights
@@ -589,7 +589,7 @@
 	else
 		last_time = world.time
 		if(world.time >= message_time)
-			message_time = world.time + BEREAKDOWN_ALTERT_COOLDOWN
+			message_time = world.time + BREAKDOWN_ALTERT_COOLDOWN
 			var/message = pick(list("[target.name] knows the way out.",
 									"[target.name] is hiding something.",
 									"[target.name] is the key!"
