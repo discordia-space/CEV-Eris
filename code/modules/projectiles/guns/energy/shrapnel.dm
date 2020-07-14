@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/shrapnel
-	name = "Asters \"Shellshock\" energy shotgun"
-	desc = "Based on an SDF design, this mat-fab shotgun tends to burn through cells with use."
+	name = "OR SDF \"Shellshock\" energy shotgun"
+	desc = "An Oberth Republic Self Defence Force design, this mat-fab shotgun tends to burn through cells with use."
 	icon = 'icons/obj/guns/energy/shrapnel.dmi'
 	icon_state = "eshotgun"
 	item_charge_meter = TRUE

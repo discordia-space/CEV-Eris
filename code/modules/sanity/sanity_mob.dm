@@ -2,8 +2,10 @@
 
 #define SANITY_DAMAGE_MOD 0.6
 
+#define SANITY_VIEW_DAMAGE_MOD 0.4
+
 // Damage received from unpleasant stuff in view
-#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
+#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
 // Damage received from body damage
 #define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
@@ -271,13 +273,12 @@
 
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
-	if(resting)
-		if(E.taste_tag.len)
-			for(var/taste_tag in E.taste_tag)
-				if(E.taste_tag.len > 1)
-					add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
-				else
-					add_rest(taste_tag, 3 * multiplier)
+	if(resting && E.taste_tag.len)
+		for(var/taste_tag in E.taste_tag)
+			if(E.taste_tag.len > 1)
+				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
+			else
+				add_rest(taste_tag, 3 * multiplier)
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)

@@ -10,7 +10,7 @@
  * Bartender
  */
 /obj/structure/closet/gmcloset
-	name = "formal closet"
+	name = "Club Manager closet"
 	desc = "It's a storage unit for formal clothing."
 	icon_door = "black"
 
@@ -20,24 +20,27 @@
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/clothing/head/hairflower
+	new /obj/item/clothing/suit/storage/toggle/club(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/under/rank/bartender/skirt(src)
 
 /*
  * Chef
  */
 /obj/structure/closet/chefcloset
-	name = "chef's closet"
-	desc = "It's a storage unit for foodservice garments."
+	name = "Club Worker closet"
+	desc = "It's a storage unit for club personnel."
 	icon_door = "black"
 
 /obj/structure/closet/chefcloset/populate_contents()
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
+	new /obj/item/clothing/under/waiter/skirt(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/weapon/storage/box/mousetraps(src)
@@ -104,6 +107,8 @@
 	new /obj/item/weapon/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/weapon/mop(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
 
@@ -125,4 +130,6 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)

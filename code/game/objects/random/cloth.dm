@@ -89,7 +89,9 @@
 				/obj/item/clothing/suit/storage/ass_jacket = 10,
 				/obj/item/clothing/suit/storage/cargo_jacket = 10,
 				/obj/item/clothing/suit/storage/detective = 5,
-				/obj/item/clothing/suit/storage/hazardvest = 10,
+				/obj/item/clothing/suit/storage/hazardvest = 6,
+				/obj/item/clothing/suit/storage/hazardvest/orange = 2,
+				/obj/item/clothing/suit/storage/hazardvest/black = 2,
 				/obj/item/clothing/suit/storage/detective/ironhammer  = 3,
 				/obj/item/clothing/suit/storage/leather_jacket = 3,
 				/obj/item/clothing/suit/storage/drive_jacket = 3,
@@ -183,7 +185,13 @@
 				/obj/item/clothing/under/suit_jacket/red = 5,
 				/obj/item/clothing/under/suit_jacket = 5,
 				/obj/item/clothing/under/turtleneck = 5,
-				/obj/item/clothing/under/syndicate = 5))
+				/obj/item/clothing/under/syndicate = 5,
+				/obj/item/clothing/under/dress = 5,
+				/obj/item/clothing/under/dress/blue = 5,
+				/obj/item/clothing/under/dress/red = 5,
+				/obj/item/clothing/under/leisure = 5,
+				/obj/item/clothing/under/leisure/white = 5,
+				/obj/item/clothing/under/leisure/pullover = 5))
 
 /obj/random/cloth/under/low_chance
 	name = "low chance random under"

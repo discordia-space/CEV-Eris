@@ -15,7 +15,9 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	recoil_buildup = 8 
+	recoil_buildup = 5
+	damage_multiplier = 1.25
+	penetration_multiplier = 1.1
 	one_hand_penalty = 5 //bullpup rifle (this one is smaller and carbine, so it's 5)
 
 	init_firemodes = list(

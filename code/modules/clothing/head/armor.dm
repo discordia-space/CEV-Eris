@@ -407,7 +407,7 @@
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "steelpot"
 	armor = list(melee = 40, bullet = 35, energy = 0, bomb = 30, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
 
