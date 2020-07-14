@@ -20,7 +20,7 @@
 
 
 
-/*
+
 #define STALWART_THRESHOLD 30 // How damaged should owner be for Stalwart to be able to trigger
 
 /datum/breakdown/positive/stalwart
@@ -353,18 +353,9 @@
 	duration = 10 MINUTES
 	insight_reward = 20
 	restore_sanity_post = 80
-	/*start_messages = list(
-		"You feel like there is no point in any of this!",
-		"You brain refuses to comprehend any of this!",
-		"You feel like you don't want to continue whatever you're doing!",
-		"You feel like your best days are gone forever!",
-		"You feel it. You know it. There is no turning back!"
-	)
-		end_messages = list(
-		"You feel at ease again, suddenly."
-	)*/
+
 	start_messages = list("You think this doesn’t feel real... But reality hurts! Ensure that you will feel again!")
-	end_messages = list("termino el break power_hungry")
+	end_messages = list("You feel alive again.")
 
 
 /datum/breakdown/common/power_hungry/can_occur()
@@ -405,8 +396,8 @@
 	var/time_view = 5 SECONDS
 	var/active_view = FALSE
 	var/mob/living/carbon/human/target
-	start_messages = list("comenzo el break glassification")
-	end_messages = list("termino el break glassification")
+	start_messages = list("You start to see through everything. Your mind expands.")
+	end_messages = list("The world has returned to normal ... right?")
 
 /datum/breakdown/negative/glassification/can_occur()
 	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
@@ -438,7 +429,8 @@
 		holder.owner.remoteviewer = TRUE
 		holder.owner.remoteview_target = target
 		holder.owner.reset_view(target)
-		to_chat(holder.owner, "ahora miras a [target.name]")
+		to_chat(holder.owner, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
+		to_chat(target, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
 		target.remoteviewer = TRUE
 		target.remoteview_target = holder.owner
 		target.reset_view(holder.owner)
@@ -450,20 +442,12 @@
 	name = "Herald"
 	restore_sanity_pre = 5
 	restore_sanity_post = 45
-	/*start_messages = list(
-		"You feel like there is no point in any of this!",
-		"You brain refuses to comprehend any of this!",
-		"You feel like you don't want to continue whatever you're doing!",
-		"You feel like your best days are gone forever!",
-		"You feel it. You know it. There is no turning back!"
-	)
-		end_messages = list(
-		"You feel at ease again, suddenly."
-	)*/
 	duration = 5 MINUTES
-	start_messages = list("BREAK HERALD")
-	end_messages = list("BREAK HERALD END")
-	var/messages = list("tonto", "gafo", "idiota")
+	start_messages = list("You've seen the abyss too long, and now forbidden knowledge haunts you.")
+	end_messages = list("You feel like you've forgotten something important. But this comforts you.")
+	var/list/messages = list("The Feast is over, and the lamps expire.",
+						"When the stars were right, They could plunge from world to world through the sky; but when the stars were wrong, They could not live.",
+						"In his house at R'lyeh dead Cthulhu waits dreaming.")
 	var/message_time = 0
 
 
@@ -484,22 +468,12 @@
 		message_time = world.time + 10 SECONDS
 		holder.owner.say(pick(messages))
 
-/datum/breakdown/common/desire_for_chrome//funciona bien el desire for chrome
+/datum/breakdown/common/desire_for_chrome
 	name = "Desire for Chrome"
 	insight_reward = 30
 	restore_sanity_post = 60
-	/*start_messages = list(
-		"You feel like there is no point in any of this!",
-		"You brain refuses to comprehend any of this!",
-		"You feel like you don't want to continue whatever you're doing!",
-		"You feel like your best days are gone forever!",
-		"You feel it. You know it. There is no turning back!"
-	)
-		end_messages = list(
-		"You feel at ease again, suddenly."
-	)*/
-	start_messages = list("tu cuerpo de carne te repugna, quieres algo mejor")
-	end_messages = list("termino el break Desire for Chrome")
+	start_messages = list("La carne es debil, te repugna la debilidad de tu propio cuerpo.")
+	end_messages = list("Nothing like a mechanical upgrade to feel like new.")
 
 
 /datum/breakdown/common/desire_for_chrome/can_occur()
@@ -560,18 +534,8 @@
 	duration = 10 MINUTES
 	insight_reward = 25
 	restore_sanity_post = 80
-	/*start_messages = list(
-		"You feel like there is no point in any of this!",
-		"You brain refuses to comprehend any of this!",
-		"You feel like you don't want to continue whatever you're doing!",
-		"You feel like your best days are gone forever!",
-		"You feel it. You know it. There is no turning back!"
-	)
-		end_messages = list(
-		"You feel at ease again, suddenly."
-	)*/
 	start_messages = list("This no longer suffices. You turned stale and gray. You need more! Reach for a new horizon!")
-	end_messages = list("termino el new_heights", "fin newheights")
+	end_messages = list("You have lost the desire to go further.")
 
 /datum/breakdown/common/new_heights/update()
 	. = ..()
@@ -581,7 +545,7 @@
 		finished = TRUE
 		conclude()
 		return FALSE
-*/
+
 /datum/breakdown/common/obsession
 	name = "Obsession"
 	insight_reward = 20
@@ -641,7 +605,7 @@
 	for(var/stat in ALL_STATS)
 		holder.owner.stats.removeTempStat(stat, "Obsession")
 	..()
-/*
+
 #define KLEPTOMANIA_COOLDOWN rand(30 SECONDS, 60 SECONDS)
 
 /datum/breakdown/common/kleptomania
@@ -723,4 +687,3 @@
 /datum/breakdown/common/signs/proc/check_message(msg)
 	if(msg == message)
 		finished = TRUE
-*/
