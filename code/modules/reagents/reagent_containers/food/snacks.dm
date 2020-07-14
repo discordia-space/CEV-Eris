@@ -662,6 +662,7 @@
 	center_of_mass = list("x"=17, "y"=10)
 	nutriment_amt = 3
 	nutriment_desc = list("tofu" = 3, "goeyness" = 3)
+	taste_tag = list(VEGETARIAN_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tofurkey
 	name = "Tofurkey"
@@ -674,6 +675,7 @@
 	nutriment_desc = list("turkey" = 3, "tofu" = 5, "goeyness" = 4)
 	preloaded_reagents = list("stoxin" = 3)
 	cooked = TRUE
+	taste_tag = list(VEGETARIAN_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/stuffing
 	name = "Stuffing"
@@ -851,6 +853,7 @@
 	nutriment_desc = list("bun" = 2, "pseudo-soy meat" = 3)
 	nutriment_amt = 6
 	cooked = TRUE
+	taste_tag = list(VEGETARIAN_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/roburger
 	name = "roburger"
@@ -1110,6 +1113,7 @@
 	nutriment_desc = list("tofu" = 2, "pie" = 8)
 	nutriment_amt = 10
 	cooked = TRUE
+	taste_tag = list(VEGETARIAN_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/amanita_pie
 	name = "amanita pie"
