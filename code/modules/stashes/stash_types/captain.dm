@@ -5,6 +5,7 @@
 /datum/stash/command
 	base_type = /datum/stash/command
 	loot_type = "Command"
+	directions = DIRECTION_LANDMARK
 	contents_list_base = list(/obj/item/clothing/under/rank/captain = 1,
 	/obj/item/clothing/gloves/captain = 1)
 	contents_list_extra = list()
