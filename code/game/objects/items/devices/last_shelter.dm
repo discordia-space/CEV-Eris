@@ -20,9 +20,9 @@
 			scan = FALSE
 			if(istype(src.loc, /mob/living/carbon/human))
 				user.put_in_hands(cruciform)
-				to_chat(user, SPAN_NOTICE("The [src] has founded a losted cruciform in a deep space. Now this fate of the disciple rests in your hands."))
+				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform in a deep space. Now this fate of the disciple rests in your hands."))
 			else
-				visible_message(SPAN_NOTICE("[src] drop [cruciform]."))
+				visible_message(SPAN_NOTICE("[src] drops [cruciform]."))
 				cruciform.forceMove(get_turf(src))
 		else
 			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms in deep space. You can try to use [src] again later."))

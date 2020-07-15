@@ -12,6 +12,7 @@
 	throw_range = 15
 	price_tag = 20000
 	origin_tech = list(TECH_MATERIAL = 10)
+	var/affect_radius = 7
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 5, MATERIAL_DIAMOND = 1)
 	var/list/mob/living/carbon/human/followers = list()
 
@@ -26,8 +27,8 @@
 
 /obj/item/weapon/maneki_neko/Process()
 	..()
-	var/list/mob/living/carbon/human/affected = oviewers(src)
-	followers |= affected
+	for(var/list/mob/living/carbon/human/affected in oviewers(affect_radius, src))
+		followers |= affected
 
 /obj/item/weapon/maneki_neko/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(QUALITY_HAMMERING in W.tool_qualities)
