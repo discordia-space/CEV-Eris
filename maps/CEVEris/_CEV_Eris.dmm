@@ -72507,7 +72507,7 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/item/weapon/melee/chainofcommand,
+/obj/item/weapon/tool/chainofcommand,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -23
