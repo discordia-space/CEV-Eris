@@ -1042,6 +1042,7 @@
 					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
 					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
 					/obj/item/weapon/tool/knife/tacknife = 600,
+					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 1000,)
 					/obj/item/ammo_magazine/pistol = 600,)
 
 //This one's from bay12
