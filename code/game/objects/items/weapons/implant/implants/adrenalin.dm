@@ -3,7 +3,7 @@
 	desc = "Removes all stuns and knockdowns."
 	var/uses = 3
 	allowed_organs = list(BP_CHEST)
-	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=4, TECH_COMBAT=3, TECH_ILLEGAL=4)
+	origin_tech = list(TECH_MATERIAL=2, TECH_BIO=4, TECH_COMBAT=3, TECH_COVERT=4)
 
 /obj/item/weapon/implant/adrenalin/get_data()
 	var/data = {"

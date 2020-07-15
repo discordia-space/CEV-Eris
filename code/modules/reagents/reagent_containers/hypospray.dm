@@ -4,17 +4,17 @@
 
 /obj/item/weapon/reagent_containers/hypospray
 	name = "hypospray"
-	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	desc = "The Moebius Medical department hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"
 	amount_per_transfer_from_this = 5
 	unacidable = 1
-	volume = 30
+	volume = 40
 	possible_transfer_amounts = null
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
-	preloaded_reagents = list("tricordrazine" = 30)
+	preloaded_reagents = list("bicaridine" = 40)
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)

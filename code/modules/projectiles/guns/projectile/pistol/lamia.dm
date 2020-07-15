@@ -18,8 +18,8 @@
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	damage_multiplier = 1.2
-	penetration_multiplier = 1.3
+	damage_multiplier = 1.4
+	penetration_multiplier = 1.4
 	recoil_buildup = 21
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()

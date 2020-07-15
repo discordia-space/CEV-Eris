@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 	name = "mind fryer"
 	desc = "A device that attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns."
 	icon_state = "mind_fryer"
-	origin_tech = list(TECH_BIO = 5, TECH_COMBAT = 3, TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_BIO = 5, TECH_COMBAT = 3, TECH_COVERT = 3)
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_URANIUM = 4)
 	var/datum/antag_contract/derail/contract
 	var/datum/mind/owner

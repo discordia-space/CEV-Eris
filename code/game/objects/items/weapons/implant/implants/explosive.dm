@@ -6,7 +6,7 @@
 	icon_state = "implant_evil"
 	implant_color = "r"
 	is_legal = FALSE
-	origin_tech = list(TECH_MATERIAL=2, TECH_COMBAT=3, TECH_BIO=4, TECH_ILLEGAL=4)
+	origin_tech = list(TECH_MATERIAL=2, TECH_COMBAT=3, TECH_BIO=4, TECH_COVERT=4)
 
 /obj/item/weapon/implant/explosive/New()
 	..()
