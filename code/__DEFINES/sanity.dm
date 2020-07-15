@@ -28,10 +28,13 @@ var/global/list/all_taste_drinks = list(TASTE_SOUR,
 #define	VEGAN_FOOD "vegan food"
 #define	VEGETARIAN_FOOD "vegetarian food"
 #define	CHEESE_FOOD "cheese"
+#define	INSECTS_FOOD "insects"
+#define	BLAND_FOOD "bland food"
 
 var/global/list/all_types_food = list(SWEET_FOOD,
 									MEAT_FOOD,
 									COCO_FOOD,
 									VEGAN_FOOD,
 									VEGETARIAN_FOOD,
-									CHEESE_FOOD)
+									CHEESE_FOOD,
+									BLAND_FOOD)

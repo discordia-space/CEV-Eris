@@ -12,7 +12,7 @@
 	var/slice_path
 	var/slices_num
 	var/dried_type = null
-	var/dry = 0
+	var/dry = FALSE
 	var/dryness = 0 //Used by drying rack. Represents progress towards Dry state
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
@@ -20,7 +20,7 @@
 	var/sanity_gain = 0.2 //per nutriment
 	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
 	var/cooked = FALSE
-	var/list/taste_tag = list()
+	var/list/taste_tag = list(BLAND_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
@@ -969,6 +969,7 @@
 	nutriment_amt = 3
 	preloaded_reagents = list("protein" = 8)
 	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/fuhrerburger
 	name = "Fuhrer Burger"
@@ -980,6 +981,7 @@
 	nutriment_amt = 3
 	preloaded_reagents = list("protein" = 8, "Fuhrole" = 3)
 	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD)
 
 
 /obj/item/weapon/reagent_containers/food/snacks/omelette
@@ -992,6 +994,7 @@
 	center_of_mass = list("x"=16, "y"=13)
 	preloaded_reagents = list("protein" = 8)
 	cooked = TRUE
+	taste_tag = list(CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/muffin
 	name = "Muffin"
@@ -1089,6 +1092,7 @@
 	nutriment_desc = list("some sort of protein" = 10) //seasoned VERY well.
 	nutriment_amt = 10
 	cooked = TRUE
+	taste_tag = list(MEAT_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/meatpie
 	name = "Meat-pie"
@@ -1138,6 +1142,7 @@
 	nutriment_desc = list("heartiness" = 2, "mushroom" = 3, "pie" = 3)
 	nutriment_amt = 8
 	cooked = TRUE
+	taste_tag = list(SWEET_FOOD)
 	New()
 		..()
 		if(prob(10))
@@ -1174,6 +1179,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=17, "y"=15)
 	preloaded_reagents = list("protein" = 8)
+	taste_tag = list(MEAT_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeykabob
 	name = "Meat-kabob"
@@ -1184,6 +1190,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=17, "y"=15)
 	preloaded_reagents = list("protein" = 8)
+	taste_tag = list(MEAT_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tofukabob
 	name = "Tofu-kabob"
@@ -1222,6 +1229,7 @@
 	nutriment_desc = list("popcorn" = 3)
 	nutriment_amt = 2
 	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
+	junk_food = TRUE
 	New()
 		..()
 		unpopped = rand(1,10)
