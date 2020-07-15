@@ -1,4 +1,4 @@
-#define BREAKDOWN_ALERT_COOLDOWN rand(30 SECONDS, 120 SECONDS)
+#define BREAKDOWN_ALERT_COOLDOWN rand(45 SECONDS, 90 SECONDS)
 
 /datum/breakdown/positive
 	start_message_span = "bold notice"
@@ -348,15 +348,17 @@
 	..()
 
 
-/datum/breakdown/common/power_hungry//work fine
+/datum/breakdown/common/power_hungry
 	name = "Power Hungry"
-	duration = 10 MINUTES
+	duration = 15 MINUTES
 	insight_reward = 20
 	restore_sanity_post = 80
 
 	start_messages = list("You think this doesn’t feel real... But reality hurts! Ensure that you will feel again!")
 	end_messages = list("You feel alive again.")
-
+	var/messages = list("You want to receive an electric shock.",
+						"How does it feel to control the power of lightning? let's find out.",
+						"More, more, more, more you want more power. Take it in your hands.",
 
 /datum/breakdown/common/power_hungry/can_occur()
 	if(holder.owner.species.siemens_coefficient > 0)
@@ -367,6 +369,14 @@
 	RegisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE, .proc/check_shock)
 	RegisterSignal(holder.owner, COMSIG_LIVING_STUN_EFFECT, .proc/check_shock)
 	return ..()
+
+/datum/breakdown/common/power_hungry/update()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(world.time >= message_time)
+		message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
+		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
 
 /datum/breakdown/common/power_hungry/conclude()
 	UnregisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE)
@@ -529,6 +539,11 @@
 	restore_sanity_post = 80
 	start_messages = list("This no longer suffices. You turned stale and gray. You need more! Reach for a new horizon!")
 	end_messages = list("You have lost the desire to go further.")
+	var/message_time = 0
+	var/messages = list("You want to test your endurance, what better way to do it than consuming drugs?",
+						"It doesn't matter if they judge you, they miss out on the pleasure of drugs.",
+						"Drugs are life, drugs are love, they are never enough.",
+						"A little more, a little more, you would pay anything to consume a little more.")
 
 /datum/breakdown/common/new_heights/update()
 	. = ..()
@@ -538,6 +553,9 @@
 		finished = TRUE
 		conclude()
 		return FALSE
+	if(world.time >= message_time)
+		message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
+		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
 
 /datum/breakdown/common/obsession
 	name = "Obsession"
