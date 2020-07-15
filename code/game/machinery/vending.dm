@@ -1014,6 +1014,7 @@
 					/obj/item/clothing/accessory/holster/armpit = 5,
 					/obj/item/clothing/accessory/holster/waist = 5,
 					/obj/item/clothing/accessory/holster/hip = 5,
+					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
 					/obj/item/ammo_magazine/slpistol = 5,
 					/obj/item/ammo_magazine/pistol = 5,
 					/obj/item/ammo_magazine/hpistol = 5,
