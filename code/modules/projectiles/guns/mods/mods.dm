@@ -159,6 +159,7 @@
 	name = "Frozen Star \"Weintraub\" full auto kit"
 	desc = "A fully automatic receiver for the .25 \"Sol\"."
 	icon_state = "Weintraub"
+	price_tag = 1000
 
 /obj/item/weapon/gun_upgrade/mechanism/weintraub/New()
 	..()
