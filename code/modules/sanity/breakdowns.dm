@@ -503,7 +503,10 @@
 			continue
 	target = pick(candidates)
 	messages = list("Remember your last time in [target], those were the days",
-					"You feel like you’re drawn to [target] because you were always happy there. Right...?")
+					"You feel like you’re drawn to [target] because you were always happy there. Right..?",
+					"When you are in [target] you feel like home... You want to feel like home.",
+					"[target] reminds you of the hunt.")
+
 	to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
 	return ..()
 
@@ -582,7 +585,10 @@
 			message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
 			var/message = pick(list("[target.name] knows the way out.",
 									"[target.name] is hiding something.",
-									"[target.name] is the key!"
+									"[target.name] is the key!",
+									"[target.name] smells good.",
+									"you want to be close to [target.name].",
+									"Seeing [target.name] makes you happy."
 									))
 			to_chat(holder.owner, SPAN_NOTICE(message))
 

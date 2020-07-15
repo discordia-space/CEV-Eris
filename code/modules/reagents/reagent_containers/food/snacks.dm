@@ -652,6 +652,7 @@
 	icon_state = "egg"
 	filling_color = "#FFFFFF"
 	preloaded_reagents = list("protein" = 2)
+	taste_tag = list(BLAND_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tofu
 	name = "Tofu"
@@ -662,7 +663,7 @@
 	center_of_mass = list("x"=17, "y"=10)
 	nutriment_amt = 3
 	nutriment_desc = list("tofu" = 3, "goeyness" = 3)
-	taste_tag = list(VEGETARIAN_FOOD)
+	taste_tag = list(VEGETARIAN_FOOD, BLAND_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/tofurkey
 	name = "Tofurkey"
