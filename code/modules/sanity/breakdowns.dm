@@ -356,9 +356,11 @@
 
 	start_messages = list("You think this doesn’t feel real... But reality hurts! Ensure that you will feel again!")
 	end_messages = list("You feel alive again.")
+	var/message_time = 0
 	var/messages = list("You want to receive an electric shock.",
 						"How does it feel to control the power of lightning? let's find out.",
 						"More, more, more, more you want more power. Take it in your hands.",
+						"Electricity belongs to everyone, why does machinery grab it?")
 
 /datum/breakdown/common/power_hungry/can_occur()
 	if(holder.owner.species.siemens_coefficient > 0)
