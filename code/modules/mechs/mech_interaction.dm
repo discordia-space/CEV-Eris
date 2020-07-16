@@ -464,6 +464,6 @@
 		to_chat(user, SPAN_WARNING("This part is already fully repaired."))
 		return FALSE
 	if(!maintenance_protocols)
-		to_chat(user, SPAN_WARNING("You cannot repair \the [src] white maintenance protocols are disabled."))
+		to_chat(user, SPAN_WARNING("You cannot repair \the [src] while maintenance protocols are disabled."))
 		return FALSE
 	return TRUE
