@@ -475,8 +475,9 @@
 
 /datum/chemical_reaction/mindwipe
 	result = "mindwipe"
-	required_reagents = list("mindbreaker" = 1, "psilocybin" = 1, "sanguinum" = 1 , "anti_toxin" = 1, "ethanol" = 1)
-	result_amount = 5
+	required_reagents = list("mindbreaker" = 1, "anti_toxin" = 1, "ethanol" = 1)
+	catalysts = list("whiskey" = 5)
+	result_amount = 1
 
 /datum/chemical_reaction/lipozine
 	result = "lipozine"
