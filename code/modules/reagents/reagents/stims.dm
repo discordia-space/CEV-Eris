@@ -16,12 +16,14 @@
 	nerve_system_accumulations = 15
 
 /datum/reagent/stim/stim/mbr/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "mbr")
-	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "mbr")
+	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "mbr")
+	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "mbr")
+	sanity_gain = 1
 
 /datum/reagent/stim/stim/mbr/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "mbr_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "mbr_w")
+	sanity_gain = -1.5
 
 /datum/reagent/stim/mbr/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(5))
@@ -45,13 +47,15 @@
 	addiction_chance = 30
 
 /datum/reagent/stim/cherrydrops/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_COG, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "cherrydrops")
-	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "cherrydrops")
+	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "cherrydrops")
+	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "cherrydrops")
+	sanity_gain = 1
 
 /datum/reagent/stim/cherrydrops/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "cherrydrops_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "cherrydrops_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "cherrydrops_w")
+	sanity_gain = -1.5
 
 /datum/reagent/stim/cherrydrops/overdose(var/mob/living/carbon/M, var/alien)
 	M.apply_effect(3, STUTTER)
@@ -68,13 +72,15 @@
 	addiction_chance = 20
 
 /datum/reagent/stim/pro_surgeon/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pro_surgeon")
-	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "pro_surgeon")
+	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pro_surgeon")
+	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pro_surgeon")
+	sanity_gain = 1
 
 /datum/reagent/stim/pro_surgeon/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "proSurgeon_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "proSurgeon_w")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "proSurgeon_w")
+	sanity_gain = -1.5
 
 /datum/reagent/stim/pro_surgeon/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(5 - (5 * M.stats.getMult(STAT_TGH))))
@@ -96,14 +102,16 @@
 	addiction_chance = 30
 
 /datum/reagent/stim/violence/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "violence")
-	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "violence")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "violence")
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "violence")
 	M.add_chemical_effect(CE_PULSE, 1)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, rand(3,4))
+	sanity_gain = 1
 
 /datum/reagent/stim/violence/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "violence_w")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "violence_w")
+	sanity_gain = -1
 
 /datum/reagent/stim/violence/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustCloneLoss(5)
@@ -122,12 +130,14 @@
 	addiction_chance = 20
 
 /datum/reagent/stim/bouncer/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "bouncer")
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "bouncer")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "bouncer")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "bouncer")
+	sanity_gain = 1
 
 /datum/reagent/stim/bouncer/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "bouncer_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "bouncer_w")
+	sanity_gain = -1.5
 
 /datum/reagent/stim/bouncer/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(5 - (3 * M.stats.getMult(STAT_TGH))))
@@ -146,14 +156,16 @@
 	addiction_chance = 20
 
 /datum/reagent/stim/steady/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "steady")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "steady")
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "steady")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "steady")
+	sanity_gain = 1
 
 /datum/reagent/stim/steady/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "steady_w")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "steady_w")
 	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(5)
+	sanity_gain = -1.5
 
 /datum/reagent/stim/steady/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(80 - (30 * M.stats.getMult(STAT_TGH))))
@@ -175,14 +187,16 @@
 	addiction_chance = 30
 
 /datum/reagent/stim/machine_spirit/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "machine_spirit")
-	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "machine_spirit")
-	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "machine_spirit")
+	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "machine_spirit")
+	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "machine_spirit")
+	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "machine_spirit")
+	sanity_gain = 1.25
 
 /datum/reagent/stim/machine_spirit/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "machineSpirit_w")
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "machineSpirit_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "machineSpirit_w")
+	sanity_gain = -1.75
 
 /datum/reagent/stim/machine_spirit/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(5))
@@ -206,15 +220,17 @@
 	addiction_chance = 40
 
 /datum/reagent/stim/grape_drops/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "grape_drops")
-	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "grape_drops")
-	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "grape_drops")
+	M.stats.addTempStat(STAT_COG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "grape_drops")
+	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "grape_drops")
+	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "grape_drops")
+	sanity_gain = 1.25
 
 /datum/reagent/stim/grape_drops/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "grapeDrops_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "grapeDrops_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "grapeDrops_w")
 	M.add_side_effect("Headache", 11)
+	sanity_gain = -1.75
 
 /datum/reagent/stim/grape_drops/overdose(var/mob/living/carbon/M, var/alien)
 	M.slurring = max(M.slurring, 30)
@@ -232,9 +248,10 @@
 	addiction_chance = 30
 
 /datum/reagent/stim/ultra_surgeon/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "ultra_surgeon")
-	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "ultra_surgeon")
-	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "ultra_surgeon")
+	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "ultra_surgeon")
+	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "ultra_surgeon")
+	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "ultra_surgeon")
+	sanity_gain = 1.25
 
 /datum/reagent/stim/ultra_surgeon/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "ultraSurgeon_w")
@@ -242,6 +259,7 @@
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "ultraSurgeon_w")
 	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
+	sanity_gain = -1.75
 
 /datum/reagent/stim/ultra_surgeon/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(80 - (20 * M.stats.getMult(STAT_TGH))))
@@ -262,9 +280,10 @@
 	addiction_chance = 40
 
 /datum/reagent/stim/violence_ultra/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "violence_ultra")
-	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "violence_ultra")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "violence_ultra")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "violence_ultra")
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "violence_ultra")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "violence_ultra")
+	sanity_gain = 1.25
 
 /datum/reagent/stim/violence_ultra/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "violenceUltra_w")
@@ -273,6 +292,7 @@
 	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	M.adjustNutrition(-5)
+	sanity_gain = -1.75
 
 /datum/reagent/stim/violence_ultra/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustCloneLoss(5)
@@ -291,13 +311,15 @@
 	addiction_chance = 30
 
 /datum/reagent/stim/boxer/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "boxer")
-	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "boxer")
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "boxer")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "boxer")
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "boxer")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "boxer")
+	sanity_gain = 1.25
 
 /datum/reagent/stim/boxer/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "boxer_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "boxer_w")
+	sanity_gain = -1.75
 
 /datum/reagent/stim/boxer/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(8 - (3 * M.stats.getMult(STAT_TGH))))
@@ -316,15 +338,17 @@
 	addiction_chance = 40
 
 /datum/reagent/stim/turbo/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "turbo")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "turbo")
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "turbo")
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "turbo")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "turbo")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "turbo")
+	sanity_gain = 1.25
 
 /datum/reagent/stim/turbo/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "turbo_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "turbo_w")
 	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
+	sanity_gain = -1.75
 
 /datum/reagent/stim/turbo/overdose(var/mob/living/carbon/M, var/alien)
 	if(prob(80 - (30 * M.stats.getMult(STAT_TGH))))
@@ -348,12 +372,13 @@
 	addiction_chance = 50
 
 /datum/reagent/stim/party_drops/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
-	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
-	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
-	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "party_drops")
-	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "party_drops")
-	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "party_drops")
+	M.stats.addTempStat(STAT_MEC, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "party_drops")
+	M.stats.addTempStat(STAT_BIO, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "party_drops")
+	M.stats.addTempStat(STAT_COG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "party_drops")
+	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
+	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
+	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "party_drops")
+	sanity_gain = 1
 
 /datum/reagent/stim/party_drops/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "partyDrops_w")
@@ -361,6 +386,7 @@
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "partyDrops_w")
 	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
+	sanity_gain = -2
 
 /datum/reagent/stim/party_drops/overdose(var/mob/living/carbon/M, var/alien)
 	M.adjustBrainLoss(2)
@@ -380,14 +406,15 @@
 	addiction_chance = 70
 
 /datum/reagent/stim/menace/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
-	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
-	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
-	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "menace")
-	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "menace")
-	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC * effect_multiplier, STIM_TIME, "menace")
+	M.stats.addTempStat(STAT_VIG, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "menace")
+	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "menace")
+	M.stats.addTempStat(STAT_ROB, STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "menace")
+	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
+	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
+	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
 	M.slurring = max(M.slurring, 30)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, 4)
+	sanity_gain = 1
 
 /datum/reagent/stim/menace/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, STIM_TIME, "menace_w")
@@ -396,6 +423,7 @@
 	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	M.adjustNutrition(-7)
+	sanity_gain = -2
 
 /datum/reagent/stim/menace/overdose(var/mob/living/carbon/M, var/alien)
 	M.slurring = max(M.slurring, 50)
