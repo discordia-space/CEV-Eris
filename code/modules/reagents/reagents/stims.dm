@@ -4,6 +4,7 @@
 	constant_metabolism = TRUE
 	reagent_type = "Stimulator"
 
+	var/sanity_gain
 
 /datum/reagent/stim/mbr
 	name = "Machine binding ritual"
