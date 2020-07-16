@@ -18,6 +18,10 @@
 	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 1)
 
+/datum/reagent/medicine/inaprovaline/sleeper
+	name = "Synth-Inaprovaline"
+	id = "inaprovaline2"
+
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
@@ -90,10 +94,6 @@
 	M.add_chemical_effect(CE_ANTITOX, 1)
 	holder.remove_reagent("pararein", 0.2 )
 	holder.remove_reagent("blattedin", 0.2 )
-
-/datum/reagent/medicine/dylovene/sleeper
-	name = "Synth-Dylovene"
-	id = "anti_toxin2"
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
