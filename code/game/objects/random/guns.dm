@@ -40,14 +40,14 @@
 				/obj/item/weapon/gun/projectile/revolver/deckard = 2,\
 				/obj/item/weapon/gun/projectile/automatic/wintermute = 1,\
 				/obj/item/weapon/gun/projectile/automatic/sol = 1,\
-				/obj/item/weapon/gun/projectile/automatic/ak/fs = 1,\
+				/obj/item/weapon/gun/projectile/automatic/ak47/fs = 1,\
 				/obj/item/weapon/gun/projectile/automatic/molly = 2,\
 				/obj/item/weapon/gun/projectile/automatic/straylight = 1,\
 				/obj/item/weapon/gun/projectile/automatic/c20r = 1,\
 				/obj/item/weapon/gun/energy/gun = 2,\
 				/obj/item/weapon/gun/energy/laser = 2,\
 				/obj/item/weapon/gun/energy/plasma/cassad = 2,
-				/obj/item/weapon/gun/energy/plasma/ionrifle))
+				/obj/item/weapon/gun/energy/ionrifle))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"
