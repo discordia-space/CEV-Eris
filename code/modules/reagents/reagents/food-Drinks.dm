@@ -45,7 +45,7 @@
 	// Small bodymass, more effect from lower volume.
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier)) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-	M.heal_organ_damage(0.6 * effect_multiplier, 0, 5 * effect_multiplier)
+	M.heal_organ_damage(0.25 * effect_multiplier, 0, 5 * effect_multiplier)
 
 /datum/reagent/organic/nutriment/glucose
 	name = "Glucose"
