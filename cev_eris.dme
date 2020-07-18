@@ -2227,6 +2227,7 @@
 #include "code\modules\projectiles\guns\energy\floragun.dm"
 #include "code\modules\projectiles\guns\energy\ionrifle.dm"
 #include "code\modules\projectiles\guns\energy\laser.dm"
+#include "code\modules\projectiles\guns\energy\lasersmg.dm"
 #include "code\modules\projectiles\guns\energy\lasertag.dm"
 #include "code\modules\projectiles\guns\energy\mindflayer.dm"
 #include "code\modules\projectiles\guns\energy\nuclear.dm"
