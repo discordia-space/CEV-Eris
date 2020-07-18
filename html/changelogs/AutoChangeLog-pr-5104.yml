@@ -1,0 +1,8 @@
+author: DarkLevel
+delete-after: true
+changes:
+  - bugfix: Last Shelter will now work normally.
+  - bugfix: Fixing last shelter place.
+  - bugfix: Fixing random wave radio runtime errors.
+  - bugfix: Fixing Enforcer infinity stat exploit.
+  - bugfix: Fixing Maneki Neko to work more stable.
