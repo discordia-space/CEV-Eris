@@ -316,10 +316,7 @@
 			to_chat(user, SPAN_WARNING("Wiring on this part is already repaired."))
 			return TRUE
 		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
-		if(do_mob(user, src, 30))
-			coil.amount -= 5
-			if(coil.amount == 0)
-				qdel(coil)
+		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
 
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING)
