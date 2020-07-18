@@ -1,0 +1,6 @@
+author: Kurgis
+delete-after: true
+changes:
+  - bugfix: The undocumented change which broke directions to antag stashes has been
+      fixed. Additionally, image stashes will no longer keep spawning despite their
+      photos being removed.
