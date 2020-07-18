@@ -198,6 +198,11 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
+/obj/item/weapon/rig/handle_atom_del(atom/A)
+	if(A == cell) // Clear a cell that has, most likely, exploded
+		cell = null
+	..()
+
 /obj/item/weapon/rig/proc/suit_is_deployed()
 	if(!istype(wearer) || loc != wearer || wearer.back != src)
 		return 0
