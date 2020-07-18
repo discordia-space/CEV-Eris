@@ -1,7 +1,7 @@
 
 /obj/item/weapon/gun/energy/lasersmg
 	name = "Disco Vazer \"Lasblender\""
-	desc = "This conversion of the \"Atreides\" enables it to shoot lasers. However, the process of creating a laser is based on localized micro-explosions in a chain reaction.\
+	desc = "This conversion of the \"Atreides\" enables it to shoot lasers. Unlike in other laser weapons, the process of creating a laser is based on a chain reaction of localized micro-explosions.\
                         While this method is charge-effective, it worsens accuracy, and the chain-reaction makes the gun always fire in bursts. \
                         sometimes jokingly called the \"Disco Vazer\""
 	icon = 'icons/obj/guns/energy/lasersmg.dmi'
@@ -32,7 +32,7 @@
 
 
 /obj/item/weapon/gun/energy/lasersmg/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
-	projectile_color = pick(list("#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF"))
+	projectile_color = pick(list("#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000"))
 	..()
 	return..()
 
