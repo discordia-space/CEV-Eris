@@ -1,8 +1,8 @@
 
 /obj/item/weapon/gun/energy/lasersmg
 	name = "Disco Vazer \"Lasblender\""
-	desc = "A conversion of the \"Atreides\" SMG into a laser gun. The process of creating a laser is based on localized micro-explosions in a chain reaction.\
-                        While this approach is charge-effective, both the explosions and the improvised nature of the gun worsen accuracy, and the chain-reaction  allows for neither control of kickback nor conserving charge. \
+	desc = "This conversion of the \"Atreides\" enables it to shoot lasers. However, the process of creating a laser is based on localized micro-explosions in a chain reaction.\
+                        While this method is charge-effective, it worsens accuracy, and the chain-reaction makes the gun always fire in bursts. \
                         sometimes jokingly called the \"Disco Vazer\""
 	icon = 'icons/obj/guns/energy/lasersmg.dmi'
 	icon_state = "lasersmg"
