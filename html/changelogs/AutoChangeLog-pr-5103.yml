@@ -1,0 +1,5 @@
+author: Kurgis
+delete-after: true
+changes:
+  - balance: Command stashes will only give personalized landmark directions to their
+      loot now, and won't ever provide exact coordinates.
