@@ -1,0 +1,5 @@
+author: GrayRachnid
+delete-after: true
+changes:
+  - rscadd: Tricord to sleepers.
+  - balance: Tricord can no longer be mixed in sleepers.
