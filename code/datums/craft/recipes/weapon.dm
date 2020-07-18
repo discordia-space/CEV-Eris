@@ -88,7 +88,7 @@
 
 /datum/craft_recipe/weapon/nailed_bat
 	name = "nailed bat"
-	result = /obj/item/weapon/melee/nailstick
+	result = /obj/item/weapon/tool/nailstick
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
 		list(/obj/item/stack/rods, 3, "time" = 50)

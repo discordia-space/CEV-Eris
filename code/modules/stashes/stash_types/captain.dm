@@ -12,7 +12,7 @@
 	contents_list_random = list(/obj/item/clothing/head/space/capspace = 70,
 	/obj/item/clothing/suit/space/captain = 70,
 	/obj/item/weapon/tank/jetpack/oxygen = 55,
-	/obj/item/weapon/melee/chainofcommand = 65,
+	/obj/item/weapon/tool/chainofcommand = 65,
 	/obj/item/weapon/reagent_containers/food/drinks/flask = 50,
 	/obj/item/weapon/gun/energy/captain = 65,
 	/obj/item/weapon/card/id/captains_spare = 10,
