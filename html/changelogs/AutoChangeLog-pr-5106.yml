@@ -1,0 +1,5 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: The Chain of Command and the "Nailstick" are now both tools, and accept
+      tool mods.
