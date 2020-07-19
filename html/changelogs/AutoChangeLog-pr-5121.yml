@@ -1,0 +1,5 @@
+author: Smokingsquirrel
+delete-after: true
+changes:
+  - rscadd: Added new medical sprites
+  - code_imp: code for medical hat and shoes, added some attire to medical lockers
