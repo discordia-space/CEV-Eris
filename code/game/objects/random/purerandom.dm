@@ -25,7 +25,7 @@
 				/obj/item/weapon/tool/pickaxe = 3,
 				/obj/item/weapon/pen = 3,
 				/obj/item/weapon/storage/box/donkpockets = 3,
-				/obj/item/weapon/locator = 2,
+				/obj/item/device/gps/locator = 2,
 				/obj/item/weapon/dice = 3,
 				/obj/item/weapon/clipboard = 2,
 				/obj/item/weapon/airlock_electronics = 3,
