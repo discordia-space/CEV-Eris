@@ -42,8 +42,8 @@
 	name = "SDF SC \"Schrapnell\""
 	desc = "An energy-based shotgun, employing a matter fabricator to pull shotgun rounds from thin air and energy."
 	icon_state = "shrapnel"
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
 	consume_cell = FALSE
