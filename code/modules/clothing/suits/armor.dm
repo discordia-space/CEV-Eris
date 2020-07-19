@@ -334,6 +334,21 @@
 	price_tag = 600
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 
+//Makeshift chest rig. Uses the merc path to allow it to have 4 pockets without making more clutter.
+/obj/item/clothing/suit/storage/vest/merc/chestrig
+	name = "makeshift chest rig"
+	desc = A makeshift chest rig made to carry some stuff, probably has little protective value."
+	icon_state = "mchestrig"
+	item_state = "mchesrrig"
+	armor = list(
+		melee = 10,
+		bullet = 5,
+		energy = 5,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
+
 /*
  * Reactive Armor
  */
