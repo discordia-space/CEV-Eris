@@ -1,0 +1,5 @@
+author: ACCount
+delete-after: true
+changes:
+  - balance: Robot energy guns no longer have infinite charges - they now draw charge
+      from robot's cell and take time to recharge
