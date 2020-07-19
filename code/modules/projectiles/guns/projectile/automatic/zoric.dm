@@ -2,7 +2,7 @@
 	name = "SA SMG .40 Magnum \"Zoric\""
 	desc = "A Heavy Submachine Gun made by \"Serbian Arms\", for paramilitary and private security use. \
 			Rifled to take a larger caliber than a typical submachine gun, it boasts a greater impact, but suffers \
-			from poor recoil control and horrible armor penetration capabilities as a result. \
+			from poor recoil control and worse than average armor penetration capabilities as a result. \
 			Has worse than average fire rate. Uses .40 Magnum rounds."
 	icon = 'icons/obj/guns/projectile/zoric.dmi'
 	icon_state = "zoric"
@@ -15,9 +15,9 @@
 	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
-	damage_multiplier = 1		 //32 lethal, 35 HV //damage
-	penetration_multiplier = 0.2 //3  lethal, 4  HV //AP
-	recoil_buildup = 8
+	damage_multiplier = 1.2		 // 40.8 lethal, this is a serb-tier gun.
+	penetration_multiplier = 0.6 //9 lethal
+	recoil_buildup = 4 
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
 
