@@ -18,8 +18,9 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 0.8
-	recoil_buildup = 30
+	damage_multiplier = 1.2 
+	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
+	recoil_buildup = 15 // at least somewhat controllable
 	one_hand_penalty = 20 //automatic shotgun level
 
 				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
