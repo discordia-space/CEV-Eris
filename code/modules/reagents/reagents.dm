@@ -37,7 +37,7 @@
 	var/glass_center_of_mass = null
 	var/color = "#000000"
 	var/color_weight = 1
-	var/sanity_gain = 0
+	var/sanity_gain
 
 	var/chilling_point
 	var/chilling_message = "crackles and freezes!"
