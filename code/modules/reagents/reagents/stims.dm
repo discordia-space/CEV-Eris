@@ -1,6 +1,3 @@
-/datum/reagent
-	var/sanity_gain
-
 /datum/reagent/stim
 	scannable = 1
 	metabolism = REM/4
