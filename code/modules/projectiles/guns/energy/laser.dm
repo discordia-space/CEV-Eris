@@ -11,7 +11,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	zoom_factor = 0.4
-	damage_multiplier = 1.2
+	damage_multiplier = 1.3
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
