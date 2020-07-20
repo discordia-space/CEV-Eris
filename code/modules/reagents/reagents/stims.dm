@@ -1,10 +1,12 @@
+/datum/reagent
+	var/sanity_gain
+
 /datum/reagent/stim
 	scannable = 1
 	metabolism = REM/4
 	constant_metabolism = TRUE
 	reagent_type = "Stimulator"
 
-	var/sanity_gain
 
 /datum/reagent/stim/mbr
 	name = "Machine binding ritual"
