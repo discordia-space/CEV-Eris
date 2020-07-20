@@ -1,7 +1,6 @@
 /* Drugs */
 /datum/reagent/drug
 	reagent_type = "Drug"
-	sanity_gain = 0.5
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain)
@@ -216,8 +215,6 @@
 	withdrawal_threshold = 10
 	nerve_system_accumulations = 55
 	reagent_type = "Drug/Stimulator"
-	sanity_gain = 0
-
 
 /datum/reagent/drug/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(5))
