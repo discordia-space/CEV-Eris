@@ -10,6 +10,8 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 
+	charge_per_use = 3
+
 	var/mode = 1
 
 	window_width = 600
@@ -42,7 +44,7 @@
 
 	if ((CLUMSY in user.mutations) && prob(50))
 		. = list()
-		
+
 		user.visible_message(SPAN_NOTICE("\The [user] runs \the [scanner] over the floor."))
 		. += span("highlight", "<b>Scan results for the floor:</b>")
 		. += span("highlight", "Overall Status: Healthy")
