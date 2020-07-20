@@ -288,7 +288,7 @@
 /datum/chemical_reaction/nicotine
     result = "nicotine"
     required_reagents = list("toxin" = 1, "carbon" = 1, "capsaicin" = 1, "mercury" = 1)
-    result_amount = 4
+    result_amount = 8
 
 /datum/chemical_reaction/lube
 	result = "lube"
