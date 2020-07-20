@@ -12,6 +12,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	zoom_factor = 0.4
 	damage_multiplier = 1.3
+	charge_cost = 50
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
@@ -28,6 +29,7 @@
 	twohanded = FALSE
 	zoom_factor = 0
 	damage_multiplier = 1
+	charge_cost = 100
 
 /obj/item/weapon/gun/energy/laser/mounted/blitz
 	name = "SDF LR \"Strahl\""
@@ -36,6 +38,7 @@
 	charge_meter = FALSE
 	zoom_factor = 0
 	damage_multiplier = 1
+	charge_cost = 100
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
@@ -60,6 +63,7 @@ obj/item/weapon/gun/energy/retro
 	fire_delay = 10 //old technology
 	zoom_factor = 0
 	damage_multiplier = 1
+	charge_cost = 100
 	price_tag = 2000
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -84,6 +88,7 @@ obj/item/weapon/gun/energy/retro
 	damage_multiplier = 1
 	origin_tech = null
 	self_recharge = TRUE
+	charge_cost = 100
 	price_tag = 4500
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -126,3 +131,4 @@ obj/item/weapon/gun/energy/retro
 	twohanded = FALSE
 	zoom_factor = 0
 	damage_multiplier = 1
+	charge_cost = 100
