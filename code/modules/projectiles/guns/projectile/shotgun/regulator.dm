@@ -11,6 +11,6 @@
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
 	price_tag = 1500
 	damage_multiplier = 1.15
-	penetration_multiplier = 0.7
+	penetration_multiplier = 0.9
 	recoil_buildup = 16
 	one_hand_penalty = 15 //full sized shotgun level
