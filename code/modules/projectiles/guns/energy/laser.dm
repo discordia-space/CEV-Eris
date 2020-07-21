@@ -10,7 +10,7 @@
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
-	zoom_factor = 0.4
+	zoom_factor = 0.5
 	damage_multiplier = 1.3
 	charge_cost = 50
 	price_tag = 2500
