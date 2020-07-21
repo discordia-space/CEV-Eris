@@ -12,6 +12,7 @@
 	req_admin_notify = 1
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 25)
 	wage = WAGE_COMMAND
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	ideal_character_age = 50
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/exultant
@@ -67,6 +68,7 @@ Your second loyalty is to your clan. Ensure they are paid, fed and safe. Don't r
 	supervisors = "the Technomancer Exultant"
 	selection_color = "#d5c88f"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 100, LANGUAGE_SERBIAN = 5)
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	wage = WAGE_PROFESSIONAL
 
 	outfit_type = /decl/hierarchy/outfit/job/engineering/engineer

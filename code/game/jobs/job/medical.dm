@@ -70,6 +70,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/doctor
@@ -131,6 +132,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_PROFESSIONAL
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/chemist
@@ -182,6 +184,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	total_positions = 1
 	spawn_positions = 1
 	wage = WAGE_PROFESSIONAL
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
@@ -222,6 +225,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_LABOUR_HAZARD
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic

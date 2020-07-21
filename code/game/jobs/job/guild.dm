@@ -75,6 +75,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	selection_color = "#c3b9a6"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 	wage = WAGE_LABOUR_DUMB
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	department_account_access = TRUE
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
 
@@ -127,6 +128,7 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	wage = WAGE_LABOUR_HAZARD //The miners union is stubborn
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/mining

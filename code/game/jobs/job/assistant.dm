@@ -9,6 +9,7 @@
 	supervisors = "anyone who pays you"
 	selection_color = "#dddddd"
 	initial_balance	= 800
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	wage = WAGE_NONE //Get a job ya lazy bum
 	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
 	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5)

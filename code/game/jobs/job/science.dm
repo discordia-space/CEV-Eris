@@ -68,6 +68,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	//alt_titles = list("Moebius Xenobiologist")
@@ -128,6 +129,7 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
+	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels)
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
