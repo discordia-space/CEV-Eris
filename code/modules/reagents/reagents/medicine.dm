@@ -9,7 +9,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#00BFFF"
-	overdose = REAGENTS_OVERDOSE * 2
+	overdose = 60
 	metabolism = REM * 0.5
 	scannable = 1
 
@@ -17,6 +17,11 @@
 	M.add_chemical_effect(CE_STABLE)
 	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 1)
+		
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.heal_organ_damage(-0.6 * effect_multiplier, 0, -5 * effect_multiplier)
+	}
 
 /datum/reagent/medicine/inaprovaline/sleeper
 	name = "Synth-Inaprovaline"
@@ -30,12 +35,17 @@
 	taste_mult = 3
 	reagent_state = LIQUID
 	color = "#BF0000"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.heal_organ_damage(0.6 * effect_multiplier, 0, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.15)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.heal_organ_damage(-0.6 * effect_multiplier, 0, -5 * effect_multiplier)
+	}
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -45,11 +55,15 @@
 	taste_mult = 3
 	reagent_state = LIQUID
 	color = "#E6666C"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 /datum/reagent/medicine/meralyne/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.heal_organ_damage(1.2 * effect_multiplier, 0, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.30)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		}
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
@@ -58,11 +72,15 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFA800"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.heal_organ_damage(0, 0.6 * effect_multiplier, 0, 3 * effect_multiplier)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		}
 
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
@@ -72,11 +90,15 @@
 	taste_mult = 1.5
 	reagent_state = LIQUID
 	color = "#FF8000"
-	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose = 15
 	scannable = 1
 
 /datum/reagent/medicine/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.heal_organ_damage(0, 1.2 * effect_multiplier, 0, 5 * effect_multiplier)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		}
 
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
@@ -95,6 +117,10 @@
 	holder.remove_reagent("pararein", 0.2 )
 	holder.remove_reagent("blattedin", 0.2 )
 
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		}
+
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
 	id = "dexalin"
@@ -102,13 +128,17 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0080FF"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/dexalin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustOxyLoss(-1.5 * effect_multiplier)
 	M.add_chemical_effect(CE_OXYGENATED, 1)
 	holder.remove_reagent("lexorin", 0.2 * effect_multiplier)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		}
 
 /datum/reagent/medicine/dexalinp
 	name = "Dexalin Plus"
@@ -117,13 +147,17 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#0040FF"
-	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose = 15
 	scannable = 1
 
 /datum/reagent/medicine/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustOxyLoss(-30 * effect_multiplier)
 	M.add_chemical_effect(CE_OXYGENATED, 2)
 	holder.remove_reagent("lexorin", 0.3 * effect_multiplier)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		}
 
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
@@ -132,13 +166,21 @@
 	taste_description = "grossness"
 	reagent_state = LIQUID
 	color = "#8040FF"
+	overdose = 60
 	scannable = 1
 
 /datum/reagent/medicine/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	M.adjustOxyLoss(-0.6 * effect_multiplier)
-	M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier)
-	M.adjustToxLoss(-0.3 * effect_multiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
+	if(dose < overdose) {
+		M.adjustOxyLoss(-0.6 * effect_multiplier)
+		M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier)
+		M.adjustToxLoss(-0.3 * effect_multiplier)
+		M.add_chemical_effect(CE_BLOODCLOT, 0.1)
+	}
+	if(dose > overdose) {
+		M.adjustOxyLoss(0.6 * effect_multiplier)
+		M.heal_organ_damage(-0.3 * effect_multiplier, -0.3 * effect_multiplier)
+		M.adjustToxLoss(0.6 * effect_multiplier)
+	}
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -194,9 +236,10 @@
 /datum/reagent/medicine/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 50)
 
-/datum/reagent/medicine/paracetamol/overdose(var/mob/living/carbon/M, var/alien)
-	..()
-	M.druggy = max(M.druggy, 2)
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.druggy = max(M.druggy, 2)
+		}
 
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
@@ -205,7 +248,7 @@
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 	metabolism = 0.02
 	nerve_system_accumulations = 40
@@ -213,13 +256,15 @@
 /datum/reagent/medicine/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 130 )
 
-/datum/reagent/medicine/tramadol/overdose(var/mob/living/carbon/M, var/alien)
-	..()
-	M.hallucination(120, 30)
-	M.slurring = max(M.slurring, 30)
-	M.add_chemical_effect(CE_SPEEDBOOST, -1)
-	if(prob(3 - (2 * M.stats.getMult(STAT_TGH))))
-		M.Stun(3)
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.druggy = max(M.druggy, 2)
+		M.hallucination(120, 30)
+		M.slurring = max(M.slurring, 30)
+		M.add_chemical_effect(CE_SPEEDBOOST, -1)
+		if(prob(3 - (2 * M.stats.getMult(STAT_TGH))))
+			M.Stun(3)
+	}
 
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
@@ -228,7 +273,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#800080"
-	overdose = REAGENTS_OVERDOSE * 0.66
+	overdose = 19.8 // er why was it even 30*0.66 well there must be a reason
 	metabolism = 0.02
 	nerve_system_accumulations = 60
 
@@ -236,14 +281,16 @@
 	M.add_chemical_effect(CE_PAINKILLER, 200)
 	M.druggy = max(M.druggy, 10)
 
-/datum/reagent/medicine/oxycodone/overdose(var/mob/living/carbon/M, var/alien)
-	..()
-	M.hallucination(120, 30)
-	M.druggy = max(M.druggy, 10)
-	M.slurring = max(M.slurring, 30)
-	M.add_chemical_effect(CE_SPEEDBOOST, -1)
-	if(prob(5 - (2 * M.stats.getMult(STAT_TGH))))
-		M.Stun(5)
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.hallucination(120, 30)
+		M.druggy = max(M.druggy, 10)
+		M.slurring = max(M.slurring, 30)
+		M.add_chemical_effect(CE_SPEEDBOOST, -1)
+		if(prob(5 - (2 * M.stats.getMult(STAT_TGH)))) {
+			M.Stun(5)
+		}
+	}
 
 /* Other medicine */
 
@@ -269,6 +316,10 @@
 	M.add_chemical_effect(CE_MIND, 2)
 	M.adjustToxLoss(0.5 * effect_multiplier) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 40)
+	
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
@@ -278,12 +329,16 @@
 	reagent_state = LIQUID
 	color = "#FFFF66"
 	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
 	M.add_chemical_effect(CE_PAINKILLER, 10 * effect_multiplier)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -292,7 +347,7 @@
 	taste_description = "dull toxin"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/imidazoline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -304,6 +359,10 @@
 		if(E && istype(E))
 			if(E.damage > 0)
 				E.damage = max(E.damage - (0.5 * effect_multiplier), 0)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -322,6 +381,10 @@
 		for(var/obj/item/organ/I in H.internal_organs)
 			if((I.damage > 0) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
 				I.heal_damage(((0.2 + I.damage * 0.05) * effect_multiplier), FALSE)
+	
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
@@ -330,7 +393,7 @@
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#004000"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 
 /datum/reagent/medicine/ryetalyn/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/needs_update = M.mutations.len > 0
@@ -343,6 +406,10 @@
 	if(needs_update && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/negative_ling
 	name = "Negative Paragenetic Marker"
@@ -368,7 +435,7 @@
 	description = "A powerful oxidizer that reacts with ethanol."
 	reagent_state = SOLID
 	color = "#605048"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 
 /datum/reagent/medicine/ethylredoxrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.dizziness = 0
@@ -380,6 +447,10 @@
 			if(istype(R, /datum/reagent/ethanol))
 				R.dose = max(R.dose - effect_multiplier, 0)
 
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
+
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
 	id = "hyronalin"
@@ -388,11 +459,15 @@
 	reagent_state = LIQUID
 	color = "#408000"
 	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.radiation = max(M.radiation - (3 * effect_multiplier), 0)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
@@ -401,7 +476,7 @@
 	reagent_state = LIQUID
 	color = "#008000"
 	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -409,6 +484,10 @@
 	M.adjustToxLoss(-(1 + (M.getToxLoss() * 0.05)) * effect_multiplier)
 	if(prob(60))
 		M.take_organ_damage(0.4 * effect_multiplier, 0)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -418,8 +497,13 @@
 	reagent_state = LIQUID
 	color = "#C1C1C1"
 	metabolism = REM * 0.05
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
+
+/datum/reagent/medicine/spaceacillin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/sterilizine
 	name = "Sterilizine"
@@ -455,7 +539,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/leporazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -463,6 +547,10 @@
 		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
 	else if(M.bodytemperature < 311)
 		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT) * effect_multiplier)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /* Antidepressants */
 
@@ -537,7 +625,7 @@
 	taste_description = "sickness"
 	reagent_state = SOLID
 	color = "#669900"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -551,6 +639,11 @@
 		M.make_dizzy(5)
 		M.make_jittery(5)
 
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
+
+
 /datum/reagent/medicine/quickclot
 	name = "Quickclot"
 	id = "quickclot"
@@ -558,7 +651,7 @@
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#a6b85b"
-	overdose = REAGENTS_OVERDOSE/2
+	overdose = 15
 	metabolism = REM/2
 
 /datum/reagent/medicine/quickclot/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
@@ -570,8 +663,10 @@
 				if(W.internal)
 					W.heal_damage(5 * effect_multiplier)
 
-/datum/reagent/medicine/quickclot/overdose(var/mob/living/carbon/M, var/alien)
-	M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.add_chemical_effect(CE_BLOODCLOT, min(1, 0.20))
+	}
 
 /datum/reagent/medicine/ossisine
 	name = "Ossisine"
@@ -580,7 +675,7 @@
 	taste_description = "calcium"
 	reagent_state = LIQUID
 	color = "#660679"
-	overdose = REAGENTS_OVERDOSE/2
+	overdose = 15
 
 /datum/reagent/medicine/ossisine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.paralysis = max(M.paralysis, 5)
@@ -598,8 +693,10 @@
 				M.pain(E.name, 60, TRUE)
 				dose = 0
 
-/datum/reagent/medicine/ossisine/overdose(var/mob/living/carbon/M, var/alien)
-	M.adjustCloneLoss(2)
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.adjustCloneLoss(2)
+	}
 
 /datum/reagent/medicine/noexcutite
 	name = "Noexcutite"
@@ -608,11 +705,15 @@
 	taste_description = "numbing coldness"
 	reagent_state = LIQUID
 	color = "#bc018a"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 
 /datum/reagent/medicine/noexcutite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.make_jittery(-50)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 
 /datum/reagent/medicine/kyphotorin
@@ -622,7 +723,7 @@
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#7d88e6"
-	overdose = REAGENTS_OVERDOSE * 0.66
+	overdose = 19.8 // er why was it even 30*0.66 well there must be a reason
 
 /datum/reagent/medicine/kyphotorin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	var/mob/living/carbon/human/H = M
@@ -640,8 +741,10 @@
 	if(prob(10))
 		M.take_organ_damage(pick(0,5))
 
-/datum/reagent/medicine/kyphotorin/overdose(var/mob/living/carbon/M, var/alien)
-	M.adjustCloneLoss(4)
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.adjustCloneLoss(4)
+	}
 
 /datum/reagent/medicine/polystem
 	name = "Polystem"
@@ -653,14 +756,16 @@
 	color = "#ded890"
 	scannable = 1
 	metabolism = REM/2
-	overdose = REAGENTS_OVERDOSE - 10
+	overdose = 20
 
 /datum/reagent/medicine/polystem/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.heal_organ_damage(0.2 * effect_multiplier, 0, 3 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1 * effect_multiplier))
 
-/datum/reagent/medicine/polystem/overdose(var/mob/living/carbon/M, var/alien)
-	M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1))
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+		M.add_chemical_effect(CE_BLOODCLOT, min(1,0.1))
+	}
 
 /datum/reagent/medicine/detox
 	name = "Detox"
@@ -669,13 +774,17 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#229e08"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	scannable = 1
 	metabolism = REM/2
 
 /datum/reagent/medicine/detox/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(M.metabolism_effects.nsa_threshold == initial(M.metabolism_effects.nsa_threshold))
 		M.metabolism_effects.nsa_threshold += rand(20, 60)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/detox/on_mob_delete(mob/living/L)
 	..()
@@ -701,6 +810,10 @@
 /datum/reagent/medicine/purger/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_PURGER, 1)
 
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
+
 /datum/reagent/medicine/addictol
 	name = "Addictol"
 	id = "addictol"
@@ -720,6 +833,10 @@
 			C.metabolism_effects.addiction_list.Remove(R)
 			qdel(R)
 
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
+
 /datum/reagent/medicine/addictol/on_mob_delete(mob/living/L)
 	..()
 	var/mob/living/carbon/C = L
@@ -734,12 +851,16 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#88336f"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 20
 	scannable = 1
 	metabolism = REM/2
 
 /datum/reagent/medicine/aminazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.add_chemical_effect(CE_NOWITHDRAW, 1)
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}
 
 /datum/reagent/medicine/haloperidol
 	name = "Haloperidol"
@@ -748,7 +869,7 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#ba1f04"
-	overdose = REAGENTS_OVERDOSE/2
+	overdose = 15
 	scannable = 1
 	metabolism = REM/2
 
@@ -776,8 +897,9 @@
 		M.drowsyness = max(M.drowsyness, 60)
 	M.add_chemical_effect(CE_PULSE, -1)
 
-/datum/reagent/medicine/haloperidol/overdose(var/mob/living/carbon/M, var/alien)
-	M.adjustToxLoss(6)
+	if(dose > overdose) {
+		M.adjustToxLoss(6)
+	}
 
 /datum/reagent/medicine/vomitol
 	name = "Vomitol"
@@ -786,10 +908,14 @@
 	taste_description = "worst thing in the world"
 	reagent_state = LIQUID
 	color = "#a6b85b"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	heating_point = 683.15
 	heating_products = list("carbon", "hclacid", "acetone")
 
 /datum/reagent/medicine/vomitol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	if(prob(10 * effect_multiplier))
 		M.vomit()
+
+	if(dose > overdose) {
+		M.adjustToxLoss(REM)
+	}

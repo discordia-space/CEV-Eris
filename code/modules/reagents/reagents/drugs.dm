@@ -20,7 +20,7 @@
 	reagent_state = LIQUID
 	color = "#60A584"
 	metabolism = REM * 0.5
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	addiction_chance = 100
 	sanity_gain = 1.5
 
@@ -33,6 +33,10 @@
 	M.add_chemical_effect(CE_PULSE, -1)
 	..()
 
+		if(dose > overdose) {
+		M.adjustToxLoss(2*REM)  //drugs should be more toxic.. right?? right? ... not really
+	}
+
 
 /datum/reagent/drug/serotrotium
 	name = "Serotrotium"
@@ -42,7 +46,7 @@
 	reagent_state = LIQUID
 	color = "#202040"
 	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	addiction_threshold = 20
 	addiction_chance = 10
 	sanity_gain = 1.5
@@ -51,7 +55,9 @@
 	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "gasp"))
 	..()
-
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
 
 /datum/reagent/drug/cryptobiolin
 	name = "Cryptobiolin"
@@ -61,13 +67,17 @@
 	reagent_state = LIQUID
 	color = "#000055"
 	metabolism = REM * 0.5
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	sanity_gain = 1
 
 /datum/reagent/drug/cryptobiolin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.make_dizzy(4 * effect_multiplier)
 	M.confused = max(M.confused, 20 * effect_multiplier)
 	..()
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
+
 
 
 /datum/reagent/drug/impedrezene
@@ -77,7 +87,7 @@
 	taste_description = "numbness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	sanity_gain = 1
 
 /datum/reagent/drug/impedrezene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -89,6 +99,10 @@
 	if(prob(10))
 		M.emote("drool")
 	..()
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
+
 
 
 /datum/reagent/drug/mindbreaker
@@ -99,10 +113,14 @@
 	reagent_state = LIQUID
 	color = "#B31008"
 	metabolism = REM * 0.25
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
+
 
 /datum/reagent/drug/mindwipe
 	name = "Mindwipe"
@@ -112,7 +130,7 @@
 	reagent_state = LIQUID
 	color = "#bfff00"
 	metabolism = REM * 0.5
-	overdose = REAGENTS_OVERDOSE
+	overdose = 30
 	nerve_system_accumulations = 90
 	addiction_chance = 30
 	sanity_gain = 2
@@ -133,13 +151,17 @@
 					B.finished = TRUE
 					to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
 
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
+
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
 	description = "A strong psycotropic derived from certain species of mushroom."
 	taste_description = "mushroom"
 	color = "#E700E7"
-	overdose = REAGENTS_OVERDOSE * 0.66
+	overdose = 19.8 // i mean 30*0.66 i'm sure theres a reason. but idk it
 	metabolism = REM * 0.5
 	addiction_chance = 10
 	nerve_system_accumulations = 40
@@ -176,6 +198,10 @@
 			M.emote(pick("twitch", "giggle"))
 
 	..()
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
+
 
 /datum/reagent/drug/nicotine
 	name = "Nicotine"
@@ -184,7 +210,7 @@
 	taste_description = "pepper"
 	reagent_state = LIQUID
 	color = "#181818"
-	overdose = REAGENTS_OVERDOSE/2
+	overdose = 15
 	addiction_chance = 20
 	nerve_system_accumulations = 10
 
@@ -196,14 +222,15 @@
 		M.add_chemical_effect(CE_ANTITOX, 5 * effect_multiplier)
 		M.heal_organ_damage(0.1 * effect_multiplier, 0.1 * effect_multiplier)
 
+	if(dose > overdose) {
+		M.add_side_effect("Headache", 11)
+		if(prob(5))
+			M.vomit()
+		M.adjustToxLoss(0.5)
+	}
+
 /datum/reagent/drug/nicotine/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
-
-/datum/reagent/drug/nicotine/overdose(var/mob/living/carbon/M, var/alien)
-	M.add_side_effect("Headache", 11)
-	if(prob(5))
-		M.vomit()
-	M.adjustToxLoss(0.5)
 
 /datum/reagent/drug/hyperzine
 	name = "Hyperzine"
@@ -213,7 +240,7 @@
 	reagent_state = LIQUID
 	color = "#FF3300"
 	metabolism = REM * 0.2
-	overdose = REAGENTS_OVERDOSE * 0.66
+	overdose = 19.8
 	withdrawal_threshold = 10
 	nerve_system_accumulations = 55
 	reagent_type = "Drug/Stimulator"
@@ -227,6 +254,9 @@
 /datum/reagent/drug/hyperzine/withdrawal_act(mob/living/carbon/M)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	M.add_chemical_effect(CE_PULSE, 1)
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
 
 /datum/reagent/drug/sanguinum
 	name = "Sanguinum"
@@ -246,6 +276,9 @@
 		spawn
 			M.emote("me", 1, "coughs up blood!")
 		M.drip_blood(10)
+	if(dose > overdose) {
+		M.adjustToxLoss(2*REM)
+	}
 
 /datum/reagent/drug/sanguinum/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "sanguinum_w")
