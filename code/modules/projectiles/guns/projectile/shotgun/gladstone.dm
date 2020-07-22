@@ -7,7 +7,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	max_shells = 9 //more shells
 	penetration_multiplier = 1.5 // and good AP
-	stepdelay_multiplier = 0.7 // should have a slightly faster velocity than a normal gun has with the accelerator gun mod
+	proj_step_multiplier = 0.7 // should have a slightly faster velocity than a normal gun has with the accelerator gun mod
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	price_tag = 2000
