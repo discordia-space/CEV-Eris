@@ -151,7 +151,7 @@
 	scannable = 1
 
 /datum/reagent/medicine/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	if(volume < overdose) {
+	if(volume < overdose)
 		M.adjustOxyLoss(-30 * effect_multiplier)
 		M.add_chemical_effect(CE_OXYGENATED, 2)
 		holder.remove_reagent("lexorin", 0.3 * effect_multiplier)
