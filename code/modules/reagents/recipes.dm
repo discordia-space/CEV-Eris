@@ -288,7 +288,7 @@
 /datum/chemical_reaction/nicotine
     result = "nicotine"
     required_reagents = list("toxin" = 1, "carbon" = 1, "capsaicin" = 1, "mercury" = 1)
-    result_amount = 4
+    result_amount = 8
 
 /datum/chemical_reaction/lube
 	result = "lube"
@@ -475,8 +475,9 @@
 
 /datum/chemical_reaction/mindwipe
 	result = "mindwipe"
-	required_reagents = list("mindbreaker" = 1, "psilocybin" = 1, "sanguinum" = 1 , "anti_toxin" = 1, "ethanol" = 1)
-	result_amount = 5
+	required_reagents = list("mindbreaker" = 1, "anti_toxin" = 1, "ethanol" = 1)
+	catalysts = list("whiskey" = 5)
+	result_amount = 1
 
 /datum/chemical_reaction/lipozine
 	result = "lipozine"
@@ -1781,8 +1782,8 @@
 
 /datum/chemical_reaction/mbr
 	result = "machine binding ritual"
-	required_reagents = list("coffee" = 2, "diplopterum" = 1, "sugar" = 1, "ethanol" = 1)
-	result_amount = 5
+	required_reagents = list("coffee" = 1, "carbon" = 1, "sugar" = 1, "ethanol" = 1)
+	result_amount = 4
 	maximum_temperature = 343
 	minimum_temperature = 323
 
@@ -1796,20 +1797,19 @@
 /datum/chemical_reaction/party_drops
 	result = "party drops"
 	required_reagents = list("grape drops" = 1, "machine spirit" = 1, "ultrasurgeon" = 1)
-	catalysts = list("honey" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/cherry_drops
 	result = "cherry drops"
-	required_reagents = list("iron" = 1, "psilocybin" = 1, "plantbgone" = 1)
+	required_reagents = list("iron" = 1, "nicotine" = 1, "vodka" = 1)
 	result_amount = 3
 	maximum_temperature = 333
 	minimum_temperature = 303
 
 /datum/chemical_reaction/grape_drops
 	result = "grape drops"
-	required_reagents = list("honey" = 1, "cherry drops" = 2, "ethanol" = 2)
-	result_amount = 5
+	required_reagents = list("nanites" = 1, "cherry drops" = 1, "ethanol" = 1)
+	result_amount = 3
 	maximum_temperature = 343
 	minimum_temperature = 338
 
@@ -1827,47 +1827,49 @@
 
 /datum/chemical_reaction/noexcutite
 	result = "noexcutite"
-	required_reagents = list("oxycodone" = 1, "anti_toxin" = 1)
+	required_reagents = list("tramadol" = 1, "anti_toxin" = 1)
+	maximum_temperature = 120
+	minimum_temperature = 150
 	result_amount = 2
 
 /datum/chemical_reaction/violence
 	result = "violence"
-	required_reagents = list("blood" = 3, "ammonia" = 1, "gewaltine" = 1)
-	result_amount = 5
+	required_reagents = list("acetone" = 1, "ammonia" = 1, "vodka" = 1)
+	result_amount = 6
 	maximum_temperature = 423
 	minimum_temperature = 393
 
 /datum/chemical_reaction/violence_ultra
 	result = "violence ultra"
-	required_reagents = list("violence" = 1, "fuhrerole" = 1, "hyperzine" = 1)
+	required_reagents = list("violence" = 1, "gewaltine" = 1, "tramadol" = 1)
 	result_amount = 3
 	maximum_temperature = 258
 	minimum_temperature = 243
 
 /datum/chemical_reaction/bouncer
 	result = "bouncer"
-	required_reagents = list("violence" = 1, "fuhrerole" = 1, "hyperzine" = 1)
+	required_reagents = list("inaprovaline" = 1, "vodka" = 1, "tramadol" = 1)
 	result_amount = 3
 	maximum_temperature = 333
 	minimum_temperature = 303
 
 /datum/chemical_reaction/boxer
 	result = "boxer"
-	required_reagents = list("bouncer" = 2, "plasma" = 1, "amatoxin" = 2)
-	result_amount = 5
+	required_reagents = list("bouncer" = 1, "Starkellin" = 1, "toxin" = 1)
+	result_amount = 3
 	maximum_temperature = 328
 	minimum_temperature = 323
 
 /datum/chemical_reaction/steady
 	result = "steady"
-	required_reagents = list("pararein" = 1, "carpotoxin" = 1, "copper" = 1, "hydrazine" = 1)
+	required_reagents = list("nicotine" = 1, "copper" = 1, "tramadol" = 1)
 	result_amount = 4
 	maximum_temperature = 338
 	minimum_temperature = 323
 
 /datum/chemical_reaction/turbo
 	result = "turbo"
-	required_reagents = list("steady" = 1, "adrenaline" = 1, "synaptizine" = 1)
+	required_reagents = list("steady" = 1, "kelotane" = 1, "pararein" = 1)
 	result_amount = 3
 	maximum_temperature = 293
 	minimum_temperature = 288
