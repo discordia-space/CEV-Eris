@@ -183,6 +183,7 @@ There are important things regarding this file:
 	icon_state = "slug"
 	damage_types = list(BRUTE = 54)
 	armor_penetration = 15
+	knockback = 1
 	step_delay = 1.1
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
