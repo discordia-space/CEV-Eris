@@ -33,7 +33,7 @@
 	M.add_chemical_effect(CE_PULSE, -1)
 	..()
 
-		if(dose > overdose) {
+	if(dose > overdose) {
 		M.adjustToxLoss(2*REM)  //drugs should be more toxic.. right?? right? ... not really
 	}
 

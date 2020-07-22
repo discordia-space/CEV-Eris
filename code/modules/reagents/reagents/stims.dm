@@ -304,7 +304,7 @@
 	if(dose > overdose) {
 		if(prob(8 - (3 * M.stats.getMult(STAT_TGH))))
 			M.Stun(rand(2,5))
-		M.bodytemperature += TEMPERATURE_DAMAGE_COEFFICIENT * 1.5)
+		M.bodytemperature += TEMPERATURE_DAMAGE_COEFFICIENT * 1.5
 	}
 
 /datum/reagent/stim/boxer/withdrawal_act(mob/living/carbon/M)
