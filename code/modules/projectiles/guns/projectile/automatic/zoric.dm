@@ -15,9 +15,9 @@
 	mag_well = MAG_WELL_SMG
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
-	damage_multiplier = 1.2		 // 40.8 lethal, this is a serb-tier gun.
-	penetration_multiplier = 0.6 //9 lethal
-	recoil_buildup = 4 
+	damage_multiplier = 1	 // 34 lethal
+	penetration_multiplier = 0.5 // 7.5 lethal
+	recoil_buildup = 7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
 
