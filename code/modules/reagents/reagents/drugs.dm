@@ -25,15 +25,15 @@
 	sanity_gain = 1.5
 
 /datum/reagent/drug/space_drugs/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.druggy = max(M.druggy, 15 * effect_multiplier)
-	if(prob(10 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
-	if(prob(7 * effect_multiplier))
-		M.emote(pick("twitch", "drool", "moan", "giggle"))
-	M.add_chemical_effect(CE_PULSE, -1)
-	..()
-
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.druggy = max(M.druggy, 15 * effect_multiplier)
+		if(prob(10 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+			step(M, pick(cardinal))
+		if(prob(7 * effect_multiplier))
+			M.emote(pick("twitch", "drool", "moan", "giggle"))
+		M.add_chemical_effect(CE_PULSE, -1)
+		..()
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)  //drugs should be more toxic.. right?? right? ... not really
 	}
 
@@ -52,10 +52,11 @@
 	sanity_gain = 1.5
 
 /datum/reagent/drug/serotrotium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(prob(7 * effect_multiplier))
-		M.emote(pick("twitch", "drool", "moan", "gasp"))
-	..()
-	if(dose > overdose) {
+	if(volume < overdose)
+		if(prob(7 * effect_multiplier))
+			M.emote(pick("twitch", "drool", "moan", "gasp"))
+		..()
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
@@ -71,10 +72,11 @@
 	sanity_gain = 1
 
 /datum/reagent/drug/cryptobiolin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.make_dizzy(4 * effect_multiplier)
-	M.confused = max(M.confused, 20 * effect_multiplier)
-	..()
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.make_dizzy(4 * effect_multiplier)
+		M.confused = max(M.confused, 20 * effect_multiplier)
+		..()
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
@@ -91,15 +93,16 @@
 	sanity_gain = 1
 
 /datum/reagent/drug/impedrezene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.jitteriness = max(M.jitteriness - (5 * effect_multiplier), 0)
-	if(prob(80))
-		M.adjustBrainLoss(0.1 * effect_multiplier)
-	if(prob(50))
-		M.drowsyness = max(M.drowsyness, 3 * effect_multiplier)
-	if(prob(10))
-		M.emote("drool")
-	..()
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.jitteriness = max(M.jitteriness - (5 * effect_multiplier), 0)
+		if(prob(80))
+			M.adjustBrainLoss(0.1 * effect_multiplier)
+		if(prob(50))
+			M.drowsyness = max(M.drowsyness, 3 * effect_multiplier)
+		if(prob(10))
+			M.emote("drool")
+		..()
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
@@ -116,8 +119,9 @@
 	overdose = 30
 
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
@@ -136,22 +140,22 @@
 	sanity_gain = 2
 
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
-	M.druggy = max(M.druggy, 5 * effect_multiplier)
-	M.make_jittery(10 * effect_multiplier)
-	M.make_dizzy(10 * effect_multiplier)
-	M.confused = max(M.confused, 20 * effect_multiplier)
-	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
-		step(M, pick(cardinal))
-	if(ishuman(M))
-		var/mob/living/carbon/human/affected = M
-		if(prob(5 * effect_multiplier))
-			for(var/datum/breakdown/B in affected.sanity.breakdowns)
-				if(B)
-					B.finished = TRUE
-					to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
-
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+		M.druggy = max(M.druggy, 5 * effect_multiplier)
+		M.make_jittery(10 * effect_multiplier)
+		M.make_dizzy(10 * effect_multiplier)
+		M.confused = max(M.confused, 20 * effect_multiplier)
+		if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+			step(M, pick(cardinal))
+		if(ishuman(M))
+			var/mob/living/carbon/human/affected = M
+			if(prob(5 * effect_multiplier))
+				for(var/datum/breakdown/B in affected.sanity.breakdowns)
+					if(B)
+						B.finished = TRUE
+						to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
@@ -169,40 +173,39 @@
 	sanity_gain = 1.5
 
 /datum/reagent/drug/psilocybin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.druggy = max(M.druggy, 30 * effect_multiplier)
+	if(volume < overdose)
+		M.druggy = max(M.druggy, 30 * effect_multiplier)
 
-	var/effective_dose = dose
-	if(issmall(M)) effective_dose *= 2
-	if(effective_dose < 1)
-		M.apply_effect(3, STUTTER)
-		M.make_dizzy(5)
-		M.stats.addTempStat(STAT_COG, STAT_LEVEL_BASIC, STIM_TIME, "psilocybin")
-		M.hallucination(50, 50)
-		if(prob(5))
-			M.emote(pick("twitch", "giggle"))
-	else if(effective_dose < 2)
-		M.apply_effect(3, STUTTER)
-		M.make_jittery(5)
-		M.make_dizzy(5)
-		M.druggy = max(M.druggy, 35)
-		if(prob(10))
-			M.emote(pick("twitch", "giggle"))
-	else
-		M.apply_effect(3, STUTTER)
-		M.make_jittery(10)
-		M.make_dizzy(10)
-		M.druggy = max(M.druggy, 40)
-		M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, STIM_TIME, "psilocybin")
-		M.hallucination(100, 50)
-		if(prob(15))
-			M.emote(pick("twitch", "giggle"))
+		var/effective_dose = dose
+		if(issmall(M)) effective_dose *= 2
+		if(effective_dose < 1)
+			M.apply_effect(3, STUTTER)
+			M.make_dizzy(5)
+			M.stats.addTempStat(STAT_COG, STAT_LEVEL_BASIC, STIM_TIME, "psilocybin")
+			M.hallucination(50, 50)
+			if(prob(5))
+				M.emote(pick("twitch", "giggle"))
+		else if(effective_dose < 2)
+			M.apply_effect(3, STUTTER)
+			M.make_jittery(5)
+			M.make_dizzy(5)
+			M.druggy = max(M.druggy, 35)
+			if(prob(10))
+				M.emote(pick("twitch", "giggle"))
+		else
+			M.apply_effect(3, STUTTER)
+			M.make_jittery(10)
+			M.make_dizzy(10)
+			M.druggy = max(M.druggy, 40)
+			M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, STIM_TIME, "psilocybin")
+			M.hallucination(100, 50)
+			if(prob(15))
+				M.emote(pick("twitch", "giggle"))
 
-	..()
-	if(dose > overdose) {
+		..()
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
-
-
 /datum/reagent/drug/nicotine
 	name = "Nicotine"
 	id = "nicotine"
@@ -216,19 +219,18 @@
 
 /datum/reagent/drug/nicotine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.add_chemical_effect(CE_PULSE, 1)
-	M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
-	if(M.stats.getPerk(PERK_CHAINGUN_SMOKER))
-		M.add_chemical_effect(CE_ANTITOX, 5 * effect_multiplier)
-		M.heal_organ_damage(0.1 * effect_multiplier, 0.1 * effect_multiplier)
-
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.add_chemical_effect(CE_PULSE, 1)
+		M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
+		if(M.stats.getPerk(PERK_CHAINGUN_SMOKER))
+			M.add_chemical_effect(CE_ANTITOX, 5 * effect_multiplier)
+			M.heal_organ_damage(0.1 * effect_multiplier, 0.1 * effect_multiplier)
+	if(volume > overdose) {
 		M.add_side_effect("Headache", 11)
 		if(prob(5))
 			M.vomit()
 		M.adjustToxLoss(0.5)
 	}
-
 /datum/reagent/drug/nicotine/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
 
@@ -246,15 +248,22 @@
 	reagent_type = "Drug/Stimulator"
 
 /datum/reagent/drug/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(prob(5))
-		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
-	M.add_chemical_effect(CE_PULSE, 2)
+	if(volume < overdose)
+		if(prob(5))
+			M.emote(pick("twitch", "blink_r", "shiver"))
+		M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
+		M.add_chemical_effect(CE_PULSE, 2)
+	if(volume > overdose) {
+		M.add_side_effect("Headache", 11)
+		if(prob(5))
+			M.vomit()
+		M.adjustToxLoss(5)
+	}
 
 /datum/reagent/drug/hyperzine/withdrawal_act(mob/living/carbon/M)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	M.add_chemical_effect(CE_PULSE, 1)
-	if(dose > overdose) {
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
@@ -271,12 +280,13 @@
 	addiction_chance = 30
 
 /datum/reagent/drug/sanguinum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effect_multiplier)
-	if(prob(2))
-		spawn
-			M.emote("me", 1, "coughs up blood!")
-		M.drip_blood(10)
-	if(dose > overdose) {
+	if(volume < overdose)
+		M.add_chemical_effect(CE_BLOODRESTORE, 1.6 * effect_multiplier)
+		if(prob(2))
+			spawn
+				M.emote("me", 1, "coughs up blood!")
+			M.drip_blood(10)
+	if(volume > overdose) {
 		M.adjustToxLoss(2*REM)
 	}
 
