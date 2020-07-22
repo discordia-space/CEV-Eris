@@ -145,7 +145,6 @@
 	M.adjustOxyLoss(0.6 * effect_multiplier)
 	M.heal_organ_damage(-0.3 * effect_multiplier, -0.3 * effect_multiplier)
 	M.adjustToxLoss(0.3 * effect_multiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
 
 /datum/reagent/medicine/cryoxadone
