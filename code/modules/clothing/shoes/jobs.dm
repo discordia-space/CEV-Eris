@@ -40,6 +40,12 @@
 /obj/item/clothing/shoes/reinforced/ironhammer
 	icon_state = "reinforced_ironhammer"
 
+/obj/item/clothing/shoes/reinforced/medical
+	name = "moebius reinfoced shoes"
+	desc = "Slightly reinforced shoes for moebius medical personnel."
+	icon_state = "medshoes"
+	item_state = "medshoes"
+
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
 	desc = "A pair of steel-toed work boots designed for use in industrial settings. Safety first."

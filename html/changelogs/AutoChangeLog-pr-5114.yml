@@ -1,0 +1,7 @@
+author: 'Fernandos33 '
+delete-after: true
+changes:
+  - tweak: Recipes for stat stimulators changed to be made easier
+  - balance: Withdraws now get sanity debuff (sanity debuff from withdrawing>> than
+      sanity gain using the drug)
+  - balance: Every stat drug will give a small sanity boost, except for hyperzine.

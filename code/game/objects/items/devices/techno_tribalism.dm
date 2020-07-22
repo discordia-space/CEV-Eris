@@ -15,77 +15,43 @@
 /obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(items_count < max_count)
 		if(istype(W, /obj/item/weapon/tool))
-
+			var/useful = FALSE
 			if(W.tool_qualities)
 
 				for(var/quality in W.tool_qualities)
 
 					if(W.tool_qualities[quality] >= 35)
 						var/stat_cost = round(W.tool_qualities[quality] / 15)
-
-						if(quality == QUALITY_BOLT_TURNING)
+						if(quality == QUALITY_BOLT_TURNING || quality == QUALITY_SCREW_DRIVING || quality == QUALITY_CUTTING)
 							oddity_stats[STAT_COG] += stat_cost
+							useful = TRUE
 
-						else if (quality == QUALITY_PULSING)
+						else if (quality == QUALITY_PULSING || quality == QUALITY_ADHESIVE || quality == QUALITY_SEALING)
 							oddity_stats[STAT_MEC] += stat_cost
+							useful = TRUE
 
-						else if (quality == QUALITY_PRYING)
+						else if (quality == QUALITY_PRYING || quality == QUALITY_HAMMERING || quality == QUALITY_DIGGING)
 							oddity_stats[STAT_ROB] += stat_cost
+							useful = TRUE
 
-						else if (quality == QUALITY_WELDING)
+						else if (quality == QUALITY_WELDING || quality == QUALITY_WIRE_CUTTING || quality == QUALITY_SAWING || quality == QUALITY_LASER_CUTTING)
 							oddity_stats[STAT_VIG] += stat_cost
+							useful = TRUE
 
-						else if (quality == QUALITY_SCREW_DRIVING)
-							oddity_stats[STAT_COG] += stat_cost
-
-						else if (quality == QUALITY_WIRE_CUTTING)
-							oddity_stats[STAT_VIG] += stat_cost
-
-						else if (quality == QUALITY_CLAMPING)
+						else if (quality == QUALITY_CLAMPING || quality == QUALITY_CAUTERIZING || quality == QUALITY_RETRACTING || quality == QUALITY_BONE_SETTING)
 							oddity_stats[STAT_BIO] += stat_cost
+							useful = TRUE
 
-						else if (quality == QUALITY_CAUTERIZING)
-							oddity_stats[STAT_BIO] += stat_cost
-
-						else if (quality == QUALITY_RETRACTING)
-							oddity_stats[STAT_BIO] += stat_cost
-
-						else if (quality == QUALITY_DRILLING)
+						else if (quality == QUALITY_DRILLING || quality == QUALITY_SHOVELING || quality == QUALITY_EXCAVATION)
 							oddity_stats[STAT_TGH] += stat_cost
+							useful = TRUE
 
-						else if (quality == QUALITY_HAMMERING)
-							oddity_stats[STAT_ROB] += stat_cost
-
-						else if (quality == QUALITY_SAWING)
-							oddity_stats[STAT_VIG] += stat_cost
-
-						else if (quality == QUALITY_BONE_SETTING)
-							oddity_stats[STAT_BIO] += stat_cost
-
-						else if (quality == QUALITY_SHOVELING)
-							oddity_stats[STAT_TGH] += stat_cost
-
-						else if (quality == QUALITY_DIGGING)
-							oddity_stats[STAT_ROB] += stat_cost
-
-						else if (quality == QUALITY_EXCAVATION)
-							oddity_stats[STAT_TGH] += stat_cost
-
-						else if (quality == QUALITY_CUTTING)
-							oddity_stats[STAT_COG] += stat_cost
-
-						else if (quality == QUALITY_LASER_CUTTING)
-							oddity_stats[STAT_VIG] += stat_cost
-
-						else if (quality == QUALITY_ADHESIVE)
-							oddity_stats[STAT_MEC] += stat_cost
-
-						else if (quality == QUALITY_SEALING)
-							oddity_stats[STAT_MEC] += stat_cost
-
-					else
-						to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
-						return
+				if(!useful)
+					to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+					return
+			else
+				to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+				return
 
 
 		else if(istype(W, /obj/item/weapon/tool_upgrade))
