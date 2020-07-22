@@ -1,0 +1,4 @@
+author: StiffRobot
+delete-after: true
+changes:
+  - balance: changes the biogenerators output_power from 200k to 500k
