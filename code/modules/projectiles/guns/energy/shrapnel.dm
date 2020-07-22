@@ -44,7 +44,6 @@
 	icon_state = "shrapnel"
 	self_recharge = 1
 	use_external_power = 1
-	charge_cost = 50
 	safety = FALSE
 	restrict_safety = TRUE
 	consume_cell = FALSE
