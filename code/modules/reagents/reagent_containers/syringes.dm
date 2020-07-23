@@ -225,26 +225,48 @@
 		return
 
 	var/rounded_vol
-	if(reagents && reagents.total_volume)
-		rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
-		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
-		filling_overlay.color = reagents.get_color()
-		add_overlay(filling_overlay)
-	else
-		rounded_vol = 0
+	if( name == "syringe")
+		if(reagents && reagents.total_volume)
+			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
+			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+			filling_overlay.color = reagents.get_color()
+			add_overlay(filling_overlay)
+		else
+			rounded_vol = 0
 
-	icon_state = "[rounded_vol]"
-	item_state = "syringe_[rounded_vol]"
+		icon_state = "[rounded_vol]"
+		item_state = "syringe_[rounded_vol]"
 
-	if(ismob(loc))
-		var/injoverlay
-		switch(mode)
-			if (SYRINGE_DRAW)
-				injoverlay = "draw"
-			if (SYRINGE_INJECT)
-				injoverlay = "inject"
-		add_overlay(injoverlay)
-		update_wear_icon()
+		if(ismob(loc))
+			var/injoverlay
+			switch(mode)
+				if (SYRINGE_DRAW)
+					injoverlay = "draw"
+				if (SYRINGE_INJECT)
+					injoverlay = "inject"
+			add_overlay(injoverlay)
+			update_wear_icon()
+	if( name == "Large syringe")
+		if(reagents && reagents.total_volume)
+			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
+			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe-[rounded_vol]")
+			filling_overlay.color = reagents.get_color()
+			add_overlay(filling_overlay)
+		else
+			rounded_vol = 0
+
+		icon_state = "-[rounded_vol]"
+		item_state = "syringe_-[rounded_vol]"
+
+		if(ismob(loc))
+			var/injoverlay
+			switch(mode)
+				if (SYRINGE_DRAW)
+					injoverlay = "draw"
+				if (SYRINGE_INJECT)
+					injoverlay = "inject"
+			add_overlay(injoverlay)
+			update_wear_icon()
 
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if(ishuman(target))
@@ -329,8 +351,8 @@
 	name = "Large syringe"
 	desc = "A large syringe for those patients who needs a little more"
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "syringe_0"
-	icon_state = "0"
+	item_state = "syringe_-0"
+	icon_state = "-0"
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 1)
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(5,10)
