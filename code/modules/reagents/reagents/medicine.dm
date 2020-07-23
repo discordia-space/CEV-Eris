@@ -144,7 +144,7 @@
 /datum/reagent/medicine/tricordrazine/overdose(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustOxyLoss(0.6 * effect_multiplier)
 	M.heal_organ_damage(-0.3 * effect_multiplier, -0.3 * effect_multiplier)
-	M.adjustToxLoss(0.3 * effect_multiplier) //wel travis is being dick this should solve. sry
+	M.adjustToxLoss(0.3 * effect_multiplier)
 
 
 /datum/reagent/medicine/cryoxadone
