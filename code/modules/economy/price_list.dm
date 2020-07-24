@@ -968,3 +968,6 @@
 
 /obj/item/weapon/flame/lighter/zippo
 	price_tag = 50
+
+/obj/item/bluespace_crystal
+	price_tag = 400

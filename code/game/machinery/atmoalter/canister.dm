@@ -26,43 +26,43 @@
 	return -1
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent
-	name = "Canister: \[N2O\]"
+	name = "Canister: \[N2O]"
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "Canister: \[N2\]"
+	name = "Canister: \[N2]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/prechilled
-	name = "Canister: \[N2 (Cooling)\]"
+	name = "Canister: \[N2 (Cooling)]"
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "Canister: \[O2\]"
+	name = "Canister: \[O2]"
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled
-	name = "Canister: \[O2 (Cryo)\]"
+	name = "Canister: \[O2 (Cryo)]"
 
 /obj/machinery/portable_atmospherics/canister/plasma
-	name = "Canister \[Plasma\]"
+	name = "Canister \[Plasma]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "Canister \[CO2\]"
+	name = "Canister \[CO2]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "Canister \[Air\]"
+	name = "Canister \[Air]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
@@ -75,23 +75,23 @@
 	can_label = 1
 
 /obj/machinery/portable_atmospherics/canister/empty/oxygen
-	name = "Canister: \[O2\]"
+	name = "Canister: \[O2]"
 	icon_state = "blue"
 	canister_color = "blue"
 /obj/machinery/portable_atmospherics/canister/empty/plasma
-	name = "Canister \[Plasma\]"
+	name = "Canister \[Plasma]"
 	icon_state = "orange"
 	canister_color = "orange"
 /obj/machinery/portable_atmospherics/canister/empty/nitrogen
-	name = "Canister \[N2\]"
+	name = "Canister \[N2]"
 	icon_state = "red"
 	canister_color = "red"
 /obj/machinery/portable_atmospherics/canister/empty/carbon_dioxide
-	name = "Canister \[CO2\]"
+	name = "Canister \[CO2]"
 	icon_state = "black"
 	canister_color = "black"
 /obj/machinery/portable_atmospherics/canister/empty/sleeping_agent
-	name = "Canister \[N2O\]"
+	name = "Canister \[N2O]"
 	icon_state = "redws"
 	canister_color = "redws"
 

@@ -288,17 +288,17 @@
 		{{/for}}
 	</div>
 
-	<table class="fixed" style="width: 100%">
+	<table class = "fixed" style = "width: 100%">
 	  <tr>
-		<td valign="top">
-			<div id='sciTechTreeContainer'>
+		<td valign = "top">
+			<div class = 'nanoMap' id = 'sciTechTreeContainer'>
 				{{for data.lines}}
 					<div style="position: absolute;border-{{:value.istop?'top':'bottom'}}: 1px solid white;border-{{:value.isright?'right':'left'}}: 1px solid white;width: {{:value.width}}%;height: {{:value.height}}%;left: {{:value.line_x}}%;bottom: {{:value.line_y}}%"></div>
 				{{/for}}
 				
 				{{for data.techs}}
 					<div style="position: absolute; left: {{:value.x}}%; bottom: {{:value.y}}%;margin-left: -20px;margin-bottom: -20px;">
-						{{:helper.link("<div class='sciTechTreeIcon icon-"+value.icon+"'><span><img align='center' class='sciTechTreeIconToolTip icon-"+value.icon+"'><br><b>"+value.name+"</b><hr>"+value.description+"</span></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}
+						{{:helper.link("<div class='withToolTip sciTechTreeIcon icon-"+value.icon+"'><span class='ImTooltip'><img align='center' class='icon-"+value.icon+"'><br><b>"+value.name+"</b><hr>"+value.description+"</span></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}
 					</div>
 				{{/for}}
 			</div>

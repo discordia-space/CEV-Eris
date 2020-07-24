@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(trade)
 
 /datum/controller/subsystem/trade/Initialize()
 	for(var/path in subtypesof(/datum/trade_station))
-		new path
+		new path()
 
 	return ..()
 

@@ -1,6 +1,7 @@
 /datum/trade_station
 	var/name
 	var/desc
+	var/list/icon_states = "station"
 	var/offer_type
 	var/offer_price
 	var/offer_amount
@@ -9,6 +10,9 @@
 
 	var/start_discovered = FALSE
 	var/max_missing_assortiment = 0
+	var/spawning_with //trade 'station' that must spawn with //todo
+
+	var/list/forced_overmap_zone //list(list(minx, maxx), list(miny, maxy))
 
 	var/list/name_pool = list()
 
@@ -25,15 +29,24 @@
 	name = pick(name_pool)
 	desc = name_pool[name]
 
-	..()
+	. = ..()
 
 	var/removed = rand(0, max_missing_assortiment)
-	while(removed-- && length(assortiment))
-		assortiment -= pick(assortiment)
+	while(removed-- && recursiveLen(assortiment))
+		var/list/cur2remove = assortiment[pick(assortiment)]
+		if(islist(cur2remove))
+			cur2remove -= pick(cur2remove)
 
 	offer_tick()
-	place_overmap(rand(OVERMAP_EDGE, maps_data.overmap_size - OVERMAP_EDGE),
-	              rand(OVERMAP_EDGE, maps_data.overmap_size - OVERMAP_EDGE))
+	var/x = 1
+	var/y = 1
+	if(recursiveLen(forced_overmap_zone) == 6)
+		x = rand(forced_overmap_zone[1][1], forced_overmap_zone[1][2])
+		y = rand(forced_overmap_zone[2][1], forced_overmap_zone[2][2])
+	else
+		x = rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size)
+		y = rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size)
+	place_overmap(min(x, GLOB.maps_data.overmap_size - OVERMAP_EDGE), min(y, GLOB.maps_data.overmap_size - OVERMAP_EDGE))
 
 	SStrade.all_stations += src
 	if(start_discovered)
@@ -43,12 +56,12 @@
 	SStrade.all_stations -= src
 	return ..()
 
-/datum/trade_station/proc/place_overmap(x, y, z = maps_data.overmap_z)
+/datum/trade_station/proc/place_overmap(x, y, z = GLOB.maps_data.overmap_z)
 	overmap_location = locate(x, y, z)
 
 	var/obj/effect/overmap_event/event = new(overmap_location)
 	event.name = name
-	event.icon_state = "event" //placeholder
+	event.icon_state = pick(icon_states) //placeholder
 	event.opacity = 0
 
 	if(!start_discovered)
@@ -67,6 +80,8 @@
 #define SPECIAL_OFFER_MAX_MOD 4
 
 /datum/trade_station/proc/generate_offer()
+	if(!length(offer_types))
+		return
 	offer_type = pick(offer_types)
 	var/atom/movable/AM = offer_type
 
@@ -80,4 +95,4 @@
 
 /datum/trade_station/proc/offer_tick()
 	generate_offer()
-	addtimer(CALLBACK(src, .proc/offer_tick), rand(15,25) MINUTES)
+	addtimer(CALLBACK(src, .proc/offer_tick), rand(15, 25) MINUTES)

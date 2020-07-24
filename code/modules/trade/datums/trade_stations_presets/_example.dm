@@ -9,9 +9,11 @@
 
 	//Types of items sold by the station
 	assortiment = list(
-		/obj/item/weapon/cell/large,
-		/obj/item/weapon/cell/medium,
-		/obj/item/weapon/cell/small,
+		"Cells"  = list(
+			/obj/item/weapon/cell/large,
+			/obj/item/weapon/cell/medium,
+			/obj/item/weapon/cell/small,
+		)
 	)
 
 	//Types of items the station may ask for

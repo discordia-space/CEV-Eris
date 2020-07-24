@@ -1,3 +1,5 @@
+#define GOODS_SCREEN TRUE
+#define OFFER_SCREEN FALSE
 /datum/computer_file/program/trade
 	filename = "trade"
 	filedesc = "Trading Program"
@@ -5,12 +7,12 @@
 	program_icon_state = "supply"
 	program_key_state = "rd_key"
 	program_menu_icon = "cart"
-	extended_desc = "A management tool that allows for ordering of various supplies through the facility's cargo system."
+	extended_desc = "A trade tool, require sending and reseiving beacons."
 	size = 21
 	available_on_ntnet = FALSE
 	requires_ntnet = TRUE
 
-	var/screen = 0
+	var/trade_screen = GOODS_SCREEN
 
 	var/list/shoppinglist = list()
 
@@ -23,20 +25,20 @@
 
 /datum/computer_file/program/trade/Topic(href, href_list)
 	. = ..()
+	to_world(json_encode(href_list))
 	if(.)
 		return
 
-	//Common
-	if(href_list["PRG_screen"])
-		var/new_screen = text2num(href_list["PRG_screen"])
-		if(new_screen > 6 || new_screen < 0)
-			return
-		screen = new_screen
+	if(href_list["PRG_trade_screen"])
+		trade_screen = !trade_screen
 		return 1
 
-	//Screen 0
 	if(href_list["PRG_send"])
 		SStrade.sell(sending, account)
+		return 1
+
+	if(href_list["PRG_receive"])
+		SStrade.buy(receiving, account, shoppinglist)
 		return 1
 
 	if(href_list["PRG_account"])
@@ -61,34 +63,20 @@
 		account = null
 		return 1
 
-	//Screen 1
 	if(href_list["PRG_station"])
-		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_station"]) + 1)
-		if(!S)
-			return
+		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_station"]))
 		station = S
 		shoppinglist.Cut()
 		return 1
 
-	//Screen 2
 	if(href_list["PRG_receiving"])
-		var/obj/machinery/trade_beacon/receiving/B = LAZYACCESS(SStrade.beacons_receiving, text2num(href_list["PRG_receiving"]) + 1)
-		if(!B)
-			return
+		var/obj/machinery/trade_beacon/receiving/B = LAZYACCESS(SStrade.beacons_receiving, text2num(href_list["PRG_receiving"]))
 		receiving = B
 		return 1
 
-	//Screen 3
 	if(href_list["PRG_sending"])
-		var/obj/machinery/trade_beacon/sending/B = LAZYACCESS(SStrade.beacons_sending, text2num(href_list["PRG_sending"]) + 1)
-		if(!B)
-			return
+		var/obj/machinery/trade_beacon/sending/B = LAZYACCESS(SStrade.beacons_sending, text2num(href_list["PRG_sending"]))
 		sending = B
-		return 1
-
-	//Screen 4
-	if(href_list["PRG_receive"])
-		SStrade.buy(receiving, account, shoppinglist)
 		return 1
 
 	if(href_list["PRG_cart_reset"])
@@ -96,14 +84,26 @@
 		return 1
 
 	if(href_list["PRG_cart_add"])
-		var/path = LAZYACCESS(station.assortiment, text2num(href_list["PRG_cart_add"]) + 1)
+		var/list/json_packet = json_decode(href_list["PRG_cart_add"])
+		if(!islist(json_packet))
+			return
+		var/list/category = station.assortiment[station.assortiment[json_packet["category"]]]
+		if(!islist(category))
+			return
+		var/path = LAZYACCESS(category, text2num(json_packet["index"]))
 		if(!path)
 			return
 		shoppinglist[path] = 1 + shoppinglist[path]
 		return 1
 
 	if(href_list["PRG_cart_remove"])
-		var/path = LAZYACCESS(station.assortiment, text2num(href_list["PRG_cart_remove"]) + 1)
+		var/list/json_packet = json_decode(href_list["PRG_cart_remove"])
+		if(!islist(json_packet))
+			return
+		var/list/category = station.assortiment[station.assortiment[json_packet["category"]]]
+		if(!islist(category))
+			return
+		var/path = LAZYACCESS(category, text2num(json_packet["index"]))
 		if(!path || !shoppinglist[path])
 			return
 		--shoppinglist[path]
@@ -111,9 +111,8 @@
 			shoppinglist.Remove(path)
 		return 1
 
-	//Screen 5
 	if(href_list["PRG_offer_fulfill"])
-		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]) + 1)
+		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]))
 		if(!S)
 			return
 		SStrade.fulfill_offer(sending, account, station)
@@ -127,7 +126,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "trade.tmpl", name, 450, 500, state = state)
+		ui = new(user, src, ui_key, "trade.tmpl", name, 750, 700, state = state)
 		ui.set_auto_update(1)
 		ui.set_initial_data(data)
 		ui.open()
@@ -137,64 +136,73 @@
 	var/datum/computer_file/program/trade/PRG = program
 	if(!istype(PRG))
 		return
-	.["screen"] = PRG.screen
-	switch(PRG.screen)
-		if(0)
-			.["station_name"] = PRG.station?.name
-			.["station_desc"] = PRG.station?.desc
 
-			if(PRG.account)
-				.["account"] = "[PRG.account.get_name()] #[PRG.account.account_number]"
+	.["tradescreen"] = PRG.trade_screen
 
-			if(!QDELETED(PRG.receiving))
-				.["receiving"] = PRG.receiving.get_id()
+	.["station_name"] = PRG.station?.name
+	.["station_desc"] = PRG.station?.desc
+	.["station_index"] = SStrade.discovered_stations.Find(PRG.station)
 
-			if(!QDELETED(PRG.sending))
-				.["sending"] = PRG.sending.get_id()
+	.["receiving_index"] =  SStrade.beacons_receiving.Find(PRG.receiving)
+	.["sending_index"] = SStrade.beacons_sending.Find(PRG.sending)
 
-		if(1)
-			.["station_list"] = list()
-			for(var/datum/trade_station/S in SStrade.discovered_stations)
-				if(S == PRG.station)
-					.["station_index"] = length(.["station_list"])
-				.["station_list"] += list(list("name" = S.name, "desc" = S.desc))
+	if(PRG.account)
+		.["account"] = "[PRG.account.get_name()] #[PRG.account.account_number]"
 
-		if(2)
-			.["receiving_list"] = list()
-			for(var/obj/machinery/trade_beacon/receiving/B in SStrade.beacons_receiving)
-				if(B == PRG.receiving)
-					.["receiving_index"] = length(.["receiving_list"])
-				.["receiving_list"] += B.get_id()
+	if(!QDELETED(PRG.receiving))
+		.["receiving"] = PRG.receiving.get_id()
 
-		if(3)
-			.["sending_list"] = list()
-			for(var/obj/machinery/trade_beacon/sending/B in SStrade.beacons_sending)
-				if(B == PRG.sending)
-					.["sending_index"] = length(.["sending_list"])
-				.["sending_list"] += B.get_id()
+	if(!QDELETED(PRG.sending))
+		.["sending"] = PRG.sending.get_id()
 
-		if(4)
-			.["goods"] = list()
-			.["total"] = 0
-			if(PRG.station)
-				for(var/path in PRG.station.assortiment)
-					if(!ispath(path, /atom/movable))
-						continue
+	.["station_list"] = list()
+	for(var/datum/trade_station/S in SStrade.discovered_stations)
+		.["station_list"] += list(list("name" = S.name, "desc" = S.desc, "index" = SStrade.discovered_stations.Find(S)))
+
+	.["receiving_list"] = list()
+	for(var/obj/machinery/trade_beacon/receiving/B in SStrade.beacons_receiving)
+		.["receiving_list"] += list(list("id" = B.get_id(), "index" = SStrade.beacons_receiving.Find(B)))
+
+	.["sending_list"] = list()
+	for(var/obj/machinery/trade_beacon/sending/B in SStrade.beacons_sending)
+		.["sending_list"] += list(list("id" = B.get_id(), "index" = SStrade.beacons_sending.Find(B)))
+
+
+	if(PRG.station)
+		.["goods"] = list()
+		.["total"] = 0
+		for(var/category in PRG.station.assortiment)
+			var/list/ctegory = list()
+			for(var/path in PRG.station.assortiment[category])
+				if(ispath(path, /atom/movable))
 					var/atom/movable/AM = path
 					var/price = SStrade.get_import_cost(path)
 					var/count = PRG.shoppinglist[path]
-					.["goods"] += list(list(
+					var/list/cat = PRG.station.assortiment[category]
+					ctegory += list(list(
 						"name" = initial(AM.name),
 						"price" = price,
-						"count" = count
+						"count" = count,
+						"index" = cat.Find(path)
 					))
 					.["total"] += price * count
 
-		if(5)
-			.["offers"] = list()
-			for(var/datum/trade_station/S in SStrade.discovered_stations)
-				var/atom/movable/offer_type = S.offer_type
-				var/list/offer = list("station" = S.name, "name" = initial(offer_type.name), "amount" = S.offer_amount, "price" = S.offer_price)
-				if(PRG.sending)
-					offer["available"] = length(SStrade.assess_offer(PRG.sending, S))
-				.["offers"] += list(offer)
+			if(!length(ctegory))
+				continue
+			.["goods"] += list(list("name" = category, "goods" = ctegory, "index" = PRG.station.assortiment.Find(category)))
+		if(!recursiveLen(.["goods"]))
+			.["goods"] = null
+		to_world(json_encode(.))
+	.["offers"] = list()
+	for(var/datum/trade_station/S in SStrade.discovered_stations)
+		var/atom/movable/offer_type = S.offer_type
+		var/list/offer = list("station" = S.name, "name" = initial(offer_type.name), "amount" = S.offer_amount, "price" = S.offer_price, "index" = SStrade.discovered_stations.Find(S))
+		if(PRG.sending)
+			offer["available"] = length(SStrade.assess_offer(PRG.sending, S))
+		.["offers"] += list(offer)
+	if(!recursiveLen(.["offers"]))
+		.["offers"] = null
+	
+
+#undef GOODS_SCREEN
+#undef OFFER_SCREEN

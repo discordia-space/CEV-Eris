@@ -14,10 +14,11 @@
 	return "[A.name] ([z], [x], [y])"
 
 /obj/machinery/trade_beacon/proc/activate()
-	flick("beacon_active", src)
+	flick("[icon_state]_active", src)
 
 /obj/machinery/trade_beacon/sending
 	name = "sending trade beacon"
+	icon_state = "beacon_sending"
 
 /obj/machinery/trade_beacon/sending/Initialize()
 	. = ..()
@@ -43,7 +44,7 @@
 
 /obj/machinery/trade_beacon/receiving/proc/drop(drop_type)
 	var/list/floor = list()
-	for(var/turf/simulated/floor/F in range(2, src))
+	for(var/turf/simulated/floor/F in block(locate(x - 2, y - 2, z), locate(x + 2, y + 2, z)))
 		if(F.contains_dense_objects())
 			continue
 		floor += F
