@@ -1,0 +1,6 @@
+author: Anonmare
+delete-after: true
+changes:
+  - rscadd: The Technomancer Union's ESPO-830 now contains secure airlock electronics.
+  - balance: APC/Airlock/Fire/Air alarm electronics no longer use license points on
+      the ESPO-830 disk.
