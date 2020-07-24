@@ -29,25 +29,26 @@
 	icon_state = "gun-green"
 
 /obj/random/gun_normal/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 2,\
-				/obj/item/weapon/gun/projectile/automatic/zoric = 1,\
-				/obj/item/weapon/gun/projectile/automatic/atreides = 1,\
-				/obj/item/weapon/gun/projectile/avasarala = 2,\
-				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 2,\
-				/obj/item/weapon/gun/projectile/colt = 3,\
-				/obj/item/weapon/gun/projectile/revolver/consul = 3,\
-				/obj/item/weapon/gun/projectile/revolver = 3,\
-				/obj/item/weapon/gun/projectile/revolver/deckard = 2,\
-				/obj/item/weapon/gun/projectile/automatic/wintermute = 1,\
-				/obj/item/weapon/gun/projectile/automatic/sol = 1,\
-				/obj/item/weapon/gun/projectile/automatic/ak47/fs = 1,\
-				/obj/item/weapon/gun/projectile/automatic/molly = 2,\
-				/obj/item/weapon/gun/projectile/automatic/straylight = 1,\
-				/obj/item/weapon/gun/projectile/automatic/c20r = 1,\
-				/obj/item/weapon/gun/energy/gun = 2,\
-				/obj/item/weapon/gun/energy/laser = 2,\
-				/obj/item/weapon/gun/energy/plasma/cassad = 2,
-				/obj/item/weapon/gun/energy/ionrifle))
+	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 6,\
+				/obj/item/weapon/gun/projectile/automatic/zoric = 3,\
+				/obj/item/weapon/gun/projectile/automatic/atreides = 5,\
+				/obj/item/weapon/gun/projectile/avasarala = 7,\
+				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 9,\
+				/obj/item/weapon/gun/projectile/colt = 12,\
+				/obj/item/weapon/gun/projectile/revolver/consul = 12,\
+				/obj/item/weapon/gun/projectile/revolver = 10,\
+				/obj/item/weapon/gun/projectile/revolver/deckard = 8,\
+				/obj/item/weapon/gun/projectile/automatic/wintermute = 2,\
+				/obj/item/weapon/gun/projectile/automatic/sol = 4,\
+				/obj/item/weapon/gun/projectile/automatic/ak47/fs = 5,\
+				/obj/item/weapon/gun/projectile/automatic/molly = 6,\
+				/obj/item/weapon/gun/projectile/automatic/straylight = 8,\
+				/obj/item/weapon/gun/projectile/automatic/c20r = 5,\
+				/obj/item/weapon/gun/projectile/automatic/sts35 = 1,\
+				/obj/item/weapon/gun/energy/gun = 6,\
+				/obj/item/weapon/gun/energy/laser = 8,\
+				/obj/item/weapon/gun/energy/plasma/cassad = 8,
+				/obj/item/weapon/gun/energy/ionrifle = 4))
 
 /obj/random/gun_normal/low_chance
 	name = "low chance random normal gun"

@@ -367,8 +367,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of thrown away food. Someone sure have lots of spare food while children on Mars are starving."
 	parts_icon = 'icons/obj/structures/scrap/food_trash.dmi'
 	loot_list = list(
-		/obj/random/junkfood/rotten = 5,
-		/obj/random/junkfood,
+		/obj/random/junkfood = 5,
 		/obj/random/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
