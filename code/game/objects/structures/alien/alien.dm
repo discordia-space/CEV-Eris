@@ -6,12 +6,12 @@
 
 /obj/structure/alien/proc/healthcheck()
 	if(health <=0)
-		density = 0
+		density = FALSE
 		qdel(src)
 	return
 
 /obj/structure/alien/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	health -= Proj.get_structure_damage()
 	..()
 	healthcheck()
 	return

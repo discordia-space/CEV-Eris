@@ -1,6 +1,6 @@
 /mob/proc/on_mob_jump(var/turf/T)
-	if (istype(loc, /obj/mecha))
-		var/obj/mecha/M = loc
+	if (istype(loc, /mob/living/exosuit))
+		var/mob/living/exosuit/M = loc
 		M.forceMove(T)
 	else
 		forceMove(T)

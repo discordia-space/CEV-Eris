@@ -11,8 +11,8 @@
 	desc = "Used to control a room's automated defenses."
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/enabled = 0
 	var/lethal = 0
 	var/locked = 1
@@ -49,7 +49,7 @@
 	if(!control_area)
 		control_area = get_area(src)
 	else if(istext(control_area))
-		for(var/area/A in world)
+		for(var/area/A in GLOB.map_areas)
 			if(A.name && A.name==control_area)
 				control_area = A
 				break

@@ -35,6 +35,12 @@
 	icon_state = "agrolyte"
 
 /obj/structure/closet/secure_closet/personal/agrolyte/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/neotheology(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/neotheology(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/suit/apron(src)
 	new /obj/item/weapon/storage/belt/utility/neotheology(src)
 	new /obj/item/weapon/storage/bag/produce(src)
@@ -45,10 +51,8 @@
 	new /obj/item/weapon/tool/minihoe(src)
 	new /obj/item/weapon/tool/hatchet(src)
 	new /obj/item/weapon/tool/wirecutters(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
 	new /obj/item/clothing/suit/space/void/agrolyte(src)
 	new /obj/item/clothing/gloves/botanic_leather(src)
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/neotheology(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)

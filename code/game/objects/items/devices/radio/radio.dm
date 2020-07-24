@@ -14,6 +14,10 @@ var/global/list/default_internal_channels = list(
 	num2text(SRV_FREQ) = list(access_janitor, access_hydroponics)
 )
 
+var/global/list/unique_internal_channels = list(
+	num2text(DTH_FREQ) = list(access_cent_specops)
+)
+
 var/global/list/default_medbay_channels = list(
 	num2text(PUB_FREQ) = list(),
 	num2text(MED_FREQ) = list(access_medical_equip),
@@ -27,7 +31,7 @@ var/global/list/default_medbay_channels = list(
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
 
-	var/on = 1 // 0 for off
+	var/on = TRUE // 0 for off
 	var/last_transmission
 	var/frequency = PUB_FREQ //common chat
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
@@ -62,6 +66,8 @@ var/global/list/default_medbay_channels = list(
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
+	if(syndie)
+		internal_channels += unique_internal_channels.Copy()
 	add_hearing()
 
 /obj/item/device/radio/Destroy()
@@ -401,7 +407,7 @@ var/global/list/default_medbay_channels = list(
 			R.receive_signal(signal)
 
 		// Receiving code can be located in Telecommunications.dm
-		return signal.data["done"] && position.z in signal.data["level"]
+		return signal.data["done"] && (position.z in signal.data["level"])
 
 
   /* ###### Intercoms and station-bounced radios ###### */
@@ -453,7 +459,7 @@ var/global/list/default_medbay_channels = list(
 
 	sleep(rand(10,25)) // wait a little...
 
-	if(signal.data["done"] && position.z in signal.data["level"])
+	if(signal.data["done"] && (position.z in signal.data["level"]))
 		// we're done here.
 		return 1
 
@@ -506,6 +512,7 @@ var/global/list/default_medbay_channels = list(
 			return -1
 	if (!on)
 		return -1
+
 	if (!freq) //recieved on main frequency
 		if (!listening)
 			return -1
@@ -517,6 +524,7 @@ var/global/list/default_medbay_channels = list(
 				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
 					accept = 1
 					break
+
 		if (!accept)
 			return -1
 	return canhear_range
@@ -582,7 +590,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/borg/list_channels(var/mob/user)
 	return list_secure_channels(user)
 
-/obj/item/device/radio/borg/talk_into()
+/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
 	. = ..()
 	if (isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
@@ -746,3 +754,112 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/phone/medbay/New()
 	..()
 	internal_channels = default_medbay_channels.Copy()
+
+/obj/item/device/radio/random_radio
+	name = "Random wave radio"
+	desc = "Radio that can pick up message from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
+	icon = 'icons/obj/faction_item.dmi'
+	icon_state = "random_radio"
+	item_state = "random_radio"
+	slot_flags = FALSE
+	canhear_range = 4
+	var/random_hear = 20
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
+	price_tag = 20000
+	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_COVERT = 7)
+	var/list/obj/item/weapon/oddity/used_oddity = list()
+	var/last_produce = 0
+	var/cooldown = 40 MINUTES
+	var/max_cooldown = 40 MINUTES
+	var/min_cooldown = 15 MINUTES
+	w_class = ITEM_SIZE_BULKY
+
+/obj/item/device/radio/random_radio/New()
+	..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/device/radio/random_radio/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/device/radio/random_radio/Process()
+	if(world.time >= (last_produce + cooldown))
+		var/datum/stash/stash = pick_n_take_stash_datum()
+		if(!stash)
+			return
+		stash.select_location()
+		stash.spawn_stash()
+		var/obj/item/weapon/paper/stash_note = stash.spawn_note(get_turf(src))
+		visible_message(SPAN_NOTICE("[src] drop [stash_note]."))
+		last_produce = world.time
+
+/obj/item/device/radio/random_radio/receive_range(freq, level)
+
+	if (wires.IsIndexCut(WIRE_RECEIVE))
+		return -1
+	if(!listening)
+		return -1
+	if(!(0 in level))
+		var/turf/position = get_turf(src)
+		if(!position || !(position.z in level))
+			return -1
+	if(freq in ANTAG_FREQS)
+		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+			return -1
+	if (!on)
+		return -1
+
+	if(random_hear)
+		if(prob(random_hear))
+			return canhear_range
+
+/obj/item/device/radio/random_radio/emag_act(mob/user)
+	if(!syndie)
+		syndie = TRUE
+		channels |= list("Mercenary" = 1)
+		playsound(loc, "sparks", 75, 1, -1)
+		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+	else
+		to_chat(user, SPAN_NOTICE("The [name] has already been emaged."))
+		return NO_EMAG_ACT
+
+/obj/item/device/radio/random_radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	user.set_machine(src)
+
+	if(istype(W, /obj/item/weapon/oddity))
+		var/obj/item/weapon/oddity/D = W
+		if(D.oddity_stats)
+			var/usefull = FALSE
+			if(D in used_oddity)
+				to_chat(user, SPAN_WARNING("You already use [D] to repair [src]"))
+				return
+
+			if(random_hear >= 100)
+				to_chat(user, SPAN_WARNING("The [src] are repaired at it's maxium."))
+				return
+
+			to_chat(user, SPAN_NOTICE("You starting repairing [src] using [D]."))
+
+			if(!do_after(user, 20 SECONDS, src))
+				to_chat(user, SPAN_WARNING("You stoped repairing [src]."))
+				return
+
+			for(var/stat in D.oddity_stats)
+				if(stat == STAT_MEC)
+					var/increece = D.oddity_stats[stat] * 3
+					random_hear += increece
+					if(random_hear > 100)
+						random_hear = 100
+					cooldown -= (D.oddity_stats[stat]) MINUTES
+					if(cooldown < min_cooldown)
+						cooldown = min_cooldown
+					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [increece]%."))
+					usefull = TRUE
+					used_oddity += D
+					return
+
+
+			if(!usefull)
+				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to mechanic to repair this?"))
+		else
+			to_chat(user, SPAN_WARNING("The [D] is useless here. Try to find another one."))

@@ -36,8 +36,15 @@
 	desc = "An armored vest with a detective's badge on it."
 	icon_state = "armor_detective"
 
+/obj/item/clothing/suit/armor/vest/warden
+	name = "Warden's jacket"
+	desc = "An armoured jacket with an attached vest holding a badge and livery."
+	icon_state = "warden_jacket"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	price_tag = 350
+
 /obj/item/clothing/suit/armor/vest/ironhammer
-	name = "security armor"
+	name = "operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
 
@@ -55,9 +62,40 @@
 	)
 	price_tag = 150
 
+/obj/item/clothing/suit/armor/greatcoat
+	name = "armored coat"
+	desc = "A greatcoat enhanced with a special alloy for some protection and style."
+	icon_state = "greatcoat"
+	item_state = "hos"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armor = list(
+		melee = 30,
+		bullet = 35,
+		energy = 30,
+		bomb = 15,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 600
+
+/obj/item/clothing/suit/armor/greatcoat/ironhammer
+	icon_state = "greatcoat_ironhammer"
+
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat
+	name = "black serbian overcoat"
+	desc = "A black serbian overcoat with armor-weave and rank epaulettes"
+	icon_state = "overcoat_black"
+	item_state = "overcoat_black"
+
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown
+	name = "brown serbian overcoat"
+	desc = "A brown serbian overcoat with armor-weave and rank epaulettes"
+	icon_state = "overcoat_brown"
+	item_state = "overcoat_brown"
+
 // Serbian flak vests
 /obj/item/clothing/suit/armor/flak
-	name = "black flakvest vest"
+	name = "black flakvest"
 	desc = "An armored vest that protects against high-velocity solid projectiles."
 	icon_state = "flakvest"
 	item_state = "armor"
@@ -82,10 +120,10 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	slowdown = 0.5
+	slowdown = 0.15
 	armor = list(
 		melee = 25,
-		bullet = 75,
+		bullet = 55,
 		energy = 25,
 		bomb = 10,
 		bio = 0,
@@ -94,14 +132,26 @@
 	price_tag = 500
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
+	name = "full bulletproof suit"
+	desc = "A vest with hand and arm-guards attached that excels in protecting the wearer against high-velocity solid projectiles. \
+			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(
+		melee = 25,
+		bullet = 60,
+		energy = 25,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/serbian
 	name = "black platecarrier vest"
 	icon_state = "platecarrier"
 	armor = list(
 		melee = 25,
-		bullet = 60,
+		bullet = 50,
 		energy = 0,
 		bomb = 0,
 		bio = 0,
@@ -123,7 +173,7 @@
 	icon_state = "ablative"
 	item_state = "ablative"
 	blood_overlay_type = "armor"
-	slowdown = 0.5
+	slowdown = 0.15
 	armor = list(
 		melee = 25,
 		bullet = 25,
@@ -135,7 +185,7 @@
 	siemens_coefficient = 0
 	price_tag = 650
 
-/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
 
@@ -155,8 +205,6 @@
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
-/obj/item/clothing/suit/armor/laserproof/ironhammer
-	icon_state = "ablative_ironhammer"
 
 /*
  * Heavy Armor Types
@@ -174,7 +222,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
+	slowdown = 0.6
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
 		melee = 35,
@@ -207,7 +255,7 @@
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	flags_inv = HIDEJUMPSUIT
+	flags_inv = NONE
 	armor = list(
 		melee = 75,
 		bullet = 25,
@@ -221,6 +269,7 @@
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer
 	icon_state = "riot_ironhammer"
 	item_state = "swat_suit"
+	flags_inv = HIDEJUMPSUIT
 
 /*
  * Storage Types
@@ -254,13 +303,36 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
+		melee = 55,
+		bullet = 55,
+		energy = 55,
 		bomb = 25,
 		bio = 0,
 		rad = 0
 	)
+
+//Technomancer armor
+/obj/item/clothing/suit/storage/vest/insulated
+	name = "insulated armor"
+	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
+	icon_state = "armor_engineering"
+	item_state = "armor_engineering"
+	blood_overlay_type = "armor"
+	armor = list(
+		melee = 30,
+		bullet = 25,
+		energy = 40,
+		bomb = 10,
+		bio = 0,
+		rad = 30
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0
+	price_tag = 600
+	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 
 /*
  * Reactive Armor
@@ -280,7 +352,7 @@
 		bomb = 0,
 		bio = 0,
 		rad = 0
-		)
+	)
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(prob(50))

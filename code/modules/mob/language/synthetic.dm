@@ -61,3 +61,14 @@
 	key = "d"
 	flags = RESTRICTED | HIVEMIND
 	drone_only = 1
+
+/datum/language/binary/blitz
+	name = LANGUAGE_BLITZ
+	desc = "An encrypted binary-stream language used for agent co-ordination."
+	speech_verb = list("transmits")
+	ask_verb = list("transmits")
+	exclaim_verb = list("transmits")
+	colour = "say_quote"
+	key = "d"
+	flags = RESTRICTED | HIVEMIND
+	drone_only = 1

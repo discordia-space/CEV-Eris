@@ -20,21 +20,21 @@
 	path = /obj/item/weapon/melee/energy/sword
 
 /datum/uplink_item/item/visible_weapons/pistol
-	name = "Silenced .35 Auto"
+	name = "Silenced .25 Caseless Handgun"
 	item_cost = 6
 	path = /obj/item/weapon/storage/box/syndie_kit/pistol
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
 	name = "Exosuit (APLU) Rigged Laser"
 	item_cost = 4
-	path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
+	path = /obj/item/mech_equipment/mounted_system/taser/laser
+
 
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
 	item_cost = 7
 	path = /obj/item/weapon/storage/box/syndie_kit/revolver
 
-//These are for traitors (or other antags, perhaps) to have the option of purchasing some merc gear.
 /datum/uplink_item/item/visible_weapons/submachinegun
 	name = "Submachine Gun"
 	item_cost = 7
@@ -54,3 +54,8 @@
 	name = "Anti-material Rifle"
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
+
+/datum/uplink_item/item/visible_weapons/rigged
+	name = "Weapon reverse loader"
+	item_cost = 5
+	path = /obj/item/weapon/gun_upgrade/mechanism/reverse_loader

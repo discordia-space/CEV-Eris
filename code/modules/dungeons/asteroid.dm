@@ -165,7 +165,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x3"
 	alpha = 120
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
 	simulated = 0
 	invisibility = 101
@@ -173,8 +173,8 @@
 
 	var/area/asteroid/rogue/myarea
 
-	var/obj/asteroid_spawner/list/rockspawns = list()
-	var/obj/rogue_mobspawner/list/mobspawns = list()
+	var/list/obj/asteroid_spawner/rockspawns = list()
+	var/list/obj/rogue_mobspawner/mobspawns = list()
 
 	var/mobgenlist = list(
 	/mob/living/simple_animal/hostile/bear,

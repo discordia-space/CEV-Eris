@@ -68,8 +68,7 @@
 			target.stats.changeStat(name, stat_modifiers[name])
 
 	for(var/perk in perks)
-		var/datum/perk/P = new perk
-		P.teach(target.stats)
+		target.stats.addPerk(perk)
 
 	return TRUE
 
@@ -116,13 +115,8 @@
 
 	to_chat(H, SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
 
-
-
-
-
-
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
-/datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/mil_branch/branch, var/additional_skips)
+/datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/branch, var/additional_skips)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE

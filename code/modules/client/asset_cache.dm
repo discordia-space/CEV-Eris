@@ -22,6 +22,10 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
 	var/list/sending = list()
 	var/last_asset_job = 0 // Last job done.
+	var/VPN_whitelist //avoid vpn cheking
+
+	var/list/related_ip = list()
+	var/list/related_cid = list()
 
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
@@ -289,6 +293,14 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		assets[filename] = I
 	..()
 
+/datum/asset/simple/perks/register()
+	for(var/type in subtypesof(/datum/perk))
+		var/datum/perk/P = new type
+		var/filename = sanitizeFileName("[type].png")
+		var/icon/I = icon(P.icon, P.icon_state)
+		assets[filename] = I
+	..()
+
 
 /datum/asset/directories/nanoui
 	isTrivial = FALSE
@@ -307,7 +319,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 /datum/asset/images_map/register()
 	var/list/mapnames = list()
-	for(var/z in maps_data.station_levels)
+	for(var/z in GLOB.maps_data.station_levels)
 		mapnames += map_image_file_name(z)
 
 	var/list/filenames = flist(MAP_IMAGE_PATH)

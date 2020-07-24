@@ -21,12 +21,12 @@
 	maxHealth = 5
 	health = 5
 	melee_damage_upper = 0
-	melee_damage_lower = 1
+	melee_damage_lower = 0
 	attacktext = "bitten"
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps on"
-	density = 0
+	density = FALSE
 	layer = MOB_LAYER
 	mob_size = MOB_MINISCULE
 	min_oxy = 16 //Require atleast 16kPA oxygen

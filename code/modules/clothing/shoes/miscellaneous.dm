@@ -12,7 +12,7 @@
 	item_state = "brown"
 	permeability_coefficient = 0.05
 	item_flags = NOSLIP | SILENT
-	origin_tech = list(TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_COVERT = 3)
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0 // DAMN BOI
 	species_restricted = null
@@ -51,7 +51,7 @@
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN+0.4
 	force = 0
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null

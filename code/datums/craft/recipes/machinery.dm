@@ -37,6 +37,7 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 		list(CRAFT_MATERIAL, 4, MATERIAL_GLASS),
 	)
+	dir_type = CRAFT_TOWARD_USER  // spawn modular console toward the user
 
 /datum/craft_recipe/machinery/computer/modularlaptop
 	name = "modular laptop frame"
@@ -109,6 +110,10 @@
 /datum/craft_recipe/machinery/wall/fire_alarm
 	name = "fire alarm frame"
 	result = /obj/item/frame/fire_alarm
+
+/datum/craft_recipe/machinery/wall/station_holomap
+	name = "holomap frame"
+	result = /obj/item/frame/holomap
 
 /datum/craft_recipe/machinery/AI_core
 	name = "AI core"

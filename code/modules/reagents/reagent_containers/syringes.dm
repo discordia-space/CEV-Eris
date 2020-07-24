@@ -11,16 +11,17 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
-	matter = list(MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 1)
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 15
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	sharp = 1
+	sharp = TRUE
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
 	var/mode = SYRINGE_DRAW
+	var/breakable = TRUE
 	var/image/filling //holds a reference to the current filling overlay
 	var/visible_name = "a syringe"
 	var/time = 30
@@ -204,10 +205,10 @@
 							var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
 							H.pain(affecting, pain)
 							if(user != H)
-								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
-								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "alot of " : ""]pain."))
+								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
+								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
 							else
-								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "alot of " : ""]pain.</span>")
+								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
 				else
 					to_chat(target, SPAN_NOTICE("You feel a tiny prick!"))
 			else
@@ -291,6 +292,9 @@
 	break_syringe(target, user)
 
 /obj/item/weapon/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
+	if(!breakable)
+		return
+
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	if(target)
@@ -298,6 +302,11 @@
 	if(user)
 		add_fingerprint(user)
 	update_icon()
+
+/obj/item/weapon/reagent_containers/syringe/blitzshell
+	name = "blitzshell syringe"
+	desc = "A blitzshell syringe."
+	breakable = FALSE
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
 	name = "lethal injection syringe"
@@ -322,23 +331,38 @@
 
 /obj/item/weapon/reagent_containers/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
-	desc = "Contains inaprovaline - used to stabilize patients."
+	desc = "Contains inaprovaline - a stimulant used to stabilize patients."
 	preloaded_reagents = list("inaprovaline" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "syringe (anti-toxin)"
-	desc = "Contains anti-toxins."
+	desc = "Contains dylovene - a broad spectrum antitoxin."
 	preloaded_reagents = list("anti_toxin" = 15)
 
-/obj/item/weapon/reagent_containers/syringe/antiviral
+/obj/item/weapon/reagent_containers/syringe/tricordrazine
+	name = "syringe (tricordrazine)"
+	desc = "Contains tricordrazine - a stimulant that can be used to treat a wide range of injuries."
+	preloaded_reagents = list("tricordrazine" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/spaceacillin
 	name = "syringe (spaceacillin)"
-	desc = "Contains antiviral agents."
+	desc = "Contains spaceacillin - an antibacterial agent."
 	preloaded_reagents = list("spaceacillin" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/hyperzine
+	name = "syringe (hyperzine)"
+	desc = "Contains hyperzine - a long lasting muscle stimulant."
+	preloaded_reagents = list("hyperzine" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	preloaded_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+
+/obj/item/weapon/reagent_containers/syringe/drugs_recreational
+	name = "syringe (drugs)"
+	desc = "Contains recreational drugs."
+	preloaded_reagents = list("space_drugs" = 15)
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
 	preloaded_reagents = list("chloralhydrate" = 50)

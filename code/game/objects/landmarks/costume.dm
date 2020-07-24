@@ -10,7 +10,7 @@
 
 /obj/landmark/costume/gladiator/New()
 	new /obj/item/clothing/under/gladiator(src.loc)
-	new /obj/item/clothing/head/helmet/gladiator(src.loc)
+	new /obj/item/clothing/head/gladiator(src.loc)
 
 /obj/landmark/costume/madscientist/New()
 	//new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)

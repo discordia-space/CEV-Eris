@@ -41,8 +41,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 	contents = list(
 		/obj/item/weapon/gun/projectile/mk58,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/automatic/idaho,
+		/obj/item/weapon/gun/projectile/shotgun/pump/regulator,
+		/obj/item/weapon/gun/projectile/automatic/zoric,
 		/obj/item/weapon/gun/projectile/automatic/z8)
 
 /datum/supply_drop_loot/seeds
@@ -91,11 +91,11 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/armour/New()
 	..()
 	contents = list(
-		/obj/item/clothing/head/helmet/riot,
+		/obj/item/clothing/head/armor/riot,
 		/obj/item/clothing/suit/armor/heavy/riot,
-		/obj/item/clothing/head/helmet/riot,
+		/obj/item/clothing/head/armor/riot,
 		/obj/item/clothing/suit/armor/heavy/riot,
-		/obj/item/clothing/head/helmet/riot,
+		/obj/item/clothing/head/armor/riot,
 		/obj/item/clothing/suit/armor/heavy/riot,
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/suit/armor/vest,

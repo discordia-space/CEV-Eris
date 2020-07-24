@@ -10,9 +10,15 @@
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 	if(CE_SPEEDBOOST in chem_effects)
 		tally -= chem_effects[CE_SPEEDBOOST]
-
-
-
+	if(isturf(loc))
+		var/turf/T = loc
+		if(T.get_lumcount() < 0.6)
+			if(stats.getPerk(PERK_NIGHTCRAWLER))
+				tally -= 0.5
+			else if(see_invisible != SEE_INVISIBLE_NOLIGHTING)
+				tally += 0.5
+	if(stats.getPerk(PERK_FAST_WALKER))
+		tally -= 0.5
 
 	var/health_deficiency = (maxHealth - health)
 	var/hunger_deficiency = (max_nutrition - nutrition) //400 = max for humans.
@@ -20,7 +26,7 @@
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)
 
 	if (!(species && (species.flags & NO_PAIN)))
-		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+		if(halloss >= 10) tally += (halloss / 20) //halloss shouldn't slow you down if you can't even feel it
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
 		tally += 1 //Small slowdown so wheelchairs aren't turbospeed
@@ -32,12 +38,9 @@
 
 	if(shock_stage >= 10) tally += 3
 
-	if(stats.getPerk(/datum/perk/timeismoney)?.is_active())
-		tally -= 2
-
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
-	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+	tally += stance_damage // missing/damaged legs or augs affect speed
 
 	return tally
 

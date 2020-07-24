@@ -34,7 +34,7 @@
 	desc = "It's made of a special fiber that gives special protection against biohazards. It has a chemist rank stripe on it."
 	name = "moebius chemist's jumpsuit"
 	icon_state = "chemistry"
-	item_state = "w_suit"
+	item_state = "chemistry"
 	permeability_coefficient = 0.50
 	armor = list(
 		melee = 0,
@@ -52,7 +52,7 @@
 	desc = "It's a jumpsuit worn by those with the experience to be \"Moebius Biolab Officer\". It provides minor biological protection."
 	name = "moebius biolab officer's jumpsuit"
 	icon_state = "cmo"
-	item_state = "w_suit"
+	item_state = "cmo"
 	permeability_coefficient = 0.50
 	armor = list(
 		melee = 0,
@@ -82,7 +82,7 @@
 	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
 	name = "moebius  doctor's jumpsuit"
 	icon_state = "medical"
-	item_state = "w_suit"
+	item_state = "medical"
 	permeability_coefficient = 0.50
 	armor = list(
 		melee = 0,
@@ -103,7 +103,7 @@
 	name = "medical scrubs"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in dark green."
 	icon_state = "scrubsgreen"
-	item_state = "g_suit"
+	item_state = "scrubsgreen"
 
 /obj/item/clothing/under/rank/medical/purple
 	name = "medical scrubs"
@@ -116,3 +116,18 @@
 	name = "moebius psychologist's turtleneck"
 	icon_state = "psychturtle"
 	item_state = "b_suit"
+
+/obj/item/clothing/under/rank/paramedic
+	desc = "Jumpsuit of Moebius Medical paramedics. It's made with reinforced fiber to offer more protection for recovery operators."
+	name = "moebius paramedic's jumpsuit"
+	icon_state = "paramedic"
+	item_state = "paramedic"
+	permeability_coefficient = 0.50
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 10,
+		rad = 0
+	)

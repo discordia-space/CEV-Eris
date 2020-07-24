@@ -1,10 +1,11 @@
 /obj/machinery/autolathe/mechfab
 	name = "exosuit fabricator"
-	desc = "A machine used for construction of robots and mechas."
+	desc = "A machine used for construction of robots and exosuits."
 	icon_state = "mechfab"
 	circuit = /obj/item/weapon/circuitboard/mechfab
 
 	build_type = MECHFAB
+	queue_max = 12
 	storage_capacity = 240
 	speed = 3
 
@@ -65,3 +66,13 @@
 	categories = files.design_categories_mechfab
 	if(!show_category && length(categories))
 		show_category = categories[1]
+
+
+
+// A version with some materials already loaded, to be used on map spawn
+/obj/machinery/autolathe/mechfab/loaded
+	stored_material = list(
+		MATERIAL_STEEL = 120,
+		MATERIAL_PLASTIC = 120,
+		MATERIAL_GLASS = 120,
+		)

@@ -8,6 +8,7 @@
 	restore_sanity_pre = 25
 	icon_state = "negative"
 	breakdown_sound = 'sound/sanity/insane.ogg'
+	is_negative = TRUE
 
 
 /datum/breakdown/common
@@ -144,6 +145,7 @@
 /datum/breakdown/negative/selfharm
 	name = "Self-harm"
 	duration = 1 MINUTES
+	delay = 30 SECONDS
 	restore_sanity_post = 70
 
 	start_messages = list(
@@ -161,44 +163,46 @@
 	. = ..()
 	if(!.)
 		return
-	var/datum/gender/G = gender_datums[holder.owner.gender]
-	if(prob(50))
-		var/emote = pick(list(
-			"screams incoherently!",
-			"bites [G.his] tongue and mutters under [G.his] breath.",
-			"utters muffled curses.",
-			"grumbles.",
-			"screams with soulful agony!",
-			"stares at the floor."
-		))
-		holder.owner.custom_emote(message=emote)
-	else if(!holder.owner.incapacitated())
-		var/obj/item/W = holder.owner.get_active_hand()
-		if(W)
-			W.attack(holder.owner, holder.owner, ran_zone())
-		else
-			var/damage_eyes = prob(40)
-			if(damage_eyes)
-				for(var/obj/item/protection in list(holder.owner.head, holder.owner.wear_mask, holder.owner.glasses))
-					if(protection && (protection.body_parts_covered & EYES))
-						damage_eyes = FALSE
-						break
-			if(damage_eyes)
-				holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches at [G.his] eyes!"))
-				var/obj/item/organ/internal/eyes/eyes = holder.owner.internal_organs_by_name[BP_EYES]
-				eyes.take_damage(rand(1,2), 1)
+	if(init_update())
+		var/datum/gender/G = gender_datums[holder.owner.gender]
+		if(prob(50))
+			var/emote = pick(list(
+				"screams incoherently!",
+				"bites [G.his] tongue and mutters under [G.his] breath.",
+				"utters muffled curses.",
+				"grumbles.",
+				"screams with soulful agony!",
+				"stares at the floor."
+			))
+			holder.owner.custom_emote(message=emote)
+		else if(!holder.owner.incapacitated())
+			var/obj/item/W = holder.owner.get_active_hand()
+			if(W)
+				W.attack(holder.owner, holder.owner, ran_zone())
 			else
-				holder.owner.visible_message(SPAN_DANGER(pick(list(
-					"[holder.owner] tries to end [G.his] misery!",
-					"[holder.owner] tries to peel [G.his] own skin off!",
-					"[holder.owner] bites [G.his] own limbs uncontrollably!"
-				))))
-				var/list/obj/item/organ/external/parts = holder.owner.get_damageable_organs()
-				if(parts.len)
-					holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
+				var/damage_eyes = prob(40)
+				if(damage_eyes)
+					for(var/obj/item/protection in list(holder.owner.head, holder.owner.wear_mask, holder.owner.glasses))
+						if(protection && (protection.body_parts_covered & EYES))
+							damage_eyes = FALSE
+							break
+				if(damage_eyes)
+					holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches at [G.his] eyes!"))
+					var/obj/item/organ/internal/eyes/eyes = holder.owner.internal_organs_by_name[BP_EYES]
+					eyes.take_damage(rand(1,2), 1)
+				else
+					holder.owner.visible_message(SPAN_DANGER(pick(list(
+						"[holder.owner] tries to end [G.his] misery!",
+						"[holder.owner] tries to peel [G.his] own skin off!",
+						"[holder.owner] bites [G.his] own limbs uncontrollably!"
+					))))
+					var/list/obj/item/organ/external/parts = holder.owner.get_damageable_organs()
+					if(parts.len)
+						holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
 
 /datum/breakdown/negative/selfharm/occur()
-	++holder.owner.suppress_communication
+	spawn(delay)
+		++holder.owner.suppress_communication
 	return ..()
 
 /datum/breakdown/negative/selfharm/conclude()
@@ -210,6 +214,7 @@
 /datum/breakdown/negative/hysteric
 	name = "Hysteric"
 	duration = 1.5 MINUTES
+	delay = 30 SECONDS
 	restore_sanity_post = 50
 
 	start_messages = list(
@@ -226,18 +231,20 @@
 /datum/breakdown/negative/hysteric/update()
 	. = ..()
 	if(!.)
-		return
-	holder.owner.Weaken(3)
-	holder.owner.Stun(3)
-	if(prob(50))
-		holder.owner.emote("scream")
-	else
-		holder.owner.emote("cry")
+		return FALSE
+	if(init_update())
+		holder.owner.Weaken(3)
+		holder.owner.Stun(3)
+		if(prob(50))
+			holder.owner.emote("scream")
+		else
+			holder.owner.emote("cry")
 
 /datum/breakdown/negative/hysteric/occur()
-	holder.owner.SetWeakened(4)
-	holder.owner.SetStunned(4)
-	++holder.owner.suppress_communication
+	spawn(delay)
+		holder.owner.SetWeakened(4)
+		holder.owner.SetStunned(4)
+		++holder.owner.suppress_communication
 	return ..()
 
 /datum/breakdown/negative/hysteric/conclude()
@@ -245,7 +252,6 @@
 	holder.owner.SetStunned(0)
 	--holder.owner.suppress_communication
 	..()
-
 
 
 
@@ -347,6 +353,8 @@
 
 /datum/breakdown/common/obsession
 	name = "Obsession"
+	has_objetives = TRUE
+	isight_reward = 15
 	var/obj/item/target
 	var/objectname
 	var/message_time = 0
@@ -362,41 +370,32 @@
 		"You feel at ease again, suddenly."
 	)
 
-/datum/breakdown/common/obsession/New()
-	..()
-	if(prob(97))
-		var/list/candidates = list() //subtypesof(/obj/item/weapon/oddity)
-		while(candidates.len)
-			target = pick(candidates)
-			if(!locate(target))
-				candidates -= target
-				target = null
-				continue
-			objectname = initial(target.name)
-			break
-	if(!target)
-		var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
-		if(candidates.len)
-			var/mob/living/carbon/human/H = pick(candidates)
-			target = pick(H.organs - H.organs_by_name[BP_CHEST])
-			objectname = "[H.real_name]'s [target.name]"
-
 /datum/breakdown/common/obsession/can_occur()
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - holder.owner
+	candidates = shuffle(candidates)
+	while(candidates.len)
+		var/mob/living/carbon/human/H = pick(candidates)
+		candidates.Remove(H)
+		var/list/contents = H.get_contents()
+		target = locate(/obj/item/weapon/oddity) in contents
+		if(!target)
+			target = pick(H.organs - H.organs_by_name[BP_CHEST])
+
+		if(target)
+			objectname = "[H.real_name]'s [target.name]"
+			break
 	return !!target
 
 /datum/breakdown/common/obsession/update()
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/found = FALSE
-	if(ispath(target))
-		found = locate(target) in holder.owner
-	else
-		if(QDELETED(target))
-			conclude()
-			return FALSE
-		found = target.loc == holder.owner
-	if(found)
+	if(QDELETED(target))
+		to_chat(holder.owner, SPAN_WARNING("\The [objectname] is lost!"))
+		finished = TRUE
+		conclude()
+		return FALSE
+	if(target.loc == holder.owner)
 		var/message = pick(list(
 			"Your mind convulses in the ecstasy. The sacred [objectname] is now yours!",
 			"You feel the warmth of the [objectname] in your head.",
@@ -404,6 +403,7 @@
 		))
 		to_chat(holder.owner, SPAN_NOTICE(message))
 		holder.restoreLevel(70)
+		finished = TRUE
 		conclude()
 		return FALSE
 	if(world.time >= message_time)
@@ -473,6 +473,7 @@
 /datum/breakdown/common/signs
 	//name = "Signs"
 	restore_sanity_post = 70
+	has_objetives = TRUE
 	var/message
 
 	start_messages = list(

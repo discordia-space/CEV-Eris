@@ -7,8 +7,6 @@
 	switched_on_force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_WELDING
-	throw_speed = 1
-	throw_range = 5
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1)
 	switched_on_qualities = list(QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
@@ -25,26 +23,17 @@
 
 	heat = 2250
 
-
 /obj/item/weapon/tool/weldingtool/turn_on(mob/user)
-
-	if (get_fuel() > passive_fuel_cost)
-		item_state = "[initial(item_state)]_on"
-		to_chat(user, SPAN_NOTICE("You switch [src] on."))
+	.=..()
+	if(.)
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
-		..()
 		damtype = BURN
 		START_PROCESSING(SSobj, src)
-	else
-		item_state = initial(item_state)
-		to_chat(user, SPAN_WARNING("[src] has no fuel!"))
-
 	//Todo: Add a better hit sound for a turned_on welder
 
 /obj/item/weapon/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)
 	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You switch [src] off."))
 	..()
 	damtype = initial(damtype)
 
@@ -56,13 +45,14 @@
 
 /obj/item/weapon/tool/weldingtool/improvised
 	name = "jury-rigged torch"
-	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky."
-	icon_state = "welder"
-	item_state = "welder"
+	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
+	icon_state = "ghettowelder"
+	item_state = "ghettowelder"
 	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 
 //The improvised welding tool is created with a full tank of fuel.
 //It's implied that it's burning the oxygen in the emergency tank that was used to create it

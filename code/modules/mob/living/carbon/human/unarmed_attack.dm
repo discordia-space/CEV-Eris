@@ -8,8 +8,8 @@ var/global/list/sparring_attack_cache = list()
 	var/attack_sound = "punch"
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
 	var/shredding = 0 // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
-	var/sharp = 0
-	var/edge = 0
+	var/sharp = FALSE
+	var/edge = FALSE
 
 	var/deal_halloss
 	var/sparring_variant_type = /datum/unarmed_attack/light_strike
@@ -119,14 +119,14 @@ var/global/list/sparring_attack_cache = list()
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 0
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 
 /datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 
 	if (user.wear_mask && (istype(user.wear_mask, /obj/item/clothing/mask/muzzle) || istype(user.wear_mask, /obj/item/weapon/grenade)))
 		return 0
-	if (user == target && zone in list(BP_HEAD, "eyes", BP_MOUTH))
+	if (user == target && (zone in list(BP_HEAD, BP_EYES, BP_MOUTH)))
 		return 0
 	return 1
 
@@ -192,7 +192,7 @@ var/global/list/sparring_attack_cache = list()
 	if (user.legcuffed)
 		return 0
 
-	if(!zone in (BP_LEGS + BP_GROIN))
+	if(!(zone in (BP_LEGS + BP_GROIN)))
 		return 0
 
 	var/obj/item/organ/external/E = user.organs_by_name[BP_L_LEG]
@@ -283,5 +283,5 @@ var/global/list/sparring_attack_cache = list()
 	damage = 2
 	shredding = 0
 	damage = 0
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE

@@ -2,8 +2,10 @@
 
 #define SANITY_DAMAGE_MOD 0.6
 
+#define SANITY_VIEW_DAMAGE_MOD 0.4
+
 // Damage received from unpleasant stuff in view
-#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
+#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
 // Damage received from body damage
 #define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
@@ -35,10 +37,15 @@
 #define INSIGHT_DESIRE_SMOKING "smoking"
 #define INSIGHT_DESIRE_DRUGS "drugs"
 
+
+#define EAT_COOLDOWN_MESSAGE 15 SECONDS
+
 /datum/sanity
 	var/flags
 	var/mob/living/carbon/human/owner
 
+	var/sanity_passive_gain_multiplier = 1
+	var/insight_passive_gain_multiplier = 1
 	var/sanity_invulnerability = 0
 	var/level
 	var/max_level = 100
@@ -48,18 +55,25 @@
 	var/insight_rest = 0
 	var/resting = 0
 
+	var/list/valid_inspirations = list(/obj/item/weapon/oddity)
 	var/list/desires = list()
-
 	var/positive_prob = 20
+	var/positive_prob_multiplier = 1
 	var/negative_prob = 30
 
 	var/view_damage_threshold = 20
+	var/environment_cap_coeff = 1 //How much we are affected by environmental cognitohazards. Multiplies the above threshold
+
 
 	var/say_time = 0
 	var/breakdown_time = 0
 	var/spook_time = 0
 
+	var/death_view_multiplier = 1
+
 	var/list/datum/breakdown/breakdowns = list()
+
+	var/eat_time_message = 0
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
@@ -71,14 +85,14 @@
 /datum/sanity/proc/onLife()
 	if(owner.stat == DEAD || owner.in_stasis)
 		return
-	var/affect = SANITY_PASSIVE_GAIN
-	if(owner.stat)
+	var/affect = SANITY_PASSIVE_GAIN * sanity_passive_gain_multiplier
+	if(owner.stat) //If we're unconscious
 		changeLevel(affect)
 		return
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect, min(view_damage_threshold - level, 0)))
+	changeLevel(max(affect, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_breakdowns()
 	handle_insight()
 	handle_level()
@@ -89,8 +103,14 @@
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
 	for(var/atom/A in view(owner.client ? owner.client : owner))
-		if(A.sanity_damage)
+		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+
+		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
+			var/mob/living/carbon/human/H = A
+			if(H.sanity.level < 30 || H.health < 50)
+				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
@@ -106,13 +126,20 @@
 			breakdowns -= B
 
 /datum/sanity/proc/handle_insight()
-	insight += INSIGHT_GAIN(level_change)
+	var/moralist_factor = 1
+	if(owner.stats.getPerk(PERK_MORALIST))
+		for(var/mob/living/carbon/human/H in view(owner))
+			if(H)
+				if(H.sanity.level > 60)
+					moralist_factor += 0.02
+	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 		++resting
 		pick_desires()
 		insight -= 100
-	owner.HUDneed["sanity"]?.update_icon()
+	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	hud?.update_icon()
 
 /datum/sanity/proc/handle_level()
 	level_change = SANITY_CHANGE_FADEOFF(level_change)
@@ -145,29 +172,24 @@
 	)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
+		var/list/potential_desires
 		switch(desire)
 			if(INSIGHT_DESIRE_FOOD)
-				var/static/list/food_types = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
-				var/desire_count = 0
-				while(desire_count < 5)
-					var/obj/item/weapon/reagent_containers/food/snacks/candidate = pick(food_types)
-					if(!initial(candidate.cooked))
-						food_types -= candidate
-						continue
-					desires += candidate
-					++desire_count
+				potential_desires = GLOB.sanity_foods.Copy()
+				if(!potential_desires.len)
+					potential_desires = init_sanity_foods()
 			if(INSIGHT_DESIRE_ALCOHOL)
-				var/static/list/ethanol_types = subtypesof(/datum/reagent/ethanol)
-				var/desire_count = 0
-				while(desire_count < 5)
-					var/candidate = pick(ethanol_types)
-					if(subtypesof(candidate).len) //Exclude categories
-						ethanol_types -= candidate
-						continue
-					desires += candidate
-					++desire_count
+				potential_desires = GLOB.sanity_drinks.Copy()
+				if(!potential_desires.len)
+					potential_desires = init_sanity_drinks()
 			else
 				desires += desire
+				continue
+		var/desire_count = 0
+		while(desire_count < 5)
+			var/candidate = pick_n_take(potential_desires)
+			desires += candidate
+			++desire_count
 	print_desires()
 
 /datum/sanity/proc/print_desires()
@@ -184,7 +206,7 @@
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
-		amount /= 3
+		amount /= 4
 	insight_rest += amount
 	if(insight_rest >= 100)
 		insight_rest = 0
@@ -206,16 +228,24 @@
 	resting = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)
-	var/list/obj/item/weapon/oddity/oddities = list()
-	for(var/obj/item/weapon/oddity/O in owner.get_contents())
-		oddities += O
-	if(oddities.len)
-		var/obj/item/weapon/oddity/O = oddities.len > 1 ? owner.client ? input(owner, "Select oddity to use as inspiration", "Level up") in oddities : pick(oddities) : oddities[1]
+	var/list/inspiration_items = list()
+	for(var/obj/item/I in owner.get_contents())
+		if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
+			inspiration_items += I
+	if(inspiration_items.len)
+		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 		if(!O)
 			return
-		for(var/stat in O.oddity_stats)
-			owner.stats.changeStat(stat, O.oddity_stats[stat] * multiplier)
-
+		var/datum/component/inspiration/I = O.GetComponent(/datum/component/inspiration) // If it's a valid inspiration, it should have this component. If not, runtime
+		var/list/L = I.calculate_statistics()
+		for(var/stat in L)
+			var/stat_up = L[stat] * multiplier
+			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+			owner.stats.changeStat(stat, stat_up)
+		if(istype(O, /obj/item/weapon/oddity))
+			var/obj/item/weapon/oddity/OD = O
+			if(OD.perk)
+				owner.stats.addPerk(OD.perk)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -225,38 +255,57 @@
 
 /datum/sanity/proc/onSeeDeath(mob/M)
 	if(ishuman(M))
-		changeLevel(-SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG)))
+		var/penalty = -SANITY_DAMAGE_DEATH(owner.stats.getStat(STAT_VIG))
+		if(owner.stats.getPerk(PERK_NIHILIST))
+			var/effect_prob = rand(1, 100)
+			switch(effect_prob)
+				if(1 to 25)
+					M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate Nihilist")
+				if(26 to 50)
+					M.stats.removeTempStat(STAT_COG, "Fate Nihilist")
+				if(51 to 75)
+					penalty *= -1
+				if(76 to 100)
+					penalty *= 0
+		if(M.stats.getPerk(PERK_TERRIBLE_FATE) && prob(100-owner.stats.getStat(STAT_VIG)))
+			setLevel(0)
+		else
+			changeLevel(penalty*death_view_multiplier)
 
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))
-
 
 /datum/sanity/proc/onDrug(datum/reagent/drug/R, multiplier)
 	changeLevel(R.sanity_gain * multiplier)
 	if(resting)
 		add_rest(INSIGHT_DESIRE_DRUGS, 4 * multiplier)
 
+/datum/sanity/proc/onToxin(datum/reagent/toxin/R, multiplier)
+	changeLevel(-R.sanityloss * multiplier)
+
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
 	if(resting)
-		add_rest(E.type, 2 * multiplier)
+		add_rest(E.type, 3 * multiplier)
 
-/datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, amount_eaten)
-	changeLevel(snack.sanity_gain * amount_eaten / snack.bitesize)
+/datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
+	if(world.time > eat_time_message && snack_sanity_message)
+		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
+		to_chat(owner, SPAN_NOTICE("[snack_sanity_message]"))
+	changeLevel(snack_sanity_gain)
 	if(snack.cooked && resting)
-		add_rest(snack.type, 15 * amount_eaten / snack.bitesize)
+		add_rest(snack.type, snack_sanity_gain * 45)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
-	changeLevel(SANITY_GAIN_SMOKE)
+	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
 	if(resting)
-		add_rest(INSIGHT_DESIRE_SMOKING, 0.125)
+		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
 
 /datum/sanity/proc/onSay()
 	if(world.time < say_time)
 		return
 	say_time = world.time + SANITY_COOLDOWN_SAY
 	changeLevel(SANITY_GAIN_SAY)
-
 
 /datum/sanity/proc/changeLevel(amount)
 	if(sanity_invulnerability && amount < 0)
@@ -280,7 +329,8 @@
 	level = new_level
 	if(level == 0 && world.time >= breakdown_time)
 		breakdown()
-	owner.HUDneed["sanity"]?.update_icon()
+	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	hud?.update_icon()
 
 /datum/sanity/proc/breakdown()
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
@@ -290,7 +340,7 @@
 			M.reg_break(owner)
 
 	var/list/possible_results
-	if(prob(positive_prob))
+	if(prob(positive_prob) && positive_prob_multiplier > 0)
 		possible_results = subtypesof(/datum/breakdown/positive)
 	else if(prob(negative_prob))
 		possible_results = subtypesof(/datum/breakdown/negative)

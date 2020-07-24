@@ -22,7 +22,7 @@
 				text += fA.print_success()
 
 	if(current_factions.len)
-		text += "<font size=3><b>Round factions were:</b></font>"
+		text += "<br><font size=3><b>Round factions were:</b></font>"
 		for(var/datum/faction/F in current_factions)
 			text += F.print_success()
 
@@ -216,9 +216,12 @@
 
 	if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))
+			return
+		if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
 			SSticker.delay_end = !SSticker.delay_end
 			log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 			message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+			return
 
 	topic_extra(href,href_list)
 

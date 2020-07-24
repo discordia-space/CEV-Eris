@@ -43,15 +43,16 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_SKYBOX 19
-#define INIT_ORDER_DBCORE 18
-#define INIT_ORDER_BLACKBOX 17
-#define INIT_ORDER_SERVER_MAINT 16
-#define INIT_ORDER_JOBS 15
-#define INIT_ORDER_EVENTS 14
-#define INIT_ORDER_TICKER 13
-#define INIT_ORDER_MAPPING 12
-#define INIT_ORDER_LANGUAGE 11
+#define INIT_ORDER_SKYBOX 20
+#define INIT_ORDER_DBCORE 19
+#define INIT_ORDER_BLACKBOX 18
+#define INIT_ORDER_SERVER_MAINT 17
+#define INIT_ORDER_JOBS 16
+#define INIT_ORDER_EVENTS 15
+#define INIT_ORDER_TICKER 14
+#define INIT_ORDER_MAPPING 13
+#define INIT_ORDER_LANGUAGE 12
+#define INIT_ORDER_INVENTORY 11
 #define INIT_ORDER_CHAR_SETUP 10
 #define INIT_ORDER_ATOMS 9
 #define INIT_ORDER_MACHINES 8
@@ -60,9 +61,10 @@
 #define INIT_ORDER_AIR -1
 #define INIT_ORDER_ALARM -2
 #define INIT_ORDER_MINIMAP -3
-#define INIT_ORDER_ASSETS -4
-#define INIT_ORDER_ICON_SMOOTHING -5
-#define INIT_ORDER_OVERLAY -6
+#define INIT_ORDER_HOLOMAPS -4
+#define INIT_ORDER_ASSETS -5
+#define INIT_ORDER_ICON_SMOOTHING -6
+#define INIT_ORDER_OVERLAY -7
 #define INIT_ORDER_XKEYSCORE -10
 #define INIT_ORDER_STICKY_BAN -10
 #define INIT_ORDER_LIGHTING -20
@@ -73,6 +75,7 @@
 #define INIT_OPEN_SPACE -150
 #define INIT_ORDER_CRAFT -175
 #define INIT_ORDER_LATELOAD -180
+#define INIT_ORDER_CHAT	-185
 
 // SS runlevels
 
@@ -95,10 +98,8 @@ if (Datum.is_processing) {\
 	SSmachines.List += Datum;\
 }
 
-//stopProcessingWrapper catches removal from processing list before it happens to adjust last position in memory during resumes
 #define STOP_PROCESSING_IN_LIST(Datum, List) \
 if(Datum.is_processing) {\
-	SSmachines.stopProcessingWrapper(Datum, SSmachines.List);\
 	if(SSmachines.List.Remove(Datum)) {\
 		Datum.is_processing = null;\
 	} else {\

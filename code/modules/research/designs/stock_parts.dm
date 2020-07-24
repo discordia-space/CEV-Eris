@@ -125,3 +125,7 @@
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
+
+/datum/design/research/item/part/rocket
+	name = "Rocket Engine"
+	build_path = /obj/item/rocket_engine

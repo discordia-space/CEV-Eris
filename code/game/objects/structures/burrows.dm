@@ -58,6 +58,9 @@
 
 	var/reinforcements = 2 //Maximum number of times this burrow may recieve reinforcements
 
+	var/deepmaint_entry_point = FALSE //Will this burrow turn into a deep maint entry point upon getting collapsed?
+
+
 /obj/structure/burrow/New(var/loc, var/turf/anchor)
 	.=..()
 	all_burrows.Add(src)
@@ -86,6 +89,10 @@
 	if (A && A.is_maintenance)
 		maintenance = TRUE
 		break_open(TRUE)
+
+	if(prob(7))
+		deepmaint_entry_point = TRUE
+
 
 //Lets remove ourselves from the global list and cleanup any held references
 /obj/structure/burrow/Destroy()
@@ -139,6 +146,10 @@
 	//Creatures only. No humans or robots
 	if (!isanimal(L) && !issuperioranimal(L))
 		return FALSE
+	
+	//Kaisers are too fat, they can't fit in
+	if(istype(L, /mob/living/carbon/superior_animal/roach/kaiser))
+		return FALSE
 
 	return TRUE
 
@@ -162,7 +173,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
 	The mobs it is to send should be placed inside it by the caller
 */
-/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 0, var/percentage = 1)
+/obj/structure/burrow/proc/migrate_to(var/obj/structure/burrow/_target, var/time = 1, var/percentage = 1)
 	if (!_target)
 		return
 
@@ -174,6 +185,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 	if (!processing)
 		START_PROCESSING(SSobj, src)
+		processing = TRUE
 
 
 	//The time we started. Used for animations
@@ -235,10 +247,16 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	duration = _duration
 	recieving = sender
 	START_PROCESSING(SSobj, src)
+	processing = TRUE
 
 
 
 /obj/structure/burrow/Process()
+	// Currently, STOP_PROCESSING does NOT instantly remove the object from processing queue
+	// This is a quick and dirty fix for runtime error spam caused by this
+	if(!processing)
+		return
+
 	//Burrows process when they are either sending or recieving mobs.
 	//One or the other, cant do both at once
 	var/progress = (world.time - migration_initiated) / duration
@@ -540,6 +558,16 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 /obj/structure/burrow/proc/collapse(var/clean = FALSE)
 	if(!clean)
 		spawn_rubble(loc, 0, 100)
+	if(deepmaint_entry_point)
+		if(free_deepmaint_ladders.len > 0)
+			var/obj/structure/multiz/ladder/up/my_ladder = pick(free_deepmaint_ladders)
+			free_deepmaint_ladders -= my_ladder
+			var/obj/structure/multiz/ladder/burrow_hole/my_hole = new /obj/structure/multiz/ladder/burrow_hole(loc)
+			my_hole.target = my_ladder
+			my_ladder.targeted_by = my_hole
+			my_ladder.target = my_hole
+			qdel(src)
+			return
 	isSealed = TRUE
 	icon_state = initial(icon_state)
 	name = initial(name)

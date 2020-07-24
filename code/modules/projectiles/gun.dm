@@ -26,41 +26,52 @@
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
+	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
-
+	var/rigged = FALSE
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
 
 	var/muzzle_flash = 3
-	var/requires_two_hands
 	var/dual_wielding
 	var/can_dual = 0 // Controls whether guns can be dual-wielded (firing two at once).
-	var/wielded_icon = "gun_wielded"
 	var/zoom_factor = 0 //How much to scope in when using weapon
 
 	var/suppress_delay_warning = FALSE
 
 	var/safety = TRUE//is safety will be toggled on spawn() or not
-	var/restrict_safety = FALSE//if gun don't need safety in all - toggle to TRUE
+	var/restrict_safety = FALSE //To restrict the users ability to toggle the safety
 
 	var/next_fire_time = 0
 
 	var/sel_mode = 1 //index of the currently selected mode
 	var/list/firemodes = list()
+	var/list/init_firemodes = list()
+
+	var/init_offset = 0
 
 	var/mouthshoot = FALSE //To stop people from suiciding twice... >.>
 
+	var/list/gun_tags = list() //Attributes of the gun, used to see if an upgrade can be applied to this weapon.
 	/*	SILENCER HANDLING */
-	var/obj/item/weapon/silencer/silenced = null //The installed silencer, if any
-	var/silencer_type = null //The type of silencer that could be installed in us, if we don't have one
+	var/silenced = FALSE
 	var/fire_sound_silenced = 'sound/weapons/Gunshot_silenced.wav' //Firing sound used when silenced
 
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
+	var/wielded_item_state = null
+	var/one_hand_penalty = 0 //The higher this number is, the more severe the accuracy penalty for shooting it one handed. 5 is a good baseline for this, but var edit it live and play with it yourself.
+
+	var/projectile_color //Set by a firemode. Sets the fired projectiles color
+
+	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
+	var/recentwield = 0 // to prevent spammage
+	var/proj_step_multiplier = 1
+	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int)
 
 /obj/item/weapon/gun/get_item_cost(export)
 	if(export)
@@ -69,20 +80,10 @@
 
 /obj/item/weapon/gun/Initialize()
 	. = ..()
-	for(var/i in 1 to firemodes.len)
-		var/list/L = firemodes[i]
-
-		//If this var is set, it means spawn a specific subclass of firemode
-		if (L["mode_type"])
-			var/newtype = L["mode_type"]
-			firemodes[i] = new newtype(src, firemodes[i])
-		else
-			firemodes[i] = new /datum/firemode(src, firemodes[i])
-
+	initialize_firemodes()
 	//Properly initialize the default firing mode
 	if (firemodes.len)
-		var/datum/firemode/F = firemodes[sel_mode]
-		F.apply_to(src)
+		set_firemode(sel_mode)
 
 	if(!restrict_safety)
 		verbs += /obj/item/weapon/gun/proc/toggle_safety_verb//addint it to all guns
@@ -91,10 +92,6 @@
 		action.owner = src
 		hud_actions += action
 
-	if(firemodes.len > 1)
-		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/fire_mode
-		action.owner = src
-		hud_actions += action
 
 	if(zoom_factor)
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/scope
@@ -110,7 +107,12 @@
 				slot_s_store_str = icon,
 			)
 		item_icons = item_icons_cache[type]
-
+	if(one_hand_penalty && (!wielded_item_state))//If the gun has a one handed penalty but no wielded item state then use this generic one.
+		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
+	generate_guntags()
+	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info
+	action.owner = src
+	hud_actions += action
 
 /obj/item/weapon/gun/Destroy()
 	for(var/i in firemodes)
@@ -119,29 +121,44 @@
 	firemodes = null
 	return ..()
 
+
 /obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+	var/wield_state = null
+	if(wielded_item_state)
+		wield_state = wielded_item_state
 	if(!(hands || back || onsuit))
 		hands = back = onsuit = TRUE
-	if(hands)
-		item_state_slots[slot_l_hand_str] = "lefthand"  + state
-		item_state_slots[slot_r_hand_str] = "righthand" + state
+	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
+		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
+			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
+			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+		else
+			item_state_slots[slot_l_hand_str] = "lefthand"  + state
+			item_state_slots[slot_r_hand_str] = "righthand" + state
+	state = initial(state)
 	if(back)
 		item_state_slots[slot_back_str]   = "back"      + state
 	if(onsuit)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 
-/obj/item/weapon/gun/update_wear_icon()
-	if(requires_two_hands)
-		var/mob/living/M = loc
-		if(istype(M))
-			if((M.l_hand == src && !M.r_hand) || (M.r_hand == src && !M.l_hand))
-				name = "[initial(name)] (wielded)"
-				item_state = wielded_icon
+
+/obj/item/weapon/gun/update_icon()
+	if(wielded_item_state)
+		if(icon_contained)//If it has it own icon file then we want to pull from that.
+			if(wielded)
+				item_state_slots[slot_l_hand_str] = "lefthand"  + wielded_item_state
+				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
-				name = initial(name)
-				item_state = initial(item_state)
-				update_icon(ignore_inhands=1) // In case item_state is set somewhere else.
-	..()
+				item_state_slots[slot_l_hand_str] = "lefthand"
+				item_state_slots[slot_r_hand_str] = "righthand"
+		else//Otherwise we can just pull from the generic left and right hand icons.
+			if(wielded)
+				item_state_slots[slot_l_hand_str] = wielded_item_state
+				item_state_slots[slot_r_hand_str] = wielded_item_state
+			else
+				item_state_slots[slot_l_hand_str] = initial(item_state)
+				item_state_slots[slot_r_hand_str] = initial(item_state)
+
 
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
@@ -157,6 +174,18 @@
 	if(HULK in M.mutations)
 		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
 		return FALSE
+	if(!restrict_safety)
+		if(safety)
+			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
+			handle_click_empty(user)
+			return FALSE
+	if(twohanded)
+		if(!wielded)
+			if (world.time >= recentwield + 1 SECONDS)
+				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
+				recentwield = world.time
+			return FALSE
+
 	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
@@ -170,10 +199,19 @@
 		else
 			handle_click_empty(user)
 		return FALSE
-	if(!restrict_safety)
-		if(safety)
-			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
-			handle_click_empty(user)
+	if(rigged)
+		var/obj/P = consume_next_projectile()
+		if(P)
+			if(process_projectile(P, user, user, BP_HEAD))
+				handle_post_fire(user, user)
+				user.visible_message(
+					SPAN_DANGER("As \the [user] pulls the trigger on \the [src], a bullet fires backwards out of it"),
+					SPAN_DANGER("Your \the [src] fires backwards, shooting you in the face!")
+					)
+				user.drop_item()
+			if(rigged > TRUE)
+				explosion(get_turf(src), 1, 2, 3, 3)
+				qdel(src)
 			return FALSE
 	return TRUE
 
@@ -217,11 +255,7 @@
 		return ..() //Pistolwhippin'
 
 
-/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
-	.=..()
-	if (!.)
-		if (silencer_type && istype(A, silencer_type))
-			apply_silencer(A, user)
+
 
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
@@ -237,8 +271,6 @@
 
 	if(!special_check(user))
 		return
-
-	user.stats.getPerk(/datum/perk/timeismoney)?.deactivate()
 
 	var/shoot_time = (burst - 1)* burst_delay
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
@@ -256,9 +288,21 @@
 
 		projectile.multiply_projectile_penetration(penetration_multiplier)
 
+		projectile.multiply_pierce_penetration(pierce_multiplier)
+
+		projectile.multiply_projectile_step_delay(proj_step_multiplier)
+
+		if(istype(projectile, /obj/item/projectile))
+			var/obj/item/projectile/P = projectile
+			P.adjust_damages(proj_damage_adjust)
+
 		if(pointblank)
 			process_point_blank(projectile, user, target)
-
+		if(projectile_color)
+			projectile.icon = get_proj_icon_by_color(projectile, projectile_color)
+			if(istype(projectile, /obj/item/projectile))
+				var/obj/item/projectile/P = projectile
+				P.proj_color = projectile_color
 		if(process_projectile(projectile, user, target, user.targeted_organ, clickparams))
 			handle_post_fire(user, target, pointblank, reflex)
 			update_icon()
@@ -273,7 +317,10 @@
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.set_move_cooldown(move_delay)
-	next_fire_time = world.time + fire_delay
+	if(!twohanded && user.stats.getPerk(PERK_GUNSLINGER))
+		next_fire_time = world.time + fire_delay - fire_delay * 0.33
+	else
+		next_fire_time = world.time + fire_delay
 
 	if(muzzle_flash)
 		set_light(0)
@@ -322,12 +369,24 @@
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
+
+	if(one_hand_penalty)
+		if(!wielded)
+			switch(one_hand_penalty)
+				if(1)
+					if(prob(50)) //don't need to tell them every single time
+						to_chat(user, "<span class='warning'>Your aim wavers slightly.</span>")
+				if(2)
+					to_chat(user, "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>")
+				if(3)
+					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
+				if(4 to INFINITY)
+					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
+
 	user.handle_recoil(src)
 	update_icon()
 
-/obj/item/weapon/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
-	var/obj/item/projectile/P = projectile
-
+/obj/item/weapon/gun/proc/process_point_blank(var/obj/item/projectile/P, mob/user, atom/target)
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
 
@@ -348,18 +407,17 @@
 				damage_mult = 2.5
 			else if(grabstate >= GRAB_AGGRESSIVE)
 				damage_mult = 1.5
-	P.damage *= damage_mult
+	P.multiply_projectile_damage(damage_mult)
 
 
 //does the actual launching of the projectile
-/obj/item/weapon/gun/proc/process_projectile(obj/projectile, mob/living/user, atom/target, var/target_zone, var/params=null)
-	var/obj/item/projectile/P = projectile
+/obj/item/weapon/gun/proc/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = 0
+	var/offset = init_offset
 	if(user.calc_recoil())
 		offset += user.recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
@@ -380,11 +438,10 @@
 		mouthshoot = FALSE
 		return
 
-	if(!restrict_safety)
-		if(safety)
-			handle_click_empty(user)
-			mouthshoot = FALSE
-			return
+	if(safety)
+		handle_click_empty(user)
+		mouthshoot = FALSE
+		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if (istype(in_chamber))
 		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
@@ -398,9 +455,11 @@
 			return
 
 		in_chamber.on_hit(M)
-		if (in_chamber.damage_type != HALLOSS)
+		if (!in_chamber.is_halloss())
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
+			for(var/damage_type in in_chamber.damage_types)
+				var/damage = in_chamber.damage_types[damage_type]*2.5
+				user.apply_damage(damage, damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))
@@ -435,15 +494,39 @@
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
 
-	if(!restrict_safety)
-		if(safety)
-			to_chat(user, SPAN_NOTICE("The safety is on."))
-		else
-			to_chat(user, SPAN_NOTICE("The safety is off."))
+	if(safety)
+		to_chat(user, SPAN_NOTICE("The safety is on."))
+	else
+		to_chat(user, SPAN_NOTICE("The safety is off."))
 
-	//Tell the user if they could fit a silencer on
-	if (silencer_type && !silenced)
-		to_chat(user, SPAN_NOTICE("You could attach a silencer to this."))
+	if(one_hand_penalty)
+		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
+
+
+/obj/item/weapon/gun/proc/initialize_firemodes()
+	QDEL_CLEAR_LIST(firemodes)
+
+	for(var/i in 1 to init_firemodes.len)
+		var/list/L = init_firemodes[i]
+		add_firemode(L)
+
+	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
+	if(firemodes.len > 1)
+		if(!action)
+			action = new /obj/screen/item_action/top_bar/gun/fire_mode
+			action.owner = src
+			hud_actions += action
+	else
+		qdel(action)
+		hud_actions -= action
+
+/obj/item/weapon/gun/proc/add_firemode(var/list/firemode)
+	//If this var is set, it means spawn a specific subclass of firemode
+	if (firemode["mode_type"])
+		var/newtype = firemode["mode_type"]
+		firemodes.Add(new newtype(src, firemode))
+	else
+		firemodes.Add(new /datum/firemode(src, firemode))
 
 /obj/item/weapon/gun/proc/switch_firemodes()
 	if(firemodes.len <= 1)
@@ -452,6 +535,11 @@
 	sel_mode++
 	if(sel_mode > firemodes.len)
 		sel_mode = 1
+	return set_firemode(sel_mode)
+
+/obj/item/weapon/gun/proc/set_firemode(var/index)
+	if(index > firemodes.len)
+		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	new_mode.update()
@@ -464,15 +552,6 @@
 		return
 
 	toggle_firemode(user)
-
-/obj/item/weapon/gun/ui_action_click(mob/living/user, action_name)
-	switch(action_name)
-		if("fire mode")
-			toggle_firemode(user)
-		if("scope")
-			toggle_scope(user)
-		if("safety")
-			toggle_safety(user)
 
 /obj/item/weapon/gun/proc/toggle_firemode(mob/living/user)
 	var/datum/firemode/new_mode = switch_firemodes()
@@ -507,12 +586,11 @@
 		new_mode.update(force_state)
 
 /obj/item/weapon/gun/AltClick(mob/user)
-	if(!restrict_safety)
-		if(user.incapacitated())
-			to_chat(user, SPAN_WARNING("You can't do that right now!"))
-			return
+	if(user.incapacitated())
+		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		return
 
-		toggle_safety(user)
+	toggle_safety(user)
 
 
 //Updating firing modes at appropriate times
@@ -539,51 +617,82 @@
 
 	toggle_safety(usr)
 
-/*
-	Gun Modding
-*/
-/obj/item/weapon/gun/proc/apply_silencer(var/obj/item/weapon/silencer/A, var/mob/user)
-	if (silenced)
-		to_chat(user, "\The [src] already has a silencer installed!")
-		return
+/obj/item/weapon/gun/ui_data(mob/user)
+	var/list/data = list()
+	data["damage_multiplier"] = damage_multiplier
+	data["pierce_multiplier"] = pierce_multiplier
+	data["penetration_multiplier"] = penetration_multiplier
 
-	if (istype(A, silencer_type))
+	data["fire_delay"] = fire_delay //time between shot, in ms
+	data["burst"] = burst //How many shots are fired per click
+	data["burst_delay"] = burst_delay //time between shot in burst mode, in ms
 
-		if (user)
-			playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
-			if (!do_after(user, 40, src))
-				return
-			if (!user.unEquip(A))
-				return
-			to_chat(user, SPAN_NOTICE("You install \the [A] in \the [src]"))
+	data["force"] = force
+	data["force_max"] = initial(force)*10
+	data["muzzle_flash"] = muzzle_flash
 
-		//Here's the code where we actually install it
-		A.forceMove(src)//Silencer goes inside us
-		silenced = A
-		damage_multiplier -= A.damage_mod //Silencers make the weapon slightly weaker
-		update_icon() //Guns that support silencers are responsible for setting their own icon appropriately
-		if (silenced.can_remove)
-			verbs += /obj/item/weapon/gun/proc/remove_silencer //Give us a verb to remove it
+	data["recoil_buildup"] = recoil_buildup
+	data["recoil_buildup_max"] = initial(recoil_buildup)*10
+
+	if(firemodes.len)
+		var/list/firemodes_info = list()
+		for(var/i = 1 to firemodes.len)
+			data["firemode_count"] += 1
+			var/datum/firemode/F = firemodes[i]
+			firemodes_info += list(list(
+				"index" = i,
+				"current" = (i == sel_mode),
+				"name" = F.name,
+				"burst" = F.settings["burst"],
+				"fire_delay" = F.settings["fire_delay"],
+				"move_delay" = F.settings["move_delay"],
+				))
+		data["firemode_info"] = firemodes_info
+
+	if(item_upgrades.len)
+		data["attachments"] = list()
+		for(var/atom/A in item_upgrades)
+			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
 
 
-/obj/item/weapon/gun/proc/remove_silencer(var/mob/user)
-	set category = "Object"
+	return data
 
-	if (!silenced || !silenced.can_remove)
-		to_chat(user, "No silencer is installed on \the [src]")
-		verbs -= /obj/item/weapon/gun/proc/remove_silencer
-		return
+/obj/item/weapon/gun/Topic(href, href_list, var/datum/topic_state/state)
+	if(..(href, href_list, state))
+		return 1
 
-	if (user)
-		playsound(src, WORKSOUND_SCREW_DRIVING, 50, 1)
-		if (!do_after(user, 40, src))
-			return
-		//Drop it in their hands
-		user.put_in_hands(silenced)
-	.=silenced //Set return value to the silencer incase caller wants to do something with it
-	if (silenced.loc == src)
-		silenced.forceMove(loc) //Move it out if a user didn't take it
+	if(href_list["firemode"])
+		sel_mode = text2num(href_list["firemode"])
+		set_firemode(sel_mode)
+		return 1
 
-	damage_multiplier += silenced.damage_mod
-	silenced = null
+/obj/item/weapon/gun/refresh_upgrades()
+	//First of all, lets reset any var that could possibly be altered by an upgrade
+	damage_multiplier = initial(damage_multiplier)
+	penetration_multiplier = initial(penetration_multiplier)
+	pierce_multiplier = initial(pierce_multiplier)
+	proj_step_multiplier = initial(proj_step_multiplier)
+	fire_delay = initial(fire_delay)
+	move_delay = initial(move_delay)
+	recoil_buildup = initial(recoil_buildup)
+	muzzle_flash = initial(muzzle_flash)
+	silenced = initial(silenced)
+	restrict_safety = initial(restrict_safety)
+	init_offset = initial(init_offset)
+	proj_damage_adjust = list()
+	fire_sound = initial(fire_sound)
+	restrict_safety = initial(restrict_safety)
+	rigged = initial(rigged)
+	initialize_firemodes()
+
+	//Now lets have each upgrade reapply its modifications
+	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
+	SEND_SIGNAL(src, COMSIG_APPVAL, src)
+
 	update_icon()
+	//then update any UIs with the new stats
+	SSnano.update_uis(src)
+
+/obj/item/weapon/gun/proc/generate_guntags()
+	if(one_hand_penalty)
+		gun_tags |= GUN_GRIP

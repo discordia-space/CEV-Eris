@@ -13,7 +13,6 @@
 //Contains boomsticks, ie, shotguns
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
-	directions = DIRECTION_COORDS | DIRECTION_LANDMARK
 	contents_list_base = list(/obj/random/gun_shotgun = 2,
 	/obj/random/ammo/shotgun = 2, /obj/random/ammo = 2)
 	contents_list_random = list(/obj/random/ammo/shotgun = 60,
@@ -29,7 +28,7 @@
 
 //because this one is styled like a telegram, lets capitalise the directions
 /datum/stash/weapon/mutiny_boomstick/create_direction_string(var/data)
-	.=..()
+	. = ..()
 	direction_string = capitalize(direction_string)
 
 
@@ -45,7 +44,7 @@
 	/obj/random/powercell = 4)
 
 	contents_list_random = list(/obj/item/weapon/storage/box/explosive = 40,
-	/obj/item/weapon/material/twohanded/fireaxe = 70,
+	/obj/item/weapon/tool/fireaxe = 70,
 	/obj/item/clothing/gloves/insulated = 50,
 	/obj/item/weapon/storage/box/emps = 30,
 	/obj/item/weapon/gun/energy/ionrifle = 70,
@@ -102,18 +101,18 @@
  The toilets don't work, the air has been rebreathed by seventy mouths seven million times, and I can smell the damn cook's halitosis coming out the one working air vent because he's sleeping next to the one working scrubber.<br>\
  Half of the crew wants to hit the pods, the other half wants their bonus pay. I know what half I'm in, and we're meeting at %D. Fuck this captain. Once we find some softsuits, that is."
 
-
- /datum/stash/weapon/mutiny/warden
+/*
+/datum/stash/weapon/mutiny/warden
 	contents_list_extra = list(/obj/random/gun_normal = 3, /obj/random/ammo = 6)
 	directions = DIRECTION_IMAGE
 	lore = "Warden,<br>\
  You and I both know this rubber buckshot bullshit is going to get us all killed when the convicts realize they outnumber us sixty to one.<br>\
  Sarish tells me there's a stash of real heaters wherever the hell this is.<br>\
  Crazy bitch sends a picture instead of a fucking coordinate. %D"
+*/
 
 
-
- /datum/stash/weapon/mutiny/starvation
+/datum/stash/weapon/mutiny/starvation
  	//Make sure there's a shotgun with slugs in the stash, as described in the text.
  	//Also the wardens were hoarding food
  	contents_list_extra = list(/obj/random/gun_shotgun = 1, /obj/item/weapon/storage/box/shotgunammo/slug = 1, /obj/random/rations = 6)

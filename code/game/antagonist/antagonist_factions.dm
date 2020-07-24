@@ -26,7 +26,7 @@
 	current_factions.Add(src)
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
-	if(!member || !member.owner || !member.owner.current || member in members || !member.owner.current.client)
+	if(!member || !member.owner || !member.owner.current || (member in members) || !member.owner.current.client)
 		return
 	if(possible_antags.len && !(member.id in possible_antags))
 		return
@@ -45,7 +45,7 @@
 	return TRUE
 
 /datum/faction/proc/add_leader(var/datum/antagonist/member, var/announce = TRUE)
-	if(!member || member in leaders || !member.owner.current)
+	if(!member || (member in leaders) || !member.owner.current)
 		return
 
 	if(!(member in members))
@@ -137,16 +137,15 @@
 /datum/faction/proc/customize(var/mob/leader)
 
 /datum/faction/proc/communicate(var/mob/user)
-	if(!is_member(user))
+	if(!is_member(user) || user.stat != CONSCIOUS)
 		return
 
-	usr = user
-	var/message = input("Type message","[name] communication")
+	var/message = input(user, "Type message","[name] communication")
 
-	if(!message || !is_member(user))
+	if(!message || !is_member(user) || user.stat != CONSCIOUS) //Check the same things again, to prevent message-holding
 		return
 
-	message = capitalize_cp1251(sanitize(message))
+	message = capitalize(sanitize(message))
 	var/text = "<span class='revolution'>[name] member, [user]: \"[message]\"</span>"
 	for(var/datum/antagonist/A in members)
 		to_chat(A.owner.current, text)
@@ -185,26 +184,29 @@
 		text += A.print_player()
 
 	text += "<br>"
-	var/failed = FALSE
-	var/num = 1
 
-	for(var/datum/objective/O in objectives)
-		text += "<br><b>Objective [num]:</b> [O.explanation_text] "
-		if(O.check_completion())
-			text += "<font color='green'><B>Success!</B></font>"
+	if (objectives.len)
+		var/failed = FALSE
+		var/num = 1
+
+		for(var/datum/objective/O in objectives)
+			text += "<br><b>Objective [num]:</b> [O.explanation_text] "
+			if(O.check_completion())
+				text += "<font color='green'><B>Success!</B></font>"
+			else
+				text += "<font color='red'>Fail.</font>"
+				failed = TRUE
+			num++
+
+		if(failed)
+			text += "<br><font color='red'><B>The members of the [name] failed their tasks.</B></font>"
 		else
-			text += "<font color='red'>Fail.</font>"
-			failed = TRUE
-		num++
-
-	if(failed)
-		text += "<br><font color='red'><B>The members of the [name] failed their tasks.</B></font>"
-	else
-		text += "<br><font color='green'><B>The members of the [name] accomplished their tasks!</B></font>"
-
+			text += "<br><font color='green'><B>The members of the [name] accomplished their tasks!</B></font>"
+	text += print_success_extra()
 	// Display the results.
 	return text
-
+/datum/faction/proc/print_success_extra() //Placeholder for extra data for print_succes proc
+	return ""
 /datum/faction/proc/get_indicator(var/datum/antagonist/A)
 	if(A in leaders)
 		return get_leader_indicator()
@@ -319,7 +321,7 @@
 
 	if(href_list["remleader"])
 		var/datum/antagonist/A = locate(href_list["remleader"])
-		if(istype(A) && A in leaders)
+		if(istype(A) && (A in leaders))
 			remove_leader(A)
 
 	if(href_list["remmember"])

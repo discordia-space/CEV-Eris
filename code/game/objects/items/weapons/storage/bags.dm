@@ -33,11 +33,11 @@
 	icon_state = "trashbag0"
 	item_state = "trashbag"
 
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	max_w_class = ITEM_SIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/weapon/disk/nuclear)
-	max_storage_space = DEFAULT_BULKY_STORAGE
+	max_storage_space = DEFAULT_NORMAL_STORAGE
 
 /obj/item/weapon/storage/bag/trash/update_icon()
 	if(contents.len == 0)
@@ -240,3 +240,8 @@
 	w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/weapon/coin,
 		/obj/item/weapon/spacecash)
+
+/obj/item/weapon/storage/bag/money/Initialize()
+	. = ..()
+	if(prob(20))
+		icon_state = "moneybagalt"

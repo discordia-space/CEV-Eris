@@ -1,4 +1,4 @@
-/obj/item/clothing/head/helmet/space/void/excelsior
+/obj/item/clothing/head/space/void/excelsior
 	name = "Excelsior helmet"
 	desc = "A deceptively well armored space helmet. Ancient design, but advanced manufacturing."
 	icon_state = "cosmo"
@@ -13,12 +13,12 @@
 	)
 
 	armor = list(
-		melee = 30,
-		bullet = 30,
+		melee = 35,
+		bullet = 40,
 		energy = 30,
 		bomb = 25,
 		bio = 100,
-		rad = 90
+		rad = 75
 	)
 	siemens_coefficient = 0
 	species_restricted = list("Human")
@@ -30,23 +30,22 @@
 	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges."
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
-	slowdown = 0.8
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
+	slowdown = 0.2
 	w_class = ITEM_SIZE_NORMAL
-	//Decent all around, but less ballistic resistance
 	armor = list(
-		melee = 30,
-		bullet = 30,
+		melee = 35,
+		bullet = 40,
 		energy = 30,
 		bomb = 25,
 		bio = 100,
-		rad = 90
+		rad = 75
 	)
 	siemens_coefficient = 0 //Shockproof!
+	breach_threshold = 6
+	resilience = 0.08
 	matter = list(
 		MATERIAL_PLASTIC = 30,
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 5
 	)
-	helmet = /obj/item/clothing/head/helmet/space/void/excelsior
+	helmet = /obj/item/clothing/head/space/void/excelsior

@@ -230,7 +230,7 @@
 	desc = "A little medical robot. He looks somewhat underwhelmed. Wait a minute, is that a blade?"
 	icon_state = "slicer"
 	attacktext = "slice"
-	density = 0
+	density = FALSE
 	speak_chance = 3
 	malfunction_chance = 15
 	mob_size = MOB_SMALL
@@ -272,7 +272,7 @@
 	name = "probe"
 	desc = "This hovering cyborg emits a faint smell of welding fuel."
 	icon_state = "bomber"
-	density = 0
+	density = FALSE
 	speak_chance = 3
 	malfunction_chance = 15
 	mob_size = MOB_SMALL
@@ -644,7 +644,7 @@
 
 //animations
 //updates every life tick
-/mob/living/simple_animal/hostile/hivemind/mechiver/proc/update_icon()
+/mob/living/simple_animal/hostile/hivemind/mechiver/update_icon()
 	if(target_mob && !passenger && (get_dist(target_mob, src) <= 4) && !is_on_cooldown())
 		if(!hatch_closed)
 			return

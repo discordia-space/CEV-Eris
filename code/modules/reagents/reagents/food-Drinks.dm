@@ -832,6 +832,7 @@
 	color = "#100800"
 	adj_temp = -5
 	adj_sleepy = -2
+	nerve_system_accumulations = 50
 
 	glass_icon_state = "nuka_colaglass"
 	glass_name = "Nuka-Cola"
@@ -840,7 +841,7 @@
 
 /datum/reagent/drink/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.8)
 	M.make_jittery(20 * effect_multiplier)
 	M.druggy = max(M.druggy, 30 * effect_multiplier)
 	M.dizziness += 5 * effect_multiplier
@@ -2143,3 +2144,25 @@
 	glass_name = "special blend whiskey"
 	glass_desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
 	glass_center_of_mass = list("x"=16, "y"=12)
+
+/datum/reagent/ethanol/atomic_vodka
+	name = "Atomic Vodka"
+	id = "atomvodka"
+	description = "Clear distilled alcoholic beverage that originates from Poland and Russia, now with nuclear taste!"
+	taste_description = "strong grain alcohol"
+	color = "#0064C8" // rgb: 0, 100, 200
+	strength = 5
+	strength_mod = 10
+	toxicity = 10
+
+	glass_icon_state = "ginvodkaglass"
+	glass_name = "atomic vodka"
+	glass_desc = "Booze for true drunkers."
+	glass_center_of_mass = list("x"=16, "y"=12)
+
+
+
+/datum/reagent/ethanol/atomic_vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+	..()
+	if(!M.stats.getTempStat(STAT_TGH, "atomvodka") && M.stats.getPerk(/datum/perk/sommelier))
+		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, 10 MINUTES, "atomvodka")

@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	flags = NOBLUDGEON
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_ILLEGAL = 2)
+	origin_tech = list(TECH_COVERT = 2)
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10
 	var/atom/target = null

@@ -3,8 +3,8 @@
 	name = "grille"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	flags = CONDUCT
 	layer = BELOW_OBJ_LAYER
 	explosion_resistance = 1
@@ -69,25 +69,25 @@
 
 	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
 	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
-	switch(Proj.damage_type)
-		if(BRUTE)
+	for(var/i in Proj.damage_types)
+		if(i == BRUTE)
 			//bullets
 			if(Proj.original == src || prob(20))
-				Proj.damage *= between(0, Proj.damage/60, 0.5)
+				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 0.5)
 				if(prob(max((damage-10)/25, 0))*100)
 					passthrough = 1
 			else
-				Proj.damage *= between(0, Proj.damage/60, 1)
+				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 1)
 				passthrough = 1
-		if(BURN)
+		if(i == BURN)
 			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
 			if(!(Proj.original == src || prob(20)))
-				Proj.damage *= 0.5
+				Proj.damage_types[i] *= 0.5
 				passthrough = 1
 
 	if(passthrough)
 		. = PROJECTILE_CONTINUE
-		damage = between(0, (damage - Proj.damage)*(Proj.damage_type == BRUTE? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
+		damage = between(0, (damage - Proj.get_structure_damage())*(Proj.damage_types[BRUTE] ? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
 
 	src.health -= damage*0.2
 	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
@@ -168,11 +168,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-		switch(I.damtype)
-			if("fire")
-				health -= I.force
-			if("brute")
-				health -= I.force * 0.1
+		health -= I.force * I.structure_damage_factor
 	healthcheck()
 	..()
 	return
@@ -181,7 +177,7 @@
 /obj/structure/grille/proc/healthcheck()
 	if(health <= 0)
 		if(!destroyed)
-			density = 0
+			density = FALSE
 			destroyed = 1
 			update_icon()
 			new /obj/item/stack/rods(get_turf(src))
@@ -254,7 +250,7 @@
 /obj/structure/grille/broken
 	destroyed = 1
 	icon_state = "grille-b"
-	density = 0
+	density = FALSE
 	New()
 		..()
 		health = rand(-5, -1) //In the destroyed but not utterly threshold.

@@ -79,7 +79,6 @@
 	else
 		to_chat(user, "[src] rejects your insufficient access rights.")
 	return
-	..()
 
 /obj/item/weapon/storage/box/holobadge
 	name = "holobadge box"
@@ -109,8 +108,7 @@
 	slot_flags = SLOT_ACCESSORY_BUFFER
 
 /obj/item/clothing/accessory/badge/marshal
-	name = "marshal's badge"
-	desc = "A leather-backed gold badge displaying the crest of the Colonial Marshals."
+	name = "Marshal's badge"
+	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
 	icon_state = "marshalbadge"
-	badge_string = "Colonial Marshal Bureau"
-
+	badge_string = "Ironhammer Marshal Bureau"

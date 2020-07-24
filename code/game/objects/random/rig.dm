@@ -21,12 +21,10 @@
 
 	//Heavy armor
 	/obj/item/weapon/rig/combat = 10,
-	/obj/item/weapon/rig/combat/ironhammer = 10,
 	/obj/item/weapon/rig/hazard = 10,
 
 	//The ones below here come with built in weapons
 	/obj/item/weapon/rig/combat/equipped = 4,
-	/obj/item/weapon/rig/combat/ironhammer/equipped = 4,
 	/obj/item/weapon/rig/hazard/equipped = 4,
 	))
 
@@ -50,7 +48,7 @@
 		var/cnd = rand(40,80)
 		module.lose_modules(cnd)
 		module.misconfigure(cnd)
-		module.sabotage_cell()
+		//module.sabotage_cell()
 		module.sabotage_tank()
 
 /obj/random/rig/damaged/low_chance
@@ -90,7 +88,6 @@
 	/obj/item/rig_module/fabricator/energy_net = 0.2,
 	/obj/item/rig_module/self_destruct = 1,
 
-	/obj/item/rig_module/teleporter = 0.5,
 
 	//Utility
 	/obj/item/rig_module/device/healthscanner = 4,
@@ -144,8 +141,6 @@
 	/obj/item/rig_module/fabricator = 1,
 	/obj/item/rig_module/fabricator/energy_net = 1,
 	/obj/item/rig_module/self_destruct = 1,
-
-	/obj/item/rig_module/teleporter = 1,
 
 	//Utility
 	/obj/item/rig_module/device/drill = 1,

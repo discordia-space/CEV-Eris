@@ -41,13 +41,17 @@
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
 
-//Chaplain
 /obj/item/clothing/head/nun_hood
 	name = "nun hood"
 	desc = "Maximum piety in this star system."
 	icon_state = "nun_hood"
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
+
+/obj/item/clothing/head/preacher
+	name = "preacher hat"
+	desc = "Useful for hiding disdainful eyes from the godless masses."
+	icon_state = "church_hat"
 
 //Mime
 /obj/item/clothing/head/beret
@@ -82,7 +86,7 @@
 /obj/item/clothing/head/surgery
 	name = "surgical cap"
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
-	icon_state = "surgcap_blue"
+	icon_state = "surgcap_green"
 	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/surgery/purple

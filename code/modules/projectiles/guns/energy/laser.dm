@@ -12,16 +12,24 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
-	firemodes = list(
+	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
+	twohanded = TRUE
 
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = TRUE
 	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
+	twohanded = FALSE
+
+/obj/item/weapon/gun/energy/laser/mounted/blitz
+	name = "SDF LR \"Strahl\""
+	desc = "A miniaturized laser rifle, remounted for robotic use only."
+	icon_state = "laser_turret"
+	charge_meter = FALSE
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
@@ -44,10 +52,11 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	price_tag = 2000
-	firemodes = list(
+	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
+	twohanded = TRUE
 
 /obj/item/weapon/gun/energy/captain
 	name = "NT LG \"Destiny\""
@@ -65,10 +74,11 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = null
 	self_recharge = TRUE
 	price_tag = 4500
-	firemodes = list(
+	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
 	)
+	twohanded = FALSE
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"
@@ -82,11 +92,16 @@ obj/item/weapon/gun/energy/retro
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
-	charge_cost = 250
+	charge_cost = 50
 	fire_delay = 20
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
-
+	init_firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+		)
+	one_hand_penalty = 5
+	twohanded = TRUE
 
 /obj/item/weapon/gun/energy/lasercannon/mounted
 	name = "mounted laser cannon"
@@ -95,3 +110,4 @@ obj/item/weapon/gun/energy/retro
 	recharge_time = 10
 	safety = FALSE
 	restrict_safety = TRUE
+	twohanded = FALSE

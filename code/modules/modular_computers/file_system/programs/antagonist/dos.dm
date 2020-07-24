@@ -26,13 +26,13 @@
 			target = null
 			error = "Connection to destination relay lost."
 
-/datum/computer_file/program/ntnet_dos/kill_program(var/forced)
+/datum/computer_file/program/ntnet_dos/kill_program(forced = FALSE)
 	if(target)
 		target.dos_sources.Remove(src)
 		target = null
 	executed = 0
 
-	..(forced)
+	..()
 
 /datum/nano_module/program/computer_dos
 	name = "DoS Traffic Generator"
@@ -90,7 +90,7 @@
 			return 1
 		executed = 1
 		target.dos_sources.Add(src)
-		operator_skill = usr.stats.getStat(STAT_COG)
+		operator_skill = get_operator_skill(usr, STAT_COG)
 
 		var/list/sources_to_show = list(computer.network_card.get_network_tag())
 		var/extra_to_show = 2 * max(operator_skill - STAT_LEVEL_ADEPT, 0)

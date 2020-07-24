@@ -94,6 +94,8 @@
 	sort_string = "VBAAP"
 	starts_unlocked = TRUE
 
+/datum/design/research/item/computer_part/led/adv
+	build_path = /obj/item/weapon/computer_hardware/led/adv
 
 // Processor
 /datum/design/research/item/computer_part/cpu

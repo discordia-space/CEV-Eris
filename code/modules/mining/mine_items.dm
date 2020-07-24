@@ -25,8 +25,8 @@
 	new /obj/item/weapon/tool/shovel(src)
 	new /obj/item/weapon/tool/pickaxe(src)
 	new /obj/item/weapon/tool/pickaxe/drill(src)
-	new /obj/item/weapon/gun/projectile/shotgun/doublebarrel
-	new /obj/item/weapon/storage/box/shotgunammo/slug
+	new /obj/item/weapon/gun/projectile/shotgun/doublebarrel(src)
+	new /obj/item/weapon/storage/box/shotgunammo/slug(src)
 	new /obj/item/device/t_scanner(src)
 
 /******************************Lantern*******************************/
@@ -51,7 +51,7 @@
 	name = "Mining car (not for rails)"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "miningcar"
-	density = 1
+	density = TRUE
 
 // Flags.
 
@@ -94,7 +94,7 @@
 	if(upright)
 		upright = 0
 		icon_state = base_state
-		anchored = 0
+		anchored = FALSE
 		src.visible_message("<b>[user]</b> knocks down [src].")
 	else
 		..()
@@ -115,7 +115,7 @@
 	var/obj/item/stack/flag/newflag = new src.type(T)
 	newflag.amount = 1
 	newflag.upright = 1
-	anchored = 1
+	anchored = TRUE
 	newflag.name = newflag.singular_name
 	newflag.icon_state = "[newflag.base_state]_open"
 	newflag.visible_message("<b>[user]</b> plants [newflag] firmly in the ground.")

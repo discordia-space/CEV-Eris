@@ -88,13 +88,13 @@
 		var/list/hear = hear(7, T)
 
 		for(var/mob/M in SSmobs.mob_list)
-			if(M.locs.len && M.locs[1] in hear)
+			if(M.locs.len && (M.locs[1] in hear))
 				listening |= M
 			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 
 		for(var/obj/O in hearing_objects)
-			if(O.locs.len && O.locs[1] in hear)
+			if(O.locs.len && (O.locs[1] in hear))
 				listening_obj |= O
 
 		for(var/mob/M in listening)

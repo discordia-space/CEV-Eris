@@ -6,7 +6,7 @@
 	stance = COMMANDED_STOP
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	density = 0
+	density = FALSE
 	attacktext = "swarmed"
 	var/list/command_buffer = list()
 	var/list/known_commands = list("stay", "stop", "attack", "follow")
@@ -56,11 +56,6 @@
 			continue
 		if(isliving(A))
 			M = A
-		if(istype(A,/obj/mecha))
-			var/obj/mecha/mecha = A
-			if(!mecha.occupant)
-				continue
-			M = mecha.occupant
 		if(M && M.stat)
 			continue
 		if(mode == "specific")

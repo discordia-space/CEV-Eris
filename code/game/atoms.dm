@@ -34,6 +34,9 @@
 
 	var/sanity_damage = 0
 
+/atom/proc/update_icon()
+	return
+
 /atom/New(loc, ...)
 	init_plane()
 	update_plane()
@@ -474,7 +477,7 @@ its easier to just keep the beam vertical.
 
 	//Cleaning up shit.
 	if(fingerprints && !fingerprints.len)
-		qdel(fingerprints)
+		fingerprints = null
 	return
 
 
@@ -659,11 +662,7 @@ its easier to just keep the beam vertical.
 /atom/proc/get_coords()
 	var/turf/T = get_turf(src)
 	if (T)
-		var/datum/coords/C = new
-		C.x_pos = T.x
-		C.y_pos = T.y
-		C.z_pos = T.z
-		return C
+		return new /datum/coords(T)
 
 /atom/proc/change_area(var/area/old_area, var/area/new_area)
 	return
@@ -680,7 +679,7 @@ its easier to just keep the beam vertical.
 	BM.pixel_x--
 	BM.pixel_y--
 
-	if(Proj.damage >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
+	if(Proj.get_structure_damage() >= WEAPON_FORCE_DANGEROUS)//If it does a lot of damage it makes a nice big black hole.
 		BM.icon_state = "scorch"
 		BM.set_dir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 	else //Otherwise it's a light dent.

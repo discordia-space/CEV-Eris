@@ -72,7 +72,12 @@ A small pool of thematically appropriate religious items that are generally chea
 /datum/uplink_item/item/neotheology/coat
 	name = "Preacher Coat"
 	item_cost = 3
-	path = /obj/item/clothing/suit/chaplain_hoodie
+	path = /obj/item/clothing/suit/neotheology_coat
+
+/datum/uplink_item/item/neotheology/hat
+	name = "Preacher Hat"
+	item_cost = 3
+	path = /obj/item/clothing/head/preacher
 
 /*
 	Guns: All taken from the NeoTheology Armory of the New Testament
@@ -92,12 +97,12 @@ A small pool of thematically appropriate religious items that are generally chea
 /datum/uplink_item/item/neotheology/pulse
 	item_cost = 10
 	name = "NT PR \"Dominion\""
-	path = /obj/item/weapon/gun/energy/pulse
+	path = /obj/item/weapon/gun/energy/plasma
 
 /datum/uplink_item/item/neotheology/pulse_destroyer
 	item_cost = 10
 	name = "NT PR \"Purger\""
-	path = /obj/item/weapon/gun/energy/pulse/destroyer
+	path = /obj/item/weapon/gun/energy/plasma/destroyer
 
 
 

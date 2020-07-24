@@ -12,6 +12,10 @@
 	name = "welding tool"
 	build_path = /obj/item/weapon/tool/weldingtool
 
+/datum/design/autolathe/tool/weldertool_adv
+	name = "advanced welding tool"
+	build_path = /obj/item/weapon/tool/weldingtool/advanced
+
 /datum/design/autolathe/tool/weldertool_onestar
 	name = "one star welding tool"
 	build_path = /obj/item/weapon/tool/weldingtool/onestar
@@ -51,6 +55,12 @@
 /datum/design/autolathe/tool/wrench
 	build_path = /obj/item/weapon/tool/wrench
 
+/datum/design/autolathe/tool/hammer
+	build_path = /obj/item/weapon/tool/hammer
+
+/datum/design/autolathe/tool/powered_hammer
+	build_path = /obj/item/weapon/tool/hammer/powered_hammer
+
 /datum/design/autolathe/tool/big_wrench
 	build_path = /obj/item/weapon/tool/wrench/big_wrench
 
@@ -89,6 +99,9 @@
 /datum/design/autolathe/tool/spade
 	build_path = /obj/item/weapon/tool/shovel/spade
 
+/datum/design/autolathe/tool/shovel/power
+	build_path = /obj/item/weapon/tool/shovel/power
+
 /datum/design/autolathe/tool/mop
 	name = "janitor's mop"
 	build_path = /obj/item/weapon/mop
@@ -107,6 +120,9 @@
 
 /datum/design/autolathe/tool/chainsaw
 	build_path = /obj/item/weapon/tool/saw/chain
+
+/datum/design/autolathe/tool/hypersaw
+	build_path = /obj/item/weapon/tool/saw/hyper
 
 /datum/design/autolathe/tool/surgicaldrill
 	build_path = /obj/item/weapon/tool/surgicaldrill
@@ -133,3 +149,7 @@
 
 /datum/design/autolathe/tool/pneumatic_crowbar
 	build_path = /obj/item/weapon/tool/crowbar/pneumatic
+
+/datum/design/autolathe/tool/rpd
+	name = "rapid piping device"
+	build_path = /obj/item/weapon/rpd

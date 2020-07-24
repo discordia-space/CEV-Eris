@@ -66,37 +66,28 @@
 	if (istype(buckled, /obj/structure/bed))
 		return
 
+	// Calculate limb effect on stance
 	for(var/limb_tag in BP_LEGS)
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
-		//should just be !E.is_usable() here but dislocation screws that up.
-		if(!E || (E.status & (ORGAN_MUTATED|ORGAN_DEAD)) || E.is_stump())
-			stance_damage += 2 // let it fail even if just foot&leg
-		else if (E.is_malfunctioning())
-			//malfunctioning only happens intermittently so treat it as a missing limb when it procs
-			stance_damage += 2
-			if(prob(10))
-				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
-				var/datum/effect/effect/system/spark_spread/spark_system = new ()
-				spark_system.set_up(5, 0, src)
-				spark_system.attach(src)
-				spark_system.start()
-				spawn(10)
-					qdel(spark_system)
-		else if (E.is_broken() || !E.is_usable())
-			stance_damage += 2
-		else if (E.is_dislocated())
-			stance_damage += 0.5
+
+		// A missing limb causes high stance damage
+		if(!E)
+			stance_damage += 4
+		else
+			stance_damage += E.get_tally()
 
 	// Canes and crutches help you stand (if the latter is ever added)
-	// One cane mitigates a broken leg+foot, or a missing foot.
+	// One cane fully mitigates a broken leg.
 	// Two canes are needed for a lost leg. If you are missing both legs, canes aren't gonna help you.
-	if (l_hand && istype(l_hand, /obj/item/weapon/cane))
-		stance_damage -= 2
-	if (r_hand && istype(r_hand, /obj/item/weapon/cane))
-		stance_damage -= 2
+	if(stance_damage > 0 && stance_damage < 8)
+		if (l_hand && istype(l_hand, /obj/item/weapon/cane))
+			stance_damage -= 3
+		if (r_hand && istype(r_hand, /obj/item/weapon/cane))
+			stance_damage -= 3
+		stance_damage = max(stance_damage, 0)
 
 	// standing is poor
-	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
+	if(stance_damage >= 8 || (stance_damage >= 4 && prob(5)))
 		if(!(lying || resting))
 			if(species && !(species.flags & NO_PAIN))
 				emote("scream")
@@ -208,9 +199,8 @@
 /mob/living/carbon/human/proc/restore_organ(organ_type, var/show_message = FALSE, var/heal = FALSE,)
 	var/obj/item/organ/E = organs_by_name[organ_type]
 	if(E && E.organ_tag != BP_HEAD && !E.vital && !E.is_usable())	//Skips heads and vital bits...
-		E.removed()//...because no one wants their head to explode to make way for a new one.
-		qdel(E)
-		E= null
+		QDEL_NULL(E) //...because no one wants their head to explode to make way for a new one.
+
 	if(!E)
 		if(organ_type in BP_ALL_LIMBS)
 			var/datum/organ_description/organ_data = species.has_limbs[organ_type]

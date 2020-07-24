@@ -2,7 +2,7 @@
 	name = "force bolt"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ice_1"
-	damage = 20
+	damage_types = list(BRUTE = 20)
 	check_armour = ARMOR_ENERGY
 
 /obj/item/projectile/forcebolt/strong

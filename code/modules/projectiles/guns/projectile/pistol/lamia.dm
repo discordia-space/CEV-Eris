@@ -5,7 +5,7 @@
 	icon_state = "lamia"
 	item_state = "lamia"
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
-	caliber = "magnum"
+	caliber = CAL_MAGNUM
 	ammo_mag = "mag_magnum"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	can_dual = 1
@@ -18,8 +18,8 @@
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/hpistol_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	damage_multiplier = 1.2
-	penetration_multiplier = 1.3
+	damage_multiplier = 1.4
+	penetration_multiplier = 1.4
 	recoil_buildup = 21
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()

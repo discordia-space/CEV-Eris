@@ -56,6 +56,21 @@
 	name = "Cash Bag"
 	build_path = /obj/item/weapon/storage/bag/money
 
+/datum/design/bioprinter/leather/holster
+	name = "shoulder holster"
+	build_path = /obj/item/clothing/accessory/holster
+
+/datum/design/bioprinter/leather/holster/armpit
+	name = "armpit holster"
+	build_path = /obj/item/clothing/accessory/holster/armpit
+
+/datum/design/bioprinter/leather/holster/waist
+	name = "waist holster"
+	build_path = /obj/item/clothing/accessory/holster/waist
+
+/datum/design/bioprinter/leather/holster/hip
+	name = "hip holster"
+	build_path = /obj/item/clothing/accessory/holster/hip
 
 /datum/design/bioprinter/belt
 	materials = list("biomatter" = 30)
@@ -64,13 +79,21 @@
 	name = "Utility belt"
 	build_path = /obj/item/weapon/storage/belt/utility
 
+/datum/design/bioprinter/belt/utility/neotheology
+	name = "Neotheologian utility belt"
+	build_path = /obj/item/weapon/storage/belt/utility/neotheology
+
 /datum/design/bioprinter/belt/medical
 	name = "Medical belt"
 	build_path = /obj/item/weapon/storage/belt/medical
 
 /datum/design/bioprinter/belt/security
-	name = "Security belt"
-	build_path = /obj/item/weapon/storage/belt/security
+	name = "Tactical belt"
+	build_path = /obj/item/weapon/storage/belt/tactical
+
+/datum/design/bioprinter/belt/security/neotheology
+	name = "Neotheologian tactical belt"
+	build_path = /obj/item/weapon/storage/belt/tactical/neotheology
 
 /datum/design/bioprinter/belt/medical/emt
 	name = "EMT belt"
@@ -80,6 +103,16 @@
 	name = "Champion belt"
 	build_path = /obj/item/weapon/storage/belt/champion
 	materials = list("biomatter" = 50)
+
+/datum/design/bioprinter/backpack
+	name = "grey duffelbag"
+	build_path = /obj/item/weapon/storage/backpack
+	materials = list("biomatter" = 40)
+
+/datum/design/bioprinter/backpack/duffelbag
+	name = "grey duffelbag"
+	build_path = /obj/item/weapon/storage/backpack/duffelbag
+	materials = list("biomatter" = 65)
 //[/THINGS]
 
 //[MED]
@@ -109,4 +142,9 @@
 /datum/design/bioprinter/medical/advanced/ointment
 	name = "Advanced burn kit"
 	build_path = /obj/item/stack/medical/advanced/ointment
+
+/datum/design/bioprinter/lungs
+	name = "Extended Lungs"
+	materials = list("biomatter" = 30)
+	build_path = /obj/item/organ/internal/lungs/long
 //[/MED]

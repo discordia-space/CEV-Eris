@@ -1,0 +1,30 @@
+"a" = (/turf/simulated/floor/tiled/steel/monofloor,/area/deepmaint)
+"b" = (/obj/structure/barricade,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"c" = (/turf/simulated/wall,/area/deepmaint)
+"d" = (/obj/random/junk,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"e" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"f" = (/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"g" = (/obj/structure/table/rack/shelf,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"h" = (/obj/random/junk,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"i" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"j" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"k" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"l" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/obj/random/pack/rare,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"m" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"n" = (/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"o" = (/obj/structure/table/rack/shelf,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"p" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/obj/machinery/light/small,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+
+(1,1,1) = {"
+abbbbbbbbba
+accdcccdcca
+acefgogfeca
+acefhfffeca
+acefiiifeca
+acejklkjeca
+acefiiifeca
+acehfjfheca
+acefmpmfeca
+accncccdcca
+abbbbbbbbba
+"}

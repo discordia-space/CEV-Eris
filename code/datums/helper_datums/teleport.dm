@@ -176,9 +176,9 @@
 		return 0
 
 	if(isAdminLevel(destination.z))
-		if(istype(teleatom, /obj/mecha))
-			var/obj/mecha/MM = teleatom
-			to_chat(MM.occupant, SPAN_DANGER("\The [MM] would not survive the jump to a location so far away!"))
+		if(istype(teleatom, /mob/living/exosuit))
+			var/mob/living/exosuit/MM = teleatom
+			MM.occupant_message(SPAN_DANGER("\The [MM.pilots.Join(" and ")] would not survive the jump to a location so far away!"))
 			return 0
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
 			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))

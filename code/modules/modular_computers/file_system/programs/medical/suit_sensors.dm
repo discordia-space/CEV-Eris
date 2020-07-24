@@ -38,7 +38,7 @@
 	var/search = ""
 
 /datum/nano_module/crew_monitor/proc/has_alerts()
-	for(var/z_level in maps_data.station_levels)
+	for(var/z_level in GLOB.maps_data.station_levels)
 		if (crew_repository.has_health_alert(z_level))
 			return TRUE
 	return FALSE
@@ -68,7 +68,7 @@
 
 	data["isAI"] = isAI(user)
 	var/list/crewmembers = list()
-	for(var/z_level in maps_data.station_levels)
+	for(var/z_level in GLOB.maps_data.station_levels)
 		crewmembers += crew_repository.health_data(z_level)
 	crewmembers = sortNames(crewmembers)
 	//now lets get problematic crewmembers in separate list so they could be shown first

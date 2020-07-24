@@ -33,6 +33,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/list/ways = list("pokes around in", "searches", "scours", "digs through", "rummages through", "goes through","picks through")
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
 	sanity_damage = 0.1
+	var/rare_item_chance = 70
+	var/rare_item = FALSE
 
 /obj/structure/scrap/proc/make_cube()
 	var/obj/container = new /obj/structure/scrap_cube(loc, loot_max)
@@ -54,8 +56,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	name = "This thing shoots scrap everywhere with a delay"
 	desc = "no data"
 	invisibility = 101
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 /obj/effect/scrapshot/Initialize(mapload, severity = 1)
 	..()
@@ -117,6 +119,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	for(var/obj/item/loot in contents)
 		if(prob(66))
 			loot.make_old()
+		if(istype(loot, /obj/item/weapon/reagent_containers/food/snacks))
+			var/obj/item/weapon/reagent_containers/food/snacks/S = loot
+			S.junk_food = TRUE
+			if(prob(20))
+				S.reagents.add_reagent("toxin", rand(2, 15))
 
 	loot = new(src)
 	loot.max_w_class = ITEM_SIZE_HUGE
@@ -291,13 +298,21 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		visible_message("<span class='notice'>\A hidden [big_item] is uncovered from beneath the [src]!</span>")
 		big_item.forceMove(get_turf(src))
 		big_item = null
+	else if(rare_item && prob(rare_item_chance))
+		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
+		O = new O(get_turf(src))
+		visible_message("<span class='notice'>\A hidden [O] is uncovered from beneath the [src]!</span>")
 	qdel(src)
 
-/obj/structure/scrap/attackby(obj/item/W, mob/user)
+/obj/structure/scrap/attackby(obj/item/W, mob/living/carbon/human/user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	if((W.has_quality(QUALITY_SHOVELING)) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB, forced_sound = "rummage"))
 		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)
+		if(user.stats.getPerk(PERK_JUNKBORN))
+			rare_item = TRUE
+		else
+			rare_item = FALSE
 		dig_out_lump(user.loc, 0)
 		shuffle_loot()
 		clear_if_empty()
@@ -343,7 +358,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/material_ore,
 		/obj/random/pack/rare = 0.3,
 		/obj/random/tool_upgrade = 1,
-		/obj/random/mecha_equipment = 2
+		/obj/random/exosuit_equipment = 2
 	)
 
 /obj/structure/scrap/food
@@ -371,7 +386,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_list = list(
 		/obj/random/pack/gun_loot = 8,
 		/obj/random/powercell,
-		/obj/random/mecha_equipment = 2,
+		/obj/random/exosuit_equipment = 2,
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
@@ -393,7 +408,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/common_oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/random/tool_upgrade,
-		/obj/random/mecha_equipment)
+		/obj/random/exosuit_equipment)
 
 /obj/structure/scrap/cloth
 	icontype = "cloth"

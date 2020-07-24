@@ -25,14 +25,14 @@
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
 		if ("aid")
 			new /obj/item/weapon/tank/emergency_oxygen(src)
 			new /obj/item/weapon/storage/toolbox/emergency(src)
 			new /obj/item/clothing/mask/breath(src)
 			new /obj/item/weapon/storage/firstaid/o2(src)
 			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
 		if ("tank")
 			new /obj/item/weapon/tank/emergency_oxygen/engi(src)
 			new /obj/item/clothing/mask/breath(src)
@@ -45,8 +45,8 @@
 			new /obj/item/weapon/storage/firstaid/o2(src)
 			new /obj/item/clothing/suit/space/emergency(src)
 			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
-			new /obj/item/clothing/head/helmet/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
+			new /obj/item/clothing/head/space/emergency(src)
 
 /obj/structure/closet/emcloset/legacy/populate_contents()
 	new /obj/item/weapon/tank/oxygen(src)
@@ -61,11 +61,14 @@
 	icon_state = "fire"
 
 /obj/structure/closet/firecloset/populate_contents()
+	new /obj/item/clothing/gloves/thick(src)
 	new /obj/item/clothing/suit/fire(src)
+	new /obj/item/clothing/head/hardhat/red(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/weapon/tank/oxygen/red(src)
 	new /obj/item/weapon/extinguisher(src)
-	new /obj/item/clothing/head/hardhat/red(src)
+	new /obj/item/weapon/extinguisher(src)
+	new /obj/item/device/lighting/toggleable/flashlight(src)
 
 /*
  * Tool Closet
@@ -144,10 +147,26 @@
 	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/head/helmet/space/bomb(src)
+	new /obj/item/clothing/head/space/bomb(src)
 
 /obj/structure/closet/bombcloset/security/populate_contents()
 	new /obj/item/clothing/suit/space/bomb/security(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/head/helmet/space/bomb/security(src)
+	new /obj/item/clothing/head/space/bomb/security(src)
+
+/obj/structure/closet/self_pacification
+	name = "\improper Anti-Depressive Self-Pacification Treatment Utility closet"
+	desc = "The last things you will ever need!"
+	icon_state = "syndicate"
+	icon_door = "syndicate_skull"
+	anchored = TRUE
+
+/obj/structure/closet/self_pacification/populate_contents()
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/weapon/tank/emergency_oxygen/nitrogen(src)
+	new /obj/item/weapon/tank/emergency_oxygen/nitrogen(src)
+	new /obj/item/weapon/paper/self_pacification(src)
+	new /obj/item/weapon/paper(src)
+	new /obj/item/weapon/pen(src)

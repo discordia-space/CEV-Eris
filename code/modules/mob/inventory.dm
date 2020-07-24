@@ -52,6 +52,8 @@
 // If canremove or other conditions need to be checked then use unEquip instead.
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null, drop_flag = null)
 	if(W)
+		if(W.wielded)
+			W.unwield(src)
 		if(!Target)
 			Target = loc
 
@@ -130,24 +132,24 @@
 
 //Attemps to remove an object on a mob.
 /mob/proc/remove_from_mob(var/obj/O)
-	src.u_equip(O)
-	if (src.client)
-		src.client.screen -= O
+	u_equip(O)
+	if (client)
+		client.screen -= O
 	O.layer = initial(O.layer)
 	O.set_plane(initial(O.plane))
 	O.screen_loc = null
 	if(istype(O, /obj/item))
 		var/obj/item/I = O
-		I.forceMove(src.loc, MOVED_DROP)
+		I.forceMove(get_turf(src), MOVED_DROP)
 		I.dropped(src)
 	return TRUE
 
 //This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
 //It should be equipped to a new slot or forcemoved somewhere immediately after this is called
 /mob/proc/prepare_for_slotmove(obj/item/I)
-	src.u_equip(I)
-	if (src.client)
-		src.client.screen -= I
+	u_equip(I)
+	if (client)
+		client.screen -= I
 	I.layer = initial(I.layer)
 	I.set_plane(initial(I.plane))
 	I.screen_loc = null
@@ -167,6 +169,9 @@
 //Outdated but still in use apparently. This should at least be a human proc.
 /mob/proc/get_equipped_items()
 	return list()
+
+/mob/proc/get_max_w_class()
+	return 0 //zero
 
 
 //Returns the inventory slot for the current hand

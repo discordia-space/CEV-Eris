@@ -9,7 +9,7 @@
 	gain_mult_major = 1.65
 
 	variance = 0.25
-	repetition_multiplier = 0.65
+	repetition_multiplier = 0.95 //Kept it below 0 because lmao it's jester
 
 	//Jester generates lots of random events, but not so many antags
 	points = list(

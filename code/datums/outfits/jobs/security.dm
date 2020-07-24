@@ -1,8 +1,8 @@
 /decl/hierarchy/outfit/job/security
 	hierarchy_type = /decl/hierarchy/outfit/job/security
 	l_ear = /obj/item/device/radio/headset/headset_sec
-	gloves = /obj/item/clothing/gloves/thick
-	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/security/ironhammer
+	shoes = /obj/item/clothing/shoes/jackboots/ironhammer
 	id_type = /obj/item/weapon/card/id/sec
 	pda_type = /obj/item/modular_computer/pda/security
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1)
@@ -15,7 +15,7 @@
 	name = OUTFIT_JOB_NAME("Ironhammer Commander")
 	l_ear = /obj/item/device/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/rank/ih_commander
-	suit = /obj/item/clothing/suit/armor/hos
+	suit = /obj/item/clothing/suit/armor/greatcoat/ironhammer
 	l_pocket = /obj/item/device/flash
 	gloves = /obj/item/clothing/gloves/stungloves
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
@@ -37,13 +37,11 @@
 
 /decl/hierarchy/outfit/job/security/inspector
 	name = OUTFIT_JOB_NAME("Ironhammer Inspector")
-	head = /obj/item/clothing/head/det
 	uniform = /obj/item/clothing/under/rank/inspector
 	suit = /obj/item/clothing/suit/storage/detective/ironhammer
 	head = /obj/item/clothing/head/det
-	gloves = /obj/item/clothing/gloves/thick/swat
 	l_pocket = /obj/item/device/flash
-	shoes = /obj/item/clothing/shoes/reinforced
+	shoes = /obj/item/clothing/shoes/reinforced/ironhammer
 	belt = /obj/item/weapon/gun/energy/gun/martin
 	r_hand = /obj/item/weapon/storage/briefcase/crimekit
 	id_type = /obj/item/weapon/card/id/det
@@ -72,6 +70,6 @@
 	suit = /obj/item/clothing/suit/armor/vest/ironhammer
 	mask = /obj/item/clothing/mask/balaclava/tactical
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
-	head = /obj/item/clothing/head/helmet
+	head = /obj/item/clothing/head/armor/helmet/ironhammer
 	gloves = /obj/item/clothing/gloves/stungloves
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1, /obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/weapon/cell/small/high = 2, /obj/item/weapon/gun/energy/gun/martin = 1)

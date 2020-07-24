@@ -33,9 +33,10 @@
 		rotate()
 
 /obj/structure/computerframe/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(state >= 4)
-		.[MATERIAL_GLASS] = 2
+		LAZYAPLUS(., MATERIAL_GLASS, 2)
 
 /obj/structure/computerframe/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list()
@@ -56,13 +57,13 @@
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You wrench the frame into place."))
-					anchored = 1
+					anchored = TRUE
 					state = 1
 					return
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You unfasten the frame."))
-					anchored = 0
+					anchored = FALSE
 					state = 0
 					return
 			return

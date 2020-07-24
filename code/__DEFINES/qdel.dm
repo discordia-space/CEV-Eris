@@ -17,6 +17,7 @@
 // Delete "item" and nullify var, where it was.
 #define QDEL_NULL(item) if(item) { qdel(item); item = null }
 #define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
+#define QDEL_CLEAR_LIST(x) if(x) { for(var/y in x) { qdel(y) } ; x = list() }
 
 #define GC_QUEUED_FOR_QUEUING -1
 #define GC_QUEUED_FOR_HARD_DEL -2

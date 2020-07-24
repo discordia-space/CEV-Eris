@@ -269,12 +269,12 @@
 		if(spawnees & 512)
 			C = new(src.loc)
 			C.name = "Corrupted drone morality core"
-			C.origin_tech = list(TECH_ILLEGAL = rand(3,6))
+			C.origin_tech = list(TECH_COVERT = rand(3,6))
 
 	. = ..()
 
 /obj/item/projectile/beam/drone
-	damage = 15
+	damage_types = list(BURN = 15)
 
 /obj/item/projectile/beam/pulse/drone
-	damage = 10
+	damage_types = list(BURN = 10)

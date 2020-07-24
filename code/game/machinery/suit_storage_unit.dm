@@ -1,6 +1,6 @@
-#define SLOT_HELMET "helmet"
-#define SLOT_SUIT "suit"
-#define SLOT_MASK "mask"
+#define LOAD_SLOT_HELMET "helmet"
+#define LOAD_SLOT_SUIT "suit"
+#define LOAD_SLOT_MASK "mask"
 
 //////////////////////////////////////
 // SUIT STORAGE UNIT /////////////////
@@ -23,7 +23,7 @@
 	var/mob/living/carbon/OCCUPANT = null
 	var/obj/item/clothing/suit/space/SUIT = null
 	var/SUIT_TYPE = null
-	var/obj/item/clothing/head/helmet/space/HELMET = null
+	var/obj/item/clothing/head/space/HELMET = null
 	var/HELMET_TYPE = null
 	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
 	var/MASK_TYPE = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
@@ -111,8 +111,6 @@
 			return
 		else
 			return
-	return
-
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
 	var/dat
@@ -415,11 +413,11 @@
 		return
 	var/check = null
 	switch(slot)
-		if(SLOT_MASK)
+		if(LOAD_SLOT_MASK)
 			check = MASK
-		if(SLOT_HELMET)
+		if(LOAD_SLOT_HELMET)
 			check = HELMET
-		if(SLOT_SUIT)
+		if(LOAD_SLOT_SUIT)
 			check = SUIT
 
 	if(check)
@@ -430,11 +428,11 @@
 	user.drop_from_inventory(I, src)
 
 	switch(slot)
-		if(SLOT_MASK)
+		if(LOAD_SLOT_MASK)
 			MASK = I
-		if(SLOT_HELMET)
+		if(LOAD_SLOT_HELMET)
 			HELMET = I
-		if(SLOT_SUIT)
+		if(LOAD_SLOT_SUIT)
 			SUIT = I
 
 	update_icon()
@@ -448,23 +446,23 @@
 	if(stat & NOPOWER)
 		return
 	else if(istype(I, /obj/item/clothing/suit/space))
-		load(I, user, SLOT_SUIT)
-	else if(istype(I, /obj/item/clothing/head/helmet))
-		load(I, user, SLOT_HELMET)
+		load(I, user, LOAD_SLOT_SUIT)
+	else if(istype(I, /obj/item/clothing/head/space))
+		load(I, user, LOAD_SLOT_HELMET)
 	else if(istype(I, /obj/item/clothing/mask))
-		load(I, user, SLOT_MASK)
+		load(I, user, LOAD_SLOT_MASK)
 
 
-#undef SLOT_HELMET
-#undef SLOT_SUIT
-#undef SLOT_MASK
+#undef LOAD_SLOT_HELMET
+#undef LOAD_SLOT_SUIT
+#undef LOAD_SLOT_MASK
 
 // Unit subtypes
 
 /obj/machinery/suit_storage_unit/standard_unit
 	overlay_color = "#B0B0B0"
 	SUIT_TYPE = /obj/item/clothing/suit/space
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space
+	HELMET_TYPE = /obj/item/clothing/head/space
 	MASK_TYPE = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/medical

@@ -33,7 +33,7 @@
 /obj/item/pre_attack(atom/a, mob/user, var/params)
 	if(overslot)
 		var/obj/item/clothing/i = a
-		if (i)
+		if (istype(i))
 			if(i.is_worn() && i.slot_flags == slot_flags)
 				user.equip_to_appropriate_slot(src)
 				return TRUE
@@ -60,11 +60,16 @@
 		user.stop_pulling()
 	if(overslot && !is_worn())
 		remove_overslot_contents(user)
+	if(user.l_hand)
+		user.l_hand.update_twohanding()
+	if(user.r_hand)
+		user.r_hand.update_twohanding()
+	if(wielded)
+		unwield(user)
 
 
 
 /obj/item/proc/dropped(mob/user)
-	..()
 	if(zoom) //binoculars, scope, etc
 		zoom()
 	remove_hud_actions(user)

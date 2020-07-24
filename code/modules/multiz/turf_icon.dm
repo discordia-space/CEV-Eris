@@ -62,7 +62,7 @@
 /hook/roundstart/proc/init_openspace()
 	for (var/turf/T in turfs)
 		if (T.isTransparent)
-			T.update_icon(roundstart_update=TRUE)
+			T.update_icon(null, TRUE)
 	return TRUE
 
 /atom/proc/update_openspace()

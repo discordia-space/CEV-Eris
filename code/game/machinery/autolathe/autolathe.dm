@@ -14,8 +14,8 @@
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -65,7 +65,7 @@
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	var/global/list/error_messages = list(
-		ERR_NOLICENSE = "Disk licenses have been exhausted.",
+		ERR_NOLICENSE = "Not enough license points left.",
 		ERR_NOTFOUND = "Design data not found.",
 		ERR_NOMATERIAL = "Not enough materials.",
 		ERR_NOREAGENT = "Not enough reagents.",
@@ -212,7 +212,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 550, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 600, 700)
 
 		// template keys starting with _ are not appended to the UI automatically and have to be called manually
 		ui.add_template("_materials", "autolathe_materials.tmpl")
@@ -236,7 +236,8 @@
 	if(istype(I, /obj/item/weapon/computer_hardware/hard_drive/portable))
 		insert_disk(user, I)
 
-	if(istype(I, /obj/item/stack))
+	// Some item types are consumed by default
+	if(istype(I, /obj/item/stack) || istype(I, /obj/item/trash) || istype(I, /obj/item/weapon/material/shard))
 		eat(user, I)
 		return
 
@@ -280,8 +281,11 @@
 			insert_beaker(usr)
 		return 1
 
-	if(href_list["category"] && categories && (href_list["category"] in categories))
-		show_category = href_list["category"]
+	if(href_list["category"] && categories)
+		var/new_category = text2num(href_list["category"])
+
+		if(new_category && new_category <= length(categories))
+			show_category = categories[new_category]
 		return 1
 
 	if(href_list["eject_material"] && (!current_file || paused || error))
@@ -763,23 +767,28 @@
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
 
-
 	if (whole_amount)
 		var/obj/item/stack/material/S = new M.stack_type(drop_location())
 
 		//Accounting for the possibility of too much to fit in one stack
 		if (whole_amount <= S.max_amount)
 			S.amount = whole_amount
+			S.update_strings()
+			S.update_icon()
 		else
 			//There's too much, how many stacks do we need
 			var/fullstacks = round(whole_amount / S.max_amount)
 			//And how many sheets leftover for this stack
 			S.amount = whole_amount % S.max_amount
 
+			if (!S.amount)
+				qdel(S)
+
 			for(var/i = 0; i < fullstacks; i++)
 				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
 				MS.amount = MS.max_amount
-
+				MS.update_strings()
+				MS.update_icon()
 
 	//And if there's any remainder, we eject that as a shard
 	if (remainder)
@@ -863,18 +872,33 @@
 #undef ERR_NOLICENSE
 #undef SANITIZE_LATHE_COST
 
+
+// A version with some materials already loaded, to be used on map spawn
+/obj/machinery/autolathe/loaded
+	stored_material = list(
+		MATERIAL_STEEL = 60,
+		MATERIAL_PLASTIC = 60,
+		MATERIAL_GLASS = 60,
+		)
+
+/obj/machinery/autolathe/loaded/Initialize()
+	. = ..()
+	container = new /obj/item/weapon/reagent_containers/glass/beaker(src)
+
+
 // You (still) can't flicker overlays in BYOND, and this is a vis_contents hack to provide the same functionality.
 // Used for materials loading animation.
 /obj/effect/flicker_overlay
 	name = ""
 	icon_state = ""
-	mouse_opacity = 0
+	// Acts like a part of the object it's created for when in vis_contents
+	// Inherits everything but the icon_state
+	vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
 /obj/effect/flicker_overlay/New(atom/movable/loc)
 	..()
+	// Just VIS_INHERIT_ICON isn't enough: flicker() needs an actual icon to be set
 	icon = loc.icon
-	layer = loc.layer
-	plane = loc.plane
 	loc.vis_contents += src
 
 /obj/effect/flicker_overlay/Destroy()

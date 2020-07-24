@@ -1,7 +1,7 @@
 /obj/structure/simple_door
 	name = "door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
@@ -84,7 +84,7 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
+	else if(istype(user, /mob/living/exosuit))
 		SwitchState()
 
 /obj/structure/simple_door/proc/SwitchState()
@@ -98,7 +98,7 @@
 	playsound(loc, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]opening",src)
 	sleep(10)
-	density = 0
+	density = FALSE
 	set_opacity(FALSE)
 	state = 1
 	update_icon()
@@ -110,7 +110,7 @@
 	playsound(loc, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	set_opacity(TRUE)
 	state = 0
 	update_icon()

@@ -39,7 +39,7 @@
 				//if our target has hazard protection, then okay
 				var/hazard_protection = victim.getarmor(null, "bio")
 				if(!hazard_protection)
-					victim.apply_damage(CLONE_DAMAGE_PER_TICK, CLONE)
+					victim.apply_damage(CLONE_DAMAGE_PER_TICK, CLONE, used_weapon = "Biological")
 					if(prob(10))
 						playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
 					if(victim.health <= -victim.maxHealth)
@@ -110,6 +110,12 @@
 				organ.forceMove(get_turf(neighbor_platform))
 				organ.removed()
 				continue
+		if(H && H.mind && H.mind.key && H.stat == DEAD)
+			var/mob/M = key2mob(H.mind.key)
+			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by 10 minutes."))
+			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
+			M.set_respawn_bonus("CORPSE_DISSOLVING", 10 MINUTES)
+		
 	qdel(object)
 	//now let's add some dirt to the glass
 	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)
@@ -191,13 +197,13 @@
 		if(1)
 			to_chat(user, SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean."))
 		if(2)
-			to_chat(user, SPAN_NOTICE("You see a signs of biomatter on this [src]. Better to clean it up."))
+			to_chat(user, SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up."))
 		if(3)
-			to_chat(user, SPAN_WARNING("This [src] wear a clear signs and stains of biomatter."))
+			to_chat(user, SPAN_WARNING("This [src] has clear signs and stains of biomatter."))
 		if(4)
-			to_chat(user, SPAN_WARNING("You see a high amount of biomatter on this [src]. It's dirty as hell."))
+			to_chat(user, SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell."))
 		if(5)
-			to_chat(user, SPAN_WARNING("Now it's hard to see what inside. Better to clean this [src]."))
+			to_chat(user, SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src]."))
 		else
 			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
 
@@ -233,11 +239,11 @@
 				to_chat(user, SPAN_WARNING("Your [I] is dry!"))
 				return
 		if(user.loc != loc)
-			to_chat(user, SPAN_WARNING("You need to come inside to clean it up."))
+			to_chat(user, SPAN_WARNING("You need to be inside to clean it up."))
 			return
 		to_chat(user, SPAN_NOTICE("You begin cleaning [src] with your [I]..."))
 		if(do_after(user, CLEANING_TIME * contamination_level, src))
-			to_chat(user, SPAN_NOTICE("You cleaned [src]."))
+			to_chat(user, SPAN_NOTICE("You clean \the [src]."))
 			toxin_attack(user, 5*contamination_level)
 			apply_dirt(-contamination_level)
 			if(contamination_level >= 4)
@@ -249,22 +255,24 @@
 
 
 /obj/structure/window/reinforced/bioreactor/MouseDrop_T(mob/victim, mob/user as mob)
+	if(!ismob(victim) || !ishuman(user) || victim.anchored)
+		return
 	var/base_chance = 70
 	if(victim == user)
-		to_chat(user, SPAN_NOTICE("You trying to climb on [src]..."))
+		to_chat(user, SPAN_NOTICE("You try to climb over \the [src]..."))
 		if(do_after(user, 3 SECONDS, src))
 			if(prob(base_chance - 10*contamination_level))
-				to_chat(user, SPAN_NOTICE("You successfuly climbed."))
+				to_chat(user, SPAN_NOTICE("You successfully climbed \the [src]!"))
 				if(user.loc != loc)
 					user.forceMove(get_step(src, loc))
 				else
 					user.forceMove(get_step(src, user.dir))
 			else
-				to_chat(user, SPAN_WARNING("You tried to climb on, but slipped!"))
+				to_chat(user, SPAN_WARNING("You slipped!"))
 				user.Weaken(1)
 	else
-		to_chat(user, SPAN_NOTICE("You trying to push [victim] over [src]..."))
-		to_chat(victim, SPAN_WARNING("[user] is trying to push you over [src]!"))
+		to_chat(user, SPAN_NOTICE("You try to push \the [victim] over \the [src]"))
+		to_chat(victim, SPAN_WARNING("\The [user] is trying to push you over \the [src]!"))
 		if(do_after(user, 3 SECONDS, src))
-			victim.visible_message(SPAN_WARNING("[victim] has been pushed over [src] by [user]'s force!"))
+			victim.visible_message(SPAN_WARNING("\The [user] pushes \the [victim] over \the [src]!"))
 			victim.forceMove(get_step(src, user.dir))

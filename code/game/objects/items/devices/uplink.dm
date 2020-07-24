@@ -199,21 +199,21 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				nanoui_data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
 								 // We trade off being able to automatically add shit for more control over what gets passed to json
 								 // and if it's sanitized for html.
-				nanoui_data["exploit"]["nanoui_exploit_record"] = rhtml_encode(L.fields["exploit_record"])                         		// Change stuff into html
+				nanoui_data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
 				nanoui_data["exploit"]["nanoui_exploit_record"] = replacetext(nanoui_data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
-				nanoui_data["exploit"]["name"] =  rhtml_encode(L.fields["name"])
-				nanoui_data["exploit"]["sex"] =  rhtml_encode(L.fields["sex"])
-				nanoui_data["exploit"]["age"] =  rhtml_encode(L.fields["age"])
-				nanoui_data["exploit"]["species"] =  rhtml_encode(L.fields["species"])
-				nanoui_data["exploit"]["rank"] =  rhtml_encode(L.fields["rank"])
-				nanoui_data["exploit"]["fingerprint"] =  rhtml_encode(L.fields["fingerprint"])
+				nanoui_data["exploit"]["name"] =  html_encode(L.fields["name"])
+				nanoui_data["exploit"]["sex"] =  html_encode(L.fields["sex"])
+				nanoui_data["exploit"]["age"] =  html_encode(L.fields["age"])
+				nanoui_data["exploit"]["species"] =  html_encode(L.fields["species"])
+				nanoui_data["exploit"]["rank"] =  html_encode(L.fields["rank"])
+				nanoui_data["exploit"]["fingerprint"] =  html_encode(L.fields["fingerprint"])
 
 				nanoui_data["exploit_exists"] = 1
 				break
 	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT) : !!length(owner_roles & ROLES_CONTRACT)))
 		var/list/available_contracts = list()
 		var/list/completed_contracts = list()
-		for(var/datum/antag_contract/C in GLOB.all_antag_contracts)
+		for(var/datum/antag_contract/C in GLOB.various_antag_contracts)
 			var/list/entry = list(list(
 				"name" = C.name,
 				"desc" = C.desc,

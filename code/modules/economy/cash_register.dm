@@ -5,7 +5,7 @@
 	icon_state = "register_idle"
 	flags = NOBLUDGEON
 	req_access = list()
-	anchored = 1
+	anchored = TRUE
 
 	var/locked = 1
 	var/cash_locked = 1
@@ -486,7 +486,7 @@
 		to_chat(usr, SPAN_WARNING("The cash box is locked."))
 
 
-/obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/wrench/W, mob/user)
+/obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/tool/wrench/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
 	if(!anchored)

@@ -5,10 +5,10 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	universal_speak = 1
-	density = 0
+	density = FALSE
 	var/obj/item/weapon/card/id/botcard = null
 	var/list/botcard_access = list()
-	var/on = 1
+	var/on = TRUE
 	var/open = 0
 	var/locked = 1
 	var/emagged = 0
@@ -77,7 +77,7 @@
 	else if(istype(O, /obj/item/weapon/tool/weldingtool))
 		if(health < maxHealth)
 			if(open)
-				health = min(maxHealth, health + 10)
+				adjustBruteLoss(-10)
 				user.visible_message(SPAN_NOTICE("[user] repairs [src]."),SPAN_NOTICE("You repair [src]."))
 			else
 				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
@@ -111,13 +111,13 @@
 /mob/living/bot/proc/turn_on()
 	if(stat)
 		return 0
-	on = 1
+	on = TRUE
 	set_light(light_strength)
 	update_icons()
 	return 1
 
 /mob/living/bot/proc/turn_off()
-	on = 0
+	on = FALSE
 	set_light(0)
 	update_icons()
 

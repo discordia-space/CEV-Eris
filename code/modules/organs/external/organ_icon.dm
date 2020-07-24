@@ -72,7 +72,7 @@ var/global/list/limb_icon_cache = list()
 	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[BP_EYES]
 	if(eyes) eyes.update_colour()
 
-/obj/item/organ/external/head/removed()
+/obj/item/organ/external/head/removed_mob()
 	update_icon(1)
 	..()
 
@@ -136,7 +136,7 @@ var/global/list/limb_icon_cache = list()
 		else if(!dna)
 			icon = 'icons/mob/human_races/r_human.dmi'
 		else if(BP_IS_ROBOTIC(src))
-			icon = 'icons/mob/human_races/robotic.dmi'
+			icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 		else if(status & ORGAN_MUTATED)
 			icon = species.deform
 		else

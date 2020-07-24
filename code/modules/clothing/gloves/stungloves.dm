@@ -6,10 +6,10 @@
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
 	var/stunforce = 0
-	var/agonyforce = 50
+	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
 
 /obj/item/clothing/gloves/stungloves/Initialize()
@@ -52,7 +52,7 @@
 		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
-	if(cell && cell.charge > hitcost)
+	if(cell && cell.check_charge(hitcost))
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 75, 1, -1)
@@ -64,9 +64,6 @@
 		else
 			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
-
-/obj/item/clothing/gloves/stungloves/ui_action_click()
-	attack_self(usr)
 
 /obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
 	if(!status)

@@ -13,7 +13,7 @@
 	var/message = ""
 	var/running = FALSE
 	var/progress = 0
-	var/target_progress = 200
+	var/target_progress = 300
 	var/datum/access/target_access = null
 	var/list/restricted_access_codes = list(access_change_ids, access_network) // access codes that are not hackable due to balance reasons
 
@@ -85,7 +85,7 @@
 			return 1
 
 		running = TRUE
-		operator_skill = usr.stats.getStat(STAT_COG)
+		operator_skill = get_operator_skill(usr, STAT_COG)
 		if(ntnet_global.intrusion_detection_enabled && !prob(get_sneak_chance()))
 			ntnet_global.add_log("IDS WARNING - Unauthorised access attempt to primary keycode database from device: [computer.network_card.get_network_tag()]")
 			ntnet_global.intrusion_detection_alarm = 1
@@ -96,7 +96,7 @@
 
 /datum/computer_file/program/access_decrypter/proc/get_speed()
 	var/skill_speed_modifier = max(100 + (operator_skill - STAT_LEVEL_BASIC) * 2, 25) / 100
-	return computer.processor_unit.max_idle_programs * skill_speed_modifier
+	return computer.processor_unit.max_programs * skill_speed_modifier
 
 /datum/nano_module/program/access_decrypter
 	name = "Access Decrypter"

@@ -311,7 +311,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	return 1
 
-/mob/living/carbon/human/get_equipped_item(var/slot)
+/mob/living/carbon/human/get_equipped_item(slot)
 	switch(slot)
 		if(slot_back)       return back
 		if(slot_legcuffed)  return legcuffed
@@ -334,7 +334,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_ear)      return r_ear
 	return ..()
 
-/mob/living/carbon/human/get_equipped_items(var/include_carried = 0)
+/mob/living/carbon/human/get_equipped_items(include_carried = 0)
 	var/list/items = new/list()
 
 	if(back)		items += back
@@ -351,12 +351,20 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(w_uniform)	items += w_uniform
 
 	if(include_carried)
-		if(slot_l_hand)     items += l_hand
-		if(slot_r_hand)     items += r_hand
-		if(slot_l_store)    items += l_store
-		if(slot_r_store)    items += r_store
-		if(slot_legcuffed)  items += legcuffed
-		if(slot_handcuffed) items += handcuffed
-		if(slot_s_store)    items += s_store
+		if(l_hand)     items += l_hand
+		if(r_hand)     items += r_hand
+		if(l_store)    items += l_store
+		if(r_store)    items += r_store
+		if(legcuffed)  items += legcuffed
+		if(handcuffed) items += handcuffed
+		if(s_store)    items += s_store
 
 	return items
+
+/mob/living/carbon/human/get_max_w_class()
+	var/get_max_w_class = 0
+	for(var/obj/item/clothing/C in get_equipped_items())
+		if(C)
+			if(C.w_class > ITEM_SIZE_TINY)
+				get_max_w_class = C.w_class
+	return get_max_w_class

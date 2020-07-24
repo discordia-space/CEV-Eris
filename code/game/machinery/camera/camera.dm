@@ -12,7 +12,7 @@
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1
-	anchored = 1.0
+	anchored = TRUE
 	var/invuln = null
 	var/bugged = 0
 	var/obj/item/weapon/camera_assembly/assembly = null
@@ -155,7 +155,7 @@
 					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
 					if(assembly)
 						assembly.loc = src.loc
-						assembly.anchored = 1
+						assembly.anchored = TRUE
 						assembly.camera_name = c_tag
 						assembly.camera_network = english_list(network, "Exodus", ",", ",")
 						assembly.update_icon()
@@ -225,7 +225,7 @@
 
 				if(istype(I, /obj/item/weapon/paper))
 					var/obj/item/weapon/paper/X = I
-					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", X.name, X.info), text("window=[]", X.name))
+					O << browse("<HTML><HEAD><TITLE>[X.name]</TITLE></HEAD><BODY><TT>[X.info]</TT></BODY></HTML>", "window=[X.name]")
 				else
 					I.examine(O)
 			last_shown_time = world.time + 2 SECONDS
@@ -253,7 +253,7 @@
 	else
 		..()
 
-/obj/machinery/camera/proc/deactivate(user as mob, var/choice = 1)
+/obj/machinery/camera/proc/deactivate(mob/user, var/choice = 1)
 	// The only way for AI to reactivate cameras are malf abilities, this gives them different messages.
 	if(isAI(user))
 		user = null
@@ -261,23 +261,23 @@
 	if(choice != 1)
 		return
 
-	set_status(!src.status)
-	if (!(src.status))
+	set_status(!status)
+	if (!status)
 		if(user)
-			visible_message(SPAN_NOTICE(" [user] has deactivated [src]!"))
+			visible_message(SPAN_NOTICE("[user] has deactivated [src]!"))
+			add_hiddenprint(user)
 		else
-			visible_message(SPAN_NOTICE(" [src] clicks and shuts down. "))
+			visible_message(SPAN_NOTICE("[src] clicks and shuts down. "))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
-		add_hiddenprint(user)
 	else
 		if(user)
-			visible_message(SPAN_NOTICE(" [user] has reactivated [src]!"))
+			visible_message(SPAN_NOTICE("[user] has reactivated [src]!"))
+			add_hiddenprint(user)
 		else
-			visible_message(SPAN_NOTICE(" [src] clicks and reactivates itself. "))
+			visible_message(SPAN_NOTICE("[src] clicks and reactivates itself. "))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
-		add_hiddenprint(user)
 
 /obj/machinery/camera/proc/take_damage(var/force, var/message)
 	//prob(25) gives an average of 3-4 hits
@@ -373,7 +373,6 @@
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
 	return null
 
 /proc/near_range_camera(var/mob/M)
@@ -381,8 +380,6 @@
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
-
 	return null
 
 /obj/machinery/camera/interact(mob/living/user as mob)

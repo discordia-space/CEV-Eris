@@ -21,6 +21,7 @@
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
+	new /obj/random/pack/gun_loot/low_chance(src)
 
 
 

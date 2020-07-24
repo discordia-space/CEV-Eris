@@ -53,8 +53,8 @@ for reference:
 	desc = "This space is blocked off by a barricade."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barricade"
-	anchored = 1.0
-	density = 1.0
+	anchored = TRUE
+	density = TRUE
 	var/health = 100
 	var/maxhealth = 100
 	var/material/material
@@ -74,7 +74,8 @@ for reference:
 	health = maxhealth
 
 /obj/structure/barricade/get_matter()
-	. = ..()
+	var/list/matter = ..()
+	. = matter.Copy()
 	if(material)
 		LAZYAPLUS(., material.name, 5)
 
@@ -149,12 +150,12 @@ for reference:
 	name = "deployable barrier"
 	desc = "A deployable barrier. Swipe your ID card to lock/unlock it."
 	icon = 'icons/obj/objects.dmi'
-	anchored = 0.0
-	density = 1.0
+	anchored = FALSE
+	density = TRUE
 	icon_state = "barrier0"
-	var/health = 100.0
-	var/maxhealth = 100.0
-	var/locked = 0.0
+	var/health = 100
+	var/maxhealth = 100
+	var/locked = 0
 //	req_access = list(access_maint_tunnels)
 
 /obj/machinery/deployable/barrier/New()

@@ -1,8 +1,7 @@
 /* Drugs */
 /datum/reagent/drug
 	reagent_type = "Drug"
-
-	var/sanity_gain
+	sanity_gain = 0.5
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain)
@@ -104,6 +103,34 @@
 /datum/reagent/drug/mindbreaker/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 
+/datum/reagent/drug/mindwipe
+	name = "Mindwipe"
+	id = "mindwipe"
+	description = "Shocks the user's brain hard enough to make him forget about his quirks. Is ill-advised because of side effects"
+	taste_description = "bitter"
+	reagent_state = LIQUID
+	color = "#bfff00"
+	metabolism = REM * 0.5
+	overdose = REAGENTS_OVERDOSE
+	nerve_system_accumulations = 90
+	addiction_chance = 30
+	sanity_gain = 2
+
+/datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
+	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+	M.druggy = max(M.druggy, 5 * effect_multiplier)
+	M.make_jittery(10 * effect_multiplier)
+	M.make_dizzy(10 * effect_multiplier)
+	M.confused = max(M.confused, 20 * effect_multiplier)
+	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		step(M, pick(cardinal))
+	if(ishuman(M))
+		var/mob/living/carbon/human/affected = M
+		if(prob(5 * effect_multiplier))
+			for(var/datum/breakdown/B in affected.sanity.breakdowns)
+				if(B)
+					B.finished = TRUE
+					to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
 
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"
@@ -164,6 +191,9 @@
 	..()
 	M.add_chemical_effect(CE_PULSE, 1)
 	M.add_chemical_effect(CE_PAINKILLER, 5 * effect_multiplier)
+	if(M.stats.getPerk(PERK_CHAINGUN_SMOKER))
+		M.add_chemical_effect(CE_ANTITOX, 5 * effect_multiplier)
+		M.heal_organ_damage(0.1 * effect_multiplier, 0.1 * effect_multiplier)
 
 /datum/reagent/drug/nicotine/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
@@ -181,16 +211,18 @@
 	taste_description = "acid"
 	reagent_state = LIQUID
 	color = "#FF3300"
-	metabolism = REM * 0.15
+	metabolism = REM * 0.2
 	overdose = REAGENTS_OVERDOSE * 0.66
 	withdrawal_threshold = 10
 	nerve_system_accumulations = 55
 	reagent_type = "Drug/Stimulator"
+	sanity_gain = 0
+
 
 /datum/reagent/drug/hyperzine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
 	M.add_chemical_effect(CE_PULSE, 2)
 
 /datum/reagent/drug/hyperzine/withdrawal_act(mob/living/carbon/M)

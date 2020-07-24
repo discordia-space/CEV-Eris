@@ -10,8 +10,8 @@
 	var/item_suffix = ""
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	caliber = "lrifle"
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_ILLEGAL = 4)
+	caliber = CAL_LRIFLE
+	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1, TECH_COVERT = 4)
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
@@ -23,8 +23,9 @@
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	recoil_buildup = 10
+	one_hand_penalty = 15 //automatic rifle level
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		BURST_5_ROUND
@@ -43,6 +44,9 @@
 		iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
 		itemstring += "_full"
 
+	if(wielded)
+		itemstring += "_doble"
+
 	icon_state = iconstring
 	set_item_state(itemstring)
 
@@ -60,9 +64,10 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 3000
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
-	firemodes = list(
+	init_firemodes = list(
 	SEMI_AUTO_NODELAY,
 	BURST_5_ROUND
 	)
 
 	item_suffix = "_wood"
+	wielded_item_state = "_doble_wood"

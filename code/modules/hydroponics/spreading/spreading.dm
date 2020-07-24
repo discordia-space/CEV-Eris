@@ -4,9 +4,9 @@
 
 
 /obj/effect/dead_plant
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	color = DEAD_PLANT_COLOUR
 
 /obj/effect/dead_plant/attack_hand()
@@ -20,9 +20,9 @@
 
 /obj/effect/plant
 	name = "plant"
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	icon = 'icons/obj/hydroponics_growing.dmi'
 	icon_state = "bush4-1"
 	layer = 3
@@ -190,10 +190,10 @@
 		if(seed.type != /datum/seed/mushroom/maintshroom)
 			set_opacity(TRUE)
 		if(islist(seed.chems) && !isnull(seed.chems["woodpulp"]))
-			density = 1
+			density = TRUE
 	else
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
-		density = 0
+		density = FALSE
 
 
 var/list/global/cutoff_plant_icons = list()

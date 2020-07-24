@@ -4,6 +4,8 @@
 	desc = "yummy"
 	icon = 'icons/obj/food.dmi'
 	icon_state = null
+	center_of_mass = list("x"=16, "y"=16)
+	w_class = ITEM_SIZE_SMALL
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -14,16 +16,62 @@
 	var/dryness = 0 //Used by drying rack. Represents progress towards Dry state
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
-	center_of_mass = list("x"=16, "y"=16)
-	w_class = ITEM_SIZE_SMALL
 
-	var/sanity_gain = 0.2 //Per bite
+	var/sanity_gain = 0.2 //per nutriment
+	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
 	var/cooked = FALSE
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/proc/get_sanity_gain(mob/living/carbon/eater) //sanity_gain Per bite
+	var/current_nutriment = reagents.get_reagent_amount("nutriment")
+	var/nutriment_percent = current_nutriment/reagents.total_volume
+	var/nutriment_eaten = min(reagents.total_volume, bitesize) * nutriment_percent
+	var/base_sanity_gain_pb = nutriment_eaten * sanity_gain
+	var/message
+	if(!iscarbon(eater))
+		return  list(0, message)
+	if(eater.nutrition > eater.max_nutrition*0.95)
+		message = "You are satisfied and you don't need to eat more."
+		return  list(0, message)
+	if(!base_sanity_gain_pb)
+		message = "This food does not help calm your nerves."
+		return  list(0, message)
+	var/sanity_gain_pb = base_sanity_gain_pb
+	message = "Food helps you relax."
+	if(cooked)
+		sanity_gain_pb += base_sanity_gain_pb * 0.2
+	if(junk_food || !cooked)
+		return  list(sanity_gain_pb, message)
+	var/table = FALSE
+	var/companions = FALSE
+	var/view_death = FALSE
+	for(var/C in circleview(eater, 3))
+		if(istype(C, /obj/structure/table))
+			if(!in_range(C, eater) || table)
+				continue
+			table = TRUE
+			message += " Eating is more comfortable using a table."
+			sanity_gain_pb += base_sanity_gain_pb * 0.1
+
+		else if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			if(H == eater)
+				continue
+			if(H.is_dead())
+				view_death = TRUE
+			companions = TRUE
+	if(companions)
+		sanity_gain_pb += base_sanity_gain_pb * 0.3
+		message += " The company make the food taste much better."
+		if(view_death && !eater.stats.getPerk(PERK_NIHILIST))
+			message = "You gaze at the cadaver... Your food doesn't taste so good anymore."
+			sanity_gain_pb = 0
+
+	return list(sanity_gain_pb, message)
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/eater, var/mob/feeder = null)
@@ -108,10 +156,11 @@
 			playsound(M.loc,pick(M.eat_sounds), rand(10,50), 1)
 			if(reagents.total_volume)
 				var/amount_eaten = min(reagents.total_volume, bitesize)
+				var/list/sanity_vars = get_sanity_gain(M)
 				reagents.trans_to_mob(M, amount_eaten, CHEM_INGEST)
 				var/mob/living/carbon/human/H = M
 				if(istype(H))
-					H.sanity.onEat(src, amount_eaten)
+					H.sanity.onEat(src, sanity_vars[1], sanity_vars[2])
 				bitecount++
 				On_Consume(M, user)
 			return 1
@@ -333,6 +382,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("candy" = 1)
 	preloaded_reagents = list("sugar" = 3)
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/candy/donor
 	name = "Donor Candy"
@@ -363,6 +413,7 @@
 	center_of_mass = list("x"=15, "y"=15)
 	nutriment_amt = 3
 	nutriment_desc = list("salt" = 1, "chips" = 2)
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/cookie
 	name = "cookie"
@@ -950,6 +1001,7 @@
 	nutriment_amt = 4
 	preloaded_reagents = list("banana" = 5)
 	cooked = TRUE
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
@@ -1175,6 +1227,7 @@
 	center_of_mass = list("x"=15, "y"=4)
 	nutriment_desc = list("dried raisins" = 6)
 	nutriment_amt = 6
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
 	name = "Space Twinkie"
@@ -1184,6 +1237,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=15, "y"=11)
 	preloaded_reagents = list("sugar" = 4)
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers
 	name = "Cheesie Honkers"
@@ -1195,6 +1249,7 @@
 	center_of_mass = list("x"=15, "y"=9)
 	nutriment_desc = list("cheese" = 5, "chips" = 2)
 	nutriment_amt = 4
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/syndicake
 	name = "Syndi-Cakes"
@@ -1617,6 +1672,7 @@
 	nutriment_amt = 3
 	preloaded_reagents = list("protein" = 3)
 	cooked = TRUE
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/toastedsandwich
 	name = "Toasted Sandwich"
@@ -2004,6 +2060,113 @@
 	bitesize = 3
 	preloaded_reagents = list("gold" = 5)
 	cooked = TRUE
+
+//mre food
+/obj/item/weapon/reagent_containers/food/snacks/mre
+	name = "mre"
+	desc = "A closed mre, ready to be opened."
+	icon_state = "mre"
+	trash = /obj/item/trash/mre
+	filling_color = "#948051"
+	nutriment_desc = list("heartiness" = 1, "beans" = 3)
+	nutriment_amt = 6
+	preloaded_reagents = list("protein" = 3, "iron" = 10)
+	cooked = TRUE
+	reagent_flags = NONE
+	var/warm = FALSE
+	var/open = FALSE
+	var/list/heated_reagents = list("tricordrazine" = 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/attack_self(mob/user)
+	if(!open)
+		open()
+		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
+		return
+	user.visible_message(
+		SPAN_NOTICE("[user] crushes \the [src] package."),
+		"You crush \the [src] package and feel a comfortable heat build up."
+	)
+	spawn(300)
+		to_chat(user, "You think \the [src] is ready to eat about now.")
+		heat()
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/attack(mob/M as mob, mob/user as mob, def_zone)
+	. = ..()
+	if(!open)
+		open()
+		to_chat(user, SPAN_WARNING("You viciously open \the [src] with your teeth, you animal."))
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/proc/heat()
+	warm = TRUE
+	for(var/reagent in heated_reagents)
+		reagents.add_reagent(reagent, heated_reagents[reagent])
+	bitesize = 6
+	name = "warm " + name
+	icon_state = "[initial(icon_state)]_hot"
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/proc/open(mob/user)
+	icon_state = "[initial(icon_state)]_open"
+	desc = "A plethora of steaming beans mixed with meat, ready for consumption."
+	open = TRUE
+	reagent_flags |= REFILLABLE
+
+/obj/item/weapon/reagent_containers/food/snacks/mre/can
+	name = "ration can"
+	desc = "Can of stew meat, tab right on top for easy opening."
+	icon_state = "ration_can"
+	trash = /obj/item/trash/mre_can
+	filling_color = "#948051"
+	nutriment_desc = list("heartiness" = 1, "meat" = 3)
+	nutriment_amt = 5
+	preloaded_reagents = list("protein" = 6, "iron" = 2)
+	heated_reagents = list("bicaridine" = 5, "kelotane" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_paste
+	name = "nutrient paste"
+	desc = "A peachy looking paste."
+	icon_state = "paste"
+	trash = /obj/item/trash/mre_paste
+	filling_color = "#DEDEAB"
+	nutriment_desc = list("acrid peaches" = 2)
+	bitesize = 2
+	nutriment_amt = 3
+	preloaded_reagents = list("hyperzine" = 8, "paracetamol" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mre_cracker
+	name = "enriched cracker"
+	desc = "It's a salted cracker, the surface looks saturated with oil."
+	icon_state = "mre_cracker"
+	filling_color = "#F5DEB8"
+	center_of_mass = list("x"=17, "y"=6)
+	nutriment_desc = list("salt" = 1, "cracker" = 2)
+	bitesize = 2
+	nutriment_amt = 1
+	preloaded_reagents = list("dexalinp" = 1, "steady" = 1, "nicotine" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre
+	name = "morale bar"
+	desc = "Some brand of non-melting military chocolate."
+	icon_state = "mre_candy"
+	trash = /obj/item/trash/mre_candy
+	preloaded_reagents = list("sugar" = 3, "serotrotium" = 2)
+	var/open = FALSE
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre/attack_self(mob/user)
+	if(!open)
+		open()
+		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
+		return
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre/attack(mob/M as mob, mob/user as mob, def_zone)
+	. = ..()
+	if(!open)
+		open()
+		to_chat(user, SPAN_WARNING("You viciously rip \the [src] open with your teeth, swallowing some plastic in the process, you animal."))
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre/proc/open(mob/user)
+	icon_state = "mre_candy_open"
+	open = TRUE
+
 
 /////////////////////////////////////////////////Sliceable////////////////////////////////////////
 // All the food items that can be sliced into smaller bits like Meatbread and Cheesewheels
@@ -2859,6 +3022,7 @@
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=17)
 	preloaded_reagents = list("protein" = 6)
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/flatbread
 	name = "flatbread"
@@ -2901,6 +3065,7 @@
 	nutriment_desc = list("chalk" = 6)
 	nutriment_amt = 20
 	preloaded_reagents = list("iron" = 3)
+	junk_food = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
 	name = "bread tube"
@@ -2912,4 +3077,5 @@
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_desc = list("bread" = 2, "sweetness" = 3)
 	nutriment_amt = 6
+	junk_food = TRUE
 

@@ -58,8 +58,8 @@
 
 
 /obj/machinery/door/blast/shutters/glass/bullet_act(var/obj/item/projectile/Proj)
-	if((Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		take_damage(Proj.damage)
+	if(Proj.get_structure_damage())
+		take_damage(Proj.get_structure_damage())
 	..()
 
 
@@ -104,7 +104,7 @@
 		overlays.Cut()
 		flick("opening[ratio]", src)
 
-	density = 0
+	density = FALSE
 	operating = FALSE
 	update_icon()
 
@@ -128,7 +128,7 @@
 		ratio = CEILING(ratio * 4, 1) * 25
 		flick("closing[ratio]", src)
 
-	density = 1
+	density = TRUE
 	update_icon()
 	crush()
 	operating = FALSE

@@ -157,7 +157,7 @@ nanoui is used to open and update nano browser uis
   * @return 1 if closed, null otherwise.
   */
 /datum/nanoui/proc/update_status(var/push_update = 0)
-	var/atom/host = src_object && src_object.nano_host()
+	var/atom/host = src_object && src_object.nano_host(TRUE)
 	if(!host)
 		close()
 		return 1
@@ -206,9 +206,9 @@ nanoui is used to open and update nano browser uis
 			"autoUpdateLayout" = auto_update_layout,
 			"autoUpdateContent" = auto_update_content,
 			"showMap" = show_map,
-			"mapName" = maps_data.path,
+			"mapName" = GLOB.maps_data.path,
 			"mapZLevel" = map_z_level,
-			"mapZLevels" = maps_data.station_levels,
+			"mapZLevels" = GLOB.maps_data.station_levels,
 			"user" = list("name" = user.name)
 		)
 	return config_data
@@ -542,7 +542,7 @@ nanoui is used to open and update nano browser uis
 
 	if(href_list["mapZLevel"])
 		var/map_z = text2num(href_list["mapZLevel"])
-		if(map_z in maps_data.station_levels)
+		if(map_z in GLOB.maps_data.station_levels)
 			set_map_z_level(map_z)
 			map_update = 1
 		else

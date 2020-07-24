@@ -60,6 +60,16 @@
 	var/datum/mind/mind = null
 	var/languages = list()
 	var/flavor = ""
+	var/datum/stat_holder/stats
+
+/datum/core_module/cruciform/cloning/proc/write_wearer(var/mob/living/carbon/human/H)
+	dna = H.dna
+	ckey = H.ckey
+	mind = H.mind
+	languages = H.languages
+	flavor = H.flavor_text
+	age = H.age
+	stats = H.stats
 
 /datum/core_module/cruciform/cloning/preinstall()
 	if(ishuman(implant.wearer))
@@ -74,6 +84,7 @@
 		languages = H.languages
 		flavor = H.flavor_text
 		age = H.age
+		stats = H.stats
 
 
 /datum/core_module/cruciform/obey/install()

@@ -10,6 +10,7 @@
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_GLASS = 1, MATERIAL_PLASTIC = 1)
 	volume = 5
 	reagent_flags = TRANSPARENT
 
@@ -103,6 +104,7 @@
 /obj/item/weapon/reagent_containers/dropper/industrial
 	name = "industrial dropper"
 	desc = "A large dropper. Transfers 10 units."
+	matter = list(MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 1)
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,3,4,5,6,7,8,9,10)
 	volume = 10

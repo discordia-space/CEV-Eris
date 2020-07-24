@@ -29,7 +29,7 @@
 	sort_string = "TAAAF"
 
 /datum/design/research/item/weapon/plasmapistol
-	build_path = /obj/item/weapon/gun/energy/toxgun
+	build_path = /obj/item/weapon/gun/energy/plasma/brigador
 	sort_string = "TAAAD"
 
 /datum/design/research/item/weapon/decloner
@@ -70,24 +70,47 @@
 	build_path = /obj/item/weapon/hatton/moebius
 	sort_string = "TBAAD"
 
+/datum/design/research/item/weapon/katana
+	name = "Moebius \"Muramasa\" Katana"
+	build_path = /obj/item/weapon/tool/sword/katana/nano
+
+
+/datum/design/research/item/weapon/bluespace_dagger
+	name = "Moebius \"Displacement Dagger\""
+	build_path = /obj/item/weapon/tool/knife/dagger/bluespace
 
 // Ammo
 /datum/design/research/item/ammo
 	name_category = "ammunition"
 	category = CAT_WEAPON
 
-/datum/design/research/item/ammo/shotgun_stun
-	name = "shotgun, stun"
-	desc = "A stunning shell for a shotgun."
-	build_path = /obj/item/ammo_casing/shotgun/stunshell
-	sort_string = "TAACB"
-
 /datum/design/research/item/ammo/hatton
 	name = "Moebius BT \"Q-del\" gas tube"
 	build_path = /obj/item/weapon/hatton_magazine/moebius
 	sort_string = "TAACC"
+
 /datum/design/research/item/ammo/c20r_ammo
 	name = "C20R 35 Auto Magazine"
 	desc = "35 Auto SMG magazine for the C-20r"
 	build_path = /obj/item/ammo_magazine/smg
 	sort_string = "TAACD"
+
+/datum/design/research/item/ammo/shotgun_incendiary
+	name = "incendiary shotgun shells"
+	desc = "Insendiary ammunition for shotguns"
+	build_path = /obj/item/ammo_casing/shotgun/incendiary/prespawned
+	sort_string = "TAACF"
+
+
+//Upgrades
+/datum/design/research/item/weapon_upgrade
+	name_category = "weapon upgrades"
+	category = CAT_WEAPON
+
+/datum/design/research/item/weapon_upgrade/penetrator
+	name = "Moebius \"Penetrator\" magnetic accelerator barrel"
+	build_path = /obj/item/weapon/gun_upgrade/barrel/mag_accel
+
+/datum/design/research/item/weapon_upgrade/overheat
+	name = "Moebius \"Caster\" magnetic overheat barrel"
+	build_path = /obj/item/weapon/gun_upgrade/barrel/overheat

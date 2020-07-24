@@ -420,6 +420,7 @@
 	return 1
 /obj/item/rig_module/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
+
 /obj/item/rig_module/autodoc/Process()
 	if(..())
 		autodoc_processor.stop()
@@ -435,7 +436,7 @@
 		passive_power_cost = 0
 		wearer_loc = null
 
-/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
+/obj/item/rig_module/autodoc/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state = GLOB.deep_inventory_state)
 	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state = GLOB.deep_inventory_state)
 /obj/item/rig_module/autodoc/activate()
 	return
@@ -444,3 +445,20 @@
 
 /obj/item/rig_module/autodoc/commercial
 	autodoc_type = /datum/autodoc/capitalist_autodoc
+
+/obj/item/rig_module/cape
+	name = "cape"
+	desc = "A cape designed to be attached to hardsuits."
+
+	interface_name = "Hardsuit Cape"
+	interface_desc = "A generic cape for a hardsuit."
+
+/obj/item/rig_module/cape/te
+	name = "technomancer cape"
+	desc = "A tough regal cape, imprinted with the emblem of the Technomancer League."
+	suit_overlay_active = "cape_te"
+	suit_overlay_inactive = "cape_te"
+	suit_overlay_mob_only = 1
+
+	interface_name = "Technomancer Cape"
+	interface_desc = "A grand yet hardy cape."

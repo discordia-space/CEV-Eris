@@ -31,7 +31,7 @@
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
 	icon_state = "syndicate"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/closet/thunderdome/New()
 	..()
@@ -55,9 +55,9 @@
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
-	new /obj/item/clothing/head/helmet/thunderdome(src)
-	new /obj/item/clothing/head/helmet/thunderdome(src)
-	new /obj/item/clothing/head/helmet/thunderdome(src)
+	new /obj/item/clothing/head/armor/helmet/thunderdome(src)
+	new /obj/item/clothing/head/armor/helmet/thunderdome(src)
+	new /obj/item/clothing/head/armor/helmet/thunderdome(src)
 
 /obj/structure/closet/thunderdome/tdgreen
 	name = "green-team Thunderdome closet"
@@ -79,9 +79,9 @@
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
 	new /obj/item/weapon/storage/box/flashbangs(src)
-	new /obj/item/clothing/head/helmet/thunderdome(src)
-	new /obj/item/clothing/head/helmet/thunderdome(src)
-	new /obj/item/clothing/head/helmet/thunderdome(src)
+	new /obj/item/clothing/head/armor/helmet/thunderdome(src)
+	new /obj/item/clothing/head/armor/helmet/thunderdome(src)
+	new /obj/item/clothing/head/armor/helmet/thunderdome(src)
 
 /obj/structure/closet/oldstyle
 	name = "old closet"

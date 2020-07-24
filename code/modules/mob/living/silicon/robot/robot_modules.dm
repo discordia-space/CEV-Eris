@@ -110,12 +110,14 @@ var/global/list/robot_modules = list(
 	for (var/obj/item/weapon/tool/T in modules)
 		T.degradation = 0 //We don't want robot tools breaking
 
-
+	//A quick hack to stop robot modules running out of power
+	//Later they'll be wired to the robot's central battery once we code functionality for that
+	//Setting it to infinity causes errors, so just a high number is fine
 	for (var/obj/item/I in modules)
-		for (var/obj/item/weapon/cell/C in I)
-			C.charge = 999999999 //A quick hack to stop robot modules running out of power
-			//Later they'll be wired to the robot's central battery once we code functionality for that
-			//Setting it to infinity causes errors, so just a high number is fine
+		if(!istype(I, /obj/item/weapon/gun/energy)) // Guns have their own code for drawing charge from cyborg cell
+			for (var/obj/item/weapon/cell/C in I)
+				C.charge = 999999999
+	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -521,6 +523,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src) // to install lightning in the area
 	src.modules += new /obj/item/device/floor_painter(src)// to make america great again (c)
 	src.modules += new /obj/item/weapon/inflatable_dispenser(src) // to stop those pesky human beings entering the zone
+	src.modules += new /obj/item/weapon/rpd/borg(src) //to allow for easier access to pipes
 	src.modules += new /obj/item/weapon/tool/pickaxe/drill(src)
 	src.modules += new /obj/item/weapon/hatton/robot(src)
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
@@ -580,6 +583,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser(src)
+	src.modules += new /obj/item/weapon/rpd/borg(src)
 	src.emag = new /obj/item/weapon/melee/baton(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(60000)
@@ -1025,9 +1029,10 @@ var/global/list/robot_modules = list(
 	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
+	channels = list("Engineering" = 1, "Common" = 1)
 	stat_modifiers = list(
 		STAT_COG = 15,
-		STAT_MEC = 30
+		STAT_MEC = 40
 	)
 
 /obj/item/weapon/robot_module/drone/New(var/mob/living/silicon/robot/R)
@@ -1037,6 +1042,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/weapon/tool/multitool/robotic(src)
+	src.modules += new /obj/item/weapon/tool/shovel/robotic(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
@@ -1045,6 +1051,8 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/weapon/rpd/borg(src)
+	src.modules += new /obj/item/borg/sight/meson(src)
 
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
 	//src.emag.name = "Plasma Cutter"
@@ -1053,7 +1061,7 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(25000)
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
 	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
-	var/datum/matter_synth/wire = new /datum/matter_synth/wire(15)
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
 	synths += metal
 	synths += glass
 	synths += wood

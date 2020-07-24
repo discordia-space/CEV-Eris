@@ -1,17 +1,3 @@
-/obj/item/weapon/material/butterflyconstruction
-	name = "unfinished concealed knife"
-	desc = "An unfinished concealed knife, it looks like the screws need to be tightened."
-	icon = 'icons/obj/buildingobject.dmi'
-	icon_state = "butterflystep1"
-	force_divisor = 0.1
-	thrown_force_divisor = 0.1
-
-/obj/item/weapon/material/butterflyconstruction/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/tool/screwdriver))
-		to_chat(user, "You finish the concealed blade weapon.")
-		new /obj/item/weapon/material/butterfly(user.loc, material.name)
-		qdel(src)
-		return
 
 /obj/item/weapon/material/butterflyblade
 	name = "knife blade"
@@ -28,15 +14,6 @@
 	icon_state = "butterfly1"
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
-
-/obj/item/weapon/material/butterflyhandle/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/butterflyblade))
-		var/obj/item/weapon/material/butterflyblade/B = W
-		to_chat(user, "You attach the two concealed blade parts.")
-		new /obj/item/weapon/material/butterflyconstruction(user.loc, B.material.name)
-		qdel(W)
-		qdel(src)
-		return
 
 /obj/item/weapon/material/wirerod
 	name = "wired rod"
@@ -56,7 +33,7 @@
 	var/obj/item/finished
 	if(istype(I, /obj/item/weapon/material/shard))
 		var/obj/item/weapon/material/tmp_shard = I
-		finished = new /obj/item/weapon/material/twohanded/spear(get_turf(user), tmp_shard.material.name)
+		finished = new /obj/item/weapon/material/spear(get_turf(user), tmp_shard.material.name)
 		to_chat(user, SPAN_NOTICE("You fasten \the [I] to the top of the rod with the cable."))
 	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
 		finished = new /obj/item/weapon/melee/baton/cattleprod(get_turf(user))

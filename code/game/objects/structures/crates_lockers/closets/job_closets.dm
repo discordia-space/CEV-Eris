@@ -10,7 +10,7 @@
  * Bartender
  */
 /obj/structure/closet/gmcloset
-	name = "formal closet"
+	name = "Club Manager closet"
 	desc = "It's a storage unit for formal clothing."
 	icon_door = "black"
 
@@ -20,24 +20,27 @@
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/clothing/head/hairflower
+	new /obj/item/clothing/suit/storage/toggle/club(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/under/rank/bartender/skirt(src)
 
 /*
  * Chef
  */
 /obj/structure/closet/chefcloset
-	name = "chef's closet"
-	desc = "It's a storage unit for foodservice garments."
+	name = "Club Worker closet"
+	desc = "It's a storage unit for club personnel."
 	icon_door = "black"
 
 /obj/structure/closet/chefcloset/populate_contents()
 	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter(src)
+	new /obj/item/clothing/under/waiter/skirt(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/device/radio/headset/headset_service(src)
 	new /obj/item/weapon/storage/box/mousetraps(src)
@@ -81,6 +84,12 @@
 	icon_state = "custodian"
 
 /obj/structure/closet/custodial/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/neotheology(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/neotheology(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/under/rank/church(src)
 	new /obj/item/weapon/storage/belt/utility/neotheology(src)
 	new /obj/item/device/radio/headset/church(src)
@@ -98,12 +107,10 @@
 	new /obj/item/weapon/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/weapon/mop(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/neotheology(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 
 /obj/structure/closet/acolyte
 	name = "acolyte closet"
@@ -111,13 +118,18 @@
 	icon_state = "acolyte"
 
 /obj/structure/closet/acolyte/populate_contents()
+	if(prob(25))
+		new /obj/item/weapon/storage/backpack/neotheology(src)
+	else if(prob(25))
+		new /obj/item/weapon/storage/backpack/sport/neotheology(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)
 	new /obj/item/clothing/under/rank/acolyte(src)
-	new /obj/item/weapon/storage/belt/security/neotheology(src)
+	new /obj/item/clothing/suit/neotheology_jacket(src)
+	new /obj/item/weapon/storage/belt/tactical/neotheology(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/radio/headset/church(src)
 	new /obj/item/clothing/gloves/thick(src)
+	new /obj/item/clothing/under/rank/church/sport(src)
+	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/neotheology(src)
-	else
-		new /obj/item/weapon/storage/backpack/satchel/neotheology(src)

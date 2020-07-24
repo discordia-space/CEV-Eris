@@ -4,13 +4,15 @@
 	var/mob/shadow/shadow
 
 /mob/shadow
-	plane = OPENSPACE_PLANE
 	name = "shadow"
 	desc = "Z-level shadow"
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
-	density = 0
+	density = FALSE
 	alpha = 0
+	original_plane = FLOOR_PLANE
+	layer = ABOVE_OPEN_TURF_LAYER
+	vis_flags = VIS_HIDE // Prevents mob shadows from stacking on open spaces when the mob is more than 1 z-level below
 	var/mob/owner = null
 
 /mob/shadow/can_fall()

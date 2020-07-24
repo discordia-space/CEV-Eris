@@ -2,7 +2,10 @@
 	if(!owner || !owner.current)
 		return
 
-	var/text = "<b>Your [role_text] current objectives:</b>"
+	var/text
+
+	if (objectives.len)
+		text = "<b>Your [role_text] current objectives:</b>"
 
 	if(faction)
 		text = "<b>Your [faction.name] faction current objectives:</b>"
@@ -55,7 +58,7 @@
 	var/text = get_special_objective_text()
 
 	var/list/contracts = list()
-	for(var/c in GLOB.all_antag_contracts)
+	for(var/c in GLOB.various_antag_contracts)
 		var/datum/antag_contract/contract = c
 		if(contract.completed && contract.completed_by == owner)
 			contracts += contract

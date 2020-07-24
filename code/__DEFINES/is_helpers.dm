@@ -16,6 +16,9 @@
 #define isnewplayer(A) istype(A, /mob/new_player)
 
 #define isbst(A) istype(A, /mob/living/carbon/human/bst)
+
+#define ismech(A) istype(A, /mob/living/exosuit)
+
 //++++++++++++++++++++++++++++++++++++++++++++++
 
 #define isliving(A) istype(A, /mob/living)
@@ -53,6 +56,8 @@
 
 #define isdrone(A) istype(A, /mob/living/silicon/robot/drone)
 
+#define isblitzshell(A) istype(A, /mob/living/silicon/robot/drone/blitzshell)
+
 //-----------------Objects
 #define ismovable(A) istype(A, /atom/movable)
 
@@ -64,18 +69,8 @@
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 
+#define isgun(A) istype(A, /obj/item/weapon/gun)
+
 #define istool(A) istype(A, /obj/item/weapon/tool)
 
-#define isWrench(A) istype(A, /obj/item/weapon/tool/wrench)
-
-#define isWelder(A) istype(A, /obj/item/weapon/tool/weldingtool)
-
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)
-
-#define isWirecutter(A) istype(A, /obj/item/weapon/tool/wirecutters)
-
-#define isScrewdriver(A) istype(A, /obj/item/weapon/tool/screwdriver)
-
-#define isMultitool(A) istype(A, /obj/item/weapon/tool/multitool)
-
-#define isCrowbar(A) istype(A, /obj/item/weapon/tool/crowbar)

@@ -971,7 +971,7 @@
 /area/holodeck/source_thunderdomecourt)
 "cT" = (
 /obj/structure/table/holotable,
-/obj/item/clothing/head/helmet/thunderdome,
+/obj/item/clothing/head/armor/helmet/thunderdome,
 /obj/item/clothing/suit/armor/heavy/red,
 /obj/item/clothing/under/color/red,
 /obj/item/weapon/holo/esword/red,
@@ -1580,7 +1580,7 @@
 /area/holodeck/source_thunderdomecourt)
 "eH" = (
 /obj/structure/table/holotable,
-/obj/item/clothing/head/helmet/thunderdome,
+/obj/item/clothing/head/armor/helmet/thunderdome,
 /obj/item/clothing/suit/armor/heavy/green,
 /obj/item/clothing/under/color/green,
 /obj/item/weapon/holo/esword/green,
@@ -2857,8 +2857,8 @@
 /area/space)
 "il" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/weapon/reagent_containers/syringe/spaceacillin,
+/obj/item/weapon/reagent_containers/syringe/spaceacillin,
 /obj/item/weapon/tank/anesthetic,
 /obj/item/weapon/tool/wrench,
 /obj/item/weapon/tool/bonesetter,
@@ -3343,9 +3343,9 @@
 /area/shuttle/mercenary)
 "jB" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
-/obj/item/weapon/storage/belt/security,
+/obj/item/weapon/storage/belt/tactical,
+/obj/item/weapon/storage/belt/tactical,
+/obj/item/weapon/storage/belt/tactical,
 /obj/item/weapon/storage/pouch/large_generic,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -3597,7 +3597,7 @@
 	},
 /area/shuttle/mercenary)
 "kg" = (
-/obj/structure/closet/walllocker/emerglocker{
+/obj/structure/closet/wall_mounted/emcloset{
 	pixel_x = 28
 	},
 /obj/structure/table/standard,
@@ -3721,7 +3721,7 @@
 	},
 /area/shuttle/mercenary)
 "kq" = (
-/obj/item/weapon/cigbutt,
+/obj/item/trash/cigbutt,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor7"
 	},
@@ -4167,7 +4167,7 @@
 	},
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/weapon/reagent_containers/syringe/spaceacillin,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"
 	},
@@ -4187,8 +4187,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/weapon/reagent_containers/syringe/spaceacillin,
+/obj/item/weapon/reagent_containers/syringe/spaceacillin,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"
 	},
@@ -4579,7 +4579,7 @@
 /obj/item/weapon/reagent_containers/glass/bottle/stoxin,
 /obj/item/weapon/reagent_containers/glass/bottle/stoxin,
 /obj/item/weapon/reagent_containers/syringe,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/weapon/reagent_containers/syringe/spaceacillin,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"
 	},
@@ -6274,6 +6274,33 @@
 /obj/map_data/admin,
 /turf/space,
 /area/space)
+"rT" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/obj/item/weapon/storage/backpack/satchel/military,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
+"Qq" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/deferred/crate/specialists_sidearm,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
+"Vk" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/deferred/crate/tools,
+/obj/item/weapon/storage/deferred/crate/tools,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 
 (1,1,1) = {"
 aa
@@ -33459,7 +33486,7 @@ gZ
 jD
 jM
 gZ
-jN
+Vk
 iX
 iX
 iX
@@ -33665,7 +33692,7 @@ iX
 iX
 iX
 iX
-iQ
+rT
 gZ
 gZ
 gZ
@@ -33859,9 +33886,9 @@ hl
 gZ
 kN
 lS
+Qq
 jo
 jE
-jN
 hf
 iX
 iX

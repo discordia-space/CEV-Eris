@@ -2,9 +2,9 @@
 	name = "FS SG \"Bull\""
 	desc = "A \"Frozen Star\" double-barreled pump-action shotgun. Marvel of engineering, this gun is often used by Ironhammer tactical units. \
 			Due to shorter than usual barrels, damage are somewhat lower and recoil kicks slightly harder, but possibility to fire two barrels at once overshadows all bad design flaws."
-	icon = 'icons/obj/guns/projectile/PeaceWalker.dmi'
-	icon_state = "PeaceWalker"
-	item_state = "PW"
+	icon = 'icons/obj/guns/projectile/bull.dmi'
+	icon_state = "bull"
+	item_state = "bull"
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 7
@@ -12,19 +12,20 @@
 	force = WEAPON_FORCE_PAINFUL
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
-	caliber = "shotgun"
+	caliber = CAL_SHOTGUN
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	price_tag = 2800 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
+	price_tag = 2000 //gives tactical advantage with beanbags, but consumes more ammo and hits less harder with lethal ammo, so Gladstone or Regulator would be better for lethal takedowns in general
 	damage_multiplier = 0.75
 	penetration_multiplier = 0.75
+	one_hand_penalty = 10 //compact shotgun level
 	burst_delay = null
 	fire_delay = null
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	move_delay = null
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
 		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)
@@ -73,7 +74,11 @@
 
 /obj/item/weapon/gun/projectile/shotgun/bull/attack_self(mob/user as mob)
 	if(reload)
-		pump(user)
+		if(wielded)
+			pump(user)
+		else if (world.time >= recentpumpmsg + 5)
+			to_chat(user, SPAN_WARNING("You need to wield this gun to pump it!"))
+			recentpumpmsg = world.time
 	else
 		if(firemodes.len > 1)
 			..()

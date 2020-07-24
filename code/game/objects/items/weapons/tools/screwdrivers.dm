@@ -1,41 +1,42 @@
 /obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
-	desc = "You can use this to open panels and such things."
+	desc = "You can use this to open panels, screw stuff and such things."
 	icon_state = "screwdriver"
 	flags = CONDUCT
 	worksound = WORKSOUND_SCREW_DRIVING
 	slot_flags = SLOT_BELT | SLOT_EARS
 	w_class = ITEM_SIZE_TINY
-	throw_speed = 3
-	throw_range = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	attack_verb = list("stabbed")
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 30, QUALITY_BONE_SETTING = 10)
 
 /obj/item/weapon/tool/screwdriver/improvised
 	name = "screwpusher"
-	desc = "A little metal rod wrapped in tape, barely qualifies as a tool."
+	desc = "A little metal rod wrapped in tape, barely qualifies as a tool. This can be fixed with enough tool mods, for which it has ample capacity."
 	icon_state = "impro_screwdriver"
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 15)
 	degradation = 2
+	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
-	desc = "Screwdriver powered by S class cell."
+	desc = "An electrical screwdriver, powered by an S class cell. Can be used as a drilling tool if necessary, though is not well suited to do so."
 	icon_state = "e-screwdriver"
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 40, QUALITY_DRILLING = 10, QUALITY_BONE_SETTING = 10)
 	degradation = 0.7
+	max_upgrades = 4
 	use_power_cost = 0.18
 	suitable_cell = /obj/item/weapon/cell/small
 
 /obj/item/weapon/tool/screwdriver/combi_driver
 	name = "combi driver"
-	desc = "Drive screws, drive bolts, drill bones, you can do everything with it."
+	desc = "Drive screws, drive bolts, drill bones - you can do everything with it."
 	icon_state = "combi_driver"
 	w_class = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
+	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20)
 	degradation = 0.7
@@ -55,7 +56,7 @@
 
 /obj/item/weapon/tool/screwdriver/combi_driver/onestar
 	name = "One Star combi driver"
-	desc = "A One Star combi driver, does better than the standard combi drivers on the market."
+	desc = "A One Star combi driver. Does better than the standard combi drivers on the market, but has less slots for tool mods."
 	icon_state = "one_star_combidriver"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 60, QUALITY_BOLT_TURNING = 60, QUALITY_DRILLING = 25)

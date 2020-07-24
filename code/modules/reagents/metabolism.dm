@@ -20,15 +20,17 @@
 	for(var/current in reagent_list)
 		var/datum/reagent/R = current
 
-		parent.metabolism_effects.check_reagent(R)
+		parent.metabolism_effects.check_reagent(R, metabolism_class)
 		R.on_mob_life(parent, metabolism_type, metabolism_class)
 
 	update_total()
 
-
-
 // Lasting side effects from reagents: addictions, withdrawals.
 /datum/metabolism_effects
+	var/list/nerve_system_accumulations = list() // Nerve system accumulations
+	var/nsa_threshold = 100
+	var/nsa_current = 0
+
 	var/mob/living/carbon/parent
 	var/list/present_reagent_ids = list()
 
@@ -36,14 +38,85 @@
 	var/list/datum/reagent/active_withdrawals = list()
 	var/list/datum/reagent/addiction_list = list()
 	var/addiction_tick = 1
+	/// The final chance for an addiction to manifest is multiplied by this value before being passed to prob.
+	var/addiction_chance_multiplier = 1
+
+/datum/metabolism_effects/proc/adjust_nsa(value, tag)
+	if(!tag)
+		crash_with("no tag given to adjust_nsa()")
+		return
+	nerve_system_accumulations[tag] = value
+
+/datum/metabolism_effects/proc/remove_nsa(tag)
+	for(var/i in nerve_system_accumulations)
+		if(findtext(i, tag, 1, 0) == 1)
+			nerve_system_accumulations.Remove(i)
+		
+
+/datum/metabolism_effects/proc/get_nsa_value(tag)
+	if(nerve_system_accumulations[tag])
+		return nerve_system_accumulations[tag]
+
+/datum/metabolism_effects/proc/get_nsa()
+	return nsa_current
+
+/datum/metabolism_effects/proc/get_nsa_target()
+	var/accumulatedNSA
+	for(var/tag in nerve_system_accumulations)
+		accumulatedNSA += nerve_system_accumulations[tag]
+	return accumulatedNSA
+
+/datum/metabolism_effects/proc/handle_nsa()
+	var/nsa_target = get_nsa_target()
+	if(nsa_target != nsa_current)
+		nsa_current = nsa_target > nsa_current \
+		            ? min(nsa_current + nsa_target / 30, nsa_target) \
+		            : max(nsa_current - 6.66, nsa_target)
+		nsa_changed()
+	if(get_nsa() > nsa_threshold)
+		nsa_breached_effect()
+
+/datum/metabolism_effects/proc/nsa_changed()
+	if(get_nsa() > nsa_threshold)
+		var/stat_mod = get_nsa() > 140 ? -20 : -10
+		for(var/stat in ALL_STATS)
+			parent.stats.addTempStat(stat, stat_mod, INFINITY, "nsa_breach")
+	else
+		for(var/stat in ALL_STATS)
+			parent.stats.removeTempStat(stat, "nsa_breach")
+
+	var/obj/screen/nsa/hud = parent.HUDneed["neural system accumulation"]
+	hud?.update_icon()
+
+/datum/metabolism_effects/proc/nsa_breached_effect()
+	if(get_nsa() < nsa_threshold*1.2) // 20% more
+		return
+	parent.vomit()
+
+	if(get_nsa() < nsa_threshold*1.6)
+		return
+	parent.drop_l_hand()
+	parent.drop_r_hand()
+
+	if(get_nsa() < nsa_threshold*1.8)
+		return
+	parent.adjustToxLoss(1)
+
+	if(get_nsa() < nsa_threshold*2)
+		return
+	parent.Sleeping(2)
+
 
 /datum/metabolism_effects/New(mob/living/carbon/parent_mob)
 	..()
 	if(istype(parent_mob))
 		parent = parent_mob
 
-/datum/metabolism_effects/proc/check_reagent(datum/reagent/R)
+/datum/metabolism_effects/proc/check_reagent(datum/reagent/R, metabolism_class)
 	present_reagent_ids += R.id
+
+	//Nerve System Accumulation 
+	parent.metabolism_effects.adjust_nsa(R.nerve_system_accumulations, "[R.id]_[metabolism_class]")
 
 	// Withdrawals
 	if(R.withdrawal_threshold && R.volume >= R.withdrawal_threshold && !is_type_in_list(R, withdrawal_list))
@@ -63,7 +136,7 @@
 		var/add_addiction_flag = R.volume >= R.addiction_threshold
 
 		if(!add_addiction_flag && R.addiction_chance)
-			var/percent = (R.addiction_chance + parent.get_nsa()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))
+			var/percent = ((R.addiction_chance + parent.metabolism_effects.get_nsa()/3) - (R.addiction_chance/2 * parent.stats.getMult(STAT_TGH))) * addiction_chance_multiplier
 			percent = CLAMP(percent, 1, 100)
 			add_addiction_flag = prob(percent)
 
@@ -83,7 +156,8 @@
 
 /datum/metabolism_effects/proc/process()
 	process_withdrawals()
-
+	handle_nsa()
+	
 	if(addiction_tick == 6)
 		addiction_tick = 1
 		process_addictions()
@@ -128,7 +202,7 @@
 			addiction_list.Remove(R)
 			continue
 
-		addiction_list[R]++
+		addiction_list[R] += 1
 		if(!parent.chem_effects[CE_PURGER])
 
 			switch(addiction_list[R])

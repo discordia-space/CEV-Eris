@@ -14,8 +14,8 @@
 	desc = "A large cabinet with drawers."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "filingcabinet"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/list/can_hold = list(
 		/obj/item/weapon/paper,
 		/obj/item/weapon/folder,
@@ -94,6 +94,9 @@
 			updateUsrDialog()
 			flick("[initial(icon_state)]-open",src)
 
+// Empty proc for populate()
+/obj/structure/filingcabinet/proc/populate()
+	return
 
 /*
  * Security Record Cabinets
@@ -102,7 +105,7 @@
 	var/virgin = 1
 
 
-/obj/structure/filingcabinet/security/proc/populate()
+/obj/structure/filingcabinet/security/populate()
 	if(virgin)
 		for(var/datum/data/record/G in data_core.general)
 			var/datum/data/record/S
@@ -122,7 +125,6 @@
 			P.name = "Security Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/security/attack_hand()
 	populate()
@@ -138,7 +140,7 @@
 /obj/structure/filingcabinet/medical
 	var/virgin = 1
 
-/obj/structure/filingcabinet/medical/proc/populate()
+/obj/structure/filingcabinet/medical/populate()
 	if(virgin)
 		for(var/datum/data/record/G in data_core.general)
 			var/datum/data/record/M
@@ -160,7 +162,6 @@
 				P.name = "Medical Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
 	populate()

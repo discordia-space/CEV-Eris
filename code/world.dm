@@ -61,13 +61,12 @@ var/game_id = null
 // Only runs if env var EXTOOLS_DLL is set otherwise it won't load the dll file.
 // Used with the Visual Studio Code debugger and DreamMaker Language Client extension from https://github.com/SpaceManiac/SpacemanDMM/wiki/Setting-up-Debugging
 
-/world/proc/enable_debugger()
-    var/dll = world.GetConfig("env", "EXTOOLS_DLL")
-    if (dll)
-        call(dll, "debug_initialize")()
-
 /world/New()
-	enable_debugger()
+	// Begin loading of extools DLL and components
+	extools_initialize()
+	maptick_initialize()
+	debugger_initialize()
+	// End extools
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -155,7 +154,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
-			
+
 	..(reason)
 
 /hook/startup/proc/loadMode()
@@ -179,7 +178,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_motd()
-	join_motd = russian_to_cp1251(file2text("config/motd.txt"))
+	join_motd = file2text("config/motd.txt")
 
 
 /proc/load_configuration()

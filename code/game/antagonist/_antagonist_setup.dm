@@ -39,33 +39,37 @@ GLOBAL_LIST_EMPTY(faction_types)
 	for(var/datum/antagonist/A in player.antagonist)
 		A.remove_antagonist()
 
-/proc/clear_antagonist_type(var/datum/mind/player, var/a_id)
+/proc/clear_antagonist_type(datum/mind/player, a_id)
 	for(var/datum/antagonist/A in player.antagonist)
 		if(A.id == a_id)
 			A.remove_antagonist()
 
-/proc/create_antag_instance(var/a_id)
-	if(GLOB.all_antag_types[a_id])
-		var/atype = GLOB.all_antag_types[a_id].type
+/proc/create_antag_instance(a_id)
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/atype = all_antag_types[a_id].type
 		return new atype
 
 /proc/make_antagonist_ghost(var/mob/M, var/a_id)
-	if(GLOB.all_antag_types[a_id])
-		var/a_type = GLOB.all_antag_types[a_id].type
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/a_type = all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		if(A.create_from_ghost(M))
 			return A
 
 /proc/make_antagonist(var/datum/mind/M, var/a_id)
-	if(GLOB.all_antag_types[a_id])
-		var/a_type = GLOB.all_antag_types[a_id].type
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/a_type = all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		if(istype(M) && A.create_antagonist(M))
 			return A
 
 /proc/make_antagonist_faction(datum/mind/M, a_id, datum/faction/F, check = TRUE)
-	if(GLOB.all_antag_types[a_id])
-		var/a_type = GLOB.all_antag_types[a_id].type
+	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
+	if(all_antag_types[a_id])
+		var/a_type = all_antag_types[a_id].type
 		var/datum/antagonist/A = new a_type
 		A.create_antagonist(M, F, check = check)
 

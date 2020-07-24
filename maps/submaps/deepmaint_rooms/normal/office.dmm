@@ -1,0 +1,33 @@
+"a" = (/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"b" = (/obj/random/traps,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"c" = (/turf/simulated/wall,/area/deepmaint)
+"d" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/deepmaint)
+"e" = (/obj/structure/table/standard,/obj/item/weapon/paper_bin,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"f" = (/obj/structure/table/standard,/obj/item/device/lighting/toggleable/lamp,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"g" = (/obj/structure/reagent_dispensers/water_cooler,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"h" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/obj/random/lowkeyrandom,/obj/random/lowkeyrandom,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"i" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"j" = (/obj/structure/bed/chair/office/dark{dir = 4},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"k" = (/obj/structure/table/standard,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"l" = (/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"m" = (/obj/structure/table/standard,/obj/random/powercell/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"n" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"o" = (/obj/random/traps,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"p" = (/obj/structure/bed/chair/office/dark,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"q" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"r" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"s" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+
+(1,1,1) = {"
+abaaaaaaaaa
+acddcddccca
+acefcefcgfa
+achichicjka
+acllcllclma
+adnqnnnnnoa
+aclrclrcsma
+bchpchpcjka
+acefcefcgfa
+acddcddccca
+abaaaaaaaaa
+"}

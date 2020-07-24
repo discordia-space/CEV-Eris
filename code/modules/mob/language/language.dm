@@ -52,6 +52,50 @@
 
 	return "[trim(full_name)]"
 
+/datum/language/proc/get_random_first_name(gender, name_count=1, syllable_count=4, syllable_divisor=2)
+	//This language has its own name lists
+	if (name_lists)
+		if(gender==FEMALE)
+			return capitalize(pick(first_names_female))
+		else
+			return capitalize(pick(first_names_male))
+
+	if(!syllables || !syllables.len)
+		if(gender==FEMALE)
+			return capitalize(pick(GLOB.first_names_female))
+		else
+			return capitalize(pick(GLOB.first_names_male))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for(var/i = 0;i<name_count;i++)
+		new_name = ""
+		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
+			new_name += pick(syllables)
+		full_name += " [capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
+/datum/language/proc/get_random_last_name(name_count=1, syllable_count=4, syllable_divisor=2)
+	//This language has its own name lists
+	if (name_lists)
+		return capitalize(pick(last_names))
+
+	if(!syllables || !syllables.len)
+		return capitalize(pick(GLOB.last_names))
+
+	var/full_name = ""
+	var/new_name = ""
+
+	for(var/i = 0;i<name_count;i++)
+		new_name = ""
+		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
+			new_name += pick(syllables)
+		full_name += "[capitalize(lowertext(new_name))]"
+
+	return "[trim(full_name)]"
+
 //A wrapper for the above that gets a random name and sets it onto the mob
 /datum/language/proc/set_random_name(var/mob/M, name_count=2, syllable_count=4, syllable_divisor=2)
 	var/mob/living/carbon/human/H = null
@@ -79,11 +123,11 @@
 		scramble_cache[input] = n
 		return n
 
-	var/input_size = length(input)
+	var/input_size = length_char(input)
 	var/scrambled_text = ""
 	var/capitalize = 1
 
-	while(length(scrambled_text) < input_size)
+	while(length_char(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
@@ -97,10 +141,10 @@
 			scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
+	var/ending = copytext_char(scrambled_text, length(scrambled_text))
 	if(ending == ".")
-		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
-	var/input_ending = copytext(input, input_size)
+		scrambled_text = copytext_char(scrambled_text, 1, -2)
+	var/input_ending = copytext_char(input, -1)
 	if(input_ending in list("!","?","."))
 		scrambled_text += input_ending
 
@@ -185,7 +229,7 @@
 
 // Can we speak this language, as opposed to just understanding it?
 /mob/proc/can_speak(datum/language/speaking)
-	return (universal_speak || (speaking && speaking.flags & INNATE) || speaking in src.languages)
+	return (universal_speak || (speaking && speaking.flags & INNATE) || (speaking in src.languages))
 
 /mob/proc/get_language_prefix()
 	return get_prefix_key(/decl/prefix/language)

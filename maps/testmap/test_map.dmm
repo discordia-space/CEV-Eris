@@ -271,7 +271,7 @@
 /turf/simulated/floor,
 /area/testing/first)
 "aS" = (
-/obj/item/weapon/grenade/frag/explosive,
+/obj/item/weapon/grenade/explosive,
 /turf/simulated/floor,
 /area/testing/first)
 "aT" = (

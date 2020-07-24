@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/hm_pistol.dmi'
 	icon_state = "hm_pistol"
 	item_state = "pistol"
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	can_dual = 1
@@ -17,9 +17,9 @@
 	var/jammed = FALSE
 	var/jam_chance = 15
 
-	New()
-		..()
-		open_chamber()
+/obj/item/weapon/gun/projectile/handmade_pistol/New()
+	..()
+	open_chamber()
 
 /obj/item/weapon/gun/projectile/handmade_pistol/special_check(mob/user)
 	if(jammed)

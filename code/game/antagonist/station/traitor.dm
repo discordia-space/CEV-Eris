@@ -5,7 +5,7 @@
 	bantype = ROLE_TRAITOR
 	antaghud_indicator = "hudtraitor"
 
-	survive_objective = /datum/objective/escape
+	survive_objective = null
 
 	stat_modifiers = list(
 		STAT_ROB = 5,
@@ -26,7 +26,7 @@
 		return
 	if(href_list["spawn_uplink"]) spawn_uplink(locate(href_list["spawn_uplink"]))
 
-/datum/antagonist/traitor/can_become_antag(var/datum/mind/player)
+/datum/antagonist/traitor/can_become_antag(datum/mind/player)
 	return ishuman(player.current) && ..(player)
 
 /datum/antagonist/traitor/equip()
@@ -40,8 +40,15 @@
 
 	if(!..())
 		return FALSE
-
-	spawn_uplink(owner.current)
+	var/noble_objetive = FALSE
+	for(var/datum/objective/O in objectives)
+		if(istype(O, /datum/objective/assassinate))
+			if(O.noble_objetive)
+				noble_objetive = TRUE
+	if(noble_objetive)
+		spawn_uplink(owner.current, DEFAULT_TELECRYSTAL_AMOUNT * 1.5)
+	else
+		spawn_uplink(owner.current)
 	give_codewords()
 
 	return TRUE

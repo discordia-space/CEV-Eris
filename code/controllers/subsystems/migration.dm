@@ -161,6 +161,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//This could only happen if all the burrows on the map were collapsed
 			return
 
+		if (!B.population.len)
+			// There is no mob nearby for the migration
+			// Avoid division by 0 in summon_mobs
+			continue
 
 		//Alright now we know where to go, next up, how many are we sending?
 		var/percentage = migration_percentage()
@@ -210,10 +214,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	var/obj/structure/burrow/candidate
 
 	switch (GLOB.storyteller.config_tag)
-		if ("jester") // Jester is much more likely to not reroll the maintenance check.
-			reroll_prob = 59.5
+		if ("jester") // Jester will most likely not reroll the maintenance area check.
+			reroll_prob = 19.5
 		if ("warrior")
-			reroll_prob = 98.5
+			reroll_prob = 80
 
 	//Lets copy the list into a candidates buffer
 	var/list/candidates = all_burrows.Copy(1,0)
@@ -321,10 +325,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	This proc allows plants like maintshrooms to spread through burrows
 	Run every 10 minutes
 */
-#define TRAIT_SPREAD			30
-//I don't know why plant traits are defined only inside their specific folder
-//Moving them out to main defines doesn't seem necessary for now
-
 /datum/controller/subsystem/migration/proc/handle_plant_spreading()
 	next_plantspread = world.time + burrow_plantspread_interval//Setup the next spread tick
 
@@ -374,8 +374,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			//If people cut down all the plants near us, but didn't collapse this burrow, they're in for a bad time
 			//Plants are back baby!
 
-
-
 /*
 	Finds burrows near to the specified one, and sends plants from it to them
 */
@@ -414,9 +412,6 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		C.plantspread_burrows.Add("\ref[B]")
 		C.plant = B.plant //Make them share the same seed
 		C.spread_plants() //And make some plants at the new burrow
-
-
-#undef TRAIT_SPREAD
 
 /*************************************************
 	Burrow Finding and Sorting

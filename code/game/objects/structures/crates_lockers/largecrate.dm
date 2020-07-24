@@ -1,10 +1,10 @@
-/obj/structure/largecrate
+/obj/structure/largecrate //TODO: Refactor this into a crate subtype.
 	name = "large crate"
 	desc = "A hefty wooden crate."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/crate.dmi'
 	icon_state = "densecrate"
 	matter = list(MATERIAL_WOOD = 10)
-	density = 1
+	density = TRUE
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
@@ -27,6 +27,7 @@
 /obj/structure/largecrate/mule
 	name = "MULE crate"
 
+/*
 /obj/structure/largecrate/hoverpod
 	name = "\improper Hoverpod assembly crate"
 	desc = "It comes in a box for the fabricator's sake. Where does the wood come from? ... And why is it lighter?"
@@ -35,14 +36,15 @@
 /obj/structure/largecrate/hoverpod/attackby(obj/item/I, mob/user)
 	if(QUALITY_PRYING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			var/obj/item/mecha_parts/mecha_equipment/ME
-			var/obj/mecha/working/hoverpod/H = new (loc)
+			var/obj/item/mech_equipment/ME
+			var/mob/living/exosuit/working/hoverpod/H = new (loc)
 
-			ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
+			ME = new /obj/item/mech_equipment/clamp
 			ME.attach(H)
-			ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
+			ME = new /obj/item/mech_equipment/tool/passenger
 			ME.attach(H)
 		..()
+*/
 
 /obj/structure/largecrate/animal
 	icon_state = "mulecrate"

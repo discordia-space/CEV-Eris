@@ -3,7 +3,6 @@
 	desc = "Can hold various things."
 	icon = 'icons/inventory/belt/icon.dmi'
 	icon_state = "utility"
-	item_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
@@ -12,6 +11,11 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/show_above_suit = 0
+
+/obj/item/weapon/storage/belt/Initialize()
+	. = ..()
+	if (!item_state)
+		item_state = icon_state
 
 /obj/item/weapon/storage/belt/verb/toggle_layer()
 	set name = "Switch Belt Layer"
@@ -33,7 +37,6 @@
 	name = "tool belt"
 	desc = "Can hold various tools."
 	icon_state = "utility"
-	item_state = "utility"
 	can_hold = list(
 		/obj/item/weapon/tool,
 		/obj/item/device/lightreplacer,
@@ -74,7 +77,9 @@
 	icon_state = "utility_neotheology"
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
-		/obj/item/weapon/implant/core_implant/cruciform
+		/obj/item/weapon/implant/core_implant/cruciform,
+		/obj/item/weapon/soap,
+		/obj/item/weapon/reagent_containers/spray/cleaner
 	)
 
 /obj/item/weapon/storage/belt/medical
@@ -112,15 +117,15 @@
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
 
-/obj/item/weapon/storage/belt/security
+/obj/item/weapon/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
-	icon_state = "security"
-	item_state = "security"
+	icon_state = "tactical"
 	can_hold = list(
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
 		/obj/item/weapon/handcuffs,
+		/obj/item/weapon/tool/crowbar,
 		/obj/item/device/flash,
 		/obj/item/clothing/gloves,
 		/obj/item/clothing/glasses,
@@ -140,13 +145,17 @@
 		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/gun/projectile/giskard,
 		//obj/item/weapon/gun/projectile/olivaw, //too big, use holster
-		//obj/item/weapon/gun/projectile/revolver/detective, //too big, use holster
+		//obj/item/weapon/gun/projectile/revolver/havelock, //too big, use holster
 		/obj/item/weapon/gun/energy/gun/martin,
 		//obj/item/weapon/gun/energy/taser, //too big, use holster
 		/obj/item/taperoll
 	)
 
-/obj/item/weapon/storage/belt/security/neotheology
+/obj/item/weapon/storage/belt/tactical/ironhammer
+	name = "ironhammer tactical belt"
+	icon_state = "tactical_ironhammer"
+
+/obj/item/weapon/storage/belt/tactical/neotheology
 	name = "neotheologian tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"

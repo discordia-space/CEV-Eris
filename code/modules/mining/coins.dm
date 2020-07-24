@@ -62,9 +62,7 @@
 			..()
 			return
 
-		var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
-		CC.amount = 1
-		CC.update_icon()
+		new /obj/item/stack/cable_coil(user.loc, 1)
 		overlays = list()
 		string_attached = null
 		to_chat(user, "\blue You detach the string from the coin.")

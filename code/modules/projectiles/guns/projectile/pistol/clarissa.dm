@@ -6,7 +6,7 @@
 	item_state = "clarissa"
 	w_class = ITEM_SIZE_SMALL
 	can_dual = 1
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	silenced = 0
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
@@ -14,11 +14,11 @@
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
-	silencer_type = /obj/item/weapon/silencer
+	gun_tags = list(GUN_SILENCABLE)
 	damage_multiplier = 0.7
 	recoil_buildup = 19
 
-	firemodes = list(
+	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
@@ -51,7 +51,7 @@
 	damage_multiplier = 1.2
 	recoil_buildup = 21
 	price_tag = 1400
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_ILLEGAL = 3)
-	firemodes = list(
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)
+	init_firemodes = list(
 		SEMI_AUTO_NODELAY
 		)

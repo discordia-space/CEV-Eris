@@ -94,8 +94,6 @@
 			return 1
 
 		if(I_GRAB)
-			if(M.stats.combat_style?.grab_act())
-				return 1
 			if(M == src || anchored)
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
@@ -123,8 +121,6 @@
 			return 1
 
 		if(I_HURT)
-			if(M.stats.combat_style?.harm_act())
-				return 1
 			if(M.targeted_organ == BP_MOUTH && wear_mask && istype(wear_mask, /obj/item/weapon/grenade))
 				var/obj/item/weapon/grenade/G = wear_mask
 				if(!G.active)
@@ -238,8 +234,6 @@
 			hit_impact(real_damage, get_step(H, src))
 
 		if(I_DISARM)
-			if(M.stats.combat_style?.disarm_act())
-				return 1
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
 

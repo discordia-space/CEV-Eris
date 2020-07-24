@@ -7,7 +7,9 @@
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
 			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
-			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
+			var/obj/effect/decal/cleanable/blood/blood_effect = new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
+			blood_effect.basecolor = bloodcolor
+			blood_effect.update_icon()
 			qdel(src)
 		else
 			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
@@ -201,7 +203,9 @@
 		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
 
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
-	. = ..(anim,do_gibs)
+	if (do_gibs)
+		gibs(src.loc, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
+	. = ..(anim,FALSE)
 
 /mob/living/carbon/superior_animal/dust(var/anim = icon_dust, var/remains = dust_remains)
 	if (!anim)
@@ -217,7 +221,7 @@
 		stop_automated_movement = initial(stop_automated_movement)
 		walk(src, 0)
 
-		density = 0
+		density = FALSE
 		layer = LYING_MOB_LAYER
 
 	. = ..()
@@ -260,13 +264,16 @@
 	else
 		var/loc_temp = T0C
 		var/loc_pressure = 0
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
+/*
+		if(istype(loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
 			loc_temp =  M.return_temperature()
 			loc_pressure =  M.return_pressure()
-		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
-			loc_pressure = loc:air_contents.return_pressure()
+*/
+		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
+			loc_temp = M.air_contents.temperature
+			loc_pressure = M.air_contents.return_pressure()
 		else
 			loc_temp = environment.temperature
 			loc_pressure = environment.return_pressure()

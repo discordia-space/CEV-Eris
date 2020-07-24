@@ -197,10 +197,10 @@ var/global/list/damage_icon_parts = list()
 		O.update_damstate()
 		if(O.damage_state == "00") continue
 		var/icon/DI
-		var/cache_index = "[O.damage_state]/[O.icon_name]/[species.blood_color]/[species.get_bodytype()]"
+		var/cache_index = "[O.damage_state]/[O.organ_tag]/[species.blood_color]/[species.get_bodytype()]"
 		if(damage_icon_parts[cache_index] == null)
 			DI = new /icon(species.damage_overlays, O.damage_state)			// the damage icon for whole human
-			DI.Blend(new /icon(species.damage_mask, O.icon_name), ICON_MULTIPLY)	// mask with this organ's pixels
+			DI.Blend(new /icon(species.damage_mask, O.organ_tag), ICON_MULTIPLY)	// mask with this organ's pixels
 			DI.Blend(species.blood_color, ICON_MULTIPLY)
 			damage_icon_parts[cache_index] = DI
 		else
@@ -263,6 +263,9 @@ var/global/list/damage_icon_parts = list()
 
 			for(var/obj/item/organ/external/part in organs)
 				var/icon/temp = part.get_icon(skeleton)
+				if(!temp)
+					continue
+
 				//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 				//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
 				if(part.icon_position&(LEFT|RIGHT))
@@ -707,30 +710,40 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_s_store(var/update_icons=1)
 	if(s_store)
-		//Determine the state to use
-		var/t_state
-		if(s_store.item_state_slots && s_store.item_state_slots[slot_s_store_str])
-			t_state = s_store.item_state_slots[slot_s_store_str]
-		else if(s_store.item_state)
-			t_state = s_store.item_state
+		if(s_store.contained_sprite)
+			var/state = ""
+			state += "[s_store.item_state][WORN_SSTORE]"
+
+			if(s_store.icon_override)
+				overlays_standing[SUIT_STORE_LAYER] = image(icon = s_store.icon_override, icon_state = state)
+			else
+				overlays_standing[SUIT_STORE_LAYER] = image(icon = s_store.icon, icon_state = state)
+
 		else
-			t_state = s_store.icon_state
+			//Determine the state to use
+			var/t_state
+			if(s_store.item_state_slots && s_store.item_state_slots[slot_s_store_str])
+				t_state = s_store.item_state_slots[slot_s_store_str]
+			else if(s_store.item_state)
+				t_state = s_store.item_state
+			else
+				t_state = s_store.icon_state
 
-		//Determine the icon to use
-		var/t_icon
-		if(s_store.item_icons && (slot_s_store_str in s_store.item_icons))
-			t_icon = s_store.item_icons[slot_s_store_str]
-		else
-			t_icon = get_gender_icon(gender, "s_store")
+			//Determine the icon to use
+			var/t_icon
+			if(s_store.item_icons && (slot_s_store_str in s_store.item_icons))
+				t_icon = s_store.item_icons[slot_s_store_str]
+			else
+				t_icon = get_gender_icon(gender, "s_store")
 
-		//Special case here. We will check if the suit store icon contains our desired iconstate
-		//If not we will use the mob's back icon instead. This allows reusing back icons for shoulder-slung guns
-		var/icon/test = new (t_icon)
-		if (!(t_state in icon_states(test)))
-			t_icon = get_back_icon(s_store)
+			//Special case here. We will check if the suit store icon contains our desired iconstate
+			//If not we will use the mob's back icon instead. This allows reusing back icons for shoulder-slung guns
+			var/icon/test = new (t_icon)
+			if (!(t_state in icon_states(test)))
+				t_icon = get_back_icon(s_store)
 
 
-		overlays_standing[SUIT_STORE_LAYER]	= image(icon = t_icon, icon_state = t_state)
+			overlays_standing[SUIT_STORE_LAYER]	= image(icon = t_icon, icon_state = t_state)
 	else
 		overlays_standing[SUIT_STORE_LAYER]	= null
 
@@ -813,7 +826,7 @@ var/global/list/damage_icon_parts = list()
 			if(ubelt.show_above_suit)
 				beltlayer = BELT_LAYER_ALT
 				otherlayer = BELT_LAYER
-		
+
 		overlays_standing[beltlayer] = standing
 		overlays_standing[otherlayer] = null
 
@@ -919,7 +932,6 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/get_back_icon(var/obj/item/test = null)
 	if(!test && back)
 		test = back
-
 	if (test)
 		//determine the icon to use
 		var/icon/overlay_icon
@@ -935,15 +947,13 @@ var/global/list/damage_icon_parts = list()
 		else if(test.icon_override)
 			overlay_icon = test.icon_override
 		else if(istype(test, /obj/item/weapon/rig))
-			//If this is a rig and a mob_icon is set, it will take species into account in the rig update_icon() proc.
 			var/obj/item/weapon/rig/rig = test
-			overlay_icon = rig.mob_icon
+			overlay_icon = rig.get_species_icon()
 
 		else if(test.item_icons && (slot_back_str in test.item_icons))
 			overlay_icon = test.item_icons[slot_back_str]
 		else
 			overlay_icon = get_gender_icon(gender, "backpack")
-
 		return overlay_icon
 
 	else return get_gender_icon(gender, "backpack")
@@ -956,8 +966,9 @@ var/global/list/damage_icon_parts = list()
 	var/icon/overlay_icon = get_back_icon()
 	var/overlay_state = ""
 	if(back && overlay_icon)
+		overlay_state = back.item_state
 		if(back.contained_sprite)
-			overlay_state += "[back.item_state][WORN_BACK]"
+			overlay_state = "[back.item_state][WORN_BACK]"
 
 			if(back.icon_override)
 				overlay_icon = back.icon_override
@@ -969,10 +980,16 @@ var/global/list/damage_icon_parts = list()
 		//determine state to use
 		if(back.item_state_slots && back.item_state_slots[slot_back_str])
 			overlay_state = back.item_state_slots[slot_back_str]
-
 		//apply color
 		var/image/standing = image(icon = overlay_icon, icon_state = overlay_state)
 		standing.color = back.color
+
+		//Rig module overlays on mob.
+		if(istype(back, /obj/item/weapon/rig))
+			var/obj/item/weapon/rig/rig = back//Maybe add if(rig.installed_modules.len) below this since the code for accessories does that far as I know.
+			for(var/obj/item/rig_module/module in rig.installed_modules)
+				if(module.suit_overlay)
+					standing.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay)
 
 		//create the image
 		overlays_standing[BACK_LAYER] = standing

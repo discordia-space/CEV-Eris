@@ -31,5 +31,5 @@
 	icon_keyboard = "tcstation_key"
 	icon_screen = "syndie"
 	shuttle_tag = "turbolift"
-	density = 0
+	density = FALSE
 */

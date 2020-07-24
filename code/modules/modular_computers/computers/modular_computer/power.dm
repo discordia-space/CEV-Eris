@@ -1,16 +1,15 @@
 /obj/item/modular_computer/proc/power_failure(var/malfunction = 0)
 	if(enabled) // Shut down the computer
 		visible_message("<span class='danger'>\The [src]'s screen flickers briefly and then goes dark.</span>", range = 1)
-		if(active_program)
-			active_program.event_powerfailure(0)
-		for(var/datum/computer_file/program/PRG in idle_threads)
-			PRG.event_powerfailure(1)
+		for(var/p in all_threads)
+			var/datum/computer_file/program/PRG = p
+			PRG.event_power_failure()
 		shutdown_computer(0)
 
 // Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.
 /obj/item/modular_computer/proc/battery_power(power_usage = 0)
 	apc_powered = FALSE
-	if(!cell || cell.charge <= 0)
+	if(!cell || cell.empty())
 		return FALSE
 	if(cell.use(power_usage * CELLRATE * 0.1) || ((power_usage == 0) && cell.charge))
 		return TRUE
@@ -28,7 +27,7 @@
 		return FALSE
 
 	// At this point, we know that APC can power us for this tick. Check if we also need to charge our battery, and then actually use the power.
-	if(cell && (cell.charge < cell.maxcharge) && (power_usage > 0))
+	if(cell && (!cell.fully_charged()) && (power_usage > 0))
 		power_usage += tesla_link.passive_charging_rate
 		cell.give(tesla_link.passive_charging_rate * CELLRATE * 0.1)
 	apc_powered = TRUE

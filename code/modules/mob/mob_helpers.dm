@@ -168,7 +168,7 @@ var/list/global/organ_rel_size = list(
 	var/block = list()
 	. = list()
 	for(var/i = 1, i <= length(n), i++)
-		var/char = copytext(n, i, i+1)
+		var/char = copytext_char(n, i, i+1)
 		if(!intag && (char == "<"))
 			intag = 1
 			. += stars_no_html(JOINTEXT(block), pr, re_encode) //stars added here
@@ -187,7 +187,7 @@ var/list/global/organ_rel_size = list(
 	text = html_decode(text) //We don't want to screw up escaped characters
 	. = list()
 	for(var/i = 1, i <= length(text), i++)
-		var/char = copytext(text, i, i+1)
+		var/char = copytext_char(text, i, i+1)
 		if(char == " " || prob(pr))
 			. += char
 		else
@@ -197,13 +197,13 @@ var/list/global/organ_rel_size = list(
 		. = html_encode(.)
 
 proc/slur(phrase)
-	phrase = rhtml_decode(phrase)
+	phrase = html_decode(phrase)
 	var/leng=length(phrase)
 	var/counter=length(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
-		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
+		newletter=copytext_char(phrase,(leng-counter)+1,(leng-counter)+2)
 		if(rand(1,3)==3)
 			if(lowertext(newletter)=="o")	newletter="u"
 			if(lowertext(newletter)=="s")	newletter="ch"
@@ -217,16 +217,16 @@ proc/slur(phrase)
 			//if(11,12)	newletter="<big>[newletter]</big>"
 			//if(13)	newletter="<small>[newletter]</small>"
 		newphrase+="[newletter]";counter-=1
-	return rhtml_encode(newphrase)
+	return html_encode(newphrase)
 
 /proc/stutter(n)
-	var/te = russian_to_cp1251(n)
+	var/te = html_decode(n)
 	n = length(n)//length of the entire word
 	var/list/t = list()
 	var/p = 1//1 is the start of any word
 	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
-		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
-		if (prob(80) && (rlowertext(n_letter) in LIST_OF_CONSONANT))
+		var/n_letter = copytext_char(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
+		if (prob(80) && (lowertext(n_letter) in LIST_OF_CONSONANT))
 			if (prob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
 			else
@@ -239,15 +239,14 @@ proc/slur(phrase)
 						n_letter = text("[n_letter]-[n_letter]")
 		t += n_letter //since the above is ran through for each letter, the text just adds up back to the original word.
 		p++//for each letter p is increased to find where the next letter will be.
-	return sanitize(jointext(t,null))
-
+	return sanitize(jointext(t, null))
 
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 
-		var/letter = copytext(t, i, i+1)
+		var/letter = copytext_char(t, i, i+1)
 		if(prob(50))
 			if(p >= 70)
 				letter = ""
@@ -266,7 +265,7 @@ The difference with stutter is that this proc can stutter more than 1 letter
 The issue here is that anything that does not have a space is treated as one word (in many instances). For instance, "LOOKING," is a word, including the comma.
 It's fairly easy to fix if dealing with single letters but not so much with compounds of letters./N
 */
-	var/te = rhtml_decode(n)
+	var/te = html_decode(n)
 	var/t = ""
 	n = length(n)
 	var/p = 1
@@ -274,9 +273,9 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		var/n_letter
 		var/n_mod = rand(1,4)
 		if(p+n_mod>n+1)
-			n_letter = copytext(te, p, n+1)
+			n_letter = copytext_char(te, p, n+1)
 		else
-			n_letter = copytext(te, p, p+n_mod)
+			n_letter = copytext_char(te, p, p+n_mod)
 		if (prob(50))
 			if (prob(30))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
@@ -622,5 +621,26 @@ proc/is_blind(A)
 	for(var/obj/A in embedded)
 		if (A.loc == src)
 			A.forceMove(loc)
+			if(isitem(A))
+				var/obj/item/I = A
+				I.on_embed_removal(src)
 			A.tumble()
 	embedded = list()
+
+/mob/proc/skill_to_evade_traps(prob_catch)
+	var/prob_evade = 0
+	if(MOVING_DELIBERATELY(src))
+		prob_evade = 25
+		prob_evade += prob_evade/stats.getMult(STAT_VIG, STAT_LEVEL_GODLIKE) - prob_evade*get_max_w_class()/ITEM_SIZE_TITANIC
+		if(stats.getPerk(PERK_SURE_STEP))
+			prob_evade += prob_evade*30/STAT_LEVEL_GODLIKE
+		if(stats.getPerk(PERK_RAT))
+			prob_evade *= 2
+	return prob_evade
+
+/mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+	if(isliving(src))
+		var/mob/living/L = src
+		vol *= L.noise_coeff
+		extrarange *= L.noise_coeff
+	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)

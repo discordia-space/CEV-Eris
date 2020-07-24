@@ -101,16 +101,14 @@
 	if(!can_interact(usr))
 		return
 
-	if(active_program)
-		active_program.event_idremoved(0)
-
-	for(var/datum/computer_file/program/P in idle_threads)
-		P.event_idremoved(1)
+	for(var/p in all_threads)
+		var/datum/computer_file/program/PRG = p
+		PRG.event_id_removed()
 
 	card_slot.stored_card.forceMove(get_turf(src))
 	if(!issilicon(user))
 		user.put_in_hands(card_slot.stored_card)
-	to_chat(user, "You remove [card_slot.stored_card] from [src].")
+	to_chat(user, SPAN_NOTICE("You remove [card_slot.stored_card] from [src]."))
 	card_slot.stored_card = null
 	update_uis()
 	update_verbs()

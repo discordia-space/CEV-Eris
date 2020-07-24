@@ -1,8 +1,8 @@
 /obj/item/weapon/oddity/secdocs
 	name = "science data"
 	desc = "Folder contains some papers with important science data."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "scifolder0"
+	icon = 'icons/obj/oddities.dmi'
+	icon_state = "folder"
 	price_tag = 5000
 
 	oddity_stats = list(
@@ -14,7 +14,7 @@
 	var/static/inv_spawn_count = 3
 
 /obj/item/weapon/oddity/secdocs/Initialize()
-	icon_state = "scifolder[rand(0,3)]"
+	icon_state = "folder-[pick("omega","psi","theta")]"
 	name = pick("Atractor fields theory",
 				"World lines theory",
 				"Outside context problem evidence",
@@ -37,7 +37,7 @@
 		to_chat(owner, SPAN_NOTICE("You have valuable science data on your person. It is essential that you do not let it fall into the wrong hands."))
 
 /hook/roundstart/proc/place_docs()
-	var/list/L = list()
+	var/list/obj/landmark/storyevent/midgame_stash_spawn/L = list()
 	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in landmarks_list)
 		L.Add(S)
 

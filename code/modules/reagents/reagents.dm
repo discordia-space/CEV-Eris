@@ -37,6 +37,7 @@
 	var/glass_center_of_mass = null
 	var/color = "#000000"
 	var/color_weight = 1
+	var/sanity_gain = 0
 
 	var/chilling_point
 	var/chilling_message = "crackles and freezes!"
@@ -113,16 +114,12 @@
 
 // Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
-	var/mob/living/carbon/C = L
-	if(istype(C))
-		C.adjust_nsa(nerve_system_accumulations, id)
-	return
 
 // Called when this reagent is removed while inside a mob
 /datum/reagent/proc/on_mob_delete(mob/living/L)
 	var/mob/living/carbon/C = L
 	if(istype(C))
-		C.remove_nsa(id)
+		C.metabolism_effects.remove_nsa(id)
 	return
 
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.

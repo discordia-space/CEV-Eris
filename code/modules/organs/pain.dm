@@ -59,8 +59,14 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 		return
 	if(species.flags & NO_PAIN)
 		return
-	if(analgesic)
+
+	if(analgesic >= 100)
 		return
+	else if(analgesic >= 50)
+		flash_strength -= 1
+		if(flash_strength < 0)
+			return
+
 	var/msg = "\red <b>[message]</b>"
 	if(flash_strength >= 1)
 		msg = "\red <font size=3><b>[message]</b></font>"

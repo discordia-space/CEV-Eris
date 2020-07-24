@@ -36,15 +36,24 @@
 				{{for data.recipe_data}}
 					<div class="statusDisplay" style="overflow: auto;">
 						{{for value.reagents :val:val_i}}
-							{{:val.parts}}{{:helper.catalogEntryLink(val.type)}}<br>
+							{{:val.parts}} of {{:helper.catalogEntryLink(val.type)}}<br>
 						{{/for}}
 						{{for value.catalyst :val:val_i}}
 							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
 						{{/for}}
-						{{if value.required_object}}
-							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}.
+
+						{{if value.minimum_temperature && value.maximum_temperature}}
+							At temperatures between {{:value.minimum_temperature}}K and {{:value.maximum_temperature}}K<br>
+						{{else value.minimum_temperature}}
+							At temperatures above {{:value.minimum_temperature}}K<br>
+						{{else value.maximum_temperature}}
+							At temperatures below {{:value.maximum_temperature}}K<br>
 						{{/if}}
-						{{:value.result_amount}}
+
+						{{if value.required_object}}
+							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}<br>
+						{{/if}}
+						Results in {{:value.result_amount}} of substance
 					</div>
 				{{/for}}
 			</div>

@@ -42,12 +42,14 @@
 #define STRUCTURE_DAMAGE_BLUNT 			1.3
 #define STRUCTURE_DAMAGE_HEAVY 			1.5
 #define STRUCTURE_DAMAGE_BREACHING 		1.8
+#define STRUCTURE_DAMAGE_DESTRUCTIVE 	2.0
 #define STRUCTURE_DAMAGE_BORING 		3
 
 //Quick defines for fire modes
-#define FULL_AUTO_250		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=2.4, icon="auto")
+#define FULL_AUTO_300		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=2  , icon="auto")
 #define FULL_AUTO_400		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1.5, icon="auto")
 #define FULL_AUTO_600		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=1  , icon="auto")
+#define FULL_AUTO_800		list(mode_name="full auto",  mode_type = /datum/firemode/automatic, fire_delay=0.8, icon="auto")
 
 #define SEMI_AUTO_NODELAY	list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, icon="semi")
 

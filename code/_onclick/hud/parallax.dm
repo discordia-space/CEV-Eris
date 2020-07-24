@@ -12,7 +12,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	blend_mode = BLEND_MULTIPLY
 	plane = PLANE_SPACE_PARALLAX
 //	invisibility = 101
-	anchored = 1
+	anchored = TRUE
 	var/mob/owner
 	var/obj/parallax_screen/parallax_screen
 	var/list/layers = list()

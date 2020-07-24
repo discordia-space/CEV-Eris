@@ -16,7 +16,6 @@
 	spawn_nothing_percentage = 60
 
 
-
 /obj/random/junkfood
 	name = "random junkfood"
 	icon_state = "food-red"
@@ -40,7 +39,30 @@
 	spawn_nothing_percentage = 60
 
 
+/obj/random/pizza
+	name = "random pizza"
+	icon_state = "food-red"
 
+/obj/random/pizza/item_to_spawn()
+	return pickweight(subtypesof(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza))
+
+/obj/random/pizza/low_chance
+	name = "low chance pizza"
+	icon_state = "food-red-low"
+	spawn_nothing_percentage = 60
+
+
+/obj/random/soda
+	name = "random soda"
+	icon_state = "food-red"
+
+/obj/random/soda/item_to_spawn()
+	return pickweight(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/cans))
+
+/obj/random/soda/low_chance
+	name = "low chance soda"
+	icon_state = "food-red-low"
+	spawn_nothing_percentage = 60
 
 
 /obj/random/junkfood/rotten

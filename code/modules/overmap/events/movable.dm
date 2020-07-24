@@ -11,7 +11,7 @@
 
 /obj/effect/overmap_event/proc/handle_wraparound()
 	var/low_edge = 1
-	var/high_edge = maps_data.overmap_size - 1
+	var/high_edge = GLOB.maps_data.overmap_size - 1
 
 	if(dir == WEST && x == low_edge)
 		del_event()
@@ -88,30 +88,30 @@
 /obj/effect/overmap_event/movable/Initialize()
 	. = ..()
 	moving_vector = NORTH
-	start_x = pick(2, maps_data.overmap_size - 1)
-	start_y = pick(2, maps_data.overmap_size - 1)
+	start_x = pick(2, GLOB.maps_data.overmap_size - 1)
+	start_y = pick(2, GLOB.maps_data.overmap_size - 1)
 
 	if(start_x == 2 && start_y == 2)
-		start_x = rand(2, maps_data.overmap_size - rand(5,10))
-		start_y = rand(2, maps_data.overmap_size - rand(5,10))
+		start_x = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
+		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
 		moving_vector = pick(NORTH, EAST, NORTHEAST)
 
-	if(start_x == 2 && start_y == maps_data.overmap_size - 1)
-		start_x = rand(2, maps_data.overmap_size - rand(5,10))
+	if(start_x == 2 && start_y == GLOB.maps_data.overmap_size - 1)
+		start_x = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
 		moving_vector = pick(SOUTH, EAST, SOUTHEAST)
 
-	if(start_x == maps_data.overmap_size - 1 && start_y == maps_data.overmap_size - 1)
+	if(start_x == GLOB.maps_data.overmap_size - 1 && start_y == GLOB.maps_data.overmap_size - 1)
 		moving_vector = pick(SOUTH, WEST, SOUTHWEST)
 
-	if(start_x == maps_data.overmap_size - 1 && start_y == 2)
-		start_y = rand(2, maps_data.overmap_size - rand(5,10))
+	if(start_x == GLOB.maps_data.overmap_size - 1 && start_y == 2)
+		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
 		moving_vector = pick(NORTH, WEST, NORTHWEST)
 
 	if(!config.use_overmap)
 		return
 
-	start_x = start_x || rand(OVERMAP_EDGE, maps_data.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, maps_data.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
 
 	map_z = GetConnectedZlevels(z)
 	for(var/zlevel in map_z)
@@ -120,12 +120,12 @@
 
 	OE = new eventtype(null, difficulty)
 
-	forceMove(locate(start_x, start_y, maps_data.overmap_z))
+	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
 
 	for(var/obj/effect/overmap/ship/victim in src.loc)
 		OE:enter(victim)
 
-	maps_data.player_levels |= map_z
+	GLOB.maps_data.player_levels |= map_z
 
 	START_PROCESSING(SSobj, src)
 

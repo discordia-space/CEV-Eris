@@ -68,7 +68,6 @@ var/datum/uplink/uplink = new()
 	// Making the assumption that if no uplink was supplied, then we don't care about antag roles
 	if(!U || !antag_roles.len)
 		return 1
-
 	if(!U.uplink_owner)
 		return !!length(U.owner_roles & antag_roles)
 	else

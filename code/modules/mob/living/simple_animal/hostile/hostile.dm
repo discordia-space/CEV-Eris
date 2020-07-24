@@ -45,21 +45,13 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.faction == src.faction && !attack_same)
+			if(L.faction == faction && !attack_same)
 				continue
 			else if(L in friends)
 				continue
-			else
-				if(!SA_attackable(L))
-					stance = HOSTILE_STANCE_ATTACK
-					T = L
-					break
-
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-			var/obj/mecha/M = A
-			if (M.occupant)
+			else if(!SA_attackable(L))
 				stance = HOSTILE_STANCE_ATTACK
-				T = M
+				T = L
 				break
 
 		if(istype(A, /obj/machinery/bot))
@@ -160,8 +152,8 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 		var/mob/living/L = target_mob
 		L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return L
-	if(istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
+	if(istype(target_mob,/mob/living/exosuit))
+		var/mob/living/exosuit/M = target_mob
 		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return M
 	if(istype(target_mob,/obj/machinery/bot))
@@ -182,8 +174,8 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
 
-	for (var/obj/mecha/M in mechas_list)
-		if (M.z == src.z && get_dist(src, M) <= dist)
+	for (var/mob/living/exosuit/M in mechas_list)
+		if (M.z == z && get_dist(src, M) <= dist)
 			L += M
 
 	return L
@@ -223,19 +215,19 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 	if(rapid)
 		spawn(1)
-			Shoot(target, src.loc, src)
+			Shoot(target, loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 		spawn(4)
-			Shoot(target, src.loc, src)
+			Shoot(target, loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 		spawn(6)
-			Shoot(target, src.loc, src)
+			Shoot(target, loc, src)
 			if(casingtype)
 				new casingtype(get_turf(src))
 	else
-		Shoot(target, src.loc, src)
+		Shoot(target, loc, src)
 		if(casingtype)
 			new casingtype
 

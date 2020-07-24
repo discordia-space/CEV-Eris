@@ -3,7 +3,7 @@
 	desc = "A security robot.  He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed2090"
-	density = 1
+	density = TRUE
 	health = 100
 	maxHealth = 100
 
@@ -41,7 +41,7 @@
 		new /obj/item/robot_parts/r_leg(Tsec)
 	if(prob(50))
 		if(prob(50))
-			new /obj/item/clothing/head/helmet(Tsec)
+			new /obj/item/clothing/head/armor/helmet(Tsec)
 		else
 			new /obj/item/clothing/suit/armor/vest(Tsec)
 
@@ -147,7 +147,7 @@
 				icon_state = "ed209_shell"
 
 		if(4)
-			if(istype(I, /obj/item/clothing/head/helmet))
+			if(istype(I, /obj/item/clothing/head/armor/helmet))
 				user.drop_item()
 				qdel(I)
 				build_step++

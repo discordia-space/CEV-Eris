@@ -8,9 +8,8 @@
 
 /mob/living/silicon/robot/syndicate/New()
 	if(!cell)
-		cell = new /obj/item/weapon/cell/large(src)
-		cell.maxcharge = 25000
-		cell.charge = 25000
+		// Starts with a fancy high capacity cell
+		cell = new /obj/item/weapon/cell/large/hyper(src)
 
 	..()
 
@@ -25,4 +24,4 @@
 	radio.keyslot = new /obj/item/device/encryptionkey/syndicate(radio)
 	radio.recalculateChannels()
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(loc, 'sound/mechs/nominalsyndi.ogg', 75, 0)

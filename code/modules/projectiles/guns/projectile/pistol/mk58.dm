@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/mk58.dmi'
 	icon_state = "mk58"
 	item_state = "pistol"
-	caliber = "pistol"
+	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1400
@@ -12,8 +12,8 @@
 	can_dual = 1
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	damage_multiplier = 0.9
-	penetration_multiplier = 0.9
+	damage_multiplier = 1.3
+	penetration_multiplier = 1.3
 	recoil_buildup = 3
 
 

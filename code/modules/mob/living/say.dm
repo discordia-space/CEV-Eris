@@ -1,20 +1,36 @@
 var/list/department_radio_keys = list(
-	"r" = "right ear",
-	"l" = "left ear",
-	"i" = "intercom",
-	"h" = "department",
+	"r" = "right ear",   "R" = "right ear",
+	"l" = "left ear",    "L" = "left ear",
+	"i" = "intercom",    "I" = "intercom",
+	"h" = "department",  "H" = "department",
 	"+" = "special",	 //activate radio-specific special functions
-	"c" = "Command",
-	"n" = "Science",
-	"m" = "Medical",
-	"e" = "Engineering",
-	"s" = "Security",
-	"w" = "whisper",
-	"y" = "Mercenary",
-	"u" = "Supply",
-	"v" = "Service",
-	"p" = "AI Private",
-	"t" = "NT Voice",
+	"c" = "Command",     "C" = "Command",
+	"n" = "Science",     "N" = "Science",
+	"m" = "Medical",     "M" = "Medical",
+	"e" = "Engineering", "E" = "Engineering",
+	"s" = "Security",    "S" = "Security",
+	"w" = "whisper",     "W" = "whisper",
+	"y" = "Mercenary",   "Y" = "Mercenary",
+	"u" = "Supply",      "U" = "Supply",
+	"v" = "Service",     "V" = "Service",
+	"p" = "AI Private",  "P" = "AI Private",
+	"t" = "NT Voice",    "T" = "NT Voice",
+
+	"к" = "right ear",   "К" = "right ear",
+	"д" = "left ear",    "Д" = "left ear",
+	"ш" = "intercom",    "Ш" = "intercom",
+	"р" = "department",  "Р" = "department",
+	"с" = "Command",     "С" = "Command",
+	"т" = "Science",     "Т" = "Science",
+	"ь" = "Medical",     "Ь" = "Medical",
+	"у" = "Engineering", "У" = "Engineering",
+	"ы" = "Security",    "Ы" = "Security",
+	"ц" = "whisper",     "Ц" = "whisper",
+	"н" = "Mercenary",   "Н" = "Mercenary",
+	"г" = "Supply",      "Г" = "Supply",
+	"м" = "Service",     "М" = "Service",
+	"з" = "AI Private",  "З" = "AI Private",
+	"е" = "NT Voice",    "Е" = "NT Voice",
 )
 
 
@@ -135,11 +151,10 @@ var/list/channel_to_radio_key = new
 	//parse the radio code and consume it
 	var/message_mode = parse_message_mode(message, "headset")
 	if (message_mode)
-		//it would be really nice if the parse procs could do this for us.
 		if (message_mode == "headset")
-			message = copytext(message,2)
+			message = copytext(message,2)//parse ;
 		else
-			message = copytext(message,3)
+			message = copytext_char(message,3)//parse :s 
 
 	message = trim_left(message)
 
@@ -236,17 +251,17 @@ var/list/channel_to_radio_key = new
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 				continue
-			if(M.locs.len && M.locs[1] in hear)
+			if(M.locs.len && (M.locs[1] in hear))
 				listening |= M
 				continue //To avoid seeing BOTH normal message and quiet message
-			else if(M.locs.len && M.locs[1] in hear_falloff)
+			else if(M.locs.len && (M.locs[1] in hear_falloff))
 				listening_falloff |= M
 
 		for(var/X in hearing_objects)
 			if(!isobj(X))
 				continue
 			var/obj/O = X
-			if(O.locs.len && O.locs[1] in hear)
+			if(O.locs.len && (O.locs[1] in hear))
 				listening_obj |= O
 
 	var/speech_bubble_test = say_test(message)
@@ -270,7 +285,8 @@ var/list/channel_to_radio_key = new
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
-	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, .proc/animate_speechbubble, speech_bubble, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)

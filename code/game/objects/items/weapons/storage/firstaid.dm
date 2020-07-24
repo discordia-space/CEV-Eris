@@ -2,6 +2,7 @@
  * Contains:
  *		First Aid Kits
  * 		Pill Bottles
+ *		Portable Freezer
  */
 
 /*
@@ -56,7 +57,7 @@
 	item_state = "firstaid-toxin"
 
 /obj/item/weapon/storage/firstaid/toxin/populate_contents()
-	icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
+	icon_state = pick("antitoxin","antitoxfirstaid2","antitoxfirstaid3")
 
 	if (empty) return
 	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
@@ -326,3 +327,36 @@
 	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
 	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
 	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
+
+/*
+ * Portable Freezers
+ */
+/obj/item/weapon/storage/freezer
+	name = "portable freezer"
+	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
+	icon_state = "freezer"
+	item_state = "medicalpack"
+	max_w_class = ITEM_SIZE_NORMAL
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
+	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/food, /obj/item/weapon/reagent_containers/glass)
+	max_storage_space = DEFAULT_NORMAL_STORAGE
+	use_to_pickup = TRUE
+
+/obj/item/weapon/storage/freezer/contains_food/populate_contents()
+	new /obj/random/pizza/low_chance(src)
+	new /obj/random/soda(src)
+	new /obj/random/soda/low_chance(src)
+	new /obj/random/rations/low_chance(src)
+	new /obj/random/junkfood(src)
+	new /obj/random/junkfood(src)
+	new /obj/random/junkfood(src)
+	new /obj/random/junkfood/low_chance(src)
+	new /obj/random/junkfood/low_chance(src)
+	new /obj/random/booze/low_chance(src)
+
+/obj/item/weapon/storage/freezer/medical
+	name = "organ freezer"
+	icon_state = "freezer_red"
+	item_state = "medicalpack"
+	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
+	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25

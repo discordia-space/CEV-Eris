@@ -30,7 +30,7 @@
 
 	// 100 attempts
 	for(var/i=0, i<100, i++)
-		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(maps_data.station_levels))
+		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(GLOB.maps_data.station_levels))
 		if(istype(candidate, /turf/simulated/wall))
 			center = candidate //If necessary we'll settle for any wall
 			var/area/A = get_area(center)
@@ -75,8 +75,8 @@
 	name = "wallrot"
 	desc = "Ick..."
 	icon = 'icons/effects/wallrot.dmi'
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = 5
 	mouse_opacity = 0
 
