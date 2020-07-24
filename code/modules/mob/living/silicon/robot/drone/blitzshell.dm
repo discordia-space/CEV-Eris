@@ -46,6 +46,7 @@
 /obj/item/weapon/robot_module/blitzshell
 	networks = list()
 	health = 60 //Able to take 2 bullets
+	speed_factor = 1.2
 	hide_on_manifest = TRUE
 
 
