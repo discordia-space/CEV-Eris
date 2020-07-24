@@ -1,5 +1,0 @@
-author: Uvash
-delete-after: true
-changes:
-  - rscadd: Add scanning module in drill. If better - drill will have more large work
-      area.
