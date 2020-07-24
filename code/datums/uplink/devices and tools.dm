@@ -219,7 +219,7 @@
 /datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		BS.speed_factor += 0.5
+		BS.speed_factor += 0.2
 		return 1
 	return 0
 
