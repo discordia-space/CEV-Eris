@@ -247,3 +247,8 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
+
+/obj/item/clothing/head/beret/german
+	name = "beret"
+	desc = "Brown beret with emblem. For those that are more inclined towards style than safety."
+	icon_state = "germanberet"

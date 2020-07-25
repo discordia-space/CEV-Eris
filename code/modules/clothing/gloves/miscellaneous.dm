@@ -101,3 +101,9 @@
 	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	price_tag = 10
+
+/obj/item/clothing/gloves/german
+	name = "brown gloves"
+	desc = "Brown gloves."
+	icon_state = "germangloves"
+	item_state = "germangloves"
