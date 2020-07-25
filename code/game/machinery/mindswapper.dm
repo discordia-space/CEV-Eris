@@ -83,7 +83,8 @@
 		for(var/mob/observer/ghost in swapMinds)
 			ghost.mind.transfer_to(swapBoddies[i])
 			if(ghost.key)
-				(swapBoddies[i]).key = ghost.key	//have to transfer the key since the mind was not active
+				var/mob/living/L = swapBoddies[i]
+				L.key = ghost.key	//have to transfer the key since the mind was not active
 			qdel(ghost)
 			i += 1
 
