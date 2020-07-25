@@ -69,8 +69,8 @@
 		operating = FALSE
 
         // Get all candidates in range for the mind swapping
-		var/list/swapBoddies = new
-		var/list/swapMinds = new
+		var/list/swapBoddies = list()
+		var/list/swapMinds = list()
 		for(var/mob/living/carbon/C in range(swap_range,src))
 			swapBoddies += C
 			swapMinds += C.ghostize(0)
