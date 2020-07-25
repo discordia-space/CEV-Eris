@@ -18,14 +18,6 @@
 	idle_power_usage = 2
 	active_power_usage = 500
 
-/*/obj/machinery/mindswapper/New()
-	..()
-	update_icon()
-	spawn()
-		var/obj/landmark/machinery/output/output = locate() in orange(1, src)
-		if(output)
-			gib_throw_dir = get_dir(src, output)*/
-
 /obj/machinery/mindswapper/update_icon()
 	overlays.Cut()
 	if(stat & (NOPOWER|BROKEN))

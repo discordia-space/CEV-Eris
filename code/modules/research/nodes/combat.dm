@@ -127,7 +127,7 @@
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
 							/datum/design/research/item/weapon/plasmapistol,
-							/datum/design/research/item/weapon_upgrade/penetrator
+							/datum/design/research/item/weapon/gunmod/penetrator
 						)
 
 /datum/technology/exotic_gunmods
@@ -165,7 +165,7 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/ammo/shotgun_incendiary,
-							/datum/design/research/item/weapon_upgrade/overheat
+							/datum/design/research/item/weapon/gunmod/overheat
 						)
 
 
