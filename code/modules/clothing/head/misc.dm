@@ -249,6 +249,14 @@
 	siemens_coefficient = 1
 
 /obj/item/clothing/head/beret/german
-	name = "beret"
-	desc = "Brown beret with emblem. For those that are more inclined towards style than safety."
+	name = "Oberth Republic beret"
+	desc = "Brown beret with emblem. Material that it made of will protect against energy projectiles."
 	icon_state = "germanberet"
+	armor = list(
+		melee = 5,
+		bullet = 5,
+		energy = 25,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

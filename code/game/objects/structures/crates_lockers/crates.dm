@@ -343,11 +343,3 @@
 	desc = "A secure metallic crate."
 	name = "Secure metallic crate"
 	icon_state = "germancrate"
-
-/obj/structure/closet/crate/germancrate/uniform/populate_contents()
-	new /obj/item/clothing/gloves/german(src)
-	new /obj/item/clothing/head/beret/german(src)
-	new /obj/item/clothing/mask/gas/german(src)
-	new /obj/item/clothing/shoes/german(src)
-	new /obj/item/clothing/suit/armor/greatcoat/german_overcoat(src)
-	new /obj/item/clothing/under/germansuit(src)

@@ -116,6 +116,6 @@
 	icon_state = "leather"
 
 /obj/item/clothing/shoes/german
-	name = "brown boots"
+	name = "Oberth Republic boots"
 	desc = "A pair of brown boots."
 	icon_state = "germanboots"

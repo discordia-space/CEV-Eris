@@ -130,6 +130,5 @@
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/mask/gas/german
-	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
+	name = "Oberth Republic gas mask"
 	icon_state = "germangasmask"

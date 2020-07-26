@@ -103,7 +103,7 @@
 	price_tag = 10
 
 /obj/item/clothing/gloves/german
-	name = "brown gloves"
+	name = "Oberth Republic gloves"
 	desc = "Brown gloves."
 	icon_state = "germangloves"
 	item_state = "germangloves"
