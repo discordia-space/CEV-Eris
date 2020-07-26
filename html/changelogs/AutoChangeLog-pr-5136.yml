@@ -1,0 +1,5 @@
+author: Voldirs
+delete-after: true
+changes:
+  - tweak: Removed fail chance for common litanies, no more stupid chat spamming to
+      get some nutrition
