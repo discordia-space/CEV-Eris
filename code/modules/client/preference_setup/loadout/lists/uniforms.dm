@@ -121,6 +121,14 @@
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
+/datum/gear/uniform/cyber
+	display_name = "augmented jumpsuit"
+	path = /obj/item/clothing/under/cyber
+	
+/datum/gear/uniform/jersey
+	display_name = "revealing jersey"
+	path = /obj/item/clothing/under/jersey
+
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
