@@ -716,8 +716,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza
 	price_tag = 10
 
-/obj/item/weapon/reagent_containers/food/snacks/
-
 
 // Baked Goods //
 
@@ -930,6 +928,9 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	price_tag = 250
+
+/obj/item/weapon/reagent_containers/food/snacks/csandwich
+	price_tag = 50
 
 /obj/item/pizzabox/get_item_cost()
 	return get_item_cost(pizza)

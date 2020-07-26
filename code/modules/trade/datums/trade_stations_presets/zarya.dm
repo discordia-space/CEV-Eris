@@ -1,6 +1,5 @@
 /datum/trade_station/station_zarya
 	name_pool = list("FTS 'Zarya'" = "Free Trade Station 'Zarya', they sending message \"Privet, kosmicheskiy strannik, u nas mnogo engenernih nishtyakov, zaletai!\".")
-	icon_states = "ship"
 	start_discovered = TRUE
 	assortiment = list(
 		"Vozduh" = list(

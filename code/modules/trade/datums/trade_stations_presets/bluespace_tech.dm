@@ -14,13 +14,7 @@
 	)
 
 	offer_types = list(
-		/obj/item/bluespace_crystal,
+		/obj/item/bluespace_crystal = 0.25,
 		/obj/item/device/mmi/digital/posibrain,
 		/obj/item/weapon/reagent_containers/food/snacks/csandwich
 	)
-/datum/trade_station/bluespace_technical/New()
-	for(var/i = 1; i <= length(name_pool); i++)
-		var/save_desc = name_pool[name_pool[i]]
-		name_pool -= name_pool[i]
-		name_pool["[uppertext(pick(EN_ALPHABET))]-[rand(10, 99)]-[pick(GLOB.greek_letters)]"] = save_desc
-	. = ..()

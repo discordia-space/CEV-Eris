@@ -74,10 +74,12 @@
 	SStrade.discovered_stations |= src
 	GLOB.entered_event.unregister(overmap_location, src, .proc/discovered)
 
-#define SPECIAL_OFFER_MIN_PRICE 7000
+#define SPECIAL_OFFER_MIN_PRICE 2000
 #define SPECIAL_OFFER_MAX_PRICE 20000
 #define SPECIAL_OFFER_MIN_MOD 3
 #define SPECIAL_OFFER_MAX_MOD 4
+
+#define spec_offer_price_custom_mod (isnum(offer_types[offer_type]) ? offer_types[offer_type] : 1)
 
 /datum/trade_station/proc/generate_offer()
 	if(!length(offer_types))
@@ -85,14 +87,15 @@
 	offer_type = pick(offer_types)
 	var/atom/movable/AM = offer_type
 
-	var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / (initial(AM.price_tag) * SPECIAL_OFFER_MAX_MOD) + 1)
-	var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (initial(AM.price_tag) * SPECIAL_OFFER_MIN_MOD))
+	var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / (max(1, initial(AM.price_tag)) * SPECIAL_OFFER_MIN_MOD) + 1)
+	var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (max(1, initial(AM.price_tag)) * SPECIAL_OFFER_MAX_MOD))
 	offer_amount = rand(min_amt, max_amt)
 
-	var/min_price = max(SPECIAL_OFFER_MIN_PRICE, offer_amount * initial(AM.price_tag) * SPECIAL_OFFER_MIN_MOD)
-	var/max_price = min(SPECIAL_OFFER_MAX_PRICE, offer_amount * initial(AM.price_tag) * SPECIAL_OFFER_MAX_MOD)
+	var/min_price = clamp(offer_amount * max(1, initial(AM.price_tag)) * SPECIAL_OFFER_MIN_MOD * spec_offer_price_custom_mod, SPECIAL_OFFER_MIN_PRICE, SPECIAL_OFFER_MAX_PRICE)
+	var/max_price = clamp(offer_amount * max(1, initial(AM.price_tag)) * SPECIAL_OFFER_MAX_MOD * spec_offer_price_custom_mod, SPECIAL_OFFER_MIN_PRICE, SPECIAL_OFFER_MAX_PRICE)
 	offer_price = rand(min_price, max_price)
 
+#undef spec_offer_price_custom_mod
 /datum/trade_station/proc/offer_tick()
 	generate_offer()
 	addtimer(CALLBACK(src, .proc/offer_tick), rand(15, 25) MINUTES)

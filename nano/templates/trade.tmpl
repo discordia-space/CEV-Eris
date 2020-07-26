@@ -79,7 +79,7 @@
 								<td>{{:goodValue.price}}
 								<td>{{:goodValue.count}}
 								<td>
-								{{:helper.link("", 'plus', {'PRG_cart_add':goodValue.index + "/" + categoryValue.index})}}{{:helper.link("", 'minus', {'PRG_cart_remove' : goodValue.index + "/" + categoryValue.index}, goodValue.count ? null : 'disabled')}}
+								{{:helper.link("", 'plus', {'PRG_cart_add':categoryValue.index + "/" + goodValue.index})}}{{:helper.link("", 'minus', {'PRG_cart_remove' : categoryValue.index + "/" + goodValue.index}, goodValue.count ? null : 'disabled')}}
 							{{/for}}
 						</table>
 					{{/for}}

@@ -25,7 +25,6 @@
 
 /datum/computer_file/program/trade/Topic(href, href_list)
 	. = ..()
-	to_world(json_encode(href_list))
 	if(.)
 		return
 
@@ -84,26 +83,26 @@
 		return 1
 
 	if(href_list["PRG_cart_add"])
-		var/list/json_packet = json_decode(href_list["PRG_cart_add"])
+		var/list/json_packet = splittext(href_list["PRG_cart_add"], "/")
 		if(!islist(json_packet))
 			return
-		var/list/category = station.assortiment[station.assortiment[json_packet["category"]]]
+		var/list/category = station.assortiment[station.assortiment[text2num(json_packet[1])]]
 		if(!islist(category))
 			return
-		var/path = LAZYACCESS(category, text2num(json_packet["index"]))
+		var/path = LAZYACCESS(category, text2num(text2num(json_packet[2])))
 		if(!path)
 			return
 		shoppinglist[path] = 1 + shoppinglist[path]
 		return 1
 
 	if(href_list["PRG_cart_remove"])
-		var/list/json_packet = json_decode(href_list["PRG_cart_remove"])
+		var/list/json_packet = splittext(href_list["PRG_cart_remove"], "/")
 		if(!islist(json_packet))
 			return
-		var/list/category = station.assortiment[station.assortiment[json_packet["category"]]]
+		var/list/category = station.assortiment[station.assortiment[text2num(json_packet[1])]]
 		if(!islist(category))
 			return
-		var/path = LAZYACCESS(category, text2num(json_packet["index"]))
+		var/path = LAZYACCESS(category, text2num(text2num(json_packet[2])))
 		if(!path || !shoppinglist[path])
 			return
 		--shoppinglist[path]
@@ -192,7 +191,6 @@
 			.["goods"] += list(list("name" = category, "goods" = ctegory, "index" = PRG.station.assortiment.Find(category)))
 		if(!recursiveLen(.["goods"]))
 			.["goods"] = null
-		to_world(json_encode(.))
 	.["offers"] = list()
 	for(var/datum/trade_station/S in SStrade.discovered_stations)
 		var/atom/movable/offer_type = S.offer_type
