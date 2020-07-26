@@ -1,7 +1,7 @@
 /decl/hierarchy/outfit/job/medical
 	hierarchy_type = /decl/hierarchy/outfit/job/medical
 	l_ear = /obj/item/device/radio/headset/headset_med
-	shoes = /obj/item/clothing/shoes/reinforced
+	shoes = /obj/item/clothing/shoes/reinforced/medical
 	id_type = /obj/item/weapon/card/id/med
 	pda_type = /obj/item/modular_computer/pda/moebius/medical
 	pda_slot = slot_l_store

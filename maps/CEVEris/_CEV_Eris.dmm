@@ -51086,9 +51086,6 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
 "ciU" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
-	},
 /obj/structure/table/rack,
 /obj/item/device/last_shelter,
 /obj/machinery/door/blast/shutters/glass{
@@ -51120,9 +51117,9 @@
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 8
 	},
-/obj/machinery/button/remote/blast_door/id_card{
+/obj/machinery/button/remote/blast_door{
 	id = "last_shelter";
-	name = "Last Shelter id lock";
+	name = "Last shelter lock control";
 	pixel_y = 28;
 	req_access = list(74)
 	},
@@ -72405,6 +72402,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/command/bridgebar)
+"dfQ" = (
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/neotheology/chapelritualroom)
 "dfR" = (
 /obj/machinery/camera/network/command{
 	dir = 1
@@ -72507,7 +72510,7 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/item/weapon/melee/chainofcommand,
+/obj/item/weapon/tool/chainofcommand,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -23
@@ -164555,7 +164558,7 @@ ccU
 ccU
 ciY
 ccU
-bQy
+dfQ
 cBo
 bQE
 bQy
