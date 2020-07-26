@@ -108,4 +108,5 @@
 					/obj/random/credits/c1000 = 3,\
 					/obj/random/exosuit_equipment = 3,\
 					/obj/random/cloth/holster = 4,\
-					/obj/item/stash_spawner = 4)
+					/obj/item/stash_spawner = 4,\
+					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)

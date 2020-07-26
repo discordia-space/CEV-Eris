@@ -18,7 +18,6 @@
 				/obj/structure/closet/lasertag/blue = 1,
 				/obj/structure/closet/toolcloset = 8,
 				/obj/structure/closet/gimmick/russian = 0.5,
-				/obj/item/weapon/storage/deferred/crate/german_uniform = 0.5,
 				/obj/structure/closet/jcloset = 1,
 				/obj/structure/closet/malf/suits =  0.5,
 				/obj/structure/closet/syndicate/personal = 0.1,
