@@ -205,6 +205,19 @@
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
+/obj/item/clothing/suit/armor/greatcoat/german_overcoat
+	name = "Oberth Republic uniform overcoat"
+	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
+	icon_state = "germancoat"
+	item_state = "germancoat"
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 45,
+		bomb = 15,
+		bio = 0,
+		rad = 0
+	)
 
 /*
  * Heavy Armor Types
