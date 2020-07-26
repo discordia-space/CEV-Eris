@@ -310,3 +310,4 @@
 	/obj/item/clothing/shoes/german = 1,
 	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
 	/obj/item/clothing/under/germansuit = 1)
+

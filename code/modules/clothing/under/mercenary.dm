@@ -35,3 +35,4 @@
 	icon_state = "germansuit_brown"
 	item_state = "germansuit_brown"
 	has_sensor = 0
+

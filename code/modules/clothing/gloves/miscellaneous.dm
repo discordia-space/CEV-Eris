@@ -107,3 +107,4 @@
 	desc = "Brown gloves."
 	icon_state = "germangloves"
 	item_state = "germangloves"
+

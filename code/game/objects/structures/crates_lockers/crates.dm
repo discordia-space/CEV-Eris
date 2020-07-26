@@ -343,3 +343,4 @@
 	desc = "A secure metallic crate."
 	name = "Secure metallic crate"
 	icon_state = "germancrate"
+
