@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
-	layer = ABOVE_TURF_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
+	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
 	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
