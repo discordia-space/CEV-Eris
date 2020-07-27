@@ -115,7 +115,7 @@
 			The device owner is immune to this effect."
 	item_cost = 3
 	path = /obj/item/device/mind_fryer
-	antag_roles = list()
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/mind_fryer/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -129,7 +129,7 @@
 			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
-	antag_roles = ROLES_CONTRACT
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -173,6 +173,7 @@
 	name = "Mental Imprinter"
 	item_cost = 5
 	path = /obj/item/device/mental_imprinter
+	antag_roles = list(ROLES_UPLINK_BASE, ROLE_CARRION)
 
 //********** Blitzshell unique uplink items **********//
 

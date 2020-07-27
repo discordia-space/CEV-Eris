@@ -33,4 +33,4 @@
 	name = "Genetic material vial"
 	item_cost = 5
 	path = /obj/item/gene_vial
-	antag_roles = list(ROLE_CHANGELING)
+	antag_roles = list(ROLE_CARRION)
