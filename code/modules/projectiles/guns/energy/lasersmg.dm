@@ -16,7 +16,7 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 11, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 1, MATERIAL_GLASS = 2)
 	price_tag = 1000
-	damage_multiplier = 0.225 //makeshift laser
+	damage_multiplier = 0.275 //makeshift laser
 	recoil_buildup = 4
 	one_hand_penalty = 3 
 	projectile_type = /obj/item/projectile/beam
