@@ -1,0 +1,7 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Performed some map changes, Genetics now has had their cameras removed
+      to protect proprietary knowledge, and they've been re-used to instead act as
+      cameras within Chemistry. Removed the abundance of junk piles in certain areas,
+      and fixed some maintenance areas spawning exposed to space.
