@@ -132,7 +132,7 @@
 	taste_description = "grossness"
 	reagent_state = LIQUID
 	color = "#8040FF"
-	overdose = REAGENTS_OVERDOSE * 2
+	overdose = REAGENTS_OVERDOSE * 4
 	scannable = 1
 
 /datum/reagent/medicine/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
