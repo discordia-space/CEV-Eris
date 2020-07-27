@@ -1,0 +1,5 @@
+author: Kurgis
+delete-after: true
+changes:
+  - balance: Re-adjusted the Lasblender's damage values, remember to use weapon attachments
+      to increase its power.
