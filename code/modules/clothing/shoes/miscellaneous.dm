@@ -119,4 +119,7 @@
 	name = "Oberth Republic boots"
 	desc = "A pair of brown boots."
 	icon_state = "germanboots"
+	force = WEAPON_FORCE_HARMLESS //to be in line with jackboots
+	siemens_coefficient = 0.6
+	can_hold_knife = TRUE
 
