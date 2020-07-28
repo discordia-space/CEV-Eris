@@ -48258,15 +48258,6 @@
 /area/eris/neotheology/bioreactor)
 "ccC" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FirstSectionLockdown";
-	layer = 2.6;
-	name = "First Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section1)
 "ccD" = (
@@ -48287,15 +48278,6 @@
 "ccF" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FirstSectionLockdown";
-	layer = 2.6;
-	name = "First Section Lockdown";
-	opacity = 0
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section1)
@@ -48608,32 +48590,10 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
-"cdn" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section1)
 "cdo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section1)
 "cdp" = (
@@ -53273,19 +53233,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay)
-"cnS" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section2)
 "cnT" = (
 /obj/machinery/power/supermatter{
 	layer = 4
@@ -53496,15 +53443,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section2)
 "cow" = (
@@ -53964,19 +53902,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/neotheology/chapel)
-"cpt" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section3)
 "cpu" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 8
@@ -53996,15 +53921,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section3)
 "cpy" = (
@@ -61484,15 +61400,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section3)
 "cGs" = (
@@ -61557,20 +61464,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
-"cGx" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section3)
 "cGy" = (
 /obj/structure/bed/chair,
 /obj/structure/cable{
@@ -62015,15 +61908,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FourthSectionLockdown";
-	layer = 2.6;
-	name = "Fourth Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section4)
 "cHC" = (
@@ -62447,15 +62331,6 @@
 "cIK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FourthSectionLockdown";
-	layer = 2.6;
-	name = "Fourth Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section4)
 "cIL" = (
@@ -63496,15 +63371,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FourthSectionLockdown";
-	layer = 2.6;
-	name = "Fourth Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section4)
 "cLf" = (
@@ -210595,7 +210461,7 @@ cFr
 cAx
 cAx
 cCW
-cGx
+cFr
 cFc
 cxD
 cxD
@@ -210747,7 +210613,7 @@ bYh
 bYi
 bYi
 bYA
-cdn
+ccC
 bZj
 bZj
 caa
@@ -210767,12 +210633,12 @@ ccf
 ceh
 dup
 bZj
-cnS
+dxu
 dux
 cgs
 cgs
 dvc
-cpt
+cFk
 cAx
 cAx
 dGy
