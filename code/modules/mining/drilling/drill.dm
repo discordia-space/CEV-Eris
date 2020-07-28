@@ -9,7 +9,9 @@
 	name = "mining drill head"
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
+
 	circuit = /obj/item/weapon/circuitboard/miningdrill
+
 	var/braces_needed = 2
 	var/list/supports = list()
 	var/supported = FALSE
@@ -17,37 +19,40 @@
 	var/list/resource_field = list()
 
 	var/ore_types = list(
-		"iron" = /obj/item/weapon/ore/iron,
+		MATERIAL_IRON = /obj/item/weapon/ore/iron,
 		MATERIAL_URANIUM = /obj/item/weapon/ore/uranium,
 		MATERIAL_GOLD = /obj/item/weapon/ore/gold,
 		MATERIAL_SILVER = /obj/item/weapon/ore/silver,
 		MATERIAL_DIAMOND = /obj/item/weapon/ore/diamond,
-		"plasma" = /obj/item/weapon/ore/plasma,
-		"osmium" = /obj/item/weapon/ore/osmium,
-		"hydrogen" = /obj/item/weapon/ore/hydrogen,
-		"silicates" = /obj/item/weapon/ore/glass,
-		"carbonaceous rock" = /obj/item/weapon/ore/coal
+		MATERIAL_PLASMA = /obj/item/weapon/ore/plasma,
+		MATERIAL_OSMIUM = /obj/item/weapon/ore/osmium,
+		MATERIAL_TRITIUM = /obj/item/weapon/ore/hydrogen,
+		MATERIAL_GLASS = /obj/item/weapon/ore/glass,
+		MATERIAL_PLASTIC = /obj/item/weapon/ore/coal
 		)
 
 	//Upgrades
 	var/harvest_speed
 	var/capacity
 	var/charge_use
+	var/radius
 	var/obj/item/weapon/cell/large/cell
 
 	//Flags
 	var/need_update_field = FALSE
 	var/need_player_check = FALSE
 
+/obj/machinery/mining/drill/Destroy()
+
+	for(var/obj/machinery/mining/brace/b in supports)
+		b.disconnect()
+	return ..()
 
 /obj/machinery/mining/drill/Process()
-
-	if(need_player_check)
+	if(!active)
 		return
 
 	check_supports()
-
-	if(!active) return
 
 	if(!anchored || !use_cell_power())
 		system_error("system configuration or charge error")
@@ -55,12 +60,6 @@
 
 	if(need_update_field)
 		get_resource_field()
-
-	if(world.time % 10 == 0)
-		update_icon()
-
-	if(!active)
-		return
 
 	//Drill through the flooring, if any.
 	if(istype(get_turf(src), /turf/simulated/floor/asteroid))
@@ -71,60 +70,63 @@
 		var/turf/simulated/floor/T = get_turf(src)
 		T.ex_act(2.0)
 
+	dig_ore()
+
+/obj/machinery/mining/drill/proc/dig_ore()
 	//Dig out the tasty ores.
-	if(resource_field.len)
-		var/turf/simulated/harvesting = pick(resource_field)
+	if(!resource_field.len)
+		system_error("resources depleted")
+		return
 
-		while(resource_field.len && !harvesting.resources)
-			harvesting.has_resources = FALSE
-			harvesting.resources = null
-			resource_field -= harvesting
-			harvesting = pick(resource_field)
+	var/turf/simulated/harvesting = pick(resource_field)
 
-		if(!harvesting) return
+	//remove emty trufs
+	while(resource_field.len && !harvesting.resources)
+		harvesting.has_resources = FALSE
+		harvesting.resources = null
+		resource_field -= harvesting
+		harvesting = pick(resource_field)
 
-		var/total_harvest = harvest_speed //Ore harvest-per-tick.
-		var/found_resource = 0 //If this doesn't get set, the area is depleted and the drill errors out.
+	if(!harvesting)
+		system_error("resources depleted")
+		return
 
-		for(var/metal in ore_types)
+	var/total_harvest = harvest_speed //Ore harvest-per-tick.
+	var/found_resource = FALSE
 
-			if(contents.len >= capacity)
-				system_error("insufficient storage space")
-				active = 0
-				need_player_check = 1
-				update_icon()
-				return
+	for(var/metal in ore_types)
 
-			if(contents.len + total_harvest >= capacity)
-				total_harvest = capacity - contents.len
+		if(contents.len >= capacity)
+			system_error("insufficient storage space")
 
-			if(total_harvest <= 0) break
-			if(harvesting.resources[metal])
+		if(contents.len + total_harvest >= capacity)
+			total_harvest = capacity - contents.len
 
-				found_resource  = TRUE
+		if(total_harvest <= 0)
+			break
 
-				var/create_ore = 0
-				if(harvesting.resources[metal] >= total_harvest)
-					harvesting.resources[metal] -= total_harvest
-					create_ore = total_harvest
-					total_harvest = 0
-				else
-					total_harvest -= harvesting.resources[metal]
-					create_ore = harvesting.resources[metal]
-					harvesting.resources[metal] = 0
+		if(harvesting.resources[metal])
 
-				for(var/i=1, i <= create_ore, i++)
-					var/oretype = ore_types[metal]
-					new oretype(src)
+			found_resource = TRUE
 
-		if(!found_resource)
-			harvesting.has_resources = 0
-			harvesting.resources = null
-			resource_field -= harvesting
-	else
-		active = FALSE
-		need_player_check = TRUE
-		update_icon()
+			var/create_ore = 0
+			if(harvesting.resources[metal] >= total_harvest)
+				harvesting.resources[metal] -= total_harvest
+				create_ore = total_harvest
+				total_harvest = 0
+			else
+				total_harvest -= harvesting.resources[metal]
+				create_ore = harvesting.resources[metal]
+				harvesting.resources[metal] = 0
+
+			for(var/i = 1, i <= create_ore, i++)
+				var/oretype = ore_types[metal]
+				new oretype(src)
+
+	if(!found_resource)
+		harvesting.has_resources = FALSE
+		harvesting.resources = null
+		resource_field -= harvesting
 
 /obj/machinery/mining/drill/attackby(obj/item/I, mob/user as mob)
 
@@ -135,7 +137,8 @@
 		if(default_part_replacement(I, user))
 			return
 
-	if(!panel_open || active) return ..()
+	if(!panel_open || active)
+		return ..()
 
 	if(istype(I, /obj/item/weapon/cell/large))
 		if(cell)
@@ -191,11 +194,13 @@
 		icon_state = "mining_drill"
 	return
 
+
 /obj/machinery/mining/drill/RefreshParts()
 	..()
 	harvest_speed = 0
 	capacity = 0
 	charge_use = 50
+	radius = 0
 
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
@@ -203,24 +208,20 @@
 		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
-			charge_use -= 10 * P.rating
+			charge_use -= 10 * (P.rating - harvest_speed)
+			charge_use = max(charge_use, 0)
+		if(istype(P, /obj/item/weapon/stock_parts/scanning_module))
+			radius = 1 + P.rating
 	cell = locate(/obj/item/weapon/cell/large) in component_parts
+
 
 /obj/machinery/mining/drill/proc/check_supports()
 
-	supported = FALSE
-
-	if((!supports || !supports.len) && initial(anchored) == 0)
-		icon_state = "mining_drill"
-		anchored = FALSE
-		active = FALSE
-	else
-		anchored = TRUE
-
 	if(supports && supports.len >= braces_needed)
-		supported = TRUE
+		return TRUE
 
-	update_icon()
+	return FALSE
+
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
@@ -231,27 +232,23 @@
 	update_icon()
 
 /obj/machinery/mining/drill/proc/get_resource_field()
-
 	resource_field = list()
-	need_update_field = 0
+	need_update_field = FALSE
 
 	var/turf/T = get_turf(src)
-	if(!istype(T)) return
+	if(!istype(T))
+		return
 
-	var/tx = T.x - 2
-	var/ty = T.y - 2
-	var/turf/simulated/mine_turf
-	for(var/iy = 0,iy < 5, iy++)
-		for(var/ix = 0, ix < 5, ix++)
-			mine_turf = locate(tx + ix, ty + iy, T.z)
-			if(mine_turf && mine_turf.has_resources)
-				resource_field += mine_turf
+	for(var/turf/simulated/mine_trufs in range(T, radius))
+		if(mine_trufs.has_resources)
+			resource_field += mine_trufs
 
 	if(!resource_field.len)
 		system_error("resources depleted")
 
 /obj/machinery/mining/drill/proc/use_cell_power()
-	if(!cell) return FALSE
+	if(!cell)
+		return FALSE
 	if(cell.checked_use(charge_use))
 		return TRUE
 	return FALSE
@@ -261,7 +258,8 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat) return
+	if(usr.stat)
+		return
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
@@ -271,96 +269,32 @@
 	else
 		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))
 
+/obj/machinery/mining/drill/proc/connect_brace(obj/machinery/mining/brace/brace)
+	if(!supports)
+		supports = list()
 
-/obj/machinery/mining/brace
-	name = "mining drill brace"
-	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
-	icon_state = "mining_brace"
-	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
-	var/obj/machinery/mining/drill/connected
+	supports += brace
+	anchored = TRUE
 
-/obj/machinery/mining/brace/attackby(var/obj/item/I, mob/user as mob)
-	if(connected && connected.active)
-		to_chat(user, SPAN_NOTICE("You can't work with the brace of a running drill!"))
-		return
+	if(supports && supports.len >= braces_needed)
+		supported = TRUE
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING), src)
-	switch(tool_type)
+	update_icon()
 
-		if(QUALITY_PRYING)
-			if(!panel_open)
-				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
-				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
-				dismantle()
-				return
+/obj/machinery/mining/drill/proc/disconnect_brace(obj/machinery/mining/brace/brace)
+	if(!supports)
+		supports = list()
 
-		if(QUALITY_SCREW_DRIVING)
-			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
-				update_icon()
-				return
+	supports -= brace
 
-		if(QUALITY_BOLT_TURNING)
-			if(istype(get_turf(src), /turf/space))
-				to_chat(user, SPAN_NOTICE("You can't anchor something to empty space. Idiot."))
-				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I]."))
-				anchored = !anchored
-				if(anchored)
-					connect()
-				else
-					disconnect()
+	if((!supports || !supports.len))
+		anchored = FALSE
+	else
+		anchored = TRUE
 
-		if(ABORT_CHECK)
-			return
+	if(supports && supports.len >= braces_needed)
+		supported = TRUE
+	else
+		supported = FALSE
 
-/obj/machinery/mining/brace/proc/connect()
-
-	var/turf/T = get_step(get_turf(src), dir)
-
-	for(var/thing in T.contents)
-		if(istype(thing, /obj/machinery/mining/drill))
-			connected = thing
-			break
-
-	if(!connected)
-		return
-
-	if(!connected.supports)
-		connected.supports = list()
-
-	icon_state = "mining_brace_active"
-
-	connected.supports += src
-	connected.check_supports()
-
-/obj/machinery/mining/brace/proc/disconnect()
-
-	if(!connected) return
-
-	if(!connected.supports) connected.supports = list()
-
-	icon_state = "mining_brace"
-
-	connected.supports -= src
-	connected.check_supports()
-	connected = null
-
-/obj/machinery/mining/brace/verb/rotate()
-	set name = "Rotate"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.stat) return
-
-	if (anchored)
-		to_chat(usr, "It is anchored in place!")
-		return FALSE
-
-	set_dir(turn(dir, 90))
-	return TRUE
+	update_icon()

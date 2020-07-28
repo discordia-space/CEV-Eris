@@ -7,7 +7,7 @@
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
-	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
 
@@ -221,3 +221,14 @@
 			to_chat(user, "The subject has too many chemicals.")
 	else
 		to_chat(user, "There's no suitable occupant in \the [src].")
+
+/obj/machinery/sleeper/verb/eject_occupant_verb()
+	set name = "Eject Occupant"
+	set desc = "Force eject occupant."
+	set category = "Object"
+	set src in view(1)
+
+	if (usr.incapacitated() || occupant == usr)
+		return
+
+	go_out()

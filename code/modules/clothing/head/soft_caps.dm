@@ -119,3 +119,11 @@
 	initial_name = "IH sergeant cap"
 	desc = "It's a field cap for officers."
 	icon_state = "sargesoft"
+
+// M O E B I U S //m
+
+/obj/item/clothing/head/soft/medical
+	name = "medical cap"
+	desc = "Cap worn by moebius medical personnel, usually outside spacecraft."
+	icon_state = "medcap"
+	item_state = "medcap"

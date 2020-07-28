@@ -9,7 +9,7 @@
 	var/uses = 1.0
 	var/install_organ = INSTALL_HANDS
 	is_legal = FALSE
-	origin_tech = list(TECH_COMBAT=5, TECH_MAGNET=3, TECH_BIO=4, TECH_ILLEGAL=2)
+	origin_tech = list(TECH_COMBAT=5, TECH_MAGNET=3, TECH_BIO=4, TECH_COVERT=2)
 	allowed_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
 /obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source)

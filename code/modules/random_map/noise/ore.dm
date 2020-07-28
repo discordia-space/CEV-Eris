@@ -48,35 +48,35 @@
 				continue
 			if(!priority_process) sleep(-1)
 			T.resources = list()
-			T.resources["silicates"] = rand(3,5)
-			T.resources["carbonaceous rock"] = rand(3,5)
+			T.resources[MATERIAL_GLASS] = rand(3,5)
+			T.resources[MATERIAL_PLASTIC] = rand(3,5)
 
 			var/current_cell = map[get_map_cell(x,y)]
 			if(current_cell < rare_val)      // Surface metals.
-				T.resources["iron"] =     rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[MATERIAL_IRON] =     rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
 				T.resources[MATERIAL_GOLD] =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources[MATERIAL_SILVER] =   rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources[MATERIAL_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources[MATERIAL_DIAMOND] =  0
-				T.resources["plasma"] =   0
-				T.resources["osmium"] =   0
-				T.resources["hydrogen"] = 0
+				T.resources[MATERIAL_PLASMA] =   0
+				T.resources[MATERIAL_OSMIUM] =   0
+				T.resources[MATERIAL_TRITIUM] =  0
 			else if(current_cell < deep_val) // Rare metals.
 				T.resources[MATERIAL_GOLD] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources[MATERIAL_SILVER] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources[MATERIAL_URANIUM] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["plasma"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["osmium"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["hydrogen"] = 0
+				T.resources[MATERIAL_PLASMA] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[MATERIAL_OSMIUM] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[MATERIAL_TRITIUM] =  0
 				T.resources[MATERIAL_DIAMOND] =  0
-				T.resources["iron"] =     0
+				T.resources[MATERIAL_IRON] =     0
 			else                             // Deep metals.
 				T.resources[MATERIAL_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources[MATERIAL_DIAMOND] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources["plasma"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources["osmium"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources["hydrogen"] = rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["iron"] =     0
+				T.resources[MATERIAL_PLASMA] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[MATERIAL_OSMIUM] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[MATERIAL_TRITIUM] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[MATERIAL_IRON] =     0
 				T.resources[MATERIAL_GOLD] =     0
 				T.resources[MATERIAL_SILVER] =   0
 			CHECK_TICK

@@ -81,12 +81,12 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
 
-//Medical Rig
+//Medical
 /obj/item/clothing/head/space/void/medical
 	name = "medical voidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has minor radiation shielding."
-	icon_state = "rig0-medical"
-	item_state = "medical_helm"
+	icon_state = "rig-medical"
+	item_state = "rig-medical"
 	item_state_slots = list(
 		slot_l_hand_str = "medical_helm",
 		slot_r_hand_str = "medical_helm",
@@ -101,10 +101,10 @@
 	)
 
 /obj/item/clothing/suit/space/void/medical
-	icon_state = "rig-medical"
 	name = "medical voidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
-	item_state = "medical_voidsuit"
+	icon_state = "rig-medical"
+	item_state = "rig-medical"
 	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/weapon/storage/firstaid,
@@ -203,3 +203,44 @@
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
+
+//Science
+/obj/item/clothing/head/space/void/science
+	name = "Moebius Contractor Helmet"
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
+	icon_state = "assaulthelm"
+	item_state = "assaulthelm"
+	item_state_slots = list(
+		slot_l_hand_str = "assaulthelm",
+		slot_r_hand_str = "assaulthelm",
+		)
+
+	armor = list(
+		melee = 35,
+		bullet = 40,
+		energy = 30,
+		bomb = 25,
+		bio = 100,
+		rad = 75
+	)
+	siemens_coefficient = 0.4
+	light_overlay = "helmet_light_dual"
+
+/obj/item/clothing/suit/space/void/science
+	name = "Moebius Contractor Power Armor"
+	icon_state = "assaultsuit"
+	desc = "A power armor designed by Moebius for contractor work. Features near impeccable armor."
+	item_state = "assaultsuit"
+	armor = list(
+		melee = 40,
+		bullet = 50,
+		energy = 40,
+		bomb = 30,
+		bio = 100,
+		rad = 75
+	)
+	siemens_coefficient = 0.4
+	helmet = /obj/item/clothing/head/space/void/science
+
+/obj/item/clothing/suit/space/void/security/equipped
+	tank = /obj/item/weapon/tank/jetpack/oxygen

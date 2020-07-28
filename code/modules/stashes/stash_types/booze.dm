@@ -3,7 +3,7 @@
 	loot_type = "Booze"
 	contents_list_base = list(/obj/random/booze = 10, /obj/random/booze/low_chance = 10, /obj/random/credits/c1000 = 1)
 
-
+/*
 /datum/stash/booze/distillers
 	story_type = STORY_CRIME
 	directions = DIRECTION_IMAGE
@@ -21,7 +21,7 @@
 Best part? Crew gives us both the sugar and pays in stolen junk. <br>\
 <br>\
 Now, just in case this rocket juice blacks me out again, its here, you dumbass. %D"
-
+*/
 
 /datum/stash/booze/distillers
 	story_type = STORY_CRIME

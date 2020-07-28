@@ -3,7 +3,7 @@
 	desc = "\"NeoTheology\" brand cleansing carbine. Uses solid biomass as ammo and dispense cleansing liquid on hit."
 	icon_state = "nt_sprayer"
 	icon = 'icons/obj/guns/matter/nt_sprayer.dmi'
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK | SLOT_BELT
 	fire_sound = 'sound/weapons/Genhit.ogg'
 
 	matter_type = MATERIAL_BIOMATTER

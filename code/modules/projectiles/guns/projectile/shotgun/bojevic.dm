@@ -13,13 +13,14 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
-	price_tag = 5000
+	price_tag = 4000
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 0.8
-	recoil_buildup = 30
+	penetration_multiplier = 1.4 // this is not babies first gun. It's a Serb-level weapon.
+	recoil_buildup = 15 // at least somewhat controllable
 	one_hand_penalty = 20 //automatic shotgun level
 
 				   //while also preserving ability to shoot as fast as you can click and maintain recoil good enough
