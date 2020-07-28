@@ -117,7 +117,7 @@
 /obj/item/device/nanite_container/attack_self(var/mob/user)
 	if(istype(user, /mob/living/silicon))
 		if(charges)
-			if(cooldown)
+			if(cooldown > world.time)
 				to_chat(user, SPAN_NOTICE("Error: nanorepair system is on cooldown."))
 				return
 			to_chat(user, SPAN_NOTICE("You begin activating \the [src]."))
@@ -129,15 +129,11 @@
 			S.adjustFireLoss(-S.maxHealth)
 			charges--
 			to_chat(user, SPAN_NOTICE("Charge consumed. Remaining charges: [charges]"))
-			cooldown = addtimer(CALLBACK(src, .proc/finish_cooldown), 5 MINUTES, TIMER_STOPPABLE)
+			cooldown = world.time + 5 MINUTES
 			return
 		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
 		return
 	..()
-
-/obj/item/device/nanite_container/proc/finish_cooldown()
-	deltimer(cooldown)
-	cooldown = null
 
 /obj/item/device/smokescreen
 	name = "smoke deployment system"
