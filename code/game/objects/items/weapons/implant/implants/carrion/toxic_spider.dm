@@ -1,6 +1,6 @@
 /obj/item/weapon/implant/carrion_spider/toxicbomb
 	name = "toxic bomb spider"
-	desc = "A strange spider filled to the brim with some sort of strange gas, it looks like it's about to burst!"
+	desc = "A spider bloated with noxious gasses, it looks ready to burst!"
 	icon_state = "spiderling_toxicbomb"
 	spider_price = 35
 	var/datum/reagents/gas_storage

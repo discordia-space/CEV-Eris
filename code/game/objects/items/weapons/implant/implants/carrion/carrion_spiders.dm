@@ -1,6 +1,6 @@
 /obj/item/weapon/implant/carrion_spider
 	name = "spooky spider"
-	desc = "Small spider filled with some sort of strange fulid."
+	desc = "Small spider filled with some sort of strange fluid."
 	icon = 'icons/obj/carrion_spiders.dmi'
 	icon_state = "spiderling"
 	allowed_organs = list(BP_HEAD, BP_CHEST, BP_GROIN)
@@ -50,7 +50,7 @@
 
 /obj/item/weapon/implant/carrion_spider/proc/die_from_attack()
 	visible_message(SPAN_WARNING("[src] explodes into a bloody mess"))
-	to_chat(owner_mob, SPAN_WARNING("You lost you connection with \the [src]"))
+	to_chat(owner_mob, SPAN_WARNING("You lost your connection with \the [src]"))
 	die()
 
 /obj/item/weapon/implant/carrion_spider/proc/die()

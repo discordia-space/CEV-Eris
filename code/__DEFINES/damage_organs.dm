@@ -63,7 +63,7 @@
 // Carrion Organs.
 #define BP_SPCORE       "spider core"
 #define BP_MAW          "carrion maw"
-#define BP_SPINNERT     "carrion spinneret"
+#define BP_SPINNERET     "carrion spinneret"
 #define BP_CHEMICALS    "chemmical vessel"
 
 // Robo Organs.

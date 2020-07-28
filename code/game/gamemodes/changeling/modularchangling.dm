@@ -13,13 +13,13 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/flashbang_spider
 	name = "Flashbang spider"
-	desc = "Evolves a spider filled with a strange substance that when activated explodes in a flash of light. Does minor damage to its host."
+	desc = "Creates a spider filled with a strange substance that when activated explodes in a flash of light. Does minor damage to its host."
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/flashbang
 
 /datum/power/carrion/infection_spider
 	name = "Infection spider"
-	desc = "Evolves a miniature spider core spider capable of making more carrions."
+	desc = "Creates a miniature spider, with spider core inside it capable of making more carrions."
 	helptext = "Requires 5 evolution points to produce."
 	genomecost = 0
 	spiderpath = /obj/item/weapon/implant/carrion_spider/infection
@@ -32,39 +32,39 @@ var/list/datum/power/carrion/powerinstances = list()
 
 /datum/power/carrion/breeding_spider
 	name = "Breeding spider"
-	desc = "Evolves a spider mother carrying eggs, when in a dead host and active, the eggs will hatch."
+	desc = "Creates a spider carrying eggs, when it will be put inside a dead host and activated, the eggs will give birth to many lesser ones of your kin."
 	genomecost = 4
 	spiderpath = /obj/item/weapon/implant/carrion_spider/breeding
 
 /datum/power/carrion/explosive_spider
 	name = "Explosive spider"
-	desc = "Evolves an expensive spider that makes a small explosion."
+	desc = "Creates an expensive spider that makes a small explosion."
 	genomecost = 10
 	spiderpath = /obj/item/weapon/implant/carrion_spider/explosive
 
 /datum/power/carrion/toxic_spider
 	name = "Toxin bomb spider"
-	desc = "Evolves a spider filled with dangerous lexorin gas, explodes on activation."
+	desc = "Creates a spider filled with dangerous lexorin gas, explodes on activation."
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/toxicbomb
 
 /datum/power/carrion/mindboil_spider
 	name = "Mindboil spider"
-	desc = "Evolves a scary spider able to drive anyone but you insane."
+	desc = "Creates a horrible spider able to drive everyone around him insane."
 	helptext = "Used to complete derail contracts"
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/mindboil
 
 /datum/power/carrion/observer_spider
 	name = "Observer spider"
-	desc = "Evolves a spider with a gigantic eye. It can be used to spy on important people or locations."
-	helptext = "Used to complete reacon contracts"
+	desc = "Creates a spider with a large monocular eye, useful for spying on others."
+	helptext = "Used to complete recon contracts"
 	genomecost = 3
 	spiderpath = /obj/item/weapon/implant/carrion_spider/observer
 
 /datum/power/carrion/identity_spider
 	name = "Idenitity spider"
-	desc = "Evolves a spider with the ability to extract and transmit human DNA to you."
+	desc = "Creates a spider with the ability to extract and transmit human DNA to you."
 	genomecost = 3
 	spiderpath = /obj/item/weapon/implant/carrion_spider/identity
 
@@ -74,15 +74,15 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 5
 	organpath = /obj/item/organ/internal/carrion/maw
 
-/datum/power/carrion/spinnert
-	name = "Carrion Spinnert"
-	desc = "Evolves a spinnert inside of your lower body, enabling you to make a spider nest and filter your blood from all chemicals."
+/datum/power/carrion/spinneret
+	name = "Carrion Spinneret"
+	desc = "Grows a spinneret inside your lower body, making you able to create a spider nest and filter your blood from all chemicals."
 	genomecost = 7
-	organpath = /obj/item/organ/internal/carrion/spinnert
+	organpath = /obj/item/organ/internal/carrion/spinneret
 
 /datum/power/carrion/chemvessel
 	name = "Chemical Vessel"
-	desc = "Evolves a chemical vessel that stores and produces chemicals needed for your abilities."
+	desc = "Grows a chemical vessel that stores and produces chemicals needed for your abilities."
 	genomecost = 0
 	organpath = /obj/item/organ/internal/carrion/chemvessel
 

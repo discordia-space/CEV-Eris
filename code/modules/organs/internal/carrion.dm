@@ -364,17 +364,17 @@
 			to_chat(user, SPAN_NOTICE("You clean \The [src]."))
 			qdel(src)
 
-/obj/item/organ/internal/carrion/spinnert
-	name = "carrion spinnert"
+/obj/item/organ/internal/carrion/spinneret
+	name = "carrion spinneret"
 	parent_organ = BP_GROIN
-	icon_state = "carrion_spinnert"
-	organ_tag = BP_SPINNERT
+	icon_state = "carrion_spinneret"
+	organ_tag = BP_SPINNERET
 	owner_verbs = list(
-		/obj/item/organ/internal/carrion/spinnert/proc/make_nest,
-		/obj/item/organ/internal/carrion/spinnert/proc/bloodpurge
+		/obj/item/organ/internal/carrion/spinneret/proc/make_nest,
+		/obj/item/organ/internal/carrion/spinneret/proc/bloodpurge
 	)
 
-/obj/item/organ/internal/carrion/spinnert/proc/bloodpurge()
+/obj/item/organ/internal/carrion/spinneret/proc/bloodpurge()
 	set category = "Carrion"
 	set name = "Blood Purge (25)"
 
@@ -385,7 +385,7 @@
 		owner.reagents.update_total()
 		owner.reagents.trans_to_turf(owner.loc, owner.reagents.total_volume)
 
-/obj/item/organ/internal/carrion/spinnert/proc/make_nest()
+/obj/item/organ/internal/carrion/spinneret/proc/make_nest()
 	set category = "Carrion"
 	set name = "Make a spider nest (30)"
 
