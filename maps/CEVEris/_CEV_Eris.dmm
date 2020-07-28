@@ -10415,6 +10415,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
+"axL" = (
+/obj/item/modular_computer/console/preset/security/camera,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "axM" = (
 /obj/structure/table/standard,
 /obj/item/weapon/packageWrap,
@@ -10539,6 +10543,28 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
+"ayf" = (
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for the engine control room blast doors.";
+	id = "EngineBlast";
+	name = "Engine Monitoring Room Blast Doors";
+	pixel_x = 24;
+	pixel_y = -6;
+	req_access = newlist()
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for the engine control room blast doors.";
+	id = "EngineEmitterPortWest";
+	name = "Engine Room Blast Doors";
+	pixel_x = 24;
+	pixel_y = 6;
+	req_access = list(11)
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "ayg" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/library)
@@ -17528,6 +17554,30 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
 /area/eris/maintenance/section1deck4central)
+"aPn" = (
+/obj/machinery/button/remote/blast_door{
+	id = "BrigExternalLobbyLockdown";
+	name = "Brig External Lobby Lockdown Control";
+	pixel_x = -26;
+	pixel_y = -8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "BrigInternalLobbyLockdown";
+	name = "Brig Internal Lobby Lockdown Control";
+	pixel_x = -26;
+	pixel_y = 4
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "ArrivalLockdown";
+	name = "Arrival Lockdown Control";
+	pixel_x = -38;
+	pixel_y = -8
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "aPo" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -30838,6 +30888,36 @@
 /obj/random/traps/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
+"bqS" = (
+/obj/machinery/button/remote/blast_door{
+	id = "CargoTotalLockdown";
+	name = "Cargo Total Lockdown Control";
+	pixel_x = -26;
+	pixel_y = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "EngineeringTotalLockdown";
+	name = "Engineering Total Lockdown Control";
+	pixel_x = -26;
+	pixel_y = -8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "MedbayTotalLockdown";
+	name = "Medbay Total Lockdown Control";
+	pixel_x = -38;
+	pixel_y = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "ScienceTotalLockdown";
+	name = "Science Total Lockdown Control";
+	pixel_x = -38;
+	pixel_y = -8
+	},
+/obj/item/modular_computer/console/preset/security/records{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "bqT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	tag = "icon-intact (SOUTHEAST)";
@@ -32649,6 +32729,22 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/teleporter)
+"bvg" = (
+/obj/machinery/button/remote/blast_door{
+	id = "toxinchamber2";
+	name = "Mixing Room Vent Control";
+	pixel_x = 24;
+	pixel_y = -6
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "toxinchamber1";
+	name = "Mixing Room Vent Control";
+	pixel_x = 24;
+	pixel_y = 6
+	},
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "bvi" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -79616,34 +79712,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck2port)
-"dvJ" = (
-/obj/machinery/button/remote/blast_door{
-	id = "ThirdSectionLockdown";
-	name = "Third Section Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "FirstSectionLockdown";
-	name = "First Section Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "SecondSectionLockdown";
-	name = "Second Section Lockdown Control";
-	pixel_x = -38;
-	pixel_y = -8
-	},
-/obj/item/modular_computer/console/preset/security/camera,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dvK" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -79722,28 +79790,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
-"dvQ" = (
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineBlast";
-	name = "Engine Monitoring Room Blast Doors";
-	pixel_x = 24;
-	pixel_y = -6;
-	req_access = newlist()
-	},
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineEmitterPortWest";
-	name = "Engine Room Blast Doors";
-	pixel_x = 24;
-	pixel_y = 6;
-	req_access = list(11)
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dvR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -79926,30 +79972,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
-"dwi" = (
-/obj/machinery/button/remote/blast_door{
-	id = "BrigExternalLobbyLockdown";
-	name = "Brig External Lobby Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "BrigInternalLobbyLockdown";
-	name = "Brig Internal Lobby Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "FourthSectionLockdown";
-	name = "Fourth Section Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 4
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dwj" = (
 /obj/random/pack/machine,
 /obj/random/pack/tech_loot/low_chance,
@@ -80108,36 +80130,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
-"dwB" = (
-/obj/machinery/button/remote/blast_door{
-	id = "CargoTotalLockdown";
-	name = "Cargo Total Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "EngineeringTotalLockdown";
-	name = "Engineering Total Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "MedbayTotalLockdown";
-	name = "Medbay Total Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ScienceTotalLockdown";
-	name = "Science Total Lockdown Control";
-	pixel_x = -38;
-	pixel_y = -8
-	},
-/obj/item/modular_computer/console/preset/security/records{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dwC" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
@@ -80185,22 +80177,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay)
-"dwI" = (
-/obj/machinery/button/remote/blast_door{
-	id = "toxinchamber2";
-	name = "Mixing Room Vent Control";
-	pixel_x = 24;
-	pixel_y = -6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "toxinchamber1";
-	name = "Mixing Room Vent Control";
-	pixel_x = 24;
-	pixel_y = 6
-	},
-/obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dwJ" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
@@ -288718,9 +288694,9 @@ dVw
 dVw
 dVw
 dvG
-dvJ
-dwi
-dwB
+axL
+aPn
+bqS
 dwJ
 dVw
 dVw
@@ -291950,9 +291926,9 @@ dVw
 dXf
 dVw
 dvH
-dvQ
+ayf
 aSe
-dwI
+bvg
 dxa
 dVw
 dVw
