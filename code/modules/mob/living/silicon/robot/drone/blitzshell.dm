@@ -108,6 +108,7 @@
 	icon_state = "nanorepair_tank"
 	desc = "Contains several capsules of nanites programmed to repair mechanical and electronic systems."
 	var/charges = 3
+	var/cooldown
 
 /obj/item/device/nanite_container/examine(mob/user)
 	..()
@@ -116,6 +117,9 @@
 /obj/item/device/nanite_container/attack_self(var/mob/user)
 	if(istype(user, /mob/living/silicon))
 		if(charges)
+			if(cooldown)
+				to_chat(user, SPAN_NOTICE("Error: nanorepair system is on cooldown."))
+				return
 			to_chat(user, SPAN_NOTICE("You begin activating \the [src]."))
 			if(!do_after(user, 3 SECONDS, src))
 				to_chat(user, SPAN_NOTICE("You need to stay still to fully activate \the [src]!"))
@@ -125,10 +129,16 @@
 			S.adjustFireLoss(-S.maxHealth)
 			charges--
 			to_chat(user, SPAN_NOTICE("Charge consumed. Remaining charges: [charges]"))
+			cooldown = addtimer(CALLBACK(src, .proc/finish_cooldown), 5 MINUTES, TIMER_STOPPABLE)
 			return
 		to_chat(user, SPAN_WARNING("Error: No charges remaining."))
 		return
 	..()
+
+/obj/item/device/nanite_container/proc/finish_cooldown()
+	deltimer(cooldown)
+	cooldown = null
+
 /obj/item/device/smokescreen
 	name = "smoke deployment system"
 	icon_state = "smokescreen"
