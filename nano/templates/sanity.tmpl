@@ -27,7 +27,7 @@
 				<div style="padding: 1px; overflow:auto;">
 					<h3> Sanity level:</h3>
 				</div>
-			{{:helper.displayBar(data.sanity, 0, 100, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average', data.sanity)}}
+			{{:helper.displayBar(data.sanity, 0, 100, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average')}}
 		</div>
 	</div>
 </div>
@@ -57,7 +57,7 @@
 				<div style="padding: 1px; overflow:auto;">
 					<h3>Insight progress:</h3>
 				</div>
-			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average', data.insight)}}
+			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average')}}
 		</div>
 	</div>
 </div>
@@ -86,7 +86,7 @@
 				<div style="padding: 1px; overflow:auto;">
 					<h3>Current style:</h3>
 				</div>
-			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average', data.style)}}
+			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average')}}
 		</div>
 	</div>
 </div>
@@ -131,7 +131,7 @@
 				</div>
 			</div>
 			<div class="itemContent"><br>
-				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average', data.insight_rest)}}
+				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average')}}
 				<br><br>
 			</div>
 		{{/if}}

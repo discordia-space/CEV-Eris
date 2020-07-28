@@ -136,6 +136,7 @@
 	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
+		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 		++resting
 		pick_desires()
 		insight -= 100
@@ -213,6 +214,7 @@
 	INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
 	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
+	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	resting = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)
