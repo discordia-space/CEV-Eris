@@ -16,7 +16,7 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
-	var/style = 0 //for sanity, 2 max, 0 min
+	var/style = 0
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
@@ -43,6 +43,8 @@
 /obj/item/clothing/proc/get_style()
 	var/real_style = style
 	if(blood_DNA)
+		real_style -= 1
+	if(gunshot_residue)
 		real_style -= 1
 	return real_style
 

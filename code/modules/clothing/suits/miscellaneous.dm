@@ -181,6 +181,7 @@
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
+	style = 1
 
 /obj/item/clothing/suit/poncho/tactical
 	name = "blue poncho"
@@ -246,6 +247,7 @@
 	icon_closed = "grey_hoodie"
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	style = 1
 
 /obj/item/clothing/suit/storage/toggle/hoodie/black
 	name = "black hoodie"
@@ -304,6 +306,7 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	style = 2
 
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long/green
@@ -339,6 +342,7 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	style = 2
 
 /obj/item/clothing/suit/storage/drive_jacket
 	name = "white jacket"
@@ -371,3 +375,4 @@
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	style = 1
