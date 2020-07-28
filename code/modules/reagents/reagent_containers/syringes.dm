@@ -148,7 +148,6 @@
 				var/injtime = time - (user.stats.getStat(STAT_BIO)*0.375) //Injecting through a hardsuit takes longer due to needing to find a port.
 				// Handling errors and injection duration
 				if (user.stats.getStat(STAT_BIO) > 80) injtime = 0
-
 				var/mob/living/carbon/human/H = target
 				if(istype(H))
 					var/obj/item/clothing/suit/space/SS = H.get_equipped_item(slot_wear_suit)
@@ -182,7 +181,7 @@
 				if(target != user)
 					user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 					user.do_attack_animation(target)
-					if(injtime == time)
+					if(injtime == time -(user.stats.getStat(STAT_BIO)*0.375))
 						user.visible_message(SPAN_WARNING("[user] is trying to inject [target] with [visible_name]!"), SPAN_WARNING("You are trying to inject [target] with [visible_name]!"))
 						to_chat(target, SPAN_NOTICE("You feel a tiny prick!"))
 					else
