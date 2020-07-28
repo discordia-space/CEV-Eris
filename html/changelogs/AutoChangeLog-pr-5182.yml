@@ -1,0 +1,4 @@
+author: Tea-Primoris
+delete-after: true
+changes:
+  - balance: Blitzshell nanorepair now have 5 minutes cooldown.
