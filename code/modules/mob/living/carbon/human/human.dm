@@ -91,8 +91,12 @@
 			stat(null, "Suit charge: [cell_status]")
 
 		var/obj/item/organ/internal/carrion/chemvessel/chemvessel = internal_organs_by_name[BP_CHEMICALS]
-		if (chemvessel)
+		if(chemvessel)
 			stat("Chemical Storage", "[chemvessel.stored_chemicals]/[chemvessel.max_chemicals]")
+
+		var/obj/item/organ/internal/carrion/maw/maw = internal_organs_by_name[BP_MAW]
+		if(maw)
+			stat("Gnawing hunger", "[maw.hunger]/10")
 
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)

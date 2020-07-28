@@ -19,7 +19,8 @@
 
 	stat_modifiers = list(
 		STAT_TGH = 5,
-		STAT_VIG = 15
+		STAT_VIG = 15,
+		STAT_BIO = 20 //Good at surgery
 	)
 
 /datum/antagonist/carrion/special_init()

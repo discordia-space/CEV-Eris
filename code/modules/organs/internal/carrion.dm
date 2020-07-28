@@ -43,7 +43,7 @@
 	var/recharge_rate = 1.5
 
 /obj/item/organ/internal/carrion/chemvessel/Process()
-	..()
+	. = ..()
 	stored_chemicals = min(stored_chemicals + recharge_rate, max_chemicals)
 
 /obj/item/organ/internal/carrion/core
@@ -247,7 +247,7 @@
 	parent_organ = BP_HEAD
 	icon_state = "carrion_maw"
 	organ_tag = BP_MAW
-	var/last_feast = - 3 MINUTES
+	var/hunger = 0
 
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/maw/proc/consume_flesh,
@@ -255,32 +255,51 @@
 		/obj/item/organ/internal/carrion/maw/proc/spider_call
 	)
 
+/obj/item/organ/internal/carrion/maw/New(mob/living/carbon/human/holder, datum/organ_description/OD)
+	. = ..()
+	process_hunger()
+
+/obj/item/organ/internal/carrion/maw/proc/process_hunger()
+
+	addtimer(CALLBACK(src, .proc/process_hunger),2 MINUTES)
+
+	if(owner?.stat < DEAD)
+		return
+	if(hunger < 10)
+		hunger += 1
+	else
+		to_chat(owner, SPAN_WARNING("Your hunger is restless!"))
+
+
 /obj/item/organ/internal/carrion/maw/proc/consume_flesh()
 	set category = "Carrion"
 	set name = "Consume the flesh"
 
-	if(world.time < last_feast + 3 MINUTES)
-		to_chat(owner, SPAN_NOTICE("You are full. You only need to feast every 3 minutes."))
-		return
-
 	var/food = owner.get_active_hand()
 
-	if(istype(food, /obj/item/organ/internal) || istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat))
+	if(istype(food, /obj/item/organ) || istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		var/geneticpointgain = 0
 		var/chemgain = 0
 		var/taste_description = ""
 
-		var/obj/item/organ/internal/I = food
-		if(istype(I))
-			if(BP_IS_ROBOTIC(I))
+		if(!hunger)
+			to_chat(owner, SPAN_WARNING("You are not hungry."))
+
+		var/obj/item/organ/O = food
+		if(istype(O))
+			if(BP_IS_ROBOTIC(O))
 				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't consume it."))
 				return
-			else
+			else if(istype(O, /obj/item/organ/internal))
 				geneticpointgain = 3
 				chemgain = 20
-				taste_description = "human organs are delicious"
+				taste_description = "internal ogans are delicious"
+			else
+				geneticpointgain = 2
+				chemgain = 15
+				taste_description = "limbs are satisfying"
 
-		else if (istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat/human))
+		else if(istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat/human))
 			geneticpointgain = 2
 			chemgain = 15
 			taste_description = "human meat is satisfying"
@@ -291,11 +310,14 @@
 			taste_description = "roach meat is okay"
 		else
 			chemgain = 5
+			hunger -= 1 //Prevents meat eating spam for infinate chems
 			taste_description = "this meat is bland"
 
 		var/obj/item/organ/internal/carrion/core/C = owner.internal_organs_by_name[BP_SPCORE]
 		if(C)
-			C.geneticpoints += geneticpointgain
+			C.geneticpoints = min(C.geneticpoints + geneticpointgain, hunger)
+
+		hunger = max(hunger - geneticpointgain, 0)
 
 		var/obj/item/organ/internal/carrion/chemvessel/CV = owner.internal_organs_by_name[BP_CHEMICALS]
 		if(CV)
@@ -304,7 +326,6 @@
 		to_chat(owner, SPAN_NOTICE("You consume \the [food], [taste_description]."))
 		visible_message(SPAN_DANGER("[owner] devours \the [food]!"))
 		qdel(food)
-		last_feast = world.time
 	
 	else
 		to_chat(owner, SPAN_WARNING("You can't eat this!"))
