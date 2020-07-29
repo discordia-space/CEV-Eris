@@ -177,7 +177,7 @@ var/list/possible_cable_coil_colours = list(
 			if(shock(user, 100)) //check if he got his insulation gloves
 				used_now = FALSE
 				return 		//he didn't
-			if(do_after(user, 20))
+			if(do_after(user, 20, src))
 				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
 				if(prob(fail_chance))
 					if(!shock(user, 100)) //why not

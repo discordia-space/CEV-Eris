@@ -128,7 +128,7 @@
 			if(shock(user)) //check if he got his insulation gloves
 				used_now = FALSE
 				return 		//he didn't
-			if(do_after(user, 20))
+			if(do_after(user, 20, src))
 				if(shock(user)) //check if he got his insulation gloves. Again.
 					used_now = FALSE
 					return
