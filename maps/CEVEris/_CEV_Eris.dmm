@@ -10538,22 +10538,6 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
 "ayf" = (
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineBlast";
-	name = "Engine Monitoring Room Blast Doors";
-	pixel_x = 24;
-	pixel_y = -6;
-	req_access = newlist()
-	},
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineEmitterPortWest";
-	name = "Engine Room Blast Doors";
-	pixel_x = 24;
-	pixel_y = 6;
-	req_access = list(11)
-	},
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
@@ -18962,25 +18946,6 @@
 /turf/simulated/floor/hull,
 /area/eris/maintenance/junk)
 "aSe" = (
-/obj/machinery/button/remote/blast_door{
-	id = "Incernator Vent";
-	name = "Incernator Vent";
-	pixel_x = 24;
-	pixel_y = 6
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 2;
-	id = "Skynet_launch";
-	name = "Mech Bay Door Control";
-	pixel_x = 24;
-	pixel_y = -6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "Cargo1DeckHatch";
-	name = "Cargo Hatch";
-	pixel_x = 36;
-	pixel_y = 6
-	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/bridge)
 "aSf" = (
@@ -30877,30 +30842,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bqS" = (
-/obj/machinery/button/remote/blast_door{
-	id = "CargoTotalLockdown";
-	name = "Cargo Total Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "EngineeringTotalLockdown";
-	name = "Engineering Total Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "MedbayTotalLockdown";
-	name = "Medbay Total Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ScienceTotalLockdown";
-	name = "Science Total Lockdown Control";
-	pixel_x = -38;
-	pixel_y = -8
-	},
 /obj/item/modular_computer/console/preset/security/records{
 	dir = 1
 	},
@@ -32718,18 +32659,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/teleporter)
 "bvg" = (
-/obj/machinery/button/remote/blast_door{
-	id = "toxinchamber2";
-	name = "Mixing Room Vent Control";
-	pixel_x = 24;
-	pixel_y = -6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "toxinchamber1";
-	name = "Mixing Room Vent Control";
-	pixel_x = 24;
-	pixel_y = 6
-	},
 /obj/structure/bed/chair/office/dark,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/bridge)
