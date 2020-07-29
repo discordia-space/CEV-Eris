@@ -23,7 +23,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	/*if (operating) // Overlay when the mindswapper is active
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")*/
+		overlays += image('icons/obj/kitchen.dmi', "gruse")*/
 
 /obj/machinery/mindswapper/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
@@ -32,7 +32,7 @@
 		to_chat(user, SPAN_DANGER("The mind swapping process has been launched, there is no going back now."))
 		return
 	else
-		src.startswapping(user)
+		startswapping(user)
 
 /obj/machinery/mindswapper/attackby(obj/item/I, mob/user)
 	..()
@@ -51,12 +51,12 @@
 	return 1
 
 /obj/machinery/mindswapper/proc/startswapping(mob/user as mob)
-	if(src.operating)
+	if(operating)
 		return
 
 	use_power(1000)
 	visible_message(SPAN_DANGER("You hear an increasingly loud humming coming from the mind swapper."))
-	src.operating = TRUE
+	operating = TRUE
 	update_icon()
 
 	user.attack_log += "\[[time_stamp()]\] Triggered the mind swapper</b>"
@@ -64,7 +64,7 @@
 
 	spawn(swap_time)
 
-		src.operating = FALSE
+		operating = FALSE
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 		operating = FALSE
 
@@ -84,7 +84,8 @@
 			ghost.mind.transfer_to(swapBoddies[i])
 			if(ghost.key)
 				var/mob/living/L = swapBoddies[i]
-				L.key = ghost.key	//have to transfer the key since the mind was not active
+				if(istype(L))
+					L.key = ghost.key	//have to transfer the key since the mind was not active
 			qdel(ghost)
 			i += 1
 

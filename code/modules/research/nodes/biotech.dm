@@ -258,10 +258,9 @@
 	y = 0.6
 	icon = "medhud"
 
-	required_technologies = list(	/datum/technology/top_biotech
-								)
+	required_technologies = list(	/datum/technology/top_biotech)
+
 	required_tech_levels = list()
 	cost = 3000
 
-	unlocks_designs = list(	/datum/design/research/circuit/mindswapper
-							)
+	unlocks_designs = list(	/datum/design/research/circuit/mindswapper)

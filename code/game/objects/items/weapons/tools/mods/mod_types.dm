@@ -33,7 +33,7 @@
 	desc = "A high-tech sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools."
 
 /obj/item/weapon/tool_upgrade/reinforcement/stick/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 		UPGRADE_DEGRADATION_MULT = 0.45,
@@ -63,7 +63,7 @@
 	desc = "A high-tech array of plasteel fins which dissipates heat, reducing damage and extending the lifespan of power tools."
 
 /obj/item/weapon/tool_upgrade/reinforcement/heatsink/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 		UPGRADE_DEGRADATION_MULT = 0.45,
@@ -93,7 +93,7 @@
 	desc = "A high-tech sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky."
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.35,
@@ -126,7 +126,7 @@
 	desc = "A high-tech bent piece of metal that wraps around sensitive parts of a tool, protecting it from impacts, debris, and stray fingers."
 
 /obj/item/weapon/tool_upgrade/reinforcement/guard/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_DEGRADATION_MULT = 0.55,
@@ -162,7 +162,7 @@
 	desc = "A high-tech replacement grip for a tool which allows it to be more precisely controlled with one hand."
 
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.25
@@ -192,7 +192,7 @@
 	desc = "A high-tech mechanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction."
 
 /obj/item/weapon/tool_upgrade/productivity/ratchet/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.35
@@ -220,7 +220,7 @@
 	desc = "Do red tools really work faster, or is the effect purely psychological."
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.30,
@@ -252,7 +252,7 @@
 	desc = "A high-tech single-use block to sharpen a blade. The honed edge cuts smoothly."
 
 /obj/item/weapon/tool_upgrade/productivity/whetstone/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.25,
@@ -286,7 +286,7 @@
 	desc = "An adaptable high-tech cutting disc, with diamond dust worked into the metal. Exceptionally durable."
 
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.35,
@@ -319,7 +319,7 @@
 	desc = "A high-tech canister of pure, compressed oxygen with adapters for mounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures."
 
 /obj/item/weapon/tool_upgrade/productivity/oxyjet/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.30,
@@ -357,7 +357,7 @@
 	desc = "A high-tech motor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but more expensive to run and harder to control."
 
 /obj/item/weapon/tool_upgrade/productivity/motor/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.6,
@@ -392,7 +392,7 @@
 	desc = "A small high-tech visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
 
 /obj/item/weapon/tool_upgrade/refinement/laserguide/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 20)
@@ -422,7 +422,7 @@
 	desc = "A fancy high-tech mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand."
 
 /obj/item/weapon/tool_upgrade/refinement/stabilized_grip/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 20,
@@ -449,7 +449,7 @@
 	desc = "Magnetises tools used for handling small objects, reducing instances of dropping screws and bolts."
 
 /obj/item/weapon/tool_upgrade/refinement/magbit/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 20
@@ -478,7 +478,7 @@
 	desc = "A high-tech barrel extension for a welding tool which helps manage gas pressure and keep the torch steady."
 
 /obj/item/weapon/tool_upgrade/refinement/ported_barrel/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 20,
@@ -515,7 +515,7 @@
 	desc = "A high-tech adapter which allows oversized power cells to be installed into small tools."
 
 /obj/item/weapon/tool_upgrade/augment/cell_mount/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_BULK = 1,
@@ -548,7 +548,7 @@
 	desc = "An auxiliary tank which stores 150 extra units of fuel at the cost of degradation."
 
 /obj/item/weapon/tool_upgrade/augment/fuel_tank/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_BULK = 1,
@@ -601,7 +601,7 @@
 	desc = "A high-tech adapter which more modifications to be attached to the tool.  A bit fragile but you can compensate."
 
 /obj/item/weapon/tool_upgrade/augment/expansion/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_BULK = 2,
@@ -636,7 +636,7 @@
 	desc = "A high-tech array of sharp bits of plasteel, seemingly adapted for easy affixing to a tool. Would make it into a better weapon, but won't do much for productivity."
 
 /obj/item/weapon/tool_upgrade/augment/spikes/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_FORCE_MOD = 4,
@@ -669,7 +669,7 @@
 	desc = "A high-tech attachment that fits on almost everything, that gives a simple flat surface to employ the tool for hammering."
 
 /obj/item/weapon/tool_upgrade/augment/hammer_addon/hightech/New()
-	..()
+	. = ..()
 	var/datum/component/item_upgrade/I = (GetComponents(/datum/component/item_upgrade))[1]
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = -0.05,

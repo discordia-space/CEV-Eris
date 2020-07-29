@@ -143,7 +143,8 @@
 	required_tech_levels = list()
 	cost = 4000
 
-	unlocks_designs = list(	/datum/design/research/item/weapon/gunmod/battery_shunt,
+	unlocks_designs = list(	
+							/datum/design/research/item/weapon/gunmod/battery_shunt,
 							/datum/design/research/item/weapon/gunmod/overdrive,
 							/datum/design/research/item/weapon/gunmod/honker,
 							/datum/design/research/item/weapon/gunmod/toxin_coater,
