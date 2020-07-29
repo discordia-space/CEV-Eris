@@ -1,7 +1,11 @@
 /mob/living/carbon/human/proc/check_ability(var/chem_cost = 0, var/needs_foundation, var/gene_cost = 0)
+	if(stat == DEAD || (status_flags & FAKEDEATH))
+		to_chat(src, SPAN_WARNING("You are dead"))
+		return FALSE
+
 	var/obj/item/organ/internal/carrion/chemvessel/C = internal_organs_by_name[BP_CHEMICALS]
 	if(!C)
-		to_chat(src, SPAN_DANGER("You dont have your chemical vessel!"))
+		to_chat(src, SPAN_WARNING("You dont have your chemical vessel!"))
 		return FALSE
 
 	if(C.stored_chemicals < chem_cost)
@@ -145,6 +149,10 @@
 /obj/item/organ/internal/carrion/core/proc/detatch()
 	set category = "Carrion"
 	set name = "Detatch"
+
+	if(owner.status_flags & FAKEDEATH)
+		to_chat(owner, SPAN_WARNING("We are regeneraing our body!"))
+		return
 
 	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
 	visible_message(SPAN_DANGER("Something bursts out of [owner]'s chest!"))
@@ -377,8 +385,8 @@
 
 /obj/effect/decal/cleanable/carrion_puddle/Process()
 	for(var/mob/living/creature in mobs_in_view(1, src))
-		if(is_carrion(creature))
-			return
+		if(creature.faction == "spiders")
+			continue
 		toxin_attack(creature, rand(1, 3))
 
 /obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
@@ -404,6 +412,7 @@
 
 
 	if (owner.check_ability(25))
+		to_chat(owner, SPAN_NOTICE("You cleanse your blood of all chemicals and poisons."))
 		owner.adjustToxLoss(-100)
 		owner.radiation = 0
 		owner.reagents.update_total()
