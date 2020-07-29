@@ -195,6 +195,10 @@
 	if(anchored)
 		return FALSE
 
+	//discordia-space/CEV-Eris/issues/494
+	if(throwing > 0)
+		return FALSE
+
 	// The var/climbers API is implemented here.
 	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
 		return FALSE
