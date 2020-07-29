@@ -17564,12 +17564,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_x = -38;
-	pixel_y = -8
-	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/bridge)
 "aPo" = (
@@ -34932,19 +34926,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/cryo)
-"bzQ" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_y = 24
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/hallway/side/cryo)
 "bzR" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -40905,11 +40886,6 @@
 /area/eris/maintenance/section4deck4port)
 "bMs" = (
 /obj/item/modular_computer/console/preset/security/camera,
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_y = 24
-	},
 /obj/machinery/camera,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
@@ -43664,15 +43640,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/sleep/cryo)
 "bSj" = (
@@ -43771,15 +43738,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/sleep/cryo)
 "bSt" = (
@@ -64360,26 +64318,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
-"cNF" = (
-/obj/machinery/door/firedoor,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section4)
 "cNG" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /obj/machinery/light/small,
@@ -64414,53 +64352,10 @@
 /obj/random/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
-"cNK" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section4)
 "cNL" = (
 /obj/random/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2port)
-"cNM" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Escape Pod Bay"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/side/eschangara)
-"cNN" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/side/eschangara)
 "cNO" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "0,23"
@@ -209436,7 +209331,7 @@ aaa
 aaa
 aaa
 cVE
-bzQ
+bzS
 crI
 cso
 csF
@@ -210445,7 +210340,7 @@ cRN
 cRQ
 cRQ
 cSU
-cNK
+cIK
 cWA
 dzr
 cYj
@@ -210647,7 +210542,7 @@ cRP
 cSk
 cSk
 cSV
-cNF
+cLe
 cWB
 cXs
 cYk
@@ -211859,7 +211754,7 @@ aDf
 bLq
 aWp
 azN
-cNM
+aTE
 bzX
 bzX
 bzX
@@ -212061,7 +211956,7 @@ aDf
 bLq
 aWp
 bzE
-cNN
+aTs
 bzX
 bzX
 bzX
