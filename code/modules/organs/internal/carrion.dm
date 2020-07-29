@@ -151,7 +151,7 @@
 	set name = "Detatch"
 
 	if(owner.status_flags & FAKEDEATH)
-		to_chat(owner, SPAN_WARNING("We are regeneraing our body!"))
+		to_chat(owner, SPAN_WARNING("We are regenerating our body!"))
 		return
 
 	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
