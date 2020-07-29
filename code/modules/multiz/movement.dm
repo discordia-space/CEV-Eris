@@ -195,7 +195,6 @@
 	if(anchored)
 		return FALSE
 
-	//discordia-space/CEV-Eris/issues/494
 	if(throwing > 0)
 		return FALSE
 
