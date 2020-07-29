@@ -5,6 +5,7 @@
 	icon_state = "spiderling"
 	allowed_organs = list(BP_HEAD, BP_CHEST, BP_GROIN)
 	cruciform_resist = TRUE
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER //You are still able to shoot them while they apper below tables
 	var/ready_to_attack = FALSE
 	var/spider_price = 15
 	var/gene_price = 0

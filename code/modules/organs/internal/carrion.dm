@@ -154,7 +154,7 @@
 		to_chat(owner, SPAN_WARNING("We are regenerating our body!"))
 		return
 
-	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
+	gibs(owner.loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
 	visible_message(SPAN_DANGER("Something bursts out of [owner]'s chest!"))
 	removed() //removed() does all of the work
 
@@ -225,10 +225,10 @@
 	set category = "Carrion"
 	set name = "Regenerative Stasis (20)"
 
-	if(!(owner.check_ability(20)))
+	if(!owner.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")
 		return
 
-	if(!owner.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")
+	if(!(owner.check_ability(20)))
 		return
 
 	to_chat(owner, SPAN_NOTICE("We will attempt to regenerate our form."))
@@ -363,9 +363,14 @@
 	set category = "Carrion"
 	set name = "Toxic puddle (10)"
 
+	var/turf/T = get_turf(owner)
+	if(locate(/obj/effect/decal/cleanable/carrion_puddle) in T)
+		to_chat(owner, SPAN_WARNING("There is already a toxic puddle here."))
+		return
+
 	if(owner.check_ability(10, TRUE))
 		playsound(src, 'sound/effects/blobattack.ogg', 50, 1)
-		new /obj/effect/decal/cleanable/carrion_puddle(owner.loc)
+		new /obj/effect/decal/cleanable/carrion_puddle(T)
 		to_chat(owner, SPAN_NOTICE("You vomit a toxic puddle"))
 
 /obj/effect/decal/cleanable/carrion_puddle

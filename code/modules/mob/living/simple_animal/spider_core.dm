@@ -25,14 +25,12 @@
 	universal_understand = 1
 	density = 1 //Should be 0, but then these things would be a nightmare to kill.
 	faction = "spiders"
-	var/spawn_time = 0
 
 /mob/living/simple_animal/spider_core/New()
 	. = ..()
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 	verbs |= /mob/living/simple_animal/spider_core/proc/generate_body
-	spawn_time = world.time
 
 /mob/living/simple_animal/spider_core/death()
 	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
@@ -40,15 +38,19 @@
 	
 
 /mob/living/simple_animal/spider_core/proc/generate_body()
-	set name = "Generate Body"
-	set desc = "Generates a new body for you to inhabit."
+	set name = "Build a Body"
+	set desc = "Build a new body for you to inhabit."
 	set category = "Abilities"
 
-	if(world.time < spawn_time + 1 MINUTES)
-		to_chat(src, SPAN_NOTICE("The new body is not ready yet, it takes a minute to make one."))
+	to_chat(src, SPAN_NOTICE("You start building a body"))
+
+	if(!do_after(src, 1 MINUTES, src))
+		to_chat(src, SPAN_NOTICE("The new body is not ready yet, it takes a minute to make one. You have to stand still."))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(loc)
+	visible_message(SPAN_DANGER("[src] morphs into a human body!"))
+	gibs(loc, null)
 	var/obj/item/organ/internal/carrion/core/core = locate(/obj/item/organ/internal/carrion/core) in contents
 	
 	var/list/powers_to_buy = list()
