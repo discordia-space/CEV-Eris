@@ -17533,18 +17533,6 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section1deck4central)
 "aPn" = (
-/obj/machinery/button/remote/blast_door{
-	id = "BrigExternalLobbyLockdown";
-	name = "Brig External Lobby Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "BrigInternalLobbyLockdown";
-	name = "Brig Internal Lobby Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 4
-	},
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
