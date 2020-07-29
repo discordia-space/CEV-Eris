@@ -256,15 +256,13 @@
 	)
 
 /obj/item/organ/internal/carrion/maw/New(mob/living/carbon/human/holder, datum/organ_description/OD)
-	. = ..()
 	process_hunger()
+	. = ..()
 
 /obj/item/organ/internal/carrion/maw/proc/process_hunger()
 
-	addtimer(CALLBACK(src, .proc/process_hunger),2 MINUTES)
+	addtimer(CALLBACK(src, .proc/process_hunger), 2 MINUTES)
 
-	if(owner?.stat < DEAD)
-		return
 	if(hunger < 10)
 		hunger += 1
 	else
@@ -277,18 +275,23 @@
 
 	var/food = owner.get_active_hand()
 
+	if(!food)
+		to_chat(owner, SPAN_WARNING("You can't eat nothing."))
+		return
+
 	if(istype(food, /obj/item/organ) || istype(food, /obj/item/weapon/reagent_containers/food/snacks/meat))
 		var/geneticpointgain = 0
 		var/chemgain = 0
 		var/taste_description = ""
 
-		if(!hunger)
+		if(hunger < 1)
 			to_chat(owner, SPAN_WARNING("You are not hungry."))
+			return
 
 		var/obj/item/organ/O = food
 		if(istype(O))
 			if(BP_IS_ROBOTIC(O))
-				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't consume it."))
+				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
 				return
 			else if(istype(O, /obj/item/organ/internal))
 				geneticpointgain = 3
