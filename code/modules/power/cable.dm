@@ -165,23 +165,31 @@ var/list/possible_cable_coil_colours = list(
 			to_chat(user, "Not enough cable")
 			return
 		if(user.a_intent == I_HURT)
+			if(used_now)
+				to_chat(user, SPAN_WARNING("You are already splicing the [src.name]!")) //don't want people stacking splices on one turf
+				return
+			used_now = TRUE
 			if(locate(/obj/structure/wire_splicing) in T)
 				to_chat(user, SPAN_WARNING("There is splicing already!"))
+				used_now = FALSE
 				return
 			to_chat(user, SPAN_NOTICE("You started messsing with wires..."))
 			if(shock(user, 100)) //check if he got his insulation gloves
+				used_now = FALSE
 				return 		//he didn't
 			if(do_after(user, 20))
 				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
 				if(prob(fail_chance))
 					if(!shock(user, 100)) //why not
 						to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+					used_now = FALSE
 					return
 
 				//all clear, update things
 				coil.use(1)
 				spawnSplicing()
 				to_chat(user, SPAN_NOTICE("You have created such a mess. Shame."))
+				used_now = FALSE
 		else
 			coil.cable_join(src, user)
 
