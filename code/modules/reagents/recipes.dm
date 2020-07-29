@@ -1855,7 +1855,7 @@
 
 /datum/chemical_reaction/boxer
 	result = "boxer"
-	required_reagents = list("bouncer" = 1, "Starkellin" = 1, "toxin" = 1)
+	required_reagents = list("bouncer" = 1, "starkellin" = 1, "toxin" = 1)
 	result_amount = 3
 	maximum_temperature = 328
 	minimum_temperature = 323

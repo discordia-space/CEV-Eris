@@ -11,8 +11,8 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 1600
 	can_dual = 1
-	damage_multiplier = 1.3
-	penetration_multiplier = 1.2
+	damage_multiplier = 1.45
+	penetration_multiplier = 1.35
 	recoil_buildup = 33
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound 	= 'sound/weapons/guns/interact/hpistol_magout.ogg'

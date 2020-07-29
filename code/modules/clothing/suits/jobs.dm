@@ -94,7 +94,7 @@
 		bullet = 10,
 		energy = 10,
 		bomb = 0,
-		bio = 0,
+		bio = 50,  //same as labcoats at LEAST
 		rad = 0
 	)
 
@@ -109,7 +109,7 @@
 		bullet = 20,
 		energy = 20,
 		bomb = 0,
-		bio = 0,
+		bio = 50,  //same as labcoats at LEAST
 		rad = 0
 	)
 
