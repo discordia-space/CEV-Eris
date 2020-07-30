@@ -329,6 +329,7 @@
 			C.geneticpoints = min(C.geneticpoints + geneticpointgain, hunger)
 
 		hunger = max(hunger - geneticpointgain, 0)
+		owner.ingested.add_reagent("nutriment", chemgain)
 
 		var/obj/item/organ/internal/carrion/chemvessel/CV = owner.internal_organs_by_name[BP_CHEMICALS]
 		if(CV)

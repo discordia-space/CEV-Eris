@@ -5,7 +5,7 @@
 	icon_state = "spiderling"
 	allowed_organs = list(BP_HEAD, BP_CHEST, BP_GROIN)
 	cruciform_resist = TRUE
-	layer = PROJECTILE_HIT_THRESHHOLD_LAYER //You are still able to shoot them while they apper below tables
+	var/hiden = FALSE
 	var/ready_to_attack = FALSE
 	var/spider_price = 15
 	var/gene_price = 0
@@ -78,3 +78,15 @@
 	else
 		ready_to_attack = TRUE
 		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures."))
+
+/obj/item/weapon/implant/carrion_spider/verb/hide_spider()
+	set name = "Hide"
+	set category = "Object"
+	set src in oview(1)
+
+	if(hiden)
+		hiden = FALSE
+		layer = initial(layer)
+	else
+		hiden = TRUE
+		layer = PROJECTILE_HIT_THRESHHOLD_LAYER //You are still able to shoot them while they apper below tables
