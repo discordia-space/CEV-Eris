@@ -5,7 +5,7 @@
 	icon_state = "spiderling"
 	allowed_organs = list(BP_HEAD, BP_CHEST, BP_GROIN)
 	cruciform_resist = TRUE
-	var/hiden = FALSE
+	var/hidden = FALSE
 	var/ready_to_attack = FALSE
 	var/spider_price = 15
 	var/gene_price = 0
@@ -84,9 +84,9 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(hiden)
-		hiden = FALSE
+	if(hidden)
+		hidden = FALSE
 		layer = initial(layer)
 	else
-		hiden = TRUE
+		hidden = TRUE
 		layer = PROJECTILE_HIT_THRESHHOLD_LAYER //You are still able to shoot them while they apper below tables
