@@ -68,6 +68,10 @@
 	if(opacity && isturf(loc))
 		var/turf/T = loc
 		T.reconsider_lights()
+	
+	if(istype(loc, /turf/simulated/open))
+		var/turf/simulated/open/open = loc
+		open.fallThrough(src)
 
 // If we have opacity, make sure to tell (potentially) affected light sources.
 /atom/movable/Destroy()
