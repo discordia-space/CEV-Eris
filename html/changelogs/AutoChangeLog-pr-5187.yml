@@ -1,0 +1,4 @@
+author: soslow4u
+delete-after: true
+changes:
+  - tweak: Standing mobs can't hide behind organs anymore.
