@@ -102,7 +102,7 @@
 			src.visible_message("<b>[name]</b> states, \"Congratulations! You won [prize] Credits!\"")
 
 		spawn_money(prize, src.loc, user)
-	return TRUE
+		return TRUE
 	else
 		return FALSE
 
