@@ -1,0 +1,4 @@
+author: Pariah919
+delete-after: true
+changes:
+  - tweak: spawning in should no longer make you stunned for as long.
