@@ -1,0 +1,7 @@
+author: Kurgis, Près de l'oiseau
+delete-after: true
+changes:
+  - rscadd: Brand new collectable figurines, winnable from the arcade as per usual.
+  - rscdel: Removed the farwa plushie, removed the unused (and broken) therapy dolls.
+  - imageadd: Près de l'oiseau's new figurine sprites.
+  - imagedel: Deleted some unused objects from toys.dmi, they will not be missed.
