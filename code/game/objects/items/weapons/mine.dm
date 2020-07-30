@@ -6,13 +6,14 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
+	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
 	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/weak
 	var/spread_radius = 4
-	var/num_fragments = 30
+	var/num_fragments = 25
 	var/damage_step = 2
 
 	var/explosion_d_size = -1
