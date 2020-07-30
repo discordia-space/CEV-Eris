@@ -1,0 +1,5 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - tweak: mines are now overlayed like traps
+  - balance: frag from excels mines where lowered
