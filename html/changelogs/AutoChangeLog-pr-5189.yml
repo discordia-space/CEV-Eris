@@ -1,0 +1,5 @@
+author: Chatter42
+delete-after: true
+changes:
+  - tweak: it should no longer be possible to spam player-made wire splices
+  - bugfix: making splices bigger is now properly functional
