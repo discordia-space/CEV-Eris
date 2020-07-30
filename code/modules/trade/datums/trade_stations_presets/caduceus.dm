@@ -1,5 +1,5 @@
 /datum/trade_station/caduceus
-	name_pool = list("SAV 'Caduceus'" = "old Sol republic Aid Vessel 'Caduceus'. They sending message, \"Hello, there, we are from Old Sol Republic, we will soon jump back, cuz we get what we wanted, and while we here we can offer medical help for you.\"")
+	name_pool = list("SAV 'Caduceus'" = "old Sol republic Aid Vessel 'Caduceus'. They're sending a message. \"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you any medical aid while we are still here.\".")
 	icon_states = "ship"
 	max_missing_assortiment = 8
 	start_discovered = TRUE
@@ -64,4 +64,3 @@
 			/obj/item/weapon/storage/firstaid/o2,
 			/obj/item/weapon/storage/firstaid/adv,
 		)
-	spawning_with = /datum/trade_station/fbv_hellcat
