@@ -86,31 +86,33 @@
 
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
 
-/obj/machinery/slotmachine/proc/check_win()
-	if (TRUE)//check_streak())//tri poloski
+/obj/machinery/slotmachine/proc/check_win(mob/user)
+	if(check_streak())
 		to_world("check_streak TRUE")
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
-		var/weight = weights[slots[1]]
+		var/weight = weights[slots["1"]]
 		to_world("weight:[weight]")
 		var/prize = bet * weight
+
 		if (weight == "Seven")
 			prize = jackpot
 			jackpot = 0
 			src.visible_message("<b>[name]</b> states, \"Damn son! JACKPOT!!! Congratulations!\"")
 		else
 			src.visible_message("<b>[name]</b> states, \"Congratulations! You won [prize] Credits!\"")
-		spawn_money(prize,src.loc,user)
-		return TRUE
+
+		spawn_money(prize, src.loc, user)
+	return TRUE
 	else
 		return FALSE
 
-/obj/machinery/slotmachine/proc/pull_leaver()
-		sleep(5)
-		if(!check_win())
-			to_world("!check_win")
-			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
-			src.visible_message("<b>[name]</b> states, \"Sorry, maybe, next time..\"")
-			jackpot += bet
+/obj/machinery/slotmachine/proc/pull_leaver(mob/user)
+	sleep(5)
+	if(!check_win(user))
+		to_world("!check_win")
+		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		src.visible_message("<b>[name]</b> states, \"Sorry, maybe, next time..\"")
+		jackpot += bet
 
 /obj/machinery/slotmachine/attack_hand(mob/user)
 	if (spinning)
@@ -132,7 +134,7 @@
 
 		set_slots_overlay()
 
-		pull_leaver()
+		pull_leaver(user)
 
 	src.add_fingerprint(user)
 	update_icon()
@@ -151,13 +153,13 @@
 			user.drop_from_inventory(cash)
 			qdel(cash)
 		else
-			to_chat(user, SPAN_WARNING("You must bet 1-1000 Credits! Can't insert [cash.worth] to [bet]."))
+			to_chat(user, SPAN_WARNING("You must bet 1-[1000 - bet] Credits! Can't insert [cash.worth], too much."))
 
 	else if (istype(S, /obj/item/weapon/coin))
 		to_chat(user, SPAN_NOTICE("You add the [S.name] into the [src]. It will slightly increase chance to win."))
 		user.drop_from_inventory(S)
 		bet = 100
-		plays += 15
+		plays += 10
 		qdel(S)
 
 	src.add_fingerprint(user)
