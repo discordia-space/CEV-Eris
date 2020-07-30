@@ -129,7 +129,8 @@
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
 				/obj/item/weapon/gun/projectile/revolver/havelock = 1,
 				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
-				/obj/item/stash_spawner = 12))
+				/obj/item/stash_spawner = 12,
+				/obj/random/figure = 2))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"
