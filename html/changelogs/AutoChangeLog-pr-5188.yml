@@ -1,6 +1,0 @@
-author: soslow4u
-delete-after: true
-changes:
-  - bugfix: No more powder piles and chem splashes in open space.
-  - bugfix: Deconstruction of lattice, catwalk and railings would drop items under
-      your feet.
