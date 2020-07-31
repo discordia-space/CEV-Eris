@@ -11,12 +11,12 @@
 	pixel_x = -16
 	ranged = TRUE
 
-	health = 2500
-	maxHealth = 2500
+	health = 2100
+	maxHealth = 2100 //Only way for it to show up right now is via adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
 	break_stuff_probability = 95
 
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 40
+	melee_damage_upper = 50 //don't try going into melee with this unless you are pumped full of brute healing chems, seriously.
 	megafauna_min_cooldown = 50
 	megafauna_max_cooldown = 80
 
