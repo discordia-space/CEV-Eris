@@ -6,11 +6,16 @@
 /obj/item/weapon/implant/carrion_spider/flashbang/activate()
 	..()
 	if(wearer)
-		var/obj/item/weapon/grenade/flashbang/F = new /obj/item/weapon/grenade/flashbang(wearer.loc)
-		F.prime()
 		wearer.apply_damage(10, BURN, part)
-		die()
-	else
-		var/obj/item/weapon/grenade/flashbang/F = new /obj/item/weapon/grenade/flashbang(src.loc)
-		F.prime()
-		die()
+
+	for(var/obj/structure/closet/L in view(7, get_turf(src)))
+		if(locate(/mob/living/carbon/, L))
+			for(var/mob/living/carbon/M in L)
+				flashbang_bang(get_turf(src), M)
+
+	for(var/mob/living/carbon/M in view(7, get_turf(src)))
+		flashbang_bang(get_turf(src), M)
+
+	new/obj/effect/sparks(get_turf(src))
+	new/obj/effect/effect/smoke/illumination(get_turf(src), brightness=15)
+	die()
