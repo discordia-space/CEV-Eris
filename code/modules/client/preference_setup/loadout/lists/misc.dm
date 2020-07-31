@@ -98,7 +98,6 @@
 		"kitten plush"	=	/obj/item/toy/plushie/kitten,
 		"lizard plush"	=	/obj/item/toy/plushie/lizard,
 		"spider plush"	=	/obj/item/toy/plushie/spider,
-		"farwa plush"	=	/obj/item/toy/plushie/farwa,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(plushes)
 

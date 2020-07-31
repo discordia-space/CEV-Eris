@@ -25,7 +25,7 @@
 				/obj/item/weapon/tool/pickaxe = 3,
 				/obj/item/weapon/pen = 3,
 				/obj/item/weapon/storage/box/donkpockets = 3,
-				/obj/item/weapon/locator = 2,
+				/obj/item/device/gps/locator = 2,
 				/obj/item/weapon/dice = 3,
 				/obj/item/weapon/clipboard = 2,
 				/obj/item/weapon/airlock_electronics = 3,
@@ -129,7 +129,8 @@
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
 				/obj/item/weapon/gun/projectile/revolver/havelock = 1,
 				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
-				/obj/item/stash_spawner = 12))
+				/obj/item/stash_spawner = 12,
+				/obj/random/figure = 2))
 
 /obj/random/lowkeyrandom/low_chance
 	name = "low chance random stuff"
