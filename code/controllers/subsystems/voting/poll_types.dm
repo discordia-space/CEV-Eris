@@ -223,13 +223,13 @@
 #undef MINIMUM_VOTE_LIFETIME
 
 /datum/vote_choice/evac
-	text = "Abandon ship!"
+	text = "Initiate a bluespace jump!"
 
 /datum/vote_choice/evac/on_win()
 	evacuation_controller.call_evacuation(null, FALSE, TRUE, FALSE, TRUE)
 
 /datum/vote_choice/noevac
-	text = "Stay aboard"
+	text = "No need to depart yet!"
 
 
 
