@@ -44,7 +44,7 @@
 
 /datum/craft_recipe/clothing/chest_rig
 	name = "chest rig"
-	result = /obj/item/clothing/suit/storage/vest/merc/chestrig
+	result = /obj/item/clothing/suit/storage/vest/chestrig
 	steps = list(
 		list(/obj/item/stack/medical/bruise_pack/handmade, 3, "time" = 10),
 		list(/obj/item/stack/rods, 2, "time" = 10),
