@@ -1094,6 +1094,7 @@
 #include "code\game\objects\structures\barsign.dm"
 #include "code\game\objects\structures\beacon.dm"
 #include "code\game\objects\structures\bedsheet_bin.dm"
+#include "code\game\objects\structures\bluespace_crystal_structure.dm"
 #include "code\game\objects\structures\burrows.dm"
 #include "code\game\objects\structures\catwalk.dm"
 #include "code\game\objects\structures\cryopod.dm"

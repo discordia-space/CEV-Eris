@@ -1,5 +1,14 @@
-// Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
+/obj/item/bluespace_dust
+	name = "bluespace dust"
+	desc = "blue dust"
+	icon = 'icons/obj/bluespace_crystal_structure.dmi'
+	icon_state = "dust"
 
+/obj/item/bluespace_dust/attack_hand(mob/user)
+	to_chat(user, SPAN_NOTICE("Dust disappears as you touch it"))
+	qdel(src)
+
+// Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
 /obj/item/bluespace_crystal
 	name = "bluespace crystal"
 	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
@@ -20,6 +29,7 @@
 
 /obj/item/bluespace_crystal/attack_self(mob/user)
 	user.visible_message(SPAN_WARNING("[user] crushes [src]!"), SPAN_DANGER("You crush [src]!"))
+	new /obj/item/bluespace_dust(user.loc)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, get_turf(user))
 	sparks.start()
