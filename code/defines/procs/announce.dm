@@ -109,7 +109,7 @@ datum/announcement/proc/Log(message as text, message_title as text)
 	command_announcement.Announce("Confirmed outbreak of level 8 Bio-mechanical infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
 /proc/level_eight_beta_announcement() //announcment which tells the crew that the hivemind has been killed, job well done crew.
-	command_announcement.Announce("Diagnostic Systems report Level 8 Bio-mechanical infestation aboard [station_name()] has been contained.")
+	command_announcement.Announce("Diagnostic Systems report level 8 Bio-mechanical infestation aboard [station_name()] has been contained.")
 
 /proc/ion_storm_announcement()
 	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
