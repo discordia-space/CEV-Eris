@@ -120,7 +120,7 @@
 					return
 				if (breather)
 					src.add_fingerprint(usr)
-					if(!do_mob(usr, target, 30) || !can_apply_to_target(target, usr))
+					if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
 						return
 					if(tank)
 						tank.forceMove(src)
@@ -136,7 +136,7 @@
 					return
 				usr.visible_message(SPAN_NOTICE("\The [usr] begins carefully placing the mask onto [target]."),
 							SPAN_NOTICE("You begin carefully placing the mask onto [target]."))
-				if(!do_mob(usr, target, 100) || !can_apply_to_target(target, usr))
+				if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
 					return
 				// place mask and add fingerprints
 				usr.visible_message(SPAN_NOTICE("\The [usr] has placed \the mask on [target]'s mouth."),
@@ -155,7 +155,7 @@
 				else if(ishuman(target))
 					usr.visible_message(SPAN_NOTICE("\The [usr] begins inserting needle into [target]'s vein."),
 									SPAN_NOTICE("You begin inserting needle into [target]'s vein."))
-					if(!do_mob(usr, target, 50))
+					if(!do_mob(usr, target, 20))
 						usr.visible_message(SPAN_NOTICE("\The [usr]'s hand slips and pricks \the [target]."),
 									SPAN_NOTICE("Your hand slips and pricks \the [target]."))
 						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
