@@ -83,4 +83,4 @@
 
 
 /obj/structure/catwalk/can_prevent_fall()
-	return TRUE
+	return FALSE
