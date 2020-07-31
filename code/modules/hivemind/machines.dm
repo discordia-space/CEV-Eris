@@ -188,7 +188,7 @@
 	if(prob(30))
 		if(prob(80))
 			var/pain_msg = pick("User complaint recorded.", "Cease resistance.", "You are wasting resources.",
-								"Yield to minimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.")
+								"Yield to minimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.", "Stop it you chimpanzee")
 			state("says: \"<b>[pain_msg]</b>\"")
 		else
 			var/pain_emote = pick("twitches uncannily.", "contorts sickeningly.", "oozes silvery pus.", "congeals grey ichor in the wound.", "bleeds black fuming liquid")
@@ -299,8 +299,8 @@
 	name = "processing core"
 	desc = "Its cold eye seeks to dominate what it surveys."
 	icon_state = "core"
-	max_health = 360
-	resistance = RESISTANCE_AVERAGE
+	max_health = 420 //will last a bit more
+	resistance = RESISTANCE_TOUGH //use actual weapons you grease monkeys, wielded crowbar will actually be enough to make small dents
 	can_regenerate = FALSE
 	wireweeds_required = FALSE
 	//internals
@@ -331,7 +331,7 @@
 
 	//self-defense protocol setting
 	var/list/possible_sdps = subtypesof(/datum/hivemind_sdp)
-	if(hive_mind_ai.evo_level > 3)
+	if(hive_mind_ai.evo_level > 6) //emergency jump will show up after a longer time
 		possible_sdps -= /datum/hivemind_sdp/emergency_jump
 	var/picked_sdp = pick(possible_sdps)
 	SDP = new picked_sdp(src)
@@ -411,9 +411,10 @@
 /obj/machinery/hivemind_machine/turret
 	name = "projector"
 	desc = "This mass of machinery is topped with some sort of nozzle."
-	max_health = 140
+	max_health = 220
+	resistance = RESISTANCE_IMPROVED  //primary weapon of the hive, should have some kind of armour
 	icon_state = "turret"
-	cooldown_time = 3 SECONDS
+	cooldown_time = 5 SECONDS
 	spawn_weight  =	60
 	var/proj_type = /obj/item/projectile/goo
 
@@ -440,17 +441,18 @@
 /obj/machinery/hivemind_machine/mob_spawner
 	name = "assembler"
 	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
-	max_health = 160
+	max_health = 260
+	resistance = RESISTANCE_IMPROVED //similary to the turret, primary defence of the hive
 	icon_state = "spawner"
-	cooldown_time = 30 SECONDS
-	spawn_weight  =	45
+	cooldown_time = 25 SECONDS  //shorter cooldown
+	spawn_weight  =	50 //more common than earlier
 	var/mob_to_spawn
-	var/mob_amount = 3
+	var/mob_amount = 4
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
-	mob_to_spawn = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
-
+	mob_to_spawn = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber, /mob/living/simple_animal/hostile/hivemind/hiborg)
+	
 
 /obj/machinery/hivemind_machine/mob_spawner/Process()
 	if(!..())
@@ -462,10 +464,10 @@
 		return
 
 	//here we upgrading our spawner and rise controled mob amount, based on EP
-	if(hive_mind_ai.evo_level > 3)
+	if(hive_mind_ai.evo_level > 6)
+		mob_amount = 6
+	else if(hive_mind_ai.evo_level > 3)
 		mob_amount = 5
-	else if(hive_mind_ai.evo_level > 1)
-		mob_amount = 4
 
 	var/mob/living/target = locate() in targets_in_range(world.view, in_hear_range = TRUE)
 	if(target && target.stat != DEAD && target.faction != HIVE_FACTION)
@@ -486,9 +488,9 @@
 /obj/machinery/hivemind_machine/babbler
 	name = "jammer"
 	desc = "A column-like structure with lights. You can see streams of energy moving inside."
-	max_health = 60
-	evo_level_required = 2 //it's better to wait a bit
-	cooldown_time = 120 SECONDS
+	max_health = 100
+	evo_level_required = 3 //it's better to wait a bit
+	cooldown_time = 90 SECONDS
 	spawn_weight  =	20
 	global_cooldown = TRUE
 	icon_state = "antenna"
@@ -556,7 +558,7 @@
 	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
 	icon_state = "head"
 	max_health = 100
-	evo_level_required = 2
+	evo_level_required = 3
 	cooldown_time = 30 SECONDS
 	spawn_weight  =	35
 
@@ -587,12 +589,12 @@
 	var/mob/living/carbon/human/H = target
 	if(istype(H))
 		if(prob(100 - H.stats.getStat(STAT_VIG)))
-			H.Weaken(8)
+			H.Weaken(5) //it was 8 earlier, 5 is better. No one likes being stunned for so long
 			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
 			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
 	else
-		target.Weaken(8)
+		target.Weaken(5)
 		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
@@ -605,7 +607,7 @@
 	max_health = 80
 	icon_state = "orb"
 	evo_level_required = 2
-	cooldown_time = 4 MINUTES
+	cooldown_time = 1 MINUTES //there are a lot of players, lets make it a bit more common.
 	global_cooldown = TRUE
 	spawn_weight  =	20
 	var/list/join_quotes = list(
