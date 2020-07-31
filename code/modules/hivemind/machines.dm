@@ -188,7 +188,7 @@
 	if(prob(30))
 		if(prob(80))
 			var/pain_msg = pick("User complaint recorded.", "Cease resistance.", "You are wasting resources.",
-								"Yield to minimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.", "Stop it you chimpanzee")
+								"Yield to minimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.")
 			state("says: \"<b>[pain_msg]</b>\"")
 		else
 			var/pain_emote = pick("twitches uncannily.", "contorts sickeningly.", "oozes silvery pus.", "congeals grey ichor in the wound.", "bleeds black fuming liquid")
