@@ -19,16 +19,16 @@
 
 /obj/item/clothing/suit/space/bomb
 	name = "bomb suit"
-	desc = "A space suit designed for safety when handling explosives."
+	desc = "A heavy armored space suit designed for safety when handling explosives."
 	icon_state = "bombsuit"
 	item_state = "bombsuit"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	slowdown = 2
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
+		melee = 50,
+		bullet = 50,
+		energy = 50,
 		bomb = 100,
 		bio = 100,
 		rad = 90
