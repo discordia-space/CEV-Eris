@@ -226,7 +226,7 @@
 	text = "Abandon ship!"
 
 /datum/vote_choice/evac/on_win()
-	evacuation_controller.call_evacuation(null, TRUE, TRUE, FALSE, TRUE)
+	evacuation_controller.call_evacuation(null, FALSE, TRUE, FALSE, TRUE)
 
 /datum/vote_choice/noevac
 	text = "Stay aboard"
