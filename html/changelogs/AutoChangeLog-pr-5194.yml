@@ -1,0 +1,4 @@
+author: boy2mantwicethefam
+delete-after: true
+changes:
+  - bugfix: Parkour will no longer actually increase the delay before doing parkour.
