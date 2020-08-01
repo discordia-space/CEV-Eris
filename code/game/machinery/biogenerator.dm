@@ -68,10 +68,10 @@
 		to_chat(user, SPAN_NOTICE("\The [src] is currently processing."))
 		return
 
-	if(default_deconstruction(I, user)) //So we can open the pannle and take it apart
+	else if(default_deconstruction(I, user)) //So we can open the pannle and take it apart
 		return
 
-	if(default_part_replacement(I, user)) //This makes it so we can upgrade the bio-gene
+	else if(default_part_replacement(I, user)) //This makes it so we can upgrade the bio-gene
 		return
 
 	if(istype(I, /obj/item/weapon/reagent_containers/glass)) //Loading a beaker into the biogene
