@@ -1,0 +1,8 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - rscadd: New brand of cigarettes with a stim effect inside them.
+  - code_imp: Cleaned the code to make possible to create new packets with various
+      items preloaded instead being hardcoded inside populate_contents()
+  - rscadd: Updated vendors and guild for these cigcartons
+  - rscadd: added cartons to loot tables
