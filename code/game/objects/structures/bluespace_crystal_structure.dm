@@ -54,6 +54,10 @@
 	if(user.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
+			if(I.type in explosion_items)
+				explosion(src.loc, 0, 1, 2, 3, 0)
+				qdel(I)
+				qdel(src)
 			if(I.hitsound)
 				var/calc_damage = I.force * I.structure_damage_factor
 				var/volume = calc_damage * 3.5
