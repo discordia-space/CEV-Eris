@@ -283,7 +283,7 @@
 	malfunction_chance = 1 //1% chance of it exploding, for no reason at all
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	speed = 4 //explosive, slow, don't ignore it. it can catch up to you
+	speed = 2.5 //explosive, slow, don't ignore it. it can catch up to you
 
 	speak = list(
 				"WE COME IN PEACE.",
@@ -308,7 +308,7 @@
 /mob/living/simple_animal/hostile/hivemind/bomber/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	explosion(get_turf(src), 0, 1, 3) //explosion equal to a full welding fuel tank, deadly
+	explosion(get_turf(src), 0, 0, 3) //explosion almost equal to a full welding fuel tank, deadly
 	qdel(src)
 
 
@@ -338,12 +338,12 @@
 	desc = "A cyborg covered with something... something alive."
 	icon_state = "hiborg"
 	icon_dead = "hiborg-dead"
-	health = 440
-	maxHealth = 440 //can take a lot of hits before being obliterated
+	health = 400
+	maxHealth = 400 //can take a lot of hits before being obliterated
 	melee_damage_lower = 25
 	melee_damage_upper = 30 //Claws man, they hurt
 	attacktext = "clawed"
-	speed = 14
+	speed = 7
 	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
 	mob_size = MOB_MEDIUM
 
@@ -367,7 +367,7 @@
 
 	//special attacks
 	if(prob(15))
-		splash_slash() //AOE attack, doesnt do much against a single target, best to stay away and shoot it with a gun (like most people would do anyways)
+		splash_slash() //AOE attack, best to stay away and shoot it with a gun (like most people would do anyways)
 		return
 
 	if(prob(30))
@@ -554,13 +554,13 @@
 	icon_dead = "mechiver-dead"
 	health = 1000
 	maxHealth = 1000 //utter beast of a machine, should be able to hold ground on its own for a while.
-	melee_damage_lower = 30 //10 dmg difference as too reduce its strength, even if by a bit
-	melee_damage_upper = 40 //It crushes you, your bones will probably break
+	melee_damage_lower = 25 //10 dmg difference as too reduce its strength, even if by a bit
+	melee_damage_upper = 35 //It crushes you, your bones will probably break
 	mob_size = MOB_LARGE
 	attacktext = "crushed"
 	ability_cooldown = 1 MINUTES
 	speak_chance = 8
-	speed = 18
+	speed = 10
 	//internals
 	var/pilot						//Yes, there's no pilot, so we just use var
 	var/mob/living/passenger
@@ -614,7 +614,7 @@
 	//when we have passenger, we torture him
 	//I'd like to tidy this up so the damage type is linked to specific speech arrays.
 	if(passenger && prob(25)) //higher chance, along with higher damage
-		passenger.damage_through_armor(rand(15,25), pick(BRUTE, BURN, TOX), attack_flag = ARMOR_MELEE)
+		passenger.damage_through_armor(rand(10,20), pick(BRUTE, BURN, TOX), attack_flag = ARMOR_MELEE)
 		to_chat(passenger, SPAN_DANGER(pick(
 								"A woman's arm grabs your neck!", "Lips whisper, \" This is the womb of your rebirth... \"", "Hot breath flows over your ear, \" You will enjoy bliss when this is over... \"",
 								"A whirring drill bit bores through your chest!", "Something is crushing your ribs!", "Some blood-hot liquid covers you!",
