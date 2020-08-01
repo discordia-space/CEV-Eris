@@ -3,7 +3,7 @@
 
 //toxic shot, turret's ability use it
 /obj/item/projectile/goo
-	name = "acidic goo"
+	name = "electrolyzed goo"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
 	damage_types = list(BURN = 15)
@@ -18,5 +18,5 @@
 		L.damage_through_armor(15, TOX, attack_flag = ARMOR_RAD)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
 		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
-		goo.name = "acidic goo" //from "acrid goo" to "acidic goo"
-		goo.desc = "An unknown, bubbling liquid. The fumes smell awful."
+		goo.name = "electrolyzed goo" //from "acrid goo" to "acidic goo", and from "acidic goo" to "electrolyzed goo"
+		goo.desc = "An unknown, bubbling liquid. The fumes smell awful with a hint of ozone."
