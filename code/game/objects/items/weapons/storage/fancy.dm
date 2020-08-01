@@ -187,26 +187,21 @@
 	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
 	icon_state = "Dpacket"
 	item_state = "Dpacket"
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 
 /obj/item/weapon/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
 	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
 	icon_state = "Bpacket"
 	item_state = "Bpacket" //Doesn't have an inhand state, but neither does dromedary, so, ya know..
-
-/obj/item/weapon/storage/fancy/cigarettes/killthroat/Initialize()
-	. = ..()
-	fill_cigarre_package(src, list("fuel" = 15))
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/killthroat
 
 /obj/item/weapon/storage/fancy/cigarettes/homeless
 	name = "\improper Nomads packet"
 	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is more extra hard"
 	icon_state = "Cpacket"
 	item_state = "Cpacket"
-
-/obj/item/weapon/storage/fancy/cigarettes/homeless/Initialize()
-	. = ..()
-	fill_cigarre_package(src, list("adrenaline" = 6))
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/homeless
 
 /obj/item/weapon/storage/fancy/cigcartons
 	name = "carton of cigarettes"
