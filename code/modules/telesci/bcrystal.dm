@@ -1,6 +1,6 @@
 /obj/item/bluespace_dust
 	name = "bluespace dust"
-	desc = "blue dust"
+	desc = "Some blue dust"
 	icon = 'icons/obj/bluespace_crystal_structure.dmi'
 	icon_state = "dust"
 
