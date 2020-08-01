@@ -17,6 +17,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	genomecost = 5
 	spiderpath = /obj/item/weapon/implant/carrion_spider/flashbang
 
+/datum/power/carrion/control_spider
+	name = "Control spider"
+	desc = "Creates a mind controling spider with a neural link to you, giving you the abilty to control the host, but also making you feel any trauma the host has, and than some."
+	genomecost = 10
+	spiderpath = /obj/item/weapon/implant/carrion_spider/control
+
 /datum/power/carrion/infection_spider
 	name = "Infection spider"
 	desc = "Creates a miniature spider, with spider core inside it capable of making more carrions."

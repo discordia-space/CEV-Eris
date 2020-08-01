@@ -166,6 +166,9 @@
 
 /obj/item/organ/internal/carrion/core/removed(mob/living/user)
 	if(!associated_spider && owner)
+		for(var/obj/item/weapon/implant/carrion_spider/control/CS in active_spiders)
+			CS.return_mind()
+
 		owner.faction = initial(owner.faction)
 		associated_spider = new /mob/living/simple_animal/spider_core(owner.loc)
 		owner.mind?.transfer_to(associated_spider)
