@@ -277,11 +277,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/cigarette/killthroat
 	desc = "A roll of tobacco and nicotine. Gives the best bang for buck for your throat."
-	preloaded_reagents = list("fuel" = 6)
+	preloaded_reagents = list("nicotine" = 10, "fuel" = 3)
 
 /obj/item/clothing/mask/smokable/cigarette/homeless
 	desc = "A roll of tobacco and nicotine. Gives the feeling of fight."
-	preloaded_reagents = list("adrenaline" = 6)
+	preloaded_reagents = list("nicotine" = 6, "adrenaline" = 3)
 
 
 ////////////
