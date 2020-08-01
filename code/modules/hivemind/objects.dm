@@ -3,7 +3,7 @@
 
 //toxic shot, turret's ability use it
 /obj/item/projectile/goo
-	name = "acrid goo"
+	name = "acidic goo"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
 	damage_types = list(BURN = 15)
