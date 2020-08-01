@@ -86,7 +86,8 @@
 
 /obj/structure/bs_crystal_structure/proc/teleport_random_item()
 	var/turf/simulated/floor/teleport_destination = pick(destination_candidates)
-	var/turf/simulated/floor/target_turf = random_ship_area().random_space()
+	var/area/target_area = random_ship_area()
+	var/turf/simulated/floor/target_turf = target_area.random_space()
 	var/list/target_turf_contents = target_turf.contents
 
 	if(!teleport_destination || !target_turf_contents.len)
