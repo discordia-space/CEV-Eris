@@ -351,6 +351,9 @@
 	if(istype(src, /obj/item/weapon/melee/energy))
 		return
 
+	if((flags & NOBLOODY)||(item_flags & NOBLOODY))
+		return	
+
 	//if we haven't made our blood_overlay already
 	if( !blood_overlay )
 		generate_blood_overlay()

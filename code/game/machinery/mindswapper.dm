@@ -62,37 +62,38 @@
 	user.attack_log += "\[[time_stamp()]\] Triggered the mind swapper</b>"
 	msg_admin_attack("[user.name] ([user.ckey]) triggered the mind swapper (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	spawn(swap_time)
+	addtimer(CALLBACK(src, .proc/performswapping), swap_time, TIMER_STOPPABLE)
 
-		operating = FALSE
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
-		operating = FALSE
+/obj/machinery/mindswapper/proc/performswapping(mob/user as mob)
+	operating = FALSE
+	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+	operating = FALSE
 
-        // Get all candidates in range for the mind swapping
-		var/list/swapBoddies = list()
-		var/list/swapMinds = list()
-		for(var/mob/living/carbon/C in range(swap_range,src))
-			swapBoddies += C
-			swapMinds += C.ghostize(0)
-        
-		// Shuffle the list containing the candidates' boddies
-		swapBoddies = shuffle(swapBoddies)
+	// Get all candidates in range for the mind swapping
+	var/list/swapBoddies = list()
+	var/list/swapMinds = list()
+	for(var/mob/living/carbon/C in range(swap_range,src))
+		swapBoddies += C
+		swapMinds += C.ghostize(0)
+	
+	// Shuffle the list containing the candidates' boddies
+	swapBoddies = shuffle(swapBoddies)
 
-		// Perform the mind swapping
-		var/i = 1
-		for(var/mob/observer/ghost in swapMinds)
-			ghost.mind.transfer_to(swapBoddies[i])
-			if(ghost.key)
-				var/mob/living/L = swapBoddies[i]
-				if(istype(L))
-					L.key = ghost.key	//have to transfer the key since the mind was not active
-			qdel(ghost)
-			i += 1
+	// Perform the mind swapping
+	var/i = 1
+	for(var/mob/observer/ghost in swapMinds)
+		ghost.mind.transfer_to(swapBoddies[i])
+		if(ghost.key)
+			var/mob/living/L = swapBoddies[i]
+			if(istype(L))
+				L.key = ghost.key	//have to transfer the key since the mind was not active
+		qdel(ghost)
+		i += 1
 
-		// Knock out all candidates
-		for(var/mob/living/carbon/C in swapBoddies)
-			C.Stun(2)
-			C.Weaken(10)
+	// Knock out all candidates
+	for(var/mob/living/carbon/C in swapBoddies)
+		C.Stun(2)
+		C.Weaken(10)
 
-		visible_message(SPAN_DANGER("You hear a loud electrical crack before the mind swapper shuts down."))
-		update_icon()
+	visible_message(SPAN_DANGER("You hear a loud electrical crack before the mind swapper shuts down."))
+	update_icon()
