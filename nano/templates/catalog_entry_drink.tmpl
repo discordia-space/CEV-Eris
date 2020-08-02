@@ -30,6 +30,16 @@
 			<div class="itemLabel">Nourishment:</div>
 			<div class="itemContent">{{:data.nutrition}}</div>
 		{{/if}}
+		{{if data.taste_tag}}
+			<div class="itemLabel">classification by taste:</div>
+			<div class="itemContent">
+				<div class="statusDisplay" style="overflow: auto;">
+					{{for data.taste_tag :val:val_i}}
+							{{:val}}<br>
+					{{/for}}
+				</div>
+			</div>
+		{{/if}}
 		{{if data.recipe_data}}
 			<div class="itemLabel">Recipe:</div>
 			<div class="itemContent">

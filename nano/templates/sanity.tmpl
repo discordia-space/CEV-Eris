@@ -1,0 +1,139 @@
+<div class="item">
+	<div class="statusDisplay">
+		<div class="itemLabel" style="padding-right: 4px;">
+			<div style="padding: 1px; overflow:auto;text-align:center;">
+				<h3>
+					<img src='sanity.png' style ="float: left; width: 41%;padding-right: 1px;">
+					<br>
+					Sanity:
+				</h3>
+			</div>
+			<div>
+				Sanity is gained or<br>
+				lost depending on your<br>
+				environment. For example<br>
+				being around oddities<br>
+				increases your sanity<br>
+				slightly, as well as<br>
+				taking drugs or smoking.<br>
+				Seeing people die, being<br>
+				around blood and grime<br>
+				and being hurt yourself<br>
+				lowers your sanity.
+			</div>
+		</div>
+		<div class="itemContent">
+			<br><br><br><br><br><br><br>
+				<div style="padding: 1px; overflow:auto;">
+					<h3> Sanity level:</h3>
+				</div>
+			{{:helper.displayBar(data.sanity, 0, 100, data.sanity < 33 ? 'bad' : data.sanity > 66 ? 'good': 'average')}}
+		</div>
+	</div>
+</div>
+<br>
+<div class="item">
+	<div class="statusDisplay">
+		<div class="itemLabel" style="padding-right: 4px;">
+			<div style="padding: 1px; overflow:auto;text-align:center;">
+				<h3>
+					<img src='insight.png' style ="margin: auto; float: left; width: 41%; padding-right: 1px;">
+					<br>
+					Insight:
+				</h3>
+			</div>
+			<div>
+				Insight is gained by<br>
+				activies such as<br>
+				smoking, taking drugs,<br>
+				hurting people or seeing<br>
+				them get hurt, seeing<br>
+				blood and grime and<br>
+				exploring maintenance.
+			</div>
+		</div>
+		<div class="itemContent">
+			<br><br><br><br><br>
+				<div style="padding: 1px; overflow:auto;">
+					<h3>Insight progress:</h3>
+				</div>
+			{{:helper.displayBar(data.insight, 0, 100, data.insight < 33 ? 'bad' : data.insight > 66 ? 'good': 'average')}}
+		</div>
+	</div>
+</div>
+<br>
+<div class="item">
+	<div class="statusDisplay">
+		<div class="itemLabel" style="padding-right: 4px;">
+			<div style="padding: 1px; overflow:auto;text-align:center;">
+				<h3>
+					<img src='gangnam_style.png' style ="float: left; width: 41%; padding-right: 1px;margin: auto;">
+					<br>
+					Style:
+				</h3>
+			</div>
+			<div>
+				Style can be gained<br>
+				by wearing fashionable<br>
+				and clean attire. Being<br>
+				dirty with blood or<br>
+				grime will decrease<br>
+				your style value.
+			</div>
+		</div>
+		<div class="itemContent">
+			<br><br><br><br><br>
+				<div style="padding: 1px; overflow:auto;">
+					<h3>Current style:</h3>
+				</div>
+			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average')}}
+		</div>
+	</div>
+</div>
+<br>
+<div class="item">
+	<div class="statusDisplay" style="padding: 1px; overflow:auto;">
+		<div class="itemLabel" style="padding-right:4px;">
+			<div style="padding: 1px; overflow:auto;text-align:center;">
+				<h3>
+					<img src='desire.png' style ="float: left; width: 41%;margin: auto;padding-right: 1px; ">
+					<br>
+					Desires:
+				</h3>
+			</div>
+			<div>
+				Once you have gained<br>
+				enough insight, you<br>
+				should rest. While<br>
+				you rest you will<br>
+				have certain wishes<br>
+				to fulfill.
+			</div>
+		</div>
+		<div class="itemContent">
+			<br><br><br><br>
+			<h3>Current desires:</h3>
+			<div>
+				{{if data.rest}}
+					{{for data.desires :val:val_i}}
+						| &nbsp &nbsp {{:val}} &nbsp &nbsp
+					{{/for}}
+					|
+				{{else}}
+					Currently you don't have desires
+				{{/if}}
+			</div>
+		</div>
+		{{if data.rest}}
+			<div class="itemLabel" style="padding-right: 1px;">
+				<div style="padding: 1px; overflow:auto;">
+					<h3>Rest progress:</h3>
+				</div>
+			</div>
+			<div class="itemContent"><br>
+				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average')}}
+				<br><br>
+			</div>
+		{{/if}}
+	</div>
+</div>
