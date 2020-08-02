@@ -90,10 +90,13 @@
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
 
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+		var/obj/item/organ/internal/carrion/chemvessel/chemvessel = internal_organs_by_name[BP_CHEMICALS]
+		if(chemvessel)
+			stat("Chemical Storage", "[chemvessel.stored_chemicals]/[chemvessel.max_chemicals]")
+
+		var/obj/item/organ/internal/carrion/maw/maw = internal_organs_by_name[BP_MAW]
+		if(maw)
+			stat("Gnawing hunger", "[maw.hunger]/10")
 
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
@@ -1146,6 +1149,13 @@ var/list/rank_prefix = list(\
 
 	status_flags |= REBUILDING_ORGANS
 
+	var/obj/item/organ/internal/carrion/core = internal_organs_by_name[BP_SPCORE]
+	var/list/organs_to_readd = list() 
+	if(core) //kinda wack, this whole proc should be remade
+		for(var/obj/item/organ/internal/carrion/C in internal_organs)
+			C.removed_mob()
+			organs_to_readd += C
+
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
@@ -1223,6 +1233,9 @@ var/list/rank_prefix = list(\
 				C.activate()
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
+
+	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
+		C.replaced(get_organ(C.parent_organ))
 
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
