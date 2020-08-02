@@ -81,7 +81,7 @@
 	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
 		to_chat(H, SPAN_WARNING("Something wrong with this area. Tread carefully."))
 		was_triggired = TRUE
-	if (prob(100)) //return to 20
+	if (prob(20))
 		for(var/mob/living/carbon/human/target in range(14, H))
 			for(var/organ in target.organs)
 				if (organ in subtypesof(/obj/item/organ/internal/carrion))
