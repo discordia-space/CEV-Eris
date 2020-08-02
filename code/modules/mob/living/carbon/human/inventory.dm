@@ -334,7 +334,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_ear)      return r_ear
 	return ..()
 
-/mob/living/carbon/human/get_equipped_items(include_carried = 0)
+/mob/living/carbon/human/get_equipped_items(include_carried = FALSE)
 	var/list/items = new/list()
 
 	if(back)		items += back
@@ -368,3 +368,29 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(C.w_class > ITEM_SIZE_TINY)
 				get_max_w_class = C.w_class
 	return get_max_w_class
+
+/mob/living/carbon/human/get_total_style()
+	var/style_factor = 0
+	for(var/obj/item/clothing/C in get_equipped_items())
+		if(C)
+			style_factor += C.get_style()
+	if(restrained())
+		style_factor -= 1
+	if(feet_blood_DNA)
+		style_factor -= 1
+	if(blood_DNA)
+		style_factor -= 1
+	if(style_factor > MAX_HUMAN_STYLE)
+		style_factor = MAX_HUMAN_STYLE
+	else if(style_factor < MIN_HUMAN_SYLE)
+		style_factor = MIN_HUMAN_SYLE
+	return style_factor
+
+/mob/living/carbon/human/proc/get_style_factor()
+	var/style_factor = 1
+	var/actual_style = get_total_style()
+	if(actual_style >= 0)
+		style_factor += 0.2 * actual_style/MAX_HUMAN_STYLE
+	else 
+		style_factor -= 0.2 * actual_style/MAX_HUMAN_STYLE
+	return style_factor

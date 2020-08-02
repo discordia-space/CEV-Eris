@@ -1039,7 +1039,7 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/mob/observer/eye/god))
 			isRemoteObserve = TRUE
-		else if((mRemote in mutations) && remoteview_target)
+		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs)
