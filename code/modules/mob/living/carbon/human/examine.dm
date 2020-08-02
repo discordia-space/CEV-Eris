@@ -182,7 +182,7 @@
 
 	if(!wear_suit && !w_uniform && !(T == src))
 		if(locate(/obj/item/weapon/implant/carrion_spider) in src)
-			msg += "<span class='danger'>[T.He] [T.has] a strange growth on [T.his] chest!</span>\n"
+			msg += SPAN_DANGER("[T.He] [T.has] a strange growth on [T.his] chest!") + "\n"
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] small halfling!\n"
