@@ -15,6 +15,7 @@
 	var/trade_screen = GOODS_SCREEN
 
 	var/list/shoppinglist = list()
+	var/choosed_category = 0
 
 	var/obj/machinery/trade_beacon/sending/sending
 	var/obj/machinery/trade_beacon/receiving/receiving
@@ -27,6 +28,11 @@
 	. = ..()
 	if(.)
 		return
+	if(href_list["PRG_goods_category"])
+		if(!choosed_category || length(station.assortiment) < choosed_category)
+			choosed_category = 0
+		choosed_category = isnum(href_list["PRG_goods_category"]) ? href_list["PRG_goods_category"] : 0
+		return 1
 
 	if(href_list["PRG_trade_screen"])
 		trade_screen = !trade_screen
@@ -64,6 +70,7 @@
 
 	if(href_list["PRG_station"])
 		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_station"]))
+		choosed_category = 1
 		station = S
 		shoppinglist.Cut()
 		return 1
@@ -83,26 +90,20 @@
 		return 1
 
 	if(href_list["PRG_cart_add"])
-		var/list/json_packet = splittext(href_list["PRG_cart_add"], "/")
-		if(!islist(json_packet))
-			return
-		var/list/category = station.assortiment[station.assortiment[text2num(json_packet[1])]]
+		var/list/category = station.assortiment[station.assortiment[choosed_category]]
 		if(!islist(category))
 			return
-		var/path = LAZYACCESS(category, text2num(text2num(json_packet[2])))
+		var/path = LAZYACCESS(category, text2num(href_list["PRG_cart_add"]))
 		if(!path)
 			return
 		shoppinglist[path] = 1 + shoppinglist[path]
 		return 1
 
 	if(href_list["PRG_cart_remove"])
-		var/list/json_packet = splittext(href_list["PRG_cart_remove"], "/")
-		if(!islist(json_packet))
-			return
-		var/list/category = station.assortiment[station.assortiment[text2num(json_packet[1])]]
+		var/list/category = station.assortiment[station.assortiment[choosed_category]]
 		if(!islist(category))
 			return
-		var/path = LAZYACCESS(category, text2num(text2num(json_packet[2])))
+		var/path = LAZYACCESS(category, text2num(text2num(href_list["PRG_cart_remove"])))
 		if(!path || !shoppinglist[path])
 			return
 		--shoppinglist[path]
@@ -166,29 +167,31 @@
 	for(var/obj/machinery/trade_beacon/sending/B in SStrade.beacons_sending)
 		.["sending_list"] += list(list("id" = B.get_id(), "index" = SStrade.beacons_sending.Find(B)))
 
-
 	if(PRG.station)
+		if(!PRG.choosed_category || length(PRG.station.assortiment) < PRG.choosed_category)
+			PRG.choosed_category = 0
+		.["current_category"] = PRG.choosed_category
 		.["goods"] = list()
+		.["categories"] = list()
 		.["total"] = 0
-		for(var/category in PRG.station.assortiment)
-			var/list/ctegory = list()
-			for(var/path in PRG.station.assortiment[category])
-				if(ispath(path, /atom/movable))
+		for(var/i in PRG.station.assortiment)
+			.["categories"] += list(list("name" = i, "index" = PRG.station.assortiment.Find(i)))
+		if(PRG.choosed_category)
+			var/list/assort = PRG.station.assortiment[PRG.choosed_category]
+			if(islist(assort))
+				for(var/path in assort)
+					if(!ispath(path, /atom/movable))
+						continue
 					var/atom/movable/AM = path
 					var/price = SStrade.get_import_cost(path)
 					var/count = PRG.shoppinglist[path]
-					var/list/cat = PRG.station.assortiment[category]
-					ctegory += list(list(
+					.["goods"] += list(list(
 						"name" = initial(AM.name),
 						"price" = price,
 						"count" = count,
-						"index" = cat.Find(path)
+						"index" = assort.Find(path)
 					))
 					.["total"] += price * count
-
-			if(!length(ctegory))
-				continue
-			.["goods"] += list(list("name" = category, "goods" = ctegory, "index" = PRG.station.assortiment.Find(category)))
 		if(!recursiveLen(.["goods"]))
 			.["goods"] = null
 	.["offers"] = list()
