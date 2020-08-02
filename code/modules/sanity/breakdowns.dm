@@ -393,16 +393,6 @@
 	name = "Glassification"
 	duration = 5 MINUTES
 	restore_sanity_post = 40
-	/*start_messages = list(
-		"You feel like there is no point in any of this!",
-		"You brain refuses to comprehend any of this!",
-		"You feel like you don't want to continue whatever you're doing!",
-		"You feel like your best days are gone forever!",
-		"You feel it. You know it. There is no turning back!"
-	)
-		end_messages = list(
-		"You feel at ease again, suddenly."
-	)*/
 	var/time
 	var/cooldown = 15 SECONDS
 	var/time_view = 5 SECONDS
@@ -429,7 +419,6 @@
 		target.reset_view(0)
 		target = null
 		active_view = FALSE
-		target = null
 		time = world.time + cooldown
 		return TRUE
 	. = ..()
