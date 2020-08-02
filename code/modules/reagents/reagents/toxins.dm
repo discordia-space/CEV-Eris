@@ -275,6 +275,14 @@
 	if(M.losebreath < 15)
 		M.losebreath++
 
+/datum/reagent/toxin/lexorin/plus //Currently uncraftable, could be made with carrion parts.
+	name = "Lexorin plus"
+	id = "lexorinp"
+	description = "Advanced lexorin able to penetrate skin."
+
+/datum/reagent/toxin/lexorin/plus/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
+	affect_blood(M, alien, effect_multiplier)
+
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"

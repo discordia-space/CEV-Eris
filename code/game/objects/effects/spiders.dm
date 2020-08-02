@@ -59,9 +59,11 @@
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
-	if(istype(mover, /mob/living/carbon/superior_animal/giant_spider))
-		return 1
-	else if(isliving(mover))
+	var/mob/M = mover
+	if(istype(M))
+		if(M.faction == "spiders")
+			return 1
+	if(isliving(mover))
 		if(prob(50))
 			to_chat(mover, SPAN_WARNING("You get stuck in \the [src] for a moment."))
 			return 0

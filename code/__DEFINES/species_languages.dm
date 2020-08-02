@@ -36,7 +36,6 @@
 
 #define LANGUAGE_XENOMORPH "Xenomorph"
 #define LANGUAGE_HIVEMIND "Hivemind"
-#define LANGUAGE_CHANGELING "Changeling"
 #define LANGUAGE_CORTICAL "Cortical Link"
 #define LANGUAGE_CULT "Cult"
 #define LANGUAGE_OCCULT "Occult"

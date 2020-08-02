@@ -90,10 +90,13 @@
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
 
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+		var/obj/item/organ/internal/carrion/chemvessel/chemvessel = internal_organs_by_name[BP_CHEMICALS]
+		if(chemvessel)
+			stat("Chemical Storage", "[chemvessel.stored_chemicals]/[chemvessel.max_chemicals]")
+
+		var/obj/item/organ/internal/carrion/maw/maw = internal_organs_by_name[BP_MAW]
+		if(maw)
+			stat("Gnawing hunger", "[maw.hunger]/10")
 
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
@@ -1000,6 +1003,36 @@ var/list/rank_prefix = list(\
 					if(organ.setBleeding())
 						src.adjustToxLoss(rand(1,3))
 
+/mob/living/carbon/human/verb/browse_sanity()
+	set name		= "Show sanity"
+	set desc		= "Browse your character sanity."
+	set category	= "IC"
+	set src			= usr
+	ui_interact(src)
+
+/mob/living/carbon/human/ui_data()
+	var/list/data = list()
+
+	data["style"] = get_total_style()
+	data["min_style"] = MIN_HUMAN_SYLE
+	data["max_style"] = MAX_HUMAN_STYLE
+	data["rest"] = sanity.resting
+	data["insight_rest"] = sanity.insight_rest
+	data["sanity"] = sanity.level
+	data["insight"] = sanity.insight
+	data["desires"] = sanity.desires
+	return data
+
+/mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = ui_data()
+
+	ui = SSnano.try_update_ui(user, user, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "sanity.tmpl", name, 650, 550, state = state)
+		ui.auto_update_layout = 1
+		ui.set_initial_data(data)
+		ui.open()
+
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
 	set name = "Check pulse"
@@ -1116,6 +1149,13 @@ var/list/rank_prefix = list(\
 
 	status_flags |= REBUILDING_ORGANS
 
+	var/obj/item/organ/internal/carrion/core = internal_organs_by_name[BP_SPCORE]
+	var/list/organs_to_readd = list() 
+	if(core) //kinda wack, this whole proc should be remade
+		for(var/obj/item/organ/internal/carrion/C in internal_organs)
+			C.removed_mob()
+			organs_to_readd += C
+
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
 
@@ -1193,6 +1233,9 @@ var/list/rank_prefix = list(\
 				C.activate()
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
+
+	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
+		C.replaced(get_organ(C.parent_organ))
 
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)

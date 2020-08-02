@@ -1,0 +1,10 @@
+author: TheShown911, All hail Megatron, TonnyJest(Suzan Trost)
+delete-after: true
+changes:
+  - rscadd: Added Carrion, a new antagonist to replace changelings
+  - rscdel: Changelings and most changeling references in code
+  - imageadd: all carrion related sprites (All hail Megatron)
+  - imageadd: nice UI backround (TonnyJest)
+  - code_imp: some organ code and rebuild_orgnas got tweaked, everything should work
+      fine
+  - code_imp: flashbang bang proc made into an item proc and can be used on more items
