@@ -328,7 +328,7 @@
 	return 1
 
 /datum/uplink_item/item/tools/blitz_harpoon
-	name = "Blitzshell bluespace harpoon"
+	name = "Blitzshell Blue Space Harpoon"
 	desc = "Activates the embedded bluespace harpoon."
 	item_cost = 12
 	antag_roles = list(ROLE_BLITZ)
@@ -338,7 +338,6 @@
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/weapon/bluespace_harpoon/mounted/blitz) in BS.module.modules)
 			to_chat(BS, SPAN_WARNING("You already have a bluespace harpoon installed."))
-			return 0
+			return
 		BS.module.modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(BS.module)
-		return 1
-	return 0
+		return TRUE
