@@ -127,19 +127,20 @@
 
 /obj/item/weapon/bluespace_harpoon/mounted/Process()
 	charge_tick++
-	if(charge_tick < recharge_time) return 0
+	if(charge_tick < recharge_time)
+		return
+
 	charge_tick = 0
 
 	if(!cell || cell.charge >= cell.maxcharge)
-		return 0
+		return
 
 	var/obj/item/weapon/cell/large/external = get_external_cell()
 	if(!external || !external.use(charge_cost))
-		return 0
+		return
 
 	cell.give(charge_cost)
 	update_icon()
-	return 1
 
 /obj/item/weapon/bluespace_harpoon/mounted/proc/get_external_cell()
 	return loc.get_cell()
