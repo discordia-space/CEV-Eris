@@ -1,0 +1,7 @@
+author: TheShown911
+delete-after: true
+changes:
+  - bugfix: Carrions can now properly use old spiders when transitioning to a new
+      body.
+  - bugfix: Carrion maw now gives gene points instead of sometimes taking them away.
+  - bugfix: Breeding spider now works only on human bodies.
