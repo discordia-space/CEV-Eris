@@ -14,11 +14,11 @@
 	if(!wearer)
 		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
 		return
-	if(!istype(wearer))
-		to_chat(owner_mob, SPAN_WARNING("[src] only works on humanoids"))
+	if(!(wearer.type == /mob/living/carbon/human))
+		to_chat(owner_mob, SPAN_WARNING("[src] only works on humans"))
 		return	
 
-	if(!wearer.stat == DEAD)
+	if(!(wearer.stat == DEAD))
 		to_chat(owner_mob, SPAN_WARNING("The host must be dead!"))
 		return
 	
