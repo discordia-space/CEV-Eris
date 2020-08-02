@@ -411,11 +411,11 @@
 	desc = "Once a man, now metal plates and tubes weave in and out of their oozing sores."
 	icon_state = "himan"
 	icon_dead = "himan-dead"
-	health = 330
-	maxHealth = 330 //prievously 120 hp, come on that's quite low. This thing is kept alive and rewired to no longer feel pain it should stay up longer.
+	health = 250
+	maxHealth = 250 //prievously 120 hp, come on that's quite low. This thing is kept alive and rewired to no longer feel pain it should stay up longer.
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "slashed with its claws"
+	attacktext = "slashed"
 	malfunction_chance = 20 //a combination of metal and flesh in a weird and confusing way. I would assume the body is trying to reject the implants/cybernetics.
 	mob_size = MOB_MEDIUM
 	speed = 8
