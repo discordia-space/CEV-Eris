@@ -53,6 +53,7 @@
 /obj/item/weapon/robot_module/blitzshell/New()
 	//modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(src) //Deemed too strong for initial loadout
 	modules += new /obj/item/weapon/gun/energy/plasma/mounted/blitz(src)
+	modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(src)
 	modules += new /obj/item/weapon/tool/knife/tacknife(src) //For claiming heads for assassination missions
 	//Objective stuff
 	modules += new /obj/item/weapon/storage/bsdm/permanent(src) //for sending off item contracts
