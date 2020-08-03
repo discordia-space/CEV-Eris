@@ -173,7 +173,7 @@
 		owner.faction = initial(owner.faction)
 		associated_spider = new /mob/living/simple_animal/spider_core(owner.loc)
 		owner.mind?.transfer_to(associated_spider)
-		removed_mob()
+		..()
 		forceMove(associated_spider)
 
 /obj/item/organ/internal/carrion/core/proc/GetDNA(var/dna_owner)
@@ -241,18 +241,14 @@
 	owner.update_lying_buckled_and_verb_status()
 	owner.emote("gasp")
 	owner.tod = stationtime2text()
+	var/last_owner = owner
 
 	spawn(rand(800,2000))
-		owner.revive()
-
-		owner.status_flags &= ~(FAKEDEATH)
-
-		owner.update_lying_buckled_and_verb_status()
-
-		to_chat(owner, SPAN_NOTICE("We have regenerated."))
-
-	return 1
-
+		if(last_owner == owner)
+			owner.revive()
+			owner.status_flags &= ~(FAKEDEATH)
+			owner.update_lying_buckled_and_verb_status()
+			to_chat(owner, SPAN_NOTICE("We have regenerated."))
 
 /obj/item/organ/internal/carrion/maw
 	name = "carrion maw"
