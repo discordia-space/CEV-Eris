@@ -14,7 +14,7 @@
 	if(!wearer)
 		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
 		return
-	if(!(wearer.type == /mob/living/carbon/human))
+	if(!istype(wearer.species, /datum/species/human))
 		to_chat(owner_mob, SPAN_WARNING("[src] only works on humans"))
 		return	
 
