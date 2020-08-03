@@ -228,7 +228,7 @@
 		return
 
 	var/rounded_vol
-	if( istype(A, /obj/item/weapon/reagent_containers/syringe))
+	if( istype(W, /obj/item/weapon/reagent_containers/syringe))
 		if(reagents && reagents.total_volume)
 			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
 			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
@@ -249,7 +249,7 @@
 					injoverlay = "inject"
 			add_overlay(injoverlay)
 			update_wear_icon()
-	if( istype(A, /obj/item/weapon/reagent_containers/syringe/large))
+	if( istype(W, /obj/item/weapon/reagent_containers/syringe/large))
 		if(reagents && reagents.total_volume)
 			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
 			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe-[rounded_vol]")
