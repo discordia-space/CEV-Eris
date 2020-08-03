@@ -101,7 +101,8 @@
 	if(owner.check_ability(initial(S.spider_price), null, initial(S.gene_price)))
 		var/obj/item/weapon/implant/carrion_spider/spider = new S(owner.loc)
 		active_spiders += spider
-		spider.owner_mob = owner
+		spider.owner_core = src
+		spider.update_owner_mob()
 
 		owner.put_in_active_hand(spider)
 
@@ -329,7 +330,7 @@
 
 		var/obj/item/organ/internal/carrion/core/C = owner.internal_organs_by_name[BP_SPCORE]
 		if(C)
-			C.geneticpoints = min(C.geneticpoints + geneticpointgain, hunger)
+			C.geneticpoints += min(geneticpointgain, hunger)
 
 		hunger = max(hunger - geneticpointgain, 0)
 		owner.ingested.add_reagent("nutriment", chemgain)

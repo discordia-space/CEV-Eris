@@ -12,17 +12,17 @@
 	var/do_gibs = TRUE
 	var/last_stun_time = 0 //Used to avoid cheese
 
-	var/mob/living/carbon/human/owner_mob //Ref to the mob that spawned this spider
+	var/obj/item/organ/internal/carrion/core/owner_core
+	var/mob/living/carbon/human/owner_mob
 
 /obj/item/weapon/implant/carrion_spider/New()
-    . = ..()
-    START_PROCESSING(SSobj, src)
-    
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
 /obj/item/weapon/implant/carrion_spider/Destroy()
 	. = ..()
-	var/obj/item/organ/internal/carrion/core/C = owner_mob.internal_organs_by_name[BP_SPCORE]
-	if(C)
-		C.active_spiders -= src
+	if(owner_core)
+		owner_core.active_spiders -= src
 
 /obj/item/weapon/implant/carrion_spider/Move(NewLoc, Dir, step_x, step_y, glide_size_override)
 	last_stun_time = world.time
@@ -90,3 +90,6 @@
 	else
 		hidden = TRUE
 		layer = PROJECTILE_HIT_THRESHHOLD_LAYER //You are still able to shoot them while they apper below tables
+
+/obj/item/weapon/implant/carrion_spider/proc/update_owner_mob()
+	owner_mob = owner_core.owner
