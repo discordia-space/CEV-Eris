@@ -1,0 +1,6 @@
+author: TheShown911
+delete-after: true
+changes:
+  - bugfix: carrion powers should not randomly disappear
+  - bugfix: breeding spider is now truly fixed
+  - bugfix: regen stasis should work on the body it was activated on
