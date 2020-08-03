@@ -112,7 +112,7 @@
 
 // Checks if the organ is in a freezer, an MMI or a stasis bag - it will not be processed then
 /obj/item/organ/proc/is_in_stasis()
-	if(istype(loc, /obj/item/device/mmi))
+	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
 
 	if(istype(loc, /obj/structure/closet/body_bag/cryobag) || istype(loc, /obj/structure/closet/crate/freezer) || istype(loc, /obj/item/weapon/storage/freezer))
@@ -313,7 +313,7 @@
 
 
 /obj/item/organ/proc/removed_mob(mob/living/user)
-	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
+	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents?.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
 		owner.vessel.trans_to(src, 5, 1, 1)
 
@@ -342,8 +342,10 @@
 	owner = target
 	forceMove(owner)
 	STOP_PROCESSING(SSobj, src)
+	if(BP_IS_ROBOTIC(src))
+		SEND_SIGNAL(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
 
-	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents.reagent_list
+	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents?.reagent_list
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    owner.species.name

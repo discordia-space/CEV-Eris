@@ -173,6 +173,8 @@
 /mob/proc/get_max_w_class()
 	return 0 //zero
 
+/mob/proc/get_total_style()
+	return 0 //zero
 
 //Returns the inventory slot for the current hand
 /mob/proc/get_active_hand_slot()

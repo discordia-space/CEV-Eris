@@ -192,8 +192,8 @@
 		var/obj/machinery/cryopod/C = pick(cryopods)
 		C.set_occupant(M, FALSE)
 
-		//When spawning in cryo, you start off asleep for a few seconds and wake up
-		M.Paralyse(12)
+		//When spawning in cryo, you start off asleep for a few moments and wake up
+		M.Paralyse(2)
 
 		//You can get yourself out of the cryopod, or it will auto-eject after one minute
 		spawn(600)
@@ -249,8 +249,8 @@
 		M.forceMove(C.loc)
 		C.buckle_mob(M)
 
-		//When spawning in bed, you start off asleep for a while
-		M.Paralyse(12)
+		//When spawning in bed, you start off asleep for a moment
+		M.Paralyse(2)
 
 		//Once you wake up, you can get yourself out of bed. I've made it real easy, just click basically anything
 

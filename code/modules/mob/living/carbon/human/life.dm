@@ -58,8 +58,6 @@
 
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
 
 		//Organs and blood
 		handle_organs()
@@ -797,9 +795,6 @@
 						M.adjustBruteLoss(5)
 					nutrition += 10
 
-/mob/living/carbon/human/proc/handle_changeling()
-	if(mind && mind.changeling)
-		mind.changeling.regenerate()
 
 /mob/living/carbon/human/handle_shock()
 	..()
@@ -1039,7 +1034,9 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/mob/observer/eye/god))
 			isRemoteObserve = TRUE
-		else if((mRemote in mutations) && remoteview_target)
+		else if(client.eye && istype(client.eye,/obj/item/weapon/implant/carrion_spider/observer))
+			isRemoteObserve = TRUE
+		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs)

@@ -411,7 +411,7 @@
 /datum/chemical_reaction/positive_ling/can_happen(datum/reagents/holder)
 	if(..())
 		var/list/blood_data = holder.get_data("blood")
-		if(blood_data["ling"])
+		if(blood_data["carrion"])
 			return TRUE
 
 	return FALSE
@@ -1828,8 +1828,8 @@
 /datum/chemical_reaction/noexcutite
 	result = "noexcutite"
 	required_reagents = list("tramadol" = 1, "anti_toxin" = 1)
-	maximum_temperature = 120
-	minimum_temperature = 150
+	maximum_temperature = 150
+	minimum_temperature = 120
 	result_amount = 2
 
 /datum/chemical_reaction/violence

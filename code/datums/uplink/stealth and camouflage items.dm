@@ -18,6 +18,7 @@
 	name = "Agent ID card"
 	item_cost = 3
 	path = /obj/item/weapon/card/id/syndicate
+	antag_roles = list(ROLES_UPLINK_BASE, ROLE_CARRION)
 
 /datum/uplink_item/item/stealth_items/chameleon_kit
 	name = "Chameleon Kit"

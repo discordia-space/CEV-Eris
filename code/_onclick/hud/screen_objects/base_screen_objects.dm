@@ -427,10 +427,11 @@
 	overlays += ovrls["sanity0"]
 
 /obj/screen/sanity/Click()
+	if(!ishuman(parentmob))
+		return FALSE
 	var/mob/living/carbon/human/H = parentmob
-	if(!istype(H))
-		return
-	H.sanity.print_desires()
+	H.ui_interact(H)
+	return	TRUE
 
 //--------------------------------------------------sanity end---------------------------------------------------------
 //--------------------------------------------------nsa---------------------------------------------------------
@@ -1317,7 +1318,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/toggle_invetory
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "b-open"
-	name = "toggle invetory"
+	name = "toggle inventory"
 	screen_loc = "1,0"
 
 /obj/screen/toggle_invetory/proc/hideobjects()
