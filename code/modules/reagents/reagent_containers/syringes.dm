@@ -220,7 +220,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/syringe/update_icon((/obj/item/weapon/reagent_containers/A))
+/obj/item/weapon/reagent_containers/syringe/update_icon(/obj/item/weapon/reagent_containers/A)
 	cut_overlays()
 
 	if(mode == SYRINGE_BROKEN)
