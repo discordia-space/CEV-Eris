@@ -20,6 +20,7 @@
 	sharp = TRUE
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
+	var/sytype = "regular"
 	var/mode = SYRINGE_DRAW
 	var/breakable = TRUE
 	var/image/filling //holds a reference to the current filling overlay
@@ -220,7 +221,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/syringe/update_icon(/obj/item/weapon/reagent_containers/A)
+/obj/item/weapon/reagent_containers/syringe/update_icon(A)
 	cut_overlays()
 
 	if(mode == SYRINGE_BROKEN)
@@ -228,28 +229,7 @@
 		return
 
 	var/rounded_vol
-	if( istype(A, /obj/item/weapon/reagent_containers/syringe))
-		if(reagents && reagents.total_volume)
-			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
-			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
-			filling_overlay.color = reagents.get_color()
-			add_overlay(filling_overlay)
-		else
-			rounded_vol = 0
-
-		icon_state = "[rounded_vol]"
-		item_state = "syringe_[rounded_vol]"
-
-		if(ismob(loc))
-			var/injoverlay
-			switch(mode)
-				if (SYRINGE_DRAW)
-					injoverlay = "draw"
-				if (SYRINGE_INJECT)
-					injoverlay = "inject"
-			add_overlay(injoverlay)
-			update_wear_icon()
-	if( istype(A, /obj/item/weapon/reagent_containers/syringe/large))
+	if (sytype == "large")
 		if(reagents && reagents.total_volume)
 			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
 			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe-[rounded_vol]")
@@ -260,6 +240,28 @@
 
 		icon_state = "-[rounded_vol]"
 		item_state = "syringe_-[rounded_vol]"
+
+		if(ismob(loc))
+			var/injoverlay
+			switch(mode)
+				if (SYRINGE_DRAW)
+					injoverlay = "draw"
+				if (SYRINGE_INJECT)
+					injoverlay = "inject"
+			add_overlay(injoverlay)
+			update_wear_icon()
+
+	if (sytype == "regular")
+		if(reagents && reagents.total_volume)
+			rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
+			var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+			filling_overlay.color = reagents.get_color()
+			add_overlay(filling_overlay)
+		else
+			rounded_vol = 0
+
+		icon_state = "[rounded_vol]"
+		item_state = "syringe_[rounded_vol]"
 
 		if(ismob(loc))
 			var/injoverlay
@@ -365,6 +367,7 @@
 	sharp = TRUE
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
+	sytype = "large"
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes. END
