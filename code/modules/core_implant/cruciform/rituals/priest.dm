@@ -39,10 +39,10 @@
 	to_chat(CI.wearer, "<span class='info'>Your cruciform vibrates and warms up.</span>")
 
 	CI.activate()
-
+/*
 	if(get_storyteller())	//Call objectives update to check inquisitor objective completion
 		get_storyteller().update_objectives()
-
+STORY_TODO*/
 	return TRUE
 
 /* - This will be used later, when new cult arrive.
@@ -277,7 +277,7 @@
 
 
 /datum/ritual/cruciform/priest/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
-	// take_boost is automatically triggered by a callback function when the boost ends but the participant 
+	// take_boost is automatically triggered by a callback function when the boost ends but the participant
 	// may have been deleted during the duration of the boost
 	if (participant) // check if participant still exists otherwise we cannot read null.stats
 		participant.stats.changeStat(stat, -amount)

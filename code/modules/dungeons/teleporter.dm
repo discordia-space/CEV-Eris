@@ -65,7 +65,7 @@
 	var/min_mobs = 1
 	var/monsoon_coefficient = 1
 
-	switch(GLOB.storyteller.config_tag)
+/*	switch(GLOB.storyteller.config_tag)
 		if("warrior")
 			max_mobs = 5
 			min_mobs = 2
@@ -76,7 +76,7 @@
 		if("jester")//because it's funnier this way
 			max_mobs = rand(0, 7)
 			min_mobs = rand(0, 3)
-			monsoon_coefficient = (rand(5, 30)/10)
+			monsoon_coefficient = (rand(5, 30)/10) STORY_TODO*/
 
 	ticks_before_next_summon = rand(10, 20)
 	var/mobs_to_spawn = rand(min_mobs, max_mobs)

@@ -54,7 +54,7 @@
 	see_votes = TRUE
 
 	var/pregame = FALSE
-
+/*
 //We will sort the storyteller choices carefully. Guide is always first, all the rest are in a random order
 /datum/poll/storyteller/init_choices()
 	master_storyteller = null
@@ -95,7 +95,8 @@
 		round_progressing = FALSE
 		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
 
-//If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
+//If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller -- STORY_TODO
+
 /datum/poll/storyteller/on_end()
 	..()
 	//This happens if the vote was skipped with force start
@@ -147,7 +148,7 @@
 	world.save_storyteller(master_storyteller)
 
 
-
+*/
 
 
 

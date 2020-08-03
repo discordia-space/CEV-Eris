@@ -11,7 +11,7 @@
 
 //This is a copypaste of roleset/trigger_event, with some new features added
 /datum/storyevent/roleset/faction/trigger_event()
-	calc_target_quantity()
+//STORY_TODO	calc_target_quantity()
 	var/datum/antagonist/antag = GLOB.all_antag_types[role_id]
 	//Find the faction first, create it if it doesnt exist
 	if (!faction_id)

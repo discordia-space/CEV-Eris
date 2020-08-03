@@ -121,8 +121,8 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
 
 		if(GAME_STATE_PLAYING)
-			GLOB.storyteller.Process()
-			GLOB.storyteller.process_events()
+/*			GLOB.storyteller.Process()
+			GLOB.storyteller.process_events() STORY_TODO*/
 
 			if(!process_empty_server())
 				return
@@ -196,26 +196,26 @@ SUBSYSTEM_DEF(ticker)
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/setup()
-	//Create and announce mode
-
+	//Create and announce mode - STORY_TODO
+/*
 	if(!GLOB.storyteller)
 		set_storyteller(announce = FALSE)
 
 	if(!GLOB.storyteller)
 		to_chat(world, "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby.")
 		return FALSE
-
+*/
 	SSjob.ResetOccupations()
 	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
-	if(!GLOB.storyteller.can_start(TRUE))
+/*	if(!GLOB.storyteller.can_start(TRUE))
 		to_chat(world, "<B>Unable to start game.</B> Reverting to pre-game lobby.")
 		//GLOB.storyteller = null //Possibly bring this back in future if we have storytellers with differing requirements
 		//story_vote_ended = FALSE
 		SSjob.ResetOccupations()
 		return FALSE
 
-	GLOB.storyteller.announce()
+	GLOB.storyteller.announce() */
 
 	setup_economy()
 	newscaster_announcements = pick(newscaster_standard_feeds)
@@ -234,7 +234,7 @@ SUBSYSTEM_DEF(ticker)
 	callHook("roundstart")
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
-		GLOB.storyteller.set_up()
+//		GLOB.storyteller.set_up() 	STORY_TODO
 		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
@@ -504,7 +504,7 @@ SUBSYSTEM_DEF(ticker)
 	if(dronecount)
 		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 
-	GLOB.storyteller.declare_completion()//To declare normal completion.
+//	GLOB.storyteller.declare_completion()//To declare normal completion. STORY_TODO
 
 	//Ask the event manager to print round end information
 	SSevent.RoundEnd()

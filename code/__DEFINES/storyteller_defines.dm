@@ -63,3 +63,31 @@
 //Examples: Meteors, carp, rogue drones, mercenaries, raiders
 #define TAG_EXTERNAL "external"
 
+
+// -- Injection delays (in ticks, ie, you need the /20 to get the real result)
+
+#define LATEJOIN_DELAY_MIN (5 MINUTES)/20
+#define LATEJOIN_DELAY_MAX (30 MINUTES)/20
+
+#define MIDROUND_DELAY_MIN (15 MINUTES)/20
+#define MIDROUND_DELAY_MAX (50 MINUTES)/20
+
+// -- Rulesets flags
+
+#define HIGHLANDER_RULESET 1
+#define TRAITOR_RULESET 2
+#define MINOR_RULESET 4
+
+// -- Distribution "modes"
+
+#define LORENTZ "Lorentz distribution"
+#define GAUSS "Normal distribution"
+#define DIRAC "Rigged threat number"
+#define EXPONENTIAL "Peaceful bias"
+#define UNIFORM "Uniform distribution"
+
+// Dynamic Mode
+#define CURRENT_LIVING_PLAYERS	"living"
+#define CURRENT_LIVING_ANTAGS	"antags"
+#define CURRENT_DEAD_PLAYERS	"dead"
+#define CURRENT_OBSERVERS	"observers"

@@ -346,7 +346,7 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(get_storyteller())
+/*STORY_TODO	if(get_storyteller())
 		SSticker.nuke_in_progress = FALSE
 		if(off_station == 1)
 			to_chat(world, "<b>A nuclear device was set off, but the explosion was out of reach of the ship!</b>")
@@ -359,7 +359,7 @@ var/bomb_set
 														//kinda shit but I couldn't  get permission to do what I wanted to do.
 
 		SSticker.station_explosion_cinematic(off_station)
-
+*/
 	return
 
 /obj/machinery/nuclearbomb/update_icon()

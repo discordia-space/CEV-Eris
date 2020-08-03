@@ -226,8 +226,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_key
 
 /datum/configuration/New()
-	fill_storyevents_list()
-
+//	fill_storyevents_list()
+/* STORY_TODO
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				log_misc("Adding storyteller [S.name] ([S.config_tag]) to configuration.")
 				src.storytellers += S.config_tag
 				src.storyteller_names[S.config_tag] = S.name
-
+*/
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
 
@@ -444,7 +444,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
-			
+
 				if ("ipqualityscore_apikey")
 					config.ipqualityscore_apikey = value
 
@@ -809,12 +809,13 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	return GLOB.storyteller_cache[STORYTELLER_BASE]
 
 /datum/configuration/proc/get_storytellers()
-	var/list/runnable_storytellers = list()
+	/*var/list/runnable_storytellers = list()
 	for(var/storyteller in GLOB.storyteller_cache)
 		var/datum/storyteller/S = GLOB.storyteller_cache[storyteller]
 		if(S)
 			runnable_storytellers |= S
-	return runnable_storytellers
+	return runnable_storytellers*/
+	return //STORY_TODO
 
 
 

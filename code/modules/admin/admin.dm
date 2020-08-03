@@ -511,10 +511,10 @@ ADMIN_VERB_ADD(/datum/admins/proc/access_news_network, R_ADMIN, FALSE)
 		return
 
 	var/dat = "<center><B>Game Panel</B></center><hr>"
-	if(get_storyteller() && (SSticker.current_state != GAME_STATE_PREGAME))
+/*	if(get_storyteller() && (SSticker.current_state != GAME_STATE_PREGAME))
 		dat += "<A href='?src=\ref[get_storyteller()]'>Storyteller Panel</A><br>"
 	else
-		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"
+		dat += "<A href='?src=\ref[src];c_mode=1'>Change Storyteller</A><br>"  STORY_TODO*/
 
 	dat += {"
 		<BR>

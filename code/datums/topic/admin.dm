@@ -730,8 +730,8 @@
 	require_perms = list(R_ADMIN)
 
 /datum/admin_topic/check_antagonist/Run(list/input)
-	GLOB.storyteller.storyteller_panel()
-
+//	GLOB.storyteller.storyteller_panel()
+	return //STORY_TODO
 
 /datum/admin_topic/c_mode
 	keyword = "c_mode"
@@ -751,7 +751,7 @@
 
 /datum/admin_topic/c_mode2/Run(list/input)
 	master_storyteller = input["c_mode2"]
-	set_storyteller(master_storyteller) //This does the actual work
+//STORY_TODO	set_storyteller(master_storyteller) //This does the actual work
 	log_admin("[key_name(usr)] set the storyteller to [master_storyteller].")
 	message_admins("\blue [key_name_admin(usr)] set the storyteller to [master_storyteller].", 1)
 	source.Game() // updates the main game menu
@@ -1198,10 +1198,10 @@
 	require_perms = list(R_MOD|R_ADMIN)
 
 /datum/admin_topic/traitor/Run(list/input)
-	if(!GLOB.storyteller)
+/*STORY_TODO	if(!GLOB.storyteller)
 		alert("The game hasn't started yet!")
 		return
-
+*/
 	var/mob/M = locate(input["traitor"])
 	if(!ismob(M))
 		to_chat(usr, "This can only be used on instances of type /mob.")

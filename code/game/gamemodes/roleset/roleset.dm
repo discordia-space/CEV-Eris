@@ -62,9 +62,9 @@
 		if(!(temp.bantype in candidate.current.client.prefs.be_special_role))
 			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] has special role [temp.bantype] disabled"))
 			continue
-		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
+/*		if(GLOB.storyteller && GLOB.storyteller.one_role_per_player && candidate.antagonist.len)
 			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [candidate.antagonist[1]] and can't be two antags"))
-			continue
+			continue STORY_TODO */
 		if(player_is_antag_id(candidate,antag))
 			if (report) to_chat(report, SPAN_NOTICE("Failure: [candidate] is already a [antag]"))
 			continue
@@ -124,7 +124,7 @@
 //We will first calculate how many antags to spawn, and then attempt to make that many
 /datum/storyevent/roleset/trigger_event(var/severity = EVENT_LEVEL_ROLESET)
 
-	calc_target_quantity()
+//STORY_TODO	calc_target_quantity()
 	if (!target_quantity || target_quantity <= 0)
 		//Something is completely wrong, abort!
 		cancel(severity, 0.0)
@@ -186,7 +186,7 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
-			
+
 		if ( success_quantity > 0 )
 			// At least one antag has spawned
 			return TRUE
@@ -220,6 +220,7 @@
 
 
 //Figure out how many of this antag we're going to spawn
+/* STORY_TODO
 /datum/storyevent/roleset/proc/calc_target_quantity()
 	//Start by zeroing these to cancel any leftover values from last run
 	target_quantity = 0
@@ -238,4 +239,4 @@
 	if (scaling_threshold && num_crew >= scaling_threshold)
 		target_quantity += round(num_crew / scaling_threshold)
 
-	target_quantity = min(target_quantity, max_quantity)
+	target_quantity = min(target_quantity, max_quantity) */

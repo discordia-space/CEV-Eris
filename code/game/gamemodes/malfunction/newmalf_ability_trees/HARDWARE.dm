@@ -105,7 +105,8 @@
 		timer--
 
 	SSticker.station_explosion_cinematic(0,null)
-	if(get_storyteller())
+/*	if(get_storyteller())
 		SSticker.ship_was_nuked = TRUE
 
-
+STORY_TODO
+*/
