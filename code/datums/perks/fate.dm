@@ -137,7 +137,7 @@
 				/obj/item/weapon/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
 	W = new W(T)
-	W.desc += " Has inscribed \"[holder.last_name]\" family."
+	W.desc += " It has been inscribed with the \"[holder.last_name]\" family name."
 	var/oddities = rand(2,4)
 	var/list/stats = ALL_STATS
 	var/list/final_oddity = list()
