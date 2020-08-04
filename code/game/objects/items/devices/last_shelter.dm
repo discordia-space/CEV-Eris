@@ -10,8 +10,6 @@
 	var/last_teleport = -15 MINUTES
 	var/scan = FALSE
 
-/obj/item/device/last_shelter/New()
-
 /obj/item/device/last_shelter/attack_self(mob/user)
 	if(world.time >= (last_teleport + cooldown))
 		to_chat(user, SPAN_NOTICE("The [src] scans deep space for a cruciforms, it's will take a while..."))
@@ -20,8 +18,12 @@
 		var/obj/item/weapon/implant/core_implant/cruciform/cruciform = get_cruciform()
 		if(cruciform)
 			scan = FALSE
-			user.put_in_hands(cruciform)
-			to_chat(user, SPAN_NOTICE("The [src] has founded a losted cruciform in a deep space. Now this fate of the disciple rests in your hands."))
+			if(istype(src.loc, /mob/living/carbon/human))
+				user.put_in_hands(cruciform)
+				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform in a deep space. Now this fate of the disciple rests in your hands."))
+			else
+				visible_message(SPAN_NOTICE("[src] drops [cruciform]."))
+				cruciform.forceMove(get_turf(src))
 		else
 			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms in deep space. You can try to use [src] again later."))
 			scan = FALSE
@@ -33,8 +35,8 @@
 		to_chat(user, SPAN_WARNING("The [src] needs time to recharge!"))
 
 /obj/item/device/last_shelter/proc/get_cruciform()
-	var/mob/observer/ghost/ghost = request_player()
-	if(!ghost)
+	var/datum/mind/MN = request_player()
+	if(!MN)
 		return FALSE
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	for(var/stat in ALL_STATS)
@@ -44,30 +46,37 @@
 	H.stats.addPerk(pick(/datum/perk/survivor, /datum/perk/selfmedicated, /datum/perk/vagabond, /datum/perk/merchant, /datum/perk/inspiration))
 	var/obj/item/weapon/implant/core_implant/cruciform/cruciform = new /obj/item/weapon/implant/core_implant/cruciform(src)
 	cruciform.add_module(new CRUCIFORM_CLONING)
+	cruciform.activated = TRUE
+	MN.name = H.real_name
+	MN.assigned_role = "NT disciple"
+	MN.original = H
 	for(var/datum/core_module/cruciform/cloning/M in cruciform.modules)
 		M.write_wearer(H)
-		M.ckey = ghost.ckey
-		M.mind = ghost.mind
+		M.ckey = MN.key
+		M.mind = MN
 	qdel(H)
 	return cruciform
 
 /obj/item/device/last_shelter/proc/request_player()
 	var/agree_time_out = FALSE
 	var/request_timeout = 60 SECONDS
-	var/mob/observer/ghost/ghost
+	var/datum/mind/MN
 
 	for(var/mob/observer/ghost/O in GLOB.player_list)
 		if(O.client)
-			usr = O
-			usr << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
+			O << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
 			if(alert(O, "Do you want to be cloned as NT disciple? Hurry up, you have 60 seconds to make choice!","Player Request","OH YES","No, I'm autist") == "OH YES")
 				if(!agree_time_out)
-					if(ghost)
-						to_chat(usr, SPAN_WARNING("Somebody already took this place."))
+					if(MN)
+						to_chat(O, SPAN_WARNING("Somebody already took this place."))
 						return
-					ghost = usr
-					qdel(usr)
+
+					O.mind = new /datum/mind(O.ckey)
+					MN = O.mind
+				else
+					to_chat(O, SPAN_WARNING("You are too slow. Try to be faster next time."))
+					return
 
 	sleep(request_timeout)
 	agree_time_out = TRUE
-	return ghost
+	return MN

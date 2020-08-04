@@ -1,17 +1,3 @@
-/obj/item/weapon/melee/chainofcommand
-	name = "chain of command"
-	desc = "A tool used by great men to placate the frothing masses."
-	icon_state = "chain"
-	item_state = "chain"
-	flags = CONDUCT
-	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_DANGEROUS
-	throwforce = WEAPON_FORCE_DANGEROUS
-	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 4)
-	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
-
-
 /obj/item/weapon/melee/toolbox_maul
 	name = "toolmop the maul"
 	desc = "Toolbox tied to mop. A weapon of choice."
@@ -97,16 +83,3 @@
 		break_apart(user)
 		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
 		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))
-
-
-/obj/item/weapon/melee/nailstick
-	name = "nailed stick"
-	desc = "Stick with some nails in it. Looks sharp enough."
-	icon_state = "hm_spikeclub"
-	item_state = "hm_spikeclub"
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_NORMAL
-	origin_tech = list(TECH_COMBAT = 2)
-	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
-	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY

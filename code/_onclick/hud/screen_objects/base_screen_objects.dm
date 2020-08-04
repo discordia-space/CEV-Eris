@@ -1318,7 +1318,7 @@ obj/screen/fire/DEADelize()
 /obj/screen/toggle_invetory
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "b-open"
-	name = "toggle invetory"
+	name = "toggle inventory"
 	screen_loc = "1,0"
 
 /obj/screen/toggle_invetory/proc/hideobjects()

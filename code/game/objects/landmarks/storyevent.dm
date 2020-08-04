@@ -1,3 +1,14 @@
+/obj/landmark/storyevent
+	alpha = 124
+	var/navigation = ""
+
+/obj/landmark/storyevent/Initialize()
+	. = ..()
+
+	if (!(navigation))
+		var/proposition = get_landmark_area()
+		navigation = "But you forgot where you left it. Oops. Maybe it's somewhere near [proposition]?"
+
 /obj/landmark/storyevent/proc/is_visible() //Return TRUE if someone sees this place
 	for(var/mob/living/M in view(world.view,src))
 		if(M.client)
@@ -14,21 +25,12 @@
 /obj/landmark/storyevent/midgame_stash_spawn
 	name = "midgame stash spawn"
 	icon_state = "spy-blue"
-	alpha = 124
-	var/navigation = ""
-
-/obj/landmark/storyevent/midgame_stash_spawn/Initialize()
-	var/proposition = get_landmark_area()
-	navigation = "But you forgot where you left it. Oops. Maybe it's somewhere near [proposition]?"
 
 /obj/landmark/storyevent/hidden_vent_antag
 	name = "hidden-vent-antag"
 	icon_state = "spy-green"
-	alpha = 124
-	var/navigation = "But you forgot where you left it. Oops."
 
 /obj/landmark/storyevent/merc_spawn
 	name = "mercenary-spawn"
 	icon_state = "spy-green"
-	alpha = 124
-	var/navigation = "This marks Serbia, it is our land"
+	navigation = "This marks Serbia, it is our land."

@@ -88,7 +88,7 @@
 
 /datum/craft_recipe/weapon/nailed_bat
 	name = "nailed bat"
-	result = /obj/item/weapon/melee/nailstick
+	result = /obj/item/weapon/tool/nailstick
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_WOOD),
 		list(/obj/item/stack/rods, 3, "time" = 50)
@@ -212,4 +212,19 @@
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 50), //Secure it
 		list(/obj/item/stack/cable_coil, 2, "time" = 10), //Wire it up
 		list(QUALITY_WIRE_CUTTING, 30, "time" = 50), //Fix the wires
+	)
+
+/datum/craft_recipe/weapon/lasersmg
+	name = "Lasblender"
+	result = /obj/item/weapon/gun/energy/lasersmg
+	steps = list(
+		list(/obj/item/weapon/gun/projectile/automatic/atreides, 1),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 10),
+		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
+		list(/obj/item/weapon/computer_hardware/led, 1),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(/obj/item/weapon/stock_parts/capacitor, 1, "time" = 5),
+		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
+		list(QUALITY_ADHESIVE, 15, 70)
 	)

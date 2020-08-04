@@ -11,7 +11,7 @@
 
 
 	event_type = /datum/event/hivemind
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.80)
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.9) //bit more common
 	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE, TAG_NEGATIVE, TAG_SCARY)
 //============================================
 
@@ -20,7 +20,7 @@
 
 
 /datum/event/hivemind/announce()
-	level_seven_announcement()
+	level_eight_announcement() //new announcment so the crew doesn't have to fuck around trying to figure out if its a blob, hivemind, or a literal fungus
 
 
 /datum/event/hivemind/start()

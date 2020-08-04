@@ -171,6 +171,7 @@
 /datum/shuttle/autodock/multi/antag/mercenary
 	name = "Mercenary"
 	warmup_time = 0
+	move_time = 180
 	cloaked = 0
 	destination_tags = list(
 		"nav_merc_northeast",

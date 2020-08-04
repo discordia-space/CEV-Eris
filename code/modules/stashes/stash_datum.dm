@@ -167,10 +167,10 @@ This file contains the underlying code for stash datums
 
 	else
 		if ((directions & DIRECTION_LANDMARK) && prob(50))
-			//Landmark is interesting, high probability to do that
+			//Landmark returns the unique navigation text tied to the landmark object, failing this, the area it is within.
 			selected_direction = DIRECTION_LANDMARK
 		else
-			//Coords is the fallback
+			//Coords is the fallback, and returns exact coordinates.
 			selected_direction = DIRECTION_COORDS
 
 

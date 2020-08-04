@@ -1,5 +1,6 @@
 /obj/item/organ/internal
 	var/list/owner_verbs = list()
+	layer = ABOVE_LYING_MOB_LAYER
 
 /obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..()

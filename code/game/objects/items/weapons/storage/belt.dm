@@ -115,6 +115,7 @@
 	name = "EMT utility belt"
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
+	item_state = "emsbelt"
 
 /obj/item/weapon/storage/belt/tactical
 	name = "tactical belt"

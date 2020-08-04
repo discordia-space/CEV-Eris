@@ -330,6 +330,10 @@
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
+	
+	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
+		if(get_turf(S) in view(get_turf(owner)))
+			S.reg_break(owner)
 
 	var/list/possible_results
 	if(prob(positive_prob) && positive_prob_multiplier > 0)

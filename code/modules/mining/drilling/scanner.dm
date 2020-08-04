@@ -40,13 +40,13 @@
 			var/ore_type
 
 			switch(metal)
-				if("silicates", "carbonaceous rock", "iron")
+				if(MATERIAL_GLASS, MATERIAL_PLASTIC, MATERIAL_IRON)
 					ore_type = "surface minerals"
 				if(MATERIAL_GOLD, MATERIAL_SILVER, MATERIAL_DIAMOND)
 					ore_type = "precious metals"
 				if(MATERIAL_URANIUM)
 					ore_type = "nuclear fuel"
-				if("plasma", "osmium", "hydrogen")
+				if(MATERIAL_PLASMA, MATERIAL_OSMIUM, MATERIAL_TRITIUM)
 					ore_type = "exotic matter"
 
 			if(ore_type)
