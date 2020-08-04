@@ -124,10 +124,10 @@
 
 /datum/perk/noble/assign(mob/living/carbon/human/H)
 	..()
-	if(!holder.last_name)
-		qdel(src)
-		return
 	holder.sanity.environment_cap_coeff -= 1
+	if(!holder.last_name)
+		holder.stats.removePerk(src.type)
+		return
 	var/turf/T = get_turf(holder)
 	var/obj/item/W = pickweight(list(
 				/obj/item/weapon/tool/knife/ritual = 0.5,
@@ -137,7 +137,7 @@
 				/obj/item/weapon/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
 	W = new W(T)
-	W.name = "[holder.last_name] family [W.name]"
+	W.desc += " Has inscribed \"[holder.last_name]\" family."
 	var/oddities = rand(2,4)
 	var/list/stats = ALL_STATS
 	var/list/final_oddity = list()
