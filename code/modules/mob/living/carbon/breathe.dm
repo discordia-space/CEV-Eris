@@ -72,6 +72,8 @@
 		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
+		if(!smoke || !smoke.reagents)
+			return
 		if(smoke.reagents.total_volume)
 			smoke.reagents.trans_to_mob(src, 5, CHEM_INGEST, copy = 1)
 			smoke.reagents.trans_to_mob(src, 5, CHEM_BLOOD, copy = 1)
