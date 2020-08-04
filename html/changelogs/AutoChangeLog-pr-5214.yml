@@ -1,0 +1,4 @@
+author: Tea-Primoris
+delete-after: true
+changes:
+  - bugfix: Things won't fall through catwalks on round start.
