@@ -33,7 +33,7 @@
 	. = ..()
 	user.remove_cursor()
 
-/obj/item/weapon/gun/dropped(var/mob/living/user)
+/obj/item/weapon/gun/dropped(mob/living/user)
 	user.remove_cursor()
 	. = ..()
 
