@@ -66,30 +66,30 @@
 			{{for data.categories}}
 				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
 			{{empty}}
-				Something wrong, ask devs for help.
+				Some retard created trade station without categories, or it is bug, tell it to devs.
 			{{/for}}
+			<br>
+			<hr>
 			{{if data.current_category}}
 				{{if data.goods}}
 					<table class='item'>
 						<tr>
-							<th>Name
-							<th>Price
-							<th>Cart
-						</tr>
+							<td>Name
+							<td>Price
+							<td>Cart
 						{{for data.goods}}
 							<tr>
 								<td>{{:value.name}}
 								<td>{{:value.price}}
 								<td>
-									{{:helper.link("", 'minus', {'PRG_cart_remove' : index}, value.count ? null : 'disabled')}}
-									{{:+value.count}}
-									{{:helper.link("", 'plus', {'PRG_cart_add' : index})}}
-								</td>
-							</tr>
+									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index})}}
+									<div class="link {{if value.count == 0}}disabled{{else}}selected{{/if}}">{{:value.count}}</div>
+									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
+									
 						{{/for}}
 					</table>
 				{{else}}
-					<div class="link withToolTip">Please choose category.<span class="ImTooltip">If category already choosed, ask devs for help.</span></div>
+					Please choose category.
 				{{/if}}
 			{{/if}}
 		</div>

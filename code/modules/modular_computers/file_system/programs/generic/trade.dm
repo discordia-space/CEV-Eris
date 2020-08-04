@@ -31,7 +31,7 @@
 	if(href_list["PRG_goods_category"])
 		if(!choosed_category || length(station.assortiment) < choosed_category)
 			choosed_category = 0
-		choosed_category = isnum(href_list["PRG_goods_category"]) ? href_list["PRG_goods_category"] : 0
+		choosed_category = href_list["PRG_goods_category"] ? text2num(href_list["PRG_goods_category"]) : 0
 		return 1
 
 	if(href_list["PRG_trade_screen"])
@@ -70,7 +70,7 @@
 
 	if(href_list["PRG_station"])
 		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_station"]))
-		choosed_category = 1
+		choosed_category = 0
 		station = S
 		shoppinglist.Cut()
 		return 1
@@ -177,7 +177,8 @@
 		for(var/i in PRG.station.assortiment)
 			.["categories"] += list(list("name" = i, "index" = PRG.station.assortiment.Find(i)))
 		if(PRG.choosed_category)
-			var/list/assort = PRG.station.assortiment[PRG.choosed_category]
+			var/catname = PRG.station.assortiment[PRG.choosed_category]
+			var/list/assort = PRG.station.assortiment[catname]
 			if(islist(assort))
 				for(var/path in assort)
 					if(!ispath(path, /atom/movable))
@@ -188,7 +189,7 @@
 					.["goods"] += list(list(
 						"name" = initial(AM.name),
 						"price" = price,
-						"count" = count,
+						"count" = count ? count : 0,
 						"index" = assort.Find(path)
 					))
 					.["total"] += price * count
