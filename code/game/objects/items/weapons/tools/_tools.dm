@@ -758,10 +758,7 @@
 
 //Returns the amount of fuel in tool
 /obj/item/weapon/tool/proc/get_fuel()
-	var/reagents_amount = 0
-	if(reagents)
-		reagents_amount = reagents.get_reagent_amount("fuel")
-	return reagents_amount
+	return ( reagents ? reagents.get_reagent_amount("fuel") : 0 )
 
 /obj/item/weapon/tool/proc/consume_fuel(var/volume)
 	if (get_fuel() >= volume)
