@@ -155,6 +155,9 @@
 		to_chat(owner, SPAN_WARNING("We are regenerating our body!"))
 		return
 
+	if(alert("Are you sure you want to detach? You will lose your old body and half of your evolved abilities and gene points.",,"Yes","No") == "No")
+		return
+
 	gibs(owner.loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
 	visible_message(SPAN_DANGER("Something bursts out of [owner]'s chest!"))
 	removed() //removed() does all of the work
@@ -256,6 +259,7 @@
 	icon_state = "carrion_maw"
 	organ_tag = BP_MAW
 	var/hunger = 0
+	var/last_call = -5 MINUTES
 
 	owner_verbs = list(
 		/obj/item/organ/internal/carrion/maw/proc/consume_flesh,
@@ -344,21 +348,26 @@
 
 /obj/item/organ/internal/carrion/maw/proc/spider_call()
 	set category = "Carrion"
-	set name = "Spider call (25)"
+	set name = "Spider call (30)"
 
-	if(owner.check_ability(25))
+	if(last_call + 5 MINUTES > world.time)
+		to_chat(owner, SPAN_WARNING("Your maw is tired, you can only call for help every 5 minutes."))
+		return
+
+	if(owner.check_ability(30))
 		playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8) //Same trick as with the fuhrer
 		visible_message(SPAN_DANGER("[owner] emits a frightening screech as you feel the ground tramble!"))
 		for (var/obj/structure/burrow/B in find_nearby_burrows())
-			for(var/i = 1, i <= 3 ,i++) //3 per burrow
+			for(var/i = 1, i <= 4 ,i++) //4 per burrow
 				var/obj/structure/burrow/origin = SSmigration.choose_burrow_target(null, TRUE, 100)
 				var/spider_to_spawn = pickweight(list(/mob/living/carbon/superior_animal/giant_spider = 4,\
 					/mob/living/carbon/superior_animal/giant_spider/nurse = 2,\
 					/mob/living/carbon/superior_animal/giant_spider/hunter = 2))
 				new spider_to_spawn(B)
 				origin.migrate_to(B, 3 SECONDS, 0)
+		last_call = world.time
 
 /obj/item/organ/internal/carrion/maw/proc/toxic_puddle()
 	set category = "Carrion"
