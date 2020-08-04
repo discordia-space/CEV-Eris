@@ -7,7 +7,7 @@
 
 /obj/item/weapon/implant/carrion_spider/breeding/Initialize()
 	..()
-	number_of_spiders = rand(10, 15)
+	number_of_spiders = rand(9, 12)
 
 /obj/item/weapon/implant/carrion_spider/breeding/activate()
 	..()
