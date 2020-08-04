@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: the maximum value in the sanity bar is now the player's maximum sanity
-      value.
