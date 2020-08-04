@@ -4,7 +4,7 @@
 
 #define BIOMATTER_PER_SHEET 		1
 #define CONTAINER_PIXEL_OFFSET 		6
-#define BIOMATTER_SHEETS_PER_TIME  5 // X sheets per second
+#define BIOMATTER_SHEETS_PER_TIME  5 // X sheets per 2 seconds
 
 /obj/machinery/biomatter_solidifier
 	name = "biomatter solidifier"
