@@ -82,7 +82,7 @@
 /obj/item/weapon/tool_upgrade/reinforcement/plasmablock
 	name = "plasmablock"
 	desc = "A plasmablock is way more efficient to dissipate heat than classic heatsinks or waterblocks thanks to the tremendous heat-transfer capacity of liquid phoron. The fluid that is actively pumped through a radiator and cooled by fans. It greatly extends the lifespan of power tools."
-	icon_state = "heatsink"
+	icon_state = "plasmablock"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 1)
 
 /obj/item/weapon/tool_upgrade/reinforcement/plasmablock/New()
@@ -100,7 +100,7 @@
 /obj/item/weapon/tool_upgrade/reinforcement/rubbermesh
 	name = "rubber mesh"
 	desc = "A rubber mesh that can wrapped around sensitive parts of a tool to protecting them from impacts and debris."
-	icon_state = "guard"
+	icon_state = "rubbermesh"
 	matter = list(MATERIAL_PLASTIC = 3)
 
 /obj/item/weapon/tool_upgrade/reinforcement/rubbermesh/New()
@@ -247,7 +247,7 @@
 /obj/item/weapon/tool_upgrade/productivity/antistaining
 	name = "anti-staining paint"
 	desc = "Applying a thin coat of this paint on a tool prevents stains, dirt or dust to adhere to its surface. Everyone work better and faster with clean tools."
-	icon_state = "paint_red"
+	icon_state = "antistaining"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
 
 /obj/item/weapon/tool_upgrade/productivity/antistaining/New()
@@ -263,7 +263,7 @@
 /obj/item/weapon/tool_upgrade/productivity/booster
 	name = "booster"
 	desc = "When you do not care about energy comsumption and just want to get shit done quickly. This device shunts the power safeties of your tool whether it uses fuel or electricity."
-	icon_state = "motor"
+	icon_state = "booster"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1)
 
 /obj/item/weapon/tool_upgrade/productivity/booster/New()
@@ -281,7 +281,7 @@
 /obj/item/weapon/tool_upgrade/productivity/injector
 	name = "plasma injector"
 	desc = "If the words \"safety regulations\" do not mean anything to you, you may consider installing this fine piece of technology on your tool. It injects small amounts of plasma in the fuel mix before combustion to greatly increase its power output, making all kinds of tasks easier to perform."
-	icon_state = "motor"
+	icon_state = "injector"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 2)
 
 /obj/item/weapon/tool_upgrade/productivity/booster/New()
@@ -367,7 +367,7 @@
 /obj/item/weapon/tool_upgrade/refinement/compensatedbarrel
 	name = "gravity compensated barrel"
 	desc = "A barrel extension for welding tools that integrates a miniaturized gravity generator that help keep the torch steady by compensating the weight of the tool."
-	icon_state = "ported_barrel"
+	icon_state = "compensatedbarrel"
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GOLD = 1)
 
 /obj/item/weapon/tool_upgrade/refinement/compensatedbarrel/New()
@@ -387,7 +387,7 @@
 /obj/item/weapon/tool_upgrade/refinement/vibcompensator
 	name = "vibration compensator"
 	desc = "A ground-breaking innovation that dampens the vibration of a tool by emitting sound waves in a specific pattern. It does not make any sense but neither do you by installing that on your tool."
-	icon_state = "ported_barrel"
+	icon_state = "vibcompensator"
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GOLD = 1)
 
 /obj/item/weapon/tool_upgrade/refinement/vibcompensator/New()
@@ -578,7 +578,7 @@
 /obj/item/weapon/tool_upgrade/augment/hydraulic
 	name = "hydraulic circuits"
 	desc = "A complex set of hydraulic circuits that can be installed on a tool to greatly improve its functions. It's loud as hell though so do not plan on being stealthy."
-	icon_state = "dampener"
+	icon_state = "hydraulic"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 3)
 
 /obj/item/weapon/tool_upgrade/augment/hydraulic/New()

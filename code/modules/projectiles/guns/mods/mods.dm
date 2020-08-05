@@ -211,7 +211,7 @@
 /obj/item/weapon/gun_upgrade/mechanism/battery_shunt
 	name = "Moebius \"Thunder\" battery shunt"
 	desc = "This experimental battery shunt is a cutting edge tool attachment which bypasses battery protection circuits to deliver the maximum amount of power in the shortest amount of time."
-	icon_state = "dampener"
+	icon_state = "battery_shunt"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/weapon/gun_upgrade/mechanism/battery_shunt/New()
@@ -229,7 +229,7 @@
 /obj/item/weapon/gun_upgrade/mechanism/overdrive
 	name = "Moebius \"Tesla\" overdrive chip"
 	desc = "This experimental chip is a cutting edge tool attachment which bypasses power management protocols to dramatically increase the rate of fire at the cost of a reduced stopping power."
-	icon_state = "dampener"
+	icon_state = "overdrive"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/weapon/gun_upgrade/mechanism/overdrive/New()
@@ -247,7 +247,7 @@
 /obj/item/weapon/gun_upgrade/trigger/honker
 	name = "Moebius \"Banana Split\" emitter"
 	desc = "This experimental trigger mechanism taps directly into the bluespace dimension and refines its energy to produce the purest sounds possible."
-	icon_state = "Danger_Zone"
+	icon_state = "honker"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 
 /obj/item/weapon/gun_upgrade/trigger/honker/New()
@@ -262,7 +262,7 @@
 /obj/item/weapon/gun_upgrade/barrel/toxin_coater
 	name = "Moebius \"Black Mamba\" toxin coater"
 	desc = "This experimental barrel coats bullets with a thin layer of toxins just before they leave the weapon. Do not lick it."
-	icon_state = "Forged_barrel"
+	icon_state = "toxin_coater"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 2)
 
 /obj/item/weapon/gun_upgrade/barrel/toxin_coater/New()
@@ -278,7 +278,7 @@
 /obj/item/weapon/gun_upgrade/barrel/isotope_diffuser
 	name = "Moebius \"Atomik\" isotope diffuser"
 	desc = "This experimental barrel constantly sprays a thin mist of radioactive isotopes to make projectiles leaving the weapons deadlier, whether bullets, lasers or energy bolts. Do not put it in your mouth."
-	icon_state = "Forged_barrel"
+	icon_state = "isotope_diffuser"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_URANIUM = 2)
 
 /obj/item/weapon/gun_upgrade/barrel/isotope_diffuser/New()
