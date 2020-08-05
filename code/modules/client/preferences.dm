@@ -238,6 +238,8 @@
 		character.nutrition = rand(250, 450)
 
 	for(var/options_name in setup_options)
+		if(!get_option(options_name))
+			continue
 		get_option(options_name).apply(character)
 
 
