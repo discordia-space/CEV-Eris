@@ -17,9 +17,10 @@
 
 /obj/item/weapon/material/star/throw_impact(atom/hit_atom)
 	..()
-	if(material.radioactivity>0 && isliving(hit_atom))
-		var/mob/living/M = hit_atom
-		M.adjustToxLoss(rand(20,40))
+	if(material)
+		if(material.radioactivity>0 && isliving(hit_atom))
+			var/mob/living/M = hit_atom
+			M.adjustToxLoss(rand(20,40))
 
 /obj/item/weapon/material/star/ninja
 	default_material = null
