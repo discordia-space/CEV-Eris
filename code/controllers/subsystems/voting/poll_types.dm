@@ -155,8 +155,8 @@
 	Evacuate Ship
 **********************/
 /datum/poll/evac
-	name = "Evacuate Ship"
-	question = "Do you want to call evacuation and restart the round?"
+	name = "Initiate Bluespace Jump"
+	question = "Do you want to initiate a bluespace jump and restart the round?"
 	time = 120
 	minimum_win_percentage = 0.6
 	cooldown = 20 MINUTES
