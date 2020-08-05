@@ -1,4 +1,0 @@
-author: soslow4u
-delete-after: true
-changes:
-  - bugfix: Mobs that got thrown at open space are falling down as expected.

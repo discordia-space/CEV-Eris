@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - bugfix: hydraulic calmps and mounted sleepers only interact with adjacent objects
-      / mobs.
