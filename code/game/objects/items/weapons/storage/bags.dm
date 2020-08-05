@@ -64,13 +64,22 @@
 	else
 		icon_state = "trashbag3"
 
-/obj/item/storage/bag/trash/holding
+/obj/item/weapon/storage/bag/trash/holding
 	name = "trash bag of holding"
 	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
 	icon_state = "bluetrashbag"
-	storage_slots = 60
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
+
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	if(contents.len == 0)
+		icon_state = "bluetrashbag"
+	else if(contents.len < 12)
+		icon_state = "bluetrashbag1"
+	else if(contents.len < 21)
+		icon_state = "bluetrashbag2"
+	else
+		icon_state = "bluetrashbag3"
 
 // -----------------------------
 //        Plastic Bag

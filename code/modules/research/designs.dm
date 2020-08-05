@@ -185,7 +185,7 @@ other types of metals and chemistry for reagents).
 /datum/design/research/item/trashbag_holding
 	name = "'Trashbag of Holding', an infinite capacity trashbag prototype"
 	desc = "Using localized pockets of bluespace this trashbag prototype offers incredible storage capacity with the contents weighting nothing."
-	build_path = /obj/item/storage/bag/trash/holding
+	build_path = /obj/item/weapon/storage/bag/trash/holding
 	sort_string = "VAEAD"
 
 /datum/design/research/item/oresatchel_holding
