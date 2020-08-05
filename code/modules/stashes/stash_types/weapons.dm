@@ -102,7 +102,7 @@
  The toilets don't work, the air has been rebreathed by seventy mouths seven million times, and I can smell the damn cook's halitosis coming out the one working air vent because he's sleeping next to the one working scrubber.<br>\
  Half of the crew wants to hit the pods, the other half wants their bonus pay. I know what half I'm in, and we're meeting at %D. Fuck this captain. Once we find some softsuits, that is."
 
-
+/*
 /datum/stash/weapon/mutiny/warden
 	contents_list_extra = list(/obj/random/gun_normal = 3, /obj/random/ammo = 6)
 	directions = DIRECTION_IMAGE
@@ -110,7 +110,7 @@
  You and I both know this rubber buckshot bullshit is going to get us all killed when the convicts realize they outnumber us sixty to one.<br>\
  Sarish tells me there's a stash of real heaters wherever the hell this is.<br>\
  Crazy bitch sends a picture instead of a fucking coordinate. %D"
-
+*/
 
 
 /datum/stash/weapon/mutiny/starvation
