@@ -5,8 +5,7 @@
 	{width: auto;}
 </style>
 <table>
-	<tr>
-		<td class="link withToolTip">
+	<tr><td class="link withToolTip">
 			Trade Station{{if data.station_name}}: {{:data.station_name}}{{/if}}
 			<span class="ImTooltip">
 				<span class="right_aligned">{{:helper.link('X', null, {'PRG_station' : null}, null, 'redButton')}}</span>
@@ -26,6 +25,7 @@
 					<br>
 				</div>
 			</span>
+	<tr>
 		<td class="link withToolTip">
 			Receiving Beacon{{if data.receiving}}: {{:data.receiving}}{{/if}}
 			<span class="ImTooltip">
@@ -68,15 +68,14 @@
 			{{empty}}
 				Some retard created trade station without categories, or it is bug, tell it to devs.
 			{{/for}}
-			<br>
-			<hr>
+			<br><br>
 			{{if data.current_category}}
 				{{if data.goods}}
 					<table class='item'>
 						<tr>
-							<td>Name
-							<td>Price
-							<td>Cart
+							<td class="bottom_bordered">Name
+							<td class="bottom_bordered">Price
+							<td class="bottom_bordered">Cart
 						{{for data.goods}}
 							<tr>
 								<td>{{:value.name}}

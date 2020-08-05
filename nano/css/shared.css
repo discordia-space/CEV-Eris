@@ -668,8 +668,12 @@ table.pmon td, table.pmon th {
 
 /* Table Stuffs for manifest*/
 
+.bottom_bordered{
+    border-bottom: 1px solid #aaf
+}
+
 th.command {
-    background: #3333FF;
+    background: #3333ff;
     font-weight: bold;
     color: #ffffff;
 }

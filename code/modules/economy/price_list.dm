@@ -6,7 +6,7 @@
 
 // The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
 /atom/movable/proc/get_item_cost(var/export = FALSE)
-	return price_tag
+	. = price_tag
 
 
 //***************//
@@ -933,7 +933,7 @@
 	price_tag = 50
 
 /obj/item/pizzabox/get_item_cost()
-	return get_item_cost(pizza)
+	. = get_item_cost(pizza)
 
 
 //***************//
@@ -972,3 +972,11 @@
 
 /obj/item/bluespace_crystal
 	price_tag = 400
+
+//machinery
+/obj/machinery/portable_atmospherics
+	price_tag = 200
+
+/obj/machinery/portable_atmospherics/canister/get_item_cost(export = FALSE)
+	. = price_tag
+	

@@ -34,7 +34,7 @@
 			/obj/item/weapon/tool/omnitool,
 			/obj/structure/reagent_dispensers/fueltank,
 			/obj/machinery/floodlight
-		),
+		)
 	)
 
 	offer_types = list()
