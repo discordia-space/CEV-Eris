@@ -57,7 +57,7 @@
 /datum/ritual/cruciform/base/reveal
 	name = "Reveal Adversaries"
 	phrase = "Et fumus tormentorum eorum ascendet in saecula saeculorum: nec habent requiem die ac nocte, qui adoraverunt bestiam, et imaginem ejus, et si quis acceperit caracterem nominis ejus."
-	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps, and sometimes let you sense a changeling."
+	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps, and sometimes let you sense a carrion."
 	power = 35
 
 /datum/ritual/cruciform/base/reveal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -83,9 +83,11 @@
 		was_triggired = TRUE
 	if (prob(20))
 		for(var/mob/living/carbon/human/target in range(14, H))
-			if(target.mind && target.mind.changeling)
-				to_chat(H, SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat."))
-				was_triggired = TRUE
+			for(var/organ in target.organs)
+				if (organ in subtypesof(/obj/item/organ/internal/carrion))
+					to_chat(H, SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat."))
+					was_triggired = TRUE
+					break
 	if (!was_triggired)
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 	return TRUE
