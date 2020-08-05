@@ -20,6 +20,10 @@
 		to_chat(owner_mob, SPAN_WARNING("[wearer]'s cruciform prevents activation"))
 		return
 
+	if(is_carrion(wearer))
+		to_chat(owner_mob, SPAN_WARNING("Another core inside prevents activation"))
+		return
+
 	if(active)
 		to_chat(owner_mob, SPAN_WARNING("[src] is already active"))
 		return
@@ -28,12 +32,13 @@
 	to_chat(owner_mob, SPAN_NOTICE("\The [src] is active"))
 
 	spawn(3.5 MINUTES)
-		if(wearer && istype(wearer) && !(wearer.stat == DEAD) && !is_neotheology_disciple(wearer) && active)
+		if(wearer && istype(wearer) && !(wearer.stat == DEAD) && !is_neotheology_disciple(wearer) && active && !is_carrion(wearer))
 			to_chat(wearer, SPAN_DANGER("The transformation is complete, you are not human anymore, you are something more"))
 			to_chat(owner_mob, SPAN_NOTICE("\The [src] was succesfull"))
 			wearer.make_carrion()
 			die()
 		else
+			active = FALSE
 			to_chat(owner_mob, SPAN_WARNING("Conversion failed."))
 
 /obj/item/weapon/implant/carrion_spider/infection/Process()
@@ -49,7 +54,7 @@
 				"You feel like something is taking control of you!",
 				"You feel weak, like something is growing inside of your body!"
 			))
-			wearer.apply_effect(30, AGONY, armor_value = 0, check_protection = FALSE) //Flat 30 agony damage
+			wearer.apply_effect(20, AGONY, armor_value = 0, check_protection = FALSE) //Flat 20 agony damage
 			to_chat(wearer, "\red <font size=3><b>[pain_message]</b></font>")
 		if(prob(1)) //around one limb per transformation
 			var/obj/item/organ/external/E = wearer.get_organ(pick(list(BP_L_ARM, BP_L_LEG, BP_R_ARM, BP_R_LEG)))
