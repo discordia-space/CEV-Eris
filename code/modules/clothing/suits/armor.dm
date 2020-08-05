@@ -349,21 +349,6 @@
 	price_tag = 600
 	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 
-//Makeshift chest rig. 
-/obj/item/clothing/suit/storage/vest/chestrig
-	name = "makeshift chest rig"
-	desc = "A makeshift chest rig made for carrying some stuff. Can carry four small items. Has little protective value.."
-	icon_state = "mchestrig"
-	item_state = "mchesrrig"
-	armor = list(
-		melee = 10,
-		bullet = 5,
-		energy = 5,
-		bomb = 5,
-		bio = 0,
-		rad = 0
-	)
-
 /*
  * Reactive Armor
  */
