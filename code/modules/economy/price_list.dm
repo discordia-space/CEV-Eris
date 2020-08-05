@@ -933,7 +933,7 @@
 	price_tag = 50
 
 /obj/item/pizzabox/get_item_cost()
-	. = get_item_cost(pizza)
+	. = pizza?.get_item_cost()
 
 
 //***************//
@@ -974,9 +974,33 @@
 	price_tag = 400
 
 //machinery
+
+/obj/machinery
+	price_tag = 100
+
+/obj/machinery/get_item_cost(export = FALSE)
+	. = ..()
+	for(var/atom/movable/i in component_parts)
+		. += i.get_item_cost()
 /obj/machinery/portable_atmospherics
 	price_tag = 200
 
+/obj/machinery/portable_atmospherics/canister
+
 /obj/machinery/portable_atmospherics/canister/get_item_cost(export = FALSE)
-	. = price_tag
-	
+	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
+
+/obj/item/weapon/circuitboard
+	price_tag = 150
+
+/obj/item/weapon/circuitboard/get_item_cost(export = FALSE)
+	. = ..()
+	for(var/atom/movable/i in req_components)
+		if(ispath(i))
+			. += initial(i.price_tag) * log(10, price_tag / 2)
+
+/obj/item/weapon/stock_parts
+	price_tag = 100
+/obj/item/weapon/stock_parts/get_item_cost(export = FALSE)
+	. = ..() * rating
+
