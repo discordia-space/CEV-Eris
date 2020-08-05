@@ -105,13 +105,19 @@
 	can_hold = list(/obj/item/weapon/ore)
 
 /obj/item/weapon/storage/bag/ore/holding
-	name = "mining satchel of holding"
-	desc = "A revolution in convenience, this satchel allows for infinite ore storage. It's been outfitted with anti-malfunction safety measures."
+	name = "satchel of holding"
+	desc = "A revolution in convenience, this satchel allows for infinite ore or produce storage. It's been outfitted with anti-malfunction safety measures."
 	icon_state = "satchel_bspace"
 	max_storage_space = INFINITY
 	max_w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 4, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
+	can_hold = list(/obj/item/weapon/ore,
+	                /obj/item/weapon/reagent_containers/food/snacks/grown,
+	                /obj/item/seeds,
+	                /obj/item/weapon/grown,
+	                /obj/item/weapon/reagent_containers/food/snacks/egg,
+	                /obj/item/weapon/reagent_containers/food/snacks/meat)
 
 // -----------------------------
 //          Produce bag
