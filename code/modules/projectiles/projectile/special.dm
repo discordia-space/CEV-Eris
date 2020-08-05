@@ -160,12 +160,13 @@
 /obj/item/projectile/flamer_lob/New()
 	.=..()
 
-/obj/item/projectile/flamer_lob/Move(var/atom/A)
+/obj/item/projectile/flamer_lob/Move(atom/A)
 	.=..()
 	life--
 	var/turf/T = get_turf(src)
-	new/obj/effect/decal/cleanable/liquid_fuel(T, 1 , 1)
-	T.hotspot_expose((T20C*2) + 380,500)
+	if(T)
+		new/obj/effect/decal/cleanable/liquid_fuel(T, 1 , 1)
+		T.hotspot_expose((T20C*2) + 380,500)
 	if(!life)
 		qdel(src)
 
