@@ -526,7 +526,9 @@ datum/projectile_data
 	return vents
 
 
-/proc/is_opaque(var/turf/T)
+/proc/is_opaque(turf/T)
+	if(!T)
+		return FALSE
 	if (T.opacity)
 		return TRUE
 	for(var/obj/O in T.contents)
