@@ -1,0 +1,7 @@
+author: TheShown911
+delete-after: true
+changes:
+  - tweak: carrion spiders can't attach to robots anymore
+  - balance: control spider has a 5 minute cooldown on each mob controled
+  - balance: control spiders can't control other carrions
+  - bugfix: 'fixes #5250'
