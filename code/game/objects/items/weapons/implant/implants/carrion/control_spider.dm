@@ -2,8 +2,9 @@
 	name = "control spider"
 	icon_state = "spiderling_control"
 	spider_price = 40
-	var/mob/living/captive_brain/host_brain
 	var/active = FALSE
+	var/last_use = - 5 MINUTES
+	var/mob/living/captive_brain/host_brain
 	var/datum/mind/owner_mind_last
 	var/mob/living/wearer_last
 	var/list/start_damage = list()
@@ -18,13 +19,16 @@
 	if(wearer.stat == DEAD)
 		to_chat(owner_mob, SPAN_WARNING("[wearer] is dead"))
 		return
-	if(wearer.has_brain_worms())
-		to_chat(owner_mob, SPAN_WARNING("There is something more powerful than you in the host"))
-		return
 	if(wearer == owner_mob)
 		to_chat(owner_mob, SPAN_DANGER("You feel dumb"))
 		return
-
+	if(wearer.has_brain_worms() || is_carrion(wearer))
+		to_chat(owner_mob, SPAN_DANGER("A parasite inside this body prevents spider influence."))
+		return
+	if(last_use + 5 MINUTES > world.time)
+		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 5 minutes to regenerate."))
+		return
+	
 	var/datum/mind/owner_mind = owner_mob.mind
 
 	to_chat(owner_mob, SPAN_NOTICE("You assume control of the host."))
@@ -42,6 +46,7 @@
 	wearer.mind?.transfer_to(host_brain)
 	owner_mind.transfer_to(wearer)
 	active = TRUE
+	last_use = world.time
 
 	addtimer(CALLBACK(src, .proc/return_mind), 1 MINUTES)
 
