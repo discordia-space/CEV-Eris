@@ -1,0 +1,4 @@
+author: Tea-Primoris
+delete-after: true
+changes:
+  - bugfix: Lowborns manifest status fixed
