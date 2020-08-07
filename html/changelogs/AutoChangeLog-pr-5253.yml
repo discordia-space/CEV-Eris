@@ -1,5 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - bugfix: agent ID and mental imprinters should be aveliable for other antags except
-      carrion
