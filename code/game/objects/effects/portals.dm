@@ -13,7 +13,7 @@
 	var/birthtime = 0
 	var/next_teleport
 	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
-	var/entropy_value = 2
+	var/entropy_value = 3
 
 /obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob

@@ -6,13 +6,14 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 
 /proc/bluespace_entropy(max_value=1, turf/T, minor_dristortion=FALSE)
 	if(minor_dristortion && prob(1))
-		GLOB.bluespace_entropy -= 20
+		GLOB.bluespace_entropy -= rand(25, 100)
 		bluespace_distorsion(T, minor_dristortion)
 	else
 		GLOB.bluespace_entropy += rand(0, max_value)
-		if(GLOB.bluespace_entropy >= 150)
+		var/entropy_cap = rand(100, 300)
+		if(GLOB.bluespace_entropy >= entropy_cap)
 			bluespace_distorsion(T, minor_dristortion)
-			GLOB.bluespace_entropy -= 150
+			GLOB.bluespace_entropy -= entropy_cap
 
 /proc/bluespace_distorsion(turf/T, minor_dristortion=FALSE)
 	var/distortion_value = rand(1, 100)
@@ -31,6 +32,7 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 	if(!origin)
 		return
 	var/list/turfs = list()
+	var/turf/picked
 	for(var/turf/T in trange(outer_range, origin))
 		if(istype(T,/turf/space)) continue
 		if(T.density) continue
@@ -38,8 +40,13 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		if(T.y >= world.maxy-TRANSITIONEDGE || T.y <= TRANSITIONEDGE)	continue
 		if(!inner_range || get_dist(origin, T) >= inner_range)
 			turfs += T
+
 	if(turfs.len)
-		return pick(turfs)
+		picked = pick(turfs)
+	else
+		picked = get_random_turf_in_range(origin, outer_range)
+	if(picked)
+		return picked
 
 /proc/get_random_turf_in_range(atom/origin, outer_range, inner_range)
 	origin = get_turf(origin)
@@ -56,34 +63,42 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		return pick(turfs)
 
 /proc/bluespace_gift(turf/T, minor_dristortion)
-	var/obj/item/weapon/oddity/O = pick(subtypesof(/obj/item/weapon/oddity))
-	new O(T)
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-	sparks.set_up(3, 0, T)
-	sparks.start()
+	var/amount = 1
+	var/chance_to_second = rand(2,10)
+	if(minor_dristortion)
+		chance_to_second = round(chance_to_second/2)
+	if(prob(chance_to_second))
+		amount = amount * 2
+	for(var/i=1 to amount)
+		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
+		new O(T)
+		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		sparks.set_up(3, 0, T)
+		sparks.start()
 
 /proc/bluespace_stranger(turf/T, minor_dristortion)
 	var/mob/living/simple_animal/hostile/stranger/S = new /mob/living/simple_animal/hostile/stranger(T)
-	if(minor_dristortion)
+	if(minor_dristortion && prob(90))
 		S.rapid = FALSE
 		S.empy_cell = TRUE
 
 /proc/bluespace_roaches(turf/T, minor_dristortion)
-	if(!minor_dristortion)
-		new /mob/living/carbon/superior_animal/roach/bluespace(T)
-		new /mob/living/carbon/superior_animal/roach/bluespace(T)
-		new /mob/living/carbon/superior_animal/roach/bluespace(T)
-		new /mob/living/carbon/superior_animal/roach/bluespace(T)
-	else
-		new /mob/living/carbon/superior_animal/roach/bluespace(T)
+	var/base_amount = rand(4,6)
+	var/prob_extra = rand(0, 15)
+	var/extra_amount = rand(0,2)
+	if(minor_dristortion)
+		base_amount = round(base_amount/2)
+	if(prob(prob_extra) && extra_amount)
+		base_amount += extra_amount
+	for(var/i=1 to base_amount)
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)
 
 /proc/trash_buble(turf/T, minor_dristortion)
-	var/amount = 10
+	var/amount = rand(10, 16)
 	if(minor_dristortion)
-		amount = 5
+		amount = round(amount/2)
 	for(var/i = 1 to amount)
-		var/turf/Ttarget = get_random_secure_turf_in_range(T, 4)
+		var/turf/Ttarget = get_random_turf_in_range(T, 5)
 		if(Ttarget)
 			new /obj/random/junk(Ttarget)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
