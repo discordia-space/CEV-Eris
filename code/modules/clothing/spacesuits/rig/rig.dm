@@ -363,7 +363,7 @@
 				M.drop_from_inventory(piece)
 			piece.forceMove(src)
 
-	if(active == TRUE) // dains power from the cell whenever the suit is sealed
+	if(active && cell) // dains power from the cell whenever the suit is sealed
 		cell.use(drain*0.1)
 
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.empty())

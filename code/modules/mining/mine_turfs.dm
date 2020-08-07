@@ -267,7 +267,7 @@
 
 	clear_ore_effects()
 	var/obj/item/weapon/ore/O = new mineral.ore (src)
-	if(istype(O))
+	if(istype(O) && geologic_data)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
 	return O

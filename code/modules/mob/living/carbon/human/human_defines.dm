@@ -63,6 +63,7 @@
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target = null
+	var/remoteviewer = FALSE //for Glassification breakdown
 	var/hand_blood_color
 
 	var/gunshot_residue

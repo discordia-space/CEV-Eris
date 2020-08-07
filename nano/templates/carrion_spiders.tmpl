@@ -1,0 +1,25 @@
+<!-- 
+Used In File(s): code\modules\organs\internal\carrion.dm
+ -->
+{{:helper.carrionMode()}} 
+<h2>Active Spiders:</h2>
+<div class="item">
+	<div class="itemContent">
+		{{:helper.link('Activate All', 'radiation', {'activate_all' : 1}, null, 'fixedLeft')}}
+	</div>
+</div>
+<table class='itemContent' style="width: 100%;">
+	<tr>
+		<td><b>Name</b></td>
+		<td><b>Location</b></td>
+		<td><b>Activation</b></td>
+	</tr>
+	{{for data.list_of_spiders}}
+		<tr>
+		<td>{{:value.name}}</td>
+		<td>{{:value.location}}</td>
+		<td>{{:helper.link('activate', 'circle-arrow-s', {'activate_spider' : value.spider})}}</td>
+		</tr>
+	{{/for}}
+</table>
+</div>

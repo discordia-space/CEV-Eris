@@ -1,18 +1,40 @@
-GLOBAL_LIST_EMPTY(sanity_drinks)
-GLOBAL_LIST_EMPTY(sanity_foods)
+//for style
+#define MAX_HUMAN_STYLE 14
+#define MIN_HUMAN_SYLE -10
 
-/proc/init_sanity_drinks()
-	var/list/drink_types = subtypesof(/datum/reagent/ethanol)
-	for(var/candidate in drink_types)
-		var/list/subtypes_candidate = subtypesof(candidate)
-		if(!subtypes_candidate.len)
-			GLOB.sanity_drinks += candidate
-	return GLOB.sanity_drinks.Copy()
+//for desires
+#define TASTE_SOUR "sour drink"
+#define TASTE_BITTER "bitter drink"
+#define TASTE_SWEET "sweet drink"
+#define TASTE_STRONG "strong drink"
+#define TASTE_LIGHT	"light drink"
+#define TASTE_BUBBLY "bubbly drink"
+#define TASTE_SPICY "spicy drink"
+#define TASTE_SALTY "salty drink"
 
-/proc/init_sanity_foods()
-	var/list/food_types = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
-	for(var/candidate in food_types)
-		var/obj/item/weapon/reagent_containers/food/snacks/food = candidate
-		if(initial(food.cooked))
-			GLOB.sanity_foods += candidate
-	return GLOB.sanity_foods.Copy()
+var/global/list/all_taste_drinks = list(TASTE_SOUR,
+								 TASTE_BITTER,
+								 TASTE_SWEET,
+								 TASTE_STRONG,
+								 TASTE_LIGHT,
+								 TASTE_BUBBLY,
+								 TASTE_SPICY,
+								 TASTE_SALTY
+											)
+
+#define SWEET_FOOD "sweet food"
+#define MEAT_FOOD "meat food"
+#define COCO_FOOD "chocolate"
+#define	VEGAN_FOOD "vegan food"
+#define	VEGETARIAN_FOOD "vegetarian food"
+#define	CHEESE_FOOD "cheese"
+#define	INSECTS_FOOD "insects"
+#define	BLAND_FOOD "bland food"
+
+var/global/list/all_types_food = list(SWEET_FOOD,
+									MEAT_FOOD,
+									COCO_FOOD,
+									VEGAN_FOOD,
+									VEGETARIAN_FOOD,
+									CHEESE_FOOD,
+									BLAND_FOOD)

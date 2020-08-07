@@ -10,6 +10,9 @@
 	force = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
+	zoom_factor = 0.5
+	damage_multiplier = 1.3
+	charge_cost = 50
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
@@ -24,12 +27,18 @@
 	safety = FALSE
 	restrict_safety = TRUE
 	twohanded = FALSE
+	zoom_factor = 0
+	damage_multiplier = 1
+	charge_cost = 100
 
 /obj/item/weapon/gun/energy/laser/mounted/blitz
 	name = "SDF LR \"Strahl\""
 	desc = "A miniaturized laser rifle, remounted for robotic use only."
 	icon_state = "laser_turret"
 	charge_meter = FALSE
+	zoom_factor = 0
+	damage_multiplier = 1
+	charge_cost = 100
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "NT LG \"Lightfall\" - P"
@@ -37,6 +46,7 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 2)
 	price_tag = 1000
 	projectile_type = /obj/item/projectile/beam/practice
+	zoom_factor = 0
 
 obj/item/weapon/gun/energy/retro
 	name = "OS LG \"Cog\""
@@ -51,6 +61,9 @@ obj/item/weapon/gun/energy/retro
 	matter = list(MATERIAL_STEEL = 12)
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
+	zoom_factor = 0
+	damage_multiplier = 1
+	charge_cost = 100
 	price_tag = 2000
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -71,8 +84,11 @@ obj/item/weapon/gun/energy/retro
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
 	projectile_type = /obj/item/projectile/beam
+	zoom_factor = 0
+	damage_multiplier = 1
 	origin_tech = null
 	self_recharge = TRUE
+	charge_cost = 100
 	price_tag = 4500
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -94,6 +110,8 @@ obj/item/weapon/gun/energy/retro
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 50
 	fire_delay = 20
+	zoom_factor = 0
+	damage_multiplier = 1
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
 	price_tag = 3000
 	init_firemodes = list(
@@ -111,3 +129,6 @@ obj/item/weapon/gun/energy/retro
 	safety = FALSE
 	restrict_safety = TRUE
 	twohanded = FALSE
+	zoom_factor = 0
+	damage_multiplier = 1
+	charge_cost = 100
