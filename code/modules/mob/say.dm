@@ -62,11 +62,10 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
 		return
-	if(src.client)
-		if(!src.client.holder)
-			if(!config.dsay_allowed)
-				to_chat(src, SPAN_DANGER("Deadchat is globally muted."))
-				return
+	if(src.client && !src.client.holder)
+		if(!config.dsay_allowed)
+			to_chat(src, SPAN_DANGER("Deadchat is globally muted."))
+			return
 
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
 		to_chat(usr, SPAN_DANGER("You have deadchat muted."))
