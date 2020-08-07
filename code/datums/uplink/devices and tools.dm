@@ -173,7 +173,7 @@
 	name = "Mental Imprinter"
 	item_cost = 5
 	path = /obj/item/device/mental_imprinter
-	antag_roles = list(ROLES_UPLINK_BASE, ROLE_CARRION)
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 //********** Blitzshell unique uplink items **********//
 

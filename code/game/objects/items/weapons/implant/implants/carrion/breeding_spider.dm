@@ -7,14 +7,14 @@
 
 /obj/item/weapon/implant/carrion_spider/breeding/Initialize()
 	..()
-	number_of_spiders = rand(10, 15)
+	number_of_spiders = rand(9, 12)
 
 /obj/item/weapon/implant/carrion_spider/breeding/activate()
 	..()
 	if(!wearer)
 		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
 		return
-	if(!ishuman(wearer))
+	if(!istype(wearer.species, /datum/species/human))
 		to_chat(owner_mob, SPAN_WARNING("[src] only works on humans"))
 		return	
 
