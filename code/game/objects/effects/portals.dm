@@ -13,6 +13,7 @@
 	var/birthtime = 0
 	var/next_teleport
 	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
+	var/entropy_value = 1
 
 /obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover)) // if mover is not null, e.g. mob
@@ -88,14 +89,13 @@ var/list/portal_cache = list()
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			on_fail(M)
 		else
-			do_teleport(M, get_destination(origin_turf), 0) ///You will appear adjacent to the beacon
+			go_to_bluespace(origin_turf, entropy_value, TRUE, M, get_destination(origin_turf), 0) ///You will appear adjacent to the beacon
 			next_teleport = world.time + 3 //Tiny cooldown to prevent doubleporting
 			return TRUE
 
 /obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
 	src.icon_state = "portal1"
-	do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
-
+	go_to_bluespace(origin_turf, entropy_value, TRUE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 /*
 	Wormholes come in linked pairs and can be traversed freely from either end.
 	They gain some instability after being used, and should be left to settle or risk mishaps
@@ -171,8 +171,7 @@ var/list/portal_cache = list()
 		var/mob/living/victim = M
 		//Portals ignore armor when messing you up, it's logical
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
-	do_teleport(M, get_destination(get_turf(M)), 1)
-
+	go_to_bluespace(origin_turf, entropy_value, TRUE, M, get_destination(get_turf(M)), 1)
 
 
 /obj/effect/portal/wormhole/rift

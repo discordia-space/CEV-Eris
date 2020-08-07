@@ -41,10 +41,7 @@
 
 /obj/item/bluespace_crystal/proc/blink_mob(mob/living/L)
 	var/turf/T = get_random_turf_in_range(L, blink_range, 1)
-	L.forceMove(T)
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-	sparks.set_up(5, 0, T)
-	sparks.start()
+	go_to_bluespace(get_turf(L), 1, TRUE, L, T)
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)
 	if(!..()) // not caught in mid-air
@@ -59,19 +56,6 @@
 			playsound(T, 'sound/effects/phasein.ogg', 25, 1)
 		qdel(src)
 
-/proc/get_random_turf_in_range(var/atom/origin, var/outer_range, var/inner_range)
-	origin = get_turf(origin)
-	if(!origin)
-		return
-	var/list/turfs = list()
-	for(var/turf/T in orange(origin, outer_range))
-	//	if(!(T.z in GLOB.using_map.sealed_levels)) // Picking a turf outside the map edge isn't recommended
-		if(T.x >= world.maxx-TRANSITIONEDGE || T.x <= TRANSITIONEDGE)	continue
-		if(T.y >= world.maxy-TRANSITIONEDGE || T.y <= TRANSITIONEDGE)	continue
-		if(!inner_range || get_dist(origin, T) >= inner_range)
-			turfs += T
-	if(turfs.len)
-		return pick(turfs)
 
 // Artifical bluespace crystal, doesn't give you much research.
 

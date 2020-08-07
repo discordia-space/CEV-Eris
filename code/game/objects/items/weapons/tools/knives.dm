@@ -129,9 +129,7 @@
 				last_teleport = world.time
 				playsound(T, "sparks", 50, 1)
 				anim(T,embedded,'icons/mob/mob.dmi',,"phaseout",,embedded.dir)
-				embedded.forceMove(T)
-				playsound(T, 'sound/effects/phasein.ogg', 25, 1)
-				playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
+				go_to_bluespace(get_turf(embedded), 1, TRUE, embedded, T)
 				anim(T,embedded,'icons/mob/mob.dmi',,"phasein",,embedded.dir)
 
 /obj/item/weapon/tool/knife/dagger/assassin

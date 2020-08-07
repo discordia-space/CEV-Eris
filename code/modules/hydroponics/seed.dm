@@ -358,22 +358,11 @@
 		var/outer_teleport_radius = get_trait(TRAIT_POTENCY)/5
 		var/inner_teleport_radius = get_trait(TRAIT_POTENCY)/15
 
-		var/list/turfs = list()
-		if(inner_teleport_radius > 0)
-			var/turf/TLoc = get_turf(target)
-			for(var/turf/T in trange(outer_teleport_radius, TLoc))
-				if(get_dist(target,T) >= inner_teleport_radius)
-					turfs |= T
+		var/turf/TLoc = get_turf(target)
+		var/turf/picked = get_random_turf_in_range(TLoc, outer_teleport_radius, inner_teleport_radius)
 
-		if(turfs.len)
-			// Moves the mob, causes sparks.
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(3, 1, get_turf(target))
-			s.start()
-			var/turf/picked = get_turf(pick(turfs))                      // Just in case...
-			new/obj/effect/decal/cleanable/molten_item(get_turf(target)) // Leave a pile of goo behind for dramatic effect...
-			target.loc = picked                                          // And teleport them to the chosen location.
-
+		if(picked)
+			go_to_bluespace(TLoc, 1, TRUE, target, picked)
 			impact = 1
 
 	return impact

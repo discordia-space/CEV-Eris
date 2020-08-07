@@ -74,7 +74,8 @@
 		to_chat(user, SPAN_WARNING("Error, single destination only!"))
 
 
-/obj/item/weapon/bluespace_harpoon/proc/teleport(var/turf/source, var/turf/target)
+/obj/item/weapon/bluespace_harpoon/proc/teleport(turf/source, turf/target)
+	bluespace_entropy(1, get_turf(src), TRUE)
 	for(var/atom/movable/AM in source)
 		if(istype(AM, /mob/shadow))
 			continue
