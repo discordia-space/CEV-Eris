@@ -53,6 +53,9 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/fuhrer
 	preloaded_reagents = list("protein" = 6, "seligitillin" = 6, "fuhrerole" = 12, "diplopterum" = 6)
 
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser
+	preloaded_reagents = list("protein" = 6, "blattedin" = 12, "seligitillin" = 6, "starkellin" = 15, "fuhrerole" = 12, "diplopterum" = 6)
+
 /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager
 	preloaded_reagents = list("protein" = 6, "blattedin" = 6, "gewaltine" = 8, "diplopterum" = 2)
 
