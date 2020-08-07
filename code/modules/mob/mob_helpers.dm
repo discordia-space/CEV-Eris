@@ -630,12 +630,13 @@ proc/is_blind(A)
 /mob/proc/skill_to_evade_traps()
 	var/prob_evade = 0
 	if(MOVING_DELIBERATELY(src))
-		prob_evade = 25
-		prob_evade += prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - get_max_w_class()/ITEM_SIZE_COLOSSAL)
+		var/base_prob_evade = 20
+		prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - get_max_w_class()/ITEM_SIZE_COLOSSAL)
 		if(stats.getPerk(PERK_SURE_STEP))
-			prob_evade += 25*30/STAT_LEVEL_GODLIKE
+			prob_evade += base_prob_evade*30/STAT_LEVEL_GODLIKE
+		prob_evade += base_prob_evade
 		if(stats.getPerk(PERK_RAT))
-			prob_evade *= 25
+			prob_evade += base_prob_evade
 	return prob_evade
 
 /mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
