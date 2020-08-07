@@ -1,0 +1,5 @@
+author: TheShown911
+delete-after: true
+changes:
+  - balance: toxin bomb spider uses normal lexorin instead of lexorin plus
+  - bugfix: qdel loop in limbstumps
