@@ -84,7 +84,10 @@
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(QUALITY_SAWING in A.tool_qualities)
-		if (src.name != "sawn-off shotgun")
+		if (!istype(src, /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn))
+			if (src.item_upgrades.len)
+				if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
+					return
 			to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
 			if(loaded.len)
 				for(var/i in 1 to max_shells)
@@ -98,6 +101,5 @@
 				to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))
 		else
 			to_chat(user, SPAN_WARNING("You cannot shorten \the [src] any further!"))
-				
 	else
 		..()
