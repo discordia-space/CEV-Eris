@@ -58,9 +58,15 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 /proc/bluespace_gift(turf/T, minor_dristortion)
 	var/obj/item/weapon/oddity/O = pick(subtypesof(/obj/item/weapon/oddity))
 	new O(T)
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(3, 0, T)
+	sparks.start()
 
 /proc/bluespace_stranger(turf/T, minor_dristortion)
-	new /mob/living/simple_animal/hostile/stranger(T)
+	var/mob/living/simple_animal/hostile/stranger/S = new /mob/living/simple_animal/hostile/stranger(T)
+	if(minor_dristortion)
+		S.rapid = FALSE
+		S.empy_cell = TRUE
 
 /proc/bluespace_roaches(turf/T, minor_dristortion)
 	if(!minor_dristortion)
@@ -74,14 +80,14 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)
 
 /proc/trash_buble(turf/T, minor_dristortion)
-	var/amount = 6
+	var/amount = 10
 	if(minor_dristortion)
-		amount = 3
+		amount = 5
 	for(var/i = 1 to amount)
-		var/turf/Ttarget = get_random_secure_turf_in_range(T, 7)
+		var/turf/Ttarget = get_random_secure_turf_in_range(T, 4)
 		if(Ttarget)
 			new /obj/random/junk(Ttarget)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-			sparks.set_up(5, 0, T)
+			sparks.set_up(3, 0, T)
 			sparks.start()
 

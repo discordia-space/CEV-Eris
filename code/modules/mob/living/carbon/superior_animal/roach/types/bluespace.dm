@@ -13,9 +13,9 @@
 	if(stat) // if the roach is conscious
 		return
 	var/turf/target
-	if((stance == HOSTILE_STANCE_ATTACK || stance == HOSTILE_STANCE_ATTACKING) && target_mob && !Adjacent(target_mob) && prob(33))
+	if((stance == HOSTILE_STANCE_ATTACK || stance == HOSTILE_STANCE_ATTACKING) && target_mob && !Adjacent(target_mob) && prob(25))
 		target = get_turf(target_mob)
-	else if(eat_target && busy == 1 && eat_target && !Adjacent(eat_target) && prob(33))
+	else if(eat_target && busy == 1 && eat_target && !Adjacent(eat_target) && prob(25))
 		target = get_turf(target_mob)
 	else if(stance == HOSTILE_STANCE_IDLE && !busy && prob(10))
 		target = get_random_secure_turf_in_range(src, 7, 1)

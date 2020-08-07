@@ -176,7 +176,7 @@
 	idle_power_usage = 10
 	active_power_usage = 2000
 	var/obj/machinery/computer/teleporter/com
-	var/entropy_value = 2
+	var/entropy_value = 4
 
 
 /obj/machinery/teleport/hub/New()

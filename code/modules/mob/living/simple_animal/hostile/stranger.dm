@@ -29,20 +29,29 @@
 	unsuitable_atoms_damage = 15
 	status_flags = CANPUSH
 	ranged = TRUE
+	rapid = TRUE
 	projectiletype = /obj/item/projectile/plasma/heavy
 	projectilesound = 'sound/weapons/laser.ogg'
 	faction = "bluespace"
+	var/empy_cell = FALSE
+
+/mob/living/simple_animal/hostile/stranger/New()
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(3, 0, src.loc)
+	sparks.start()
 
 /mob/living/simple_animal/hostile/stranger/death()
 	..()
 	var/obj/item/weapon/gun/energy/plasma/stranger/S = new /obj/item/weapon/gun/energy/plasma/stranger(src.loc)
 	S.cell = new /obj/item/weapon/cell/medium/hyper
+	if(empy_cell)
+		S.cell.charge = 0
 	new /obj/effect/decal/cleanable/ash (src.loc)
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
 	animation.icon_state = "blank"
 	animation.icon =  'icons/mob/mob.dmi'
 	animation.master = src
-	flick("dust-m", animation)
+	flick("dust-h", animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 	qdel(src)
