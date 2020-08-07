@@ -631,10 +631,10 @@ proc/is_blind(A)
 	var/prob_evade = 0
 	if(MOVING_DELIBERATELY(src))
 		var/base_prob_evade = 20
+		prob_evade += base_prob_evade
 		prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - get_max_w_class()/ITEM_SIZE_COLOSSAL)
 		if(stats.getPerk(PERK_SURE_STEP))
 			prob_evade += base_prob_evade*30/STAT_LEVEL_GODLIKE
-		prob_evade += base_prob_evade
 		if(stats.getPerk(PERK_RAT))
 			prob_evade += base_prob_evade
 	return prob_evade
