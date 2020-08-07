@@ -10,7 +10,7 @@
 	active_power_usage = 5000
 	circuit = /obj/item/weapon/circuitboard/telesci_pad
 	var/efficiency
-	var/entropy_value = 6
+	var/entropy_value = 8
 
 /obj/machinery/telepad/RefreshParts()
 	var/E

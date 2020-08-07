@@ -55,7 +55,7 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 		/obj/item/weapon/circuitboard/excelsior_boombox = 150,
 		/obj/item/weapon/circuitboard/diesel = 150
 		)
-	var/entropy_value = 6
+	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
 	excelsior_teleporters |= src

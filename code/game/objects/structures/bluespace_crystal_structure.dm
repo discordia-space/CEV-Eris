@@ -25,7 +25,7 @@
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/seeds/bluespacetomatoseed
 	)
-	var/entropy_value = 2
+	var/entropy_value = 8
 
 /obj/structure/bs_crystal_structure/New()
 	..()

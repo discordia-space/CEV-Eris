@@ -74,7 +74,6 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)
-		new /mob/living/carbon/superior_animal/roach/bluespace(T)
 	else
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)
 		new /mob/living/carbon/superior_animal/roach/bluespace(T)

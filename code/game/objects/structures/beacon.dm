@@ -6,7 +6,7 @@
 	icon_state = "strange_beacon"
 	desc = "It looks like ancient, and strange beacon."
 	var/nosignal = FALSE
-	var/entropy_value = 3
+	var/entropy_value = 4
 
 /obj/structure/strangebeacon/attack_hand(mob/living/user as mob)
 	if(nosignal == FALSE)
