@@ -36,6 +36,7 @@
 	var/empy_cell = FALSE
 
 /mob/living/simple_animal/hostile/stranger/New()
+	..()
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(3, 0, src.loc)
 	sparks.start()

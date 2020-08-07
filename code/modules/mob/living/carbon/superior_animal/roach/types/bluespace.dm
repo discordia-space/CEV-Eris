@@ -7,6 +7,7 @@
 
 	melee_damage_lower = 3
 	melee_damage_upper = 10
+	sanity_damage = 1
 
 /mob/living/carbon/superior_animal/roach/bluespace/Life()
 	. = ..()
