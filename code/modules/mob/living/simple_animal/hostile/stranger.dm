@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/stranger
 	name = "Stranger"
-	desc = "Unknown"
+	desc = "A stranger from an unknown place."
 	icon_state = "stranger"
 	icon_dead = "stranger_dead" //TODO: that icon doesn't exist
 	icon_gib = "syndicate_gib"

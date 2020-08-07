@@ -1,5 +1,5 @@
 /mob/living/carbon/superior_animal/roach/bluespace
-	name = "Bluespace Roach"
+	name = "Bluespace roach"
 	desc = "A bluespace roach"
 	icon_state = "bluespaceroach"
 	maxHealth = 25
