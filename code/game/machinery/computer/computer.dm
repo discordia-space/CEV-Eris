@@ -11,10 +11,10 @@
 	var/CheckFaceFlag = 1 //for direction check
 	var/icon_keyboard = "generic_key"
 	var/icon_screen = "generic"
-	var/light_range_on = 1.5
-	var/light_power_on = 2
+	var/light_range_on = 1
+	var/light_power_on = 1
 
-/obj/machinery/computer/Initialize()
+/obj/machinery/computer/Initialize(mapload)
 	. = ..()
 	power_change()
 	update_icon()
@@ -60,24 +60,21 @@
 	..()
 
 /obj/machinery/computer/update_icon()
-	overlays.Cut()
+	cut_overlays()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(stat & NOPOWER)
-		set_light(0)
-		if(icon_keyboard)
-			overlays += image(icon,"[icon_keyboard]_off")
+		add_overlay("[icon_keyboard]_off")
 		update_openspace()
 		return
-	else
-		set_light(light_range_on, light_power_on)
+	add_overlay(icon_keyboard)
 
+	// This whole block lets screens ignore lighting and be visible even in the darkest room
+	var/overlay_state = icon_screen
 	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken")
-	else
-		overlays += image(icon,icon_screen)
-
-	if(icon_keyboard)
-		overlays += image(icon, icon_keyboard)
+		overlay_state = "[icon_state]_broken"
 	update_openspace()
+	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
+	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, EMISSIVE_PLANE, dir)
 
 /obj/machinery/computer/power_change()
 	..()

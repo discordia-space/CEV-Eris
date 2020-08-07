@@ -1,4 +1,7 @@
 /mob/living/carbon/human
+
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+
 	//first and last name
 	var/first_name
 	var/last_name

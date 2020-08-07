@@ -23,6 +23,8 @@
 	var/reagent_flags = NONE
 	var/datum/reagents/reagents = null
 
+	var/list/managed_vis_overlays //vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
+
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 

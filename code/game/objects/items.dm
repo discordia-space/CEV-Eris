@@ -1,6 +1,7 @@
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	w_class = ITEM_SIZE_NORMAL
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite

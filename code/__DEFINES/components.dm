@@ -37,6 +37,8 @@
 
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
+///from base of atom/setDir(): (old_dir, new_dir)
+#define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"
 
 // /area signals
 

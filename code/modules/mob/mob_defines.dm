@@ -1,8 +1,9 @@
 /mob
 	density = TRUE
-	layer = 4.0
+	layer = MOB_LAYER
 	animate_movement = 2
 	flags = PROXMOVE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/datum/mind/mind
 
 	movement_handlers = list(

@@ -25,11 +25,10 @@ GLOBAL_DATUM_INIT(dir_set_event, /decl/observ/dir_set, new)
 * Direction Handling *
 *********************/
 
-/atom/set_dir()
-	var/old_dir = dir
-	. = ..()
-	if(old_dir != dir)
-		GLOB.dir_set_event.raise_event(src, old_dir, dir)
+/atom/proc/setDir(newdir)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
+	dir = newdir
 
 /atom/movable/Entered(var/atom/movable/am, atom/old_loc)
 	. = ..()
