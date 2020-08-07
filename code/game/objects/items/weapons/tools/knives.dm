@@ -113,10 +113,10 @@
 	var/mob/living/embedded
 	var/last_teleport
 
-/obj/item/weapon/tool/knife/dagger/bluespace/on_embed(var/mob/user)
+/obj/item/weapon/tool/knife/dagger/bluespace/on_embed(mob/user)
 	embedded = user
 
-/obj/item/weapon/tool/knife/dagger/bluespace/on_embed_removal(var/mob/user)
+/obj/item/weapon/tool/knife/dagger/bluespace/on_embed_removal(mob/user)
 	embedded = null
 
 /obj/item/weapon/tool/knife/dagger/bluespace/Process()

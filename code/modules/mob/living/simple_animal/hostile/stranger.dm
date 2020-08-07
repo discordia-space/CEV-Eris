@@ -45,6 +45,7 @@
 	..()
 	var/obj/item/weapon/gun/energy/plasma/stranger/S = new /obj/item/weapon/gun/energy/plasma/stranger(src.loc)
 	S.cell = new /obj/item/weapon/cell/medium/hyper
+	S.cell.charge = S.cell.maxcharge/2
 	if(empy_cell)
 		S.cell.charge = 0
 	new /obj/effect/decal/cleanable/ash (src.loc)

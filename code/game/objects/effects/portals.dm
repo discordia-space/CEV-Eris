@@ -20,11 +20,11 @@
 		return FALSE
 	return TRUE // if mover is null (air movement)
 
-/obj/effect/portal/Bumped(var/atom/movable/M)
+/obj/effect/portal/Bumped(atom/movable/M)
 	origin_turf = get_turf(M)
 	src.teleport(M)
 
-/obj/effect/portal/Crossed(var/atom/movable/AM)
+/obj/effect/portal/Crossed(atom/movable/AM)
 	origin_turf = get_turf(AM)
 	src.teleport(AM)
 
@@ -32,7 +32,7 @@
 	origin_turf = get_turf(user)
 	src.teleport(user)
 
-/obj/effect/portal/proc/set_target(var/atom/A)
+/obj/effect/portal/proc/set_target(atom/A)
 	target = A
 	if(mask)
 		blend_icon(get_turf(target))
@@ -45,7 +45,7 @@
 
 var/list/portal_cache = list()
 
-/obj/effect/portal/proc/blend_icon(var/turf/T)
+/obj/effect/portal/proc/blend_icon(turf/T)
 	if(!("icon[initial(T.icon)]_iconstate[T.icon_state]_[type]" in portal_cache))//If the icon has not been added yet
 		var/icon/I1 = icon(icon,mask)//Generate it.
 		var/icon/I2 = icon(initial(T.icon),T.icon_state)
@@ -57,7 +57,7 @@ var/list/portal_cache = list()
 
 
 //Given an adjacent origin tile, finds a destination which is the opposite side of the target
-/obj/effect/portal/proc/get_destination(var/turf/origin)
+/obj/effect/portal/proc/get_destination(turf/origin)
 	if (!target)
 		return null
 		//Major error!
