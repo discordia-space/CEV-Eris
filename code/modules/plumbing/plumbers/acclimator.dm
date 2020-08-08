@@ -31,7 +31,7 @@
 	AddComponent(/datum/component/plumbing/acclimator, bolt)
 
 /obj/machinery/plumbing/acclimator/process()
-	if(machine_stat & NOPOWER || !enabled || !reagents.total_volume || reagents.chem_temp == target_temperature)
+	if(stat & NOPOWER || !enabled || !reagents.total_volume || reagents.chem_temp == target_temperature)
 		if(acclimate_state != NEUTRAL)
 			acclimate_state = NEUTRAL
 			update_icon()

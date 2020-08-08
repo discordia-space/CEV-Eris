@@ -20,7 +20,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/plumbing/fermenter/setDir(newdir)
+/obj/machinery/plumbing/fermenter/set_dir(newdir)
 	. = ..()
 	eat_dir = newdir
 
@@ -38,14 +38,14 @@
 
 /// uses fermentation proc similar to fermentation barrels
 /obj/machinery/plumbing/fermenter/proc/ferment(atom/AM)
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		return
 	if(reagents.holder_full())
 		return
 	if(!isitem(AM))
 		return
-	if(istype(AM, /obj/item/reagent_containers/food/snacks/grown))
-		var/obj/item/reagent_containers/food/snacks/grown/G = AM
+	if(istype(AM, /obj/item/weapon/reagent_containers/food/snacks/grown))
+		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = AM
 		if(G.distill_reagent)
 			var/amount = G.seed.potency * 0.25
 			reagents.add_reagent(G.distill_reagent, amount)

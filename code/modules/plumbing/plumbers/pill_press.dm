@@ -9,11 +9,11 @@
 	var/max_patch_volume = 40
 	///maximum size of a bottle
 	var/max_bottle_volume = 30
-	///current operating product (pills or patches)
+	///current operating product (pillses)
 	var/product = "pill"
-	///the minimum size a pill or patch can be
+	///the minimum size a pill can be
 	var/min_volume = 5
-	///the maximum size a pill or patch can be
+	///the maximum size a pill can be
 	var/max_volume = 50
 	///selected size of the product
 	var/current_volume = 10
@@ -46,11 +46,11 @@
 		pill_styles += list(SL)
 
 /obj/machinery/plumbing/pill_press/process()
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		return
 	if(reagents.total_volume >= current_volume)
 		if (product == "pill")
-			var/obj/item/reagent_containers/pill/P = new(src)
+			var/obj/item/weapon/reagent_containers/pill/P = new(src)
 			reagents.trans_to(P, current_volume)
 			P.name = trim("[product_name] pill")
 			stored_products += P
@@ -60,13 +60,13 @@
 				P.icon_state = "pill[pill_number]"
 			if(P.icon_state == "pill4") //mirrored from chem masters
 				P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
-		else if (product == "patch")
-			var/obj/item/reagent_containers/pill/patch/P = new(src)
+		/*else if (product == "patch")
+			var/obj/item/weapon/reagent_containers/pill/patch/P = new(src)
 			reagents.trans_to(P, current_volume)
 			P.name = trim("[product_name] patch")
-			stored_products += P
+			stored_products += P*/
 		else if (product == "bottle")
-			var/obj/item/reagent_containers/glass/bottle/P = new(src)
+			var/obj/item/weapon/reagent_containers/glass/bottle/P = new(src)
 			reagents.trans_to(P, current_volume)
 			P.name = trim("[product_name] bottle")
 			stored_products += P

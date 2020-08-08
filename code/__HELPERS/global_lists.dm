@@ -16,9 +16,9 @@ var/global/list/antag_team_objectives = list()		//List of shared sets of objecti
 var/global/list/antag_team_members = list()			//List of the people who are in antag teams
 
 var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
-var/global/list/chemical_reactions_list				//list of all /datum/chemical_reaction datums. Used during chemical reactions
+GLOBAL_LIST(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reactions_list_by_result)					//list of all /datum/chemical_reaction datums. But this one indexed by chemical result instead of reagents
-var/global/list/chemical_reagents_list				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
+GLOBAL_LIST(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/shuttle_landmarks_list = list()		//list of all /obj/effect/shuttle_landmark.
 var/global/list/old_surgery_steps = list()			//list of all old-style (not bound to organs) surgery steps

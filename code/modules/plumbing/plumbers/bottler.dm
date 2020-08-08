@@ -19,7 +19,7 @@
 /obj/machinery/plumbing/bottler/Initialize(mapload, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
-	setDir(dir)
+	set_dir(dir)
 
 /obj/machinery/plumbing/bottler/can_be_rotated(mob/user, rotation_type)
 	if(anchored)
@@ -28,7 +28,7 @@
 	return TRUE
 
 ///changes the tile array
-/obj/machinery/plumbing/bottler/setDir(newdir)
+/obj/machinery/plumbing/bottler/set_dir(newdir)
 	. = ..()
 	switch(dir)
 		if(NORTH)
@@ -56,13 +56,13 @@
 	to_chat(user, "<span class='notice'> The [src] will now fill for [wanted_amount]u.</span>")
 
 /obj/machinery/plumbing/bottler/process()
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		return
 	///see if machine has enough to fill
 	if(reagents.total_volume >= wanted_amount && anchored)
 		var/obj/AM = pick(inputspot.contents)///pick a reagent_container that could be used
-		if(istype(AM, /obj/item/reagent_containers) && (!istype(AM, /obj/item/reagent_containers/hypospray/medipen)))
-			var/obj/item/reagent_containers/B = AM
+		if(istype(AM, /obj/item/weapon/reagent_containers))
+			var/obj/item/weapon/reagent_containers/B = AM
 			///see if it would overflow else inject
 			if((B.reagents.total_volume + wanted_amount) <= B.reagents.maximum_volume)
 				reagents.trans_to(B, wanted_amount)
