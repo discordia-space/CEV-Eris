@@ -76,7 +76,7 @@ All the important duct code:
 		if(P?.active)
 			disconnect_duct() //let's not built under plumbing machinery
 			return
-	for(var/D in GLOB.cardinals)
+	for(var/D in GLOB.cardinal)
 		if(dumb && !(D & connects))
 			continue
 		for(var/atom/movable/AM in get_step(src, D))
@@ -234,7 +234,7 @@ All the important duct code:
 ///get a list of the ducts we can connect to if we are dumb
 /obj/machinery/duct/proc/get_adjacent_ducts()
 	var/list/adjacents = list()
-	for(var/A in GLOB.cardinals)
+	for(var/A in GLOB.cardinal)
 		if(A & connects)
 			for(var/obj/machinery/duct/D in get_step(src, A))
 				if((turn(A, 180) & D.connects) && D.active)
@@ -243,7 +243,7 @@ All the important duct code:
 
 /obj/machinery/duct/update_icon_state()
 	var/temp_icon = initial(icon_state)
-	for(var/D in GLOB.cardinals)
+	for(var/D in GLOB.cardinal)
 		if(D & connects)
 			if(D == NORTH)
 				temp_icon += "_n"
@@ -301,7 +301,7 @@ All the important duct code:
 	for(var/obj/machinery/duct/D in T)
 		if(!anchored || D == src)
 			continue
-		for(var/A in GLOB.cardinals)
+		for(var/A in GLOB.cardinal)
 			if(A & connects && A & D.connects)
 				return FALSE
 	return TRUE
@@ -326,7 +326,7 @@ All the important duct code:
 	if(get_dist(src, D) != 1)
 		return
 	var/direction = get_dir(src, D)
-	if(!(direction in GLOB.cardinals))
+	if(!(direction in GLOB.cardinal))
 		return
 	if(duct_layer != D.duct_layer)
 		return

@@ -41,7 +41,7 @@
 		STOP_PROCESSING(SSfluids, src)
 		return
 	if(reagents.total_volume < reagents.maximum_volume)
-		for(var/D in GLOB.cardinals)
+		for(var/D in GLOB.cardinal)
 			if(D & demand_connects)
 				send_request(D)
 
@@ -102,7 +102,7 @@
 	if(tile_covered || !use_overlays)
 		return
 
-	for(var/D in GLOB.cardinals)
+	for(var/D in GLOB.cardinal)
 		var/color
 		var/direction
 		if(D & initial(demand_connects))
@@ -143,7 +143,7 @@
 
 	active = FALSE
 
-	for(var/D in GLOB.cardinals)
+	for(var/D in GLOB.cardinal)
 		if(D & (demand_connects | supply_connects))
 			for(var/obj/machinery/duct/duct in get_step(parent, D))
 				duct.remove_connects(turn(D, 180))
@@ -165,7 +165,7 @@
 	if(demand_connects)
 		START_PROCESSING(SSfluids, src)
 
-	for(var/D in GLOB.cardinals)
+	for(var/D in GLOB.cardinal)
 
 		if(D & (demand_connects | supply_connects))
 			for(var/atom/movable/A in get_step(parent, D))
@@ -202,7 +202,7 @@
 		demand_connects = initial(demand_connects)
 		supply_connects = initial(supply_connects)
 	else
-		for(var/D in GLOB.cardinals)
+		for(var/D in GLOB.cardinal)
 			if(D & initial(demand_connects))
 				new_demand_connects += turn(D, angle)
 			if(D & initial(supply_connects))

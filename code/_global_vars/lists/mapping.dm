@@ -1,3 +1,9 @@
+// Byond direction defines, because I want to put them somewhere.
+// #define NORTH 1
+// #define SOUTH 2
+// #define EAST 4
+// #define WEST 8
+
 GLOBAL_LIST_INIT(cardinal, list(NORTH, SOUTH, EAST, WEST))
 GLOBAL_LIST_INIT(cardinalz, list(NORTH, SOUTH, EAST, WEST, UP, DOWN))
 GLOBAL_LIST_INIT(cornerdirs, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
