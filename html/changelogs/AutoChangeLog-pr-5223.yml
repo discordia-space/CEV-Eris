@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: Toolmods no longer erase the noble family name.
