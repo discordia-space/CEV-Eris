@@ -15,7 +15,7 @@
 //	This proc will try to find multistrucure starting in given coords
 //	You pass coords of where should be top-left element of MS structure matrix
 //	It will check if all those elements in right order and return true
-/proc/is_multistructure(var/x, var/y, var/z, var/list/structure)
+/proc/is_multistructure(x, y, z, list/structure)
 	if(!x || !y || !z || !structure)
 		error("Passed wrong arguments to is_multistructure()")
 		return FALSE
@@ -80,7 +80,7 @@
 		M.MS = null
 
 
-/datum/multistructure/proc/get_nearest_element(var/mob/user)
+/datum/multistructure/proc/get_nearest_element(mob/user)
 	if(!user)
 		error("No user passed to multistructure get_nearest_element()")
 	var/obj/machinery/multistructure/nearest_machine = elements[1]
