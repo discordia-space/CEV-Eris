@@ -753,7 +753,7 @@
 	proc/heat()
 		warm = 1
 		for(var/reagent in heated_reagents)
-			reagents.add_reagent(reagent, heated_reagents[reagent])
+			reagents?.add_reagent(reagent, heated_reagents[reagent])
 		bitesize = 6
 		name = "Warm " + name
 		cooltime()
