@@ -256,7 +256,7 @@
 
 	x = 0.7
 	y = 0.6
-	icon = "medhud"
+	icon = "mindswapper"
 
 	required_technologies = list(	/datum/technology/top_biotech)
 

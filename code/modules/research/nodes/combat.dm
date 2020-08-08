@@ -137,7 +137,7 @@
 
 	x = 0.8
 	y = 0.4
-	icon = "wrench"
+	icon = "toxincoater"
 
 	required_technologies = list(/datum/technology/exotic_weaponry)
 	required_tech_levels = list()

@@ -2,8 +2,8 @@
 /obj/machinery/mindswapper
 	name = "experimental mind swapper"
 	desc = "The name isn't descriptive enough?"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "grinder"
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "mindswap_off"
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -19,11 +19,12 @@
 	active_power_usage = 500
 
 /obj/machinery/mindswapper/update_icon()
-	overlays.Cut()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	/*if (operating) // Overlay when the mindswapper is active
-		overlays += image('icons/obj/kitchen.dmi', "gruse")*/
+	if (operating)
+		icon_state = "mindswap_on"
+	else
+		icon_state = "mindswap_off"
 
 /obj/machinery/mindswapper/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
@@ -36,6 +37,11 @@
 
 /obj/machinery/mindswapper/attackby(obj/item/I, mob/user)
 	..()
+	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING), src)
+	switch(tool_type)
+		if(QUALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
+				anchored = anchored ? FALSE : TRUE
 
 /obj/machinery/mindswapper/examine()
 	..()
@@ -73,8 +79,9 @@
 	var/list/swapBoddies = list()
 	var/list/swapMinds = list()
 	for(var/mob/living/carbon/C in range(swap_range,src))
-		swapBoddies += C
-		swapMinds += C.ghostize(0)
+		if (C.stat != DEAD)  // candidates should not be dead
+			swapBoddies += C
+			swapMinds += C.ghostize(0)
 	
 	// Shuffle the list containing the candidates' boddies
 	swapBoddies = shuffle(swapBoddies)

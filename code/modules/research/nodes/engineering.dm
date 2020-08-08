@@ -242,7 +242,7 @@
 
 	x = 0.7
 	y = 0.5
-	icon = "wrench"
+	icon = "plasmablock"
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()
@@ -263,7 +263,7 @@
 
 	x = 0.8
 	y = 0.5
-	icon = "wrench"
+	icon = "booster"
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()
@@ -288,7 +288,7 @@
 
 	x = 0.7
 	y = 0.3
-	icon = "wrench"
+	icon = "compensatedbarrel"
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()
@@ -309,7 +309,7 @@
 
 	x = 0.8
 	y = 0.3
-	icon = "wrench"
+	icon = "cellmount"
 
 	required_technologies = list(/datum/technology/adv_tools)
 	required_tech_levels = list()
