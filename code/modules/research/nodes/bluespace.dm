@@ -187,7 +187,7 @@
 
 	x = 0.8
 	y = 0.9
-	icon = "bagofholding"
+	icon = "holdingpouch"
 
 	required_technologies = list(/datum/technology/bluespace_tools)
 	required_tech_levels = list()
