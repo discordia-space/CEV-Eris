@@ -247,3 +247,13 @@
 /obj/item/weapon/oddity/techno/Initialize()
 	icon_state = "techno_part[rand(1,7)]"
 	.=..()
+
+/obj/item/weapon/oddity/broken_necklace
+	name = "Broken necklace"
+	desc = "A broken necklace that has a blue crystal as a trinket."
+	icon_state = "broken_necklace"
+	oddity_stats = list(
+		STAT_COG = 9,
+		STAT_VIG = 9,
+	)
+

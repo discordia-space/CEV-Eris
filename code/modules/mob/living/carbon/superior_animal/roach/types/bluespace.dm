@@ -10,7 +10,7 @@
 	sanity_damage = 1
 	var/change_tele_to_mob = 25
 	var/chance_tele_to_eat = 25
-	var/chance_tele_to_random = 10
+	var/chance_tele_to_random = 15
 
 /mob/living/carbon/superior_animal/roach/bluespace/New()
 	..()
@@ -33,3 +33,33 @@
 		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 		do_teleport(src, target, 1)
 		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
+
+/mob/living/carbon/superior_animal/roach/bluespace/attackby(obj/item/W, mob/user, params)
+	if(user.a_intent != I_HELP && prob(chance_tele_to_random))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 2, 1)
+		do_teleport(src, T)
+		return FALSE
+	..()
+
+/mob/living/carbon/superior_animal/roach/bluespace/attack_hand(mob/living/carbon/M as mob)
+	if(M.a_intent != I_HELP && prob(chance_tele_to_random))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 2, 1)
+		do_teleport(src, T)
+		return FALSE
+	..()
+
+/mob/living/carbon/superior_animal/roach/bluespace/bullet_act(obj/item/projectile/P, def_zone)
+	if(prob(chance_tele_to_random))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 2, 1)
+		do_teleport(src, T)
+		return FALSE
+	..()

@@ -34,6 +34,7 @@
 	projectilesound = 'sound/weapons/laser.ogg'
 	faction = "bluespace"
 	var/empy_cell = FALSE
+	var/prob_tele = 15
 
 /mob/living/simple_animal/hostile/stranger/New()
 	..()
@@ -57,3 +58,57 @@
 	flick("dust-h", animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 	qdel(src)
+
+/mob/living/simple_animal/hostile/stranger/attackby(obj/item/W, mob/user, params)
+	if(user.a_intent != I_HELP && prob(prob_tele))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 3, 2)
+		do_teleport(src, T)
+		return FALSE
+	..()
+
+
+/mob/living/simple_animal/hostile/stranger/attack_hand(mob/living/carbon/M as mob)
+	if(M.a_intent != I_HELP && prob(prob_tele))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 3, 2)
+		do_teleport(src, T)
+		return FALSE
+	..()
+
+/mob/living/simple_animal/hostile/stranger/bullet_act(obj/item/projectile/P, def_zone)
+	if(prob(prob_tele))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 3, 2)
+		do_teleport(src, T)
+		return FALSE
+	..()
+
+/mob/living/simple_animal/hostile/stranger/Life()
+	if(target_mob && prob(prob_tele))
+		var/turf/T = get_random_secure_turf_in_range(target_mob, 3, 2)
+		do_teleport(src, T)
+	. = ..()
+
+/obj/item/weapon/gun/energy/plasma/stranger
+	name = "Unkown plasma gun"
+	desc = "A plasma gun from unkown origin"
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
+	price_tag = 5000
+	charge_cost = 15
+	fire_delay=8
+	one_hand_penalty = 8
+	twohanded = TRUE
+
+	init_firemodes = list(
+		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="melt", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, charge_cost=25, icon="kill", projectile_color = "#FF0000"),
+		list(mode_name="INCINERATE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="VAPORIZE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, charge_cost=70, icon="destroy", projectile_color = "#ff00aa", recoil_buildup=3),
+	)

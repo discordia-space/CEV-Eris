@@ -13,7 +13,7 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		var/entropy_cap = rand(100, 300)
 		if(GLOB.bluespace_entropy >= entropy_cap)
 			bluespace_distorsion(T, minor_dristortion)
-			GLOB.bluespace_entropy -= entropy_cap
+			GLOB.bluespace_entropy -= rand(entropy_cap/2, entropy_cap)
 
 /proc/bluespace_distorsion(turf/T, minor_dristortion=FALSE)
 	var/distortion_value = rand(1, 100)
@@ -63,18 +63,16 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		return pick(turfs)
 
 /proc/bluespace_gift(turf/T, minor_dristortion)
-	var/amount = 1
-	var/chance_to_second = rand(2,10)
+	var/second_gift = rand(2,8)
 	if(minor_dristortion)
-		chance_to_second = round(chance_to_second/2)
-	if(prob(chance_to_second))
-		amount = amount * 2
-	for(var/i=1 to amount)
+		second_gift = round(second_gift/2)
+	new /obj/item/weapon/oddity/broken_necklace(T)
+	if(prob(second_gift))
 		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
 		new O(T)
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-		sparks.set_up(3, 0, T)
-		sparks.start()
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(3, 0, T)
+	sparks.start()
 
 /proc/bluespace_stranger(turf/T, minor_dristortion)
 	var/mob/living/simple_animal/hostile/stranger/S = new /mob/living/simple_animal/hostile/stranger(T)
@@ -83,7 +81,7 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		S.empy_cell = TRUE
 
 /proc/bluespace_roaches(turf/T, minor_dristortion)
-	var/base_amount = rand(4,6)
+	var/base_amount = rand(3,10)
 	var/prob_extra = rand(0, 15)
 	var/extra_amount = rand(0,2)
 	if(minor_dristortion)
