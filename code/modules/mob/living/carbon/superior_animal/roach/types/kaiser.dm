@@ -19,8 +19,8 @@ Has ability of every roach.
 
 	var/datum/reagents/gas_sac
 
-	melee_damage_lower = 35
-	melee_damage_upper = 40
+	melee_damage_lower = 20
+	melee_damage_upper = 35
 	move_to_delay = 8
 	mob_size = MOB_HUGE
 	status_flags = 0
