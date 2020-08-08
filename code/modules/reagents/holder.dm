@@ -555,6 +555,12 @@
 	var/S = specific_heat()
 	chem_temp = CLAMP(chem_temp + (J / (S * total_volume)), 2.7, 1000)
 
+/// Is this holder full or not
+/datum/reagents/proc/holder_full()
+	if(total_volume >= maximum_volume)
+		return TRUE
+	return FALSE
+
 // NanoUI / TG UI data
 /datum/reagents/ui_data()
 	var/list/data = list()

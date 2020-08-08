@@ -73,7 +73,7 @@
 	if(stored_products.len)
 		var/pill_amount = 0
 		for(var/thing in loc)
-			if(!istype(thing, /obj/item/reagent_containers/glass/bottle) && !istype(thing, /obj/item/reagent_containers/pill))
+			if(!istype(thing, /obj/item/weapon/reagent_containers/glass/bottle) && !istype(thing, /obj/item/weapon/reagent_containers/pill))
 				continue
 			pill_amount++
 			if(pill_amount >= max_floor_products) //too much so just stop
