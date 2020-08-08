@@ -1,6 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - bugfix: You can no longer endlessly shorten the sawn-off shotgun.
-  - bugfix: If the shotgun has attachments, you will be given a chance to cancel (yes/no)
-      to avoid destroying them.
