@@ -30,7 +30,7 @@
 //	Creates multistructure datum and connects it to all elements mentioned in multistructure
 //	You pass coords of where should be top-left element of MS structure matrix
 //	It will check if all those elements in right order using is_multistructure() and then proceed to create multistructure
-/proc/create_multistructure(var/x, var/y, var/z, var/datum/multistructure/MS)
+/proc/create_multistructure(x, y, z, datum/multistructure/MS)
 	if(!x || !y || !z || !istype(MS))
 		error("Passed wrong arguments to create_multistructure()")
 		return FALSE
@@ -109,9 +109,9 @@
 	check_MS()
 
 
-/obj/machinery/multistructure/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/attackby(obj/item/I, mob/user)
 	check_MS()
-	if(default_deconstruction(I, user))
+	if(MS && default_deconstruction(I, user))
 		MS.Destroy()
 		return
 
