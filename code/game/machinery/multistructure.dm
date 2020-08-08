@@ -111,8 +111,9 @@
 
 /obj/machinery/multistructure/attackby(obj/item/I, mob/user)
 	check_MS()
-	if(MS && default_deconstruction(I, user))
-		MS.Destroy()
+	if(default_deconstruction(I, user))
+		if(MS)
+			MS.Destroy()
 		return
 
 	if(default_part_replacement(I, user))
