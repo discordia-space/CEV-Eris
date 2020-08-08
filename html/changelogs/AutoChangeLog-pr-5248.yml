@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: traps are now a little more effective.
+  - tweak: The noise coefficient is now affected by the objects you carry with you.
