@@ -46,7 +46,7 @@
 		return
 	if(istype(AM, /obj/item/weapon/reagent_containers/food/snacks/grown))
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = AM
-		if(G.distill_reagent)
-			var/amount = G.seed.potency * 0.25
-			reagents.add_reagent(G.distill_reagent, amount)
+		if(G.reagents)
+			var/amount = G.potency * 0.25
+			reagents.add_reagent(G.reagents, amount)
 			qdel(G)

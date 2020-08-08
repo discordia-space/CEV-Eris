@@ -30,12 +30,11 @@
 		/datum/reagent/silicon,
 		/datum/reagent/metal/silver,
 		/datum/reagent/metal/sodium,
-		/datum/reagent/stable_plasma,
 		/datum/reagent/organic/sugar,
 		/datum/reagent/sulfur,
 		/datum/reagent/acetone,
 		/datum/reagent/water,
-		/datum/reagent/fuel,
+		/datum/reagent/toxin/fuel,
 	)
 
 /obj/machinery/plumbing/synthesizer/Initialize(mapload, bolt)
