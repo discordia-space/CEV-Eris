@@ -255,5 +255,9 @@
 	oddity_stats = list(
 		STAT_COG = 9,
 		STAT_VIG = 9,
+		STAT_ROB = 9,
+		STAT_TGH = 9,
+		STAT_BIO = 9,
+		STAT_MEC = 9
 	)
 
