@@ -519,7 +519,7 @@
 
 /obj/machinery/power/biogenerator_core/attack_hand(mob/user as mob)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
-	if(biogenerator.working && !coil_frame)
+	if(biogenerator && biogenerator.working && !coil_frame)
 		shock(user, 100)
 
 
