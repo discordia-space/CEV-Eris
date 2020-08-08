@@ -603,7 +603,7 @@
 	chems[new_chem] = list(rand(1,5),rand(5,10))
 
 	//Set the maintshroom to the hue of the chem
-	var/datum/reagent/chem = chemical_reagents_list[new_chem]
+	var/datum/reagent/chem = GLOB.chemical_reagents_list[new_chem]
 	var/color = chem.color
 
 	//Color Wizardry

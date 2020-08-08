@@ -124,7 +124,7 @@
 		connect_to_network()
 	if(use_reagents_as_fuel)
 		create_reagents(max_fuel_volume)
-		fuel_name = chemical_reagents_list[fuel_reagent_id]
+		fuel_name = GLOB.chemical_reagents_list[fuel_reagent_id]
 		desc = "A power generator that runs on [fuel_name]. Rated for [(power_gen * max_safe_output) / 1000] kW max safe output."
 
 /obj/machinery/power/port_gen/pacman/Destroy()

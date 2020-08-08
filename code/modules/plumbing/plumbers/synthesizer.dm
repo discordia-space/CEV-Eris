@@ -18,30 +18,22 @@
 	var/datum/reagent/reagent_id = null
 	///straight up copied from chem dispenser. Being a subtype would be extremely tedious and making it global would restrict potential subtypes using different dispensable_reagents
 	var/list/dispensable_reagents = list(
-		/datum/reagent/aluminium,
-		/datum/reagent/bromine,
+		/datum/reagent/metal/aluminum,
 		/datum/reagent/carbon,
-		/datum/reagent/chlorine,
-		/datum/reagent/copper,
-		/datum/reagent/consumable/ethanol,
-		/datum/reagent/fluorine,
-		/datum/reagent/hydrogen,
-		/datum/reagent/iodine,
-		/datum/reagent/iron,
-		/datum/reagent/lithium,
-		/datum/reagent/mercury,
-		/datum/reagent/nitrogen,
-		/datum/reagent/oxygen,
+		/datum/reagent/ethanol,
+		/datum/reagent/metal/iron,
+		/datum/reagent/metal/lithium,
+		/datum/reagent/metal/mercury,
 		/datum/reagent/phosphorus,
-		/datum/reagent/potassium,
-		/datum/reagent/uranium/radium,
+		/datum/reagent/metal/potassium,
+		/datum/reagent/metal/radium,
 		/datum/reagent/silicon,
-		/datum/reagent/silver,
-		/datum/reagent/sodium,
+		/datum/reagent/metal/silver,
+		/datum/reagent/metal/sodium,
 		/datum/reagent/stable_plasma,
-		/datum/reagent/consumable/sugar,
+		/datum/reagent/organic/sugar,
 		/datum/reagent/sulfur,
-		/datum/reagent/toxin/acid,
+		/datum/reagent/acetone,
 		/datum/reagent/water,
 		/datum/reagent/fuel,
 	)
@@ -50,7 +42,7 @@
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply, bolt)
 
-/obj/machinery/plumbing/synthesizer/process()
+/obj/machinery/plumbing/synthesizer/Process()
 	if(stat & NOPOWER || !reagent_id || !amount)
 		return
 	if(reagents.total_volume >= amount) //otherwise we get leftovers, and we need this to be precise

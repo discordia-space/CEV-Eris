@@ -45,7 +45,7 @@
 		SL["class_name"] = assets.icon_class_name("pill[x]")
 		pill_styles += list(SL)
 
-/obj/machinery/plumbing/pill_press/process()
+/obj/machinery/plumbing/pill_press/Process()
 	if(stat & NOPOWER)
 		return
 	if(reagents.total_volume >= current_volume)

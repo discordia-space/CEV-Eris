@@ -55,7 +55,7 @@
 	reagents.clear_reagents()
 	to_chat(user, "<span class='notice'> The [src] will now fill for [wanted_amount]u.</span>")
 
-/obj/machinery/plumbing/bottler/process()
+/obj/machinery/plumbing/bottler/Process()
 	if(stat & NOPOWER)
 		return
 	///see if machine has enough to fill

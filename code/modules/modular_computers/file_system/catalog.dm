@@ -232,7 +232,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		recipe_data = list()
 		for(var/datum/chemical_reaction/R in recipes)
 			recipe_data += list(R.ui_data())
-	var/list/used_in = chemical_reactions_list[V.id]
+	var/list/used_in = GLOB.chemical_reactions_list[V.id]
 	if(used_in)
 		for(var/datum/chemical_reaction/R in used_in)
 			if(R.result)
