@@ -416,7 +416,7 @@
 	//If we're inside something that's not a turf, then ask that thing for its jetpack instead
 		//This generally means vehicles/mechs
 	if (!istype(loc, /turf))
-		return loc.get_jetpack(src)
+		return loc?.get_jetpack(src)
 
 	// Search the human for a jetpack. Either on back or on a RIG that's on
 	// on their back.
