@@ -167,7 +167,7 @@ Works together with spawning an observer, noted above.
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 
-		ghost.client.create_UI(ghost.type)
+		ghost.client?.create_UI(ghost.type)
 
 		return ghost
 
