@@ -2,7 +2,7 @@
 	name = "infection spider"
 	icon_state = "spiderling_infection"
 	spider_price = 50
-	gene_price = 5
+	gene_price = 7
 	var/active = FALSE
 
 /obj/item/weapon/implant/carrion_spider/infection/activate()
@@ -31,7 +31,7 @@
 	active = TRUE
 	to_chat(owner_mob, SPAN_NOTICE("\The [src] is active"))
 
-	spawn(3.5 MINUTES)
+	spawn(5 MINUTES)
 		if(wearer && istype(wearer) && !(wearer.stat == DEAD) && !is_neotheology_disciple(wearer) && active && !is_carrion(wearer))
 			to_chat(wearer, SPAN_DANGER("The transformation is complete, you are not human anymore, you are something more"))
 			to_chat(owner_mob, SPAN_NOTICE("\The [src] was succesfull"))
@@ -44,7 +44,7 @@
 /obj/item/weapon/implant/carrion_spider/infection/Process()
 	..()
 	if(wearer && active)
-		if(prob(20)) //around 20 messages over 3.5 minutes on avarage
+		if(prob(15)) //around 22 messages over 5 minutes on avarage
 			var/pain_message = pick(list(
 				"You feel a sharp pain in your upper body!",
 				"You feel something squirm in your upper body!",
@@ -54,11 +54,12 @@
 				"You feel like something is taking control of you!",
 				"You feel weak, like something is growing inside of your body!"
 			))
-			wearer.apply_effect(20, AGONY, armor_value = 0, check_protection = FALSE) //Flat 20 agony damage
+			wearer.apply_effect(15, AGONY, armor_value = 0, check_protection = FALSE) //Flat 15 agony damage
 			to_chat(wearer, "\red <font size=3><b>[pain_message]</b></font>")
-		if(prob(1)) //around one limb per transformation
-			var/obj/item/organ/external/E = wearer.get_organ(pick(list(BP_L_ARM, BP_L_LEG, BP_R_ARM, BP_R_LEG)))
-			if(E)
-				E.droplimb(FALSE, DROPLIMB_BLUNT)
-			else
-				visible_message(SPAN_DANGER("A meaty spike shoots out of [wearer]'s limb stump"))
+		if(prob(1)) //around 0.75 limbs per transformation
+			if(prob(50))
+				var/obj/item/organ/external/E = wearer.get_organ(pick(list(BP_L_ARM, BP_L_LEG, BP_R_ARM, BP_R_LEG)))
+				if(E)
+					E.droplimb(FALSE, DROPLIMB_BLUNT)
+				else
+					visible_message(SPAN_DANGER("A meaty spike shoots out of [wearer]'s limb stump"))
