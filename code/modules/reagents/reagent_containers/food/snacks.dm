@@ -980,7 +980,19 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("bun" = 2)
 	nutriment_amt = 3
-	preloaded_reagents = list("protein" = 8, "Fuhrole" = 3)
+	preloaded_reagents = list("protein" = 8, "fuhrerole" = 3)
+	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/kaiserburger
+	name = "Kaiser Burger"
+	desc = "The rare experience for your taste buds"
+	icon_state = "kaiserburger"
+	bitesize = 3
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("bun" = 2)
+	nutriment_amt = 3
+	preloaded_reagents = list("protein" = 10)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD)
 
