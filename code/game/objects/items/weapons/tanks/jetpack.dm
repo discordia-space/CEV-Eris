@@ -158,7 +158,7 @@
 *****************************/
 //Attempts to use up gas and returns true if it can
 //Stabilization check is a somewhat hacky mechanic to handle an extra burst of gas for stabilizing, read below
-/obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob, stabilization_check = FALSE)
+/obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user, stabilization_check = FALSE)
 
 	if(!(src.on))
 		return FALSE
@@ -329,7 +329,7 @@
 	.=..()
 
 //Whenever we call a function that might use gas, we'll check if its time to start processing
-/obj/item/weapon/tank/jetpack/synthetic/allow_thrust(num, mob/living/user, tabilization_check = FALSE)
+/obj/item/weapon/tank/jetpack/synthetic/allow_thrust(num, mob/living/user, stabilization_check = FALSE)
 	.=..(num, user, stabilization_check)
 	if (!processing)
 		//We'll allow a 5% leeway before we go into sucking mode, to prevent constant turning on and off
