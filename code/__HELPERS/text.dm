@@ -589,3 +589,5 @@ proc/TextPreview(var/string, var/len=40)
 	. = ""
 	for(var/i=1, i<=times, i++)
 		. += string
+
+#define STRIP_NEWLINE(S) replacetextEx(S, "\n", null)

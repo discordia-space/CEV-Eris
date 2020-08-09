@@ -53,8 +53,10 @@
 
 /*
 	Code for how the blob functions
-	Nanako fixed this mess in October 2018
+	Nanako ""fixed"" this mess in October 2018
 */
+GLOBAL_VAR_INIT(blob_tiles_grown_total, 0)
+
 /obj/effect/blob
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
@@ -112,6 +114,7 @@
 	M.Scale(icon_scale)
 	transform = M
 	name += "[rand(0,999)]"
+	GLOB.blob_tiles_grown_total++
 	return ..(loc)
 
 /obj/effect/blob/Destroy()

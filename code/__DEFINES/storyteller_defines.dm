@@ -91,3 +91,7 @@
 #define CURRENT_LIVING_ANTAGS	"antags"
 #define CURRENT_DEAD_PLAYERS	"dead"
 #define CURRENT_OBSERVERS	"observers"
+
+
+#define PROB_PROTECTED_REGULAR 100
+#define PROB_PROTECTED_RARE    80

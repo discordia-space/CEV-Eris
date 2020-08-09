@@ -6,12 +6,11 @@
 
 /datum/dynamic_ruleset/latejoin/trim_candidates()
 	var/role_id = initial(role_category.id)
-	var/role_pref = initial(role_category.required_pref)
 	for(var/mob/new_player/P in candidates)
 		if (!P.client || !P.mind || !P.mind.assigned_role)//are they connected?
 			candidates.Remove(P)
 			continue
-		if (!P.client.desires_role(role_pref) || jobban_isbanned(P, role_id) || isantagbanned(P) || (role_category_override && jobban_isbanned(P, role_category_override)))//are they willing and not antag-banned?
+		if (!P.client.prefs.be_special_role || jobban_isbanned(P, role_id) || (role_category_override && jobban_isbanned(P, role_category_override)))//are they willing and not antag-banned?
 			candidates.Remove(P)
 			continue
 		if (P.mind.assigned_role in protected_from_jobs)

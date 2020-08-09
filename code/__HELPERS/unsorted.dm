@@ -1233,3 +1233,12 @@ var/list/FLOORITEMS = list(
 		return 1
 	else
 		return 0
+
+/proc/window_flash(client/C, ignorepref = FALSE)
+    if(ismob(C))
+        var/mob/M = C
+        if(M.client)
+            C = M.client
+    if(!istype(C))
+        return
+    winset(C, "mainwindow", "flash=5")

@@ -4,7 +4,7 @@
 	var/repeatable = 0//if set to 1, dynamic mode will be able to draft this ruleset again later on. (doesn't apply for roundstart rules)
 	var/list/candidates = list()//list of players that are being drafted for this rule
 	var/list/assigned = list()//list of players that were selected for this rule
-	var/datum/role/role_category = /datum/role/traitor //rule will only accept candidates with "Yes" or "Always" in the preferences for this role
+	var/datum/antagonist/role_category = /datum/antagonist/traitor //rule will only accept candidates with "Yes" or "Always" in the preferences for this role
 	var/list/protected_from_jobs = list() // if set, and config.protect_roles_from_antagonist = 0, then the rule will have a much lower chance than usual to pick those roles.
 	var/list/restricted_from_jobs = list()//if set, rule will deny candidates from those jobs
 	var/list/exclusive_to_jobs = list()//if set, rule will only accept candidates from those jobs
@@ -60,8 +60,6 @@
 /datum/dynamic_ruleset/proc/acceptable(var/population=0,var/threat_level=0)
 	//by default, a rule is acceptable if it satisfies the threat level/population requirements.
 	//If your rule has extra checks, such as counting security officers, do that in ready() instead
-	if (!map.map_ruleset(src))
-		return 0
 
 	if (GLOB.player_list.len >= mode.high_pop_limit)
 		return (threat_level >= high_population_requirement)
@@ -139,8 +137,6 @@
 	var/weigh = 1
 	if(time2text(world.timeofday, "DDD") in weekday_rule_boost)
 		weigh *= 2
-	if(getTimeslot() in timeslot_rule_boost)
-		weigh *= 2
 	return weigh
 
 /datum/dynamic_ruleset/proc/trim_candidates()
@@ -155,13 +151,12 @@
 	log_admin("DYNAMIC MODE: Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
 
 	searching = 1
-	var/icon/logo_icon = icon('icons/logos.dmi', logo)
 	for(var/mob/M in possible_volunteers)
-		var/banned_factor = (jobban_isbanned(M, role_category) || isantagbanned(M) || (role_category_override && jobban_isbanned(M, role_category_override)))
+		var/banned_factor = (jobban_isbanned(M, role_category) || (role_category_override && jobban_isbanned(M, role_category_override)))
 		if(!M.client || banned_factor || M.client.is_afk())
 			continue
 
-		to_chat(M, "[logo ? "[bicon(logo_icon)]" : ""]<span class='recruit'>The mode is looking for volunteers to become [initial(role_category.id)]. (<a href='?src=\ref[src];signup=\ref[M]'>Apply now!</a>)</span>[logo ? "[bicon(logo_icon)]" : ""]")
+		to_chat(M, "<span class='recruit'>The mode is looking for volunteers to become [initial(role_category.id)]. (<a href='?src=\ref[src];signup=\ref[M]'>Apply now!</a>)</span>")
 		window_flash(M.client)
 
 	spawn(1 MINUTES)
@@ -169,7 +164,7 @@
 		for(var/mob/M in possible_volunteers)
 			if(!M.client || jobban_isbanned(M, role_category) || M.client.is_afk())
 				continue
-			to_chat(M, "[logo ? "[bicon(logo_icon)]" : ""]<span class='recruit'>Applications for [initial(role_category.id)] are now closed.</span>[logo ? "[bicon(logo_icon)]" : ""]")
+			to_chat(M, "<span class='recruit'>Applications for [initial(role_category.id)] are now closed.</span>")
 		if(!applicants || applicants.len <= 0)
 			log_admin("DYNAMIC MODE: [name] received no applications.")
 			message_admins("DYNAMIC MODE: [name] received no applications.")
@@ -194,7 +189,7 @@
 /datum/dynamic_ruleset/proc/volunteer(var/mob/M)
 	if (!searching)
 		return
-	if(jobban_isbanned(M, role_category) || isantagbanned(M))
+	if(jobban_isbanned(M, role_category))
 		to_chat(M, "<span class='danger'>Banned from [initial(role_category.id)].</span>")
 		to_chat(M, "<span class='warning'>Your application has been discarded due to past conduct..</span>")
 		return
@@ -236,13 +231,12 @@
 	var/e = 0
 	//------------------------------------------------
 	var/role_id = initial(role_category.id)
-	var/role_pref = initial(role_category.required_pref)
 	for(var/mob/new_player/P in candidates)
 		if (!P.client || !P.mind || !P.mind.assigned_role)//are they connected?
 			candidates.Remove(P)
 			a++
 			continue
-		if (!P.client.desires_role(role_pref) || jobban_isbanned(P, role_id) || isantagbanned(P) || (role_category_override && jobban_isbanned(P, role_category_override)))//are they willing and not antag-banned?
+		if (!P.client.prefs.be_special_role || jobban_isbanned(P, role_id) || (role_category_override && jobban_isbanned(P, role_category_override)))//are they willing and not antag-banned?
 			candidates.Remove(P)
 			b++
 			continue
@@ -272,10 +266,10 @@
 		if (!istype(P, required_type))
 			candidates.Remove(P) // Can be a new_player, etc.
 			continue
-		if (!P.client || !P.mind || !P.mind.assigned_role || P.mind.antag_roles.len)//are they connected? Are they an antag already?
+		if (!P.client || !P.mind || !P.mind.assigned_role || P.mind.assigned_role)//are they connected? Are they an antag already?
 			candidates.Remove(P)
 			continue
-		if (!P.client.desires_role(role_id) || jobban_isbanned(P, role_id) || isantagbanned(P) || (role_category_override && jobban_isbanned(P, role_category_override)))//are they willing and not antag-banned?
+		if (!P.client.prefs.be_special_role || jobban_isbanned(P, role_id) || (role_category_override && jobban_isbanned(P, role_category_override)))//are they willing and not antag-banned?
 			candidates.Remove(P)
 			continue
 		if (P.mind.assigned_role in protected_from_jobs)

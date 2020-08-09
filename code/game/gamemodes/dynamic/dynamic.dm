@@ -101,7 +101,7 @@ var/stacking_limit = 90
 	if(href_list["threatlog"]) //don't need admin for this
 		show_threatlog(usr)
 		return
-	if(!usr.check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN, 1, usr.client))
 		return
 	if (href_list["forced_extended"])
 		forced_extended =! forced_extended
@@ -120,7 +120,7 @@ var/stacking_limit = 90
 		alert("SSticker and Game Mode aren't initialized yet!", "Alert")
 		return
 
-	if(!admin.check_rights(R_ADMIN) && (SSticker.current_state != GAME_STATE_FINISHED))
+	if(!check_rights(R_ADMIN, 1, admin.client) && (SSticker.current_state != GAME_STATE_FINISHED))
 		return
 
 	var/out = "<TITLE>Threat Log</TITLE><B><font size='3'>Threat Log</font></B><br><B>Starting Threat:</B> [starting_threat]<BR>"
@@ -500,7 +500,7 @@ STORY-TODO -- for now without persistence
 		if (forced_extended)
 			return
 		//time to inject some threat into the round
-		if(emergency_shuttle.departed)//unless the shuttle is gone
+		if(evacuation_controller.has_evacuated())//unless the shuttle is gone
 			return
 
 		message_admins("DYNAMIC MODE: Checking state of the round.")
@@ -562,11 +562,11 @@ STORY-TODO -- for now without persistence
 			continue
 		if (M.stat != DEAD)
 			living_players.Add(M)
-			if (M.mind && (M.mind.antag_roles.len > 0))
+			if (M.mind && (M.mind.assigned_role))
 				living_antags.Add(M)
 		else
-			if (istype(M,/mob/observer))
-				var/mob/observer/O = M
+			if (istype(M,/mob/observer/ghost))
+				var/mob/observer/ghost/O = M
 				if (O.started_as_observer)//Observers
 					list_observers.Add(M)
 					continue
@@ -617,7 +617,7 @@ STORY-TODO -- for now without persistence
 /datum/gamemode/dynamic/latespawn(var/mob/living/newPlayer)
 	if (forced_extended)
 		return
-	if(emergency_shuttle.departed)//no more rules after the shuttle has left
+	if(evacuation_controller.has_evacuated())//no more rules after the shuttle has left
 		return
 
 	update_playercounts()

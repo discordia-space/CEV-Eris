@@ -120,15 +120,15 @@
 	applicants.Cut()
 
 /datum/dynamic_ruleset/midround/from_ghosts/proc/finish_setup(var/mob/new_character, var/index)
-	var/datum/role/new_role = new role_category
-	new_role.AssignToRole(new_character.mind,1)
+	var/datum/antagonist/new_role = new role_category
+	new_role.create_antagonist(new_character.mind, TRUE)
 	setup_role(new_role)
 
-/datum/dynamic_ruleset/midround/from_ghosts/proc/setup_role(var/datum/role/new_role)
+/datum/dynamic_ruleset/midround/from_ghosts/proc/setup_role(var/datum/antagonist/new_role)
 	new_role.OnPostSetup()
-	new_role.Greet(GREET_MIDROUND)
-	new_role.ForgeObjectives()
-	new_role.AnnounceObjectives()
+	new_role.greet()
+	new_role.create_objectives()
+	new_role.show_objectives()
 
 // -- Faction based --
 
@@ -148,9 +148,9 @@
 		active_fac.OnPostSetup()
 	return my_fac
 
-/datum/dynamic_ruleset/midround/from_ghosts/faction_based/setup_role(var/datum/role/new_role)
+/datum/dynamic_ruleset/midround/from_ghosts/faction_based/setup_role(var/datum/antagonist/new_role)
 	my_fac.HandleRecruitedRole(new_role)
-	new_role.Greet(GREET_MIDROUND)
+	new_role.greet()
 	new_role.ForgeObjectives()
 	new_role.AnnounceObjectives()
 /*

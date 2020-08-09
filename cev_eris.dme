@@ -491,6 +491,7 @@
 #include "code\game\antagonist\antagonist_update.dm"
 #include "code\game\antagonist\alien\borer.dm"
 #include "code\game\antagonist\outer\blitzshell\blitzshell.dm"
+#include "code\game\antagonist\outer\blob\blob.dm"
 #include "code\game\antagonist\outer\mercenary\merc_faction.dm"
 #include "code\game\antagonist\outer\mercenary\mercenary.dm"
 #include "code\game\antagonist\station\changeling.dm"

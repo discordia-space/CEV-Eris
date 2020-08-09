@@ -63,10 +63,10 @@
 	var/list/objectives = list()
 	var/victory = FALSE
 
-/datum/dynstat/role/proc/generate_statistics(var/datum/role/R, var/victorious)
+/datum/dynstat/role/proc/generate_statistics(var/datum/antagonist/R, var/victorious)
 	name = R.name
 	if(R.faction)
-		faction_id = R.faction.ID
+		faction_id = R.faction.id
 	else
 		faction_id = 0
 	mind_name = STRIP_NEWLINE(R.antag.name)
@@ -93,29 +93,23 @@
 	if(O.owner)
 		owner_key = ckey(O.owner.key)
 	is_fulfilled = O.IsFulfilled()
-	if(istype(O, /datum/objective/target))
+/*	if(istype(O, /datum/objective/target))
 		var/datum/objective/target/TO = O
-		target = TO.target.name
+		target = TO.target.name*/
 
 // Faction related stats
 /datum/dynstat/faction
 	var/id = null
 	var/name = null
-	var/desc = null
 	var/faction_type = null // typepath
 	var/stage = null
 	var/victory = FALSE
 	var/minor_victory = FALSE
 
 /datum/dynstat/faction/proc/generate_statistics(var/datum/faction/F)
-	id = F.ID
+	id = F.id
 	name = F.name
-	desc = F.desc
 	faction_type = F.type
-	stage = F.stage
-	// I could combine these victory values, but I'd rather have future-proofing
-	minor_victory = F.minor_victory
-	victory = F.check_win()
 
 /datum/dynstat/faction/malf
 	var/list/datum/dynstat/malf_module_purchase/modules = list()
@@ -143,7 +137,7 @@
 	..(BF)
 	//we're using global pre-existing global vars here: structure counts are collected
 	//throughout the round elsewhere
-	blobs_grown_total = blob_tiles_grown_total
+	blobs_grown_total = GLOB.blob_tiles_grown_total
 	blobs_round_end = blobs.len
 
 /datum/dynstat/faction_data/blob/structure_counts
@@ -152,19 +146,6 @@
 	var/resgens = 0
 	var/shields = 0
 	var/cores = 0
-
-/datum/dynstat/role/wizard
-	var/list/spellbook_purchases = list()
-
-/datum/dynstat/role/vampire
-	var/list/powers = list()
-	var/blood_total = 0
-
-/datum/dynstat/role/vampire/generate_statistics(var/datum/role/vampire/V)
-	..(V)
-	for(var/datum/power/P in V.powers)
-		powers.Add(P.type)
-	blood_total = V.blood_total
 
 /datum/dynstat/role/revolutionary
 // future proofing don't mind me
@@ -183,10 +164,3 @@
 	var/threat_generated = 0
 	var/threat_level_inflated = 0
 	var/list/areas_defiled = list()
-
-/datum/dynstat/role/catbeast/generate_statistics(var/datum/role/catbeast/C)
-	..(C)
-	ticks_survived = C.ticks_survived
-	threat_generated = C.threat_generated
-	threat_level_inflated = C.threat_level_inflated
-	areas_defiled = C.areas_defiled
