@@ -559,6 +559,12 @@
 					message = "makes a very loud noise."
 					m_type = 2
 			cloud_emote = "cloud-scream"
+		if("dab")
+			m_type = 1
+			if(is_excelsior(src))
+				message = "<span class='warning'>dabs!</span>"
+			else
+				message = "fumbles their arms in a confusing way."
 
 		if ("help")
 			to_chat(src, {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
