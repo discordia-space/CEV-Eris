@@ -13,7 +13,7 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 		var/entropy_cap = rand(100, 300)
 		if(GLOB.bluespace_entropy >= entropy_cap)
 			bluespace_distorsion(T, minor_distortion)
-			GLOB.bluespace_entropy -= rand(entropy_cap/2, entropy_cap)
+			GLOB.bluespace_entropy -= rand(100, 150)
 
 /proc/bluespace_distorsion(turf/T, minor_distortion=FALSE)
 	var/bluespace_event = rand(1, 11)
@@ -28,7 +28,7 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 			bluespace_cristals_event(T, minor_distortion)
 		if(10 to 11)
 			bluespace_gift(T, minor_distortion)
-		
+
 
 /proc/get_random_secure_turf_in_range(atom/origin, outer_range, inner_range)
 	origin = get_turf(origin)
