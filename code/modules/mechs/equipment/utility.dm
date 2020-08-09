@@ -10,7 +10,8 @@
 /obj/item/mech_equipment/clamp/attack()
 	return 0
 
-/obj/item/mech_equipment/clamp/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/clamp/afterattack(atom/target, mob/living/user, inrange, params)
+	if(!inrange) return
 	. = ..()
 
 	if(. && !carrying)
@@ -222,7 +223,8 @@
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
 
 
-/obj/item/mech_equipment/drill/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/drill/afterattack(atom/target, mob/living/user, inrange, params)
+	if(!inrange) return
 	. = ..()
 	if(.)
 		if(isobj(target))

@@ -187,10 +187,11 @@
 
 	license = 10
 	designs = list(
-		/datum/design/autolathe/circuit/airlockmodule,
-		/datum/design/autolathe/circuit/airalarm,
-		/datum/design/autolathe/circuit/firealarm,
-		/datum/design/autolathe/circuit/powermodule,
+		/datum/design/autolathe/circuit/airlockmodule = 0,
+		/datum/design/autolathe/circuit/airlockmodule/secure,
+		/datum/design/autolathe/circuit/airalarm = 0,
+		/datum/design/autolathe/circuit/firealarm = 0,
+		/datum/design/autolathe/circuit/powermodule = 0,
 		/datum/design/autolathe/circuit/recharger,
 		/datum/design/research/circuit/autolathe,
 		/datum/design/autolathe/circuit/autolathe_disk_cloner,

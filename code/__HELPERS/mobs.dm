@@ -287,6 +287,12 @@ Proc for attack log creation, because really why not
 
 	return FALSE
 
+/proc/is_carrion(mob/living/carbon/human/H)
+	if(istype(H) && H.internal_organs_by_name[BP_SPCORE])
+		return TRUE
+
+	return FALSE
+
 /proc/is_excelsior(var/mob/M)
 	var/obj/item/weapon/implant/excelsior/E = locate(/obj/item/weapon/implant/excelsior) in M
 	if (E && E.wearer == M)

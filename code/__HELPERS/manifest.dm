@@ -57,7 +57,7 @@
 		var/skip = FALSE
 		//Minds should never be deleted, so our crew record must be in here somewhere
 		for(var/datum/mind/M in SSticker.minds)
-			if(M.name == name)
+			if(trim(M.name) == trim(name))
 				matched = TRUE
 				var/temp = M.manifest_status(CR)
 				if (temp)

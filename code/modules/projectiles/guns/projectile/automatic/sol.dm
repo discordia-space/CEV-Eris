@@ -18,7 +18,7 @@
 	recoil_buildup = 5
 	damage_multiplier = 1.25
 	penetration_multiplier = 1.1
-	one_hand_penalty = 5 //bullpup rifle (this one is smaller and carbine, so it's 5)
+	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
