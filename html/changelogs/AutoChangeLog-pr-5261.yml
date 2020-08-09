@@ -1,4 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - bugfix: spiders should take the same time to attach after surgery, as after movement.
