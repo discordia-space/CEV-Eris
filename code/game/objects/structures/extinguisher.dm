@@ -11,6 +11,7 @@
 /obj/structure/extinguisher_cabinet/New()
 	..()
 	has_extinguisher = new/obj/item/weapon/extinguisher(src)
+	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(isrobot(user))
@@ -62,7 +63,12 @@
 
 /obj/structure/extinguisher_cabinet/update_icon()
 	if(!opened)
-		icon_state = "extinguisher_closed"
+		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
+			icon_state = "extinguisher_closed_mini"
+		else if(istype(has_extinguisher, /obj/item/weapon/extinguisher))
+			icon_state = "extinguisher_closed_full"
+		else
+			icon_state = "extinguisher_closed"
 		return
 	if(has_extinguisher)
 		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
