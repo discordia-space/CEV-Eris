@@ -143,7 +143,7 @@
 							"wires_integrity" = 0)
 
 
-/obj/machinery/multistructure/biogenerator_part/console/proc/metrics_update(var/datum/multistructure/biogenerator/master)
+/obj/machinery/multistructure/biogenerator_part/console/proc/metrics_update(datum/multistructure/biogenerator/master)
 	metrics["operational"] = master.is_operational()
 	metrics["output_power"] = master.last_output_power
 	if(master.generator && master.generator.chamber && master.generator.chamber.air1 && master.generator.chamber.air1.gas["oxygen"] >= 1)
@@ -232,7 +232,7 @@
 			to_chat(user, SPAN_NOTICE("You didn't see any signs of biomass here. Pipes are clear."))
 
 
-/obj/machinery/multistructure/biogenerator_part/port/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/biogenerator_part/port/attackby(obj/item/I, mob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_PRYING), src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
@@ -367,7 +367,7 @@
 			to_chat(user, SPAN_WARNING("There are no wires here."))
 
 
-/obj/machinery/atmospherics/binary/biogen_chamber/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/binary/biogen_chamber/attackby(obj/item/I, mob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING, QUALITY_PRYING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
@@ -479,7 +479,7 @@
 			to_chat(user, SPAN_NOTICE("Coil looks like new."))
 
 
-/obj/machinery/power/biogenerator_core/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/power/biogenerator_core/attackby(obj/item/I, mob/user)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
 	if(biogenerator.working && !coil_frame)
 		shock(user, 100)
@@ -519,7 +519,7 @@
 
 /obj/machinery/power/biogenerator_core/attack_hand(mob/user as mob)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
-	if(biogenerator.working && !coil_frame)
+	if(biogenerator && biogenerator.working && !coil_frame)
 		shock(user, 100)
 
 
