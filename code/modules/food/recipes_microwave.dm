@@ -469,7 +469,7 @@ I said no!
 		. = ..()
 		if (.)
 			var/obj/item/weapon/paper/paper = locate() in container
-			if (!paper.info)
+			if (!paper || !paper.info)
 				return 0
 		return .
 
