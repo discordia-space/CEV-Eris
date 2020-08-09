@@ -42,6 +42,7 @@
 	desc = "rainbow"
 	icon_state = "rainbow"
 	item_state = "rainbow"
+	style = 2
 
 
 /obj/item/clothing/under/rank/fo_suit
@@ -104,6 +105,7 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	item_state = "kilt"
+	style = 2
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -150,6 +152,7 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
+	style = 2
 
 /obj/item/clothing/under/dress
 	name = "gray summerdress"
@@ -172,8 +175,8 @@
 obj/item/clothing/under/leisure
 	name = "leisure outfit"
 	desc = "A leisure outfit with brown jacket. Sometimes you just want to wear what is comfortable."
-	icon_state = "leisuroutfit"
-	item_state = "leisuroutfit"
+	icon_state = "leisureoutfit"
+	item_state = "leisureoutfit"
 
 obj/item/clothing/under/leisure/white
 	name = "white blouse"

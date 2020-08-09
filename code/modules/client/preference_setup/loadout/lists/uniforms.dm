@@ -49,8 +49,8 @@
 	path = /obj/item/clothing/under/color/white
 
 /datum/gear/uniform/leisure
-    display_name = "leisure suits"
-    path = /obj/item/clothing/under/leisure
+	display_name = "leisure suits"
+	path = /obj/item/clothing/under/leisure
 
 /datum/gear/uniform/leisure/New()
 	..()
@@ -62,8 +62,8 @@
 	gear_tweaks += new /datum/gear_tweak/path(leisure)
 
 /datum/gear/uniform/dress
-    display_name = "dresses"
-    path = /obj/item/clothing/under/dress
+	display_name = "dresses"
+	path = /obj/item/clothing/under/dress
 
 /datum/gear/uniform/dress/New()
 	..()
@@ -117,8 +117,6 @@
 /datum/gear/uniform/scrubs/color_presets/New()
 	..()
 	var/jumpsuit = list(
-		"Blue"			=	/obj/item/clothing/under/rank/medical/blue,
-		"Purple"		=	/obj/item/clothing/under/rank/medical/purple,
 		"Green"			=	/obj/item/clothing/under/rank/medical/green,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)

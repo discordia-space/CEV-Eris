@@ -261,6 +261,7 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/is_accessable_level = TRUE // Prob modifier for random access (space travelling)
 	var/generate_asteroid= FALSE
 	var/is_sealed = FALSE //No transit at map edge
+	var/custom_z_names = FALSE //Whether a custom name or a simple number would be displayed at GPS beacons
 	var/tmp/z_level
 	var/height = -1	///< The number of Z-Levels in the map.
 
@@ -290,18 +291,25 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 
 		add_z_level(z_level_r, original_level, height)
 
+/obj/map_data/proc/custom_z_name(z_level)
+	return z_level
+
 /obj/map_data/eris
 	name = "Eris"
 	is_station_level = TRUE
 	is_player_level = TRUE
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
+	custom_z_names = TRUE
 	height = 5
 	holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
 	holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
 	holomap_legend_x = 200	// x position of the holomap legend for this z
 	holomap_legend_y = 200	// y position of the holomap legend for this z
 	holomap_smoosh = list(list(1,2,3,4,5))
+
+/obj/map_data/eris/custom_z_name(z_level)
+	return "Deck [height - z_level + 1]"
 
 /obj/map_data/admin
 	name = "Admin Level"
@@ -315,5 +323,8 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	is_contact_level = TRUE
 	generate_asteroid = TRUE
 	is_accessable_level = TRUE
+	custom_z_names = TRUE
 	height = 1
 
+/obj/map_data/asteroid/custom_z_name(z_level)
+	return "Asteroid [z_level]"

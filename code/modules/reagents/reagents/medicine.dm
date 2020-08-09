@@ -18,6 +18,10 @@
 	M.add_chemical_effect(CE_PAINKILLER, 25 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, 1)
 
+/datum/reagent/medicine/inaprovaline/sleeper
+	name = "Synth-Inaprovaline"
+	id = "inaprovaline2"
+
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
@@ -347,7 +351,7 @@
 	taste_description = "acid"
 	reagent_state = SOLID
 	color = "#022000"
-	
+
 
 /datum/reagent/medicine/positive_ling
 	name = "Positive Paragenetic Marker"

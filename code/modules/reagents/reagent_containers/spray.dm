@@ -116,6 +116,7 @@
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
 	possible_transfer_amounts = null
+	price_tag = 300
 	volume = 40
 	var/safety = 1
 	preloaded_reagents = list("condensedcapsaicin" = 40)

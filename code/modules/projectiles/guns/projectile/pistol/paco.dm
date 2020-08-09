@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/paco
-	name = "FS HG \"Paco\""
+	name = "FS HG .35 Auto \"Paco\""
 	desc = "A modern and reliable sidearm for the soldier in the field. Commonly issued as a sidearm to Ironhammer Operatives. Uses standard .35 Auto mags."
 	icon = 'icons/obj/guns/projectile/paco.dmi'
 	icon_state = "paco"
@@ -18,8 +18,9 @@
 	price_tag = 1500
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-	damage_multiplier = 1.1
-	recoil_buildup = 20
+	damage_multiplier = 1.5
+	penetration_multiplier = 0.9
+	recoil_buildup = 10
 	gun_tags = list(GUN_SILENCABLE)
 
 /obj/item/weapon/gun/projectile/paco/update_icon()

@@ -75,7 +75,7 @@
 /obj/item/weapon/pen/reagent
 	reagent_flags = REFILLABLE | DRAINABLE
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_COVERT = 5)
 
 /obj/item/weapon/pen/reagent/New()
 	..()
@@ -100,7 +100,7 @@
  */
 /obj/item/weapon/pen/reagent/sleepy
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_COVERT = 5)
 
 /obj/item/weapon/pen/reagent/sleepy/New()
 	..()

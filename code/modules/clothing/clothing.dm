@@ -16,6 +16,8 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
+	var/style = 0
+
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
 
@@ -38,11 +40,18 @@
 	accessories = null
 	return ..()
 
+/obj/item/clothing/proc/get_style()
+	var/real_style = style
+	if(blood_DNA)
+		real_style -= 1
+	if(gunshot_residue)
+		real_style -= 1
+	return real_style
+
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
 	. = ..()
 	gunshot_residue = null
-
 
 //Delayed equipping
 /obj/item/clothing/pre_equip(var/mob/user, var/slot)
@@ -454,7 +463,7 @@ BLIND     // can't see anything
 		to_chat(user, "You attached no slip sole")
 		permeability_coefficient = 0.05
 		item_flags = NOSLIP | SILENT
-		origin_tech = list(TECH_ILLEGAL = 3)
+		origin_tech = list(TECH_COVERT = 3)
 		siemens_coefficient = 0 // DAMN BOI
 		qdel(I)
 

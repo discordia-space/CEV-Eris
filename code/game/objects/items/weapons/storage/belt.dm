@@ -77,7 +77,9 @@
 	icon_state = "utility_neotheology"
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
-		/obj/item/weapon/implant/core_implant/cruciform
+		/obj/item/weapon/implant/core_implant/cruciform,
+		/obj/item/weapon/soap,
+		/obj/item/weapon/reagent_containers/spray/cleaner
 	)
 
 /obj/item/weapon/storage/belt/medical
@@ -113,6 +115,7 @@
 	name = "EMT utility belt"
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
+	item_state = "emsbelt"
 
 /obj/item/weapon/storage/belt/tactical
 	name = "tactical belt"

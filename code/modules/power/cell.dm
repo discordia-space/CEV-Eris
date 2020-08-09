@@ -158,6 +158,10 @@
 
 
 /obj/item/weapon/cell/proc/explode()
+	if(QDELETED(src))
+		rigged = FALSE // Prevent error spam
+		throw EXCEPTION("A rigged cell has attempted to explode in nullspace. Usually this means that handle_atom_del handling is missing somewhere.")
+
 	var/turf/T = get_turf(loc)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)

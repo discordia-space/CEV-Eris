@@ -238,3 +238,12 @@
 		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
+
+/obj/item/weapon/oddity/techno
+	name = "Unknown technological part"
+	desc = "Technological part maded by Techno-Tribalism Enforcer."
+	icon_state = "techno_part1"
+
+/obj/item/weapon/oddity/techno/Initialize()
+	icon_state = "techno_part[rand(1,7)]"
+	.=..()

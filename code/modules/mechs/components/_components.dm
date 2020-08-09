@@ -45,6 +45,12 @@
 /obj/item/mech_component/proc/prebuild()
 	return
 
+/obj/item/mech_component/proc/can_be_repaired()
+	if(total_damage >= max_damage)
+		return FALSE
+	else
+		return TRUE
+
 /obj/item/mech_component/proc/update_health()
 	total_damage = brute_damage + burn_damage
 	if(total_damage > max_damage) total_damage = max_damage

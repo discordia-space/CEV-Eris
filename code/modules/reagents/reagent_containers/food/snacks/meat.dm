@@ -8,6 +8,7 @@
 	bitesize = 3
 	matter = list(MATERIAL_BIOMATTER = 20)
 	preloaded_reagents = list("protein" = 9)
+	taste_tag = list(MEAT_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/attackby(obj/item/I, mob/user)
 	if(QUALITY_CUTTING in I.tool_qualities)

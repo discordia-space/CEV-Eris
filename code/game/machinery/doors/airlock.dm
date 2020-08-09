@@ -717,7 +717,8 @@ There are 9 wires.
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
-	ui_interact(user)
+	if(!isblitzshell(user))
+		ui_interact(user)
 
 /obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/data[0]

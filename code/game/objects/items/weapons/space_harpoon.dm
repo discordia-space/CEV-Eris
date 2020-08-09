@@ -115,3 +115,43 @@
 /obj/item/weapon/bluespace_harpoon/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
+
+/obj/item/weapon/bluespace_harpoon/mounted
+	var/charge_cost = 100
+	var/charge_tick = 0
+	var/recharge_time = 4
+
+/obj/item/weapon/bluespace_harpoon/mounted/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/bluespace_harpoon/mounted/Process()
+	charge_tick++
+	if(charge_tick < recharge_time)
+		return
+
+	charge_tick = 0
+
+	if(!cell || cell.charge >= cell.maxcharge)
+		return
+
+	var/obj/item/weapon/cell/large/external = get_external_cell()
+	if(!external || !external.use(charge_cost))
+		return
+
+	cell.give(charge_cost)
+	update_icon()
+
+/obj/item/weapon/bluespace_harpoon/mounted/proc/get_external_cell()
+	return loc.get_cell()
+
+/obj/item/weapon/bluespace_harpoon/mounted/update_icon()
+	icon_state = "harpoon-mounted-[mode]"
+
+/obj/item/weapon/bluespace_harpoon/mounted/blitz
+	name = "OR BSD \"Blauerraumharpune\""
+	desc = "Reverse engineered version of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
+	icon_state = "harpoon-mounted-blitz-1"
+
+/obj/item/weapon/bluespace_harpoon/mounted/blitz/update_icon()
+	icon_state = "harpoon-mounted-blitz-[mode]"

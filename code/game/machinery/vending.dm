@@ -1014,28 +1014,16 @@
 					/obj/item/clothing/accessory/holster/armpit = 5,
 					/obj/item/clothing/accessory/holster/waist = 5,
 					/obj/item/clothing/accessory/holster/hip = 5,
-					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 3)
-
-
-	contraband = list(
-					/obj/item/ammo_magazine/slpistol = 20,
-					/obj/item/ammo_magazine/pistol = 20,
+					/obj/item/ammo_magazine/slpistol = 5,
+					/obj/item/ammo_magazine/pistol = 5,
 					/obj/item/ammo_magazine/hpistol = 5,
-					/obj/item/ammo_magazine/smg = 15,
-					/obj/item/ammo_magazine/ammobox/pistol = 20,
-					/obj/item/weapon/storage/box/shotgunammo/slug = 10,
-					/obj/item/weapon/storage/box/shotgunammo/buckshot = 10,
-					/obj/item/weapon/tool/knife/tacknife = 6)
+					/obj/item/ammo_magazine/smg = 3,
+					/obj/item/ammo_magazine/ammobox/pistol = 5,
+					/obj/item/weapon/storage/box/shotgunammo/slug = 3,
+					/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
+					/obj/item/weapon/tool/knife/tacknife = 5)
+
 	prices = list(
-					/obj/item/device/flash = 600,
-					/obj/item/weapon/reagent_containers/spray/pepper = 800,
-					/obj/item/weapon/gun/projectile/olivaw = 1600,
-					/obj/item/weapon/gun/projectile/giskard = 1200,
-					/obj/item/weapon/gun/energy/gun/martin = 1500,
-					/obj/item/weapon/gun/projectile/revolver/havelock = 2500,
-					/obj/item/weapon/gun/projectile/automatic/atreides = 1500,
-					/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 3700,
-					/obj/item/weapon/gun/projectile/shotgun/pump = 2000,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 400,
 					/obj/item/ammo_magazine/ammobox/pistol/rubber = 500,
 					/obj/item/ammo_magazine/slpistol/rubber = 300,
@@ -1045,16 +1033,15 @@
 					/obj/item/weapon/storage/box/shotgunammo/beanbags = 300,
 					/obj/item/weapon/storage/box/shotgunammo/flashshells = 300,
 					/obj/item/weapon/storage/box/shotgunammo/blanks = 50,
-					/obj/item/ammo_magazine/sllrifle = 200,
-					/obj/item/ammo_magazine/slpistol = 400,
-					/obj/item/ammo_magazine/smg/rubber = 400,
-					/obj/item/ammo_magazine/smg = 500,
-					/obj/item/ammo_magazine/ammobox/pistol = 200,
-					/obj/item/weapon/storage/box/shotgunammo/slug = 300,
-					/obj/item/weapon/storage/box/shotgunammo/buckshot = 300,
+					/obj/item/ammo_magazine/sllrifle = 400,
+					/obj/item/ammo_magazine/slpistol = 500,
+					/obj/item/ammo_magazine/smg/rubber = 300,
+					/obj/item/ammo_magazine/smg = 400,
+					/obj/item/ammo_magazine/ammobox/pistol = 700,
+					/obj/item/weapon/storage/box/shotgunammo/slug = 900,
+					/obj/item/weapon/storage/box/shotgunammo/buckshot = 900,
 					/obj/item/weapon/tool/knife/tacknife = 600,
-					/obj/item/ammo_magazine/pistol = 400,
-					/obj/item/weapon/gun_upgrade/mechanism/weintraub = 1000,)
+					/obj/item/ammo_magazine/pistol = 600,)
 
 //This one's from bay12
 /obj/machinery/vending/cart
@@ -1095,11 +1082,22 @@
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	vend_delay = 34
 	icon_state = "cigs"
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 4)
-	contraband = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 4, /obj/item/weapon/flame/lighter/zippo = 4,)
-	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5 )
-	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200, /obj/item/weapon/storage/fancy/cigarettes = 100 ,/obj/item/weapon/storage/box/matches = 10,/obj/item/weapon/flame/lighter/random = 5,
-				/obj/item/weapon/flame/lighter/zippo = 250)
+	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,
+					/obj/item/weapon/storage/fancy/cigcartons = 5,
+					/obj/item/clothing/mask/smokable/cigarette/cigar = 4,
+					/obj/item/weapon/flame/lighter/zippo = 4,
+					/obj/item/weapon/storage/box/matches = 10,
+					/obj/item/weapon/flame/lighter/random = 4,
+					/obj/item/weapon/storage/fancy/cigar = 5,
+					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5
+				   )
+
+	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
+				  /obj/item/weapon/storage/fancy/cigarettes = 100,
+				  /obj/item/weapon/storage/fancy/cigcartons = 800,
+				  /obj/item/weapon/storage/box/matches = 10,
+				  /obj/item/weapon/flame/lighter/random = 5,
+				  /obj/item/weapon/flame/lighter/zippo = 250)
 
 
 /obj/machinery/vending/medical
@@ -1447,7 +1445,7 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 4,
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 2,
-					/obj/item/weapon/gun/projectile/boltgun/serbian = 8,
+					/obj/item/weapon/gun/projectile/boltgun/serbian = 10,
 					/obj/item/ammo_magazine/ammobox/lrifle_small = 30,
 					/obj/item/weapon/storage/ration_pack = 10
 					)
@@ -1458,12 +1456,10 @@
 					/obj/item/weapon/storage/deferred/crate/uniform_black = 2000,
 					/obj/item/weapon/storage/deferred/crate/uniform_flak  = 2200,
 					/obj/item/weapon/storage/deferred/crate/uniform_light = 1800,
-					/obj/item/weapon/gun/projectile/boltgun/serbian = 1000,
-					/obj/item/ammo_magazine/ammobox/lrifle_small = 300,
+					/obj/item/ammo_magazine/ammobox/lrifle_small = 400,
 					/obj/item/weapon/storage/ration_pack = 800
 					)
 	idle_power_usage = 211
-	auto_price = FALSE
 	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/custom

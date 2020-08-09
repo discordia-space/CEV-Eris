@@ -348,7 +348,7 @@ var/list/rummage_sound = list(\
 
 var/const/FALLOFF_SOUNDS = 0.5
 
-/mob/proc/playsound_local(var/turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure = TRUE)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, extrarange, override_env, envdry, envwet, use_pressure = TRUE)
 	if(!src.client || ear_deaf > 0)
 		return
 
@@ -370,7 +370,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 	
 	var/turf/T = get_turf(src)
 	// 3D sounds, the technology is here!
-	if(isturf(turf_source))
+	if(T && isturf(turf_source))
 		//sound volume falloff with distance
 		var/distance = get_dist(T, turf_source)
 
