@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: Counselor autolathe disk now contains medium battery design instead of
+      small one.
