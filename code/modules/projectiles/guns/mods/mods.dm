@@ -289,3 +289,19 @@
 	I.prefix = "radiation-coating"
 	I.req_gun_tags = list(GUN_PROJECTILE)
 	I.gun_loc_tag = GUN_BARREL
+
+// Add psy damage to your weapon
+/obj/item/weapon/gun_upgrade/mechanism/psionic_catalyst
+	name = "Moebius \"Mastermind\" psionic catalyst"
+	desc = "This controversial device greatly amplifies the natural psionic ability of the user and allows them to project their will into the world. Before the development of the Psi Amp, psionic disciplines were mostly detectable only in a lab environment."
+	icon_state = "psionic_catalyst"
+	matter = list(MATERIAL_SILVER = 3, MATERIAL_PLASTEEL = 3, MATERIAL_URANIUM = 3)
+
+/obj/item/weapon/gun_upgrade/mechanism/psionic_catalyst/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+	GUN_UPGRADE_DAMAGE_PSY = 0.4)
+	I.prefix = "psionic"
+	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.gun_loc_tag = GUN_MECHANISM

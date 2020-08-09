@@ -33,3 +33,8 @@
 	build_path = /obj/item/weapon/gun_upgrade/barrel/isotope_diffuser
 	sort_string = "GAAAG"
 	category = CAT_GUNMODS
+
+/datum/design/research/item/weapon/gunmod/psionic_catalyst
+	build_path = /obj/item/weapon/gun_upgrade/mechanism/psionic_catalyst
+	sort_string = "GAAAH"
+	category = CAT_GUNMODS

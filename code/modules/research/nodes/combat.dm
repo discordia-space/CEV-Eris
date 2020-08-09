@@ -148,7 +148,8 @@
 							/datum/design/research/item/weapon/gunmod/overdrive,
 							/datum/design/research/item/weapon/gunmod/honker,
 							/datum/design/research/item/weapon/gunmod/toxin_coater,
-							/datum/design/research/item/weapon/gunmod/isotope_diffuser
+							/datum/design/research/item/weapon/gunmod/isotope_diffuser,
+							/datum/design/research/item/weapon/gunmod/psionic_catalyst
 						)
 
 /datum/technology/temp
