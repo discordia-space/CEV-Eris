@@ -37,9 +37,13 @@
 	sprite_name = "miniFE"
 
 /obj/item/weapon/extinguisher/New()
+	if(!istype(src, /obj/item/weapon/extinguisher/mini) && !istype(src, /obj/item/weapon/extinguisher/mech)) // create cosmetic overlays for standard FE, but not for mini/mech one
+		var/icon/temp = new /icon('icons/obj/items.dmi', "fire_extinguisherO[rand(1,6)]")
+		overlays += temp
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
 	..()
+
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
