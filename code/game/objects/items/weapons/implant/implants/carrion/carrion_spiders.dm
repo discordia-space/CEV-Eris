@@ -29,16 +29,18 @@
 	..()
 
 /obj/item/weapon/implant/carrion_spider/Process()
-	
 	if(ready_to_attack && (last_stun_time <= world.time - 4 SECONDS))
 		for(var/mob/living/L in mobs_in_view(1, src))
-			var/mob/living/carbon/human/H = L
-			if(is_carrion(H))
-				continue
+			if(istype(L, /mob/living/simple_animal) || istype(L, /mob/living/carbon))
+				if(is_carrion(L))
+					continue
+				install(L)
+				to_chat(owner_mob, SPAN_NOTICE("[src] infested [L]"))
+				break
 
-			install(L)
-			to_chat(owner_mob, SPAN_NOTICE("[src] infested [L]"))
-			break
+/obj/item/weapon/implant/carrion_spider/on_uninstall()
+	..()
+	last_stun_time = world.time
 
 /obj/item/weapon/implant/carrion_spider/attackby(obj/item/I, mob/living/user, params) //Overrides implanter behaviour
 	if(I.force >= WEAPON_FORCE_WEAK)
@@ -61,6 +63,9 @@
 	qdel(src)
 
 /obj/item/weapon/implant/carrion_spider/attack(mob/living/M, mob/living/user)
+	if(!(istype(M, /mob/living/simple_animal) || istype(M, /mob/living/carbon)))
+		to_chat(user, SPAN_WARNING("You can't implant spiders into robots."))
+		return
 	user.drop_item()
 	M.attack_hand(user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)

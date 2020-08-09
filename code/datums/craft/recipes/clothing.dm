@@ -41,3 +41,12 @@
 		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
 		list(/obj/item/stack/cable_coil, 2)
 	)
+
+/datum/craft_recipe/clothing/chest_rig
+	name = "chest rig"
+	result = /obj/item/clothing/suit/storage/vest/chestrig
+	steps = list(
+		list(/obj/item/stack/medical/bruise_pack/handmade, 3, "time" = 10),
+		list(/obj/item/stack/rods, 2, "time" = 10),
+		list(/obj/item/stack/cable_coil, 2),
+	)

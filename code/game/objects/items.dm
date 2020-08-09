@@ -120,7 +120,7 @@
 
 	loc = T
 
-/obj/item/examine(mob/user, var/distance = -1)
+/obj/item/examine(user, distance = -1)
 	var/message
 	var/size
 	switch(w_class)
@@ -173,7 +173,7 @@
 		R.activate_module(src)
 //		R.hud_used.update_robot_modules_display()
 
-/obj/item/proc/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/proc/talk_into(mob/living/M, message, channel, verb = "says", datum/language/speaking = null, speech_volume)
 	return
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
@@ -182,7 +182,7 @@
 // Called whenever an object is moved out of a mob's equip slot. Possibly into another slot, possibly to elsewhere
 // Linker proc: mob/proc/prepare_for_slotmove, which is referenced in proc/handle_item_insertion and obj/item/attack_hand.
 // This exists so that dropped() could exclusively be called when an item is dropped.
-/obj/item/proc/on_slotmove(var/mob/user)
+/obj/item/proc/on_slotmove(mob/user)
 	if(wielded)
 		unwield(user)
 	if (zoom)
@@ -248,7 +248,7 @@
 //If a negative value is returned, it should be treated as a special return value for bullet_act() and handled appropriately.
 //For non-projectile attacks this usually means the attack is blocked.
 //Otherwise should return 0 to indicate that the attack is not affected in any way.
-/obj/item/proc/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/proc/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	return 0
 
 /obj/item/proc/get_loc_turf()
@@ -401,7 +401,9 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/zoom(tileoffset = 14,viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	if(!usr)
+		return
 
 	var/devicename
 

@@ -89,7 +89,9 @@
 	var/turf/simulated/floor/teleport_destination = pick(destination_candidates)
 	var/area/target_area = random_ship_area()
 	var/turf/simulated/floor/target_turf = target_area.random_space()
-	var/list/target_turf_contents = target_turf.contents
+	if(target_turf)
+		var/list/target_turf_contents = target_turf.contents
+
 
 	if(!teleport_destination || !target_turf_contents.len)
 		return
@@ -97,8 +99,7 @@
 		go_to_bluespace(get_turf(src), entropy_value, FALSE, I, teleport_destination)
 	for(var/mob/M in target_turf_contents)
 		go_to_bluespace(get_turf(src), entropy_value, FALSE, M, teleport_destination)
+		new /obj/item/bluespace_dust(target_turf)
 
-	new /obj/item/bluespace_dust(target_turf)
-
-	next_teleportation = pick(timer_min, timer_max)
-	teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+		next_teleportation = pick(timer_min, timer_max)
+		teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)

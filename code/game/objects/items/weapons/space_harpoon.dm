@@ -146,7 +146,13 @@
 /obj/item/weapon/bluespace_harpoon/mounted/proc/get_external_cell()
 	return loc.get_cell()
 
+/obj/item/weapon/bluespace_harpoon/mounted/update_icon()
+	icon_state = "harpoon-mounted-[mode]"
+
 /obj/item/weapon/bluespace_harpoon/mounted/blitz
-	name = "NT BSD \"Harpoon\""
-	desc = "Minituarized version of harpoon developed by old Nanotrasen, remounted for robotic use only."
-	icon_state = "harpoon-1"
+	name = "OR BSD \"Blauerraumharpune\""
+	desc = "Reverse engineered version of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
+	icon_state = "harpoon-mounted-blitz-1"
+
+/obj/item/weapon/bluespace_harpoon/mounted/blitz/update_icon()
+	icon_state = "harpoon-mounted-blitz-[mode]"
