@@ -44,8 +44,7 @@
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		return
 
-
-	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
+	if(W.has_quality(QUALITY_CUTTING) || W.has_quality(QUALITY_WIRE_CUTTING) || W.has_quality(QUALITY_LASER_CUTTING))
 		if(sampled)
 			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
 			return
@@ -57,7 +56,7 @@
 			return
 		if(prob(70))
 			sampled = 1
-		seed.harvest(user,0,1)
+		seed.harvest(user,0, 0, 1)
 		health -= (rand(3,5)*5)
 		sampled = 1
 		return
