@@ -1,0 +1,6 @@
+author: Deon-DF
+delete-after: true
+changes:
+  - bugfix: radstorm no longer displays its overlay in deep maintenance/asteroid belt
+      (it did not damage before, but showed green overlay).
+  - bugfix: radstorm has no effect on mining shuttle
