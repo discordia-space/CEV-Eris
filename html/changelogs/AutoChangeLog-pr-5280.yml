@@ -1,4 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - bugfix: Fixed the mining airlock assembly sprite, it's no longer invisible.

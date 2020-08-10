@@ -1,8 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - imageadd: new Fire extinguisher/mini fire extinguisher and extinguisher closet
-      sprites by WatlerJe
-  - imageadd: 6 different cosmetic variations of standard (red) fire extinguisher.
-  - imageadd: extinguisher closets show which type of extinguisher is inside when
-      closed.
