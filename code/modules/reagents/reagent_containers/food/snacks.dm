@@ -2400,7 +2400,7 @@
 	nutriment_amt = 6
 	nutriment_desc = list("tofu" = 2)
 	cooked = TRUE
-	taste_tag = list(VEGETARIAN_FOOD),VEGAN_FOOD
+	taste_tag = list(VEGETARIAN_FOOD,VEGAN_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake
 	name = "Carrot Cake"
