@@ -85,7 +85,8 @@
 		harvesting.has_resources = FALSE
 		harvesting.resources = null
 		resource_field -= harvesting
-		harvesting = pick(resource_field)
+		if(resource_field.len)
+			harvesting = pick(resource_field)
 
 	if(!harvesting)
 		system_error("resources depleted")

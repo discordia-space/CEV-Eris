@@ -632,7 +632,7 @@
 		update_icon()
 
 
-/obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/initiator, var/deploy_mode)
+/obj/item/weapon/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
 
 	if(sealing || !cell || cell.empty())
 		return
@@ -640,7 +640,7 @@
 	if(!istype(wearer) || !wearer.back == src)
 		return
 
-	if(initiator == wearer && (usr.stat||usr.paralysis||usr.stunned)) // If the initiator isn't wearing the suit it's probably an AI.
+	if(initiator == wearer && (usr && (usr.stat||usr.paralysis||usr.stunned))) // If the initiator isn't wearing the suit it's probably an AI.
 		return
 
 	var/obj/item/check_slot

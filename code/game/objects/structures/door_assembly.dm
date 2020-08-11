@@ -198,7 +198,7 @@
 	airlock_type = "/engineering"
 
 /obj/structure/door_assembly/door_assembly_min
-	base_icon_state = "min"
+	base_icon_state = "ming"
 	base_name = "Mining Airlock"
 	glass_type = "/glass_mining"
 	airlock_type = "/mining"
