@@ -1,7 +1,6 @@
 /datum/reagent/organic
 	reagent_type = "Organic"
 /* Food */
-	var/list/taste_tag = list()
 /datum/reagent/organic/nutriment
 	name = "Nutriment"
 	id = "nutriment"
@@ -218,8 +217,6 @@
 	M.nutrition = max(M.nutrition - 1 * effect_multiplier, 0)
 
 /* Non-food stuff like condiments */
-/datum/reagent/other
-	var/list/taste_tag = list()
 /datum/reagent/other/sodiumchloride
 	name = "Table Salt"
 	id = "sodiumchloride"
@@ -563,8 +560,6 @@
 	glass_desc = "Delicious juice made from watermelon."
 
 // Everything else
-/datum/reagent/drink
-	var/list/taste_tag = list()
 /datum/reagent/drink/milk
 	name = "Milk"
 	id = "milk"
