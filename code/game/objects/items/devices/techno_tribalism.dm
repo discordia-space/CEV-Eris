@@ -26,10 +26,6 @@
 							oddity_stats[STAT_COG] += stat_cost
 							useful = TRUE
 
-						else if (quality == QUALITY_PULSING || quality == QUALITY_ADHESIVE || quality == QUALITY_SEALING)
-							oddity_stats[STAT_MEC] += stat_cost
-							useful = TRUE
-
 						else if (quality == QUALITY_PRYING || quality == QUALITY_HAMMERING || quality == QUALITY_DIGGING)
 							oddity_stats[STAT_ROB] += stat_cost
 							useful = TRUE
@@ -44,6 +40,12 @@
 
 						else if (quality == QUALITY_DRILLING || quality == QUALITY_SHOVELING || quality == QUALITY_EXCAVATION)
 							oddity_stats[STAT_TGH] += stat_cost
+							useful = TRUE
+
+					if(W.tool_qualities[quality] >= 30)
+						var/stat_cost = round(W.tool_qualities[quality] / 15)
+						if (quality == QUALITY_PULSING || quality == QUALITY_ADHESIVE || quality == QUALITY_SEALING)
+							oddity_stats[STAT_MEC] += stat_cost
 							useful = TRUE
 
 				if(!useful)
