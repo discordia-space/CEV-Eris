@@ -598,53 +598,18 @@
 		"woodpulp"
 		)
 
-	var/list/names = list(
-		"shaggy hydnum",
-		"truffle ori",
-		"poached bulgar",
-		"mottled crepidotus",
-		"dog-lichen",
-		"pterula panellus",
-		"rockmoss",
-		"webcap",
-		"pixie polypore",
-		"lungwort",
-		"candy beacon",
-		"splash conocybe",
-		"stagshorn",
-		"club coral",
-		"jelly cone",
-		"dung amanita",
-		"zellers vase",
-		"smoky rust",
-		"dye heart",
-		"bonnet cushion",
-		"veiled panus",
-		"ramularia ear",
-		"bog leafspot",
-		"poor-and-custard",
-		"cramp scale",
-		"douglas milk cup",
-		"powdercap",
-		"felt porcini",
-		"slimy russula",
-		"scruffy gill",
-		"junk bolete",
-		"monkey tail",
-		"serbian porridge",
-		"corpse rot",
-		"space clown",
-		"dried tears",
-		"funky moss",
-		"ling tongue",
-		"spider bane",
-		"vagabond ear",
-		"hypoxylon urn",
-		"tumbling stem",
-		"fly leoninus",
+	var/list/firstnames = list (
+		"bleak", "bog", "bum", "candy", "coarse", "corpse", "cramp", "club", "demon", "dog", "dung", "felt", "fly", "goblin", "grave", "greasy", "hypoxylon", "jelly", "junk", "icky", "imp", "ling", "lung", "maggot", "monkey", "mottled", "pixie", "poached", "powder", "pterula", "ramularia", "radiant", "rat", "roach", "rock", "scruffy", "serbian", "shaggy", "slimy", "smelly", "smoky", "space", "spider", "spiky", "splash", "stag", "stinky", "tumbling", "undulate", "vagabond", "veiled", "wall", "web"
+		)
+	var/list/secondnames = list(
+		"amanita", "bane", "beacon", "bolete", "bonnet", "bulgar", "cap", "cone", "conocybe", "coral", "clown", "cremini", "crepidotus", "cup", "cushion", "entoloma", "ear", "fungus", "gill", "heart", "horn", "hydnum", "leafspot", "leoninus", "lichen", "micellium", "morsel", "moss", "mushroom", "ori", "oyster", "panellus", "polypore", "panus", "porcini", "porridge", "puffball", "rod", "rot", "russula", "scale", "smut", "spots", "stem", "stool", "tail", "tears", "tongue", "trumpet", "truffle",  "urn", "vase", "wort"
 		)
 
-	shuffle(names)
+	shuffle(firstnames)
+	shuffle(secondnames)
+	var/list/names = list()
+	for (var/i = 1; i <= min(firstnames.len, secondnames.len); i++)
+		names += "[firstnames[i]] [secondnames[i]]"
 
 	var/random = 0
 	random = rand(1, possible_chems.len)
@@ -658,7 +623,7 @@
 	else
 		generated_name = names[1]
 	name = "[generated_name]"
-	seed_name = "[generated_name] mushroom"
+	seed_name = "[generated_name]"
 	display_name = "[generated_name]"
 
 	//Set the maintshroom to the hue of the chem

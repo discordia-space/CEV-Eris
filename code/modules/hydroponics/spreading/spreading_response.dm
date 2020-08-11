@@ -56,7 +56,13 @@
 			return
 		if(prob(70))
 			sampled = 1
-		seed.harvest(user,0, 0, 1)
+		switch (input(user, "What would you like to do?") in list("Harvest plant", "Sample seed", "Cancel"))
+			if("Harvest plant")
+				seed.harvest(user,0, 0, 1)
+			if("Sample seed")
+				seed.harvest(user,0, 1)
+			if("Cancel")
+				return
 		health -= (rand(3,5)*5)
 		sampled = 1
 		return
