@@ -9,7 +9,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	filling_states = "20;60;100"
+	filling_states = "20;60;80;100"
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
 
