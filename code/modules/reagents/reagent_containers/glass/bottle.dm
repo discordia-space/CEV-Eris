@@ -1,6 +1,6 @@
 //Not to be confused with /obj/item/weapon/reagent_containers/food/drinks/bottle
 
-./obj/item/weapon/reagent_containers/glass/bottle
+/obj/item/weapon/reagent_containers/glass/bottle
 	name = "bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
