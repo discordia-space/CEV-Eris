@@ -108810,10 +108810,6 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
-"pgL" = (
-/mob/living/simple_animal/cat/fluff/bones,
-/turf/simulated/floor/carpet/sblucarpet,
-/area/eris/command/mbo)
 "pkU" = (
 /obj/machinery/light/small,
 /obj/machinery/portable_atmospherics/canister/plasma,
@@ -108944,6 +108940,10 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"rXZ" = (
+/mob/living/simple_animal/cat/fluff/bones,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/eris/command/mbo)
 "rYg" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
@@ -249012,7 +249012,7 @@ chl
 chl
 dEP
 dzD
-pgL
+rXZ
 dzT
 dzX
 eBA
