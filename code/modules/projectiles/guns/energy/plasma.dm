@@ -55,7 +55,7 @@
 
 /obj/item/weapon/gun/energy/plasma/cassad
 	name = "FS PR \"Cassad\""
-	desc = "\"Frozen Star\" brand energy assault rifle, capable of prolonged combat. When surrender is not an option. Melt mode excelы at armor piercing due to extreme temperatures it cause."
+	desc = "\"Frozen Star\" brand energy assault rifle, capable of prolonged combat. When surrender is not an option. Melt mode excels at armor piercing due to extreme temperatures it cause."
 	icon = 'icons/obj/guns/energy/cassad.dmi'
 	icon_state = "cassad"
 	item_state = "cassad"
