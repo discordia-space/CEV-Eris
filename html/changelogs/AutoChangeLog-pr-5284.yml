@@ -1,5 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - imageadd: added unique (black with blue tracer) bullet sprite for rubber bullets,
-      now you can differentiate lethal and rubber bullet shots.

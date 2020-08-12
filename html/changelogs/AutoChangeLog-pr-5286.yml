@@ -1,7 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - rscadd: Added a lot of new quotes to the farmbot.
-  - bugfix: Collecting/gathering animation no longer uses watering animation.
-  - imageadd: All farmbot sprites/animations are redone to be in line with the existing
-      water tank sprites.
