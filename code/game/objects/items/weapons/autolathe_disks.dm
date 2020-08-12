@@ -326,7 +326,8 @@
 		/datum/design/bioprinter/medical/advanced/bruise,
 		/datum/design/bioprinter/medical/advanced/ointment,
 
-		/datum/design/autolathe/gun/nt_sprayer
+		/datum/design/autolathe/gun/nt_sprayer,
+		/obj/item/weapon/gun/energy/plasma/martyr
 	)
 
 // Same as the other NT disk, minus the medical designs and encryption key. Should spawn in public access bioprinters if they get added by any chance.
