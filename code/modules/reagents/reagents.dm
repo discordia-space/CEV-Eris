@@ -152,8 +152,9 @@
 /datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	return
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
+	
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		H.sanity.onReagent(src, effect_multiplier)
