@@ -65,7 +65,7 @@
 		update_icon()
 
 /obj/structure/extinguisher_cabinet/AltClick(mob/living/user)
-	src.toggle_open()
+	src.toggle_open(user)
 
 /obj/structure/extinguisher_cabinet/verb/toggle(mob/living/usr)
 	set name = "Open/Close"
