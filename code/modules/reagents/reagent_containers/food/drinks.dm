@@ -138,6 +138,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
 	preloaded_reagents = list("milk" = 50)
+	taste_tag = list(TASTE_SLIMEY)
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk
 	name = "SoyMilk"
@@ -146,6 +147,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
 	preloaded_reagents = list("soymilk" = 50)
+	taste_tag = list(TASTE_SLIMEY)
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
@@ -155,6 +157,7 @@
 	base_icon = "cup"
 	filling_states = "100"
 	preloaded_reagents = list("coffee" = 30)
+	taste_tag = list(TASTE_BITTER)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
@@ -164,6 +167,7 @@
 	base_icon = "cup"
 	filling_states = "100"
 	preloaded_reagents = list("ice" = 30)
+	taste_tag = list(TASTE_REFRESHING)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
 	name = "Dutch Hot Coco"
@@ -172,6 +176,7 @@
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
 	preloaded_reagents = list("hot_coco" = 30)
+	taste_tag = list(TASTE_SWEET)
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen
 	name = "Cup Ramen"
@@ -181,6 +186,7 @@
 	base_icon = "cup"
 	filling_states = "100"
 	preloaded_reagents = list("dry_ramen" = 30)
+	taste_tag = list(TASTE_DRY)
 
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup

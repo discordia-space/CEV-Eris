@@ -40,4 +40,8 @@ var/global/list/all_types_food = list(SWEET_FOOD,
 									VEGAN_FOOD,
 									VEGETARIAN_FOOD,
 									CHEESE_FOOD,
+									SALTY_FOOD,
+									SPICY_FOOD,
+									FLOURY_FOOD,
+									UMAMI_FOOD, //mostly for shrroms
 									BLAND_FOOD)
