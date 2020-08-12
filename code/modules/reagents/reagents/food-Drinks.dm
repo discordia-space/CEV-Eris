@@ -50,7 +50,7 @@
 	id = "glucose"
 	description = "Most important source of energy in all organisms."
 	color = "#FFFFFF"
-	taste_tag = list(SWEET_FOOD)
+	taste_tag = list(TASTE_SWEET)
 
 	injectable = 1
 

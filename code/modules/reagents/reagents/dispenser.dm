@@ -104,7 +104,7 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
-	var/sanity_gain_ingest = 0.5
+	sanity_gain_ingest = 0.5
 
 	glass_icon_state = "glass_clear"
 	glass_name = "ethanol"

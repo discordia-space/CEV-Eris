@@ -39,6 +39,7 @@
 	var/color_weight = 1
 	var/sanity_gain = 0
 	var/list/taste_tag = list()
+	var/sanity_gain_ingest = 0.5
 
 	var/chilling_point
 	var/chilling_message = "crackles and freezes!"
@@ -152,7 +153,10 @@
 	return
 
 /datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
+	affect_blood(M, alien, effect_multiplier * 0.8)
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)	// some of chemicals lost in digestive process
 	return
 
 /datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
