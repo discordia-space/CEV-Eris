@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: sanity ui.
+  - tweak: add the label "cheese food" to various types of pizza.
