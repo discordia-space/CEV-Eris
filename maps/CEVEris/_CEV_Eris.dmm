@@ -74187,8 +74187,6 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/projectile/handmade_pistol{
-	step_x = 0;
-	step_y = 0
 	},
 /obj/item/ammo_magazine/ammobox/pistol/rubber,
 /turf/simulated/floor/tiled/white/brown_perforated,
