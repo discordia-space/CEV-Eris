@@ -1,6 +1,7 @@
 /obj/item/weapon/gun/energy/plasma
 	name = "NT PR \"Dominion\""
-	desc = "A \"NeoTheology\" weapon that uses advanced plasma generation technology to emit highly controllable blasts of energized matter. Due to its complexity and cost, it is rarely seen in use, except by specialists. Melt and INCINERATE modes excel at armor piercing due to extreme temperatures they cause."
+	desc = "A \"NeoTheology\" weapon that uses advanced plasma generation technology to emit highly controllable blasts of energized matter. Due to its complexity and cost, it is rarely seen in use, except by specialists."
+	description_info = "Plasma weapons excel at armor penetration, especially with high-power modes due to extreme temperatures they cause."
 	icon = 'icons/obj/guns/energy/pulse.dmi'
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
@@ -34,13 +35,13 @@
 
 /obj/item/weapon/gun/energy/plasma/mounted/blitz
 	name = "SDF PR \"Sprengen\""
-	desc = "A miniaturized plasma rifle, remounted for robotic use only. Melt and INCINERATE modes excel at armor piercing due to extreme temperatures they cause."
+	desc = "A miniaturized plasma rifle, remounted for robotic use only."
 	icon_state = "plasma_turret"
 	charge_meter = FALSE
 
 /obj/item/weapon/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""
-	desc = "A more recent \"NeoTheology\" brand plasma rifle, focused on the superior firepower at the cost of high energy usage. This weapon excels at armor penetration."
+	desc = "A more recent \"NeoTheology\" brand plasma rifle, focused on the superior firepower at the cost of high energy usage."
 	icon = 'icons/obj/guns/energy/destroyer.dmi'
 	fire_sound = 'sound/weapons/pulse.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 5)
@@ -55,7 +56,7 @@
 
 /obj/item/weapon/gun/energy/plasma/cassad
 	name = "FS PR \"Cassad\""
-	desc = "\"Frozen Star\" brand energy assault rifle, capable of prolonged combat. When surrender is not an option. Melt mode excels at armor piercing due to extreme temperatures it cause."
+	desc = "\"Frozen Star\" brand energy assault rifle, capable of prolonged combat. When surrender is not an option."
 	icon = 'icons/obj/guns/energy/cassad.dmi'
 	icon_state = "cassad"
 	item_state = "cassad"
