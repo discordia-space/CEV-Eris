@@ -166,8 +166,6 @@
 		M.adjust_hallucination(halluci, halluci)
 
 	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.sanity.onAlcohol(src, effect_multiplier)
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/paper))

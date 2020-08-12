@@ -277,12 +277,6 @@
 	changeLevel(E.sanity_gain_ingest * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
-			add_rest(taste_tag, 4 * multiplier/E.taste_tag.len) //THIS WILL BE COMMENTED BACK when i manage to fix it. but its here so people can help if they see it (DO NOT MERGE)
-
-/datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
-	changeLevel(E.sanity_gain_ingest * multiplier)
-	if(resting && E.taste_tag.len)
-		for(var/taste_tag in E.taste_tag)
 			add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
