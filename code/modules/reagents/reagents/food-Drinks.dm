@@ -225,7 +225,6 @@
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
-	taste_tag = list(TASTE_SALTY)
 
 /datum/reagent/organic/blackpepper
 	name = "Black Pepper"
