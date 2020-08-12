@@ -165,7 +165,6 @@
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)
 
-	var/mob/living/carbon/human/H = M
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/paper))
