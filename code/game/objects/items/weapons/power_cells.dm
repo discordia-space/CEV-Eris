@@ -264,3 +264,11 @@
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	maxcharge = 300
+
+/obj/item/weapon/cell/martycharge
+	name = "NT \"martyrcharge\""
+	desc = "A battery like cartridge for martyr. you shouldn'g be holding this"  // shouldn't be able to remove it but just in case one does
+	icon_state = "martycharge"
+	origin_tech = list(TECH_POWER = 0)
+	matter = list()
+	maxcharge = 8 //useless enough if anyone manage to get this
