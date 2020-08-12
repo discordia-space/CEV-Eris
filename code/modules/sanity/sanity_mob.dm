@@ -273,11 +273,11 @@
 /datum/sanity/proc/onToxin(datum/reagent/toxin/R, multiplier)
 	changeLevel(-R.sanityloss * multiplier)
 
-/datum/sanity/proc/onReagent(/datum/reagent/RE, multiplier)
+/* /datum/sanity/proc/onReagent(/datum/reagent/RE, multiplier)
 	changeLevel(RE.sanity_gain_ingest * multiplier)
 	if(resting && RE.taste_tag.len)
 		for(var/taste_tag in RE.taste_tag)
-			add_rest(taste_tag, 4 * multiplier/RE.taste_tag.len)
+			add_rest(taste_tag, 4 * multiplier/RE.taste_tag.len)   */  //THIS WILL BE COMMENTED BACK when i manage to fix it. but its here so people can help if they see it (DO NOT MERGE)
 
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
