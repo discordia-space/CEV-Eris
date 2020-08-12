@@ -78,7 +78,7 @@
 	taste_description = "sweetness"
 	nutriment_factor = 4
 	color = "#FFFF00"
-	taste_tag = list(SWEET_FOOD)
+	taste_tag = list(TASTE_SWEET,TASTE_SLIMEY)
 
 /datum/reagent/organic/nutriment/flour
 	name = "flour"
@@ -225,7 +225,7 @@
 	reagent_state = SOLID
 	color = "#FFFFFF"
 	overdose = REAGENTS_OVERDOSE
-	taste_tag = list(TASTE_SALTY,VEGAN_FOOD,VEGETARIAN_FOOD)
+	taste_tag = list(TASTE_SALTY)
 
 /datum/reagent/organic/blackpepper
 	name = "Black Pepper"
@@ -1849,7 +1849,7 @@
 	glass_name = "Irish Car Bomb"
 	glass_desc = "An irish car bomb."
 	glass_center_of_mass = list("x"=16, "y"=8)
-	taste_tag = list(TASTE_BUBBLY,COCO_FOOD,TASTE_BITTER)
+	taste_tag = list(TASTE_BUBBLY,TASTE_SWEET,TASTE_BITTER)
 
 /datum/reagent/ethanol/coffee/irishcoffee
 	name = "Irish Coffee"
