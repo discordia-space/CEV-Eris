@@ -122,7 +122,7 @@
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
 /datum/gear/uniform/neon
-	display_name = "neon tracksuituits, color presets"
+	display_name = "neon tracksuits, color presets"
 	path = /obj/item/clothing/under/neon
 
 /datum/gear/uniform/neon/New()
