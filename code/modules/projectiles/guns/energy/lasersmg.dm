@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> Update lasersmg.dm
 /obj/item/weapon/gun/energy/lasersmg
 	name = "Disco Vazer \"Lasblender\""
 	desc = "This conversion of the \"Atreides\" enables it to shoot lasers. Unlike in other laser weapons, the process of creating a laser is based on a chain reaction of localized micro-explosions.\
@@ -13,32 +9,18 @@
 	w_class = ITEM_SIZE_NORMAL
 	fire_sound = 'sound/weapons/Laser.ogg'
 	suitable_cell = /obj/item/weapon/cell/medium
-<<<<<<< HEAD
 	can_dual = TRUE
 	projectile_type = /obj/item/projectile/beam
 	charge_meter = FALSE //TODO: Rework overlays, check assets storage for charge states.
-=======
-	can_dual = 1
-	projectile_type = /obj/item/projectile/beam
-	charge_meter = FALSE
->>>>>>> Update lasersmg.dm
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 11, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 1, MATERIAL_GLASS = 2)
 	price_tag = 1000
-<<<<<<< HEAD
 	damage_multiplier = 0.275 //makeshift laser
 	recoil_buildup = 4
 	one_hand_penalty = 3 
 	projectile_type = /obj/item/projectile/beam
 	init_offset = 7 // bad accuracy even on the first shot
-=======
-	damage_multiplier = 0.9 //makeshift laser
-	recoil_buildup = 4
-	one_hand_penalty = 3 
-	projectile_type = /obj/item/projectile/beam
-	init_offset = 7 // shit accuracy even on the first shot
->>>>>>> Update lasersmg.dm
 	suitable_cell = /obj/item/weapon/cell/medium
 	charge_cost = 50 // 2 bursts with a 800m cell
 
@@ -47,10 +29,6 @@
 		)
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> Update lasersmg.dm
 /obj/item/weapon/gun/energy/lasersmg/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
 	projectile_color = pick(list("#FF0000", "#0000FF", "#00FF00", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000"))
 	..()
@@ -66,10 +44,6 @@
 		iconstring += "_mag"
 		itemstring += "_mag"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> Update lasersmg.dm
 /obj/item/weapon/gun/energy/lasersmg/update_icon()
 	overlays.Cut()
 	..()
@@ -84,8 +58,3 @@
 
 	else if(istype(cell, /obj/item/weapon/cell/medium))
 		overlays += image(icon, "guild_cell")
-<<<<<<< HEAD
-=======
-
-
->>>>>>> Update lasersmg.dm
