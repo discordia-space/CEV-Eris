@@ -19,7 +19,10 @@ var/global/list/all_taste_drinks = list(TASTE_SOUR,
 								 TASTE_LIGHT,
 								 TASTE_BUBBLY,
 								 TASTE_SPICY,
-								 TASTE_SALTY
+								 TASTE_SALTY,
+								 TASTE_SLIMEY, //for dense,creamy, solid stuff
+								 TASTE_REFRESHING,
+								 TASTE_DRY
 											)
 
 #define SWEET_FOOD "sweet food"
