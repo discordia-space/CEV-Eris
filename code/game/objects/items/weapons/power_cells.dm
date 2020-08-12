@@ -1,4 +1,7 @@
 //BIG CELLS - for APC, borgs and machinery.
+/obj/item/weapon/cell
+
+	var/disposable = FALSE
 
 /obj/item/weapon/cell/large
 	name = "Asters \"Robustcell 1000L\""
@@ -265,10 +268,15 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	maxcharge = 300
 
+//
+//.........................disposable weapon custom cells
+//
 /obj/item/weapon/cell/martycharge
+	
 	name = "NT \"martyrcharge\""
 	desc = "A battery like cartridge for martyr. you shouldn'g be holding this"  // shouldn't be able to remove it but just in case one does
 	icon_state = "martycharge"
 	origin_tech = list(TECH_POWER = 0)
 	matter = list()
 	maxcharge = 8 //useless enough if anyone manage to get this
+	disposable = TRUE

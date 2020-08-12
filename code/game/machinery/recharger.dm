@@ -69,12 +69,9 @@
 		if(istype(I, /obj/item/weapon/gun/energy/gun/nuclear) || istype(I, /obj/item/weapon/gun/energy/crossbow))
 			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
-		if(istype(I, /obj/item/weapon/W)
-			W.get_disposable = DE
-			if(DE)
-				to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
+		if(istype(I, /obj/item/weapon/gun/energy/plasma/martyr))
+			to_chat(user, SPAN_NOTICE("Your gun's disposable you can't manage to manage to find a recharging port."))
 			return
-
 		var/obj/item/weapon/cell/cell = I.get_cell()
 
 		if(!cell && istype(I, /obj/item/weapon/tool))
