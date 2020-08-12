@@ -39,7 +39,7 @@
 	var/color_weight = 1
 	var/sanity_gain = 0
 	var/list/taste_tag = list()
-	var/sanity_gain_ingest = 0.5
+	var/sanity_gain_ingest = 0
 
 	var/chilling_point
 	var/chilling_message = "crackles and freezes!"
