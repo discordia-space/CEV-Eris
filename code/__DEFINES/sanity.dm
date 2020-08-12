@@ -24,7 +24,7 @@ var/global/list/all_taste_drinks = list(TASTE_SOUR,
 								 TASTE_SALTY,
 								 TASTE_SLIMEY, //for dense,creamy, solid stuff
 								 TASTE_REFRESHING,
-								 TASTE_DRY) //for stuff like martinis.
+								 TASTE_DRY) //for stuff like martinis
 
 #define SWEET_FOOD "sweet food"
 #define MEAT_FOOD "meat food"
