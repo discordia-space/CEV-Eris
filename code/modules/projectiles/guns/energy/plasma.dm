@@ -108,7 +108,8 @@
 	name = "NT PR \"martyr\""
 	desc = "A \"NeoTheology\" weapon that uses advanced biomass conversion controllable blasts of energized matter. is a disposable side arm, good enough to save you and be recycled."
 	icon = 'icons/obj/guns/energy/martyr.dmi'
-	icon_state = "pulse"
+	icon_state = "martyr"
+	suitable_cell = /obj/item/weapon/cell/martycharge
 	item_state = null	//so the human update icon uses the icon_state instead.
 	item_charge_meter = TRUE
 	w_class = ITEM_SIZE_SMALL
@@ -118,14 +119,14 @@
 	disposable = TRUE
 	price_tag = 500
 	fire_sound = 'sound/weapons/Laser.ogg'
-	suitable_cell = /obj/item/weapon/cell/martycharge //can't recharge this one
+	cell_type = /obj/item/weapon/cell/martycharge //can't recharge this one
 	sel_mode = 2
-	charge_cost = 1 //Gives us 40 shots per high medium-sized cell
+	charge_cost = 1
 	recoil_buildup = 1 //pulse weapons have a bit more recoil
 	one_hand_penalty = 0
 	twohanded = FALSE
 
 	init_firemodes = list(
-		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="INCINERATE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=2, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="INCINERATE", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, charge_cost=8, icon="destroy", projectile_color = "#FFFFFF"),
 	)
