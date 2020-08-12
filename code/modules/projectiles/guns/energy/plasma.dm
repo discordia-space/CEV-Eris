@@ -115,7 +115,7 @@
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_POCKET
 	force = WEAPON_FORCE_PAINFUL
-	matter = list(MATERIAL_STEEL = 2, "biomatter" = 8)
+	matter = list(MATERIAL_STEEL = 2, "biomatter" = 20)
 	disposable = TRUE
 	price_tag = 500
 	fire_sound = 'sound/weapons/Laser.ogg'
