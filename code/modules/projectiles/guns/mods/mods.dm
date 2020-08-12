@@ -43,6 +43,7 @@
 	name = "Moebius \"Penetrator\" magnetic accelerator barrel"
 	desc = "Uses sympathetic magnetic coiling to increase exit velocity of a metal projectile."
 	icon_state = "Penetrator"
+	price_tag = 300
 
 /obj/item/weapon/gun_upgrade/barrel/mag_accel/New()
 	..()
