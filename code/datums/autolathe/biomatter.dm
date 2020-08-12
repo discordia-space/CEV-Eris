@@ -117,7 +117,7 @@
 /datum/design/autolathe/gun/plasma/martyr
 	name = "NT PR \"Martyr\""
 	build_path = /obj/item/weapon/gun/energy/plasma/martyr
-	materials = list("biomatter" = 20, MATERIAL_STEEL = 2)
+	materials = list("biomatter" = 20)
 
 //[MED]
 /datum/design/bioprinter/medical
