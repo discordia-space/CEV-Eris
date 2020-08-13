@@ -1226,6 +1226,7 @@
 #include "code\hispania\modules\mob\living\carbon\human\human.dm"
 #include "code\hispania\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\hispania\modules\organs\internal\kidan.dm"
+#include "code\hispania\modules\sprite_accessories\human\human_hair.dm"
 #include "code\hispania\modules\sprite_accessories\kidan\kidan_facial.dm"
 #include "code\hispania\modules\sprite_accessories\kidan\kidan_hair.dm"
 #include "code\js\byjax.dm"
