@@ -1,5 +1,0 @@
-author: Fernandos33
-delete-after: true
-changes:
-  - tweak: glass breakdown now don't last 5mins anymore. now it lasts only 2. and
-      happens 3times only in 20 secs intervals with 1 sec duration.
