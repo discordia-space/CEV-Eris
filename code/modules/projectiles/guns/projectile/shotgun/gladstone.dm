@@ -6,7 +6,6 @@
 	item_state = "gladstone"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	max_shells = 9 //more shells
-	penetration_multiplier = 1.3 // and good AP
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
