@@ -8,6 +8,7 @@ CIGARS
 SMOKING PIPES
 CHEAP LIGHTERS
 ZIPPO
+VAPE
 
 CIGARETTE PACKETS ARE IN FANCY.DM
 */
@@ -531,3 +532,203 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	return
+
+////////
+//VAPE//
+////////
+/obj/item/clothing/mask/vape
+	name = "\improper Vape mask"
+	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""
+	icon_state = "vape_mask"
+	w_class = ITEM_SIZE_TINY
+	var/chem_volume = 100
+	var/vapetime = 0
+	var/screw = 0
+	var/emagged = 0
+	var/waste = 0.8
+	var/transfer_amount = 0.2
+	var/voltage = 0
+	var/maskoverlay = "vape_mask_overlay"
+
+	var/charge_per_use = 1
+	var/obj/item/weapon/cell/cell
+	var/suitable_cell = /obj/item/weapon/cell/small
+
+/obj/item/clothing/mask/vape/Initialize(mapload)
+	. = ..()
+	create_reagents(chem_volume, NO_REACT)
+	reagents.add_reagent("nicotine", 70)
+	add_overlay(maskoverlay)
+	if(!cell && suitable_cell)
+		cell = new suitable_cell(src)
+
+/obj/item/clothing/mask/vape/get_cell()
+	return cell
+
+/obj/item/clothing/mask/vape/handle_atom_del(atom/A)
+	..()
+	if(A == cell)
+		cell = null
+		update_icon()
+
+/obj/item/clothing/mask/vape/MouseDrop(over_object)
+	if(screw)
+		if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+			cell = null
+
+/obj/item/clothing/mask/vape/attackby(obj/item/O, mob/user, params)
+	if(istype(O, suitable_cell) && !cell && insert_item(O, user))
+		if(screw)
+			cell = O
+		else
+			to_chat(user, "<span class='notice'>You need to close the cap of[src].</span>")
+	if(QUALITY_SCREW_DRIVING in O.tool_qualities)
+		if(!screw)
+			if(O.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				screw = TRUE
+				to_chat(user, "<span class='notice'>You open the cap on [src].</span>")
+				reagent_flags |= OPENCONTAINER
+				update_icon()
+		else
+			if(O.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				screw = FALSE
+				to_chat(user, "<span class='notice'>You close the cap on [src].</span>")
+				reagent_flags &= ~(OPENCONTAINER)
+				update_icon()
+
+	if(istype(O, /obj/item/weapon/tool/multitool))
+		if(screw && (!emagged))
+			if(!voltage)
+				transfer_amount = transfer_amount*2
+				voltage = 1
+				to_chat(user, "<span class='notice'>You increase the voltage of [src].</span>")
+			else
+				transfer_amount = transfer_amount/2
+				voltage = 0
+				to_chat(user, "<span class='notice'>You decrease the voltage of [src].</span>")
+
+		if(screw && (emagged))
+			to_chat(user, "<span class='warning'>[src] can't be modified!</span>")
+		else
+			..()
+
+/obj/item/clothing/mask/vape/update_icon()
+	if(ismob(loc))
+		if(screw)
+			maskoverlay = "vape_mask_overlay_open"
+		if(!screw)
+			maskoverlay = "vape_mask_overlay"
+		add_overlay(maskoverlay)
+		update_wear_icon()
+
+/obj/item/clothing/mask/vape/emag_act(var/remaining_charges, mob/user)
+	if(screw)
+		if(!emagged)
+			emagged = 1
+			to_chat(user, "<span class='warning'>You maximize the voltage of [src].</span>")
+			var/datum/effect/effect/system/spark_spread/sp = new /datum/effect/effect/system/spark_spread //for effect
+			sp.set_up(5, 1, src)
+			sp.start()
+		else
+			to_chat(user, "<span class='warning'>[src] is already emagged!</span>")
+	else
+		to_chat(user, "<span class='warning'>You need to open the cap to do that!</span>")
+
+/obj/item/clothing/mask/vape/attack_self(mob/user)
+	if(screw)
+		if(reagents.total_volume > 0)
+			to_chat(user, "<span class='notice'>You empty [src] of all reagents.</span>")
+			reagents.clear_reagents()
+
+/obj/item/clothing/mask/vape/equipped(mob/user, slot)
+	. = ..()
+	switch(slot)
+		if(slot_wear_mask)
+			if(!screw)
+				to_chat(user, "<span class='notice'>You start puffing on the vape.</span>")
+				reagent_flags &= ~(NO_REACT)
+				update_icon()
+				START_PROCESSING(SSobj, src)
+			else
+				to_chat(user, "<span class='warning'>You need to close the cap first!</span>")
+		if(slot_l_hand, slot_r_hand)
+			reagent_flags |= NO_REACT
+			update_icon()
+			STOP_PROCESSING(SSobj, src)
+
+/obj/item/clothing/mask/vape/proc/hand_reagents()
+	var/mob/living/carbon/human/C = loc
+	if(reagents && reagents.total_volume)
+		if(ishuman(C))
+			if(reagents.get_reagent_amount("plasma"))
+				var/datum/effect/effect/system/reagents_explosion/e = new()
+				playsound(get_turf(src), 'sound/effects/Explosion1.ogg', 50, FALSE)
+				C.apply_damage(20, BURN, BP_HEAD)
+				C.Stun(5)
+				e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, 1), get_turf(src), 0, 0)
+				e.start()
+				qdel(src)
+			if(reagents.get_reagent_amount("fuel"))
+				var/datum/effect/effect/system/reagents_explosion/e = new()
+				playsound(get_turf(src), 'sound/effects/Explosion1.ogg', 50, FALSE)
+				C.apply_damage(20, BURN, BP_HEAD)
+				C.Stun(5)
+				e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
+				e.start()
+				qdel(src)
+			else
+				reagents.trans_to_mob(C, REM, CHEM_INGEST, transfer_amount)
+				C.sanity.onSmoke(src)
+		else
+			reagents.remove_any(waste)
+			cell.use(charge_per_use)
+
+/obj/item/clothing/mask/vape/Process()
+	var/mob/living/M = loc
+
+	if(isliving(loc))
+		M.IgniteMob()
+
+	vapetime++
+
+	if(!reagents.total_volume)
+		if(ismob(loc))
+			to_chat(M, "<span class='warning'>[src] is empty!</span>")
+			STOP_PROCESSING(SSobj, src)
+			//it's reusable so it won't unequip when empty
+		return
+
+	if(emagged && vapetime > 3)
+		var/datum/effect/effect/system/smoke_spread/chem/s = new /datum/effect/effect/system/smoke_spread/chem
+		s.set_up(reagents, 4, 24, loc)
+		s.start()
+		vapetime = 0
+		if(prob(5))//small chance for the vape to break and deal damage if it's emagged
+			playsound(get_turf(src), 'sound/effects/Explosion1.ogg', 50, FALSE)
+			M.apply_damage(20, BURN, BP_HEAD)
+			M.Stun(5)
+			var/datum/effect/effect/system/spark_spread/sp = new /datum/effect/effect/system/spark_spread //for effect
+			sp.set_up(5, 1, src)
+			sp.start()
+			to_chat(M, "<span class='userdanger'>[src] suddenly explodes in your mouth!</span>")
+			qdel(src)
+			return
+
+	if(!cell || !cell.checked_use(charge_per_use))
+		to_chat(M, SPAN_WARNING("[src] battery is dead or missing."))
+		STOP_PROCESSING(SSobj, src)
+		return
+
+	if(cell || cell.checked_use(charge_per_use))
+		if(reagents && reagents.total_volume)
+			hand_reagents()
+
+/obj/item/clothing/mask/vape/better
+	name = "\improper Vape mask"
+	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\" It seems different from the others"
+
+/obj/item/clothing/mask/vape/better/New(mapload)
+	. = ..()
+	waste = pick(0.4, 0.7)
+	transfer_amount = pick(0.3, 1)
+	charge_per_use = pick(0.5, 0.9)
