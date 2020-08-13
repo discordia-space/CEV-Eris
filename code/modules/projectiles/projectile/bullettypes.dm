@@ -194,7 +194,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
 	icon_state = "buckshot"
-	check_armour = ARMOR_MELEE
+	check_armour = ARMOR_BULLET //neverforget
 	damage_types = list(BRUTE = 10)
 	agony = 60
 	armor_penetration = 0
