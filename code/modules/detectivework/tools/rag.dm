@@ -129,8 +129,8 @@
 
 				user.do_attack_animation(src)
 				user.visible_message(
-					"<span class='danger'>\The [user] try to smothers [H] with [src], but blocked!</span>",
-					"<span class='warning'>You try to smother [H] with [src]!</span>"
+					"<span class='danger'>\The [user] tries to smother [H] with [src], but fails!</span>",
+					"<span class='warning'>You try to smother [H] with [src], but the mouth is covered!</span>"
 					)
 			else
 				wipe_down(target, user)
