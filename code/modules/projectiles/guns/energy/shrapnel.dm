@@ -23,7 +23,7 @@
 		list(mode_name="stun", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
 		list(mode_name="blast", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
-	var/consume_cell = TRUE
+	var/consume_cell = FALSE
 	price_tag = 2500
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
@@ -48,5 +48,4 @@
 	restrict_safety = TRUE
 	consume_cell = FALSE
 	cell_type = /obj/item/weapon/cell/small/high //Two shots
-
 

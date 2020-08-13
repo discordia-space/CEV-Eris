@@ -112,9 +112,9 @@
 	if(owner && user == owner)
 		difficulty_adjust = 20
 
-		// ...unless you are a changeling
+		// ...unless you are a carrion
 		// It makes sense that lings have a way of making their flesh cooperate
-		if(user.check_special_role(ROLE_CHANGELING))
+		if(is_carrion(user))
 			difficulty_adjust = -50
 
 	var/atom/surgery_target = get_surgery_target()
@@ -272,8 +272,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 /obj/item/organ/external/proc/try_autodiagnose(mob/living/user)
 	if(istype(user))
-		// Changelings know their flesh, as long as it is connected to their bodies
-		if(!BP_IS_ROBOTIC(src) && user == owner && user.check_special_role(ROLE_CHANGELING))
+		// Carrions should keep this power as they control the whole body
+		if(!BP_IS_ROBOTIC(src) && user == owner && is_carrion(user))
 			diagnosed = TRUE
 			return TRUE
 
@@ -289,7 +289,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(M == user)	// Self-surgery
 
 		// Lings don't need to sit in a chair to perform a surgery on themselves
-		if(user.check_special_role(ROLE_CHANGELING))
+		if(is_carrion(user))
 			return TRUE
 
 		// Normal humans do
