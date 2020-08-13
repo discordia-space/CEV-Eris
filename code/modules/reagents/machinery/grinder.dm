@@ -221,7 +221,7 @@
 	beaker = null
 	update_icon()
 
-/obj/machiney/regentgrinder/portable/AltClick(mob/living/user)
+/obj/machinery/reagentgrinder/portable/AltClick(mob/living/user)
 	if(user.incapacitated())
 		to_chat(user, SPAN_WARNING("You can't do that right now!"))
 		return
