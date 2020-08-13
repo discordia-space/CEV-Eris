@@ -92,12 +92,12 @@
 	icon_state = "sailor_s"
 
 /datum/sprite_accessory/hair/long_curls
-	name = "Long Curls"
+	name = "Long Curls 1"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "long_curls_s"
 
 /datum/sprite_accessory/hair/long_curls_alt
-	name = "Long Curls alt"
+	name = "Long Curls 2"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "long_curls_alt_s"
 
