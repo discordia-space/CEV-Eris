@@ -389,13 +389,13 @@
 	finished = TRUE
 
 
-/* /datum/breakdown/negative/glassification
+/datum/breakdown/negative/glassification
 	name = "Glassification"
-	duration = 5 MINUTES
+	duration = 1 MINUTES //last less
 	restore_sanity_post = 40
 	var/time
-	var/cooldown = 15 SECONDS
-	var/time_view = 5 SECONDS
+	var/cooldown = 20 SECONDS // 3 sounds less bad
+	var/time_view = 1 SECONDS //should make it more like flashes than something that you can process as a vision
 	var/active_view = FALSE
 	var/mob/living/carbon/human/target
 	start_messages = list("You start to see through everything. Your mind expands.")
@@ -437,7 +437,7 @@
 		target.reset_view(holder.owner)
 		target.sanity.changeLevel(-rand(5,10))
 		active_view = TRUE
-		time = world.time + time_view  */ 
+		time = world.time + time_view
 
 /datum/breakdown/common/herald
 	name = "Herald"
