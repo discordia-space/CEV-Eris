@@ -66,11 +66,12 @@
 			to_chat(user, SPAN_WARNING("[src] blinks red as you try to insert the item!"))
 			return
 
+		if(istype(W, obj/item/weapon/W))
+			if (W.disposable)
+				to_chat(user, SPAN_NOTICE("Your gun is disposable it cannot be charged."))
+				return
 		if(istype(I, /obj/item/weapon/gun/energy/gun/nuclear) || istype(I, /obj/item/weapon/gun/energy/crossbow))
 			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
-			return
-		if(istype(I, /obj/item/weapon/gun/energy/plasma/martyr))
-			to_chat(user, SPAN_NOTICE("Your gun's disposable you can't manage to manage to find a recharging port."))
 			return
 		var/obj/item/weapon/cell/cell = I.get_cell()
 
