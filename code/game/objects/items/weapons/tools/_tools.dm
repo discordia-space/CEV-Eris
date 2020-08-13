@@ -353,9 +353,14 @@
 		if (T && T.item_flags & SILENT)
 			volume = 3
 			extrarange = -6
+		else if (T && T.item_flags & LOUD)
+			volume = 500
+			extrarange = 10
 
 		var/soundfile
-		if(forced_sound)
+		if (T && T.item_flags & HONKING)
+			soundfile = WORKSOUND_HONK
+		else if(forced_sound)
 			soundfile = forced_sound
 		else
 			soundfile = worksound

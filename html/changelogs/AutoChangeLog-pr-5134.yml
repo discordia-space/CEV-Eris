@@ -1,0 +1,6 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: Added new toolmods (engineering research node)
+  - rscadd: Added new gunmods (combat research node)
+  - rscadd: Added a mind swapping device (biotech research node)

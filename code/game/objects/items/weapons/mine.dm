@@ -49,9 +49,8 @@
 /obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
-			prob_explode = initial(prob_explode)
-			prob_explode -= AM.skill_to_evade_traps(prob_explode)
-			if(prob(prob_explode) && !is_excelsior(AM))
+			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
+			if(prob(true_prob_explode) && !is_excelsior(AM))
 				explode()
 				return
 	.=..()
