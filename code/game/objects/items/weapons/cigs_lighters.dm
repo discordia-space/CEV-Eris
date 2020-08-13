@@ -537,7 +537,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //VAPE//
 ////////
 /obj/item/clothing/mask/vape
-	name = "\improper Vape mask"
+	name = "\improper Vapour mask"
 	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""
 	icon_state = "vape_mask"
 	item_state = "vape_mask"
@@ -581,12 +581,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(screw)
 			cell = O
 		else
-			to_chat(user, "<span class='notice'>You need to close the cap of[src].</span>")
+			to_chat(user, SPAN_WARNING("You need to close the cap of [src]."))
 	if(QUALITY_SCREW_DRIVING in O.tool_qualities)
 		if(!screw)
 			if(O.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				screw = TRUE
-				to_chat(user, "<span class='notice'>You open the cap on [src].</span>")
+				to_chat(user, SPAN_NOTICE("You open the cap on [src]."))
 				reagent_flags |= OPENCONTAINER
 				icon_state = "vape_mask_open"
 				item_state = "vape_mask_open"
@@ -594,7 +594,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			if(O.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				screw = FALSE
-				to_chat(user, "<span class='notice'>You close the cap on [src].</span>")
+				to_chat(user, SPAN_NOTICE("You close the cap on [src]."))
 				reagent_flags &= ~(OPENCONTAINER)
 				icon_state = "vape_mask"
 				item_state = "vape_mask"
@@ -605,14 +605,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(!voltage)
 				transfer_amount = transfer_amount*2
 				voltage = 1
-				to_chat(user, "<span class='notice'>You increase the voltage of [src].</span>")
+				to_chat(user, SPAN_NOTICE("You increase the voltage of [src]."))
 			else
 				transfer_amount = transfer_amount/2
 				voltage = 0
-				to_chat(user, "<span class='notice'>You decrease the voltage of [src].</span>")
+				to_chat(user, SPAN_NOTICE("You decrease the voltage of [src]."))
 
 		if(screw && (emagged))
-			to_chat(user, "<span class='warning'>[src] can't be modified!</span>")
+			to_chat(user, SPAN_WARNING("[src] can't be modified!"))
 		else
 			..()
 
@@ -620,19 +620,19 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(screw)
 		if(!emagged)
 			emagged = 1
-			to_chat(user, "<span class='warning'>You maximize the voltage of [src].</span>")
+			to_chat(user, SPAN_WARNING("You maximize the voltage of [src]."))
 			var/datum/effect/effect/system/spark_spread/sp = new /datum/effect/effect/system/spark_spread //for effect
 			sp.set_up(5, 1, src)
 			sp.start()
 		else
-			to_chat(user, "<span class='warning'>[src] is already emagged!</span>")
+			to_chat(user, SPAN_WARNING("[src] is already emagged!"))
 	else
-		to_chat(user, "<span class='warning'>You need to open the cap to do that!</span>")
+		to_chat(user, SPAN_WARNING("You need to open the cap to do that!"))
 
 /obj/item/clothing/mask/vape/attack_self(mob/user)
 	if(screw)
 		if(reagents.total_volume > 0)
-			to_chat(user, "<span class='notice'>You empty [src] of all reagents.</span>")
+			to_chat(user, SPAN_NOTICE("You empty [src] of all reagents."))
 			reagents.clear_reagents()
 
 /obj/item/clothing/mask/vape/equipped(mob/user, slot)
@@ -640,12 +640,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	switch(slot)
 		if(slot_wear_mask)
 			if(!screw)
-				to_chat(user, "<span class='notice'>You start puffing on the vape.</span>")
+				to_chat(user, SPAN_NOTICE("You start puffing on the vape."))
 				reagent_flags &= ~(NO_REACT)
 				update_icon()
 				START_PROCESSING(SSobj, src)
 			else
-				to_chat(user, "<span class='warning'>You need to close the cap first!</span>")
+				to_chat(user, SPAN_WARNING("You need to close the cap first!"))
 		if(slot_l_hand, slot_r_hand)
 			reagent_flags |= NO_REACT
 			update_icon()
@@ -689,7 +689,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(!reagents.total_volume)
 		if(ismob(loc))
-			to_chat(M, "<span class='warning'>[src] is empty!</span>")
+			to_chat(M, SPAN_WARNING("[src] is empty!"))
 			STOP_PROCESSING(SSobj, src)
 			//it's reusable so it won't unequip when empty
 		return
@@ -705,7 +705,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/datum/effect/effect/system/spark_spread/sp = new /datum/effect/effect/system/spark_spread //for effect
 			sp.set_up(5, 1, src)
 			sp.start()
-			to_chat(M, "<span class='userdanger'>[src] suddenly explodes in your mouth!</span>")
+			to_chat(M, SPAN_WARNING("[src] suddenly explodes in your mouth!"))
 			qdel(src)
 			return
 
@@ -720,7 +720,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				hand_reagents()
 
 /obj/item/clothing/mask/vape/better
-	name = "\improper Vape mask"
+	name = "\improper Vapour mask"
 	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\" It seems different from the others"
 
 /obj/item/clothing/mask/vape/better/New(mapload)
