@@ -98,8 +98,6 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
-	if(reagents.total_volume <= 0) //Prevents autoinjectors from being refilled.
-		reagent_flags &= ~REFILLABLE
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
 	cut_overlays()
