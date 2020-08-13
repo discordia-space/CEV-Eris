@@ -42,12 +42,12 @@
 	icon_state = "psalad_fluff_hair_s"
 
 /datum/sprite_accessory/hair/ponytail80
-	name = "Ponytail 80"
+	name = "Ponytail 80 1"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "80_ponytail_s"
 
 /datum/sprite_accessory/hair/ponytail80_alt
-	name = "Ponytail 80 alt"
+	name = "Ponytail 80 2"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "80_ponytail_alt_s"
 
@@ -57,7 +57,7 @@
 	icon_state = "big_bow_s"
 
 /datum/sprite_accessory/hair/buns
-	name = "Buns"
+	name = "Bun 5"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "buns_s"
 
@@ -77,12 +77,12 @@
 	icon_state = "himecut_long_ponytail_s"
 
 /datum/sprite_accessory/hair/ombre_twintails
-	name = "Ombre Twintails"
+	name = "Ombre Twintails 1"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "ombre_twintails_s"
 
 /datum/sprite_accessory/hair/ombre_twintails_alt
-	name = "Ombre Twintails alt"
+	name = "Ombre Twintails 2"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "ombre_twintails_alt_s"
 
@@ -110,3 +110,8 @@
 	name = "Low Twins"
 	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 	icon_state = "low_twins_s"
+
+/datum/sprite_accessory/hair/amanita_short
+	name = "Amanita Short"
+	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
+	icon_state = "amanita_short_s"
