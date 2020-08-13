@@ -191,7 +191,7 @@ There are important things regarding this file:
 	knockback = 1
 	step_delay = 1.1
 
-/obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
+/obj/item/projectile/bullet/shotgun/beanbag
 	name = "beanbag"
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
