@@ -101,9 +101,9 @@
 
 /obj/machinery/chemical_dispenser/proc/detach()
 	if(beaker)
-			var/obj/item/weapon/reagent_containers/B = beaker
-			B.loc = loc
-			beaker = null
+		var/obj/item/weapon/reagent_containers/B = beaker
+		B.loc = loc
+		beaker = null
 
 /obj/machinery/chemical_dispenser/AltClick(mob/living/user)
 	if(user.incapacitated())
