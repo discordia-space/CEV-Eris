@@ -540,6 +540,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "\improper Vape mask"
 	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""
 	icon_state = "vape_mask"
+	item_state = "vape_mask"
 	w_class = ITEM_SIZE_TINY
 	var/chem_volume = 100
 	var/vapetime = 0
@@ -548,7 +549,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/waste = 0.8
 	var/transfer_amount = 0.2
 	var/voltage = 0
-	var/maskoverlay = "vape_mask_overlay"
+	var/quality_multiplier = 1
 
 	var/charge_per_use = 1
 	var/obj/item/weapon/cell/cell
@@ -558,7 +559,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	create_reagents(chem_volume, NO_REACT)
 	reagents.add_reagent("nicotine", 70)
-	add_overlay(maskoverlay)
 	if(!cell && suitable_cell)
 		cell = new suitable_cell(src)
 
@@ -588,12 +588,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				screw = TRUE
 				to_chat(user, "<span class='notice'>You open the cap on [src].</span>")
 				reagent_flags |= OPENCONTAINER
+				icon_state = "vape_mask_open"
+				item_state = "vape_mask_open"
 				update_icon()
 		else
 			if(O.use_tool(user, src, WORKTIME_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				screw = FALSE
 				to_chat(user, "<span class='notice'>You close the cap on [src].</span>")
 				reagent_flags &= ~(OPENCONTAINER)
+				icon_state = "vape_mask"
+				item_state = "vape_mask"
 				update_icon()
 
 	if(istype(O, /obj/item/weapon/tool/multitool))
@@ -611,15 +615,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(user, "<span class='warning'>[src] can't be modified!</span>")
 		else
 			..()
-
-/obj/item/clothing/mask/vape/update_icon()
-	if(ismob(loc))
-		if(screw)
-			maskoverlay = "vape_mask_overlay_open"
-		if(!screw)
-			maskoverlay = "vape_mask_overlay"
-		add_overlay(maskoverlay)
-		update_wear_icon()
 
 /obj/item/clothing/mask/vape/emag_act(var/remaining_charges, mob/user)
 	if(screw)
