@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/energy/ntpistol.dmi'
 	icon_state = "ntpistol"
 	item_state = "ntpistol"
-	item_charge_meter = TRUE
+	item_charge_meter = FALSE
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	w_class = ITEM_SIZE_SMALL
