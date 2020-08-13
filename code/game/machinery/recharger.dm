@@ -66,7 +66,8 @@
 			to_chat(user, SPAN_WARNING("[src] blinks red as you try to insert the item!"))
 			return
 
-		if(istype(W, obj/item/weapon/W))
+		if (istype(I, /obj/item/weapon/gun/energy))
+			var/obj/item/weapon/gun/energy/W = I
 			if (W.disposable)
 				to_chat(user, SPAN_NOTICE("Your gun is disposable it cannot be charged."))
 				return
