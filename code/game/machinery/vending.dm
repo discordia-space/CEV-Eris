@@ -1090,7 +1090,7 @@
 					/obj/item/weapon/flame/lighter/random = 4,
 					/obj/item/weapon/storage/fancy/cigar = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5,
-					/obj/item/clothing/mask/vape/ = 5
+					/obj/item/clothing/mask/vape = 5
 				   )
 
 	prices = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 200,
