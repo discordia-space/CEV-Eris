@@ -1,6 +1,6 @@
 //Human Hairstyles made by Ume
 /datum/sprite_accessory/hair
-	icon = 'icons/mob/human_races/species/human/hair.dmi'
+	icon = 'icons/hispania/mob/human_races/species/human/hair.dmi'
 
 /datum/sprite_accessory/hair/country
 	name = "Country"
