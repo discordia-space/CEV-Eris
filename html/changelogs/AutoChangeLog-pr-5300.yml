@@ -1,5 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - bugfix: handcuffs breakout time is now displayed in seconds (to see correct time/work
-      right with breakout time < 1 minute).

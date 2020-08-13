@@ -1,4 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - bugfix: Space heaters now properly accept large cells instead of medium ones.
