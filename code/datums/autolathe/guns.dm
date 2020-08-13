@@ -190,6 +190,10 @@
 	name = "FS PDW E \"Martin\""
 	build_path = /obj/item/weapon/gun/energy/gun/martin
 
+/datum/design/autolathe/gun/ntpistol
+	name = "NT LP \"Svalinn\""
+	build_path = /obj/item/weapon/gun/energy/ntpistol
+
 // Energy general
 
 /datum/design/autolathe/gun/energy_crossbow

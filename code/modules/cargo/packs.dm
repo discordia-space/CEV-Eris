@@ -176,8 +176,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/taser,
-				/obj/item/weapon/gun/energy/taser)
-	cost = 5000
+				/obj/item/weapon/gun/energy/taser,
+				/obj/item/weapon/gun/energy/ntpistol,
+				/obj/item/weapon/gun/energy/ntpistol)
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
