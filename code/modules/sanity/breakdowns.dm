@@ -391,11 +391,11 @@
 
 /datum/breakdown/negative/glassification
 	name = "Glassification"
-	duration = 1 MINUTES //last less
+	duration = 2 MINUTES
 	restore_sanity_post = 40
 	var/time
-	var/cooldown = 20 SECONDS // 3 sounds less bad
-	var/time_view = 1 SECONDS //should make it more like flashes than something that you can process as a vision
+	var/cooldown = 20 SECONDS
+	var/time_view = 1 SECONDS
 	var/active_view = FALSE
 	var/mob/living/carbon/human/target
 	start_messages = list("You start to see through everything. Your mind expands.")
