@@ -114,6 +114,10 @@
 		else if(reagents.total_volume)
 			if(user.targeted_organ == BP_MOUTH && ishuman(target))
 				var/mob/living/carbon/human/H = target
+				user.visible_message(
+					"<span class='danger'>\The [user] starts smothering [H] with [src]!</span>",
+					"<span class='warning'>You start smothering [H] with [src]!</span>"
+					)
 				if(!H.check_mouth_coverage())
 					if(do_after(user, 20, H))
 						user.do_attack_animation(src)
