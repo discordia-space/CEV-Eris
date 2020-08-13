@@ -1099,7 +1099,7 @@
 				  /obj/item/weapon/storage/box/matches = 10,
 				  /obj/item/weapon/flame/lighter/random = 5,
 				  /obj/item/weapon/flame/lighter/zippo = 250,
-				  /obj/item/clothing/mask/vape/better = 300)
+				  /obj/item/clothing/mask/vape = 300)
 
 
 /obj/machinery/vending/medical
