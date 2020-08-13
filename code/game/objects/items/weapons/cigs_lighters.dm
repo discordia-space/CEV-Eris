@@ -653,6 +653,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/vape/proc/hand_reagents()
 	var/mob/living/carbon/human/C = loc
+	vapetime = 0
 	if(reagents && reagents.total_volume)
 		if(ishuman(C))
 			if(reagents.get_reagent_amount("plasma"))
@@ -697,7 +698,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/datum/effect/effect/system/smoke_spread/chem/s = new /datum/effect/effect/system/smoke_spread/chem
 		s.set_up(reagents, 4, 24, loc)
 		s.start()
-		vapetime = 0
 		if(prob(5))//small chance for the vape to break and deal damage if it's emagged
 			playsound(get_turf(src), 'sound/effects/Explosion1.ogg', 50, FALSE)
 			M.apply_damage(20, BURN, BP_HEAD)
@@ -716,7 +716,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(cell || cell.checked_use(charge_per_use))
 		if(reagents && reagents.total_volume)
-			hand_reagents()
+			if(vapetime > 4)
+				hand_reagents()
 
 /obj/item/clothing/mask/vape/better
 	name = "\improper Vape mask"
