@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: Plasma weapons are more obvious about their firing modes now, check their
+      descriptions to see the details.
