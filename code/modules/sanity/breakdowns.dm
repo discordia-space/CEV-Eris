@@ -389,7 +389,7 @@
 	finished = TRUE
 
 
-/datum/breakdown/negative/glassification
+/* /datum/breakdown/negative/glassification
 	name = "Glassification"
 	duration = 5 MINUTES
 	restore_sanity_post = 40
@@ -437,7 +437,7 @@
 		target.reset_view(holder.owner)
 		target.sanity.changeLevel(-rand(5,10))
 		active_view = TRUE
-		time = world.time + time_view
+		time = world.time + time_view  */ 
 
 /datum/breakdown/common/herald
 	name = "Herald"
