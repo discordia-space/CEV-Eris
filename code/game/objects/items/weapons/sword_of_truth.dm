@@ -1,6 +1,6 @@
 /obj/item/weapon/tool/sword/nt_sword
 	name = "Sword of Truth"
-	desc = "Sword made out of an unknown alloy, humming from an unknown power source."
+	desc = "Sword made out of a unknown alloy, humming from an unknown power source."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "nt_sword"
 	item_state = "nt_sword"
