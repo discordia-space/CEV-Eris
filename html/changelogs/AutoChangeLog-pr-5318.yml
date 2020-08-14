@@ -1,0 +1,4 @@
+author: StiffRobot
+delete-after: true
+changes:
+  - bugfix: Makes characters with the lowborn fate unable to join as FO
