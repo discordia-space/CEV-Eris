@@ -1,0 +1,6 @@
+author: Hopek
+delete-after: true
+changes:
+  - rscadd: Extinguisher Cabinants can be alt clicked to open/close
+  - rscadd: Extinguisher Cabinants have a new verb. They can now be opened via the
+      right-click menu.
