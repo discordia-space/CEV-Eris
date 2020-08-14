@@ -17,6 +17,7 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 5
 	penetration_multiplier = 1.1
+	damage_multiplier = 1.15
 	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
 
 	init_firemodes = list(
