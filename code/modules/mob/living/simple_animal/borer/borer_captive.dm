@@ -12,24 +12,26 @@
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
+	message = sanitize(message)
+	if (!message)
+		return
+	log_say("[key_name(src)] : [message]")
+	if (stat == 2)
+		return say_dead(message)
+	for (var/mob/M in GLOB.player_list)
+		if (isnewplayer(M))
+			continue
+		else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+			to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
+
 	if(istype(src.loc,/mob/living/simple_animal/borer))
-
-		message = sanitize(message)
-		if (!message)
-			return
-		log_say("[key_name(src)] : [message]")
-		if (stat == 2)
-			return say_dead(message)
-
 		var/mob/living/simple_animal/borer/B = src.loc
-		to_chat(src, "You whisper silently, \"[message]\"")
 		to_chat(B.host, "The captive mind of [src] whispers, \"[message]\"")
 
-		for (var/mob/M in GLOB.player_list)
-			if (isnewplayer(M))
-				continue
-			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-				to_chat(M, "The captive mind of [src] whispers, \"[message]\"")
+	var/obj/item/weapon/implant/carrion_spider/control/controler = src.loc
+	if(istype(controler))
+		to_chat(controler.wearer, "The captive mind of [src] whispers, \"[message]\"")
+
 
 /mob/living/captive_brain/emote(var/message)
 	return
@@ -55,5 +57,8 @@
 			verbs -= /mob/living/carbon/proc/spawn_larvae
 
 		return
+
+	else
+		to_chat(src, SPAN_DANGER("You cannot escape."))
 
 	..()

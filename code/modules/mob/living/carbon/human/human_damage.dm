@@ -358,6 +358,11 @@ This function restores all organs.
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
+	//Handle PSY damage
+	if(damagetype == PSY)
+		sanity.onPsyDamage(damage)
+		return 1
+
 	//Handle other types of damage
 	if(damagetype != BRUTE && damagetype != BURN)
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))

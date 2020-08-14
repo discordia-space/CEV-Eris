@@ -5,7 +5,7 @@
 		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
 		"throw","pull","resist","drop","look up","rest", "wield", //"jump",
 		"move intent","intent","damage zone","craft menu",
-		"equip","swap hand","left arm bionics","right arm bionics","toggle invetory"
+		"equip","swap hand","left arm bionics","right arm bionics","toggle inventory"
 	)
 	var/icon              // If set, overrides ui_style.
 	//var/has_a_intent = 1  // Set to draw intent box.

@@ -31,6 +31,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/pistol/rubber
+	icon_state = "rubber"
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 3)
 	agony = 25
@@ -67,6 +68,7 @@ There are important things regarding this file:
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/srifle/rubber
+	icon_state = "rubber"
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 3)
 	agony = 30
@@ -100,6 +102,7 @@ There are important things regarding this file:
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/clrifle/rubber
+	icon_state = "rubber"
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 3)
 	agony = 22
@@ -132,6 +135,7 @@ There are important things regarding this file:
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/lrifle/rubber
+	icon_state = "rubber"
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 3)
 	agony = 25
@@ -161,6 +165,7 @@ There are important things regarding this file:
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/magnum/rubber
+	icon_state = "rubber"
 	name = "rubber bullet"
 	damage_types = list(BRUTE = 8)
 	agony = 32

@@ -72,14 +72,14 @@ see multiz/movement.dm for some info.
 	if(open)
 		fallThrough(mover)
 
-/turf/simulated/open/proc/updateFallability()
+/turf/simulated/open/proc/updateFallability(var/obj/structure/catwalk/catwalk)
 	var/wasOpen = open
-	open = isOpen()
+	open = isOpen(catwalk)
 	if(open && open != wasOpen)
 		for(var/atom/A in src)
 			fallThrough(A)
 
-/turf/simulated/open/proc/isOpen()
+/turf/simulated/open/proc/isOpen(var/obj/structure/catwalk/catwalk)
 	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
@@ -87,7 +87,7 @@ see multiz/movement.dm for some info.
 		if(!below)
 			return
 
-	if(locate(/obj/structure/catwalk) in src)
+	if(catwalk != (locate(/obj/structure/catwalk) in src))
 		return
 
 	if(locate(/obj/structure/multiz/stairs) in src)

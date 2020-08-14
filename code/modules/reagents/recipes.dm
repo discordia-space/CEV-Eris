@@ -411,7 +411,7 @@
 /datum/chemical_reaction/positive_ling/can_happen(datum/reagents/holder)
 	if(..())
 		var/list/blood_data = holder.get_data("blood")
-		if(blood_data["ling"])
+		if(blood_data["carrion"])
 			return TRUE
 
 	return FALSE

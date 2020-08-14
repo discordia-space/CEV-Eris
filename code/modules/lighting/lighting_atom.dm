@@ -71,7 +71,8 @@
 	
 	if(istype(loc, /turf/simulated/open))
 		var/turf/simulated/open/open = loc
-		open.fallThrough(src)
+		if(open.isOpen())
+			open.fallThrough(src)
 
 // If we have opacity, make sure to tell (potentially) affected light sources.
 /atom/movable/Destroy()
