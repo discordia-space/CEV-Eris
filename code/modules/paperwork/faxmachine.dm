@@ -223,12 +223,12 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	var faxid = "[num2text(world.realtime,12)]_[rand(10000)]"
 	if (istype(fax, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/P = fax
-		var/text = "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>";
+		var/text = "<HTML><HEAD><META charset=\"UTF-8\"><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>";
 		file("[config.fax_export_dir]/fax_[faxid].html") << text;
 	else if (istype(fax, /obj/item/weapon/photo))
 		var/obj/item/weapon/photo/H = fax
 		fcopy(H.img, "[config.fax_export_dir]/photo_[faxid].png")
-		var/text = "<html><head><title>[H.name]</title></head>" \
+		var/text = "<html><head><meta charset=\"UTF-8\"><title>[H.name]</title></head>" \
 			+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 			+ "<img src='photo_[faxid].png'>" \
 			+ "[H.scribble ? "<br>Written on the back:<br><i>[H.scribble]</i>" : ""]"\
@@ -241,7 +241,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			var/obj/pageobj = B.pages[page]
 			var/page_faxid = export_fax(pageobj)
 			data += "<a href='fax_[page_faxid].html'>Page [page] - [pageobj.name]</a><br>"
-		var/text = "<html><head><title>[B.name]</title></head><body>[data]</body></html>"
+		var/text = "<html><head><meta charset=\"UTF-8\"><title>[B.name]</title></head><body>[data]</body></html>"
 		file("[config.fax_export_dir]/fax_[faxid].html") << text
 	return faxid
 

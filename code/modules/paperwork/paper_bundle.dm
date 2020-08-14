@@ -122,14 +122,14 @@
 	if(istype(pages[page], /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/P = W
 		if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
+			dat+= "<HTML><HEAD><META charset=\"UTF-8\"><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 		else
-			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
+			dat+= "<HTML><HEAD><META charset=\"UTF-8\"><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
 		user << browse(dat, "window=[name]")
 	else if(istype(pages[page], /obj/item/weapon/photo))
 		var/obj/item/weapon/photo/P = W
 		user << browse_rsc(P.img, "tmp_photo.png")
-		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
+		user << browse(dat + "<html><head><meta charset=\"UTF-8\"><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '[32*P.photo_size]'" \
 		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
