@@ -16,6 +16,14 @@
 	var/item_state = null // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
 
+	//spawn_values
+	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
+	var/list/spawn_tags = list()
+	var/rarity_value = 0
+	var/spawn_frequency = 0
+	var/accompanying_object = null
+	var/spawn_blacklisted = TRUE
+
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
@@ -388,3 +396,21 @@
 // if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()
 	return FALSE
+
+/atom/movable/proc/get_rarity_value()
+	return rarity_value
+
+/atom/movable/proc/get_spawn_blacklisted()
+	return spawn_blacklisted
+
+/atom/movable/proc/get_spawn_tags()
+	return spawn_tags
+
+/atom/movable/proc/get_price_tag()
+	return price_tag
+
+/atom/movable/proc/get_spawn_frequency()
+	return spawn_frequency
+
+/atom/movable/proc/get_accompanying_object()
+	return	accompanying_object
