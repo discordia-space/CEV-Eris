@@ -44,7 +44,7 @@
 				if (prob(25))
 					explode(src)
 			if(caliber == CAL_ANTIM)
-				if (prob(80))
+				if (prob(75))
 					to_chat(user, SPAN_WARNING("you can feel the primer expanding. the bullet doesn't fly out."))
 					explode(src)
 			if(caliber == CAL_GRENADE) //i mean if you are dumb go on
