@@ -23,7 +23,7 @@
 
 /obj/machinery/slotmachine/Initialize()
 	. = ..()
-	jackpot = rand(20000,50000);
+	jackpot = rand(5000,20000);
 	plays = rand(10,50)
 	slots = list("1" = "Seven","2" = "Seven","3" = "Seven")
 	update_icon()
@@ -51,7 +51,7 @@
 		offset += 6
 
 /obj/machinery/slotmachine/proc/check_streak()
-	var/win_slot
+	var/win_slot = null
 	for(var/slot in slots)
 		if(win_slot == null)
 			win_slot = slots[slot]
@@ -88,17 +88,15 @@
 
 /obj/machinery/slotmachine/proc/check_win(mob/user)
 	if(check_streak())
-		to_world("check_streak TRUE")
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
 		var/weight = weights[slots["1"]]
-		to_world("weight:[weight]")
 		var/prize = bet * weight
 
-		if (weight == "Seven")
+		if (weight == "Seven")//cccccombo win, jackpot!
 			prize = jackpot
 			jackpot = 0
 			src.visible_message("<b>[name]</b> states, \"Damn son! JACKPOT!!! Congratulations!\"")
-		else
+		else//regular small win, jackpot increased
 			src.visible_message("<b>[name]</b> states, \"Congratulations! You won [prize] Credits!\"")
 
 		spawn_money(prize, src.loc, user)
@@ -108,8 +106,7 @@
 
 /obj/machinery/slotmachine/proc/pull_leaver(mob/user)
 	sleep(5)
-	if(!check_win(user))
-		to_world("!check_win")
+	if(!check_win(user))// if we have not won anything - jackpot or regular bet
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		src.visible_message("<b>[name]</b> states, \"Sorry, maybe, next time..\"")
 		jackpot += bet
@@ -145,6 +142,9 @@
 	if (spinning)
 		return
 
+	if(default_deconstruction(S, user))
+		return
+
 	if (istype(S, /obj/item/weapon/spacecash))
 		var/obj/item/weapon/spacecash/cash = S
 		if ((cash.worth > 0) && (bet + cash.worth <= 1000))
@@ -153,7 +153,7 @@
 			user.drop_from_inventory(cash)
 			qdel(cash)
 		else
-			to_chat(user, SPAN_WARNING("You must bet 1-[1000 - bet] Credits! Can't insert [cash.worth], too much."))
+			to_chat(user, SPAN_WARNING("You must bet 1-[1000 - bet] Credits! Can't insert [cash.worth], that's too much."))
 
 	else if (istype(S, /obj/item/weapon/coin))
 		to_chat(user, SPAN_NOTICE("You add the [S.name] into the [src]. It will slightly increase chance to win."))
