@@ -391,11 +391,11 @@
 
 /datum/breakdown/negative/glassification
 	name = "Glassification"
-	duration = 5 MINUTES
+	duration = 2 MINUTES
 	restore_sanity_post = 40
 	var/time
-	var/cooldown = 15 SECONDS
-	var/time_view = 5 SECONDS
+	var/cooldown = 20 SECONDS
+	var/time_view = 1 SECONDS
 	var/active_view = FALSE
 	var/mob/living/carbon/human/target
 	start_messages = list("You start to see through everything. Your mind expands.")

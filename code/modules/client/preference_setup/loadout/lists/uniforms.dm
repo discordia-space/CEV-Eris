@@ -121,6 +121,21 @@
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
+/datum/gear/uniform/neon
+	display_name = "neon tracksuits, color presets"
+	path = /obj/item/clothing/under/neon
+
+/datum/gear/uniform/neon/New()
+	..()
+	var/neon = list(
+		"green"			=	/obj/item/clothing/under/neon,
+		"yellow"			=	/obj/item/clothing/under/neon/yellow,
+		"blue"	=	/obj/item/clothing/under/neon/blue,
+		"red" = /obj/item/clothing/under/neon/red
+	)
+	gear_tweaks += new /datum/gear_tweak/path(neon)
+
+
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop

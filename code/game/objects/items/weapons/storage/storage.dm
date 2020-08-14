@@ -259,6 +259,15 @@
 /obj/item/weapon/storage/proc/close(var/mob/user)
 	hide_from(user)
 
+/obj/item/weapon/storage/AltClick(mob/user)
+	if(user.incapacitated())
+		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		return
+	if(!in_range(src, user))
+		return
+	else
+		src.open(user)
+
 /obj/item/weapon/storage/proc/close_all()
 	for (var/mob/M in is_seeing)
 		close(M)
