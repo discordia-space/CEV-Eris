@@ -11,7 +11,6 @@
 	throwforce = 1.0
 	throw_speed = 3
 	throw_range = 5
-	layer = ABOVE_MOB_LAYER
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	price_tag = 900
@@ -64,7 +63,14 @@
 		if(borer)
 			borer.detatch() //Should remove borer if the brain is removed - RR
 
+		var/obj/item/organ/internal/carrion/core/C = owner.internal_organs_by_name[BP_SPCORE]
+		if(C)
+			C.removed()
+			qdel(src)
+			return
+
 		transfer_identity(owner)
+
 	..()
 
 /obj/item/organ/internal/brain/replaced_mob(mob/living/carbon/target)

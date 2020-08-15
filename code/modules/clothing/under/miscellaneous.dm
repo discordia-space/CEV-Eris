@@ -42,6 +42,7 @@
 	desc = "rainbow"
 	icon_state = "rainbow"
 	item_state = "rainbow"
+	style = 2
 
 
 /obj/item/clothing/under/rank/fo_suit
@@ -104,6 +105,7 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	item_state = "kilt"
+	style = 2
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -150,6 +152,7 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
+	style = 2
 
 /obj/item/clothing/under/dress
 	name = "gray summerdress"
@@ -186,3 +189,28 @@ obj/item/clothing/under/leisure/pullover
 	desc = "Brown pullover with indeterminable pattern."
 	icon_state = "pullover"
 	item_state = "pullover"
+
+obj/item/clothing/under/neon
+	name = "green neon tracksuit"
+	desc = "A tracksuit lined with green neon fibers. Slightly luminescent."
+	icon_state = "neon"
+	item_state = "bl_suit"
+	style = 2
+
+obj/item/clothing/under/neon/yellow
+	name = "yellow neon tracksuit"
+	desc = "A tracksuit lined with yellow neon fibers. Slightly luminescent."
+	icon_state = "neony"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/neon/blue
+	name = "blue neon tracksuit"
+	desc = "A tracksuit lined with blue neon fibers. Slightly luminescent."
+	icon_state = "neonb"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/neon/red
+	name = "red neon tracksuit"
+	desc = "A tracksuit lined with red neon fibers. Slightly luminescent."
+	icon_state = "neonr"
+	item_state = "bl_suit"
