@@ -76,7 +76,6 @@
 /obj/item/clothing/head/bandana/green
 	name = "green bandana"
 	desc = "It's a green bandana with some fine nanotech lining."
-	flags_inv = BLOCKHAIR
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
 	flags_inv = 0
@@ -241,7 +240,6 @@
 /obj/item/clothing/head/bandana/orange //themij: Taryn Kifer
 	name = "orange bandana"
 	desc = "An orange piece of cloth, worn on the head."
-	flags_inv = BLOCKHAIR
 	icon_state = "orange_bandana"
 	body_parts_covered = 0
 
