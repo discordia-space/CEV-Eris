@@ -221,7 +221,6 @@ obj/item/clothing/under/jersey
 	icon_state = "jersey"
 	item_state = "jersey"
 
-
 obj/item/clothing/under/cyber
 	name = "augmented jumpsuit"
 	desc = "I wanted a jumpsuit. It gave me THIS."
