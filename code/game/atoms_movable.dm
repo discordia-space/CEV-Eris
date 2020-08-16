@@ -18,12 +18,12 @@
 
 	//spawn_values
 	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
-	var/list/spawn_tags = list()
+	var/spawn_tags = list()
 	var/rarity_value = 1
 	var/spawn_frequency = 0
-	var/list/accompanying_object = list()
+	var/accompanying_object
 	var/spawn_blacklisted = TRUE
-	var/list/bad_types = list()
+	var/bad_types
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)

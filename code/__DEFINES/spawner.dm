@@ -1,5 +1,5 @@
 //items
-#define SPAWN_ITEM "ITEM"
+#define SPAWN_ITEM "item"
 #define SPAWN_WEAPON "weapon"
 #define SPAWN_TOOL "tool"
 #define SPAWN_ODDITY "oddity"

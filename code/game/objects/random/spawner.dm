@@ -54,17 +54,12 @@
 		spawns.Add(A)
 	return spawns
 
-/obj/spawner/odities
-	name = "random odities"
+/obj/spawner/oddities
+	name = "random oddities"
 	icon_state = "techloot-grey"
 	tag_to_spawn = SPAWN_ODDITY
 
-/obj/spawner/odities/item_to_spawn()
+/obj/spawner/oddities/item_to_spawn()
 	var/datum/loot_spawner_data/LSD = GLOB.all_spawn_data["loot_s_data"]
-	return pick(LSD.all_spawn_list_by_tag["[tag_to_spawn]"])
-
-/obj/spawner/odities/spawn_item()
-	var/obj/item/weapon/oddity/O = /obj/item/weapon/oddity
-	var/hola = initial(O.rarity_value)
-	return hola
-
+	var/list/candidates = LSD.all_spawn_list_by_tag["[tag_to_spawn]"]
+	return pick(candidates)
