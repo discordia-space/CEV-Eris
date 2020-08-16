@@ -30,7 +30,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevels = maps_data.contact_levels)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevels = GLOB.maps_data.contact_levels)
 	if(!message)
 		return
 	var/message_title = new_title ? new_title : title
@@ -38,31 +38,31 @@
 
 	if(!msg_sanitized)
 		message = sanitize(message, extra = 0)
-	message_title = rhtml_encode(message_title)
+	message_title = html_encode(message_title)
 
 	Message(message, message_title)
 	if(do_newscast)
 		NewsCast(message, message_title)
 
 	for(var/mob/M in GLOB.player_list)
-		if((M.z in (zlevels | maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
+		if((M.z in (zlevels | GLOB.maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
 			sound_to(M, message_sound)
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
+	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/minor/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251(message), ANNOUNSER_NAME)
+	global_announcer.autosay(message, ANNOUNSER_NAME)
 
 datum/announcement/priority/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='alert'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), announcer ? announcer : ANNOUNSER_NAME)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNSER_NAME)
 
 datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<span class='warning'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
+	global_announcer.autosay("<span class='warning'>[message_title]:</span> [message]", ANNOUNSER_NAME)
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
-	global_announcer.autosay(utf8_to_cp1251("<font color='red'>[utf8_to_cp1251(message_title)]:</span> [utf8_to_cp1251(message)]"), ANNOUNSER_NAME)
+	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNSER_NAME)
 
 datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
@@ -105,12 +105,18 @@ datum/announcement/proc/Log(message as text, message_title as text)
 /proc/level_seven_announcement()
 	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
+/proc/level_eight_announcement() //new announcment so the crew doesn't have to fuck around trying to figure out if its a blob, hivemind, or a literal fungus
+	command_announcement.Announce("Confirmed outbreak of level 8 Bio-mechanical infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+
+/proc/level_eight_beta_announcement() //announcment which tells the crew that the hivemind has been killed, job well done crew.
+	command_announcement.Announce("Diagnostic Systems report level 8 Bio-mechanical infestation aboard [station_name()] has been contained.")
+
 /proc/ion_storm_announcement()
 	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
 	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
-			global_announcer.autosay(utf8_to_cp1251("A new [rank] [join_message]."), ANNOUNSER_NAME)
+			global_announcer.autosay("A new [rank] [join_message].", ANNOUNSER_NAME)
 		else
-			global_announcer.autosay(utf8_to_cp1251("[utf8_to_cp1251(character.real_name)], [utf8_to_cp1251(rank)], [utf8_to_cp1251(join_message)]."), ANNOUNSER_NAME)
+			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNSER_NAME)

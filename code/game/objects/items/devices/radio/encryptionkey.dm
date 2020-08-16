@@ -11,20 +11,20 @@
 	var/translate_hive = 0
 	var/syndie = 0
 	var/list/channels = list()
-	matter = list(MATERIAL_STEEL = 1)
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 
 /obj/item/device/encryptionkey/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 /obj/item/device/encryptionkey/syndicate
 	icon_state = "cypherkey"
 	channels = list("Mercenary" = 1)
-	origin_tech = list(TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_COVERT = 3)
 	syndie = 1//Signifies that it de-crypts Syndicate transmissions
 
 /obj/item/device/encryptionkey/binary
 	icon_state = "cypherkey"
 	translate_binary = 1
-	origin_tech = list(TECH_ILLEGAL = 3)
+	origin_tech = list(TECH_COVERT = 3)
 
 /obj/item/device/encryptionkey/headset_sec
 	name = "ironhammer radio encryption key"
@@ -47,7 +47,7 @@
 	channels = list("Medical" = 1)
 
 /obj/item/device/encryptionkey/headset_church
-	name = "Neotheology radio encryption key"
+	name = "neotheology radio encryption key"
 	icon_state = "nt_cypherkey"
 	channels = list("NT Voice" = 1)
 
@@ -130,3 +130,10 @@
 /obj/item/device/encryptionkey/entertainment
 	name = "entertainment radio key"
 	channels = list("Entertainment" = 1)
+
+//addition to /obj/item/weapon/card/id/all_access
+/obj/item/device/encryptionkey/heads/admin
+	name = "Admin encryption key"
+	desc = "Full powers encryption key"
+	icon_state = "cap_cypherkey"
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1, "Mercenary" = 1)

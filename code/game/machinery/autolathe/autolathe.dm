@@ -14,8 +14,8 @@
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -65,7 +65,7 @@
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	var/global/list/error_messages = list(
-		ERR_NOLICENSE = "Disk licenses have been exhausted.",
+		ERR_NOLICENSE = "Not enough license points left.",
 		ERR_NOTFOUND = "Design data not found.",
 		ERR_NOMATERIAL = "Not enough materials.",
 		ERR_NOREAGENT = "Not enough reagents.",
@@ -212,7 +212,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 550, 655)
+		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 600, 700)
 
 		// template keys starting with _ are not appended to the UI automatically and have to be called manually
 		ui.add_template("_materials", "autolathe_materials.tmpl")
@@ -281,8 +281,11 @@
 			insert_beaker(usr)
 		return 1
 
-	if(href_list["category"] && categories && (href_list["category"] in categories))
-		show_category = href_list["category"]
+	if(href_list["category"] && categories)
+		var/new_category = text2num(href_list["category"])
+
+		if(new_category && new_category <= length(categories))
+			show_category = categories[new_category]
 		return 1
 
 	if(href_list["eject_material"] && (!current_file || paused || error))
@@ -764,23 +767,28 @@
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
 
-
 	if (whole_amount)
 		var/obj/item/stack/material/S = new M.stack_type(drop_location())
 
 		//Accounting for the possibility of too much to fit in one stack
 		if (whole_amount <= S.max_amount)
 			S.amount = whole_amount
+			S.update_strings()
+			S.update_icon()
 		else
 			//There's too much, how many stacks do we need
 			var/fullstacks = round(whole_amount / S.max_amount)
 			//And how many sheets leftover for this stack
 			S.amount = whole_amount % S.max_amount
 
+			if (!S.amount)
+				qdel(S)
+
 			for(var/i = 0; i < fullstacks; i++)
 				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
 				MS.amount = MS.max_amount
-
+				MS.update_strings()
+				MS.update_icon()
 
 	//And if there's any remainder, we eject that as a shard
 	if (remainder)

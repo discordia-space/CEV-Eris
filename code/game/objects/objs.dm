@@ -6,8 +6,8 @@
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
-	var/sharp = 0		// whether this object cuts
-	var/edge = 0		// whether this object is more likely to dismember
+	var/sharp = FALSE		// whether this object cuts
+	var/edge = FALSE		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
@@ -198,23 +198,23 @@
 /obj/proc/remove_hearing()
 	hearing_objects.Remove(src)
 
-/obj/proc/eject_item(var/obj/item/I, var/mob/living/M)
-	if(!I || !M.IsAdvancedToolUser())
+/obj/proc/eject_item(obj/item/I, mob/living/user)
+	if(!I || !user.IsAdvancedToolUser())
 		return FALSE
-	M.put_in_hands(I)
+	user.put_in_hands(I)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
-	M.visible_message(
-		"[M] remove [I] from [src].",
+	user.visible_message(
+		"[user] removes [I] from [src].",
 		SPAN_NOTICE("You remove [I] from [src].")
 	)
 	return TRUE
 
-/obj/proc/insert_item(var/obj/item/I, var/mob/living/M)
-	if(!I || !M.unEquip(I))
+/obj/proc/insert_item(obj/item/I, mob/living/user)
+	if(!I || !user.unEquip(I))
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-	to_chat(M, SPAN_NOTICE("You insert [I] into [src]."))
+	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 	return TRUE
 
 
@@ -254,3 +254,7 @@
 //Same for AP
 /obj/proc/multiply_projectile_penetration(var/newmult)
 	armor_penetration = initial(armor_penetration) * newmult
+
+/obj/proc/multiply_pierce_penetration(var/newmult)
+
+/obj/proc/multiply_projectile_step_delay(var/newmult)

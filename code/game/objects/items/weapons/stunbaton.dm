@@ -6,8 +6,8 @@
 	item_state = "baton"
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFUL
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
@@ -17,13 +17,14 @@
 	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/weapon/cell/cell
+	var/spawn_cell = TRUE
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/melee/baton/Initialize()
 	. = ..()
-	if(!cell && suitable_cell)
+	if(!cell && suitable_cell && spawn_cell)
 		cell = new suitable_cell(src)
 	update_icon()
 
@@ -72,7 +73,7 @@
 		to_chat(user, SPAN_WARNING("The baton does not have a power source installed."))
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
-	if(cell && cell.charge > hitcost)
+	if(cell && cell.check_charge(hitcost))
 		status = !status
 		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
 		tool_qualities = status ? list(QUALITY_PULSING = 1) : null
@@ -157,18 +158,18 @@
 	return
 
 /obj/item/weapon/melee/baton/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 
 /obj/item/weapon/melee/baton/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
+		cell = C
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/melee/baton/cattleprod
 	name = "stunprod"
 	desc = "An improvised stun baton."
-	icon_state = "stunprod_nocell"
+	icon_state = "stunprod"
 	item_state = "prod"
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
@@ -177,6 +178,7 @@
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
+	spawn_cell = FALSE
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 
 /obj/item/weapon/melee/baton/excelbaton

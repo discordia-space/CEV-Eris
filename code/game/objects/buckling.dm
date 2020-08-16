@@ -1,5 +1,5 @@
 /atom
-	var/can_buckle = 0
+	var/can_buckle = FALSE
 	var/buckle_movable = 0
 	var/buckle_dir = 0
 	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
@@ -65,6 +65,9 @@
 		return 0
 	if(isslime(M))
 		to_chat(user, SPAN_WARNING("\The [M] is too squishy to buckle in."))
+		return 0
+	if(user.mob_size < M.mob_size)
+		to_chat(user, SPAN_WARNING("\The [M] is too heavy to buckle in."))
 		return 0
 
 	add_fingerprint(user)

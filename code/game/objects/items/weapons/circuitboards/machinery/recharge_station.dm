@@ -9,3 +9,13 @@
 		/obj/item/weapon/stock_parts/manipulator = 2,
 		/obj/item/weapon/cell/large = 1
 	)
+
+/obj/item/weapon/circuitboard/repair_station
+	name = T_BOARD("cyborg auto-repair platform")
+	build_path = /obj/machinery/repair_station
+	board_type = "machine"
+	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 4)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 3,
+		/obj/item/weapon/stock_parts/scanning_module = 1,
+	)

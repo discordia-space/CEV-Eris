@@ -98,7 +98,7 @@
 						)
 
 /datum/technology/exotic_weaponry
-	name = "Experemental Weaponry"
+	name = "Experimental Weaponry"
 	desc = "Remote temperature controling weapon."
 	tech_type = RESEARCH_COMBAT
 
@@ -113,7 +113,7 @@
 	unlocks_designs = list(/datum/design/research/item/weapon/temp_gun)
 
 /datum/technology/adv_exotic_weaponry
-	name = "Advanced Experemental Weaponry"
+	name = "Advanced Experimental Weaponry"
 	desc = "Special weapon system using plasma as catalyst. Special weapon core prototype that deal DNA damage to target."
 	tech_type = RESEARCH_COMBAT
 
@@ -126,12 +126,35 @@
 	cost = 5000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
-							/datum/design/research/item/weapon/plasmapistol
+							/datum/design/research/item/weapon/plasmapistol,
+							/datum/design/research/item/weapon/gunmod/penetrator
+						)
+
+/datum/technology/exotic_gunmods
+	name = "Experimental Gunmods"
+	desc = "Experimental gunmods that can grant a wide variety of effects. Use at your own risks."
+	tech_type = RESEARCH_COMBAT
+
+	x = 0.8
+	y = 0.4
+	icon = "toxincoater"
+
+	required_technologies = list(/datum/technology/exotic_weaponry)
+	required_tech_levels = list()
+	cost = 4000
+
+	unlocks_designs = list(	
+							/datum/design/research/item/weapon/gunmod/battery_shunt,
+							/datum/design/research/item/weapon/gunmod/overdrive,
+							/datum/design/research/item/weapon/gunmod/honker,
+							/datum/design/research/item/weapon/gunmod/toxin_coater,
+							/datum/design/research/item/weapon/gunmod/isotope_diffuser,
+							/datum/design/research/item/weapon/gunmod/psionic_catalyst
 						)
 
 /datum/technology/temp
 	name = "Basic Temperature Ammunition"
-	desc = "Incendiary ammunition for large catriges."
+	desc = "Incendiary ammunition for large cartridges."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.6
@@ -144,6 +167,7 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/ammo/shotgun_incendiary,
+							/datum/design/research/item/weapon/gunmod/overheat
 						)
 
 
@@ -162,7 +186,8 @@
 
 	unlocks_designs = list(
 							/datum/design/research/item/weapon/c20r,
-							/datum/design/research/item/ammo/c20r_ammo
+							/datum/design/research/item/ammo/c20r_ammo,
+							/datum/design/research/item/weapon/katana
 						)
 
 /datum/technology/laser_weaponry

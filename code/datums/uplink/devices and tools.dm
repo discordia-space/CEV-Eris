@@ -115,7 +115,7 @@
 			The device owner is immune to this effect."
 	item_cost = 3
 	path = /obj/item/device/mind_fryer
-	antag_roles = list()
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/mind_fryer/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -129,7 +129,7 @@
 			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
-	antag_roles = ROLES_CONTRACT
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -173,3 +173,171 @@
 	name = "Mental Imprinter"
 	item_cost = 5
 	path = /obj/item/device/mental_imprinter
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+
+//********** Blitzshell unique uplink items **********//
+
+/datum/uplink_item/item/tools/blitz_hp_upgrade
+	name = "Blitzshell Armour Augmentation"
+	desc = "Augment your chassis to take more blows before destruction."
+	item_cost = 15
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		BS.maxHealth += 30
+		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
+		return 1
+	return 0
+
+
+/datum/uplink_item/item/tools/blitz_cell_upgrade
+	name = "Blitzshell Cell Upgrade"
+	desc = "Augment your cell charge, to hold additional energy."
+	item_cost = 15
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/weapon/cell/C = BS.get_cell()
+		if(C)
+			C.maxcharge *= 1.5
+			to_chat(BS, SPAN_NOTICE("Your cell's maximum charge has been augmented."))
+		return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_speed_upgrade
+	name = "Blitzshell Speed Upgrade"
+	desc = "Remove limiting factors on your motors, allowing you to move faster."
+	item_cost = 20
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		BS.speed_factor += 0.2
+		return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_laserweapon
+	name = "Blitzshell Weapons Upgrade"
+	desc = "Activates the embedded laser weapon system."
+	item_cost = 20
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/weapon/gun/energy/laser/mounted/blitz) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a laser system installed."))
+			return 0
+		BS.module.modules += new /obj/item/weapon/gun/energy/laser/mounted/blitz(BS.module)
+		return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_shotgun
+	name = "Blitzshell electro-shrapnel cannon"
+	desc = "Activates the embedded pneumatic weapon system."
+	item_cost = 30
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_shotgun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/weapon/gun/energy/shrapnel/mounted) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a shrapnel cannon installed."))
+			return 0
+		BS.module.modules += new /obj/item/weapon/gun/energy/shrapnel/mounted(BS.module)
+		return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_nanorepair
+	name = "Blitzshell Nanorepair Capsule"
+	desc = "Reload your nanorepair system, gaining extra charges."
+	item_cost = 5
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/device/nanite_container/NC = locate() in BS.module.modules
+		if(NC)
+			NC.charges += 1
+			to_chat(BS, SPAN_NOTICE("You now have [NC.charges] charges in your [NC]"))
+			return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_smokescreen
+	name = "Blitzshell Smoke Upgade"
+	desc = "Activates the embedded smoke deployment system."
+	item_cost = 8
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/device/smokescreen) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a smoke deployment installed."))
+			return 0
+		BS.module.modules += new /obj/item/device/smokescreen(BS.module)
+		return 1
+	return 0
+
+/datum/uplink_item/item/tools/blitz_smokescharge
+	name = "Blitzshell Smoke Charge"
+	desc = "Reload your smoke system, gaining extra charges."
+	item_cost = 4
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_smokescharge/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/device/smokescreen/SS = locate() in BS.module.modules
+		if(SS)
+			SS.charges += 1
+			to_chat(BS, SPAN_NOTICE("You now have [SS.charges] charges in your [SS]"))
+			return 1
+		else
+			to_chat(BS, SPAN_NOTICE("You do not have smoke deployment system unlocked"))
+	return 0
+
+/datum/uplink_item/item/tools/blitz_reinforcements
+	name = "Blitzshell Swarm Request"
+	desc = "Request additional reinforcements."
+	item_cost = 30
+	antag_roles = list(ROLE_BLITZ)
+
+
+/datum/uplink_item/item/tools/blitz_reinforcements/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	to_chat(user, SPAN_NOTICE("Additional Blitzshell inbound to your position."))
+	spawn(5)
+		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		sparks.set_up(5, 0, loc)
+		sparks.start()
+		var/mob/living/silicon/robot/drone/blitzshell/BS = new /mob/living/silicon/robot/drone/blitzshell(loc)
+		BS.request_player()
+	return 1
+
+/datum/uplink_item/item/tools/blitz_harpoon
+	name = "Blitzshell Blue Space Harpoon"
+	desc = "Activates the embedded bluespace harpoon."
+	item_cost = 12
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_harpoon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/weapon/bluespace_harpoon/mounted/blitz) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a bluespace harpoon installed."))
+			return
+		BS.module.modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(BS.module)
+		return TRUE

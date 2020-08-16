@@ -6,11 +6,11 @@
 
 /datum/gear/head/bandana_green
 	display_name = "bandana, green"
-	path = /obj/item/clothing/head/greenbandana
+	path = /obj/item/clothing/head/bandana/green
 
 /datum/gear/head/bandana_orange
 	display_name = "bandana, orange"
-	path = /obj/item/clothing/head/orangebandana
+	path = /obj/item/clothing/head/bandana/orange
 
 /datum/gear/head/beret
 	display_name = "beret, red"
@@ -89,7 +89,7 @@
 
 /datum/gear/head/hardhat/color_presets
 	display_name = "hardhat, color presets"
-	path = /obj/item/clothing/head/hardhat/dblue
+	path = /obj/item/clothing/head/hardhat/blue
 	cost = 2
 
 /datum/gear/head/hardhat/color_presets/New()
@@ -98,7 +98,7 @@
 		"Red"		=	/obj/item/clothing/head/hardhat/red,
 		"Orange"	=	/obj/item/clothing/head/hardhat/orange,
 		"Yellow"	=	/obj/item/clothing/head/hardhat,
-		"Blue"		=	/obj/item/clothing/head/hardhat/dblue,
+		"Blue"		=	/obj/item/clothing/head/hardhat/blue,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(hardhat)
 

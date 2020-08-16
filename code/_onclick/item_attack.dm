@@ -69,8 +69,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
-/obj/item/proc/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)
 	if(!force || (flags & NOBLUDGEON))
+		return FALSE
+
+	if(!user)
 		return FALSE
 
 	/////////////////////////
@@ -85,8 +88,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(M)
-
-	user.stats.getPerk(/datum/perk/timeismoney)?.deactivate()
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)

@@ -160,7 +160,7 @@
 		anim_shake(door)
 		//first, we open our panel to give our wireweeds access to exposed airlock's electronics
 		if(!door.p_open && !istype(door, /obj/machinery/door/window))
-			if(prob(40))
+			if(prob(50))
 				door.p_open = TRUE
 				door.update_icon()
 			return FALSE
@@ -173,7 +173,7 @@
 			if(istype(door, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/A = door
 				if(A.locked)
-					if(prob(50))
+					if(prob(60))
 						A.unlock()
 					return FALSE
 			//and then, if airlock is closed, we begin destroy it electronics
@@ -258,7 +258,7 @@
 		//Here we have a little chance to spawn our machinery horror
 		if(istype(subject, /obj/machinery))
 			var/obj/machinery/victim = subject
-			if(prob(10) && victim.circuit)
+			if(prob(15) && victim.circuit)
 				new /mob/living/simple_animal/hostile/hivemind/mechiver(get_turf(subject))
 				new victim.circuit.type(get_turf(subject))
 				qdel(subject)
@@ -321,7 +321,7 @@
 		weapon_type = QUALITY_WELDING
 
 	if(weapon_type)
-		if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_ROB))
+		if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_MEC)) //Replaced STAT_ROB with STAT_MEC. you aren't ripping this out you are cutting it
 			user.visible_message(SPAN_DANGER("[user] cuts down [src]."), SPAN_DANGER("You cut down [src]."))
 			die_off()
 			return

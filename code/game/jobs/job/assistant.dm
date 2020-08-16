@@ -25,6 +25,8 @@
 		STAT_COG = 8
 	)
 
+	perks = list(/datum/perk/vagabond)
+
 	description = "You are a vagabond, journeying through the vast expanses of space upon the CEV Eris. You will not be paid a wage.<br>\
 Though this does not mean you have no home, as the Eris is your home. Whatever planet you may have came from a now distant memory.<br>\
 

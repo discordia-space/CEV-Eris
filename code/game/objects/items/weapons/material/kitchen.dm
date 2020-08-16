@@ -9,8 +9,8 @@
 	thrown_force_divisor = 1
 	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
 	var/loaded      //Descriptive string for currently loaded food object.
@@ -67,8 +67,8 @@
 	desc = "It's a spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"
 	attack_verb = list("attacked", "poked")
-	edge = 0
-	sharp = 0
+	edge = FALSE
+	sharp = FALSE
 	force_divisor = 0.1 //2 when wielded with weight 20 (steel)
 
 /obj/item/weapon/material/kitchen/utensil/spoon/plastic

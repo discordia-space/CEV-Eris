@@ -35,9 +35,10 @@
 #define ROLE_BANTYPE_TRAITOR ROLE_TRAITOR
 #define ROLE_BANTYPE_INQUISITOR ROLE_INQUISITOR
 #define ROLE_BANTYPE_EXCELSIOR ROLE_EXCELSIOR_REV
-#define ROLE_BANTYPE_CHANGELING ROLE_CHANGELING
+#define ROLE_BANTYPE_CARRION ROLE_CARRION
 #define ROLE_BANTYPE_XENOS ROLE_XENOMORPH
 #define ROLE_BANTYPE_CREW_SIDED "crew_sided"
+#define ROLE_BANTYPE_BLITZ ROLE_BLITZ
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -49,7 +50,7 @@
 #define ROLE_DEATHSQUAD "deathsquad"
 #define ROLE_ACTOR "actor"
 #define ROLE_MERCENARY "mercenary"
-#define ROLE_CHANGELING "changeling"
+#define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"
 #define ROLE_MALFUNCTION "malf"
 #define ROLE_TRAITOR "traitor"
@@ -61,16 +62,17 @@
 #define ROLE_INQUISITOR "inquisitor"
 #define ROLE_SECDOC_DEFENDER "secdoc_defender"
 
+#define ROLE_BLITZ "blitzshell"
+
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
 #define FACTION_XENOMORPHS "xenomorphs"
 #define FACTION_SERBS	"serbians"
 
-#define ROLES_CONTRACT list(ROLE_TRAITOR,ROLE_CHANGELING)
+#define ROLES_CONTRACT list(ROLE_TRAITOR,ROLE_CARRION,ROLE_BLITZ)
 #define ROLES_UPLINK_BASE list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY)
 
 #define ROLESET_TRAITOR "traitor"
-#define ROLESET_VERSUS_TRAITOR "double_agents"
 
 #define DEFAULT_TELECRYSTAL_AMOUNT 25
 #define IMPLANT_TELECRYSTAL_AMOUNT(x) (round(x * 0.49)) // If this cost is ever greater than half of DEFAULT_TELECRYSTAL_AMOUNT then it is possible to buy more TC than you spend

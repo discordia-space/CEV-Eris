@@ -4,6 +4,8 @@
 	role_id = ROLE_MERCENARY
 	weight = 0.4
 	ocurrences_max = 1
+	req_crew = 5
+	
 	//Until we code some way to reset the merc base, can't allow this to happen more than once per round
 
 	base_quantity = 2

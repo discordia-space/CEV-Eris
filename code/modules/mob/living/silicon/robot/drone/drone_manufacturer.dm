@@ -1,6 +1,6 @@
 /proc/count_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in world)
+	for(var/mob/living/silicon/robot/drone/D in GLOB.drones)
 		if(D.key && D.client)
 			drones++
 	return drones
@@ -9,8 +9,8 @@
 	name = "drone fabricator"
 	desc = "A large automated factory for producing maintenance drones."
 
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 5000

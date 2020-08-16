@@ -80,7 +80,7 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	origin_tech = list(TECH_COMBAT = 1, TECH_ILLEGAL = 1)
+	origin_tech = list(TECH_COMBAT = 1, TECH_COVERT = 1)
 	force = WEAPON_FORCE_DANGEROUS
 
 /obj/item/weapon/storage/toolbox/syndicate/populate_contents()

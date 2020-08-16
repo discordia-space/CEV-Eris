@@ -11,7 +11,6 @@
 	throwforce = 1.0
 	throw_speed = 3
 	throw_range = 5
-	layer = ABOVE_MOB_LAYER
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	price_tag = 900
@@ -56,29 +55,34 @@
 	else
 		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
-/obj/item/organ/internal/brain/removed(mob/living/user)
-	if(istype(owner))
-		name = "[owner.real_name]'s brain"
+/obj/item/organ/internal/brain/removed_mob(mob/living/user)
+	name = "[owner.real_name]'s brain"
 
+	if(!(owner.status_flags & REBUILDING_ORGANS))
 		var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
 		if(borer)
 			borer.detatch() //Should remove borer if the brain is removed - RR
+
+		var/obj/item/organ/internal/carrion/core/C = owner.internal_organs_by_name[BP_SPCORE]
+		if(C)
+			C.removed()
+			qdel(src)
+			return
 
 		transfer_identity(owner)
 
 	..()
 
-/obj/item/organ/internal/brain/replaced(var/mob/living/target)
-
-	if(target.key)
-		target.ghostize()
+/obj/item/organ/internal/brain/replaced_mob(mob/living/carbon/target)
+	..()
+	if(owner.key && !(owner.status_flags & REBUILDING_ORGANS))
+		owner.ghostize()
 
 	if(brainmob)
 		if(brainmob.mind)
-			brainmob.mind.transfer_to(target)
+			brainmob.mind.transfer_to(owner)
 		else
-			target.key = brainmob.key
-	..()
+			owner.key = brainmob.key
 
 /obj/item/organ/internal/brain/slime
 	name = "slime core"

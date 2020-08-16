@@ -27,7 +27,8 @@
 /datum/uplink_item/item/visible_weapons/riggedlaser
 	name = "Exosuit (APLU) Rigged Laser"
 	item_cost = 4
-	path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
+	path = /obj/item/mech_equipment/mounted_system/taser/laser
+
 
 /datum/uplink_item/item/visible_weapons/revolver
 	name = "Revolver"
@@ -53,3 +54,8 @@
 	name = "Anti-material Rifle"
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/antimaterial_rifle
+
+/datum/uplink_item/item/visible_weapons/rigged
+	name = "Weapon reverse loader"
+	item_cost = 5
+	path = /obj/item/weapon/gun_upgrade/mechanism/reverse_loader

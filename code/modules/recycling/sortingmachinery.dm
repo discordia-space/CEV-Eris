@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
-	density = 1
+	density = TRUE
 	var/sortTag = null
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -18,7 +18,7 @@
 	unwrap()
 
 /obj/structure/bigDelivery/proc/unwrap()
-	if(src.wrapped && src.wrapped in src.contents) //sometimes items can disappear. For example, bombs. --rastaf0
+	if(src.wrapped && (src.wrapped in src.contents)) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(get_turf(src.loc))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
@@ -124,7 +124,7 @@
 	var/tag_x
 
 /obj/item/smallDelivery/attack_self(mob/user as mob)
-	if (src.wrapped && src.wrapped in src.contents) //sometimes items can disappear. For example, bombs. --rastaf0
+	if (src.wrapped && (src.wrapped in src.contents)) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.forceMove(user.loc)
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
@@ -361,7 +361,7 @@
 	if(..())
 		return 1
 
-	if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
+	if(href_list["nextTag"] && (href_list["nextTag"] in tagger_locations))
 		src.currTag = href_list["nextTag"]
 	if(href_list["nextTag"] == "CUSTOM")
 		var/dest = input("Please enter custom location.", "Location", src.currTag ? src.currTag : "None")
@@ -374,7 +374,7 @@
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
-	density = 1
+	density = TRUE
 	icon_state = "intake"
 	layer = BELOW_OBJ_LAYER //So that things being ejected are visible
 	var/c_mode = 0
@@ -466,8 +466,8 @@
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
 					C.pipe_type = PIPE_TYPE_INTAKE
-					C.anchored = 1
-					C.density = 1
+					C.anchored = TRUE
+					C.density = TRUE
 					C.update()
 					qdel(src)
 			return

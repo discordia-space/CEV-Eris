@@ -203,13 +203,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	message = \
 		symbols_to_unicode(
-			cyrillic_to_unicode(
-				cp1251_to_utf8(
-					strip_improper(
-						color_macro_to_html(
-							message
-						)
-					)
+			strip_improper(
+				color_macro_to_html(
+					message
 				)
 			)
 		)

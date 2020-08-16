@@ -12,8 +12,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 */
 
-
-
 /area
 	var/fire = null
 	var/atmos = 1
@@ -52,7 +50,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-
+	var/holomap_color // Color of this area on station holomap
 	var/vessel = "CEV Eris" //The ship or station this area is on. This is so far just for the benefit of shield generators
 	//Consoles can only control shields on the same vessel as them
 
@@ -892,3 +890,13 @@ var/list/centcom_areas = list (
 	var/teleporter_spawns = list()
 	var/teleporter
 
+/area/deepmaint
+	icon_state = "away"
+	name = "Deep Maintenance"
+	sound_env = TUNNEL_ENCLOSED
+	turf_initializer = new /datum/turf_initializer/maintenance()
+	forced_ambience = list('sound/ambience/maintambience.ogg')
+	base_turf = /turf/simulated/floor/tiled
+	has_gravity = 1
+	requires_power = 0
+	area_light_color = COLOR_LIGHTING_MAINT_DARK

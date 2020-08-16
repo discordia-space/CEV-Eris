@@ -44,6 +44,7 @@
 	var/suit_overlay_active             // If set, drawn over icon and mob when effect is active.
 	var/suit_overlay_inactive           // As above, inactive.
 	var/suit_overlay_used               // As above, when engaged.
+	var/suit_overlay_mob_only           // Set to 1 for overlay to only display on mob and not on icon
 
 	//Display fluff
 	var/interface_name = "hardsuit upgrade"
@@ -53,6 +54,10 @@
 	var/deactivate_string = "Deactivate"
 
 	var/list/stat_rig_module/stat_modules = new()
+
+/obj/item/rig_module/get_cell()
+	holder = get_rig()
+	return holder?.get_cell()
 
 /obj/item/rig_module/Destroy()
 	if (holder)

@@ -8,3 +8,4 @@
 	icon_state = "sack"
 	item_state = "sack"
 	max_w_class = ITEM_SIZE_HUGE
+	is_tray_hidden = TRUE

@@ -16,7 +16,7 @@
 	modifystate = "energystun"
 	item_modifystate = "stun"
 
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="energystun", item_modifystate="stun", fire_sound='sound/weapons/Taser.ogg', icon="stun"),
 		list(mode_name="kill", projectile_type=/obj/item/projectile/beam, modifystate="energykill", item_modifystate="kill", fire_sound='sound/weapons/Laser.ogg', icon="kill"),
 		WEAPON_CHARGE,
@@ -24,8 +24,8 @@
 
 /obj/item/weapon/gun/energy/gun/mounted
 	name = "mounted energy gun"
-	self_recharge = 1
-	use_external_power = 1
+	self_recharge = TRUE
+	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
 

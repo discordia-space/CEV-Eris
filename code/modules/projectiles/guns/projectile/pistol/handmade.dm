@@ -17,9 +17,9 @@
 	var/jammed = FALSE
 	var/jam_chance = 15
 
-	New()
-		..()
-		open_chamber()
+/obj/item/weapon/gun/projectile/handmade_pistol/New()
+	..()
+	open_chamber()
 
 /obj/item/weapon/gun/projectile/handmade_pistol/special_check(mob/user)
 	if(jammed)

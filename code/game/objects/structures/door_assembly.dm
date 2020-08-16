@@ -2,8 +2,8 @@
 	name = "airlock assembly"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_as_0"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	w_class = ITEM_SIZE_HUGE
 	var/state = 0
 	var/base_icon_state = ""
@@ -198,7 +198,7 @@
 	airlock_type = "/engineering"
 
 /obj/structure/door_assembly/door_assembly_min
-	base_icon_state = "min"
+	base_icon_state = "ming"
 	base_name = "Mining Airlock"
 	glass_type = "/glass_mining"
 	airlock_type = "/mining"

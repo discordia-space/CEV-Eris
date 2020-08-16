@@ -16,12 +16,17 @@
 
 	var/tool_in_use = FALSE
 
+	var/force_upgrade_mults = 1
+
+	var/force_upgrade_mods = 0
+
 	var/sparks_on_use = FALSE	//Set to TRUE if you want to have sparks on each use of a tool
 	var/eye_hazard = FALSE	//Set to TRUE should damage users eyes if they without eye protection
 
 	var/use_power_cost = 0	//For tool system, determinze how much power tool will drain from cells, 0 means no cell needed
 	var/obj/item/weapon/cell/cell = null
 	var/suitable_cell = null	//Dont forget to edit this for a tool, if you want in to consume cells
+	var/passive_power_cost = 1 //Energy consumed per process tick while active
 
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
@@ -127,8 +132,12 @@
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
 
-		if (passive_fuel_cost)
+		if (use_fuel_cost && passive_fuel_cost)
 			if(!consume_fuel(passive_fuel_cost))
+				turn_off()
+
+		if(use_power_cost && passive_power_cost)
+			if(!cell?.checked_use(passive_power_cost))
 				turn_off()
 
 
@@ -149,37 +158,6 @@
 		update_icon()
 		return
 
-	//Removing upgrades from a tool. Very difficult, but passing the check only gets you the perfect result
-	//You can also get a lesser success (remove the upgrade but break it in the process) if you fail
-	//Using a laser guided stabilised screwdriver is recommended. Precision mods will make this easier
-	if (item_upgrades.len && C.has_quality(QUALITY_SCREW_DRIVING))
-		var/list/possibles = item_upgrades.Copy()
-		possibles += "Cancel"
-		var/obj/item/weapon/tool_upgrade/toremove = input("Which upgrade would you like to try to remove? The upgrade will probably be destroyed in the process","Removing Upgrades") in possibles
-		if (toremove == "Cancel")
-			return
-
-		if (C.use_tool(user = user, target =  src, base_time = WORKTIME_SLOW, required_quality = QUALITY_SCREW_DRIVING, fail_chance = FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-			//If you pass the check, then you manage to remove the upgrade intact
-			to_chat(user, SPAN_NOTICE("You successfully remove [toremove] while leaving it intact."))
-			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
-			refresh_upgrades()
-			return 1
-		else
-			//You failed the check, lets see what happens
-			if (prob(50))
-				//50% chance to break the upgrade and remove it
-				to_chat(user, SPAN_DANGER("You successfully remove [toremove], but destroy it in the process."))
-				SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
-				QDEL_NULL(toremove)
-				refresh_upgrades()
-				return 1
-			else if (degradation) //Because robot tools are unbreakable
-				//otherwise, damage the host tool a bit, and give you another try
-				to_chat(user, SPAN_DANGER("You only managed to damage [src], but you can retry."))
-				adjustToolHealth(-(5 * degradation), user) // inflicting 4 times use damage
-				refresh_upgrades()
-				return 1
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
@@ -379,9 +357,14 @@
 		if (T && T.item_flags & SILENT)
 			volume = 3
 			extrarange = -6
+		else if (T && T.item_flags & LOUD)
+			volume = 500
+			extrarange = 10
 
 		var/soundfile
-		if(forced_sound)
+		if (T && T.item_flags & HONKING)
+			soundfile = WORKSOUND_HONK
+		else if(forced_sound)
 			soundfile = forced_sound
 		else
 			soundfile = worksound
@@ -681,16 +664,31 @@
 	return return_quality
 
 /obj/item/weapon/tool/proc/turn_on(var/mob/user)
+	if(use_power_cost)
+		if(!cell)
+			to_chat(user, SPAN_WARNING("\The [src] has no cell!"))
+			return FALSE
+		if(cell.charge < use_power_cost)
+			to_chat(user, SPAN_WARNING("\The [src] does not have enough power!"))
+			return FALSE
+	if(user)
+		to_chat(user, SPAN_NOTICE("\The [src] turns on."))
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	if (!isnull(switched_on_force))
 		force = switched_on_force
+		if(wielded)
+			force *= 1.3
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 	update_wear_icon()
+	return TRUE
 
 /obj/item/weapon/tool/proc/turn_off(var/mob/user)
+	if(user)
+		to_chat(user, SPAN_NOTICE("\The [src] turns off."))
 	switched_on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
@@ -769,7 +767,7 @@
 
 //Returns the amount of fuel in tool
 /obj/item/weapon/tool/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return ( reagents ? reagents.get_reagent_amount("fuel") : 0 )
 
 /obj/item/weapon/tool/proc/consume_fuel(var/volume)
 	if (get_fuel() >= volume)
@@ -803,6 +801,8 @@
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
 	force = initial(force)
+	force_upgrade_mults = initial(force_upgrade_mults)
+	force_upgrade_mods = initial(force_upgrade_mods)
 	switched_on_force = initial(switched_on_force)
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)

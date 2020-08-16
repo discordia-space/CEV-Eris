@@ -46,7 +46,7 @@
 		.+=360
 
 //Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = 0, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
+/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
 Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
 Random error in tile placement x, error in tile placement y, and block offset.
@@ -268,7 +268,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
-/mob/proc/fully_replace_character_name(var/oldname, var/newname)
+/mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)	return 0
 	real_name = newname
 	name = newname
@@ -662,6 +662,28 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	var/x_pos = null
 	var/y_pos = null
 	var/z_pos = null
+	var/area_name = null
+
+/datum/coords/New(turf/loc)
+	if(loc)
+		x_pos = loc.x
+		y_pos = loc.y
+		z_pos = loc.z
+		var/area/A = get_area(loc)
+		area_name = A?.name
+
+/datum/coords/proc/get_text(display_area=TRUE)
+	var/displayed_area = display_area && area_name ? " - [strip_improper(area_name)]" : ""
+	var/displayed_x = "[x_pos]"
+	var/displayed_y = "[y_pos]"
+	var/displayed_z = "[z_pos]"
+
+	var/obj/map_data/M = GLOB.maps_data.all_levels[z_pos]
+	if(M.custom_z_names)
+		return "[displayed_x]:[displayed_y], [M.custom_z_name(z_pos)][displayed_area]"
+
+	return "[displayed_x]:[displayed_y]:[displayed_z][displayed_area]"
+
 
 /area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction = null)
 	//Takes: Area. Optional: turf type to leave behind.
@@ -753,8 +775,8 @@ proc/GaussRandRound(var/sigma, var/roundto)
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
 						corner.loc = X
-						corner.density = 1
-						corner.anchored = 1
+						corner.density = TRUE
+						corner.anchored = TRUE
 						corner.icon = X.icon
 						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
@@ -1010,8 +1032,6 @@ proc/is_hot(obj/item/W as obj)
 		else
 			return 0
 
-	return 0
-
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O as obj)
 	if (!O) return 0
@@ -1076,7 +1096,7 @@ var/list/WALLITEMS = list(
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard,
 	/obj/item/weapon/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/item/modular_computer/telescreen,
-	/obj/machinery/light_construct, /obj/machinery/light
+	/obj/machinery/light_construct, /obj/machinery/light, /obj/machinery/holomap
 	)
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
@@ -1183,9 +1203,9 @@ var/list/FLOORITEMS = list(
 
 /mob/dview
 	invisibility = 101
-	density = 0
+	density = FALSE
 
-	anchored = 1
+	anchored = TRUE
 	simulated = 0
 
 	see_in_dark = 1e6

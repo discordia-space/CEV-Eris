@@ -164,7 +164,7 @@
 		rating += C.rating - 1
 
 	max_power_usage = initial(max_power_usage) * rating
-	efficiency = min(initial(efficiency) + (0.5 * (rating - 1)), 0.99)
+	efficiency = min(initial(efficiency) + (0.05 * (rating - 1)), 0.99)
 
 
 

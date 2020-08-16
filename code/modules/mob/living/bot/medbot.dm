@@ -235,13 +235,13 @@
 		patient = null
 		currently_healing = 0
 		emagged = 1
-		on = 1
+		on = TRUE
 		update_icons()
 		. = 1
 	ignored |= user
 
 /mob/living/bot/medbot/explode()
-	on = 0
+	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 	playsound(loc, "robot_talk_light", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)

@@ -1,0 +1,124 @@
+/obj/item/device/techno_tribalism
+	name = "Techno-Tribalism Enforcer"
+	desc = "Feeds on rare tools, tool mods and other tech items. After being fed enough, will produce a strange technological part, that will be useful to train your skills overtime."
+	icon = 'icons/obj/faction_item.dmi'
+	icon_state = "techno_tribalism"
+	item_state = "techno_tribalism"
+	origin_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 7, TECH_POWER = 2)
+	price_tag = 20000
+	var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
+	var/last_produce = -30 MINUTES
+	var/items_count = 0
+	var/max_count = 5
+	var/cooldown = 30 MINUTES
+
+/obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(items_count < max_count)
+		if(istype(W, /obj/item/weapon/tool))
+			var/useful = FALSE
+			if(W.tool_qualities)
+
+				for(var/quality in W.tool_qualities)
+
+					if(W.tool_qualities[quality] >= 35)
+						var/stat_cost = round(W.tool_qualities[quality] / 15)
+						if(quality == QUALITY_BOLT_TURNING || quality == QUALITY_SCREW_DRIVING || quality == QUALITY_CUTTING)
+							oddity_stats[STAT_COG] += stat_cost
+							useful = TRUE
+
+						else if (quality == QUALITY_PULSING || quality == QUALITY_ADHESIVE || quality == QUALITY_SEALING)
+							oddity_stats[STAT_MEC] += stat_cost
+							useful = TRUE
+
+						else if (quality == QUALITY_PRYING || quality == QUALITY_HAMMERING || quality == QUALITY_DIGGING)
+							oddity_stats[STAT_ROB] += stat_cost
+							useful = TRUE
+
+						else if (quality == QUALITY_WELDING || quality == QUALITY_WIRE_CUTTING || quality == QUALITY_SAWING || quality == QUALITY_LASER_CUTTING)
+							oddity_stats[STAT_VIG] += stat_cost
+							useful = TRUE
+
+						else if (quality == QUALITY_CLAMPING || quality == QUALITY_CAUTERIZING || quality == QUALITY_RETRACTING || quality == QUALITY_BONE_SETTING)
+							oddity_stats[STAT_BIO] += stat_cost
+							useful = TRUE
+
+						else if (quality == QUALITY_DRILLING || quality == QUALITY_SHOVELING || quality == QUALITY_EXCAVATION)
+							oddity_stats[STAT_TGH] += stat_cost
+							useful = TRUE
+
+				if(!useful)
+					to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+					return
+			else
+				to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+				return
+
+
+		else if(istype(W, /obj/item/weapon/tool_upgrade))
+
+			var/obj/item/weapon/tool_upgrade/T = W
+
+			if(istype(T, /obj/item/weapon/tool_upgrade/reinforcement))
+				oddity_stats[STAT_TGH] += 3
+
+			else if(istype(T, /obj/item/weapon/tool_upgrade/productivity))
+				oddity_stats[STAT_COG] += 3
+
+			else if(istype(T, /obj/item/weapon/tool_upgrade/refinement))
+				oddity_stats[STAT_VIG] += 3
+
+			else if(istype(T, /obj/item/weapon/tool_upgrade/augment))
+				oddity_stats[STAT_BIO] += 3
+
+
+		else if(istype(W, /obj/item/weapon/cell))
+			if(istype(W, /obj/item/weapon/cell/small/moebius/nuclear))
+				oddity_stats[STAT_ROB] += 2
+
+			else if(istype(W, /obj/item/weapon/cell/medium/moebius/nuclear))
+				oddity_stats[STAT_ROB] += 3
+
+			else if(istype(W, /obj/item/weapon/cell/large/moebius/nuclear))
+				oddity_stats[STAT_ROB] += 4
+
+			else
+				oddity_stats[STAT_ROB] += 1
+
+		else if(istype(W, /obj/item/weapon/gun))
+			oddity_stats[STAT_ROB] += 2
+			oddity_stats[STAT_VIG] += 2
+
+		else
+			to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+			return
+
+		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
+		items_count += 1
+		qdel(W)
+
+	else
+		to_chat(user, SPAN_WARNING("The [src] is full!"))
+		return
+
+/obj/item/device/techno_tribalism/attack_self()
+	if(world.time >= (last_produce + cooldown))
+		if(items_count >= max_count)
+			if(istype(src.loc, /mob/living/carbon/human))
+				var/mob/living/carbon/human/user = src.loc
+				var/obj/item/weapon/oddity/techno/T = new /obj/item/weapon/oddity/techno(src)
+				T.oddity_stats = src.oddity_stats
+				T.AddComponent(/datum/component/inspiration, T.oddity_stats)
+				items_count = 0
+				oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)
+				last_produce = world.time
+				user.put_in_hands(T)
+			else
+				to_chat(src.loc, SPAN_WARNING("The [src] is too complicated to use!"))
+		else
+			visible_message("\The [src] beeps, \"The [src] is not full enough to produce.\".")
+	else
+		visible_message("\The [src] beeps, \"The [src] need time to cooldown.\".")
+
+/obj/item/device/techno_tribalism/examine(user)
+	..()
+	to_chat(user, SPAN_NOTICE("The [src] is feeded by [items_count]/[max_count]."))

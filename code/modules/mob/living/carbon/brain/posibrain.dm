@@ -10,7 +10,6 @@
 	var/askDelay = 10 * 60 * 1
 	req_access = list(access_robotics)
 	locked = 0
-	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
 
 /obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
@@ -38,7 +37,7 @@
 		return
 
 	var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
-	if(!G.assess_candidate(user, check_respawn_timer=FALSE))
+	if(!G.assess_candidate(user, check_respawn_timer = FALSE))
 		return
 	var/response = alert(user, "Are you sure you wish to possess this [src]?", "Possess [src]", "Yes", "No")
 	if(response == "Yes")

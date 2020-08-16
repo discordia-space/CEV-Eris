@@ -12,7 +12,7 @@
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1
-	anchored = 1.0
+	anchored = TRUE
 	var/invuln = null
 	var/bugged = 0
 	var/obj/item/weapon/camera_assembly/assembly = null
@@ -155,7 +155,7 @@
 					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
 					if(assembly)
 						assembly.loc = src.loc
-						assembly.anchored = 1
+						assembly.anchored = TRUE
 						assembly.camera_name = c_tag
 						assembly.camera_network = english_list(network, "Exodus", ",", ",")
 						assembly.update_icon()
@@ -373,7 +373,6 @@
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
 	return null
 
 /proc/near_range_camera(var/mob/M)
@@ -381,8 +380,6 @@
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
-
 	return null
 
 /obj/machinery/camera/interact(mob/living/user as mob)

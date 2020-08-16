@@ -1,6 +1,8 @@
 /obj/item/weapon/gun/projectile/automatic/sts35
-	name = "STS-35"
-	desc = "The rugged STS-35 is a durable automatic weapon, popular on frontier worlds. Uses .30 Rifle rounds. This one is unmarked."
+	name = "OR SDF \"STS-35\""
+	desc = "The rugged STS-35 is a durable automatic weapon, made by Oberth Republic Self Defence Force. \
+			Extremely efficient rifle design that was put in service right before collapse of the Republic, this weapon can be found almost anywhere in the galaxy by now. \
+			Uses .30 Rifle rounds."
 	icon = 'icons/obj/guns/projectile/sts.dmi'
 	icon_state = "sts"
 	item_state = "sts"
@@ -18,16 +20,15 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.3
+	damage_multiplier = 1.2
 	recoil_buildup = 8
-	one_hand_penalty = 10
+	one_hand_penalty = 15 //automatic rifle level
 
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND,
-		BURST_5_ROUND
+		BURST_3_ROUND
 		)
 
 

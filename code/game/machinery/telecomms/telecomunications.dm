@@ -32,7 +32,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	var/machinetype = 0 // just a hacky way of preventing alike machines from pairing
 	var/toggled = 1 	// Is it toggled on
-	var/on = 1
+	var/on = TRUE
 	var/integrity = 100 // basically HP, loses integrity by heat
 	var/produces_heat = 1	//whether the machine will produce heat when on.
 	var/delay = 10 // how many process() ticks to delay per heat
@@ -104,7 +104,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/proc/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// receive information from linked machinery
-	..()
+	return
 
 /obj/machinery/telecomms/proc/is_freq_listening(datum/signal/signal)
 	// return 1 if found, 0 if not found
@@ -193,11 +193,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	if(toggled)
 		if(stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
-			on = 0
+			on = FALSE
 		else
-			on = 1
+			on = TRUE
 	else
-		on = 0
+		on = FALSE
 
 /obj/machinery/telecomms/Process()
 	update_power()
@@ -309,7 +309,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
 
-	if(!signal.data["level"] in listening_levels)
+	if(!(signal.data["level"] in listening_levels))
 		for(var/obj/machinery/telecomms/hub/H in links)
 			var/list/connected_levels = list()
 			for(var/obj/machinery/telecomms/relay/R in H.links)
@@ -548,11 +548,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				var/race = "unknown"
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					race = "[H.species.name]"
+					race = H.species ? "[H.species.name]" : "unknown"
 					log.parameters["intelligible"] = 1
 				else if(isbrain(M))
 					var/mob/living/carbon/brain/B = M
-					race = "[B.species.name]"
+					race = B.species ? "[B.species.name]" : "unknown"
 					log.parameters["intelligible"] = 1
 				else if(M.isMonkey())
 					race = "Monkey"

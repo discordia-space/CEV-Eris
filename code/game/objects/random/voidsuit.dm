@@ -8,12 +8,11 @@
 
 /obj/random/voidsuit/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/suit/space/void = 2,
-		/obj/item/clothing/suit/space/void/engineering = 1,
+		/obj/item/clothing/suit/space/void/engineering = 2,
 		/obj/item/clothing/suit/space/void/mining = 2,
 		/obj/item/clothing/suit/space/void/medical = 2.3,
-		/obj/item/clothing/suit/space/void/security = 1,
 		/obj/item/clothing/suit/space/void/atmos = 1.5,
-		/obj/item/clothing/suit/space/void/merc = 0.5))
+		/obj/item/clothing/suit/space/void/merc = 0.2))
 
 /obj/random/voidsuit/low_chance
 	name = "low chance random voidsuit"

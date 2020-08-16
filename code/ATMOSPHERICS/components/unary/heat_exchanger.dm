@@ -2,7 +2,7 @@
 
 	icon = 'icons/obj/atmospherics/heat_exchanger.dmi'
 	icon_state = "intact"
-	density = 1
+	density = TRUE
 	layer = LOW_OBJ_LAYER
 
 	name = "Heat Exchanger"

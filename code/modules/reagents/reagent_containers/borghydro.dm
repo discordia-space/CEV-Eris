@@ -39,7 +39,7 @@
 
 /obj/item/weapon/reagent_containers/borghypo/Process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
 	if(++charge_tick < recharge_time)
-		return 0
+		return FALSE
 	charge_tick = 0
 
 	if(isrobot(loc))
@@ -49,7 +49,7 @@
 				if(reagent_volumes[T] < volume)
 					R.cell.use(charge_cost)
 					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
-	return 1
+	return TRUE
 
 /obj/item/weapon/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
 	if(!istype(M))

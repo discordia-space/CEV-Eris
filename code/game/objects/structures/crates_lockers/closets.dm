@@ -3,7 +3,7 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
-	density = 1
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_GARGANTUAN
 	matter = list(MATERIAL_STEEL = 10)
@@ -214,7 +214,7 @@
 	opened = FALSE
 	update_icon()
 	playsound(src.loc, close_sound, 100, 1, -3)
-	density = 1
+	density = TRUE
 	update_openspace()
 	return 1
 
@@ -452,8 +452,13 @@
 				var/obj/item/weapon/tool/T = I
 				if (istype(T) && T.item_flags & SILENT)
 					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
+				else if (istype(T) && T.item_flags & LOUD)
+					playsound(src.loc, 'sound/items/glitch.ogg', 500, 1, 10) //Loud tools can hack it LOUDLY
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
+
+				if (istype(T) && T.item_flags & HONKING)
+					playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
 
 				//Cognition can be used to speed up the proccess
 				if (prob (user.stats.getStat(STAT_COG)))

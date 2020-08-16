@@ -10,7 +10,7 @@
 		return FALSE
 	return Mob.can_equip(Item, slot, disable_warning) && Item.can_be_equipped(Mob, slot, disable_warning)
 
-/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE, skip_item_check = FALSE)
+/mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE, skip_item_check = FALSE, skip_covering_check = FALSE)
 	if(skip_item_check)
 		return TRUE
 	var/obj/item/equipped = get_equipped_item(slot)

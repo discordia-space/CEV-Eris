@@ -149,3 +149,7 @@
 
 /datum/design/autolathe/tool/pneumatic_crowbar
 	build_path = /obj/item/weapon/tool/crowbar/pneumatic
+
+/datum/design/autolathe/tool/rpd
+	name = "rapid piping device"
+	build_path = /obj/item/weapon/rpd

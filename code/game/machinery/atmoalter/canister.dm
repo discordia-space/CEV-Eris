@@ -2,7 +2,7 @@
 	name = "canister"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
-	density = 1
+	density = TRUE
 	var/health = 100.0
 	flags = CONDUCT
 	w_class = ITEM_SIZE_HUGE
@@ -174,7 +174,7 @@ update_flag
 
 		src.destroyed = 1
 		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
-		src.density = 0
+		src.density = FALSE
 		update_icon()
 
 		if (src.holding)
@@ -232,11 +232,8 @@ update_flag
 	return 0
 
 /obj/machinery/portable_atmospherics/canister/bullet_act(var/obj/item/projectile/Proj)
-	if(!(Proj.damage_type == BRUTE || Proj.damage_type == BURN))
-		return
-
-	if(Proj.damage)
-		src.health -= round(Proj.damage / 2)
+	if(Proj.get_structure_damage())
+		src.health -= round(Proj.get_structure_damage() / 2)
 		healthcheck()
 	..()
 
@@ -279,8 +276,6 @@ update_flag
 		src.health -= I.force
 		src.add_fingerprint(user)
 		healthcheck()
-
-	return
 
 	SSnano.update_uis(src) // Update all NanoUIs attached to src
 

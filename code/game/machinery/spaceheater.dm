@@ -1,12 +1,12 @@
 /obj/machinery/space_heater
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	var/obj/item/weapon/cell/large/cell
-	var/on = 0
+	var/on = FALSE
 	var/set_temperature = T0C + 50	//K
 	var/heating_power = 40000
 
@@ -55,14 +55,14 @@
 	..(severity)
 
 /obj/machinery/space_heater/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/cell/medium))
+	if(istype(I, /obj/item/weapon/cell/large))
 		if(panel_open)
 			if(cell)
 				to_chat(user, "There is already a power cell inside.")
 				return
 			else
 				// insert cell
-				var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
+				var/obj/item/weapon/cell/large/C = usr.get_active_hand()
 				if(istype(C))
 					user.drop_item()
 					src.cell = C
@@ -145,7 +145,7 @@
 
 			if("cellinstall")
 				if(panel_open && !cell)
-					var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
+					var/obj/item/weapon/cell/large/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
 						src.cell = C
@@ -191,6 +191,6 @@
 
 				env.merge(removed)
 		else
-			on = 0
+			on = FALSE
 			power_change()
 			update_icon()

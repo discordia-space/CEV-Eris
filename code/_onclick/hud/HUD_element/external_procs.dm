@@ -133,6 +133,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 
 /HUD_element/proc/add(var/HUD_element/newElement)
+	RETURN_TYPE(/HUD_element)
 	newElement = newElement || new
 	_connectElement(newElement)
 
@@ -142,7 +143,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	if(_disconnectElement(element))
 		return element
 
-/HUD_element/proc/setClickProc(var/proc/P, var/holder, var/list/arguments)
+/HUD_element/proc/setClickProc(P, var/holder, var/list/arguments)
 	_clickProc = P
 	_holder = holder
 	_procArguments = arguments
@@ -571,7 +572,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	return src
 
 /HUD_element/proc/getChildElementWithID(var/id)
-	for(var/list/HUD_element/element in getElements())
+	for(var/HUD_element/element in getElements())
 		if(element.getIdentifier() == id)
 			return element
 	error("No element found with id \"[id]\".")

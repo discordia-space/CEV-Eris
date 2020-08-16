@@ -253,7 +253,13 @@
 		custom_rule["sort_type"] = href_list["sort_type"]
 
 	else if (href_list["type_input"])
-		custom_rule["value"] = lowertext(input("Type name of [custom_rule["sort_type"]]"))
+		switch(custom_rule["sort_type"])
+			if(SORT_TYPE_MATERIAL)
+				custom_rule["value"] = input("Please, select a material!", "Matter sorting", null, null) as null|anything in MATERIAL_LIST
+			if(SORT_TYPE_NAME)
+				custom_rule["value"] = input("Please, enter a name to match by!", "Name sorting", null, null) as text
+			if(SORT_TYPE_REAGENT)
+				custom_rule["value"] = input("Please, enter a reagent to search for!", "Reagent sorting", null, null) as text //Until we make a full reagent ID list
 
 	else if (href_list["amount_input"])
 		custom_rule["amount"] = text2num(input("Type amount of [custom_rule["sort_type"]]"))

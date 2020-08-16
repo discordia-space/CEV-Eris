@@ -8,14 +8,14 @@
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)
 		sleep(15)
-		density = 0
+		density = FALSE
 		set_opacity(FALSE)
 		update_icon()
 		set_light(0)
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)
-		density = 1
+		density = TRUE
 		set_opacity(TRUE)
 		update_icon()
 		sleep(15)
@@ -44,8 +44,6 @@
 			to_chat(user, SPAN_DANGER("\The [material.display_name] crumbles under your touch!"))
 			dismantle_wall()
 			return 1
-
-	if(..()) return 1
 
 	if(!can_open)
 		to_chat(user, SPAN_NOTICE("You push the wall, but nothing happens."))

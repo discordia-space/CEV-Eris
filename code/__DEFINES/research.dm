@@ -9,7 +9,7 @@
 #define TECH_COMBAT "combat"
 #define TECH_MAGNET "magnets"
 #define TECH_DATA "programming"
-#define TECH_ILLEGAL "syndicate"
+#define TECH_COVERT "covert"
 #define TECH_ARCANE "arcane"
 
 //used in design to specify which machine can build it
@@ -29,7 +29,7 @@
 #define RESEARCH_POWERSTORAGE  /datum/tech/powerstorage
 #define RESEARCH_BLUESPACE     /datum/tech/bluespace
 #define RESEARCH_ROBOTICS      /datum/tech/robotics
-#define RESEARCH_ILLEGAL       /datum/tech/illegal
+#define RESEARCH_COVERT        /datum/tech/covert
 
 
 // Design categories
@@ -45,7 +45,9 @@
 #define CAT_STOCKPARTS  "Stock Parts"
 #define CAT_PROSTHESIS  "Prosthesis"
 #define CAT_MINING      "Mining"
-#define CAT_MECHA       "Exosuits"
+#define CAT_MECH        "Exosuits"
 #define CAT_MODCOMP     "Modular Computers"
 #define CAT_CIRCUITS    "Circuits"
 #define CAT_MEDI        "Medical"
+#define CAT_TOOLMODS    "Toolmods"
+#define CAT_GUNMODS     "Gunmods"

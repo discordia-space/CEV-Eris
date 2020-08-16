@@ -55,7 +55,7 @@
 	light_power = 0.2
 	light_range_on = 1.5
 	light_power_on = 0.2
-	density = 0
+	density = FALSE
 	CheckFaceFlag = 0
 	circuit = /obj/item/weapon/circuitboard/guestpass
 	var/obj/item/weapon/card/id/giver

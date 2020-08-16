@@ -155,8 +155,8 @@
 	Evacuate Ship
 **********************/
 /datum/poll/evac
-	name = "Evacuate Ship"
-	question = "Do you want to call evacuation and restart the round?"
+	name = "Initiate Bluespace Jump"
+	question = "Do you want to initiate a bluespace jump and restart the round?"
 	time = 120
 	minimum_win_percentage = 0.6
 	cooldown = 20 MINUTES
@@ -223,13 +223,13 @@
 #undef MINIMUM_VOTE_LIFETIME
 
 /datum/vote_choice/evac
-	text = "Abandon ship!"
+	text = "Initiate a bluespace jump!"
 
 /datum/vote_choice/evac/on_win()
-	evacuation_controller.call_evacuation(null, TRUE, TRUE, FALSE, TRUE)
+	evacuation_controller.call_evacuation(null, FALSE, TRUE, FALSE, TRUE)
 
 /datum/vote_choice/noevac
-	text = "Stay aboard"
+	text = "No need to depart yet!"
 
 
 
@@ -255,7 +255,7 @@
 	can_unvote = FALSE
 	see_votes = TRUE
 
-	question = cyrillic_to_unicode(input("What's your vote question?","Custom vote","Custom vote question"))
+	question = input("What's your vote question?","Custom vote","Custom vote question")
 
 	var/choice_text = ""
 	var/ch_num = 1
@@ -264,7 +264,7 @@
 		ch_num += 1
 		if(choice_text != "")
 			var/datum/vote_choice/custom/C = new
-			C.text = cyrillic_to_unicode(choice_text)
+			C.text = choice_text
 			choices.Add(C)
 	while(choice_text != "" && ch_num < 10)
 

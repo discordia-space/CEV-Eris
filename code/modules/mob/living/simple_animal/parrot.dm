@@ -152,8 +152,8 @@
 						ears.loc = src.loc
 						ears = null
 						for(var/possible_phrase in speak)
-							if(copytext(possible_phrase,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection) && copytext(possible_phrase,2,3) in department_radio_keys)
-								possible_phrase = copytext(possible_phrase,3,length(possible_phrase))
+							if(copytext_char(possible_phrase,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection) && (copytext_char(possible_phrase,2,3) in department_radio_keys))
+								possible_phrase = copytext_char(possible_phrase,3,length(possible_phrase))
 					else
 						to_chat(usr, "\red There is nothing to remove from its [remove_from].")
 						return
@@ -323,8 +323,8 @@
 						if(prob(50))
 							useradio = 1
 
-						if(copytext(possible_phrase,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection) && copytext(possible_phrase,2,3) in department_radio_keys)
-							possible_phrase = "[useradio?pick(available_channels):""] [copytext(possible_phrase,3,length(possible_phrase)+1)]" //crop out the channel prefix
+						if(copytext_char(possible_phrase,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection) && (copytext_char(possible_phrase,2,3) in department_radio_keys))
+							possible_phrase = "[useradio?pick(available_channels):""] [copytext_char(possible_phrase,3,length(possible_phrase)+1)]" //crop out the channel prefix
 						else
 							possible_phrase = "[useradio?pick(available_channels):""] [possible_phrase]"
 
@@ -332,8 +332,8 @@
 
 				else //If we have no headset or channels to use, dont try to use any!
 					for(var/possible_phrase in speak)
-						if(copytext(possible_phrase,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection) && copytext(possible_phrase,2,3) in department_radio_keys)
-							possible_phrase = "[copytext(possible_phrase,3,length(possible_phrase)+1)]" //crop out the channel prefix
+						if(copytext_char(possible_phrase,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection) && (copytext_char(possible_phrase,2,3) in department_radio_keys))
+							possible_phrase = "[copytext_char(possible_phrase,3,length(possible_phrase)+1)]" //crop out the channel prefix
 						newspeak.Add(possible_phrase)
 				speak = newspeak
 
@@ -372,11 +372,11 @@
 					return
 			return
 
-		if(parrot_interest && parrot_interest in view(src))
+		if(parrot_interest && (parrot_interest in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_STEAL
 			return
 
-		if(parrot_perch && parrot_perch in view(src))
+		if(parrot_perch && (parrot_perch in view(src)))
 			parrot_state = PARROT_SWOOP | PARROT_RETURN
 			return
 
@@ -475,7 +475,7 @@
 			if(ishuman(parrot_interest))
 				var/mob/living/carbon/human/H = parrot_interest
 				var/obj/item/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
-				H.damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, 0, 0, sharp = 1)
+				H.damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, 0, 0, sharp = TRUE)
 				var/msg3 = (pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
 				src.visible_message("<span class='name'>[src]</span> [msg3].")
 			else
@@ -706,19 +706,19 @@
 
 
 	var/message_mode=""
-	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/radio_main_channel))
+	if(copytext_char(message,1,2) == get_prefix_key(/decl/prefix/radio_main_channel))
 		message_mode = "headset"
-		message = copytext(message,2)
+		message = copytext_char(message,2)
 
 	if(length(message) > 2)
-		var/channel_prefix = copytext(message, 2 ,3)
+		var/channel_prefix = copytext_char(message, 2 ,3)
 		message_mode = department_radio_keys[channel_prefix]
 
-	if(copytext(message,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection))
+	if(copytext_char(message,1,2) == get_prefix_key(/decl/prefix/radio_channel_selection))
 		var/positioncut = 3
-		message = trim(copytext(message,positioncut))
+		message = trim(copytext_char(message,positioncut))
 
-	message = capitalize_cp1251(trim_left(message))
+	message = capitalize(trim_left(message))
 
 	if(message_mode)
 		if(message_mode in radiochannels)

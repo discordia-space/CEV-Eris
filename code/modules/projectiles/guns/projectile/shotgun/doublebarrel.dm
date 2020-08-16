@@ -19,12 +19,11 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
-	price_tag = 1500
-	one_hand_penalty = 5
+	price_tag = 1200
+	one_hand_penalty = 15 //full sized shotgun level
 	var/bolt_open = 0
-
 	burst_delay = 0
-	firemodes = list(
+	init_firemodes = list(
 		list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
 		list(mode_name="fire both barrels at once", burst=2, icon="burst"),
 		)
@@ -85,16 +84,22 @@
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(QUALITY_SAWING in A.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
-		if(loaded.len)
-			for(var/i in 1 to max_shells)
-				afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
-				playsound(user, fire_sound, 50, 1)
-			user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
-			return
-		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-			qdel(src)
-			new /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn(usr.loc)
-			to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))
+		if (!istype(src, /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn))
+			if (src.item_upgrades.len)
+				if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
+					return
+			to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
+			if(loaded.len)
+				for(var/i in 1 to max_shells)
+					afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
+					playsound(user, fire_sound, 50, 1)
+				user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
+				return
+			if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_COG))
+				qdel(src)
+				new /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn(usr.loc)
+				to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))
+		else
+			to_chat(user, SPAN_WARNING("You cannot shorten \the [src] any further!"))
 	else
 		..()

@@ -107,6 +107,7 @@
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
 		)
+		SEND_SIGNAL(src, COMSIG_CARBON_ELECTROCTE)
 		Stun(10)//This should work for now, more is really silly and makes you lay there forever
 		Weaken(10)
 	else
@@ -366,7 +367,10 @@
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect == CE_ALCOHOL)
-		stats.getPerk(/datum/perk/inspiration)?.activate()
+		if(stats.getPerk(/datum/perk/inspiration))
+			stats.addPerk(/datum/perk/active_inspiration)
+		if(stats.getPerk(PERK_ALCOHOLIC))
+			stats.addPerk(PERK_ALCOHOLIC_ACTIVE)
 	if(effect in chem_effects)
 		chem_effects[effect] += magnitude
 	else

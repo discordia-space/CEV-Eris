@@ -473,8 +473,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_create_centcom_report, R_ADMIN, FALSE)
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
-	var/input = cp1251_to_utf8(sanitize(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null, extra = 0))
-	var/customname = cp1251_to_utf8(sanitizeSafe(input(usr, "Pick a title for the report.", "Title") as text|null))
+	var/input = sanitize(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null, extra = 0)
+	var/customname = sanitizeSafe(input(usr, "Pick a title for the report.", "Title") as text|null)
 	if(!input)
 		return
 	if(!customname)

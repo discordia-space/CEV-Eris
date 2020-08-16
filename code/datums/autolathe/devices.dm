@@ -50,10 +50,18 @@
 	name = "excelsior mine"
 	build_path = /obj/item/weapon/mine
 
+/datum/design/autolathe/device/propaganda_chip
+	name = "propaganda chip"
+	build_path = /obj/item/device/propaganda_chip
+
 /datum/design/autolathe/device/flamethrower
 	name = "flamethrower"
 	build_path = /obj/item/weapon/flamethrower
 
 /datum/design/autolathe/device/excelbaton
 	name = "Expropriator"
-	build_path = /obj/item/weapon/melee/baton/excelbaton 
+	build_path = /obj/item/weapon/melee/baton/excelbaton
+
+/datum/design/autolathe/device/headset_church
+	name = "NeoTheology Radio Encryption Key"
+	build_path = /obj/item/device/encryptionkey/headset_church

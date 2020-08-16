@@ -339,3 +339,17 @@
 	data["max_shells"] = get_max_ammo()
 
 	return data
+
+/obj/item/weapon/gun/projectile/refresh_upgrades()
+	max_shells = initial(max_shells)
+	..()
+
+/obj/item/weapon/gun/projectile/generate_guntags()
+	..()
+	gun_tags |= GUN_PROJECTILE
+	switch(caliber)
+		if(CAL_PISTOL)
+			gun_tags |= GUN_CALIBRE_35
+		//Others to be implemented when needed
+	if(max_shells)
+		gun_tags |= GUN_INTERNAL_MAG

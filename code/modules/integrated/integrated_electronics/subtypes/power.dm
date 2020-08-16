@@ -41,7 +41,7 @@
 		if(!assembly)
 			return FALSE // Pointless to do everything else if there's no battery to draw from.
 
-		var/obj/item/weapon/cell/cell = null
+		var/obj/item/weapon/cell/cell
 		if(istype(AM, /obj/item/weapon/cell)) // Is this already a cell?
 			cell = AM
 		else // If not, maybe there's a cell inside it?

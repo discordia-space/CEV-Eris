@@ -49,7 +49,6 @@
 
 	var/has_been_rev = FALSE	//Tracks if this mind has been a rev or not
 
-	var/datum/changeling/changeling		//changeling holder
 
 	var/rev_cooldown = 0
 
@@ -63,8 +62,6 @@
 	var/gen_relations_info
 
 	var/list/initial_email_login = list("login" = "", "password" = "")
-
-	var/datum/stat_holder/stats = null
 
 	var/last_activity = 0
 
@@ -86,23 +83,19 @@
 	if(!istype(new_character))
 		log_world("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
 	if(current)					//remove ourself from our old body's mind variable
-		if(changeling)
-			current.remove_changeling_powers()
-			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
 
 		SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+
+		if(current.client)
+			current.client.destroy_UI()
+
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
-
-	if(current.client)
-		current.client.destroy_UI()
 
 	current = new_character		//link ourself to our new body
 	new_character.mind = src	//and link our new body to ourself
 
-	if(changeling)
-		new_character.make_changeling()
 
 	if(active)
 		new_character.key = key		//now transfer the key to link the client to our new body
@@ -126,7 +119,7 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
-	recipient << browse(russian_to_utf8(output), "window=memory")
+	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
 	if(SSticker.current_state != GAME_STATE_PLAYING)
@@ -162,7 +155,7 @@
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
-				var/answer = alert("[antag.role_text] is outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","No","Yes")
+				var/answer = alert("[antag.role_text] is an outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","Confirmation", "No","Yes")
 				ok = (answer == "Yes")
 			else
 				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","Confirmation","No","Yes")
@@ -298,7 +291,6 @@
 	//role_alt_title =  null
 	assigned_job =    null
 	//faction =       null //Uncommenting this causes a compile error due to 'undefined type', fucked if I know.
-	changeling =      null
 	role_alt_title =  null
 	initial_account = null
 	has_been_rev =    0
@@ -319,7 +311,6 @@
 		SSticker.minds += mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
-	mind.stats = src.stats
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()

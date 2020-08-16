@@ -88,7 +88,7 @@
 
 
 /datum/vertical_travel_method/New(var/mob/L)
-	if (istype(L.loc, /obj/mecha)) //Add more vehicle related checks here in future
+	if (istype(L.loc, /mob/living/exosuit)) //Add more vehicle related checks here in future
 		M = L.loc
 	else
 		M = L
@@ -121,6 +121,7 @@
 	M.set_plane(prev_plane)
 	if (travelsound)
 		travelsound.stop()
+	M.used_now = FALSE
 
 
 /datum/vertical_travel_method/proc/calculate_time()
@@ -136,13 +137,9 @@
 //Combines testing and starting. Autostarts if possible
 /datum/vertical_travel_method/proc/attempt(var/dir)
 	.=can_perform(dir)
-	if (. == TRUE)
+	if (.)
 		spawn()
 			start(dir)
-		return TRUE
-	else if (istext(.))
-		to_chat(M, SPAN_NOTICE(.))
-	return FALSE
 
 /*
 	Can perform checks whether its possible to do this ztravel method.
@@ -154,10 +151,15 @@
 	Generally, use a message in a case where a user would expect it to work, to explain why it doesn't.
 */
 /datum/vertical_travel_method/proc/can_perform(var/dir)
+	if(M.used_now)
+		to_chat(M, SPAN_NOTICE("You are busy at the moment."))
+		return FALSE
+
 	if (dir != direction)
 		direction = dir
 
 	if (!get_destination())
+		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
 		return FALSE
 
 	return TRUE
@@ -168,6 +170,7 @@
 	calculate_time()
 	announce_start()
 	start_time = world.time
+	M.used_now = TRUE
 	spawn()
 		start_animation()
 

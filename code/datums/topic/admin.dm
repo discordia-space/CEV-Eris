@@ -396,7 +396,8 @@
 	var/jobban_list = list()
 	for(var/a_id in GLOB.antag_bantypes)
 		var/a_ban = GLOB.antag_bantypes[a_id]
-		jobban_list[get_antag_data(a_id).role_text] = a_ban
+		var/datum/antagonist/antag = get_antag_data(a_id)
+		jobban_list[antag.role_text] = a_ban
 	body += source.formatJobGroup(M, "Antagonist Positions", "ffeeaa", "Syndicate", jobban_list)
 
 	dat = "<head>[header]</head><body><tt><table width='100%'>[body.Join(null)]</table></tt></body>"
@@ -580,8 +581,7 @@
 			to_chat(M, "\red You have been kicked from the server: [reason]")
 		log_admin("[key_name(usr)] booted [key_name(M)].")
 		message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
-		//M.client = null
-		qdel(M.client)
+		del(M.client)
 
 
 /datum/admin_topic/removejobban
@@ -616,6 +616,9 @@
 
 	if(M.client && M.client.holder)
 		return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
+	var/delayed = 0
+	if(alert("Delayed Ban?", "Ban after roundend. Work with DB only.", "Yes", "No") == "Yes")
+		delayed = 1
 
 	switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 		if("Yes")
@@ -630,12 +633,12 @@
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 			if(!reason)
 				return
-			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
+			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins, delayed_ban = delayed)
 			ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 			to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
 
-			source.DB_ban_record(BANTYPE_TEMP, M, mins, reason)
+			source.DB_ban_record(BANTYPE_TEMP, M, mins, reason, delayed_ban = delayed)
 
 			if(config.banappeals)
 				to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
@@ -644,18 +647,21 @@
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 
-			qdel(M.client)
+			if(!delayed)
+				del(M.client)
 			//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 		if("No")
+			var/no_ip = 0
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
 			if(!reason)
 				return
 			switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
 				if("Cancel")	return
 				if("Yes")
-					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
+					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP, delayed_ban = delayed)
 				if("No")
-					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
+					AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, delayed_ban = delayed)
+					no_ip = 1
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 			to_chat(M, "\red This is a permanent ban.")
 			if(config.banappeals)
@@ -665,13 +671,39 @@
 			ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
+			var/banip = no_ip ? null : -1
+			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason, banip, delayed_ban = delayed)
 
-			source.DB_ban_record(BANTYPE_PERMA, M, -1, reason)
-
-			qdel(M.client)
+			if(!delayed)
+				del(M.client)
 		if("Cancel")
 			return
 
+/datum/admin_topic/sendbacktolobby
+	keyword = "sendbacktolobby"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/sendbacktolobby/Run(list/input)
+	var/mob/M = locate(input["sendbacktolobby"])
+
+	if(!isobserver(M))
+		to_chat(usr, "<span class='notice'>You can only send ghost players back to the Lobby.</span>")
+		return
+
+	if(!M.client)
+		to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
+		return
+
+	if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
+		return
+
+	log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+	message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] back to the Lobby.")
+
+	var/mob/new_player/NP = new()
+	GLOB.player_list -= M.ckey
+	NP.ckey = M.ckey
+	qdel(M)
 
 /datum/admin_topic/mute
 	keyword = "mute"
@@ -747,14 +779,14 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/corgione/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["corgione"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+	var/mob/L= locate(input["corgione"])
+	if(!istype(L))
+		to_chat(usr, "This can only be used on instances of type /mob")
 		return
 
-	log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
-	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(H)]", 1)
-	H.corgize()
+	log_admin("[key_name(usr)] attempting to corgize [key_name(L)]")
+	message_admins("\blue [key_name_admin(usr)] attempting to corgize [key_name_admin(L)]", 1)
+	L.corgize()
 
 
 /datum/admin_topic/forcespeech
@@ -773,6 +805,29 @@
 	speech = sanitize(speech) // Nah, we don't trust them
 	log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
 	message_admins("\blue [key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]")
+
+/datum/admin_topic/forcesanity
+	keyword = "forcesanity"
+	require_perms = list(R_FUN)
+
+/datum/admin_topic/forcesanity/Run(list/input)
+	var/mob/living/carbon/human/H = locate(input["forcesanity"])
+	if(!ishuman(H))
+		to_chat(usr, "This can only be used on instances of type /human.")
+		return
+
+	var/datum/breakdown/B = input("What breakdown will [key_name(H)] suffer from?", "Sanity Breakdown") as null | anything in subtypesof(/datum/breakdown)
+	if(!B)
+		return
+	B = new B(H.sanity)
+	if(!B.can_occur())
+		to_chat(usr, "[B] could not occur. [key_name(H)] did not meet the right conditions.")
+		qdel(B)
+		return
+	if(B.occur())
+		H.sanity.breakdowns += B
+		to_chat(usr, SPAN_NOTICE("[B] has occurred for [key_name(H)]."))
+		return
 
 
 /datum/admin_topic/revive
@@ -798,30 +853,24 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makeai/Run(list/input)
-	var/mob/living/L = locate(input["revive"])
+	var/mob/living/L = locate(input["makeai"])
 	if(!istype(L))
 		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	if(config.allow_admin_rev)
-		L.revive()
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-		log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
-	else
-		to_chat(usr, "Admin Rejuvinates have been disabled")
-
+	L.AIize()
 
 /datum/admin_topic/makeslime
 	keyword = "makeslime"
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makeslime/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["makeslime"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+	var/mob/living/L = locate(input["makeslime"])
+	if(!istype(L))
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	usr.client.cmd_admin_slimeize(H)
+	usr.client.cmd_admin_slimeize(L)
 
 
 /datum/admin_topic/makerobot
@@ -829,9 +878,9 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/makerobot/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["makerobot"])
+	var/mob/living/H = locate(input["makerobot"])
 	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
 	usr.client.cmd_admin_robotize(H)
@@ -1090,11 +1139,11 @@
 	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
 
 	//todo: sanitize
-	var/msg = russian_to_utf8(input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null)
+	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
 	if(!msg)
 		return
 
-	var/customname = russian_to_utf8(input(source.owner, "Pick a title for the report", "Title") as text|null)
+	var/customname = input(source.owner, "Pick a title for the report", "Title") as text|null
 
 	// Create the reply message
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( null ) //hopefully the null loc won't cause trouble for us

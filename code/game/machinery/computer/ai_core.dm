@@ -1,6 +1,6 @@
 /obj/structure/AIcore
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	name = "\improper AI core"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "0"
@@ -31,13 +31,13 @@
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You wrench the frame into place."))
-					anchored = 1
+					anchored = TRUE
 					state = 1
 					return
 			if(state == 1 && !circuit)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You unfasten the frame."))
-					anchored = 0
+					anchored = FALSE
 					state = 0
 					return
 			return
@@ -193,7 +193,7 @@
 	name = "inactive AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai-empty"
-	anchored = 1
+	anchored = TRUE
 	state = 20//So it doesn't interact based on the above. Not really necessary.
 
 /obj/structure/AIcore/deactivated/Destroy()
@@ -237,7 +237,7 @@
 				user.visible_message(SPAN_NOTICE("\The [user] decides not to unbolt \the [src]."))
 				return
 			user.visible_message(SPAN_NOTICE("\The [user] finishes unfastening \the [src]!"))
-			anchored = 0
+			anchored = FALSE
 			return
 		else
 			user.visible_message(SPAN_NOTICE("\The [user] starts to bolt \the [src] to the plating..."))
@@ -245,7 +245,7 @@
 				user.visible_message(SPAN_NOTICE("\The [user] decides not to bolt \the [src]."))
 				return
 			user.visible_message(SPAN_NOTICE("\The [user] finishes fastening down \the [src]!"))
-			anchored = 1
+			anchored = TRUE
 			return
 	else
 		return ..()

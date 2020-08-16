@@ -13,6 +13,7 @@
 	siemens_coefficient = 0.6
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
+	style = 0
 
 /*
  * Helmets
@@ -62,6 +63,26 @@
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
+
+/obj/item/clothing/head/armor/helmet/technomancer
+	name = "technomancer helmet"
+	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
+	icon_state = "technohelmet"
+	body_parts_covered = HEAD|EARS|EYES|FACE
+	item_flags = THICKMATERIAL
+	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
+	action_button_name = "Toggle Headlamp"
+	brightness_on = 4
+	armor = list(
+		melee = 45,
+		bullet = 35,
+		energy = 35,
+		bomb = 30,
+		bio = 15,
+		rad = 30
+	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
+	flash_protection = FLASH_PROTECTION_MAJOR
+	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
@@ -257,26 +278,25 @@
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	body_parts_covered = HEAD|FACE|EARS
-	armor = list(
-		melee = 75,
-		bullet = 30,
-		energy = 30,
-		bomb = 25,
-		bio = 0,
-		rad = 0
-	)
+	var/list/armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
+	var/list/armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	tint = TINT_MODERATE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
-	var/base_state
 	price_tag = 150
 
+/obj/item/clothing/head/armor/riot/Initialize()
+	. = ..()
+	armor = up ? armor_up : armor_down
+	update_icon()
+
 /obj/item/clothing/head/armor/riot/attack_self()
-	if(!base_state)
-		base_state = icon_state
 	toggle()
+
+/obj/item/clothing/head/armor/riot/update_icon()
+	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 /obj/item/clothing/head/armor/riot/verb/toggle()
 	set category = "Object"
@@ -284,24 +304,27 @@
 	set src in usr
 
 	if(!usr.incapacitated())
+		src.up = !src.up
+
 		if(src.up)
-			src.up = !src.up
-			body_parts_covered |= (EYES|FACE)
-			tint = initial(tint)
-			flash_protection = initial(flash_protection)
-			icon_state = base_state
-			armor = initial(armor)
-			to_chat(usr, "You flip the [src] down to protect your face.")
-		else
-			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
 			tint = TINT_NONE
+			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = FLASH_PROTECTION_NONE
-			icon_state = "[base_state]_up"
-			armor = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
+			armor = armor_up
 			to_chat(usr, "You push the [src] up out of your face.")
-		update_wear_icon()	//so our mob-overlays
+		else
+			body_parts_covered |= (EYES|FACE)
+			tint = initial(tint)
+			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			flash_protection = initial(flash_protection)
+			armor = armor_down
+			to_chat(usr, "You flip the [src] down to protect your face.")
+
+		update_icon()
+		update_wear_icon()	//update our mob overlays
 		usr.update_action_buttons()
+
 
 /*
  * Ironhammer riot helmet with HUD
@@ -381,30 +404,37 @@
 
 /obj/item/clothing/head/armor/steelpot
 	name = "steelpot helmet"
-	desc = " Titanium helmet of serbian origin. Still widely used despite of its discontinued production."
+	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "steelpot"
 	armor = list(melee = 40, bullet = 35, energy = 0, bomb = 30, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
 
 /obj/item/clothing/head/armor/altyn
-	name = "green altyn helmet"
-	desc = "Green titanium helmet of serbian origin. Still widely used despite of its discontinued production."
+	name = "altyn helmet"
+	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	armor = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
+	var/list/armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
+	var/list/armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHEADHAIR
 	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
 
 	action_button_name = "Flip Face Shield"
-	var/up = 0
-	var/base_state
+	var/up = TRUE
+
+
+/obj/item/clothing/head/armor/altyn/Initialize()
+	. = ..()
+	armor = up ? armor_up : armor_down
+	update_icon()
+
+/obj/item/clothing/head/armor/altyn/update_icon()
+	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 /obj/item/clothing/head/armor/altyn/attack_self()
-	if(!base_state)
-		base_state = icon_state
 	toggle()
 
 
@@ -414,41 +444,37 @@
 	set src in usr
 
 	if(!usr.incapacitated())
+		src.up = !src.up
+
 		if(src.up)
-			src.up = !src.up
-			body_parts_covered |= (EYES|FACE)
-			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
-			flash_protection = initial(flash_protection)
-			icon_state = base_state
-			armor = initial(armor)
-			to_chat(usr, "You flip the [src] down to protect your face.")
-		else
-			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = FLASH_PROTECTION_NONE
-			icon_state = "[base_state]_up"
-			armor = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
+			armor = armor_up
 			to_chat(usr, "You push the [src] up out of your face.")
-		update_wear_icon()	//so our mob-overlays
+		else
+			body_parts_covered |= (EYES|FACE)
+			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			flash_protection = initial(flash_protection)
+			armor = armor_down
+			to_chat(usr, "You flip the [src] down to protect your face.")
+
+		update_icon()
+		update_wear_icon()	//update our mob overlays
 		usr.update_action_buttons()
 
 
 /obj/item/clothing/head/armor/altyn/brown
-	name = "brown altyn helmet"
-	desc = "Brown titanium helmet of serbian origin. Still widely used despite of its discontinued production."
 	icon_state = "altyn_brown"
 
 /obj/item/clothing/head/armor/altyn/black
-	name = "black altyn helmet"
-	desc = "Black titanium helmet of serbian origin. Still widely used despite of its discontinued production."
 	icon_state = "altyn_black"
 
 /obj/item/clothing/head/armor/altyn/maska
 	name = "maska helmet"
-	desc = "I do not know who I am I, don\'t know why I\'m here. All I know is that I must kill."
+	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
-	armor = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"

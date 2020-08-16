@@ -51,7 +51,7 @@
 	if(name != rank_prefix_name(GetVoice()))
 		alt_name = "(as [rank_prefix_name(get_id_name())])"
 
-	message = capitalize_cp1251(sanitize(message))
+	message = sanitize(message)
 	. = ..(message, alt_name = alt_name)
 
 	if(.)
@@ -136,8 +136,6 @@
 				voice_sub = changer.voice
 	if(voice_sub)
 		return voice_sub
-	if(mind && mind.changeling && mind.changeling.mimicing)
-		return mind.changeling.mimicing
 	if(GetSpecialVoice())
 		return GetSpecialVoice()
 	if(chem_effects[CE_VOICEMIMIC])

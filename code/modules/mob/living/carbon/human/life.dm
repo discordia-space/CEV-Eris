@@ -58,8 +58,6 @@
 
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
-		//Updates the number of stored chemicals for powers
-		handle_changeling()
 
 		//Organs and blood
 		handle_organs()
@@ -311,6 +309,12 @@
 			HUDelm.update_icon()
 	return null
 
+/mob/living/carbon/human/get_breath_modulo()
+	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
+	if(L)
+		return L.breath_modulo
+	return ..()
+
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
 	if(status_flags & GODMODE)
 		return
@@ -360,11 +364,12 @@
 			bodytemperature -= temperature_loss
 	else
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
-			var/obj/mecha/M = loc
+		if(istype(loc, /mob/living/exosuit))
+			var/mob/living/exosuit/M = loc
 			loc_temp =  M.return_temperature()
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
+			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
+			loc_temp = M.air_contents.temperature
 		else
 			loc_temp = environment.temperature
 
@@ -560,7 +565,10 @@
 		if(CE_PAINKILLER in chem_effects)
 			analgesic = chem_effects[CE_PAINKILLER]
 		if(!(CE_ALCOHOL in chem_effects))
-			stats.getPerk(/datum/perk/inspiration)?.deactivate()
+			if(stats.getPerk(/datum/perk/inspiration))
+				stats.removePerk(/datum/perk/active_inspiration)
+			if(stats.getPerk(PERK_ALCOHOLIC))
+				stats.removePerk(PERK_ALCOHOLIC_ACTIVE)
 
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
@@ -607,11 +615,24 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= HEALTH_THRESHOLD_DEAD || (species.has_organ[BP_BRAIN] && !has_brain()))
+		if(species.has_organ[BP_BRAIN] && !has_brain()) //No brain = death
 			death()
 			blinded = 1
 			silent = 0
 			return 1
+		if(health <= HEALTH_THRESHOLD_DEAD) //No health = death
+			if(stats.getPerk(PERK_UNFINISHED_DELIVERY) && prob(33)) //Unless you have this perk
+				heal_organ_damage(20, 20)
+				adjustOxyLoss(-100)
+				adjustToxLoss(-20)
+				AdjustSleeping(rand(20,30))
+				updatehealth()
+				stats.removePerk(PERK_UNFINISHED_DELIVERY)
+			else
+				death()
+				blinded = 1
+				silent = 0
+				return 1
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if((getOxyLoss() > (species.total_health/2)) || (health <= (HEALTH_THRESHOLD_CRIT - src.stats.getStat(STAT_TGH))))
@@ -774,23 +795,23 @@
 						M.adjustBruteLoss(5)
 					nutrition += 10
 
-/mob/living/carbon/human/proc/handle_changeling()
-	if(mind && mind.changeling)
-		mind.changeling.regenerate()
 
 /mob/living/carbon/human/handle_shock()
 	..()
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(species && species.flags & NO_PAIN) return
 
-	if(health < (HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH)))// health 0 - stat makes you immediately collapse
+	var/health_threshold_softcrit = HEALTH_THRESHOLD_SOFTCRIT - stats.getStat(STAT_TGH)
+	if(stats.getPerk(PERK_BALLS_OF_PLASTEEL))
+		health_threshold_softcrit -= 20
+	if(health < health_threshold_softcrit)// health 0 - stat makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 	else if(shock_resist)
 		shock_stage = min(shock_stage, 58)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < HEALTH_THRESHOLD_SOFTCRIT - src.stats.getStat(STAT_TGH))
+	else if(health < health_threshold_softcrit)
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)
@@ -949,8 +970,9 @@
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
 		if(mind && mind.antagonist.len != 0)
-			if(hud_icon_reference[mind.antagonist[1].role_text]) //only display the first antagonist role
-				holder.icon_state = hud_icon_reference[mind.antagonist[1].role_text]
+			var/datum/antagonist/antag = mind.antagonist[1]	//only display the first antagonist role
+			if(hud_icon_reference[antag.role_text])
+				holder.icon_state = hud_icon_reference[antag.role_text]
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
@@ -1012,7 +1034,9 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/mob/observer/eye/god))
 			isRemoteObserve = TRUE
-		else if((mRemote in mutations) && remoteview_target)
+		else if(client.eye && istype(client.eye,/obj/item/weapon/implant/carrion_spider/observer))
+			isRemoteObserve = TRUE
+		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs)

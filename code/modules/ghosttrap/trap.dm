@@ -181,12 +181,12 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	minutes_since_death = DRONE_SPAWN_DELAY
 	..()
 
-datum/ghosttrap/drone/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target)
+datum/ghosttrap/drone/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer)
 	. = ..()
 	if(. && !target.can_be_possessed_by(candidate))
 		return 0
 
-datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone)
+datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	if(!assess_candidate(candidate))
 		return 0
 	drone.transfer_personality(candidate.client)
@@ -200,8 +200,20 @@ datum/ghosttrap/drone/transfer_personality(var/mob/candidate, var/mob/living/sil
 	ghost_trap_message = "They are occupying a pAI now."
 	ghost_trap_role = "pAI"
 
-datum/ghosttrap/pai/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target)
+datum/ghosttrap/pai/assess_candidate(var/mob/observer/ghost/candidate, var/mob/target, check_respawn_timer)
 	return 0
 
-datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone)
+datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silicon/robot/drone/drone, check_respawn_timer)
 	return 0
+
+/**************
+*  Blitzshell *
+**************/
+/datum/ghosttrap/blitzdrone
+	object = "blitzshell drone"
+	pref_check = ROLE_BLITZ
+	ghost_trap_message = "They have become a Blitzshell drone now."
+	ghost_trap_role = "Blitzshell Drone."
+	can_set_own_name = FALSE
+	list_as_special_role = FALSE
+	can_only_use_once = TRUE

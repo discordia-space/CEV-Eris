@@ -3,8 +3,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "tele0"
 	w_class = ITEM_SIZE_GARGANTUAN
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	interact_offline = 1
 
 	var/silk_id = ""
@@ -19,7 +19,7 @@
 
 /obj/machinery/bssilk_hub/attackby(obj/item/I, mob/user)
 	sync_with_parts()
-	if(isMultitool(I))
+	if(QUALITY_PULSING in I.tool_qualities)
 		switch(alert("What you want to configure console ID or snare ID?", "BS Snare Hub ID system", "Snare", "Console"))
 			if("Snare")
 				var/input_id = input("Enter new BS Snare ID", "Snare ID", silk_id)

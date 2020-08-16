@@ -8,6 +8,15 @@
 	base_quantity = 2
 	scaling_threshold = 15
 
+/datum/storyevent/roleset/blitz
+	id = "blitz"
+	name = "blitzshell infiltration"
+	role_id = ROLE_BLITZ
+	weight = 1
+
+	base_quantity = 1
+	scaling_threshold = 15
+
 
 /datum/storyevent/roleset/traitor
 	id = "traitor"
@@ -110,10 +119,10 @@
 	return new_weight * max(a_count, 1)
 
 
-/datum/storyevent/roleset/changeling
-	id = "changeling"
-	name = "changeling"
-	role_id = ROLE_CHANGELING
+/datum/storyevent/roleset/carrion
+	id = "carrion"
+	name = "carrion"
+	role_id = ROLE_CARRION
 
 	base_quantity = 2
 	scaling_threshold = 15

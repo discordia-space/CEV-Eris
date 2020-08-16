@@ -5,10 +5,10 @@
 	icon_state = "crate"
 	climbable = TRUE
 	dense_when_open = TRUE
-	matter = list(MATERIAL_PLASTEEL = 10)
+	matter = list(MATERIAL_STEEL = 10)
 	open_sound = 'sound/machines/click.ogg'
 	close_sound = 'sound/machines/click.ogg'
-	price_tag = 200
+	price_tag = 50
 
 /obj/structure/closet/crate/close()
 	if(!src.opened)
@@ -79,7 +79,7 @@
 	desc = "A rectangular plastic crate."
 	icon_state = "plasticcrate"
 	matter = list(MATERIAL_PLASIC = 10)
-	price_tag = 50
+	price_tag = 10
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"
@@ -108,6 +108,8 @@
 	name = "trash cart"
 	desc = "A heavy, metal trashcart with wheels."
 	icon_state = "trashcart"
+	storage_capacity = 6 * MOB_MEDIUM //3x Storage
+	max_mob_size = 4 //2 more mobs then normal. Makes clearing mobs faster
 
 /*these aren't needed anymore
 /obj/structure/closet/crate/hat
@@ -336,3 +338,9 @@
 	desc = "A secure metallic crate."
 	name = "Secure metallic crate"
 	icon_state = "serbcrate_gray"
+
+/obj/structure/closet/crate/germancrate
+	desc = "A secure metallic crate."
+	name = "Secure metallic crate"
+	icon_state = "germancrate"
+

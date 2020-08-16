@@ -258,7 +258,7 @@
 	/obj/item/clothing/head/armor/altyn/brown = 1,
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
-	/obj/item/clothing/gloves/fingerless = 1)
+	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown = 1)
 
 /obj/item/weapon/storage/deferred/crate/uniform_black
 	name = "black uniform kit"
@@ -271,7 +271,7 @@
 	/obj/item/clothing/mask/balaclava/tactical = 1,
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
-	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 1)
+	/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat = 1)
 
 /obj/item/weapon/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"
@@ -298,3 +298,16 @@
 	/obj/item/clothing/shoes/jackboots = 1,
 	/obj/item/clothing/gloves/fingerless = 1,
 	/obj/item/weapon/storage/fancy/cigarettes = 1)
+
+/obj/item/weapon/storage/deferred/crate/german_uniform
+	name = "german uniform crate"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "germancrate_deferred"
+	initial_contents = list(
+	/obj/item/clothing/gloves/german = 1,
+	/obj/item/clothing/head/beret/german = 1,
+	/obj/item/clothing/mask/gas/german = 1,
+	/obj/item/clothing/shoes/jackboots/german = 1,
+	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
+	/obj/item/clothing/under/germansuit = 1)
+

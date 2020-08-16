@@ -24,6 +24,7 @@
 				/obj/item/clothing/mask/gas/ihs = 10,
 				/obj/item/clothing/mask/gas/swat = 2,
 				/obj/item/clothing/mask/gas/voice = 2,
+				/obj/item/clothing/mask/gas/german = 2,
 				/obj/item/clothing/mask/luchador = 2,
 				/obj/item/clothing/mask/luchador/rudos = 2,
 				/obj/item/clothing/mask/luchador/tecnicos = 2,
@@ -65,6 +66,7 @@
 				/obj/item/clothing/suit/armor/bulletproof/serbian = 2,
 				/obj/item/clothing/suit/armor/bulletproof/serbian/green = 2,
 				/obj/item/clothing/suit/armor/bulletproof/serbian/tan = 2,
+				/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 2,
 				/obj/item/clothing/suit/armor/laserproof = 4,
 				/obj/item/clothing/suit/armor/heavy = 2,
 				/obj/item/clothing/suit/armor/heavy/riot = 4,
@@ -85,12 +87,17 @@
 
 /obj/random/cloth/suit/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/suit/poncho = 10,
+				/obj/item/clothing/suit/storage/bomj = 5,
 				/obj/item/clothing/suit/storage/ass_jacket = 10,
 				/obj/item/clothing/suit/storage/cargo_jacket = 10,
 				/obj/item/clothing/suit/storage/detective = 5,
-				/obj/item/clothing/suit/storage/hazardvest = 10,
+				/obj/item/clothing/suit/storage/hazardvest = 6,
+				/obj/item/clothing/suit/storage/hazardvest/orange = 2,
+				/obj/item/clothing/suit/storage/hazardvest/black = 2,
 				/obj/item/clothing/suit/storage/detective/ironhammer  = 3,
 				/obj/item/clothing/suit/storage/leather_jacket = 3,
+				/obj/item/clothing/suit/storage/drive_jacket = 3,
+				/obj/item/clothing/suit/storage/violet_jacket = 3,
 				/obj/item/clothing/suit/storage/robotech_jacket = 10,
 				/obj/item/clothing/suit/storage/toggle/bomber = 5,
 				/obj/item/clothing/suit/storage/toggle/hoodie = 5,
@@ -102,7 +109,11 @@
 				/obj/item/clothing/suit/storage/toggle/labcoat/science = 3,
 				/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 3,
 				/obj/item/clothing/suit/storage/qm_coat = 2,
-				/obj/item/clothing/suit/storage/cyberpunksleek = 8))
+				/obj/item/clothing/suit/storage/cyberpunksleek = 8,
+				/obj/item/clothing/suit/storage/bladerunner=8,
+				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake=2,
+				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake=2,
+				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager=2))
 
 /obj/random/cloth/suit/low_chance
 	name = "low chance random suit"
@@ -176,7 +187,14 @@
 				/obj/item/clothing/under/suit_jacket/red = 5,
 				/obj/item/clothing/under/suit_jacket = 5,
 				/obj/item/clothing/under/turtleneck = 5,
-				/obj/item/clothing/under/syndicate = 5))
+				/obj/item/clothing/under/syndicate = 5,
+				/obj/item/clothing/under/dress = 5,
+				/obj/item/clothing/under/dress/blue = 5,
+				/obj/item/clothing/under/dress/red = 5,
+				/obj/item/clothing/under/leisure = 5,
+				/obj/item/clothing/under/leisure/white = 5,
+				/obj/item/clothing/under/leisure/pullover = 5,
+				/obj/item/clothing/under/germansuit = 5))
 
 /obj/random/cloth/under/low_chance
 	name = "low chance random under"
@@ -223,8 +241,9 @@
 
 /obj/random/cloth/head/item_to_spawn()
 	return pickweight(list(/obj/item/clothing/head/kitty = 1,    //God forgive us
-				/obj/item/clothing/head/greenbandana = 5,
+				/obj/item/clothing/head/bandana/green = 5,
 				/obj/item/clothing/head/beret = 5,
+				/obj/item/clothing/head/beret/german = 4,
 				/obj/item/clothing/head/HoS = 1,
 				/obj/item/clothing/head/bearpelt = 5,
 				/obj/item/clothing/head/bowler = 5,
@@ -240,8 +259,8 @@
 				/obj/item/clothing/head/hardhat = 5,
 				/obj/item/clothing/head/nun_hood = 5,
 				/obj/item/clothing/head/philosopher_wig = 5,
-				/obj/item/clothing/head/orangebandana = 5,
-				/obj/item/clothing/head/greenbandana = 5,
+				/obj/item/clothing/head/bandana/orange = 5,
+				/obj/item/clothing/head/bandana/green = 5,
 				/obj/item/clothing/head/nun_hood = 5,
 				/obj/item/clothing/head/det/grey = 5,
 				/obj/item/clothing/head/det = 5,
@@ -296,7 +315,8 @@
 				/obj/item/clothing/gloves/thick = 5,
 				/obj/item/clothing/gloves/security/tactical = 1,
 				/obj/item/clothing/gloves/security = 2,
-				/obj/item/clothing/gloves/stungloves = 1))
+				/obj/item/clothing/gloves/stungloves = 1,
+				/obj/item/clothing/gloves/german = 3))
 
 /obj/random/cloth/gloves/low_chance
 	name = "low chance random gloves"
@@ -349,7 +369,8 @@
 				/obj/item/clothing/shoes/jackboots = 14,
 				/obj/item/clothing/shoes/leather = 14,
 				/obj/item/clothing/shoes/reinforced = 14,
-				/obj/item/clothing/shoes/workboots = 4))
+				/obj/item/clothing/shoes/workboots = 4,
+				/obj/item/clothing/shoes/jackboots/german = 3))
 
 /obj/random/cloth/shoes/low_chance
 	name = "low chance random shoes"
@@ -402,7 +423,9 @@
 				/obj/item/weapon/storage/backpack/satchel/security = 6,
 				/obj/item/weapon/storage/backpack/satchel/leather/withwallet = 12,
 				/obj/item/weapon/storage/backpack/satchel/ironhammer = 4,
-				/obj/item/weapon/storage/backpack/satchel/neotheology = 4))
+				/obj/item/weapon/storage/backpack/satchel/neotheology = 4,
+				/obj/item/weapon/storage/backpack/satchel/military = 6,
+				/obj/item/weapon/storage/backpack/duffelbag = 24))
 
 /obj/random/cloth/backpack/low_chance
 	name = "low chance random backpack"
@@ -417,8 +440,8 @@
 /obj/random/cloth/belt/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/storage/belt/medical = 8,
 				/obj/item/weapon/storage/belt/medical/emt = 8,
-				/obj/item/weapon/storage/belt/security = 4,
-				/obj/item/weapon/storage/belt/security/neotheology = 2,
+				/obj/item/weapon/storage/belt/tactical = 4,
+				/obj/item/weapon/storage/belt/tactical/neotheology = 2,
 				/obj/item/weapon/storage/belt/utility = 8,
 				/obj/item/weapon/storage/belt/utility/neotheology = 4))
 

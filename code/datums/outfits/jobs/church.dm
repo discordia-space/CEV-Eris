@@ -13,6 +13,7 @@
 	name = OUTFIT_JOB_NAME("NeoTheology Preacher")
 	l_ear = /obj/item/device/radio/headset/heads/preacher
 	id_type = /obj/item/weapon/card/id/chaplain
+	head = /obj/item/clothing/head/preacher
 	uniform = /obj/item/clothing/under/rank/preacher
 	suit = /obj/item/clothing/suit/neotheology_coat
 	shoes = /obj/item/clothing/shoes/reinforced
@@ -35,3 +36,4 @@
 /decl/hierarchy/outfit/job/church/janitor
 	name = OUTFIT_JOB_NAME("Janitor")
 	uniform = /obj/item/clothing/under/rank/church
+	shoes = /obj/item/clothing/shoes/jackboots/neotheology

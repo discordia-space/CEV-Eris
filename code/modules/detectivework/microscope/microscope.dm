@@ -4,8 +4,8 @@
 	desc = "A highly advanced microscope capable of zooming up to 3000x."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "microscope"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/obj/item/weapon/sample = null
 	var/report_num = 0
@@ -87,7 +87,7 @@
 
 /obj/machinery/microscope/proc/remove_sample(var/mob/living/remover)
 	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
-		return ..()
+		return
 	if(!sample)
 		to_chat(remover, SPAN_WARNING("\The [src] does not have a sample in it."))
 		return

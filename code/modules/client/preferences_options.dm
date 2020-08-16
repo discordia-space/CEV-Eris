@@ -2,6 +2,7 @@
 	var/list/setup_options = list()
 
 /datum/preferences/proc/get_option(category)
+	RETURN_TYPE(/datum/category_item/setup_option)
 	if(!SScharacter_setup.setup_options[category])
 		warning("Asking for invalid setup_option category: [category]")
 		return

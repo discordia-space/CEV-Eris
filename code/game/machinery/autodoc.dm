@@ -5,8 +5,8 @@
 	name = "Autodoc"
 	icon = 'icons/obj/autodoc.dmi'
 	icon_state = "powered_off"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	circuit = /obj/item/weapon/circuitboard/autodoc
 	use_power = 1
@@ -65,7 +65,7 @@
 	if (!occupant || locked)
 		return
 	if(autodoc_processor.active)
-		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait untill all operations would be done."))
+		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
 		return
 	for(var/obj/O in src)
 		O.forceMove(loc)

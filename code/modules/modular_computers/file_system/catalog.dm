@@ -66,8 +66,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		else if(istype(thing, /atom))
 			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/atom(thing)
 		else
-			if(!GLOB.catalogs[catalog_id].len)
-				qdel(GLOB.catalogs[catalog_id])
+			var/list/element = GLOB.catalogs[catalog_id]
+			if(!element.len)
+				qdel(element)
 				GLOB.catalogs.Remove(catalog_id)
 				return FALSE
 			error("Unsupported type passed to /proc/create_catalog_entry()")
@@ -314,6 +315,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/taste
 	var/strength
 	var/list/recipe_data
+	var/list/taste_tag
 
 /datum/catalog_entry/drink/search_value(var/value)
 	if(..())
@@ -347,7 +349,10 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			nutrition = E.nutriment_factor > 1 ? "High" : "Low"
 		strength = E.strength <= 15 ? "Light" : E.strength <= 50 ? "Strong" : "Knocking out"
 		thing_nature = "Alchohol drink"
-
+		if(E.taste_tag.len)
+			taste_tag = list()
+			for(var/tastes in E.taste_tag)
+				taste_tag += tastes
 	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
 	if(recipes)
 		recipe_data = list()
@@ -366,6 +371,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	data["taste"] = taste
 	data["strength"] = strength
 	data["recipe_data"] = recipe_data
+	data["taste_tag"] = taste_tag
 
 
 	// DESCRIPTION

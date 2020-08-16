@@ -1,4 +1,8 @@
 /mob/living/carbon/human
+	//first and last name
+	var/first_name
+	var/last_name
+
 	//Hair colour and style
 	var/hair_color = "#000000"
 	var/h_style = "Bald"
@@ -59,6 +63,7 @@
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target = null
+	var/remoteviewer = FALSE //Acts as an override for remoteview_target viewing, see human/life.dm: handle_vision()
 	var/hand_blood_color
 
 	var/gunshot_residue

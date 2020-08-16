@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(inventory)
 	name = "Inventory"
-	init_order = INIT_ORDER_LATELOAD
+	init_order = INIT_ORDER_INVENTORY
 	flags = SS_NO_FIRE
 	var/global/list/slots
 

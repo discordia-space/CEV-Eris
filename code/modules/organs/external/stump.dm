@@ -16,6 +16,7 @@
 		if(BP_IS_ROBOTIC(limb) && (!parent || BP_IS_ROBOTIC(parent)))
 			nature = MODIFICATION_SILICON
 
+
 /obj/item/organ/external/stump/get_tally()
 	return 4
 
@@ -25,9 +26,14 @@
 /obj/item/organ/external/stump/is_stump()
 	return TRUE
 
+/obj/item/organ/external/stump/update_icon()
+	return
+
 /obj/item/organ/external/stump/removed()
 	..()
-	qdel(src)
+	if(owner)
+		qdel(src)
+	owner = null //To stop infinate deletion loop.
 
 /obj/item/organ/external/stump/is_usable()
 	return FALSE

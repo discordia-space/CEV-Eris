@@ -195,6 +195,9 @@
 	if(anchored)
 		return FALSE
 
+	if(throwing > 0)
+		return FALSE
+
 	// The var/climbers API is implemented here.
 	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
 		return FALSE
@@ -211,7 +214,7 @@
 /obj/item/pipe/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	. = ..()
 
-	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up in below))
+	if((locate(/obj/structure/disposalpipe/up) in below) || locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below)
 		return FALSE
 
 
@@ -249,6 +252,8 @@
 				moveWithMob += G.affecting
 		if(moveWithMob.len)
 			var/turf/pull_target = istop ? GetBelow(ES) : GetAbove(ES)
+			if(target)
+				pull_target = get_turf(target)
 			if(!pull_target)
 				pull_target = get_turf(M)
 			for(var/Elem in moveWithMob)

@@ -1,0 +1,35 @@
+"a" = (/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"b" = (/turf/simulated/wall,/area/deepmaint)
+"c" = (/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/deepmaint)
+"d" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"e" = (/obj/structure/table/woodentable,/obj/random/rations,/turf/simulated/floor/grass,/area/deepmaint)
+"f" = (/obj/structure/table/woodentable,/obj/random/rations,/obj/random/rations,/obj/random/rations,/turf/simulated/floor/grass,/area/deepmaint)
+"g" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/dirt,/area/deepmaint)
+"h" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/grass,/area/deepmaint)
+"i" = (/obj/structure/table/woodentable,/obj/random/pack/rare,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/grass,/area/deepmaint)
+"j" = (/obj/structure/table/woodentable,/obj/random/pack/rare/low_chance,/obj/random/pack/rare/low_chance,/turf/simulated/floor/grass,/area/deepmaint)
+"k" = (/turf/simulated/floor/grass,/area/deepmaint)
+"l" = (/turf/simulated/floor/dirt,/area/deepmaint)
+"m" = (/turf/simulated/floor/wood,/area/deepmaint)
+"n" = (/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
+"o" = (/obj/machinery/door/airlock/glass{name = "Hydroponics"; req_access = list(35)},/turf/simulated/floor/wood,/area/deepmaint)
+"p" = (/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
+"q" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
+"r" = (/obj/structure/table/woodentable,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/grass,/area/deepmaint)
+"s" = (/obj/structure/table/woodentable,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/dirt,/area/deepmaint)
+"t" = (/obj/machinery/light/small,/turf/simulated/floor/wood,/area/deepmaint)
+"u" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/wood,/area/deepmaint)
+
+(1,1,1) = {"
+aaaaaaaaaaa
+abcccccccba
+dcefghhijca
+ackltmtkkca
+nbccbobccbn
+npqpqpqppqn
+nbccbobccbn
+acrkumukrca
+acsrhhgrrcd
+abcccccccba
+aaaaaaaaaaa
+"}

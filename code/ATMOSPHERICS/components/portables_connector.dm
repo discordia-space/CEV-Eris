@@ -14,7 +14,7 @@
 
 	var/datum/pipe_network/network
 
-	var/on = 0
+	var/on = FALSE
 	use_power = 0
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_FILTER_LAYER
@@ -43,7 +43,7 @@
 	if(!on)
 		return
 	if(!connected_device)
-		on = 0
+		on = FALSE
 		return
 	if(network)
 		network.update = 1

@@ -70,8 +70,8 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	desc = "Dust in space."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "space_dust"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/strength = 2 //ex_act severity number
 	var/life = 2 //how many things we hit before qdel(src)
 
@@ -117,7 +117,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				startx = (TRANSITIONEDGE+1)
 				endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
 				endx = world.maxx-TRANSITIONEDGE
-		var/z_level = pick(maps_data.station_levels)
+		var/z_level = pick(GLOB.maps_data.station_levels)
 		var/goal = locate(endx, endy, z_level)
 		src.x = startx
 		src.y = starty

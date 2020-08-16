@@ -12,7 +12,7 @@
 		if (isValidAttackTarget(O))
 			filteredTargets += O
 
-	for (var/obj/mecha/M in mechas_list)
+	for (var/mob/living/exosuit/M in mechas_list)
 		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
 			filteredTargets += M
 
@@ -50,15 +50,29 @@
 			return
 		return 1
 
-	if (istype(O, /obj/mecha))
-		var/obj/mecha/M = O
-		return isValidAttackTarget(M.occupant)
+	if (istype(O, /mob/living/exosuit))
+		var/mob/living/exosuit/M = O
+		return isValidAttackTarget(M.pilots[1])
 
 /mob/living/carbon/superior_animal/proc/destroySurroundings()
 	if (prob(break_stuff_probability))
+
+		for (var/obj/structure/window/obstacle in src.loc) // To destroy directional windows that are on the creature's tile
+			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+			return
+		
+		for (var/obj/machinery/door/window/obstacle in src.loc) // To destroy windoors that are on the creature's tile
+			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+			return
+
 		for (var/dir in cardinal) // North, South, East, West
 			for (var/obj/structure/window/obstacle in get_step(src, dir))
-				if (obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
+				if ((obstacle.is_full_window()) || (obstacle.dir == reverse_dir[dir])) // So that directional windows get smashed in the right order
+					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
+					return
+
+			for (var/obj/machinery/door/window/obstacle in get_step(src, dir))
+				if (obstacle.dir == reverse_dir[dir]) // So that windoors get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 

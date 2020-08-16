@@ -18,12 +18,12 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/m41_cocked.ogg'
-	damage_multiplier = 1.3 //35.1 with lethal, 41.3 with hv
+	damage_multiplier = 1.35
 	penetration_multiplier = 1
 	recoil_buildup = 6
-	one_hand_penalty = 5
+	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
 
-	firemodes = list(
+	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		)

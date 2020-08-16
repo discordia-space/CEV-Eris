@@ -1,14 +1,18 @@
 /datum/stat_holder
+	var/mob/living/holder
 	var/list/stat_list = list()
-
 	var/list/datum/perk/perks = list()
-	var/list/obj/effect/statclick/perk/perk_stat = list()
-	var/datum/perk/combat/combat_style
+	var/list/obj/effect/perk_stats = list() // Holds effects representing perks, to display them in stat()
 
-/datum/stat_holder/New()
+/datum/stat_holder/New(mob/living/L)
+	holder = L
 	for(var/sttype in subtypesof(/datum/stat))
 		var/datum/stat/S = new sttype
 		stat_list[S.name] = S
+
+/datum/stat_holder/Destroy()
+	holder = null
+	return ..()
 
 /datum/stat_holder/proc/removeTempStat(statName, id)
 	if(!id)
@@ -85,16 +89,25 @@
     return 1 - max(0,min(1,getStat(statName, pure)/statCap))
 
 /datum/stat_holder/proc/getPerk(perkType)
-	return locate(perkType) in perks
+	RETURN_TYPE(/datum/perk)
+	var/datum/perk/path = ispath(perkType) ? perkType : text2path(perkType) // Adds support for textual argument so that it can be called through VV easily
+	if(path)
+		return locate(path) in perks
 
-/datum/stat_holder/proc/Clone()
-	var/datum/stat_holder/new_stat = new()
-	for (var/S in stat_list)
-		new_stat.changeStat(S, src.getStat(S))
-	for (var/datum/perk/P in perks)
-		var/datum/perk/new_perk = new P.type
-		new_perk.teach(new_stat)
-	return new_stat
+/// The main, public proc to add a perk to a mob. Accepts a path or a stringified path.
+/datum/stat_holder/proc/addPerk(perkType)
+	if(!getPerk(perkType))
+		var/datum/perk/P = new perkType
+		perks += P
+		P.assign(holder)
+
+
+/// The main, public proc to remove a perk from a mob. Accepts a path or a stringified path.
+/datum/stat_holder/proc/removePerk(perkType)
+	var/datum/perk/P = getPerk(perkType)
+	if(P)
+		perks -= P
+		P.remove()
 
 /datum/stat_mod
 	var/time = 0

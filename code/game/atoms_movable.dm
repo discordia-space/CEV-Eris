@@ -1,7 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
 	var/last_move = null
-	var/anchored = 0
+	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
 	var/l_move_time = 1
@@ -229,20 +229,20 @@
 			a = get_area(src.loc)
 
 	//done throwing, either because it hit something or it finished moving
+	src.throwing = 0
+	src.thrower = null
+	src.throw_source = null
+
 	var/turf/new_loc = get_turf(src)
 	if(new_loc)
 		if(isobj(src))
 			src.throw_impact(new_loc,speed)
 		new_loc.Entered(src)
-	src.throwing = 0
-	src.thrower = null
-	src.throw_source = null
-
 
 //Overlays
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = TRUE
 
 /atom/movable/overlay/New()
 	for(var/x in src.verbs)
@@ -260,7 +260,7 @@
 	return
 
 /atom/movable/proc/touch_map_edge()
-	if(z in maps_data.sealed_levels)
+	if(z in GLOB.maps_data.sealed_levels)
 		return
 
 	if(config.use_overmap)
@@ -291,12 +291,12 @@
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
-	var/list/candidates = maps_data.accessable_levels.Copy()
+	var/list/candidates = GLOB.maps_data.accessable_levels.Copy()
 	candidates.Remove("[src.z]")
 
 	//If something was ejected from the ship, it does not end up on another part of the ship.
-	if (z in maps_data.station_levels)
-		for (var/n in maps_data.station_levels)
+	if (z in GLOB.maps_data.station_levels)
+		for (var/n in GLOB.maps_data.station_levels)
 			candidates.Remove("[n]")
 
 	if(!candidates.len)

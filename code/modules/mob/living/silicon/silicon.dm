@@ -71,12 +71,12 @@
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)
-			src.take_organ_damage(0,20,emp=1)
+			take_organ_damage(0,20,emp=1)
 			Stun(rand(5,10))
 		if(2)
-			src.take_organ_damage(0,10,emp=1)
+			take_organ_damage(0,10,emp=1)
 			confused = (min(confused + 2, 30))
-//	flick("noise", src.flash)
+//	flick("noise", flash)
 	if (HUDtech.Find("flash"))
 		flick("noise", HUDtech["flash"])
 	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
@@ -113,17 +113,16 @@
 		IgniteMob()
 
 	if(!Proj.nodamage)
-		switch(Proj.damage_type)
-			if(BRUTE)
-				adjustBruteLoss(Proj.damage)
-			if(BURN)
-				adjustFireLoss(Proj.damage)
+		if(Proj.damage_types[BRUTE])
+			adjustBruteLoss(Proj.damage_types[BRUTE])
+		if(Proj.damage_types[BURN])
+			adjustFireLoss(Proj.damage_types[BURN])
 
 	Proj.on_hit(src)
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN)
+/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
 	return FALSE//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
 /proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
@@ -136,7 +135,7 @@
 
 // this function shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
-	if(!src.stat)
+	if(!stat)
 		stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
 	else
 		stat(null, text("Systems nonfunctional"))
@@ -163,7 +162,7 @@
 	. = ..()
 
 //can't inject synths
-/mob/living/silicon/can_inject(var/mob/user, var/error_msg)
+/mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	if(error_msg)
 		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
 	return 0
@@ -171,10 +170,10 @@
 //Silicon mob language procs
 
 /mob/living/silicon/can_speak(datum/language/speaking)
-	return universal_speak || (speaking in src.speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
+	return universal_speak || (speaking in speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
-	var/var/datum/language/added_language = all_languages[language]
+	var/datum/language/added_language = all_languages[language]
 	if(!added_language)
 		return
 
@@ -184,7 +183,7 @@
 		return 1
 
 /mob/living/silicon/remove_language(var/rem_language)
-	var/var/datum/language/removed_language = all_languages[rem_language]
+	var/datum/language/removed_language = all_languages[rem_language]
 	if(!removed_language)
 		return
 

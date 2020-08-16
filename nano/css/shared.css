@@ -189,6 +189,10 @@ abbr {
     color: #ee0000;
 }
 
+.unimportant {
+    color: #808080;
+}
+
 .idle {
     color: #272727;
 }
@@ -765,7 +769,7 @@ th.bot {
     width: 75px;
 }
 .wideTable tr:nth-child(odd) {
-    background-color: #272727;
+	background-color: #272727;
 }
 
 /* Candystriped rows for tables */
@@ -787,27 +791,24 @@ th.bot {
 
 /* [Tooltips of description] */
 .sciTechTreeIcon span {
-	visibility		: hidden;
-	opacity			: 0;
-	transition		: opacity 0.3s linear;
+	display			: none;
 	padding			: 10px; 
 	margin-left		: 8px; 
 	width			: 200px;
 	z-index			: 999;
+	background      : #717177;
+	border          : 4px solid #666;
+	border-radius   : 0px 5px;
+	color           : #d1d1dd;
+	text-align      : center;
+	white-space     : pre-line;
 }
 .sciTechTreeIcon:hover span {
-	visibility		: visible;
-	opacity			: 1;
+	display			: block;
 	position		: absolute;
-	background		: #717177;
-	border			: 4px solid #666;
-	border-radius	: 5px;
-	color			: #d1d1dd;
-	text-align		: center;
-	white-space		: pre-line;
 }
 img.sciTechTreeIconToolTip {
-    background-image: url(science.png);
+	background-image: url(science.png);
 }
 /* [/Tooltips of description] */
 .sciTechTreeIcon {
@@ -831,7 +832,7 @@ img.sciTechTreeIconToolTip {
 
 .sciTechResearched:hover {
     background: #3fB44c;
-}
+}	
 
 .sciTechCantResearch {
 	background: #942f3c;
@@ -870,11 +871,13 @@ img.sciTechTreeIconToolTip {
 .icon-bluespacematterbin { background-position: 0px -64px; }
 .icon-rped { background-position: -32px -64px; }
 .icon-jawsoflife { background-position: -64px -64px; }
+.icon-Moebius_box1 { background-position: -256px -0px; }
 .icon-healthanalyzer { background-position: -96px -64px; }
 .icon-hydroponics { background-position: -128px -64px; }
 .icon-microwave { background-position: -160px -64px; }
 .icon-candymachine { background-position: -192px -64px; }
 .icon-operationcomputer { background-position: -224px -64px; }
+.icon-autolathe { background-position: -256px -64px; }
 
 .icon-vialbox { background-position: 0px -96px; }
 .icon-sleeper { background-position: -32px -96px; }
@@ -934,13 +937,21 @@ img.sciTechTreeIconToolTip {
 .icon-fusion { background-position: -32px -288px; }
 .icon-chemdisp { background-position: -64px -288px; }
 .icon-binarykey { background-position: -96px -288px; }
+.icon-night { background-position: -256px -32px; }
 .icon-chamelion { background-position: -128px -288px; }
 .icon-freedom { background-position: -160px -288px; }
 .icon-module { background-position: -192px -288px; }
 .icon-borgmodule { background-position: -224px -288px; }
 
+.icon-plasmablock { background-position: 0px -320px; }
+.icon-booster { background-position: -32px -320px; }
+.icon-compensatedbarrel { background-position: -64px -320px; }
+.icon-cellmount { background-position: -96px -320px; }
+.icon-toxincoater { background-position: -128px -320px; }
+.icon-mindswapper { background-position: -160px -320px; }
+.icon-holdingpouch { background-position: -192px -320px; }
+
 .sciMenuButton {
     width: 300px;
     float: left;
 }
-

@@ -120,7 +120,7 @@
 					return
 				if (breather)
 					src.add_fingerprint(usr)
-					if(!do_mob(usr, target, 30) || !can_apply_to_target(target, usr))
+					if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
 						return
 					if(tank)
 						tank.forceMove(src)
@@ -136,7 +136,7 @@
 					return
 				usr.visible_message(SPAN_NOTICE("\The [usr] begins carefully placing the mask onto [target]."),
 							SPAN_NOTICE("You begin carefully placing the mask onto [target]."))
-				if(!do_mob(usr, target, 100) || !can_apply_to_target(target, usr))
+				if(!do_mob(usr, target, 20) || !can_apply_to_target(target, usr))
 					return
 				// place mask and add fingerprints
 				usr.visible_message(SPAN_NOTICE("\The [usr] has placed \the mask on [target]'s mouth."),
@@ -148,17 +148,17 @@
 				return
 			if("Drip needle")
 				if(attached)
-					if(!do_mob(usr, target, 20))
+					if(!do_mob(usr, target, 10))
 						return
 					visible_message("\The [attached] is taken off \the [src]")
 					attached = null
 				else if(ishuman(target))
 					usr.visible_message(SPAN_NOTICE("\The [usr] begins inserting needle into [target]'s vein."),
 									SPAN_NOTICE("You begin inserting needle into [target]'s vein."))
-					if(!do_mob(usr, target, 50))
+					if(!do_mob(usr, target, 10))
 						usr.visible_message(SPAN_NOTICE("\The [usr]'s hand slips and pricks \the [target]."),
 									SPAN_NOTICE("Your hand slips and pricks \the [target]."))
-						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
+						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM), used_weapon = "Drip needle")
 						return
 					usr.visible_message(SPAN_NOTICE("\The [usr] hooks \the [target] up to \the [src]."),
 									SPAN_NOTICE("You hook \the [target] up to \the [src]."))
@@ -401,7 +401,7 @@
 	if(attached)
 		if(!Adjacent(attached))
 			visible_message("The needle is ripped out of [src.attached], doesn't that hurt?")
-			attached.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
+			attached.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM), used_weapon = "Drip needle")
 			attached = null
 			update_icon()
 

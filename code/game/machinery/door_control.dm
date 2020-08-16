@@ -11,7 +11,7 @@
 				2=Network Access
 	*/
 
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -140,6 +140,39 @@
 				spawn(0)
 					M.close()
 					return
+
+
+/obj/machinery/button/remote/blast_door/id_card
+	name = "remote blast id card door-control"
+	desc = "It controls blast doors, remotely. But need id_card with access to it."
+	icon_state = "doorid0"
+
+/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/weapon/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/card/id))
+		var/obj/item/weapon/card/id/id_card = W
+		if(has_access(req_access, list(), id_card.access))
+			use_power(5)
+			icon_state = "doorid1"
+			desiredstate = !desiredstate
+			trigger(user)
+			spawn(15)
+				update_icon()
+		else
+			to_chat(user, SPAN_WARNING("Access Denied"))
+			flick("doorid-denied",src)
+	else
+		to_chat(user, SPAN_WARNING("You need a id card to operate."))
+		flick("doorid-denied",src)
+
+/obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
+	to_chat(user, SPAN_WARNING("You need a id card to operate."))
+	flick("doorid-denied",src)
+
+/obj/machinery/button/remote/blast_door/id_card/update_icon()
+	if(stat & NOPOWER)
+		icon_state = "doorid-p"
+	else
+		icon_state = "doorid0"
 
 /*
 	Emitter remote control

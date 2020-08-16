@@ -16,6 +16,7 @@
 	var/safe_toxins_max = 0.2
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
+	var/breath_modulo = 2
 
 /obj/item/organ/internal/lungs/set_dna(var/datum/dna/new_dna)
 	..()
@@ -73,7 +74,7 @@
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
 	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
-	
+
 	// Not enough to breathe
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
@@ -122,7 +123,7 @@
 			owner.co2_alert = alert
 
 	// Too much poison in the air.
-	
+
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		owner.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
@@ -155,6 +156,8 @@
 	return !failed_breath
 
 /obj/item/organ/internal/lungs/proc/handle_temperature_effects(datum/gas_mixture/breath)
+	if(!species)
+		return
 	// Hot air hurts :(
 	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in owner.mutations))
 		var/damage = 0
@@ -206,3 +209,8 @@
 		species.get_environment_discomfort(owner,"heat")
 	else if(breath.temperature <= species.cold_discomfort_level)
 		species.get_environment_discomfort(owner,"cold")
+
+/obj/item/organ/internal/lungs/long
+	name = "long lungs"
+	icon_state = "long_lungs"
+	breath_modulo = 8

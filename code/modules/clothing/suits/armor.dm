@@ -8,6 +8,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	price_tag = 200
+	style = 1
 
 /*
  * Vests
@@ -81,9 +82,21 @@
 /obj/item/clothing/suit/armor/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
 
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat
+	name = "black serbian overcoat"
+	desc = "A black serbian overcoat with armor-weave and rank epaulettes"
+	icon_state = "overcoat_black"
+	item_state = "overcoat_black"
+
+/obj/item/clothing/suit/armor/greatcoat/serbian_overcoat_brown
+	name = "brown serbian overcoat"
+	desc = "A brown serbian overcoat with armor-weave and rank epaulettes"
+	icon_state = "overcoat_brown"
+	item_state = "overcoat_brown"
+
 // Serbian flak vests
 /obj/item/clothing/suit/armor/flak
-	name = "black flakvest vest"
+	name = "black flakvest"
 	desc = "An armored vest that protects against high-velocity solid projectiles."
 	icon_state = "flakvest"
 	item_state = "armor"
@@ -193,6 +206,19 @@
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
+/obj/item/clothing/suit/armor/greatcoat/german_overcoat
+	name = "Oberth Republic uniform overcoat"
+	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
+	icon_state = "germancoat"
+	item_state = "germancoat"
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 45,
+		bomb = 15,
+		bio = 0,
+		rad = 0
+	)
 
 /*
  * Heavy Armor Types
@@ -222,6 +248,7 @@
 	)
 	equip_delay = 2 SECONDS
 	price_tag = 250
+	style = 0
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
@@ -298,6 +325,29 @@
 		bio = 0,
 		rad = 0
 	)
+
+//Technomancer armor
+/obj/item/clothing/suit/storage/vest/insulated
+	name = "insulated armor"
+	desc = "A set of armor insulated against heat and electrical shocks, shielded against radiation, and protected against energy weapon projectiles."
+	icon_state = "armor_engineering"
+	item_state = "armor_engineering"
+	blood_overlay_type = "armor"
+	armor = list(
+		melee = 30,
+		bullet = 25,
+		energy = 40,
+		bomb = 10,
+		bio = 0,
+		rad = 30
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0
+	price_tag = 600
+	//Used ablative gear armor values and technomancer helmet/voidsuit values.
 
 /*
  * Reactive Armor

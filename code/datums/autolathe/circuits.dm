@@ -4,6 +4,10 @@
 	name = "airlock electronics"
 	build_path = /obj/item/weapon/airlock_electronics
 
+/datum/design/autolathe/circuit/airlockmodule/secure
+	name = "secure airlock electronics"
+	build_path = /obj/item/weapon/airlock_electronics/secure
+
 /datum/design/autolathe/circuit/airalarm
 	name = "air alarm electronics"
 	build_path = /obj/item/weapon/airalarm_electronics
@@ -15,6 +19,10 @@
 /datum/design/autolathe/circuit/powermodule
 	name = "power control module"
 	build_path = /obj/item/weapon/circuitboard/apc
+
+/datum/design/autolathe/circuit/holomap
+	name = "holomap electronics"
+	build_path = /obj/item/weapon/circuitboard/holomap
 
 /datum/design/autolathe/circuit/vending
 	name = "custom Vendomat"
@@ -60,6 +68,10 @@
 /datum/design/autolathe/circuit/diesel_excelsior
 	name = "excelsior diesel generator"
 	build_path = /obj/item/weapon/circuitboard/diesel
+
+/datum/design/autolathe/circuit/excelsior_boombox
+	name = "excelsior boombox"
+	build_path = /obj/item/weapon/circuitboard/excelsior_boombox
 
 /datum/design/autolathe/circuit/teleporter_excelsior
 	name = "excelsior long-range teleporter"
@@ -130,5 +142,3 @@
 /datum/design/autolathe/circuit/bioreactor_platform
 	name = "NeoTheology Biomatter Reactor, Platform"
 	build_path = /obj/item/weapon/circuitboard/neotheology/bioreactor_platform
-	
-

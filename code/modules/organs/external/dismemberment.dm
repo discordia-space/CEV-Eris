@@ -67,9 +67,14 @@
 				dir = 2
 		if(DROPLIMB_BURN)
 			new /obj/effect/decal/cleanable/ash(get_turf(victim))
+
+			for(var/obj/item/organ/I in internal_organs)
+				I.removed()
+				I.forceMove(get_turf(src))
+
 			for(var/obj/item/I in src)
-				if(I.w_class > ITEM_SIZE_SMALL && !istype(I,/obj/item/organ))
-					I.loc = get_turf(src)
+				if(I.w_class > ITEM_SIZE_SMALL)
+					I.forceMove(get_turf(src))
 			qdel(src)
 		if(DROPLIMB_BLUNT)
 			var/obj/effect/decal/cleanable/blood/gibs/gore = new victim.species.single_gib_type(get_turf(victim))
@@ -81,9 +86,9 @@
 			gore.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/organ/I in internal_organs)
-				if(istype(loc,/turf))
-					internal_organs -= src
-					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				I.removed()
+				I.forceMove(get_turf(src))
+				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)
 				if(I.w_class <= ITEM_SIZE_SMALL)

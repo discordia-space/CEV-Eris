@@ -25,7 +25,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/cloth/shoes = 6,
 					/obj/random/cloth/backpack = 4,
 					/obj/random/cloth/belt = 4,
-					/obj/random/cloth/holster = 4
+					/obj/random/cloth/holster = 4,
+					/obj/random/pouch = 4
 				))
 
 /obj/random/pack/cloth/low_chance
@@ -44,20 +45,21 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/random/pack/tech_loot/item_to_spawn()
 	return pickweight(list(
-					/obj/random/lathe_disk = 3,
+					/obj/random/lathe_disk = 2,
 					/obj/random/circuitboard = 6,
 					/obj/random/knife = 6,
 					/obj/random/lowkeyrandom = 8,
 					/obj/random/material = 4,
 					/obj/random/material_rare = 3,
 					/obj/random/material_resources = 8,
-					/obj/random/mecha_equipment = 3,
+					/obj/random/exosuit_equipment = 3,
 					/obj/random/powercell = 8,
 					/obj/random/techpart = 10,
 					/obj/random/tool = 20,
 					/obj/random/tool_upgrade = 30,
 					/obj/random/toolbox = 5,
 					/obj/random/voidsuit = 3,
+					/obj/random/gun_upgrade = 2
 				))
 
 /obj/random/pack/tech_loot/low_chance
@@ -72,11 +74,12 @@ They generally give more random result and can provide more divercity in spawn.
 	desc = "This is a random technical loot."
 
 /obj/random/pack/tech_loot/onestar/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/stock_parts/capacitor/one_star = 1,
-	/obj/item/weapon/stock_parts/scanning_module/one_star = 1,
-	/obj/item/weapon/stock_parts/manipulator/one_star = 1,
-	/obj/item/weapon/stock_parts/micro_laser/one_star = 1,
-	/obj/item/weapon/stock_parts/matter_bin/one_star = 1))
+	return pickweight(list(/obj/item/weapon/stock_parts/capacitor/one_star = 2,
+	/obj/item/weapon/stock_parts/scanning_module/one_star = 2,
+	/obj/item/weapon/stock_parts/manipulator/one_star = 2,
+	/obj/item/weapon/stock_parts/micro_laser/one_star = 2,
+	/obj/item/weapon/stock_parts/matter_bin/one_star = 2,
+	/obj/random/prothesis/one_star = 1))
 
 
 //This will be spawned in rare closets
@@ -87,16 +90,17 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/random/pack/gun_loot/item_to_spawn()
 	return pickweight(list(
-					/obj/random/gun_cheap = 3,
-					/obj/random/gun_normal = 1,
-					/obj/random/gun_energy_cheap = 3,
-					/obj/random/gun_shotgun = 2,
-					/obj/random/knife = 3,
-					/obj/random/ammo = 8,
-					/obj/random/ammo/shotgun = 8,
-					/obj/random/ammo_ihs = 8,
-					/obj/random/ammo_lowcost = 10,
-					/obj/random/cloth/holster = 4
+					/obj/random/gun_cheap = 8,
+					/obj/random/gun_normal = 3,
+					/obj/random/gun_energy_cheap = 6,
+					/obj/random/gun_shotgun = 5,
+					/obj/random/knife = 6,
+					/obj/random/ammo = 15,
+					/obj/random/ammo/shotgun = 15,
+					/obj/random/ammo_ihs = 15,
+					/obj/random/ammo_lowcost = 18,
+					/obj/random/gun_upgrade = 10,
+					/obj/random/cloth/holster = 8
 				))
 
 /obj/random/pack/gun_loot/low_chance
@@ -113,25 +117,7 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "box-orange"
 
 /obj/random/pack/rare/item_to_spawn()
-	return pickweight(list(
-					/obj/random/common_oddities = 8,
-					/obj/random/material_rare = 3,
-					/obj/random/tool/advanced = 5,
-					/obj/random/gun_normal = 2,
-					/obj/random/lathe_disk/advanced = 3,
-					/obj/item/weapon/cell/small/moebius/nuclear = 1,
-					/obj/item/weapon/cell/medium/moebius/hyper = 1,
-					/obj/random/rig = 1.5,
-					/obj/random/rig/damaged = 1.5,
-					/obj/random/voidsuit = 4,
-					/obj/random/pouch = 2,
-					/obj/random/tool_upgrade/rare = 4,
-					/obj/random/rig_module/rare = 4,
-					/obj/random/credits/c1000 = 3,
-					/obj/random/mecha_equipment = 3,
-					/obj/random/cloth/holster = 4,
-					/obj/item/stash_spawner = 4 //Creates a stash of goodies for a scavenger hunt
-	))
+	return pickweight(RANDOM_RARE_ITEM) // made into a define so that rare objects can be spawned for mobs too
 
 /obj/random/pack/rare/low_chance
 	name = "low chance rare loot"
@@ -156,7 +142,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet = 4,
 					/obj/random/closet_wardrobe = 2,
 					/obj/random/scrap/moderate_weighted = 12, //Our scrap pile. This is basically just a huge spawner.
-					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
 /obj/random/pack/machine/low_chance
@@ -181,7 +167,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet_tech = 6,
 					/obj/random/closet = 4,
 					/obj/random/closet_wardrobe = 2,
-					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
 /obj/random/pack/junk_machine/low_chance
@@ -196,5 +182,5 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet_tech = 3,
 					/obj/random/closet = 2,
 					/obj/random/closet_wardrobe = 2,
-					/obj/random/mecha/damaged = 1, //Some dangerous shit can be found there
+					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))

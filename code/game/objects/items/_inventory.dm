@@ -70,7 +70,6 @@
 
 
 /obj/item/proc/dropped(mob/user)
-	..()
 	if(zoom) //binoculars, scope, etc
 		zoom()
 	remove_hud_actions(user)

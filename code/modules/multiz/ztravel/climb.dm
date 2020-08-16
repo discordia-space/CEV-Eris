@@ -16,15 +16,18 @@
 	.=..()
 	if (.)
 		if (isrobot(M))
-			return FALSE //Robots can't climb
-		else if (istype(M, /obj/mecha))
+			to_chat(M, SPAN_NOTICE("You're a robot, you can't climb.")) //Robots can't climb
+			return FALSE
+		else if (istype(M, /mob/living/exosuit))
+			to_chat(M, SPAN_NOTICE("Mecha can not climb, yet."))
 			return FALSE //Mechas can't climb, for now.
-			//Todo future: add some kind of var or function to allow certain mecha to climb
+			//Todo future: add some kind of var or function to allow certain mechs to climb
 
 		if (gravity)
 			/*
 				Climbing under gravity not yet implemented. would need special powers or augments
 			*/
+			to_chat(M, SPAN_NOTICE("Gravity is keeping you down, you can't climb like this."))
 			return FALSE
 
 
@@ -95,8 +98,10 @@
 			if (istype(H.shoes, /obj/item/clothing/shoes/magboots))
 				var/obj/item/clothing/shoes/magboots/MB = H.shoes
 				if (!MB.magpulse)
-					return "You could use your [MB] to walk up the [surface] if they were turned on."
+					to_chat(M, SPAN_NOTICE("You could use your [MB] to walk up the [surface] if they were turned on."))
+					return FALSE
 
+			to_chat(M, SPAN_NOTICE("Your shoes don't have enough grip to climb up."))
 			return FALSE
 
 

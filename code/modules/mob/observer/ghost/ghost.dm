@@ -8,7 +8,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 	icon_state = "ghost"
 	canmove = 0
 	blinded = 0
-	anchored = 1	//  don't get pushed around
+	anchored = TRUE	//  don't get pushed around
 	layer = GHOST_LAYER
 	movement_handlers = list(/datum/movement_handler/mob/incorporeal)
 
@@ -166,6 +166,8 @@ Works together with spawning an observer, noted above.
 		ghost.initialise_postkey()
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+
+		ghost.client?.create_UI(ghost.type)
 
 		return ghost
 
@@ -432,10 +434,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 	if(!MayRespawn(1, ANIMAL))
-		return
+		if(!check_rights(0, 0) || alert("Normal players must wait at least [ANIMAL_SPAWN_DELAY / 600] minutes to spawn as mouse! Would you like to bypass it?","Warning", "No", "Yes") != "Yes")
+			return
 
 	var/turf/T = get_turf(src)
-	if(!T || !(T.z in maps_data.station_levels))
+	if(!T || !(T.z in GLOB.maps_data.station_levels))
 		to_chat(src, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
 		return
 
@@ -710,8 +713,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/timedifference_text = time2text(respawn_time  - timedifference,"mm:ss")
 			to_chat(src, "<span class='warning'>You must have been dead for [respawn_time / 600] minute\s to respawn. You have [timedifference_text] left.</span>")
 		return 0
-
-	return 1
 
 /atom/proc/extra_ghost_link()
 	return

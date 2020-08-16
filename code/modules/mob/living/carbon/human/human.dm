@@ -54,8 +54,12 @@
 
 /mob/living/carbon/human/Destroy()
 	GLOB.human_mob_list -= src
+
+	// Prevent death from organ removal
+	status_flags |= REBUILDING_ORGANS
 	for(var/organ in organs)
 		qdel(organ)
+	organs.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -86,16 +90,17 @@
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
 			stat(null, "Suit charge: [cell_status]")
 
-		if(mind)
-			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
+		var/obj/item/organ/internal/carrion/chemvessel/chemvessel = internal_organs_by_name[BP_CHEMICALS]
+		if(chemvessel)
+			stat("Chemical Storage", "[chemvessel.stored_chemicals]/[chemvessel.max_chemicals]")
+
+		var/obj/item/organ/internal/carrion/maw/maw = internal_organs_by_name[BP_MAW]
+		if(maw)
+			stat("Gnawing hunger", "[maw.hunger]/10")
 
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if (C)
 			stat("Cruciform", "[C.power]/[C.max_power]")
-	else if(mind)
-		statpanel("Perks",src.stats.perk_stat)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded)
@@ -105,7 +110,7 @@
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
-	var/bomb_defense = getarmor(null, ARMOR_BOMB)
+	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
 		if (1.0)
 			b_loss += 500
@@ -139,13 +144,13 @@
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
 		f_loss = max(f_loss - bomb_defense, 0)
-		
+
 	var/organ_hit = BP_CHEST //Chest is hit first
 	var/exp_damage
 	while (b_loss > 0)
 		b_loss -= exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.2, BPBP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG=0.1, BP_L_LEG=0.1))  //We determine some other body parts that should be hit 
+		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
 
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
@@ -998,6 +1003,37 @@ var/list/rank_prefix = list(\
 					if(organ.setBleeding())
 						src.adjustToxLoss(rand(1,3))
 
+/mob/living/carbon/human/verb/browse_sanity()
+	set name		= "Show sanity"
+	set desc		= "Browse your character sanity."
+	set category	= "IC"
+	set src			= usr
+	ui_interact(src)
+
+/mob/living/carbon/human/ui_data()
+	var/list/data = list()
+
+	data["style"] = get_total_style()
+	data["min_style"] = MIN_HUMAN_SYLE
+	data["max_style"] = MAX_HUMAN_STYLE
+	data["sanity"] = sanity.level
+	data["sanity_max_level"] = sanity.max_level
+	data["insight"] = sanity.insight
+	data["desires"] = sanity.desires
+	data["rest"] = sanity.resting
+	data["insight_rest"] = sanity.insight_rest
+	return data
+
+/mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
+	var/list/data = ui_data()
+
+	ui = SSnano.try_update_ui(user, user, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "sanity.tmpl", name, 650, 550, state = state)
+		ui.auto_update_layout = 1
+		ui.set_initial_data(data)
+		ui.open()
+
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
 	set name = "Check pulse"
@@ -1079,6 +1115,8 @@ var/list/rank_prefix = list(\
 
 	maxHealth = species.total_health
 
+	update_client_colour(0)
+
 	spawn(0)
 		regenerate_icons()
 		if(vessel.total_volume < species.blood_volume)
@@ -1109,6 +1147,15 @@ var/list/rank_prefix = list(\
 /mob/living/carbon/human/proc/rebuild_organs(from_preference)
 	if(!species)
 		return 0
+
+	status_flags |= REBUILDING_ORGANS
+
+	var/obj/item/organ/internal/carrion/core = internal_organs_by_name[BP_SPCORE]
+	var/list/organs_to_readd = list()
+	if(core) //kinda wack, this whole proc should be remade
+		for(var/obj/item/organ/internal/carrion/C in internal_organs)
+			C.removed_mob()
+			organs_to_readd += C
 
 	for(var/obj/item/organ/organ in (organs|internal_organs))
 		qdel(organ)
@@ -1188,6 +1235,10 @@ var/list/rank_prefix = list(\
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
 
+	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
+		C.replaced(get_organ(C.parent_organ))
+
+	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
 	update_body()
@@ -1298,9 +1349,9 @@ var/list/rank_prefix = list(\
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
-			return "<font color='blue'>[russian_to_cp1251(msg)]</font>"
+			return "<font color='blue'>[msg]</font>"
 		else
-			return "<font color='blue'>[copytext_preserve_html(russian_to_cp1251(msg), 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
 /mob/living/carbon/human/getDNA()
@@ -1529,3 +1580,7 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		return FALSE
+
+/mob/living/carbon/human/proc/set_remoteview(var/atom/A)
+	remoteview_target = A
+	reset_view(A)

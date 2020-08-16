@@ -179,7 +179,8 @@
 		/obj/item/weapon/pen,
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/weapon/hatton_magazine,
-		/obj/item/ammo_casing/rocket
+		/obj/item/ammo_casing/rocket,
+		/obj/item/ammo_casing/grenade
 		)
 
 /obj/item/weapon/storage/pouch/tubular/vial
@@ -221,7 +222,8 @@
 		/obj/item/weapon/gun/projectile/automatic/molly,
 		/obj/item/weapon/gun/projectile/paco,
 		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn, //short enough to fit in
-		/obj/item/weapon/gun/launcher/syringe
+		/obj/item/weapon/gun/launcher/syringe,
+		/obj/item/weapon/gun/energy/plasma/brigador
 		)
 
 	sliding_behavior = TRUE
@@ -253,3 +255,14 @@
 	overlays.Cut()
 	if(contents.len)
 		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
+
+/obj/item/weapon/storage/pouch/holding
+	name = "pouch of holding"
+	desc = "If your pockets are not large enough to store all your belongings, you may want to use this high-tech pouch that opens into a localized pocket of bluespace (pun intended)."
+	icon_state = "holdingpouch"
+	item_state = "holdingpouch"
+	storage_slots = 7
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	origin_tech = list(TECH_BLUESPACE = 4)

@@ -15,7 +15,7 @@
 	icon_state = "door_open"
 	req_one_access = list(access_atmospherics, access_engine_equip, access_medical_equip)
 	opacity = 0
-	density = 0
+	density = FALSE
 	layer = BELOW_OPEN_DOOR_LAYER
 	open_layer = BELOW_OPEN_DOOR_LAYER // Just below doors when open
 	closed_layer = CLOSED_FIREDOOR_LAYER // Just above doors when closed
@@ -114,13 +114,13 @@
 		return
 	if(!density)
 		return ..()
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(mecha.occupant)
-			var/mob/M = mecha.occupant
-			if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
-			M.last_bumped = world.time
-			attack_hand(M)
+	if(istype(AM, /mob/living/exosuit))
+		var/mob/living/exosuit/exosuit = AM
+		if(exosuit.pilots.len)
+			for(var/mob/M in exosuit.pilots)
+				if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
+				M.last_bumped = world.time
+				attack_hand(M)
 	return 0
 
 /obj/machinery/door/firedoor/proc/checkAlarmed()
@@ -214,8 +214,8 @@
 					else
 						new/obj/item/weapon/airalarm_electronics(src.loc)
 					var/obj/structure/firedoor_assembly/FA = new/obj/structure/firedoor_assembly(src.loc)
-					FA.anchored = 1
-					FA.density = 1
+					FA.anchored = TRUE
+					FA.density = TRUE
 					FA.wired = 1
 					FA.update_icon()
 					qdel(src)

@@ -89,11 +89,11 @@
 
 /datum/design/bioprinter/belt/security
 	name = "Tactical belt"
-	build_path = /obj/item/weapon/storage/belt/security
+	build_path = /obj/item/weapon/storage/belt/tactical
 
 /datum/design/bioprinter/belt/security/neotheology
 	name = "Neotheologian tactical belt"
-	build_path = /obj/item/weapon/storage/belt/security/neotheology
+	build_path = /obj/item/weapon/storage/belt/tactical/neotheology
 
 /datum/design/bioprinter/belt/medical/emt
 	name = "EMT belt"
@@ -103,6 +103,16 @@
 	name = "Champion belt"
 	build_path = /obj/item/weapon/storage/belt/champion
 	materials = list("biomatter" = 50)
+
+/datum/design/bioprinter/backpack
+	name = "grey duffelbag"
+	build_path = /obj/item/weapon/storage/backpack
+	materials = list("biomatter" = 40)
+
+/datum/design/bioprinter/backpack/duffelbag
+	name = "grey duffelbag"
+	build_path = /obj/item/weapon/storage/backpack/duffelbag
+	materials = list("biomatter" = 65)
 //[/THINGS]
 
 //[MED]
@@ -132,4 +142,9 @@
 /datum/design/bioprinter/medical/advanced/ointment
 	name = "Advanced burn kit"
 	build_path = /obj/item/stack/medical/advanced/ointment
+
+/datum/design/bioprinter/lungs
+	name = "Extended Lungs"
+	materials = list("biomatter" = 30)
+	build_path = /obj/item/organ/internal/lungs/long
 //[/MED]

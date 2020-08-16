@@ -7,6 +7,7 @@
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
 #define BLAST	  "blast"
+#define PSY       "psy"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -23,7 +24,7 @@
 #define DROWSY    "drowsy"
 
 #define FIRE_DAMAGE_MODIFIER 0.0215 // Higher values result in more external fire damage to the skin. (default 0.0215)
-#define  AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
+#define AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
 //Armor defines
 
@@ -59,6 +60,12 @@
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_ACETONE  "acetone reactor"
+
+// Carrion Organs.
+#define BP_SPCORE       "spider core"
+#define BP_MAW          "carrion maw"
+#define BP_SPINNERET     "carrion spinneret"
+#define BP_CHEMICALS    "chemmical vessel"
 
 // Robo Organs.
 #define BP_POSIBRAIN	"posibrain"

@@ -15,6 +15,9 @@ ALERT_DELTA The ship's self-destruct mechanism has been engaged. All crew are in
 ## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
 #BAN_LEGACY_SYSTEM
 
+## Enables the memo system for admins, used to log on each player
+ADMIN_MEMO_SYSTEM
+
 ## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
 JOBS_HAVE_MINIMAL_ACCESS
 
@@ -316,3 +319,32 @@ EMOJIS
 
 WEBHOOK_URL http://localhost:44303/webhook/en
 WEBHOOK_KEY testkey
+
+###### IP Reputation Checking
+# Enable/disable IP reputation checking (present/nonpresent)
+#IP_REPUTATION
+
+# Set the e-mail address problems can go to for IPR checks (e-mail address)
+IPR_EMAIL whatever@whatever.com
+
+# Above this value, reputation scores are considered 'bad' (number)
+IPR_BAD_SCORE 1
+
+# If you want the people disconnected. Otherwise it just logs. (present/nonpresent)
+IPR_BLOCK_BAD_IPS
+
+# If players of a certain length of playtime are allowed anyway (REQUIRES DATABASE) (present/nonpresent)
+IPR_ALLOW_EXISTING
+
+# And what that age is (number)
+IPR_MINIMUM_AGE 5
+
+# If provided, will look up additional IP reputation info from ipqualityscore.com
+#IPQUALITYSCORE_APIKEY ABC12345YOURKEYHERE
+
+###### Antiraid Settings
+# Enable/disable 'paranoia logging' (notifying admins of new byond accounts joining, and player first-time joins)
+#PARANOIA_LOGGING
+
+# Enable/disable 'panic bunker' (prevents new players from joining if they've never been seen before in the DB)
+#PANIC_BUNKER

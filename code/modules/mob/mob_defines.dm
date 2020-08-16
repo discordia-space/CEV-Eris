@@ -1,5 +1,5 @@
 /mob
-	density = 1
+	density = TRUE
 	layer = 4.0
 	animate_movement = 2
 	flags = PROXMOVE
@@ -36,7 +36,7 @@
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
 	var/obj/machinery/machine = null
-	var/poll_answer = 0.0
+	var/poll_answer = 0
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 
@@ -183,6 +183,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/HUDfrippery = list()//flavor
 	var/list/HUDprocess = list() //What HUD object need process
 	var/list/HUDtech = list()
+	var/hud_override = FALSE //Override so a mob no longer calls their own HUD
 	var/defaultHUD = "" //Default mob hud
 
 	var/list/progressbars = null
@@ -193,3 +194,5 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/datum/stat_holder/stats
 
 	var/mob_classification = 0 //Bitfield. Uses TYPE_XXXX defines in defines/mobs.dm.
+
+	var/can_be_fed = 1 //Can be feeded by reagent_container or other things

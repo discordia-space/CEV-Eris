@@ -69,7 +69,6 @@
 	var/obj/item/rig_module/voice/speech                      // As above.
 	var/obj/item/rig_module/storage/storage					  // var for installed storage module, if any
 	var/mob/living/carbon/human/wearer                        // The person currently wearing the rig.
-	var/image/mob_icon                                        // Holder for on-mob icon.
 	var/list/installed_modules = list()                       // Power consumption/use bookkeeping.
 
 	// Rig status vars.
@@ -120,7 +119,7 @@
 				continue
 			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
 
-	if(src.loc == usr)
+	if(loc == usr)
 		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
 		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
 
@@ -177,7 +176,7 @@
 			continue
 		piece.canremove = 0
 		piece.name = "[suit_type] [initial(piece.name)]"
-		piece.desc = "It seems to be part of a [src.name]."
+		piece.desc = "It seems to be part of a [name]."
 		piece.icon_state = "[initial(icon_state)]"
 		piece.min_cold_protection_temperature = min_cold_protection_temperature
 		piece.max_heat_protection_temperature = max_heat_protection_temperature
@@ -185,7 +184,7 @@
 			piece.siemens_coefficient = siemens_coefficient
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
-		if(islist(armor)) piece.armor = armor.Copy()
+		if(armor) piece.armor = armor
 
 	update_icon(1)
 
@@ -199,8 +198,13 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
+/obj/item/weapon/rig/handle_atom_del(atom/A)
+	if(A == cell) // Clear a cell that has, most likely, exploded
+		cell = null
+	..()
+
 /obj/item/weapon/rig/proc/suit_is_deployed()
-	if(!istype(wearer) || src.loc != wearer || wearer.back != src)
+	if(!istype(wearer) || loc != wearer || wearer.back != src)
 		return 0
 	if(helm_type && !(helmet && wearer.head == helmet))
 		return 0
@@ -302,9 +306,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor[ARMOR_BIO] = 100
+						piece.armor.bio = 100
 					else
-						piece.armor[ARMOR_BIO] = src.armor[ARMOR_BIO]
+						piece.armor.bio = armor.bio
 
 				else
 					failed_to_seal = 1
@@ -359,11 +363,11 @@
 				M.drop_from_inventory(piece)
 			piece.forceMove(src)
 
-	if(active == TRUE) // dains power from the cell whenever the suit is sealed
+	if(active && cell) // dains power from the cell whenever the suit is sealed
 		cell.use(drain*0.1)
 
-	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
-		if(!cell || cell.charge <= 0)
+	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.empty())
+		if(!cell || cell.empty())
 			if(electrified > 0)
 				electrified = 0
 			if(!offline)
@@ -450,11 +454,11 @@
 	if(selected_module)
 		data["primarysystem"] = "[selected_module.interface_name]"
 
-	if(src.loc != user)
+	if(loc != user)
 		data["ai"] = 1
 
 	data["active"] =     "[active]"
-	data["sealing"] =   "[src.sealing]"
+	data["sealing"] =   "[sealing]"
 	data["helmet"] =    (helmet ? "[helmet.name]" : "None.")
 	data["gauntlets"] = (gloves ? "[gloves.name]" : "None.")
 	data["boots"] =     (boots ?  "[boots.name]" :  "None.")
@@ -511,32 +515,19 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, ((src.loc != user) ? ai_interface_path : interface_path), interface_title, 480, 550, state = nano_state)
+		ui = new(user, src, ui_key, ((loc != user) ? ai_interface_path : interface_path), interface_title, 480, 550, state = nano_state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
 
+/obj/item/weapon/rig/proc/get_species_icon()
+	return 'icons/mob/rig_back.dmi'
+
 /obj/item/weapon/rig/update_icon(var/update_mob_icon)
-
-	overlays.Cut()
-	if(!mob_icon || update_mob_icon)
-		var/species_icon = 'icons/mob/rig_back.dmi'
-		// Since setting mob_icon will override the species checks in
-		// update_inv_wear_suit(), handle species checks here.
-		mob_icon = image("icon" = species_icon, "icon_state" = icon_state)
-
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
-			if(module.suit_overlay)
+			if(module.suit_overlay && !module.suit_overlay_mob_only)
 				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH)
-
-	if(wearer)
-		wearer.update_inv_shoes()
-		wearer.update_inv_gloves()
-		wearer.update_inv_head()
-		wearer.update_inv_wear_suit()
-		wearer.update_inv_back()
-	return
 
 /obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
 
@@ -548,7 +539,7 @@
 			return 0
 		if(user.back != src)
 			return 0
-		else if(!src.allowed(user))
+		else if(!allowed(user))
 			to_chat(user, SPAN_DANGER("Unauthorized user. Access denied."))
 			return 0
 
@@ -594,7 +585,7 @@
 			locked = !locked
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return 0
 
 /obj/item/weapon/rig/proc/notify_ai(var/message)
@@ -641,15 +632,15 @@
 		update_icon()
 
 
-/obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/initiator, var/deploy_mode)
+/obj/item/weapon/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
 
-	if(sealing || !cell || !cell.charge)
+	if(sealing || !cell || cell.empty())
 		return
 
 	if(!istype(wearer) || !wearer.back == src)
 		return
 
-	if(initiator == wearer && (usr.stat||usr.paralysis||usr.stunned)) // If the initiator isn't wearing the suit it's probably an AI.
+	if(initiator == wearer && (usr && (usr.stat||usr.paralysis||usr.stunned))) // If the initiator isn't wearing the suit it's probably an AI.
 		return
 
 	var/obj/item/check_slot
@@ -846,6 +837,9 @@
 		return 1
 	return 0
 
+/obj/item/weapon/rig/get_cell()
+	return cell
+
 /obj/item/weapon/rig/proc/ai_can_move_suit(var/mob/user, var/check_user_module = 0, var/check_for_ai = 0)
 
 	if(check_for_ai)
@@ -869,7 +863,7 @@
 			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
 			return 0
 
-	if(offline || !cell || !cell.charge || locked_down)
+	if(offline || !cell || cell.empty() || locked_down)
 		if(user) user << SPAN_WARNING("Your host rig is unpowered and unresponsive.")
 		return 0
 	if(!wearer || wearer.back != src)

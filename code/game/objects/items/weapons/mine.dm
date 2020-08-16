@@ -6,12 +6,14 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
+	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
+	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/weak
 	var/spread_radius = 4
-	var/num_fragments = 30
+	var/num_fragments = 25
 	var/damage_step = 2
 
 	var/explosion_d_size = -1
@@ -38,16 +40,17 @@
 	if(armed)
 		overlays.Add(image(icon,"mine_light"))
 
-/obj/item/weapon/mine/attack_self(var/mob/user)
+/obj/item/weapon/mine/attack_self(mob/user)
 	armed = !armed
 	if (armed)
 		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	update_icon()
 
-/obj/item/weapon/mine/Crossed(var/mob/AM)
+/obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
-			if (!is_excelsior(AM))
+			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
+			if(prob(true_prob_explode) && !is_excelsior(AM))
 				explode()
 				return
 	.=..()

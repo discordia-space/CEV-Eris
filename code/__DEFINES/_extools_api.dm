@@ -1,3 +1,4 @@
+/// Returns the correct path string according to operating system at runtime
 #define EXTOOLS			(world.system_type == MS_WINDOWS ? "byond-extools.dll" : "./libbyond-extools.so")
 #define EXTOOLS_SUCCESS	"SUCCESS"
 #define EXTOOLS_FAILED	"FAIL"
@@ -44,8 +45,10 @@
 /datum/promise/New()
 	__id = GLOB.next_promise_id++ //please don't create more than 10^38 promises in a single tick
 
-//This proc's bytecode is overwritten to allow suspending and resuming on demand.
-//None of the code here should run.
+/*
+	This proc's bytecode is overwritten to allow suspending and resuming on demand.
+	None of the code here should run. 
+*/
 /datum/promise/proc/__internal_resolve(ref, id)
 	if(!GLOB.fallback_alerted && world.system_type != UNIX) // the rewriting is currently broken on Linux.
 		world << "<b>TFFI: __internal_resolve has not been rewritten, the TFFI DLL was not loaded correctly.</b>"
@@ -87,7 +90,8 @@
 		P.__resolve_callback()
 
 /proc/call_wait()
-	return call_async(arglist(args)).resolve()
+	var/datum/promise/P = call_async(arglist(args))
+	return P.resolve()
 
 /*
 	Extended Profiling - High precision in-depth performance profiling.
@@ -109,7 +113,6 @@
 		stop_profiling(/datum/explosion/New)
 		
 		- Disables profiling for explosions. Any currently running profiles will stop when the proc finishes executing or enters a sleep.
-		
 */
 
 /proc/profiling_initialize()
@@ -128,20 +131,18 @@
 	such as SpaceManiac's VSCode extension for line-by-line debugging (and more), or Steamport's
 	Somnium for bytecode inspection.
 	
-	Call with pause = TRUE to wait until the debugger connected and immediately break on the next instruction after the call.
-	
+	Call with pause = TRUE to wait until the debugger connected and immediately break on the next instruction after the call.	
 */
-
 /proc/debugger_initialize(pause = FALSE)
 	if(world.system_type == MS_WINDOWS)
 		return call(EXTOOLS, "debug_initialize")(pause ? "pause" : "") == EXTOOLS_SUCCESS		
 
 /*
 	Misc
-	
+
+	Programatically enable and disable the built-in byond profiler. Useful if you want to, for example, profile subsystem initializations.
 */
 
-//Programatically enable and disable the built-in byond profiler. Useful if you want to, for example, profile subsystem initializations.
 /proc/enable_profiling()
 	return call(EXTOOLS, "enable_profiling")() == EXTOOLS_SUCCESS
 

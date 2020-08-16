@@ -17,6 +17,11 @@
 	icon_state = "waiter"
 	item_state = "waiter"
 
+/obj/item/clothing/under/waiter/skirt
+	name = "waiter's skirtsuit"
+	desc = "It's a very smart uniform with a special pocket for tip and a skirt for female waiters."
+	icon_state = "waiter_skirt"
+	item_state = "waiter_skirt"
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"
@@ -37,6 +42,7 @@
 	desc = "rainbow"
 	icon_state = "rainbow"
 	item_state = "rainbow"
+	style = 2
 
 
 /obj/item/clothing/under/rank/fo_suit
@@ -99,6 +105,7 @@
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
 	item_state = "kilt"
+	style = 2
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -145,3 +152,77 @@
 	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
+	style = 2
+
+/obj/item/clothing/under/dress
+	name = "gray summerdress"
+	desc = "Gray summerdress only worn by the bravest individuals in the cold of space."
+	icon_state = "summerdress"
+	item_state = "summerdress"
+
+/obj/item/clothing/under/dress/blue
+	name = "blue summerdress"
+	desc = "a blue dress worn by mostly those of east asian descendance"
+	icon_state = "summerdress2"
+	item_state = "summerdress2"
+
+/obj/item/clothing/under/dress/red
+	name = "red summerdress"
+	desc = "A red dress worn mostly by those of east asian descendance."
+	icon_state = "summerdress3"
+	item_state = "summerdress3"
+
+obj/item/clothing/under/leisure
+	name = "leisure outfit"
+	desc = "A leisure outfit with brown jacket. Sometimes you just want to wear what is comfortable."
+	icon_state = "leisureoutfit"
+	item_state = "leisureoutfit"
+
+obj/item/clothing/under/leisure/white
+	name = "white blouse"
+	desc = "A white blouse with a red shirt underneath. You look like a hallway ornament with this."
+	icon_state = "shirtsuit"
+	item_state = "shirtsuit"
+
+obj/item/clothing/under/leisure/pullover
+	name = "patterned pullover"
+	desc = "Brown pullover with indeterminable pattern."
+	icon_state = "pullover"
+	item_state = "pullover"
+
+obj/item/clothing/under/neon
+	name = "green neon tracksuit"
+	desc = "A tracksuit lined with green neon fibers. Slightly luminescent."
+	icon_state = "neon"
+	item_state = "bl_suit"
+	style = 2
+
+obj/item/clothing/under/neon/yellow
+	name = "yellow neon tracksuit"
+	desc = "A tracksuit lined with yellow neon fibers. Slightly luminescent."
+	icon_state = "neony"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/neon/blue
+	name = "blue neon tracksuit"
+	desc = "A tracksuit lined with blue neon fibers. Slightly luminescent."
+	icon_state = "neonb"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/neon/red
+	name = "red neon tracksuit"
+	desc = "A tracksuit lined with red neon fibers. Slightly luminescent."
+	icon_state = "neonr"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/jersey
+	name = "revealing jersey"
+	desc = "For showing your devotion to god, or the opposite for that matter"
+	icon_state = "jersey"
+	item_state = "jersey"
+
+obj/item/clothing/under/cyber
+	name = "augmented jumpsuit"
+	desc = "I wanted a jumpsuit. It gave me THIS."
+	icon_state = "cyber"
+	item_state = "cyber"

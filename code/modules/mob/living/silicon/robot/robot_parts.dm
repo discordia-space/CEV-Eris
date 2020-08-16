@@ -13,8 +13,8 @@
 /obj/item/robot_parts/set_dir()
 	return
 
-/obj/item/robot_parts/New(var/newloc, var/model)
-	..(newloc)
+/obj/item/robot_parts/Initialize(newloc)
+	. = ..()
 	name = "robot [initial(name)]"
 
 /obj/item/robot_parts/proc/is_ready(var/mob/living/user)
@@ -47,7 +47,7 @@
 	body_part = "chest"
 	matter = list(MATERIAL_STEEL = 25)
 	var/wires = 0.0
-	var/obj/item/weapon/cell/large/cell = null
+	var/obj/item/weapon/cell/large/cell
 
 /obj/item/robot_parts/chest/is_ready(var/mob/living/user)
 	if(!wires)

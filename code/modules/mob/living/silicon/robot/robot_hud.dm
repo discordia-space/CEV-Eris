@@ -30,25 +30,6 @@
 			return TRUE
 	return FALSE
 
-
-
-
-/mob/living/silicon/robot/create_HUD() //EKUDZA HAS HERE
-//	var/mob/living/silicon/robot/H = src
-//	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]
-
-	create_HUDneed()
-	create_HUDinventory()
-	create_HUDfrippery()
-	create_HUDtech()
-	show_HUD()
-	return
-
-
-
-
-
-
 /mob/living/silicon/robot/create_HUDinventory()
 	var/mob/living/silicon/robot/H = src
 	var/datum/hud/cyborg/HUDdatum = global.HUDdatums[H.defaultHUD]

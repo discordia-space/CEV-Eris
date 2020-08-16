@@ -13,8 +13,8 @@
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
-		edge = 1
-		sharp = 1
+		edge = TRUE
+		sharp = TRUE
 		..() //Updates force.
 		throwforce = max(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
@@ -24,8 +24,8 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = WEAPON_FORCE_WEAK
-		edge = 0
-		sharp = 0
+		edge = FALSE
+		sharp = FALSE
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)

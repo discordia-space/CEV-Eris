@@ -15,6 +15,8 @@
 	w_class = ITEM_SIZE_SMALL
 	reagent_flags = OPENCONTAINER
 	unacidable = 1 //glass doesn't dissolve in acid
+	matter = list(MATERIAL_GLASS = 1)
+	var/label_icon_state = null
 	var/lid_icon_state = null
 
 	var/label_text = ""
@@ -130,6 +132,7 @@
 			to_chat(user, SPAN_NOTICE("You set the label to \"[tmp_label]\"."))
 			label_text = tmp_label
 			update_name_label()
+			update_icon()
 
 	var/hotness = I.is_hot()
 	if(hotness && reagents)

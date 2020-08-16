@@ -27,7 +27,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 		data["warrantjob"] = activewarrant.fields["jobwarrant"]
 		data["warrantcharges"] = activewarrant.fields["charges"]
 		data["warrantauth"] = activewarrant.fields["auth"]
-		data["warrantidauth"] = activewarrant.fields["idauth"]
+		//data["warrantidauth"] = activewarrant.fields["idauth"]
 		data["type"] = activewarrant.fields["arrestsearch"]
 	else
 		var/list/arrestwarrants = list()
@@ -108,7 +108,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 			W.fields["namewarrant"] = "Unknown"
 			W.fields["jobwarrant"] = "N/A"
 			W.fields["auth"] = "Unauthorized"
-			W.fields["idauth"] = "Unauthorized"
+			//W.fields["idauth"] = "Unauthorized"
 			W.fields["access"] = list()
 			if(href_list["addwarrant"] == "arrest")
 				W.fields["charges"] = "No charges present"
@@ -160,13 +160,21 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 			activewarrant.fields["namewarrant"] = new_name
 			activewarrant.fields["jobwarrant"] = new_job
 
+	if(href_list["editwarrantnamelocation"])
+		. = 1
+		var/new_name = sanitize(input("Please input name or location") as null|text)
+		if(CanInteract(user, GLOB.default_state))
+			if (!new_name || !activewarrant)
+				return
+			activewarrant.fields["namewarrant"] = new_name
+
 	if(href_list["editwarrantcharges"])
 		. = 1
-		var/new_charges = sanitize(input_utf8("Please input charges", "Charges", activewarrant.fields["charges"], type = "text"))
+		var/new_charges = sanitize(input("Please input charges", "Charges", activewarrant.fields["charges"]) as null|text)
 		if(CanInteract(user, GLOB.default_state))
 			if (!new_charges || !activewarrant)
 				return
-			activewarrant.fields["charges"] = cyrillic_to_unicode(new_charges)
+			activewarrant.fields["charges"] = new_charges
 
 	if(href_list["editwarrantauth"])
 		. = 1
@@ -174,16 +182,17 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 			return
 		activewarrant.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 
-	if(href_list["editwarrantidauth"])
+	/*if(href_list["editwarrantidauth"])
 		. = 1
 		if(!activewarrant)
 			return
 		// access-granting is only available for arrest warrants
 		if(activewarrant.fields["arrestsearch"] == "search")
 			return
-		if(!(access_change_ids in I.access))
+		if(!(access_security in I.access))
 			to_chat(user, "Authentication error: Unable to locate ID with appropriate access to allow this operation.")
 			return
+		*/
 
 		// only works if they are in the crew records with a valid job
 		/*
@@ -204,7 +213,7 @@ LEGACY_RECORD_STRUCTURE(all_warrants, warrant)
 		// warrants can never grant command access
 		warrant_access.Remove(get_region_accesses(ACCESS_REGION_COMMAND))
 		*/
-		activewarrant.fields["idauth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
+		//activewarrant.fields["idauth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 		//activewarrant.fields["access"] = warrant_access
 
 	if(href_list["back"])

@@ -11,30 +11,31 @@
 	for(var/obj/structure/closet/L in hear(7, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
-				bang(get_turf(src), M)
+				flashbang_bang(get_turf(src), M)
 
 
 	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
-		bang(get_turf(src), M)
+		flashbang_bang(get_turf(src), M)
 
 	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
 		B.health -= damage
 		B.update_icon()
 
-	new/obj/effect/sparks(src.loc)
-	new/obj/effect/effect/smoke/illumination(src.loc, brightness=15)
+	new/obj/effect/sparks(loc)
+	new/obj/effect/effect/smoke/illumination(loc, brightness=15)
 	qdel(src)
 	return
 
-/obj/item/weapon/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
-	to_chat(M, SPAN_DANGER("BANG"))								// Called during the loop that bangs people in lockers/containers and when banging
-	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
+/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG") //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
+	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
+	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
 
 //Checking for protections
 	var/eye_safety = 0
 	var/ear_safety = 0
+	var/ear_stun_mult = 1
 	if(iscarbon(M))
 		eye_safety = M.eyecheck()
 		if(ishuman(M))
@@ -44,6 +45,8 @@
 				ear_safety += 1
 			if(istype(M:head, /obj/item/clothing/head/armor/helmet))
 				ear_safety += 1
+			if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+				ear_stun_mult *= 2
 
 //Flashing everyone
 	if(eye_safety < FLASH_PROTECTION_MODERATE)
@@ -55,14 +58,14 @@
 
 
 //Now applying sound
-	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+	if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
 		if(ear_safety > 0)
-			M.Stun(2)
-			M.Weaken(1)
+			M.Stun(2*ear_stun_mult)
+			M.Weaken(1*ear_stun_mult)
 		else
-			M.Stun(10)
-			M.Weaken(3)
-			if ((prob(14) || (M == src.loc && prob(70))))
+			M.Stun(10*ear_stun_mult)
+			M.Weaken(3*ear_stun_mult)
+			if ((prob(14) || (M == loc && prob(70))))
 				M.ear_damage += rand(1, 10)
 			else
 				M.ear_damage += rand(0, 5)
@@ -70,12 +73,12 @@
 
 	else if(get_dist(M, T) <= 5)
 		if(!ear_safety)
-			M.Stun(8)
+			M.Stun(8*ear_stun_mult)
 			M.ear_damage += rand(0, 3)
 			M.ear_deaf = max(M.ear_deaf,10)
 
 	else if(!ear_safety)
-		M.Stun(4)
+		M.Stun(4*ear_stun_mult)
 		M.ear_damage += rand(0, 1)
 		M.ear_deaf = max(M.ear_deaf,5)
 

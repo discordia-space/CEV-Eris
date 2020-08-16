@@ -4,7 +4,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
 	blocks_air = 1
-	density = 1
+	density = TRUE
 	layer = EDGED_TURF_LAYER
 
 /turf/simulated/mineral //wall piece
@@ -14,7 +14,7 @@
 	oxygen = 0
 	nitrogen = 0
 	opacity = 1
-	density = 1
+	density = TRUE
 	layer = EDGED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
@@ -87,10 +87,11 @@
 			if(QUALITY_DIGGING in I.tool_qualities)
 				attackby(I,R)
 
-	else if(istype(AM,/obj/mecha))
-		var/obj/mecha/M = AM
-		if(istype(M.selected,/obj/item/mecha_parts/mecha_equipment/tool/drill))
-			M.selected.action(src)
+	else if(istype(AM,/mob/living/exosuit))
+		var/mob/living/exosuit/M = AM
+		if(istype(M.selected_hardpoint, /obj/item/mech_equipment/drill))
+			var/obj/item/mech_equipment/drill/D = M.selected_hardpoint
+			D.afterattack(src)
 
 /turf/simulated/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)
@@ -266,7 +267,7 @@
 
 	clear_ore_effects()
 	var/obj/item/weapon/ore/O = new mineral.ore (src)
-	if(istype(O))
+	if(istype(O) && geologic_data)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
 	return O
@@ -376,7 +377,7 @@
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Iron" = 35, "Coal" = 35, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10)
+	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Hematite" = 35, "Carbon" = 35, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10)
 	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
@@ -394,7 +395,7 @@
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 100 //25
-	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Iron" = 20, "Coal" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20)
+	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Hematite" = 20, "Carbon" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20)
 
 
 /**********************Asteroid**************************/

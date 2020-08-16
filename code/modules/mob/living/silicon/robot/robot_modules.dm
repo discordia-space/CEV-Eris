@@ -110,12 +110,14 @@ var/global/list/robot_modules = list(
 	for (var/obj/item/weapon/tool/T in modules)
 		T.degradation = 0 //We don't want robot tools breaking
 
-
+	//A quick hack to stop robot modules running out of power
+	//Later they'll be wired to the robot's central battery once we code functionality for that
+	//Setting it to infinity causes errors, so just a high number is fine
 	for (var/obj/item/I in modules)
-		for (var/obj/item/weapon/cell/C in I)
-			C.charge = 999999999 //A quick hack to stop robot modules running out of power
-			//Later they'll be wired to the robot's central battery once we code functionality for that
-			//Setting it to infinity causes errors, so just a high number is fine
+		if(!istype(I, /obj/item/weapon/gun/energy)) // Guns have their own code for drawing charge from cyborg cell
+			for (var/obj/item/weapon/cell/C in I)
+				C.charge = 999999999
+	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -436,6 +438,17 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
 	synths += medicine
 
+	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	B.uses_charge = 1
+	B.charge_costs = list(1000)
+	B.synths = list(medicine)
+	O.uses_charge = 1
+	O.charge_costs = list(1000)
+	O.synths = list(medicine)
+	src.modules += B
+	src.modules += O
+
 	var/obj/item/stack/medical/splint/S = new /obj/item/stack/medical/splint(src)
 	S.uses_charge = 1
 	S.charge_costs = list(1000)
@@ -521,6 +534,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/lightreplacer(src) // to install lightning in the area
 	src.modules += new /obj/item/device/floor_painter(src)// to make america great again (c)
 	src.modules += new /obj/item/weapon/inflatable_dispenser(src) // to stop those pesky human beings entering the zone
+	src.modules += new /obj/item/weapon/rpd/borg(src) //to allow for easier access to pipes
 	src.modules += new /obj/item/weapon/tool/pickaxe/drill(src)
 	src.modules += new /obj/item/weapon/hatton/robot(src)
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)
@@ -580,6 +594,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser(src)
+	src.modules += new /obj/item/weapon/rpd/borg(src)
 	src.emag = new /obj/item/weapon/melee/baton(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(60000)
@@ -1038,6 +1053,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/robotic(src)
 	src.modules += new /obj/item/weapon/tool/multitool/robotic(src)
+	src.modules += new /obj/item/weapon/tool/shovel/robotic(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
@@ -1046,6 +1062,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/weapon/rpd/borg(src)
 	src.modules += new /obj/item/borg/sight/meson(src)
 
 	//src.emag = new /obj/item/weapon/gun/energy/plasmacutter/mounted(src)

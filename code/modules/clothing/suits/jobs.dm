@@ -54,7 +54,7 @@
 	)
 	siemens_coefficient = 0.8
 
-//Botonist
+//Botanist
 /obj/item/clothing/suit/apron
 	name = "apron"
 	desc = "A basic blue apron."
@@ -67,6 +67,19 @@
 		/obj/item/weapon/reagent_containers/glass/fertilizer,
 		/obj/item/weedkiller
 	)
+
+//Civillian
+/obj/item/clothing/suit/storage/toggle/club
+	name = "Manager's jacket"
+	desc = "A well tailored and rich jacket of the club manager"
+	icon_state = "cm_coat"
+	item_state = "cm_coat"
+	icon_open = "cm_coat_open"
+	icon_closed = "cm_coat"
+	body_parts_covered = UPPER_TORSO|ARMS
+	cold_protection = UPPER_TORSO|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
 
 //Chaplain
 /obj/item/clothing/suit/neotheology_jacket
@@ -81,7 +94,7 @@
 		bullet = 10,
 		energy = 10,
 		bomb = 0,
-		bio = 0,
+		bio = 50,  //same as labcoats at LEAST
 		rad = 0
 	)
 
@@ -96,9 +109,16 @@
 		bullet = 20,
 		energy = 20,
 		bomb = 0,
-		bio = 0,
+		bio = 50,  //same as labcoats at LEAST
 		rad = 0
 	)
+
+/obj/item/clothing/suit/storage/neotheosports
+	name = "neotheology sports jacket"
+	desc = "NeoTheology styled sports jacket to keep the faithful always on their feet."
+	icon_state = "nt_sportsjacket"
+	item_state = "nt_sportsjacket"
+	body_parts_covered = UPPER_TORSO|ARMS
 
 //Chaplain
 /obj/item/clothing/suit/nun
@@ -164,6 +184,33 @@
 	extra_allowed = list(/obj/item/weapon/tool)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
+
+/obj/item/clothing/suit/storage/hazardvest/orange
+	icon_state = "hazard_orange"
+	item_state = "hazard_orange"
+
+//Paramedics
+/obj/item/clothing/suit/storage/hazardvest/black
+	icon_state = "hazard_black"
+	item_state = "hazard_black"
+
+//Chief Engineer/Technomancer Exultant
+/obj/item/clothing/suit/storage/te_coat
+	name = "exultant coat"
+	desc = "A sturdy and proud crimson coat. Lightly armored, with some protection against radiation."
+	icon_state = "te_coat"
+	item_state = "te_coat"
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(
+		melee = 25,
+		bullet = 20,
+		energy = 20,
+		bomb = 0,
+		bio = 0,
+		rad = 10
+	)
+	price_tag = 250
 
 //Roboticist
 /obj/item/clothing/suit/storage/robotech_jacket

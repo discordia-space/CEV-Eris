@@ -86,8 +86,8 @@
 				for(var/obj/item/weapon/tank/FT in fuel_tanks) //loop through tanks, consume their fuel one by one
 					if(FT.air_contents.get_by_flag(XGM_GAS_FUEL) >= fuel_to_consume)
 						FT.air_contents.remove_by_flag(XGM_GAS_FUEL, fuel_to_consume)
-						return 1 //ALL REQUIRED FUEL HAS BEEN CONSUMED, GO FOR LAUNCH!
 						log_and_message_admins("shuttle has began his voyage from [current_location] to [next_location]")
+						return 1 //ALL REQUIRED FUEL HAS BEEN CONSUMED, GO FOR LAUNCH!
 					else //this tank doesn't have enough to launch shuttle by itself, so remove all its fuel, then continue loop
 						fuel_to_consume -= FT.air_contents.get_by_flag(XGM_GAS_FUEL)
 						FT.air_contents.remove_by_flag(XGM_GAS_FUEL, FT.air_contents.get_by_flag(XGM_GAS_FUEL))
@@ -101,8 +101,8 @@
 	desc = "The fuel input port of the shuttle. Holds one fuel tank. Use a crowbar to open and close it."
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "fuel_port"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/icon_closed = "fuel_port"
 	var/icon_empty = "fuel_port_empty"
 	var/icon_full = "fuel_port_full"

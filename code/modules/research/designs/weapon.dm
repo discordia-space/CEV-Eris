@@ -29,7 +29,7 @@
 	sort_string = "TAAAF"
 
 /datum/design/research/item/weapon/plasmapistol
-	build_path = /obj/item/weapon/gun/energy/toxgun
+	build_path = /obj/item/weapon/gun/energy/plasma/brigador
 	sort_string = "TAAAD"
 
 /datum/design/research/item/weapon/decloner
@@ -70,6 +70,14 @@
 	build_path = /obj/item/weapon/hatton/moebius
 	sort_string = "TBAAD"
 
+/datum/design/research/item/weapon/katana
+	name = "Moebius \"Muramasa\" Katana"
+	build_path = /obj/item/weapon/tool/sword/katana/nano
+
+
+/datum/design/research/item/weapon/bluespace_dagger
+	name = "Moebius \"Displacement Dagger\""
+	build_path = /obj/item/weapon/tool/knife/dagger/bluespace
 
 // Ammo
 /datum/design/research/item/ammo
@@ -92,4 +100,3 @@
 	desc = "Insendiary ammunition for shotguns"
 	build_path = /obj/item/ammo_casing/shotgun/incendiary/prespawned
 	sort_string = "TAACF"
-

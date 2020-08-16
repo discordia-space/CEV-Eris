@@ -22,6 +22,7 @@
 	var/min_size = 5 //Mobs smaller than this won't trigger the trap
 	var/struggle_prob = 2
 	var/list/aware_mobs = list() //List of refs of mobs that examined this trap. Won't trigger it when walking.
+	var/prob_catch = 100 //prob catch to mob
 
 
 /obj/item/weapon/beartrap/Initialize()
@@ -41,7 +42,7 @@ Every failure causes the trap to dig deeper and hurt the victim more
 
 Freeing yourself is much harder than freeing someone else. Calling for help is advised if practical
 */
-/obj/item/weapon/beartrap/proc/attempt_release(var/mob/living/user, var/obj/item/I)
+/obj/item/weapon/beartrap/proc/attempt_release(mob/living/user, obj/item/I)
 	if (!buckled_mob || QDELETED(buckled_mob))
 		return //Nobody there to rescue?
 
@@ -157,13 +158,13 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		return
 	.=..()
 
-/obj/item/weapon/beartrap/attack_generic(var/mob/user, var/damage)
+/obj/item/weapon/beartrap/attack_generic(mob/user, damage)
 	if (buckled_mob)
 		attempt_release(user)
 		return
 	.=..()
 
-/obj/item/weapon/beartrap/attack_robot(var/mob/user)
+/obj/item/weapon/beartrap/attack_robot(mob/user)
 	if (buckled_mob)
 		attempt_release(user)
 		return
@@ -181,7 +182,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	STOP_PROCESSING(SSobj, src)
 
 //Attempting to resist out of a beartrap will be counted as using your hand on the trap.
-/obj/item/weapon/beartrap/resist_buckle(var/mob/user)
+/obj/item/weapon/beartrap/resist_buckle(mob/user)
 	if (user == buckled_mob && !user.stunned)
 		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
 		if (user.client)
@@ -222,7 +223,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 ***********************************/
 
 //If an attempt to release the mob fails, it digs in and deals more damage
-/obj/item/weapon/beartrap/proc/fail_attempt(var/user, var/difficulty)
+/obj/item/weapon/beartrap/proc/fail_attempt(user, difficulty)
 	if (!buckled_mob)
 		return
 
@@ -255,6 +256,11 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	if (!L || L.mob_size < min_size)
 		return
 
+	if (ismech(L))
+		deployed = FALSE
+		playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)
+		return
+
 	if(L.lying)
 		target_zone = ran_zone()
 	else
@@ -263,7 +269,6 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	deployed = FALSE
 	can_buckle = initial(can_buckle)
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)//Really loud snapping sound
-
 
 	//armour
 	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
@@ -313,11 +318,15 @@ Very rarely it might escape
 		var/mob/living/L = AM
 		if(("\ref[L]" in aware_mobs) && MOVING_DELIBERATELY(L))
 			return ..()
+		var/true_prob_catch = prob_catch - L.skill_to_evade_traps()
+		if(!prob(true_prob_catch))
+			return ..()
 		L.visible_message(
 			SPAN_DANGER("[L] steps on \the [src]."),
 			SPAN_DANGER("You step on \the [src]!"),
 			"<b>You hear a loud metallic snap!</b>"
 			)
+
 		attack_mob(L)
 		if(!buckled_mob)
 			anchored = FALSE

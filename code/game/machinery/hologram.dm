@@ -132,6 +132,8 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	log_admin("[key_name(caller_id)] just established a holopad connection from [sourcepad.loc.loc] to [src.loc.loc]")
 
 /obj/machinery/hologram/holopad/proc/end_call(mob/living/carbon/user)
+	if(!caller_id)
+		return
 	caller_id.unset_machine()
 	caller_id.reset_view() //Send the caller back to his body
 	clear_holo(0, caller_id) // destroy the hologram
@@ -244,7 +246,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		hologram.overlays += A.holo_icon // Add the AI's configured holo Icon
 	hologram.mouse_opacity = 0//So you can't click on it.
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
-	hologram.anchored = 1//So space wind cannot drag it.
+	hologram.anchored = TRUE//So space wind cannot drag it.
 	if(caller_id)
 		hologram.name = "[caller_id.name] (Hologram)"
 		hologram.loc = get_step(src, loc)
@@ -335,7 +337,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
  */
 
 /obj/machinery/hologram
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100

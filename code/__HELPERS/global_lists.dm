@@ -68,6 +68,8 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 	datum = weight)
 */
 
+//PERKS
+GLOBAL_LIST_EMPTY(all_perks)
 
 //NeoTheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
@@ -166,6 +168,12 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	for(var/path in paths)
 		var/datum/surgery_step/S = new path
 		GLOB.surgery_steps[path] = S
+
+	//perkS - Initialise all /datum/perks into a list
+	paths = subtypesof(/datum/perk)
+	for(var/path in paths)
+		var/datum/perk/P = new path
+		GLOB.all_perks[path] = P
 
 	paths = subtypesof(/datum/old_surgery_step)
 	for(var/T in paths)

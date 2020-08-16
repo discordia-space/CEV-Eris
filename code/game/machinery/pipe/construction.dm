@@ -1,56 +1,3 @@
-/*CONTENTS
-Buildable pipes
-Buildable meters
-*/
-#define PIPE_SIMPLE_STRAIGHT	0
-#define PIPE_SIMPLE_BENT		1
-#define PIPE_HE_STRAIGHT		2
-#define PIPE_HE_BENT			3
-#define PIPE_CONNECTOR			4
-#define PIPE_MANIFOLD			5
-#define PIPE_JUNCTION			6
-#define PIPE_UVENT				7
-#define PIPE_MVALVE				8
-#define PIPE_PUMP				9
-#define PIPE_SCRUBBER			10
-#define PIPE_INSULATED_STRAIGHT	11
-#define PIPE_INSULATED_BENT		12
-#define PIPE_GAS_FILTER			13
-#define PIPE_GAS_MIXER			14
-#define PIPE_PASSIVE_GATE       15
-#define PIPE_VOLUME_PUMP        16
-#define PIPE_HEAT_EXCHANGE      17
-#define PIPE_MTVALVE			18
-#define PIPE_MANIFOLD4W			19
-#define PIPE_CAP				20
-///// Z-Level stuff
-#define PIPE_UP					21
-#define PIPE_DOWN				22
-///// Z-Level stuff
-#define PIPE_GAS_FILTER_M		23
-#define PIPE_GAS_MIXER_T		24
-#define PIPE_GAS_MIXER_M		25
-#define PIPE_OMNI_MIXER			26
-#define PIPE_OMNI_FILTER		27
-///// Supply, scrubbers and universal pipes
-#define PIPE_UNIVERSAL				28
-#define PIPE_SUPPLY_STRAIGHT		29
-#define PIPE_SUPPLY_BENT			30
-#define PIPE_SCRUBBERS_STRAIGHT		31
-#define PIPE_SCRUBBERS_BENT			32
-#define PIPE_SUPPLY_MANIFOLD		33
-#define PIPE_SCRUBBERS_MANIFOLD		34
-#define PIPE_SUPPLY_MANIFOLD4W		35
-#define PIPE_SCRUBBERS_MANIFOLD4W	36
-#define PIPE_SUPPLY_UP				37
-#define PIPE_SCRUBBERS_UP			38
-#define PIPE_SUPPLY_DOWN			39
-#define PIPE_SCRUBBERS_DOWN			40
-#define PIPE_SUPPLY_CAP				41
-#define PIPE_SCRUBBERS_CAP			42
-///// Mirrored T-valve ~ because I couldn't be bothered re-sorting all of the defines
-#define PIPE_MTVALVEM				43
-
 /obj/item/pipe
 	name = "pipe"
 	desc = "A pipe"
@@ -69,7 +16,7 @@ Buildable meters
 	var/turf/below = GetBelow(get_turf(src))
 	var/pipe_below = istype(below)
 	if(pipe_below)
-		pipe_below = locate(/obj/machinery/atmospherics/pipe/zpipe/up in below)
+		pipe_below = locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below
 	return !(anchored || pipe_below)
 
 /obj/item/pipe/New(var/loc, var/pipe_type as num, var/dir as num, var/obj/machinery/atmospherics/make_from = null)
@@ -1185,35 +1132,3 @@ Buildable meters
 	new/obj/machinery/meter( src.loc )
 	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
 	qdel(src)
-//not sure why these are necessary
-#undef PIPE_SIMPLE_STRAIGHT
-#undef PIPE_SIMPLE_BENT
-#undef PIPE_HE_STRAIGHT
-#undef PIPE_HE_BENT
-#undef PIPE_CONNECTOR
-#undef PIPE_MANIFOLD
-#undef PIPE_JUNCTION
-#undef PIPE_UVENT
-#undef PIPE_MVALVE
-#undef PIPE_PUMP
-#undef PIPE_SCRUBBER
-#undef PIPE_INSULATED_STRAIGHT
-#undef PIPE_INSULATED_BENT
-#undef PIPE_GAS_FILTER
-#undef PIPE_GAS_MIXER
-#undef PIPE_PASSIVE_GATE
-#undef PIPE_VOLUME_PUMP
-#undef PIPE_HEAT_EXCHANGE
-#undef PIPE_MTVALVE
-#undef PIPE_MTVALVEM
-#undef PIPE_GAS_FILTER_M
-#undef PIPE_GAS_MIXER_T
-#undef PIPE_GAS_MIXER_M
-#undef PIPE_SUPPLY_STRAIGHT
-#undef PIPE_SUPPLY_BENT
-#undef PIPE_SCRUBBERS_STRAIGHT
-#undef PIPE_SCRUBBERS_BENT
-#undef PIPE_SUPPLY_MANIFOLD
-#undef PIPE_SCRUBBERS_MANIFOLD
-#undef PIPE_UNIVERSAL
-//#undef PIPE_MANIFOLD4W
