@@ -432,7 +432,7 @@ var/const/FALLOFF_SOUNDS = 0.5
 			S.environment = SPACE
 		else
 			var/area/A = get_area(src)
-			S.environment = A.sound_env
+			S.environment = A?.sound_env
 
 	var/list/echo_list = new(18)
 	echo_list[ECHO_DIRECT] = envdry

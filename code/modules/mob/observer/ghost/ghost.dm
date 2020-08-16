@@ -167,7 +167,7 @@ Works together with spawning an observer, noted above.
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 
-		ghost.client.create_UI(ghost.type)
+		ghost.client?.create_UI(ghost.type)
 
 		return ghost
 
@@ -434,7 +434,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 	if(!MayRespawn(1, ANIMAL))
-		return
+		if(!check_rights(0, 0) || alert("Normal players must wait at least [ANIMAL_SPAWN_DELAY / 600] minutes to spawn as mouse! Would you like to bypass it?","Warning", "No", "Yes") != "Yes")
+			return
 
 	var/turf/T = get_turf(src)
 	if(!T || !(T.z in GLOB.maps_data.station_levels))

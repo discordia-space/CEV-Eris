@@ -67,6 +67,8 @@
 #define PLASMAGUARD        	0x10 	// Does not get contaminated by plasma.
 #define PROXMOVE           	0x20  	// Does this object require proximity checking in Enter()?
 #define SILENT				0x40 	// Sneaky shoes and silenced tools
+#define LOUD			    0x80 	// Loud as hell tools
+#define HONKING			    0x100 	// Honking tools
 
 //Flags for items (equipment)
 #define THICKMATERIAL              0x1  // Prevents syringes, parapens and hyposprays if equiped to slot_suit or slot_head.
