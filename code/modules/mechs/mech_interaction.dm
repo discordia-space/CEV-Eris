@@ -184,7 +184,7 @@
 	if(!check_enter(user))
 		return
 	to_chat(user, SPAN_NOTICE("You start climbing into \the [src]..."))
-	if(!do_after(user, 25) || !check_enter(user))
+	if(!do_after(user, body.climb_time) || !check_enter(user)) //allows for specialized cockpits for rapid entry/exit, or slower for more armored ones
 		return
 	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
 

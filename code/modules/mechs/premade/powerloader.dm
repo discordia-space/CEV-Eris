@@ -1,6 +1,7 @@
+//Powerloader parts are as basic as you can get. Designed for utility use and cheap production.
 /mob/living/exosuit/premade/powerloader
-	name = "APLU \"Ripley\""
-	desc = "An old but well-liked utility exosuit. Once manufactured by Nanotrasen, this design was made omnipresent by data leaks that followed the Fall."
+	name = "power loader"
+	desc = "A cheap utility exosuit. An old Nanotrasen design, now used just about everywhere due to post-Fall data leaks."
 
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
@@ -32,7 +33,7 @@
 	exosuit_desc_string = "industrial lifter arms"
 	max_damage = 70
 	power_use = 30
-	desc = "Reinforced lifter arms that allow you to poke untold dangers from the relative safety of your cockpit."
+	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
 
 /obj/item/mech_component/propulsion/powerloader
 	name = "lifter exosuit legs"
@@ -40,13 +41,14 @@
 	desc = "Wide and stable, but not particularly fast."
 	max_damage = 70
 	move_delay = 4
+	turn_delay = 4
 	power_use = 10
 
 /obj/item/mech_component/sensors/powerloader
 	name = "simple exosuit sensors"
 	gender = PLURAL
 	exosuit_desc_string = "simple sensors"
-	desc = "A primitive set of sensors designed to work in tandem with most MKI Eyeball platforms."
+	desc = "A primitive set of sensors designed to provide basic visual information to the pilot."
 	max_damage = 100
 	power_use = 0
 
@@ -55,9 +57,10 @@
 	hatch_descriptor = "roll cage"
 	pilot_coverage = 40
 	exosuit_desc_string = "an industrial roll cage"
-	desc = "An industrial roll cage. Technically compliant with Nanotrasen era safety regulations."
+	desc = "An industrial roll cage. Absolutely useless in hazardous environments, as it isn't even sealed."
 	max_damage = 100
 	power_use = 0
+	climb_time = 20 //easier to hop in and close up than a full cockpit, but not specialized for it
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(

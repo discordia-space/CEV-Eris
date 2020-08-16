@@ -16,6 +16,7 @@
 	var/pilot_coverage = 100
 	var/min_pilot_size = MOB_SMALL
 	var/max_pilot_size = MOB_LARGE
+	var/climb_time = 25
 	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 20)
 
@@ -134,5 +135,3 @@
 		C.forceMove(src)
 		update_components()
 	else . = ..()
-
-
