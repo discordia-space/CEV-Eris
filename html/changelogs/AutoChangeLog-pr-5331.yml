@@ -1,0 +1,4 @@
+author: GrayRachnid
+delete-after: true
+changes:
+  - bugfix: Fixed the lack of hematite and carbon deposits on the asteroid.
