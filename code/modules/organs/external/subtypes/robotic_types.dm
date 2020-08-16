@@ -1,34 +1,35 @@
 //Charachter setup prostheses
 
-/obj/item/organ/external/robotic/bishop
-	name = "Bishop"
-	desc = "Prosthesis with white polymer casing with blue holo-displays."
-	force_icon = 'icons/mob/human_races/cyberlimbs/bishop.dmi'
-	model = "bishop"
+/obj/item/organ/external/robotic/asters
+	name = "Asters \"Movement Lock\""
+	desc = "Generic gray prostesis for everyday use."
+	force_icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
+	model = "asters"
 
-/obj/item/organ/external/robotic/hesphaistos
-	name = "Hesphaistos"
-	desc = "Prosthesis with militaristic black and green casing with gold stripes."
-	force_icon = 'icons/mob/human_races/cyberlimbs/hesphaistos.dmi'
-	model = "hesphaistos"
+/obj/item/organ/external/robotic/serbian
+	name = "\"Serbain Arms\""
+	desc = "Battle hardened green and brown prostesis rebranded several times."
+	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
+	model = "serbian"
 
-/obj/item/organ/external/robotic/zenghu
-	name = "Zeng-Hu"
-	desc = "Prosthesis with rubbery fleshtone covering with visible seams."
-	force_icon = 'icons/mob/human_races/cyberlimbs/zenghu.dmi'
-	model = "zenghu"
+/obj/item/organ/external/robotic/frozen_star
+	name = "\"Frozen Star\""
+	desc = "Tactical \"Frozen Star\" blue and gray prosthesis for dangerous enviroment."
+	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
+	model = "frozen_star"
 
-/obj/item/organ/external/robotic/xion
-	name = "Xion"
-	desc = "Prosthesis with minimalist black and red casing."
-	force_icon = 'icons/mob/human_races/cyberlimbs/xion.dmi'
-	model = "xion"
+/obj/item/organ/external/robotic/technomancer
+	name = "Technomancer \"Homebrew\""
+	desc = "Technomancer \"branded\" \"functional\" prosthesis."
+	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
+	model = "technomancer"
 
 //In game prostheses
 /obj/item/organ/external/robotic/moebius
-	name = "Moebius"
-	desc = "Reinforced prosthesis designed for space exploration and light combat."
-	model = "xion"
+	name = "\"Moebius\""
+	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
+	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
+	model = "moebius"
 	armor = list(melee = 35, bullet = 35, energy = 35, bomb = 35, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 	max_damage = 60
@@ -51,8 +52,9 @@
 
 /obj/item/organ/external/robotic/excelsior
 	name = "Excelsior"
-	desc = "Plasma reinforced prothsesis designed for heavy combat."
-	model = "xion"
+	desc = "Plasma reinforced black prothsesis designed for heavy combat."
+	force_icon = 'icons/mob/human_races/cyberlimbs/excelsior.dmi'
+	model = "excelsior"
 	armor = list(melee = 50, bullet = 50, energy = 50, bomb = 50, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
 	max_damage = 65
@@ -73,7 +75,8 @@
 /obj/item/organ/external/robotic/one_star
 	name = "One star"
 	desc = "Advanced, extremly resileant and mobile prosthetic. Inscribed with \"Made in\" followed by giberish, must have been lost to time."
-	model = "xion"
+	force_icon = 'icons/mob/human_races/cyberlimbs/one_star.dmi'
+	model = "one_star"
 	armor = list(melee = 65, bullet = 65, energy = 65, bomb = 65, bio = 0, rad = 100)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
