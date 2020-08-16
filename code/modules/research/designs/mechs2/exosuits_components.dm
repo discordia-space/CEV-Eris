@@ -20,6 +20,7 @@
 //Armor
 /datum/design/research/item/mechfab/exosuit/armour
 	category = "Exosuit Armor"
+
 /datum/design/research/item/mechfab/exosuit/armour/basic
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit
 	starts_unlocked = TRUE
