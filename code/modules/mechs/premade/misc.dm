@@ -10,6 +10,7 @@
 	move_delay = 4
 	turn_delay = 1
 	power_use = 75
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
 
 /obj/item/mech_component/propulsion/tracks
 	name = "tracks"
@@ -20,3 +21,4 @@
 	move_delay = 2
 	turn_delay = 7
 	power_use = 150
+	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
