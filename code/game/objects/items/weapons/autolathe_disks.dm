@@ -566,6 +566,10 @@
 		/datum/design/autolathe/cell/small/excelsior,
 		/datum/design/autolathe/device/excelsiormine,				//security
 		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/prosthesis/excelsior/l_arm,         //prostheses
+		/datum/design/autolathe/prosthesis/excelsior/r_arm,
+		/datum/design/autolathe/prosthesis/excelsior/l_leg,
+		/datum/design/autolathe/prosthesis/excelsior/r_leg,
 		/datum/design/autolathe/device/implanter,					//misc
 		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/clothing/excelsior_armor,

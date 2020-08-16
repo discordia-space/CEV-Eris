@@ -14,6 +14,7 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	force = WEAPON_FORCE_HARMLESS
+	armor = list(melee = 15, bullet = 0, energy = 10, bomb = 0, bio = 25, rad = 0)
 	siemens_coefficient = 0.6
 	can_hold_knife = TRUE
 
@@ -35,6 +36,7 @@
 	desc = "Slightly reinforced shoes. Optimal for your journey into a wonderful world of maintenance."
 	icon_state = "reinforced"
 	item_state = "reinforced"
+	armor = list(melee = 15, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.5
 
 /obj/item/clothing/shoes/reinforced/ironhammer
@@ -52,4 +54,5 @@
 	icon_state = "workboots"
 	item_state = "workboots"
 	siemens_coefficient = 0
+	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	can_hold_knife = TRUE
