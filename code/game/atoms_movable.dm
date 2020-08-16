@@ -19,10 +19,11 @@
 	//spawn_values
 	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
 	var/list/spawn_tags = list()
-	var/rarity_value = 0
+	var/rarity_value = 1
 	var/spawn_frequency = 0
-	var/accompanying_object = null
+	var/list/accompanying_object = list()
 	var/spawn_blacklisted = TRUE
+	var/list/bad_types = list()
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
@@ -397,20 +398,7 @@
 /atom/movable/proc/preventsTurfInteractions()
 	return FALSE
 
-/atom/movable/proc/get_rarity_value()
-	return rarity_value
-
-/atom/movable/proc/get_spawn_blacklisted()
-	return spawn_blacklisted
-
-/atom/movable/proc/get_spawn_tags()
-	return spawn_tags
-
-/atom/movable/proc/get_price_tag()
-	return price_tag
-
-/atom/movable/proc/get_spawn_frequency()
-	return spawn_frequency
-
-/atom/movable/proc/get_accompanying_object()
-	return	accompanying_object
+/atom/movable/proc/get_global()
+	var/obj/item/weapon/oddity/O = /obj/item/weapon/oddity
+	var/list/hola = initial(O.bad_types)
+	return hola

@@ -12,12 +12,18 @@
 	item_state = "electronic"
 	w_class = ITEM_SIZE_SMALL
 
+	//spawn_values
+	spawn_blacklisted = FALSE
+	spawn_tags = list(SPAWN_ITEM, SPAWN_ODDITY)
+	rarity_value = 50
+	spawn_frequency = 1
+	bad_types = list(/obj/item/weapon/oddity, /obj/item/weapon/oddity/common)
+
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk
-
 
 /obj/item/weapon/oddity/Initialize()
 	. = ..()
@@ -211,6 +217,7 @@
 		STAT_TGH = 5,
 		STAT_VIG = 5,
 	)
+	spawn_tags = list(SPAWN_ODDITY, SPAWN_WEAPON, SPAWN_TOOL)
 
 /obj/item/weapon/oddity/common/old_id
 	name = "old id"
