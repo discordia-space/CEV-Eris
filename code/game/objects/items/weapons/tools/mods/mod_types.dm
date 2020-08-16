@@ -81,7 +81,7 @@
 // Plasmablock can be attached to any tool that uses fuel or power
 /obj/item/weapon/tool_upgrade/reinforcement/plasmablock
 	name = "plasmablock"
-	desc = "A plasmablock is way more efficient to dissipate heat than classic heatsinks or waterblocks thanks to the tremendous heat-transfer capacity of liquid phoron. The fluid that is actively pumped through a radiator and cooled by fans. It greatly extends the lifespan of power tools."
+	desc = "A plasmablock is way more efficient to dissipate heat than classic heatsinks or waterblocks thanks to the tremendous heat-transfer capacity of liquid plasma. The fluid that is actively pumped through a radiator and cooled by fans. It greatly extends the lifespan of power tools."
 	icon_state = "plasmablock"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 1)
 
@@ -99,7 +99,7 @@
 
 /obj/item/weapon/tool_upgrade/reinforcement/rubbermesh
 	name = "rubber mesh"
-	desc = "A rubber mesh that can wrapped around sensitive parts of a tool to protecting them from impacts and debris."
+	desc = "A rubber mesh that can wrapped around sensitive parts of a tool, protecting them from impacts and debris."
 	icon_state = "rubbermesh"
 	matter = list(MATERIAL_PLASTIC = 3)
 
@@ -152,7 +152,7 @@
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint
 	name = "red paint"
-	desc = "Do red tools really work faster, or is the effect purely psychological."
+	desc = "Do red tools really work faster, or is the effect purely psychological?"
 	icon_state = "paint_red"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 
@@ -246,7 +246,7 @@
 
 /obj/item/weapon/tool_upgrade/productivity/antistaining
 	name = "anti-staining paint"
-	desc = "Applying a thin coat of this paint on a tool prevents stains, dirt or dust to adhere to its surface. Everyone work better and faster with clean tools."
+	desc = "Applying a thin coat of this paint on a tool prevents stains, dirt or dust to adhere to its surface. Everyone works better and faster with clean tools."
 	icon_state = "antistaining"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
 
@@ -464,7 +464,7 @@
 /obj/item/weapon/tool_upgrade/augment/expansion
 	name = "expansion port"
 	icon_state = "expand"
-	desc = "A bulky adapter which more modifications to be attached to the tool. A bit fragile but you can compensate."
+	desc = "A bulky adapter which allows more modifications to be attached to the tool. A bit fragile but you can compensate."
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/augment/expansion/New()
