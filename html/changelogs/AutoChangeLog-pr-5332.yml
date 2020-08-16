@@ -1,0 +1,7 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - tweak: Glassification no longer hijacks the receiver's view, unless they are below
+      a certain sanity threshold.
+  - tweak: Glassification now only hijacks your view for a true second.
+  - admin: Added a sanity debug function, to invoke a breakdown upon somebody.

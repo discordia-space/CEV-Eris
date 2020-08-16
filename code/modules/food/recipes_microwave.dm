@@ -179,6 +179,15 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fuhrerburger
 
+/datum/recipe/kaiserburger
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser,
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/egg
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/kaiserburger
+
 /datum/recipe/hotdog
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
@@ -460,7 +469,7 @@ I said no!
 		. = ..()
 		if (.)
 			var/obj/item/weapon/paper/paper = locate() in container
-			if (!paper.info)
+			if (!paper || !paper.info)
 				return 0
 		return .
 

@@ -263,6 +263,8 @@
 		G.proj_damage_adjust[HALLOSS] += weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION])
 		G.proj_damage_adjust[IRRADIATE] += weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]
+	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY])
+		G.proj_damage_adjust[PSY] += weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]
 	if(weapon_upgrades[GUN_UPGRADE_HONK])
 		G.fire_sound = 'sound/items/bikehorn.ogg'
 	if(weapon_upgrades[GUN_UPGRADE_RIGGED])
@@ -401,6 +403,9 @@
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION])
 			to_chat(user, SPAN_NOTICE("Modifies projectile radiation damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]] damage points"))
+
+		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY])
+			to_chat(user, SPAN_NOTICE("Modifies projectile psy damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]
