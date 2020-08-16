@@ -16,5 +16,6 @@
 	offer_types = list(
 		/obj/item/bluespace_crystal = 0.25,
 		/obj/item/device/mmi/digital/posibrain,
-		/obj/item/weapon/reagent_containers/food/snacks/csandwich
+		/obj/item/weapon/reagent_containers/food/snacks/csandwich = 4
 	)
+	spawn_probability = 10

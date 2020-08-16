@@ -78,6 +78,9 @@
 /datum/reagent/drink/hot_coco
 	price_tag = 10
 
+/obj/item/weapon/reagent_containers/food
+	price_tag = 10
+
 /obj/item/weapon/reagent_containers/food/drinks/coffee
 	price_tag = 10
 
@@ -462,6 +465,8 @@
 //***************//
 
 // Snacks //
+/obj/item/weapon/reagent_containers/food/snacks
+	price_tag = 30
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
 	price_tag = 10
@@ -531,16 +536,16 @@
 	price_tag = 20
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
-	price_tag = 20
+	price_tag = 49.9
 
 /obj/item/weapon/reagent_containers/food/snacks/jellyburger
-	price_tag = 20
+	price_tag = 35
 
 /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger
-	price_tag = 40
+	price_tag = 89.9
 
 /obj/item/weapon/reagent_containers/food/snacks/superbiteburger
-	price_tag = 80
+	price_tag = 139
 
 
 // Sandwiches //
@@ -606,8 +611,11 @@
 	price_tag = 25
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/carp
-	price_tag = 25
-
+	price_tag = 200
+/obj/item/weapon/reagent_containers/food/snacks/meat
+	price_tag = 100
+/obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+	price_tag = 500
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	price_tag = 25
 
@@ -666,7 +674,7 @@
 	price_tag = 25
 
 /obj/item/weapon/reagent_containers/food/snacks/fishandchips
-	price_tag = 25
+	price_tag = 40
 
 /obj/item/weapon/reagent_containers/food/snacks/rofflewaffles
 	price_tag = 25
@@ -971,7 +979,7 @@
 	price_tag = 50
 
 /obj/item/bluespace_crystal
-	price_tag = 400
+	price_tag = 500
 
 //machinery
 
@@ -985,6 +993,8 @@
 /obj/machinery/portable_atmospherics
 	price_tag = 200
 
+/obj/machinery/power/supermatter
+	price_tag = 5000
 /obj/machinery/portable_atmospherics/canister
 
 /obj/machinery/portable_atmospherics/canister/get_item_cost(export = FALSE)
@@ -1004,3 +1014,5 @@
 /obj/item/weapon/stock_parts/get_item_cost(export = FALSE)
 	. = ..() * rating
 
+/obj/item/organ
+	price_tag = 300

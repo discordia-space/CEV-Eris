@@ -184,10 +184,13 @@
 					if(!ispath(path, /atom/movable))
 						continue
 					var/atom/movable/AM = path
+					var/pathname = initial(AM.name)
+					if(istext(assort[path]))
+						pathname = assort[path]
 					var/price = SStrade.get_import_cost(path)
 					var/count = PRG.shoppinglist[path]
 					.["goods"] += list(list(
-						"name" = initial(AM.name),
+						"name" = pathname,
 						"price" = price,
 						"count" = count ? count : 0,
 						"index" = assort.Find(path)

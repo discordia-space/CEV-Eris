@@ -925,3 +925,51 @@ Checks if a list has the same entries and values as an element of big.
 			return FALSE
 
 	return TRUE
+
+/proc/try_json_decode(t)
+	if(istext(t))
+		return json_decode(t)
+	else if(islist(t))
+		return t
+	else
+		return list(t)
+
+/proc/recursiveLen(list/L)
+	. = 0
+	if(istext(L))
+		L = try_json_decode(L)
+	else if(length(L))
+		. += length(L)
+		for(var/list/i in L)
+			if(islist(i))
+				. += recursiveLen(i)
+			else if(islist(L[i]))
+				. += recursiveLen(L[i])
+/*
+/proc/recursiveLenWithoutlists(list/L)
+	. = 0
+	if(istext(L))
+		L = try_json_decode(L)
+	if(length(L))
+		for(var/list/i in L)
+			if(islist(i))
+				. += recursiveLenWithoutlists(i)
+			else if(islist(L[i]))
+				. += recursiveLenWithoutlists(L[i])
+			else
+				. += 1
+*/
+/proc/RemoveByType(list/L, Type, need2qdel)
+	if(istext(L))
+		L = try_json_decode(L)
+	for(var/i in L)
+		if(istype(i, Type) || ispath(i, Type))
+			if(need2qdel)
+				qdel(i)
+			L.Remove(L)
+
+/proc/clear_list(list/L)
+	L = try_json_decode(L)
+	for(var/i in L)
+		qdel(i)
+	L.Cut()

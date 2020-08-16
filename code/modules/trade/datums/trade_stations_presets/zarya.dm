@@ -1,6 +1,7 @@
 /datum/trade_station/station_zarya
 	name_pool = list("FTS 'Zarya'" = "Free Trade Station 'Zarya', they sending message \"Privet, this is free station 'Zarya'. We have everything for sale here, don't be afraid to come aboard and check our wares!\".")
 	start_discovered = TRUE
+	spawn_always = TRUE
 	assortiment = list(
 		"Vozduh" = list(
 			/obj/machinery/portable_atmospherics/canister/sleeping_agent,

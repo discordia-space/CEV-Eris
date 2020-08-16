@@ -846,3 +846,10 @@ ADMIN_VERB_ADD(/client/proc/toggle_random_events, R_SERVER, FALSE)
 		to_chat(usr, "Random events disabled")
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 
+ADMIN_VERB_ADD(/client/proc/reinit_trade_stations, R_DEBUG, FALSE)
+/client/proc/reinit_trade_stations()
+	set name = "Reinit Trade Stations"
+	set category = "Debug"
+
+	if(check_rights(R_DEBUG))
+		SStrade.ReInitStations()

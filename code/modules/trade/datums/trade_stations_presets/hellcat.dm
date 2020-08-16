@@ -2,6 +2,7 @@
 	name_pool = list("FBV 'Hellcat'" = "They are sending message, \"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to depart with some extra supplies to get rid of while we're still here.\"")
 	icon_states = "ship"
 	max_missing_assortiment = 8
+	spawn_probability = 0
 	start_discovered = TRUE
 	forced_overmap_zone = list(
 		list(15, 20),
