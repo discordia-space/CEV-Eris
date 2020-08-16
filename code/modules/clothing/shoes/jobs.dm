@@ -5,7 +5,7 @@
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0 // DAMN BOI
 	item_flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN + 1
 	species_restricted = null
 
 /obj/item/clothing/shoes/jackboots
@@ -20,6 +20,11 @@
 
 /obj/item/clothing/shoes/jackboots/ironhammer
 	icon_state = "jackboots_ironhammer"
+
+/obj/item/clothing/shoes/jackboots/german
+	name = "Oberth Republic boots"
+	desc = "A pair of brown boots."
+	icon_state = "jackboots_german"
 
 /obj/item/clothing/shoes/jackboots/neotheology
 	name = "custodian's jackboots"
@@ -45,8 +50,8 @@
 /obj/item/clothing/shoes/reinforced/medical
 	name = "moebius reinfoced shoes"
 	desc = "Slightly reinforced shoes for moebius medical personnel."
-	icon_state = "medshoes"
-	item_state = "medshoes"
+	icon_state = "reinforced_moebius"
+	item_state = "reinforced_moebius"
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
