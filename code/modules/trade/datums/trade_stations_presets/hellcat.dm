@@ -12,7 +12,6 @@
 		"Enforce Equipment" = list(
 			/obj/item/weapon/storage/box/emps,
 			/obj/item/weapon/grenade/smokebomb,
-			/obj/item/weapon/pen/reagent/paralysis,
 			/obj/item/weapon/grenade/chem_grenade/incendiary,
 			/obj/item/weapon/handcuffs,
 			/obj/item/weapon/shield/riot,
@@ -22,14 +21,10 @@
 			/obj/machinery/shieldwallgen,
 		),
 		"Energy weapon" = list(
-			/obj/item/weapon/gun/energy/plasma/cassad,
-			/obj/item/weapon/gun/energy/gun,
 			/obj/item/weapon/gun/energy/gun/martin,
 			/obj/item/weapon/gun/energy/laser,
-			/obj/item/weapon/gun/energy/taser,
 		),
 		"Projectile weapon" = list(
-			/obj/item/weapon/gun/projectile/colt,
 			/obj/item/weapon/gun/projectile/paco,
 			/obj/item/weapon/gun/projectile/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw,
@@ -37,9 +32,6 @@
 			/obj/item/weapon/gun/projectile/revolver/consul,
 			/obj/item/weapon/gun/projectile/automatic/ak47/fs,
 			/obj/item/weapon/gun/projectile/automatic/atreides,
-			/obj/item/weapon/storage/box/shotgunammo/beanbags,
-			/obj/item/weapon/storage/box/shotgunammo/slug,
-			/obj/item/weapon/storage/box/shotgunammo/buckshot,
 		),
 		"Armor" = list(
 			/obj/item/clothing/head/armor/riot_hud,
