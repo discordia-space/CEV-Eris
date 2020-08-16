@@ -63,7 +63,7 @@
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target = null
-	var/remoteviewer = FALSE //for Glassification breakdown
+	var/remoteviewer = FALSE //Acts as an override for remoteview_target viewing, see human/life.dm: handle_vision()
 	var/hand_blood_color
 
 	var/gunshot_residue
