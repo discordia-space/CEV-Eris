@@ -1,4 +1,4 @@
-//Powerloader parts are as basic as you can get. Designed for utility use and cheap production.
+//Cheap parts are as basic as you can get. Designed for utility use and cheap production.
 /mob/living/exosuit/premade/powerloader
 	name = "power loader"
 	desc = "A cheap utility exosuit. An old Nanotrasen design, now used just about everywhere due to post-Fall data leaks."
@@ -17,25 +17,25 @@
 
 /mob/living/exosuit/premade/powerloader/Initialize()
 	if(!arms)
-		arms = new /obj/item/mech_component/manipulators/powerloader(src)
+		arms = new /obj/item/mech_component/manipulators/cheap(src)
 	if(!legs)
-		legs = new /obj/item/mech_component/propulsion/powerloader(src)
+		legs = new /obj/item/mech_component/propulsion/cheap(src)
 	if(!head)
-		head = new /obj/item/mech_component/sensors/powerloader(src)
+		head = new /obj/item/mech_component/sensors/cheap(src)
 	if(!body)
-		body = new /obj/item/mech_component/chassis/powerloader(src)
+		body = new /obj/item/mech_component/chassis/cheap(src)
 
 	. = ..()
 
 
-/obj/item/mech_component/manipulators/powerloader
+/obj/item/mech_component/manipulators/cheap
 	name = "lifter exosuit arms"
 	exosuit_desc_string = "industrial lifter arms"
 	max_damage = 70
 	power_use = 30
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
 
-/obj/item/mech_component/propulsion/powerloader
+/obj/item/mech_component/propulsion/cheap
 	name = "lifter exosuit legs"
 	exosuit_desc_string = "reinforced lifter legs"
 	desc = "Wide and stable, but not particularly fast."
@@ -44,7 +44,7 @@
 	turn_delay = 4
 	power_use = 10
 
-/obj/item/mech_component/sensors/powerloader
+/obj/item/mech_component/sensors/cheap
 	name = "simple exosuit sensors"
 	gender = PLURAL
 	exosuit_desc_string = "simple sensors"
@@ -52,7 +52,7 @@
 	max_damage = 100
 	power_use = 0
 
-/obj/item/mech_component/chassis/powerloader
+/obj/item/mech_component/chassis/cheap
 	name = "open exosuit chassis"
 	hatch_descriptor = "roll cage"
 	pilot_coverage = 40
@@ -92,7 +92,7 @@
 
 /mob/living/exosuit/premade/powerloader/firefighter
 	name = "APLU \"Firefighter\""
-	desc = "A mix and match of industrial parts designed to withstand heavy fires."
+	desc = "A refitted industrial exosuit designed to fight fires. The chassis has been replaced to protect the pilot, and the armor is reinforced with plasteel for fireproofing."
 
 	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
 	exosuit_color = "#819a73"

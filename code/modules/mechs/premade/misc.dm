@@ -1,7 +1,7 @@
 //This file is for loose, specialized parts that don't fit into the typical mechs.
 //The idea is to encourage more experimentation with swapping parts by providing more specialized options to players.
 //Sprites taken from bay, as with rest of the mech stuff.
-/obj/item/mech_component/propulsion/spider
+/obj/item/mech_component/propulsion/quad
 	name = "quadlegs"
 	exosuit_desc_string = "hydraulic quadlegs"
 	desc = "Specialized quadlegs designed to minimize time wasted reorienting the mech."
