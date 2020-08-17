@@ -263,7 +263,3 @@
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	maxcharge = 300
-
-//
-//.........................disposable weapon custom cells
-//
