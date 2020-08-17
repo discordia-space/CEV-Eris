@@ -8,6 +8,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_POWER = 4, TECH_MATERIAL = 8)
 	price_tag = 20000
 	spawn_blacklisted = TRUE
+	rarity_value = 60
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
