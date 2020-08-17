@@ -2246,7 +2246,7 @@
 #include "code\modules\projectiles\guns\energy\lasersmg.dm"
 #include "code\modules\projectiles\guns\energy\lasertag.dm"
 #include "code\modules\projectiles\guns\energy\mindflayer.dm"
-#include "code\modules\projectiles\guns\energy\ntpistol.dm"
+#include "code\modules\projectiles\guns\energy\nt_svalinn.dm"
 #include "code\modules\projectiles\guns\energy\nuclear.dm"
 #include "code\modules\projectiles\guns\energy\plasma.dm"
 #include "code\modules\projectiles\guns\energy\shrapnel.dm"

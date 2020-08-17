@@ -190,9 +190,9 @@
 	name = "FS PDW E \"Martin\""
 	build_path = /obj/item/weapon/gun/energy/gun/martin
 
-/datum/design/autolathe/gun/ntpistol
+/datum/design/autolathe/gun/nt_svalinn
 	name = "NT LP \"Svalinn\""
-	build_path = /obj/item/weapon/gun/energy/ntpistol
+	build_path = /obj/item/weapon/gun/energy/nt_svalinn
 
 // Energy general
 

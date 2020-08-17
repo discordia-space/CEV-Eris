@@ -1,9 +1,9 @@
-/obj/item/weapon/gun/energy/ntpistol
+/obj/item/weapon/gun/energy/nt_svalinn
 	name = "NT LP \"Svalinn\""
 	desc = "\"NeoTheology\" brand laser pistol. Small and easily concealable, it's still a reasonable punch for a laser weapon."
-	icon = 'icons/obj/guns/energy/ntpistol.dmi'
-	icon_state = "ntpistol"
-	item_state = "ntpistol"
+	icon = 'icons/obj/guns/energy/nt_svalinn.dmi'
+	icon_state = "nt_svalinn"
+	item_state = "nt_svalinn"
 	item_charge_meter = FALSE
 	fire_sound = 'sound/weapons/Laser.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)

@@ -1025,7 +1025,7 @@
 
 	license = 12
 	designs = list(
-		/obj/item/weapon/gun/energy/ntpistol = 3,
+		/obj/item/weapon/gun/energy/nt_svalinn = 3,
 		/datum/design/autolathe/cell/small/high,
 	)
 
