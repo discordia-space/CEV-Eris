@@ -134,7 +134,7 @@
 		frequency = text2num(frequency)
 	things = list()
 	for(var/path in paths)
-		if(all_spawn_frequency_by_path[path] == frequency)
+		if(all_spawn_frequency_by_path[path] >= frequency)
 			things += path
 	return things
 
@@ -151,7 +151,7 @@
 	rarity = 101-rarity
 	things = list()
 	for(var/path in paths)
-		if(all_spawn_rarity_by_path[path] == rarity)
+		if(all_spawn_rarity_by_path[path] <= rarity)
 			things += path
 	return things
 
