@@ -13,11 +13,11 @@
 	w_class = ITEM_SIZE_SMALL
 
 	//spawn_values
-	spawn_blacklisted = FALSE
-	spawn_tags = "item,oddity"
-	rarity_value = 50
+	spawn_blacklisted = TRUE
+	spawn_tags = "item,oddity"//list(SPAWN_ITEM, SPAWN_ODDITY)
+	rarity_value = 30
 	spawn_frequency = 1
-	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common"
+	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common" //list(SPAWN_ITEM, SPAWN_ODDITY)
 
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
@@ -47,6 +47,9 @@
 //They are meant to be put in appropriate random spawners
 
 //Common - you can find those everywhere
+/obj/item/weapon/oddity/common
+	spawn_blacklisted = FALSE
+
 /obj/item/weapon/oddity/common/blueprint
 	name = "strange blueprint"
 	desc = "There's no telling what this design is supposed to be. Whatever could be built from this likely wouldn't work."
@@ -55,6 +58,7 @@
 		STAT_COG = 5,
 		STAT_MEC = 7,
 	)
+	rarity_value = 45
 
 /obj/item/weapon/oddity/common/coin
 	name = "strange coin"
@@ -92,6 +96,7 @@
 		STAT_TGH = 6,
 		STAT_VIG = 6,
 	)
+	rarity_value = 55
 
 /obj/item/weapon/oddity/common/old_newspaper
 	name = "old newspaper"
@@ -112,6 +117,7 @@
 		STAT_COG = 6,
 		STAT_BIO = 6,
 	)
+	rarity_value = 55
 
 /obj/item/weapon/oddity/common/paper_omega
 	name = "collection of obscure reports"
@@ -122,6 +128,7 @@
 		STAT_COG = 8,
 		STAT_BIO = 8,
 	)
+	rarity_value = 80
 
 /obj/item/weapon/oddity/common/book_eyes
 	name = "observer book"
@@ -132,6 +139,7 @@
 		STAT_TGH = 9,
 		STAT_VIG = 9,
 	)
+	rarity_value = 90
 
 /obj/item/weapon/oddity/common/book_omega
 	name = "occult book"
@@ -142,6 +150,7 @@
 		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
+	rarity_value = 55
 
 /obj/item/weapon/oddity/common/book_bible
 	name = "old bible"
@@ -160,6 +169,7 @@
 		STAT_ROB = 4,
 		STAT_TGH = 4,
 	)
+	rarity_value = 25
 
 /obj/item/weapon/oddity/common/healthscanner
 	name = "odd health scanner"
@@ -170,6 +180,7 @@
 		STAT_COG = 8,
 		STAT_BIO = 8,
 	)
+	rarity_value = 70
 
 /obj/item/weapon/oddity/common/old_pda
 	name = "broken pda"
@@ -180,6 +191,7 @@
 		STAT_COG = 6,
 		STAT_MEC = 6,
 	)
+	rarity_value = 45
 
 /obj/item/weapon/oddity/common/towel
 	name = "trustworthy towel"
@@ -189,6 +201,7 @@
 		STAT_ROB = 6,
 		STAT_TGH = 6,
 	)
+	rarity_value = 45
 
 /obj/item/weapon/oddity/common/teddy
 	name = "teddy bear"
@@ -199,6 +212,7 @@
 		STAT_TGH = 7,
 		STAT_VIG = 7,
 	)
+	rarity_value = 60
 
 /obj/item/weapon/oddity/common/old_knife
 	name = "old knife"
@@ -218,7 +232,7 @@
 		STAT_VIG = 5,
 	)
 	spawn_tags = "item,weapon,oddity"
-	spawn_tags = list(SPAWN_ODDITY, SPAWN_WEAPON, SPAWN_TOOL)
+	rarity_value = 65
 
 /obj/item/weapon/oddity/common/old_id
 	name = "old id"
@@ -236,6 +250,7 @@
 		STAT_COG = 9,
 		STAT_VIG = 9,
 	)
+	rarity_value = 70
 
 /obj/item/weapon/oddity/common/paper_bundle
 	name = "paper bundle"
@@ -246,6 +261,7 @@
 		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
+	rarity_value = 50
 
 /obj/item/weapon/oddity/techno
 	name = "Unknown technological part"
@@ -256,8 +272,5 @@
 	icon_state = "techno_part[rand(1,7)]"
 	.=..()
 
-/obj/item/weapon/oddity/proc/spawn_item()
-	var/tag_to_spawn = SPAWN_ODDITY
-	var/datum/loot_spawner_data/LSD = GLOB.all_spawn_data["loot_s_data"]
-	var/list/candidates = LSD.all_spawn_list_by_tag["[tag_to_spawn]"]
-	return pick(candidates)
+/obj/item/weapon/oddity/proc/get_rand() //REMOVE IT
+	return rand()
