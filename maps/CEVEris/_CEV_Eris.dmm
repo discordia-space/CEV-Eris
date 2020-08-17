@@ -74186,9 +74186,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/item/weapon/gun/projectile/handmade_pistol{
-	},
-/obj/item/ammo_magazine/ammobox/pistol/rubber,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/xenobiology)
 "dkf" = (
