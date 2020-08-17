@@ -149,19 +149,27 @@
 	if(volume && holder)
 		remove_self(removed)
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	return
+/datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, alien, effect_multiplier)
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)
+
+
+/datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
 	
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		H.sanity.onReagent(src, effect_multiplier)
-	return
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-	return
+
+/datum/reagent/proc/affect_touch(mob/living/carbon/M,alien, effect_multiplier)
+
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)
+
 
 /datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.
 	M.adjustToxLoss(REM)
