@@ -16,7 +16,7 @@
 
 	//spawn values
 	bad_types = "/obj/item/weapon/tool"
-	spawn_tags = "item,tool"
+	spawn_tags = SPAWN_TOOL
 	spawn_blacklisted = FALSE
 	spawn_frequency = 2
 

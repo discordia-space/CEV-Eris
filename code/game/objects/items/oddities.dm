@@ -14,10 +14,10 @@
 
 	//spawn_values
 	spawn_blacklisted = TRUE
-	spawn_tags = "item,oddity"//list(SPAWN_ITEM, SPAWN_ODDITY)
+	spawn_tags = SPAWN_TAG_ODDITY
 	rarity_value = 30
 	spawn_frequency = 1
-	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common" //list(SPAWN_ITEM, SPAWN_ODDITY)
+	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common" //list(SPAWN_ITEM, SPAWN_TAG_ODDITY)
 
 //You choose what stat can be increased, and a maximum value that will be added to this stat
 //The minimum is defined above. The value of change will be decided by random
@@ -231,7 +231,7 @@
 		STAT_TGH = 5,
 		STAT_VIG = 5,
 	)
-	spawn_tags = "item,weapon,oddity"
+	spawn_tags = SPAWN_TAG_ODDITY_WEAPON
 	rarity_value = 65
 
 /obj/item/weapon/oddity/common/old_id

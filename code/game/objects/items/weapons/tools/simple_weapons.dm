@@ -104,7 +104,7 @@
 	slot_flags = SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	tool_qualities = list(QUALITY_CUTTING = 15)
-	spawn_tags = "item,tool,weapon,knife"
+	spawn_tags = SPAWN_TAG_KNIFE
 	rarity_value = 30
 
 //Swords
@@ -128,7 +128,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
-	spawn_tags = "item,tool,weapon,knife,sword"
+	spawn_tags = SPAWN_TAG_SWORD
 	rarity_value = 50
 
 /obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
@@ -139,7 +139,6 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_MODERATE
-	spawn_tags = "item,tool,weapon,knife,sword"
 	rarity_value = 60
 
 /obj/item/weapon/tool/sword/katana/nano

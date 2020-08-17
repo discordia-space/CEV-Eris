@@ -1,27 +1,36 @@
+//1. spawners
+//1.1 Items
 #define SPAWN_ITEM  "item"
+#define SPAWN_ODDITY "oddity"
 #define SPAWN_WEAPON "weapon"
 #define SPAWN_TOOL "tool"
-#define SPAWN_ODDITY "oddity"
-
-//weapon
-#define SPAWN_GUN "gun"
 #define SPAWN_KNIFE "knife"
-
-//guns
+#define SPAWN_SWORD "sword"
+#define SPAWN_GUN "gun"
 #define SPAWN_ENERGY_GUN "energy_gun"
 #define SPAWN_BALISTIC_GUN "balistic_gun"
 
+
+
+//2.Spawn_tags
+//2.1 Items
+#define SPAWN_TAG_ODDITY "item,oddity"
+#define SPAWN_TAG_ODDITY_WEAPON "item,oddity,weapon"
+#define SPAWN_TAG_WEAPON "item,weapon"
+#define SPAWN_TAG_TOOL "item,weapon,tool"
+#define SPAWN_TAG_KNIFE "item,weapon,tool,knife"
+#define SPAWN_TAG_SWORD "item,weapon,tool,knife,sword"
+
+//2.1.1 Guns
+#define SPAWN_TAG_GUN "item,gun"
+#define SPAWN_TAG_ENERGY_GUN "item,gun,energy_gun"
+#define SPAWN_TAG_BALISTIC_GUN "item,gun,balistic_gun"
+
+
 //mob
 #define SPAWN_MOB "mob"
-#define SPAWN_HOSTILE_MOB "hostile mob"
+#define SPAWN_HOSTILE_MOB "mob,hostile"
 #define SAPAWN_FRIENDLY_MOB "friendly mob"
 
 //SPAWN_MACHINERY
 #define SPAWN_MACHINERY "machinery"
-
-GLOBAL_LIST_INIT(all_spawn_tags, list(SPAWN_ITEM, SPAWN_WEAPON, SPAWN_TOOL,
-									SPAWN_ODDITY, SPAWN_GUN, SPAWN_KNIFE,
-                                    SPAWN_ENERGY_GUN, SPAWN_ENERGY_GUN, SPAWN_BALISTIC_GUN,
-                                    SPAWN_MOB, SPAWN_HOSTILE_MOB, SAPAWN_FRIENDLY_MOB,
-                                    SPAWN_MACHINERY))
-

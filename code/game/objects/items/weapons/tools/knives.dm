@@ -23,7 +23,7 @@
 
 	//spawn values
 	rarity_value = 10
-	spawn_tags = "item,tool,weapon,knife"
+	spawn_tags = SPAWN_TAG_KNIFE
 
 /obj/item/weapon/tool/knife/boot
 	name = "boot knife"
