@@ -69,7 +69,7 @@
 		)
 	)
 
-/obj/spawner/exosuit/mech_equipment/low_chance
+/obj/spawner/mech_equipment/low_chance
 	name = "low chance random exosuit equipment"
 	icon_state = "tech-red-low"
 	spawn_nothing_percentage = 80

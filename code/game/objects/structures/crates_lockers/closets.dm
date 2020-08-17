@@ -7,6 +7,10 @@
 	layer = BELOW_OBJ_LAYER
 	w_class = ITEM_SIZE_GARGANTUAN
 	matter = list(MATERIAL_STEEL = 10)
+	spawn_blacklisted = FALSE
+	spawn_frequency = 8 //review it
+	rarity_value = 10
+	bad_types = "/obj/structure/closet"
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE

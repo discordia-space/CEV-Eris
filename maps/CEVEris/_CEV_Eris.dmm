@@ -528,7 +528,7 @@
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/security/range)
 "abA" = (
-/obj/random/closet_tech/low_chance,
+/obj/spawner/closet_tech/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck5central)
 "abB" = (
@@ -6746,7 +6746,7 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section2deck1port)
 "apr" = (
-/obj/random/closet_tech/low_chance,
+/obj/spawner/closet_tech/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aps" = (
@@ -22946,7 +22946,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "bax" = (
-/obj/random/closet_tech/low_chance,
+/obj/spawner/closet_tech/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "bay" = (

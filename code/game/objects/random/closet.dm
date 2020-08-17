@@ -5,8 +5,8 @@
 
 /obj/random/closet/item_to_spawn()
 	return pickweight(list(/obj/structure/closet = 4,
-				/obj/structure/closet/firecloset = 8,
-				/obj/structure/closet/emcloset = 6,
+				/obj/spawner/closet_tech = 8,
+				/obj/spawner/closet_tech = 6,
 				/obj/spawner/closet_wardrobe = 1,
 				/obj/spawner/closet_wardrobe = 1,
 				/obj/spawner/closet_wardrobe = 1,
@@ -15,7 +15,7 @@
 				/obj/spawner/closet_wardrobe = 1,
 				/obj/structure/closet/lasertag/red = 1,
 				/obj/structure/closet/lasertag/blue = 1,
-				/obj/structure/closet/toolcloset = 8,
+				/obj/spawner/closet_tech = 8,
 				/obj/structure/closet/gimmick/russian = 0.5,
 				/obj/structure/closet/jcloset = 1,
 				/obj/structure/closet/malf/suits =  0.5,
@@ -29,20 +29,12 @@
 	spawn_nothing_percentage = 60
 
 
-
-
-
-/obj/random/closet_tech
+/obj/spawner/closet_tech
 	name = "random technical closet"
 	icon_state = "closet-orange"
+	tags_to_spawn = list(SPAWN_TECHNICAL_CLOSET)
 
-
-/obj/random/closet_tech/item_to_spawn()
-	return pickweight(list(/obj/structure/closet/firecloset = 4,
-				/obj/structure/closet/emcloset = 2,
-				/obj/structure/closet/toolcloset = 4))
-
-/obj/random/closet_tech/low_chance
+/obj/spawner/closet_tech/low_chance
 	name = "low chance random technical closet"
 	icon_state = "closet-orange-low"
 	spawn_nothing_percentage = 60

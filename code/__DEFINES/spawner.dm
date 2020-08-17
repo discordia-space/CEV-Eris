@@ -20,7 +20,9 @@
 
 //1.4 Structures
 #define SPAWN_STRUCTURE "structure"
+#define SPAWN_CLOSET "closet"
 #define SPAWN_WARDROBE "wardrobe"
+#define SPAWN_TECHNICAL_CLOSET "closet_technical"
 
 //2.Spawn_tags
 //2.1 Items
@@ -50,7 +52,11 @@
 
 
 //2.4 Structures
-#define SPAWN_TAG_WARDROBE "structure,wardrobe"
+//2.4.2 Closets
+#define SPAWN_TAG_CLOSET "strcuture,closet"
+#define SPAWN_TAG_TECHNICAL_CLOSET "strcuture,closet,closet_technical"
+#define SPAWN_TAG_WARDROBE "structure,closet,wardrobe"
+
 
 
 

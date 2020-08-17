@@ -163,7 +163,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "aK" = (
-/obj/random/closet_tech/low_chance,
+/obj/spawner/closet_tech/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "aL" = (

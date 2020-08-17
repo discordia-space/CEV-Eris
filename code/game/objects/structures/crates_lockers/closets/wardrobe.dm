@@ -4,8 +4,6 @@
 	icon_state = "generic"
 
 	spawn_blacklisted = TRUE
-	spawn_frequency = 5
-	rarity_value = 10
 	spawn_tags = SPAWN_TAG_WARDROBE
 
 /obj/structure/closet/wardrobe/sec
