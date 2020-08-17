@@ -106,7 +106,7 @@
 					/obj/random/pouch = 2,\
 					/obj/random/tool_upgrade/rare = 4,\
 					/obj/random/rig_module/rare = 4,\
-					/obj/random/credits/c1000 = 3,\
+					/obj/spawner/credits/c1000 = 3,\
 					/obj/random/exosuit_equipment = 3,\
 					/obj/random/cloth/holster = 4,\
 					/obj/item/stash_spawner = 4,\

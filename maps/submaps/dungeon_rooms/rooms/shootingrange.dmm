@@ -69,7 +69,7 @@
 /area/crawler)
 "r" = (
 /obj/structure/safe/floor{
-	contents = newlist(/obj/random/credits/c1000)
+	contents = newlist(/obj/spawner/credits/c1000)
 	},
 /obj/item/weapon/tool/crowbar/onestar,
 /turf/simulated/floor/tiled/derelict,
