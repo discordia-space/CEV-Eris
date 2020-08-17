@@ -7,4 +7,3 @@
 	name = "random plushie"
 	icon_state = "box-grey"
 	tags_to_spawn = list(SPAWN_PLUSHIE)
-
