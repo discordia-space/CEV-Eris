@@ -26,8 +26,8 @@
 		/obj/item/toy/prize/odysseus					= 1,
 		/obj/item/toy/prize/phazon						= 1,
 		/obj/item/toy/waterflower						= 1,
-		/obj/spawer/figure						= 1,
-		/obj/spawer/plushie								= 1,
+		/obj/spawner/figure								= 1,
+		/obj/spawner/plushie							= 1,
 		/obj/item/toy/cultsword							= 1
 	)
 

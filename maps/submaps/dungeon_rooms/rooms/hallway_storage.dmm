@@ -107,7 +107,7 @@
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "y" = (
-/obj/spawer/plushie,
+/obj/spawner/plushie,
 /turf/simulated/floor/bluegrid,
 /area/crawler)
 "z" = (

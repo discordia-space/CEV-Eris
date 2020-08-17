@@ -18,7 +18,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "f" = (
-/obj/spawer/figure,
+/obj/spawner/figure,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "g" = (

@@ -487,7 +487,7 @@
 	desc = "It seems to be almost glitched through reality."
 	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
-	spwn_tags = SPAWN_TAG_FIGURE
+	spawn_tags = SPAWN_TAG_FIGURE
 	bad_types = "/obj/item/toy/figure"
 
 /obj/item/toy/figure/excelsior
