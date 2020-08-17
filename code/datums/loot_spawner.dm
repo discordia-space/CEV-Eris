@@ -26,6 +26,8 @@
 	paths = subtypesof(/obj/item)
 	paths += subtypesof(/mob/living)
 	paths += subtypesof(/obj/machinery)
+	paths += subtypesof(/obj/structure)
+
 	for(var/path in paths)
 		var/atom/movable/A = path
 

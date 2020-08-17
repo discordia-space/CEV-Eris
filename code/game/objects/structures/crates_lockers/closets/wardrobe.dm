@@ -3,6 +3,11 @@
 	desc = "It's a storage unit for standard-issue attire."
 	icon_state = "generic"
 
+	spawn_blacklisted = TRUE
+	spawn_frequency = 5
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_WARDROBE
+
 /obj/structure/closet/wardrobe/sec
 	name = "security wardrobe"
 	icon_door = "blue"
@@ -22,6 +27,7 @@
 /obj/structure/closet/wardrobe/pink
 	name = "pink wardrobe"
 	icon_door = "pink"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/pink/populate_contents()
 	new /obj/item/clothing/under/color/pink(src)
@@ -34,6 +40,7 @@
 /obj/structure/closet/wardrobe/black
 	name = "black wardrobe"
 	icon_door = "black"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/black/populate_contents()
 	new /obj/item/clothing/under/color/black(src)
@@ -70,6 +77,7 @@
 /obj/structure/closet/wardrobe/green
 	name = "green wardrobe"
 	icon_door = "green"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/green/populate_contents()
 	new /obj/item/clothing/under/color/green(src)
@@ -86,6 +94,7 @@
 	name = "prison wardrobe"
 	desc = "It's a storage unit for regulation prisoner attire."
 	icon_door = "orange"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/orange/populate_contents()
 	new /obj/item/clothing/under/color/orange(src)
@@ -98,6 +107,7 @@
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
 	icon_door = "yellow"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/yellow/populate_contents()
 	new /obj/item/clothing/under/color/yellow(src)
@@ -131,6 +141,7 @@
 /obj/structure/closet/wardrobe/white
 	name = "white wardrobe"
 	icon_door = "white"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/white/populate_contents()
 	new /obj/item/clothing/under/color/white(src)
@@ -233,6 +244,7 @@
 /obj/structure/closet/wardrobe/grey
 	name = "grey wardrobe"
 	icon_door = "grey"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/grey/populate_contents()
 	new /obj/item/clothing/under/color/grey(src)
@@ -249,6 +261,7 @@
 /obj/structure/closet/wardrobe/mixed
 	name = "mixed wardrobe"
 	icon_door = "mixed"
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/mixed/populate_contents()
 	new /obj/item/clothing/under/color/blue(src)

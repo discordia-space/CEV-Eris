@@ -15,6 +15,13 @@
 #define SPAWN_MECH_PREMADE "mech_premade"
 
 
+//1.3 SPAWN_MACHINERY
+#define SPAWN_MACHINERY "machinery"
+
+//1.4 Structures
+#define SPAWN_STRUCTURE "structure"
+#define SPAWN_WARDROBE "wardrobe"
+
 //2.Spawn_tags
 //2.1 Items
 #define SPAWN_TAG_ODDITY "item,oddity"
@@ -39,5 +46,11 @@
 //2.2.2 Mechs
 #define SPAWN_TAG_MECH "mech,mech_premade"
 
-//SPAWN_MACHINERY
-#define SPAWN_MACHINERY "machinery"
+//2.3 SPAWN_MACHINERY
+
+
+//2.4 Structures
+#define SPAWN_TAG_WARDROBE "structure,wardrobe"
+
+
+

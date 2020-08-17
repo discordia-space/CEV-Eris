@@ -10,7 +10,7 @@
 	name = "cluster of colored slimes"
 	has_postspawn = TRUE
 
-/obj/random/cluster/slimes/rainbow/post_spawn(var/list/spawns)
+/obj/random/cluster/slimes/rainbow/post_spawn(list/spawns)
 	var/list/colors = list("grey" = 10,
 	"purple" = 4,
 	"metal" = 4,

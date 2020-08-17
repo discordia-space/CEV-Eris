@@ -35455,7 +35455,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4central)
 "bBn" = (
-/obj/random/closet_wardrobe,
+/obj/spawner/closet_wardrobe,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBo" = (
@@ -101966,14 +101966,14 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "euA" = (
-/obj/random/closet_wardrobe,
+/obj/spawner/closet_wardrobe,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "euB" = (
-/obj/random/closet_wardrobe,
+/obj/spawner/closet_wardrobe,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 8
@@ -102155,7 +102155,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "euZ" = (
-/obj/random/closet_wardrobe,
+/obj/spawner/closet_wardrobe,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "eva" = (
