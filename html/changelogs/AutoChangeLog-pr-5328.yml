@@ -1,7 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - rscadd: 3 new prosthetic types with armor
-  - balance: armor does not stack anymore
-  - balance: boots and gloves provide some armor now
-  - refactor: armor is now a datum
