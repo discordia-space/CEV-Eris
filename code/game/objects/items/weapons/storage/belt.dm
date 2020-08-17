@@ -122,6 +122,7 @@
 		/obj/item/weapon/tool/hemostat,
 		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/storage/pill_bottle,
+		/obj/item/bodybag/cryobag
 	)
 
 /obj/item/weapon/storage/belt/medical/emt
@@ -129,6 +130,12 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
+	can_hold = list(
+		/obj/item/weapon/inflatable_dispenser,
+		/obj/item/device/radio/off,
+		/obj/item/taperoll/medical
+
+	)
 
 /obj/item/weapon/storage/belt/tactical
 	name = "tactical belt"
