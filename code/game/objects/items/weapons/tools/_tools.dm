@@ -14,6 +14,12 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 
+	//spawn values
+	bad_types = "/obj/item/weapon/tool"
+	spawn_tags = "item,tool"
+	spawn_blacklisted = FALSE
+	spawn_frequency = 2
+
 	var/tool_in_use = FALSE
 
 	var/sparks_on_use = FALSE	//Set to TRUE if you want to have sparks on each use of a tool

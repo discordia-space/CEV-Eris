@@ -47,7 +47,7 @@ They generally give more random result and can provide more divercity in spawn.
 	return pickweight(list(
 					/obj/random/lathe_disk = 2,
 					/obj/random/circuitboard = 6,
-					/obj/random/knife = 6,
+					/obj/spawner/knife = 6,
 					/obj/random/lowkeyrandom = 8,
 					/obj/random/material = 4,
 					/obj/random/material_rare = 3,
@@ -93,7 +93,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/gun_normal = 3,
 					/obj/random/gun_energy_cheap = 6,
 					/obj/random/gun_shotgun = 5,
-					/obj/random/knife = 6,
+					/obj/spawner/knife = 6,
 					/obj/random/ammo = 15,
 					/obj/random/ammo/shotgun = 15,
 					/obj/random/ammo_ihs = 15,

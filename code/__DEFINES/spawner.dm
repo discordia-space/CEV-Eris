@@ -3,10 +3,14 @@
 #define SPAWN_WEAPON "weapon"
 #define SPAWN_TOOL "tool"
 #define SPAWN_ODDITY "oddity"
-//guns
+
+//weapon
 #define SPAWN_GUN "gun"
-#define SPAWN_ENERGY_GUN "energy gun"
-#define SPAWN_BALISTIC_GUN "balistic gun"
+#define SPAWN_KNIFE "knife"
+
+//guns
+#define SPAWN_ENERGY_GUN "energy"
+#define SPAWN_BALISTIC_GUN "balistic"
 
 //mob
 #define SPAWN_MOB "mob"

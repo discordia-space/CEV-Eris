@@ -104,6 +104,8 @@
 	slot_flags = SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	tool_qualities = list(QUALITY_CUTTING = 15)
+	spawn_tags = "item,tool,weapon,knife"
+	rarity_value = 30
 
 //Swords
 /obj/item/weapon/tool/sword
@@ -126,6 +128,8 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	spawn_tags = "item,tool,weapon,knife,sword"
+	rarity_value = 50
 
 /obj/item/weapon/tool/sword/katana //slightly less penetration, slightly more damage
 	name = "katana"
@@ -135,6 +139,8 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	force = WEAPON_FORCE_BRUTAL
 	armor_penetration = ARMOR_PEN_MODERATE
+	spawn_tags = "item,tool,weapon,knife,sword"
+	rarity_value = 60
 
 /obj/item/weapon/tool/sword/katana/nano
 	name = "\improper Moebius \"Muramasa\" katana"
@@ -151,6 +157,8 @@
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
 	switched_on_force = WEAPON_FORCE_LETHAL
+	
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/sword/katana/nano/turn_on(mob/user)
 	.=..()
@@ -188,3 +196,4 @@
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 	max_upgrades = 2
 	tool_qualities = list(QUALITY_HAMMERING = 5)
+	spawn_blacklisted = TRUE

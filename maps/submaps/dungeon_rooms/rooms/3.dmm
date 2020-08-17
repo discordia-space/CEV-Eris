@@ -22,7 +22,7 @@
 /turf/simulated/wall,
 /area/crawler)
 "g" = (
-/obj/random/knife,
+/obj/spawner/knife,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "h" = (

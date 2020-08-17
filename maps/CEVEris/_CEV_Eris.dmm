@@ -8554,7 +8554,7 @@
 /area/eris/quartermaster/disposaldrop)
 "asR" = (
 /obj/structure/table/standard,
-/obj/random/knife,
+/obj/spawner/knife,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "asS" = (
@@ -30727,7 +30727,7 @@
 "bqB" = (
 /obj/structure/table/standard,
 /obj/random/booze/low_chance,
-/obj/random/knife/low_chance,
+/obj/spawner/knife/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "bqC" = (
@@ -33894,7 +33894,7 @@
 /area/eris/maintenance/section3deck1central)
 "bxO" = (
 /obj/structure/closet,
-/obj/random/knife,
+/obj/spawner/knife,
 /obj/random/pack/rare,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
@@ -52003,7 +52003,7 @@
 "clx" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
-/obj/random/knife,
+/obj/spawner/knife,
 /obj/random/pack/rare/low_chance,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
@@ -102067,7 +102067,7 @@
 /obj/structure/table/standard,
 /obj/random/surgery_tool,
 /obj/random/surgery_tool/low_chance,
-/obj/random/knife/low_chance,
+/obj/spawner/knife/low_chance,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 8
