@@ -174,7 +174,7 @@
 		real_last_name = random_last
 		real_name = random_full
 
-	if(GLOB.in_character_filter.len) //If you name yourself hitler you're getting a random name.
+	if(GLOB.in_character_filter.len) //If you name yourself brazil, you're getting a random name.
 		if(findtext(real_name, config.ic_filter_regex))
 			real_first_name = random_first
 			real_last_name = random_last
