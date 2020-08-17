@@ -186,7 +186,7 @@
 	corpseradio = /obj/item/device/radio/headset/heads/captain
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
 	corpsemask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
-	corpsehelmet = /obj/item/clothing/head/centhat
+	corpsehelmet = /obj/item/clothing/head/caphat
 	corpsegloves = /obj/item/clothing/gloves/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
