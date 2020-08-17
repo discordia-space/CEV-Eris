@@ -184,7 +184,7 @@
 			piece.siemens_coefficient = siemens_coefficient
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
-		if(islist(armor)) piece.armor = armor.Copy()
+		if(armor) piece.armor = armor
 
 	update_icon(1)
 
@@ -306,9 +306,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor[ARMOR_BIO] = 100
+						piece.armor.bio = 100
 					else
-						piece.armor[ARMOR_BIO] = armor[ARMOR_BIO]
+						piece.armor.bio = armor.bio
 
 				else
 					failed_to_seal = 1

@@ -1,0 +1,4 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - server: Adds the log file in data/logs for Qdel
