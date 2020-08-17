@@ -29,6 +29,7 @@
 	l_hand = /obj/item/weapon/storage/firstaid/adv
 	r_pocket = /obj/item/device/lighting/toggleable/flashlight/pen
 	belt = /obj/item/weapon/storage/belt/medical/
+
 /decl/hierarchy/outfit/job/medical/chemist
 	name = OUTFIT_JOB_NAME("Moebius Chemist")
 	uniform = /obj/item/clothing/under/rank/chemist
