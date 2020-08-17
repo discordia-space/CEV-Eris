@@ -95,6 +95,6 @@
 				/mob/living/simple_animal/hostile/onestar_custodian/engineer = 15,
 				))
 
-/obj/random/mob/roomba/post_spawn(var/list/spawns)
+/obj/random/mob/roomba/post_spawn(list/spawns)
 	for(var/mob/living/simple_animal/A in spawns)
 		A.stasis = TRUE

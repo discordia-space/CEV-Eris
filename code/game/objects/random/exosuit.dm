@@ -14,7 +14,7 @@
 	icon_state = "machine-red"
 	has_postspawn = TRUE
 
-/obj/spawner/exosuit/damaged/post_spawn(var/list/things)
+/obj/spawner/exosuit/damaged/post_spawn(list/things)
 	for (var/obj/a in things)
 		a.make_old()
 

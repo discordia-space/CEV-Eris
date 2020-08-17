@@ -42,7 +42,7 @@
 	icon_state = "armor-red"
 	has_postspawn = TRUE
 
-/obj/random/rig/damaged/post_spawn(var/list/spawns)
+/obj/random/rig/damaged/post_spawn(list/spawns)
 	for (var/obj/item/weapon/rig/module in spawns)
 		//screw it up a bit
 		var/cnd = rand(40,80)

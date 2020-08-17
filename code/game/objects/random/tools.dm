@@ -71,7 +71,7 @@
 
 
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
-/obj/random/tool/post_spawn(var/list/spawns)
+/obj/random/tool/post_spawn(list/spawns)
 	if (isturf(loc))
 		for (var/obj/O in spawns)
 			if (!istype(O, /obj/random) && prob(20))

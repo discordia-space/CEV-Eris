@@ -33,7 +33,7 @@
 	spawn_nothing_percentage = 80
 
 
-/obj/random/voidsuit/post_spawn(var/list/spawns)
+/obj/random/voidsuit/post_spawn(list/spawns)
 	for (var/obj/item/clothing/suit/space/void/suit in spawns)
 		new /obj/item/clothing/shoes/magboots(loc)
 		if (damaged)

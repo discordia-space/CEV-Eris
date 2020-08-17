@@ -65,7 +65,7 @@
 		/obj/effect/spider/stickyweb = 2, //These are useful for tape crafting
 	)
 
-/obj/random/junk/post_spawn(var/list/stuff)
+/obj/random/junk/post_spawn(list/stuff)
 	for (var/atom/thing in stuff)
 		if (prob(30))
 			thing.make_old()

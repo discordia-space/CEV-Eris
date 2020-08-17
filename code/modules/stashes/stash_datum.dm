@@ -282,7 +282,7 @@ This file contains the underlying code for stash datums
 
 //The results list contains all the stuff that was spawned
 //In the case of deferred spawns, it contains only the container and none of its contents
-/datum/stash/proc/post_spawn(var/list/results)
+/datum/stash/proc/post_spawn(list/results)
 	return TRUE
 
 
