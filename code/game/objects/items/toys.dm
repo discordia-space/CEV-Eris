@@ -22,6 +22,11 @@
 	throw_range = 20
 	force = NONE
 
+	//spawn_values
+	spawn_blacklisted = FALSE
+	bad_types = "/obj/item/toy"
+	rarity_value = 10
+	spawn_frequency = 10
 
 /*
  * Balloons
@@ -482,6 +487,8 @@
 	desc = "It seems to be almost glitched through reality."
 	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
+	spwn_tags = SPAWN_TAG_FIGURE
+	bad_types = "/obj/item/toy/figure"
 
 /obj/item/toy/figure/excelsior
 	name = "\"Excelsior\" figurine"
@@ -563,6 +570,11 @@
 	icon_state = "ianplushie"
 	anchored = FALSE
 	density = TRUE
+	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
+	spawn_blacklisted = FALSE
+	bad_types = "/obj/structure/plushie"
+	rarity_value = 10
+	spawn_frequency = 10
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
@@ -606,6 +618,8 @@
 	desc = "A very generic small plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
+	bad_types = "/obj/item/toy/plushie"
+	spawn_tags = SPAWN_TAG_PLUSHIE
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
 	if(user.a_intent == I_HELP)

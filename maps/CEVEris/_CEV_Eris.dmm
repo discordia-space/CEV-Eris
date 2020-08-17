@@ -3445,7 +3445,7 @@
 "aie" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet,
-/obj/random/plushie,
+/obj/spawer/plushie,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -26;
@@ -5488,7 +5488,7 @@
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/plushie,
+/obj/spawer/plushie,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -26;
