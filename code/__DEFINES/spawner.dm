@@ -13,3 +13,5 @@
 #define SPAWN_HOSTILE_MOB "hostile mob"
 #define SAPAWN_FRIENDLY_MOB "friendly mob"
 
+//SPAWN_MACHINERY
+#define SPAWN_MACHINERY "machinery"
