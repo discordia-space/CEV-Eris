@@ -32,17 +32,15 @@
 /obj/spawner/proc/item_to_spawn()
 	accompanying_object = initial(accompanying_object)
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
-	var/list/spawns_without_frequency = lsd.all_spawn_by_frequency["0"]
 
-	if(!candidates.len)
-		return
-	candidates -= spawns_without_frequency
 	if(!allow_blacklist)
 		candidates -= lsd.all_spawn_blacklist
 	if(low_price)
 		candidates -= lsd.spawns_lower_price(candidates, low_price)
 	if(top_price)
 		candidates -= lsd.spawns_upper_price(candidates, top_price)
+	//if(!candidates.len)
+	//	return
 	candidates = lsd.pick_frequency_spawn(candidates)
 	candidates = lsd.pick_rarity_spawn(candidates)
 	var/selected = pick(candidates)

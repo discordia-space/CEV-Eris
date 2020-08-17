@@ -5,8 +5,10 @@
 	spawn_frequency = 4
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE
+	bad_types = "/obj/item/weapon/gun_upgrade"
 
 /obj/item/weapon/gun_upgrade/barrel
+	bad_types = "/obj/item/weapon/gun_upgrade/barrel"
 
 //Silences the weapon, reduces damage multiplier slightly, Legacy port.
 /obj/item/weapon/gun_upgrade/barrel/silencer
@@ -88,7 +90,7 @@
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
-
+ 
 /obj/item/weapon/gun_upgrade/barrel/excruciator/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
@@ -135,6 +137,7 @@
 	I.gun_loc_tag = GUN_TRIGGER
 
 /obj/item/weapon/gun_upgrade/mechanism
+	bad_types = "/obj/item/weapon/gun_upgrade/mechanism"
 
 //Adds +3 to the internal magazine of a weapon. Acquired through loot spawns.
 /obj/item/weapon/gun_upgrade/mechanism/overshooter
@@ -172,6 +175,7 @@
 	name = "Frozen Star \"Weintraub\" full auto kit"
 	desc = "A fully automatic receiver for the .25 \"Sol\"."
 	icon_state = "Weintraub"
+	rarity_value = 20
 
 /obj/item/weapon/gun_upgrade/mechanism/weintraub/New()
 	..()
@@ -200,6 +204,7 @@
 	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/weapon/gun_upgrade/underbarrel
+	bad_types = "/obj/item/weapon/gun_upgrade/underbarrel"
 
 /obj/item/weapon/storage/box/gun_upgrades
 	name = "Big box of gun fun"

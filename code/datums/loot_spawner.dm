@@ -49,6 +49,10 @@
 		if(path in all_spawn_bad_paths)
 			continue
 
+		frequency = initial(A.spawn_frequency)
+		if(!frequency || frequency <= 0)
+			continue
+
 		price = initial(A.price_tag)
 		rarity = initial(A.rarity_value)
 		blacklisted = initial(A.spawn_blacklisted)

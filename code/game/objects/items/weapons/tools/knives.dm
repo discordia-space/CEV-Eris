@@ -106,6 +106,7 @@
 	icon_state = "fancydagger"
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/knife/dagger/bluespace
 	name = "Moebius \"Displacement Dagger\""
