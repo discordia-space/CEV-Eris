@@ -93,7 +93,7 @@
 
 // A rare, random item
 #define RANDOM_RARE_ITEM list(\
-					/obj/random/common_oddities = 8,\
+					/obj/spawner/oddities = 8,\
 					/obj/random/material_rare = 3,\
 					/obj/random/tool/advanced = 5,\
 					/obj/random/gun_normal = 3,\

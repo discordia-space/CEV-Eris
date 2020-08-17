@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/circuitboard,
 		/obj/random/science,
 		/obj/random/material_ore,
-		/obj/random/common_oddities = 0.5,
+		/obj/spawner/oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/random/tool_upgrade,
 		/obj/random/exosuit_equipment)
@@ -425,7 +425,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/lowkeyrandom = 5,
 		/obj/random/junk/nondense = 4,
 		/obj/item/stack/rods/random = 3,
-		/obj/random/common_oddities = 0.5,
+		/obj/spawner/oddities = 0.5,
 		/obj/random/material_ore,
 		/obj/item/weapon/material/shard,
 		/obj/random/pack/rare = 0.3

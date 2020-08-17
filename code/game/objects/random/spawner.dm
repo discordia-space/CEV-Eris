@@ -14,7 +14,7 @@
 	var/direction
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY)
 	var/datum/loot_spawner_data/lsd
-	var/list/aditional_object = list()
+	var/list/aditional_object = list() //WORK?
 
 
 // creates a new object and deletes itself
@@ -80,9 +80,3 @@
 				var/atom/AAO = new thing (T)
 				spawns.Add(AAO)
 	return spawns
-
-/obj/spawner/oddities
-	name = "random oddities"
-	icon_state = "techloot-grey"
-	tags_to_spawn = list(SPAWN_ODDITY)
-
