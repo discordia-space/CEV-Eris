@@ -9,6 +9,7 @@
 #define SPAWN_GUN "gun"
 #define SPAWN_ENERGY_GUN "energy_gun"
 #define SPAWN_BALISTIC_GUN "balistic_gun"
+#define SPAWN_GUN_UPGRADE "gun_upgrade"
 
 
 
@@ -25,6 +26,7 @@
 #define SPAWN_TAG_GUN "item,gun"
 #define SPAWN_TAG_ENERGY_GUN "item,gun,energy_gun"
 #define SPAWN_TAG_BALISTIC_GUN "item,gun,balistic_gun"
+#define SPAWN_TAG_GUN_UPGRADE "item,gun,gun_upgrade"
 
 
 //mob

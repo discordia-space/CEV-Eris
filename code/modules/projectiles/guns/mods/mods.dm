@@ -2,6 +2,9 @@
 	icon = 'icons/obj/guns/mods.dmi'
 	w_class = ITEM_SIZE_TINY
 	price_tag = 500
+	spawn_frequency = 4
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_GUN_UPGRADE
 
 /obj/item/weapon/gun_upgrade/barrel
 
@@ -11,6 +14,7 @@
 	desc = "a threaded silencer that can be attached to the barrel of certain guns. Vastly reduces noise, but impedes muzzle velocity."
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 	icon_state = "silencer"
+	rarity_value = 30
 
 
 /obj/item/weapon/gun_upgrade/barrel/silencer/New()
@@ -28,6 +32,7 @@
 	name = "forged barrel"
 	desc = "Despite advancements in 3D printing, a properly forged plasteel barrel can still outperform anything that comes from an autolathe."
 	icon_state = "Forged_barrel"
+	rarity_value = 50
 
 /obj/item/weapon/gun_upgrade/barrel/forged/New()
 	..()
@@ -44,6 +49,7 @@
 	desc = "Uses sympathetic magnetic coiling to increase exit velocity of a metal projectile."
 	icon_state = "Penetrator"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1)
+	rarity_value = 20
 
 /obj/item/weapon/gun_upgrade/barrel/mag_accel/New()
 	..()
@@ -62,6 +68,7 @@
 	desc = "Uses magnetic induction to heat the projectile of a weapon. Arguable combat effectiveness, but flashy nonetheless."
 	icon_state = "Caster"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1)
+	rarity_value = 20
 
 /obj/item/weapon/gun_upgrade/barrel/overheat/New()
 	..()
@@ -99,6 +106,8 @@
 	name = "Frozen Star \"Danger Zone\" Trigger"
 	desc = "When you need that extra edge."
 	icon_state = "Danger_Zone"
+	rarity_value = 40
+	
 
 /obj/item/weapon/gun_upgrade/trigger/dangerzone/New()
 	..()
@@ -114,6 +123,7 @@
 	name = "Frozen Star \"Cop Block\" Trigger"
 	desc = "A simpler way of making a weapon display-only"
 	icon_state = "Cop_Block"
+	rarity_value = 40
 
 /obj/item/weapon/gun_upgrade/trigger/cop_block/New()
 	..()
@@ -131,6 +141,7 @@
 	name = "Frozen Star \"Overshooter\" internal magazine kit"
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
 	icon_state = "Overshooter"
+	rarity_value = 20
 
 /obj/item/weapon/gun_upgrade/mechanism/overshooter/New()
 	..()

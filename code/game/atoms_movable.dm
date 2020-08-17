@@ -18,7 +18,7 @@
 
 	//spawn_values
 	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
-	var/spawn_tags	
+	var/spawn_tags
 	var/rarity_value = 1
 	var/spawn_frequency = 0
 	var/accompanying_object	//path or text
