@@ -11,6 +11,8 @@
 #define SPAWN_BALISTIC_GUN "balistic_gun"
 #define SPAWN_GUN_UPGRADE "gun_upgrade"
 
+//1.2 Mobs
+#define SPAWN_MECH_PREMADE "mech_premade"
 
 
 //2.Spawn_tags
@@ -29,10 +31,13 @@
 #define SPAWN_TAG_GUN_UPGRADE "item,gun,gun_upgrade"
 
 
-//mob
+//2.2 Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "mob,hostile"
 #define SAPAWN_FRIENDLY_MOB "friendly mob"
+
+//2.2.2 Mechs
+#define SPAWN_TAG_MECH "mech,mech_premade"
 
 //SPAWN_MACHINERY
 #define SPAWN_MACHINERY "machinery"

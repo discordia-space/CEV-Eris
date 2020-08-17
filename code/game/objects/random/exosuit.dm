@@ -1,33 +1,24 @@
-/obj/random/exosuit
+/obj/spawner/exosuit
 	name = "random exosuit"
 	icon_state = "machine-red"
-	var/list/randsuits = list(
-		/mob/living/exosuit/premade/powerloader = 5,
-		/mob/living/exosuit/premade/powerloader = 4,
-		/mob/living/exosuit/premade/light = 6,
-		/mob/living/exosuit/premade/combat = 1,//comes unarmed
-		)
+	tags_to_spawn = list(SPAWN_MECH_PREMADE)
 
-/obj/random/exosuit/item_to_spawn()
-	return pickweight(randsuits)
-
-/obj/random/exosuit/low_chance
+/obj/spawner/exosuit/low_chance
 	name = "low chance random lathe disk"
 	icon_state = "machine-red-low"
 	spawn_nothing_percentage = 90
 
 
-
-/obj/random/exosuit/damaged
+/obj/spawner/exosuit/damaged
 	name = "random damaged exosuit"
 	icon_state = "machine-red"
 	has_postspawn = TRUE
 
-/obj/random/exosuit/damaged/post_spawn(var/list/things)
+/obj/spawner/exosuit/damaged/post_spawn(var/list/things)
 	for (var/obj/a in things)
 		a.make_old()
 
-/obj/random/exosuit/damaged/low_chance
+/obj/spawner/exosuit/damaged/low_chance
 	name = "low chance random damaged exosuit"
 	icon_state = "machine-red-low"
 	spawn_nothing_percentage = 90
@@ -78,7 +69,7 @@
 		)
 	)
 
-/obj/random/exosuit/mech_equipment/low_chance
+/obj/spawner/exosuit/mech_equipment/low_chance
 	name = "low chance random exosuit equipment"
 	icon_state = "tech-red-low"
 	spawn_nothing_percentage = 80

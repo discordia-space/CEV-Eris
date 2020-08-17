@@ -2,6 +2,8 @@
 	name = "combat exosuit"
 	desc = "A sleek, modern combat exosuit."
 
+	rarity_value = 60
+
 	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_DARK_GUNMETAL
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat

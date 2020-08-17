@@ -141,7 +141,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet = 4,
 					/obj/random/closet_wardrobe = 2,
 					/obj/random/scrap/moderate_weighted = 12, //Our scrap pile. This is basically just a huge spawner.
-					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
+					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
 /obj/random/pack/machine/low_chance
@@ -166,7 +166,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet_tech = 6,
 					/obj/random/closet = 4,
 					/obj/random/closet_wardrobe = 2,
-					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
+					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
 /obj/random/pack/junk_machine/low_chance
@@ -181,5 +181,5 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/closet_tech = 3,
 					/obj/random/closet = 2,
 					/obj/random/closet_wardrobe = 2,
-					/obj/random/exosuit/damaged = 1, //Some dangerous shit can be found there
+					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))

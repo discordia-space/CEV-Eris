@@ -5,6 +5,14 @@
 	desc = "It seems to be saying 'please let me die'."
 
 	material = MATERIAL_STEEL
+
+	//spawn_values
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_MECH
+	spawn_frequency = 2 // review it
+	rarity_value = 10
+	bad_types = "/mob/living/exosuit/premade"
+
 	var/exosuit_color
 	var/decal
 	var/installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit

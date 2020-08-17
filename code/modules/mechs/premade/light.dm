@@ -2,6 +2,8 @@
 	name = "light exosuit"
 	desc = "A light and agile exosuit."
 
+	rarity_value = 10
+
 	material = MATERIAL_PLASTIC
 	exosuit_color = COLOR_OFF_WHITE
 	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/radproof

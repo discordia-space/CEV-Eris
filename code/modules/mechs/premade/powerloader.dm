@@ -2,6 +2,7 @@
 	name = "APLU \"Ripley\""
 	desc = "An old but well-liked utility exosuit. Once manufactured by Nanotrasen, this design was made omnipresent by data leaks that followed the Fall."
 
+	rarity_value = 15
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
 	installed_software_boards = list(
@@ -80,17 +81,20 @@
 	name = "APLU \"Firestarter\""
 	desc = "An old but well-liked utility exosuit. This one has cool red flames."
 	decal = "flames_red"
+	spawn_blacklisted = TRUE
 
 /mob/living/exosuit/premade/powerloader/flames_blue
 	name = "APLU \"Burning Chrome\""
 	desc = "An old but well-liked utility exosuit. This one has cool blue flames."
 	decal = "flames_blue"
+	spawn_blacklisted = TRUE
 
 
 /mob/living/exosuit/premade/powerloader/firefighter
 	name = "APLU \"Firefighter\""
 	desc = "A mix and match of industrial parts designed to withstand heavy fires."
 
+	rarity_value = 20
 	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
 	exosuit_color = "#819a73"
 	installed_systems = list(
