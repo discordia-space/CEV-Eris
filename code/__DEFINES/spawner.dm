@@ -40,6 +40,11 @@
 #define SPAWN_TAG_STRUCTURE_PLUSHIE "strcuture,toy_plushie"
 #define SPAWN_TAG_FIGURE "item,toy,toy_figure"
 
+// CLOTHING
+#define SPAWN_VOID_SUIT "void_suit"
+
+#define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
+
 
 //  MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
