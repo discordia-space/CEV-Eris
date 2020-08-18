@@ -1468,8 +1468,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/voidsuit
 	num_contained = 1
-	contains = list(/obj/random/voidsuit,
-					/obj/random/voidsuit/damaged)
+	contains = list(/obj/spawner/voidsuit,
+					/obj/spawner/voidsuit/damaged)
 	name = "Surplus Voidsuit"
 	cost = 1500
 	crate_name = "Surplus Voidsuit Crate"

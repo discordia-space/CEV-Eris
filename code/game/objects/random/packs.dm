@@ -58,7 +58,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/tool = 20,
 					/obj/random/tool_upgrade = 30,
 					/obj/random/toolbox = 5,
-					/obj/random/voidsuit = 3,
+					/obj/spawner/voidsuit = 3,
 					/obj/spawner/gun_upgrade = 2
 				))
 

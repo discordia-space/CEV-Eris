@@ -92534,7 +92534,7 @@
 "dZj" = (
 /obj/structure/table/standard,
 /obj/random/pack/rare/low_chance,
-/obj/random/voidsuit/low_chance,
+/obj/spawner/voidsuit/low_chance,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/maintenance/section3deck3starboard)
 "dZk" = (

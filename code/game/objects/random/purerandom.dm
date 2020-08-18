@@ -16,7 +16,7 @@
 				/obj/item/weapon/reagent_containers/syringe/inaprovaline = 2,
 				/obj/item/trash/cigbutt = 4,
 				/obj/item/device/t_scanner = 2,
-				/obj/random/voidsuit/damaged = 3,
+				/obj/spawner/voidsuit/damaged = 3,
 				/obj/item/device/scanner/gas = 2,
 				/obj/item/device/scanner/health = 2,
 				/obj/item/weapon/storage/belt/utility/full = 6,
