@@ -29613,7 +29613,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bnQ" = (
-/obj/random/closet_maintloot,
+/obj/spawner/closet_maintloot,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "bnR" = (
@@ -35459,7 +35459,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBo" = (
-/obj/random/closet_maintloot,
+/obj/spawner/closet_maintloot,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBp" = (

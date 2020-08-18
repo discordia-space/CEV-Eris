@@ -40,8 +40,6 @@
 	spawn_nothing_percentage = 60
 
 
-
-
 /obj/spawner/closet_wardrobe
 	name = "random wardrobe closet"
 	icon_state = "closet-blue"
@@ -53,31 +51,17 @@
 	spawn_nothing_percentage = 60
 
 
-
-
-/obj/random/closet_maintloot
+/obj/spawner/closet_maintloot
 	name = "random maint loot closet"
 	icon_state = "closet-black"
+	tags_to_spawn = list(SPAWN_RANDOM_CLOSET)
 
-
-/obj/random/closet_maintloot/item_to_spawn()
-	return pickweight(list(/obj/structure/closet/random_miscellaneous = 10,
-				/obj/structure/closet/random_tech = 6,
-				/obj/structure/closet/random_milsupply = 2,
-				/obj/structure/closet/random_medsupply = 6,
-				/obj/structure/closet/random_hostilemobs = 8))
-
-/obj/random/closet_maintloot/low_chance
+/obj/spawner/closet_maintloot/low_chance
 	name = "low chance random maint loot closet"
 	icon_state = "closet-black-low"
 	spawn_nothing_percentage = 60
 
 // For Scrap Beacon
-/obj/random/closet_maintloot/beacon/item_to_spawn()
-	return pickweight(list(
-				/obj/structure/closet/random_miscellaneous = 5,
-				/obj/structure/closet/random_tech = 3,
-				/obj/structure/closet/random_milsupply = 1,
-				/obj/structure/closet/random_medsupply = 3,
-				/obj/structure/closet/random_hostilemobs/beacon = 8
-			))
+/obj/spawner/closet_maintloot/beacon
+	allow_blacklist = TRUE
+	exclude_paths = list(/obj/structure/closet/random/hostilemobs)

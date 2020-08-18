@@ -11,11 +11,11 @@
 	var/top_price = 0
 	var/low_price = 0
 	var/allow_blacklist = FALSE
-	var/direction
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY)
 	var/datum/loot_spawner_data/lsd
 	var/list/aditional_object = list() //WORK?
 	var/damaged = FALSE
+	var/exclude_paths = list()
 
 
 // creates a new object and deletes itself
@@ -33,7 +33,7 @@
 /obj/spawner/proc/item_to_spawn()
 	aditional_object = initial(aditional_object)
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
-
+	candidates -= exclude_paths
 	if(!allow_blacklist)
 		candidates -= lsd.all_spawn_blacklist
 	if(low_price)
@@ -44,6 +44,7 @@
 	//	return
 	candidates = lsd.pick_frequency_spawn(candidates)
 	candidates = lsd.pick_rarity_spawn(candidates)
+
 	var/selected = pick(candidates)
 	aditional_object = lsd.all_spawn_accompanying_obj_by_path[selected]
 	return selected

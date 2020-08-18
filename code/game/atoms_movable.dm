@@ -398,7 +398,3 @@
 /atom/movable/proc/preventsTurfInteractions()
 	return FALSE
 
-/atom/movable/proc/get_global()
-	var/obj/item/weapon/oddity/O = /obj/item/weapon/oddity
-	var/list/hola = initial(O.bad_types)
-	return hola
