@@ -60,6 +60,7 @@
 
 //  Structures
 #define SPAWN_STRUCTURE "structure"
+
 // Structures - ClOSET
 #define SPAWN_CLOSET "closet"
 #define SPAWN_WARDROBE "wardrobe"

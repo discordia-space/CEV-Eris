@@ -9,9 +9,10 @@
 	spawn_nothing_percentage = 90
 
 /obj/spawner/exosuit/post_spawn(list/things)
-	if(damaged)
-		for (var/obj/a in things)
-			a.make_old()
+	if(!damaged)
+		return
+	for (var/obj/a in things)
+		a.make_old()
 
 /obj/spawner/exosuit/damaged
 	name = "random damaged exosuit"

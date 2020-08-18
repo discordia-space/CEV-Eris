@@ -34,4 +34,4 @@
 
 
 /obj/spawner/structures/frame
-	tags_to_spawn = (SPAWN_MACHINE_FRAME)
+	tags_to_spawn = list(SPAWN_MACHINE_FRAME)
