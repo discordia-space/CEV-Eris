@@ -1,4 +1,3 @@
-#define TS_RELOAD_PERIOD 30 MINUTES
 SUBSYSTEM_DEF(trade)
 	name = "Trade"
 	priority = SS_PRIORITY_SUPPLY
@@ -11,8 +10,6 @@ SUBSYSTEM_DEF(trade)
 
 	var/list/datum/trade_station/all_stations = list()
 	var/list/datum/trade_station/discovered_stations = list()
-	var/ts_reload_period = TS_RELOAD_PERIOD
-	var/tmp/reload_timer
 
 /datum/controller/subsystem/trade/Initialize()
 	InitStations()
@@ -26,49 +23,62 @@ SUBSYSTEM_DEF(trade)
 	DeInitStations()
 	. = ..()
 
-/datum/controller/subsystem/trade/proc/InitLinked(linked_type, list/stations)
-	stations = try_json_decode(stations)
-	for(var/list/i in stations)
-		RemoveByType(stations, linked_type, TRUE) //BYOND lists is an objects, if we send list here we will change this list, not it's copy
-	return InitStation(linked_type)
-
-/datum/controller/subsystem/trade/proc/init_and_cost_station(stationtype, stations)
-	var/datum/trade_station/st = InitLinked(stationtype, stations)
-	st.cost_trade_stations_budget()
-
-/datum/controller/subsystem/trade/proc/initlinkedstations(list/linked, list/stations) //(list, null)
-	linked = try_json_decode(linked)
-	for(var/i in linked)
-		init_and_cost_station(i, stations)
-
-/datum/controller/subsystem/trade/proc/InitStation(stype, init_on_new = TRUE)
-	var/datum/trade_station/s = new stype(init_on_new)
-	return s
-
-/datum/controller/subsystem/trade/proc/InitStations()
-	var/list/stations2init = list()
-	var/list/subtypes = subtypesof(/datum/trade_station)
-	for(var/i in subtypesof(/datum/trade_station))
-		var/datum/trade_station/s = new i()
-		stations2init[s] = s.spawn_probability
-		initlinkedstations(s.linked_with, list(stations2init, subtypes))
-
-	while(trade_stations_budget && length(stations2init))
-		var/i = pickweight(stations2init)
-		if(ispath(i))
-			init_and_cost_station(i, stations2init)
-
-	clear_list(stations2init)
-
-	if(length(all_stations))
-		reload_timer = addtimer(CALLBACK(src, .proc/ReInitStations), ts_reload_period, TIMER_STOPPABLE)
-
 /datum/controller/subsystem/trade/proc/DeInitStations()
 	for(var/datum/trade_station/s in all_stations)
-		s.regain_trade_stations_budget()
 		qdel(s)
-	all_stations.Cut()
-	deltimer(reload_timer)
+		discovered_stations -= s
+		all_stations -= s
+
+/datum/controller/subsystem/trade/proc/InitStations()
+	var/list/weightstationlist = collect_trade_stations()
+	var/list/stations2init = collect_spawn_always()
+
+	while(trade_stations_budget && length(weightstationlist))
+		var/datum/trade_station/s = pickweight(weightstationlist)
+		if(istype(s))
+			stations2init += s
+		s.cost_trade_stations_budget()
+		weightstationlist.Remove(s)
+	init_stations_by_list(stations2init)
+
+/datum/controller/subsystem/trade/proc
+	collect_trade_stations()
+		. = list()
+		for(var/path in subtypesof(/datum/trade_station))
+			var/datum/trade_station/s = new path()
+			if(!s.spawn_always && s.spawn_probability)
+				.[s] = s.spawn_probability
+			else
+				qdel(s)
+
+	collect_spawn_always()
+		. = list()
+		for(var/path in subtypesof(/datum/trade_station))
+			var/datum/trade_station/s = new path()
+			if(s.spawn_always)
+				. += s
+			else
+				qdel(s)
+
+	init_station(stype)
+		var/datum/trade_station/station
+		if(istype(stype, /datum/trade_station))
+			station = stype
+			if(!station.name)
+				station.init_src()
+		else if(ispath(stype, /datum/trade_station))
+			station = new stype(TRUE)
+		if(station?.linked_with)
+			init_stations_by_list(station.linked_with)
+		. = station
+
+	init_stations_by_list(list/L)
+		. = list()
+		for(var/i in try_json_decode(L))
+			var/a = init_station(i)
+			if(a)
+				. += a
+
 //Returns cost of an existing object including contents
 /datum/controller/subsystem/trade/proc/get_cost(atom/movable/target)
 	. = 0

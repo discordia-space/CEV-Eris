@@ -76,3 +76,15 @@
 	move_delay = 3
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 15)
+
+/mob/living/exosuit/premade/combat/slayer
+	name = "A.C.U. 'Slayer'"
+	desc = "A sleek, modern combat exosuit. It has two red stripes on it's chassis."
+
+	exosuit_color = "#5a6934"
+	decal = "stripes"
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser/laser,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/catapult,
+	)

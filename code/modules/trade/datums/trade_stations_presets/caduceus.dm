@@ -53,7 +53,6 @@
 	)
 
 	offer_types = list(
-			/obj/item/weapon/reagent_containers/blood/empty,
 			/obj/item/weapon/reagent_containers/blood/APlus,
 			/obj/item/weapon/reagent_containers/blood/AMinus,
 			/obj/item/weapon/reagent_containers/blood/BPlus,

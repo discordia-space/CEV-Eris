@@ -31,6 +31,8 @@
 		init_src()
 
 /datum/trade_station/proc/init_src()
+	if(name)
+		crash_with("Some retard gived trade station a name before init_src, not thought name_pool. ([type])")
 	for(var/datum/trade_station/S in SStrade.all_stations)
 		name_pool.Remove(S.name)
 		if(!length(name_pool))
@@ -60,7 +62,7 @@
 	SStrade.all_stations += src
 	if(start_discovered)
 		SStrade.discovered_stations += src
-	cost_trade_stations_budget()
+
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
 	SStrade.trade_stations_budget -= budget
 /datum/trade_station/proc/regain_trade_stations_budget(budget = spawn_cost)

@@ -5,7 +5,7 @@
 /atom/movable/var/price_tag = null
 
 // The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
-/atom/movable/proc/get_item_cost(var/export = FALSE)
+/atom/movable/proc/get_item_cost(export)
 	. = price_tag
 
 
@@ -981,38 +981,62 @@
 /obj/item/bluespace_crystal
 	price_tag = 500
 
-//machinery
+
 
 /obj/machinery
 	price_tag = 100
 
-/obj/machinery/get_item_cost(export = FALSE)
+/obj/machinery/get_item_cost(export)
 	. = ..()
 	for(var/atom/movable/i in component_parts)
-		. += i.get_item_cost()
+		. += SStrade.get_new_cost(i)
+
 /obj/machinery/portable_atmospherics
 	price_tag = 200
 
 /obj/machinery/power/supermatter
 	price_tag = 5000
-/obj/machinery/portable_atmospherics/canister
 
-/obj/machinery/portable_atmospherics/canister/get_item_cost(export = FALSE)
+/obj/machinery/portable_atmospherics/canister/get_item_cost(export)
+	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
+
+/obj/item/weapon/tank
+	price_tag = 50
+/obj/item/weapon/tank/plasma
+	price_tag = 75
+/obj/item/weapon/tank/get_item_cost(export)
 	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
 
 /obj/item/weapon/circuitboard
 	price_tag = 150
 
-/obj/item/weapon/circuitboard/get_item_cost(export = FALSE)
+/obj/item/weapon/circuitboard/get_item_cost(export)
 	. = ..()
 	for(var/atom/movable/i in req_components)
 		if(ispath(i))
-			. += initial(i.price_tag) * log(10, price_tag / 2)
+			. += SStrade.get_new_cost(i) * log(10, price_tag / 2)
 
 /obj/item/weapon/stock_parts
 	price_tag = 100
-/obj/item/weapon/stock_parts/get_item_cost(export = FALSE)
+/obj/item/weapon/stock_parts/get_item_cost(export)
 	. = ..() * rating
 
 /obj/item/organ
 	price_tag = 300
+
+/mob/living/carbon/superior_animal/roach
+	price_tag = 150
+
+/mob/living/carbon/superior_animal/roach/roachling
+	price_tag = 100
+
+/mob/living/carbon/superior_animal/roach/hunter
+	price_tag = 200
+
+/mob/living/exosuit/get_item_cost(export)
+	. = ..()
+	for(var/i in body?.computer?.installed_software)
+		. += SStrade.get_new_cost(i)
+
+/obj/item/stack/get_item_cost(export)
+	return amount * ..()

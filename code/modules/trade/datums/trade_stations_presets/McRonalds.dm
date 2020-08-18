@@ -20,5 +20,8 @@
 	)
 	offer_types = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+		/obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
+		/mob/living/carbon/superior_animal/roach,
+		/mob/living/carbon/superior_animal/roach/hunter,
+		/mob/living/carbon/superior_animal/roach/roachling
 	)

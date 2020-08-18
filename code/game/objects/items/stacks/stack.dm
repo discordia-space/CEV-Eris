@@ -71,9 +71,6 @@
 
 	return ..()
 
-/obj/item/stack/get_item_cost()
-	return amount * price_tag
-
 /obj/item/stack/examine(mob/user)
 	if(..(user, 1))
 		if(!uses_charge)
