@@ -38,6 +38,11 @@
 	breach_threshold = 5
 	resilience = 0.09
 	can_breach = 1
+	spawn_tags = SPAWN_TAG_VOID_SUIT
+	rarity_value = 5
+	spawn_frequency = 10
+	spawn_blacklisted = FALSE
+	accompanying_object = /obj/item/clothing/shoes/magboots
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.

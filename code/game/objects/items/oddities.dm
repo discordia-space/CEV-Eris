@@ -271,3 +271,6 @@
 /obj/item/weapon/oddity/techno/Initialize()
 	icon_state = "techno_part[rand(1,7)]"
 	.=..()
+
+/obj/item/weapon/oddity/proc/get_list()
+	return initial(oddity_stats)
