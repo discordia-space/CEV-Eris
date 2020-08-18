@@ -91,6 +91,9 @@
 		return
 	..()
 
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	return
+
 // -----------------------------
 //        Plastic Bag
 // -----------------------------
