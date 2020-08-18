@@ -418,7 +418,7 @@
 	if(params)
 		P.set_clickpoint(params)
 	var/offset = init_offset
-	if(user.calc_recoil())
+	if(user.recoil)
 		offset += user.recoil
 	offset = min(offset, MAX_ACCURACY_OFFSET)
 	offset = rand(-offset, offset)
