@@ -2,24 +2,26 @@
 #define SPAWN_ITEM  "item"
 
 #define SPAWN_WEAPON "weapon"
-#define SPAWN_TOOL "tool"
+
 #define SPAWN_TAG_WEAPON "item,weapon"
 #define SPAWN_TAG_TOOL "item,weapon,tool"
 
-//knife
+//Items - tools
+#define SPAWN_TOOL "tool"
+//  Items - tools - knife
 #define SPAWN_KNIFE "knife"
 #define SPAWN_SWORD "sword"
 
 #define SPAWN_TAG_KNIFE "item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "item,weapon,tool,knife,sword"
 
-//  Oddities
+//  Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
 #define SPAWN_TAG_ODDITY "item,oddity"
 #define SPAWN_TAG_ODDITY_WEAPON "item,oddity,weapon"
 
-//  GUNS
+//  Items - GUNS
 #define SPAWN_GUN "gun"
 #define SPAWN_ENERGY_GUN "energy_gun"
 #define SPAWN_BALISTIC_GUN "balistic_gun"
@@ -30,7 +32,7 @@
 #define SPAWN_TAG_BALISTIC_GUN "item,gun,balistic_gun"
 #define SPAWN_TAG_GUN_UPGRADE "item,gun,gun_upgrade"
 
-//  TOYS
+//  Items - TOYS
 #define SPAWN_TOY "toy"
 #define SPAWN_PLUSHIE "toy_plushie"
 #define SPAWN_FIGURE "toy_figure"
@@ -58,6 +60,7 @@
 
 //  Structures
 #define SPAWN_STRUCTURE "structure"
+// Structures - ClOSET
 #define SPAWN_CLOSET "closet"
 #define SPAWN_WARDROBE "wardrobe"
 #define SPAWN_TECHNICAL_CLOSET "technical_closet"
@@ -68,7 +71,24 @@
 #define SPAWN_TAG_TECHNICAL_CLOSET "strcuture,closet,technical_closet"
 #define SPAWN_TAG_WARDROBE "structure,closet,wardrobe"
 #define SPAWN_TAG_RANDOM_CLOSET "structure,closet,random_closet"
-#define  SPAWN_TAG_RANDOM_SECURE_CLOSET "structure,closet,random_closet,secure_closet"
+#define SPAWN_TAG_RANDOM_SECURE_CLOSET "structure,closet,random_closet,secure_closet"
+
+// Structures - SALVAGEABLE
+#define SPAWN_SALVAGEABLE "structure_salvageable"
+#define SPAWN_SALVAGEABLE_OS "structure_salvageable_os"
+#define SPAWN_SALVAGEABLE_AUTOLATHEABLE "structure_salvageable_autolathe"
+#define SPAWN_SALVAGEABLE_IMPLANT_CONTAINER "structure_salvageable_implant_container"
+
+
+#define SPAWN_TAG_SALVAGEABLE "strcuture,structure_salvageable"
+#define SPAWN_TAG_OS_SALVAGEABLE "strcuture,structure_salvageable,structure_salvageable_os,os"
+#define SPAWN_TAG_SALVAGEABLE_AUTOLATHE "strcuture,structure_salvageable,structure_salvageable_autolathe"
+
+// Structures - MACHINE_FRAME
+#define SPAWN_MACHINE_FRAME "structure_machine_frame"
+
+#define SPAWN_TAG_COMPUTERFRAME "strcuture,structure_machine_frame,structure_computer_frame"
+#define SPAWN_TAG_CONSTRUCTABLE_FRAME "strcuture,structure_machine_frame,struture_constructable_frame"
 
 //  Mobs
 #define SPAWN_MOB "mob"

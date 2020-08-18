@@ -8,6 +8,11 @@
 	use_power = 0
 	density = TRUE
 	anchored = TRUE
+	spawn_blacklisted = FALSE
+	spawn_frequency = 10 //as /obj/structure/computerframe
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_CONSTRUCTABLE_FRAME
+	bad_types = /obj/machinery/constructable_frame
 
 /obj/machinery/constructable_frame/machine_frame //Made into a seperate type to make future revisions easier.
 	name = "machine frame"
