@@ -17,8 +17,8 @@
 	var/bottlesprite = "bottle"
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
-	var/max_pill_count = 39
-	var/max_pill_vol = 15
+	var/max_pill_count = 39 //max of pills that can be made in a bottle
+	var/max_pill_vol = 15 //max vol pills can have
 	reagent_flags = OPENCONTAINER
 
 /obj/machinery/chem_master/RefreshParts()
