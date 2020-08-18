@@ -266,3 +266,23 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
+
+/obj/item/weapon/storage/pouch/holding/New()
+	..()
+	item_flags |= BLUESPACE
+
+/obj/item/weapon/storage/pouch/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.item_flags & BLUESPACE)
+		to_chat(user, SPAN_WARNING("The bluespace interfaces of the two devices conflict and malfunction, producing a loud explosion."))
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/held = W.get_equip_slot()	
+			if (held == slot_l_hand)
+				var/obj/item/organ/external/E = H.get_organ(BP_L_ARM)
+				E.droplimb(0, DROPLIMB_BLUNT)
+			else if (held == slot_r_hand)
+				var/obj/item/organ/external/E = H.get_organ(BP_R_ARM)
+				E.droplimb(0, DROPLIMB_BLUNT)
+		user.drop_item()
+		return
+	..()
