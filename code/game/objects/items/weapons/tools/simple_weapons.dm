@@ -128,7 +128,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
-	spawn_frequency = 1
+	spawn_frequency = 8
 	spawn_tags = SPAWN_TAG_SWORD
 	rarity_value = 25
 

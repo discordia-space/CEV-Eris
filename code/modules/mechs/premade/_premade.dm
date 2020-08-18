@@ -9,7 +9,7 @@
 	//spawn_values
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_MECH
-	spawn_frequency = 2 // review it
+	spawn_frequency = 10
 	rarity_value = 10
 	bad_types = "/mob/living/exosuit/premade"
 

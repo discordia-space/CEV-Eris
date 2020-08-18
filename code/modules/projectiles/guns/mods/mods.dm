@@ -2,7 +2,7 @@
 	icon = 'icons/obj/guns/mods.dmi'
 	w_class = ITEM_SIZE_TINY
 	price_tag = 100
-	spawn_frequency = 4
+	spawn_frequency = 10
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE
 	bad_types = "/obj/item/weapon/gun_upgrade"

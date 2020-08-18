@@ -16,7 +16,7 @@
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_ODDITY
 	rarity_value = 30
-	spawn_frequency = 1
+	spawn_frequency = 10
 	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common" //list(SPAWN_ITEM, SPAWN_TAG_ODDITY)
 
 //You choose what stat can be increased, and a maximum value that will be added to this stat
@@ -271,6 +271,3 @@
 /obj/item/weapon/oddity/techno/Initialize()
 	icon_state = "techno_part[rand(1,7)]"
 	.=..()
-
-/obj/item/weapon/oddity/proc/get_list()
-	return initial(oddity_stats)

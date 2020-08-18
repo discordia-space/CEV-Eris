@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_GARGANTUAN
 	matter = list(MATERIAL_STEEL = 10)
 	spawn_blacklisted = FALSE
-	spawn_frequency = 8 //review it
+	spawn_frequency = 10
 	rarity_value = 10
 	bad_types = "/obj/structure/closet"
 	var/locked = FALSE
