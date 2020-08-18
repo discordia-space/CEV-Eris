@@ -31,7 +31,7 @@
 
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
-	accompanying_object = initial(accompanying_object)
+	aditional_object = initial(aditional_object)
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
 
 	if(!allow_blacklist)
