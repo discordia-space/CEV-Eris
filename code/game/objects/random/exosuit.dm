@@ -8,15 +8,15 @@
 	icon_state = "machine-red-low"
 	spawn_nothing_percentage = 90
 
+/obj/spawner/exosuit/post_spawn(list/things)
+	if(damaged)
+		for (var/obj/a in things)
+			a.make_old()
 
 /obj/spawner/exosuit/damaged
 	name = "random damaged exosuit"
 	icon_state = "machine-red"
-	has_postspawn = TRUE
-
-/obj/spawner/exosuit/damaged/post_spawn(list/things)
-	for (var/obj/a in things)
-		a.make_old()
+	damaged = TRUE
 
 /obj/spawner/exosuit/damaged/low_chance
 	name = "low chance random damaged exosuit"

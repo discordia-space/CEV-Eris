@@ -7,7 +7,7 @@
 	var/min_amount = 1
 	var/max_amount = 1
 	var/spread_range = 0
-	var/has_postspawn = FALSE
+	var/has_postspawn = TRUE
 	var/top_price = 0
 	var/low_price = 0
 	var/allow_blacklist = FALSE

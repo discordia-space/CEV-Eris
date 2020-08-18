@@ -45,7 +45,6 @@
 /obj/spawner/closet_wardrobe
 	name = "random wardrobe closet"
 	icon_state = "closet-blue"
-	has_postspawn = TRUE
 	tags_to_spawn = list(SPAWN_WARDROBE)
 
 /obj/spawner/closet_wardrobe/low_chance

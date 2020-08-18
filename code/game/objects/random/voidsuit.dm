@@ -1,7 +1,6 @@
 /obj/spawner/voidsuit
 	name = "random voidsuit"
 	icon_state = "armor-blue"
-	has_postspawn = TRUE
 	tags_to_spawn = list(SPAWN_VOID_SUIT)
 
 /obj/spawner/voidsuit/low_chance

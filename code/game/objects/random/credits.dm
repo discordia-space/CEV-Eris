@@ -4,7 +4,6 @@
 	icon_state = "cash-green"
 	low_price = 100
 	top_price = 1000
-	has_postspawn = TRUE
 
 /obj/spawner/credits/item_to_spawn()
 	return /obj/item/weapon/spacecash/bundle
