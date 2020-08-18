@@ -71,6 +71,9 @@
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	return
+
 // -----------------------------
 //        Plastic Bag
 // -----------------------------
