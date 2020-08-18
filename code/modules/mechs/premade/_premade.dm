@@ -50,6 +50,7 @@
 /mob/living/exosuit/premade/random
 	name = "mismatched exosuit"
 	desc = "It seems to have been roughly thrown together and then spraypainted in a single color."
+	spawn_blacklisted = TRUE
 
 /mob/living/exosuit/premade/random/Initialize(mapload, obj/structure/heavy_vehicle_frame/source_frame, super_random = FALSE, using_boring_colours = FALSE)
 	//if(!prob(100/(LAZYLEN(GLOB.mech_decals)+1)))

@@ -119,17 +119,6 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/pick_frequency(list/paths)
-	if(!paths || !paths.len)
-		return
-	var/list/things = list()
-	for(var/path in paths)
-		var/frequency = all_spawn_frequency_by_path[path]
-		if(!frequency)
-			continue
-		things["[frequency]"] = frequency
-	return pickweight(things, 0)
-
 /datum/loot_spawner_data/proc/pick_frequency_spawn(list/paths)
 	if(!paths || !paths.len)
 		return

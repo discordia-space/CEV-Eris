@@ -277,15 +277,16 @@ obj/structure/salvageable/bliss/Initialize()
 //////////////////
 //// ONE STAR ////
 //////////////////
-
-/obj/structure/salvageable/machine_os
-	name = "broken machine"
-	icon_state = "os-machine"
+/obj/structure/salvageable/os
 	spawn_tags = SPAWN_TAG_OS_SALVAGEABLE
 	rarity_value = 20
 	spawn_blacklisted = TRUE
 	spawn_frequency = 15 //from 10
+	bad_types = /obj/structure/salvageable/os
 
+/obj/structure/salvageable/os/machine
+	name = "broken machine"
+	icon_state = "os-machine"
 	salvageable_parts = list(
 		/obj/item/weapon/stock_parts/console_screen = 80,
 		/obj/item/stack/cable_coil{amount = 5} = 80,
@@ -301,7 +302,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/matter_bin/one_star = 40
 	)
 
-/obj/structure/salvageable/computer_os
+/obj/structure/salvageable/os/computer
 	name = "broken computer"
 	icon_state = "os-computer"
 	rarity_value = 33
@@ -318,7 +319,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/network_card/advanced = 40
 	)
 
-/obj/structure/salvageable/implant_container_os
+/obj/structure/salvageable/os/implant_container
 	name = "old container"
 	icon_state = "os-container"
 	rarity_value = 66
@@ -339,7 +340,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/implanter = 30
 	)
 
-/obj/structure/salvageable/data_os
+/obj/structure/salvageable/os/data
 	name = "broken data storage"
 	icon_state = "os-data"
 	rarity_value = 33
@@ -355,7 +356,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/network_card/wired = 40
 	)
 
-/obj/structure/salvageable/server_os
+/obj/structure/salvageable/os/server
 	name = "broken server"
 	icon_state = "os-server"
 	rarity_value = 33
@@ -380,7 +381,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/network_card/wired = 20
 	)
 
-/obj/structure/salvageable/console_os
+/obj/structure/salvageable/os/console
 	name = "pristine console"
 	desc = "Despite being in pristine condition this console doesn't respond to anything, but looks like you can still salvage something from this."
 	icon_state = "os_console"
