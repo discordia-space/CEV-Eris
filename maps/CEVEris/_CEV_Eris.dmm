@@ -15292,7 +15292,7 @@
 /area/eris/maintenance/junk)
 "aJH" = (
 /obj/random/junk,
-/obj/random/tank/low_chance,
+/obj/spawner/tank/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aJI" = (
@@ -17397,7 +17397,7 @@
 "aOT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
-/obj/random/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aOU" = (
@@ -18183,7 +18183,7 @@
 /area/eris/maintenance/section4deck5port)
 "aQs" = (
 /obj/structure/table/standard,
-/obj/random/tank,
+/obj/spawner/tank,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -28191,9 +28191,9 @@
 /area/eris/maintenance/section3deck1central)
 "bkT" = (
 /obj/structure/table/standard,
-/obj/random/tank,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "bkU" = (
@@ -31321,7 +31321,7 @@
 /area/eris/maintenance/section4deck4port)
 "bsd" = (
 /obj/structure/table/rack,
-/obj/random/tank,
+/obj/spawner/tank,
 /obj/random/contraband/low_chance,
 /obj/random/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
@@ -31394,8 +31394,8 @@
 /area/eris/maintenance/section1deck3central)
 "bso" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "bsp" = (
@@ -35492,7 +35492,7 @@
 /area/eris/quartermaster/hangarsupply)
 "bBs" = (
 /obj/structure/closet/secure_closet/anesthetics,
-/obj/random/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "bBt" = (
@@ -51630,8 +51630,8 @@
 "ckw" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "ckx" = (
@@ -59165,7 +59165,7 @@
 /area/eris/maintenance/section3deck4central)
 "cBS" = (
 /obj/structure/table/rack,
-/obj/random/tank,
+/obj/spawner/tank,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
@@ -74915,7 +74915,7 @@
 /area/eris/maintenance/section3deck4central)
 "dlI" = (
 /obj/structure/table/rack,
-/obj/random/tank,
+/obj/spawner/tank,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -84037,7 +84037,7 @@
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
-/obj/random/tank,
+/obj/spawner/tank,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1starboard)
@@ -90505,8 +90505,8 @@
 "dUU" = (
 /obj/structure/table/rack,
 /obj/random/contraband/low_chance,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dUV" = (
@@ -90789,8 +90789,8 @@
 /area/eris/maintenance/section2deck1port)
 "dVB" = (
 /obj/structure/table/standard,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "dVC" = (

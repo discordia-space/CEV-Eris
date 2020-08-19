@@ -42,6 +42,7 @@
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
 	default_pressure = 3*ONE_ATMOSPHERE
+	rarity_value = 30
 
 /obj/item/weapon/tank/anesthetic/spawn_gas()
 	air_contents.adjust_multi(
@@ -106,6 +107,7 @@
 	default_pressure = 3*ONE_ATMOSPHERE
 	default_gas = "oxygen"
 	volume = 2 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
+	rarity_value = 10
 
 /obj/item/weapon/tank/emergency_oxygen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
@@ -116,12 +118,14 @@
 	name = "extended-capacity emergency oxygen tank"
 	icon_state = "emergency_engi"
 	volume = 6
+	rarity_value = 20
 
 /obj/item/weapon/tank/emergency_oxygen/double
 	name = "double emergency oxygen tank"
 	icon_state = "emergency_double"
 	gauge_icon = "indicator-tank-double"
 	volume = 10
+	rarity_value = 25
 
 /obj/item/weapon/tank/emergency_oxygen/nitrogen
 	name = "emergency nitrogen tank"
@@ -129,6 +133,7 @@
 	icon_state = "emergency_nitrogen"
 	default_pressure = 6*ONE_ATMOSPHERE
 	default_gas = "nitrogen"
+	rarity_value = 15
 
 /obj/item/weapon/tank/emergency_oxygen/nitrogen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["nitrogen"] < 0.2 && loc==user)
@@ -146,6 +151,7 @@
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 9*ONE_ATMOSPHERE
 	default_gas = "nitrogen"
+	rarity_value = 30
 
 /obj/item/weapon/tank/nitrogen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)

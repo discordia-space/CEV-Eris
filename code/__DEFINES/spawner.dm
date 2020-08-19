@@ -1,5 +1,5 @@
-//  Items
-#define SPAWN_ITEM  "item"
+//	Items
+#define SPAWN_ITEM "item"
 
 #define SPAWN_WEAPON "weapon"
 
@@ -8,20 +8,24 @@
 
 //Items - tools
 #define SPAWN_TOOL "tool"
-//  Items - tools - knife
+//	Items - tools - knife
 #define SPAWN_KNIFE "knife"
 #define SPAWN_SWORD "sword"
 
 #define SPAWN_TAG_KNIFE "item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "item,weapon,tool,knife,sword"
 
-//  Items - Oddities
+//	Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
 #define SPAWN_TAG_ODDITY "item,oddity"
 #define SPAWN_TAG_ODDITY_WEAPON "item,oddity,weapon"
+//	Items - Oddities
+#define SPAWN_TANK_GAS "tank_gas"
 
-//  Items - GUNS
+#define SPAWN_TAG_TANK_GAS "item,tank_gas"
+
+//	Items - GUNS
 #define SPAWN_GUN "gun"
 #define SPAWN_ENERGY_GUN "energy_gun"
 #define SPAWN_BALISTIC_GUN "balistic_gun"
@@ -32,7 +36,7 @@
 #define SPAWN_TAG_BALISTIC_GUN "item,gun,balistic_gun"
 #define SPAWN_TAG_GUN_UPGRADE "item,gun,gun_upgrade"
 
-//  Items - TOYS
+//	Items - TOYS
 #define SPAWN_TOY "toy"
 #define SPAWN_PLUSHIE "toy_plushie"
 #define SPAWN_FIGURE "toy_figure"
@@ -48,17 +52,17 @@
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
 
 
-//  MECH
+//	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
 
 #define SPAWN_TAG_MECH "mech,mech_premade"
 
 
 
-//  MACHINERY
+//	MACHINERY
 #define SPAWN_MACHINERY "machinery"
 
-//  Structures
+//	Structures
 #define SPAWN_STRUCTURE "structure"
 
 // Structures - ClOSET
@@ -91,7 +95,7 @@
 #define SPAWN_TAG_COMPUTERFRAME "strcuture,structure_machine_frame,structure_computer_frame"
 #define SPAWN_TAG_CONSTRUCTABLE_FRAME "strcuture,structure_machine_frame,struture_constructable_frame"
 
-//  Mobs
+//	Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"
 #define SAPAWN_FRIENDLY_MOB "friendly_mob"

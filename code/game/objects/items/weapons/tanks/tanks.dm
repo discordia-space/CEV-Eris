@@ -22,6 +22,13 @@ var/list/global/tank_gauge_cache = list()
 	throw_speed = 1
 	throw_range = 4
 
+	//spawn_values
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_blacklisted = FALSE
+	bad_types = /obj/item/weapon/tank
+	spawn_tags = SPAWN_TAG_TANK_GAS
+
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/default_pressure = 3*ONE_ATMOSPHERE

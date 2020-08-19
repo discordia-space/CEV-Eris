@@ -664,9 +664,9 @@
 "cF" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tank,
-/obj/random/tank,
-/obj/random/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
+/obj/spawner/tank,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cG" = (
