@@ -275,7 +275,7 @@
 
 /datum/sanity/proc/onReagent(datum/reagent/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
-	if(resting && E.taste_tag.len)
+	if(E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
 			add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
