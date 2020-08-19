@@ -15,10 +15,11 @@
 	w_class = ITEM_SIZE_SMALL
 
 	//spawn values
-	bad_types = "/obj/item/weapon/tool"
+	bad_types = /obj/item/weapon/tool
 	spawn_tags = SPAWN_TOOL
 	spawn_blacklisted = FALSE
 	spawn_frequency = 10
+	rarity_value = 10
 
 	var/tool_in_use = FALSE
 

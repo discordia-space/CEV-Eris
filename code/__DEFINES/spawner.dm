@@ -8,6 +8,8 @@
 
 //Items - tools
 #define SPAWN_TOOL "tool"
+
+#define SPAWN_TAG_TOOL "item,tool"
 //	Items - tools - knife
 #define SPAWN_KNIFE "knife"
 #define SPAWN_SWORD "sword"
@@ -15,12 +17,18 @@
 #define SPAWN_TAG_KNIFE "item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "item,weapon,tool,knife,sword"
 
+// ITEMS - tools - SURGERY
+#define SPAWN_SURGERY_TOOL "surgery_tool"
+
+#define SPAWN_TAG_SURGERY_TOOL "item,tool,surgery_tool"
+
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
 #define SPAWN_TAG_ODDITY "item,oddity"
 #define SPAWN_TAG_ODDITY_WEAPON "item,oddity,weapon"
-//	Items - Oddities
+
+//	Items - Tanks
 #define SPAWN_TANK_GAS "tank_gas"
 
 #define SPAWN_TAG_TANK_GAS "item,tank_gas"

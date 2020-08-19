@@ -15246,8 +15246,8 @@
 /area/eris/engineering/atmos)
 "aJB" = (
 /obj/structure/table/rack,
-/obj/random/surgery_tool/low_chance,
-/obj/random/surgery_tool/low_chance,
+/obj/spawner/surgery_tool/low_chance,
+/obj/spawner/surgery_tool/low_chance,
 /obj/random/medical_lowcost/low_chance,
 /obj/random/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/steel,
@@ -17064,7 +17064,7 @@
 "aOb" = (
 /obj/random/junk,
 /obj/random/pack/tech_loot,
-/obj/random/surgery_tool,
+/obj/spawner/surgery_tool,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aOc" = (
@@ -30084,8 +30084,8 @@
 /area/eris/maintenance/section2deck4starboard)
 "boY" = (
 /obj/structure/table/standard,
-/obj/random/surgery_tool,
-/obj/random/surgery_tool/low_chance,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool/low_chance,
 /turf/simulated/floor/tiled/white/panels,
 /area/eris/maintenance/section3deck1central)
 "boZ" = (
@@ -102055,8 +102055,8 @@
 /area/eris/maintenance/section3deck1central)
 "euM" = (
 /obj/structure/table/standard,
-/obj/random/surgery_tool,
-/obj/random/surgery_tool/low_chance,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool/low_chance,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 8
@@ -102065,8 +102065,8 @@
 /area/eris/maintenance/section3deck1central)
 "euN" = (
 /obj/structure/table/standard,
-/obj/random/surgery_tool,
-/obj/random/surgery_tool/low_chance,
+/obj/spawner/surgery_tool,
+/obj/spawner/surgery_tool/low_chance,
 /obj/spawner/knife/low_chance,
 /obj/machinery/light/small{
 	dir = 4;

@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/medical_trash.dmi'
 	loot_list = list(
 		/obj/random/medical = 4,
-		/obj/random/surgery_tool,
+		/obj/spawner/surgery_tool,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/random/junk/nondense,

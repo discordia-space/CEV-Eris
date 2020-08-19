@@ -36,6 +36,7 @@
 
 	use_power_cost = 0.15
 	suitable_cell = /obj/item/weapon/cell/small
+	spawn_tags = SPAWN_TAG_SURGERY_TOOL
 
 /obj/item/weapon/tool/saw/circular/advanced //tier 4, focusing on armor penetration
 	name = "advanced circular saw"
@@ -47,6 +48,8 @@
 	degradation = 0.7
 	use_power_cost = 0.22
 	max_upgrades = 4
+	spawn_blacklisted = TRUE
+	rarity_value = 20
 
 /obj/item/weapon/tool/saw/chain //tier 4, focusing on damage, fuel variant
 	name = "chainsaw"

@@ -6,3 +6,4 @@
 	flags = CONDUCT
 	attack_verb = list("attacked", "hit", "bludgeoned")
 	tool_qualities = list(QUALITY_BONE_SETTING = 30)
+	spawn_tags = SPAWN_TAG_SURGERY_TOOL
