@@ -119,7 +119,7 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/pick_frequency_spawn(list/paths)
+/datum/loot_spawner_data/proc/pick_frequencies_spawn(list/paths)
 	if(!paths || !paths.len)
 		return
 	var/list/things = list()
@@ -135,7 +135,7 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/pick_rarity_spawn(list/paths)
+/datum/loot_spawner_data/proc/pick_rarities_spawn(list/paths)
 	if(!paths || !paths.len)
 		return
 	var/list/things = list()
@@ -152,3 +152,39 @@
 			things += path
 	return things
 
+/datum/loot_spawner_data/proc/pick_spawn(list/paths)
+	if(!paths || !paths.len)
+		return
+	var/list/things = list()
+	for(var/path in paths)
+		var/frequency_path = all_spawn_frequency_by_path[path]
+		if(!frequency_path)
+			continue
+		if(frequency_path in things)
+			continue
+		things += frequency_path
+	var/frequency = pick(things)
+	admin_notice(SPAN_DANGER("ESTA ES LA FRECUENCIA [frequency]"))
+	things = list()
+	for(var/path in paths)
+		if(all_spawn_frequency_by_path[path] == frequency)
+			things += path
+	paths = things
+	things = list()
+	for(var/path in paths)
+		var/rarity_path = all_spawn_rarity_by_path[path]
+		if(!rarity_path)
+			continue
+		if(rarity_path in things)
+			continue
+		things += rarity_path
+	var/rarity = pick(things)
+	admin_notice(SPAN_DANGER("ESTA ES la rareza [rarity]"))
+	things = list()
+	for(var/path in paths)
+		if(all_spawn_rarity_by_path[path] == rarity)
+			things += path
+	admin_notice(SPAN_DANGER("ESTA la lista final [things]"))
+	var/path_selected = pick(things)
+	admin_notice(SPAN_DANGER("ESTA es el path [path_selected]"))
+	return path_selected

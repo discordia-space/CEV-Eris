@@ -45,10 +45,9 @@
 		candidates -= lsd.spawns_upper_price(candidates, top_price)
 	//if(!candidates.len)
 	//	return
-	candidates = lsd.pick_frequency_spawn(candidates)
-	candidates = lsd.pick_rarity_spawn(candidates)
-
-	var/selected = pick(candidates)
+	candidates = lsd.pick_frequencies_spawn(candidates)
+	candidates = lsd.pick_rarities_spawn(candidates)
+	var/selected = lsd.pick_spawn(candidates)
 	aditional_object = lsd.all_spawn_accompanying_obj_by_path[selected]
 	return selected
 
