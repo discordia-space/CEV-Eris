@@ -1,0 +1,5 @@
+author: Hopek
+delete-after: true
+changes:
+  - rscadd: Autolathe disk eject QoL. You can now Alt-Click on any autolathe to eject
+      the design disk.
