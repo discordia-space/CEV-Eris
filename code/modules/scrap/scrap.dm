@@ -13,6 +13,12 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/icontype = "general"
 	icon_state = "small"
 	icon = 'icons/obj/structures/scrap/base.dmi'
+	//Rarity_values
+	spawn_blacklisted = FALSE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_SCRAP
+
 	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
 	var/loot_min = 6
 	var/loot_max = 12

@@ -107,8 +107,10 @@
 #define SPAWN_REAGENT_DISPENSER "structure_reagent_dispensers"
 
 #define SPAWN_TAG_REAGENT_DISPENSER "strcuture,structure_reagent_dispensers"
+// Structures - scrap
+SPAWN_SCRAP "strcuture_scrap"
 
-
+SPAWN_TAG_SCRAP "strcuture,strcuture_scrap"
 //	Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"

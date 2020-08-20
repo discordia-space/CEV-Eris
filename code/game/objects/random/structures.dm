@@ -1,4 +1,3 @@
-
 /obj/random/structures
 	name = "random structure"
 	icon_state = "machine-black"
