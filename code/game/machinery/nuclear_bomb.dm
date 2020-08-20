@@ -392,3 +392,9 @@ if(!N.lighthack)
 
 /obj/item/weapon/disk/nuclear/touch_map_edge()
 	qdel(src)
+
+/obj/machinery/nuclearbomb/cev
+	name = "\improper Nuclear Fission Explosive"
+	desc = "A old nuclear device. left in eris. so old. it might even turn itself on!"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "nuclearbomb0"
