@@ -1,0 +1,7 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - tweak: you can now sample 3 times before killing the plant (no more RNG) and 4th
+      will kill it and sample one last seed
+  - bugfix: wire cutters can be used to sample from tray now
+  - bugfix: plant b gone now kills everything in Hydroponic trays
