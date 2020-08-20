@@ -281,7 +281,7 @@ obj/structure/salvageable/bliss/Initialize()
 	spawn_tags = SPAWN_TAG_OS_SALVAGEABLE
 	rarity_value = 20
 	spawn_blacklisted = TRUE
-	spawn_frequency = 15 //from 10
+	spawn_frequency = 8 //from 10
 	bad_types = /obj/structure/salvageable/os
 
 /obj/structure/salvageable/os/machine

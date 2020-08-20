@@ -11,8 +11,7 @@
 				/obj/structure/salvageable/computer = 6,\
 				/obj/structure/salvageable/personal = 5,\
 				/obj/structure/salvageable/bliss = 1 ,\
-				/obj/spawner/structures/frame = 5,\
-				/obj/spawner/structures/frame = 4,\
+				/obj/spawner/structures/frame = 10,\
 				/obj/structure/reagent_dispensers/fueltank = 6,\
 				/obj/structure/reagent_dispensers/fueltank/huge = 2,\
 				/obj/structure/reagent_dispensers/watertank = 6,\
@@ -27,11 +26,16 @@
 	icon_state = "machine-black-low"
 	spawn_nothing_percentage = 60
 
+
+/obj/random/structures/os/item_to_spawn()
+	return pickweight(list(/obj/spawner/structures/os = 40,\
+				/obj/structure/salvageable/autolathe = 10,\
+				/obj/spawner/structures/frame = 4))
+
 /obj/spawner/structures/os
 	name = "random os structure"
 	allow_blacklist = TRUE
-	tags_to_spawn = list(SPAWN_SALVAGEABLE_OS,SPAWN_MACHINE_FRAME,SPAWN_SALVAGEABLE_AUTOLATHEABLE)
-
+	tags_to_spawn = list(SPAWN_SALVAGEABLE_OS)
 
 /obj/spawner/structures/frame
 	tags_to_spawn = list(SPAWN_MACHINE_FRAME)
