@@ -407,13 +407,6 @@
 	overlays.Cut()
 	overlays += "controller-wires"
 
-/*
-/obj/machinery/teleport/station/default_deconstruction(obj/item/I, mob/user)
-	if(engaged)
-		src.disengage()
-	. = ..()*/
-	
-
 /obj/machinery/teleport/station/attack_ai()
 	src.attack_hand()
 
