@@ -15,7 +15,7 @@
 	//spawn_values
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_ODDITY
-	rarity_value = 30
+	rarity_value = 10
 	spawn_frequency = 10
 	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common" //list(SPAWN_ITEM, SPAWN_TAG_ODDITY)
 
@@ -58,7 +58,7 @@
 		STAT_COG = 5,
 		STAT_MEC = 7,
 	)
-	rarity_value = 45
+	rarity_value = 15
 
 /obj/item/weapon/oddity/common/coin
 	name = "strange coin"
@@ -96,7 +96,7 @@
 		STAT_TGH = 6,
 		STAT_VIG = 6,
 	)
-	rarity_value = 55
+	rarity_value = 18
 
 /obj/item/weapon/oddity/common/old_newspaper
 	name = "old newspaper"
@@ -117,7 +117,7 @@
 		STAT_COG = 6,
 		STAT_BIO = 6,
 	)
-	rarity_value = 55
+	rarity_value = 18
 
 /obj/item/weapon/oddity/common/paper_omega
 	name = "collection of obscure reports"
@@ -128,7 +128,7 @@
 		STAT_COG = 8,
 		STAT_BIO = 8,
 	)
-	rarity_value = 80
+	rarity_value = 27
 
 /obj/item/weapon/oddity/common/book_eyes
 	name = "observer book"
@@ -139,7 +139,7 @@
 		STAT_TGH = 9,
 		STAT_VIG = 9,
 	)
-	rarity_value = 90
+	rarity_value = 30
 
 /obj/item/weapon/oddity/common/book_omega
 	name = "occult book"
@@ -150,7 +150,7 @@
 		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
-	rarity_value = 55
+	rarity_value = 18
 
 /obj/item/weapon/oddity/common/book_bible
 	name = "old bible"
@@ -169,7 +169,7 @@
 		STAT_ROB = 4,
 		STAT_TGH = 4,
 	)
-	rarity_value = 25
+	rarity_value = 8
 
 /obj/item/weapon/oddity/common/healthscanner
 	name = "odd health scanner"
@@ -180,7 +180,7 @@
 		STAT_COG = 8,
 		STAT_BIO = 8,
 	)
-	rarity_value = 70
+	rarity_value = 23
 
 /obj/item/weapon/oddity/common/old_pda
 	name = "broken pda"
@@ -191,7 +191,7 @@
 		STAT_COG = 6,
 		STAT_MEC = 6,
 	)
-	rarity_value = 45
+	rarity_value = 15
 
 /obj/item/weapon/oddity/common/towel
 	name = "trustworthy towel"
@@ -201,7 +201,7 @@
 		STAT_ROB = 6,
 		STAT_TGH = 6,
 	)
-	rarity_value = 45
+	rarity_value = 15
 
 /obj/item/weapon/oddity/common/teddy
 	name = "teddy bear"
@@ -212,7 +212,7 @@
 		STAT_TGH = 7,
 		STAT_VIG = 7,
 	)
-	rarity_value = 60
+	rarity_value = 20
 
 /obj/item/weapon/oddity/common/old_knife
 	name = "old knife"
@@ -232,7 +232,7 @@
 		STAT_VIG = 5,
 	)
 	spawn_tags = SPAWN_TAG_ODDITY_WEAPON
-	rarity_value = 65
+	rarity_value = 22
 
 /obj/item/weapon/oddity/common/old_id
 	name = "old id"
@@ -250,7 +250,7 @@
 		STAT_COG = 9,
 		STAT_VIG = 9,
 	)
-	rarity_value = 70
+	rarity_value = 23
 
 /obj/item/weapon/oddity/common/paper_bundle
 	name = "paper bundle"
@@ -261,7 +261,7 @@
 		STAT_ROB = 6,
 		STAT_VIG = 6,
 	)
-	rarity_value = 50
+	rarity_value = 16
 
 /obj/item/weapon/oddity/techno
 	name = "Unknown technological part"
