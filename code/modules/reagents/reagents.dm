@@ -160,11 +160,6 @@
 
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.sanity.onReagent(src, effect_multiplier)
-	return
-
 /datum/reagent/proc/overdose(mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.
 	M.adjustToxLoss(REM)
 	return

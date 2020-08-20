@@ -122,8 +122,11 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-
 	M.add_chemical_effect(CE_ALCOHOL, 1)
+
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)
 
 //Tough people can drink a lot
 	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))

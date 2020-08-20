@@ -11,6 +11,8 @@
 	var/nutriment_factor = 12 // Per metabolism tick
 	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
+	sanity_gain_ingest = 0.3 //well they are a sort of food so
+	taste_tag = list()
 	color = "#664330"
 
 /datum/reagent/organic/nutriment/mix_data(var/list/newdata, var/newamount)
@@ -34,16 +36,19 @@
 
 		data -= flavors_to_remove
 
-/datum/reagent/organic/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/nutriment/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(!injectable)
 		M.adjustToxLoss(0.1 * effect_multiplier)
 		return
 	affect_ingest(M, alien, effect_multiplier * 1.2)
 
-/datum/reagent/organic/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/nutriment/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	// Small bodymass, more effect from lower volume.
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier)) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)
 
 /datum/reagent/organic/nutriment/glucose
 	name = "Glucose"
