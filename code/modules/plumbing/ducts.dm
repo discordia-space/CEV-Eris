@@ -389,12 +389,12 @@ All the important duct code:
 	singular_name = "duct"
 	icon = 'icons/obj/plumbing/fluid_ducts.dmi'
 	icon_state = "ducts"
-	custom_materials = list(/datum/material/iron=500)
+	matter = list(MATERIAL_IRON = 5)
 	w_class = ITEM_SIZE_TINY
 	novariants = FALSE
 	max_amount = 50
 	item_flags = NOBLUDGEON
-	merge_type = /obj/item/stack/ducts
+	stacktype = /obj/item/stack/ducts
 	///Color of our duct
 	var/duct_color = "grey"
 	///Default layer of our duct
@@ -425,8 +425,8 @@ All the important duct code:
 		if(!D.anchored)
 			add(1)
 			qdel(D)
-	if(istype(A, /turf/open) && use(1))
-		var/turf/open/OT = A
+	if(istype(A, /turf) && use(1))
+		var/turf/OT = A
 		new /obj/machinery/duct(OT, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer])
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 

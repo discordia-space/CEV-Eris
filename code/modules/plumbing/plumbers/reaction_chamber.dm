@@ -19,7 +19,7 @@
 /obj/machinery/plumbing/reaction_chamber/on_reagent_change()
 	if(reagents.total_volume == 0 && emptying) //we were emptying, but now we aren't
 		emptying = FALSE
-		reagents.flags |= NO_REACT
+		reagent_flags |= NO_REACT
 
 /obj/machinery/plumbing/reaction_chamber/power_change()
 	. = ..()
