@@ -115,11 +115,11 @@
 	w_class = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_POCKET
 	force = WEAPON_FORCE_PAINFUL
-	matter = list(MATERIAL_STEEL = 2, "biomatter" = 20)
+	matter = list(MATERIAL_STEEL = 1, "biomatter" = 20)
 	disposable = TRUE
 	price_tag = 500
 	fire_sound = 'sound/weapons/Laser.ogg'
-	cell_type = /obj/item/weapon/cell/small //can't recharge this one
+	cell_type = /obj/item/weapon/cell/disposable //so it won't mess up the autolathe building materials
 	sel_mode = 2
 	charge_cost = 12.5 // for 8 shots
 	recoil_buildup = 1
@@ -127,6 +127,6 @@
 	twohanded = FALSE
 
 	init_firemodes = list(
-		list(mode_name="Stun", projectile_type=/obj/item/projectile/plasma/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=2, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="Stun", projectile_type=/obj/item/projectile/plasma/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=2,charge_cost=12.5, icon="stun", projectile_color = "#0000FF"),
 		list(mode_name="Melt", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, charge_cost=100, icon="destroy", projectile_color = "#FFFFFF"),
 	)
