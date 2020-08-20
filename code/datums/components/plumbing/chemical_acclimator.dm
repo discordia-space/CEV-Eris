@@ -15,7 +15,7 @@
 		return TRUE
 	return FALSE
 ///We're overriding process and not send_request, because all process does is do the requests, so we might aswell cut out the middle man and save some code from running
-/datum/component/plumbing/acclimator/process()
+/datum/component/plumbing/acclimator/Process()
 	if(AC.emptying)
 		return 
 	. = ..()

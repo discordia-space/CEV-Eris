@@ -273,7 +273,7 @@ All the important duct code:
 	pixel_y = offset
 
 
-/obj/machinery/duct/set_anchored(anchorvalue)
+/obj/machinery/duct/proc/set_anchored(anchorvalue)
 	. = ..()
 	if(isnull(.))
 		return
@@ -306,7 +306,7 @@ All the important duct code:
 				return FALSE
 	return TRUE
 
-/obj/machinery/duct/doMove(destination)
+/obj/machinery/duct/DoMove(destination)
 	. = ..()
 	disconnect_duct()
 	anchored = FALSE
@@ -321,7 +321,7 @@ All the important duct code:
 	var/obj/machinery/duct/D = A
 	var/obj/item/I = user.get_active_held_item()
 	if(I?.tool_behaviour != TOOL_WRENCH)
-		to_chat(user, "<span class='warning'>You need to be holding a wrench in your active hand to do that!</span>")
+		to_chat(user, SPAN_WARNING("You need to be holding a wrench in your active hand to do that!"))
 		return
 	if(get_dist(src, D) != 1)
 		return

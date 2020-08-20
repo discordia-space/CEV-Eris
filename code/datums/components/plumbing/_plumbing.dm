@@ -36,7 +36,7 @@
 		//Only then can we tell the duct next to us they can connect, because only then is the component really added. this was a fun one
 		addtimer(CALLBACK(src, .proc/enable), 0)
 
-/datum/component/plumbing/process()
+/datum/component/plumbing/Process()
 	if(!demand_connects || !reagents)
 		STOP_PROCESSING(SSfluids, src)
 		return
@@ -56,7 +56,7 @@
 
 	return TRUE
 
-///called from in process(). only calls process_request(), but can be overwritten for children with special behaviour
+///called from in Process(). only calls process_request(), but can be overwritten for children with special behaviour
 /datum/component/plumbing/proc/send_request(dir)
 	process_request(amount = MACHINE_REAGENT_TRANSFER, reagent = null, dir = dir)
 
@@ -88,7 +88,7 @@
 	else if(reagents.total_volume > 0) //take whatever
 		return TRUE
 
-///this is where the reagent is actually transferred and is thus the finish point of our process()
+///this is where the reagent is actually transferred and is thus the finish point of our Process()
 /datum/component/plumbing/proc/transfer_to(datum/component/plumbing/target, amount, reagent, datum/ductnet/net)
 	if(!reagents || !target || !target.reagents)
 		return FALSE
