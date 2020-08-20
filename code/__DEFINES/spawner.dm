@@ -33,6 +33,17 @@
 
 #define SPAWN_TAG_TANK_GAS "item,tank_gas"
 
+//	Items - powercells
+#define SPAWN_POWERCELL "powercell"
+#define SPAWN_SMALL_POWERCELL "small_powercell"
+#define SPAWN_MEDIUM_POWERCELL "medium_powercell"
+#define SPAWN_LARGE_POWERCELL "large_powercell"
+
+#define SPAWN_TAG_POWERCELL "item,powercell"
+#define SPAWN_TAG_SMALL_POWERCELL "item,powercell,small_powercell"
+#define SPAWN_TAG_MEDIUM_POWERCELL "item,powercell,medium_powercell"
+#define SPAWN_TAG_LARGE_POWERCELL "item,powercell,large_powercell"
+
 //	Items - GUNS
 #define SPAWN_GUN "gun"
 #define SPAWN_ENERGY_GUN "energy_gun"
@@ -108,9 +119,9 @@
 
 #define SPAWN_TAG_REAGENT_DISPENSER "strcuture,structure_reagent_dispensers"
 // Structures - scrap
-SPAWN_SCRAP "strcuture_scrap"
+#define SPAWN_SCRAP "strcuture_scrap"
 
-SPAWN_TAG_SCRAP "strcuture,strcuture_scrap"
+#define SPAWN_TAG_SCRAP "strcuture,strcuture_scrap"
 //	Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"
