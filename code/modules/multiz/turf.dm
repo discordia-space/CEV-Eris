@@ -253,7 +253,7 @@ see multiz/movement.dm for some info.
 		return
 
 	if(!user.Adjacent(src))
-		to_chat(user, SPAN_DANGER("You can't descent there, the way is blocked."))
+		to_chat(user, SPAN_DANGER("You can't descend there, the way is blocked."))
 		return
 
 	var/obj/occupied = structure.turf_is_crowded()
@@ -267,8 +267,8 @@ see multiz/movement.dm for some info.
 	if(!can_descent(user, structure))
 		return
 
-	usr.visible_message(SPAN_WARNING("[user] starts descenting onto [structure]!"))
-	structure.visible_message(SPAN_WARNING("Someone starts descenting onto [structure]!"))
+	user.visible_message(SPAN_WARNING("[user] starts descending onto [structure]!"))
+	structure.visible_message(SPAN_WARNING("Someone starts descending onto [structure]!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 32 : 60) * user.mod_climb_delay
@@ -281,8 +281,8 @@ see multiz/movement.dm for some info.
 		climbers -= user
 		return
 
-	usr.forceMove(GetBelow(src))
+	user.forceMove(GetBelow(src))
 
 	if(get_turf(user) == GetBelow(src))
-		usr.visible_message(SPAN_WARNING("[user] descents onto [structure]!"))
+		user.visible_message(SPAN_WARNING("[user] descends onto [structure]!"))
 	climbers -= user
