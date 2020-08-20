@@ -278,7 +278,7 @@
 	if(E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
 			if(multiplier == 0)
-				add_rest(taste_tag, 4 * 1/E.taste_tag.len)
+				add_rest(taste_tag, 4 * 1/E.taste_tag.len)  //just so it got somme effect of things with small multipliers
 			else
 				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
