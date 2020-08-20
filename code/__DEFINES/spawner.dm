@@ -103,6 +103,12 @@
 #define SPAWN_TAG_COMPUTERFRAME "strcuture,structure_machine_frame,structure_computer_frame"
 #define SPAWN_TAG_CONSTRUCTABLE_FRAME "strcuture,structure_machine_frame,struture_constructable_frame"
 
+// Structures - reagent dispensers
+#define SPAWN_REAGENT_DISPENSER "structure_reagent_dispensers"
+
+#define SPAWN_TAG_REAGENT_DISPENSER "strcuture,structure_reagent_dispensers"
+
+
 //	Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"

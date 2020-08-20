@@ -1,30 +1,30 @@
+
 /obj/random/structures
 	name = "random structure"
 	icon_state = "machine-black"
 
 /obj/random/structures/item_to_spawn()
-	return pickweight(list(/obj/structure/salvageable/machine = 10,\
-				/obj/structure/salvageable/autolathe = 10,\
-				/obj/structure/salvageable/implant_container = 3,\
-				/obj/structure/salvageable/data = 6,\
-				/obj/structure/salvageable/server = 6,\
-				/obj/structure/salvageable/computer = 6,\
-				/obj/structure/salvageable/personal = 5,\
-				/obj/structure/salvageable/bliss = 1 ,\
+	return pickweight(list(/obj/spawner/structures/salvageable = 47,\
 				/obj/spawner/structures/frame = 10,\
-				/obj/structure/reagent_dispensers/fueltank = 6,\
-				/obj/structure/reagent_dispensers/fueltank/huge = 2,\
-				/obj/structure/reagent_dispensers/watertank = 6,\
+				/obj/spawner/structures/reagent_dispensers = 20,\
 				/obj/structure/largecrate = 2,\
 				/obj/structure/ore_box = 2,\
-				/obj/structure/reagent_dispensers/bidon = 4 ,\
-				/obj/structure/reagent_dispensers/bidon/advanced = 1 ,\
 				/obj/structure/dispenser/oxygen = 1))
 
 /obj/random/structures/low_chance
 	name = "low chance random structures"
 	icon_state = "machine-black-low"
 	spawn_nothing_percentage = 60
+
+/obj/spawner/structures/salvageable
+	name = "random reagent dispensers"
+	icon_state = "machine-black"
+	tags_to_spawn = SPAWN_SALVAGEABLE
+
+/obj/spawner/structures/reagent_dispensers
+	name = "random reagent dispensers"
+	icon_state = "machine-black"
+	tags_to_spawn = SPAWN_REAGENT_DISPENSER
 
 
 /obj/random/structures/os/item_to_spawn()
