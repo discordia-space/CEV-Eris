@@ -78,9 +78,8 @@
 
 /datum/antagonist/proc/check_noble_objetive() //If true, target is noble (fate)
 	for(var/datum/objective/O in objectives)
-		if(istype(O, /datum/objective/assassinate))
-			var/datum/objective/assassinate/A = O
-			if(A.target && A.target.current && A.target.current.stats.getPerk(PERK_NOBLE))
+		if(istype(O, /datum/objective/assassinate) || istype(O, /datum/objective/harm))
+			if(O.target && O.target.current && O.target.current.stats.getPerk(PERK_NOBLE))
 				return TRUE
 	return FALSE
 

@@ -33,4 +33,4 @@
 	var/mob/living/L = owner.current
 
 	for(var/name in stat_modifiers)
-		L.stats.changeStat(name, stat_modifiers[name])
+			L.stats.changeStat(name, stat_modifiers[name]*noble_coeff()
