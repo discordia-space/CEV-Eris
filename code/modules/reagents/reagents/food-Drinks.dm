@@ -11,8 +11,8 @@
 	var/nutriment_factor = 12 // Per metabolism tick
 	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
-	sanity_gain_ingest = 0.3 //well they are a sort of food so
-	taste_tag = list()
+	sanity_gain_ingest = 0.3 //well they are a sort of food so, this defines how good eating the thing will make you feel
+	taste_tag = list()  // list the tastes the thing got there
 	color = "#664330"
 
 /datum/reagent/organic/nutriment/mix_data(var/list/newdata, var/newamount)
@@ -46,6 +46,7 @@
 	// Small bodymass, more effect from lower volume.
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier)) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
+	
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		H.sanity.onReagent(src, effect_multiplier)

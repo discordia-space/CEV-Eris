@@ -104,7 +104,8 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
-	sanity_gain_ingest = 0.5
+	sanity_gain_ingest = 0.5 //this defines how good eating/drinking the thing will make you feel
+	taste_tag = list()  // list the tastes the thing got there
 
 	glass_icon_state = "glass_clear"
 	glass_name = "ethanol"
@@ -120,13 +121,9 @@
 	M.add_chemical_effect(CE_PAINKILLER, max(55-strength, 1))
 	return
 
-/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_ALCOHOL, 1)
-
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.sanity.onReagent(src, effect_multiplier)
 
 //Tough people can drink a lot
 	var/tolerance = max(10, strength + M.stats.getStat(STAT_TGH))
@@ -168,6 +165,9 @@
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)
 
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/paper))
