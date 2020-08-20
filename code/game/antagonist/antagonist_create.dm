@@ -46,7 +46,7 @@
 /datum/antagonist/proc/special_init()
 
 
-/datum/antagonist/proc/create_from_ghost(var/mob/observer/ghost, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE, var/update = TRUE)
+/datum/antagonist/proc/create_from_ghost(mob/observer/ghost, datum/faction/new_faction, doequip = TRUE, announce = TRUE, update = TRUE)
 	if(!istype(ghost))
 		log_debug("ANTAGONIST Wrong target passed to create_from_ghost of [id]! Ghost: [ghost == null?"NULL":ghost] \ref[ghost]")
 		return FALSE

@@ -73,4 +73,20 @@
 	return R
 
 /datum/antagonist/proc/spawn_uplink(mob/living/carbon/human/traitor_mob, amount = DEFAULT_TELECRYSTAL_AMOUNT)
-	setup_uplink_source(traitor_mob, amount)
+
+	setup_uplink_source(traitor_mob, amount*noble_coeff())
+
+/datum/antagonist/proc/check_noble_objetive() //If true, target is noble (fate)
+	for(var/datum/objective/O in objectives)
+		if(istype(O, /datum/objective/assassinate))
+			var/datum/objective/assassinate/A = O
+			if(A.target && A.target.current && A.target.current.stats.getPerk(PERK_NOBLE))
+				return TRUE
+	return FALSE
+
+/datum/antagonist/proc/noble_coeff()
+	var/noble_coeff = 1
+	if(check_noble_objetive())
+		noble_coeff = 1.5
+	return noble_coeff
+
