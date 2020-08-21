@@ -844,3 +844,4 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	if(!ic_filter_regex && GLOB.in_character_filter.len)
 		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
+
