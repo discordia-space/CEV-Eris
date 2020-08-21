@@ -15933,10 +15933,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
-"aLp" = (
-/obj/machinery/door/blast,
-/turf/simulated/floor/tiled/steel,
-/area/eris/hallway/side/eschangarb)
 "aLq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Second Section Substation";
@@ -171692,7 +171688,7 @@ bho
 apJ
 bmb
 iaf
-aLp
+amb
 aMA
 aRm
 apJ
