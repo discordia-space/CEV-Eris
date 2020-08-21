@@ -4,7 +4,7 @@
 /obj/random/encouter
 	spawn_nothing_percentage = 0
 	var/list/obj/random/spawner/encouter/encouters = list(/obj/random/spawner/encouter/mine, /obj/random/spawner/encouter/miningbot, /obj/random/spawner/encouter/strangebeacon, \
-	/obj/random/spawner/encouter/cryopod, /obj/random/spawner/encouter/satellite, /obj/random/spawner/encouter/coffin, /obj/random/spawner/encouter/omnius)
+	/obj/spawner/encouter/cryopod, /obj/spawner/encouter/cryopod, /obj/random/spawner/encouter/coffin, /obj/random/spawner/encouter/omnius)
 
 /obj/random/encouter/item_to_spawn()
 	..()
@@ -35,12 +35,11 @@
 	randspawn = list(/obj/structure/strangebeacon, /obj/structure/strangebeacon/bots, /obj/structure/strangebeacon/pods, \
 	/obj/structure/strangebeacon/bombard)
 
-/obj/random/spawner/encouter/cryopod
-	randspawn = list(/obj/structure/cryopod_spawner/ironhammer, /obj/structure/cryopod_spawner/medical, /obj/structure/cryopod_spawner/technomancer, \
-	/obj/structure/cryopod_spawner/serbian)
+/obj/spawner/encouter/cryopod
+	tags_to_spawn = list(SPAWN_ENCOUNTER_CRYOPOD)
 
-/obj/random/spawner/encouter/satellite
-	randspawn = list(/obj/structure/satellite, /obj/structure/satellite/science)
+/obj/spawner/encouter/satellite
+	tags_to_spawn = list(SPAWN_TAG_SATELITE)
 
 /obj/random/spawner/encouter/coffin
 	randspawn = list(/obj/structure/closet/coffin/spawnercorpse)

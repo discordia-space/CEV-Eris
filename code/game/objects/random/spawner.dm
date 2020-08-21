@@ -6,17 +6,17 @@
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1
-	var/spread_range = 0
-	var/has_postspawn = TRUE
 	var/top_price = 0
 	var/low_price = 0
-	var/allow_blacklist = FALSE
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY)
-	var/datum/loot_spawner_data/lsd
-	var/list/aditional_object = list() //WORK?
+	var/allow_blacklist = FALSE
+	var/list/aditional_object = list()
 	var/damaged = FALSE
 	var/list/exclusion_paths = list()
 	var/list/restristed_tags = list()
+	var/spread_range = 0
+	var/has_postspawn = TRUE
+	var/datum/loot_spawner_data/lsd
 
 
 // creates a new object and deletes itself

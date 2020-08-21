@@ -118,10 +118,22 @@
 #define SPAWN_REAGENT_DISPENSER "structure_reagent_dispensers"
 
 #define SPAWN_TAG_REAGENT_DISPENSER "strcuture,structure_reagent_dispensers"
+
 // Structures - scrap
 #define SPAWN_SCRAP "strcuture_scrap"
 
 #define SPAWN_TAG_SCRAP "strcuture,strcuture_scrap"
+
+// Structures - Cryopod
+#define SPAWN_ENCOUNTER_CRYOPOD "encounter_cryopod"
+
+#define SPAWN_TAG_ENCOUNTER_CRYOPOD "strcuture,encounter_cryopod"
+
+// Structures - Satelite
+#define SPAWN_SATELITE  "strcuture,strcuture_satelite"
+
+#define SPAWN_TAG_SATELITE "strcuture,strcuture_satelite"
+
 //	Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"

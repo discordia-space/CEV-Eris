@@ -45,9 +45,6 @@
 	spawn_nothing_percentage = 60
 
 
-
-
-
 /obj/random/cloth/armor
 	name = "random armor"
 	desc = "This is a random armor."
