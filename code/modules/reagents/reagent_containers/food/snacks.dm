@@ -35,9 +35,6 @@
 	var/message
 	if(!iscarbon(eater))
 		return  list(0, message)
-	if(eater.nutrition > eater.max_nutrition*0.95)
-		message = "You are satisfied and you don't need to eat more."
-		return  list(0, message)
 	if(!base_sanity_gain_pb)
 		message = "This food does not help calm your nerves."
 		return  list(0, message)
