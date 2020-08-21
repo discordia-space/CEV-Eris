@@ -75,7 +75,7 @@
 				spillover += max(0, burn - can_inflict)
 
 		//If there are still hurties to dispense
-		if (spillover)
+		if (spillover && owner)
 			owner.shock_stage += spillover * config.organ_damage_spillover_multiplier
 
 	// sync the organ's damage with its wounds

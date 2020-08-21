@@ -55,14 +55,14 @@
 	..(severity)
 
 /obj/machinery/space_heater/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/cell/medium))
+	if(istype(I, /obj/item/weapon/cell/large))
 		if(panel_open)
 			if(cell)
 				to_chat(user, "There is already a power cell inside.")
 				return
 			else
 				// insert cell
-				var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
+				var/obj/item/weapon/cell/large/C = usr.get_active_hand()
 				if(istype(C))
 					user.drop_item()
 					src.cell = C
@@ -145,7 +145,7 @@
 
 			if("cellinstall")
 				if(panel_open && !cell)
-					var/obj/item/weapon/cell/medium/C = usr.get_active_hand()
+					var/obj/item/weapon/cell/large/C = usr.get_active_hand()
 					if(istype(C))
 						usr.drop_item()
 						src.cell = C

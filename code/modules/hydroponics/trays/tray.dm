@@ -395,27 +395,40 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, var/mob/user as mob)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING), src)
+	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING,QUALITY_DIGGING,QUALITY_WIRE_CUTTING, QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
 		if(QUALITY_SHOVELING)
 			if(weedlevel == 0)
 				to_chat(user, SPAN_WARNING("This plot is completely devoid of weeds. It doesn't need uprooting."))
+				if(user.a_intent == I_HURT)
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
+						user.visible_message(SPAN_DANGER("[user] starts damage the plants root."))
+						dead = 1
+						update_icon()
+					else 
+						user.visible_message(SPAN_DANGER("[user] fails to kill the plant."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO))
 				user.visible_message(SPAN_DANGER("[user] starts uprooting the weeds."), SPAN_DANGER("You remove the weeds from the [src]."))
 				weedlevel = 0
 				update_icon()
 				return
+			
 			return
 
-		if(QUALITY_CUTTING)
+		if(QUALITY_WIRE_CUTTING)
 			if(!seed)
 				to_chat(user, SPAN_NOTICE("There is nothing to take a sample from in \the [src]."))
 				return
 
-			if(sampled)
+			if(sampled > 2) //3 harvests. and the 4th one will kill the plant
 				to_chat(user, SPAN_NOTICE("You have already sampled from this plant."))
+				if(user.a_intent == I_HURT)
+					to_chat(user, SPAN_NOTICE("You start killing it for one last sample."))
+					seed.harvest(user,yield_mod,1)
+					dead = 1
+					update_icon()
 				return
 
 			if(dead)
@@ -426,9 +439,7 @@
 				// Create a sample.
 				seed.harvest(user,yield_mod,1)
 				health -= (rand(3,5)*10)
-
-				if(prob(30))
-					sampled = 1
+				sampled += 1 //no RnG not anymore
 
 				// Bookkeeping.
 				check_health()

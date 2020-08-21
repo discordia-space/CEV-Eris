@@ -438,6 +438,17 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
 	synths += medicine
 
+	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	B.uses_charge = 1
+	B.charge_costs = list(1000)
+	B.synths = list(medicine)
+	O.uses_charge = 1
+	O.charge_costs = list(1000)
+	O.synths = list(medicine)
+	src.modules += B
+	src.modules += O
+
 	var/obj/item/stack/medical/splint/S = new /obj/item/stack/medical/splint(src)
 	S.uses_charge = 1
 	S.charge_costs = list(1000)

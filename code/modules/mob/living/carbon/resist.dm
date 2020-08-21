@@ -127,20 +127,17 @@
 
 	//A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
 	var/breakouttime = 1200 - src.stats.getStat(STAT_ROB) * 10
-	var/displaytime = round(breakouttime / 600) //Minutes to display in the "this will take X minutes."
 	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if(istype(HC))
 		breakouttime = HC.breakouttime - src.stats.getStat(STAT_ROB) * 10
-		displaytime = round(breakouttime / 600) //Minutes
 
 	var/mob/living/carbon/human/H = src
 	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
 		breakouttime /= 2
-		displaytime /= 2
 
 	visible_message(
 		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
-		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)")
+		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)")
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
@@ -166,15 +163,13 @@
 
 	//A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
 	var/breakouttime = 1200
-	var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 	//If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 	if(istype(HC))
 		breakouttime = HC.breakouttime
-		displaytime = breakouttime / 600 //Minutes
 
 	visible_message(
 		SPAN_DANGER("[usr] attempts to remove \the [HC]!"),
-		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)")
+		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)")
 		)
 
 	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))

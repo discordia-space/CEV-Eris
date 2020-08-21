@@ -218,7 +218,8 @@ ADMIN_VERB_ADD(/datum/admins/proc/show_player_panel, null, TRUE)
 	body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
-			<A href='?src=\ref[src];forcespeech=\ref[M]'>Forcesay</A>
+			<A href='?src=\ref[src];forcespeech=\ref[M]'>Forcesay</A> |
+			<A href='?src=\ref[src];forcesanity=\ref[M]'>Sanity Break</A>
 			"}
 	body += "<br><br><b>Languages:</b><br>"
 	var/f = 1

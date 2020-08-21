@@ -5177,7 +5177,9 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alK" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/assist{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep)
 "alL" = (
@@ -8183,9 +8185,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "ash" = (
-/obj/machinery/vending/snack,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/vending/printomat{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/eschangarb)
@@ -28773,6 +28777,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bmi" = (
@@ -46909,11 +46919,11 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "bZF" = (
-/obj/machinery/vending/snack,
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
 	},
+/obj/machinery/vending/powermat,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section2)
 "bZG" = (
@@ -50052,6 +50062,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
 "cgG" = (
@@ -50693,7 +50704,7 @@
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "cin" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "cio" = (
@@ -51923,6 +51934,7 @@
 /area/eris/storage/tech)
 "cll" = (
 /obj/structure/table/glass,
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
 "clm" = (
@@ -53087,6 +53099,12 @@
 "cnR" = (
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay)
@@ -54693,7 +54711,6 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/reception)
 "crE" = (
-/obj/machinery/vending/snack,
 /obj/machinery/status_display{
 	density = 0;
 	pixel_x = 0;
@@ -58003,10 +58020,12 @@
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
 "czy" = (
-/obj/machinery/vending/snack,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
+	},
+/obj/machinery/vending/powermat{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/meeting_room)
@@ -62240,7 +62259,9 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cIR" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/printomat{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "cIS" = (
@@ -70139,7 +70160,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/rnd/research)
 "dbH" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/powermat,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/rnd/research)
 "dbI" = (
@@ -78571,9 +78592,11 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/checkpoint/supply)
 "dtQ" = (
-/obj/machinery/vending/snack,
 /obj/machinery/firealarm{
 	pixel_y = 28
+	},
+/obj/machinery/vending/powermat{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbreak)
@@ -89277,6 +89300,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/mob/living/carbon/human/monkey/punpun,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
 "dRT" = (
@@ -94520,7 +94544,6 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
 "edM" = (
-/obj/machinery/vending/snack,
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -94535,6 +94558,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/vending/cigarette{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
@@ -96652,7 +96678,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck2port)
 "eiM" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/clothingstorage)
 "eiN" = (
@@ -108909,6 +108935,10 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"rXZ" = (
+/mob/living/simple_animal/cat/fluff/bones,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/eris/command/mbo)
 "rYg" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
@@ -248977,7 +249007,7 @@ chl
 chl
 dEP
 dzD
-dzC
+rXZ
 dzT
 dzX
 eBA

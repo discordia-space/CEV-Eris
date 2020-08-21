@@ -131,7 +131,7 @@
 				</div>
 			</div>
 			<div class="itemContent"><br>
-				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.style > 66 ? 'good': 'average')}}
+				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average')}}
 				<br><br>
 			</div>
 		{{/if}}
