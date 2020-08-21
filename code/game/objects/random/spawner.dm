@@ -33,10 +33,10 @@
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
+	candidates -= lsd.spawn_by_tag(restristed_tags)
+	candidates -= exclusion_paths
 	if(!allow_blacklist)
 		candidates -= lsd.all_spawn_blacklist
-		candidates -= lsd.spawn_by_tag(restristed_tags)
-		candidates -= exclusion_paths
 	if(low_price)
 		candidates -= lsd.spawns_lower_price(candidates, low_price)
 	if(top_price)
