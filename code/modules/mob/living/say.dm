@@ -138,7 +138,7 @@ var/list/channel_to_radio_key = new
 	if(GLOB.in_character_filter.len)
 		if(findtext(message, config.ic_filter_regex))
 			// let's try to be a bit more informative!
-			var/warning_message = "<span class='warning'>A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms break the atmosphere and are not allowed: &quot;"
+			var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms break the atmosphere and are not allowed: &quot;"
 			var/list/words = splittext(message, " ")
 			var/cringe = ""
 			for (var/word in words)
@@ -150,7 +150,7 @@ var/list/channel_to_radio_key = new
 
 
 			warning_message = trim(warning_message)
-			to_chat(src, "[warning_message]&quot;</span>")
+			to_chat(src, SPAN_WARNING("[warning_message]&quot;"))
 			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
 			return
 
