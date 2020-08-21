@@ -109197,6 +109197,11 @@
 	name = "Research Desk Shutters";
 	opacity = 0
 	},
+/obj/machinery/door/window/westleft{
+	name = "Research Desk";
+	req_access = list(5)
+	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "voV" = (
