@@ -255,3 +255,14 @@
 	overlays.Cut()
 	if(contents.len)
 		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
+
+/obj/item/weapon/storage/pouch/holding
+	name = "pouch of holding"
+	desc = "If your pockets are not large enough to store all your belongings, you may want to use this high-tech pouch that opens into a localized pocket of bluespace (pun intended)."
+	icon_state = "holdingpouch"
+	item_state = "holdingpouch"
+	storage_slots = 7
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	origin_tech = list(TECH_BLUESPACE = 4)

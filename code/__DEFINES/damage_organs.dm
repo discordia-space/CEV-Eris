@@ -7,6 +7,7 @@
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
 #define BLAST	  "blast"
+#define PSY       "psy"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"

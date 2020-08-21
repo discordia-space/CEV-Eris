@@ -62,12 +62,12 @@
 	pockets.max_w_class = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
-//Makeshift chest rig. 
+//Makeshift chest rig.
 /obj/item/clothing/suit/storage/vest/chestrig
 	name = "makeshift chest rig"
 	desc = "A makeshift chest rig made for carrying some stuff. Can carry four small items. Has little protective value.."
 	icon_state = "mchestrig"
-	item_state = "mchesrrig"
+	item_state = "mchestrig"
 	armor = list(
 		melee = 10,
 		bullet = 5,

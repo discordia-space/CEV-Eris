@@ -551,56 +551,80 @@
 	set_trait(TRAIT_CHEM_SPRAYER, TRUE)
 
 	chems = list()
+
 	var/list/possible_chems = list(
-		"woodpulp",
-		"bicaridine",
-		"hyperzine",
-		"cryoxadone",
-		"blood",
-		"water",
-		"potassium",
-		"plasticide",
-		"mutationtoxin",
-		"amutationtoxin",
-		"inaprovaline",
-		"space_drugs",
-		"paroxetine",
-		"mercury",
-		"sugar",
-		"radium",
-		"ryetalyn",
+		"acetone",
 		"alkysine",
-		"thermite",
-		"tramadol",
+		"amutationtoxin",
+		"banana",
+		"bicaridine",
+		"blattedin",
+		"blood",
+		"capsaicin",
+		"chloralhydrate",
+		"cryoxadone",
 		"cryptobiolin",
+		"cyanide",
 		"dermaline",
 		"dexalin",
-		"synaptizine",
-		"impedrezene",
-		"hyronalin",
-		"peridaxon",
-		"toxin",
-		"rezadone",
 		"ethylredoxrazine",
-		"slimejelly",
-		"cyanide",
-		"mindbreaker",
-		"stoxin",
-		"acetone",
-		"hydrazine",
-		"blattedin",
-		"honey",
 		"frostoil",
-		"capsaicin",
-		"banana",
+		"honey",
+		"hydrazine",
+		"hyperzine",
+		"hyronalin",
+		"impedrezene",
+		"inaprovaline",
+		"mercury",
+		"mindbreaker",
 		"mutagen",
-		"chloralhydrate"
+		"mutationtoxin",
+		"peridaxon",
+		"paroxetine",
+		"plasticide",
+		"potassium",
+		"radium",
+		"rezadone",
+		"ryetalyn",
+		"slimejelly",
+		"space_drugs",
+		"stoxin",
+		"sugar",
+		"synaptizine",
+		"thermite",
+		"toxin",
+		"tramadol",
+		"water",
+		"woodpulp"
 		)
 
+	var/list/firstnames = list (
+		"bleak", "bog", "bum", "candy", "coarse", "corpse", "cramp", "club", "demon", "dog", "dung", "felt", "fly", "goblin", "grave", "greasy", "hypoxylon", "jelly", "junk", "icky", "imp", "ling", "lung", "maggot", "monkey", "mottled", "pixie", "poached", "powder", "pterula", "ramularia", "radiant", "rat", "roach", "rock", "scruffy", "serbian", "shaggy", "slimy", "smelly", "smoky", "space", "spider", "spiky", "splash", "stag", "stinky", "tumbling", "undulate", "vagabond", "veiled", "wall", "web"
+		)
+	var/list/secondnames = list(
+		"amanita", "bane", "beacon", "bolete", "bonnet", "bulgar", "cap", "cone", "conocybe", "coral", "clown", "cremini", "crepidotus", "cup", "cushion", "entoloma", "ear", "fungus", "gill", "heart", "horn", "hydnum", "leafspot", "leoninus", "lichen", "micellium", "morsel", "moss", "mushroom", "ori", "oyster", "panellus", "polypore", "panus", "porcini", "porridge", "puffball", "rod", "rot", "russula", "scale", "smut", "spots", "stem", "stool", "tail", "tears", "tongue", "trumpet", "truffle",  "urn", "vase", "wort"
+		)
 
+	shuffle(firstnames)
+	shuffle(secondnames)
+	var/list/names = list()
+	for (var/i = 1; i <= min(firstnames.len, secondnames.len); i++)
+		names += "[firstnames[i]] [secondnames[i]]"
 
-	var/new_chem = pick(possible_chems)
+	var/random = 0
+	random = rand(1, possible_chems.len)
+	var/new_chem = possible_chems[random]
 	chems[new_chem] = list(rand(1,5),rand(5,10))
+
+	//Give the maintshroom the name
+	var generated_name = ""
+	if (random <= names.len)
+		generated_name = names[random]
+	else
+		generated_name = names[1]
+	name = "[generated_name]"
+	seed_name = "[generated_name]"
+	display_name = "[generated_name]"
 
 	//Set the maintshroom to the hue of the chem
 	var/datum/reagent/chem = chemical_reagents_list[new_chem]

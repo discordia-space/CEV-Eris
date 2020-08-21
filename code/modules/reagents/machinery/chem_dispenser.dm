@@ -99,6 +99,21 @@
 		// open the new ui window
 		ui.open()
 
+/obj/machinery/chemical_dispenser/proc/detach()
+	if(beaker)
+		var/obj/item/weapon/reagent_containers/B = beaker
+		B.loc = loc
+		beaker = null
+
+/obj/machinery/chemical_dispenser/AltClick(mob/living/user)
+	if(user.incapacitated())
+		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		return
+	if(!in_range(src, user))
+		return
+	src.detach()
+	
+
 /obj/machinery/chemical_dispenser/Topic(href, href_list)
 	if(..())
 		return
@@ -119,10 +134,7 @@
 			cell.use(added_amount * chemical_dispenser_ENERGY_COST)
 
 	if(href_list["ejectBeaker"])
-		if(beaker)
-			var/obj/item/weapon/reagent_containers/B = beaker
-			B.loc = loc
-			beaker = null
+		src.detach()
 
 	return 1 // update UIs attached to this object
 

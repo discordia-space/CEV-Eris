@@ -157,11 +157,17 @@ meteor_act
 	if(!type || !def_zone) return 0
 	var/protection = 0
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	if(def_zone.armor)
+		if(def_zone.armor.getRating(type) > protection)
+			protection = def_zone.armor.getRating(type)
+
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(istype(C) && C.body_parts_covered & def_zone.body_part)
-				protection += C.armor[type]
+				if(C.armor.getRating(type) > protection)
+					protection = C.armor.getRating(type)
+
 	return protection
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -255,7 +261,7 @@ meteor_act
 					apply_effect(6, WEAKEN, getarmor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
-		if(!(I.flags & NOBLOODY))
+		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
 			I.add_blood(src)
 
 		if(prob(33 + I.sharp * 10))

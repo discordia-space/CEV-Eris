@@ -16,6 +16,10 @@
 
 	var/tool_in_use = FALSE
 
+	var/force_upgrade_mults = 1
+
+	var/force_upgrade_mods = 0
+
 	var/sparks_on_use = FALSE	//Set to TRUE if you want to have sparks on each use of a tool
 	var/eye_hazard = FALSE	//Set to TRUE should damage users eyes if they without eye protection
 
@@ -353,9 +357,14 @@
 		if (T && T.item_flags & SILENT)
 			volume = 3
 			extrarange = -6
+		else if (T && T.item_flags & LOUD)
+			volume = 500
+			extrarange = 10
 
 		var/soundfile
-		if(forced_sound)
+		if (T && T.item_flags & HONKING)
+			soundfile = WORKSOUND_HONK
+		else if(forced_sound)
 			soundfile = forced_sound
 		else
 			soundfile = worksound
@@ -792,6 +801,8 @@
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
 	force = initial(force)
+	force_upgrade_mults = initial(force_upgrade_mults)
+	force_upgrade_mods = initial(force_upgrade_mods)
 	switched_on_force = initial(switched_on_force)
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)

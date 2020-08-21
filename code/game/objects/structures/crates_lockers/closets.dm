@@ -452,8 +452,13 @@
 				var/obj/item/weapon/tool/T = I
 				if (istype(T) && T.item_flags & SILENT)
 					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
+				else if (istype(T) && T.item_flags & LOUD)
+					playsound(src.loc, 'sound/items/glitch.ogg', 500, 1, 10) //Loud tools can hack it LOUDLY
 				else
 					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
+
+				if (istype(T) && T.item_flags & HONKING)
+					playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
 
 				//Cognition can be used to speed up the proccess
 				if (prob (user.stats.getStat(STAT_COG)))

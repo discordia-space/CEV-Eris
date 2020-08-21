@@ -64,6 +64,15 @@
 	else
 		icon_state = "trashbag3"
 
+/obj/item/weapon/storage/bag/trash/holding
+	name = "trash bag of holding"
+	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	icon_state = "bluetrashbag"
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
+
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	return
 
 // -----------------------------
 //        Plastic Bag
@@ -97,6 +106,20 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/weapon/ore)
 
+/obj/item/weapon/storage/bag/ore/holding
+	name = "satchel of holding"
+	desc = "A revolution in convenience, this satchel allows for infinite ore or produce storage. It's been outfitted with anti-malfunction safety measures."
+	icon_state = "satchel_bspace"
+	max_storage_space = INFINITY
+	max_w_class = ITEM_SIZE_BULKY
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 4, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	origin_tech = list(TECH_BLUESPACE = 4)
+	can_hold = list(/obj/item/weapon/ore,
+	                /obj/item/weapon/reagent_containers/food/snacks/grown,
+	                /obj/item/seeds,
+	                /obj/item/weapon/grown,
+	                /obj/item/weapon/reagent_containers/food/snacks/egg,
+	                /obj/item/weapon/reagent_containers/food/snacks/meat)
 
 // -----------------------------
 //          Produce bag
