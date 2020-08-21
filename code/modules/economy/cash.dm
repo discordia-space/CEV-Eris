@@ -158,12 +158,16 @@
 	desc = "It's worth 500 credits."
 	worth = 500
 
-// exists here specifically for vagabond since they do not have bank accounts and used to have 800 credits.
-/obj/item/weapon/spacecash/bundle/c800
+// exists here specifically for vagabond since they do not have bank accounts and used to have around 800 credits.
+/obj/item/weapon/spacecash/bundle/vagabond
 	name = "pile of credits"
 	icon_state = "spacecash500"
-	desc = "They are worth 800 credits."
-	worth = 800
+
+/obj/item/weapon/spacecash/bundle/vagabond/Initialize()
+	var/rand_amount = rand(700,900)
+	desc = "They are worth [rand_amount] credits."
+	worth = rand_amount
+	. = ..()
 
 /obj/item/weapon/spacecash/bundle/c1000
 	name = "1000 credits"
