@@ -394,15 +394,16 @@
 
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))	return
-	switch(dir)
-		if(NORTH)
-			if(AM.loc.y != src.loc.y+1) return
-		if(EAST)
-			if(AM.loc.x != src.loc.x+1) return
-		if(SOUTH)
-			if(AM.loc.y != src.loc.y-1) return
-		if(WEST)
-			if(AM.loc.x != src.loc.x-1) return
+	if(AM.loc && src.loc)
+		switch(dir)
+			if(NORTH)
+				if(AM.loc.y != src.loc.y+1) return
+			if(EAST)
+				if(AM.loc.x != src.loc.x+1) return
+			if(SOUTH)
+				if(AM.loc.y != src.loc.y-1) return
+			if(WEST)
+				if(AM.loc.x != src.loc.x-1) return
 
 	if(isobj(AM) || ismob(AM))
 		AM.forceMove(src)

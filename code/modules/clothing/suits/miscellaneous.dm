@@ -223,13 +223,13 @@
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
 	name = "Sleek leather Jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
-	icon_state = "tunnelsnake"
+	icon_state = "tunnelsnake_blank"
 	item_state = "tunnelsnake_blank"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
 	name = "Jaeger leather Jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. This jacket has a Jaeger roach pictured on the back. Jaeger Roach rules!"
-	icon_state = "tunnelsnake"
+	icon_state = "tunnelsnake_jager"
 	item_state = "tunnelsnake_jager"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake
