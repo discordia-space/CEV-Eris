@@ -44,8 +44,8 @@
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		return
 
+	if(W.has_quality(QUALITY_CUTTING) || W.has_quality(QUALITY_WIRE_CUTTING) || W.has_quality(QUALITY_LASER_CUTTING))
 
-	if(istype(W, /obj/item/weapon/tool/wirecutters) || istype(W, /obj/item/weapon/tool/scalpel))
 		if(sampled)
 			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
 			return
@@ -57,7 +57,31 @@
 			return
 		if(prob(70))
 			sampled = 1
-		seed.harvest(user,0,1)
+
+		var/list/options = list()
+		options += "Sample plant"
+		options += "Sample seed"
+
+		options[options[1]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_sample")
+		options[options[2]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "seed_sample")
+
+		var/choice = show_radial_menu(user, src, options, radius = 32)
+
+		switch(choice)
+			if ("Sample plant")
+				seed.harvest(user,0, 0, 1)
+			if ("Sample seed")
+				seed.harvest(user,0, 1)
+
+		/*
+		switch (input(user, "What would you like to do?") in list("Harvest plant", "Sample seed", "Cancel"))
+			if("Harvest plant")
+				seed.harvest(user,0, 0, 1)
+			if("Sample seed")
+				seed.harvest(user,0, 1)
+			if("Cancel")
+				return
+		*/
 		health -= (rand(3,5)*5)
 		sampled = 1
 		return

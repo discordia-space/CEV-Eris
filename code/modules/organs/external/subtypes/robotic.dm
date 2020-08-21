@@ -5,8 +5,7 @@
 	dislocated = -1
 	cannot_break = 1
 	nature = MODIFICATION_SILICON
-	brute_mod = 0.8
-	burn_mod = 0.8
+	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 20, bio = 100, rad = 100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2) // Multiplied by w_class
 	var/min_malfunction_damage = 20 // Any more damage than that and you start getting nasty random malfunctions
 

@@ -285,7 +285,7 @@
 	name = "NeoTheology Cahors barrel"
 	desc = "Barrel a day - keeps liver away."
 	icon_state = "barrel"
-	volume = 1000
+	volume = 400
 	starting_reagent = "ntcahors"
 	price_tag = 50
 	contents_cost = 950
