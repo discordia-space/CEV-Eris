@@ -18,12 +18,12 @@
 /obj/spawner/structures/salvageable
 	name = "random reagent dispensers"
 	icon_state = "machine-black"
-	tags_to_spawn = SPAWN_SALVAGEABLE
+	tags_to_spawn = list(SPAWN_SALVAGEABLE)
 
 /obj/spawner/structures/reagent_dispensers
 	name = "random reagent dispensers"
 	icon_state = "machine-black"
-	tags_to_spawn = SPAWN_REAGENT_DISPENSER
+	tags_to_spawn = list(SPAWN_REAGENT_DISPENSER)
 
 
 /obj/random/structures/os/item_to_spawn()

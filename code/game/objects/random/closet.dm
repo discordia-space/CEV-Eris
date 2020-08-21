@@ -64,4 +64,4 @@
 // For Scrap Beacon
 /obj/spawner/closet_maintloot/beacon
 	allow_blacklist = TRUE
-	exclude_paths = list(/obj/structure/closet/random/hostilemobs)
+	exclusion_paths = list(/obj/structure/closet/random/hostilemobs)

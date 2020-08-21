@@ -12,20 +12,17 @@
 	var/low_price = 0
 	var/allow_blacklist = FALSE
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY)
-	var/list/restristed_tags = list()
 	var/datum/loot_spawner_data/lsd
 	var/list/aditional_object = list() //WORK?
 	var/damaged = FALSE
-	var/exclude_paths = list()
+	var/list/exclusion_paths = list()
+	var/list/restristed_tags = list()
 
 
 // creates a new object and deletes itself
 /obj/spawner/Initialize()
 	..()
 	lsd = GLOB.all_spawn_data["loot_s_data"]
-	if(islist(restristed_tags) && restristed_tags.len)
-		for(var/tag in restristed_tags)
-			exclude_paths += lsd.all_spawn_by_tag[tag]
 	if(!prob(spawn_nothing_percentage))
 		var/list/spawns = spawn_item()
 		if (has_postspawn && spawns.len)
@@ -36,9 +33,10 @@
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
-	candidates -= exclude_paths
 	if(!allow_blacklist)
 		candidates -= lsd.all_spawn_blacklist
+		candidates -= lsd.spawn_by_tag(restristed_tags)
+		candidates -= exclusion_paths
 	if(low_price)
 		candidates -= lsd.spawns_lower_price(candidates, low_price)
 	if(top_price)

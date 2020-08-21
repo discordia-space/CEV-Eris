@@ -92,9 +92,9 @@
 
 
 /datum/loot_spawner_data/proc/spawn_by_tag(list/tags)
-	if(!islist(tags))
-		return
 	var/list/things = list()
+	if(!islist(tags))
+		return things
 	for(var/tag in tags)
 		if(all_spawn_by_tag["[tag]"] in things)
 			continue
