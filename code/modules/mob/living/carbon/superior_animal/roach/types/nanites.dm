@@ -20,6 +20,9 @@
 	min_air_pressure = 0
 	min_bodytemperature = 0
 
+	spawn_tags = SPAWN_TAG_NANITE_ROACH
+	rarity_value = 22.5
+
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
 

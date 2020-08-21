@@ -130,4 +130,10 @@
 #define SPAWN_TAG_HOSTILE_MOB "mob,hostile_mob"
 #define SAPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
 
+// MOBS - ROACH
+#define SPAWN_ROACH "mob_roach"
+#define SPAWN_NANITE_ROACH "nanite_roach"
+
+#define SPAWN_TAG_ROACH "mob,hostile_mob,mob_roach"
+#define SPAWN_TAG_NANITE_ROACH "mob,hostile_mob,mob_roach,nanite_roach"
 

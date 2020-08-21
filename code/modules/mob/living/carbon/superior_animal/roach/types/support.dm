@@ -9,6 +9,7 @@
 	melee_damage_upper = 3
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche
 	meat_amount = 3
+	rarity_value = 11.25
 
 /mob/living/carbon/superior_animal/roach/support/New()
 	..()
