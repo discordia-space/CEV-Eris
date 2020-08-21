@@ -14,7 +14,7 @@
 "n" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "o" = (/obj/random/traps,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "p" = (/obj/structure/bed/chair/office/dark,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
-"q" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"q" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "r" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "s" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 

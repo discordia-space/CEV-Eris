@@ -8,7 +8,7 @@
 "h" = (/obj/structure/railing,/turf/simulated/floor/plating/under,/area/deepmaint)
 "i" = (/obj/structure/railing,/obj/random/junk/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
 "j" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/structure/railing,/turf/simulated/floor/plating/under,/area/deepmaint)
-"k" = (/obj/structure/catwalk,/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
+"k" = (/obj/structure/catwalk,/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
 "l" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
 "m" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
 "n" = (/obj/structure/table/standard,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)

@@ -1,4 +1,4 @@
-"a" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
+"a" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
 "b" = (/turf/simulated/floor/wood,/area/deepmaint)
 "c" = (/obj/random/junk,/turf/simulated/floor/wood,/area/deepmaint)
 "d" = (/obj/random/junk,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)

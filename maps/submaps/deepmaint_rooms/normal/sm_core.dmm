@@ -1,6 +1,6 @@
 "a" = (/turf/simulated/floor/tiled/dark/danger,/area/deepmaint)
 "b" = (/obj/random/junk,/turf/simulated/floor/tiled/dark/danger,/area/deepmaint)
-"c" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
+"c" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
 "d" = (/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
 "e" = (/turf/simulated/floor/plating/under,/area/deepmaint)
 "f" = (/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
@@ -18,7 +18,7 @@
 "r" = (/obj/effect/window_lwall_spawn/plasma,/obj/machinery/door/blast/regular{_wifi_id = null; icon_state = "pdoor1"; id = null; name = "Reactor Core"; p_open = 0},/turf/simulated/floor/reinforced,/area/deepmaint)
 "t" = (/obj/structure/barricade,/turf/simulated/floor/plating/under,/area/deepmaint)
 "u" = (/obj/structure/girder/displaced,/turf/simulated/floor/plating/under,/area/deepmaint)
-"v" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/dark/danger,/area/deepmaint)
+"v" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/tiled/dark/danger,/area/deepmaint)
 
 (1,1,1) = {"
 ababcddabab

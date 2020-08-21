@@ -101,7 +101,7 @@
 	/mob/living/simple_animal/mouse,
 	/obj/random/slime/rainbow,
 	/obj/random/mob/spiders,
-	/obj/random/mob/roaches,
+	/obj/spawner/roaches,
 	/mob/living/simple_animal/hostile/samak,
 	/mob/living/simple_animal/hostile/bear,
 	/mob/living/simple_animal/hostile/carp,

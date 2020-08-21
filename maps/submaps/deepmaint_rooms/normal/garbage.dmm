@@ -16,7 +16,7 @@
 "p" = (/obj/random/scrap/moderate_weighted,/obj/structure/railing,/turf/simulated/floor/plating/under,/area/deepmaint)
 "q" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4; anchored = 1},/obj/structure/railing,/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
 "r" = (/obj/random/junk/low_chance,/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
-"s" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"s" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
 "t" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "u" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "v" = (/obj/random/traps/low_chance,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)

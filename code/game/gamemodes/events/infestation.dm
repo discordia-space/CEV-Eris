@@ -179,7 +179,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 		if(INFESTATION_ROACHES)
 			event_name = "Giant Roach Infestation"
 			chosen_verb = "have burrowed into"
-			chosen_mob_classification += /obj/random/mob/roaches
+			chosen_mob_classification += /obj/spawner/roaches
 		if(INFESTATION_YITHIAN)
 			unidentified = TRUE
 			chosen_mob_classification += /mob/living/simple_animal/yithian

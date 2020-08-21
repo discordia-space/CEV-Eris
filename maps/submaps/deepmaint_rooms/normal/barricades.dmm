@@ -7,7 +7,7 @@
 "g" = (/obj/structure/table/rack/shelf,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "h" = (/obj/random/junk,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
 "i" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
-"j" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
+"j" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
 "k" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "l" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/obj/random/pack/rare,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "m" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)

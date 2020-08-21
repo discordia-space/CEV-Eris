@@ -35,11 +35,11 @@
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/space)
 "j" = (
-/obj/random/mob/roaches,
+/obj/spawner/roaches,
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/space)
 "k" = (
-/obj/random/mob/roaches/low_chance,
+/obj/spawner/roaches/low_chance,
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/space)
 "l" = (

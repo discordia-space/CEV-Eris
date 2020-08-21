@@ -11,7 +11,7 @@
 "k" = (/obj/structure/table/standard,/obj/spawner/surgery_tool,/obj/spawner/surgery_tool/low_chance,/turf/simulated/floor/tiled/white/panels,/area/deepmaint)
 "l" = (/obj/machinery/optable,/turf/simulated/floor/tiled/white/panels,/area/deepmaint)
 "m" = (/turf/simulated/floor/tiled/white/panels,/area/deepmaint)
-"n" = (/obj/random/cluster/roaches/low_chance,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
+"n" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
 "o" = (/turf/simulated/floor/tiled/steel/techfloor_grid,/area/deepmaint)
 "p" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
 "q" = (/obj/structure/medical_stand,/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)

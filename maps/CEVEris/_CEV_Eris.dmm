@@ -2021,7 +2021,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "aeT" = (
@@ -5481,7 +5481,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
 "amt" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "amu" = (
@@ -6606,7 +6606,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
 "aoU" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "aoV" = (
@@ -7909,7 +7909,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/maintenance/section2deck5starboard)
 "arG" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/toilet/medbay)
 "arH" = (
@@ -8724,7 +8724,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/fueltankstorage)
 "atm" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/fueltankstorage)
 "atn" = (
@@ -9419,7 +9419,7 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/fueltankstorage)
 "avf" = (
-/obj/random/cluster/roaches,
+/obj/spawner/roaches/cluster,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "avg" = (
@@ -11101,7 +11101,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/eris/maintenance/disposal)
 "azn" = (
-/obj/random/cluster/roaches,
+/obj/spawner/roaches/cluster,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "azo" = (
@@ -11969,7 +11969,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/crew_quarters/sleep)
 "aBg" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2starboard)
 "aBh" = (
@@ -13764,7 +13764,7 @@
 /turf/space,
 /area/space)
 "aFI" = (
-/obj/random/cluster/roaches,
+/obj/spawner/roaches/cluster,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "aFJ" = (
@@ -16295,7 +16295,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/random/mob/roaches/low_chance,
+/obj/spawner/roaches/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aMk" = (
@@ -18667,7 +18667,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "aRA" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "aRB" = (
@@ -21069,7 +21069,7 @@
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/medical/virology)
 "aWL" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/maintenance/section3deck1central)
 "aWM" = (
@@ -25977,7 +25977,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/security/prisoncells)
 "bgj" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bgk" = (
@@ -26833,7 +26833,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bik" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section3deck1central)
 "bil" = (
@@ -27293,7 +27293,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bjg" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "bjh" = (
@@ -29965,7 +29965,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "boI" = (
-/obj/random/cluster/roaches,
+/obj/spawner/roaches/cluster,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "boJ" = (
@@ -29987,7 +29987,7 @@
 /turf/simulated/open,
 /area/eris/crew_quarters/toilet/medbay)
 "boL" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "boM" = (
@@ -30238,7 +30238,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/medical/morgue)
 "bpq" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck1central)
 "bpr" = (
@@ -32189,7 +32189,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/atmoscontrol)
 "bub" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -32550,7 +32550,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "buV" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
 "buW" = (
@@ -34255,7 +34255,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "byD" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section3deck1central)
 "byE" = (
@@ -42132,7 +42132,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bPg" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck2central)
 "bPh" = (
@@ -42731,7 +42731,7 @@
 /turf/simulated/floor/tiled/white/panels,
 /area/eris/rnd/scient)
 "bQs" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bQt" = (
@@ -43731,7 +43731,7 @@
 /turf/simulated/floor/dirt,
 /area/eris/crew_quarters/hydroponics/garden)
 "bSG" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3starboard)
 "bSH" = (
@@ -56048,7 +56048,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "cvd" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/oldtele)
 "cve" = (
@@ -56113,7 +56113,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "cvo" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "cvp" = (
@@ -57807,7 +57807,7 @@
 	icon_state = "map";
 	dir = 8
 	},
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czf" = (
@@ -57857,7 +57857,7 @@
 /area/eris/maintenance/section1deck2central)
 "czj" = (
 /obj/structure/catwalk,
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/open,
 /area/eris/maintenance/oldtele)
 "czk" = (
@@ -60816,7 +60816,7 @@
 "cFs" = (
 /obj/random/junk/low_chance,
 /obj/random/junk,
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cFt" = (
@@ -63355,7 +63355,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "cLx" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cLy" = (
@@ -64950,7 +64950,7 @@
 /turf/simulated/open,
 /area/eris/maintenance/section3deck4port)
 "cPw" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
@@ -67284,7 +67284,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cVf" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/techstorage)
 "cVg" = (
@@ -69198,7 +69198,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cZp" = (
@@ -77983,7 +77983,7 @@
 /area/eris/rnd/mixing)
 "dsy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "dsz" = (
@@ -79922,7 +79922,7 @@
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwW" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwX" = (
@@ -80226,7 +80226,7 @@
 /area/eris/maintenance/oldbridge)
 "dxH" = (
 /obj/item/weapon/newspaper,
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dxI" = (
@@ -82107,11 +82107,11 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/patients_rooms)
 "dBX" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck1central)
 "dBY" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck1central)
 "dBZ" = (
@@ -84310,7 +84310,7 @@
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/library)
 "dHl" = (
-/obj/random/cluster/roaches,
+/obj/spawner/roaches/cluster,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
@@ -87668,7 +87668,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dOh" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3starboard)
 "dOi" = (
@@ -88163,7 +88163,7 @@
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
 "dPn" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
@@ -88825,7 +88825,7 @@
 /turf/simulated/floor/plating,
 /area/eris/engineering/engine_room)
 "dQN" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "dQO" = (
@@ -89253,7 +89253,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3starboard)
 "dRP" = (
-/obj/random/cluster/roaches,
+/obj/spawner/roaches/cluster,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3port)
 "dRQ" = (
@@ -89555,7 +89555,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "dSy" = (
@@ -89571,7 +89571,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2starboard)
 "dSA" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2starboard)
 "dSB" = (
@@ -91016,7 +91016,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck1starboard)
 "dWf" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5starboard)
 "dWg" = (
@@ -92266,7 +92266,7 @@
 /turf/simulated/floor/plating,
 /area/eris/rnd/anomalisolone)
 "dYx" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/maintenance/section3deck3starboard)
 "dYy" = (
@@ -92368,7 +92368,7 @@
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/quartermaster/miningdock)
 "dYK" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section3deck3starboard)
 "dYL" = (
@@ -92891,7 +92891,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "eac" = (
@@ -95790,7 +95790,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "egI" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2port)
 "egJ" = (
@@ -108540,7 +108540,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
 "mCG" = (
-/obj/random/cluster/roaches/low_chance,
+/obj/spawner/roaches/cluster/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "mNb" = (
