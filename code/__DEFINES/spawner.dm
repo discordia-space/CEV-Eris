@@ -4,7 +4,6 @@
 #define SPAWN_WEAPON "weapon"
 
 #define SPAWN_TAG_WEAPON "item,weapon"
-#define SPAWN_TAG_TOOL "item,weapon,tool"
 
 //Items - tools
 #define SPAWN_TOOL "tool"
