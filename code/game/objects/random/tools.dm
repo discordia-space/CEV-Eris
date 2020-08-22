@@ -78,8 +78,6 @@
 				O.make_old()
 
 /obj/spawner/tool/post_spawn(list/spawns)
-	if(!has_postspawn)
-		return FALSE
 	if (isturf(loc))
 		for (var/obj/O in spawns)
 			if (!istype(O, /obj/spawner) && prob(20))

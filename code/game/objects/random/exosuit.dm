@@ -10,7 +10,7 @@
 
 /obj/spawner/exosuit/post_spawn(list/things)
 	if(!damaged)
-		return
+		return FALSE
 	for (var/obj/a in things)
 		a.make_old()
 
