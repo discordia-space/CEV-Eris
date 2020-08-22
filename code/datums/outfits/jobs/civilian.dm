@@ -2,6 +2,7 @@
 	name = OUTFIT_JOB_NAME(ASSISTANT_TITLE)
 	suit = /obj/item/clothing/suit/storage/ass_jacket
 	uniform = /obj/item/clothing/under/rank/assistant
+	r_pocket = /obj/item/weapon/spacecash/bundle/vagabond
 
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
