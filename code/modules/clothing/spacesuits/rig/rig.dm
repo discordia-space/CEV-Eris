@@ -184,7 +184,7 @@
 			piece.siemens_coefficient = siemens_coefficient
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
-		if(islist(armor)) piece.armor = armor.Copy()
+		if(armor) piece.armor = armor
 
 	update_icon(1)
 
@@ -197,6 +197,11 @@
 	QDEL_NULL(wires)
 	QDEL_NULL(spark_system)
 	return ..()
+
+/obj/item/weapon/rig/handle_atom_del(atom/A)
+	if(A == cell) // Clear a cell that has, most likely, exploded
+		cell = null
+	..()
 
 /obj/item/weapon/rig/proc/suit_is_deployed()
 	if(!istype(wearer) || loc != wearer || wearer.back != src)
@@ -301,9 +306,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor[ARMOR_BIO] = 100
+						piece.armor.bio = 100
 					else
-						piece.armor[ARMOR_BIO] = armor[ARMOR_BIO]
+						piece.armor.bio = armor.bio
 
 				else
 					failed_to_seal = 1
@@ -358,7 +363,7 @@
 				M.drop_from_inventory(piece)
 			piece.forceMove(src)
 
-	if(active == TRUE) // dains power from the cell whenever the suit is sealed
+	if(active && cell) // dains power from the cell whenever the suit is sealed
 		cell.use(drain*0.1)
 
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.empty())
@@ -627,7 +632,7 @@
 		update_icon()
 
 
-/obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/initiator, var/deploy_mode)
+/obj/item/weapon/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
 
 	if(sealing || !cell || cell.empty())
 		return
@@ -635,7 +640,7 @@
 	if(!istype(wearer) || !wearer.back == src)
 		return
 
-	if(initiator == wearer && (usr.stat||usr.paralysis||usr.stunned)) // If the initiator isn't wearing the suit it's probably an AI.
+	if(initiator == wearer && (usr && (usr.stat||usr.paralysis||usr.stunned))) // If the initiator isn't wearing the suit it's probably an AI.
 		return
 
 	var/obj/item/check_slot

@@ -15,7 +15,7 @@
 //	This proc will try to find multistrucure starting in given coords
 //	You pass coords of where should be top-left element of MS structure matrix
 //	It will check if all those elements in right order and return true
-/proc/is_multistructure(var/x, var/y, var/z, var/list/structure)
+/proc/is_multistructure(x, y, z, list/structure)
 	if(!x || !y || !z || !structure)
 		error("Passed wrong arguments to is_multistructure()")
 		return FALSE
@@ -30,7 +30,7 @@
 //	Creates multistructure datum and connects it to all elements mentioned in multistructure
 //	You pass coords of where should be top-left element of MS structure matrix
 //	It will check if all those elements in right order using is_multistructure() and then proceed to create multistructure
-/proc/create_multistructure(var/x, var/y, var/z, var/datum/multistructure/MS)
+/proc/create_multistructure(x, y, z, datum/multistructure/MS)
 	if(!x || !y || !z || !istype(MS))
 		error("Passed wrong arguments to create_multistructure()")
 		return FALSE
@@ -80,7 +80,7 @@
 		M.MS = null
 
 
-/datum/multistructure/proc/get_nearest_element(var/mob/user)
+/datum/multistructure/proc/get_nearest_element(mob/user)
 	if(!user)
 		error("No user passed to multistructure get_nearest_element()")
 	var/obj/machinery/multistructure/nearest_machine = elements[1]
@@ -109,10 +109,11 @@
 	check_MS()
 
 
-/obj/machinery/multistructure/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/attackby(obj/item/I, mob/user)
 	check_MS()
 	if(default_deconstruction(I, user))
-		MS.Destroy()
+		if(MS)
+			MS.Destroy()
 		return
 
 	if(default_part_replacement(I, user))

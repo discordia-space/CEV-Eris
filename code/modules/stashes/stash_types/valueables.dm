@@ -52,7 +52,7 @@ I have taken the Church relics and secreted them here <br>\
 /datum/stash/valueable/pirate
 	base_type = /datum/stash/valueable/pirate
 	contents_list_extra = list(/obj/item/weapon/melee/energy/sword/pirate = 1, /obj/item/clothing/glasses/eyepatch)
-
+/*
 /datum/stash/valueable/pirate/treasure
 	directions = DIRECTION_IMAGE
 
@@ -61,7 +61,7 @@ I have taken the Church relics and secreted them here <br>\
 <br>\
 Should any of us fail to assemble, he shall be suspect, and should any plunder be absent, the missing party be hunted unto death. <br>\
 This oath we take of the pirate's code."
-
+*/
 /datum/stash/valueable/pirate/hostage
 	contents_list_external = list(/obj/item/remains/human = 1)
 	lore = "Pirates came aboard and you're still in cryo. How typical of you, Howard. <br>\

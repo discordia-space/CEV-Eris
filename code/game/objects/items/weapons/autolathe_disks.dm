@@ -187,10 +187,11 @@
 
 	license = 10
 	designs = list(
-		/datum/design/autolathe/circuit/airlockmodule,
-		/datum/design/autolathe/circuit/airalarm,
-		/datum/design/autolathe/circuit/firealarm,
-		/datum/design/autolathe/circuit/powermodule,
+		/datum/design/autolathe/circuit/airlockmodule = 0,
+		/datum/design/autolathe/circuit/airlockmodule/secure,
+		/datum/design/autolathe/circuit/airalarm = 0,
+		/datum/design/autolathe/circuit/firealarm = 0,
+		/datum/design/autolathe/circuit/powermodule = 0,
 		/datum/design/autolathe/circuit/recharger,
 		/datum/design/research/circuit/autolathe,
 		/datum/design/autolathe/circuit/autolathe_disk_cloner,
@@ -565,6 +566,10 @@
 		/datum/design/autolathe/cell/small/excelsior,
 		/datum/design/autolathe/device/excelsiormine,				//security
 		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/prosthesis/excelsior/l_arm,         //prostheses
+		/datum/design/autolathe/prosthesis/excelsior/r_arm,
+		/datum/design/autolathe/prosthesis/excelsior/l_leg,
+		/datum/design/autolathe/prosthesis/excelsior/r_leg,
 		/datum/design/autolathe/device/implanter,					//misc
 		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -1015,7 +1020,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
-		/datum/design/autolathe/cell/small/high,
+		/datum/design/autolathe/cell/medium/high,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose

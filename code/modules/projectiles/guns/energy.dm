@@ -20,8 +20,8 @@
 	var/item_charge_meter = FALSE //same as above for item state
 
 	//self-recharging
-	var/self_recharge = 0	//if set, the weapon will recharge itself
-	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
+	var/self_recharge = FALSE		//if set, the weapon will recharge itself
+	var/use_external_power = FALSE	//if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
 	var/recharge_time = 4
 	var/charge_tick = 0
 	var/overcharge_timer //Holds ref to the timer used for overcharging

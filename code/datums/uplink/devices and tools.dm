@@ -115,7 +115,7 @@
 			The device owner is immune to this effect."
 	item_cost = 3
 	path = /obj/item/device/mind_fryer
-	antag_roles = list()
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/mind_fryer/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -129,7 +129,7 @@
 			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/weapon/storage/box/syndie_kit/spy_sensor
-	antag_roles = ROLES_CONTRACT
+	antag_roles = list(ROLE_TRAITOR, ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/spy_sensor/buy(obj/item/device/uplink/U)
 	. = ..()
@@ -173,6 +173,7 @@
 	name = "Mental Imprinter"
 	item_cost = 5
 	path = /obj/item/device/mental_imprinter
+	antag_roles = list(ROLE_TRAITOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 //********** Blitzshell unique uplink items **********//
 
@@ -186,7 +187,7 @@
 /datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		BS.maxHealth *= 2
+		BS.maxHealth += 30
 		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
 		return 1
 	return 0
@@ -219,7 +220,7 @@
 /datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
-		BS.speed_factor += 0.5
+		BS.speed_factor += 0.2
 		return 1
 	return 0
 
@@ -325,3 +326,18 @@
 		var/mob/living/silicon/robot/drone/blitzshell/BS = new /mob/living/silicon/robot/drone/blitzshell(loc)
 		BS.request_player()
 	return 1
+
+/datum/uplink_item/item/tools/blitz_harpoon
+	name = "Blitzshell Blue Space Harpoon"
+	desc = "Activates the embedded bluespace harpoon."
+	item_cost = 12
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_harpoon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/weapon/bluespace_harpoon/mounted/blitz) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a bluespace harpoon installed."))
+			return
+		BS.module.modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(BS.module)
+		return TRUE

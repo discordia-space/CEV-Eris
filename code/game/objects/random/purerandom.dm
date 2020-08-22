@@ -25,7 +25,7 @@
 				/obj/item/weapon/tool/pickaxe = 3,
 				/obj/item/weapon/pen = 3,
 				/obj/item/weapon/storage/box/donkpockets = 3,
-				/obj/item/weapon/locator = 2,
+				/obj/item/device/gps/locator = 2,
 				/obj/item/weapon/dice = 3,
 				/obj/item/weapon/clipboard = 2,
 				/obj/item/weapon/airlock_electronics = 3,
@@ -82,6 +82,7 @@
 				/obj/item/clothing/head/soft/blue = 2,
 				/obj/item/clothing/head/soft/green = 2,
 				/obj/item/clothing/head/soft/grey = 2,
+				/obj/item/clothing/mask/vape/better = 1,
 				/obj/item/device/taperecorder = 2,
 				/obj/item/weapon/storage/briefcase = 2,
 				/obj/item/weapon/storage/secure/briefcase = 2,
@@ -129,6 +130,9 @@
 				/obj/item/weapon/gun/projectile/revolver/deckard = 1,
 				/obj/item/weapon/gun/projectile/revolver/havelock = 1,
 				/obj/item/clothing/accessory/badge/marshal = 0.1, //Antag item
+				/obj/item/weapon/storage/fancy/cigcartons/dromedaryco = 1,
+				/obj/item/weapon/storage/fancy/cigcartons/killthroat = 1,
+				/obj/item/weapon/storage/fancy/cigcartons/homeless = 1,
 				/obj/item/stash_spawner = 12))
 
 /obj/random/lowkeyrandom/low_chance

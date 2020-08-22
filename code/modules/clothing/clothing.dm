@@ -16,6 +16,8 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
+	var/style = 0
+
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
 
@@ -38,11 +40,18 @@
 	accessories = null
 	return ..()
 
+/obj/item/clothing/proc/get_style()
+	var/real_style = style
+	if(blood_DNA)
+		real_style -= 1
+	if(gunshot_residue)
+		real_style -= 1
+	return real_style
+
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
 	. = ..()
 	gunshot_residue = null
-
 
 //Delayed equipping
 /obj/item/clothing/pre_equip(var/mob/user, var/slot)
@@ -105,13 +114,14 @@
 
 /obj/item/clothing/ui_data()
 	var/list/data = list()
-	if(armor.len)
+	var/list/armorlist = armor.getList()
+	if(armorlist.len)
 		var/list/armor_vals = list()
-		for(var/i in armor)
-			if(armor[i])
+		for(var/i in armorlist)
+			if(armorlist[i])
 				armor_vals += list(list(
 					"name" = i,
-					"value" = armor[i]
+					"value" = armorlist[i]
 					))
 		data["armor_info"] = armor_vals
 	if(body_parts_covered)
@@ -258,6 +268,7 @@ BLIND     // can't see anything
 	var/wired = 0
 	var/clipped = 0
 	body_parts_covered = ARMS
+	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 
@@ -401,6 +412,7 @@ BLIND     // can't see anything
 	var/noslip = 0
 	var/module_inside = 0
 
+	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2

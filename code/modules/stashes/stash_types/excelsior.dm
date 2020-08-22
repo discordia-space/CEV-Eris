@@ -24,7 +24,7 @@
 	lore = "Our comrades in the shipyard planted the seeds of Revolution aboard this vessel during her refitting.<br>\
  Infiltrator, secure this cache and seize the means of production before it is found by chance. Its location is %D"
 
-
+/*
 /datum/stash/excelsior/legacy
 	directions = DIRECTION_IMAGE
 	contents_list_external = list(/obj/item/remains/human = 1)//He died near his stash
@@ -32,7 +32,7 @@
   He was insufficiently capable to complete the revolution, although loyal enough to conceal it at the cost of his life.<br>\
   Seek out our cache and hope it has not been discovered. The last visual capture received over his implant places it here.<br>\
  %D"
-
+*/
 /datum/stash/excelsior/lastmessage
 	lore = "Comrade, I have been discovered before beginning the Revolution.<br>\
   My misfortune is nothing in the scheme of our progress.<br>\

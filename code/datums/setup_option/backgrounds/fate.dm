@@ -105,6 +105,6 @@
 			Would you still choose to be part of this journey if you knew what it meant? Will you leave a mark or be forgotten forever? \
 			You cannot play command roles. Additionally, you have the ability to have a name without a last name and have an increased sanity pool."
 
-	restricted_jobs = list(/datum/job/captain, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/ihc)
+	restricted_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/chaplain, /datum/job/merchant, /datum/job/cmo, /datum/job/rd, /datum/job/ihc)
 	restricted_depts = IRONHAMMER | MEDICAL | SCIENCE
 	perks = list(PERK_LOWBORN)

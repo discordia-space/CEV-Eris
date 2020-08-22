@@ -45,7 +45,7 @@
 	W.forceMove(get_turf(src))
 	W.layer = initial(W.layer)
 	W.set_plane(initial(W.plane))
-	W.dropped()
+	W.dropped(usr)
 	return FALSE
 
 // Removes an item from inventory and places it in the target atom.
@@ -173,6 +173,8 @@
 /mob/proc/get_max_w_class()
 	return 0 //zero
 
+/mob/proc/get_total_style()
+	return 0 //zero
 
 //Returns the inventory slot for the current hand
 /mob/proc/get_active_hand_slot()

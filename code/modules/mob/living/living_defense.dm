@@ -124,6 +124,7 @@
 		Weaken(stun_amount * armor_coefficient)
 		apply_effect(STUTTER, stun_amount * armor_coefficient)
 		apply_effect(EYE_BLUR, stun_amount * armor_coefficient)
+		SEND_SIGNAL(src, COMSIG_LIVING_STUN_EFFECT)
 
 	if (agony_amount && armor_coefficient)
 
