@@ -33,7 +33,7 @@
 	var/mob/living/L = owner.current
 
 	for(var/name in stat_modifiers)
-		L.stats.changeStat(name, stat_modifiers[name]*noble_coeff())
+		L.stats.changeStat(name, stat_modifiers[name])
 
 	if(!owner.current)
 		return FALSE
@@ -75,7 +75,7 @@
 
 	survive_objective = /datum/objective/survive
 
-/datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
+/datum/antagonist/traitor/synth/can_become_antag(datum/mind/player)
 	return issilicon(player.current) && ..(player)
 
 /datum/antagonist/traitor/synth/equip()
