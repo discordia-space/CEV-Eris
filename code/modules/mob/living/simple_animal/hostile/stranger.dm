@@ -5,7 +5,7 @@
 	icon_dead = "stranger_dead" //TODO: that icon doesn't exist
 	icon_gib = "syndicate_gib"
 	speak_chance = 0
-	turns_per_move = 5
+	turns_per_move = 4
 	response_help = "pokes"
 	response_disarm = "shoves"
 	response_harm = "hits"
@@ -34,7 +34,7 @@
 	projectilesound = 'sound/weapons/laser.ogg'
 	faction = "bluespace"
 	var/empy_cell = FALSE
-	var/prob_tele = 15
+	var/prob_tele = 20
 
 /mob/living/simple_animal/hostile/stranger/New()
 	..()
@@ -59,6 +59,9 @@
 	animation.master = src
 	flick("dust-h", animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(3, 0, src.loc)
+	sparks.start()
 	qdel(src)
 
 /mob/living/simple_animal/hostile/stranger/attackby(obj/item/W, mob/user, params)
@@ -66,18 +69,18 @@
 		var/source = src
 		if(target_mob)
 			source = target_mob
-		var/turf/T = get_random_secure_turf_in_range(source, 3, 2)
+		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
 		do_teleport(src, T)
 		return FALSE
 	..()
 
 
-/mob/living/simple_animal/hostile/stranger/attack_hand(mob/living/carbon/M as mob)
+/mob/living/simple_animal/hostile/stranger/attack_hand(mob/living/carbon/M)
 	if(M.a_intent != I_HELP && prob(prob_tele))
 		var/source = src
 		if(target_mob)
 			source = target_mob
-		var/turf/T = get_random_secure_turf_in_range(source, 3, 2)
+		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
 		do_teleport(src, T)
 		return FALSE
 	..()
@@ -87,14 +90,14 @@
 		var/source = src
 		if(target_mob)
 			source = target_mob
-		var/turf/T = get_random_secure_turf_in_range(source, 3, 2)
+		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
 		do_teleport(src, T)
 		return FALSE
 	..()
 
 /mob/living/simple_animal/hostile/stranger/Life()
 	if(target_mob && prob(prob_tele))
-		var/turf/T = get_random_secure_turf_in_range(target_mob, 3, 2)
+		var/turf/T = get_random_secure_turf_in_range(target_mob, 4, 2)
 		do_teleport(src, T)
 	. = ..()
 
