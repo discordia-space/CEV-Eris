@@ -1442,11 +1442,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/pouches
 	num_contained = 5
-	contains = list(/obj/random/pouch,
-				/obj/random/pouch,
-				/obj/random/pouch,
-				/obj/random/pouch,
-				/obj/random/pouch)
+	contains = list(/obj/spawner/pouch,
+				/obj/spawner/pouch,
+				/obj/spawner/pouch,
+				/obj/spawner/pouch,
+				/obj/spawner/pouch)
 	name = "Surplus Storage Pouches"
 	cost = 1500
 	crate_name = "Surplus Pouches Crate"

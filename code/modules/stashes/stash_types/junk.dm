@@ -5,7 +5,7 @@
 	loot_type = "Junk"
 
 	contents_list_base = list(/obj/random/pack/rare = 2,
-	/obj/random/pouch = 2,
+	/obj/spawner/pouch = 2,
 	/obj/random/tool_upgrade = 3,
 	/obj/random/lowkeyrandom = 5)
 

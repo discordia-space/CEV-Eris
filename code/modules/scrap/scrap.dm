@@ -356,7 +356,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
 	loot_list = list(
 		/obj/random/pack/tech_loot = 3,
-		/obj/random/pouch,
+		/obj/spawner/pouch,
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,

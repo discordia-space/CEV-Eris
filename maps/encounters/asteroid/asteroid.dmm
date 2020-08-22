@@ -672,9 +672,9 @@
 "cG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/toolbox,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cH" = (

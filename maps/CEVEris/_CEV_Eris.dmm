@@ -6054,7 +6054,7 @@
 /area/eris/maintenance/section2deck5starboard)
 "anG" = (
 /obj/structure/table/standard,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/toilet/medbay)
 "anH" = (
@@ -31375,8 +31375,8 @@
 /area/eris/maintenance/section3deck1central)
 "bsk" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pouch,
-/obj/random/pouch,
+/obj/spawner/pouch,
+/obj/spawner/pouch,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "bsl" = (
@@ -34315,8 +34315,8 @@
 /area/eris/command/courtroom)
 "byK" = (
 /obj/structure/table/reinforced,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
 "byL" = (
@@ -35422,7 +35422,7 @@
 /obj/structure/table/standard,
 /obj/random/techpart,
 /obj/random/techpart,
-/obj/random/pouch,
+/obj/spawner/pouch,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBh" = (
@@ -35788,8 +35788,8 @@
 /area/eris/command/teleporter)
 "bBZ" = (
 /obj/structure/table/reinforced,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/drone_fabrication)
 "bCa" = (
@@ -46705,10 +46705,10 @@
 /area/eris/hallway/main/section2)
 "bZl" = (
 /obj/structure/table/rack,
-/obj/random/toolbox,
-/obj/random/toolbox,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /obj/item/weapon/storage/belt/utility,
 /obj/item/weapon/storage/belt/utility,
 /obj/item/weapon/storage/belt/utility,
@@ -51625,8 +51625,8 @@
 "cku" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "ckv" = (
@@ -51835,8 +51835,8 @@
 /area/eris/neotheology/chapelritualroom)
 "ckW" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pouch,
-/obj/random/pouch,
+/obj/spawner/pouch,
+/obj/spawner/pouch,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
 "ckX" = (
@@ -64993,9 +64993,9 @@
 /area/eris/engineering/techstorage)
 "cPz" = (
 /obj/structure/table/rack,
-/obj/random/toolbox,
-/obj/random/toolbox,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/engineering/techstorage)
 "cPA" = (
@@ -92763,7 +92763,7 @@
 /area/eris/hallway/side/section3starboard)
 "dZK" = (
 /obj/structure/table/rack,
-/obj/random/pouch,
+/obj/spawner/pouch,
 /obj/random/techpart,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
@@ -97840,7 +97840,7 @@
 /area/eris/maintenance/section4deck1central)
 "ekZ" = (
 /obj/structure/table/standard,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
 /obj/random/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
@@ -109067,7 +109067,7 @@
 /area/eris/engineering/engine_room)
 "uiU" = (
 /obj/structure/table/standard,
-/obj/random/toolbox,
+/obj/spawner/toolbox,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)

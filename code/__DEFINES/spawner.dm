@@ -27,7 +27,7 @@
 // ITEMS - organ- PROSTHESIS
 #define SPAWN_OS_PROSTHETIC "os_prosthetic"
 
-#define SPAWN_TAG_OS_PROSTHESIS "item,organ,external,prosthetic,os_prosthetic,faction_os"
+#define SPAWN_TAG_OS_PROSTHETIC "item,organ,external,prosthetic,os_prosthetic,faction_os"
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
@@ -76,12 +76,13 @@
 
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
 
-//	Items - BOX
-#define SPAWN_BOX "box"
+//	Items - storage
+#define SPAWN_storage "storage"
 #define SPAWN_TOOLBOX "toolbox"
+#define SPAWN_POUCH "pouch"
 
-#define SPAWN_TAG_TOOLBOX "box,toolbox"
-
+#define SPAWN_TAG_TOOLBOX "storage,toolbox"
+#define SPAWN_TAG_POUCH "storage,pouch"
 
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"

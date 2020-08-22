@@ -71,7 +71,7 @@
 /obj/item/weapon/storage/deferred/pouches
 	name = "uniform modification kit"
 	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
-	initial_contents = list(/obj/random/pouch = 8, /obj/item/weapon/storage/pouch/pistol_holster = 1)
+	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/weapon/storage/pouch/pistol_holster = 1)
 	//One guaranteed holster and plenty of randoms
 
 /obj/item/weapon/storage/deferred/comms

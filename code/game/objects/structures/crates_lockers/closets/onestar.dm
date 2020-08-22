@@ -36,7 +36,7 @@
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/tool/advanced/onestar/low_chance(src)
+	new /obj/spawner/tool/advanced/onestar/low_chance(src)
 	new /obj/random/lowkeyrandom(src)
 	new /obj/random/lowkeyrandom/low_chance(src)
 	new /obj/random/lowkeyrandom/low_chance(src)
@@ -59,7 +59,7 @@
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/random/junk(src)
 	new /obj/random/pack/tech_loot/onestar(src)
-	new /obj/random/tool/advanced/onestar(src)
+	new /obj/spawner/tool/advanced/onestar(src)
 	new /obj/random/lowkeyrandom(src)
 	new /obj/random/lowkeyrandom/low_chance(src)
 	new /obj/random/lowkeyrandom/low_chance(src)
@@ -67,7 +67,7 @@
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/tool/advanced/onestar/low_chance(src)
+	new /obj/spawner/tool/advanced/onestar/low_chance(src)
 
 
 ////// Closets

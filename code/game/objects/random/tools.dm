@@ -126,7 +126,7 @@
 
 /obj/spawner/tool/advanced/onestar
 	name = "random onestar tool"
-	allow_blacklisted = TRUE
+	allow_blacklist = TRUE
 	tags_to_spawn = list(SPAWN_OS_TOOL)
 
 /obj/spawner/tool/advanced/onestar/low_chance

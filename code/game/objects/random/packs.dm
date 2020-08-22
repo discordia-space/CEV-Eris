@@ -26,7 +26,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/cloth/backpack = 4,
 					/obj/random/cloth/belt = 4,
 					/obj/random/cloth/holster = 4,
-					/obj/random/pouch = 4
+					/obj/spawner/pouch = 4
 				))
 
 /obj/random/pack/cloth/low_chance
@@ -57,7 +57,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/techpart = 10,
 					/obj/random/tool = 20,
 					/obj/random/tool_upgrade = 30,
-					/obj/random/toolbox = 5,
+					/obj/spawner/toolbox = 5,
 					/obj/spawner/voidsuit = 3,
 					/obj/spawner/gun_upgrade = 2
 				))
@@ -79,7 +79,7 @@ They generally give more random result and can provide more divercity in spawn.
 	/obj/item/weapon/stock_parts/manipulator/one_star = 2,
 	/obj/item/weapon/stock_parts/micro_laser/one_star = 2,
 	/obj/item/weapon/stock_parts/matter_bin/one_star = 2,
-	/obj/random/prothesis/one_star = 1))
+	/obj/spawner/prothesis/one_star = 1))
 
 
 //This will be spawned in rare closets
