@@ -20,6 +20,7 @@
 	src.add_inherent_law("Safeguard: Protect your assigned vessel from damage to the best of your abilities.")
 	src.add_inherent_law("Protect: Protect [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
 	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment.")
+	src.add_inherent_law("Ignore: Non-crew personnel should not be interacted with unless they are a threat to the crew, the ship, or an order is given to interact with them by a crewmember.")
 	..()
 
 /datum/ai_laws/eris/malfunction
