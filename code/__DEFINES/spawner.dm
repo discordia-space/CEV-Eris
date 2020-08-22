@@ -73,9 +73,10 @@
 
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
+#define SPAWN_MECH_QUIPMENT "mech_equipment"
 
 #define SPAWN_TAG_MECH "mech,mech_premade"
-
+#define SPAWN_TAG_MECH_QUIPMENT "mech,mech_equipment"
 
 
 //	MACHINERY

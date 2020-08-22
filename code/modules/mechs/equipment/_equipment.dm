@@ -6,6 +6,11 @@
 	icon_state = ""
 	matter = list(MATERIAL_STEEL = 40)
 	force = 10
+	spawn_blacklisted = FALSE
+	bad_types = /obj/item/mech_equipment
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+	rarity_value = 10
+	spawn_frequency = 10
 
 	var/restricted_hardpoints
 	var/mob/living/exosuit/owner

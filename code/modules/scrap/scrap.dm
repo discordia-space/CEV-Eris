@@ -364,7 +364,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/material_ore,
 		/obj/random/pack/rare = 0.3,
 		/obj/random/tool_upgrade = 1,
-		/obj/random/exosuit_equipment = 2
+		/obj/spawner/exosuit_equipment = 2
 	)
 
 /obj/structure/scrap/food
@@ -391,7 +391,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_list = list(
 		/obj/random/pack/gun_loot = 8,
 		/obj/random/powercell,
-		/obj/random/exosuit_equipment = 2,
+		/obj/spawner/exosuit_equipment = 2,
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/random/tool_upgrade,
-		/obj/random/exosuit_equipment)
+		/obj/spawner/exosuit_equipment)
 
 /obj/structure/scrap/cloth
 	icontype = "cloth"
