@@ -90,12 +90,16 @@
 #define SPAWN_TECHNICAL_CLOSET "technical_closet"
 #define SPAWN_RANDOM_CLOSET "random_closet"
 #define SPAWN_SECURE_CLOSET "secure_closet"
+#define SPAWN_LASERTAG_CLOSET "lasertag_closet"
+#define SPAWN_BOMB_CLOSET "bomb_closet"
 
 #define SPAWN_TAG_CLOSET "strcuture,closet"
 #define SPAWN_TAG_TECHNICAL_CLOSET "strcuture,closet,technical_closet"
 #define SPAWN_TAG_WARDROBE "structure,closet,wardrobe"
 #define SPAWN_TAG_RANDOM_CLOSET "structure,closet,random_closet"
 #define SPAWN_TAG_RANDOM_SECURE_CLOSET "structure,closet,random_closet,secure_closet"
+#define SPAWN_TAG_LASERTAG_CLOSET "structure,closet,lasertag_closet"
+#define SPAWN_TAG_BOMB_CLOSET "structure,closet,bomb_closet"
 
 // Structures - SALVAGEABLE
 #define SPAWN_SALVAGEABLE "structure_salvageable"

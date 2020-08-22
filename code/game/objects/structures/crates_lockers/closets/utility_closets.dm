@@ -149,12 +149,18 @@
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective space suits."
 	icon_state = "bomb"
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_BOMB_CLOSET
+
 
 /obj/structure/closet/bombcloset/populate_contents()
 	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/color/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/head/space/bomb(src)
+
+/obj/structure/closet/bombcloset/security
+	rarity_value = 12.5
 
 /obj/structure/closet/bombcloset/security/populate_contents()
 	new /obj/item/clothing/suit/space/bomb/security(src)

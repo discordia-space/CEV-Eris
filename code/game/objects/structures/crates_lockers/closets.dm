@@ -11,6 +11,7 @@
 	spawn_frequency = 10
 	rarity_value = 10
 	bad_types = "/obj/structure/closet"
+	spawn_tags = SPAWN_TAG_CLOSET
 	var/locked = FALSE
 	var/broken = FALSE
 	var/horizontal = FALSE

@@ -167,6 +167,7 @@
 /obj/structure/closet/wardrobe/science_white
 	name = "science wardrobe"
 	icon_door = "white"
+	spawn_blacklisted = TRUE
 
 /obj/structure/closet/wardrobe/science_white/populate_contents()
 	new /obj/item/clothing/under/rank/scientist(src)
