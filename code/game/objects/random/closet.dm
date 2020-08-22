@@ -5,8 +5,8 @@
 
 /obj/random/closet/item_to_spawn()
 	return pickweight(list(/obj/structure/closet = 4,
-				/obj/spawner/closet_tech = 22,
-				/obj/spawner/closet_wardrobe = 6,
+				/obj/spawner/closet/tech = 22,
+				/obj/spawner/closet/wardrobe = 6,
 				/obj/structure/closet/lasertag/red = 1,
 				/obj/structure/closet/lasertag/blue = 1,
 				/obj/structure/closet/gimmick/russian = 0.5,
@@ -21,40 +21,37 @@
 	icon_state = "closet-grey-low"
 	spawn_nothing_percentage = 60
 
-
-/obj/spawner/closet_tech
+/obj/spawner/closet/tech
 	name = "random technical closet"
 	icon_state = "closet-orange"
 	tags_to_spawn = list(SPAWN_TECHNICAL_CLOSET)
 
-/obj/spawner/closet_tech/low_chance
+/obj/spawner/closet/tech/low_chance
 	name = "low chance random technical closet"
 	icon_state = "closet-orange-low"
 	spawn_nothing_percentage = 60
 
-
-/obj/spawner/closet_wardrobe
+/obj/spawner/closet/wardrobe
 	name = "random wardrobe closet"
 	icon_state = "closet-blue"
 	tags_to_spawn = list(SPAWN_WARDROBE)
 
-/obj/spawner/closet_wardrobe/low_chance
+/obj/spawner/closet/wardrobe/low_chance
 	name = "low chance random wardrobe closet"
 	icon_state = "closet-blue-low"
 	spawn_nothing_percentage = 60
 
-
-/obj/spawner/closet_maintloot
+/obj/spawner/closet/maintloot
 	name = "random maint loot closet"
 	icon_state = "closet-black"
 	tags_to_spawn = list(SPAWN_RANDOM_CLOSET)
 
-/obj/spawner/closet_maintloot/low_chance
+/obj/spawner/closet/maintloot/low_chance
 	name = "low chance random maint loot closet"
 	icon_state = "closet-black-low"
 	spawn_nothing_percentage = 60
 
 // For Scrap Beacon
-/obj/spawner/closet_maintloot/beacon
+/obj/spawner/closet/maintloot/beacon
 	allow_blacklist = TRUE
 	exclusion_paths = list(/obj/structure/closet/random/hostilemobs)

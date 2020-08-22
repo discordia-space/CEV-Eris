@@ -528,7 +528,7 @@
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/security/range)
 "abA" = (
-/obj/spawner/closet_tech/low_chance,
+/obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck5central)
 "abB" = (
@@ -6748,7 +6748,7 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section2deck1port)
 "apr" = (
-/obj/spawner/closet_tech/low_chance,
+/obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aps" = (
@@ -22950,7 +22950,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "bax" = (
-/obj/spawner/closet_tech/low_chance,
+/obj/spawner/closet/tech/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "bay" = (
@@ -29623,7 +29623,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bnQ" = (
-/obj/spawner/closet_maintloot,
+/obj/spawner/closet/maintloot,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "bnR" = (
@@ -35465,11 +35465,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4central)
 "bBn" = (
-/obj/spawner/closet_wardrobe,
+/obj/spawner/closet/wardrobe,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBo" = (
-/obj/spawner/closet_maintloot,
+/obj/spawner/closet/maintloot,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBp" = (
@@ -101992,14 +101992,14 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "euA" = (
-/obj/spawner/closet_wardrobe,
+/obj/spawner/closet/wardrobe,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "euB" = (
-/obj/spawner/closet_wardrobe,
+/obj/spawner/closet/wardrobe,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 8
@@ -102181,7 +102181,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "euZ" = (
-/obj/spawner/closet_wardrobe,
+/obj/spawner/closet/wardrobe,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "eva" = (

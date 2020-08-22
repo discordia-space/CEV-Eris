@@ -137,10 +137,10 @@ They generally give more random result and can provide more divercity in spawn.
 /obj/random/pack/machine/item_to_spawn()
 	return pickweight(list(
 					/obj/random/structures = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
-					/obj/spawner/closet_maintloot = 18, //That one is also important part of the maints
-					/obj/spawner/closet_tech = 6,
+					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
+					/obj/spawner/closet/tech = 6,
 					/obj/random/closet = 4,
-					/obj/spawner/closet_wardrobe = 2,
+					/obj/spawner/closet/wardrobe = 2,
 					/obj/random/scrap/moderate_weighted = 12, //Our scrap pile. This is basically just a huge spawner.
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
@@ -163,10 +163,10 @@ They generally give more random result and can provide more divercity in spawn.
 /obj/random/pack/junk_machine/item_to_spawn()
 	return pickweight(list(
 					/obj/random/structures = 14, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
-					/obj/spawner/closet_maintloot = 18, //That one is also important part of the maints
-					/obj/spawner/closet_tech = 6,
+					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
+					/obj/spawner/closet/tech = 6,
 					/obj/random/closet = 4,
-					/obj/spawner/closet_wardrobe = 2,
+					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
@@ -178,9 +178,9 @@ They generally give more random result and can provide more divercity in spawn.
 /obj/random/pack/junk_machine/beacon/item_to_spawn()
 	return pickweight(list(
 					/obj/random/structures = 7, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
-					/obj/spawner/closet_maintloot/beacon = 28, //That one is also important part of the maints
-					/obj/spawner/closet_tech = 3,
+					/obj/spawner/closet/maintloot/beacon = 28, //That one is also important part of the maints
+					/obj/spawner/closet/tech = 3,
 					/obj/random/closet = 2,
-					/obj/spawner/closet_wardrobe = 2,
+					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
