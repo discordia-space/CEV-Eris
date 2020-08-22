@@ -11,8 +11,8 @@
 	response_harm = "hits"
 	speed = 4
 	stop_automated_movement_when_pulled = 0
-	maxHealth = 100
-	health = 100
+	maxHealth = 200
+	health = 200
 	harm_intent_damage = 5
 	melee_damage_lower = 15
 	melee_damage_upper = 15
@@ -103,7 +103,7 @@
 	icon_state = "lancer"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
 	price_tag = 5000
-	charge_cost = 15
+	charge_cost = 10
 	fire_delay = 8
 	one_hand_penalty = 5
 	twohanded = FALSE
@@ -111,9 +111,9 @@
 
 	init_firemodes = list(
 		list(mode_name="burn", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, move_delay=null, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="melt", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, move_delay=null, charge_cost=25, icon="kill", projectile_color = "#FF0000"),
-		list(mode_name="INCINERATE", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, move_delay=null, charge_cost=30, icon="destroy", projectile_color = "#FFFFFF"),
-		list(mode_name="VAPORIZE", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=70,, icon="vaporize", projectile_color = "#ff00f2", recoil_buildup=3),
+		list(mode_name="melt", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, move_delay=null, charge_cost=10, icon="kill", projectile_color = "#FF0000"),
+		list(mode_name="INCINERATE", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, move_delay=null, charge_cost=15, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="VAPORIZE", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=3, charge_cost=20, icon="vaporize", projectile_color = "#ff00f2", recoil_buildup=3)
 	)
 
 /obj/item/weapon/gun/energy/plasma/stranger/update_icon(ignore_inhands)
