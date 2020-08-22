@@ -10,7 +10,7 @@
 	response_disarm = "shoves"
 	response_harm = "hits"
 	speed = 4
-	stop_automated_movement_when_pulled = 0
+	stop_automated_movement_when_pulled = FALSE
 	maxHealth = 200
 	health = 200
 	harm_intent_damage = 5
@@ -49,6 +49,8 @@
 	S.cell.charge = S.cell.maxcharge/2
 	if(empy_cell)
 		S.cell.charge = 0
+	S.cell.update_icon()
+	S.update_icon()
 	new /obj/effect/decal/cleanable/ash (src.loc)
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
@@ -103,7 +105,7 @@
 	icon_state = "lancer"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
 	price_tag = 5000
-	charge_cost = 10
+	charge_cost = 7
 	fire_delay = 8
 	one_hand_penalty = 5
 	twohanded = FALSE
