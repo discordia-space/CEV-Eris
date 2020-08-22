@@ -24,6 +24,10 @@
 
 #define SPAWN_TAG_SURGERY_TOOL "item,tool,surgery_tool"
 
+// ITEMS - organ- PROSTHESIS
+#define SPAWN_OS_PROSTHETIC "os_prosthetic"
+
+#define SPAWN_TAG_OS_PROSTHESIS "item,organ,external,prosthetic,os_prosthetic,faction_os"
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
