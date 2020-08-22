@@ -34,7 +34,7 @@
 	projectilesound = 'sound/weapons/laser.ogg'
 	faction = "bluespace"
 	var/empy_cell = FALSE
-	var/prob_tele = 15
+	var/prob_tele = 20
 
 /mob/living/simple_animal/hostile/stranger/New()
 	..()
@@ -64,8 +64,20 @@
 	sparks.start()
 	qdel(src)
 
+/mob/living/simple_animal/hostile/stranger/attack_generic(mob/user, damage, attack_message)
+	if(!damage || !istype(user))
+		return FALSE
+	if(prob(prob_tele))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
+		do_teleport(src, T)
+		return FALSE
+	.=..()
+
 /mob/living/simple_animal/hostile/stranger/attackby(obj/item/W, mob/user, params)
-	if(user.a_intent != I_HELP && prob(prob_tele))
+	if(prob(prob_tele))
 		var/source = src
 		if(target_mob)
 			source = target_mob
@@ -96,7 +108,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/stranger/Life()
-	if(prob(prob_tele))
+	if(prob(prob_tele/2))
 		var/source = src
 		if(target_mob)
 			source = target_mob
@@ -121,7 +133,7 @@
 		list(mode_name="burn", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, move_delay=null, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
 		list(mode_name="melt", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, move_delay=null, charge_cost=10, icon="kill", projectile_color = "#FF0000"),
 		list(mode_name="INCINERATE", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, move_delay=null, charge_cost=15, icon="destroy", projectile_color = "#FFFFFF"),
-		list(mode_name="VAPORIZE", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=3, charge_cost=20, icon="vaporize", projectile_color = "#ff00f2", recoil_buildup=3)
+		list(mode_name="VAPORIZE", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=3, charge_cost=20, icon="vaporize", projectile_color = "#FFFFFF", recoil_buildup=3)
 	)
 
 /obj/item/weapon/gun/energy/plasma/stranger/update_icon(ignore_inhands)

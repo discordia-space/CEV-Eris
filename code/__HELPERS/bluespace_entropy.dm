@@ -46,7 +46,9 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 
 	if(turfs.len)
 		picked = pick(turfs)
-	else
+	else if(inner_range >=2)
+		picked = get_random_secure_turf_in_range(origin, outer_range, 1)
+	if(!picked)
 		picked = get_random_turf_in_range(origin, outer_range)
 	if(picked)
 		return picked
