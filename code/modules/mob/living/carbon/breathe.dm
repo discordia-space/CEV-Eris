@@ -44,7 +44,7 @@
 			return internal.remove_air_volume(volume_needed)
 	return null
 
-/mob/living/carbon/proc/get_breath_from_environment(var/volume_needed=BREATH_VOLUME)
+/mob/living/carbon/proc/get_breath_from_environment(volume_needed=BREATH_VOLUME)
 	var/datum/gas_mixture/breath = null
 
 	var/datum/gas_mixture/environment
@@ -65,13 +65,15 @@
 	return null
 
 //Handle possble chem smoke effect
-/mob/living/carbon/proc/handle_chemical_smoke(var/datum/gas_mixture/environment)
+/mob/living/carbon/proc/handle_chemical_smoke(datum/gas_mixture/environment)
 	if(species && environment.return_pressure() < species.breath_pressure/5)
 		return //pressure is too low to even breathe in.
 	if(wear_mask && (wear_mask.flags & BLOCK_GAS_SMOKE_EFFECT))
 		return
 
 	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
+		if(!smoke || !smoke.reagents)
+			return
 		if(smoke.reagents.total_volume)
 			smoke.reagents.trans_to_mob(src, 5, CHEM_INGEST, copy = 1)
 			smoke.reagents.trans_to_mob(src, 5, CHEM_BLOOD, copy = 1)

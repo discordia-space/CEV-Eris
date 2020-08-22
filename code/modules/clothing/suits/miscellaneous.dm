@@ -17,6 +17,7 @@
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/blue)
 	siemens_coefficient = 3
+	style = 0
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armour"
@@ -27,6 +28,7 @@
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/red)
 	siemens_coefficient = 3
+	style = 0
 
 /*
  * Costume
@@ -37,6 +39,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	body_parts_covered = UPPER_TORSO|ARMS
+	style = 1
 
 
 /obj/item/clothing/suit/judgerobe
@@ -47,6 +50,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
 	flags_inv = HIDEJUMPSUIT
+	style = 1
 
 
 /obj/item/clothing/suit/wcoat
@@ -56,6 +60,7 @@
 	item_state = "wcoat"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	style = 1
 
 
 /obj/item/clothing/suit/syndicatefake
@@ -68,6 +73,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = COVER_PREVENT_MANIPULATION
+	style = 1
 
 
 /obj/item/clothing/suit/chickensuit
@@ -78,6 +84,7 @@
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+	style = 1
 
 
 /obj/item/clothing/suit/monkeysuit
@@ -174,6 +181,7 @@
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
+	style = 1
 
 /obj/item/clothing/suit/poncho/tactical
 	name = "blue poncho"
@@ -239,6 +247,7 @@
 	icon_closed = "grey_hoodie"
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	style = 1
 
 /obj/item/clothing/suit/storage/toggle/hoodie/black
 	name = "black hoodie"
@@ -297,6 +306,7 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	style = 2
 
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long/green
@@ -332,6 +342,7 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	style = 2
 
 /obj/item/clothing/suit/storage/drive_jacket
 	name = "white jacket"
@@ -364,3 +375,4 @@
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	style = 1

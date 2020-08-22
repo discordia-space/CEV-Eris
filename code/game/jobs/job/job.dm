@@ -165,6 +165,8 @@
 	. = setup_restricted
 	for(var/category in options)
 		var/datum/category_item/setup_option/option = SScharacter_setup.setup_options[category][options[category]]
+		if(!option)
+			continue
 		if(type in option.restricted_jobs)
 			return TRUE
 		if(type in option.allowed_jobs)

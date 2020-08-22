@@ -7,7 +7,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
 	slot_flags = SLOT_BELT
 	force = WEAPON_FORCE_PAINFUL //looks heavier than a pistol
-	self_recharge = 1
+	self_recharge = TRUE
 	modifystate = null
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
 	price_tag = 4000

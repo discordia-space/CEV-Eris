@@ -981,6 +981,27 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate name = "Emergency Floodlight Crate"
 	group = "Medical / Science"
 
+/datum/supply_pack/nanites
+	name = "Raw Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+	)
+	cost = 1500
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	containertype = /obj/structure/closet/crate/medical
+
+/datum/supply_pack/uncapnanites
+	name = "Raw Uncapped Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+	)
+	cost = 2000
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	contraband = TRUE
+	containertype = /obj/structure/closet/crate/medical
+
 //----------------------------------------------
 //-----------------HYDROPONICS------------------
 //----------------------------------------------
@@ -1475,23 +1496,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-/datum/supply_pack/nanites
-	name = "Raw Nanites"
-	contains = list(
-		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
-	)
-	cost = 1500
-	crate_name = "Raw Nanites Container"
-	group = "Medical / Science"
-	containertype = /obj/structure/closet/crate/medical
-
-/datum/supply_pack/uncapnanites
-	name = "Raw Uncapped Nanites"
-	contains = list(
-		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
-	)
-	cost = 2000
-	crate_name = "Raw Nanites Container"
-	group = "Medical / Science"
-	contraband = TRUE
-	containertype = /obj/structure/closet/crate/medical
+/datum/supply_pack/randomised/cartons
+	num_contained = 2
+	contains = list(/obj/item/weapon/storage/fancy/cigcartons,
+				/obj/item/weapon/storage/fancy/cigcartons/dromedaryco,
+				/obj/item/weapon/storage/fancy/cigcartons/killthroat,
+				/obj/item/weapon/storage/fancy/cigcartons/homeless)
+	name = "Cigarettes Cartons"
+	cost = 1200
+	crate_name = "Cigarettes Cartons Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Supply"

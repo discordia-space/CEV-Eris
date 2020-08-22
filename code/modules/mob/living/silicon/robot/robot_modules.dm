@@ -110,12 +110,14 @@ var/global/list/robot_modules = list(
 	for (var/obj/item/weapon/tool/T in modules)
 		T.degradation = 0 //We don't want robot tools breaking
 
-
+	//A quick hack to stop robot modules running out of power
+	//Later they'll be wired to the robot's central battery once we code functionality for that
+	//Setting it to infinity causes errors, so just a high number is fine
 	for (var/obj/item/I in modules)
-		for (var/obj/item/weapon/cell/C in I)
-			C.charge = 999999999 //A quick hack to stop robot modules running out of power
-			//Later they'll be wired to the robot's central battery once we code functionality for that
-			//Setting it to infinity causes errors, so just a high number is fine
+		if(!istype(I, /obj/item/weapon/gun/energy)) // Guns have their own code for drawing charge from cyborg cell
+			for (var/obj/item/weapon/cell/C in I)
+				C.charge = 999999999
+	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -435,6 +437,17 @@ var/global/list/robot_modules = list(
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
 	synths += medicine
+
+	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	B.uses_charge = 1
+	B.charge_costs = list(1000)
+	B.synths = list(medicine)
+	O.uses_charge = 1
+	O.charge_costs = list(1000)
+	O.synths = list(medicine)
+	src.modules += B
+	src.modules += O
 
 	var/obj/item/stack/medical/splint/S = new /obj/item/stack/medical/splint(src)
 	S.uses_charge = 1

@@ -3397,12 +3397,6 @@
 /area/eris/command/commander)
 "ahY" = (
 /obj/structure/table/woodentable,
-/obj/machinery/button/remote/blast_door{
-	id = "FirstSectionLockdown";
-	name = "First Section Lockdown Control";
-	pixel_x = 0;
-	pixel_y = 4
-	},
 /turf/simulated/floor/wood,
 /area/eris/command/commander)
 "ahZ" = (
@@ -5183,7 +5177,9 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "alK" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/assist{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep)
 "alL" = (
@@ -8189,9 +8185,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "ash" = (
-/obj/machinery/vending/snack,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/vending/printomat{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/eschangarb)
@@ -10416,12 +10414,9 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "axL" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck2starboard)
+/obj/item/modular_computer/console/preset/security/camera,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "axM" = (
 /obj/structure/table/standard,
 /obj/item/weapon/packageWrap,
@@ -10547,12 +10542,11 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/storage)
 "ayf" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/structure/bed/chair/office/dark{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck2starboard)
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "ayg" = (
 /turf/simulated/wall/r_wall,
 /area/eris/crew_quarters/library)
@@ -17543,9 +17537,11 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section1deck4central)
 "aPn" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/eris/maintenance/section1deck4central)
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "aPo" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -18942,25 +18938,6 @@
 /turf/simulated/floor/hull,
 /area/eris/maintenance/junk)
 "aSe" = (
-/obj/machinery/button/remote/blast_door{
-	id = "Incernator Vent";
-	name = "Incernator Vent";
-	pixel_x = 24;
-	pixel_y = 6
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 2;
-	id = "Skynet_launch";
-	name = "Mech Bay Door Control";
-	pixel_x = 24;
-	pixel_y = -6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "Cargo1DeckHatch";
-	name = "Cargo Hatch";
-	pixel_x = 36;
-	pixel_y = 6
-	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/bridge)
 "aSf" = (
@@ -24152,6 +24129,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
+/obj/structure/sign/vacuum,
 /turf/simulated/wall,
 /area/eris/maintenance/section1deck4central)
 "bcx" = (
@@ -28799,6 +28777,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bmi" = (
@@ -30856,9 +30840,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bqS" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/eris/maintenance/section1deck3central)
+/obj/item/modular_computer/console/preset/security/records{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "bqT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	tag = "icon-intact (SOUTHEAST)";
@@ -32671,21 +32657,9 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/teleporter)
 "bvg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck1central)
-"bvh" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/eris/maintenance/section3deck1central)
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/command/bridge)
 "bvi" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -32805,11 +32779,9 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
 "bvw" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bvx" = (
@@ -34878,19 +34850,6 @@
 /obj/structure/cable/green{
 	d2 = 4;
 	icon_state = "0-4"
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/hallway/side/cryo)
-"bzQ" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/cryo)
@@ -40832,12 +40791,6 @@
 /area/eris/maintenance/section1deck3central)
 "bMq" = (
 /obj/machinery/button/remote/blast_door{
-	id = "FirstSectionLockdown";
-	name = "First Section Lockdown Control";
-	pixel_x = 6;
-	pixel_y = 24
-	},
-/obj/machinery/button/remote/blast_door{
 	id = "BrigInternalLobbyLockdown";
 	name = "Brig Internal Lobby Lockdown Control";
 	pixel_x = -6;
@@ -40860,11 +40813,6 @@
 /area/eris/maintenance/section4deck4port)
 "bMs" = (
 /obj/item/modular_computer/console/preset/security/camera,
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_y = 24
-	},
 /obj/machinery/camera,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
@@ -43619,15 +43567,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/sleep/cryo)
 "bSj" = (
@@ -43726,15 +43665,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/sleep/cryo)
 "bSt" = (
@@ -44570,7 +44500,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
 "bUn" = (
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/obj/effect/window_lwall_spawn/plasma,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/sleep/cryo)
@@ -46989,11 +46919,11 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "bZF" = (
-/obj/machinery/vending/snack,
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
 	},
+/obj/machinery/vending/powermat,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section2)
 "bZG" = (
@@ -47276,12 +47206,6 @@
 "cau" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
-/obj/machinery/button/remote/blast_door{
-	id = "FirstSectionLockdown";
-	name = "First Section Lockdown Control";
-	pixel_x = 24;
-	pixel_y = -8
-	},
 /obj/item/weapon/tool/tape_roll,
 /turf/simulated/floor/wood,
 /area/eris/command/fo)
@@ -48201,15 +48125,6 @@
 /area/eris/neotheology/bioreactor)
 "ccC" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FirstSectionLockdown";
-	layer = 2.6;
-	name = "First Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section1)
 "ccD" = (
@@ -48230,15 +48145,6 @@
 "ccF" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FirstSectionLockdown";
-	layer = 2.6;
-	name = "First Section Lockdown";
-	opacity = 0
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section1)
@@ -48440,13 +48346,13 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "ccY" = (
-/obj/random/scrap/sparse_weighted,
 /obj/structure/railing{
 	tag = "icon-railing0 (EAST)";
 	icon_state = "railing0";
 	dir = 4;
 	anchored = 1
 	},
+/obj/random/scrap/sparse_weighted/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "ccZ" = (
@@ -48551,32 +48457,10 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
-"cdn" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section1)
 "cdo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section1)
 "cdp" = (
@@ -50178,6 +50062,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
 "cgG" = (
@@ -50819,7 +50704,7 @@
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "cin" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "cio" = (
@@ -51086,9 +50971,6 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
 "ciU" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
-	},
 /obj/structure/table/rack,
 /obj/item/device/last_shelter,
 /obj/machinery/door/blast/shutters/glass{
@@ -51120,9 +51002,9 @@
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 8
 	},
-/obj/machinery/button/remote/blast_door/id_card{
+/obj/machinery/button/remote/blast_door{
 	id = "last_shelter";
-	name = "Last Shelter id lock";
+	name = "Last shelter lock control";
 	pixel_y = 28;
 	req_access = list(74)
 	},
@@ -52052,6 +51934,7 @@
 /area/eris/storage/tech)
 "cll" = (
 /obj/structure/table/glass,
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
 "clm" = (
@@ -53217,21 +53100,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay)
-"cnS" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section2)
 "cnT" = (
 /obj/machinery/power/supermatter{
 	layer = 4
@@ -53442,15 +53318,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "SecondSectionLockdown";
-	layer = 2.6;
-	name = "Second Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section2)
 "cow" = (
@@ -53910,19 +53777,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/neotheology/chapel)
-"cpt" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section3)
 "cpu" = (
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 8
@@ -53942,15 +53796,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section3)
 "cpy" = (
@@ -54866,7 +54711,6 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/reception)
 "crE" = (
-/obj/machinery/vending/snack,
 /obj/machinery/status_display{
 	density = 0;
 	pixel_x = 0;
@@ -55713,12 +55557,6 @@
 	name = "Science Total Lockdown Control";
 	pixel_x = -24;
 	pixel_y = 5
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "SecondSectionLockdown";
-	name = "Second Section Lockdown Control";
-	pixel_x = -24;
-	pixel_y = -8
 	},
 /obj/item/modular_computer/console/preset/research/sysadmin,
 /turf/simulated/floor/carpet/purcarpet,
@@ -58182,10 +58020,12 @@
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
 "czy" = (
-/obj/machinery/vending/snack,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
+	},
+/obj/machinery/vending/powermat{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/meeting_room)
@@ -59293,13 +59133,13 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cBN" = (
-/obj/random/scrap/sparse_weighted,
 /obj/structure/railing{
 	tag = "icon-railing0 (NORTH)";
 	icon_state = "railing0";
 	dir = 1;
 	anchored = 1
 	},
+/obj/random/scrap/sparse_weighted/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cBO" = (
@@ -60445,7 +60285,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/random/scrap/sparse_weighted,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cEj" = (
@@ -61431,15 +61270,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section3)
 "cGs" = (
@@ -61504,20 +61334,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
-"cGx" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ThirdSectionLockdown";
-	layer = 2.6;
-	name = "Third Section Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section3)
 "cGy" = (
 /obj/structure/bed/chair,
 /obj/structure/cable{
@@ -61690,11 +61506,6 @@
 /obj/random/traps/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"cGT" = (
-/obj/random/junk/low_chance,
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
 "cGU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -61716,10 +61527,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/hallway/main/section3)
-"cGW" = (
-/obj/random/scrap/moderate_weighted,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
 "cGX" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -61790,7 +61597,7 @@
 "cHe" = (
 /obj/structure/multiz/ladder/up,
 /obj/structure/catwalk,
-/obj/random/scrap/moderate_weighted,
+/obj/random/scrap/sparse_weighted/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cHf" = (
@@ -61875,11 +61682,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/drone_fabrication)
-"cHo" = (
-/obj/random/scrap/sparse_weighted,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck4central)
 "cHp" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -61976,15 +61778,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FourthSectionLockdown";
-	layer = 2.6;
-	name = "Fourth Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section4)
 "cHC" = (
@@ -62408,15 +62201,6 @@
 "cIK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FourthSectionLockdown";
-	layer = 2.6;
-	name = "Fourth Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section4)
 "cIL" = (
@@ -62475,7 +62259,9 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cIR" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/printomat{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "cIS" = (
@@ -63457,15 +63243,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "FourthSectionLockdown";
-	layer = 2.6;
-	name = "Fourth Section Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/main/section4)
 "cLf" = (
@@ -64479,26 +64256,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
-"cNF" = (
-/obj/machinery/door/firedoor,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section4)
 "cNG" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /obj/machinery/light/small,
@@ -64533,53 +64290,10 @@
 /obj/random/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
-"cNK" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/main/section4)
 "cNL" = (
 /obj/random/pack/machine,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2port)
-"cNM" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Escape Pod Bay"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/side/eschangara)
-"cNN" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "ArrivalLockdown";
-	layer = 2.6;
-	name = "Arrival Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/eris/hallway/side/eschangara)
 "cNO" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "0,23"
@@ -65561,12 +65275,6 @@
 	name = "Engineering Total Lockdown Control";
 	pixel_x = -24;
 	pixel_y = -5
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "FourthSectionLockdown";
-	name = "Fourth Section Lockdown Control";
-	pixel_x = -24;
-	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
@@ -70452,7 +70160,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/rnd/research)
 "dbH" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/powermat,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/rnd/research)
 "dbI" = (
@@ -72314,9 +72022,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/command/bridgebar)
-"dfE" = (
-/turf/simulated/wall/r_wall,
-/area/eris/maintenance/substation/section3)
 "dfF" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/lights/tubes,
@@ -72405,6 +72110,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/command/bridgebar)
+"dfQ" = (
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/neotheology/chapelritualroom)
 "dfR" = (
 /obj/machinery/camera/network/command{
 	dir = 1
@@ -72507,7 +72218,7 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/item/weapon/melee/chainofcommand,
+/obj/item/weapon/tool/chainofcommand,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -23
@@ -75792,12 +75503,6 @@
 /obj/structure/bed/padded,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/genetics)
-"dmY" = (
-/obj/machinery/camera/network/research{
-	dir = 8
-	},
-/turf/simulated/floor/reinforced,
-/area/eris/medical/genetics)
 "dmZ" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/reinforced,
@@ -78887,9 +78592,11 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/checkpoint/supply)
 "dtQ" = (
-/obj/machinery/vending/snack,
 /obj/machinery/firealarm{
 	pixel_y = 28
+	},
+/obj/machinery/vending/powermat{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbreak)
@@ -79329,6 +79036,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/camera/network/medbay,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
 "duP" = (
@@ -79675,34 +79383,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck2port)
-"dvJ" = (
-/obj/machinery/button/remote/blast_door{
-	id = "ThirdSectionLockdown";
-	name = "Third Section Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ArrivalLockdown";
-	name = "Arrival Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "FirstSectionLockdown";
-	name = "First Section Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "SecondSectionLockdown";
-	name = "Second Section Lockdown Control";
-	pixel_x = -38;
-	pixel_y = -8
-	},
-/obj/item/modular_computer/console/preset/security/camera,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dvK" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -79781,28 +79461,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
-"dvQ" = (
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineBlast";
-	name = "Engine Monitoring Room Blast Doors";
-	pixel_x = 24;
-	pixel_y = -6;
-	req_access = newlist()
-	},
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineEmitterPortWest";
-	name = "Engine Room Blast Doors";
-	pixel_x = 24;
-	pixel_y = 6;
-	req_access = list(11)
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dvR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -79985,30 +79643,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
-"dwi" = (
-/obj/machinery/button/remote/blast_door{
-	id = "BrigExternalLobbyLockdown";
-	name = "Brig External Lobby Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "BrigInternalLobbyLockdown";
-	name = "Brig Internal Lobby Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "FourthSectionLockdown";
-	name = "Fourth Section Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 4
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dwj" = (
 /obj/random/pack/machine,
 /obj/random/pack/tech_loot/low_chance,
@@ -80167,36 +79801,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
-"dwB" = (
-/obj/machinery/button/remote/blast_door{
-	id = "CargoTotalLockdown";
-	name = "Cargo Total Lockdown Control";
-	pixel_x = -26;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "EngineeringTotalLockdown";
-	name = "Engineering Total Lockdown Control";
-	pixel_x = -26;
-	pixel_y = -8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "MedbayTotalLockdown";
-	name = "Medbay Total Lockdown Control";
-	pixel_x = -38;
-	pixel_y = 4
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "ScienceTotalLockdown";
-	name = "Science Total Lockdown Control";
-	pixel_x = -38;
-	pixel_y = -8
-	},
-/obj/item/modular_computer/console/preset/security/records{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dwC" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
@@ -80244,22 +79848,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/medbay)
-"dwI" = (
-/obj/machinery/button/remote/blast_door{
-	id = "toxinchamber2";
-	name = "Mixing Room Vent Control";
-	pixel_x = 24;
-	pixel_y = -6
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "toxinchamber1";
-	name = "Mixing Room Vent Control";
-	pixel_x = 24;
-	pixel_y = 6
-	},
-/obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/eris/command/bridge)
 "dwJ" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
@@ -81494,12 +81082,6 @@
 	name = "Medbay Total Lockdown Control";
 	pixel_x = -24;
 	pixel_y = 5
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "SecondSectionLockdown";
-	name = "Second Section Lockdown Control";
-	pixel_x = -24;
-	pixel_y = -8
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/command/mbo)
@@ -89718,6 +89300,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/mob/living/carbon/human/monkey/punpun,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
 "dRT" = (
@@ -94961,7 +94544,6 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
 "edM" = (
-/obj/machinery/vending/snack,
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -94976,6 +94558,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/vending/cigarette{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
@@ -97093,7 +96678,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck2port)
 "eiM" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/clothingstorage)
 "eiN" = (
@@ -98274,9 +97859,6 @@
 "elc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
-	},
-/obj/machinery/camera/network/research{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
@@ -105432,13 +105014,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section3deck1central)
-"eAF" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section3deck1central)
 "eAG" = (
 /obj/machinery/conveyor/east{
 	id = "silk_road"
@@ -108402,6 +107977,10 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/rnd/research)
+"eMY" = (
+/obj/random/scrap/sparse_weighted/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4central)
 "eNI" = (
 /obj/random/junk/low_chance,
 /turf/simulated/floor/hull,
@@ -108484,6 +108063,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/lab)
+"fCt" = (
+/obj/structure/sign/securearea,
+/turf/simulated/wall/r_wall,
+/area/eris/maintenance/section1deck4central)
 "fJM" = (
 /obj/structure/table/standard,
 /obj/random/medical,
@@ -108496,6 +108079,11 @@
 /obj/effect/shuttle_landmark/merc/sec3east4,
 /turf/space,
 /area/space)
+"fUC" = (
+/obj/random/junk/low_chance,
+/obj/machinery/camera/network/command,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section1deck4central)
 "fZX" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 1
@@ -108548,6 +108136,14 @@
 	},
 /turf/simulated/floor/hull,
 /area/space)
+"hug" = (
+/obj/random/scrap/sparse_weighted/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck5port)
+"hAw" = (
+/obj/random/scrap/sparse_weighted/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck5starboard)
 "hHz" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
@@ -108559,12 +108155,25 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
+"hMr" = (
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section1deck4central)
 "hNy" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
+"hUQ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck2starboard)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -108628,6 +108237,9 @@
 	},
 /turf/space,
 /area/space)
+"iFm" = (
+/turf/simulated/wall,
+/area/eris/maintenance/section3deck4central)
 "iIc" = (
 /obj/effect/shuttle_landmark/merc/sec3east5,
 /turf/space,
@@ -108636,6 +108248,10 @@
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"iQt" = (
+/obj/machinery/camera/motion/security,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section1deck4central)
 "iUs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -108853,6 +108469,10 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
+"ltP" = (
+/obj/machinery/camera/network/command,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section1deck4central)
 "lwA" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -109315,6 +108935,10 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"rXZ" = (
+/mob/living/simple_animal/cat/fluff/bones,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/eris/command/mbo)
 "rYg" = (
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
@@ -109619,6 +109243,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"wxB" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/eris/maintenance/section3deck2starboard)
 "wEJ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -109650,6 +109278,11 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
+"xiI" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/plasma,
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/sleep/cryo)
 "xld" = (
 /obj/machinery/atmospherics/valve/digital{
 	dir = 4;
@@ -123361,7 +122994,7 @@ aDe
 awR
 awR
 azn
-bBQ
+hug
 bBQ
 alg
 aaa
@@ -123763,7 +123396,7 @@ avN
 avN
 avN
 avN
-bBQ
+hug
 bNN
 bNN
 azn
@@ -123965,8 +123598,8 @@ cdd
 ceq
 ccy
 avN
-bBQ
-bBQ
+awR
+awR
 awR
 awR
 alg
@@ -124169,7 +123802,7 @@ axI
 avN
 avN
 avN
-bBQ
+awR
 awR
 alg
 aad
@@ -124371,7 +124004,7 @@ bZO
 bWJ
 ceX
 avN
-bBQ
+hug
 awR
 alg
 aaa
@@ -126153,10 +125786,10 @@ aaa
 aaa
 dLB
 aop
-dLB
-dLB
-dLB
-dLB
+dOa
+dOa
+dOa
+dOa
 dNN
 apv
 asD
@@ -126358,7 +125991,7 @@ aoq
 aou
 dMt
 dMt
-dLB
+dOa
 apw
 apv
 aqD
@@ -126560,7 +126193,7 @@ dMt
 dNN
 aoB
 aoR
-dLB
+dOa
 apz
 apU
 aqN
@@ -126762,7 +126395,7 @@ dMt
 dQN
 dMt
 dMt
-dLB
+dOa
 dVI
 apQ
 aqF
@@ -126964,7 +126597,7 @@ dMt
 dMt
 aoC
 aoC
-dLB
+dOa
 dMt
 apQ
 aqM
@@ -127166,7 +126799,7 @@ dNN
 aov
 aoC
 aoS
-dLB
+dOa
 dMt
 apQ
 aqD
@@ -127365,10 +126998,10 @@ aaa
 aaa
 dLB
 aop
-dLB
-dLB
-dLB
-dLB
+dOa
+dOa
+dOa
+dOa
 dMt
 apX
 aqO
@@ -127567,7 +127200,7 @@ aaa
 aaa
 dLB
 dMt
-dLB
+dOa
 aew
 dMt
 dMu
@@ -127769,7 +127402,7 @@ aaa
 aaa
 dLB
 aew
-dLB
+dOa
 ahT
 arY
 dOa
@@ -127970,8 +127603,8 @@ dLB
 dLB
 dLB
 dLB
-dLB
-dLB
+dOa
+dOa
 dMu
 dOa
 dOa
@@ -127990,9 +127623,9 @@ aaa
 apn
 apn
 anJ
-anJ
-anJ
-anJ
+aqa
+aqa
+aqa
 anJ
 auz
 aCn
@@ -132441,8 +132074,8 @@ avn
 aBv
 aBv
 aBv
-aBz
-aBz
+aBv
+aBv
 auV
 cJZ
 ato
@@ -132642,9 +132275,9 @@ awg
 avn
 aBv
 aBv
-aBz
-aBz
-aBz
+aBv
+aBv
+aBv
 auV
 cIk
 ewu
@@ -132843,7 +132476,7 @@ avF
 awg
 avn
 aBv
-aBz
+aBv
 auV
 auV
 auV
@@ -133044,8 +132677,8 @@ avn
 avF
 aEc
 avn
-aBz
-aBz
+aBv
+aBv
 auV
 bsO
 btG
@@ -133058,7 +132691,7 @@ ato
 bZz
 auV
 aBz
-aBz
+hAw
 bTI
 bUt
 apn
@@ -133246,8 +132879,8 @@ avn
 avF
 awg
 avn
-aBz
-aBz
+aBv
+aBv
 auV
 btk
 ato
@@ -133260,7 +132893,7 @@ ato
 cfs
 auV
 aBz
-aBz
+hAw
 bsz
 bUu
 apn
@@ -134270,8 +133903,8 @@ cfW
 cgq
 auV
 aBz
-aBz
-aBz
+hAw
+aBv
 bRN
 apn
 aaa
@@ -134471,8 +134104,8 @@ bBr
 bBP
 bRq
 auV
-aBz
-aBz
+hAw
+aBv
 aBv
 bRN
 apn
@@ -164555,7 +164188,7 @@ ccU
 ccU
 ciY
 ccU
-bQy
+dfQ
 cBo
 bQE
 bQy
@@ -167361,8 +166994,8 @@ aWT
 cOq
 cOq
 cIS
-cIS
-cIS
+aCc
+aCc
 bgm
 bhL
 aXO
@@ -168188,7 +167821,7 @@ bor
 bmw
 aad
 bbk
-csN
+eMY
 bZy
 cmD
 cxJ
@@ -168390,7 +168023,7 @@ blQ
 bxp
 abF
 bbk
-csN
+eMY
 bZy
 cnu
 cyf
@@ -170820,8 +170453,8 @@ bbk
 bCZ
 csO
 bCZ
-bbk
-bbk
+iFm
+iFm
 cdf
 dli
 cHC
@@ -170982,9 +170615,9 @@ aZM
 csS
 csS
 bbq
-csS
+fCt
 bcu
-aPn
+csU
 aaa
 abF
 abF
@@ -171023,7 +170656,7 @@ cdf
 cdf
 cEm
 cvu
-bbk
+iFm
 cdf
 dli
 cHC
@@ -171034,7 +170667,7 @@ dcY
 cJw
 dpb
 bZy
-bbk
+iFm
 cGo
 bbk
 abF
@@ -171186,7 +170819,7 @@ csS
 bbs
 baq
 bcv
-aPn
+csU
 aaa
 abF
 abF
@@ -171388,7 +171021,7 @@ csS
 aOp
 csS
 bcu
-aPn
+csU
 aaa
 abF
 abF
@@ -171629,7 +171262,7 @@ cdf
 cdf
 cEl
 cGN
-bbk
+iFm
 cdf
 dli
 cHC
@@ -171792,7 +171425,7 @@ bbe
 csS
 aOp
 bcu
-aPn
+csU
 aaa
 abF
 abF
@@ -171830,8 +171463,8 @@ bbk
 bCZ
 csO
 bCZ
-bbk
-bbk
+iFm
+iFm
 chn
 dli
 cHC
@@ -171839,13 +171472,13 @@ cJw
 dsz
 daz
 ddq
-dfE
+cJw
 bZy
 cEe
 ccX
 bvH
 cEi
-cGW
+csN
 cHq
 bbk
 aaa
@@ -171992,9 +171625,9 @@ aZV
 bat
 bbf
 csS
-aTK
+ltP
 bcu
-aPn
+csU
 aaa
 abF
 abF
@@ -172041,13 +171674,13 @@ cJw
 cJw
 cxj
 cJw
-dfE
+cJw
 bZy
 dpb
 crg
 bvI
 cFY
-csN
+bZy
 cHx
 bbk
 aaa
@@ -172078,7 +171711,7 @@ aaa
 aaa
 bON
 bON
-bUn
+xiI
 bUn
 bUn
 bON
@@ -172196,7 +171829,7 @@ bbg
 csS
 aTK
 bcu
-aPn
+csU
 aaa
 abF
 abF
@@ -172249,8 +171882,8 @@ cDw
 dOj
 byN
 cxF
-csN
-cHo
+bZy
+cHG
 bbk
 aaa
 abF
@@ -172451,8 +172084,8 @@ cDS
 cFL
 cBw
 dqD
-cGT
-cHo
+cEV
+cHG
 bbk
 aad
 abF
@@ -172600,7 +172233,7 @@ bbi
 csS
 aTK
 bcu
-aPn
+csU
 abF
 abF
 abF
@@ -172653,8 +172286,8 @@ cgO
 dnI
 cBw
 bZy
-cGT
-cHI
+cEV
+cHG
 bbk
 aaa
 abF
@@ -172800,9 +172433,9 @@ csS
 csS
 csS
 csS
-aUT
+fUC
 bcu
-aPn
+csU
 abF
 abF
 abF
@@ -173004,7 +172637,7 @@ cvH
 csS
 aTK
 bcu
-aPn
+csU
 abF
 abF
 abF
@@ -174201,13 +173834,13 @@ abF
 csS
 csS
 csS
-csS
-aTK
+fCt
+iQt
 aTK
 aOp
 csS
 aTK
-aTK
+hMr
 aUT
 csS
 aTK
@@ -174418,7 +174051,7 @@ aUj
 aUG
 aUj
 bcA
-aPn
+csU
 aaa
 aaa
 aaa
@@ -174608,19 +174241,19 @@ aTF
 aTI
 aPC
 csS
-aPn
+csU
 csS
-aPn
-aPn
-aPn
+csU
+csU
+csU
 csS
-aPn
-aPn
-aPn
+csU
+csU
+csU
 csS
-aPn
-aPn
-aPn
+csU
+csU
+csU
 aaa
 aaa
 aaa
@@ -203753,7 +203386,7 @@ cmQ
 cta
 cmE
 duM
-duu
+dgC
 duY
 duu
 apm
@@ -203955,7 +203588,7 @@ cor
 cor
 cmE
 duM
-duu
+dgC
 duI
 cAh
 apm
@@ -208122,8 +207755,8 @@ aaa
 aaa
 aTG
 aTG
-bqS
-bqS
+bqs
+bqs
 aTG
 aTG
 bzh
@@ -208524,7 +208157,7 @@ aaa
 aaa
 aaa
 aaa
-bqS
+bqs
 bqU
 bqV
 brt
@@ -208726,7 +208359,7 @@ aaa
 aaa
 aaa
 aaa
-bqS
+bqs
 bqU
 bqY
 buz
@@ -208928,7 +208561,7 @@ aaa
 aaa
 aaa
 aaa
-bqS
+bqs
 bqU
 bqY
 buz
@@ -209130,7 +208763,7 @@ aaa
 aaa
 aaa
 aaa
-bqS
+bqs
 bqU
 bqY
 buz
@@ -209332,7 +208965,7 @@ aTG
 aTG
 aTG
 aaa
-bqS
+bqs
 bqU
 bqY
 buz
@@ -209645,7 +209278,7 @@ aaa
 aaa
 aaa
 cVE
-bzQ
+bzS
 crI
 cso
 csF
@@ -209938,7 +209571,7 @@ bqs
 bqw
 bqs
 abF
-bqS
+bqs
 bqU
 bqY
 buz
@@ -210140,7 +209773,7 @@ bqs
 bqw
 bqs
 abF
-bqS
+bqs
 bqU
 bqY
 buz
@@ -210342,7 +209975,7 @@ bqs
 bqw
 bqs
 abF
-bqS
+bqs
 bqU
 bqY
 buz
@@ -210544,7 +210177,7 @@ bqs
 bqw
 bqs
 abF
-bqS
+bqs
 bqU
 bqY
 brH
@@ -210634,7 +210267,7 @@ cFr
 cAx
 cAx
 cCW
-cGx
+cFr
 cFc
 cxD
 cxD
@@ -210654,7 +210287,7 @@ cRN
 cRQ
 cRQ
 cSU
-cNK
+cIK
 cWA
 dzr
 cYj
@@ -210746,7 +210379,7 @@ bqs
 bqw
 bqs
 aaa
-bqS
+bqs
 bqU
 brq
 brI
@@ -210786,7 +210419,7 @@ bYh
 bYi
 bYi
 bYA
-cdn
+ccC
 bZj
 bZj
 caa
@@ -210806,12 +210439,12 @@ ccf
 ceh
 dup
 bZj
-cnS
+dxu
 dux
 cgs
 cgs
 dvc
-cpt
+cFk
 cAx
 cAx
 dGy
@@ -210856,7 +210489,7 @@ cRP
 cSk
 cSk
 cSV
-cNF
+cLe
 cWB
 cXs
 cYk
@@ -211152,8 +210785,8 @@ bqs
 aaa
 aTG
 aTG
-bqS
-bqS
+bqs
+bqs
 aTG
 bBL
 bCA
@@ -211224,7 +210857,7 @@ djs
 arQ
 arQ
 bvy
-avn
+bvy
 cEd
 dxO
 bvy
@@ -212068,7 +211701,7 @@ aDf
 bLq
 aWp
 azN
-cNM
+aTE
 bzX
 bzX
 bzX
@@ -212270,7 +211903,7 @@ aDf
 bLq
 aWp
 bzE
-cNN
+aTs
 bzX
 bzX
 bzX
@@ -246555,7 +246188,7 @@ cnX
 dnE
 dlL
 dpS
-dqp
+dre
 duD
 dvk
 dss
@@ -246751,13 +246384,13 @@ dAV
 dBi
 clJ
 dqp
-dqp
 dre
 dre
-dqp
+dre
+dre
 dmn
 dpV
-dqp
+dre
 duE
 dvl
 dsu
@@ -246959,7 +246592,7 @@ cmZ
 dkq
 doT
 dpS
-dqp
+dre
 duF
 dvq
 dsI
@@ -247161,7 +246794,7 @@ cnX
 dnF
 dsX
 dpY
-dqp
+dre
 duG
 dvT
 dsJ
@@ -247363,7 +246996,7 @@ cnV
 dnG
 doU
 dqb
-dqp
+dre
 duH
 dvo
 dsK
@@ -247562,13 +247195,13 @@ dqp
 dqp
 dqp
 dqp
-dqp
+dre
 doJ
-dqp
-dqp
-cse
-cse
-cse
+dre
+dre
+cpw
+cpw
+cpw
 dsW
 dtr
 dsJ
@@ -247969,7 +247602,7 @@ dqp
 dad
 doV
 dqi
-dqp
+dre
 dru
 dvq
 dvq
@@ -249374,7 +249007,7 @@ chl
 chl
 dEP
 dzD
-dzC
+rXZ
 dzT
 dzX
 eBA
@@ -250029,7 +249662,7 @@ dEy
 dHh
 dEy
 dEy
-dEy
+dID
 cLV
 dLc
 dLc
@@ -251839,7 +251472,7 @@ ixv
 caE
 eyI
 eBn
-btI
+ayQ
 aAn
 dqP
 dqP
@@ -252027,13 +251660,13 @@ cpe
 cEb
 cFf
 cFQ
-bZc
+caE
 cpe
 cpe
 cpe
 cpe
 cpe
-bZc
+caE
 cQT
 cUZ
 cXv
@@ -252041,7 +251674,7 @@ cYl
 caE
 eyR
 eBn
-btI
+ayQ
 aAo
 dqP
 dqP
@@ -252243,7 +251876,7 @@ bxP
 caE
 eyR
 eBW
-btI
+ayQ
 aAp
 dqP
 aBg
@@ -252445,7 +252078,7 @@ bxP
 eyr
 eyT
 eBY
-btI
+ayQ
 aAv
 dqP
 dqP
@@ -252644,13 +252277,13 @@ cTZ
 cVd
 bxP
 eyB
-bZc
-btI
-btI
-btI
-btI
-btI
-btI
+caE
+ayQ
+ayQ
+ayQ
+ayQ
+ayQ
+ayQ
 drm
 eyZ
 btI
@@ -252852,7 +252485,7 @@ ezL
 eCd
 eCV
 eDe
-btI
+ayQ
 drm
 eza
 btI
@@ -253256,7 +252889,7 @@ eBm
 eCe
 eCW
 eDh
-btI
+ayQ
 drm
 eza
 btI
@@ -253455,10 +253088,10 @@ bZc
 btI
 btI
 eyJ
-btI
-btI
-btI
-btI
+ayQ
+ayQ
+ayQ
+ayQ
 drm
 eza
 btI
@@ -254059,14 +253692,14 @@ bZc
 bZc
 bZc
 btI
-ayD
+eCZ
 ayQ
 eCD
 eCZ
-btI
-btI
+ayQ
+ayQ
 dIg
-btI
+ayQ
 btI
 btI
 btI
@@ -254265,7 +253898,7 @@ ayD
 ayQ
 eqR
 ayD
-btI
+ayQ
 dqN
 erc
 drG
@@ -254467,7 +254100,7 @@ ayQ
 ayQ
 eqR
 aAx
-btI
+ayQ
 eph
 erc
 epi
@@ -254669,7 +254302,7 @@ ayQ
 azz
 eqS
 drm
-btI
+ayQ
 dqP
 erd
 ere
@@ -254871,7 +254504,7 @@ ayQ
 eBZ
 eqT
 drm
-btI
+ayQ
 dHS
 btI
 btI
@@ -256692,7 +256325,7 @@ aAI
 btI
 euZ
 dqT
-drZ
+wxB
 dsr
 ezc
 btI
@@ -257500,7 +257133,7 @@ ayD
 btI
 eva
 dqT
-drZ
+wxB
 dsr
 dsA
 btI
@@ -258099,7 +257732,7 @@ eDs
 eDv
 eDA
 ebN
-axq
+hUQ
 ayQ
 eCM
 eCZ
@@ -258308,7 +257941,7 @@ ayD
 btI
 euZ
 dqT
-drZ
+wxB
 dsr
 dsA
 btI
@@ -258500,8 +258133,8 @@ axy
 axy
 axy
 axy
-axL
-ayf
+ayr
+axy
 ayr
 ayS
 ayr
@@ -258701,10 +258334,10 @@ ayD
 ayD
 ayD
 euY
-ayD
-awI
-awI
-ayD
+btI
+btI
+btI
+btI
 eyG
 eyP
 btI
@@ -258904,8 +258537,8 @@ btI
 btI
 btI
 btI
-awK
-awK
+ayD
+ayD
 btI
 dqP
 azG
@@ -259106,7 +258739,7 @@ dqN
 axA
 axl
 btI
-btI
+ayQ
 btI
 btI
 ayV
@@ -259116,7 +258749,7 @@ aAO
 aBw
 dra
 evc
-drZ
+wxB
 dsr
 ezc
 btI
@@ -288733,9 +288366,9 @@ dVw
 dVw
 dVw
 dvG
-dvJ
-dwi
-dwB
+axL
+aPn
+bqS
 dwJ
 dVw
 dVw
@@ -290825,7 +290458,7 @@ bfe
 bvl
 bvl
 bvl
-dXi
+boS
 cNH
 evG
 dXi
@@ -291027,7 +290660,7 @@ bik
 bfe
 bfe
 bfe
-dXi
+boS
 cNH
 dXi
 dXi
@@ -291229,7 +290862,7 @@ brW
 bvj
 bvj
 bvj
-dXi
+boS
 cNH
 dXi
 abF
@@ -291431,7 +291064,7 @@ baY
 boS
 boS
 boS
-dXi
+boS
 cNH
 dXi
 abF
@@ -291965,9 +291598,9 @@ dVw
 dXf
 dVw
 dvH
-dvQ
+ayf
 aSe
-dwI
+bvg
 dxa
 dVw
 dVw
@@ -297874,7 +297507,7 @@ enl
 eoK
 eaT
 dmV
-dmY
+dmV
 dmV
 eaT
 abF
@@ -298497,7 +298130,7 @@ bAI
 bAI
 bAI
 bAI
-eAF
+bAI
 bAI
 eAX
 cNH
@@ -298699,7 +298332,7 @@ bog
 bog
 bog
 bog
-bvg
+bog
 bvw
 bxM
 cNH
@@ -298892,7 +298525,7 @@ abF
 dXi
 biS
 blm
-boS
+dXi
 bou
 aRA
 aRM
@@ -298901,9 +298534,9 @@ aRM
 cNH
 cNH
 dXi
-bvh
 boN
-boS
+boN
+dXi
 boS
 boS
 euI
@@ -299094,7 +298727,7 @@ abF
 dXi
 bhG
 blt
-boS
+dXi
 bov
 cNH
 cNH
@@ -299103,9 +298736,9 @@ cNH
 cNH
 cNH
 dXi
-bhG
-bhG
-boS
+bkK
+bkK
+dXi
 bAO
 boS
 boF
@@ -299305,8 +298938,8 @@ dXi
 dXi
 dXi
 dXi
-bji
-bji
+aLZ
+aLZ
 dXi
 boS
 boS

@@ -304,8 +304,22 @@
 		P.use(1, user)
 		return TRUE
 
+	else if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = I
+		if(coil.amount < 5)
+			to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
+			return TRUE
+		var/obj/item/mech_component/mc = get_targeted_part(user)
+		if(!repairing_check(mc, user))
+			return TRUE
+		if(mc.burn_damage == 0)
+			to_chat(user, SPAN_WARNING("Wiring on this part is already repaired."))
+			return TRUE
+		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
+		if(do_mob(user, src, 30) && coil.use(5))
+			mc.repair_burn_damage(15)
 
-	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING)
+	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
@@ -342,6 +356,18 @@
 			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
 			dismantle()
 			return TRUE
+
+		if(QUALITY_WELDING)
+			var/obj/item/mech_component/mc = get_targeted_part(user)
+			if(!repairing_check(mc, user))
+				return TRUE
+			if(mc.brute_damage == 0)
+				to_chat(user, SPAN_WARNING("Brute damage on this part is already repaired."))
+				return TRUE
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
+				mc.repair_brute_damage(15)
+				return TRUE
 
 		if(ABORT_CHECK)
 			return
@@ -413,3 +439,28 @@
 		return
 	SetName(new_name)
 	to_chat(user, SPAN_NOTICE("You have redesignated this exosuit as \the [name]."))
+
+/mob/living/exosuit/proc/get_targeted_part(mob/user)
+	var/obj/item/mech_component/mc = null
+	switch(user.targeted_organ)
+		if(BP_R_ARM, BP_L_ARM)
+			mc = arms
+		if(BP_HEAD)
+			mc = head
+		if(BP_CHEST, BP_GROIN)
+			mc = body
+		if(BP_R_LEG, BP_L_LEG)
+			mc = legs
+	return mc
+
+/mob/living/exosuit/proc/repairing_check(obj/item/mech_component/mc, mob/user)
+	if(!mc || !mc.can_be_repaired())
+		to_chat(user, SPAN_WARNING("This part is completely destroyed, you cannot repair it."))
+		return FALSE
+	if(mc.total_damage == 0)
+		to_chat(user, SPAN_WARNING("This part is already fully repaired."))
+		return FALSE
+	if(!maintenance_protocols)
+		to_chat(user, SPAN_WARNING("You cannot repair \the [src] while maintenance protocols are disabled."))
+		return FALSE
+	return TRUE

@@ -785,6 +785,8 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/random_radio/Process()
 	if(world.time >= (last_produce + cooldown))
 		var/datum/stash/stash = pick_n_take_stash_datum()
+		if(!stash)
+			return
 		stash.select_location()
 		stash.spawn_stash()
 		var/obj/item/weapon/paper/stash_note = stash.spawn_note(get_turf(src))

@@ -6,11 +6,11 @@
 
 /datum/gear/head/bandana_green
 	display_name = "bandana, green"
-	path = /obj/item/clothing/head/greenbandana
+	path = /obj/item/clothing/head/bandana/green
 
 /datum/gear/head/bandana_orange
 	display_name = "bandana, orange"
-	path = /obj/item/clothing/head/orangebandana
+	path = /obj/item/clothing/head/bandana/orange
 
 /datum/gear/head/beret
 	display_name = "beret, red"

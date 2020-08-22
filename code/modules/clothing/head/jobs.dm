@@ -59,6 +59,7 @@
 	desc = "A beret, an artists favorite headwear."
 	icon_state = "beret"
 	body_parts_covered = 0
+	style = 1
 
 //Security
 /obj/item/clothing/head/beret/sec/navy/officer
@@ -86,7 +87,7 @@
 /obj/item/clothing/head/surgery
 	name = "surgical cap"
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
-	icon_state = "surgcap_blue"
+	icon_state = "surgcap_green"
 	flags_inv = BLOCKHEADHAIR
 
 /obj/item/clothing/head/surgery/purple

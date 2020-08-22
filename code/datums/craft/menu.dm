@@ -37,7 +37,9 @@
 /datum/nano_module/craft/proc/set_item(item_ref, mob/mob)
 	SScraft.current_item[mob.ckey] = locate(item_ref)
 
-/datum/nano_module/craft/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/craft/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
+	if(!usr)
+		return
 	if(usr.incapacitated())
 		return
 
