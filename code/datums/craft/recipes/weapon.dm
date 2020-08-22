@@ -108,7 +108,7 @@
 	result = /obj/item/weapon/shield/riot/handmade/tray
 	steps = list(
 		list(/obj/item/weapon/tray, 1),
-		list(/obj/item/weapon/storage/belt, 2, "time" = 10)
+		list(/obj/item/weapon/storage/belt, 1, "time" = 10)
 	)
 
 /datum/craft_recipe/weapon/pistol
