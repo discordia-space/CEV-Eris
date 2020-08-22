@@ -3,8 +3,8 @@
 
 /obj/random/encouter
 	spawn_nothing_percentage = 0
-	var/list/obj/random/spawner/encouter/encouters = list(/obj/random/spawner/encouter/mine, /obj/random/spawner/encouter/miningbot, /obj/random/spawner/encouter/strangebeacon, \
-	/obj/spawner/encouter/cryopod, /obj/spawner/encouter/cryopod, /obj/random/spawner/encouter/coffin, /obj/random/spawner/encouter/omnius)
+	var/list/obj/random/spawner/encouter/encouters = list(/obj/random/spawner/encouter/mine, /obj/spawner/encouter/miningbot, /obj/spawner/encouter/strangebeacon, \
+	/obj/spawner/encouter/cryopod, /obj/spawner/encouter/cryopod, /obj/random/spawner/encouter/coffin, /obj/spawner/encouter/omnius)
 
 /obj/random/encouter/item_to_spawn()
 	..()
@@ -27,25 +27,24 @@
 /obj/random/spawner/encouter/mine
 	randspawn = list(/obj/structure/mine/mine_no_primer, /obj/item/weapon/mine, /obj/structure/mine/mine_scraps)
 
-/obj/random/spawner/encouter/miningbot
-	randspawn = list(/mob/living/bot/miningonestar/resources, /mob/living/bot/miningonestar/resources/agressive, /mob/living/bot/miningonestar/resources/agressive/with_support, \
-	/mob/living/bot/miningonestar/resources/in_work)
+/obj/spawner/encouter/miningbot
+	allow_blacklist = TRUE
+	tags_to_spawn = list(SPAWN_BOT_OS)
 
-/obj/random/spawner/encouter/strangebeacon
-	randspawn = list(/obj/structure/strangebeacon, /obj/structure/strangebeacon/bots, /obj/structure/strangebeacon/pods, \
-	/obj/structure/strangebeacon/bombard)
+/obj/spawner/encouter/strangebeacon
+	tags_to_spawn = list(SPAWN_STRANGEBEACON)
 
 /obj/spawner/encouter/cryopod
 	tags_to_spawn = list(SPAWN_ENCOUNTER_CRYOPOD)
 
 /obj/spawner/encouter/satellite
-	tags_to_spawn = list(SPAWN_TAG_SATELITE)
+	tags_to_spawn = list(SPAWN_SATELITE)
 
 /obj/random/spawner/encouter/coffin
 	randspawn = list(/obj/structure/closet/coffin/spawnercorpse)
 
-/obj/random/spawner/encouter/omnius
-	randspawn = list(/obj/structure/ominous, /obj/structure/ominous/emitter, /obj/structure/ominous/teleporter)
+/obj/spawner/encouter/omnius
+	tags_to_spawn = list(SPAWN_OMINOUS)
 
 ///////ENCOUTERS
 //////////////////////

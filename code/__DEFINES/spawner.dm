@@ -105,7 +105,7 @@
 
 
 #define SPAWN_TAG_SALVAGEABLE "strcuture,structure_salvageable"
-#define SPAWN_TAG_OS_SALVAGEABLE "strcuture,structure_salvageable,structure_salvageable_os,os"
+#define SPAWN_TAG_OS_SALVAGEABLE "strcuture,structure_salvageable,structure_salvageable_os,faction_os"
 #define SPAWN_TAG_SALVAGEABLE_AUTOLATHE "strcuture,structure_salvageable,structure_salvageable_autolathe"
 
 // Structures - MACHINE_FRAME
@@ -124,15 +124,19 @@
 
 #define SPAWN_TAG_SCRAP "strcuture,strcuture_scrap"
 
-// Structures - Cryopod
+//-encouters
+#define SPAWN_ENCOUNER "encounter"
 #define SPAWN_ENCOUNTER_CRYOPOD "encounter_cryopod"
+#define SPAWN_SATELITE  "strcuture_satelite"
+#define SPAWN_OMINOUS "strcuture_ominous"
+#define SPAWN_STRANGEBEACON "strangebeacon"
+#define SPAWN_BOT_OS "mob,bot,bot_os"
 
-#define SPAWN_TAG_ENCOUNTER_CRYOPOD "strcuture,encounter_cryopod"
-
-// Structures - Satelite
-#define SPAWN_SATELITE  "strcuture,strcuture_satelite"
-
-#define SPAWN_TAG_SATELITE "strcuture,strcuture_satelite"
+#define SPAWN_TAG_ENCOUNTER_CRYOPOD "strcuture,encouter,encounter_cryopod"
+#define SPAWN_TAG_SATELITE "strcuture,encouter,strcuture_satelite"
+#define SPAWN_TAG_OMINOUS "strcuture,encouter,strcuture_ominous"
+#define SPAWN_TAG_STRANGEBEACON "strcuture,encouter,strangebeacon"
+#define SPAWN_TAG_BOT_OS "mob,bot,bot_os,faction_os"
 
 //	Mobs
 #define SPAWN_MOB "mob"
@@ -148,4 +152,3 @@
 
 #define SPAWN_TAG_ROACH "mob,hostile_mob,mob_roach"
 #define SPAWN_TAG_NANITE_ROACH "mob,hostile_mob,mob_roach,nanite_roach"
-
