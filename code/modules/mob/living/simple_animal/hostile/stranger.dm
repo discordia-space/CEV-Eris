@@ -34,7 +34,7 @@
 	projectilesound = 'sound/weapons/laser.ogg'
 	faction = "bluespace"
 	var/empy_cell = FALSE
-	var/prob_tele = 20
+	var/prob_tele = 15
 
 /mob/living/simple_animal/hostile/stranger/New()
 	..()
@@ -96,8 +96,11 @@
 	..()
 
 /mob/living/simple_animal/hostile/stranger/Life()
-	if(target_mob && prob(prob_tele))
-		var/turf/T = get_random_secure_turf_in_range(target_mob, 4, 2)
+	if(prob(prob_tele))
+		var/source = src
+		if(target_mob)
+			source = target_mob
+		var/turf/T = get_random_secure_turf_in_range(source, 4, 2)
 		do_teleport(src, T)
 	. = ..()
 
