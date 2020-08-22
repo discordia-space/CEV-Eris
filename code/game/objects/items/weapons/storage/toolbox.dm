@@ -14,12 +14,17 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 14 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)
-	attack_verb = list("robusted")
+	attack_verb = list("robusted")	spawn_blacklisted = FALSE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_TOOLBOX
+	bad_types = /obj/item/weapon/storage/toolbox
 
 /obj/item/weapon/storage/toolbox/emergency
 	name = "emergency toolbox"
 	icon_state = "red"
 	item_state = "toolbox_red"
+	rarity_value = 30
 
 /obj/item/weapon/storage/toolbox/emergency/populate_contents()
 	new /obj/item/weapon/tool/crowbar(src)
@@ -52,6 +57,7 @@
 	name = "electrical toolbox"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
+	rarity_value = 20
 
 /obj/item/weapon/storage/toolbox/electrical/populate_contents()
 	var/color = pick("red","yellow","green","blue","pink","orange","cyan","white")
@@ -82,6 +88,7 @@
 	item_state = "toolbox_syndi"
 	origin_tech = list(TECH_COMBAT = 1, TECH_COVERT = 1)
 	force = WEAPON_FORCE_DANGEROUS
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/toolbox/syndicate/populate_contents()
 	var/obj/item/weapon/tool/cell_tool

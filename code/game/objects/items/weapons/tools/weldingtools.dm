@@ -87,3 +87,8 @@
 	heat = 2750
 	max_upgrades = 2
 	workspeed = 1.7
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
+

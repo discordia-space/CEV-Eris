@@ -31,6 +31,10 @@
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_MATERIAL = 2)
 	degradation = 0.6
 	workspeed = 1.2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/crowbar/pneumatic
 	name = "pneumatic crowbar"

@@ -13,9 +13,11 @@
 //	Items - tools - knife
 #define SPAWN_KNIFE "knife"
 #define SPAWN_SWORD "sword"
+#define SPAWN_OS_TOOL "os_tool"
 
 #define SPAWN_TAG_KNIFE "item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "item,weapon,tool,knife,sword"
+#define SPAWN_TAG_OS_TOOL "item,tool,os_tool,faction_os"
 
 // ITEMS - tools - SURGERY
 #define SPAWN_SURGERY_TOOL "surgery_tool"
@@ -65,10 +67,16 @@
 #define SPAWN_TAG_STRUCTURE_PLUSHIE "strcuture,toy_plushie"
 #define SPAWN_TAG_FIGURE "item,toy,toy_figure"
 
-// CLOTHING
+//	Items - CLOTHING
 #define SPAWN_VOID_SUIT "void_suit"
 
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
+
+//	Items - BOX
+#define SPAWN_BOX "box"
+#define SPAWN_TOOLBOX "toolbox"
+
+#define SPAWN_TAG_TOOLBOX "box,toolbox"
 
 
 //	MECH

@@ -25,6 +25,10 @@
 
 	max_upgrades = 2
 	workspeed = 1.2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/medmultitool/medimplant
 	name = "Medical Omnitool"
@@ -44,6 +48,7 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 
 	max_upgrades = 1
+	spawn_tags = null
 
 /obj/item/weapon/tool/engimplant
 	name = "Engineering Omnitool"

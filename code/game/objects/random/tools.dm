@@ -77,13 +77,18 @@
 			if (!istype(O, /obj/random) && prob(20))
 				O.make_old()
 
+/obj/spawner/tool/post_spawn(list/spawns)
+	if(!has_postspawn)
+		return FALSE
+	if (isturf(loc))
+		for (var/obj/O in spawns)
+			if (!istype(O, /obj/spawner) && prob(20))
+				O.make_old()
 
 /obj/random/tool/low_chance
 	name = "low chance random tool"
 	icon_state = "tool-grey-low"
 	spawn_nothing_percentage = 60
-
-
 
 
 /obj/random/tool/advanced
@@ -111,36 +116,21 @@
 	spawn_nothing_percentage = 60
 
 
-
-
-/obj/random/toolbox
+/obj/spawner/toolbox
 	name = "random toolbox"
 	icon_state = "box-green"
+	tags_to_spawn = list(SPAWN_TOOLBOX)
 
-/obj/random/toolbox/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/toolbox/mechanical = 3,
-				/obj/item/weapon/storage/toolbox/electrical = 2,
-				/obj/item/weapon/storage/toolbox/emergency = 1))
-
-/obj/random/toolbox/low_chance
+/obj/spawner/toolbox/low_chance
 	name = "low chance random toolbox"
 	icon_state = "box-green-low"
 	spawn_nothing_percentage = 60
 
-
-/obj/random/tool/advanced/onestar
+/obj/spawner/tool/advanced/onestar
 	name = "random onestar tool"
+	allow_blacklisted = TRUE
+	tags_to_spawn = list(SPAWN_OS_TOOL)
 
-
-/obj/random/tool/advanced/onestar/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/tool/crowbar/onestar = 1,
-						/obj/item/weapon/tool/medmultitool = 1,
-						/obj/item/weapon/tool/pickaxe/onestar = 1,
-						/obj/item/weapon/tool/pickaxe/jackhammer/onestar = 1,
-						/obj/item/weapon/tool/pickaxe/drill/onestar = 1,
-						/obj/item/weapon/tool/screwdriver/combi_driver/onestar = 1,
-						/obj/item/weapon/tool/weldingtool/onestar = 1))
-
-/obj/random/tool/advanced/onestar/low_chance
+/obj/spawner/tool/advanced/onestar/low_chance
 	icon_state = "tool-orange-low"
 	spawn_nothing_percentage = 60

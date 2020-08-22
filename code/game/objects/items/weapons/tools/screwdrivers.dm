@@ -66,3 +66,7 @@
 	use_power_cost = 0.3
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL

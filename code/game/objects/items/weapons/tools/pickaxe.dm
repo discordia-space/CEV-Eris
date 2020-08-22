@@ -58,6 +58,10 @@
 	degradation = 0.6
 	workspeed = 1.2
 	use_power_cost = 0
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 
 /obj/item/weapon/tool/pickaxe/jackhammer
@@ -88,6 +92,10 @@
 	workspeed = 1.7
 	max_upgrades = 2
 	use_power_cost = 0.8
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
@@ -117,6 +125,10 @@
 	max_upgrades = 2
 	use_fuel_cost = 0.10
 	max_fuel = 90
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/pickaxe/diamonddrill
 	name = "diamond-point mining drill"
