@@ -1,0 +1,5 @@
+author: Hopek
+delete-after: true
+changes:
+  - bugfix: The Tray shield is now crafted exactly as stated on the recipe with a
+      single tool belt vs two.
