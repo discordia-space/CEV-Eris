@@ -2,6 +2,11 @@
 	name = "clothing"
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
+	spawn_blacklisted = FALSE
+	bad_types = /obj/item/clothing
+	spawn_frequency = 10
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
 	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
 	var/list/species_restricted = null				// Only these species can wear this kit.
@@ -388,6 +393,11 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
+	spawn_blacklisted = FALSE
+	bad_types = /obj/item/clothing/mask
+	spawn_frequency = 10
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MASK
 
 	var/voicechange = 0
 	var/list/say_messages

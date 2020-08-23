@@ -1,45 +1,11 @@
 //CLOTH RANDOM
-/obj/random/cloth/masks
+/obj/spawner/cloth/masks
 	name = "random mask"
 	desc = "This is a random mask."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_MASK)
 
-/obj/random/cloth/masks/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/mask/balaclava = 15,
-				/obj/item/clothing/mask/balaclava/tactical = 20,
-				/obj/item/clothing/mask/bandana = 2,
-				/obj/item/clothing/mask/bandana/blue = 1,
-				/obj/item/clothing/mask/bandana/botany = 1,
-				/obj/item/clothing/mask/bandana/camo = 1,
-				/obj/item/clothing/mask/bandana/gold = 1,
-				/obj/item/clothing/mask/bandana/green = 1,
-				/obj/item/clothing/mask/bandana/orange = 1,
-				/obj/item/clothing/mask/bandana/purple = 1,
-				/obj/item/clothing/mask/bandana/red = 1,
-				/obj/item/clothing/mask/bandana/skull = 1,
-				/obj/item/clothing/mask/breath = 20,
-				/obj/item/clothing/mask/breath/medical = 5,
-				/obj/item/clothing/mask/gas = 20,
-				/obj/item/clothing/mask/gas/clown_hat = 10,
-				/obj/item/clothing/mask/gas/ihs = 10,
-				/obj/item/clothing/mask/gas/swat = 2,
-				/obj/item/clothing/mask/gas/voice = 2,
-				/obj/item/clothing/mask/gas/german = 2,
-				/obj/item/clothing/mask/luchador = 2,
-				/obj/item/clothing/mask/luchador/rudos = 2,
-				/obj/item/clothing/mask/luchador/tecnicos = 2,
-				/obj/item/clothing/mask/muzzle = 2,
-				/obj/item/clothing/mask/scarf = 2,
-				/obj/item/clothing/mask/scarf/green = 2,
-				/obj/item/clothing/mask/scarf/ninja = 2,
-				/obj/item/clothing/mask/scarf/red = 2,
-				/obj/item/clothing/mask/scarf/redwhite = 2,
-				/obj/item/clothing/mask/scarf/stripedblue = 2,
-				/obj/item/clothing/mask/scarf/stripedgreen = 2,
-				/obj/item/clothing/mask/scarf/stripedred = 2,
-				/obj/item/clothing/mask/surgical = 8))
-
-/obj/random/cloth/masks/low_chance
+/obj/spawner/cloth/masks/low_chance
 	name = "low chance random mask"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
@@ -121,28 +87,16 @@
 
 
 
-/obj/random/cloth/hazmatsuit
+/obj/spawner/cloth/hazmatsuit
 	name = "random hazmat suit"
 	desc = "This is a random hazmat suit."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_HAZMATSUIT)
 
-/obj/random/cloth/hazmatsuit/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/suit/bio_suit = 5,
-				/obj/item/clothing/suit/bio_suit/cmo = 5,
-				/obj/item/clothing/suit/bio_suit/general = 5,
-				/obj/item/clothing/suit/bio_suit/janitor = 5,
-				/obj/item/clothing/suit/bio_suit/scientist = 5,
-				/obj/item/clothing/suit/bio_suit/security = 5,
-				/obj/item/clothing/suit/bio_suit/virology = 5,
-				/obj/item/clothing/suit/radiation = 15,
-				/obj/item/clothing/suit/space/bomb = 10))
-
-/obj/random/cloth/hazmatsuit/low_chance
+/obj/spawner/cloth/hazmatsuit/low_chance
 	name = "low chance random hazmat suit"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
-
 
 
 

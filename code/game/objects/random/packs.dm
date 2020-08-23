@@ -13,10 +13,10 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/random/pack/cloth/item_to_spawn()
 	return pickweight(list(
-					/obj/random/cloth/masks = 5,
+					/obj/spawner/cloth/masks = 5,
 					/obj/random/cloth/armor = 3,
 					/obj/random/cloth/suit = 3,
-					/obj/random/cloth/hazmatsuit = 4,
+					/obj/spawner/cloth/hazmatsuit = 4,
 					/obj/random/cloth/under = 7,
 					/obj/random/cloth/helmet = 4,
 					/obj/random/cloth/head = 5,
