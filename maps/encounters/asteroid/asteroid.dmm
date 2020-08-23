@@ -146,9 +146,9 @@
 "aH" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aI" = (
@@ -294,9 +294,9 @@
 "bA" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bD" = (
@@ -324,10 +324,10 @@
 /area/outpost/abandoned)
 "bI" = (
 /obj/structure/closet/oldstyle,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bJ" = (
@@ -378,7 +378,7 @@
 /area/outpost/abandoned)
 "bQ" = (
 /obj/structure/table/steel,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "bR" = (

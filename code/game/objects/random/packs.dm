@@ -53,7 +53,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/material_rare = 3,
 					/obj/random/material_resources = 8,
 					/obj/spawner/exosuit_equipment = 3,
-					/obj/random/powercell = 8,
+					/obj/spawner/powercell = 8,
 					/obj/random/techpart = 10,
 					/obj/random/tool = 20,
 					/obj/random/tool_upgrade = 30,

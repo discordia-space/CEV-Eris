@@ -184,7 +184,7 @@
 /obj/structure/closet,
 /obj/random/contraband/low_chance,
 /obj/random/contraband/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled,
@@ -219,7 +219,7 @@
 /obj/structure/closet,
 /obj/random/contraband/low_chance,
 /obj/random/contraband/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bi" = (
@@ -279,8 +279,8 @@
 /area/outpost/abandoned_fortress)
 "bw" = (
 /obj/structure/table/rack/shelf,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bx" = (

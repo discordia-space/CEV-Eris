@@ -7,7 +7,7 @@
 "g" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "h" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "i" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
-"j" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/random/powercell,/obj/random/powercell,/obj/random/powercell,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"j" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/spawner/powercell,/obj/spawner/powercell,/obj/spawner/powercell,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "k" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "l" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "m" = (/obj/spawner/roaches/cluster/low_chance,/obj/machinery/repair_station,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)

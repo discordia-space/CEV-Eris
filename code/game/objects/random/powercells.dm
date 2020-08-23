@@ -1,21 +1,12 @@
-/obj/random/powercell
-	name = "random powercell"
-	icon_state = "battery-green"
-
-/obj/random/powercell/item_to_spawn()
-	return pickweight(list(/obj/spawner/powercell/large = 7,\
-				/obj/spawner/powercell/medium = 8,\
-				/obj/spawner/powercell/small = 10))
-
-/obj/random/powercell/low_chance
-	name = "low chance random powercell"
-	icon_state = "battery-green-low"
-	spawn_nothing_percentage = 60
-
 /obj/spawner/powercell
 	name = "random powercell"
 	icon_state = "battery-green"
 	tags_to_spawn = list(SPAWN_POWERCELL)
+
+/obj/spawner/powercell/low_chance
+	name = "low chance random powercell"
+	icon_state = "battery-green-low"
+	spawn_nothing_percentage = 60
 
 /obj/spawner/powercell/small
 	name = "random powercell"

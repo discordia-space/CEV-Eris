@@ -10,7 +10,7 @@
 "j" = (/obj/structure/bed/chair/office/dark{dir = 4},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "k" = (/obj/structure/table/standard,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "l" = (/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
-"m" = (/obj/structure/table/standard,/obj/random/powercell/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"m" = (/obj/structure/table/standard,/obj/spawner/powercell/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "n" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "o" = (/obj/random/traps,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "p" = (/obj/structure/bed/chair/office/dark,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)

@@ -223,7 +223,7 @@
 	name = "power cell bin"
 	desc = "A moderately sized crate full of various power cells."
 	icon_state = "serbcrate_deferred_worn"
-	initial_contents = list(/obj/random/powercell = 16)
+	initial_contents = list(/obj/spawner/powercell = 16)
 
 
 /obj/item/weapon/storage/deferred/crate/alcohol

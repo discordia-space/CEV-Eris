@@ -40,7 +40,7 @@
 "aN" = (/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-10"},/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "aO" = (/obj/structure/table/woodentable,/obj/random/pack/rare/low_chance,/obj/random/pack/rare/low_chance,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "aP" = (/obj/machinery/door/airlock/glass,/obj/structure/barricade,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
-"aQ" = (/obj/structure/table/woodentable,/obj/random/powercell,/obj/random/powercell,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
+"aQ" = (/obj/structure/table/woodentable,/obj/spawner/powercell,/obj/spawner/powercell,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "aR" = (/obj/item/remains/human,/obj/structure/catwalk,/obj/random/pack/cloth,/obj/random/pack/cloth,/turf/simulated/floor/plating/under,/area/deepmaint)
 "aS" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "aT" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/wood,/area/deepmaint)

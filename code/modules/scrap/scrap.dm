@@ -390,7 +390,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_max = 10
 	loot_list = list(
 		/obj/random/pack/gun_loot = 8,
-		/obj/random/powercell,
+		/obj/spawner/powercell,
 		/obj/spawner/exosuit_equipment = 2,
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
@@ -406,7 +406,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/science.dmi'
 	loot_list = list(
 		/obj/random/pack/tech_loot = 4,
-		/obj/random/powercell,
+		/obj/spawner/powercell,
 		/obj/random/circuitboard,
 		/obj/random/science,
 		/obj/random/material_ore,

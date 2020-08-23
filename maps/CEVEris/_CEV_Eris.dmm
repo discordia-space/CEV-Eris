@@ -642,11 +642,11 @@
 /area/eris/crew_quarters/sleep)
 "abN" = (
 /obj/structure/table/rack,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/toilet/medbay)
 "abO" = (
@@ -15953,8 +15953,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/substation/section2)
 "aLr" = (
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aLs" = (
@@ -17819,7 +17819,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aPQ" = (
@@ -21048,8 +21048,8 @@
 /area/eris/maintenance/section1deck4central)
 "aWG" = (
 /obj/structure/table/standard,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "aWH" = (
@@ -25989,8 +25989,8 @@
 /area/eris/rnd/server)
 "bgl" = (
 /obj/structure/table/standard,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bgm" = (
@@ -28190,7 +28190,7 @@
 "bkS" = (
 /obj/structure/table/standard,
 /obj/random/tool,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "bkT" = (
@@ -29139,8 +29139,8 @@
 /area/eris/maintenance/section2deck4port)
 "bmU" = (
 /obj/structure/table/standard,
-/obj/random/powercell,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bmV" = (
@@ -29845,12 +29845,12 @@
 /area/eris/crew_quarters/sleep)
 "bou" = (
 /obj/random/closet,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bov" = (
 /obj/random/closet,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /obj/random/pack/gun_loot/low_chance,
 /obj/random/pack/gun_loot/low_chance,
 /obj/random/pack/gun_loot/low_chance,
@@ -30357,7 +30357,7 @@
 /area/eris/crew_quarters/librarybackroom)
 "bpI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bpJ" = (
@@ -36544,10 +36544,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/docking)
 "bDY" = (
@@ -37727,7 +37727,7 @@
 /area/eris/maintenance/section4deck4central)
 "bGp" = (
 /obj/structure/closet,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/plating,
@@ -37849,7 +37849,7 @@
 /area/eris/maintenance/section4deck4central)
 "bGA" = (
 /obj/structure/closet,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -38039,7 +38039,7 @@
 /area/eris/hallway/main/section4)
 "bGW" = (
 /obj/structure/closet,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -40697,7 +40697,7 @@
 /obj/structure/table/rack,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bMi" = (
@@ -48575,15 +48575,15 @@
 "cdD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/closet/crate,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cdE" = (
@@ -51571,10 +51571,10 @@
 /area/eris/crew_quarters/bar)
 "cko" = (
 /obj/structure/table/rack/shelf,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
 "ckp" = (
@@ -56412,8 +56412,8 @@
 /area/eris/command/tcommsat/computer)
 "cwe" = (
 /obj/structure/table/rack,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/lowkeyrandom/low_chance,
@@ -60824,7 +60824,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/random/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "cFr" = (
@@ -65861,8 +65861,8 @@
 /area/eris/engineering/engine_room)
 "cRC" = (
 /obj/structure/table/standard,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
 "cRD" = (
@@ -70806,8 +70806,8 @@
 "dcY" = (
 /obj/structure/table/standard,
 /obj/random/pack/tech_loot,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "dcZ" = (
@@ -70844,15 +70844,15 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "ddc" = (
 /obj/structure/table/standard,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "ddd" = (
@@ -70886,10 +70886,10 @@
 /area/eris/maintenance/section2deck2port)
 "ddh" = (
 /obj/structure/closet/crate,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "ddi" = (
@@ -84095,7 +84095,7 @@
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1starboard)
 "dGK" = (
@@ -85439,7 +85439,7 @@
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
-/obj/random/powercell,
+/obj/spawner/powercell,
 /obj/random/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1starboard)
@@ -98076,8 +98076,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
 "elJ" = (
-/obj/random/powercell,
-/obj/random/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck1central)
 "elK" = (
@@ -109329,7 +109329,7 @@
 /obj/structure/sign/faction/technomancers{
 	pixel_y = 32
 	},
-/obj/random/powercell,
+/obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
 "xZK" = (
