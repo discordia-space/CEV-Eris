@@ -1,0 +1,5 @@
+author: fernandos13
+delete-after: true
+changes:
+  - tweak: Increase the limit of pills created by amount to 15
+  - tweak: Add a limit to pills created by volume, also 15 pills.
