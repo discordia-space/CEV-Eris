@@ -19,6 +19,7 @@
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	var/Using = FALSE				//If its being used
+	var/range = 10
 
 /obj/item/weapon/bluespace_harpoon/Initialize()
 	. = ..()
@@ -34,7 +35,9 @@
 		cell = null
 		update_icon()
 
-/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user)
+	if(get_dist(A, user) > range)
+		return ..()
 	if(istype(A, /obj/item/weapon/storage/))
 		return ..()
 	else if(istype(A, /obj/structure/table/) && (get_dist(A, user) <= 1))
@@ -75,15 +78,14 @@
 
 
 /obj/item/weapon/bluespace_harpoon/proc/teleport(turf/source, turf/target)
-	bluespace_entropy(1, get_turf(src), TRUE)
 	for(var/atom/movable/AM in source)
 		if(istype(AM, /mob/shadow))
 			continue
 		if(!AM.anchored)
-			if(prob(offset_chance))
-				AM.forceMove(get_turf(pick(orange(teleport_offset,source))))
+			if(prob(offset_chance))		
+				go_to_bluespace(source, 2, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
 			else
-				AM.forceMove(target)
+				go_to_bluespace(source, 2, TRUE, AM, target)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
