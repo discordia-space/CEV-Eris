@@ -30279,7 +30279,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/chargebay)
 "bpu" = (
-/obj/random/cluster/slimes/low_chance,
+/obj/spawner/slimes/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "bpv" = (

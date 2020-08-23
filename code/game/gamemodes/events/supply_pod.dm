@@ -99,7 +99,7 @@
 	var/list/possible_mobs = list(/mob/living/simple_animal/hostile/hivebot,
 	/mob/living/simple_animal/hostile/scarybat,
 	/mob/living/simple_animal/mouse,
-	/obj/random/slime/rainbow,
+	/obj/spawner/slime/rainbow,
 	/obj/random/mob/spiders,
 	/obj/spawner/roaches,
 	/mob/living/simple_animal/hostile/samak,

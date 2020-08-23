@@ -198,9 +198,11 @@
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"
 #define SAPAWN_FRIENDLY_MOB "friendly_mob"
+#define SPAWN_SLIME "slime"
 
 #define SPAWN_TAG_HOSTILE_MOB "mob,hostile_mob"
 #define SAPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
+#define SPAWN_TAG_SLIME "mob,slime"
 
 // MOBS - ROACH
 #define SPAWN_ROACH "mob_roach"
