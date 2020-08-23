@@ -11,9 +11,9 @@
 		</div>
 		<div class="itemContent">
 			<div>
-				Sanity is gained or lost depending on your environment. For example
-				being around oddities increases your sanity slightly, as well as
-				taking drugs or smoking. Seeing people die, being around blood and grime
+				Sanity is gained or lost depending on your environment. For example 
+				being around oddities increases your sanity slightly, as well as 
+				taking drugs or smoking. Seeing people die, being around blood and grime 
 				and being hurt yourself lowers your sanity.
 			</div>
 			<div style="padding: 1px; overflow:auto;">
@@ -37,8 +37,8 @@
 		</div>
 		<div class="itemContent">
 			<div>
-				Insight is gained by activies such as smoking, taking drugs,
-				hurting people or seeing them get hurt, seeing blood and grime and
+				Insight is gained by activies such as smoking, taking drugs, 
+				hurting people or seeing them get hurt, seeing blood and grime and 
 				exploring maintenance.
 			</div>
 			<div style="padding: 1px; overflow:auto;">
@@ -62,7 +62,7 @@
 		</div>
 		<div class="itemContent">
 			<div>
-				Style can be gained by wearing fashionable and clean attire. Being
+				Style can be gained by wearing fashionable and clean attire. Being 
 				dirty with blood or grime will decrease your style value.
 			</div>
 			<div style="padding: 1px; overflow:auto;">
@@ -86,25 +86,24 @@
 		</div>
 		<div class="itemContent">
 			<div>
-				Once you have gained enough insight, you
-				should rest. While you rest you will
+				Once you have gained enough insight, you 
+				should rest. While you rest you will 
 				have certain wishes to fulfill.
 			</div>
-			<div>
-				<h3>Current desires: </h3>
-				{{if data.rest}}
-					{{for data.desires :val:val_i}}
-						| &nbsp &nbsp {{:val}} &nbsp &nbsp
-					{{/for}}
-					|
-					<div style="padding: 1px; overflow:auto;">
-						<h3>Rest progress:</h3>
-					</div>
-					{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average')}}
-				{{else}}
-					Currently you don't have desires
-				{{/if}}
-			</div>
+			<h3>Current desires: </h3>
+			{{if data.rest}}
+				{{for data.desires :val:val_i}}
+					| &nbsp &nbsp {{:val}} &nbsp &nbsp
+				{{/for}}
+				|
+				<div style="padding: 1px; overflow:auto;">
+					<h3>Rest progress:</h3>
+				</div>
+				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average')}}
+				<br>
+			{{else}}
+				Currently you don't have desires
+			{{/if}}
 		</div>
 		{{if data.rest}}
 		{{/if}}
