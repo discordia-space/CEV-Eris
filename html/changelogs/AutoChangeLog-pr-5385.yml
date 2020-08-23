@@ -1,0 +1,5 @@
+author: Hopek
+delete-after: true
+changes:
+  - rscadd: You now spawn in with your ID already inside your PDA. Also, Moves the
+      PDA to the ID slot so you don't have to do this every single time.
