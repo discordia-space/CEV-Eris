@@ -31,3 +31,5 @@
 	for (var/i in 1 to 10)
 		new /obj/item/weapon/implant/core_implant/cruciform(src)
 	new /obj/item/weapon/tool/knife/neotritual(src)
+	new /obj/item/weapon/gun/energy/nt_svalinn(src)
+	new /obj/item/weapon/cell/small(src)

@@ -1023,6 +1023,16 @@
 		/datum/design/autolathe/cell/medium/high,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor
+	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
+	icon_state = "neotheology"
+
+	license = 12
+	designs = list(
+		/obj/item/weapon/gun/energy/nt_svalinn = 3,
+		/datum/design/autolathe/cell/small/high,
+	)
+
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose
 	disk_name = "Frozen Star - Spider Rose PDW E"
 	icon_state = "frozenstar"

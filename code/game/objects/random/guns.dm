@@ -13,6 +13,7 @@
 				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,\
 				/obj/item/weapon/gun/projectile/olivaw = 4,\
 				/obj/item/weapon/gun/energy/gun/martin = 2,\
+				/obj/item/weapon/gun/energy/nt_svalinn = 2,\
 				/obj/item/weapon/gun/launcher/crossbow = 1,\
 				/obj/item/weapon/gun/projectile/boltgun/serbian = 1))
 
