@@ -15,7 +15,7 @@
 		/obj/item/weapon/folder/red = 2,
 		/obj/item/weapon/folder/yellow = 2,
 		/obj/item/weapon/folder/cyan = 2,
-		/obj/item/weapon/circuitboard/broken = 3,
+		/obj/item/weapon/electronics/circuitboard/broken = 3,
 		/obj/item/trash/material/metal = 9,
 		/obj/item/trash/material/circuit = 6,
 		/obj/item/trash/material/device = 5,

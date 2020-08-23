@@ -16,7 +16,7 @@
 	icon_state = "cellconsole"
 	light_power = 1.5
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
+	circuit = /obj/item/weapon/electronics/circuitboard/cryopodcontrol
 	density = FALSE
 	interact_offline = 1
 	var/mode = null
@@ -35,7 +35,7 @@
 	desc = "An interface between crew and the robotic storage systems"
 	icon = 'icons/obj/robot_storage.dmi'
 	icon_state = "console"
-	circuit = /obj/item/weapon/circuitboard/robotstoragecontrol
+	circuit = /obj/item/weapon/electronics/circuitboard/robotstoragecontrol
 
 	storage_type = "cyborgs"
 	storage_name = "Robotic Storage Control"
@@ -125,12 +125,12 @@
 	src.updateUsrDialog()
 	return
 
-/obj/item/weapon/circuitboard/cryopodcontrol
+/obj/item/weapon/electronics/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/robotstoragecontrol
+/obj/item/weapon/electronics/circuitboard/robotstoragecontrol
 	name = "Circuit board (Robotic Storage Console)"
 	build_path = /obj/machinery/computer/cryopod/robot
 	origin_tech = list(TECH_DATA = 3)

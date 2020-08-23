@@ -13,7 +13,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE // Handles power use in Process()
 	layer = BELOW_OBJ_LAYER
-	circuit = /obj/item/weapon/circuitboard/chemical_dispenser
+	circuit = /obj/item/weapon/electronics/circuitboard/chemical_dispenser
 
 	var/ui_title = "Chem Dispenser 5000"
 	var/obj/item/weapon/cell/medium/cell

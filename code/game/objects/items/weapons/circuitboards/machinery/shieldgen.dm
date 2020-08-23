@@ -2,7 +2,7 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 // New shields
-/obj/item/weapon/circuitboard/shield_generator
+/obj/item/weapon/electronics/circuitboard/shield_generator
 	name = T_BOARD("hull shield generator")
 	board_type = "machine"
 	build_path = /obj/machinery/power/shield_generator
@@ -14,7 +14,7 @@
 							/obj/item/weapon/stock_parts/smes_coil = 1,
 							/obj/item/weapon/stock_parts/console_screen = 1)
 
-/obj/item/weapon/circuitboard/shield_diffuser
+/obj/item/weapon/electronics/circuitboard/shield_diffuser
 	name = T_BOARD("shield diffuser")
 	board_type = "machine"
 	build_path = /obj/machinery/shield_diffuser
@@ -24,7 +24,7 @@
 							/obj/item/weapon/stock_parts/micro_laser = 1)
 
 
-/obj/item/weapon/circuitboard/shieldwallgen
+/obj/item/weapon/electronics/circuitboard/shieldwallgen
 	name = T_BOARD("shield wall generator")
 	board_type = "machine"
 	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)

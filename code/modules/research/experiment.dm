@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/list/temp_tech = I.origin_tech
 	var/item_tech_points = 0
 	var/has_new_tech = FALSE
-	var/is_board = istype(I, /obj/item/weapon/circuitboard)
+	var/is_board = istype(I, /obj/item/weapon/electronics/circuitboard)
 
 	for(var/T in temp_tech)
 		if(tech_points[T])

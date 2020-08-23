@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/bluespacerelay
+/obj/item/weapon/electronics/circuitboard/bluespacerelay
 	name = T_BOARD("bluespacerelay")
 	build_path = /obj/machinery/bluespacerelay
 	board_type = "machine"

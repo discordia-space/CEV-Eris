@@ -143,7 +143,7 @@
 
 	can_hold = list(
 		/obj/item/weapon/cell,
-		/obj/item/weapon/circuitboard,
+		/obj/item/weapon/electronics/circuitboard,
 		/obj/item/weapon/tool,
 		/obj/item/stack/material,
 		/obj/item/weapon/material,

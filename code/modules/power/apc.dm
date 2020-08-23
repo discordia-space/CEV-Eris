@@ -478,7 +478,7 @@
 							user.visible_message(\
 								SPAN_WARNING("[user.name] has removed the power control board from [name]!"),\
 								SPAN_NOTICE("You remove the power control board."))
-							new /obj/item/weapon/circuitboard/apc(loc)
+							new /obj/item/weapon/electronics/circuitboard/apc(loc)
 						return
 			if(opened!=2) //cover isn't removed
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -642,7 +642,7 @@
 				make_terminal()
 				terminal.connect_to_network()
 
-	else if (istype(I, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
+	else if (istype(I, /obj/item/weapon/electronics/circuitboard/apc) && opened && has_electronics==0 && !((stat & BROKEN)))
 		user.visible_message(SPAN_WARNING("[user.name] inserts the power control board into [src]."), \
 							"You start to insert the power control board into the frame...")
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -652,7 +652,7 @@
 				to_chat(user, SPAN_NOTICE("You place the power control board inside the frame."))
 				qdel(I)
 
-	else if (istype(I, /obj/item/weapon/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
+	else if (istype(I, /obj/item/weapon/electronics/circuitboard/apc) && opened && has_electronics==0 && ((stat & BROKEN)))
 		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
 		return
 

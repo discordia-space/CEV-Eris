@@ -4,7 +4,7 @@
 #endif
 #define T_BOARD(name)	"circuit board (" + (name) + ")"
 
-/obj/item/weapon/circuitboard
+/obj/item/weapon/electronics/circuitboard
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
@@ -27,14 +27,14 @@
 	var/list/req_components = null
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/weapon/circuitboard/proc/construct(var/obj/machinery/M)
+/obj/item/weapon/electronics/circuitboard/proc/construct(var/obj/machinery/M)
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/weapon/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/weapon/electronics/circuitboard/proc/deconstruct(var/obj/machinery/M)
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE

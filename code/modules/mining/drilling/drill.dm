@@ -10,7 +10,7 @@
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
 
-	circuit = /obj/item/weapon/circuitboard/miningdrill
+	circuit = /obj/item/weapon/electronics/circuitboard/miningdrill
 
 	var/braces_needed = 2
 	var/list/supports = list()

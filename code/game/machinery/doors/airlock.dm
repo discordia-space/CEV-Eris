@@ -996,7 +996,7 @@ There are 9 wires.
 						da.update_state()
 
 						if(operating == -1 || (stat & BROKEN))
-							new /obj/item/weapon/circuitboard/broken(src.loc)
+							new /obj/item/weapon/electronics/circuitboard/broken(src.loc)
 							operating = 0
 						else
 							if (!electronics) create_electronics()

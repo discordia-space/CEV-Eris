@@ -13,7 +13,7 @@
 	idle_power_usage = 800
 	var/delay = 10
 	req_access = list(access_rd) //Only the R&D can change server settings.
-	circuit = /obj/item/weapon/circuitboard/rdserver
+	circuit = /obj/item/weapon/electronics/circuitboard/rdserver
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
@@ -158,7 +158,7 @@
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/rdservercontrol
+	circuit = /obj/item/weapon/electronics/circuitboard/rdservercontrol
 	var/screen = 0
 	var/obj/machinery/r_n_d/server/temp_server
 	var/list/servers = list()

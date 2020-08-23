@@ -28,7 +28,7 @@
 	var/cooldown = 0						//cooldown in world.time value
 	var/time_until_regen = 0
 	var/obj/assimilated_machinery
-	var/obj/item/weapon/circuitboard/saved_circuit
+	var/obj/item/weapon/electronics/circuitboard/saved_circuit
 
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()

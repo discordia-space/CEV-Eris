@@ -276,7 +276,7 @@
 
 		return TRUE
 
-	else if(istype(I, /obj/item/weapon/circuitboard/exosystem))
+	else if(istype(I, /obj/item/weapon/electronics/circuitboard/exosystem))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
 			return TRUE

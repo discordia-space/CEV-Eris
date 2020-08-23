@@ -409,7 +409,7 @@
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/item/weapon/electronics/circuitboard/solar_control/M = new /obj/item/weapon/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -420,7 +420,7 @@
 			else
 				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/item/weapon/electronics/circuitboard/solar_control/M = new /obj/item/weapon/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M

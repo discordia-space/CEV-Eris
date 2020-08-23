@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/pile_ripper
+/obj/item/weapon/electronics/circuitboard/pile_ripper
 	name = T_BOARD("Pile Ripper")
 	build_path = /obj/machinery/pile_ripper
 	board_type = "machine"

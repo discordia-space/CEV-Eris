@@ -4,7 +4,7 @@
 	icon_keyboard = "rd_key"
 	icon_screen = "ai-fixer"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/aifixer
+	circuit = /obj/item/weapon/electronics/circuitboard/aifixer
 	req_one_access = list(access_robotics, access_heads)
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0

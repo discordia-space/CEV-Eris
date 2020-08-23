@@ -16437,7 +16437,7 @@
 /area/eris/engineering/atmos)
 "aMC" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/aiModule/eris,
+/obj/item/weapon/electronics/ai_module/eris,
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "aMD" = (
@@ -16446,7 +16446,7 @@
 /area/eris/maintenance/section4deck5port)
 "aME" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/aiModule/protectStation,
+/obj/item/weapon/electronics/ai_module/protectStation,
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "aMF" = (
@@ -17485,7 +17485,7 @@
 /area/eris/engineering/foyer)
 "aPe" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/aiModule/corp,
+/obj/item/weapon/electronics/ai_module/corp,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
@@ -23057,12 +23057,12 @@
 /area/eris/medical/virology)
 "baN" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/aiModule/reset,
+/obj/item/weapon/electronics/ai_module/reset,
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "baO" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/aiModule/asimov,
+/obj/item/weapon/electronics/ai_module/asimov,
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "baP" = (
@@ -23121,7 +23121,7 @@
 /area/eris/maintenance/section1deck4central)
 "baV" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/aiModule/robocop,
+/obj/item/weapon/electronics/ai_module/robocop,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
@@ -48908,13 +48908,13 @@
 /area/eris/medical/surgery)
 "cej" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/rdserver{
+/obj/item/weapon/electronics/circuitboard/rdserver{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/weapon/circuitboard/destructive_analyzer,
-/obj/item/weapon/circuitboard/protolathe,
-/obj/item/weapon/circuitboard/aifixer,
+/obj/item/weapon/electronics/circuitboard/destructive_analyzer,
+/obj/item/weapon/electronics/circuitboard/protolathe,
+/obj/item/weapon/electronics/circuitboard/aifixer,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cek" = (
@@ -49505,15 +49505,15 @@
 /area/eris/neotheology/bioreactor)
 "cfr" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/powermonitor{
+/obj/item/weapon/electronics/circuitboard/powermonitor{
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/weapon/circuitboard/stationalert{
+/obj/item/weapon/electronics/circuitboard/stationalert{
 	pixel_x = 1;
 	pixel_y = -1
 	},
-/obj/item/weapon/circuitboard/atmos_alert{
+/obj/item/weapon/electronics/circuitboard/atmos_alert{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -49759,7 +49759,7 @@
 /area/eris/rnd/server)
 "cfR" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/secure_data{
+/obj/item/weapon/electronics/circuitboard/secure_data{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -49821,12 +49821,12 @@
 /area/eris/command/captain)
 "cfZ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/telecomms/processor,
-/obj/item/weapon/circuitboard/telecomms/receiver,
-/obj/item/weapon/circuitboard/telecomms/server,
-/obj/item/weapon/circuitboard/telecomms/bus,
-/obj/item/weapon/circuitboard/telecomms/broadcaster,
-/obj/item/weapon/circuitboard/message_monitor{
+/obj/item/weapon/electronics/circuitboard/telecomms/processor,
+/obj/item/weapon/electronics/circuitboard/telecomms/receiver,
+/obj/item/weapon/electronics/circuitboard/telecomms/server,
+/obj/item/weapon/electronics/circuitboard/telecomms/bus,
+/obj/item/weapon/electronics/circuitboard/telecomms/broadcaster,
+/obj/item/weapon/electronics/circuitboard/message_monitor{
 	pixel_y = -5
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
@@ -49855,11 +49855,11 @@
 /area/eris/command/meeting_room)
 "cgd" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/med_data{
+/obj/item/weapon/electronics/circuitboard/med_data{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/weapon/circuitboard/scan_consolenew,
+/obj/item/weapon/electronics/circuitboard/scan_consolenew,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cge" = (
@@ -51311,7 +51311,7 @@
 "cjH" = (
 /obj/structure/table/standard,
 /obj/item/device/aicard,
-/obj/item/weapon/aiModule/reset,
+/obj/item/weapon/electronics/ai_module/reset,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cjI" = (
@@ -52081,11 +52081,11 @@
 /area/eris/rnd/mixing)
 "clE" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/borgupload{
+/obj/item/weapon/electronics/circuitboard/borgupload{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/weapon/circuitboard/aiupload{
+/obj/item/weapon/electronics/circuitboard/aiupload{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -52286,7 +52286,7 @@
 /area/eris/crew_quarters/bar)
 "cma" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/robotics{
+/obj/item/weapon/electronics/circuitboard/robotics{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -52363,7 +52363,7 @@
 /area/eris/command/mbo)
 "cmk" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/communications,
+/obj/item/weapon/electronics/circuitboard/communications,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -53265,11 +53265,11 @@
 /area/eris/neotheology/chapel)
 "coo" = (
 /obj/structure/table/standard,
-/obj/item/weapon/circuitboard/aicore{
+/obj/item/weapon/electronics/circuitboard/aicore{
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/weapon/circuitboard/teleporter,
+/obj/item/weapon/electronics/circuitboard/teleporter,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/command/meo)
 "cop" = (
@@ -62346,7 +62346,7 @@
 /area/eris/storage/primary)
 "cJd" = (
 /obj/structure/table/rack,
-/obj/item/weapon/circuitboard/autolathe{
+/obj/item/weapon/electronics/circuitboard/autolathe{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -73417,7 +73417,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/aiModule/paladin,
+/obj/item/weapon/electronics/ai_module/paladin,
 /obj/machinery/door/window{
 	base_state = "left";
 	dir = 8;
@@ -73425,12 +73425,12 @@
 	name = "High-Risk Modules";
 	req_access = list(20)
 	},
-/obj/item/weapon/aiModule/freeform,
-/obj/item/weapon/aiModule/oxygen,
-/obj/item/weapon/aiModule/oneHuman,
-/obj/item/weapon/aiModule/purge,
-/obj/item/weapon/aiModule/antimov,
-/obj/item/weapon/aiModule/teleporterOffline,
+/obj/item/weapon/electronics/ai_module/freeform,
+/obj/item/weapon/electronics/ai_module/oxygen,
+/obj/item/weapon/electronics/ai_module/oneHuman,
+/obj/item/weapon/electronics/ai_module/purge,
+/obj/item/weapon/electronics/ai_module/antimov,
+/obj/item/weapon/electronics/ai_module/teleporterOffline,
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "diF" = (
@@ -88837,8 +88837,8 @@
 /area/eris/engineering/engine_room)
 "dQM" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/circuitboard/smes,
-/obj/item/weapon/circuitboard/smes,
+/obj/item/weapon/electronics/circuitboard/smes,
+/obj/item/weapon/electronics/circuitboard/smes,
 /obj/item/weapon/stock_parts/smes_coil,
 /obj/item/weapon/stock_parts/smes_coil,
 /obj/item/weapon/stock_parts/smes_coil/super_capacity,

@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/neotheology/cloner
+/obj/item/weapon/electronics/circuitboard/neotheology/cloner
 	name = T_BOARD("neotheology cloner")
 	build_path = /obj/machinery/neotheology/cloner
 	board_type = "machine"
@@ -11,7 +11,7 @@
 		/obj/item/weapon/implant/core_implant/cruciform = 1
 	)
 
-/obj/item/weapon/circuitboard/neotheology/reader
+/obj/item/weapon/electronics/circuitboard/neotheology/reader
 	name = T_BOARD("cruciform reader")
 	build_path = /obj/machinery/neotheology/reader
 	board_type = "machine"
@@ -21,7 +21,7 @@
 		/obj/item/weapon/implant/core_implant/cruciform = 1
 	)
 
-/obj/item/weapon/circuitboard/neotheology/biocan
+/obj/item/weapon/electronics/circuitboard/neotheology/biocan
 	name = T_BOARD("biomass container")
 	build_path = /obj/machinery/neotheology/biomass_container
 	board_type = "machine"
@@ -33,7 +33,7 @@
 
 
 //power biogenerator
-/obj/item/weapon/circuitboard/neotheology/biogen
+/obj/item/weapon/electronics/circuitboard/neotheology/biogen
 	name = T_BOARD("biomatter power generator")
 	build_path = /obj/machinery/multistructure/biogenerator_part/generator
 	board_type = "machine"
@@ -45,7 +45,7 @@
 	)
 
 
-/obj/item/weapon/circuitboard/neotheology/biogen_port
+/obj/item/weapon/electronics/circuitboard/neotheology/biogen_port
 	name = T_BOARD("biomatter power generator port")
 	build_path = /obj/machinery/multistructure/biogenerator_part/port
 	board_type = "machine"
@@ -57,7 +57,7 @@
 	)
 
 
-/obj/item/weapon/circuitboard/neotheology/biogen_console
+/obj/item/weapon/electronics/circuitboard/neotheology/biogen_console
 	name = T_BOARD("biomatter power generator metrics")
 	build_path = /obj/machinery/multistructure/biogenerator_part/console
 	board_type = "machine"
@@ -69,7 +69,7 @@
 
 
 //bioreactor
-/obj/item/weapon/circuitboard/neotheology/bioreactor_platform
+/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_platform
 	name = T_BOARD("bioreactor platform")
 	build_path = /obj/machinery/multistructure/bioreactor_part/platform
 	board_type = "machine"
@@ -80,7 +80,7 @@
 	)
 
 
-/obj/item/weapon/circuitboard/neotheology/bioreactor_unloader
+/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_unloader
 	name = T_BOARD("bioreactor unloader")
 	build_path = /obj/machinery/multistructure/bioreactor_part/unloader
 	board_type = "machine"
@@ -90,7 +90,7 @@
 		/obj/item/weapon/stock_parts/matter_bin = 2
 	)
 
-/obj/item/weapon/circuitboard/neotheology/bioreactor_biotank
+/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_biotank
 	name = T_BOARD("bioreactor biomatter tank")
 	build_path = /obj/machinery/multistructure/bioreactor_part/biotank_platform
 	board_type = "machine"
@@ -102,7 +102,7 @@
 		/obj/item/weapon/stock_parts/manipulator = 2
 	)
 
-/obj/item/weapon/circuitboard/neotheology/bioreactor_port
+/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_port
 	name = T_BOARD("bioreactor port")
 	build_path = /obj/machinery/multistructure/bioreactor_part/bioport
 	board_type = "machine"
@@ -113,7 +113,7 @@
 		/obj/item/weapon/stock_parts/manipulator = 1
 	)
 
-/obj/item/weapon/circuitboard/neotheology/bioreactor_metrics
+/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_metrics
 	name = T_BOARD("bioreactor metrics screen")
 	build_path = /obj/machinery/multistructure/bioreactor_part/console
 	board_type = "machine"
@@ -124,7 +124,7 @@
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
-/obj/item/weapon/circuitboard/neotheology/bioreactor_loader
+/obj/item/weapon/electronics/circuitboard/neotheology/bioreactor_loader
 	name = T_BOARD("bioreactor loader")
 	build_path = /obj/machinery/multistructure/bioreactor_part/loader
 	board_type = "machine"
@@ -137,7 +137,7 @@
 
 
 //Solidifier
-/obj/item/weapon/circuitboard/neotheology/solidifier
+/obj/item/weapon/electronics/circuitboard/neotheology/solidifier
 	name = T_BOARD("biomatter solidifier")
 	build_path = /obj/machinery/biomatter_solidifier
 	board_type = "machine"
@@ -149,7 +149,7 @@
 		/obj/item/weapon/stock_parts/capacitor = 1
 	)
 
-/obj/item/weapon/circuitboard/neotheology/bioprinter
+/obj/item/weapon/electronics/circuitboard/neotheology/bioprinter
 	name = T_BOARD("biomatter printer")
 	build_path = /obj/machinery/autolathe/bioprinter
 	board_type = "machine"

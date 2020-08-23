@@ -5,7 +5,7 @@
 	icon_screen = "security"
 	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_one_access = list(access_security)
-	circuit = /obj/item/weapon/circuitboard/secure_data
+	circuit = /obj/item/weapon/electronics/circuitboard/secure_data
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
 	var/rank = null

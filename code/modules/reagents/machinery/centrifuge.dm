@@ -19,7 +19,7 @@
 	icon_state = "centrifuge"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
-	circuit = /obj/item/weapon/circuitboard/centrifuge
+	circuit = /obj/item/weapon/electronics/circuitboard/centrifuge
 	layer = BELOW_OBJ_LAYER
 	var/obj/item/weapon/reagent_containers/mainBeaker
 	var/list/obj/item/weapon/reagent_containers/separationBeakers = list()

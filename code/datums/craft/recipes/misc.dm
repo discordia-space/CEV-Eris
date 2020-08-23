@@ -147,7 +147,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC, "time" = 30),
 		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
-		list(/obj/item/weapon/circuitboard, 1, "time" = 20),
+		list(/obj/item/weapon/electronics/circuitboard, 1, "time" = 20),
 		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
 		list(/obj/item/weapon/stock_parts/capacitor, 1),
 		list(/obj/item/weapon/cell/small, 1),

@@ -3,7 +3,7 @@
 	desc = "Used to control a linked teleportation Hub and Station."
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
-	circuit = /obj/item/weapon/circuitboard/teleporter
+	circuit = /obj/item/weapon/electronics/circuitboard/teleporter
 	var/obj/item/locked = null
 	var/id = null
 	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)

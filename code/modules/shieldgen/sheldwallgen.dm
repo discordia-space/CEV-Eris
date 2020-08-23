@@ -7,7 +7,7 @@
 		anchored = FALSE
 		density = TRUE
 		req_access = list(access_engine_equip)
-		circuit = /obj/item/weapon/circuitboard/shieldwallgen
+		circuit = /obj/item/weapon/electronics/circuitboard/shieldwallgen
 		var/shield_type = /obj/machinery/shieldwall //Overridden by excelsior variant
 		var/active = 0
 		var/power = 0
