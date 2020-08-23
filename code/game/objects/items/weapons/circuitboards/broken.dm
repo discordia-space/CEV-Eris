@@ -4,3 +4,4 @@
 	icon_state = "door_electronics_smoked"
 	origin_tech = null
 	board_type = "other"
+	rarity_value = 10

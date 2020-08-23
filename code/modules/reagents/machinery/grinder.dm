@@ -271,6 +271,7 @@
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/industrial
 	origin_tech = list(TECH_BIO = 1)
+	rarity_value = 10
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator = 2,
 		/obj/item/weapon/stock_parts/scanning_module = 1,

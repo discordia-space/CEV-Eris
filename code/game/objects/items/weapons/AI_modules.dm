@@ -20,6 +20,8 @@ AI MODULES
 	throw_range = 15
 	origin_tech = list(TECH_DATA = 3)
 	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
+	bad_types = /obj/item/weapon/electronics/ai_module
+	rarity_value = 40
 	var/datum/ai_laws/laws = null
 
 /obj/item/weapon/electronics/ai_module/proc/install(obj/machinery/computer/C)

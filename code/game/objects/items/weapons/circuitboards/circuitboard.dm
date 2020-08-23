@@ -20,6 +20,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 15
+	bad_types = /obj/item/weapon/electronics/circuitboard
 
 	var/build_path = null
 	var/frame_type = FRAME_DEFAULT
@@ -27,14 +28,14 @@
 	var/list/req_components = null
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/weapon/electronics/circuitboard/proc/construct(var/obj/machinery/M)
+/obj/item/weapon/electronics/circuitboard/proc/construct(obj/machinery/M)
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/weapon/electronics/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/weapon/electronics/circuitboard/proc/deconstruct(obj/machinery/M)
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE

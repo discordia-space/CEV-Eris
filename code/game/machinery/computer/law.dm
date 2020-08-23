@@ -63,7 +63,7 @@
 	var/mob/living/silicon/robot/current = null
 
 
-	attackby(obj/item/weapon/aiModule/module as obj, mob/user as mob)
+	attackby(obj/item/weapon/electronics/ai_module/module as obj, mob/user as mob)
 		if(istype(module, /obj/item/weapon/electronics/ai_module))
 			module.install(src)
 		else

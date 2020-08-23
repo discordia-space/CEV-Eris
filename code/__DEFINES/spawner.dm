@@ -28,6 +28,7 @@
 #define SPAWN_OS_PROSTHETIC "os_prosthetic"
 
 #define SPAWN_TAG_OS_PROSTHETIC "item,organ,external,prosthetic,os_prosthetic,faction_os"
+
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
@@ -38,6 +39,11 @@
 #define SPAWN_TANK_GAS "tank_gas"
 
 #define SPAWN_TAG_TANK_GAS "item,tank_gas"
+
+//  Items - electronics
+#define SPAWN_ELECTRONICS "electronics"
+
+#define SPAWN_TAG_ELECTRONICS "item,electronics"
 
 //  MINES
 #define SPAWN_MINE "mine"

@@ -23,6 +23,7 @@
 	name = T_BOARD("autolathe")
 	build_path = /obj/machinery/autolathe
 	board_type = "machine"
+	rarity_value = 5
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
 	req_components = list(
 		/obj/item/weapon/stock_parts/matter_bin = 3,
@@ -73,7 +74,7 @@
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
-obj/item/weapon/circuitboard/ntnet_relay
+obj/item/weapon/electronics/circuitboard/ntnet_relay
 	name = "Circuit board (NTNet Quantum Relay)"
 	build_path = /obj/machinery/ntnet_relay
 	board_type = "machine"

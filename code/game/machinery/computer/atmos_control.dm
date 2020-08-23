@@ -1,5 +1,6 @@
 /obj/item/weapon/electronics/circuitboard/atmoscontrol
 	name = "\improper Central Atmospherics Computer Circuitboard"
+	rarity_value = 40
 	build_path = /obj/machinery/computer/atmoscontrol
 
 /obj/machinery/computer/atmoscontrol

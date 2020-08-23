@@ -4,6 +4,7 @@
 
 /obj/item/weapon/electronics/circuitboard/message_monitor
 	name = T_BOARD("message monitor console")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/message_monitor
 	origin_tech = list(TECH_DATA = 3)
 
@@ -33,6 +34,7 @@
 
 /obj/item/weapon/electronics/circuitboard/teleporter
 	name = T_BOARD("teleporter control console")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/teleporter
 	origin_tech = list(TECH_DATA = 2, TECH_BLUESPACE = 2)
 
@@ -41,6 +43,7 @@
 	build_path = /obj/machinery/computer/secure_data
 
 /obj/item/weapon/electronics/circuitboard/atmos_alert
+	rarity_value = 13.3
 	name = T_BOARD("atmospheric alert console")
 	build_path = /obj/machinery/computer/atmos_alert
 
@@ -50,6 +53,7 @@
 
 /obj/item/weapon/electronics/circuitboard/robotics
 	name = T_BOARD("robotics control console")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/robotics
 	origin_tech = list(TECH_DATA = 3)
 
@@ -61,6 +65,7 @@
 /obj/item/weapon/electronics/circuitboard/arcade/battle
 	name = T_BOARD("battle arcade machine")
 	build_path = /obj/machinery/computer/arcade/battle
+	rarity_value = 13.3
 	origin_tech = list(TECH_DATA = 1)
 
 /obj/item/weapon/electronics/circuitboard/arcade/orion_trail
@@ -74,6 +79,7 @@
 
 /obj/item/weapon/electronics/circuitboard/solar_control
 	name = T_BOARD("solar control console")
+	rarity_value = 40
 	build_path = /obj/machinery/power/solar_control
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 2)
 
@@ -108,10 +114,12 @@
 
 /obj/item/weapon/electronics/circuitboard/curefab
 	name = T_BOARD("cure fabricator")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/curer
 
 /obj/item/weapon/electronics/circuitboard/splicer
 	name = T_BOARD("disease splicer")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/diseasesplicer
 
 /obj/item/weapon/electronics/circuitboard/centrifuge
@@ -132,31 +140,38 @@
 
 /obj/item/weapon/electronics/circuitboard/ordercomp
 	name = T_BOARD("supply ordering console")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/supplycomp/order
 	origin_tech = list(TECH_DATA = 2)
 
-/obj/item/weapon/electronics/circuitboard/mining_shuttle
+/obj/item/weapon/electronics/circuitboard/shuttle
+	spawn_blacklisted = TRUE
+	bad_types = /obj/item/weapon/electronics/circuitboard/shuttle
+
+/obj/item/weapon/electronics/circuitboard/shuttle/mining
 	name = T_BOARD("mining shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/mining
 	origin_tech = list(TECH_DATA = 2)
 
-/obj/item/weapon/electronics/circuitboard/engineering_shuttle
+/obj/item/weapon/electronics/circuitboard/shuttle/engineering
 	name = T_BOARD("engineering shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/engineering
 	origin_tech = list(TECH_DATA = 2)
 
-/obj/item/weapon/electronics/circuitboard/research_shuttle
+/obj/item/weapon/electronics/circuitboard/shuttle/research
 	name = T_BOARD("research shuttle console")
 	build_path = /obj/machinery/computer/shuttle_control/research
 	origin_tech = list(TECH_DATA = 2)
 
 /obj/item/weapon/electronics/circuitboard/aifixer
 	name = T_BOARD("AI integrity restorer")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/aifixer
 	origin_tech = list(TECH_DATA = 3, TECH_BIO = 2)
 
 /obj/item/weapon/electronics/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
+	rarity_value = 40
 	build_path = /obj/machinery/computer/area_atmos
 	origin_tech = list(TECH_DATA = 2)
 

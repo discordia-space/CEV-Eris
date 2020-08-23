@@ -1,3 +1,7 @@
+/obj/item/weapon/electronics/circuitboard/neotheology
+	bad_types = /obj/item/weapon/electronics/circuitboard/neotheology
+	rarity_value = 40
+
 /obj/item/weapon/electronics/circuitboard/neotheology/cloner
 	name = T_BOARD("neotheology cloner")
 	build_path = /obj/machinery/neotheology/cloner
