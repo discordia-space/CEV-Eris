@@ -11,7 +11,7 @@
 	var/obj/item/robot_parts/robot_component/camera/camera
 	has_hardpoints = list(HARDPOINT_HEAD)
 	power_use = 15
-	matter = list(MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 4)
 
 /obj/item/mech_component/sensors/Destroy()
 	QDEL_NULL(camera)

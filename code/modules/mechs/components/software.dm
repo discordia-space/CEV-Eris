@@ -5,7 +5,7 @@
 	icon = MECH_EQUIPMENT_ICON
 	gender = NEUTER
 	color = null
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 5, MATERIAL_GOLD = 2)
 	var/list/installed_software = list()
 	var/max_installed_software = 2
 

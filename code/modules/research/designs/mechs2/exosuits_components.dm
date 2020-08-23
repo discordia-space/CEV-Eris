@@ -1,5 +1,6 @@
 /datum/design/research/item/mechfab/exosuit/basics
 	starts_unlocked = TRUE
+	category = "Exosuit Internals"
 
 /datum/design/research/item/mechfab/exosuit/basics/frame
 	build_path = /obj/structure/heavy_vehicle_frame
@@ -16,8 +17,9 @@
 /datum/design/research/item/mechfab/exosuit/basics/radio
 	build_path = /obj/item/robot_parts/robot_component/radio
 
-//ARMOR
+//Armor
 /datum/design/research/item/mechfab/exosuit/armour
+	category = "Exosuit Armor"
 
 /datum/design/research/item/mechfab/exosuit/armour/basic
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit
@@ -33,82 +35,75 @@
 	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 
 
-//RIPLEY
-/datum/design/research/item/mechfab/exosuit/powerloader
-	category = "APLU \"Ripley\""
-	starts_unlocked = TRUE
+//Sensors
+/datum/design/research/item/mechfab/exosuit/sensors
+	category = "Exosuit Sensors"
 
-/datum/design/research/item/mechfab/exosuit/powerloader/head
-	build_path = /obj/item/mech_component/sensors/powerloader
+/datum/design/research/item/mechfab/exosuit/sensors/cheap
+	build_path = /obj/item/mech_component/sensors/cheap
 
-/datum/design/research/item/mechfab/exosuit/powerloader/torso
-	build_path = /obj/item/mech_component/chassis/powerloader
-
-/datum/design/research/item/mechfab/exosuit/powerloader/arms
-	build_path = /obj/item/mech_component/manipulators/powerloader
-
-/datum/design/research/item/mechfab/exosuit/powerloader/legs
-	build_path = /obj/item/mech_component/propulsion/powerloader
-
-
-//LIGHT
-/datum/design/research/item/mechfab/exosuit/light
-	category = "Light Exosuit"
-
-/datum/design/research/item/mechfab/exosuit/light/head
-	name = "light exosuit sensors"
+/datum/design/research/item/mechfab/exosuit/sensors/light
 	build_path = /obj/item/mech_component/sensors/light
 
-/datum/design/research/item/mechfab/exosuit/light/torso
-	name = "light exosuit chassis"
-	build_path = /obj/item/mech_component/chassis/light
-
-/datum/design/research/item/mechfab/exosuit/light/arms
-	name = "light exosuit manipulators"
-	build_path = /obj/item/mech_component/manipulators/light
-
-/datum/design/research/item/mechfab/exosuit/light/legs
-	name = "light exosuit motivators"
-	build_path = /obj/item/mech_component/propulsion/light
-
-
-//HEAVY
-/datum/design/research/item/mechfab/exosuit/heavy
-	category = "Heavy Exosuit"
-
-/datum/design/research/item/mechfab/exosuit/heavy/head
-	name = "heavy exosuit sensors"
-	build_path = /obj/item/mech_component/sensors/heavy
-
-/datum/design/research/item/mechfab/exosuit/heavy/torso
-	name = "heavy exosuit chassis"
-	build_path = /obj/item/mech_component/chassis/heavy
-
-/datum/design/research/item/mechfab/exosuit/heavy/arms
-	name = "heavy exosuit manipulators"
-	build_path = /obj/item/mech_component/manipulators/heavy
-
-/datum/design/research/item/mechfab/exosuit/heavy/legs
-	name = "heavy exosuit motivators"
-	build_path = /obj/item/mech_component/propulsion/heavy
-
-
-//COMBAT
-/datum/design/research/item/mechfab/exosuit/combat
-	category = "Combat Exosuit"
-
-/datum/design/research/item/mechfab/exosuit/combat/head
-	name = "combat exosuit sensors"
+/datum/design/research/item/mechfab/exosuit/sensors/combat
 	build_path = /obj/item/mech_component/sensors/combat
 
-/datum/design/research/item/mechfab/exosuit/combat/torso
-	name = "combat exosuit chassis"
+/datum/design/research/item/mechfab/exosuit/sensors/heavy
+	build_path = /obj/item/mech_component/sensors/heavy
+
+
+//Chassis
+/datum/design/research/item/mechfab/exosuit/chassis
+	category = "Exosuit Chassis"
+
+/datum/design/research/item/mechfab/exosuit/chassis/cheap
+	build_path = /obj/item/mech_component/chassis/cheap
+
+/datum/design/research/item/mechfab/exosuit/chassis/light
+	build_path = /obj/item/mech_component/chassis/light
+
+/datum/design/research/item/mechfab/exosuit/chassis/combat
 	build_path = /obj/item/mech_component/chassis/combat
 
-/datum/design/research/item/mechfab/exosuit/combat/arms
-	name = "combat exosuit manipulators"
+/datum/design/research/item/mechfab/exosuit/chassis/heavy
+	build_path = /obj/item/mech_component/chassis/heavy
+
+
+//Manipulators
+/datum/design/research/item/mechfab/exosuit/manipulators
+	category = "Exosuit Manipulators"
+
+/datum/design/research/item/mechfab/exosuit/manipulators/cheap
+	build_path = /obj/item/mech_component/sensors/heavy
+
+/datum/design/research/item/mechfab/exosuit/manipulators/light
+	build_path = /obj/item/mech_component/manipulators/light
+
+/datum/design/research/item/mechfab/exosuit/manipulators/combat
 	build_path = /obj/item/mech_component/manipulators/combat
 
-/datum/design/research/item/mechfab/exosuit/combat/legs
-	name = "combat exosuit motivators"
+/datum/design/research/item/mechfab/exosuit/manipulators/heavy
+	build_path = /obj/item/mech_component/manipulators/heavy
+
+
+//Propulsion
+/datum/design/research/item/mechfab/exosuit/propulsion
+	category = "Exosuit Propulsion Systems"
+
+/datum/design/research/item/mechfab/exosuit/propulsion/cheap
+	build_path = /obj/item/mech_component/propulsion/cheap
+
+/datum/design/research/item/mechfab/exosuit/propulsion/light
+	build_path = /obj/item/mech_component/propulsion/light
+
+/datum/design/research/item/mechfab/exosuit/propulsion/combat
 	build_path = /obj/item/mech_component/propulsion/combat
+
+/datum/design/research/item/mechfab/exosuit/propulsion/heavy
+	build_path = /obj/item/mech_component/propulsion/heavy
+
+/datum/design/research/item/mechfab/exosuit/propulsion/quad
+	build_path = /obj/item/mech_component/propulsion/quad
+
+/datum/design/research/item/mechfab/exosuit/propulsion/tracks
+	build_path = /obj/item/mech_component/propulsion/tracks

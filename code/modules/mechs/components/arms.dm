@@ -4,11 +4,11 @@
 	icon_state = "loader_arms"
 	has_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 
-	var/melee_damage = 15
+	var/melee_damage = 10
 	var/action_delay = 15
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	power_use = 10
-	matter = list(MATERIAL_STEEL = 6)
+	matter = list(MATERIAL_STEEL = 10)
 
 /obj/item/mech_component/manipulators/Destroy()
 	QDEL_NULL(motivator)

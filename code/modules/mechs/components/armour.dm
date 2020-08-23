@@ -42,4 +42,3 @@
 	armor = list(melee = 85, bullet = 70, energy = 10, bomb = 70, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 5)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5)
-
