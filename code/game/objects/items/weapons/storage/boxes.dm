@@ -31,6 +31,11 @@
 	var/illustration = "writing"
 	contained_sprite = TRUE
 	health = 20
+	bad_types = /obj/item/weapon/storage/box
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_BOX
+	rarity_value = 20
+	spawn_frequency = 10
 
 /obj/item/weapon/storage/box/Initialize(mapload)
 	. = ..()
@@ -42,7 +47,7 @@
 		cut_overlays()
 		add_overlay(illustration)
 
-/obj/item/weapon/storage/box/proc/damage(var/severity)
+/obj/item/weapon/storage/box/proc/damage(severity)
 	health -= severity
 	check_health()
 
@@ -140,6 +145,7 @@
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
 	illustration = "beaker"
+	rarity_value = 5
 
 /obj/item/weapon/storage/box/beakers/populate_contents()
 	for(var/i in 1 to 7)
@@ -336,6 +342,7 @@
 /obj/item/weapon/storage/box/drinkingglasses
 	name = "box of drinking glasses"
 	desc = "It has a picture of drinking glasses on it."
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/drinkingglasses/populate_contents()
 	for(var/i in 1 to 6)
@@ -380,6 +387,7 @@
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "box_donk_pocket"
 	illustration = null
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/donkpockets/populate_contents()
 	for(var/i in 1 to 6)
@@ -422,6 +430,7 @@
 	desc = "A box full of handcuffs."
 	icon_state = "box_security"
 	illustration = "handcuff"
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/handcuffs/populate_contents()
 	for(var/i in 1 to 7)
@@ -465,6 +474,7 @@
 	illustration = null
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_BELT
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/matches/populate_contents()
 	for(var/i in 1 to 14)
@@ -486,6 +496,7 @@
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
 	illustration = "syringe"
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/autoinjectors/populate_contents()
 	for(var/i in 1 to 7)
@@ -526,6 +537,7 @@
 /obj/item/weapon/storage/box/data_disk
 	name = "data disk box"
 	illustration = "disk"
+	rarity_value = 30
 
 /obj/item/weapon/storage/box/data_disk/populate_contents()
 	for(var/i in 1 to 7)
@@ -534,6 +546,7 @@
 /obj/item/weapon/storage/box/data_disk/basic
 	name = "basic data disk box"
 	illustration = "disk"
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/data_disk/basic/populate_contents()
 	for(var/i in 1 to 7)

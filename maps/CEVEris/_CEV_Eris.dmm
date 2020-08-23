@@ -4590,9 +4590,9 @@
 /obj/structure/table/standard,
 /obj/random/lowkeyrandom,
 /obj/random/lowkeyrandom,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/toilet/medbay)
 "akv" = (
@@ -6592,9 +6592,9 @@
 /area/space)
 "aoR" = (
 /obj/structure/table/rack,
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aoS" = (
@@ -14547,8 +14547,8 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "aHN" = (
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
@@ -29711,10 +29711,10 @@
 /area/eris/maintenance/section2deck4starboard)
 "bod" = (
 /obj/structure/table/standard,
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
 "boe" = (
@@ -32207,7 +32207,7 @@
 /area/eris/maintenance/section3deck1central)
 "buc" = (
 /obj/structure/table/standard,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section3deck1central)
 "bud" = (
@@ -35558,7 +35558,7 @@
 /area/eris/maintenance/section3deck1central)
 "bBx" = (
 /obj/random/junkfood/rotten,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /obj/random/scrap/moderate_weighted/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
@@ -36348,9 +36348,9 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/docking)
 "bDz" = (
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/docking)
@@ -47572,12 +47572,12 @@
 	name = "Caution Sign"
 	},
 /obj/random/contraband/low_chance,
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cbo" = (
@@ -51319,9 +51319,9 @@
 /obj/structure/table/rack/shelf,
 /obj/random/contraband/low_chance,
 /obj/random/contraband/low_chance,
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "cjJ" = (
@@ -64986,9 +64986,9 @@
 /area/eris/engineering/techstorage)
 "cPy" = (
 /obj/structure/table/rack,
-/obj/random/boxes,
-/obj/random/boxes,
-/obj/random/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/engineering/techstorage)
 "cPz" = (
@@ -84773,7 +84773,7 @@
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1starboard)
 "dIe" = (
@@ -88873,7 +88873,7 @@
 /obj/structure/table/rack,
 /obj/random/pack/tech_loot,
 /obj/item/device/megaphone,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/maintenance/section2deck1port)
 "dQS" = (
@@ -89730,7 +89730,7 @@
 /obj/structure/table/rack,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/maintenance/section2deck1port)
 "dSQ" = (
@@ -95010,9 +95010,9 @@
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "eeY" = (
@@ -95024,9 +95024,9 @@
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "eeZ" = (

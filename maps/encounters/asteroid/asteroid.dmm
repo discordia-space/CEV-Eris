@@ -154,8 +154,8 @@
 "aI" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/boxes,
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aJ" = (
@@ -728,7 +728,7 @@
 "cP" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/random/boxes,
+/obj/spawner/boxes,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cQ" = (

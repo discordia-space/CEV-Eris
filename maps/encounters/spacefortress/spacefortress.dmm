@@ -439,7 +439,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cc" = (
-/obj/random/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cd" = (
