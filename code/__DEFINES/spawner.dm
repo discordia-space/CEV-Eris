@@ -96,9 +96,11 @@
 #define SPAWN_storage "storage"
 #define SPAWN_TOOLBOX "toolbox"
 #define SPAWN_POUCH "pouch"
+#define SPAWN_BELT "belt"
 
 #define SPAWN_TAG_TOOLBOX "storage,toolbox"
 #define SPAWN_TAG_POUCH "storage,pouch"
+#define SPAWN_TAG_BELT "storage,belt"
 
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"

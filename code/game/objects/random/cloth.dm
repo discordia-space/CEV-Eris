@@ -361,20 +361,13 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/cloth/belt
+/obj/spawner/cloth/belt
 	name = "random belt"
 	desc = "This is a random belt."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_BELT)
 
-/obj/random/cloth/belt/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/belt/medical = 8,
-				/obj/item/weapon/storage/belt/medical/emt = 8,
-				/obj/item/weapon/storage/belt/tactical = 4,
-				/obj/item/weapon/storage/belt/tactical/neotheology = 2,
-				/obj/item/weapon/storage/belt/utility = 8,
-				/obj/item/weapon/storage/belt/utility/neotheology = 4))
-
-/obj/random/cloth/belt/low_chance
+/obj/spawner/cloth/belt/low_chance
 	name = "low chance random belt"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60

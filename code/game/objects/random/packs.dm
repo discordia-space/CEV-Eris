@@ -24,7 +24,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/cloth/glasses = 4,
 					/obj/spawner/cloth/shoes = 6,
 					/obj/random/cloth/backpack = 4,
-					/obj/random/cloth/belt = 4,
+					/obj/spawner/cloth/belt = 4,
 					/obj/spawner/cloth/holster = 4,
 					/obj/spawner/pouch = 4
 				))

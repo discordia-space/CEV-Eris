@@ -9,6 +9,11 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
+	bad_types = /obj/item/weapon/storage/belt
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_BELT
 
 	var/show_above_suit = 0
 
@@ -62,6 +67,8 @@
 		/obj/item/weapon/grenade/chem_grenade/antiweed,
 		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
+/obj/item/weapon/storage/belt/utility/full
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/utility/full/populate_contents()
 	new /obj/item/weapon/tool/screwdriver(src)
@@ -75,6 +82,7 @@
 	name = "neotheologian utility belt"
 	desc = "Waist-held holy items."
 	icon_state = "utility_neotheology"
+	rarity_value = 20
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
@@ -121,6 +129,7 @@
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical"
+	rarity_value = 20
 	can_hold = list(
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
@@ -141,24 +150,22 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		//obj/item/weapon/gun/projectile/mk58, //too big, use holster
 		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/gun/projectile/giskard,
-		//obj/item/weapon/gun/projectile/olivaw, //too big, use holster
-		//obj/item/weapon/gun/projectile/revolver/havelock, //too big, use holster
 		/obj/item/weapon/gun/energy/gun/martin,
-		//obj/item/weapon/gun/energy/taser, //too big, use holster
 		/obj/item/taperoll
 	)
 
 /obj/item/weapon/storage/belt/tactical/ironhammer
 	name = "ironhammer tactical belt"
 	icon_state = "tactical_ironhammer"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/tactical/neotheology
 	name = "neotheologian tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"
+	rarity_value = 40
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
@@ -175,6 +182,7 @@
 	can_hold = list(
 		/obj/item/clothing/mask/luchador
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/holding
 	name = "belt of holding"
@@ -186,3 +194,4 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 3)
 	origin_tech = list(TECH_BLUESPACE = 4)
+	spawn_blacklisted = TRUE
