@@ -108,6 +108,6 @@
 					/obj/random/rig_module/rare = 4,\
 					/obj/spawner/credits/c1000 = 3,\
 					/obj/spawner/exosuit_equipment = 3,\
-					/obj/random/cloth/holster = 4,\
+					/obj/spawner/cloth/holster = 4,\
 					/obj/item/stash_spawner = 4,\
 					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)

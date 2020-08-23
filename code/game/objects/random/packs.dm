@@ -25,7 +25,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/cloth/shoes = 6,
 					/obj/random/cloth/backpack = 4,
 					/obj/random/cloth/belt = 4,
-					/obj/random/cloth/holster = 4,
+					/obj/spawner/cloth/holster = 4,
 					/obj/spawner/pouch = 4
 				))
 
@@ -100,7 +100,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/ammo_ihs = 15,
 					/obj/random/ammo_lowcost = 18,
 					/obj/spawner/gun_upgrade = 10,
-					/obj/random/cloth/holster = 8
+					/obj/spawner/cloth/holster = 8
 				))
 
 /obj/random/pack/gun_loot/low_chance

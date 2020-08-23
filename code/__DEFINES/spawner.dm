@@ -84,11 +84,13 @@
 #define SPAWN_MASK "mask"
 #define SPAWN_VOID_SUIT "void_suit"
 #define SPAWN_HAZMATSUIT "hazmatsuit"
+#define SPAWN_HOLSTER "holster"
 
 #define SPAWN_TAG_CLOTHING "item,clothing"
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
 #define SPAWN_TAG_MASK "item,clothing,mask"
 #define SPAWN_TAG_HAZMATSUIT "item,clothing,hazmatsuit"
+#define SPAWN_TAG_HOLSTER "item,clothing,holster"
 
 //	Items - storage
 #define SPAWN_storage "storage"

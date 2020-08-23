@@ -401,18 +401,13 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/cloth/holster
+/obj/spawner/cloth/holster
 	name = "random holster"
 	desc = "This is a random holster."
 	icon_state = "armor-grey"
+	tags_to_sapwn = list(SPAWN_HOLSTER)
 
-/obj/random/cloth/holster/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/accessory/holster = 1,
-				/obj/item/clothing/accessory/holster/armpit = 1,
-				/obj/item/clothing/accessory/holster/waist = 1,
-				/obj/item/clothing/accessory/holster/hip = 1,))
-
-/obj/random/cloth/holster/low_chance
+/obj/spawner/cloth/holster/low_chance
 	name = "low chance random holster"
 	desc = "This is a random holster."
 	icon_state = "armor-grey-low"

@@ -5,6 +5,10 @@
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
 	price_tag = 200
+	spawn_blacklisted = FALSE
+	spawn_frequency = 10
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_HOLSTER
 	var/obj/item/holstered = null
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)

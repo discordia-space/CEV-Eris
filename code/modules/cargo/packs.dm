@@ -1456,10 +1456,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/holsters
 	num_contained = 4
-	contains = list(/obj/random/cloth/holster,
-					/obj/random/cloth/holster,
-					/obj/random/cloth/holster,
-					/obj/random/cloth/holster)
+	contains = list(/obj/spawner/cloth/holster,
+					/obj/spawner/cloth/holster,
+					/obj/spawner/cloth/holster,
+					/obj/spawner/cloth/holster)
 	name = "Surplus Unform Holsters"
 	cost = 1000
 	crate_name = "Surplus Uniform Holsters Crate"
