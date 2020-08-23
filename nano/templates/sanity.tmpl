@@ -66,7 +66,7 @@
 				dirty with blood or grime will decrease your style value.
 			</div>
 			<div style="padding: 1px; overflow:auto;">
-					<h3>Current style:</h3>
+				<h3>Current style:</h3>
 			</div>
 			{{:helper.displayBar(data.style, data.min_style, data.max_style, data.style < 0 ? 'bad' : data.style > 10 ? 'good': 'average')}}
 		</div>
@@ -90,28 +90,23 @@
 				should rest. While you rest you will
 				have certain wishes to fulfill.
 			</div>
-			<h3>Current desires:</h3>
 			<div>
+				<h3>Current desires: </h3>
 				{{if data.rest}}
 					{{for data.desires :val:val_i}}
 						| &nbsp &nbsp {{:val}} &nbsp &nbsp
 					{{/for}}
 					|
+					<div style="padding: 1px; overflow:auto;">
+						<h3>Rest progress:</h3>
+					</div>
+					{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average')}}
 				{{else}}
 					Currently you don't have desires
 				{{/if}}
 			</div>
 		</div>
 		{{if data.rest}}
-			<div class="itemLabel" style="padding-right: 1px;">
-				<div style="padding: 1px; overflow:auto;">
-					<h3>Rest progress:</h3>
-				</div>
-			</div>
-			<div class="itemContent"><br>
-				{{:helper.displayBar(data.insight_rest, 0, 100, data.insight_rest < 33 ? 'bad' : data.insight_rest > 66 ? 'good': 'average')}}
-				<br><br>
-			</div>
 		{{/if}}
 	</div>
 </div>
