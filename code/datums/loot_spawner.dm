@@ -1,14 +1,14 @@
 /datum/loot_spawner_data
-	var/list/all_spawn_by_price = list()
-	var/list/all_spawn_price_by_path = list()
-	var/list/all_spawn_blacklist = list()
-	var/list/all_spawn_by_frequency = list()
-	var/list/all_spawn_frequency_by_path = list()
-	var/list/all_spawn_by_rarity = list()
-	var/list/all_spawn_rarity_by_path = list()
-	var/list/all_spawn_accompanying_obj_by_path = list()
-	var/list/all_spawn_by_tag = list()
 	var/list/all_spawn_bad_paths = list()
+	var/list/all_spawn_blacklist = list()
+	//var/list/all_spawn_by_price = list()
+	var/list/all_spawn_price_by_path = list()
+	//var/list/all_spawn_by_frequency = list()
+	var/list/all_spawn_frequency_by_path = list()
+	//var/list/all_spawn_by_rarity = list()
+	var/list/all_spawn_rarity_by_path = list()
+	var/list/all_spawn_by_tag = list()
+	var/list/all_spawn_accompanying_obj_by_path = list()
 
 /datum/loot_spawner_data/New()
 	var/list/paths = list()
@@ -28,6 +28,7 @@
 	paths += subtypesof(/obj/machinery)
 	paths += subtypesof(/obj/structure)
 	paths += subtypesof(/obj/spawner)
+	paths += subtypesof(/obj/effect)
 
 	for(var/path in paths)
 		var/atom/movable/A = path
@@ -51,25 +52,25 @@
 
 		if(path in all_spawn_bad_paths)
 			continue
-		//frequency
+		//frequency//
 		frequency = initial(A.spawn_frequency)
-		all_spawn_by_frequency["[frequency]"] += list(path)
-		all_spawn_frequency_by_path[path] = frequency
 		if(!frequency || frequency <= 0)
 			continue
-		//price
+		//all_spawn_by_frequency["[frequency]"] += list(path)
+		all_spawn_frequency_by_path[path] = frequency
+		//price//
 		price = initial(A.price_tag)
-		all_spawn_by_price["[price]"] += list(path)
+		//all_spawn_by_price["[price]"] += list(path)
 		all_spawn_price_by_path[path] = price
-		//rarity
+		//rarity//
 		rarity = initial(A.rarity_value)
-		all_spawn_by_rarity["[rarity]"] += list(path)
+		//all_spawn_by_rarity["[rarity]"] += list(path)
 		all_spawn_rarity_by_path[path] = rarity
-		//blacklisted
+		//blacklisted//
 		blacklisted = initial(A.spawn_blacklisted)
 		if(blacklisted)
 			all_spawn_blacklist += path
-		//tags
+		//tags//
 		spawn_tags = splittext(initial(A.spawn_tags), ",")
 		if(spawn_tags.len)
 			for(var/tag in spawn_tags)
