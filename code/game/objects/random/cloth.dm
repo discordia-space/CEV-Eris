@@ -235,8 +235,6 @@
 	spawn_nothing_percentage = 60
 
 
-
-
 /obj/random/cloth/gloves
 	name = "random gloves"
 	desc = "This is a random gloves."
@@ -297,33 +295,13 @@
 	spawn_nothing_percentage = 60
 
 
-
-
-/obj/random/cloth/shoes
+/obj/spawner/cloth/shoes
 	name = "random shoes"
 	desc = "This is a random pair of shoes."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_SHOES)
 
-/obj/random/cloth/shoes/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/shoes/black = 14,
-				/obj/item/clothing/shoes/clown_shoes = 14,
-				/obj/item/clothing/shoes/color/blue = 1,   //Those are ugly, so they are rare
-				/obj/item/clothing/shoes/color/brown = 1,
-				/obj/item/clothing/shoes/color/green = 1,
-				/obj/item/clothing/shoes/color/orange = 1,
-				/obj/item/clothing/shoes/color/purple = 1,
-				/obj/item/clothing/shoes/color/rainbow = 1,
-				/obj/item/clothing/shoes/color/white = 1,
-				/obj/item/clothing/shoes/color/red = 1,
-				/obj/item/clothing/shoes/color/yellow = 1,
-				/obj/item/clothing/shoes/galoshes = 8,
-				/obj/item/clothing/shoes/jackboots = 14,
-				/obj/item/clothing/shoes/leather = 14,
-				/obj/item/clothing/shoes/reinforced = 14,
-				/obj/item/clothing/shoes/workboots = 4,
-				/obj/item/clothing/shoes/jackboots/german = 3))
-
-/obj/random/cloth/shoes/low_chance
+/obj/spawner/cloth/shoes/low_chance
 	name = "low chance random shoes"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60

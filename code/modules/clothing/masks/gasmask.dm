@@ -130,12 +130,14 @@
 	name = "cyborg visor"
 	desc = "Beep boop"
 	icon_state = "death"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/mask/gas/owl_mask
 	name = "owl mask"
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
+	rarity_value = 100
 
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"

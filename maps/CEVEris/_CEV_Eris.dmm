@@ -104262,9 +104262,9 @@
 /area/eris/crew_quarters/clownoffice)
 "ezn" = (
 /obj/structure/table/rack/shelf,
-/obj/item/clothing/shoes/black,
-/obj/item/clothing/shoes/black,
-/obj/item/clothing/shoes/black,
+/obj/item/clothing/shoes/color/black,
+/obj/item/clothing/shoes/color/black,
+/obj/item/clothing/shoes/color/black,
 /obj/item/clothing/under/suit_jacket,
 /obj/item/clothing/under/suit_jacket,
 /obj/item/clothing/under/suit_jacket,
