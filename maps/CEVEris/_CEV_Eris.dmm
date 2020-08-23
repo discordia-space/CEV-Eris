@@ -109192,7 +109192,7 @@
 /obj/machinery/door/blast/shutters{
 	density = 0;
 	dir = 2;
-	icon_state = "shutter0";
+	icon_state = "shutter1";
 	id = "rnddesk";
 	name = "Research Desk Shutters";
 	opacity = 0
