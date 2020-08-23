@@ -1,6 +1,0 @@
-author: Hopek
-delete-after: true
-changes:
-  - tweak: Vagabond's do not start with bank accounts so that they will have to either
-      carry their money on them or hide it somewhere.
-  - tweak: Removed vagabonds from the crew manifest as they are stowaways.
