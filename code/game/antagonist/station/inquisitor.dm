@@ -21,7 +21,7 @@
 		STAT_VIG = 10
 	)
 
-/datum/antagonist/inquisitor/can_become_antag(var/datum/mind/M, var/mob/report)
+/datum/antagonist/inquisitor/can_become_antag(datum/mind/M, mob/report)
 	if(!..())
 		if (report)
 			to_chat(report, SPAN_NOTICE("Failure: Parent can_become_antag returned false"))

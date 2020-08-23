@@ -40,15 +40,9 @@
 
 	if(!..())
 		return FALSE
-	var/noble_objetive = FALSE
-	for(var/datum/objective/O in objectives)
-		if(istype(O, /datum/objective/assassinate))
-			if(O.noble_objetive)
-				noble_objetive = TRUE
-	if(noble_objetive)
-		spawn_uplink(owner.current, DEFAULT_TELECRYSTAL_AMOUNT * 1.5)
-	else
-		spawn_uplink(owner.current)
+
+	spawn_uplink(owner.current)
+
 	give_codewords()
 
 	return TRUE
@@ -81,7 +75,7 @@
 
 	survive_objective = /datum/objective/survive
 
-/datum/antagonist/traitor/synth/can_become_antag(var/datum/mind/player)
+/datum/antagonist/traitor/synth/can_become_antag(datum/mind/player)
 	return issilicon(player.current) && ..(player)
 
 /datum/antagonist/traitor/synth/equip()

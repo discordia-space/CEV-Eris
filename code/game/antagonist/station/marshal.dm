@@ -21,7 +21,7 @@
 	Local Ironhammer forces may assist you if you introduce yourself and win their trust. Remember that you hold no official rank \
 	and they are under no obligation to help or listen to you."
 
-/datum/antagonist/marshal/can_become_antag(var/datum/mind/M)
+/datum/antagonist/marshal/can_become_antag(datum/mind/M)
 	if(!..())
 		return FALSE
 	return TRUE
