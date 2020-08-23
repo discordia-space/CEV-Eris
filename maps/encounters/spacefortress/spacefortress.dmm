@@ -236,7 +236,7 @@
 /obj/structure/table/rack/shelf,
 /obj/random/lowkeyrandom/low_chance,
 /obj/random/lowkeyrandom/low_chance,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bm" = (

@@ -12778,9 +12778,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDk" = (
-/obj/random/circuitboard,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aDl" = (
@@ -13371,7 +13371,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/random/circuitboard,
+/obj/spawner/electronics,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aEF" = (
@@ -20183,8 +20183,8 @@
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aUT" = (
@@ -21171,8 +21171,8 @@
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /obj/random/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
@@ -23092,9 +23092,9 @@
 "baR" = (
 /obj/structure/closet,
 /obj/random/pack/tech_loot,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck4port)
 "baS" = (
@@ -25450,8 +25450,8 @@
 /area/eris/maintenance/section2deck2starboard)
 "beW" = (
 /obj/structure/table/standard,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "beX" = (
@@ -26166,7 +26166,7 @@
 "bgF" = (
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "bgG" = (
@@ -29613,7 +29613,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bnO" = (
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "bnP" = (
@@ -29648,8 +29648,8 @@
 /area/eris/maintenance/section2deck4starboard)
 "bnT" = (
 /obj/structure/table/rack/shelf,
-/obj/random/circuitboard,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics,
+/obj/spawner/electronics/low_chance,
 /obj/random/pack/rare/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
@@ -30742,8 +30742,8 @@
 /area/eris/maintenance/section3deck1central)
 "bqC" = (
 /obj/structure/table/rack/shelf,
-/obj/random/circuitboard,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bqD" = (
@@ -31275,8 +31275,8 @@
 /area/eris/rnd/robotics)
 "brU" = (
 /obj/structure/table/rack/shelf,
-/obj/random/circuitboard,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics,
+/obj/spawner/electronics/low_chance,
 /obj/random/lathe_disk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
@@ -40949,8 +40949,8 @@
 /area/eris/maintenance/section4deck4port)
 "bMH" = (
 /obj/structure/table/standard,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section4deck4port)
 "bMI" = (
@@ -41133,7 +41133,7 @@
 /area/eris/maintenance/section4deck4port)
 "bMY" = (
 /obj/structure/table/standard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section4deck4port)
 "bMZ" = (
@@ -42467,8 +42467,8 @@
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3starboard)
@@ -47537,18 +47537,18 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/random/circuitboard,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cbn" = (
@@ -50781,8 +50781,8 @@
 /area/eris/rnd/scient)
 "cix" = (
 /obj/structure/table/rack/shelf,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
 "ciy" = (
@@ -64571,8 +64571,8 @@
 /area/eris/hallway/main/section4)
 "cOy" = (
 /obj/structure/table/rack/shelf,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
@@ -76256,9 +76256,9 @@
 /area/eris/crew_quarters/hydroponics)
 "doy" = (
 /obj/structure/table/rack,
-/obj/random/circuitboard,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "doz" = (
@@ -78113,8 +78113,8 @@
 /area/eris/medical/medbay/uppercor)
 "dsL" = (
 /obj/structure/table/rack/shelf,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = -22
@@ -81012,9 +81012,9 @@
 /area/eris/command/mbo)
 "dzz" = (
 /obj/structure/closet,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section1deck1central)
 "dzA" = (
@@ -90263,9 +90263,9 @@
 /area/eris/maintenance/section4deck2starboard)
 "dUg" = (
 /obj/structure/table/standard,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/electronics/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2starboard)
 "dUh" = (
@@ -90718,8 +90718,8 @@
 /area/eris/maintenance/section4deck1central)
 "dVp" = (
 /obj/structure/table/standard,
-/obj/random/circuitboard,
-/obj/random/circuitboard,
+/obj/spawner/electronics,
+/obj/spawner/electronics,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "dVq" = (
@@ -98808,7 +98808,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck1port)
 "enG" = (
-/obj/random/circuitboard/low_chance,
+/obj/spawner/electronics/low_chance,
 /obj/random/junkfood/rotten,
 /obj/random/junkfood/rotten,
 /obj/random/junkfood/rotten,

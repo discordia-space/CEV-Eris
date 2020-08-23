@@ -74,8 +74,9 @@
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
-obj/item/weapon/electronics/circuitboard/ntnet_relay
+/obj/item/weapon/electronics/circuitboard/ntnet_relay
 	name = "Circuit board (NTNet Quantum Relay)"
+	rarity_value = 40
 	build_path = /obj/machinery/ntnet_relay
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 4)

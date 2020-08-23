@@ -10,11 +10,7 @@
 	icon_state = "tech-blue"
 	tags_to_spawn = list(SPAWN_ELECTRONICS)
 
-/obj/spawner/circuitboard/item_to_spawn()
-	return pickweight(list(
-				/obj/item/weapon/electronics/circuitboard/ntnet_relay = 1,))
-
-/obj/random/circuitboard/low_chance
+/obj/spawner/electronics/low_chance
 	name = "low chance random circuitboard"
 	icon_state = "tech-blue-low"
 	spawn_nothing_percentage = 60

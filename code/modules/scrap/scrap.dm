@@ -407,7 +407,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_list = list(
 		/obj/random/pack/tech_loot = 4,
 		/obj/spawner/powercell,
-		/obj/random/circuitboard,
+		/obj/spawner/electronics,
 		/obj/random/science,
 		/obj/random/material_ore,
 		/obj/spawner/oddities = 0.5,
