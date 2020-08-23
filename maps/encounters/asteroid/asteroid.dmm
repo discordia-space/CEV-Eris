@@ -424,7 +424,7 @@
 	icon_state = "0-4";
 	dir = 8
 	},
-/obj/random/traps/wire_splicing/low_chance,
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cc" = (
@@ -495,7 +495,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "NSKR -11"
 	},
-/obj/random/traps/wire_splicing/low_chance,
+/obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "co" = (

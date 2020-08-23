@@ -187,7 +187,7 @@ var/global/list/big_deepmaint_room_templates = list()
 		trap_count = trap_count - 1
 		var/turf/N = pick(path_turfs_copy)
 		path_turfs_copy -= N
-		new /obj/random/traps(N)
+		new /obj/spawner/traps(N)
 	for(var/turf/T in path_turfs)
 		if(prob(30))
 			new /obj/effect/decal/cleanable/dirt(T) //Wanted to put rust on the floors in deep maint, but by god, the overlay looks like ASS

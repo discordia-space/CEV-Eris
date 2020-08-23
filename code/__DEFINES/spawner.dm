@@ -47,6 +47,14 @@
 #define SPAWN_TAG_ITEM_MINE "item,mine,item_mine"
 #define SPAWN_TAG_STUCTURE_MINE "structure,mine,structure_mine"
 
+//traps
+#define SPAWN_TRAP_ARMED "trap_armed"
+#define SPAWN_WIRE_TRAP "wire_trap"
+
+
+#define SPAWN_TAG_TRAP_ARMED "item,trap_armed"
+#define SPAWN_TAG_STRUCTURE_TRAP_ARMED_WIRE "structure,trap_armed,wire_trap"
+
 //	Items - powercells
 #define SPAWN_POWERCELL "powercell"
 #define SPAWN_SMALL_POWERCELL "small_powercell"
@@ -85,12 +93,14 @@
 #define SPAWN_VOID_SUIT "void_suit"
 #define SPAWN_HAZMATSUIT "hazmatsuit"
 #define SPAWN_HOLSTER "holster"
+#define SPAWN_SHOES "shoes"
 
 #define SPAWN_TAG_CLOTHING "item,clothing"
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
 #define SPAWN_TAG_MASK "item,clothing,mask"
 #define SPAWN_TAG_HAZMATSUIT "item,clothing,hazmatsuit"
 #define SPAWN_TAG_HOLSTER "item,clothing,holster"
+#define SPAWN_TAG_SHOES "item,clothing,shoes"
 
 //	Items - storage
 #define SPAWN_storage "storage"

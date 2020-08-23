@@ -83,8 +83,8 @@
 "bE" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "bF" = (/obj/machinery/vending/cigarette,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "bG" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/deepmaint)
-"bH" = (/obj/random/traps/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
-"bI" = (/obj/random/junk,/obj/random/junk,/obj/random/traps/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
+"bH" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
+"bI" = (/obj/random/junk,/obj/random/junk,/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "bJ" = (/obj/spawner/roaches/cluster/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
 
 (1,1,1) = {"

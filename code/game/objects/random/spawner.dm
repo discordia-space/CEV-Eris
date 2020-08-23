@@ -35,8 +35,7 @@
 
 	return INITIALIZE_HINT_QDEL
 
-// this function should return a specific item to spawn
-/obj/spawner/proc/item_to_spawn()
+/obj/spawner/proc/valid_candidates()
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
 	candidates -= lsd.spawn_by_tag(restristed_tags)
 	candidates -= exclusion_paths
@@ -46,14 +45,21 @@
 		candidates -= lsd.spawns_lower_price(candidates, low_price)
 	if(top_price)
 		candidates -= lsd.spawns_upper_price(candidates, top_price)
-	//if(!candidates.len)
-	//	return
+	return candidates
+
+/obj/spawner/proc/pick_spawn(list/candidates)
 	candidates = lsd.pick_frequencies_spawn(candidates)
 	candidates = lsd.pick_rarities_spawn(candidates)
 	var/selected = lsd.pick_spawn(candidates)
 	aditional_object = lsd.all_spawn_accompanying_obj_by_path[selected]
 	return selected
 
+// this function should return a specific item to spawn
+/obj/spawner/proc/item_to_spawn()
+	var/list/candidates = valid_candidates()
+	//if(!candidates.len)
+	//	return
+	return pick_spawn(candidates)
 
 // this function should return a specific item to spawn
 /obj/spawner/proc/post_spawn(list/spawns)

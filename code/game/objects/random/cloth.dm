@@ -376,7 +376,7 @@
 	name = "random holster"
 	desc = "This is a random holster."
 	icon_state = "armor-grey"
-	tags_to_sapwn = list(SPAWN_HOLSTER)
+	tags_to_spawn = list(SPAWN_HOLSTER)
 
 /obj/spawner/cloth/holster/low_chance
 	name = "low chance random holster"

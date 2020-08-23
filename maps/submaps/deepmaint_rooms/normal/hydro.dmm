@@ -14,7 +14,7 @@
 "n" = (/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "o" = (/obj/machinery/door/airlock/glass{name = "Hydroponics"; req_access = list(35)},/turf/simulated/floor/wood,/area/deepmaint)
 "p" = (/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
-"q" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
+"q" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel/panels,/area/deepmaint)
 "r" = (/obj/structure/table/woodentable,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/grass,/area/deepmaint)
 "s" = (/obj/structure/table/woodentable,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/dirt,/area/deepmaint)
 "t" = (/obj/machinery/light/small,/turf/simulated/floor/wood,/area/deepmaint)

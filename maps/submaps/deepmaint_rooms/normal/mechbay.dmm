@@ -4,7 +4,7 @@
 "d" = (/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "e" = (/obj/machinery/mech_recharger,/obj/spawner/exosuit/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "f" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
-"g" = (/obj/random/traps/low_chance,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
+"g" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "h" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "i" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "j" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/spawner/powercell,/obj/spawner/powercell,/obj/spawner/powercell,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
