@@ -247,3 +247,46 @@
 /obj/item/weapon/oddity/techno/Initialize()
 	icon_state = "techno_part[rand(1,7)]"
 	.=..()
+
+//A randomized oddity with random stats, meant for artist job project
+/obj/item/weapon/oddity/artwork
+	name = "Strange Device"
+	desc = "You can't find out how to turn it on. Maybe it's already working?"
+	icon_state = "artwork"
+
+/obj/item/weapon/oddity/artwork/Initialize()
+
+	name = get_weapon_name(capitalize = TRUE)
+
+	var/random_icon = rand(1,6)
+	icon_state = "artwork_[random_icon]"
+
+	var/oddity_pattern = pick("combat", "craft", "mix")
+
+	switch(oddity_pattern)
+
+		if("combat")
+			oddity_stats = list(
+				STAT_TGH = 12,
+				STAT_ROB = 12,
+				STAT_VIG = 12,
+			)
+
+		if("craft")
+			oddity_stats = list(
+				STAT_COG = 12,
+				STAT_BIO = 12,
+				STAT_MEC = 12,
+			)
+
+		if("mix")
+			oddity_stats = list(
+				STAT_TGH = 6,
+				STAT_ROB = 6,
+				STAT_VIG = 6,
+				STAT_COG = 6,
+				STAT_BIO = 6,
+				STAT_MEC = 6,
+			)
+
+	. = ..()

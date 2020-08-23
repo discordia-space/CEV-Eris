@@ -28,7 +28,7 @@
 #define SANITY_CHANGE_FADEOFF(level_change) (level_change * 0.75)
 
 #define INSIGHT_PASSIVE_GAIN 0.05
-#define INSIGHT_GAIN(level_change) (INSIGHT_PASSIVE_GAIN + level_change / 15)
+#define INSIGHT_GAIN(level_change) (INSIGHT_PASSIVE_GAIN + ((level_change / 15) * insight_gain_multiplier))
 
 #define INSIGHT_DESIRE_COUNT 2
 
@@ -54,6 +54,8 @@
 	var/insight
 	var/insight_rest = 0
 	var/resting = 0
+	var/insight_gain_multiplier = 1
+	var/insight_block = 0
 
 	var/list/valid_inspirations = list(/obj/item/weapon/oddity)
 	var/list/desires = list()
@@ -133,8 +135,18 @@
 			if(H)
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
+	if(!insight_block)
 	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
 	while(insight >= 100)
+		if(insight_block)
+			return
+		if(owner.stats.getPerk(/datum/perk/artist/))
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))//Temporary description.
+			++resting
+			insight = 100
+			insight_block = 1
+			return
+		else
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 		++resting
@@ -213,15 +225,24 @@
 
 	INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
+	if(owner.stats.getPerk(/datum/perk/artist/))
+		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats.")) //Temporary description
+	else
 	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
 	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	resting = 0
+	insight_block = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)
 	var/list/inspiration_items = list()
 	for(var/obj/item/I in owner.get_contents())
 		if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
 			inspiration_items += I
+	if(owner.stats.getPerk(/datum/perk/artist/))
+		inspiration_items = list() //Clear list of items that contains inspiration items on user so Artist can't use inspiration from anything other than items in Artist Bench
+		for(var/obj/item/I in src)
+			if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
+				inspiration_items += I
 	if(inspiration_items.len)
 		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 		if(!O)

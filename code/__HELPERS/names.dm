@@ -116,6 +116,22 @@ var/syndicate_name = null
 	syndicate_name = name
 	return name
 
+//When you need something simple (for random Artist Artwork)
+/proc/get_weapon_name(capitalize = FALSE)
+
+	var/list/art_weapon_first_names = file2list("config/names/art_weapon_first.txt")
+	var/list/art_weapon_second_names = file2list("config/names/art_weapon_second.txt")
+
+	var/first_name = pick(art_weapon_first_names)
+	var/second_name = pick(art_weapon_second_names)
+
+	if(capitalize)
+		first_name = capitalize(first_name)
+		second_name = capitalize(second_name)
+
+	var/weapon_name = "[first_name] [second_name]"
+	return weapon_name
+
 
 //Traitors and traitor silicons will get these. Revs will not.
 var/syndicate_code_phrase//Code phrase for traitors.

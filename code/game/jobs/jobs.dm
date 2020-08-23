@@ -41,7 +41,7 @@ var/const/CLUBWORKER		=(1<<2)
 var/const/MERCHANT			=(1<<3)
 var/const/GUILDTECH			=(1<<4)
 var/const/MINER				=(1<<5)
-var/const/ACTOR				=(1<<6)
+var/const/ARTIST			=(1<<6)
 var/const/ASSISTANT			=(1<<7)
 
 

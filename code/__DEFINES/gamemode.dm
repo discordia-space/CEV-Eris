@@ -48,7 +48,7 @@
 #define ROLE_MUTINEER "mutineer"
 #define ROLE_COMMANDO "commando"
 #define ROLE_DEATHSQUAD "deathsquad"
-#define ROLE_ACTOR "actor"
+#define ROLE_ARTIST "artist"
 #define ROLE_MERCENARY "mercenary"
 #define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"

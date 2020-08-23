@@ -176,3 +176,39 @@ Character Expectations:<br>\
 	name = "Guild Miner"
 	icon_state = "player-beige"
 	join_tag = /datum/job/mining
+
+/datum/job/artist
+	title = "Artist"
+	flag = ARTIST
+	department = DEPARTMENT_GUILD
+	department_flag = GUILD
+	faction = "CEV Eris"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the Guild Merchant"
+	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_SERBIAN = 5, LANGUAGE_JIVE = 80)
+	access = list(access_maint_tunnels, access_theatre, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
+
+	outfit_type = /decl/hierarchy/outfit/job/cargo/artist/clown
+	wage = WAGE_LABOUR_DUMB	//Barely a retaining fee. Actor can busk for credits to keep themselves fed
+	stat_modifiers = list(
+		STAT_TGH = 30, //basically a punching bag, he can't robust anyone or shoot guns anyway
+	)
+
+	perks = list(/datum/perk/artist)
+
+	software_on_spawn = list(///datum/computer_file/program/supply,
+							 ///datum/computer_file/program/deck_management,
+							 /datum/computer_file/program/scanner,
+							 /datum/computer_file/program/wordprocessor,
+							 /datum/computer_file/program/reports)
+
+	description = ""//Temporary description
+
+	loyalties = ""//Temporary description
+
+/obj/landmark/join/start/artist
+	name = "Artist"
+	icon_state = "player-grey"
+	join_tag = /datum/job/artist

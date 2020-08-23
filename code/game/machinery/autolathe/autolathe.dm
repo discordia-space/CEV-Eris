@@ -63,6 +63,7 @@
 	var/have_design_selector = TRUE
 
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
+	var/list/suitable_materials //List that limits autolathes to eating mats only in that list.
 
 	var/global/list/error_messages = list(
 		ERR_NOLICENSE = "Not enough license points left.",
@@ -511,6 +512,10 @@
 			for(var/material in _matter)
 				if(material in unsuitable_materials)
 					continue
+
+				if(suitable_materials)
+					if(!(material in suitable_materials))
+						continue
 
 				if(!(material in stored_material))
 					stored_material[material] = 0

@@ -12,6 +12,19 @@
 	holder.sanity.death_view_multiplier *= 2
 	..()
 
+/datum/perk/artist
+	name = "Artist" //Temporary Description
+	desc = "" //Temporary Description
+	icon_state = "" //Temporary Description
+
+/datum/perk/artist/assign(mob/livin/carbon/human/H)
+	..()
+	holder.sanity.insight_gain_multiplier *= 2
+
+/datum/perk/artist/remove()
+	holder.sanity.insight_gain_multiplier *= 1
+	..()
+
 /datum/perk/selfmedicated
 	name = "Self-medicated"
 	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself! \
