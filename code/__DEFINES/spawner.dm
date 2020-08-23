@@ -39,6 +39,14 @@
 
 #define SPAWN_TAG_TANK_GAS "item,tank_gas"
 
+//  MINES
+#define SPAWN_MINE "mine"
+#define SPAWN_ITEM_MINE "item_mine"
+#define SPAWN_STUCTURE_MINE "structure_mine"
+
+#define SPAWN_TAG_ITEM_MINE "item,mine,item_mine"
+#define SPAWN_TAG_STUCTURE_MINE "structure,mine,structure_mine"
+
 //	Items - powercells
 #define SPAWN_POWERCELL "powercell"
 #define SPAWN_SMALL_POWERCELL "small_powercell"
@@ -106,6 +114,7 @@
 #define SPAWN_SECURE_CLOSET "secure_closet"
 #define SPAWN_LASERTAG_CLOSET "lasertag_closet"
 #define SPAWN_BOMB_CLOSET "bomb_closet"
+#define SPAWN_COFFIN_CLOSET "coffin_closet"
 
 #define SPAWN_TAG_CLOSET "strcuture,closet"
 #define SPAWN_TAG_TECHNICAL_CLOSET "strcuture,closet,technical_closet"
@@ -114,6 +123,7 @@
 #define SPAWN_TAG_RANDOM_SECURE_CLOSET "structure,closet,random_closet,secure_closet"
 #define SPAWN_TAG_LASERTAG_CLOSET "structure,closet,lasertag_closet"
 #define SPAWN_TAG_BOMB_CLOSET "structure,closet,bomb_closet"
+#define SPAWN_TAG_COFFIN_CLOSET "structure,closet,coffin_closet"
 
 // Structures - SALVAGEABLE
 #define SPAWN_SALVAGEABLE "structure_salvageable"
@@ -170,3 +180,9 @@
 
 #define SPAWN_TAG_ROACH "mob,hostile_mob,mob_roach"
 #define SPAWN_TAG_NANITE_ROACH "mob,hostile_mob,mob_roach,nanite_roach"
+
+//  SPAWNERS
+#define SPAWN_SPAWNER "spawner"
+#define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"
+
+#define SPAWN_TAG_SPAWNER_ENCOUNER "spawner,spawner_encounter"

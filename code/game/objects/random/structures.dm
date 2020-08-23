@@ -38,3 +38,5 @@
 
 /obj/spawner/structures/frame
 	tags_to_spawn = list(SPAWN_MACHINE_FRAME)
+	exclusion_paths = list(/obj/machinery/constructable_frame/machine_frame/vertical)
+	
