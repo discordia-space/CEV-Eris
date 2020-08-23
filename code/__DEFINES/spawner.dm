@@ -211,6 +211,11 @@
 #define SPAWN_TAG_ROACH "mob,hostile_mob,mob_roach"
 #define SPAWN_TAG_NANITE_ROACH "mob,hostile_mob,mob_roach,nanite_roach"
 
+//MOBS - SLIMES
+#define SPAWN_SPIDER "mob_spider"
+
+#define SPAWN_TAG_SPIDER "mob,hostile_mob,mob_spider"
+
 //  SPAWNERS
 #define SPAWN_SPAWNER "spawner"
 #define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"

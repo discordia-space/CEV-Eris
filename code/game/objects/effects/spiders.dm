@@ -113,12 +113,17 @@
 	anchored = FALSE
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	health = 3
+	//spawn_values
+	spawn_blacklisted = FALSE
+	rarity_value = 5
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_SPIDER
 	var/last_itch = 0
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 
-/obj/effect/spider/spiderling/New(var/location, var/atom/parent)
+/obj/effect/spider/spiderling/New(location, atom/parent)
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
 	START_PROCESSING(SSobj, src)
