@@ -148,7 +148,7 @@
 #define SPAWN_SATELITE  "strcuture_satelite"
 #define SPAWN_OMINOUS "strcuture_ominous"
 #define SPAWN_STRANGEBEACON "strangebeacon"
-#define SPAWN_BOT_OS "mob,bot,bot_os"
+#define SPAWN_BOT_OS "bot_os"
 
 #define SPAWN_TAG_ENCOUNTER_CRYOPOD "strcuture,encouter,encounter_cryopod"
 #define SPAWN_TAG_SATELITE "strcuture,encouter,strcuture_satelite"
