@@ -1,0 +1,5 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - tweak: mines now anchor when deployed
+  - tweak: deployed mines can now be disarmed with multitool
