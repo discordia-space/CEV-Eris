@@ -1,0 +1,12 @@
+author: greggbot
+delete-after: true
+changes:
+  - rscadd: Two new mech propulsion parts, ported from bay, not related to any premade
+      models - feel free to use them in your custom mechs!
+  - rscadd: Two new variables on mech parts, ported from bay, turn_delay and climb_time.
+      They affect time to turn the mech and time to climb into it respectively. Notably,
+      the light chassis now takes less time to enter, while the heavy chassis takes
+      more.
+  - tweak: Exosuit nodes on robotics research tree moved around to make more sense.
+  - balance: Many mech parts have had their stats and costs altered.
+  - code_imp: changed some paths for mech parts
