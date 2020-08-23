@@ -1,7 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - bugfix: added a "kill" option to the "sampling" radial menu for maintenance shrooms/vines
-      when using a proper cutting tool.
-  - tweak: using harm intent on maintenance shrooms/vines automatically uses the "kill"
-      option.
