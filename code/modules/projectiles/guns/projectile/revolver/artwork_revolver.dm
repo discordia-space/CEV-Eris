@@ -20,7 +20,7 @@
 
 	name = get_weapon_name(capitalize = TRUE)
 
-	var/random_icon = rand(1,6)
+	var/random_icon = rand(1,5)
 	icon_state = "artwork_revolver_[random_icon]"
 	item_state = "artwork_revolver_[random_icon]"
 
