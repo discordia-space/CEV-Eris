@@ -1,0 +1,4 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: antagonists have an extra 50% telecrystals when targeting a Noble.
