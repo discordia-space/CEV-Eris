@@ -165,11 +165,20 @@
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	character.set_species(species)
+	var/random_first = random_first_name(gender, species)
+	var/random_last = random_last_name(gender, species)
+	var/random_full = real_first_name + " " + real_last_name
 
 	if(be_random_name)
-		real_first_name = random_first_name(gender, species)
-		real_last_name = random_last_name(gender, species)
-		real_name = real_first_name + " " + real_last_name
+		real_first_name = random_first
+		real_last_name = random_last
+		real_name = random_full
+
+	if(GLOB.in_character_filter.len) //This does not always work correctly but is here as a backup in case the first two attempts to catch bad names fail.
+		if(findtext(real_first_name, config.ic_filter_regex) || findtext(real_last_name, config.ic_filter_regex))
+			real_first_name = random_first
+			real_last_name = random_last
+			real_name = random_full
 
 	if(config.humans_need_surnames)
 		if(!real_last_name)	//we need a surname

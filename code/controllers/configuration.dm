@@ -225,6 +225,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/webhook_url
 	var/webhook_key
 
+	var/static/regex/ic_filter_regex //For the cringe filter.
+
 /datum/configuration/New()
 	fill_storyevents_list()
 
@@ -761,6 +763,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
+	LoadChatFilter()
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
@@ -827,3 +830,18 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 			config.python_path = "python"
 
 	world.name = station_name()
+
+
+/datum/configuration/proc/LoadChatFilter()
+	GLOB.in_character_filter = list()
+
+	for(var/line in world.file2list("config/in_character_filter.txt"))
+		if(!line)
+			continue
+		if(findtextEx(line,"#",1,2))
+			continue
+		GLOB.in_character_filter += line
+
+	if(!ic_filter_regex && GLOB.in_character_filter.len)
+		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
+
