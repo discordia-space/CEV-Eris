@@ -15933,13 +15933,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
-"aLp" = (
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 22
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/hallway/side/eschangarb)
 "aLq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Second Section Substation";
@@ -27155,6 +27148,12 @@
 /area/eris/security/barracks)
 "biW" = (
 /obj/machinery/autolathe/loaded,
+/obj/machinery/button/remote/blast_door{
+	id = "rnddesk";
+	name = "Research Desk Shutter Control";
+	pixel_x = -22;
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/rnd/lab)
 "biX" = (
@@ -28727,7 +28726,6 @@
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bmd" = (
-/obj/machinery/vending/assist,
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 1
@@ -108174,6 +108172,16 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
+"iaf" = (
+/obj/structure/multiz/stairs/enter{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/eschangarb)
 "ijn" = (
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
@@ -109038,6 +109046,14 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"tTj" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/machinery/vending/assist,
+/turf/simulated/floor/tiled/dark,
+/area/eris/rnd/lab)
 "ubu" = (
 /obj/machinery/holomap{
 	pixel_y = 32
@@ -109159,6 +109175,35 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"vkt" = (
+/obj/machinery/door/window/eastright{
+	name = "Research Desk";
+	req_access = list(5)
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "ScienceTotalLockdown";
+	layer = 2.6;
+	name = "Science Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter1";
+	id = "rnddesk";
+	name = "Research Desk Shutters";
+	opacity = 0
+	},
+/obj/machinery/door/window/westleft{
+	name = "Research Desk";
+	req_access = list(5)
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/dark,
+/area/eris/rnd/lab)
 "voV" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction,
@@ -171647,8 +171692,8 @@ bfn
 bho
 apJ
 bmb
-aKz
-aLp
+iaf
+amb
 aMA
 aRm
 apJ
@@ -171850,7 +171895,7 @@ aXV
 bhb
 bhb
 bhb
-bhb
+vkt
 bhb
 bhb
 bhb
@@ -172255,7 +172300,7 @@ blx
 blx
 bmL
 bnD
-bnc
+tTj
 bhb
 bpx
 bpx
