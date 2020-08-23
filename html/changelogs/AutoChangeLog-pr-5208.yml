@@ -1,0 +1,7 @@
+author: Firefox13, vekotov
+delete-after: true
+changes:
+  - tweak: The NT delegation read the litany of improvement over the solidifier. It's
+      now five times faster.
+  - tweak: The amount of biomatter produced by bioprinter and solidifier is now the
+      same.
