@@ -54,8 +54,8 @@
 				/obj/item/weapon/circuitboard/telecomms/receiver = 1,
 				/obj/item/weapon/circuitboard/telecomms/relay = 1,
 				/obj/item/weapon/circuitboard/telecomms/server = 1,
-				/obj/item/weapon/airalarm_electronics = 1,
-				/obj/item/weapon/airlock_electronics = 1,))
+				/obj/item/weapon/electronics/airalarm = 1,
+				/obj/item/weapon/electronics/airlock = 1,))
 
 /obj/random/circuitboard/low_chance
 	name = "low chance random circuitboard"

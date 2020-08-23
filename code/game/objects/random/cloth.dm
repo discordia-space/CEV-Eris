@@ -183,8 +183,6 @@
 	spawn_nothing_percentage = 60
 
 
-
-
 /obj/random/cloth/head
 	name = "random head"
 	desc = "This is a random head."
@@ -273,8 +271,6 @@
 	spawn_nothing_percentage = 60
 
 
-
-
 /obj/random/cloth/glasses
 	name = "random glasses"
 	desc = "This is a random glasses."
@@ -305,8 +301,6 @@
 	name = "low chance random shoes"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
-
 
 
 /obj/random/cloth/backpack

@@ -74354,19 +74354,19 @@
 "dkC" = (
 /obj/structure/table/standard,
 /obj/item/device/scanner/gas,
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
@@ -85305,23 +85305,23 @@
 /obj/item/stack/material/glass{
 	amount = 120
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
-/obj/item/weapon/airlock_electronics{
+/obj/item/weapon/electronics/airlock{
 	pixel_x = 2;
 	pixel_y = -5
 	},
@@ -88107,9 +88107,9 @@
 /area/eris/engineering/gravity_generator)
 "dPd" = (
 /obj/structure/table/rack,
-/obj/item/weapon/airlock_electronics,
-/obj/item/weapon/airlock_electronics,
-/obj/item/weapon/airlock_electronics,
+/obj/item/weapon/electronics/airlock,
+/obj/item/weapon/electronics/airlock,
+/obj/item/weapon/electronics/airlock,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/gravity_generator)
 "dPe" = (

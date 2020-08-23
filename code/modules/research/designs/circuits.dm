@@ -296,7 +296,7 @@
 /datum/design/research/circuit/secure_airlock
 	name = "secure airlock electronics"
 	desc =  "Allows for the construction of a tamper-resistant airlock electronics."
-	build_path = /obj/item/weapon/airlock_electronics/secure
+	build_path = /obj/item/weapon/electronics/airlock/secure
 	sort_string = "JDAAA"
 	category = CAT_MISC
 

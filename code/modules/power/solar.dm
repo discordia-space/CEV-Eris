@@ -228,7 +228,7 @@
 		if(QUALITY_PRYING)
 			if(tracker)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					new /obj/item/weapon/tracker_electronics(src.loc)
+					new /obj/item/weapon/electronics/tracker(src.loc)
 					tracker = 0
 					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
 					return
@@ -261,7 +261,7 @@
 			return
 
 	if(!tracker)
-		if(istype(I, /obj/item/weapon/tracker_electronics))
+		if(istype(I, /obj/item/weapon/electronics/tracker))
 			tracker = 1
 			user.drop_item()
 			qdel(I)

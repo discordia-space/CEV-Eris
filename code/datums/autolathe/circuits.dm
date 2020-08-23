@@ -2,19 +2,19 @@
 
 /datum/design/autolathe/circuit/airlockmodule
 	name = "airlock electronics"
-	build_path = /obj/item/weapon/airlock_electronics
+	build_path = /obj/item/weapon/electronics/airlock
 
 /datum/design/autolathe/circuit/airlockmodule/secure
 	name = "secure airlock electronics"
-	build_path = /obj/item/weapon/airlock_electronics/secure
+	build_path = /obj/item/weapon/electronics/airlock/secure
 
 /datum/design/autolathe/circuit/airalarm
 	name = "air alarm electronics"
-	build_path = /obj/item/weapon/airalarm_electronics
+	build_path = /obj/item/weapon/electronics/airalarm
 
 /datum/design/autolathe/circuit/firealarm
 	name = "fire alarm electronics"
-	build_path = /obj/item/weapon/firealarm_electronics
+	build_path = /obj/item/weapon/electronics/firealarm
 
 /datum/design/autolathe/circuit/powermodule
 	name = "power control module"
