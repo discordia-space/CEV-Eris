@@ -136,7 +136,7 @@
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
 	if(!insight_block)
-	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
+		insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
 	while(insight >= 100)
 		if(insight_block)
 			return
@@ -147,11 +147,11 @@
 			insight_block = 1
 			return
 		else
-		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
-		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
-		++resting
-		pick_desires()
-		insight -= 100
+			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
+			owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
+			++resting
+			pick_desires()
+			insight -= 100
 	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
 	hud?.update_icon()
 
@@ -228,8 +228,8 @@
 	if(owner.stats.getPerk(/datum/perk/artist/))
 		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats.")) //Temporary description
 	else
-	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
-	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
+		to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
+		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	resting = 0
 	insight_block = 0
 
@@ -354,7 +354,7 @@
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
-	
+
 	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
 		if(get_turf(S) in view(get_turf(owner)))
 			S.reg_break(owner)
