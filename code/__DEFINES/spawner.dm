@@ -122,6 +122,11 @@
 #define SPAWN_TAG_BELT "item,storage,belt"
 #define SPAWN_TAG_BOX "item,storage,box"
 
+// ITEM - STOCK PARTS
+#define SPAWN_STOCK_PARTS "stock_parts"
+
+#define SPAWN_TAG_STOCK_PARTS "item,stock_parts"
+
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
 #define SPAWN_MECH_QUIPMENT "mech_equipment"

@@ -22,24 +22,7 @@
 				/obj/item/device/assembly/signaler = 24,
 				/obj/item/device/assembly/timer = 24,
 				/obj/item/device/assembly/voice = 18,
-				/obj/item/weapon/stock_parts/console_screen = 30,
-				/obj/item/weapon/stock_parts/capacitor = 20,
-				/obj/item/weapon/stock_parts/capacitor/adv = 6,
-				/obj/item/weapon/stock_parts/manipulator = 30,
-				/obj/item/weapon/stock_parts/manipulator/nano = 10,
-				/obj/item/weapon/stock_parts/matter_bin = 40,
-				/obj/item/weapon/stock_parts/matter_bin/adv = 12,
-				/obj/item/weapon/stock_parts/micro_laser = 30,
-				/obj/item/weapon/stock_parts/micro_laser/high = 10,
-				/obj/item/weapon/stock_parts/scanning_module = 30,
-				/obj/item/weapon/stock_parts/scanning_module/adv = 10,
-				/obj/item/weapon/stock_parts/subspace/amplifier = 6,
-				/obj/item/weapon/stock_parts/subspace/analyzer = 6,
-				/obj/item/weapon/stock_parts/subspace/ansible = 6,
-				/obj/item/weapon/stock_parts/subspace/crystal = 6,
-				/obj/item/weapon/stock_parts/subspace/filter = 6,
-				/obj/item/weapon/stock_parts/subspace/transmitter = 6,
-				/obj/item/weapon/stock_parts/subspace/treatment = 6,
+				/obj/spawner/stock_parts = 27,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 6,
@@ -61,3 +44,8 @@
 	name = "low chance random techpart"
 	icon_state = "tech-orange-low"
 	spawn_nothing_percentage = 60
+
+/obj/spawner/stock_parts
+	name = "random techpart"
+	icon_state = "tech-orange"
+	tags_to_spawn = list(SPAWN_STOCK_PARTS)
