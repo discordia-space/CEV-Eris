@@ -3,9 +3,9 @@
 	desc = "Even the most devout deserve head protection."
 	icon_state = "acolyte"
 	armor = list(
-		melee = 25,
-		bullet = 25,
-		energy = 25,
+		melee = 35,
+		bullet = 30,
+		energy = 45,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -17,9 +17,9 @@
 	icon_state = "acolyte"
 	slowdown = 0.3
 	armor = list(
-		melee = 25,
-		bullet = 25,
-		energy = 25,
+		melee = 35,
+		bullet = 30,
+		energy = 45,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -29,25 +29,25 @@
 /obj/item/clothing/head/space/void/agrolyte
 	name = "Agrolyte hood"
 	desc = "Don't want anything getting in your eyes."
-	icon_state = "botanist"
+	icon_state = "agrolyte"
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 35,
+		bullet = 30,
+		energy = 45,
 		bomb = 25,
 		bio = 100,
 		rad = 75
 	)
 
 /obj/item/clothing/suit/space/void/agrolyte
-	name = "Agrolyte armor"
+	name = "Agrolyte armored robe"
 	desc = "Every rose has its thorns."
-	icon_state = "botanist"
+	icon_state = "agrolyte"
 	slowdown = 0
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 35,
+		bullet = 30,
+		energy = 45,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -59,9 +59,9 @@
 	desc = "Cleaning floors is more dangerous than it looks."
 	icon_state = "custodian"
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 35,
+		bullet = 30,
+		energy = 45,
 		bomb = 25,
 		bio = 200,
 		rad = 90
@@ -74,9 +74,9 @@
 	icon_state = "custodian"
 	slowdown = 0.05
 	armor = list(
-		melee = 20,
-		bullet = 10,
-		energy = 10,
+		melee = 35,
+		bullet = 30,
+		energy = 45,
 		bomb = 25,
 		bio = 200,
 		rad = 90
