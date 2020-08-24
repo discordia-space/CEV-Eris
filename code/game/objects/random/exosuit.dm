@@ -2,6 +2,7 @@
 	name = "random exosuit"
 	icon_state = "machine-red"
 	tags_to_spawn = list(SPAWN_MECH_PREMADE)
+	has_postspawn = FALSE
 
 /obj/spawner/exosuit/low_chance
 	name = "low chance random lathe disk"
@@ -9,15 +10,13 @@
 	spawn_nothing_percentage = 90
 
 /obj/spawner/exosuit/post_spawn(list/things)
-	if(!damaged)
-		return FALSE
 	for (var/obj/a in things)
 		a.make_old()
 
 /obj/spawner/exosuit/damaged
 	name = "random damaged exosuit"
 	icon_state = "machine-red"
-	damaged = TRUE
+	has_postspawn = TRUE
 
 /obj/spawner/exosuit/damaged/low_chance
 	name = "low chance random damaged exosuit"

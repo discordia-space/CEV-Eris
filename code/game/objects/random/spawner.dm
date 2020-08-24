@@ -16,7 +16,6 @@
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY)
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
-	var/damaged = FALSE
 	var/list/exclusion_paths = list()
 	var/list/restristed_tags = list()
 	var/spread_range = 0
