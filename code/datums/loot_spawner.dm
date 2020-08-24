@@ -166,7 +166,7 @@
 			continue
 		things += frequency_path
 	var/frequency = pick(things)
-	admin_notice(SPAN_DANGER("ESTA ES LA FRECUENCIA [frequency]"))//remove it
+	//admin_notice(SPAN_DANGER("ESTA ES LA FRECUENCIA [frequency]"))//remove it
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_frequency_by_path[path] == frequency)
@@ -181,12 +181,12 @@
 			continue
 		things += rarity_path
 	var/rarity = pick(things)
-	admin_notice(SPAN_DANGER("ESTA ES la rareza [rarity]"))//remove it
+	//admin_notice(SPAN_DANGER("ESTA ES la rareza [rarity]"))//remove it
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_rarity_by_path[path] == rarity)
 			things += path
-	admin_notice(SPAN_DANGER("ESTA la lista final [things]"))//remove it
+	//admin_notice(SPAN_DANGER("ESTA la lista final [things]"))//remove it
 	var/path_selected = pick(things)
-	admin_notice(SPAN_DANGER("ESTA es el path [path_selected]"))//remove it
+	//admin_notice(SPAN_DANGER("ESTA es el path [path_selected]"))//remove it
 	return path_selected

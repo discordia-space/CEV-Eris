@@ -219,5 +219,7 @@
 //  SPAWNERS
 #define SPAWN_SPAWNER "spawner"
 #define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"
+#define SPAWN_SPAWNER_MOB "spawner_mob"
 
 #define SPAWN_TAG_SPAWNER_ENCOUNER "spawner,spawner_encounter"
+#define SPAWN_TAG_SPAWNER_MOB "spawner,spawner_mob"
