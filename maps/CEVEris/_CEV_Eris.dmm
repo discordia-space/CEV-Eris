@@ -2282,7 +2282,7 @@
 /area/eris/security/disposal)
 "afx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "afy" = (
@@ -2446,7 +2446,7 @@
 /turf/simulated/floor/plating/under,
 /area/space)
 "afV" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "afW" = (
@@ -4799,7 +4799,7 @@
 /area/eris/security/exerooms)
 "akQ" = (
 /obj/machinery/light/small,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/prison)
 "akR" = (
@@ -5915,7 +5915,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5port)
 "ant" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/toilet/medbay)
 "anu" = (
@@ -8579,7 +8579,7 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/quartermaster/disposaldrop)
 "asU" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "asV" = (
@@ -12277,7 +12277,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
 "aBV" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "aBW" = (
@@ -12785,7 +12785,7 @@
 /area/eris/maintenance/section4deck5port)
 "aDl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDm" = (
@@ -12833,7 +12833,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDs" = (
@@ -14825,7 +14825,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aID" = (
@@ -15527,7 +15527,7 @@
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/maintenance/junk)
 "aKn" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "aKo" = (
@@ -16192,7 +16192,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/random/junk,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aLX" = (
@@ -16240,7 +16240,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/podbay)
 "aMe" = (
@@ -16909,7 +16909,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aNH" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "aNI" = (
@@ -18005,7 +18005,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aQa" = (
@@ -18143,7 +18143,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aQn" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aQo" = (
@@ -21259,7 +21259,7 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aXk" = (
@@ -23651,7 +23651,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/catwalk,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bbR" = (
@@ -23980,7 +23980,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section4deck4port)
 "bcp" = (
@@ -25014,7 +25014,7 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bdZ" = (
@@ -25121,7 +25121,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "bem" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "ben" = (
@@ -25583,7 +25583,7 @@
 	dir = 8;
 	pixel_x = -28
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bfk" = (
@@ -25600,7 +25600,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bfm" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bfn" = (
@@ -25791,7 +25791,7 @@
 /area/eris/maintenance/section2deck4central)
 "bfL" = (
 /obj/structure/catwalk,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bfM" = (
@@ -32724,7 +32724,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/evidencestorage)
 "bvq" = (
@@ -32761,7 +32761,7 @@
 	dir = 1
 	},
 /obj/structure/cyberplant,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/security/prisoncells)
 "bvu" = (
@@ -36128,7 +36128,7 @@
 	icon_state = "warning";
 	dir = 1
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4central)
 "bCU" = (
@@ -36565,7 +36565,7 @@
 	dir = 8;
 	pixel_x = 22
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/docking)
 "bEa" = (
@@ -37551,7 +37551,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/clothingstorage)
 "bFW" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck1port)
 "bFX" = (
@@ -37762,7 +37762,7 @@
 	name = "Powernet Sensor - Fourth Section Subgrid";
 	name_tag = "Fourth Section Subgrid"
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section4)
 "bGs" = (
@@ -38645,7 +38645,7 @@
 /obj/machinery/camera/network/fourth_section{
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4central)
 "bId" = (
@@ -38984,7 +38984,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bII" = (
@@ -39842,7 +39842,7 @@
 	pixel_x = 0
 	},
 /obj/machinery/light/small,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/open,
 /area/eris/crew_quarters/sleep)
 "bKt" = (
@@ -41214,7 +41214,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bNj" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck2central)
 "bNk" = (
@@ -41305,7 +41305,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -44945,7 +44945,7 @@
 /area/eris/neotheology/storage)
 "bVs" = (
 /obj/random/scrap/sparse_weighted,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "bVt" = (
@@ -50283,7 +50283,7 @@
 /turf/simulated/wall,
 /area/eris/medical/surgery)
 "chn" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4central)
 "cho" = (
@@ -60444,7 +60444,7 @@
 "cEA" = (
 /obj/random/junk/low_chance,
 /obj/random/junk,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cEB" = (
@@ -61116,7 +61116,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cFZ" = (
@@ -67731,7 +67731,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section3)
 "cWf" = (
@@ -74322,7 +74322,7 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck2starboard)
 "dky" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
@@ -79964,7 +79964,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
 "dwZ" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dxa" = (
@@ -83893,7 +83893,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
 "dGj" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck1central)
 "dGk" = (
@@ -83935,7 +83935,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dGr" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck5central)
 "dGs" = (
@@ -84448,7 +84448,7 @@
 /area/eris/maintenance/section4deck2port)
 "dHx" = (
 /obj/random/gun_cheap/low_chance,
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
@@ -87617,7 +87617,7 @@
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/propulsion/right)
 "dNU" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck1starboard)
 "dNV" = (
@@ -89145,7 +89145,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/hallway/side/atmosphericshallway)
 "dRz" = (
@@ -89851,7 +89851,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/sleep/cryo)
 "dTg" = (
@@ -89945,7 +89945,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "dTp" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
@@ -90004,7 +90004,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
 "dTy" = (
@@ -90478,7 +90478,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/primary)
 "dUK" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dUL" = (
@@ -90496,7 +90496,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "dUO" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5starboard)
 "dUP" = (
@@ -94784,7 +94784,7 @@
 	pixel_x = 0;
 	pixel_y = 32
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "eet" = (
@@ -96495,7 +96495,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
 "eip" = (
@@ -99164,7 +99164,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
 "eov" = (
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "eow" = (
@@ -106121,7 +106121,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/flora/low_chance,
+/obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "eCO" = (

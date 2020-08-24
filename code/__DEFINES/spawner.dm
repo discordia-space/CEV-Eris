@@ -223,6 +223,11 @@
 
 #define SPAWN_TAG_SPIDER "mob,hostile_mob,mob_spider"
 
+//EFFECTS
+#define SPAWN_FLORA "flora"
+
+#define SPAWN_TAG_FLORA "effect,flora"
+
 //  SPAWNERS
 #define SPAWN_SPAWNER "spawner"
 #define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"
