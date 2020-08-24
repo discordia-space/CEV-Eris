@@ -149,14 +149,17 @@
 	if(volume && holder)
 		remove_self(removed)
 
+/datum/reagent/proc/applyeffect(mob/living/carbon/M, effect_multiplier)
+	var/mob/living/carbon/human/H = M
+	if(istype(H))
+		H.sanity.onReagent(src, effect_multiplier)
+
 /datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 
 /datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
 	
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.sanity.onReagent(src, effect_multiplier)
+	applyeffect()
 
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 

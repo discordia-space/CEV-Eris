@@ -47,9 +47,7 @@
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier)) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.sanity.onReagent(src, effect_multiplier)
+	applyeffect()
 
 /datum/reagent/organic/nutriment/glucose
 	name = "Glucose"
