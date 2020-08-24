@@ -118,6 +118,7 @@
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	rarity_value = 50
 
 /obj/item/weapon/stock_parts/scanning_module/phasic
 	name = "phasic scanning module"
@@ -126,6 +127,7 @@
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	rarity_value = 50
 
 /obj/item/weapon/stock_parts/manipulator/pico
 	name = "pico-manipulator"
@@ -134,6 +136,7 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	rarity_value = 50
 
 /obj/item/weapon/stock_parts/micro_laser/ultra
 	name = "ultra-high-power micro-laser"
@@ -142,6 +145,7 @@
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	rarity_value = 50
 
 /obj/item/weapon/stock_parts/matter_bin/super
 	name = "super matter bin"
@@ -150,6 +154,7 @@
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 3
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	rarity_value = 45
 
 
 //excelsior stock parts (rating 4)
