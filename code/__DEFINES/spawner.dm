@@ -100,6 +100,7 @@
 #define SPAWN_HAZMATSUIT "hazmatsuit"
 #define SPAWN_HOLSTER "holster"
 #define SPAWN_SHOES "shoes"
+#define SPAWN_GLOVES "gloves"
 
 #define SPAWN_TAG_CLOTHING "item,clothing"
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
@@ -107,6 +108,7 @@
 #define SPAWN_TAG_HAZMATSUIT "item,clothing,hazmatsuit"
 #define SPAWN_TAG_HOLSTER "item,clothing,holster"
 #define SPAWN_TAG_SHOES "item,clothing,shoes"
+#define SPAWN_TAG_GLOVES "item,clothing,gloves"
 
 //	Items - storage
 #define SPAWN_storage "storage"

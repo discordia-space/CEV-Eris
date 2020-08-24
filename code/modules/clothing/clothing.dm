@@ -270,6 +270,8 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/inventory/hands/icon.dmi'
 	siemens_coefficient = 0.75
+	bad_types = /obj/item/clothing/gloves
+	spawn_tags = SPAWN_TAG_GLOVES
 	var/wired = 0
 	var/clipped = 0
 	body_parts_covered = ARMS

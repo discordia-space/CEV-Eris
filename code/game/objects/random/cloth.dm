@@ -233,43 +233,16 @@
 	spawn_nothing_percentage = 60
 
 
-/obj/random/cloth/gloves
+/obj/spawner/cloth/gloves
 	name = "random gloves"
 	desc = "This is a random gloves."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_GLOVES)
 
-/obj/random/cloth/gloves/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/gloves/botanic_leather = 3,
-				/obj/item/clothing/gloves/boxing = 2,
-				/obj/item/clothing/gloves/boxing/blue = 5,
-				/obj/item/clothing/gloves/boxing/green = 1,
-				/obj/item/clothing/gloves/boxing/yellow = 1,
-				/obj/item/clothing/gloves/captain = 1,
-				/obj/item/clothing/gloves/color/white = 3,
-				/obj/item/clothing/gloves/color/blue = 3,
-				/obj/item/clothing/gloves/color/brown = 3,
-				/obj/item/clothing/gloves/color/green = 3,
-				/obj/item/clothing/gloves/color/grey = 3,
-				/obj/item/clothing/gloves/color/light_brown = 3,
-				/obj/item/clothing/gloves/color/orange = 3,
-				/obj/item/clothing/gloves/color/purple = 3,
-				/obj/item/clothing/gloves/color/rainbow = 3,
-				/obj/item/clothing/gloves/color/red = 3,
-				/obj/item/clothing/gloves/color/yellow = 3,
-				/obj/item/clothing/gloves/insulated = 6,
-				/obj/item/clothing/gloves/insulated/cheap = 7,
-				/obj/item/clothing/gloves/latex = 9,
-				/obj/item/clothing/gloves/thick = 5,
-				/obj/item/clothing/gloves/security/tactical = 1,
-				/obj/item/clothing/gloves/security = 2,
-				/obj/item/clothing/gloves/stungloves = 1,
-				/obj/item/clothing/gloves/german = 3))
-
-/obj/random/cloth/gloves/low_chance
+/obj/spawner/cloth/gloves/low_chance
 	name = "low chance random gloves"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/random/cloth/glasses
 	name = "random glasses"
