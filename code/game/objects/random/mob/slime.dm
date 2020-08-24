@@ -1,25 +1,25 @@
-/obj/spawner/slime
+/obj/spawner/mob/slime
 	name = "a slime"
 	icon_state = "hostilemob-cyan-cluster"
 	alpha = 128
 	tags_to_spawn = list(SPAWN_SLIME)
 
-/obj/spawner/slimes/cluster
+/obj/spawner/mob/slimes/cluster
 	name = "cluster of slimes"
 	alpha = 128
 	min_amount = 1
 	max_amount = 3
 	spread_range = 23
 
-/obj/spawner/slimes/cluster/low_chance
+/obj/spawner/mob/slimes/cluster/low_chance
 	name = "low chance cluster of slimes"
 	icon_state = "hostilemob-cyan-cluster-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/slime/rainbow
+/obj/spawner/mob/slime/rainbow
 	name = "cluster of colored slimes"
 
-/obj/spawner/slime/rainbow/post_spawn(list/spawns)
+/obj/spawner/mob/slime/rainbow/post_spawn(list/spawns)
 	var/list/colors = list("grey" = 10,
 	"purple" = 4,
 	"metal" = 4,
@@ -36,7 +36,7 @@
 	for (var/mob/living/carbon/slime/S in spawns)
 		S.set_mutation(pickweight(colors))
 
-/obj/spawner/slimes/rainbow/cluster
+/obj/spawner/mob/slimes/rainbow/cluster
 	name = "cluster of colored slimes"
 	alpha = 128
 	min_amount = 1
