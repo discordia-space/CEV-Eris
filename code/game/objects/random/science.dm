@@ -25,5 +25,5 @@
 /obj/random/science/low_chance
 	name = "low chance random scientific item"
 	icon_state = "box-green-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 

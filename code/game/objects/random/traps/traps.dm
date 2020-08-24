@@ -20,7 +20,7 @@
 
 /obj/spawner/traps/low_chance
 	icon_state = "trap-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 /obj/spawner/traps/wire_splicing
 	name = "wire splicing"

@@ -7,7 +7,7 @@
 /obj/spawner/exosuit/low_chance
 	name = "low chance random lathe disk"
 	icon_state = "machine-red-low"
-	spawn_nothing_percentage = 90
+	spawn_nothing_percentage = 85
 
 /obj/spawner/exosuit/post_spawn(list/things)
 	for (var/obj/a in things)
@@ -21,7 +21,7 @@
 /obj/spawner/exosuit/damaged/low_chance
 	name = "low chance random damaged exosuit"
 	icon_state = "machine-red-low"
-	spawn_nothing_percentage = 90
+	spawn_nothing_percentage = 85
 
 /obj/spawner/exosuit_equipment
 	name = "random exosuit equipment"
@@ -31,4 +31,4 @@
 /obj/spawner/mech_equipment/low_chance
 	name = "low chance random exosuit equipment"
 	icon_state = "tech-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75

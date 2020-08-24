@@ -70,7 +70,7 @@
 /obj/random/gun_energy_cheap/low_chance
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 
 
@@ -92,4 +92,4 @@
 /obj/random/gun_shotgun/low_chance
 	name = "low chance random shotgun"
 	icon_state = "gun-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75

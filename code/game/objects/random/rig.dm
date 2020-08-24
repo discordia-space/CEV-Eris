@@ -31,7 +31,7 @@
 /obj/random/rig/low_chance
 	name = "low chance random rig suit"
 	icon_state = "armor-blue-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 
 
@@ -54,7 +54,7 @@
 /obj/random/rig/damaged/low_chance
 	name = "low chance random rig suit"
 	icon_state = "armor-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 
 
@@ -115,7 +115,7 @@
 /obj/random/rig_module/low_chance
 	name = "low chance random hardsuit module"
 	icon_state = "box-orange-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 
 
@@ -158,4 +158,4 @@
 /obj/random/rig_module/rare/low_chance
 	name = "low chance random rare hardsuit module"
 	icon_state = "box-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75

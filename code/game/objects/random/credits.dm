@@ -16,7 +16,7 @@
 /obj/spawner/credits/low_chance
 	name = "low chance random cash"
 	icon_state = "cash-green-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 
 

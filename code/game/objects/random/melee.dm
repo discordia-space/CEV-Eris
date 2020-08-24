@@ -6,4 +6,4 @@
 /obj/spawner/knife/low_chance
 	name = "low chance random knife"
 	icon_state = "tool-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75

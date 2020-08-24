@@ -7,7 +7,7 @@
 /obj/spawner/voidsuit/low_chance
 	name = "low chance random voidsuit"
 	icon_state = "armor-blue-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 /obj/spawner/voidsuit/damaged
 	name = "random damaged voidsuit"
@@ -17,7 +17,7 @@
 /obj/spawner/voidsuit/damaged/low_chance
 	name = "low chance random damaged voidsuit"
 	icon_state = "armor-red-low"
-	spawn_nothing_percentage = 80
+	spawn_nothing_percentage = 75
 
 /obj/spawner/voidsuit/post_spawn(list/spawns)
 	for (var/obj/item/clothing/suit/space/void/suit in spawns)
