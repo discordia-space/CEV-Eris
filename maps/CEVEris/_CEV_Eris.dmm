@@ -1153,7 +1153,7 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "acN" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/security/armory)
 "acO" = (
@@ -6683,7 +6683,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5port)
 "apf" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "apg" = (
@@ -10223,7 +10223,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "axl" = (
 /obj/structure/catwalk,
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck2starboard)
 "axm" = (
@@ -12129,7 +12129,7 @@
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "aBD" = (
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /turf/simulated/floor/tiled/white/panels,
 /area/eris/maintenance/section3deck2starboard)
 "aBE" = (
@@ -12511,7 +12511,7 @@
 /area/eris/maintenance/section2deck4port)
 "aCA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aCB" = (
@@ -12963,7 +12963,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDK" = (
@@ -17385,7 +17385,7 @@
 /turf/simulated/wall/r_wall,
 /area/eris/engineering/atmos/storage)
 "aOR" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aOS" = (
@@ -30882,7 +30882,7 @@
 /area/eris/command/courtroom)
 "bqX" = (
 /obj/structure/catwalk,
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck1central)
 "bqY" = (
@@ -36211,7 +36211,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bDf" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDg" = (
@@ -36991,7 +36991,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bER" = (
@@ -38073,7 +38073,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck1port)
 "bHa" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck1port)
 "bHb" = (
@@ -41193,7 +41193,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/lobby)
 "bNg" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section4deck4port)
 "bNh" = (
@@ -49775,7 +49775,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "cfT" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3starboard)
 "cfU" = (
@@ -61398,7 +61398,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "cGE" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck2central)
 "cGF" = (
@@ -62113,7 +62113,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/primary)
 "cIv" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2port)
 "cIw" = (
@@ -62464,7 +62464,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cJt" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "cJu" = (
@@ -64489,7 +64489,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "cOo" = (
@@ -89131,7 +89131,7 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section3deck3starboard)
 "dRw" = (
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dRx" = (
@@ -90054,7 +90054,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "dTF" = (
-/obj/random/cluster/spiders,
+/obj/spawner/mob/spiders/cluster,
 /obj/random/junk/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -90492,7 +90492,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dUN" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "dUO" = (
@@ -90818,7 +90818,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "dVC" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "dVD" = (
@@ -94853,7 +94853,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "eeB" = (
@@ -95033,7 +95033,7 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "efa" = (
@@ -95097,7 +95097,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/anomal)
 "efi" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "efj" = (
@@ -98071,7 +98071,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck1central)
 "elI" = (
-/obj/random/cluster/spiders/low_chance,
+/obj/spawner/mob/spiders/cluster/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)

@@ -43,11 +43,11 @@
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/space)
 "l" = (
-/obj/random/mob/spiders,
+/obj/spawner/mob/spiders,
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/space)
 "m" = (
-/obj/random/mob/spiders/low_chance,
+/obj/spawner/mob/spiders/low_chance,
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/space)
 

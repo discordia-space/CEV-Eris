@@ -100,7 +100,7 @@
 	/mob/living/simple_animal/hostile/scarybat,
 	/mob/living/simple_animal/mouse,
 	/obj/spawner/slime/rainbow,
-	/obj/random/mob/spiders,
+	/obj/spawner/mob/spiders,
 	/obj/spawner/roaches,
 	/mob/living/simple_animal/hostile/samak,
 	/mob/living/simple_animal/hostile/bear,

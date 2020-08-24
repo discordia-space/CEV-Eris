@@ -17,7 +17,7 @@
 	max_amount = 5
 	spread_range = 0
 
-/obj/spawner/cluster/spiders/low_chance
+/obj/spawner/mob/spiders/cluster/low_chance
 	name = "low chance cluster of spiders"
 	icon_state = "hostilemob-black-cluster-low"
 	spawn_nothing_percentage = 60
