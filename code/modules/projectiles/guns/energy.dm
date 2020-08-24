@@ -128,7 +128,7 @@
 	else
 		if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 			cell = null
-			pdate_icon()
+			update_icon()
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(self_recharge)
