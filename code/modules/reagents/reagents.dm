@@ -159,7 +159,7 @@
 /datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier * 0.8)	// some of chemicals lost in digestive process
 	
-	applyeffect()
+	applyeffect(M)
 
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 

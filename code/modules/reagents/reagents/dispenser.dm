@@ -165,7 +165,7 @@
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)
 
-	applyeffect()
+	applyeffect(M)
 
 /datum/reagent/ethanol/touch_obj(obj/O)
 	if(istype(O, /obj/item/weapon/paper))
