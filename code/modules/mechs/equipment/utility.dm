@@ -25,6 +25,15 @@
 				to_chat(user,"<span class='warning'>You can't load living things into the cargo compartment.</span>")
 				return
 
+			if(istype(target, /obj/structure/scrap))
+				owner.visible_message(SPAN_NOTICE("\The [owner] begins compressing \the [O] with its [src]."))
+				if(do_after(owner, 20, O, 0, 1))
+					if(istype(O, /obj/structure/scrap))
+						var/obj/structure/scrap/S = O
+						S.make_cube()
+						owner.visible_message(SPAN_NOTICE("\The [owner] compresses \the [O] into a cube with its [src]."))
+				return
+
 			if(O.anchored)
 				to_chat(user, "<span class='warning'>[target] is firmly secured.</span>")
 				return
