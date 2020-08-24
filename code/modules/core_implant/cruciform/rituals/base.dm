@@ -102,10 +102,10 @@
 	var/mob/living/carbon/human/T = get_victim(H)
 	if(T)
 		var/obj/item/weapon/implant/core_implant/cruciform/CI = get_implant_from_victim(H, /obj/item/weapon/implant/core_implant/cruciform, FALSE)
-		if(!CI)
-			fail("There is no cruciform on [T]", H, C)
 		if(CI)
 			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
+		else
+			fail("There is no cruciform on [T]", H, C)
 	else
 		fail("No target. Make sure your target is either in front of you or being grabbed by you.", H, C)
 		return FALSE
