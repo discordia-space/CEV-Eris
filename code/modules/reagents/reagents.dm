@@ -160,7 +160,7 @@
 
 /datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 
-/datum/reagent/proc/overdose(mob/living/carbon/M, var/alien) // Overdose effect. Doesn't happen instantly.
+/datum/reagent/proc/overdose(mob/living/carbon/M, alien) // Overdose effect. Doesn't happen instantly.
 	M.adjustToxLoss(REM)
 	return
 
