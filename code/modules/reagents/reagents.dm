@@ -62,7 +62,7 @@
 /datum/reagent/proc/remove_self(amount) // Shortcut
 	holder.remove_reagent(id, amount)
 
-/datum/reagent/proc/consumed_amount(mob/living/carbon/M, var/alien, var/location)
+/datum/reagent/proc/consumed_amount(mob/living/carbon/M, alien, location)
 	var/removed = metabolism
 	if(location == CHEM_INGEST)
 		if(ingest_met)
@@ -125,7 +125,7 @@
 	return
 
 // Currently, on_mob_life is only called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
-/datum/reagent/proc/on_mob_life(mob/living/carbon/M, var/alien, var/location)
+/datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien, location)
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD)
@@ -164,12 +164,12 @@
 	M.adjustToxLoss(REM)
 	return
 
-/datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
+/datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
 		data = newdata
 	return
 
-/datum/reagent/proc/mix_data(var/newdata, var/newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
+/datum/reagent/proc/mix_data(newdata, newamount) // You have a reagent with data, and new reagent with its own data get added, how do you deal with that?
 	if(!data)
 		data = list()
 	return
