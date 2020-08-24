@@ -39,6 +39,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_martin = 3,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor = 3,
+				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_svalinn = 3,
 
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis = 1,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall = 1,
