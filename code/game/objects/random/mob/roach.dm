@@ -1,14 +1,14 @@
-/obj/spawner/roaches
+/obj/spawner/mob/roaches
 	name = "random roach"
 	icon_state = "hostilemob-brown"
 	tags_to_spawn = list(SPAWN_ROACH)
 
-/obj/spawner/roaches/low_chance
+/obj/spawner/mob/roaches/low_chance
 	name = "low chance random roach"
 	icon_state = "hostilemob-brown-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/roaches/cluster
+/obj/spawner/mob/roaches/cluster
 	name = "cluster of roaches"
 	icon_state = "hostilemob-brown-cluster"
 	alpha = 128
@@ -16,11 +16,11 @@
 	max_amount = 9
 	spread_range = 0
 
-/obj/spawner/roaches/cluster/low_chance
+/obj/spawner/mob/roaches/cluster/low_chance
 	name = "low chance cluster of roaches"
 	icon_state = "hostilemob-brown-cluster-low"
 	spawn_nothing_percentage = 60
 
 // For Scrap Beacon
-/obj/spawner/roaches/cluster/beacon
+/obj/spawner/mob/roaches/cluster/beacon
 	tags_to_spawn = list(SPAWN_NANITE_ROACH)

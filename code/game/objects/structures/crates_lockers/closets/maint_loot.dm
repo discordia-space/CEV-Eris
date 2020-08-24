@@ -186,7 +186,7 @@
 	new /obj/random/rations(src)
 	new /obj/random/rations(src)
 	new /obj/random/rations(src)
-	new /obj/spawner/roaches/cluster(src)
+	new /obj/spawner/mob/roaches/cluster(src)
 
 // Used for scrap beacon
 /obj/structure/closet/random/hostilemobs/beacon
@@ -203,4 +203,4 @@
 	new /obj/random/rations(src)
 	new /obj/random/rations(src)
 	new /obj/random/rations(src)
-	new /obj/spawner/roaches/cluster/beacon(src)
+	new /obj/spawner/mob/roaches/cluster/beacon(src)

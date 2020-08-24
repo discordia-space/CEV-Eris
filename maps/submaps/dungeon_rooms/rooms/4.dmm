@@ -14,7 +14,7 @@
 /turf/simulated/wall,
 /area/crawler)
 "e" = (
-/obj/spawner/roaches,
+/obj/spawner/mob/roaches,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "f" = (

@@ -27,6 +27,6 @@
 			if (fed > 0) // If roachling has eaten a corpse
 				spawn_type = /mob/living/carbon/superior_animal/roach/fuhrer
 			else
-				spawn_type = /obj/spawner/roaches
+				spawn_type = /obj/spawner/mob/roaches
 			new spawn_type(src.loc, src)
 			qdel(src)
