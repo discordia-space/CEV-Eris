@@ -48,7 +48,7 @@
 //  Items - assembly
 #define SPAWN_ASSEMBLY "assembly"
 
-#define SPAWN_TAG_ASSEMBLY "item,aseembly"
+#define SPAWN_TAG_ASSEMBLY "item,assembly"
 
 // items - ore
 #define SPAWN_ORE "ore"

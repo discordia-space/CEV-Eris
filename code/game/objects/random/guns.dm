@@ -55,9 +55,6 @@
 	icon_state = "gun-green-low"
 	spawn_nothing_percentage = 75
 
-
-
-
 /obj/random/gun_energy_cheap
 	name = "random cheap energy weapon"
 	icon_state = "gun-blue"
@@ -71,8 +68,6 @@
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 75
-
-
 
 
 /obj/random/gun_shotgun
