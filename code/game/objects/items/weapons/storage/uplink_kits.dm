@@ -311,3 +311,23 @@
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
+
+/obj/item/weapon/storage/box/syndie_kit/gun_mods
+	name = "Gun Mods Kit"
+	desc = "Gun Mods Kit"
+
+/obj/item/weapon/storage/box/syndie_kit/gun_mods/populate_contents()
+	for(var/i in subtypesof(/obj/item/weapon/gun_upgrade))
+		var/obj/test = i
+		if(initial(test.icon_state))
+			new i(src)
+
+/obj/item/weapon/storage/box/syndie_kit/randomstim
+	name = "5 Random Stims Kit"
+	desc = "Contain 5 random Stim Syringes."
+	storage_slots = 5
+
+/obj/item/weapon/storage/box/syndie_kit/randomstim/populate_contents()
+	for(var/i, i < storage_slots , i++)
+		var/stim = pick(subtypesof(/obj/item/weapon/reagent_containers/syringe/stim))
+		new stim(src)

@@ -59,3 +59,13 @@
 	name = "Weapon reverse loader"
 	item_cost = 5
 	path = /obj/item/weapon/gun_upgrade/mechanism/reverse_loader
+
+/datum/uplink_item/item/visible_weapons/boom_trigger
+	name = "Syndicate \"Self Desturct\" trigger"
+	item_cost = 5
+	path = /obj/item/weapon/gun_upgrade/trigger/boom
+
+/datum/uplink_item/item/visible_weapons/gauss
+	name = "Syndicate \"Gauss Coil\" barrel"
+	item_cost = 7
+	path = /obj/item/weapon/gun_upgrade/barrel/gauss

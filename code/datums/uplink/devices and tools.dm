@@ -9,6 +9,13 @@
 	item_cost = 5
 	path = /obj/item/weapon/storage/toolbox/syndicate
 	desc = "Danger. Very robust. Filled with advanced tools."
+
+/datum/uplink_item/item/tools/toolbox
+	name = "Gun Mods Kit"
+	item_cost = 20
+	path = /obj/item/weapon/storage/box/syndie_kit/gun_mods
+	desc = "Containe all gun mods that knewed to humanity."
+
 /datum/uplink_item/item/tools/shield_diffuser
 	name = "Shield Diffuser"
 	item_cost = 4
@@ -341,3 +348,9 @@
 			return
 		BS.module.modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(BS.module)
 		return TRUE
+
+/datum/uplink_item/item/tools/mindbreaker
+	name = "Mindbreaker"
+	desc = "Place on your victim head to extract memory from his brain, after his mental breakdown."
+	item_cost = 20
+	path = /obj/item/clothing/head/mindbreaker

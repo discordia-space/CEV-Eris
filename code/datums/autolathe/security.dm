@@ -28,4 +28,8 @@
 
 /datum/design/autolathe/sec/silencer
 	name = "silencer"
-	build_path = /obj/item/weapon/gun_upgrade/barrel/silencer
+	build_path = /obj/item/weapon/gun_upgrade/muzzle/silencer
+
+/datum/design/autolathe/sec/watchman
+	name = "Frozen Star \"Watchman\" scope"
+	build_path = /obj/item/weapon/gun_upgrade/scope/watchman
