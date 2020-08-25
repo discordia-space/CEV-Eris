@@ -113,8 +113,8 @@
 		/datum/design/autolathe/device/export_scanner,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/device/hand_labeler,
-		/datum/design/research/item/light_replacer
-		/datum/design/autolathe/sec/hailer	
+		/datum/design/research/item/light_replacer,
+		/datum/design/autolathe/sec/hailer,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells
