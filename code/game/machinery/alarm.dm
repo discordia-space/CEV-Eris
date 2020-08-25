@@ -902,7 +902,7 @@ FIRE ALARM
 	icon_state = "fire0"
 	var/detecting = 1
 	var/working = 1
-	var/time = 10.0
+	var/time = 10
 	var/timing = 0.0
 	var/lockdownbyai = 0
 	anchored = TRUE

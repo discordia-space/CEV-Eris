@@ -7,7 +7,7 @@
 
 /datum/data/function
 	name = "function"
-	size = 2.0
+	size = 2
 
 
 /datum/data/function/data_control
@@ -20,7 +20,7 @@
 
 /datum/data/record
 	name = "record"
-	size = 5.0
+	size = 5
 	var/list/fields = list(  )
 
 

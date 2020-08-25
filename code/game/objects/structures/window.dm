@@ -10,7 +10,7 @@
 	var/maxhealth = 20
 	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
-	var/damage_per_fire_tick = 2.0 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
+	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
 	var/health
 	var/ini_dir = null
 	var/state = 2
@@ -515,7 +515,7 @@
 	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
-	damage_per_fire_tick = 3.0	// Was 2. Made weaker than rglass per tick.
+	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
 	maxhealth = 15
 	resistance = RESISTANCE_NONE
 
@@ -556,7 +556,7 @@
 	basestate = "rwindow"
 	reinf = 1
 	maximal_heat = T0C + 750	// Fused quartz.
-	damage_per_fire_tick = 2.0
+	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
 
 	maxhealth = 50

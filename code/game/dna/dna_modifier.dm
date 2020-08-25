@@ -202,7 +202,7 @@
 	var/selected_se_subblock = 1
 	var/selected_ui_target = 1
 	var/selected_ui_target_hex = 1
-	var/radiation_duration = 2.0
+	var/radiation_duration = 2
 	var/radiation_intensity = 1
 	var/list/datum/dna2/record/buffers[3]
 	var/irradiating = 0
