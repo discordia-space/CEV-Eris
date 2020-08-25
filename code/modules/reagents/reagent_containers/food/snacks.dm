@@ -37,16 +37,17 @@
 		return  list(0, message)
 	if(eater.nutrition > eater.max_nutrition*0.95)
 		message = "You are satisfied and you don't need to eat more."
-		return  list(0, message)
+		return  list(0, SPAN_WARNING(message))
 	if(!base_sanity_gain_pb)
 		message = "This food does not help calm your nerves."
-		return  list(0, message)
+		return  list(0, SPAN_WARNING(message))
 	var/sanity_gain_pb = base_sanity_gain_pb
 	message = "Food helps you relax."
 	if(cooked)
 		sanity_gain_pb += base_sanity_gain_pb * 0.2
 	if(junk_food || !cooked)
-		return  list(sanity_gain_pb, message)
+		message += " But, only healthy food helps you grow."
+		return  list(sanity_gain_pb, SPAN_NOTICE(message))
 	var/table = FALSE
 	var/companions = FALSE
 	var/view_death = FALSE
@@ -71,11 +72,12 @@
 		if(view_death && !eater.stats.getPerk(PERK_NIHILIST))
 			message = "You gaze at the cadaver... Your food doesn't taste so good anymore."
 			sanity_gain_pb = 0
+			return list(sanity_gain_pb, SPAN_WARNING(message))
 
-	return list(sanity_gain_pb, message)
+	return list(sanity_gain_pb, SPAN_NOTICE(message))
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/eater, var/mob/feeder = null)
+/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(mob/eater, mob/feeder = null)
 	if(!reagents.total_volume)
 		eater.visible_message(
 			SPAN_NOTICE("[eater] finishes eating \the [src]."),

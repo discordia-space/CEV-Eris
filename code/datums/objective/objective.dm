@@ -19,7 +19,6 @@ var/global/list/all_objectives_types = null
 	var/completed = FALSE				//currently only used for custom objectives.
 	var/failed = FALSE 					//If true, this objective has reached a state where it can never be completed
 	var/human_target = TRUE				//If true, only select human targets
-	var/noble_objetive = FALSE			//If true target is noble (fate)
 	var/unique = FALSE					//If true, each antag/faction can have only one instance of this objective
 
 /datum/objective/New(datum/antagonist/new_owner, datum/mind/_target)
@@ -35,8 +34,6 @@ var/global/list/all_objectives_types = null
 		find_target()
 	else if (_target != ANTAG_SKIP_TARGET)
 		target = _target
-		if(target.current.stats.getPerk(PERK_NOBLE))
-			noble_objetive = TRUE
 	update_explanation()
 	all_objectives.Add(src)
 	..()

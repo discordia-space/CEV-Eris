@@ -44,52 +44,70 @@
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		return
 
-	if(W.has_quality(QUALITY_CUTTING) || W.has_quality(QUALITY_WIRE_CUTTING) || W.has_quality(QUALITY_LASER_CUTTING))
+	if((W.has_quality(QUALITY_CUTTING) || W.has_quality(QUALITY_WIRE_CUTTING) || W.has_quality(QUALITY_LASER_CUTTING)) && user.a_intent != I_HURT)
 
-		if(sampled)
-			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
-			return
-		if(!is_mature())
-			to_chat(user, SPAN_WARNING("\The [src] is not mature enough to yield a sample yet."))
-			return
-		if(!seed)
-			to_chat(user, SPAN_WARNING("There is nothing to take a sample from."))
-			return
-		if(prob(70))
-			sampled = 1
 
 		var/list/options = list()
 		options += "Sample plant"
 		options += "Sample seed"
+		options += "Cut down"
 
 		options[options[1]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_sample")
 		options[options[2]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "seed_sample")
+		options[options[3]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_kill")
 
 		var/choice = show_radial_menu(user, src, options, radius = 32)
+
+		if(choice == "Cut down")
+			//Cutting tools can cut down vines quickly
+			var/tool_type = null
+			if (W.has_quality(QUALITY_WIRE_CUTTING))
+				tool_type = QUALITY_WIRE_CUTTING
+			else if (W.has_quality(QUALITY_LASER_CUTTING))
+				tool_type = QUALITY_LASER_CUTTING
+			else if (W.has_quality(QUALITY_CUTTING))
+				tool_type = QUALITY_CUTTING
+			else if (W.has_quality(QUALITY_WELDING))
+				tool_type = QUALITY_WELDING
+
+			if(tool_type)
+				if(W.use_tool(user, src, WORKTIME_FAST*0.65, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+					die_off()
+					return
+				return
+		else if(sampled)
+			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
+			return
+		else if(!is_mature())
+			to_chat(user, SPAN_WARNING("\The [src] is not mature enough to yield a sample yet."))
+			return
+		else if(!seed)
+			to_chat(user, SPAN_WARNING("There is nothing to take a sample from."))
+			return
+		else if(prob(70))
+			sampled = 1
+
 
 		switch(choice)
 			if ("Sample plant")
 				seed.harvest(user,0, 0, 1)
+				health -= (rand(3,5)*5)
+				check_health()
 			if ("Sample seed")
 				seed.harvest(user,0, 1)
-
-		/*
-		switch (input(user, "What would you like to do?") in list("Harvest plant", "Sample seed", "Cancel"))
-			if("Harvest plant")
-				seed.harvest(user,0, 0, 1)
-			if("Sample seed")
-				seed.harvest(user,0, 1)
-			if("Cancel")
-				return
-		*/
-		health -= (rand(3,5)*5)
-		sampled = 1
+				health -= (rand(3,5)*2)
+				check_health()
 		return
 	else
 		//Gardening tools can cut down vines quickly
 		var/tool_type = null
 		if (W.has_quality(QUALITY_SHOVELING))
 			tool_type = QUALITY_SHOVELING
+		else if (W.has_quality(QUALITY_WIRE_CUTTING))
+			tool_type = QUALITY_WIRE_CUTTING
+		else if (W.has_quality(QUALITY_LASER_CUTTING))
+			tool_type = QUALITY_LASER_CUTTING
 		else if (W.has_quality(QUALITY_CUTTING))
 			tool_type = QUALITY_CUTTING
 		else if (W.has_quality(QUALITY_WELDING))
@@ -110,7 +128,7 @@
 			if (W.edge)
 				damage *= 1.5
 			health -= damage
-	check_health()
+			check_health()
 
 
 
