@@ -29,13 +29,13 @@ var/list/global/tank_gauge_cache = list()
 	bad_types = /obj/item/weapon/tank
 	spawn_tags = SPAWN_TAG_TANK_GAS
 
-	var/datum/gas_mixture/air_contents = null
+	var/datum/gas_mixture/air_contents
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/default_pressure = 3*ONE_ATMOSPHERE
 	var/default_gas = null
 	var/integrity = 3
 	var/volume = 70 //liters
-	var/manipulated_by = null		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
+	var/manipulated_by		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
 
 /obj/item/weapon/tank/Initialize(mapload, ...)

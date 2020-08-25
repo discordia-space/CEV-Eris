@@ -31,8 +31,8 @@
 	var/eye_hazard = FALSE	//Set to TRUE should damage users eyes if they without eye protection
 
 	var/use_power_cost = 0	//For tool system, determinze how much power tool will drain from cells, 0 means no cell needed
-	var/obj/item/weapon/cell/cell = null
-	var/suitable_cell = null	//Dont forget to edit this for a tool, if you want in to consume cells
+	var/obj/item/weapon/cell/cell
+	var/suitable_cell	//Dont forget to edit this for a tool, if you want in to consume cells
 	var/passive_power_cost = 1 //Energy consumed per process tick while active
 
 	var/use_fuel_cost = 0	//Same, only for fuel. And for the sake of God, DONT USE CELLS AND FUEL SIMULTANEOUSLY.
@@ -61,11 +61,11 @@
 
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
-	var/switched_on_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled on.
-	var/switched_on_force = null
-	var/switched_off_qualities = null	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
+	var/switched_on_qualities	//This var will REPLACE tool_qualities when tool will be toggled on.
+	var/switched_on_force
+	var/switched_off_qualities	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
-	var/glow_color = null	//Set color of glow upon activation, or leave it null if you dont want any light
+	var/glow_color	//Set color of glow upon activation, or leave it null if you dont want any light
 	var/last_tooluse = 0 //When the tool was last used for a tool operation. This is set both at the start of an operation, and after the doafter call
 
 	//Vars for tool upgrades
@@ -488,7 +488,7 @@
 *******************************/
 
 //Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
-/obj/item/proc/handle_failure(var/mob/living/user, var/atom/target, var/required_stat, required_quality)
+/obj/item/proc/handle_failure(mob/living/user, atom/target, required_stat, required_quality)
 	var/obj/item/weapon/tool/T
 	if(istype(src, /obj/item/weapon/tool))
 		T = src
@@ -670,7 +670,7 @@
 
 	return return_quality
 
-/obj/item/weapon/tool/proc/turn_on(var/mob/user)
+/obj/item/weapon/tool/proc/turn_on(mob/user)
 	if(use_power_cost)
 		if(!cell)
 			to_chat(user, SPAN_WARNING("\The [src] has no cell!"))
@@ -693,7 +693,7 @@
 	update_wear_icon()
 	return TRUE
 
-/obj/item/weapon/tool/proc/turn_off(var/mob/user)
+/obj/item/weapon/tool/proc/turn_off(mob/user)
 	if(user)
 		to_chat(user, SPAN_NOTICE("\The [src] turns off."))
 	switched_on = FALSE
@@ -715,10 +715,10 @@
 /*********************
 	Resource Consumption
 **********************/
-/obj/item/proc/consume_resources(var/timespent, var/user)
+/obj/item/proc/consume_resources(timespent, user)
 	return
 
-/obj/item/weapon/tool/consume_resources(var/timespent, var/user)
+/obj/item/weapon/tool/consume_resources(timespent, user)
 	//We will always use a minimum of 0.5 second worth of resources
 	if (timespent < 5)
 		timespent = 5

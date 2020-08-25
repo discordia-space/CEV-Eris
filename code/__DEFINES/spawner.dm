@@ -45,6 +45,11 @@
 
 #define SPAWN_TAG_ELECTRONICS "item,electronics"
 
+//  Items - assembly
+#define SPAWN_ASSEMBLY "assembly"
+
+#define SPAWN_TAG_ASSEMBLY "item,aseembly"
+
 //  MINES
 #define SPAWN_MINE "mine"
 #define SPAWN_ITEM_MINE "item_mine"

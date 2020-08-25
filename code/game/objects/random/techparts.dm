@@ -2,6 +2,16 @@
 	name = "random techpart"
 	icon_state = "tech-orange"
 
+/obj/spawner/assembly
+	name = "random techpart"
+	icon_state = "tech-orange"
+	tags_to_spawn = list(SPAWN_ASSEMBLY)
+
+/obj/spawner/stock_parts
+	name = "random techpart"
+	icon_state = "tech-orange"
+	tags_to_spawn = list(SPAWN_STOCK_PARTS)
+
 /obj/random/techpart/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/computer_hardware/card_slot = 18,
 				/obj/item/weapon/computer_hardware/hard_drive/small = 12,
@@ -16,13 +26,10 @@
 				/obj/item/weapon/computer_hardware/processor_unit/adv = 6,
 				/obj/item/weapon/computer_hardware/processor_unit/adv/small = 8,
 				/obj/item/weapon/computer_hardware/tesla_link = 18,
-				/obj/item/device/assembly/igniter = 24,
-				/obj/item/device/assembly/infra = 24,
-				/obj/item/device/assembly/prox_sensor = 24,
-				/obj/item/device/assembly/signaler = 24,
-				/obj/item/device/assembly/timer = 24,
-				/obj/item/device/assembly/voice = 18,
-				/obj/spawner/stock_parts = 27,
+				/obj/spawner/assembly = 144,
+
+				/obj/spawner/stock_parts = 270,
+
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 6,
@@ -45,7 +52,3 @@
 	icon_state = "tech-orange-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/stock_parts
-	name = "random techpart"
-	icon_state = "tech-orange"
-	tags_to_spawn = list(SPAWN_STOCK_PARTS)
