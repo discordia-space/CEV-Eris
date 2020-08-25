@@ -29,3 +29,7 @@
 /datum/design/autolathe/sec/silencer
 	name = "silencer"
 	build_path = /obj/item/weapon/gun_upgrade/barrel/silencer
+
+/datum/design/autolathe/sec/hailer
+	name = "hailer"
+	build_path = /obj/item/device/hailer
