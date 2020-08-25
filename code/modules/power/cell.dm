@@ -16,7 +16,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	//Spawn_values
 	bad_types = /obj/item/weapon/cell
-	spawn_frequency = 10
 	rarity_value = 3
 	spawn_tags = SPAWN_TAG_POWERCELL
 	var/charge = 0	// note %age conveted to actual charge in New

@@ -11,7 +11,6 @@
 	matter = list(MATERIAL_STEEL = 7)
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
 	rarity_value = 10
-	spawn_frequency = 10
 
 /obj/item/robot_parts/robot_component/armour/exosuit/Initialize(newloc)
 	. = ..()

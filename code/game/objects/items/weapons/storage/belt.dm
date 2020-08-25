@@ -11,7 +11,6 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	bad_types = /obj/item/weapon/storage/belt
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_BELT
 

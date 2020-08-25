@@ -3,6 +3,7 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
 	w_class = ITEM_SIZE_SMALL
+	rarity_value = 25
 	var/datum/geosample/geologic_data
 	var/material
 

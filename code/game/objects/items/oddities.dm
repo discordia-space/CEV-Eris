@@ -16,7 +16,6 @@
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_ODDITY
 	rarity_value = 10
-	spawn_frequency = 10
 	bad_types = "/obj/item/weapon/oddity,/obj/item/weapon/oddity/common" //list(SPAWN_ITEM, SPAWN_TAG_ODDITY)
 
 //You choose what stat can be increased, and a maximum value that will be added to this stat

@@ -4,7 +4,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = ITEM_SIZE_SMALL
-	spawn_frequency = 10
 	rarity_value = 10
 	bad_types = /obj/item/weapon/stock_parts
 	spawn_tags = SPAWN_TAG_STOCK_PARTS

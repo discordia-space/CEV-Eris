@@ -25,7 +25,6 @@
 	//spawn_values
 	bad_types = "/obj/item/toy"
 	rarity_value = 10
-	spawn_frequency = 10
 
 /*
  * Balloons
