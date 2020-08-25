@@ -127,7 +127,7 @@
 	calc_target_quantity()
 	if (!target_quantity || target_quantity <= 0)
 		//Something is completely wrong, abort!
-		cancel(severity, 0.0)
+		cancel(severity, 0)
 
 	var/datum/antagonist/antag = GLOB.all_antag_types[role_id]
 

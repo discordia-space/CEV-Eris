@@ -206,7 +206,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if ((. = ..()) && modded)
-		leak_fuel(amount_per_transfer_from_this/10.0)
+		leak_fuel(amount_per_transfer_from_this/10)
 
 /obj/structure/reagent_dispensers/fueltank/proc/leak_fuel(amount)
 	if (reagents.total_volume == 0)
