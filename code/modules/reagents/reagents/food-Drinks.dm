@@ -47,7 +47,7 @@
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier)) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	
-	applyeffect(M)
+	apply_sanity_effect(M, effect_multiplier)
 
 /datum/reagent/organic/nutriment/glucose
 	name = "Glucose"
