@@ -50,6 +50,11 @@
 
 #define SPAWN_TAG_ASSEMBLY "item,aseembly"
 
+// items - ore
+#define SPAWN_ORE "ore"
+
+#define SPAWN_TAG_ORE "item,ore"
+
 //  MINES
 #define SPAWN_MINE "mine"
 #define SPAWN_ITEM_MINE "item_mine"

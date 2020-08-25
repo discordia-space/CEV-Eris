@@ -8586,8 +8586,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/fueltankstorage)
 "asW" = (
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "asX" = (
@@ -8595,9 +8595,9 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/fueltankstorage)
 "asY" = (
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "asZ" = (
@@ -8732,10 +8732,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/fueltankstorage)
 "atn" = (
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "ato" = (
@@ -9065,10 +9065,10 @@
 /turf/space,
 /area/shuttle/escape_pod1/station)
 "aui" = (
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "auj" = (
@@ -9103,7 +9103,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/trashcart,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/disposaldrop)
@@ -9471,7 +9471,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "avl" = (
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "avm" = (
@@ -9573,9 +9573,9 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/wastingroom)
 "avC" = (
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5starboard)
 "avD" = (
@@ -72253,7 +72253,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dgh" = (
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "dgi" = (
@@ -72270,14 +72270,14 @@
 /area/eris/maintenance/substation/bridge)
 "dgj" = (
 /obj/structure/table/rack,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "dgk" = (
@@ -77145,23 +77145,23 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dqu" = (
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "dqv" = (
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "dqw" = (
@@ -77308,13 +77308,13 @@
 /turf/simulated/open,
 /area/eris/maintenance/section3deck2starboard)
 "dqO" = (
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
-/obj/random/material_ore/low_chance,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
+/obj/spawner/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "dqP" = (
