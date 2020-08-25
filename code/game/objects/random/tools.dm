@@ -1,42 +1,13 @@
-/obj/random/tool
+/obj/spawner/tool
 	name = "random tool"
 	icon_state = "tool-grey"
 	spawn_nothing_percentage = 15
 	has_postspawn = TRUE
+	tags_to_spawn = list(SPAWN_TOOL)
+	restristed_tags = list(SPAWN_SURGERY_TOOL, SPAWN_KNIFE)
 
 /obj/random/tool/item_to_spawn()
-	return pickweight(list(/obj/random/pack/rare = 2,
-				/obj/item/weapon/tool/omnitool = 0.5,
-				/obj/item/weapon/tool/screwdriver = 8,
-				/obj/item/weapon/tool/screwdriver/electric = 2,
-				/obj/item/weapon/tool/screwdriver/combi_driver = 1,
-				/obj/item/weapon/tool/wirecutters = 4,
-				/obj/item/weapon/tool/wirecutters/pliers = 4,
-				/obj/item/weapon/tool/wirecutters/armature = 2,
-				/obj/item/weapon/tool/weldingtool = 8,
-				/obj/item/weapon/tool/weldingtool/advanced = 2,
-				/obj/item/weapon/tool/crowbar = 12,
-				/obj/item/weapon/tool/crowbar/pneumatic = 2,
-				/obj/item/weapon/tool/wrench = 8,
-				/obj/item/weapon/tool/hammer = 10,
-				/obj/item/weapon/tool/hammer/powered_hammer = 2,
-				/obj/item/weapon/tool/wrench/big_wrench = 2,
-				/obj/item/weapon/tool/multitool = 4,
-				/obj/item/weapon/tool/saw = 8,
-				/obj/item/weapon/tool/saw/circular = 2,
-				/obj/item/weapon/tool/saw/circular/advanced = 1,
-				/obj/item/weapon/tool/saw/chain = 0.5,
-				/obj/item/weapon/tool/saw/hyper = 0.5,
-				/obj/item/weapon/tool/shovel = 5,
-				/obj/item/weapon/tool/shovel/spade = 2.5,
-				/obj/item/weapon/tool/shovel/power = 1,
-				/obj/item/weapon/tool/pickaxe = 2,
-				/obj/item/weapon/tool/pickaxe/jackhammer = 1,
-				/obj/item/weapon/tool/pickaxe/drill = 1,
-				/obj/item/weapon/tool/pickaxe/diamonddrill = 0.5,
-				/obj/item/weapon/tool/pickaxe/excavation = 1,
-				/obj/item/weapon/tool/tape_roll = 12,
-				/obj/item/weapon/tool/tape_roll/fiber = 2,
+	return pickweight(list(/obj/spawner/tool = 98.5,
 				/obj/item/weapon/storage/belt/utility = 5,
 				/obj/item/weapon/storage/belt/utility/full = 1,
 				/obj/item/clothing/gloves/insulated/cheap = 5,

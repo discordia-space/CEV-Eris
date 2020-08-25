@@ -11,6 +11,7 @@
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
+	rarity_value = 4.8
 
 /obj/item/weapon/tool/hammer/homewrecker
 	name = "homewrecker"
@@ -43,6 +44,7 @@
 	use_power_cost = 2
 	suitable_cell = /obj/item/weapon/cell/medium
 	max_upgrades = 4
+	rarity_value = 24
 
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer
 	name = "One Star sledgehammer"

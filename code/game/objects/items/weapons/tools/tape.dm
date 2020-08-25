@@ -12,6 +12,7 @@
 	degradation = 0 //its consumable anyway
 	flags = NOBLUDGEON //Its not a weapon
 	max_upgrades = 0 //These are consumable, so no wasting upgrades on them
+	rarity_value = 4
 
 /obj/item/weapon/tool/tape_roll/web
 	name = "web tape"
@@ -20,6 +21,7 @@
 	use_stock_cost = 0.17
 	max_stock = 30
 	alpha = 150
+	rarity_value = 2
 
 /obj/item/weapon/tool/tape_roll/fiber
 	name = "fiber tape"
@@ -29,8 +31,9 @@
 	matter = list(MATERIAL_PLASTIC = 20)
 	use_stock_cost = 0.10
 	max_stock = 100
+	rarity_value = 24
 
-/obj/item/weapon/tool/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/weapon/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
 	if(istype(H))
 		if(user.targeted_organ == BP_EYES)
 
@@ -93,7 +96,7 @@
 			return ..()
 		return 1
 
-/obj/item/weapon/tool/tape_roll/stick(var/obj/item/target, var/mob/user)
+/obj/item/weapon/tool/tape_roll/stick(obj/item/target, mob/user)
 	if (!istype(target) || target.anchored)
 		return
 
@@ -133,7 +136,7 @@
 /obj/item/weapon/ducttape/examine(mob/user)
 	return stuck.examine(user)
 
-/obj/item/weapon/ducttape/proc/attach(var/obj/item/weapon/W)
+/obj/item/weapon/ducttape/proc/attach(obj/item/weapon/W)
 	stuck = W
 	W.forceMove(src)
 	update_icon()
@@ -169,7 +172,7 @@
 	overlays = null
 	qdel(src)
 
-/obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
+/obj/item/weapon/ducttape/afterattack(A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
 		return

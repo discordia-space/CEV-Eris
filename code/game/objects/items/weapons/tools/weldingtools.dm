@@ -2,6 +2,7 @@
 	name = "welding tool"
 	icon_state = "welder"
 	item_state = "welder"
+	rarity_value = 6
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	switched_on_force = WEAPON_FORCE_PAINFUL
@@ -48,6 +49,7 @@
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
 	icon_state = "ghettowelder"
 	item_state = "ghettowelder"
+	rarity_value = 3
 	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
@@ -64,6 +66,7 @@
 	name = "advanced welding tool"
 	icon_state = "adv_welder"
 	item_state = "adv_welder"
+	rarity_value = 24
 	glow_color = COLOR_BLUE_LIGHT
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
@@ -89,6 +92,5 @@
 	workspeed = 1.7
 	spawn_blacklisted = TRUE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
 

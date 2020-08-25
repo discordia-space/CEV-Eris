@@ -13,6 +13,7 @@
 	edge = TRUE
 	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 20)
 	embed_mult = 1 //Serrated blades catch on bone more easily
+	rarity_value = 6
 
 /obj/item/weapon/tool/saw/improvised //tier 1
 	name = "choppa"
@@ -22,6 +23,7 @@
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 3
 
 /obj/item/weapon/tool/saw/circular //tier 3
 	name = "circular saw"
@@ -65,6 +67,7 @@
 	max_upgrades = 4
 	use_fuel_cost = 0.1
 	max_fuel = 80
+	rarity_value = 96
 
 /obj/item/weapon/tool/saw/hyper //tier 4, focusing on damage, cell variant
 	name = "TM hypersaw"
@@ -81,3 +84,4 @@
 	degradation = 0.7
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
+	rarity_value = 96

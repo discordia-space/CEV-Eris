@@ -21,6 +21,7 @@
 	//They are the best anti-structure melee weapons
 	embed_mult = 1.2 //Digs deep
 	mode = EXCAVATE //Mode should be whatever is the starting tool and off quality.
+	rarity_value = 24
 
 /obj/item/weapon/tool/pickaxe/equipped(mob/user)
 	..()
@@ -60,7 +61,6 @@
 	use_power_cost = 0
 	spawn_blacklisted = TRUE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
 
 
@@ -77,6 +77,7 @@
 	degradation = 0.7
 	use_power_cost = 0.6
 	suitable_cell = /obj/item/weapon/cell/medium
+	rarity_value = 48
 
 /obj/item/weapon/tool/pickaxe/jackhammer/onestar
 	name = "One Star jackhammer"
@@ -94,7 +95,6 @@
 	use_power_cost = 0.8
 	spawn_blacklisted = TRUE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/pickaxe/drill
@@ -110,6 +110,7 @@
 	degradation = 0.7
 	use_fuel_cost = 0.07
 	max_fuel = 100
+	rarity_value = 48
 
 /obj/item/weapon/tool/pickaxe/drill/onestar
 	name = "One Star mining drill"
@@ -127,7 +128,6 @@
 	max_fuel = 90
 	spawn_blacklisted = TRUE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/pickaxe/diamonddrill
@@ -145,10 +145,12 @@
 	degradation = 0.1
 	use_fuel_cost = 0.07
 	max_fuel = 120
+	rarity_value = 96
 
 /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 	use_fuel_cost = 0
 	passive_fuel_cost = 0
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/pickaxe/excavation
 	name = "hand pickaxe"
@@ -161,3 +163,4 @@
 	switched_on_qualities = list(QUALITY_DIGGING = 15, QUALITY_PRYING = 15)
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 3)
+	rarity_value = 48
