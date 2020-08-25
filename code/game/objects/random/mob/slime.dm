@@ -33,6 +33,7 @@
 	name = "low chance cluster of slimes"
 	icon_state = "hostilemob-cyan-cluster-low"
 	spawn_nothing_percentage = 60
+	spawn_blacklisted = TRUE
 
 /obj/spawner/mob/slime/rainbow
 	name = "cluster of colored slimes"

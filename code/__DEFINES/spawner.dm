@@ -166,7 +166,6 @@
 #define SPAWN_SALVAGEABLE_AUTOLATHEABLE "structure_salvageable_autolathe"
 #define SPAWN_SALVAGEABLE_IMPLANT_CONTAINER "structure_salvageable_implant_container"
 
-
 #define SPAWN_TAG_SALVAGEABLE "strcuture,structure_salvageable"
 #define SPAWN_TAG_OS_SALVAGEABLE "strcuture,structure_salvageable,structure_salvageable_os,faction_os"
 #define SPAWN_TAG_SALVAGEABLE_AUTOLATHE "strcuture,structure_salvageable,structure_salvageable_autolathe"
@@ -184,8 +183,13 @@
 
 // Structures - scrap
 #define SPAWN_SCRAP "strcuture_scrap"
+#define SPAWN_LARGE_SCRAP "strcuture_large_scrap"
+#define SPAWN_BEACON_SCRAP "strcuture_beacon_scrap"
 
 #define SPAWN_TAG_SCRAP "strcuture,strcuture_scrap"
+#define SPAWN_TAG_LARGE_SCRAP "strcuture,strcuture_scrap,strcuture_large_scrap"
+#define SPAWN_TAG_BEACON_SCRAP "strcuture,strcuture_scrap,strcuture_beacon_scrap"
+
 
 //-encouters
 #define SPAWN_ENCOUNER "encounter"
@@ -232,6 +236,11 @@
 #define SPAWN_SPAWNER "spawner"
 #define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"
 #define SPAWN_SPAWNER_MOB "spawner_mob"
+#define SPAWN_SPAWNER_SCRAP "spawner_scrap"
+#define SPAWN_SPAWNER_LARGE_SCRAP "spawner_large_scrap"
+
 
 #define SPAWN_TAG_SPAWNER_ENCOUNER "spawner,spawner_encounter"
 #define SPAWN_TAG_SPAWNER_MOB "spawner,spawner_mob"
+#define SPAWN_TAG_SPAWNER_SCRAP "spawner,spawner_scrap"
+#define SPAWN_TAG_SPAWNER_LARGE_SCRAP "spawner,spawner_scrap,spawner_large_scrap"

@@ -2,7 +2,7 @@
 "b" = (/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "c" = (/turf/simulated/wall,/area/deepmaint)
 "d" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
-"e" = (/obj/random/scrap/moderate_weighted,/turf/simulated/floor/plating/under,/area/deepmaint)
+"e" = (/obj/spawner/scrap,/turf/simulated/floor/plating/under,/area/deepmaint)
 "f" = (/turf/simulated/floor/plating/under,/area/deepmaint)
 "g" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
 "h" = (/obj/effect/window_lwall_spawn/smartspawn,/turf/simulated/floor/plating,/area/deepmaint)

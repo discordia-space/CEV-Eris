@@ -8,6 +8,7 @@
 	name = "low chance random spider"
 	icon_state = "hostilemob-black-low"
 	spawn_nothing_percentage = 60
+	spawn_blacklisted = TRUE
 
 /obj/spawner/mob/spiders/cluster
 	name = "cluster of spiders"
@@ -21,3 +22,4 @@
 	name = "low chance cluster of spiders"
 	icon_state = "hostilemob-black-cluster-low"
 	spawn_nothing_percentage = 60
+	spawn_blacklisted = TRUE

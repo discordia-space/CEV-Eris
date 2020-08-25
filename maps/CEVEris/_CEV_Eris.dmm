@@ -1389,7 +1389,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "adq" = (
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "adr" = (
@@ -1619,7 +1619,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/network/security,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "adV" = (
@@ -1953,7 +1953,7 @@
 /area/eris/command/commander)
 "aeL" = (
 /obj/spawner/traps/low_chance,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
 "aeM" = (
@@ -6308,7 +6308,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "aoj" = (
@@ -6613,7 +6613,7 @@
 /area/eris/maintenance/section2deck1port)
 "aoV" = (
 /obj/random/contraband/low_chance,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
 "aoW" = (
@@ -6697,7 +6697,7 @@
 /area/eris/maintenance/section2deck5port)
 "aph" = (
 /obj/random/junk/low_chance,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
 "api" = (
@@ -6740,7 +6740,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "app" = (
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
 "apq" = (
@@ -10218,7 +10218,7 @@
 /area/eris/maintenance/disposal)
 "axk" = (
 /obj/structure/catwalk,
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck2starboard)
 "axl" = (
@@ -10335,7 +10335,7 @@
 /area/eris/maintenance/section2deck5port)
 "axA" = (
 /obj/structure/catwalk,
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck2starboard)
 "axB" = (
@@ -12108,11 +12108,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/security/main)
 "aBz" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
 "aBA" = (
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "aBB" = (
@@ -16643,7 +16643,7 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section3deck1central)
 "aNf" = (
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/reinforced/airless,
 /area/eris/maintenance/disposal)
 "aNg" = (
@@ -21355,7 +21355,7 @@
 /area/eris/maintenance/section2deck4port)
 "aXu" = (
 /obj/random/junk,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aXv" = (
@@ -25767,7 +25767,7 @@
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "bfI" = (
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bfJ" = (
@@ -27816,7 +27816,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "bkg" = (
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "bkh" = (
@@ -30284,7 +30284,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bpv" = (
 /obj/structure/catwalk,
-/obj/random/scrap/dense_weighted/low_chance,
+/obj/spawner/scrap/dense/low_chance,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck1central)
 "bpw" = (
@@ -30307,7 +30307,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bpz" = (
 /obj/structure/catwalk,
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck1central)
 "bpA" = (
@@ -30956,7 +30956,7 @@
 /area/eris/command/courtroom)
 "brh" = (
 /obj/structure/catwalk,
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /turf/simulated/open,
 /area/eris/maintenance/section3deck1central)
 "bri" = (
@@ -34634,7 +34634,7 @@
 /obj/random/junk,
 /obj/random/material,
 /obj/random/medical/low_chance,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "bzy" = (
@@ -35559,7 +35559,7 @@
 "bBx" = (
 /obj/random/junkfood/rotten,
 /obj/spawner/boxes/low_chance,
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "bBy" = (
@@ -35706,7 +35706,7 @@
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/quartermaster/hangarsupply)
 "bBQ" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "bBR" = (
@@ -44944,7 +44944,7 @@
 /turf/simulated/floor/wood,
 /area/eris/neotheology/storage)
 "bVs" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /obj/spawner/flora/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
@@ -48352,7 +48352,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "ccZ" = (
@@ -55180,7 +55180,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/reception)
 "csN" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "csO" = (
@@ -59139,7 +59139,7 @@
 	dir = 1;
 	anchored = 1
 	},
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cBO" = (
@@ -61597,7 +61597,7 @@
 "cHe" = (
 /obj/structure/multiz/ladder/up,
 /obj/structure/catwalk,
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cHf" = (
@@ -61689,7 +61689,7 @@
 /area/eris/maintenance/section3deck3starboard)
 "cHq" = (
 /obj/structure/catwalk,
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cHr" = (
@@ -61735,7 +61735,7 @@
 /area/eris/hallway/main/section4)
 "cHx" = (
 /obj/structure/catwalk,
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cHy" = (
@@ -78504,14 +78504,14 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "dtE" = (
-/obj/random/scrap/moderate_weighted,
+/obj/spawner/scrap,
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
 "dtF" = (
-/obj/random/scrap/moderate_weighted,
+/obj/spawner/scrap,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
 "dtG" = (
@@ -78537,7 +78537,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/chemistry)
 "dtJ" = (
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
 "dtK" = (
@@ -78639,7 +78639,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/rnd/research)
 "dtX" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "dtY" = (
@@ -78647,7 +78647,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "dtZ" = (
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -81545,10 +81545,10 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/reception)
 "dAJ" = (
-/obj/random/scrap/dense_weighted/low_chance,
-/obj/random/scrap/dense_weighted/low_chance,
-/obj/random/scrap/dense_weighted/low_chance,
-/obj/random/scrap/dense_weighted/low_chance,
+/obj/spawner/scrap/dense/low_chance,
+/obj/spawner/scrap/dense/low_chance,
+/obj/spawner/scrap/dense/low_chance,
+/obj/spawner/scrap/dense/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dAK" = (
@@ -88946,7 +88946,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "dQZ" = (
@@ -89009,7 +89009,7 @@
 	icon_state = "railing0";
 	dir = 1
 	},
-/obj/random/scrap/moderate_weighted/low_chance,
+/obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "dRk" = (
@@ -89135,7 +89135,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dRx" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dRy" = (
@@ -89565,7 +89565,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "dSv" = (
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dSw" = (
@@ -89678,7 +89678,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2port)
 "dSJ" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3port)
 "dSK" = (
@@ -91589,7 +91589,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dXe" = (
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
@@ -94572,7 +94572,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
 "edO" = (
-/obj/random/scrap/sparse_weighted,
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2port)
 "edP" = (
@@ -104147,7 +104147,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "ezb" = (
-/obj/random/scrap/dense_weighted,
+/obj/spawner/scrap/dense,
 /obj/structure/railing{
 	tag = "icon-railing0 (NORTH)";
 	icon_state = "railing0";
@@ -107978,7 +107978,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/rnd/research)
 "eMY" = (
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "eNI" = (
@@ -108137,11 +108137,11 @@
 /turf/simulated/floor/hull,
 /area/space)
 "hug" = (
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "hAw" = (
-/obj/random/scrap/sparse_weighted/low_chance,
+/obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
 "hHz" = (

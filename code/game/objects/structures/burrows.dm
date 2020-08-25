@@ -523,7 +523,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 			if (I.use_tool(user, src, target_time, QUALITY_DIGGING, health * 0.66, list(STAT_MEC, STAT_ROB), forced_sound = WORKSOUND_PICKAXE))
 				//On success, the hole is destroyed!
-				new /obj/random/scrap/sparse_weighted(get_turf(user))
+				new /obj/spawner/scrap/sparse(get_turf(user))
 				user.visible_message("[user] collapses [src] with the [I] and dumps trash which was in the way.", "You collapse [src] with the [I] and dump trash which was in the way.")
 
 				collapse()

@@ -141,7 +141,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/closet/tech = 6,
 					/obj/random/closet = 4,
 					/obj/spawner/closet/wardrobe = 2,
-					/obj/random/scrap/moderate_weighted = 12, //Our scrap pile. This is basically just a huge spawner.
+					/obj/spawner/scrap = 12, //Our scrap pile. This is basically just a huge spawner.
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 

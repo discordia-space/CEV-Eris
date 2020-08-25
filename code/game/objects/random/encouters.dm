@@ -2,7 +2,7 @@
 #define ENCOUTER_PROBALITY 100
 
 /obj/spawner/encouter
-	bad_types = /obj/spawner/encouter
+	exclusion_paths = list(/obj/spawner/encouter)
 	spawn_tags = SPAWN_TAG_SPAWNER_ENCOUNER
 	tags_to_spawn = list(SPAWN_SPAWNER_ENCOUNER)
 

@@ -7,6 +7,7 @@
 	name = "low chance random roach"
 	icon_state = "hostilemob-brown-low"
 	spawn_nothing_percentage = 60
+	spawn_blacklisted = TRUE
 
 /obj/spawner/mob/roaches/cluster
 	name = "cluster of roaches"
@@ -20,6 +21,7 @@
 	name = "low chance cluster of roaches"
 	icon_state = "hostilemob-brown-cluster-low"
 	spawn_nothing_percentage = 60
+	spawn_blacklisted = TRUE
 
 // For Scrap Beacon
 /obj/spawner/mob/roaches/cluster/beacon
