@@ -17,6 +17,7 @@
 	icon_state = "wm_10"
 	density = TRUE
 	anchored = TRUE
+	active_power_usage = 400
 	var/state = WASHSTATE_EMPTYOPENDOOR
 	//1 = empty, open door
 	//2 = empty, closed door
@@ -85,6 +86,7 @@
 				gibs_ready = 1
 			else
 				state = WASHSTATE_FULLCLOSEDDOOR
+			use_power = 1
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user)
@@ -113,6 +115,7 @@
 	tick = WASH_BASETIME
 	for(var/atom/A in contents)
 		tick += WASH_ADDTIME
+	use_power = 2
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()
