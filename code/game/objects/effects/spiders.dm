@@ -26,7 +26,7 @@
 	else
 		visible_message("<span class='warning'>\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]</span>")
 
-	var/damage = I.force / 4.0
+	var/damage = I.force / 4
 
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WELDING, FAILCHANCE_ZERO))

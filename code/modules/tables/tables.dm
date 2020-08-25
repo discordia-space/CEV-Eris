@@ -101,7 +101,7 @@ var/list/custom_table_appearance = list(
 	. = ..()
 	if(health < maxhealth)
 		switch(health / maxhealth)
-			if(0.0 to 0.5)
+			if(0 to 0.5)
 				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
 			if(0.25 to 0.5)
 				to_chat(user, SPAN_WARNING("It looks damaged!"))

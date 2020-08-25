@@ -80,7 +80,7 @@
 	switch(target_name)
 		if("28 moles of plasma (full tank)", "10 diamonds", "50 gold bars", "25 refined uranium bars")
 			var/target_amount = text2num(target_name)//Non-numbers are ignored.
-			var/found_amount = 0.0//Always starts as zero.
+			var/found_amount = 0//Always starts as zero.
 
 			for(var/obj/item/I in all_items) //Check for plasma tanks
 				if(istype(I, steal_target))
@@ -92,7 +92,7 @@
 
 			if(B)
 				var/target = text2num(target_name)
-				var/found_amount = 0.0
+				var/found_amount = 0
 				for(var/obj/item/weapon/coin/C in B)
 					found_amount++
 				return found_amount>=target

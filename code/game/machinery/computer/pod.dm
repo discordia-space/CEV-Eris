@@ -8,7 +8,7 @@
 	circuit = /obj/item/weapon/circuitboard/pod
 	var/id = 1
 	var/obj/machinery/mass_driver/connected = null
-	var/timing = 0.0
+	var/timing = 0
 	var/time = 30.0
 	var/title = "Mass Driver Controls"
 
