@@ -159,7 +159,7 @@
 
 /obj/machinery/dna_scannernew/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.loc
 				ex_act(severity)
@@ -196,14 +196,14 @@
 	icon_screen = "dna"
 	density = TRUE
 	circuit = /obj/item/weapon/circuitboard/scan_consolenew
-	var/selected_ui_block = 1.0
-	var/selected_ui_subblock = 1.0
-	var/selected_se_block = 1.0
-	var/selected_se_subblock = 1.0
+	var/selected_ui_block = 1
+	var/selected_ui_subblock = 1
+	var/selected_se_block = 1
+	var/selected_se_subblock = 1
 	var/selected_ui_target = 1
 	var/selected_ui_target_hex = 1
 	var/radiation_duration = 2.0
-	var/radiation_intensity = 1.0
+	var/radiation_intensity = 1
 	var/list/datum/dna2/record/buffers[3]
 	var/irradiating = 0
 	var/injector_ready = 0	//Quick fix for issue 286 (screwdriver the screen twice to restore injector)	-Pete
@@ -232,7 +232,7 @@
 /obj/machinery/computer/scan_consolenew/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			//SN src = null
 			qdel(src)
 			return

@@ -372,7 +372,7 @@
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(rand(500, 800))
 		if(2.0)
 			take_damage(rand(200, 500))

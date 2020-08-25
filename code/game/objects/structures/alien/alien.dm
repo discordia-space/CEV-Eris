@@ -18,7 +18,7 @@
 
 /obj/structure/alien/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			health-=50
 		if(2.0)
 			health-=50

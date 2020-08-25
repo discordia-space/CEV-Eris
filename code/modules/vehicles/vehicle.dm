@@ -147,7 +147,7 @@
 
 /obj/vehicle/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			explode()
 			return
 		if(2.0)

@@ -17,7 +17,7 @@
 
 /obj/item/weapon/am_containment/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			explosion(get_turf(src), 1, 2, 3, 5)//Should likely be larger but this works fine for now I guess
 			if(src)
 				qdel(src)

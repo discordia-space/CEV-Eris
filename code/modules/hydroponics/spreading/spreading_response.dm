@@ -119,7 +119,7 @@
 **************/
 /obj/effect/plant/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			die_off()
 			return
 		if(2.0)

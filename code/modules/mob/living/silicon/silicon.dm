@@ -250,7 +250,7 @@
 			flick("flash", HUDtech["flash"])
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			if (stat != 2)
 				adjustBruteLoss(100)
 				adjustFireLoss(100)

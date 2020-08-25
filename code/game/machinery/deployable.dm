@@ -120,7 +120,7 @@ for reference:
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			visible_message(SPAN_DANGER("\The [src] is blown apart!"))
 			qdel(src)
 			return
@@ -209,7 +209,7 @@ for reference:
 
 /obj/machinery/deployable/barrier/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			explode()
 			return
 		if(2.0)

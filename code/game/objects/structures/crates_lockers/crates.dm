@@ -36,7 +36,7 @@
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/obj/O in src.contents)
 				qdel(O)
 			qdel(src)

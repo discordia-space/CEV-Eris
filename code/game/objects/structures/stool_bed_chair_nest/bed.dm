@@ -84,7 +84,7 @@
 
 /obj/structure/bed/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
 		if(2.0)

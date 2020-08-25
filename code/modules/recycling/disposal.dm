@@ -888,7 +888,7 @@
 /obj/structure/disposalpipe/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			broken(0)
 			return
 		if(2.0)

@@ -70,7 +70,7 @@
 
 /obj/structure/bookcase/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/obj/item/weapon/book/b in contents)
 				qdel(b)
 			qdel(src)

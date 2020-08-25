@@ -103,7 +103,7 @@
 
 /obj/machinery/power/am_control_unit/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			stability -= 60
 		if(2.0)
 			stability -= 40
