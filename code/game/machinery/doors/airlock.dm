@@ -1059,7 +1059,7 @@ There are 9 wires.
 		..()
 	return
 
-/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user)
 	if(C)
 		ignite(is_hot(C))
 	..()
@@ -1087,7 +1087,7 @@ There are 9 wires.
 	update_icon()
 	return
 
-/obj/machinery/door/airlock/open(var/forced=0)
+/obj/machinery/door/airlock/open(forced=0)
 	if(!can_open(forced))
 		return 0
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
@@ -1112,7 +1112,7 @@ There are 9 wires.
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/can_open(var/forced=0)
+/obj/machinery/door/airlock/can_open(forced=0)
 	if(!forced)
 		if(!arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
 			return 0
@@ -1121,7 +1121,7 @@ There are 9 wires.
 		return 0
 	return ..()
 
-/obj/machinery/door/airlock/can_close(var/forced=0)
+/obj/machinery/door/airlock/can_close(forced=0)
 	if(locked || welded)
 		return FALSE
 
@@ -1155,13 +1155,13 @@ There are 9 wires.
 /mob/living/simple_animal/blocks_airlock() //Airlocks crush cockroahes and mouses.
 	return mob_size > MOB_SMALL
 
-/atom/movable/proc/airlock_crush(var/crush_damage)
+/atom/movable/proc/airlock_crush(crush_damage)
 	return 0
 
-/obj/structure/window/airlock_crush(var/crush_damage)
+/obj/structure/window/airlock_crush(crush_damage)
 	ex_act(2)//Smashin windows
 
-/obj/machinery/portable_atmospherics/canister/airlock_crush(var/crush_damage)
+/obj/machinery/portable_atmospherics/canister/airlock_crush(crush_damage)
 	. = ..()
 	health -= crush_damage
 	healthcheck()

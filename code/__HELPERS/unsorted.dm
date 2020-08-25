@@ -1008,7 +1008,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 /proc/get_turf_or_move(turf/location)
 	return get_turf(location)
 
-proc/is_hot(obj/item/W as obj)
+proc/is_hot(obj/item/W)
 	if(QUALITY_WELDING in W.tool_qualities)
 		return 3800
 	switch(W.type)
@@ -1033,22 +1033,22 @@ proc/is_hot(obj/item/W as obj)
 			return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
-	if (!O) return 0
-	if (O.sharp) return 1
-	if (O.edge) return 1
-	return 0
+/proc/is_sharp(obj/O)
+	if (!O) return FALSE
+	if (O.sharp) return TRUE
+	if (O.edge) return TRUE
+	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if (!O) return 0
-	if (O.edge) return 1
-	return 0
+/proc/has_edge(obj/O)
+	if (!O) return FALSE
+	if (O.edge) return TRUE
+	return FALSE
 
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
-/proc/can_puncture(obj/item/W as obj)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
-	if(!W) return 0
-	if(W.sharp) return 1
+/proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
+	if(!W) return FALSE
+	if(W.sharp) return TRUE
 	return ( \
 		W.sharp														|| \
 		istype(W, /obj/item/weapon/tool)							|| \
@@ -1058,7 +1058,7 @@ proc/is_hot(obj/item/W as obj)
 		istype(W, /obj/item/clothing/mask/smokable/cigarette)		\
 	)
 
-/proc/is_surgery_tool(obj/item/W as obj)
+/proc/is_surgery_tool(obj/item/W)
 	return (	\
 	istype(W, /obj/item/weapon/tool/scalpel)			||	\
 	istype(W, /obj/item/weapon/tool/hemostat)		||	\
@@ -1172,12 +1172,12 @@ var/list/FLOORITEMS = list(
 /proc/format_text(text)
 	return replacetext(replacetext(text, "\proper ", ""), "\improper ", "")
 
-/proc/topic_link(var/datum/D, var/arglist, var/content)
+/proc/topic_link(datum/D, arglist, content)
 	if(istype(arglist,/list))
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/get_random_colour(var/simple, var/lower, var/upper)
+/proc/get_random_colour(simple, lower, upper)
 	var/colour
 	if(simple)
 		colour = pick(list("FF0000", "FF7F00", "FFFF00", "00FF00", "0000FF", "4B0082", "8F00FF"))
@@ -1190,7 +1190,7 @@ var/list/FLOORITEMS = list(
 	return "#[colour]"
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
-/proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
+/proc/dview(range = world.view, center, invis_flags = 0)
 	if(!center)
 		return
 
@@ -1214,7 +1214,7 @@ var/list/FLOORITEMS = list(
 	crash_with("Prevented attempt to delete dview mob: [log_info_line(src)]")
 	return QDEL_HINT_LETMELIVE // Prevents destruction
 
-/atom/proc/get_light_and_color(var/atom/origin)
+/atom/proc/get_light_and_color(atom/origin)
 	if(origin)
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
@@ -1226,7 +1226,7 @@ var/list/FLOORITEMS = list(
 /proc/crash_with(msg)
 	CRASH(msg)
 
-/proc/CheckFace(var/atom/Obj1, var/atom/Obj2)
+/proc/CheckFace(atom/Obj1, atom/Obj2)
 	var/CurrentDir = get_dir(Obj1, Obj2)
 	//if ((Obj1.loc == Obj2.loc) || (CurrentDir == Obj1.dir) || (CurrentDir == turn(Obj1.dir, 45)) || (CurrentDir == turn(Obj1.dir, -45)))
 	if((CurrentDir & Obj1.dir) || (CurrentDir == 0))
