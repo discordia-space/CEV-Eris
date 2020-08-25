@@ -155,7 +155,7 @@ for reference:
 	icon_state = "barrier0"
 	var/health = 100
 	var/maxhealth = 100
-	var/locked = 0
+	var/locked = FALSE
 //	req_access = list(access_maint_tunnels)
 
 /obj/machinery/deployable/barrier/New()
@@ -170,10 +170,10 @@ for reference:
 				locked = !locked
 				anchored = !anchored
 				icon_state = "barrier[locked]"
-				if((locked == 1) && (emagged < 2))
+				if((locked) && (emagged < 2))
 					to_chat(user, "Barrier lock toggled on.")
 					return
-				else if((locked == 0) && (emagged < 2))
+				else if((!locked) && (emagged < 2))
 					to_chat(user, "Barrier lock toggled off.")
 					return
 			else
