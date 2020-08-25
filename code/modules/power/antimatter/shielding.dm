@@ -93,9 +93,9 @@ proc/cardinalrange(var/center)
 	switch(severity)
 		if(1)
 			stability -= 80
-		if(2.0)
+		if(2)
 			stability -= 40
-		if(3.0)
+		if(3)
 			stability -= 20
 	check_stability()
 	return

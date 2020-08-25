@@ -21,7 +21,7 @@
 			ear_damage += 30
 			ear_deaf += 120
 
-		if(3.0)
+		if(3)
 			b_loss += 30
 			if (prob(50))
 				Paralyse(1)

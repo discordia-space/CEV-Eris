@@ -67,7 +67,7 @@
 	switch(severity)
 		if(1)
 			qdel(src)
-		if(2.0)
+		if(2)
 			qdel(src)
 	return
 

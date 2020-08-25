@@ -435,7 +435,7 @@
 			adjustBruteLoss(60)
 
 
-		if(3.0)
+		if(3)
 			adjustBruteLoss(30)
 
 

@@ -144,7 +144,7 @@
 			qdel(src)
 			return
 
-		if(2.0)
+		if(2)
 			if (prob(25))
 				new /obj/item/weapon/material/shard( src.loc )
 				qdel(src)
@@ -153,7 +153,7 @@
 			if (prob(50))
 				broken()
 
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return
@@ -519,10 +519,10 @@
 			//SN src = null
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				broken()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return

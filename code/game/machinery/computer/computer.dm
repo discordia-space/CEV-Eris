@@ -34,7 +34,7 @@
 		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(25))
 				qdel(src)
 				return
@@ -42,7 +42,7 @@
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				for(var/x in verbs)
 					verbs -= x

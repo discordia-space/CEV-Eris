@@ -20,9 +20,9 @@
 	switch(severity)
 		if(1)
 			health-=50
-		if(2.0)
+		if(2)
 			health-=50
-		if(3.0)
+		if(3)
 			if (prob(50))
 				health-=50
 			else

@@ -60,7 +60,7 @@
 		if(1)
 			del(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				del(src)
 				return

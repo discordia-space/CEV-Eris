@@ -155,10 +155,10 @@
 		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			shatter(0,TRUE)
 			return
-		if(3.0)
+		if(3)
 			if(prob(50))
 				shatter(0,TRUE)
 				return

@@ -124,7 +124,7 @@ for reference:
 			visible_message(SPAN_DANGER("\The [src] is blown apart!"))
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			health -= 25
 			if(health <= 0)
 				visible_message(SPAN_DANGER("\The [src] is blown apart!"))
@@ -212,7 +212,7 @@ for reference:
 		if(1)
 			explode()
 			return
-		if(2.0)
+		if(2)
 			health -= 25
 			if(health <= 0)
 				explode()

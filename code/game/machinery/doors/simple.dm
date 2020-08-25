@@ -97,12 +97,12 @@
 	switch(severity)
 		if(1)
 			set_broken()
-		if(2.0)
+		if(2)
 			if(prob(25))
 				set_broken()
 			else
 				take_damage(300)
-		if(3.0)
+		if(3)
 			if(prob(20))
 				take_damage(150)
 

@@ -211,7 +211,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			src.isbroken = 1
 			if(prob(50))
 				qdel(src)

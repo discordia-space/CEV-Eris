@@ -22,14 +22,14 @@
 			if(src)
 				qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob((fuel/10)-stability))
 				explosion(get_turf(src), 1, 2, 3, 5)
 				if(src)
 					qdel(src)
 				return
 			stability -= 40
-		if(3.0)
+		if(3)
 			stability -= 20
 	//check_stability()
 	return

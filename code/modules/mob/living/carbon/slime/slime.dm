@@ -197,7 +197,7 @@
 			f_loss += 60
 
 
-		if(3.0)
+		if(3)
 			b_loss += 30
 
 	adjustBruteLoss(b_loss)

@@ -212,11 +212,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(25))
 				qdel(src)
 				return
@@ -401,11 +401,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(25))
 				qdel(src)
 				return

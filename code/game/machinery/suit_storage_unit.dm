@@ -104,7 +104,7 @@
 				dump_everything() //So suits dont survive all the time
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				dump_everything()
 				qdel(src)

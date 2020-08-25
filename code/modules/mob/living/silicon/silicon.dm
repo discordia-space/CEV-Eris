@@ -256,11 +256,11 @@
 				adjustFireLoss(100)
 				if(!anchored)
 					gib()
-		if(2.0)
+		if(2)
 			if (stat != 2)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
-		if(3.0)
+		if(3)
 			if (stat != 2)
 				adjustBruteLoss(30)
 
