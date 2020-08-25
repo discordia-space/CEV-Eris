@@ -45,7 +45,7 @@
 
 	var/strength = convert2energy(mass)
 
-	if (strength < 773.0)
+	if (strength < 773)
 		var/turf/T = get_turf(src)
 
 		if (strength > (450+T0C))

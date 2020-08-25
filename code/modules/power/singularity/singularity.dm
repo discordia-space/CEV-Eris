@@ -65,7 +65,7 @@
 				return
 			else
 				energy += 50
-		if(2 to 3.0)
+		if(2 to 3)
 			energy += round((rand(20,60)/2),1)
 			return
 

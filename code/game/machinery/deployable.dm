@@ -170,10 +170,10 @@ for reference:
 				locked = !locked
 				anchored = !anchored
 				icon_state = "barrier[locked]"
-				if((locked == 1) && (emagged < 2.0))
+				if((locked == 1) && (emagged < 2))
 					to_chat(user, "Barrier lock toggled on.")
 					return
-				else if((locked == 0) && (emagged < 2.0))
+				else if((locked == 0) && (emagged < 2))
 					to_chat(user, "Barrier lock toggled off.")
 					return
 			else

@@ -117,7 +117,7 @@
 
 	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent vines from maturing until at least a few seconds after they've been created.
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
-	spread_distance = ((growth_type>0) ? round(spread_chance*1.0) : round(spread_chance*0.5))
+	spread_distance = ((growth_type>0) ? round(spread_chance) : round(spread_chance*0.5))
 	update_icon()
 
 	if(seed.get_trait(TRAIT_CHEMS) > 0)
