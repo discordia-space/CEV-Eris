@@ -900,8 +900,8 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	var/detecting = 1.0
-	var/working = 1.0
+	var/detecting = 1
+	var/working = 1
 	var/time = 10.0
 	var/timing = 0.0
 	var/lockdownbyai = 0

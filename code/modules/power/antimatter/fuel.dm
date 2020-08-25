@@ -7,7 +7,7 @@
 	density = FALSE
 	anchored = FALSE
 	var/fuel = 0
-	var/s_time = 1.0
+	var/s_time = 1
 	var/content = null
 
 /obj/item/weapon/fuel/H

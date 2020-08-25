@@ -2,7 +2,7 @@
 
 /datum/data
 	var/name = "data"
-	var/size = 1.0
+	var/size = 1
 
 
 /datum/data/function

@@ -287,7 +287,7 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1.0, hands = TRUE)
+/proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1, hands = TRUE)
 	if (!M || !istype(M) || siemens_coeff == 0)
 		return	FALSE
 	if(istype(M.loc, /mob/living/exosuit))	return FALSE	//feckin mechs are dumb

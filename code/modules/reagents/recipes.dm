@@ -58,7 +58,7 @@
 
 	//if less than 1, the reaction will be inhibited if the ratio of products/reagents is too high.
 	//0.5 = 50% yield -> reaction will only proceed halfway until products are removed.
-	var/yield = 1.0
+	var/yield = 1
 
 	// Reaction thermal requirements
 	var/maximum_temperature = INFINITY

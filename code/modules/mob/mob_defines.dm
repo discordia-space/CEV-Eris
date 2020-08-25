@@ -189,7 +189,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/progressbars = null
 
 
-	var/speed_factor = 1.0
+	var/speed_factor = 1
 
 	var/datum/stat_holder/stats
 

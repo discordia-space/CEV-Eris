@@ -680,7 +680,7 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1.0)
+	if(severity == 1)
 		qdel(src)
 		return
 	..()
