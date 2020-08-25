@@ -27,9 +27,7 @@
 				/obj/item/weapon/computer_hardware/processor_unit/adv/small = 8,
 				/obj/item/weapon/computer_hardware/tesla_link = 18,
 				/obj/spawner/assembly = 144,
-
 				/obj/spawner/stock_parts = 270,
-
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/devices = 6,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/tools = 6,
