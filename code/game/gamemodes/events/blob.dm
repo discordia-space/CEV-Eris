@@ -197,7 +197,7 @@
 		core = null
 		//When the core is gone, the blob starts dying
 		//The closer it was to the core, the faster it dies. So death spreads out radially
-		take_damage((1.0 / coredist))
+		take_damage((1 / coredist))
 	update_icon()
 
 /*
