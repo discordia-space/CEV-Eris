@@ -150,9 +150,11 @@
 		remove_self(removed)
 
 /datum/reagent/proc/apply_sanity_effect(mob/living/carbon/H, effect_multiplier)
-	If(!ishuman(H))
+	if(!ishuman(H))
 		return
-	H.sanity.onReagent(src, effect_multiplier)
+	else
+		var/mob/living/carbon/human/M = H
+		M.sanity.onReagent(src, effect_multiplier)
 
 /datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 
