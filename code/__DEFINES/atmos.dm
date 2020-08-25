@@ -41,8 +41,8 @@
 
 // Must be between 0 and 1. Values closer to 1 equalize temperature faster. Should not exceed 0.4, else strange heat flow occurs.
 #define  FLOOR_HEAT_TRANSFER_COEFFICIENT 0.4
-#define   WALL_HEAT_TRANSFER_COEFFICIENT 0.0
-#define   DOOR_HEAT_TRANSFER_COEFFICIENT 0.0
+#define   WALL_HEAT_TRANSFER_COEFFICIENT 0
+#define   DOOR_HEAT_TRANSFER_COEFFICIENT 0
 #define  SPACE_HEAT_TRANSFER_COEFFICIENT 0.2 // A hack to partly simulate radiative heat.
 #define   OPEN_HEAT_TRANSFER_COEFFICIENT 0.4
 #define WINDOW_HEAT_TRANSFER_COEFFICIENT 0.1 // A hack for now.
