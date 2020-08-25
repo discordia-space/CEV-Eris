@@ -8,7 +8,6 @@
 	use_power = 0
 	density = TRUE
 	anchored = TRUE
-	spawn_blacklisted = FALSE
 	spawn_frequency = 10 //as /obj/structure/computerframe
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_CONSTRUCTABLE_FRAME

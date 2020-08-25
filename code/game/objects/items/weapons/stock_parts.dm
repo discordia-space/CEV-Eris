@@ -4,7 +4,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = ITEM_SIZE_SMALL
-	spawn_blacklisted = FALSE
 	spawn_frequency = 10
 	rarity_value = 10
 	bad_types = /obj/item/weapon/stock_parts

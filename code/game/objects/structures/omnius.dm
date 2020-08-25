@@ -4,7 +4,6 @@
 	desc = "It looks like ancient, and strange generator."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	var/cooldown = FALSE
-	spawn_blacklisted = FALSE
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_OMINOUS

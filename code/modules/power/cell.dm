@@ -15,7 +15,6 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	//Spawn_values
-	spawn_blacklisted = FALSE
 	bad_types = /obj/item/weapon/cell
 	spawn_frequency = 10
 	rarity_value = 3

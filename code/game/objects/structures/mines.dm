@@ -3,7 +3,6 @@
 	desc = "It looks like ancient, and rather dangerous mine."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
-	spawn_blacklisted = FALSE
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_STUCTURE_MINE

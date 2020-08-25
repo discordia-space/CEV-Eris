@@ -7,7 +7,6 @@
 	anchored = FALSE
 	reagent_flags = DRAINABLE | AMOUNT_VISIBLE
 	//sapwn_values
-	spawn_blacklisted = FALSE
 	bad_types = /obj/structure/reagent_dispensers
 	rarity_value = 10
 	spawn_frequency = 10

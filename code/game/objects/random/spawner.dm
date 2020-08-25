@@ -3,7 +3,6 @@
 	icon = 'icons/misc/landmarks.dmi'
 	alpha = 64 //Or else they cover half of the map
 	invisibility = INVISIBILITY_MAXIMUM	// Hides these spawners from the dmm-tools minimap renderer of SpacemanDMM
-	spawn_blacklisted = FALSE
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_SPAWNER

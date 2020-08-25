@@ -8,7 +8,6 @@
 	spawn_tags
 	rarity_value = 1 //MIN
 	spawn_frequency = 10 //MAX
-	spawn_blacklisted = FALSE
 	bad_types = "/obj/item"
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite

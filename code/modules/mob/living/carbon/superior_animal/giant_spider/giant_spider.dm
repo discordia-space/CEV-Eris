@@ -12,7 +12,6 @@
 	health = 120
 
 	//spawn_values
-	spawn_blacklisted = FALSE
 	rarity_value = 37.5
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_SPIDER

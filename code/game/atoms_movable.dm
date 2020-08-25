@@ -22,7 +22,7 @@
 	var/rarity_value = 1 //min
 	var/spawn_frequency = 0 //NEVER
 	var/accompanying_object	//path or text
-	var/spawn_blacklisted = TRUE
+	var/spawn_blacklisted = FALSE
 	var/bad_types //path or text. e.g: spawn_tags = obj/item or spawn_tags = "obj/item,obj/spawner"
 
 /atom/movable/Del()

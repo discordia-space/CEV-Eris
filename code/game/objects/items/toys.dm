@@ -23,7 +23,6 @@
 	force = NONE
 
 	//spawn_values
-	spawn_blacklisted = FALSE
 	bad_types = "/obj/item/toy"
 	rarity_value = 10
 	spawn_frequency = 10
@@ -571,7 +570,6 @@
 	anchored = FALSE
 	density = TRUE
 	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
-	spawn_blacklisted = FALSE
 	bad_types = "/obj/structure/plushie"
 	rarity_value = 10
 	spawn_frequency = 10

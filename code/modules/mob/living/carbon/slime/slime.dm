@@ -22,7 +22,6 @@
 	status_flags = CANPARALYSE|CANPUSH
 
 	//spawn_values
-	spawn_blacklisted = FALSE
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_SLIME

@@ -7,7 +7,6 @@
 	material = MATERIAL_STEEL
 
 	//spawn_values
-	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_MECH
 	spawn_frequency = 10
 	rarity_value = 10

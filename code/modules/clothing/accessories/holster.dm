@@ -11,7 +11,7 @@
 	spawn_tags = SPAWN_TAG_HOLSTER
 	var/obj/item/holstered = null
 
-/obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
+/obj/item/clothing/accessory/holster/proc/holster(obj/item/I, mob/living/user)
 	if(holstered && istype(user))
 		to_chat(user, SPAN_WARNING("There is already \a [holstered] holstered here!"))
 		return

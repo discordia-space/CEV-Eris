@@ -787,7 +787,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/prison)
 "acc" = (
-/obj/structure/closet/wardrobe/orange,
+/obj/structure/closet/wardrobe/color/orange,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "North APC";
@@ -800,7 +800,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/prison)
 "acd" = (
-/obj/structure/closet/wardrobe/orange,
+/obj/structure/closet/wardrobe/color/orange,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/prison)
 "ace" = (
@@ -25100,7 +25100,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bej" = (
-/obj/structure/closet/wardrobe/black,
+/obj/structure/closet/wardrobe/color/black,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
@@ -25504,7 +25504,7 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/robotics)
 "bfa" = (
-/obj/structure/closet/wardrobe/grey,
+/obj/structure/closet/wardrobe/color/grey,
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
@@ -43440,7 +43440,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bRT" = (
-/obj/structure/closet/wardrobe/grey,
+/obj/structure/closet/wardrobe/color/grey,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -43459,7 +43459,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/clothingstorage)
 "bRW" = (
-/obj/structure/closet/wardrobe/mixed,
+/obj/structure/closet/wardrobe/color/mixed,
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "West APC";
@@ -43478,11 +43478,11 @@
 /area/eris/crew_quarters/clothingstorage)
 "bRX" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/closet/wardrobe/white,
+/obj/structure/closet/wardrobe/color/white,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/clothingstorage)
 "bRY" = (
-/obj/structure/closet/wardrobe/black,
+/obj/structure/closet/wardrobe/color/black,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/clothingstorage)
@@ -100386,7 +100386,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
 "err" = (
-/obj/structure/closet/wardrobe/pink,
+/obj/structure/closet/wardrobe/color/pink,
 /obj/item/weapon/bikehorn,
 /obj/item/weapon/bikehorn,
 /obj/item/weapon/bikehorn,

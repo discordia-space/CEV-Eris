@@ -5,7 +5,6 @@
 	density = TRUE
 	anchored = TRUE
 	bad_types = /obj/structure/salvageable
-	spawn_blacklisted = FALSE
 	spawn_frequency = 10
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_SALVAGEABLE

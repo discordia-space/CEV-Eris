@@ -412,7 +412,6 @@ Very rarely it might escape
 	anchored = TRUE
 	rarity_value = 33.3
 	spawn_frequency = 10
-	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_TRAP_ARMED
 
 /obj/item/weapon/beartrap/makeshift/armed
@@ -420,5 +419,4 @@ Very rarely it might escape
 	anchored = TRUE
 	rarity_value = 22.2
 	spawn_frequency = 10
-	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_TRAP_ARMED

@@ -7,7 +7,6 @@
 	mouse_opacity = 0
 	rarity_value = 10
 	spawn_frequency = 10
-	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_FLORA
 	bad_types = /obj/effect/spawner/maintshroom
 
