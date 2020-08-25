@@ -73,7 +73,7 @@
 		if(user) to_chat(user, SPAN_WARNING("\The [src]'s hardpoints are locked, or that hardpoint is already occupied."))
 		return FALSE
 
-	if(system.restricted_hardpoints && (!system_hardpoint in system.restricted_hardpoints))
+	if(system.restricted_hardpoints && !(system_hardpoint in system.restricted_hardpoints))
 		if(user) to_chat(user, SPAN_WARNING("\The [system] can not be installed on that hardpoint."))
 		return FALSE
 
