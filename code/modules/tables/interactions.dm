@@ -86,7 +86,7 @@
 	return ..()
 
 
-/obj/structure/table/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/table/affect_grab(mob/living/user, mob/living/target, state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
@@ -129,7 +129,7 @@
 
 
 
-/obj/structure/table/attackby(obj/item/W, mob/living/user, var/params)
+/obj/structure/table/attackby(obj/item/W, mob/living/user, params)
 	if(!istype(W))
 		return
 
