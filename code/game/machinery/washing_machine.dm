@@ -63,7 +63,7 @@
 	A.make_young()
 
 /obj/machinery/washing_machine/Process()
-	if(tick > 0 && state in list(WASHSTATE_BLOODRUNNING, WASHSTATE_RUNNING))
+	if(tick > 0 && (state in list(WASHSTATE_BLOODRUNNING, WASHSTATE_RUNNING)))
 		if(--tick <= 0)
 			for(var/atom/A in contents)
 				wash(A)
@@ -92,7 +92,7 @@
 
 /obj/machinery/washing_machine/examine(mob/user)
 	..()
-	if(tick > 0 && state in list(WASHSTATE_BLOODRUNNING, WASHSTATE_RUNNING))
+	if(tick > 0 && (state in list(WASHSTATE_BLOODRUNNING, WASHSTATE_RUNNING)))
 		to_chat(user, SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle."))
 
 
