@@ -7,8 +7,9 @@
 #define WASHSTATE_BLOODCLOSEDDOOR 7
 #define WASHSTATE_BLOODRUNNING 8
 
-#define WASH_BASETIME 60
-#define WASH_ADDTIME 5
+//Halved as the Machinery SS takes 2 seconds to fire
+#define WASH_BASETIME 30
+#define WASH_ADDTIME 2.5
 
 /obj/machinery/washing_machine
 	name = "Washing Machine"
@@ -69,7 +70,7 @@
 				if(istype(A, /obj/item))
 					var/obj/item/I = A
 
-					if(istype(crayon,/obj/item/weapon/pen/crayon) && istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color))
+					if(istype(crayon,/obj/item/weapon/pen/crayon) && (istype(I, /obj/item/clothing/gloves/color) || istype(I, /obj/item/clothing/head/soft) || istype(I, /obj/item/clothing/shoes/color) || istype(I, /obj/item/clothing/under/color)))
 						var/obj/item/clothing/C = I
 						var/obj/item/weapon/pen/crayon/CR = crayon
 						C.color = CR.colour
@@ -208,3 +209,6 @@
 #undef WASHSTATE_BLOODOPENDOOR
 #undef WASHSTATE_BLOODCLOSEDDOOR
 #undef WASHSTATE_BLOODRUNNING
+
+#undef WASH_BASETIME
+#undef WASH_ADDTIME
