@@ -7,12 +7,12 @@
 	var/b_loss = null
 	var/f_loss = null
 	switch (severity)
-		if (1.0)
+		if (1)
 			b_loss += 500
 			gib()
 			return
 
-		if (2.0)
+		if (2)
 
 			b_loss += 60
 

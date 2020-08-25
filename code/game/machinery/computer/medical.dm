@@ -76,7 +76,7 @@
 					dat += text("<HR><A href='?src=\ref[];screen=1'>Back</A>", src)
 				if(3)
 					dat += text("<B>Records Maintenance</B><HR>\n<A href='?src=\ref[];back=1'>Backup To Disk</A><BR>\n<A href='?src=\ref[];u_load=1'>Upload From disk</A><BR>\n<A href='?src=\ref[];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='?src=\ref[];screen=1'>Back</A>", src, src, src, src)
-				if(4.0)
+				if(4)
 					var/icon/front = active1.fields["photo_front"]
 					var/icon/side = active1.fields["photo_side"]
 					user << browse_rsc(front, "front.png")
@@ -105,7 +105,7 @@
 						dat += "<B>Medical Record Lost!</B><BR>"
 						dat += text("<A href='?src=\ref[src];new=1'>New Record</A><BR><BR>")
 					dat += text("\n<A href='?src=\ref[];print_p=1'>Print Record</A><BR>\n<A href='?src=\ref[];screen=2'>Back</A><BR>", src, src)
-				if(5.0)
+				if(5)
 					dat += "<CENTER><B>Virus Database</B></CENTER>"
 					/*	Advanced diseases is weak! Feeble! Glory to virus2!
 					for(var/Dt in typesof(/datum/disease/))
@@ -121,7 +121,7 @@
 						dat += "<br><a href='?src=\ref[src];vir=\ref[v]'>[v.fields["name"]]</a>"
 
 					dat += "<br><a href='?src=\ref[src];screen=1'>Back</a>"
-				if(6.0)
+				if(6)
 					dat += "<center><b>Medical Robot Monitor</b></center>"
 					dat += "<a href='?src=\ref[src];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"

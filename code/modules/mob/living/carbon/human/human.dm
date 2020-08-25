@@ -112,7 +112,7 @@
 	var/f_loss = null
 	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
-		if (1.0)
+		if (1)
 			b_loss += 500
 			if (!prob(bomb_defense))
 				gib()
@@ -124,7 +124,7 @@
 //				var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
 				//user.throw_at(target, 200, 4)
 
-		if (2.0)
+		if (2)
 			if (!shielded)
 				b_loss += 150
 

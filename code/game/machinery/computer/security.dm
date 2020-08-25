@@ -162,7 +162,7 @@
 							<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
 							<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
 							<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
-				if(4.0)
+				if(4)
 					if(!Perp.len)
 						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
 					else

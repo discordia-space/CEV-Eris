@@ -187,11 +187,11 @@
 	var/b_loss = null
 	var/f_loss = null
 	switch (severity)
-		if (1.0)
+		if (1)
 			qdel(src)
 			return
 
-		if (2.0)
+		if (2)
 
 			b_loss += 60
 			f_loss += 60
