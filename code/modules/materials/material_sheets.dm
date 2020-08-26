@@ -120,6 +120,8 @@
 /obj/item/stack/material/diamond/random
 	rand_min = 1
 	rand_max = 8
+	spawn_tags = SPAWN_TAG_MATERIAL_RARE
+	rarity_value = 20
 
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
@@ -130,6 +132,8 @@
 /obj/item/stack/material/uranium/random
 	rand_min = 2
 	rand_max = 15
+	spawn_tags = SPAWN_TAG_MATERIAL_RARE
+	rarity_value = 20
 
 /obj/item/stack/material/plasma
 	name = "solid plasma"
@@ -161,6 +165,8 @@
 /obj/item/stack/material/gold/random
 	rand_min = 2
 	rand_max = 15
+	spawn_tags = SPAWN_TAG_MATERIAL_RARE
+	rarity_value = 10
 
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
@@ -171,6 +177,8 @@
 /obj/item/stack/material/silver/random
 	rand_min = 3
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_MATERIAL_RARE
+	rarity_value = 10
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -291,6 +299,8 @@
 /obj/item/stack/material/glass/plasmaglass/random
 	rand_min = 3
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_MATERIAL_RARE
+	rarity_value = 10
 
 /obj/item/stack/material/glass/plasmarglass
 	name = "reinforced borosilicate glass"

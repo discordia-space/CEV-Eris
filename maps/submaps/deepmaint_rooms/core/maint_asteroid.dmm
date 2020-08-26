@@ -37,7 +37,7 @@
 "aK" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "aL" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/asteroid,/area/deepmaint)
 "aM" = (/obj/structure/table/standard,/obj/random/material,/obj/random/material,/obj/random/material,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
-"aN" = (/obj/structure/table/standard,/obj/random/material_rare,/obj/random/material_rare,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"aN" = (/obj/structure/table/standard,/obj/spawner/material_rare,/obj/spawner/material_rare,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "aO" = (/obj/structure/table/standard,/obj/random/material_resources,/obj/random/material_resources,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "aP" = (/obj/structure/reagent_dispensers/watertank/huge,/turf/simulated/floor/asteroid,/area/deepmaint)
 "aQ" = (/obj/structure/table/woodentable,/obj/item/seeds/ambrosiavulgarisseed,/obj/item/seeds/ambrosiavulgarisseed,/obj/item/seeds/ambrosiavulgarisseed,/turf/simulated/floor/asteroid,/area/deepmaint)

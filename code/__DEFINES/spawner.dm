@@ -56,8 +56,10 @@
 
 // items - ore
 #define SPAWN_ORE "ore"
+#define SPAWN_MATERIAL_RARE "rare_material"
 
-#define SPAWN_TAG_ORE "item,ore"
+#define SPAWN_TAG_ORE "item,material,ore"
+#define SPAWN_TAG_MATERIAL_RARE "item,material,rare_material"
 
 //  MINES
 #define SPAWN_MINE "mine"

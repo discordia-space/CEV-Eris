@@ -37,18 +37,12 @@
 	icon_state = "material-green-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/material_rare
+/obj/spawner/material_rare
 	name = "random rare material"
 	icon_state = "material-orange"
+	tags_to_spawn = list(SPAWN_MATERIAL_RARE)
 
-/obj/random/material_rare/item_to_spawn()
-	return pickweight(list(/obj/item/stack/material/diamond/random = 1,\
-				/obj/item/stack/material/gold/random = 2,\
-				/obj/item/stack/material/uranium/random = 1,\
-				/obj/item/stack/material/silver/random = 2,\
-				/obj/item/stack/material/glass/plasmaglass/random = 2))
-
-/obj/random/material_rare/low_chance
+/obj/spawner/material_rare/low_chance
 	name = "low chance random rare material"
 	icon_state = "material-orange-low"
 	spawn_nothing_percentage = 60

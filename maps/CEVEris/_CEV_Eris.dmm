@@ -23012,7 +23012,7 @@
 /area/eris/rnd/lab)
 "baG" = (
 /obj/structure/table/rack,
-/obj/random/material_rare/low_chance,
+/obj/spawner/material_rare/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "baH" = (
@@ -32417,7 +32417,7 @@
 /obj/item/stack/material/plastic{
 	amount = 120
 	},
-/obj/random/material_rare,
+/obj/spawner/material_rare,
 /obj/machinery/button/remote/blast_door{
 	desc = "It controls the RND Window Blast doors.";
 	id = "RDWindowsLockdown";
@@ -57117,7 +57117,7 @@
 /turf/space,
 /area/space)
 "cxy" = (
-/obj/random/material_rare/low_chance,
+/obj/spawner/material_rare/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/oldtele)
 "cxz" = (
@@ -84722,7 +84722,7 @@
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/engineering/starboardhallway)
 "dHW" = (
-/obj/random/material_rare/low_chance,
+/obj/spawner/material_rare/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
@@ -90520,7 +90520,7 @@
 /area/eris/maintenance/section2deck1port)
 "dUT" = (
 /obj/structure/table/rack,
-/obj/random/material_rare/low_chance,
+/obj/spawner/material_rare/low_chance,
 /obj/random/material,
 /obj/random/material,
 /obj/random/material,

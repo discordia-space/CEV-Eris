@@ -50,7 +50,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/knife = 6,
 					/obj/random/lowkeyrandom = 8,
 					/obj/random/material = 4,
-					/obj/random/material_rare = 3,
+					/obj/spawner/material_rare = 3,
 					/obj/random/material_resources = 8,
 					/obj/spawner/exosuit_equipment = 3,
 					/obj/spawner/powercell = 8,
