@@ -1,5 +1,5 @@
 /obj/item/weapon/gun/projectile/shotgun
-	//	New shotgun dm, could be expanded
+	//New shotgun dm, could be expanded
 	var/recentpumpmsg = 0 //	Variable to prevent chat message spam
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN
 	bad_types = /obj/item/weapon/gun/projectile/shotgun

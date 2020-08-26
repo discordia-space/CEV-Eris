@@ -99,7 +99,10 @@
 				if(!ispath(obj_path))
 					continue
 				all_spawn_accompanying_obj_by_path[path] += list(obj_path)
-
+		if(!all_spawn_accompanying_obj_by_path[path] && ispath(path, /obj/item/weapon/gun/energy))
+			var/obj/item/weapon/gun/energy/E = A
+			if(!initial(E.use_external_power) && !initial(E.self_recharge))
+				all_spawn_accompanying_obj_by_path[path] += list(initial(E.suitable_cell))
 
 /datum/loot_spawner_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
