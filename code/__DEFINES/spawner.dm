@@ -160,11 +160,11 @@
 #define SPAWN_TAG_STOCK_PARTS_OS "obj,item,stock_parts,stock_parts_os,item_tech_os,faction_os"
 
 // ITEM - DRIKS
-
-// ITEM - DRIKS - BOOZE
 #define SPAWN_BOOZE "bottle_alcohol"
+#define SPAWN_DRINK_SODA "cans"
 
 #define SPAWN_TAG_BOOZE "obj,item,drink,bottle_drink,bottle_alcohol"
+#define SPAWN_TAG_DRINK_SODA "obj,item,drink,bottle_drink,cans"
 
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"

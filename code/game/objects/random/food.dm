@@ -51,19 +51,15 @@
 	icon_state = "food-red-low"
 	spawn_nothing_percentage = 60
 
-
-/obj/random/soda
+/obj/spawner/soda
 	name = "random soda"
 	icon_state = "food-red"
+	tags_to_spawn = list(SPAWN_DRINK_SODA)
 
-/obj/random/soda/item_to_spawn()
-	return pickweight(subtypesof(/obj/item/weapon/reagent_containers/food/drinks/cans))
-
-/obj/random/soda/low_chance
+/obj/spawner/soda/low_chance
 	name = "low chance soda"
 	icon_state = "food-red-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/random/junkfood/rotten
 	name = "random spoiled food"
