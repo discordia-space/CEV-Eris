@@ -69,13 +69,13 @@
 /obj/structure/table/onestar,
 /obj/random/gun_energy_cheap,
 /obj/random/gun_energy_cheap,
-/obj/random/gun_shotgun,
+/obj/spawner/gun_shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "p" = (
 /obj/structure/table/onestar,
 /obj/random/gun_energy_cheap,
-/obj/random/gun_shotgun,
+/obj/spawner/gun_shotgun,
 /obj/random/contraband,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
@@ -84,7 +84,7 @@
 /obj/random/gun_normal,
 /obj/random/gun_normal,
 /obj/random/gun_normal/low_chance,
-/obj/random/gun_shotgun,
+/obj/spawner/gun_shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "s" = (

@@ -1417,7 +1417,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/random/gun_cheap,
                 /obj/random/gun_normal,
                 /obj/random/gun_energy_cheap,
-                /obj/random/gun_shotgun)
+                /obj/spawner/gun_shotgun)
 	name = "Surplus Weaponry"
 	cost = 5000
 	crate_name = "Surplus Weapons Crate"

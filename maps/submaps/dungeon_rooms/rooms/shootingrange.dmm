@@ -100,7 +100,7 @@
 	},
 /obj/machinery/door/window/northright,
 /obj/structure/table/rack,
-/obj/random/gun_shotgun,
+/obj/spawner/gun_shotgun,
 /obj/random/gun_normal,
 /obj/random/gun_cheap,
 /turf/simulated/floor/tiled/derelict,

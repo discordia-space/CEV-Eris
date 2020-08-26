@@ -30,14 +30,14 @@
 
 /obj/random/gun_normal/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 6,\
-				/obj/item/weapon/gun/projectile/automatic/zoric = 3,\
-				/obj/item/weapon/gun/projectile/automatic/atreides = 5,\
 				/obj/item/weapon/gun/projectile/avasarala = 7,\
 				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 9,\
 				/obj/item/weapon/gun/projectile/colt = 12,\
 				/obj/item/weapon/gun/projectile/revolver/consul = 12,\
 				/obj/item/weapon/gun/projectile/revolver = 10,\
 				/obj/item/weapon/gun/projectile/revolver/deckard = 8,\
+				/obj/item/weapon/gun/projectile/automatic/zoric = 3,\
+				/obj/item/weapon/gun/projectile/automatic/atreides = 5,\
 				/obj/item/weapon/gun/projectile/automatic/wintermute = 2,\
 				/obj/item/weapon/gun/projectile/automatic/sol = 4,\
 				/obj/item/weapon/gun/projectile/automatic/ak47/fs = 5,\
@@ -70,21 +70,12 @@
 	spawn_nothing_percentage = 75
 
 
-/obj/random/gun_shotgun
+/obj/spawner/gun_shotgun
 	name = "random shotgun"
 	icon_state = "gun-red"
+	tags_to_spawn = list(SPAWN_GUN_SHOTGUN)
 
-/obj/random/gun_shotgun/item_to_spawn()
-	return pickweight(list(
-				/obj/item/weapon/gun/projectile/shotgun/pump = 2,
-				/obj/item/weapon/gun/projectile/shotgun/bull = 2,
-				/obj/item/weapon/gun/projectile/shotgun/doublebarrel = 2,
-				/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn = 2,
-				/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 1,
-				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 1,
-				/obj/item/weapon/gun/energy/shrapnel = 1))
-
-/obj/random/gun_shotgun/low_chance
+/obj/spawner/gun_shotgun/low_chance
 	name = "low chance random shotgun"
 	icon_state = "gun-red-low"
 	spawn_nothing_percentage = 75

@@ -119,31 +119,31 @@
 /area/crawler)
 "x" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun,
-/obj/random/gun_shotgun/low_chance,
+/obj/spawner/gun_shotgun,
+/obj/spawner/gun_shotgun/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "y" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun/low_chance,
+/obj/spawner/gun_shotgun/low_chance,
 /obj/random/gun_normal/low_chance,
 /obj/random/gun_energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "z" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun/low_chance,
+/obj/spawner/gun_shotgun/low_chance,
 /obj/random/gun_normal/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "A" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun,
+/obj/spawner/gun_shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "B" = (
 /obj/structure/table/rack,
-/obj/random/gun_shotgun/low_chance,
+/obj/spawner/gun_shotgun/low_chance,
 /obj/random/gun_energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)

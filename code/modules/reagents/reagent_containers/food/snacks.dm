@@ -2724,7 +2724,6 @@
 	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, "cheese" = 15)
 	nutriment_amt = 35
 	preloaded_reagents = list("protein" = 5, "tomatojuice" = 6)
-	taste_tag = list(CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/margheritaslice
 	name = "Margherita slice"
