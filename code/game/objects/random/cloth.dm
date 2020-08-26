@@ -107,28 +107,13 @@
 	spawn_nothing_percentage = 60
 
 
-/obj/random/cloth/helmet
+/obj/spawner/cloth/helmet
 	name = "random helmet"
 	desc = "This is a random helmet."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_CLOTHING_HEAD_HELMET)
 
-/obj/random/cloth/helmet/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/head/armor/helmet = 20,
-				/obj/item/clothing/head/armor/helmet/visor = 15,
-				/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg = 10,
-				/obj/item/clothing/head/armor/helmet/dermal = 2,
-				/obj/item/clothing/head/armor/helmet/ironhammer = 2,
-				/obj/item/clothing/head/armor/bulletproof = 10,
-				/obj/item/clothing/head/armor/laserproof = 4,
-				/obj/item/clothing/head/armor/riot = 4,
-				/obj/item/clothing/head/armor/steelpot = 10,
-				/obj/item/clothing/head/armor/altyn = 2,
-				/obj/item/clothing/head/armor/altyn/brown = 2,
-				/obj/item/clothing/head/armor/altyn/black = 2,
-				/obj/item/clothing/head/armor/altyn/maska = 1,
-				/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle = 18))
-
-/obj/random/cloth/helmet/low_chance
+/obj/spawner/cloth/helmet/low_chance
 	name = "low chance random helmet"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
