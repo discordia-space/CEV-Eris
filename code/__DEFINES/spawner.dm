@@ -106,9 +106,11 @@
 #define SPAWN_TAG_GUN_UPGRADE "obj,item,gun,gun_upgrade"
 
 //	Items - GUNS - ammo
+#define SPAWN_AMMO_IH "ammo_ih"
 #define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
 
-#define SPAWN_TAG_AMMO_SHOTGUN "obj,item,storage,gun,ammmo_storage,ammmo_storage_shotgun"
+#define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
+#define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammo_ih,ammmo_storage"
 
 //	Items - TOYS
 #define SPAWN_TOY "toy"
