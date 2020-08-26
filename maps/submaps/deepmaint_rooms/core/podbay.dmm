@@ -47,7 +47,7 @@
 "aU" = (/obj/structure/bed/chair/shuttle{tag = "icon-shuttle_chair (NORTH)"; icon_state = "shuttle_chair"; dir = 1},/obj/machinery/light,/obj/random/junk,/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
 "aV" = (/obj/structure/bed/chair/shuttle{tag = "icon-shuttle_chair (NORTH)"; icon_state = "shuttle_chair"; dir = 1},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
 "aW" = (/obj/structure/table/rack,/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
-"aX" = (/obj/structure/table/rack,/obj/random/firstaid,/obj/random/firstaid,/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
+"aX" = (/obj/structure/table/rack,/obj/spawner/firstaid,/obj/spawner/firstaid,/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
 "aY" = (/turf/simulated/shuttle/wall/escpod{tag = "icon-escpodwall12"; icon_state = "escpodwall12"},/area/deepmaint)
 "aZ" = (/obj/structure/shuttle_part/escpod{tag = "icon-escpodwall13"; icon_state = "escpodwall13"},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "ba" = (/turf/simulated/shuttle/wall/escpod,/area/deepmaint)

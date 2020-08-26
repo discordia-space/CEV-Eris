@@ -42,18 +42,12 @@
 	icon_state = "meds-grey-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/firstaid
+/obj/spawner/firstaid
 	name = "random first aid kit"
 	icon_state = "meds-red"
+	tags_to_spawn = list(SPAWN_FIRSTAID)
 
-/obj/random/firstaid/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/firstaid/regular = 3,\
-				/obj/item/weapon/storage/firstaid/toxin = 2,\
-				/obj/item/weapon/storage/firstaid/o2 = 2,\
-				/obj/item/weapon/storage/firstaid/adv = 1,\
-				/obj/item/weapon/storage/firstaid/fire = 2))
-
-/obj/random/firstaid/low_chance
+/obj/spawner/firstaid/low_chance
 	name = "low chance random first aid kit"
 	icon_state = "meds-red-low"
 	spawn_nothing_percentage = 60

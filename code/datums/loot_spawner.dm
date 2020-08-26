@@ -22,7 +22,7 @@
 	var/list/accompanying_objs = list()
 	var/list/bad_paths = list()
 
-	//Initialise all
+	//Initialise all paths
 	paths = subtypesof(/obj/item)
 	paths += subtypesof(/mob/living)
 	paths += subtypesof(/obj/machinery)
@@ -112,8 +112,8 @@
 	return things
 
 /datum/loot_spawner_data/proc/spawns_lower_price(list/paths, price)
-	if(!paths || !paths.len || !price)
-		return
+	//if(!paths || !paths.len || !price)
+	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		if(all_spawn_price_by_path[path] < price)
@@ -121,8 +121,8 @@
 	return things
 
 /datum/loot_spawner_data/proc/spawns_upper_price(list/paths, price)
-	if(!paths || !paths.len || !price)
-		return
+	//if(!paths || !paths.len || !price)
+	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		if(all_spawn_price_by_path[path] > price)
@@ -134,8 +134,8 @@
 	//	admin_notice(SPAN_DANGER("entro algo que no es una lista en las frequencias"))
 	//if(!paths.len)
 	//	admin_notice(SPAN_DANGER("NO HAY NINGUNA LISTA DE ningun path entró en las frequencias"))
-	if(!paths || !paths.len)
-		return
+	//if(!paths || !paths.len)
+	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		var/frequency_path = all_spawn_frequency_by_path[path]
@@ -157,8 +157,8 @@
 	//	admin_notice(SPAN_DANGER("entro algo que no es una lista en las rarezas"))
 	//if(!paths.len)
 	//	admin_notice(SPAN_DANGER("entro una lista vacia en las rarezas"))
-	if(!paths || !paths.len)
-		return
+	//if(!paths || !paths.len)
+	//	return
 	var/list/things = list()
 	for(var/path in paths)
 		var/rarity_path = 101-all_spawn_rarity_by_path[path]

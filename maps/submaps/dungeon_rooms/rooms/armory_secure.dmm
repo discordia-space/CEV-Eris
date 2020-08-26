@@ -48,7 +48,7 @@
 /area/crawler)
 "k" = (
 /obj/random/mob/roomba,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "l" = (

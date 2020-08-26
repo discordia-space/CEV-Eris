@@ -126,11 +126,13 @@
 #define SPAWN_POUCH "pouch"
 #define SPAWN_BELT "belt"
 #define SPAWN_BOX "box"
+#define SPAWN_FIRSTAID "firstaid"
 
 #define SPAWN_TAG_TOOLBOX "item,storage,toolbox"
 #define SPAWN_TAG_POUCH "item,storage,pouch"
 #define SPAWN_TAG_BELT "item,storage,belt"
 #define SPAWN_TAG_BOX "item,storage,box"
+#define SPAWN_TAG_FIRSTAID "item,storage,firstaid"
 
 // ITEM - STOCK PARTS
 #define SPAWN_STOCK_PARTS "stock_parts"

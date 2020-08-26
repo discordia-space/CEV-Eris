@@ -310,14 +310,14 @@
 "bC" = (
 /obj/structure/table/reinforced,
 /obj/random/medical,
-/obj/random/firstaid,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bD" = (
 /obj/structure/table/reinforced,
 /obj/random/medical,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bE" = (

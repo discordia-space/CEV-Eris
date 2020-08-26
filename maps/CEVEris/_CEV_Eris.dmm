@@ -13093,7 +13093,7 @@
 /area/eris/security/exerooms)
 "aDZ" = (
 /obj/random/junk,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aEa" = (
@@ -16624,7 +16624,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aNc" = (
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aNd" = (
@@ -22884,7 +22884,7 @@
 /area/eris/maintenance/section1deck4central)
 "bap" = (
 /obj/structure/table/standard,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "baq" = (
@@ -28599,7 +28599,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "blK" = (
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "blL" = (
@@ -30319,9 +30319,9 @@
 /area/eris/maintenance/section3deck1central)
 "bpC" = (
 /obj/structure/table/standard,
-/obj/random/firstaid,
-/obj/random/firstaid/low_chance,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck1central)
 "bpD" = (
@@ -41177,7 +41177,7 @@
 /area/eris/engineering/propulsion/right)
 "bNd" = (
 /obj/structure/table/standard,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section4deck4port)
 "bNe" = (
@@ -45328,7 +45328,7 @@
 /area/eris/hallway/side/section3port)
 "bWl" = (
 /obj/structure/table/reinforced,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "bWm" = (
@@ -47680,10 +47680,10 @@
 /area/eris/command/fo)
 "cbB" = (
 /obj/structure/closet/crate/medical,
-/obj/random/firstaid,
-/obj/random/firstaid,
-/obj/random/firstaid/low_chance,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cbC" = (
@@ -48519,7 +48519,7 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck3port)
 "cdw" = (
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "cdx" = (
@@ -51698,7 +51698,7 @@
 /obj/structure/closet/crate,
 /obj/random/medical_lowcost,
 /obj/random/medical_lowcost,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "ckE" = (
@@ -56841,7 +56841,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/tank/jetpack/carbondioxide,
 /obj/item/weapon/pinpointer,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
 "cwW" = (
@@ -76244,7 +76244,7 @@
 "dow" = (
 /obj/structure/table/rack,
 /obj/random/gun_cheap/low_chance,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /obj/random/material,
 /obj/random/material,
 /obj/random/material,
@@ -79852,7 +79852,7 @@
 /obj/machinery/light,
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/toolbox/emergency,
-/obj/random/firstaid,
+/obj/spawner/firstaid,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/bridge)
 "dwK" = (
@@ -79894,8 +79894,8 @@
 "dwN" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/random/firstaid/low_chance,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwO" = (
@@ -83931,7 +83931,7 @@
 /area/eris/storage/primary)
 "dGq" = (
 /obj/random/pack/machine,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dGr" = (

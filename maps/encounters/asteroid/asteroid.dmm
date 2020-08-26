@@ -134,7 +134,7 @@
 "aF" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/firstaid/low_chance,
+/obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aG" = (
