@@ -45,7 +45,7 @@
 /mob/living/simple_animal/hostile/stranger/death()
 	..()
 	var/obj/item/weapon/gun/energy/plasma/stranger/S = new /obj/item/weapon/gun/energy/plasma/stranger(src.loc)
-	S.cell = new S.suitable_cell
+	S.cell = new S.suitable_cell(S)
 	S.cell.charge = S.cell.maxcharge/2
 	if(empy_cell)
 		S.cell.charge = 0
@@ -123,17 +123,17 @@
 	icon_state = "lancer"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
 	price_tag = 5000
-	charge_cost = 7
-	fire_delay = 8
+	charge_cost = 5
+	fire_delay = 5
 	one_hand_penalty = 5
 	twohanded = FALSE
 	suitable_cell = /obj/item/weapon/cell/small
 
 	init_firemodes = list(
-		list(mode_name="burn", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, move_delay=null, charge_cost=null, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="melt", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=12, move_delay=null, charge_cost=10, icon="kill", projectile_color = "#FF0000"),
-		list(mode_name="INCINERATE", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=14, move_delay=null, charge_cost=15, icon="destroy", projectile_color = "#FFFFFF"),
-		list(mode_name="VAPORIZE", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=3, charge_cost=20, icon="vaporize", projectile_color = "#FFFFFF", recoil_buildup=3)
+		list(mode_name="burn", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=5, move_delay=null, charge_cost=4, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="melt", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=10, move_delay=null, charge_cost=8, icon="kill", projectile_color = "#FF0000"),
+		list(mode_name="INCINERATE", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, move_delay=null, charge_cost=12, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="VAPORIZE", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=16, icon="vaporize", projectile_color = "#FFFFFF", recoil_buildup=3)
 	)
 
 /obj/item/weapon/gun/energy/plasma/stranger/update_icon(ignore_inhands)
