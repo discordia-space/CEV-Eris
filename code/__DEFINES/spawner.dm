@@ -150,6 +150,13 @@
 #define SPAWN_TAG_STOCK_PARTS "item,stock_parts"
 #define SPAWN_TAG_STOCK_PARTS_OS "item,stock_parts,stock_parts_os,item_tech_os,faction_os"
 
+// ITEM - DRIKS
+
+// ITEM - DRIKS - BOOZE
+#define SPAWN_BOOZE "bottle_alcohol"
+
+#define SPAWN_TAG_BOOZE "item,drink,bottle_drink,bottle_alcohol"
+
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
 #define SPAWN_MECH_QUIPMENT "mech_equipment"

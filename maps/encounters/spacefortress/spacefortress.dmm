@@ -74,7 +74,7 @@
 "ar" = (
 /obj/structure/table/reinforced,
 /obj/random/tool,
-/obj/random/booze,
+/obj/spawner/booze,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "as" = (
@@ -106,7 +106,7 @@
 /area/outpost/abandoned_fortress)
 "ay" = (
 /obj/structure/table/reinforced,
-/obj/random/booze,
+/obj/spawner/booze,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "az" = (
@@ -129,8 +129,8 @@
 /area/outpost/abandoned_fortress)
 "aD" = (
 /obj/structure/table/reinforced,
-/obj/random/booze,
-/obj/random/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aE" = (

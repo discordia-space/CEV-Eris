@@ -230,8 +230,8 @@
 	name = "liquor crate"
 	desc = "A moderately sized crate full of various alcoholic drinks."
 	icon_state = "serbcrate_deferred_worn"
-	initial_contents = list(/obj/random/booze = 10,
-	/obj/random/booze/low_chance = 10,
+	initial_contents = list(/obj/spawner/booze = 10,
+	/obj/spawner/booze/low_chance = 10,
 	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 3)
 
 /obj/item/weapon/storage/deferred/crate/uniform_green

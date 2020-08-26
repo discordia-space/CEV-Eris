@@ -5,9 +5,9 @@
 /obj/random/medical/item_to_spawn()
 	return pickweight(list(/obj/item/stack/medical/bruise_pack = 4,\
 				/obj/item/stack/medical/ointment = 4,\
+				/obj/item/stack/medical/splint = 1,\
 				/obj/item/stack/medical/advanced/bruise_pack = 2,\
 				/obj/item/stack/medical/advanced/ointment = 2,\
-				/obj/item/stack/medical/splint = 1,\
 				/obj/item/bodybag = 2,\
 				/obj/item/bodybag/cryobag = 1,\
 				/obj/item/weapon/storage/pill_bottle/kelotane = 2,\

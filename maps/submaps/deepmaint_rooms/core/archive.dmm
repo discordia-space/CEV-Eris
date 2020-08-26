@@ -19,7 +19,7 @@
 "as" = (/obj/structure/flora/pottedplant{tag = "icon-plant-21"; icon_state = "plant-21"},/turf/simulated/floor/wood,/area/deepmaint)
 "at" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "au" = (/obj/structure/bed/chair/comfy/black{dir = 1},/turf/simulated/floor/wood,/area/deepmaint)
-"av" = (/obj/structure/table/rack,/obj/random/booze,/obj/random/booze,/obj/random/booze,/obj/random/booze/low_chance,/obj/random/booze/low_chance,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
+"av" = (/obj/structure/table/rack,/obj/spawner/booze,/obj/spawner/booze,/obj/spawner/booze,/obj/spawner/booze/low_chance,/obj/spawner/booze/low_chance,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
 "aw" = (/obj/structure/bookcase,/turf/simulated/floor/wood,/area/deepmaint)
 "ax" = (/obj/structure/table/woodentable,/obj/machinery/librarypubliccomp,/turf/simulated/floor/wood,/area/deepmaint)
 "ay" = (/obj/machinery/door/airlock/glass,/obj/structure/girder,/obj/structure/barricade,/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)

@@ -365,7 +365,7 @@
 	new /obj/random/junkfood(src)
 	new /obj/random/junkfood/low_chance(src)
 	new /obj/random/junkfood/low_chance(src)
-	new /obj/random/booze/low_chance(src)
+	new /obj/spawner/booze/low_chance(src)
 
 /obj/item/weapon/storage/freezer/medical
 	name = "organ freezer"

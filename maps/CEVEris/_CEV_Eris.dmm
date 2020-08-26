@@ -26961,7 +26961,7 @@
 /area/eris/maintenance/section3deck1central)
 "bix" = (
 /obj/structure/table/standard,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "biy" = (
@@ -30736,7 +30736,7 @@
 /area/eris/quartermaster/hangarsupply)
 "bqB" = (
 /obj/structure/table/standard,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /obj/spawner/knife/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
@@ -31426,7 +31426,7 @@
 /area/eris/maintenance/section3deck1central)
 "bss" = (
 /obj/structure/table/woodentable,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/librarybackroom)
 "bst" = (
@@ -34340,7 +34340,7 @@
 /area/eris/maintenance/section3deck4central)
 "byO" = (
 /obj/structure/table/standard,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section3deck1central)
 "byP" = (
@@ -51940,9 +51940,9 @@
 "clm" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
-/obj/random/booze,
-/obj/random/booze,
-/obj/random/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "cln" = (
@@ -59564,11 +59564,11 @@
 /area/eris/crew_quarters/hydroponics)
 "cCB" = (
 /obj/structure/table/rack,
-/obj/random/booze,
-/obj/random/booze,
-/obj/random/booze,
-/obj/random/booze/low_chance,
-/obj/random/booze/low_chance,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCC" = (
@@ -60260,8 +60260,8 @@
 /area/eris/maintenance/section3deck4central)
 "cEf" = (
 /obj/structure/closet/cabinet,
-/obj/random/booze,
-/obj/random/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
 /obj/random/pack/rare,
 /turf/simulated/floor/carpet,
 /area/eris/quartermaster/office)
@@ -83213,8 +83213,8 @@
 /area/eris/medical/medbreak)
 "dEw" = (
 /obj/structure/closet/cabinet,
-/obj/random/booze,
-/obj/random/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
 /obj/machinery/firealarm{
@@ -83740,7 +83740,7 @@
 /area/eris/maintenance/section1deck1central)
 "dFQ" = (
 /obj/structure/table/standard,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck1central)
@@ -83940,8 +83940,8 @@
 /area/eris/maintenance/section1deck5central)
 "dGs" = (
 /obj/random/pack/machine,
-/obj/random/booze/low_chance,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dGt" = (
@@ -84727,10 +84727,10 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHX" = (
-/obj/random/booze/low_chance,
-/obj/random/booze/low_chance,
-/obj/random/booze/low_chance,
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHY" = (
@@ -85031,7 +85031,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/bridge)
 "dIC" = (
-/obj/random/booze/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dID" = (
@@ -93279,7 +93279,7 @@
 /area/eris/hallway/side/section3starboard)
 "eaL" = (
 /obj/structure/table/rack/shelf,
-/obj/random/booze,
+/obj/spawner/booze,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section3deck3starboard)
 "eaM" = (

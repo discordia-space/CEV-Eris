@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	rarity_value = 5.77
 	loot_list = list(
 		/obj/random/junkfood = 5,
-		/obj/random/booze,
+		/obj/spawner/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/random/junk/nondense,

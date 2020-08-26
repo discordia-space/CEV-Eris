@@ -1,7 +1,7 @@
 /datum/stash/booze
 	base_type = /datum/stash/booze
 	loot_type = "Booze"
-	contents_list_base = list(/obj/random/booze = 10, /obj/random/booze/low_chance = 10, /obj/spawner/credits/c1000 = 1)
+	contents_list_base = list(/obj/spawner/booze = 10, /obj/spawner/booze/low_chance = 10, /obj/spawner/credits/c1000 = 1)
 
 /*
 /datum/stash/booze/distillers
