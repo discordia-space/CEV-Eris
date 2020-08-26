@@ -95,7 +95,7 @@
 #define RANDOM_RARE_ITEM list(\
 					/obj/spawner/oddities = 8,\
 					/obj/spawner/material_rare = 3,\
-					/obj/random/tool/advanced = 5,\
+					/obj/spawner/tool/advanced = 5,\
 					/obj/random/gun_normal = 3,\
 					/obj/random/lathe_disk/advanced = 2,\
 					/obj/item/weapon/cell/small/moebius/nuclear = 1,\

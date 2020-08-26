@@ -107006,7 +107006,7 @@
 	pixel_x = -22
 	},
 /obj/structure/closet/secure_closet/personal/engineering_personal,
-/obj/random/tool/advanced/low_chance,
+/obj/spawner/tool/advanced/low_chance,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "eEP" = (
@@ -107015,7 +107015,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/obj/random/tool/advanced/low_chance,
+/obj/spawner/tool/advanced/low_chance,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "eEQ" = (
@@ -107041,12 +107041,12 @@
 "eES" = (
 /obj/structure/closet/secure_closet/personal/engineering_personal,
 /obj/structure/disposalpipe/segment,
-/obj/random/tool/advanced/low_chance,
+/obj/spawner/tool/advanced/low_chance,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "eET" = (
 /obj/structure/closet/secure_closet/personal/engineering_personal,
-/obj/random/tool/advanced/low_chance,
+/obj/spawner/tool/advanced/low_chance,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/breakroom)
 "eEU" = (

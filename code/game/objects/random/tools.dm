@@ -60,30 +60,15 @@
 	spawn_nothing_percentage = 60
 
 
-/obj/random/tool/advanced
+/obj/spawner/tool/advanced
 	name = "random advanced tool"
 	icon_state = "tool-orange"
+	tags_to_spawn = list(SPAWN_ADVANCED_TOOL)
 
-/obj/random/tool/advanced/item_to_spawn()
-	return pickweight(list(
-				/obj/item/weapon/tool/screwdriver/combi_driver = 3,
-				/obj/item/weapon/tool/wirecutters/armature = 3,
-				/obj/item/weapon/tool/omnitool = 2,
-				/obj/item/weapon/tool/crowbar/pneumatic = 3,
-				/obj/item/weapon/tool/wrench/big_wrench = 3,
-				/obj/item/weapon/tool/weldingtool/advanced = 3,
-				/obj/item/weapon/tool/saw/circular/advanced = 2,
-				/obj/item/weapon/tool/saw/chain = 1,
-				/obj/item/weapon/tool/saw/hyper = 1,
-				/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
-				/obj/item/weapon/tool/tape_roll/fiber = 2,
-				/obj/item/weapon/tool/fireaxe = 1))
-
-/obj/random/tool/advanced/low_chance
+/obj/spawner/tool/advanced/low_chance
 	name = "low chance advanced tool"
 	icon_state = "tool-orange-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/spawner/toolbox
 	name = "random toolbox"

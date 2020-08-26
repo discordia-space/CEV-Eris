@@ -13,7 +13,7 @@
 	/obj/random/pack/rare = 30,
 	/obj/spawner/lowkeyrandom = 40,
 	/obj/spawner/lowkeyrandom = 40,
-	/obj/random/tool/advanced = 70)
+	/obj/spawner/tool/advanced = 70)
 /*
 /datum/stash/junk/inspection
 	story_type = STORY_CRIME

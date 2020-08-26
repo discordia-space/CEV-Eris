@@ -146,6 +146,7 @@
 	use_fuel_cost = 0.07
 	max_fuel = 120
 	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 	use_fuel_cost = 0

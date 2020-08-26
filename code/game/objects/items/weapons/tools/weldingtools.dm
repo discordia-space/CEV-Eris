@@ -66,7 +66,6 @@
 	name = "advanced welding tool"
 	icon_state = "adv_welder"
 	item_state = "adv_welder"
-	rarity_value = 24
 	glow_color = COLOR_BLUE_LIGHT
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
@@ -74,6 +73,8 @@
 	heat = 3773
 	degradation = 0.7
 	max_upgrades = 4
+	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/weldingtool/onestar
 	name = "One Star welding tool"

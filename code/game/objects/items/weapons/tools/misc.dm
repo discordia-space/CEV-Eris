@@ -14,6 +14,7 @@
 	glow_color = COLOR_ORANGE
 	max_upgrades = 2
 	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/medmultitool
 	name = "One Star medmultitool"

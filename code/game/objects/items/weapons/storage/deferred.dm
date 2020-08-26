@@ -146,7 +146,7 @@
 	desc = "A moderately sized crate full of assorted tools."
 	icon_state = "serbcrate_deferred_brown"
 	initial_contents = list(/obj/random/tool = 13,
-	/obj/random/tool/advanced = 2)
+	/obj/spawner/tool/advanced = 2)
 
 
 /obj/item/weapon/storage/deferred/crate/saw

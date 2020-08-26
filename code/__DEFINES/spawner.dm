@@ -9,10 +9,12 @@
 #define SPAWN_TOOL "tool"
 #define SPAWN_TOOL_UPGRADE "tool_upgrade"
 #define SPAWN_RARE_TOOL_UPGRADE "rare_tool_upgrade"
+#define SPAWN_ADVANCED_TOOL "advanced_tool"
 
 #define SPAWN_TAG_TOOL "item,tool"
 #define SPAWN_TAG_TOOL_UPGRADE "item,tool,tool_upgrade"
 #define SPAWN_TAG_RARE_TOOL_UPGRADE "item,tool,tool_upgrade,rare_tool_upgrade"
+#define SPAWN_TAG_TOOL_ADVANCED "item,tool,advanced_tool"
 
 //	Items - tools - knife
 #define SPAWN_KNIFE "knife"
@@ -150,7 +152,7 @@
 #define SPAWN_MECH_QUIPMENT "mech_equipment"
 
 #define SPAWN_TAG_MECH "mech,mech_premade"
-#define SPAWN_TAG_MECH_QUIPMENT "mech,mech_equipment"
+#define SPAWN_TAG_MECH_QUIPMENT "mech,item,mech_equipment"
 
 
 //	MACHINERY
@@ -221,7 +223,7 @@
 #define SPAWN_TAG_SATELITE "strcuture,encouter,strcuture_satelite"
 #define SPAWN_TAG_OMINOUS "strcuture,encouter,strcuture_ominous"
 #define SPAWN_TAG_STRANGEBEACON "strcuture,encouter,strangebeacon"
-#define SPAWN_TAG_BOT_OS "mob,bot,bot_os,faction_os"
+#define SPAWN_TAG_BOT_OS "mob,bot,bot_os,faction_os,encouter"
 
 //	Mobs
 #define SPAWN_MOB "mob"

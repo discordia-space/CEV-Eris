@@ -35,3 +35,4 @@
 	degradation = 0.7
 	max_upgrades = 4
 	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

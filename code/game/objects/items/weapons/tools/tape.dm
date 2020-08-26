@@ -32,6 +32,7 @@
 	use_stock_cost = 0.10
 	max_stock = 100
 	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/tape_roll/attack(mob/living/carbon/human/H, mob/user)
 	if(istype(H))

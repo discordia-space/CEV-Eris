@@ -49,3 +49,4 @@
 	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium
 	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

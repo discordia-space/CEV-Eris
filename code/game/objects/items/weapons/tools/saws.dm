@@ -68,6 +68,7 @@
 	use_fuel_cost = 0.1
 	max_fuel = 80
 	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/saw/hyper //tier 4, focusing on damage, cell variant
 	name = "TM hypersaw"
@@ -85,3 +86,4 @@
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
 	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

@@ -47,6 +47,7 @@
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 4
 	rarity_value = 48
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M) || user.a_intent == "help")
