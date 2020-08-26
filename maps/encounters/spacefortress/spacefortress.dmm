@@ -59,7 +59,7 @@
 "ao" = (
 /obj/structure/table/reinforced,
 /obj/random/tool,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ap" = (
@@ -185,8 +185,8 @@
 /obj/random/contraband/low_chance,
 /obj/random/contraband/low_chance,
 /obj/spawner/powercell/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aS" = (
@@ -203,8 +203,8 @@
 /area/outpost/abandoned_fortress)
 "bb" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bc" = (
@@ -224,8 +224,8 @@
 /area/outpost/abandoned_fortress)
 "bi" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bj" = (
@@ -234,8 +234,8 @@
 /area/outpost/abandoned_fortress)
 "bk" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/electronics,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
@@ -448,9 +448,9 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ce" = (
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cf" = (

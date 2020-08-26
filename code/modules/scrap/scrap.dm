@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/all_mixed.dmi'
 	rarity_value = 2.46
 	loot_list = list(
-		/obj/random/lowkeyrandom = 5,
+		/obj/spawner/lowkeyrandom = 5,
 		/obj/random/junk/nondense = 4,
 		/obj/item/stack/rods/random = 3,
 		/obj/spawner/oddities = 0.5,

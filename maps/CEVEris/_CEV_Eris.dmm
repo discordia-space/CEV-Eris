@@ -482,7 +482,7 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "abv" = (
@@ -605,9 +605,9 @@
 /area/eris/maintenance/section1deck5central)
 "abJ" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5starboard)
@@ -2213,7 +2213,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/contraband/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 1, floor 1. Permabrig toilet."
@@ -2374,8 +2374,8 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "afM" = (
@@ -2388,7 +2388,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "afN" = (
@@ -3574,10 +3574,10 @@
 /area/eris/maintenance/section1deck5central)
 "ait" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck5central)
 "aiu" = (
@@ -4564,8 +4564,8 @@
 /turf/simulated/floor/tiled/dark/bluecorner,
 /area/eris/security/exerooms)
 "akr" = (
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "aks" = (
@@ -4588,8 +4588,8 @@
 /area/eris/maintenance/section1deck5central)
 "aku" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
@@ -5920,9 +5920,9 @@
 /area/eris/crew_quarters/toilet/medbay)
 "anu" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/toilet/medbay)
 "anv" = (
@@ -6274,8 +6274,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "aoe" = (
@@ -6574,9 +6574,9 @@
 /area/eris/rnd/podbay)
 "aoP" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aoQ" = (
@@ -10240,8 +10240,8 @@
 /area/eris/rnd/xenobiology)
 "axn" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/junkfood/rotten/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 1. Go all the way through the maints east from Emergency Pod."
@@ -11137,10 +11137,10 @@
 /area/eris/maintenance/junk)
 "azr" = (
 /obj/structure/table/reinforced,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "azs" = (
@@ -12303,10 +12303,10 @@
 /area/eris/security/main)
 "aBZ" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "aCa" = (
@@ -12641,7 +12641,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/security/main)
 "aCQ" = (
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aCR" = (
@@ -14495,8 +14495,8 @@
 /obj/machinery/camera/network/fourth_section{
 	dir = 8
 	},
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
@@ -15964,12 +15964,12 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aLt" = (
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aLu" = (
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aLv" = (
@@ -16306,7 +16306,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aMl" = (
@@ -16930,10 +16930,10 @@
 /area/eris/maintenance/section3deck1central)
 "aNK" = (
 /obj/structure/closet,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/rare,
@@ -16941,10 +16941,10 @@
 /area/eris/maintenance/section3deck1central)
 "aNL" = (
 /obj/structure/closet,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -17249,7 +17249,7 @@
 /area/eris/maintenance/section1deck3central)
 "aOx" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aOy" = (
@@ -17390,9 +17390,9 @@
 /area/eris/maintenance/section4deck5port)
 "aOS" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -20026,9 +20026,9 @@
 /area/eris/security/prisoncells)
 "aUD" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -23133,10 +23133,10 @@
 /area/turret_protected/ai)
 "baW" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "baX" = (
@@ -25044,8 +25044,8 @@
 "beb" = (
 /obj/structure/table/standard,
 /obj/machinery/camera/network/fourth_section,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bec" = (
@@ -25104,16 +25104,16 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bek" = (
 /obj/structure/closet,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck4port)
 "bel" = (
@@ -25509,7 +25509,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bfb" = (
@@ -26814,7 +26814,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "big" = (
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bih" = (
@@ -27012,8 +27012,8 @@
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
 "biE" = (
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "biF" = (
@@ -27302,7 +27302,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bjh" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4port)
@@ -27382,8 +27382,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack,
 /obj/random/contraband/low_chance,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "bjq" = (
@@ -28679,7 +28679,7 @@
 /area/eris/crew_quarters/sleep/cryo)
 "blW" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /obj/random/material/low_chance,
 /obj/random/material/low_chance,
 /obj/random/material/low_chance,
@@ -28708,9 +28708,9 @@
 "bma" = (
 /obj/structure/closet,
 /obj/random/pack/gun_loot/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bmb" = (
@@ -30068,8 +30068,8 @@
 /area/eris/maintenance/section3deck1central)
 "boV" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck1central)
 "boW" = (
@@ -30638,8 +30638,8 @@
 /area/eris/maintenance/section3deck4central)
 "bqn" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bqo" = (
@@ -30832,7 +30832,7 @@
 /turf/simulated/wall,
 /area/eris/maintenance/section1deck3central)
 "bqQ" = (
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bqR" = (
@@ -31014,8 +31014,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "brn" = (
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bro" = (
@@ -31231,8 +31231,8 @@
 "brN" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/open,
 /area/eris/maintenance/section4deck4port)
 "brO" = (
@@ -31250,7 +31250,7 @@
 /area/eris/maintenance/section1deck3central)
 "brQ" = (
 /obj/structure/table/reinforced,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck3central)
 "brR" = (
@@ -31333,7 +31333,7 @@
 /obj/structure/table/rack,
 /obj/spawner/tank,
 /obj/random/contraband/low_chance,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bse" = (
@@ -35299,9 +35299,9 @@
 /area/eris/maintenance/section1deck3central)
 "bAS" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bAT" = (
@@ -35870,7 +35870,7 @@
 	pixel_y = 8
 	},
 /obj/structure/table/reinforced,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck3central)
 "bCk" = (
@@ -36072,7 +36072,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck3central)
 "bCK" = (
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck3central)
 "bCL" = (
@@ -36114,9 +36114,9 @@
 /area/eris/medical/medbay/iso)
 "bCR" = (
 /obj/structure/closet/oldstyle,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/ammo_ihs/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
@@ -36167,9 +36167,9 @@
 /area/eris/maintenance/section1deck3central)
 "bCX" = (
 /obj/structure/closet/oldstyle,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/gun_cheap/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
@@ -38031,7 +38031,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section4)
 "bGU" = (
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bGV" = (
@@ -40433,13 +40433,13 @@
 /area/eris/maintenance/section4deck4central)
 "bLA" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section4deck4port)
 "bLB" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section4deck4port)
 "bLC" = (
@@ -41218,7 +41218,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck2central)
 "bNk" = (
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck4port)
 "bNl" = (
@@ -41842,10 +41842,10 @@
 /area/eris/maintenance/section4deck4port)
 "bOu" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bOv" = (
@@ -44081,7 +44081,7 @@
 /area/eris/maintenance/section2deck3starboard)
 "bTt" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3starboard)
 "bTu" = (
@@ -45167,20 +45167,20 @@
 "bVR" = (
 /obj/structure/closet/crate,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "bVS" = (
@@ -48610,15 +48610,15 @@
 "cdH" = (
 /obj/structure/closet/crate,
 /obj/random/pack/tech_loot,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cdI" = (
@@ -50069,8 +50069,8 @@
 /obj/structure/closet,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck4port)
 "cgH" = (
@@ -51863,7 +51863,7 @@
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "clb" = (
@@ -55346,7 +55346,7 @@
 /area/eris/hallway/side/section3port)
 "ctm" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/quartermaster/office)
 "ctn" = (
@@ -56416,7 +56416,7 @@
 /obj/spawner/powercell,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck3port)
 "cwf" = (
@@ -56964,7 +56964,7 @@
 /obj/random/medical_lowcost/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck3port)
 "cxg" = (
@@ -59185,10 +59185,10 @@
 "cBS" = (
 /obj/structure/table/rack,
 /obj/spawner/tank,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/bridgehallway)
 "cBT" = (
@@ -59421,9 +59421,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/janitor)
 "cCq" = (
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cCr" = (
@@ -59668,7 +59668,7 @@
 /area/eris/engineering/engine_room)
 "cCO" = (
 /obj/random/junk/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cCP" = (
@@ -60420,7 +60420,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "cEy" = (
@@ -61407,9 +61407,9 @@
 /area/eris/maintenance/section1deck2central)
 "cGG" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck2central)
 "cGH" = (
@@ -61437,8 +61437,8 @@
 /area/eris/maintenance/section1deck2central)
 "cGK" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck2central)
 "cGL" = (
@@ -61911,7 +61911,7 @@
 /area/eris/medical/medbay)
 "cHV" = (
 /obj/structure/closet/firecloset,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "cHW" = (
@@ -61943,7 +61943,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "cIb" = (
@@ -64074,7 +64074,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/hallway/side/section3starboard)
 "cNg" = (
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cNh" = (
@@ -64283,11 +64283,11 @@
 /area/eris/maintenance/section3deck3starboard)
 "cNJ" = (
 /obj/structure/closet,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "cNL" = (
@@ -64521,10 +64521,10 @@
 "cOs" = (
 /obj/structure/closet,
 /obj/random/ammo_ihs/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "cOt" = (
@@ -64859,9 +64859,9 @@
 "cPl" = (
 /obj/structure/closet,
 /obj/random/ammo_ihs/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "cPm" = (
@@ -66205,7 +66205,7 @@
 /obj/item/device/lighting/glowstick/flare,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/hallway/main/section2)
 "cSx" = (
@@ -66858,7 +66858,7 @@
 /area/eris/maintenance/section2deck2port)
 "cTZ" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
 "cUa" = (
@@ -67246,8 +67246,8 @@
 	icon_state = "map";
 	dir = 8
 	},
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cVb" = (
@@ -67510,7 +67510,7 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cVD" = (
@@ -75119,7 +75119,7 @@
 /area/eris/maintenance/section3deck4port)
 "dmh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "dmi" = (
@@ -75140,7 +75140,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "dml" = (
@@ -76863,16 +76863,16 @@
 /area/eris/maintenance/section1deck1central)
 "dpU" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section1deck1central)
 "dpV" = (
@@ -78296,9 +78296,9 @@
 /area/eris/hallway/main/section2)
 "dtj" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "dtk" = (
@@ -80972,9 +80972,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section1deck1central)
 "dzu" = (
@@ -81534,8 +81534,8 @@
 /area/eris/maintenance/section2deck1port)
 "dAH" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -82360,7 +82360,7 @@
 /obj/structure/closet/oldstyle,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck1central)
 "dCy" = (
@@ -83570,9 +83570,9 @@
 /area/eris/crew_quarters/janitor)
 "dFo" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4central)
 "dFp" = (
@@ -84057,8 +84057,8 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/pubeva)
 "dGF" = (
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /obj/spawner/tank,
 /obj/structure/table/standard,
@@ -84092,8 +84092,8 @@
 /area/eris/maintenance/section1deck1central)
 "dGJ" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /obj/spawner/powercell,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -84212,8 +84212,8 @@
 /area/eris/hallway/side/section3port)
 "dHb" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1starboard)
@@ -84770,8 +84770,8 @@
 /area/eris/quartermaster/office)
 "dId" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /obj/spawner/boxes,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -85436,8 +85436,8 @@
 /area/eris/hallway/side/section3port)
 "dJq" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/random/pack/tech_loot,
 /obj/spawner/powercell,
 /obj/random/pack/tech_loot/low_chance,
@@ -87895,8 +87895,8 @@
 /obj/item/weapon/book/manual/excavation,
 /obj/item/weapon/book/manual/nuclear,
 /obj/item/weapon/book/manual/chef_recipes,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck1starboard)
 "dOD" = (
@@ -89407,17 +89407,17 @@
 "dSg" = (
 /obj/structure/closet/oldstyle,
 /obj/random/gun_energy_cheap/low_chance,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/space)
 "dSh" = (
 /obj/structure/closet/oldstyle,
 /obj/random/gun_normal/low_chance,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/space)
 "dSi" = (
@@ -89796,8 +89796,8 @@
 /area/eris/maintenance/section2deck1starboard)
 "dSY" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2starboard)
 "dSZ" = (
@@ -95004,12 +95004,12 @@
 /area/eris/maintenance/oldbridge)
 "eeX" = (
 /obj/structure/table/standard,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
@@ -95018,12 +95018,12 @@
 "eeY" = (
 /obj/structure/table/standard,
 /obj/item/weapon/cell/large,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
@@ -96268,7 +96268,7 @@
 	tag = "icon-gib6";
 	icon_state = "gib6"
 	},
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck1central)
 "ehN" = (
@@ -97841,7 +97841,7 @@
 "ekZ" = (
 /obj/structure/table/standard,
 /obj/spawner/toolbox,
-/obj/random/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck1central)
 "ela" = (
@@ -101227,7 +101227,7 @@
 /area/eris/crew_quarters/bar)
 "esX" = (
 /obj/structure/table/rack,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/quartermaster/office)

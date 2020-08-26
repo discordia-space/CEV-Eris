@@ -48,7 +48,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/lathe_disk = 2,
 					/obj/spawner/electronics = 6,
 					/obj/spawner/knife = 6,
-					/obj/random/lowkeyrandom = 8,
+					/obj/spawner/lowkeyrandom = 8,
 					/obj/random/material = 4,
 					/obj/spawner/material_rare = 3,
 					/obj/random/material_resources = 8,

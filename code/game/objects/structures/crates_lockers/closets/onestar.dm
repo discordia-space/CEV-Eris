@@ -14,10 +14,10 @@
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/random/junk(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/random/pack/tech_loot/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
@@ -37,9 +37,9 @@
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/spawner/tool/advanced/onestar/low_chance(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/random/pack/tech_loot/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
@@ -60,9 +60,9 @@
 	new /obj/random/junk(src)
 	new /obj/random/pack/tech_loot/onestar(src)
 	new /obj/spawner/tool/advanced/onestar(src)
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
-	new /obj/random/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
+	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/random/pack/tech_loot/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
 	new /obj/random/pack/cloth/low_chance(src)
@@ -204,8 +204,8 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/medical/populate_contents()
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
 	..()
 
 // Empty
@@ -219,8 +219,8 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/medical/populate_contents()
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
 	..()
 
 // Empty
@@ -234,8 +234,8 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/medical/populate_contents()
-	new /obj/random/lowkeyrandom(src)
-	new /obj/random/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
+	new /obj/spawner/lowkeyrandom(src)
 	..()
 
 // Empty

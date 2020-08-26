@@ -91,7 +91,7 @@
 
 	//Aaand thirdly a bunch of random stuff just to fill out space
 	for (var/i = 0; i < 20; i++)
-		pod_contents.Add(/obj/random/lowkeyrandom)
+		pod_contents.Add(/obj/spawner/lowkeyrandom)
 
 
 //Some mobs too!

@@ -71,9 +71,9 @@
 "au" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
-/obj/random/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "av" = (
