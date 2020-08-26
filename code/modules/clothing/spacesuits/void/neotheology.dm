@@ -29,7 +29,7 @@
 /obj/item/clothing/head/space/void/agrolyte
 	name = "Agrolyte hood"
 	desc = "Don't want anything getting in your eyes."
-	icon_state = "botanist"
+	icon_state = "agrolyte"
 	armor = list(
 		melee = 20,
 		bullet = 10,
@@ -42,7 +42,7 @@
 /obj/item/clothing/suit/space/void/agrolyte
 	name = "Agrolyte armor"
 	desc = "Every rose has its thorns."
-	icon_state = "botanist"
+	icon_state = "agrolyte"
 	slowdown = 0
 	armor = list(
 		melee = 20,
