@@ -139,6 +139,11 @@
 				var/input = input(usr, "Please write a message to announce to the [station_name()].", "Priority Announcement") as null|text
 				if(!input || !can_still_topic())
 					return 1
+				if(GLOB.in_character_filter.len) //I don't want to read announcements about sending people to brazil.
+					if(findtext(input, config.ic_filter_regex))
+						to_chat(usr, SPAN_WARNING("You think better of announcing something so foolish."))
+						return 1
+
 				var/affected_zlevels = GLOB.maps_data.contact_levels
 				var/atom/A = host
 				if(istype(A))
