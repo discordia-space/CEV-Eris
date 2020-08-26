@@ -56,7 +56,6 @@
 				/obj/item/clothing/suit/storage/hazardvest/orange = 2,
 				/obj/item/clothing/suit/storage/hazardvest/black = 2,
 				/obj/item/clothing/suit/storage/detective/ironhammer  = 3,
-				/obj/item/clothing/suit/storage/leather_jacket = 3,
 				/obj/item/clothing/suit/storage/drive_jacket = 3,
 				/obj/item/clothing/suit/storage/violet_jacket = 3,
 				/obj/item/clothing/suit/storage/robotech_jacket = 10,
@@ -71,7 +70,8 @@
 				/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 3,
 				/obj/item/clothing/suit/storage/qm_coat = 2,
 				/obj/item/clothing/suit/storage/cyberpunksleek = 8,
-				/obj/item/clothing/suit/storage/bladerunner=8,
+				/obj/item/clothing/suit/storage/bladerunner = 8,
+				/obj/item/clothing/suit/storage/leather_jacket = 3,
 				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake=2,
 				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake=2,
 				/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager=2))
@@ -91,6 +91,9 @@
 	name = "low chance random hazmat suit"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
+
+/obj/item/clothing/under/rank
+	spawn_blacklisted = TRUE
 
 /obj/spawner/cloth/under
 	name = "random under"
