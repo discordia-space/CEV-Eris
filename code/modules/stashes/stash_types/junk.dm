@@ -6,7 +6,7 @@
 
 	contents_list_base = list(/obj/random/pack/rare = 2,
 	/obj/spawner/pouch = 2,
-	/obj/random/tool_upgrade = 3,
+	/obj/spawner/tool_upgrade = 3,
 	/obj/random/lowkeyrandom = 5)
 
 	contents_list_random = list(/obj/random/pack/rare = 30,

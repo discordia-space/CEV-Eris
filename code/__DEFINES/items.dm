@@ -104,7 +104,7 @@
 					/obj/random/rig/damaged = 1.5,\
 					/obj/spawner/voidsuit = 4,\
 					/obj/spawner/pouch = 2,\
-					/obj/random/tool_upgrade/rare = 4,\
+					/obj/spawner/tool_upgrade/rare = 4,\
 					/obj/random/rig_module/rare = 4,\
 					/obj/spawner/credits/c1000 = 3,\
 					/obj/spawner/exosuit_equipment = 3,\

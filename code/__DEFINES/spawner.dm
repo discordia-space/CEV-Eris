@@ -7,8 +7,12 @@
 
 //Items - tools
 #define SPAWN_TOOL "tool"
+#define SPAWN_TOOL_UPGRADE "tool_upgrade"
+#define SPAWN_RARE_TOOL_UPGRADE "rare_tool_upgrade"
 
 #define SPAWN_TAG_TOOL "item,tool"
+#define SPAWN_TAG_TOOL_UPGRADE "item,tool,tool_upgrade"
+#define SPAWN_TAG_RARE_TOOL_UPGRADE "item,tool,tool_upgrade,rare_tool_upgrade"
 
 //	Items - tools - knife
 #define SPAWN_KNIFE "knife"

@@ -32262,10 +32262,10 @@
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tool,
-/obj/random/tool_upgrade/low_chance,
-/obj/random/tool_upgrade/low_chance,
-/obj/random/tool_upgrade/low_chance,
-/obj/random/tool_upgrade/rare/low_chance,
+/obj/spawner/tool_upgrade/low_chance,
+/obj/spawner/tool_upgrade/low_chance,
+/obj/spawner/tool_upgrade/low_chance,
+/obj/spawner/tool_upgrade/rare/low_chance,
 /obj/random/lathe_disk/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
@@ -35427,8 +35427,8 @@
 /area/eris/maintenance/section3deck1central)
 "bBh" = (
 /obj/structure/table/standard,
-/obj/random/tool_upgrade/rare/low_chance,
-/obj/random/tool_upgrade/rare/low_chance,
+/obj/spawner/tool_upgrade/rare/low_chance,
+/obj/spawner/tool_upgrade/rare/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBi" = (
@@ -51924,8 +51924,8 @@
 /area/eris/storage/tech)
 "clj" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool_upgrade,
-/obj/random/tool_upgrade,
+/obj/spawner/tool_upgrade,
+/obj/spawner/tool_upgrade,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
 "clk" = (
@@ -54561,7 +54561,7 @@
 /area/eris/maintenance/section3deck4central)
 "crm" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool_upgrade,
+/obj/spawner/tool_upgrade,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck4central)
 "crn" = (
@@ -62490,7 +62490,7 @@
 "cJx" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack,
-/obj/random/tool_upgrade/rare/low_chance,
+/obj/spawner/tool_upgrade/rare/low_chance,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -63072,7 +63072,7 @@
 "cKI" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack,
-/obj/random/tool_upgrade/low_chance,
+/obj/spawner/tool_upgrade/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/breakroom)
 "cKJ" = (

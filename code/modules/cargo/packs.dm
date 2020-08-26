@@ -594,17 +594,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 
 /datum/supply_pack/toolmods
-	contains = list(/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade,
-					/obj/random/tool_upgrade)
+	contains = list(/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade,
+					/obj/spawner/tool_upgrade)
 	name = "Unsorted Tool Upgrades"
 	cost = 2000
 	containertype = /obj/structure/closet/crate

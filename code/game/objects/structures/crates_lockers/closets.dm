@@ -326,14 +326,14 @@
 /obj/structure/closet/proc/populate_contents()
 	return
 
-/obj/structure/closet/proc/damage(var/damage)
+/obj/structure/closet/proc/damage(damage)
 	health -= damage
 	if(health <= 0)
 		for(var/atom/movable/A in src)
 			A.forceMove(src.loc)
 		qdel(src)
 
-/obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
 	var/proj_damage = Proj.get_structure_damage()
 	if(!proj_damage)
 		return
@@ -343,7 +343,7 @@
 
 	return
 
-/obj/structure/closet/affect_grab(var/mob/living/user, var/mob/living/target)
+/obj/structure/closet/affect_grab(mob/living/user, mob/living/target)
 	if(src.opened)
 		MouseDrop_T(target, user)      //act like they were dragged onto the closet
 		return TRUE
@@ -485,7 +485,7 @@
 		src.attack_hand(user)
 	return
 
-/obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+/obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user)
 	if(istype(O, /obj/screen))	//fix for HUD elements making their way into the world	-Pete
 		return
 	if(O.loc == user)

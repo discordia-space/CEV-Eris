@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/junk/nondense,
 		/obj/spawner/material_ore,
 		/obj/random/pack/rare = 0.3,
-		/obj/random/tool_upgrade = 1,
+		/obj/spawner/tool_upgrade = 1,
 		/obj/spawner/exosuit_equipment = 2
 	)
 
@@ -417,7 +417,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/material_ore,
 		/obj/spawner/oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
-		/obj/random/tool_upgrade,
+		/obj/spawner/tool_upgrade,
 		/obj/spawner/exosuit_equipment)
 
 /obj/structure/scrap/cloth

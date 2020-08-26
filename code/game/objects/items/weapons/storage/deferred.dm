@@ -64,8 +64,8 @@
 	name = "tool modifications kit"
 	desc = "A sturdy container full of contraptions, bits of material, components and add-ons for modifying tools."
 	icon_state = "box_tools"
-	initial_contents = list(/obj/random/tool_upgrade = 12,
-	/obj/random/tool_upgrade/rare = 3)
+	initial_contents = list(/obj/spawner/tool_upgrade = 12,
+	/obj/spawner/tool_upgrade/rare = 3)
 
 
 /obj/item/weapon/storage/deferred/pouches
