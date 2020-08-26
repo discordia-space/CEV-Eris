@@ -356,7 +356,7 @@
 	use_to_pickup = TRUE
 
 /obj/item/weapon/storage/freezer/contains_food/populate_contents()
-	new /obj/random/pizza/low_chance(src)
+	new /obj/spawner/pizza/low_chance(src)
 	new /obj/spawner/soda(src)
 	new /obj/spawner/soda/low_chance(src)
 	new /obj/random/rations/low_chance(src)

@@ -38,15 +38,12 @@
 	icon_state = "food-red-low"
 	spawn_nothing_percentage = 60
 
-
-/obj/random/pizza
+/obj/spawner/pizza
 	name = "random pizza"
 	icon_state = "food-red"
+	tags_to_spawn = list(SPAWN_PIZZA)
 
-/obj/random/pizza/item_to_spawn()
-	return pickweight(subtypesof(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza))
-
-/obj/random/pizza/low_chance
+/obj/spawner/pizza/low_chance
 	name = "low chance pizza"
 	icon_state = "food-red-low"
 	spawn_nothing_percentage = 60

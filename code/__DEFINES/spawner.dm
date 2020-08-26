@@ -166,6 +166,11 @@
 #define SPAWN_TAG_BOOZE "obj,item,drink,bottle_drink,bottle_alcohol"
 #define SPAWN_TAG_DRINK_SODA "obj,item,drink,bottle_drink,cans"
 
+// item -snaks
+#define SPAWN_PIZZA "pizza"
+
+#define SPAWN_TAG_PIZZA "obj,item,snaks,pizza"
+
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
 #define SPAWN_MECH_QUIPMENT "mech_equipment"
