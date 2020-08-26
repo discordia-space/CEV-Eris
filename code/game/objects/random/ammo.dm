@@ -4,10 +4,7 @@
 
 /obj/random/ammo/item_to_spawn()
 	return pickweight(list(
-				/obj/item/weapon/storage/box/shotgunammo/beanbags = 3,
-				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
-				/obj/item/weapon/storage/box/shotgunammo = 1,
-				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3,
+				/obj/spawner/ammo/shotgun = 10
 				/obj/item/ammo_magazine/ammobox/magnum = 1,
 				/obj/item/ammo_magazine/ammobox/clrifle = 1,
 				/obj/item/ammo_magazine/ammobox/clrifle/rubber = 2,
@@ -30,9 +27,6 @@
 	name = "low chance random ammunition"
 	icon_state = "ammo-green-low"
 	spawn_nothing_percentage = 60
-
-
-
 
 /obj/spawner/ammo/shotgun
 	name = "random shotgun ammunition"

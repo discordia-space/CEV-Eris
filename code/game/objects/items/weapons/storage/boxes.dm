@@ -189,6 +189,7 @@
 
 /obj/item/weapon/storage/box/shotgunammo/blanks
 	name = "box of blank shells"
+	rarity_value = 40
 
 /obj/item/weapon/storage/box/shotgunammo/blanks/populate_contents()
 	for(var/i in 1 to 7)
@@ -212,6 +213,7 @@
 
 /obj/item/weapon/storage/box/shotgunammo/flashshells
 	name = "box of illumination shells"
+	rarity_value = 40
 
 /obj/item/weapon/storage/box/shotgunammo/flashshells/populate_contents()
 	for(var/i in 1 to 7)
@@ -219,6 +221,7 @@
 
 /obj/item/weapon/storage/box/shotgunammo/practiceshells
 	name = "box of practice shells"
+	rarity_value = 40
 
 /obj/item/weapon/storage/box/shotgunammo/practiceshells/populate_contents()
 	for(var/i in 1 to 7)
