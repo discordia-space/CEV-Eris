@@ -1414,10 +1414,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/guns
 	num_contained = 4
-	contains = list(/obj/random/gun_cheap,
-                /obj/random/gun_normal,
-                /obj/random/gun_energy_cheap,
-                /obj/spawner/gun_shotgun)
+	contains = list(/obj/random/gun/cheap,
+                /obj/random/gun/normal,
+                /obj/random/gun/energy_cheap,
+                /obj/spawner/gun/shotgun)
 	name = "Surplus Weaponry"
 	cost = 5000
 	crate_name = "Surplus Weapons Crate"

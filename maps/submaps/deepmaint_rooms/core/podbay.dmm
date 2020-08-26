@@ -37,7 +37,7 @@
 "aK" = (/obj/random/junk,/obj/random/junk,/turf/simulated/shuttle/floor{tag = "icon-cargofloor7"; icon_state = "cargofloor7"},/area/deepmaint)
 "aL" = (/obj/random/junk,/turf/simulated/shuttle/floor{tag = "icon-cargofloor7"; icon_state = "cargofloor7"},/area/deepmaint)
 "aM" = (/turf/simulated/shuttle/floor{tag = "icon-cargofloor7"; icon_state = "cargofloor7"},/area/deepmaint)
-"aN" = (/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/gun_normal,/obj/structure/closet/wall_mounted/emcloset{pixel_y = 32},/obj/structure/closet/wall_mounted/emcloset{dir = 1; pixel_y = -32},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
+"aN" = (/obj/item/remains/human,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/gun/normal,/obj/structure/closet/wall_mounted/emcloset{pixel_y = 32},/obj/structure/closet/wall_mounted/emcloset{dir = 1; pixel_y = -32},/turf/simulated/shuttle/floor{icon_state = "cargofloor1"},/area/deepmaint)
 "aO" = (/turf/simulated/shuttle/wall/escpod{tag = "icon-escpodwall14"; icon_state = "escpodwall14"},/area/deepmaint)
 "aP" = (/obj/structure/shuttle_part/escpod{tag = "icon-escpodwall15"; icon_state = "escpodwall15"},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "aQ" = (/obj/spawner/scrap/sparse,/turf/simulated/floor/plating/under,/area/deepmaint)

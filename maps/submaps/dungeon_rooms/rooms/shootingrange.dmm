@@ -89,9 +89,9 @@
 	},
 /obj/machinery/door/window/northleft,
 /obj/structure/table/rack,
-/obj/random/gun_normal,
-/obj/random/gun_normal,
-/obj/random/gun_cheap,
+/obj/random/gun/normal,
+/obj/random/gun/normal,
+/obj/random/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "v" = (
@@ -100,15 +100,15 @@
 	},
 /obj/machinery/door/window/northright,
 /obj/structure/table/rack,
-/obj/spawner/gun_shotgun,
-/obj/random/gun_normal,
-/obj/random/gun_cheap,
+/obj/spawner/gun/shotgun,
+/obj/random/gun/normal,
+/obj/random/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/structure/table/onestar,
-/obj/random/gun_normal,
-/obj/random/gun_cheap,
+/obj/random/gun/normal,
+/obj/random/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "x" = (
@@ -121,8 +121,8 @@
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
-/obj/random/gun_energy_cheap,
-/obj/random/gun_cheap,
+/obj/random/gun/energy_cheap,
+/obj/random/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 

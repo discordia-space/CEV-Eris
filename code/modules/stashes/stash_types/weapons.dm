@@ -13,7 +13,7 @@
 //Contains boomsticks, ie, shotguns
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
-	contents_list_base = list(/obj/spawner/gun_shotgun = 2,
+	contents_list_base = list(/obj/spawner/gun/shotgun = 2,
 	/obj/spawner/ammo/shotgun = 2, /obj/random/ammo = 2)
 	contents_list_random = list(/obj/spawner/ammo/shotgun = 60,
 	/obj/random/ammo = 80,
@@ -21,9 +21,9 @@
 	/obj/random/ammo = 80,
 	/obj/random/ammo = 80,
 	/obj/random/ammo = 80,
-	/obj/random/gun_cheap = 50,
-	/obj/random/gun_cheap = 50,
-	/obj/spawner/gun_shotgun = 50)
+	/obj/random/gun/cheap = 50,
+	/obj/random/gun/cheap = 50,
+	/obj/spawner/gun/shotgun = 50)
 	lore = "MUTINY TOMORROW 0300 MEET AT %D <br><br>BRING YOUR OWN BOOMSTICK ONLY A FEW SPARES"
 
 //because this one is styled like a telegram, lets capitalise the directions
@@ -75,11 +75,11 @@
 //There are sooo many mutiny stories
 /datum/stash/weapon/mutiny
 	story_type = STORY_MUTINY
-	contents_list_base = list(/obj/random/gun_cheap = 3,
+	contents_list_base = list(/obj/random/gun/cheap = 3,
 	/obj/random/ammo = 8,
 	/obj/random/cloth/armor = 1)
-	contents_list_random = list(/obj/random/gun_normal = 70,
-	/obj/random/gun_energy_cheap = 50,
+	contents_list_random = list(/obj/random/gun/normal = 70,
+	/obj/random/gun/energy_cheap = 50,
 	/obj/spawner/voidsuit = 70,
 	/obj/spawner/knife = 70,
 	/obj/spawner/knife = 50,
@@ -103,7 +103,7 @@
 
 /*
 /datum/stash/weapon/mutiny/warden
-	contents_list_extra = list(/obj/random/gun_normal = 3, /obj/random/ammo = 6)
+	contents_list_extra = list(/obj/random/gun/normal = 3, /obj/random/ammo = 6)
 	directions = DIRECTION_IMAGE
 	lore = "Warden,<br>\
  You and I both know this rubber buckshot bullshit is going to get us all killed when the convicts realize they outnumber us sixty to one.<br>\
@@ -115,7 +115,7 @@
 /datum/stash/weapon/mutiny/starvation
  	//Make sure there's a shotgun with slugs in the stash, as described in the text.
  	//Also the wardens were hoarding food
- 	contents_list_extra = list(/obj/spawner/gun_shotgun = 1, /obj/item/weapon/storage/box/shotgunammo/slug = 1, /obj/random/rations = 6)
+ 	contents_list_extra = list(/obj/spawner/gun/shotgun = 1, /obj/item/weapon/storage/box/shotgunammo/slug = 1, /obj/random/rations = 6)
  	lore = "Convicts figured out the starvation rations are neither accidental nor temporary.<br>\
  Plan B is to shoot troublemakers until we balance the calorie equation.<br>\
  Just keep it semi-justifiable, don't leave any slugs in the walls, and stick the lethals back at %D when you're done.<br>\

@@ -1,8 +1,8 @@
-/obj/random/gun_cheap
+/obj/random/gun/cheap
 	name = "random cheap gun"
 	icon_state = "gun-grey"
 
-/obj/random/gun_cheap/item_to_spawn()
+/obj/random/gun/cheap/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/projectile/mk58 = 5,\
 				/obj/item/weapon/gun/projectile/mk58/wood = 2,\
 				/obj/item/weapon/gun/projectile/clarissa = 3,\
@@ -16,19 +16,17 @@
 				/obj/item/weapon/gun/launcher/crossbow = 1,\
 				/obj/item/weapon/gun/projectile/boltgun/serbian = 1))
 
-/obj/random/gun_cheap/low_chance
+/obj/random/gun/cheap/low_chance
 	name = "low chance random cheap gun"
 	icon_state = "gun-grey-low"
 	spawn_nothing_percentage = 75
 
 
-
-
-/obj/random/gun_normal
+/obj/random/gun/normal
 	name = "random normal gun"
 	icon_state = "gun-green"
 
-/obj/random/gun_normal/item_to_spawn()
+/obj/random/gun/normal/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/projectile/lamia = 6,\
 				/obj/item/weapon/gun/projectile/avasarala = 7,\
 				/obj/item/weapon/gun/projectile/shotgun/pump/gladstone = 9,\
@@ -50,32 +48,32 @@
 				/obj/item/weapon/gun/energy/plasma/cassad = 8,
 				/obj/item/weapon/gun/energy/ionrifle = 4))
 
-/obj/random/gun_normal/low_chance
+/obj/random/gun/normal/low_chance
 	name = "low chance random normal gun"
 	icon_state = "gun-green-low"
 	spawn_nothing_percentage = 75
 
-/obj/random/gun_energy_cheap
+/obj/random/gun/energy_cheap
 	name = "random cheap energy weapon"
 	icon_state = "gun-blue"
 
-/obj/random/gun_energy_cheap/item_to_spawn()
+/obj/random/gun/energy_cheap/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/gun/energy/gun/martin = 2,\
 				/obj/item/weapon/gun/energy/gun = 2,\
 				/obj/item/weapon/gun/energy/retro = 1))
 
-/obj/random/gun_energy_cheap/low_chance
+/obj/random/gun/energy_cheap/low_chance
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 75
 
 
-/obj/spawner/gun_shotgun
+/obj/spawner/gun/shotgun
 	name = "random shotgun"
 	icon_state = "gun-red"
 	tags_to_spawn = list(SPAWN_GUN_SHOTGUN)
 
-/obj/spawner/gun_shotgun/low_chance
+/obj/spawner/gun/shotgun/low_chance
 	name = "low chance random shotgun"
 	icon_state = "gun-red-low"
 	spawn_nothing_percentage = 75
