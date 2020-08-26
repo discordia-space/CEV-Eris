@@ -53,16 +53,12 @@
 	icon_state = "gun-green-low"
 	spawn_nothing_percentage = 75
 
-/obj/random/gun/energy_cheap
+/obj/spawner/gun/energy_cheap
 	name = "random cheap energy weapon"
 	icon_state = "gun-blue"
+	tags_to_spawn = list(SPAWN_ENERGY_GUN_CHEAP)
 
-/obj/random/gun/energy_cheap/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/gun/energy/gun/martin = 2,\
-				/obj/item/weapon/gun/energy/gun = 2,\
-				/obj/item/weapon/gun/energy/retro = 1))
-
-/obj/random/gun/energy_cheap/low_chance
+/obj/spawner/gun/energy_cheap/low_chance
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 75

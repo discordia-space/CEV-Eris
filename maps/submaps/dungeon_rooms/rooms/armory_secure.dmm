@@ -67,14 +67,14 @@
 /area/crawler)
 "o" = (
 /obj/structure/table/onestar,
-/obj/random/gun/energy_cheap,
-/obj/random/gun/energy_cheap,
+/obj/spawner/gun/energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "p" = (
 /obj/structure/table/onestar,
-/obj/random/gun/energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/shotgun,
 /obj/random/contraband,
 /turf/simulated/floor/tiled/dark/brown_perforated,

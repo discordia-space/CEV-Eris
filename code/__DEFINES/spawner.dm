@@ -97,9 +97,11 @@
 #define SPAWN_BALISTIC_GUN "balistic_gun"
 #define SPAWN_GUN_UPGRADE "gun_upgrade"
 #define SPAWN_GUN_SHOTGUN "shotgun"
+#define SPAWN_ENERGY_GUN_CHEAP "energy_gun_cheap"
 
 #define SPAWN_TAG_GUN "obj,item,gun"
 #define SPAWN_TAG_ENERGY_GUN "obj,item,gun,energy_gun"
+#define SPAWN_TAG_ENERGY_GUN_CHEAP "obj,item,gun,energy_gun,energy_gun_cheap"
 #define SPAWN_TAG_BALISTIC_GUN "obj,item,gun,balistic_gun"
 #define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,balistic_gun,shotgun"
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,energy_gun,shotgun"

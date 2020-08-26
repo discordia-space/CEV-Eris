@@ -81,7 +81,7 @@
 	update_icon()
 	..()
 
-/obj/item/weapon/gun/launcher/crossbow/attack_self(mob/living/user as mob)
+/obj/item/weapon/gun/launcher/crossbow/attack_self(mob/living/user)
 	if(tension)
 		if(bolt)
 			user.visible_message("[user] relaxes the tension on [src]'s string and removes [bolt].","You relax the tension on [src]'s string and remove [bolt].")
@@ -96,7 +96,7 @@
 	else
 		draw(user)
 
-/obj/item/weapon/gun/launcher/crossbow/proc/draw(var/mob/user as mob)
+/obj/item/weapon/gun/launcher/crossbow/proc/draw(mob/user)
 
 	if(!bolt)
 		to_chat(user, "You don't have anything nocked to [src].")
@@ -130,7 +130,7 @@
 
 		user.visible_message("[usr] draws back the string of [src]!",SPAN_NOTICE("You continue drawing back the string of [src]!"))
 
-/obj/item/weapon/gun/launcher/crossbow/proc/increase_tension(var/mob/user as mob)
+/obj/item/weapon/gun/launcher/crossbow/proc/increase_tension(mob/user)
 
 	if(!bolt || !tension || current_user != user) //Arrow has been fired, bow has been relaxed or user has changed.
 		return
@@ -177,7 +177,7 @@
 	else
 		..()
 
-/obj/item/weapon/gun/launcher/crossbow/proc/superheat_rod(var/mob/user)
+/obj/item/weapon/gun/launcher/crossbow/proc/superheat_rod(mob/user)
 	if(!user || !cell || !bolt) return
 	if(!cell.check_charge(500)) return
 	if(bolt.throwforce >= 15) return
@@ -314,7 +314,7 @@
 	var/max_stored_matter = 60
 	var/boltcost = 5
 
-/obj/item/weapon/gun/launcher/crossbow/RCD/proc/genBolt(var/mob/user)
+/obj/item/weapon/gun/launcher/crossbow/RCD/proc/genBolt(mob/user)
 	if(stored_matter >= boltcost && !bolt)
 		bolt = new/obj/item/weapon/arrow/RCD(src)
 		stored_matter -= boltcost
@@ -324,7 +324,7 @@
 		to_chat(user, "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>")
 		flick("[icon_state]-empty", src)
 
-/obj/item/weapon/gun/launcher/crossbow/RCD/attack_self(mob/living/user as mob)
+/obj/item/weapon/gun/launcher/crossbow/RCD/attack_self(mob/living/user)
 	if(tension)
 		user.visible_message("[user] relaxes the tension on [src]'s string.","You relax the tension on [src]'s string.")
 		tension = 0
@@ -333,7 +333,7 @@
 		genBolt(user)
 		draw(user)
 
-/obj/item/weapon/gun/launcher/crossbow/RCD/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weapon/gun/launcher/crossbow/RCD/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		if((stored_matter + 20) > max_stored_matter)
 			to_chat(user, "<span class='notice'>The RXD can't hold that many additional matter-units.</span>")
@@ -372,7 +372,7 @@
 	else
 		icon_state = "rxb"
 
-/obj/item/weapon/gun/launcher/crossbow/RCD/examine(var/user)
+/obj/item/weapon/gun/launcher/crossbow/RCD/examine(user)
 	. = ..()
 	if(.)
 		to_chat(user, "It currently holds [stored_matter]/[max_stored_matter] matter-units.")

@@ -56,7 +56,7 @@
 /area/crawler)
 "l" = (
 /obj/structure/table/onestar,
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "m" = (
@@ -127,7 +127,7 @@
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
 /obj/random/gun/normal/low_chance,
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "z" = (
@@ -144,7 +144,7 @@
 "B" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 

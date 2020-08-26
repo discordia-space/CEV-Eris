@@ -1416,7 +1416,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	num_contained = 4
 	contains = list(/obj/random/gun/cheap,
                 /obj/random/gun/normal,
-                /obj/random/gun/energy_cheap,
+                /obj/spawner/gun/energy_cheap,
                 /obj/spawner/gun/shotgun)
 	name = "Surplus Weaponry"
 	cost = 5000

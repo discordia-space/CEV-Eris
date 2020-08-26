@@ -26818,7 +26818,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bih" = (
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/rnd/anomalisolone)
 "bii" = (
@@ -30683,7 +30683,7 @@
 	d2 = 0;
 	icon_state = "16-0"
 	},
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bqs" = (
@@ -31458,7 +31458,7 @@
 /area/eris/maintenance/section4deck4port)
 "bsv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bsw" = (
@@ -40525,7 +40525,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
 "bLM" = (
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
@@ -79901,7 +79901,7 @@
 "dwO" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwP" = (
@@ -89406,7 +89406,7 @@
 /area/eris/maintenance/section4deck2port)
 "dSg" = (
 /obj/structure/closet/oldstyle,
-/obj/random/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,

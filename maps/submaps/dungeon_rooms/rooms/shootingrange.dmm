@@ -121,7 +121,7 @@
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
-/obj/random/gun/energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /obj/random/gun/cheap,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)

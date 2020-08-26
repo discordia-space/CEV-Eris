@@ -200,7 +200,7 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/gun/energy_cheap,
+/obj/spawner/gun/energy_cheap,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aS" = (

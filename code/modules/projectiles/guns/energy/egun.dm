@@ -10,6 +10,8 @@
 	charge_cost = 100
 	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
 	price_tag = 2500
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_ENERGY_GUN_CHEAP
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
@@ -28,6 +30,7 @@
 	use_external_power = TRUE
 	safety = FALSE
 	restrict_safety = TRUE
+	spawn_frequency = 0
 
 /obj/item/weapon/gun/energy/gun/martin
 	name = "FS PDW E \"Martin\""
@@ -45,6 +48,8 @@
 	modifystate = null
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_ENERGY_GUN_CHEAP
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]

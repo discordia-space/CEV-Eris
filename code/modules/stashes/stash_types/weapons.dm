@@ -79,7 +79,7 @@
 	/obj/random/ammo = 8,
 	/obj/random/cloth/armor = 1)
 	contents_list_random = list(/obj/random/gun/normal = 70,
-	/obj/random/gun/energy_cheap = 50,
+	/obj/spawner/gun/energy_cheap = 50,
 	/obj/spawner/voidsuit = 70,
 	/obj/spawner/knife = 70,
 	/obj/spawner/knife = 50,

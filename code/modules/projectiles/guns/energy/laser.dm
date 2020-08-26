@@ -48,7 +48,7 @@
 	projectile_type = /obj/item/projectile/beam/practice
 	zoom_factor = 0
 
-obj/item/weapon/gun/energy/retro
+/obj/item/weapon/gun/energy/retro
 	name = "OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/retro.dmi'
 	icon_state = "retro"
@@ -65,6 +65,8 @@ obj/item/weapon/gun/energy/retro
 	damage_multiplier = 1
 	charge_cost = 100
 	price_tag = 2000
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_ENERGY_GUN_CHEAP
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
