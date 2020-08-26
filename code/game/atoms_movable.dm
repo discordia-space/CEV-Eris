@@ -1,6 +1,6 @@
 /atom/movable
 	layer = OBJ_LAYER
-	var/last_move = null
+	var/last_move
 	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
@@ -8,12 +8,12 @@
 	var/m_flag = 1
 	var/throwing = 0
 	var/thrower
-	var/turf/throw_source = null
+	var/turf/throw_source
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
-	var/mob/pulledby = null
-	var/item_state = null // Used to specify the item state for the on-mob overlays.
+	var/mob/pulledby
+	var/item_state // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
 
 	//spawn_values
@@ -250,7 +250,7 @@
 
 //Overlays
 /atom/movable/overlay
-	var/atom/master = null
+	var/atom/master
 	anchored = TRUE
 
 /atom/movable/overlay/New()

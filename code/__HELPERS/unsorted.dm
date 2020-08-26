@@ -829,11 +829,11 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	for(var/zone/Z in zones_trg) // rebuilding zones
 		Z.rebuild()
 
-proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
+proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 	if(!original)
 		return null
 
-	var/obj/O = null
+	var/obj/O
 
 	if(sameloc)
 		O=new original.type(original.loc)

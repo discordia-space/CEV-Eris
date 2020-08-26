@@ -72,8 +72,8 @@ var/const/tk_maxrange = 15
 	plane = ABOVE_HUD_PLANE
 
 	var/last_throw = 0
-	var/atom/movable/focus = null
-	var/mob/living/host = null
+	var/atom/movable/focus
+	var/mob/living/host
 
 /obj/item/tk_grab/dropped(mob/user as mob)
 	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
