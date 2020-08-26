@@ -6,6 +6,9 @@
 
 //This can be attached to basically any long tool
 //This includes most mechanical ones
+/obj/item/weapon/tool_upgrade
+	bad_types = /obj/item/weapon/tool_upgrade
+
 /obj/item/weapon/tool_upgrade/reinforcement/stick
 	name = "brace bar"
 	desc = "A sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools."
@@ -118,6 +121,9 @@
 
 // 	 PRODUCTIVITY: INCREASES WORKSPEED
 //------------------------------------------------
+/obj/item/weapon/tool_upgrade/productivity
+	bad_types = /obj/item/weapon/tool_upgrade/productivity
+
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip
 	name = "ergonomic grip"
 	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand."
@@ -311,6 +317,9 @@
 
 // 	 REFINEMENT: INCREASES PRECISION
 //------------------------------------------------
+/obj/item/weapon/tool_upgrade/refinement
+	bad_types = /obj/item/weapon/tool_upgrade/refinement
+
 /obj/item/weapon/tool_upgrade/refinement/laserguide
 	name = "Asters \"Guiding Light\" laser guide"
 	desc = "A small visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
@@ -421,6 +430,9 @@
 //------------------------------------------------
 
 //Allows the tool to use a cell one size category larger than it currently uses. Small to medium, medium to large, etc
+/obj/item/weapon/tool_upgrade/augment
+	bad_types = /obj/item/weapon/tool_upgrade/augment
+
 /obj/item/weapon/tool_upgrade/augment/cell_mount
 	name = "heavy cell mount"
 	icon_state = "cell_mount"

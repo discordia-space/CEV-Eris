@@ -535,3 +535,4 @@
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE
 	price_tag = 200
 	rarity_value = 15
+	bad_types = /obj/item/weapon/tool_upgrade
