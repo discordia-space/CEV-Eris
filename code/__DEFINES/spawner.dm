@@ -102,6 +102,11 @@
 #define SPAWN_TAG_BALISTIC_GUN "item,gun,balistic_gun"
 #define SPAWN_TAG_GUN_UPGRADE "item,gun,gun_upgrade"
 
+//	Items - GUNS - ammo
+#define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
+
+#define SPAWN_TAG_AMMO_SHOTGUN "item,storage,gun,ammmo_storage,ammmo_storage_shotgun"
+
 //	Items - TOYS
 #define SPAWN_TOY "toy"
 #define SPAWN_PLUSHIE "toy_plushie"

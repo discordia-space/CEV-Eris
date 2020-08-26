@@ -176,9 +176,12 @@
 	name = "box of shotgun slugs"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
 /obj/item/weapon/storage/box/shotgunammo/slug
 	name = "box of shotgun slugs"
+	rarity_value = 20
 
 /obj/item/weapon/storage/box/shotgunammo/slug/populate_contents()
 	for(var/i in 1 to 7)
@@ -193,6 +196,7 @@
 
 /obj/item/weapon/storage/box/shotgunammo/beanbags
 	name = "box of beanbag shells"
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/shotgunammo/beanbags/populate_contents()
 	for(var/i in 1 to 7)
@@ -200,6 +204,7 @@
 
 /obj/item/weapon/storage/box/shotgunammo/buckshot
 	name = "box of shotgun shells"
+	rarity_value = 13.33
 
 /obj/item/weapon/storage/box/shotgunammo/buckshot/populate_contents()
 	for(var/i in 1 to 7)

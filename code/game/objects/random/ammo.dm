@@ -34,18 +34,12 @@
 
 
 
-/obj/random/ammo/shotgun
+/obj/spawner/ammo/shotgun
 	name = "random shotgun ammunition"
 	icon_state = "ammo-orange"
+	tags_to_spawn = list(SPAWN_AMMO_SHOTGUN)
 
-/obj/random/ammo/shotgun/item_to_spawn()
-	return pickweight(list(
-				/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,
-				/obj/item/weapon/storage/box/shotgunammo/slug = 2,
-				/obj/item/weapon/storage/box/shotgunammo = 1,
-				/obj/item/weapon/storage/box/shotgunammo/buckshot = 3))
-
-/obj/random/ammo/shotgun/low_chance
+/obj/spawner/ammo/shotgun/low_chance
 	name = "low chance random shotgun ammunition"
 	icon_state = "ammo-orange-low"
 	spawn_nothing_percentage = 60

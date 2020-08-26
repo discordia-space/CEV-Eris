@@ -14,8 +14,8 @@
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
 	contents_list_base = list(/obj/random/gun_shotgun = 2,
-	/obj/random/ammo/shotgun = 2, /obj/random/ammo = 2)
-	contents_list_random = list(/obj/random/ammo/shotgun = 60,
+	/obj/spawner/ammo/shotgun = 2, /obj/random/ammo = 2)
+	contents_list_random = list(/obj/spawner/ammo/shotgun = 60,
 	/obj/random/ammo = 80,
 	/obj/random/ammo = 80,
 	/obj/random/ammo = 80,
