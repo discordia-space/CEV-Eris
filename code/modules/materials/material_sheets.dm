@@ -7,6 +7,7 @@
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 120
+	bad_types = /obj/item/stack/material
 
 	var/default_type = MATERIAL_STEEL
 	var/material/material
@@ -58,12 +59,12 @@
 		desc = "A [material.sheet_singular_name] of [material.use_name]."
 		gender = NEUTER
 
-/obj/item/stack/material/use(var/used)
+/obj/item/stack/material/use(used)
 	. = ..()
 	update_strings()
 	return
 
-/obj/item/stack/material/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)
+/obj/item/stack/material/transfer_to(obj/item/stack/S, tamount=null, type_verified)
 	var/obj/item/stack/material/M = S
 	if(!istype(M) || material.name != M.material.name)
 		return 0
@@ -72,11 +73,11 @@
 	if(M) M.update_strings()
 	return transfer
 
-/obj/item/stack/material/attack_self(var/mob/user)
+/obj/item/stack/material/attack_self(mob/user)
 	if(!material.build_windows(user, src))
 		..()
 
-/obj/item/stack/material/attackby(var/obj/item/W, var/mob/user)
+/obj/item/stack/material/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/stack/cable_coil))
 		material.build_wired_product(user, W, src)
 		return
@@ -85,7 +86,7 @@
 		return
 	return ..()
 
-/obj/item/stack/material/add(var/extra)
+/obj/item/stack/material/add(extra)
 	..()
 	update_strings()
 
