@@ -125,6 +125,7 @@
 #define SPAWN_HOLSTER "holster"
 #define SPAWN_SHOES "shoes"
 #define SPAWN_GLOVES "gloves"
+#define SPAWN_CLOTHING_UNDER "under"
 
 #define SPAWN_TAG_CLOTHING "item,clothing"
 #define SPAWN_TAG_VOID_SUIT "item,clothing,suit,space_suit,void_suit"
@@ -133,6 +134,7 @@
 #define SPAWN_TAG_HOLSTER "item,clothing,holster"
 #define SPAWN_TAG_SHOES "item,clothing,shoes"
 #define SPAWN_TAG_GLOVES "item,clothing,gloves"
+#define SPAWN_TAG_CLOTHING_UNDER "item,clothing,under"
 
 //	Items - storage
 #define SPAWN_storage "storage"

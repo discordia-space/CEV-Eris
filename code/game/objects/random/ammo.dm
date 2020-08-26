@@ -4,7 +4,7 @@
 
 /obj/random/ammo/item_to_spawn()
 	return pickweight(list(
-				/obj/spawner/ammo/shotgun = 10
+				/obj/spawner/ammo/shotgun = 10,
 				/obj/item/ammo_magazine/ammobox/magnum = 1,
 				/obj/item/ammo_magazine/ammobox/clrifle = 1,
 				/obj/item/ammo_magazine/ammobox/clrifle/rubber = 2,
@@ -38,9 +38,6 @@
 	icon_state = "ammo-orange-low"
 	spawn_nothing_percentage = 60
 
-
-
-
 /obj/random/ammo_ihs
 	name = "random ironhammer ammunition"
 	icon_state = "ammo-blue"
@@ -60,9 +57,6 @@
 	name = "low chance random random ironhammer ammunition"
 	icon_state = "ammo-blue-low"
 	spawn_nothing_percentage = 60
-
-
-
 
 /obj/random/ammo_lowcost
 	name = "random low tier ammunition"

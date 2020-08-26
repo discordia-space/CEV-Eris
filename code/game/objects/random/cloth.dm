@@ -41,8 +41,6 @@
 	spawn_nothing_percentage = 60
 
 
-
-
 /obj/random/cloth/suit
 	name = "random suit"
 	desc = "This is a random suit."
@@ -83,10 +81,6 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-
-
-
-
 /obj/spawner/cloth/hazmatsuit
 	name = "random hazmat suit"
 	desc = "This is a random hazmat suit."
@@ -98,62 +92,16 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-
-
-/obj/random/cloth/under
+/obj/spawner/cloth/under
 	name = "random under"
 	desc = "This is a random under."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_CLOTHING_UNDER)
 
-/obj/random/cloth/under/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/under/aqua = 5,
-				/obj/item/clothing/under/assistantformal = 5,
-				/obj/item/clothing/under/blackskirt = 5,
-				/obj/item/clothing/under/blazer = 5,
-				/obj/item/clothing/under/bluepyjamas = 5,
-				/obj/item/clothing/under/brown = 5,
-				/obj/item/clothing/under/captainformal = 2,
-				/obj/item/clothing/under/color/yellow = 5,
-				/obj/item/clothing/under/color/yellow = 5,
-				/obj/item/clothing/under/color/red = 5,
-				/obj/item/clothing/under/color/pink = 5,
-				/obj/item/clothing/under/color/orange = 5,
-				/obj/item/clothing/under/color/green = 5,
-				/obj/item/clothing/under/color/grey = 5,
-				/obj/item/clothing/under/color/black = 5,
-				/obj/item/clothing/under/darkblue = 5,
-				/obj/item/clothing/under/darkred = 5,
-				/obj/item/clothing/under/librarian = 5,
-				/obj/item/clothing/under/lightblue = 5,
-				/obj/item/clothing/under/lightbrown = 5,
-				/obj/item/clothing/under/lightgreen = 5,
-				/obj/item/clothing/under/lightpurple = 5,
-				/obj/item/clothing/under/lightred = 5,
-				/obj/item/clothing/under/overalls = 5,
-				/obj/item/clothing/under/pirate = 5,
-				/obj/item/clothing/under/purple = 5,
-				/obj/item/clothing/under/rainbow = 5,
-				/obj/item/clothing/under/redpyjamas = 5,
-				/obj/item/clothing/under/schoolgirl = 5,
-				/obj/item/clothing/under/suit_jacket/red = 5,
-				/obj/item/clothing/under/suit_jacket = 5,
-				/obj/item/clothing/under/turtleneck = 5,
-				/obj/item/clothing/under/syndicate = 5,
-				/obj/item/clothing/under/dress = 5,
-				/obj/item/clothing/under/dress/blue = 5,
-				/obj/item/clothing/under/dress/red = 5,
-				/obj/item/clothing/under/leisure = 5,
-				/obj/item/clothing/under/leisure/white = 5,
-				/obj/item/clothing/under/leisure/pullover = 5,
-				/obj/item/clothing/under/germansuit = 5))
-
-/obj/random/cloth/under/low_chance
+/obj/spawner/cloth/under/low_chance
 	name = "low chance random under"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
-
-
 
 
 /obj/random/cloth/helmet

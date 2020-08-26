@@ -3,7 +3,6 @@
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	bad_types = /obj/item/clothing
-	spawn_frequency = 10
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
@@ -575,6 +574,8 @@ BLIND     // can't see anything
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
 	w_class = ITEM_SIZE_NORMAL
+	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
+	bad_types = /obj/item/clothing/under
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
 		/*
