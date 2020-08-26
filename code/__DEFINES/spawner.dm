@@ -33,7 +33,8 @@
 // ITEMS - organ- PROSTHESIS
 #define SPAWN_OS_PROSTHETIC "os_prosthetic"
 
-#define SPAWN_TAG_OS_PROSTHETIC "item,organ,external,prosthetic,os_prosthetic,faction_os"
+#define SPAWN_TAG_OS_PROSTHETIC "item,organ,external,prosthetic,prosthetic_os,item_tech_os,faction_os"
+
 
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
@@ -142,10 +143,12 @@
 #define SPAWN_TAG_BOX "item,storage,box"
 #define SPAWN_TAG_FIRSTAID "item,storage,firstaid"
 
-// ITEM - STOCK PARTS
+// ITEM - STOCK PARTS   and os_tech
 #define SPAWN_STOCK_PARTS "stock_parts"
+#define SPAWN_ITEM_TECH_OS "item_tech_os"
 
 #define SPAWN_TAG_STOCK_PARTS "item,stock_parts"
+#define SPAWN_TAG_STOCK_PARTS_OS "item,stock_parts,stock_parts_os,item_tech_os,faction_os"
 
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
@@ -187,7 +190,7 @@
 #define SPAWN_SALVAGEABLE_IMPLANT_CONTAINER "structure_salvageable_implant_container"
 
 #define SPAWN_TAG_SALVAGEABLE "strcuture,structure_salvageable"
-#define SPAWN_TAG_OS_SALVAGEABLE "strcuture,structure_salvageable,structure_salvageable_os,faction_os"
+#define SPAWN_TAG_SALVAGEABLE_OS "strcuture,structure_salvageable,structure_salvageable_os,faction_os"
 #define SPAWN_TAG_SALVAGEABLE_AUTOLATHE "strcuture,structure_salvageable,structure_salvageable_autolathe"
 
 // Structures - MACHINE_FRAME

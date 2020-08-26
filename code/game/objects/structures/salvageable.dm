@@ -277,7 +277,7 @@ obj/structure/salvageable/bliss/Initialize()
 //// ONE STAR ////
 //////////////////
 /obj/structure/salvageable/os
-	spawn_tags = SPAWN_TAG_OS_SALVAGEABLE
+	spawn_tags = SPAWN_TAG_SALVAGEABLE_OS
 	rarity_value = 20
 	spawn_blacklisted = TRUE
 	spawn_frequency = 8 //from 10
@@ -299,7 +299,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/stock_parts/micro_laser/one_star = 40,
 		/obj/item/weapon/stock_parts/matter_bin/one_star = 40,
 		/obj/item/weapon/stock_parts/matter_bin/one_star = 40,
-		/obj/spawner/prothesis/one_star = 20
+		/obj/spawner/prothesis_one_star = 20
 	)
 
 /obj/structure/salvageable/os/computer

@@ -51,13 +51,6 @@
 	return spawns
 
 
-/obj/random/single
-	name = "randomly spawned object"
-	var/spawn_object = null
-
-/obj/random/single/item_to_spawn()
-	return ispath(spawn_object) ? spawn_object : text2path(spawn_object)
-
 /obj/randomcatcher
 	name = "Random Catcher Object"
 	desc = "You should not see this."

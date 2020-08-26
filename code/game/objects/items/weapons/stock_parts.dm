@@ -212,6 +212,8 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/scanning_module/one_star
 	name = "one star scanning module"
@@ -221,6 +223,8 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/manipulator/one_star
 	name = "one star manipulator"
@@ -230,6 +234,8 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 	spawn_blacklisted = TRUE
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/micro_laser/one_star
 	name = "one star micro-laser"
@@ -239,6 +245,8 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/matter_bin/one_star
 	name = "one star matter bin"
@@ -248,6 +256,8 @@
 	rating = 5
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 40
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 
 //alien stock parts (rating 6)
