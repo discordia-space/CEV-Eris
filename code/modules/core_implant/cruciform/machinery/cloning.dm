@@ -400,13 +400,10 @@
 		var/obj/item/stack/material/biomatter/B = I
 		if (B.biomatter_in_sheet && B.amount)
 			var/sheets_amount_to_transphere = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
-			if (sheets_amount_to_transphere > B.amount)
-				user.visible_message("you can't load more sheets than you got.")
-				return
 			if(sheets_amount_to_transphere)
 				var/total_transphere_from_stack = 0
 				var/i = 1
-				while(i <= sheets_amount_to_transphere)
+				while(i <= sheets_amount_to_transphere && i <= B.amount)
 					reagents.add_reagent("biomatter", B.biomatter_in_sheet)
 					total_transphere_from_stack += B.biomatter_in_sheet
 					i++
