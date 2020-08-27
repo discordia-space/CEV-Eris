@@ -187,27 +187,28 @@
 						continue
 					var/atom/movable/AM = path
 
-					var/indix = assort.Find(path)
+					var/index = assort.Find(path)
 
-					var/amount = PRG.station.get_good_amount(PRG.choosed_category, indix)
+					var/amount = PRG.station.get_good_amount(PRG.choosed_category, index)
 
 					var/pathname = initial(AM.name)
 					var/list/good_packet = assort[path]
+					var/price = SStrade.get_import_cost(path, PRG.station)
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname
 
-					var/price = SStrade.get_import_cost(path, PRG.station)
 					var/count = PRG.shoppinglist[path]
 					.["goods"] += list(list(
 						"name" = pathname,
 						"price" = price,
 						"count" = count ? count : 0,
 						"amount_available" = amount,
-						"index" = indix
+						"index" = index
 					))
 					.["total"] += price * count
 		if(!recursiveLen(.["goods"]))
 			.["goods"] = null
+
 	.["offers"] = list()
 	for(var/datum/trade_station/S in SStrade.discovered_stations)
 		var/atom/movable/offer_type = S.offer_type

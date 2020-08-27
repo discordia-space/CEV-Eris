@@ -72,7 +72,8 @@
 		var/list/ass/*Hehe, boy*/ = assortiment[i]
 		if(islist(ass))
 			for(var/path in ass)
-				var/list/rand_args = list(0, 10)
+				var/cost = SStrade.get_import_cost(path, src)
+				var/list/rand_args = list(0, 50 / max(cost/200, 1))
 				var/list/good_packet = ass[path]
 				if(islist(good_packet))
 					if(islist(good_packet["amount_range"]))
@@ -92,7 +93,7 @@
 			var/list/L = amounts_of_goods[cat]
 			if(islist(L))
 				. = L[L[index]]
-	return
+
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
 	SStrade.trade_stations_budget -= budget
 /datum/trade_station/proc/regain_trade_stations_budget(budget = spawn_cost)

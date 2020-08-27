@@ -1022,7 +1022,7 @@
 	. = ..() * rating
 
 /obj/item/organ
-	price_tag = 300
+	price_tag = 500
 
 /mob/living/carbon/superior_animal/roach
 	price_tag = 150
@@ -1040,3 +1040,23 @@
 
 /obj/item/stack/get_item_cost(export)
 	return amount * ..()
+
+/obj/item/weapon/reagent_containers/blood
+	price_tag = 50
+
+/obj/item/weapon/reagent_containers/blood/get_item_cost(export)
+	. = ..()
+	. += (. / 25 * reagents?.total_volume)
+
+/obj/item/ammo_magazine/price_tag = 60
+/obj/item/ammo_magazine/ammobox/price_tag = 40
+
+/obj/item/ammo_magazine/get_item_cost(export)
+	. = ..()
+	for(var/obj/item/ammo_casing/i in stored_ammo)
+		. += i.get_item_cost(export)
+
+/obj/item/ammo_casing/price_tag = 20
+
+/obj/item/ammo_casing/get_item_cost(export)
+	. = ..() * amount

@@ -47,7 +47,8 @@
 			/obj/item/clothing/under/rank/medical/green,
 			/obj/item/clothing/head/surgery/green,
 			/obj/item/weapon/storage/box/bodybags,
-			/obj/machinery/suspension_gen
+			/obj/machinery/suspension_gen,
+			/obj/item/weapon/computer_hardware/hard_drive/portable/design
 		),
 	)
 

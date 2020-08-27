@@ -10,12 +10,8 @@
 	)
 	assortiment = list(
 		"Enforce Equipment" = list(
-			/obj/item/weapon/grenade/empgrenade/low_yield,
-			/obj/item/weapon/grenade/smokebomb,
-			/obj/item/weapon/grenade/chem_grenade/incendiary,
 			/obj/item/weapon/handcuffs,
 			/obj/item/weapon/shield/riot,
-			/obj/item/weapon/storage/box/flashbangs,
 			/obj/item/weapon/melee/baton,
 			/obj/machinery/deployable/barrier,
 			/obj/machinery/shieldwallgen,
@@ -32,6 +28,18 @@
 			/obj/item/weapon/gun/projectile/revolver/consul,
 			/obj/item/weapon/gun/projectile/automatic/ak47/fs,
 			/obj/item/weapon/gun/projectile/automatic/atreides,
+		),
+		"Ammunition" = list(
+			/obj/item/weapon/grenade/empgrenade/low_yield,
+			/obj/item/weapon/grenade/smokebomb,
+			/obj/item/weapon/grenade/chem_grenade/incendiary,
+			/obj/item/weapon/grenade/flashbang,
+
+			/obj/item/ammo_magazine/ammobox/magnum,
+			/obj/item/ammo_magazine/lrifle,
+			/obj/item/ammo_magazine/smg,
+			/obj/item/ammo_magazine/pistol,
+			/obj/item/ammo_magazine/hpistol
 		),
 		"Armor" = list(
 			/obj/item/clothing/head/armor/riot_hud,
