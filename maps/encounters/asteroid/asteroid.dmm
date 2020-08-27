@@ -104,8 +104,8 @@
 "az" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aA" = (
@@ -698,15 +698,15 @@
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/crate,
 /obj/spawner/material/resources/rare/low_chance,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cK" = (
 /obj/structure/closet/crate,
 /obj/spawner/material/resources/rare/low_chance,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/asteroid,
 /area/outpost/abandoned)
 "cL" = (

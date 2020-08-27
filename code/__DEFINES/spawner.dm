@@ -58,11 +58,19 @@
 #define SPAWN_TAG_ASSEMBLY "obj,item,assembly"
 
 // items - ore
+#define SPAWN_MATERIAL "material"
 #define SPAWN_ORE "ore"
-#define SPAWN_MATERIAL_RARE "rare_material"
+#define SPAWN_MATERIAL_RESOURCES "material_resources"
+#define SPAWN_MATERIAL_RESOURCES_RARE "material_resources_rare"
+#define SPAWN_MATERIAL_BUILDING "bulding_material"
 
+#define SPAWN_TAG_MATERIAL "obj,item,material"
 #define SPAWN_TAG_ORE "obj,item,material,ore"
-#define SPAWN_TAG_MATERIAL_RARE "obj,item,material,rare_material"
+#define SPAWN_TAG_MATERIAL_RESOURCES "obj,item,material,material_resources"
+#define SPAWN_TAG_MATERIAL_RESOURCES_RARE "obj,item,material,material_resources,material_resources_rare"
+#define SPAWN_TAG_MATERIAL_BUILDING "obj,item,material,bulding_material"
+#define SPAWN_TAG_MATERIAL_RESOURCES_BULDING "obj,item,material,bulding_material,material_resources"
+#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material"
 
 //  MINES
 #define SPAWN_MINE "mine"

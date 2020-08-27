@@ -2710,7 +2710,7 @@
 /obj/item/stack/material/plasteel{
 	amount = 60
 	},
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},

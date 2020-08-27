@@ -285,10 +285,10 @@
 /area/outpost/abandoned_fortress)
 "bx" = (
 /obj/structure/table/rack/shelf,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "by" = (
@@ -375,9 +375,9 @@
 "bP" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/material/resources/rare/low_chance,
-/obj/random/material/resources,
-/obj/random/material/resources,
-/obj/random/material_resources,
+/obj/spawner/material/resources,
+/obj/spawner/material/resources,
+/obj/spawner/material/resources,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bQ" = (

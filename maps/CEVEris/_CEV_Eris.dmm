@@ -7587,10 +7587,10 @@
 /area/eris/maintenance/section2deck5starboard)
 "ara" = (
 /obj/structure/table/rack,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -20032,11 +20032,11 @@
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aUE" = (
@@ -25437,8 +25437,8 @@
 /area/eris/maintenance/substation/section2)
 "beU" = (
 /obj/structure/table/standard,
-/obj/random/material_resources/low_chance,
-/obj/random/material_resources/low_chance,
+/obj/spawner/material/resources/low_chance,
+/obj/spawner/material/resources/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "beV" = (
@@ -26172,8 +26172,8 @@
 "bgG" = (
 /obj/structure/table/standard,
 /obj/random/medical/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bgH" = (
@@ -28680,9 +28680,9 @@
 "blW" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "blX" = (
@@ -31215,9 +31215,9 @@
 "brL" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/open,
 /area/eris/maintenance/section4deck4port)
 "brM" = (
@@ -34632,7 +34632,7 @@
 /area/eris/hallway/main/section4)
 "bzx" = (
 /obj/random/junk,
-/obj/random/material,
+/obj/spawner/material/building,
 /obj/random/medical/low_chance,
 /obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -39581,7 +39581,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bJR" = (
@@ -39600,7 +39600,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bJT" = (
@@ -43278,16 +43278,16 @@
 /obj/item/stack/material/plastic{
 	amount = 120
 	},
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material_resources/low_chance,
-/obj/random/material_resources/low_chance,
-/obj/random/material_resources/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/resources/low_chance,
+/obj/spawner/material/resources/low_chance,
+/obj/spawner/material/resources/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "bRC" = (
@@ -50535,14 +50535,14 @@
 "chN" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "chO" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "chP" = (
@@ -51327,8 +51327,8 @@
 "cjJ" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/material_resources,
-/obj/random/material_resources,
+/obj/spawner/material/resources,
+/obj/spawner/material/resources,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "cjK" = (
@@ -54566,8 +54566,8 @@
 /area/eris/maintenance/section3deck4central)
 "crn" = (
 /obj/structure/table/rack/shelf,
-/obj/random/material_resources/low_chance,
-/obj/random/material_resources/low_chance,
+/obj/spawner/material/resources/low_chance,
+/obj/spawner/material/resources/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck4central)
 "cro" = (
@@ -54621,8 +54621,8 @@
 /area/eris/maintenance/section3deck4central)
 "crr" = (
 /obj/structure/table/rack/shelf,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck4central)
 "crs" = (
@@ -55948,8 +55948,8 @@
 /area/eris/maintenance/section1deck4central)
 "cuO" = (
 /obj/structure/table/standard,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "cuP" = (
@@ -57037,9 +57037,9 @@
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/research)
 "cxo" = (
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck3port)
@@ -57214,8 +57214,8 @@
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
 "cxL" = (
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/engineering/post)
 "cxM" = (
@@ -60761,7 +60761,7 @@
 "cFj" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/material,
+/obj/spawner/material/building,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
@@ -61669,14 +61669,14 @@
 /area/eris/maintenance/section3deck3starboard)
 "cHn" = (
 /obj/structure/table/reinforced,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 24
 	},
@@ -62154,12 +62154,12 @@
 /area/eris/storage/primary)
 "cIE" = (
 /obj/structure/table/standard,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
-/obj/random/material/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
+/obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/storage/primary)
 "cIF" = (
@@ -63184,8 +63184,8 @@
 /turf/simulated/floor/plating,
 /area/eris/engineering/engine_room)
 "cKX" = (
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cKY" = (
@@ -65179,11 +65179,11 @@
 /area/eris/maintenance/section2deck2starboard)
 "cQa" = (
 /obj/structure/table/rack,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/engineering/techstorage)
 "cQb" = (
@@ -68070,7 +68070,7 @@
 /area/shuttle/mining/station)
 "cWV" = (
 /obj/structure/table/standard,
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/section3starboard)
 "cWW" = (
@@ -70951,10 +70951,10 @@
 /area/eris/maintenance/section2deck2starboard)
 "ddq" = (
 /obj/structure/closet/crate,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
@@ -76245,9 +76245,9 @@
 /obj/structure/table/rack,
 /obj/random/gun/cheap/low_chance,
 /obj/spawner/firstaid/low_chance,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "dox" = (
@@ -88118,9 +88118,9 @@
 /area/eris/engineering/engine_room)
 "dPf" = (
 /obj/structure/table/standard,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
@@ -88221,10 +88221,10 @@
 /area/eris/engineering/gravity_generator)
 "dPr" = (
 /obj/structure/table/rack,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/gravity_generator)
 "dPs" = (
@@ -88393,7 +88393,7 @@
 	},
 /obj/structure/table/standard,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/primary)
 "dPQ" = (
@@ -89986,11 +89986,11 @@
 /area/eris/maintenance/section2deck1port)
 "dTv" = (
 /obj/structure/table/standard,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material_resources/low_chance,
-/obj/random/material_resources/low_chance,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/resources/low_chance,
+/obj/spawner/material/resources/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2port)
 "dTw" = (
@@ -90114,11 +90114,11 @@
 /area/eris/maintenance/section4deck2port)
 "dTN" = (
 /obj/structure/table/standard,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2port)
 "dTO" = (
@@ -90521,9 +90521,9 @@
 "dUT" = (
 /obj/structure/table/rack,
 /obj/spawner/material/resources/rare/low_chance,
-/obj/random/material,
-/obj/random/material,
-/obj/random/material,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dUU" = (

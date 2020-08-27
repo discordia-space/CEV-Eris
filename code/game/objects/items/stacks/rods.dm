@@ -18,6 +18,8 @@
 /obj/item/stack/rods/random
 	rand_min = 2
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING_ROD
+	rarity_value = 10
 
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"

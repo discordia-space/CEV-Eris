@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/loot_min = 6
 	var/loot_max = 12
 	var/list/loot_list = list(
-		/obj/random/material,
+		/obj/spawner/material/building,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/random/junk/nondense = 2,

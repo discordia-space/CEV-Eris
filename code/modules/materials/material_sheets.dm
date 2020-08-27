@@ -100,6 +100,8 @@
 /obj/item/stack/material/iron/random
 	rand_min = 3
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
+	rarity_value = 45
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
@@ -121,8 +123,8 @@
 /obj/item/stack/material/diamond/random
 	rand_min = 1
 	rand_max = 8
-	spawn_tags = SPAWN_TAG_MATERIAL_RARE
-	rarity_value = 20
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	rarity_value = 90
 
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
@@ -133,8 +135,8 @@
 /obj/item/stack/material/uranium/random
 	rand_min = 2
 	rand_max = 15
-	spawn_tags = SPAWN_TAG_MATERIAL_RARE
-	rarity_value = 20
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	rarity_value = 90
 
 /obj/item/stack/material/plasma
 	name = "solid plasma"
@@ -145,6 +147,8 @@
 /obj/item/stack/material/plasma/random
 	rand_min = 3
 	rand_max = 20
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
+	rarity_value = 30
 
 /obj/item/stack/material/plastic
 	name = "plastic"
@@ -156,6 +160,8 @@
 /obj/item/stack/material/plastic/random
 	rand_min = 3
 	rand_max = 30
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING
 
 /obj/item/stack/material/gold
 	name = "gold"
@@ -166,8 +172,8 @@
 /obj/item/stack/material/gold/random
 	rand_min = 2
 	rand_max = 15
-	spawn_tags = SPAWN_TAG_MATERIAL_RARE
-	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	rarity_value = 45
 
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
@@ -178,8 +184,8 @@
 /obj/item/stack/material/silver/random
 	rand_min = 3
 	rand_max = 30
-	spawn_tags = SPAWN_TAG_MATERIAL_RARE
-	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	rarity_value = 45
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -191,6 +197,8 @@
 /obj/item/stack/material/platinum/random
 	rand_min = 1
 	rand_max = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	rarity_value = 30
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -228,6 +236,8 @@
 /obj/item/stack/material/steel/random
 	rand_min = 3
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_BULDING
+	rarity_value = 18
 
 /obj/item/stack/material/plasteel
 	name = "plasteel"
@@ -240,6 +250,8 @@
 /obj/item/stack/material/plasteel/random
 	rand_min = 3
 	rand_max = 20
+	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING
+	rarity_value = 10
 
 /obj/item/stack/material/wood
 	name = "wooden plank"
@@ -250,6 +262,8 @@
 /obj/item/stack/material/wood/random
 	rand_min = 3
 	rand_max = 30
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING
 
 /obj/item/stack/material/cloth
 	name = "cloth"
@@ -266,6 +280,8 @@
 /obj/item/stack/material/cardboard/random
 	rand_min = 5
 	rand_max = 50
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_BUILDING
 
 /obj/item/stack/material/leather
 	name = "leather"
@@ -283,6 +299,8 @@
 /obj/item/stack/material/glass/random
 	rand_min = 3
 	rand_max = 30
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_BULDING
+	rarity_value = 22.5
 
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
@@ -300,8 +318,8 @@
 /obj/item/stack/material/glass/plasmaglass/random
 	rand_min = 3
 	rand_max = 30
-	spawn_tags = SPAWN_TAG_MATERIAL_RARE
-	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
+	rarity_value = 30
 
 /obj/item/stack/material/glass/plasmarglass
 	name = "reinforced borosilicate glass"
@@ -324,6 +342,8 @@
 /obj/item/stack/material/biomatter/random
 	rand_min = 5
 	rand_max = 25
+	spawn_tags = SPAWN_TAG_MATERIAL
+	rarity_value = 10
 
 /obj/item/stack/material/biomatter/full
 	amount = 60
