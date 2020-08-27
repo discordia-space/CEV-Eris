@@ -1,5 +1,4 @@
 /datum/trade_station/bluespace_technical
-	max_missing_assortiment = 2
 
 	name_pool = list("B-42-Alpha" = "Unknown signature, bluespace traces interfere with sensors. Unable to triangulate object.")
 	assortiment = list(

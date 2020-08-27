@@ -1,3 +1,6 @@
+#define good_data(nam, rand_list) list("name" = nam, "amount_range" = rand_list)
+#define custom_good_name(nam) good_data(nam, null)
+#define custom_good_amount_range(rand_list) good_data(null, rand_list)
 /datum/trade_station
 	var/name
 	var/desc
@@ -10,7 +13,6 @@
 	var/spawn_probability = 30
 	var/spawn_cost = 1
 	var/start_discovered = FALSE
-	var/max_missing_assortiment = 0
 	var/list/linked_with //trade 'stations' or 'station' that must spawn with //list or path
 
 	var/list/forced_overmap_zone //list(list(minx, maxx), list(miny, maxy))
@@ -18,9 +20,11 @@
 
 	var/list/name_pool = list()
 
+	var/markup = 0
 	var/list/assortiment = list()
 	var/list/offer_types = list()
-
+	
+	var/list/amounts_of_goods = list()
 
 	var/obj/effect/overmap_event/overmap_object
 	var/turf/overmap_location
@@ -42,13 +46,8 @@
 	name = pick(name_pool)
 	desc = name_pool[name]
 
-	var/removed = rand(0, max_missing_assortiment)
-	while(removed-- && recursiveLen(assortiment))
-		var/list/cur2remove = assortiment[pick(assortiment)]
-		if(islist(cur2remove))
-			cur2remove -= pick(cur2remove)
+	update_tick()
 
-	offer_tick()
 	var/x = 1
 	var/y = 1
 	if(recursiveLen(forced_overmap_zone) == 6)
@@ -63,6 +62,37 @@
 	if(start_discovered)
 		SStrade.discovered_stations += src
 
+/datum/trade_station/proc/update_tick()
+	offer_tick()
+	goods_tick()
+	addtimer(CALLBACK(src, .proc/update_tick), rand(15,25) MINUTES)
+
+/datum/trade_station/proc/goods_tick()
+	for(var/i in assortiment)
+		var/list/ass/*Hehe, boy*/ = assortiment[i]
+		if(islist(ass))
+			for(var/path in ass)
+				var/list/rand_args = list(0, 10)
+				var/list/good_packet = ass[path]
+				if(islist(good_packet))
+					if(islist(good_packet["amount_range"]))
+						rand_args = good_packet["amount_range"]
+				if(!islist(amounts_of_goods))
+					amounts_of_goods = list()
+				if(!islist(amounts_of_goods[i]))
+					amounts_of_goods[i] = list()
+				var/amount_cat = amounts_of_goods[i]
+				amount_cat["[ass.Find(path)]"] = rand(rand_args[1], rand_args[2])
+
+/datum/trade_station/proc/get_good_amount(list/cat, index)
+	if(isnum(cat))
+		cat = assortiment[cat]
+	if(istext(cat) && text2num(index))
+		if(islist(amounts_of_goods))
+			var/list/L = amounts_of_goods[cat]
+			if(islist(L))
+				. = L[L[index]]
+	return
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
 	SStrade.trade_stations_budget -= budget
 /datum/trade_station/proc/regain_trade_stations_budget(budget = spawn_cost)
@@ -78,8 +108,9 @@
 
 	overmap_object = new(overmap_location)
 	overmap_object.name = name
-	overmap_object.icon_state = pick(icon_states) //placeholder
+	overmap_object.icon_state = pick(icon_states)
 	overmap_object.opacity = ovemap_opacity
+	overmap_object.dir = pick(rand(1,2), 4, 8)
 
 	if(!start_discovered)
 		GLOB.entered_event.register(overmap_location, src, .proc/discovered)

@@ -72,19 +72,20 @@
 			{{if data.current_category}}
 				{{if data.goods}}
 					<table class='item'>
-						<tr>
-							<td class="bottom_bordered">Name
-							<td class="bottom_bordered">Price
-							<td class="bottom_bordered">Cart
+						<tr class="bottom_bordered">
+							<td>Name
+							<td>Price
+							<td>Available
+							<td>Cart
 						{{for data.goods}}
 							<tr>
 								<td>{{:value.name}}
 								<td>{{:value.price}}
+								<td>{{:value.amount_available}}
 								<td>
-									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index})}}
+									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
 									<div class="link {{if value.count == 0}}disabled{{else}}selected{{/if}}">{{:value.count}}</div>
 									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
-									
 						{{/for}}
 					</table>
 				{{else}}

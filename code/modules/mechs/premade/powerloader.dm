@@ -1,5 +1,5 @@
 /mob/living/exosuit/premade/powerloader
-	name = "APLU \"Ripley\""
+	name = "S.E.U. \"Ripley\"" //Space Excavation Unit
 	desc = "An old but well-liked utility exosuit. Once manufactured by Nanotrasen, this design was made omnipresent by data leaks that followed the Fall."
 
 	material = MATERIAL_STEEL
@@ -77,18 +77,18 @@
 	. = ..()
 
 /mob/living/exosuit/premade/powerloader/flames_red
-	name = "APLU \"Firestarter\""
+	name = "S.E.U. \"Firestarter\""
 	desc = "An old but well-liked utility exosuit. This one has cool red flames."
 	decal = "flames_red"
 
 /mob/living/exosuit/premade/powerloader/flames_blue
-	name = "APLU \"Burning Chrome\""
+	name = "S.E.U. \"Burning Chrome\""
 	desc = "An old but well-liked utility exosuit. This one has cool blue flames."
 	decal = "flames_blue"
 
 
 /mob/living/exosuit/premade/powerloader/firefighter
-	name = "APLU \"Firefighter\""
+	name = "S.E.U. \"Firefighter\""
 	desc = "A mix and match of industrial parts designed to withstand heavy fires."
 
 	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis

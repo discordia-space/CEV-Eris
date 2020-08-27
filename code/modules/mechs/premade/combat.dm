@@ -78,7 +78,7 @@
 	matter = list(MATERIAL_STEEL = 15)
 
 /mob/living/exosuit/premade/combat/slayer
-	name = "A.C.U. 'Slayer'"
+	name = "S.C.U. 'Slayer'" //Space Combat Unit
 	desc = "A sleek, modern combat exosuit. It has two red stripes on it's chassis."
 
 	exosuit_color = "#5a6934"
@@ -86,5 +86,5 @@
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/taser/laser,
 		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/taser/ion,
-		HARDPOINT_HEAD = /obj/item/mech_equipment/catapult,
+		HARDPOINT_HEAD = /obj/item/mech_equipment/light
 	)

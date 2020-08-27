@@ -668,7 +668,7 @@ table.pmon td, table.pmon th {
 
 /* Table Stuffs for manifest*/
 
-.bottom_bordered{
+tr.bottom_bordered td, .bottom_bordered{
     border-bottom: 1px solid #aaf
 }
 

@@ -96,6 +96,8 @@
 		var/path = LAZYACCESS(category, text2num(href_list["PRG_cart_add"]))
 		if(!path)
 			return
+		if(!station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"])))
+			return
 		shoppinglist[path] = 1 + shoppinglist[path]
 		return 1
 
@@ -184,16 +186,24 @@
 					if(!ispath(path, /atom/movable))
 						continue
 					var/atom/movable/AM = path
+
+					var/indix = assort.Find(path)
+
+					var/amount = PRG.station.get_good_amount(PRG.choosed_category, indix)
+
 					var/pathname = initial(AM.name)
-					if(istext(assort[path]))
-						pathname = assort[path]
-					var/price = SStrade.get_import_cost(path)
+					var/list/good_packet = assort[path]
+					if(islist(good_packet))
+						pathname = good_packet["name"] ? good_packet["name"] : pathname
+
+					var/price = SStrade.get_import_cost(path, PRG.station)
 					var/count = PRG.shoppinglist[path]
 					.["goods"] += list(list(
 						"name" = pathname,
 						"price" = price,
 						"count" = count ? count : 0,
-						"index" = assort.Find(path)
+						"amount_available" = amount,
+						"index" = indix
 					))
 					.["total"] += price * count
 		if(!recursiveLen(.["goods"]))

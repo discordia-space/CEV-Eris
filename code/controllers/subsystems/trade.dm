@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(trade)
 
 /datum/controller/subsystem/trade/proc/DeInitStations()
 	for(var/datum/trade_station/s in all_stations)
+		s.regain_trade_stations_budget()
 		qdel(s)
 		discovered_stations -= s
 		all_stations -= s
@@ -95,11 +96,14 @@ SUBSYSTEM_DEF(trade)
 	return price_cache[path]
 
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
-	return get_cost(target) * 0.6
+	. = get_cost(target) * 0.6
 
-/datum/controller/subsystem/trade/proc/get_import_cost(path)
-	return get_new_cost(path) * 1.2
-
+/datum/controller/subsystem/trade/proc/get_import_cost(path, datum/trade_station/trade_station)
+	. = get_new_cost(path)
+	var/markup = 1.2
+	if(istype(trade_station))
+		markup += trade_station.markup
+	. *= markup
 
 /datum/controller/subsystem/trade/proc/sell(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account)
 	if(QDELETED(beacon))
@@ -161,13 +165,13 @@ SUBSYSTEM_DEF(trade)
 	station.generate_offer()
 
 
-/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/beacon, datum/money_account/account, list/shoppinglist)
+/datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/beacon, datum/money_account/account, list/shoppinglist, datum/trade_station/station)
 	if(QDELETED(beacon) || !account || !length(shoppinglist))
 		return
 
 	var/cost = 0
 	for(var/path in shoppinglist)
-		cost += get_import_cost(path) * shoppinglist[path]
+		cost += get_import_cost(path, station) * shoppinglist[path]
 
 	if(get_account_credits(account) < cost)
 		return

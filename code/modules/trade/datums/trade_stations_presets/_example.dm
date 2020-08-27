@@ -10,9 +10,9 @@
 	//Types of items sold by the station
 	assortiment = list(
 		"Cells"  = list(
-			/obj/item/weapon/cell/large,
-			/obj/item/weapon/cell/medium,
-			/obj/item/weapon/cell/small,
+			/obj/item/weapon/cell/large = custom_good_name("Large Not a Cell"),
+			/obj/item/weapon/cell/medium = custom_good_amount_range(list(0,3)),
+			/obj/item/weapon/cell/small = good_data("Small Not a Cell", list(6, 20)),
 		)
 	)
 
