@@ -20,10 +20,10 @@
 	user.do_attack_animation(src)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W,/obj/item/weapon) && W.force >= 8)
-		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], restoring its original form.</span>"))
+		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], restoring its original form."))
 		make_pile()
 	else
-		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], but [W] is too weak to break it!</span>"))
+		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], but [W] is too weak to break it!"))
 
 /obj/item/weapon/scrap_lump
 	name = "unrefined scrap"
