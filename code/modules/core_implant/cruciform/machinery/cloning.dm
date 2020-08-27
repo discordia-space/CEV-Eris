@@ -402,7 +402,6 @@
 			var/sheets_amount_to_transphere = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
 			if (sheets_amount_to_transphere > B.amount)
 				user.visible_message("you can't load more sheets than you got.")
-				buzz()
 				return
 			if(sheets_amount_to_transphere)
 				var/total_transphere_from_stack = 0
