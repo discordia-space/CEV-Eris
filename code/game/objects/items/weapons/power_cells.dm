@@ -130,6 +130,7 @@
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 800
 	rarity_value = 4.5
+	spawn_tags = SPAWN_TAG_MEDIUM_POWERCELL_IH_AMMO
 
 /obj/item/weapon/cell/medium/super
 	name = "Asters \"Robustcell 1000M\""

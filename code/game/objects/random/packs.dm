@@ -91,7 +91,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/knife = 6,
 					/obj/random/ammo = 15,
 					/obj/spawner/ammo/shotgun = 15,
-					/obj/random/ammo_ihs = 15,
+					/obj/spawner/ammo_ihs = 15,
 					/obj/random/ammo_lowcost = 18,
 					/obj/spawner/gun_upgrade = 10,
 					/obj/spawner/cloth/holster = 8

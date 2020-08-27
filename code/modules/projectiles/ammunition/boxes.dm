@@ -18,7 +18,7 @@
 			return TRUE
 	..()
 
-/obj/item/ammo_magazine/ammobox/proc/collectAmmo(var/turf/target, var/mob/user)
+/obj/item/ammo_magazine/ammobox/proc/collectAmmo(turf/target, mob/user)
 	ASSERT(istype(target))
 	. = FALSE
 	for(var/obj/item/ammo_casing/I in target)
@@ -134,11 +134,14 @@
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 240
+	spawn_tags = SPAWN_TAG_AMMO_IH
+	rarity_value = 5
 
 /obj/item/ammo_magazine/ammobox/clrifle/rubber
 	name = "ammunition box (.25 Caseless Rifle rubber)"
 	icon_state = "box_clrifle_r"
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+	spawn_tags = SPAWN_TAG_AMMO_IH
 
 /obj/item/ammo_magazine/ammobox/clrifle_small
 	name = "ammunition packet (.25 Caseless Rifle)"

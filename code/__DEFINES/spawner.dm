@@ -90,6 +90,7 @@
 #define SPAWN_TAG_SMALL_POWERCELL "obj,item,powercell,small_powercell"
 #define SPAWN_TAG_MEDIUM_POWERCELL "obj,item,powercell,medium_powercell"
 #define SPAWN_TAG_LARGE_POWERCELL "obj,item,powercell,large_powercell"
+#define SPAWN_TAG_MEDIUM_POWERCELL_IH_AMMO "obj,item,powercell,medium_powercell,ammo_ih"
 
 //	Items - GUNS
 #define SPAWN_GUN "gun"

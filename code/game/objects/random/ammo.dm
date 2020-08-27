@@ -38,22 +38,12 @@
 	icon_state = "ammo-orange-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/ammo_ihs
+/obj/spawner/ammo_ihs
 	name = "random ironhammer ammunition"
 	icon_state = "ammo-blue"
+	tags_to_spawn = list(SPAWN_AMMO_IH)
 
-/obj/random/ammo_ihs/item_to_spawn()
-	return pick(/obj/item/ammo_magazine/ihclrifle/rubber,
-				/obj/item/ammo_magazine/ihclrifle,
-				/obj/item/ammo_magazine/ammobox/clrifle,
-				/obj/item/ammo_magazine/ammobox/clrifle/rubber,
-				/obj/item/ammo_magazine/magnum/rubber,
-				/obj/item/ammo_magazine/slmagnum,
-				/obj/item/ammo_magazine/magnum/rubber,
-				/obj/item/ammo_magazine/magnum,
-				/obj/item/weapon/cell/medium/high)
-
-/obj/random/ammo_ihs/low_chance
+/obj/spawner/ammo_ihs/low_chance
 	name = "low chance random random ironhammer ammunition"
 	icon_state = "ammo-blue-low"
 	spawn_nothing_percentage = 60
