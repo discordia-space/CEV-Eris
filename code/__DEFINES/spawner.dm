@@ -187,8 +187,13 @@
 #define SPAWN_TAG_DRINK_SODA "obj,item,drink,bottle_drink,cans"
 
 // item -snaks
+#define SPAWN_JUNKFOOD "junkfood"
 #define SPAWN_PIZZA "pizza"
+#define SPAWN_RATIONS "rations"
 
+#define SPAWN_TAG_RATIONS "obj,item,snaks,rations"
+#define SPAWN_TAG_JUNKFOOD "obj,item,snaks,junkfood"
+#define SPAWN_TAG_JUNKFOOD_RATIONS "obj,item,snaks,junkfood,rations"
 #define SPAWN_TAG_PIZZA "obj,item,snaks,pizza"
 
 //	MECH

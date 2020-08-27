@@ -359,12 +359,12 @@
 	new /obj/spawner/pizza/low_chance(src)
 	new /obj/spawner/soda(src)
 	new /obj/spawner/soda/low_chance(src)
-	new /obj/random/rations/low_chance(src)
-	new /obj/random/junkfood(src)
-	new /obj/random/junkfood(src)
-	new /obj/random/junkfood(src)
-	new /obj/random/junkfood/low_chance(src)
-	new /obj/random/junkfood/low_chance(src)
+	new /obj/spawner/rations/low_chance(src)
+	new /obj/spawner/junkfood(src)
+	new /obj/spawner/junkfood(src)
+	new /obj/spawner/junkfood(src)
+	new /obj/spawner/junkfood/low_chance(src)
+	new /obj/spawner/junkfood/low_chance(src)
 	new /obj/spawner/booze/low_chance(src)
 
 /obj/item/weapon/storage/freezer/medical

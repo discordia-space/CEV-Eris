@@ -8,8 +8,9 @@
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
-	auto_eject = 1
 	caliber = CAL_CLRIFLE
+	magazine_type = /obj/item/ammo_magazine/ihclrifle
+	auto_eject = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)

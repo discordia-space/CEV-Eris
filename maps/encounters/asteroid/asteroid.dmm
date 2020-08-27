@@ -92,7 +92,7 @@
 /area/outpost/abandoned)
 "ax" = (
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ay" = (
@@ -510,14 +510,14 @@
 /area/outpost/abandoned)
 "cq" = (
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cr" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)

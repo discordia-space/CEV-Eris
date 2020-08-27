@@ -182,9 +182,9 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/random/rations(src)
-	new /obj/random/rations(src)
-	new /obj/random/rations(src)
+	new /obj/spawner/rations(src)
+	new /obj/spawner/rations(src)
+	new /obj/spawner/rations(src)
 	new /obj/spawner/mob/roaches/cluster(src)
 
 // Used for scrap beacon
@@ -199,7 +199,7 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/random/rations(src)
-	new /obj/random/rations(src)
-	new /obj/random/rations(src)
+	new /obj/spawner/rations(src)
+	new /obj/spawner/rations(src)
+	new /obj/spawner/rations(src)
 	new /obj/spawner/mob/roaches/cluster/beacon(src)

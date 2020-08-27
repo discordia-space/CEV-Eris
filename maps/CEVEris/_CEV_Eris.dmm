@@ -1547,7 +1547,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /mob/living/simple_animal/mouse/brown/Tom,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/prison)
@@ -6095,7 +6095,7 @@
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "anM" = (
@@ -6526,7 +6526,7 @@
 /area/eris/maintenance/section2deck5port)
 "aoH" = (
 /obj/random/pack/tech_loot,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aoI" = (
@@ -6659,8 +6659,8 @@
 /turf/simulated/wall,
 /area/eris/quartermaster/hangarsupply)
 "apc" = (
-/obj/random/junkfood/rotten,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/prison)
 "apd" = (
@@ -8054,7 +8054,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5starboard)
 "arY" = (
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "arZ" = (
@@ -8476,7 +8476,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "asK" = (
@@ -9003,7 +9003,7 @@
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "atZ" = (
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/prison)
 "aua" = (
@@ -9740,7 +9740,7 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck4starboard)
 "awa" = (
-/obj/random/junkfood/low_chance,
+/obj/spawner/junkfood/low_chance,
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/prison)
 "awb" = (
@@ -10242,7 +10242,7 @@
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 1. Go all the way through the maints east from Emergency Pod."
 	},
@@ -11653,7 +11653,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "aAy" = (
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 1. Fueltank room on the west of Medbay toilet."
 	},
@@ -11718,7 +11718,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5port)
 "aAE" = (
@@ -15984,7 +15984,7 @@
 /area/eris/maintenance/section3deck1central)
 "aLx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aLy" = (
@@ -16441,7 +16441,7 @@
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
 "aMD" = (
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aME" = (
@@ -16905,7 +16905,7 @@
 	d2 = 0;
 	icon_state = "16-0"
 	},
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aNH" = (
@@ -21173,7 +21173,7 @@
 /obj/random/pack/tech_loot/low_chance,
 /obj/spawner/electronics/low_chance,
 /obj/spawner/electronics/low_chance,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aWY" = (
@@ -24195,7 +24195,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bcB" = (
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "bcC" = (
@@ -31381,8 +31381,8 @@
 /area/eris/maintenance/section3deck1central)
 "bsl" = (
 /obj/structure/table/rack/shelf,
-/obj/random/rations,
-/obj/random/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "bsm" = (
@@ -31748,7 +31748,7 @@
 /area/eris/maintenance/section3deck1central)
 "btj" = (
 /obj/structure/table/reinforced,
-/obj/random/rations,
+/obj/spawner/rations,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/maintenance/section3deck1central)
 "btk" = (
@@ -33301,7 +33301,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
 "bwy" = (
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "bwz" = (
@@ -33558,8 +33558,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/clothingstorage)
 "bwZ" = (
-/obj/random/junkfood/rotten,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck4central)
 "bxa" = (
@@ -35557,7 +35557,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "bBx" = (
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -38387,8 +38387,8 @@
 /area/eris/maintenance/section4deck4central)
 "bHD" = (
 /obj/structure/table/standard,
-/obj/random/junkfood/rotten/low_chance,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "bHE" = (
@@ -52100,14 +52100,14 @@
 "clG" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
-/obj/random/junkfood,
-/obj/random/junkfood,
-/obj/random/junkfood,
-/obj/random/junkfood,
-/obj/random/rations,
-/obj/random/rations,
-/obj/random/rations,
-/obj/random/rations,
+/obj/spawner/junkfood,
+/obj/spawner/junkfood,
+/obj/spawner/junkfood,
+/obj/spawner/junkfood,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "clH" = (
@@ -59579,12 +59579,12 @@
 /area/eris/hallway/side/bridgehallway)
 "cCD" = (
 /obj/structure/table/rack,
-/obj/random/rations,
-/obj/random/rations,
-/obj/random/rations,
-/obj/random/rations/low_chance,
-/obj/random/rations/low_chance,
-/obj/random/rations/low_chance,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations/low_chance,
+/obj/spawner/rations/low_chance,
+/obj/spawner/rations/low_chance,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCE" = (
@@ -92680,9 +92680,9 @@
 /area/eris/maintenance/section3deck3starboard)
 "dZA" = (
 /obj/structure/table/standard,
-/obj/random/rations,
-/obj/random/rations,
-/obj/random/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
+/obj/spawner/rations,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/maintenance/section3deck3starboard)
 "dZB" = (
@@ -93284,7 +93284,7 @@
 /area/eris/maintenance/section3deck3starboard)
 "eaM" = (
 /obj/structure/table/standard,
-/obj/random/rations,
+/obj/spawner/rations,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section3deck3starboard)
 "eaN" = (
@@ -95330,10 +95330,10 @@
 /turf/simulated/open,
 /area/eris/neotheology/chapel)
 "efG" = (
-/obj/random/junkfood/rotten/low_chance,
-/obj/random/junkfood/rotten/low_chance,
-/obj/random/junkfood/rotten/low_chance,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "efH" = (
@@ -98611,8 +98611,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/fitness)
 "end" = (
-/obj/random/junkfood/rotten/low_chance,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "ene" = (
@@ -98631,7 +98631,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
 	},
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "enh" = (
@@ -98657,7 +98657,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "enl" = (
@@ -98795,23 +98795,23 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2port)
 "enE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/random/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
 "enF" = (
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck1port)
 "enG" = (
 /obj/spawner/electronics/low_chance,
-/obj/random/junkfood/rotten,
-/obj/random/junkfood/rotten,
-/obj/random/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
+/obj/spawner/junkfood/rotten,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
@@ -101724,7 +101724,7 @@
 /area/eris/maintenance/section3deck1central)
 "etY" = (
 /obj/structure/table/standard,
-/obj/random/rations,
+/obj/spawner/rations,
 /obj/machinery/light{
 	dir = 4
 	},

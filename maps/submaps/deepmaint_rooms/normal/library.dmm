@@ -9,7 +9,7 @@
 "i" = (/obj/structure/table/woodentable,/obj/structure/barricade,/turf/simulated/floor/wood,/area/deepmaint)
 "j" = (/obj/machinery/deployable/barrier,/turf/simulated/floor/wood,/area/deepmaint)
 "k" = (/obj/structure/table/woodentable,/obj/random/pack/rare,/obj/random/pack/rare,/obj/random/pack/rare/low_chance,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
-"l" = (/obj/structure/table/woodentable,/obj/random/junkfood,/obj/random/junkfood,/obj/random/junkfood,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"l" = (/obj/structure/table/woodentable,/obj/spawner/junkfood,/obj/spawner/junkfood,/obj/spawner/junkfood,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
 "m" = (/obj/structure/table/woodentable,/obj/random/pack/gun_loot,/obj/random/pack/gun_loot,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/obj/random/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
 "n" = (/obj/item/remains,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
 "o" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/deepmaint)

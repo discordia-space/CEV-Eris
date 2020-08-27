@@ -376,7 +376,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/food_trash.dmi'
 	rarity_value = 5.77
 	loot_list = list(
-		/obj/random/junkfood = 5,
+		/obj/spawner/junkfood = 5,
 		/obj/spawner/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,

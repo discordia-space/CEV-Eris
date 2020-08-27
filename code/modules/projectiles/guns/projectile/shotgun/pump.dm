@@ -26,12 +26,12 @@
 		return chambered.BB
 	return null
 
-/obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
+/obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)
 		pump(user)
 		recentpumpmsg = world.time
 
-/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M)
 	var/turf/newloc = get_turf(src)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 
