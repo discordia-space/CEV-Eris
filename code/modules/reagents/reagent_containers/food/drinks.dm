@@ -184,8 +184,6 @@
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
 
-
-
 /obj/item/weapon/reagent_containers/food/drinks/sillycup
 	name = "paper cup"
 	desc = "A paper water cup."

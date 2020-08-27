@@ -11,35 +11,16 @@
 	spawn_nothing_percentage = 60
 
 
-/obj/random/cloth/armor
+/obj/spawner/cloth/armor
 	name = "random armor"
 	desc = "This is a random armor."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_CLOTHING_ARMOR)
 
-/obj/random/cloth/armor/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/suit/armor/vest = 20,
-				/obj/item/clothing/suit/armor/vest/security = 15,
-				/obj/item/clothing/suit/armor/vest/detective  = 10,
-				/obj/item/clothing/suit/armor/vest/ironhammer = 2,
-				/obj/item/clothing/suit/armor/vest/handmade = 5,
-				/obj/item/clothing/suit/armor/flak = 5,
-				/obj/item/clothing/suit/armor/flak/green = 5,
-				/obj/item/clothing/suit/armor/bulletproof = 10,
-				/obj/item/clothing/suit/armor/bulletproof/ironhammer = 2,
-				/obj/item/clothing/suit/armor/bulletproof/serbian = 2,
-				/obj/item/clothing/suit/armor/bulletproof/serbian/green = 2,
-				/obj/item/clothing/suit/armor/bulletproof/serbian/tan = 2,
-				/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 2,
-				/obj/item/clothing/suit/armor/laserproof = 4,
-				/obj/item/clothing/suit/armor/heavy = 2,
-				/obj/item/clothing/suit/armor/heavy/riot = 4,
-				/obj/item/clothing/suit/storage/vest/merc = 2))
-
-/obj/random/cloth/armor/low_chance
+/obj/spawner/cloth/armor/low_chance
 	name = "low chance random armor"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/random/cloth/suit
 	name = "random suit"

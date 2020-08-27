@@ -51,6 +51,7 @@
 /obj/random/ammo_lowcost
 	name = "random low tier ammunition"
 	icon_state = "ammo-grey"
+	//tags_to_spawn = list(SPAWN_AMMO)
 
 /obj/random/ammo_lowcost/item_to_spawn()
 	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,

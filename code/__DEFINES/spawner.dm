@@ -121,9 +121,11 @@
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,energy_gun,shotgun"
 
 //	Items - GUNS - ammo
+#define SPAWN_AMMO "ammmo_storage"
 #define SPAWN_AMMO_IH "ammo_ih"
 #define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
 
+#define SPAWN_TAG_AMMO "obj,item,gun,ammo,ammmo_storage"
 #define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
 #define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammo_ih,ammmo_storage"
 
@@ -148,6 +150,7 @@
 #define SPAWN_CLOTHING_UNDER "under"
 #define SPAWN_CLOTHING_HEAD "head"
 #define SPAWN_CLOTHING_HEAD_HELMET "helmet"
+#define SPAWN_CLOTHING_ARMOR "armor"
 
 #define SPAWN_TAG_CLOTHING "obj,item,clothing"
 #define SPAWN_TAG_VOID_SUIT "obj,item,clothing,suit,space_suit,void_suit"
@@ -159,6 +162,7 @@
 #define SPAWN_TAG_CLOTHING_UNDER "obj,item,clothing,under"
 #define SPAWN_TAG_CLOTHING_HEAD "obj,item,clothing,head"
 #define SPAWN_TAG_CLOTHING_HEAD_HELMET "obj,item,clothing,head,helmet"
+#define SPAWN_TAG_CLOTHING_ARMOR "obj,item,clothing,armor"
 
 //	Items - storage
 #define SPAWN_storage "storage"
