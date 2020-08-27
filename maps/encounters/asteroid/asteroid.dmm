@@ -111,11 +111,11 @@
 "aA" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/spawner/material_rare/low_chance,
+/obj/spawner/material/rare/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aB" = (
-/obj/spawner/material_rare/low_chance,
+/obj/spawner/material/rare/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned)
 "aC" = (
@@ -697,14 +697,14 @@
 "cJ" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/crate,
-/obj/spawner/material_rare/low_chance,
+/obj/spawner/material/rare/low_chance,
 /obj/random/material,
 /obj/random/material,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cK" = (
 /obj/structure/closet/crate,
-/obj/spawner/material_rare/low_chance,
+/obj/spawner/material/rare/low_chance,
 /obj/random/material,
 /obj/random/material,
 /turf/simulated/floor/asteroid,

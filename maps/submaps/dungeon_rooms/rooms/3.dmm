@@ -26,7 +26,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "h" = (
-/obj/random/material_resources/low_chance,
+/obj/random/material/resources/low_chance,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "i" = (

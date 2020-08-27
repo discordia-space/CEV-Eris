@@ -363,7 +363,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/random/junk/nondense,
-		/obj/spawner/material_ore,
+		/obj/spawner/material/ore,
 		/obj/random/pack/rare = 0.3,
 		/obj/spawner/tool_upgrade = 1,
 		/obj/spawner/exosuit_equipment = 2
@@ -414,7 +414,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/powercell,
 		/obj/spawner/electronics,
 		/obj/random/science,
-		/obj/spawner/material_ore,
+		/obj/spawner/material/ore,
 		/obj/spawner/oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/spawner/tool_upgrade,
@@ -439,7 +439,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/junk/nondense = 4,
 		/obj/item/stack/rods/random = 3,
 		/obj/spawner/oddities = 0.5,
-		/obj/spawner/material_ore,
+		/obj/spawner/material/ore,
 		/obj/item/weapon/material/shard,
 		/obj/random/pack/rare = 0.3
 	)

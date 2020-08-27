@@ -17,11 +17,11 @@
 	icon_state = "material-grey-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/material_resources
+/obj/random/material/resources
 	name = "random resource material"
 	icon_state = "material-green"
 
-/obj/random/material_resources/item_to_spawn()
+/obj/random/material/resources/item_to_spawn()
 	return pickweight(list(/obj/item/stack/material/steel/random = 5,\
 				/obj/item/stack/material/glass/random = 4,\
 				/obj/item/stack/material/glass/plasmaglass/random = 3,\
@@ -32,27 +32,27 @@
 				/obj/item/stack/material/uranium/random = 1,\
 				/obj/item/stack/material/silver/random = 2))
 
-/obj/random/material_resources/low_chance
+/obj/random/material/resources/low_chance
 	name = "low chance random resource material"
 	icon_state = "material-green-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/material_rare
+/obj/spawner/material/rare
 	name = "random rare material"
 	icon_state = "material-orange"
 	tags_to_spawn = list(SPAWN_MATERIAL_RARE)
 
-/obj/spawner/material_rare/low_chance
+/obj/spawner/material/rare/low_chance
 	name = "low chance random rare material"
 	icon_state = "material-orange-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/material_ore
+/obj/spawner/material/ore
 	name = "random ore"
 	icon_state = "material-black"
 	tags_to_spawn = list(SPAWN_ORE)
 
-/obj/spawner/material_ore/low_chance
+/obj/spawner/material/ore/low_chance
 	name = "low chance random ore"
 	icon_state = "material-black-low"
 	spawn_nothing_percentage = 60

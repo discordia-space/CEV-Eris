@@ -71,7 +71,7 @@
 "bs" = (/obj/machinery/chemical_dispenser/industrial,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "bt" = (/obj/machinery/autolathe/loaded,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "bu" = (/obj/structure/table/standard,/obj/random/material,/obj/random/material,/obj/random/material,/obj/random/material,/obj/random/material,/obj/random/material,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
-"bv" = (/obj/structure/table/standard,/obj/spawner/material_rare,/obj/spawner/material_rare,/obj/spawner/material_rare,/obj/spawner/material_rare,/obj/spawner/material_rare,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
+"bv" = (/obj/structure/table/standard,/obj/spawner/material/rare,/obj/spawner/material/rare,/obj/spawner/material/rare,/obj/spawner/material/rare,/obj/spawner/material/rare,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "bw" = (/obj/structure/table/standard,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "bx" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/item/clothing/head/welding,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "by" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
