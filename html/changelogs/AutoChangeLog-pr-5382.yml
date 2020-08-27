@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - tweak: Bluespace trashbag construction is not free anymore
