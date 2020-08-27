@@ -146,6 +146,7 @@
 #define SPAWN_SHOES "shoes"
 #define SPAWN_GLOVES "gloves"
 #define SPAWN_CLOTHING_UNDER "under"
+#define SPAWN_CLOTHING_HEAD "head"
 #define SPAWN_CLOTHING_HEAD_HELMET "helmet"
 
 #define SPAWN_TAG_CLOTHING "obj,item,clothing"
@@ -156,6 +157,7 @@
 #define SPAWN_TAG_SHOES "obj,item,clothing,shoes"
 #define SPAWN_TAG_GLOVES "obj,item,clothing,gloves"
 #define SPAWN_TAG_CLOTHING_UNDER "obj,item,clothing,under"
+#define SPAWN_TAG_CLOTHING_HEAD "obj,item,clothing,head"
 #define SPAWN_TAG_CLOTHING_HEAD_HELMET "obj,item,clothing,head,helmet"
 
 //	Items - storage

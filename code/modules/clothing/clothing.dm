@@ -308,6 +308,8 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_SMALL
+	bad_types = /obj/item/clothing/head
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
 
 	var/light_overlay = "helmet_light"
 	var/light_applied

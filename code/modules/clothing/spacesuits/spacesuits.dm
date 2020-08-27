@@ -31,6 +31,7 @@
 	species_restricted = list("exclude")
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 100
+	spawn_blacklisted = TRUE
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks

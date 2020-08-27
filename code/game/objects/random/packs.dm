@@ -19,7 +19,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/cloth/hazmatsuit = 4,
 					/obj/spawner/cloth/under = 7,
 					/obj/spawner/cloth/helmet = 4,
-					/obj/random/cloth/head = 5,
+					/obj/spawner/cloth/head = 5,
 					/obj/spawner/cloth/gloves = 5,
 					/obj/random/cloth/glasses = 4,
 					/obj/spawner/cloth/shoes = 6,

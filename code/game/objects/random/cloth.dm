@@ -119,51 +119,14 @@
 	spawn_nothing_percentage = 60
 
 
-/obj/random/cloth/head
+/obj/spawner/cloth/head
 	name = "random head"
 	desc = "This is a random head."
 	icon_state = "armor-grey"
+	tags_to_spawn = list(SPAWN_CLOTHING_HEAD)
+	restristed_tags = list(SPAWN_CLOTHING_HEAD_HELMET)
 
-/obj/random/cloth/head/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/head/kitty = 1,    //God forgive us
-				/obj/item/clothing/head/bandana/green = 5,
-				/obj/item/clothing/head/beret = 5,
-				/obj/item/clothing/head/beret/german = 4,
-				/obj/item/clothing/head/HoS = 1,
-				/obj/item/clothing/head/bearpelt = 5,
-				/obj/item/clothing/head/bowler = 5,
-				/obj/item/clothing/head/bowlerhat = 5,
-				/obj/item/clothing/head/cakehat = 5,
-				/obj/item/clothing/head/chaplain_hood = 5,
-				/obj/item/clothing/head/chefhat = 5,
-				/obj/item/clothing/head/feathertrilby = 5,
-				/obj/item/clothing/head/flatcap = 5,
-				/obj/item/clothing/head/fez = 5,
-				/obj/item/clothing/head/fedora = 5,
-				/obj/item/clothing/head/hardhat/white = 5,
-				/obj/item/clothing/head/hardhat = 5,
-				/obj/item/clothing/head/nun_hood = 5,
-				/obj/item/clothing/head/philosopher_wig = 5,
-				/obj/item/clothing/head/bandana/orange = 5,
-				/obj/item/clothing/head/bandana/green = 5,
-				/obj/item/clothing/head/nun_hood = 5,
-				/obj/item/clothing/head/det/grey = 5,
-				/obj/item/clothing/head/det = 5,
-				/obj/item/clothing/head/soft/yellow = 1,
-				/obj/item/clothing/head/soft/red = 1,
-				/obj/item/clothing/head/soft/rainbow = 1,
-				/obj/item/clothing/head/soft/purple = 1,
-				/obj/item/clothing/head/soft/orange = 1,
-				/obj/item/clothing/head/soft/mime = 1,
-				/obj/item/clothing/head/soft/grey = 1,
-				/obj/item/clothing/head/soft/green = 1,
-				/obj/item/clothing/head/soft/blue = 1,
-				/obj/item/clothing/head/soft = 5,
-				/obj/item/clothing/head/that = 5,
-				/obj/item/clothing/head/ushanka = 3,
-				/obj/item/clothing/head/welding = 5))
-
-/obj/random/cloth/head/low_chance
+/obj/spawner/cloth/head/low_chance
 	name = "low chance random head"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
