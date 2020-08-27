@@ -8,11 +8,12 @@
 	icon_state = "zoric"
 	item_state = "zoric"
 	w_class = ITEM_SIZE_NORMAL
-	caliber = CAL_MAGNUM
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
+	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_SMG
+	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
 	damage_multiplier = 1	 // 34 lethal
