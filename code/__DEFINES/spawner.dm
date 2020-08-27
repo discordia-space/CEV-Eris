@@ -7,28 +7,34 @@
 
 //Items - tools
 #define SPAWN_TOOL "tool"
-#define SPAWN_TOOL_UPGRADE "tool_upgrade"
-#define SPAWN_RARE_TOOL_UPGRADE "rare_tool_upgrade"
 #define SPAWN_ADVANCED_TOOL "advanced_tool"
+#define SPAWN_OS_TOOL "os_tool"
 
 #define SPAWN_TAG_TOOL "obj,item,tool"
-#define SPAWN_TAG_TOOL_UPGRADE "obj,item,tool,tool_upgrade"
-#define SPAWN_TAG_RARE_TOOL_UPGRADE "obj,item,tool,tool_upgrade,rare_tool_upgrade"
 #define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,advanced_tool"
+#define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,faction_os"
+
 
 //	Items - tools - knife
 #define SPAWN_KNIFE "knife"
 #define SPAWN_SWORD "sword"
-#define SPAWN_OS_TOOL "os_tool"
 
 #define SPAWN_TAG_KNIFE "obj,item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "obj,item,weapon,tool,knife,sword"
-#define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,faction_os"
 
 // ITEMS - tools - SURGERY
 #define SPAWN_SURGERY_TOOL "surgery_tool"
 
 #define SPAWN_TAG_SURGERY_TOOL "obj,item,tool,surgery_tool"
+
+//	Items - upgrades
+#define SPAWN_TOOL_UPGRADE "tool_upgrade"
+#define SPAWN_RARE_TOOL_UPGRADE "rare_tool_upgrade"
+#define SPAWN_GUN_UPGRADE "gun_upgrade"
+
+#define SPAWN_TAG_TOOL_UPGRADE "obj,item,tool_upgrade"
+#define SPAWN_TAG_RARE_TOOL_UPGRADE "obj,item,tool_upgrade,rare_tool_upgrade"
+#define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
 
 // ITEMS - organ- PROSTHESIS
 #define SPAWN_OS_PROSTHETIC "os_prosthetic"
@@ -104,7 +110,6 @@
 #define SPAWN_GUN "gun"
 #define SPAWN_ENERGY_GUN "energy_gun"
 #define SPAWN_BALISTIC_GUN "balistic_gun"
-#define SPAWN_GUN_UPGRADE "gun_upgrade"
 #define SPAWN_GUN_SHOTGUN "shotgun"
 #define SPAWN_ENERGY_GUN_CHEAP "energy_gun_cheap"
 
@@ -114,7 +119,6 @@
 #define SPAWN_TAG_BALISTIC_GUN "obj,item,gun,balistic_gun"
 #define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,balistic_gun,shotgun"
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,energy_gun,shotgun"
-#define SPAWN_TAG_GUN_UPGRADE "obj,item,gun,gun_upgrade"
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO_IH "ammo_ih"
