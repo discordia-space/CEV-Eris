@@ -374,7 +374,7 @@
 /area/outpost/abandoned_fortress)
 "bP" = (
 /obj/structure/table/rack/shelf,
-/obj/spawner/material/rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /obj/random/material/resources,
 /obj/random/material/resources,
 /obj/random/material_resources,
@@ -382,13 +382,13 @@
 /area/outpost/abandoned_fortress)
 "bQ" = (
 /obj/structure/table/rack/shelf,
-/obj/spawner/material/rare/low_chance,
-/obj/spawner/material/rare,
+/obj/spawner/material/resources/rare/low_chance,
+/obj/spawner/material/resources/rare,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bR" = (
 /obj/structure/table/rack/shelf,
-/obj/spawner/material/rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bT" = (
@@ -443,8 +443,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cd" = (
-/obj/spawner/material/rare/low_chance,
-/obj/spawner/material/rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
+/obj/spawner/material/resources/rare/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ce" = (

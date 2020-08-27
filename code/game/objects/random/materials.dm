@@ -37,12 +37,12 @@
 	icon_state = "material-green-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/material/rare
+/obj/spawner/material/resources/rare
 	name = "random rare material"
 	icon_state = "material-orange"
 	tags_to_spawn = list(SPAWN_MATERIAL_RARE)
 
-/obj/spawner/material/rare/low_chance
+/obj/spawner/material/resources/rare/low_chance
 	name = "low chance random rare material"
 	icon_state = "material-orange-low"
 	spawn_nothing_percentage = 60
