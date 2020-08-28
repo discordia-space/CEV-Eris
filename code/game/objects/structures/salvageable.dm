@@ -5,8 +5,7 @@
 	density = TRUE
 	anchored = TRUE
 	bad_types = /obj/structure/salvageable
-	spawn_frequency = 10
-	rarity_value = 10
+	spawn_frequency = 13
 	spawn_tags = SPAWN_TAG_SALVAGEABLE
 	var/salvageable_parts = list()
 
@@ -280,7 +279,6 @@ obj/structure/salvageable/bliss/Initialize()
 	spawn_tags = SPAWN_TAG_SALVAGEABLE_OS
 	rarity_value = 20
 	spawn_blacklisted = TRUE
-	spawn_frequency = 8 //from 10
 	bad_types = /obj/structure/salvageable/os
 
 /obj/structure/salvageable/os/machine

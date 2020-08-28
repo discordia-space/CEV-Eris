@@ -228,6 +228,7 @@
 	icon_state = "v2box_0"
 	base_state = "v2box"
 	frame_type = FRAME_VERTICAL
+	bad_types = /obj/machinery/constructable_frame/machine_frame/vertical
 
 /obj/machinery/constructable_frame/machine_frame/vertical/New()
 	..()

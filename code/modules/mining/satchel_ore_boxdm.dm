@@ -7,6 +7,8 @@
 	name = "ore box"
 	desc = "A heavy box used for storing ore."
 	density = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_STRUCTURE_COMMON
 	var/last_update = 0
 	var/list/stored_ore = list()
 

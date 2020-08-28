@@ -6,9 +6,7 @@
 	anchored = FALSE
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/obj/item/weapon/electronics/circuitboard/circuit = null
-	spawn_frequency = 10
-	rarity_value = 10
+	var/obj/item/weapon/electronics/circuitboard/circuit
 	spawn_tags = SPAWN_TAG_COMPUTERFRAME
 
 //	weight = 1.0E8

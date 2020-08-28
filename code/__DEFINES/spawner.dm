@@ -221,6 +221,9 @@
 
 //	Structures
 #define SPAWN_STRUCTURE "obj,structure"
+#define SPAWN_STRUCTURE_COMMON "common_structure"
+
+#define SPAWN_TAG_STRUCTURE_COMMON "obj,structure,common_structure"
 
 // Structures - ClOSET
 #define SPAWN_CLOSET "closet"
