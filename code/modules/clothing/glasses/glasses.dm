@@ -3,8 +3,7 @@
 	icon = 'icons/inventory/eyes/icon.dmi'
 	spawn_tags = SPAWN_TAG_GLASSES
 	bad_types = /obj/item/clothing/glasses
-	spawn_frequency = 8
-	rarity_value = 2
+	rarity_value = 20
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/off_state = "black_goggles"

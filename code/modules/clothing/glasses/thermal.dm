@@ -9,7 +9,7 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_REDUCED
 	price_tag = 1000
-	rarity_value = 10
+	rarity_value = 80
 	tick_cost = 0.5
 
 
@@ -117,4 +117,4 @@
 		var/obj/item/clothing/glasses/powered/thermal/lens/THL = new()
 		usr.put_in_hands(THL)
 	else to_chat(usr, "You haven't got any lenses in your glasses");
-	
+
