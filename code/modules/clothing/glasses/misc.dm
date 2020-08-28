@@ -4,6 +4,7 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 	body_parts_covered = 0
+	rarity_value = 1
 
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
@@ -51,6 +52,7 @@
 	icon_state = "3d"
 	item_state = "3d"
 	body_parts_covered = 0
+	rarity_value = 1
 
 /obj/item/clothing/glasses/gglasses
 	name = "Green Glasses"

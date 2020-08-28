@@ -41,7 +41,6 @@
 
 #define SPAWN_TAG_OS_PROSTHETIC "obj,item,organ,external,prosthetic,prosthetic_os,item_tech_os,faction_os"
 
-
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
 
@@ -89,7 +88,6 @@
 //traps
 #define SPAWN_TRAP_ARMED "trap_armed"
 #define SPAWN_WIRE_TRAP "wire_trap"
-
 
 #define SPAWN_TAG_TRAP_ARMED "obj,item,trap_armed"
 #define SPAWN_TAG_STRUCTURE_TRAP_ARMED_WIRE "obj,structure,trap_armed,wire_trap"
@@ -151,6 +149,7 @@
 #define SPAWN_CLOTHING_HEAD "head"
 #define SPAWN_CLOTHING_HEAD_HELMET "helmet"
 #define SPAWN_CLOTHING_ARMOR "armor"
+#define SPAWN_GLASSES "glasses"
 
 #define SPAWN_TAG_CLOTHING "obj,item,clothing"
 #define SPAWN_TAG_VOID_SUIT "obj,item,clothing,suit,space_suit,void_suit"
@@ -163,6 +162,7 @@
 #define SPAWN_TAG_CLOTHING_HEAD "obj,item,clothing,head"
 #define SPAWN_TAG_CLOTHING_HEAD_HELMET "obj,item,clothing,head,helmet"
 #define SPAWN_TAG_CLOTHING_ARMOR "obj,item,clothing,armor"
+#define SPAWN_TAG_GLASSES "obj,item,clothing,glasses"
 
 //	Items - storage
 #define SPAWN_storage "storage"
@@ -282,11 +282,11 @@
 //	Mobs
 #define SPAWN_MOB "mob"
 #define SPAWN_HOSTILE_MOB "hostile_mob"
-#define SAPAWN_FRIENDLY_MOB "friendly_mob"
+#define SPAWN_FRIENDLY_MOB "friendly_mob"
 #define SPAWN_SLIME "slime"
 
 #define SPAWN_TAG_HOSTILE_MOB "mob,hostile_mob"
-#define SAPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
+#define SPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
 #define SPAWN_TAG_SLIME "mob,slime"
 
 // MOBS - ROACH

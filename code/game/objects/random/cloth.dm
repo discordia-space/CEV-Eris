@@ -124,19 +124,11 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/cloth/glasses
+/obj/spawner/cloth/glasses
 	name = "random glasses"
 	desc = "This is a random glasses."
 	icon_state = "armor-grey"
-
-/obj/random/cloth/glasses/item_to_spawn()
-	return pickweight(list(/obj/item/clothing/glasses/eyepatch = 4,
-				/obj/item/clothing/glasses/gglasses = 2,
-				/obj/item/clothing/glasses/hud/health = 2,
-				/obj/item/clothing/glasses/hud/security = 2,
-				/obj/item/clothing/glasses/sunglasses/sechud/tactical = 2,
-				/obj/item/clothing/glasses/threedglasses = 4,
-				/obj/item/clothing/glasses/welding = 4))
+	tags_to_spawn = list(SPAWN_GLASSES)
 
 /obj/random/cloth/glasses/low_chance
 	name = "low chance random glasses"
