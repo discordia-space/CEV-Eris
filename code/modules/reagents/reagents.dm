@@ -149,11 +149,10 @@
 	if(volume && holder)
 		remove_self(removed)
 
-/datum/reagent/proc/apply_sanity_effect(mob/living/carbon/H, effect_multiplier)
+/datum/reagent/proc/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
 	if(!ishuman(H))
 		return
 	else
-		var/mob/living/carbon/human/M = H
 		M.sanity.onReagent(src, effect_multiplier)
 
 /datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
