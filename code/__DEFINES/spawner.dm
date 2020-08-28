@@ -150,6 +150,8 @@
 #define SPAWN_CLOTHING_HEAD_HELMET "helmet"
 #define SPAWN_CLOTHING_ARMOR "armor"
 #define SPAWN_GLASSES "glasses"
+#define SPAWN_CLOTHING_SUIT_STORAGE "suit_storage"
+#define SPAWN_CLOTHING_SUIT_PONCHO "suit_poncho"
 
 #define SPAWN_TAG_CLOTHING "obj,item,clothing"
 #define SPAWN_TAG_VOID_SUIT "obj,item,clothing,suit,space_suit,void_suit"
@@ -163,6 +165,8 @@
 #define SPAWN_TAG_CLOTHING_HEAD_HELMET "obj,item,clothing,head,helmet"
 #define SPAWN_TAG_CLOTHING_ARMOR "obj,item,clothing,armor"
 #define SPAWN_TAG_GLASSES "obj,item,clothing,glasses"
+#define SPAWN_TAG_CLOTHING_SUIT_STORAGE "obj,item,clothing,suit,suit_storage"
+#define SPAWN_TAG_CLOTHING_SUIT_PONCHO "obj,item,clothing,suit,suit_poncho"
 
 //	Items - storage
 #define SPAWN_storage "storage"
@@ -171,12 +175,14 @@
 #define SPAWN_BELT "belt"
 #define SPAWN_BOX "box"
 #define SPAWN_FIRSTAID "firstaid"
+#define SPAWN_BACKPACK "backpack"
 
 #define SPAWN_TAG_TOOLBOX "obj,item,storage,toolbox"
 #define SPAWN_TAG_POUCH "obj,item,storage,pouch"
 #define SPAWN_TAG_BELT "obj,item,storage,belt"
 #define SPAWN_TAG_BOX "obj,item,storage,box"
 #define SPAWN_TAG_FIRSTAID "obj,item,storage,firstaid"
+#define SPAWN_TAG_BACKPACK "obj,item,storage,backpack"
 
 // ITEM - STOCK PARTS   and os_tech
 #define SPAWN_STOCK_PARTS "stock_parts"

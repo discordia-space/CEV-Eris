@@ -15,7 +15,7 @@ They generally give more random result and can provide more divercity in spawn.
 	return pickweight(list(
 					/obj/spawner/cloth/masks = 5,
 					/obj/spawner/cloth/armor = 3,
-					/obj/random/cloth/suit = 3,
+					/obj/spawner/cloth/suit = 3,
 					/obj/spawner/cloth/hazmatsuit = 4,
 					/obj/spawner/cloth/under = 7,
 					/obj/spawner/cloth/helmet = 4,
@@ -23,7 +23,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/cloth/gloves = 5,
 					/obj/random/cloth/glasses = 4,
 					/obj/spawner/cloth/shoes = 6,
-					/obj/random/cloth/backpack = 4,
+					/obj/spawner/cloth/backpack = 4,
 					/obj/spawner/cloth/belt = 4,
 					/obj/spawner/cloth/holster = 4,
 					/obj/spawner/pouch = 4

@@ -24,7 +24,7 @@
 /obj/item/clothing/glasses/regular/scanners
 	name = "Scanning Goggles"
 	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
-	icon_state = "uzenwa_sissra_1"3
+	icon_state = "uzenwa_sissra_1"
 	rarity_value = 50
 
 /obj/item/clothing/glasses/regular/goggles
