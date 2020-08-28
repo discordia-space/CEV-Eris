@@ -9007,7 +9007,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/prison)
 "aua" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "aub" = (
@@ -29844,12 +29844,12 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/sleep)
 "bou" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bov" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /obj/spawner/powercell/low_chance,
 /obj/random/pack/gun_loot/low_chance,
 /obj/random/pack/gun_loot/low_chance,
@@ -35432,7 +35432,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBi" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bBj" = (
@@ -60839,7 +60839,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cFt" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "cFu" = (
@@ -78302,7 +78302,7 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "dtk" = (
-/obj/random/closet,
+/obj/spawner/closet,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "dtl" = (

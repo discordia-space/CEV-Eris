@@ -116,7 +116,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/structures = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
 					/obj/spawner/closet/tech = 6,
-					/obj/random/closet = 4,
+					/obj/spawner/closet = 4,
 					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/scrap = 12, //Our scrap pile. This is basically just a huge spawner.
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
@@ -142,7 +142,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/structures = 14, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
 					/obj/spawner/closet/tech = 6,
-					/obj/random/closet = 4,
+					/obj/spawner/closet = 4,
 					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
@@ -157,7 +157,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/random/structures = 7, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot/beacon = 28, //That one is also important part of the maints
 					/obj/spawner/closet/tech = 3,
-					/obj/random/closet = 2,
+					/obj/spawner/closet = 2,
 					/obj/spawner/closet/wardrobe = 2,
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))

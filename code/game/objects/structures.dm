@@ -1,7 +1,8 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
 	w_class = ITEM_SIZE_GARGANTUAN
-
+	spawn_frequency = 10
+	rarity_value = 10
 	var/climbable
 	var/breakable
 	var/parts

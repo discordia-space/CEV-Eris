@@ -40,6 +40,7 @@
 
 /obj/structure/closet/lasertag
 	bad_types = /obj/structure/closet/lasertag
+	rarity_value = 20
 	spawn_tags = SPAWN_TAG_LASERTAG_CLOSET
 
 /obj/structure/closet/lasertag/red

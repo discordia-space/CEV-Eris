@@ -231,8 +231,10 @@
 #define SPAWN_LASERTAG_CLOSET "lasertag_closet"
 #define SPAWN_BOMB_CLOSET "bomb_closet"
 #define SPAWN_COFFIN_CLOSET "coffin_closet"
+#define SPAWN_CLOSET_SECURE "closet_secure"
 
 #define SPAWN_TAG_CLOSET "obj,structure,closet"
+#define SPAWN_TAG_CLOSET_SECURE "obj,structure,closet,closet_secure"
 #define SPAWN_TAG_TECHNICAL_CLOSET "obj,structure,closet,technical_closet"
 #define SPAWN_TAG_WARDROBE "obj,structure,closet,wardrobe"
 #define SPAWN_TAG_RANDOM_CLOSET "obj,structure,closet,random_closet"
