@@ -178,11 +178,11 @@
 #define SPAWN_BACKPACK "backpack"
 
 #define SPAWN_TAG_TOOLBOX "obj,item,storage,toolbox"
-#define SPAWN_TAG_POUCH "obj,item,storage,pouch"
-#define SPAWN_TAG_BELT "obj,item,storage,belt"
+#define SPAWN_TAG_POUCH "obj,item,storage,pouch,clothing"
+#define SPAWN_TAG_BELT "obj,item,storage,belt,clothing"
 #define SPAWN_TAG_BOX "obj,item,storage,box"
 #define SPAWN_TAG_FIRSTAID "obj,item,storage,firstaid"
-#define SPAWN_TAG_BACKPACK "obj,item,storage,backpack"
+#define SPAWN_TAG_BACKPACK "obj,item,storage,backpack,clothing"
 
 // ITEM - STOCK PARTS   and os_tech
 #define SPAWN_STOCK_PARTS "stock_parts"

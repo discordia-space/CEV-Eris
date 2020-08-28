@@ -26,8 +26,8 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
-	new /obj/random/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
+	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
 

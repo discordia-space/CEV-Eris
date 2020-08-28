@@ -11579,9 +11579,9 @@
 /area/eris/maintenance/section3deck2starboard)
 "aAo" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck2starboard)
 "aAp" = (
@@ -31416,8 +31416,8 @@
 /area/eris/maintenance/section3deck1central)
 "bsq" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth/low_chance,
-/obj/random/pack/cloth/low_chance,
+/obj/spawner/pack/cloth/low_chance,
+/obj/spawner/pack/cloth/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bsr" = (
@@ -32475,19 +32475,19 @@
 /area/eris/maintenance/section3deck1central)
 "buJ" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth/low_chance,
-/obj/random/pack/cloth/low_chance,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth/low_chance,
+/obj/spawner/pack/cloth/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "buK" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth/low_chance,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "buL" = (
@@ -88430,7 +88430,7 @@
 /area/eris/engineering/gravity_generator)
 "dPV" = (
 /obj/structure/table/rack,
-/obj/random/pack/cloth,
+/obj/spawner/pack/cloth,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -95498,20 +95498,20 @@
 "egb" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth/low_chance,
-/obj/random/pack/cloth/low_chance,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth/low_chance,
+/obj/spawner/pack/cloth/low_chance,
 /turf/simulated/open,
 /area/eris/quartermaster/misc)
 "egc" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth/low_chance,
-/obj/random/pack/cloth/low_chance,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth/low_chance,
+/obj/spawner/pack/cloth/low_chance,
 /turf/simulated/open,
 /area/eris/quartermaster/misc)
 "egd" = (
@@ -102186,10 +102186,10 @@
 /area/eris/maintenance/section3deck2starboard)
 "eva" = (
 /obj/structure/table/rack/shelf,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth,
-/obj/random/pack/cloth/low_chance,
-/obj/random/pack/cloth/low_chance,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth,
+/obj/spawner/pack/cloth/low_chance,
+/obj/spawner/pack/cloth/low_chance,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "evb" = (

@@ -6,30 +6,13 @@ Packs are meant to be send mainly to junkpiles, but can be placed on map as well
 They generally give more random result and can provide more divercity in spawn.
 */
 
-/obj/random/pack/cloth
+/obj/spawner/pack/cloth
 	name = "Random cloth supply"
 	icon_state = "armor-red"
 	desc = "This is a random cloth supply."
+	tags_to_spawn = list(SPAWN_CLOTHING)
 
-/obj/random/pack/cloth/item_to_spawn()
-	return pickweight(list(
-					/obj/spawner/cloth/masks = 5,
-					/obj/spawner/cloth/armor = 3,
-					/obj/spawner/cloth/suit = 3,
-					/obj/spawner/cloth/hazmatsuit = 4,
-					/obj/spawner/cloth/under = 7,
-					/obj/spawner/cloth/helmet = 4,
-					/obj/spawner/cloth/head = 5,
-					/obj/spawner/cloth/gloves = 5,
-					/obj/random/cloth/glasses = 4,
-					/obj/spawner/cloth/shoes = 6,
-					/obj/spawner/cloth/backpack = 4,
-					/obj/spawner/cloth/belt = 4,
-					/obj/spawner/cloth/holster = 4,
-					/obj/spawner/pouch = 4
-				))
-
-/obj/random/pack/cloth/low_chance
+/obj/spawner/pack/cloth/low_chance
 	name = "low chance random cloth"
 	icon_state = "armor-red-low"
 	spawn_nothing_percentage = 70

@@ -10,10 +10,10 @@
 "j" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/techmaint,/area/deepmaint)
 "k" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "l" = (/obj/structure/table/standard,/obj/random/pack/rare/low_chance,/obj/random/pack/rare,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
-"m" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"m" = (/obj/structure/table/rack/shelf,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth/low_chance,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "n" = (/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
 "o" = (/obj/structure/table/rack/shelf,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot,/obj/random/pack/tech_loot/low_chance,/obj/random/pack/tech_loot/low_chance,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
-"p" = (/obj/structure/table/rack/shelf,/obj/random/pack/cloth,/obj/random/pack/cloth,/obj/random/pack/cloth/low_chance,/obj/machinery/light/small,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
+"p" = (/obj/structure/table/rack/shelf,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth/low_chance,/obj/machinery/light/small,/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 
 (1,1,1) = {"
 abbbbbbbbba

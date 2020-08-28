@@ -101,7 +101,7 @@
 	icon_state = "armor-grey"
 	tags_to_spawn = list(SPAWN_GLASSES)
 
-/obj/random/cloth/glasses/low_chance
+/obj/spawner/cloth/glasses/low_chance
 	name = "low chance random glasses"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60

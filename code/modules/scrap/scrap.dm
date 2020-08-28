@@ -426,7 +426,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of second hand clothing for charity."
 	parts_icon = 'icons/obj/structures/scrap/cloth.dmi'
 	rarity_value = 10
-	loot_list = list(/obj/random/pack/cloth,/obj/random/pack/rare = 0.2)
+	loot_list = list(/obj/spawner/pack/cloth,/obj/random/pack/rare = 0.2)
 
 /obj/structure/scrap/poor
 	icontype = "poor"
