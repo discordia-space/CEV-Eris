@@ -11,13 +11,12 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "armor-red"
 	desc = "This is a random cloth supply."
 	tags_to_spawn = list(SPAWN_CLOTHING)
+	restristed_tags = list(SPAWN_VOID_SUIT)
 
 /obj/spawner/pack/cloth/low_chance
 	name = "low chance random cloth"
 	icon_state = "armor-red-low"
 	spawn_nothing_percentage = 70
-
-
 
 
 //Those are going to the closets, mostly
@@ -84,8 +83,6 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "low chance gun loot"
 	icon_state = "gun-red-low"
 	spawn_nothing_percentage = 70
-
-
 
 
 //Rare loot, where we need to be sure that reward is worth it

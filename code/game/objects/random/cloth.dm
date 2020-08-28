@@ -58,7 +58,6 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-
 /obj/spawner/cloth/helmet
 	name = "random helmet"
 	desc = "This is a random helmet."
@@ -69,7 +68,6 @@
 	name = "low chance random helmet"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/spawner/cloth/head
 	name = "random head"
@@ -82,7 +80,6 @@
 	name = "low chance random head"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/spawner/cloth/gloves
 	name = "random gloves"
@@ -106,7 +103,6 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-
 /obj/spawner/cloth/shoes
 	name = "random shoes"
 	desc = "This is a random pair of shoes."
@@ -117,7 +113,6 @@
 	name = "low chance random shoes"
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/spawner/cloth/backpack
 	name = "random backpack"

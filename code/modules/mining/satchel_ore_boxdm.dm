@@ -10,7 +10,7 @@
 	var/last_update = 0
 	var/list/stored_ore = list()
 
-/obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/ore_box/attackby(obj/item/weapon/W, mob/user)
 	if (istype(W, /obj/item/weapon/ore))
 		user.remove_from_mob(W)
 		src.contents += W

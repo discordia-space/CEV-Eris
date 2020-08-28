@@ -33,6 +33,8 @@
 	name = "random maint loot closet"
 	icon_state = "closet-black"
 	tags_to_spawn = list(SPAWN_RANDOM_CLOSET)
+	exclusion_paths = list(/obj/structure/closet/random/hostilemobs/beacon)
+	allow_blacklist = TRUE
 
 /obj/spawner/closet/maintloot/low_chance
 	name = "low chance random maint loot closet"
@@ -41,5 +43,4 @@
 
 // For Scrap Beacon
 /obj/spawner/closet/maintloot/beacon
-	allow_blacklist = TRUE
 	exclusion_paths = list(/obj/structure/closet/random/hostilemobs)

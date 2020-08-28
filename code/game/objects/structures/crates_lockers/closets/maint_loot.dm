@@ -12,8 +12,6 @@
 	old_chance = 50
 	rarity_value = 10
 
-
-
 /obj/structure/closet/random/miscellaneous/populate_contents()
 	new /obj/random/contraband/low_chance(src)
 	new /obj/random/contraband/low_chance(src)
@@ -30,8 +28,6 @@
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
-
-
 
 
 /obj/structure/closet/random/tech
@@ -174,6 +170,7 @@
 	icon_state = "oldstyle"
 	old_chance = 70
 	rarity_value = 12.5
+	spawn_blacklisted = TRUE
 
 /obj/structure/closet/random/hostilemobs/populate_contents()
 	new /obj/random/pack/rare(src) //To reward players for fighting this bullshit
@@ -189,7 +186,6 @@
 
 // Used for scrap beacon
 /obj/structure/closet/random/hostilemobs/beacon
-	spawn_blacklisted = TRUE
 	rarity_value = 6
 
 /obj/structure/closet/random/hostilemobs/beacon/populate_contents()

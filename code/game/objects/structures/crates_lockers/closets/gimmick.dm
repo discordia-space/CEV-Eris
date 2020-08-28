@@ -36,6 +36,7 @@
 	icon_state = "syndicate"
 	anchored = TRUE
 	spawn_blacklisted = TRUE
+	spawn_frequency = 0
 
 /obj/structure/closet/thunderdome/New()
 	..()
