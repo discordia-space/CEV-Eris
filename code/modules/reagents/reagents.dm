@@ -153,7 +153,7 @@
 	if(!ishuman(H))
 		return
 	else
-		M.sanity.onReagent(src, effect_multiplier)
+		H.sanity.onReagent(src, effect_multiplier)
 
 /datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 
