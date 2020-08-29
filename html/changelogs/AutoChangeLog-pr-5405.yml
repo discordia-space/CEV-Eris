@@ -1,0 +1,5 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - bugfix: NT cloner will not check if player is trying to add more sheets than it
+      got
