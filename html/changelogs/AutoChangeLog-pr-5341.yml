@@ -1,0 +1,5 @@
+author: Tea-Primoris
+delete-after: true
+changes:
+  - rscadd: Now you can climb down onto tables from z-level above by dragging yourself
+      onto openspace.
