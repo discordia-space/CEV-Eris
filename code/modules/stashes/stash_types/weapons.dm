@@ -14,13 +14,13 @@
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
 	contents_list_base = list(/obj/spawner/gun/shotgun = 2,
-	/obj/spawner/ammo/shotgun = 2, /obj/random/ammo = 2)
+	/obj/spawner/ammo/shotgun = 2, /obj/spawner/ammo = 2)
 	contents_list_random = list(/obj/spawner/ammo/shotgun = 60,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
-	/obj/random/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
+	/obj/spawner/ammo = 80,
 	/obj/random/gun/cheap = 50,
 	/obj/random/gun/cheap = 50,
 	/obj/spawner/gun/shotgun = 50)
@@ -76,7 +76,7 @@
 /datum/stash/weapon/mutiny
 	story_type = STORY_MUTINY
 	contents_list_base = list(/obj/random/gun/cheap = 3,
-	/obj/random/ammo = 8,
+	/obj/spawner/ammo = 8,
 	/obj/spawner/cloth/armor = 1)
 	contents_list_random = list(/obj/random/gun/normal = 70,
 	/obj/spawner/gun/energy_cheap = 50,
@@ -103,7 +103,7 @@
 
 /*
 /datum/stash/weapon/mutiny/warden
-	contents_list_extra = list(/obj/random/gun/normal = 3, /obj/random/ammo = 6)
+	contents_list_extra = list(/obj/random/gun/normal = 3, /obj/spawner/ammo = 6)
 	directions = DIRECTION_IMAGE
 	lore = "Warden,<br>\
  You and I both know this rubber buckshot bullshit is going to get us all killed when the convicts realize they outnumber us sixty to one.<br>\

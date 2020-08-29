@@ -1426,14 +1426,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/ammo
 	num_contained = 8
-	contains = list(/obj/random/ammo,
-				/obj/random/ammo,
-				/obj/random/ammo,
-				/obj/random/ammo,
-				/obj/random/ammo,
-				/obj/random/ammo,
-				/obj/random/ammo,
-				/obj/random/ammo)
+	contains = list(/obj/spawner/ammo,
+				/obj/spawner/ammo,
+				/obj/spawner/ammo,
+				/obj/spawner/ammo,
+				/obj/spawner/ammo,
+				/obj/spawner/ammo,
+				/obj/spawner/ammo,
+				/obj/spawner/ammo)
 	name = "Surplus Ammo"
 	cost = 1500
 	crate_name = "Surplus Ammo Crate"

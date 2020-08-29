@@ -1,4 +1,8 @@
 /////////////Standard/////////////
+/obj/item/ammo_magazine
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 10
+
 /obj/item/ammo_magazine/pistol
 	name = "standard magazine (.35 Auto)"
 	icon_state = "pistol_l"
@@ -15,21 +19,25 @@
 	icon_state = "pistol"
 	initial_ammo = 0
 	spawn_frequency = 0
+	rarity_value = 80
 
 /obj/item/ammo_magazine/pistol/practice
 	name = "standard magazine (.35 Auto practice)"
 	icon_state = "pistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
+	rarity_value = 5
 
 /obj/item/ammo_magazine/pistol/highvelocity
 	name = "standard magazine (.35 Auto high-velocity)"
 	icon_state = "pistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	rarity_value = 80
 
 /obj/item/ammo_magazine/pistol/rubber
 	name = "standard magazine (.35 Auto rubber)"
 	icon_state = "pistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 5
 
 
 /////////////HighCap/////////////
@@ -44,6 +52,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 16
 	multiple_sprites = 1
+	rarity_value = 20
 
 /obj/item/ammo_magazine/hpistol/empty
 	icon_state = "hpistol"
@@ -54,16 +63,19 @@
 	name = "highcap magazine (.35 Auto practice)"
 	icon_state = "hpistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
+	rarity_value = 10
 
 /obj/item/ammo_magazine/hpistol/highvelocity
 	name = "highcap magazine (.35 Auto high-velocity)"
 	icon_state = "hpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	rarity_value = 80
 
 /obj/item/ammo_magazine/hpistol/rubber
 	name = "highcap magazine (.35 Auto rubber)"
 	icon_state = "hpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 10
 
 /////////////.35 SMG/////////////
 
@@ -402,6 +414,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	multiple_sprites = 1
+	rarity_value = 6.66
 
 /obj/item/ammo_magazine/slpistol/practice
 	name = "speed loader (.35 Special practice)"
@@ -412,11 +425,13 @@
 	name = "speed loader (.35 Special high-velocity)"
 	icon_state = "slpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	rarity_value = 80
 
 /obj/item/ammo_magazine/slpistol/rubber
 	name = "speed loader (.35 Special rubber)"
 	icon_state = "slpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 5
 
 //////// .40 SPEEDLOADERS //////////
 

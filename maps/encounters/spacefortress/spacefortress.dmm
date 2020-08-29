@@ -64,7 +64,7 @@
 /area/outpost/abandoned_fortress)
 "ap" = (
 /obj/structure/table/reinforced,
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aq" = (
@@ -144,7 +144,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aG" = (
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aH" = (
@@ -170,7 +170,7 @@
 /area/outpost/abandoned_fortress)
 "aM" = (
 /obj/structure/closet/crate,
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aN" = (
@@ -304,7 +304,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bB" = (
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bC" = (
@@ -454,8 +454,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cf" = (
-/obj/random/ammo/low_chance,
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cg" = (

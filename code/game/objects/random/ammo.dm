@@ -1,29 +1,9 @@
-/obj/random/ammo
+/obj/spawner/ammo
 	name = "random ammunition"
 	icon_state = "ammo-green"
+	tags_to_spawn = list(SPAWN_AMMO)
 
-/obj/random/ammo/item_to_spawn()
-	return pickweight(list(
-				/obj/spawner/ammo/shotgun = 10,
-				/obj/item/ammo_magazine/ammobox/magnum = 1,
-				/obj/item/ammo_magazine/ammobox/clrifle = 1,
-				/obj/item/ammo_magazine/ammobox/clrifle/rubber = 2,
-				/obj/item/ammo_magazine/ammobox/pistol = 1,
-				/obj/item/ammo_magazine/ammobox/pistol/rubber = 2,
-				/obj/item/ammo_magazine/smg = 1,
-				/obj/item/ammo_magazine/smg/rubber = 1,
-				/obj/item/ammo_magazine/pistol = 2,
-				/obj/item/ammo_magazine/pistol/rubber = 4,
-				/obj/item/ammo_magazine/pistol/practice = 4,
-				/obj/item/ammo_magazine/hpistol = 1,
-				/obj/item/ammo_magazine/hpistol/rubber = 2,
-				/obj/item/ammo_magazine/hpistol/practice = 2,
-				/obj/item/ammo_magazine/slmagnum = 2,
-				/obj/item/ammo_magazine/slpistol = 3,
-				/obj/item/ammo_magazine/slpistol/rubber = 4))
-
-
-/obj/random/ammo/low_chance
+/obj/spawner/ammo/low_chance
 	name = "low chance random ammunition"
 	icon_state = "ammo-green-low"
 	spawn_nothing_percentage = 60

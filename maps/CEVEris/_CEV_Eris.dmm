@@ -6460,7 +6460,7 @@
 /obj/structure/table/rack,
 /obj/spawner/ammo_lowcost/low_chance,
 /obj/spawner/ammo_lowcost/low_chance,
-/obj/random/ammo,
+/obj/spawner/ammo,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aoC" = (
@@ -31129,7 +31129,7 @@
 /area/eris/maintenance/section3deck1central)
 "brB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "brC" = (
@@ -41964,7 +41964,7 @@
 /turf/simulated/wall,
 /area/eris/engineering/construction)
 "bOH" = (
-/obj/random/ammo/low_chance,
+/obj/spawner/ammo/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOI" = (
@@ -74227,8 +74227,8 @@
 /area/eris/engineering/gravity_generator)
 "dkk" = (
 /obj/structure/table/rack,
-/obj/random/ammo,
-/obj/random/ammo,
+/obj/spawner/ammo,
+/obj/spawner/ammo,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
