@@ -122,7 +122,7 @@
 #define SPAWN_AMMO "ammmo_storage"
 #define SPAWN_AMMO_IH "ammo_ih"
 #define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
-#define SPAWN_AMMO_COMMON "ammmo_storage_common"
+#define SPAWN_AMMO_COMMON "ammo_common"
 
 #define SPAWN_TAG_AMMO "obj,item,gun,ammo,ammmo_storage"
 #define SPAWN_TAG_AMMO_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_common"
