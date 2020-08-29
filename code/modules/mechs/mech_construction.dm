@@ -67,10 +67,20 @@
 	return TRUE
 
 
-/mob/living/exosuit/proc/install_system(obj/item/system, system_hardpoint, mob/user)
+/mob/living/exosuit/proc/install_system(var/obj/item/mech_equipment/system, system_hardpoint, mob/user)
 
 	if(hardpoints_locked || hardpoints[system_hardpoint])
+		if(user) to_chat(user, SPAN_WARNING("\The [src]'s hardpoints are locked, or that hardpoint is already occupied."))
 		return FALSE
+
+	if(system.restricted_hardpoints && !(system_hardpoint in system.restricted_hardpoints))
+		if(user) to_chat(user, SPAN_WARNING("\The [system] can not be installed on that hardpoint."))
+		return FALSE
+
+	if(!check_equipment_software(system))
+		if(user) to_chat(user, SPAN_WARNING("The operating system of \the [src] is incompatible with \the [system]."))
+		return FALSE
+
 
 	if(user)
 		var/mech_skill = user.stats.getStat(STAT_MEC) < 0 ? 0 : user.stats.getStat(STAT_MEC)
@@ -83,15 +93,8 @@
 				playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			else return FALSE
 
-	var/obj/item/mech_equipment/ME = system
-	if(istype(ME))
-		if(ME.restricted_hardpoints && !(system_hardpoint in ME.restricted_hardpoints))
-			return FALSE
-		if(!check_equipment_software(ME))
-			return FALSE
-
-		ME.installed(src)
-		GLOB.destroyed_event.register(system, src, .proc/forget_module)
+	system.installed(src)
+	GLOB.destroyed_event.register(system, src, .proc/forget_module)
 
 
 
