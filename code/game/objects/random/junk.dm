@@ -1,4 +1,5 @@
-/obj/spawner/junk //Broken items, or stuff that could be picked up
+//Broken items, or stuff that could be picked up
+/obj/spawner/junk
 	name = "random junk"
 	icon_state = "junk-black"
 	tags_to_spawn = list(SPAWN_JUNK, SPAWN_MATERIAL_BUILDING_ROD, SPAWN_CLEANABLE, SPAWN_REMAINS)

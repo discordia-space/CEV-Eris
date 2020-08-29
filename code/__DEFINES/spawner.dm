@@ -340,7 +340,6 @@
 #define SPAWN_SPAWNER_SCRAP "spawner_scrap"
 #define SPAWN_SPAWNER_LARGE_SCRAP "spawner_large_scrap"
 
-
 #define SPAWN_TAG_SPAWNER_ENCOUNER "spawner,spawner_encounter"
 #define SPAWN_TAG_SPAWNER_MOB "spawner,spawner_mob"
 #define SPAWN_TAG_SPAWNER_SCRAP "spawner,spawner_scrap"
