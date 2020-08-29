@@ -1,0 +1,4 @@
+author: GrayRachnid
+delete-after: true
+changes:
+  - bugfix: fixed the holodeck items having the wrong plane
