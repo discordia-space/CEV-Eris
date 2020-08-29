@@ -1,5 +1,0 @@
-author: Hopek
-delete-after: true
-changes:
-  - bugfix: Vagabond's no longer show up as a blank entry on the crew records.
-  - tweak: Vagabond's no longer show up as "Unknown" in the crew Manifest.
