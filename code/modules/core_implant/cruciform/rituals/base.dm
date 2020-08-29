@@ -95,7 +95,7 @@
 /datum/ritual/cruciform/base/sense_cruciform
 	name = "Cruciform sense"
 	phrase = "Et si medio umbrae"
-	desc = "very short litany to identify cruciform followers. Targets individuals directly in front of caster or being grabbed by caster."
+	desc = "Very short litany to identify NeoTheology followers. Targets individuals directly in front of caster or being grabbed by caster."
 	power = 20
 
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -107,6 +107,6 @@
 		else
 			fail("There is no cruciform on [T]", H, C)
 	else
-		fail("No target. Make sure your target is either in front of you or being grabbed by you.", H, C)
+		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
 		return FALSE
 	return TRUE
