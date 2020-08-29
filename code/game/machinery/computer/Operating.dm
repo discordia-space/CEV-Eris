@@ -7,8 +7,8 @@
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
 	circuit = /obj/item/weapon/electronics/circuitboard/operating
-	var/mob/living/carbon/human/victim = null
-	var/obj/machinery/optable/table = null
+	var/mob/living/carbon/human/victim
+	var/obj/machinery/optable/table
 
 /obj/machinery/computer/operating/New()
 	..()

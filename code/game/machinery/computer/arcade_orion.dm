@@ -60,7 +60,7 @@
 		"You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!"
 		)
 	var/list/stop_distance = list(10000,7000,25000,9000,5000,30000,25000,10000,0)
-	var/event = null
+	var/event
 	var/event_title = ""
 	var/event_desc = ""
 	var/event_actions = ""

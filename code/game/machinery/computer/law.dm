@@ -6,7 +6,7 @@
 	icon_keyboard = "rd_key"
 	icon_screen = "command"
 	circuit = /obj/item/weapon/electronics/circuitboard/aiupload
-	var/mob/living/silicon/ai/current = null
+	var/mob/living/silicon/ai/current
 	var/opened = 0
 
 
