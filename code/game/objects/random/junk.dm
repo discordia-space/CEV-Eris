@@ -2,15 +2,6 @@
 	name = "random junk"
 	icon_state = "junk-black"
 	tags_to_spawn = list(SPAWN_JUNK, SPAWN_MATERIAL_BUILDING_ROD, SPAWN_CLEANABLE, SPAWN_REMAINS)
-	var/list/exclusions = list()
-	var/list/items = list(
-		/obj/item/weapon/reagent_containers/glass/beaker = 1,
-		/obj/item/weapon/reagent_containers/glass/bucket = 1,
-		/obj/item/weapon/reagent_containers/glass/rag = 1,
-		/obj/item/weapon/reagent_containers/food/drinks/jar = 1,
-		/obj/item/weapon/reagent_containers/food/drinks/flask/barflask = 1,
-		/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 1,
-	)
 
 /obj/spawner/junk/nondense
 	tags_to_spawn = list(SPAWN_JUNK, SPAWN_MATERIAL_BUILDING_ROD, SPAWN_CLEANABLE)

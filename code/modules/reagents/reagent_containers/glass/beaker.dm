@@ -4,6 +4,8 @@
 	icon_state = "beaker"
 	item_state = "beaker"
 	filling_states = "-10;10;25;50;75;80;100"
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20
 
 /obj/item/weapon/reagent_containers/glass/beaker/Initialize()
 	. = ..()
@@ -41,6 +43,7 @@
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120)
+	rarity_value = 40
 
 /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -50,6 +53,7 @@
 	volume = 60
 	amount_per_transfer_from_this = 10
 	reagent_flags = OPENCONTAINER | NO_REACT
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace
 	name = "bluespace beaker"
@@ -60,6 +64,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
 	lid_icon_state = "lid_beakerlarge"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"
@@ -70,6 +75,7 @@
 	w_class = ITEM_SIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
+	spawn_tags = null
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
 	preloaded_reagents = list("nanites" = 30)
@@ -96,8 +102,10 @@
 	possible_transfer_amounts = list(10,20,30,60,120,200)
 	volume = 200
 	unacidable = 0
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20
 
-/obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
+/obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user)
 
 	if(is_proximity_sensor(D))
 		to_chat(user, "You add [D] to [src].")
