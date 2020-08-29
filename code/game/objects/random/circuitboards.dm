@@ -1,6 +1,5 @@
 /obj/item/weapon/electronics
 	spawn_tags = SPAWN_TAG_ELECTRONICS
-	spawn_blacklisted = FALSE
 	rarity_value = 20
 	spawn_frequency = 10
 	bad_types = /obj/item/weapon/electronics

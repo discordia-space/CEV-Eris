@@ -13,7 +13,7 @@
 #define SPAWN_TAG_TOOL "obj,item,tool"
 #define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,advanced_tool"
 #define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,faction_os"
-
+#define SPAWN_TAG_TOOL_TAG_JUNK "obj,item,tool,junk"
 
 //	Items - tools - knife
 #define SPAWN_KNIFE "knife"
@@ -56,6 +56,7 @@
 #define SPAWN_ELECTRONICS "electronics"
 
 #define SPAWN_TAG_ELECTRONICS "obj,item,electronics"
+#define SPAWN_TAG_ELECTRONICS_TAG_JUNK "obj,item,electronics,junk"
 
 //  Items - assembly
 #define SPAWN_ASSEMBLY "assembly"
@@ -68,6 +69,7 @@
 #define SPAWN_MATERIAL_RESOURCES "material_resources"
 #define SPAWN_MATERIAL_RESOURCES_RARE "material_resources_rare"
 #define SPAWN_MATERIAL_BUILDING "bulding_material"
+#define SPAWN_MATERIAL_BUILDING_ROD "rod"
 
 #define SPAWN_TAG_MATERIAL "obj,item,material"
 #define SPAWN_TAG_ORE "obj,item,material,ore"
@@ -75,7 +77,8 @@
 #define SPAWN_TAG_MATERIAL_RESOURCES_RARE "obj,item,material,material_resources,material_resources_rare"
 #define SPAWN_TAG_MATERIAL_BUILDING "obj,item,material,bulding_material"
 #define SPAWN_TAG_MATERIAL_RESOURCES_BULDING "obj,item,material,bulding_material,material_resources"
-#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material"
+#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod"
+#define SPAWN_TAG_ORE_TAG_JUNK "obj,item,material,ore,junk"
 
 //  MINES
 #define SPAWN_MINE "mine"
@@ -186,6 +189,7 @@
 #define SPAWN_TAG_BOX "obj,item,storage,box"
 #define SPAWN_TAG_FIRSTAID "obj,item,storage,firstaid"
 #define SPAWN_TAG_BACKPACK "obj,item,storage,backpack,clothing"
+#define SPAWN_TAG_BOX_TAG_JUNK "obj,item,storage,box,junk"
 
 // ITEM - STOCK PARTS   and os_tech
 #define SPAWN_STOCK_PARTS "stock_parts"
@@ -319,6 +323,16 @@
 
 #define SPAWN_TAG_FLORA "effect,flora"
 
+
+//JUNK
+#define SPAWN_JUNK "junk"
+#define SPAWN_CLEANABLE "cleanable"
+#define SPAWN_REMAINS "remains"
+
+#define SPAWN_TAG_REMAINS "obj,item,remains"
+#define SPAWN_TAG_JUNK "obj,item,junk"
+#define SPAWN_TAG_CLEANABLE "effect,cleanable"
+
 //  SPAWNERS
 #define SPAWN_SPAWNER "spawner"
 #define SPAWN_SPAWNER_ENCOUNER "spawner_encounter"
@@ -331,3 +345,4 @@
 #define SPAWN_TAG_SPAWNER_MOB "spawner,spawner_mob"
 #define SPAWN_TAG_SPAWNER_SCRAP "spawner,spawner_scrap"
 #define SPAWN_TAG_SPAWNER_LARGE_SCRAP "spawner,spawner_scrap,spawner_large_scrap"
+

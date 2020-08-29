@@ -84,7 +84,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "at" = (
-/obj/random/junk/low_chance,
+/obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "au" = (
@@ -100,8 +100,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ax" = (
-/obj/random/junk/low_chance,
-/obj/random/junk/low_chance,
+/obj/spawner/junk/low_chance,
+/obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ay" = (
@@ -155,7 +155,7 @@
 "aI" = (
 /obj/structure/closet/emcloset,
 /obj/random/gun/cheap,
-/obj/random/junk,
+/obj/spawner/junk,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aJ" = (
@@ -247,7 +247,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bq" = (
-/obj/random/junk/low_chance,
+/obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "br" = (
@@ -430,7 +430,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ca" = (
-/obj/random/junk/low_chance,
+/obj/spawner/junk/low_chance,
 /mob/living/simple_animal/hostile/hivebot/range,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
@@ -468,7 +468,7 @@
 /obj/spawner/ammo_lowcost/low_chance,
 /obj/spawner/ammo_lowcost/low_chance,
 /obj/spawner/ammo_lowcost/low_chance,
-/obj/random/junk,
+/obj/spawner/junk,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "ci" = (
@@ -485,17 +485,17 @@
 /area/space)
 "cm" = (
 /obj/structure/closet/emcloset,
-/obj/random/junk,
+/obj/spawner/junk,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "cn" = (
 /obj/structure/closet/emcloset,
-/obj/random/junk,
-/obj/random/junk,
+/obj/spawner/junk,
+/obj/spawner/junk,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "co" = (
-/obj/random/junk,
+/obj/spawner/junk,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 

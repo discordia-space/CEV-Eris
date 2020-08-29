@@ -4,4 +4,5 @@
 	icon_state = "door_electronics_smoked"
 	origin_tech = null
 	board_type = "other"
-	rarity_value = 10
+	rarity_value = 8
+	spawn_tags = SPAWN_TAG_ELECTRONICS_TAG_JUNK

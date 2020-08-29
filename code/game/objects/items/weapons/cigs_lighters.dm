@@ -334,6 +334,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	matter = list(MATERIAL_BIOMATTER = 1)
 	throwforce = 1
+	rarity_value = 3.33
 
 /obj/item/trash/cigbutt/New()
 	..()

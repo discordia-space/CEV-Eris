@@ -72,3 +72,5 @@
 	blood_type = "O-"
 
 /obj/item/weapon/reagent_containers/blood/empty
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20

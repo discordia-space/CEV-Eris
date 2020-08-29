@@ -52,6 +52,8 @@
 /obj/effect/spider/stickyweb
 	health = 5
 	icon_state = "stickyweb1"
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_CLEANABLE
 	New()
 		if(prob(50))
 			icon_state = "stickyweb2"

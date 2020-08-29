@@ -485,7 +485,8 @@
 	illustration = null
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_BELT
-	rarity_value = 10
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_BOX_TAG_JUNK
 
 /obj/item/weapon/storage/box/matches/populate_contents()
 	for(var/i in 1 to 14)
@@ -537,6 +538,9 @@
 /obj/item/weapon/storage/box/lights/mixed
 	name = "box of replacement lights"
 	illustration = "lightmixed"
+	spawn_tags = SPAWN_TAG_BOX_TAG_JUNK
+	rarity_value = 6.66
+	
 
 /obj/item/weapon/storage/box/lights/mixed/populate_contents()
 	for(var/i in 1 to 14)

@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/material/building,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/junk/nondense = 2,
+		/obj/spawner/junk/nondense = 2,
 		/obj/random/pack/rare = 0.4
 	)
 	var/dig_amount = 4
@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/surgery_tool,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/junk/nondense,
+		/obj/spawner/junk/nondense,
 		/obj/random/pack/rare = 0.3
 	)
 
@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/junk/nondense,
+		/obj/spawner/junk/nondense,
 		/obj/spawner/material/ore,
 		/obj/random/pack/rare = 0.3,
 		/obj/spawner/tool_upgrade = 1,
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
-		/obj/random/junk/nondense,
+		/obj/spawner/junk/nondense,
 		/obj/random/pack/rare = 0.3
 	)
 
@@ -399,7 +399,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
-		/obj/random/junk/nondense,
+		/obj/spawner/junk/nondense,
 		/obj/random/pack/rare = 0.3
 	)
 
@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	rarity_value = 2.46
 	loot_list = list(
 		/obj/spawner/lowkeyrandom = 5,
-		/obj/random/junk/nondense = 4,
+		/obj/spawner/junk/nondense = 4,
 		/obj/item/stack/rods/random = 3,
 		/obj/spawner/oddities = 0.5,
 		/obj/spawner/material/ore,

@@ -22,10 +22,10 @@
 	throw_range = 15
 	bad_types = /obj/item/weapon/electronics/circuitboard
 
-	var/build_path = null
+	var/build_path
 	var/frame_type = FRAME_DEFAULT
 	var/board_type = "computer"
-	var/list/req_components = null
+	var/list/req_components
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/weapon/electronics/circuitboard/proc/construct(obj/machinery/M)

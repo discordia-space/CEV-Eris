@@ -13,6 +13,7 @@
 	flags = NOBLUDGEON //Its not a weapon
 	max_upgrades = 0 //These are consumable, so no wasting upgrades on them
 	rarity_value = 4
+	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
 
 /obj/item/weapon/tool/tape_roll/web
 	name = "web tape"
@@ -22,6 +23,7 @@
 	max_stock = 30
 	alpha = 150
 	rarity_value = 2
+	spawn_tags = SPAWN_TAG_TOOL
 
 /obj/item/weapon/tool/tape_roll/fiber
 	name = "fiber tape"

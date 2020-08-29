@@ -35,6 +35,7 @@
 	material = "sand"
 	slot_flags = SLOT_HOLSTER
 	rarity_value = 20
+	spawn_tags = SPAWN_TAG_ORE_TAG_JUNK
 
 // POCKET SAND!
 /obj/item/weapon/ore/glass/throw_impact(atom/hit_atom)

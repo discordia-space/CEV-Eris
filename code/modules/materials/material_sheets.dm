@@ -276,6 +276,8 @@
 	icon_state = "sheet-card"
 	default_type = MATERIAL_CARDBOARD
 	price_tag = 5
+	rarity_value = 6.66
+	spawn_tags = SPAWN_TAG_JUNK
 
 /obj/item/stack/material/cardboard/random
 	rand_min = 5
