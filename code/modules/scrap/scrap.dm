@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/pack/tech_loot = 4,
 		/obj/spawner/powercell,
 		/obj/spawner/electronics,
-		/obj/random/science,
+		/obj/spawner/science,
 		/obj/spawner/material/ore,
 		/obj/spawner/oddities = 0.5,
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap

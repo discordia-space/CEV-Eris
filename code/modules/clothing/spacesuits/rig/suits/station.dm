@@ -166,6 +166,8 @@ Advanced Voidsuit: Technomancer Exultant
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
+	spawn_tags = SPAN_TAG_RING_HAZMAT
+	rarity_value = 30
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -198,8 +200,8 @@ Advanced Voidsuit: Technomancer Exultant
 	req_one_access = list()
 
 /obj/item/weapon/rig/hazmat/equipped
-
 	req_access = list(access_rd)
+	rarity_value = 60
 
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,

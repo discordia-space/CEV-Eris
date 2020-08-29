@@ -54,7 +54,7 @@
 "bb" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "bc" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "bd" = (/obj/spawner/junk,/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
-"be" = (/obj/structure/table/rack,/obj/random/science,/obj/random/science,/obj/random/science,/obj/random/science/low_chance,/obj/random/science/low_chance,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
+"be" = (/obj/structure/table/rack,/obj/spawner/science,/obj/spawner/science,/obj/spawner/science,/obj/spawner/science/low_chance,/obj/spawner/science/low_chance,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bf" = (/obj/structure/table/rack,/obj/item/weapon/pinpointer/nukeop,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bg" = (/obj/machinery/nuclearbomb{r_code = "LOLNO"; eris_ship_bomb = 1},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bh" = (/obj/structure/table/rack,/obj/random/pack/rare,/obj/random/pack/rare,/obj/random/pack/rare,/obj/random/pack/rare/low_chance,/obj/random/pack/rare/low_chance,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)

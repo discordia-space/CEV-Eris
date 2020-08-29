@@ -196,7 +196,28 @@
 #define SPAWN_ITEM_TECH_OS "item_tech_os"
 
 #define SPAWN_TAG_STOCK_PARTS "obj,item,stock_parts"
+#define SPAWN_TAG_STOCK_PARTS_TIER_2 "obj,item,stock_parts,science"
 #define SPAWN_TAG_STOCK_PARTS_OS "obj,item,stock_parts,stock_parts_os,item_tech_os,faction_os"
+
+// ITEM - divice
+#define SPAWN_DIVICE "divice"
+
+#define SPAWN_TAG_DIVICE "obj,item,divice"
+#define SPAWN_TAG_DIVICE_SCIENCE "obj,item,divice,science"
+
+//factions
+#define SPAWN_SCIENCE "science"
+
+//ITEMS - BEAKER
+
+#define SPAWN_TAG_VIAL_SCIENCE "obj,item,beaker,vial,science"
+
+// ITEMS - COMPUTER
+#define SPAWN_TAG_COMPUTER_RESEARCH "obj,item,computer_hardware,science"
+
+// ITEMS - RING
+
+#define SPAN_TAG_RING_HAZMAT "obj,item,space_suit,ring_suit,science"
 
 // ITEM - DRIKS
 #define SPAWN_BOOZE "bottle_alcohol"

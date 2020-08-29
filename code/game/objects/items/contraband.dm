@@ -29,9 +29,11 @@
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random
 	flags = 0
+	rarity_value = 30
 	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin
+	rarity_value = 30
 	random_reagent_list = list(
 		list("mindbreaker" = 10, "space_drugs" = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,

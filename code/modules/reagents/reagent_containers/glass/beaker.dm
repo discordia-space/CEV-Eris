@@ -75,16 +75,20 @@
 	w_class = ITEM_SIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
-	spawn_tags = null
+	spawn_tags = SPAWN_TAG_VIAL_SCIENCE
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
 	preloaded_reagents = list("nanites" = 30)
+	rarity_value = 30
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
 	preloaded_reagents = list("uncap nanites" = 30)
+	spawn_blacklisted = TRUE
+
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
 	preloaded_reagents = list("cryoxadone" = 30)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	preloaded_reagents = list("sacid" = 60)
@@ -105,7 +109,7 @@
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 20
 
-/obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user)
+/obj/item/weapon/reagent_containers/glass/bucket/attackby(obj/D, mob/user)
 
 	if(is_proximity_sensor(D))
 		to_chat(user, "You add [D] to [src].")

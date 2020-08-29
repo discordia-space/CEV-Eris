@@ -70,6 +70,7 @@
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	rarity_value = 50
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/weapon/stock_parts/scanning_module/adv
 	name = "advanced scanning module"
@@ -79,6 +80,7 @@
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	rarity_value = 30
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/weapon/stock_parts/manipulator/nano
 	name = "nano-manipulator"
@@ -88,6 +90,7 @@
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 	rarity_value = 30
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/weapon/stock_parts/micro_laser/high
 	name = "high-power micro-laser"
@@ -97,6 +100,7 @@
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	rarity_value = 30
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/weapon/stock_parts/matter_bin/adv
 	name = "advanced matter bin"
@@ -106,6 +110,7 @@
 	rating = 2
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	rarity_value = 25
+	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 //Rating 3
 
