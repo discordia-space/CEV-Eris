@@ -44,21 +44,28 @@
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 30
+	rarity_value = 30
+	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
 /obj/item/ammo_magazine/ammobox/pistol/practice
 	name = "ammunition packet (.35 Auto practice)"
 	icon_state = "pistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
+	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/ammo_magazine/ammobox/pistol/hv
 	name = "ammunition packet (.35 Auto high-velocity)"
 	icon_state = "pistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/ammo_magazine/ammobox/pistol/rubber
 	name = "ammunition packet (.35 Auto rubber)"
 	icon_state = "pistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 5
 
 //// . 40 ////
 
@@ -167,7 +174,6 @@
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
 
 //// . 30 ////
-
 /obj/item/ammo_magazine/ammobox/lrifle
 	name = "ammunition box (.30 Rifle lethal)"
 	icon_state = "box_lrifle_l"

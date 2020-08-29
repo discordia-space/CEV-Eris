@@ -177,7 +177,7 @@
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 40
-	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
 
 /obj/item/weapon/storage/box/shotgunammo/slug
 	name = "box of shotgun slugs"
@@ -189,7 +189,8 @@
 
 /obj/item/weapon/storage/box/shotgunammo/blanks
 	name = "box of blank shells"
-	rarity_value = 40
+	rarity_value = 50
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
 /obj/item/weapon/storage/box/shotgunammo/blanks/populate_contents()
 	for(var/i in 1 to 7)
@@ -206,6 +207,7 @@
 /obj/item/weapon/storage/box/shotgunammo/buckshot
 	name = "box of shotgun shells"
 	rarity_value = 13.33
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
 /obj/item/weapon/storage/box/shotgunammo/buckshot/populate_contents()
 	for(var/i in 1 to 7)
@@ -214,6 +216,7 @@
 /obj/item/weapon/storage/box/shotgunammo/flashshells
 	name = "box of illumination shells"
 	rarity_value = 40
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
 /obj/item/weapon/storage/box/shotgunammo/flashshells/populate_contents()
 	for(var/i in 1 to 7)
@@ -221,7 +224,7 @@
 
 /obj/item/weapon/storage/box/shotgunammo/practiceshells
 	name = "box of practice shells"
-	rarity_value = 40
+	rarity_value = 50
 
 /obj/item/weapon/storage/box/shotgunammo/practiceshells/populate_contents()
 	for(var/i in 1 to 7)

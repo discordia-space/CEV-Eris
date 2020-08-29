@@ -6299,9 +6299,9 @@
 /area/eris/maintenance/section2deck5port)
 "aoh" = (
 /obj/structure/closet/oldstyle,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck5port)
 "aoi" = (
@@ -6458,8 +6458,8 @@
 /area/eris/maintenance/section2deck5port)
 "aoB" = (
 /obj/structure/table/rack,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /obj/random/ammo,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
@@ -12285,8 +12285,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/security/main)
 "aBX" = (
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aBY" = (
@@ -13078,8 +13078,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDX" = (
@@ -14100,8 +14100,8 @@
 /area/eris/maintenance/section2deck4central)
 "aGH" = (
 /obj/structure/closet,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/steel,
@@ -20629,8 +20629,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aVQ" = (
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
 "aVR" = (
@@ -20936,8 +20936,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aWv" = (
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aWw" = (
@@ -23208,7 +23208,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bbf" = (
@@ -25592,8 +25592,8 @@
 /area/eris/maintenance/section3deck1central)
 "bfl" = (
 /obj/structure/table/standard,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -76100,7 +76100,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "dog" = (
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /obj/random/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
@@ -79914,11 +79914,11 @@
 "dwQ" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
-/obj/random/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo_lowcost/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwR" = (

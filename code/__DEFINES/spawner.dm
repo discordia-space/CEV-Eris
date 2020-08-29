@@ -102,7 +102,7 @@
 #define SPAWN_TAG_SMALL_POWERCELL "obj,item,powercell,small_powercell"
 #define SPAWN_TAG_MEDIUM_POWERCELL "obj,item,powercell,medium_powercell"
 #define SPAWN_TAG_LARGE_POWERCELL "obj,item,powercell,large_powercell"
-#define SPAWN_TAG_MEDIUM_POWERCELL_IH_AMMO "obj,item,powercell,medium_powercell,ammo_ih"
+#define SPAWN_TAG_MEDIUM_POWERCELL_IH_AMMO "obj,item,powercell,medium_powercell,ammo_ih,ammo_commmon"
 
 //	Items - GUNS
 #define SPAWN_GUN "gun"
@@ -122,9 +122,12 @@
 #define SPAWN_AMMO "ammmo_storage"
 #define SPAWN_AMMO_IH "ammo_ih"
 #define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
+#define SPAWN_AMMO_COMMON "ammmo_storage_common"
 
 #define SPAWN_TAG_AMMO "obj,item,gun,ammo,ammmo_storage"
+#define SPAWN_TAG_AMMO_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_common"
 #define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
+#define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun,ammmo_storage_common"
 #define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammo_ih,ammmo_storage"
 
 //	Items - TOYS

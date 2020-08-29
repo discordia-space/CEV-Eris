@@ -48,20 +48,12 @@
 	icon_state = "ammo-blue-low"
 	spawn_nothing_percentage = 60
 
-/obj/random/ammo_lowcost
+/obj/spawner/ammo_lowcost
 	name = "random low tier ammunition"
 	icon_state = "ammo-grey"
-	//tags_to_spawn = list(SPAWN_AMMO)
+	tags_to_spawn = list(SPAWN_AMMO_COMMON)
 
-/obj/random/ammo_lowcost/item_to_spawn()
-	return pickweight(list(/obj/item/weapon/storage/box/shotgunammo/beanbags = 4,
-				/obj/item/weapon/storage/box/shotgunammo = 2,
-				/obj/item/weapon/storage/box/shotgunammo/slug = 1,
-				/obj/item/ammo_magazine/ammobox/pistol = 1,
-				/obj/item/ammo_magazine/ammobox/pistol/rubber = 6,
-				/obj/item/weapon/cell/medium = 1))
-
-/obj/random/ammo_lowcost/low_chance
+/obj/spawner/ammo_lowcost/low_chance
 	name = "low chance random low tier ammunition"
 	icon_state = "ammo-grey-low"
 	spawn_nothing_percentage = 60
