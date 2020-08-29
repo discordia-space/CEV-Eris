@@ -23,7 +23,10 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	GLOB.all_crew_records.Remove(src)
 
 /datum/computer_file/report/crew_record/proc/load_from_mob(var/mob/living/carbon/human/H)
-	if(!H.job || H.job == "Vagabond") // As stowaways, Vagabond do not show up on the crew manifest.
+	if(!H.job)
+		return
+	if(H.job == "Vagabond") // As stowaways, Vagabond do not show up on the crew manifest.
+		GLOB.all_crew_records.Remove(src)
 		return
 	if(istype(H))
 		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
