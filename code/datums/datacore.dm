@@ -174,7 +174,7 @@ var/global/ManifestJSON
 		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
-	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
+	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1) && H.job != "VagaBond")
 		var/assignment = GetAssignment(H)
 
 		var/id = generate_record_id()
