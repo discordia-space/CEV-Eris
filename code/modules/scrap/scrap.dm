@@ -23,6 +23,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/junk/nondense = 2,
 		/obj/random/pack/rare = 0.4
 	)
+	var/list/matter_types = list(
+		"steel_heavy" = 4,
+		"sparse" = 6,
+		"strong_materials" = 2
+	)
 	var/dig_amount = 4
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
 	var/base_min = 5	//min and max number of random pieces of base icon
@@ -35,6 +40,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	sanity_damage = 0.1
 	var/rare_item_chance = 70
 	var/rare_item = FALSE
+	var/size_multiplier = 1
+	var/true_matter_type = 0
 
 /obj/structure/scrap/proc/make_cube()
 	var/obj/container = new /obj/structure/scrap_cube(loc, loot_max)
@@ -43,6 +50,23 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 /obj/structure/scrap/Initialize()
 	. = ..()
 	update_icon(TRUE)
+	true_matter_type = pickweight (matter_types)
+	if (true_matter_type == "steel_heavy")
+		matter = list(MATERIAL_STEEL = rand(8, 12), MATERIAL_PLASTIC = rand(2, 6), MATERIAL_GLASS = rand(1, 3))
+	if (true_matter_type == "sparse")
+		matter = list(MATERIAL_STEEL = rand(4, 8), MATERIAL_PLASTIC = rand(1, 3), MATERIAL_GLASS = rand(1, 2))
+	if (true_matter_type == "strong_materials")
+		matter = list(MATERIAL_STEEL = rand(2, 6), MATERIAL_GLASS = rand(1, 3), MATERIAL_PLASMAGLASS = rand(2, 5), MATERIAL_PLASTEEL = rand(2, 5))
+	if (true_matter_type == "simple_medical")
+		matter = list(MATERIAL_STEEL = rand(1, 2), MATERIAL_PLASTIC = rand(4, 8), MATERIAL_GLASS = rand(6, 8), MATERIAL_SILVER = rand(0, 2), MATERIAL_GOLD = rand(0, 1))
+	if (true_matter_type == "complex_medical")
+		matter = list(MATERIAL_STEEL = rand(0, 3), MATERIAL_PLASTIC = rand(2, 10), MATERIAL_GLASS = rand(5, 7), MATERIAL_DIAMOND = rand(0, 1), MATERIAL_PLASMA = rand(0, 3))
+	if (true_matter_type == "simple_sci")
+		matter = list(MATERIAL_STEEL = rand(0, 3), MATERIAL_PLASTIC = rand(2, 10), MATERIAL_GLASS = rand(5, 7), MATERIAL_DIAMOND = rand(1, 3), MATERIAL_PLASMA = rand(0, 2))
+	if (true_matter_type == "complex_sci")
+		matter = list(MATERIAL_STEEL = rand(0, 3), MATERIAL_PLASTIC = rand(2, 10), MATERIAL_GLASS = rand(5, 7), MATERIAL_GOLD = rand(1, 3), MATERIAL_URANIUM = rand(0, 2))
+	for (var/a in matter)
+		matter[a] *= size_multiplier //this is an easy way to give more matter to larger scrap piles
 
 /obj/structure/scrap/examine(var/mob/user)
 	.=..()
@@ -273,6 +297,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 /obj/structure/scrap/proc/dig_out_lump(newloc = loc)
 	if(dig_amount > 0)
 		dig_amount--
+		for (var/a in matter)
+			matter[a] *=RAND_DECIMAL(0.6, 0.8)//remove some amount of matter from the pile
 		//new /obj/item/weapon/scrap_lump(src) //Todo: uncomment this once purposes and machinery for scrap are implemented
 		return TRUE
 
@@ -328,6 +354,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_min = 9
 	base_max = 14
 	base_spread = 16
+	size_multiplier = 1.5
 
 /obj/structure/scrap/medical
 	icontype = "medical"
@@ -341,6 +368,12 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/weapon/material/shard,
 		/obj/random/junk/nondense,
 		/obj/random/pack/rare = 0.3
+	)
+	matter_types = list(
+		"steel_heavy" = 1,
+		"strong_materials" = 1,
+		"simple_medical" = 4,
+		"complex_medical" = 2
 	)
 
 /obj/structure/scrap/vehicle
@@ -374,6 +407,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/junk/nondense,
 		/obj/random/pack/rare = 0.3
 	)
+	matter_types = list(
+		"sparse" = 1 //It's a fucking pile of food
+	)
 
 /obj/structure/scrap/guns
 	icontype = "guns"
@@ -392,6 +428,12 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/junk/nondense,
 		/obj/random/pack/rare = 0.3
 	)
+	matter_types = list(
+		"steel_heavy" = 1,
+		"strong_materials" = 1,
+		"simple_sci" = 4,
+		"complex_sci" = 2
+	)
 
 /obj/structure/scrap/science
 	icontype = "science"
@@ -408,6 +450,12 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/random/tool_upgrade,
 		/obj/random/exosuit_equipment)
+	matter_types = list(
+		"steel_heavy" = 1,
+		"strong_materials" = 1,
+		"simple_sci" = 4,
+		"complex_sci" = 2
+	)
 
 /obj/structure/scrap/cloth
 	icontype = "cloth"
@@ -441,6 +489,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_min = 9
 	base_max = 14
 	big_item_chance = 75
+	size_multiplier = 1.5
 
 /obj/structure/scrap/poor/large/beacon
 	beacon = TRUE
@@ -456,6 +505,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_max = 14
 	base_spread = 16
 	big_item_chance = 100
+	size_multiplier = 1.5
 
 /obj/structure/scrap/vehicle/large/beacon
 	beacon = TRUE
@@ -471,6 +521,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_max = 14
 	base_spread = 16
 	big_item_chance = 50
+	size_multiplier = 1.5
 
 /obj/structure/scrap/food/large/beacon
 	beacon = TRUE
@@ -486,6 +537,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_max = 14
 	base_spread = 16
 	big_item_chance = 60
+	size_multiplier = 1.5
 
 /obj/structure/scrap/medical/large/beacon
 	beacon = TRUE
@@ -501,6 +553,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_max = 14
 	base_spread = 16
 	big_item_chance = 50
+	size_multiplier = 1.5
 
 /obj/structure/scrap/guns/large/beacon
 	beacon = TRUE
@@ -516,6 +569,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_max = 14
 	base_spread = 16
 	big_item_chance = 80
+	size_multiplier = 1.5
 
 /obj/structure/scrap/science/large/beacon
 	beacon = TRUE
@@ -531,6 +585,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_max = 14
 	base_spread = 16
 	big_item_chance = 65
+	size_multiplier = 1.5
 
 /obj/structure/scrap/cloth/large/beacon
 	beacon = TRUE
@@ -546,6 +601,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	base_min = 3
 	base_max = 6
 	big_item_chance = 100
+	size_multiplier = 1.5
 
 /obj/structure/scrap/poor/structure/beacon
 	beacon = TRUE
@@ -555,4 +611,3 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	..()
 	if(!loot_generated)
 		underlays += image(icon, icon_state = "underlay_big")
-
