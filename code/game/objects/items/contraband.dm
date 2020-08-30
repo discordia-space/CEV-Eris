@@ -4,6 +4,8 @@
 /obj/item/weapon/storage/pill_bottle/happy
 	name = "bottle of Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
+	spawn_tags = SPAWN_TAG_DRUG_PILL_CONTRABAND
+	rarity_value = 25
 
 /obj/item/weapon/storage/pill_bottle/happy/populate_contents()
 	new /obj/item/weapon/reagent_containers/pill/happy(src)
@@ -17,6 +19,8 @@
 /obj/item/weapon/storage/pill_bottle/zoom
 	name = "bottle of Zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."
+	spawn_tags = SPAWN_TAG_DRUG_PILL_CONTRABAND
+	rarity_value = 25
 
 /obj/item/weapon/storage/pill_bottle/zoom/populate_contents()
 	new /obj/item/weapon/reagent_containers/pill/zoom(src)

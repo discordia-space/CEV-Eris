@@ -308,6 +308,8 @@
 /obj/item/weapon/storage/pill_bottle/tramadol
 	name = "bottle of Tramadol pills"
 	desc = "Contains pills used to relieve pain."
+	spawn_tags = SPAWN_TAG_MEDICINE_CONTRABAND
+	rarity_value = 15
 
 /obj/item/weapon/storage/pill_bottle/tramadol/populate_contents()
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)

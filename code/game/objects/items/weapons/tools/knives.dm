@@ -194,6 +194,8 @@
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	tool_qualities = null
 	toggleable = TRUE
+	rarity_value = 25
+	spawn_tags = SPAWN_TAG_KNIFE_CONTRABAND
 
 /obj/item/weapon/tool/knife/butterfly/turn_on(mob/user)
 	item_state = "[initial(item_state)]_on"
@@ -238,6 +240,8 @@
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	tool_qualities = null
 	toggleable = TRUE
+	rarity_value = 30
+	spawn_tags = SPAWN_TAG_KNIFE_CONTRABAND
 
 /obj/item/weapon/tool/knife/switchblade/turn_on(mob/user)
 	item_state = "[initial(item_state)]_on"

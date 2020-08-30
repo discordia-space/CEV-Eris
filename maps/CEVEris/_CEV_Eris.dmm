@@ -1726,7 +1726,7 @@
 "aeh" = (
 /obj/structure/closet/crate/trashcart,
 /obj/structure/disposalpipe/segment,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/security/disposal)
 "aei" = (
@@ -2214,7 +2214,7 @@
 	dir = 4
 	},
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 1, floor 1. Permabrig toilet."
 	},
@@ -2607,7 +2607,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/security/maintpost)
 "agp" = (
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/security/maintpost)
@@ -4303,7 +4303,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "ajN" = (
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck5central)
 "ajO" = (
@@ -6067,7 +6067,7 @@
 /area/eris/maintenance/section2deck5starboard)
 "anI" = (
 /obj/structure/table/standard,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/toilet/medbay)
 "anJ" = (
@@ -6612,7 +6612,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "aoV" = (
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/scrap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/security/disposal)
@@ -8999,7 +8999,7 @@
 /area/eris/maintenance/section3deck5port)
 "atY" = (
 /obj/structure/table/standard,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck5port)
 "atZ" = (
@@ -16738,7 +16738,7 @@
 /area/eris/rnd/server)
 "aNp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aNq" = (
@@ -16867,7 +16867,7 @@
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/eris/hallway/side/atmosphericshallway)
 "aNE" = (
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aNF" = (
@@ -22937,8 +22937,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/random/contraband/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bav" = (
@@ -25070,7 +25070,7 @@
 	dir = 1;
 	anchored = 1
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bef" = (
@@ -27381,7 +27381,7 @@
 "bjp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
@@ -27485,7 +27485,7 @@
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 3, floor 5. Bed in the maints north from library."
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bjA" = (
@@ -31332,7 +31332,7 @@
 "bsd" = (
 /obj/structure/table/rack,
 /obj/spawner/tank,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4port)
@@ -31521,7 +31521,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bsE" = (
@@ -34491,7 +34491,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bzj" = (
@@ -34499,7 +34499,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bzk" = (
@@ -36068,7 +36068,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/hallway/side/section3starboard)
 "bCJ" = (
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck3central)
 "bCK" = (
@@ -37116,7 +37116,7 @@
 	icon_state = "railing0";
 	dir = 1
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bFe" = (
@@ -39946,7 +39946,7 @@
 /area/eris/engineering/atmoscontrol)
 "bKD" = (
 /obj/structure/table/rack,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -42535,7 +42535,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bPV" = (
@@ -43430,7 +43430,7 @@
 /area/eris/quartermaster/hangarsupply)
 "bRR" = (
 /obj/structure/closet/crate/internals,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "bRS" = (
@@ -44774,7 +44774,7 @@
 /area/eris/crew_quarters/janitor)
 "bUZ" = (
 /obj/structure/closet/crate/trashcart,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bVa" = (
@@ -47571,7 +47571,7 @@
 /obj/item/weapon/caution{
 	name = "Caution Sign"
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/boxes,
 /obj/spawner/boxes,
 /obj/spawner/boxes/low_chance,
@@ -48720,7 +48720,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "cdV" = (
@@ -51317,8 +51317,8 @@
 "cjI" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/contraband/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/boxes,
 /obj/spawner/boxes,
 /obj/spawner/boxes,
@@ -58148,7 +58148,7 @@
 /area/eris/crew_quarters/bar)
 "czO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czP" = (
@@ -58975,7 +58975,7 @@
 /area/eris/maintenance/section3deck4central)
 "cBv" = (
 /obj/structure/table/standard,
-/obj/random/contraband,
+/obj/spawner/contraband,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -67675,7 +67675,7 @@
 /obj/item/weapon/contraband/poster,
 /obj/item/weapon/contraband/poster,
 /obj/item/weapon/contraband/poster,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck3port)
 "cWa" = (
@@ -70742,7 +70742,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "dcQ" = (
@@ -89261,10 +89261,10 @@
 /obj/machinery/conveyor/east{
 	id = "silk_road"
 	},
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dRO" = (
@@ -89423,7 +89423,7 @@
 "dSi" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dSj" = (
@@ -89432,7 +89432,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2port)
 "dSk" = (
@@ -89924,7 +89924,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 9
 	},
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2starboard)
@@ -90286,7 +90286,7 @@
 "dUk" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -90295,7 +90295,7 @@
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dUm" = (
@@ -90528,7 +90528,7 @@
 /area/eris/maintenance/section2deck1port)
 "dUU" = (
 /obj/structure/table/rack,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/tank,
 /obj/spawner/tank,
 /turf/simulated/floor/tiled/techmaint,
@@ -90725,8 +90725,8 @@
 "dVq" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
-/obj/random/contraband/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dVr" = (
@@ -90862,7 +90862,7 @@
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
@@ -92158,7 +92158,7 @@
 /area/eris/crew_quarters/bar)
 "dYj" = (
 /obj/structure/closet,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dYk" = (
@@ -102432,7 +102432,7 @@
 /area/eris/hallway/side/section3port)
 "evy" = (
 /obj/structure/closet,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
@@ -102481,7 +102481,7 @@
 /area/eris/hallway/side/section3port)
 "evD" = (
 /obj/structure/closet,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
@@ -102885,7 +102885,7 @@
 /area/eris/crew_quarters/bar)
 "ewr" = (
 /obj/structure/closet,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
@@ -105033,9 +105033,9 @@
 /obj/machinery/conveyor/east{
 	id = "silk_road"
 	},
-/obj/random/contraband,
-/obj/random/contraband,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband,
+/obj/spawner/contraband,
+/obj/spawner/contraband/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "eAI" = (

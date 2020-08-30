@@ -21,6 +21,7 @@
 
 #define SPAWN_TAG_KNIFE "obj,item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "obj,item,weapon,tool,knife,sword"
+#define SPAWN_TAG_KNIFE_CONTRABAND "obj,item,weapon,tool,contraband"
 
 // ITEMS - tools - SURGERY
 #define SPAWN_SURGERY_TOOL "surgery_tool"
@@ -112,11 +113,10 @@
 #define SPAWN_GUN_ENERGY "gun_energy"
 #define SPAWN_GUN_PROJECTILE "gun_projectile"
 #define SPAWN_GUN_SHOTGUN "shotgun"
-#define SPAWN_GUN_ENERGY_CHEAP "gun_energy_cheap"
 
 #define SPAWN_TAG_GUN "obj,item,gun"
 #define SPAWN_TAG_GUN_ENERGY "obj,item,gun,gun_energy"
-#define SPAWN_TAG_GUN_ENERGY_CHEAP "obj,item,gun,gun_energy,gun_energy_cheap"
+#define SPAWN_TAG_GUN_ENERGY_CHAMALEON "obj,item,gun,gun_energy,contraband,chamaleon"
 #define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile"
 #define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun"
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun"
@@ -132,6 +132,13 @@
 #define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
 #define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun,ammo_common"
 #define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammo_ih,ammmo_storage"
+
+//	Items - contraband
+#define SPAWN_CONTRABAND "contraband"
+
+#define SPAWN_TAG_CONTRABAND "obj,item,contraband"
+#define SPAWN_TAG_DRUG_CONTRABAND "obj,item,drug,contraband"
+#define SPAWN_TAG_DRUG_PILL_CONTRABAND "obj,item,pill,drug,contraband"
 
 //	Items - TOYS
 #define SPAWN_TOY "toy"
@@ -162,15 +169,21 @@
 #define SPAWN_TAG_CLOTHING "obj,item,clothing"
 #define SPAWN_TAG_VOID_SUIT "obj,item,clothing,suit,space_suit,void_suit"
 #define SPAWN_TAG_MASK "obj,item,clothing,mask"
+#define SPAWN_TAG_MASK_CONTRABAND "obj,item,clothing,mask,contraband,chamaleon"
 #define SPAWN_TAG_HAZMATSUIT "obj,item,clothing,hazmatsuit"
 #define SPAWN_TAG_HOLSTER "obj,item,clothing,holster"
 #define SPAWN_TAG_SHOES "obj,item,clothing,shoes"
+#define SPAWN_TAG_SHOES_CHAMALEON "obj,item,clothing,shoes,contraband,chamaleon"
 #define SPAWN_TAG_GLOVES "obj,item,clothing,gloves"
+#define SPAWN_TAG_GLOVES_CHAMALEON "obj,item,clothing,gloves,chamaleon,contraband"
 #define SPAWN_TAG_CLOTHING_UNDER "obj,item,clothing,under"
+#define SPAWN_TAG_CLOTHING_UNDER_CHAMALEON "obj,item,clothing,under,contraband,chamaleon"
 #define SPAWN_TAG_CLOTHING_HEAD "obj,item,clothing,head"
+#define SPAWN_TAG_CLOTHING_HEAD_CHAMALEON "obj,item,clothing,head,chamaleon,contraband"
 #define SPAWN_TAG_CLOTHING_HEAD_HELMET "obj,item,clothing,head,helmet"
 #define SPAWN_TAG_CLOTHING_ARMOR "obj,item,clothing,armor"
 #define SPAWN_TAG_GLASSES "obj,item,clothing,glasses"
+#define SPAWN_TAG_GLASSES_CHAMALEON "obj,item,clothing,glasses,contraband,chamaleon"
 #define SPAWN_TAG_CLOTHING_SUIT_STORAGE "obj,item,clothing,suit,suit_storage"
 #define SPAWN_TAG_CLOTHING_SUIT_PONCHO "obj,item,clothing,suit,suit_poncho"
 
@@ -189,6 +202,7 @@
 #define SPAWN_TAG_BOX "obj,item,storage,box"
 #define SPAWN_TAG_FIRSTAID "obj,item,storage,firstaid"
 #define SPAWN_TAG_BACKPACK "obj,item,storage,backpack,clothing"
+#define SPAWN_TAG_BACKPACK_CHAMALEON "obj,item,storage,backpack,clothing,contraband,chamaleon"
 #define SPAWN_TAG_BOX_TAG_JUNK "obj,item,storage,box,junk"
 
 // ITEM - STOCK PARTS   and os_tech
@@ -219,6 +233,7 @@
 
 #define SPAWN_TAG_MEDICINE "obj,item,medicine,medical"
 #define SPAWN_TAG_MEDICINE_COMMON "obj,item,medicine,medicine_common,medical"
+#define SPAWN_TAG_MEDICINE_CONTRABAND "obj,item,medicine,medical,contraband"
 
 //ITEMS - BEAKER
 #define SPAWN_TAG_VIAL "obj,item,beaker,vial,science,medical"

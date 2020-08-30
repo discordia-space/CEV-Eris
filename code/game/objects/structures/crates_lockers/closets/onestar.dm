@@ -11,8 +11,8 @@
 	icon_state = "lootcloset"
 
 /obj/structure/closet/onestar/tier1/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
 	new /obj/random/pack/rare/low_chance(src)
 	new /obj/spawner/pack/tech_loot/onestar(src)
 	new /obj/spawner/pack/tech_loot/onestar(src)
@@ -33,8 +33,8 @@
 	icon_state = "lootcloset1"
 
 /obj/structure/closet/onestar/tier2/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
 	new /obj/random/pack/rare/low_chance(src)
 	new /obj/spawner/pack/tech_loot/onestar(src)
 	new /obj/spawner/pack/tech_loot/onestar(src)
@@ -55,8 +55,8 @@
 	icon_state = "lootcloset2"
 
 /obj/structure/closet/onestar/tier3/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
 	new /obj/random/pack/rare/low_chance(src)
 	new /obj/spawner/pack/tech_loot/onestar(src)
 	new /obj/spawner/pack/tech_loot/onestar(src)

@@ -182,8 +182,8 @@
 /area/outpost/abandoned_fortress)
 "aQ" = (
 /obj/structure/closet,
-/obj/random/contraband/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/powercell/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -217,8 +217,8 @@
 /area/outpost/abandoned_fortress)
 "be" = (
 /obj/structure/closet,
-/obj/random/contraband/low_chance,
-/obj/random/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
+/obj/spawner/contraband/low_chance,
 /obj/spawner/powercell/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)

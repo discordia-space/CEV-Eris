@@ -39,11 +39,13 @@
 /obj/item/clothing/under/chameleon
 //starts off as black
 	name = "black jumpsuit"
+	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	icon_state = "black"
 	item_state = "bl_suit"
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_CLOTHING_UNDER_CHAMALEON
+	rarity_value = 50
 
-	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	origin_tech = list(TECH_COVERT = 3)
 	var/global/list/clothing_choices
 
@@ -81,6 +83,8 @@
 	origin_tech = list(TECH_COVERT = 3)
 	body_parts_covered = 0
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_CHAMALEON
+	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/clothing/head/chameleon/New()
@@ -152,6 +156,8 @@
 	desc = "They're comfy black shoes, with clever cloaking technology built in. It seems to have a small dial on the back of each shoe."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_SHOES_CHAMALEON
+	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/clothing/shoes/chameleon/New()
@@ -188,6 +194,8 @@
 	desc = "A backpack outfitted with cloaking tech. It seems to have a small dial inside, kept away from the storage."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_BACKPACK_CHAMALEON
+	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/weapon/storage/backpack/chameleon/Initialize()
@@ -225,6 +233,8 @@
 	desc = "It looks like a pair of gloves, but it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GLOVES_CHAMALEON
+	rarity_value = 50
 	var/global/list/clothing_choices
 
 /obj/item/clothing/gloves/chameleon/New()
@@ -260,6 +270,8 @@
 	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
+	rarity_value = 50
 	flags_inv = HIDEEYES|HIDEFACE
 	var/global/list/clothing_choices
 
@@ -296,6 +308,8 @@
 	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GLASSES_CHAMALEON
+	rarity_value = 50
 	var/list/global/clothing_choices
 
 /obj/item/clothing/glasses/chameleon/New()
@@ -330,6 +344,8 @@
 	icon_state = "avasarala"
 	w_class = ITEM_SIZE_NORMAL
 	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GUN_ENERGY_CHAMALEON
+	rarity_value = 25
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_COVERT = 2)
 	matter = list()
 

@@ -13,8 +13,8 @@
 	rarity_value = 10
 
 /obj/structure/closet/random/miscellaneous/populate_contents()
-	new /obj/random/contraband/low_chance(src)
-	new /obj/random/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
+	new /obj/spawner/contraband/low_chance(src)
 	new /obj/random/pack/rare/low_chance(src)
 	new /obj/spawner/junk(src)
 	new /obj/spawner/junk(src)

@@ -14,7 +14,10 @@
 	icon_state = "rolled_poster"
 	var/serial_number = 0
 	var/ruined = 0
-	var/datum/poster/design = null
+	var/datum/poster/design
+	rarity_value = 10
+	bad_types = /obj/item/weapon/contraband/poster
+	spawn_tags = SPAWN_TAG_CONTRABAND
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	if(!new_design)
@@ -41,7 +44,7 @@
 						if(EAST)  pixel_x = 32
 						if(WEST)  pixel_x = -32
 
-/obj/item/weapon/contraband/poster/attack_hand(mob/user as mob)
+/obj/item/weapon/contraband/poster/attack_hand(mob/user)
 	if(!anchored)
 		return ..()
 
@@ -63,7 +66,7 @@
 		if("No")
 			return
 
-/obj/item/weapon/contraband/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/contraband/poster/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)

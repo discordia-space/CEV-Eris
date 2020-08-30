@@ -24,7 +24,7 @@
 /area/crawler)
 "g" = (
 /obj/random/mob/roomba,
-/obj/random/contraband,
+/obj/spawner/contraband,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "h" = (
@@ -62,7 +62,7 @@
 /area/crawler)
 "n" = (
 /obj/random/mob/roomba,
-/obj/random/contraband,
+/obj/spawner/contraband,
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/crawler)
 "o" = (
@@ -76,7 +76,7 @@
 /obj/structure/table/onestar,
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/shotgun,
-/obj/random/contraband,
+/obj/spawner/contraband,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "q" = (
