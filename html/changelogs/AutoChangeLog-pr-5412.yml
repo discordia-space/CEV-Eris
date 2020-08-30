@@ -1,4 +1,0 @@
-author: TheShown
-delete-after: true
-changes:
-  - bugfix: Multiple breeding spiders can't be activated on the same body anymore.

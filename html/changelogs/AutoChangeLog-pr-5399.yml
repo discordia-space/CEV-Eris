@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - tweak: Attempting and failing to attach mech equipment to a mech now tells you
-      why it failed to do so.

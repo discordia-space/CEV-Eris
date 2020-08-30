@@ -1,5 +1,0 @@
-author: Fernandos33
-delete-after: true
-changes:
-  - bugfix: you can again make pills with a beaker filled with more than 60u (pills
-      themselves cannot have more than 60 tho)

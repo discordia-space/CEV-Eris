@@ -1,4 +1,0 @@
-author: Deon-DF
-delete-after: true
-changes:
-  - bugfix: fixed grammar/notification for rag smothering actions.
