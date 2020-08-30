@@ -66,7 +66,7 @@
 	charge_cost = 100
 	price_tag = 2000
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_ENERGY_GUN_CHEAP
+	spawn_tags = SPAWN_TAG_GUN_ENERGY_CHEAP
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE

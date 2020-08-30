@@ -11,7 +11,7 @@
 	matter = list(MATERIAL_PLASTEEL = 13, MATERIAL_PLASTIC = 6, MATERIAL_SILVER = 6)
 	price_tag = 2500
 	rarity_value = 5
-	spawn_tags = SPAWN_TAG_ENERGY_GUN_CHEAP
+	spawn_tags = SPAWN_TAG_GUN_ENERGY_CHEAP
 
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
@@ -49,7 +49,7 @@
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 	rarity_value = 5
-	spawn_tags = SPAWN_TAG_ENERGY_GUN_CHEAP
+	spawn_tags = SPAWN_TAG_GUN_ENERGY_CHEAP
 
 /obj/item/weapon/gun/energy/gun/martin/proc/update_mode()
 	var/datum/firemode/current_mode = firemodes[sel_mode]

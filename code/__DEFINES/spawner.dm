@@ -109,17 +109,17 @@
 
 //	Items - GUNS
 #define SPAWN_GUN "gun"
-#define SPAWN_ENERGY_GUN "energy_gun"
-#define SPAWN_BALISTIC_GUN "balistic_gun"
+#define SPAWN_GUN_ENERGY "gun_energy"
+#define SPAWN_GUN_PROJECTILE "gun_projectile"
 #define SPAWN_GUN_SHOTGUN "shotgun"
-#define SPAWN_ENERGY_GUN_CHEAP "energy_gun_cheap"
+#define SPAWN_GUN_ENERGY_CHEAP "gun_energy_cheap"
 
 #define SPAWN_TAG_GUN "obj,item,gun"
-#define SPAWN_TAG_ENERGY_GUN "obj,item,gun,energy_gun"
-#define SPAWN_TAG_ENERGY_GUN_CHEAP "obj,item,gun,energy_gun,energy_gun_cheap"
-#define SPAWN_TAG_BALISTIC_GUN "obj,item,gun,balistic_gun"
-#define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,balistic_gun,shotgun"
-#define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,energy_gun,shotgun"
+#define SPAWN_TAG_GUN_ENERGY "obj,item,gun,gun_energy"
+#define SPAWN_TAG_GUN_ENERGY_CHEAP "obj,item,gun,gun_energy,gun_energy_cheap"
+#define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile"
+#define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun"
+#define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun"
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO "ammmo_storage"

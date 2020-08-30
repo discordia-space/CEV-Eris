@@ -56,13 +56,12 @@
 /obj/spawner/gun/energy_cheap
 	name = "random cheap energy weapon"
 	icon_state = "gun-blue"
-	tags_to_spawn = list(SPAWN_ENERGY_GUN_CHEAP)
+	tags_to_spawn = list(SPAWN_GUN_ENERGY_CHEAP)
 
 /obj/spawner/gun/energy_cheap/low_chance
 	name = "low chance random cheap energy weapon"
 	icon_state = "gun-blue-low"
 	spawn_nothing_percentage = 75
-
 
 /obj/spawner/gun/shotgun
 	name = "random shotgun"
