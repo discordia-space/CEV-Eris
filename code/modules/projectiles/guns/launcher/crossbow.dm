@@ -57,6 +57,7 @@
 	slot_flags = SLOT_BACK
 	restrict_safety = TRUE
 	twohanded = TRUE
+	rarity_value = 48
 
 	var/obj/item/bolt
 	var/tension = 0                         // Current draw on the bow.

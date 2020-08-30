@@ -114,7 +114,7 @@
 /area/crawler)
 "w" = (
 /obj/structure/table/rack,
-/obj/random/gun/normal,
+/obj/spawner/gun/normal,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "x" = (
@@ -126,14 +126,14 @@
 "y" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "z" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "A" = (

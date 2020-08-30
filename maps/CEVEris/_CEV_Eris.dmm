@@ -6292,8 +6292,8 @@
 /area/eris/maintenance/section2deck1port)
 "aog" = (
 /obj/structure/closet/oldstyle,
-/obj/random/gun/cheap/low_chance,
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /obj/item/clothing/mask/gas/ihs,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck5port)
@@ -12335,7 +12335,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/hallway/side/eschangarb)
 "aCe" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aCf" = (
@@ -13083,8 +13083,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDX" = (
-/obj/random/gun/cheap/low_chance,
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aDY" = (
@@ -14093,7 +14093,7 @@
 /area/eris/engineering/atmos)
 "aGG" = (
 /obj/structure/closet,
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/steel,
@@ -16724,7 +16724,7 @@
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 1, floor 2. Maints above the dorms, behind the window on the west end of it."
 	},
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/sleep)
 "aNo" = (
@@ -19412,7 +19412,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
@@ -19901,7 +19901,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "aUo" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
 "aUp" = (
@@ -21580,7 +21580,7 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section4deck5port)
 "aXS" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aXT" = (
@@ -21658,7 +21658,7 @@
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "aYc" = (
@@ -28642,7 +28642,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/hallway/side/morguehallway)
 "blR" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 2. Maints on the west of Morgue."
 	},
@@ -31019,7 +31019,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bro" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "brp" = (
@@ -36170,7 +36170,7 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bCY" = (
@@ -36294,7 +36294,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDr" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDs" = (
@@ -37093,7 +37093,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "bFb" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck4port)
 "bFc" = (
@@ -42038,7 +42038,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOS" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOT" = (
@@ -57297,7 +57297,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/tank/jetpack/carbondioxide,
 /obj/item/weapon/pinpointer,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
 "cxV" = (
@@ -57603,7 +57603,7 @@
 /area/eris/engineering/engine_room)
 "cyC" = (
 /obj/structure/catwalk,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/open,
 /area/eris/maintenance/oldtele)
 "cyD" = (
@@ -58157,7 +58157,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "czQ" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
@@ -64064,7 +64064,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cNe" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck3port)
 "cNf" = (
@@ -74149,7 +74149,7 @@
 /area/eris/rnd/research)
 "dkc" = (
 /obj/structure/table/rack,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/hallway/side/atmosphericshallway)
@@ -76113,7 +76113,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "doi" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/junk/low_chance,
 /obj/landmark/storyevent/midgame_stash_spawn{
 	navigation = "Section 2, floor 4. Deep maints east from Medbay EVA, under the wall of secutity checkpoint."
@@ -76243,7 +76243,7 @@
 /area/eris/security/checkpoint/supply)
 "dow" = (
 /obj/structure/table/rack,
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/firstaid/low_chance,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
@@ -79907,8 +79907,8 @@
 "dwP" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/random/gun/cheap/low_chance,
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwQ" = (
@@ -82215,7 +82215,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -84447,7 +84447,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck2port)
 "dHx" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /obj/spawner/flora/low_chance,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
@@ -89414,7 +89414,7 @@
 /area/space)
 "dSh" = (
 /obj/structure/closet/oldstyle,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
@@ -89808,7 +89808,7 @@
 /area/eris/maintenance/section2deck1port)
 "dTa" = (
 /obj/structure/table/rack,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
@@ -91275,7 +91275,7 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck1starboard)
 "dWv" = (
-/obj/random/gun/cheap/low_chance,
+/obj/spawner/gun/cheap/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,
 /obj/random/pack/tech_loot/low_chance,

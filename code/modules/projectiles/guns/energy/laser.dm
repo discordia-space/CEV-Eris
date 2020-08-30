@@ -14,6 +14,7 @@
 	damage_multiplier = 1.3
 	charge_cost = 50
 	price_tag = 2500
+	rarity_value = 12
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -30,6 +31,7 @@
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/laser/mounted/blitz
 	name = "SDF LR \"Strahl\""
@@ -66,7 +68,6 @@
 	charge_cost = 100
 	price_tag = 2000
 	rarity_value = 10
-	spawn_tags = SPAWN_TAG_GUN_ENERGY_CHEAP
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
@@ -134,3 +135,4 @@
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
+	spawn_blacklisted = TRUE

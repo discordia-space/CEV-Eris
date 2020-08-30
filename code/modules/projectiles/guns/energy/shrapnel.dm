@@ -50,5 +50,5 @@
 	restrict_safety = TRUE
 	consume_cell = FALSE
 	cell_type = /obj/item/weapon/cell/small/high //Two shots
-	spawn_tags = null
+	spawn_blacklisted = TRUE
 

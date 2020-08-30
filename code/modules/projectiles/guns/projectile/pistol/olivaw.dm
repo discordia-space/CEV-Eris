@@ -13,6 +13,7 @@
 	magazine_type = /obj/item/ammo_magazine/pistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 800
+	rarity_value = 12
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.2
 	recoil_buildup = 6

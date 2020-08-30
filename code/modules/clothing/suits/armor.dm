@@ -243,7 +243,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = 0.6
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	rarity_value = 45
+	rarity_value = 50
 	armor = list(
 		melee = 35,
 		bullet = 35,

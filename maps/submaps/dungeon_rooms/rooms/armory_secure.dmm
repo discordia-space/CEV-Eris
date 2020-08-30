@@ -81,9 +81,9 @@
 /area/crawler)
 "q" = (
 /obj/structure/table/rack,
-/obj/random/gun/normal,
-/obj/random/gun/normal,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/normal,
+/obj/spawner/gun/normal/low_chance,
 /obj/spawner/gun/shotgun,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)

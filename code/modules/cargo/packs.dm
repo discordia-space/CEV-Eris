@@ -1414,8 +1414,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/guns
 	num_contained = 4
-	contains = list(/obj/random/gun/cheap,
-                /obj/random/gun/normal,
+	contains = list(/obj/spawner/gun/cheap,
+                /obj/spawner/gun/normal,
                 /obj/spawner/gun/energy_cheap,
                 /obj/spawner/gun/shotgun)
 	name = "Surplus Weaponry"

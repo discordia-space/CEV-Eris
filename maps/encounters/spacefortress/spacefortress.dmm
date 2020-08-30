@@ -140,7 +140,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aF" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aG" = (
@@ -154,13 +154,13 @@
 /area/outpost/abandoned_fortress)
 "aI" = (
 /obj/structure/closet/emcloset,
-/obj/random/gun/cheap,
+/obj/spawner/gun/cheap,
 /obj/spawner/junk,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aJ" = (
 /obj/structure/closet/crate,
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aL" = (
@@ -357,7 +357,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bL" = (
-/obj/random/gun/normal/low_chance,
+/obj/spawner/gun/normal/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bM" = (

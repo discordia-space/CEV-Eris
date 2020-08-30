@@ -16,6 +16,7 @@
 	damage_multiplier = 1.3
 	penetration_multiplier = 1.3
 	recoil_buildup = 3
+	rarity_value = 9.6
 
 
 /obj/item/weapon/gun/projectile/mk58/update_icon()
@@ -36,3 +37,4 @@
 	icon_state = "mk58_wood"
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 1500
+	rarity_value = 24
