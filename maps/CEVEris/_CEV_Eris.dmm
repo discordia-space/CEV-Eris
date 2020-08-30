@@ -12117,9 +12117,9 @@
 /area/eris/maintenance/section3deck2starboard)
 "aBB" = (
 /obj/structure/table/standard,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck2starboard)
 "aBC" = (
@@ -13422,7 +13422,7 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "aEN" = (
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "aEO" = (
@@ -15252,8 +15252,8 @@
 /obj/structure/table/rack,
 /obj/spawner/surgery_tool/low_chance,
 /obj/spawner/surgery_tool/low_chance,
-/obj/random/medical_lowcost/low_chance,
-/obj/random/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
 "aJC" = (
@@ -26171,7 +26171,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "bgG" = (
 /obj/structure/table/standard,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/spawner/material/building/low_chance,
 /obj/spawner/material/building/low_chance,
 /turf/simulated/floor/tiled/steel/gray_perforated,
@@ -28225,8 +28225,8 @@
 /area/eris/medical/morgue)
 "bkX" = (
 /obj/structure/table/standard,
-/obj/random/medical_lowcost/low_chance,
-/obj/random/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "bkY" = (
@@ -30253,21 +30253,21 @@
 /area/eris/maintenance/section3deck1central)
 "bpr" = (
 /obj/structure/table/standard,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost/low_chance,
-/obj/random/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck1central)
 "bps" = (
 /obj/structure/table/standard,
-/obj/random/medical,
-/obj/random/medical,
-/obj/random/medical,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck1central)
 "bpt" = (
@@ -34633,7 +34633,7 @@
 "bzx" = (
 /obj/spawner/junk,
 /obj/spawner/material/building,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
@@ -43227,13 +43227,13 @@
 /area/eris/security/prisoncells)
 "bRz" = (
 /obj/structure/table/rack,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost/low_chance,
-/obj/random/medical_lowcost/low_chance,
-/obj/random/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "bRA" = (
@@ -43388,8 +43388,8 @@
 /area/eris/crew_quarters/sleep/cryo)
 "bRM" = (
 /obj/structure/table/standard,
-/obj/random/medical,
-/obj/random/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/sleep/cryo)
 "bRN" = (
@@ -43865,8 +43865,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
 "bSW" = (
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "bSX" = (
@@ -51696,8 +51696,8 @@
 "ckD" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
 /obj/spawner/firstaid,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
@@ -51869,9 +51869,9 @@
 "clb" = (
 /obj/structure/catwalk,
 /obj/structure/closet/crate,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
-/obj/random/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
 /turf/simulated/open,
 /area/eris/quartermaster/storage)
 "clc" = (
@@ -55526,7 +55526,7 @@
 /area/eris/hallway/side/section3port)
 "ctL" = (
 /obj/structure/table/rack,
-/obj/random/medical_lowcost,
+/obj/spawner/medical_lowcost,
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/quartermaster/office)
 "ctM" = (
@@ -56961,7 +56961,7 @@
 /area/eris/quartermaster/storage)
 "cxf" = (
 /obj/structure/table/rack,
-/obj/random/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -73393,8 +73393,8 @@
 	pixel_x = -32
 	},
 /obj/structure/table/rack/shelf,
-/obj/random/medical,
-/obj/random/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/reception)
 "diC" = (
@@ -73809,8 +73809,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/random/medical,
-/obj/random/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/reception)
 "djs" = (
@@ -80830,8 +80830,8 @@
 /area/eris/quartermaster/office)
 "dzc" = (
 /obj/structure/table/rack/shelf,
-/obj/random/medical,
-/obj/random/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -81435,7 +81435,7 @@
 /turf/simulated/wall/r_wall,
 /area/eris/medical/medbreak)
 "dAw" = (
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/railing{
 	tag = "icon-railing0 (EAST)";
 	icon_state = "railing0";
@@ -81467,8 +81467,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/random/medical,
-/obj/random/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/reception)
 "dAA" = (
@@ -83027,7 +83027,7 @@
 /area/eris/command/bridge)
 "dDZ" = (
 /obj/structure/table/standard,
-/obj/random/medical,
+/obj/spawner/medical,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/reception)
@@ -88901,8 +88901,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -88958,8 +88958,8 @@
 /turf/simulated/open,
 /area/eris/maintenance/section2deck1port)
 "dRa" = (
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
@@ -89248,8 +89248,8 @@
 	pixel_y = -32
 	},
 /obj/item/bodybag/cryobag,
-/obj/random/medical,
-/obj/random/medical,
+/obj/spawner/medical,
+/obj/spawner/medical,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -90888,8 +90888,8 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck1port)
 "dVN" = (
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
 /obj/machinery/light/small{
 	dir = 8
@@ -102008,8 +102008,8 @@
 /area/eris/maintenance/section3deck2starboard)
 "euC" = (
 /obj/structure/table/standard,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -106535,8 +106535,8 @@
 	pixel_y = 0;
 	req_access = null
 	},
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
@@ -107129,10 +107129,10 @@
 /area/eris/maintenance/section2deck2port)
 "eFa" = (
 /obj/structure/table/rack,
-/obj/random/medical_lowcost/low_chance,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
-/obj/random/medical,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/paramedic)
 "eFb" = (
@@ -108069,7 +108069,7 @@
 /area/eris/maintenance/section1deck4central)
 "fJM" = (
 /obj/structure/table/standard,
-/obj/random/medical,
+/obj/spawner/medical,
 /obj/machinery/vending/wallmed/lobby{
 	pixel_y = -28
 	},
@@ -109108,8 +109108,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
 "uYg" = (
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -109269,8 +109269,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemstor)
 "wYD" = (
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /obj/structure/table/rack/shelf,
 /obj/machinery/firealarm{
 	dir = 8;

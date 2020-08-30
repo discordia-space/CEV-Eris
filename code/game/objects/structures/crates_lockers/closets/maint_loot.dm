@@ -109,9 +109,9 @@
 	new /obj/random/pack/gun_loot/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
 	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/medical/low_chance(src)
-	new /obj/random/medical/low_chance(src)
-	new /obj/random/medical/low_chance(src)
+	new /obj/spawner/medical/low_chance(src)
+	new /obj/spawner/medical/low_chance(src)
+	new /obj/spawner/medical/low_chance(src)
 
 
 
@@ -128,15 +128,15 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/random/medical_lowcost(src)
-	new /obj/random/medical_lowcost(src)
-	new /obj/random/medical_lowcost(src)
-	new /obj/random/medical_lowcost(src)
-	new /obj/random/medical(src)
-	new /obj/random/medical(src)
-	new /obj/random/medical(src)
-	new /obj/random/medical/low_chance(src)
-	new /obj/random/medical/low_chance(src)
+	new /obj/spawner/medical_lowcost(src)
+	new /obj/spawner/medical_lowcost(src)
+	new /obj/spawner/medical_lowcost(src)
+	new /obj/spawner/medical_lowcost(src)
+	new /obj/spawner/medical(src)
+	new /obj/spawner/medical(src)
+	new /obj/spawner/medical(src)
+	new /obj/spawner/medical/low_chance(src)
+	new /obj/spawner/medical/low_chance(src)
 
 
 

@@ -309,20 +309,20 @@
 /area/outpost/abandoned_fortress)
 "bC" = (
 /obj/structure/table/reinforced,
-/obj/random/medical,
+/obj/spawner/medical,
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bD" = (
 /obj/structure/table/reinforced,
-/obj/random/medical,
+/obj/spawner/medical,
 /obj/spawner/firstaid/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bE" = (
 /obj/structure/table/reinforced,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bF" = (
@@ -369,7 +369,7 @@
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bO" = (
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bP" = (
@@ -408,8 +408,8 @@
 /area/outpost/abandoned_fortress)
 "bV" = (
 /obj/structure/table/reinforced,
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bW" = (
@@ -417,12 +417,12 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "bX" = (
-/obj/random/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "bY" = (
-/obj/random/medical/low_chance,
-/obj/random/medical/low_chance,
+/obj/spawner/medical/low_chance,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "bZ" = (

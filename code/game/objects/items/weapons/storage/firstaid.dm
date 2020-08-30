@@ -197,6 +197,9 @@
 	use_sound = null
 	matter = list(MATERIAL_PLASTIC = 1)
 	max_storage_space = 12
+	rarity_value = 10
+	bad_types = /obj/item/weapon/storage/pill_bottle
+	spawn_tags = SPAWN_TAG_MEDICINE
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"
@@ -331,6 +334,7 @@
 /obj/item/weapon/storage/pill_bottle/prosurgeon
 	name = "bottle of ProSurgeon pills"
 	desc = "Contains pills used to reduce hand tremor."
+	rarity_value = 20
 
 /obj/item/weapon/storage/pill_bottle/prosurgeon/populate_contents()
 	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)

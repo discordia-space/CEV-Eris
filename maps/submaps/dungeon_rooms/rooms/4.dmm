@@ -30,7 +30,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "i" = (
-/obj/random/medical_lowcost,
+/obj/spawner/medical_lowcost,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/crawler)
 

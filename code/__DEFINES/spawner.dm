@@ -208,9 +208,21 @@
 //factions
 #define SPAWN_SCIENCE "science"
 
-//ITEMS - BEAKER
+//Factions - medical
+#define SPAWN_MEDICAL "medical"
 
-#define SPAWN_TAG_VIAL_SCIENCE "obj,item,beaker,vial,science"
+#define SPAWN_TAG_MEDICAL "obj,item,medical"
+
+// ITEMS - MEDICINE
+#define SPAWN_MEDICINE_COMMON "medicine_common"
+#define SPAWN_MEDICINE "medicine"
+
+#define SPAWN_TAG_MEDICINE "obj,item,medicine,medical"
+#define SPAWN_TAG_MEDICINE_COMMON "obj,item,medicine,medicine_common,medical"
+
+//ITEMS - BEAKER
+#define SPAWN_TAG_VIAL "obj,item,beaker,vial,science,medical"
+
 
 // ITEMS - COMPUTER
 #define SPAWN_TAG_COMPUTER_RESEARCH "obj,item,computer_hardware,science"

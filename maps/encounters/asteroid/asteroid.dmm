@@ -86,8 +86,8 @@
 "aw" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/medical,
-/obj/random/medical/low_chance,
+/obj/spawner/medical,
+/obj/spawner/medical/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "ax" = (

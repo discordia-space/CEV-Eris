@@ -61,7 +61,7 @@
 "bi" = (/obj/spawner/junk,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
 "bj" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/item/weapon/storage/firstaid/regular,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
 "bk" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
-"bl" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/random/medical,/obj/random/medical,/obj/random/medical,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
+"bl" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/spawner/medical,/obj/spawner/medical,/obj/spawner/medical,/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
 "bm" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/white/brown_platform,/area/deepmaint)
 "bn" = (/obj/structure/bed/chair,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "bo" = (/obj/spawner/junk,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)

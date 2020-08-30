@@ -75,11 +75,12 @@
 	w_class = ITEM_SIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
-	spawn_tags = SPAWN_TAG_VIAL_SCIENCE
+	spawn_tags = SPAWN_TAG_VIAL
+	rarity_value = 20
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
 	preloaded_reagents = list("nanites" = 30)
-	rarity_value = 30
+	rarity_value = 40
 
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
 	preloaded_reagents = list("uncap nanites" = 30)
