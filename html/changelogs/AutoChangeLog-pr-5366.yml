@@ -1,0 +1,8 @@
+author: smoketh
+delete-after: true
+changes:
+  - code_imp: changed and refactored /code/game/machinery/teleporter.dm
+  - code_imp: added circuitboards to /code/game/objects/items/weapons/circuitboards/machinery/research.dm
+      component pricing is equal to NSV13
+  - code_imp: added design definitions to /code/modules/research/designs/circuits.dm
+  - tweak: lowered artificial bluespace crystal cost to 5 diamond and 5 plasma
