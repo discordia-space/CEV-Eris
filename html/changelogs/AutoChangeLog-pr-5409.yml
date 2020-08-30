@@ -1,0 +1,5 @@
+author: TooFewSecrets
+delete-after: true
+changes:
+  - balance: Captain's unique armor now has default voidsuit slowdown instead of a
+      very high slowdown value
