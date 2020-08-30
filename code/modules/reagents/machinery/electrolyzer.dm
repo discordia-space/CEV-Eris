@@ -212,6 +212,7 @@
 	name = "makeshift electrolyzer"
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "electrolysis_makeshift"
+	rarity_value = 50
 	var/on = FALSE
 	var/tick_cost = 3
 	var/obj/item/weapon/cell/cell

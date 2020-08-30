@@ -140,7 +140,7 @@
 "aG" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aH" = (
@@ -655,10 +655,10 @@
 "cE" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "cF" = (

@@ -17,6 +17,7 @@
 	permeability_coefficient = 0.05
 	price_tag = 200
 	rarity_value = 16.6
+	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
@@ -24,7 +25,7 @@
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in New()
 	permeability_coefficient = 0.05
 	price_tag = 50
-	rarity_value = 14.14
+	rarity_value = 10
 
 /obj/item/clothing/gloves/insulated/cheap/New()
 	//average of 0.5, somewhat better than regular gloves' 0.75

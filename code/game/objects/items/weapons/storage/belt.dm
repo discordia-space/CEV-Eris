@@ -11,7 +11,6 @@
 	attack_verb = list("whipped", "lashed", "disciplined")
 	bad_types = /obj/item/weapon/storage/belt
 	rarity_value = 10
-	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_BELT
 
 	var/show_above_suit = 0
@@ -41,6 +40,7 @@
 	name = "tool belt"
 	desc = "Can hold various tools."
 	icon_state = "utility"
+	spawn_tags = SPAWN_TAG_BELT_UTILITY
 	can_hold = list(
 		/obj/item/weapon/tool,
 		/obj/item/device/lightreplacer,
@@ -67,7 +67,7 @@
 		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
 /obj/item/weapon/storage/belt/utility/full
-	spawn_blacklisted = TRUE
+	rarity_value = 50
 
 /obj/item/weapon/storage/belt/utility/full/populate_contents()
 	new /obj/item/weapon/tool/screwdriver(src)

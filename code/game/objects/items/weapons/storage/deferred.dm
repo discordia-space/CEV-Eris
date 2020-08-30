@@ -145,7 +145,7 @@
 	name = "tool storage box"
 	desc = "A moderately sized crate full of assorted tools."
 	icon_state = "serbcrate_deferred_brown"
-	initial_contents = list(/obj/random/tool = 13,
+	initial_contents = list(/obj/spawner/tool = 13,
 	/obj/spawner/tool/advanced = 2)
 
 

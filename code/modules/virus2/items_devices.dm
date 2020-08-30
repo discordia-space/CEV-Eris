@@ -8,6 +8,7 @@
 	item_state = "electronic"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	flags = CONDUCT
+	rarity_value = 50
 
 /obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)
 	if(!istype(M,/mob/living/carbon/))

@@ -28189,7 +28189,7 @@
 /area/eris/neotheology/storage)
 "bkS" = (
 /obj/structure/table/standard,
-/obj/random/tool,
+/obj/spawner/tool,
 /obj/spawner/powercell,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/maintenance/section3deck1central)
@@ -32259,9 +32259,9 @@
 /area/eris/maintenance/section3deck1central)
 "bui" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /obj/spawner/tool_upgrade/low_chance,
 /obj/spawner/tool_upgrade/low_chance,
 /obj/spawner/tool_upgrade/low_chance,
@@ -54414,9 +54414,9 @@
 /area/eris/medical/medbay)
 "cqW" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck4central)
 "cqX" = (
@@ -92907,8 +92907,8 @@
 /area/eris/hallway/side/section3starboard)
 "eaa" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "eab" = (

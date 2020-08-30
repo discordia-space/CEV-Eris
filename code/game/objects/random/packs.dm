@@ -37,7 +37,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/exosuit_equipment = 3,
 					/obj/spawner/powercell = 8,
 					/obj/random/techpart = 10,
-					/obj/random/tool = 20,
+					/obj/spawner/tool = 20,
 					/obj/spawner/tool_upgrade = 30,
 					/obj/spawner/toolbox = 5,
 					/obj/spawner/voidsuit = 3,

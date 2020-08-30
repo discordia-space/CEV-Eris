@@ -14,6 +14,7 @@
 	throw_range = 10
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	rarity_value = 50
 	var/mode = 1;
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small

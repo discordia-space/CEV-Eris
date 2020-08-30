@@ -324,3 +324,5 @@
 	icon_state = "jetpack-black"
 	icon_state_broken = "jetpack-black"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASMA = 10, MATERIAL_SILVER = 20)
+	spawn_tags = SPAWN_TAG_JETPACK
+	rarity_value = 66.66

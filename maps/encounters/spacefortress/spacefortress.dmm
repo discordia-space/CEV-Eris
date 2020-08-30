@@ -45,20 +45,20 @@
 /area/outpost/abandoned_fortress)
 "am" = (
 /obj/structure/table/reinforced,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "an" = (
 /obj/structure/table/reinforced,
-/obj/random/tool,
-/obj/random/tool,
+/obj/spawner/tool,
+/obj/spawner/tool,
 /obj/random/techpart,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ao" = (
 /obj/structure/table/reinforced,
-/obj/random/tool,
+/obj/spawner/tool,
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
@@ -73,7 +73,7 @@
 /area/outpost/abandoned_fortress)
 "ar" = (
 /obj/structure/table/reinforced,
-/obj/random/tool,
+/obj/spawner/tool,
 /obj/spawner/booze,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
@@ -270,8 +270,8 @@
 /area/outpost/abandoned_fortress)
 "bv" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool/low_chance,
-/obj/random/tool/low_chance,
+/obj/spawner/tool/low_chance,
+/obj/spawner/tool/low_chance,
 /obj/random/techpart,
 /obj/random/techpart,
 /obj/random/techpart,
@@ -340,15 +340,15 @@
 /area/outpost/abandoned_fortress)
 "bI" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool/low_chance,
-/obj/random/tool/low_chance,
+/obj/spawner/tool/low_chance,
+/obj/spawner/tool/low_chance,
 /obj/random/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bJ" = (
 /obj/structure/table/rack/shelf,
-/obj/random/tool/low_chance,
-/obj/random/tool/low_chance,
+/obj/spawner/tool/low_chance,
+/obj/spawner/tool/low_chance,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bK" = (
@@ -459,8 +459,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "cg" = (
-/obj/random/tool/low_chance,
-/obj/random/tool/low_chance,
+/obj/spawner/tool/low_chance,
+/obj/spawner/tool/low_chance,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ch" = (

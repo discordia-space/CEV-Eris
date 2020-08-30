@@ -42,7 +42,7 @@ just stuff it here for now, and he can go stuff himself. %D"
 	 with that sometimes you gotta have shit to swap for whatever when the shit goes down and it always\
 	  goes down and when it does i go down to better not write it i go down to here and these stupid \
 	  people will never find it either"
-	contents_list_extra = list(/obj/random/tool = 10)
+	contents_list_extra = list(/obj/spawner/tool = 10)
 */
 /datum/stash/junk/handoff
 	story_type = STORY_CRIME

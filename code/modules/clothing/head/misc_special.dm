@@ -15,6 +15,7 @@
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
+	rarity_value = 10
 	item_state_slots = list(
 		slot_l_hand_str = "welding",
 		slot_r_hand_str = "welding",

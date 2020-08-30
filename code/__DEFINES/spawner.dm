@@ -53,6 +53,11 @@
 
 #define SPAWN_TAG_TANK_GAS "obj,item,tank_gas"
 
+//items - jetpack
+#define SPAWN_JETPACK "jetpack"
+
+#define SPAWN_TAG_JETPACK "obj,item,jetpack"
+
 //  Items - electronics
 #define SPAWN_ELECTRONICS "electronics"
 
@@ -150,6 +155,11 @@
 #define SPAWN_TAG_STRUCTURE_PLUSHIE "obj,structure,toy_plushie"
 #define SPAWN_TAG_FIGURE "obj,item,toy,toy_figure"
 
+//items - utility
+#define SPAWN_ITEM_UTILITY "utility"
+
+#define SPAWN_TAG_ITEM_UTILITY "obj,item,toy,utility"
+
 //	Items - CLOTHING
 #define SPAWN_CLOTHING "clothing"
 #define SPAWN_MASK "mask"
@@ -158,6 +168,7 @@
 #define SPAWN_HOLSTER "holster"
 #define SPAWN_SHOES "shoes"
 #define SPAWN_GLOVES "gloves"
+#define SPAWN_GLOVES_INSULATED "insulated_gloves"
 #define SPAWN_CLOTHING_UNDER "under"
 #define SPAWN_CLOTHING_HEAD "head"
 #define SPAWN_CLOTHING_HEAD_HELMET "helmet"
@@ -175,6 +186,7 @@
 #define SPAWN_TAG_SHOES "obj,item,clothing,shoes"
 #define SPAWN_TAG_SHOES_CHAMALEON "obj,item,clothing,shoes,contraband,chamaleon"
 #define SPAWN_TAG_GLOVES "obj,item,clothing,gloves"
+#define SPAWN_TAG_GLOVES_INSULATED "obj,item,clothing,gloves,insulated_gloves,utility_item"
 #define SPAWN_TAG_GLOVES_CHAMALEON "obj,item,clothing,gloves,chamaleon,contraband"
 #define SPAWN_TAG_CLOTHING_UNDER "obj,item,clothing,under"
 #define SPAWN_TAG_CLOTHING_UNDER_CHAMALEON "obj,item,clothing,under,contraband,chamaleon"
@@ -199,6 +211,7 @@
 #define SPAWN_TAG_TOOLBOX "obj,item,storage,toolbox"
 #define SPAWN_TAG_POUCH "obj,item,storage,pouch,clothing"
 #define SPAWN_TAG_BELT "obj,item,storage,belt,clothing"
+#define SPAWN_TAG_BELT_UTILITY "obj,item,storage,belt,clothing,item_utility"
 #define SPAWN_TAG_BOX "obj,item,storage,box"
 #define SPAWN_TAG_FIRSTAID "obj,item,storage,firstaid"
 #define SPAWN_TAG_BACKPACK "obj,item,storage,backpack,clothing"
@@ -262,6 +275,11 @@
 #define SPAWN_TAG_JUNKFOOD "obj,item,snaks,junkfood"
 #define SPAWN_TAG_JUNKFOOD_RATIONS "obj,item,snaks,junkfood,rations"
 #define SPAWN_TAG_PIZZA "obj,item,snaks,pizza"
+
+// ITEM - GRENADES
+#define SPAWN_TAG_GRENADE "obj,item,grenade"
+
+#define SPAWN_TAG_GRENADE_CLEANER "obj,item,grenade,grenade_cleaner,utility_item"
 
 //	MECH
 #define SPAWN_MECH_PREMADE "mech_premade"
