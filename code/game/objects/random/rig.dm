@@ -40,7 +40,7 @@
 	name = "random rare hardsuit module"
 	icon_state = "box-red"
 	tags_to_spawn = list(SPAWN_RING_MODULE)
-	restristed_tags = list(SPAWN_RING_MODULE_COMMON)
+	restricted_tags = list(SPAWN_RING_MODULE_COMMON)
 
 /obj/spawner/rig_module/rare/low_chance
 	name = "low chance random rare hardsuit module"

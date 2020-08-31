@@ -16,7 +16,7 @@
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
 	var/list/exclusion_paths = list()
-	var/list/restristed_tags = list()
+	var/list/restricted_tags = list()
 	var/spread_range = 0
 	var/has_postspawn = TRUE
 	var/datum/loot_spawner_data/lsd
@@ -35,7 +35,7 @@
 
 /obj/spawner/proc/valid_candidates()
 	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
-	candidates -= lsd.spawn_by_tag(restristed_tags)
+	candidates -= lsd.spawn_by_tag(restricted_tags)
 	candidates -= exclusion_paths
 	if(!allow_blacklist)
 		candidates -= lsd.all_spawn_blacklist

@@ -4,6 +4,12 @@
 #endif
 #define T_BOARD(name)	"circuit board (" + (name) + ")"
 
+/obj/item/weapon/electronics
+	spawn_tags = SPAWN_TAG_ELECTRONICS
+	rarity_value = 20
+	spawn_frequency = 10
+	bad_types = /obj/item/weapon/electronics
+
 /obj/item/weapon/electronics/circuitboard
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'

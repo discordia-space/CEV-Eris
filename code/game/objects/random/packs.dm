@@ -11,7 +11,7 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "armor-red"
 	desc = "This is a random cloth supply."
 	tags_to_spawn = list(SPAWN_CLOTHING)
-	restristed_tags = list(SPAWN_VOID_SUIT)
+	restricted_tags = list(SPAWN_VOID_SUIT)
 
 /obj/spawner/pack/cloth/low_chance
 	name = "low chance random cloth"

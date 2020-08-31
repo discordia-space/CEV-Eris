@@ -1,9 +1,3 @@
-/obj/item/weapon/electronics
-	spawn_tags = SPAWN_TAG_ELECTRONICS
-	rarity_value = 20
-	spawn_frequency = 10
-	bad_types = /obj/item/weapon/electronics
-
 /obj/spawner/electronics
 	name = "random circuitboard"
 	icon_state = "tech-blue"

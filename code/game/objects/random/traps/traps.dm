@@ -7,9 +7,6 @@
 /obj/spawner/traps/item_to_spawn()
 	.=..()
 	var/list/possible_traps = valid_candidates()
-	if(!islist(possible_traps))
-		admin_notice(SPAN_DANGER("NINGUNA TRAMPA HA SIDO ENCONTRADA"))//REMOVE IT
-		return
 	//Check that its possible to spawn the chosen trap at this location
 	while (possible_traps.len)
 		var/trap = pick_spawn(possible_traps)

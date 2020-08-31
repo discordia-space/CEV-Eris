@@ -10,7 +10,6 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-
 /obj/spawner/cloth/armor
 	name = "random armor"
 	desc = "This is a random armor."
@@ -44,9 +43,6 @@
 	icon_state = "armor-grey-low"
 	spawn_nothing_percentage = 60
 
-/obj/item/clothing/under/rank
-	spawn_blacklisted = TRUE
-
 /obj/spawner/cloth/under
 	name = "random under"
 	desc = "This is a random under."
@@ -74,7 +70,7 @@
 	desc = "This is a random head."
 	icon_state = "armor-grey"
 	tags_to_spawn = list(SPAWN_CLOTHING_HEAD)
-	restristed_tags = list(SPAWN_CLOTHING_HEAD_HELMET)
+	restricted_tags = list(SPAWN_CLOTHING_HEAD_HELMET)
 
 /obj/spawner/cloth/head/low_chance
 	name = "low chance random head"
