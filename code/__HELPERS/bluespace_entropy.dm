@@ -136,8 +136,10 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 			T = newT
 	T = get_random_secure_turf_in_range(T, 4)
 	var/mob/living/simple_animal/hostile/stranger/S = new /mob/living/simple_animal/hostile/stranger(T)
-	if(minor_distortion && prob(90))
-		S.rapid = FALSE
+	if(minor_distortion && prob(95))
+		S.maxHealth = S.maxHealth/2
+		S.health = health/2
+		S.prob_tele = S.prob_tele/2
 		S.empy_cell = TRUE
 
 /proc/bluespace_roaches(turf/T, minor_distortion)
