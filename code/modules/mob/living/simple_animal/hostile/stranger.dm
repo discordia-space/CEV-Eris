@@ -128,6 +128,8 @@
 	one_hand_penalty = 5
 	twohanded = FALSE
 	suitable_cell = /obj/item/weapon/cell/small
+	can_dual = TRUE
+	w_class = ITEM_SIZE_NORMAL
 
 	init_firemodes = list(
 		list(mode_name="burn", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=5, move_delay=null, charge_cost=4, icon="stun", projectile_color = "#0000FF"),

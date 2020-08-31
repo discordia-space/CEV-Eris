@@ -12,6 +12,7 @@
 	origin_tech = list(TECH_BLUESPACE = 5)
 	price_tag = 4000
 	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
+	var/entropy_value = 2
 	var/mode = MODE_TRANSMIT
 	var/transforming = FALSE	// mode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
@@ -83,9 +84,9 @@
 			continue
 		if(!AM.anchored)
 			if(prob(offset_chance))		
-				go_to_bluespace(source, 2, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
+				go_to_bluespace(source, entropy_value, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
 			else
-				go_to_bluespace(source, 2, TRUE, AM, target)
+				go_to_bluespace(source, entropy_value, TRUE, AM, target)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
