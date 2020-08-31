@@ -427,13 +427,13 @@
 
 /datum/design/research/circuit/teleporter/station
 	name = "Teleporter Station"
-	build_path = /obj/item/weapon/circuitboard/teleporterstation
+	build_path = /obj/item/weapon/electronics/circuitboard/teleporterstation
 	sort_string = "VAAAO"
 	category = CAT_BLUE
 
 /datum/design/research/circuit/teleporter/hub
 	name = "Teleporter Hub"
-	build_path = /obj/item/weapon/circuitboard/teleporterhub
+	build_path = /obj/item/weapon/electronics/circuitboard/teleporterhub
 	sort_string = "VAAAP"
 	category = CAT_BLUE
 

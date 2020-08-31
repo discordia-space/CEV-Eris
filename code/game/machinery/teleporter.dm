@@ -19,7 +19,7 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/teleporterhub
+	circuit = /obj/item/weapon/electronics/circuitboard/teleporterhub
 	var/obj/machinery/computer/teleporter/mconsole
 	var/obj/machinery/teleport/station/mstation
 
@@ -32,7 +32,7 @@
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/teleporterstation
+	circuit = /obj/item/weapon/electronics/circuitboard/teleporterstation
 	var/obj/machinery/teleport/hub/mhub
 	var/obj/machinery/computer/teleporter/mconsole
 
