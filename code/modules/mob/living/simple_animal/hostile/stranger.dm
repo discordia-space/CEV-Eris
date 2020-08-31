@@ -57,7 +57,7 @@
 	animation.icon_state = "blank"
 	animation.icon =  'icons/mob/mob.dmi'
 	animation.master = src
-	flick("dust-h", animation)
+	flick("dust2-h", animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(3, 0, src.loc)
