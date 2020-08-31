@@ -266,7 +266,14 @@
 #define SPAWN_TAG_COMPUTER_HARDWERE "obj,item,computer_hardware"
 
 // ITEMS - RING
-#define SPAN_TAG_RING_HAZMAT "obj,item,space_suit,ring_suit,science"
+#define SPAWN_RING "ring_suit"
+#define SPAWN_RING_MODULE "ring_module"
+#define SPAWN_RING_MODULE_COMMON "ring_module_common"
+
+#define SPAWN_TAG_RING "obj,item,space_suit,ring_suit"
+#define SPAWN_TAG_RING_HAZMAT "obj,item,space_suit,ring_suit,science"
+#define SPAWN_TAG_RING_MODULE "obj,item,ring_module"
+#define SPAWN_TAG_RING_MODULE_COMMON "ring_module_common"
 
 // ITEM - DRIKS
 #define SPAWN_BOOZE "bottle_alcohol"

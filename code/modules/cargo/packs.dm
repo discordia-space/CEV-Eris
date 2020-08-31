@@ -1478,8 +1478,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/rig
 	num_contained = 1
-	contains = list(/obj/random/rig,
-					/obj/random/rig/damaged)
+	contains = list(/obj/spawner/rig,
+					/obj/spawner/rig/damaged)
 	name = "Surplus Rig Suit"
 	cost = 5000
 	crate_name = "Surplus Rig Crate"
@@ -1488,8 +1488,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/randomised/rigmods
 	num_contained = 2
-	contains = list(/obj/random/rig_module,
-				/obj/random/rig_module)
+	contains = list(/obj/spawner/rig_module,
+				/obj/spawner/rig_module)
 	name = "Surplus Rig Modules"
 	cost = 2500
 	crate_name = "Surplus Rig Modules"

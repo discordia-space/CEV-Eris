@@ -100,12 +100,12 @@
 					/obj/spawner/lathe_disk/advanced = 2,\
 					/obj/item/weapon/cell/small/moebius/nuclear = 1,\
 					/obj/item/weapon/cell/medium/moebius/hyper = 1,\
-					/obj/random/rig = 1.5,\
-					/obj/random/rig/damaged = 1.5,\
+					/obj/spawner/rig = 1.5,\
+					/obj/spawner/rig/damaged = 1.5,\
 					/obj/spawner/voidsuit = 4,\
 					/obj/spawner/pouch = 2,\
 					/obj/spawner/tool_upgrade/rare = 4,\
-					/obj/random/rig_module/rare = 4,\
+					/obj/spawner/rig_module/rare = 4,\
 					/obj/spawner/credits/c1000 = 3,\
 					/obj/spawner/exosuit_equipment = 3,\
 					/obj/spawner/cloth/holster = 4,\

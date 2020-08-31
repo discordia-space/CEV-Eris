@@ -1347,8 +1347,8 @@
 /area/eris/security/armory)
 "adk" = (
 /obj/structure/table/rack,
-/obj/random/rig_module,
-/obj/random/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
 /obj/item/weapon/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
@@ -1517,10 +1517,10 @@
 /area/eris/security/prison)
 "adI" = (
 /obj/structure/table/rack,
-/obj/random/rig_module,
-/obj/random/rig_module,
-/obj/random/rig_module,
-/obj/random/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
+/obj/spawner/rig_module,
 /obj/item/weapon/rig/combat/ironhammer/equipped,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/security/armory)
@@ -99946,7 +99946,7 @@
 "eqy" = (
 /obj/structure/table/rack,
 /obj/item/weapon/rig/medical/equipped,
-/obj/random/rig_module/low_chance,
+/obj/spawner/rig_module/low_chance,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = -22
@@ -99957,7 +99957,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/table/rack,
 /obj/item/weapon/rig/medical/equipped,
-/obj/random/rig_module/low_chance,
+/obj/spawner/rig_module/low_chance,
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/medical/paramedic)
 "eqA" = (
