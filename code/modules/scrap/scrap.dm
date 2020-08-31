@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/spawner/junk/nondense = 2,
-		/obj/random/pack/rare = 0.4
+		/obj/spawner/pack/rare = 0.4
 	)
 	var/dig_amount = 4
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
@@ -101,9 +101,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	if(prob(big_item_chance))
 		var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
 		if(beacon)
-			big_item = CATCH.get_item(/obj/random/pack/junk_machine/beacon)
+			big_item = CATCH.get_item(/obj/spawner/pack/junk_machine/beacon)
 		else
-			big_item = CATCH.get_item(/obj/random/pack/junk_machine)
+			big_item = CATCH.get_item(/obj/spawner/pack/junk_machine)
 		big_item.forceMove(src)
 		if(prob(66))
 			big_item.make_old()
@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/spawner/junk/nondense,
-		/obj/random/pack/rare = 0.3
+		/obj/spawner/pack/rare = 0.3
 	)
 
 /obj/structure/scrap/vehicle
@@ -357,14 +357,14 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/vehicle.dmi'
 	rarity_value = 16.66
 	loot_list = list(
-		/obj/random/pack/tech_loot = 3,
+		/obj/spawner/pack/tech_loot = 3,
 		/obj/spawner/pouch,
 		/obj/item/stack/material/steel/random,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/spawner/junk/nondense,
 		/obj/spawner/material/ore,
-		/obj/random/pack/rare = 0.3,
+		/obj/spawner/pack/rare = 0.3,
 		/obj/spawner/tool_upgrade = 1,
 		/obj/spawner/exosuit_equipment = 2
 	)
@@ -381,7 +381,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,
 		/obj/spawner/junk/nondense,
-		/obj/random/pack/rare = 0.3
+		/obj/spawner/pack/rare = 0.3
 	)
 
 /obj/structure/scrap/guns
@@ -393,14 +393,14 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_max = 10
 	rarity_value = 100
 	loot_list = list(
-		/obj/random/pack/gun_loot = 8,
+		/obj/spawner/pack/gun_loot = 8,
 		/obj/spawner/powercell,
 		/obj/spawner/exosuit_equipment = 2,
 		/obj/item/toy/crossbow,
 		/obj/item/weapon/material/shard,
 		/obj/item/stack/material/steel/random,
 		/obj/spawner/junk/nondense,
-		/obj/random/pack/rare = 0.3
+		/obj/spawner/pack/rare = 0.3
 	)
 
 /obj/structure/scrap/science
@@ -410,13 +410,13 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/science.dmi'
 	rarity_value = 25
 	loot_list = list(
-		/obj/random/pack/tech_loot = 4,
+		/obj/spawner/pack/tech_loot = 4,
 		/obj/spawner/powercell,
 		/obj/spawner/electronics,
 		/obj/spawner/science,
 		/obj/spawner/material/ore,
 		/obj/spawner/oddities = 0.5,
-		/obj/random/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
+		/obj/spawner/pack/rare,//No weight on this, rare loot is pretty likely to appear in scientific scrap
 		/obj/spawner/tool_upgrade,
 		/obj/spawner/exosuit_equipment)
 
@@ -426,7 +426,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of second hand clothing for charity."
 	parts_icon = 'icons/obj/structures/scrap/cloth.dmi'
 	rarity_value = 10
-	loot_list = list(/obj/spawner/pack/cloth,/obj/random/pack/rare = 0.2)
+	loot_list = list(/obj/spawner/pack/cloth,/obj/spawner/pack/rare = 0.2)
 
 /obj/structure/scrap/poor
 	icontype = "poor"
@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		/obj/spawner/oddities = 0.5,
 		/obj/spawner/material/ore,
 		/obj/item/weapon/material/shard,
-		/obj/random/pack/rare = 0.3
+		/obj/spawner/pack/rare = 0.3
 	)
 
 /obj/structure/scrap/poor/large

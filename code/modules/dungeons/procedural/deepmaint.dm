@@ -145,7 +145,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	if(wall_line.len)
 		for(var/turf/W in nicheline)
 			if(prob(30))
-				new /obj/random/pack/machine(W)
+				new /obj/spawner/pack/machine(W)
 		for(var/turf/W in wall_line)
 			if(locate(/obj/machinery/light/small/autoattach, W))
 				var/obj/machinery/light/small/autoattach/L = locate(/obj/machinery/light/small/autoattach, W)
@@ -154,7 +154,7 @@ var/global/list/big_deepmaint_room_templates = list()
 			for(var/turf/simulated/wall/A in getAdjacent(W))
 				A.update_connections(1)
 			if(prob(70))
-				new /obj/random/pack/machine(W)
+				new /obj/spawner/pack/machine(W)
 		return TRUE
 	else
 		return FALSE

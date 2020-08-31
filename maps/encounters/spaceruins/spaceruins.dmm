@@ -79,7 +79,7 @@
 /area/asteroid/rogue)
 "u" = (
 /obj/structure/table/onestar,
-/obj/random/pack/gun_loot,
+/obj/spawner/pack/gun_loot,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "v" = (

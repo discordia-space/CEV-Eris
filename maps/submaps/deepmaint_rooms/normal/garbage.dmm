@@ -8,7 +8,7 @@
 "h" = (/turf/simulated/wall,/area/deepmaint)
 "i" = (/obj/structure/railing{tag = "icon-railing0 (NORTH)"; icon_state = "railing0"; dir = 1},/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/spawner/scrap,/turf/simulated/floor/plating/under,/area/deepmaint)
 "j" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/spawner/scrap,/turf/simulated/floor/plating/under,/area/deepmaint)
-"k" = (/obj/random/pack/machine,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"k" = (/obj/spawner/pack/machine,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
 "l" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/spawner/scrap,/turf/simulated/floor/plating/under,/area/deepmaint)
 "m" = (/obj/structure/catwalk,/obj/spawner/traps/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
 "n" = (/obj/structure/railing,/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/spawner/scrap,/turf/simulated/floor/plating/under,/area/deepmaint)

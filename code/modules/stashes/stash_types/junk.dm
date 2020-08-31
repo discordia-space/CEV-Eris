@@ -4,13 +4,13 @@
 	base_type = /datum/stash/junk
 	loot_type = "Junk"
 
-	contents_list_base = list(/obj/random/pack/rare = 2,
+	contents_list_base = list(/obj/spawner/pack/rare = 2,
 	/obj/spawner/pouch = 2,
 	/obj/spawner/tool_upgrade = 3,
 	/obj/spawner/lowkeyrandom = 5)
 
-	contents_list_random = list(/obj/random/pack/rare = 30,
-	/obj/random/pack/rare = 30,
+	contents_list_random = list(/obj/spawner/pack/rare = 30,
+	/obj/spawner/pack/rare = 30,
 	/obj/spawner/lowkeyrandom = 40,
 	/obj/spawner/lowkeyrandom = 40,
 	/obj/spawner/tool/advanced = 70)

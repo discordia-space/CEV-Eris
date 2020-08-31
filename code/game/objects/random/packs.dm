@@ -20,12 +20,12 @@ They generally give more random result and can provide more divercity in spawn.
 
 
 //Those are going to the closets, mostly
-/obj/random/pack/tech_loot
+/obj/spawner/pack/tech_loot
 	name = "Random technical loot"
 	icon_state = "tool-red"
 	desc = "This is a random technical loot."
 
-/obj/random/pack/tech_loot/item_to_spawn()
+/obj/spawner/pack/tech_loot/item_to_spawn()
 	return pickweight(list(
 					/obj/spawner/lathe_disk = 2,
 					/obj/spawner/electronics = 6,
@@ -44,7 +44,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/gun_upgrade = 2
 				))
 
-/obj/random/pack/tech_loot/low_chance
+/obj/spawner/pack/tech_loot/low_chance
 	name = "low chance technical loot"
 	icon_state = "tool-red-low"
 	spawn_nothing_percentage = 70
@@ -59,12 +59,12 @@ They generally give more random result and can provide more divercity in spawn.
 
 
 //This will be spawned in rare closets
-/obj/random/pack/gun_loot
+/obj/spawner/pack/gun_loot
 	name = "Random gun loot"
 	icon_state = "gun-red"
 	desc = "This is a random technical loot."
 
-/obj/random/pack/gun_loot/item_to_spawn()
+/obj/spawner/pack/gun_loot/item_to_spawn()
 	return pickweight(list(
 					/obj/spawner/gun/cheap = 8,
 					/obj/spawner/gun/normal = 3,
@@ -79,21 +79,21 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/cloth/holster = 8
 				))
 
-/obj/random/pack/gun_loot/low_chance
+/obj/spawner/pack/gun_loot/low_chance
 	name = "low chance gun loot"
 	icon_state = "gun-red-low"
 	spawn_nothing_percentage = 70
 
 
 //Rare loot, where we need to be sure that reward is worth it
-/obj/random/pack/rare
+/obj/spawner/pack/rare
 	name = "rare loot"
 	icon_state = "box-orange"
 
-/obj/random/pack/rare/item_to_spawn()
+/obj/spawner/pack/rare/item_to_spawn()
 	return pickweight(RANDOM_RARE_ITEM) // made into a define so that rare objects can be spawned for mobs too
 
-/obj/random/pack/rare/low_chance
+/obj/spawner/pack/rare/low_chance
 	name = "low chance rare loot"
 	icon_state = "box-orange-low"
 	spawn_nothing_percentage = 70
@@ -103,12 +103,12 @@ They generally give more random result and can provide more divercity in spawn.
 
 //The pack to surpass them all. This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.
 //It meant to spawn any large structure, machine or container.
-/obj/random/pack/machine
+/obj/spawner/pack/machine
 	name = "random machine"
 	icon_state = "machine-orange"
 
 
-/obj/random/pack/machine/item_to_spawn()
+/obj/spawner/pack/machine/item_to_spawn()
 	return pickweight(list(
 					/obj/spawner/structures = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
@@ -119,7 +119,7 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
-/obj/random/pack/machine/low_chance
+/obj/spawner/pack/machine/low_chance
 	name = "low chance random structure"
 	icon_state = "machine-orange-low"
 	spawn_nothing_percentage = 70
@@ -129,12 +129,12 @@ They generally give more random result and can provide more divercity in spawn.
 
 //Same pack as above, but it meant to be PLACED TO JUNK CODE. Numbers are a bit different as well
 //Those sctuctures can contain more loot or even mobs. Keep that in mind, because I feel it can break in the future
-/obj/random/pack/junk_machine
+/obj/spawner/pack/junk_machine
 	name = "random junk machine"
 	icon_state = "machine-grey"
 
 
-/obj/random/pack/junk_machine/item_to_spawn()
+/obj/spawner/pack/junk_machine/item_to_spawn()
 	return pickweight(list(
 					/obj/spawner/structures = 14, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
@@ -144,12 +144,12 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/exosuit/damaged = 1, //Some dangerous shit can be found there
 				))
 
-/obj/random/pack/junk_machine/low_chance
+/obj/spawner/pack/junk_machine/low_chance
 	name = "low chance random junk structure"
 	icon_state = "machine-grey-low"
 	spawn_nothing_percentage = 70
 
-/obj/random/pack/junk_machine/beacon/item_to_spawn()
+/obj/spawner/pack/junk_machine/beacon/item_to_spawn()
 	return pickweight(list(
 					/obj/spawner/structures = 7, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot/beacon = 28, //That one is also important part of the maints

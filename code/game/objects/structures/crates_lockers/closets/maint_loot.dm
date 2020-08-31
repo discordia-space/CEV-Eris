@@ -15,7 +15,7 @@
 /obj/structure/closet/random/miscellaneous/populate_contents()
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/contraband/low_chance(src)
-	new /obj/random/pack/rare/low_chance(src)
+	new /obj/spawner/pack/rare/low_chance(src)
 	new /obj/spawner/junk(src)
 	new /obj/spawner/junk(src)
 	new /obj/spawner/junk(src)
@@ -23,11 +23,11 @@
 	new /obj/spawner/lowkeyrandom(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
 
 
 /obj/structure/closet/random/tech
@@ -43,12 +43,12 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/random/pack/tech_loot(src)
-	new /obj/random/pack/tech_loot(src)
-	new /obj/random/pack/tech_loot(src)
-	new /obj/random/pack/tech_loot(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot(src)
+	new /obj/spawner/pack/tech_loot(src)
+	new /obj/spawner/pack/tech_loot(src)
+	new /obj/spawner/pack/tech_loot(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
 
 
 
@@ -77,8 +77,8 @@
 	new /obj/spawner/tool_upgrade(src)
 	new /obj/spawner/lathe_disk(src)
 	new /obj/spawner/lathe_disk/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
-	new /obj/random/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
+	new /obj/spawner/pack/tech_loot/low_chance(src)
 
 
 
@@ -96,19 +96,19 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/random/pack/rare(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
-	new /obj/random/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/rare(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/gun_loot/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
@@ -151,15 +151,15 @@
 	rarity_value = 100
 
 /obj/structure/closet/secure_closet/rare_loot/populate_contents()
-	new /obj/random/pack/rare(src)
-	new /obj/random/pack/rare(src)
-	new /obj/random/pack/rare(src)
-	new /obj/random/pack/rare(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
-	new /obj/random/pack/gun_loot(src)
+	new /obj/spawner/pack/rare(src)
+	new /obj/spawner/pack/rare(src)
+	new /obj/spawner/pack/rare(src)
+	new /obj/spawner/pack/rare(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/gun_loot(src)
 
 
 
@@ -173,8 +173,8 @@
 	spawn_blacklisted = TRUE
 
 /obj/structure/closet/random/hostilemobs/populate_contents()
-	new /obj/random/pack/rare(src) //To reward players for fighting this bullshit
-	new /obj/random/pack/rare(src)
+	new /obj/spawner/pack/rare(src) //To reward players for fighting this bullshit
+	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -189,8 +189,8 @@
 	rarity_value = 6
 
 /obj/structure/closet/random/hostilemobs/beacon/populate_contents()
-	new /obj/random/pack/rare(src) //To reward players for fighting this bullshit
-	new /obj/random/pack/rare(src)
+	new /obj/spawner/pack/rare(src) //To reward players for fighting this bullshit
+	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
