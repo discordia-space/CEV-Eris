@@ -254,8 +254,10 @@
 
 // ITEMS - COMPUTER
 #define SPAWN_DESING "desing"
+#define SPAWN_DESING_ADVANCED "desing_advanced"
 
 #define SPAWN_TAG_DESING "obj,item,computer_hardware,desing"
+#define SPAWN_TAG_DESING_ADVANCED "obj,item,computer_hardware,desing,desing_advanced"
 #define SPAWN_TAG_COMPUTER_RESEARCH "obj,item,computer_hardware,science"
 
 // ITEMS - RING

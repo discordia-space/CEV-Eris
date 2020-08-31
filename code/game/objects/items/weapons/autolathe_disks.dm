@@ -162,7 +162,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools
 	disk_name = "Technomancers IJIRO-451 Advanced Tools"
 	icon_state = "technomancers"
-	rarity_value = 6.25
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 10
 	designs = list(
 		/datum/design/autolathe/tool/big_wrench,
@@ -429,6 +429,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo
 	disk_name = "Frozen Star Nonlethal Magazines Pack"
 	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	rarity_value = 20
 	license = 20
 	designs = list(
@@ -457,7 +458,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo
 	disk_name = "Frozen Star Lethal Magazines Pack"
 	icon_state = "frozenstar"
-	rarity_value = 6.25
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 20
 	designs = list(
 		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
@@ -484,7 +485,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms
 	disk_name = "Frozen Star .35 and .40 Ammunition"
 	icon_state = "frozenstar"
-	rarity_value = 6.25
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/pistol_ammobox,
@@ -498,7 +499,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle
 	disk_name = "Frozen Star Rifle Ammunition"
 	icon_state = "frozenstar"
-	rarity_value = 6.25
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/srifle_ammobox_small,
@@ -800,6 +801,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone
 	disk_name = "Frozen Star - .50 Gladstone Shotgun"
 	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	rarity_value = 16.66
 	license = 12
 	designs = list(
@@ -841,6 +843,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight
 	disk_name = "Frozen Star - .35 Straylight SMG"
 	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/straylight = 3, // "FS SMG .35 \"Straylight\""
@@ -852,6 +855,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly
 	disk_name = "Frozen Star - .35 Molly SMG"
 	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/molly = 3, // "FS MP .35 \"Molly\""
@@ -863,6 +867,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric
 	disk_name = "Serbian Arms - .40 Zoric SMG"
 	icon_state = "serbian"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/zoric = 3, // "SA SMG .40 \"Zoric\""
@@ -874,6 +879,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_atreides
 	disk_name = "Frozen Star - .35 Atreides SMG"
 	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/atreides = 3, // "FS SMG .35 \"Atreides\""
@@ -903,6 +909,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_bulldog
 	disk_name = "Frozen Star - .20 Bulldog Carabine"
 	icon_state = "frozenstar"
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/z8 = 3, // "FS CAR .20 \"Z8 Bulldog\""
@@ -929,7 +936,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_sol
 	disk_name = "Frozen Star - .25 Sol Caseless SMG Pack"
 	icon_state = "frozenstar"
-
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/sol = 3, // "FS CAR .25 caseless \"Sol\""
@@ -965,7 +972,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_kalashnikov
 	disk_name = "Frozen Star - .30 Kalashnikov Rifle"
 	icon_state = "frozenstar"
-
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/ak47_fs = 3, // "FS AR .30 \"Kalashnikov\""
@@ -1027,7 +1034,8 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_counselor
 	disk_name = "NeoTheology Armory - Councelor PDW E"
 	icon_state = "neotheology"
-	rarity_value = 15
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	rarity_value = 16.66
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
@@ -1037,7 +1045,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose
 	disk_name = "Frozen Star - Spider Rose PDW E"
 	icon_state = "frozenstar"
-
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/energygun = 3, // "FS PDW E \"Spider Rose\""
@@ -1069,7 +1077,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_themis
 	disk_name = "NeoTheology Armory - Themis Energy Crossbow"
 	icon_state = "neotheology"
-
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/large_energy_crossbow = 3, // "NT EC \"Themis\"" - self charging, no cell needed
@@ -1078,7 +1086,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_lightfall
 	disk_name = "NeoTheology Armory - Lightfall Laser Gun"
 	icon_state = "neotheology"
-
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/laser = 3, // "NT LG \"Lightfall\""
@@ -1099,7 +1107,8 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_halicon
 	disk_name = "NeoTheology Armory - Halicon Ion Rifle"
 	icon_state = "neotheology"
-	rarity_value = 8.33
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	rarity_value = 33.33
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/ionrifle = 3, // "NT IR \"Halicon\""
