@@ -2,7 +2,6 @@
 	name = "random tool"
 	icon_state = "tool-grey"
 	spawn_nothing_percentage = 15
-	has_postspawn = TRUE
 	tags_to_spawn = list(SPAWN_TOOL, SPAWN_DIVICE, SPAWN_GLOVES_INSULATED, SPAWN_JETPACK, SPAWN_ITEM_UTILITY)
 	restristed_tags = list(SPAWN_SURGERY_TOOL, SPAWN_KNIFE)
 
@@ -17,7 +16,6 @@
 	name = "low chance random tool"
 	icon_state = "tool-grey-low"
 	spawn_nothing_percentage = 60
-
 
 /obj/spawner/tool/advanced
 	name = "random advanced tool"

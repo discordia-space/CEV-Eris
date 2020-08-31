@@ -1,6 +1,12 @@
-/obj/random/lathe_disk
+/obj/spawner/lathe_disk
 	name = "random lathe disk"
 	icon_state = "tech-green"
+	tags_to_spawn = list(SPAWN_DESING)
+
+/obj/spawner/lathe_disk/low_chance
+	name = "low chance random lathe disk"
+	icon_state = "tech-green-low"
+	spawn_nothing_percentage = 75
 
 /obj/random/lathe_disk/item_to_spawn() // pickweight is calculated from advanced list = / 2 - 1. If lower than 1 - delete from the list;
 	return pickweight(list(
@@ -50,17 +56,10 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,))
 
-/obj/random/lathe_disk/low_chance
-	name = "low chance random lathe disk"
-	icon_state = "tech-green-low"
-	spawn_nothing_percentage = 75
-
-
-
-
-/obj/random/lathe_disk/advanced
+/obj/spawner/lathe_disk/advanced
 	name = "random advanced lathe disk"
 	icon_state = "tech-green"
+	tags_to_spawn = list(SPAWN_DESING_ADVANCED)
 
 /obj/random/lathe_disk/advanced/item_to_spawn()
 	return pickweight(list(
@@ -114,7 +113,7 @@
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms = 4,
 				/obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle = 4,))
 
-/obj/random/lathe_disk/advanced/low_chance
+/obj/spawner/lathe_disk/advanced/low_chance
 	name = "low chance advanced lathe disk"
 	icon_state = "tech-green-low"
 	spawn_nothing_percentage = 75

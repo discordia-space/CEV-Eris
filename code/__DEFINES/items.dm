@@ -97,7 +97,7 @@
 					/obj/spawner/material/resources/rare = 3,\
 					/obj/spawner/tool/advanced = 5,\
 					/obj/spawner/gun/normal = 3,\
-					/obj/random/lathe_disk/advanced = 2,\
+					/obj/spawner/lathe_disk/advanced = 2,\
 					/obj/item/weapon/cell/small/moebius/nuclear = 1,\
 					/obj/item/weapon/cell/medium/moebius/hyper = 1,\
 					/obj/random/rig = 1.5,\

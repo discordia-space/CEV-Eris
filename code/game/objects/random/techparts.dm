@@ -1,12 +1,10 @@
 /obj/random/techpart
 	name = "random techpart"
 	icon_state = "tech-orange"
-
 /obj/spawner/assembly
 	name = "random techpart"
 	icon_state = "tech-orange"
 	tags_to_spawn = list(SPAWN_ASSEMBLY)
-
 /obj/spawner/stock_parts
 	name = "random techpart"
 	icon_state = "tech-orange"

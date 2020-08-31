@@ -75,8 +75,8 @@
 	new /obj/spawner/tool_upgrade(src)
 	new /obj/spawner/tool_upgrade(src)
 	new /obj/spawner/tool_upgrade(src)
-	new /obj/random/lathe_disk(src)
-	new /obj/random/lathe_disk/low_chance(src)
+	new /obj/spawner/lathe_disk(src)
+	new /obj/spawner/lathe_disk/low_chance(src)
 	new /obj/random/pack/tech_loot/low_chance(src)
 	new /obj/random/pack/tech_loot/low_chance(src)
 

@@ -77,7 +77,7 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/unary/heater/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/unary/heater/attack_hand(mob/user)
 	ui_interact(user)
 
 /obj/machinery/atmospherics/unary/heater/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)

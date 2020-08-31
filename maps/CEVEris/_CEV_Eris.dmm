@@ -31277,7 +31277,7 @@
 /obj/structure/table/rack/shelf,
 /obj/spawner/electronics,
 /obj/spawner/electronics/low_chance,
-/obj/random/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "brV" = (
@@ -32246,7 +32246,7 @@
 /area/shuttle/mining/station)
 "bug" = (
 /obj/structure/table/standard,
-/obj/random/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section3deck1central)
 "buh" = (
@@ -32266,7 +32266,7 @@
 /obj/spawner/tool_upgrade/low_chance,
 /obj/spawner/tool_upgrade/low_chance,
 /obj/spawner/tool_upgrade/rare/low_chance,
-/obj/random/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "buj" = (
@@ -35201,8 +35201,8 @@
 /obj/structure/table/standard,
 /obj/random/pack/tech_loot,
 /obj/random/pack/tech_loot,
-/obj/random/lathe_disk/low_chance,
-/obj/random/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
 "bAG" = (
@@ -52009,7 +52009,7 @@
 /area/eris/rnd/lab)
 "clw" = (
 /obj/structure/table/rack/shelf,
-/obj/random/lathe_disk,
+/obj/spawner/lathe_disk,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
 "clx" = (
