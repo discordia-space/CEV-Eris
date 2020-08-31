@@ -38,6 +38,7 @@
 	disk_name = "Asters Basic Tool Pack"
 	icon_state = "guild"
 	rarity_value = 4.16
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = -1
 	designs = list(
 		/datum/design/autolathe/tool/hatchet,
@@ -68,6 +69,7 @@
 	disk_name = "Asters Miscellaneous Pack"
 	icon_state = "guild"
 	rarity_value = 1.25
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = -1
 	designs = list(
 		/datum/design/autolathe/misc/flashlight,
@@ -98,7 +100,7 @@
 	disk_name = "Asters Devices and Instruments"
 	icon_state = "guild"
 	rarity_value = 1.56
-
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/misc/flashlight,
@@ -123,7 +125,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells
 	disk_name = "Asters Robustcells"
 	icon_state = "guild"
-
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/cell/large,
@@ -140,6 +142,7 @@
 	disk_name = "Technomancers ARK-034 Components"
 	icon_state = "technomancers"
 	rarity_value = 2.5
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 20
 	designs = list(
 		/datum/design/autolathe/part/consolescreen,
@@ -162,7 +165,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools
 	disk_name = "Technomancers IJIRO-451 Advanced Tools"
 	icon_state = "technomancers"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	license = 10
 	designs = list(
 		/datum/design/autolathe/tool/big_wrench,
@@ -188,6 +191,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits
 	disk_name = "Technomancers ESPO-830 Circuits"
 	icon_state = "technomancers"
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	rarity_value = 4.16
 	license = 10
 	designs = list(
@@ -215,6 +219,7 @@
 	disk_name = "Technomancers LAT-018 Conveyors"
 	icon_state = "technomancers"
 	rarity_value = 2.5
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = -1
 	designs = list(
 		/datum/design/autolathe/conveyor,
@@ -227,6 +232,7 @@
 	disk_name = "Moebius Medical Designs"
 	icon_state = "moebius"
 	rarity_value = 3.125
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 20
 	designs = list(
 		/datum/design/autolathe/gun/syringe_gun,
@@ -260,6 +266,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/computer
 	disk_name = "Moebius Computer Parts"
 	icon_state = "moebius"
+	spawn_tags = SPAWN_TAG_DESING_COMMON
 	rarity_value = 3.125
 	license = 20
 	designs = list(
@@ -429,7 +436,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo
 	disk_name = "Frozen Star Nonlethal Magazines Pack"
 	icon_state = "frozenstar"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	rarity_value = 20
 	license = 20
 	designs = list(
@@ -458,7 +465,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo
 	disk_name = "Frozen Star Lethal Magazines Pack"
 	icon_state = "frozenstar"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	license = 20
 	designs = list(
 		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
@@ -485,7 +492,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_smallarms
 	disk_name = "Frozen Star .35 and .40 Ammunition"
 	icon_state = "frozenstar"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/pistol_ammobox,
@@ -499,7 +506,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/ammo_boxes_rifle
 	disk_name = "Frozen Star Rifle Ammunition"
 	icon_state = "frozenstar"
-	spawn_tags = SPAWN_TAG_DESING_ADVANCED
+	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
 	license = 20
 	designs = list(
 		/datum/design/autolathe/ammo/srifle_ammobox_small,

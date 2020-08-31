@@ -254,14 +254,18 @@
 
 // ITEMS - COMPUTER
 #define SPAWN_DESING "desing"
+#define SPAWN_DESING_COMMON "desing_common"
 #define SPAWN_DESING_ADVANCED "desing_advanced"
+#define SPAWN_COMPUTER_HARDWERE "computer_hardware"
 
-#define SPAWN_TAG_DESING "obj,item,computer_hardware,desing"
-#define SPAWN_TAG_DESING_ADVANCED "obj,item,computer_hardware,desing,desing_advanced"
-#define SPAWN_TAG_COMPUTER_RESEARCH "obj,item,computer_hardware,science"
+#define SPAWN_TAG_DESING "obj,item,desing"
+#define SPAWN_TAG_DESING_COMMON "obj,item,desing,desing_common"
+#define SPAWN_TAG_DESING_ADVANCED "obj,item,desing,desing_advanced"
+#define SPAWN_TAG_DESING_ADVANCED_COMMON "obj,item,desing,desing_advanced,desing_common"
+#define SPAWN_TAG_RESEARCH_POINTS "obj,item,science"
+#define SPAWN_TAG_COMPUTER_HARDWERE "obj,item,computer_hardware"
 
 // ITEMS - RING
-
 #define SPAN_TAG_RING_HAZMAT "obj,item,space_suit,ring_suit,science"
 
 // ITEM - DRIKS

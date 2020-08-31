@@ -305,7 +305,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 /obj/item/weapon/computer_hardware/hard_drive/portable/research_points
 	disk_name = "research data"
 	icon_state = "onestar"
-	spawn_tags = SPAWN_TAG_COMPUTER_RESEARCH
+	spawn_tags = SPAWN_TAG_RESEARCH_POINTS
 	rarity_value = 12
 	var/min_points = 2000
 	var/max_points = 10000
