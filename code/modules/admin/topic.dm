@@ -23,7 +23,7 @@
 		return
 
 	var/static/list/topic_handlers = AdminTopicHandlers()
-	var/datum/world_topic/handler
+	var/datum/admin_topic/handler
 
 	for(var/I in topic_handlers)
 		if(I in href_list)

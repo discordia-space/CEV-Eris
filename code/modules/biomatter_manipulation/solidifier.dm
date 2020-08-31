@@ -2,8 +2,9 @@
 //This machine converts liquid biomatter to solid one(sheets)
 //Working with this also required bio protection cloths
 
-#define BIOMATTER_PER_SHEET 		10
+#define BIOMATTER_PER_SHEET 		1
 #define CONTAINER_PIXEL_OFFSET 		6
+#define BIOMATTER_SHEETS_PER_TIME  5 // X sheets per 2 seconds
 
 /obj/machinery/biomatter_solidifier
 	name = "biomatter solidifier"
@@ -42,25 +43,39 @@
 		else
 			if(!container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET))
 				abort("Insufficient amount of biomatter.")
+			else if (container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME))
+				process_biomatter(BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
 			else
-				container.reagents.remove_reagent("biomatter", BIOMATTER_PER_SHEET)
-				var/obj/item/stack/material/biomatter/current_stack
-				//if there any stacks here, let's check them
-				if(locate(/obj/item/stack/material/biomatter) in loc)
-					for(var/obj/item/stack/material/biomatter/stack_on_my_loc in loc)
-						//if this isn't full, we use that stack(current)
-						if(stack_on_my_loc.amount < stack_on_my_loc.max_amount)
-							current_stack = stack_on_my_loc
-							break
+				//if it has small amount of biomatter, process will be slower
+				process_biomatter(container.reagents.get_reagent_amount("biomatter"))
 
-				if(current_stack)
-					current_stack.add(1)
-					if(current_stack.amount == current_stack.max_amount)
-						state("Stack is ready.")
-						ping()
-				else
-					current_stack = new(loc)
+/obj/machinery/biomatter_solidifier/proc/process_biomatter(var/quantity)
+	container.reagents.remove_reagent("biomatter", quantity)
+	var/obj/item/stack/material/biomatter/current_stack
 
+	while(quantity > 0)
+		//if there any stacks here, let's check them
+		if(locate(/obj/item/stack/material/biomatter) in loc)
+			for(var/obj/item/stack/material/biomatter/stack_on_my_loc in loc)
+				if(stack_on_my_loc.amount < stack_on_my_loc.max_amount)
+					current_stack = stack_on_my_loc
+					break
+		//if we found not full stack
+		if(current_stack)
+			if(current_stack.amount + round(quantity / BIOMATTER_PER_SHEET) >= current_stack.max_amount)
+				//if stack cannot hold all quantity we will just fill it and go to next
+				var/diff = current_stack.max_amount - current_stack.amount
+				current_stack.add(diff)
+				quantity -= diff * BIOMATTER_PER_SHEET
+				continue
+			else
+				current_stack.add(round(quantity / BIOMATTER_PER_SHEET))
+				quantity = 0
+				return
+		//if we not found not full stack
+		else
+			current_stack = new(loc)
+			quantity -= 1 * BIOMATTER_PER_SHEET
 
 /obj/machinery/biomatter_solidifier/MouseDrop_T(obj/structure/reagent_dispensers/biomatter/tank, mob/user)
 	if(get_dir(loc, tank.loc) != port_dir)
@@ -110,6 +125,5 @@
 	ping()
 	update_icon()
 
-
+#undef BIOMATTER_SHEETS_PER_TIME 
 #undef CONTAINER_PIXEL_OFFSET
-#undef BIOMATTER_PER_SHEET

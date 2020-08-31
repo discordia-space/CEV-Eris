@@ -70,6 +70,9 @@ datum/preferences
 		if (!isnull(raw_first_name) && CanUseTopic(user))
 			var/new_fname = sanitize_name(raw_first_name, pref.species, 14)
 			if(new_fname)
+				if(GLOB.in_character_filter.len) //If you name yourself brazil, you're getting a random name.
+					if(findtext(new_fname, config.ic_filter_regex))
+						new_fname = random_first_name(pref.gender, pref.species)
 				pref.real_first_name = new_fname
 				pref.real_name = pref.real_first_name + " " + pref.real_last_name
 				return TOPIC_REFRESH
@@ -88,6 +91,9 @@ datum/preferences
 			else
 				var/new_lname = sanitize_name(raw_last_name, pref.species, last_name_max_length)
 				if(new_lname)
+					if(GLOB.in_character_filter.len) //Same here too. Naming yourself brazil isn't funny, please stop.
+						if(findtext(new_lname, config.ic_filter_regex))
+							new_lname = random_last_name(pref.gender, pref.species)
 					pref.real_last_name = new_lname
 					pref.real_name = pref.real_first_name + " " + pref.real_last_name
 					return TOPIC_REFRESH

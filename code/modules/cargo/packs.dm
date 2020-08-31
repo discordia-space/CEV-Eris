@@ -176,8 +176,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/taser,
-				/obj/item/weapon/gun/energy/taser)
-	cost = 5000
+				/obj/item/weapon/gun/energy/taser,
+				/obj/item/weapon/gun/energy/nt_svalinn,
+				/obj/item/weapon/gun/energy/nt_svalinn)
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
@@ -703,15 +705,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Particle Accelerator crate"
 
 /datum/supply_pack/mech_ripley
-	name = "exosuit assembly crate (\"Ripley\" APLU)"
+	name = "exosuit assembly crate"
 	contains = list(
 		/obj/item/mech_equipment/drill,
 		/obj/item/mech_equipment/clamp,
 		/obj/item/mech_equipment/light,
-		/obj/item/mech_component/sensors/powerloader,
-		/obj/item/mech_component/chassis/powerloader,
-		/obj/item/mech_component/manipulators/powerloader,
-		/obj/item/mech_component/propulsion/powerloader,
+		/obj/item/mech_component/sensors/cheap,
+		/obj/item/mech_component/chassis/cheap,
+		/obj/item/mech_component/manipulators/cheap,
+		/obj/item/mech_component/propulsion/cheap,
 		/obj/item/robot_parts/robot_component/exosuit_control,
 		/obj/item/robot_parts/robot_component/armour/exosuit
 	)

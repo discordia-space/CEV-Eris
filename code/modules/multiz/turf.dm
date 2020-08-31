@@ -48,7 +48,7 @@ see multiz/movement.dm for some info.
 	// A lazy list to contain a list of mobs who are currently scaling
 	// up this turf. Used in human/can_fall.
 
-	var/tmp/list/climbers
+	var/tmp/list/climbers = list()
 
 /turf/simulated/open/New()
 	icon_state = "transparentclickable"
@@ -240,3 +240,45 @@ see multiz/movement.dm for some info.
 	else
 		return null
 
+/turf/simulated/open/MouseDrop_T(mob/target, mob/user)
+	var/mob/living/H = user
+	for(var/obj/structure/S in GetBelow(src))
+		if(istype(H) && can_descend(H, S) && target == user)
+			do_descend(target, S)
+			return
+	return ..()
+
+/turf/simulated/open/proc/can_descend(var/mob/living/user, var/obj/structure/structure, post_descent_check = 0)
+	if(!structure || !structure.climbable || (!post_descent_check && (user in climbers)))
+		return
+
+	if(!user.Adjacent(src))
+		to_chat(user, SPAN_DANGER("You can't descend there, the way is blocked."))
+		return
+
+	var/obj/occupied = structure.turf_is_crowded()
+	if(occupied)
+		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		return
+
+	return 1
+
+/turf/simulated/open/proc/do_descend(var/mob/living/user, var/obj/structure/structure)
+	if(!can_descend(user, structure))
+		return
+
+	user.visible_message(SPAN_WARNING("[user] starts descending onto [structure]!"))
+	structure.visible_message(SPAN_WARNING("Someone starts descending onto [structure]!"))
+	climbers |= user
+
+	var/delay = (issmall(user) ? 32 : 60) * user.mod_climb_delay
+	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
+	if(!do_after(user, duration, src) || !can_descend(user, structure, post_descent_check = 1))
+		climbers -= user
+		return
+
+	user.forceMove(GetBelow(src))
+
+	if(get_turf(user) == GetBelow(src))
+		user.visible_message(SPAN_WARNING("[user] descends onto [structure]!"))
+	climbers -= user

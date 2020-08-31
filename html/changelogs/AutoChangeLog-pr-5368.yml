@@ -1,5 +1,0 @@
-author: GrayRachnid
-delete-after: true
-changes:
-  - balance: Changed the size of hypersaws and chainsaws so they can't fit in belts
-      anymore.
