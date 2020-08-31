@@ -449,14 +449,10 @@
 	var/mob_to_spawn
 	var/mob_amount = 4
 
-/obj/random/mob/assembled
+/obj/spawner/mob/assembled
 	name = "random hivemob"
-	
-/obj/random/mob/assembled/item_to_spawn() //list of spawnable mobs
-	return pickweight(list(/mob/living/simple_animal/hostile/hivemind/stinger = 5,
-							/mob/living/simple_animal/hostile/hivemind/bomber = 4,
-							/mob/living/simple_animal/hostile/hivemind/hiborg = 1))
-	
+	tags_to_spawn = list(SPAWN_MOB_HIVEMIND)
+
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
 	mob_to_spawn = /obj/random/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
