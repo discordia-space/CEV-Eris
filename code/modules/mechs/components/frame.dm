@@ -15,7 +15,7 @@
 	var/is_reinforced = NONE
 	var/set_name
 	dir = SOUTH
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 5)
 
 	var/material/material = null
 
