@@ -353,6 +353,7 @@
 		GUN_UPGRADE_ZOOM = 1.2
 		)
 	I.gun_loc_tag = GUN_SCOPE
+	I.req_gun_tags = list(GUN_SCOPE)
 
 /obj/item/weapon/gun_upgrade/scope/killer
 	name = "Syndicate \"Proffesional Killer\" scope"
@@ -368,4 +369,4 @@
 		GUN_UPGRADE_ZOOM = 2
 		)
 	I.gun_loc_tag = GUN_SCOPE
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.req_gun_tags = list(GUN_SCOPE)

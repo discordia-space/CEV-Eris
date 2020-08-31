@@ -69,3 +69,15 @@
 	name = "Syndicate \"Gauss Coil\" barrel"
 	item_cost = 7
 	path = /obj/item/weapon/gun_upgrade/barrel/gauss
+
+/datum/uplink_item/item/visible_weapons/psychic_lasercannon
+	name = "Prototype: psychic laser cannon"
+	desc = "A laser cannon that attacks the minds of people, causing sanity loss and inducing mental breakdowns. Also can be used to complete mind fryer contracts."
+	item_cost = 8
+	path = /obj/item/weapon/gun/energy/psychic/lasercannon
+
+/datum/uplink_item/item/visible_weapons/psychic_lasercannon/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/weapon/gun/energy/psychic/lasercannon/L = .
+		L.owner = U.uplink_owner

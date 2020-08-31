@@ -711,3 +711,5 @@
 /obj/item/weapon/gun/proc/generate_guntags()
 	if(one_hand_penalty)
 		gun_tags |= GUN_GRIP
+	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
+		gun_tags |= GUN_SCOPE

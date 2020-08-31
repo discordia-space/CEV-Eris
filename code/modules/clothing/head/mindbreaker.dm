@@ -24,7 +24,7 @@
 			var/mob/user = loc
 			extract_memory(user)
 		else
-			visible_message(SPAN_WARNING("[src] is not ready for manual use."))
+			visible_message("\icon The [src] beeps, \"The [src] is not ready for manual use.\".")
 	else
 		return
 
@@ -32,7 +32,6 @@
 	if (!user) return
 
 	if (src.loc != user || !ishuman(user))
-		..()
 		return
 
 	var/mob/living/carbon/human/H = user

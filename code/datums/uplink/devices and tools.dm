@@ -10,7 +10,7 @@
 	path = /obj/item/weapon/storage/toolbox/syndicate
 	desc = "Danger. Very robust. Filled with advanced tools."
 
-/datum/uplink_item/item/tools/toolbox
+/datum/uplink_item/item/tools/gun_mods
 	name = "Gun Mods Kit"
 	item_cost = 20
 	path = /obj/item/weapon/storage/box/syndie_kit/gun_mods
