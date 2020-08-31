@@ -12,7 +12,7 @@
 	var/max_amount = 1
 	var/top_price = 0
 	var/low_price = 0
-	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY)
+	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
 	var/list/exclusion_paths = list()
@@ -59,7 +59,6 @@
 	//	return
 	return pick_spawn(candidates)
 
-// this function should return a specific item to spawn
 /obj/spawner/proc/post_spawn(list/spawns)
 	return
 
@@ -83,9 +82,37 @@
 			break
 		var/atom/T = pick(points_for_spawn)
 		var/atom/A = new build_path(T)
+		if(istype(A,/obj/machinery))
+			A.set_dir(src.dir)
 		spawns.Add(A)
+		if(ismovable(A))
+			var/atom/movable/AM = A
+			price_tag += AM.price_tag
 		if(islist(aditional_object) && aditional_object.len)
 			for(var/thing in aditional_object)
-				var/atom/AAO = new thing (T)
-				spawns.Add(AAO)
+				var/atom/AO = new thing (T)
+				spawns.Add(AO)
+				if(ismovable(AO))
+					var/atom/movable/AMAO = AO
+					price_tag += AMAO.price_tag
 	return spawns
+
+/obj/randomcatcher
+	name = "Random Catcher Object"
+	desc = "You should not see this."
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "rup"
+
+/obj/randomcatcher/proc/get_item(type)
+	new type(src)
+	if (contents.len)
+		. = pick(contents)
+	else
+		return null
+
+/obj/randomcatcher/proc/get_items(type)
+	new type(src)
+	if (contents.len)
+		return contents
+	else
+		return null

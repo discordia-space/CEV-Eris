@@ -455,7 +455,7 @@
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
-	mob_to_spawn = /obj/random/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
+	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
 	//TL;DR - Assembler can now spawn multiple types of mobs
 
 /obj/machinery/hivemind_machine/mob_spawner/Process()

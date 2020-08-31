@@ -120,7 +120,7 @@
 	return things
 
 /datum/loot_spawner_data/proc/spawns_lower_price(list/paths, price)
-	//if(!paths || !paths.len || !price)
+	//if(!paths || !paths.len || !price) //NOPE
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
@@ -129,7 +129,7 @@
 	return things
 
 /datum/loot_spawner_data/proc/spawns_upper_price(list/paths, price)
-	//if(!paths || !paths.len || !price)
+	//if(!paths || !paths.len || !price) //NOPE
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
@@ -138,11 +138,7 @@
 	return things
 
 /datum/loot_spawner_data/proc/pick_frequencies_spawn(list/paths)
-	//if(!islist(paths))
-	//	admin_notice(SPAN_DANGER("entro algo que no es una lista en las frequencias"))
-	//if(!paths.len)
-	//	admin_notice(SPAN_DANGER("NO HAY NINGUNA LISTA DE ningun path entró en las frequencias"))
-	//if(!paths || !paths.len)
+	//if(!paths || !paths.len) //NOPE
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
@@ -151,21 +147,14 @@
 	var/frequency = pickweight(things, 0)
 	if(istext(frequency))
 		frequency = text2num(frequency)
-	//admin_notice(SPAN_DANGER("ESTA ES LA frequencia minima [frequency]"))
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_frequency_by_path[path] >= frequency)
 			things += path
-	//if(!things.len)
-	//	admin_notice(SPAN_DANGER("NO HAY NINGUNA LISTA DE FREQUENCIAS"))
 	return things
 
 /datum/loot_spawner_data/proc/pick_rarities_spawn(list/paths)
-	//if(!islist(paths))
-	//	admin_notice(SPAN_DANGER("entro algo que no es una lista en las rarezas"))
-	//if(!paths.len)
-	//	admin_notice(SPAN_DANGER("entro una lista vacia en las rarezas"))
-	//if(!paths || !paths.len)
+	//if(!paths || !paths.len) //NOPE
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
@@ -175,17 +164,14 @@
 	if(istext(rarity))
 		rarity = text2num(rarity)
 	rarity = 101-rarity
-	//admin_notice(SPAN_DANGER("ESTA ES LA RAREZA MAXIMA [rarity] [isnum(rarity) ? "numero" : "no_numero"]"))
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_rarity_by_path[path] <= rarity)
 			things += path
-	//if(!paths.len)
-	//	admin_notice(SPAN_DANGER("NO HAY NINGUNA LISTA DE RAREZAS"))
 	return paths
 
 /datum/loot_spawner_data/proc/pick_spawn(list/paths)
-	//if(!paths || !paths.len)
+	//if(!paths || !paths.len) //NOPE
 		//return
 	var/list/things = list()
 	for(var/path in paths)
@@ -196,7 +182,6 @@
 			continue
 		things += frequency_path
 	var/frequency = pick(things)
-	//admin_notice(SPAN_DANGER("ESTA ES LA FRECUENCIA [frequency]"))//remove it
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_frequency_by_path[path] == frequency)
@@ -211,12 +196,9 @@
 			continue
 		things += rarity_path
 	var/rarity = pick(things)
-	//admin_notice(SPAN_DANGER("ESTA ES la rareza [rarity]"))//remove it
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_rarity_by_path[path] == rarity)
 			things += path
-	//admin_notice(SPAN_DANGER("ESTA la lista final [things]"))//remove it
 	var/path_selected = pick(things)
-	//admin_notice(SPAN_DANGER("ESTA es el path [path_selected]"))//remove it
 	return path_selected

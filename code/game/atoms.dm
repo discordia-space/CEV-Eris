@@ -353,7 +353,7 @@ its easier to just keep the beam vertical.
 		AM.throwing = FALSE
 	return
 
-/atom/proc/add_hiddenprint(mob/living/M as mob)
+/atom/proc/add_hiddenprint(mob/living/M)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
 	if (ishuman(M))
@@ -376,7 +376,7 @@ its easier to just keep the beam vertical.
 			src.fingerprintslast = M.key
 	return
 
-/atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
+/atom/proc/add_fingerprint(mob/living/M, ignoregloves = FALSE)
 	if(isnull(M)) return
 	if(isAI(M)) return
 	if(isnull(M.key)) return

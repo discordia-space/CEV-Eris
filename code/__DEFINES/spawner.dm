@@ -383,10 +383,16 @@
 #define SPAWN_HOSTILE_MOB "hostile_mob"
 #define SPAWN_FRIENDLY_MOB "friendly_mob"
 #define SPAWN_SLIME "slime"
+#define SPAWN_MOB_OS_CUSTODIAN "os_custodian"
+#define SPAWN_MOB_ROOMBA "roomba"
+#define SPAWN_MOB_HIVEMIND "hivemind"
 
 #define SPAWN_TAG_HOSTILE_MOB "mob,hostile_mob"
 #define SPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
 #define SPAWN_TAG_SLIME "mob,slime"
+#define SPAWN_TAG_MOB_OS_CUSTODIAN "mob,hostile_mob,os_custodian"
+#define SPAWN_TAG_MOB_HIVEMIND "mob,hostile_mob,hivemind"
+#define SPAWN_TAG_MOB_ROOMBA "mob,hostile_mob,roomba"
 
 // MOBS - ROACH
 #define SPAWN_ROACH "mob_roach"
