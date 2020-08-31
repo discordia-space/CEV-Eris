@@ -31689,8 +31689,8 @@
 /area/eris/security/prison)
 "bta" = (
 /obj/structure/table/reinforced,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
 "btb" = (
@@ -32251,10 +32251,10 @@
 /area/eris/maintenance/section3deck1central)
 "buh" = (
 /obj/structure/table/rack/shelf,
-/obj/random/techpart,
-/obj/random/techpart,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck1central)
 "bui" = (
@@ -35420,8 +35420,8 @@
 /area/eris/neotheology/bioreactor)
 "bBg" = (
 /obj/structure/table/standard,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /obj/spawner/pouch,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
@@ -54398,9 +54398,9 @@
 "cqT" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/shelf,
-/obj/random/techpart,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "cqU" = (
@@ -92212,9 +92212,9 @@
 /area/eris/crew_quarters/fitness)
 "dYp" = (
 /obj/structure/table/rack/shelf,
-/obj/random/techpart,
-/obj/random/techpart,
-/obj/random/techpart/low_chance,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart/low_chance,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck3starboard)
 "dYq" = (
@@ -92764,7 +92764,7 @@
 "dZK" = (
 /obj/structure/table/rack,
 /obj/spawner/pouch,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck3starboard)
 "dZL" = (

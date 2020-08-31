@@ -53,7 +53,7 @@
 /obj/structure/table/reinforced,
 /obj/spawner/tool,
 /obj/spawner/tool,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "ao" = (
@@ -122,9 +122,9 @@
 /area/outpost/abandoned_fortress)
 "aC" = (
 /obj/structure/table/rack/shelf,
-/obj/random/techpart,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aD" = (
@@ -135,8 +135,8 @@
 /area/outpost/abandoned_fortress)
 "aE" = (
 /obj/structure/table/reinforced,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/plating,
 /area/outpost/abandoned_fortress)
 "aF" = (
@@ -272,9 +272,9 @@
 /obj/structure/table/rack/shelf,
 /obj/spawner/tool/low_chance,
 /obj/spawner/tool/low_chance,
-/obj/random/techpart,
-/obj/random/techpart,
-/obj/random/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bw" = (
@@ -342,7 +342,7 @@
 /obj/structure/table/rack/shelf,
 /obj/spawner/tool/low_chance,
 /obj/spawner/tool/low_chance,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bJ" = (
@@ -353,7 +353,7 @@
 /area/outpost/abandoned_fortress)
 "bK" = (
 /obj/structure/table/reinforced,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned_fortress)
 "bL" = (

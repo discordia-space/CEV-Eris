@@ -206,7 +206,7 @@
 "aS" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/closet/secure_closet/personal,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 "aT" = (
@@ -735,7 +735,7 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /obj/structure/table/steel,
-/obj/random/techpart,
+/obj/spawner/techpart,
 /turf/simulated/floor/tiled,
 /area/outpost/abandoned)
 
