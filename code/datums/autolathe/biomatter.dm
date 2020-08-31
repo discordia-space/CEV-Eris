@@ -32,7 +32,7 @@
 //[/NUTRIMENTS]
 
 //[CLOTHES, ARMOR AND ACCESORIES]
-datum/design/bioprinter/nt_clothes/acolyte_armor
+/datum/design/bioprinter/nt_clothes/acolyte_armor
 	name = "NT Acolyte Armor"
 	build_path = /obj/item/clothing/suit/space/void/acolyte
 
