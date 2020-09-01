@@ -43,8 +43,7 @@
 		overlays.Add(image(icon,"mine_light"))
 
 /obj/item/weapon/mine/attack_self(mob/user)
-	armed = !armed
-	if(!deployed)
+	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
 			SPAN_DANGER("You begin deploying \the [src]!"),
@@ -61,12 +60,20 @@
 			deployed = TRUE
 			user.drop_from_inventory(src)
 			anchored = TRUE
+			armed = TRUE
 			update_icon()
-		
-	if (armed)
-		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-	
+
 	update_icon()
+
+/obj/item/weapon/mine/attack_hand(mob/user as mob)
+	if (deployed)
+		user.visible_message(
+				SPAN_DANGER("You have touched the mine \the [src]!"),
+				SPAN_DANGER("You Feel a meatlic click")
+				)
+		explode()	
+		return
+	.=..()
 
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
@@ -83,7 +90,16 @@
 				)
 			deployed = FALSE
 			anchored = FALSE
+			armed = FALSE
 			update_icon()
+		return
+	else
+		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
+			user.visible_message(
+					SPAN_DANGER("You have touched the mine \the [src]!"),
+					SPAN_DANGER("You hear a meatlic click")
+					)
+			explode()
 		return
 
 
