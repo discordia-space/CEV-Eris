@@ -1,5 +1,6 @@
 GLOBAL_VAR_INIT(bluespace_entropy, 0)
 GLOBAL_VAR_INIT(bluespace_gift, 0)
+GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 
 /proc/go_to_bluespace(turf/T, entropy=1, minor_distortion=FALSE, ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
 	bluespace_entropy(entropy, T, minor_distortion)
@@ -7,31 +8,37 @@ GLOBAL_VAR_INIT(bluespace_gift, 0)
 
 /proc/bluespace_entropy(max_value=1, turf/T, minor_distortion=FALSE)
 	var/entropy_value = rand(0, max_value)
-	if(minor_distortion)
-		if(prob(entropy_value/10) && GLOB.bluespace_entropy > 25)
-			GLOB.bluespace_entropy -= rand(25, 50)
+	if(minor_distortion && world.time > GLOB.bluespace_distotion_cooldown)
+		GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
+		var/minor_entropy = rand(25, 50)
+		if(prob(entropy_value/10) && GLOB.bluespace_entropy > minor_entropy)
+			GLOB.bluespace_entropy -= minor_entropy
 			bluespace_distorsion(T, minor_distortion)
+			log_and_message_admins("alerta de distorcion")
 		else
 			GLOB.bluespace_entropy += entropy_value
 	else
 		GLOB.bluespace_entropy += entropy_value
 		var/entropy_cap = rand(150, 300)
-		if(GLOB.bluespace_entropy >= entropy_cap)
+		if(GLOB.bluespace_entropy >= entropy_cap && world.time > GLOB.bluespace_distotion_cooldown)
+			GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
 			bluespace_distorsion(T, minor_distortion)
 			GLOB.bluespace_entropy -= rand(150, 225)
+			log_and_message_admins("alerta de distorcion")
+
 
 /proc/bluespace_distorsion(turf/T, minor_distortion=FALSE)
 	var/bluespace_event = rand(1, 100)
 	switch(bluespace_event)
-		if(1 to 23)
+		if(1 to 30)
 			trash_buble(T, minor_distortion)
-		if(23 to 46)
+		if(30 to 55)
 			bluespace_roaches(T, minor_distortion)
-		if(46 to 69)
+		if(55 to 75)
 			bluespace_stranger(T, minor_distortion)
-		if(69 to 92)
+		if(75 to 90)
 			bluespace_cristals_event(T, minor_distortion)
-		if(92 to 100)
+		if(90 to 100)
 			bluespace_gift(T, minor_distortion)
 
 
@@ -109,7 +116,7 @@ GLOBAL_VAR_INIT(bluespace_gift, 0)
 	T = get_random_secure_turf_in_range(T, 4)
 	if(!T)
 		return
-	if(!GLOB.bluespace_gift && !minor_distortion)
+	if(GLOB.bluespace_gift <= 0 && !minor_distortion)
 		new /obj/item/weapon/oddity/broken_necklace(T)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, T)

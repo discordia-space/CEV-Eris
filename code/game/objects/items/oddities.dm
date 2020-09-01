@@ -283,23 +283,25 @@
 	for(var/obj/item/weapon/grab/G in user.contents)
 		if(G.affecting)
 			go_to_bluespace(get_turf(user), entropy_value, FALSE, G.affecting, locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
-	if(prob(0.5))
+	if(prob(1))
 		new /obj/item/bluespace_dust(user.loc)
-		GLOB.bluespace_gift = FALSE
-		bluespace_entropy(50,get_turf(user))
+		new /obj/item/bluespace_dust(T)
+		GLOB.bluespace_gift -= 1
+		bluespace_entropy(50,T)	
 		qdel(src)
 
-/obj/item/weapon/oddity/broken_necklace/throw_impact(atom/hit_atom)
+/obj/item/weapon/oddity/broken_necklace/throw_impact(atom/movable/hit_atom)
 	if(!..()) // not caught in mid-air
 		visible_message(SPAN_NOTICE("[src] fizzles upon impact!"))
 		var/turf/T = get_turf(hit_atom)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, T)
 		sparks.start()
-		var/turf/NT = get_random_turf_in_range(hit_atom, blink_range, 2)
-		go_to_bluespace(T, entropy_value, FALSE, hit_atom, NT)
+		if(!hit_atom.anchored)
+			var/turf/NT = get_random_turf_in_range(hit_atom, blink_range, 2)
+			go_to_bluespace(T, entropy_value, FALSE, hit_atom, NT)
 		if(prob(1))
 			new /obj/item/bluespace_dust(T)
 			GLOB.bluespace_gift -= 1
-			bluespace_entropy(50,T)
+			bluespace_entropy(50,T)	
 			qdel(src)
