@@ -12,7 +12,7 @@
 	can_dual = 1
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
-	damage_multiplier = 1.3
+	damage_multiplier = 1.15
 	penetration_multiplier = 1.3
 	recoil_buildup = 3
 

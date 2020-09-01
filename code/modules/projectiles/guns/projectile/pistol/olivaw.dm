@@ -12,7 +12,7 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 800
-	damage_multiplier = 1.2
+	damage_multiplier = 1
 	penetration_multiplier = 1.2
 	recoil_buildup = 6
 	init_firemodes = list(
