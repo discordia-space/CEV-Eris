@@ -123,9 +123,9 @@
 /obj/item/weapon/gun/energy/MouseDrop(over_object)
 	if(disposable)
 		to_chat(usr, SPAN_WARNING("[src] is a disposable, its batteries cannot be removed!."))
-	if(self_recharge)
+	else if(self_recharge)
 		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+	else if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 		update_icon()
 
