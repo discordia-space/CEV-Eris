@@ -2845,7 +2845,7 @@
 	nutriment_amt = 35
 	bitesize = 2
 	preloaded_reagents = list("protein" = 5)
-	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD,CHEESE_FOOD)
+	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/mushroompizzaslice
 	name = "Mushroompizza slice"
