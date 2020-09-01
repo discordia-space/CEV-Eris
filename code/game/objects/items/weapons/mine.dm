@@ -68,9 +68,7 @@
 /obj/item/weapon/mine/attack_hand(mob/user as mob)
 	if (deployed)
 		user.visible_message(
-				SPAN_DANGER("You have touched the mine \the [src]!"),
-				SPAN_DANGER("You Feel a meatlic click")
-				)
+				SPAN_DANGER("You attempt to pick up the [src] only to hear a beep as it explodes in your hands!")
 		explode()	
 		return
 	.=..()
@@ -96,9 +94,7 @@
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
 			user.visible_message(
-					SPAN_DANGER("You have touched the mine \the [src]!"),
-					SPAN_DANGER("You hear a meatlic click")
-					)
+					SPAN_DANGER("You hit the [src] with [obj] and it explodes!")
 			explode()
 		return
 
