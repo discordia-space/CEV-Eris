@@ -10,6 +10,6 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
-	damage_multiplier = 0.8 //slightly weaker due to sawn-off barrels
+	damage_multiplier = 0.7 //weaker due to sawn-off barrels
 	recoil_buildup = 1.2 //gonna have solid grip on those, point-blank shots adviced
 	one_hand_penalty = 10 //compact shotgun level

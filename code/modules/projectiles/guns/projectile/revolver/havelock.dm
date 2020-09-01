@@ -12,6 +12,6 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 900
-	damage_multiplier = 1.4 //because pistol round
+	damage_multiplier = 1.2 //Slightly more damage than most pistols.
 	penetration_multiplier = 1.4
 	recoil_buildup = 18
