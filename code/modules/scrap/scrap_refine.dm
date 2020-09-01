@@ -5,7 +5,6 @@
 	anchored = FALSE
 	icon_state = "trash_cube"
 	icon = 'icons/obj/structures/scrap/refine.dmi'
-	matter = list(MATERIAL_STEEL = 2) //small amount of guaranteed steel for the smelter, think of it as a bonus for going through the compression and recycling process
 
 /obj/structure/scrap_cube/proc/make_pile()
 	for(var/obj/item in contents)

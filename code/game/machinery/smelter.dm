@@ -28,6 +28,9 @@
 
 	var/forbidden_materials = list(MATERIAL_CARDBOARD,MATERIAL_WOOD,MATERIAL_BIOMATTER)
 
+	// base multiplier for scrap smelting, increased by better microlasers
+	var/scrap_multiplier = 0.25
+
 
 /obj/machinery/smelter/Initialize()
 	. = ..()
@@ -75,6 +78,10 @@
 		if(O.anchored)
 			continue
 		O.forceMove(src)
+		if(istype(O, /obj/structure/scrap_cube))
+			current_item = O
+			less_mats = TRUE
+			return
 		var/list/materials = result_materials(O)
 		if(!materials?.len || !are_valid_materials(materials))
 			eject(O, refuse_output_side)
@@ -84,7 +91,10 @@
 
 
 /obj/machinery/smelter/proc/smelt()
-	smelt_item(current_item)
+	if(istype(current_item, /obj/structure/scrap_cube))
+		smelt_scrap(current_item)
+	else
+		smelt_item(current_item)
 	current_item = null
 	progress = 0
 	eject_overflow()
@@ -115,6 +125,32 @@
 
 	qdel(smelting)
 
+/obj/machinery/smelter/proc/smelt_scrap(obj/smelting)
+	var/list/materials = result_materials(smelting)
+
+	if(materials)
+		if(!are_valid_materials(materials))
+			eject(smelting, refuse_output_side)
+			return
+
+		for(var/material in materials)
+			if(!(material in stored_material))
+				stored_material[material] = 0
+
+			var/total_material = materials[material]
+
+			if(istype(smelting,/obj/item/stack))
+				var/obj/item/stack/material/S = smelting
+				total_material *= S.get_amount()
+
+			total_material *= scrap_multiplier
+
+			stored_material[material] += total_material
+
+	for(var/obj/O in smelting.contents)
+		smelt_scrap(O)
+
+	qdel(smelting)
 
 /obj/machinery/smelter/proc/are_valid_materials(list/materials)
 	for(var/material in forbidden_materials)
@@ -191,11 +227,16 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		manipulator_rating += M.rating
 		++manipulator_count
-	for(var/obj/item/weapon/stock_parts/micro_laser/M in component_parts)
-		manipulator_rating += M.rating
-		++manipulator_count
 
 	speed = initial(speed)*(manipulator_rating/manipulator_count)
+
+	var/ml_rating = 0
+	var/ml_count = 0
+	for(var/obj/item/weapon/stock_parts/micro_laser/ML in component_parts)
+		ml_rating += ML.rating
+		++ml_count
+
+	scrap_multiplier = initial(scrap_multiplier)+(((ml_rating/ml_count)-1)*0.05)
 
 	var/mb_rating = 0
 	var/mb_count = 0
@@ -231,6 +272,9 @@
 		M.Add(list(list("name" = mtype, "count" = stored_material[mtype])))
 	data["materials"] = M
 	data["capacity"] = storage_capacity
+	data["sideI"] = dir2text(input_side)
+	data["sideO"] = dir2text(output_side)
+	data["sideR"] = dir2text(refuse_output_side)
 
 	return data
 
@@ -256,6 +300,18 @@
 			eject_all_material(material)
 		else
 			eject_all_material()
+
+	if(href_list["setsideI"])
+		var/SideI = text2num(href_list["setsideI"])
+		input_side = SideI
+
+	if(href_list["setsideO"])
+		var/SideO = text2num(href_list["setsideO"])
+		output_side = SideO
+
+	if(href_list["setsideR"])
+		var/SideR = text2num(href_list["setsideR"])
+		refuse_output_side = SideR
 
 	SSnano.update_uis(src)
 	return FALSE

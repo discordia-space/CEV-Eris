@@ -34,3 +34,33 @@
 		{{:helper.link('EJECT ALL', '', {'eject' : 1}, null, 'bigButton')}}
 	</div>
 </div>
+
+<div class="block">
+	<div class="item">
+		<div class="itemLabelWidest"><b><h3>Sides config</h3></b></div>
+	</div>
+	<div class="item">
+		<div class="itemLabelNarrow"><b>Input side</b></div>
+		<div class="itemLabelNarrow"><b>Current Side: {{:data.sideI}}</b></div>
+		<div class="itemLabelNarrow">{{:helper.link('North', '', {'setsideI' : 1}, null, 'statusValue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('East', '', {'setsideI' : 4}, null, 'statusValue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('South', '', {'setsideI' : 2}, null, 'statusvalue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('West', '', {'setsideI' : 8}, null, 'statusValue')}}</div>
+	</div>
+	<div class="item">
+		<div class="itemLabelNarrow"><b>Output side</b></div>
+		<div class="itemLabelNarrow"><b>Current Side: {{:data.sideO}}</b></div>
+		<div class="itemLabelNarrow">{{:helper.link('North', '', {'setsideO' : 1}, null, 'statusValue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('East', '', {'setsideO' : 4}, null, 'statusValue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('South', '', {'setsideO' : 2}, null, 'statusvalue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('West', '', {'setsideO' : 8}, null, 'statusValue')}}</div>
+	</div>
+	<div class="item">
+		<div class="itemLabelNarrow"><b>Refuse output side</b></div>
+		<div class="itemLabelNarrow"><b>Current Side: {{:data.sideR}}</b></div>
+		<div class="itemLabelNarrow">{{:helper.link('North', '', {'setsideR' : 1}, null, 'statusValue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('East', '', {'setsideR' : 4}, null, 'statusValue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('South', '', {'setsideR' : 2}, null, 'statusvalue')}}</div>
+		<div class="itemLabelNarrow">{{:helper.link('West', '', {'setsideR' : 8}, null, 'statusValue')}}</div>
+	</div>
+</div>
