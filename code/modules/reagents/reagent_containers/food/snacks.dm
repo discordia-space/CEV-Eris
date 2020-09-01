@@ -2856,7 +2856,7 @@
 	center_of_mass = list("x"=18, "y"=13)
 	preloaded_reagents = list("nutriment" = 5, "protein" = 1)
 	cooked = TRUE
-	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD,CHEESE_FOOD)
+	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	name = "Vegetable pizza"
