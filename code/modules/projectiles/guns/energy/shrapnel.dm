@@ -11,7 +11,7 @@
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ENGINEERING = 4)
-	charge_cost = 100
+	charge_cost = 50
 	suitable_cell = /obj/item/weapon/cell/small
 	cell_type = /obj/item/weapon/cell/small
 	projectile_type = /obj/item/projectile/bullet/shotgun
@@ -19,11 +19,11 @@
 	fire_delay = 12 //Equivalent to a pump then fire time
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	init_firemodes = list(
-		list(mode_name="pellet", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="kill"),
-		list(mode_name="stun", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=75, icon="stun"),
-		list(mode_name="blast", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=150, icon="destroy"),
+		list(mode_name="pellet", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=100, icon="kill"),
+		list(mode_name="stun", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
+		list(mode_name="blast", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
-	var/consume_cell = TRUE
+	var/consume_cell = FALSE
 	price_tag = 2500
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
@@ -48,5 +48,4 @@
 	restrict_safety = TRUE
 	consume_cell = FALSE
 	cell_type = /obj/item/weapon/cell/small/high //Two shots
-
 

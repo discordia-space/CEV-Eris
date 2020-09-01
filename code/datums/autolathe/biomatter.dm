@@ -114,6 +114,9 @@
 	build_path = /obj/item/weapon/storage/backpack/duffelbag
 	materials = list("biomatter" = 65)
 //[/THINGS]
+/datum/design/autolathe/gun/plasma/martyr
+	name = "NT PR \"Martyr\""
+	build_path = /obj/item/weapon/gun/energy/plasma/martyr
 
 //[MED]
 /datum/design/bioprinter/medical

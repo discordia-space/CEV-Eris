@@ -157,7 +157,9 @@
 							/datum/design/research/item/part/artificialbscrystal,
 							/datum/design/research/circuit/bssilk/hub,
 							/datum/design/research/circuit/bssilk/console,
-							/datum/design/research/item/bs_snare
+							/datum/design/research/item/bs_snare,
+							/datum/design/research/circuit/teleporter/station,
+							/datum/design/research/circuit/teleporter/hub
 							)
 
 /datum/technology/bluespace_tools
@@ -179,6 +181,26 @@
 							/datum/design/research/item/weapon/bluespace_harpoon,
 							/datum/design/research/item/weapon/bluespace_dagger
 							)
+
+/datum/technology/bluespace_extended
+	name = "Extended Bluespace Tech"
+	desc = "Application of the bluespace storing technology to a wider variety of containers."
+	tech_type = RESEARCH_BLUESPACE
+
+	x = 0.8
+	y = 0.9
+	icon = "holdingpouch"
+
+	required_technologies = list(/datum/technology/bluespace_tools)
+	required_tech_levels = list()
+	cost = 1500
+
+	unlocks_designs = list(	/datum/design/research/item/belt_holding,
+							/datum/design/research/item/pouch_holding,
+							/datum/design/research/item/trashbag_holding,
+							/datum/design/research/item/oresatchel_holding
+						    )
+	
 /*
 /datum/technology/bluespace_rped
 	name = "Bluespace RPED"

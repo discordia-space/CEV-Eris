@@ -1,4 +1,4 @@
-GLOBAL_LIST_EMPTY(various_antag_contracts)	//Contracts from "Various" emloyers, currently used by Traitors, Changelings and Blitzshells
+GLOBAL_LIST_EMPTY(various_antag_contracts)	//Contracts from "Various" emloyers, currently used by Traitors, Carrions and Blitzshells
 GLOBAL_LIST_EMPTY(excel_antag_contracts)	//Excelsior contracts
 GLOBAL_LIST_INIT(antag_item_targets,list(
 		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/captain,
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		candidates -= candidate_mind
 
 		// Implant contracts are 75% less likely to target contract-based antags to reduce the amount of cheesy self-implants
-		if((player_is_antag_id(candidate_mind, ROLE_TRAITOR) || player_is_antag_id(candidate_mind, ROLE_CHANGELING)) && prob(75))
+		if((player_is_antag_id(candidate_mind, ROLE_TRAITOR) || player_is_antag_id(candidate_mind, ROLE_CARRION)) && prob(75))
 			continue
 
 		// No check for cruciform because the spying implant can bypass it
@@ -142,6 +142,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 		target_mind = candidate_mind
 		desc = "Implant [H.real_name] with a spying implant."
+		if(H.stats.getPerk(PERK_NOBLE))
+			reward *= 1.5
 		break
 	..()
 
@@ -228,6 +230,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		if(!target)
 			target = H.organs_by_name[BP_HEAD]
 		desc = "Assasinate [target_mind.current.real_name] and send [gender_datums[target_mind.current.gender].his] [target.name] via BSDM as a proof."
+		if(H.stats.getPerk(PERK_NOBLE))
+			reward *= 1.5
 		break
 
 /datum/antag_contract/item/assasinate/can_place()
@@ -426,6 +430,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		
 		target_mind = candidate_mind
 		desc = "[name] [target_mind.current.real_name] [desc_text]"
+		if(H.stats.getPerk(PERK_NOBLE))
+			reward *= 1.5
 		break
 
 /datum/antag_contract/excel/targeted/can_place()

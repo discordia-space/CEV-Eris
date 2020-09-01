@@ -229,7 +229,7 @@
 					if(beakers.len)
 						for(var/obj/item/slime_extract/O in beakers)
 							O.forceMove(get_turf(src))
-	beakers = list()
+						beakers = list()
 	..()
 
 

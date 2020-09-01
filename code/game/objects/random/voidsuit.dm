@@ -12,7 +12,7 @@
 		/obj/item/clothing/suit/space/void/mining = 2,
 		/obj/item/clothing/suit/space/void/medical = 2.3,
 		/obj/item/clothing/suit/space/void/atmos = 1.5,
-		/obj/item/clothing/suit/space/void/merc = 0.5))
+		/obj/item/clothing/suit/space/void/merc = 0.2))
 
 /obj/random/voidsuit/low_chance
 	name = "low chance random voidsuit"

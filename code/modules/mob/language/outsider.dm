@@ -31,21 +31,6 @@
 
 	return 0
 
-/datum/language/ling
-	name = LANGUAGE_CHANGELING
-	desc = "Although they are normally wary and suspicious of each other, changelings can commune over a distance."
-	colour = "changeling"
-	key = "g"
-	flags = RESTRICTED | HIVEMIND
-	shorthand = "N/A"
-
-/datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
-
-	if(speaker.mind && speaker.mind.changeling)
-		..(speaker,message,speaker.mind.changeling.changelingID)
-	else
-		..(speaker,message)
-
 /datum/language/corticalborer
 	name = LANGUAGE_CORTICAL
 	desc = "Cortical borers possess a strange link between their tiny minds."

@@ -38,7 +38,7 @@
 
 // Like view but bypasses luminosity check
 
-/proc/hear(var/range, var/atom/source)
+/proc/hear(range, atom/source)
 
 	var/lum = source.luminosity
 	source.luminosity = world.view
@@ -124,7 +124,7 @@
 
 // Returns a list of mobs and/or objects in range of R from source. Used in radio and say code.
 
-/proc/get_mobs_or_objects_in_view(var/R, var/atom/source, var/include_mobs = 1, var/include_objects = 1)
+/proc/get_mobs_or_objects_in_view(R, atom/source, include_mobs = 1, include_objects = 1)
 
 	var/turf/T = get_turf(source)
 	var/list/hear = list()
@@ -181,7 +181,7 @@
 				objs[O] = TRUE
 
 
-/proc/get_mobs_in_radio_ranges(var/list/obj/item/device/radio/radios)
+/proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
 
 	set background = 1
 
@@ -247,7 +247,7 @@
 				return 0
 	return 1
 
-proc/isInSight(var/atom/A, var/atom/B)
+proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
@@ -275,7 +275,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 		else
 			return get_step(start, EAST)
 
-/proc/get_mob_by_key(var/key)
+/proc/get_mob_by_key(key)
 	for(var/mob/M in SSmobs.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
@@ -283,7 +283,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
-/proc/get_active_candidates(var/buffer = 1)
+/proc/get_active_candidates(buffer = 1)
 
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
@@ -344,8 +344,8 @@ datum/projectile_data
 	var/dest_x
 	var/dest_y
 
-/datum/projectile_data/New(var/src_x, var/src_y, var/time, var/distance, \
-						   var/power_x, var/power_y, var/dest_x, var/dest_y)
+/datum/projectile_data/New(src_x, src_y, time, distance, \
+						   power_x, power_y, dest_x, dest_y)
 	src.src_x = src_x
 	src.src_y = src_y
 	src.time = time
@@ -355,7 +355,7 @@ datum/projectile_data
 	src.dest_x = dest_x
 	src.dest_y = dest_y
 
-/proc/projectile_trajectory(var/src_x, var/src_y, var/rotation, var/angle, var/power)
+/proc/projectile_trajectory(src_x, src_y, rotation, angle, power)
 
 	// returns the destination (Vx, y) that a projectile shot at [src_x], [src_y], with an angle of [angle],
 	// rotated at [rotation] and with the power of [power]
@@ -388,7 +388,7 @@ datum/projectile_data
 			GetBluePart(hexa)
 		)
 
-/proc/iscolor(var/color)
+/proc/iscolor(color)
 	var/h = copytext(color, 1, 2)
 	var/r = GetRedPart(color)
 	var/g = GetGreenPart(color)
@@ -422,7 +422,7 @@ datum/projectile_data
 	var/b = mixOneColor(weights, blues)
 	return rgb(r, g, b)
 
-/proc/mixOneColor(var/list/weight, var/list/color)
+/proc/mixOneColor(list/weight, list/color)
 	if (!weight || !color || length(weight)!=length(color))
 		return 0
 
@@ -454,7 +454,7 @@ datum/projectile_data
 * Gets the highest and lowest pressures from the tiles in cardinal directions
 * around us, then checks the difference.
 */
-/proc/getOPressureDifferential(var/turf/loc)
+/proc/getOPressureDifferential(turf/loc)
 	var/minp=16777216;
 	var/maxp=0;
 	for(var/dir in cardinal)
@@ -470,13 +470,13 @@ datum/projectile_data
 		if(cp>maxp)maxp=cp
 	return abs(minp-maxp)
 
-/proc/convert_k2c(var/temp)
+/proc/convert_k2c(temp)
 	return ((temp - T0C))
 
-/proc/convert_c2k(var/temp)
+/proc/convert_c2k(temp)
 	return ((temp + T0C))
 
-/proc/getCardinalAirInfo(var/turf/loc, var/list/stats=list("temperature"))
+/proc/getCardinalAirInfo(turf/loc, list/stats=list("temperature"))
 	var/list/temps = new/list(4)
 	for(var/dir in cardinal)
 		var/direction
@@ -511,10 +511,10 @@ datum/projectile_data
 		temps[direction] = rstats
 	return temps
 
-/proc/MinutesToTicks(var/minutes)
+/proc/MinutesToTicks(minutes)
 	return SecondsToTicks(60 * minutes)
 
-/proc/SecondsToTicks(var/seconds)
+/proc/SecondsToTicks(seconds)
 	return seconds * 10
 
 /proc/get_vents()
@@ -526,7 +526,9 @@ datum/projectile_data
 	return vents
 
 
-/proc/is_opaque(var/turf/T)
+/proc/is_opaque(turf/T)
+	if(!T)
+		return FALSE
 	if (T.opacity)
 		return TRUE
 	for(var/obj/O in T.contents)
@@ -534,7 +536,7 @@ datum/projectile_data
 			return TRUE
 	return FALSE
 
-/proc/get_preferences(var/mob/target)
+/proc/get_preferences(mob/target)
 	var/datum/preferences/P = null
 	if (target.client)
 		P = target.client.prefs
@@ -547,7 +549,7 @@ datum/projectile_data
 
 
 //Picks a single random landmark of a specified type
-/proc/pick_landmark(var/ltype)
+/proc/pick_landmark(ltype)
 	var/list/L = list()
 	for(var/S in landmarks_list)
 		if (istype(S, ltype))

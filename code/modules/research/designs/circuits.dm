@@ -424,3 +424,22 @@
 	build_path = /obj/item/weapon/circuitboard/bssilk_hub
 	sort_string = "VAAAG"
 	category = CAT_BLUE
+
+/datum/design/research/circuit/teleporter/station
+	name = "Teleporter Station"
+	build_path = /obj/item/weapon/circuitboard/teleporterstation
+	sort_string = "VAAAO"
+	category = CAT_BLUE
+
+/datum/design/research/circuit/teleporter/hub
+	name = "Teleporter Hub"
+	build_path = /obj/item/weapon/circuitboard/teleporterhub
+	sort_string = "VAAAP"
+	category = CAT_BLUE
+
+//Experimental devices
+/datum/design/research/circuit/mindswapper
+	name = "experimental mind swapper"
+	build_path = /obj/item/weapon/circuitboard/mindswapper
+	sort_string = "WAAAA"
+	category = CAT_MACHINE

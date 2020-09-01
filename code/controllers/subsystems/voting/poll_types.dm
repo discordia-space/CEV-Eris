@@ -155,8 +155,8 @@
 	Evacuate Ship
 **********************/
 /datum/poll/evac
-	name = "Evacuate Ship"
-	question = "Do you want to call evacuation and restart the round?"
+	name = "Initiate Bluespace Jump"
+	question = "Do you want to initiate a bluespace jump and restart the round?"
 	time = 120
 	minimum_win_percentage = 0.6
 	cooldown = 20 MINUTES
@@ -223,13 +223,13 @@
 #undef MINIMUM_VOTE_LIFETIME
 
 /datum/vote_choice/evac
-	text = "Abandon ship!"
+	text = "Initiate a bluespace jump!"
 
 /datum/vote_choice/evac/on_win()
-	evacuation_controller.call_evacuation(null, TRUE, TRUE, FALSE, TRUE)
+	evacuation_controller.call_evacuation(null, FALSE, TRUE, FALSE, TRUE)
 
 /datum/vote_choice/noevac
-	text = "Stay aboard"
+	text = "No need to depart yet!"
 
 
 

@@ -77,6 +77,10 @@ What is the naming convention for planes or layers?
 
 	#define LYING_HUMAN_LAYER 3.8 //0 on bay
 
+	//discordia-space/CEV-Eris/issues/2051
+	#define ABOVE_LYING_MOB_LAYER 3.85 
+	#define ABOVE_LYING_HUMAN_LAYER 3.85 
+
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
 #define SPACE_LAYER 1.8
 //#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define

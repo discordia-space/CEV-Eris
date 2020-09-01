@@ -19,7 +19,6 @@
 	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 50
-	chance = 33
 
 /datum/ritual/cruciform/base/relief/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.add_chemical_effect(CE_PAINKILLER, 10)
@@ -31,7 +30,6 @@
 	phrase = "Panem nostrum cotidianum da nobis hodie"
 	desc = "Litany of piligrims, helps better withstand hunger."
 	power = 50
-	chance = 33
 
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	H.nutrition += 100
@@ -44,7 +42,6 @@
 	phrase = "Deus meus ut quid dereliquisti me"
 	desc = "Call for help, that other cruciform bearers can hear."
 	power = 50
-	chance = 60
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
 	for(var/mob/living/carbon/human/target in disciples)
@@ -60,7 +57,7 @@
 /datum/ritual/cruciform/base/reveal
 	name = "Reveal Adversaries"
 	phrase = "Et fumus tormentorum eorum ascendet in saecula saeculorum: nec habent requiem die ac nocte, qui adoraverunt bestiam, et imaginem ejus, et si quis acceperit caracterem nominis ejus."
-	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps, and sometimes let you sense a changeling."
+	desc = "Gain knowledge of your surroundings, to reveal evil in people and places. Can tell you about hostile creatures around you, rarely can help you spot traps, and sometimes let you sense a carrion."
 	power = 35
 
 /datum/ritual/cruciform/base/reveal/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
@@ -86,9 +83,11 @@
 		was_triggired = TRUE
 	if (prob(20))
 		for(var/mob/living/carbon/human/target in range(14, H))
-			if(target.mind && target.mind.changeling)
-				to_chat(H, SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat."))
-				was_triggired = TRUE
+			for(var/organ in target.organs)
+				if (organ in subtypesof(/obj/item/organ/internal/carrion))
+					to_chat(H, SPAN_DANGER("Something's ire is upon you! Twisted and evil mind touches you for a moment, leaving you in cold sweat."))
+					was_triggired = TRUE
+					break
 	if (!was_triggired)
 		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
 	return TRUE

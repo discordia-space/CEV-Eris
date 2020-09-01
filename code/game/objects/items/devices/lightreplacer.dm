@@ -119,7 +119,7 @@
 
 /obj/item/device/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
 	charge += amount
-	if(charge > 6)
+	if(charge > 3)
 		AddUses(1)
 		charge = 0
 

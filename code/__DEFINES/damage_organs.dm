@@ -7,6 +7,7 @@
 #define CLONE     "clone"
 #define HALLOSS   "halloss"
 #define BLAST	  "blast"
+#define PSY       "psy"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -59,6 +60,12 @@
 #define BP_POLYP    "polyp segment"
 #define BP_ANCHOR   "anchoring ligament"
 #define BP_ACETONE  "acetone reactor"
+
+// Carrion Organs.
+#define BP_SPCORE       "spider core"
+#define BP_MAW          "carrion maw"
+#define BP_SPINNERET     "carrion spinneret"
+#define BP_CHEMICALS    "chemmical vessel"
 
 // Robo Organs.
 #define BP_POSIBRAIN	"posibrain"

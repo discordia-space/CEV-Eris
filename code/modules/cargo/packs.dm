@@ -176,8 +176,10 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/laser,
 				/obj/item/weapon/gun/energy/taser,
-				/obj/item/weapon/gun/energy/taser)
-	cost = 5000
+				/obj/item/weapon/gun/energy/taser,
+				/obj/item/weapon/gun/energy/nt_svalinn,
+				/obj/item/weapon/gun/energy/nt_svalinn)
+	cost = 6000
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
@@ -703,15 +705,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	crate_name = "Particle Accelerator crate"
 
 /datum/supply_pack/mech_ripley
-	name = "exosuit assembly crate (\"Ripley\" APLU)"
+	name = "exosuit assembly crate"
 	contains = list(
 		/obj/item/mech_equipment/drill,
 		/obj/item/mech_equipment/clamp,
 		/obj/item/mech_equipment/light,
-		/obj/item/mech_component/sensors/powerloader,
-		/obj/item/mech_component/chassis/powerloader,
-		/obj/item/mech_component/manipulators/powerloader,
-		/obj/item/mech_component/propulsion/powerloader,
+		/obj/item/mech_component/sensors/cheap,
+		/obj/item/mech_component/chassis/cheap,
+		/obj/item/mech_component/manipulators/cheap,
+		/obj/item/mech_component/propulsion/cheap,
 		/obj/item/robot_parts/robot_component/exosuit_control,
 		/obj/item/robot_parts/robot_component/armour/exosuit
 	)
@@ -980,6 +982,27 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate/scicrate
 	crate name = "Emergency Floodlight Crate"
 	group = "Medical / Science"
+
+/datum/supply_pack/nanites
+	name = "Raw Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
+	)
+	cost = 1500
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	containertype = /obj/structure/closet/crate/medical
+
+/datum/supply_pack/uncapnanites
+	name = "Raw Uncapped Nanites"
+	contains = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
+	)
+	cost = 2000
+	crate_name = "Raw Nanites Container"
+	group = "Medical / Science"
+	contraband = TRUE
+	containertype = /obj/structure/closet/crate/medical
 
 //----------------------------------------------
 //-----------------HYDROPONICS------------------
@@ -1475,23 +1498,14 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
 
-/datum/supply_pack/nanites
-	name = "Raw Nanites"
-	contains = list(
-		/obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
-	)
-	cost = 1500
-	crate_name = "Raw Nanites Container"
-	group = "Medical / Science"
-	containertype = /obj/structure/closet/crate/medical
-
-/datum/supply_pack/uncapnanites
-	name = "Raw Uncapped Nanites"
-	contains = list(
-		/obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites
-	)
-	cost = 2000
-	crate_name = "Raw Nanites Container"
-	group = "Medical / Science"
-	contraband = TRUE
-	containertype = /obj/structure/closet/crate/medical
+/datum/supply_pack/randomised/cartons
+	num_contained = 2
+	contains = list(/obj/item/weapon/storage/fancy/cigcartons,
+				/obj/item/weapon/storage/fancy/cigcartons/dromedaryco,
+				/obj/item/weapon/storage/fancy/cigcartons/killthroat,
+				/obj/item/weapon/storage/fancy/cigcartons/homeless)
+	name = "Cigarettes Cartons"
+	cost = 1200
+	crate_name = "Cigarettes Cartons Crate"
+	containertype = /obj/structure/closet/crate
+	group = "Supply"

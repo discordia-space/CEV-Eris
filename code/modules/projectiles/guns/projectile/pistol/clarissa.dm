@@ -15,7 +15,7 @@
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	gun_tags = list(GUN_SILENCABLE)
-	damage_multiplier = 0.7
+	damage_multiplier = 1
 	recoil_buildup = 19
 
 	init_firemodes = list(

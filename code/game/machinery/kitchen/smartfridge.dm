@@ -176,7 +176,7 @@
 		S.dryness += drying_power * (rand(0.85, 1.15))
 		if (S.dryness >= 1)
 			if(S.dried_type == S.type || !S.dried_type)
-				S.dry = 1
+				S.dry = TRUE
 				S.name = "dried [S.name]"
 				S.color = "#AAAAAA"
 			else

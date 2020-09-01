@@ -21,6 +21,7 @@
 
 	//self-recharging
 	var/self_recharge = FALSE		//if set, the weapon will recharge itself
+	var/disposable = FALSE
 	var/use_external_power = FALSE	//if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
 	var/recharge_time = 4
 	var/charge_tick = 0
@@ -41,6 +42,10 @@
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
 	if(self_recharge)
+		cell = new cell_type(src)
+		START_PROCESSING(SSobj, src)
+	update_icon()
+	if(disposable)
 		cell = new cell_type(src)
 		START_PROCESSING(SSobj, src)
 	update_icon()
@@ -116,16 +121,20 @@
 		update_wear_icon()
 
 /obj/item/weapon/gun/energy/MouseDrop(over_object)
-	if(!self_recharge)
-		if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-			cell = null
-			update_icon()
-	else
+	if(disposable)
+		to_chat(usr, SPAN_WARNING("[src] is a disposable, its batteries cannot be removed!."))
+	else if(self_recharge)
 		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
+	else if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
+		cell = null
+		update_icon()
 
 /obj/item/weapon/gun/energy/attackby(obj/item/C, mob/living/user)
 	if(self_recharge)
 		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries."))
+		return
+	if(disposable)
+		to_chat(usr, SPAN_WARNING("[src] is a disposable gun, it doesn't need more batteries."))
 		return
 
 	if(cell)

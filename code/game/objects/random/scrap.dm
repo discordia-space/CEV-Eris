@@ -19,7 +19,7 @@
 						/obj/structure/scrap/science/large
 					))
 
-/obj/random/scrap/dense_weighted/low_chance
+/obj/random/scrap/dense_even/low_chance
 	name = "low chance random trash"
 	icon_state = "junk-red-low"
 	spawn_nothing_percentage = 70

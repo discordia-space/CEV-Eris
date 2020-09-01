@@ -8,6 +8,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 	price_tag = 200
+	style = 1
 
 /*
  * Vests
@@ -205,6 +206,19 @@
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 
+/obj/item/clothing/suit/armor/greatcoat/german_overcoat
+	name = "Oberth Republic uniform overcoat"
+	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
+	icon_state = "germancoat"
+	item_state = "germancoat"
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 45,
+		bomb = 15,
+		bio = 0,
+		rad = 0
+	)
 
 /*
  * Heavy Armor Types
@@ -234,6 +248,7 @@
 	)
 	equip_delay = 2 SECONDS
 	price_tag = 250
+	style = 0
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"

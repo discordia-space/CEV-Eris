@@ -110,6 +110,7 @@
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
 	reagent_type = "Alchohol"
+	var/list/taste_tag = list()
 
 /datum/reagent/ethanol/touch_mob(mob/living/L, amount)
 	if(istype(L))

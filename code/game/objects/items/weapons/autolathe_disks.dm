@@ -326,7 +326,8 @@
 		/datum/design/bioprinter/medical/advanced/bruise,
 		/datum/design/bioprinter/medical/advanced/ointment,
 
-		/datum/design/autolathe/gun/nt_sprayer
+		/datum/design/autolathe/gun/nt_sprayer,
+		/datum/design/autolathe/gun/plasma/martyr
 	)
 
 // Same as the other NT disk, minus the medical designs and encryption key. Should spawn in public access bioprinters if they get added by any chance.
@@ -566,6 +567,10 @@
 		/datum/design/autolathe/cell/small/excelsior,
 		/datum/design/autolathe/device/excelsiormine,				//security
 		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/prosthesis/excelsior/l_arm,         //prostheses
+		/datum/design/autolathe/prosthesis/excelsior/r_arm,
+		/datum/design/autolathe/prosthesis/excelsior/l_leg,
+		/datum/design/autolathe/prosthesis/excelsior/r_leg,
 		/datum/design/autolathe/device/implanter,					//misc
 		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -1016,6 +1021,16 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
+		/datum/design/autolathe/cell/medium/high,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_svalinn
+	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
+	icon_state = "neotheology"
+
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/nt_svalinn = 3,
 		/datum/design/autolathe/cell/small/high,
 	)
 

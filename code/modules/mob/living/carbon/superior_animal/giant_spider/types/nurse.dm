@@ -126,7 +126,7 @@
 									O.forceMove(C)
 
 								for(var/mob/living/M in targetTurf)
-									if((M.stat == CONSCIOUS) || istype(M, /mob/living/carbon/superior_animal/giant_spider))
+									if((M.stat == CONSCIOUS) || istype(M, /mob/living/carbon/superior_animal/giant_spider) || is_carrion(M))
 										continue
 									large_cocoon = 1
 

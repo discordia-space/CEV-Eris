@@ -265,7 +265,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	.=..()
 
 /obj/structure/scrap/attack_generic(mob/user)
-	if (isliving(user))
+	if (isliving(user) && loot)
 		loot.open(user)
 	.=..()
 
@@ -368,7 +368,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	parts_icon = 'icons/obj/structures/scrap/food_trash.dmi'
 	loot_list = list(
 		/obj/random/junkfood = 5,
-		/obj/random/junkfood,
 		/obj/random/booze,
 		/obj/item/stack/rods/random,
 		/obj/item/weapon/material/shard,

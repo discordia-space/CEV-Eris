@@ -210,7 +210,7 @@
 		check_heat(C)
 
 /obj/effect/shower/proc/check_heat(mob/M as mob)
-	if(!master.on || master.watertemp == "normal")
+	if(!master || !master.on || master.watertemp == "normal")
 		return
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M

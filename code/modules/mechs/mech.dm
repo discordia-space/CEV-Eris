@@ -1,4 +1,3 @@
-
 // Big stompy robots.
 /mob/living/exosuit
 	name = "exosuit"

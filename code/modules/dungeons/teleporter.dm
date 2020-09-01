@@ -236,11 +236,11 @@
 
 		for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
 			victims_to_teleport += R
-
-		for(var/mob/living/M in victims_to_teleport)
-			M.x = target.x
-			M.y = target.y
-			M.z = target.z
+			
+		for(var/obj/structure/closet/C in range(8, src))//Clostes as well, for transport and storage
+			victims_to_teleport += C
+		for(var/atom/movable/M in victims_to_teleport)
+			M.forceMove(get_turf(target))
 			sleep(1)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(loc))

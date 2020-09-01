@@ -11,11 +11,11 @@
 	for(var/obj/structure/closet/L in hear(7, get_turf(src)))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
-				bang(get_turf(src), M)
+				flashbang_bang(get_turf(src), M)
 
 
 	for(var/mob/living/carbon/M in hear(7, get_turf(src)))
-		bang(get_turf(src), M)
+		flashbang_bang(get_turf(src), M)
 
 	for(var/obj/effect/blob/B in hear(8,get_turf(src)))       		//Blob damage here
 		var/damage = round(30/(get_dist(B,get_turf(src))+1))
@@ -27,8 +27,8 @@
 	qdel(src)
 	return
 
-/obj/item/weapon/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
-	to_chat(M, SPAN_DANGER("BANG"))								// Called during the loop that bangs people in lockers/containers and when banging
+/obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG") //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
+	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
 

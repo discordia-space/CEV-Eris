@@ -180,20 +180,26 @@
 		if(o && o.status & ORGAN_SPLINTED)
 			msg += "<span class='warning'>[T.He] [T.has] a splint on [T.his] [o.name]!</span>\n"
 
+	if(!wear_suit && !w_uniform && !(T == src))
+		if(locate(/obj/item/weapon/implant/carrion_spider) in src)
+			msg += SPAN_DANGER("[T.He] [T.has] a strange growth on [T.his] chest!") + "\n"
+
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] small halfling!\n"
 
 	var/distance = get_dist(usr,src)
 	if(isghost(usr) || usr.stat == DEAD) // ghosts can see anything
 		distance = 1
-	if (src.stat)
+	if(src.stat || (status_flags & FAKEDEATH))
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>\n"
-		if((stat == DEAD || src.losebreath) && distance <= 3)
+		if((stat == DEAD || src.losebreath || (status_flags & FAKEDEATH)) && distance <= 3)
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>\n"
 		if(ishuman(usr) && !usr.stat && Adjacent(usr))
 			usr.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
 		if(distance<=1 && do_mob(usr,src,15,progress=0))
-			if(pulse() == PULSE_NONE)
+			if(status_flags & FAKEDEATH)
+				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse and [T.his] soul has departed...</span>")
+			else if(pulse() == PULSE_NONE)
 				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>")
 			else
 				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] a pulse!</span>")

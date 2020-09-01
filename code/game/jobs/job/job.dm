@@ -94,6 +94,9 @@
 		return
 
 	//give them an account in the station database
+	if(H.job == "Vagabond") // Vagabound do not get an account.
+		H.mind.store_memory("As a freelancer you do not have a bank account.")
+		return
 	var/species_modifier = (H.species ? economic_species_modifier[H.species.type] : 2)
 	if(!species_modifier)
 		species_modifier = economic_species_modifier[/datum/species/human]
@@ -165,6 +168,8 @@
 	. = setup_restricted
 	for(var/category in options)
 		var/datum/category_item/setup_option/option = SScharacter_setup.setup_options[category][options[category]]
+		if(!option)
+			continue
 		if(type in option.restricted_jobs)
 			return TRUE
 		if(type in option.allowed_jobs)

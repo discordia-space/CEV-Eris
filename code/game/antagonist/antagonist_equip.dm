@@ -74,3 +74,4 @@
 
 /datum/antagonist/proc/spawn_uplink(mob/living/carbon/human/traitor_mob, amount = DEFAULT_TELECRYSTAL_AMOUNT)
 	setup_uplink_source(traitor_mob, amount)
+

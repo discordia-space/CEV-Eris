@@ -9,8 +9,6 @@
  *      Toy mechs
  *		Snap pops
  *		Water flower
- *      Therapy dolls
- *      Toddler doll
  *      Inflatable duck
  *		Action figures
  *		Plushies
@@ -19,10 +17,10 @@
 
 
 /obj/item/toy
-	throwforce = 0
+	throwforce = NONE
 	throw_speed = 4
 	throw_range = 20
-	force = 0
+	force = NONE
 
 
 /*
@@ -480,243 +478,78 @@
  */
 
 /obj/item/toy/figure
-	name = "Completely Glitched action figure"
-	desc = "A \"Space Life\" brand... wait, what the hell is this thing? It seems to be requesting the sweet release of death."
-	icon_state = "assistant"
+	name = "generic figurine"
+	desc = "It seems to be almost glitched through reality."
+	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
 
-/obj/item/toy/figure/cmo
-	name = "Biolab Officer action figure"
-	desc = "A \"Space Life\" brand Biolab Officer action figure."
-	icon_state = "cmo"
+/obj/item/toy/figure/excelsior
+	name = "\"Excelsior\" figurine"
+	desc = "A curiously unbranded figurine of a Space Soviet, adorned in their iconic armor. There is still a price tag on the back of the base, six-hundred credits, people collect these things? \
+	\"Ever Upward!\""
+	icon_state = "excelsior"
 
-/obj/item/toy/figure/assistant
-	name = "Assistant action figure"
-	desc = "A \"Space Life\" brand Assistant action figure."
-	icon_state = "assistant"
+/obj/item/toy/figure/serbian
+	name = "mercenary figurine"
+	desc = "A curiously unbranded figurine, the olive drab a popular pick for many independent Serbian mercenary outfits. Rocket launcher not included."
+	icon_state = "serbian"
 
-/obj/item/toy/figure/atmos
-	name = "Technomancer Atmosphericist action figure"
-	desc = "A \"Space Life\" brand Technomancer Atmosphericist action figure."
-	icon_state = "atmos"
+/obj/item/toy/figure/acolyte
+	name = "acolyte figurine"
+	desc = "Church of NeoTheology \"New Faith Life\" brand figurine of an acolyte, hooded both physically and spiritually from that which would lead them astray."
+	icon_state = "acolyte"
 
-/obj/item/toy/figure/bartender
-	name = "Bartender action figure"
-	desc = "A \"Space Life\" brand Bartender action figure."
-	icon_state = "bartender"
+/obj/item/toy/figure/carrion
+	name = "carrion figurine"
+	desc = "A curiously unbranded figurine depicting a grotesque head of flesh, the Human features seem almost underdeveloped, its skull bulging outwards, mouth agape with torn flesh. \
+	Whoever made this certainly knew how to thin their paints."
+	icon_state = "carrion"
 
-/obj/item/toy/figure/borg
-	name = "Cyborg action figure"
-	desc = "A \"Space Life\" brand Cyborg action figure."
-	icon_state = "borg"
+/obj/item/toy/figure/roach
+	name = "roach figurine"
+	desc = "Upon the base is an erected \"Roachman\", its arms outstretched, with more additional roach hands besides them. This is likely the one thing most universally recognized in popular media. \
+	The plaque is covered in hundreds of scratch marks, eliminating any further knowledge of it or its brand."
+	icon_state = "roach"
 
-/obj/item/toy/figure/gardener
-	name = "Gardener action figure"
-	desc = "A \"Space Life\" brand Gardener action figure."
-	icon_state = "botanist"
+/obj/item/toy/figure/vagabond
+	name = "vagabond figurine"
+	desc = "An Aster's \"Space Life\" brand figurine showcasing the form of a random deplorable, wearing one of the ship's uniforms, and an orange bandana. \
+	Must of been custom-made to commemorate the Eris' doomed voyage."
+	icon_state = "vagabond"
 
-/obj/item/toy/figure/captain
-	name = "Captain action figure"
-	desc = "A \"Space Life\" brand Captain action figure."
-	icon_state = "captain"
+/obj/item/toy/figure/rooster
+	name = "rooster figurine"
+	desc = "\"Space Vice\" brand figurine, there is no further manufacturer information. It's a man wearing a rooster mask, and a varsity jacket with the letter \"B\" emblazoned on the front. \
+	\"Do you like hurting other people?\""
+	icon_state = "rooster"
 
-/obj/item/toy/figure/cargotech
-	name = "Guild Technician action figure"
-	desc = "A \"Space Life\" brand Guild Technician action figure."
-	icon_state = "cargotech"
+/obj/item/toy/figure/barking_dog
+	name = "barking dog figurine"
+	desc = "A metal soldier with the mask of a hound stands upon the base, the plaque seems smeared with caked grime, but despite this you make out a rare double-quote. \
+	\"A dog barks on its master's orders, lest its pack runs astray.\" \"Whatever the task, the grim dog mask would tell you that your life was done.\""
+	icon_state = "barking_dog"
 
-/obj/item/toy/figure/ce
-	name = "Technomancer Exultant action figure"
-	desc = "A \"Space Life\" brand Technomancer Exultant action figure."
-	icon_state = "ce"
+/obj/item/toy/figure/red_soldier
+	name = "red soldier figurine"
+	desc = "A curiously unbranded figurine of a red soldier fighting in the tides of war, their humanity hidden by a gas mask. \"Why do we fight? To win the war, of course.\""
+	icon_state = "red_soldier"
 
-/obj/item/toy/figure/chaplain
-	name = "Monochurch Preacher action figure"
-	desc = "A \"Space Life\" brand Monochurch Preacher action figure."
-	icon_state = "chaplain"
+/obj/item/toy/figure/metacat
+	name = "meta-cat figurine"
+	desc = "A curiously unbranded figurine depicting an anthropomorphic cat in a voidsuit, the small plaque claims this to be one of two. \"Always in silent pair, through distance or unlikelihood.\""
+	icon_state = "metacat"
 
-/obj/item/toy/figure/chef
-	name = "Chef action figure"
-	desc = "A \"Space Life\" brand Chef action figure."
-	icon_state = "chef"
+/obj/item/toy/figure/shitcurity
+	name = "shitcurity officer figurine"
+	desc = "An Aster's \"Space Life\" brand figurine of a classic redshirt of \"Nanotrasen's finest\". Their belly distends out into an obvious beer gut, revealing no form of manufacturer bias what-so-ever. \
+	\"I joined just to kill people.\""
+	icon_state = "shitcurity"
 
-/obj/item/toy/figure/chemist
-	name = "Chemist action figure"
-	desc = "A \"Space Life\" brand Chemist action figure."
-	icon_state = "chemist"
-
-/obj/item/toy/figure/clown
-	name = "Clown action figure"
-	desc = "A \"Space Life\" brand Clown action figure."
-	icon_state = "clown"
-
-/obj/item/toy/figure/corgi
-	name = "Corgi action figure"
-	desc = "A \"Space Life\" brand Corgi action figure."
-	icon_state = "ian"
-
-/obj/item/toy/figure/detective
-	name = "Inspector action figure"
-	desc = "A \"Space Life\" brand Inspector action figure."
-	icon_state = "detective"
-
-/obj/item/toy/figure/dsquad
-	name = "Space Commando action figure"
-	desc = "A \"Space Life\" brand Space Commando action figure."
-	icon_state = "dsquad"
-
-/obj/item/toy/figure/engineer
-	name = "Technomancer action figure"
-	desc = "A \"Space Life\" brand Technomancer action figure."
-	icon_state = "engineer"
-
-/obj/item/toy/figure/geneticist
-	name = "Geneticist action figure"
-	desc = "A \"Space Life\" brand Geneticist action figure, which was recently dicontinued."
-	icon_state = "geneticist"
-
-/obj/item/toy/figure/hop
-	name = "First Officer action figure"
-	desc = "A \"Space Life\" brand First Officer action figure."
-	icon_state = "hop"
-
-/obj/item/toy/figure/hos
-	name = "Ironhammer Commander action figure"
-	desc = "A \"Space Life\" brand Ironhammer Commander action figure."
-	icon_state = "hos"
-
-/obj/item/toy/figure/qm
-	name = "Guild Merchant action figure"
-	desc = "A \"Space Life\" brand Guild Merchant action figure."
-	icon_state = "qm"
-
-/obj/item/toy/figure/janitor
-	name = "Janitor action figure"
-	desc = "A \"Space Life\" brand Janitor action figure."
-	icon_state = "janitor"
-
-/obj/item/toy/figure/agent
-	name = "Internal Affairs Agent action figure"
-	desc = "A \"Space Life\" brand Internal Affairs Agent action figure."
-	icon_state = "agent"
-
-/obj/item/toy/figure/librarian
-	name = "Librarian action figure"
-	desc = "A \"Space Life\" brand Librarian action figure."
-	icon_state = "librarian"
-
-/obj/item/toy/figure/md
-	name = "Medical Doctor action figure"
-	desc = "A \"Space Life\" brand Medical Doctor action figure."
-	icon_state = "md"
-
-/obj/item/toy/figure/mime
-	name = "Mime action figure"
-	desc = "A \"Space Life\" brand Mime action figure."
-	icon_state = "mime"
-
-/obj/item/toy/figure/miner
-	name = "Guild Miner action figure"
-	desc = "A \"Space Life\" brand Guild Miner action figure."
-	icon_state = "miner"
-
-/obj/item/toy/figure/ninja
-	name = "Space Ninja action figure"
-	desc = "A \"Space Life\" brand Space Ninja action figure."
-	icon_state = "ninja"
-
-/obj/item/toy/figure/wizard
-	name = "Wizard action figure"
-	desc = "A \"Space Life\" brand Wizard action figure."
-	icon_state = "wizard"
-
-/obj/item/toy/figure/rd
-	name = "Expedition Overseer action figure"
-	desc = "A \"Space Life\" brand Expedition Overseer action figure."
-	icon_state = "rd"
-
-/obj/item/toy/figure/roboticist
-	name = "Roboticist action figure"
-	desc = "A \"Space Life\" brand Roboticist action figure."
-	icon_state = "roboticist"
-
-/obj/item/toy/figure/scientist
-	name = "Scientist action figure"
-	desc = "A \"Space Life\" brand Scientist action figure."
-	icon_state = "scientist"
-
-/obj/item/toy/figure/syndie
-	name = "Doom Operative action figure"
-	desc = "A \"Space Life\" brand Doom Operative action figure."
-	icon_state = "syndie"
-
-/obj/item/toy/figure/secofficer
-	name = "Ironhammer Operative action figure"
-	desc = "A \"Space Life\" brand Ironhammer Operative action figure."
-	icon_state = "secofficer"
-
-/obj/item/toy/figure/warden
-	name = "Gunnery Sergeant action figure"
-	desc = "A \"Space Life\" brand Gunnery Sergeant action figure."
-	icon_state = "warden"
-
-/obj/item/toy/figure/psychologist
-	name = "Psychiatrist action figure"
-	desc = "A \"Space Life\" brand Psychiatrist action figure."
-	icon_state = "psychologist"
-
-/obj/item/toy/figure/paramedic
-	name = "Paramedic action figure"
-	desc = "A \"Space Life\" brand Paramedic action figure."
-	icon_state = "paramedic"
-
-/obj/item/toy/therapy_red
-	name = "red therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is red."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "therapyred"
-	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = ITEM_SIZE_TINY
-
-/obj/item/toy/therapy_purple
-	name = "purple therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is purple."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "therapypurple"
-	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = ITEM_SIZE_TINY
-
-/obj/item/toy/therapy_blue
-	name = "blue therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is blue."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "therapyblue"
-	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = ITEM_SIZE_TINY
-
-/obj/item/toy/therapy_yellow
-	name = "yellow therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is yellow."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "therapyyellow"
-	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = ITEM_SIZE_TINY
-
-/obj/item/toy/therapy_orange
-	name = "orange therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is orange."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "therapyorange"
-	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = ITEM_SIZE_TINY
-
-/obj/item/toy/therapy_green
-	name = "green therapy doll"
-	desc = "A toy for therapeutic and recreational purposes. This one is green."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "therapygreen"
-	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = ITEM_SIZE_TINY
+/obj/item/toy/figure/metro_patrolman
+	name = "metro patrolman figurine"
+	desc = "The plaque seems flaked with rust residue, \"London Metro\" brand it reads. The man wears some kind of enforcer's uniform, with the acronym \"VPP\" on their left shoulder and cap. \
+	\"Abandoned for Escalation, the patrolman grumbles.\""
+	icon_state = "metro_patrolman"
 
 /*
  * Plushies
@@ -803,11 +636,6 @@
 	name = "spider plush"
 	desc = "A plushie of a fuzzy spider! It has eight legs - all the better to hug you with."
 	icon_state = "spiderplushie"
-
-/obj/item/toy/plushie/farwa
-	name = "farwa plush"
-	desc = "A farwa plush doll. It's soft and comforting!"
-	icon_state = "farwaplushie"
 
 //Toy cult sword
 /obj/item/toy/cultsword

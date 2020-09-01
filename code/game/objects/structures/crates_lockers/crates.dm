@@ -338,3 +338,9 @@
 	desc = "A secure metallic crate."
 	name = "Secure metallic crate"
 	icon_state = "serbcrate_gray"
+
+/obj/structure/closet/crate/germancrate
+	desc = "A secure metallic crate."
+	name = "Secure metallic crate"
+	icon_state = "germancrate"
+

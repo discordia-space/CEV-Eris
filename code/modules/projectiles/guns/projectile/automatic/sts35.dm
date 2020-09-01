@@ -20,7 +20,7 @@
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound 	= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 1.3
+	damage_multiplier = 1.2
 	recoil_buildup = 8
 	one_hand_penalty = 15 //automatic rifle level
 
@@ -28,7 +28,7 @@
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
-		BURST_5_ROUND
+		BURST_3_ROUND
 		)
 
 

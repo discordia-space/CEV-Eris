@@ -717,7 +717,8 @@ There are 9 wires.
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
-	ui_interact(user)
+	if(!isblitzshell(user))
+		ui_interact(user)
 
 /obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
 	var/data[0]
@@ -1098,8 +1099,14 @@ There are 9 wires.
 		var/obj/item/weapon/tool/T = forced
 		if (istype(T) && T.item_flags & SILENT)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force open airlocks silently
+		else if (istype(T) && T.item_flags & LOUD)
+			playsound(src.loc, open_sound_unpowered, 500, 1, 10) //Loud tools can force open airlocks LOUDLY
 		else
 			playsound(src.loc, open_sound_unpowered, 70, 1, -1)
+
+	var/obj/item/weapon/tool/T = forced
+	if (istype(T) && T.item_flags & HONKING)
+		playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1237,8 +1244,14 @@ There are 9 wires.
 		var/obj/item/weapon/tool/T = forced
 		if (istype(T) && T.item_flags & SILENT)
 			playsound(src.loc, open_sound_unpowered, 3, 1, -5) //Silenced tools can force airlocks silently
+		else if (istype(T) && T.item_flags & LOUD)
+			playsound(src.loc, open_sound_unpowered, 500, 1, 10) //Loud tools can force open airlocks LOUDLY
 		else
 			playsound(src.loc, open_sound_unpowered, 70, 1, -2)
+
+	var/obj/item/weapon/tool/T = forced
+	if (istype(T) && T.item_flags & HONKING)
+		playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
 
 	..()
 

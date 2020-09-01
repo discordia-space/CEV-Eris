@@ -55,6 +55,7 @@
 #define GUN_UPGRADE_DAMAGE_CLONE "clone_damage"
 #define GUN_UPGRADE_DAMAGE_HALLOSS "hallucination_damage"
 #define GUN_UPGRADE_DAMAGE_RADIATION "radiation_damage"
+#define GUN_UPGRADE_DAMAGE_PSY "psy_damage"
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 
@@ -108,4 +109,5 @@
 					/obj/random/credits/c1000 = 3,\
 					/obj/random/exosuit_equipment = 3,\
 					/obj/random/cloth/holster = 4,\
-					/obj/item/stash_spawner = 4)
+					/obj/item/stash_spawner = 4,\
+					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)
