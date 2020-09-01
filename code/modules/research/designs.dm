@@ -166,9 +166,33 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/bag_holding
 	name = "'Bag of Holding', an infinite capacity bag prototype"
-	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighting nothing. It's a shame the bag itself is pretty heavy."
+	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighing nothing. It's a shame the bag itself is pretty heavy."
 	build_path = /obj/item/weapon/storage/backpack/holding
 	sort_string = "VAEAA"
+
+/datum/design/research/item/belt_holding
+	name = "'Belt of Holding', an infinite capacity belt prototype"
+	desc = "Using localized pockets of bluespace this belt prototype offers incredible storage capacity with the contents weighing nothing."
+	build_path = /obj/item/weapon/storage/belt/holding
+	sort_string = "VAEAB"
+
+/datum/design/research/item/pouch_holding
+	name = "'Pouch of Holding', an infinite capacity pouch prototype"
+	desc = "Using localized pockets of bluespace this pouch prototype offers incredible storage capacity with the contents weighing nothing."
+	build_path = /obj/item/weapon/storage/pouch/holding
+	sort_string = "VAEAC"
+
+/datum/design/research/item/trashbag_holding
+	name = "'Trashbag of Holding', an infinite capacity trashbag prototype"
+	desc = "Using localized pockets of bluespace this trashbag prototype offers incredible storage capacity with the contents weighing nothing."
+	build_path = /obj/item/weapon/storage/bag/trash/holding
+	sort_string = "VAEAD"
+
+/datum/design/research/item/oresatchel_holding
+	name = "'Ore satchel of Holding', an infinite capacity ore satchel prototype"
+	desc = "Using localized pockets of bluespace this ore satchel prototype offers incredible storage capacity with the contents weighing nothing."
+	build_path = /obj/item/weapon/storage/bag/ore/holding
+	sort_string = "VAEAE"
 
 /datum/design/research/item/binaryencrypt
 	name = "Binary encryption key"

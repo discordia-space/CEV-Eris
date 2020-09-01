@@ -403,7 +403,7 @@
 			if(sheets_amount_to_transphere)
 				var/total_transphere_from_stack = 0
 				var/i = 1
-				while(i <= sheets_amount_to_transphere)
+				while(i <= sheets_amount_to_transphere && i <= B.amount)
 					reagents.add_reagent("biomatter", B.biomatter_in_sheet)
 					total_transphere_from_stack += B.biomatter_in_sheet
 					i++

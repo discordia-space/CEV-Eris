@@ -194,11 +194,9 @@
 	if(tool_upgrades[UPGRADE_DEGRADATION_MULT])
 		T.degradation *= tool_upgrades[UPGRADE_DEGRADATION_MULT]
 	if(tool_upgrades[UPGRADE_FORCE_MULT])
-		T.force *= tool_upgrades[UPGRADE_FORCE_MULT]
-		T.switched_on_force *= tool_upgrades[UPGRADE_FORCE_MULT]
+		T.force_upgrade_mults += tool_upgrades[UPGRADE_FORCE_MULT] - 1
 	if(tool_upgrades[UPGRADE_FORCE_MOD])
-		T.force += tool_upgrades[UPGRADE_FORCE_MOD]
-		T.switched_on_force += tool_upgrades[UPGRADE_FORCE_MOD]
+		T.force_upgrade_mods += tool_upgrades[UPGRADE_FORCE_MOD]
 	if(tool_upgrades[UPGRADE_FUELCOST_MULT])
 		T.use_fuel_cost *= tool_upgrades[UPGRADE_FUELCOST_MULT]
 	if(tool_upgrades[UPGRADE_POWERCOST_MULT])
@@ -224,6 +222,8 @@
 				prefix = "large-cell"
 			if(/obj/item/weapon/cell/small)
 				T.suitable_cell = /obj/item/weapon/cell/medium
+	T.force = initial(T.force) * T.force_upgrade_mults + T.force_upgrade_mods
+	T.switched_on_force = initial(T.switched_on_force) * T.force_upgrade_mults + T.force_upgrade_mods
 	T.prefixes |= prefix
 
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/weapon/gun/G)

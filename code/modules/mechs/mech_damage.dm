@@ -23,7 +23,7 @@
 /mob/living/exosuit/getarmor(def_zone, type)
 	. = ..()
 	if(body?.armor_plate)
-		var/body_armor = body.armor_plate?.armor[type]
+		var/body_armor = body.armor_plate?.armor.getRating(type)
 		if(body_armor) . += body_armor
 
 /mob/living/exosuit/updatehealth()

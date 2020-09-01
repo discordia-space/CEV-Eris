@@ -388,14 +388,16 @@
 /datum/breakdown/common/power_hungry/proc/check_shock()
 	finished = TRUE
 
+#define ACTVIEW_ONE TRUE
+#define ACTVIEW_BOTH 2
 
 /datum/breakdown/negative/glassification
 	name = "Glassification"
-	duration = 5 MINUTES
+	duration = 2 MINUTES
 	restore_sanity_post = 40
 	var/time
-	var/cooldown = 15 SECONDS
-	var/time_view = 5 SECONDS
+	var/cooldown = 20 SECONDS
+	var/time_view = 1 SECONDS
 	var/active_view = FALSE
 	var/mob/living/carbon/human/target
 	start_messages = list("You start to see through everything. Your mind expands.")
@@ -410,16 +412,8 @@
 /datum/breakdown/negative/glassification/update()
 	if(world.time < time)
 		return TRUE
-	if(active_view)
-		holder.owner.remoteviewer = FALSE
-		holder.owner.remoteview_target = null
-		holder.owner.reset_view(0)
-		target.remoteviewer = FALSE
-		target.remoteview_target = null
-		target.reset_view(0)
-		target = null
-		active_view = FALSE
-		time = world.time + cooldown
+	if(active_view) //Just in case the callback doesn't catch
+		reset_views()
 		return TRUE
 	. = ..()
 	if(!.)
@@ -428,16 +422,27 @@
 	if(targets.len)
 		target = pick(targets)
 		holder.owner.remoteviewer = TRUE
-		holder.owner.remoteview_target = target
-		holder.owner.reset_view(target)
+		holder.owner.set_remoteview(target)
 		to_chat(holder.owner, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
-		to_chat(target, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
-		target.remoteviewer = TRUE
-		target.remoteview_target = holder.owner
-		target.reset_view(holder.owner)
-		target.sanity.changeLevel(-rand(5,10))
-		active_view = TRUE
+		active_view = ACTVIEW_ONE
+		if(target.sanity.level < 50)
+			target.remoteviewer = TRUE
+			target.set_remoteview(holder.owner)
+			to_chat(target, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
+			active_view = ACTVIEW_BOTH
+		target.sanity.changeLevel(-rand(5,10)) //This phenomena will prove taxing on the viewed regardless
+		addtimer(CALLBACK(src, .proc/reset_views, TRUE), time_view)
 		time = world.time + time_view
+
+/datum/breakdown/negative/glassification/proc/reset_views()
+	holder.owner.set_remoteview()
+	holder.owner.remoteviewer = FALSE
+	if(active_view == ACTVIEW_BOTH)
+		target.set_remoteview()
+		target.remoteviewer = FALSE
+	target = null
+	active_view = FALSE
+	time = world.time + cooldown
 
 /datum/breakdown/common/herald
 	name = "Herald"
