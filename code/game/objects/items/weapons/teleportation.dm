@@ -23,7 +23,7 @@
 	var/portal_type = /obj/effect/portal
 	var/portal_fail_chance = null
 	var/cell_charge_per_attempt = 33
-	var/entropy_value = 1  //for bluespace entropy
+	var/entropy_value = 2  //for bluespace entropy
 
 /obj/item/weapon/hand_tele/Initialize()
 	. = ..()
@@ -98,7 +98,7 @@
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
 	var/calibration_required = TRUE
-	entropy_value = 2 //for bluespace entropy
+	entropy_value = 4 //for bluespace entropy
 
 /obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
 	..()
@@ -141,7 +141,7 @@
 	slot_flags = SLOT_BACK
 	var/entropy_value = 1 //for bluespace entropy
 
-/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user)
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
 	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
 	if(prob(5))

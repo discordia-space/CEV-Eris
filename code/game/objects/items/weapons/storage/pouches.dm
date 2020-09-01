@@ -266,3 +266,7 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
+
+/obj/item/weapon/storage/pouch/holding/New()
+	..()
+	bluespace_entropy(3, get_turf(src))

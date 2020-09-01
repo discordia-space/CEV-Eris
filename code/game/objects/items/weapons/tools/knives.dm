@@ -112,6 +112,7 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_BLUESPACE = 4)
 	var/mob/living/embedded
 	var/last_teleport
+	var/entropy_value = 3
 
 /obj/item/weapon/tool/knife/dagger/bluespace/on_embed(mob/user)
 	embedded = user
@@ -129,7 +130,7 @@
 				last_teleport = world.time
 				playsound(T, "sparks", 50, 1)
 				anim(T,embedded,'icons/mob/mob.dmi',,"phaseout",,embedded.dir)
-				go_to_bluespace(get_turf(embedded), 1, TRUE, embedded, T)
+				go_to_bluespace(get_turf(embedded), entropy_value, TRUE, embedded, T)
 				anim(T,embedded,'icons/mob/mob.dmi',,"phasein",,embedded.dir)
 
 /obj/item/weapon/tool/knife/dagger/assassin

@@ -252,6 +252,8 @@
 	name = "Broken necklace"
 	desc = "A broken necklace that has a blue crystal as a trinket."
 	icon_state = "broken_necklace"
+	origin_tech = list(TECH_BLUESPACE = 9)
+	var/blink_range = 7
 	oddity_stats = list(
 		STAT_COG = 9,
 		STAT_VIG = 9,
@@ -260,4 +262,24 @@
 		STAT_BIO = 9,
 		STAT_MEC = 9
 	)
+	var/cooldown
+	var/entropy_value = 4
+
+/obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
+	if(world.time < cooldown)
+		return
+	cooldown = world.time + 1.5 SECONDS
+	user.visible_message(SPAN_WARNING("[user] crushes [src]!"), SPAN_DANGER("You crush [src]!"))
+	new /obj/item/bluespace_dust(user.loc)
+	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	sparks.set_up(5, 0, get_turf(user))
+	sparks.start()
+	playsound(src.loc, "sparks", 50, 1)
+	playsound(src.loc, 'sound/effects/phasein.ogg', 25, 1)
+	blink_mob(user)
+	user.unEquip(src)
+
+/obj/item/weapon/oddity/broken_necklace/proc/blink_mob(mob/living/L)
+	var/turf/T = get_random_secure_turf_in_range(L, blink_range, 1)
+	go_to_bluespace(get_turf(L), entropy_value, FALSE, L, T)
 

@@ -6,31 +6,32 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 	do_teleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
 
 /proc/bluespace_entropy(max_value=1, turf/T, minor_distortion=FALSE)
+	var/entropy_value = rand(0, max_value)
 	if(minor_distortion)
-		if(prob(rand(1, max_value)))
-			GLOB.bluespace_entropy -= rand(30, 60)
+		if(prob(entropy_value/5))
+			GLOB.bluespace_entropy -= rand(25, 50)
 			bluespace_distorsion(T, minor_distortion)
 		else
-			GLOB.bluespace_entropy += rand(0, max_value)
+			GLOB.bluespace_entropy += entropy_value
 	else
-		GLOB.bluespace_entropy += rand(0, max_value)
-		var/entropy_cap = rand(100, 300)
+		GLOB.bluespace_entropy += entropy_value
+		var/entropy_cap = rand(150, 300)
 		if(GLOB.bluespace_entropy >= entropy_cap)
 			bluespace_distorsion(T, minor_distortion)
-			GLOB.bluespace_entropy -= rand(100, 200)
+			GLOB.bluespace_entropy -= rand(150, 225)
 
 /proc/bluespace_distorsion(turf/T, minor_distortion=FALSE)
-	var/bluespace_event = rand(1, 105)
+	var/bluespace_event = rand(1, 100)
 	switch(bluespace_event)
-		if(1 to 33)
+		if(1 to 23)
 			trash_buble(T, minor_distortion)
-		if(33 to 66)
+		if(23 to 46)
 			bluespace_roaches(T, minor_distortion)
-		if(66 to 99)
+		if(46 to 69)
 			bluespace_stranger(T, minor_distortion)
-		if(99 to 102)
+		if(69 to 92)
 			bluespace_cristals_event(T, minor_distortion)
-		if(102 to 105)
+		if(92 to 100)
 			bluespace_gift(T, minor_distortion)
 
 
@@ -51,9 +52,7 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 
 	if(turfs.len)
 		picked = pick(turfs)
-	else if(inner_range >=2)
-		picked = get_random_secure_turf_in_range(origin, outer_range, 1)
-	if(!picked)
+	else
 		picked = get_random_turf_in_range(origin, outer_range)
 	if(picked)
 		return picked
@@ -76,12 +75,12 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 	var/list/areas = list()
 	var/area/A = get_area(T)
 	var/distortion_amount = 1
-	var/amount = rand(2,4)
+	var/amount = rand(2,3)
 	if(A && !minor_distortion)
 		areas = list(A)
 		if(A in ship_areas)
 			areas = ship_areas.Copy()
-		distortion_amount = rand(2, 5)
+		distortion_amount = rand(2,3)
 	for(var/j = 1 to distortion_amount)
 		var/turf/Ttarget = T
 		if(areas.len)
@@ -98,7 +97,7 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 				sparks.start()
 
 /proc/bluespace_gift(turf/T, minor_distortion)
-	var/second_gift = rand(2,8)
+	var/second_gift = rand(2,10)
 	var/area/A = get_area(T)
 	if(A && !minor_distortion)
 		if(A in ship_areas)
@@ -108,17 +107,19 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 		if(newT)
 			T = newT
 	T = get_random_secure_turf_in_range(T, 4)
-	if(minor_distortion)
-		second_gift = round(second_gift/2)
-	if(!GLOB.bluespace_gift && T)
+	if(!T)
+		return
+	if(!GLOB.bluespace_gift && !minor_distortion)
 		new /obj/item/weapon/oddity/broken_necklace(T)
 		GLOB.bluespace_gift = TRUE
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, T)
 		sparks.start()
+		GLOB.bluespace_entropy -= rand(25, 50)
+		log_and_message_admins("Bluespace gif spawned: [jumplink(T)]") //unique item
 	else
 		second_gift *= 10
-	if(prob(second_gift) && T)
+	if(prob(second_gift))
 		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
 		new O(T)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
@@ -138,7 +139,7 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 	var/mob/living/simple_animal/hostile/stranger/S = new /mob/living/simple_animal/hostile/stranger(T)
 	if(minor_distortion && prob(95))
 		S.maxHealth = S.maxHealth/2
-		S.health = health/2
+		S.health = S.health/2
 		S.prob_tele = S.prob_tele/2
 		S.empy_cell = TRUE
 
@@ -146,12 +147,12 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 	var/list/areas = list()
 	var/area/A = get_area(T)
 	var/distortion_amount = 1
-	var/amount = rand(4,16)
+	var/amount = rand(5,12)
 	if(A && !minor_distortion)
 		areas = list(A)
 		if(A in ship_areas)
 			areas = ship_areas.Copy()
-		distortion_amount = rand(2, 6)
+		distortion_amount = rand(2,4)
 	for(var/j=1, j<=distortion_amount, j++)
 		var/turf/Ttarget = get_random_secure_turf_in_range(T, 4)
 		if(areas.len)
@@ -172,7 +173,7 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 		areas = list(A)
 		if(A in ship_areas)
 			areas = ship_areas.Copy()
-		distortion_amount = rand(4, 10)
+		distortion_amount = rand(2, 10)
 	for(var/j=1, j<=distortion_amount, j++)
 		var/turf/Ttarget = T
 		if(areas.len)
@@ -181,7 +182,7 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 			if(Ttarget2)
 				Ttarget = Ttarget2
 		for(var/i=1, i<=amount, i++)
-			Ttarget = get_random_secure_turf_in_range(Ttarget, 5)
+			Ttarget = get_random_secure_turf_in_range(Ttarget, 6)
 			if(Ttarget)
 				new /obj/random/junk(Ttarget)
 				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()

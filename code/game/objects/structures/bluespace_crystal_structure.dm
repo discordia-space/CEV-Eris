@@ -29,13 +29,13 @@
 
 /obj/structure/bs_crystal_structure/New()
 	..()
-
 	for(var/turf/simulated/floor/F in range(2, src.loc))
 		if(!F.is_wall && !F.is_hole)
 			destination_candidates.Add(F)
 
 	next_teleportation = pick(timer_min, timer_max)
 	teleportation_timer = addtimer(CALLBACK(src, .proc/teleport_random_item), next_teleportation)
+	bluespace_entropy(entropy_value, get_turf(src))
 
 /obj/structure/bs_crystal_structure/Destroy()
 	..()

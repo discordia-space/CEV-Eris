@@ -18,12 +18,14 @@
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_DIAMOND = 5, MATERIAL_PLASMA = 5)
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
+	var/entropy_value = 2
 
 
 /obj/item/bluespace_crystal/New()
 	..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
+	bluespace_entropy(entropy_value, get_turf(src), TRUE)
 //	create_reagents(10)
 //	reagents.add_reagent("bluespace_dust", blink_range)
 
@@ -41,7 +43,7 @@
 
 /obj/item/bluespace_crystal/proc/blink_mob(mob/living/L)
 	var/turf/T = get_random_turf_in_range(L, blink_range, 1)
-	go_to_bluespace(get_turf(L), 1, TRUE, L, T)
+	go_to_bluespace(get_turf(L), entropy_value, TRUE, L, T)
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)
 	if(!..()) // not caught in mid-air

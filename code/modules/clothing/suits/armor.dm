@@ -368,7 +368,7 @@
 		bio = 0,
 		rad = 0
 	)
-	var/entropy_value = 1
+	var/entropy_value = 2
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(prob(50))
@@ -383,7 +383,7 @@
 		return PROJECTILE_FORCE_MISS
 	return FALSE
 
-/obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
+/obj/item/clothing/suit/armor/reactive/attack_self(mob/user)
 	src.active = !( src.active )
 	if (src.active)
 		to_chat(user, "\blue The reactive armor is now active.")

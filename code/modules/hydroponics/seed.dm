@@ -362,7 +362,7 @@
 		var/turf/picked = get_random_turf_in_range(TLoc, outer_teleport_radius, inner_teleport_radius)
 
 		if(picked)
-			go_to_bluespace(TLoc, 1, TRUE, target, picked)
+			go_to_bluespace(TLoc, 2, TRUE, target, picked)
 			impact = 1
 
 	return impact

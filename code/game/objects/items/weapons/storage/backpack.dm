@@ -84,7 +84,11 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 2
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
-/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/storage/backpack/holding/New()
+	..()
+	bluespace_entropy(6, get_turf(src))
+
+/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
 		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(W)
@@ -92,7 +96,7 @@
 	..()
 
 	//Please don't clutter the parent storage item with stupid hacks.
-/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W, stop_messages = 0)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
 		return TRUE
 	return ..()
