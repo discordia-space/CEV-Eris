@@ -277,7 +277,6 @@
 	playsound(src.loc, "sparks", 50, 1)
 	playsound(src.loc, 'sound/effects/phasein.ogg', 25, 1)
 	blink_mob(user)
-	user.unEquip(src)
 
 /obj/item/weapon/oddity/broken_necklace/proc/blink_mob(mob/living/L)
 	var/turf/T = get_random_secure_turf_in_range(L, blink_range, 1)
