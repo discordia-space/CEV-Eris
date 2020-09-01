@@ -32,9 +32,6 @@
 	var/turf/T = get_turf(src)
 	explosion(T,explosion_d_size,explosion_h_size,explosion_l_size,explosion_f_size)
 	fragment_explosion(T, spread_radius, fragment_type, num_fragments, null, damage_step)
-	for(var/mob/living/l in range(10))
-		if(l in view())
-			l.show_message("<span class=\"warning\">\the mine activates and it expodes!.</span>", 2)
 	if(src)
 		qdel(src)
 
@@ -70,7 +67,10 @@
 /obj/item/weapon/mine/attack_hand(mob/user as mob)
 	if (deployed)
 		user.visible_message(SPAN_DANGER("You attempt to pick up the [src] only to hear a beep as it explodes in your hands!"))
-		explode()	
+		explode()
+		for(var/mob/living/l in range(10))
+			if(l in view())
+				l.show_message("<span class=\"warning\">\the [mob] to pick up the [src] only to hear a beep as it explodes!.</span>", 2)
 		return
 	.=..()
 
@@ -96,6 +96,9 @@
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
 			user.visible_message(SPAN_DANGER("You hit the [src] with [I] and it explodes!"))
 			explode()
+			for(var/mob/living/l in range(10))
+				if(l in view())
+					l.show_message("<span class=\"warning\">\the [mob]  hit the [src] with [I] and it explodes!", 2)
 		return
 
 
