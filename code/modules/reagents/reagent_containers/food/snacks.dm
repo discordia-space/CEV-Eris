@@ -1159,7 +1159,7 @@
 	nutriment_amt = 5
 	preloaded_reagents = list("amatoxin" = 3, "psilocybin" = 1)
 	cooked = TRUE
-	taste_tag = list(SWEET_FOOD, UMAMI_FOOD)
+	taste_tag = list(SWEET_FOOD, UMAMI_FOOD,CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/plump_pie
 	name = "plump pie"
@@ -2845,7 +2845,7 @@
 	nutriment_amt = 35
 	bitesize = 2
 	preloaded_reagents = list("protein" = 5)
-	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD)
+	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD,CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/mushroompizzaslice
 	name = "Mushroompizza slice"
@@ -2856,7 +2856,7 @@
 	center_of_mass = list("x"=18, "y"=13)
 	preloaded_reagents = list("nutriment" = 5, "protein" = 1)
 	cooked = TRUE
-	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD)
+	taste_tag = list(CHEESE_FOOD,UMAMI_FOOD,CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	name = "Vegetable pizza"
