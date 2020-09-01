@@ -253,7 +253,6 @@
 	desc = "A broken necklace that has a blue crystal as a trinket."
 	icon_state = "broken_necklace"
 	origin_tech = list(TECH_BLUESPACE = 9)
-	var/blink_range = 7
 	oddity_stats = list(
 		STAT_COG = 9,
 		STAT_VIG = 9,
@@ -263,22 +262,44 @@
 		STAT_MEC = 9
 	)
 	var/cooldown
-	var/entropy_value = 4
+	var/entropy_value = 5
+	var/blink_range = 8
+
+/obj/item/weapon/oddity/broken_necklace/New()
+	..()
+	GLOB.bluespace_gift += 1
+	GLOB.bluespace_entropy -= rand(25, 50)
 
 /obj/item/weapon/oddity/broken_necklace/attack_self(mob/user)
 	if(world.time < cooldown)
 		return
-	cooldown = world.time + 1.5 SECONDS
+	cooldown = world.time + 3 SECONDS
 	user.visible_message(SPAN_WARNING("[user] crushes [src]!"), SPAN_DANGER("You crush [src]!"))
-	new /obj/item/bluespace_dust(user.loc)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-	sparks.set_up(5, 0, get_turf(user))
+	sparks.set_up(3, 0, get_turf(user))
 	sparks.start()
-	playsound(src.loc, "sparks", 50, 1)
-	playsound(src.loc, 'sound/effects/phasein.ogg', 25, 1)
-	blink_mob(user)
+	var/turf/T = get_random_secure_turf_in_range(user, blink_range, 2)
+	go_to_bluespace(get_turf(user), entropy_value, FALSE, user, T)
+	for(var/obj/item/weapon/grab/G in user.contents)
+		if(G.affecting)
+			go_to_bluespace(get_turf(user), entropy_value, FALSE, G.affecting, locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
+	if(prob(0.5))
+		new /obj/item/bluespace_dust(user.loc)
+		GLOB.bluespace_gift = FALSE
+		bluespace_entropy(50,get_turf(user))
+		qdel(src)
 
-/obj/item/weapon/oddity/broken_necklace/proc/blink_mob(mob/living/L)
-	var/turf/T = get_random_secure_turf_in_range(L, blink_range, 1)
-	go_to_bluespace(get_turf(L), entropy_value, FALSE, L, T)
-
+/obj/item/weapon/oddity/broken_necklace/throw_impact(atom/hit_atom)
+	if(!..()) // not caught in mid-air
+		visible_message(SPAN_NOTICE("[src] fizzles upon impact!"))
+		var/turf/T = get_turf(hit_atom)
+		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		sparks.set_up(3, 0, T)
+		sparks.start()
+		var/turf/NT = get_random_turf_in_range(hit_atom, blink_range, 2)
+		go_to_bluespace(T, entropy_value, FALSE, hit_atom, NT)
+		if(prob(1))
+			new /obj/item/bluespace_dust(T)
+			GLOB.bluespace_gift -= 1
+			bluespace_entropy(50,T)
+			qdel(src)

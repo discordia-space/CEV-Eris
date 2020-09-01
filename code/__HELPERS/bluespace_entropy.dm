@@ -1,5 +1,5 @@
 GLOBAL_VAR_INIT(bluespace_entropy, 0)
-GLOBAL_VAR_INIT(bluespace_gift, FALSE)
+GLOBAL_VAR_INIT(bluespace_gift, 0)
 
 /proc/go_to_bluespace(turf/T, entropy=1, minor_distortion=FALSE, ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
 	bluespace_entropy(entropy, T, minor_distortion)
@@ -111,11 +111,9 @@ GLOBAL_VAR_INIT(bluespace_gift, FALSE)
 		return
 	if(!GLOB.bluespace_gift && !minor_distortion)
 		new /obj/item/weapon/oddity/broken_necklace(T)
-		GLOB.bluespace_gift = TRUE
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, T)
 		sparks.start()
-		GLOB.bluespace_entropy -= rand(25, 50)
 		log_and_message_admins("Bluespace gif spawned: [jumplink(T)]") //unique item
 	else
 		second_gift *= 10
