@@ -1016,12 +1016,12 @@ var/list/rank_prefix = list(\
 	data["style"] = get_total_style()
 	data["min_style"] = MIN_HUMAN_SYLE
 	data["max_style"] = MAX_HUMAN_STYLE
-	data["rest"] = sanity.resting
-	data["insight_rest"] = sanity.insight_rest
 	data["sanity"] = sanity.level
 	data["sanity_max_level"] = sanity.max_level
 	data["insight"] = sanity.insight
 	data["desires"] = sanity.desires
+	data["rest"] = sanity.resting
+	data["insight_rest"] = sanity.insight_rest
 	return data
 
 /mob/living/carbon/human/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -1151,7 +1151,7 @@ var/list/rank_prefix = list(\
 	status_flags |= REBUILDING_ORGANS
 
 	var/obj/item/organ/internal/carrion/core = internal_organs_by_name[BP_SPCORE]
-	var/list/organs_to_readd = list() 
+	var/list/organs_to_readd = list()
 	if(core) //kinda wack, this whole proc should be remade
 		for(var/obj/item/organ/internal/carrion/C in internal_organs)
 			C.removed_mob()
@@ -1580,3 +1580,7 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		return FALSE
+
+/mob/living/carbon/human/proc/set_remoteview(var/atom/A)
+	remoteview_target = A
+	reset_view(A)

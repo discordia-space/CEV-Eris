@@ -78,14 +78,14 @@
 	var/search_range = 4
 	var/search_type = "view"
 
-/datum/spawnpoint/New(var/name)
+/datum/spawnpoint/New(name)
 	src.name = name
 	..()
 
 /datum/spawnpoint/proc/get_spawn_locations()
 	return get_free_turfs()
 
-/datum/spawnpoint/proc/can_spawn(var/mob/M, var/job, var/report = FALSE)
+/datum/spawnpoint/proc/can_spawn(mob/M, job, report = FALSE)
 	if(restrict_job && !(job in restrict_job))
 		return FALSE
 	if(disallow_job && (job in disallow_job))
@@ -95,7 +95,7 @@
 			return FALSE
 	return TRUE
 
-/datum/spawnpoint/proc/get_free_turfs(var/update = FALSE)
+/datum/spawnpoint/proc/get_free_turfs(update = FALSE)
 	if (!update && turfs.len)
 		return turfs
 
@@ -112,7 +112,7 @@
 			turfs |= T
 	return turfs
 
-/datum/spawnpoint/proc/check_unsafe_spawn(var/mob/living/spawner, var/turf/spawn_turf, var/confirm = TRUE)
+/datum/spawnpoint/proc/check_unsafe_spawn(mob/living/spawner, turf/spawn_turf, confirm = TRUE)
 	//var/radlevel = SSradiation.get_rads_at_turf(spawn_turf)
 	var/airstatus = is_turf_atmos_unsafe(spawn_turf)
 	//if(airstatus || radlevel > 0)
@@ -135,8 +135,10 @@
 
 // Put mob at one of spawn turfs
 // return FALSE if player decline to spawn in not living-friendly environmental
-/datum/spawnpoint/proc/put_mob(var/mob/M, var/ignore_environment = FALSE, var/announce = TRUE)
+/datum/spawnpoint/proc/put_mob(mob/M, ignore_environment = FALSE, announce = TRUE)
 	var/list/free_turfs = get_free_turfs()
+	if(!free_turfs.len)
+		return FALSE
 	var/turf/spawn_turf = pick(free_turfs)
 
 	if(!ignore_environment && !check_unsafe_spawn(M, spawn_turf))
@@ -174,7 +176,7 @@
 		//TODO: Power checks here?
 		. |= C
 
-/datum/spawnpoint/cryo/can_spawn(var/mob/M, var/job, var/report = FALSE)
+/datum/spawnpoint/cryo/can_spawn(mob/M, job, report = FALSE)
 	. = ..()
 	if (.)
 		var/list/cryopods = get_spawn_locations()
@@ -182,11 +184,11 @@
 			return TRUE
 	return FALSE
 
-/datum/spawnpoint/cryo/get_free_turfs(var/update = FALSE)
+/datum/spawnpoint/cryo/get_free_turfs(update = FALSE)
 	return null
 	//This doesn't spawn people on turfs
 
-/datum/spawnpoint/cryo/put_mob(var/mob/M, var/ignore_environment = FALSE, var/announce = TRUE)
+/datum/spawnpoint/cryo/put_mob(mob/M, ignore_environment = FALSE, announce = TRUE)
 	var/list/cryopods = get_spawn_locations()
 	if (cryopods.len)
 		var/obj/machinery/cryopod/C = pick(cryopods)
@@ -230,7 +232,7 @@
 
 		. |= C
 
-/datum/spawnpoint/dormitory/can_spawn(var/mob/M, var/job, var/report = FALSE)
+/datum/spawnpoint/dormitory/can_spawn(mob/M, job, report = FALSE)
 	. = ..()
 	if (.)
 		var/list/cryopods = get_spawn_locations()
@@ -238,11 +240,11 @@
 			return TRUE
 	return FALSE
 
-/datum/spawnpoint/dormitory/get_free_turfs(var/update = FALSE)
+/datum/spawnpoint/dormitory/get_free_turfs(update = FALSE)
 	return null
 	//This doesn't spawn people on turfs
 
-/datum/spawnpoint/dormitory/put_mob(var/mob/M, var/ignore_environment = FALSE, var/announce = TRUE)
+/datum/spawnpoint/dormitory/put_mob(mob/M, ignore_environment = FALSE, announce = TRUE)
 	var/list/beds = get_spawn_locations()
 	if (beds.len)
 		var/obj/structure/bed/C = pick(beds)

@@ -249,6 +249,13 @@
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
+	if(istype(O, /obj/machinery/portable_atmospherics/hydroponics))
+		var/obj/machinery/portable_atmospherics/hydroponics/T = O
+		T.seed = null
+		T.weedlevel = 0
+		T.pestlevel = 0
+		T.update_icon()
+		return
 
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"

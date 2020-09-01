@@ -307,7 +307,7 @@
 	/obj/item/clothing/gloves/german = 1,
 	/obj/item/clothing/head/beret/german = 1,
 	/obj/item/clothing/mask/gas/german = 1,
-	/obj/item/clothing/shoes/german = 1,
+	/obj/item/clothing/shoes/jackboots/german = 1,
 	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
 	/obj/item/clothing/under/germansuit = 1)
 

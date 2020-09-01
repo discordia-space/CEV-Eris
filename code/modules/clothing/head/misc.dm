@@ -140,6 +140,7 @@
 	name = "pirate bandana"
 	desc = "Yarr."
 	icon_state = "bandana"
+	flags_inv = BLOCKHEADHAIR
 	style = 1
 
 /obj/item/clothing/head/bowler

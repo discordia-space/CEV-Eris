@@ -1,6 +1,6 @@
 /obj/item/weapon/tool/sword/nt_sword
 	name = "Sword of Truth"
-	desc = "Sword out of unknown alloy, humming from unknown power source."
+	desc = "Sword made out of a unknown alloy, humming from an unknown power source."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "nt_sword"
 	item_state = "nt_sword"
@@ -61,7 +61,7 @@
 
 /obj/structure/nt_pedestal
 	name = "Sword of Truth Pedestal"
-	desc = "Pedestal of glorious weapon named: \"Sword of Truth\"."
+	desc = "A pedestal for a glorious weapon named the: \"Sword of Truth\"."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "nt_pedestal0"
 	anchored = TRUE

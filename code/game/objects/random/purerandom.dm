@@ -82,6 +82,7 @@
 				/obj/item/clothing/head/soft/blue = 2,
 				/obj/item/clothing/head/soft/green = 2,
 				/obj/item/clothing/head/soft/grey = 2,
+				/obj/item/clothing/mask/vape/better = 1,
 				/obj/item/device/taperecorder = 2,
 				/obj/item/weapon/storage/briefcase = 2,
 				/obj/item/weapon/storage/secure/briefcase = 2,
