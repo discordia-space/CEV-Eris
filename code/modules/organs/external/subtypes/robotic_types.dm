@@ -11,12 +11,28 @@
 	desc = "Battle hardened green and brown prosthesis, rebranded several times."
 	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 	model = "serbian"
-
+//In game prostheses
 /obj/item/organ/external/robotic/frozen_star
 	name = "\"Frozen Star\""
 	desc = "Tactical \"Frozen Star\" blue and gray prosthesis for dangerous environment."
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
+
+/obj/item/organ/external/robotic/frozen_star/l_arm
+	name = "\"Frozen Star\" Left Arm"
+	default_description = /datum/organ_description/arm/left
+
+/obj/item/organ/external/robotic/frozen_star/r_arm
+	name = "\"Frozen Star\" Right Arm"
+	default_description = /datum/organ_description/arm/right
+
+/obj/item/organ/external/robotic/frozen_star/l_leg
+	name = "\"Frozen Star\" Left Leg"
+	default_description = /datum/organ_description/leg/left
+
+/obj/item/organ/external/robotic/frozen_star/r_leg
+	name = "\"Frozen Star\" Right Leg"
+	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/technomancer
 	name = "Technomancer \"Homebrew\""
@@ -24,7 +40,22 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
 
-//In game prostheses
+/obj/item/organ/external/robotic/technomancer/l_arm
+	name = "Technomancer \"Homebrew\" Left Arm"
+	default_description = /datum/organ_description/arm/left
+
+/obj/item/organ/external/robotic/technomancer/r_arm
+	name = "Technomancer \"Homebrew\" Right Arm"
+	default_description = /datum/organ_description/arm/right
+
+/obj/item/organ/external/robotic/technomancer/l_leg
+	name = "Technomancer \"Homebrew\" Left Leg"
+	default_description = /datum/organ_description/leg/left
+
+/obj/item/organ/external/robotic/technomancer/r_leg
+	name = "Technomancer \"Homebrew\" Right Leg"
+	default_description = /datum/organ_description/leg/right
+
 /obj/item/organ/external/robotic/moebius
 	name = "\"Moebius\""
 	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
@@ -36,18 +67,23 @@
 	min_broken_damage = 40
 
 /obj/item/organ/external/robotic/moebius/l_arm
+	name = "Technomancer \"Homebrew\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/moebius/r_arm
+	name = "Technomancer \"Homebrew\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/moebius/l_leg
+	name = "Technomancer \"Homebrew\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/moebius/r_leg
+	name = "Technomancer \"Homebrew\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/moebius/groin
+	name = "Technomancer \"Homebrew\" Groin"
 	default_description = /datum/organ_description/groin
 
 /obj/item/organ/external/robotic/excelsior

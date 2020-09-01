@@ -46,6 +46,16 @@
 			/obj/item/clothing/head/collectable/slime,
 			/obj/item/clothing/head/collectable/xenom,
 			/obj/item/clothing/head/collectable/petehat
+		),
+		"Formal Wear" = list(
+			/obj/item/clothing/head/bowler,
+			/obj/item/clothing/head/that,
+			/obj/item/clothing/under/suit_jacket,
+			/obj/item/clothing/under/suit_jacket/red,
+			/obj/item/clothing/shoes/black,
+			/obj/item/clothing/shoes/black,
+			/obj/item/clothing/shoes/leather,
+			/obj/item/clothing/suit/wcoat
 		)
 	)
 

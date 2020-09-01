@@ -40,4 +40,3 @@
 			/obj/item/mech_equipment/sleeper,
 		),
 	)
-	offer_types = list()

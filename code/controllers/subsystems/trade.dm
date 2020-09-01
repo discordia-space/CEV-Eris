@@ -40,6 +40,7 @@ SUBSYSTEM_DEF(trade)
 			stations2init += s
 		s.cost_trade_stations_budget()
 		weightstationlist.Remove(s)
+		trade_stations_budget--
 	init_stations_by_list(stations2init)
 
 /datum/controller/subsystem/trade/proc

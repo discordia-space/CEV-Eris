@@ -52,5 +52,3 @@
 			/obj/item/clothing/suit/armor/laserproof,
 		),
 	)
-
-	offer_types = list()

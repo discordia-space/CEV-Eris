@@ -1,6 +1,7 @@
 #define good_data(nam, rand_list) list("name" = nam, "amount_range" = rand_list)
 #define custom_good_name(nam) good_data(nam, null)
 #define custom_good_amount_range(rand_list) good_data(null, rand_list)
+
 /datum/trade_station
 	var/name
 	var/desc
@@ -83,7 +84,7 @@
 				if(!islist(amounts_of_goods[i]))
 					amounts_of_goods[i] = list()
 				var/amount_cat = amounts_of_goods[i]
-				amount_cat["[ass.Find(path)]"] = rand(rand_args[1], rand_args[2])
+				amount_cat["[ass.Find(path)]"] = max(0, rand(rand_args[1], rand_args[2]))
 
 /datum/trade_station/proc/get_good_amount(list/cat, index)
 	if(isnum(cat))
