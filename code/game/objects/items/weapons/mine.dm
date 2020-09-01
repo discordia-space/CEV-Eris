@@ -32,7 +32,9 @@
 	var/turf/T = get_turf(src)
 	explosion(T,explosion_d_size,explosion_h_size,explosion_l_size,explosion_f_size)
 	fragment_explosion(T, spread_radius, fragment_type, num_fragments, null, damage_step)
-
+	for(var/mob/living/l in range(10))
+		if(l in view())
+			l.show_message("<span class=\"warning\">\the mine activates and it expodes!.</span>", 2)
 	if(src)
 		qdel(src)
 
