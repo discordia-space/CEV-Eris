@@ -92,7 +92,7 @@
 		return
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
-			user.visible_message(SPAN_DANGER("You hit the [src] with [obj] and it explodes!"))
+			user.visible_message(SPAN_DANGER("You hit the [src] with [I] and it explodes!"))
 			explode()
 		return
 
