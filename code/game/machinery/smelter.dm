@@ -80,7 +80,6 @@
 		O.forceMove(src)
 		if(istype(O, /obj/structure/scrap_cube))
 			current_item = O
-			less_mats = TRUE
 			return
 		var/list/materials = result_materials(O)
 		if(!materials?.len || !are_valid_materials(materials))
