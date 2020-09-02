@@ -355,7 +355,7 @@
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
 		
-    /datum/design/autolathe/device/headset_church,
+   		/datum/design/autolathe/device/headset_church,
 		/datum/design/bioprinter/leather/cash_bag
 	)
 
