@@ -1,6 +1,6 @@
 /obj/item/weapon/mine
 	name = "Excelsior Mine"
-	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a mercifully brief end to others."
+	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a mercifully brief end to others, unless they have a Pulse tool nearby"
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_BULKY
