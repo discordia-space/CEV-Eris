@@ -70,7 +70,7 @@
 		explode()
 		for(var/mob/living/l in range(10))
 			if(l in view())
-				l.show_message("<span class=\"warning\">\the [usr] to pick up the [src] only to hear a beep as it explodes!.</span>", 2)
+				l.show_message(SPAN_WARNING("\the [usr] to pick up the [src] only to hear a beep as it explodes!.</span>", 2))
 		return
 	.=..()
 
@@ -98,7 +98,7 @@
 			explode()
 			for(var/mob/living/l in range(10))
 				if(l in view())
-					l.show_message("<span class=\"warning\">\the [usr] hit the [src] with [I] and it explodes!", 2)
+					l.show_message(SPAN_WARNING("\the [usr] hit the [src] with [I] and it explodes!", 2)
 		return
 
 
