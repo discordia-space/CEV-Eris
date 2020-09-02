@@ -1,5 +1,0 @@
-author: genessee596
-delete-after: true
-changes:
-  - admin: Admin chem dispenser now has a more exhaustive list of medicines, a new
-      name, a new atompath, and new description.
