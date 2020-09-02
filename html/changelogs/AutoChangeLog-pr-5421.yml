@@ -1,0 +1,5 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - rscadd: Hitting a armed mine will make it explode
+  - bugfix: fixes mine bugs
