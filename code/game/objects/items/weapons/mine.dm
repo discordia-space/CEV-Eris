@@ -65,9 +65,15 @@
 /obj/item/weapon/mine/attack_hand(mob/user as mob)
 	if (deployed)
 		user.visible_message(
-			SPAN_DANGER("[user] attempt to pick up the [src] only to hear a beep as it explodes in your hands!"),
-			SPAN_DANGER("you attempt to pick up the [src] only to hear a beep as it explodes in your hands!"))
-		explode()
+				SPAN_DANGER("[user] extends its hand to reach the[src]!"),
+				SPAN_DANGER("you extend your arms to pick it. up, knowing that it will likely blow up when you touch it!")
+				)
+		if (do_after(user, 5))
+			user.visible_message(
+				SPAN_DANGER("[user] attempts to pick up the [src] only to hear a beep as it explodes in your hands!"),
+				SPAN_DANGER("you attempts to pick up the [src] only to hear a beep as it explodes in your hands!")
+				)
+			explode()
 	.=..()
 
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
