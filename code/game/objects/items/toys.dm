@@ -23,8 +23,8 @@
 	force = NONE
 
 	//spawn_values
-	bad_types = "/obj/item/toy"
-	rarity_value = 10
+	bad_types = /obj/item/toy
+	spawn_tags = SPAWN_TAG_TOY
 
 /*
  * Balloons
@@ -41,10 +41,10 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user)
 	return
 
-/obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user, proximity)
 	if(!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to_obj(src, 10)
@@ -53,7 +53,7 @@
 		src.update_icon()
 	return
 
-/obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
+/obj/item/toy/balloon/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
 		if(O.reagents)
 			if(O.reagents.total_volume < 1)
@@ -131,7 +131,7 @@
 		if(..(user, 2) && bullets)
 			to_chat(user, SPAN_NOTICE("It is loaded with [bullets] foam darts!"))
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I as obj, mob/user)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
 			if(bullets <= 4)
 				user.drop_item()
@@ -142,7 +142,7 @@
 				to_chat(usr, SPAN_WARNING("It's already fully loaded."))
 
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+	afterattack(atom/target as mob|obj|turf|area, mob/user, flag)
 		if(!isturf(target.loc) || target == user) return
 		if(flag) return
 
@@ -192,7 +192,7 @@
 				O.show_message(SPAN_WARNING("\The [user] realized they were out of ammo and starting scrounging for some!"), 1)
 
 
-	attack(mob/M as mob, mob/user as mob)
+	attack(mob/M as mob, mob/user)
 		src.add_fingerprint(user)
 
 // ******* Check
@@ -244,7 +244,7 @@
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user)
 		src.active = !( src.active )
 		if (src.active)
 			to_chat(user, SPAN_NOTICE("You extend the plastic blade with a quick flick of your wrist."))
@@ -329,10 +329,10 @@
 	R.my_atom = src
 	R.add_reagent("water", 10)
 
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user )
 	return
 
-/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user)
 
 	if (istype(A, /obj/item/weapon/storage/backpack ))
 		return
@@ -392,7 +392,7 @@
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 
-/obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
+/obj/item/toy/bosunwhistle/attack_self(mob/user)
 	if(cooldown < world.time - 35)
 		to_chat(user, SPAN_NOTICE("You blow on [src], creating an ear-splitting noise!"))
 		playsound(user, 'sound/misc/boatswain.ogg', 20, 1)
@@ -407,13 +407,13 @@
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
-/obj/item/toy/prize/attack_self(mob/user as mob)
+/obj/item/toy/prize/attack_self(mob/user)
 	if(cooldown < world.time - 8)
 		to_chat(user, SPAN_NOTICE("You play with [src]."))
 		playsound(user, 'sound/mechs/mechstep.ogg', 20, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(mob/user)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, SPAN_NOTICE("You play with [src]."))
@@ -570,8 +570,6 @@
 	density = TRUE
 	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
 	bad_types = "/obj/structure/plushie"
-	rarity_value = 10
-	spawn_frequency = 10
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
@@ -618,7 +616,7 @@
 	bad_types = "/obj/item/toy/plushie"
 	spawn_tags = SPAWN_TAG_PLUSHIE
 
-/obj/item/toy/plushie/attack_self(mob/user as mob)
+/obj/item/toy/plushie/attack_self(mob/user)
 	if(user.a_intent == I_HELP)
 		user.visible_message(SPAN_NOTICE("<b>\The [user]</b> hugs [src]!"),SPAN_NOTICE("You hug [src]!"))
 	else if (user.a_intent == I_HURT)

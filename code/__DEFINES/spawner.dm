@@ -21,7 +21,7 @@
 
 #define SPAWN_TAG_KNIFE "obj,item,weapon,tool,knife"
 #define SPAWN_TAG_SWORD "obj,item,weapon,tool,knife,sword"
-#define SPAWN_TAG_KNIFE_CONTRABAND "obj,item,weapon,tool,contraband"
+#define SPAWN_TAG_KNIFE_CONTRABAND "obj,item,weapon,tool,knife,contraband"
 
 // ITEMS - tools - SURGERY
 #define SPAWN_SURGERY_TOOL "surgery_tool"
@@ -38,7 +38,7 @@
 #define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
 
 // ITEMS - organ- PROSTHESIS
-#define SPAWN_OS_PROSTHETIC "os_prosthetic"
+#define SPAWN_OS_PROSTHETIC "prosthetic_os"
 
 #define SPAWN_TAG_OS_PROSTHETIC "obj,item,organ,external,prosthetic,prosthetic_os,item_tech_os,faction_os"
 
@@ -81,9 +81,9 @@
 #define SPAWN_TAG_ORE "obj,item,material,ore"
 #define SPAWN_TAG_MATERIAL_RESOURCES "obj,item,material,material_resources"
 #define SPAWN_TAG_MATERIAL_RESOURCES_RARE "obj,item,material,material_resources,material_resources_rare"
-#define SPAWN_TAG_MATERIAL_BUILDING "obj,item,material,bulding_material"
 #define SPAWN_TAG_MATERIAL_RESOURCES_BULDING "obj,item,material,bulding_material,material_resources"
-#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod"
+#define SPAWN_TAG_MATERIAL_BUILDING "obj,item,material,bulding_material"
+#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod,junk"
 #define SPAWN_TAG_ORE_TAG_JUNK "obj,item,material,ore,junk"
 
 //  MINES
@@ -110,8 +110,8 @@
 #define SPAWN_TAG_POWERCELL "obj,item,powercell"
 #define SPAWN_TAG_SMALL_POWERCELL "obj,item,powercell,small_powercell"
 #define SPAWN_TAG_MEDIUM_POWERCELL "obj,item,powercell,medium_powercell"
-#define SPAWN_TAG_LARGE_POWERCELL "obj,item,powercell,large_powercell"
 #define SPAWN_TAG_MEDIUM_POWERCELL_IH_AMMO "obj,item,powercell,medium_powercell,ammo_ih,ammo_common"
+#define SPAWN_TAG_LARGE_POWERCELL "obj,item,powercell,large_powercell"
 
 //	Items - GUNS
 #define SPAWN_GUN "gun"
@@ -136,7 +136,7 @@
 #define SPAWN_TAG_AMMO_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_common"
 #define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
 #define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun,ammo_common"
-#define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammo_ih,ammmo_storage"
+#define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammmo_storage,ammo_ih"
 
 //	Items - contraband
 #define SPAWN_CONTRABAND "contraband"
@@ -309,9 +309,10 @@
 #define SPAWN_MACHINERY "machinery"
 
 //	Structures
-#define SPAWN_STRUCTURE "obj,structure"
+#define SPAWN_STRUCTURE "structure"
 #define SPAWN_STRUCTURE_COMMON "common_structure"
 
+#define SPAWN_TAG_STRUCTURE "obj,structure"
 #define SPAWN_TAG_STRUCTURE_COMMON "obj,structure,common_structure"
 
 // Structures - ClOSET

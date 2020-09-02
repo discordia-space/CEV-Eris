@@ -26,7 +26,7 @@
 "az" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/asteroid,/area/deepmaint)
 "aA" = (/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
 "aB" = (/obj/structure/table/standard,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
-"aC" = (/obj/spawner/structures,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"aC" = (/obj/spawner/structures/common,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "aD" = (/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "aE" = (/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "aF" = (/obj/structure/table/standard,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)

@@ -88606,7 +88606,7 @@
 /turf/simulated/floor/plating,
 /area/eris/engineering/foyer)
 "dQp" = (
-/obj/spawner/structures/low_chance,
+/obj/spawner/structures/common/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dQq" = (

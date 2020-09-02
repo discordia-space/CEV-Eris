@@ -110,7 +110,7 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/spawner/pack/machine/item_to_spawn()
 	return pickweight(list(
-					/obj/spawner/structures = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/spawner/structures/common = 28, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
 					/obj/spawner/closet/tech = 6,
 					/obj/spawner/closet = 4,
@@ -136,7 +136,7 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/spawner/pack/junk_machine/item_to_spawn()
 	return pickweight(list(
-					/obj/spawner/structures = 14, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/spawner/structures/common = 14, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot = 18, //That one is also important part of the maints
 					/obj/spawner/closet/tech = 6,
 					/obj/spawner/closet = 4,
@@ -151,7 +151,7 @@ They generally give more random result and can provide more divercity in spawn.
 
 /obj/spawner/pack/junk_machine/beacon/item_to_spawn()
 	return pickweight(list(
-					/obj/spawner/structures = 7, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
+					/obj/spawner/structures/common = 7, //That one have MUCH MORE important objects for maints inside, that's why the number is hight
 					/obj/spawner/closet/maintloot/beacon = 28, //That one is also important part of the maints
 					/obj/spawner/closet/tech = 3,
 					/obj/spawner/closet = 2,

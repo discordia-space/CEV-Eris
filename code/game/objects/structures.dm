@@ -3,6 +3,8 @@
 	w_class = ITEM_SIZE_GARGANTUAN
 	spawn_frequency = 10
 	rarity_value = 10
+	spawn_tags = SPAWN_TAG_STRUCTURE
+	bad_types = /obj/structure
 	var/climbable
 	var/breakable
 	var/parts
