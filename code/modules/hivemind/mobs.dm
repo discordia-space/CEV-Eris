@@ -20,7 +20,7 @@
 	universal_speak = TRUE
 	speak_chance = 5
 	bad_types = /mob/living/simple_animal/hostile/hivemind
-	spawn_tags = SPAWN_MOB_HIVEMIND
+	spawn_tags = SPAWN_TAG_MOB_HIVEMIND
 	rarity_value = 20
 	var/malfunction_chance = 5
 	var/ability_cooldown = 30 SECONDS

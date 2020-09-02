@@ -9,6 +9,12 @@
 	rarity_value = 20
 	spawn_frequency = 10
 	bad_types = /obj/item/electronics
+	hitsound = "swing_hit"
+
+/obj/item/electronics/Bump(mob/M)
+	spawn(0)
+		..()
+	return
 
 /obj/item/electronics/circuitboard
 	name = "circuit board"

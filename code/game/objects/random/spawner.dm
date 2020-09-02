@@ -82,7 +82,7 @@
 			break
 		var/atom/T = pick(points_for_spawn)
 		var/atom/A = new build_path(T)
-		if(istype(A,/obj/machinery))
+		if(istype(A,/obj/machinery) || istype(A, /obj/structure))
 			A.set_dir(src.dir)
 		spawns.Add(A)
 		if(ismovable(A))

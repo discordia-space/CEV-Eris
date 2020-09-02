@@ -64,6 +64,9 @@
 	use_power_cost = 1.5
 	workspeed = 1.5
 	max_upgrades = 2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/hammer/mace
 	name = "mace"

@@ -22,7 +22,7 @@ AI MODULES
 	matter = list(MATERIAL_GLASS = 2, MATERIAL_GOLD = 1)
 	bad_types = /obj/item/electronics/ai_module
 	rarity_value = 40
-	var/datum/ai_laws/laws = null
+	var/datum/ai_laws/laws
 
 /obj/item/electronics/ai_module/proc/install(obj/machinery/computer/C)
 	if (istype(C, /obj/machinery/computer/aiupload))

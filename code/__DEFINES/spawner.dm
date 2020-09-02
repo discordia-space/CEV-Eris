@@ -12,7 +12,7 @@
 
 #define SPAWN_TAG_TOOL "obj,item,tool"
 #define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,advanced_tool"
-#define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,faction_os"
+#define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,onestar"
 #define SPAWN_TAG_TOOL_TAG_JUNK "obj,item,tool,junk"
 
 //	Items - tools - knife
@@ -40,7 +40,7 @@
 // ITEMS - organ- PROSTHESIS
 #define SPAWN_OS_PROSTHETIC "prosthetic_os"
 
-#define SPAWN_TAG_OS_PROSTHETIC "obj,item,organ,external,prosthetic,prosthetic_os,item_tech_os,faction_os"
+#define SPAWN_TAG_OS_PROSTHETIC "obj,item,organ,external,prosthetic,prosthetic_os,item_tech_os,onestar"
 
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"
@@ -224,7 +224,7 @@
 
 #define SPAWN_TAG_STOCK_PARTS "obj,item,stock_parts"
 #define SPAWN_TAG_STOCK_PARTS_TIER_2 "obj,item,stock_parts,science"
-#define SPAWN_TAG_STOCK_PARTS_OS "obj,item,stock_parts,stock_parts_os,item_tech_os,faction_os"
+#define SPAWN_TAG_STOCK_PARTS_OS "obj,item,stock_parts,stock_parts_os,item_tech_os,onestar"
 
 // ITEM - divice
 #define SPAWN_DIVICE "divice"
@@ -260,6 +260,7 @@
 
 #define SPAWN_TAG_DESING "obj,item,desing"
 #define SPAWN_TAG_DESING_COMMON "obj,item,desing,desing_common"
+#define SPAWN_TAG_DESING_OS "obj,item,desing,desing_os,item_tech_os,onestar"
 #define SPAWN_TAG_DESING_ADVANCED "obj,item,desing,desing_advanced"
 #define SPAWN_TAG_DESING_ADVANCED_COMMON "obj,item,desing,desing_advanced,desing_common"
 #define SPAWN_TAG_RESEARCH_POINTS "obj,item,science"
@@ -341,7 +342,7 @@
 #define SPAWN_SALVAGEABLE_AUTOLATHEABLE "structure_salvageable_autolathe"
 
 #define SPAWN_TAG_SALVAGEABLE "obj,structure,structure_salvageable"
-#define SPAWN_TAG_SALVAGEABLE_OS "obj,structure,structure_salvageable,structure_salvageable_os,faction_os"
+#define SPAWN_TAG_SALVAGEABLE_OS "obj,structure,structure_salvageable,structure_salvageable_os,onestar"
 #define SPAWN_TAG_SALVAGEABLE_AUTOLATHE "obj,structure,structure_salvageable,structure_salvageable_autolathe"
 
 // Structures - MACHINE_FRAME
@@ -365,7 +366,7 @@
 #define SPAWN_TAG_BEACON_SCRAP "obj,structure,structure_scrap,structure_beacon_scrap"
 
 
-//-encouters
+//-encounters
 #define SPAWN_ENCOUNER "encounter"
 #define SPAWN_ENCOUNTER_CRYOPOD "encounter_cryopod"
 #define SPAWN_SATELITE  "structure_satelite"
@@ -373,11 +374,11 @@
 #define SPAWN_STRANGEBEACON "strangebeacon"
 #define SPAWN_BOT_OS "bot_os"
 
-#define SPAWN_TAG_ENCOUNTER_CRYOPOD "obj,structure,encouter,encounter_cryopod"
-#define SPAWN_TAG_SATELITE "obj,structure,encouter,structure_satelite"
-#define SPAWN_TAG_OMINOUS "obj,structure,encouter,structure_ominous"
-#define SPAWN_TAG_STRANGEBEACON "obj,structure,encouter,strangebeacon"
-#define SPAWN_TAG_BOT_OS "mob,bot,bot_os,faction_os,encouter"
+#define SPAWN_TAG_ENCOUNTER_CRYOPOD "obj,structure,encounter,encounter_cryopod"
+#define SPAWN_TAG_SATELITE "obj,structure,encounter,structure_satelite"
+#define SPAWN_TAG_OMINOUS "obj,structure,encounter,structure_ominous"
+#define SPAWN_TAG_STRANGEBEACON "obj,structure,encounter,strangebeacon"
+#define SPAWN_TAG_BOT_OS "mob,bot,bot_os,onestar,encounter"
 
 //	Mobs
 #define SPAWN_MOB "mob"
@@ -391,9 +392,9 @@
 #define SPAWN_TAG_HOSTILE_MOB "mob,hostile_mob"
 #define SPAWN_TAG_FRIENDLY_MOB "mob,friendly_mob"
 #define SPAWN_TAG_SLIME "mob,slime"
-#define SPAWN_TAG_MOB_OS_CUSTODIAN "mob,hostile_mob,os_custodian"
+#define SPAWN_TAG_MOB_OS_CUSTODIAN "mob,hostile_mob,os_custodian,onestar"
 #define SPAWN_TAG_MOB_HIVEMIND "mob,hostile_mob,hivemind"
-#define SPAWN_TAG_MOB_ROOMBA "mob,hostile_mob,roomba"
+#define SPAWN_TAG_MOB_ROOMBA "mob,hostile_mob,roomba,onestar"
 
 // MOBS - ROACH
 #define SPAWN_ROACH "mob_roach"
