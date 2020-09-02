@@ -166,7 +166,7 @@
 //// Precreated bottles ////
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/gin
-	name = "Gin, Griffeater"
+	name = "Griffeater Gin"
 	desc = "A bottle of high quality gin, produced in the New London Space Station."
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
@@ -187,7 +187,7 @@
 	preloaded_reagents = list("vodka" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
-	name = "Tequilla, Caccavo Guaranteed Quality"
+	name = "Caccavo Guaranteed Quality Tequilla"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequillabottle"
 	center_of_mass = list("x"=16, "y"=3)
@@ -201,21 +201,21 @@
 	preloaded_reagents = list("nothing" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/patron
-	name = "Patron,Wrapp Artiste Patron"
+	name = "Wrapp Artiste Patron"
 	desc = "Silver laced tequilla, served in space night clubs across the galaxy."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("patron" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/rum
-	name = "Rum, Captain Pete's Cuban Spiced"
+	name = "Captain Pete's Cuban Spiced Rum"
 	desc = "This isn't just rum, oh no. It's practically GRIFF in a bottle."
 	icon_state = "rumbottle"
 	center_of_mass = list("x"=16, "y"=8)
 	preloaded_reagents = list("rum" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth
-	name = "Vermouth, Goldeneye"
+	name = "Goldeneye Vermouth"
 	desc = "Sweet, sweet dryness~"
 	icon_state = "vermouthbottle"
 	center_of_mass = list("x"=17, "y"=3)
@@ -229,21 +229,21 @@
 	preloaded_reagents = list("kahlua" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager
-	name = "Goldschlager, College Girl"
+	name = "College Girl Goldschlager"
 	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
 	icon_state = "goldschlagerbottle"
 	center_of_mass = list("x"=15, "y"=3)
 	preloaded_reagents = list("goldschlager" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
-	name = "Cognac, Chateau De Baton Premium"
+	name = "Chateau De Baton Premium Cognac"
 	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
 	icon_state = "cognacbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("cognac" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/wine
-	name = "Wine, Doublebeard Bearded Special"
+	name = "Doublebeard Bearded Special Wine"
 	desc = "A faint aura of unease and asspainery surrounds the bottle."
 	icon_state = "winebottle"
 	center_of_mass = list("x"=16, "y"=4)
@@ -264,7 +264,7 @@
 	preloaded_reagents = list("absinthe" = 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor
-	name = "Melon Liquor, Emeraldine"
+	name = "Emeraldine Melon Liquor"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
 	icon_state = "alco-green" //Placeholder.
 	center_of_mass = list("x"=16, "y"=6)
@@ -272,7 +272,7 @@
 	icon_state_empty = "alco-clear"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao
-	name = "Blue Curacao, Miss"
+	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
 	icon_state = "alco-blue" //Placeholder.
 	center_of_mass = list("x"=16, "y"=6)
@@ -280,7 +280,7 @@
 	icon_state_empty = "alco-clear"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine
-	name = "Grenadine Syrup, Briar Rose"
+	name = "Briar Rose Grenadine Syrup"
 	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 	icon_state = "grenadinebottle"
 	center_of_mass = list("x"=16, "y"=6)
