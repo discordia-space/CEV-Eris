@@ -17,7 +17,8 @@
 	var/bottlesprite = "bottle"
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
-	var/max_pill_count = 24
+	var/max_pill_count = 24 //max of pills that can be made in a bottle
+	var/max_pill_vol = 60 //max vol pills can have
 	reagent_flags = OPENCONTAINER
 
 /obj/machinery/chem_master/RefreshParts()
@@ -164,10 +165,20 @@
 						if (count > max_pill_count)
 							alert("Maximum supported pills amount is [max_pill_count]","Error.","Ok")
 							return
+						if (pillamount > max_pill_vol)
+							alert("Maximum volume supported in pills is [max_pill_vol]","Error.","Ok")
+							return
+						
 						count = CLAMP(count, 1, max_pill_count)
 					if("By volume")
 						amount_per_pill = input("Select the volume that single pill should contain.", "Max [R.total_volume]", 5) as num
 						amount_per_pill = CLAMP(amount_per_pill, 1, reagents.total_volume)
+						if (amount_per_pill > max_pill_vol)
+							alert("Maximum volume supported in pills is [max_pill_vol]","Error.","Ok")
+							return
+						if ((reagents.total_volume / amount_per_pill) > max_pill_count)
+							alert("Maximum supported pills amount is [max_pill_count]","Error.","Ok")
+							return
 					else
 						return
 			else
@@ -178,7 +189,7 @@
 					return
 				amount_per_pill = reagents.total_volume/count
 
-			if (amount_per_pill > 60) amount_per_pill = 60
+			if (amount_per_pill > max_pill_vol) amount_per_pill = max_pill_vol
 
 			var/name = sanitizeSafe(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN)
 			var/obj/item/weapon/storage/pill_bottle/PB
@@ -284,7 +295,7 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill ([max_pill_count] units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"[bottlesprite].png\" /></A>"
 		else

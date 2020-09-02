@@ -354,8 +354,8 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
-
-		/datum/design/autolathe/device/headset_church,
+		
+    /datum/design/autolathe/device/headset_church,
 		/datum/design/bioprinter/leather/cash_bag
 	)
 
@@ -1051,6 +1051,16 @@
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
 		/datum/design/autolathe/cell/medium/high,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_svalinn
+	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
+	icon_state = "neotheology"
+
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/nt_svalinn = 3,
+		/datum/design/autolathe/cell/small/high,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose

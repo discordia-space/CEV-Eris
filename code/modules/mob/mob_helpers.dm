@@ -629,19 +629,22 @@ proc/is_blind(A)
 
 /mob/proc/skill_to_evade_traps()
 	var/prob_evade = 0
+	var/base_prob_evade = 30
 	if(MOVING_DELIBERATELY(src))
-		var/base_prob_evade = 20
 		prob_evade += base_prob_evade
-		prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - get_max_w_class()/ITEM_SIZE_COLOSSAL)
-		if(stats.getPerk(PERK_SURE_STEP))
-			prob_evade += base_prob_evade*30/STAT_LEVEL_GODLIKE
-		if(stats.getPerk(PERK_RAT))
-			prob_evade += base_prob_evade
+	prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - weight_coeff())
+	if(stats.getPerk(PERK_SURE_STEP))
+		prob_evade += base_prob_evade*30/STAT_LEVEL_GODLIKE
+	if(stats.getPerk(PERK_RAT))
+		prob_evade += base_prob_evade/1.5
 	return prob_evade
 
 /mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
 	if(isliving(src))
 		var/mob/living/L = src
-		vol *= L.noise_coeff + get_max_w_class()/(ITEM_SIZE_COLOSSAL)
-		extrarange *= L.noise_coeff + get_max_w_class()/(ITEM_SIZE_COLOSSAL)
+		vol *= L.noise_coeff + weight_coeff()
+		extrarange *= L.noise_coeff + weight_coeff()
 	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)
+
+/mob/proc/weight_coeff()
+	return get_max_w_class()/(ITEM_SIZE_TITANIC)

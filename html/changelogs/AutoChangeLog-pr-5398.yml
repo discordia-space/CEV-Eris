@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - tweak: The washing machine can now be examined to see how much time it has left.
+  - balance: Washing machines now consume power
