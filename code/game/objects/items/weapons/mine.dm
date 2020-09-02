@@ -65,7 +65,7 @@
 /obj/item/weapon/mine/attack_hand(mob/user as mob)
 	if (deployed)
 		user.visible_message(
-				SPAN_DANGER("[user] extends its hand to reach the[src]!"),
+				SPAN_DANGER("[user] extends its hand to reach the [src]!"),
 				SPAN_DANGER("you extend your arms to pick it. up, knowing that it will likely blow up when you touch it!")
 				)
 		if (do_after(user, 5))
