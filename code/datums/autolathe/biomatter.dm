@@ -156,6 +156,11 @@
 	name = "Cash Bag"
 	build_path = /obj/item/weapon/storage/bag/money
 
+//[/THINGS]
+/datum/design/autolathe/gun/plasma/martyr
+	name = "NT PR \"Martyr\""
+	build_path = /obj/item/weapon/gun/energy/plasma/martyr
+
 //[MED]
 /datum/design/bioprinter/medical
 	materials = list("biomatter" = 10)
