@@ -45,13 +45,13 @@
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("[user] begin deploying \the [src]!")
+			SPAN_DANGER("you begin deploying \the [src]!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("[user] have deployed \the [src]!")
+				SPAN_DANGER("you have deployed \the [src]!")
 				)
 
 			deployed = TRUE
@@ -64,7 +64,9 @@
 
 /obj/item/weapon/mine/attack_hand(mob/user as mob)
 	if (deployed)
-		user.visible_message(SPAN_DANGER("[user] attempt to pick up the [src] only to hear a beep as it explodes in your hands!"))
+		user.visible_message(
+			SPAN_DANGER("[user] attempt to pick up the [src] only to hear a beep as it explodes in your hands!"),
+			SPAN_DANGER("you attempt to pick up the [src] only to hear a beep as it explodes in your hands!"))
 		explode()
 	.=..()
 
@@ -88,7 +90,9 @@
 		return
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
-			user.visible_message(SPAN_DANGER("the [src] is hit with [I] and it explodes!"))
+			user.visible_message(
+				SPAN_DANGER("the [src] is hit with [I] and it explodes!"),
+				SPAN_DANGER("You hit the [src] with [I] and it explodes!"))
 			explode()
 		return
 
