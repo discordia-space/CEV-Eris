@@ -109,7 +109,7 @@ obj/structure/salvageable/computer/Initialize()
 		/obj/item/weapon/stock_parts/micro_laser/high = 20,
 		/obj/item/weapon/stock_parts/matter_bin/adv = 20,
 		/obj/item/weapon/stock_parts/matter_bin/adv = 20,
-		/obj/item/weapon/electronics/circuitboard/autolathe = 5,
+		/obj/item/electronics/circuitboard/autolathe = 5,
 		/obj/item/stack/material/steel{amount = 20} = 40,
 		/obj/item/stack/material/glass{amount = 20} = 40,
 		/obj/item/stack/material/plastic{amount = 20} = 40,

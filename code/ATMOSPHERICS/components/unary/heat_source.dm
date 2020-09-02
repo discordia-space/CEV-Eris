@@ -10,7 +10,7 @@
 	anchored = TRUE
 	use_power = 0
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
-	circuit = /obj/item/weapon/electronics/circuitboard/unary_atmos/heater
+	circuit = /obj/item/electronics/circuitboard/unary_atmos/heater
 
 	var/max_temperature = T20C + 680
 	var/internal_volume = 600	//L

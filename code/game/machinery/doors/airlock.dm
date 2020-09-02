@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/justzap = 0
 	var/safe = 1
 	normalspeed = 1
-	var/obj/item/weapon/electronics/airlock/electronics = null
+	var/obj/item/electronics/airlock/electronics = null
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
@@ -996,7 +996,7 @@ There are 9 wires.
 						da.update_state()
 
 						if(operating == -1 || (stat & BROKEN))
-							new /obj/item/weapon/electronics/circuitboard/broken(src.loc)
+							new /obj/item/electronics/circuitboard/broken(src.loc)
 							operating = 0
 						else
 							if (!electronics) create_electronics()
@@ -1345,9 +1345,9 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/create_electronics()
 	//create new electronics
 	if (secured_wires)
-		src.electronics = new/obj/item/weapon/electronics/airlock/secure( src.loc )
+		src.electronics = new/obj/item/electronics/airlock/secure( src.loc )
 	else
-		src.electronics = new/obj/item/weapon/electronics/airlock( src.loc )
+		src.electronics = new/obj/item/electronics/airlock( src.loc )
 
 	//update the electronics to match the door's access
 	if(!src.req_access)

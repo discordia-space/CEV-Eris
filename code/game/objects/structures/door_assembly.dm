@@ -8,7 +8,7 @@
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
-	var/obj/item/weapon/electronics/airlock/electronics = null
+	var/obj/item/electronics/airlock/electronics = null
 	var/airlock_type = "" //the type path of the airlock once completed
 	var/glass_type = "/glass"
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
@@ -115,7 +115,7 @@
 				src.state = 1
 				to_chat(user, SPAN_NOTICE("You wire the airlock."))
 
-	else if(istype(I, /obj/item/weapon/electronics/airlock) && state == 1)
+	else if(istype(I, /obj/item/electronics/airlock) && state == 1)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 

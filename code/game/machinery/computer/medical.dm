@@ -7,7 +7,7 @@
 	icon_screen = "medcomp"
 	light_color = COLOR_LIGHTING_GREEN_MACHINERY
 	req_one_access = list(access_moebius, access_forensics_lockers)
-	circuit = /obj/item/weapon/electronics/circuitboard/med_data
+	circuit = /obj/item/electronics/circuitboard/med_data
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
 	var/rank = null

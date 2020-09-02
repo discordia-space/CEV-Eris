@@ -8,7 +8,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	circuit = /obj/item/weapon/electronics/circuitboard/autodoc
+	circuit = /obj/item/electronics/circuitboard/autodoc
 	use_power = 1
 	idle_power_usage = 60
 	active_power_usage = 10000

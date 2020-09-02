@@ -160,12 +160,12 @@
 	layer = BELOW_OBJ_LAYER
 	density = FALSE
 	anchored = FALSE
-	circuit = /obj/item/weapon/electronics/circuitboard/reagentgrinder
+	circuit = /obj/item/electronics/circuitboard/reagentgrinder
 	nano_template = "grinder.tmpl"
 	var/inuse = 0
 	var/obj/item/weapon/reagent_containers/beaker = null
 
-/obj/item/weapon/electronics/circuitboard/reagentgrinder
+/obj/item/electronics/circuitboard/reagentgrinder
 	name = T_BOARD("reagent grinder")
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/portable
@@ -262,11 +262,11 @@
 	icon = 'icons/obj/machines/grinder.dmi'
 	icon_state = "grinder"
 	reagent_flags = NO_REACT
-	circuit = /obj/item/weapon/electronics/circuitboard/industrial_grinder
+	circuit = /obj/item/electronics/circuitboard/industrial_grinder
 	limit = 25
 	nano_template = "industrial_grinder.tmpl"
 
-/obj/item/weapon/electronics/circuitboard/industrial_grinder
+/obj/item/electronics/circuitboard/industrial_grinder
 	name = T_BOARD("industrial grinder")
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/industrial

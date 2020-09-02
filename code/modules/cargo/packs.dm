@@ -653,8 +653,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/solar_assembly,
 					/obj/item/solar_assembly,
 					/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller
-					/obj/item/weapon/electronics/circuitboard/solar_control,
-					/obj/item/weapon/electronics/tracker,
+					/obj/item/electronics/circuitboard/solar_control,
+					/obj/item/electronics/tracker,
 					/obj/item/weapon/paper/solar)
 	cost = 2000
 	containertype = /obj/structure/closet/crate
@@ -742,13 +742,13 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 //Contains six, you'll probably want to build several of these
 /datum/supply_pack/shield_diffuser
-	contains = list(/obj/item/weapon/electronics/circuitboard/shield_diffuser,
-	/obj/item/weapon/electronics/circuitboard/shield_diffuser,
-	/obj/item/weapon/electronics/circuitboard/shield_diffuser,
-	/obj/item/weapon/electronics/circuitboard/shield_diffuser,
-	/obj/item/weapon/electronics/circuitboard/shield_diffuser,
-	/obj/item/weapon/electronics/circuitboard/shield_diffuser,
-	/obj/item/weapon/electronics/circuitboard/shield_diffuser)
+	contains = list(/obj/item/electronics/circuitboard/shield_diffuser,
+	/obj/item/electronics/circuitboard/shield_diffuser,
+	/obj/item/electronics/circuitboard/shield_diffuser,
+	/obj/item/electronics/circuitboard/shield_diffuser,
+	/obj/item/electronics/circuitboard/shield_diffuser,
+	/obj/item/electronics/circuitboard/shield_diffuser,
+	/obj/item/electronics/circuitboard/shield_diffuser)
 	name = "Shield diffuser circuitry"
 	cost = 3000
 	containertype = /obj/structure/closet/crate/secure
@@ -757,7 +757,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	access = access_ce
 
 /datum/supply_pack/shield_gen
-	contains = list(/obj/item/weapon/electronics/circuitboard/shield_generator)
+	contains = list(/obj/item/electronics/circuitboard/shield_generator)
 	name = "Hull shield generator circuitry"
 	cost = 5000
 	containertype = /obj/structure/closet/crate/secure
@@ -765,7 +765,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	group = "Engineering"
 
 /*/datum/supply_pack/shield_cap
-	contains = list(/obj/item/weapon/electronics/circuitboard/shield_cap)
+	contains = list(/obj/item/electronics/circuitboard/shield_cap)
 	name = "Bubble shield capacitor circuitry"
 	cost = 5000
 	containertype = /obj/structure/closet/crate/secure

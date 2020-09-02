@@ -1,4 +1,4 @@
-/obj/item/weapon/electronics/circuitboard/mindswapper
+/obj/item/electronics/circuitboard/mindswapper
 	name = T_BOARD("mind swapper")
 	build_path = /obj/machinery/mindswapper
 	board_type = "machine"
