@@ -45,15 +45,13 @@
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("You begin deploying \the [src]!"),
-			"You hear the slow creaking of a spring."
+			SPAN_DANGER("[user] begin deploying \the [src]!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("You have deployed \the [src]!"),
-				"You hear a latch click loudly."
+				SPAN_DANGER("[user] have deployed \the [src]!")
 				)
 
 			deployed = TRUE
@@ -66,12 +64,8 @@
 
 /obj/item/weapon/mine/attack_hand(mob/user as mob)
 	if (deployed)
-		user.visible_message(SPAN_DANGER("You attempt to pick up the [src] only to hear a beep as it explodes in your hands!"))
+		user.visible_message(SPAN_DANGER("[user] attempt to pick up the [src] only to hear a beep as it explodes in your hands!"))
 		explode()
-		for(var/mob/living/l in range(10))
-			if(l in view())
-				l.show_message(SPAN_WARNING("\the [usr] to pick up the [src] only to hear a beep as it explodes!."))
-		return
 	.=..()
 
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
@@ -94,11 +88,8 @@
 		return
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
-			user.visible_message(SPAN_DANGER("You hit the [src] with [I] and it explodes!"))
+			user.visible_message(SPAN_DANGER("the [src] is hit with [I] and it explodes!"))
 			explode()
-			for(var/mob/living/l in range(10))
-				if(l in view())
-					l.show_message(SPAN_WARNING("\the [usr] hit the [src] with [I] and it explodes!"))
 		return
 
 
