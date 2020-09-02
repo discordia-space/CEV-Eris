@@ -208,13 +208,15 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors
-	disk_name = "Technomancers LAT-018 Conveyors"
+	disk_name = "Technomancers LAT-018 Logistics"
 	icon_state = "technomancers"
 
-	license = -1
+	license = 10
 	designs = list(
-		/datum/design/autolathe/conveyor,
-		/datum/design/autolathe/conveyor_switch
+		/datum/design/autolathe/conveyor = 0,
+		/datum/design/autolathe/conveyor_switch = 0,
+		/datum/design/autolathe/circuit/smelter = 4,
+		/datum/design/autolathe/circuit/sorter = 2
 	)
 
 

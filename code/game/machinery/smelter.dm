@@ -31,6 +31,12 @@
 	// base multiplier for scrap smelting, increased by better microlasers
 	var/scrap_multiplier = 0.25
 
+	//some UI stuff here
+	var/show_config = FALSE
+	var/show_iconfig = FALSE
+	var/show_oconfig = FALSE
+	var/show_rconfig = FALSE
+
 
 /obj/machinery/smelter/Initialize()
 	. = ..()
@@ -271,9 +277,13 @@
 		M.Add(list(list("name" = mtype, "count" = stored_material[mtype])))
 	data["materials"] = M
 	data["capacity"] = storage_capacity
-	data["sideI"] = dir2text(input_side)
-	data["sideO"] = dir2text(output_side)
-	data["sideR"] = dir2text(refuse_output_side)
+	data["sideI"] = capitalize(dir2text(input_side))
+	data["sideO"] = capitalize(dir2text(output_side))
+	data["sideR"] = capitalize(dir2text(refuse_output_side))
+	data["show_config"] = show_config
+	data["show_iconfig"] = show_iconfig
+	data["show_oconfig"] = show_oconfig
+	data["show_rconfig"] = show_rconfig
 
 	return data
 
@@ -301,16 +311,26 @@
 			eject_all_material()
 
 	if(href_list["setsideI"])
-		var/SideI = text2num(href_list["setsideI"])
-		input_side = SideI
+		input_side = text2dir(href_list["setsideI"])
 
 	if(href_list["setsideO"])
-		var/SideO = text2num(href_list["setsideO"])
-		output_side = SideO
+		output_side = text2dir(href_list["setsideO"])
 
 	if(href_list["setsideR"])
-		var/SideR = text2num(href_list["setsideR"])
-		refuse_output_side = SideR
+		refuse_output_side = text2dir(href_list["setsideR"])
+
+	if(href_list["toggle_config"])
+		show_config = !show_config
+
+	if(href_list["toggle_iconfig"])
+		show_iconfig = !show_iconfig
+
+	if(href_list["toggle_oconfig"])
+		show_oconfig = !show_oconfig
+
+	if(href_list["toggle_rconfig"])
+		show_rconfig = !show_rconfig
+
 
 	SSnano.update_uis(src)
 	return FALSE
