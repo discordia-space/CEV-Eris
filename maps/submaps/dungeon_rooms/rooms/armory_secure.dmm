@@ -23,7 +23,6 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
-/obj/random/mob/roomba,
 /obj/random/contraband,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
