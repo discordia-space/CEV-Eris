@@ -96,9 +96,12 @@
 				. = L[L[index]]
 
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
-	SStrade.trade_stations_budget -= budget
+	if(!spawn_always)
+		SStrade.trade_stations_budget -= budget
+
 /datum/trade_station/proc/regain_trade_stations_budget(budget = spawn_cost)
-	SStrade.trade_stations_budget += budget
+	if(!spawn_always)
+		SStrade.trade_stations_budget += budget
 /datum/trade_station/Destroy()
 	SStrade.all_stations -= src
 	SStrade.discovered_stations -= src
@@ -124,25 +127,20 @@
 	SStrade.discovered_stations |= src
 	GLOB.entered_event.unregister(overmap_location, src, .proc/discovered)
 
-#define SPECIAL_OFFER_MIN_PRICE 200
-#define SPECIAL_OFFER_MAX_PRICE 20000
-
-#define spec_offer_price_custom_mod (isnum(offer_types[offer_type]) ? offer_types[offer_type] : 1)
-
 /datum/trade_station/proc/generate_offer()
 	if(!length(offer_types))
 		return
 	offer_type = pick(offer_types)
 	var/atom/movable/AM = offer_type
 
-	var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / (max(1, initial(AM.price_tag))) + 1)
-	var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (max(1, initial(AM.price_tag))))
+	var/min_amt = round(SPECIAL_OFFER_MIN_PRICE / max(1, SStrade.get_new_cost(AM)))
+	var/max_amt = round(SPECIAL_OFFER_MAX_PRICE / (max(1, SStrade.get_new_cost(AM))))
 	offer_amount = rand(min_amt, max_amt)
-
-	var/min_price = clamp(offer_amount * max(1, initial(AM.price_tag)) * spec_offer_price_custom_mod, SPECIAL_OFFER_MIN_PRICE, SPECIAL_OFFER_MAX_PRICE)
-	var/max_price = clamp(offer_amount * max(1, initial(AM.price_tag)) * spec_offer_price_custom_mod, min_price, SPECIAL_OFFER_MAX_PRICE)
+#define spec_offer_price_custom_mod (isnum(offer_types[offer_type]) ? offer_types[offer_type] : 1)
+	var/min_price = clamp(offer_amount * max(1, SStrade.get_new_cost(AM)) * spec_offer_price_custom_mod, SPECIAL_OFFER_MIN_PRICE, SPECIAL_OFFER_MAX_PRICE)
+	var/max_price = clamp(offer_amount * max(1, SStrade.get_new_cost(AM)) * spec_offer_price_custom_mod, min_price, SPECIAL_OFFER_MAX_PRICE)
 	offer_price = rand(min_price, max_price)
-
 #undef spec_offer_price_custom_mod
+
 /datum/trade_station/proc/offer_tick()
 	generate_offer()

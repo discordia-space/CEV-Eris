@@ -1000,6 +1000,13 @@
 /obj/machinery/portable_atmospherics/canister/get_item_cost(export)
 	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
 
+/obj/structure/reagent_dispensers/price_tag = 5
+/obj/structure/reagent_dispensers/get_item_cost()
+	var/ratio = reagents.total_volume / reagents.maximum_volume
+
+	return ..() + round(contents_cost * ratio)
+
+
 /obj/item/weapon/tank
 	price_tag = 50
 /obj/item/weapon/tank/plasma
@@ -1060,3 +1067,46 @@
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = ..() * amount
+
+/obj/item/weapon/tool/price_tag = 20
+/obj/item/weapon/tool/get_item_cost(export)
+	. = 1
+	for(var/i in tool_qualities)
+		. += tool_qualities[tool_qualities[i]] / 5
+	. *= ..()
+
+/obj/structure/medical_stand/price_tag = 100
+/obj/item/weapon/virusdish/price_tag = 300
+
+/obj/item/weapon/reagent_containers/price_tag = 20
+/obj/item/weapon/reagent_containers/glass/beaker/bluespace/price_tag = 300
+/obj/item/weapon/reagent_containers/get_item_cost(export)
+	. = ..()
+	. += reagents.total_volume * .
+
+/obj/item/clothing/price_tag = 30
+/obj/item/solar_assembly/price_tag = 100
+/obj/item/weapon/tracker_electronics/price_tag = 150
+/obj/item/weapon/handcuffs/price_tag = 30
+/obj/item/weapon/handcuffs/get_item_cost(export)
+	. = ..()
+	. += breakouttime / 20
+
+/obj/item/weapon/grenade/price_tag = 50
+
+/obj/item/robot_parts/price_tag = 100
+/obj/item/robot_parts/robot_component/armour/exosuit/price_tag = 300
+/obj/item/robot_parts/robot_component/armour/exosuit/radproof/price_tag = 500
+/obj/item/robot_parts/robot_component/armour/exosuit/em/price_tag = 550
+/obj/item/robot_parts/robot_component/armour/exosuit/combat/price_tag = 1000
+
+/obj/item/mech_component/price_tag = 150
+/obj/item/mech_equipment/price_tag = 200
+
+/obj/item/weapon/gun/launcher/grenade/price_tag = 1500
+
+/obj/item/weapon/storage/briefcase/inflatable/price_tag = 50
+
+/obj/item/inflatable/price_tag = 40
+
+/obj/item/weapon/tool/knife/dagger/bluespace/price_tag = 400

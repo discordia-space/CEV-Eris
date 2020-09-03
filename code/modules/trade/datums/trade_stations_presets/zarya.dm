@@ -28,7 +28,9 @@
 		),
 		"Vsyakoe" = list(
 			/obj/structure/reagent_dispensers/watertank,
-			/obj/item/weapon/storage/briefcase/inflatable,
+			/obj/item/weapon/storage/briefcase/inflatable/empty,
+			/obj/item/inflatable/door,
+			/obj/item/inflatable/wall,
 			/obj/item/stack/material/steel/full,
 			/obj/item/weapon/storage/belt/utility/full,
 			/obj/item/clothing/head/welding,

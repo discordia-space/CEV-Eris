@@ -5,18 +5,22 @@
 	desc = "Generic gray prosthesis for everyday use."
 	force_icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 	model = "asters"
+	price_tag = 300
 
 /obj/item/organ/external/robotic/serbian
 	name = "\"Serbian Arms\""
 	desc = "Battle hardened green and brown prosthesis, rebranded several times."
 	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 	model = "serbian"
+	price_tag = 600
+
 //In game prostheses
 /obj/item/organ/external/robotic/frozen_star
 	name = "\"Frozen Star\""
 	desc = "Tactical \"Frozen Star\" blue and gray prosthesis for dangerous environment."
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
+	price_tag = 450
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
 	name = "\"Frozen Star\" Left Arm"
@@ -39,6 +43,7 @@
 	desc = "Technomancer \"branded\" \"functional\" prosthesis."
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
+	price_tag = 700
 
 /obj/item/organ/external/robotic/technomancer/l_arm
 	name = "Technomancer \"Homebrew\" Left Arm"
@@ -65,6 +70,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 	max_damage = 60
 	min_broken_damage = 40
+	price_tag = 300
 
 /obj/item/organ/external/robotic/moebius/l_arm
 	name = "Technomancer \"Homebrew\" Left Arm"
@@ -95,6 +101,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
 	max_damage = 65
 	min_broken_damage = 45
+	price_tag = 600
 
 /obj/item/organ/external/robotic/excelsior/l_arm
 	default_description = /datum/organ_description/arm/left
@@ -117,6 +124,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45
+	price_tag = 900
 
 /obj/item/organ/external/robotic/one_star/l_arm
 	default_description = /datum/organ_description/arm/left

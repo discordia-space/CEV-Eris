@@ -8,7 +8,7 @@
 			/obj/item/weapon/tool/knife/dagger/bluespace,
 			/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
 			/obj/item/weapon/circuitboard/bssilk_hub,
-			/obj/item/mech_equipment/catapult
+			/obj/item/biosyphon
 		)
 	)
 
