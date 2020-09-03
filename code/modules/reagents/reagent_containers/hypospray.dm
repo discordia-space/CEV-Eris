@@ -30,6 +30,8 @@
 		var/obj/item/weapon/rig/RIG = H.get_equipped_item(slot_back)
 		if((istype(RIG) && RIG.suit_is_deployed()) || istype(SS))
 			injtime = 30
+			if (istype(src, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
+				injtime = 0
 			var/obj/item/organ/external/affected = H.get_organ(BP_CHEST)
 			if(BP_IS_ROBOTIC(affected))
 				to_chat(user, SPAN_WARNING("Injection port on [M]'s suit is refusing your [src]."))
