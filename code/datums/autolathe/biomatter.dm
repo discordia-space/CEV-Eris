@@ -31,30 +31,56 @@
 	materials = list("biomatter" = 7.5)
 //[/NUTRIMENTS]
 
-//[THINGS]
-/datum/design/bioprinter/wallet
-	name = "Wallet"
-	build_path = /obj/item/weapon/storage/wallet
+//[CLOTHES, ARMOR AND ACCESORIES]
+/datum/design/bioprinter/nt_clothes/acolyte_armor
+	name = "NT Acolyte Armor"
+	build_path = /obj/item/clothing/suit/space/void/acolyte
 
-/datum/design/bioprinter/botanic_leather
-	name = "Botanical gloves"
-	build_path = /obj/item/clothing/gloves/botanic_leather
-	materials = list("biomatter" = 25)
+/datum/design/bioprinter/nt_clothes/agrolyte_armor
+	name = "NT Agrolyte Armor"
+	build_path = /obj/item/clothing/suit/space/void/agrolyte
 
-/datum/design/bioprinter/leather
-	materials = list("biomatter" = 40)
+/datum/design/bioprinter/nt_clothes/custodian_armor
+	name = "NT Custodian Armor"
+	build_path = /obj/item/clothing/suit/space/void/custodian
 
-/datum/design/bioprinter/leather/satchel
-	name = "Leather Satchel"
-	build_path = /obj/item/weapon/storage/backpack/satchel
+/datum/design/bioprinter/nt_clothes/preacher_coat
+	name = "NT Preacher Longcoat"
+	build_path = /obj/item/clothing/suit/neotheology_coat
 
-/datum/design/bioprinter/leather/leather_jacket
+/datum/design/bioprinter/nt_clothes/acolyte_jacket
+	name = "NT Acolyte Jacket"
+	build_path = /obj/item/clothing/suit/neotheology_jacket
+
+/datum/design/bioprinter/nt_clothes/sports_jacket
+	name = "NT Sports Jacket"
+	build_path = /obj/item/clothing/suit/storage/neotheosports
+
+/datum/design/bioprinter/nt_clothes/acolyte_uniform
+	name = "NT Acolyte Garment"
+	build_path = /obj/item/clothing/under/rank/acolyte
+
+/datum/design/bioprinter/nt_clothes/sports_uniform
+	name = "NT Sport Clothes"
+	build_path = /obj/item/clothing/under/rank/church/sport
+
+/datum/design/bioprinter/nt_clothes/church_uniform
+	name = "NT Church Garment"
+	build_path = /obj/item/clothing/under/rank/church
+
+/datum/design/bioprinter/belt/utility/neotheology
+	name = "Neotheologian utility belt"
+	build_path = /obj/item/weapon/storage/belt/utility/neotheology
+
+/datum/design/bioprinter/belt/security/neotheology
+	name = "Neotheologian tactical belt"
+	build_path = /obj/item/weapon/storage/belt/tactical/neotheology
+
+// This separates regular clothes designs from NT clothes designs //
+
+/datum/design/bioprinter/leather_jacket
 	name = "Leather jacket"
 	build_path = /obj/item/clothing/suit/storage/leather_jacket
-
-/datum/design/bioprinter/leather/cash_bag
-	name = "Cash Bag"
-	build_path = /obj/item/weapon/storage/bag/money
 
 /datum/design/bioprinter/leather/holster
 	name = "shoulder holster"
@@ -79,10 +105,6 @@
 	name = "Utility belt"
 	build_path = /obj/item/weapon/storage/belt/utility
 
-/datum/design/bioprinter/belt/utility/neotheology
-	name = "Neotheologian utility belt"
-	build_path = /obj/item/weapon/storage/belt/utility/neotheology
-
 /datum/design/bioprinter/belt/medical
 	name = "Medical belt"
 	build_path = /obj/item/weapon/storage/belt/medical
@@ -90,10 +112,6 @@
 /datum/design/bioprinter/belt/security
 	name = "Tactical belt"
 	build_path = /obj/item/weapon/storage/belt/tactical
-
-/datum/design/bioprinter/belt/security/neotheology
-	name = "Neotheologian tactical belt"
-	build_path = /obj/item/weapon/storage/belt/tactical/neotheology
 
 /datum/design/bioprinter/belt/medical/emt
 	name = "EMT belt"
@@ -113,7 +131,35 @@
 	name = "grey duffelbag"
 	build_path = /obj/item/weapon/storage/backpack/duffelbag
 	materials = list("biomatter" = 65)
+
+/datum/design/bioprinter/wallet
+	name = "Wallet"
+	build_path = /obj/item/weapon/storage/wallet
+
+/datum/design/bioprinter/botanic_leather
+	name = "Botanical gloves"
+	build_path = /obj/item/clothing/gloves/botanic_leather
+	materials = list("biomatter" = 25)
+
+/datum/design/bioprinter/leather
+	materials = list("biomatter" = 40)
+
+/datum/design/bioprinter/satchel
+	name = "Leather Satchel"
+	build_path = /obj/item/weapon/storage/backpack/satchel
+
+//[/CLOTHES, ARMOR AND ACCESORIES]
+
+//[MISC]
+
+/datum/design/bioprinter/leather/cash_bag
+	name = "Cash Bag"
+	build_path = /obj/item/weapon/storage/bag/money
+
 //[/THINGS]
+/datum/design/autolathe/gun/plasma/martyr
+	name = "NT PR \"Martyr\""
+	build_path = /obj/item/weapon/gun/energy/plasma/martyr
 
 //[MED]
 /datum/design/bioprinter/medical
