@@ -1,8 +1,8 @@
-/obj/item/clothing/head/mindbreaker
-	name = "Mindbreaker"
+/obj/item/clothing/head/mindreader
+	name = "Mindreader"
 	desc = "Extracts knowledge from the mentally broken wearer mind and writes it on papers."
-	icon_state = "mindbreaker"
-	item_state = "mindbreaker"
+	icon_state = "mindreader"
+	item_state = "mindreader"
 	flags_inv = HIDEEARS
 	action_button_name = "Extract Memory"
 	var/self_cooldown = 2 MINUTES
@@ -17,7 +17,7 @@
 		rad = 0
 	)
 
-/obj/item/clothing/head/mindbreaker/ui_action_click()
+/obj/item/clothing/head/mindreader/ui_action_click()
 	if(istype(loc, /mob))
 		if(world.time >= (last_use + self_cooldown))
 			last_use = world.time
@@ -28,7 +28,7 @@
 	else
 		return
 
-/obj/item/clothing/head/mindbreaker/proc/extract_memory(var/user)
+/obj/item/clothing/head/mindreader/proc/extract_memory(var/user)
 	if (!user) return
 
 	if (src.loc != user || !ishuman(user))

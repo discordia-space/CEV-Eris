@@ -349,8 +349,8 @@
 		BS.module.modules += new /obj/item/weapon/bluespace_harpoon/mounted/blitz(BS.module)
 		return TRUE
 
-/datum/uplink_item/item/tools/mindbreaker
-	name = "Mindbreaker"
+/datum/uplink_item/item/tools/mindreader
+	name = "Mindreader"
 	desc = "Place on your victim head to extract memory from his brain, after his mental breakdown."
 	item_cost = 20
-	path = /obj/item/clothing/head/mindbreaker
+	path = /obj/item/clothing/head/mindreader
