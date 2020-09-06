@@ -56,6 +56,10 @@
 	name = "reagent grinder"
 	build_path = /obj/item/weapon/circuitboard/reagentgrinder
 
+/datum/design/autolathe/circuit/industrialgrinder
+	name = "industrial grinder"
+	build_path = /obj/item/weapon/circuitboard/industrial_grinder
+
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior
 	name = "excelsior shield wall generator"

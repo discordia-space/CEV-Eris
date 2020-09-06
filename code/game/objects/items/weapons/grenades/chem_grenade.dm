@@ -229,7 +229,7 @@
 					if(beakers.len)
 						for(var/obj/item/slime_extract/O in beakers)
 							O.forceMove(get_turf(src))
-	beakers = list()
+						beakers = list()
 	..()
 
 
@@ -292,16 +292,22 @@
 	var/obj/item/weapon/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/weapon/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent("plantbgone", 25)
-	B1.reagents.add_reagent("potassium", 25)
-	B2.reagents.add_reagent("phosphorus", 25)
-	B2.reagents.add_reagent("sugar", 25)
+	B1.reagents.add_reagent("surfactant", 40)
+	B2.reagents.add_reagent("water", 40)
+	B2.reagents.add_reagent("plantbgone", 10)
 
 	detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
 
 	beakers += B1
 	beakers += B2
 	icon_state = "grenade"
+
+/obj/item/weapon/grenade/chem_grenade/antiweed/nt_antiweed
+	name = "NeoTheology \"Kudzu Killer\""
+	desc = "NT brand weedkiller grenades. Designed to deal with Kudzu infestations back in New Rome. Mixes toxic biomatter with plasticides for great results"
+	icon_state = "foam"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_BIOMATTER = 5)
+	matter_reagents = list("water" = 30)
 
 /obj/item/weapon/grenade/chem_grenade/cleaner
 	name = "Asters \"Shit-Be-Gone\""
@@ -324,6 +330,13 @@
 
 	beakers += B1
 	beakers += B2
+
+/obj/item/weapon/grenade/chem_grenade/cleaner/nt_cleaner
+	name = "NeoTheology \"Cleanse Capsule\""
+	desc = "NT brand cleaner grenades. Designed to deal with Biogenerator accidents and the aftermaths of gang wars inside the New Rome slums."
+	icon_state = "foam"
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 5)
+	matter_reagents = list("water" = 30)
 
 /obj/item/weapon/grenade/chem_grenade/teargas
 	name = "FS TGG \"Simon\""
