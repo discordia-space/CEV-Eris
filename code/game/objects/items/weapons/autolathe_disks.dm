@@ -113,7 +113,8 @@
 		/datum/design/autolathe/device/export_scanner,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/device/hand_labeler,
-		/datum/design/research/item/light_replacer
+		/datum/design/research/item/light_replacer,
+		/datum/design/autolathe/sec/hailer,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells
@@ -194,7 +195,7 @@
 		/datum/design/autolathe/circuit/powermodule = 0,
 		/datum/design/autolathe/circuit/recharger,
 		/datum/design/research/circuit/autolathe,
-		/datum/design/autolathe/circuit/autolathe_disk_cloner,
+		/datum/design/autolathe/circuit/autolathe_disk_cloner = 3,
 		/datum/design/autolathe/circuit/vending,
 		/datum/design/research/circuit/arcade_battle,
 		/datum/design/research/circuit/arcade_orion_trail,
@@ -205,6 +206,7 @@
 		/datum/design/autolathe/circuit/centrifuge,
 		/datum/design/autolathe/circuit/electrolyzer,
 		/datum/design/autolathe/circuit/reagentgrinder,
+		/datum/design/autolathe/circuit/industrialgrinder = 2,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors
@@ -284,6 +286,8 @@
 		/datum/design/autolathe/computer_part/gps,
 		/datum/design/autolathe/computer_part/scanner/paper,
 		/datum/design/autolathe/computer_part/scanner/atmos,
+		/datum/design/autolathe/computer_part/scanner/reagent,
+		/datum/design/autolathe/computer_part/scanner/medical,
 	)
 
 
@@ -406,6 +410,7 @@
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/sec/silencer,
+		/datum/design/autolathe/sec/hailer	
 	)
 
 // One Star

@@ -22,3 +22,11 @@
 /datum/design/autolathe/computer_part/scanner/atmos
 	name = "atmospheric scanner module"
 	build_path = /obj/item/weapon/computer_hardware/scanner/atmos
+
+/datum/design/autolathe/computer_part/scanner/reagent
+	name = "reagent scanner module"
+	build_path = /obj/item/weapon/computer_hardware/scanner/reagent
+
+/datum/design/autolathe/computer_part/scanner/medical
+	name = "medical scanner module"
+	build_path = /obj/item/weapon/computer_hardware/scanner/medical
