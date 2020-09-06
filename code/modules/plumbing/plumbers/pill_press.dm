@@ -83,7 +83,7 @@
 			stored_products -= AM
 			AM.forceMove(drop_location())
 
-
+/*
 /obj/machinery/plumbing/pill_press/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/simple/pills),
@@ -126,3 +126,4 @@
 			else if (product == "bottle")
 				max_volume = max_bottle_volume
 			current_volume = clamp(current_volume, min_volume, max_volume)
+*/

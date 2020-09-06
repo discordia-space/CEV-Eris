@@ -19,6 +19,7 @@
 	. = ..()
 	AddComponent(/datum/component/plumbing/splitter, bolt)
 
+/*
 /obj/machinery/plumbing/splitter/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -47,3 +48,4 @@
 					transfer_side = value
 				else
 					return FALSE
+*/

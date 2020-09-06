@@ -47,7 +47,7 @@
 	if(reagents.total_volume >= amount) //otherwise we get leftovers, and we need this to be precise
 		return
 	reagents.add_reagent(reagent_id, amount)
-
+/*
 /obj/machinery/plumbing/synthesizer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -91,7 +91,7 @@
 				. = TRUE
 	update_icon()
 	reagents.clear_reagents()
-
+*/
 /obj/machinery/plumbing/synthesizer/update_overlays()
 	. = ..()
 	var/mutable_appearance/r_overlay = mutable_appearance(icon, "[icon_state]_overlay")

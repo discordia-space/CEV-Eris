@@ -2197,6 +2197,7 @@
 #include "code\modules\plumbing\plumbers\filter.dm"
 #include "code\modules\plumbing\plumbers\grinder_chemical.dm"
 #include "code\modules\plumbing\plumbers\pill_press.dm"
+#include "code\modules\plumbing\plumbers\plunger.dm"
 #include "code\modules\plumbing\plumbers\reaction_chamber.dm"
 #include "code\modules\plumbing\plumbers\splitters.dm"
 #include "code\modules\plumbing\plumbers\synthesizer.dm"

@@ -17,6 +17,7 @@
 	. = ..()
 	AddComponent(/datum/component/plumbing/filter, bolt)
 
+/*
 /obj/machinery/plumbing/filter/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -64,3 +65,4 @@
 						right -= chem_id
 
 
+*/

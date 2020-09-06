@@ -27,7 +27,7 @@
 		icon_state = initial(icon_state) + "_on"
 	else
 		icon_state = initial(icon_state)
-
+/*
 /obj/machinery/plumbing/reaction_chamber/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -60,3 +60,4 @@
 				var/input_amount = text2num(params["amount"])
 				if(input_amount)
 					required_reagents[input_reagent] = input_amount
+*/

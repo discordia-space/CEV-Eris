@@ -41,7 +41,7 @@
 
 
 /obj/machinery/plumbing/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/plunger))
+	if(istype(I, /obj/item/weapon/tool/plunger))
 		to_chat(user, SPAN_NOTICE("You start furiously plunging [name]."))
 		if(do_after(user, 30, target = src))
 			to_chat(user, SPAN_NOTICE("You finish plunging the [name]."))
