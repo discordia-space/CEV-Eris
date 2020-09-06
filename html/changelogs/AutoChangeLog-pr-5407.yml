@@ -1,0 +1,7 @@
+author: GoodG1448
+delete-after: true
+changes:
+  - tweak: NT clothes and product designs are now split between two different disks
+  - rscadd: NT can now print armor, coats, jackets and clothes of their own
+  - rscadd: NT brand cleaner and weedkiller grenades are now available from NT product
+      disk

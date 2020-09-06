@@ -581,5 +581,5 @@ proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 /datum/controller/subsystem/job/proc/ShouldCreateRecords(var/title)
 	if(!title) return 0
 	var/datum/job/job = GetJob(title)
-	if(!job) return 0
+	if(!job || job == "Vagabond") return 0
 	return job.create_record

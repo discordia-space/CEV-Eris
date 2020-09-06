@@ -1,0 +1,5 @@
+author: GoodG1448
+delete-after: true
+changes:
+  - rscadd: Hailers, Reagent and Medical scanner modules for PDAs and Industrial Grinder
+      boards have been added to some disks.

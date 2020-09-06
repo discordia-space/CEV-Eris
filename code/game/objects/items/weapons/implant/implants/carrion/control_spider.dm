@@ -48,7 +48,7 @@
 	active = TRUE
 	last_use = world.time
 
-	addtimer(CALLBACK(src, .proc/return_mind), 1 MINUTES)
+	addtimer(CALLBACK(src, .proc/return_mind), rand(45 SECONDS, 70 SECONDS))
 
 /obj/item/weapon/implant/carrion_spider/control/on_uninstall()
 	..()

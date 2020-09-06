@@ -68,7 +68,8 @@
 		genloc = ""
 
 /datum/nano_module/shield_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
-
+	if(!host)
+		return
 	var/list/data = host.initial_data()
 
 	if (istype(gen))
