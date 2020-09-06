@@ -15,15 +15,15 @@
 	my_atom = A
 
 	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!chemical_reagents_list)
+	if(!GLOB.chemical_reagents_list)
 		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 		var/paths = typesof(/datum/reagent) - /datum/reagent
-		chemical_reagents_list = list()
+		GLOB.chemical_reagents_list = list()
 		for(var/path in paths)
 			var/datum/reagent/D = new path()
 			if(!D.name)
 				continue
-			chemical_reagents_list[D.id] = D
+			GLOB.chemical_reagents_list[D.id] = D
 
 /datum/reagents/proc/get_average_reagents_state()
 	var/solid = 0
@@ -164,7 +164,7 @@
 					playsound(my_atom, replace_sound, 80, 1)
 
 		else // Otherwise, collect all possible reactions.
-			eligible_reactions |= chemical_reactions_list[R.id]
+			eligible_reactions |= GLOB.chemical_reactions_list[R.id]
 
 	var/list/active_reactions = list()
 
@@ -222,7 +222,7 @@
 			if(my_atom)
 				my_atom.on_reagent_change()
 			return 1
-	var/datum/reagent/D = chemical_reagents_list[id]
+	var/datum/reagent/D = GLOB.chemical_reagents_list[id]
 	if(D)
 		var/datum/reagent/R = new D.type()
 		reagent_list += R
