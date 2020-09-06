@@ -246,12 +246,20 @@
 	owner.tod = stationtime2text()
 	var/last_owner = owner
 
-	spawn(rand(800,2000))
+	spawn(rand(1 MINUTES, 3 MINUTES))
 		if(last_owner == owner)
-			owner.revive()
+			owner.rejuvenate()
+			for(var/limb_tag in owner.species.has_limbs)
+				var/obj/item/organ/external/E = owner.get_organ(limb_tag)
+				if(E.is_stump())
+					qdel(E)
+					var/datum/organ_description/OD = owner.species.has_limbs[limb_tag]
+					OD.create_organ(owner)
+
 			owner.status_flags &= ~(FAKEDEATH)
 			owner.update_lying_buckled_and_verb_status()
-			to_chat(owner, SPAN_NOTICE("We have regenerated."))
+			owner.update_icons()
+			to_chat(owner, SPAN_NOTICE("You have regenerated."))
 
 /obj/item/organ/internal/carrion/maw
 	name = "carrion maw"
