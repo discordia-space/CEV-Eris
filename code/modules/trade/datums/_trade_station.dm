@@ -70,7 +70,7 @@
 
 /datum/trade_station/proc/goods_tick()
 	for(var/i in assortiment)
-		var/list/ass/*Hehe, boy*/ = assortiment[i]
+		var/list/ass = assortiment[i]
 		if(islist(ass))
 			for(var/path in ass)
 				var/cost = SStrade.get_import_cost(path, src)
@@ -86,7 +86,8 @@
 				var/amount_cat = amounts_of_goods[i]
 				amount_cat["[ass.Find(path)]"] = max(0, rand(rand_args[1], rand_args[2]))
 
-/datum/trade_station/proc/get_good_amount(list/cat, index)
+/datum/trade_station/proc/get_good_amount(cat, index)
+	. = 0
 	if(isnum(cat))
 		cat = assortiment[cat]
 	if(istext(cat) && text2num(index))
@@ -94,6 +95,15 @@
 			var/list/L = amounts_of_goods[cat]
 			if(islist(L))
 				. = L[L[index]]
+
+/datum/trade_station/proc/set_good_amount(cat, index, value)
+	if(isnum(cat))
+		cat = assortiment[cat]
+	if(istext(cat) && text2num(index))
+		if(islist(amounts_of_goods))
+			var/list/L = amounts_of_goods[cat]
+			if(islist(L))
+				L[L[index]] = value
 
 /datum/trade_station/proc/cost_trade_stations_budget(budget = spawn_cost)
 	if(!spawn_always)

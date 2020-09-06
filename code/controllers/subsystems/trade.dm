@@ -91,6 +91,13 @@ SUBSYSTEM_DEF(trade)
 
 //Returns cost of a newly created object including contents
 /datum/controller/subsystem/trade/proc/get_new_cost(path)
+	if(!ispath(path))
+		var/atom/movable/A = path
+		if(istype(A))
+			path = A.type
+		else
+			crash_with("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
+			return 0
 	var/static/list/price_cache = list()
 	if(!price_cache[path])
 		var/atom/movable/AM = new path
@@ -173,8 +180,10 @@ SUBSYSTEM_DEF(trade)
 		return
 
 	var/cost = 0
-	for(var/path in shoppinglist)
-		cost += get_import_cost(path, station) * shoppinglist[path]
+	for(var/category_name in shoppinglist)
+		var/list/category = shoppinglist[category_name]
+		for(var/path in category)
+			cost += get_import_cost(path, station) * category[path]
 
 	if(get_account_credits(account) < cost)
 		return
@@ -187,10 +196,15 @@ SUBSYSTEM_DEF(trade)
 		var/obj/structure/closet/crate/C = beacon.drop(/obj/structure/closet/crate)
 		if(!C)
 			return
-		for(var/type in shoppinglist)
-			for(var/i in 1 to shoppinglist[type])
-				new type(C)
+		for(var/category_name in shoppinglist)
+			var/list/category = shoppinglist[category_name]
+			for(var/t in category)
+				var/tcount = category[t]
+				for(var/i in 1 to tcount)
+					new t(C)
+				var/indix = category.Find(t)
+				station.set_good_amount(category_name, indix, max(0, station.get_good_amount(category_name, indix) - tcount))
 
 	charge_to_account(account.account_number, account.get_name(), "Purchase", "Asters Automated Trading System", cost)
 
-	shoppinglist.Cut()
+	RecursiveCut(shoppinglist)

@@ -15,7 +15,7 @@
 	var/trade_screen = GOODS_SCREEN
 
 	var/list/shoppinglist = list()
-	var/choosed_category = 0
+	var/choosed_category
 
 	var/obj/machinery/trade_beacon/sending/sending
 	var/obj/machinery/trade_beacon/receiving/receiving
@@ -24,14 +24,29 @@
 
 	var/datum/money_account/account
 
+/datum/computer_file/program/trade/proc/set_choosed_category(value)
+	choosed_category = value
+
+/datum/computer_file/program/trade/proc/reset_shoplist()
+	RecursiveCut(shoppinglist)
+	for(var/i in station.assortiment)
+		shoppinglist[i] = list()
+/datum/computer_file/program/trade/proc/get_price_of_cart()
+	. = 0
+	for(var/i in shoppinglist)
+		var/list/l = shoppinglist[i]
+		if(islist(l))
+			for(var/b in l)
+				. += l[b] * SStrade.get_import_cost(b, station)
+
 /datum/computer_file/program/trade/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
 	if(href_list["PRG_goods_category"])
-		if(!choosed_category || length(station.assortiment) < choosed_category)
-			choosed_category = 0
-		choosed_category = href_list["PRG_goods_category"] ? text2num(href_list["PRG_goods_category"]) : 0
+		if(!choosed_category || !(choosed_category in station.assortiment))
+			set_choosed_category()
+		set_choosed_category((text2num(href_list["PRG_goods_category"]) <= length(station.assortiment)) ? station.assortiment[text2num(href_list["PRG_goods_category"])] : "")
 		return 1
 
 	if(href_list["PRG_trade_screen"])
@@ -43,7 +58,7 @@
 		return 1
 
 	if(href_list["PRG_receive"])
-		SStrade.buy(receiving, account, shoppinglist)
+		SStrade.buy(receiving, account, shoppinglist, station)
 		return 1
 
 	if(href_list["PRG_account"])
@@ -70,9 +85,9 @@
 
 	if(href_list["PRG_station"])
 		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_station"]))
-		choosed_category = 0
+		set_choosed_category()
 		station = S
-		shoppinglist.Cut()
+		reset_shoplist()
 		return 1
 
 	if(href_list["PRG_receiving"])
@@ -86,31 +101,34 @@
 		return 1
 
 	if(href_list["PRG_cart_reset"])
-		shoppinglist.Cut()
+		reset_shoplist()
 		return 1
 
 	if(href_list["PRG_cart_add"])
-		var/list/category = station.assortiment[station.assortiment[choosed_category]]
+		var/list/category = station.assortiment[choosed_category]
 		if(!islist(category))
 			return
 		var/path = LAZYACCESS(category, text2num(href_list["PRG_cart_add"]))
 		if(!path)
 			return
-		if(!station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"])))
+		var/good_amount = station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"]))
+		if(!good_amount)
 			return
-		shoppinglist[path] = 1 + shoppinglist[path]
+		if(!islist(shoppinglist[choosed_category]))
+			shoppinglist[choosed_category] = list()
+		
+		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) + 1, 0, good_amount))
 		return 1
 
 	if(href_list["PRG_cart_remove"])
-		var/list/category = station.assortiment[station.assortiment[choosed_category]]
+		var/list/category = station.assortiment[choosed_category]
 		if(!islist(category))
 			return
 		var/path = LAZYACCESS(category, text2num(text2num(href_list["PRG_cart_remove"])))
 		if(!path || !shoppinglist[path])
 			return
-		--shoppinglist[path]
-		if(shoppinglist[path] <= 0)
-			shoppinglist.Remove(path)
+		var/good_amount = station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"]))
+		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) - 1, 0, good_amount))
 		return 1
 
 	if(href_list["PRG_offer_fulfill"])
@@ -170,17 +188,16 @@
 		.["sending_list"] += list(list("id" = B.get_id(), "index" = SStrade.beacons_sending.Find(B)))
 
 	if(PRG.station)
-		if(!PRG.choosed_category || length(PRG.station.assortiment) < PRG.choosed_category)
-			PRG.choosed_category = 0
-		.["current_category"] = PRG.choosed_category
+		if(!PRG.choosed_category || !(PRG.choosed_category in PRG.station.assortiment))
+			PRG.set_choosed_category()
+		.["current_category"] = PRG.choosed_category ? PRG.station.assortiment.Find(PRG.choosed_category) : null
 		.["goods"] = list()
 		.["categories"] = list()
-		.["total"] = 0
+		.["total"] = PRG.get_price_of_cart()
 		for(var/i in PRG.station.assortiment)
 			.["categories"] += list(list("name" = i, "index" = PRG.station.assortiment.Find(i)))
 		if(PRG.choosed_category)
-			var/catname = PRG.station.assortiment[PRG.choosed_category]
-			var/list/assort = PRG.station.assortiment[catname]
+			var/list/assort = PRG.station.assortiment[PRG.choosed_category]
 			if(islist(assort))
 				for(var/path in assort)
 					if(!ispath(path, /atom/movable))
@@ -193,11 +210,12 @@
 
 					var/pathname = initial(AM.name)
 					var/list/good_packet = assort[path]
-					var/price = SStrade.get_import_cost(path, PRG.station)
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname
+					var/price = SStrade.get_import_cost(path, PRG.station)
 
-					var/count = PRG.shoppinglist[path]
+					var/count = max(0, get_2d_matrix_cell(PRG.shoppinglist, PRG.choosed_category, path))
+
 					.["goods"] += list(list(
 						"name" = pathname,
 						"price" = price,
@@ -205,7 +223,6 @@
 						"amount_available" = amount,
 						"index" = index
 					))
-					.["total"] += price * count
 		if(!recursiveLen(.["goods"]))
 			.["goods"] = null
 

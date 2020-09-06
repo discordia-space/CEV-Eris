@@ -1041,9 +1041,7 @@
 	price_tag = 200
 
 /mob/living/exosuit/get_item_cost(export)
-	. = ..()
-	for(var/i in body?.computer?.installed_software)
-		. += SStrade.get_new_cost(i)
+	. = ..() + SStrade.get_import_cost(body)
 
 /obj/item/stack/get_item_cost(export)
 	return amount * ..()
@@ -1072,7 +1070,7 @@
 /obj/item/weapon/tool/get_item_cost(export)
 	. = 1
 	for(var/i in tool_qualities)
-		. += tool_qualities[tool_qualities[i]] / 5
+		. += tool_qualities[i] / 5
 	. *= ..()
 
 /obj/structure/medical_stand/price_tag = 100

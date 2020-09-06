@@ -946,3 +946,30 @@ Checks if a list has the same entries and values as an element of big.
 				. += recursiveLen(i)
 			else if(islist(L[i]))
 				. += recursiveLen(L[i])
+
+/proc/RecursiveCut(list/L)
+	for(var/list/l in L)
+		if(islist(l))
+			RecursiveCut(l)
+		else
+			var/list/b = L[l]
+			if(islist(b))
+				RecursiveCut(b)
+	L.Cut()
+
+/proc/matrix2d_x_sanitize(mathrix, x)
+	if(!islist(mathrix))
+		return
+	else if(!islist(mathrix[x]))
+		return
+	return mathrix
+
+/proc/get_2d_matrix_cell(mathrix, x, y)
+	if(!matrix2d_x_sanitize(mathrix, x))
+		return
+	return mathrix[x][y]
+
+/proc/set_2d_matrix_cell(mathrix, x, y, value)
+	if(!matrix2d_x_sanitize(mathrix, x))
+		return
+	mathrix[x][y] = value
