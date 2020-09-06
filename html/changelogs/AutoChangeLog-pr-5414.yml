@@ -1,7 +1,0 @@
-author: Hopek
-delete-after: true
-changes:
-  - rscadd: The cryopod will now attempt to give your items back on eject if you leave
-      items inside of the pod.
-  - bugfix: fixed a re-equipping bug where it left your items (Such as the PDA) on
-      the floor if you equip a custom loadout.

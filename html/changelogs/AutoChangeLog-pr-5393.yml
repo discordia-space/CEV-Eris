@@ -1,6 +1,0 @@
-author: TheShown
-delete-after: true
-changes:
-  - balance: control spider duration is no longer exactly 1 minute, but randomized
-      from 45 to 70 seconds.
-  - code_imp: revive() proc from carrion regen stasis changed to rejuvinate().
