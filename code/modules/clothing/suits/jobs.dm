@@ -104,6 +104,7 @@
 	icon_state = "church_coat"
 	item_state = "church_coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
 		melee = 30,
 		bullet = 20,
