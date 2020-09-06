@@ -23,7 +23,7 @@
 	. = ..()
 	eat_dir = newdir
 
-/obj/machinery/plumbing/grinder_chemical/CanAllowThrough(atom/movable/AM)
+/obj/machinery/plumbing/grinder_chemical/CanPass(atom/movable/AM)
 	. = ..()
 	if(!anchored)
 		return

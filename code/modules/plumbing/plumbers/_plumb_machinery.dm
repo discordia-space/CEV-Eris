@@ -45,7 +45,7 @@
 		to_chat(user, SPAN_NOTICE("You start furiously plunging [name]."))
 		if(do_after(user, 30, target = src))
 			to_chat(user, SPAN_NOTICE("You finish plunging the [name]."))
-			reagents.expose(get_turf(src), TOUCH) //splash on the floor
+			reagents.touch_turf(get_turf(src)) //splash on the floor
 			reagents.clear_reagents()
 		return
 	..()
