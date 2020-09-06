@@ -131,7 +131,6 @@ All the important duct code:
 	add_neighbour(D, direction)
 	//tell our buddy its time to pass on the torch of connecting to pipes. This shouldn't ever infinitely loop since it only works on pipes that havent been inductrinated
 	D.attempt_connect()
-
 	return TRUE
 
 ///connect to a plumbing object
@@ -291,9 +290,10 @@ All the important duct code:
 		set_anchored(!anchored)
 		user.visible_message( \
 		"[user] [anchored ? null : "un"]fastens \the [src].", \
-		"<span class='notice'>You [anchored ? null : "un"]fasten \the [src].</span>", \
-		"<span class='hear'>You hear ratcheting.</span>")
+		SPAN_NOTICE("You [anchored ? null : "un"]fasten \the [src]."), \
+		SPAN_NOTICE("You hear ratcheting."))
 	return TRUE
+
 ///collection of all the sanity checks to prevent us from stacking ducts that shouldn't be stacked
 /obj/machinery/duct/proc/can_anchor(turf/T)
 	if(!T)
@@ -336,53 +336,6 @@ All the important duct code:
 	connect_network(D, direction, TRUE)
 	update_icon()
 
-///has a total of 5 layers and doesnt give a shit about color. its also dumb so doesnt autoconnect.
-/obj/machinery/duct/multilayered
-	name = "duct layer-manifold"
-	icon = 'icons/obj/2x2.dmi'
-	icon_state = "multiduct"
-	pixel_x = -15
-	pixel_y = -15
-
-	color_to_color_support = FALSE
-	duct_layer = FIRST_DUCT_LAYER | SECOND_DUCT_LAYER | THIRD_DUCT_LAYER | FOURTH_DUCT_LAYER | FIFTH_DUCT_LAYER
-	drop_on_wrench = null
-
-	lock_connects = TRUE
-	lock_layers = TRUE
-	ignore_colors = TRUE
-	dumb = TRUE
-
-	active = FALSE
-	anchored = FALSE
-
-/obj/machinery/duct/multilayered/Initialize(mapload, no_anchor, color_of_duct, layer_of_duct = DUCT_LAYER_DEFAULT, force_connects)
-	. = ..()
-	update_connects()
-
-/obj/machinery/duct/multilayered/ComponentInitialize()
-	. = ..()
-	AddElement(/datum/element/update_icon_blocker)
-
-/obj/machinery/duct/multilayered/wrench_act(mob/living/user, obj/item/I)
-	. = ..()
-	update_connects()
-
-/obj/machinery/duct/multilayered/proc/update_connects()
-	if(dir & NORTH || dir & SOUTH)
-		connects = NORTH | SOUTH
-	else
-		connects = EAST | WEST
-
-///don't connect to other multilayered stuff because honestly it shouldn't be done and I dont wanna deal with it
-/obj/machinery/duct/multilayered/connect_duct(obj/machinery/duct/D, direction, ignore_color)
-	if(istype(D, /obj/machinery/duct/multilayered))
-		return
-	return ..()
-
-/obj/machinery/duct/multilayered/handle_layer()
-	return
-
 /obj/item/stack/ducts
 	name = "stack of duct"
 	desc = "A stack of fluid ducts."
@@ -405,7 +358,7 @@ All the important duct code:
 
 /obj/item/stack/ducts/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It's current color and layer are [duct_color] and [duct_layer]. Use in-hand to change.</span>"
+	. += SPAN_NOTICE("It's current color and layer are [duct_color] and [duct_layer]. Use in-hand to change.")
 
 /obj/item/stack/ducts/attack_self(mob/user)
 	var/new_layer = input("Select a layer", "Layer") as null|anything in layers
@@ -430,5 +383,6 @@ All the important duct code:
 		new /obj/machinery/duct(OT, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer])
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
-/obj/item/stack/ducts/fifty
-	amount = 50
+/obj/item/stack/ducts/random
+	rand_min = 3
+	rand_max = 30

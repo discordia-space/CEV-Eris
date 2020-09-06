@@ -10,10 +10,10 @@
 	density = TRUE
 	active_power_usage = 30
 	use_power = ACTIVE_POWER_USE
-	///Plumbing machinery is always gonna need reagents, so we might aswell put it here
-	var/buffer = 50
 	///Flags for reagents, like INJECTABLE, TRANSPARENT bla bla everything thats in DEFINES/reagents.dm
 	reagent_flags = TRANSPARENT
+	///Plumbing machinery is always gonna need reagents, so we might aswell put it here
+	var/buffer = 50
 	///wheter we partake in rcd construction or not
 	var/rcd_constructable = TRUE
 	///cost of the plumbing rcd construction
