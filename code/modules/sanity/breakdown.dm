@@ -51,9 +51,9 @@
 /datum/breakdown/proc/occur()
 	occur_animation()
 	holder.owner.playsound_local(get_turf(holder.owner), breakdown_sound, 100)
-	if(holder.owner.head && istype(holder.owner.head, /obj/item/clothing/head/mindbreaker))
-		var/obj/item/clothing/head/mindbreaker/MB = holder.owner.head
-		MB.extract_memory(holder.owner)
+	if(holder.owner.head && istype(holder.owner.head, /obj/item/clothing/head/mindreader))
+		var/obj/item/clothing/head/mindreader/MR = holder.owner.head
+		MR.extract_memory(holder.owner)
 	if(start_messages)
 		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration/10] seconds.")
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
