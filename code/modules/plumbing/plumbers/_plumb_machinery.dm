@@ -34,12 +34,6 @@
 	. = ..()
 	. += "<span class='notice'>The maximum volume display reads: <b>[reagents.maximum_volume] units</b>.</span>"
 
-/obj/machinery/plumbing/wrench_act(mob/living/user, obj/item/I)
-	..()
-	default_unfasten_wrench(user, I)
-	return TRUE
-
-
 /obj/machinery/plumbing/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/weapon/tool/plunger))
 		to_chat(user, SPAN_NOTICE("You start furiously plunging [name]."))
@@ -48,6 +42,14 @@
 			reagents.touch_turf(get_turf(src)) //splash on the floor
 			reagents.clear_reagents()
 		return
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			anchored = !anchored
+			user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
+						"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
+						"You hear a ratchet")
+			SEND_SIGNAL(src, COMSIG_OBJ_UNFASTEN, anchored)
+			return
 	..()
 
 /obj/machinery/plumbing/welder_act(mob/living/user, obj/item/I)

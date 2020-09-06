@@ -101,3 +101,4 @@
 	else
 		r_overlay.color = "#FFFFFF"
 	overlays += r_overlay
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, overlays)
