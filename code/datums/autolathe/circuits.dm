@@ -58,7 +58,7 @@
 
 /datum/design/autolathe/circuit/industrialgrinder
 	name = "industrial grinder"
-	build_path = /obj/item/weapon/circuitboard/industrial_grinder
+	build_path = /obj/item/electronics/circuitboard/industrial_grinder
 
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior
