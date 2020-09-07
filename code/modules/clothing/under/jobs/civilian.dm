@@ -52,7 +52,7 @@
 	item_state = "church"
 
 /obj/item/clothing/under/rank/church/sport
-	desc = "smells like lilac."
+	desc = "Smells like lilac."
 	name = "church sports vestment"
 	icon_state = "nt_sports"
 	item_state = "nt_sports"
