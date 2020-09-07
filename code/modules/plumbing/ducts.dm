@@ -272,8 +272,7 @@ All the important duct code:
 	pixel_x = offset
 	pixel_y = offset
 
-
-/obj/machinery/duct/proc/set_anchored(anchorvalue)
+/obj/machinery/duct/set_anchored(anchorvalue)
 	. = ..()
 	if(isnull(.))
 		return
@@ -283,7 +282,7 @@ All the important duct code:
 	else
 		disconnect_duct(TRUE)
 
-/obj/machinery/duct/attackby(mob/living/user, obj/item/I)
+/obj/machinery/duct/attackby(obj/item/I, mob/living/user)
 	add_fingerprint(user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
@@ -292,7 +291,6 @@ All the important duct code:
 				user.visible_message(SPAN_NOTICE("[user] [anchored ? null : "un"]fastens \the [src]."),
 				SPAN_NOTICE("You [anchored ? null : "un"]fasten \the [src]."),
 				"You hear ratcheting.")
-				SEND_SIGNAL(src, COMSIG_OBJ_UNFASTEN, anchored)
 				return TRUE
 	..()
 

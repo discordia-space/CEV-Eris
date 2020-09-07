@@ -66,7 +66,9 @@
 
 // /obj signals
 #define COMSIG_OBJ_HIDE	"obj_hide" ///from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide
-#define COMSIG_OBJ_UNFASTEN "obj_unfasten"
+
+//machinery
+#define COMSIG_OBJ_DUCT_UNFASTEN "obj_unfasten" //duct anchored
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack

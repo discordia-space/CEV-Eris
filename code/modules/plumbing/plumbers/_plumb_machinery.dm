@@ -50,11 +50,11 @@
 		return TRUE
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			anchored = !anchored
+			set_anchored(!anchored)		
+			SEND_SIGNAL(src, COMSIG_OBJ_DUCT_UNFASTEN, anchored)
 			user.visible_message(SPAN_NOTICE("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor."), \
 							SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."), \
 							"You hear a ratchet")
-			SEND_SIGNAL(src, COMSIG_OBJ_UNFASTEN, anchored)
 			return TRUE
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(anchored)

@@ -92,13 +92,16 @@
 	update_icon()
 	reagents.clear_reagents()
 */
-
 /obj/machinery/plumbing/synthesizer/update_icon()
+	..()
+	update_overlay()
+
+/obj/machinery/plumbing/synthesizer/proc/update_overlay()
 	. = ..()
 	var/mutable_appearance/r_overlay = mutable_appearance(icon, "[icon_state]_overlay")
 	if(reagent_id)
 		r_overlay.color = initial(reagent_id.color)
 	else
 		r_overlay.color = "#FFFFFF"
-	overlays += r_overlay
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, overlays)
+	. += r_overlay
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)

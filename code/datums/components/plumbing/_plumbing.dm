@@ -27,7 +27,7 @@
 	turn_connects = _turn_connects
 
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
-	RegisterSignal(parent, list(COMSIG_OBJ_UNFASTEN), .proc/toggle_active)
+	RegisterSignal(parent, list(COMSIG_OBJ_DUCT_UNFASTEN), .proc/toggle_active)
 	RegisterSignal(parent, list(COMSIG_OBJ_HIDE), .proc/hide)
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS), .proc/create_overlays) //called by lateinit on startup
 
