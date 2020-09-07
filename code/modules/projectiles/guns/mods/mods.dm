@@ -313,9 +313,9 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DAMAGE_BRUTE = 10,
-		GUN_UPGRADE_PEN_MULT = 1.5,
-		GUN_UPGRADE_PIERC_MULT = 2,
-		GUN_UPGRADE_FIRE_DELAY_MULT = 1.7,
+		GUN_UPGRADE_PEN_MULT = 1.2,
+		GUN_UPGRADE_PIERC_MULT = 1,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 1.2,
 		GUN_UPGRADE_RECOIL = 1.2,
 		)
 	I.removal_time *= 10

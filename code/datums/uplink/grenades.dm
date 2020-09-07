@@ -34,11 +34,6 @@
 	item_cost = 10
 	path = /obj/item/weapon/storage/box/explosive
 
-/datum/uplink_item/item/grenades/incendiary
-	name = "5xIncendiary Grenades"
-	item_cost = 15
-	path = /obj/item/weapon/storage/box/incendiary
-
 /datum/uplink_item/item/grenades/viscerator
 	name = "viscerator grenade"
 	item_cost = 4
