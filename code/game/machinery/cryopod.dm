@@ -426,7 +426,7 @@
 	if(usr.stat != 0)
 		return
 
-	//Eject any items that aren't meant to be in the pod.
+	//Eject any items that aren't meant to be in the pod. Attempts to put the items back on the occupant otherwise drops them.
 	var/list/items = src.contents
 	if(occupant)
 		if(usr != occupant && !occupant.client && occupant.stat != DEAD)
@@ -438,6 +438,7 @@
 
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
+		occupant.equip_to_appropriate_slot(W) // Items are now ejected. Tries to put them items on the occupant so they don't leave them behind
 
 	src.go_out()
 	add_fingerprint(usr)
