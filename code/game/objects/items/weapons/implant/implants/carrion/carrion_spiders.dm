@@ -38,6 +38,10 @@
 				to_chat(owner_mob, SPAN_NOTICE("[src] infested [L]"))
 				break
 
+/obj/item/weapon/implant/carrion_spider/on_uninstall()
+	..()
+	last_stun_time = world.time
+
 /obj/item/weapon/implant/carrion_spider/attackby(obj/item/I, mob/living/user, params) //Overrides implanter behaviour
 	if(I.force >= WEAPON_FORCE_WEAK)
 		attack_animation(user)

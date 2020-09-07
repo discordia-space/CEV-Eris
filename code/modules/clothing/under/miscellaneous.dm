@@ -189,3 +189,40 @@ obj/item/clothing/under/leisure/pullover
 	desc = "Brown pullover with indeterminable pattern."
 	icon_state = "pullover"
 	item_state = "pullover"
+
+obj/item/clothing/under/neon
+	name = "green neon tracksuit"
+	desc = "A tracksuit lined with green neon fibers. Slightly luminescent."
+	icon_state = "neon"
+	item_state = "bl_suit"
+	style = 2
+
+obj/item/clothing/under/neon/yellow
+	name = "yellow neon tracksuit"
+	desc = "A tracksuit lined with yellow neon fibers. Slightly luminescent."
+	icon_state = "neony"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/neon/blue
+	name = "blue neon tracksuit"
+	desc = "A tracksuit lined with blue neon fibers. Slightly luminescent."
+	icon_state = "neonb"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/neon/red
+	name = "red neon tracksuit"
+	desc = "A tracksuit lined with red neon fibers. Slightly luminescent."
+	icon_state = "neonr"
+	item_state = "bl_suit"
+
+obj/item/clothing/under/jersey
+	name = "revealing jersey"
+	desc = "For showing your devotion to god, or the opposite for that matter"
+	icon_state = "jersey"
+	item_state = "jersey"
+
+obj/item/clothing/under/cyber
+	name = "augmented jumpsuit"
+	desc = "I wanted a jumpsuit. It gave me THIS."
+	icon_state = "cyber"
+	item_state = "cyber"

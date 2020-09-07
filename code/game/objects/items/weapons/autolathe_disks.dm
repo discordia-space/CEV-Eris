@@ -113,7 +113,8 @@
 		/datum/design/autolathe/device/export_scanner,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/device/hand_labeler,
-		/datum/design/research/item/light_replacer
+		/datum/design/research/item/light_replacer,
+		/datum/design/autolathe/sec/hailer,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells
@@ -194,7 +195,7 @@
 		/datum/design/autolathe/circuit/powermodule = 0,
 		/datum/design/autolathe/circuit/recharger,
 		/datum/design/research/circuit/autolathe,
-		/datum/design/autolathe/circuit/autolathe_disk_cloner,
+		/datum/design/autolathe/circuit/autolathe_disk_cloner = 3,
 		/datum/design/autolathe/circuit/vending,
 		/datum/design/research/circuit/arcade_battle,
 		/datum/design/research/circuit/arcade_orion_trail,
@@ -205,6 +206,7 @@
 		/datum/design/autolathe/circuit/centrifuge,
 		/datum/design/autolathe/circuit/electrolyzer,
 		/datum/design/autolathe/circuit/reagentgrinder,
+		/datum/design/autolathe/circuit/industrialgrinder = 2,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors
@@ -284,12 +286,16 @@
 		/datum/design/autolathe/computer_part/gps,
 		/datum/design/autolathe/computer_part/scanner/paper,
 		/datum/design/autolathe/computer_part/scanner/atmos,
+		/datum/design/autolathe/computer_part/scanner/reagent,
+		/datum/design/autolathe/computer_part/scanner/medical,
 	)
 
 
 // NeoTheology
+
+// Foodstuffs, fertilizers, medical and cleaning utilities
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter
-	disk_name = "NeoTheology Bioprinter Production"
+	disk_name = "NeoTheology Bioprinter Products and Utilities"
 	icon_state = "neotheology"
 
 	license = -1
@@ -302,16 +308,49 @@
 		/datum/design/bioprinter/l4z,
 		/datum/design/bioprinter/rh,
 
+		/datum/design/bioprinter/medical/bruise,
+		/datum/design/bioprinter/medical/splints,
+		/datum/design/bioprinter/medical/ointment,
+		/datum/design/bioprinter/medical/advanced/bruise,
+		/datum/design/bioprinter/medical/advanced/ointment,
+
+		/datum/design/autolathe/gun/nt_sprayer,
+		/datum/design/autolathe/gun/plasma/martyr,
+		/datum/design/autolathe/device/grenade/nt_cleaner,
+		/datum/design/autolathe/device/grenade/nt_weedkiller	
+
+	)
+
+// Clothes, armor and accesories
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes
+	disk_name = "NeoTheology Bio-Fabric Designs"
+	icon_state = "neotheology"
+
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/nt_clothes/acolyte_armor,
+		/datum/design/bioprinter/nt_clothes/agrolyte_armor,
+		/datum/design/bioprinter/nt_clothes/custodian_armor,
+
+		/datum/design/bioprinter/nt_clothes/preacher_coat,
+		/datum/design/bioprinter/nt_clothes/acolyte_jacket,
+		/datum/design/bioprinter/nt_clothes/sports_jacket,
+
+		/datum/design/bioprinter/nt_clothes/acolyte_uniform,
+		/datum/design/bioprinter/nt_clothes/sports_uniform,
+		/datum/design/bioprinter/nt_clothes/church_uniform,
+
+		/datum/design/bioprinter/belt/security/neotheology,
+		/datum/design/bioprinter/belt/utility/neotheology,
+
+		/datum/design/bioprinter/satchel,
+		/datum/design/bioprinter/leather_jacket,
 		/datum/design/bioprinter/wallet,
 		/datum/design/bioprinter/botanic_leather,
-		/datum/design/bioprinter/leather/satchel,
-		/datum/design/bioprinter/leather/leather_jacket,
-		/datum/design/bioprinter/leather/cash_bag,
+
 		/datum/design/bioprinter/belt/utility,
-		/datum/design/bioprinter/belt/utility/neotheology,
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/security,
-		/datum/design/bioprinter/belt/security/neotheology,
 		/datum/design/bioprinter/belt/medical/emt,
 		/datum/design/bioprinter/belt/misc/champion,
 
@@ -319,17 +358,12 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
-
-		/datum/design/bioprinter/medical/bruise,
-		/datum/design/bioprinter/medical/splints,
-		/datum/design/bioprinter/medical/ointment,
-		/datum/design/bioprinter/medical/advanced/bruise,
-		/datum/design/bioprinter/medical/advanced/ointment,
-
-		/datum/design/autolathe/gun/nt_sprayer
+		
+   		/datum/design/autolathe/device/headset_church,
+		/datum/design/bioprinter/leather/cash_bag
 	)
 
-// Same as the other NT disk, minus the medical designs and encryption key. Should spawn in public access bioprinters if they get added by any chance.
+// Kinda like the regular product NT disk, minus the grenades, soap and the cleaner carbine. Should spawn in public access bioprinters if they get added by any chance.
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
 	disk_name = "NeoTheology Bioprinter Pack"
 	icon_state = "neotheology"
@@ -345,8 +379,8 @@
 
 		/datum/design/bioprinter/wallet,
 		/datum/design/bioprinter/botanic_leather,
-		/datum/design/bioprinter/leather/satchel,
-		/datum/design/bioprinter/leather/leather_jacket,
+		/datum/design/bioprinter/satchel,
+		/datum/design/bioprinter/leather_jacket,
 		/datum/design/bioprinter/leather/cash_bag,
 		/datum/design/bioprinter/belt/utility,
 		/datum/design/bioprinter/belt/utility/neotheology,
@@ -405,6 +439,7 @@
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/sec/silencer,
+		/datum/design/autolathe/sec/hailer	
 	)
 
 // One Star
@@ -566,6 +601,10 @@
 		/datum/design/autolathe/cell/small/excelsior,
 		/datum/design/autolathe/device/excelsiormine,				//security
 		/datum/design/autolathe/sec/beartrap,
+		/datum/design/autolathe/prosthesis/excelsior/l_arm,         //prostheses
+		/datum/design/autolathe/prosthesis/excelsior/r_arm,
+		/datum/design/autolathe/prosthesis/excelsior/l_leg,
+		/datum/design/autolathe/prosthesis/excelsior/r_leg,
 		/datum/design/autolathe/device/implanter,					//misc
 		/datum/design/autolathe/device/propaganda_chip,
 		/datum/design/autolathe/clothing/excelsior_armor,
@@ -1016,6 +1055,16 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
+		/datum/design/autolathe/cell/medium/high,
+	)
+
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_svalinn
+	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
+	icon_state = "neotheology"
+
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/nt_svalinn = 3,
 		/datum/design/autolathe/cell/small/high,
 	)
 

@@ -1,5 +1,4 @@
 //BIG CELLS - for APC, borgs and machinery.
-
 /obj/item/weapon/cell/large
 	name = "Asters \"Robustcell 1000L\""
 	desc = "Asters Guild branded rechargeable L-standardized power cell. This one is the cheapest you can find."
@@ -264,3 +263,16 @@
 	origin_tech = list(TECH_POWER = 4)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	maxcharge = 300
+
+
+/obj/item/weapon/cell/disposable
+	name = "a disposable cell"
+	desc = "just steel for this one!"
+	icon_state = "s_st"
+	w_class = ITEM_SIZE_TINY
+	force = WEAPON_FORCE_HARMLESS
+	throw_speed = 5
+	throw_range = 7
+	origin_tech = list(TECH_POWER = 1)
+	matter = list(MATERIAL_STEEL = 1)  //some cost just in case you manage to get this in a disk or something
+	maxcharge = 100  //small cause if someone manage to get this shouldn't be that usefull. and 100 is a nice number to work with.

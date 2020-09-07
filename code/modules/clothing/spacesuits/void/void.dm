@@ -75,6 +75,13 @@
 
 	return ..()
 
+/obj/item/clothing/suit/space/void/decontaminate()
+	if(boots) boots.decontaminate()
+	if(helmet) helmet.decontaminate()
+	if(tank) tank.decontaminate()
+
+	return ..()
+
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 

@@ -425,8 +425,8 @@
 
 	set_opacity(0)
 	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
-		f5.set_opacity(0)
-		f6.set_opacity(0)
+		f5?.set_opacity(0)
+		f6?.set_opacity(0)
 
 	do_animate("opening")
 	icon_state = "door0"

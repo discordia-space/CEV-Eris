@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 
 	for(var/entry in priority_order)
 		var/decl/uplink_source/US = entry
-		if(US.setup_uplink_source(M, amount) != SETUP_FAILED)
+		if(US.setup_uplink_source(M, round(amount)) != SETUP_FAILED)
 			return TRUE
 	to_chat(M, "<span class='warning'>Either by choice or circumstance you will be without an uplink.</span>")
 	return FALSE

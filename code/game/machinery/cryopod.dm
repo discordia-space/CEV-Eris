@@ -337,11 +337,11 @@
 				W.forceMove(src.loc)
 
 	//Make an announcement and log the person entering storage.
-	control_computer.frozen_crew += "[occupant.real_name], [occupant.mind.assigned_role] - [stationtime2text()]"
-	control_computer._admin_logs += "[key_name(occupant)] ([occupant.mind.assigned_role]) at [stationtime2text()]"
-	log_and_message_admins("[key_name(occupant)] ([occupant.mind.assigned_role]) entered cryostorage.")
+	control_computer.frozen_crew += "[occupant.real_name]" + "[occupant.mind ? ", [occupant.mind.assigned_role]" : ""]" + " - [stationtime2text()]"
+	control_computer._admin_logs += "[key_name(occupant)]" + "[occupant.mind ? ", ([occupant.mind.assigned_role])" : ""]" + " at [stationtime2text()]"
+	log_and_message_admins("[key_name(occupant)]" + "[occupant.mind ? " ([occupant.mind.assigned_role])" : ""]" + " entered cryostorage.")
 
-	announce.autosay("[occupant.real_name], [occupant.mind.assigned_role], [on_store_message]", "[on_store_name]")
+	announce.autosay("[occupant.real_name]" + "[occupant.mind ? ", [occupant.mind.assigned_role]" : ""]" + ", [on_store_message]", "[on_store_name]")
 	visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [occupant.real_name] into storage.</span>")
 
 	//When the occupant is put into storage, their respawn time is reduced.
@@ -426,7 +426,7 @@
 	if(usr.stat != 0)
 		return
 
-	//Eject any items that aren't meant to be in the pod.
+	//Eject any items that aren't meant to be in the pod. Attempts to put the items back on the occupant otherwise drops them.
 	var/list/items = src.contents
 	if(occupant)
 		if(usr != occupant && !occupant.client && occupant.stat != DEAD)
@@ -438,6 +438,7 @@
 
 	for(var/obj/item/W in items)
 		W.forceMove(get_turf(src))
+		occupant.equip_to_appropriate_slot(W) // Items are now ejected. Tries to put them items on the occupant so they don't leave them behind
 
 	src.go_out()
 	add_fingerprint(usr)

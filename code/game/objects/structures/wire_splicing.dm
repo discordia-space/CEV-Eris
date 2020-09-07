@@ -80,7 +80,7 @@
 		var/mob/living/L = AM
 		var/turf/T = get_turf(src)
 		var/chance_to_shock = messiness * 10
-		chance_to_shock -= L.skill_to_evade_traps(chance_to_shock)
+		chance_to_shock -= L.skill_to_evade_traps()
 		if(locate(/obj/structure/catwalk) in T)
 			chance_to_shock -= 20
 		if(prob(chance_to_shock))

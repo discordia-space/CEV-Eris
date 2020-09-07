@@ -26,7 +26,7 @@ var/list/datum/power/carrion/powerinstances = list()
 /datum/power/carrion/infection_spider
 	name = "Infection spider"
 	desc = "Creates a miniature spider, with spider core inside it capable of making more carrions."
-	helptext = "Requires 5 evolution points to produce."
+	helptext = "Requires 7 evolution points to produce."
 	genomecost = 0
 	spiderpath = /obj/item/weapon/implant/carrion_spider/infection
 

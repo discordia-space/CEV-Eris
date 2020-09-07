@@ -49,3 +49,5 @@
 #define CAT_MODCOMP     "Modular Computers"
 #define CAT_CIRCUITS    "Circuits"
 #define CAT_MEDI        "Medical"
+#define CAT_TOOLMODS    "Toolmods"
+#define CAT_GUNMODS     "Gunmods"

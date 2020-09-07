@@ -175,3 +175,14 @@
 	can_hold = list(
 		/obj/item/clothing/mask/luchador
 	)
+
+/obj/item/weapon/storage/belt/holding
+	name = "belt of holding"
+	desc = "The greatest in pants-supporting bluespace technology."
+	icon_state = "holdingbelt"
+	item_state = "holdingbelt"
+	storage_slots = 14
+	max_w_class = ITEM_SIZE_BULKY
+	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 3)
+	origin_tech = list(TECH_BLUESPACE = 4)

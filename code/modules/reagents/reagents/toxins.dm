@@ -249,6 +249,13 @@
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
 		qdel(O)
+	if(istype(O, /obj/machinery/portable_atmospherics/hydroponics))
+		var/obj/machinery/portable_atmospherics/hydroponics/T = O
+		T.seed = null
+		T.weedlevel = 0
+		T.pestlevel = 0
+		T.update_icon()
+		return
 
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
@@ -274,14 +281,6 @@
 	M.take_organ_damage(0.3 * effect_multiplier, 0)
 	if(M.losebreath < 15)
 		M.losebreath++
-
-/datum/reagent/toxin/lexorin/plus //Currently uncraftable, could be made with carrion parts.
-	name = "Lexorin plus"
-	id = "lexorinp"
-	description = "Advanced lexorin able to penetrate skin."
-
-/datum/reagent/toxin/lexorin/plus/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
-	affect_blood(M, alien, effect_multiplier)
 
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"

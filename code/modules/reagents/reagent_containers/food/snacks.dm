@@ -37,16 +37,17 @@
 		return  list(0, message)
 	if(eater.nutrition > eater.max_nutrition*0.95)
 		message = "You are satisfied and you don't need to eat more."
-		return  list(0, message)
+		return  list(0, SPAN_WARNING(message))
 	if(!base_sanity_gain_pb)
 		message = "This food does not help calm your nerves."
-		return  list(0, message)
+		return  list(0, SPAN_WARNING(message))
 	var/sanity_gain_pb = base_sanity_gain_pb
 	message = "Food helps you relax."
 	if(cooked)
 		sanity_gain_pb += base_sanity_gain_pb * 0.2
 	if(junk_food || !cooked)
-		return  list(sanity_gain_pb, message)
+		message += " But, only healthy food helps you grow."
+		return  list(sanity_gain_pb, SPAN_NOTICE(message))
 	var/table = FALSE
 	var/companions = FALSE
 	var/view_death = FALSE
@@ -71,11 +72,12 @@
 		if(view_death && !eater.stats.getPerk(PERK_NIHILIST))
 			message = "You gaze at the cadaver... Your food doesn't taste so good anymore."
 			sanity_gain_pb = 0
+			return list(sanity_gain_pb, SPAN_WARNING(message))
 
-	return list(sanity_gain_pb, message)
+	return list(sanity_gain_pb, SPAN_NOTICE(message))
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/eater, var/mob/feeder = null)
+/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(mob/eater, mob/feeder = null)
 	if(!reagents.total_volume)
 		eater.visible_message(
 			SPAN_NOTICE("[eater] finishes eating \the [src]."),
@@ -753,7 +755,7 @@
 	proc/heat()
 		warm = 1
 		for(var/reagent in heated_reagents)
-			reagents.add_reagent(reagent, heated_reagents[reagent])
+			reagents?.add_reagent(reagent, heated_reagents[reagent])
 		bitesize = 6
 		name = "Warm " + name
 		cooltime()
@@ -980,7 +982,19 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("bun" = 2)
 	nutriment_amt = 3
-	preloaded_reagents = list("protein" = 8, "Fuhrole" = 3)
+	preloaded_reagents = list("protein" = 8, "fuhrerole" = 3)
+	cooked = TRUE
+	taste_tag = list(INSECTS_FOOD)
+
+/obj/item/weapon/reagent_containers/food/snacks/kaiserburger
+	name = "Kaiser Burger"
+	desc = "The rare experience for your taste buds"
+	icon_state = "kaiserburger"
+	bitesize = 3
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("bun" = 2)
+	nutriment_amt = 3
+	preloaded_reagents = list("protein" = 10)
 	cooked = TRUE
 	taste_tag = list(INSECTS_FOOD)
 
@@ -2734,7 +2748,7 @@
 	nutriment_amt = 10
 	bitesize = 2
 	preloaded_reagents = list("protein" = 34, "tomatojuice" = 6)
-	taste_tag = list(MEAT_FOOD)
+	taste_tag = list(MEAT_FOOD, CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/meatpizzaslice
 	name = "Meatpizza slice"
@@ -2745,7 +2759,7 @@
 	center_of_mass = list("x"=18, "y"=13)
 	preloaded_reagents = list("protein" = 7, "tomatojuice" = 1)
 	cooked = TRUE
-	taste_tag = list(MEAT_FOOD)
+	taste_tag = list(MEAT_FOOD, CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 	name = "Mushroompizza"
@@ -2758,7 +2772,7 @@
 	nutriment_amt = 35
 	bitesize = 2
 	preloaded_reagents = list("protein" = 5)
-	taste_tag = list(CHEESE_FOOD)
+	taste_tag = list(CHEESE_FOOD, CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/mushroompizzaslice
 	name = "Mushroompizza slice"
@@ -2769,7 +2783,7 @@
 	center_of_mass = list("x"=18, "y"=13)
 	preloaded_reagents = list("nutriment" = 5, "protein" = 1)
 	cooked = TRUE
-	taste_tag = list(CHEESE_FOOD)
+	taste_tag = list(CHEESE_FOOD, CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	name = "Vegetable pizza"
@@ -2782,7 +2796,7 @@
 	nutriment_amt = 25
 	bitesize = 2
 	preloaded_reagents = list("protein" = 5, "tomatojuice" = 6, "imidazoline" = 12)
-	taste_tag = list(VEGETARIAN_FOOD)
+	taste_tag = list(VEGETARIAN_FOOD, CHEESE_FOOD)
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetablepizzaslice
 	name = "Vegetable pizza slice"
@@ -2793,7 +2807,7 @@
 	center_of_mass = list("x"=18, "y"=13)
 	preloaded_reagents = list("nutriment" = 4, "protein" = 1, "tomatojuice" = 1, "imidazoline" = 2)
 	cooked = TRUE
-	taste_tag = list(VEGETARIAN_FOOD)
+	taste_tag = list(VEGETARIAN_FOOD, CHEESE_FOOD)
 
 /obj/item/pizzabox
 	name = "pizza box"
