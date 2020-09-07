@@ -47,7 +47,7 @@
 
 /obj/item/weapon/storage/case/donut
 	name = "Special donut delivery case"
-	desc = "Containe a special cooked donut for a connoisseurs of donuts."
+	desc = "Contains specially cooked donuts for donut connoisseurs."
 	icon_state = "donutcase"
 	item_state = "donutcase"
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff)

@@ -345,6 +345,6 @@
 
 /datum/uplink_item/item/tools/mindreader
 	name = "Mindreader"
-	desc = "Place on your victim head to extract memory from his brain, after his mental breakdown."
+	desc = "Place on your victim's head to extract memories from their brain after a mental breakdown."
 	item_cost = 20
 	path = /obj/item/clothing/head/mindreader

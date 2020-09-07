@@ -80,7 +80,7 @@
 	name = "Special Donut Delivery Case"
 	item_cost = 20
 	path = /obj/item/weapon/storage/case/donut
-	desc = "A rare donut case, that can be purchase only on black market. Contains in self masterpiece made donuts, with unique effects for those who eat them."
+	desc = "A rare donut case, that can only be purchased on the black market. Contains masterfully made donuts, with unique effects for those who eat them."
 
 /datum/uplink_item/item/badassery/contract
 	name = "Ask for new contract"

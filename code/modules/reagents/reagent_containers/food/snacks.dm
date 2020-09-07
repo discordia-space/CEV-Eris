@@ -575,7 +575,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff
 	name = "Masterpiece Donut"
-	desc = "The taste you will never forgot."
+	desc = "The taste you will never forget."
 	filling_color = "#ED1169"
 	bitesize = 5
 	center_of_mass = list("x"=16, "y"=11)
@@ -598,42 +598,42 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/mec
 	name = "Yellow Masterpiece Donut"
-	desc = "The taste you will never forgot. Special for engineers."
+	desc = "The taste you will never forget. Special for engineers."
 	icon_state = "donut_mec"
 	overlay_state = "donut_mec_c"
 	stats_buff = list(STAT_MEC)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/cog
 	name = "Purple Masterpiece Donut"
-	desc = "The taste you will never forgot. Special for intelligent people."
+	desc = "The taste you will never forget. Special for intelligent people."
 	icon_state = "donut_cog"
 	overlay_state = "donut_cog_c"
 	stats_buff = list(STAT_COG)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/bio
 	name = "Green Masterpiece Donut"
-	desc = "The taste you will never forgot. Special for medics."
+	desc = "The taste you will never forget. Special for medics."
 	icon_state = "donut_bio"
 	overlay_state = "donut_bio_c"
 	stats_buff = list(STAT_BIO)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/rob
 	name = "Brown Masterpiece Donut"
-	desc = "The taste you will never forgot. Special for strong people."
+	desc = "The taste you will never forget. Special for strong people."
 	icon_state = "donut_rob"
 	overlay_state = "donut_rob_c"
 	stats_buff = list(STAT_ROB)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/tgh
 	name = "Cream Masterpiece Donut"
-	desc = "The taste you will never forgot. Special for tough people."
+	desc = "The taste you will never forget. Special for tough people."
 	icon_state = "donut_tgh"
 	overlay_state = "donut_tgh_c"
 	stats_buff = list(STAT_TGH)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/vig
 	name = "Blue Masterpiece Donut"
-	desc = "The taste you will never forgot. Special for vigilant people."
+	desc = "The taste you will never forget. Special for vigilant people."
 	icon_state = "donut_vig"
 	overlay_state = "donut_vig_c"
 	stats_buff = list(STAT_VIG)
