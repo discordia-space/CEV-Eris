@@ -132,7 +132,7 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_types[BRUTE] != 0)
+	if(!embed || damage_types[BRUTE] <= 0)
 		return FALSE
 	return TRUE
 
