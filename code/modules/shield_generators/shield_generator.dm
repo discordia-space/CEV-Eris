@@ -711,7 +711,7 @@
 					logstring += " Unknown Area"
 
 				if (origin_atom)
-					logstring += ", [origin_atom.x],[origin_atom.y],[origin_atom.z]"
+					logstring += ", [origin_atom.x ? origin_atom.x : "unknown"],[origin_atom.y ? origin_atom.y : "unknown"],[origin_atom.z ? origin_atom.z : "unknown"]"
 
 
 	if (logstring != "")
