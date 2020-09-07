@@ -18968,9 +18968,9 @@
 	pixel_x = 24
 	},
 /obj/item/weapon/computer_hardware/hard_drive/portable{
+	default_files = list(/datum/computer_file/program/trade);
 	icon_state = "guild";
-	name = "Asters Trade Program";
-	stored_files = list(/datum/computer_file/program/trade)
+	name = "Asters Trade Program"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
@@ -59519,9 +59519,9 @@
 	},
 /obj/item/weapon/folder/yellow,
 /obj/item/weapon/computer_hardware/hard_drive/portable{
+	default_files = list(/datum/computer_file/program/trade);
 	icon_state = "guild";
-	name = "Asters Trade Program";
-	stored_files = list(/datum/computer_file/program/trade)
+	name = "Asters Trade Program"
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
