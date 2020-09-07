@@ -35,7 +35,7 @@
 /obj/machinery/plumbing/pill_press/Initialize(mapload, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
-
+	/*
 	//expertly copypasted from chemmasters
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pill_styles = list()
@@ -44,7 +44,7 @@
 		SL["id"] = x
 		SL["class_name"] = assets.icon_class_name("pill[x]")
 		pill_styles += list(SL)
-
+	*/
 /obj/machinery/plumbing/pill_press/Process()
 	if(stat & NOPOWER)
 		return
