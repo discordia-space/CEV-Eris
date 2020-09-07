@@ -279,7 +279,7 @@
 	sparks.set_up(3, 0, get_turf(user))
 	sparks.start()
 	var/turf/T = get_random_secure_turf_in_range(user, blink_range, 2)
-	go_to_bluespace(get_turf(user), entropy_value, FALSE, user, T)
+	go_to_bluespace(get_turf(user), entropy_value, TRUE, user, T)
 	for(var/obj/item/weapon/grab/G in user.contents)
 		if(G.affecting)
 			go_to_bluespace(get_turf(user), entropy_value, FALSE, G.affecting, locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
@@ -299,9 +299,10 @@
 		sparks.start()
 		if(!hit_atom.anchored)
 			var/turf/NT = get_random_turf_in_range(hit_atom, blink_range, 2)
-			go_to_bluespace(T, entropy_value, FALSE, hit_atom, NT)
+			go_to_bluespace(T, entropy_value, TRUE, hit_atom, NT)
 		if(prob(1))
 			new /obj/item/bluespace_dust(T)
 			GLOB.bluespace_gift -= 1
 			bluespace_entropy(50,T)	
 			qdel(src)
+

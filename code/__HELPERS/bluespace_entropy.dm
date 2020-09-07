@@ -2,30 +2,32 @@ GLOBAL_VAR_INIT(bluespace_entropy, 0)
 GLOBAL_VAR_INIT(bluespace_gift, 0)
 GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 
+/area
+	var/local_bluespace_entropy = 0
+
 /proc/go_to_bluespace(turf/T, entropy=1, minor_distortion=FALSE, ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
 	bluespace_entropy(entropy, T, minor_distortion)
 	do_teleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
 
 /proc/bluespace_entropy(max_value=1, turf/T, minor_distortion=FALSE)
 	var/entropy_value = rand(0, max_value)
-	if(minor_distortion && world.time > GLOB.bluespace_distotion_cooldown)
-		GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
-		var/minor_entropy = rand(25, 50)
-		if(prob(entropy_value/10) && GLOB.bluespace_entropy > minor_entropy)
-			GLOB.bluespace_entropy -= minor_entropy
+	var/area/A = get_area(T)
+	if(minor_distortion && A)
+		A.local_bluespace_entropy += entropy_value
+		var/area_entropy_cap = rand(100, 200)
+		if(A.local_bluespace_entropy > area_entropy_cap && world.time > GLOB.bluespace_distotion_cooldown)
+			GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
+			A.local_bluespace_entropy -= rand(100, 150)
 			bluespace_distorsion(T, minor_distortion)
 			log_and_message_admins("alerta de distorcion")
-		else
-			GLOB.bluespace_entropy += entropy_value
 	else
 		GLOB.bluespace_entropy += entropy_value
 		var/entropy_cap = rand(150, 300)
 		if(GLOB.bluespace_entropy >= entropy_cap && world.time > GLOB.bluespace_distotion_cooldown)
-			GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
+			GLOB.bluespace_distotion_cooldown = world.time + 10 MINUTES
 			bluespace_distorsion(T, minor_distortion)
 			GLOB.bluespace_entropy -= rand(150, 225)
 			log_and_message_admins("alerta de distorcion")
-
 
 /proc/bluespace_distorsion(turf/T, minor_distortion=FALSE)
 	var/bluespace_event = rand(1, 100)
@@ -40,7 +42,6 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 			bluespace_cristals_event(T, minor_distortion)
 		if(90 to 100)
 			bluespace_gift(T, minor_distortion)
-
 
 /proc/get_random_secure_turf_in_range(atom/origin, outer_range, inner_range)
 	origin = get_turf(origin)
@@ -133,10 +134,9 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 
 /proc/bluespace_stranger(turf/T, minor_distortion)
 	var/area/A = get_area(T)
-	if(A && !minor_distortion)
-		if(A in ship_areas)
-			A = pick(ship_areas)
 	if(A)
+		if(!minor_distortion && A in ship_areas)
+			A = pick(ship_areas)
 		var/turf/newT = A.random_space()
 		if(newT)
 			T = newT
