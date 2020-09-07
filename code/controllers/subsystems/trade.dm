@@ -198,11 +198,12 @@ SUBSYSTEM_DEF(trade)
 			return
 		for(var/category_name in shoppinglist)
 			var/list/category = shoppinglist[category_name]
+			var/list/assortiment_category = station.assortiment[category_name]
 			for(var/t in category)
 				var/tcount = category[t]
 				for(var/i in 1 to tcount)
 					new t(C)
-				var/indix = category.Find(t)
+				var/indix = assortiment_category.Find(t)
 				station.set_good_amount(category_name, indix, max(0, station.get_good_amount(category_name, indix) - tcount))
 
 	charge_to_account(account.account_number, account.get_name(), "Purchase", "Asters Automated Trading System", cost)
