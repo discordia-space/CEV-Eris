@@ -66,7 +66,7 @@ All the important duct code:
 	if(active)
 		attempt_connect()
 
-	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
+	//AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 ///start looking around us for stuff to connect to
 /obj/machinery/duct/proc/attempt_connect()
@@ -240,7 +240,8 @@ All the important duct code:
 					adjacents += D
 	return adjacents
 
-/obj/machinery/duct/update_icon_state()
+/obj/machinery/duct/update_icon()
+	..()
 	var/temp_icon = initial(icon_state)
 	for(var/D in GLOB.cardinal)
 		if(D & connects)
@@ -282,17 +283,18 @@ All the important duct code:
 	else
 		disconnect_duct(TRUE)
 
-/obj/machinery/duct/wrench_act(mob/living/user, obj/item/I) //I can also be the RPD
-	..()
+/obj/machinery/duct/attackby(mob/living/user, obj/item/I)
 	add_fingerprint(user)
-	I.play_tool_sound(src)
-	if(anchored || can_anchor())
-		set_anchored(!anchored)
-		user.visible_message( \
-		"[user] [anchored ? null : "un"]fastens \the [src].", \
-		SPAN_NOTICE("You [anchored ? null : "un"]fasten \the [src]."), \
-		SPAN_NOTICE("You hear ratcheting."))
-	return TRUE
+	if(QUALITY_BOLT_TURNING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			if(anchored || can_anchor())
+				set_anchored(!anchored)
+				user.visible_message(SPAN_NOTICE("[user] [anchored ? null : "un"]fastens \the [src]."),
+				SPAN_NOTICE("You [anchored ? null : "un"]fasten \the [src]."),
+				"You hear ratcheting.")
+				SEND_SIGNAL(src, COMSIG_OBJ_UNFASTEN, anchored)
+				return TRUE
+	..()
 
 ///collection of all the sanity checks to prevent us from stacking ducts that shouldn't be stacked
 /obj/machinery/duct/proc/can_anchor(turf/T)
@@ -319,8 +321,8 @@ All the important duct code:
 	if(!istype(A, /obj/machinery/duct))
 		return
 	var/obj/machinery/duct/D = A
-	var/obj/item/I = user.get_active_held_item()
-	if(I?.tool_behaviour != TOOL_WRENCH)
+	var/obj/item/I = user.get_active_hand()
+	if(I && QUALITY_BOLT_TURNING in I.tool_qualities)
 		to_chat(user, SPAN_WARNING("You need to be holding a wrench in your active hand to do that!"))
 		return
 	if(get_dist(src, D) != 1)

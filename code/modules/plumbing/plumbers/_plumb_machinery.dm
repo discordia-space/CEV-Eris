@@ -24,15 +24,21 @@
 /obj/machinery/plumbing/Initialize(mapload, bolt = TRUE)
 	. = ..()
 	anchored = bolt
-	create_reagents(buffer, reagent_flags)
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
 
-/obj/machinery/plumbing/proc/can_be_rotated(mob/user,rotation_type)
+/obj/machinery/plumbing/verb/rotate()
+	set category = "Object"
+	set name = "Rotate [src]"
+	set src in view(1)
+	if (usr.stat || usr.restrained() || !can_be_rotated(usr))
+		return
+	src.set_dir(turn(dir, 90))
+
+/obj/machinery/plumbing/proc/can_be_rotated(mob/user)
 	return !anchored
 
 /obj/machinery/plumbing/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The maximum volume display reads: <b>[reagents.maximum_volume] units</b>.</span>"
+	. += SPAN_NOTICE("The maximum volume display reads: <b>[reagents.maximum_volume] units</b>.")
 
 /obj/machinery/plumbing/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/weapon/tool/plunger))
@@ -41,27 +47,24 @@
 			to_chat(user, SPAN_NOTICE("You finish plunging the [name]."))
 			reagents.touch_turf(get_turf(src)) //splash on the floor
 			reagents.clear_reagents()
-		return
+		return TRUE
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			anchored = !anchored
-			user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
-						"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
-						"You hear a ratchet")
+			user.visible_message(SPAN_NOTICE("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor."), \
+							SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."), \
+							"You hear a ratchet")
 			SEND_SIGNAL(src, COMSIG_OBJ_UNFASTEN, anchored)
-			return
-	..()
-
-/obj/machinery/plumbing/welder_act(mob/living/user, obj/item/I)
-	. = ..()
-	if(anchored)
-		to_chat(user, SPAN_WARNING("The [name] needs to be unbolted to do that!"))
-	if(I.tool_start_check(user, amount=0))
+			return TRUE
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(anchored)
+			to_chat(user, SPAN_WARNING("The [name] needs to be unbolted to do that!"))
 		to_chat(user, SPAN_NOTICE("You start slicing the [name] apart."))
-		if(I.use_tool(src, user, rcd_delay * 2, volume=50))
-			deconstruct(TRUE)
+		if(I.use_tool(user, src, rcd_delay * 2, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			dismantle()
 			to_chat(user, SPAN_NOTICE("You slice the [name] apart."))
 			return TRUE
+	..()
 
 ///We can empty beakers in here and everything
 /obj/machinery/plumbing/input

@@ -21,7 +21,7 @@
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
 	set_dir(dir)
 
-/obj/machinery/plumbing/bottler/can_be_rotated(mob/user, rotation_type)
+/obj/machinery/plumbing/bottler/can_be_rotated(mob/user)
 	if(anchored)
 		to_chat(user, "<span class='warning'>It is fastened to the floor!</span>")
 		return FALSE
