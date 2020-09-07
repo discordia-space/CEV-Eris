@@ -19,7 +19,6 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 			GLOB.bluespace_distotion_cooldown = world.time + 5 MINUTES
 			A.local_bluespace_entropy -= rand(100, 150)
 			bluespace_distorsion(T, minor_distortion)
-			log_and_message_admins("alerta de distorcion")
 	else
 		GLOB.bluespace_entropy += entropy_value
 		var/entropy_cap = rand(150, 300)
@@ -27,7 +26,6 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 			GLOB.bluespace_distotion_cooldown = world.time + 10 MINUTES
 			bluespace_distorsion(T, minor_distortion)
 			GLOB.bluespace_entropy -= rand(150, 225)
-			log_and_message_admins("alerta de distorcion")
 
 /proc/bluespace_distorsion(turf/T, minor_distortion=FALSE)
 	var/bluespace_event = rand(1, 100)
