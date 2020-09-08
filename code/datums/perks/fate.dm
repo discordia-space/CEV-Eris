@@ -140,7 +140,7 @@
 		final_oddity[stat] = rand(1,7)
 	W.AddComponent(/datum/component/inspiration, final_oddity)
 	W.AddComponent(/datum/component/atom_sanity, 1, "") //sanity gain by area
-	W.sanity_damage = -1 //damage by view
+	W.sanity_damage -= 1 //damage by view
 	spawn(1)
 		holder.equip_to_storage_or_drop(W)
 
