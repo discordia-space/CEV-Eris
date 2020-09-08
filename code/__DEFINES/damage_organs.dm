@@ -46,7 +46,7 @@
 #define BP_B_CHEST  "spine"
 #define BP_B_GROIN  "pelvis"
 #define BP_B_HEAD   "skull"
-#define BP_B_L_ARM  "l_arm_bone"
+#define BP_B_L_ARM  "left arm bone"
 #define BP_B_R_ARM  "right arm bone"
 #define BP_B_L_LEG  "left leg bone"
 #define BP_B_R_LEG  "right leg bone"
