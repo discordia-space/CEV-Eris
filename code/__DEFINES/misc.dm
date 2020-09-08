@@ -289,5 +289,3 @@
 #define MATRIX_GREYSCALE list(0.33, 0.33, 0.33,\
                               0.33, 0.33, 0.33,\
                               0.33, 0.33, 0.33)
-
-#define VAR_OUT_TO_TEXT(var) "[#v] = [v]"
