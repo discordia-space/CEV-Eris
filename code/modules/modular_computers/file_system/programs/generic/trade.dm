@@ -114,8 +114,6 @@
 		var/good_amount = station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"]))
 		if(!good_amount)
 			return
-		if(!islist(shoppinglist[choosed_category]))
-			shoppinglist[choosed_category] = list()
 		
 		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) + 1, 0, good_amount))
 		return 1
@@ -124,10 +122,11 @@
 		var/list/category = station.assortiment[choosed_category]
 		if(!islist(category))
 			return
-		var/path = LAZYACCESS(category, text2num(text2num(href_list["PRG_cart_remove"])))
-		if(!path || !shoppinglist[path])
+		var/path = LAZYACCESS(category, text2num(href_list["PRG_cart_remove"]))
+		if(!path)
 			return
-		var/good_amount = station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"]))
+		var/good_amount = station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_remove"]))
+
 		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) - 1, 0, good_amount))
 		return 1
 
