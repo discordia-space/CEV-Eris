@@ -71,6 +71,20 @@
 				"organ" = "\ref[organ]",
 				"step" = /datum/surgery_step/robotic/connect_organ
 			)
+		else if(istype(organ, /obj/item/organ/internal/bone))
+			connect_action = list(
+				"name" = (organ.parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
+				"organ" = "\ref[organ]",
+				"step" = (organ.parent.status & ORGAN_BROKEN) ? /datum/surgery_step/mend_bone : /datum/surgery_step/break_bone
+			)
+			if(!(organ.parent.status & ORGAN_BROKEN))
+				var/list/replace_bone_action = list(
+					"name" = "Replace",
+					"organ" = "\ref[organ]",
+					"step" = /datum/surgery_step/replace_bone
+				)
+
+				actions_list.Add(list(replace_bone_action))
 		else
 			connect_action = list(
 				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
