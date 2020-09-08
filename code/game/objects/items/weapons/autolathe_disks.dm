@@ -89,6 +89,8 @@
 		/datum/design/autolathe/misc/floor_light,
 		/datum/design/autolathe/misc/tube,
 		/datum/design/autolathe/misc/bulb,
+		/datum/design/autolathe/device/floorpainter,
+		/datum/design/autolathe/device/mechpainter
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices
@@ -317,7 +319,7 @@
 		/datum/design/autolathe/gun/nt_sprayer,
 		/datum/design/autolathe/gun/plasma/martyr,
 		/datum/design/autolathe/device/grenade/nt_cleaner,
-		/datum/design/autolathe/device/grenade/nt_weedkiller	
+		/datum/design/autolathe/device/grenade/nt_weedkiller
 
 	)
 
@@ -358,7 +360,7 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
-		
+
    		/datum/design/autolathe/device/headset_church,
 		/datum/design/bioprinter/leather/cash_bag
 	)
@@ -439,7 +441,7 @@
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/sec/hailer	
+		/datum/design/autolathe/sec/hailer
 	)
 
 // One Star

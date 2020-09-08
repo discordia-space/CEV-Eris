@@ -67,9 +67,10 @@
 	var/moving_dir = direction
 
 	var/failed = FALSE
-	if(prob(rand(0, round(5 / rand(1, 5)))))
-		to_chat(mover, SPAN_DANGER("You clumsily fumble with the exosuit joystick."))
-		failed = TRUE
+	if(!mover.stat_check(STAT_COG, STAT_LEVEL_BASIC))	//Checks if your COG is above 15. If it is lower, you will have a chance to fumble.
+		if(prob(rand(0, round(5 / rand(1, 5)))))
+			to_chat(mover, SPAN_DANGER("You clumsily fumble with the exosuit joystick."))
+			failed = TRUE
 	else if(exosuit.emp_damage >= EMP_MOVE_DISRUPT && prob(30))
 		failed = TRUE
 	if(failed)
