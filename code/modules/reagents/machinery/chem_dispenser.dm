@@ -223,9 +223,10 @@
 			to_chat(user, "You re-enable the 'cheap bastards' lock, disabling hidden and very expensive boozes.")
 			dispensable_reagents -= hacked_reagents
 
-/obj/machinery/chemical_dispenser/meds
-	name = "chem dispenser magic"
-	ui_title = "Chem Dispenser 9000"
+/obj/machinery/chemical_dispenser/admin
+	name = "debug chem dispenser"
+	desc = "A mysterious chemical dispenser that can produce all sorts of highly advanced medicines at the press of a button."
+	ui_title = "Cheat Synthesizer 1337"
 	dispensable_reagents = list(
 		"inaprovaline","ryetalyn","paracetamol",
 		"tramadol","oxycodone","sterilizine",
@@ -233,10 +234,13 @@
 		"dexalin","dexalinp","tricordrazine",
 		"anti_toxin","synaptizine","hyronalin",
 		"arithrazine","alkysine","imidazoline",
-		"peridaxon","bicaridine","hyperzine",
+		"peridaxon","bicaridine","meralyne","hyperzine",
 		"rezadone","spaceacillin","ethylredoxrazine",
 		"stoxin","chloralhydrate","cryoxadone",
-		"clonexadone"
+		"clonexadone","ossisine","noexcutite","kyphotorin",
+		"detox","polystem","purger","addictol","aminazine",
+		"vomitol","haloperidol","paroxetine","citalopram",
+		"methylphenidate"
 	)
 
 /obj/machinery/chemical_dispenser/industrial

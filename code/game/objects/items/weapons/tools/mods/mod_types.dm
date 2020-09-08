@@ -284,7 +284,7 @@
 	icon_state = "injector"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 2)
 
-/obj/item/weapon/tool_upgrade/productivity/booster/New()
+/obj/item/weapon/tool_upgrade/productivity/injector/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(

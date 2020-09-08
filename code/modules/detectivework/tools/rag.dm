@@ -114,24 +114,17 @@
 		else if(reagents.total_volume)
 			if(user.targeted_organ == BP_MOUTH && ishuman(target))
 				var/mob/living/carbon/human/H = target
+				user.visible_message(SPAN_DANGER("\The [user] starts smothering [H] with [src]!"), SPAN_DANGER("You start smothering [H] with [src]!"))
 				if(!H.check_mouth_coverage())
 					if(do_after(user, 20, H))
 						user.do_attack_animation(src)
-						user.visible_message(
-							"<span class='danger'>\The [user] smothers [H] with [src]!</span>",
-							"<span class='warning'>You smother [H] with [src]!</span>",
-							"You hear some struggling and muffled cries of surprise"
-							)
-
+						user.visible_message(SPAN_DANGER("\The [user] smothers [H] with [src]!"), SPAN_DANGER("You smother [H] with [src]!"))
 						reagents.trans_to_mob(H, amount_per_transfer_from_this, CHEM_BLOOD)
 						update_name()
 						return
 
 				user.do_attack_animation(src)
-				user.visible_message(
-					"<span class='danger'>\The [user] try to smothers [H] with [src], but blocked!</span>",
-					"<span class='warning'>You try to smother [H] with [src]!</span>"
-					)
+				user.visible_message(SPAN_DANGER("\The [user] tries to smother [H] with [src], but fails because the mouth is covered!"), SPAN_DANGER("You try to smother [H] with [src], but their mouth is covered!"))
 			else
 				wipe_down(target, user)
 		return

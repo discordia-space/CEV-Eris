@@ -107,7 +107,7 @@
 				slot_s_store_str = icon,
 			)
 		item_icons = item_icons_cache[type]
-	if(one_hand_penalty && (!wielded_item_state))//If the gun has a one handed penalty but no wielded item state then use this generic one.
+	if(one_hand_penalty || twohanded && (!wielded_item_state))//If the gun has a one handed penalty or is twohanded, but has no wielded item state then use this generic one.
 		wielded_item_state = "_doble" //Someone mispelled double but they did it so consistently it's staying this way.
 	generate_guntags()
 	var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/weapon_info

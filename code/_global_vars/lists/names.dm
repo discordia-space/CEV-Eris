@@ -10,5 +10,7 @@ GLOBAL_LIST_INIT(clown_names, file2list("config/names/clown.txt"))
 GLOBAL_LIST_INIT(verbs, file2list("config/names/verbs.txt"))
 GLOBAL_LIST_INIT(adjectives, file2list("config/names/adjectives.txt"))
 
+GLOBAL_LIST_EMPTY(in_character_filter)
+
 //loaded on startup because of "
 //would include in rsc if ' was used

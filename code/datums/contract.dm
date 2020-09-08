@@ -142,6 +142,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 		target_mind = candidate_mind
 		desc = "Implant [H.real_name] with a spying implant."
+		if(H.stats.getPerk(PERK_NOBLE))
+			reward *= 1.5
 		break
 	..()
 
@@ -228,6 +230,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		if(!target)
 			target = H.organs_by_name[BP_HEAD]
 		desc = "Assasinate [target_mind.current.real_name] and send [gender_datums[target_mind.current.gender].his] [target.name] via BSDM as a proof."
+		if(H.stats.getPerk(PERK_NOBLE))
+			reward *= 1.5
 		break
 
 /datum/antag_contract/item/assasinate/can_place()
@@ -426,6 +430,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		
 		target_mind = candidate_mind
 		desc = "[name] [target_mind.current.real_name] [desc_text]"
+		if(H.stats.getPerk(PERK_NOBLE))
+			reward *= 1.5
 		break
 
 /datum/antag_contract/excel/targeted/can_place()
