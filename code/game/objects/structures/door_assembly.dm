@@ -8,11 +8,11 @@
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
-	var/obj/item/weapon/electronics/airlock/electronics = null
+	var/obj/item/weapon/electronics/airlock/electronics
 	var/airlock_type = "" //the type path of the airlock once completed
 	var/glass_type = "/glass"
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
-	var/created_name = null
+	var/created_name
 
 /obj/structure/door_assembly/Initialize()
 	. = ..()
