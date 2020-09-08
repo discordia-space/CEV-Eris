@@ -428,6 +428,7 @@ This function completely restores a damaged organ to perfect condition.
 	return 0
 
 /obj/item/organ/external/Process()
+	handle_bones()
 	if(owner)
 
 		// Process wounds, doing healing etc. Only do this every few ticks to save processing power
@@ -444,7 +445,6 @@ This function completely restores a damaged organ to perfect condition.
 		//Infections
 		update_germs()
 
-	handle_bones()
 	else
 		..()
 
