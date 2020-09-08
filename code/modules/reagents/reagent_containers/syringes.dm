@@ -145,8 +145,8 @@
 				return
 			if(isliving(target))
 				var/mob/living/L = target
-				var/injtime = time - (user.stats.getStat(STAT_BIO)*0.375)
-				if(injtime < 1) injtime=0
+				var/injtime = time - (user.stats.getStat(STAT_BIO)*0.375) // 375 was choosen to make a steady increase on speed from 0 being default time and 80 being 0, even if its never really 0
+				if(injtime < 10) injtime=10 //should make the "fastest" injection take at least 10
 				
 				//Injecting through a hardsuit takes longer due to needing to find a port.
 				// Handling errors and injection duration
