@@ -1,8 +1,8 @@
-/obj/item/electronics/circuitboard/telecomms
+/obj/item/weapon/electronics/circuitboard/telecomms
 	board_type = "machine"
-	bad_types = /obj/item/electronics/circuitboard/telecomms
+	bad_types = /obj/item/weapon/electronics/circuitboard/telecomms
 
-/obj/item/electronics/circuitboard/telecomms/receiver
+/obj/item/weapon/electronics/circuitboard/telecomms/receiver
 	name = T_BOARD("subspace receiver")
 	build_path = /obj/machinery/telecomms/receiver
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
@@ -13,7 +13,7 @@
 		/obj/item/weapon/stock_parts/micro_laser = 1
 	)
 
-/obj/item/electronics/circuitboard/telecomms/hub
+/obj/item/weapon/electronics/circuitboard/telecomms/hub
 	name = T_BOARD("hub mainframe")
 	build_path = /obj/machinery/telecomms/hub
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
@@ -23,7 +23,7 @@
 		/obj/item/weapon/stock_parts/subspace/filter = 2
 	)
 
-/obj/item/electronics/circuitboard/telecomms/relay
+/obj/item/weapon/electronics/circuitboard/telecomms/relay
 	name = T_BOARD("relay mainframe")
 	build_path = /obj/machinery/telecomms/relay
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 4, TECH_BLUESPACE = 3)
@@ -33,7 +33,7 @@
 		/obj/item/weapon/stock_parts/subspace/filter = 2
 	)
 
-/obj/item/electronics/circuitboard/telecomms/bus
+/obj/item/weapon/electronics/circuitboard/telecomms/bus
 	name = T_BOARD("bus mainframe")
 	build_path = /obj/machinery/telecomms/bus
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
@@ -43,7 +43,7 @@
 		/obj/item/weapon/stock_parts/subspace/filter = 1
 	)
 
-/obj/item/electronics/circuitboard/telecomms/processor
+/obj/item/weapon/electronics/circuitboard/telecomms/processor
 	name = T_BOARD("processor unit")
 	build_path = /obj/machinery/telecomms/processor
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
@@ -56,7 +56,7 @@
 		/obj/item/weapon/stock_parts/subspace/amplifier = 1
 	)
 
-/obj/item/electronics/circuitboard/telecomms/server
+/obj/item/weapon/electronics/circuitboard/telecomms/server
 	name = T_BOARD("telecommunication server")
 	build_path = /obj/machinery/telecomms/server
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
@@ -66,7 +66,7 @@
 		/obj/item/weapon/stock_parts/subspace/filter = 1
 	)
 
-/obj/item/electronics/circuitboard/telecomms/broadcaster
+/obj/item/weapon/electronics/circuitboard/telecomms/broadcaster
 	name = T_BOARD("subspace broadcaster")
 	build_path = /obj/machinery/telecomms/broadcaster
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_BLUESPACE = 2)

@@ -1,4 +1,4 @@
-/obj/item/electronics/circuitboard/bluespacerelay
+/obj/item/weapon/electronics/circuitboard/bluespacerelay
 	name = T_BOARD("bluespacerelay")
 	rarity_value = 40
 	build_path = /obj/machinery/bluespacerelay

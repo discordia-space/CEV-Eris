@@ -4,19 +4,19 @@
 #endif
 #define T_BOARD(name)	"circuit board (" + (name) + ")"
 
-/obj/item/electronics
+/obj/item/weapon/electronics
 	spawn_tags = SPAWN_TAG_ELECTRONICS
 	rarity_value = 20
 	spawn_frequency = 10
-	bad_types = /obj/item/electronics
+	bad_types = /obj/item/weapon/electronics
 	hitsound = "swing_hit"
 
-/obj/item/electronics/Bump(mob/M)
+/obj/item/weapon/electronics/Bump(mob/M)
 	spawn(0)
 		..()
 	return
 
-/obj/item/electronics/circuitboard
+/obj/item/weapon/electronics/circuitboard
 	name = "circuit board"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
@@ -32,7 +32,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 15
-	bad_types = /obj/item/electronics/circuitboard
+	bad_types = /obj/item/weapon/electronics/circuitboard
 
 	var/build_path
 	var/frame_type = FRAME_DEFAULT
@@ -40,14 +40,14 @@
 	var/list/req_components
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/electronics/circuitboard/proc/construct(obj/machinery/M)
+/obj/item/weapon/electronics/circuitboard/proc/construct(obj/machinery/M)
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/electronics/circuitboard/proc/deconstruct(obj/machinery/M)
+/obj/item/weapon/electronics/circuitboard/proc/deconstruct(obj/machinery/M)
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE

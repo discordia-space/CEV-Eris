@@ -4,7 +4,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
-	circuit = /obj/item/electronics/circuitboard/chemmaster
+	circuit = /obj/item/weapon/electronics/circuitboard/chemmaster
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	use_power = 1

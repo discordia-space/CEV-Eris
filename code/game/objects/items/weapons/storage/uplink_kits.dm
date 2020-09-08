@@ -47,7 +47,7 @@
 
 		if("hacker")
 			new /obj/item/device/encryptionkey/syndicate(src)
-			new /obj/item/electronics/ai_module/syndicate(src)
+			new /obj/item/weapon/electronics/ai_module/syndicate(src)
 			new /obj/item/weapon/card/emag(src)
 			new /obj/item/device/encryptionkey/binary(src)
 			return

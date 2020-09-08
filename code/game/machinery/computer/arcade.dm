@@ -34,7 +34,7 @@
 /obj/machinery/computer/arcade/Initialize()
 	. = ..()
 	if(!circuit)
-		circuit = pick(subtypesof(/obj/item/electronics/circuitboard/arcade))
+		circuit = pick(subtypesof(/obj/item/weapon/electronics/circuitboard/arcade))
 		var/build_path = initial(circuit.build_path)
 		new build_path (loc, circuit)
 		return INITIALIZE_HINT_QDEL
@@ -76,7 +76,7 @@
 	name = "arcade machine"
 	desc = "Does not support Pinball."
 	icon_state = "arcade"
-	circuit = /obj/item/electronics/circuitboard/arcade/battle
+	circuit = /obj/item/weapon/electronics/circuitboard/arcade/battle
 	var/enemy_name = "Space Villian"
 	var/temp = "Winners don't use space drugs" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points

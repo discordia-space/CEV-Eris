@@ -72,7 +72,7 @@
 
 // Tracker Electronic
 
-/obj/item/electronics/tracker
+/obj/item/weapon/electronics/tracker
 
 	name = "tracker electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'

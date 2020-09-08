@@ -1,4 +1,4 @@
-/obj/item/electronics/circuitboard/biogenerator
+/obj/item/weapon/electronics/circuitboard/biogenerator
 	name = T_BOARD("biogenerator")
 	build_path = /obj/machinery/biogenerator
 	board_type = "machine"

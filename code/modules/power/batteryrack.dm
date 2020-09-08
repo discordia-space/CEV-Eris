@@ -9,7 +9,7 @@
 	input_level_max = 0
 	output_level_max = 0
 	icon_state = "gsmes"
-	circuit = /obj/item/electronics/circuitboard/batteryrack
+	circuit = /obj/item/weapon/electronics/circuitboard/batteryrack
 	var/cells_amount = 0
 	var/capacitors_amount = 0
 	var/global/list/br_cache = null
@@ -103,7 +103,7 @@
 /obj/machinery/power/smes/batteryrack/makeshift
 	name = "makeshift PSU"
 	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
-	circuit = /obj/item/electronics/circuitboard/apc
+	circuit = /obj/item/weapon/electronics/circuitboard/apc
 	var/overcharge_percent = 0
 
 

@@ -814,7 +814,7 @@
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
+					var/obj/item/weapon/electronics/airalarm/circuit = new /obj/item/weapon/electronics/airalarm()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
@@ -860,7 +860,7 @@
 					return
 
 		if(0)
-			if(istype(I, /obj/item/electronics/airalarm))
+			if(istype(I, /obj/item/weapon/electronics/airalarm))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -884,7 +884,7 @@
 AIR ALARM CIRCUIT
 Just a object used in constructing air alarms
 */
-/obj/item/electronics/airalarm
+/obj/item/weapon/electronics/airalarm
 	name = "air alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -1018,7 +1018,7 @@ FIRE ALARM
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
+					var/obj/item/weapon/electronics/airalarm/circuit = new /obj/item/weapon/electronics/airalarm()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
@@ -1051,7 +1051,7 @@ FIRE ALARM
 					return
 
 		if(0)
-			if(istype(I, /obj/item/electronics/firealarm))
+			if(istype(I, /obj/item/weapon/electronics/firealarm))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -1181,7 +1181,7 @@ FIRE ALARM
 FIRE ALARM CIRCUIT
 Just a object used in constructing fire alarms
 */
-/obj/item/electronics/firealarm
+/obj/item/weapon/electronics/firealarm
 	name = "fire alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"

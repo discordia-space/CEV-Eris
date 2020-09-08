@@ -1,4 +1,4 @@
-/obj/item/electronics/circuitboard/smelter
+/obj/item/weapon/electronics/circuitboard/smelter
 	name = T_BOARD("smelter")
 	build_path = /obj/machinery/smelter
 	board_type = "machine"

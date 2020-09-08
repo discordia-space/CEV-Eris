@@ -6,7 +6,7 @@
 	icon_state = "electrolysis"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
-	circuit = /obj/item/electronics/circuitboard/electrolyzer
+	circuit = /obj/item/weapon/electronics/circuitboard/electrolyzer
 	layer = BELOW_OBJ_LAYER
 	var/obj/item/weapon/reagent_containers/beaker
 	var/obj/item/weapon/reagent_containers/separation_beaker
