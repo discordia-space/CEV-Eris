@@ -216,3 +216,13 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),    
 	)
 	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/gun_parts //place holder for future updates with the stats thing
+	name = "gun parts"
+	result = /obj/item/gun_parts
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),    
+	)
+	related_stats = list(STAT_MEC)

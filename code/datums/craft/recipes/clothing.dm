@@ -50,3 +50,30 @@
 		list(/obj/item/stack/rods, 2, "time" = 10),
 		list(/obj/item/stack/cable_coil, 2),
 	)
+
+/datum/craft_recipe/clothing/riggedvoidsuit
+	name = "Jury Rigged Voidsuit"
+	result = /obj/item/clothing/suit/space/void/riggedvoidsuit
+	steps = list(
+		list(/obj/item/clothing/under, 1),
+		list(/obj/item/armor_parts, 3),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTIC),
+		list(/obj/item/weapon/tool/tape_roll, 10, "time" = 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
+		list(QUALITY_SCREW_DRIVING, 10),
+
+	)
+
+/datum/craft_recipe/clothing/scavengerarmor
+	name = "Scavenger armor"
+	result = /obj/item/clothing/suit/storage/scavengerarmor
+	steps = list(
+		list(/obj/item/armor_parts, 5),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(/obj/item/weapon/tool/tape_roll, 10, "time" = 10),
+		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
+		list(QUALITY_SCREW_DRIVING, 10),
+
+	)

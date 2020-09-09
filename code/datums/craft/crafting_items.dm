@@ -17,3 +17,11 @@
 	icon_state = "gun"
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	matter = list(MATERIAL_PLASTEEL = 15)
+
+/obj/item/armor_parts  //place holder for future updates with the stats thing
+	name = "armor parts"
+	desc = "spare parts for clothing."
+	icon = 'icons/obj/crafts.dmi'
+	icon_state = "clothing"
+	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
+	matter = list(MATERIAL_PLASTIC = 15)

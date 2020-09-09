@@ -264,3 +264,42 @@
 
 /obj/item/clothing/suit/space/void/security/equipped
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+
+//jury rigged
+
+/obj/item/clothing/head/space/void/riggedvoidsuit
+	name = "Jury Rigged Helmet"
+	desc = "A Jury Rigged helmet you can see the glue holding it, just close enough to be airtight."
+	icon_state = "assaulthelm"
+	item_state = "assaulthelm"
+	item_state_slots = list(
+		slot_l_hand_str = "assaulthelm",
+		slot_r_hand_str = "assaulthelm",
+		)
+
+	armor = list(
+		melee = 20,
+		bullet = 15,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	siemens_coefficient = 0.4
+	light_overlay = "helmet_light_dual"
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit
+	name = "Jury Rigged Voidsuit"
+	icon_state = "assaultsuit"
+	desc = "AA Jury Rigged helmet you can see the glue holding it, just close enough to be airtight."
+	item_state = "assaultsuit"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 20,
+		bomb = 25,
+		bio = 100,
+		rad = 0
+	)
+	siemens_coefficient = 0.4
+	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
