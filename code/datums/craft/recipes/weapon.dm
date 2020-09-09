@@ -115,9 +115,9 @@
 	name = "handmade gun"
 	result = /obj/item/weapon/gun/projectile/handmade_pistol
 	steps = list(
-		list(/obj/item/pipe, 1, "time" = 60),
-		list(QUALITY_WELDING, 10, "time" = 30),
-		list(/obj/item/weapon/crossbowframe, 1, "time" = 20)
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
+		list(QUALITY_SCREW_DRIVING, 10, "time" = 30),
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 	)
 
 /datum/craft_recipe/weapon/flamethrower
