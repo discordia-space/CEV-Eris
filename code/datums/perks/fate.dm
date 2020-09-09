@@ -103,9 +103,13 @@
 /datum/perk/fate/alcoholic_active/assign(mob/living/carbon/human/H)
 	..()
 	holder.stats.addTempStat(STAT_ROB, 10, INFINITY, "Fate Alcoholic")
+	holder.stats.addTempStat(STAT_TGH, 10, INFINITY, "Fate Alcoholic")
+	holder.stats.addTempStat(STAT_VIG, 10, INFINITY, "Fate Alcoholic")
 
 /datum/perk/fate/alcoholic_active/remove()
 	holder.stats.removeTempStat(STAT_ROB, "Fate Alcoholic")
+	holder.stats.removeTempStat(STAT_TGH, "Fate Alcoholic")
+	holder.stats.removeTempStat(STAT_VIG, "Fate Alcoholic")
 	..()
 
 /datum/perk/fate/noble
