@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(trade)
 
 		var/export_cost = get_export_cost(AM)
 		if(!export_cost)
-			return
+			continue
 
 		points += export_cost
 		qdel(AM)
