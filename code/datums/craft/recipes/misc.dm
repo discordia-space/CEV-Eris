@@ -207,10 +207,12 @@
 	)
 	related_stats = list(STAT_COG)
 
-/datum/craft_recipe/gun_parts
+/datum/craft_recipe/gun_parts //place holder for future updates with the stats thing
 	name = "gun parts"
 	result = /obj/item/gun_parts
 	steps = list(
-		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTEEL, "time" = 40),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),    
 	)
 	related_stats = list(STAT_MEC)
