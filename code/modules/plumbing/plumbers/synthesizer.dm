@@ -37,7 +37,7 @@
 		/datum/reagent/toxin/fuel,
 	)
 
-/obj/machinery/plumbing/synthesizer/Initialize(mapload, bolt)
+/obj/machinery/plumbing/synthesizer/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply, bolt)
 

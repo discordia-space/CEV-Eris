@@ -109,12 +109,12 @@ Class Procs:
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
 	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
-	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/weapon/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
 /obj/machinery/Initialize(mapload, d=0)

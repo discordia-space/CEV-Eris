@@ -9,7 +9,7 @@
 	buffer = 400
 	var/eat_dir = SOUTH
 
-/obj/machinery/plumbing/grinder_chemical/Initialize(mapload, bolt)
+/obj/machinery/plumbing/grinder_chemical/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply, bolt)
 

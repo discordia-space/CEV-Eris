@@ -10,13 +10,13 @@
 	///input dir
 	var/eat_dir = SOUTH
 
-/obj/machinery/plumbing/fermenter/Initialize(mapload, bolt)
+/obj/machinery/plumbing/fermenter/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply, bolt)
 
 /obj/machinery/plumbing/grinder_chemical/can_be_rotated(mob/user, rotation_type)
 	if(anchored)
-		to_chat(user, "<span class='warning'>It is fastened to the floor!</span>")
+		to_chat(user, SPAN_WARNING("It is fastened to the floor!"))
 		return FALSE
 	return TRUE
 

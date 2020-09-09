@@ -32,7 +32,7 @@
 	. = ..()
 	. += SPAN_NOTICE("The [name] currently has [stored_products.len] stored. There needs to be less than [max_floor_products] on the floor to continue dispensing.")
 
-/obj/machinery/plumbing/pill_press/Initialize(mapload, bolt)
+/obj/machinery/plumbing/pill_press/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
 	/*

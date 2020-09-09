@@ -20,7 +20,7 @@ All the important duct code:
 	var/capacity = 10
 
 	///the color of our duct
-	var/duct_color = null
+	var/duct_color
 	///TRUE to ignore colors, so yeah we also connect with other colors without issue
 	var/ignore_colors = FALSE
 	///1,2,4,8,16
@@ -36,9 +36,8 @@ All the important duct code:
 	///wheter we just unanchored or drop whatever is in the variable. either is safe
 	var/drop_on_wrench = /obj/item/stack/ducts
 
-/obj/machinery/duct/Initialize(mapload, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects)
+/obj/machinery/duct/Initialize(mapload, d=0, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects)
 	. = ..()
-
 	if(no_anchor)
 		active = FALSE
 		set_anchored(FALSE)
@@ -380,7 +379,7 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer])
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer])
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random

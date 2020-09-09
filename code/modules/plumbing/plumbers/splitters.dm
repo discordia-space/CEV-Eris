@@ -15,7 +15,7 @@
 	//the maximum you can set the transfer to
 	var/max_transfer = 9
 
-/obj/machinery/plumbing/splitter/Initialize(mapload, bolt)
+/obj/machinery/plumbing/splitter/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/splitter, bolt)
 

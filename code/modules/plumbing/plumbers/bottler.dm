@@ -10,13 +10,13 @@
 	///how much do we fill
 	var/wanted_amount = 10
 	///where things are sent
-	var/turf/goodspot = null
+	var/turf/goodspot
 	///where things are taken
-	var/turf/inputspot = null
+	var/turf/inputspot
 	///where beakers that are already full will be sent
-	var/turf/badspot = null
+	var/turf/badspot
 
-/obj/machinery/plumbing/bottler/Initialize(mapload, bolt)
+/obj/machinery/plumbing/bottler/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
 	set_dir(dir)

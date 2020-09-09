@@ -21,7 +21,7 @@
 	///delay of constructing it throught the plumbing rcd
 	var/rcd_delay = 10
 
-/obj/machinery/plumbing/Initialize(mapload, bolt = TRUE)
+/obj/machinery/plumbing/Initialize(mapload, d=0, bolt=TRUE)
 	. = ..()
 	anchored = bolt
 
@@ -75,7 +75,7 @@
 	rcd_cost = 5
 	rcd_delay = 5
 
-/obj/machinery/plumbing/input/Initialize(mapload, bolt)
+/obj/machinery/plumbing/input/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply, bolt)
 
@@ -88,7 +88,7 @@
 	rcd_cost = 5
 	rcd_delay = 5
 
-/obj/machinery/plumbing/output/Initialize(mapload, bolt)
+/obj/machinery/plumbing/output/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
 
@@ -100,6 +100,6 @@
 	rcd_cost = 25
 	rcd_delay = 20
 
-/obj/machinery/plumbing/tank/Initialize(mapload, bolt)
+/obj/machinery/plumbing/tank/Initialize(mapload, d=0, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/tank, bolt)
