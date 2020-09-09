@@ -13,7 +13,7 @@ meteor_act
 	if(!has_organ(def_zone))
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
 
-	var/obj/item/organ/external/organ = get_organ()
+	var/obj/item/organ/external/organ = get_organ(def_zone)
 
 	//Shields
 	var/shield_check = check_shields(P.get_structure_damage(), P, null, def_zone, "the [P.name]")
@@ -164,7 +164,7 @@ meteor_act
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
-			if(istype(C) && C.body_parts_covered & def_zone.body_part)
+			if(istype(C) && C.body_parts_covered & def_zone.body_part && C.armor)
 				if(C.armor.vars[type] > protection)
 					protection = C.armor.vars[type]
 

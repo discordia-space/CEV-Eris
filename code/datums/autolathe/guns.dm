@@ -230,6 +230,10 @@
 	name = "FS PR \"Cassad\""
 	build_path = /obj/item/weapon/gun/energy/plasma/cassad
 
+/datum/design/autolathe/gun/plasma/martyr
+	name = "NT PR \"Martyr\""
+	build_path = /obj/item/weapon/gun/energy/plasma/martyr
+
 // Special
 /datum/design/autolathe/gun/reclaimer
 	name = "Excelsior reclaimer"
