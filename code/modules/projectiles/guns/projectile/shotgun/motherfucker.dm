@@ -18,9 +18,10 @@
 	recoil_buildup = 21 // same as the LMG but 6X since its 6 at once
 	one_hand_penalty = 60 //double the LMG.
 	burst_delay = 0
+	burst = 6
 	init_offset = 7 //awful accuracy
 	init_firemodes = list(
-		list(mode_name="fire both barrels at once", burst=6, icon="burst")
+		list(mode_name="fire all barrels at once", burst=6, icon="burst"),
 		)
 
 	/obj/item/weapon/gun/projectile/shotgun/pump/motherfucker/pump(mob/M as mob)
