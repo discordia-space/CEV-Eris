@@ -228,3 +228,63 @@
 		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
+
+/datum/craft_recipe/weapon/handmaderifle
+	name = "Handmade bolt action rifle"
+	result = /obj/item/weapon/gun/projectile/boltgun/handmaderifle
+	steps = list(
+		list(/obj/item/gun_parts, 2),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
+
+/datum/craft_recipe/weapon/handmaderevolver
+	name = "Handmade Revolver"
+	result = /obj/item/weapon/gun/projectile/revolver/handmaderevolver
+	steps = list(
+		list(/obj/item/gun_parts, 2),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
+
+/datum/craft_recipe/weapon/handmaderevolver
+	name = "Handmade Revolver"
+	result = /obj/item/weapon/gun/projectile/revolver/handmaderevolver
+	steps = list(
+		list(/obj/item/gun_parts, 3),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
+
+/datum/craft_recipe/weapon/slidebarrelshotgun
+	name = "Slide Barrel Shotgun"
+	result = /obj/item/weapon/gun/projectile/shotgun/slidebarrelshotgun
+	steps = list(
+		list(/obj/item/gun_parts, 3),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
+
+/datum/craft_recipe/weapon/motherfucker
+	name = "HM Motherfucker .35 \"Punch Hole\""
+	result = /obj/item/weapon/gun/projectile/shotgun/pump/motherfucker
+	steps = list(
+		list(/obj/item/gun_parts, 5),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 15, MATERIAL_WOOD),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
