@@ -79,6 +79,18 @@
 	icon_state = "impact_beam_heavy"
 
 //----------------------------
+// Psychic heavy laser beam
+//----------------------------
+/obj/effect/projectile/psychic_laser_heavy/tracer
+	icon_state = "psychic_beam_heavy"
+
+/obj/effect/projectile/psychic_laser_heavy/muzzle
+	icon_state = "psychic_muzzle_beam_heavy"
+
+/obj/effect/projectile/psychic_laser_heavy/impact
+	icon_state = "psychic_impact_beam_heavy"
+
+//----------------------------
 // Pulse laser beam
 //----------------------------
 /obj/effect/projectile/laser_pulse/tracer

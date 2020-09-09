@@ -366,3 +366,76 @@
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
 	preloaded_reagents = list("chloralhydrate" = 50)
+
+/obj/item/weapon/reagent_containers/syringe/stim
+	name = "syringe (stim)"
+
+/obj/item/weapon/reagent_containers/syringe/stim/mbr
+	name = "syringe (Machine binding ritual)"
+	desc = "Contains ethanol based stimulator. Used as ritual drink during technomancers initiation into tribe."
+	preloaded_reagents = list("machine binding ritual" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/cherrydrops
+	name = "syringe (Cherry Drops)"
+	desc = "Contains a cherry drops stimulator."
+	preloaded_reagents = list("cherry drops" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/pro_surgeon
+	name = "syringe (ProSurgeon)"
+	desc = "Contains a prosurgeon stimulating drug, used to reduce tremor to minimum."
+	preloaded_reagents = list("prosurgeon" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/violence
+	name = "syringe (Violence)"
+	desc = "Contains stimulator famous for it's ability to increase peak muscle strength."
+	preloaded_reagents = list("violence" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/bouncer
+	name = "syringe (Bouncer)"
+	desc = "Contains stimulator that boost regenerative capabilities."
+	preloaded_reagents = list("bouncer" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/steady
+	name = "syringe (Steady)"
+	desc = "Contains stimulator with ability to enchant reaction time."
+	preloaded_reagents = list("steady" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/machine_spirit
+	name = "syringe (Machine Spirit)"
+	desc = "Contains ethanol based stimulator. Used to initiate technomancer into inner cirle."
+	preloaded_reagents = list("machine spirit" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/grape_drops
+	name = "syringe (Grape Drops)"
+	desc = "Contains powerful stimulator which boosts creativity. Often used by scientists."
+	preloaded_reagents = list("grape drops" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/ultra_surgeon
+	name = "syringe (UltraSurgeon)"
+	desc = "Contains strong stimulating drug, which stabilizes muscle motility. Used as last resort during complex surgeries."
+	preloaded_reagents = list("ultrasurgeon" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/violence_ultra
+	name = "syringe (Violence Ultra)"
+	desc = "Contains effective electrolyte based muscle stimulant. Often used by most violent gangs"
+	preloaded_reagents = list("violence ultra" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/boxer
+	name = "syringe (Boxer)"
+	desc = "Contains stimulator which boosts robustness of human body. Known for its use by boxers."
+	preloaded_reagents = list("boxer" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/turbo
+	name = "syringe (TURBO)"
+	desc = "Contains potent mix of cardiovascular and neuro stimulators. Used by sharpshooters to increase accuracy."
+	preloaded_reagents = list("turbo" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/party_drops
+	name = "syringe (Party Drops)"
+	desc = "Contains stimulating substance which pumps intelectual capabilities to theoretical maximum. Used as delicacy by some high ranking scientists."
+	preloaded_reagents = list("party drops" = 15)
+
+/obj/item/weapon/reagent_containers/syringe/stim/menace
+	name = "syringe (MENACE)"
+	desc = "Contains awfully potent stimulant. Notorious for its usage by suicide troops."
+	preloaded_reagents = list("menace" = 15)
