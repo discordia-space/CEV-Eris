@@ -302,9 +302,9 @@
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
-/obj/item/weapon/gun/launcher/grenade/makeshiftgl
+/datum/craft_recipe/weapon/makeshiftgl
 	name = "Makeshift laser carbine"
-	result = /obj/item/weapon/gun/launcher/makeshiftgl
+	result = /obj/item/weapon/gun/launcher/grenade/makeshiftgl
 	steps = list(
 		list(/obj/item/gun_parts, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
