@@ -34,8 +34,8 @@
 
 		if(loaded.len)
 			var/I = 0
-			while (I < 5)
+			while (I < 6) //to load 6 bullets
 				var/obj/item/ammo_casing/AC = loaded[1] //load next casing
 				loaded -= AC  //Remove casing from loaded list.
-				chambered = AC
+				chambered += AC
 				I ++
