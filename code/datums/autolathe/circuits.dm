@@ -58,11 +58,11 @@
 
 /datum/design/autolathe/circuit/smelter
 	name = "smelter"
-	build_path = /obj/item/weapon/circuitboard/smelter
+	build_path = /obj/item/weapon/electronics/circuitboard/smelter
 
 /datum/design/autolathe/circuit/sorter
 	name = "sorter"
-	build_path = /obj/item/weapon/circuitboard/sorter
+	build_path = /obj/item/weapon/electronics/circuitboard/sorter
 
 /datum/design/autolathe/circuit/industrialgrinder
 	name = "industrial grinder"
