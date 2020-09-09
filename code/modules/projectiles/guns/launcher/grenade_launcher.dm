@@ -158,3 +158,15 @@
 /obj/item/weapon/gun/launcher/grenade/lenar/update_icon()
 	overlays.Cut()
 	update_charge()
+
+/obj/item/weapon/gun/launcher/grenade/makeshiftgl
+	name = "Makeshift grenade launcher"
+	desc = "Your own, homemade, China Lake."
+	icon = 'icons/obj/guns/launcher/riotgun.dmi'
+	icon_state = "riotgun"
+	item_state = "riotgun"
+	w_class = ITEM_SIZE_BULKY
+	force = WEAPON_FORCE_PAINFUL
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	force = 5
+	max_grenades = 0

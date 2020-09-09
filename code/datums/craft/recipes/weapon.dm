@@ -279,12 +279,37 @@
 
 /datum/craft_recipe/weapon/motherfucker
 	name = "HM Motherfucker .35 \"Punch Hole\""
-	result = /obj/item/weapon/gun/projectile/shotgun/pump/motherfucker
+	result = /obj/item/weapon/gun/projectile/automatic/motherfucker
 	steps = list(
 		list(/obj/item/gun_parts, 5),
 		list(QUALITY_ADHESIVE, 15, 70),
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, "time" = 15),
 		list(CRAFT_MATERIAL, 15, MATERIAL_WOOD),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
+
+/datum/craft_recipe/weapon/makeshiftlaser
+	name = "HM Motherfucker .35 \"Punch Hole\""
+	result = /obj/item/weapon/gun/energy/makeshiftlaser
+	steps = list(
+		list(/obj/item/gun_parts, 4),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTIC),
+		list(/obj/item/weapon/stock_parts/micro_laser , 4),
+		list(QUALITY_SCREW_DRIVING, 10)
+	)
+
+/obj/item/weapon/gun/launcher/grenade/makeshiftgl
+	name = "Makeshift laser carbine"
+	result = /obj/item/weapon/gun/launcher/makeshiftgl
+	steps = list(
+		list(/obj/item/gun_parts, 2),
+		list(QUALITY_ADHESIVE, 15, 70),
+		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(QUALITY_WELDING, 10, "time" = 15),
+		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
