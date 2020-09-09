@@ -1,0 +1,6 @@
+author: WuffDev
+delete-after: true
+changes:
+  - rscadd: The entreaty litany now calls out the area of the chanter.
+  - tweak: The power cost of Bounty has been reduced to 1/5 of the previous, unwieldy
+      cost.
