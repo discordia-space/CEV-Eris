@@ -24,6 +24,7 @@
 /obj/machinery/plumbing/Initialize(mapload, d=0, bolt=TRUE)
 	. = ..()
 	anchored = bolt
+	create_reagents(buffer, reagent_flags)
 
 /obj/machinery/plumbing/verb/rotate()
 	set category = "Object"
