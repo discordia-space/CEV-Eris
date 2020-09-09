@@ -49,9 +49,10 @@
 			continue
 
 		var/obj/item/weapon/implant/core_implant/cruciform/CI = target.get_core_implant()
+		var/area/t = get_area(H)
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
-			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation!"))
+			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
 	return TRUE
 
 /datum/ritual/cruciform/base/reveal
