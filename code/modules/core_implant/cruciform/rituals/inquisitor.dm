@@ -290,7 +290,7 @@
 /datum/ritual/cruciform/inquisitor/check_telecrystals
 	name = "Knowledge"
 	phrase = "Cor sapientis quaerit doctrinam, et os stultorum pascetur inperitia"
-	desc = "Find out the limits of your power, how much telecrystals you have now."
+	desc = "Find out the limits of your power, how many telecrystals you have now."
 	power = 5
 
 /datum/ritual/cruciform/inquisitor/check_telecrystals/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
@@ -310,13 +310,12 @@
 
 /*
 	Opens the interface for the embedded Uplink, allowing stuff to be purchased
-	Uses all your power, so you can't use abilities for a couple minutes
 */
 /datum/ritual/targeted/cruciform/inquisitor/spawn_item
 	name = "Bounty"
 	phrase = "Supra Domini, bona de te peto. Audi me, et libera vocationem ad me munera tua"
 	desc = "Request supplies and items from headquarters. Find a private place to do this. Establishing the connection takes a lot of power."
-	power = 100
+	power = 20
 
 /datum/ritual/targeted/cruciform/inquisitor/spawn_item/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C,list/targets)
 	var/datum/core_module/cruciform/uplink/I = C.get_module(CRUCIFORM_UPLINK)
