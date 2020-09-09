@@ -1655,7 +1655,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger
 	name = "Big Bite Burger"
-	desc = "Forget the Big Mac. THIS is the future! It have big \"R\" stamp on it's bun."
+	desc = "Forget the Big Mac. THIS is the future! It has big \"R\" stamped on it's bun."
 	icon_state = "bigbiteburger"
 	filling_color = "#E3D681"
 	bitesize = 3
@@ -3184,4 +3184,3 @@
 	nutriment_amt = 6
 	junk_food = TRUE
 	taste_tag = list(SWEET_FOOD)
-
