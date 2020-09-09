@@ -30,7 +30,7 @@
 
 /obj/machinery/plumbing/pill_press/examine(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("The [name] currently has [stored_products.len] stored. There needs to be less than [max_floor_products] on the floor to continue dispensing.")
+	to_chat(user, SPAN_NOTICE("The [name] currently has [stored_products.len] stored. There needs to be less than [max_floor_products] on the floor to continue dispensing."))
 
 /obj/machinery/plumbing/pill_press/Initialize(mapload, d=0, bolt)
 	. = ..()

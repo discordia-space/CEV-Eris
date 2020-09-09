@@ -39,7 +39,7 @@
 
 /obj/machinery/plumbing/examine(mob/user)
 	. = ..()
-	. += SPAN_NOTICE("The maximum volume display reads: <b>[reagents.maximum_volume] units</b>.")
+	to_chat(user, SPAN_NOTICE("The maximum volume display reads: <b>[reagents.maximum_volume] units</b>."))
 
 /obj/machinery/plumbing/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/weapon/tool/plunger))
