@@ -280,6 +280,7 @@ All the important duct code:
 		attempt_connect()
 	else
 		disconnect_duct(TRUE)
+	//AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 /obj/machinery/duct/attackby(obj/item/I, mob/living/user)
 	add_fingerprint(user)

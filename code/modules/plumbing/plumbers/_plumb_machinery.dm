@@ -21,14 +21,27 @@
 	///delay of constructing it throught the plumbing rcd
 	var/rcd_delay = 10
 
-/obj/machinery/plumbing/Initialize(mapload, d=0, bolt=TRUE)
+/obj/machinery/plumbing/Initialize(mapload, d, bolt=TRUE)
 	. = ..()
 	anchored = bolt
 	create_reagents(buffer, reagent_flags)
 
+/obj/machinery/plumbing/update_icon()
+	..()
+	overlays.Cut()
+	var/list/new_overlays = update_overlays()
+	if(new_overlays.len)
+		for(var/overlay in new_overlays)
+			overlays.Add(overlay)
+
+/obj/machinery/plumbing/proc/update_overlays()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
+
 /obj/machinery/plumbing/verb/rotate()
 	set category = "Object"
-	set name = "Rotate [src]"
+	set name = "Rotate plumbing"
 	set src in view(1)
 	if (usr.stat || usr.restrained() || !can_be_rotated(usr))
 		return

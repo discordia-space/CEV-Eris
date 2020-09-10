@@ -35,6 +35,7 @@
 		//timer 0 so it can finish returning initialize, after which we're added to the parent.
 		//Only then can we tell the duct next to us they can connect, because only then is the component really added. this was a fun one
 		addtimer(CALLBACK(src, .proc/enable), 0)
+	AM.update_icon()
 
 /datum/component/plumbing/Process()
 	if(!demand_connects || !reagents)
@@ -98,10 +99,10 @@
 		reagents.trans_to(target.parent, amount, round_robin = TRUE)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
 
 ///We create our luxurious piping overlays/underlays, to indicate where we do what. only called once if use_overlays = TRUE in Initialize()
-/datum/component/plumbing/proc/create_overlays(atom/movable/AM, list/overlays)
+/datum/component/plumbing/proc/create_overlays(list/new_overlays)
 	if(tile_covered || !use_overlays)
 		return
-
+	var/atom/movable/AM = parent
 	for(var/D in GLOB.cardinal)
 		var/color
 		var/direction
@@ -111,7 +112,6 @@
 			color = "blue" //blue is nice and gives
 		else
 			continue
-
 		var/image/I
 		if(turn_connects)
 			switch(D)
@@ -124,11 +124,10 @@
 				if(WEST)
 					direction = "west"
 			I = image('icons/obj/plumbing/plumbers.dmi', "[direction]-[color]", layer = AM.layer - 1)
-
 		else
 			I = image('icons/obj/plumbing/plumbers.dmi', color,layer = AM.layer - 1) //color is not color as in the var, it's just the name of the icon_state
 			I.dir = D
-		overlays += I
+		new_overlays += I
 
 ///we stop acting like a plumbing thing and disconnect if we are, so we can safely be moved and stuff
 /datum/component/plumbing/proc/disable()
@@ -225,7 +224,8 @@
 		net.add_plumber(src, dir)
 		net.add_plumber(P, opposite_dir)
 
-/datum/component/plumbing/proc/hide(atom/movable/AM, intact)
+/datum/component/plumbing/proc/hide(intact)
+	var/atom/movable/AM = parent
 	tile_covered = intact
 	AM.update_icon()
 
