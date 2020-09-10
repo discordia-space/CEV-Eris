@@ -161,7 +161,7 @@ Class Procs:
 		else
 	return
 
-/proc/is_operable(var/obj/machinery/M, var/mob/user)
+/proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
@@ -170,7 +170,7 @@ Class Procs:
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
-/obj/machinery/CanUseTopic(var/mob/user)
+/obj/machinery/CanUseTopic(mob/user)
 	if(stat & BROKEN)
 		return STATUS_CLOSE
 
@@ -179,11 +179,11 @@ Class Procs:
 
 	return ..()
 
-/obj/machinery/CouldUseTopic(var/mob/user)
+/obj/machinery/CouldUseTopic(mob/user)
 	..()
 	user.set_machine(src)
 
-/obj/machinery/CouldNotUseTopic(var/mob/user)
+/obj/machinery/CouldNotUseTopic(mob/user)
 	user.unset_machine()
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,7 +325,7 @@ Class Procs:
 
 	return FALSE //If got no qualities - continue base attackby proc
 
-/obj/machinery/proc/default_part_replacement(var/obj/item/weapon/storage/part_replacer/R, var/mob/user)
+/obj/machinery/proc/default_part_replacement(obj/item/weapon/storage/part_replacer/R, mob/user)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -355,7 +355,7 @@ Class Procs:
 			to_chat(user, SPAN_NOTICE("    [C.name]"))
 	return 1
 
-/obj/machinery/proc/create_frame(var/type)
+/obj/machinery/proc/create_frame(type)
 	if(type == FRAME_DEFAULT)
 		return new /obj/machinery/constructable_frame/machine_frame(loc)
 	if(type == FRAME_VERTICAL)
