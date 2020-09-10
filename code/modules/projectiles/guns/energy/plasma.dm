@@ -124,11 +124,11 @@
 	sel_mode = 2
 	charge_cost = 12.5 // for 8 shots
 	recoil_buildup = 1
-	fire_delay = 12	
+	fire_delay = 8
 	one_hand_penalty = 0
 	twohanded = FALSE
 
 	init_firemodes = list(
-		list(mode_name="Stun", projectile_type=/obj/item/projectile/plasma/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=2,charge_cost=12.5, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="Melt", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=0, charge_cost=100, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="Stun", projectile_type=/obj/item/projectile/plasma/stun, fire_sound='sound/weapons/Taser.ogg', fire_delay=null,charge_cost=12.5, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="Melt", projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=null, charge_cost=100, icon="destroy", projectile_color = "#FFFFFF"),
 	)
