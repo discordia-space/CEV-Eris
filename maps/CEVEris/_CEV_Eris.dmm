@@ -51235,7 +51235,10 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapelritualroom)
 "cjA" = (
-/obj/structure/bed/chair/custom/bar_special,
+/obj/structure/bed/chair/custom/bar_special{
+	icon_state = "bar_chair";
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cjB" = (
@@ -51347,9 +51350,11 @@
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "cjN" = (
-/obj/structure/bed/chair/custom/bar_special{
-	icon_state = "bar_chair";
-	dir = 4
+/obj/structure/table/bar_special,
+/obj/item/weapon/material/ashtray{
+	icon_state = "ashtray";
+	step_x = 0;
+	step_y = 0
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
@@ -51565,6 +51570,10 @@
 	icon_state = "bar_chair";
 	dir = 1
 	},
+/obj/structure/bed/chair/custom/bar_special{
+	icon_state = "bar_chair";
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cko" = (
@@ -51734,7 +51743,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel/bar_flat,
+/obj/machinery/door/airlock/glass{
+	name = "Rage Cage"
+	},
+/obj/machinery/door/blast/shutters/glass{
+	id = "Rageshutter";
+	name = "Rage Cage Lock"
+	},
+/turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/crew_quarters/bar)
 "ckK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -51878,10 +51894,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
-"cld" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel/bar_flat,
-/area/eris/crew_quarters/bar)
 "cle" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -51963,11 +51975,8 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "clq" = (
-/obj/structure/bed/chair/custom/bar_special{
-	icon_state = "bar_chair";
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/table/bar_special,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "clr" = (
@@ -52248,6 +52257,19 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/table/bar_special,
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	step_x = -3;
+	step_y = 13
+	},
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	step_x = 5;
+	step_y = 13
+	},
+/obj/item/weapon/reagent_containers/glass/rag{
+	step_x = -9;
+	step_y = 9
+	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "clW" = (
@@ -52255,11 +52277,16 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/table/bar_special,
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "clX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
+	},
+/obj/structure/bed/chair/custom/bar_special{
+	icon_state = "bar_chair";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -65510,13 +65537,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "cQM" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
-	dir = 8;
-	anchored = 1
-	},
-/turf/simulated/open,
+/turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/maintenance/section3deck4port)
 "cQN" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan,
@@ -67879,13 +67900,19 @@
 /turf/simulated/floor/tiled/white/violetcorener,
 /area/eris/rnd/xenobiology)
 "cWy" = (
-/obj/structure/table/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
+	},
+/obj/structure/table/rack,
+/obj/machinery/button/windowtint{
+	icon = 'icons/obj/machines/buttons.dmi';
+	step_x = 25;
+	step_y = 25;
+	id = "ragetint"
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -68415,15 +68442,23 @@
 /turf/simulated/floor/wood,
 /area/eris/command/meo/quarters)
 "cXK" = (
-/obj/structure/bed/chair/custom/bar_special{
-	icon_state = "bar_chair";
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
 /obj/machinery/firealarm{
 	pixel_y = 28
+	},
+/obj/structure/bed/chair/custom/bar_special{
+	icon_state = "bar_chair";
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	name = "Rage Cage lock control";
+	step_x = 9;
+	step_y = 0;
+	pixel_y = 28;
+	req_access = 0;
+	id = "Rageshutter"
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -68599,7 +68634,7 @@
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cYc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -68963,10 +68998,6 @@
 /turf/simulated/open,
 /area/eris/maintenance/section3deck3starboard)
 "cYO" = (
-/obj/structure/bed/chair/custom/bar_special{
-	icon_state = "bar_chair";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -68976,6 +69007,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
+/obj/structure/table/rack,
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cYP" = (
@@ -77162,14 +77194,6 @@
 /obj/random/material_ore/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
-"dqw" = (
-/obj/structure/table/bar_special,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 22
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "dqx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
@@ -108065,6 +108089,13 @@
 /obj/structure/sign/securearea,
 /turf/simulated/wall/r_wall,
 /area/eris/maintenance/section1deck4central)
+"fIw" = (
+/obj/structure/grille{
+	step_x = 0;
+	step_y = 0
+	},
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "fJM" = (
 /obj/structure/table/standard,
 /obj/random/medical,
@@ -108182,16 +108213,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
-"ijn" = (
-/obj/structure/table/bar_special,
-/obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "ijA" = (
 /obj/structure/table/rack,
 /obj/random/pack/tech_loot,
@@ -108279,10 +108300,19 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"jaX" = (
+/obj/structure/table/gamblingtable,
+/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/westright,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "jbk" = (
 /obj/effect/shuttle_landmark/merc/mining,
 /turf/space,
 /area/space)
+"jgu" = (
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/crew_quarters/bar)
 "jtf" = (
 /obj/structure/table/standard,
 /obj/machinery/chem_heater,
@@ -108358,12 +108388,9 @@
 /turf/space,
 /area/space)
 "kcK" = (
-/obj/structure/table/bar_special,
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 3
-	},
-/obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	pixel_x = -3
+/obj/structure/bed/chair/custom/bar_special{
+	icon_state = "bar_chair";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
@@ -108419,6 +108446,26 @@
 /obj/item/weapon/storage/box,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"kMt" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/crew_quarters/bar)
+"kNr" = (
+/obj/structure/catwalk,
+/obj/structure/railing{
+	tag = "icon-railing0 (EAST)";
+	icon_state = "railing0";
+	dir = 4;
+	anchored = 1
+	},
+/turf/simulated/open,
+/area/eris/maintenance/section3deck4port)
+"kWj" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/crew_quarters/bar)
 "lcL" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white/brown_platform,
@@ -108645,6 +108692,9 @@
 	},
 /turf/space,
 /area/space)
+"nBF" = (
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/eris/maintenance/section3deck4port)
 "nGz" = (
 /obj/structure/sink{
 	dir = 4;
@@ -108798,11 +108848,25 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/bridge)
+"oPm" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/item/weapon/tray{
+	step_x = 0;
+	step_y = 27
+	},
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "oTl" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/freezer/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
+"oWj" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white/bluecorner,
+/area/eris/crew_quarters/bar)
 "paj" = (
 /obj/structure/sign/faction/moebius{
 	pixel_y = -32
@@ -108835,6 +108899,11 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /turf/simulated/floor/hull,
 /area/space)
+"pNa" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "qaP" = (
 /obj/machinery/atmospherics/omni/filter{
 	tag_east = 2;
@@ -108886,6 +108955,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/storage)
+"reL" = (
+/obj/item/weapon/stool/custom/bar_special,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "rhQ" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -108901,6 +108974,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
+"rzE" = (
+/obj/structure/table/bar_special,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -109087,6 +109164,11 @@
 /obj/random/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/breakroom)
+"upl" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/bar_special,
+/turf/simulated/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/bar)
 "utr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -109216,6 +109298,19 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"vFX" = (
+/obj/structure/catwalk,
+/obj/structure/cyberplant{
+	emagged = 1
+	},
+/obj/structure/railing{
+	tag = "icon-railing0 (EAST)";
+	icon_state = "railing0";
+	dir = 4;
+	anchored = 1
+	},
+/turf/simulated/open,
+/area/eris/maintenance/section3deck4port)
 "vIB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -109323,6 +109418,19 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
+"wZS" = (
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/railing{
+	tag = "icon-railing0 (EAST)";
+	icon_state = "railing0";
+	dir = 4;
+	anchored = 1
+	},
+/turf/simulated/open,
+/area/eris/maintenance/section3deck4port)
 "xiI" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/plasma,
@@ -109346,6 +109454,12 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"xKy" = (
+/obj/effect/window_lwall_spawn/reinforced/polarized{
+	id = "ragetint"
+	},
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/bar)
 "xLv" = (
 /obj/effect/shuttle_landmark/merc/sec2west,
 /turf/space,
@@ -167472,13 +167586,13 @@ cFO
 cJT
 bBE
 cYb
-cjp
+aAs
 aqa
-cQe
-cQe
-cQe
-cQe
-cQe
+vFX
+wZS
+kNr
+wZS
+vFX
 aqa
 cjp
 dXa
@@ -167877,13 +167991,13 @@ cih
 anJ
 cWy
 apF
-aqV
-cPv
-cPv
-cPv
-cPv
-cPv
-aqV
+xKy
+cQM
+cQM
+cQM
+cQM
+cQM
+aqa
 apF
 dTC
 anJ
@@ -168079,12 +168193,12 @@ cii
 anJ
 cXK
 cjw
-aqa
-cPv
-cPv
-cPv
-cPv
-cPv
+xKy
+nBF
+cQM
+cQM
+cQM
+nBF
 aqa
 dJD
 cmo
@@ -168279,14 +168393,14 @@ chE
 anJ
 cJV
 anJ
+jaX
+pNa
 aqa
-bCz
-aqa
-aqV
-aqV
-aqV
-aqV
-aqV
+kMt
+jgu
+jgu
+jgu
+oWj
 aqa
 bCz
 aqa
@@ -168480,16 +168594,16 @@ anJ
 chF
 anJ
 cJW
-cil
 cCG
-cil
-cjM
-cil
-cil
-ckE
-cil
-cil
-cjM
+reL
+apF
+fIw
+jgu
+jgu
+kWj
+jgu
+jgu
+fIw
 cil
 cCG
 eav
@@ -168685,15 +168799,15 @@ cil
 cis
 cjc
 apF
-apF
-apF
-apF
+fIw
+fIw
+fIw
 ckJ
-cld
-cld
-cld
+fIw
+fIw
+fIw
 clV
-cjq
+oPm
 apF
 cil
 anJ
@@ -168887,11 +169001,11 @@ cim
 apF
 cjd
 apF
+cjQ
 cjN
-cjN
-apF
+rzE
 ckK
-clf
+upl
 clq
 clq
 clW
@@ -169088,14 +169202,14 @@ anJ
 cin
 cis
 cje
-cjA
+apF
 kcK
-cjQ
+kcK
 ckn
 ckL
 cjA
-ijn
-cjQ
+kcK
+kcK
 clX
 cjq
 aqV
@@ -169290,14 +169404,14 @@ anJ
 cJX
 civ
 cjf
-cjA
-dqw
-cjQ
+apF
+ctE
+ctE
 cJQ
 ckQ
-cjA
-dqw
-cjQ
+apF
+ctE
+ctE
 cJQ
 aAs
 anJ
