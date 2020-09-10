@@ -34,21 +34,22 @@
 		for(var/overlay in new_overlays)
 			overlays.Add(overlay)
 
-/obj/machinery/plumbing/proc/update_overlays()
-	SHOULD_CALL_PARENT(TRUE)
-	. = list()
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
-
 /obj/machinery/plumbing/verb/rotate()
 	set category = "Object"
 	set name = "Rotate plumbing"
 	set src in view(1)
-	if (usr.stat || usr.restrained() || !can_be_rotated(usr))
+	if (!can_be_rotated(usr))
 		return
 	src.set_dir(turn(dir, 90))
 
 /obj/machinery/plumbing/proc/can_be_rotated(mob/user)
-	return !anchored
+	if(usr.stat || usr.restrained() || anchored) 
+		return FALSE
+	return TRUE
+
+/obj/machinery/plumbing/bottler/attack_hand()
+	interact()
+	..()
 
 /obj/machinery/plumbing/examine(mob/user)
 	. = ..()
@@ -64,8 +65,7 @@
 		return TRUE
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			set_anchored(!anchored)		
-			SEND_SIGNAL(src, COMSIG_OBJ_DUCT_UNFASTEN, anchored)
+			set_anchored(!anchored)
 			user.visible_message(SPAN_NOTICE("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor."), \
 							SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."), \
 							"You hear a ratchet")

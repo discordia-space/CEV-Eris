@@ -393,6 +393,13 @@
 /atom/movable/proc/set_anchored(anchorvalue)
 	SHOULD_CALL_PARENT(TRUE)
 	if(anchored == anchorvalue)
+		SEND_SIGNAL(src, COMSIG_ATOM_UNFASTEN, anchored)
 		return
 	. = anchored
 	anchored = anchorvalue
+	SEND_SIGNAL(src, COMSIG_ATOM_UNFASTEN, anchored)
+
+/atom/movable/proc/update_overlays()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)

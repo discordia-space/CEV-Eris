@@ -8,6 +8,7 @@ All the important duct code:
 	icon = 'icons/obj/plumbing/fluid_ducts.dmi'
 	icon_state = "nduct"
 	anchored = TRUE
+	level = BELOW_PLATING_LEVEL
 	///bitfield with the directions we're connected in
 	var/connects
 	///set to TRUE to disable smart duct behaviour
@@ -280,7 +281,6 @@ All the important duct code:
 		attempt_connect()
 	else
 		disconnect_duct(TRUE)
-	//AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
 /obj/machinery/duct/attackby(obj/item/I, mob/living/user)
 	add_fingerprint(user)
@@ -319,8 +319,10 @@ All the important duct code:
 	if(!istype(A, /obj/machinery/duct))
 		return
 	var/obj/machinery/duct/D = A
+	to_chat(user, SPAN_WARNING("este es el item donde dropeamos [D]!"))
 	var/obj/item/I = user.get_active_hand()
-	if(I && QUALITY_BOLT_TURNING in I.tool_qualities)
+	to_chat(user, SPAN_WARNING("este es el item de la mano activa [I]!"))
+	if(!I || (I && !(QUALITY_BOLT_TURNING in I.tool_qualities)))
 		to_chat(user, SPAN_WARNING("You need to be holding a wrench in your active hand to do that!"))
 		return
 	if(get_dist(src, D) != 1)

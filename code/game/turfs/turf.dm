@@ -203,7 +203,6 @@ var/const/enterloopsanity = 100
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
-		SEND_SIGNAL(O, COMSIG_OBJ_HIDE, is_intact())
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()

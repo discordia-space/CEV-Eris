@@ -53,7 +53,7 @@
 	. = ..()
 	wanted_amount = clamp(round(input(user,"maximum is 100u","set ammount to fill with") as num|null, 1), 1, 100)
 	reagents.clear_reagents()
-	to_chat(user, "<span class='notice'> The [src] will now fill for [wanted_amount]u.</span>")
+	to_chat(user, SPAN_NOTICE(" The [src] will now fill for [wanted_amount]u."))
 
 /obj/machinery/plumbing/bottler/Process()
 	if(stat & NOPOWER)

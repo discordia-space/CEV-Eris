@@ -39,7 +39,8 @@
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 
-#define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"
+#define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
+#define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
 
 // /area signals
 
@@ -68,7 +69,6 @@
 #define COMSIG_OBJ_HIDE	"obj_hide" ///from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide
 
 //machinery
-#define COMSIG_OBJ_DUCT_UNFASTEN "obj_duct_unfasten" //duct anchored
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
