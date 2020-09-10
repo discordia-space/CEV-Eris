@@ -9,7 +9,7 @@
 				/obj/item/weapon/gun_upgrade/barrel/excruciator = 1,
 				/obj/item/weapon/gun_upgrade/barrel/mag_accel = 2,
 				/obj/item/weapon/gun_upgrade/barrel/overheat = 2,
-				/obj/item/weapon/gun_upgrade/barrel/silencer = 3,
+				/obj/item/weapon/gun_upgrade/muzzle/silencer = 3,
 				/obj/item/weapon/gun_upgrade/mechanism/glass_widow = 1,
 				/obj/item/weapon/gun_upgrade/mechanism/weintraub = 2,
 				/obj/item/weapon/gun_upgrade/barrel/forged = 5))

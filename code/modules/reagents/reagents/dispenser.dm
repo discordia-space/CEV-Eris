@@ -8,10 +8,10 @@
 	metabolism = REM * 0.2
 	reagent_type = "General"
 
-/datum/reagent/acetone/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/acetone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(effect_multiplier * 0.3)
 
-/datum/reagent/acetone/touch_obj(var/obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
+/datum/reagent/acetone/touch_obj(obj/O)	//I copied this wholesale from ethanol and could likely be converted into a shared proc. ~Techhead
 	if(istype(O, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
@@ -47,7 +47,7 @@
 	color = "#404030"
 	metabolism = REM * 0.5
 
-/datum/reagent/toxin/ammonia/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/ammonia/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(effect_multiplier * 0.15)
 
 /datum/reagent/carbon
@@ -61,7 +61,7 @@
 	ingest_met = REM * 5
 	reagent_type = "Reactive nonmetal"
 
-/datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/carbon/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
 		var/effect = 1 / (M.ingested.reagent_list.len - 1)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
@@ -104,26 +104,25 @@
 	var/adj_temp = 0
 	var/targ_temp = 310
 	var/halluci = 0
-	var/sanity_gain_ingest = 0.5
+	sanity_gain_ingest = 0.5 //this defines how good eating/drinking the thing will make you feel
+	taste_tag = list()  // list the tastes the thing got there
 
 	glass_icon_state = "glass_clear"
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
 	reagent_type = "Alchohol"
-	var/list/taste_tag = list()
 
 /datum/reagent/ethanol/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
-/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_PAINKILLER, max(55-strength, 1))
 	return
 
-/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-
 	M.add_chemical_effect(CE_ALCOHOL, 1)
 
 //Tough people can drink a lot
@@ -166,11 +165,9 @@
 	if(halluci)
 		M.adjust_hallucination(halluci, halluci)
 
-	var/mob/living/carbon/human/H = M
-	if(istype(H))
-		H.sanity.onAlcohol(src, effect_multiplier)
+	apply_sanity_effect(M, effect_multiplier)
 
-/datum/reagent/ethanol/touch_obj(var/obj/O)
+/datum/reagent/ethanol/touch_obj(obj/O)
 	if(istype(O, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
@@ -194,10 +191,10 @@
 	metabolism = REM * 0.2
 	touch_met = 5
 
-/datum/reagent/toxin/hydrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/toxin/hydrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(0.4 * effect_multiplier)
 
-/datum/reagent/toxin/hydrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier) // Hydrazine is both toxic and flammable.
+/datum/reagent/toxin/hydrazine/affect_touch(mob/living/carbon/M, alien, effect_multiplier) // Hydrazine is both toxic and flammable.
 	M.adjust_fire_stacks(0.4 / 12)
 	M.adjustToxLoss(0.2 * effect_multiplier)
 
@@ -215,7 +212,7 @@
 	color = "#353535"
 
 
-/datum/reagent/metal/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/iron/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_BLOODRESTORE, 0.8 * effect_multiplier)
 
 /datum/reagent/metal/lithium
@@ -226,7 +223,7 @@
 	reagent_state = SOLID
 	color = "#808080"
 
-/datum/reagent/metal/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/lithium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 		step(M, pick(cardinal))
 	if(prob(5))
@@ -240,7 +237,7 @@
 	reagent_state = LIQUID
 	color = "#484848"
 
-/datum/reagent/metal/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/mercury/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 		step(M, pick(cardinal))
 	if(prob(5))
@@ -265,7 +262,7 @@
 	reagent_state = SOLID
 	color = "#A0A0A0"
 
-/datum/reagent/metal/potassium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/potassium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume > 3)
 		M.add_chemical_effect(CE_PULSE, 1)
 	if(volume > 10)
@@ -279,7 +276,7 @@
 	reagent_state = SOLID
 	color = "#C7C7C7"
 
-/datum/reagent/metal/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/radium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.apply_effect(1 * (issmall(M) ? effect_multiplier * 2 : effect_multiplier), IRRADIATE, 0) // Radium may increase your chances to cure a disease
 	if(M.virus2.len)
 		for(var/ID in M.virus2)
@@ -312,10 +309,10 @@
 	var/meltdose = 10 // How much is needed to melt
 	reagent_type = "Acid"
 
-/datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.take_organ_damage(0, (issmall(M) ? effect_multiplier * 2: effect_multiplier * power * 2))
 
-/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier) // This is the most interesting
+/datum/reagent/acid/affect_touch(mob/living/carbon/M, alien, effect_multiplier) // This is the most interesting
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head)
@@ -375,7 +372,7 @@
 		else
 			M.take_organ_damage(0, volume * power * 0.1) // Balance. The damage is instant, so it's weaker. 10 units -> 5 damage, double for pacid. 120 units beaker could deal 60, but a) it's burn, which is not as dangerous, b) it's a one-use weapon, c) missing with it will splash it over the ground and d) clothes give some protection, so not everything will hit
 
-/datum/reagent/acid/touch_obj(var/obj/O)
+/datum/reagent/acid/touch_obj(obj/O)
 	if(O.unacidable)
 		return
 	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
@@ -424,7 +421,7 @@
 	glass_name = "sugar"
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 
-/datum/reagent/organic/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/organic/sugar/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(4 * effect_multiplier)
 
 /datum/reagent/sulfur
