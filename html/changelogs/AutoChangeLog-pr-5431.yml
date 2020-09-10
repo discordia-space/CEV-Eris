@@ -1,0 +1,9 @@
+author: Toriate
+delete-after: true
+changes:
+  - rscadd: Added floor painters, available in the miscellaneous autolathe disk.
+  - rscadd: Added mech painters, available in the miscellaneous autolathe disk.
+  - rscadd: You can now craft exosuit drill heads.
+  - rscadd: Exosuits can now strafe
+  - balance: Exosuits will no longer fumble.
+  - bugfix: You can now actually produce basic exosuit manipulators.
