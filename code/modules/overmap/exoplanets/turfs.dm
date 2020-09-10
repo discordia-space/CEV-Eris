@@ -7,7 +7,7 @@
 	footstep_type = /decl/footsteps/asteroid
 	var/diggable = 1
 	var/dirt_color = "#7c5e42"
-	initial_flooring = /decl/flooring/asteroid
+	initial_flooring = null
 /*
 /turf/simulated/floor/exoplanet/can_engrave()
 	return FALSE
@@ -168,3 +168,47 @@
 			if(L.pulling)
 				var/atom/movable/AM = L.pulling
 				AM.forceMove(T)
+
+
+// Straight copy from space.
+/turf/simulated/floor/exoplanet/attackby(obj/item/C as obj, mob/user as mob)
+	if (istype(C, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			return
+		var/obj/item/stack/rods/R = C
+		if (R.use(1))
+			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			ReplaceWithLattice()
+		return
+
+	if (istype(C, /obj/item/stack/material))
+		var/obj/item/stack/material/M = C
+
+		var/material/mat = M.get_material()
+		if (!mat.name == MATERIAL_STEEL)
+
+			return
+
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+
+		if(L)
+			var/obj/item/stack/tile/floor/S = C
+			if (S.get_amount() < 4)
+				return
+
+			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			if(do_after(user,80, src))
+				qdel(L)
+				S.use(4)
+				ChangeTurf(/turf/simulated/floor/plating/under)
+			return
+		else
+			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+
+	if(istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
