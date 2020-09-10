@@ -9,7 +9,7 @@
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "syringe_0"
+	item_state = "syringe"
 	icon_state = "0"
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 1)
 	amount_per_transfer_from_this = 5
@@ -145,7 +145,10 @@
 				return
 			if(isliving(target))
 				var/mob/living/L = target
-				var/injtime = time //Injecting through a hardsuit takes longer due to needing to find a port.
+				var/injtime = time - (user.stats.getStat(STAT_BIO)*0.375) // 375 was choosen to make a steady increase on speed from 0 being default time and 80 being 0, even if its never really 0
+				if(injtime < 10) injtime=10 //should make the "fastest" injection take at least 10
+				
+				//Injecting through a hardsuit takes longer due to needing to find a port.
 				// Handling errors and injection duration
 				var/mob/living/carbon/human/H = target
 				if(istype(H))
@@ -180,7 +183,7 @@
 				if(target != user)
 					user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 					user.do_attack_animation(target)
-					if(injtime == time)
+					if(injtime == time - (user.stats.getStat(STAT_BIO)*0.375))
 						user.visible_message(SPAN_WARNING("[user] is trying to inject [target] with [visible_name]!"), SPAN_WARNING("You are trying to inject [target] with [visible_name]!"))
 						to_chat(target, SPAN_NOTICE("You feel a tiny prick!"))
 					else
@@ -217,9 +220,11 @@
 
 
 
-/obj/item/weapon/reagent_containers/syringe/update_icon()
+/obj/item/weapon/reagent_containers/syringe/update_icon(A)
+	..()
 	cut_overlays()
 
+	var/iconstring = initial(item_state)
 	if(mode == SYRINGE_BROKEN)
 		icon_state = "broken"
 		return
@@ -227,15 +232,13 @@
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
 		rounded_vol = CLAMP(round((reagents.total_volume / volume * 15),5), 1, 15)
-		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "[iconstring][rounded_vol]")
 		filling_overlay.color = reagents.get_color()
 		add_overlay(filling_overlay)
 	else
 		rounded_vol = 0
-
 	icon_state = "[rounded_vol]"
-	item_state = "syringe_[rounded_vol]"
-
+	item_state = "[iconstring]_[rounded_vol]"
 	if(ismob(loc))
 		var/injoverlay
 		switch(mode)
@@ -324,6 +327,22 @@
 		to_chat(user, SPAN_NOTICE("This syringe is too big to stab someone with it."))
 		return
 	..()
+
+/obj/item/weapon/reagent_containers/syringe/large
+	name = "Large syringe"
+	desc = "A large syringe for those patients who needs a little more"
+	icon = 'icons/obj/large_syringe.dmi'
+	item_state = "large_syringe"
+	icon_state = "0"
+	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 1)
+	amount_per_transfer_from_this = 5
+	possible_transfer_amounts = list(5,10)
+	volume = 30
+	w_class = ITEM_SIZE_TINY
+	slot_flags = SLOT_EARS
+	sharp = TRUE
+	unacidable = 1 //glass
+	reagent_flags = TRANSPARENT
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes. END
