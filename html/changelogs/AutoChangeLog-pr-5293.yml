@@ -1,0 +1,7 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - rscadd: TASTE for some foods
+  - rscadd: NEW tastes to roll in insights
+  - tweak: Drinks got a more matching taste profile aswell as new taste profiles
+  - tweak: thanks to Evankhell561 all reagents can now have a taste too.
