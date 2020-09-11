@@ -27,7 +27,7 @@
 	turn_connects = _turn_connects
 
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
-	RegisterSignal(parent, list(COMSIG_OBJ_DUCT_UNFASTEN), .proc/toggle_active)
+	RegisterSignal(parent, list(COMSIG_ATOM_UNFASTEN), .proc/toggle_active)
 	RegisterSignal(parent, list(COMSIG_OBJ_HIDE), .proc/hide)
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS), .proc/create_overlays) //called by lateinit on startup
 
@@ -94,9 +94,9 @@
 	if(!reagents || !target || !target.reagents)
 		return FALSE
 	if(reagent)
-		reagents.trans_id_to(target.parent, reagent, amount)
+		reagents.trans_id_to(target.parent, reagent, amount, ignore_isinjectable=TRUE, log=TRUE)
 	else
-		reagents.trans_to(target.parent, amount, round_robin = TRUE)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
+		reagents.trans_to(target.parent, amount, ignore_isinjectable=TRUE, log=TRUE)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
 
 ///We create our luxurious piping overlays/underlays, to indicate where we do what. only called once if use_overlays = TRUE in Initialize()
 /datum/component/plumbing/proc/create_overlays(list/new_overlays)
@@ -178,7 +178,7 @@
 						direct_connect(P, D)
 
 /// Toggle our machinery on or off. This is called by a hook from default_unfasten_wrench with anchored as only param, so we dont have to copypaste this on every object that can move
-/datum/component/plumbing/proc/toggle_active(obj/O, new_state)
+/datum/component/plumbing/proc/toggle_active(new_state)
 	if(new_state)
 		enable()
 	else
@@ -233,9 +233,18 @@
 /datum/component/plumbing/simple_demand
 	demand_connects = NORTH
 
+/datum/component/plumbing/demand_all
+	demand_connects = NORTH | SOUTH | EAST | WEST
+	use_overlays = FALSE
+
 ///has one pipe output that only supplies. example is liquid pump and manual input pipe
 /datum/component/plumbing/simple_supply
 	supply_connects = NORTH
+
+/datum/component/plumbing/supply_all
+	supply_connects = NORTH | SOUTH | EAST | WEST
+	use_overlays = FALSE
+	
 
 ///input and output, like a holding tank
 /datum/component/plumbing/tank

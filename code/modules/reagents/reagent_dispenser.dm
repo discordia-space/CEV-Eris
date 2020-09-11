@@ -20,12 +20,11 @@
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 	anchored = bolt
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/supply_all, bolt)
 
 /obj/structure/reagent_dispensers/update_icon()
 	overlays.Cut()
 	var/list/new_overlays = update_overlays()
-	admin_notice(SPAN_NOTICE("ESTE ES LA CANTIDAD DE OVERLAYS [new_overlays.len]"))
 	if(new_overlays.len)
 		for(var/overlay in new_overlays)
 			overlays.Add(overlay)

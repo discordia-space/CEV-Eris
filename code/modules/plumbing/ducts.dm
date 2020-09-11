@@ -319,9 +319,7 @@ All the important duct code:
 	if(!istype(A, /obj/machinery/duct))
 		return
 	var/obj/machinery/duct/D = A
-	to_chat(user, SPAN_WARNING("este es el item donde dropeamos [D]!"))
 	var/obj/item/I = user.get_active_hand()
-	to_chat(user, SPAN_WARNING("este es el item de la mano activa [I]!"))
 	if(!I || (I && !(QUALITY_BOLT_TURNING in I.tool_qualities)))
 		to_chat(user, SPAN_WARNING("You need to be holding a wrench in your active hand to do that!"))
 		return

@@ -7,7 +7,7 @@
 	reagent_flags = OPENCONTAINER
 	volume = 100
 
-	var/mechanical = 1         // Set to 0 to stop it from drawing the alert lights.
+	var/mechanical = TRUE         // Set to 0 to stop it from drawing the alert lights.
 	var/base_name = "tray"
 
 	// Plant maintenance vars.
@@ -133,14 +133,15 @@
 		return 1
 	return ..()
 
-/obj/machinery/portable_atmospherics/hydroponics/New()
-	..()
+/obj/machinery/portable_atmospherics/hydroponics/Initialize(mapload, d, bolt=TRUE)
+	. = ..()
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	temp_chem_holder.reagent_flags |= OPENCONTAINER
 	create_reagents(200)
 	if(mechanical)
 		connect()
+	AddComponent(/datum/component/plumbing/demand_all, bolt)
 	update_icon()
 
 /obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
@@ -470,7 +471,7 @@
 							to_chat(user, SPAN_NOTICE("Nothing happens."))
 							return
 				to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
-				anchored = !anchored
+				set_anchored(!anchored)
 				return
 			return
 

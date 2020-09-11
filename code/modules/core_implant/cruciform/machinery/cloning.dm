@@ -388,7 +388,7 @@
 	else
 		to_chat(user, SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity]."))
 
-/obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user)
 
 	if(default_deconstruction(I, user))
 		return

@@ -5,11 +5,11 @@
 	var/total_volume = 0
 	var/maximum_volume = 100
 	var/chem_temp = T20C
-	var/atom/my_atom = null
+	var/atom/my_atom
 	var/rotating = FALSE
 
 
-/datum/reagents/New(var/max = 100, atom/A = null)
+/datum/reagents/New(max = 100, atom/A = null)
 	..()
 	maximum_volume = max
 	my_atom = A
@@ -373,7 +373,6 @@
 /datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = 0)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
-
 	else if(istype(target, /atom))
 		var/atom/A = target
 		if(ismob(target))

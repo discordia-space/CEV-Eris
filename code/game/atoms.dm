@@ -151,7 +151,7 @@
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity)
 	return
 
 
@@ -360,7 +360,7 @@ its easier to just keep the beam vertical.
 		AM.throwing = FALSE
 	return
 
-/atom/proc/add_hiddenprint(mob/living/M as mob)
+/atom/proc/add_hiddenprint(mob/living/M)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
 	if (ishuman(M))
@@ -383,7 +383,7 @@ its easier to just keep the beam vertical.
 			src.fingerprintslast = M.key
 	return
 
-/atom/proc/add_fingerprint(mob/living/M as mob, ignoregloves = FALSE)
+/atom/proc/add_fingerprint(mob/living/M, ignoregloves = FALSE)
 	if(isnull(M)) return
 	if(isAI(M)) return
 	if(isnull(M.key)) return
@@ -509,7 +509,7 @@ its easier to just keep the beam vertical.
 
 
 //returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+/atom/proc/add_blood(mob/living/carbon/human/M)
 
 	if(flags & NOBLOODY)
 		return FALSE
@@ -529,7 +529,7 @@ its easier to just keep the beam vertical.
 	. = TRUE
 	return TRUE
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = FALSE)
+/atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = FALSE)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
@@ -574,10 +574,10 @@ its easier to just keep the beam vertical.
 
 
 //Execution by grand piano!
-/atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)
+/atom/movable/proc/get_fall_damage(turf/from, turf/dest)
 	return 42
 
-/atom/movable/proc/fall_impact(var/turf/from, var/turf/dest)
+/atom/movable/proc/fall_impact(turf/from, turf/dest)
 
 //If atom stands under open space, it can prevent fall, or not
 /atom/proc/can_prevent_fall()
