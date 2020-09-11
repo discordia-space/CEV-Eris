@@ -428,7 +428,6 @@ This function completely restores a damaged organ to perfect condition.
 	return 0
 
 /obj/item/organ/external/Process()
-	handle_bones()
 	if(owner)
 
 		// Process wounds, doing healing etc. Only do this every few ticks to save processing power
@@ -455,9 +454,10 @@ This function completely restores a damaged organ to perfect condition.
 
 	if(!is_stump())
 		if(!get_bone() && !(owner.status_flags & REBUILDING_ORGANS))
-			if(!droplimb(FALSE, DROPLIMB_BLUNT))
-				for(var/obj/item/organ/external/limb in children)
-					limb.droplimb(FALSE, DROPLIMB_EDGE)
+			for(var/obj/item/organ/external/limb in children)
+				limb.droplimb(FALSE, DROPLIMB_EDGE)
+			droplimb(FALSE, DROPLIMB_BLUNT)
+			owner?.gib() //In theory if droplimb is succesfull, the organ will have no owner and gib() should only get called if droplimb fails(Like on the upper body)
 
 //Updating germ levels. Handles organ germ levels and necrosis.
 /*
