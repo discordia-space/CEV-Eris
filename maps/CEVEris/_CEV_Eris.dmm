@@ -51353,8 +51353,6 @@
 /obj/structure/table/bar_special,
 /obj/item/weapon/material/ashtray{
 	icon_state = "ashtray";
-	step_x = 0;
-	step_y = 0
 	},
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
@@ -52259,16 +52257,10 @@
 	},
 /obj/structure/table/bar_special,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	step_x = -3;
-	step_y = 13
 	},
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	step_x = 5;
-	step_y = 13
 	},
 /obj/item/weapon/reagent_containers/glass/rag{
-	step_x = -9;
-	step_y = 9
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -67910,8 +67902,6 @@
 /obj/structure/table/rack,
 /obj/machinery/button/windowtint{
 	icon = 'icons/obj/machines/buttons.dmi';
-	step_x = 25;
-	step_y = 25;
 	id = "ragetint"
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
@@ -68454,8 +68444,6 @@
 	},
 /obj/machinery/button/remote/blast_door{
 	name = "Rage Cage lock control";
-	step_x = 9;
-	step_y = 0;
 	pixel_y = 28;
 	req_access = 0;
 	id = "Rageshutter"
@@ -108091,8 +108079,7 @@
 /area/eris/maintenance/section1deck4central)
 "fIw" = (
 /obj/structure/grille{
-	step_x = 0;
-	step_y = 0
+
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -108853,8 +108840,6 @@
 	dir = 1
 	},
 /obj/item/weapon/tray{
-	step_x = 0;
-	step_y = 27
 	},
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
