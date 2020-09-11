@@ -384,7 +384,7 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer], hiden=FALSE)
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer], FALSE, FALSE)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random

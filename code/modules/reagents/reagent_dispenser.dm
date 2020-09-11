@@ -349,7 +349,7 @@
 	if(reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents."))
 
-/obj/structure/reagent_dispensers/bidon/attack_hand(mob/user as mob)
+/obj/structure/reagent_dispensers/bidon/attack_hand(mob/user)
 	lid = !lid
 	if(lid)
 		to_chat(user, SPAN_NOTICE("You put the lid on."))
