@@ -45,7 +45,7 @@
 	return !density
 
 /turf/simulated/mineral/is_plating()
-	return 1
+	return TRUE
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)

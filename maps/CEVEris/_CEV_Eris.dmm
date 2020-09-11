@@ -9332,6 +9332,7 @@
 /turf/space,
 /area/shuttle/escape_pod1/station)
 "auS" = (
+/obj/machinery/duct,
 /turf/simulated/floor/dirt,
 /area/eris/crew_quarters/hydroponics)
 "auT" = (
@@ -34353,13 +34354,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"byQ" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
-	req_access = list(27)
-	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapelritualroom)
 "byR" = (
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapelritualroom)
@@ -44719,6 +44713,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/machinery/duct,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bUR" = (
@@ -77696,6 +77691,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/machinery/duct,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "drJ" = (
@@ -108039,6 +108035,12 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
+"fiV" = (
+/obj/machinery/camera/network/third_section{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/eris/neotheology/chapelritualroom)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	tag = "icon-map (EAST)";
@@ -108089,6 +108091,10 @@
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"gfx" = (
+/obj/machinery/duct,
+/turf/simulated/floor/grass,
+/area/eris/crew_quarters/hydroponics)
 "gjm" = (
 /obj/machinery/holomap{
 	pixel_y = 32
@@ -108113,6 +108119,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"gPq" = (
+/obj/machinery/duct,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "gPD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -108868,6 +108878,17 @@
 /obj/effect/shuttle_landmark/merc/engieva,
 /turf/space,
 /area/space)
+"qpS" = (
+/obj/machinery/duct,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/neotheology/chapelritualroom)
+"qxr" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_common{
+	req_access = list(27)
+	},
+/turf/simulated/wall/r_wall,
+/area/eris/maintenance/section3deck4port)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -122212,7 +122233,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aae
 alg
 apt
 avv
@@ -122414,9 +122435,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-alg
+aae
 atX
+avv
 avv
 avL
 awQ
@@ -122616,7 +122637,7 @@ aqW
 aaa
 aaa
 aaa
-aaa
+aae
 alg
 apt
 avv
@@ -162816,9 +162837,9 @@ cIS
 cIS
 aaa
 bUG
-bWh
 ccO
-bWh
+bUG
+qxr
 ccU
 ccU
 ccU
@@ -163019,8 +163040,8 @@ cIS
 aaa
 ccU
 ccU
-ccU
-byQ
+fiV
+byR
 ccU
 cBm
 cxB
@@ -163221,7 +163242,7 @@ cIS
 aaa
 ccU
 avK
-clY
+qpS
 byR
 cqc
 bQx
@@ -164848,12 +164869,12 @@ cga
 cCz
 bQq
 aNS
-bQq
-bQq
-bQq
-bQq
-bQq
-bQq
+gPq
+gPq
+gPq
+gPq
+gPq
+gPq
 dHB
 cbF
 cbF
@@ -165055,7 +165076,7 @@ bUT
 bUT
 bUT
 bUT
-bQq
+gPq
 bOi
 bxH
 bQn
@@ -165251,13 +165272,13 @@ bRg
 bQZ
 bQn
 bQq
-bQn
+gfx
 auS
 auS
 auS
 auS
-bQn
-bQq
+gfx
+gPq
 bVu
 bxH
 bQS
@@ -165459,7 +165480,7 @@ bUT
 bUT
 bUT
 bUT
-bQq
+gPq
 bXk
 bIs
 bXn
@@ -165661,7 +165682,7 @@ bUT
 bUT
 bUT
 bUT
-bQq
+gPq
 bXi
 bxH
 bXC
@@ -165857,13 +165878,13 @@ bRi
 bRi
 bQn
 bQq
-bQn
+gfx
 auS
 auS
 auS
 auS
-bQn
-bQq
+gfx
+gPq
 bXi
 bxH
 bQn

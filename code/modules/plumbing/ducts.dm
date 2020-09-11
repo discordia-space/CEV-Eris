@@ -37,7 +37,7 @@ All the important duct code:
 	///wheter we just unanchored or drop whatever is in the variable. either is safe
 	var/drop_on_wrench = /obj/item/stack/ducts
 
-/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects)
+/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects, hiden=TRUE)
 	. = ..()
 	if(no_anchor)
 		active = FALSE
@@ -65,6 +65,10 @@ All the important duct code:
 
 	if(active)
 		attempt_connect()
+
+	if(hiden)
+		var/turf/T = get_turf(src)
+		T?.levelupdate()
 
 	//AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
@@ -380,7 +384,7 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer])
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer], hiden=FALSE)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random
