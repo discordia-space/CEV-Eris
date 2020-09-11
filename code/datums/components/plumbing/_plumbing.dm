@@ -15,6 +15,7 @@
 	var/active = FALSE
 	///if TRUE connects will spin with the parent object visually and codually, so you can have it work in any direction. FALSE if you want it to be static
 	var/turn_connects = TRUE
+	var/direct_connect = TRUE
 
 /datum/component/plumbing/Initialize(start=TRUE, _turn_connects=TRUE) //turn_connects for wheter or not we spin with the object to change our pipes
 	if(!ismovable(parent))
@@ -84,7 +85,7 @@
 	if(reagent) //only asked for one type of reagent
 		for(var/A in reagents.reagent_list)
 			var/datum/reagent/R = A
-			if(R.type == reagent)
+			if(R.id == reagent)
 				return TRUE
 	else if(reagents.total_volume > 0) //take whatever
 		return TRUE
@@ -94,9 +95,9 @@
 	if(!reagents || !target || !target.reagents)
 		return FALSE
 	if(reagent)
-		reagents.trans_id_to(target.parent, reagent, amount, ignore_isinjectable=TRUE, log=TRUE)
+		reagents.trans_id_to(target.parent, reagent, amount, ignore_isinjectable=TRUE)
 	else
-		reagents.trans_to(target.parent, amount, ignore_isinjectable=TRUE, log=TRUE)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
+		reagents.trans_to(target.parent, amount, ignore_isinjectable=TRUE)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
 
 ///We create our luxurious piping overlays/underlays, to indicate where we do what. only called once if use_overlays = TRUE in Initialize()
 /datum/component/plumbing/proc/create_overlays(list/new_overlays)
@@ -165,16 +166,14 @@
 		START_PROCESSING(SSfluids, src)
 
 	for(var/D in GLOB.cardinal)
-
 		if(D & (demand_connects | supply_connects))
 			for(var/atom/movable/A in get_step(parent, D))
-
 				if(istype(A, /obj/machinery/duct))
 					var/obj/machinery/duct/duct = A
 					duct.attempt_connect()
-				else
+				else if(direct_connect)
 					var/datum/component/plumbing/P = A.GetComponent(/datum/component/plumbing)
-					if(P)
+					if(P && P.direct_connect)
 						direct_connect(P, D)
 
 /// Toggle our machinery on or off. This is called by a hook from default_unfasten_wrench with anchored as only param, so we dont have to copypaste this on every object that can move
@@ -217,7 +216,7 @@
 //special case in-case we want to connect directly with another machine without a duct
 /datum/component/plumbing/proc/direct_connect(datum/component/plumbing/P, dir)
 	if(!P.active)
-		return
+		return	FALSE
 	var/opposite_dir = turn(dir, 180)
 	if(P.demand_connects & opposite_dir && supply_connects & dir || P.supply_connects & opposite_dir && demand_connects & dir) //make sure we arent connecting two supplies or demands
 		var/datum/ductnet/net = new()
@@ -236,6 +235,10 @@
 /datum/component/plumbing/demand_all
 	demand_connects = NORTH | SOUTH | EAST | WEST
 	use_overlays = FALSE
+	direct_connect = FALSE
+
+/datum/component/plumbing/demand_all/biomass/send_request(dir)
+	process_request(amount = MACHINE_REAGENT_TRANSFER, reagent = "biomatter", dir = dir)
 
 ///has one pipe output that only supplies. example is liquid pump and manual input pipe
 /datum/component/plumbing/simple_supply
@@ -244,6 +247,7 @@
 /datum/component/plumbing/supply_all
 	supply_connects = NORTH | SOUTH | EAST | WEST
 	use_overlays = FALSE
+	direct_connect = FALSE
 	
 
 ///input and output, like a holding tank

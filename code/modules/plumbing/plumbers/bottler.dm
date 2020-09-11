@@ -65,12 +65,12 @@
 			var/obj/item/weapon/reagent_containers/B = AM
 			///see if it would overflow else inject
 			if((B.reagents.total_volume + wanted_amount) <= B.reagents.maximum_volume)
-				reagents.trans_to(B, wanted_amount)
+				reagents.trans_to(B, wanted_amount, ignore_isinjectable=TRUE)
 				B.forceMove(goodspot)
 				return
 			///glass was full so we move it away
 			AM.forceMove(badspot)
 		if(istype(AM, /obj/item/slime_extract)) ///slime extracts need inject
 			AM.forceMove(goodspot)
-			reagents.trans_to(AM, wanted_amount)
+			reagents.trans_to(AM, wanted_amount, ignore_isinjectable=TRUE)
 			return

@@ -8,6 +8,7 @@
 	icon = 'icons/obj/plumbing/plumbers.dmi'
 	icon_state = "pump"
 	density = TRUE
+	anchored = TRUE
 	active_power_usage = 30
 	use_power = ACTIVE_POWER_USE
 	///Flags for reagents, like INJECTABLE, TRANSPARENT bla bla everything thats in DEFINES/reagents.dm

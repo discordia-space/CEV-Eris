@@ -51,7 +51,7 @@
 	if(reagents.total_volume >= current_volume)
 		if (product == "pill")
 			var/obj/item/weapon/reagent_containers/pill/P = new(src)
-			reagents.trans_to(P, current_volume)
+			reagents.trans_to(P, current_volume, ignore_isinjectable=TRUE)
 			P.name = trim("[product_name] pill")
 			stored_products += P
 			if(pill_number == RANDOM_PILL_STYLE)
@@ -62,12 +62,12 @@
 				P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
 		/*else if (product == "patch")
 			var/obj/item/weapon/reagent_containers/pill/patch/P = new(src)
-			reagents.trans_to(P, current_volume)
+			reagents.trans_to(P, current_volume, ignore_isinjectable=TRUE)
 			P.name = trim("[product_name] patch")
 			stored_products += P*/
 		else if (product == "bottle")
 			var/obj/item/weapon/reagent_containers/glass/bottle/P = new(src)
-			reagents.trans_to(P, current_volume)
+			reagents.trans_to(P, current_volume, ignore_isinjectable=TRUE)
 			P.name = trim("[product_name] bottle")
 			stored_products += P
 	if(stored_products.len)

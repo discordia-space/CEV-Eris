@@ -44,7 +44,7 @@
 		return
 	var/obj/item/I = AM
 	if(I.reagents)
-		I.reagents.trans_to(src, I.reagents.total_volume)
+		I.reagents.trans_to(src, I.reagents.total_volume, ignore_isinjectable=TRUE)
 		qdel(I)
 		return
 

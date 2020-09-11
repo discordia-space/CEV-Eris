@@ -367,11 +367,27 @@
 	var/biomass_capacity = 600
 
 
-/obj/machinery/neotheology/biomass_container/New()
-	..()
+/obj/machinery/neotheology/biomass_container/Initialize(mapload, d, bolt=TRUE)
+	. = ..()
 	create_reagents(biomass_capacity)
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		reagents.add_reagent("biomatter", 300)
+	anchored = bolt
+	AddComponent(/datum/component/plumbing/demand_all/biomass, bolt)
+
+/obj/machinery/neotheology/biomass_container/update_icon()
+	overlays.Cut()
+	var/list/new_overlays = update_overlays()
+	if(new_overlays.len)
+		for(var/overlay in new_overlays)
+			overlays.Add(overlay)
+
+/obj/machinery/neotheology/biomass_container/update_overlays()
+	. = ..()
+	if(panel_open)
+		var/image/P = image(icon, "biocan_panel")
+		P.dir = dir
+		. += P
 
 /obj/machinery/neotheology/biomass_container/RefreshParts()
 	var/T = 0
@@ -427,15 +443,6 @@
 			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from \the [container] to \the [name]."))
 		else
 			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill \the [name]."))
-
-
-/obj/machinery/neotheology/biomass_container/update_icon()
-	overlays.Cut()
-
-	if(panel_open)
-		var/image/P = image(icon, "biocan_panel")
-		P.dir = dir
-		overlays.Add(P)
 
 /////////////////////
 

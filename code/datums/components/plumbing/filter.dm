@@ -31,19 +31,20 @@
 			direction = get_original_direction(text2num(A))
 			break
 	if(reagent)
-		reagents.trans_id_to(target.parent, reagent, amount)
+		reagents.trans_id_to(target.parent, reagent, amount, ignore_isinjectable=TRUE)
 	else
 		for(var/A in reagents.reagent_list)
 			var/datum/reagent/R = A
-			if(!can_give_in_direction(direction, R.type))
+			if(!can_give_in_direction(direction, R.id))
 				continue
 			var/new_amount
 			if(R.volume < amount)
 				new_amount = amount - R.volume
-			reagents.trans_id_to(target.parent, R.type, amount)
+			reagents.trans_id_to(target.parent, R.id, amount, ignore_isinjectable=TRUE)
 			amount = new_amount
 			if(amount <= 0)
 				break
+
 ///We check if the direction and reagent are valid to give. Needed for filters since different outputs have different behaviours
 /datum/component/plumbing/filter/proc/can_give_in_direction(dir, reagent)
 	var/obj/machinery/plumbing/filter/F = parent
