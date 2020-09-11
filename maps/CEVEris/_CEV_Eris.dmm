@@ -57000,6 +57000,7 @@
 /obj/item/weapon/reagent_containers/glass/bottle/mutagen,
 /obj/item/weapon/reagent_containers/dropper,
 /obj/structure/closet/crate/secure/hydrosec/prelocked,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "cxl" = (
@@ -108035,12 +108036,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"fiV" = (
-/obj/machinery/camera/network/third_section{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/eris/neotheology/chapelritualroom)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	tag = "icon-map (EAST)";
@@ -108091,10 +108086,6 @@
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
-"gfx" = (
-/obj/machinery/duct,
-/turf/simulated/floor/grass,
-/area/eris/crew_quarters/hydroponics)
 "gjm" = (
 /obj/machinery/holomap{
 	pixel_y = 32
@@ -108119,10 +108110,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
-"gPq" = (
-/obj/machinery/duct,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/hydroponics)
 "gPD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -108148,6 +108135,10 @@
 /obj/random/scrap/sparse_weighted/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"hxB" = (
+/obj/machinery/duct,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics)
 "hAw" = (
 /obj/random/scrap/sparse_weighted/low_chance,
 /turf/simulated/floor/plating/under,
@@ -108293,6 +108284,10 @@
 /obj/effect/shuttle_landmark/merc/mining,
 /turf/space,
 /area/space)
+"jdV" = (
+/obj/machinery/duct,
+/turf/simulated/floor/grass,
+/area/eris/crew_quarters/hydroponics)
 "jtf" = (
 /obj/structure/table/standard,
 /obj/machinery/chem_heater,
@@ -108499,6 +108494,10 @@
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"lAQ" = (
+/obj/machinery/duct,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/neotheology/chapelritualroom)
 "lCK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -108878,17 +108877,6 @@
 /obj/effect/shuttle_landmark/merc/engieva,
 /turf/space,
 /area/space)
-"qpS" = (
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapelritualroom)
-"qxr" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
-	req_access = list(27)
-	},
-/turf/simulated/wall/r_wall,
-/area/eris/maintenance/section3deck4port)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -109056,6 +109044,12 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"tLw" = (
+/obj/machinery/camera/network/third_section{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/eris/neotheology/chapelritualroom)
 "tMc" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -109144,6 +109138,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"uLA" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_common{
+	req_access = list(27)
+	},
+/turf/simulated/wall/r_wall,
+/area/eris/maintenance/section3deck4port)
 "uYg" = (
 /obj/random/medical/low_chance,
 /obj/random/medical/low_chance,
@@ -162839,7 +162840,7 @@ aaa
 bUG
 ccO
 bUG
-qxr
+uLA
 ccU
 ccU
 ccU
@@ -163040,7 +163041,7 @@ cIS
 aaa
 ccU
 ccU
-fiV
+tLw
 byR
 ccU
 cBm
@@ -163242,7 +163243,7 @@ cIS
 aaa
 ccU
 avK
-qpS
+lAQ
 byR
 cqc
 bQx
@@ -164869,12 +164870,12 @@ cga
 cCz
 bQq
 aNS
-gPq
-gPq
-gPq
-gPq
-gPq
-gPq
+hxB
+hxB
+hxB
+hxB
+hxB
+hxB
 dHB
 cbF
 cbF
@@ -165076,7 +165077,7 @@ bUT
 bUT
 bUT
 bUT
-gPq
+hxB
 bOi
 bxH
 bQn
@@ -165272,13 +165273,13 @@ bRg
 bQZ
 bQn
 bQq
-gfx
+jdV
 auS
 auS
 auS
 auS
-gfx
-gPq
+jdV
+hxB
 bVu
 bxH
 bQS
@@ -165480,7 +165481,7 @@ bUT
 bUT
 bUT
 bUT
-gPq
+hxB
 bXk
 bIs
 bXn
@@ -165682,7 +165683,7 @@ bUT
 bUT
 bUT
 bUT
-gPq
+hxB
 bXi
 bxH
 bXC
@@ -165878,13 +165879,13 @@ bRi
 bRi
 bQn
 bQq
-gfx
+jdV
 auS
 auS
 auS
 auS
-gfx
-gPq
+jdV
+hxB
 bXi
 bxH
 bQn
