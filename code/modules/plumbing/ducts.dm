@@ -25,10 +25,6 @@ All the important duct code:
 	var/duct_color
 	///TRUE to ignore colors, so yeah we also connect with other colors without issue
 	var/ignore_colors = FALSE
-	///1,2,4,8,16
-	var/duct_layer = DUCT_LAYER_DEFAULT
-	///whether we allow our layers to be altered
-	var/lock_layers = FALSE
 	///TRUE to let colors connect when forced with a wrench, false to just not do that at all
 	var/color_to_color_support = TRUE
 	///wheter to even bother with plumbing code or not
@@ -57,7 +53,7 @@ All the important duct code:
 	else
 		use_power = 0
 
-/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects, hiden=TRUE)
+/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects, hiden=TRUE)
 	. = ..()
 	if(no_anchor)
 		active = FALSE
@@ -68,20 +64,15 @@ All the important duct code:
 
 	if(force_connects)
 		connects = force_connects //skip change_connects() because we're still initializing and we need to set our connects at one point
-	if(!lock_layers)
-		duct_layer = layer_of_duct
 	if(!ignore_colors)
 		duct_color = color_of_duct
 	if(duct_color)
 		add_atom_colour(duct_color, FIXED_COLOUR_PRIORITY)
 
-	handle_layer()
-
 	for(var/obj/machinery/duct/D in loc)
 		if(D == src)
 			continue
-		if(D.duct_layer & duct_layer)
-			disconnect_duct()
+		disconnect_duct()
 
 	if(active)
 		attempt_connect()
@@ -159,9 +150,6 @@ All the important duct code:
 	if(!(D in neighbours)) //we cool
 		if((duct_color != D.duct_color) && !(ignore_colors || D.ignore_colors))
 			return
-		if(!(duct_layer & D.duct_layer))
-			return
-
 	if(D.duct)
 		if(duct)
 			duct.assimilate(D.duct)
@@ -181,9 +169,6 @@ All the important duct code:
 ///connect to a plumbing object
 /obj/machinery/duct/proc/connect_plumber(datum/component/plumbing/P, direction)
 	var/opposite_dir = turn(direction, 180)
-	if(duct_layer != DUCT_LAYER_DEFAULT) //plumbing devices don't support multilayering. 3 is the default layer so we only use that. We can change this later
-		return FALSE
-
 	if(!P.active)
 		return
 
@@ -304,22 +289,7 @@ All the important duct code:
 				temp_icon += "_w"
 	icon_state = temp_icon
 
-///update the layer we are on
-/obj/machinery/duct/proc/handle_layer()
-	var/offset
-	switch(duct_layer)//it's a bitfield, but it's fine because it only works when there's one layer, and multiple layers should be handled differently
-		if(FIRST_DUCT_LAYER)
-			offset = -10
-		if(SECOND_DUCT_LAYER)
-			offset = -5
-		if(THIRD_DUCT_LAYER)
-			offset = 0
-		if(FOURTH_DUCT_LAYER)
-			offset = 5
-		if(FIFTH_DUCT_LAYER)
-			offset = 10
-	pixel_x = offset
-	pixel_y = offset
+
 
 /obj/machinery/duct/set_anchored(anchorvalue)
 	. = ..()
@@ -377,8 +347,6 @@ All the important duct code:
 	var/direction = get_dir(src, D)
 	if(!(direction in GLOB.cardinal))
 		return
-	if(duct_layer != D.duct_layer)
-		return
 
 	add_connects(direction) //the connect of the other duct is handled in connect_network, but do this here for the parent duct because it's not necessary in normal cases
 	add_neighbour(D, direction)
@@ -399,20 +367,12 @@ All the important duct code:
 	stacktype = /obj/item/stack/ducts
 	///Color of our duct
 	var/duct_color = "grey"
-	///Default layer of our duct
-	var/duct_layer = "Default Layer"
-	///Assoc index with all the available layers. yes five might be a bit much. Colors uses a global by the way
-	var/list/layers = list("First Layer" = FIRST_DUCT_LAYER, "Second Layer" = SECOND_DUCT_LAYER, "Default Layer" = DUCT_LAYER_DEFAULT,
-		"Fourth Layer" = FOURTH_DUCT_LAYER, "Fifth Layer" = FIFTH_DUCT_LAYER)
 
 /obj/item/stack/ducts/examine(mob/user)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("It's current color and layer are [duct_color] and [duct_layer]. Use in-hand to change."))
+	to_chat(user, SPAN_NOTICE("It's current color [duct_color]. Use in-hand to change."))
 
 /obj/item/stack/ducts/attack_self(mob/user)
-	var/new_layer = input("Select a layer", "Layer") as null|anything in layers
-	if(new_layer)
-		duct_layer = new_layer
 	var/new_color = input("Select a color", "Color") as null|anything in GLOB.pipe_paint_colors
 	if(new_color)
 		duct_color = new_color
@@ -429,7 +389,7 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer], FALSE, FALSE)
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], FALSE, FALSE)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random
