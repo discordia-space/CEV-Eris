@@ -12,9 +12,9 @@
 	///our reagent goal has been reached, so now we lock our inputs and start emptying
 	var/emptying = FALSE
 
-/obj/machinery/plumbing/reaction_chamber/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/reaction_chamber/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/reaction_chamber, bolt)
+	AddComponent(/datum/component/plumbing/reaction_chamber, anchored)
 
 /obj/machinery/plumbing/reaction_chamber/on_reagent_change()
 	if(reagents.total_volume == 0 && emptying) //we were emptying, but now we aren't

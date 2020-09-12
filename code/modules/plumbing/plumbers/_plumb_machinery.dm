@@ -22,9 +22,8 @@
 	///delay of constructing it throught the plumbing rcd
 	var/rcd_delay = 10
 
-/obj/machinery/plumbing/Initialize(mapload, d, bolt=TRUE)
+/obj/machinery/plumbing/Initialize(mapload, d)
 	. = ..()
-	anchored = bolt
 	create_reagents(buffer, reagent_flags)
 
 /obj/machinery/plumbing/update_icon()
@@ -90,9 +89,9 @@
 	rcd_cost = 5
 	rcd_delay = 5
 
-/obj/machinery/plumbing/input/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/input/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/simple_supply, anchored)
 
 ///We can fill beakers in here and everything. we dont inheret from input because it has nothing that we need
 /obj/machinery/plumbing/output
@@ -103,9 +102,9 @@
 	rcd_cost = 5
 	rcd_delay = 5
 
-/obj/machinery/plumbing/output/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/output/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/simple_demand, anchored)
 
 /obj/machinery/plumbing/tank
 	name = "chemical tank"
@@ -115,6 +114,6 @@
 	rcd_cost = 25
 	rcd_delay = 20
 
-/obj/machinery/plumbing/tank/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/tank/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/tank, bolt)
+	AddComponent(/datum/component/plumbing/tank, anchored)

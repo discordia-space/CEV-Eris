@@ -10,9 +10,9 @@
 	///input dir
 	var/eat_dir = SOUTH
 
-/obj/machinery/plumbing/fermenter/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/fermenter/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/simple_supply, anchored)
 
 /obj/machinery/plumbing/grinder_chemical/can_be_rotated(mob/user, rotation_type)
 	if(anchored)

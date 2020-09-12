@@ -13,9 +13,9 @@
 	///whitelist of chems but their name instead of path
 	var/list/english_right = list()
 
-/obj/machinery/plumbing/filter/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/filter/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/filter, bolt)
+	AddComponent(/datum/component/plumbing/filter, anchored)
 
 /*
 /obj/machinery/plumbing/filter/ui_interact(mob/user, datum/tgui/ui)

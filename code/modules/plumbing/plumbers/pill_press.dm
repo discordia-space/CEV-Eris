@@ -32,9 +32,9 @@
 	. = ..()
 	to_chat(user, SPAN_NOTICE("The [name] currently has [stored_products.len] stored. There needs to be less than [max_floor_products] on the floor to continue dispensing."))
 
-/obj/machinery/plumbing/pill_press/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/pill_press/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/simple_demand, anchored)
 	/*
 	//expertly copypasted from chemmasters
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)

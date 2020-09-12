@@ -133,7 +133,7 @@
 		return 1
 	return ..()
 
-/obj/machinery/portable_atmospherics/hydroponics/Initialize(mapload, d, bolt=TRUE)
+/obj/machinery/portable_atmospherics/hydroponics/Initialize(mapload, d)
 	. = ..()
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
@@ -141,7 +141,9 @@
 	create_reagents(200)
 	if(mechanical)
 		connect()
-	AddComponent(/datum/component/plumbing/demand_all/special_icon, bolt, FALSE)
+	AddComponent(/datum/component/plumbing/demand_all/special_icon, anchored, FALSE)
+	var/turf/T = get_turf(src)
+	T?.levelupdate()
 	update_icon()
 
 /obj/machinery/portable_atmospherics/hydroponics/bullet_act(obj/item/projectile/Proj)

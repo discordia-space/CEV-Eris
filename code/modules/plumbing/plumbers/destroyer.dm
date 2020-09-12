@@ -5,9 +5,9 @@
 	///we remove 10 reagents per second
 	var/disposal_rate = 10
 
-/obj/machinery/plumbing/disposer/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/disposer/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/simple_demand, anchored)
 
 /obj/machinery/plumbing/disposer/Process()
 	if(stat & NOPOWER)

@@ -26,9 +26,9 @@
 	*/
 	var/emptying = FALSE
 
-/obj/machinery/plumbing/acclimator/Initialize(mapload, d=0, bolt)
+/obj/machinery/plumbing/acclimator/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/acclimator, bolt)
+	AddComponent(/datum/component/plumbing/acclimator, anchored)
 
 /obj/machinery/plumbing/acclimator/Process()
 	if(stat & NOPOWER || !enabled || !reagents.total_volume || reagents.chem_temp == target_temperature)

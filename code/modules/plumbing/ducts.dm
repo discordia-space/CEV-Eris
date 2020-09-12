@@ -8,9 +8,10 @@ All the important duct code:
 	icon = 'icons/obj/plumbing/fluid_ducts.dmi'
 	icon_state = "nduct"
 	anchored = TRUE
+	layer = DUCT_LAYER
 	level = BELOW_PLATING_LEVEL
 	use_power = 0
-	idle_power_usage = 150
+	idle_power_usage = 5
 	///bitfield with the directions we're connected in
 	var/connects
 	///set to TRUE to disable smart duct behaviour
@@ -49,9 +50,9 @@ All the important duct code:
 	else if(!capacity)
 		capacity = initial(capacity)
 	if(duct && duct.suppliers.len && duct.demanders.len)
-		use_power = 1
+		use_power = IDLE_POWER_USE
 	else
-		use_power = 0
+		use_power = NO_POWER_USE
 
 /obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects, hiden=TRUE)
 	. = ..()
