@@ -20,7 +20,7 @@
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 	anchored = bolt
-	AddComponent(/datum/component/plumbing/supply_all, bolt)
+	AddComponent(/datum/component/plumbing/supply_all, bolt, FALSE)
 
 /obj/structure/reagent_dispensers/update_icon()
 	overlays.Cut()

@@ -32,7 +32,7 @@
 
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
 	RegisterSignal(parent, list(COMSIG_ATOM_UNFASTEN), .proc/toggle_active)
-	RegisterSignal(parent, list(COMSIG_OBJ_HIDE), .proc/hide)
+	RegisterSignal(parent, list(CONSIG_TURF_LEVELUPDATE), .proc/hide)
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS), .proc/create_overlays) //called by lateinit on startup
 
 	if(start)
@@ -123,20 +123,19 @@
 		else
 			continue
 		var/image/I
-		if(turn_connects)
-			switch(D)
-				if(NORTH)
-					direction = "north"
-				if(SOUTH)
-					direction = "south"
-				if(EAST)
-					direction = "east"
-				if(WEST)
-					direction = "west"
-			I = image(icon, "[direction]-[color]", layer = AM.layer - 1)
-		else
-			I = image(icon, color,layer = AM.layer - 1) //color is not color as in the var, it's just the name of the icon_state
-			I.dir = D
+		switch(D)
+			if(NORTH)
+				direction = "north"
+			if(SOUTH)
+				direction = "south"
+			if(EAST)
+				direction = "east"
+			if(WEST)
+				direction = "west"
+		var/state = "[direction]-[color]"
+		if(!turn_connects)
+			state += "-s"
+		I = image(icon, state, layer = AM.layer - 1)
 		if(!use_overlays_only_conected || use_overlays_only_conected && ducts["[D]"])
 			new_overlays += I
 
@@ -249,7 +248,6 @@
 	demand_connects = NORTH | SOUTH | EAST | WEST
 	use_overlays_only_conected = TRUE
 	direct_connect = FALSE
-	turn_connects = FALSE
 
 /datum/component/plumbing/demand_all/special_icon
 	special_icon = TRUE
@@ -268,7 +266,6 @@
 	supply_connects = NORTH | SOUTH | EAST | WEST
 	use_overlays_only_conected = TRUE
 	direct_connect = FALSE
-	turn_connects = FALSE
 
 ///input and output, like a holding tank
 /datum/component/plumbing/tank

@@ -373,7 +373,7 @@
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		reagents.add_reagent("biomatter", 300)
 	anchored = bolt
-	AddComponent(/datum/component/plumbing/demand_all/biomass, bolt)
+	AddComponent(/datum/component/plumbing/demand_all/biomass, bolt, FALSE)
 
 /obj/machinery/neotheology/biomass_container/update_icon()
 	overlays.Cut()

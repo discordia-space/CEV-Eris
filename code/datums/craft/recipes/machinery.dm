@@ -86,10 +86,10 @@
 	name = "fluid duct"
 	result = /obj/item/stack/ducts
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC, "time" = 30),
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC, "time" = 15),
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL, "time" = 5),
 		list(QUALITY_BOLT_TURNING, 10, 80),
-		list(/obj/item/stack/cable_coil, 1, "time" = 20),
+		list(/obj/item/stack/cable_coil, 1, "time" = 10),
 		list(QUALITY_PULSING, 30, 80)
 	)
 

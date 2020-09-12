@@ -141,7 +141,7 @@
 	create_reagents(200)
 	if(mechanical)
 		connect()
-	AddComponent(/datum/component/plumbing/demand_all/special_icon, bolt)
+	AddComponent(/datum/component/plumbing/demand_all/special_icon, bolt, FALSE)
 	update_icon()
 
 /obj/machinery/portable_atmospherics/hydroponics/bullet_act(obj/item/projectile/Proj)
