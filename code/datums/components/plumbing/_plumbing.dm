@@ -97,6 +97,10 @@
 /datum/component/plumbing/proc/transfer_to(datum/component/plumbing/target, amount, reagent, datum/ductnet/net)
 	if(!reagents || !target || !target.reagents)
 		return FALSE
+	if(net)
+		amount = min(amount,net.capacity)
+	if(!amount)
+		return
 	if(reagent)
 		reagents.trans_id_to(target.parent, reagent, amount, ignore_isinjectable=TRUE)
 	else

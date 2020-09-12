@@ -19307,7 +19307,7 @@
 /area/eris/hallway/side/atmosphericshallway)
 "aSV" = (
 /obj/machinery/duct/vertical,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/danger,
 /area/eris/neotheology/bioreactor)
 "aSW" = (
 /obj/structure/table/rack,
@@ -34326,7 +34326,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
 "byM" = (
-/obj/machinery/duct,
+/obj/machinery/biomatter_solidifier,
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/neotheology/bioreactor)
 "byN" = (
@@ -34399,9 +34399,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
-"byX" = (
-/turf/simulated/floor/plating,
-/area/eris/neotheology/bioreactor)
 "byY" = (
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section4)
@@ -47118,7 +47115,6 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/machinery/biomatter_solidifier,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "cai" = (
@@ -52330,7 +52326,6 @@
 	name = "Hydroponics";
 	req_access = list(35)
 	},
-/obj/machinery/duct,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "cmg" = (
@@ -52382,7 +52377,6 @@
 /area/eris/command/mbo)
 "cmm" = (
 /obj/machinery/light,
-/obj/machinery/duct,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
 "cmn" = (
@@ -108047,10 +108041,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
-"fhZ" = (
+"eSQ" = (
 /obj/machinery/duct,
 /turf/simulated/floor/wood,
-/area/eris/crew_quarters/hydroponics/garden)
+/area/eris/crew_quarters/hydroponics)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	tag = "icon-map (EAST)";
@@ -108094,6 +108088,10 @@
 /obj/machinery/camera/network/command,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
+"fXd" = (
+/obj/machinery/duct,
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/neotheology/chapelritualroom)
 "fZX" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	dir = 1
@@ -108139,6 +108137,10 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"hjC" = (
+/obj/machinery/duct,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics/garden)
 "hqB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
@@ -108154,10 +108156,6 @@
 /obj/random/scrap/sparse_weighted/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
-"hGo" = (
-/obj/machinery/duct,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/hydroponics)
 "hHz" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
@@ -108435,6 +108433,10 @@
 /obj/item/weapon/storage/box,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"kIr" = (
+/obj/machinery/duct,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/eris/neotheology/chapelritualroom)
 "lcL" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white/brown_platform,
@@ -108709,10 +108711,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
-"okH" = (
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
 "oup" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -108888,6 +108886,12 @@
 /obj/effect/shuttle_landmark/merc/engieva,
 /turf/space,
 /area/space)
+"qtR" = (
+/obj/machinery/duct,
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/hydroponics)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -108989,10 +108993,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
-"sCk" = (
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/chapelritualroom)
 "sGt" = (
 /obj/effect/shuttle_landmark/merc/sec2east,
 /turf/space,
@@ -109059,6 +109059,10 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"tEA" = (
+/obj/machinery/duct,
+/turf/simulated/floor/grass,
+/area/eris/crew_quarters/hydroponics)
 "tMc" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -109165,10 +109169,9 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
-"vaq" = (
-/obj/machinery/duct,
-/turf/simulated/floor/grass,
-/area/eris/crew_quarters/hydroponics)
+"vcT" = (
+/turf/simulated/floor/tiled/dark/danger,
+/area/eris/neotheology/bioreactor)
 "vdU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -109192,10 +109195,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
-"vhv" = (
-/obj/machinery/duct,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/eris/neotheology/chapelritualroom)
 "vhD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -126292,8 +126291,8 @@ alg
 awR
 awR
 aCn
-okH
-byX
+vcT
+bts
 bGG
 bSK
 bXZ
@@ -163455,7 +163454,7 @@ cIS
 aaa
 ccU
 bid
-sCk
+fXd
 byR
 bQx
 bQx
@@ -163657,7 +163656,7 @@ cIS
 aaa
 ccU
 bty
-sCk
+fXd
 byR
 bQx
 bQx
@@ -163859,7 +163858,7 @@ aaa
 aaa
 ccU
 ciT
-sCk
+fXd
 byR
 bQy
 bQy
@@ -164061,14 +164060,14 @@ aaa
 aaa
 ccU
 ciU
-sCk
+fXd
 cjz
-vhv
-vhv
-vhv
-vhv
+kIr
+kIr
+kIr
+kIr
 cjz
-sCk
+fXd
 chv
 clY
 byR
@@ -164474,7 +164473,7 @@ bQy
 ccU
 bQj
 ccU
-sCk
+fXd
 cyN
 dsa
 cIH
@@ -164878,14 +164877,14 @@ bQn
 bZn
 cga
 cCz
-hGo
+eSQ
 aNS
 bQq
 bQq
 bQq
 bQq
 bQq
-hGo
+eSQ
 dHB
 cbF
 cbF
@@ -165079,7 +165078,7 @@ bxH
 bQY
 bQY
 bQY
-vaq
+tEA
 bQq
 bUT
 bUT
@@ -165087,7 +165086,7 @@ bUT
 bUT
 bUT
 bUT
-hGo
+eSQ
 bOi
 bxH
 bQn
@@ -165281,15 +165280,15 @@ bxH
 bQZ
 bRg
 bQZ
-vaq
+tEA
 bQq
-vaq
+tEA
 auS
 auS
 auS
 auS
-vaq
-hGo
+tEA
+eSQ
 bVu
 bxH
 bQS
@@ -165483,7 +165482,7 @@ bxH
 bRg
 bTz
 bRg
-vaq
+tEA
 bTA
 bUT
 bUT
@@ -165491,7 +165490,7 @@ bUT
 bUT
 bUT
 bUT
-hGo
+eSQ
 bXk
 bIs
 bXn
@@ -165685,7 +165684,7 @@ bxH
 bQZ
 bRg
 bQZ
-vaq
+tEA
 bQq
 bUT
 bUT
@@ -165693,7 +165692,7 @@ bUT
 bUT
 bUT
 bUT
-hGo
+eSQ
 bXi
 bxH
 bXC
@@ -165887,15 +165886,15 @@ bxH
 bRi
 bRi
 bRi
-vaq
+tEA
 bQq
-vaq
+tEA
 auS
 auS
 auS
 auS
-vaq
-hGo
+tEA
+eSQ
 bXi
 bxH
 bQn
@@ -166089,8 +166088,8 @@ bxH
 bQn
 bQn
 bQn
-vaq
-hGo
+tEA
+bQq
 cpQ
 crJ
 cwr
@@ -166291,7 +166290,7 @@ bxH
 bVY
 cad
 bxH
-bxH
+qtR
 cmf
 cyN
 cyN
@@ -166491,9 +166490,9 @@ bQU
 bQU
 bVb
 bWb
-fhZ
-fhZ
-fhZ
+hjC
+hjC
+hjC
 cmm
 cpP
 cPv
