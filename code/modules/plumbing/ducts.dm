@@ -35,13 +35,16 @@ All the important duct code:
 	///wheter we just unanchored or drop whatever is in the variable. either is safe
 	var/drop_on_wrench = /obj/item/stack/ducts
 	var/vertical_conector = FALSE
+	var/drop_amount = 1
 
 /obj/machinery/duct/vertical
 	icon_state = "lduct_vertical"
+	layer = OBJ_LAYER
 	vertical_conector = TRUE
 	level = ABOVE_PLATING_LEVEL
 	density = TRUE
 	capacity = 1
+	drop_amount = 3
 
 /obj/machinery/duct/Process()
 	if(stat & (BROKEN|NOPOWER))
@@ -54,7 +57,7 @@ All the important duct code:
 	else
 		use_power = NO_POWER_USE
 
-/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects, hiden=TRUE)
+/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects)
 	. = ..()
 	if(no_anchor)
 		active = FALSE
@@ -77,10 +80,6 @@ All the important duct code:
 
 	if(active)
 		attempt_connect()
-
-	if(hiden)
-		var/turf/T = get_turf(src)
-		T?.levelupdate()
 
 	//AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
 
@@ -194,7 +193,8 @@ All the important duct code:
 	reset_connects(0)
 	update_icon()
 	if(ispath(drop_on_wrench) && !QDELING(src))
-		new drop_on_wrench(drop_location())
+		for(var/i=1, i<=drop_amount,i++)
+			new drop_on_wrench(drop_location())
 		qdel(src)
 
 ///''''''''''''''''optimized''''''''''''''''' proc for quickly reconnecting after a duct net was destroyed
@@ -390,7 +390,7 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], FALSE, FALSE)
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], FALSE)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random

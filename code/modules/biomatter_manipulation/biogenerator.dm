@@ -240,20 +240,28 @@
 				to_chat(user, SPAN_WARNING("You should close cover first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
+				var/set_canister = FALSE
 				if(tank)
-					tank.anchored = FALSE
-					tank.pixel_x = initial(tank.pixel_x)
-					tank = null
-					playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
-					to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
+					set_canister = tank.set_anchored(FALSE)
+					if(!isnull(set_canister))
+						tank.pixel_x = initial(tank.pixel_x)
+						tank = null
+						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
+						to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
 				else
 					tank = locate(/obj/structure/reagent_dispensers) in get_turf(src)
 					if(tank)
-						tank.anchored = TRUE
-						tank.pixel_x = 8
-						playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-						to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
-
+						set_canister = tank.set_anchored(TRUE)
+						if(!isnull(set_canister))
+							tank.pixel_x = 8
+							playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
+							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
+							var/datum/component/plumbing/P = GetComponent(/datum/component/plumbing/supply)
+							P?.disable()
+							AddComponent(/datum/component/plumbing/demand/all/biomass, TRUE, FALSE, TRUE)
+				if(isnull(set_canister))
+					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
+					tank = null
 		if(QUALITY_SCREW_DRIVING)
 			if(tank)
 				to_chat(user, SPAN_WARNING("You need to detach [tank] first."))

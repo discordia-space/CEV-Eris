@@ -19,8 +19,9 @@
 	var/direct_connect = TRUE
 	var/icon = 'icons/obj/plumbing/plumbers.dmi'
 	var/special_icon = FALSE
+	var/unique = FALSE
 
-/datum/component/plumbing/Initialize(start=TRUE, _turn_connects=TRUE) //turn_connects for wheter or not we spin with the object to change our pipes
+/datum/component/plumbing/Initialize(start=TRUE, _turn_connects=TRUE, _unique=FALSE) //turn_connects for wheter or not we spin with the object to change our pipes
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -29,6 +30,7 @@
 		return COMPONENT_INCOMPATIBLE
 	reagents = AM.reagents
 	turn_connects = _turn_connects
+	unique = _unique
 
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
 	RegisterSignal(parent, list(COMSIG_ATOM_UNFASTEN), .proc/toggle_active)
@@ -141,6 +143,8 @@
 
 ///we stop acting like a plumbing thing and disconnect if we are, so we can safely be moved and stuff
 /datum/component/plumbing/proc/disable()
+	if(unique)
+		RemoveComponent()
 	if(!active)
 		return
 
@@ -241,28 +245,28 @@
 	AM.update_icon()
 
 ///has one pipe input that only takes, example is manual output pipe
-/datum/component/plumbing/simple_demand
+/datum/component/plumbing/demand
 	demand_connects = NORTH
 
-/datum/component/plumbing/demand_all
+/datum/component/plumbing/demand/all
 	demand_connects = NORTH | SOUTH | EAST | WEST
 	use_overlays_only_conected = TRUE
 	direct_connect = FALSE
 
-/datum/component/plumbing/demand_all/special_icon
+/datum/component/plumbing/demand/all/special_icon
 	special_icon = TRUE
 
-/datum/component/plumbing/demand_all/biomass
+/datum/component/plumbing/demand/all/biomass
 	use_overlays = FALSE
 
-/datum/component/plumbing/demand_all/biomass/send_request(dir)
+/datum/component/plumbing/demand/all/biomass/send_request(dir)
 	process_request(amount = MACHINE_REAGENT_TRANSFER, reagent = "biomatter", dir = dir)
 
 ///has one pipe output that only supplies. example is liquid pump and manual input pipe
-/datum/component/plumbing/simple_supply
+/datum/component/plumbing/supply
 	supply_connects = NORTH
 
-/datum/component/plumbing/supply_all
+/datum/component/plumbing/supply/all
 	supply_connects = NORTH | SOUTH | EAST | WEST
 	use_overlays_only_conected = TRUE
 	direct_connect = FALSE

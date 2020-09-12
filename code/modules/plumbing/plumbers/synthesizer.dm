@@ -39,7 +39,7 @@
 
 /obj/machinery/plumbing/synthesizer/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, anchored)
+	AddComponent(/datum/component/plumbing/supply, anchored)
 
 /obj/machinery/plumbing/synthesizer/Process()
 	if(stat & NOPOWER || !reagent_id || !amount)

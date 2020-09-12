@@ -18,7 +18,7 @@
 
 /obj/machinery/plumbing/bottler/Initialize(mapload, d=0)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, anchored)
+	AddComponent(/datum/component/plumbing/demand, anchored)
 	set_dir(dir)
 
 /obj/machinery/plumbing/bottler/can_be_rotated(mob/user)

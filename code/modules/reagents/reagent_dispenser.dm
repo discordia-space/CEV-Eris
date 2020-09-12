@@ -19,7 +19,7 @@
 		reagents.add_reagent(starting_reagent, volume)
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	AddComponent(/datum/component/plumbing/supply_all, anchored, FALSE)
+	AddComponent(/datum/component/plumbing/supply/all, anchored, FALSE)
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 

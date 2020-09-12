@@ -1,6 +1,6 @@
 /atom/movable
 	layer = OBJ_LAYER
-	var/last_move = null
+	var/last_move
 	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
@@ -8,12 +8,12 @@
 	var/m_flag = 1
 	var/throwing = 0
 	var/thrower
-	var/turf/throw_source = null
+	var/turf/throw_source
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
-	var/mob/pulledby = null
-	var/item_state = null // Used to specify the item state for the on-mob overlays.
+	var/mob/pulledby
+	var/item_state // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
 
 /atom/movable/Del()
@@ -241,7 +241,7 @@
 
 //Overlays
 /atom/movable/overlay
-	var/atom/master = null
+	var/atom/master
 	anchored = TRUE
 
 /atom/movable/overlay/New()
@@ -381,9 +381,9 @@
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
 // Wrapper of step() that also sets glide size to a specific value.
-/proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)
-	am.set_glide_size(glide_size_override)
-	return step(am, dir)
+/proc/step_glide(atom/movable/AM, newdir, glide_size_override)
+	AM.set_glide_size(glide_size_override)
+	return step(AM, newdir)
 
 // if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()
@@ -393,7 +393,6 @@
 /atom/movable/proc/set_anchored(anchorvalue)
 	SHOULD_CALL_PARENT(TRUE)
 	if(anchored == anchorvalue)
-		SEND_SIGNAL(src, COMSIG_ATOM_UNFASTEN, anchored)
 		return
 	. = anchored
 	anchored = anchorvalue

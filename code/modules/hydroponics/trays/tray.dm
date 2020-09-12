@@ -141,7 +141,7 @@
 	create_reagents(200)
 	if(mechanical)
 		connect()
-	AddComponent(/datum/component/plumbing/demand_all/special_icon, anchored, FALSE)
+	AddComponent(/datum/component/plumbing/demand/all/special_icon, anchored, FALSE)
 	var/turf/T = get_turf(src)
 	T?.levelupdate()
 	update_icon()
