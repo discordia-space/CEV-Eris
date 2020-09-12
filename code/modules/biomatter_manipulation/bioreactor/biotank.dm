@@ -206,6 +206,7 @@
 	. = target_tank.set_anchored(TRUE)
 	if(isnull(.))
 		return FALSE
+	target_tank.can_anchor = FALSE
 	canister = target_tank
 	platform.MS_bioreactor.metrics_screen.icon_state = "screen_process"
 	flick("screen_activation", platform.MS_bioreactor.metrics_screen)
@@ -214,8 +215,10 @@
 
 
 /obj/structure/biomatter_tank/proc/unset_canister(obj/target_tank)
+	target_tank.can_anchor = TRUE
 	. = target_tank.set_anchored(FALSE)
 	if(isnull(.))
+		target_tank.can_anchor = FALSE
 		return FALSE
 	canister = null
 	platform.MS_bioreactor.metrics_screen.icon_state = initial(platform.MS_bioreactor.metrics_screen.icon_state)

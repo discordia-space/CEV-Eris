@@ -242,8 +242,15 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
 				var/set_canister = FALSE
 				if(tank)
+					tank.can_anchor = TRUE
 					set_canister = tank.set_anchored(FALSE)
 					if(!isnull(set_canister))
+						var/datum/component/plumbing/P = tank.GetComponent(/datum/component/plumbing/supply)
+						if(P)
+							P.disable()
+							P.supply_connects = initial(P.supply_connects)
+							P.demand_connects = initial(P.demand_connects)
+							P.enable()
 						tank.pixel_x = initial(tank.pixel_x)
 						tank = null
 						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
@@ -253,12 +260,16 @@
 					if(tank)
 						set_canister = tank.set_anchored(TRUE)
 						if(!isnull(set_canister))
+							tank.can_anchor = FALSE
+							var/datum/component/plumbing/P = tank.GetComponent(/datum/component/plumbing/supply)
+							if(P)
+								P.disable()
+								P.supply_connects = null
+								P.demand_connects = NORTH | SOUTH | EAST | WEST
+								P.enable()
 							tank.pixel_x = 8
 							playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
-							var/datum/component/plumbing/P = GetComponent(/datum/component/plumbing/supply)
-							P?.disable()
-							AddComponent(/datum/component/plumbing/demand/all/biomass, TRUE, FALSE, TRUE)
+							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))	
 				if(isnull(set_canister))
 					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 					tank = null

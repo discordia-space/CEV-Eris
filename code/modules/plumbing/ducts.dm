@@ -57,7 +57,7 @@ All the important duct code:
 	else
 		use_power = NO_POWER_USE
 
-/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects)
+/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects, hiden=TRUE)
 	. = ..()
 	if(no_anchor)
 		active = FALSE
@@ -81,7 +81,9 @@ All the important duct code:
 	if(active)
 		attempt_connect()
 
-	//AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
+	if(hiden)
+		var/turf/T = get_turf(src)
+		T?.levelupdate()
 
 ///start looking around us for stuff to connect to
 /obj/machinery/duct/proc/attempt_connect()
@@ -390,7 +392,7 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], FALSE)
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], FALSE, FALSE)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random

@@ -15,6 +15,7 @@
 	var/mob/pulledby
 	var/item_state // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
+	var/can_anchor = TRUE
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
@@ -392,9 +393,9 @@
 ///Sets the anchored var and returns if it was sucessfully changed or not.
 /atom/movable/proc/set_anchored(anchorvalue)
 	SHOULD_CALL_PARENT(TRUE)
-	if(anchored == anchorvalue)
+	if(anchored == anchorvalue || !can_anchor)
 		return
-	. = anchored
+	. = TRUE
 	anchored = anchorvalue
 	SEND_SIGNAL(src, COMSIG_ATOM_UNFASTEN, anchored)
 

@@ -43,6 +43,15 @@
 		addtimer(CALLBACK(src, .proc/enable), 0)
 	AM.update_icon()
 
+/datum/component/plumbing/RemoveComponent()
+	UnregisterSignal(parent,COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(parent,COMSIG_PARENT_PREQDELETED)
+	UnregisterSignal(parent,COMSIG_ATOM_UNFASTEN)
+	UnregisterSignal(parent,CONSIG_TURF_LEVELUPDATE)
+	UnregisterSignal(parent,COMSIG_ATOM_UPDATE_OVERLAYS)
+	..()
+	qdel(src)
+
 /datum/component/plumbing/Process()
 	if(!demand_connects || !reagents)
 		STOP_PROCESSING(SSfluids, src)
@@ -143,8 +152,6 @@
 
 ///we stop acting like a plumbing thing and disconnect if we are, so we can safely be moved and stuff
 /datum/component/plumbing/proc/disable()
-	if(unique)
-		RemoveComponent()
 	if(!active)
 		return
 
@@ -162,6 +169,9 @@
 			for(var/obj/machinery/duct/duct in get_step(parent, D))
 				duct.remove_connects(turn(D, 180))
 				duct.update_icon()
+
+	if(unique)
+		RemoveComponent()
 
 ///settle wherever we are, and start behaving like a piece of plumbing
 /datum/component/plumbing/proc/enable()
@@ -255,9 +265,6 @@
 
 /datum/component/plumbing/demand/all/special_icon
 	special_icon = TRUE
-
-/datum/component/plumbing/demand/all/biomass
-	use_overlays = FALSE
 
 /datum/component/plumbing/demand/all/biomass/send_request(dir)
 	process_request(amount = MACHINE_REAGENT_TRANSFER, reagent = "biomatter", dir = dir)
