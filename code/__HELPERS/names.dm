@@ -129,7 +129,7 @@ var/syndicate_name = null
 		first_name = capitalize(first_name)
 		second_name = capitalize(second_name)
 
-	var/weapon_name = "[first_name] [second_name]"
+	var/weapon_name = "\improper [first_name] [second_name]"
 	return weapon_name
 
 

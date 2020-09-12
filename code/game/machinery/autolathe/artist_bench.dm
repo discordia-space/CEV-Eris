@@ -1,3 +1,5 @@
+#define INSIGHT_MIN 40
+
 /obj/machinery/autolathe/artist_bench
 	name = "artist's bench"
 	desc = "" //Temporary description.
@@ -101,13 +103,144 @@
 
 	strange_item = null
 
+/obj/machinery/autolathe/artist_bench/proc/choose_base_art(ins_used)
+	var/weight_artwork_statue = 8
+	var/weight_artwork_weapon = 8
+	var/weight_artwork_oddity = 8
+	var/weight_artwork_revolver = 8
+	var/weight_artwork_tool = 8
+	var/weight_artwork_toolmod = 8
+	var/weight_artwork_gunmod = 8
+
+	if(ins_used >= 80)//Arbitrary values
+		weight_artwork_weapon += 2
+		weight_artwork_revolver += 2
+	else if(ins_used >= 60)
+		weight_artwork_oddity += 2
+		weight_artwork_gunmod += 2
+	else
+		weight_artwork_statue += 2
+		weight_artwork_tool += 2
+		weight_artwork_toolmod += 2
+
+	return pickweight(list(
+		"artwork_revolver" = weight_artwork_revolver,
+		"artwork_statue" = weight_artwork_statue,
+		"artwork_oddity" = weight_artwork_oddity
+	))
+
+/obj/machinery/autolathe/artist_bench/proc/choose_full_art(ins_used, mob/living/user)
+	var/mob/living/carbon/human/H = usr
+	var/full_artwork = choose_base_art(ins_used)
+	var/list/LStats = list()
+
+	if(strange_item)
+		if(H.stats.getPerk(/datum/perk/artist))
+			var/datum/component/inspiration/I = strange_item.GetComponent(/datum/component/inspiration)
+			var/list/LE = I.calculate_statistics()
+			for(var/stat in LE)
+				var/list/LF = list("name" = stat, "level" = LE[stat])
+				LStats.Add(list(LF))
+
+	var/weight_mechanical = 0 + LStats[STAT_MEC],
+	var/weight_cognition = 0 + LStats[STAT_COG],
+	var/weight_biology = 0 + LStats[STAT_BIO],
+	var/weight_robustness = 0 + LStats[STAT_ROB],
+	var/weight_toughness = 0 + LStats[STAT_TGH],
+	var/weight_vigilance = 0 + LStats[STAT_VIG]
+
+	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
+
+	if(full_artwork == "artwork_revolver")
+		var/mob/living/carbon/human/user = src.loc
+		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new /obj/item/weapon/gun/projectile/revolver/artwork_revolver(src)
+
+		var/gun_pattern = pickweight(list(
+			"pistol" = 8 + weight_robustness,
+			"magnum" = 8 + weight_vigilance,
+			"shotgun" = 8 + weight_robustness,
+			"rifle" = 8 + weight_vigilance,
+			"sniper" = 8 + weight_vigilance,
+			"gyro" = 8 + weight_robustness + weight_mechanical,
+			"cap" = 8,
+			"rocket" = 8 + weight_vigilance + weight_toughness,
+			"grenade" = 8 + weight_vigilance + weight_toughness
+		))
+
+		switch(gun_pattern)
+
+			if("pistol") //From havelock.dm, Arbitrary Values
+				R.caliber = pick(CAL_PISTOL, CAL_35A)
+				R.damage_multiplier = 1.4
+				R.penetration_multiplier = 1.4
+				R.recoil_buildup = 18
+
+			if("magnum") //From consul.dm, Arbitrary values
+				R.caliber = R.CAL_MAGNUM
+				R.damage_multiplier = 1.35
+				R.penetration_multiplier = 1.5
+				R.recoil_buildup = 35
+
+			if("shotgun") //From bull.dm, Arbitrary values
+				R.caliber = R.CAL_SHOTGUN
+				R.damage_multiplier = 0.8
+				R.penetration_multiplier = 0.75
+				R.recoil_buildup = 1.2 //from sawnoff.dm
+				R.one_hand_penalty = 10
+				R.bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
+				R.fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
+
+			if("rifle")
+				R.caliber = pick(R.CAL_CLRIFLE, R.CAL_SRIFLE, R.CAL_LRIFLE)
+				R.fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
+//
+//No gun currently uses CAL_357 far as I know
+//			if("revolver")
+//				caliber = pick(CAL_357)
+
+			if("sniper")//From sniper.dm, Arbitrary values
+				R.caliber = R.CAL_ANTIM
+				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
+				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
+				R.one_hand_penalty = 15 //From sniper.dm, Temporary values
+				R.recoil_buildup = 90
+
+			if("gyro")//From gyropistol.dm, Arbitrary values
+				R.caliber = R.CAL_70
+				R.recoil_buildup = 0.1
+
+			if("cap")
+				R.caliber = R.CAL_CAP
+
+			if("rocket")//From RPG.dm, Arbitrary values
+				R.caliber = R.CAL_ROCKET
+				R.fire_sound = 'sound/effects/bang.ogg'
+				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
+				R.one_hand_penalty = 15 //From ak47.dm, temporary values
+				R.recoil_buildup = 15
+
+			if("grenade")
+				R.caliber = R.CAL_GRENADE
+				R.fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
+				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
+				R.one_hand_penalty = 15 //from sniper.dm, Temporary values
+				R.recoil_buildup = 20 //from projectile_grenade_launcher.dm
+
+
+		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
+			R.init_firemodes = list(
+				list(mode_name="fire one barrel at a time", burst=1, icon="semi"),
+				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
+				)
+
+
 /obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/user)
 	var/mob/living/carbon/human/H = usr
 
 	if(!ins_used)
 		return
 
-	if(ins_used < 40)
+	if(ins_used < INSIGHT_MIN)
 		to_chat(usr, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
 
@@ -120,4 +253,3 @@
 		var/stat_pool = 5 //Arbitrary value for how much to remove the stats by, from sanity_mob
 		while(stat_pool--)
 			LAZYAMINUS(stat_change, pick(ALL_STATS), 1)
-
