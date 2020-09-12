@@ -97,6 +97,7 @@
 				SPAN_NOTICE("\The [user] unfastens \the [src]."), \
 				SPAN_NOTICE("You have unfastened \the [src]."), \
 				"You hear a ratchet.")
+			investigate_log("was unfastened by [key_name(user)]", "atmos")
 			new /obj/item/pipe(loc, make_from=src)
 			for (var/obj/machinery/meter/meter in T)
 				if (meter.target == src)
