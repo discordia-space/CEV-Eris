@@ -5,6 +5,7 @@
 	var/datum/reagents/reagents
 	///TRUE if we wanna add proper pipe overlays under our parent object. this is pretty good if i may so so myself
 	var/use_overlays = TRUE
+	var/use_overlays_only_conected = FALSE
 	///Whether our tile is covered and we should hide our ducts
 	var/tile_covered = FALSE
 	///directions in wich we act as a supplier
@@ -16,6 +17,8 @@
 	///if TRUE connects will spin with the parent object visually and codually, so you can have it work in any direction. FALSE if you want it to be static
 	var/turn_connects = TRUE
 	var/direct_connect = TRUE
+	var/icon = 'icons/obj/plumbing/plumbers.dmi'
+	var/special_icon = FALSE
 
 /datum/component/plumbing/Initialize(start=TRUE, _turn_connects=TRUE) //turn_connects for wheter or not we spin with the object to change our pipes
 	if(!ismovable(parent))
@@ -101,9 +104,11 @@
 
 ///We create our luxurious piping overlays/underlays, to indicate where we do what. only called once if use_overlays = TRUE in Initialize()
 /datum/component/plumbing/proc/create_overlays(list/new_overlays)
-	if(tile_covered || !use_overlays)
+	if(tile_covered || !use_overlays || (use_overlays_only_conected && !ducts.len))
 		return
 	var/atom/movable/AM = parent
+	if(special_icon)
+		icon = AM.icon
 	for(var/D in GLOB.cardinal)
 		var/color
 		var/direction
@@ -124,11 +129,12 @@
 					direction = "east"
 				if(WEST)
 					direction = "west"
-			I = image('icons/obj/plumbing/plumbers.dmi', "[direction]-[color]", layer = AM.layer - 1)
+			I = image(icon, "[direction]-[color]", layer = AM.layer - 1)
 		else
-			I = image('icons/obj/plumbing/plumbers.dmi', color,layer = AM.layer - 1) //color is not color as in the var, it's just the name of the icon_state
+			I = image(icon, color,layer = AM.layer - 1) //color is not color as in the var, it's just the name of the icon_state
 			I.dir = D
-		new_overlays += I
+		if(!use_overlays_only_conected || use_overlays_only_conected && ducts["[D]"])
+			new_overlays += I
 
 ///we stop acting like a plumbing thing and disconnect if we are, so we can safely be moved and stuff
 /datum/component/plumbing/proc/disable()
@@ -139,7 +145,8 @@
 
 	for(var/A in ducts)
 		var/datum/ductnet/D = ducts[A]
-		D.remove_plumber(src)
+		if(D)
+			D.remove_plumber(src)
 
 	active = FALSE
 
@@ -178,10 +185,12 @@
 
 /// Toggle our machinery on or off. This is called by a hook from default_unfasten_wrench with anchored as only param, so we dont have to copypaste this on every object that can move
 /datum/component/plumbing/proc/toggle_active(new_state)
+	var/atom/movable/AM = parent
 	if(new_state)
 		enable()
 	else
 		disable()
+	AM.update_icon()
 
 /** We update our connects only when we settle down by taking our current and original direction to find our new connects
 * If someone wants it to fucking spin while connected to something go actually knock yourself out
@@ -234,8 +243,15 @@
 
 /datum/component/plumbing/demand_all
 	demand_connects = NORTH | SOUTH | EAST | WEST
-	use_overlays = FALSE
+	use_overlays_only_conected = TRUE
 	direct_connect = FALSE
+	turn_connects = FALSE
+
+/datum/component/plumbing/demand_all/special_icon
+	special_icon = TRUE
+
+/datum/component/plumbing/demand_all/biomass
+	use_overlays = FALSE
 
 /datum/component/plumbing/demand_all/biomass/send_request(dir)
 	process_request(amount = MACHINE_REAGENT_TRANSFER, reagent = "biomatter", dir = dir)
@@ -246,9 +262,9 @@
 
 /datum/component/plumbing/supply_all
 	supply_connects = NORTH | SOUTH | EAST | WEST
-	use_overlays = FALSE
+	use_overlays_only_conected = TRUE
 	direct_connect = FALSE
-	
+	turn_connects = FALSE
 
 ///input and output, like a holding tank
 /datum/component/plumbing/tank

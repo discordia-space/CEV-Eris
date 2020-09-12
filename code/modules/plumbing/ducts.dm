@@ -9,6 +9,8 @@ All the important duct code:
 	icon_state = "nduct"
 	anchored = TRUE
 	level = BELOW_PLATING_LEVEL
+	use_power = 0
+	idle_power_usage = 150
 	///bitfield with the directions we're connected in
 	var/connects
 	///set to TRUE to disable smart duct behaviour
@@ -18,8 +20,7 @@ All the important duct code:
 	///our ductnet, wich tracks what we're connected to
 	var/datum/ductnet/duct
 	///amount we can transfer per process. note that the ductnet can carry as much as the lowest capacity duct
-	var/capacity = 10
-
+	var/capacity = 5
 	///the color of our duct
 	var/duct_color
 	///TRUE to ignore colors, so yeah we also connect with other colors without issue
@@ -36,6 +37,25 @@ All the important duct code:
 	var/list/neighbours = list()
 	///wheter we just unanchored or drop whatever is in the variable. either is safe
 	var/drop_on_wrench = /obj/item/stack/ducts
+	var/vertical_conector = FALSE
+
+/obj/machinery/duct/vertical
+	icon_state = "lduct_vertical"
+	vertical_conector = TRUE
+	level = ABOVE_PLATING_LEVEL
+	density = TRUE
+	capacity = 1
+
+/obj/machinery/duct/Process()
+	if(stat & (BROKEN|NOPOWER))
+		capacity = 0
+		return
+	else if(!capacity)
+		capacity = initial(capacity)
+	if(duct && duct.suppliers.len && duct.demanders.len)
+		use_power = 1
+	else
+		use_power = 0
 
 /obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects, hiden=TRUE)
 	. = ..()
@@ -74,7 +94,6 @@ All the important duct code:
 
 ///start looking around us for stuff to connect to
 /obj/machinery/duct/proc/attempt_connect()
-
 	for(var/atom/movable/AM in loc)
 		var/datum/component/plumbing/P = AM.GetComponent(/datum/component/plumbing)
 		if(P?.active)
@@ -86,6 +105,21 @@ All the important duct code:
 		for(var/atom/movable/AM in get_step(src, D))
 			if(connect_network(AM, D))
 				add_connects(D)
+	for(var/i=-1, i<=(src.z+1), i++)
+		var/new_z = src.z+i
+		if(new_z == src.z || !isStationLevel(new_z))
+			continue
+		var/turf/T = locate(src.x,src.y,new_z)
+		var/obj/machinery/duct/D = (locate(/obj/machinery/duct) in T)
+		if(!D)
+			continue
+		if(new_z < src.z)
+			if(D.vertical_conector)
+				if(connect_network(D, DOWN))
+					add_connects(DOWN)
+		else if(new_z > src.z && vertical_conector)
+			if(connect_network(D, UP))
+				add_connects(UP)	
 	update_icon()
 
 ///see if whatever we found can be connected to
@@ -100,7 +134,14 @@ All the important duct code:
 
 ///connect to a duct
 /obj/machinery/duct/proc/connect_duct(obj/machinery/duct/D, direction, ignore_color)
+	//	var/opposite_dir
+	//	if(direction == "down")
+	//		opposite_dir = "up"
+	//	else if(direction == "up")
+	//		opposite_dir = "down"
+	//	else
 	var/opposite_dir = turn(direction, 180)
+
 	if(!active || !D.active)
 		return
 
@@ -152,6 +193,8 @@ All the important duct code:
 			create_duct()
 		if(duct.add_plumber(P, opposite_dir))
 			neighbours[P.parent] = direction
+			var/atom/movable/AM = P.parent
+			AM.update_icon()
 			return TRUE
 
 ///we disconnect ourself from our neighbours. we also destroy our ductnet and tell our neighbours to make a new one
@@ -246,6 +289,8 @@ All the important duct code:
 
 /obj/machinery/duct/update_icon()
 	..()
+	if(vertical_conector)
+		return
 	var/temp_icon = initial(icon_state)
 	for(var/D in GLOB.cardinal)
 		if(D & connects)
