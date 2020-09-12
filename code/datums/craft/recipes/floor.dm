@@ -7,7 +7,7 @@
 	time = 1 //Crafting individual tiles is fast
 	related_stats = list(STAT_MEC)
 
-/datum/craft_recipe/floor/classic/
+/datum/craft_recipe/floor/classic
 	name = "wood floor tile"
 	result = /obj/item/stack/tile/wood
 	steps = list(
