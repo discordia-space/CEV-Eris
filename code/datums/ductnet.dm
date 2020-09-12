@@ -33,9 +33,9 @@
 
 ///add a plumbing object to either demanders or suppliers
 /datum/ductnet/proc/add_plumber(datum/component/plumbing/P, dir)
+	update_capacity()
 	if(!P.can_add(src, dir))
 		return FALSE
-	update_capacity()
 	P.ducts[num2text(dir)] = src
 	if(dir & P.supply_connects)
 		suppliers += P
