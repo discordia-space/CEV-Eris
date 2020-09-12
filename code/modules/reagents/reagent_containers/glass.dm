@@ -90,6 +90,7 @@
 
 /obj/item/weapon/reagent_containers/glass/pre_attack(atom/A, mob/user, params)
 	if(user.a_intent == I_HURT)
+		investigate_log("had it's contents splashed onto [A] by [key_name(user)] while containing [reagents.log_list()]", "chemistry")
 		if(standard_splash_mob(user, A))
 			return TRUE
 		if(is_drainable() && reagents.total_volume)

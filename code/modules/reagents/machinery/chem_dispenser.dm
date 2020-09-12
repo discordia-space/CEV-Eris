@@ -132,6 +132,7 @@
 			var/added_amount = min(amount, cell.charge / chemical_dispenser_ENERGY_COST, space)
 			R.add_reagent(href_list["dispense"], added_amount)
 			cell.use(added_amount * chemical_dispenser_ENERGY_COST)
+			investigate_log("dispensed [href_list["dispense"]] into [B], while being operated by [usr]", "chemistry")
 
 	if(href_list["ejectBeaker"])
 		src.detach()
