@@ -68,7 +68,8 @@
 		"adminordrazine" =  1,
 		"eznutrient" =      1,
 		"robustharvest" =   1,
-		"left4zed" =        1
+		"left4zed" =        1,
+		"biomatter" =		0.5
 		)
 	var/global/list/weedkiller_reagents = list(
 		"hydrazine" =      -4,
