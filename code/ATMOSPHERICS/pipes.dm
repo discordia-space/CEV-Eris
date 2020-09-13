@@ -5,7 +5,7 @@
 	var/volume = 0
 
 	layer = GAS_PIPE_HIDDEN_LAYER
-	use_power = 0
+	use_power = NO_POWER_USE
 
 	var/alert_pressure = 80*ONE_ATMOSPHERE
 		//minimum pressure before check_pressure(...) should be called

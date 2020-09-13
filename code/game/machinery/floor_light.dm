@@ -8,7 +8,7 @@ var/list/floor_light_cache = list()
 	plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	anchored = FALSE
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT
@@ -95,7 +95,7 @@ var/list/floor_light_cache = list()
 			return
 
 		on = !on
-		if(on) use_power = 2
+		if(on) use_power = ACTIVE_POWER_USE
 		visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>")
 		update_brightness()
 		return
@@ -104,11 +104,11 @@ var/list/floor_light_cache = list()
 	..()
 	var/need_update
 	if((!anchored || broken()) && on)
-		use_power = 0
+		use_power = NO_POWER_USE
 		on = FALSE
 		need_update = 1
 	else if(use_power && !on)
-		use_power = 0
+		use_power = NO_POWER_USE
 		need_update = 1
 	if(need_update)
 		update_brightness()
@@ -118,7 +118,7 @@ var/list/floor_light_cache = list()
 		if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
 			set_light(default_light_range, default_light_power, default_light_colour)
 	else
-		use_power = 0
+		use_power = NO_POWER_USE
 		if(light_range || light_power)
 			set_light(0)
 

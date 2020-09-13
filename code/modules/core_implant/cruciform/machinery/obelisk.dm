@@ -10,7 +10,7 @@
 	anchored = TRUE
 	layer = 2.8
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	active_power_usage = 2500
 
@@ -43,12 +43,12 @@
 	active = check_for_faithful(affected)
 	update_icon()
 	if(!active)
-		use_power = 1
+		use_power = IDLE_POWER_USE
 		for(var/obj/structure/burrow/burrow in affected)
 			if(burrow.obelisk_around == any2ref(src))
 				burrow.obelisk_around = null
 	else
-		use_power = 2
+		use_power = ACTIVE_POWER_USE
 
 		var/to_fire = max_targets
 		for(var/A in affected)
