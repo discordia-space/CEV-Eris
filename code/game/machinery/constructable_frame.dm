@@ -5,7 +5,7 @@
 //Circuit boards are in /code/game/objects/items/weapons/circuitboards/machinery/
 /obj/machinery/constructable_frame
 	icon = 'icons/obj/stock_parts.dmi'
-	use_power = 0
+	use_power = NO_POWER_USE
 	density = TRUE
 	anchored = TRUE
 
