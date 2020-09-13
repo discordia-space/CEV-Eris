@@ -30,19 +30,6 @@
 		for(var/overlay in new_overlays)
 			overlays.Add(overlay)
 
-/obj/structure/reagent_dispensers/verb/rotate()
-	set category = "Object"
-	set name = "Rotate dispenser"
-	set src in view(1)
-	if (usr.stat || usr.restrained() || !can_be_rotated(usr))
-		return
-	src.set_dir(turn(dir, 90))
-
-/obj/structure/reagent_dispensers/proc/can_be_rotated(mob/user)
-	if(usr.stat || usr.restrained() || anchored) 
-		return FALSE
-	return TRUE
-
 /obj/structure/reagent_dispensers/get_item_cost()
 	var/ratio = reagents.total_volume / reagents.maximum_volume
 
@@ -52,7 +39,7 @@
 	if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
 	else if(QUALITY_BOLT_TURNING in W.tool_qualities)
-		if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			src.add_fingerprint(user)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")

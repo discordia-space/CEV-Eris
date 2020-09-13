@@ -3,7 +3,7 @@
 	desc = "Breaks down chemicals and annihilates them."
 	icon_state = "disposal"
 	///we remove 10 reagents per second
-	var/disposal_rate = 10
+	var/disposal_rate = 5
 
 /obj/machinery/plumbing/disposer/Initialize(mapload, d=0)
 	. = ..()

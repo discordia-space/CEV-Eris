@@ -23,7 +23,7 @@
 
 /obj/machinery/plumbing/bottler/can_be_rotated(mob/user)
 	if(anchored)
-		to_chat(user, "<span class='warning'>It is fastened to the floor!</span>")
+		to_chat(user, SPAN_WARNING("It is fastened to the floor!"))
 		return FALSE
 	return TRUE
 
@@ -48,11 +48,13 @@
 			inputspot = get_step(get_turf(src), WEST)
 			badspot  = get_step(get_turf(src), SOUTH)
 
+/obj/machinery/plumbing/bottler/attack_hand(mob/user)
+	interact(user)
+
 ///changing input ammount with a window
 /obj/machinery/plumbing/bottler/interact(mob/user)
 	. = ..()
 	wanted_amount = clamp(round(input(user,"maximum is 100u","set ammount to fill with") as num|null, 1), 1, 100)
-	reagents.clear_reagents()
 	to_chat(user, SPAN_NOTICE(" The [src] will now fill for [wanted_amount]u."))
 
 /obj/machinery/plumbing/bottler/Process()
@@ -64,8 +66,9 @@
 		if(istype(AM, /obj/item/weapon/reagent_containers))
 			var/obj/item/weapon/reagent_containers/B = AM
 			///see if it would overflow else inject
-			if((B.reagents.total_volume + wanted_amount) <= B.reagents.maximum_volume)
-				reagents.trans_to(B, wanted_amount, ignore_isinjectable=TRUE)
+			var/to_transfer = min(B.reagents.total_volume + wanted_amount, B.reagents.maximum_volume)
+			if(to_transfer < B.reagents.maximum_volume)
+				reagents.trans_to(B, to_transfer, ignore_isinjectable=TRUE)
 				B.forceMove(goodspot)
 				return
 			///glass was full so we move it away
