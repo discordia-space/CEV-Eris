@@ -1,4 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - code_imp: change the use_power variable with their corresponding defines.
