@@ -14,7 +14,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 0.8 //same as sawn-off
-	recoil_buildup = 1.2 //gonna have solid grip on those, point-blank shots adviced
+	recoil_buildup = 16 //makin it a bit more than most shotguns
 	one_hand_penalty = 10 //compact shotgun level, so same as sawn off
 	price_tag = 250 //cheap as they get
 

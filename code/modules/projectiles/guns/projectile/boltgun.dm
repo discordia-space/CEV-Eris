@@ -106,7 +106,6 @@
 	desc = "A Handmade bolt action rifle, made from junk. and some spare parts."
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
-	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	wielded_item_state = "_doble_wood"
 	w_class = ITEM_SIZE_HUGE

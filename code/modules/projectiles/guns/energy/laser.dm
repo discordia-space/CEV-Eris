@@ -148,8 +148,8 @@ obj/item/weapon/gun/energy/retro
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15)
 	zoom_factor = 0
-	damage_multiplier = 1 //worst lightfall
-	charge_cost = 75 //ditto
+	damage_multiplier = 0.8 //worst lightfall
+	charge_cost = 100 //ditto
 	price_tag = 500
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(

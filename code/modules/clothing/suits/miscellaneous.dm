@@ -233,7 +233,7 @@
 		bio = 0,
 		rad = 0
 	)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
