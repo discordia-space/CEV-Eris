@@ -11,7 +11,7 @@
 		to_chat(H, "Some problem hase accure, use default HUD type")
 		H.defaultHUD = "ErisStyle"
 		recreate_flag = TRUE
-	else if (H.client.prefs.UI_style != H.defaultHUD)//���� ����� � ���� �� ��������� �� ������ � �������
+	else if (H.client.prefs.UI_style != H.defaultHUD)
 		H.defaultHUD = H.client.prefs.UI_style
 		recreate_flag = TRUE
 
@@ -45,8 +45,8 @@
 /mob/living/carbon/human/check_HUDdatum()//correct a datum?
 	var/mob/living/carbon/human/H = src
 
-	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == "")) //���� � ������� ���� �������� �����\��� ����
-		if(GLOB.HUDdatums.Find(H.client.prefs.UI_style))//���� ���������� ����� ��� ����
+	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == ""))
+		if(GLOB.HUDdatums.Find(H.client.prefs.UI_style))
 			return TRUE
 
 	return FALSE
@@ -145,7 +145,7 @@
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	for (var/gear_slot in species.hud.gear)//��������� �������� ���� (���������)
+	for (var/gear_slot in species.hud.gear)
 		if (!HUDdatum.slot_data.Find(gear_slot))
 			log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
 			to_chat(src, "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins")
@@ -171,8 +171,8 @@
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	for(var/HUDname in species.hud.ProcessHUD) //��������� �������� ���� (�� ���������)
-		if (!(HUDdatum.HUDneed.Find(HUDname))) //���� ����� � ������
+	for(var/HUDname in species.hud.ProcessHUD)
+		if (!(HUDdatum.HUDneed.Find(HUDname)))
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
@@ -183,16 +183,16 @@
 
 			if(HUDdatum.HUDneed[HUDname]["hideflag"])
 				HUD.hideflag = HUDdatum.HUDneed[HUDname]["hideflag"]
-			H.HUDneed[HUD.name] += HUD//��������� � ������ �����
-			if (HUD.process_flag)//���� ��� ����� ����������
-				H.HUDprocess += HUD//������� � �������������� ������
+			H.HUDneed[HUD.name] += HUD
+			if (HUD.process_flag)
+				H.HUDprocess += HUD
 	return
 
 /mob/living/carbon/human/create_HUDfrippery()
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	//��������� �������� ���� (���������)
+
 	for (var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/F = new (whistle["icon_state"],whistle["loc"],H)
 		F.icon = HUDdatum.icon
@@ -205,7 +205,7 @@
 	var/mob/living/carbon/human/H = src
 	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	//��������� ����������� ��������(damage,flash,pain... �������)
+	//(damage,flash,pain... other)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
 
@@ -214,9 +214,9 @@
 		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
 		HUD.layer = FLASH_LAYER
 
-		H.HUDtech[HUD.name] += HUD//��������� � ������ �����
-		if (HUD.process_flag)//���� ��� ����� ����������
-			H.HUDprocess += HUD//������� � �������������� ������
+		H.HUDtech[HUD.name] += HUD
+		if (HUD.process_flag)
+			H.HUDprocess += HUD
 	return
 
 
