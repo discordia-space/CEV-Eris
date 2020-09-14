@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: A lot of clothing sprites were changed to fix ankles, wrists and female
+      side states.
