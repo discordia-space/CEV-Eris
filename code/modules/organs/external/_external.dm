@@ -45,7 +45,7 @@
 	var/number_wounds = 0				// number of wounds, which is NOT wounds.len!
 	var/list/children = list()			// Sub-limbs.
 	var/list/internal_organs = list()	// Internal organs of this body part
-	var/default_bone_type = null
+	var/default_bone_type
 	var/list/implants = list()			// Currently implanted objects.
 	var/list/embedded = list()			// Currently implanted objects that can be pulled out
 	var/max_size = 0

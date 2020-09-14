@@ -2,8 +2,8 @@
 	var/name = "limb"
 	var/surgery_name
 	var/organ_tag = "limb"
-	var/body_part = null
-	var/parent_organ = null
+	var/body_part
+	var/parent_organ
 	var/default_type = /obj/item/organ/external
 	var/default_bone_type = /obj/item/organ/internal/bone
 
