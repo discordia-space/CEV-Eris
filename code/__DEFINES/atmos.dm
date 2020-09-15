@@ -41,8 +41,8 @@
 
 // Must be between 0 and 1. Values closer to 1 equalize temperature faster. Should not exceed 0.4, else strange heat flow occurs.
 #define  FLOOR_HEAT_TRANSFER_COEFFICIENT 0.4
-#define   WALL_HEAT_TRANSFER_COEFFICIENT 0.0
-#define   DOOR_HEAT_TRANSFER_COEFFICIENT 0.0
+#define   WALL_HEAT_TRANSFER_COEFFICIENT 0
+#define   DOOR_HEAT_TRANSFER_COEFFICIENT 0
 #define  SPACE_HEAT_TRANSFER_COEFFICIENT 0.2 // A hack to partly simulate radiative heat.
 #define   OPEN_HEAT_TRANSFER_COEFFICIENT 0.4
 #define WINDOW_HEAT_TRANSFER_COEFFICIENT 0.1 // A hack for now.
@@ -110,6 +110,6 @@
 #define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
 #define HUMAN_EXPOSED_SURFACE_AREA          5.2 //m^2, surface area of 1.7m (H) x 0.46m (D) cylinder
 
-#define T0C  273.15 //    0.0 degrees celcius
-#define T20C 293.15 //   20.0 degrees celcius
+#define T0C  273.15 //    0 degrees celcius
+#define T20C 293.15 //   20 degrees celcius
 #define TCMB 2.7    // -270.3 degrees celcius

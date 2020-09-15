@@ -30,7 +30,7 @@ var/bomb_set
 	if(eris_ship_bomb)
 		r_code = "[rand(100000, 999999)]" // each time new Head spawns, s/he gets 2 numbers of code.
 	else                                  // i decided not to touch normal bombs code length.
-		r_code = "[rand(10000, 99999.0)]" //Creates a random code upon object spawn.
+		r_code = "[rand(10000, 99999)]" //Creates a random code upon object spawn.
 	wires = new/datum/wires/nuclearbomb(src)
 
 /obj/machinery/nuclearbomb/Initialize()

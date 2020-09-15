@@ -37,7 +37,7 @@
 	icon_state = "wall"
 
 	var/undeploy_path = null
-	var/health = 50.0
+	var/health = 50
 
 /obj/structure/inflatable/wall
 	name = "inflatable wall"
@@ -66,13 +66,13 @@
 
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			deflate(1)
 			return
-		if(3.0)
+		if(3)
 			if(prob(50))
 				deflate(1)
 				return

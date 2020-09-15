@@ -313,7 +313,7 @@
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["nameTag"] = name_tag
-	data["storedCapacity"] = round(100.0*charge/capacity, 0.1)
+	data["storedCapacity"] = round(100*charge/capacity, 0.1)
 	data["charging"] = inputting
 	data["chargeMode"] = input_attempt
 	data["chargeLevel"] = input_level
@@ -340,7 +340,7 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/power/smes/proc/Percentage()
-	return round(100.0*charge/capacity, 0.1)
+	return round(100*charge/capacity, 0.1)
 
 /obj/machinery/power/smes/Topic(href, href_list)
 	if(..())

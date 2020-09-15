@@ -310,12 +310,12 @@
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(rand(500))
-		if(2.0)
+		if(2)
 			take_damage(rand(120,300))
 
-		if(3.0)
+		if(3)
 			take_damage(rand(60,180))
 
 

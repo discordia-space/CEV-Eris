@@ -85,7 +85,7 @@
 	desc = "A wrapped item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift3"
-	var/size = 3.0
+	var/size = 3
 	var/obj/item/gift = null
 	item_state = "gift"
 	w_class = ITEM_SIZE_BULKY
@@ -136,7 +136,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrap_paper"
 	matter = list(MATERIAL_BIOMATTER = 4)
-	var/amount = 20.0
+	var/amount = 20
 
 /obj/item/weapon/wrapping_paper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()

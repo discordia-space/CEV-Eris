@@ -17,8 +17,8 @@
 	..()
 	if(!dried_type)
 		dried_type = type
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	src.pixel_x = rand(-5, 5)
+	src.pixel_y = rand(-5, 5)
 
 	// Fill the object up with the appropriate reagents.
 	if(planttype)

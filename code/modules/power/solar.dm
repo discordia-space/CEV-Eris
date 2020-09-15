@@ -138,13 +138,13 @@
 
 /obj/machinery/power/solar/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(prob(15))
 				new /obj/item/weapon/material/shard( src.loc )
 			qdel(src)
 			return
 
-		if(2.0)
+		if(2)
 			if (prob(25))
 				new /obj/item/weapon/material/shard( src.loc )
 				qdel(src)
@@ -153,7 +153,7 @@
 			if (prob(50))
 				broken()
 
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return
@@ -515,14 +515,14 @@
 
 /obj/machinery/power/solar_control/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			//SN src = null
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				broken()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return

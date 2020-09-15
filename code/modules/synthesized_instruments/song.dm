@@ -11,7 +11,7 @@
 
 	var/linear_decay = 1
 	var/sustain_timer = 1
-	var/soft_coeff = 2.0
+	var/soft_coeff = 2
 	var/transposition = 0
 
 	var/octave_range_min

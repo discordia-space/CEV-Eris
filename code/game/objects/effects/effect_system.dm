@@ -119,7 +119,7 @@ steam.start() -- spawns the effect
 	name = "sparks"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
-	var/amount = 6.0
+	var/amount = 6
 	anchored = TRUE
 	mouse_opacity = 0
 
@@ -197,7 +197,7 @@ steam.start() -- spawns the effect
 	opacity = 1
 	anchored = FALSE
 	mouse_opacity = 0
-	var/amount = 6.0
+	var/amount = 6
 	var/time_to_live = 100
 	var/fading = FALSE
 

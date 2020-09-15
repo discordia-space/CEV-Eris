@@ -47,10 +47,10 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 	//Configuration:
 	//Things you can set to make a new storyteller
-	var/gain_mult_mundane = 1.0
-	var/gain_mult_moderate = 1.0
-	var/gain_mult_major = 1.0
-	var/gain_mult_roleset = 1.0
+	var/gain_mult_mundane = 1
+	var/gain_mult_moderate = 1
+	var/gain_mult_major = 1
+	var/gain_mult_roleset = 1
 
 	var/list/tag_weight_mults = list()
 	var/list/tag_cost_mults = list()

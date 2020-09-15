@@ -96,7 +96,7 @@
 	return
 
 /obj/structure/ore_box/ex_act(severity)
-	if(severity == 1.0 || (severity < 3.0 && prob(50)))
+	if(severity == 1 || (severity < 3 && prob(50)))
 		for (var/obj/item/weapon/ore/O in contents)
 			O.loc = src.loc
 			O.ex_act(severity++)
