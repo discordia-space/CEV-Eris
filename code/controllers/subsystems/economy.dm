@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(economy)
 		if(!istype(temp_job))
 			continue
 
-		var/datum/department/department = all_departments[temp_job.department]
+		var/datum/department/department = GLOB.all_departments[temp_job.department]
 		if (!department)
 			continue
 
@@ -84,8 +84,8 @@ SUBSYSTEM_DEF(economy)
 
 
 	//Lets request departmental funding next
-	for (var/d in all_departments)
-		var/datum/department/department = all_departments[d]
+	for (var/d in GLOB.all_departments)
+		var/datum/department/department = GLOB.all_departments[d]
 		if (department.account_budget)
 			department.pending_budget_total += department.account_budget
 		department.sum_wages() //Poke this in here to cache the wage totals
@@ -94,8 +94,8 @@ SUBSYSTEM_DEF(economy)
 //Step 2: Requesting funds
 //Here we attempt to transfer money from funding sources to department accounts
 /proc/request_payroll_funds()
-	for (var/d in all_departments)
-		var/datum/department/department = all_departments[d]
+	for (var/d in GLOB.all_departments)
+		var/datum/department/department = GLOB.all_departments[d]
 		if (department.funding_type == FUNDING_NONE)
 			continue //This department gets no funding
 
@@ -154,8 +154,8 @@ SUBSYSTEM_DEF(economy)
 //Step 3: Actually paying the wages
 /proc/pay_wages()
 	var/total_paid = 0
-	for (var/d in all_departments)
-		var/datum/department/department = all_departments[d]
+	for (var/d in GLOB.all_departments)
+		var/datum/department/department = GLOB.all_departments[d]
 		if (!department.pending_wage_total)
 			//No need to do anything if nobody's being paid here
 			continue

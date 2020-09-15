@@ -3,7 +3,7 @@
 	if(!H.client)//no client, no HUD
 		return
 
-//	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+//	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	var/recreate_flag = FALSE
 
 	if(!check_HUDdatum())//check client prefs
@@ -11,7 +11,7 @@
 		to_chat(H, "Some problem hase accure, use default HUD type")
 		H.defaultHUD = "ErisStyle"
 		recreate_flag = TRUE
-	else if (H.client.prefs.UI_style != H.defaultHUD)//Если стиль у МОБА не совпадает со стилем у клинета
+	else if (H.client.prefs.UI_style != H.defaultHUD)
 		H.defaultHUD = H.client.prefs.UI_style
 		recreate_flag = TRUE
 
@@ -45,15 +45,15 @@
 /mob/living/carbon/human/check_HUDdatum()//correct a datum?
 	var/mob/living/carbon/human/H = src
 
-	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == "")) //если у клиента моба прописан стиль\тип ХУДа
-		if(global.HUDdatums.Find(H.client.prefs.UI_style))//Если существует такой тип ХУДА
+	if (H.client.prefs.UI_style && !(H.client.prefs.UI_style == ""))
+		if(GLOB.HUDdatums.Find(H.client.prefs.UI_style))
 			return TRUE
 
 	return FALSE
 
 /mob/living/carbon/human/minimalize_HUD()
 	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 	if (H.client.prefs.UI_compact_style && HUDdatum.MinStyleFlag)
 		for (var/p in H.HUDneed)
 			var/obj/screen/HUD = H.HUDneed[p]
@@ -143,9 +143,9 @@
 
 /mob/living/carbon/human/create_HUDinventory()
 	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	for (var/gear_slot in species.hud.gear)//Добавляем Элементы ХУДа (инвентарь)
+	for (var/gear_slot in species.hud.gear)
 		if (!HUDdatum.slot_data.Find(gear_slot))
 			log_debug("[usr] try take inventory data for [gear_slot], but HUDdatum not have it!")
 			to_chat(src, "Sorry, but something wrong witch creating a inventory slots, we recomendend chance a HUD type or call admins")
@@ -169,10 +169,10 @@
 
 /mob/living/carbon/human/create_HUDneed()
 	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	for(var/HUDname in species.hud.ProcessHUD) //Добавляем Элементы ХУДа (не инвентарь)
-		if (!(HUDdatum.HUDneed.Find(HUDname))) //Ищем такой в датуме
+	for(var/HUDname in species.hud.ProcessHUD)
+		if (!(HUDdatum.HUDneed.Find(HUDname)))
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
@@ -183,16 +183,16 @@
 
 			if(HUDdatum.HUDneed[HUDname]["hideflag"])
 				HUD.hideflag = HUDdatum.HUDneed[HUDname]["hideflag"]
-			H.HUDneed[HUD.name] += HUD//Добавляем в список худов
-			if (HUD.process_flag)//Если худ нужно процессить
-				H.HUDprocess += HUD//Вливаем в соотвествующий список
+			H.HUDneed[HUD.name] += HUD
+			if (HUD.process_flag)
+				H.HUDprocess += HUD
 	return
 
 /mob/living/carbon/human/create_HUDfrippery()
 	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	//Добавляем Элементы ХУДа (украшения)
+
 	for (var/list/whistle in HUDdatum.HUDfrippery)
 		var/obj/screen/frippery/F = new (whistle["icon_state"],whistle["loc"],H)
 		F.icon = HUDdatum.icon
@@ -203,9 +203,9 @@
 
 /mob/living/carbon/human/create_HUDtech()
 	var/mob/living/carbon/human/H = src
-	var/datum/hud/human/HUDdatum = global.HUDdatums[H.defaultHUD]
+	var/datum/hud/human/HUDdatum = GLOB.HUDdatums[H.defaultHUD]
 
-	//Добавляем технические элементы(damage,flash,pain... оверлеи)
+	//(damage,flash,pain... other)
 	for (var/techobject in HUDdatum.HUDoverlays)
 		var/HUDtype = HUDdatum.HUDoverlays[techobject]["type"]
 
@@ -214,9 +214,9 @@
 		 HUDdatum.HUDoverlays[techobject]["icon_state"] ? HUDdatum.HUDoverlays[techobject]["icon_state"] : null)
 		HUD.layer = FLASH_LAYER
 
-		H.HUDtech[HUD.name] += HUD//Добавляем в список худов
-		if (HUD.process_flag)//Если худ нужно процессить
-			H.HUDprocess += HUD//Вливаем в соотвествующий список
+		H.HUDtech[HUD.name] += HUD
+		if (HUD.process_flag)
+			H.HUDprocess += HUD
 	return
 
 
