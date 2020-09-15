@@ -1,7 +1,7 @@
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
 	anchored = FALSE
-	use_power = FALSE //The drill takes power directly from a cell.
+	use_power = NO_POWER_USE //The drill takes power directly from a cell.
 	density = TRUE
 	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
@@ -68,7 +68,7 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/simulated/floor))
 		var/turf/simulated/floor/T = get_turf(src)
-		T.ex_act(2.0)
+		T.ex_act(2)
 
 	dig_ore()
 

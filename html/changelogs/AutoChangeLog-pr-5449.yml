@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - refactor: improves the automatic centerling of the holomap and makes it more compatible
+      with maps of different sizes.

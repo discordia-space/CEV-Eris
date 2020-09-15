@@ -9,7 +9,7 @@
 	anchored = TRUE
 
 	circuit = /obj/item/weapon/circuitboard/autodoc
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
 

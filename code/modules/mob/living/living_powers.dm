@@ -31,7 +31,7 @@
 	if(faction == "station")
 		return 1
 
-	for (var/mob/living/exosuit/M in mechas_list)
+	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if (M.z == src.z && get_dist(src, M) <= dist)
 			return 1
 

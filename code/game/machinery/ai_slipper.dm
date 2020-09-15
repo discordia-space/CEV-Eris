@@ -5,7 +5,7 @@
 	plane = FLOOR_PLANE
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/uses = 20
 	var/disabled = 1

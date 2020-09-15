@@ -1,5 +1,0 @@
-author: TorinoFermic
-delete-after: true
-changes:
-  - code_imp: Added new fresh GC code
-  - refactor: Ported GC from tgstation

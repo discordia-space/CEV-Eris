@@ -5,7 +5,7 @@
 	icon_state = "dnainjector"
 	var/block=0
 	var/datum/dna2/record/buf=null
-	var/s_time = 10.0
+	var/s_time = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_TINY

@@ -79,6 +79,7 @@
 		/datum/design/autolathe/container/bucket,
 		/datum/design/autolathe/container/jar,
 		/datum/design/autolathe/container/syringe,
+		/datum/design/autolathe/container/syringe/large,
 		/datum/design/autolathe/container/vial,
 		/datum/design/autolathe/container/beaker,
 		/datum/design/autolathe/container/beaker_large,
@@ -89,6 +90,8 @@
 		/datum/design/autolathe/misc/floor_light,
 		/datum/design/autolathe/misc/tube,
 		/datum/design/autolathe/misc/bulb,
+		/datum/design/autolathe/device/floorpainter,
+		/datum/design/autolathe/device/mechpainter
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices
@@ -210,13 +213,15 @@
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors
-	disk_name = "Technomancers LAT-018 Conveyors"
+	disk_name = "Technomancers LAT-018 Logistics"
 	icon_state = "technomancers"
 
-	license = -1
+	license = 10
 	designs = list(
-		/datum/design/autolathe/conveyor,
-		/datum/design/autolathe/conveyor_switch
+		/datum/design/autolathe/conveyor = 0,
+		/datum/design/autolathe/conveyor_switch = 0,
+		/datum/design/autolathe/circuit/smelter = 4,
+		/datum/design/autolathe/circuit/sorter = 2
 	)
 
 
@@ -245,6 +250,7 @@
 		/datum/design/autolathe/container/freezer_medical,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/container/syringegun_ammo,
+
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/surgery
@@ -317,7 +323,7 @@
 		/datum/design/autolathe/gun/nt_sprayer,
 		/datum/design/autolathe/gun/plasma/martyr,
 		/datum/design/autolathe/device/grenade/nt_cleaner,
-		/datum/design/autolathe/device/grenade/nt_weedkiller	
+		/datum/design/autolathe/device/grenade/nt_weedkiller
 
 	)
 
@@ -358,7 +364,7 @@
 		/datum/design/bioprinter/leather/holster/armpit,
 		/datum/design/bioprinter/leather/holster/waist,
 		/datum/design/bioprinter/leather/holster/hip,
-		
+
    		/datum/design/autolathe/device/headset_church,
 		/datum/design/bioprinter/leather/cash_bag
 	)
@@ -439,7 +445,7 @@
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,
 		/datum/design/autolathe/sec/silencer,
-		/datum/design/autolathe/sec/hailer	
+		/datum/design/autolathe/sec/hailer
 	)
 
 // One Star

@@ -22,7 +22,7 @@
 
 	if(randomize)
 		// 75%-125%, rand() works with integers, apparently.
-		amount *= (rand(75, 125) / 100.0)
+		amount *= (rand(75, 125) / 100)
 	amount = round(amount)
 	if(damage_casing)
 		damage += amount

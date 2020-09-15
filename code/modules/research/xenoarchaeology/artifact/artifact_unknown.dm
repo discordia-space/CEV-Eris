@@ -299,8 +299,8 @@
 
 /obj/machinery/artifact/ex_act(severity)
 	switch(severity)
-		if(1.0) qdel(src)
-		if(2.0)
+		if(1) qdel(src)
+		if(2)
 			if (prob(50))
 				qdel(src)
 			else
@@ -308,7 +308,7 @@
 					my_effect.ToggleActivate()
 				if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
 					secondary_effect.ToggleActivate(0)
-		if(3.0)
+		if(3)
 			if (my_effect.trigger == TRIGGER_FORCE || my_effect.trigger == TRIGGER_HEAT)
 				my_effect.ToggleActivate()
 			if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))

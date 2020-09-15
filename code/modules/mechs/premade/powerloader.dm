@@ -1,6 +1,6 @@
 //Cheap parts are as basic as you can get. Designed for utility use and cheap production.
 /mob/living/exosuit/premade/powerloader
-	name = "power loader"
+	name = "S.E.U. \"Ripley\"" //Space Excavation Unit
 	desc = "A cheap utility exosuit. An old Nanotrasen design, now used just about everywhere due to post-Fall data leaks."
 
 	material = MATERIAL_STEEL
@@ -80,18 +80,18 @@
 	. = ..()
 
 /mob/living/exosuit/premade/powerloader/flames_red
-	name = "APLU \"Firestarter\""
+	name = "S.E.U. \"Firestarter\""
 	desc = "An old but well-liked utility exosuit. This one has cool red flames."
 	decal = "flames_red"
 
 /mob/living/exosuit/premade/powerloader/flames_blue
-	name = "APLU \"Burning Chrome\""
+	name = "S.E.U. \"Burning Chrome\""
 	desc = "An old but well-liked utility exosuit. This one has cool blue flames."
 	decal = "flames_blue"
 
 
 /mob/living/exosuit/premade/powerloader/firefighter
-	name = "APLU \"Firefighter\""
+	name = "S.E.U. \"Firefighter\""
 	desc = "A refitted industrial exosuit designed to fight fires. The chassis has been replaced to protect the pilot, and the armor is reinforced with plasteel for fireproofing."
 
 	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis

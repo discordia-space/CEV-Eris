@@ -8,7 +8,7 @@
 	icon_state = "heater_0"
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
 	circuit = /obj/item/weapon/circuitboard/unary_atmos/heater
 

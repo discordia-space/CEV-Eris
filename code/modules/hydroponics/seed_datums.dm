@@ -627,7 +627,7 @@
 	display_name = "[generated_name]"
 
 	//Set the maintshroom to the hue of the chem
-	var/datum/reagent/chem = chemical_reagents_list[new_chem]
+	var/datum/reagent/chem = GLOB.chemical_reagents_list[new_chem]
 	var/color = chem.color
 
 	//Color Wizardry

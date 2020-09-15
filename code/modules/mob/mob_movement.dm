@@ -239,7 +239,7 @@
 		delay += 7
 	delay += movement_delay()
 
-	if (speed_factor && speed_factor != 1.0)
+	if (speed_factor && speed_factor != 1)
 		delay /= speed_factor
 
 	return delay

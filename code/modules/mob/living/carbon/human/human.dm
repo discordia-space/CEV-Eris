@@ -112,7 +112,7 @@
 	var/f_loss = null
 	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
-		if (1.0)
+		if (1)
 			b_loss += 500
 			if (!prob(bomb_defense))
 				gib()
@@ -124,7 +124,7 @@
 //				var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
 				//user.throw_at(target, 200, 4)
 
-		if (2.0)
+		if (2)
 			if (!shielded)
 				b_loss += 150
 
@@ -134,7 +134,7 @@
 			if (prob(70) && !shielded)
 				Paralyse(10)
 
-		if(3.0)
+		if(3)
 			b_loss += 100
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15
@@ -312,7 +312,7 @@ var/list/rank_prefix = list(\
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)

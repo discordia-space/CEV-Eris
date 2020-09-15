@@ -93,7 +93,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			if(isAdminLevel(L.z))
 				L.update_overlay(1,1,1)
 			else
-				L.update_overlay(0.0, 0.4, 1)
+				L.update_overlay(0, 0.4, 1)
 
 		for(var/turf/space/T in turfs)
 			OnTurfChange(T)
@@ -113,7 +113,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!isliving(A.owner.current))
 			continue
 		if(A.owner.current.stat!=2)

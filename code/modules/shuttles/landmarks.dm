@@ -6,7 +6,7 @@
 	alpha = 120
 	anchored = TRUE
 	unacidable = 1
-	simulated = 0
+	simulated = FALSE
 	invisibility = 101
 
 	var/landmark_tag
@@ -28,7 +28,7 @@
 
 /obj/effect/shuttle_landmark/New()
 	..()
-	shuttle_landmarks_list += src
+	GLOB.shuttle_landmarks_list += src
 	tag = copytext(landmark_tag, 1) //since tags cannot be set at compile time
 	if(autoset)
 		base_area = get_area(src)
@@ -59,7 +59,7 @@
 	return TRUE
 
 /obj/effect/shuttle_landmark/Destroy()
-	shuttle_landmarks_list -= src
+	GLOB.shuttle_landmarks_list -= src
 	return ..()
 
 /obj/effect/shuttle_landmark/proc/check_collision(var/list/turf_translation)

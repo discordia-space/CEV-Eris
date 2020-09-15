@@ -56,6 +56,14 @@
 	name = "reagent grinder"
 	build_path = /obj/item/weapon/circuitboard/reagentgrinder
 
+/datum/design/autolathe/circuit/smelter
+	name = "smelter"
+	build_path = /obj/item/weapon/circuitboard/smelter
+
+/datum/design/autolathe/circuit/sorter
+	name = "sorter"
+	build_path = /obj/item/weapon/circuitboard/sorter
+
 /datum/design/autolathe/circuit/industrialgrinder
 	name = "industrial grinder"
 	build_path = /obj/item/weapon/circuitboard/industrial_grinder

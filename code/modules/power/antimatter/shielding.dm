@@ -16,7 +16,7 @@ proc/cardinalrange(var/center)
 	anchored = TRUE
 	density = TRUE
 	dir = 1
-	use_power = 0//Living things generally dont use power
+	use_power = NO_POWER_USE//Living things generally dont use power
 	idle_power_usage = 0
 	active_power_usage = 0
 
@@ -91,11 +91,11 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			stability -= 80
-		if(2.0)
+		if(2)
 			stability -= 40
-		if(3.0)
+		if(3)
 			stability -= 20
 	check_stability()
 	return

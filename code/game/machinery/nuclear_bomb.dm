@@ -18,7 +18,7 @@ var/bomb_set
 	var/obj/item/weapon/disk/nuclear/auth = null
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open, 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	var/lastentered
-	use_power = 0
+	use_power = NO_POWER_USE
 	unacidable = 1
 	var/previous_level = ""
 	var/datum/wires/nuclearbomb/wires = null
@@ -30,7 +30,7 @@ var/bomb_set
 	if(eris_ship_bomb)
 		r_code = "[rand(100000, 999999)]" // each time new Head spawns, s/he gets 2 numbers of code.
 	else                                  // i decided not to touch normal bombs code length.
-		r_code = "[rand(10000, 99999.0)]" //Creates a random code upon object spawn.
+		r_code = "[rand(10000, 99999)]" //Creates a random code upon object spawn.
 	wires = new/datum/wires/nuclearbomb(src)
 
 /obj/machinery/nuclearbomb/Initialize()
