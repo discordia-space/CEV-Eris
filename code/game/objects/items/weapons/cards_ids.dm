@@ -278,9 +278,11 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/rd
 	icon_state = "id_rd"
+ 	icon = icons/hispania/obj/card.dmi
 
 /obj/item/weapon/card/id/cmo
 	icon_state = "id_cmo"
+ 	icon = icons/hispania/obj/card.dmi
 
 /obj/item/weapon/card/id/det
 	icon_state = "id_inspector"
