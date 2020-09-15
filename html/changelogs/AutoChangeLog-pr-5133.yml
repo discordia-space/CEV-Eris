@@ -1,0 +1,4 @@
+author: AlexMorgan3817
+delete-after: true
+changes:
+  - refactor: Cargo system reworked, now it is trade system, using overmap.
