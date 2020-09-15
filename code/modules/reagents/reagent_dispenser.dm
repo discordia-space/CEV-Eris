@@ -7,25 +7,29 @@
 	anchored = FALSE
 	reagent_flags = DRAINABLE | AMOUNT_VISIBLE
 	var/volume = 1500
-	var/starting_reagent = null
+	var/starting_reagent
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 	var/contents_cost
 
 /obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_refillable())
-		return 0 //so we can refill them via their afterattack.
+		return FALSE //so we can refill them via their afterattack.
+	else if(QUALITY_BOLT_TURNING in W.tool_qualities)
+		if(W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			src.add_fingerprint(user)
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+
+			if(do_after(user, 20, src))
+				if(!src) return
+				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
+				set_anchored(!anchored)
+			return FALSE
 	else
 		return ..()
-
-/obj/structure/reagent_dispensers/New()
-	create_reagents(volume)
-
-	if (starting_reagent)
-		reagents.add_reagent(starting_reagent, volume)
-	if (!possible_transfer_amounts)
-		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	..()
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -233,23 +237,6 @@
 	volume = 500
 	starting_reagent = "water"
 
-/obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I, mob/user)
-	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-			src.add_fingerprint(user)
-			if(anchored)
-				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
-			else
-				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-
-			if(do_after(user, 20, src))
-				if(!src) return
-				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
-				anchored = !anchored
-			return
-	else
-		return ..()
-
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
 	desc = "A beer keg"
@@ -327,7 +314,7 @@
 	if(reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents."))
 
-/obj/structure/reagent_dispensers/bidon/attack_hand(mob/user as mob)
+/obj/structure/reagent_dispensers/bidon/attack_hand(mob/user)
 	lid = !lid
 	if(lid)
 		to_chat(user, SPAN_NOTICE("You put the lid on."))

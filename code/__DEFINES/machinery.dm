@@ -13,7 +13,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define ENVIRON 3
 #define TOTAL   4 // For total power used only.
 
-//Power use
+//Power use var/use_power
 #define NO_POWER_USE		0
 #define IDLE_POWER_USE		1
 #define ACTIVE_POWER_USE	2

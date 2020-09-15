@@ -6,7 +6,7 @@
 	matter = list(MATERIAL_WOOD = 10)
 	density = TRUE
 
-/obj/structure/largecrate/attack_hand(mob/user as mob)
+/obj/structure/largecrate/attack_hand(mob/user)
 	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
 	return
 

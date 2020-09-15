@@ -39,10 +39,13 @@
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 
+#define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
+#define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
+
 // /area signals
 
 // /turf signals
-
+#define CONSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
 // /atom/movable signals
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
 
@@ -51,10 +54,10 @@
 #define COMSIG_MOB_LOGIN "mob_login"                            //from mob/Login()
 
 // /mob/living signals
-#define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"             //mob/living/proc/stun_effect_act
+#define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"             //mob/living/proc/stun_effect_act()
 
 // /mob/living/carbon signals
-#define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"       //mob/living/carbon/electrocute_act
+#define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"       //mob/living/carbon/electrocute_act()
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_SAY "human_say"                            //from mob/living/carbon/human/say(): (message)
@@ -63,6 +66,9 @@
 // /datum/species signals
 
 // /obj signals
+#define COMSIG_OBJ_HIDE	"obj_hide"
+
+//machinery
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack

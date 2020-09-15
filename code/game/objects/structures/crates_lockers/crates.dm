@@ -299,11 +299,6 @@
 	desc = "All you need to destroy those pesky weeds and pests."
 	icon_state = "hydrocrate"
 
-/obj/structure/closet/crate/secure/weapon
-	desc = "A secure weapons crate."
-	name = "Weapons crate"
-	icon_state = "weaponcrate"
-
 /obj/structure/closet/crate/scicrate
 	desc = "A science crate."
 	name = "Science crate"
@@ -313,16 +308,6 @@
 	desc = "A secure science crate."
 	name = "Science crate"
 	icon_state = "securecrate"
-
-/obj/structure/closet/crate/secure/gear
-	desc = "A secure gear crate."
-	name = "Gear crate"
-	icon_state = "secgearcrate"
-
-/obj/structure/closet/crate/secure/hydrosec
-	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
-	name = "secure hydroponics crate"
-	icon_state = "hydrosecurecrate"
 
 /obj/structure/closet/crate/secure/woodseccrate
 	desc = "A secure wooden crate."

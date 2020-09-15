@@ -444,10 +444,10 @@
 		return 1
 	return 0
 
-/obj/structure/window/proc/set_anchored(var/new_anchored)
-	if(anchored == new_anchored)
+/obj/structure/window/set_anchored(new_anchored)
+	. = ..()
+	if(isnull(.))
 		return
-	anchored = new_anchored
 	update_verbs()
 	update_nearby_icons()
 
