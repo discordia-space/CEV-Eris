@@ -1,0 +1,11 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - rscadd: Fluid ducts
+  - rscadd: 'Plumbing: destroyer'
+  - rscadd: 'Plumbing: input'
+  - rscadd: 'Plumbing: output'
+  - rscadd: 'Plumbing: tank'
+  - rscadd: the biomatter is now a fertilizer.
+  - tweak: the reagent dispensers, bioreactor, biotank and biogenerator are are compatible
+      with fluid dcuts.
