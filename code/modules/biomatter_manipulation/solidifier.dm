@@ -13,7 +13,7 @@
 	icon_state = "solidifier"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 300
 

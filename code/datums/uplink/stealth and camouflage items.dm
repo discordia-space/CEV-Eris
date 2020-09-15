@@ -39,3 +39,13 @@
 	name = "Tool Upgrade: Aural Dampener"
 	item_cost = 1
 	path = /obj/item/weapon/tool_upgrade/augment/dampener
+
+/datum/uplink_item/item/stealth_items/silencer
+    name = "Silencer"
+    item_cost = 2
+    path = /obj/item/weapon/gun_upgrade/muzzle/silencer
+
+/datum/uplink_item/item/stealth_items/killer
+    name = "Syndicate \"Proffesional Killer\" scope"
+    item_cost = 2
+    path = /obj/item/weapon/gun_upgrade/scope/killer

@@ -16,8 +16,8 @@
 
 /datum/category_item/setup_option/New()
 	. = ..()
-	for(var/job in joblist)
-		var/datum/job/J = joblist[job]
+	for(var/job in GLOB.joblist)
+		var/datum/job/J = GLOB.joblist[job]
 		if(!J.setup_restricted)
 			if(J.type in allowed_jobs)
 				allowed_jobs -= J.type //job is not setup_restricted so no reason to keep it

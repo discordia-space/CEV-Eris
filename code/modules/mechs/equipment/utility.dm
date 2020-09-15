@@ -25,6 +25,15 @@
 				to_chat(user,"<span class='warning'>You can't load living things into the cargo compartment.</span>")
 				return
 
+			if(istype(target, /obj/structure/scrap))
+				owner.visible_message(SPAN_NOTICE("\The [owner] begins compressing \the [O] with \the [src]."))
+				if(do_after(owner, 20, O, 0, 1))
+					if(istype(O, /obj/structure/scrap))
+						var/obj/structure/scrap/S = O
+						S.make_cube()
+						owner.visible_message(SPAN_NOTICE("\The [owner] compresses \the [O] into a cube with \the [src]."))
+				return
+
 			if(O.anchored)
 				to_chat(user, "<span class='warning'>[target] is firmly secured.</span>")
 				return
@@ -191,11 +200,18 @@
 	var/durability = 0
 	name = "drill head"
 	desc = "A replaceable drill head usually used in exosuit drills."
-	icon_state = "drill_head"
+	icon_state = "exodrillhead"
+	default_material = MATERIAL_STEEL
 
 /obj/item/weapon/material/drill_head/Initialize()
 	. = ..()
 	durability = 2 * (material ? material.integrity : 1)
+
+/obj/item/weapon/material/drill_head/plasteel/New(var/newloc)
+	..(newloc,MATERIAL_PLASTEEL)
+
+/obj/item/weapon/material/drill_head/diamond/New(var/newloc)
+	..(newloc,MATERIAL_DIAMOND)
 
 /obj/item/mech_equipment/drill
 	name = "drill"

@@ -195,6 +195,7 @@
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
 	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [target]."))
+	user.investigate_log("transfered [trans] units from [src]([reagents.log_list()]) to [target]([target.reagents.log_list()])", "chemistry")
 	return TRUE
 
 // if amount_per_reagent is null or zero it will transfer all

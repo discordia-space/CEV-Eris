@@ -7,10 +7,10 @@
 		[red ? "<font color=red>" : null][replacetext(title, " ", "&nbsp")][red ? "</font>" : null]\
 		</a> "
 
-/datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/jobList)
+/datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/joblist)
 	. += "<tr bgcolor='[color]'><th><a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
-	for(var/jobPos in jobList)
-		. += formatJob(mob, jobPos, jobList[jobPos])
+	for(var/jobPos in GLOB.joblist)
+		. += formatJob(mob, jobPos, GLOB.joblist[jobPos])
 	. += "</td></tr>"
 
 

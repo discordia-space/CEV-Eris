@@ -13,6 +13,7 @@
 //Contains boomsticks, ie, shotguns
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
+	directions = DIRECTION_COORDS | DIRECTION_LANDMARK
 	contents_list_base = list(/obj/random/gun_shotgun = 2,
 	/obj/random/ammo/shotgun = 2, /obj/random/ammo = 2)
 	contents_list_random = list(/obj/random/ammo/shotgun = 60,

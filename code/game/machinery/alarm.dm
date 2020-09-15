@@ -11,7 +11,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
 	active_power_usage = 3000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
 	power_channel = ENVIRON
@@ -650,6 +650,8 @@
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
 				target_temperature = input_temperature + T0C
+			investigate_log("had it's target temperature changed by [key_name(usr)]", "atmos")
+
 		playsound(loc, 'sound/machines/button.ogg', 100, 1)
 		return 1
 
@@ -688,6 +690,7 @@
 					"scrubbing")
 					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
+					investigate_log("had it's settings changed by [key_name(usr)]", "atmos")
 					return 1
 
 				if("set_threshold")
@@ -739,6 +742,7 @@
 						if(selected[3] > selected[4])
 							selected[3] = selected[4]
 
+					investigate_log("had it's tresholds changed by [key_name(usr)]", "atmos")
 					apply_mode()
 					return 1
 
@@ -766,6 +770,7 @@
 		if(href_list["atmos_reset"])
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			forceClearAlarm()
+			investigate_log("had it's alarms cleared by [key_name(usr)]", "atmos")
 			return 1
 
 		if(href_list["mode"])
@@ -906,7 +911,7 @@ FIRE ALARM
 	var/timing = 0
 	var/lockdownbyai = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
@@ -1200,7 +1205,7 @@ Just a object used in constructing fire alarms
 	var/timing = 0
 	var/lockdownbyai = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 

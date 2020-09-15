@@ -113,7 +113,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			APC.queue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!isliving(A.owner.current))
 			continue
 		if(A.owner.current.stat!=2)

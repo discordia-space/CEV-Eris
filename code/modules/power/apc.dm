@@ -67,7 +67,7 @@
 
 	icon_state = "apc0"
 	anchored = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	req_access = list(access_engine_equip)
 	var/need_sound
 	var/area/area

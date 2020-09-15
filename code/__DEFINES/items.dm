@@ -58,6 +58,7 @@
 #define GUN_UPGRADE_DAMAGE_PSY "psy_damage"
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
+#define GUN_UPGRADE_ZOOM "zoom"
 
 
 

@@ -98,3 +98,14 @@
 	var/datum/event/radiation_storm/syndicate/S =  new(null, EVENT_LEVEL_MODERATE)
 	S.Initialize()
 	return 1
+
+/datum/uplink_item/abstract/announcements/fake_serb
+	name = "Unknown ship Announcement"
+	desc = "Interferes with the station's array sensors. Triggers immediately upon investment."
+	item_cost = 8
+
+/datum/uplink_item/abstract/announcements/fake_serb/get_goods(var/obj/item/device/uplink/U, var/loc)
+	var/datum/shuttle/autodock/multi/antag/mercenary/merc = new /datum/shuttle/autodock/multi/antag/mercenary
+	command_announcement.Announce(merc.arrival_message, merc.announcer || "[boss_name]")
+	qdel(merc)
+	return 1

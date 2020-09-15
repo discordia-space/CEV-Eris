@@ -217,7 +217,7 @@
 
 	var/list/chem_names = list()
 	for(var/id in produced_reagents)
-		var/datum/reagent/D = chemical_reagents_list[id]
+		var/datum/reagent/D = GLOB.chemical_reagents_list[id]
 		chem_names[D.name] = id
 
 	var/chem_name = input("Select a chemical to secrete.", "Chemicals") as null|anything in chem_names

@@ -24,7 +24,7 @@
 	icon_state = "seeds"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 100
 
 	var/list/datum/seed_pile/piles = list()

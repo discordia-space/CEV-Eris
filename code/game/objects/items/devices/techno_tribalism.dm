@@ -115,9 +115,9 @@
 			else
 				to_chat(src.loc, SPAN_WARNING("The [src] is too complicated to use!"))
 		else
-			visible_message("\The [src] beeps, \"The [src] is not full enough to produce.\".")
+			visible_message("\icon The [src] beeps, \"The [src] is not full enough to produce.\".")
 	else
-		visible_message("\The [src] beeps, \"The [src] need time to cooldown.\".")
+		visible_message("\icon The [src] beeps, \"The [src] need time to cooldown.\".")
 
 /obj/item/device/techno_tribalism/examine(user)
 	..()
