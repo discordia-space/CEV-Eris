@@ -29,7 +29,7 @@
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
-		tool_qualities = null
+		tool_qualities = list()
 		attack_verb = initial(attack_verb)
 
 /obj/item/weapon/material/butterfly/switchblade

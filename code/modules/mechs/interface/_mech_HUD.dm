@@ -14,7 +14,7 @@
 
 /mob/living/exosuit/create_HUDneed()
 	. = ..()
-	var/datum/hud/exosuits/HUDdatum = global.HUDdatums[defaultHUD]
+	var/datum/hud/exosuits/HUDdatum = GLOB.HUDdatums[defaultHUD]
 
 	for(var/HUDname in HUDdatum.HUDneed)
 		if(HUDdatum.HUDneed)

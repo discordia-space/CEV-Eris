@@ -180,7 +180,7 @@
 	switched_on_force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL =6)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
-	tool_qualities = null
+	tool_qualities = list()
 	toggleable = TRUE
 
 /obj/item/weapon/tool/knife/butterfly/turn_on(mob/user)
@@ -224,7 +224,7 @@
 	switched_on_force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6, MATERIAL_GOLD= 0.5)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
-	tool_qualities = null
+	tool_qualities = list()
 	toggleable = TRUE
 
 /obj/item/weapon/tool/knife/switchblade/turn_on(mob/user)

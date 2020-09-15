@@ -13,7 +13,7 @@
 	level = BELOW_PLATING_LEVEL		// underfloor
 	layer = LOW_OBJ_LAYER
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 
 	var/freq = 1449		// radio frequency
@@ -150,10 +150,10 @@
 
 		// Update power usage:
 		if(on)
-			use_power = 2
+			use_power = ACTIVE_POWER_USE
 			active_power_usage = electricity_level*15
 		else
-			use_power = 0
+			use_power = NO_POWER_USE
 
 
 		// Overload conditions:
@@ -200,7 +200,7 @@
 	icon_state = "airlock_control_standby"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 45
 	var/frequency = 1449
 	var/code = 0

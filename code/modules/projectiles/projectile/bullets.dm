@@ -30,7 +30,7 @@
 /obj/item/projectile/bullet/can_embed()
 	//prevent embedding if the projectile is passing through the mob
 	if(mob_passthrough_check)
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/projectile/bullet/check_penetrate(var/atom/A)

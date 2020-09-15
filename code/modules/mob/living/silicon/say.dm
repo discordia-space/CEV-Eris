@@ -93,7 +93,7 @@
 			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 
-		for(var/obj/O in hearing_objects)
+		for(var/obj/O in GLOB.hearing_objects)
 			if(O.locs.len && (O.locs[1] in hear))
 				listening_obj |= O
 

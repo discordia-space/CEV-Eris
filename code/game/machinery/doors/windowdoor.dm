@@ -12,7 +12,7 @@
 	maxhealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	health = 100
 	visible = 0.0
-	use_power = 0
+	use_power = NO_POWER_USE
 	flags = ON_BORDER
 	opacity = 0
 	var/obj/item/weapon/airlock_electronics/electronics = null

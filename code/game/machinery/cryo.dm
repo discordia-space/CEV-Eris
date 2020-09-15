@@ -11,7 +11,7 @@
 	interact_offline = 1
 
 	var/on = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 200
 

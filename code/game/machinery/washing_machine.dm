@@ -87,7 +87,7 @@
 				gibs_ready = 1
 			else
 				state = WASHSTATE_FULLCLOSEDDOOR
-			use_power = 1
+			use_power = IDLE_POWER_USE
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user)
@@ -116,7 +116,7 @@
 	tick = WASH_BASETIME
 	for(var/atom/A in contents)
 		tick += WASH_ADDTIME
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()

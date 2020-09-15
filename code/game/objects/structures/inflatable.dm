@@ -255,13 +255,15 @@
 	w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 28
 	can_hold = list(/obj/item/inflatable)
+	var/init_inflatable_count = 4
 
 	New()
 		..()
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/wall(src)
-		new /obj/item/inflatable/wall(src)
-		new /obj/item/inflatable/wall(src)
-		new /obj/item/inflatable/wall(src)
+		while(init_inflatable_count)
+			new /obj/item/inflatable/door(src)
+			new /obj/item/inflatable/wall(src)
+			init_inflatable_count -= 1
+		init_inflatable_count = initial(init_inflatable_count)
+
+/obj/item/weapon/storage/briefcase/inflatable/empty/init_inflatable_count = 0
+

@@ -11,7 +11,7 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "d" = (
-/obj/machinery/porta_turret/stationary,
+/obj/machinery/porta_turret/One_star,
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "e" = (
@@ -23,8 +23,8 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
-/obj/random/mob/roomba,
 /obj/random/contraband,
+/obj/random/mob/roomba,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "h" = (

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	light_range = 3
-	use_power = 0
+	use_power = NO_POWER_USE
 	var/obj/item/weapon/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
 	var/health = 0 //do not forget to set health for your bot!

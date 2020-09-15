@@ -2,7 +2,7 @@
 	delete_me = TRUE
 
 /obj/landmark/debug/all_reagents/New()
-	for(var/id in  GLOB.chemical_reagents_list)
+	for(var/id in GLOB.chemical_reagents_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[id]
 		var/obj/item/weapon/reagent_containers/glass/beaker/large/B = new /obj/item/weapon/reagent_containers/glass/beaker/large(src.loc)
 		B.name = R.name

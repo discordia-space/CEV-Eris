@@ -1,6 +1,6 @@
 /obj/structure/scrap_cube
 	name = "compressed scrap"
-	desc = "A cube made of scrap compressed with hydraulic clamp."
+	desc = "A cube made of scrap compressed by an exosuit's hydraulic clamp. A good hard whack should be enough to knock the scrap loose."
 	density = TRUE
 	anchored = FALSE
 	icon_state = "trash_cube"
@@ -20,10 +20,10 @@
 	user.do_attack_animation(src)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W,/obj/item/weapon) && W.force >= 8)
-		visible_message("<span class='notice'>\The [user] smashes the [src], restoring it's original form.</span>")
+		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], restoring its original form."))
 		make_pile()
 	else
-		visible_message("<span class='notice'>\The [user] smashes the [src], but [W] is too weak to break it!</span>")
+		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], but [W] is too weak to break it!"))
 
 /obj/item/weapon/scrap_lump
 	name = "unrefined scrap"
@@ -39,7 +39,7 @@
 	for(var/i in 1 to reag_num)
 		if(reagents.total_volume == reagents.maximum_volume)
 			break
-		reagents.add_reagent(pick( GLOB.chemical_reagents_list), rand(1, reagents.maximum_volume))
+		reagents.add_reagent(pick(GLOB.chemical_reagents_list), rand(1, reagents.maximum_volume))
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 

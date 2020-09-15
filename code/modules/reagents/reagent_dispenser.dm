@@ -12,30 +12,7 @@
 	var/possible_transfer_amounts = list(10,25,50,100)
 	var/contents_cost
 
-/obj/structure/reagent_dispensers/Initialize(mapload)
-	. = ..()
-	create_reagents(volume)
-	if (starting_reagent)
-		reagents.add_reagent(starting_reagent, volume)
-	if (!possible_transfer_amounts)
-		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	AddComponent(/datum/component/plumbing/supply/all, anchored, FALSE)
-	var/turf/T = get_turf(src)
-	T?.levelupdate()
-
-/obj/structure/reagent_dispensers/update_icon()
-	overlays.Cut()
-	var/list/new_overlays = update_overlays()
-	if(new_overlays.len)
-		for(var/overlay in new_overlays)
-			overlays.Add(overlay)
-
-/obj/structure/reagent_dispensers/get_item_cost()
-	var/ratio = reagents.total_volume / reagents.maximum_volume
-
-	return ..() + round(contents_cost * ratio)
-
-/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W, mob/user)
+/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
 	else if(QUALITY_BOLT_TURNING in W.tool_qualities)
