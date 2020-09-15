@@ -26,7 +26,7 @@
 		//There have to be at least two posts, so these are effectively doubled
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
-		use_power = 0	//Draws directly from power net. Does not use APC power.
+		use_power = NO_POWER_USE	//Draws directly from power net. Does not use APC power.
 		var/max_field_dist = 8
 		var/stunmode = FALSE
 		var/stun_chance = 1

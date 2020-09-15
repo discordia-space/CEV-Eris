@@ -8,7 +8,7 @@
 	icon_state = "sprayer"
 	density = FALSE
 	anchored = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	var/id
 	var/on = FALSE
 	var/watertemp = "normal"

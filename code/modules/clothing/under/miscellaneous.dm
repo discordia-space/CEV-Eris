@@ -122,7 +122,6 @@
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
 	item_state = "nursesuit"
-	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 
