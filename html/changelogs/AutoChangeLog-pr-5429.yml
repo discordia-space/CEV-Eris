@@ -1,0 +1,7 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: 'Fate perk: freelancer logic.'
+  - tweak: the oddity of the nobles now increases the sanity of whoever looks at it.
+  - tweak: 'fate perk: alcoholic produces an increase in VIG and TGH when the user
+      is drunk.'
