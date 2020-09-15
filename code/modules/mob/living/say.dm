@@ -276,7 +276,7 @@ var/list/channel_to_radio_key = new
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
 				listening_falloff |= M
 
-		for(var/X in hearing_objects)
+		for(var/X in GLOB.hearing_objects)
 			if(!isobj(X))
 				continue
 			var/obj/O = X

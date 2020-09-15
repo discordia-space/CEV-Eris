@@ -7,7 +7,7 @@
 	level = BELOW_PLATING_LEVEL		// underfloor
 	layer = LOW_OBJ_LAYER
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 0
 	var/obj/item/device/radio/beacon/Beacon
 

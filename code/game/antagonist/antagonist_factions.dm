@@ -23,7 +23,7 @@
 /datum/faction/New()
 	if(!leader_hud_indicator)
 		leader_hud_indicator = hud_indicator
-	current_factions.Add(src)
+	GLOB.current_factions.Add(src)
 
 /datum/faction/proc/add_member(var/datum/antagonist/member, var/announce = TRUE)
 	if(!member || !member.owner || !member.owner.current || (member in members) || !member.owner.current.client)
@@ -111,7 +111,7 @@
 	for(var/datum/antagonist/A in members)
 		remove_member(A)
 
-	current_factions.Remove(src)
+	GLOB.current_factions.Remove(src)
 	return TRUE
 
 

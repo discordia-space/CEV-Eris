@@ -200,11 +200,18 @@
 	var/durability = 0
 	name = "drill head"
 	desc = "A replaceable drill head usually used in exosuit drills."
-	icon_state = "drill_head"
+	icon_state = "exodrillhead"
+	default_material = MATERIAL_STEEL
 
 /obj/item/weapon/material/drill_head/Initialize()
 	. = ..()
 	durability = 2 * (material ? material.integrity : 1)
+
+/obj/item/weapon/material/drill_head/plasteel/New(var/newloc)
+	..(newloc,MATERIAL_PLASTEEL)
+
+/obj/item/weapon/material/drill_head/diamond/New(var/newloc)
+	..(newloc,MATERIAL_DIAMOND)
 
 /obj/item/mech_equipment/drill
 	name = "drill"

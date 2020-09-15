@@ -271,6 +271,12 @@
 		G.rigged = TRUE
 	if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 		G.rigged = 2
+	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
+		G.zoom_factor += weapon_upgrades[GUN_UPGRADE_ZOOM]
+		G.initialize_scope()
+		if(istype(G.loc, /mob))
+			var/mob/user = G.loc
+			user.update_action_buttons()
 
 	if(!isnull(weapon_upgrades[GUN_UPGRADE_FORCESAFETY]))
 		G.restrict_safety = TRUE
@@ -358,9 +364,13 @@
 		if(weapon_upgrades[GUN_UPGRADE_PIERC_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_PIERC_MULT]
 			if(amount > 1)
-				to_chat(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount*100]%"))
+				to_chat(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount] walls"))
+			else if(amount == 1)
+				to_chat(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount] wall"))
+			else if(amount == -1)
+				to_chat(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount] wall"))
 			else
-				to_chat(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount*100]%"))
+				to_chat(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount] walls"))
 
 		if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
@@ -473,6 +483,13 @@
 		if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
 			to_chat(user, SPAN_WARNING("Rigs the weapon to explode."))
 
+		if(weapon_upgrades[GUN_UPGRADE_ZOOM])
+			var/amount = weapon_upgrades[GUN_UPGRADE_ZOOM]
+			if(amount > 0)
+				to_chat(user, SPAN_NOTICE("Increases scope zoom by x[amount]"))
+			else
+				to_chat(user, SPAN_WARNING("Decreases scope zoom by x[amount]"))
+
 		to_chat(user, SPAN_WARNING("Requires a weapon with the following properties"))
 		to_chat(user, english_list(req_gun_tags))
 
@@ -518,12 +535,14 @@
 				SEND_SIGNAL(toremove, COMSIG_REMOVE, parent)
 				QDEL_NULL(toremove)
 				upgrade_loc.refresh_upgrades()
+				user.update_action_buttons()
 				return 1
 			else if (T && T.degradation) //Because robot tools are unbreakable
 				//otherwise, damage the host tool a bit, and give you another try
 				to_chat(user, SPAN_DANGER("You only managed to damage \the [upgrade_loc], but you can retry."))
 				T.adjustToolHealth(-(5 * T.degradation), user) // inflicting 4 times use damage
 				upgrade_loc.refresh_upgrades()
+				user.update_action_buttons()
 				return 1
 	return 0
 

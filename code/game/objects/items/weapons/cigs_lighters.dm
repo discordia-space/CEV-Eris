@@ -81,7 +81,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/match/proc/burn_out()
 	lit = 0
 	burnt = 1
-	tool_qualities = null
+	tool_qualities = list()
 	damtype = "brute"
 	icon_state = "match_burnt"
 	item_state = "cigoff"

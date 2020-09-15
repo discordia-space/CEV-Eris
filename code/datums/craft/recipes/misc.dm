@@ -206,3 +206,35 @@
 		list(QUALITY_BOLT_TURNING, 10, 60)
 	)
 	related_stats = list(STAT_COG)
+
+//Make a drill bit with some material and a welder! So you won't need to print a whole new exosuit drill when your head snaps.
+
+/datum/craft_recipe/drill_head
+	name = "steel drill head"
+	result = /obj/item/weapon/material/drill_head
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 60)
+	)
+	related_stats = list(STAT_MEC)
+
+	name_craft_menu = "exosuit drill heads"
+
+/datum/craft_recipe/drill_head/plasteel
+	name = "plasteel drill head"
+	result = /obj/item/weapon/material/drill_head/plasteel
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 60)
+	)
+	variation_type = CRAFT_VARIATION
+
+/datum/craft_recipe/drill_head/diamond
+	name = "diamond drill head"
+	result = /obj/item/weapon/material/drill_head/diamond
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_DIAMOND, "time" = 30),
+		list(QUALITY_WELDING, 10, 60)
+	)
+	variation_type = CRAFT_VARIATION

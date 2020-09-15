@@ -9,23 +9,26 @@
 /obj/item/weapon/gun_upgrade/barrel
 	bad_types = "/obj/item/weapon/gun_upgrade/barrel"
 
+/obj/item/weapon/gun_upgrade/muzzle
+
 //Silences the weapon, reduces damage multiplier slightly, Legacy port.
-/obj/item/weapon/gun_upgrade/barrel/silencer
+/obj/item/weapon/gun_upgrade/muzzle/silencer
 	name = "silencer"
-	desc = "a threaded silencer that can be attached to the barrel of certain guns. Vastly reduces noise, but impedes muzzle velocity."
+	desc = "a threaded silencer that can be attached to the muzzle of certain guns. Vastly reduces noise, but impedes muzzle velocity."
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
 	icon_state = "silencer"
 	rarity_value = 20
 
 
-/obj/item/weapon/gun_upgrade/barrel/silencer/New()
+/obj/item/weapon/gun_upgrade/muzzle/silencer/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_SILENCER = TRUE,
+		GUN_UPGRADE_MUZZLEFLASH = 0.8,
 		GUN_UPGRADE_DAMAGE_PLUS = -0.1
 		)
-	I.gun_loc_tag = GUN_BARREL
+	I.gun_loc_tag = GUN_MUZZLE
 	I.req_gun_tags = list(GUN_SILENCABLE)
 
 //Decreases fire delay. Acquired through loot spawns
@@ -316,3 +319,71 @@
 	GUN_UPGRADE_DAMAGE_PSY = 0.4)
 	I.req_gun_tags = list(GUN_PROJECTILE)
 	I.gun_loc_tag = GUN_MECHANISM
+
+/obj/item/weapon/gun_upgrade/barrel/gauss
+	name = "Syndicate \"Gauss Coil\" barrel"
+	desc = "Make bullet pierce through wall and penetrate armors easily, but losing rate of fire and increece recoil."
+	icon_state = "Gauss"
+
+/obj/item/weapon/gun_upgrade/barrel/gauss/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_DAMAGE_BRUTE = 10,
+		GUN_UPGRADE_PEN_MULT = 1.2,
+		GUN_UPGRADE_PIERC_MULT = 1,
+		GUN_UPGRADE_FIRE_DELAY_MULT = 1.2,
+		GUN_UPGRADE_RECOIL = 1.2,
+		)
+	I.removal_time *= 10
+	I.gun_loc_tag = GUN_BARREL
+	I.req_gun_tags = list(GUN_PROJECTILE)
+
+/obj/item/weapon/gun_upgrade/trigger/boom
+	name = "Syndicate \"Self Desturct\" trigger"
+	desc = "Trigger that explode gun on shoot, only for enegry weapon."
+	icon_state = "Boom"
+
+/obj/item/weapon/gun_upgrade/trigger/boom/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_EXPLODE = TRUE,
+		)
+	I.removal_time *= 10
+	I.gun_loc_tag = GUN_TRIGGER
+	I.req_gun_tags = list(GUN_ENERGY)
+
+/obj/item/weapon/gun_upgrade/scope
+
+/obj/item/weapon/gun_upgrade/scope/watchman
+	name = "Frozen Star \"Watchman\" scope"
+	desc = "Scope that can be attachet to avarage gun."
+	icon_state = "Watchman"
+
+/obj/item/weapon/gun_upgrade/scope/watchman/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_OFFSET = 0.9,
+		GUN_UPGRADE_RECOIL = 1.1,
+		GUN_UPGRADE_ZOOM = 1.2
+		)
+	I.gun_loc_tag = GUN_SCOPE
+	I.req_gun_tags = list(GUN_SCOPE)
+
+/obj/item/weapon/gun_upgrade/scope/killer
+	name = "Syndicate \"Proffesional Killer\" scope"
+	desc = "Scope used for sniping from large distances."
+	icon_state = "Killer"
+
+/obj/item/weapon/gun_upgrade/scope/killer/New()
+	..()
+	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
+	I.weapon_upgrades = list(
+		GUN_UPGRADE_OFFSET = 0.7,
+		GUN_UPGRADE_RECOIL = 1.3,
+		GUN_UPGRADE_ZOOM = 2
+		)
+	I.gun_loc_tag = GUN_SCOPE
+	I.req_gun_tags = list(GUN_SCOPE)

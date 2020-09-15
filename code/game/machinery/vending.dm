@@ -89,7 +89,7 @@
 	var/icon_type //For overlays after remodeling a custom vending machine
 
 	// Power
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 
@@ -204,7 +204,7 @@
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
 		return
 	if(vendor_department)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [all_departments[vendor_department]]."))
+		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]]."))
 		return
 	if(buying_percentage <= 0)
 		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales."))
@@ -869,8 +869,8 @@
 
 /obj/machinery/vending/proc/set_department()
 	var/list/possible_departments = list("Privately Owned" = null)
-	for(var/d in all_departments)
-		possible_departments[all_departments[d]] = department_accounts[d]
+	for(var/d in GLOB.all_departments)
+		possible_departments[GLOB.all_departments[d]] = department_accounts[d]
 	var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in possible_departments
 	if(!newdepartment)
 		return
@@ -1069,7 +1069,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 10, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 10)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 5, /obj/item/weapon/reagent_containers/food/snacks/liquidfood = 6)
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 30,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 30,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 30,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 30,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1000,/obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 30,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 32,/obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 30,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 30,/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 30,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 50, /obj/item/weapon/reagent_containers/food/snacks/liquidfood = 60)
@@ -1109,9 +1109,9 @@
 	icon_deny = "med-deny"
 	req_access = list(access_medical_equip)
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
+	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 8,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 8,
 					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
-					/obj/item/weapon/reagent_containers/syringe/spaceacillin = 4,/obj/item/weapon/reagent_containers/syringe = 12,
+					/obj/item/weapon/reagent_containers/syringe/spaceacillin = 8,/obj/item/weapon/reagent_containers/syringe = 12,
 					/obj/item/device/scanner/health = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)

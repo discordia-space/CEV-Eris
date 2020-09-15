@@ -46,7 +46,7 @@
 			c_count++
 
 	var/a_count = 0
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 
@@ -62,7 +62,7 @@
 
 
 	var/a_count = 0
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 			break
@@ -96,7 +96,7 @@
 
 /datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report)
 	var/a_count = 0
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!A.is_dead())
 			a_count++
 			break
@@ -109,7 +109,7 @@
 
 /datum/storyevent/roleset/marshal/get_special_weight(var/new_weight)
 	var/a_count = 0
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(A.owner && A.is_active() && !A.is_dead())
 			a_count++
 

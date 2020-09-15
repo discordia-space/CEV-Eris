@@ -10,7 +10,7 @@
 	icon_state = "infected_machine"
 	density = TRUE
 	anchored = TRUE
-	use_power = FALSE
+	use_power = NO_POWER_USE
 	var/illumination_color = 	COLOR_LIGHTING_CYAN_MACHINERY
 	var/wireweeds_required =	TRUE		//machine got damage if there's no any wireweed on it's turf
 	var/health = 				60

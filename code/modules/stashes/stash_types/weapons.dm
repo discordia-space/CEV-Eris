@@ -13,6 +13,7 @@
 //Contains boomsticks, ie, shotguns
 /datum/stash/weapon/mutiny_boomstick
 	story_type = STORY_MUTINY
+	directions = DIRECTION_COORDS | DIRECTION_LANDMARK
 	contents_list_base = list(/obj/spawner/gun/shotgun = 2,
 	/obj/spawner/ammo/shotgun = 2, /obj/spawner/ammo = 2)
 	contents_list_random = list(/obj/spawner/ammo/shotgun = 60,
@@ -21,8 +22,8 @@
 	/obj/spawner/ammo = 80,
 	/obj/spawner/ammo = 80,
 	/obj/spawner/ammo = 80,
-	/obj/spawner/gun/cheap = 50,
-	/obj/spawner/gun/cheap = 50,
+	/obj/spawner/gun_upgrade = 50,
+	/obj/spawner/gun_upgrade = 50,
 	/obj/spawner/gun/shotgun = 50)
 	lore = "MUTINY TOMORROW 0300 MEET AT %D <br><br>BRING YOUR OWN BOOMSTICK ONLY A FEW SPARES"
 

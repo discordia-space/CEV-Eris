@@ -73,3 +73,11 @@
 /datum/design/autolathe/device/grenade/nt_weedkiller
 	name = "NT \"Kudzu Killer\""
 	build_path = /obj/item/weapon/grenade/chem_grenade/antiweed/nt_antiweed
+
+/datum/design/autolathe/device/floorpainter
+	name = "floor painter"
+	build_path = /obj/item/device/floor_painter
+
+/datum/design/autolathe/device/mechpainter
+	name = "mech painter"
+	build_path = /obj/item/device/floor_painter/mech_painter

@@ -1,7 +1,7 @@
 #define REAGENTS_PER_SHEET 20
 
 /obj/machinery/reagentgrinder
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/nano_template

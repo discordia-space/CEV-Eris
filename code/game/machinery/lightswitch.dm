@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "light1"
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	power_channel = LIGHT
 	var/slow_turning_on = FALSE

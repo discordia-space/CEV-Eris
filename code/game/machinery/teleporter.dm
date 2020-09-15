@@ -16,7 +16,7 @@
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
 	var/accurate = 0
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/electronics/circuitboard/teleporterhub
@@ -29,7 +29,7 @@
 	icon_state = "controller"
 	var/active = 0
 	var/engaged = 0
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/weapon/electronics/circuitboard/teleporterstation
@@ -152,7 +152,7 @@
 
 		var/obj/L = null
 
-		for(var/obj/landmark/sloc in landmarks_list)
+		for(var/obj/landmark/sloc in GLOB.landmarks_list)
 			if(sloc.name != C.data) continue
 			if(locate(/mob/living) in sloc.loc) continue
 			L = sloc
