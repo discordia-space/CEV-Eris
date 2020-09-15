@@ -12,11 +12,6 @@
 	var/possible_transfer_amounts = list(10,25,50,100)
 	var/contents_cost
 
-/obj/structure/reagent_dispensers/get_item_cost()
-	var/ratio = reagents.total_volume / reagents.maximum_volume
-
-	return ..() + round(contents_cost * ratio)
-
 /obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_refillable())
 		return 0 //so we can refill them via their afterattack.
