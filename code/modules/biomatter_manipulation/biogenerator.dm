@@ -250,7 +250,6 @@
 							P.disable()
 							P.supply_connects = initial(P.supply_connects)
 							P.demand_connects = initial(P.demand_connects)
-							P.enable()
 						tank.pixel_x = initial(tank.pixel_x)
 						tank = null
 						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
