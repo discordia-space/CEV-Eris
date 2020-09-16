@@ -1,5 +1,0 @@
-author: TorinoFermic
-delete-after: true
-changes:
-  - admin: Added debug verb "Display del() Log"
-  - server: Minor change in qdel file logging
