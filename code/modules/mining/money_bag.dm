@@ -5,8 +5,8 @@
 	name = "Money bag"
 	icon_state = "moneybag"
 	flags = CONDUCT
-	force = 10.0
-	throwforce = 2.0
+	force = 10
+	throwforce = 2
 	w_class = ITEM_SIZE_BULKY
 
 /obj/item/weapon/moneybag/attack_hand(user as mob)

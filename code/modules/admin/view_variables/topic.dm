@@ -570,7 +570,7 @@
 
 		if(A.reagents)
 			var/chosen_id
-			var/list/reagent_options = sortList(chemical_reagents_list)
+			var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
 			switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
 				if("Enter ID")
 					var/valid_id

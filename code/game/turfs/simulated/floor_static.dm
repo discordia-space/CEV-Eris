@@ -16,7 +16,7 @@
 	return
 
 /turf/simulated/floor/fixed/is_plating()
-	return 0
+	return FALSE
 
 /turf/simulated/floor/fixed/set_flooring()
 	return

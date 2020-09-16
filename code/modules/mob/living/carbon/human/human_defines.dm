@@ -90,7 +90,7 @@
 	var/identifying_gender // In case the human identifies as another gender than it's biological
 	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
-	var/datum/sanity/sanity = null
+	var/datum/sanity/sanity
 
 	var/shock_resist = 0 // Resistance to paincrit
 

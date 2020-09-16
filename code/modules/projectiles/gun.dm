@@ -81,6 +81,7 @@
 /obj/item/weapon/gun/Initialize()
 	. = ..()
 	initialize_firemodes()
+	initialize_scope()
 	//Properly initialize the default firing mode
 	if (firemodes.len)
 		set_firemode(sel_mode)
@@ -92,11 +93,6 @@
 		action.owner = src
 		hud_actions += action
 
-
-	if(zoom_factor)
-		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/scope
-		action.owner = src
-		hud_actions += action
 
 	if(icon_contained)
 		if(!item_icons_cache[type])
@@ -520,6 +516,23 @@
 		qdel(action)
 		hud_actions -= action
 
+/obj/item/weapon/gun/proc/initialize_scope()
+	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
+	if(zoom_factor > 0)
+		if(!action)
+			action = new /obj/screen/item_action/top_bar/gun/scope
+			action.owner = src
+			hud_actions += action
+			if(istype(src.loc, /mob))
+				var/mob/user = src.loc
+				user.client.screen += action
+	else
+		if(istype(src.loc, /mob))
+			var/mob/user = src.loc
+			user.client.screen -= action
+		hud_actions -= action
+		qdel(action)
+
 /obj/item/weapon/gun/proc/add_firemode(var/list/firemode)
 	//If this var is set, it means spawn a specific subclass of firemode
 	if (firemode["mode_type"])
@@ -683,6 +696,8 @@
 	fire_sound = initial(fire_sound)
 	restrict_safety = initial(restrict_safety)
 	rigged = initial(rigged)
+	zoom_factor = initial(zoom_factor)
+	initialize_scope()
 	initialize_firemodes()
 
 	//Now lets have each upgrade reapply its modifications
@@ -696,3 +711,5 @@
 /obj/item/weapon/gun/proc/generate_guntags()
 	if(one_hand_penalty)
 		gun_tags |= GUN_GRIP
+	if(!zoom_factor && !(slot_flags & SLOT_HOLSTER))
+		gun_tags |= GUN_SCOPE

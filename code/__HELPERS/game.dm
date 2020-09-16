@@ -174,7 +174,7 @@
 			if (!mobs[M])
 				mobs[M] = TRUE
 
-	for(var/o in hearing_objects)
+	for(var/o in GLOB.hearing_objects)
 		var/obj/O = o
 		if(O && O.loc && hearturfs[O.locs[1]])
 			if (!objs[O])
@@ -551,7 +551,7 @@
 //Picks a single random landmark of a specified type
 /proc/pick_landmark(ltype)
 	var/list/L = list()
-	for(var/S in landmarks_list)
+	for(var/S in GLOB.landmarks_list)
 		if (istype(S, ltype))
 			L.Add(S)
 

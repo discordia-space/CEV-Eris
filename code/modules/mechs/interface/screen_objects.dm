@@ -271,5 +271,13 @@
 	owner.head.active_sensors = ..()
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
 
+/obj/screen/movable/exosuit/toggle/strafe
+	name = "toggle strafing"
+	icon_state = "strafe"
+
+/obj/screen/movable/exosuit/toggle/strafe/toggled()
+	owner.strafing = ..()
+	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
+
 
 #undef BAR_CAP

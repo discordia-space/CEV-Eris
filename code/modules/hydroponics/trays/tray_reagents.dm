@@ -95,8 +95,8 @@
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/Initialize()
 	. = ..()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	src.pixel_x = rand(-5, 5)
+	src.pixel_y = rand(-5, 5)
 
 
 /obj/item/weapon/reagent_containers/glass/fertilizer/ez

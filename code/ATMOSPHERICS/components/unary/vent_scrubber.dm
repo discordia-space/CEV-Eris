@@ -7,7 +7,7 @@
 
 	name = "air scrubber"
 	desc = "Has a valve and pump attached to it"
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -34,7 +34,7 @@
 	var/welded = FALSE
 
 /obj/machinery/atmospherics/unary/vent_scrubber/on
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	icon_state = "map_scrubber_on"
 
 /obj/machinery/atmospherics/unary/vent_scrubber/New()
@@ -53,7 +53,7 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_icon(safety = 0)
 	if(!node1)
-		use_power = 0
+		use_power = NO_POWER_USE
 
 	if(welded)
 		icon_state = "weld"
@@ -128,7 +128,7 @@
 	..()
 
 	if (!node1)
-		use_power = 0
+		use_power = NO_POWER_USE
 		return
 	//broadcast_status()
 	if(!use_power)
@@ -194,7 +194,7 @@
 			panic = !panic
 
 		if(panic)
-			use_power = 1
+			use_power = IDLE_POWER_USE
 			scrubbing = SIPHONING
 		else
 			scrubbing = SCRUBBING

@@ -6,7 +6,7 @@
 	icon_state = "fdiffuser_on"
 
 	//By setting these values to zero, shield diffusers will not process. They dont need to process
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 

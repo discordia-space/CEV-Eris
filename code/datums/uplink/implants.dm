@@ -41,3 +41,8 @@
 	..()
 	item_cost = round(DEFAULT_TELECRYSTAL_AMOUNT / 2)
 	desc = "Contains [round((DEFAULT_TELECRYSTAL_AMOUNT / 2) * 0.8)] Telecrystal\s"
+
+/datum/uplink_item/item/implants/energy_blade
+	name = "Internal Energy Armblade Implant"
+	item_cost = 10
+	path = /obj/item/organ_module/active/simple/armblade/energy_blade
