@@ -65,7 +65,7 @@
 		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
 		if (authenticated)
 			switch(screen)
-				if(1.0)
+				if(1)
 					dat += {"<p style='text-align:center;'>"}
 					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
 					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
@@ -113,10 +113,10 @@
 						dat += "</table><hr width='75%' />"
 					dat += text("<A href='?src=\ref[];choice=Record Maintenance'>Record Maintenance</A><br><br>", src)
 					dat += text("<A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
-				if(2.0)
+				if(2)
 					dat += "<B>Records Maintenance</B><HR>"
 					dat += "<BR><A href='?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=\ref[src];choice=Return'>Back</A>"
-				if(3.0)
+				if(3)
 					dat += "<CENTER><B>Security Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
 						user << browse_rsc(active1.fields["photo_front"], "front.png")
@@ -162,7 +162,7 @@
 							<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
 							<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
 							<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
-				if(4.0)
+				if(4)
 					if(!Perp.len)
 						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
 					else

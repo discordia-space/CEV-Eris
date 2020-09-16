@@ -1,5 +1,0 @@
-author: TheShown
-delete-after: true
-changes:
-  - code_imp: Updated global_lists.dm with global list macros, removed a few unused
-      global lists.

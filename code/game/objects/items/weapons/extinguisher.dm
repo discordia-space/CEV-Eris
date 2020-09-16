@@ -20,7 +20,7 @@
 	var/spray_particles = 3
 	var/spray_amount = 9	//units of liquid per particle
 	var/max_water = 300
-	var/last_use = 1.0
+	var/last_use = 1
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
 	var/list/overlaylist = list("fire_extinguisherO1","fire_extinguisherO2","fire_extinguisherO3","fire_extinguisherO4","fire_extinguisherO5","fire_extinguisherO6")

@@ -1,6 +1,6 @@
 /mob
 	density = TRUE
-	layer = 4.0
+	layer = 4
 	animate_movement = 2
 	flags = PROXMOVE
 	var/datum/mind/mind
@@ -81,7 +81,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/name_archive //For admin things like possession
 
-	var/timeofdeath = 0.0
+	var/timeofdeath = 0
 
 	var/bodytemperature = 310.055	//98.7 F
 
@@ -128,7 +128,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
 
-	var/radiation = 0.0//Carbon
+	var/radiation = 0//Carbon
 
 	var/voice_name = "unidentifiable voice"
 
@@ -172,7 +172,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/paralysis = 0
 	var/stunned = 0
 	var/weakened = 0
-	var/drowsyness = 0.0//Carbon
+	var/drowsyness = 0//Carbon
 
 	var/memory = ""
 	var/flavor_text = ""
@@ -189,7 +189,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/list/progressbars = null
 
 
-	var/speed_factor = 1.0
+	var/speed_factor = 1
 
 	var/datum/stat_holder/stats
 

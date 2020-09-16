@@ -61,11 +61,11 @@
 	. = ..()
 	if(health < maxhealth)
 		switch(health / maxhealth)
-			if(0.0 to 0.5)
+			if(0 to 0.5)
 				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
 			if(0.25 to 0.5)
 				to_chat(user, SPAN_WARNING("It looks damaged!"))
-			if(0.5 to 1.0)
+			if(0.5 to 1)
 				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
 
 /obj/structure/railing/proc/take_damage(amount)
@@ -274,13 +274,13 @@
 
 /obj/structure/railing/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			qdel(src)
 			return
-		if(3.0)
+		if(3)
 			qdel(src)
 			return
 		else

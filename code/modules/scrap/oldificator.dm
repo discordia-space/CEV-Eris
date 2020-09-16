@@ -298,7 +298,7 @@
 	.=..()
 	if (.)
 		if(prob(60))
-			vend_power_usage *= pick(1, 1.3, 1.5, 1.7, 2.0)
+			vend_power_usage *= pick(1, 1.3, 1.5, 1.7, 2)
 		if(prob(60))
 			seconds_electrified = -1
 		if(prob(60))

@@ -1,7 +1,0 @@
-author: Hatterhat
-delete-after: true
-changes:
-  - bugfix: Plasteel now alloys properly without extra conversion of plasma ore into
-      slag.
-  - tweak: The ore processor on the Hulk no longer has a limiter on how much ore it
-      can pick up per tick.

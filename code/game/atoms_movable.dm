@@ -15,6 +15,7 @@
 	var/mob/pulledby
 	var/item_state // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
+	var/can_anchor = TRUE
 
 	//spawn_values
 	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
@@ -390,11 +391,24 @@
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
 // Wrapper of step() that also sets glide size to a specific value.
-/proc/step_glide(var/atom/movable/am, var/dir, var/glide_size_override)
-	am.set_glide_size(glide_size_override)
-	return step(am, dir)
+/proc/step_glide(atom/movable/AM, newdir, glide_size_override)
+	AM.set_glide_size(glide_size_override)
+	return step(AM, newdir)
 
 // if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()
 	return FALSE
 
+///Sets the anchored var and returns if it was sucessfully changed or not.
+/atom/movable/proc/set_anchored(anchorvalue)
+	SHOULD_CALL_PARENT(TRUE)
+	if(anchored == anchorvalue || !can_anchor)
+		return
+	. = TRUE
+	anchored = anchorvalue
+	SEND_SIGNAL(src, COMSIG_ATOM_UNFASTEN, anchored)
+
+/atom/movable/proc/update_overlays()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)

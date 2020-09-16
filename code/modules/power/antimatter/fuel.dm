@@ -7,7 +7,7 @@
 	density = FALSE
 	anchored = FALSE
 	var/fuel = 0
-	var/s_time = 1.0
+	var/s_time = 1
 	var/content = null
 
 /obj/item/weapon/fuel/H
@@ -45,7 +45,7 @@
 
 	var/strength = convert2energy(mass)
 
-	if (strength < 773.0)
+	if (strength < 773)
 		var/turf/T = get_turf(src)
 
 		if (strength > (450+T0C))

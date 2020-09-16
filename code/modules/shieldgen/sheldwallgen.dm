@@ -330,21 +330,21 @@
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		switch(severity)
-			if(1.0) //big boom
+			if(1) //big boom
 				if(prob(50))
 					G = gen_primary
 				else
 					G = gen_secondary
 				G.storedpower -= 120000
 
-			if(2.0) //medium boom
+			if(2) //medium boom
 				if(prob(50))
 					G = gen_primary
 				else
 					G = gen_secondary
 				G.storedpower -= 30000
 
-			if(3.0) //lil boom
+			if(3) //lil boom
 				if(prob(50))
 					G = gen_primary
 				else

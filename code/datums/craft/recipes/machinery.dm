@@ -82,7 +82,24 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
 	)
 
+/datum/craft_recipe/machinery/duct
+	name = "fluid duct"
+	result = /obj/item/stack/ducts
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC, "time" = 15),
+		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL, "time" = 5),
+		list(QUALITY_BOLT_TURNING, 10, 80),
+		list(/obj/item/stack/cable_coil, 1, "time" = 10),
+		list(QUALITY_PULSING, 30, 80)
+	)
 
+/datum/craft_recipe/machinery/duct_vertical
+	name = "vertical fluid duct"
+	result = /obj/machinery/duct/vertical
+	steps = list(
+		list(/obj/item/stack/ducts, 3, "time" = 10),
+		list(QUALITY_BOLT_TURNING, 10, 80)
+	)
 
 //wall or small you know them req only 2 list
 /datum/craft_recipe/machinery/wall

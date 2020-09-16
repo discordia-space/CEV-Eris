@@ -5,11 +5,11 @@
 	var/total_volume = 0
 	var/maximum_volume = 100
 	var/chem_temp = T20C
-	var/atom/my_atom = null
+	var/atom/my_atom
 	var/rotating = FALSE
 
 
-/datum/reagents/New(var/max = 100, atom/A = null)
+/datum/reagents/New(max = 100, atom/A = null)
 	..()
 	maximum_volume = max
 	my_atom = A
@@ -370,10 +370,9 @@
 //not directly injected into the contents. It first calls touch, then the appropriate trans_to_*() or splash_mob().
 //If for some reason touch effects are bypassed (e.g. injecting stuff directly into a reagent container or person),
 //call the appropriate trans_to_*() proc.
-/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = 0)
+/datum/reagents/proc/trans_to(datum/target, amount = 1, multiplier = 1, copy = 0, ignore_isinjectable = FALSE)
 	if(istype(target, /datum/reagents))
 		return trans_to_holder(target, amount, multiplier, copy)
-
 	else if(istype(target, /atom))
 		var/atom/A = target
 		if(ismob(target))
@@ -399,7 +398,7 @@
 		//If it fails, but we still have some volume, then we'll just destroy some of our reagents
 		remove_any(amount) //If we don't do this, then only the spill amount above is removed, and someone can keep splashing with the same beaker endlessly
 
-/datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
+/datum/reagents/proc/trans_id_to(atom/target, id, amount = 1, ignore_isinjectable = FALSE)
 	if (!target || !target.reagents || !target.simulated)
 		return
 
@@ -413,7 +412,7 @@
 	F.add_reagent(id, amount, tmpdata)
 	remove_reagent(id, amount)
 
-	return F.trans_to(target, amount) // Let this proc check the atom's type
+	return F.trans_to(target, amount, ignore_isinjectable = ignore_isinjectable) // Let this proc check the atom's type
 
 // When applying reagents to an atom externally, touch() is called to trigger any on-touch effects of the reagent.
 // This does not handle transferring reagents to things.
@@ -554,6 +553,25 @@
 /datum/reagents/proc/adjust_thermal_energy(J, min_temp = 2.7, max_temp = 1000)
 	var/S = specific_heat()
 	chem_temp = CLAMP(chem_temp + (J / (S * total_volume)), 2.7, 1000)
+
+/// Is this holder full or not
+/datum/reagents/proc/holder_full()
+	if(total_volume >= maximum_volume)
+		return TRUE
+	return FALSE
+
+/// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, "beer" = 15)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null)
+	for(var/r_id in list_reagents)
+		var/amt = list_reagents[r_id]
+		add_reagent(r_id, amt, data)
+
+
+/proc/get_chem_id(chem_name)
+	for(var/X in GLOB.chemical_reagents_list)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
+		if(ckey(chem_name) == ckey(lowertext(R.name)))
+			return X
 
 // NanoUI / TG UI data
 /datum/reagents/ui_data()

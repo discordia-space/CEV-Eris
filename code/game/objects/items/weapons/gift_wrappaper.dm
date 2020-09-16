@@ -85,7 +85,7 @@
 	desc = "A wrapped item."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "gift3"
-	var/size = 3.0
+	var/size = 3
 	var/obj/item/gift
 	item_state = "gift"
 	w_class = ITEM_SIZE_BULKY
@@ -140,7 +140,7 @@
 	matter = list(MATERIAL_BIOMATTER = 4)
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_JUNK
-	var/amount = 20.0
+	var/amount = 20
 
 /obj/item/weapon/wrapping_paper/attackby(obj/item/weapon/W, mob/user)
 	..()

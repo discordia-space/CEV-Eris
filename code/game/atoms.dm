@@ -34,6 +34,13 @@
 
 	var/sanity_damage = 0
 
+		/**
+	  * used to store the different colors on an atom
+	  *
+	  * its inherent color, the colored paint applied on it, special color effect etc...
+	  */
+	var/list/atom_colours
+
 /atom/proc/update_icon()
 	return
 
@@ -144,7 +151,7 @@
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity)
 	return
 
 
@@ -502,7 +509,7 @@ its easier to just keep the beam vertical.
 
 
 //returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+/atom/proc/add_blood(mob/living/carbon/human/M)
 
 	if(flags & NOBLOODY)
 		return FALSE
@@ -522,7 +529,7 @@ its easier to just keep the beam vertical.
 	. = TRUE
 	return TRUE
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = FALSE)
+/atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = FALSE)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
@@ -567,10 +574,10 @@ its easier to just keep the beam vertical.
 
 
 //Execution by grand piano!
-/atom/movable/proc/get_fall_damage(var/turf/from, var/turf/dest)
+/atom/movable/proc/get_fall_damage(turf/from, turf/dest)
 	return 42
 
-/atom/movable/proc/fall_impact(var/turf/from, var/turf/dest)
+/atom/movable/proc/fall_impact(turf/from, turf/dest)
 
 //If atom stands under open space, it can prevent fall, or not
 /atom/proc/can_prevent_fall()
@@ -710,3 +717,30 @@ its easier to just keep the beam vertical.
 	if(!L)
 		return null
 	return L.AllowDrop() ? L : L.drop_location()
+
+///Adds an instance of colour_type to the atom's atom_colours list
+/atom/proc/add_atom_colour(coloration, colour_priority)
+	if(!atom_colours || !atom_colours.len)
+		atom_colours = list()
+		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+	if(!coloration)
+		return
+	if(colour_priority > atom_colours.len)
+		return
+	atom_colours[colour_priority] = coloration
+	update_atom_colour()
+
+///Resets the atom's color to null, and then sets it to the highest priority colour available
+/atom/proc/update_atom_colour()
+	color = null
+	if(!atom_colours)
+		return
+	for(var/C in atom_colours)
+		if(islist(C))
+			var/list/L = C
+			if(L.len)
+				color = L
+				return
+		else if(C)
+			color = C
+			return
