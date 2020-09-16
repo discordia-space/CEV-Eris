@@ -215,6 +215,7 @@
 
 	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
 	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
+	owner.pick_individual_objective()
 	resting = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)

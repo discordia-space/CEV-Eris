@@ -71,6 +71,9 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 //PERKS
 GLOBAL_LIST_EMPTY(all_perks)
 
+//individual_objetives
+GLOBAL_LIST_EMPTY(individual_job_objetives)
+
 //NeoTheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
 GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
@@ -193,6 +196,12 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
+		//List of job datums
+
+	paths = subtypesof(/datum/individual_objetive/job)
+	for(var/T in paths)
+		var/datum/individual_objetive/job/IO = new T
+		GLOB.individual_job_objetives[IO] += T
 
 	//Stashes
 	paths = subtypesof(/datum/stash)
