@@ -1,18 +1,18 @@
-/obj/item/weapon/rallador_de_queso
-	name = "Rallador de queso"
-	desc = "Un simple rallador de queso"
+/obj/item/weapon/cheese_grater
+	name = "Cheese grater"
+	desc = "Just a regular cheese grater"
 	icon = 'icons/hispania/obj/kitchen.dmi'
-	icon_state = "rallador_de_queso"
+	icon_state = "cheese_grater"
 	sharp = TRUE
 	edge = FALSE
 	force = WEAPON_FORCE_HARMLESS
 
-/obj/item/weapon/rallador_de_queso/attackby(obj/item/I, mob/user, params)
+/obj/item/weapon/cheese_grater/attackby(obj/item/I, mob/user, params)
     if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/bun))
         if(isturf(loc))
             for(var/i=1 to 3)
-                new /obj/item/weapon/reagent_containers/food/snacks/pan_rallado (loc)
-            to_chat(user, "<span class='notice'>You cut [src] into pan rallado.</span>")
+                new /obj/item/weapon/reagent_containers/food/snacks/bread_crumbs (loc)
+            to_chat(user, "<span class='notice'>You cut [src] into bread crumbs.</span>")
             qdel(I)
         else
             to_chat(user, "<span class='notice'>You need to put [src] on a surface to cut it!</span>")
@@ -20,10 +20,10 @@
         ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/I, mob/user, params)
-    if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/pan_rallado))
+    if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/bread_crumbs))
         if(isturf(loc))
-            new /obj/item/weapon/reagent_containers/food/snacks/milanesa_cruda (loc)
-            to_chat(user, "<span class='notice'>You put pan rallado all over the [src] and get a Milanesa!.</span>")
+            new /obj/item/weapon/reagent_containers/food/snacks/raw_milanesa (loc)
+            to_chat(user, "<span class='notice'>You put bread crumbs all over the [src] and get a Milanesa!.</span>")
             qdel(I)
             qdel(src)
         else

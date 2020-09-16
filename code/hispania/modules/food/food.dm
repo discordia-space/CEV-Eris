@@ -21,11 +21,11 @@
 	preloaded_reagents = list("protein" = 6)
 
 //Milanesas// Por totomc
-/obj/item/weapon/reagent_containers/food/snacks/milanesa_cruda
-	name = "Milanesa cruda"
+/obj/item/weapon/reagent_containers/food/snacks/raw_milanesa
+	name = "Raw milanesa"
 	desc = "Looks delicious, but i wouldnt recommend eating it...yet"
 	icon = 'icons/hispania/obj/food/food.dmi'
-	icon_state = "milanesa_cruda"
+	icon_state = "raw_milanesa"
 	filling_color = "#EC3924"
 	cooked = FALSE
 	taste_tag = list(MEAT_FOOD)
@@ -43,10 +43,10 @@
 
 	preloaded_reagents = list("protein" = 6)
 
-/obj/item/weapon/reagent_containers/food/snacks/pan_rallado
-	name = "Pan rallado"
+/obj/item/weapon/reagent_containers/food/snacks/bread_crumbs
+	name = "Bread crumbs"
 	desc = "Bread, but in small pieces"
 	icon = 'icons/hispania/obj/food/food.dmi'
-	icon_state = "pan_rallado"
+	icon_state = "bread_crumbs"
 	filling_color = "#EC3924"
 	cooked = TRUE
