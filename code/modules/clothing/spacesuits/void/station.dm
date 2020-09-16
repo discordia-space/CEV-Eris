@@ -232,7 +232,7 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/head/space/void/science
-    var/list/icon_states = list("moebiushelmb","moebiushelmr", "moebiushelmp","moebiushelmg", "moebiushelmy", "moebiushelmw")
+    var/list/icon_states = list("moebiushelmb","moebiushelmr", "moebiushelmp","moebiushelmg", "moebiushelmy", "moebiushelmw") //TODO: a manual selection anytime.
 
 /obj/item/clothing/head/space/void/science/New()
     ..()
