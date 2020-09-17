@@ -13,12 +13,17 @@
 		name += " ([labelled])"
 
 	overlays.Cut()
-	// Updates the plant overlay.
-	if(!isnull(seed))
+	update_overlays()
 
+// Updates the plant overlay.
+/obj/machinery/portable_atmospherics/hydroponics/update_overlays()
+	.=..()
+	var/list/new_overlays = .
+	for(var/overlay in new_overlays)
+		overlays.Add(overlay)
+	if(!isnull(seed))
 		if(mechanical && health <= (seed.get_trait(TRAIT_ENDURANCE) / 2))
 			overlays += "over_lowhealth3"
-
 		if(dead)
 			var/ikey = "[seed.get_trait(TRAIT_PLANT_ICON)]-dead"
 			var/image/dead_overlay = plant_controller.plant_icon_cache["[ikey]"]
@@ -47,7 +52,6 @@
 				plant_overlay.color = seed.get_trait(TRAIT_PLANT_COLOUR)
 				plant_controller.plant_icon_cache["[ikey]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"] = plant_overlay
 			overlays |= plant_overlay
-
 			if(harvest && overlay_stage == seed.growth_stages)
 				ikey = "[seed.get_trait(TRAIT_PRODUCT_ICON)]"
 				var/image/harvest_overlay = plant_controller.plant_icon_cache["product-[ikey]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"]
@@ -56,11 +60,9 @@
 					harvest_overlay.color = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 					plant_controller.plant_icon_cache["product-[ikey]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"] = harvest_overlay
 				overlays |= harvest_overlay
-
 	//Draw the cover.
 	if(closed_system)
 		overlays += "hydrocover"
-
 	//Updated the various alert icons.
 	if(mechanical)
 		if(waterlevel <= 10)
@@ -71,7 +73,6 @@
 			overlays += "over_alert3"
 		if(harvest)
 			overlays += "over_harvest3"
-
 	// Update bioluminescence.
 	if(seed)
 		if(seed.get_trait(TRAIT_BIOLUM))
@@ -80,6 +81,5 @@
 				clr = seed.get_trait(TRAIT_BIOLUM_COLOUR)
 			set_light(round(seed.get_trait(TRAIT_POTENCY)/10), l_color = clr)
 			return
-
 	set_light(0)
 	return

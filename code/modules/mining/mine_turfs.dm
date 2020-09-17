@@ -45,15 +45,15 @@
 	return !density
 
 /turf/simulated/mineral/is_plating()
-	return 1
+	return TRUE
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)
-		if(2.0)
+		if(2)
 			if (prob(70))
 				mined_ore = 1 //some of the stuff gets blown up
 				GetDrilled()
-		if(1.0)
+		if(1)
 			mined_ore = 2 //some of the stuff gets blown up
 			GetDrilled()
 
@@ -424,12 +424,12 @@
 
 /turf/simulated/floor/asteroid/ex_act(severity)
 	switch(severity)
-		if(3.0)
+		if(3)
 			return
-		if(2.0)
+		if(2)
 			if (prob(70))
 				gets_dug()
-		if(1.0)
+		if(1)
 			gets_dug()
 	return
 

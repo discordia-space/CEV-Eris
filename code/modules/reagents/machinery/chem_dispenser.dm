@@ -57,10 +57,10 @@
 
 /obj/machinery/chemical_dispenser/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			del(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				del(src)
 				return
@@ -75,7 +75,7 @@
 
 	var/list/chemicals = list()
 	for (var/re in dispensable_reagents)
-		var/datum/reagent/temp = chemical_reagents_list[re]
+		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals

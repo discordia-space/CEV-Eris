@@ -203,11 +203,11 @@
 		return
 	usr.client.screen.Cut()
 	if(ishuman(usr) && (usr.client.prefs.UI_style != null))
-		if (!global.HUDdatums.Find(usr.client.prefs.UI_style))
+		if (!GLOB.HUDdatums.Find(usr.client.prefs.UI_style))
 			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
 		else
 			var/mob/living/carbon/human/H = usr
-			var/datum/hud/human/HUDdatum = global.HUDdatums[usr.client.prefs.UI_style]
+			var/datum/hud/human/HUDdatum = GLOB.HUDdatums[usr.client.prefs.UI_style]
 			if (!H.HUDneed.len)
 				if (H.HUDprocess.len)
 					log_debug("[usr] have object in HUDprocess list, but HUDneed is empty.")

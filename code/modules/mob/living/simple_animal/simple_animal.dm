@@ -426,16 +426,16 @@
 		if (HUDtech.Find("flash"))
 			flick("flash", HUDtech["flash"])
 	switch (severity)
-		if (1.0)
+		if (1)
 			adjustBruteLoss(500)
 			gib()
 			return
 
-		if (2.0)
+		if (2)
 			adjustBruteLoss(60)
 
 
-		if(3.0)
+		if(3)
 			adjustBruteLoss(30)
 
 

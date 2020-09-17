@@ -7,7 +7,7 @@
 // more than one chemical it will still only appear in only one of the sublists.
 /proc/initialize_chemical_reactions()
 	var/paths = typesof(/datum/chemical_reaction) - /datum/chemical_reaction
-	chemical_reactions_list = list()
+	GLOB.chemical_reactions_list = list()
 
 	for(var/path in paths)
 		var/datum/chemical_reaction/D = new path()
@@ -29,13 +29,13 @@
 					GLOB.chemical_reactions_list_by_result[D.result] = list()
 				GLOB.chemical_reactions_list_by_result[D.result] += D
 			var/reagent_id = D.required_reagents[1]
-			if(!chemical_reactions_list[reagent_id])
-				chemical_reactions_list[reagent_id] = list()
-			chemical_reactions_list[reagent_id] += D
+			if(!GLOB.chemical_reactions_list[reagent_id])
+				GLOB.chemical_reactions_list[reagent_id] = list()
+			GLOB.chemical_reactions_list[reagent_id] += D
 
 //helper that ensures the reaction rate holds after iterating
 //Ex. REACTION_RATE(0.3) means that 30% of the reagents will react each chemistry tick (~2 seconds by default).
-#define REACTION_RATE(rate) (1.0 - (1.0-rate)**(1.0/PROCESS_REACTION_ITER))
+#define REACTION_RATE(rate) (1 - (1-rate)**(1/PROCESS_REACTION_ITER))
 
 //helper to define reaction rate in terms of half-life
 //Ex.
@@ -43,7 +43,7 @@
 //HALF_LIFE(1) -> Half of the reagents react immediately, the rest over the following ticks.
 //HALF_LIFE(2) -> Half of the reagents are consumed after 2 chemistry ticks.
 //HALF_LIFE(3) -> Half of the reagents are consumed after 3 chemistry ticks.
-#define HALF_LIFE(ticks) (ticks? 1.0 - (0.5)**(1.0/(ticks*PROCESS_REACTION_ITER)) : 1.0)
+#define HALF_LIFE(ticks) (ticks? 1 - (0.5)**(1/(ticks*PROCESS_REACTION_ITER)) : 1)
 
 /datum/chemical_reaction
 	var/result = null
@@ -58,7 +58,7 @@
 
 	//if less than 1, the reaction will be inhibited if the ratio of products/reagents is too high.
 	//0.5 = 50% yield -> reaction will only proceed halfway until products are removed.
-	var/yield = 1.0
+	var/yield = 1
 
 	// Reaction thermal requirements
 	var/maximum_temperature = INFINITY

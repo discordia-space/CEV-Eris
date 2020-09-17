@@ -1364,13 +1364,12 @@
 	glass_center_of_mass = list("x"=15, "y"=7)
 	taste_tag = list(TASTE_SWEET, TASTE_BITTER)
 
-/datum/reagent/ethanol/ntcahors/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/ntcahors/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.adjustToxLoss(-0.5 * effect_multiplier)
 
 // Cocktails
-
 /datum/reagent/ethanol/acid_spit
 	name = "Acid Spit"
 	id = "acidspit"
@@ -1548,7 +1547,7 @@
 	glass_center_of_mass = list("x"=18, "y"=10)
 	taste_tag = list(TASTE_STRONG,TASTE_SOUR)
 
-/datum/reagent/ethanol/beepsky_smash/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/beepsky_smash/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.Stun(2)
 
@@ -1997,7 +1996,7 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 	taste_tag = list(TASTE_STRONG,TASTE_SLIMEY)
 
-/datum/reagent/ethanol/neurotoxin/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/neurotoxin/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.Weaken(3 * effect_multiplier)
 	M.add_chemical_effect(CE_PULSE, -1)
@@ -2032,7 +2031,7 @@
 	glass_center_of_mass = list("x"=16, "y"=5)
 	taste_tag = list(TASTE_SPICY,TASTE_SWEET,TASTE_BITTER)
 
-/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/ethanol/pwine/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	if(dose > 30)
 		M.adjustToxLoss(0.2 * effect_multiplier)
@@ -2304,8 +2303,6 @@
 	glass_desc = "Booze for true drunkers."
 	glass_center_of_mass = list("x"=16, "y"=12)
 	taste_tag = list(TASTE_STRONG)
-
-
 
 /datum/reagent/ethanol/atomic_vodka/affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
 	..()
