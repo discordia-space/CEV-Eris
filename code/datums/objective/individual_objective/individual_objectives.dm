@@ -10,6 +10,7 @@
 	var/x
 	var/y
 
+
 /datum/individual_objetive/beyond/assign()
 	..()
 	x = rand(2, GLOB.maps_data.overmap_size-1)

@@ -2,41 +2,59 @@
 
 /mob/living/carbon/human/proc/pick_individual_objective()
 	admin_notice(SPAN_DANGER("ENTRO AL INIDICUAL OBJECTIVE"))
-	if(!mind) return FALSE
-	admin_notice(SPAN_DANGER("TIENE MENTE"))
-	var/list/valid_objectives = subtypesof(/datum/individual_objetive/common)
-	admin_notice(SPAN_DANGER("esta es la cantidad de objectivos comunes [valid_objectives.len]"))
-	if(mind.assigned_job)
-		for(var/datum/individual_objetive/job/IO in GLOB.individual_job_objetives)
-			if(mind.assigned_job.department == IO.department)
-				valid_objectives += GLOB.individual_job_objetives[IO]
+	if(!mind || (mind && player_is_antag(mind))) 
+		return FALSE
+	admin_notice(SPAN_DANGER("[src] TIENE MENTE y no es antag"))
+	var/list/valid_objectives = list()
+	for(var/datum/individual_objetive/IO in GLOB.individual_objetives)
+		var/repeat = FALSE
+		for(var/datum/individual_objetive/OLD in mind.individual_objetives)
+			if(OLD.name == IO.name)
+				repeat = TRUE
+		if(repeat)
+			continue
+		if(IO.req_department && (!mind.assigned_job || IO.req_department != mind.assigned_job.department))
+			continue
+		valid_objectives += GLOB.individual_objetives[IO]
 	admin_notice(SPAN_DANGER("esta es la cantidad de objectivos totales [valid_objectives.len]"))
-	var/individual_objetive = pick(valid_objectives)
-	new individual_objetive(mind)
+	if(!valid_objectives.len) return
+	var/new_individual_objetive = pick(valid_objectives)
+	var/datum/individual_objetive/IO = new new_individual_objetive()
+	IO.assign(mind)
 
 /datum/individual_objetive
 	var/name = "individual"
 	var/datum/mind/owner				//Who owns the objective.
-	var/completed = 0					//currently only used for custom objectives.
+	var/completed = FALSE					//currently only used for custom objectives.
 	var/per_unit = 0
 	var/units_completed = 0
 	var/units_compensated = 0 			//Shit paid for
 	var/units_requested = INFINITY
-	var/completion_payment = 0			//Credits paid to owner when completed
-	var/department
+	var/req_department
+	var/req_cruciform
+	var/insight_reward = 20			//Credits paid to owner when completed
 
-/datum/individual_objetive/New(datum/mind/new_owner)
-	if(!new_owner) return FALSE
+/datum/individual_objetive/proc/assign(datum/mind/new_owner)
+	SHOULD_CALL_PARENT(TRUE)
 	owner = new_owner
 	owner.individual_objetives += src
-	. = TRUE
 
+/datum/individual_objetive/proc/completed(fail=FALSE)
+	if(!owner.current || !ishuman(owner.current))
+		return
+	completed = TRUE
+	admin_notice(SPAN_DANGER("completado [completed]"))
+	var/mob/living/carbon/human/H = owner.current
+	H.sanity.insight += insight_reward
+	owner.individual_objetives -= src
+	admin_notice(SPAN_DANGER("[H] gano [insight_reward] de insight"))
+	qdel(src)
 
 /datum/individual_objetive/proc/get_description()
 	var/desc = "Placeholder Objective"
 	return desc
 
-/datum/individual_objetive/proc/unit_completed(var/count=1)
+/datum/individual_objetive/proc/task_completed(var/count=1)
 	units_completed += count
 
 /datum/individual_objetive/proc/is_completed()

@@ -89,5 +89,8 @@
 
 // /datum/component/storage signals
 
-/*******Non-Signal Component Related Defines*******/
 
+// OVERMAP signlas
+#define COMSIG_SHIP_STILL "ship_still" // /obj/effect/overmap/ship/Process() && is_still()
+
+/*******Non-Signal Component Related Defines*******/

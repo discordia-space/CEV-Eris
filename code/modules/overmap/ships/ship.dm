@@ -1,3 +1,5 @@
+#define SIGNAL_COOLDOWN 1 MINUTES
+
 /obj/effect/overmap/ship
 	name = "generic ship"
 	desc = "Space faring vessel."
@@ -16,6 +18,8 @@
 	var/engines_state = 1 //global on/off toggle for all engines
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
+	var/still_count = 0//for individual objectives
+	var/still_timer = 0//for individual objectives
 
 
 	Crossed(var/obj/effect/overmap_event/movable/ME)
@@ -128,6 +132,8 @@
 
 /obj/effect/overmap/ship/Process()
 	if(!is_still())
+		still_count = 0
+		still_timer = 0
 		var/list/deltas = list(0,0)
 		for(var/i=1, i<=2, i++)
 			if(speed[i] && world.time > last_movement[i] + default_delay - speed_mod*abs(speed[i]))
@@ -138,6 +144,18 @@
 			Move(newloc)
 			handle_wraparound()
 		update_icon()
+	else if(istype(src, /obj/effect/overmap/ship/eris))
+		if(world.time >= still_timer)
+			still_timer = world.time + SIGNAL_COOLDOWN
+			still_count += SIGNAL_COOLDOWN
+			admin_notice(SPAN_DANGER("[src] paso el check del timmer. esta es x [x] y esta es y [y]"))
+			if(still_count >= OJECTIVE_BEYOND_TIMER)
+				admin_notice(SPAN_DANGER("[src] paso el check del timmer del job asi que debio enviar la señal"))
+				for(var/mob/living/carbon/human/H in GLOB.player_list)
+					admin_notice(SPAN_DANGER("[H] es el mob encontrado en player list"))
+					if(H.mind)		
+						admin_notice(SPAN_DANGER("[H] tiene mente"))
+						SEND_SIGNAL(H.mind, COMSIG_SHIP_STILL, x, y)
 
 /obj/effect/overmap/ship/update_icon()
 	if(!is_still())
