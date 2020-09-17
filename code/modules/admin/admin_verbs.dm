@@ -316,6 +316,10 @@ ADMIN_VERB_ADD(/client/proc/togglebuildmodeself, R_FUN, FALSE)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
+
+	if(!check_rights(R_ADMIN))
+		return
+
 	if(src.mob)
 		togglebuildmode(src.mob)
 
