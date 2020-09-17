@@ -1,6 +1,6 @@
 /obj/item/weapon/cheese_grater
-	name = "Cheese grater"
-	desc = "Just a regular cheese grater"
+	name = "Grater"
+	desc = "Just a regular grater"
 	icon = 'icons/hispania/obj/kitchen.dmi'
 	icon_state = "cheese_grater"
 	sharp = TRUE

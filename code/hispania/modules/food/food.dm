@@ -52,4 +52,3 @@
 	cooked = TRUE
 
 	preloaded_reagents = list ("bread" = 2)
-
