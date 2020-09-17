@@ -48,7 +48,7 @@
 	desc = "Bread, but in small pieces"
 	icon = 'icons/hispania/obj/food/food.dmi'
 	icon_state = "bread_crumbs"
-	filling_color = "#EC3924"
+	filling_color = "#BA953F"
 	cooked = TRUE
 
 	preloaded_reagents = list ("bread" = 2)
