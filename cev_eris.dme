@@ -731,6 +731,7 @@
 #include "code\game\machinery\embedded_controller\embedded_controller_base.dm"
 #include "code\game\machinery\embedded_controller\embedded_program_base.dm"
 #include "code\game\machinery\embedded_controller\simple_docking_controller.dm"
+#include "code\game\machinery\embedded_controller\~docking_program_undef.dm"
 #include "code\game\machinery\excelsior\autolathe.dm"
 #include "code\game\machinery\excelsior\boombox.dm"
 #include "code\game\machinery\excelsior\diesel.dm"
