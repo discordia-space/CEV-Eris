@@ -41,7 +41,7 @@
 	cooked = TRUE
 	taste_tag = list(MEAT_FOOD)
 
-	preloaded_reagents = list("protein" = 6)
+	preloaded_reagents = list("protein" = 4, "sodiumchloride" = 1, "bread" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/bread_crumbs
 	name = "Bread crumbs"
@@ -50,3 +50,6 @@
 	icon_state = "bread_crumbs"
 	filling_color = "#EC3924"
 	cooked = TRUE
+
+	preloaded_reagents = list ("bread" = 2)
+
