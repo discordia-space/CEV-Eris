@@ -312,7 +312,7 @@ ADMIN_VERB_ADD(/client/proc/make_sound, R_FUN, FALSE)
 		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
 
 
-ADMIN_VERB_ADD(/client/proc/togglebuildmodeself, R_FUN, FALSE)
+ADMIN_VERB_ADD(/client/proc/togglebuildmodeself, R_ADMIN, FALSE)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Special Verbs"
