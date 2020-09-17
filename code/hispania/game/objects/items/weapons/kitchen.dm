@@ -7,6 +7,7 @@
 	edge = FALSE
 	force = WEAPON_FORCE_HARMLESS
 
+//Para rallar el pan
 /obj/item/weapon/cheese_grater/attackby(obj/item/I, mob/user, params)
     if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/bun))
         if(isturf(loc))
@@ -19,6 +20,7 @@
     else
         ..()
 
+//Para hacer la milanesa
 /obj/item/weapon/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/I, mob/user, params)
     if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/bread_crumbs))
         if(isturf(loc))

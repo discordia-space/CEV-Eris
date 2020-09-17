@@ -26,18 +26,18 @@
 	desc = "Looks delicious, but i wouldnt recommend eating it...yet"
 	icon = 'icons/hispania/obj/food/food.dmi'
 	icon_state = "raw_milanesa"
-	filling_color = "#EC3924"
+	filling_color = "#D3B266"
 	cooked = FALSE
 	taste_tag = list(MEAT_FOOD)
 
-	preloaded_reagents = list("protein" = 4)
+	preloaded_reagents = list("protein" = 4, "bread" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/milanesa
 	name = "Milanesa"
 	desc = "Looks delicious, eat it!"
 	icon = 'icons/hispania/obj/food/food.dmi'
 	icon_state = "milanesa"
-	filling_color = "#EC3924"
+	filling_color = "#A87D1D"
 	cooked = TRUE
 	taste_tag = list(MEAT_FOOD)
 
