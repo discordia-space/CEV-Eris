@@ -1286,7 +1286,7 @@
 	products = list(/obj/item/weapon/tray = 8,/obj/item/weapon/material/kitchen/utensil/fork = 6, /obj/item/weapon/tool/knife = 6, /obj/item/weapon/material/kitchen/utensil/spoon = 6, /obj/item/weapon/tool/knife = 3,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass = 8,/obj/item/clothing/suit/chef/classic = 2,/obj/item/weapon/storage/lunchbox = 3,/obj/item/weapon/storage/lunchbox/rainbow = 3,/obj/item/weapon/storage/lunchbox/cat = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/pitcher = 3,/obj/item/weapon/reagent_containers/food/drinks/teapot = 3,/obj/item/weapon/reagent_containers/food/drinks/mug = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/black = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/green = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/blue = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/mug/red = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/heart = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/one = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/metal = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/brit = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/teacup = 10,)
+					/obj/item/weapon/reagent_containers/food/drinks/mug/rainbow = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/brit = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/moebius = 3,/obj/item/weapon/reagent_containers/food/drinks/mug/teacup = 10,/obj/item/weapon/cheese_grater = 3,)
 	contraband = list(/obj/item/weapon/material/kitchen/rollingpin = 2, /obj/item/weapon/tool/knife/butch = 2)
 	auto_price = FALSE
 
