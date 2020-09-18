@@ -176,7 +176,8 @@
 		material ? to_chat(user, "Its frame is reinforced with [material].") : null
 
 /mob/living/exosuit/return_air()
-	return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
+	if(src)
+		return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
 
 /mob/living/exosuit/GetIdCard()
 	return access_card

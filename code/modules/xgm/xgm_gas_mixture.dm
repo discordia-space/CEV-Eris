@@ -105,6 +105,8 @@
 
 
 /datum/gas_mixture/proc/equalize(datum/gas_mixture/sharer)
+	if(!sharer)
+		return
 	var/our_heatcap = heat_capacity()
 	var/share_heatcap = sharer.heat_capacity()
 
