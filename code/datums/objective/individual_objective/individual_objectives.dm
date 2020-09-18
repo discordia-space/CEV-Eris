@@ -1,4 +1,3 @@
-
 /datum/individual_objetive/casda
 	name = "common"
 
@@ -18,14 +17,17 @@
 	RegisterSignal(owner, COMSIG_SHIP_STILL, .proc/task_completed)
 
 /datum/individual_objetive/beyond/get_description()
-	return "Move the ship to coordenates [x], [y] for 5 minutes"
+	var/desc = "Move the ship to coordenates [x], [y] for [OJECTIVE_BEYOND_TIMER/(1 MINUTES)]"
+	if(completed)
+		desc += completed_desc
+	return desc
 
 /datum/individual_objetive/beyond/task_completed(nx, ny)
-	admin_notice(SPAN_DANGER("esta es x [nx] y esta es y [ny]."))
 	if(x == nx && y == ny)
 		completed()
 
 /datum/individual_objetive/beyond/completed()
-    UnregisterSignal(owner, COMSIG_SHIP_STILL)
-    ..()
+	if(is_completed()) return
+	UnregisterSignal(owner, COMSIG_SHIP_STILL)
+	..()
 

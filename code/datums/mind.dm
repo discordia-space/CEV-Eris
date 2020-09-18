@@ -119,6 +119,14 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
+	if(LAZYLEN(individual_objetives))
+		output += "<HR><B>Your individual objectives:</B><UL>"
+
+		var/obj_count = 1
+		for(var/datum/individual_objetive/objective in individual_objetives)
+			output += "<br><b>#[obj_count] [objective.name]</B>: [objective.get_description()]</b>"
+			obj_count++
+		output += "</UL>"
 	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
