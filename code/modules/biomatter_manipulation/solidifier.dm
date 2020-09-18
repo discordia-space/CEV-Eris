@@ -41,7 +41,7 @@
 
 /obj/machinery/biomatter_solidifier/Process()
 	if(active)
-		if(reagents.get_free_space() => BIOMATTER_PER_SHEET)
+		if(reagents.get_free_space() >= BIOMATTER_PER_SHEET)
 			if(reagents.total_volume < BIOMATTER_PER_SHEET)
 				if(!container)
 					abort("Container of liquid biomatter required.")
@@ -52,7 +52,7 @@
 			if(container && container.reagents.has_reagent("biomatter", BIOMATTER_PER_SHEET))
 				var/quantity = min(reagents.get_free_space(), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
 				container.reagents.trans_id_to(src, "biomatter", quantity, TRUE)
-		if(reagents.get_reagent_amount("biomatter") => BIOMATTER_PER_SHEET)
+		if(reagents.get_reagent_amount("biomatter") >= BIOMATTER_PER_SHEET)
 			process_biomatter()
 		else
 			abort("Insufficient amount of biomatter.")
