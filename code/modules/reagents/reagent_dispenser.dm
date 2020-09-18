@@ -37,8 +37,10 @@
 
 			if(do_after(user, 20, src))
 				if(!src) return
-				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
-				set_anchored(!anchored)
+				if(set_anchored(!anchored))
+					to_chat(user, SPAN_NOTICE("You [anchored? "" : "un"]secured \the [src]!"))
+				else
+					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 			return FALSE
 	else
 		return ..()

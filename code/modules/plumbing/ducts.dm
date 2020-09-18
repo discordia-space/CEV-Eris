@@ -292,12 +292,10 @@ All the important duct code:
 				temp_icon += "_w"
 	icon_state = temp_icon
 
-
-
 /obj/machinery/duct/set_anchored(anchorvalue)
 	. = ..()
-	if(isnull(.))
-		return
+	if(!.)
+		return FALSE
 	if(anchorvalue)
 		active = TRUE
 		attempt_connect()
