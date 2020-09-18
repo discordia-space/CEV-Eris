@@ -13,11 +13,11 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
 	w_class = ITEM_SIZE_SMALL
-	reagent_flags = OPENCONTAINER
+	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	unacidable = 1 //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 1)
-	var/label_icon_state = null
-	var/lid_icon_state = null
+	var/label_icon_state
+	var/lid_icon_state
 
 	var/label_text = ""
 
