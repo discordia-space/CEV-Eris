@@ -3,6 +3,7 @@
 	suit = /obj/item/clothing/suit/storage/ass_jacket
 	uniform = /obj/item/clothing/under/rank/assistant
 	r_pocket = /obj/item/weapon/spacecash/bundle/vagabond
+	l_pocket = /obj/item/weapon/tool/tape_roll/web
 
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
