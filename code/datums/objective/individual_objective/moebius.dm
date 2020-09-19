@@ -1,4 +1,4 @@
-/datum/individual_objetive/big_brain
+/datum/individual_objetive/big_brain //WORK
 	name = "The Biggest Brain"
 	req_department = DEPARTMENT_SCIENCE
 	var/target_stat = STAT_COG
@@ -9,13 +9,32 @@
 	..()
 	target_val = owner.current.stats.getStat(STAT_COG) + delta
 	desc = "Ensure that your COG stat will be increased to [target_val]."
-	RegisterSignal(owner, COMSIG_STAT, .proc/task_completed)
+	RegisterSignal(owner.current, COMSIG_STAT, .proc/task_completed)
 
-/datum/individual_objetive/big_brain/task_completed(stat_name, stat_value)
+/datum/individual_objetive/big_brain/task_completed(stat_name, stat_value, stat_value_pure)
 	if(target_stat == stat_name && (stat_value >= target_val))
 		completed()
 
 /datum/individual_objetive/big_brain/completed()
 	if(completed) return
-	UnregisterSignal(owner, COMSIG_STAT)
+	UnregisterSignal(owner.current, COMSIG_STAT)
+	..()
+
+/datum/individual_objetive/get_nsa
+	name = "Blow the Lid"
+	req_department = DEPARTMENT_SCIENCE
+	var/target_nsa = 250
+
+/datum/individual_objetive/get_nsa/assign()
+	..()
+	desc = "Reach [target_nsa] of NSA. Survive.."
+	RegisterSignal(owner.current, COMSING_NSA, .proc/task_completed)
+
+/datum/individual_objetive/get_nsa/task_completed(n_nsa)
+	if(n_nsa >= target_nsa)
+		completed()
+
+/datum/individual_objetive/get_nsa/completed()
+	if(completed) return
+	UnregisterSignal(owner.current, COMSING_NSA)
 	..()

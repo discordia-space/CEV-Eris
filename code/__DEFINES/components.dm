@@ -35,11 +35,8 @@
 #define COMSIG_PARENT_QDELETING "parent_qdeleting"              // just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 
-#define COMSIG_STAT "change_stat"
-
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
-
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
 #define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
 
@@ -47,6 +44,7 @@
 
 // /turf signals
 #define CONSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
+
 // /atom/movable signals
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
 
@@ -60,11 +58,13 @@
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"       //mob/living/carbon/electrocute_act()
+#define COMSING_NSA "current_nsa"                               //current nsa
 
 // /mob/living/carbon/human signals
 #define COMSIG_EMPTY_POCKETS "human_empty_pockets"
 #define COMSIG_HUMAN_SAY "human_say"                            //from mob/living/carbon/human/say(): (message)
 #define COMSIG_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
+#define COMSIG_STAT "current_stat"                               //current stat
 
 // /datum/species signals
 
@@ -72,6 +72,7 @@
 #define COMSIG_OBJ_HIDE	"obj_hide"
 
 //machinery
+#define COMSIG_AREA_APC_UNOPERATING "area_unoperating"  //from apc process()
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack

@@ -4,7 +4,7 @@
 
 /datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class)
 	..(max, parent_mob)
-	
+
 	metabolism_class = met_class
 	if(istype(parent_mob))
 		parent = parent_mob
@@ -58,6 +58,7 @@
 		return nerve_system_accumulations[tag]
 
 /datum/metabolism_effects/proc/get_nsa()
+	SEND_SIGNAL(parent, COMSING_NSA, nsa_current)
 	return nsa_current
 
 /datum/metabolism_effects/proc/get_nsa_target()

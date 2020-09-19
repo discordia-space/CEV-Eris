@@ -1,3 +1,5 @@
+#define STILL_COUNT_COOLDOWN 0.5 MINUTES
+
 /obj/effect/overmap/ship
 	name = "generic ship"
 	desc = "Space faring vessel."
@@ -17,6 +19,7 @@
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
 	var/still_timer = 0//for individual objectives
+	var/still_count = 0//for individual objectives
 
 
 	Crossed(var/obj/effect/overmap_event/movable/ME)
@@ -130,6 +133,7 @@
 /obj/effect/overmap/ship/Process()
 	if(!is_still())
 		still_timer = world.time
+		still_count = 0
 		var/list/deltas = list(0,0)
 		for(var/i=1, i<=2, i++)
 			if(speed[i] && world.time > last_movement[i] + default_delay - speed_mod*abs(speed[i]))
@@ -140,12 +144,10 @@
 			Move(newloc)
 			handle_wraparound()
 		update_icon()
-	else if(istype(src, /obj/effect/overmap/ship/eris))
-		if(world.time >= (still_timer + OJECTIVE_BEYOND_TIMER))
-			still_timer = world.time
-			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				if(H.mind)		
-					SEND_SIGNAL(H.mind, COMSIG_SHIP_STILL, x, y)
+	else if(world.time >= (still_timer + STILL_COUNT_COOLDOWN))
+		still_timer = world.time
+		still_count += STILL_COUNT_COOLDOWN
+		SEND_SIGNAL(src, COMSIG_SHIP_STILL, still_count, x, y)
 
 /obj/effect/overmap/ship/update_icon()
 	if(!is_still())

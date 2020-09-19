@@ -5,15 +5,16 @@
 		return FALSE
 	var/list/valid_objectives = list()
 	for(var/datum/individual_objetive/IO in GLOB.individual_objetives)
-		var/repeat = FALSE
-		for(var/datum/individual_objetive/OLD in mind.individual_objetives)
-			if(OLD.name == IO.name)
-				repeat = TRUE
-		if(repeat)
+		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+		if(!C && IO.req_cruciform)
+			continue
+		if(C && !IO.allow_cruciform)
 			continue
 		if(IO.req_department && (!mind.assigned_job || IO.req_department != mind.assigned_job.department))
 			continue
 		valid_objectives += GLOB.individual_objetives[IO]
+	for(var/datum/individual_objetive/objective in mind.individual_objetives)
+		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
 	var/new_individual_objetive = pick(valid_objectives)
 	var/datum/individual_objetive/IO = new new_individual_objetive()
@@ -24,11 +25,12 @@
 	var/desc = "Placeholder Objective"
 	var/datum/mind/owner
 	var/completed = FALSE
+	var/allow_cruciform = TRUE
 	var/units_completed = 0
 	var/units_requested = 1
 	var/req_department
-	var/req_cruciform
-	var/insight_reward = 20
+	var/req_cruciform = FALSE
+	var/insight_reward = 25
 	var/completed_desc = " <span style='color:green'> Objective completed!</span>"
 
 /datum/individual_objetive/proc/assign(datum/mind/new_owner)
