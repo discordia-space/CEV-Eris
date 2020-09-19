@@ -49,5 +49,4 @@
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-			var/verbage = english_list(listed_components)
-			to_chat(user, SPAN_NOTICE("<span class='notice'>Required components: [verbage].</span>"))
+		to_chat(user, SPAN_NOTICE("<span class='notice'>Required components: [english_list(listed_components)].</span>"))
