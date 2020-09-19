@@ -745,7 +745,7 @@ var/global/list/robot_modules = list(
 					"Maid" = "maidbot"
 					)
 	health = 250 //Bulky
-	speed_factor = 0.85 //Slow
+	speed_factor = 1.0 // Normal speed, its a cleaning unit and you wouldnt choose it if you sweep floors with ultra slow movement
 	power_efficiency = 0.8 //Poor
 
 	stat_modifiers = list(
