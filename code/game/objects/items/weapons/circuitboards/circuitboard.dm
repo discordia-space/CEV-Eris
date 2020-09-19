@@ -49,4 +49,4 @@
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-		to_chat(user, SPAN_NOTICE("<span class='notice'>Required components: [english_list(listed_components)].</span>"))
+		to_chat(user, SPAN_NOTICE("Required components: [english_list(listed_components)]."))
