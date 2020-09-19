@@ -35,6 +35,7 @@
 #define COMSIG_PARENT_QDELETING "parent_qdeleting"              // just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 
+#define COMSIG_STAT "change_stat"
 
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
@@ -52,6 +53,7 @@
 // /mob signals
 #define COMSIG_MOB_LIFE  "mob_life"                             //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"                            //from mob/Login()
+#define COMSIG_MOB_DEATH "mob_death"                            //from mob/death()
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"             //mob/living/proc/stun_effect_act()
@@ -60,6 +62,7 @@
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"       //mob/living/carbon/electrocute_act()
 
 // /mob/living/carbon/human signals
+#define COMSIG_EMPTY_POCKETS "human_empty_pockets"
 #define COMSIG_HUMAN_SAY "human_say"                            //from mob/living/carbon/human/say(): (message)
 #define COMSIG_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
 
@@ -90,7 +93,7 @@
 // /datum/component/storage signals
 
 
-// OVERMAP signlas
+// OVERMAP
 #define COMSIG_SHIP_STILL "ship_still" // /obj/effect/overmap/ship/Process() && is_still()
 
 /*******Non-Signal Component Related Defines*******/

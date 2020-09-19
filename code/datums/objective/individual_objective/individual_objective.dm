@@ -21,15 +21,14 @@
 
 /datum/individual_objetive
 	var/name = "individual"
-	var/datum/mind/owner				//Who owns the objective.
-	var/completed = FALSE					//currently only used for custom objectives.
-	var/per_unit = 0
+	var/desc = "Placeholder Objective"
+	var/datum/mind/owner
+	var/completed = FALSE
 	var/units_completed = 0
-	var/units_compensated = 0 			//Shit paid for
-	var/units_requested = INFINITY
+	var/units_requested = 1
 	var/req_department
 	var/req_cruciform
-	var/insight_reward = 20			//Credits paid to owner when completed
+	var/insight_reward = 20
 	var/completed_desc = " <span style='color:green'> Objective completed!</span>"
 
 /datum/individual_objetive/proc/assign(datum/mind/new_owner)
@@ -40,7 +39,7 @@
 
 /datum/individual_objetive/proc/completed(fail=FALSE)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!owner.current || !ishuman(owner.current) || is_completed())
+	if(!owner.current || !ishuman(owner.current) || completed)
 		return
 	completed = TRUE
 	var/mob/living/carbon/human/H = owner.current
@@ -48,19 +47,17 @@
 	to_chat(owner,  SPAN_NOTICE("You has completed the personal objective: [name]"))
 
 /datum/individual_objetive/proc/get_description()
-	var/desc = "Placeholder Objective"
-	return desc
+	var/n_desc = desc
+	if(completed)
+		n_desc += completed_desc
+	return n_desc
 
 /datum/individual_objetive/proc/task_completed(count=1)
 	units_completed += count
-
-/datum/individual_objetive/proc/is_completed()
-	if(!completed)
-		completed = check_for_completion()
-	return completed
+	if(check_for_completion())
+		completed()
 
 /datum/individual_objetive/proc/check_for_completion()
-	if(per_unit)
-		if(units_completed > 0)
-			return 1
-	return 0
+	if(units_completed >= units_requested)
+		return TRUE
+	return FALSE
