@@ -1,4 +1,0 @@
-author: Hopek
-delete-after: true
-changes:
-  - rscadd: Circuit boards now display required components when examined.
