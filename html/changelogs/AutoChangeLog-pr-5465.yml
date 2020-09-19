@@ -1,0 +1,5 @@
+author: Hopek
+delete-after: true
+changes:
+  - bugfix: fixed cryopods ignoring logic and not giving items back when the occupant
+      went afk on spawn for longer than a minute.
