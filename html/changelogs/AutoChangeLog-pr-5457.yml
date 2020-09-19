@@ -1,5 +1,0 @@
-author: Hopek
-delete-after: true
-changes:
-  - code_imp: You can now compile and run the codebase through VS code or extools
-      without errors on start.

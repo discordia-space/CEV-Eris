@@ -1,4 +1,0 @@
-author: TorinoFermic
-delete-after: true
-changes:
-  - bugfix: Ticker is not longer frozen and prevent storyteller from progressing
