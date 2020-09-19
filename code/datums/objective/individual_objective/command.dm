@@ -12,7 +12,7 @@
 	x = rand(2, GLOB.maps_data.overmap_size-1)
 	y = rand(2, GLOB.maps_data.overmap_size-1)
 	linked = locate(/obj/effect/overmap/ship/eris)
-	desc = "Move the ship [linked] to coordenates [x], [y] for [OJECTIVE_BEYOND_TIMER/(1 MINUTES)]"
+	desc = "Move [linked] to coordenates [x], [y] for [OJECTIVE_BEYOND_TIMER/(1 MINUTES)]"
 	RegisterSignal(linked, COMSIG_SHIP_STILL, .proc/task_completed)
 
 /datum/individual_objetive/beyond/task_completed(time, nx, ny)

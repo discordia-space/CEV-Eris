@@ -361,6 +361,9 @@
 
 		if(B.occur())
 			breakdowns += B
+			for(var/mob/living/carbon/human/H in viewers(owner))
+				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, B, owner) 
+			SEND_SIGNAL(owner, COMSIG_HUMAN_BREAKDOWN, B, owner)
 		return
 
 #undef SANITY_PASSIVE_GAIN

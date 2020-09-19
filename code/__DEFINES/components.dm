@@ -65,6 +65,7 @@
 #define COMSIG_HUMAN_SAY "human_say"                            //from mob/living/carbon/human/say(): (message)
 #define COMSIG_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
 #define COMSIG_STAT "current_stat"                               //current stat
+#define COMSIG_HUMAN_BREAKDOWN "human_breakdown"
 
 // /datum/species signals
 

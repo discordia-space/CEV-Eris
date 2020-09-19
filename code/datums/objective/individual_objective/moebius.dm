@@ -7,9 +7,9 @@
 
 /datum/individual_objetive/big_brain/assign()
 	..()
-	target_val = owner.current.stats.getStat(STAT_COG) + delta
+	target_val = mind_holder.stats.getStat(STAT_COG) + delta
 	desc = "Ensure that your COG stat will be increased to [target_val]."
-	RegisterSignal(owner.current, COMSIG_STAT, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_STAT, .proc/task_completed)
 
 /datum/individual_objetive/big_brain/task_completed(stat_name, stat_value, stat_value_pure)
 	if(target_stat == stat_name && (stat_value >= target_val))
@@ -17,7 +17,7 @@
 
 /datum/individual_objetive/big_brain/completed()
 	if(completed) return
-	UnregisterSignal(owner.current, COMSIG_STAT)
+	UnregisterSignal(mind_holder, COMSIG_STAT)
 	..()
 
 /datum/individual_objetive/get_nsa
@@ -28,7 +28,7 @@
 /datum/individual_objetive/get_nsa/assign()
 	..()
 	desc = "Reach [target_nsa] of NSA. Survive.."
-	RegisterSignal(owner.current, COMSING_NSA, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSING_NSA, .proc/task_completed)
 
 /datum/individual_objetive/get_nsa/task_completed(n_nsa)
 	if(n_nsa >= target_nsa)
@@ -36,5 +36,5 @@
 
 /datum/individual_objetive/get_nsa/completed()
 	if(completed) return
-	UnregisterSignal(owner.current, COMSING_NSA)
+	UnregisterSignal(mind_holder, COMSING_NSA)
 	..()

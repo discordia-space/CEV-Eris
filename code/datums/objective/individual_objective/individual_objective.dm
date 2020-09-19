@@ -24,6 +24,7 @@
 	var/name = "individual"
 	var/desc = "Placeholder Objective"
 	var/datum/mind/owner
+	var/mob/living/carbon/human/mind_holder
 	var/completed = FALSE
 	var/allow_cruciform = TRUE
 	var/units_completed = 0
@@ -36,6 +37,7 @@
 /datum/individual_objetive/proc/assign(datum/mind/new_owner)
 	SHOULD_CALL_PARENT(TRUE)
 	owner = new_owner
+	mind_holder = new_owner.current
 	owner.individual_objetives += src
 	to_chat(owner,  SPAN_NOTICE("You now have the personal objective: [name]"))
 
