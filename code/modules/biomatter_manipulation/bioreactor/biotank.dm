@@ -201,10 +201,9 @@
 					spill_biomass(user_interaction_loc)
 			update_icon()
 
-
 /obj/structure/biomatter_tank/proc/set_canister(obj/target_tank)
 	. = target_tank.set_anchored(TRUE)
-	if(isnull(.))
+	if(!.)
 		return FALSE
 	target_tank.can_anchor = FALSE
 	canister = target_tank
@@ -213,11 +212,10 @@
 	playsound(platform.MS_bioreactor.output_port.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 	. = TRUE
 
-
 /obj/structure/biomatter_tank/proc/unset_canister(obj/target_tank)
 	target_tank.can_anchor = TRUE
 	. = target_tank.set_anchored(FALSE)
-	if(isnull(.))
+	if(!.)
 		target_tank.can_anchor = FALSE
 		return FALSE
 	canister = null
