@@ -1,6 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: building dcuts is faster and cheaper.
-  - tweak: the solidifier is compatible with the plumbing system.
-  - tweak: the solidifier connector now points south.
