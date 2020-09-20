@@ -42,6 +42,10 @@
 		to_chat(user, SPAN_NOTICE("You add [src.worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
 		qdel(src)
 
+/obj/item/weapon/spacecash/Destroy()
+	. = ..()
+	worth = 0		// Prevents money from be duplicated anytime.
+
 /obj/item/weapon/spacecash/bundle
 	name = "pile of credits"
 	icon_state = ""
