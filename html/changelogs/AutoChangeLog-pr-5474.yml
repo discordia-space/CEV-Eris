@@ -1,0 +1,4 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - bugfix: Makes sure duping money method is extra dead.

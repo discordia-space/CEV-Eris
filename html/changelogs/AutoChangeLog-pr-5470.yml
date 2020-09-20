@@ -1,0 +1,5 @@
+author: Smokingsquirrel
+delete-after: true
+changes:
+  - balance: increased custodial cyborg module speed to 1.0
+  - code_imp: changes in robot_module.dm
