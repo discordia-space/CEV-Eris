@@ -1,4 +1,4 @@
-#define OJECTIVE_BEYOND_TIMER 1 MINUTES //change it to 5
+#define OJECTIVE_BEYOND_TIMER 5 MINUTES //change it to 5
 
 /datum/individual_objetive/beyond //WORK
 	name = "A Particular Spot"

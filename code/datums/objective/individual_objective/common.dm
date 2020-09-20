@@ -1,6 +1,6 @@
 /datum/individual_objetive/upgrade
 	name = "Upgrade"
-	desc =  "It’s time to improve your meat with shiny chrome. Gain new bionics, implant, or any mutation."
+	desc =  "Its time to improve your meat with shiny chrome. Gain new bionics, implant, or any mutation."
 	allow_cruciform = FALSE
 
 /datum/individual_objetive/upgrade/assign()
@@ -21,8 +21,8 @@
 	..()
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
-/datum/individual_objetive/inspiration/task_completed(datum/breakdown/breakdown, mob/living/L)
-	if(istype(breakdown, breakdown_type) && L =! mind_holder)
+/datum/individual_objetive/inspiration/task_completed(mob/living/L, datum/breakdown/breakdown)
+	if(istype(breakdown, breakdown_type) && L != mind_holder)
 		completed()
 
 /datum/individual_objetive/inspiration/completed()

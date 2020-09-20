@@ -121,12 +121,16 @@
 
 	if(LAZYLEN(individual_objetives))
 		output += "<HR><B>Your individual objectives:</B><UL>"
-
 		var/obj_count = 1
+		var/la_explanation
 		for(var/datum/individual_objetive/objective in individual_objetives)
-			output += "<br><b>#[obj_count] [objective.name]</B>: [objective.get_description()]</b>"
+			output += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
 			obj_count++
+			if(objective.limited_antag)
+				la_explanation = objective.la_explanation
 		output += "</UL>"
+		if(la_explanation)
+			output += la_explanation
 	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
@@ -151,6 +155,19 @@
 		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
 	out += "</table><hr>"
 	out += "<br>[memory]"
+
+	if(LAZYLEN(individual_objetives))
+		out += "<HR><B>Your individual objectives:</B><UL>"
+		var/obj_count = 1
+		var/la_explanation
+		for(var/datum/individual_objetive/objective in individual_objetives)
+			out += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
+			obj_count++
+			if(objective.limited_antag)
+				la_explanation = objective.la_explanation
+		out += "</UL>"
+		if(la_explanation)
+			out += la_explanation
 	out += "<br><a href='?src=\ref[src];edit_memory=1'>"
 	usr << browse(out, "window=edit_memory[src]")
 

@@ -20,6 +20,14 @@
 	var/datum/individual_objetive/IO = new new_individual_objetive()
 	IO.assign(mind)
 
+/proc/player_is_limited_antag(datum/mind/player)
+	if(player_is_antag(player))
+		return FALSE
+	for(var/datum/individual_objetive/objetive in player.individual_objetives)
+		if(objetive.limited_antag)
+			return TRUE
+	return FALSE
+
 /datum/individual_objetive
 	var/name = "individual"
 	var/desc = "Placeholder Objective"
@@ -33,6 +41,11 @@
 	var/req_cruciform = FALSE
 	var/insight_reward = 25
 	var/completed_desc = " <span style='color:green'> Objective completed!</span>"
+	var/limited_antag = FALSE
+	var/show_la = "<span style='color:red'> (LA)</span>"
+	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
+						or to push for faction on faction conflict, but do not allow you to kill everyone in the department to get inside for their \
+						needs.</span></b>"
 
 /datum/individual_objetive/proc/assign(datum/mind/new_owner)
 	SHOULD_CALL_PARENT(TRUE)
@@ -52,6 +65,8 @@
 
 /datum/individual_objetive/proc/get_description()
 	var/n_desc = desc
+	if(units_requested > 1) 
+		n_desc += " (<span style='color:green'>[units_completed]</span>)"
 	if(completed)
 		n_desc += completed_desc
 	return n_desc

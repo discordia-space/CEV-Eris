@@ -38,3 +38,22 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_NSA)
 	..()
+
+/datum/individual_objetive/derail
+	name = "Observe a Derail"
+	req_department = DEPARTMENT_SCIENCE
+	limited_antag = TRUE
+
+/datum/individual_objetive/derail/assign()
+	..()
+	units_requested = rand(3,4)
+	desc = "Obeserve a sum of [units_requested] mental breakdowns of you, orother non people."
+	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
+
+/datum/individual_objetive/derail/task_completed(mob/living/L, datum/breakdown/breakdown)
+	..(1)
+
+/datum/individual_objetive/derail/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
+	..()

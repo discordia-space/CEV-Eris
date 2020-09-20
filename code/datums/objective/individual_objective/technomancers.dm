@@ -1,4 +1,4 @@
-#define OJECTIVE_DISTURBANCE_TIMER 1 MINUTES  //CHANGE IT to 5
+#define OJECTIVE_DISTURBANCE_TIMER 10 MINUTES  //CHANGE IT to 5
 
 /datum/individual_objetive/disturbance
 	name = "Disturbance"
