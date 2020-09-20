@@ -57,3 +57,23 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
 	..()
+
+/datum/individual_objetive/adiction
+	name = "On The Hook"
+	req_department = DEPARTMENT_SCIENCE
+	limited_antag = TRUE
+
+/datum/individual_objetive/adiction/assign()
+	..()
+	units_requested = rand(3,4)
+	desc = "Obeserve a sum of [units_requested] occasions on where people will get addicted to any chems."
+	RegisterSignal(mind_holder, COMSIG_CARBON_ADICTION, .proc/task_completed)
+
+/datum/individual_objetive/adiction/task_completed(mob/living/carbon/C, datum/reagent/reagent)
+	if(C != mind_holder)
+		..(1)
+
+/datum/individual_objetive/adiction/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIG_CARBON_ADICTION)
+	..()

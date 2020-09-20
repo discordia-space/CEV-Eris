@@ -59,6 +59,7 @@
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"       //mob/living/carbon/electrocute_act()
 #define COMSING_NSA "current_nsa"                               //current nsa
+#define COMSIG_CARBON_ADICTION "new_chem_adiction"              //from check_reagent()
 
 // /mob/living/carbon/human signals
 #define COMSIG_EMPTY_POCKETS "human_empty_pockets"
