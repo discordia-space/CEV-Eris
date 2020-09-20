@@ -1,0 +1,5 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - tweak: Fixed the price of reagent containers for trading
+  - bugfix: Money dupe
