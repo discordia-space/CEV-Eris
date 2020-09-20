@@ -1,6 +1,8 @@
 var/list/global/excelsior_teleporters = list() //This list is used to make turrets more efficient
 var/global/excelsior_energy
 var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
+var/global/excelsior_conscripts = 0
+var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter
 	name = "excelsior long-range teleporter"
@@ -20,6 +22,9 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	var/nanoui_menu = 0 	// Based on Uplink
 	var/mob/current_user 
 	var/time_until_scan
+
+	var/reinforcements_delay = 20 MINUTES
+	var/reinforcements_cost = 2000
 
 	var/list/nanoui_data = list()			// Additional data for NanoUI use
 	var/list/materials_list = list(
@@ -165,6 +170,8 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	data["menu"] = nanoui_menu
 	data["excel_user"] = is_excelsior(current_user)
 	data["time_until_scan"] = time_until_scan
+	data["conscripts"] = excelsior_conscripts
+	data["reinforcements_ready"] = reinforcements_check()
 	data += nanoui_data
 
 	var/list/order_list_m = list()
@@ -222,6 +229,9 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 
 	if(href_list["close_menu"])
 		nanoui_menu = 0
+
+	if(href_list["request_reinforcements"])
+		request_reinforcements(usr)
 
 	add_fingerprint(usr)
 	update_nano_data()
@@ -304,19 +314,77 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	if (affecting.stat == DEAD)
 		to_chat(user, SPAN_WARNING("[affecting] is dead, and can't be teleported"))
 		return
-
 	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts) // All targeted objectives can be completed by stuffing the target in the teleporter
 		if(M.completed)
 			continue
 		if(affecting == M.target_mind.current)
 			M.complete(user)
-			flick("teleporting", src)
-			to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))
-			visible_message("\the [src] teleporter closes and [affecting] disapears.")
-			affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
-			affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
-			qdel(affecting)
+			teleport_out(affecting, user)
+			excelsior_conscripts += 1
 			return
+	if (is_excelsior(affecting))
+		teleport_out(affecting, user)
+		excelsior_conscripts += 1
+		return
 	
 	visible_message("\the [src] blinks, refusing [affecting].")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+/obj/machinery/complant_teleporter/proc/teleport_out(var/mob/living/affecting, var/mob/living/user)
+	flick("teleporting", src)
+	to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by 15 minutes."))
+	visible_message("\the [src] teleporter closes and [affecting] disapears.")
+	affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", 15 MINUTES)
+	affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
+	qdel(affecting)
+/obj/machinery/complant_teleporter/proc/request_reinforcements(var/mob/living/user)
+
+	if(excelsior_energy < reinforcements_cost)
+		to_chat(user, SPAN_WARNING("Not enough energy."))
+		return 0
+	if(world.time < (excelsior_last_draft + reinforcements_delay))
+		to_chat(user, SPAN_WARNING("You can call only one conscript for 20 minutes."))
+		return
+	if(excelsior_conscripts <= 0)
+		to_chat(user, SPAN_WARNING("They have nobody to send to you."))
+		return
+	processing_order = TRUE
+	use_power(active_power_usage * 10)
+	flick("teleporting", src)
+	var/mob/observer/ghost/candidate = draft_ghost("Excelsior Conscript", ROLE_BANTYPE_EXCELSIOR, ROLE_EXCELSIOR_REV)
+	if(!candidate)
+		processing_order = FALSE
+		to_chat(user, SPAN_WARNING("Reinforcements were postponed"))
+		return
+
+	processing_order = FALSE
+	excelsior_last_draft = world.time
+	excelsior_energy = excelsior_energy - reinforcements_cost
+	excelsior_conscripts -= 1
+
+	var/mob/living/carbon/human/conscript = new /mob/living/carbon/human(loc)
+	conscript.ckey = candidate.ckey
+	make_antagonist(conscript.mind, ROLE_EXCELSIOR_REV)
+	conscript.stats.setStat(STAT_TGH, 10)
+	conscript.stats.setStat(STAT_VIG, 10)
+	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
+	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
+	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
+	conscript.equip_to_appropriate_slot(new /obj/item/weapon/storage/backpack/satchel())
+	var/obj/item/weapon/card/id/card = new(conscript)
+	conscript.set_id_info(card)
+	card.assignment = "Excelsior Conscript"
+	card.access = list(access_maint_tunnels)
+	card.update_name()
+	conscript.equip_to_appropriate_slot(card)
+	conscript.update_inv_wear_id()
+
+/obj/machinery/complant_teleporter/proc/reinforcements_check()
+	if(excelsior_conscripts <= 0)
+		return FALSE
+	if(world.time < (excelsior_last_draft + reinforcements_delay))
+		return FALSE
+	if(excelsior_conscripts <= 0)
+		return FALSE
+	if(excelsior_energy < reinforcements_cost)
+		return FALSE
+	return TRUE
