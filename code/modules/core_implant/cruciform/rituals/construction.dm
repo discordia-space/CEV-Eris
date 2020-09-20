@@ -18,25 +18,23 @@
 		fail("Something is missing.",user,C,targets)
 		return
 	//TODO: add a nice overlay effect on turf
-	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),\
-        SPAN_NOTICE("You see things are moving as you concentrate on [blueprint.name] image"))
+	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."), SPAN_NOTICE("You see things are moving as you concentrate on [blueprint.name] image"))
 	if(!do_after(user, 5 SECONDS, target_turf))
 		fail("You feel something is judging you upon your impatience",user,C,targets)
 		return
 	if(!items_check(user, target_turf, blueprint))
 		fail("Something got stolen!",user,C,targets)
 		return
-	
 	//magic has to be a bit innacurate
-	var/list/turf_contents = target_turf.contents
-	for(var/item_type in blueprint.materials)
-		var/thing = locate(item_type) in turf_contents
-		qdel(thing)
-    user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),\
-        SPAN_NOTICE("You take a deep breath as items stopped forming your construction."))
-	var/result_type = blueprint.result_type
-	new result_type(target_turf) //haha very dynamic	
 
+	for(var/item_type in blueprint.materials)
+		var/t = locate(item_type) in target_turf.contents
+		qdel(t)
+    
+	var/result_type = blueprint.result_type
+	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."), SPAN_NOTICE("You take a deep breath as items finished forming your construction."))
+	new result_type(target_turf) //haha very dynamic
+	
 /datum/ritual/cruciform/priest/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
 	var/list/turf_contents = target.contents
 	
