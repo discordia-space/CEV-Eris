@@ -628,6 +628,8 @@ proc/is_blind(A)
 	embedded = list()
 
 /mob/proc/skill_to_evade_traps()
+	if(!stats)
+		return 0
 	var/prob_evade = 0
 	var/base_prob_evade = 30
 	if(MOVING_DELIBERATELY(src))
