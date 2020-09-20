@@ -208,6 +208,12 @@ other types of metals and chemistry for reagents).
 	chemicals = list("radium" = 5, "phosphorus" = 10)
 	materials = list(MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 15)
 
+/datum/design/research/item/science_voidsuit
+	name = "Moebius combat voidsuit"
+	build_path = /obj/item/clothing/suit/space/void/science
+	sort_string = "VASAC"
+
+
 //Why is there a science design to craft a cardboard box full of things? That is not how this works
 /*
 /datum/design/research/item/chameleon

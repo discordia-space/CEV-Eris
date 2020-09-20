@@ -1076,7 +1076,7 @@
 /obj/structure/medical_stand/price_tag = 100
 /obj/item/weapon/virusdish/price_tag = 300
 
-/obj/item/weapon/reagent_containers/price_tag = 20
+/obj/item/weapon/reagent_containers/price_tag = 1
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace/price_tag = 300
 /obj/item/weapon/reagent_containers/get_item_cost(export)
 	. = ..()

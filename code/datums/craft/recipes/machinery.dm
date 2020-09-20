@@ -86,10 +86,9 @@
 	name = "fluid duct"
 	result = /obj/item/stack/ducts
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTIC, "time" = 15),
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL, "time" = 5),
+		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC, "time" = 8),
 		list(QUALITY_BOLT_TURNING, 10, 80),
-		list(/obj/item/stack/cable_coil, 1, "time" = 10),
+		list(/obj/item/stack/cable_coil, 1, "time" = 4),
 		list(QUALITY_PULSING, 30, 80)
 	)
 
@@ -97,7 +96,7 @@
 	name = "vertical fluid duct"
 	result = /obj/machinery/duct/vertical
 	steps = list(
-		list(/obj/item/stack/ducts, 3, "time" = 10),
+		list(/obj/item/stack/ducts, 3, "time" = 4),
 		list(QUALITY_BOLT_TURNING, 10, 80)
 	)
 

@@ -39,8 +39,7 @@
 	icon = "recharger"
 
 	required_technologies = list(
-								/datum/technology/basic_combat
-								)
+								/datum/technology/basic_nonlethal)
 	required_tech_levels = list()
 	cost = 1000
 
@@ -139,11 +138,11 @@
 	y = 0.4
 	icon = "toxincoater"
 
-	required_technologies = list(/datum/technology/exotic_weaponry)
+	required_technologies = list(/datum/technology/adv_exotic_weaponry)
 	required_tech_levels = list()
 	cost = 4000
 
-	unlocks_designs = list(	
+	unlocks_designs = list(
 							/datum/design/research/item/weapon/gunmod/battery_shunt,
 							/datum/design/research/item/weapon/gunmod/overdrive,
 							/datum/design/research/item/weapon/gunmod/honker,
@@ -204,4 +203,18 @@
 	cost = 5000
 
 	unlocks_designs = list(/datum/design/research/item/weapon/nuclear_gun, /datum/design/research/item/weapon/lasercannon)
+
+/datum/technology/advanced_armor
+	name = "Advanced Armor Solutions"
+	desc = "Advanced voidsuit with combined ballistic and ablative plating."
+	tech_type = RESEARCH_COMBAT
+
+	x = 0.8
+	y = 0.5
+	icon = "moebiushelm"
+
+	required_technologies = list(/datum/technology/laser_weaponry)
+	required_tech_levels = list()
+	cost = 2500
+	unlocks_designs = list(/datum/design/research/item/science_voidsuit)
 
