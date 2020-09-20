@@ -3,7 +3,7 @@
 	name = "Fuhrer Roach"
 	desc = "A glorious leader of cockroaches. Literally Hitler."
 	icon_state = "fuhrer"
-
+	density = TRUE
 	turns_per_move = 4
 	maxHealth = 200
 	health = 200
