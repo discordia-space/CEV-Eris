@@ -76,7 +76,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 
 	access = list(
 		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology,
-		access_genetics
+		access_genetics, access_maint_tunnels
 	)
 
 	stat_modifiers = list(
@@ -136,7 +136,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	outfit_type = /decl/hierarchy/outfit/job/medical/chemist
 
 	access = list(
-		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology
+		access_moebius, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_virology, access_maint_tunnels
 	)
 
 	stat_modifiers = list(
@@ -189,7 +189,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	outfit_type = /decl/hierarchy/outfit/job/medical/psychiatrist
 
 	access = list(
-		access_moebius, access_medical_equip, access_morgue, access_psychiatrist
+		access_moebius, access_medical_equip, access_morgue, access_psychiatrist, access_maint_tunnels
 	)
 
 	stat_modifiers = list(
