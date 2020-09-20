@@ -22,6 +22,10 @@
 	name = "large glass beaker"
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/large
 
+/datum/design/autolathe/container/mixingbowl
+	name = "mixing bowl"
+	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bowl
+
 /datum/design/autolathe/container/vial
 	name = "glass vial"
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/vial

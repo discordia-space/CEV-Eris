@@ -83,6 +83,7 @@
 		/datum/design/autolathe/container/vial,
 		/datum/design/autolathe/container/beaker,
 		/datum/design/autolathe/container/beaker_large,
+		/datum/design/autolathe/container/mixingbowl,
 		/datum/design/autolathe/container/pill_bottle,
 		/datum/design/autolathe/container/spray,
 		/datum/design/autolathe/container/freezer,
