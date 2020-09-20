@@ -1537,6 +1537,7 @@
 #include "code\modules\core_implant\cruciform\machinery\cloning.dm"
 #include "code\modules\core_implant\cruciform\machinery\obelisk.dm"
 #include "code\modules\core_implant\cruciform\rituals\base.dm"
+#include "code\modules\core_implant\cruciform\rituals\construction.dm"
 #include "code\modules\core_implant\cruciform\rituals\crusader.dm"
 #include "code\modules\core_implant\cruciform\rituals\group.dm"
 #include "code\modules\core_implant\cruciform\rituals\inquisitor.dm"
