@@ -42,6 +42,10 @@
 		to_chat(user, SPAN_NOTICE("You add [src.worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
 		qdel(src)
 
+/obj/item/weapon/spacecash/Destroy()
+	. = ..()
+	worth = 0		// Prevents money from be duplicated anytime.
+
 /obj/item/weapon/spacecash/bundle
 	name = "pile of credits"
 	icon_state = ""
@@ -80,11 +84,15 @@
 	var/amount = input(usr, "How many credits do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(CLAMP(amount, 0, src.worth))
 	if(amount==0) return 0
+	else if (!Adjacent(usr))
+		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
+		return
 
 	src.worth -= amount
 	src.update_icon()
 	if(!worth)
 		usr.drop_from_inventory(src)
+		qdel(src)
 	if(amount in list(1000,500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/weapon/spacecash/bundle/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)
@@ -94,8 +102,6 @@
 		bundle.worth = amount
 		bundle.update_icon()
 		usr.put_in_hands(bundle)
-	if(!worth)
-		qdel(src)
 
 /obj/item/weapon/spacecash/bundle/Initialize()
 	. = ..()

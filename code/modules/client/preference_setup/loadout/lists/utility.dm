@@ -61,4 +61,7 @@
 	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/golden
 	cost = 5
 
-
+/datum/gear/utility/ducttape
+	display_name = "duct tape"
+	path = /obj/item/weapon/tool/tape_roll
+	cost = 3

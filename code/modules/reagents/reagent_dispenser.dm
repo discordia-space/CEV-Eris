@@ -42,8 +42,10 @@
 
 			if(do_after(user, 20, src))
 				if(!src) return
-				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
-				set_anchored(!anchored)
+				if(set_anchored(!anchored))
+					to_chat(user, SPAN_NOTICE("You [anchored? "" : "un"]secured \the [src]!"))
+				else
+					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 			return FALSE
 	else
 		return ..()
@@ -112,8 +114,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
-	var/modded = 0
-	var/obj/item/device/assembly_holder/rig = null
+	var/modded = FALSE
+	var/obj/item/device/assembly_holder/rig
 	volume = 500
 	starting_reagent = "fuel"
 	price_tag = 50
@@ -140,7 +142,7 @@
 	if(!..(user, 2))
 		return
 	if(modded)
-		to_chat(user, SPAN_WARNING("Fuel faucet is wrenched open, leaking the fuel!"))
+		to_chat(user, SPAN_WARNING("Fuel faucet is open, leaking the fuel!"))
 	if(rig)
 		to_chat(user, SPAN_NOTICE("There is some kind of device rigged to the tank."))
 
@@ -155,11 +157,11 @@
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
-	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-			user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
-				"You wrench [src]'s faucet [modded ? "closed" : "open"]")
-			modded = modded ? 0 : 1
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+			user.visible_message("[user] screws [src]'s faucet [modded ? "closed" : "open"].", \
+				"You screw [src]'s faucet [modded ? "closed" : "open"]")
+			modded = !modded
 			if (modded)
 				message_admins("[key_name_admin(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
 				log_game("[key_name(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")

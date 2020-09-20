@@ -446,8 +446,8 @@
 
 /obj/structure/window/set_anchored(new_anchored)
 	. = ..()
-	if(isnull(.))
-		return
+	if(!.)
+		return FALSE
 	update_verbs()
 	update_nearby_icons()
 
