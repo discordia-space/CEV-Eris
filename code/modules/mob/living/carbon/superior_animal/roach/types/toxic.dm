@@ -2,6 +2,7 @@
 	name = "Gestrahlte Roach"
 	desc = "A hulking beast of green, congealed waste. It has an enlarged salivatory gland for lobbing projectiles."
 	icon_state = "radioactiveroach"
+	density = TRUE
 
 	meat_amount = 3
 	turns_per_move = 1
