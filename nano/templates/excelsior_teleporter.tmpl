@@ -30,6 +30,18 @@ Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
 				{{:helper.link('Mandates', 'radiation', {'open_menu' : 1}, null, 'fixedLeft')}}
 			</div>
 		</div>
+		<div class="item">
+			<table class='itemContent' style="width: 100%;">
+				<tr>
+					<td>
+						Request reinforcements<br>({{:data.conscripts}} conscripts remaining)
+					</td>
+					<td>
+						{{:helper.link('2000', 'circle-arrow-s', {'request_reinforcements' : 1}, 'data.reinforcements_ready' ?  null : 'disabled', 'fixedLeft')}}
+					</td>
+				</tr>
+			</table>
+		</div>
 	{{/if}}
 	<div class="item">
 		<div class="itemLabel" style="width: 100%;">
