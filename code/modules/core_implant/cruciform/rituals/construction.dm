@@ -2,8 +2,8 @@
 
 /datum/ritual/cruciform/priest/construction
 	name = "Manifestation"
-	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est" //! todo: replace it
-	desc = "Build things by faith"
+	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est"
+	desc = "Build and expand. Shape your faith in something more sensible. "
 	power = 40
 	var/list/blueprints = list("Obelisk" = new /datum/nt_blueprint/machinery/obelisk())
 
@@ -18,7 +18,7 @@
 		fail("Something is missing.",user,C,targets)
 		return
 	//TODO: add a nice overlay effect on turf
-	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see things are moving as you concentrate on [blueprint.name] image"))
+	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
 	if(!do_after(user, 5 SECONDS, target_turf))
 		fail("You feel something is judging you upon your impatience",user,C,targets)
 		return
@@ -31,9 +31,9 @@
 		var/t = locate(item_type) in target_turf.contents
 		qdel(t)
 		
-	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as items finished forming your construction."))
+	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
 	var/result_type = blueprint.result_type
-	new result_type(target_turf) //haha very dynamic	
+	new result_type(target_turf)	
 
 /datum/ritual/cruciform/priest/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
 	var/list/turf_contents = target.contents
