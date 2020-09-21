@@ -12,7 +12,7 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
 	..()
 
-/datum/individual_objetive/inspiration
+/datum/individual_objetive/inspiration//work
 	name = "Triumph of the Spirit"
 	desc =  "Observer at least one positive breakdown. Inspiring!"
 	var/breakdown_type = /datum/breakdown/positive
@@ -22,7 +22,8 @@
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
 /datum/individual_objetive/inspiration/task_completed(mob/living/L, datum/breakdown/breakdown)
-	if(istype(breakdown, breakdown_type) && L != mind_holder)
+	//if(istype(breakdown, breakdown_type) && L != mind_holder)//uncoment
+	if(istype(breakdown, breakdown_type))//delete
 		completed()
 
 /datum/individual_objetive/inspiration/completed()
@@ -30,7 +31,7 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
 	..()
 
-/datum/individual_objetive/derange
+/datum/individual_objetive/derange//work but limit it to more of the one player
 	name = "Derange"
 	limited_antag = TRUE
 	var/mob/living/carbon/human/target
@@ -63,7 +64,7 @@
 	var/list/drugs = list()
 	var/timer
 	var/delta = 0
-	var/target_time = 1 MINUTES
+	var/target_time = 1 MINUTES//change to 5
 
 /datum/individual_objetive/addict/assign()
 	..()
@@ -92,7 +93,7 @@
 	UnregisterSignal(mind_holder, COMSIGN_CARBON_HAPPY)
 	..()
 
-/datum/individual_objetive/gift
+/datum/individual_objetive/gift//test requiered
 	name = "Gift"
 	desc = "You feel a need to leave a mark in other people lives. Ensure that at \
 			least someone will level up with oddity that you touched"
@@ -102,7 +103,7 @@
 	RegisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP, .proc/task_completed)
 
 /datum/individual_objetive/gift/task_completed(mob/living/carbon/human/H, obj/item/O)
-	if(mind_holder == H) return
+	//if(mind_holder == H) return //coment for rest for test
 	var/full_print = mind_holder.get_full_print()
 	if(full_print in O.fingerprints)
 		completed()

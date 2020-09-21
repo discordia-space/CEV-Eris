@@ -1,6 +1,6 @@
 /datum/individual_objetive/familiar_face
 	name = "A Familiar Face"
-	req_department = IRONHAMMER
+	req_department = list(DEPARTMENT_SECURITY)
 	var/mob/living/carbon/human/target
 
 /datum/individual_objetive/familiar_face/assign()
@@ -21,7 +21,7 @@
 
 /datum/individual_objetive/time_to_action
 	name = "Time for Action"
-	req_department = IRONHAMMER
+	req_department = list(DEPARTMENT_SECURITY)
 	units_requested = 20
 
 /datum/individual_objetive/time_to_action/assign()
@@ -39,7 +39,7 @@
 
 /datum/individual_objetive/paranoia
 	name = "A Familiar Face"
-	req_department = IRONHAMMER
+	req_department = list(DEPARTMENT_SECURITY)
 	var/mob/living/carbon/human/target
 
 /datum/individual_objetive/paranoia/assign()

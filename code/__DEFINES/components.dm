@@ -43,7 +43,7 @@
 // /area signals
 
 // /turf signals
-#define CONSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
+#define COMSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
@@ -70,6 +70,7 @@
 #define COMSIG_HUMAN_BREAKDOWN "human_breakdown"
 #define COMSING_AUTOPSY "human_autopsy"                          //from obj/item/weapon/autopsy_scanner/attack()
 #define COMSIG_HUMAN_LEVEL_UP "human_level_up"
+#define COMSING_HUMAN_EQUITP "human_equip_item"                   //from human/equip_to_slot()
 
 // /datum/species signals
 

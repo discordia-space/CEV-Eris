@@ -10,7 +10,7 @@
 			continue
 		if(C && !IO.allow_cruciform)
 			continue
-		if(IO.req_department && (!mind.assigned_job || IO.req_department != mind.assigned_job.department_flag))
+		if(IO.req_department.len && (!mind.assigned_job || !(mind.assigned_job.department_flag in IO.req_department)))
 			continue
 		valid_objectives += GLOB.individual_objetives[IO]
 	for(var/datum/individual_objetive/objective in mind.individual_objetives)
@@ -37,10 +37,10 @@
 	var/allow_cruciform = TRUE
 	var/units_completed = 0
 	var/units_requested = 1
-	var/req_department
+	var/list/req_department = list()
 	var/req_cruciform = FALSE
 	var/insight_reward = 25
-	var/completed_desc = " <span style='color:green'> Objective completed!</span>"
+	var/completed_desc = "<span style='color:green'> Objective completed!</span>"
 	var/limited_antag = FALSE
 	var/show_la = "<span style='color:red'> (LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
@@ -68,7 +68,7 @@
 	if(units_requested > 1) 
 		n_desc += " (<span style='color:green'>[units_completed]</span>)"
 	if(completed)
-		n_desc += completed_desc
+		n_desc += " [completed_desc]"
 	return n_desc
 
 /datum/individual_objetive/proc/task_completed(count=1)

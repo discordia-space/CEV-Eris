@@ -34,7 +34,7 @@
 
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
 	RegisterSignal(parent, list(COMSIG_ATOM_UNFASTEN), .proc/toggle_active)
-	RegisterSignal(parent, list(CONSIG_TURF_LEVELUPDATE), .proc/hide)
+	RegisterSignal(parent, list(COMSIG_TURF_LEVELUPDATE), .proc/hide)
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS), .proc/create_overlays) //called by lateinit on startup
 
 	if(start)
@@ -47,7 +47,7 @@
 	UnregisterSignal(parent,COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(parent,COMSIG_PARENT_PREQDELETED)
 	UnregisterSignal(parent,COMSIG_ATOM_UNFASTEN)
-	UnregisterSignal(parent,CONSIG_TURF_LEVELUPDATE)
+	UnregisterSignal(parent,COMSIG_TURF_LEVELUPDATE)
 	UnregisterSignal(parent,COMSIG_ATOM_UPDATE_OVERLAYS)
 	..()
 	qdel(src)
