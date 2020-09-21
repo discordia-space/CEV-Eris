@@ -91,3 +91,23 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIGN_CARBON_HAPPY)
 	..()
+
+/datum/individual_objetive/gift
+	name = "Gift"
+	desc = "You feel a need to leave a mark in other people lives. Ensure that at \
+			least someone will level up with oddity that you touched"
+
+/datum/individual_objetive/gift/assign()
+	..()
+	RegisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP, .proc/task_completed)
+
+/datum/individual_objetive/gift/task_completed(mob/living/carbon/human/H, obj/item/O)
+	if(mind_holder == H) return
+	var/full_print = mind_holder.get_full_print()
+	if(full_print in O.fingerprints)
+		completed()
+
+/datum/individual_objetive/gift/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP)
+	..()

@@ -6,7 +6,7 @@
 	var/flags = 0
 	var/list/fingerprints
 	var/list/fingerprintshidden
-	var/fingerprintslast = null
+	var/fingerprintslast
 	var/list/blood_DNA
 	var/was_bloodied
 	var/blood_color

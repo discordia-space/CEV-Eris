@@ -237,6 +237,8 @@
 			var/obj/item/weapon/oddity/OD = O
 			if(OD.perk)
 				owner.stats.addPerk(OD.perk)
+		for(var/mob/living/carbon/human/H in viewers(owner))
+			SEND_SIGNAL(H, COMSIG_HUMAN_LEVEL_UP, owner, O)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))

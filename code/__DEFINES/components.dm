@@ -69,6 +69,7 @@
 #define COMSIG_STAT "current_stat"                               //current stat
 #define COMSIG_HUMAN_BREAKDOWN "human_breakdown"
 #define COMSING_AUTOPSY "human_autopsy"                          //from obj/item/weapon/autopsy_scanner/attack()
+#define COMSIG_HUMAN_LEVEL_UP "human_level_up"
 
 // /datum/species signals
 

@@ -35,7 +35,7 @@
 /datum/individual_objetive/time_to_action/completed()
 	if(completed) return
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
-	=..()
+	..()
 
 /datum/individual_objetive/paranoia
 	name = "A Familiar Face"
@@ -57,5 +57,3 @@
 	if(completed) return
 	UnregisterSignal(owner, COMSIG_EMPTY_POCKETS)
 	..()
-
- Search 3-4 non SSD people from our faction
