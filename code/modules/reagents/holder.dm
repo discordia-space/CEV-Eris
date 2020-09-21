@@ -25,6 +25,12 @@
 				continue
 			GLOB.chemical_reagents_list[D.id] = D
 
+/datum/reagents/proc/get_price()
+	var/price = 0
+	for(var/datum/reagent/R in reagent_list)
+		price += R.volume * R.price_per_unit
+	return price
+
 /datum/reagents/proc/get_average_reagents_state()
 	var/solid = 0
 	var/liquid = 0
@@ -66,7 +72,7 @@
 	return maximum_volume - total_volume
 
 /datum/reagents/proc/get_master_reagent() // Returns reference to the reagent with the biggest volume.
-	var/the_reagent = null
+	var/the_reagent
 	var/the_volume = 0
 
 	for(var/datum/reagent/A in reagent_list)
@@ -77,7 +83,7 @@
 	return the_reagent
 
 /datum/reagents/proc/get_master_reagent_name() // Returns the name of the reagent with the biggest volume.
-	var/the_name = null
+	var/the_name
 	var/the_volume = 0
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
@@ -87,7 +93,7 @@
 	return the_name
 
 /datum/reagents/proc/get_master_reagent_id() // Returns the id of the reagent with the biggest volume.
-	var/the_id = null
+	var/the_id
 	var/the_volume = 0
 	for(var/datum/reagent/A in reagent_list)
 		if(A.volume > the_volume)
