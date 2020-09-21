@@ -130,11 +130,10 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
-	can_hold = list(
+	can_hold_extra = list(
 		/obj/item/weapon/inflatable_dispenser,
 		/obj/item/device/radio/off,
 		/obj/item/taperoll/medical
-
 	)
 
 /obj/item/weapon/storage/belt/tactical
