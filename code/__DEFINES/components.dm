@@ -55,6 +55,7 @@
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"             //mob/living/proc/stun_effect_act()
+#define COMSIGN_CARBON_HAPPY   "carbon_happy"                   //drugs o ethanol in blood
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"       //mob/living/carbon/electrocute_act()
@@ -67,6 +68,7 @@
 #define COMSIG_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
 #define COMSIG_STAT "current_stat"                               //current stat
 #define COMSIG_HUMAN_BREAKDOWN "human_breakdown"
+#define COMSING_AUTOPSY "human_autopsy"                          //from obj/item/weapon/autopsy_scanner/attack()
 
 // /datum/species signals
 

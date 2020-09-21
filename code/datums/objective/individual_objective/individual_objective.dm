@@ -10,7 +10,7 @@
 			continue
 		if(C && !IO.allow_cruciform)
 			continue
-		if(IO.req_department && (!mind.assigned_job || IO.req_department != mind.assigned_job.department))
+		if(IO.req_department && (!mind.assigned_job || IO.req_department != mind.assigned_job.department_flag))
 			continue
 		valid_objectives += GLOB.individual_objetives[IO]
 	for(var/datum/individual_objetive/objective in mind.individual_objetives)

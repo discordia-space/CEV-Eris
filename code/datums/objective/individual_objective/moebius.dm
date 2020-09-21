@@ -1,6 +1,6 @@
-/datum/individual_objetive/big_brain //WORK
+/datum/individual_objetive/big_brain
 	name = "The Biggest Brain"
-	req_department = DEPARTMENT_SCIENCE
+	req_department = SCIENCE | MEDICAL
 	var/target_stat = STAT_COG
 	var/target_val //initial_val+delta
 	var/delta = 10
@@ -22,7 +22,7 @@
 
 /datum/individual_objetive/get_nsa
 	name = "Blow the Lid"
-	req_department = DEPARTMENT_SCIENCE
+	req_department = SCIENCE | MEDICAL
 	var/target_nsa = 250
 
 /datum/individual_objetive/get_nsa/assign()
@@ -41,7 +41,7 @@
 
 /datum/individual_objetive/derail
 	name = "Observe a Derail"
-	req_department = DEPARTMENT_SCIENCE
+	req_department = SCIENCE | MEDICAL
 	limited_antag = TRUE
 
 /datum/individual_objetive/derail/assign()
@@ -60,7 +60,7 @@
 
 /datum/individual_objetive/adiction
 	name = "On The Hook"
-	req_department = DEPARTMENT_SCIENCE
+	req_department = SCIENCE | MEDICAL
 	limited_antag = TRUE
 
 /datum/individual_objetive/adiction/assign()
@@ -76,4 +76,26 @@
 /datum/individual_objetive/adiction/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_CARBON_ADICTION)
+	..()
+
+/datum/individual_objetive/autopsy
+	name = "Death is the Answer"
+	req_department = SCIENCE | MEDICAL
+	var/list/cadavers = list()
+
+/datum/individual_objetive/autopsy/assign()
+	..()
+	units_requested = rand(2,3)
+	desc = "Perform [units_requested] autopsies."
+	RegisterSignal(mind_holder, COMSING_AUTOPSY, .proc/task_completed)
+
+/datum/individual_objetive/autopsy/task_completed(mob/living/carbon/human/H) 
+	if(H in cadavers)
+		return
+	cadavers += H
+	..(1)
+
+/datum/individual_objetive/autopsy/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSING_AUTOPSY)
 	..()
