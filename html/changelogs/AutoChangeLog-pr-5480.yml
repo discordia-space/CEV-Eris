@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - bugfix: skill_to_evade_traps logic
+  - bugfix: reagent containers no longer have the same value as the entire multiverse.
