@@ -173,7 +173,7 @@
 	for(var/obj/item/weapon/reagent_containers/food/snacks/S in contents)
 		if(S.dry)
 			continue
-		S.dryness += drying_power * (rand(0.85, 1.15))
+		S.dryness += drying_power
 		if (S.dryness >= 1)
 			if(S.dried_type == S.type || !S.dried_type)
 				S.dry = TRUE
