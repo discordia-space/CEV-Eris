@@ -108089,6 +108089,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
+"gKe" = (
+/obj/machinery/slotmachine{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "gPD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -168409,11 +168415,11 @@ cil
 cCG
 cil
 cjM
-cil
-cil
-ckE
-cil
-cil
+gKe
+gKe
+gKe
+gKe
+gKe
 cjM
 cil
 cCG
