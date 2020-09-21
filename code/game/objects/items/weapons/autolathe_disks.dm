@@ -79,7 +79,6 @@
 		/datum/design/autolathe/container/bucket,
 		/datum/design/autolathe/container/jar,
 		/datum/design/autolathe/container/syringe,
-		/datum/design/autolathe/container/syringe/large,
 		/datum/design/autolathe/container/vial,
 		/datum/design/autolathe/container/beaker,
 		/datum/design/autolathe/container/beaker_large,
@@ -250,6 +249,7 @@
 		/datum/design/autolathe/container/freezer_medical,
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/container/syringegun_ammo,
+		/datum/design/autolathe/container/syringe/large,
 
 	)
 
