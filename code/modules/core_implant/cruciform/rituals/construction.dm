@@ -1,15 +1,45 @@
 #define CRUCIFORM_TYPE obj/item/weapon/implant/core_implant/cruciform
 
+GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
+
+/proc/init_nt_blueprints()
+	var/list/list = list()
+	for(var/blueprint_type in typesof(/datum/nt_blueprint))
+		if(blueprint_type == /datum/nt_blueprint)
+			continue
+		if(blueprint_type == /datum/nt_blueprint/machinery)
+			continue
+		var/datum/nt_blueprint/pb = new blueprint_type()
+		list[pb.name] = pb
+	return list
+
+/datum/ritual/cruciform/priest/blueprint_check
+	name = "Divine Guidance"
+	phrase = "Dirige me in veritate tua, et doce me, quia tu es Deus salvator meus, et te sustinui tota die."
+	desc = "Building needs mainly faith but resources as well. Find out what it takes."
+	power = 5
+
+/datum/ritual/cruciform/priest/blueprint_check/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, list/targets)
+	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
+	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
+	var/list/listed_components = list()
+	for(var/requirement in blueprint.materials)
+		var/atom/placeholder = requirement
+		if(!ispath(placeholder))
+			continue
+		listed_components += list("[blueprint.materials[placeholder]] [initial(placeholder.name)]")
+	to_chat(user, SPAN_NOTICE("[blueprint.name] requires: [english_list(listed_components)]."))
+
+/datum/ritual
 /datum/ritual/cruciform/priest/construction
 	name = "Manifestation"
-	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est"
-	desc = "Build and expand. Shape your faith in something more sensible. "
+	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
+	desc = "Build and expand. Shape your faith in something more sensible."
 	power = 40
-	var/list/blueprints = list("Obelisk" = new /datum/nt_blueprint/machinery/obelisk())
 
 /datum/ritual/cruciform/priest/construction/perform(mob/living/carbon/human/user, obj/item/weapon/implant/core_implant/C, list/targets)
-	var/construction_key = input("Select construction", "") as null|anything in blueprints
-	var/datum/nt_blueprint/blueprint = blueprints[construction_key]
+	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
+	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
 	var/turf/target_turf = get_step(user,user.dir)
 	if(!blueprint)
 		fail("You decided not to test your faith.",user,C,targets)
@@ -32,8 +62,8 @@
 		qdel(t)
 		
 	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
-	var/result_type = blueprint.result_type
-	new result_type(target_turf)	
+	var/build_path = blueprint.build_path
+	new build_path(target_turf)	
 
 /datum/ritual/cruciform/priest/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
 	var/list/turf_contents = target.contents
@@ -47,20 +77,170 @@
 		var/required_amount = blueprint.materials[item_type]
         // I hope it is fast enough
         // could have initialized it in glob
-		if(item_type in typesof(/obj/item/stack/material))
-			var/obj/item/stack/material/material_stack = located_raw
-			if(material_stack.amount < required_amount)
+		if(item_type in typesof(/obj/item/stack/))
+			var/obj/item/stack/stacked = located_raw
+			if(stacked.amount < required_amount)
 				return FALSE
-			//todo: containers check. blood, aid-kits and such.
 	return TRUE
-
-/datum/nt_blueprint
-	var/name
-	var/result_type
+/datum/nt_blueprint/
+	var/name = "Report me"
+	var/build_path
 	var/list/materials
-//lets think about turf and object construction in future
+	
+/datum/nt_blueprint/canister
+	name = "Biomatter Canister"
+	build_path = /obj/structure/reagent_dispensers/biomatter
+	materials = list(
+		/obj/item/stack/material/steel = 8,
+		/obj/item/stack/material/plastic = 2
+	)
+/datum/nt_blueprint/canister/large  
+	name = "Large Biomatter Canister"
+	build_path = /obj/structure/reagent_dispensers/biomatter/large
+	materials = list(
+		/obj/item/stack/material/steel = 16,
+		/obj/item/stack/material/plastic = 4,
+		/obj/item/stack/material/plasteel = 2,
+	)
+
 /datum/nt_blueprint/machinery
+
 /datum/nt_blueprint/machinery/obelisk
 	name = "Obelisk"
-	result_type = /obj/machinery/power/nt_obelisk
-	materials = list(/obj/item/stack/material/plasteel = 10, /obj/item/stack/material/gold = 5, /CRUCIFORM_TYPE = 1)
+	build_path = /obj/machinery/power/nt_obelisk
+	materials = list(
+		/obj/item/stack/material/plasteel = 10,
+		/obj/item/stack/material/gold = 5,
+		/CRUCIFORM_TYPE = 1
+	)
+/datum/nt_blueprint/machinery/bioprinter
+	name = "Biomatter Printer"
+	build_path = /obj/machinery/autolathe/bioprinter
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/stack/material/glass = 2,
+		/obj/item/stack/material/silver = 6,
+		/obj/item/weapon/storage/toolbox = 1
+	)
+
+/datum/nt_blueprint/machinery/solidifier
+	name = "Biomatter Solidifier"
+	build_path = /obj/machinery/biomatter_solidifier
+	materials = list(
+		/obj/item/stack/material/steel = 20,
+		/obj/item/stack/material/silver = 5,
+		/obj/structure/reagent_dispensers/biomatter = 1
+	)
+
+//cloner
+/datum/nt_blueprint/machinery/cloner
+	name = "Cloner Pod"
+	build_path = /obj/machinery/neotheology/cloner
+	materials = list(
+		/obj/item/stack/material/glass = 15,
+		/obj/item/stack/material/plasteel = 10,
+		/obj/item/stack/material/gold = 5,
+		/obj/item/stack/material/glass/plasmarglass = 10,
+	)
+
+/datum/nt_blueprint/machinery/reader
+	name = "Cruciform Reader"
+	build_path = /obj/machinery/neotheology/reader
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/stack/material/plasteel = 5,
+		/obj/item/stack/material/silver = 10,
+		/CRUCIFORM_TYPE = 1
+	)
+
+/datum/nt_blueprint/machinery/biocan
+	name = "Biomass tank"
+	build_path = /obj/machinery/neotheology/biomass_container
+	materials = list(
+		/obj/item/stack/material/gold = 5,
+		/obj/item/stack/material/plasteel = 5,
+		/obj/structure/reagent_dispensers/biomatter/large = 1
+	)
+
+//generator
+/datum/nt_blueprint/machinery/biogen
+	name = "Biomatter Power Generator"
+	build_path = /obj/machinery/multistructure/biogenerator_part/generator
+	materials = list(
+		/obj/item/stack/material/plasteel = 5,
+		/obj/item/stack/material/gold = 5,
+		/obj/item/stack/material/steel = 20,
+		/obj/item/stack/material/biomatter = 5,
+		/obj/structure/reagent_dispensers/biomatter = 1
+	)
+
+/datum/nt_blueprint/machinery/biogen_console
+	name = "Biomatter Power Generator: Console"
+	build_path = /obj/machinery/multistructure/biogenerator_part/console
+	materials = list(
+		/obj/item/stack/material/glass = 5,
+		/obj/item/stack/material/plastic = 15,
+		/obj/item/stack/cable_coil = 30 //! TODO: proper recipe
+	)
+/datum/nt_blueprint/machinery/biogen_port
+	name = "Biomatter Power Generator: Port"
+	build_path = /obj/machinery/multistructure/biogenerator_part/port
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/weapon/reagent_containers/glass/bucket = 1
+	)
+
+//bioreactor
+/datum/nt_blueprint/machinery/bioreactor_loader
+	name = "Biomatter Reactor: Loader"
+	build_path = /obj/machinery/multistructure/bioreactor_part/loader
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/stack/material/silver = 3,
+		/obj/item/stack/material/glass = 2,
+		/obj/structure/reagent_dispensers/biomatter = 1
+	)
+
+/datum/nt_blueprint/machinery/bioreactor_metrics
+	name = "Biomatter Reactor: Metrics"
+	build_path = /obj/machinery/multistructure/biogenerator_part/console
+	materials = list(
+		/obj/item/stack/material/steel = 2,
+		/obj/item/stack/material/silver = 5,
+		/obj/item/stack/material/glass = 4,
+		/obj/item/stack/cable_coil = 30 //! TODO: proper recipe
+	)
+
+/datum/nt_blueprint/machinery/bioreactor_port
+	name = "Biomatter Reactor: Port"
+	build_path = /obj/machinery/multistructure/bioreactor_part/bioport
+	materials = list(
+		/obj/item/stack/material/silver = 5,
+		/obj/item/weapon/reagent_containers/glass/bucket = 1
+	)
+
+/datum/nt_blueprint/machinery/bioreactor_biotank
+	name = "Biomatter Reactor: Tank"
+	build_path = /obj/machinery/multistructure/bioreactor_part/biotank_platform
+	materials = list(
+		/obj/item/stack/material/plastic = 10,
+		/obj/item/stack/material/steel = 20,
+		/obj/structure/reagent_dispensers/biomatter/large = 1
+	)
+
+/datum/nt_blueprint/machinery/bioreactor_unloader
+	name = "Biomatter Reactor: Unloader"
+	build_path = /obj/machinery/multistructure/bioreactor_part/unloader
+	materials = list(
+		/obj/item/stack/material/plastic = 10,
+		/obj/item/stack/rods = 5,
+		/obj/structure/reagent_dispensers/biomatter = 1
+	)
+
+/datum/nt_blueprint/machinery/bioreactor_platform
+	name = "Biomatter Reactor: Platform"
+	build_path = /obj/machinery/multistructure/bioreactor_part/biotank_platform
+	materials = list(
+		/obj/item/stack/material/steel = 10,
+		/obj/item/stack/tile/floor = 1
+	)
