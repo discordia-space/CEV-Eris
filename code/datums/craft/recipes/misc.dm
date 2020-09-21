@@ -238,3 +238,12 @@
 		list(QUALITY_WELDING, 10, 60)
 	)
 	variation_type = CRAFT_VARIATION
+
+/datum/craft_recipe/pipe
+	name = "Smoking pipe"
+	result = /obj/item/clothing/mask/smokable/pipe
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10)
+	)
+	variation_type = CRAFT_VARIATION
