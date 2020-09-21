@@ -53,3 +53,41 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
 	..()
+
+#define MOB_ADD_DRUG 1
+#define ON_MOB_DRUG 2
+#define MOB_DELETE_DRUG 3
+
+/datum/individual_objetive/addict
+	name = "Oil the Cogs"
+	var/list/drugs = list()
+	var/timer
+	var/delta = 0
+	var/target_time = 1 MINUTES
+
+/datum/individual_objetive/addict/assign()
+	..()
+	desc = "Stay intoxicated by alcohol or recreational drugs for [target_time/(1 MINUTES)] minutes"
+	RegisterSignal(mind_holder, COMSIGN_CARBON_HAPPY, .proc/task_completed)
+
+/datum/individual_objetive/addict/task_completed(datum/reagent/happy, ntimer, signal)
+	if(!(happy.id in drugs))
+		if(signal != MOB_ADD_DRUG || signal == ON_MOB_DRUG)
+			if(!drugs.len)
+				timer = world.time
+			drugs += happy.id
+	else if(signal == MOB_DELETE_DRUG)
+		drugs -= happy.id
+		if(!drugs.len)
+			timer = world.time
+	else if(signal == ON_MOB_DRUG)
+		if(ntimer > timer)
+			delta += ntimer - timer
+			timer = world.time
+	if(delta >= target_time)
+		completed()
+
+/datum/individual_objetive/addict/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIGN_CARBON_HAPPY)
+	..()
