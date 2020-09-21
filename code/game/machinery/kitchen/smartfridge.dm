@@ -140,7 +140,7 @@
 	icon_state = "drying_rack"
 	icon_on = "drying_rack_on"
 	icon_off = "drying_rack"
-	var/drying_power = 0.005
+	var/drying_power = 0.05 //should take a bit but. why make people wait a lifetime to DRY PLANTS
 	var/currently_drying = FALSE
 
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
