@@ -113,10 +113,10 @@
 
 /datum/individual_objective/protector//work
 	name = "Protector"
-	var/mob/living/carbon/human/target
-	var/timer
 	units_requested = 3 MINUTES//change to 15
 	based_time = TRUE
+	var/mob/living/carbon/human/target
+	var/timer
 	var/health_threshold = 50
 
 /datum/individual_objective/protector/assign()

@@ -49,7 +49,7 @@
 			remove their backpack or empty their pockets"
 	RegisterSignal(mind_holder, COMSIG_EMPTY_POCKETS, .proc/task_completed)
 
-/datum/individual_objective/paranoia/task_completed(n_target)
+/datum/individual_objective/paranoia/task_completed(mob/living/carbon/n_target)
 	if((n_target in vitims) || !n_target.client)
 		return
 	vitims += n_target
