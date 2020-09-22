@@ -11,9 +11,8 @@
 	icon_state = "gift3"
 	item_state = "electronic"
 	w_class = ITEM_SIZE_SMALL
-
-//You choose what stat can be increased, and a maximum value that will be added to this stat
-//The minimum is defined above. The value of change will be decided by random
+	//You choose what stat can be increased, and a maximum value that will be added to this stat
+	//The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk
@@ -26,7 +25,7 @@
 	if(oddity_stats)
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
-	AddComponent(/datum/component/inspiration, oddity_stats)
+		AddComponent(/datum/component/inspiration, oddity_stats)
 	if(!perk)
 		perk = pick(subtypesof(/datum/perk/oddity))
 

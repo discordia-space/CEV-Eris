@@ -16,7 +16,7 @@
 
 /obj/item/weapon/reagent_containers/atomic_distillery/New()
 	..()
-	GLOB.all_faction_items[src] = boss_positions
+	GLOB.all_faction_items[src] = list(DEPARTMENT_COMMAND)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/reagent_containers/atomic_distillery/Destroy()

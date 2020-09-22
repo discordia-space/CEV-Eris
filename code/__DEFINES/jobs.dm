@@ -11,7 +11,6 @@
 #define JOBS_CIVILIAN "Club Manager","Club Worker",ASSISTANT_TITLE
 #define JOBS_CHURCH	"NeoTheology Preacher","NeoTheology Acolyte","NeoTheology Agrolyte","NeoTheology Custodian"
 #define JOBS_NONHUMAN "AI","Robot","pAI"
-#define JOBS_BIG_BOSS "Captain","First Officer"
 #define CREDITS "&cent;"
 #define CREDS "&cent;"
 

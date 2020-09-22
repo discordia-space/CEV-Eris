@@ -14,11 +14,50 @@
 
 /obj/item/device/techno_tribalism/New()
 	..()
-	GLOB.all_faction_items[src] = engineering_positions
+	GLOB.all_faction_items[src] = list(DEPARTMENT_ENGINEERING)
 
-/obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/techno_tribalism/attackby(obj/item/weapon/W, mob/user)
 	if(items_count < max_count)
-		if(istype(W, /obj/item/weapon/tool))
+		if(W in GLOB.all_faction_items)
+			if(GLOB.all_faction_items[W] == list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL))
+				oddity_stats[STAT_COG] += 3
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_MEC] += 3
+			else if(GLOB.all_faction_items[W] == list(DEPARTMENT_SECURITY)
+				oddity_stats[STAT_VIG] += 3
+				oddity_stats[STAT_TGH] += 3
+				oddity_stats[STAT_ROB] += 3
+			else if(GLOB.all_faction_items[W] == list(DEPARTMENT_CHURCH))
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_COG] += 2
+				oddity_stats[STAT_VIG] += 2
+				oddity_stats[STAT_TGH] += 2
+			else if(GLOB.all_faction_items[W] == list(DEPARTMENT_GUILD))
+				oddity_stats[STAT_COG] += 3
+				oddity_stats[STAT_MEC] += 3
+				oddity_stats[STAT_ROB] += 1
+				oddity_stats[STAT_VIG] += 2
+			else if(GLOB.all_faction_items[W] == list(DEPARTMENT_ENGINEERING)
+				oddity_stats[STAT_MEC] += 5
+				oddity_stats[STAT_COG] += 2
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_VIG] += 1
+			else if(GLOB.all_faction_items[W] == list(DEPARTMENT_COMMAND)
+				oddity_stats[STAT_ROB] += 2
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_BIO] += 1
+				oddity_stats[STAT_MEC] += 1
+				oddity_stats[STAT_VIG] += 3
+				oddity_stats[STAT_COG] += 1
+			else //extracheck
+				oddity_stats[STAT_ROB] += 1
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_BIO] += 1
+				oddity_stats[STAT_MEC] += 1
+				oddity_stats[STAT_VIG] += 1
+				oddity_stats[STAT_COG] += 1
+
+		else if(istype(W, /obj/item/weapon/tool))
 			var/useful = FALSE
 			if(W.tool_qualities)
 
