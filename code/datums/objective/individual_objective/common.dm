@@ -165,7 +165,7 @@
 		valid_targets += H
 	target = pick(valid_targets)//todo: no mind.current
 	desc = "Ensure that [target] will not get their sanity lowered to [sanity_threshold] and below \
-			for 15 minutes. Timer resets if sanity reaches the threshold"
+			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold"
 	timer = world.time
 	RegisterSignal(target, COMSIG_HUMAN_SANITY, .proc/task_completed)
 

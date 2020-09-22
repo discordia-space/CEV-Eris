@@ -12,7 +12,7 @@
 
 /obj/item/weapon/tool/sword/nt_sword/New()
 	..()
-	GLOB.all_faction_items[src.type] = church_positions
+	GLOB.all_faction_items[src] = church_positions
 
 /obj/item/weapon/tool/sword/nt_sword/wield(mob/living/user)
 	..()

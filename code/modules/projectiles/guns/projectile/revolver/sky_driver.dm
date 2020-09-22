@@ -18,4 +18,4 @@
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()
-	GLOB.all_faction_items[src.type] = security_positions
+	GLOB.all_faction_items[src] = security_positions

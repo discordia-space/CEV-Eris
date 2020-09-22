@@ -89,3 +89,16 @@
 	if(units_completed >= units_requested)
 		return TRUE
 	return FALSE
+
+/datum/individual_objetive/proc/pick_faction_item(var/mob/living/carbon/human/H)
+	var/list/valid_targets = list()
+	for(var/obj/item/faction_item in GLOB.all_faction_items)
+		if(faction_item in valid_targets)
+			continue
+		if(owner.assigned_job in GLOB.all_faction_items[faction_item])
+			continue
+		if(H && GLOB.all_faction_items[faction_item] == church_positions && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+			continue
+		valid_targets += faction_item
+	if(valid_targets.len)
+		return pick(valid_targets)

@@ -14,7 +14,7 @@
 
 /obj/item/device/techno_tribalism/New()
 	..()
-	GLOB.all_faction_items[src.type] = engineering_positions
+	GLOB.all_faction_items[src] = engineering_positions
 
 /obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(items_count < max_count)

@@ -23,15 +23,16 @@
 /datum/individual_objetive/get_nsa
 	name = "Blow the Lid"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
-	var/target_nsa = 250
+	units_requested = 250
 
 /datum/individual_objetive/get_nsa/assign()
 	..()
-	desc = "Reach [target_nsa] of NSA. Survive.."
+	desc = "Reach [units_requested] of NSA. Survive.."
 	RegisterSignal(mind_holder, COMSING_NSA, .proc/task_completed)
 
 /datum/individual_objetive/get_nsa/task_completed(n_nsa)
-	if(n_nsa >= target_nsa)
+	units_completed = n_nsa
+	if(check_for_completion())
 		completed()
 
 /datum/individual_objetive/get_nsa/completed()
@@ -98,4 +99,33 @@
 /datum/individual_objetive/autopsy/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_AUTOPSY)
+	..()
+
+
+/datum/individual_objetive/more_research
+	name = "Mandate of Science"
+	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
+	limited_antag = TRUE
+	var/obj/item/target
+
+/datum/individual_objetive/more_research/assign()
+	..()
+	var/list/valid_targets = list()
+	for(var/obj/item/faction_item in GLOB.all_faction_items)
+		if(faction_item in valid_targets)
+			continue
+		if(owner.assigned_job in GLOB.all_faction_items[faction_item])
+			continue
+		valid_targets += faction_item
+	target = pick_faction_item(mind_holder)
+	desc = "[target] is wasted in their hands. Put it into a destructive analyzer."
+	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
+
+/datum/individual_objetive/more_research/task_completed(var/obj/item/I) 
+	if(target.type == I.type)
+		..(1)
+
+/datum/individual_objetive/more_research/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER)
 	..()

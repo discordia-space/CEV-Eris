@@ -23,7 +23,7 @@
 
 /obj/item/von_krabin/New()
 	..()
-	GLOB.all_faction_items[src.type] = moebius_positions
+	GLOB.all_faction_items[src] = moebius_positions
 
 /obj/item/device/von_krabin/Destroy()
 	STOP_PROCESSING(SSobj, src)

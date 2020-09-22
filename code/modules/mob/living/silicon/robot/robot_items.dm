@@ -34,6 +34,8 @@
 					files.research_points += object_research_value
 					files.experiments.do_research_object(loaded_item)
 					to_chat(user, "\The [loaded_item] incremented the research points by [object_research_value].")
+					for(var/mob/living/carbon/human/H in viewers(user))
+						SEND_SIGNAL(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
 				loaded_item = null
 				for(var/obj/I in contents)
 					for(var/mob/M in I.contents)
@@ -77,7 +79,7 @@
 			to_chat(user, "The [src] is already empty.")
 
 
-/obj/item/weapon/portable_destructive_analyzer/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/weapon/portable_destructive_analyzer/afterattack(atom/target, mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)

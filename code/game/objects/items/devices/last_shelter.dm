@@ -12,7 +12,7 @@
 
 /obj/item/device/last_shelter/New()
 	..()
-	GLOB.all_faction_items[src.type] = church_positions
+	GLOB.all_faction_items[src] = church_positions
 
 /obj/item/device/last_shelter/attack_self(mob/user)
 	if(world.time >= (last_teleport + cooldown))

@@ -81,6 +81,7 @@
 
 //machinery
 #define COMSIG_AREA_APC_UNOPERATING "area_unoperating"  //from apc process()
+#define COMSING_DESTRUCTIVE_ANALIZER "destructive_analizer"
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
