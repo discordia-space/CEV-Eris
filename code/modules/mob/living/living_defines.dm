@@ -8,8 +8,8 @@
 
 	var/hud_updateflag = 0
 
-	var/life_cycles_before_sleep = 120
-	var/life_cycles_before_scan = 100
+	var/life_cycles_before_sleep = 30
+	var/life_cycles_before_scan = 20
 
 	var/stasis = FALSE
 	var/AI_inactive = FALSE

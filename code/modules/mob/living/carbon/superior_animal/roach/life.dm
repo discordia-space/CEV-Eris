@@ -18,8 +18,8 @@
 			if(!busy && prob(5))
 				//first, check for potential food nearby
 				var/list/eatTargets = new
-				for(var/mob/living/carbon/C in getObjectsInView())
-					if ((C.stat == DEAD) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
+				for(var/mob/living/carbon/C in (GLOB.human_mob_list + GLOB.superior_animal_list))
+					if ((C.stat == DEAD) && (get_dist(src, C) <= viewRange) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
 						eatTargets += C
 
 				eat_target = safepick(nearestObjectsInList(eatTargets,src,1))
@@ -36,7 +36,7 @@
 					stop_automated_movement = 1
 					src.visible_message(SPAN_NOTICE("\The [src] begins to eat \the [eat_target]."))
 					walk(src,0)
-					spawn(3000) // how much time it takes to it a corpse, in tenths of second 
+					spawn(3000) // how much time it takes to it a corpse, in tenths of second
 					    // Set to 5 minutes to let the crew enough time to get the corpse
 						// Several roaches eating at the same time do not speed up the process
 						// If disturbed the roach has to start back from 0

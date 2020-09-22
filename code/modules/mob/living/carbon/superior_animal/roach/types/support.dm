@@ -39,6 +39,9 @@
 	if(stat != AI_inactive)
 		return
 
+	if(!target_mob)
+		return
+
 	gas_sac.add_reagent("blattedin", 1)
 
 	if(prob(7))

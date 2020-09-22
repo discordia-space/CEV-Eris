@@ -2,6 +2,7 @@
 	STOP_PROCESSING(SSmobs, src)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
+	GLOB.mob_list -= src
 	unset_machine()
 	qdel(hud_used)
 	if(client)
@@ -31,6 +32,7 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
+	GLOB.mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
 
