@@ -1208,6 +1208,30 @@
 	var/mob/M = locate(input["subtlemessage"])
 	usr.client.cmd_admin_subtle_message(M)
 
+/datum/admin_topic/manup
+	keyword = "manup"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/manup/Run(list/input)
+	var/mob/M = locate(input["manup"])
+	usr.client.man_up(M)
+
+/datum/admin_topic/paralyze
+	keyword = "paralyze"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/paralyze/Run(list/input)
+	var/mob/M = locate(input["paralyze"])
+
+	var/msg
+	if (M.paralysis == 0)
+		M.paralysis = 8000
+		msg = "has paralyzed [key_name(M)]."
+	else
+		M.paralysis = 0
+		msg = "has unparalyzed [key_name(M)]."
+		log_and_message_admins(msg)
+
 /datum/admin_topic/viewlogs
 	keyword = "viewlogs"
 	require_perms = list(R_MOD|R_ADMIN)
