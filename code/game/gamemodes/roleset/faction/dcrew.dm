@@ -8,10 +8,10 @@
 	
 	//Until we code some way to reset the bases, can't allow this to happen more than once per round
 
-	base_quantity = 2
-	scaling_threshold = 5
+	base_quantity = 5   //let some people have fun.. only 2 ghosts is not enough for a pacific role
+	scaling_threshold = 10
 
-	leaders = 1
+	leaders = 2
 
 	faction_id = FACTION_DCREW
 	faction_type = /datum/faction/dcrew
