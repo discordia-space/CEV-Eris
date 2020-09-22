@@ -1,6 +1,6 @@
 #define WELCOME_DCREW ""   // PLACCCEEE HOOOOLDERRRRR DU NUT FOGET here look at this don't skip it over
 
-/datum/faction/mercenary
+/datum/faction/dcrew
 	id = FACTION_DCREW
 	name = "Derelict Crew"
 	antag = "crew"
@@ -14,7 +14,7 @@
 	faction_invisible = TRUE
 
 
-/datum/faction/mercenary/add_leader(var/datum/antagonist/member, var/announce = TRUE)   //well lets get em a boss
+/datum/faction/dcrew/add_leader(var/datum/antagonist/member, var/announce = TRUE)   //well lets get em a boss
 	.=..()
 	if (.)
 		member.owner.current.add_language(LANGUAGE_COMMON)
