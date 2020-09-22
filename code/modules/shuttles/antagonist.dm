@@ -18,3 +18,7 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Ninja"
 
+/obj/machinery/computer/shuttle_control/multi/dcrew
+	name = "derelict shuttle control console"
+	req_access = list(access_dcrew)
+	shuttle_tag = "Derelictcrew"

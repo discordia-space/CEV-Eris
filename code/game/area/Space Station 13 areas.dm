@@ -250,6 +250,10 @@ area/space/atmosalert()
 	name = "\improper Mercenary Ship"
 	flags = AREA_FLAG_RAD_SHIELDED
 
+/area/shuttle/dcrew
+	name = "\improper Derelict Ship"
+	flags = AREA_FLAG_RAD_SHIELDED
+
 /area/shuttle/syndicate_elite/mothership
 	icon_state = "shuttlered"
 

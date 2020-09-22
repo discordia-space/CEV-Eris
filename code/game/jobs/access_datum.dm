@@ -505,6 +505,11 @@
 /datum/access/syndicate
 	id = access_syndicate
 	access_type = ACCESS_TYPE_SYNDICATE
+
+/var/const/access_dcrew = 130//General dcrew Access
+/datum/access/dcrew
+	id = access_dcrew
+	access_type = ACCESS_REGION_GENERAL
 /*******
 * Misc *
 *******/
