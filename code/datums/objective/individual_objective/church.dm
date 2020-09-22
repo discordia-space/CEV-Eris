@@ -8,7 +8,7 @@
 /datum/individual_objective/bad_technology/assign()
 	..()
 	target = pick_faction_item(mind_holder)
-	desc = " \The [target] is clearly against NT doctrine. It must be destroyed by ​Sword of Truth​."//no sword of truth
+	desc = " \The [target] is clearly against NT doctrine. It must be destroyed by Sword of Truth."//no sword of truth
 	RegisterSignal(mind_holder, SWORD_OF_TRUTH_OF_DESTRUCTION, .proc/task_completed)
 
 /datum/individual_objective/bad_technology/task_completed(obj/item/I)

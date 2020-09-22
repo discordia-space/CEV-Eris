@@ -62,9 +62,9 @@
 /datum/individual_objective/addict//work
 	name = "Oil the Cogs"
 	based_time = TRUE
+	units_requested = 3 MINUTES//change to 5
 	var/list/drugs = list()
 	var/timer
-	units_requested = 3 MINUTES//change to 5
 
 /datum/individual_objective/addict/assign()
 	..()
@@ -149,10 +149,10 @@
 
 /datum/individual_objective/helper//work
 	name = "Helping Hand"
-	var/mob/living/carbon/human/target
-	var/timer
 	units_requested = 3 MINUTES//change to 15
 	based_time = TRUE
+	var/mob/living/carbon/human/target
+	var/timer
 	var/sanity_threshold = 50
 
 /datum/individual_objective/helper/assign()
