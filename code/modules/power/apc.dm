@@ -27,8 +27,6 @@
 
 #define APC_UPDATE_ICON_COOLDOWN 100 // 10 seconds
 
-#define APC_OFF_COUNT_COOLDOWN 0.5 MINUTES
-
 // the Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 // one per area, needs wire conection to power network through a terminal
 
@@ -84,8 +82,6 @@
 	var/equipment = 3
 	var/environ = 3
 	var/operating = TRUE
-	var/off_timer = 0 //for indificual objectives
-	var/off_count = 0
 	var/charging = 0
 	var/chargemode = 1
 	var/chargecount = 0
@@ -1033,13 +1029,7 @@
 		return FALSE
 
 /obj/machinery/power/apc/Process()
-	if(operating)
-		off_timer = world.time
-		off_count = 0
-	else if(world.time >= (off_timer + APC_OFF_COUNT_COOLDOWN))
-		off_timer = world.time	
-		off_count += APC_OFF_COUNT_COOLDOWN
-		SEND_SIGNAL(area, COMSIG_AREA_APC_UNOPERATING, off_count)
+	SEND_SIGNAL(area, COMSIG_AREA_APC_OPERATING, operating)
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)

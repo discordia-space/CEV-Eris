@@ -111,7 +111,7 @@
 /datum/individual_objective/more_research/assign()
 	..()
 	target = pick_faction_item(mind_holder)
-	desc = "[target] is wasted in their hands. Put it into a destructive analyzer."
+	desc = "\the [target] is wasted in their hands. Put it into a destructive analyzer."
 	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
 
 /datum/individual_objective/more_research/task_completed(var/obj/item/I) 

@@ -81,7 +81,7 @@
 #define COMSIG_OBJ_TECHNO_TRIBALISM "techno_tribalism"
 
 //machinery
-#define COMSIG_AREA_APC_UNOPERATING "area_unoperating"  //from apc process()
+#define COMSIG_AREA_APC_OPERATING "area_operating"  //from apc process()
 #define COMSING_DESTRUCTIVE_ANALIZER "destructive_analizer"
 
 // /obj/item signals

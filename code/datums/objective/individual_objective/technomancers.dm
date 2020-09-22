@@ -4,6 +4,7 @@
 	units_requested = 3 MINUTES//work, change it to 10
 	based_time = TRUE
 	var/area/target_area
+	var/timer	
 
 /datum/individual_objective/disturbance/assign()
 	..()
@@ -18,16 +19,21 @@
 	target_area = pick(candidates)
 	desc = "Something in bluespace tries mess with ship systems. You need to go to [target_area] and power it down by APC \
 	for [unit2time(units_requested)] minutes to lower bluespace interference, before worst will happen."
-	RegisterSignal(target_area, COMSIG_AREA_APC_UNOPERATING, .proc/task_completed)
+	RegisterSignal(target_area, COMSIG_AREA_APC_OPERATING, .proc/task_completed)
 
-/datum/individual_objective/disturbance/task_completed(time)
-	units_completed = time
+/datum/individual_objective/disturbance/task_completed(on=TRUE)
+	if(on)
+		units_completed = 0
+		timer = world.time
+	else
+		units_completed += abs(world.time - timer)
+		timer = world.time
 	if(check_for_completion())
 		completed()
 
 /datum/individual_objective/disturbance/completed()
 	if(completed) return
-	UnregisterSignal(target_area, COMSIG_AREA_APC_UNOPERATING)
+	UnregisterSignal(target_area, COMSIG_AREA_APC_OPERATING)
 	..()
 
 /datum/individual_objective/more_tech//work
@@ -113,7 +119,7 @@
 /datum/individual_objective/tribalism/assign()
 	..()
 	target = pick_faction_item(mind_holder)
-	desc = "It is time to greater sacrifice. Put [target] in Techno-Tribalism Enforcer."
+	desc = "It is time to greater sacrifice. Put \the [target] in Techno-Tribalism Enforcer."
 	RegisterSignal(mind_holder, COMSIG_OBJ_TECHNO_TRIBALISM, .proc/task_completed)
 
 /datum/individual_objective/tribalism/task_completed(obj/item/I) 
