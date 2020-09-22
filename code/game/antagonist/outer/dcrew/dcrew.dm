@@ -3,7 +3,7 @@
 	bantype = ROLE_DCREW
 	faction_id = FACTION_DCREW
 	role_text = "Derelict crew member"
-	welcome_text = WELCOME_SERBS
+	welcome_text = WELCOME_DCREW
 	antaghud_indicator = ""   //// PLACCCEEE HOOOOLDERRRRR DU NUT FOGET here look at this don't skip it over
 	landmark_id = "dcrew-spawn"
 	outer = TRUE
