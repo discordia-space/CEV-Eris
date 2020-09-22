@@ -16,6 +16,8 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 300
+	reagent_flags = TRANSPARENT
+
 	var/active = FALSE
 	var/port_dir = SOUTH
 	var/obj/structure/reagent_dispensers/biomatter/container
