@@ -101,7 +101,6 @@
 	UnregisterSignal(mind_holder, COMSING_AUTOPSY)
 	..()
 
-
 /datum/individual_objective/more_research//workd
 	name = "Mandate of Science"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
