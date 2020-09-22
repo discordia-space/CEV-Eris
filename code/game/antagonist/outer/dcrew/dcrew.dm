@@ -30,7 +30,7 @@
 
 
 
-/datum/antagonist/dcrew	/equip()
+/datum/antagonist/dcrew/equip()
 	var/mob/living/L = owner.current
 
 	//Put on the fatigues. Armor not included, they equip that manually from the merc base
