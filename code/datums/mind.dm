@@ -123,7 +123,7 @@
 		output += "<HR><B>Your individual objectives:</B><UL>"
 		var/obj_count = 1
 		var/la_explanation
-		for(var/datum/individual_objetive/objective in individual_objectives)
+		for(var/datum/individual_objective/objective in individual_objectives)
 			output += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
 			obj_count++
 			if(objective.limited_antag)
@@ -160,7 +160,7 @@
 		out += "<HR><B>Your individual objectives:</B><UL>"
 		var/obj_count = 1
 		var/la_explanation
-		for(var/datum/individual_objetive/objective in individual_objectives)
+		for(var/datum/individual_objective/objective in individual_objectives)
 			out += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
 			obj_count++
 			if(objective.limited_antag)

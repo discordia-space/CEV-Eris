@@ -16,7 +16,7 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_engineering
 
-/obj/item/device/techno_tribalism/attackby(obj/item/weapon/W, mob/user)
+/obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user)
 	if(items_count < max_count)
 		if(W in GLOB.all_faction_items)
 			if(GLOB.all_faction_items[W] == GLOB.department_moebius)
@@ -136,6 +136,7 @@
 			return
 
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
+		SEND_SIGNAL(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
 		qdel(W)
 

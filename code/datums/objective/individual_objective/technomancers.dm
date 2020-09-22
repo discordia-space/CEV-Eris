@@ -1,11 +1,11 @@
-/datum/individual_objetive/disturbance
+/datum/individual_objective/disturbance
 	name = "Disturbance"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	units_requested = 3 MINUTES//work, change it to 10
 	based_time = TRUE
 	var/area/target_area
 
-/datum/individual_objetive/disturbance/assign()
+/datum/individual_objective/disturbance/assign()
 	..()
 	var/list/candidates = ship_areas.Copy()
 	for(var/area/A in candidates)
@@ -20,22 +20,22 @@
 	for [unit2time(units_requested)] minutes to lower bluespace interference, before worst will happen."
 	RegisterSignal(target_area, COMSIG_AREA_APC_UNOPERATING, .proc/task_completed)
 
-/datum/individual_objetive/disturbance/task_completed(time)
+/datum/individual_objective/disturbance/task_completed(time)
 	units_completed = time
 	if(check_for_completion())
 		completed()
 
-/datum/individual_objetive/disturbance/completed()
+/datum/individual_objective/disturbance/completed()
 	if(completed) return
 	UnregisterSignal(target_area, COMSIG_AREA_APC_UNOPERATING)
 	..()
 
-/datum/individual_objetive/more_tech//work
+/datum/individual_objective/more_tech//work
 	name = "Endless Search"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	var/obj/item/target
 
-/datum/individual_objetive/more_tech/proc/pick_candidates()
+/datum/individual_objective/more_tech/proc/pick_candidates()
 	return pickweight(list(
 	/obj/item/weapon/tool_upgrade/reinforcement/guard = 1,
 	/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip = 1,
@@ -63,35 +63,35 @@
 	/obj/item/device/makeshift_centrifuge = 1
 	))
 
-/datum/individual_objetive/more_tech/assign()
+/datum/individual_objective/more_tech/assign()
 	..()
 	target = pick_candidates()
 	target = new target()
 	desc = "As always, you need more technology to your possession. Acquire a [target.name]"
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
-/datum/individual_objetive/more_tech/task_completed(obj/item/W)
+/datum/individual_objective/more_tech/task_completed(obj/item/W)
 	for(var/obj/item/I in mind_holder.GetAllContents())
 		if(I.type == target.type)
 			completed()
 			return
 
-/datum/individual_objetive/more_tech/completed()
+/datum/individual_objective/more_tech/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
 	..()
 
-/datum/individual_objetive/oddity//work
+/datum/individual_objective/oddity//work
 	name = "Warded"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	units_requested = 5
 
-/datum/individual_objetive/oddity/assign()
+/datum/individual_objective/oddity/assign()
 	..()
 	desc = "Acquire at least [units_requested] oddities at the same time to be on you"
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
-/datum/individual_objetive/oddity/task_completed(obj/item/W)
+/datum/individual_objective/oddity/task_completed(obj/item/W)
 	units_completed = 0
 	for(var/obj/item/I in mind_holder.GetAllContents())
 		if(I.GetComponent(/datum/component/inspiration))
@@ -99,7 +99,28 @@
 	if(check_for_completion())
 		completed()
 
-/datum/individual_objetive/oddity/completed()
+/datum/individual_objective/oddity/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
+	..()
+
+/datum/individual_objective/tribalism
+	name = "Advanced Tribalism"
+	req_department = list(DEPARTMENT_ENGINEERING)
+	limited_antag = TRUE
+	var/obj/item/target
+
+/datum/individual_objective/tribalism/assign()
+	..()
+	target = pick_faction_item(mind_holder)
+	desc = "It is time to greater sacrifice. Put [target] in Techno-Tribalism Enforcer."
+	RegisterSignal(mind_holder, COMSIG_OBJ_TECHNO_TRIBALISM, .proc/task_completed)
+
+/datum/individual_objective/tribalism/task_completed(obj/item/I) 
+	if(target.type == I.type)
+		..(1)
+
+/datum/individual_objective/tribalism/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIG_OBJ_TECHNO_TRIBALISM)
 	..()

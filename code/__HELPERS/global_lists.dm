@@ -169,9 +169,9 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		var/datum/job/J = new T
 		GLOB.joblist[J.title] = J
 
-	paths = subtypesof(/datum/individual_objetive)
+	paths = subtypesof(/datum/individual_objective)
 	for(var/T in paths)
-		var/datum/individual_objetive/IO = new T
+		var/datum/individual_objective/IO = new T
 		GLOB.individual_objectives[IO] += T
 
 	//Stashes
