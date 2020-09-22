@@ -24,7 +24,7 @@
 		STAT_ROB = 0,   //noodle man. fighting is hard
 		STAT_TGH = 25,   //but you can take a punch as a survivor
 		STAT_VIG = 10,  //noodle man. fighting is hard
-		STAT_BIO = 10, 
+		STAT_BIO = 10,
 		STAT_MEC = 25    //well fixing will need some tool handling
 	)
 
