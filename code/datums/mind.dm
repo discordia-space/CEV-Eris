@@ -119,11 +119,11 @@
 			output += "<br><b>Your [A.role_text] objectives:</b>"
 		output += "[A.print_objectives(FALSE)]"
 
-	if(LAZYLEN(individual_objetives))
+	if(LAZYLEN(individual_objectives))
 		output += "<HR><B>Your individual objectives:</B><UL>"
 		var/obj_count = 1
 		var/la_explanation
-		for(var/datum/individual_objetive/objective in individual_objetives)
+		for(var/datum/individual_objetive/objective in individual_objectives)
 			output += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
 			obj_count++
 			if(objective.limited_antag)
@@ -156,11 +156,11 @@
 	out += "</table><hr>"
 	out += "<br>[memory]"
 
-	if(LAZYLEN(individual_objetives))
+	if(LAZYLEN(individual_objectives))
 		out += "<HR><B>Your individual objectives:</B><UL>"
 		var/obj_count = 1
 		var/la_explanation
-		for(var/datum/individual_objetive/objective in individual_objetives)
+		for(var/datum/individual_objetive/objective in individual_objectives)
 			out += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
 			obj_count++
 			if(objective.limited_antag)

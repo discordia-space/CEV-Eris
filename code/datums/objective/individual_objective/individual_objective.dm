@@ -1,10 +1,10 @@
-/datum/mind/var/list/individual_objetives = list()
+/datum/mind/var/list/individual_objectives = list()
 
 /mob/living/carbon/human/proc/pick_individual_objective()
 	if(!mind || (mind && player_is_antag(mind)))
 		return FALSE
 	var/list/valid_objectives = list()
-	for(var/datum/individual_objetive/IO in GLOB.individual_objetives)
+	for(var/datum/individual_objetive/IO in GLOB.individual_objectives)
 		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
 		if(!C && IO.req_cruciform)
 			continue
@@ -12,8 +12,8 @@
 			continue
 		if(IO.req_department.len && (!mind.assigned_job || !(mind.assigned_job.department in IO.req_department)))
 			continue
-		valid_objectives += GLOB.individual_objetives[IO]
-	for(var/datum/individual_objetive/objective in mind.individual_objetives)
+		valid_objectives += GLOB.individual_objectives[IO]
+	for(var/datum/individual_objetive/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
 	var/new_individual_objetive = pick(valid_objectives)
@@ -23,7 +23,7 @@
 /proc/player_is_limited_antag(datum/mind/player)
 	if(player_is_antag(player))
 		return FALSE
-	for(var/datum/individual_objetive/objetive in player.individual_objetives)
+	for(var/datum/individual_objetive/objetive in player.individual_objectives)
 		if(objetive.limited_antag)
 			return TRUE
 	return FALSE
@@ -52,7 +52,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	owner = new_owner
 	mind_holder = new_owner.current
-	owner.individual_objetives += src
+	owner.individual_objectives += src
 	to_chat(owner,  SPAN_NOTICE("You now have the personal objective: [name]"))
 
 /datum/individual_objetive/proc/completed(fail=FALSE)

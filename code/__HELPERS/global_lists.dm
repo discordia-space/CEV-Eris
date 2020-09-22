@@ -69,8 +69,8 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 //PERKS
 GLOBAL_LIST_EMPTY(all_perks)
 
-//individual_objetives
-GLOBAL_LIST_EMPTY(individual_objetives)
+//individual_objectives
+GLOBAL_LIST_EMPTY(individual_objectives)
 
 //NeoTheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
@@ -169,7 +169,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 	paths = subtypesof(/datum/individual_objetive)
 	for(var/T in paths)
 		var/datum/individual_objetive/IO = new T
-		GLOB.individual_objetives[IO] += T
+		GLOB.individual_objectives[IO] += T
 
 	//Stashes
 	paths = subtypesof(/datum/stash)
