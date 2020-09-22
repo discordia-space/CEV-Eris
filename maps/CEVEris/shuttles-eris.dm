@@ -326,7 +326,7 @@
 //Dcrew
 
 /datum/shuttle/autodock/multi/antag/dcrew
-	name = "Derelict crew"
+	name = "Derelictcrew"
 	warmup_time = 0
 	move_time = 10  //once its fixed why wait longer
 	cloaked = 0

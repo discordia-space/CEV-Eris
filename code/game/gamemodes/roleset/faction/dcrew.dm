@@ -1,6 +1,6 @@
 /datum/storyevent/roleset/faction/dcrew
 	id = "dcrew"
-	name = "derelict crew member"
+	name = "dcrew"
 	role_id = ROLE_DCREW
 	weight = 0.4
 	ocurrences_max = 1

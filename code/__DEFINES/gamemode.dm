@@ -63,7 +63,7 @@
 #define ROLE_INQUISITOR "inquisitor"
 #define ROLE_SECDOC_DEFENDER "secdoc_defender"
 
-#define ROLE_DCREW "ROLE_DCREW"
+#define ROLE_DCREW "dcrew"
 
 #define ROLE_BLITZ "blitzshell"
 
