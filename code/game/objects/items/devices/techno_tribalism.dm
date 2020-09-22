@@ -12,6 +12,10 @@
 	var/max_count = 5
 	var/cooldown = 30 MINUTES
 
+/obj/item/device/techno_tribalism/New()
+	..()
+	GLOB.all_faction_items[src.type] = engineering_positions
+
 /obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(items_count < max_count)
 		if(istype(W, /obj/item/weapon/tool))

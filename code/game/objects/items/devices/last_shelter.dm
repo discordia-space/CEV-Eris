@@ -10,6 +10,10 @@
 	var/last_teleport = -15 MINUTES
 	var/scan = FALSE
 
+/obj/item/device/last_shelter/New()
+	..()
+	GLOB.all_faction_items[src.type] = church_positions
+
 /obj/item/device/last_shelter/attack_self(mob/user)
 	if(world.time >= (last_teleport + cooldown))
 		to_chat(user, SPAN_NOTICE("The [src] scans deep space for a cruciforms, it's will take a while..."))

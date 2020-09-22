@@ -17,6 +17,7 @@
 
 /obj/item/biosyphon/New()
 	..()
+	GLOB.all_faction_items[src.type] = security_positions
 	START_PROCESSING(SSobj, src)
 
 /obj/item/biosyphon/Destroy()

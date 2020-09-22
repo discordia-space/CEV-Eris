@@ -10,6 +10,10 @@
 	var/last_summon = -30 MINUTES
 	var/cooldown = 30 MINUTES
 
+/obj/item/weapon/complicator/New()
+	..()
+	GLOB.all_faction_items[src.type] = engineering_positions
+
 /obj/item/weapon/complicator/attack_self()
 	var/mob/living/carbon/human/user = src.loc
 	if(world.time >= (last_summon + cooldown))

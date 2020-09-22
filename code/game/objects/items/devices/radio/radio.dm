@@ -776,6 +776,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio/New()
 	..()
+	GLOB.all_faction_items[src.type] = cargo_positions
 	START_PROCESSING(SSobj, src)
 
 /obj/item/device/radio/random_radio/Destroy()

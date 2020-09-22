@@ -10,6 +10,10 @@
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
+/obj/item/weapon/tool/sword/nt_sword/New()
+	..()
+	GLOB.all_faction_items[src.type] = church_positions
+
 /obj/item/weapon/tool/sword/nt_sword/wield(mob/living/user)
 	..()
 	set_light(l_range = 1.7, l_power = 1.3, l_color = COLOR_YELLOW)

@@ -15,6 +15,10 @@
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)
 	var/blood_amount = 0
 
+/obj/item/weapon/reagent_containers/enricher/New()
+	..()
+	GLOB.all_faction_items[src.type] = moebius_positions
+
 /obj/item/weapon/reagent_containers/enricher/attack_self()
 	if(reagents.total_volume)
 		for(var/datum/reagent/reagent in reagents.reagent_list)

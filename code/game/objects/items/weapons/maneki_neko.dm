@@ -16,13 +16,15 @@
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 5, MATERIAL_DIAMOND = 1)
 	var/list/mob/living/carbon/human/followers = list()
 
+/obj/item/weapon/maneki_neko/New()
+	GLOB.all_faction_items[src.type] = cargo_positions
+	START_PROCESSING(SSobj, src)
+	..()
+
 /obj/item/weapon/maneki_neko/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(!istype(src.loc, /obj/item/weapon/storage/bsdm))
 		destroy_lifes()
-	..()
-/obj/item/weapon/maneki_neko/New()
-	START_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/maneki_neko/Process()

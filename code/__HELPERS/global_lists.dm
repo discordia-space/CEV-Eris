@@ -70,6 +70,9 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 GLOBAL_LIST_EMPTY(all_perks)
 
 //individual_objectives
+GLOBAL_LIST_EMPTY(all_faction_items)
+
+//faction_items
 GLOBAL_LIST_EMPTY(individual_objectives)
 
 //NeoTheology
