@@ -17,7 +17,7 @@
 
 /obj/item/weapon/reagent_containers/enricher/New()
 	..()
-	GLOB.all_faction_items[src] = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
+	GLOB.all_faction_items[src] = GLOB.department_moebius
 
 /obj/item/weapon/reagent_containers/enricher/attack_self()
 	if(reagents.total_volume)

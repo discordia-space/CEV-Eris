@@ -18,4 +18,4 @@
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()
-	GLOB.all_faction_items[src] = list(DEPARTMENT_SECURITY)
+	GLOB.all_faction_items[src] = GLOB.department_security

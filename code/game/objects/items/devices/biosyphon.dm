@@ -17,7 +17,7 @@
 
 /obj/item/biosyphon/New()
 	..()
-	GLOB.all_faction_items[src] = list(DEPARTMENT_SECURITY)
+	GLOB.all_faction_items[src] = GLOB.department_security
 	START_PROCESSING(SSobj, src)
 
 /obj/item/biosyphon/Destroy()

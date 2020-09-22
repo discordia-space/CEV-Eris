@@ -12,7 +12,7 @@
 
 /obj/item/weapon/complicator/New()
 	..()
-	GLOB.all_faction_items[src] = list(DEPARTMENT_ENGINEERING)
+	GLOB.all_faction_items[src] = GLOB.department_engineering
 
 /obj/item/weapon/complicator/attack_self()
 	var/mob/living/carbon/human/user = src.loc

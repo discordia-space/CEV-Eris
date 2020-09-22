@@ -16,7 +16,7 @@
 
 /obj/item/weapon/reagent_containers/atomic_distillery/New()
 	..()
-	GLOB.all_faction_items[src] = list(DEPARTMENT_COMMAND)
+	GLOB.all_faction_items[src] = GLOB.department_command
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/reagent_containers/atomic_distillery/Destroy()

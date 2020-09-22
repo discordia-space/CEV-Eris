@@ -1,3 +1,10 @@
+GLOBAL_LIST_INIT(department_command, list(DEPARTMENT_COMMAND))
+GLOBAL_LIST_INIT(department_security, list(DEPARTMENT_SECURITY))
+GLOBAL_LIST_INIT(department_moebius, list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL))
+GLOBAL_LIST_INIT(department_engineering, list(DEPARTMENT_ENGINEERING))
+GLOBAL_LIST_INIT(department_guild, list(DEPARTMENT_GUILD))
+GLOBAL_LIST_INIT(department_church, list(DEPARTMENT_CHURCH))
+
 var/const/ENGINEERING       =(1<<0)
 var/const/IRONHAMMER        =(1<<1)
 var/const/MEDICAL           =(1<<2)

@@ -17,7 +17,7 @@
 	var/list/mob/living/carbon/human/followers = list()
 
 /obj/item/weapon/maneki_neko/New()
-	GLOB.all_faction_items[src] = list(DEPARTMENT_GUILD)
+	GLOB.all_faction_items[src] = GLOB.department_guild
 	START_PROCESSING(SSobj, src)
 	..()
 
