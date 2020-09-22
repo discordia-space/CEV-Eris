@@ -92,7 +92,7 @@ area/space/atmosalert()
 /area/space/partyalert()
 	return
 
-/area/turret_protected/
+/area/turret_protected
 	flags = AREA_FLAG_CRITICAL
 
 /area/arrival

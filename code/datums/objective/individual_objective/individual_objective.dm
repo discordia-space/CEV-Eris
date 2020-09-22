@@ -99,6 +99,8 @@
 			continue
 		if(!ignore_departmen && H && GLOB.all_faction_items[faction_item] == church_positions && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
+		if(!locate(faction_item.type))
+			continue
 		valid_targets += faction_item
 	if(valid_targets.len)
 		return pick(valid_targets)

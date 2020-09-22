@@ -28,6 +28,9 @@
 /obj/item/device/von_krabin/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	check_for_faithful(list())
+	for(var/mob/living/carbon/human/H in range(8, src))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
 	..()
 
 /obj/item/device/von_krabin/attack_self()

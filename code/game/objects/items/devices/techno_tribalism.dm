@@ -16,6 +16,12 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_engineering
 
+/obj/item/device/techno_tribalism/Destroy()
+	for(var/mob/living/carbon/human/H in range(8, src))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
 /obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user)
 	if(items_count < max_count)
 		if(W in GLOB.all_faction_items)

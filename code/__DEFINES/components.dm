@@ -79,6 +79,7 @@
 // /obj signals
 #define COMSIG_OBJ_HIDE	"obj_hide"
 #define COMSIG_OBJ_TECHNO_TRIBALISM "techno_tribalism"
+#define COMSIG_OBJ_FACTION_ITEM_DESTROY "faction_item_destroy"
 
 //machinery
 #define COMSIG_AREA_APC_OPERATING "area_operating"  //from apc process()

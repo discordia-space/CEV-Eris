@@ -19,6 +19,12 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_moebius
 
+/obj/item/weapon/reagent_containers/enricher/Destroy()
+	for(var/mob/living/carbon/human/H in range(8, src))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
 /obj/item/weapon/reagent_containers/enricher/attack_self()
 	if(reagents.total_volume)
 		for(var/datum/reagent/reagent in reagents.reagent_list)

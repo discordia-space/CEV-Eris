@@ -14,6 +14,12 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_engineering
 
+/obj/item/weapon/complicator/Destroy()
+	for(var/mob/living/carbon/human/H in range(8, src))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
 /obj/item/weapon/complicator/attack_self()
 	var/mob/living/carbon/human/user = src.loc
 	if(world.time >= (last_summon + cooldown))

@@ -14,6 +14,12 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_church
 
+/obj/item/device/last_shelter/Destroy()
+	for(var/mob/living/carbon/human/H in range(8, src))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
 /obj/item/device/last_shelter/attack_self(mob/user)
 	if(world.time >= (last_teleport + cooldown))
 		to_chat(user, SPAN_NOTICE("The [src] scans deep space for a cruciforms, it's will take a while..."))

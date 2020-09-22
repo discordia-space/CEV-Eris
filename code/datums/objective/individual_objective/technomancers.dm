@@ -8,15 +8,7 @@
 
 /datum/individual_objective/disturbance/assign()
 	..()
-	var/list/candidates = ship_areas.Copy()
-	for(var/area/A in candidates)
-		if(A.is_maintenance)
-			candidates -= A
-			continue
-		if(!A.apc)
-			candidates -= A
-			continue
-	target_area = pick(candidates)
+	target_area = random_ship_area()
 	desc = "Something in bluespace tries mess with ship systems. You need to go to [target_area] and power it down by APC \
 	for [unit2time(units_requested)] minutes to lower bluespace interference, before worst will happen."
 	RegisterSignal(target_area, COMSIG_AREA_APC_OPERATING, .proc/task_completed)
