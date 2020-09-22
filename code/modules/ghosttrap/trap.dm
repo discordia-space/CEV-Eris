@@ -217,3 +217,16 @@ datum/ghosttrap/pai/transfer_personality(var/mob/candidate, var/mob/living/silic
 	can_set_own_name = FALSE
 	list_as_special_role = FALSE
 	can_only_use_once = TRUE
+
+/**************
+*  Derelict crew *
+**************/
+
+/datum/ghosttrap/dcrew
+	object = "derelict crew member"
+	pref_check = ROLE_DCREW
+	ghost_trap_message = "They have become a derelict crew member now."
+	ghost_trap_role = "derelict crew member."
+	can_set_own_name = TRUE
+	list_as_special_role = TRUE
+	can_only_use_once = TRUE

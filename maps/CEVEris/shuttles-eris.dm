@@ -322,3 +322,122 @@
 	name = "Dock"
 	landmark_tag = "nav_cargo_vessel"
 	dock_target = "cargo_bay"
+
+//Dcrew
+
+/datum/shuttle/autodock/multi/antag/dcrew
+	name = "Derelict crew"
+	warmup_time = 0
+	move_time = 10  //once its fixed why wait longer
+	cloaked = 0
+	destination_tags = list(
+		"nav_dcrew_northeast",
+		"nav_dcrew_southwest",
+		"nav_dcrew_dock",
+		"nav_dcrew_start",
+		"nav_dcrew_atmos",
+		"nav_dcrew_sec2west",
+		"nav_dcrew_sec2east",
+		"nav_dcrew_junk",
+		"nav_dcrew_armory",
+		"nav_dcrew_engieva",
+		"nav_dcrew_mining",
+		"nav_dcrew_medbay",
+		"nav_dcrew_engine",
+		"nav_dcrew_sec3east4",
+		"nav_dcrew_sec3east5"
+		)
+	shuttle_area = /area/shuttle/dcrew
+	default_docking_controller = "dcrew_shuttle"
+	current_location = "nav_dcrew_start"
+	landmark_transition = "nav_dcrew_transition"
+	announcer = "CEV Eris Sensor Array"
+	home_waypoint = "nav_dcrew_start"
+	arrival_message = "Attention, unidentified vessel detected on long range sensors. \nVessel is approaching on an intercept course. \nHailing frequencies open."
+	departure_message = "Attention, unknown vessel has departed"
+
+//Docking controller chooses which of our airlocks should open onto the target location.
+/obj/effect/shuttle_landmark/dcrew
+	docking_controller = "dcrew_shuttle"
+
+/obj/effect/shuttle_landmark/dcrew/start
+	name = "dcrewenary Base"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_start"
+	dock_target = "dcrew_base"
+
+/obj/effect/shuttle_landmark/dcrew/internim
+	name = "In transit"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_transition"
+
+/obj/effect/shuttle_landmark/dcrew/dock
+	name = "Docking Port Deck 5"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_dock"
+	dock_target = "second_sec_1_access_console"
+
+/obj/effect/shuttle_landmark/dcrew/northeast
+	name = "Northeast of the Vessel Deck 5"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_northeast"
+
+/obj/effect/shuttle_landmark/dcrew/southwest
+	name = "Southwest of the Vessel Deck 5"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_southwest"
+
+/obj/effect/shuttle_landmark/dcrew/atmos
+	name = "Atmospherics Deck 1"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_atmos"
+
+/obj/effect/shuttle_landmark/dcrew/sec2west
+	name = "Section II Deck 1 West"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_sec2west"
+
+/obj/effect/shuttle_landmark/dcrew/sec2east
+	name = "Section II Deck 1 East"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_sec2east"
+
+/obj/effect/shuttle_landmark/dcrew/junk
+	name = "Junk Beacon Deck 1"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_junk"
+
+/obj/effect/shuttle_landmark/dcrew/armory
+	name = "Armory Deck 1"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_armory"
+
+/obj/effect/shuttle_landmark/dcrew/engieva
+	name = "Engineering EVA Deck 3"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_engieva"
+
+/obj/effect/shuttle_landmark/dcrew/mining
+	name = "Mining Dock Deck 3"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_mining"
+
+/obj/effect/shuttle_landmark/dcrew/medbay
+	name = "Medbay Deck 4"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_medbay"
+
+/obj/effect/shuttle_landmark/dcrew/engine
+	name = "Engine Deck 4"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_engine"
+
+/obj/effect/shuttle_landmark/dcrew/sec3east4
+	name = "Section III Deck 4 East"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_sec3east4"
+
+/obj/effect/shuttle_landmark/dcrew/sec3east5
+	name = "Section III Deck 5 East"
+	icon_state = "shuttle-red"
+	landmark_tag = "nav_dcrew_sec3east5"

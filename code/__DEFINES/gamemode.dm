@@ -39,6 +39,7 @@
 #define ROLE_BANTYPE_XENOS ROLE_XENOMORPH
 #define ROLE_BANTYPE_CREW_SIDED "crew_sided"
 #define ROLE_BANTYPE_BLITZ ROLE_BLITZ
+#define ROLE_DCREW ROLE_DCREW
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -61,6 +62,8 @@
 
 #define ROLE_INQUISITOR "inquisitor"
 #define ROLE_SECDOC_DEFENDER "secdoc_defender"
+
+#define ROLE_DCREW "ROLE_DCREW"
 
 #define ROLE_BLITZ "blitzshell"
 

@@ -34,3 +34,8 @@
 	name = "mercenary-spawn"
 	icon_state = "spy-green"
 	navigation = "This marks Serbia, it is our land."
+
+/obj/landmark/storyevent/dcrew_spawn
+	name = "dcrew-spawn"
+	icon_state = "spy-blue"
+	navigation = "Lost, or forgotten. this is were you ended up."
