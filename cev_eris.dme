@@ -974,7 +974,6 @@
 #include "code\game\objects\items\weapons\circuitboards\machinery\medical.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\mindswapper.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\mining_drill.dm"
-#include "code\game\objects\items\weapons\circuitboards\machinery\neotheology.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\pacman.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\power.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\recharge_station.dm"
