@@ -1,4 +1,4 @@
-/datum/antagonist/mercenary
+/datum/antagonist/dcrew
 	id = ROLE_DCREW
 	bantype = ROLE_DCREW
 	faction_id = FACTION_DCREW
@@ -30,7 +30,7 @@
 
 
 
-/datum/antagonist/mercenary/equip()
+/datum/antagonist/dcrew	/equip()
 	var/mob/living/L = owner.current
 
 	//Put on the fatigues. Armor not included, they equip that manually from the merc base
