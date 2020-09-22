@@ -72,20 +72,17 @@
 	desc = "Stay intoxicated by alcohol or recreational drugs for [unit2time(units_requested)] minutes"
 	RegisterSignal(mind_holder, COMSIGN_CARBON_HAPPY, .proc/task_completed)
 
-/datum/individual_objective/addict/task_completed(datum/reagent/happy, ntimer, signal)
+/datum/individual_objective/addict/task_completed(datum/reagent/happy, signal)
+	if(!drugs.len)
+		timer = world.time
 	if(!(happy.id in drugs))
-		if(signal != MOB_ADD_DRUG || signal == ON_MOB_DRUG)
-			if(!drugs.len)
-				timer = world.time
+		if(signal != MOB_DELETE_DRUG)
 			drugs += happy.id
 	else if(signal == MOB_DELETE_DRUG)
 		drugs -= happy.id
-		if(!drugs.len)
-			timer = world.time
 	else if(signal == ON_MOB_DRUG)
-		if(ntimer > timer)
-			units_requested += ntimer - timer
-			timer = world.time
+		units_completed += abs(world.time - timer)
+		timer = world.time
 	if(check_for_completion())
 		completed()
 
@@ -205,11 +202,6 @@
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/obsession/task_completed()
-	if(QDELETED(target))
-		to_chat(mind_holder, SPAN_WARNING("[target.name] is lost!"))
-		owner.individual_objectives -= src
-		UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
-		return FALSE
 	if(target in view(mind_holder))
 		units_completed += abs(world.time - timer)
 		timer = world.time
@@ -222,4 +214,70 @@
 /datum/individual_objective/obsession/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
+	..()
+
+/datum/individual_objective/greed//work
+	name = "Greed"
+	units_requested = 2 MINUTES//change to 10
+	based_time = TRUE
+	limited_antag = TRUE
+	var/obj/item/target
+	var/timer
+
+/datum/individual_objective/greed/assign()
+	..()
+	target = pick_faction_item(mind_holder, TRUE)
+	desc = "Acquire and hold \the [target] for [unit2time(units_requested)] minutes."
+	timer = world.time
+	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
+
+/datum/individual_objective/greed/task_completed()
+	var/find = FALSE
+	for(var/obj/item/I in mind_holder.GetAllContents())
+		if(target.type == I.type)
+			units_completed += abs(world.time - timer)
+			timer = world.time
+			find = TRUE
+	if(!find)
+		timer = world.time
+		units_completed = 0
+	if(check_for_completion())
+		completed()
+
+/datum/individual_objective/greed/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
+	..()
+
+/datum/individual_objective/collenction//work
+	name = "Collection"
+	var/obj/item/target
+
+/datum/individual_objective/collenction/proc/pick_candidates()
+	return pickweight(list(
+		/obj/item/weapon/gun/projectile/revolver/deckard,
+		/obj/item/weapon/gun/energy/ionrifle,
+		/obj/item/weapon/gun/projectile/automatic/ak47/fs,
+		/obj/item/weapon/gun/energy/retro,
+		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
+		))
+
+/datum/individual_objective/collenction/assign()
+	..()
+	target = pick_candidates()
+	target = new target()
+	desc = "Get your hands on a [target.name]"
+	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
+
+/datum/individual_objective/collenction/task_completed(obj/item/W)
+	if(W.type == target.type)
+		completed()
+	else
+		for(var/obj/item/I in mind_holder.GetAllContents())
+			if(I.type == target.type)
+				completed()
+
+/datum/individual_objective/collenction/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
 	..()
