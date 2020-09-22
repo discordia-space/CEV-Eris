@@ -1,7 +1,8 @@
 /datum/individual_objetive/disturbance
 	name = "Disturbance"
 	req_department = list(DEPARTMENT_ENGINEERING)
-	var/target_time = 1 MINUTES//work, change it to 10
+	units_requested = 3 MINUTES//work, change it to 10
+	based_time = TRUE
 	var/area/target_area
 
 /datum/individual_objetive/disturbance/assign()
@@ -16,11 +17,12 @@
 			continue
 	target_area = pick(candidates)
 	desc = "Something in bluespace tries mess with ship systems. You need to go to [target_area] and power it down by APC \
-	for [target_time/(1 MINUTES)] minutes to lower bluespace interference, before worst will happen."
+	for [unit2time(units_requested)] minutes to lower bluespace interference, before worst will happen."
 	RegisterSignal(target_area, COMSIG_AREA_APC_UNOPERATING, .proc/task_completed)
 
 /datum/individual_objetive/disturbance/task_completed(time)
-	if(time >= target_time)
+	units_completed = time
+	if(check_for_completion())
 		completed()
 
 /datum/individual_objetive/disturbance/completed()
@@ -69,10 +71,35 @@
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
 /datum/individual_objetive/more_tech/task_completed(obj/item/W)
-	if(W.type == target.type)
-		completed()
+	for(var/obj/item/I in mind_holder.GetAllContents())
+		if(I.type == target.type)
+			completed()
+			return
 
 /datum/individual_objetive/more_tech/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
+	..()
+
+/datum/individual_objetive/oddity//work
+	name = "Warded"
+	req_department = list(DEPARTMENT_ENGINEERING)
+	units_requested = 5
+
+/datum/individual_objetive/oddity/assign()
+	..()
+	desc = "Acquire at least [units_requested] oddities at the same time to be on you"
+	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
+
+/datum/individual_objetive/oddity/task_completed(obj/item/W)
+	units_completed = 0
+	for(var/obj/item/I in mind_holder.GetAllContents())
+		if(I.GetComponent(/datum/component/inspiration))
+			units_completed++
+	if(check_for_completion())
+		completed()
+
+/datum/individual_objetive/oddity/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
 	..()

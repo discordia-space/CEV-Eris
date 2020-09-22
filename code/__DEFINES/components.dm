@@ -71,6 +71,8 @@
 #define COMSING_AUTOPSY "human_autopsy"                          //from obj/item/weapon/autopsy_scanner/attack()
 #define COMSIG_HUMAN_LEVEL_UP "human_level_up"
 #define COMSING_HUMAN_EQUITP "human_equip_item"                   //from human/equip_to_slot()
+#define COMSIGN_HUMAN_HEALTH "human_health"                       //from human/updatehealth()
+#define COMSIG_HUMAN_SANITY "human_sanity"                        //from /datum/sanity/proc/onLife()
 
 // /datum/species signals
 

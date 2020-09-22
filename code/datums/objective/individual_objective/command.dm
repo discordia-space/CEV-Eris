@@ -1,7 +1,7 @@
 /datum/individual_objetive/beyond
 	name = "A Particular Spot"
 	req_department = list(DEPARTMENT_COMMAND)
-	var/objective_timer = 1 MINUTES//change to 5
+	var/objective_timer = 3 MINUTES//change to 5
 	var/obj/effect/overmap/ship/linked
 	var/x
 	var/y
@@ -11,7 +11,7 @@
 	x = rand(2, GLOB.maps_data.overmap_size-1)
 	y = rand(2, GLOB.maps_data.overmap_size-1)
 	linked = locate(/obj/effect/overmap/ship/eris)
-	desc = "Move [linked] to coordenates [x], [y] for [objective_timer/(1 MINUTES)]"
+	desc = "Move [linked] to coordenates [x], [y] for [unit2time(objective_timer)]"
 	RegisterSignal(linked, COMSIG_SHIP_STILL, .proc/task_completed)
 
 /datum/individual_objetive/beyond/task_completed(time, nx, ny)

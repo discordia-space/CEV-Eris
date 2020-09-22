@@ -96,6 +96,7 @@
 	handle_breakdowns()
 	handle_insight()
 	handle_level()
+	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
 
 /datum/sanity/proc/handle_view()
 	. = 0

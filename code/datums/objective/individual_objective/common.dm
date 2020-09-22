@@ -61,14 +61,15 @@
 
 /datum/individual_objetive/addict
 	name = "Oil the Cogs"
+	based_time = TRUE
 	var/list/drugs = list()
 	var/timer
-	var/delta = 0
-	var/target_time = 1 MINUTES//change to 5
+	units_requested = 3 MINUTES//change to 5
 
 /datum/individual_objetive/addict/assign()
 	..()
-	desc = "Stay intoxicated by alcohol or recreational drugs for [target_time/(1 MINUTES)] minutes"
+	timer = world.time
+	desc = "Stay intoxicated by alcohol or recreational drugs for [unit2time(units_requested)] minutes"
 	RegisterSignal(mind_holder, COMSIGN_CARBON_HAPPY, .proc/task_completed)
 
 /datum/individual_objetive/addict/task_completed(datum/reagent/happy, ntimer, signal)
@@ -83,9 +84,9 @@
 			timer = world.time
 	else if(signal == ON_MOB_DRUG)
 		if(ntimer > timer)
-			delta += ntimer - timer
+			units_requested += ntimer - timer
 			timer = world.time
-	if(delta >= target_time)
+	if(check_for_completion())
 		completed()
 
 /datum/individual_objetive/addict/completed()
@@ -111,4 +112,76 @@
 /datum/individual_objetive/gift/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP)
+	..()
+
+/datum/individual_objetive/protector//test requiered
+	name = "Protector"
+	var/mob/living/carbon/human/target
+	var/timer
+	units_requested = 3 MINUTES//change to 15
+	based_time = TRUE
+	var/health_threshold = 50
+
+/datum/individual_objetive/protector/assign()
+	..()
+	var/list/valid_targets = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		valid_targets += H
+	target = pick(valid_targets)//todo: no mind.current
+	desc = "Ensure that [target] will not get their health slowered to [health_threshold] and below \
+			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold."
+	timer = world.time
+	RegisterSignal(target, COMSIGN_HUMAN_HEALTH, .proc/task_completed)
+
+/datum/individual_objetive/protector/task_completed(health)
+	if(health < health_threshold)
+		units_completed = 0
+		timer = world.time
+		return
+	var/n_timer = world.time
+	if(n_timer > timer)
+		units_completed += n_timer - timer
+		timer = world.time
+	if(check_for_completion())
+		completed()
+
+/datum/individual_objetive/protector/completed()
+	if(completed) return
+	UnregisterSignal(target, COMSIGN_HUMAN_HEALTH)
+	..()
+
+/datum/individual_objetive/helper//test requiered
+	name = "Helping Hand"
+	var/mob/living/carbon/human/target
+	var/timer
+	units_requested = 3 MINUTES//change to 15
+	based_time = TRUE
+	var/sanity_threshold = 50
+
+/datum/individual_objetive/helper/assign()
+	..()
+	var/list/valid_targets = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		valid_targets += H
+	target = pick(valid_targets)//todo: no mind.current
+	desc = "Ensure that [target] will not get their sanity lowered to [sanity_threshold] and below \
+			for 15 minutes. Timer resets if sanity reaches the threshold"
+	timer = world.time
+	RegisterSignal(target, COMSIG_HUMAN_SANITY, .proc/task_completed)
+
+/datum/individual_objetive/helper/task_completed(sanity)
+	if(sanity < sanity_threshold)
+		units_completed = 0
+		timer = world.time
+		return
+	var/n_timer = world.time
+	if(n_timer > timer)
+		units_completed += n_timer - timer
+		timer = world.time
+	if(check_for_completion())
+		completed()
+
+/datum/individual_objetive/helper/completed()
+	if(completed) return
+	UnregisterSignal(target, COMSIG_HUMAN_SANITY)
 	..()
