@@ -35,14 +35,17 @@
 	for(var/list/mob/living/carbon/human/affected in oviewers(affect_radius, src))
 		followers |= affected
 
-/obj/item/weapon/maneki_neko/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/maneki_neko/attackby(obj/item/weapon/W, mob/user, params)
+	if(nt_sword_attack(W, user))
+		return FALSE
+
 	if(QUALITY_HAMMERING in W.tool_qualities)
 		if(W.use_tool(user, src, WORKTIME_INSTANT, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, "shatter", 70, 1)
 			new /obj/item/clothing/head/collectable/kitty(get_turf(src))
 			qdel(src)
 
-/obj/item/weapon/reagent_containers/enricher/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/weapon/reagent_containers/enricher/afterattack(obj/target, mob/user, var/flag)
 	if(user.a_intent == I_HURT)
 		playsound(src, "shatter", 70, 1)
 		new /obj/item/clothing/head/collectable/kitty(get_turf(src))

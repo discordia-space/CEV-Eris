@@ -827,7 +827,9 @@ var/global/list/default_medbay_channels = list(
 		to_chat(user, SPAN_NOTICE("The [name] has already been emaged."))
 		return NO_EMAG_ACT
 
-/obj/item/device/radio/random_radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/random_radio/attackby(obj/item/weapon/W, mob/user, params)
+	if(nt_sword_attack(W, user))
+		return FALSE
 	user.set_machine(src)
 
 	if(istype(W, /obj/item/weapon/oddity))

@@ -32,3 +32,8 @@
 		var/obj/item/weapon/storage/box/donut/D = new /obj/item/weapon/storage/box/donut(get_turf(src))
 		visible_message(SPAN_NOTICE("[name] drop [D]."))
 		last_produce = world.time
+
+/obj/item/biosyphon/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return
+	..()

@@ -25,6 +25,11 @@
 	GLOB.all_faction_items -= src
 	..()
 
+/obj/item/weapon/reagent_containers/enricher/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
+
 /obj/item/weapon/reagent_containers/enricher/attack_self()
 	if(reagents.total_volume)
 		for(var/datum/reagent/reagent in reagents.reagent_list)

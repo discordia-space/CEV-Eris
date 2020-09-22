@@ -121,3 +121,26 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER)
 	..()
+
+/datum/individual_objective/damage
+	name = "A Different Perspective"
+	var/last_health
+
+/datum/individual_objective/damage/assign()
+	..()
+	units_requested = rand(120,160)
+	desc = "Receive cumulative [units_requested] damage of any kind, to ensure that you see things in a different light"
+	last_health = mind_holder.health
+	RegisterSignal(mind_holder, COMSIGN_HUMAN_HEALTH, .proc/task_completed)
+
+/datum/individual_objective/damage/task_completed(health)
+	if(last_health > health)
+		units_completed += last_health - health
+	last_health = health
+	if(check_for_completion())
+		completed()
+
+/datum/individual_objective/damage/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIGN_HUMAN_HEALTH)
+	..()

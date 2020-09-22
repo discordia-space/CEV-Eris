@@ -20,6 +20,11 @@
 	GLOB.all_faction_items -= src
 	..()
 
+/obj/item/weapon/tool/sword/nt_sword/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
+
 /obj/item/weapon/tool/sword/nt_sword/wield(mob/living/user)
 	..()
 	set_light(l_range = 1.7, l_power = 1.3, l_color = COLOR_YELLOW)
@@ -77,7 +82,7 @@
 	anchored = TRUE
 	density = TRUE
 	breakable = FALSE
-	var/obj/item/weapon/tool/sword/nt_sword/sword = null
+	var/obj/item/weapon/tool/sword/nt_sword/sword
 
 /obj/structure/nt_pedestal/New(var/loc, var/turf/anchor)
 	..()

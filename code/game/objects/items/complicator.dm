@@ -32,3 +32,8 @@
 
 	else
 		to_chat(user, SPAN_WARNING("The [src] need sometime to reload!"))
+
+/obj/item/weapon/complicator/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return
+	..()

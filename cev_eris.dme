@@ -360,6 +360,7 @@
 #include "code\datums\objective\silence.dm"
 #include "code\datums\objective\steal.dm"
 #include "code\datums\objective\survive.dm"
+#include "code\datums\objective\individual_objective\church.dm"
 #include "code\datums\objective\individual_objective\command.dm"
 #include "code\datums\objective\individual_objective\common.dm"
 #include "code\datums\objective\individual_objective\individual_objective.dm"

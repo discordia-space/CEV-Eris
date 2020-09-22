@@ -33,6 +33,11 @@
 	GLOB.all_faction_items -= src
 	..()
 
+/obj/item/device/von_krabin/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
+
 /obj/item/device/von_krabin/attack_self()
 	if(active)
 		active = FALSE

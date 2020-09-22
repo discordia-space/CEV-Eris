@@ -22,7 +22,9 @@
 	GLOB.all_faction_items -= src
 	..()
 
-/obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user)
+/obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user, params)
+	if(nt_sword_attack(W, user))
+		return FALSE
 	if(items_count < max_count)
 		if(W in GLOB.all_faction_items)
 			if(GLOB.all_faction_items[W] == GLOB.department_moebius)

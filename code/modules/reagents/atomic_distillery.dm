@@ -29,6 +29,11 @@
 /obj/item/weapon/reagent_containers/atomic_distillery/Process()
 	reagents.add_reagent("atomvodka", 1)
 
+/obj/item/weapon/reagent_containers/atomic_distillery/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
+
 /obj/item/weapon/reagent_containers/atomic_distillery/pre_attack(atom/A, mob/user, params)
 	if(user.a_intent == I_HURT)
 		if(standard_splash_mob(user, A))
