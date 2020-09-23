@@ -1,6 +1,7 @@
 /obj/item/organ/internal
 	var/list/owner_verbs = list()
 	layer = ABOVE_LYING_MOB_LAYER
+	origin_tech = list(TECH_BIO = 2)
 
 /obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..()
@@ -30,7 +31,7 @@
 	for(var/proc_path in owner_verbs)
 		verbs += proc_path
 
-/obj/item/organ/internal/proc/take_internal_damage(amount, var/silent=0)
+/obj/item/organ/internal/proc/take_internal_damage(amount, silent=FALSE)
 	if(BP_IS_ROBOTIC(src))
 		damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else

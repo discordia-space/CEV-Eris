@@ -24,14 +24,15 @@
 	name = "Blow the Lid"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	units_requested = 250
+	units_completed = 0
 
 /datum/individual_objective/get_nsa/assign()
 	..()
-	desc = "Reach [units_requested] of NSA. Survive.."
+	desc = "Reach [units_requested] of NSA. Survive."
 	RegisterSignal(mind_holder, COMSING_NSA, .proc/task_completed)
 
 /datum/individual_objective/get_nsa/task_completed(n_nsa)
-	units_completed = n_nsa
+	units_completed = n_nsa ? n_nsa : 0
 	if(check_for_completion())
 		completed()
 
@@ -79,7 +80,7 @@
 	UnregisterSignal(mind_holder, COMSIG_CARBON_ADICTION)
 	..()
 
-/datum/individual_objective/autopsy
+/datum/individual_objective/autopsy//work
 	name = "Death is the Answer"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	var/list/cadavers = list()
@@ -91,8 +92,8 @@
 	RegisterSignal(mind_holder, COMSING_AUTOPSY, .proc/task_completed)
 
 /datum/individual_objective/autopsy/task_completed(mob/living/carbon/human/H) 
-	//if(H in cadavers) uncoment
-	//	return
+	if(H in cadavers)
+		return
 	cadavers += H
 	..(1)
 
@@ -113,7 +114,7 @@
 	desc = "\The [target] is wasted in their hands. Put it into a destructive analyzer."
 	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
 
-/datum/individual_objective/more_research/task_completed(var/obj/item/I) 
+/datum/individual_objective/more_research/task_completed(obj/item/I) 
 	if(target.type == I.type)
 		..(1)
 
@@ -124,6 +125,7 @@
 
 /datum/individual_objective/damage
 	name = "A Different Perspective"
+	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	var/last_health
 
 /datum/individual_objective/damage/assign()
@@ -143,4 +145,33 @@
 /datum/individual_objective/damage/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIGN_HUMAN_HEALTH)
+	..()
+
+/datum/individual_objective/for_science//work
+	name = "Call of Science"
+	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
+	limited_antag = TRUE
+	var/mob/living/carbon/human/target
+	var/list/valid_organs = list()
+
+/datum/individual_objective/for_science/assign()
+	..()
+	var/list/valid_targets = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		valid_targets += H
+	target = pick(valid_targets)//todo: no mind.current
+	for(var/obj/item/organ/external/E in target.organs)
+		valid_organs += E
+	for(var/obj/item/organ/O in target.internal_organs)
+		valid_organs += O
+	desc = "[target] have something interesting to them. Put any organ of [target] in destructive analyzer"
+	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
+
+/datum/individual_objective/for_science/task_completed(obj/item/I)
+	if(I in valid_organs)
+		..(1)
+
+/datum/individual_objective/for_science/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER)
 	..()
