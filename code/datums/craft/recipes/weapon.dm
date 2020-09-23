@@ -253,18 +253,6 @@
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
-/datum/craft_recipe/weapon/handmaderevolver
-	name = "Handmade Revolver"
-	result = /obj/item/weapon/gun/projectile/revolver/handmaderevolver
-	steps = list(
-		list(/obj/item/gun_parts, 3),
-		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
-		list(QUALITY_WELDING, 10, "time" = 15),
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
-		list(QUALITY_SCREW_DRIVING, 10)
-	)
-
 /datum/craft_recipe/weapon/slidebarrelshotgun
 	name = "Slide Barrel Shotgun"
 	result = /obj/item/weapon/gun/projectile/shotgun/slidebarrelshotgun
@@ -290,7 +278,7 @@
 	)
 
 /datum/craft_recipe/weapon/makeshiftlaser
-	name = "HM Motherfucker .35 \"Punch Hole\""
+	name = "Makeshift laser carbine"
 	result = /obj/item/weapon/gun/energy/makeshiftlaser
 	steps = list(
 		list(/obj/item/gun_parts, 4),
@@ -303,7 +291,7 @@
 	)
 
 /datum/craft_recipe/weapon/makeshiftgl
-	name = "Makeshift laser carbine"
+	name = "Makeshift china lake"
 	result = /obj/item/weapon/gun/launcher/grenade/makeshiftgl
 	steps = list(
 		list(/obj/item/gun_parts, 2),

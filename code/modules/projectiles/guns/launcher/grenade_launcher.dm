@@ -160,7 +160,7 @@
 	update_charge()
 
 /obj/item/weapon/gun/launcher/grenade/makeshiftgl
-	name = "Makeshift grenade launcher"
+	name = "Makeshift China lake"
 	desc = "Your own, homemade, China Lake."
 	icon = 'icons/obj/guns/launcher/riotgun.dmi'
 	icon_state = "riotgun"

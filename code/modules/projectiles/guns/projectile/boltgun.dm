@@ -104,10 +104,10 @@
 /obj/item/weapon/gun/projectile/boltgun/handmaderifle
 	name = "Handmade bolt action rifle"
 	desc = "A Handmade bolt action rifle, made from junk. and some spare parts."
-	icon_state = "boltgun_wood"
-	item_suffix  = "_wood"
+	icon_state = "boltgun_hand"
+	item_suffix  = "_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
-	wielded_item_state = "_doble_wood"
+	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_ROBUST
 	slot_flags = SLOT_BACK
