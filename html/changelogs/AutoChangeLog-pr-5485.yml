@@ -1,0 +1,5 @@
+author: Toriate
+delete-after: true
+changes:
+  - bugfix: Energy Armblade implant should no longer delete itself a minute after
+      being used for the first time
