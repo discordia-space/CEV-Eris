@@ -46,7 +46,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/circuitboard/examine(user, distance)
+/obj/item/weapon/electronics/circuitboard/examine(user, distance)
 	. = ..()
 	// gets the required components and displays it in a list to the user when examined.
 	if(length(req_components))
