@@ -1,6 +1,9 @@
 // For convenience and easier comparing and maintaining of item prices,
 // all these will be defined here and sorted in different sections.
 
+// The item price in credits. atom/movable so we can also assign a price to animals and other things.
+// /atom/movable/var/price_tag atoms_movable.dm line: 22 var/price_tag = 0
+
 // The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
 /atom/movable/proc/get_item_cost(export)
 	. = price_tag
@@ -1043,13 +1046,6 @@
 /obj/item/stack/get_item_cost(export)
 	return amount * ..()
 
-/obj/item/weapon/reagent_containers/blood
-	price_tag = 50
-
-/obj/item/weapon/reagent_containers/blood/get_item_cost(export)
-	. = ..()
-	. += (. / 25 * reagents?.total_volume)
-
 /obj/item/ammo_magazine/price_tag = 60
 /obj/item/ammo_magazine/ammobox/price_tag = 40
 
@@ -1073,11 +1069,14 @@
 /obj/structure/medical_stand/price_tag = 100
 /obj/item/weapon/virusdish/price_tag = 300
 
-/obj/item/weapon/reagent_containers/price_tag = 1
+/obj/item/weapon/reagent_containers/price_tag = 20
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace/price_tag = 300
 /obj/item/weapon/reagent_containers/get_item_cost(export)
 	. = ..()
-	. += reagents.total_volume * .
+	. += reagents?.get_price() //TODO assign an apprpriate price_per_unit
+
+/obj/item/weapon/reagent_containers/blood
+	price_tag = 50
 
 /obj/item/clothing/price_tag = 30
 /obj/item/solar_assembly/price_tag = 100
