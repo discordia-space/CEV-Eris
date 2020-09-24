@@ -363,6 +363,7 @@
 #include "code\datums\objective\individual_objective\church.dm"
 #include "code\datums\objective\individual_objective\command.dm"
 #include "code\datums\objective\individual_objective\common.dm"
+#include "code\datums\objective\individual_objective\guild.dm"
 #include "code\datums\objective\individual_objective\individual_objective.dm"
 #include "code\datums\objective\individual_objective\ironhammer.dm"
 #include "code\datums\objective\individual_objective\moebius.dm"

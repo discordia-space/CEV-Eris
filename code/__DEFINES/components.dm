@@ -35,6 +35,8 @@
 #define COMSIG_PARENT_QDELETING "parent_qdeleting"			  // just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 
+#define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
+
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
@@ -55,7 +57,7 @@
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
-#define COMSIGN_CARBON_HAPPY   "carbon_happy"				   //drugs o ethanol in blood
+#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs o ethanol in blood
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/living/carbon/electrocute_act()
@@ -71,7 +73,7 @@
 #define COMSING_AUTOPSY "human_autopsy"						  //from obj/item/weapon/autopsy_scanner/attack()
 #define COMSIG_HUMAN_LEVEL_UP "human_level_up"
 #define COMSING_HUMAN_EQUITP "human_equip_item"				   //from human/equip_to_slot()
-#define COMSIGN_HUMAN_HEALTH "human_health"					   //from human/updatehealth()
+#define COMSIG_HUMAN_HEALTH "human_health"					   //from human/updatehealth()
 #define COMSIG_HUMAN_SANITY "human_sanity"						//from /datum/sanity/proc/onLife()
 #define COMSIG_HUMAN_INSTALL_IMPLANT "human_install_implant"
 // /datum/species signals

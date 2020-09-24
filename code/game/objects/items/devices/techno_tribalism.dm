@@ -57,13 +57,8 @@
 				oddity_stats[STAT_MEC] += 1
 				oddity_stats[STAT_VIG] += 3
 				oddity_stats[STAT_COG] += 1
-			else //extracheck
-				oddity_stats[STAT_ROB] += 1
-				oddity_stats[STAT_TGH] += 1
-				oddity_stats[STAT_BIO] += 1
-				oddity_stats[STAT_MEC] += 1
-				oddity_stats[STAT_VIG] += 1
-				oddity_stats[STAT_COG] += 1
+			else
+				crash_with("[W], incompatible department")
 
 		else if(istype(W, /obj/item/weapon/tool))
 			var/useful = FALSE
