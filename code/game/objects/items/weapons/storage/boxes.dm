@@ -556,3 +556,93 @@
 /obj/item/weapon/storage/box/headset/church/populate_contents()
 	for(var/i in 1 to 7)
 		new /obj/item/device/encryptionkey/headset_church(src)
+
+// one star parts
+
+/obj/item/weapon/storage/box/onestar_stockparts
+	name = "box of One Star stock parts"
+	desc = "It's an musty cardboard box, filled to the brim with gadgets used to build machines. It's got the One Star logo on the bottom of the box."
+	icon_state = "box_security"
+	illustration = "circuit"
+
+/obj/item/weapon/storage/box/onestar_stockparts/populate_contents()
+	new /obj/item/weapon/stock_parts/capacitor/one_star(src)
+	new /obj/item/weapon/stock_parts/capacitor/one_star(src)
+	new /obj/item/weapon/stock_parts/capacitor/one_star(src)
+	new /obj/item/weapon/stock_parts/capacitor/one_star(src)
+	new /obj/item/weapon/stock_parts/scanning_module/one_star(src)
+	new /obj/item/weapon/stock_parts/scanning_module/one_star(src)
+	new /obj/item/weapon/stock_parts/scanning_module/one_star(src)
+	new /obj/item/weapon/stock_parts/scanning_module/one_star(src)
+	new /obj/item/weapon/stock_parts/manipulator/one_star(src)
+	new /obj/item/weapon/stock_parts/manipulator/one_star(src)
+	new /obj/item/weapon/stock_parts/manipulator/one_star(src)
+	new /obj/item/weapon/stock_parts/manipulator/one_star(src)
+	new /obj/item/weapon/stock_parts/micro_laser/one_star(src)
+	new /obj/item/weapon/stock_parts/micro_laser/one_star(src)
+	new /obj/item/weapon/stock_parts/micro_laser/one_star(src)
+	new /obj/item/weapon/stock_parts/micro_laser/one_star(src)
+	new /obj/item/weapon/stock_parts/matter_bin/one_star(src)
+	new /obj/item/weapon/stock_parts/matter_bin/one_star(src)
+	new /obj/item/weapon/stock_parts/matter_bin/one_star(src)
+	new /obj/item/weapon/stock_parts/matter_bin/one_star(src)
+
+// excelsior parts
+	
+/obj/item/weapon/storage/box/excelsior_stockparts
+	name = "box of Excelsior stock parts"
+	desc = "It's a sleek cardboard box, filled with high-tech parts used to build machines. It smells like communism."
+	icon_state = "box_id"
+	illustration = "circuit"
+
+/obj/item/weapon/storage/box/excelsior_stockparts/populate_contents()
+	new /obj/item/weapon/stock_parts/capacitor/excelsior(src)
+	new /obj/item/weapon/stock_parts/capacitor/excelsior(src)
+	new /obj/item/weapon/stock_parts/capacitor/excelsior(src)
+	new /obj/item/weapon/stock_parts/capacitor/excelsior(src)
+	new /obj/item/weapon/stock_parts/scanning_module/excelsior(src)
+	new /obj/item/weapon/stock_parts/scanning_module/excelsior(src)
+	new /obj/item/weapon/stock_parts/scanning_module/excelsior(src)
+	new /obj/item/weapon/stock_parts/scanning_module/excelsior(src)
+	new /obj/item/weapon/stock_parts/manipulator/excelsior(src)
+	new /obj/item/weapon/stock_parts/manipulator/excelsior(src)
+	new /obj/item/weapon/stock_parts/manipulator/excelsior(src)
+	new /obj/item/weapon/stock_parts/manipulator/excelsior(src)
+	new /obj/item/weapon/stock_parts/micro_laser/excelsior(src)
+	new /obj/item/weapon/stock_parts/micro_laser/excelsior(src)
+	new /obj/item/weapon/stock_parts/micro_laser/excelsior(src)
+	new /obj/item/weapon/stock_parts/micro_laser/excelsior(src)
+	new /obj/item/weapon/stock_parts/matter_bin/excelsior(src)
+	new /obj/item/weapon/stock_parts/matter_bin/excelsior(src)
+	new /obj/item/weapon/stock_parts/matter_bin/excelsior(src)
+	new /obj/item/weapon/stock_parts/matter_bin/excelsior(src)
+	
+// alien parts
+
+/obj/item/weapon/storage/box/alien_stockparts
+	name = "box of mysterious machine parts"
+	desc = "It's a weird-looking cardboard box, filled with strange devices that could fit inside machines. It's warm to the touch."
+	icon_state = "box_of_doom"
+	illustration = "circuit"
+
+/obj/item/weapon/storage/box/alien_stockparts/populate_contents()
+	new /obj/item/weapon/stock_parts/capacitor/alien_capacitor(src)
+	new /obj/item/weapon/stock_parts/capacitor/alien_capacitor(src)
+	new /obj/item/weapon/stock_parts/capacitor/alien_capacitor(src)
+	new /obj/item/weapon/stock_parts/capacitor/alien_capacitor(src)
+	new /obj/item/weapon/stock_parts/scanning_module/alien(src)
+	new /obj/item/weapon/stock_parts/scanning_module/alien(src)
+	new /obj/item/weapon/stock_parts/scanning_module/alien(src)
+	new /obj/item/weapon/stock_parts/scanning_module/alien(src)
+	new /obj/item/weapon/stock_parts/manipulator/alien(src)
+	new /obj/item/weapon/stock_parts/manipulator/alien(src)
+	new /obj/item/weapon/stock_parts/manipulator/alien(src)
+	new /obj/item/weapon/stock_parts/manipulator/alien(src)
+	new /obj/item/weapon/stock_parts/micro_laser/alien(src)
+	new /obj/item/weapon/stock_parts/micro_laser/alien(src)
+	new /obj/item/weapon/stock_parts/micro_laser/alien(src)
+	new /obj/item/weapon/stock_parts/micro_laser/alien(src)
+	new /obj/item/weapon/stock_parts/matter_bin/alien(src)
+	new /obj/item/weapon/stock_parts/matter_bin/alien(src)
+	new /obj/item/weapon/stock_parts/matter_bin/alien(src)
+	new /obj/item/weapon/stock_parts/matter_bin/alien(src)
