@@ -9,7 +9,7 @@
     layer = BELOW_OBJ_LAYER
     use_power = NO_POWER_USE
     var/list/stored_material = list()
-    var/power_source = null
+    var/obj/power_source = null
 
 /obj/machinery/matter_nanoforge/attack_hand(mob/user)
     if(..())
@@ -18,17 +18,18 @@
     if(isnull(requested_amount) || requested_amount <=0 || requested_amount > 120)
         return
     stored_material[MATERIAL_COMPRESSED_MATTER] -= requested_amount
- 
+
     var/obj/item/stack/material/compressed_matter/MS = new(drop_location())
     MS.amount = requested_amount
     MS.update_strings()
     MS.update_icon()
-        
+
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
+	if(power_source)
 		eat(user, I)
 		return
 /obj/machinery/matter_nanoforge/proc/eat(mob/living/user, obj/item/eating)
-	if(!eating && istype(user))
+    if(!eating && istype(user))
 		eating = user.get_active_hand()
 	if(!istype(eating))
 		return FALSE
