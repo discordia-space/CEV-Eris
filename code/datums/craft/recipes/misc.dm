@@ -229,7 +229,6 @@
 		list(QUALITY_WELDING, 10, 60)
 	)
 	variation_type = CRAFT_VARIATION
-	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/drill_head/diamond
 	name = "diamond drill head"
@@ -239,7 +238,6 @@
 		list(QUALITY_WELDING, 10, 60)
 	)
 	variation_type = CRAFT_VARIATION
-	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun_parts //place holder for future updates with the stats thing
 	name = "gun parts"
