@@ -43,11 +43,6 @@
 	..()
 	if(!owner)
 		return
-	if(is_bruised())
-		owner.eye_blurry = 1
-	if(is_broken())
-		owner.eye_blind = 1
-	owner.update_client_colour()
 
 /obj/item/organ/internal/eyes/proc/get_colourmatrix() //Returns a special colour matrix if the eyes are organic and the mob is colourblind, otherwise it uses the current one.
 	if(!(BP_IS_ROBOTIC(src)) && owner.stats.getPerk(PERK_OBORIN_SYNDROME) && !owner.is_dead())

@@ -61,6 +61,7 @@
 
 		//Organs and blood
 		handle_organs()
+		porcess_internal_ograns()
 		handle_blood()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
