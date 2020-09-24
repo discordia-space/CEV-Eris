@@ -270,8 +270,8 @@
 /obj/item/clothing/head/space/void/riggedvoidsuit
 	name = "Jury Rigged Helmet"
 	desc = "A Jury Rigged helmet you can see the glue holding it, just close enough to be airtight."
-	icon_state = "assaulthelm"
-	item_state = "assaulthelm"
+	icon_state = "scav_helmet"
+	item_state = "scav_helmet"
 	item_state_slots = list(
 		slot_l_hand_str = "assaulthelm",
 		slot_r_hand_str = "assaulthelm",
@@ -290,9 +290,9 @@
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit
 	name = "Jury Rigged Voidsuit"
-	icon_state = "assaultsuit"
 	desc = "AA Jury Rigged helmet you can see the glue holding it, just close enough to be airtight."
-	item_state = "assaultsuit"
+	icon_state = "scav_suit"
+	item_state = "scav_suit"
 	armor = list(
 		melee = 10,
 		bullet = 20,
