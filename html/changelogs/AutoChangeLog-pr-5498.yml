@@ -1,0 +1,7 @@
+author: yorpyorpyorp
+delete-after: true
+changes:
+  - rscadd: Imported Metallic Hydrogen sprites
+  - rscadd: Metallic Hydrogen spawning on the asteroid field. Rarer then diamond.
+  - tweak: Mining Barge stacking computer console now shows prettier names for some
+      materials.

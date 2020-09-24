@@ -66,6 +66,17 @@
 	lid_icon_state = "lid_beakerlarge"
 	spawn_blacklisted = TRUE
 
+/obj/item/weapon/reagent_containers/glass/beaker/bowl
+	name = "mixing bowl"
+	desc = "A large mixing bowl."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "mixingbowl"
+	matter = list(MATERIAL_STEEL = 2)
+	volume = 180
+	amount_per_transfer_from_this = 10	
+	possible_transfer_amounts = list(5,10,15,25,30,60,120,180)
+	unacidable = FALSE
+
 /obj/item/weapon/reagent_containers/glass/beaker/vial
 	name = "vial"
 	desc = "A small glass vial."
