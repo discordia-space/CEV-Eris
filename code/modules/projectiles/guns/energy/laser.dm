@@ -134,6 +134,100 @@ obj/item/weapon/gun/energy/retro
 	damage_multiplier = 1
 	charge_cost = 100
 
+/obj/item/weapon/gun/energy/psychic
+	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
+	icon_state = "psychic_lasercannon"
+	item_state = "psychic_lasercannon"
+	projectile_type = /obj/item/projectile/beam/psychic
+	icon_contained = TRUE
+	var/traitor = FALSE //Check if it's a traitor psychic weapon
+	var/datum/mind/owner
+	var/list/victims = list()
+	var/datum/antag_contract/derail/contract
+	pierce_multiplier = 2
+
+/obj/item/weapon/gun/energy/psychic/Initialize()
+	..()
+	if(traitor)
+		START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/gun/energy/psychic/Destroy()
+	if(traitor)
+		STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/weapon/gun/energy/psychic/Process()
+	if(owner && !contract)
+		find_contract()
+		if(contract)
+			STOP_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/weapon/gun/energy/psychic/proc/find_contract()
+	for(var/datum/antag_contract/derail/C in GLOB.various_antag_contracts)
+		if(C.completed)
+			continue
+		contract = C
+		victims = list()
+		if(src in owner.current.GetAllContents(includeSelf = FALSE))
+			to_chat(owner.current, SPAN_NOTICE("[src] has found new contract."))
+		break
+
+/obj/item/weapon/gun/energy/psychic/proc/reg_break(mob/living/carbon/human/victim)
+	if(victim.get_species() != "Human")
+		return
+
+	if(!contract)
+		return
+
+	if(owner && owner.current)
+		if(victim == owner.current)
+			return
+
+		// If in owner's inventory, give a signal that the break was registred and counted towards contract
+		if((src in owner.current.GetAllContents(includeSelf = FALSE)) && !(victim in victims))
+			to_chat(owner.current, SPAN_DANGER("[src] clicks."))
+
+	victims |= victim
+
+	if(contract.completed)
+		to_chat(owner.current, SPAN_DANGER("Somebody all ready have comleted targeted contract."))
+		contract = null
+		START_PROCESSING(SSobj, src)
+
+	else if(victims.len >= contract.count)
+		contract.report(src)
+		contract = null
+		START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/gun/energy/psychic/lasercannon
+	name = "Prototype: psychic laser cannon"
+	desc = "A laser cannon that attacks the minds of people, causing sanity loss and inducing mental breakdowns."
+	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
+	icon_state = "psychic_lasercannon"
+	item_state = "psychic_lasercannon"
+	item_charge_meter = TRUE
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+	slot_flags = SLOT_BELT|SLOT_BACK
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3, TECH_COVERT = 5)
+	projectile_type = /obj/item/projectile/beam/psychic/heavylaser
+	w_class = ITEM_SIZE_HUGE
+	traitor = TRUE
+	pierce_multiplier = 2
+	zoom_factor = 0
+	damage_multiplier = 1
+	charge_cost = 50
+	fire_delay = 20
+	price_tag = 6000
+	matter = list(MATERIAL_STEEL = 25, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 1)
+	init_firemodes = list(
+		WEAPON_NORMAL,
+		WEAPON_CHARGE
+		)
+	one_hand_penalty = 5
+	twohanded = TRUE
+
 /obj/item/weapon/gun/energy/makeshiftlaser
 	name = "Makeshift laser carbine"
 	desc = "A Makeshift laser carbine, rather wastefull on its chage, but nonetheless reliable"
