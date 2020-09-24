@@ -1,4 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Fixes silicons not being able to interact with windoors.
