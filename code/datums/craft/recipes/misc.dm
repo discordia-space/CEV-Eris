@@ -206,6 +206,7 @@
 		list(QUALITY_BOLT_TURNING, 10, 60)
 	)
 	related_stats = list(STAT_COG)
+
 //Make a drill bit with some material and a welder! So you won't need to print a whole new exosuit drill when your head snaps.
 
 /datum/craft_recipe/drill_head
@@ -218,7 +219,7 @@
 	)
 	related_stats = list(STAT_MEC)
 
-name_craft_menu = "exosuit drill heads"
+	name_craft_menu = "exosuit drill heads"
 
 /datum/craft_recipe/drill_head/plasteel
 	name = "plasteel drill head"
@@ -227,6 +228,7 @@ name_craft_menu = "exosuit drill heads"
 		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 30),
 		list(QUALITY_WELDING, 10, 60)
 	)
+	variation_type = CRAFT_VARIATION
 	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/drill_head/diamond
@@ -237,6 +239,7 @@ name_craft_menu = "exosuit drill heads"
 		list(QUALITY_WELDING, 10, 60)
 	)
 	variation_type = CRAFT_VARIATION
+	related_stats = list(STAT_MEC)
 
 /datum/craft_recipe/gun_parts //place holder for future updates with the stats thing
 	name = "gun parts"
