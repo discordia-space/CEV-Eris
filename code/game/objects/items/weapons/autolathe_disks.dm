@@ -1189,3 +1189,39 @@
 		/datum/design/autolathe/ammo/dart_mag,
 	)
 
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior_cracked
+	disk_name = "Cracked Excelsior Techdisk"
+	desc = "There's a message that's been handwritten in Sharpie on the back: \"Communism is a sin! Kill the Red Menace with their own equipment - Capitalism forever!\""
+	icon_state = "excelsior"
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/makarov,
+		/datum/design/autolathe/gun/drozd,
+		/datum/design/autolathe/gun/vintorez,
+		/datum/design/autolathe/gun/boltgun,
+		/datum/design/autolathe/gun/ak47,
+		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
+		/datum/design/autolathe/ammo/magazine_pistol/rubber,
+		/datum/design/autolathe/ammo/pistol_ammobox,
+		/datum/design/autolathe/ammo/pistol_ammobox/rubber,
+		/datum/design/autolathe/ammo/msmg,							//drozd ammo
+		/datum/design/autolathe/ammo/msmg/rubber,
+		/datum/design/autolathe/ammo/magnum_ammobox,
+		/datum/design/autolathe/ammo/magnum_ammobox/rubber,
+		/datum/design/autolathe/ammo/srifle,						//vintorez ammo
+		/datum/design/autolathe/ammo/srifle/rubber,
+		/datum/design/autolathe/ammo/srifle_ammobox,
+		/datum/design/autolathe/ammo/srifle_ammobox/rubber,
+		/datum/design/autolathe/ammo/sl_lrifle,						//boltgun ammo
+		/datum/design/autolathe/ammo/lrifle_ammobox_small,
+		/datum/design/autolathe/ammo/lrifle_ammobox_small/rubber,
+		/datum/design/autolathe/ammo/lrifle,						//AK ammo
+		/datum/design/autolathe/ammo/lrifle/rubber,
+		/datum/design/autolathe/ammo/lrifle_ammobox,
+		/datum/design/autolathe/sec/silencer,						//misc and cells
+		/datum/design/autolathe/clothing/excelsior_armor,
+		/datum/design/autolathe/cell/large/excelsior,				
+		/datum/design/autolathe/cell/medium/excelsior,
+		/datum/design/autolathe/cell/small/excelsior,
+		/datum/design/autolathe/device/excelbaton
+	)
