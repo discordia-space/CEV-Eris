@@ -65,7 +65,7 @@
 		return -1
 	return 0
 
-/obj/machinery/computer/helm/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/helm/attack_hand(mob/user)
 
 	if(..())
 		user.unset_machine()
@@ -74,8 +74,15 @@
 
 	if(!isAI(user))
 		user.set_machine(src)
+
 	if(linked && manual_control)
 		user.reset_view(linked)
+
+	else if(!config.use_overmap && user?.client?.holder)
+		// Let the new developers know why the helm console is unresponsive
+		// (it's disabled by default on local server to make it start a bit faster)
+		to_chat(user, "NOTE: overmap generation is disabled in server configuration.")
+		to_chat(user, "To use overmap, make sure that \"config.txt\" file is present in the server config folder and \"USE_OVERMAP\" is uncommented.")
 
 	ui_interact(user)
 
