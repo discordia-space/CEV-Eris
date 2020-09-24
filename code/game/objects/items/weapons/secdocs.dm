@@ -38,7 +38,7 @@
 
 /hook/roundstart/proc/place_docs()
 	var/list/obj/landmark/storyevent/midgame_stash_spawn/L = list()
-	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in landmarks_list)
+	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in GLOB.landmarks_list)
 		L.Add(S)
 
 	L = shuffle(L)

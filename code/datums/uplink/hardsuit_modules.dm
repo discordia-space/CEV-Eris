@@ -14,17 +14,22 @@
 	item_cost = 5
 	path = /obj/item/rig_module/fabricator/energy_net
 
-/datum/uplink_item/item/ewar_voice
+/datum/uplink_item/item/hardsuit_modules/ewar_voice
 	name = "Electrowarfare Suite and Voice Synthesiser"
 	item_cost = 4
 	path = /obj/item/weapon/storage/box/syndie_kit/ewar_voice
+
+/datum/uplink_item/item/hardsuit_modules/internal_storage
+	name = "Internal storage compartment"
+	item_cost = 5
+	path = /obj/item/rig_module/storage
 
 /datum/uplink_item/item/chem_injector
 	name = "Mounted chemical injector"
 	item_cost = 8
 	path = /obj/item/rig_module/chem_dispenser
 
-/datum/uplink_item/item/portable_autodoc
+/datum/uplink_item/item/hardsuit_modules/portable_autodoc
 	name = "Portable autodoc"
 	item_cost = 16
 	path = /obj/item/rig_module/autodoc
@@ -48,3 +53,8 @@
 	name = "Mounted Laser Cannon"
 	item_cost = 12
 	path = /obj/item/rig_module/mounted
+
+/datum/uplink_item/item/hardsuit_modules/ric_merc
+	name = "Crimson Hardsuit Control Module"
+	item_cost = 25
+	path = /obj/item/weapon/rig/merc/empty

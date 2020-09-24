@@ -98,7 +98,7 @@
 	log_debug(text)
 
 /proc/log_qdel(text)
-	world_qdel_log << "\[[time_stamp()]]QDEL: [text]"
+	world_qdel_log << "\[[time_stamp()]] [game_id] QDEL: [text][log_end]"
 
 //pretty print a direction bitflag, can be useful for debugging.
 /proc/print_dir(var/dir)

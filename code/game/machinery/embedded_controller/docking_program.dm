@@ -287,11 +287,4 @@
 		if (STATE_DOCKED) return "docked"
 
 
-#undef STATE_UNDOCKED
-#undef STATE_DOCKING
-#undef STATE_UNDOCKING
-#undef STATE_DOCKED
 
-#undef MODE_NONE
-#undef MODE_SERVER
-#undef MODE_CLIENT

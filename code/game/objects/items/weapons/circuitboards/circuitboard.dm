@@ -38,3 +38,15 @@
 	if (istype(M, build_path))
 		return TRUE
 	return FALSE
+
+/obj/item/weapon/circuitboard/examine(user, distance)
+	. = ..()
+	// gets the required components and displays it in a list to the user when examined.
+	if(length(req_components))
+		var/list/listed_components = list()
+		for(var/requirement in req_components)
+			var/atom/placeholder = requirement
+			if(!ispath(placeholder))
+				continue
+			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
+		to_chat(user, SPAN_NOTICE("Required components: [english_list(listed_components)]."))

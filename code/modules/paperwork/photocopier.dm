@@ -5,7 +5,7 @@
 	var/insert_anim = "bigscanner1"
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
@@ -129,9 +129,9 @@
 
 /obj/machinery/photocopier/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
-		if(2.0)
+		if(2)
 			if(prob(50))
 				qdel(src)
 			else

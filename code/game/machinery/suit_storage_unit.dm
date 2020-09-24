@@ -99,12 +99,12 @@
 
 /obj/machinery/suit_storage_unit/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				dump_everything()
 				qdel(src)

@@ -6,7 +6,7 @@
 
 	name = "Gas mixer"
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 3700	//This also doubles as a measure of how powerful the mixer is, in Watts. 3700 W ~ 5 HP
 
@@ -33,7 +33,7 @@
 		icon_state += use_power ? "on" : "off"
 	else
 		icon_state += "off"
-		use_power = 0
+		use_power = NO_POWER_USE
 
 /obj/machinery/atmospherics/trinary/mixer/update_underlays()
 	if(..())
@@ -165,11 +165,11 @@
 	if(href_list["node1_c"])
 		var/value = text2num(href_list["node1_c"])
 		src.mixing_inputs[air1] = max(0, min(1, src.mixing_inputs[air1] + value))
-		src.mixing_inputs[air2] = 1.0 - mixing_inputs[air1]
+		src.mixing_inputs[air2] = 1 - mixing_inputs[air1]
 	if(href_list["node2_c"])
 		var/value = text2num(href_list["node2_c"])
 		src.mixing_inputs[air2] = max(0, min(1, src.mixing_inputs[air2] + value))
-		src.mixing_inputs[air1] = 1.0 - mixing_inputs[air2]
+		src.mixing_inputs[air1] = 1 - mixing_inputs[air2]
 	src.update_icon()
 	src.updateUsrDialog()
 	return

@@ -16,7 +16,7 @@ var/global/list/robot_modules = list(
 	name = "robot module"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
-	w_class = 100.0
+	w_class = 100
 	item_state = "electronic"
 	flags = CONDUCT
 	var/hide_on_manifest = FALSE
@@ -53,8 +53,8 @@ var/global/list/robot_modules = list(
 
 	//Module stats, these are applied to the robot
 	health = 200 //Max health. Apparently this is already defined in item.dm
-	var/speed_factor = 1.0 //Speed factor, applied as a divisor on movement delay
-	var/power_efficiency = 1.0 //Power efficiency, applied as a divisor on power taken from the internal cell
+	var/speed_factor = 1 //Speed factor, applied as a divisor on movement delay
+	var/power_efficiency = 1 //Power efficiency, applied as a divisor on power taken from the internal cell
 
 	//Stat modifiers for skillchecks
 	var/list/stat_modifiers = list(
@@ -745,7 +745,7 @@ var/global/list/robot_modules = list(
 					"Maid" = "maidbot"
 					)
 	health = 250 //Bulky
-	speed_factor = 0.85 //Slow
+	speed_factor = 1.0 // Normal speed, its a cleaning unit and you wouldnt choose it if you sweep floors with ultra slow movement
 	power_efficiency = 0.8 //Poor
 
 	stat_modifiers = list(
@@ -931,7 +931,7 @@ var/global/list/robot_modules = list(
 					)
 
 	health = 160 //Weak
-	speed_factor = 1.0 //Average
+	speed_factor = 1 //Average
 	power_efficiency = 0.75 //Poor efficiency
 
 	desc = "Built for working in a well-equipped lab, and designed to handle a wide variety of research \

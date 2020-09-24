@@ -45,15 +45,15 @@
 	return !density
 
 /turf/simulated/mineral/is_plating()
-	return 1
+	return TRUE
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)
-		if(2.0)
+		if(2)
 			if (prob(70))
 				mined_ore = 1 //some of the stuff gets blown up
 				GetDrilled()
-		if(1.0)
+		if(1)
 			mined_ore = 2 //some of the stuff gets blown up
 			GetDrilled()
 
@@ -377,7 +377,7 @@
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Hematite" = 35, "Carbon" = 35, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10)
+	var/mineralSpawnChanceList = list("Uranium" = 5, "Platinum" = 5, "Hematite" = 35, "Carbon" = 34, "Diamond" = 1, "Gold" = 5, "Silver" = 5, "Plasma" = 10, "MHydrogen" = 1)
 	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
@@ -395,7 +395,7 @@
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 100 //25
-	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Hematite" = 20, "Carbon" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20)
+	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Hematite" = 20, "Carbon" = 19, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Plasma" = 20, "MHydrogen" = 1)
 
 
 /**********************Asteroid**************************/
@@ -424,12 +424,12 @@
 
 /turf/simulated/floor/asteroid/ex_act(severity)
 	switch(severity)
-		if(3.0)
+		if(3)
 			return
-		if(2.0)
+		if(2)
 			if (prob(70))
 				gets_dug()
-		if(1.0)
+		if(1)
 			gets_dug()
 	return
 

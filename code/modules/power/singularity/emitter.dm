@@ -10,7 +10,7 @@
 	req_access = list(access_engine_equip)
 	var/id = null
 
-	use_power = 0	//uses powernet power, not APC power
+	use_power = NO_POWER_USE	//uses powernet power, not APC power
 	active_power_usage = 30000	//30 kW laser. I guess that means 30 kJ per shot.
 
 	var/active = 0
@@ -101,7 +101,7 @@
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
 			src.active = 0
-			src.use_power = 1	*/
+			src.use_power = IDLE_POWER_USE	*/
 	return 1
 
 /obj/machinery/power/emitter/Process()

@@ -193,7 +193,7 @@
 /obj/item/weapon/holo/esword
 	desc = "May the force be within you. Sorta."
 	icon_state = "sword0"
-	force = 3.0
+	force = 3
 	throw_speed = 1
 	throw_range = 5
 	throwforce = 0
@@ -302,7 +302,7 @@
 	var/eventstarted = 0
 
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON

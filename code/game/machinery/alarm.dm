@@ -11,7 +11,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
 	active_power_usage = 3000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
 	power_channel = ENVIRON
@@ -167,7 +167,7 @@
 /obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
 	if (!regulating_temperature)
 		//check for when we should start adjusting temperature
-		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2.0)
+		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2)
 			update_use_power(2)
 			regulating_temperature = 1
 			visible_message("\The [src] clicks as it starts up.",\
@@ -650,6 +650,8 @@
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
 				target_temperature = input_temperature + T0C
+			investigate_log("had it's target temperature changed by [key_name(usr)]", "atmos")
+
 		playsound(loc, 'sound/machines/button.ogg', 100, 1)
 		return 1
 
@@ -688,6 +690,7 @@
 					"scrubbing")
 					playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 					send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
+					investigate_log("had it's settings changed by [key_name(usr)]", "atmos")
 					return 1
 
 				if("set_threshold")
@@ -700,7 +703,7 @@
 					if (isnull(newval))
 						return 1
 					if (newval<0)
-						selected[threshold] = -1.0
+						selected[threshold] = -1
 					else if (env=="temperature" && newval>5000)
 						selected[threshold] = 5000
 					else if (env=="pressure" && newval>50*ONE_ATMOSPHERE)
@@ -739,6 +742,7 @@
 						if(selected[3] > selected[4])
 							selected[3] = selected[4]
 
+					investigate_log("had it's tresholds changed by [key_name(usr)]", "atmos")
 					apply_mode()
 					return 1
 
@@ -766,6 +770,7 @@
 		if(href_list["atmos_reset"])
 			playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 			forceClearAlarm()
+			investigate_log("had it's alarms cleared by [key_name(usr)]", "atmos")
 			return 1
 
 		if(href_list["mode"])
@@ -900,13 +905,13 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	var/detecting = 1.0
-	var/working = 1.0
-	var/time = 10.0
-	var/timing = 0.0
+	var/detecting = 1
+	var/working = 1
+	var/time = 10
+	var/timing = 0
 	var/lockdownbyai = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
@@ -1200,7 +1205,7 @@ Just a object used in constructing fire alarms
 	var/timing = 0
 	var/lockdownbyai = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 

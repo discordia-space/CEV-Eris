@@ -668,8 +668,12 @@ table.pmon td, table.pmon th {
 
 /* Table Stuffs for manifest*/
 
+tr.bottom_bordered td, .bottom_bordered{
+    border-bottom: 1px solid #aaf
+}
+
 th.command {
-    background: #3333FF;
+    background: #3333ff;
     font-weight: bold;
     color: #ffffff;
 }
@@ -779,21 +783,29 @@ th.bot {
 .candystripe:nth-child(odd) {
 	background-color: rgba(0, 0, 0, 0.16);
 }
-
-#sciTechTreeContainer {
-	position: relative;
-	width: 99%;
-	height: 590px;
-	overflow: hidden;
-	border: 1px solid #40628a;
-	background: url(nanomapBackground.png);
+.nanoMap{
+    background: url(nanomapBackground.png) repeat;
+    border: 1px solid #40628a;
+    overflow: auto;
+    position: relative;
+    padding: 10px;
+    margin: 5px 0;
 }
-
+#SpecialOffer{
+    border: 1px solid #40628a;
+    border-radius: 10px 0;
+    width: 99%;
+    padding: 5px;
+}
+#sciTechTreeContainer {
+	width: 99%;
+    height: 590px;
+}
 /* [Tooltips of description] */
-.sciTechTreeIcon span {
+.withToolTip .ImTooltip, .withToolTipInTooltip .ImTooltipInTooltip{
 	display			: none;
-	padding			: 10px; 
-	margin-left		: 8px; 
+	padding			: 10px;
+	margin-left		: 8px;
 	width			: 200px;
 	z-index			: 999;
 	background      : #717177;
@@ -801,13 +813,14 @@ th.bot {
 	border-radius   : 0px 5px;
 	color           : #d1d1dd;
 	text-align      : center;
-	white-space     : pre-line;
+    white-space     : pre-line;
+    overflow: wrap;
 }
-.sciTechTreeIcon:hover span {
+.withToolTip:hover .ImTooltip, .withToolTipInTooltip:hover .ImTooltipInTooltip{
 	display			: block;
 	position		: absolute;
 }
-img.sciTechTreeIconToolTip {
+.sciTechTreeIcon .ImTooltip img{
 	background-image: url(science.png);
 }
 /* [/Tooltips of description] */
@@ -858,6 +871,7 @@ img.sciTechTreeIconToolTip {
 .icon-monitoring { background-position: -160px 0px; }
 .icon-rd { background-position: -192px 0px; }
 .icon-tesla { background-position: -224px 0px; }
+.icon-mob { background-position: -32px 0px; }
 
 .icon-spaceheater { background-position: 0px -32px; }
 .icon-pda { background-position: -32px -32px; }
@@ -951,6 +965,7 @@ img.sciTechTreeIconToolTip {
 .icon-mindswapper { background-position: -160px -320px; }
 .icon-holdingpouch { background-position: -192px -320px; }
 .icon-spiderlegs { background-position: -224px -320px; }
+.icon-moebiushelm { background-position: -256px -320px; }
 
 .sciMenuButton {
     width: 300px;

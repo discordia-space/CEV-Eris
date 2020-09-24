@@ -35,3 +35,19 @@
 	icon_state = "wolverine"
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
 	holding_type = /obj/item/weapon/tool/armblade/claws
+
+/obj/item/organ_module/active/simple/armblade/energy_blade
+	name = "energy armblade"
+	desc = "A energy blade designed to be inserted into an arm. Gives you a nice advantage in a brawl."
+	verb_name = "Deploy energyblade"
+	icon_state = "energyblade"
+	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
+	holding_type = /obj/item/weapon/melee/energy/blade/organ_module
+
+/obj/item/organ_module/active/simple/armblade/energy_blade/deploy(mob/living/carbon/human/H, obj/item/organ/external/E)
+	..()
+	playsound(H.loc, 'sound/weapons/saberon.ogg', 50, 1)
+
+/obj/item/organ_module/active/simple/armblade/energy_blade/retract(mob/living/carbon/human/H, obj/item/organ/external/E)
+	..()
+	playsound(H.loc, 'sound/weapons/saberoff.ogg', 50, 1)

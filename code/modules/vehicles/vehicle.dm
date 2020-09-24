@@ -21,8 +21,8 @@
 	var/on = FALSE
 	var/health = 0	//do not forget to set health for your vehicle!
 	var/maxhealth = 0
-	var/fire_dam_coeff = 1.0
-	var/brute_dam_coeff = 1.0
+	var/fire_dam_coeff = 1
+	var/brute_dam_coeff = 1
 	var/open = 0	//Maint panel
 	var/locked = 1
 	var/stat = 0
@@ -147,15 +147,15 @@
 
 /obj/vehicle/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			explode()
 			return
-		if(2.0)
+		if(2)
 			health -= rand(5,10)*fire_dam_coeff
 			health -= rand(10,20)*brute_dam_coeff
 			healthcheck()
 			return
-		if(3.0)
+		if(3)
 			if (prob(50))
 				health -= rand(1,5)*fire_dam_coeff
 				health -= rand(1,5)*brute_dam_coeff

@@ -186,9 +186,10 @@
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
-	icon_state = "sheet-mythril"
+	icon_state = "sheet-hydrogen"
 	default_type = MATERIAL_MHYDROGEN
 	price_tag = 50
+	novariants = FALSE
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium

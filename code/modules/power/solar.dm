@@ -8,7 +8,7 @@
 	icon_state = "sp_base"
 	anchored = TRUE
 	density = TRUE
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 	var/id = 0
@@ -138,13 +138,13 @@
 
 /obj/machinery/power/solar/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(prob(15))
 				new /obj/item/weapon/material/shard( src.loc )
 			qdel(src)
 			return
 
-		if(2.0)
+		if(2)
 			if (prob(25))
 				new /obj/item/weapon/material/shard( src.loc )
 				qdel(src)
@@ -153,7 +153,7 @@
 			if (prob(50))
 				broken()
 
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return
@@ -280,7 +280,7 @@
 	icon_state = "solar"
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 250
 	var/light_range_on = 1.5
 	var/light_power_on = 3
@@ -515,14 +515,14 @@
 
 /obj/machinery/power/solar_control/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			//SN src = null
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				broken()
-		if(3.0)
+		if(3)
 			if (prob(25))
 				broken()
 	return

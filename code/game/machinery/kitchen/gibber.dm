@@ -18,7 +18,7 @@
 	var/hack_require = 6 //for hacking with multitool
 	var/hack_stage = 0
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 500
 

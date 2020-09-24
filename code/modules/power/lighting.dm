@@ -166,7 +166,7 @@
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = WALL_OBJ_LAYER
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
@@ -337,10 +337,10 @@
 					on = FALSE
 					set_light(0)
 			else
-				use_power = 2
+				use_power = ACTIVE_POWER_USE
 				set_light(brightness_range, brightness_power, brightness_color)
 	else
-		use_power = 1
+		use_power = IDLE_POWER_USE
 		set_light(0)
 
 	active_power_usage = ((light_range + light_power) * 10)
@@ -476,7 +476,7 @@
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
 			if (prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
+				electrocute_mob(user, get_area(src), src, rand(0.7,1))
 
 
 // returns whether this light has power
@@ -629,13 +629,13 @@
 
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(75))
 				broken()
-		if(3.0)
+		if(3)
 			if (prob(50))
 				broken()
 	return
