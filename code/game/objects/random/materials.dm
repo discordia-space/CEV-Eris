@@ -62,7 +62,7 @@
 	return pickweight(list(/obj/item/weapon/ore/coal = 4,\
 				/obj/item/weapon/ore/glass = 5,\
 				/obj/item/weapon/ore/gold = 3,\
-				/obj/item/weapon/ore/hydrogen = 2,\
+				/obj/item/weapon/ore/hydrogen = 1,\
 				/obj/item/weapon/ore/iron = 4,\
 				/obj/item/weapon/ore/osmium = 2,\
 				/obj/item/weapon/ore/plasma = 3,\
