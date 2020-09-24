@@ -1,4 +1,4 @@
-/datum/individual_objective/repossession//test requiered
+/datum/individual_objective/repossession//work
 	name = "Repossession"
 	req_department = list(DEPARTMENT_GUILD)
 	limited_antag = TRUE
@@ -19,7 +19,7 @@
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
 	..()
 
-/datum/individual_objective/museum//test requiered
+/datum/individual_objective/museum//work
 	name = "It Belongs to Museum"
 	desc = "Ensure that 3-4 oddities were sold via cargo."
 	req_department = list(DEPARTMENT_GUILD)
@@ -40,7 +40,7 @@
 	..()
 
 
-/datum/individual_objective/order//test requiered
+/datum/individual_objective/order//work
 	name = "Special Order"
 	req_department = list(DEPARTMENT_GUILD)
 	var/obj/item/target
@@ -83,9 +83,48 @@
 /datum/individual_objective/order/task_completed(atom/movable/AM) 
 	if(AM.type == target.type)
 		completed()
-		return
 
 /datum/individual_objective/order/completed()
 	if(completed) return
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
+	..()
+
+
+/datum/individual_objective/stripping//work
+	name = "Stripping Operation"
+	req_department = list(DEPARTMENT_GUILD)
+	limited_antag = TRUE
+	var/price_target = 2000
+	var/area/target
+
+/datum/individual_objective/stripping/assign()
+	..()
+	var/list/valied_areas = list()
+	for(var/area/A in ship_areas)
+		var/current_price = 0
+		if(A in valied_areas)
+			continue
+		if (istype(A, /area/shuttle))
+			continue
+		if (A.is_maintenance)
+			continue
+		for(var/obj/item/I in A.contents)
+			current_price += I.get_item_cost()
+		if(current_price < price_target)
+			continue
+		valied_areas += A
+	target = pick(valied_areas)
+	desc = "Ensure that [target] does not have cumulative price of items inside it that is higher than [price_target] credits."
+	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
+
+/datum/individual_objective/stripping/task_completed()
+	units_completed = 0
+	for(var/obj/item/I in target.contents)
+		units_completed += I.get_item_cost() 
+	if(units_completed < price_target)
+		completed()
+
+/datum/individual_objective/stripping/completed()
+	if(completed) return
+	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
