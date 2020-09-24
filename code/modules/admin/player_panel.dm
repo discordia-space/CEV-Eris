@@ -81,7 +81,9 @@
 					body += "<a href='?src=\ref[src];traitor="+ref+"'>TP</a> - "
 					body += "<a href='?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
 					body += "<a href='?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='?src=\ref[src];manup="+ref+"'>MAN_UP</a> - "
 					body += "<a href='?src=\ref[src];viewlogs="+ref+"'>LOGS</a> - "
+					body += "<a href='?src=\ref[src];paralyze="+ref+"'>PARA</a> - "
 					body += "<a href='?src=\ref[src];adminobservejump="+ref+"'>JMP</a><br>"
 					if(antagonist > 0)
 						body += "<font size='2'><a href='?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
