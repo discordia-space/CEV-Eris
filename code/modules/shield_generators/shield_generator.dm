@@ -48,15 +48,17 @@
 	// The shield mode flags which should be enabled on this generator by default
 
 	var/list/allowed_modes = list(MODEFLAG_HYPERKINETIC,
-									MODEFLAG_PHOTONIC,
-									MODEFLAG_NONHUMANS,
-									MODEFLAG_HUMANOIDS,
-									MODEFLAG_ANORGANIC,
-									MODEFLAG_ATMOSPHERIC,
-									MODEFLAG_BYPASS,
-									MODEFLAG_OVERCHARGE,
-									MODEFLAG_MODULATE,
-									MODEFLAG_EM)
+							MODEFLAG_PHOTONIC,
+							MODEFLAG_NONHUMANS,
+							MODEFLAG_HUMANOIDS,
+							MODEFLAG_ANORGANIC,
+							MODEFLAG_ATMOSPHERIC,
+							MODEFLAG_HULL,
+							MODEFLAG_BYPASS,
+							MODEFLAG_OVERCHARGE,
+							MODEFLAG_MODULATE,
+							MODEFLAG_MULTIZ,
+							MODEFLAG_EM)
 		// The modes that this shield generator can ever use. Override to create less-able subtypes
 		// By default, multiz and hull are restricted to the hull generator
 
@@ -165,6 +167,8 @@
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
 		for(var/turf/T in shielded_turfs)
+			if (locate(/obj/effect/shield) in T)
+				continue
 			if (T.diffused)
 				continue
 			isFloor = TRUE
