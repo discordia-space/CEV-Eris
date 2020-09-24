@@ -207,12 +207,12 @@ obj/item/weapon/gun/energy/retro
 	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
 	icon_state = "psychic_lasercannon"
 	item_state = "psychic_lasercannon"
-	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-	slot_flags = SLOT_BELT|SLOT_BACK
+	item_charge_meter = TRUE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3, TECH_COVERT = 5)
 	projectile_type = /obj/item/projectile/beam/psychic/heavylaser
 	w_class = ITEM_SIZE_HUGE
+	slot_flags = SLOT_BELT|SLOT_BACK
 	traitor = TRUE
 	pierce_multiplier = 2
 	zoom_factor = 0
