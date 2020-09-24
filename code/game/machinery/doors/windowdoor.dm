@@ -149,15 +149,27 @@
 		return
 
 /obj/machinery/door/window/attack_hand(mob/user as mob)
-
-	if(ishuman(user))
+	if(!attempt_open(user) && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-			visible_message(SPAN_DANGER("[user] smashes against the [src.name]."), 1)
-			take_damage(25)
-			return
-	return src.attackby(user, user)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		if(user.a_intent == I_HURT)
+			if(H.species.can_shred(H))
+				playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+				visible_message(SPAN_DANGER("[user] smashes against the [src.name]."), 1)
+				take_damage(25)
+				return
+
+			playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
+			user.do_attack_animation(src)
+			usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
+								SPAN_DANGER("You bang against \the [src]!"),
+								"You hear a banging sound.")
+		else
+			playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
+			usr.visible_message("[usr.name] knocks on the [src.name].",
+								"You knock on the [src.name].",
+								"You hear a knocking sound.")
+
 
 /obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
 	if (density && operable())
@@ -241,37 +253,20 @@
 
 	src.add_fingerprint(user)
 
-	if (src.allowed(user))
-		if (src.density)
+	attempt_open(user)
+
+/obj/machinery/door/window/proc/attempt_open(mob/user)
+	if (allowed(user))
+		if (density)
 			open()
 		else
 			close()
+		return TRUE
 
-	else
 
-		if (src.density)
-			flick(text("[]deny", src.base_state), src)
-			if (usr.a_intent == I_HURT)
-
-				if (ishuman(usr))
-					var/mob/living/carbon/human/H = usr
-					if(H.species.can_shred(H))
-						attack_generic(H,25)
-						return
-				playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
-				user.do_attack_animation(src)
-				usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
-									SPAN_DANGER("You bang against \the [src]!"),
-									"You hear a banging sound.")
-			else
-				playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
-				usr.visible_message("[usr.name] knocks on the [src.name].",
-									"You knock on the [src.name].",
-									"You hear a knocking sound.")
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
-	return
-
+	if (density)
+		flick(text("[]deny", src.base_state), src)
+	return FALSE
 
 
 /obj/machinery/door/window/brigdoor
