@@ -8,10 +8,23 @@
     anchored = TRUE
     layer = BELOW_OBJ_LAYER
     use_power = NO_POWER_USE
-    var/compressed_matter = 0
+    var/list/stored_material = list()
+    var/power_source = null
 
+/obj/machinery/matter_nanoforge/attack_hand(mob/user)
+    if(..())
+        return TRUE
+    var/requested_amount = input(user, "How much Compressed Matter do you want to take out?", "Extracting Compressed Matter") as num|null
+    if(isnull(requested_amount) || requested_amount <=0 || requested_amount > 120)
+        return
+    stored_material[MATERIAL_COMPRESSED_MATTER] -= requested_amount
+ 
+    var/obj/item/stack/material/compressed_matter/MS = new(drop_location())
+    MS.amount = requested_amount
+    MS.update_strings()
+    MS.update_icon()
+        
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/stack) || istype(I, /obj/item/trash) || istype(I, /obj/item/weapon/material/shard))
 		eat(user, I)
 		return
 /obj/machinery/matter_nanoforge/proc/eat(mob/living/user, obj/item/eating)
@@ -41,13 +54,13 @@
 				total_used += total_material
 				mass_per_sheet += O.matter[material]
 	for(var/material in total_material_gained)
-		compressed_matter += total_material_gained[material]
+		stored_material[MATERIAL_COMPRESSED_MATTER] += total_material_gained[material]
 
 	if(istype(eating, /obj/item/stack))
 		var/obj/item/stack/stack = eating
 		var/used_sheets = min(stack.get_amount(), round(total_used/mass_per_sheet))
 
-		to_chat(user, SPAN_NOTICE("You create [used_sheets] [compressed_matter] from [stack.singular_name]\s in \the [src]."))
+		to_chat(user, SPAN_NOTICE("You create [used_sheets] Compressed Matter from [stack.singular_name]\s in \the [src]."))
 
 		if(!stack.use(used_sheets))
 			qdel(stack)	// Protects against weirdness
