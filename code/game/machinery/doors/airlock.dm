@@ -24,19 +24,19 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/lights = 1 // bolt lights show by default
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
-	var/obj/machinery/door/airlock/closeOther = null
-	var/closeOtherId = null
+	var/obj/machinery/door/airlock/closeOther
+	var/closeOtherId
 	var/lockdownbyai = 0
 	autoclose = 1
 	var/assembly_type = /obj/structure/door_assembly
-	var/mineral = null
+	var/mineral
 	var/justzap = 0
 	var/safe = 1
 	normalspeed = 1
-	var/obj/item/weapon/electronics/airlock/electronics = null
+	var/obj/item/weapon/electronics/airlock/electronics
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
-	var/datum/wires/airlock/wires = null
+	var/datum/wires/airlock/wires
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
 	var/close_sound = 'sound/machines/airlock_close.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'

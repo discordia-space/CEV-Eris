@@ -38,7 +38,6 @@
 	//spawn_values
 	spawn_tags = SPAWN_TAG_ROACH
 	rarity_value = 5
-	spawn_frequency = 10
 
 	var/atom/eat_target // target that the roach wants to eat
 	var/fed = 0 // roach gets fed after eating a corpse

@@ -53,7 +53,7 @@
 
 /obj/effect/list_container/mobl
 	name = "mobl"
-	var/master = null
+	var/master
 
 	var/list/container = list(  )
 
@@ -65,7 +65,7 @@
 
 /obj/effect/shut_controller
 	name = "shut controller"
-	var/moving = null
+	var/moving
 	var/list/parts = list(  )
 
 /obj/structure/showcase
@@ -98,7 +98,7 @@
 		src.throw_at(target, throw_range, throw_speed, user)
 
 /obj/effect/stop
-	var/victim = null
+	var/victim
 	icon_state = "empty"
 	name = "Geas"
 	desc = "You can't resist."

@@ -209,7 +209,7 @@
     	return 1
 
 /proc/build_click(var/mob/user, buildmode, params, var/obj/object)
-	var/obj/effect/bmode/buildholder/holder = null
+	var/obj/effect/bmode/buildholder/holder
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)
 			holder = H

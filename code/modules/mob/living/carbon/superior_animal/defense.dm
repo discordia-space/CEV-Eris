@@ -1,4 +1,4 @@
-/mob/living/carbon/superior_animal/proc/harvest(var/mob/user)
+/mob/living/carbon/superior_animal/proc/harvest(mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		drop_embedded()
@@ -20,9 +20,8 @@
 
 	check_AI_act()
 
-/mob/living/carbon/superior_animal/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/carbon/superior_animal/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
-
 	updatehealth()
 
 /mob/living/carbon/superior_animal/attackby(obj/item/I, mob/living/user, var/params)
@@ -242,7 +241,7 @@
 /mob/living/carbon/superior_animal/get_heat_protection(var/temperature)
 	return heat_protection
 
-/mob/living/carbon/superior_animal/handle_environment(var/datum/gas_mixture/environment)
+/mob/living/carbon/superior_animal/handle_environment(datum/gas_mixture/environment)
 	bad_environment = FALSE
 	if(!environment)
 		return

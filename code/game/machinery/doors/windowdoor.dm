@@ -15,7 +15,7 @@
 	use_power = NO_POWER_USE
 	flags = ON_BORDER
 	opacity = 0
-	var/obj/item/weapon/electronics/airlock/electronics = null
+	var/obj/item/weapon/electronics/airlock/electronics
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
@@ -275,7 +275,7 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(access_security)
-	var/id = null
+	var/id
 	maxhealth = 200
 	health = 200 //Stronger doors for prison (regular window door health is 100)
 

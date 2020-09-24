@@ -349,7 +349,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //When an AI is activated, it can choose from a list of non-slaved borgs to have as a slave.
 /proc/freeborg()
-	var/select = null
+	var/select
 	var/list/borgs = list()
 	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || isdrone(A))
@@ -599,7 +599,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 		var/dir_alt2 = turn(base_dir, -90)
 		var/turf/turf_last1 = temp
 		var/turf/turf_last2 = temp
-		var/free_tile = null
+		var/free_tile
 		var/breakpoint = 0
 
 		while(!free_tile && breakpoint < 10)
@@ -659,10 +659,10 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	return atoms
 
 /datum/coords //Simple datum for storing coordinates.
-	var/x_pos = null
-	var/y_pos = null
-	var/z_pos = null
-	var/area_name = null
+	var/x_pos
+	var/y_pos
+	var/z_pos
+	var/area_name
 
 /datum/coords/New(turf/loc)
 	if(loc)
@@ -685,7 +685,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	return "[displayed_x]:[displayed_y]:[displayed_z][displayed_area]"
 
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction = null)
+/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/direction)
 	//Takes: Area. Optional: turf type to leave behind.
 	//Returns: Nothing.
 	//Notes: Attempts to move the contents of one area to another area.

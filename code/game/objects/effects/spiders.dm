@@ -98,7 +98,7 @@
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		var/num = rand(6,24)
-		var/obj/item/organ/external/O = null
+		var/obj/item/organ/external/O
 		if(istype(loc, /obj/item/organ/external))
 			O = loc
 
@@ -117,7 +117,6 @@
 	health = 3
 	//spawn_values
 	rarity_value = 5
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_SPIDER
 	var/last_itch = 0
 	var/amount_grown = -1
