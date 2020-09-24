@@ -1,9 +1,9 @@
 /obj/item/weapon/gun/projectile/shotgun/slidebarrelshotgun
 	name = "Slide Barrel Shotgun"
 	desc = "Slide Barrel Shotgun, made out of trash, but rather special on its design"
-	icon = 'icons/obj/guns/projectile/sawnshotgun.dmi'
-	icon_state = "sawnshotgun"
-	item_state = "sawnshotgun"
+	icon = 'icons/obj/guns/projectile/slideshotgun.dmi'
+	icon_state = "slideshotgun"
+	item_state = "slideshotgun"
 	max_shells = 1
 	caliber = CAL_SHOTGUN
 	handle_casings = HOLD_CASINGS
@@ -29,4 +29,7 @@
 		var/obj/item/ammo_casing/shell = loaded[1]
 		loaded -= shell
 		chambered = shell
+		to_chat(user, SPAN_NOTICE("You chamber a new shell, ejecting [chambered]!"))
 		playsound(src.loc, 'sound/weapons/guns/interact/hpistol_cock.ogg', 70, 1)
+		icon_state = "slideshotgun_load"
+	update_icon()
