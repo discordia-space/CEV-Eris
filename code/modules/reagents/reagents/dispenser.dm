@@ -118,16 +118,16 @@
 
 /datum/reagent/ethanol/on_mob_add(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIGN_CARBON_HAPPY, src, MOB_ADD_DRUG)
+	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
 
 /datum/reagent/ethanol/on_mob_delete(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIGN_CARBON_HAPPY, src, MOB_DELETE_DRUG)
+	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustToxLoss(0.2 * toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_PAINKILLER, max(55-strength, 1))
-	SEND_SIGNAL(M, COMSIGN_CARBON_HAPPY, src, ON_MOB_DRUG)
+	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 	return
 
 /datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)

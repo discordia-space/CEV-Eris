@@ -70,7 +70,7 @@
 	..()
 	timer = world.time
 	desc = "Stay intoxicated by alcohol or recreational drugs for [unit2time(units_requested)] minutes"
-	RegisterSignal(mind_holder, COMSIGN_CARBON_HAPPY, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_CARBON_HAPPY, .proc/task_completed)
 
 /datum/individual_objective/addict/task_completed(datum/reagent/happy, signal)
 	if(!drugs.len)
@@ -88,7 +88,7 @@
 
 /datum/individual_objective/addict/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSIGN_CARBON_HAPPY)
+	UnregisterSignal(mind_holder, COMSIG_CARBON_HAPPY)
 	..()
 
 /datum/individual_objective/gift//work
@@ -128,7 +128,7 @@
 	desc = "Ensure that [target] will not get their health slowered to [health_threshold] and below \
 			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold."
 	timer = world.time
-	RegisterSignal(target, COMSIGN_HUMAN_HEALTH, .proc/task_completed)
+	RegisterSignal(target, COMSIG_HUMAN_HEALTH, .proc/task_completed)
 
 /datum/individual_objective/protector/task_completed(health)
 	if(health < health_threshold)
@@ -144,7 +144,7 @@
 
 /datum/individual_objective/protector/completed()
 	if(completed) return
-	UnregisterSignal(target, COMSIGN_HUMAN_HEALTH)
+	UnregisterSignal(target, COMSIG_HUMAN_HEALTH)
 	..()
 
 /datum/individual_objective/helper//work

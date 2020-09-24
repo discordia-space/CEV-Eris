@@ -93,9 +93,7 @@
 	units_completed = 0
 	for(var/obj/item/I in mind_holder.GetAllContents())
 		if(I.GetComponent(/datum/component/inspiration))
-			units_completed++
-	if(check_for_completion())
-		completed()
+			..(1)
 
 /datum/individual_objective/oddity/completed()
 	if(completed) return

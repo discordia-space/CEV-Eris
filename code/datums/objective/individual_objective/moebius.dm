@@ -133,7 +133,7 @@
 	units_requested = rand(120,160)
 	desc = "Receive cumulative [units_requested] damage of any kind, to ensure that you see things in a different light"
 	last_health = mind_holder.health
-	RegisterSignal(mind_holder, COMSIGN_HUMAN_HEALTH, .proc/task_completed)
+	RegisterSignal(mind_holder, COMSIG_HUMAN_HEALTH, .proc/task_completed)
 
 /datum/individual_objective/damage/task_completed(health)
 	if(last_health > health)
@@ -144,7 +144,7 @@
 
 /datum/individual_objective/damage/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSIGN_HUMAN_HEALTH)
+	UnregisterSignal(mind_holder, COMSIG_HUMAN_HEALTH)
 	..()
 
 /datum/individual_objective/for_science//work

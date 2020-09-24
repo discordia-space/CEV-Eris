@@ -40,12 +40,11 @@
 
 /obj/item/device/von_krabin/attack_self()
 	if(active)
-		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		check_for_faithful(list())
 	else
-		active = TRUE
 		START_PROCESSING(SSobj, src)
+	active = !active
 	return
 
 /obj/item/device/von_krabin/Process()

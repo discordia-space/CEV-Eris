@@ -22,9 +22,7 @@
 
 /datum/individual_objective/convert//test_requiered TEST!
 	name = "Convert"
-	req_department = list(DEPARTMENT_CHURCH)
 	limited_antag = TRUE
-	units_requested = 3 MINUTES//change to 15
 	//req_cruciform = TRUE uncoment
 	var/mob/living/carbon/human/target
 
