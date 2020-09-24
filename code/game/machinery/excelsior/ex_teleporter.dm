@@ -320,3 +320,128 @@ var/global/excelsior_max_energy //Maximaum combined energy of all teleporters
 	
 	visible_message("\the [src] blinks, refusing [affecting].")
 	playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+	
+// Admin version of excelsior teleporter
+
+/obj/machinery/complant_teleporter/admin
+	name = "admin excelsior teleporter"
+	desc = "An experimental teleporter that charges extremely quickly."
+	idle_power_usage = 5
+	active_power_usage = 10
+	energy_gain = 5
+		
+/obj/machinery/complant_teleporter/admin/materials
+	name = "admin material fabricator"
+	desc = "A strange device which fabricates huge amounts of basic materials and components.."
+	materials_list = list(
+		MATERIAL_STEEL = list("amount" = 1000, "price" = 10),
+		MATERIAL_WOOD = list("amount" = 1000, "price" = 10),
+		MATERIAL_PLASTIC = list("amount" = 1000, "price" = 10),
+		MATERIAL_GLASS = list("amount" = 1000, "price" = 10),
+		MATERIAL_SILVER = list("amount" = 1000, "price" = 10),
+		MATERIAL_PLASTEEL = list("amount" = 1000, "price" = 10),
+		MATERIAL_GOLD = list("amount" = 1000, "price" = 10),
+		MATERIAL_URANIUM = list("amount" = 1000, "price" = 10),
+		MATERIAL_DIAMOND = list("amount" = 1000, "price" = 10),
+		MATERIAL_PLASMAGLASS = list("amount" = 1000, "price" = 10),
+		MATERIAL_PLASMA = list("amount" = 1000, "price" = 10),
+		MATERIAL_CARDBOARD = list("amount" = 1000, "price" = 10),
+		MATERIAL_BIOMATTER = list("amount" = 1000, "price" = 10)
+		)
+	parts_list = list(
+		/obj/item/weapon/storage/box/excelsior_stockparts = 5,
+		/obj/item/weapon/storage/box/onestar_stockparts = 10,
+		/obj/item/weapon/storage/box/alien_stockparts = 15,
+		/obj/item/weapon/storage/toolbox/mechanical = 1,
+		/obj/item/weapon/storage/toolbox/syndicate = 5,
+		/obj/item/weapon/cell/small/hyper = 1,
+		/obj/item/weapon/cell/medium/hyper = 3,
+		/obj/item/weapon/cell/large/hyper = 5,
+		/obj/item/weapon/spacecash/bundle/c1000 = 1
+		)
+		
+/obj/machinery/complant_teleporter/admin/food
+	name = "admin sustenance synthesizer"
+	desc = "A strange device which synthesizes food from quantum flavorwaves."
+	materials_list = list(
+		)
+	parts_list = list(
+		/obj/item/weapon/reagent_containers/food/snacks/tastybread = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/syndicake = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/candy = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
+		/obj/item/weapon/reagent_containers/food/snacks/mre/can = 3,
+		/obj/item/weapon/reagent_containers/food/snacks/mre = 5,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 1,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/cola = 1,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey = 3,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 3,
+		/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 3
+		)
+		
+/obj/machinery/complant_teleporter/admin/armory
+	name = "admin armory fabricator"
+	desc = "A strange device which creates various weapons, ammunition and armors."
+	materials_list = list(
+		)
+	parts_list = list(
+		/obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior_cracked = 1,
+		/obj/item/weapon/gun/projectile/colt = 1,
+		/obj/item/weapon/gun/projectile/paco = 3,
+		/obj/item/ammo_magazine/pistol = 1,
+		/obj/item/ammo_magazine/ammobox/pistol = 1,
+		/obj/item/weapon/gun/projectile/shotgun/pump = 5,
+		/obj/item/weapon/gun/projectile/shotgun/pump/regulator = 7,
+		/obj/item/weapon/storage/box/shotgunammo/buckshot = 1,
+		/obj/item/weapon/storage/box/shotgunammo/slug = 1,
+		/obj/item/weapon/gun/energy/gun/martin = 1,
+		/obj/item/weapon/gun/energy/gun = 3,
+		/obj/item/weapon/gun/energy/retro = 5,
+		/obj/item/weapon/cell/small/hyper = 1,
+		/obj/item/weapon/cell/medium/hyper = 3,
+		/obj/item/weapon/gun/projectile/automatic/ak47/fs = 5,
+		/obj/item/weapon/gun/projectile/automatic/sts35 = 7,
+		/obj/item/ammo_magazine/lrifle/highvelocity = 1,
+		/obj/item/ammo_magazine/ammobox/lrifle_small/hv = 1,
+		/obj/item/weapon/melee/energy/sword = 5,
+		/obj/item/clothing/head/armor/helmet = 1,
+		/obj/item/clothing/head/armor/helmet/visor = 2,
+		/obj/item/clothing/head/armor/bulletproof = 3,
+		/obj/item/clothing/head/armor/bulletproof/ironhammer_full = 5,
+		/obj/item/clothing/suit/armor/vest = 1,
+		/obj/item/clothing/suit/armor/vest/security = 2,
+		/obj/item/clothing/suit/armor/bulletproof = 3,
+		/obj/item/clothing/suit/armor/bulletproof/ironhammer = 5,
+		/obj/item/clothing/suit/space/void/mining = 3,
+		/obj/item/clothing/suit/space/void/security = 5,
+		/obj/item/clothing/suit/space/void/merc = 7,
+		/obj/item/clothing/suit/space/void/science = 10,
+		/obj/item/weapon/storage/backpack/military = 1,
+		/obj/item/weapon/storage/backpack/satchel/military = 1,
+		/obj/item/weapon/storage/backpack/holding = 3,
+		/obj/item/weapon/storage/pouch/small_generic = 1,
+		/obj/item/weapon/storage/pouch/medium_generic = 2,
+		/obj/item/weapon/storage/pouch/large_generic = 2,
+		/obj/item/weapon/storage/pouch/holding = 3,
+		/obj/item/weapon/storage/belt/holding = 3
+		)
+		
+/obj/machinery/complant_teleporter/admin/medical
+	name = "admin medical synthesizer"
+	desc = "A strange device which creates medicinial remedies of all kinds."
+	materials_list = list(
+		)
+	parts_list = list(
+		/obj/item/weapon/storage/firstaid/regular = 1,
+		/obj/item/weapon/storage/firstaid/fire = 2,
+		/obj/item/weapon/storage/firstaid/toxin = 2,
+		/obj/item/weapon/storage/firstaid/o2 = 2,
+		/obj/item/weapon/storage/firstaid/adv = 3,
+		/obj/item/weapon/storage/firstaid/combat = 5,
+		/obj/item/weapon/storage/firstaid/surgery = 3,
+		/obj/item/weapon/reagent_containers/pill/adminordrazine = 10,
+		/obj/item/weapon/reagent_containers/glass/beaker/large = 1,
+		/obj/item/weapon/reagent_containers/glass/beaker/bluespace = 3
+		)
