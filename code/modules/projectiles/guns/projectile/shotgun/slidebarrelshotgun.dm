@@ -24,6 +24,7 @@
 		chambered.forceMove(newloc) //Eject casing
 		chambered = null
 		playsound(usr, 'sound/weapons/shotgunpump.ogg', 60, 1)
+		icon_state = "slideshotgun_load"   
 	if(istype(A, /obj/item/ammo_casing))
 		..()
 		var/obj/item/ammo_casing/shell = loaded[1]
@@ -31,5 +32,8 @@
 		chambered = shell
 		to_chat(user, SPAN_NOTICE("You chamber a new shell, ejecting [chambered]!"))
 		playsound(src.loc, 'sound/weapons/guns/interact/hpistol_cock.ogg', 70, 1)
-		icon_state = "slideshotgun_load"
 	update_icon()
+	addtimer(CALLBACK(src, .proc/seticon),2 SECONDS)
+
+/obj/item/weapon/gun/projectile/shotgun/slidebarrelshotgun/proc/seticon() //so the animation plays each time you load it and we don't need to keed ticking it process
+	icon_state = "slideshotgun"
