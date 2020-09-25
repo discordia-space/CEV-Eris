@@ -197,7 +197,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
-	var/aliens_allowed = 0
 	var/abandon_allowed = 1
 	var/ooc_allowed = 1
 	var/looc_allowed = 1
@@ -486,9 +485,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("allow_metadata")
 					config.allow_Metadata = 1
-
-				if ("aliens_allowed")
-					config.aliens_allowed = 1
 
 				if ("objectives_disabled")
 					config.objectives_disabled = 1
