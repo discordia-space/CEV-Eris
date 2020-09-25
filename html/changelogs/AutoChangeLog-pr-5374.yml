@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - rscadd: Random spawn values
+  - rscdel: lists of random content.
