@@ -72,7 +72,7 @@
 	origin_tech = list(TECH_POWER = 6)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 6)
 	maxcharge = 13000
-	rarity_value = 45
+	rarity_value = 85
 
 /obj/item/weapon/cell/large/excelsior
 	name = "Excelsior \"Zarya 15000L\""
@@ -187,7 +187,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2, MATERIAL_URANIUM = 4)
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1000
-	rarity_value = 45
+	rarity_value = 85
 
 /obj/item/weapon/cell/medium/excelsior
 	name = "Excelsior \"Zarya 1000M\""
@@ -277,7 +277,7 @@
 	origin_tech = list(TECH_POWER = 6)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 2)
 	maxcharge = 300
-	rarity_value = 40
+	rarity_value = 80
 
 /obj/item/weapon/cell/small/moebius/pda
 	name = "Moebius \"Atomcell 50S\""
@@ -292,6 +292,7 @@
 	autorecharge_rate = 0.0007
 	recharge_time = 1
 	spawn_blacklisted = TRUE
+	rarity_value = 40
 
 /obj/item/weapon/cell/small/excelsior
 	name = "Excelsior \"Zarya 300S\""

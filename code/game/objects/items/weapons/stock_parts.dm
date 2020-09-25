@@ -169,6 +169,7 @@
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 60
 
 /obj/item/weapon/stock_parts/scanning_module/excelsior
 	name = "excelsior scanning module"
@@ -178,6 +179,7 @@
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 60
 	
 
 /obj/item/weapon/stock_parts/manipulator/excelsior
@@ -188,6 +190,7 @@
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 	spawn_blacklisted = TRUE
+	rarity_value = 60
 
 /obj/item/weapon/stock_parts/micro_laser/excelsior
 	name = "excelsior micro-laser"
@@ -197,6 +200,7 @@
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 60
 
 /obj/item/weapon/stock_parts/matter_bin/excelsior
 	name = "excelsior matter bin"
@@ -206,6 +210,7 @@
 	rating = 4
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 60
 
 //one star stock parts (rating 5)
 
@@ -217,7 +222,7 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
-	rarity_value = 40
+	rarity_value = 70
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/scanning_module/one_star
@@ -228,7 +233,7 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
-	rarity_value = 40
+	rarity_value = 70
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/manipulator/one_star
@@ -239,7 +244,7 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 	spawn_blacklisted = TRUE
-	rarity_value = 40
+	rarity_value = 70
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/micro_laser/one_star
@@ -250,7 +255,7 @@
 	rating = 5
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
-	rarity_value = 40
+	rarity_value = 70
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 /obj/item/weapon/stock_parts/matter_bin/one_star
@@ -261,7 +266,7 @@
 	rating = 5
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
-	rarity_value = 40
+	rarity_value = 70
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
 
@@ -275,6 +280,7 @@
 	rating = 6
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 3)
 	spawn_blacklisted = TRUE
+	rarity_value = 85
 
 /obj/item/weapon/stock_parts/scanning_module/alien
 	name = "Optical receptor"
@@ -284,6 +290,7 @@
 	rating = 6
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 85
 
 /obj/item/weapon/stock_parts/manipulator/alien
 	name = "Gripper"
@@ -293,6 +300,7 @@
 	rating = 6
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 	spawn_blacklisted = TRUE
+	rarity_value = 85
 
 /obj/item/weapon/stock_parts/micro_laser/alien
 	name = "Pico-emitter"
@@ -302,6 +310,7 @@
 	rating = 6
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
+	rarity_value = 85
 
 /obj/item/weapon/stock_parts/matter_bin/alien
 	name = "Recepticle"
@@ -311,7 +320,7 @@
 	rating = 6
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
-
+	rarity_value = 85
 
 // Subspace stock parts
 /obj/item/weapon/stock_parts/subspace

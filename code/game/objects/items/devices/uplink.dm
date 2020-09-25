@@ -250,7 +250,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	hidden_uplink = new(src, mind, crystal_amount)
 	icon_state = "radio"
 
-/obj/item/device/radio/uplink/attack_self(mob/user as mob)
+/obj/item/device/radio/uplink/attack_self(mob/user)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 

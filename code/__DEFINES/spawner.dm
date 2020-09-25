@@ -327,6 +327,7 @@
 #define SPAWN_CLOSET_SECURE "secure_closet"//secure
 
 #define SPAWN_TAG_CLOSET "obj,structure,closet"
+#define SPAWN_TAG_CLOSET_OS "obj,structure,closet,onestar"
 #define SPAWN_TAG_CLOSET_SECURE "obj,structure,closet,secure_closet"//secure
 #define SPAWN_TAG_TECHNICAL_CLOSET "obj,structure,closet,technical_closet"
 #define SPAWN_TAG_WARDROBE "obj,structure,closet,wardrobe"

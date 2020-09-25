@@ -218,8 +218,9 @@
 
 /obj/item/weapon/rcd/borg
 	canRwall = 1
+	spawn_frequency = 0
 
-/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user, var/checkOnly)
+/obj/item/weapon/rcd/borg/useResource(var/amount, mob/user, var/checkOnly)
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.cell)

@@ -158,6 +158,8 @@
 	return
 
 /obj/item/weapon/rpd/borg
+	spawn_frequency = 0
+
 
 /obj/item/weapon/rpd/borg/useCharge(mob/user)
 	if(isrobot(user))
