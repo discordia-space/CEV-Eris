@@ -228,7 +228,7 @@
 		if(QUALITY_PRYING)
 			if(tracker)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					new /obj/item/weapon/tracker_electronics(src.loc)
+					new /obj/item/weapon/electronics/tracker(src.loc)
 					tracker = 0
 					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
 					return
@@ -261,7 +261,7 @@
 			return
 
 	if(!tracker)
-		if(istype(I, /obj/item/weapon/tracker_electronics))
+		if(istype(I, /obj/item/weapon/electronics/tracker))
 			tracker = 1
 			user.drop_item()
 			qdel(I)
@@ -409,7 +409,7 @@
 				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/weapon/material/shard( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/item/weapon/electronics/circuitboard/solar_control/M = new /obj/item/weapon/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -420,7 +420,7 @@
 			else
 				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/item/weapon/electronics/circuitboard/solar_control/M = new /obj/item/weapon/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M

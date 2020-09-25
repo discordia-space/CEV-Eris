@@ -5,14 +5,14 @@
 	icon_screen = "dna"
 	light_color = COLOR_LIGHTING_GREEN_MACHINERY
 	req_access = list(access_heads) //Only used for record deletion right now.
-	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
+	var/obj/machinery/dna_scannernew/scanner //Linked scanner. For scanning.
 	var/list/pods = list() //Linked cloning pods.
 	var/temp = ""
 	var/scantemp = "Scanner unoccupied"
 	var/menu = 1 //Which menu screen to display
 	var/list/records = list()
-	var/datum/dna2/record/active_record = null
-	var/obj/item/weapon/disk/data/diskette = null //Mostly so the geneticist can steal everything.
+	var/datum/dna2/record/active_record
+	var/obj/item/weapon/disk/data/diskette //Mostly so the geneticist can steal everything.
 	var/loading = 0 // Nice loading text
 
 /obj/machinery/computer/cloning/Initialize()
@@ -88,7 +88,7 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[num++]"
 
-/obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/computer/cloning/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/weapon/disk/data)) //INSERT SOME DISKETTES
 		if (!src.diskette)
 			user.drop_item()
@@ -101,7 +101,7 @@
 		..()
 	return
 
-/obj/machinery/computer/cloning/attack_hand(mob/user as mob)
+/obj/machinery/computer/cloning/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)
@@ -364,7 +364,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject)
 	if ((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return

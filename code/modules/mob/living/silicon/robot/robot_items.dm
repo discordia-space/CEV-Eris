@@ -317,7 +317,8 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "inf_deployer"
 	w_class = ITEM_SIZE_NORMAL
-
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
+	rarity_value = 15
 	// By default stores up to 10 walls and 5 doors. May be changed.
 	var/stored_walls = 10
 	var/stored_doors = 5

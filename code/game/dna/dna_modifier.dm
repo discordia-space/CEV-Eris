@@ -7,16 +7,16 @@
 
 //list("data" = null, "owner" = null, "label" = null, "type" = null, "ue" = 0),
 /datum/dna2/record
-	var/datum/dna/dna = null
+	var/datum/dna/dna
 	var/types=0
 	var/name="Empty"
 
 	// Stuff for cloners
-	var/id=null
-	var/implant=null
-	var/ckey=null
-	var/mind=null
-	var/languages=null
+	var/id
+	var/implant
+	var/ckey
+	var/mind
+	var/languages
 	var/flavor
 
 /datum/dna2/record/proc/GetData()
@@ -47,13 +47,13 @@
 	idle_power_usage = 50
 	active_power_usage = 300
 	interact_offline = 1
-	circuit = /obj/item/weapon/circuitboard/clonescanner
+	circuit = /obj/item/weapon/electronics/circuitboard/clonescanner
 	var/locked = 0
 	var/mob/living/carbon/occupant = null
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/weapon/reagent_containers/glass/beaker
 	var/opened = 0
 
-/obj/machinery/dna_scannernew/relaymove(mob/user as mob)
+/obj/machinery/dna_scannernew/relaymove(mob/user)
 	if (user.stat)
 		return
 	src.go_out()
@@ -75,7 +75,7 @@
 /obj/machinery/dna_scannernew/proc/eject_occupant()
 	src.go_out()
 	for(var/obj/O in src)
-		if((!istype(O,/obj/item/weapon/reagent_containers)) && (!istype(O,/obj/item/weapon/circuitboard/clonescanner)) && (!istype(O,/obj/item/weapon/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
+		if((!istype(O,/obj/item/weapon/reagent_containers)) && (!istype(O,/obj/item/weapon/electronics/circuitboard/clonescanner)) && (!istype(O,/obj/item/weapon/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
 			O.loc = get_turf(src)//Ejects items that manage to get in there (exluding the components)
 	if(!occupant)
 		for(var/mob/M in src)//Failsafe so you can get mobs out
@@ -195,7 +195,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	density = TRUE
-	circuit = /obj/item/weapon/circuitboard/scan_consolenew
+	circuit = /obj/item/weapon/electronics/circuitboard/scan_consolenew
 	var/selected_ui_block = 1
 	var/selected_ui_subblock = 1
 	var/selected_se_block = 1
@@ -207,16 +207,16 @@
 	var/list/datum/dna2/record/buffers[3]
 	var/irradiating = 0
 	var/injector_ready = 0	//Quick fix for issue 286 (screwdriver the screen twice to restore injector)	-Pete
-	var/obj/machinery/dna_scannernew/connected = null
-	var/obj/item/weapon/disk/data/disk = null
-	var/selected_menu_key = null
+	var/obj/machinery/dna_scannernew/connected
+	var/obj/item/weapon/disk/data/disk
+	var/selected_menu_key
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 400
 	var/waiting_for_user_input=0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
-/obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user)
 	if (istype(I, /obj/item/weapon/disk/data)) //INSERT SOME diskS
 		if (!src.disk)
 			user.drop_from_inventory(I)

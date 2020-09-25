@@ -6,6 +6,9 @@
 
 //This can be attached to basically any long tool
 //This includes most mechanical ones
+/obj/item/weapon/tool_upgrade
+	bad_types = /obj/item/weapon/tool_upgrade
+
 /obj/item/weapon/tool_upgrade/reinforcement/stick
 	name = "brace bar"
 	desc = "A sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools."
@@ -48,6 +51,7 @@
 	name = "reinforced plating"
 	desc = "A sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky."
 	icon_state = "plate"
+	rarity_value = 10
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 2) //steel to compensate for metal rods used in crafting
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating/New()
@@ -65,6 +69,8 @@
 	name = "metal guard"
 	desc = "A bent piece of metal that wraps around sensitive parts of a tool, protecting it from impacts, debris, and stray fingers."
 	icon_state = "guard"
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 	matter = list(MATERIAL_PLASTEEL = 5)
 
 /obj/item/weapon/tool_upgrade/reinforcement/guard/New()
@@ -115,11 +121,15 @@
 
 // 	 PRODUCTIVITY: INCREASES WORKSPEED
 //------------------------------------------------
+/obj/item/weapon/tool_upgrade/productivity
+	bad_types = /obj/item/weapon/tool_upgrade/productivity
+
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip
 	name = "ergonomic grip"
 	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand."
 	icon_state = "ergonomic"
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 5)
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip/New()
 	..()
@@ -154,6 +164,8 @@
 	name = "red paint"
 	desc = "Do red tools really work faster, or is the effect purely psychological?"
 	icon_state = "paint_red"
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/productivity/red_paint/New()
@@ -170,6 +182,7 @@
 	name = "sharpening block"
 	desc = "A rough single-use block to sharpen a blade. The honed edge cuts smoothly."
 	icon_state = "whetstone"
+	rarity_value = 30
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 3)
 
 /obj/item/weapon/tool_upgrade/productivity/whetstone/New()
@@ -189,7 +202,9 @@
 	desc = "An adaptable industrial grade cutting disc, with diamond dust worked into the metal. Exceptionally durable."
 	icon_state = "diamond_blade"
 	price_tag = 300
+	rarity_value = 60
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_DIAMOND = 4)
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 
 /obj/item/weapon/tool_upgrade/productivity/diamond_blade/New()
 	..()
@@ -207,6 +222,7 @@
 	name = "oxyjet canister"
 	desc = "A canister of pure, compressed oxygen with adapters for mounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures."
 	icon_state = "oxyjet"
+	rarity_value = 20
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
 
 /obj/item/weapon/tool_upgrade/productivity/oxyjet/New()
@@ -226,6 +242,8 @@
 	name = "high power motor"
 	desc = "A motor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but more expensive to run and harder to control."
 	icon_state = "motor"
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4)
 
 /obj/item/weapon/tool_upgrade/productivity/motor/New()
@@ -299,10 +317,14 @@
 
 // 	 REFINEMENT: INCREASES PRECISION
 //------------------------------------------------
+/obj/item/weapon/tool_upgrade/refinement
+	bad_types = /obj/item/weapon/tool_upgrade/refinement
+
 /obj/item/weapon/tool_upgrade/refinement/laserguide
 	name = "Asters \"Guiding Light\" laser guide"
 	desc = "A small visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
 	icon_state = "laser_guide"
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_URANIUM = 1)
 
 /obj/item/weapon/tool_upgrade/refinement/laserguide/New()
@@ -320,6 +342,7 @@
 	name = "gyrostabilized grip"
 	desc = "A fancy mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand."
 	icon_state = "stabilizing"
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 	matter = list(MATERIAL_PLASTIC = 3)
 
 /obj/item/weapon/tool_upgrade/refinement/stabilized_grip/New()
@@ -335,6 +358,7 @@
 	name = "magnetic bit"
 	desc = "Magnetises tools used for handling small objects, reducing instances of dropping screws and bolts."
 	icon_state = "magnetic"
+	rarity_value = 20
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2)
 
 /obj/item/weapon/tool_upgrade/refinement/magbit/New()
@@ -350,6 +374,7 @@
 	name = "ported barrel"
 	desc = "A barrel extension for a welding tool which helps manage gas pressure and keep the torch steady."
 	icon_state = "ported_barrel"
+	rarity_value = 30
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2)
 
 /obj/item/weapon/tool_upgrade/refinement/ported_barrel/New()
@@ -405,11 +430,15 @@
 //------------------------------------------------
 
 //Allows the tool to use a cell one size category larger than it currently uses. Small to medium, medium to large, etc
+/obj/item/weapon/tool_upgrade/augment
+	bad_types = /obj/item/weapon/tool_upgrade/augment
+
 /obj/item/weapon/tool_upgrade/augment/cell_mount
 	name = "heavy cell mount"
 	icon_state = "cell_mount"
 	desc = "A bulky adapter which allows oversized power cells to be installed into small tools."
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 1)
+	rarity_value = 20
 
 /obj/item/weapon/tool_upgrade/augment/cell_mount/New()
 	..()
@@ -466,6 +495,8 @@
 	icon_state = "expand"
 	desc = "A bulky adapter which allows more modifications to be attached to the tool. A bit fragile but you can compensate."
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
+	rarity_value = 60
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 
 /obj/item/weapon/tool_upgrade/augment/expansion/New()
 	..()
@@ -503,6 +534,7 @@
 	icon_state = "hammer_addon"
 	desc = "An attachment that fits on almost everything, that gives a simple flat surface to employ the tool for hammering."
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 2)
+	rarity_value = 20
 
 /obj/item/weapon/tool_upgrade/augment/hammer_addon/New()
 	..()
@@ -520,6 +552,8 @@
 	desc = "This aural dampener is a cutting edge tool attachment which mostly nullifies sound waves within a tiny radius. It minimises the noise created during use, perfect for stealth operations."
 	icon_state = "dampener"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	rarity_value = 30
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE
 
 /obj/item/weapon/tool_upgrade/augment/dampener/New()
 	..()

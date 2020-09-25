@@ -39,13 +39,13 @@
 
 /datum/gear/shoes/color_presets
 	display_name = "shoes, color presets"
-	path = /obj/item/clothing/shoes/black
+	path = /obj/item/clothing/shoes/color/black
 
 /datum/gear/shoes/color_presets/New()
 	..()
 	var/shoes = list(
 		"White"			=	/obj/item/clothing/shoes/color/white,
-		"Black"			=	/obj/item/clothing/shoes/black,
+		"Black"			=	/obj/item/clothing/shoes/color/black,
 		"Brown"			=	/obj/item/clothing/shoes/color/brown,
 		"Red"			=	/obj/item/clothing/shoes/color/red,
 		"Orange"		=	/obj/item/clothing/shoes/color/orange,

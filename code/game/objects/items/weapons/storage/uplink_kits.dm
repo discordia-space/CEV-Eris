@@ -47,7 +47,7 @@
 
 		if("hacker")
 			new /obj/item/device/encryptionkey/syndicate(src)
-			new /obj/item/weapon/aiModule/syndicate(src)
+			new /obj/item/weapon/electronics/ai_module/syndicate(src)
 			new /obj/item/weapon/card/emag(src)
 			new /obj/item/device/encryptionkey/binary(src)
 			return
@@ -264,7 +264,7 @@
 	// Dylovene. Going with 1.5 rather than 1.6666666...
 	fill_cigarre_package(pack, list("potassium" = 1.5, "nitrogen" = 1.5, "silicon" = 1.5))
 	// Mindbreaker
-	fill_cigarre_package(pack, list("silicon" = 4.5, "hydrogen" = 4.5))
+	fill_cigarre_package(pack, list("silicon" = 4.5))
 
 	pack.desc += " 'MB' has been scribbled on it."
 

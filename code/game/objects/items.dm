@@ -3,20 +3,27 @@
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
 
-	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	//spawn_values
+	price_tag = 0
+	spawn_tags = SPAWN_TAG_ITEM
+	rarity_value = 10
+	spawn_frequency = 10 //MAX
+	bad_types = /obj/item
+
+	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1
-	var/health = null
-	var/max_health = null
-	var/burn_point = null
-	var/burning = null
-	var/hitsound = null
-	var/worksound = null
+	var/health
+	var/max_health
+	var/burn_point
+	var/burning
+	var/hitsound
+	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 
-	var/obj/item/master = null
+	var/obj/item/master
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
@@ -26,7 +33,7 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
 
-	var/datum/action/item_action/action = null
+	var/datum/action/item_action/action
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
 	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
 
@@ -35,7 +42,7 @@
 	var/flags_inv = 0
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
-	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
+	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
@@ -44,13 +51,13 @@
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/datum/armor/armor // Ref to the armor datum
 	var/list/allowed = list() //suit storage stuff.
-	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
-	var/zoomdevicename = null //name used for message when binoculars/scope is used
+	var/obj/item/device/uplink/hidden/hidden_uplink // All items can have an uplink hidden inside, just remember to add the triggers.
+	var/zoomdevicename //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/contained_sprite = FALSE //TRUE if object icon and related mob overlays are all in one dmi
 
-	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
+	var/icon_override  //Used to override hardcoded clothing dmis in human clothing proc.
 
 	//** These specify item/icon overrides for _slots_
 

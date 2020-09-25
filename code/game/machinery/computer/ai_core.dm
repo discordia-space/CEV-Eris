@@ -6,8 +6,8 @@
 	icon_state = "0"
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/eris
-	var/obj/item/weapon/circuitboard/circuit = null
-	var/obj/item/device/mmi/brain = null
+	var/obj/item/weapon/electronics/circuitboard/circuit
+	var/obj/item/device/mmi/brain
 
 
 /obj/structure/AIcore/attackby(obj/item/I, mob/user)
@@ -126,7 +126,7 @@
 
 	switch(state)
 		if(1)
-			if(istype(I, /obj/item/weapon/circuitboard/aicore) && !circuit)
+			if(istype(I, /obj/item/weapon/electronics/circuitboard/aicore) && !circuit)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, SPAN_NOTICE("You place the circuit board inside the frame."))
 				icon_state = "1"
@@ -161,8 +161,8 @@
 						state = 4
 						icon_state = "4"
 
-			if(istype(I, /obj/item/weapon/aiModule))
-				var/obj/item/weapon/aiModule/AIM = I
+			if(istype(I, /obj/item/weapon/electronics/ai_module))
+				var/obj/item/weapon/electronics/ai_module/AIM = I
 				AIM.transmitInstructions(src, usr)
 				to_chat(usr, "Law module applied.")
 				return

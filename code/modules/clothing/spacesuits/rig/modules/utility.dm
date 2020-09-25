@@ -35,9 +35,9 @@
 	icon_state = "scanner"
 	interface_name = "health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
-
-
 	device_type = /obj/item/device/scanner/health
+	rarity_value = 2.5
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
 /obj/item/rig_module/device/drill
 	name = "hardsuit drill mount"
@@ -48,6 +48,7 @@
 	suit_overlay_active = "mounted-drill"
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
+	rarity_value = 10
 
 
 	device_type = /obj/item/weapon/tool/pickaxe/diamonddrill/rig
@@ -62,6 +63,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/ano_scanner
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
 
 /obj/item/rig_module/device/orescanner
@@ -74,6 +76,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/scanner/mining
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
 
 /obj/item/rig_module/device/rcd
@@ -86,6 +89,7 @@
 	engage_string = "Configure RCD"
 
 	device_type = /obj/item/weapon/rcd/mounted
+	rarity_value = 20
 
 /obj/item/rig_module/device/New()
 	..()
@@ -136,6 +140,7 @@
 		list("radium",        "radium",        0, 80)
 		)
 
+	rarity_value = 12.5
 	var/max_reagent_volume = 80 //Used when refilling.
 
 /obj/item/rig_module/chem_dispenser/ninja
@@ -152,6 +157,8 @@
 		list("hyronalin",     "hyronalin",     0, 20),
 		list("radium",        "radium",        0, 20)
 		)
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
 
@@ -229,7 +236,6 @@
 	return 1
 
 /obj/item/rig_module/chem_dispenser/combat
-
 	name = "combat chemical injector"
 	desc = "A complex web of tubing and needles suitable for hardsuit use."
 
@@ -242,10 +248,9 @@
 
 	interface_name = "combat chem dispenser"
 	interface_desc = "Dispenses loaded chemicals directly into the bloodstream."
-
+	rarity_value = 12.5
 
 /obj/item/rig_module/chem_dispenser/injector
-
 	name = "mounted chemical injector"
 	desc = "A complex web of tubing and a large needle suitable for hardsuit use."
 	usable = 0
@@ -254,9 +259,9 @@
 
 	interface_name = "mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
+	rarity_value = 20
 
 /obj/item/rig_module/voice
-
 	name = "hardsuit voice synthesiser"
 	desc = "A speaker box and sound processor."
 	icon_state = "megaphone"
@@ -270,7 +275,7 @@
 
 	interface_name = "voice synthesiser"
 	interface_desc = "A flexible and powerful voice modulator system."
-
+	rarity_value = 5
 	var/obj/item/voice_changer/voice_holder
 
 /obj/item/rig_module/voice/New()
@@ -310,7 +315,6 @@
 	return 1
 
 /obj/item/rig_module/maneuvering_jets
-
 	name = "hardsuit maneuvering jets"
 	desc = "A compact gas thruster system for a hardsuit."
 	icon_state = "thrusters"
@@ -329,7 +333,8 @@
 
 	interface_name = "maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
-
+	rarity_value = 1.25
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 	var/obj/item/weapon/tank/jetpack/rig/jets
 
 /obj/item/rig_module/maneuvering_jets/engage()

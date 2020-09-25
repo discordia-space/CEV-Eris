@@ -13,6 +13,9 @@
 	siemens_coefficient = 0.6
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
+	bad_types = /obj/item/clothing/head/armor
+	rarity_value = 10
 	style = 0
 
 /*
@@ -22,6 +25,7 @@
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
+	rarity_value = 5
 	armor = list(
 		melee = 35,
 		bullet = 30,
@@ -35,6 +39,7 @@
 	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed visor to protect the eyes."
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
+	rarity_value = 6.66
 
 /obj/item/clothing/head/armor/helmet/merchelm
 	name = "Heavy Armour Helmet"
@@ -58,11 +63,13 @@
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE
+	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
+	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "technomancer helmet"
@@ -261,6 +268,7 @@
 	icon_state = "ablative"
 	body_parts_covered = HEAD | EARS | EYES
 	flags_inv = HIDEEARS | HIDEEYES
+	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 25,
@@ -286,6 +294,7 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	price_tag = 150
+	rarity_value = 25
 
 /obj/item/clothing/head/armor/riot/Initialize()
 	. = ..()
@@ -421,6 +430,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
+	rarity_value = 50
 
 	action_button_name = "Flip Face Shield"
 	var/up = TRUE
@@ -475,6 +485,7 @@
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	rarity_value = 100
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
@@ -482,6 +493,7 @@
 	icon_state = "cyberpunkgoggle"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
 	siemens_coefficient = 0.9	//More conductive than most helmets
+	rarity_value = 5.55
 	armor = list(
 		melee = 5,
 		bullet = 20,

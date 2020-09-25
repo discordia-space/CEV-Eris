@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(storyteller_cache)
 
 /datum/configuration
-	var/server_name = null				// server name (for world name / status)
+	var/server_name				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
 	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
 	var/vote_no_dead = 0				// dead people can't vote (tbi)
-//	var/enable_authentication = 0		// goon authentication
+	//var/enable_authentication = 0		// goon authentication
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
 	var/Ticklag = 0.33
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
-	var/list/resource_urls = null
+	var/list/resource_urls
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
 	var/list/storyteller_names = list()
@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 0					// allow ai job
-	var/hostedby = null
+	var/hostedby
 	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
@@ -255,8 +255,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 			continue
 
 		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
+		var/name
+		var/value
 
 		if (pos)
 			name = lowertext(copytext(t, 1, pos))
@@ -777,8 +777,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 			continue
 
 		var/pos = findtext(t, " ")
-		var/name = null
-		var/value = null
+		var/name
+		var/value
 
 		if (pos)
 			name = lowertext(copytext(t, 1, pos))

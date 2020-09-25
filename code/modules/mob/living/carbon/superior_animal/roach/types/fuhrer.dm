@@ -22,6 +22,7 @@
 	meat_amount = 6
 
 	sanity_damage = 1
+	rarity_value = 90
 
 
 

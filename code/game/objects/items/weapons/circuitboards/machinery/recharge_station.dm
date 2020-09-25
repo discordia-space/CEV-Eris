@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/recharge_station
+/obj/item/weapon/electronics/circuitboard/recharge_station
 	name = T_BOARD("cyborg recharging station")
 	build_path = /obj/machinery/recharge_station
 	board_type = "machine"
@@ -10,7 +10,7 @@
 		/obj/item/weapon/cell/large = 1
 	)
 
-/obj/item/weapon/circuitboard/repair_station
+/obj/item/weapon/electronics/circuitboard/repair_station
 	name = T_BOARD("cyborg auto-repair platform")
 	build_path = /obj/machinery/repair_station
 	board_type = "machine"

@@ -15,7 +15,7 @@
 	use_power = NO_POWER_USE
 	flags = ON_BORDER
 	opacity = 0
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/weapon/electronics/airlock/electronics
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
@@ -31,9 +31,9 @@
 	new /obj/item/weapon/material/shard(src.loc)
 	var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
 	CC.amount = 2
-	var/obj/item/weapon/airlock_electronics/ae
+	var/obj/item/weapon/electronics/airlock/ae
 	if(!electronics)
-		ae = new/obj/item/weapon/airlock_electronics( src.loc )
+		ae = new/obj/item/weapon/electronics/airlock( src.loc )
 		if(!src.req_access)
 			src.check_access()
 		if(src.req_access.len)
@@ -220,9 +220,9 @@
 			wa.state = "02"
 			wa.update_icon()
 
-			var/obj/item/weapon/airlock_electronics/ae
+			var/obj/item/weapon/electronics/airlock/ae
 			if(!electronics)
-				ae = new/obj/item/weapon/airlock_electronics( src.loc )
+				ae = new/obj/item/weapon/electronics/airlock( src.loc )
 				if(!src.req_access)
 					src.check_access()
 				if(src.req_access.len)
@@ -275,7 +275,7 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(access_security)
-	var/id = null
+	var/id
 	maxhealth = 200
 	health = 200 //Stronger doors for prison (regular window door health is 100)
 

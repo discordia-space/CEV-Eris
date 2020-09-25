@@ -17,6 +17,15 @@
 	var/inertia_dir = 0
 	var/can_anchor = TRUE
 
+	//spawn_values
+	var/price_tag = 0 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
+	var/spawn_tags
+	var/rarity_value = 1 //min:1 - max: 100
+	var/spawn_frequency = 0 //min:0
+	var/accompanying_object	//path or text
+	var/spawn_blacklisted = FALSE
+	var/bad_types //path or text. e.g: spawn_tags = obj/item or spawn_tags = "obj/item,obj/spawner"
+
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")

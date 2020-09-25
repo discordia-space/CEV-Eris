@@ -7,6 +7,8 @@
 	volume = 30
 	unacidable = 1 //glass
 	center_of_mass = list("x"=16, "y"=10)
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
@@ -41,7 +43,9 @@
 // for /obj/machinery/vending/sovietsoda
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda
 	preloaded_reagents = list("sodawater" = 50)
+	rarity_value = 40
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola
 	preloaded_reagents = list("cola" = 50)
+	rarity_value = 40
 

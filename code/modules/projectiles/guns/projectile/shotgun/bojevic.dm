@@ -8,10 +8,11 @@
 	icon_state = "bojevic"
 	w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_PAINFUL
-	caliber = CAL_SHOTGUN
 	slot_flags = SLOT_BACK
+	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
+	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'

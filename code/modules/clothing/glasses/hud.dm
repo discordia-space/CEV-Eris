@@ -8,11 +8,11 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 0.5)
 	price_tag = 200
 
-/obj/item/clothing/glasses/proc/process_hud(var/mob/M)
+/obj/item/clothing/glasses/proc/process_hud(mob/M)
 	if(hud)
 		hud.process_hud(M)
 
-/obj/item/clothing/glasses/hud/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/process_hud(mob/M)
 	return
 
 /obj/item/clothing/glasses/hud/health
@@ -22,7 +22,7 @@
 	body_parts_covered = 0
 
 
-/obj/item/clothing/glasses/hud/health/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/health/process_hud(mob/M)
 	process_med_hud(M, 1)
 
 /obj/item/clothing/glasses/hud/security
@@ -40,7 +40,7 @@
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 
-/obj/item/clothing/glasses/hud/security/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/security/process_hud(mob/M)
 	process_sec_hud(M, 1)
 
 /obj/item/clothing/glasses/sunglasses/sechud

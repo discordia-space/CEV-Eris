@@ -12,11 +12,11 @@
 	body_parts_covered = EARS
 	var/translate_binary = 0
 	var/translate_hive = 0
-	var/obj/item/device/encryptionkey/keyslot1 = null
-	var/obj/item/device/encryptionkey/keyslot2 = null
+	var/obj/item/device/encryptionkey/keyslot1
+	var/obj/item/device/encryptionkey/keyslot2
 
 	var/ks1type = /obj/item/device/encryptionkey
-	var/ks2type = null
+	var/ks2type
 
 /obj/item/device/radio/headset/New()
 	..()
@@ -130,7 +130,7 @@
 	icon_state = "radio"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/ai_integrated
-	var/myAi = null    // Atlantis: Reference back to the AI which has this radio.
+	var/myAi    // Atlantis: Reference back to the AI which has this radio.
 	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
 
 /obj/item/device/radio/headset/heads/ai_integrated/receive_range(freq, level)

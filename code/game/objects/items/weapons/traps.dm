@@ -416,9 +416,13 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/armed
 	deployed = TRUE
 	anchored = TRUE
-
-
+	rarity_value = 33.3
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_TRAP_ARMED
 
 /obj/item/weapon/beartrap/makeshift/armed
 	deployed = TRUE
 	anchored = TRUE
+	rarity_value = 22.2
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_TRAP_ARMED

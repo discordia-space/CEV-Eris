@@ -114,7 +114,7 @@ Class Procs:
 	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/circuitboard/circuit
+	var/obj/item/weapon/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
 /obj/machinery/Initialize(mapload, d=0)

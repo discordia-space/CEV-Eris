@@ -16,7 +16,7 @@
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
-	circuit = /obj/item/weapon/circuitboard/neotheology/cloner
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/cloner
 
 	frame_type = FRAME_VERTICAL
 
@@ -362,7 +362,7 @@
 	icon_state = "biocan"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/neotheology/biocan
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biocan
 
 	var/biomass_capacity = 600
 
@@ -458,7 +458,7 @@
 	icon_state = "reader_off"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/neotheology/reader
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/reader
 
 	var/obj/item/weapon/implant/core_implant/cruciform/implant
 	var/reading = FALSE

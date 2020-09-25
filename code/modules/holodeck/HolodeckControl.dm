@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 
-	circuit = /obj/item/weapon/circuitboard/holodeckcontrol
+	circuit = /obj/item/weapon/electronics/circuitboard/holodeckcontrol
 
 	var/item_power_usage = 500
 
