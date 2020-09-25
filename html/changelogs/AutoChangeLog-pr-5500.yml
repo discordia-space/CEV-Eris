@@ -1,5 +1,0 @@
-author: MacBlaze1
-delete-after: true
-changes:
-  - bugfix: fixed radstorms affecting encounter maps, like the mine, asteroid belt,
-      space fortress
