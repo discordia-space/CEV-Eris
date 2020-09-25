@@ -1,0 +1,5 @@
+author: soslow4u
+delete-after: true
+changes:
+  - tweak: Stationary shield diffusers are more responsive upon activation/deactivation.
+      No more shield flickering.
