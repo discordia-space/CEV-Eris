@@ -198,6 +198,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 /obj/item/weapon/beartrap/attack_self(mob/user as mob)
 	..()
+	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
+		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
+		return
 	if(!deployed && can_use(user))
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
