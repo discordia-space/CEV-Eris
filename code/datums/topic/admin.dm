@@ -839,12 +839,9 @@
 		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	if(config.allow_admin_rev)
-		L.revive()
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-		log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
-	else
-		to_chat(usr, "Admin Rejuvinates have been disabled")
+	L.revive()
+	message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
+	log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
 
 
 /datum/admin_topic/makeai
@@ -1292,10 +1289,6 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/object_list/Run(list/input)
-	if(!config.allow_admin_spawning)
-		to_chat(usr, "Spawning of items is not allowed.")
-		return
-
 	var/atom/loc = usr.loc
 
 	var/dirty_paths
