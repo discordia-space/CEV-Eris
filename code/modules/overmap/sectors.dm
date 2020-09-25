@@ -17,6 +17,8 @@
 	var/known = 1		//shows up on nav computers automatically
 	var/in_space = 1	//can be accessed via lucky EVA
 
+	var/global/eris_start_set //Tells us if we need to modify a random location for Eris to start at
+
 /obj/effect/overmap/Initialize()
 	. = ..()
 
@@ -27,8 +29,24 @@
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
 
+	// Spawning location of area is randomized or default values, but can be changed to the Eris Coordinates in the code below.
+	// This provides a random starting location for Eris.
 	start_x = start_x || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
 	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
+
+	if (!eris_start_set)
+		// Find the eris object
+		for (var/obj/effect/overmap/ship/eris/O in world)
+			if (istype(O, /obj/effect/overmap/ship/eris))
+				if(O.name == "CEV Eris")
+					var/start_sector = O.start_sector
+					if(!start_sector)
+						continue
+
+					if(name == start_sector)
+						start_x = 9
+						start_y = 10
+						eris_start_set = TRUE
 
 	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
 	testing("Located sector \"[name]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
