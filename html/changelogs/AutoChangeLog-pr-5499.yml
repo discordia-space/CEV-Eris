@@ -1,0 +1,4 @@
+author: MacBlaze1
+delete-after: true
+changes:
+  - bugfix: fixed bear traps and mines being able to be placed onto ladder turfs
