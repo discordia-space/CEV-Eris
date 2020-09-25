@@ -62,7 +62,7 @@
 	icon_state = "meb_b_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 18000
-	rarity_value = 22.5
+	rarity_value = 30
 
 /obj/item/weapon/cell/large/moebius/nuclear
 	name = "Moebius \"Atomcell 13000L\""
@@ -177,7 +177,7 @@
 	icon_state = "meb_m_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1300
-	rarity_value = 22.5
+	rarity_value = 30
 
 /obj/item/weapon/cell/medium/moebius/nuclear
 	name = "Moebius \"Atomcell 1000M\""
@@ -236,7 +236,7 @@
 	icon_state = "s_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 500
-	rarity_value = 20
+	rarity_value = 25
 
 /obj/item/weapon/cell/small/moebius
 	name = "Moebius \"Power-Geyser 120S\""
@@ -267,7 +267,7 @@
 	icon_state = "meb_s_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 400
-	rarity_value = 16
+	rarity_value = 22
 
 /obj/item/weapon/cell/small/moebius/nuclear
 	name = "Moebius \"Atomcell 300S\""
