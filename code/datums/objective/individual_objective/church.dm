@@ -20,7 +20,7 @@
 	UnregisterSignal(mind_holder, SWORD_OF_TRUTH_OF_DESTRUCTION)
 	..()
 
-/datum/individual_objective/convert//test_requiered TEST!
+/datum/individual_objective/convert//owrk
 	name = "Convert"
 	limited_antag = TRUE
 	//req_cruciform = TRUE uncoment
@@ -35,13 +35,13 @@
 		valid_targets += H
 	target = pick(valid_targets)//todo: no mind.current
 	desc = "[target] will make a nice addition to the church. Convert them, even if force is required."
-	RegisterSignal(mind_holder, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
+	RegisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
 
 /datum/individual_objective/convert/task_completed(mob/living/carbon/human/H, obj/item/weapon/implant)
-	if(H == target && istype(target, /obj/item/weapon/implant/core_implant/cruciform))
+	if(H == target && istype(implant, /obj/item/weapon/implant/core_implant/cruciform))
 		completed()
 
 /datum/individual_objective/convert/completed()
 	if(completed) return
-	UnregisterSignal(mind_holder, COMSIG_HUMAN_INSTALL_IMPLANT)
+	UnregisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT)
 	..()
