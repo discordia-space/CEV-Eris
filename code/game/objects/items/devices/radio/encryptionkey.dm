@@ -7,7 +7,7 @@
 	item_state = ""
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	spawn_blacklist = TRUE
+	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 	var/translate_binary = 0
 	var/translate_hive = 0

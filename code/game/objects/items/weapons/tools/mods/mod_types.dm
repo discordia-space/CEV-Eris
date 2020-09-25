@@ -571,6 +571,9 @@
 			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	spawn_blacklisted = TRUE
+	rarity_value = 50
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE_OS
 
 /obj/item/weapon/tool_upgrade/augment/ai_tool/New()
 	..()
