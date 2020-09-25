@@ -15,8 +15,8 @@
 	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MAJOR
-
 	light_overlay = "helmet_light"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/space/void
 	name = "voidsuit"

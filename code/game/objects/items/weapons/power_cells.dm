@@ -31,7 +31,7 @@
 	icon_state = "b_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 20000
-	rarity_value = 30
+	rarity_value = 22.5
 
 /obj/item/weapon/cell/large/moebius
 	name = "Moebius \"Power-Geyser 2000L\""
@@ -62,7 +62,7 @@
 	icon_state = "meb_b_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 18000
-	rarity_value = 30
+	rarity_value = 22.5
 
 /obj/item/weapon/cell/large/moebius/nuclear
 	name = "Moebius \"Atomcell 13000L\""
@@ -72,7 +72,7 @@
 	origin_tech = list(TECH_POWER = 6)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 6)
 	maxcharge = 13000
-	rarity_value = 85
+	rarity_value = 45
 
 /obj/item/weapon/cell/large/excelsior
 	name = "Excelsior \"Zarya 15000L\""
@@ -162,6 +162,7 @@
 	maxcharge = 900
 	rarity_value = 6
 
+
 /obj/item/weapon/cell/medium/moebius/super
 	name = "Moebius \"Power-Geyser 1000M\""
 	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This advanced version can store even more energy."
@@ -176,7 +177,7 @@
 	icon_state = "meb_m_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1300
-	rarity_value = 30
+	rarity_value = 22.5
 
 /obj/item/weapon/cell/medium/moebius/nuclear
 	name = "Moebius \"Atomcell 1000M\""
@@ -186,7 +187,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2, MATERIAL_URANIUM = 4)
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1000
-	rarity_value = 85
+	rarity_value = 45
 
 /obj/item/weapon/cell/medium/excelsior
 	name = "Excelsior \"Zarya 1000M\""
@@ -196,6 +197,7 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2)
 	maxcharge = 1000
 	rarity_value = 30
+
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
 /obj/item/weapon/cell/small
@@ -234,7 +236,7 @@
 	icon_state = "s_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 500
-	rarity_value = 25
+	rarity_value = 20
 
 /obj/item/weapon/cell/small/moebius
 	name = "Moebius \"Power-Geyser 120S\""
@@ -265,7 +267,7 @@
 	icon_state = "meb_s_hy"
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 400
-	rarity_value = 22
+	rarity_value = 16
 
 /obj/item/weapon/cell/small/moebius/nuclear
 	name = "Moebius \"Atomcell 300S\""
@@ -275,7 +277,7 @@
 	origin_tech = list(TECH_POWER = 6)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 2)
 	maxcharge = 300
-	rarity_value = 80
+	rarity_value = 40
 
 /obj/item/weapon/cell/small/moebius/pda
 	name = "Moebius \"Atomcell 50S\""
