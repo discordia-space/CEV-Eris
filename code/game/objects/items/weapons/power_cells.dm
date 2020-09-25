@@ -162,7 +162,6 @@
 	maxcharge = 900
 	rarity_value = 6
 
-
 /obj/item/weapon/cell/medium/moebius/super
 	name = "Moebius \"Power-Geyser 1000M\""
 	desc = "Moebius Laboratories branded rechargeable M-standardized power cell. This advanced version can store even more energy."
@@ -199,7 +198,6 @@
 	rarity_value = 30
 
 //SMALL CELLS - for small devices, such as flashlights, analyzers and HUDs.
-
 /obj/item/weapon/cell/small
 	name = "Asters \"Robustcell 100S\""
 	desc = "Asters Guild branded rechargeable S-standardized power cell. This one is the cheapest you can find."
