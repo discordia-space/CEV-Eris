@@ -870,6 +870,7 @@
 	icon_state = "serbian"
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED
 	rarity_value = 100
+	spawn_frequency = 8
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/bojevic = 3, // "SA SG \"Bojevic\""
