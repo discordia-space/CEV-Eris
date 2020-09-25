@@ -234,6 +234,7 @@
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/space/void/science
     var/list/icon_states = list("moebiushelmb","moebiushelmr", "moebiushelmp","moebiushelmg", "moebiushelmy", "moebiushelmw") //TODO: a manual selection anytime.

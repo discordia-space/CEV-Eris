@@ -28,6 +28,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/acolyte
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/space/void/agrolyte
 	name = "Agrolyte hood"
@@ -59,6 +60,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/agrolyte
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/space/void/custodian
 	name = "Custodian helmet"
@@ -92,3 +94,4 @@
 	)
 	unacidable = TRUE
 	helmet = /obj/item/clothing/head/space/void/custodian
+	spawn_blacklisted = TRUE

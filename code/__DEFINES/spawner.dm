@@ -35,6 +35,7 @@
 
 #define SPAWN_TAG_TOOL_UPGRADE "obj,item,tool_upgrade"
 #define SPAWN_TAG_RARE_TOOL_UPGRADE "obj,item,tool_upgrade,rare_tool_upgrade"
+#define SPAWN_TAG_RARE_TOOL_UPGRADE_OS "obj,item,tool_upgrade,rare_tool_upgrade,onestar"
 #define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
 
 // ITEMS - organ- PROSTHESIS
@@ -327,6 +328,7 @@
 #define SPAWN_CLOSET_SECURE "secure_closet"//secure
 
 #define SPAWN_TAG_CLOSET "obj,structure,closet"
+#define SPAWN_TAG_CLOSET_OS "obj,structure,closet,onestar"
 #define SPAWN_TAG_CLOSET_SECURE "obj,structure,closet,secure_closet"//secure
 #define SPAWN_TAG_TECHNICAL_CLOSET "obj,structure,closet,technical_closet"
 #define SPAWN_TAG_WARDROBE "obj,structure,closet,wardrobe"

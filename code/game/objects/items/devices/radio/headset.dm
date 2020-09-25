@@ -215,7 +215,7 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_church
 
-/obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/headset/attackby(obj/item/weapon/W, mob/user)
 //	..()
 	user.set_machine(src)
 	if (!( istype(W, /obj/item/weapon/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
