@@ -19,8 +19,8 @@
 	meat_amount = 6
 
 	sanity_damage = 1
-	rarity_value = 90
-	spawn_frequency = 8
+	rarity_value = 100
+	spawn_frequency = 9
 
 	var/distress_level = 0
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life

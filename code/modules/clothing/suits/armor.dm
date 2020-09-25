@@ -277,7 +277,7 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	flags_inv = NONE
-	rarity_value = 90
+	rarity_value = 100
 	armor = list(
 		melee = 75,
 		bullet = 25,
