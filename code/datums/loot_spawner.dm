@@ -168,7 +168,7 @@
 	for(var/path in paths)
 		if(all_spawn_rarity_by_path[path] <= rarity)
 			things += path
-	return paths
+	return things
 
 /datum/loot_spawner_data/proc/pick_spawn(list/paths)
 	//if(!paths || !paths.len) //NOPE
