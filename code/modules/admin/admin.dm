@@ -701,17 +701,22 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleAI, R_ADMIN, FALSE)
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
+
 	config.allow_ai = !( config.allow_ai )
+
 	if (!( config.allow_ai ))
 		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
+
+	message_admins("[key_name(usr)] has toggled [config.allow_ai ? "On" : "Off"] AI allowed.")
 	log_admin("[key_name(usr)] toggled AI allowed.")
+
 	world.update_status()
 
 
-ADMIN_VERB_ADD(/datum/admins/proc/toggleaban, R_SERVER, FALSE)
-/datum/admins/proc/toggleaban()
+ADMIN_VERB_ADD(/datum/admins/proc/toggleRespawn, R_SERVER, FALSE)
+/datum/admins/proc/toggleRespawn()
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
@@ -723,17 +728,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/toggleaban, R_SERVER, FALSE)
 	message_admins("\blue [key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].", 1)
 	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
-
-
-ADMIN_VERB_ADD(/datum/admins/proc/toggle_aliens, R_FUN|R_SERVER, FALSE)
-/datum/admins/proc/toggle_aliens()
-	set category = "Server"
-	set desc="Toggle alien mobs"
-	set name="Toggle Aliens"
-	config.aliens_allowed = !config.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
-
 
 ADMIN_VERB_ADD(/datum/admins/proc/delay, R_SERVER, FALSE)
 /datum/admins/proc/delay()
