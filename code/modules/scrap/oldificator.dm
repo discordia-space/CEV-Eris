@@ -158,7 +158,7 @@
 		air_contents.remove(pick(0.2, 0.4 ,0.6, 0.8))
 
 
-/obj/item/weapon/circuitboard/make_old()
+/obj/item/weapon/electronics/circuitboard/make_old()
 	.=..()
 	if (.)
 		if(prob(75))
@@ -166,11 +166,11 @@
 			build_path = pick(/obj/machinery/washing_machine, /obj/machinery/broken, /obj/machinery/shower, /obj/machinery/holoposter, /obj/machinery/holosign)
 
 
-/obj/item/weapon/aiModule/make_old()
+/obj/item/weapon/electronics/ai_module/make_old()
 	.=..()
 	if (.)
-		if(prob(75) && !istype(src, /obj/item/weapon/aiModule/broken))
-			var/obj/item/weapon/aiModule/brokenmodule = new /obj/item/weapon/aiModule/broken
+		if(prob(75) && !istype(src, /obj/item/weapon/electronics/ai_module/broken))
+			var/obj/item/weapon/electronics/ai_module/brokenmodule = new /obj/item/weapon/electronics/ai_module/broken
 			brokenmodule.name = src.name
 			brokenmodule.desc = src.desc
 			brokenmodule.make_old()
@@ -215,7 +215,7 @@
 	..()
 
 
-/obj/item/weapon/aiModule/broken
+/obj/item/weapon/electronics/ai_module/broken
 	name = "\improper broken core AI module"
 	desc = "broken Core AI Module: 'Reconfigures the AI's core laws.'"
 
@@ -228,7 +228,7 @@
 	contents.Cut()
 	return ..()
 
-/obj/item/weapon/aiModule/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
+/obj/item/weapon/electronics/ai_module/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
 	IonStorm(0)
 	explosion(sender.loc, 1, 1, 1, 3)

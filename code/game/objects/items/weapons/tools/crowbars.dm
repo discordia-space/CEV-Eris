@@ -11,6 +11,7 @@
 	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	tool_qualities = list(QUALITY_PRYING = 25, QUALITY_DIGGING = 10, QUALITY_HAMMERING = 10)
+	rarity_value = 4
 
 /obj/item/weapon/tool/crowbar/improvised
 	name = "rebar"
@@ -20,6 +21,7 @@
 	tool_qualities = list(QUALITY_PRYING = 10, QUALITY_DIGGING = 10,QUALITY_HAMMERING = 10)
 	degradation = 5 //This one breaks REALLY fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 2
 
 /obj/item/weapon/tool/crowbar/onestar
 	name = "One Star crowbar"
@@ -31,6 +33,9 @@
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_MATERIAL = 2)
 	degradation = 0.6
 	workspeed = 1.2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/crowbar/pneumatic
 	name = "pneumatic crowbar"
@@ -43,3 +48,5 @@
 	use_power_cost = 0.8
 	max_upgrades = 4
 	suitable_cell = /obj/item/weapon/cell/medium
+	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

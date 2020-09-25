@@ -1,4 +1,8 @@
 /////////////Standard/////////////
+/obj/item/ammo_magazine
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 10
+
 /obj/item/ammo_magazine/pistol
 	name = "standard magazine (.35 Auto)"
 	icon_state = "pistol_l"
@@ -14,21 +18,26 @@
 /obj/item/ammo_magazine/pistol/empty
 	icon_state = "pistol"
 	initial_ammo = 0
+	spawn_frequency = 5
+	rarity_value = 80
 
 /obj/item/ammo_magazine/pistol/practice
 	name = "standard magazine (.35 Auto practice)"
 	icon_state = "pistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
+	rarity_value = 5
 
 /obj/item/ammo_magazine/pistol/highvelocity
 	name = "standard magazine (.35 Auto high-velocity)"
 	icon_state = "pistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	rarity_value = 80
 
 /obj/item/ammo_magazine/pistol/rubber
 	name = "standard magazine (.35 Auto rubber)"
 	icon_state = "pistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 5
 
 
 /////////////HighCap/////////////
@@ -43,25 +52,30 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 16
 	multiple_sprites = 1
+	rarity_value = 20
 
 /obj/item/ammo_magazine/hpistol/empty
 	icon_state = "hpistol"
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/hpistol/practice
 	name = "highcap magazine (.35 Auto practice)"
 	icon_state = "hpistol_p"
 	ammo_type = /obj/item/ammo_casing/pistol/practice
+	rarity_value = 10
 
 /obj/item/ammo_magazine/hpistol/highvelocity
 	name = "highcap magazine (.35 Auto high-velocity)"
 	icon_state = "hpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	rarity_value = 80
 
 /obj/item/ammo_magazine/hpistol/rubber
 	name = "highcap magazine (.35 Auto rubber)"
 	icon_state = "hpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 10
 
 /////////////.35 SMG/////////////
 
@@ -82,6 +96,7 @@
 	icon_state = "smg"
 	ammo_color = ""
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/smg/practice
 	name = "smg magazine (.35 Auto practice)"
@@ -120,6 +135,7 @@
 	icon_state = "smg"
 	ammo_color = ""
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/msmg/practice
 	name = "smg magazine (.40 Magnum practice)"
@@ -152,25 +168,31 @@
 	caliber = CAL_MAGNUM
 	max_ammo = 10
 	multiple_sprites = 1
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_IH
 
 /obj/item/ammo_magazine/magnum/empty
 	icon_state = "magnum"
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/magnum/practice
 	name = "magazine (40 Magnum practice)"
 	icon_state = "magnum_p"
 	ammo_type = /obj/item/ammo_casing/magnum/practice
+	spawn_tags = null
 
 /obj/item/ammo_magazine/magnum/hv
 	name = "magazine (40 Magnum high-velocity)"
 	icon_state = "magnum_hv"
 	ammo_type = /obj/item/ammo_casing/magnum/hv
+	spawn_tags = null
 
 /obj/item/ammo_magazine/magnum/rubber
 	name = "magazine (40 Magnum rubber)"
 	icon_state = "magnum_r"
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
+	rarity_value = 2.5
 
 ///////////// .20 RIFLE /////////////
 
@@ -190,6 +212,7 @@
 	icon_state = "srifle"
 	matter = list(MATERIAL_STEEL = 3)
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/srifle/practice
 	name = "magazine (.20 Rifle practice)"
@@ -229,25 +252,32 @@
 	caliber = CAL_CLRIFLE
 	max_ammo = 30
 	multiple_sprites = 1
+	spawn_tags = SPAWN_TAG_AMMO_IH
+	rarity_value = 5
 
 /obj/item/ammo_magazine/ihclrifle/empty
 	icon_state = "ihclrifle"
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/ihclrifle/practice
 	name = "magazine (.25 Caseless Rifle practice)"
 	icon_state = "ihclrifle_p"
 	ammo_type = /obj/item/ammo_casing/clrifle/practice
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/ihclrifle/hv
 	name = "magazine (.25 Caseless Rifle high-velocity)"
 	icon_state = "ihclrifle_hv"
 	ammo_type = /obj/item/ammo_casing/clrifle/hv
+	spawn_tags = null
 
 /obj/item/ammo_magazine/ihclrifle/rubber
 	name = "magazine (.25 Caseless Rifle rubber)"
 	icon_state = "ihclrifle_r"
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
+
+
 
 ////////// .25 PISTOL //////////
 
@@ -265,6 +295,7 @@
 /obj/item/ammo_magazine/cspistol/empty
 	icon_state = "cspistol"
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/cspistol/practice
 	name = "pistol magazine (.25 Caseless Rifle practice)"
@@ -297,6 +328,7 @@
 
 /obj/item/ammo_magazine/lrifle/empty
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/lrifle/pk
 	name = "PK munitions box (.30 Rifle)"
@@ -326,6 +358,7 @@
 
 /obj/item/ammo_magazine/lrifle/pk/empty
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/lrifle
 	name = "long magazine (.30 Rifle)"
@@ -341,6 +374,7 @@
 /obj/item/ammo_magazine/lrifle/empty
 	icon_state = "lrifle"
 	initial_ammo = 0
+	spawn_frequency = 5
 
 /obj/item/ammo_magazine/lrifle/practice
 	name = "long magazine (.30 Rifle practice)"
@@ -380,6 +414,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	multiple_sprites = 1
+	rarity_value = 6.66
 
 /obj/item/ammo_magazine/slpistol/practice
 	name = "speed loader (.35 Special practice)"
@@ -390,11 +425,13 @@
 	name = "speed loader (.35 Special high-velocity)"
 	icon_state = "slpistol_hv"
 	ammo_type = /obj/item/ammo_casing/pistol/hv
+	rarity_value = 80
 
 /obj/item/ammo_magazine/slpistol/rubber
 	name = "speed loader (.35 Special rubber)"
 	icon_state = "slpistol_r"
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
+	rarity_value = 5
 
 //////// .40 SPEEDLOADERS //////////
 
@@ -407,16 +444,20 @@
 	matter = list(MATERIAL_STEEL = 3)
 	max_ammo = 6
 	multiple_sprites = 1
+	spawn_tags = SPAWN_TAG_AMMO_IH
+	rarity_value = 5
 
 /obj/item/ammo_magazine/slmagnum/practice
 	name = "speed loader (.40 Magnum practice)"
 	icon_state = "slmagnum_p"
 	ammo_type = /obj/item/ammo_casing/magnum/practice
+	spawn_tags = null
 
 /obj/item/ammo_magazine/slmagnum/highvelocity
 	name = "speed loader (.40 Magnum high-velocity)"
 	icon_state = "slmagnum_hv"
 	ammo_type = /obj/item/ammo_casing/magnum/hv
+	spawn_tags = null
 
 /obj/item/ammo_magazine/slmagnum/rubber
 	name = "speed loader (.40 Magnum rubber)"
@@ -459,6 +500,7 @@
 
 /obj/item/ammo_magazine/a75/empty
 	initial_ammo = 0
+	spawn_frequency = 5
 
 ////////////Shotguns!////////////
 
@@ -490,3 +532,4 @@
 	name = "ammo drum (.50)"
 	icon_state = "m12"
 	initial_ammo = 0
+	spawn_frequency = 5

@@ -1,12 +1,12 @@
 /datum/design/research/item/wirer
 	name = "Custom wirer tool"
-	build_path = /obj/item/device/integrated_electronics/wirer
+	build_path = /obj/item/device/electronics/integrated/wirer
 	sort_string = "VBVAA"
 	category = CAT_CIRCUITS
 
 /datum/design/research/item/debugger
 	name = "Custom circuit debugger tool"
-	build_path = /obj/item/device/integrated_electronics/debugger
+	build_path = /obj/item/device/electronics/integrated/debugger
 	sort_string = "VBVAB"
 	category = CAT_CIRCUITS
 

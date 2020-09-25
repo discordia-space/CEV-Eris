@@ -39,8 +39,8 @@
 /obj/item/borg/sight
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
-	var/sight_mode = null
-	var/obj/screen/overlay = null
+	var/sight_mode
+	var/obj/screen/overlay
 
 /obj/item/borg/sight/xray
 	name = "\proper x-ray vision"
@@ -77,7 +77,7 @@
 
 /obj/item/borg/sight/hud
 	name = "hud"
-	var/obj/item/clothing/glasses/hud/hud = null
+	var/obj/item/clothing/glasses/hud/hud
 
 
 

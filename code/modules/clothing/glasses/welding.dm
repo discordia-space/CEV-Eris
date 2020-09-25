@@ -4,6 +4,7 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	action_button_name = "Flip Welding Goggles"
+	rarity_value = 10
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 2)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
@@ -44,3 +45,4 @@
 	item_state = "rwelding-g"
 	prescription = TRUE
 	tint = TINT_MODERATE
+	rarity_value = 100

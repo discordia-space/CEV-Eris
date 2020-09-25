@@ -7,6 +7,8 @@
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
 	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_ITEM_MINE
 	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null

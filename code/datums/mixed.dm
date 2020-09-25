@@ -26,7 +26,7 @@
 
 /datum/data/text
 	name = "text"
-	var/data = null
+	var/data
 
 
 

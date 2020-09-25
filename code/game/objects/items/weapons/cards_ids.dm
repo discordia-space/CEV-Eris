@@ -25,7 +25,7 @@
 	icon_state = "data"
 	var/function = "storage"
 	var/data = "null"
-	var/special = null
+	var/special
 	item_state = "card-id"
 
 /obj/item/weapon/card/data/verb/label(t as text)
@@ -110,8 +110,8 @@ var/const/NO_EMAG_ACT = -50
 	var/icon/side
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
-	var/assignment = null	//can be alt title or the actual job
-	var/rank = null			//actual job
+	var/assignment	//can be alt title or the actual job
+	var/rank			//actual job
 	var/dorm = 0			// determines if this ID has claimed a dorm already
 
 	var/formal_name_prefix

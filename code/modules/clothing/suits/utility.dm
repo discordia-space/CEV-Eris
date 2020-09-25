@@ -61,6 +61,8 @@
 	icon_state = "rad"
 	item_state = "rad_suit"
 	w_class = ITEM_SIZE_BULKY
+	rarity_value = 23.3
+	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS

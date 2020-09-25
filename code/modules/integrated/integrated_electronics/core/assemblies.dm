@@ -244,7 +244,7 @@
 			opened = !opened
 			to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")
 			update_icon()
-	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || istype(I, /obj/item/weapon/tool/screwdriver))
+	else if(istype(I, /obj/item/device/electronics/integrated/wirer) || istype(I, /obj/item/device/electronics/integrated/debugger) || istype(I, /obj/item/weapon/tool/screwdriver))
 		if(opened)
 			interact(user)
 		else

@@ -1,4 +1,5 @@
 /obj/item/weapon/paper/manifest
+	spawn_blacklisted = TRUE
 	var/order_cost = 0
 	var/order_id = 0
 	var/errors = 0
@@ -23,10 +24,10 @@
 
 /datum/supply_order
 	var/id
-	var/orderer = null
-	var/orderer_rank = null
-	var/orderer_ckey = null
-	var/reason = null
+	var/orderer
+	var/orderer_rank
+	var/orderer_ckey
+	var/reason
 	var/datum/supply_pack/object
 
 /datum/supply_order/New(datum/supply_pack/object, orderer, orderer_rank, orderer_ckey, reason)

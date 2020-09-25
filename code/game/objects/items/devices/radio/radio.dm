@@ -767,6 +767,8 @@ var/global/list/default_medbay_channels = list(
 	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
 	price_tag = 20000
 	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_COVERT = 7)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/list/obj/item/weapon/oddity/used_oddity = list()
 	var/last_produce = 0
 	var/cooldown = 40 MINUTES

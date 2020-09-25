@@ -11,9 +11,9 @@
 	idle_power_usage = 1
 	active_power_usage = 5
 
-	var/mob/living/carbon/victim = null
+	var/mob/living/carbon/victim
 
-	var/obj/machinery/computer/operating/computer = null
+	var/obj/machinery/computer/operating/computer
 	can_buckle = TRUE
 	buckle_dir = SOUTH
 	buckle_lying = TRUE //bed-like behavior, forces mob.lying = buckle_lying if != -1

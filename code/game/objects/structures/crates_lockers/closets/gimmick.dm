@@ -2,17 +2,20 @@
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
 	icon_state = "cabinet"
+	bad_types = /obj/structure/closet/cabinet
 
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
 	icon_state = "syndicate"
-	anchored = 0
+	anchored = FALSE
+	bad_types = /obj/structure/closet/gimmick
 
 /obj/structure/closet/gimmick/russian
 	name = "russian surplus closet"
 	desc = "It's a storage unit for Russian standard-issue surplus."
 	icon_state = "syndicate"
+	rarity_value = 5
 
 /obj/structure/closet/gimmick/russian/populate_contents()
 	new /obj/item/clothing/head/ushanka(src)
@@ -32,6 +35,7 @@
 	desc = "Everything you need!"
 	icon_state = "syndicate"
 	anchored = TRUE
+	spawn_blacklisted = TRUE
 
 /obj/structure/closet/thunderdome/New()
 	..()

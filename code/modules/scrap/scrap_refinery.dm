@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/recycler
+/obj/item/weapon/electronics/circuitboard/recycler
 	name = T_BOARD("Recycler")
 	build_path = /obj/machinery/recycler
 	board_type = "machine"
@@ -26,7 +26,7 @@
 	// On us
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/recycler(null)
+	component_parts += new /obj/item/weapon/electronics/circuitboard/recycler(null)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(null)
 	RefreshParts()
 	update_icon()

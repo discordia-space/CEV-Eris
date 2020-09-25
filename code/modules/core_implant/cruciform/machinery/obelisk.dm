@@ -4,7 +4,7 @@
 	icon = 'icons/obj/neotheology_machinery.dmi'
 	icon_state = "nt_obelisk"
 	//TODO:
-	//circuit = /obj/item/weapon/circuitboard/nt_obelisk
+	//circuit = /obj/item/weapon/electronics/circuitboard/nt_obelisk
 
 	density = TRUE
 	anchored = TRUE

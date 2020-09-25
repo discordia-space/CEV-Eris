@@ -64,14 +64,14 @@
 	name = "tool modifications kit"
 	desc = "A sturdy container full of contraptions, bits of material, components and add-ons for modifying tools."
 	icon_state = "box_tools"
-	initial_contents = list(/obj/random/tool_upgrade = 12,
-	/obj/random/tool_upgrade/rare = 3)
+	initial_contents = list(/obj/spawner/tool_upgrade = 12,
+	/obj/spawner/tool_upgrade/rare = 3)
 
 
 /obj/item/weapon/storage/deferred/pouches
 	name = "uniform modification kit"
 	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
-	initial_contents = list(/obj/random/pouch = 8, /obj/item/weapon/storage/pouch/pistol_holster = 1)
+	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/weapon/storage/pouch/pistol_holster = 1)
 	//One guaranteed holster and plenty of randoms
 
 /obj/item/weapon/storage/deferred/comms
@@ -145,8 +145,8 @@
 	name = "tool storage box"
 	desc = "A moderately sized crate full of assorted tools."
 	icon_state = "serbcrate_deferred_brown"
-	initial_contents = list(/obj/random/tool = 13,
-	/obj/random/tool/advanced = 2)
+	initial_contents = list(/obj/spawner/tool = 13,
+	/obj/spawner/tool/advanced = 2)
 
 
 /obj/item/weapon/storage/deferred/crate/saw
@@ -223,15 +223,15 @@
 	name = "power cell bin"
 	desc = "A moderately sized crate full of various power cells."
 	icon_state = "serbcrate_deferred_worn"
-	initial_contents = list(/obj/random/powercell = 16)
+	initial_contents = list(/obj/spawner/powercell = 16)
 
 
 /obj/item/weapon/storage/deferred/crate/alcohol
 	name = "liquor crate"
 	desc = "A moderately sized crate full of various alcoholic drinks."
 	icon_state = "serbcrate_deferred_worn"
-	initial_contents = list(/obj/random/booze = 10,
-	/obj/random/booze/low_chance = 10,
+	initial_contents = list(/obj/spawner/booze = 10,
+	/obj/spawner/booze/low_chance = 10,
 	/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 3)
 
 /obj/item/weapon/storage/deferred/crate/uniform_green

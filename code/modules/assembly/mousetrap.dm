@@ -121,6 +121,10 @@
 /obj/item/device/assembly/mousetrap/armed
 	icon_state = "mousetraparmed"
 	armed = TRUE
+	rarity_value = 12.5
+	spawn_frequency = 10
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_TRAP_ARMED
 
 
 /obj/item/device/assembly/mousetrap/verb/hide_under()

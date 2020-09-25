@@ -10,8 +10,8 @@
 	throw_range = 10
 
 	var/secured = FALSE
-	var/obj/item/device/assembly/left_assembly = null
-	var/obj/item/device/assembly/right_assembly = null
+	var/obj/item/device/assembly/left_assembly
+	var/obj/item/device/assembly/right_assembly
 
 /obj/item/device/assembly_holder/New()
 	..()

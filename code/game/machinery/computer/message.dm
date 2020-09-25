@@ -6,9 +6,9 @@
 	icon_screen = "comm_logs"
 	light_color = "#00b000"
 	var/hack_icon = "error"
-	circuit = /obj/item/weapon/circuitboard/message_monitor
+	circuit = /obj/item/weapon/electronics/circuitboard/message_monitor
 	//Server linked to.
-	var/obj/machinery/message_server/linkedServer = null
+	var/obj/machinery/message_server/linkedServer
 	//Sparks effect - For emag
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 	//Messages - Saves me time if I want to change something.
@@ -25,7 +25,7 @@
 	var/optioncount = 8
 	// Custom Message Properties
 	var/customsender = "System Administrator"
-	var/obj/item/device/pda/customrecepient = null
+	var/obj/item/device/pda/customrecepient
 	var/customjob		= "Admin"
 	var/custommessage 	= "This is a test, please ignore."
 
@@ -443,7 +443,7 @@
 							message = SPAN_NOTICE("NOTICE: No message entered!")
 							return src.attack_hand(usr)
 
-						var/obj/item/device/pda/PDARec = null
+						var/obj/item/device/pda/PDARec
 						for (var/obj/item/device/pda/P in PDAs)
 							if (!P.owner || P.toff || P.hidden)	continue
 							if(P.owner == customsender)
@@ -504,7 +504,7 @@
 /obj/item/weapon/paper/monitorkey
 	//..()
 	name = "Monitor Decryption Key"
-	var/obj/machinery/message_server/server = null
+	var/obj/machinery/message_server/server
 
 /obj/item/weapon/paper/monitorkey/New()
 	..()

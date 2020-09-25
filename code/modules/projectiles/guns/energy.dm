@@ -5,6 +5,8 @@
 	icon_state = "energy"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
+	bad_types = /obj/item/weapon/gun/energy
+	spawn_tags = SPAWN_TAG_GUN_ENERGY
 
 	recoil_buildup = 0.5 //energy weapons have little to no recoil
 

@@ -3,7 +3,7 @@
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/excelsior/autolathe.dmi'
 	icon_state = "stanok"
-	circuit = /obj/item/weapon/circuitboard/excelsiorautolathe
+	circuit = /obj/item/weapon/electronics/circuitboard/excelsiorautolathe
 
 	build_type = AUTOLATHE | BIOPRINTER
 	speed = 4

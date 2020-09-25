@@ -11,6 +11,7 @@
 	modifystate = null
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 10)
 	price_tag = 4000
+	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_sound='sound/weapons/Taser.ogg', icon="stun"),

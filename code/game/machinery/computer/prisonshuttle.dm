@@ -17,8 +17,8 @@ var/prison_shuttle_timeleft = 0
 	icon_screen = "syndishuttle"
 	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_access = list(access_security)
-	circuit = /obj/item/weapon/circuitboard/prison_shuttle
-	var/temp = null
+	circuit = /obj/item/weapon/electronics/circuitboard/prison_shuttle
+	var/temp
 	var/hacked = 0
 	var/allowedtocall = 0
 	var/prison_break = 0
@@ -31,7 +31,7 @@ var/prison_shuttle_timeleft = 0
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20, src))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/prison_shuttle/M = new /obj/item/weapon/circuitboard/prison_shuttle( A )
+				var/obj/item/weapon/electronics/circuitboard/prison_shuttle/M = new /obj/item/weapon/electronics/circuitboard/prison_shuttle( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M

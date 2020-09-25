@@ -7,10 +7,12 @@
 	volume = 100
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	force = 5
+	rarity_value = 14
+	bad_types = /obj/item/weapon/reagent_containers/food/drinks/bottle
 	var/smash_duration = 5 //Directly relates to the 'weaken' duration. Lowered by armor (i.e. helmets)
 	var/isGlass = 1 //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 
-	var/obj/item/weapon/reagent_containers/glass/rag/rag = null
+	var/obj/item/weapon/reagent_containers/glass/rag/rag
 	var/rag_underlay = "rag"
 	var/icon_state_full
 	var/icon_state_empty
@@ -33,7 +35,7 @@
 	return ..()
 
 //when thrown on impact, bottles smash and spill their contents
-/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, var/speed)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/throw_impact(atom/hit_atom, speed)
 	..()
 
 	var/mob/M = thrower
@@ -45,7 +47,7 @@
 				reagents.splash(hit_atom, reagents.total_volume)
 			src.smash(loc, hit_atom)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(var/distance)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash_check(distance)
 	if(!isGlass || !smash_duration)
 		return 0
 
@@ -55,7 +57,7 @@
 		return 0
 	return prob(chance_table[idx])
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(var/newloc, atom/against = null)
+/obj/item/weapon/reagent_containers/food/drinks/bottle/proc/smash(newloc, atom/against)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src)
@@ -171,6 +173,7 @@
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
 	preloaded_reagents = list("gin" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
@@ -178,6 +181,7 @@
 	icon_state = "whiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)
 	preloaded_reagents = list("whiskey" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
@@ -185,6 +189,8 @@
 	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	preloaded_reagents = list("vodka" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
+	rarity_value = 7
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
@@ -192,6 +198,7 @@
 	icon_state = "tequillabottle"
 	center_of_mass = list("x"=16, "y"=3)
 	preloaded_reagents = list("tequilla" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
@@ -206,6 +213,7 @@
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("patron" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
@@ -213,6 +221,7 @@
 	icon_state = "rumbottle"
 	center_of_mass = list("x"=16, "y"=8)
 	preloaded_reagents = list("rum" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
@@ -220,6 +229,7 @@
 	icon_state = "vermouthbottle"
 	center_of_mass = list("x"=17, "y"=3)
 	preloaded_reagents = list("vermouth" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
@@ -227,6 +237,7 @@
 	icon_state = "kahluabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	preloaded_reagents = list("kahlua" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
@@ -234,6 +245,7 @@
 	icon_state = "goldschlagerbottle"
 	center_of_mass = list("x"=15, "y"=3)
 	preloaded_reagents = list("goldschlager" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
@@ -241,6 +253,7 @@
 	icon_state = "cognacbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("cognac" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/wine
 	name = "Doublebeard Bearded Special Wine"
@@ -248,6 +261,7 @@
 	icon_state = "winebottle"
 	center_of_mass = list("x"=16, "y"=4)
 	preloaded_reagents = list("wine" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/ntcahors
 	name = "NeoTheology Cahors Wine"
@@ -262,6 +276,7 @@
 	icon_state = "absinthebottle"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("absinthe" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
@@ -270,6 +285,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("melonliquor" = 100)
 	icon_state_empty = "alco-clear"
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
@@ -278,6 +294,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("bluecuracao" = 100)
 	icon_state_empty = "alco-clear"
+	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
@@ -313,6 +330,7 @@
 	icon_state = "pwinebottle"
 	center_of_mass = list("x"=16, "y"=4)
 	preloaded_reagents = list("pwine" = 100)
+	spawn_tags = SPAWN_TAG_BOOZE
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 
@@ -358,6 +376,7 @@
 	smash_duration = 1
 	flags = 0 //starts closed
 	rag_underlay = "rag_small"
+	bad_types = /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
 	name = "space beer"
@@ -365,6 +384,8 @@
 	icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=12)
 	preloaded_reagents = list("beer" = 30)
+	spawn_tags = SPAWN_TAG_BOOZE
+	rarity_value = 2
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
@@ -373,3 +394,4 @@
 	item_state = "beer"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("ale" = 30)
+	spawn_tags = SPAWN_TAG_BOOZE

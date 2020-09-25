@@ -27,10 +27,10 @@ It will also bring a hoard of roaches with it.
 		/obj/structure/scrap/science,
 	)
 	var/list/kaiser_rutinue = list(
-		/obj/random/cluster/roaches,
-		/obj/random/cluster/roaches,
-		/obj/random/cluster/roaches,
-		/obj/random/cluster/roaches
+		/obj/spawner/mob/roaches/cluster,
+		/obj/spawner/mob/roaches/cluster,
+		/obj/spawner/mob/roaches/cluster,
+		/obj/spawner/mob/roaches/cluster
 	)
 	var/obj/structure/burrow/enter_burrow
 	var/obj/structure/burrow/exit_burrow

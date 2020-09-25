@@ -24,19 +24,19 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	var/lights = 1 // bolt lights show by default
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
-	var/obj/machinery/door/airlock/closeOther = null
-	var/closeOtherId = null
+	var/obj/machinery/door/airlock/closeOther
+	var/closeOtherId
 	var/lockdownbyai = 0
 	autoclose = 1
 	var/assembly_type = /obj/structure/door_assembly
-	var/mineral = null
+	var/mineral
 	var/justzap = 0
 	var/safe = 1
 	normalspeed = 1
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/weapon/electronics/airlock/electronics
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
-	var/datum/wires/airlock/wires = null
+	var/datum/wires/airlock/wires
 	var/open_sound_powered = 'sound/machines/airlock_open.ogg'
 	var/close_sound = 'sound/machines/airlock_close.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
@@ -996,7 +996,7 @@ There are 9 wires.
 						da.update_state()
 
 						if(operating == -1 || (stat & BROKEN))
-							new /obj/item/weapon/circuitboard/broken(src.loc)
+							new /obj/item/weapon/electronics/circuitboard/broken(src.loc)
 							operating = 0
 						else
 							if (!electronics) create_electronics()
@@ -1059,7 +1059,7 @@ There are 9 wires.
 		..()
 	return
 
-/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user)
 	if(C)
 		ignite(is_hot(C))
 	..()
@@ -1087,7 +1087,7 @@ There are 9 wires.
 	update_icon()
 	return
 
-/obj/machinery/door/airlock/open(var/forced=0)
+/obj/machinery/door/airlock/open(forced=0)
 	if(!can_open(forced))
 		return 0
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
@@ -1112,7 +1112,7 @@ There are 9 wires.
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/can_open(var/forced=0)
+/obj/machinery/door/airlock/can_open(forced=0)
 	if(!forced)
 		if(!arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
 			return 0
@@ -1121,7 +1121,7 @@ There are 9 wires.
 		return 0
 	return ..()
 
-/obj/machinery/door/airlock/can_close(var/forced=0)
+/obj/machinery/door/airlock/can_close(forced=0)
 	if(locked || welded)
 		return FALSE
 
@@ -1155,13 +1155,13 @@ There are 9 wires.
 /mob/living/simple_animal/blocks_airlock() //Airlocks crush cockroahes and mouses.
 	return mob_size > MOB_SMALL
 
-/atom/movable/proc/airlock_crush(var/crush_damage)
+/atom/movable/proc/airlock_crush(crush_damage)
 	return 0
 
-/obj/structure/window/airlock_crush(var/crush_damage)
+/obj/structure/window/airlock_crush(crush_damage)
 	ex_act(2)//Smashin windows
 
-/obj/machinery/portable_atmospherics/canister/airlock_crush(var/crush_damage)
+/obj/machinery/portable_atmospherics/canister/airlock_crush(crush_damage)
 	. = ..()
 	health -= crush_damage
 	healthcheck()
@@ -1345,9 +1345,9 @@ There are 9 wires.
 /obj/machinery/door/airlock/proc/create_electronics()
 	//create new electronics
 	if (secured_wires)
-		src.electronics = new/obj/item/weapon/airlock_electronics/secure( src.loc )
+		src.electronics = new/obj/item/weapon/electronics/airlock/secure( src.loc )
 	else
-		src.electronics = new/obj/item/weapon/airlock_electronics( src.loc )
+		src.electronics = new/obj/item/weapon/electronics/airlock( src.loc )
 
 	//update the electronics to match the door's access
 	if(!src.req_access)
