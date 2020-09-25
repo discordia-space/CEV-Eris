@@ -398,7 +398,7 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/network_card/advanced = 40
 	)
 
-/obj/structure/salvageable/console_broken_os
+/obj/structure/salvageable/os/console_broken
 	name = "broken console"
 	icon_state = "os_console_broken"
 	rarity_value = 33
