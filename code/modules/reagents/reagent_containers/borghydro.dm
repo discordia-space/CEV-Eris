@@ -7,7 +7,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = null
-
+	spawn_frequency = 0
 	var/mode = 1
 	var/charge_cost = 50
 	var/charge_tick = 0
