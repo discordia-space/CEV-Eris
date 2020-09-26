@@ -55,6 +55,7 @@
 	icon_state = "Penetrator"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1)
 	rarity_value = 30
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/barrel/mag_accel/New()
 	..()
@@ -74,6 +75,7 @@
 	icon_state = "Caster"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1)
 	rarity_value = 30
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/barrel/overheat/New()
 	..()
@@ -167,6 +169,7 @@
 	desc = "An old technology from the Corporate Wars, used to make formerly useless civilian-grade weaponry into something much more lethal."
 	icon_state = "Glass_Widow"
 	rarity_value = 50
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/mechanism/glass_widow/New()
 	..()
@@ -217,7 +220,7 @@
 /obj/item/weapon/storage/box/gun_upgrades
 	name = "Big box of gun fun"
 	desc = "If seen, please report to your nearest \[REDACTED\]"
-	bad_types = /obj/item/weapon/storage/box/gun_upgrades
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/box/gun_upgrades/populate_contents()
 	for(var/i in subtypesof(/obj/item/weapon/gun_upgrade))
@@ -335,6 +338,7 @@
 	name = "Syndicate \"Gauss Coil\" barrel"
 	desc = "Make bullet pierce through wall and penetrate armors easily, but losing rate of fire and increece recoil."
 	icon_state = "Gauss"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/barrel/gauss/New()
 	..()
@@ -354,6 +358,7 @@
 	name = "Syndicate \"Self Desturct\" trigger"
 	desc = "Trigger that explode gun on shoot, only for enegry weapon."
 	icon_state = "Boom"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/trigger/boom/New()
 	..()
@@ -388,6 +393,7 @@
 	name = "Syndicate \"Proffesional Killer\" scope"
 	desc = "Scope used for sniping from large distances."
 	icon_state = "Killer"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/scope/killer/New()
 	..()
