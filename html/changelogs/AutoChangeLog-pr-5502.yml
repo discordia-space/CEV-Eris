@@ -1,4 +1,0 @@
-author: MacBlaze1
-delete-after: true
-changes:
-  - bugfix: improved development by allowing breakpoints to work
