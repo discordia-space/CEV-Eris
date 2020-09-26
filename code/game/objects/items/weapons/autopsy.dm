@@ -10,6 +10,7 @@
 	flags = CONDUCT
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+	rarity_value = 50
 	var/list/datum/autopsy_data_scanner/wdata = list()
 	var/list/datum/autopsy_data_scanner/chemtraces = list()
 	var/target_name
@@ -19,7 +20,7 @@
 	var/list/autopsy_data
 
 /datum/autopsy_data_scanner
-	var/weapon						 // this is the DEFINITE weapon type that was used
+	var/weapon // this is the DEFINITE weapon type that was used
 	var/list/organs_scanned = list() // this maps a number of scanned organs to
 									 // the wounds to those organs with this data's weapon type
 	var/organ_names = ""

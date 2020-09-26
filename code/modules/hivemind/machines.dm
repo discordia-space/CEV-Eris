@@ -28,7 +28,7 @@
 	var/cooldown = 0						//cooldown in world.time value
 	var/time_until_regen = 0
 	var/obj/assimilated_machinery
-	var/obj/item/weapon/circuitboard/saved_circuit
+	var/obj/item/weapon/electronics/circuitboard/saved_circuit
 
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()
@@ -449,17 +449,13 @@
 	var/mob_to_spawn
 	var/mob_amount = 4
 
-/obj/random/mob/assembled
+/obj/spawner/mob/assembled
 	name = "random hivemob"
-	
-/obj/random/mob/assembled/item_to_spawn() //list of spawnable mobs
-	return pickweight(list(/mob/living/simple_animal/hostile/hivemind/stinger = 5,
-							/mob/living/simple_animal/hostile/hivemind/bomber = 4,
-							/mob/living/simple_animal/hostile/hivemind/hiborg = 1))
-	
+	tags_to_spawn = list(SPAWN_MOB_HIVEMIND)
+
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
-	mob_to_spawn = /obj/random/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
+	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a mob from the list when spawning, instead of choosing a single mob and spawning only that one.
 	//TL;DR - Assembler can now spawn multiple types of mobs
 
 /obj/machinery/hivemind_machine/mob_spawner/Process()

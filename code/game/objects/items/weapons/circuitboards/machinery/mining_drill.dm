@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/miningdrill
+/obj/item/weapon/electronics/circuitboard/miningdrill
 	name = T_BOARD("mining drill head")
 	build_path = /obj/machinery/mining/drill
 	board_type = "machine"
@@ -11,7 +11,7 @@
 		/obj/item/weapon/cell/large = 1
 	)
 
-/obj/item/weapon/circuitboard/miningdrillbrace
+/obj/item/weapon/electronics/circuitboard/miningdrillbrace
 	name = T_BOARD("mining drill brace")
 	build_path = /obj/machinery/mining/brace
 	board_type = "machine"

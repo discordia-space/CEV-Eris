@@ -43,7 +43,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/cached_gravity = 1		//stores updated has_gravity even if it's blocked
 	var/atom/gravity_blocker	//ref to antigrav
 	var/obj/machinery/power/apc/apc
-	var/no_air = null
+	var/no_air
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
@@ -811,7 +811,7 @@ area/space/atmosalert()
 	dynamic_lighting = 0
 	requires_power = 0
 	ambience = list()
-	var/sound/mysound = null
+	var/sound/mysound
 
 	New()
 		..()
@@ -842,7 +842,7 @@ area/space/atmosalert()
 	Process()
 		set background = 1
 
-		var/sound/S = null
+		var/sound/S
 		var/sound_delay = 0
 		if(prob(25))
 			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)

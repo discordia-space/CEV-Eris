@@ -5,19 +5,19 @@
 	icon_screen = "security"
 	light_color = COLOR_LIGHTING_SCI_BRIGHT
 	req_one_access = list(access_security)
-	circuit = /obj/item/weapon/circuitboard/secure_data
-	var/obj/item/weapon/card/id/scan = null
-	var/authenticated = null
-	var/rank = null
-	var/screen = null
-	var/datum/data/record/active1 = null
-	var/datum/data/record/active2 = null
-	var/a_id = null
-	var/temp = null
-	var/printing = null
+	circuit = /obj/item/weapon/electronics/circuitboard/secure_data
+	var/obj/item/weapon/card/id/scan
+	var/authenticated
+	var/rank
+	var/screen
+	var/datum/data/record/active1 
+	var/datum/data/record/active2
+	var/a_id
+	var/temp
+	var/printing
 	var/can_change_id = 0
 	var/list/Perp
-	var/tempname = null
+	var/tempname
 	//Sorting Variables
 	var/sortBy = "name"
 	var/order = 1 // -1 = Descending - 1 = Ascending
@@ -48,7 +48,7 @@
 	..()
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
-/obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/secure_data/attack_hand(mob/user)
 	if(..())
 		return
 	ui_interact(user)

@@ -10,6 +10,8 @@
 	w_class = ITEM_SIZE_HUGE
 	reagent_flags = OPENCONTAINER
 	price_tag = 20000
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
 	unacidable = TRUE //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)

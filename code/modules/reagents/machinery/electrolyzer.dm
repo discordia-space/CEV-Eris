@@ -6,7 +6,7 @@
 	icon_state = "electrolysis"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
-	circuit = /obj/item/weapon/circuitboard/electrolyzer
+	circuit = /obj/item/weapon/electronics/circuitboard/electrolyzer
 	layer = BELOW_OBJ_LAYER
 	var/obj/item/weapon/reagent_containers/beaker
 	var/obj/item/weapon/reagent_containers/separation_beaker
@@ -212,6 +212,7 @@
 	name = "makeshift electrolyzer"
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "electrolysis_makeshift"
+	rarity_value = 50
 	var/on = FALSE
 	var/tick_cost = 3
 	var/obj/item/weapon/cell/cell

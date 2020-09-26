@@ -4,7 +4,7 @@
 #define UNWIRING	"unwiring"
 
 
-/obj/item/device/integrated_electronics/wirer
+/obj/item/device/electronics/integrated/wirer
 	name = "circuit wirer"
 	desc = "It's a small wiring tool, with a wire roll, electric soldering iron, wire cutter, and more in one package. \
 	The wires used are generally useful for small electronics, such as circuitboards and breadboards, as opposed to larger wires \
@@ -18,10 +18,10 @@
 	var/mode = WIRE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 
-/obj/item/device/integrated_electronics/wirer/update_icon()
+/obj/item/device/electronics/integrated/wirer/update_icon()
 	icon_state = "wirer-[mode]"
 
-/obj/item/device/integrated_electronics/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
+/obj/item/device/electronics/integrated/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
 	if(!io.holder.assembly)
 		to_chat(user, SPAN_WARNING("\The [io.holder] needs to be secured inside an assembly first."))
 		return
@@ -81,7 +81,7 @@
 			return
 	return
 
-/obj/item/device/integrated_electronics/wirer/attack_self(mob/user)
+/obj/item/device/electronics/integrated/wirer/attack_self(mob/user)
 	switch(mode)
 		if(WIRE)
 			mode = UNWIRE
@@ -105,7 +105,7 @@
 #undef UNWIRE
 #undef UNWIRING
 
-/obj/item/device/integrated_electronics/debugger
+/obj/item/device/electronics/integrated/debugger
 	name = "circuit debugger"
 	desc = "This small tool allows one working with custom machinery to directly set data to a specific pin, useful for writing \
 	settings to specific circuits, or for debugging purposes.  It can also pulse activation pins."
@@ -117,7 +117,7 @@
 	var/accepting_refs = 0
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 
-/obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
+/obj/item/device/electronics/integrated/debugger/attack_self(mob/user)
 	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
 	if(!CanInteract(user,GLOB.physical_state))
 		return
@@ -144,7 +144,7 @@
 			data_to_write = null
 			to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing."))
 
-/obj/item/device/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/device/electronics/integrated/debugger/afterattack(atom/target, mob/living/user, proximity)
 	if(accepting_refs && proximity)
 		data_to_write = weakref(target)
 		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
@@ -152,7 +152,7 @@
 		now off."))
 		accepting_refs = 0
 
-/obj/item/device/integrated_electronics/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+/obj/item/device/electronics/integrated/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
 	if(io.io_type == DATA_CHANNEL)
 		io.write_data_to_pin(data_to_write)
 		var/data_to_show = data_to_write
@@ -178,7 +178,7 @@
 		/obj/item/integrated_circuit,
 		/obj/item/weapon/storage/bag/circuits/mini,
 		/obj/item/device/electronic_assembly,
-		/obj/item/device/integrated_electronics,
+		/obj/item/device/electronics/integrated,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver
 		)
@@ -198,8 +198,8 @@
 		new /obj/item/weapon/storage/bag/circuits/mini/power(src)
 
 		new /obj/item/device/electronic_assembly(src)
-		new /obj/item/device/integrated_electronics/wirer(src)
-		new /obj/item/device/integrated_electronics/debugger(src)
+		new /obj/item/device/electronics/integrated/wirer(src)
+		new /obj/item/device/electronics/integrated/debugger(src)
 		new /obj/item/weapon/tool/crowbar(src)
 		new /obj/item/weapon/tool/screwdriver(src)
 		make_exact_fit()
@@ -224,8 +224,8 @@
 		new /obj/item/device/electronic_assembly/medium(src)
 		new /obj/item/device/electronic_assembly/large(src)
 		new /obj/item/device/electronic_assembly/drone(src)
-		new /obj/item/device/integrated_electronics/wirer(src)
-		new /obj/item/device/integrated_electronics/debugger(src)
+		new /obj/item/device/electronics/integrated/wirer(src)
+		new /obj/item/device/electronics/integrated/debugger(src)
 		new /obj/item/weapon/tool/crowbar(src)
 		new /obj/item/weapon/tool/screwdriver(src)
 		make_exact_fit()

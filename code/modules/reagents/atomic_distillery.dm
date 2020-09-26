@@ -11,6 +11,8 @@
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	price_tag = 20000
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
 	unacidable = TRUE
 

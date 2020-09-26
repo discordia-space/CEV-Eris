@@ -36,7 +36,7 @@
 	name = "protolathe"
 	desc = "A machine used for construction of advanced prototypes. Operated from an R\&D console."
 	icon_state = "protolathe"
-	circuit = /obj/item/weapon/circuitboard/protolathe
+	circuit = /obj/item/weapon/electronics/circuitboard/protolathe
 
 	build_type = PROTOLATHE
 	storage_capacity = 120
@@ -46,7 +46,7 @@
 	name = "circuit imprinter"
 	desc = "A machine used for printing advanced circuit boards. Operated from an R\&D console."
 	icon_state = "imprinter"
-	circuit = /obj/item/weapon/circuitboard/circuit_imprinter
+	circuit = /obj/item/weapon/electronics/circuitboard/circuit_imprinter
 
 	build_type = IMPRINTER
 	storage_capacity = 60

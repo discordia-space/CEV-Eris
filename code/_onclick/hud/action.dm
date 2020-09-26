@@ -13,12 +13,12 @@
 /datum/action
 	var/name = "Generic Action"
 	var/action_type = AB_ITEM
-	var/procname = null
-	var/atom/movable/target = null
+	var/procname
+	var/atom/movable/target
 	var/check_flags = 0
 	var/processing = 0
 	var/active = 0
-	var/obj/screen/movable/action_button/button = null
+	var/obj/screen/movable/action_button/button
 	var/button_icon = 'icons/mob/actions.dmi'
 	var/button_icon_state = "default"
 	var/background_icon_state = "bg_default"

@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = FALSE
 
-	circuit = /obj/item/weapon/circuitboard/shield_generator
+	circuit = /obj/item/weapon/electronics/circuitboard/shield_generator
 
 	var/needs_update = FALSE //If true, will update in process
 
@@ -165,8 +165,6 @@
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
 		for(var/turf/T in shielded_turfs)
-			if (T.diffused)
-				continue
 			isFloor = TRUE
 			for(var/turf/TN in orange(1, T))
 				if (!turf_is_external(TN) || !TN.CanPass(target = TN))
@@ -181,7 +179,8 @@
 			S.gen = src
 			S.flags_updated()
 			field_segments |= S
-
+			if (T.diffused)
+				S.fail(20)
 			CHECK_TICK
 	else
 		for(var/turf/T in shielded_turfs)

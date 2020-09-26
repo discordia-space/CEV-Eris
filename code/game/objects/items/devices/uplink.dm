@@ -7,6 +7,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 */
 
 /obj/item/device/uplink
+	spawn_blacklisted = TRUE
 	var/welcome = "Welcome, Operative"	// Welcoming menu message
 	var/uses 							// Numbers of crystals
 	var/list/ItemsCategory				// List of categories with lists of items
@@ -16,7 +17,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/nanoui_data = new 			// Additional data for NanoUI use
 
 	var/list/purchase_log = new
-	var/datum/mind/uplink_owner = null
+	var/datum/mind/uplink_owner
 	var/used_TC = 0
 
 	var/list/owner_roles = new
@@ -250,7 +251,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	hidden_uplink = new(src, mind, crystal_amount)
 	icon_state = "radio"
 
-/obj/item/device/radio/uplink/attack_self(mob/user as mob)
+/obj/item/device/radio/uplink/attack_self(mob/user)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 

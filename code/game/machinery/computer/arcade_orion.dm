@@ -31,7 +31,7 @@
 	name = "orion trail"
 	desc = "Imported straight from Outpost-T71!"
 	icon_state = "arcade"
-	circuit = /obj/item/weapon/circuitboard/arcade/orion_trail
+	circuit = /obj/item/weapon/electronics/circuitboard/arcade/orion_trail
 	var/list/supplies = list("1" = 0, "2" = 0, "3" = 0, "4" = 0, "5" = 0, "6" = 0) //engine,hull,electronics,food,fuel
 	var/list/supply_cost = list("1" = 1000, "2" = 950, "3" = 1100, "4" = 75, "5" = 100)
 	var/list/supply_name = list("1" = "engine parts", "2" = "hull parts", "3" = "electronic parts", "4" = "food", "5" = "fuel", "6" = "credits")
@@ -60,7 +60,7 @@
 		"You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!"
 		)
 	var/list/stop_distance = list(10000,7000,25000,9000,5000,30000,25000,10000,0)
-	var/event = null
+	var/event
 	var/event_title = ""
 	var/event_desc = ""
 	var/event_actions = ""

@@ -37,6 +37,7 @@
 	species_restricted = list("Human")
 	supporting_limbs = list()
 	helmet = /obj/item/clothing/head/space/void/SCAF
+	spawn_blacklisted = TRUE
 
 
 //Voidsuit for traitors
@@ -84,6 +85,7 @@
 	resilience = 0.08
 	species_restricted = list("Human")
 	helmet = /obj/item/clothing/head/space/void/merc
+	rarity_value = 50
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	boots = /obj/item/clothing/shoes/magboots

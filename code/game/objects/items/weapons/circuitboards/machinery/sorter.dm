@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/sorter
+/obj/item/weapon/electronics/circuitboard/sorter
 	name = T_BOARD("sorter")
 	build_path = /obj/machinery/sorter
 	board_type = "machine"

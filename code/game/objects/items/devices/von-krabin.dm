@@ -12,6 +12,8 @@
 	price_tag = 20000
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_BIO = 9, TECH_MAGNET = 9)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 
 	var/active = FALSE
 	var/area_radius = 7

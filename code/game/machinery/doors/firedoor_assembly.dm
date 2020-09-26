@@ -67,7 +67,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 				wired = 1
 				to_chat(user, SPAN_NOTICE("You wire \the [src]."))
 
-	else if(istype(I, /obj/item/weapon/airalarm_electronics) && wired)
+	else if(istype(I, /obj/item/weapon/electronics/airalarm) && wired)
 		if(anchored)
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_WARNING("[user] has inserted a circuit into \the [src]!"),

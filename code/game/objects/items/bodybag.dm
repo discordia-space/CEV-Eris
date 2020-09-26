@@ -7,6 +7,8 @@
 	icon_state = "bodybag_folded"
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 10
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MEDICAL
 
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
@@ -27,7 +29,7 @@
 	var/contains_body = 0
 	layer = LOW_OBJ_LAYER+0.01
 
-/obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
+/obj/structure/closet/body_bag/attackby(W as obj, mob/user)
 	if (istype(W, /obj/item/weapon/pen))
 		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
 		if (user.get_active_hand() != W)
@@ -102,8 +104,9 @@
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
 	store_items = 0
+	rarity_value = 20
 	var/used = 0
-	var/obj/item/weapon/tank/tank = null
+	var/obj/item/weapon/tank/tank
 
 /obj/structure/closet/body_bag/cryobag/New()
 	tank = new /obj/item/weapon/tank/emergency_oxygen(null) //It's in nullspace to prevent ejection when the bag is opened.

@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	//resistance_flags = FIRE_PROOF | ACID_PROOF
-	circuit = /obj/item/weapon/circuitboard/chem_heater
+	circuit = /obj/item/weapon/electronics/circuitboard/chem_heater
 	var/obj/item/weapon/reagent_containers/beaker = null
 	var/target_temperature = 300
 	var/heater_coefficient = 0.2

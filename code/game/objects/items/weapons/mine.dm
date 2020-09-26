@@ -7,6 +7,8 @@
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
 	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_ITEM_MINE
 	var/prob_explode = 100
 
 	//var/obj/item/device/assembly_holder/detonator = null
@@ -42,6 +44,9 @@
 		overlays.Add(image(icon,"mine_light"))
 
 /obj/item/weapon/mine/attack_self(mob/user)
+	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
+		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
+		return
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),

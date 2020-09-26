@@ -42,7 +42,7 @@
 				/obj/structure/table,
 				/obj/structure/closet/crate
 			)
-			var/atom/helper = null
+			var/atom/helper
 			var/area/location = get_area(loc)
 			if(!location.has_gravity)
 				helper = src

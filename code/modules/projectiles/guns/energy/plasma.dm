@@ -32,6 +32,7 @@
 	safety = FALSE
 	twohanded = FALSE
 	one_hand_penalty = 0
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/plasma/mounted/blitz
 	name = "SDF PR \"Sprengen\""
@@ -67,6 +68,7 @@
 	fire_delay = 12
 	price_tag = 3000
 	zoom_factor = null
+	rarity_value = 12
 
 	init_firemodes = list(
 		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=15, icon="stun", projectile_color = "#00FFFF"),

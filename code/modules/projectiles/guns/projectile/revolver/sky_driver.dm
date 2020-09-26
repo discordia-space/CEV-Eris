@@ -15,6 +15,8 @@
 	penetration_multiplier = 20
 	pierce_multiplier =  5
 	recoil_buildup = 50
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/projectile/revolver/sky_driver/New()
 	..()
@@ -30,3 +32,4 @@
 	if(nt_sword_attack(I, user))
 		return FALSE
 	..()
+

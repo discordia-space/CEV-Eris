@@ -12,6 +12,8 @@
 	throw_range = 15
 	price_tag = 20000
 	origin_tech = list(TECH_MATERIAL = 10)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/affect_radius = 7
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 5, MATERIAL_DIAMOND = 1)
 	var/list/mob/living/carbon/human/followers = list()

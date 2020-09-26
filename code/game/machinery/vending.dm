@@ -341,7 +341,7 @@
 					for(var/datum/data/vending_product/R in product_records)
 						for(var/obj/O in R.instances)
 							O.forceMove(loc)
-					new /obj/item/weapon/circuitboard/vending(loc)
+					new /obj/item/weapon/electronics/circuitboard/vending(loc)
 					qdel(src)
 
 		if(ABORT_CHECK)
@@ -1317,7 +1317,7 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/airlock_electronics = 10,/obj/item/weapon/circuitboard/apc = 10,/obj/item/weapon/airalarm_electronics = 10,/obj/item/weapon/cell/large/high = 10,/obj/item/weapon/rpd = 3)
+	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/weapon/tool/multitool = 4,/obj/item/weapon/electronics/airlock = 10,/obj/item/weapon/electronics/circuitboard/apc = 10,/obj/item/weapon/electronics/airalarm = 10,/obj/item/weapon/cell/large/high = 10,/obj/item/weapon/rpd = 3)
 	contraband = list(/obj/item/weapon/cell/large/potato = 3)
 	premium = list(/obj/item/weapon/storage/belt/utility = 3)
 	auto_price = FALSE
@@ -1413,9 +1413,9 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 5,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 10,
-					/obj/item/weapon/circuitboard/autolathe = 3,
-					/obj/item/weapon/circuitboard/vending = 10)
-	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/circuitboard/autolathe_disk_cloner = 3)
+					/obj/item/weapon/electronics/circuitboard/autolathe = 3,
+					/obj/item/weapon/electronics/circuitboard/vending = 10)
+	contraband = list(/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 3, /obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 3)
 	prices = list(/obj/item/weapon/computer_hardware/hard_drive/portable = 50,
 					/obj/item/weapon/storage/box/data_disk/basic = 100,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/misc = 300,
@@ -1430,9 +1430,9 @@
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/security = 600,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cheap_guns = 3000,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/nonlethal_ammo = 700,
-					/obj/item/weapon/circuitboard/autolathe = 700,
-					/obj/item/weapon/circuitboard/autolathe_disk_cloner = 1000,
-					/obj/item/weapon/circuitboard/vending = 500,
+					/obj/item/weapon/electronics/circuitboard/autolathe = 700,
+					/obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner = 1000,
+					/obj/item/weapon/electronics/circuitboard/vending = 500,
 					/obj/item/weapon/computer_hardware/hard_drive/portable/design/lethal_ammo = 1200,)
 
 /obj/machinery/vending/serbomat
