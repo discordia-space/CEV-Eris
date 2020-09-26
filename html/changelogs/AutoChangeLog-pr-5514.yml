@@ -1,4 +1,4 @@
 author: Evankhell561
 delete-after: true
 changes:
-  - bugfix: add many items to spawn blacklist
+  - tweak: more things to blacklist

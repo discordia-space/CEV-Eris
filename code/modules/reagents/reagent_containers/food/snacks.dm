@@ -3,7 +3,7 @@
 	name = "snack"
 	desc = "yummy"
 	icon = 'icons/obj/food.dmi'
-	icon_state
+	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
 	var/bitesize = 1

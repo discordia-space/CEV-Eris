@@ -23,7 +23,7 @@
 	var/list/bad_paths = list()
 
 	//Initialise all paths
-	paths = subtypesof(/obj/item)
+	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
 	paths += subtypesof(/mob/living)
 	paths += subtypesof(/obj/machinery)
 	paths += subtypesof(/obj/structure)
