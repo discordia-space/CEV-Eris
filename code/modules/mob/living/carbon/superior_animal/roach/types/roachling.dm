@@ -10,6 +10,7 @@
 
 	melee_damage_lower = 2
 	melee_damage_upper = 5
+	spawn_blacklisted = TRUE
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat
 	meat_amount = 1

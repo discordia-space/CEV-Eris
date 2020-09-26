@@ -17,6 +17,7 @@
 	var/list/aditional_object = list()
 	var/list/exclusion_paths = list()
 	var/list/restricted_tags = list()
+	var/list/include_paths = list()
 	var/spread_range = 0
 	var/has_postspawn = TRUE
 	var/datum/loot_spawner_data/lsd
@@ -43,6 +44,7 @@
 		candidates -= lsd.spawns_lower_price(candidates, low_price)
 	if(top_price)
 		candidates -= lsd.spawns_upper_price(candidates, top_price)
+	candidates += include_paths
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
