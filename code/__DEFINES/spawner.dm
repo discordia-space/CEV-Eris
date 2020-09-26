@@ -310,6 +310,8 @@
 //	MACHINERY
 #define SPAWN_MACHINERY "machinery"
 
+#define SPAWN_TAG_MACHINERY "obj,machinery"
+
 //	Structures
 #define SPAWN_STRUCTURE "structure"
 #define SPAWN_STRUCTURE_COMMON "common_structure"
