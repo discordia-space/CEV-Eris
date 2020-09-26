@@ -1,3 +1,6 @@
+/obj/item/weapon/storage/box/syndicate
+	spawn_blacklisted = TRUE
+
 /obj/item/weapon/storage/box/syndicate/populate_contents()
 	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, /*"lordsingulo" = 1,*/ "smoothoperator" = 1)))
 		if("bloodyspai")
@@ -75,6 +78,7 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"

@@ -17,6 +17,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	light_overlay = "helmet_light"
 	spawn_blacklisted = TRUE
+	spawn_frequency = 0
 
 /obj/item/clothing/suit/space/void
 	name = "voidsuit"

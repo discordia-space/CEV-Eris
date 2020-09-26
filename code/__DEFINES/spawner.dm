@@ -87,6 +87,14 @@
 #define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod,junk"
 #define SPAWN_TAG_ORE_TAG_JUNK "obj,item,material,ore,junk"
 
+// FOSSIL
+#define SPAWN_XENOARCH "xenoarcheology"
+#define SPAWN_FOSSIL "fossil"
+
+#define SPAWN_TAG_XENOARCH_ITEM "obj,item,xenoarch"
+#define SPAWN_TAG_XENOARCH_ITEM_FOSSIL "obj,item,fossil,xenoarch"
+#define SPAWN_TAG_GUN_ENERGY_XENOARCH "obj,item,gun,gun_energy,xenoarch"
+
 //  MINES
 #define SPAWN_MINE "mine"
 #define SPAWN_ITEM_MINE "item_mine"
@@ -309,6 +317,8 @@
 
 //	MACHINERY
 #define SPAWN_MACHINERY "machinery"
+
+#define SPAWN_TAG_MACHINERY "obj,machinery"
 
 //	Structures
 #define SPAWN_STRUCTURE "structure"

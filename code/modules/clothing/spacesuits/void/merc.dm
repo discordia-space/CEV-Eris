@@ -37,6 +37,7 @@
 	species_restricted = list("Human")
 	supporting_limbs = list()
 	helmet = /obj/item/clothing/head/space/void/SCAF
+	spawn_blacklisted = TRUE
 
 
 //Voidsuit for traitors
