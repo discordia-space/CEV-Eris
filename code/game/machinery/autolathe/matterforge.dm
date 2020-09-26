@@ -28,7 +28,7 @@
 	var/error = null
 	var/progress = 0
 
-	var/datum/computer_file/binary/design/current_file = null
+	var/datum/design/current_design = null
 	var/list/queue = list()
 	var/queue_max = 8
 
@@ -137,30 +137,27 @@
 	data["designs"] = L
 
 
-	if(current_file)
-		data["current"] = current_file.ui_data()
+	if(current_design)
+		data["current"] = current_design.ui_data
 		data["progress"] = progress
 
 	var/list/Q = list()
-	var/list/qmats = stored_material.Copy()
+	var/qmats = stored_material[MATERIAL_COMPRESSED_MATTER]
 
 	for(var/i = 1; i <= queue.len; i++)
-		var/datum/computer_file/binary/design/design_file = queue[i]
-		var/list/QR = design_file.ui_data()
+		var/datum/design/picked_design = queue[i]
+		var/list/QR = picked_design.ui_data
 
 		QR["ind"] = i
 
 		QR["error"] = 0
 
-		for(var/rmat in design_file.design.materials)
-			if(!(rmat in qmats))
-				qmats[rmat] = 0
-
-			qmats[rmat] -= design_file.design.materials[rmat]
-			if(qmats[rmat] < 0)
+		for(var/rmat in picked_design.materials)
+			qmats -= picked_design.materials[rmat]
+			if(qmats < 0)
 				QR["error"] = 1
 
-		if(can_print(design_file) != ERR_OK)
+		if(can_print(picked_design) != ERR_OK)
 			QR["error"] = 2
 
 		Q.Add(list(QR))
@@ -210,7 +207,7 @@
 			show_category = categories[new_category]
 		return 1
 
-	if(href_list["eject_material"] && (!current_file || paused || error))
+	if(href_list["eject_material"] && (!current_design || paused || error))
 		var/material = href_list["eject_material"]
 		var/material/M = get_material_by_name(MATERIAL_COMPRESSED_MATTER)
 
@@ -232,19 +229,20 @@
 
 		for(var/f in design_list)
 			var/datum/design/temp = f
-			if(temp.id ==  SSresearch.get_design(recipe))
+			
+			if(temp == SSresearch.get_design(recipe))
 				picked_design = temp
 				break
 
-		if(design_file)
+		if(picked_design)
 			var/amount = 1
 
 			if(href_list["several"])
-				amount = input("How many \"[design_file.design.name]\" you want to print ?", "Print several") as null|num
-				if(!CanUseTopic(usr) || !(design_file in design_list))
+				amount = input("How many \"[picked_design.id]\" you want to print ?", "Print several") as null|num
+				if(!CanUseTopic(usr) || !(picked_design in design_list))
 					return
 
-			queue_design(design_file, amount)
+			queue_design(picked_design, amount)
 
 		return 1
 
@@ -361,19 +359,15 @@
 /obj/machinery/matter_nanoforge/bullet_act(obj/item/projectile/P, def_zone)
 	return 0
 
-/obj/machinery/matter_nanoforge/proc/queue_design(datum/computer_file/binary/design/design_file, amount=1)
-	if(!design_file || !amount)
+/obj/machinery/matter_nanoforge/proc/queue_design(datum/design/picked_design, amount=1)
+	if(!picked_design || !amount)
 		return
 
-	// Copy the designs that are not copy protected so they can be printed even if the disk is ejected.
-	if(!design_file.copy_protected)
-		design_file = design_file.clone()
-
 	while(amount && queue.len < queue_max)
-		queue.Add(design_file)
+		queue.Add(picked_design)
 		amount--
 
-	if(!current_file)
+	if(!current_design)
 		next_file()
 
 /obj/machinery/matter_nanoforge/proc/clear_queue()
@@ -401,7 +395,7 @@
 
 /obj/machinery/matter_nanoforge/proc/print_post()
 	flick("[initial(icon_state)]_finish", src)
-	if(!current_file && !queue.len)
+	if(!current_design && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
 
@@ -412,12 +406,12 @@
 		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
 		flick("[initial(icon_state)]_load_m", image_load_material)
 
-/obj/machinery/matter_nanoforge/proc/can_print(datum/computer_file/binary/design/design_file)
+/obj/machinery/matter_nanoforge/proc/can_print(datum/design/picked_design)
 	if(progress <= 0)
-		if(!design_file || !design_file.design)
+		if(!picked_design)
 			return ERR_NOTFOUND
 
-		var/datum/design/design = design_file.design
+		var/datum/design/design = picked_design
 
 		for(var/rmat in design.materials)
 			if(!(rmat in stored_material))
@@ -433,8 +427,8 @@
 
 /obj/machinery/matter_nanoforge/Process()
 
-	if(current_file)
-		var/err = can_print(current_file)
+	if(current_design)
+		var/err = can_print(current_design)
 
 		if(err == ERR_OK)
 			error = null
@@ -447,7 +441,7 @@
 		else
 			error = "Unknown error."
 
-		if(current_file.design && progress >= current_file.design.time)
+		if(current_design && progress >= current_design.time)
 			finish_construction()
 
 	else
@@ -466,10 +460,10 @@
 	return TRUE
 
 /obj/machinery/matter_nanoforge/proc/next_file()
-	current_file = null
+	current_design = null
 	progress = 0
 	if(queue.len)
-		current_file = queue[1]
+		current_design = queue[1]
 		print_pre()
 		working = TRUE
 		queue.Cut(1, 2) // Cut queue[1]
@@ -482,15 +476,13 @@
 
 	var/material/M = MATERIAL_COMPRESSED_MATTER
 
-	if(!M.stack_type)
-		return
 	amount = min(amount, stored_material[MATERIAL_COMPRESSED_MATTER])
 
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
 
 	if (whole_amount)
-		var/obj/item/stack/material/S = new M.stack_type(drop_location())
+		var/obj/item/stack/material/S = new M(drop_location())
 
 		//Accounting for the possibility of too much to fit in one stack
 		if (whole_amount <= S.max_amount)
@@ -522,21 +514,21 @@
 /obj/machinery/matter_nanoforge/proc/abort()
 	if(working)
 		print_post()
-	current_file = null
+	current_design = null
 	paused = TRUE
 	working = FALSE
 	update_icon()
 
 //Finishing current construction
 /obj/machinery/matter_nanoforge/proc/finish_construction()
-	fabricate_design(current_file.design)
+	fabricate_design(current_design)
 
 /obj/machinery/matter_nanoforge/proc/fabricate_design(datum/design/design)
 	consume_materials(design)
 	design.Fabricate(drop_location(), mat_efficiency, src)
 
 	working = FALSE
-	current_file = null
+	current_design = null
 	print_post()
 	next_file()
 
