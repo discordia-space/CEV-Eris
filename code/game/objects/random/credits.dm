@@ -19,7 +19,6 @@
 	spawn_nothing_percentage = 75
 
 
-
 /obj/spawner/credits/c50
 	low_price = 1
 	top_price = 50
