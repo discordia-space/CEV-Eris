@@ -417,23 +417,23 @@
 	if (istype(I, /obj/item/stack/material/biomatter))
 		var/obj/item/stack/material/biomatter/B = I
 		if (B.biomatter_in_sheet && B.amount)
-			var/sheets_amount_to_transphere = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
-			if(sheets_amount_to_transphere)
-				var/total_transphere_from_stack = 0
-				var/i = 1
-				while(i <= sheets_amount_to_transphere && i <= B.amount)
+			var/sheets_amount_to_transfer = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
+			if(sheets_amount_to_transfer > 0)
+				if(sheets_amount_to_transfer > B.amount)
+					sheets_amount_to_transfer = B.amount
+				var/total_transfer_from_stack = 0
+				for(var/i=1;(i <= sheets_amount_to_transfer && i <= B.amount);i++)
 					reagents.add_reagent("biomatter", B.biomatter_in_sheet)
-					total_transphere_from_stack += B.biomatter_in_sheet
-					i++
-				B.use(sheets_amount_to_transphere)
+					total_transfer_from_stack += B.biomatter_in_sheet
+				B.use(sheets_amount_to_transfer)
 				user.visible_message(
 									"[user.name] inserted \the [B.name]'s sheets in \the [name].",
-									"You inserted \the [B.name] in  (in amount: [sheets_amount_to_transphere]) \the [name].\
-									And after that you see how the counter on \the [name] is incremented by [total_transphere_from_stack]."
+									"You inserted \the [B.name] in  (in amount: [sheets_amount_to_transfer]) \the [name].\
+									And after that you see how the counter on \the [name] is incremented by [total_transfer_from_stack]."
 									)
 				ping()
 			else
-				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transphere] in [name]"))
+				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transfer] in [name][sheets_amount_to_transfer < 0 ? " because it is literally impossible" :""]."))
 			return
 		else
 			to_chat(user, SPAN_WARNING("\The [B.name] is exhausted and can't be melted to biomatter. "))
