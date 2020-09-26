@@ -27,7 +27,7 @@
 	alpha = 128
 	min_amount = 1
 	max_amount = 3
-	spread_range = 23
+	spread_range = 2
 
 /obj/spawner/mob/slimes/cluster/low_chance
 	name = "low chance cluster of slimes"
