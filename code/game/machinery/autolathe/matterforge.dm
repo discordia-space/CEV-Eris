@@ -32,7 +32,7 @@
 	var/list/queue = list()
 	var/queue_max = 8
 
-	var/list/typepath_list = list(
+	var/list/disk_list = list(
 	/obj/item/weapon/computer_hardware/hard_drive/portable/design/adv_tools,
 	/obj/item/weapon/computer_hardware/hard_drive/portable/design/components,
 	/obj/item/weapon/computer_hardware/hard_drive/portable/design/circuits,
@@ -50,7 +50,7 @@
 	var/have_materials = TRUE
 	var/have_design_selector = TRUE
 
-	var/list/suitable_materials = list(MATERIAL_COMPRESSED_MATTER)
+	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
 
 	var/list/special_actions
 
@@ -63,31 +63,16 @@
 	var/tmp/obj/effect/flicker_overlay/image_load
 	var/tmp/obj/effect/flicker_overlay/image_load_material
 
-/*/obj/machinery/matter_nanoforge/attack_hand(mob/user)
-*	if(..())
-*		return TRUE
-*	var/requested_amount = input(user, "How much Compressed Matter do you want to take out?", "Extracting Compressed Matter") as num|null
-*	if(isnull(requested_amount) || requested_amount <=0)
-*		return
-*	if(requested_amount > 120)
-*		to_chat(user, SPAN_WARNING("\The [src] can only deposit 120 Compressed Matter at a time."))
-*		return
-*	stored_material[MATERIAL_COMPRESSED_MATTER] -= requested_amount
-*	update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
-*	var/obj/item/stack/material/compressed_matter/MS = new(drop_location())
-*	MS.amount = requested_amount
-*	MS.update_strings()
-*	MS.update_icon()
-*/
-/obj/machinery/matter_nanoforge/Initialize()
+/obj/machinery/matter_nanoforge/proc/get_designs()
 	. = ..()
-	for (var/f in typepath_list)
+	for (var/f in disk_list)
 		design_list.Add(find_files_by_type(f))
 
 /obj/machinery/matter_nanoforge/proc/find_files_by_type(typepath)
-	var/list/files
+	var/list/files = list()	
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/design/c = new typepath
-	files = c.designs
+	for(var/f in c.designs)
+		files.Add(SSresearch.get_design(f))
 	qdel(c)
 	return files
 
@@ -131,9 +116,8 @@
 	data |= materials_data()
 
 	var/list/L = list()
-	for(var/d in design_list)
-		var/datum/design/type =  SSresearch.get_design(d)
-		L.Add(list(type.ui_data))
+	for(var/datum/design/d in design_list)
+		L.Add(list(d.ui_data))
 	data["designs"] = L
 
 
@@ -193,7 +177,8 @@
 
 	user.set_machine(src)
 	ui_interact(user)
-
+	if(!design_list.len)
+		get_designs()
 /obj/machinery/matter_nanoforge/Topic(href, href_list)
 	if(..())
 		return
@@ -227,11 +212,10 @@
 		var/recipe = href_list["add_to_queue"]
 		var/datum/design/picked_design
 
-		for(var/f in design_list)
-			var/datum/design/temp = f
-			
-			if(temp == SSresearch.get_design(recipe))
-				picked_design = temp
+		for(var/datum/design/f in design_list)
+			var/test = text2path((recipe))
+			if(f.id == test)
+				picked_design = f
 				break
 
 		if(picked_design)
@@ -301,6 +285,7 @@
 		return
 	else
 		to_chat(user, SPAN_WARNING("\The [src] does not have any artifact powering it."))
+
 /obj/machinery/matter_nanoforge/proc/eat(mob/living/user, obj/item/eating)
 	var/used_sheets
 	if(!eating && istype(user))
@@ -321,11 +306,17 @@
 		var/list/_matter = O.get_matter()
 		if(_matter)
 			for(var/material in _matter)
+				if(material in unsuitable_materials)
+					continue
+
+				if(!(material in total_material_gained))
+					total_material_gained[material] = 0
+
 				var/total_material = _matter[material]
 				if(istype(O, /obj/item/stack))
 					var/obj/item/stack/material/stack = O
-					var/lst = matter_assoc_list()
-					total_material *= stack.get_amount() * lst[stack.type]
+					total_material *= stack.get_amount()
+
 				if(istype(O, /obj/item/stack/material/compressed_matter))
 					to_chat(user, SPAN_NOTICE("You deposit [total_material] compressed matter into \the [src]."))
 					stored_material[MATERIAL_COMPRESSED_MATTER] += total_material
@@ -336,28 +327,22 @@
 				total_used += total_material
 				mass_per_sheet += O.matter[material]
 	var/datum/component/artifact_power/artifact = power_source.GetComponent(/datum/component/artifact_power)
+	var/lst = matter_assoc_list()
+	var/gained_mats = 0
 	for(var/material in total_material_gained)
-		stored_material[MATERIAL_COMPRESSED_MATTER] += (artifact.power * total_material_gained[material])
+		stored_material[MATERIAL_COMPRESSED_MATTER] += (artifact.power * total_material_gained[material] * lst[material])
 		update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
-		used_sheets = total_material_gained[material] * artifact.power
+		gained_mats += artifact.power * total_material_gained[material] * lst[material]
+		used_sheets = total_material_gained[material]
 	if(istype(eating, /obj/item/stack))
 		var/obj/item/stack/stack = eating
-
-		to_chat(user, SPAN_NOTICE("You create [used_sheets] Compressed Matter from [stack.singular_name]\s in the [src]."))
+		to_chat(user, SPAN_NOTICE("You create [gained_mats] Compressed Matter from [stack.singular_name]\s in the [src]."))
 
 		if(!stack.use(used_sheets))
 			qdel(stack)	// Protects against weirdness
 	else
 		to_chat(user, SPAN_NOTICE("You recycle \the [eating] in \the [src]."))
 		qdel(eating)
-/obj/machinery/matter_nanoforge/proc/update_desc(var/stored_mats)
-	desc = "It consumes items and produces compressed matter. It has [stored_mats] Compressed Matter stored."
-
-/obj/machinery/matter_nanoforge/ex_act(severity)
-	return 0
-
-/obj/machinery/matter_nanoforge/bullet_act(obj/item/projectile/P, def_zone)
-	return 0
 
 /obj/machinery/matter_nanoforge/proc/queue_design(datum/design/picked_design, amount=1)
 	if(!picked_design || !amount)
@@ -376,36 +361,6 @@
 /obj/machinery/matter_nanoforge/proc/check_craftable_amount_by_material(datum/design/design, material)
 	return stored_material[MATERIAL_COMPRESSED_MATTER] / max(1, SANITIZE_LATHE_COST(design.materials[MATERIAL_COMPRESSED_MATTER])) // loaded material / required material
 
-/obj/machinery/matter_nanoforge/update_icon()
-	overlays.Cut()
-
-	icon_state = initial(icon_state)
-
-	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_panel"))
-
-	if(working) // if paused, work animation looks awkward.
-		if(paused || error)
-			icon_state = "[icon_state]_pause"
-		else
-			icon_state = "[icon_state]_work"
-
-/obj/machinery/matter_nanoforge/proc/print_pre()
-	flick("[initial(icon_state)]_start", src)
-
-/obj/machinery/matter_nanoforge/proc/print_post()
-	flick("[initial(icon_state)]_finish", src)
-	if(!current_design && !queue.len)
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
-		visible_message("\The [src] pings, indicating that queue is complete.")
-
-/obj/machinery/matter_nanoforge/proc/res_load(material/material)
-	flick("[initial(icon_state)]_load", image_load)
-	if(material)
-		image_load_material.color = material.icon_colour
-		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
-		flick("[initial(icon_state)]_load_m", image_load_material)
-
 /obj/machinery/matter_nanoforge/proc/can_print(datum/design/picked_design)
 	if(progress <= 0)
 		if(!picked_design)
@@ -414,10 +369,10 @@
 		var/datum/design/design = picked_design
 
 		for(var/rmat in design.materials)
-			if(!(rmat in stored_material))
+			if(!(stored_material[MATERIAL_COMPRESSED_MATTER] >= 0))
 				return ERR_NOMATERIAL
 
-			if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
+			if(stored_material[MATERIAL_COMPRESSED_MATTER] < SANITIZE_LATHE_COST(design.materials[rmat]))
 				return ERR_NOMATERIAL
 
 	if (paused)
@@ -452,24 +407,21 @@
 	update_icon()
 	SSnano.update_uis(src)
 
-/obj/machinery/matter_nanoforge/proc/consume_materials(datum/design/design)
-	for(var/material in design.materials)
-		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[MATERIAL_COMPRESSED_MATTER]) : design.materials[MATERIAL_COMPRESSED_MATTER]
-		stored_material[material] = max(0, stored_material[MATERIAL_COMPRESSED_MATTER] - material_cost)
 
-	return TRUE
 
 /obj/machinery/matter_nanoforge/proc/next_file()
 	current_design = null
 	progress = 0
 	if(queue.len)
-		current_design = queue[1]
+		var/hold = queue[1]
+		current_design = hold
 		print_pre()
 		working = TRUE
 		queue.Cut(1, 2) // Cut queue[1]
 	else
 		working = FALSE
 	update_icon()
+
 /obj/machinery/matter_nanoforge/proc/eject(amount)
 	if (!amount)
 		return
@@ -532,12 +484,27 @@
 	print_post()
 	next_file()
 
+/obj/machinery/matter_nanoforge/proc/consume_materials(datum/design/design)
+	for(var/material in design.materials)
+		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]) : design.materials[material]
+		stored_material[MATERIAL_COMPRESSED_MATTER] = max(0, stored_material[MATERIAL_COMPRESSED_MATTER] - material_cost)
+
+	return TRUE
 
 #undef ERR_OK
 #undef ERR_NOTFOUND
 #undef ERR_NOMATERIAL
 #undef ERR_NOREAGENT
 #undef SANITIZE_LATHE_COST
+
+/obj/machinery/matter_nanoforge/proc/update_desc(var/stored_mats)
+	desc = "It consumes items and produces compressed matter. It has [stored_mats] Compressed Matter stored."
+
+/obj/machinery/matter_nanoforge/ex_act(severity)
+	return 0
+
+/obj/machinery/matter_nanoforge/bullet_act(obj/item/projectile/P, def_zone)
+	return 0
 
 /obj/effect/flicker_overlay
 	name = ""
@@ -557,6 +524,37 @@
 		var/atom/movable/A = loc
 		A.vis_contents -= src
 	return ..()
+
+/obj/machinery/matter_nanoforge/update_icon()
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		overlays.Add(image(icon, "[icon_state]_panel"))
+
+	if(working) // if paused, work animation looks awkward.
+		if(paused || error)
+			icon_state = "[icon_state]_pause"
+		else
+			icon_state = "[icon_state]_work"
+
+/obj/machinery/matter_nanoforge/proc/print_pre()
+	flick("[initial(icon_state)]_start", src)
+
+/obj/machinery/matter_nanoforge/proc/print_post()
+	flick("[initial(icon_state)]_finish", src)
+	if(!current_design && !queue.len)
+		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1 -3)
+		visible_message("\The [src] pings, indicating that queue is complete.")
+
+/obj/machinery/matter_nanoforge/proc/res_load(material/material)
+	flick("[initial(icon_state)]_load", image_load)
+	if(material)
+		image_load_material.color = material.icon_colour
+		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
+		flick("[initial(icon_state)]_load_m", image_load_material)
+
 
 /obj/machinery/matter_nanoforge/proc/matter_assoc_list()
 	var/list/lst = new/list()
