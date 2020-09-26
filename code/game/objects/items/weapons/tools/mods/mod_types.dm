@@ -621,6 +621,7 @@
 	desc = "A complex set of hydraulic circuits that can be installed on a tool to greatly improve its functions. It's loud as hell though so do not plan on being stealthy."
 	icon_state = "hydraulic"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 3)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool_upgrade/augment/hydraulic/New()
 	..()
