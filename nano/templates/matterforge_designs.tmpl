@@ -1,0 +1,55 @@
+{{for data.designs}}
+	<div class="item">
+		<div class="block" style='padding: 0px; overflow: auto'>
+			<div class="item" style="margin: 0px; overflow: hidden">
+				<div style='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'>
+					<img src='{{:value.icon}}' height=24 width=24>
+				</div>
+				<div class="itemContentWidest">{{:value.name}}</div>
+				<div class="itemContentWidest" style="line-height: 10px;">
+					{{if value.point_cost > 0}}
+						<font size="1">
+						<div class="{{:data.disk && data.disk.license >= value.point_cost ? "unimportant" : "bad"}}">
+						License point cost: {{:value.point_cost}}
+						</div>
+						</font>
+					{{/if}}
+				</div>
+			</div>
+			{{if value.id == data.unfolded}}
+				<div class="statusDisplay" style="margin: 0px 4px 4px 4px">
+					{{if value.materials}}
+					<div class="item">
+						<div class="itemLabelWidest">Materials</div>
+						{{for value.materials :material:material_i}}
+							{{material.amount = value.adjust_materials ? Math.round((material.req * data.mat_efficiency) * 100) / 100 : material.req;}}
+							<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
+						{{/for}}
+					</div>
+					{{/if}}
+					<div class="item">
+						<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
+					</div>
+				</div>
+			{{/if}}
+		</div>
+		<div class="itemlabelNarrow">{{:helper.link('Print', 'plus', {'add_to_queue' : value.id}, null, 'statusValue')}}</b></div>
+		<div class="itemlabelNarrow">{{:helper.link('Print several', 'calculator', {'add_to_queue' : value.id, 'several' : 1}, null, 'statusValue')}}</b></div>
+		<div class="itemlabelNarrow">{{:helper.link('', 'triangle-1-' + value.id == data.unfolded ? 'n' : 's', {'unfold' : value.id}, null, 'statusValue')}}</b></div>
+		
+	</div>
+{{empty}}
+	<div class="block" style ='position: relative;'>
+		<div class="item">
+			<div class="itemLabelWidest"><b>
+			{{if !data.disk && data.have_disk}}
+				No disk
+			{{else !data.have_design_selector}}
+				This equipment is operated remotely
+			{{else}}
+				No designs
+			{{/if}}
+			</b></div>
+		</div>
+	</div>
+{{/for}}

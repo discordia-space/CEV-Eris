@@ -182,7 +182,7 @@
 		// template keys starting with _ are not appended to the UI automatically and have to be called manually
 		ui.add_template("_materials", "autolathe_materials.tmpl")
 		ui.add_template("_reagents", "autolathe_reagents.tmpl")
-		ui.add_template("_designs", "autolathe_designs.tmpl")
+		ui.add_template("_designs", "matterforge_designs.tmpl")
 		ui.add_template("_queue", "autolathe_queue.tmpl")
 
 		// when the ui is first opened this is the data it will use
@@ -212,7 +212,7 @@
 
 	if(href_list["eject_material"] && (!current_file || paused || error))
 		var/material = href_list["eject_material"]
-		var/material/M = get_material_by_name(material)
+		var/material/M = get_material_by_name(MATERIAL_COMPRESSED_MATTER)
 
 		if(!M.stack_type)
 			return
@@ -227,13 +227,13 @@
 
 
 	if(href_list["add_to_queue"])
-		var/recipe_filename = href_list["add_to_queue"]
-		var/datum/computer_file/binary/design/design_file
+		var/recipe = href_list["add_to_queue"]
+		var/datum/design/picked_design
 
 		for(var/f in design_list)
-			var/datum/computer_file/temp_file = f
-			if(temp_file.filename == recipe_filename)
-				design_file = temp_file
+			var/datum/design/temp = f
+			if(temp.id ==  SSresearch.get_design(recipe))
+				picked_design = temp
 				break
 
 		if(design_file)
