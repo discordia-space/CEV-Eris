@@ -4,7 +4,7 @@
 	price_tag = 100
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE
-	bad_types = "/obj/item/weapon/gun_upgrade"
+	bad_types = /obj/item/weapon/gun_upgrade
 
 /obj/item/weapon/gun_upgrade/barrel
 	bad_types = /obj/item/weapon/gun_upgrade/barrel
