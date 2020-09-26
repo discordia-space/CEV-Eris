@@ -315,3 +315,4 @@
 	origin_tech = list(TECH_POWER = 1)
 	matter = list(MATERIAL_STEEL = 1)  //some cost just in case you manage to get this in a disk or something
 	maxcharge = 100  //small cause if someone manage to get this shouldn't be that usefull. and 100 is a nice number to work with.
+	spawn_blacklisted = TRUE

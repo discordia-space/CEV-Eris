@@ -144,7 +144,7 @@
 	I.gun_loc_tag = GUN_TRIGGER
 
 /obj/item/weapon/gun_upgrade/mechanism
-	bad_types = "/obj/item/weapon/gun_upgrade/mechanism"
+	bad_types = /obj/item/weapon/gun_upgrade/mechanism
 
 //Adds +3 to the internal magazine of a weapon. Acquired through loot spawns.
 /obj/item/weapon/gun_upgrade/mechanism/overshooter
