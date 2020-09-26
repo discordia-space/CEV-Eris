@@ -7,9 +7,10 @@
 	bad_types = "/obj/item/weapon/gun_upgrade"
 
 /obj/item/weapon/gun_upgrade/barrel
-	bad_types = "/obj/item/weapon/gun_upgrade/barrel"
+	bad_types = /obj/item/weapon/gun_upgrade/barrel
 
 /obj/item/weapon/gun_upgrade/muzzle
+	bad_types = /obj/item/weapon/gun_upgrade/muzzle
 
 //Silences the weapon, reduces damage multiplier slightly, Legacy port.
 /obj/item/weapon/gun_upgrade/muzzle/silencer
@@ -105,6 +106,7 @@
 	I.req_gun_tags = list(GUN_ENERGY)
 
 /obj/item/weapon/gun_upgrade/trigger
+	bad_types = /obj/item/weapon/gun_upgrade/trigger
 
 //Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay. Acquired through loot spawns
 /obj/item/weapon/gun_upgrade/trigger/dangerzone
@@ -112,7 +114,7 @@
 	desc = "When you need that extra edge."
 	icon_state = "Danger_Zone"
 	rarity_value = 15
-	
+
 
 /obj/item/weapon/gun_upgrade/trigger/dangerzone/New()
 	..()
@@ -358,6 +360,7 @@
 	I.req_gun_tags = list(GUN_ENERGY)
 
 /obj/item/weapon/gun_upgrade/scope
+	bad_types = /obj/item/weapon/gun_upgrade/scope
 
 /obj/item/weapon/gun_upgrade/scope/watchman
 	name = "Frozen Star \"Watchman\" scope"
