@@ -9,7 +9,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
-	rarity_value = 3.33
+	rarity_value = 5
 	spawn_tags = SPAWN_TAG_JUNK
 
 /obj/item/weapon/caution/cone

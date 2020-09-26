@@ -120,7 +120,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 	price_tag = 100
 	spawn_tags = SPAWN_TAG_MEDIUM_POWERCELL
-	spawn_frequency = 9
+	spawn_frequency = 8.5
 
 /obj/item/weapon/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
@@ -213,7 +213,7 @@
 	price_tag = 50
 	spawn_tags = SPAWN_TAG_SMALL_POWERCELL
 	rarity_value = 2
-	spawn_frequency = 9.5
+	spawn_frequency = 9
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""
