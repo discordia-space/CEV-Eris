@@ -248,6 +248,7 @@
 /obj/item/weapon/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	capacity = 500//Borgs get more because >specialization
+	spawn_frequency = 0
 
 // -----------------------------
 //           Cash Bag

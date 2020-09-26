@@ -16,8 +16,8 @@
 	desc = "Does card things."
 	icon = 'icons/obj/card.dmi'
 	w_class = ITEM_SIZE_TINY
-
-	var/list/files = list(  )
+	spawn_blacklisted = TRUE
+	var/list/files = list()
 
 /obj/item/weapon/card/data
 	name = "data disk"

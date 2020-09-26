@@ -29332,7 +29332,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/rnd/chargebay)
 "bpu" = (
-/obj/spawner/mob/slimes/cluster/low_chance,
+/obj/spawner/mob/slime/cluster/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "bpv" = (
@@ -105635,6 +105635,10 @@
 /obj/structure/closet/self_pacification,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
+"pHi" = (
+/obj/machinery/smartfridge/drying_rack,
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/hydroponics)
 "pJI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -162981,7 +162985,7 @@ bCw
 bCv
 bQD
 fea
-bxH
+pHi
 bQn
 bQn
 bQn

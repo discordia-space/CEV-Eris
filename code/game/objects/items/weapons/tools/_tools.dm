@@ -653,12 +653,12 @@
 
 	var/list/L = required_qualities & tool_qualities
 
-	if(L.len > 1)
+	if(L.len)
+		if(L.len == 1)
+			return L[1]
 		for(var/i in L)
 			L[i] = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
 		return show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE, custom_check = CB)
-	else
-		return L[1]
 
 /obj/item/weapon/tool/proc/turn_on(mob/user)
 	if(use_power_cost)

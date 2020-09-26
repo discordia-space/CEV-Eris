@@ -26,6 +26,8 @@
 	icon_state = "ano00"
 	var/icon_num = 0
 	density = TRUE
+	spawn_blacklisted = TRUE
+	spawn_frequency = 9
 	var/datum/artifact_effect/my_effect
 	var/datum/artifact_effect/secondary_effect
 	var/being_used = 0

@@ -51,8 +51,6 @@
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 
 
-
-
 /obj/structure/closet/random/spareparts
 	name = "\improper spare parts closet"
 	desc = "Somewhat old closet with spare parts in it."

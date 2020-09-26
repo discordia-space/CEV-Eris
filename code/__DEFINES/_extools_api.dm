@@ -1,5 +1,5 @@
 /// Returns the correct path string according to operating system at runtime
-#define EXTOOLS			(world.system_type == MS_WINDOWS ? "byond-extools.dll" : "./libbyond-extools.so")
+#define EXTOOLS	(world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "./libbyond-extools.so"))
 #define EXTOOLS_SUCCESS	"SUCCESS"
 #define EXTOOLS_FAILED	"FAIL"
 #define GLOBAL_PROC		"magic BS"

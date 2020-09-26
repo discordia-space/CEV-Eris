@@ -312,7 +312,6 @@
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 	spawn_blacklisted = TRUE
 
-
 // Subspace stock parts
 /obj/item/weapon/stock_parts/subspace
 	rarity_value = 7.14

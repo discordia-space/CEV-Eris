@@ -23,7 +23,7 @@
 	var/list/bad_paths = list()
 
 	//Initialise all paths
-	paths = subtypesof(/obj/item)
+	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
 	paths += subtypesof(/mob/living)
 	paths += subtypesof(/obj/machinery)
 	paths += subtypesof(/obj/structure)
@@ -158,17 +158,16 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		var/rarity_path = 101-all_spawn_rarity_by_path[path]
-		things["[rarity_path]"] = rarity_path
+		var/rarity_path = 100/all_spawn_rarity_by_path[path]
+		things["[all_spawn_rarity_by_path[path]]"] = rarity_path
 	var/rarity = pickweight(things, 0)
 	if(istext(rarity))
 		rarity = text2num(rarity)
-	rarity = 101-rarity
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_rarity_by_path[path] <= rarity)
 			things += path
-	return paths
+	return things
 
 /datum/loot_spawner_data/proc/pick_spawn(list/paths)
 	//if(!paths || !paths.len) //NOPE

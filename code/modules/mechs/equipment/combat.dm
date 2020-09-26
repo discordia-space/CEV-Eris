@@ -23,6 +23,7 @@
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST
+	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -38,6 +39,7 @@
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 2
+	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -64,9 +66,13 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
 	spawn_blacklisted = TRUE
 
+/obj/item/weapon/gun/energy/plasmacutter
+	bad_types = /obj/item/weapon/gun/energy/plasmacutter
+
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	twohanded = FALSE
 	self_recharge = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
+	spawn_blacklisted = TRUE

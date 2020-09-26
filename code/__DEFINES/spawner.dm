@@ -35,6 +35,7 @@
 
 #define SPAWN_TAG_TOOL_UPGRADE "obj,item,tool_upgrade"
 #define SPAWN_TAG_RARE_TOOL_UPGRADE "obj,item,tool_upgrade,rare_tool_upgrade"
+#define SPAWN_TAG_RARE_TOOL_UPGRADE_OS "obj,item,tool_upgrade,rare_tool_upgrade,item_tech_os,onestar"
 #define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
 
 // ITEMS - organ- PROSTHESIS
@@ -85,6 +86,14 @@
 #define SPAWN_TAG_MATERIAL_BUILDING "obj,item,material,bulding_material"
 #define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod,junk"
 #define SPAWN_TAG_ORE_TAG_JUNK "obj,item,material,ore,junk"
+
+// FOSSIL
+#define SPAWN_XENOARCH "xenoarcheology"
+#define SPAWN_FOSSIL "fossil"
+
+#define SPAWN_TAG_XENOARCH_ITEM "obj,item,xenoarch"
+#define SPAWN_TAG_XENOARCH_ITEM_FOSSIL "obj,item,fossil,xenoarch"
+#define SPAWN_TAG_GUN_ENERGY_XENOARCH "obj,item,gun,gun_energy,xenoarch"
 
 //  MINES
 #define SPAWN_MINE "mine"
@@ -309,6 +318,8 @@
 //	MACHINERY
 #define SPAWN_MACHINERY "machinery"
 
+#define SPAWN_TAG_MACHINERY "obj,machinery"
+
 //	Structures
 #define SPAWN_STRUCTURE "structure"
 #define SPAWN_STRUCTURE_COMMON "common_structure"
@@ -327,6 +338,7 @@
 #define SPAWN_CLOSET_SECURE "secure_closet"//secure
 
 #define SPAWN_TAG_CLOSET "obj,structure,closet"
+#define SPAWN_TAG_CLOSET_OS "obj,structure,closet,onestar"
 #define SPAWN_TAG_CLOSET_SECURE "obj,structure,closet,secure_closet"//secure
 #define SPAWN_TAG_TECHNICAL_CLOSET "obj,structure,closet,technical_closet"
 #define SPAWN_TAG_WARDROBE "obj,structure,closet,wardrobe"

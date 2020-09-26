@@ -575,19 +575,20 @@ var/global/list/default_medbay_channels = list(
 //Giving borgs their own radio to have some more room to work with -Sieve
 
 /obj/item/device/radio/borg
-	var/mob/living/silicon/robot/myborg = null // Cyborg which owns this radio. Used for power checks
-	var/obj/item/device/encryptionkey/keyslot = null//Borg radios can handle a single encryption key
-	var/shut_up = 1
 	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
 	icon_state = "radio"
 	canhear_range = 0
 	subspace_transmission = 1
+	spawn_frequency = 0
+	var/mob/living/silicon/robot/myborg // Cyborg which owns this radio. Used for power checks
+	var/obj/item/device/encryptionkey/keyslot //Borg radios can handle a single encryption key
+	var/shut_up = 1
 
 /obj/item/device/radio/borg/Destroy()
 	myborg = null
 	return ..()
 
-/obj/item/device/radio/borg/list_channels(var/mob/user)
+/obj/item/device/radio/borg/list_channels(mob/user)
 	return list_secure_channels(user)
 
 /obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
@@ -597,8 +598,8 @@ var/global/list/default_medbay_channels = list(
 		var/datum/robot_component/C = R.components["radio"]
 		R.cell_use_power(C.active_usage)
 
-/obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
-//	..()
+/obj/item/device/radio/borg/attackby(obj/item/weapon/W, mob/user)
+	//..()
 	user.set_machine(src)
 	if (!( istype(W, /obj/item/weapon/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
