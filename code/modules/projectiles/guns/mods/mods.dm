@@ -152,7 +152,6 @@
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
 	icon_state = "Overshooter"
 	rarity_value = 20
-	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/mechanism/overshooter/New()
 	..()

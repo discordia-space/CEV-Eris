@@ -994,6 +994,7 @@ var/global/list/robot_modules = list(
 					"Heavy" = "syndi-heavy",
 					"Artillery" = "spidersyndi"
 					)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/robot_module/syndicate/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/flash(src)

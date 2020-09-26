@@ -37,6 +37,7 @@
 	icon_state = "meson"
 	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
 	rarity_value = 50
+	spawn_blacklisted = TRUE
 
 
 /obj/item/clothing/glasses/powered/thermal/onestar
