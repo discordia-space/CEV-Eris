@@ -8,6 +8,7 @@
 	license = -1
 	spawn_tags = SPAWN_TAG_DESING
 	rarity_value = 25
+	spawn_frequency = 9.5
 	var/list/designs = list()
 
 

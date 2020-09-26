@@ -476,6 +476,8 @@
 	desc = "Rare relic of OneStar uses the bluetech space to store additional 600 units of fuel at the cost of degradation."
 	icon_state = "canister_holding"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE_OS
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool_upgrade/augment/holding_tank/New()
 	..()
@@ -602,6 +604,8 @@
 	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
 	icon_state = "repair_nano"
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	spawn_tags = SPAWN_TAG_RARE_TOOL_UPGRADE_OS
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool_upgrade/augment/repair_nano/New()
 	..()

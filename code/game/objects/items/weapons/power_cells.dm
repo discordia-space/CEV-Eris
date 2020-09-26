@@ -213,6 +213,7 @@
 	price_tag = 50
 	spawn_tags = SPAWN_TAG_SMALL_POWERCELL
 	rarity_value = 2
+	spawn_frequency = 9.5
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""
