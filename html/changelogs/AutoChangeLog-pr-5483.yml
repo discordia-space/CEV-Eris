@@ -1,7 +1,0 @@
-author: Fernandos33
-delete-after: true
-changes:
-  - rscadd: drying rack added to NT garden
-  - rscadd: recipe to create smoking pipe. (5 wood, and something that can cut)
-  - tweak: drying rack now dry stuff faster (from almost an hour before. to a couple
-      of seconds npw)
