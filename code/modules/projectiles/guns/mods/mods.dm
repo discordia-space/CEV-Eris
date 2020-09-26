@@ -148,6 +148,7 @@
 	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
 	icon_state = "Overshooter"
 	rarity_value = 20
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/mechanism/overshooter/New()
 	..()
@@ -196,6 +197,7 @@
 	name = "Syndicate reverse loader"
 	desc = "Makes bullets loaded into the weapon fire backwards, into its user."
 	icon_state = "Reverse_loader"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun_upgrade/mechanism/reverse_loader/New()
 	..()

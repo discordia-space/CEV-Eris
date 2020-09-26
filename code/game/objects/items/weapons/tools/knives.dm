@@ -152,6 +152,7 @@
 	icon_state = "assdagger"
 	item_state = "ass_dagger"
 	reagent_flags = INJECTABLE|TRANSPARENT
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/knife/dagger/assassin/New()
 	..()
