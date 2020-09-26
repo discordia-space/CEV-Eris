@@ -433,7 +433,7 @@
 									)
 				ping()
 			else
-				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transfer] in [name] [sheets_amount_to_transfer < 0 ? "because it is literally impossible" :""]."))
+				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transfer] in [name][sheets_amount_to_transfer < 0 ? "because it is literally impossible" :""]."))
 			return
 		else
 			to_chat(user, SPAN_WARNING("\The [B.name] is exhausted and can't be melted to biomatter. "))
