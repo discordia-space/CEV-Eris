@@ -77,14 +77,16 @@
 		var/datum/design/design_object = SSresearch.get_design(f)
 		var/total_mat = 0 
 		var/list/ui_mats = design_object.ui_data["materials"]
+		var/saved_mat = ui_mats[1]
+		for(var/req_mats in ui_mats)
+			total_mat += req_mats["req"]
 		for(var/dmat in design_object.materials)
-			var/saved_mat = ui_mats[1]
-			for(var/req_mats in ui_mats)
-				total_mat += req_mats["req"]
 			total_mat = total_mat +  ((1 - lst[dmat]) * 10) * 2
-			saved_mat["req"] = total_mat
-			ui_mats = list()
-			ui_mats.Add(saved_mat)
+		saved_mat["req"] = total_mat
+		saved_mat["name"] = MATERIAL_COMPRESSED_MATTER
+		ui_mats = list(1)
+		ui_mats[1] = saved_mat
+		design_object.ui_data["materials"] = ui_mats
 		files.Add(design_object)
 	qdel(c)
 	return files
@@ -296,6 +298,7 @@
 			return
 
 	if(power_source)
+		matter_assoc_list()	
 		eat(user, I)
 		return
 	else
@@ -308,6 +311,8 @@
 	if(!istype(eating))
 		return FALSE
 	if(stat)
+		return FALSE
+	if(stored_material[MATERIAL_COMPRESSED_MATTER] == storage_capacity)
 		return FALSE
 	if(!Adjacent(user) && !Adjacent(eating))
 		return FALSE
@@ -344,7 +349,10 @@
 	var/datum/component/artifact_power/artifact = power_source.GetComponent(/datum/component/artifact_power)
 	var/gained_mats = 0
 	for(var/mat in total_material_gained)
-		stored_material[MATERIAL_COMPRESSED_MATTER] += (artifact.power * total_material_gained[mat] * lst[mat])
+		var/added_mats = artifact.power * total_material_gained[mat] * lst[mat]
+		if(added_mats + stored_material[MATERIAL_COMPRESSED_MATTER] > storage_capacity)
+			added_mats = storage_capacity - stored_material[MATERIAL_COMPRESSED_MATTER]
+		stored_material[MATERIAL_COMPRESSED_MATTER] += added_mats
 		update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
 		gained_mats += artifact.power * total_material_gained[mat] * lst[mat]
 		used_sheets = total_material_gained[mat]
