@@ -198,7 +198,7 @@
 	rand_min = 1
 	rand_max = 10
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
-	rarity_value = 30
+	rarity_value = 45
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -322,7 +322,7 @@
 	rand_min = 3
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
-	rarity_value = 30
+	rarity_value = 50
 
 /obj/item/stack/material/glass/plasmarglass
 	name = "reinforced borosilicate glass"
