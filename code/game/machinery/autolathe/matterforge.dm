@@ -18,10 +18,12 @@
 	use_power = NO_POWER_USE
 	var/list/stored_material = list()
 	var/obj/power_source = null
-
+	var/storage_capacity = 1000
 	var/unfolded = null
 	var/show_category
 	var/list/categories
+
+	var/lst = list()
 
 	var/working = FALSE
 	var/paused = FALSE
@@ -72,13 +74,25 @@
 	var/list/files = list()	
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/design/c = new typepath
 	for(var/f in c.designs)
-		files.Add(SSresearch.get_design(f))
+		var/datum/design/design_object = SSresearch.get_design(f)
+		var/total_mat = 0 
+		var/list/ui_mats = design_object.ui_data["materials"]
+		for(var/dmat in design_object.materials)
+			var/saved_mat = ui_mats[1]
+			for(var/req_mats in ui_mats)
+				total_mat += req_mats["req"]
+			total_mat = total_mat +  ((1 - lst[dmat]) * 10) * 2
+			saved_mat["req"] = total_mat
+			ui_mats = list()
+			ui_mats.Add(saved_mat)
+		files.Add(design_object)
 	qdel(c)
 	return files
 
 /obj/machinery/matter_nanoforge/proc/materials_data()
 	var/list/data = list()
 	data["mat_efficiency"] = mat_efficiency
+	data["mat_capacity"] = storage_capacity
 
 	var/list/M = list()
 	for(var/mtype in stored_material)
@@ -174,11 +188,12 @@
 /obj/machinery/matter_nanoforge/attack_hand(mob/user)
 	if(..())
 		return TRUE
-
+	matter_assoc_list()
 	user.set_machine(src)
 	ui_interact(user)
 	if(!design_list.len)
 		get_designs()
+
 /obj/machinery/matter_nanoforge/Topic(href, href_list)
 	if(..())
 		return
@@ -327,13 +342,12 @@
 				total_used += total_material
 				mass_per_sheet += O.matter[material]
 	var/datum/component/artifact_power/artifact = power_source.GetComponent(/datum/component/artifact_power)
-	var/lst = matter_assoc_list()
 	var/gained_mats = 0
-	for(var/material in total_material_gained)
-		stored_material[MATERIAL_COMPRESSED_MATTER] += (artifact.power * total_material_gained[material] * lst[material])
+	for(var/mat in total_material_gained)
+		stored_material[MATERIAL_COMPRESSED_MATTER] += (artifact.power * total_material_gained[mat] * lst[mat])
 		update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
-		gained_mats += artifact.power * total_material_gained[material] * lst[material]
-		used_sheets = total_material_gained[material]
+		gained_mats += artifact.power * total_material_gained[mat] * lst[mat]
+		used_sheets = total_material_gained[mat]
 	if(istype(eating, /obj/item/stack))
 		var/obj/item/stack/stack = eating
 		to_chat(user, SPAN_NOTICE("You create [gained_mats] Compressed Matter from [stack.singular_name]\s in the [src]."))
@@ -423,10 +437,12 @@
 	update_icon()
 
 /obj/machinery/matter_nanoforge/proc/eject(amount)
-	if (!amount)
+
+	if(!stored_material.len || stored_material[1] == 0)
 		return
 
-	var/material/M = MATERIAL_COMPRESSED_MATTER
+	if (!amount)
+		return
 
 	amount = min(amount, stored_material[MATERIAL_COMPRESSED_MATTER])
 
@@ -434,7 +450,7 @@
 	var/remainder = amount - whole_amount
 
 	if (whole_amount)
-		var/obj/item/stack/material/S = new M(drop_location())
+		var/obj/item/stack/material/compressed_matter/S = new(drop_location())
 
 		//Accounting for the possibility of too much to fit in one stack
 		if (whole_amount <= S.max_amount)
@@ -451,7 +467,7 @@
 				qdel(S)
 
 			for(var/i = 0; i < fullstacks; i++)
-				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
+				var/obj/item/stack/material/compressed_matter/MS = new(drop_location())
 				MS.amount = MS.max_amount
 				MS.update_strings()
 				MS.update_icon()
@@ -486,7 +502,8 @@
 
 /obj/machinery/matter_nanoforge/proc/consume_materials(datum/design/design)
 	for(var/material in design.materials)
-		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]) : design.materials[material]
+	// + 15 base cost for each material then * 2 
+		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]): design.materials[material]
 		stored_material[MATERIAL_COMPRESSED_MATTER] = max(0, stored_material[MATERIAL_COMPRESSED_MATTER] - material_cost)
 
 	return TRUE
@@ -557,23 +574,23 @@
 
 
 /obj/machinery/matter_nanoforge/proc/matter_assoc_list()
-	var/list/lst = new/list()
-	lst[/obj/item/stack/material/iron] = 0.70
-	lst[/obj/item/stack/material/glass] = 0.50
-	lst[/obj/item/stack/material/steel] = 0.40
-	lst[/obj/item/stack/material/glass/plasmaglass] = 0.70
-	lst[/obj/item/stack/material/diamond] = 1
-	lst[/obj/item/stack/material/plasma] = 0.60
-	lst[/obj/item/stack/material/gold] = 0.70
-	lst[/obj/item/stack/material/uranium] = 1
-	lst[/obj/item/stack/material/silver] = 0.70
-	lst[/obj/item/stack/material/plasteel] = 0.70
-	lst[/obj/item/stack/material/plastic] = 0.50
-	lst[/obj/item/stack/material/tritium] = 1
-	lst[/obj/item/stack/material/osmium] = 1
-	lst[/obj/item/stack/material/mhydrogen] = 1
-	lst[/obj/item/stack/material/wood] = 0.20
-	lst[/obj/item/stack/material/cloth] = 0.10
-	lst[/obj/item/stack/material/cardboard] = 0.10
-	lst[/obj/item/stack/material/glass/reinforced] = 0.55
-	return lst
+	lst[MATERIAL_IRON] = 0.70
+	lst[MATERIAL_GLASS] = 0.50
+	lst[MATERIAL_STEEL] = 0.40
+	lst[MATERIAL_PLASMAGLASS] = 0.70
+	lst[MATERIAL_DIAMOND] = 1
+	lst[MATERIAL_PLASMA] = 0.60
+	lst[MATERIAL_GOLD] = 0.70
+	lst[MATERIAL_URANIUM] = 1
+	lst[MATERIAL_SILVER] = 0.70
+	lst[MATERIAL_PLASTEEL] = 0.70
+	lst[MATERIAL_PLASTIC] = 0.50
+	lst[MATERIAL_TRITIUM] = 1
+	lst[MATERIAL_PLATINUM] = 1
+	lst[MATERIAL_MHYDROGEN] = 1
+	lst[MATERIAL_WOOD] = 0.20
+	lst[MATERIAL_CLOTH] = 0.10
+	lst[MATERIAL_CARDBOARD] = 0.10
+	lst[MATERIAL_RGLASS] = 0.55
+	lst[MATERIAL_LEATHER] = 0.10
+	lst[MATERIAL_TITANIUM] = 0.70
