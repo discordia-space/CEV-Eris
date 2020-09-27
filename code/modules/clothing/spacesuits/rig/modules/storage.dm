@@ -9,7 +9,8 @@
 	//The default iconstate is actually really perfect for this, it looks like a reinforced box
 	//Duplicate specify it here incase it gets changed in the parent in future
 	icon_state = "module"
-	rarity_value = 1
+	rarity_value = 1.5
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 	//These vars will be passed onto the storage
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list(/obj/item/weapon/rig) //List of objects which this item can't store (in effect only if can_hold isn't set)
