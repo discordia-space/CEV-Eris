@@ -107,6 +107,35 @@
 /obj/structure/multiz/ladder/attack_generic(var/mob/M)
 	attack_hand(M)
 
+/obj/structure/multiz/ladder/proc/throw_through(var/obj/item/C, var/mob/throw_man)
+	if(istype(throw_man,/mob/living/carbon/human))
+		var/mob/living/carbon/human/user = throw_man
+		if(istype(C,/obj/item/weapon/grenade))
+			var/through =  istop ? "down" : "up"
+			var/obj/item/weapon/grenade/G= C
+			user.visible_message("<span class='warning'>[user] takes position to throw [G] [through] \the [src].</span>",
+			"<span class='warning'>You take position to throw [G] [through] \the [src].</span>")
+			if(do_after(user, 10))
+				user.visible_message("<span class='warning'>[user] throws [G] [through] \the [src]!</span>",
+				"<span class='warning'>You throw [G] [through] \the [src]</span>")
+				user.drop_item()
+				G.forceMove(target.loc)
+				var/direction = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+				G.DoMove(direction, user)
+				if(!G.active)
+					G.activate(user)
+				return TRUE
+			return FALSE
+		return FALSE
+	return FALSE
+
+/obj/structure/multiz/ladder/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(throw_through(I,user))
+		return
+	else
+		attack_hand(user)
+
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
 	if (isrobot(M) && !isdrone(M))
 		var/mob/living/silicon/robot/R = M
