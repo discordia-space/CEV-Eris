@@ -66,7 +66,6 @@
 	var/tmp/obj/effect/flicker_overlay/image_load_material
 
 /obj/machinery/matter_nanoforge/proc/get_designs()
-	. = ..()
 	for (var/f in disk_list)
 		design_list.Add(find_files_by_type(f))
 
