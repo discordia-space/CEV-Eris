@@ -45,7 +45,7 @@
 
 	unlocks_designs = list(/datum/design/research/item/chameleon_kit)
 
-/datum/technology/freedom_implant
+/datum/technology/illegal_implants
 	name = "Illegal Implants"
 	desc = "Illegal implants."
 	tech_type = RESEARCH_COVERT
@@ -54,7 +54,7 @@
 	y = 0.5
 	icon = "freedom"
 
-	required_technologies = list(/datum/technology/chameleon_kit)
+	required_technologies = list(/datum/technology/chameleon_kit, /datum/technology/night_sight)
 	required_tech_levels = list(RESEARCH_BIOTECH = 5)
 	cost = 3000
 
@@ -74,7 +74,7 @@
 	y = 0.5
 	icon = "module"
 
-	required_technologies = list(/datum/technology/freedom_implant)
+	required_technologies = list(/datum/technology/illegal_implants)
 	required_tech_levels = list(RESEARCH_ROBOTICS = 5)
 	cost = 3000
 

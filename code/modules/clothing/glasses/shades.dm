@@ -3,6 +3,7 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "medshades"
 	item_state = "medshades"
+	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/clothing/glasses/hud/security/shades
@@ -10,9 +11,11 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "secshades"
 	item_state = "secshades"
+	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/clothing/glasses/shades
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/glasses/shades/night
 	name = "Augmented Night Vision Shades"
