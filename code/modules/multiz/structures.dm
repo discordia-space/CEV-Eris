@@ -11,7 +11,7 @@
 	var/istop = TRUE
 	var/obj/structure/multiz/target
 	var/obj/structure/multiz/targeted_by
-
+	var/is_watching = 0
 /obj/structure/multiz/New()
 	. = ..()
 	for(var/obj/structure/multiz/M in loc)
@@ -171,6 +171,25 @@
 		M.forceMove(T)
 		try_resolve_mob_pulling(M, src)
 
+/obj/structure/multiz/ladder/AltClick(var/mob/living/carbon/human/user)
+	if(in_range(src, user))
+		if(!user.is_physically_disabled())
+			var/turf/peekTurf = istop ? GetBelow(src) : GetAbove(src)
+			if(target)
+				if(is_watching == 1)
+					user.reset_view(0)
+					is_watching = 0
+					return
+				if(is_watching == 0)
+					to_chat(src, SPAN_NOTICE("You look up."))
+					if(user.client)
+						user.reset_view(peekTurf)
+						is_watching = 1
+					return
+			to_chat(src, SPAN_NOTICE("You can see [peekTurf]."))
+		else
+			to_chat(src, SPAN_NOTICE("You can't do it right now."))
+		return
 ////STAIRS////
 
 /obj/structure/multiz/stairs
