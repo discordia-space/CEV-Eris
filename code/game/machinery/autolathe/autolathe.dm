@@ -878,7 +878,7 @@
 #undef ERR_NOREAGENT
 #undef ERR_NOLICENSE
 #undef SANITIZE_LATHE_COST
-
+#undef ERR_PAUSED 
 
 // A version with some materials already loaded, to be used on map spawn
 /obj/machinery/autolathe/loaded
