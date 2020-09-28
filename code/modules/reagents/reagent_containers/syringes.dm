@@ -329,7 +329,7 @@
 	..()
 
 /obj/item/weapon/reagent_containers/syringe/large
-	name = "Large syringe"
+	name = "large syringe"
 	desc = "A large syringe for those patients who needs a little more"
 	icon = 'icons/obj/large_syringe.dmi'
 	item_state = "large_syringe"
