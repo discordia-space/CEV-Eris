@@ -6,7 +6,7 @@
 	holding_type = /obj/item/clothing/glasses/hud/health/shades
 
 /obj/item/organ_module/active/hud/sec
-	name = "Embeded Security Hud Shades"
+	name = "Embedded Security Hud Shades"
 	desc = "Security Hud, that can implanted in somebody's head."
 	verb_name = "Ativate Security Hud"
 	icon_state = "secshades"
