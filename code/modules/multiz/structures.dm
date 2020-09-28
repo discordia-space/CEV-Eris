@@ -121,7 +121,7 @@
 				user.drop_item()
 				G.forceMove(target.loc)
 				var/direction = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-				G.DoMove(direction, user)
+				G.Move(get_step(G, direction))
 				if(!G.active)
 					G.activate(user)
 				return TRUE
