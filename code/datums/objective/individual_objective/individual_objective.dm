@@ -29,7 +29,7 @@
 	return FALSE
 
 /datum/individual_objective
-	var/name = "individual"
+	var/name = "Individual"
 	var/desc = "Placeholder Objective"
 	var/datum/mind/owner
 	var/mob/living/carbon/human/mind_holder

@@ -1,7 +1,7 @@
 /mob/living/carbon/human/var/list/personal_ritual_cooldowns = list()
 
 
-/datum/ritual/
+/datum/ritual
 	var/name = "ritual"
 	var/desc = "Basic ritual that does nothing."
 	var/phrase = ""
@@ -117,6 +117,16 @@
 		L = get_front_mob(user)
 	return L
 
+/proc/get_front_human_in_range(var/mob/living/carbon/human/user, nrange = 1)
+	var/turf/T = get_step(user,user.dir)
+	for(var/i=1, i<=nrange, i++)
+		var/mob/living/carbon/human/H = locate(/mob/living) in T
+		if(H)
+			admin_notice(SPAN_DANGER(" el proc nuevo RETORNO [H]"))
+			return H
+		T = get_step(T,user.dir)
+	admin_notice(SPAN_DANGER(" el pro no RETORNO nada"))
+	return
 
 //Getting implants
 /mob/living/proc/get_core_implant(ctype = null, req_activated = TRUE)

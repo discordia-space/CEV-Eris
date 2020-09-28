@@ -80,3 +80,22 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_OBJ_FACTION_ITEM_DESTROY)
 	..()
+
+/datum/individual_objective/guard
+	name = "Guard"
+	req_department = list(DEPARTMENT_SECURITY)
+	var/area/target_area
+
+/datum/individual_objective/guard/assign()
+	..()
+	target_area = random_ship_area()
+	desc = "[target_area] requires to be fortified with a turret"
+	RegisterSignal(target_area, COMSIG_TURRENT, .proc/task_completed)
+
+/datum/individual_objective/guard/task_completed()
+		completed()
+
+/datum/individual_objective/guard/completed()
+	if(completed) return
+	UnregisterSignal(target_area, COMSIG_TURRENT)
+	..()

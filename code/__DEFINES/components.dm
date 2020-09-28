@@ -36,6 +36,7 @@
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 
 #define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
+#define COMSIG_RITUAL "ritual"
 
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
@@ -43,6 +44,7 @@
 #define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
 
 // /area signals
+#define COMSIG_AREA_SANCTIFY "sanctify_area"
 
 // /turf signals
 #define COMSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
@@ -87,6 +89,7 @@
 //machinery
 #define COMSIG_AREA_APC_OPERATING "area_operating"  //from apc process()
 #define COMSING_DESTRUCTIVE_ANALIZER "destructive_analizer"
+#define COMSIG_TURRENT "create_turrent"
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack

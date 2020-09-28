@@ -111,3 +111,22 @@
 		fail("No target. Make sure your target is either in front of you or grabbed by you.", H, C)
 		return FALSE
 	return TRUE
+
+/datum/ritual/cruciform/base/revelation
+	name = "Revelation"
+	phrase = "Patris ostendere viam"
+	desc = "A person close to you will have a vision that could increase ther sanity... or that's what you hope will happen."
+	power = 50
+
+/datum/ritual/cruciform/base/revelation/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
+	var/mob/living/carbon/human/T = get_front_human_in_range(H, 4)
+	//if(!T || !T.client)
+	if(!T)
+		fail("No target.", H, C)
+		return FALSE
+	T.hallucination(50,100)
+	var/sanity_lost = rand(-10,10)
+	T.druggy = max(T.druggy, 10)
+	T.sanity.changeLevel(sanity_lost)
+	SEND_SIGNAL(H, COMSIG_RITUAL, src, T)
+	return TRUE

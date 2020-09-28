@@ -130,7 +130,7 @@
 	success(starter, participants.len)
 
 	for(var/mob/affected in participants)
-		to_chat(affected, fail_message)
+		to_chat(affected, succ_message)
 		success(affected, participants.len)
 
 /datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
