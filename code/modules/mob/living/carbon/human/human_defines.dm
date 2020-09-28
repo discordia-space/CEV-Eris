@@ -96,3 +96,5 @@
 
 	var/language_blackout = 0
 	var/suppress_communication = 0
+
+	var/is_watching = 0 //used for remote viewing of multiz structures
