@@ -3,6 +3,10 @@
 	desc = "It looks like ancient, and rather dangerous mine."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_STUCTURE_MINE
+	bad_types = /obj/structure/mine
 
 /obj/structure/mine/mine_no_primer/attack_hand(mob/living/user as mob)
 	if(do_after(user,10,src))

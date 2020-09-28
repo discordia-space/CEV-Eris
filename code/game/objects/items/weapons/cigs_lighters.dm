@@ -99,7 +99,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lit = 0
 	var/icon_on
 	var/icon_off
-	var/type_butt = null
+	var/type_butt
 	var/chem_volume = 0
 	var/smoketime = 0
 	var/quality_multiplier = 1 // Used for sanity and insight gain
@@ -334,6 +334,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	matter = list(MATERIAL_BIOMATTER = 1)
 	throwforce = 1
+	rarity_value = 3.33
 
 /obj/item/trash/cigbutt/New()
 	..()

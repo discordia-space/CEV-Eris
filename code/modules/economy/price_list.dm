@@ -2,7 +2,7 @@
 // all these will be defined here and sorted in different sections.
 
 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
-/atom/movable/var/price_tag
+// /atom/movable/var/price_tag atoms_movable.dm line: 22 var/price_tag = 0
 
 // The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
 /atom/movable/proc/get_item_cost(export)
@@ -1014,10 +1014,10 @@
 /obj/item/weapon/tank/get_item_cost(export)
 	. = price_tag + (price_tag * log(10, air_contents.volume)) //todo, prices of gases
 
-/obj/item/weapon/circuitboard
+/obj/item/weapon/electronics/circuitboard
 	price_tag = 150
 
-/obj/item/weapon/circuitboard/get_item_cost(export)
+/obj/item/weapon/electronics/circuitboard/get_item_cost(export)
 	. = ..()
 	for(var/atom/movable/i in req_components)
 		if(ispath(i))

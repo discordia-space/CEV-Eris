@@ -99,6 +99,7 @@
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
+	rarity_value = 48
 
 
 /obj/item/weapon/gun/projectile/boltgun/handmaderifle
@@ -126,3 +127,5 @@
 	price_tag = 800
 	one_hand_penalty = 30 //don't you dare to one hand this
 	sharp = FALSE //no bayonet here
+
+

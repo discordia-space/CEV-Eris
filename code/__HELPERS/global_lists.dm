@@ -110,6 +110,7 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 //A list of slots where an item doesn't count as "worn" if it's in one of them
 var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
 
+GLOBAL_LIST_EMPTY(all_spawn_data)
 
 //////////////////////////
 /////Initial Building/////
@@ -138,7 +139,7 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		var/datum/surgery_step/S = new path
 		GLOB.surgery_steps[path] = S
 
-	//perkS - Initialise all /datum/perks into a list
+	//perks - Initialise all /datum/perks into a list
 	paths = subtypesof(/datum/perk)
 	for(var/path in paths)
 		var/datum/perk/P = new path
@@ -231,8 +232,9 @@ var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_
 		if (R.phrase)
 			GLOB.all_rituals[R.name] = R
 
-	return 1
+	GLOB.all_spawn_data["loot_s_data"] = new /datum/loot_spawner_data
 
+	return 1
 
 var/global/list/admin_permissions = list(
 	"fun" = 0x1,

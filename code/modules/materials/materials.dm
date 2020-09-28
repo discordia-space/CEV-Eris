@@ -580,6 +580,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
+	display_name = "metallic hydrogen"
 
 /material/platinum
 	name = MATERIAL_PLATINUM

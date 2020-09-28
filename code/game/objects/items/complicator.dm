@@ -7,6 +7,8 @@
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20000
 	origin_tech = list(TECH_POWER = 7, TECH_BLUESPACE = 4, TECH_MAGNET = 9)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/last_summon = -30 MINUTES
 	var/cooldown = 30 MINUTES
 

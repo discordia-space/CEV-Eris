@@ -15,6 +15,7 @@
 	damage_multiplier = 1.3
 	charge_cost = 50
 	price_tag = 2500
+	rarity_value = 12
 	projectile_type = /obj/item/projectile/beam/midlaser
 	init_firemodes = list(
 		WEAPON_NORMAL,
@@ -31,6 +32,7 @@
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/laser/mounted/blitz
 	name = "SDF LR \"Strahl\""
@@ -49,7 +51,7 @@
 	projectile_type = /obj/item/projectile/beam/practice
 	zoom_factor = 0
 
-obj/item/weapon/gun/energy/retro
+/obj/item/weapon/gun/energy/retro
 	name = "OS LG \"Cog\""
 	icon = 'icons/obj/guns/energy/retro.dmi'
 	icon_state = "retro"
@@ -66,6 +68,7 @@ obj/item/weapon/gun/energy/retro
 	damage_multiplier = 1
 	charge_cost = 100
 	price_tag = 2000
+	rarity_value = 10
 	init_firemodes = list(
 		WEAPON_NORMAL,
 		WEAPON_CHARGE
@@ -133,6 +136,7 @@ obj/item/weapon/gun/energy/retro
 	zoom_factor = 0
 	damage_multiplier = 1
 	charge_cost = 100
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/psychic
 	icon = 'icons/obj/guns/energy/psychiccannon.dmi'
@@ -140,6 +144,7 @@ obj/item/weapon/gun/energy/retro
 	item_state = "psychic_lasercannon"
 	projectile_type = /obj/item/projectile/beam/psychic
 	icon_contained = TRUE
+	spawn_blacklisted = TRUE
 	var/traitor = FALSE //Check if it's a traitor psychic weapon
 	var/datum/mind/owner
 	var/list/victims = list()

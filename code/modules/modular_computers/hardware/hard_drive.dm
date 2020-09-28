@@ -8,6 +8,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	price_tag = 50
+	rarity_value = 12.5
 	var/max_capacity = 128
 	var/used_capacity = 0
 	var/read_only = FALSE
@@ -27,6 +28,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 2)
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	price_tag = 100
+	rarity_value = 25
 	power_usage = 50 					// Hybrid, medium capacity and medium power storage
 	hardware_size = 2
 
@@ -38,6 +40,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_GOLD = 2)
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	price_tag = 200
+	rarity_value = 50
 	power_usage = 100					// High-capacity but uses lots of power, shortening battery life. Best used with APC link.
 	hardware_size = 2
 
@@ -61,6 +64,7 @@
 	power_usage = 10
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	price_tag = 50
+	rarity_value = 8.33
 	max_capacity = 64
 	hardware_size = 1
 
@@ -71,6 +75,7 @@
 	power_usage = 20
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	price_tag = 100
+	rarity_value = 16.66
 	max_capacity = 128
 
 /obj/item/weapon/computer_hardware/hard_drive/micro
@@ -96,7 +101,7 @@
 	. = ..()
 	to_chat(user, SPAN_NOTICE("It can store up to [max_capacity] GQ."))
 
-/obj/item/weapon/computer_hardware/hard_drive/diagnostics(var/mob/user)
+/obj/item/weapon/computer_hardware/hard_drive/diagnostics(mob/user)
 	..()
 	// 999 is a byond limit that is in place. It's unlikely someone will reach that many files anyway, since you would sooner run out of space.
 	to_chat(user, "NT-NFS File Table Status: [stored_files.len]/999")

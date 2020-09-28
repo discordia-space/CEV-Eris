@@ -17,7 +17,7 @@
 	icon_state = "morgue1"
 	dir = EAST
 	density = TRUE
-	var/obj/structure/m_tray/connected = null
+	var/obj/structure/m_tray/connected
 	var/open = FALSE
 	anchored = TRUE
 	var/mob/living/occupant
@@ -252,7 +252,7 @@
 	icon_state = "morguet"
 	density = TRUE
 	layer = LOW_OBJ_LAYER
-	var/obj/structure/morgue/connected = null
+	var/obj/structure/morgue/connected
 	anchored = TRUE
 	throwpass = 1
 
@@ -291,7 +291,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "crema1"
 	density = TRUE
-	var/obj/structure/c_tray/connected = null
+	var/obj/structure/c_tray/connected
 	anchored = TRUE
 	var/cremating = 0
 	var/id = 1
@@ -476,7 +476,7 @@
 	icon_state = "cremat"
 	density = TRUE
 	layer = 2
-	var/obj/structure/crematorium/connected = null
+	var/obj/structure/crematorium/connected
 	anchored = TRUE
 	throwpass = 1
 

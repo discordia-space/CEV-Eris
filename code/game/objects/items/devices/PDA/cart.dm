@@ -23,12 +23,12 @@
 	var/access_detonate_pda = 0
 	var/access_hydroponics = 0
 	var/charges = 0
-	var/mode = null
+	var/mode
 	var/menu
-	var/datum/data/record/active1 = null //General
-	var/datum/data/record/active2 = null //Medical
-	var/datum/data/record/active3 = null //Security
-	var/selected_sensor = null // Power Sensor
+	var/datum/data/record/active1 //General
+	var/datum/data/record/active2 //Medical
+	var/datum/data/record/active3 //Security
+	var/selected_sensor // Power Sensor
 	var/message1	// used for status_displays
 	var/message2
 	var/list/stored_data = list()

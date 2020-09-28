@@ -4,6 +4,7 @@
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
 	dir = WEST
+	rarity_value = 5
 
 	var/obj/effect/effect/light/light_spot
 

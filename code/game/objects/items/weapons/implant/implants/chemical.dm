@@ -3,6 +3,7 @@
 	desc = "Injects things."
 	allow_reagents = 1
 	origin_tech = list(TECH_MATERIAL=3, TECH_BIO=4)
+	spawn_tags = null
 
 /obj/item/weapon/implant/chem/get_data()
 	var/data = {"

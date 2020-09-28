@@ -8,21 +8,21 @@
 	name = "Unknown"
 	icon_state = "player-black"
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
-	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
-	var/corpsesuit = null
-	var/corpseshoes = null
-	var/corpsegloves = null
-	var/corpseradio = null
-	var/corpseglasses = null
-	var/corpsemask = null
-	var/corpsehelmet = null
-	var/corpsebelt = null
-	var/corpsepocket1 = null
-	var/corpsepocket2 = null
-	var/corpseback = null
+	var/corpseuniform //Set this to an object path to have the slot filled with said object on the corpse.
+	var/corpsesuit
+	var/corpseshoes
+	var/corpsegloves
+	var/corpseradio
+	var/corpseglasses
+	var/corpsemask
+	var/corpsehelmet
+	var/corpsebelt
+	var/corpsepocket1
+	var/corpsepocket2
+	var/corpseback
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
-	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidjob // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
+	var/corpseidaccess //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/species = "Human"
 
 /obj/landmark/corpse/Initialize()
@@ -173,7 +173,7 @@
 	corpseradio = /obj/item/device/radio/headset/heads/hop
 	//corpseuniform = /obj/item/clothing/under/rank/centcom_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseshoes = /obj/item/clothing/shoes/black
+	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"

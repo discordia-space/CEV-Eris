@@ -1,9 +1,9 @@
 datum/preferences
-	var/icon/preview_icon  = null
-	var/icon/preview_south = null
-	var/icon/preview_north = null
-	var/icon/preview_east  = null
-	var/icon/preview_west  = null
+	var/icon/preview_icon 
+	var/icon/preview_south
+	var/icon/preview_north
+	var/icon/preview_east 
+	var/icon/preview_west 
 	var/preview_dir = SOUTH	//for augmentation
 
 datum/preferences/proc/update_preview_icon(var/naked = FALSE)

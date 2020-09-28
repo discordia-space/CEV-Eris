@@ -7,10 +7,10 @@
 	slot_flags = SLOT_ACCESSORY_BUFFER
 	w_class = ITEM_SIZE_SMALL
 	var/slot = "decor"
-	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to
-	var/image/inv_overlay = null	//overlay used when attached to clothing.
-	var/image/mob_overlay = null
-	var/overlay_state = null
+	var/obj/item/clothing/has_suit		//the suit the tie may be attached to
+	var/image/inv_overlay	//overlay used when attached to clothing.
+	var/image/mob_overlay
+	var/overlay_state
 
 /obj/item/clothing/accessory/Destroy()
 	if(has_suit)

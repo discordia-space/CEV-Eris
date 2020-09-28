@@ -1,4 +1,4 @@
-/mob/living/carbon/
+/mob/living/carbon
 	gender = MALE
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/list/stomach_contents = list()
@@ -29,5 +29,7 @@
 
 	var/obj/item/weapon/tank/internal //Human/Monkey
 
+
+	bad_types = /mob/living/carbon
 	//TODO: move to brain
 

@@ -1,8 +1,3 @@
-//Tells all active shield generators in the world to update, at some point in future
-/proc/update_shield_generators()
-	for (var/obj/machinery/power/shield_generator/S in SSmachines.machinery)
-		S.needs_update = TRUE
-
 /turf/proc/getEffectShield()
 	for (var/obj/effect/shield/S in contents)
 		if (!S.isInactive())

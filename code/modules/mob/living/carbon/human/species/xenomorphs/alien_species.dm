@@ -7,7 +7,7 @@
 	language = LANGUAGE_HIVEMIND
 	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 	hud_type = /datum/hud_data/alien
-	rarity_value = 3
+	species_rarity_value = 3
 
 	has_fine_manipulation = 0
 	siemens_coefficient = 0
@@ -142,7 +142,7 @@
 	weeds_plasma_rate = 15
 	slowdown = 1
 	tail = "xenos_drone_tail"
-	rarity_value = 5
+	species_rarity_value = 5
 
 	icobase = 'icons/mob/human_races/xenos/r_xenos_drone.dmi'
 	deform =  'icons/mob/human_races/xenos/r_xenos_drone.dmi'
@@ -230,7 +230,7 @@
 	caste_name = "queen"
 	slowdown = 4
 	tail = "xenos_queen_tail"
-	rarity_value = 10
+	species_rarity_value = 10
 
 	icobase = 'icons/mob/human_races/xenos/r_xenos_queen.dmi'
 	deform =  'icons/mob/human_races/xenos/r_xenos_queen.dmi'

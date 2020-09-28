@@ -1,3 +1,6 @@
+/obj/item/device
+	spawn_tags = SPAWN_TAG_DIVICE
+
 /obj/item/device/Created()
 	.=..()
 	//Quick and precise method to get rid of cells

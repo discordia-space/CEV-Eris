@@ -7,6 +7,7 @@
 	w_class = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	voicechange = 1
+	rarity_value = 100
 
 /obj/item/clothing/mask/muzzle/tape
 	name = "length of tape"
@@ -32,6 +33,7 @@
 	desc = "A sterile mask designed to help prevent the spread of diseases."
 	icon_state = "sterile"
 	item_state = "sterile"
+	rarity_value = 25
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
@@ -72,6 +74,7 @@
 	w_class = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	price_tag = 50
+	rarity_value = 100
 
 /obj/item/clothing/mask/scarf/stripedblue
 	name = "striped blue scarf"
@@ -185,6 +188,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20
+	rarity_value = 18.2
 
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
 	switch(slot)

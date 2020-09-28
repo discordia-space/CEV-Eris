@@ -43,3 +43,4 @@
 /obj/item/weapon/implanter/adrenalin
 	name = "implanter-adrenalin"
 	implant = /obj/item/weapon/implant/adrenalin
+	spawn_tags = null

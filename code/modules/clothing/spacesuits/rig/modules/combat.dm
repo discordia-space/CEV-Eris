@@ -16,9 +16,9 @@
 	interface_name = "mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
 	device_type = /obj/item/device/flash
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
 /obj/item/rig_module/grenade_launcher
-
 	name = "mounted grenade launcher"
 	desc = "A shoulder-mounted micro-explosive dispenser."
 	selectable = 1
@@ -26,6 +26,7 @@
 
 	interface_name = "integrated grenade launcher"
 	interface_desc = "Discharges loaded grenades against the wearer's location."
+	rarity_value = 20
 
 	var/fire_force = 30
 	var/fire_distance = 10
@@ -91,7 +92,6 @@
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
 /obj/item/rig_module/mounted
-
 	name = "mounted laser cannon"
 	desc = "A shoulder-mounted battery-powered laser cannon mount."
 	selectable = 1
@@ -104,7 +104,7 @@
 
 	interface_name = "mounted laser cannon"
 	interface_desc = "A shoulder-mounted cell-powered laser cannon."
-
+	rarity_value = 100
 	var/gun_type = /obj/item/weapon/gun/energy/lasercannon/mounted
 	var/obj/item/weapon/gun/gun
 
@@ -125,7 +125,6 @@
 	return 1
 
 /obj/item/rig_module/mounted/egun
-
 	name = "mounted energy gun"
 	desc = "A forearm-mounted energy projector."
 	icon_state = "egun"
@@ -136,6 +135,7 @@
 	interface_desc = "A forearm-mounted suit-powered energy gun."
 
 	gun_type = /obj/item/weapon/gun/energy/gun/mounted
+	rarity_value = 50
 
 /obj/item/rig_module/mounted/taser
 
@@ -153,9 +153,9 @@
 	interface_desc = "A shoulder-mounted cell-powered taser."
 
 	gun_type = /obj/item/weapon/gun/energy/taser/mounted
+	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
 /obj/item/rig_module/mounted/energy_blade
-
 	name = "energy blade projector"
 	desc = "A powerful cutting beam projector."
 	icon_state = "eblade"
@@ -172,7 +172,7 @@
 	use_power_cost = 50
 	active_power_cost = 10
 	passive_power_cost = 0
-
+	rarity_value = 100
 	gun_type = /obj/item/weapon/gun/energy/crossbow/ninja
 
 /obj/item/rig_module/mounted/energy_blade/Process()
@@ -213,7 +213,6 @@
 		qdel(blade)
 
 /obj/item/rig_module/fabricator
-
 	name = "matter fabricator"
 	desc = "A self-contained microfactory system for hardsuit integration."
 	selectable = 1
@@ -225,7 +224,7 @@
 
 	interface_name = "death blossom launcher"
 	interface_desc = "An integrated microfactory that produces poisoned throwing stars from thin air and electricity."
-
+	rarity_value = 100
 	var/fabrication_type = /obj/item/weapon/material/star/ninja
 	var/fire_force = 30
 	var/fire_distance = 10

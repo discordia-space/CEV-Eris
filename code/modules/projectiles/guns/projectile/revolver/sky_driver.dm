@@ -15,3 +15,5 @@
 	penetration_multiplier = 20
 	pierce_multiplier =  5
 	recoil_buildup = 50
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE

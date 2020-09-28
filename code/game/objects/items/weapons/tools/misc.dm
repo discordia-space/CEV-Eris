@@ -13,6 +13,8 @@
 	create_hot_spot = TRUE
 	glow_color = COLOR_ORANGE
 	max_upgrades = 2
+	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/medmultitool
 	name = "One Star medmultitool"
@@ -25,6 +27,10 @@
 
 	max_upgrades = 2
 	workspeed = 1.2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/medmultitool/medimplant
 	name = "Medical Omnitool"
@@ -44,6 +50,8 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 
 	max_upgrades = 1
+	spawn_tags = null
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/tool/engimplant
 	name = "Engineering Omnitool"
@@ -60,6 +68,7 @@
 	suitable_cell = /obj/item/weapon/cell/medium
 
 	max_upgrades = 1
+	spawn_blacklisted = TRUE
 
 	var/buffer_name
 	var/atom/buffer_object
@@ -68,19 +77,19 @@
 	unregister_buffer(buffer_object)
 	return ..()
 
-/obj/item/weapon/tool/engimplant/proc/get_buffer(var/typepath)
+/obj/item/weapon/tool/engimplant/proc/get_buffer(typepath)
 	get_buffer_name(TRUE)
 	if(buffer_object && (!typepath || istype(buffer_object, typepath)))
 		return buffer_object
 
-/obj/item/weapon/tool/engimplant/proc/get_buffer_name(var/null_name_if_missing = FALSE)
+/obj/item/weapon/tool/engimplant/proc/get_buffer_name(null_name_if_missing = FALSE)
 	if(buffer_object)
 		buffer_name = buffer_object.name
 	else if(null_name_if_missing)
 		buffer_name = null
 	return buffer_name
 
-/obj/item/weapon/tool/engimplant/proc/set_buffer(var/atom/buffer)
+/obj/item/weapon/tool/engimplant/proc/set_buffer(atom/buffer)
 	if(!buffer || istype(buffer))
 		buffer_name = buffer ? buffer.name : null
 		if(buffer != buffer_object)
@@ -89,7 +98,7 @@
 			if(buffer_object)
 				GLOB.destroyed_event.register(buffer_object, src, /obj/item/weapon/tool/engimplant/proc/unregister_buffer)
 
-/obj/item/weapon/tool/engimplant/proc/unregister_buffer(var/atom/buffer_to_unregister)
+/obj/item/weapon/tool/engimplant/proc/unregister_buffer(atom/buffer_to_unregister)
 	// Only remove the buffered object, don't reset the name
 	// This means one cannot know if the buffer has been destroyed until one attempts to use it.
 	if(buffer_to_unregister == buffer_object && buffer_object)

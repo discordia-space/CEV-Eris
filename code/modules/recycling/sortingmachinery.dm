@@ -224,6 +224,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = ITEM_SIZE_NORMAL
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
+	rarity_value = 50
 	var/amount = 25.0
 
 
@@ -331,6 +333,7 @@
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	rarity_value = 50
 	var/currTag = 0
 
 	w_class = ITEM_SIZE_SMALL

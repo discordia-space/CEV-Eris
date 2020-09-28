@@ -30,11 +30,11 @@
 
 	var/installation = /obj/item/weapon/gun/energy/gun		//the type of weapon installed
 	var/gun_charge = 0		//the charge of the gun inserted
-	var/projectile = null	//holder for bullettype
-	var/eprojectile = null	//holder for the shot when emagged
+	var/projectile	//holder for bullettype
+	var/eprojectile	//holder for the shot when emagged
 	var/reqpower = 500		//holder for power needed
-	var/iconholder = null	//holder for the icon_state. 1 for orange sprite, null for blue.
-	var/egun = null			//holder to handle certain guns switching bullettypes
+	var/iconholder	//holder for the icon_state. 1 for orange sprite, null for blue.
+	var/egun			//holder to handle certain guns switching bullettypes
 
 	var/last_fired = 0		//1: if the turret is cooling down from a shot, 0: turret is ready to fire
 	var/shot_delay = 15		//1.5 seconds between each shot

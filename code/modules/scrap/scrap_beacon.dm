@@ -44,8 +44,8 @@
 		var/turf/newloc = pick(flooring_near_beacon)
 		flooring_near_beacon -= newloc
 		if(prob(30))
-			new /obj/effect/falling_effect(newloc, /obj/random/scrap/beacon/sparse_weighted)
+			new /obj/effect/falling_effect(newloc, /obj/spawner/scrap/sparse)
 		else
-			new /obj/effect/falling_effect(newloc, /obj/random/scrap/beacon/moderate_weighted)
+			new /obj/effect/falling_effect(newloc, /obj/spawner/scrap/beacon)
 	active = FALSE
 	icon_state = "beacon0"

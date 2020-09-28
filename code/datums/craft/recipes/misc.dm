@@ -147,7 +147,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC, "time" = 30),
 		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
-		list(/obj/item/weapon/circuitboard, 1, "time" = 20),
+		list(/obj/item/weapon/electronics/circuitboard, 1, "time" = 20),
 		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
 		list(/obj/item/weapon/stock_parts/capacitor, 1),
 		list(/obj/item/weapon/cell/small, 1),
@@ -239,6 +239,7 @@
 	)
 	variation_type = CRAFT_VARIATION
 
+
 /datum/craft_recipe/gun_parts //place holder for future updates with the stats thing
 	name = "gun parts"
 	result = /obj/item/gun_parts
@@ -258,3 +259,13 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),    
 	)
 	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/pipe
+	name = "Smoking pipe"
+	result = /obj/item/clothing/mask/smokable/pipe
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10)
+	)
+	variation_type = CRAFT_VARIATION
+

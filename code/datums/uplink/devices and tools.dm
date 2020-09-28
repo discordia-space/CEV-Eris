@@ -94,7 +94,7 @@
 /datum/uplink_item/item/tools/teleporter
 	name = "Teleporter Circuit Board"
 	item_cost = 8
-	path = /obj/item/weapon/circuitboard/teleporter
+	path = /obj/item/weapon/electronics/circuitboard/teleporter
 
 /datum/uplink_item/item/tools/teleporter/New()
 	..()
@@ -103,7 +103,7 @@
 /datum/uplink_item/item/tools/ai_module
 	name = "Hacked AI Upload Module"
 	item_cost = 14
-	path = /obj/item/weapon/aiModule/syndicate
+	path = /obj/item/weapon/electronics/ai_module/syndicate
 
 /datum/uplink_item/item/tools/supply_beacon
 	name = "Hacked Supply Beacon (DANGER!)"

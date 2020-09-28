@@ -14,6 +14,10 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
+	//Spawn_values
+	bad_types = /obj/item/weapon/cell
+	rarity_value = 3
+	spawn_tags = SPAWN_TAG_POWERCELL
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 100
 	var/max_chargerate = 0.08 //Power cells are limited in how much power they can intake per charge tick, to prevent small cells from charging almost instantly

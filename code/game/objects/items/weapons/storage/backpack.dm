@@ -13,6 +13,7 @@
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE
+	spawn_tags = SPAWN_TAG_BACKPACK
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTIC = 2)
 	var/worn_access = FALSE // If the object may be accessed while equipped in a storage slot.
 	var/equip_access = TRUE // If the object may be accessed while equipped anywhere on a charcter, including hands.
@@ -22,7 +23,7 @@
 	if (!item_state)
 		item_state = icon_state
 
-/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W, mob/user)
 	if (!worn_check())
 		return
 	..()
@@ -37,7 +38,7 @@
 		return
 	..()
 
-/obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
+/obj/item/weapon/storage/backpack/equipped(mob/user, slot)
 	..(user, slot)
 	if (use_sound)
 		playsound(loc, use_sound, 50, 1, -5)
@@ -51,7 +52,7 @@
 	..()
 
 
-/obj/item/weapon/storage/backpack/proc/worn_check(var/no_message = FALSE)
+/obj/item/weapon/storage/backpack/proc/worn_check(no_message = FALSE)
 	if(!equip_access && is_equipped())
 		var/mob/living/L = loc
 		if (istype(L))
@@ -84,7 +85,7 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 2
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
-/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
 		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(W)
@@ -92,7 +93,7 @@
 	..()
 
 	//Please don't clutter the parent storage item with stupid hacks.
-/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/weapon/storage/backpack/holding/can_be_inserted(obj/item/W, stop_messages = 0)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
 		return TRUE
 	return ..()
@@ -140,42 +141,50 @@
 	name = "botanical backpack"
 	icon_state = "backpack_botanical"
 	desc = "A green backpack for plant related work."
+	rarity_value = 12.5
 
 /obj/item/weapon/storage/backpack/captain
 	name = "captain's backpack"
 	desc = "It's a special backpack made exclusively for officers."
 	icon_state = "backpack_captain"
+	rarity_value = 50
 
 /obj/item/weapon/storage/backpack/industrial
 	name = "industrial backpack"
 	desc = "It's a tough backpack for the daily grind of station life."
 	icon_state = "backpack_industrial"
+	rarity_value = 8.33
 
 /obj/item/weapon/storage/backpack/medical
 	name = "medical backpack"
 	desc = "It's a backpack especially designed for use in a sterile environment."
 	icon_state = "backpack_medical"
+	rarity_value = 8.33
 
 /obj/item/weapon/storage/backpack/security
 	name = "security backpack"
 	desc = "It's a very robust backpack."
 	icon_state = "backpack_security"
+	rarity_value = 8.33
 
 /obj/item/weapon/storage/backpack/clown
 	name = "Giggles von Honkerton"
 	desc = "It's a backpack made by Honk! Co."
 	icon_state = "backpack_clown"
+	rarity_value = 12.5
 
 //Faction-specific backpacks
 /obj/item/weapon/storage/backpack/ironhammer
 	name = "operator's backpack"
 	desc = "Done in a complementing shade for IronHammer Security forces, a staple for military contractors everywhere."
 	icon_state = "backpack_ironhammer"
+	rarity_value = 25
 
 /obj/item/weapon/storage/backpack/neotheology
 	name = "cruciformed backpack"
 	desc = "For carrying all your holy needs."
 	icon_state = "backpack_neotheology"
+	rarity_value = 25
 
 //Used by mercenaries
 /obj/item/weapon/storage/backpack/military
@@ -183,6 +192,7 @@
 	desc = "Designed for planetary infantry, holds a lot of equipment."
 	icon_state = "backpack_military"
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.3
+	rarity_value = 8.33
 
 /*
  * Backsport Types (alternative style)
@@ -216,17 +226,20 @@
 	name = "botanical sport backpack"
 	desc = "A green sport backpack for plant related work."
 	icon_state = "backsport_botanical"
+	rarity_value = 12.5
 
 //Faction-specific backsports
 /obj/item/weapon/storage/backpack/sport/ironhammer
 	name = "operator's sport backpack"
 	desc = "Done in a complementing shade for IronHammer Security forces. It looks as if it belongs on a kindergartener rather than a operative, which is why in actuality this style makes perfect sense."
 	icon_state = "backsport_ironhammer"
+	rarity_value = 25
 
 /obj/item/weapon/storage/backpack/sport/neotheology
 	name = "cruciformed sport backpack"
 	desc = "For carrying all your holy needs."
 	icon_state = "backsport_neotheology"
+	rarity_value = 25
 
 /*
  * Satchel Types
@@ -278,31 +291,39 @@
 	name = "botanical satchel"
 	icon_state = "satchel_botanical"
 	desc = "A green satchel for plant related work."
+	rarity_value = 12.5
 
 /obj/item/weapon/storage/backpack/satchel/captain
 	name = "captain's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel_captain"
+	rarity_value = 50
 
 /obj/item/weapon/storage/backpack/satchel/industrial
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
 	icon_state = "satchel_industrial"
+	rarity_value = 8.33
 
 /obj/item/weapon/storage/backpack/satchel/medical
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
 	icon_state = "satchel_medical"
+	rarity_value = 8.33
 
 /obj/item/weapon/storage/backpack/satchel/security
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
 	icon_state = "satchel_security"
+	rarity_value = 8.33
 
 /obj/item/weapon/storage/backpack/satchel/leather
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
 	icon_state = "satchel_leather"
+
+/obj/item/weapon/storage/backpack/satchel/leather/withwallet
+	rarity_value = 4.16
 
 /obj/item/weapon/storage/backpack/satchel/leather/withwallet/populate_contents()
 	new /obj/item/weapon/storage/wallet/random(src)
@@ -312,11 +333,13 @@
 	name = "operator's satchel"
 	desc = "Done in a complementing shade for IronHammer Security forces, for the itinerant military contractor."
 	icon_state = "satchel_ironhammer"
+	rarity_value = 12.5
 
 /obj/item/weapon/storage/backpack/satchel/neotheology
 	name = "cruciformed satchel"
 	desc = "Slightly more accessible means for your holy goods."
 	icon_state = "satchel_neotheology"
+	rarity_value = 12.5
 
 //Used by mercenaries
 /obj/item/weapon/storage/backpack/satchel/military
@@ -324,6 +347,7 @@
 	desc = "Designed for planetary infantry, for quick access to equipment."
 	icon_state = "satchel_military"
 	max_storage_space = DEFAULT_HUGE_STORAGE * 0.9
+	rarity_value = 8.33
 
 /*
  * Duffelbag Types
@@ -335,3 +359,4 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.5
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
 	equip_access = FALSE
+	rarity_value = 2.08

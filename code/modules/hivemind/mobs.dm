@@ -19,6 +19,9 @@
 	attacktext = "attacks"
 	universal_speak = TRUE
 	speak_chance = 5
+	bad_types = /mob/living/simple_animal/hostile/hivemind
+	spawn_tags = SPAWN_TAG_MOB_HIVEMIND
+	rarity_value = 20
 	var/malfunction_chance = 5
 	var/ability_cooldown = 30 SECONDS
 	var/list/target_speak = list()			//this is like speak list, but when we see our target
@@ -284,7 +287,7 @@
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
 	speed = 2.5 //explosive, slow, don't ignore it. it can catch up to you
-
+	rarity_value = 25
 	speak = list(
 				"WE COME IN PEACE.",
 				"WE BRING GREETINGS FROM A FRIENDLY AI.",
@@ -346,6 +349,7 @@
 	speed = 7
 	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
 	mob_size = MOB_MEDIUM
+	rarity_value = 100
 
 	speak = list("They grow up so fast.",
 				"Come out, come out, wherever you are.",
