@@ -128,3 +128,40 @@
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
+
+/datum/individual_objective/transfer//test requiered
+	name = "Family Business"
+	//req_department = list(DEPARTMENT_GUILD)
+	var/datum/money_account/target
+
+/datum/individual_objective/transfer/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/valids_targets = list()
+	for(var/mob/living/T in GLOB.human_mob_list)
+		if(T.mind && T.mind.initial_account)
+			valids_targets += T.mind.initial_account
+	valids_targets -= L.mind.initial_account
+	return valids_targets.len
+
+/datum/individual_objective/transfer/assign()
+	..()
+	var/list/valids_targets = list()
+	for(var/mob/living/T in GLOB.human_mob_list)
+		if(T.mind && T.mind.initial_account)
+			valids_targets += T.mind.initial_account
+	valids_targets -= owner.initial_account
+	target = pick(valids_targets)
+	units_requested = rand(2000, 5000)
+	desc = "Some of your relative asked you to procure and provide this account number: \"[target.account_number]\" with sum of [units_requested] credits. \
+			You dont know exactly why, but this is important"
+	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
+
+/datum/individual_objective/transfer/task_completed(datum/money_account/S, datum/money_account/T, amount)
+	if(S == owner.initial_account && T == target)
+		..(amount)
+
+/datum/individual_objective/transfer/completed()
+	if(completed) return
+	UnregisterSignal(owner.initial_account, COMSIG_TRANSATION)
+	..()

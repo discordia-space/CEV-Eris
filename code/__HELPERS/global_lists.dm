@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(all_spawn_data)
 	paths = subtypesof(/datum/individual_objective)
 	for(var/T in paths)
 		var/datum/individual_objective/IO = new T
-		GLOB.individual_objectives[IO] += T
+		GLOB.individual_objectives[T] = IO
 
 	//Stashes
 	paths = subtypesof(/datum/stash)

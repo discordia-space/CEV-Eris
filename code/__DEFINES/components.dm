@@ -37,6 +37,7 @@
 
 #define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
 #define COMSIG_RITUAL "ritual"
+#define COMSIG_TRANSATION "transation"          //from transfer_funds()
 
 // /atom signals
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)

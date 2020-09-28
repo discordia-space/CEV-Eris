@@ -1,18 +1,12 @@
 /datum/mind/var/list/individual_objectives = list()
 
 /mob/living/carbon/human/proc/pick_individual_objective()
-	if(!mind || (mind && player_is_antag(mind)))
-		return FALSE
 	var/list/valid_objectives = list()
-	for(var/datum/individual_objective/IO in GLOB.individual_objectives)
-		var/obj/item/weapon/implant/core_implant/cruciform/C = get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
-		if(!C && IO.req_cruciform)
+	for(var/npath in GLOB.individual_objectives)
+		var/datum/individual_objective/IO = GLOB.individual_objectives[npath]
+		if(!IO.can_assign(src))
 			continue
-		if(C && !IO.allow_cruciform)
-			continue
-		if(IO.req_department.len && (!mind.assigned_job || !(mind.assigned_job.department in IO.req_department)))
-			continue
-		valid_objectives += GLOB.individual_objectives[IO]
+		valid_objectives += npath
 	for(var/datum/individual_objective/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
@@ -104,3 +98,17 @@
 		valid_targets += faction_item
 	if(valid_targets.len)
 		return pick(valid_targets)
+
+/datum/individual_objective/proc/can_assign(mob/living/L)
+	if(!isliving(L))
+		return FALSE
+	if(!L || !L.mind || (L.mind && player_is_antag(L.mind)))
+		return FALSE
+	var/obj/item/weapon/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform)
+	if(!C && req_cruciform)
+		return FALSE
+	if(C && !allow_cruciform)
+		return FALSE
+	if(req_department.len && (!L.mind.assigned_job || !(L.mind.assigned_job.department in req_department)))
+		return FALSE
+	return TRUE

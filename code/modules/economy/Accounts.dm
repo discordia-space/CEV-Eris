@@ -171,6 +171,8 @@
 
 		//The transaction to give the money
 		var/datum/transaction/T2 = new(amount, source.get_name(), purpose, terminal_id)
+		SEND_SIGNAL(source, COMSIG_TRANSATION, source, target, amount)
+		admin_notice(SPAN_DANGER("[source.account_number] envio [amount] to [target.account_number]"))
 		return T2.apply_to(target)
 
 	return FALSE
