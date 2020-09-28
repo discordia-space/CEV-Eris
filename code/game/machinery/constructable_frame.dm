@@ -8,6 +8,10 @@
 	use_power = NO_POWER_USE
 	density = TRUE
 	anchored = TRUE
+	spawn_frequency = 10 //as /obj/structure/computerframe
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_CONSTRUCTABLE_FRAME
+	bad_types = /obj/machinery/constructable_frame
 
 /obj/machinery/constructable_frame/machine_frame //Made into a seperate type to make future revisions easier.
 	name = "machine frame"
@@ -145,8 +149,8 @@
 						icon_state = "[base_state]_1"
 
 		if(STATE_WIRES)
-			if(istype(I, /obj/item/weapon/circuitboard))
-				var/obj/item/weapon/circuitboard/B = I
+			if(istype(I, /obj/item/weapon/electronics/circuitboard))
+				var/obj/item/weapon/electronics/circuitboard/B = I
 				if(B.board_type == "machine" && frame_type == B.frame_type)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, SPAN_NOTICE("You add the circuit board to the frame."))
@@ -224,6 +228,7 @@
 	icon_state = "v2box_0"
 	base_state = "v2box"
 	frame_type = FRAME_VERTICAL
+	bad_types = /obj/machinery/constructable_frame/machine_frame/vertical
 
 /obj/machinery/constructable_frame/machine_frame/vertical/New()
 	..()

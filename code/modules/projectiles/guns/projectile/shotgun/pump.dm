@@ -18,6 +18,7 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 1000
+	rarity_value = 16
 	recoil_buildup = 20
 	one_hand_penalty = 15 //full sized shotgun level
 
@@ -26,12 +27,12 @@
 		return chambered.BB
 	return null
 
-/obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
+/obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)
 		pump(user)
 		recentpumpmsg = world.time
 
-/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M)
 	var/turf/newloc = get_turf(src)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 

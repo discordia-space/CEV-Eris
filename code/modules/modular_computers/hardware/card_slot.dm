@@ -6,9 +6,8 @@
 	hardware_size = 1
 	origin_tech = list(TECH_DATA = 2)
 	usage_flags = PROGRAM_ALL
-
-	var/obj/item/weapon/card/id/stored_card = null
-
+	rarity_value = 5.55
+	var/obj/item/weapon/card/id/stored_card
 
 /obj/item/weapon/computer_hardware/card_slot/Destroy()
 	if(stored_card)

@@ -14,7 +14,7 @@
 /obj/item/weapon/disk/data
 	name = "Cloning Data Disk"
 	icon_state = "data-purple"
-	var/datum/dna2/record/buf = null
+	var/datum/dna2/record/buf
 	var/read_only = FALSE //Well,it's still a floppy disk
 
 /obj/item/weapon/disk/data/New()

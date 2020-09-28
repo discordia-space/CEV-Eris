@@ -23,6 +23,7 @@
 	damage_multiplier = 1.75
 	armor_penetration = 0.65 // Insanely powerful handcannon, but worthless against heavy armor
 	recoil_buildup = 50
+	rarity_value = 9.6
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"

@@ -1,4 +1,4 @@
-obj/item/weapon/circuitboard/vending
+/obj/item/weapon/electronics/circuitboard/vending
 	name = "circuit board (custom vendomat)"
 	build_path = /obj/machinery/vending/custom
 	board_type = "machine"

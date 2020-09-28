@@ -1,6 +1,7 @@
 /obj/item/weapon/implanter/spying
 	name = "implanter (S)"
 	implant = /obj/item/weapon/implant/spying
+	spawn_tags = null
 
 
 /obj/item/weapon/implant/spying

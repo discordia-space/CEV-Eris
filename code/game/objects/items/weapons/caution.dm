@@ -9,6 +9,8 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
+	rarity_value = 3.33
+	spawn_tags = SPAWN_TAG_JUNK
 
 /obj/item/weapon/caution/cone
 	desc = "This cone is trying to warn you of something!"

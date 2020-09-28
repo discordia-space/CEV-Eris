@@ -132,3 +132,6 @@ var/global/list/ore_data = list()
 	smelts_to = "tritium"
 	compresses_to = "mhydrogen"
 	scan_icon = "mineral_rare"
+	spread_chance = 5
+	result_amount = 5
+	ore = /obj/item/weapon/ore/hydrogen

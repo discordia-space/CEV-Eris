@@ -46,8 +46,8 @@
 	layer = ABOVE_ALL_MOB_LAYER
 
 	var/health = 25
-	var/mob/living/affecting = null //Who it is currently affecting, if anyone.
-	var/mob/living/master = null    //Who shot web. Will let this person know if the net was successful.
+	var/mob/living/affecting //Who it is currently affecting, if anyone.
+	var/mob/living/master    //Who shot web. Will let this person know if the net was successful.
 	var/countdown = -1
 
 /obj/effect/energy_net/teleport

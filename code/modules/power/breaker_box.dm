@@ -18,7 +18,7 @@
 	var/directions = list(1,2,4,8,5,6,9,10)
 	var/RCon_tag = "NO_TAG"
 	var/update_locked = 0
-	circuit = /obj/item/weapon/circuitboard/breakerbox
+	circuit = /obj/item/weapon/electronics/circuitboard/breakerbox
 
 /obj/machinery/power/breakerbox/Destroy()
 	. = ..()

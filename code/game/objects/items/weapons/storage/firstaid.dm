@@ -14,6 +14,9 @@
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_FIRSTAID
+	bad_types = /obj/item/weapon/storage/firstaid
 	var/empty = 0
 
 
@@ -22,6 +25,7 @@
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
+	rarity_value = 15
 
 /obj/item/weapon/storage/firstaid/fire/populate_contents()
 	icon_state = pick("ointment","firefirstaid")
@@ -38,6 +42,7 @@
 
 /obj/item/weapon/storage/firstaid/regular
 	icon_state = "firstaid"
+	rarity_value = 10
 
 /obj/item/weapon/storage/firstaid/regular/populate_contents()
 	if (empty) return
@@ -55,6 +60,7 @@
 	desc = "Used to treat when you have a high amoutn of toxins in your body."
 	icon_state = "antitoxin"
 	item_state = "firstaid-toxin"
+	rarity_value = 15
 
 /obj/item/weapon/storage/firstaid/toxin/populate_contents()
 	icon_state = pick("antitoxin","antitoxfirstaid2","antitoxfirstaid3")
@@ -75,6 +81,7 @@
 	desc = "A box full of oxygen goodies."
 	icon_state = "o2"
 	item_state = "firstaid-o2"
+	rarity_value = 15
 
 /obj/item/weapon/storage/firstaid/o2/populate_contents()
 	if (empty) return
@@ -92,6 +99,7 @@
 	desc = "Contains advanced medical treatments."
 	icon_state = "advfirstaid"
 	item_state = "firstaid-advanced"
+	rarity_value = 30
 
 /obj/item/weapon/storage/firstaid/adv/populate_contents()
 	if (empty) return
@@ -109,6 +117,7 @@
 	desc = "Contains advanced medical treatments."
 	icon_state = "bezerk"
 	item_state = "firstaid-advanced"
+	rarity_value = 100
 
 /obj/item/weapon/storage/firstaid/combat/populate_contents()
 	if (empty) return
@@ -125,6 +134,7 @@
 	desc = "Contains tools for surgery. Has precise foam fitting for safe transport."
 	icon_state = "surgeon"
 	item_state = "firstaid-surgeon"
+	rarity_value = 90
 	can_hold = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,
@@ -149,6 +159,9 @@
 	new /obj/item/weapon/tool/surgicaldrill(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	make_exact_fit()
+
+/obj/item/weapon/storage/firstaid/surgery/traitor
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/firstaid/surgery/traitor/populate_contents()
 	if (empty) return
@@ -184,6 +197,9 @@
 	use_sound = null
 	matter = list(MATERIAL_PLASTIC = 1)
 	max_storage_space = 12
+	rarity_value = 10
+	bad_types = /obj/item/weapon/storage/pill_bottle
+	spawn_tags = SPAWN_TAG_MEDICINE
 
 /obj/item/weapon/storage/pill_bottle/antitox
 	name = "bottle of Dylovene pills"
@@ -292,6 +308,8 @@
 /obj/item/weapon/storage/pill_bottle/tramadol
 	name = "bottle of Tramadol pills"
 	desc = "Contains pills used to relieve pain."
+	spawn_tags = SPAWN_TAG_MEDICINE_CONTRABAND
+	rarity_value = 15
 
 /obj/item/weapon/storage/pill_bottle/tramadol/populate_contents()
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
@@ -318,6 +336,7 @@
 /obj/item/weapon/storage/pill_bottle/prosurgeon
 	name = "bottle of ProSurgeon pills"
 	desc = "Contains pills used to reduce hand tremor."
+	rarity_value = 20
 
 /obj/item/weapon/storage/pill_bottle/prosurgeon/populate_contents()
 	new /obj/item/weapon/reagent_containers/pill/prosurgeon(src)
@@ -343,16 +362,16 @@
 	use_to_pickup = TRUE
 
 /obj/item/weapon/storage/freezer/contains_food/populate_contents()
-	new /obj/random/pizza/low_chance(src)
-	new /obj/random/soda(src)
-	new /obj/random/soda/low_chance(src)
-	new /obj/random/rations/low_chance(src)
-	new /obj/random/junkfood(src)
-	new /obj/random/junkfood(src)
-	new /obj/random/junkfood(src)
-	new /obj/random/junkfood/low_chance(src)
-	new /obj/random/junkfood/low_chance(src)
-	new /obj/random/booze/low_chance(src)
+	new /obj/spawner/pizza/low_chance(src)
+	new /obj/spawner/soda(src)
+	new /obj/spawner/soda/low_chance(src)
+	new /obj/spawner/rations/low_chance(src)
+	new /obj/spawner/junkfood(src)
+	new /obj/spawner/junkfood(src)
+	new /obj/spawner/junkfood(src)
+	new /obj/spawner/junkfood/low_chance(src)
+	new /obj/spawner/junkfood/low_chance(src)
+	new /obj/spawner/booze/low_chance(src)
 
 /obj/item/weapon/storage/freezer/medical
 	name = "organ freezer"

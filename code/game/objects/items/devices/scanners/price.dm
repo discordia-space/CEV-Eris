@@ -8,8 +8,8 @@
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 1
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-
 	charge_per_use = 3
+	rarity_value = 25
 
 /obj/item/device/scanner/price/is_valid_scan_target(atom/movable/target)
 	return istype(target)

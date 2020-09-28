@@ -20,7 +20,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/autolathe
+	circuit = /obj/item/weapon/electronics/circuitboard/autolathe
 
 	var/build_type = AUTOLATHE
 

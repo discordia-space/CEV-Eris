@@ -28,6 +28,7 @@
 /obj/item/weapon/implanter/excelsior
 	name = "implanter-complant"
 	implant = /obj/item/weapon/implant/excelsior
+	spawn_tags = null
 
 /obj/item/weapon/implant/excelsior/broken
 	name = "broken excelsior implant"

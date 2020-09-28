@@ -9,6 +9,7 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	attack_verb = list("stabbed")
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 30, QUALITY_BONE_SETTING = 10)
+	rarity_value = 6
 
 /obj/item/weapon/tool/screwdriver/improvised
 	name = "screwpusher"
@@ -17,6 +18,7 @@
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 15)
 	degradation = 2
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 3
 
 /obj/item/weapon/tool/screwdriver/electric
 	name = "electric screwdriver"
@@ -29,6 +31,7 @@
 	max_upgrades = 4
 	use_power_cost = 0.18
 	suitable_cell = /obj/item/weapon/cell/small
+	rarity_value = 24
 
 /obj/item/weapon/tool/screwdriver/combi_driver
 	name = "combi driver"
@@ -43,8 +46,10 @@
 	use_power_cost = 0.24
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 4
+	rarity_value = 48
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
-/obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.targeted_organ != BP_EYES && user.targeted_organ != BP_HEAD)
@@ -66,3 +71,6 @@
 	use_power_cost = 0.3
 	suitable_cell = /obj/item/weapon/cell/small
 	max_upgrades = 2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL

@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = FALSE
 
-	circuit = /obj/item/weapon/circuitboard/shield_generator
+	circuit = /obj/item/weapon/electronics/circuitboard/shield_generator
 
 	var/needs_update = FALSE //If true, will update in process
 

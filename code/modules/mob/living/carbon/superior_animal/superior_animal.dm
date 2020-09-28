@@ -107,7 +107,7 @@
 /mob/living/carbon/superior_animal/Destroy()
 	. = ..()
 
-/mob/living/carbon/superior_animal/u_equip(obj/item/W as obj)
+/mob/living/carbon/superior_animal/u_equip(obj/item/W)
 	return
 
 /mob/living/carbon/superior_animal/proc/visible_emote(message)

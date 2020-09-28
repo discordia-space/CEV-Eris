@@ -12,7 +12,9 @@ var/list/holder_mob_icon_cache = list()
 		slot_r_hand_str = 'icons/mob/items/righthand_holder.dmi',
 	)
 	origin_tech = null
-	var/mob/living/contained = null
+	spawn_blacklisted = TRUE
+	spawn_frequency = 0
+	var/mob/living/contained
 	var/icon_state_dead
 	var/desc_dead
 	var/name_dead
