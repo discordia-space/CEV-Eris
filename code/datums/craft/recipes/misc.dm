@@ -46,6 +46,16 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/bone_braces
+	name = "bone braces"
+	result = /obj/item/bone_brace
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 20, 50),
+		list(QUALITY_WIRE_CUTTING, 10, 120)
+	)
+	related_stats = list(STAT_COG, STAT_BIO, STAT_MEC)
+
 /datum/craft_recipe/plastic_bag
 	name = "plastic bag"
 	result = /obj/item/weapon/storage/bag/plastic

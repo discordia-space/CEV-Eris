@@ -258,7 +258,7 @@
 
 /datum/surgery_step/replace_bone
 	target_organ_type = /obj/item/organ/internal/bone
-	allowed_tools = list(/obj/item/organ/internal/bone = 75) //Bone replacement surgery is very hard
+	allowed_tools = list(/obj/item/organ/internal/bone = 75) //Bone replacement surgery is hard
 	duration = 120
 	blood_level = 1
 
@@ -293,6 +293,38 @@
 		SPAN_WARNING("Your hand slips, breaking [organ.get_surgery_name()]!")
 	)
 	organ.fracture()
+
+/datum/surgery_step/reinforce_bone
+	target_organ_type = /obj/item/organ/internal/bone
+	allowed_tools = list(/obj/item/bone_brace = 50) //Bone reinforcement surgery is very hard
+	duration = 130
+	blood_level = 1
+
+/datum/surgery_step/reinforce_bone/can_use(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
+	return BP_IS_ORGANIC(organ) && organ.is_open() && (organ.parent.status & ORGAN_BROKEN)
+
+/datum/surgery_step/reinforce_bone/begin_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] starts reinforcing [organ.get_surgery_name()]"),
+		SPAN_NOTICE("You start reinforcing [organ.get_surgery_name()]")
+	)
+
+	organ.owner_custom_pain("You feel metal plates tearing through your [organ.get_surgery_name()]", 1)
+
+/datum/surgery_step/reinforce_bone/end_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
+	user.visible_message(
+		SPAN_NOTICE("[user] reinforces [organ.get_surgery_name()]."),
+		SPAN_NOTICE("You reinforce [organ.get_surgery_name()].")
+	)
+	qdel(tool)
+	organ.reinforce()
+
+/datum/surgery_step/reinforce_bone/fail_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
+		SPAN_WARNING("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
+	)
+	organ.take_damage(5, 0)
 
 /datum/surgery_step/remove_item
 	required_tool_quality = QUALITY_CLAMPING

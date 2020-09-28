@@ -72,6 +72,7 @@
 				"step" = /datum/surgery_step/robotic/connect_organ
 			)
 		else if(istype(organ, /obj/item/organ/internal/bone))
+			var/obj/item/organ/internal/bone/B = organ
 			connect_action = list(
 				"name" = (organ.parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
 				"organ" = "\ref[organ]",
@@ -85,6 +86,15 @@
 				)
 
 				actions_list.Add(list(replace_bone_action))
+			else if(!(B.reinforced)) //Bone must be broken and not reinforced
+				var/list/reinforce_bone_action = list(
+					"name" = "Reinforce",
+					"organ" = "\ref[organ]",
+					"step" = /datum/surgery_step/reinforce_bone
+				)
+
+				actions_list.Add(list(reinforce_bone_action))
+
 		else
 			connect_action = list(
 				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
