@@ -46,3 +46,8 @@
 	name = "Internal Energy Armblade Implant"
 	item_cost = 10
 	path = /obj/item/organ_module/active/simple/armblade/energy_blade
+
+/datum/uplink_item/item/implants/energy_blade
+	name = "Embedded Thermal Shades"
+	item_cost = 10
+	path = /obj/item/organ_module/active/hud/thermal

@@ -10,6 +10,10 @@
 		holding.canremove = 0
 
 /obj/item/organ_module/active/simple/proc/deploy(mob/living/carbon/human/H, obj/item/organ/external/E)
+	if(holding == null)
+		to_chat(H, SPAN_WARNING("There are nothing to extend"))
+		return
+
 	var/slot = null
 	if(E.organ_tag in list(BP_L_ARM))
 		slot = slot_l_hand
@@ -22,6 +26,11 @@
 		)
 
 /obj/item/organ_module/active/simple/proc/retract(mob/living/carbon/human/H, obj/item/organ/external/E)
+	if(holding == null)
+		var/mob/M = holding.loc
+		to_chat(M, SPAN_WARNING("There are nothing to retract"))
+		return
+
 	if(holding.loc == src)
 		return
 

@@ -68,6 +68,23 @@
 	build_path = /obj/item/organ_module/active/multitool/miner
 	name = "Embedded mining multitool"
 
+/datum/design/research/item/mechfab/modules/hud
+
+/datum/design/research/item/mechfab/modules/hud/med
+	build_path = /obj/item/organ_module/active/hud/med
+	name = "Embedded Med Hud Shades"
+
+/datum/design/research/item/mechfab/modules/hud/sec
+	build_path = /obj/item/organ_module/active/hud/sec
+	name = "Embeded Security Hud Shades"
+
+/datum/design/research/item/mechfab/modules/hud/night
+	build_path = /obj/item/organ_module/active/hud/night
+	name = "Embedded Night Vision Shades"
+
+/datum/design/research/item/mechfab/modules/hud/thermal
+	build_path = /obj/item/organ_module/active/hud/thermal
+	name = "Embedded Thermal Shades"
 
 //Implants
 /datum/design/research/item/implant

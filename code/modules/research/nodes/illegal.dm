@@ -46,8 +46,8 @@
 	unlocks_designs = list(/datum/design/research/item/chameleon_kit)
 
 /datum/technology/freedom_implant
-	name = "Glass Case- 'Freedom'"
-	desc = "Freedom' implant releases EM impulse in the owner body, that destroy all implants of slaving in, breaking chains."
+	name = "Illegal Implants"
+	desc = "Illegal implants."
 	tech_type = RESEARCH_COVERT
 
 	x = 0.5
@@ -58,7 +58,9 @@
 	required_tech_levels = list(RESEARCH_BIOTECH = 5)
 	cost = 3000
 
-	unlocks_designs = list(/datum/design/research/item/implant/freedom)
+	unlocks_designs = list(/datum/design/research/item/implant/freedom,
+							/datum/design/research/item/mechfab/modules/hud/thermal,
+							/datum/design/research/item/mechfab/modules/hud/night)
 
 /datum/technology/tyrant_aimodule
 	name = "AI Core Module (T.Y.R.A.N.T.)"
