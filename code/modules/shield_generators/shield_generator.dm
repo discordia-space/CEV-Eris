@@ -179,6 +179,8 @@
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
 		for(var/turf/T in shielded_turfs)
+			if (locate(/obj/effect/shield) in T)
+				continue
 			isFloor = TRUE
 			for(var/turf/TN in orange(1, T))
 				if (!turf_is_external(TN) || !TN.CanPass(target = TN))
