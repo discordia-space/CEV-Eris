@@ -246,4 +246,4 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10)
 	)
-	variation_type = CRAFT_VARIATION
+	related_stats = list(STAT_COG)
