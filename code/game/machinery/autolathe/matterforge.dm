@@ -4,7 +4,6 @@
 #define ERR_OK 0
 #define ERR_NOTFOUND "not found"
 #define ERR_NOMATERIAL "no material"
-#define ERR_NOREAGENT "no reagent"
 #define ERR_PAUSED "paused"
 
 /obj/machinery/matter_nanoforge
@@ -518,8 +517,8 @@
 #undef ERR_OK
 #undef ERR_NOTFOUND
 #undef ERR_NOMATERIAL
-#undef ERR_NOREAGENT
 #undef SANITIZE_LATHE_COST
+#undef ERR_PAUSED
 
 /obj/machinery/matter_nanoforge/proc/update_desc(var/stored_mats)
 	desc = "It consumes items and produces compressed matter. It has [stored_mats] Compressed Matter stored."
