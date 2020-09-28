@@ -172,7 +172,7 @@
 		try_resolve_mob_pulling(M, src)
 
 /obj/structure/multiz/ladder/AltClick(var/mob/living/carbon/human/user)
-	if(in_range(src, user))
+	if(get_dist(src, user) <= 3)
 		if(!user.is_physically_disabled())
 			var/turf/peekTurf = istop ? GetBelow(src) : GetAbove(src)
 			if(target)
