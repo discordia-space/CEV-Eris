@@ -26,14 +26,23 @@
 	req_cruciform = TRUE
 	var/mob/living/carbon/human/target
 
+/datum/individual_objective/convert/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	for(var/mob/living/carbon/human/H in candidates)
+		if(!H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+			return TRUE
+	return FALSE
+
 /datum/individual_objective/convert/assign()
 	..()
 	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)//todo: no owner
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder))
 		if(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
 		valid_targets += H
-	target = pick(valid_targets)//todo: no mind.current
+	target = pick(valid_targets)
 	desc = "[target] will make a nice addition to the church. Convert them, even if force is required."
 	RegisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
 
@@ -53,11 +62,19 @@
 	var/ritual_name = "Revelation"
 	var/mob/living/carbon/human/target
 
+/datum/individual_objective/spread/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	for(var/mob/living/carbon/human/H in candidates)
+		if(!H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+			return TRUE
+	return FALSE
+
 /datum/individual_objective/spread/assign()
 	..()
 	var/list/valid_targets = list()
-	//for(var/mob/living/carbon/human/H in GLOB.player_list)//todo: no owner
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)//todo: no owner //GLOB.player_list
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder))
 		if(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
 		valid_targets += H

@@ -28,7 +28,7 @@
 	UnregisterSignal(target_area, COMSIG_AREA_APC_OPERATING)
 	..()
 
-/datum/individual_objective/more_tech//work
+/datum/individual_objective/more_tech
 	name = "Endless Search"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	var/obj/item/target
@@ -79,7 +79,7 @@
 	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
 	..()
 
-/datum/individual_objective/oddity//work
+/datum/individual_objective/oddity
 	name = "Warded"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	units_requested = 5

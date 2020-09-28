@@ -122,10 +122,8 @@
 	for(var/i=1, i<=nrange, i++)
 		var/mob/living/carbon/human/H = locate(/mob/living) in T
 		if(H)
-			admin_notice(SPAN_DANGER(" el proc nuevo RETORNO [H]"))
 			return H
 		T = get_step(T,user.dir)
-	admin_notice(SPAN_DANGER(" el pro no RETORNO nada"))
 	return
 
 //Getting implants

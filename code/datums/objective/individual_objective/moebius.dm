@@ -2,7 +2,7 @@
 	name = "The Biggest Brain"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	var/target_stat = STAT_COG
-	var/target_val //initial_val+delta
+	var/target_val
 	var/delta = 10
 
 /datum/individual_objective/big_brain/assign()
@@ -72,15 +72,15 @@
 	RegisterSignal(mind_holder, COMSIG_CARBON_ADICTION, .proc/task_completed)
 
 /datum/individual_objective/adiction/task_completed(mob/living/carbon/C, datum/reagent/reagent)
-	//if(C != mind_holder)//uncoment it
-	..(1)//tab
+	if(C != mind_holder)
+		..(1)
 
 /datum/individual_objective/adiction/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSIG_CARBON_ADICTION)
 	..()
 
-/datum/individual_objective/autopsy//work
+/datum/individual_objective/autopsy
 	name = "Death is the Answer"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	var/list/cadavers = list()
@@ -102,11 +102,16 @@
 	UnregisterSignal(mind_holder, COMSING_AUTOPSY)
 	..()
 
-/datum/individual_objective/more_research//workd
+/datum/individual_objective/more_research
 	name = "Mandate of Science"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	limited_antag = TRUE
 	var/obj/item/target
+
+/datum/individual_objective/more_research/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	return pick_faction_item(L)
 
 /datum/individual_objective/more_research/assign()
 	..()
@@ -147,19 +152,23 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_HEALTH)
 	..()
 
-/datum/individual_objective/for_science//work
+/datum/individual_objective/for_science
 	name = "Call of Science"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	limited_antag = TRUE
 	var/mob/living/carbon/human/target
 	var/list/valid_organs = list()
 
+/datum/individual_objective/for_science/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	return candidates.len
+
 /datum/individual_objective/for_science/assign()
 	..()
-	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		valid_targets += H
-	target = pick(valid_targets)//todo: no mind.current
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	target = pick(valid_targets)
 	for(var/obj/item/organ/external/E in target.organs)
 		valid_organs += E
 	for(var/obj/item/organ/O in target.internal_organs)

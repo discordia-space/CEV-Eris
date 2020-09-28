@@ -1,7 +1,15 @@
-/datum/individual_objective/upgrade//work
+/datum/individual_objective/upgrade
 	name = "Upgrade"
 	desc =  "Its time to improve your meat with shiny chrome. Gain new bionics, implant, or any mutation."
 	allow_cruciform = FALSE
+
+/datum/individual_objective/upgrade/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	for(var/obj/item/organ/external/Ex in mind_holder.organs)
+		if(!BP_IS_ROBOTIC(Ex))
+			return TRUE
+	return FALSE
 
 /datum/individual_objective/upgrade/assign()
 	..()
@@ -12,7 +20,7 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_ROBOTIC_MODIFICATION)
 	..()
 
-/datum/individual_objective/inspiration//work
+/datum/individual_objective/inspiration
 	name = "Triumph of the Spirit"
 	desc =  "Observer at least one positive breakdown. Inspiring!"
 	var/breakdown_type = /datum/breakdown/positive
@@ -22,8 +30,7 @@
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
 /datum/individual_objective/inspiration/task_completed(mob/living/L, datum/breakdown/breakdown)
-	//if(istype(breakdown, breakdown_type) && L != mind_holder)//uncoment
-	if(istype(breakdown, breakdown_type))//delete
+	if(istype(breakdown, breakdown_type) && L != mind_holder)
 		completed()
 
 /datum/individual_objective/inspiration/completed()
@@ -36,11 +43,15 @@
 	limited_antag = TRUE
 	var/mob/living/carbon/human/target
 
+/datum/individual_objective/derange/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	return candidates.len
+
 /datum/individual_objective/derange/assign()
 	..()
-	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		valid_targets += H
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(valid_targets)
 	desc = "[target] really pisses you off, ensure that they will get \
 			a mental breakdown. Characters from your own faction are blacklisted"
@@ -59,10 +70,10 @@
 #define ON_MOB_DRUG 2
 #define MOB_DELETE_DRUG 3
 
-/datum/individual_objective/addict//work
+/datum/individual_objective/addict
 	name = "Oil the Cogs"
 	based_time = TRUE
-	units_requested = 3 MINUTES//change to 5
+	units_requested = 5 MINUTES
 	var/list/drugs = list()
 	var/timer
 
@@ -91,7 +102,7 @@
 	UnregisterSignal(mind_holder, COMSIG_CARBON_HAPPY)
 	..()
 
-/datum/individual_objective/gift//work
+/datum/individual_objective/gift
 	name = "Gift"
 	desc = "You feel a need to leave a mark in other people lives. Ensure that at \
 			least someone will level up with oddity that you touched"
@@ -111,20 +122,24 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_LEVEL_UP)
 	..()
 
-/datum/individual_objective/protector//work
+/datum/individual_objective/protector
 	name = "Protector"
-	units_requested = 3 MINUTES//change to 15
+	units_requested = 15 MINUTES
 	based_time = TRUE
 	var/mob/living/carbon/human/target
 	var/timer
 	var/health_threshold = 50
 
+/datum/individual_objective/protector/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	return candidates.len
+
 /datum/individual_objective/protector/assign()
 	..()
-	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		valid_targets += H
-	target = pick(valid_targets)//todo: no mind.current
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	target = pick(valid_targets)
 	desc = "Ensure that [target] will not get their health slowered to [health_threshold] and below \
 			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold."
 	timer = world.time
@@ -147,20 +162,24 @@
 	UnregisterSignal(target, COMSIG_HUMAN_HEALTH)
 	..()
 
-/datum/individual_objective/helper//work
+/datum/individual_objective/helper
 	name = "Helping Hand"
-	units_requested = 3 MINUTES//change to 15
+	units_requested = 15 MINUTES
 	based_time = TRUE
 	var/mob/living/carbon/human/target
 	var/timer
 	var/sanity_threshold = 50
 
+/datum/individual_objective/helper/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	return candidates.len
+
 /datum/individual_objective/helper/assign()
 	..()
-	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		valid_targets += H
-	target = pick(valid_targets)//todo: no mind.current
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	target = pick(valid_targets)
 	desc = "Ensure that [target] will not get their sanity lowered to [sanity_threshold] and below \
 			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold"
 	timer = world.time
@@ -183,18 +202,22 @@
 	UnregisterSignal(target, COMSIG_HUMAN_SANITY)
 	..()
 
-/datum/individual_objective/obsession//work
+/datum/individual_objective/obsession
 	name = "Obsessive Observation"
 	var/mob/living/carbon/human/target
 	var/timer
-	units_requested = 3 MINUTES//change to 5
+	units_requested = 5 MINUTES
 	based_time = TRUE
+
+/datum/individual_objective/obsession/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	return candidates.len
 
 /datum/individual_objective/obsession/assign()
 	..()
-	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		valid_targets += H
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(valid_targets)//todo: no mind.current
 	desc = "There is something interesting in [target]. For [unit2time(units_requested)] minutes, you need \
 			to keep eye contact with them, and keep them in your view. Cameras will not work"
@@ -216,13 +239,18 @@
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
 
-/datum/individual_objective/greed//work
+/datum/individual_objective/greed
 	name = "Greed"
-	units_requested = 2 MINUTES//change to 10
+	units_requested = 10 MINUTES
 	based_time = TRUE
 	limited_antag = TRUE
 	var/obj/item/target
 	var/timer
+
+/datum/individual_objective/greed/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	return pick_faction_item(L, TRUE)
 
 /datum/individual_objective/greed/assign()
 	..()
@@ -249,7 +277,7 @@
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
 
-/datum/individual_objective/collenction//work
+/datum/individual_objective/collenction
 	name = "Collection"
 	var/obj/item/target
 
@@ -280,4 +308,43 @@
 /datum/individual_objective/collenction/completed()
 	if(completed) return
 	UnregisterSignal(mind_holder, COMSING_HUMAN_EQUITP)
+	..()
+
+/datum/individual_objective/economy
+	name = "Family Business"
+	req_department = list(DEPARTMENT_GUILD)
+	var/datum/money_account/target
+
+/datum/individual_objective/economy/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	if(!L.mind.initial_account)
+		return FALSE
+	var/list/valids_targets = list()
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L))
+		if(H.mind && H.mind.initial_account)
+			valids_targets += H.mind.initial_account
+	valids_targets -= L.mind.initial_account
+	return valids_targets.len
+
+/datum/individual_objective/economy/assign()
+	..()
+	var/list/valids_targets = list()
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -mind_holder))
+		if(H.mind && H.mind.initial_account)
+			valids_targets += H.mind.initial_account
+	valids_targets -= owner.initial_account
+	target = pick(valids_targets)
+	units_requested = rand(500, 1000)
+	desc = "The money must always flow but you must also prevent fees from ruining you.  \
+			Make a back transfer from you personal account for amount of [units_requested][CREDITS]"
+	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
+
+/datum/individual_objective/economy/task_completed(datum/money_account/S, datum/money_account/T, amount)
+	if(S == owner.initial_account && amount >= units_requested && T != S)
+		..(amount)
+
+/datum/individual_objective/economy/completed()
+	if(completed) return
+	UnregisterSignal(owner.initial_account, COMSIG_TRANSATION)
 	..()

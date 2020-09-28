@@ -1,12 +1,18 @@
 /datum/individual_objective/beyond
 	name = "A Particular Spot"
 	req_department = list(DEPARTMENT_COMMAND)
-	units_requested = 3 MINUTES//change to 5
+	units_requested = 5 MINUTES
 	based_time = TRUE
 	var/obj/effect/overmap/ship/linked
 	var/x
 	var/y
 	var/timer
+
+
+/datum/individual_objective/beyond/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	return locate(/obj/effect/overmap/ship/eris)
 
 /datum/individual_objective/beyond/assign()
 	..()

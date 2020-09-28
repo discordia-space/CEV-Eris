@@ -1,8 +1,13 @@
-/datum/individual_objective/repossession//work
+/datum/individual_objective/repossession
 	name = "Repossession"
 	req_department = list(DEPARTMENT_GUILD)
 	limited_antag = TRUE
 	var/obj/item/target
+
+/datum/individual_objective/repossession/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	return pick_faction_item(L)
 
 /datum/individual_objective/repossession/assign()
 	..()
@@ -19,7 +24,7 @@
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
 	..()
 
-/datum/individual_objective/museum//work
+/datum/individual_objective/museum
 	name = "It Belongs to Museum"
 	desc = "Ensure that 3-4 oddities were sold via cargo."
 	req_department = list(DEPARTMENT_GUILD)
@@ -39,8 +44,7 @@
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
 	..()
 
-
-/datum/individual_objective/order//work
+/datum/individual_objective/order
 	name = "Special Order"
 	req_department = list(DEPARTMENT_GUILD)
 	var/obj/item/target
@@ -89,8 +93,7 @@
 	UnregisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY)
 	..()
 
-
-/datum/individual_objective/stripping//work
+/datum/individual_objective/stripping
 	name = "Stripping Operation"
 	req_department = list(DEPARTMENT_GUILD)
 	limited_antag = TRUE
@@ -129,18 +132,20 @@
 	UnregisterSignal(mind_holder, COMSIG_MOB_LIFE)
 	..()
 
-/datum/individual_objective/transfer//test requiered
+/datum/individual_objective/transfer
 	name = "Family Business"
-	//req_department = list(DEPARTMENT_GUILD)
+	req_department = list(DEPARTMENT_GUILD)
 	var/datum/money_account/target
 
 /datum/individual_objective/transfer/can_assign(mob/living/L)
 	if(!..())
 		return FALSE
+	if(!L.mind.initial_account)
+		return FALSE
 	var/list/valids_targets = list()
-	for(var/mob/living/T in GLOB.human_mob_list)
-		if(T.mind && T.mind.initial_account)
-			valids_targets += T.mind.initial_account
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L))
+		if(H.mind && H.mind.initial_account)
+			valids_targets += H.mind.initial_account
 	valids_targets -= L.mind.initial_account
 	return valids_targets.len
 
@@ -153,7 +158,7 @@
 	valids_targets -= owner.initial_account
 	target = pick(valids_targets)
 	units_requested = rand(2000, 5000)
-	desc = "Some of your relative asked you to procure and provide this account number: \"[target.account_number]\" with sum of [units_requested] credits. \
+	desc = "Some of your relative asked you to procure and provide this account number: \"[target.account_number]\" with sum of [units_requested][CREDITS]. \
 			You dont know exactly why, but this is important"
 	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
 

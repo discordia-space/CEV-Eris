@@ -98,6 +98,7 @@
 		valid_targets += faction_item
 	if(valid_targets.len)
 		return pick(valid_targets)
+	return FALSE
 
 /datum/individual_objective/proc/can_assign(mob/living/L)
 	if(!isliving(L))

@@ -3,9 +3,16 @@
 	req_department = list(DEPARTMENT_SECURITY)
 	var/mob/living/carbon/human/target
 
+/datum/individual_objective/familiar_face/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - L
+	return candidates.len
+
 /datum/individual_objective/familiar_face/assign()
 	..()
-	target = pick(GLOB.player_list)
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	target = pick(candidates)
 	desc = "You swear you saw to [target] somewhere before, and in your line of job it cannot mean good. Search them, \
 	remove their backpack or empty their pockets"
 	RegisterSignal(mind_holder, COMSIG_EMPTY_POCKETS, .proc/task_completed)
@@ -37,7 +44,7 @@
 	UnregisterSignal(owner, COMSIG_MOB_DEATH)
 	..()
 
-/datum/individual_objective/paranoia//work
+/datum/individual_objective/paranoia
 	name = "Paranoia"
 	req_department = list(DEPARTMENT_SECURITY)
 	var/list/vitims = list()
@@ -60,11 +67,16 @@
 	UnregisterSignal(mind_holder, COMSIG_EMPTY_POCKETS)
 	..()
 
-/datum/individual_objective/danger//work
+/datum/individual_objective/danger
 	name = "Absolute Dange"
 	req_department = list(DEPARTMENT_SECURITY)
 	limited_antag = TRUE
 	var/obj/item/target
+
+/datum/individual_objective/danger/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	return pick_faction_item(L)
 
 /datum/individual_objective/danger/assign()
 	..()
