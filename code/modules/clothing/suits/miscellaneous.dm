@@ -376,3 +376,22 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 	style = 1
+
+/obj/item/clothing/suit/storage/onestar_coat
+	name = "one star coat"
+	desc = "A coat for one star personel, sleek and resilient for peak performance no matter were you are working."
+	icon_state = "onestar_coat"
+	item_state = "onestar_coat"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 20,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	min_cold_protection_temperature = T0C - 20
+	siemens_coefficient = 0.7
+	style = 3

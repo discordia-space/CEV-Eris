@@ -265,3 +265,16 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/beret/onestar_quepe
+	name = "one start quepe"
+	desc = "a one start quepe. made of a Synth cotton. that will keep your head both protected from projectiles and cold."
+	icon_state = "onestar_quepe"
+	body_parts_covered = HEAD
+	armor = list(
+		melee = 5,
+		bullet = 15,
+		energy = 25,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)

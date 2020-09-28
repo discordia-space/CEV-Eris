@@ -225,3 +225,10 @@ obj/item/clothing/under/cyber
 	desc = "I wanted a jumpsuit. It gave me THIS."
 	icon_state = "cyber"
 	item_state = "cyber"
+
+obj/item/clothing/under/onestar_jumpsuit
+	name = "one star_jumpsuit"
+	desc = "a one star jumpsuit,with its neo lined enriched fabric fits perfectly no matter the body"
+	icon_state = "onestar_jumpsuit"
+	item_state = "onestar_jumpsuit"
+	style = 2

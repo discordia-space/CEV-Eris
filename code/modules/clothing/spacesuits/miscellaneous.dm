@@ -31,3 +31,36 @@
 	item_state = "emergency_suit"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	slowdown = 2
+
+//onestart
+
+/obj/item/clothing/head/space/onestar_helmet
+	name = "one start helmet"
+	icon_state = "onestar_helmet"
+	item_state = "onestar_helmet"
+	desc = "A special helmet designed for work in a hazardous, low-pressure environment. in perfect one star fashion."
+	armor = list(
+		melee = 50,
+		bullet = 40,
+		energy = 40,
+		bomb = 50,
+		bio = 100,
+		rad = 50
+	)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/space/captain
+	name = "one start void suit"
+	desc = "A brand new one start suit. for your safety and confort!"
+	icon_state = "onestart_voidsuit"
+	item_state = "onestart_voidsuit"
+	slowdown = 0.3
+	armor = list(
+		melee = 50,
+		bullet = 40,
+		energy = 40,
+		bomb = 50,
+		bio = 100,
+		rad = 50
+	)
+	siemens_coefficient = 0.7
