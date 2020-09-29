@@ -4,6 +4,8 @@
 	icon_state = "bioprinter"
 	unsuitable_materials = list()
 
+	build_type = AUTOLATHE | BIOPRINTER
+
 /obj/machinery/autolathe/bioprinter/attackby(obj/item/I, mob/user)
 	//hacky way to forbid deconstruction but use ..()
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src)
