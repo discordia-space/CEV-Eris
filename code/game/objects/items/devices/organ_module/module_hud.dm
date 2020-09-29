@@ -1,12 +1,12 @@
 /obj/item/organ_module/active/hud
 	name = "Embedded Hud"
 	desc = "If you see this hud in game, congratulation!"
-	verb_name = "Ativate Hud"
+	verb_name = "Activate Hud"
 	icon_state = "hud"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2)
 	allowed_organs = list(BP_HEAD)
-	var/obj/item/clothing/glasses/holding = null
-	var/holding_type = null
+	var/obj/item/clothing/glasses/holding
+	var/holding_type
 
 /obj/item/organ_module/active/hud/New()
 	..()
