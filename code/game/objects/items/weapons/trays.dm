@@ -171,7 +171,7 @@
 
 /obj/item/weapon/tray/pre_pickup(mob/user)
 	if(!isturf(loc))
-		return FALSE
+		return ..()
 
 	for(var/obj/item/I in loc)
 		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
