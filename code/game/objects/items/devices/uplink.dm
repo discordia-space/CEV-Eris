@@ -152,7 +152,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	else if(href_list["lock"])
 		toggle()
 		var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
-		ui.close()
+		ui?.close()
 	else if(href_list["return"])
 		nanoui_menu = round(nanoui_menu/10)
 	else if(href_list["menu"])

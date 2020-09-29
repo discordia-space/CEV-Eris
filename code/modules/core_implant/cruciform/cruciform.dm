@@ -47,7 +47,7 @@ var/list/disciples = list()
 	if(!wearer || active)
 		return
 
-	if(wearer.mind && wearer.mind.changeling)
+	if(is_carrion(wearer))
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
 		return

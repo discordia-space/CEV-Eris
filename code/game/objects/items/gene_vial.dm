@@ -16,7 +16,9 @@
 		return
 
 	var/mob/living/carbon/human/H = user
+	var/obj/item/organ/internal/carrion/core/C
 	if(istype(H))
+		C = H.internal_organs_by_name[BP_SPCORE]
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
 			to_chat(user, SPAN_WARNING("\The [blocked] is in the way!"))
@@ -24,8 +26,8 @@
 
 	to_chat(user, SPAN_NOTICE("You swallow the contents of \the [src]."))
 
-	if(user.mind?.changeling)
-		user.mind.changeling.geneticpoints += 3
+	if(C)
+		C.geneticpoints += 3
 	else
 		user.adjustToxLoss(40)
 

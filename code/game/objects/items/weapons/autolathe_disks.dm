@@ -1016,7 +1016,7 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/gun/taser = 3, // "NT SP \"Counselor\""
-		/datum/design/autolathe/cell/small/high,
+		/datum/design/autolathe/cell/medium/high,
 	)
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_spiderrose

@@ -265,7 +265,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	.=..()
 
 /obj/structure/scrap/attack_generic(mob/user)
-	if (isliving(user))
+	if (isliving(user) && loot)
 		loot.open(user)
 	.=..()
 

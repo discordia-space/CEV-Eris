@@ -172,11 +172,11 @@
 			if(0)
 				return
 			if(FARMBOT_COLLECT)
-				action = "water" // Needs a better one
+				action = "collect"
 				update_icons()
 				visible_message("<span class='notice'>[src] starts [T.dead? "removing the plant from" : "harvesting"] \the [A].</span>")
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
-				var/message = pick("I WILL GATHER", "TIME FOR THE HARVEST.", "YOURE TIME HAS COME.")
+				var/message = pick("I WILL GATHER.", "TIME FOR THE HARVEST.", "YOURE TIME HAS COME.", "WHAT YOU SOW IS WHAT YOU REAP.", "PLOW IT UP.", "IT'S THE HARVEST MOON.", "THE HEART OF PERFECT FARMING", "THE CREAM OF THE CROP.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))
@@ -187,7 +187,7 @@
 				update_icons()
 				visible_message(SPAN_NOTICE("[src] starts watering \the [A]."))
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
-				var/message = pick("WATER IS LIVE.", "YOU NEED WATER. I GIVE WATER.")
+				var/message = pick("WATER IS LIFE.", "YOU NEED WATER. I GIVE WATER.", "THOUSANDS LIVE WITHOUT LOVE, NOBODY WITHOUT WATER.", "NO WATER, NO LIFE. NO BLUE, NO GREEN.", "WATER IS THE DRIVING FORCE OF ALL NATURE.", "WATER CAN FLOW, OR IT CAN CRASH. BE WATER, MY FRIEND.", "KEEP CALM AND LOVE WATER", "WATER: THE ORIGINAL NO CALORIE DRINK.", "LIFE STARTS WITH WATER.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))
@@ -200,7 +200,7 @@
 				update_icons()
 				visible_message(SPAN_NOTICE("[src] starts uprooting the weeds in \the [A]."))
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
-				var/message = pick("I WILL PURGE THIS.", "YOU HAVE NO PLACE HERE.")
+				var/message = pick("I WILL PURGE THIS.", "YOU HAVE NO PLACE HERE.", "WEEDS ARE STUBBORN. WEEDS ARE INDEPENDENT. WEEDS ARE NOT TOLERATED.", "ONCE WEEDS GROW ROOTS, THEY ARE HARDER TO DIG UP.", "NO PLACE FOR PESTS.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))
@@ -212,7 +212,7 @@
 				update_icons()
 				visible_message(SPAN_NOTICE("[src] starts fertilizing \the [A]."))
 				playsound(loc, "robot_talk_heavy", 100, 0, 0)
-				var/message = pick("MUST FEED YOU.", "YOU HAVE TO GROW BIG.")
+				var/message = pick("MUST FEED YOU.", "YOU HAVE TO GROW BIG.", "DEATH IS GOOD. IT'S FERTILIZING.", "PLANTS WOULD RATHER BE DEFECATED ON THAN BE LOVED.", "ONLY NATURAL INGREDIENTS.")
 				say(message)
 				attacking = 1
 				if(do_after(src, 30, A))

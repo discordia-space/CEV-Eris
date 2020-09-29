@@ -34,7 +34,8 @@
 		sleeper.attackby(I, user)
 	else return ..()
 
-/obj/item/mech_equipment/sleeper/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/sleeper/afterattack(atom/target, mob/living/user, inrange, params)
+	if(!inrange) return
 	. = ..()
 	if(.)
 		if(ishuman(target) && !sleeper.occupant)

@@ -1,0 +1,6 @@
+author: Pariah919
+delete-after: true
+changes:
+  - balance: sol and sts no longer have damage multipliers and now do 1x damage, or
+      basically base damage for their calibers. STS can now only bursts in bursts
+      of 3.

@@ -46,7 +46,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 	data["trace_chem"] = temp_chem
 	data["blood_colour"] = species.blood_color
 	data["resistances"] = null
-	data["ling"] = check_special_role(ROLE_CHANGELING)
+	data["carrion"] = is_carrion(src)
 	return data
 
 //Resets blood data

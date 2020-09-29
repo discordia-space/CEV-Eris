@@ -16,6 +16,7 @@
 		bio = 0,
 		rad = 0
 	)
+	style = 1
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	name = "moebius biolab officer's labcoat"

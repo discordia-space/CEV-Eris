@@ -443,7 +443,7 @@
 	if(istype(target, /turf/simulated/open))
 		var/turf/simulated/open/T = target
 		if(T.isOpen())
-			return
+			return TRUE // halt powder pile/smears creation without wasting reagents
 
 	var/handled = TRUE
 	for(var/datum/reagent/current in reagent_list)
@@ -497,7 +497,6 @@
 /datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
 	if(!target || !target.simulated)
 		return
-
 
 	var/datum/reagents/R = new /datum/reagents(amount * multiplier)
 	. = trans_to_holder(R, amount, multiplier, copy)

@@ -92,9 +92,8 @@
 			triggered(AM)
 		else if(istype(AM, /mob/living))
 			var/mob/living/L = AM
-			prob_catch = initial(prob_catch)
-			prob_catch -= L.skill_to_evade_traps(prob_catch)
-			if(!prob(prob_catch))
+			var/true_prob_catch = prob_catch - L.skill_to_evade_traps()
+			if(!prob(true_prob_catch))
 				return ..()
 			triggered(L)
 			L.visible_message("<span class='warning'>[L] accidentally steps on [src].</span>", \

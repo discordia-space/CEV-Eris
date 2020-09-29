@@ -1,11 +1,16 @@
-/datum/antagonist/changeling
-	id = ROLE_CHANGELING
-	role_text = "Changeling"
-	role_text_plural = "Changelings"
+/datum/antagonist/carrion
+	id = ROLE_CARRION
+	role_text = "Carrion"
+	role_text_plural = "Carrions"
 	restricted_jobs = list("AI", "Robot")
 	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND)
-	bantype = ROLE_BANTYPE_CHANGELING
-	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
+	bantype = ROLE_BANTYPE_CARRION
+	welcome_text = "You are Carrion, a leftover from corporate war. You have come onto this vessel to carry out your master plan, and no one can stop you.<br>\
+	Your body is ever changing. You should start out by evolving a chemical vessel to use your powers. A carrion maw can be a good way to earn evolution points. <br>\
+	You can do contracts to grow stronger until the ship becomes your stage and your master plan is ready. A slow and methodical approach is recommended. <br>\
+	You won't find many friends here, but spiders are one of them. If you ever feel alone, you can always give birth to your own children, or search ship in attempt to find your brothers and sisters. <br>\
+	Your enemies are many, and your biology can be easily discerned in the health scanner. You should be wary."
+
 	antaghud_indicator = "hudchangeling"
 
 
@@ -14,17 +19,14 @@
 
 	stat_modifiers = list(
 		STAT_TGH = 5,
-		STAT_VIG = 15
+		STAT_VIG = 15,
+		STAT_BIO = 20 //Good at surgery
 	)
 
-/datum/antagonist/changeling/get_special_objective_text()
-	if(owner && owner.changeling)
-		return "<br><b>Changeling ID:</b> [owner.changeling.changelingID].<br><b>Genomes Absorbed:</b> [owner.changeling.absorbedcount]"
+/datum/antagonist/carrion/special_init()
+	owner.current.make_carrion()
 
-/datum/antagonist/changeling/special_init()
-	owner.current.make_changeling()
-
-/datum/antagonist/changeling/can_become_antag(datum/mind/player)
+/datum/antagonist/carrion/can_become_antag(datum/mind/player)
 	if(..() && ishuman(player.current))
 		var/mob/living/carbon/human/H = player.current
 		if(H.isSynthetic())
@@ -34,7 +36,7 @@
 		return TRUE
 	return FALSE
 
-/datum/antagonist/changeling/equip()
+/datum/antagonist/carrion/equip()
 	var/mob/living/L = owner.current
 
 	for(var/name in stat_modifiers)

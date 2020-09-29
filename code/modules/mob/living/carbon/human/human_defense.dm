@@ -255,7 +255,7 @@ meteor_act
 					apply_effect(6, WEAKEN, getarmor(hit_zone, ARMOR_MELEE) )
 
 		//Apply blood
-		if(!(I.flags & NOBLOODY))
+		if(!((I.flags & NOBLOODY)||(I.item_flags & NOBLOODY)))
 			I.add_blood(src)
 
 		if(prob(33 + I.sharp * 10))

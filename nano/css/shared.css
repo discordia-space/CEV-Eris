@@ -943,6 +943,14 @@ img.sciTechTreeIconToolTip {
 .icon-module { background-position: -192px -288px; }
 .icon-borgmodule { background-position: -224px -288px; }
 
+.icon-plasmablock { background-position: 0px -320px; }
+.icon-booster { background-position: -32px -320px; }
+.icon-compensatedbarrel { background-position: -64px -320px; }
+.icon-cellmount { background-position: -96px -320px; }
+.icon-toxincoater { background-position: -128px -320px; }
+.icon-mindswapper { background-position: -160px -320px; }
+.icon-holdingpouch { background-position: -192px -320px; }
+
 .sciMenuButton {
     width: 300px;
     float: left;

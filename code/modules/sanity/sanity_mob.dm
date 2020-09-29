@@ -127,14 +127,16 @@
 
 /datum/sanity/proc/handle_insight()
 	var/moralist_factor = 1
+	var/style_factor = owner.get_style_factor()
 	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H)
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
-	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor
+	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
+		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 		++resting
 		pick_desires()
 		insight -= 100
@@ -172,41 +174,28 @@
 	)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
-		var/list/potential_desires
+		var/list/potential_desires = list()
 		switch(desire)
 			if(INSIGHT_DESIRE_FOOD)
-				potential_desires = GLOB.sanity_foods.Copy()
-				if(!potential_desires.len)
-					potential_desires = init_sanity_foods()
+				potential_desires = all_types_food.Copy()
 			if(INSIGHT_DESIRE_ALCOHOL)
-				potential_desires = GLOB.sanity_drinks.Copy()
-				if(!potential_desires.len)
-					potential_desires = init_sanity_drinks()
+				potential_desires = all_taste_drinks.Copy()
 			else
 				desires += desire
 				continue
-		var/desire_count = 0
-		while(desire_count < 5)
-			var/candidate = pick_n_take(potential_desires)
+		if(potential_desires.len)
+			var/candidate = pick(potential_desires)
 			desires += candidate
-			++desire_count
 	print_desires()
 
 /datum/sanity/proc/print_desires()
 	if(!resting)
 		return
-	var/list/desire_names = list()
-	for(var/desire in desires)
-		if(ispath(desire))
-			var/atom/A = desire
-			desire_names += initial(A.name)
-		else
-			desire_names += desire
-	to_chat(owner, SPAN_NOTICE("You desire [english_list(desire_names)]."))
+	to_chat(owner, SPAN_NOTICE("You desire [english_list(desires)]."))
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
-		amount /= 4
+		amount /= 16
 	insight_rest += amount
 	if(insight_rest >= 100)
 		insight_rest = 0
@@ -225,6 +214,7 @@
 	INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
 
 	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
+	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	resting = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)
@@ -285,16 +275,18 @@
 
 /datum/sanity/proc/onAlcohol(datum/reagent/ethanol/E, multiplier)
 	changeLevel(E.sanity_gain_ingest * multiplier)
-	if(resting)
-		add_rest(E.type, 3 * multiplier)
+	if(resting && E.taste_tag.len)
+		for(var/taste_tag in E.taste_tag)
+			add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
 
 /datum/sanity/proc/onEat(obj/item/weapon/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
 		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
 		to_chat(owner, SPAN_NOTICE("[snack_sanity_message]"))
 	changeLevel(snack_sanity_gain)
-	if(snack.cooked && resting)
-		add_rest(snack.type, snack_sanity_gain * 45)
+	if(snack.cooked && resting && snack.taste_tag.len)
+		for(var/taste in snack.taste_tag)
+			add_rest(taste, snack_sanity_gain * 50/snack.taste_tag.len)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
 	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
@@ -338,6 +330,10 @@
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
+	
+	for(var/obj/item/weapon/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
+		if(get_turf(S) in view(get_turf(owner)))
+			S.reg_break(owner)
 
 	var/list/possible_results
 	if(prob(positive_prob) && positive_prob_multiplier > 0)

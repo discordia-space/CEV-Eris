@@ -18,7 +18,7 @@
 /obj/item/mech_equipment/attack() //Generally it's not desired to be able to attack with items
 	return 0
 
-/obj/item/mech_equipment/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/afterattack(atom/target, mob/living/user, inrange, params)
 
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		if(target in owner.contents)
