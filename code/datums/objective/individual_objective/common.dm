@@ -311,8 +311,7 @@
 	..()
 
 /datum/individual_objective/economy
-	name = "Family Business"
-	req_department = list(DEPARTMENT_GUILD)
+	name = "Businessman"
 	var/datum/money_account/target
 
 /datum/individual_objective/economy/can_assign(mob/living/L)

@@ -47,7 +47,7 @@
 	owner = new_owner
 	mind_holder = new_owner.current
 	owner.individual_objectives += src
-	to_chat(owner,  SPAN_NOTICE("You now have the personal objective: [name]"))
+	to_chat(owner,  SPAN_NOTICE("You have obtained a new personal objective: [name]"))
 
 /datum/individual_objective/proc/completed(fail=FALSE)
 	SHOULD_CALL_PARENT(TRUE)
