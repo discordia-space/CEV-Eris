@@ -93,17 +93,27 @@
 		return
 	building = TRUE
 
-	if(reqed_material && istype(I, /obj/item/stack/material))
-		var/obj/item/stack/material/M = I
-		if(M.get_default_type() != reqed_material)
-			to_chat(user, "Wrong material!")
+	if(reqed_material)
+		if(istype(I, /obj/item/stack/material))
+			var/obj/item/stack/material/M = I
+			if(M.get_default_type() != reqed_material)
+				to_chat(user, "Wrong material!")
+				building = FALSE
+				return
+		else
+			to_chat(user, "This isn't a material stack!")
 			building = FALSE
 			return
 
-	if(req_amount && istype(I, /obj/item/stack))
-		var/obj/item/stack/S = I
-		if(!S.can_use(req_amount))
-			to_chat(user, "Not enough items in [I]")
+	if(req_amount)
+		if(istype(I, /obj/item/stack))
+			var/obj/item/stack/S = I
+			if(!S.can_use(req_amount))
+				to_chat(user, "Not enough items in [I]")
+				building = FALSE
+				return
+		else
+			to_chat(user, "This isn't a stack!")
 			building = FALSE
 			return
 
