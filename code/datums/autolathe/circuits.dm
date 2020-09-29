@@ -95,4 +95,4 @@
 
 /datum/design/autolathe/circuit/autolathe_excelsior
 	name = "excelsior autolathe"
-	build_path = /obj/item/weapon/circuitboard/excelsiorautolathe
+	build_path = /obj/item/weapon/electronics/circuitboard/excelsiorautolathe
