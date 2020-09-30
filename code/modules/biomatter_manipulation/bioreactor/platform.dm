@@ -101,7 +101,6 @@
 /obj/machinery/multistructure/bioreactor_part/platform/proc/consume(atom/movable/object)
 	if(ishuman(object))
 		var/mob/living/carbon/human/H = object
-		admin_notice("[H.real_name] is starting consumption", R_DEBUG)
 		for(var/obj/item/item in H.contents)
 			//non robotic limbs will be consumed
 			if(istype(item, /obj/item/organ))
