@@ -1146,7 +1146,7 @@ var/list/rank_prefix = list(\
 //Needed for augmentation
 /mob/living/carbon/human/proc/rebuild_organs(from_preference)
 	if(!species)
-		return 0
+		return FALSE
 
 	status_flags |= REBUILDING_ORGANS
 
@@ -1157,14 +1157,14 @@ var/list/rank_prefix = list(\
 			C.removed_mob()
 			organs_to_readd += C
 
-	for(var/obj/item/organ/organ in (organs|internal_organs))
-		qdel(organ)
-
 	var/obj/item/weapon/implant/core_implant/CI = get_core_implant()
 	var/checkprefcruciform = FALSE	// To reset the cruciform to original form
 	if(CI)
 		checkprefcruciform = TRUE
 		qdel(CI)
+
+	for(var/obj/item/organ/organ in (organs|internal_organs))
+		qdel(organ)
 
 	if(organs.len)
 		organs.Cut()
@@ -1185,7 +1185,7 @@ var/list/rank_prefix = list(\
 		else
 			return
 
-		var/datum/body_modification/BM = null
+		var/datum/body_modification/BM
 
 		for(var/tag in species.has_limbs)
 			BM = Pref.get_modification(tag)
@@ -1216,7 +1216,7 @@ var/list/rank_prefix = list(\
 				C.access.Add(mind.assigned_job.cruciform_access)
 
 	else
-		var/organ_type = null
+		var/organ_type
 
 		for(var/limb_tag in species.has_limbs)
 			var/datum/organ_description/OD = species.has_limbs[limb_tag]
