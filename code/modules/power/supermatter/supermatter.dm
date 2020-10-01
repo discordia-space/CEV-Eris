@@ -348,7 +348,7 @@
 		var/distance = get_dist(R, src)
 		if(distance <= 15)
 			//for collectors using standard plasma tanks at 1013 kPa, the actual power generated will be this transfer_energy*20*29 = transfer_energy*580
-			R.receive_pulse(transfer_energy * (min(3/distance, 1))**2)
+			R.receive_pulse(transfer_energy * (min(3/(distance != 0 ? distance : 1), 1))**2)
 
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
