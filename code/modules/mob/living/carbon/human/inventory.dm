@@ -11,8 +11,21 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!I)
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
+	if(quick_equip_storage(I))
+		return
 	if(!equip_to_appropriate_slot(I))
 		to_chat(src, SPAN_WARNING("You are unable to equip that."))
+
+/mob/living/carbon/human/verb/belt_equip()
+	set name = "belt-equip"
+	set hidden = 1
+
+	var/obj/item/I = get_active_hand()
+	if(!I)
+		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		return
+	if(quick_equip_belt(I))
+		return
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
