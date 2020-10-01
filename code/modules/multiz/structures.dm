@@ -110,22 +110,21 @@
 /obj/structure/multiz/ladder/proc/throw_through(var/obj/item/C, var/mob/throw_man)
 	if(istype(throw_man,/mob/living/carbon/human))
 		var/mob/living/carbon/human/user = throw_man
-		if(istype(C,/obj/item/weapon/grenade))
-			var/through =  istop ? "down" : "up"
-			var/obj/item/weapon/grenade/G= C
-			user.visible_message("<span class='warning'>[user] takes position to throw [G] [through] \the [src].</span>",
-			"<span class='warning'>You take position to throw [G] [through] \the [src].</span>")
-			if(do_after(user, 10))
-				user.visible_message("<span class='warning'>[user] throws [G] [through] \the [src]!</span>",
-				"<span class='warning'>You throw [G] [through] \the [src]</span>")
-				user.drop_item()
-				G.forceMove(target.loc)
-				var/direction = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-				G.Move(get_step(G, direction))
+		var/through =  istop ? "down" : "up"
+		user.visible_message("<span class='warning'>[user] takes position to throw [C] [through] \the [src].</span>",
+		"<span class='warning'>You take position to throw [C] [through] \the [src].</span>")
+		if(do_after(user, 10))
+			user.visible_message("<span class='warning'>[user] throws [C] [through] \the [src]!</span>",
+			"<span class='warning'>You throw [C] [through] \the [src]</span>")
+			user.drop_item()
+			C.forceMove(target.loc)
+			var/direction = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+			C.Move(get_step(C, direction))
+			if(istype(C, /obj/item/weapon/grenade))
+				var/obj/item/weapon/grenade/G = C
 				if(!G.active)
 					G.activate(user)
-				return TRUE
-			return FALSE
+			return TRUE
 		return FALSE
 	return FALSE
 
