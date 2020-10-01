@@ -17,7 +17,7 @@
 	var/known = 1		//shows up on nav computers automatically
 	var/in_space = 1	//can be accessed via lucky EVA
 
-	var/global/eris_start_set //Tells us if we need to modify a random location for Eris to start at
+	var/global/eris_start_set = FALSE //Tells us if we need to modify a random location for Eris to start at
 
 /obj/effect/overmap/Initialize()
 	. = ..()
