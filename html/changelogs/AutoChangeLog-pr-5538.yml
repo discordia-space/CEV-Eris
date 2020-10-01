@@ -1,0 +1,4 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - bugfix: Fixed the .25 Mandella being called .35 in its linense
