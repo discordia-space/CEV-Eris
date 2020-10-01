@@ -2,9 +2,10 @@
 	var/name = "limb"
 	var/surgery_name
 	var/organ_tag = "limb"
-	var/body_part = null
-	var/parent_organ = null
+	var/body_part
+	var/parent_organ
 	var/default_type = /obj/item/organ/external
+	var/default_bone_type = /obj/item/organ/internal/bone
 
 	var/max_damage = 0
 	var/min_broken_damage = 30
@@ -33,6 +34,7 @@
 	organ_tag = BP_CHEST
 	body_part = UPPER_TORSO
 	default_type = /obj/item/organ/external/chest
+	default_bone_type = /obj/item/organ/internal/bone/chest
 
 	max_damage = 100
 	min_broken_damage = 60
@@ -55,6 +57,7 @@
 	body_part = LOWER_TORSO
 	parent_organ = BP_CHEST
 	default_type = /obj/item/organ/external/groin
+	default_bone_type = /obj/item/organ/internal/bone/groin
 
 	max_damage = 100
 	min_broken_damage = 60
@@ -74,6 +77,7 @@
 	body_part = HEAD
 	parent_organ = BP_CHEST
 	default_type = /obj/item/organ/external/head
+	default_bone_type = /obj/item/organ/internal/bone/head
 
 	max_damage = 75
 	min_broken_damage = 60
@@ -103,6 +107,7 @@
 	name = "left arm"
 	organ_tag = BP_L_ARM
 	body_part = ARM_LEFT
+	default_bone_type = /obj/item/organ/internal/bone/l_arm
 
 	joint = "left elbow"
 	amputation_point = "left shoulder"
@@ -111,6 +116,7 @@
 	name = "right arm"
 	organ_tag = BP_R_ARM
 	body_part = ARM_RIGHT
+	default_bone_type = /obj/item/organ/internal/bone/r_arm
 
 	joint = "right elbow"
 	amputation_point = "right shoulder"
@@ -130,6 +136,7 @@
 	organ_tag = BP_L_LEG
 	body_part = LEG_LEFT
 	icon_position = LEFT
+	default_bone_type = /obj/item/organ/internal/bone/l_leg
 
 	joint = "left knee"
 	amputation_point = "left hip"
@@ -139,6 +146,7 @@
 	organ_tag = BP_R_LEG
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
+	default_bone_type = /obj/item/organ/internal/bone/r_leg
 
 	joint = "right knee"
 	amputation_point = "right hip"

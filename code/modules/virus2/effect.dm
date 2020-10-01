@@ -167,7 +167,7 @@
 			var/mob/living/carbon/human/H = mob
 			for (var/obj/item/organ/external/E in H.organs)
 				if (E.status & ORGAN_BROKEN && prob(30))
-					E.status ^= ORGAN_BROKEN
+					E.mend_fracture()
 		var/heal_amt = -5*multiplier
 		mob.apply_damages(heal_amt,heal_amt,heal_amt,heal_amt)
 

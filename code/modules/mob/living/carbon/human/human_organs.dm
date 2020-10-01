@@ -32,6 +32,9 @@
 	if(!force_process && !bad_external_organs.len)
 		return
 
+	for(var/obj/item/organ/external/E in organs)
+		E.handle_bones()
+
 	for(var/obj/item/organ/external/E in bad_external_organs)
 		if(!E)
 			continue
