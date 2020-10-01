@@ -1,0 +1,8 @@
+author: Fernandos33
+delete-after: true
+changes:
+  - balance: large syringe now uses 1 silver. and is in Moebius Medical Designs" (20
+      liscense points)
+  - bugfix: typo in the "THIS taste like"
+  - rscadd: EMT now holds, crowbar, mini extinguisherand, flashlight.
+  - rscadd: medical belt can now hold bloodbags
