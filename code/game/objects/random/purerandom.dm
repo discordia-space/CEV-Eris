@@ -3,7 +3,7 @@
 	icon_state = "radnomstuff-green"
 	tags_to_spawn = list(SPAWN_ITEM)
 	top_price = 800
-	low_price = 10
+	low_price = 1
 	restricted_tags = list(SPAWN_ORE, SPAWN_MATERIAL_RESOURCES)
 	include_paths = list(/obj/spawner/pack/rare)
 

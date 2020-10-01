@@ -82,6 +82,7 @@
 	icon_state = "thermal_lens"
 	body_parts_covered = 0
 	slot_flags = 0
+	spawn_blacklisted = TRUE
 
 
 /obj/item/clothing/glasses/attackby(obj/item/Z, mob/user)

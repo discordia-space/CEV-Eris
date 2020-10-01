@@ -218,7 +218,7 @@
 
 /obj/item/weapon/rcd/borg
 	canRwall = 1
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/rcd/borg/useResource(var/amount, mob/user, var/checkOnly)
 	if(isrobot(user))
