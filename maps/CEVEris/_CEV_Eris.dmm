@@ -60601,6 +60601,7 @@
 	dir = 4;
 	pixel_y = 8
 	},
+/obj/machinery/slotmachine,
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cJR" = (
