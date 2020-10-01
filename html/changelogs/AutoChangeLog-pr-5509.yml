@@ -1,0 +1,4 @@
+author: Anonmare
+delete-after: true
+changes:
+  - tweak: Hardsuit injectors now use 5u injections instead of 10u
