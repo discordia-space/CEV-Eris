@@ -16,12 +16,6 @@
 	price_tag = 900
 	var/mob/living/carbon/brain/brainmob = null
 
-/obj/item/organ/internal/brain/xeno
-	name = "thinkpan"
-	desc = "It looks kind of like an enormous wad of purple bubblegum."
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "chitin"
-
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health

@@ -5208,7 +5208,6 @@
 	},
 /area/centcom/raider_base)
 "nL" = (
-/obj/item/organ/internal/xenos/plasmavessel,
 /turf/unsimulated/floor{
 	tag = "icon-asteroid";
 	icon_state = "asteroid"
@@ -5401,7 +5400,6 @@
 	},
 /area/centcom/raider_base)
 "ol" = (
-/obj/item/organ/internal/xenos/eggsac,
 /turf/unsimulated/floor{
 	tag = "icon-asteroid";
 	icon_state = "asteroid"

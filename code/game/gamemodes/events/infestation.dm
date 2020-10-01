@@ -173,7 +173,7 @@ It focuses on spawning large numbers of moderate-to-weak monsters, and includes 
 	//about what is there.
 	if (unidentified)
 		event_name = "Unidentified Lifeforms"
-		chosen_mob = "[pick("unidentified", "unknown", "unrecognised", "indeterminate")] [pick("creatures","lifeforms","critters","aliens","biosignatures", "organics")]"
+		chosen_mob = "[pick("unidentified", "unknown", "unrecognised", "indeterminate")] [pick("creatures","lifeforms","critters","biosignatures", "organics")]"
 		chosen_verb = pick("have been detected in", "have boarded the ship at", "are currently infesting", "are currently rampaging in")
 
 //We spawn a set of mobs inside each origin burrow
