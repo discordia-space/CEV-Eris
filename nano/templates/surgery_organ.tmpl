@@ -5,6 +5,7 @@
 			<header{{:(!organ.status || organ.status.robotic) ? "" : " style='border-bottom: 2px solid #a0222a;'"}}>
 				<h3>{{:organ.name.toTitleCase()}}</h3>
 			</header>
+			<div style ='float: left; height: 32px; width: 32px; margin: 4px' class='statusDisplayItem'><img src= {{:organ.icon_data}} height=32 width=32></div>
 			<article>
 				{{if data.diagnosed}}
 					{{if data.diagnosed && organ.max_damage}}
@@ -21,7 +22,7 @@
 					</section>
 					{{/for}}
 				{{/if}}
-				
+
 				{{if organ.actions.length}}
 					{{for organ.actions :action:action_i}}
 					<section>

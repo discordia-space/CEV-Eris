@@ -47,6 +47,10 @@
 		organ_data["ref"] = "\ref[organ]"
 		organ_data["open"] = organ.is_open()
 
+		var/icon/ic = new(organ.icon, organ.icon_state)
+		usr << browse_rsc(ic, "[organ.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
+		organ_data["icon_data"] = "[organ.icon_state].png"
+
 		organ_data["damage"] = organ.damage
 		organ_data["max_damage"] = organ.max_damage
 		organ_data["status"] = organ.get_status_data()
