@@ -1,0 +1,7 @@
+author: TheShown911, INFRARED_BARON
+delete-after: true
+changes:
+  - rscadd: Bones for external organs
+  - rscadd: Bones can be reinforced with surgery using braces made in the crafting
+      menu
+  - rscadd: Organ icons show up during surgery
