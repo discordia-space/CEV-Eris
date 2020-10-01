@@ -169,6 +169,9 @@
 	if(!user || user.incapacitated())	return FALSE
 	if(!user.Adjacent(src)) 			return FALSE
 	if(issilicon(user))					return FALSE
+	if (user.buckled)
+		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
+		return FALSE
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 		return FALSE
