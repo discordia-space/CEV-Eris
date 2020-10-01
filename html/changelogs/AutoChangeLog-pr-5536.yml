@@ -1,0 +1,6 @@
+author: boy2mantwicethefam
+delete-after: true
+changes:
+  - tweak: Players will now receive more feedback regarding their eligibility to use
+      posibrains. Remember that you have to be able to respawn as a crewmember before
+      you can become a robot!
