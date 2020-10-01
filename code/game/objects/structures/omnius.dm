@@ -3,6 +3,9 @@
 	icon_state = "ominous"
 	desc = "It looks like ancient, and strange generator."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OMINOUS
 	var/cooldown = FALSE
 	var/entropy_value = 3
 

@@ -15,6 +15,7 @@
 	item_state = "electronic"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+	rarity_value = 25
 
 
 	//Scan range can be changed, and the power costs scale up with it

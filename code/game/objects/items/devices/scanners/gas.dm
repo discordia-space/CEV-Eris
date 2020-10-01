@@ -9,6 +9,7 @@
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	charge_per_use = 5
+	rarity_value = 25
 
 /obj/item/device/scanner/gas/is_valid_scan_target(atom/O)
 	return istype(O)

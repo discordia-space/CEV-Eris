@@ -31,6 +31,8 @@
 	species_restricted = list("exclude")
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 100
+	spawn_blacklisted = TRUE
+	bad_types = /obj/item/clothing/head/space
 
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
@@ -93,14 +95,14 @@
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude")
 	equip_delay = 4 SECONDS
+	bad_types = /obj/item/clothing/suit/space
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
-
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()
 	..()
 
-/obj/item/clothing/suit/space/dropped(var/mob/user)
+/obj/item/clothing/suit/space/dropped(mob/user)
 	check_limb_support(user)
 	..()
 
@@ -108,7 +110,7 @@
 // broken limbs - at the time of writing, only the ninja suit, but
 // I can see it being useful for other suits as we expand them. ~ Z
 // The actual splinting occurs in /obj/item/organ/external/proc/fracture()
-/obj/item/clothing/suit/space/proc/check_limb_support(var/mob/living/carbon/human/user)
+/obj/item/clothing/suit/space/proc/check_limb_support(mob/living/carbon/human/user)
 
 	// If this isn't set, then we don't need to care.
 	if(!supporting_limbs || !supporting_limbs.len)

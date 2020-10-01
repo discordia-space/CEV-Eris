@@ -12,6 +12,8 @@
 	price_tag = 20000
 	origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 8, TECH_POWER = 7)
 	matter = list(MATERIAL_PLASTIC = 6, MATERIAL_GLASS = 7)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/last_produce = 0
 	var/cooldown = 15 MINUTES
 

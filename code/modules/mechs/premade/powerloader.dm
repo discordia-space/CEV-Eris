@@ -3,11 +3,12 @@
 	name = "S.E.U. \"Ripley\"" //Space Excavation Unit
 	desc = "A cheap utility exosuit. An old Nanotrasen design, now used just about everywhere due to post-Fall data leaks."
 
+	rarity_value = 15
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
 	installed_software_boards = list(
-		/obj/item/weapon/circuitboard/exosystem/utility,
-		/obj/item/weapon/circuitboard/exosystem/engineering
+		/obj/item/weapon/electronics/circuitboard/exosystem/utility,
+		/obj/item/weapon/electronics/circuitboard/exosystem/engineering
 	)
 	installed_systems = list(
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
@@ -83,17 +84,20 @@
 	name = "S.E.U. \"Firestarter\""
 	desc = "An old but well-liked utility exosuit. This one has cool red flames."
 	decal = "flames_red"
+	spawn_blacklisted = TRUE
 
 /mob/living/exosuit/premade/powerloader/flames_blue
 	name = "S.E.U. \"Burning Chrome\""
 	desc = "An old but well-liked utility exosuit. This one has cool blue flames."
 	decal = "flames_blue"
+	spawn_blacklisted = TRUE
 
 
 /mob/living/exosuit/premade/powerloader/firefighter
 	name = "S.E.U. \"Firefighter\""
 	desc = "A refitted industrial exosuit designed to fight fires. The chassis has been replaced to protect the pilot, and the armor is reinforced with plasteel for fireproofing."
 
+	rarity_value = 20
 	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
 	exosuit_color = "#819a73"
 	installed_systems = list(

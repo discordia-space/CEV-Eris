@@ -10,7 +10,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 5			//5 Watts for thermostat related circuitry
-	circuit = /obj/item/weapon/circuitboard/unary_atmos/heater
+	circuit = /obj/item/weapon/electronics/circuitboard/unary_atmos/heater
 
 	var/max_temperature = T20C + 680
 	var/internal_volume = 600	//L
@@ -77,7 +77,7 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/unary/heater/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/unary/heater/attack_hand(mob/user)
 	ui_interact(user)
 
 /obj/machinery/atmospherics/unary/heater/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)

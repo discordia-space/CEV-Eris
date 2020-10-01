@@ -1,7 +1,7 @@
 
 //the researchable camera circuit that can connect to any camera network
 
-/obj/item/weapon/circuitboard/camera
+/obj/item/weapon/electronics/circuitboard/camera
 	//name = "Circuit board (Camera)"
 	var/secured = 1
 	var/authorised = 0
@@ -104,7 +104,7 @@
 		if(istype(src.loc,/mob))
 			attack_self(src.loc)
 
-/obj/item/weapon/circuitboard/camera/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/weapon/electronics/circuitboard/camera/emag_act(var/remaining_charges, var/mob/user)
 	if(network)
 		authorised = 1
 		user << SPAN_NOTICE("You authorised the circuit network!")

@@ -13,6 +13,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	matter = list(MATERIAL_PLASTIC = 3)
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
+	rarity_value = 10
 	var/mopping = 0
 	var/mopcount = 0
 

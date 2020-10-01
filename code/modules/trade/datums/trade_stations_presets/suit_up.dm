@@ -52,8 +52,8 @@
 			/obj/item/clothing/head/that,
 			/obj/item/clothing/under/suit_jacket,
 			/obj/item/clothing/under/suit_jacket/red,
-			/obj/item/clothing/shoes/black,
-			/obj/item/clothing/shoes/black,
+			/obj/item/clothing/shoes/color/black,
+			/obj/item/clothing/shoes/color/black,
 			/obj/item/clothing/shoes/leather,
 			/obj/item/clothing/suit/wcoat
 		)

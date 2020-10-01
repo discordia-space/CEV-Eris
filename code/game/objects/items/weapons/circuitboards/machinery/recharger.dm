@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/recharger
+/obj/item/weapon/electronics/circuitboard/recharger
 	name = T_BOARD("recharger")
 	build_path = /obj/machinery/recharger
 	board_type = "machine"

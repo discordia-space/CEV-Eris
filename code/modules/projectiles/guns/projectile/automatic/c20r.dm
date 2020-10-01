@@ -27,6 +27,7 @@
 	zoom_factor = 0.4
 	recoil_buildup = 3
 	one_hand_penalty = 5 //smg level
+	rarity_value = 19.2
 
 	gun_tags = list(GUN_SILENCABLE)
 

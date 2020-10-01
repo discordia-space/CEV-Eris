@@ -38,10 +38,10 @@
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
 	RegisterSignal(parent, COMSIG_REMOVE, .proc/uninstall)
 
-/datum/component/item_upgrade/proc/attempt_install(atom/A, var/mob/living/user, params)
+/datum/component/item_upgrade/proc/attempt_install(atom/A, mob/living/user, params)
 	return can_apply(A, user) && apply(A, user)
 
-/datum/component/item_upgrade/proc/can_apply(var/atom/A, var/mob/living/user)
+/datum/component/item_upgrade/proc/can_apply(atom/A, mob/living/user)
 	if (isrobot(A))
 		return check_robot(A, user)
 
@@ -61,7 +61,7 @@
 
 	return FALSE
 
-/datum/component/item_upgrade/proc/check_robot(var/mob/living/silicon/robot/R, var/mob/living/user)
+/datum/component/item_upgrade/proc/check_robot(mob/living/silicon/robot/R, mob/living/user)
 	if(!R.opened)
 		to_chat(user, SPAN_WARNING("You need to open [R]'s panel to access its tools."))
 		return FALSE
@@ -77,7 +77,7 @@
 		to_chat(user, SPAN_WARNING("[R] has no modifiable tools."))
 	return FALSE
 
-/datum/component/item_upgrade/proc/check_tool(var/obj/item/weapon/tool/T, var/mob/living/user)
+/datum/component/item_upgrade/proc/check_tool(obj/item/weapon/tool/T, mob/living/user)
 	if (T.item_upgrades.len >= T.max_upgrades)
 		to_chat(user, SPAN_WARNING("This tool can't fit anymore modifications!"))
 		return FALSE
@@ -121,7 +121,7 @@
 
 	return TRUE
 
-/datum/component/item_upgrade/proc/check_gun(var/obj/item/weapon/gun/G, var/mob/living/user)
+/datum/component/item_upgrade/proc/check_gun(obj/item/weapon/gun/G, mob/living/user)
 	if(!weapon_upgrades.len)
 		to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
 		return FALSE //Can't be applied to a weapon
@@ -146,7 +146,7 @@
 		return FALSE
 	return TRUE
 
-/datum/component/item_upgrade/proc/apply(var/obj/item/A, var/mob/living/user)
+/datum/component/item_upgrade/proc/apply(obj/item/A, mob/living/user)
 	if (user)
 		user.visible_message(SPAN_NOTICE("[user] starts applying [parent] to [A]"), SPAN_NOTICE("You start applying \the [parent] to \the [A]"))
 		var/obj/item/I = parent
@@ -164,14 +164,14 @@
 	A.refresh_upgrades()
 	return TRUE
 
-/datum/component/item_upgrade/proc/uninstall(var/obj/item/I)
+/datum/component/item_upgrade/proc/uninstall(obj/item/I)
 	var/obj/item/P = parent
 	I.item_upgrades -= P
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, COMSIG_ADDVAL)
 	UnregisterSignal(I, COMSIG_APPVAL)
 
-/datum/component/item_upgrade/proc/apply_values(var/atom/holder)
+/datum/component/item_upgrade/proc/apply_values(atom/holder)
 	if (!holder)
 		return
 	if(istool(holder))
@@ -180,13 +180,13 @@
 		apply_values_gun(holder)
 	return TRUE
 
-/datum/component/item_upgrade/proc/add_values(var/atom/holder)
+/datum/component/item_upgrade/proc/add_values(atom/holder)
 	ASSERT(holder)
 	if(isgun(holder))
 		add_values_gun(holder)
 	return TRUE
 
-/datum/component/item_upgrade/proc/apply_values_tool(var/obj/item/weapon/tool/T)
+/datum/component/item_upgrade/proc/apply_values_tool(obj/item/weapon/tool/T)
 	if(tool_upgrades[UPGRADE_PRECISION])
 		T.precision += tool_upgrades[UPGRADE_PRECISION]
 	if(tool_upgrades[UPGRADE_WORKSPEED])
@@ -298,11 +298,11 @@
 	for(var/datum/firemode/F in G.firemodes)
 		apply_values_firemode(F)
 
-/datum/component/item_upgrade/proc/add_values_gun(var/obj/item/weapon/gun/G)
+/datum/component/item_upgrade/proc/add_values_gun(obj/item/weapon/gun/G)
 	if(weapon_upgrades[GUN_UPGRADE_FULLAUTO])
 		G.add_firemode(FULL_AUTO_400)
 
-/datum/component/item_upgrade/proc/apply_values_firemode(var/datum/firemode/F)
+/datum/component/item_upgrade/proc/apply_values_firemode(datum/firemode/F)
 	for(var/i in F.settings)
 		switch(i)
 			if("fire_delay")
@@ -312,7 +312,7 @@
 				if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
 					F.settings[i] *= weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]
 
-/datum/component/item_upgrade/proc/on_examine(var/mob/user)
+/datum/component/item_upgrade/proc/on_examine(mob/user)
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
 		to_chat(user, SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
 	else if (tool_upgrades[UPGRADE_PRECISION] < 0)
@@ -470,9 +470,9 @@
 		if(weapon_upgrades[GUN_UPGRADE_OFFSET])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OFFSET]
 			if(amount > 1)
-				to_chat(user, SPAN_WARNING("Increases weapon inaccuracy by [amount]°"))
+				to_chat(user, SPAN_WARNING("Increases weapon inaccuracy by [amount]ï¿½"))
 			else
-				to_chat(user, SPAN_NOTICE("Decreases weapon inaccuracy by [amount]°"))
+				to_chat(user, SPAN_NOTICE("Decreases weapon inaccuracy by [amount]ï¿½"))
 
 		if(weapon_upgrades[GUN_UPGRADE_HONK])
 			to_chat(user, SPAN_WARNING("Cheers up the firing sound of the weapon."))
@@ -499,7 +499,7 @@
 /datum/component/upgrade_removal/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attempt_uninstall)
 
-/datum/component/upgrade_removal/proc/attempt_uninstall(var/obj/item/C, var/mob/living/user)
+/datum/component/upgrade_removal/proc/attempt_uninstall(obj/item/C, mob/living/user)
 	if(!isitem(C))
 		return 0
 
@@ -551,4 +551,7 @@
 	icon = 'icons/obj/tool_upgrades.dmi'
 	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_TOOL_UPGRADE
 	price_tag = 200
+	rarity_value = 15
+	bad_types = /obj/item/weapon/tool_upgrade

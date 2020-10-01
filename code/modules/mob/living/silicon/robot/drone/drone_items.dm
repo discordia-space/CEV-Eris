@@ -1,16 +1,15 @@
 // Matter decompiler.
 /obj/item/weapon/matter_decompiler
-
 	name = "matter decompiler"
 	desc = "Eating trash, bits of glass, or other debris will replenish your stores."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "decompiler"
-
+	spawn_frequency = 0
 	//Metal, glass, wood, plastic.
-	var/datum/matter_synth/metal = null
-	var/datum/matter_synth/glass = null
-	var/datum/matter_synth/wood = null
-	var/datum/matter_synth/plastic = null
+	var/datum/matter_synth/metal
+	var/datum/matter_synth/glass
+	var/datum/matter_synth/wood
+	var/datum/matter_synth/plastic
 
 //These caused failed GC runtime errors
 /obj/item/weapon/matter_decompiler/Destroy()

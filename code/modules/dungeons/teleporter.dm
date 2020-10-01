@@ -20,7 +20,7 @@
 		/mob/living/simple_animal/hostile/viscerator)//duplicates to rig chances towards spawning more weaker enemies, but in favour of generally spawning more enemies
 	var/turfs_around = list()
 	var/victims_to_teleport = list()
-	var/obj/crawler/spawnpoint/target = null
+	var/obj/crawler/spawnpoint/target
 	anchored = TRUE
 	unacidable = 1
 	density = TRUE

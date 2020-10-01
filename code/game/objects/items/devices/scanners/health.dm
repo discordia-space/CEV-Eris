@@ -9,6 +9,7 @@
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
+	rarity_value = 16.66
 
 	var/mode = 1
 

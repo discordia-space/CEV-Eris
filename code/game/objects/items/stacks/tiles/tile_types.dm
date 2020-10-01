@@ -55,6 +55,7 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
 	build_type = /obj/item/stack/tile/wood
+	spawn_frequency = 0
 
 /*
  * Carpets
@@ -116,6 +117,7 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
+	spawn_frequency = 0
 
 	var/list/cyborg_floor = list(
 		"steel techfloor" = /obj/item/stack/tile/floor/steel/techfloor,

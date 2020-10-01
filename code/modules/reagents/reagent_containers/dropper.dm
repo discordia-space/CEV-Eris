@@ -13,6 +13,8 @@
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_PLASTIC = 1)
 	volume = 5
 	reagent_flags = TRANSPARENT
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 10
 
 /obj/item/weapon/reagent_containers/dropper/afterattack(atom/target, mob/user, proximity)
 	if(!target.reagents || !proximity)

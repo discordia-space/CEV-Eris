@@ -186,7 +186,7 @@ var/global/ManifestJSON
 		G.fields["age"]			= H.age
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		if(H.mind.initial_account)
-			G.fields["pay_account"]	= H.mind.initial_account.account_number
+			G.fields["pay_account"]	= H.mind.initial_account.account_number ? H.mind.initial_account.account_number : "N/A"
 		G.fields["email"]		= H.mind.initial_email_login["login"]
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"

@@ -352,21 +352,29 @@
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - a stimulant used to stabilize patients."
 	preloaded_reagents = list("inaprovaline" = 15)
+	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
+	rarity_value = 10
 
 /obj/item/weapon/reagent_containers/syringe/antitoxin
 	name = "syringe (anti-toxin)"
 	desc = "Contains dylovene - a broad spectrum antitoxin."
 	preloaded_reagents = list("anti_toxin" = 15)
+	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
+	rarity_value = 10
 
 /obj/item/weapon/reagent_containers/syringe/tricordrazine
 	name = "syringe (tricordrazine)"
 	desc = "Contains tricordrazine - a stimulant that can be used to treat a wide range of injuries."
 	preloaded_reagents = list("tricordrazine" = 15)
+	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
+	rarity_value = 15
 
 /obj/item/weapon/reagent_containers/syringe/spaceacillin
 	name = "syringe (spaceacillin)"
 	desc = "Contains spaceacillin - an antibacterial agent."
 	preloaded_reagents = list("spaceacillin" = 15)
+	spawn_tags = SPAWN_TAG_MEDICINE
+	rarity_value = 20
 
 /obj/item/weapon/reagent_containers/syringe/hyperzine
 	name = "syringe (hyperzine)"
@@ -377,11 +385,15 @@
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	preloaded_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+	spawn_tags = SPAWN_TAG_DRUG_CONTRABAND
+	rarity_value = 50
 
 /obj/item/weapon/reagent_containers/syringe/drugs_recreational
 	name = "syringe (drugs)"
 	desc = "Contains recreational drugs."
 	preloaded_reagents = list("space_drugs" = 15)
+	spawn_tags = SPAWN_TAG_DRUG_CONTRABAND
+	rarity_value = 40
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
 	preloaded_reagents = list("chloralhydrate" = 50)

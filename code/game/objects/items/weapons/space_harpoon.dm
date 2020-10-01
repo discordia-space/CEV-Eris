@@ -12,6 +12,7 @@
 	origin_tech = list(TECH_BLUESPACE = 5)
 	price_tag = 4000
 	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
+	spawn_blacklisted = TRUE
 	var/entropy_value = 2
 	var/mode = MODE_TRANSMIT
 	var/transforming = FALSE	// mode changing takes some time
@@ -91,7 +92,7 @@
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return change_fire_mode(user)
 
-/obj/item/weapon/bluespace_harpoon/verb/change_fire_mode(mob/user as mob)
+/obj/item/weapon/bluespace_harpoon/verb/change_fire_mode(mob/user)
 	set name = "Change fire mode"
 	set category = "Object"
 	set src in oview(1)
@@ -121,6 +122,7 @@
 		src.cell = C
 
 /obj/item/weapon/bluespace_harpoon/mounted
+	spawn_blacklisted = TRUE
 	var/charge_cost = 100
 	var/charge_tick = 0
 	var/recharge_time = 4

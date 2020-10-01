@@ -5,10 +5,10 @@
 	icon_screen = "crew"
 	light_color = COLOR_LIGHTING_GREEN_MACHINERY
 	CheckFaceFlag = 0
-	var/datum/disease2/effectholder/memorybank = null
-	var/list/species_buffer = null
+	var/datum/disease2/effectholder/memorybank
+	var/list/species_buffer
 	var/analysed = 0
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/weapon/virusdish/dish
 	var/burning = 0
 	var/splicing = 0
 	var/scanning = 0

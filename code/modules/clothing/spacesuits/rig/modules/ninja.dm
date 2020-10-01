@@ -7,7 +7,6 @@
  */
 
 /obj/item/rig_module/stealth_field
-
 	name = "active camouflage module"
 	desc = "A robust hardsuit-integrated stealth module."
 	icon_state = "cloak"
@@ -29,6 +28,7 @@
 
 	suit_overlay_active =   "stealth_active"
 	suit_overlay_inactive = "stealth_inactive"
+	spawn_blacklisted = TRUE
 
 /obj/item/rig_module/stealth_field/activate()
 
@@ -140,7 +140,6 @@
 	return 1
 
 /obj/item/rig_module/fabricator/energy_net
-
 	name = "net projector"
 	desc = "Some kind of complex energy projector with a hardsuit mount."
 	icon_state = "enet"
@@ -152,6 +151,7 @@
 
 	fabrication_type = /obj/item/weapon/energy_net
 	use_power_cost = 70
+	rarity_value = 50
 
 /obj/item/rig_module/fabricator/energy_net/engage(atom/target)
 
@@ -162,7 +162,6 @@
 	return 0
 
 /obj/item/rig_module/self_destruct
-
 	name = "self-destruct module"
 	desc = "Oh my God, Captain. A bomb."
 	icon_state = "deadman"
@@ -174,6 +173,7 @@
 
 	interface_name = "dead man's switch"
 	interface_desc = "An integrated self-destruct module. When the wearer dies, so does the surrounding area. Do not press this button."
+	rarity_value = 20
 	var/list/explosion_values = list(1,2,4,5)
 
 /obj/item/rig_module/self_destruct/small

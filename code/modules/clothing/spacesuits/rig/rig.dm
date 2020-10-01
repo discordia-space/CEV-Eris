@@ -21,6 +21,8 @@
 	req_access = list()
 	w_class = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
+	spawn_tags = SPAWN_TAG_RING
+	rarity_value = 10
 
 	// These values are passed on to all component pieces.
 	armor = list(
@@ -59,12 +61,12 @@
 
 	//Component/device holders.
 	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
-	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
+	var/obj/item/clothing/shoes/boots                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
-	var/obj/item/clothing/head/space/rig/helmet = null // Deployable helmet, if any.
-	var/obj/item/clothing/gloves/rig/gloves = null            // Deployable gauntlets, if any.
-	var/obj/item/weapon/cell/large/cell                             // Power supply, if any.
-	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)
+	var/obj/item/clothing/head/space/rig/helmet				 // Deployable helmet, if any.
+	var/obj/item/clothing/gloves/rig/gloves					// Deployable gauntlets, if any.
+	var/obj/item/weapon/cell/large/cell						// Power supply, if any.
+	var/obj/item/rig_module/selected_module      		      // Primary system (used with middle-click)
 	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.
 	var/obj/item/rig_module/voice/speech                      // As above.
 	var/obj/item/rig_module/storage/storage					  // var for installed storage module, if any
