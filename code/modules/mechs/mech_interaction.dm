@@ -1,8 +1,4 @@
 /mob/living/exosuit/MouseDrop_T(atom/dropping, mob/user)
-	if (user.buckled)
-		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
-		return 0
-
 	if(istype(dropping, /obj/machinery/portable_atmospherics/canister))
 		body.MouseDrop_T(dropping, user)
 	else if(user != src && user == dropping)
