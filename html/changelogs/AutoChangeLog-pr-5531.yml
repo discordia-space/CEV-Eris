@@ -1,0 +1,5 @@
+author: yorpyorpyorp
+delete-after: true
+changes:
+  - bugfix: fixed the biogenerator not consuming people that were wearing armor, or
+      had robotic limbs.
