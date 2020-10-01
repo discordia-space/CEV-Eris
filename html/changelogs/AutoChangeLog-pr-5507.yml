@@ -1,0 +1,6 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - rscdel: Removed playable Xenos and Aliens. Simple Animal xenos are kept.
+  - config: Removed few configs checks from code.
+  - admin: Reworked some admin verbs and added required logging to them
