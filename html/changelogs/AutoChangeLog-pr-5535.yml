@@ -1,0 +1,5 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: revive proc no longer destroys organs, it only heals them.
+  - bugfix: revive proc no longer causes the target to lose their cruciform.
