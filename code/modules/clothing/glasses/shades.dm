@@ -15,7 +15,14 @@
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/clothing/glasses/shades
+	name = "Shades"
+	desc = "Good locking pare of shades."
+	icon_state = "jensenshades"
+	item_state = "jensenshades"
 	spawn_blacklisted = TRUE
+	darkness_view = -1
+	flash_protection = FLASH_PROTECTION_MODERATE
+	style = 2
 
 /obj/item/clothing/glasses/shades/night
 	name = "Augmented Night Vision Shades"
