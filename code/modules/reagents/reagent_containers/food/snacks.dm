@@ -207,7 +207,7 @@
 	if(junk_food)
 		to_chat(user, SPAN_WARNING("\The [src] its a junk food!"))
 	else if(taste_tag.len)
-		to_chat(user, SPAN_NOTICE("\The [src] this tastes like [english_list(taste_tag)]"))
+		to_chat(user, SPAN_NOTICE("\The [src] tastes like [english_list(taste_tag)]"))
 	if (bitecount==0)
 		return
 	else if (bitecount==1)
