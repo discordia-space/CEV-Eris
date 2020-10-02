@@ -38,6 +38,10 @@
 #define SPAWN_TAG_RARE_TOOL_UPGRADE_OS "obj,item,tool_upgrade,rare_tool_upgrade,item_tech_os,onestar"
 #define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
 
+//items - one star
+#define SPAWN_ITEM_TECH_OS "item_tech_os"
+
+#define SPAWN_TAG_ITEM_TECH_OS "obj,item,item_tech_os"
 // ITEMS - organ- PROSTHESIS
 #define SPAWN_OS_PROSTHETIC "prosthetic_os"
 
@@ -229,7 +233,6 @@
 
 // ITEM - STOCK PARTS   and os_tech
 #define SPAWN_STOCK_PARTS "stock_parts"
-#define SPAWN_ITEM_TECH_OS "item_tech_os"
 
 #define SPAWN_TAG_STOCK_PARTS "obj,item,stock_parts"
 #define SPAWN_TAG_STOCK_PARTS_TIER_2 "obj,item,stock_parts,science"

@@ -47,6 +47,10 @@
 		organ_data["ref"] = "\ref[organ]"
 		organ_data["open"] = organ.is_open()
 
+		var/icon/ic = new(organ.icon, organ.icon_state)
+		usr << browse_rsc(ic, "[organ.icon_state].png")	//Contvers the icon to a PNG so it can be used in the UI
+		organ_data["icon_data"] = "[organ.icon_state].png"
+
 		organ_data["damage"] = organ.damage
 		organ_data["max_damage"] = organ.max_damage
 		organ_data["status"] = organ.get_status_data()
@@ -71,6 +75,30 @@
 				"organ" = "\ref[organ]",
 				"step" = /datum/surgery_step/robotic/connect_organ
 			)
+		else if(istype(organ, /obj/item/organ/internal/bone))
+			var/obj/item/organ/internal/bone/B = organ
+			connect_action = list(
+				"name" = (organ.parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
+				"organ" = "\ref[organ]",
+				"step" = (organ.parent.status & ORGAN_BROKEN) ? /datum/surgery_step/mend_bone : /datum/surgery_step/break_bone
+			)
+			if(!(organ.parent.status & ORGAN_BROKEN))
+				var/list/replace_bone_action = list(
+					"name" = "Replace",
+					"organ" = "\ref[organ]",
+					"step" = /datum/surgery_step/replace_bone
+				)
+
+				actions_list.Add(list(replace_bone_action))
+			else if(!(B.reinforced)) //Bone must be broken and not reinforced
+				var/list/reinforce_bone_action = list(
+					"name" = "Reinforce",
+					"organ" = "\ref[organ]",
+					"step" = /datum/surgery_step/reinforce_bone
+				)
+
+				actions_list.Add(list(reinforce_bone_action))
+
 		else
 			connect_action = list(
 				"name" = (organ.status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",

@@ -1,5 +1,6 @@
 /obj/item/organ/internal
 	var/list/owner_verbs = list()
+	var/organ_efficiency = 100	//Efficency of an organ, should become the most important variable
 	layer = ABOVE_LYING_MOB_LAYER
 
 /obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
