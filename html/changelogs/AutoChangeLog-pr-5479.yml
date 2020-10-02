@@ -1,6 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - rscadd: fluid duct multilayered
-  - rscadd: fluid duct design
-  - tweak: the fluid ducts now have can be of different layers.

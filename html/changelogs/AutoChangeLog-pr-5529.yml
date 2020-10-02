@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - bugfix: Fixed firemode change that was erasing charge_cost and fire_delay of gunmods

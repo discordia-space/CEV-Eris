@@ -1,4 +1,0 @@
-author: yorpyorpyorp
-delete-after: true
-changes:
-  - bugfix: Can no longer enter mechs while buckled.
