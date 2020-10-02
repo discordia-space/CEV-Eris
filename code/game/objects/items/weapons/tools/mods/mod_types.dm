@@ -51,7 +51,6 @@
 	name = "reinforced plating"
 	desc = "A sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky."
 	icon_state = "plate"
-	rarity_value = 10
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 2) //steel to compensate for metal rods used in crafting
 
 /obj/item/weapon/tool_upgrade/reinforcement/plating/New()
