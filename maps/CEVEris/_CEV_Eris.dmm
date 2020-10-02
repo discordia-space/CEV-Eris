@@ -60601,7 +60601,6 @@
 	dir = 4;
 	pixel_y = 8
 	},
-/obj/machinery/slotmachine,
 /turf/simulated/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "cJR" = (
@@ -104703,6 +104702,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/storage)
+"gkh" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "gkN" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -105848,6 +105851,10 @@
 /mob/living/carbon/human/monkey,
 /turf/simulated/floor/reinforced,
 /area/eris/medical/chemstor)
+"sRW" = (
+/obj/machinery/slotmachine,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
 "sZg" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -165826,7 +165833,7 @@ apF
 ckK
 clf
 clq
-clq
+gkh
 clW
 clf
 clf
@@ -166028,7 +166035,7 @@ ckn
 ckL
 cjA
 ijn
-cjQ
+sRW
 clX
 cjq
 aqV
@@ -166230,7 +166237,7 @@ cJQ
 ckQ
 cjA
 dqw
-cjQ
+sRW
 cJQ
 aAs
 anJ
