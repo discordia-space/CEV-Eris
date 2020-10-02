@@ -8,7 +8,7 @@ var/global/datum/datacore/data_core = null
 var/global/datum/DB_search/db_search = new()
 var/global/list/all_areas                = list()
 var/global/list/ship_areas               = list()
-var/global/list/ships 					 = list()
+var/global/list/obj/effect/overmap/ship/ships 					 = list()
 
 
 //var/global/list/machines                 = list()		//Removed
