@@ -30,41 +30,20 @@
 
 /datum/individual_objective/more_tech
 	name = "Endless Search"
-	req_department = list(DEPARTMENT_ENGINEERING)
+	req_department = list(DEPARTMENT_ENGINEERING) //test
 	var/obj/item/target
 
 /datum/individual_objective/more_tech/proc/pick_candidates()
-	return pickweight(list(
-	/obj/item/weapon/tool_upgrade/reinforcement/guard = 1,
-	/obj/item/weapon/tool_upgrade/productivity/ergonomic_grip = 1,
-	/obj/item/weapon/tool_upgrade/productivity/red_paint = 1,
-	/obj/item/weapon/tool_upgrade/productivity/diamond_blade = 1,
-	/obj/item/weapon/tool_upgrade/productivity/motor = 1,
-	/obj/item/weapon/tool_upgrade/refinement/laserguide = 1,
-	/obj/item/weapon/tool_upgrade/refinement/stabilized_grip = 1,
-	/obj/item/weapon/tool_upgrade/augment/expansion = 1,
-	/obj/item/weapon/tool_upgrade/augment/dampener = 0.5,
-	/obj/item/weapon/tool/screwdriver/combi_driver = 3,
-	/obj/item/weapon/tool/wirecutters/armature = 3,
-	/obj/item/weapon/tool/omnitool = 2,
-	/obj/item/weapon/tool/crowbar/pneumatic = 3,
-	/obj/item/weapon/tool/wrench/big_wrench = 3,
-	/obj/item/weapon/tool/weldingtool/advanced = 3,
-	/obj/item/weapon/tool/saw/circular/advanced = 2,
-	/obj/item/weapon/tool/saw/chain = 1,
-	/obj/item/weapon/tool/saw/hyper = 1,
-	/obj/item/weapon/tool/pickaxe/diamonddrill = 2,
-	/obj/item/weapon/gun_upgrade/mechanism/glass_widow = 1,
-	/obj/item/weapon/gun_upgrade/barrel/excruciator = 1,
-	/obj/item/device/destTagger = 1,
-	/obj/item/device/makeshift_electrolyser = 1,
-	/obj/item/device/makeshift_centrifuge = 1
-	))
+	var/candidates = list()
+	var/obj/randomcatcher/CATCH = new /obj/randomcatcher
+	candidates += CATCH.get_item(/obj/spawner/tool_upgrade/rare)
+	candidates += CATCH.get_item(/obj/spawner/tool/advanced)
+	candidates += CATCH.get_item(/obj/spawner/tool/advanced)
+	return pick(candidates)
 
 /datum/individual_objective/more_tech/assign()
 	..()
 	target = pick_candidates()
-	target = new target()
 	desc = "As always, you need more technology to your possession. Acquire a [target.name]"
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
@@ -104,6 +83,7 @@
 	name = "Advanced Tribalism"
 	req_department = list(DEPARTMENT_ENGINEERING)
 	limited_antag = TRUE
+	rarity = 4
 	var/obj/item/target
 
 /datum/individual_objective/tribalism/assign()

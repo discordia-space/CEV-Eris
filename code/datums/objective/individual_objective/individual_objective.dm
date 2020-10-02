@@ -6,11 +6,11 @@
 		var/datum/individual_objective/IO = GLOB.individual_objectives[npath]
 		if(!IO.can_assign(src))
 			continue
-		valid_objectives += npath
+		valid_objectives[npath] = IO.rarity
 	for(var/datum/individual_objective/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
-	var/new_individual_objective = pick(valid_objectives)
+	var/new_individual_objective = pickweight(valid_objectives)
 	var/datum/individual_objective/IO = new new_individual_objective()
 	IO.assign(mind)
 
@@ -35,9 +35,10 @@
 	var/list/req_department = list()
 	var/req_cruciform = FALSE
 	var/insight_reward = 25
-	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
 	var/limited_antag = FALSE
-	var/show_la = "<span style='color:red'> (LA)</span>"
+	var/rarity = 1
+	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
+	var/show_la = "<span style='color:red'>(LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
 						or to push for faction on faction conflict, but do not allow you to kill everyone in the department to get inside for their \
 						needs.</span></b>"
@@ -89,7 +90,7 @@
 	for(var/obj/item/faction_item in GLOB.all_faction_items)
 		if(faction_item in valid_targets)
 			continue
-		if(!ignore_departmen && owner.assigned_job && (owner.assigned_job.department in GLOB.all_faction_items[faction_item]))
+		if(!ignore_departmen && H.mind.assigned_job && (H.mind.assigned_job.department in GLOB.all_faction_items[faction_item]))
 			continue
 		if(!ignore_departmen && H && GLOB.all_faction_items[faction_item] == church_positions && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue

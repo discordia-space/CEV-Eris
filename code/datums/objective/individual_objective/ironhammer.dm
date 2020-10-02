@@ -71,6 +71,7 @@
 	name = "Absolute Dange"
 	req_department = list(DEPARTMENT_SECURITY)
 	limited_antag = TRUE
+	rarity = 4
 	var/obj/item/target
 
 /datum/individual_objective/danger/can_assign(mob/living/L)

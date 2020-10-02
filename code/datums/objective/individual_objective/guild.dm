@@ -2,6 +2,7 @@
 	name = "Repossession"
 	req_department = list(DEPARTMENT_GUILD)
 	limited_antag = TRUE
+	rarity = 4
 	var/obj/item/target
 
 /datum/individual_objective/repossession/can_assign(mob/living/L)
@@ -97,6 +98,7 @@
 	name = "Stripping Operation"
 	req_department = list(DEPARTMENT_GUILD)
 	limited_antag = TRUE
+	rarity = 4
 	var/price_target = 2000
 	var/area/target
 

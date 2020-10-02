@@ -177,7 +177,6 @@
 	..()
 	var/area/A = get_area(starter)
 	A?.sanctify()
-	admin_notice(SPAN_DANGER("EL RITUAL FUNCIONÓ antes de ir a los objetivos"))
 
 /area/proc/sanctify()
 	SEND_SIGNAL(src, COMSIG_AREA_SANCTIFY)

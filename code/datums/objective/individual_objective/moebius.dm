@@ -45,6 +45,7 @@
 	name = "Observe a Derail"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	limited_antag = TRUE
+	rarity = 4
 
 /datum/individual_objective/derail/assign()
 	..()
@@ -64,6 +65,7 @@
 	name = "On The Hook"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	limited_antag = TRUE
+	rarity = 4
 
 /datum/individual_objective/adiction/assign()
 	..()
@@ -106,6 +108,7 @@
 	name = "Mandate of Science"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	limited_antag = TRUE
+	rarity = 4
 	var/obj/item/target
 
 /datum/individual_objective/more_research/can_assign(mob/living/L)
@@ -156,6 +159,7 @@
 	name = "Call of Science"
 	req_department = list(DEPARTMENT_SCIENCE, DEPARTMENT_MEDICAL)
 	limited_antag = TRUE
+	rarity = 4
 	var/mob/living/carbon/human/target
 	var/list/valid_organs = list()
 

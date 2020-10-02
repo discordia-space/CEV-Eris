@@ -106,19 +106,8 @@
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
 
-/datum/mind/proc/show_memory(mob/recipient)
-	var/output = "<B>[current.real_name]'s Memory</B><HR>"
-	output += memory
-
-	for(var/datum/antagonist/A in antagonist)
-		if(!A.objectives.len)
-			break
-		if(A.faction)
-			output += "<br><b>Your [A.faction.name] faction objectives:</b>"
-		else
-			output += "<br><b>Your [A.role_text] objectives:</b>"
-		output += "[A.print_objectives(FALSE)]"
-
+/datum/mind/proc/print_individualobjectives()
+	var/output
 	if(LAZYLEN(individual_objectives))
 		output += "<HR><B>Your individual objectives:</B><UL>"
 		var/obj_count = 1
@@ -131,6 +120,21 @@
 		output += "</UL>"
 		if(la_explanation)
 			output += la_explanation
+	return output
+
+/datum/mind/proc/show_memory(mob/recipient)
+	var/output = "<B>[current.real_name]'s Memory</B><HR>"
+	output += memory
+
+	for(var/datum/antagonist/A in antagonist)
+		if(!A.objectives.len)
+			break
+		if(A.faction)
+			output += "<br><b>Your [A.faction.name] faction objectives:</b>"
+		else
+			output += "<br><b>Your [A.role_text] objectives:</b>"
+		output += "[A.print_objectives(FALSE)]"
+	output += print_individualobjectives()
 	recipient << browse(output, "window=memory")
 
 /datum/mind/proc/edit_memory()
@@ -156,18 +160,8 @@
 	out += "</table><hr>"
 	out += "<br>[memory]"
 
-	if(LAZYLEN(individual_objectives))
-		out += "<HR><B>Your individual objectives:</B><UL>"
-		var/obj_count = 1
-		var/la_explanation
-		for(var/datum/individual_objective/objective in individual_objectives)
-			out += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
-			obj_count++
-			if(objective.limited_antag)
-				la_explanation = objective.la_explanation
-		out += "</UL>"
-		if(la_explanation)
-			out += la_explanation
+	out += print_individualobjectives()
+
 	out += "<br><a href='?src=\ref[src];edit_memory=1'>"
 	usr << browse(out, "window=edit_memory[src]")
 

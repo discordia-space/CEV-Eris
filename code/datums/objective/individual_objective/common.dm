@@ -41,6 +41,7 @@
 /datum/individual_objective/derange//work but limit it to more of the one player
 	name = "Derange"
 	limited_antag = TRUE
+	rarity = 4
 	var/mob/living/carbon/human/target
 
 /datum/individual_objective/derange/can_assign(mob/living/L)
@@ -244,6 +245,7 @@
 	units_requested = 10 MINUTES
 	based_time = TRUE
 	limited_antag = TRUE
+	rarity = 4
 	var/obj/item/target
 	var/timer
 
@@ -282,18 +284,12 @@
 	var/obj/item/target
 
 /datum/individual_objective/collenction/proc/pick_candidates()
-	return pickweight(list(
-		/obj/item/weapon/gun/projectile/revolver/deckard,
-		/obj/item/weapon/gun/energy/ionrifle,
-		/obj/item/weapon/gun/projectile/automatic/ak47/fs,
-		/obj/item/weapon/gun/energy/retro,
-		/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
-		))
+	var/obj/randomcatcher/CATCH = new /obj/randomcatcher
+	return CATCH.get_item(/obj/spawner/gun/normal)
 
 /datum/individual_objective/collenction/assign()
 	..()
 	target = pick_candidates()
-	target = new target()
 	desc = "Get your hands on a [target.name]"
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 

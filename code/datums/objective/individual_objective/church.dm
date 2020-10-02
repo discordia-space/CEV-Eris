@@ -3,6 +3,7 @@
 	req_department = list(DEPARTMENT_CHURCH)
 	limited_antag = TRUE
 	req_cruciform = TRUE
+	rarity = 4
 	var/obj/item/target
 
 /datum/individual_objective/bad_technology/assign()
@@ -24,6 +25,7 @@
 	name = "Convert"
 	limited_antag = TRUE
 	req_cruciform = TRUE
+	rarity = 4
 	var/mob/living/carbon/human/target
 
 /datum/individual_objective/convert/can_assign(mob/living/L)
