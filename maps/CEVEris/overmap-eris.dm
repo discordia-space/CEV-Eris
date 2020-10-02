@@ -9,13 +9,6 @@
 	start_x = 9
 	start_y = 10
 
-	var/start_sector // Determines where Eris should start
-	var/list/start_sector_list = list( // List of locations to pick from.
-		"asteroid", 
-		"abandoned fortress", 
-		"space ruins") 
-
-
 	restricted_waypoints = list(
 		"Vasiliy Dokuchaev" = list("nav_dock_expl"), 	//can't have random shuttles popping inside the ship
 		"Hulk" = list("nav_dock_hulk")
@@ -52,9 +45,8 @@
 
 /obj/effect/overmap/ship/eris/Initialize()
 	.=..()
-	var/pick = rand(1, start_sector_list.len)
-	start_sector = start_sector_list[pick]
-	admin_notice("Eris Start Sector is [start_sector]", R_DEBUG)
+	if(name == "CEV Eris")
+		ships[eris] = src
 
 /obj/machinery/computer/shuttle_control/explore/exploration_shuttle
 	name = "shuttle control console"

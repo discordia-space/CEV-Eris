@@ -167,6 +167,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
 
+	var/start_location = "asteroid" // Start location defaults to asteroid.
+
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
@@ -726,8 +728,27 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
+				
+		
+				if("random_start")
+					var/list/startlist = list(
+						"asteroid", 
+						"abandoned fortress", 
+						"space ruins") 
+					var/pick = rand(1, startlist.len)
+					config.start_location = startlist[pick]
+
+				if("asteroid_start")
+					config.start_location = "asteroid"
+
+				if("fortress_start")
+					config.start_location = "abandoned fortress"
+
+				if("ruins_start")
+					config.start_location = "space ruins"
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
+
 
 		else if(type == "game_options")
 			if(!value)
