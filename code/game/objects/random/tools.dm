@@ -3,7 +3,7 @@
 	icon_state = "tool-grey"
 	spawn_nothing_percentage = 15
 	tags_to_spawn = list(SPAWN_TOOL, SPAWN_DIVICE, SPAWN_GLOVES_INSULATED, SPAWN_JETPACK, SPAWN_ITEM_UTILITY)
-	restricted_tags = list(SPAWN_SURGERY_TOOL, SPAWN_KNIFE)
+	restricted_tags = list(SPAWN_SURGERY_TOOL, SPAWN_KNIFE, SPAWN_JUNK)
 
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
 /obj/spawner/tool/post_spawn(list/spawns)

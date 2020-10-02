@@ -16,6 +16,7 @@
 
 	//spawn values
 	bad_types = /obj/item/weapon/tool
+	spawn_tags = SPAWN_TAG_TOOL
 
 	var/tool_in_use = FALSE
 
