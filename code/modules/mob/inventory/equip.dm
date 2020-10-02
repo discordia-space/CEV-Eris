@@ -126,15 +126,22 @@ var/list/slot_equipment_priority = list(
 			return backpack
 	return ..()
 /mob/living/carbon/human/proc/quick_equip_storage(obj/item/Item)
+	var/potential = src.get_inactive_hand()
 	if(istype(src.back,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/backpack = src.back
-		backpack.attackby(Item,src)
+		if(backpack.attackby(Item,src))
+			return TRUE
+	if(istype(potential, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/pack = potential 
+		if(pack.attackby(Item,src))
+			return TRUE
+	if(quick_equip_belt(Item)) 
 		return TRUE
 	return FALSE
 /mob/living/carbon/human/proc/quick_equip_belt(obj/item/Item)
 	if(istype(src.belt,/obj/item/weapon/storage/))
 		var/obj/item/weapon/storage/B= src.belt
-		B.attackby(Item,src)
-		return TRUE
+		if(B.attackby(Item,src))
+			return TRUE
 	return FALSE
 
