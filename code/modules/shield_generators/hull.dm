@@ -8,3 +8,4 @@
 	. = ..()
 	anchored = toggle_tendrils(TRUE)
 	current_energy = max_energy * 0.30
+
