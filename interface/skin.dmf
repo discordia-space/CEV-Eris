@@ -555,10 +555,7 @@ macro "hotkeymode"
 	elem 
 		name = "E"
 		command = "quick-equip"
-	elem
-		name = "SHIFT+E"
-		command = "belt-equip"
-	elem  
+	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
 	elem 
