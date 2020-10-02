@@ -90,36 +90,43 @@
 	name = "chest frame"
 	icon_state = "metal_ribcage"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/groin/robotic
 	name = "groin frame"
 	icon_state = "metal_pelvis"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/head/robotic
 	name = "head frame"
 	icon_state = "metal_skull"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/r_arm/robotic
 	name = "right arm frame"
 	icon_state = "metal_right_arm"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/l_arm/robotic
 	name = "left arm frame"
 	icon_state = "metal_left_arm"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/r_leg/robotic
 	name = "right leg frame"
 	icon_state = "metal_right_leg"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/l_leg/robotic
 	name = "left leg frame"
 	icon_state = "metal_left_leg"
 	nature = MODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 //Bone braces
 /obj/item/bone_brace
