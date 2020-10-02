@@ -1,0 +1,9 @@
+author: Kurgis
+delete-after: true
+changes:
+  - tweak: Tool spawners will no longer spawn items with the "junk" tag. Added junk
+      tag to all improvised tools.
+  - balance: Adjusted various rarity values on tools, and removed reinforced plating's
+      lower rarity value.
+  - bugfix: Tool spawner will no longer spawn only from a list of duct tape. Circular
+      saws will no longer dominate places where surgical tools randomly spawn.
