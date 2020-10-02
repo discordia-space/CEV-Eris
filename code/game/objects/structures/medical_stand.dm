@@ -392,7 +392,7 @@
 			if(internalsHud)
 				internalsHud.icon_state = "internal0"
 			breather.internal = null
-	else if (valve_opened)
+	else if (tank && valve_opened)
 		var/datum/gas_mixture/removed = tank.remove_air(0.01)
 		var/datum/gas_mixture/environment = loc.return_air()
 		environment.merge(removed)

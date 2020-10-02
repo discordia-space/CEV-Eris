@@ -4,7 +4,7 @@
 	price_tag = 100
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE
-	bad_types = "/obj/item/weapon/gun_upgrade"
+	bad_types = /obj/item/weapon/gun_upgrade
 
 /obj/item/weapon/gun_upgrade/barrel
 	bad_types = /obj/item/weapon/gun_upgrade/barrel
@@ -144,7 +144,7 @@
 	I.gun_loc_tag = GUN_TRIGGER
 
 /obj/item/weapon/gun_upgrade/mechanism
-	bad_types = "/obj/item/weapon/gun_upgrade/mechanism"
+	bad_types = /obj/item/weapon/gun_upgrade/mechanism
 
 //Adds +3 to the internal magazine of a weapon. Acquired through loot spawns.
 /obj/item/weapon/gun_upgrade/mechanism/overshooter

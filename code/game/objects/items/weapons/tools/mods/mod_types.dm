@@ -6,8 +6,8 @@
 
 //This can be attached to basically any long tool
 //This includes most mechanical ones
-/obj/item/weapon/tool_upgrade
-	bad_types = /obj/item/weapon/tool_upgrade
+/obj/item/weapon/tool_upgrade/reinforcement
+	bad_types = /obj/item/weapon/tool_upgrade/reinforcement
 
 /obj/item/weapon/tool_upgrade/reinforcement/stick
 	name = "brace bar"

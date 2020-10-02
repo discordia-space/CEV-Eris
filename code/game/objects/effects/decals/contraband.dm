@@ -29,7 +29,7 @@
 /obj/item/weapon/contraband/poster/placed
 	icon_state = "random"
 	anchored = TRUE
-	spawn_frequency = 0
+	spawn_tags = null
 	New(turf/loc)
 		if(icon_state != "random")
 			for(var/datum/poster/new_design in GLOB.poster_designs)

@@ -9,7 +9,7 @@
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
 	var/obj/item/weapon/implant/implant
 	spawn_tags = SPAWN_TAG_JUNK
-	rarity_value = 3.33
+	rarity_value = 6
 
 /obj/item/weapon/implanter/New()
 	..()

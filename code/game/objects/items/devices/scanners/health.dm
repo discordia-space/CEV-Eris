@@ -181,7 +181,7 @@
 			if(E.status & ORGAN_BROKEN)
 				if(!(E.status & ORGAN_SPLINTED))
 					if(E.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG))
-						dat += SPAN_WARNING("Unsecured fracture in subject [E]. Splinting recommended for transport.")
+						dat += SPAN_WARNING("Unsecured fracture in subject [E.get_bone()]. Splinting recommended for transport.")
 					else
 						foundUnlocatedFracture = TRUE
 			if(E.has_infected_wound())
