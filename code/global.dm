@@ -10,7 +10,7 @@ var/global/list/all_areas                = list()
 var/global/list/ship_areas               = list()
 
 
-var/global/list/obj/effect/overmap/ship/ships 	= list() // List of ships in the game.
+var/global/list/ships 	= list() // List of ships in the game.
 
 //var/global/list/machines                 = list()		//Removed
 //var/global/list/processing_objects       = list()		//Removed

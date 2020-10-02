@@ -36,8 +36,9 @@
 	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
 
 	if ((!eris_start_set) && (name == config.start_location))
-		start_x = ships[eris].start_x
-		start_y = ships[eris].start_y
+		var/obj/effect/overmap/ship/eris/E = ships[eris]
+		start_x = E.start_x
+		start_y = E.start_y
 		eris_start_set = TRUE
 
 	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
