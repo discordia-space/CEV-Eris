@@ -41,9 +41,9 @@
 			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
 				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
 
-		if(is_watching == 1)
+		if(is_watching == TRUE)
 			reset_view(null)
-			is_watching = 0
+			is_watching = FALSE
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
