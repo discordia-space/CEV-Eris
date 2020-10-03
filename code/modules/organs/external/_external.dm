@@ -201,7 +201,7 @@
 		else
 			var/mecha_bone = text2path("[default_bone_type]/robotic")
 			bone = new mecha_bone
-		
+
 		bone?.replaced(src)
 
 /obj/item/organ/external/proc/update_bionics_hud()
@@ -771,7 +771,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
 	var/obj/item/organ/internal/bone/B = get_bone()
-	return config.bones_can_break && !BP_IS_ROBOTIC(src) && brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * B ? (B.organ_efficiency / 100) : 1)
+	return config.bones_can_break && !BP_IS_ROBOTIC(src) && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (B ? (B.organ_efficiency / 100) : 1)))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()

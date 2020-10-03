@@ -11,10 +11,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!I)
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
-	if(quick_equip_storage(I))
-		return
 	if(!equip_to_appropriate_slot(I))
-		to_chat(src, SPAN_WARNING("You are unable to equip that."))
+		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
+		if(quick_equip_storage(I))
+			return
 
 /mob/living/carbon/human/verb/belt_equip()
 	set name = "belt-equip"

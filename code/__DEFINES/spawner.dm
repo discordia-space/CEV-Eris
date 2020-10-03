@@ -451,3 +451,11 @@
 #define SPAWN_TAG_SPAWNER_SCRAP "spawner,spawner_scrap"
 #define SPAWN_TAG_SPAWNER_LARGE_SCRAP "spawner,spawner_scrap,spawner_large_scrap"
 
+// FACTION KEYWORDS
+#define SPAWN_ASTERS "asters"
+#define SPAWN_FROZEN_STAR "frozen_star"
+#define SPAWN_IRONHAMMER "ironhammer"
+#define SPAWN_NANOTRASEN "nanotrasen"
+#define SPAWN_NEOTHEOLOGY "neotheology"
+#define SPAWN_MOEBIUS "moebius"
+#define SPAWN_SERBIAN "serbian"
