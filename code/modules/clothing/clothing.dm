@@ -2,7 +2,7 @@
 	name = "clothing"
 	siemens_coefficient = 0.9
 	item_flags = DRAG_AND_DROP_UNEQUIP
-	bad_types = /obj/item/clothing
+	bad_type = /obj/item/clothing
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
@@ -268,7 +268,7 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	icon = 'icons/inventory/hands/icon.dmi'
 	siemens_coefficient = 0.75
-	bad_types = /obj/item/clothing/gloves
+	bad_type = /obj/item/clothing/gloves
 	spawn_tags = SPAWN_TAG_GLOVES
 	var/wired = 0
 	var/clipped = 0
@@ -308,7 +308,7 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_SMALL
-	bad_types = /obj/item/clothing/head
+	bad_type = /obj/item/clothing/head
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
 
 	var/light_overlay = "helmet_light"
@@ -395,7 +395,7 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
-	bad_types = /obj/item/clothing/mask
+	bad_type = /obj/item/clothing/mask
 	spawn_tags = SPAWN_TAG_MASK
 
 	var/voicechange = 0
@@ -416,7 +416,7 @@ BLIND     // can't see anything
 	body_parts_covered = LEGS
 	slot_flags = SLOT_FEET
 	spawn_tags = SPAWN_TAG_SHOES
-	bad_types = /obj/item/clothing/shoes
+	bad_type = /obj/item/clothing/shoes
 
 	var/can_hold_knife
 	var/obj/item/holding
@@ -577,7 +577,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_ICLOTHING
 	w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
-	bad_types = /obj/item/clothing/under
+	bad_type = /obj/item/clothing/under
 	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
 		/*

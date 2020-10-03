@@ -8,7 +8,7 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = LEGS
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
-	bad_types = /obj/item/clothing/shoes/color
+	bad_type = /obj/item/clothing/shoes/color
 	rarity_value = 10
 
 /obj/item/clothing/shoes/color/black

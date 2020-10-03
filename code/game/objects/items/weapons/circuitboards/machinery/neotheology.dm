@@ -1,5 +1,5 @@
 /obj/item/weapon/electronics/circuitboard/neotheology
-	bad_types = /obj/item/weapon/electronics/circuitboard/neotheology
+	bad_type = /obj/item/weapon/electronics/circuitboard/neotheology
 	rarity_value = 40
 
 /obj/item/weapon/electronics/circuitboard/neotheology/cloner

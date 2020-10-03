@@ -39,7 +39,7 @@
 	new /obj/item/clothing/mask/luchador/tecnicos(src)
 
 /obj/structure/closet/lasertag
-	bad_types = /obj/structure/closet/lasertag
+	bad_type = /obj/structure/closet/lasertag
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_LASERTAG_CLOSET
 

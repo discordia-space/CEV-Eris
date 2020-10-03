@@ -7,7 +7,7 @@
 //This can be attached to basically any long tool
 //This includes most mechanical ones
 /obj/item/weapon/tool_upgrade/reinforcement
-	bad_types = /obj/item/weapon/tool_upgrade/reinforcement
+	bad_type = /obj/item/weapon/tool_upgrade/reinforcement
 
 /obj/item/weapon/tool_upgrade/reinforcement/stick
 	name = "brace bar"
@@ -122,7 +122,7 @@
 // 	 PRODUCTIVITY: INCREASES WORKSPEED
 //------------------------------------------------
 /obj/item/weapon/tool_upgrade/productivity
-	bad_types = /obj/item/weapon/tool_upgrade/productivity
+	bad_type = /obj/item/weapon/tool_upgrade/productivity
 
 /obj/item/weapon/tool_upgrade/productivity/ergonomic_grip
 	name = "ergonomic grip"
@@ -318,7 +318,7 @@
 // 	 REFINEMENT: INCREASES PRECISION
 //------------------------------------------------
 /obj/item/weapon/tool_upgrade/refinement
-	bad_types = /obj/item/weapon/tool_upgrade/refinement
+	bad_type = /obj/item/weapon/tool_upgrade/refinement
 
 /obj/item/weapon/tool_upgrade/refinement/laserguide
 	name = "Asters \"Guiding Light\" laser guide"
@@ -431,7 +431,7 @@
 
 //Allows the tool to use a cell one size category larger than it currently uses. Small to medium, medium to large, etc
 /obj/item/weapon/tool_upgrade/augment
-	bad_types = /obj/item/weapon/tool_upgrade/augment
+	bad_type = /obj/item/weapon/tool_upgrade/augment
 
 /obj/item/weapon/tool_upgrade/augment/cell_mount
 	name = "heavy cell mount"
