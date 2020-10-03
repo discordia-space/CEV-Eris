@@ -127,7 +127,6 @@
 /datum/loot_spawner_data/proc/pick_spawn(list/paths)
 	//if(!paths || !paths.len) //NOPE
 		//return
-	to_world_log("este es el numero de candidaatos [paths.len]")
 	var/list/things = list()
 	var/list/values = list()
 	for(var/path in paths)
@@ -135,12 +134,9 @@
 			values += all_spawn_by_spawn_value[path]
 			things[path] = all_spawn_by_spawn_value[path]
 	var/spawn_value = pickweight(things, 0)
-	to_world_log("este  es el path elegido [spawn_value]")
 	spawn_value = all_spawn_by_spawn_value[spawn_value]
-	to_world_log("este  es el valor elegido [spawn_value]")
 	things = list()
 	for(var/path in paths)
 		if(all_spawn_by_spawn_value[path] == spawn_value)
 			things += path
-	to_world_log("este es el numero de candidaatos [paths.len]")
 	return pick(things)
