@@ -26,6 +26,10 @@ All the important duct code:
 	var/duct_color
 	///TRUE to ignore colors, so yeah we also connect with other colors without issue
 	var/ignore_colors = FALSE
+	///1,2,4,8,16
+	var/duct_layer = DUCT_LAYER_DEFAULT
+	///whether we allow our layers to be altered
+	var/lock_layers = FALSE
 	///TRUE to let colors connect when forced with a wrench, false to just not do that at all
 	var/color_to_color_support = TRUE
 	///wheter to even bother with plumbing code or not
@@ -35,6 +39,7 @@ All the important duct code:
 	///wheter we just unanchored or drop whatever is in the variable. either is safe
 	var/drop_on_wrench = /obj/item/stack/ducts
 	var/vertical_conector = FALSE
+	var/multi_layer = FALSE
 	var/drop_amount = 1
 
 /obj/machinery/duct/vertical
@@ -57,7 +62,7 @@ All the important duct code:
 	else
 		use_power = NO_POWER_USE
 
-/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", force_connects, hiden=TRUE)
+/obj/machinery/duct/Initialize(mapload, d, no_anchor, color_of_duct = "#ffffff", layer_of_duct = DUCT_LAYER_DEFAULT, force_connects, hiden=TRUE)
 	. = ..()
 	if(no_anchor)
 		active = FALSE
@@ -68,15 +73,19 @@ All the important duct code:
 
 	if(force_connects)
 		connects = force_connects //skip change_connects() because we're still initializing and we need to set our connects at one point
+	if(!lock_layers)
+		duct_layer = layer_of_duct
 	if(!ignore_colors)
 		duct_color = color_of_duct
 	if(duct_color)
 		add_atom_colour(duct_color, FIXED_COLOUR_PRIORITY)
+	handle_layer()
 
 	for(var/obj/machinery/duct/D in loc)
 		if(D == src)
 			continue
-		disconnect_duct()
+		if(D.duct_layer & duct_layer)
+			disconnect_duct()
 
 	if(active)
 		attempt_connect()
@@ -152,6 +161,8 @@ All the important duct code:
 	if(!(D in neighbours)) //we cool
 		if((duct_color != D.duct_color) && !(ignore_colors || D.ignore_colors))
 			return
+		if(!(duct_layer & D.duct_layer))
+			return
 	if(D.duct)
 		if(duct)
 			duct.assimilate(D.duct)
@@ -171,6 +182,8 @@ All the important duct code:
 ///connect to a plumbing object
 /obj/machinery/duct/proc/connect_plumber(datum/component/plumbing/P, direction)
 	var/opposite_dir = turn(direction, 180)
+	if(duct_layer != DUCT_LAYER_DEFAULT) //plumbing devices don't support multilayering. 3 is the default layer so we only use that.
+		return FALSE
 	if(!P.active)
 		return
 
@@ -277,7 +290,7 @@ All the important duct code:
 
 /obj/machinery/duct/update_icon()
 	..()
-	if(vertical_conector)
+	if(vertical_conector || multi_layer)
 		return
 	var/temp_icon = initial(icon_state)
 	for(var/D in GLOB.cardinal)
@@ -291,6 +304,23 @@ All the important duct code:
 			if(D == WEST)
 				temp_icon += "_w"
 	icon_state = temp_icon
+
+///update the layer we are on
+/obj/machinery/duct/proc/handle_layer()
+	var/offset
+	switch(duct_layer)//it's a bitfield, but it's fine because it only works when there's one layer, and multiple layers should be handled differently
+		if(FIRST_DUCT_LAYER)
+			offset = -10
+		if(SECOND_DUCT_LAYER)
+			offset = -5
+		if(THIRD_DUCT_LAYER)
+			offset = 0
+		if(FOURTH_DUCT_LAYER)
+			offset = 5
+		if(FIFTH_DUCT_LAYER)
+			offset = 10
+	pixel_x = offset
+	pixel_y = offset
 
 /obj/machinery/duct/set_anchored(anchorvalue)
 	. = ..()
@@ -311,6 +341,9 @@ All the important duct code:
 				user.visible_message(SPAN_NOTICE("[user] [anchored ? null : "un"]fastens \the [src]."),
 				SPAN_NOTICE("You [anchored ? null : "un"]fasten \the [src]."),
 				"You hear ratcheting.")
+			if(istype(src, /obj/machinery/duct/multilayered))
+				var/obj/machinery/duct/multilayered/DM = src
+				DM.update_connects()
 				return TRUE
 	..()
 
@@ -348,11 +381,52 @@ All the important duct code:
 	var/direction = get_dir(src, D)
 	if(!(direction in GLOB.cardinal))
 		return
+	if(duct_layer != D.duct_layer)
+		return
 
 	add_connects(direction) //the connect of the other duct is handled in connect_network, but do this here for the parent duct because it's not necessary in normal cases
 	add_neighbour(D, direction)
 	connect_network(D, direction, TRUE)
 	update_icon()
+
+///has a total of 5 layers and doesnt give a shit about color. its also dumb so doesnt autoconnect.
+/obj/machinery/duct/multilayered
+	name = "duct layer-manifold"
+	icon = 'icons/obj/2x2.dmi'
+	icon_state = "multiduct"
+	pixel_x = -15
+	pixel_y = -15
+
+	color_to_color_support = FALSE
+	duct_layer = FIRST_DUCT_LAYER | SECOND_DUCT_LAYER | THIRD_DUCT_LAYER | FOURTH_DUCT_LAYER | FIFTH_DUCT_LAYER
+	drop_on_wrench = null
+	multi_layer = TRUE
+	lock_connects = TRUE
+	lock_layers = TRUE
+	ignore_colors = TRUE
+	dumb = TRUE
+
+	active = FALSE
+	anchored = FALSE
+
+/obj/machinery/duct/multilayered/Initialize(mapload, d, no_anchor, color_of_duct, layer_of_duct = DUCT_LAYER_DEFAULT, force_connects, hiden=FALSE)
+	. = ..()
+	update_connects()
+
+/obj/machinery/duct/multilayered/proc/update_connects()
+	if(dir & NORTH || dir & SOUTH)
+		connects = NORTH | SOUTH
+	else
+		connects = EAST | WEST
+
+///don't connect to other multilayered stuff because honestly it shouldn't be done and I dont wanna deal with it
+/obj/machinery/duct/multilayered/connect_duct(obj/machinery/duct/D, direction, ignore_color)
+	if(istype(D, /obj/machinery/duct/multilayered))
+		return
+	return ..()
+
+/obj/machinery/duct/multilayered/handle_layer()
+	return
 
 /obj/item/stack/ducts
 	name = "stack of duct"
@@ -360,20 +434,28 @@ All the important duct code:
 	singular_name = "duct"
 	icon = 'icons/obj/plumbing/fluid_ducts.dmi'
 	icon_state = "ducts"
-	matter = list(MATERIAL_IRON = 5)
-	w_class = ITEM_SIZE_TINY
+	matter = list(MATERIAL_PLASTIC = 1)
+	w_class = ITEM_SIZE_SMALL
 	novariants = FALSE
 	max_amount = 50
 	item_flags = NOBLUDGEON
 	stacktype = /obj/item/stack/ducts
 	///Color of our duct
 	var/duct_color = "grey"
+	///Default layer of our duct
+	var/duct_layer = "Default Layer"
+	///Assoc index with all the available layers. yes five might be a bit much. Colors uses a global by the way
+	var/list/layers = list("First Layer" = FIRST_DUCT_LAYER, "Second Layer" = SECOND_DUCT_LAYER, "Default Layer" = DUCT_LAYER_DEFAULT,
+		"Fourth Layer" = FOURTH_DUCT_LAYER, "Fifth Layer" = FIFTH_DUCT_LAYER)
 
 /obj/item/stack/ducts/examine(mob/user)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("It's current color [duct_color]. Use in-hand to change."))
+	to_chat(user, SPAN_NOTICE("It's current color and layer are [duct_color] and [duct_layer]. Use in-hand to change."))
 
 /obj/item/stack/ducts/attack_self(mob/user)
+	var/new_layer = input("Select a layer", "Layer") as null|anything in layers
+	if(new_layer)
+		duct_layer = new_layer
 	var/new_color = input("Select a color", "Color") as null|anything in GLOB.pipe_paint_colors
 	if(new_color)
 		duct_color = new_color
@@ -390,9 +472,15 @@ All the important duct code:
 			qdel(D)
 	if(istype(A, /turf) && use(1))
 		var/turf/OT = A
-		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], FALSE, FALSE)
+		new /obj/machinery/duct(OT, 0, FALSE, GLOB.pipe_paint_colors[duct_color], layers[duct_layer], FALSE, FALSE)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/random
 	rand_min = 3
 	rand_max = 30
+
+/datum/design/research/item/ducts
+	name = "fluid duct"
+	build_type = AUTOLATHE | PROTOLATHE
+	category = CAT_MACHINE
+	build_path = /obj/item/stack/ducts

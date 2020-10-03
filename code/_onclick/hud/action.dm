@@ -169,10 +169,7 @@
 
 
 /obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(var/mob/living/user)
-	if(isalien(user))
-		icon_state = "bg_alien"
-	else
-		icon_state = "bg_default"
+	icon_state = "bg_default"
 	UpdateIcon()
 	return
 

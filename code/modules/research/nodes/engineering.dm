@@ -20,7 +20,8 @@
 							/datum/design/research/circuit/autolathe,
 							/datum/design/research/item/light_replacer,
 							/datum/design/autolathe/tool/weldermask,
-							/datum/design/research/item/mesons
+							/datum/design/research/item/mesons,
+							/datum/design/research/item/ducts
 						)
 
 /datum/technology/monitoring

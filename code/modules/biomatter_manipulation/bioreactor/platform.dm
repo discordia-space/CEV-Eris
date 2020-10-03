@@ -36,17 +36,18 @@
 				if((issilicon(victim) || victim.mob_classification == CLASSIFICATION_SYNTHETIC) && victim.mob_size <= MOB_SMALL)
 					victim.forceMove(MS_bioreactor.misc_output)
 					continue
-				//if our target has hazard protection, then okay
+				//if our target has hazard protection, apply damage based on the protection percentage.
 				var/hazard_protection = victim.getarmor(null, "bio")
-				if(!hazard_protection)
-					victim.apply_damage(CLONE_DAMAGE_PER_TICK, CLONE, used_weapon = "Biological")
-					if(prob(10))
-						playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
-					if(victim.health <= -victim.maxHealth)
-						MS_bioreactor.biotank_platform.take_amount(victim.mob_size*5)
-						MS_bioreactor.biotank_platform.pipes_wearout(victim.mob_size/5, forced = TRUE)
-						consume(victim)
-					continue
+				var/damage = CLONE_DAMAGE_PER_TICK - (CLONE_DAMAGE_PER_TICK * (hazard_protection/100))
+				victim.apply_damage(damage, CLONE, used_weapon = "Biological")
+				
+				if(prob(10))
+					playsound(loc, 'sound/effects/bubbles.ogg', 45, 1)
+				if(victim.health <= -victim.maxHealth)
+					MS_bioreactor.biotank_platform.take_amount(victim.mob_size*5)
+					MS_bioreactor.biotank_platform.pipes_wearout(victim.mob_size/5, forced = TRUE)
+					consume(victim)
+				continue
 
 			//object processing
 			if(istype(M, /obj/item))

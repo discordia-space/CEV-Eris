@@ -237,8 +237,6 @@
 						M_job = "slime"
 					else if(issmall(M))
 						M_job = "Monkey"
-					else if(isalien(M))
-						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
 

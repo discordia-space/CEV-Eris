@@ -30,7 +30,7 @@
 		"sugar","sacid","tungsten"
 	)
 	var/list/hacked_reagents = list()
-	var/obj/item/weapon/reagent_containers/beaker = null
+	var/obj/item/weapon/reagent_containers/beaker
 
 /obj/machinery/chemical_dispenser/RefreshParts()
 	cell = locate() in component_parts
@@ -144,7 +144,7 @@
 	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
 		return ..()
 	if(istype(I, /obj/item/weapon/reagent_containers) && I.is_open_container() && !beaker)
-		I.forceMove(src)
+		user.unEquip(I, src)
 		I.add_fingerprint(user)
 		beaker = I
 		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))

@@ -191,8 +191,9 @@
 			slowdown += pick(0.5, 0.5, 1, 1.5)
 		if(prob(40))
 			if(islist(armor)) //Possible to run before the initialize proc, thus having to modify the armor list
-				for(var/i in armor)
-					armor[i] = rand(0, armor[i])
+				var/list/armorList = armor	// Typecasting to a list from datum
+				for(var/i in armorList)
+					armorList[i] = rand(0, armorList[i])
 			else if(is_proper_datum(armor))
 				armor = armor.setRating(melee = rand(0, armor.getRating(ARMOR_MELEE)), bullet =  rand(0, armor.getRating(ARMOR_BULLET)), energy = rand(0, armor.getRating(ARMOR_ENERGY)), bomb = rand(0, armor.getRating(ARMOR_BOMB)), bio = rand(0, armor.getRating(ARMOR_BIO)), rad = rand(0, armor.getRating(ARMOR_RAD)))
 		if(prob(40))

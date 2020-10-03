@@ -250,7 +250,7 @@
 							Target = C
 							break
 
-						if(isalien(C) || issmall(C) || isanimal(C))
+						if(issmall(C) || isanimal(C))
 							Target = C
 							break
 
