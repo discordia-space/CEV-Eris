@@ -17,7 +17,6 @@
 	/obj/item/weapon/gun/projectile/automatic/ak47 = 30,
 	/obj/item/ammo_magazine/lrifle = 50,
 	/obj/item/ammo_magazine/lrifle = 50,
-	//obj/item/weapon/electronics/circuitboard/excelsior_teleporter = 30,
 	)
 	weight = 0.5
 
