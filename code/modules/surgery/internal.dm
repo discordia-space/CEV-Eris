@@ -208,7 +208,7 @@
 
 	if(I in internal_organs)
 		var/obj/item/organ/organ = I
-		if(!istype(organ) || (organ.status && ORGAN_CUT_AWAY))
+		if(!istype(organ) || (organ.status && ORGAN_CUT_AWAY) || (istype(organ,/obj/item/organ/internal/bone) && (organ.parent.status & ORGAN_BROKEN)))
 			return TRUE
 
 	return FALSE

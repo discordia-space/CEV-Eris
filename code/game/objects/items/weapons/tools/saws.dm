@@ -13,7 +13,6 @@
 	edge = TRUE
 	tool_qualities = list(QUALITY_SAWING = 30, QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 20)
 	embed_mult = 1 //Serrated blades catch on bone more easily
-	rarity_value = 6
 
 /obj/item/weapon/tool/saw/improvised //tier 1
 	name = "choppa"
@@ -23,6 +22,7 @@
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
 	rarity_value = 3
 
 /obj/item/weapon/tool/saw/circular //tier 3

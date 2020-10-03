@@ -28,9 +28,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
 	var/allow_vote_mode = 0				// allow votes to change mode
-	var/allow_admin_jump = 1			// allows admin jumping
-	var/allow_admin_spawning = 1		// allows admin item spawning
-	var/allow_admin_rev = 1				// allows admin revives
 	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
 	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
@@ -197,7 +194,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 
-	var/aliens_allowed = 0
 	var/abandon_allowed = 1
 	var/ooc_allowed = 1
 	var/looc_allowed = 1
@@ -357,15 +353,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if ("allow_vote_mode")
 					config.allow_vote_mode = 1
 
-				if ("allow_admin_jump")
-					config.allow_admin_jump = 1
-
-				if("allow_admin_rev")
-					config.allow_admin_rev = 1
-
-				if ("allow_admin_spawning")
-					config.allow_admin_spawning = 1
-
 				if ("no_dead_vote")
 					config.vote_no_dead = 1
 
@@ -486,9 +473,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("allow_metadata")
 					config.allow_Metadata = 1
-
-				if ("aliens_allowed")
-					config.aliens_allowed = 1
 
 				if ("objectives_disabled")
 					config.objectives_disabled = 1

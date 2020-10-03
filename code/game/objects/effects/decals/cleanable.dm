@@ -3,7 +3,7 @@
 	var/list/random_icon_states = list()
 	random_rotation = 1
 	bad_types = /obj/effect/decal/cleanable
-	rarity_value = 2.85
+	rarity_value = 5.5
 	spawn_tags = SPAWN_TAG_CLEANABLE
 
 /obj/effect/decal/cleanable/clean_blood(ignore = 0)

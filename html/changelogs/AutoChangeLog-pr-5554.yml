@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: The excelsior teleporter board no longer shows up in randomly generated
+      excel stashes.

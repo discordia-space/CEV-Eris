@@ -38,6 +38,18 @@
 		if(propname in gun.vars)
 			gun.vars[propname] = settings[propname]
 
+			// Apply gunmods effects that have been erased by the previous line
+			if(propname == "charge_cost")
+				for(var/obj/I in gun.item_upgrades)
+					var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
+					if(IU.weapon_upgrades[GUN_UPGRADE_CHARGECOST])
+						gun.vars["charge_cost"] *= IU.weapon_upgrades[GUN_UPGRADE_CHARGECOST]
+			else if(propname == "fire_delay")
+				for(var/obj/I in gun.item_upgrades)
+					var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
+					if(IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
+						gun.vars["fire_delay"] *= IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+
 //Called whenever the firemode is switched to, or the gun is picked up while its active
 /datum/firemode/proc/update()
 	return
