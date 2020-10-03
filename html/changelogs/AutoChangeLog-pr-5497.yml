@@ -1,5 +1,0 @@
-author: soslow4u
-delete-after: true
-changes:
-  - bugfix: You can build real shield generators from boards. Right-click and deploy
-      conduits for multi dock and hull shielding options

@@ -1,5 +1,0 @@
-author: TheShown911
-delete-after: true
-changes:
-  - bugfix: Moebius limbs are now correctly named.
-  - bugfix: Prosthetic sprites on females shouldn't be offset anymore.
