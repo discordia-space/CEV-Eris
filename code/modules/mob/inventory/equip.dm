@@ -145,3 +145,10 @@ var/list/slot_equipment_priority = list(
 			return TRUE
 	return FALSE
 
+/mob/living/carbon/human/proc/equip_to_from_suit_storage(obj/item/Item)
+	if(Item != src.s_store)
+		if(equip_to_slot_if_possible(Item, s_store))
+			return TRUE
+	else if(Item == src.s_store) 
+		if(put_in_active_hand(Item))
+			return TRUE
