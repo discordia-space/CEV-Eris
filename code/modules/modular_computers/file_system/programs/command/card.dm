@@ -9,6 +9,15 @@
 	requires_ntnet = 0
 	size = 8
 
+	var/list/access_lookup = list(access_change_sec, 	//Lookup list for all the accesses that can use the ID computer.
+									access_change_medbay, 
+									access_change_research, 
+									access_change_engineering, 
+									access_change_ids, 
+									access_change_nt, 
+									access_change_cargo,
+									access_change_club)
+
 /datum/nano_module/program/card_mod
 	name = "ID card modification program"
 	var/mod_mode = 1
@@ -73,7 +82,7 @@
 			data["all_centcom_access"] = all_centcom_access
 		else
 			var/list/regions = list()
-			for(var/i = 1; i <= 7; i++)
+			for(var/i = ACCESS_REGION_MIN; i <= ACCESS_REGION_MAX; i++)
 				var/list/accesses = list()
 				for(var/access in get_region_accesses(i))
 					if (get_access_desc(access))
@@ -118,7 +127,8 @@
 	var/obj/item/weapon/card/id/id_card
 	if (computer.card_slot)
 		id_card = computer.card_slot.stored_card
-	if (!user_id_card)
+	if (!user_id_card || !authorized(user_id_card))
+		to_chat(user, "<span_class='warning'>Access denied</span>")
 		return
 
 	var/datum/nano_module/program/card_mod/module = NM
@@ -179,7 +189,7 @@
 				else
 					computer.attackby(user.get_active_hand(), user)
 		if("terminate")
-			if(!authorized(user_id_card))
+			if(!authorized(user_id_card, ACCESS_REGION_COMMAND))
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return
 			if(computer && can_run(user, 1))
@@ -233,8 +243,11 @@
 						if(!jobdatum)
 							to_chat(usr, "<span class='warning'>No log exists for this job: [t1]</span>")
 							return
-
 						access = jobdatum.get_access()
+						for(var/A in access)
+							if(!check_modify(user_id_card, A))
+								to_chat(user, "<span class='warning'>Access denied</span>")
+								return
 
 					remove_nt_access(id_card)
 					apply_access(id_card, access)
@@ -247,13 +260,13 @@
 				var/access_type = text2num(href_list["access_target"])
 				var/access_allowed = text2num(href_list["allowed"])
 				if(access_type in get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM))
-					for(var/access in user_id_card.access)
-						var/region_type = get_access_region_by_id(access_type)
-						if(access in GLOB.maps_data.access_modify_region[region_type])
-							id_card.access -= access_type
-							if(!access_allowed)
-								id_card.access += access_type
-							break
+					if (check_modify(user_id_card, access_type))
+						id_card.access -= access_type
+						if(!access_allowed)
+							id_card.access += access_type
+					else
+						to_chat(user, "<span_class='warning'>Access denied</span>")
+
 	if(id_card)
 		id_card.SetName(text("[id_card.registered_name]'s ID Card ([id_card.assignment])"))
 
@@ -266,7 +279,21 @@
 /datum/computer_file/program/card_mod/proc/apply_access(var/obj/item/weapon/card/id/id_card, var/list/accesses)
 	id_card.access |= accesses
 
-/datum/computer_file/program/card_mod/proc/authorized(var/obj/item/weapon/card/id/id_card)
-	if (id_card)
-		return (access_change_ids in id_card.access)
+// Function that checks if the user's id is allowed to use the id computer. Can optionally check for a specific access lookup.
+/datum/computer_file/program/card_mod/proc/authorized(var/obj/item/weapon/card/id/id_card, var/area)
+	if (id_card && !area)
+		for(var/i = 1, i <= access_lookup.len, i ++)
+			if(access_lookup[i] in id_card.access)
+				return TRUE
+	else if (id_card && area)
+		if(access_lookup[area] in id_card.access)
+			return TRUE
+	return FALSE
+
+//New helper function to check if the type of access the user has matches the region it's allowed to change.
+/datum/computer_file/program/card_mod/proc/check_modify(var/obj/item/weapon/card/id/id_card, var/access_requested)
+	for(var/access in id_card.access)
+		var/region_type = get_access_region_by_id(access_requested)
+		if(access in GLOB.maps_data.access_modify_region[region_type])
+			return TRUE
 	return FALSE
