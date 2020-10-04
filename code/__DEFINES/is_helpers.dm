@@ -74,3 +74,7 @@
 #define istool(A) istype(A, /obj/item/weapon/tool)
 
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)
+
+#define isstructure(A) (istype(A, /obj/structure))
+
+#define ismachinery(A) (istype(A, /obj/machinery))

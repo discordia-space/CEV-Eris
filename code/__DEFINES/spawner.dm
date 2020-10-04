@@ -1,3 +1,5 @@
+#define RANGE_BIOMES 7
+
 //	Items
 #define SPAWN_ITEM "item"
 #define SPAWN_WEAPON "weapon"
@@ -26,7 +28,7 @@
 // ITEMS - tools - SURGERY
 #define SPAWN_SURGERY_TOOL "surgery_tool"
 
-#define SPAWN_TAG_SURGERY_TOOL "obj,item,tool,surgery_tool"
+#define SPAWN_TAG_SURGERY_TOOL "obj,item,tool,surgery_tool,medical"
 
 //	Items - upgrades
 #define SPAWN_TOOL_UPGRADE "tool_upgrade"
