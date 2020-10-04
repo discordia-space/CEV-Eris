@@ -69,6 +69,7 @@ Hotkey-Mode: (hotkey-mode must be on)
 \te = equip
 \tShift+e = belt-equip
 \tShift+q = suit-storage-equip
+\tShift+b = bag-equip
 \tr = throw
 \tt = say
 \t5 = emote

@@ -132,7 +132,7 @@ var/list/slot_equipment_priority = list(
 		if(backpack.attackby(Item,src))
 			return TRUE
 	if(istype(potential, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/pack = potential 
+		var/obj/item/weapon/storage/pack = potential
 		if(pack.attackby(Item,src))
 			return TRUE
 	if(quick_equip_belt(Item)) 
@@ -152,3 +152,4 @@ var/list/slot_equipment_priority = list(
 	else if(Item == src.s_store) 
 		if(put_in_active_hand(Item))
 			return TRUE
+

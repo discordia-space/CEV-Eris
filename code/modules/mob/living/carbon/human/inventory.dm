@@ -43,6 +43,10 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(I && !src.s_store)
 		equip_to_from_suit_storage(I)
 		return
+/mob/living/carbon/human/verb/bag_equip()
+	set name = "bag-equip"
+	set hidden = 1
+	
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)

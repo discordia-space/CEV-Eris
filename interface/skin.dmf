@@ -561,6 +561,9 @@ macro "hotkeymode"
 	elem 
 		name = "SHIFT+Q"
 		command = "suit-storage-equip"
+	elem 
+		name = "SHIFT+B"
+		command = "bag-equip"
 	elem  
 		name = "CTRL+E"
 		command = "quick-equip"
