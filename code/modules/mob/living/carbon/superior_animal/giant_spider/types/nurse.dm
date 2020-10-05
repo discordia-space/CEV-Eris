@@ -46,7 +46,7 @@
 				//first, check for potential food nearby to cocoon
 				var/list/cocoonTargets = new
 				for(var/mob/living/C in getPotentialTargets())
-					if((C.stat != CONSCIOUS) && (get_dist(src, C) <= viewRange))
+					if((C.stat != CONSCIOUS))
 						cocoonTargets += C
 
 				cocoon_target = safepick(nearestObjectsInList(cocoonTargets,src,1))

@@ -48,6 +48,7 @@
 #define CONSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
 // /atom/movable signals
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
+#define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from base of atom/movable/onTransitZ(): (oldz, newz)
 
 // /mob signals
 #define COMSIG_MOB_LIFE  "mob_life"                             //from mob/Life()

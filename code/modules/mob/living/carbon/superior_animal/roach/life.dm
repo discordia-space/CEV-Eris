@@ -18,8 +18,8 @@
 			if(!busy && prob(5))
 				//first, check for potential food nearby
 				var/list/eatTargets = new
-				for(var/mob/living/carbon/C in (GLOB.human_mob_list + GLOB.superior_animal_list))
-					if ((C.stat == DEAD) && (get_dist(src, C) <= viewRange) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
+				for(var/mob/living/carbon/C in getPotentialTargets())
+					if ((C.stat == DEAD) && ((istype(C, /mob/living/carbon/human)) || (istype(C, /mob/living/carbon/superior_animal))))
 						eatTargets += C
 
 				eat_target = safepick(nearestObjectsInList(eatTargets,src,1))

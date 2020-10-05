@@ -4,10 +4,10 @@
 	objectsInView = objectsInView || view(src, viewRange)
 	return objectsInView
 
-//Use this for all likely human mobs and superior animals
+//Use this for all mobs per zlevel, get_dist() checked
 /mob/living/carbon/superior_animal/proc/getPotentialTargets()
 	var/list/list_to_return = new
-	for(var/atom/thing in (GLOB.mob_list))
+	for(var/atom/thing in SSmobs.mob_living_by_zlevel[((get_turf(src)).z)])
 		if(get_dist(src, thing) <= viewRange)
 			list_to_return += thing
 
@@ -39,7 +39,7 @@
 		loseTarget()
 		return
 
-	if (get_dist(src, target_mob) <= viewRange)
+	if ((get_dist(src, target_mob) >= viewRange) || src.z != target_mob.z)
 		loseTarget()
 		return
 

@@ -325,7 +325,9 @@ swapmap
 		x2+=x1-1
 		y2+=y1-1
 		z2+=z1-1
-		world.maxz=max(z2,world.maxz)	// stretch z if necessary
+		while(z2 > world.maxz) // stretch z if necessary
+			world.incrementMaxZ()
+
 		if(!ischunk)
 			swapmaps_loaded[src]=null
 			swapmaps_byname[id]=src
@@ -372,6 +374,8 @@ swapmap
 			mz=max(mz,M.z2)
 		world.maxx=mx
 		world.maxy=my
+		if(mz != world.maxz)
+			SSmobs.MaxZChanged()
 		world.maxz=mz
 
 	// save and delete
