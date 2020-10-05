@@ -1031,15 +1031,6 @@
 /obj/item/organ
 	price_tag = 500
 
-/mob/living/carbon/superior_animal/roach
-	price_tag = 150
-
-/mob/living/carbon/superior_animal/roach/roachling
-	price_tag = 100
-
-/mob/living/carbon/superior_animal/roach/hunter
-	price_tag = 200
-
 /mob/living/exosuit/get_item_cost(export)
 	. = ..() + SStrade.get_import_cost(body)
 
@@ -1079,6 +1070,7 @@
 	price_tag = 50
 
 /obj/item/clothing/price_tag = 30
+
 /obj/item/solar_assembly/price_tag = 100
 /obj/item/weapon/tracker_electronics/price_tag = 150
 /obj/item/weapon/handcuffs/price_tag = 30
@@ -1104,3 +1096,9 @@
 /obj/item/inflatable/price_tag = 40
 
 /obj/item/weapon/tool/knife/dagger/bluespace/price_tag = 400
+
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/price_tag = 75
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche/price_tag = 100
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk/price_tag = 100
+/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager/price_tag = 125

@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(trade)
 	if(get_account_credits(account) < cost)
 		return
 
-	if(length(shoppinglist) == 1 && shoppinglist[shoppinglist[1]] == 1)
+	if(recursiveLen(shoppinglist) == 1)
 		var/type = shoppinglist[1]
 		if(!beacon.drop(type))
 			return
@@ -207,5 +207,3 @@ SUBSYSTEM_DEF(trade)
 				station.set_good_amount(category_name, indix, max(0, station.get_good_amount(category_name, indix) - tcount))
 
 	charge_to_account(account.account_number, account.get_name(), "Purchase", "Asters Automated Trading System", cost)
-
-	RecursiveCut(shoppinglist)

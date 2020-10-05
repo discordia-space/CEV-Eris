@@ -9,7 +9,8 @@
 		"Misc" = list(
 			/obj/item/weapon/reagent_containers/food/snacks/fishandchips = custom_good_name("Duchess Fish 'n' Lord Chips"),
 			/obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake = custom_good_name("Vanilla"),
-			/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake = custom_good_name("Chocola")
+			/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake = custom_good_name("Chocola"),
+			/obj/item/clothing/head/kitty = custom_good_name("Definitely not Chocola")
 		),
 		"Pizza" = list(
 			/obj/item/pizzabox/meat = custom_good_name("Supreme Meatlover: Pizza Alliance"),
@@ -21,7 +22,8 @@
 	offer_types = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
 		/obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
-		/mob/living/carbon/superior_animal/roach,
-		/mob/living/carbon/superior_animal/roach/hunter,
-		/mob/living/carbon/superior_animal/roach/roachling
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/seuche,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kraftwerk,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/jager,
 	)

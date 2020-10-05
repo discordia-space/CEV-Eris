@@ -29,8 +29,10 @@
 
 /datum/computer_file/program/trade/proc/reset_shoplist()
 	RecursiveCut(shoppinglist)
-	for(var/i in station.assortiment)
-		shoppinglist[i] = list()
+	if(station)
+		for(var/i in station.assortiment)
+			shoppinglist[i] = list()
+
 /datum/computer_file/program/trade/proc/get_price_of_cart()
 	. = 0
 	for(var/i in shoppinglist)
@@ -59,6 +61,7 @@
 
 	if(href_list["PRG_receive"])
 		SStrade.buy(receiving, account, shoppinglist, station)
+		reset_shoplist()
 		return 1
 
 	if(href_list["PRG_account"])
