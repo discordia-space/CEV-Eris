@@ -10,7 +10,6 @@
 	name = "biome mob spawner"
 	biome_spawner = TRUE
 	latejoin = TRUE
-	debug = TRUE
 
 /obj/spawner/mob/burrow()
 	if(biome && biome.can_burrow)
