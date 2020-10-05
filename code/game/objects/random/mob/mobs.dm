@@ -9,21 +9,6 @@
 /obj/spawner/mob/biome_spawner
 	name = "biome mob spawner"
 	biome_spawner = TRUE
-	can_burrow = TRUE
-	rare_if_alone = TRUE
-
-/obj/spawner/mob/biome_spawner/LateInitialize()
-	..()
-	if(!prob(spawn_nothing_percentage))
-		var/list/spawns = spawn_item()
-		if(spawns.len)
-			burrow()
-			if(has_postspawn)
-				post_spawn(spawns)
-			if(biome)
-				biome.current_price += price_tag
-			post_spawn(spawns)
-	qdel(src)
 
 /obj/spawner/mob/burrow()
 	if(biome && biome.can_burrow)
