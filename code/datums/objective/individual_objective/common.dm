@@ -54,8 +54,7 @@
 	..()
 	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(valid_targets)
-	desc = "[target] really pisses you off, ensure that they will get \
-			a mental breakdown. Characters from your own faction are blacklisted"
+	desc = "[target] really pisses you off, ensure that they will get a mental breakdown."
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
 /datum/individual_objective/derange/task_completed(mob/living/L, datum/breakdown/breakdown)
