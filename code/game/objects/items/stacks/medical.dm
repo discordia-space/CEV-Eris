@@ -17,6 +17,9 @@
 	var/charge_sections = 5		// How many indicator blips are there?
 	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
 
+/obj/item/stack/medical/advanced
+	bad_types = /obj/item/stack/medical/advanced/bruise_pack
+
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()
 	if (!(types & CLASSIFICATION_ORGANIC))

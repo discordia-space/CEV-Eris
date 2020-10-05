@@ -415,33 +415,33 @@
 /obj/item/weapon/tool/crowbar/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/tool/wrench/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40)
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/tool/screwdriver/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	//random_icon = FALSE
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/tool/multitool/robotic
 	icon = 'icons/obj/robot_items.dmi'
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/tool/wirecutters/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/tool/weldingtool/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
-	spawn_frequency = 0
+	spawn_tags = null
 
 /obj/item/weapon/tool/shovel/robotic
 	icon = 'icons/obj/robot_items.dmi'
 	tool_qualities = list(QUALITY_SHOVELING = 40, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 20, QUALITY_HAMMERING = 20)
-	spawn_frequency = 0
+	spawn_tags = null

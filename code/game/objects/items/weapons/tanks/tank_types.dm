@@ -88,6 +88,7 @@
 	slot_flags = null	//they have no straps!
 	default_pressure = 3*ONE_ATMOSPHERE
 	default_gas = "plasma"
+	rarity_value = 30
 
 
 /*

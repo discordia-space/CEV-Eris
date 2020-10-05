@@ -63,7 +63,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	bst.add_language(LANGUAGE_SERBIAN)
 	bst.add_language(LANGUAGE_MONKEY)
 	// Antagonist languages
-	bst.add_language(LANGUAGE_XENOMORPH)
 	bst.add_language(LANGUAGE_HIVEMIND)
 	bst.add_language(LANGUAGE_CORTICAL)
 	bst.add_language(LANGUAGE_CULT)

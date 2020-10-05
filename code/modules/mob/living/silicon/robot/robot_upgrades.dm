@@ -7,6 +7,8 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	matter = list(MATERIAL_STEEL = 10)
+	spawn_tags = list(SPAWN_TAG_ELECTRONICS)
+	rarity_value = 50
 	var/locked = 0
 	var/require_module = FALSE
 	var/installed = 0
@@ -187,7 +189,7 @@
 		R.module.Initialize() //Fixes layering and possible tool issues
 		return 1
 
-/obj/item/borg/upgrade/syndicate/
+/obj/item/borg/upgrade/syndicate
 	name = "illegal equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a robot"
 	icon_state = "cyborg_upgrade3"

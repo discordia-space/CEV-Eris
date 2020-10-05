@@ -232,7 +232,8 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
 	spawn_tags = SPAWN_TAG_DIVICE_SCIENCE
-	rarity_value = 7.5
+	spawn_frequency = 5
+	rarity_value = 8
 
 	var/datum/experiment_data/experiments
 	var/list/scanned_autopsy_weapons = list()

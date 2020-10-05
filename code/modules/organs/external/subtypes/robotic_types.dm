@@ -73,23 +73,23 @@
 	price_tag = 300
 
 /obj/item/organ/external/robotic/moebius/l_arm
-	name = "Technomancer \"Homebrew\" Left Arm"
+	name = "\"Moebius\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/moebius/r_arm
-	name = "Technomancer \"Homebrew\" Right Arm"
+	name = "\"Moebius\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/moebius/l_leg
-	name = "Technomancer \"Homebrew\" Left Leg"
+	name = "\"Moebius\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/moebius/r_leg
-	name = "Technomancer \"Homebrew\" Right Leg"
+	name = "\"Moebius\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/moebius/groin
-	name = "Technomancer \"Homebrew\" Groin"
+	name = "\"Moebius\" Groin"
 	default_description = /datum/organ_description/groin
 
 /obj/item/organ/external/robotic/excelsior

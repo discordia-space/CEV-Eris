@@ -22,7 +22,7 @@
 	throw_range = 15
 	matter = list(MATERIAL_STEEL = 1)
 	spawn_tags = SPAWN_TAG_JUNK
-	rarity_value = 3.33
+	rarity_value = 6
 	var/colour = "black"	//what colour the ink is!
 
 
