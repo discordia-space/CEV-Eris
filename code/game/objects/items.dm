@@ -107,7 +107,7 @@
 
 /obj/item/get_fall_damage()
 	return w_class * 2
-a
+
 /obj/item/ex_act(severity)
 	switch(severity)
 		if(1)
