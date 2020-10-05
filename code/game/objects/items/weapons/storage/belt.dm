@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
-	bad_types = /obj/item/weapon/storage/belt
+	bad_type = /obj/item/weapon/storage/belt
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_BELT
 

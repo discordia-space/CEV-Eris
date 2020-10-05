@@ -4,7 +4,7 @@
 	name = "Modular Computer"
 	desc = "A modular computer. You shouldn't see this."
 	spawn_blacklisted = TRUE
-	bad_types = /obj/item/modular_computer
+	bad_type = /obj/item/modular_computer
 	var/enabled = 0											// Whether the computer is turned on.
 	var/screen_on = 1										// Whether the computer is active/opened/it's screen is on.
 	var/datum/computer_file/program/active_program			// A currently active program running on the computer.

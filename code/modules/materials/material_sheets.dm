@@ -7,7 +7,7 @@
 	throw_speed = 3
 	throw_range = 3
 	max_amount = 120
-	bad_types = /obj/item/stack/material
+	bad_type = /obj/item/stack/material
 
 	var/default_type = MATERIAL_STEEL
 	var/material/material

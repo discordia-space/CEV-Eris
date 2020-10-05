@@ -23,7 +23,7 @@
 	force = NONE
 
 	//spawn_values
-	bad_types = /obj/item/toy
+	bad_type = /obj/item/toy
 	spawn_tags = SPAWN_TAG_TOY
 
 /*
@@ -486,7 +486,7 @@
 	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
 	spawn_tags = SPAWN_TAG_FIGURE
-	bad_types = "/obj/item/toy/figure"
+	bad_type = "/obj/item/toy/figure"
 
 /obj/item/toy/figure/excelsior
 	name = "\"Excelsior\" figurine"
@@ -569,7 +569,7 @@
 	anchored = FALSE
 	density = TRUE
 	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
-	bad_types = "/obj/structure/plushie"
+	bad_type = "/obj/structure/plushie"
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
@@ -613,7 +613,7 @@
 	desc = "A very generic small plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
-	bad_types = "/obj/item/toy/plushie"
+	bad_type = "/obj/item/toy/plushie"
 	spawn_tags = SPAWN_TAG_PLUSHIE
 
 /obj/item/toy/plushie/attack_self(mob/user)

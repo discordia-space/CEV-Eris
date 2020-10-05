@@ -67,7 +67,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/weapon/gun/energy/plasmacutter
-	bad_types = /obj/item/weapon/gun/energy/plasmacutter
+	bad_type = /obj/item/weapon/gun/energy/plasmacutter
 
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 	use_external_power = TRUE

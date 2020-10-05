@@ -56,7 +56,7 @@
 	engage_string = "Cycle Visor Mode"
 	activate_string = "Enable Visor"
 	deactivate_string = "Disable Visor"
-	bad_types = /obj/item/rig_module/vision
+	bad_type = /obj/item/rig_module/vision
 	var/datum/rig_vision/vision
 	var/list/vision_modes = list(
 		/datum/rig_vision/nvg,
