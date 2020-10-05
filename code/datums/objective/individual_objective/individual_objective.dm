@@ -6,7 +6,7 @@
 		var/datum/individual_objective/IO = GLOB.individual_objectives[npath]
 		if(!IO.can_assign(src))
 			continue
-		valid_objectives[npath] = IO.rarity
+		valid_objectives[npath] = 10/IO.rarity
 	for(var/datum/individual_objective/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
@@ -18,7 +18,7 @@
 	if(player_is_antag(player))
 		return FALSE
 	for(var/datum/individual_objective/objective in player.individual_objectives)
-		if(objective.limited_antag)
+		if(objective.limited_antag && !objective.completed)
 			return TRUE
 	return FALSE
 

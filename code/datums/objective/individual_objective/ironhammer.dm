@@ -68,7 +68,7 @@
 	..()
 
 /datum/individual_objective/danger
-	name = "Absolute Dange"
+	name = "Absolute Danger"
 	req_department = list(DEPARTMENT_SECURITY)
 	limited_antag = TRUE
 	rarity = 4

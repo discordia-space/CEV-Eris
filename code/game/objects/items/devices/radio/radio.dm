@@ -784,7 +784,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	for(var/mob/living/carbon/human/H in range(8, src))
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	. = ..()

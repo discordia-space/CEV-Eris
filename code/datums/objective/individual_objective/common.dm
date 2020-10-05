@@ -6,7 +6,7 @@
 /datum/individual_objective/upgrade/can_assign(mob/living/L)
 	if(!..())
 		return FALSE
-	for(var/obj/item/organ/external/Ex in mind_holder.organs)
+	for(var/obj/item/organ/external/Ex in L.organs)
 		if(!BP_IS_ROBOTIC(Ex))
 			return TRUE
 	return FALSE
