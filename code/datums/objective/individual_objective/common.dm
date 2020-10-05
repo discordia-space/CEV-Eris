@@ -3,10 +3,10 @@
 	desc =  "Its time to improve your meat with shiny chrome. Gain new bionics, implant, or any mutation."
 	allow_cruciform = FALSE
 
-/datum/individual_objective/upgrade/can_assign(mob/living/L)
+/datum/individual_objective/upgrade/can_assign(mob/living/carbon/human/H)
 	if(!..())
 		return FALSE
-	for(var/obj/item/organ/external/Ex in L.organs)
+	for(var/obj/item/organ/external/Ex in H.organs)
 		if(!BP_IS_ROBOTIC(Ex))
 			return TRUE
 	return FALSE
@@ -142,7 +142,7 @@
 	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(valid_targets)
 	desc = "Ensure that [target] will not get their health slowered to [health_threshold] and below \
-			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold."
+			for [unit2time(units_requested)] minutes. Timer resets if health reaches the threshold."
 	timer = world.time
 	RegisterSignal(target, COMSIG_HUMAN_HEALTH, .proc/task_completed)
 
