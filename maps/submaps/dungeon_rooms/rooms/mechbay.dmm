@@ -224,7 +224,7 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "Q" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "R" = (
@@ -233,7 +233,7 @@
 /turf/simulated/floor/tiled/dark/panels,
 /area/crawler)
 "S" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 

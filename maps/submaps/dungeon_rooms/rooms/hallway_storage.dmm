@@ -78,7 +78,7 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/crawler)
 "s" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "t" = (

@@ -376,7 +376,7 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "aT" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "aU" = (
