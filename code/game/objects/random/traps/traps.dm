@@ -10,11 +10,13 @@
 	//Check that its possible to spawn the chosen trap at this location
 	for(var/trap in possible_traps)
 		if(biome_spawner && biome && biome.use_loc)
-			if(can_spawn_trap_in_range(get_turf(biome), trap, biome.range))
+			if(find_smart_point(trap))
 				continue
 		else if(can_spawn_trap(loc, trap))
 			continue
 		possible_traps -= trap
+	if(!possible_traps.len)
+		to_world_log("no es posible colocar ninguna trampa en [x], [y], [z]")//Evan, delete it
 	return possible_traps
 
 /obj/spawner/traps/biome_spawner_trap
@@ -40,26 +42,21 @@
 //Checks if a trap can spawn in this location
 /proc/can_spawn_trap(turf/T, trap)
 	.=TRUE
-	if(ispath(trap, /obj/item/weapon/beartrap))
-		if(locate(/obj/structure/multiz/ladder) in T)
-			return FALSE
-	else if(ispath(trap, /obj/structure/wire_splicing))
+	if(locate(trap) in T)
+		return FALSE
+	if(ispath(trap, /obj/structure/wire_splicing))
 		if(locate(/obj/structure/cable) in dview(3, T))
 			return TRUE
+	if(T.is_wall || (T.is_hole && !T.is_solid_structure()) || T.density)
 		return FALSE
 
-/proc/can_spawn_trap_in_range(turf/T, trap, nrange)
-	. = FALSE
-	var/list/points = list()
-	if(T.is_wall && T.is_hole)
+/obj/spawner/traps/find_smart_point(path)
+	.=..()
+	if(!.)
 		return FALSE
-	for(var/turf/target in trange(nrange, T))
-		if(can_spawn_trap(target, trap))
-			points += target
-	if(points.len)
-		return points
-
-/obj/spawner/traps/find_smart_point(trap)
-	if(!biome || !biome.use_loc)
-		return FALSE
-	return can_spawn_trap_in_range(get_turf(biome), trap, biome.range)
+	var/list/spawn_points = .
+	var/list/trap_points = list()
+	for(var/turf/T in spawn_points)
+		if(can_spawn_trap(T, path))
+			trap_points += T
+	return trap_points

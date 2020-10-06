@@ -128,7 +128,6 @@
 	var/list/valid_spawn_value = list()
 	var/max_value = 0
 	var/list/things = list()
-	to_world_log("este es el numero de paths [paths.len] de entrada para el top [top]")
 	if(paths.len < top)
 		return paths
 	for(var/j=1 to top)
@@ -137,14 +136,12 @@
 			if(all_spawn_value_by_path[path] < low && !(all_spawn_value_by_path[path] in valid_spawn_value))
 				low = all_spawn_value_by_path[path]
 		valid_spawn_value += low
-	to_world_log("este es el numero de VALORES VALIDOS [valid_spawn_value.len] para el top [top]")
 	for(var/value in valid_spawn_value)
 		if(value > max_value)
 			max_value = value
 	for(var/path in paths)
 		if(all_spawn_value_by_path[path] <= max_value)
 			things += path
-	to_world_log("este es el numero de salida [things.len] para el top [top]")
 	return things
 
 /datum/loot_spawner_data/proc/pick_spawn(list/paths, invert_value=FALSE)

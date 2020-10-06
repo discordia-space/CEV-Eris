@@ -138,7 +138,6 @@
 	if(biome)
 		biome.update()
 	if(biome_spawner && biome && biome.price_tag >= biome.cap_price)
-		to_world_log("el bioma ya no puede spawnear nada mas")
 		return
 	var/list/candidates = valid_candidates()
 	//if(!candidates.len)
@@ -171,8 +170,29 @@
 /obj/spawner/proc/post_spawn(list/spawns)
 	return
 
-/obj/spawner/proc/find_smart_point()
-	return FALSE
+/obj/spawner/proc/find_smart_point(path)
+	if(!biome || !biome.use_loc)
+		return FALSE
+	return can_spawn_in_biome(get_turf(biome), biome.range)
+
+/proc/can_spawn_in_biome(turf/T, nrange)
+	var/list/spawn_points = list()
+	for(var/turf/target in trange(nrange, T))
+		if(target in spawn_points)
+			continue
+		var/ndist = get_dist(T, target)
+		var/turf/current = T
+		var/clear_way = TRUE
+		for(var/i in 1 to ndist)
+			current = get_step(current, get_dir(current, target))
+			if(current.density  || current.is_wall || (current.is_hole && !current.is_solid_structure()))
+				clear_way = FALSE
+				break
+			if(!(current in spawn_points))
+				spawn_points += current
+		if(clear_way && !(target in spawn_points))
+			spawn_points += target
+	return spawn_points
 
 /obj/randomcatcher
 	name = "Random Catcher Object"
