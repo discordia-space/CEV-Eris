@@ -1,0 +1,6 @@
+author: yorpyorpyorp
+delete-after: true
+changes:
+  - rscadd: Eris will now randomly start at 1 of 3 locations.
+  - rscadd: Lines in config file to determine starting location.
+  - rscdel: Asteroid loses its default location.
