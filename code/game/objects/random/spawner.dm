@@ -5,6 +5,7 @@
 	invisibility = INVISIBILITY_MAXIMUM	// Hides these spawners from the dmm-tools minimap renderer of SpacemanDMM
 	rarity_value = 10
 	spawn_frequency = 10
+	price_tag = 1
 	spawn_tags = SPAWN_SPAWNER
 	bad_type = /obj/spawner
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything

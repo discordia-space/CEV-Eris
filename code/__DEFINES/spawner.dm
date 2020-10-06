@@ -7,6 +7,9 @@
 #define SPAWN_TAG_ITEM "obj,item"
 #define SPAWN_TAG_WEAPON "obj,item,weapon"
 
+#define SPAWN_RARE_ITEM "rare_item"
+
+#define SPAWN_TAG_RARE_ITEM "obj,item,rare_item"
 //Items - tools
 #define SPAWN_TOOL "tool"
 #define SPAWN_ADVANCED_TOOL "advanced_tool"
@@ -164,8 +167,10 @@
 #define SPAWN_TOY "toy"
 #define SPAWN_PLUSHIE "toy_plushie"
 #define SPAWN_FIGURE "toy_figure"
+#define SPAWN_TOY_WEAPON "weapon_toy"
 
 #define SPAWN_TAG_TOY "obj,item,toy"
+#define SPAWN_TAG_TOY_WEAPON "obj,item,toy,weapon_toy"
 #define SPAWN_TAG_PLUSHIE "obj,item,toy,toy_plushie"
 #define SPAWN_TAG_STRUCTURE_PLUSHIE "obj,structure,toy_plushie"
 #define SPAWN_TAG_FIGURE "obj,item,toy,toy_figure"

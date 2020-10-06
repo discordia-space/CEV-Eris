@@ -125,11 +125,11 @@
 /datum/loot_spawner_data/proc/only_top_candidates(list/paths, top)
 	//if(!paths || !paths.len) //NOPE
 		//return
+	if(paths.len <= top)
+		return paths
 	var/list/valid_spawn_value = list()
 	var/max_value = 0
 	var/list/things = list()
-	if(paths.len < top)
-		return paths
 	for(var/j=1 to top)
 		var/low = INFINITY
 		for(var/path in paths)

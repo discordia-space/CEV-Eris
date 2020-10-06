@@ -125,6 +125,7 @@
 		)
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/bullets = 5
 
 	examine(mob/user)
@@ -240,9 +241,10 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	var/active = 0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
+	var/active = 0
 
 	attack_self(mob/user)
 		src.active = !( src.active )
@@ -276,6 +278,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /*
  * Snap pops
@@ -655,6 +658,7 @@
 	item_state = "cultblade"
 	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /obj/item/weapon/inflatable_duck
 	name = "inflatable duck"

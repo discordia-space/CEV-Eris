@@ -50,8 +50,8 @@
 	for(var/obj/ripped_item in ripped_turf)
 		if(count >= rating)
 			break
-		if(istype(ripped_item, /obj/structure/scrap))
-			var/obj/structure/scrap/pile = ripped_item
+		if(istype(ripped_item, /obj/structure/scrap_spawner))
+			var/obj/structure/scrap_spawner/pile = ripped_item
 			while(pile.dig_out_lump(loc, 1))
 				if(prob(20))
 					break
