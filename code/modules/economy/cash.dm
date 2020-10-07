@@ -14,6 +14,7 @@
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
+	spawn_blacklisted = TRUE
 	var/access = list()
 	access = access_crate_cash
 	var/worth = 0
