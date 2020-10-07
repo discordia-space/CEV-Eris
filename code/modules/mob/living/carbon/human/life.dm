@@ -29,7 +29,7 @@
 	var/pressure_alert = 0
 	var/temperature_alert = 0
 	var/in_stasis = 0
-	var/heartbeat = 0
+	var/pulse = PULSE_NORM
 	var/global/list/overlays_cache = null
 
 /mob/living/carbon/human/Life()
@@ -332,12 +332,186 @@
 
 		oxygen_alert = max(oxygen_alert, 1)
 		return 0
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
-	if(L && L.handle_breath(breath))
+
+	if(get_organ_efficiency(BP_LUNGS) && handle_breath_lungs(breath))
 		failed_last_breath = 0
 	else
 		failed_last_breath = 1
 	return 1
+
+/mob/living/carbon/human/proc/handle_breath_lungs(datum/gas_mixture/breath)
+	//vars - feel free to modulate if you want more effects that are not gained with efficiency 
+	var/breath_type = species.breath_type ? species.breath_type : "oxygen"
+	var/poison_type = species.poison_type ? species.poison_type : "plasma"
+	var/exhale_type = species.exhale_type ? species.exhale_type : 0
+
+	var/min_breath_pressure = species.breath_pressure
+
+	var/safe_exhaled_max = 10
+	var/safe_toxins_max = 0.2
+	var/SA_para_min = 1
+	var/SA_sleep_min = 5
+
+	var/lung_efficiency = get_organ_efficiency(BP_LUNGS)
+
+	if(!breath)
+		return 0
+
+	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
+	// Lung damage increases the minimum safe pressure.
+	if(lung_efficiency < 50)
+		safe_pressure_min *= 1.5
+	else if(lung_efficiency < 80)
+		safe_pressure_min *= 1.25
+
+	var/breath_pressure = (breath.total_moles*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+
+	var/failed_inhale = 0
+	var/failed_exhale = 0
+
+	var/inhaling = breath.gas[breath_type]
+	var/poison = breath.gas[poison_type]
+	var/exhaling = exhale_type ? breath.gas[exhale_type] : 0
+
+	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
+	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
+	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
+
+	// Not enough to breathe
+	if(inhale_pp < safe_pressure_min)
+		if(prob(20))
+			emote("gasp")
+
+		var/ratio = inhale_pp/safe_pressure_min
+		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+		adjustOxyLoss(max(HUMAN_MAX_OXYLOSS*(1-ratio), 0))
+		failed_inhale = 1
+
+	oxygen_alert = failed_inhale
+
+	var/inhaled_gas_used = inhaling/6
+	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
+
+	if(exhale_type)
+		breath.adjust_gas_temp(exhale_type, inhaled_gas_used, bodytemperature, update = 0) //update afterwards
+		// Too much exhaled gas in the air
+		var/word
+		var/warn_prob
+		var/oxyloss
+		var/alert
+		if(exhaled_pp > safe_exhaled_max)
+			word = pick("extremely dizzy","short of breath","faint","confused")
+			warn_prob = 15
+			oxyloss = HUMAN_MAX_OXYLOSS
+			alert = 1
+			failed_exhale = 1
+		else if(exhaled_pp > safe_exhaled_max * 0.7)
+			word = pick("dizzy","short of breath","faint","momentarily confused")
+			warn_prob = 1
+			alert = 1
+			failed_exhale = 1
+			var/ratio = 1 - (safe_exhaled_max - exhaled_pp)/(safe_exhaled_max*0.3)
+			if (getOxyLoss() < 50*ratio)
+				oxyloss = HUMAN_MAX_OXYLOSS
+		else if(exhaled_pp > safe_exhaled_max * 0.6)
+			word = pick("a little dizzy","short of breath")
+			warn_prob = 1
+		else
+			co2_alert = 0
+
+		if(!co2_alert && word && prob(warn_prob))
+			to_chat(src, SPAN_WARNING("You feel [word]."))
+			adjustOxyLoss(oxyloss)
+			co2_alert = alert
+
+	// Too much poison in the air.
+
+	if(toxins_pp > safe_toxins_max)
+		var/ratio = (poison/safe_toxins_max) * 10
+		reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
+		plasma_alert = 1
+	else
+		plasma_alert = 0
+
+	// If there's some other shit in the air lets deal with it here.
+	if(breath.gas["sleeping_agent"])
+		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
+		if(SA_pp > SA_para_min)		// Enough to make us paralysed for a bit
+			Paralyse(3)	// 3 gives them one second to wake up and run away a bit!
+			if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
+				Sleeping(5)
+		else if(SA_pp > 0.15)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
+			if(prob(20))
+				emote(pick("giggle", "laugh"))
+
+		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
+
+	// Were we able to breathe?
+	var/failed_breath = failed_inhale || failed_exhale
+	if (!failed_breath)
+		adjustOxyLoss(-5)
+
+	handle_temperature_effects(breath)
+
+	breath.update_values()
+	return !failed_breath
+
+/mob/living/carbon/human/proc/handle_temperature_effects(datum/gas_mixture/breath)
+	if(!species)
+		return
+	// Hot air hurts :( :(
+	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+		var/damage = 0
+		if(breath.temperature <= species.cold_level_1)
+			if(prob(20))
+				to_chat(src, SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!"))
+
+			switch(breath.temperature)
+				if(species.cold_level_3 to species.cold_level_2)
+					damage = COLD_GAS_DAMAGE_LEVEL_3
+				if(species.cold_level_2 to species.cold_level_1)
+					damage = COLD_GAS_DAMAGE_LEVEL_2
+				else
+					damage = COLD_GAS_DAMAGE_LEVEL_1
+
+			apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Cold")
+			fire_alert = 1
+		else if(breath.temperature >= species.heat_level_1)
+			if(prob(20))
+				to_chat(src, SPAN_DANGER("You feel your face burning and a searing heat in your lungs!"))
+
+			switch(breath.temperature)
+				if(species.heat_level_1 to species.heat_level_2)
+					damage = HEAT_GAS_DAMAGE_LEVEL_1
+				if(species.heat_level_2 to species.heat_level_3)
+					damage = HEAT_GAS_DAMAGE_LEVEL_2
+				else
+					damage = HEAT_GAS_DAMAGE_LEVEL_3
+
+			apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Heat")
+			fire_alert = 2
+
+		//breathing in hot/cold air also heats/cools you a bit
+		var/temp_adj = breath.temperature - bodytemperature
+		if (temp_adj < 0)
+			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+		else
+			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+
+		var/relative_density = breath.total_moles / (MOLES_CELLSTANDARD * BREATH_PERCENTAGE)
+		temp_adj *= relative_density
+
+		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
+		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
+		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
+		bodytemperature += temp_adj
+
+	else if(breath.temperature >= species.heat_discomfort_level)
+		species.get_environment_discomfort(src,"heat")
+	else if(breath.temperature <= species.cold_discomfort_level)
+		species.get_environment_discomfort(src,"cold")
+
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)

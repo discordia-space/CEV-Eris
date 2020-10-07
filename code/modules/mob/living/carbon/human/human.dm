@@ -1490,7 +1490,7 @@ var/list/rank_prefix = list(\
 	if(!H)
 		return PULSE_NONE
 	else
-		return H.pulse
+		return pulse
 
 /mob/living/carbon/human/verb/lookup()
 	set name = "Look up"
