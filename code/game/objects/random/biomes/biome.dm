@@ -1,16 +1,5 @@
 GLOBAL_LIST_EMPTY(loot_biomes)
 
-#define LEVEL_VERY_LOW_LOOT 1500
-
-#define LEVEL_LOW_LOOT 5000
-
-#define LEVEL_ADVERAGE_LOOT 10000
-
-#define LEVEL_HIG_LOOT 20000
-
-#define LEVEL_VERY_HIG_LOOT 25000
-
-
 /obj/landmark/loot_biomes //TEST
 	name = "debug biome"
 	icon_state = "player-blue-cluster"
@@ -33,13 +22,14 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/min_amount = 1
 	var/max_amount = 1
 	var/spawner_count = 0
-	var/use_loc = FALSE
 	var/biome_type = /obj/landmark/loot_biomes
 	var/obj/landmark/loot_biomes/obj/master
-
+	var/spawn_type
+	var/smart_loc = FALSE
 
 /obj/landmark/loot_biomes/Initialize(mapload)
 	.=..()
+	testing("[src] generated in [x],[y],[z]")
 	price_tag = 0
 	for(var/obj/item/I in view())
 		price_tag += I.get_item_cost()
@@ -47,6 +37,9 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	if(cap_price)
 		top_price = cap_price / 10
 	GLOB.loot_biomes += src
+	if(spawn_type)
+		spawn(10)
+			new spawn_type(loc)
 
 /obj/landmark/loot_biomes/proc/check_master()
 	if(master) return master

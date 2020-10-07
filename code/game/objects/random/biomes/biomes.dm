@@ -3,7 +3,6 @@
 	icon_state = "box-green-biome"
 	cap_price = 200000
 	main_tags = list(SPAWN_ITEM)
-	secondary_tags = list()
 	biome_type = /obj/landmark/loot_biomes/obj
 
 /obj/spawner/biome_spawner_obj
@@ -22,9 +21,10 @@
 	max_amount = 8
 	can_burrow = TRUE
 	allowed_only_top = TRUE
-	use_loc = TRUE
 	cap_price = INFINITY
+	smart_loc = SMART_LOC_1
 	biome_type = /obj/landmark/loot_biomes/mob
+	spawn_type = /obj/spawner/mob/biome_spawner_mob
 
 /obj/spawner/mob/biome_spawner_mob
 	name = "biome mob spawner"
@@ -35,6 +35,10 @@
 /obj/landmark/loot_biomes/mob/roach
 	icon_state = "hostilemob-brown-biome"
 	main_tags = list(SPAWN_ROACH)
+
+/obj/landmark/loot_biomes/mob/roach/room
+	icon_state = "hostilemob-brown-biome"
+	smart_loc = SMART_LOC_2
 
 /obj/landmark/loot_biomes/mob/spiders
 	icon_state = "hostilemob-black-biome"
@@ -51,9 +55,10 @@
 	min_amount = 4
 	max_amount = 8
 	allowed_only_top = TRUE
-	use_loc = TRUE
+	smart_loc = SMART_LOC_1
 	cap_price = INFINITY
 	biome_type = /obj/landmark/loot_biomes/trap
+	spawn_type = /obj/spawner/traps/biome_spawner_trap
 
 /obj/spawner/traps/biome_spawner_trap
 	name = "biome trap spawner"

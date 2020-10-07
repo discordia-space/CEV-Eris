@@ -10,7 +10,7 @@
 	var/list/possible_traps = ..()
 	//Check that its possible to spawn the chosen trap at this location
 	for(var/trap in possible_traps)
-		if(biome_spawner && biome && biome.use_loc)
+		if(biome_spawner && biome && biome.smart_loc)
 			if(find_smart_point(trap))
 				continue
 		else if(can_spawn_trap(loc, trap))

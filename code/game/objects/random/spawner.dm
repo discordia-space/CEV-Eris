@@ -66,8 +66,8 @@
 	var/list/spawns = list()
 	var/atom/LocA = src.loc
 	if(!biome)
-		fid_biome()
-	if(biome_spawner && biome && biome.use_loc)
+		find_biome()
+	if(biome_spawner && biome && biome.smart_loc)
 		LocA = get_turf(biome)
 	if(spread_range && istype(LocA, /turf))
 		for(var/turf/T in trange(spread_range, LocA))
@@ -95,6 +95,8 @@
 			price_tag += AM.get_item_cost()
 		if(islist(aditional_object) && aditional_object.len)
 			for(var/thing in aditional_object)
+				if(!prob(80))
+					continue
 				var/atom/AO = new thing (T)
 				spawns.Add(AO)
 				if(ismovable(AO))
@@ -102,13 +104,17 @@
 					price_tag += AMAO.get_item_cost()
 	return spawns
 
-/obj/spawner/proc/fid_biome()
-	var/distance = RANGE_BIOMES
+/obj/spawner/proc/find_biome()
+	var/distance = INFINITY
 	var/new_distance
 	if(GLOB.loot_biomes.len)
 		for(var/obj/landmark/loot_biomes/biome_candidate in GLOB.loot_biomes)
 			new_distance = get_dist(src, biome_candidate)
+			if(new_distance > biome_candidate.range)
+				continue
 			if(biome_candidate.z != z)
+				continue
+			if(get_area(src) != get_area(biome_candidate))
 				continue
 			if(new_distance > distance)
 				continue
@@ -168,28 +174,44 @@
 	return
 
 /obj/spawner/proc/find_smart_point(path)
-	if(biome_spawner || !biome || !biome.use_loc)
+	if(!biome_spawner || !biome || !biome.smart_loc)
 		return FALSE
-	return can_spawn_in_biome(get_turf(biome), biome.range, check_density)
+	return can_spawn_in_biome(get_turf(biome), biome.range, biome.smart_loc, check_density)
 
-/proc/can_spawn_in_biome(turf/T, nrange, check_density=FALSE)
+/proc/check_spawn_point(turf/T)
+	.=TRUE
+	if(T.density  || T.is_wall || (T.is_hole && !T.is_solid_structure()))
+		.=FALSE
+
+/proc/check_area(atom/A1,atom/A2)
+	.=TRUE
+	if(get_area(A1) != get_area(A2))
+		.=FALSE
+
+/proc/can_spawn_in_biome(turf/T, nrange, check_room=FALSE, check_density=FALSE)
 	var/list/spawn_points = list()
 	for(var/turf/target in trange(nrange, T))
 		if(target in spawn_points)
+			continue
+		if(!check_density || check_density && !turf_clear(target))
+			continue
+		if(!check_area(T,target))
 			continue
 		var/ndist = get_dist(T, target)
 		var/turf/current = T
 		var/clear_way = TRUE
 		for(var/i in 1 to ndist)
 			current = get_step(current, get_dir(current, target))
-			if(current.density  || current.is_wall || (current.is_hole && !current.is_solid_structure()))
+			if(!check_spawn_point(current))
 				clear_way = FALSE
-				break
+				if(check_room > SMART_LOC_1)
+					break
+				continue
 			if(check_density && !turf_clear(current))
 				continue
 			if(!(current in spawn_points))
 				spawn_points += current
-		if(clear_way && !(target in spawn_points) && (!check_density || check_density && turf_clear(current)))
+		if(clear_way && !(target in spawn_points))
 			spawn_points += target
 	return spawn_points
 

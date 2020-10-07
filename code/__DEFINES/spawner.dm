@@ -1,5 +1,19 @@
 #define RANGE_BIOMES 7
 
+#define LEVEL_VERY_LOW_LOOT 2000
+
+#define LEVEL_LOW_LOOT 5000
+
+#define LEVEL_ADVERAGE_LOOT 10000
+
+#define LEVEL_HIG_LOOT 15000
+
+#define LEVEL_VERY_HIG_LOOT 20000
+
+#define SMART_LOC_1 1
+
+#define SMART_LOC_2 2
+
 //	Items
 #define SPAWN_ITEM "item"
 #define SPAWN_WEAPON "weapon"

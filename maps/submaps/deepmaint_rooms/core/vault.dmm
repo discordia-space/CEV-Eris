@@ -64,7 +64,7 @@
 "bl" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bm" = (/obj/machinery/vending/powermat,/turf/simulated/floor/plating,/area/deepmaint)
 "bn" = (/obj/spawner/junk,/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
-"bo" = (/obj/spawner/mob/roaches/cluster,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
+"bo" = (/obj/landmark/loot_biomes/mob/roach/room{range = 3},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bp" = (/obj/item/remains/human,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/gun_loot,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bq" = (/obj/spawner/junk,/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
 "br" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
@@ -94,7 +94,7 @@
 "bP" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating/under,/area/deepmaint)
 "bQ" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/glass/beaker{pixel_x = 5},/obj/item/weapon/reagent_containers/glass/beaker{pixel_x = 5},/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/tiled/cafe,/area/deepmaint)
 "bR" = (/obj/structure/table/reinforced,/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
-"bS" = (/obj/structure/catwalk,/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
+"bS" = (/obj/landmark/loot_biomes/mob/roach,/obj/spawner/mob/biome_spawner_mob,/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
 "bT" = (/obj/structure/table/rack,/obj/spawner/rations,/obj/spawner/rations,/obj/spawner/rations,/obj/spawner/rations/low_chance,/obj/spawner/rations/low_chance,/obj/spawner/rations/low_chance,/obj/machinery/light,/turf/simulated/floor/tiled/cafe,/area/deepmaint)
 "bU" = (/obj/structure/table/standard,/obj/item/weapon/packageWrap,/obj/item/weapon/reagent_containers/food/condiment/enzyme{layer = 5},/obj/item/weapon/reagent_containers/food/condiment/enzyme{layer = 5},/turf/simulated/floor/tiled/cafe,/area/deepmaint)
 "bV" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
@@ -107,7 +107,6 @@
 "cc" = (/obj/structure/closet/secure_closet/personal,/obj/spawner/pack/rare,/obj/spawner/pack/rare,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "cd" = (/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/obj/spawner/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
 "ce" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/obj/spawner/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
-"cf" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
 "cg" = (/obj/structure/bed/padded,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "ch" = (/obj/structure/table/woodentable,/obj/item/device/lighting/toggleable/lamp/green,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "ci" = (/obj/spawner/junk,/obj/spawner/junk,/turf/simulated/floor/plating/under,/area/deepmaint)
@@ -129,19 +128,19 @@ aaacacacacabababababababababababacbBacacaa
 afacaNaNaOabbnayaBaBaJaJaBaybqabaUbCaWacaa
 aoacaaaaaXabaKabababababababaMabbabCaWagaf
 bbacbcaaaXabaPabbebfbgbhbiabaMabbjbCaWagaa
-aaacaaaaaXabaMabbkahahahblabaQabbmbCaWacaa
-aaacadacababaRabahbobpahahabaMababbDakacaf
+aaacaaaaaXabaMabbkahboahblabaQabbmbCaWacaa
+aaacadacababaRabahahbpahahabaMababbDakacaf
 aabrbsbtabalaSabababanabababaQalabbPbvacaa
 aabwbxbwabalbuaTaVaYbYaYaVbdbyalabbPbvacaa
 aaabatabababauabababbZababababababbPbEacaf
 afabavbFbGabaxbHazagbCbIaAabalalabbPamacaa
-afabavbJbKabbLaxbMaCbCapbNabbOaDaucaamacaa
-aaabavbJbQabaxbRaEagbCaaaAabaDaDabbPbSacao
+afabavbJbKabbLaxbMaCbCaabNabbOaDaucaamacaa
+aaabavbJbQabaxbRaEagbCaaaAabaDbSabbPamacao
 aaabavbTbUabbVabababbBabababalalabbPbEacaa
 aoabaFabababajabaeaGbPaqbWababababbPamacaa
 aaabbXawajamamaqaecdcbaTbdbdbdaVaYcobEacaa
-aaabaHcccpcqcqaVbdcrcscecfbWaebWarambvacaa
+aaabaHcccpcqcqaVbdcrcsceaebWaebWarambvacaa
 afabcgchababababbWaGamaqciababababambvacaa
 aaababababcjckabababadabababclcmabajakacao
-aaaaaaaaaaafaaaoaaaaaacnaaaaaaapaaaaaaaaaa
+aaaaaaaaaaafaaaoaaaaaacnaaaaaaaaaaaaaaaaaa
 "}
