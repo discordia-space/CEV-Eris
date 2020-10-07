@@ -10,6 +10,11 @@
 #define SPAWN_RARE_ITEM "rare_item"
 
 #define SPAWN_TAG_RARE_ITEM "obj,item,rare_item"
+
+#define SPAWN_SPACECASH "spacecash"
+
+#define SPAWN_TAG_SPACECASH "obj,item,spacecash"
+
 //Items - tools
 #define SPAWN_TOOL "tool"
 #define SPAWN_ADVANCED_TOOL "advanced_tool"

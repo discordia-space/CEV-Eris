@@ -29,6 +29,7 @@
 	var/biome_type = /obj/landmark/loot_biomes/obj
 	var/spawn_count = 0
 	var/latejoin = FALSE
+	var/check_density = TRUE //for find smart spawn
 
 /obj/spawner/biome_spawner_obj
 	name = "biome obj spawner"
@@ -159,8 +160,9 @@
 
 	if(biome && biome.allowed_only_top && biome.spawner_count < 2)
 		var/top = round(candidates.len*spawn_count*biome.only_top)
-		var/top_spawn = CLAMP(top, 1, candidates.len)
-		candidates = lsd.only_top_candidates(candidates, top_spawn)
+		if(top <= candidates.len)
+			var/top_spawn = CLAMP(top, 1, min(candidates.len,10))
+			candidates = lsd.only_top_candidates(candidates, top_spawn)
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
@@ -174,9 +176,9 @@
 /obj/spawner/proc/find_smart_point(path)
 	if(!biome || !biome.use_loc)
 		return FALSE
-	return can_spawn_in_biome(get_turf(biome), biome.range)
+	return can_spawn_in_biome(get_turf(biome), biome.range, check_density)
 
-/proc/can_spawn_in_biome(turf/T, nrange)
+/proc/can_spawn_in_biome(turf/T, nrange, check_density=FALSE)
 	var/list/spawn_points = list()
 	for(var/turf/target in trange(nrange, T))
 		if(target in spawn_points)
@@ -189,9 +191,11 @@
 			if(current.density  || current.is_wall || (current.is_hole && !current.is_solid_structure()))
 				clear_way = FALSE
 				break
+			if(check_density && !turf_clear(current))
+				continue
 			if(!(current in spawn_points))
 				spawn_points += current
-		if(clear_way && !(target in spawn_points))
+		if(clear_way && !(target in spawn_points) && (!check_density || check_density && turf_clear(current)))
 			spawn_points += target
 	return spawn_points
 

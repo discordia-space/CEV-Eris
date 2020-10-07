@@ -133,8 +133,11 @@
 	for(var/j=1 to top)
 		var/low = INFINITY
 		for(var/path in paths)
-			if(all_spawn_value_by_path[path] < low && !(all_spawn_value_by_path[path] in valid_spawn_value))
-				low = all_spawn_value_by_path[path]
+			var/sapwn_value = all_spawn_value_by_path[path]
+			if(sapwn_value <= 0)
+				continue
+			if((sapwn_value < low) && !(sapwn_value in valid_spawn_value))
+				low = sapwn_value
 		valid_spawn_value += low
 	for(var/value in valid_spawn_value)
 		if(value > max_value)
@@ -150,8 +153,8 @@
 	var/list/things = list()
 	var/list/values = list()
 	for(var/path in paths)
-		if(!(all_spawn_value_by_path[path] in values))
-			var/spawn_value = all_spawn_value_by_path[path]
+		var/spawn_value = all_spawn_value_by_path[path]
+		if(!(spawn_value in values) && spawn_value > 0)
 			values += spawn_value
 			if(invert_value)
 				spawn_value = 1/spawn_value

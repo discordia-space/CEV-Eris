@@ -4,6 +4,7 @@
 	alpha = 128
 	tags_to_spawn = list(SPAWN_TRAP_ARMED)
 	biome_type = /obj/landmark/loot_biomes/trap
+	check_density = FALSE
 
 /obj/spawner/traps/valid_candidates()
 	var/list/possible_traps = ..()
@@ -15,8 +16,6 @@
 		else if(can_spawn_trap(loc, trap))
 			continue
 		possible_traps -= trap
-	if(!possible_traps.len)
-		to_world_log("no es posible colocar ninguna trampa en [x], [y], [z]")//Evan, delete it
 	return possible_traps
 
 /obj/spawner/traps/biome_spawner_trap
@@ -42,11 +41,11 @@
 //Checks if a trap can spawn in this location
 /proc/can_spawn_trap(turf/T, trap)
 	.=TRUE
-	if(locate(trap) in T)
-		return FALSE
 	if(ispath(trap, /obj/structure/wire_splicing))
 		if(locate(/obj/structure/cable) in dview(3, T))
 			return TRUE
+	if(locate(trap) in T)
+		return FALSE
 	if(T.is_wall || (T.is_hole && !T.is_solid_structure()) || T.density)
 		return FALSE
 
