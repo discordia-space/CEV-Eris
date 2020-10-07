@@ -18,11 +18,6 @@
 		possible_traps -= trap
 	return possible_traps
 
-/obj/spawner/traps/biome_spawner_trap
-	name = "biome trap spawner"
-	biome_spawner = TRUE
-	latejoin = TRUE
-
 /obj/spawner/traps/low_chance
 	icon_state = "trap-red-low"
 	spawn_nothing_percentage = 75

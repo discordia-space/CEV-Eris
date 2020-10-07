@@ -6,11 +6,6 @@
 	exclusion_paths = list(/obj/spawner/mob)
 	biome_type = /obj/landmark/loot_biomes/mob
 
-/obj/spawner/mob/biome_spawner_mob
-	name = "biome mob spawner"
-	biome_spawner = TRUE
-	latejoin = TRUE
-
 /obj/spawner/mob/burrow()
 	if(biome && biome.can_burrow)
 		find_or_create_burrow(get_turf(src))

@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(loot_biomes)
 
-#define LEVEL_VERY_LOW_LOOT 1000
+#define LEVEL_VERY_LOW_LOOT 1500
 
 #define LEVEL_LOW_LOOT 5000
 
@@ -15,8 +15,8 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	name = "debug biome"
 	icon_state = "player-blue-cluster"
 	var/prob_secondary_tags = 33
-	var/list/main_tags = list(SPAWN_OS_TOOL)//test
-	var/list/secondary_tags = list()//test
+	var/list/main_tags = list()
+	var/list/secondary_tags = list()
 	var/list/tags_to_spawn = list()
 	var/cap_price = 500000
 	var/top_price = 10000 //top_price = cap_price / 10

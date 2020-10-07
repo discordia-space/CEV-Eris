@@ -31,12 +31,6 @@
 	var/latejoin = FALSE
 	var/check_density = TRUE //for find smart spawn
 
-/obj/spawner/biome_spawner_obj
-	name = "biome obj spawner"
-	tags_to_spawn = list(SPAWN_ITEM)
-	biome_type = /obj/landmark/loot_biomes/obj
-	biome_spawner = TRUE
-
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload)
 	.=..()
@@ -71,9 +65,9 @@
 	var/list/points_for_spawn = list()
 	var/list/spawns = list()
 	var/atom/LocA = src.loc
-	if(biome_spawner && !biome)
+	if(!biome)
 		fid_biome()
-	if(biome && biome.use_loc)
+	if(biome_spawner && biome && biome.use_loc)
 		LocA = get_turf(biome)
 	if(spread_range && istype(LocA, /turf))
 		for(var/turf/T in trange(spread_range, LocA))
@@ -118,11 +112,11 @@
 				continue
 			if(new_distance > distance)
 				continue
-			if(!istype(biome_candidate, biome_type))
+			if(biome && istype(biome, biome_type) && !istype(biome_candidate, biome_type))
 				continue
 			distance = new_distance
 			biome = biome_candidate
-	if(biome)
+	if(biome_spawner && biome)
 		biome.spawner_count++
 		tags_to_spawn = biome.tags_to_spawn
 		allow_blacklist = biome.allow_blacklist
@@ -158,7 +152,7 @@
 		candidates -= lsd.spawns_upper_price(candidates, top_price)
 	candidates += include_paths
 
-	if(biome && biome.allowed_only_top && biome.spawner_count < 2)
+	if(biome_spawner && biome && biome.allowed_only_top && biome.spawner_count < 2)
 		var/top = round(candidates.len*spawn_count*biome.only_top)
 		if(top <= candidates.len)
 			var/top_spawn = CLAMP(top, 1, min(candidates.len,10))
@@ -174,7 +168,7 @@
 	return
 
 /obj/spawner/proc/find_smart_point(path)
-	if(!biome || !biome.use_loc)
+	if(biome_spawner || !biome || !biome.use_loc)
 		return FALSE
 	return can_spawn_in_biome(get_turf(biome), biome.range, check_density)
 
