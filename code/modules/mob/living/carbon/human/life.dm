@@ -1032,6 +1032,8 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/obj/item/weapon/implant/carrion_spider/observer))
 			isRemoteObserve = TRUE
+		else if(client.eye && istype(client.eye,/obj/structure/multiz))
+			isRemoteObserve = TRUE
 		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
