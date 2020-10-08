@@ -13,17 +13,17 @@
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2-nopower"
 	var/state_base = "jukebox2"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 10
 	active_power_usage = 100
 	circuit = /obj/item/weapon/electronics/circuitboard/jukebox
 
 	// Vars for hacking
 	var/datum/wires/jukebox/wires = null
-	var/hacked = 0 // Whether to show the hidden songs or not
+	var/hacked = FALSE // Whether to show the hidden songs or not
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
