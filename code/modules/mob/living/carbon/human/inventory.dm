@@ -31,18 +31,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 	set hidden = 1
 	
 	var/obj/item/I = get_active_hand()
-	if(I && src.s_store)
-		to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
-		return
-	if(!I && !src.s_store)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
-		return
-	if(!I && src.s_store)
+	if(I)
+		if(src.s_store)
+			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+		else
+			equip_to_from_suit_storage(I)
+	else if ( src.s_store )
 		equip_to_from_suit_storage(src.s_store)
-		return
-	if(I && !src.s_store)
-		equip_to_from_suit_storage(I)
-		return
+	else
+		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
+	return
 /mob/living/carbon/human/verb/bag_equip()
 	set name = "bag-equip"
 	set hidden = 1
