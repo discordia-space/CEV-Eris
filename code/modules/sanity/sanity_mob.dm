@@ -96,6 +96,7 @@
 	handle_breakdowns()
 	handle_insight()
 	handle_level()
+	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
 
 /datum/sanity/proc/handle_view()
 	. = 0
@@ -215,6 +216,7 @@
 
 	to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
 	owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
+	owner.pick_individual_objective()
 	resting = 0
 
 /datum/sanity/proc/oddity_stat_up(multiplier)
@@ -236,6 +238,8 @@
 			var/obj/item/weapon/oddity/OD = O
 			if(OD.perk)
 				owner.stats.addPerk(OD.perk)
+		for(var/mob/living/carbon/human/H in viewers(owner))
+			SEND_SIGNAL(H, COMSIG_HUMAN_LEVEL_UP, owner, O)
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
@@ -360,6 +364,8 @@
 
 		if(B.occur())
 			breakdowns += B
+			for(var/mob/living/carbon/human/H in viewers(owner))
+				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
 		return
 
 #undef SANITY_PASSIVE_GAIN

@@ -15,6 +15,7 @@
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
+	var/allow_aditional_object = TRUE
 	var/list/exclusion_paths = list()
 	var/list/restricted_tags = list()
 	var/list/include_paths = list()
@@ -24,9 +25,10 @@
 
 
 // creates a new object and deletes itself
-/obj/spawner/Initialize()
+/obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
 	..()
 	lsd = GLOB.all_spawn_data["loot_s_data"]
+	allow_aditional_object = with_aditional_object
 	if(!prob(spawn_nothing_percentage))
 		var/list/spawns = spawn_item()
 		if (has_postspawn && spawns.len)
@@ -90,7 +92,7 @@
 		if(ismovable(A))
 			var/atom/movable/AM = A
 			price_tag += AM.price_tag
-		if(islist(aditional_object) && aditional_object.len)
+		if(allow_aditional_object && islist(aditional_object) && aditional_object.len)
 			for(var/thing in aditional_object)
 				var/atom/AO = new thing (T)
 				spawns.Add(AO)
@@ -105,15 +107,15 @@
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "rup"
 
-/obj/randomcatcher/proc/get_item(type)
-	new type(src)
+/obj/randomcatcher/proc/get_item(type, with_aditional_object=FALSE)
+	new type(src, with_aditional_object)
 	if (contents.len)
 		. = pick(contents)
 	else
 		return null
 
-/obj/randomcatcher/proc/get_items(type)
-	new type(src)
+/obj/randomcatcher/proc/get_items(type, with_aditional_object=FALSE)
+	new type(src, with_aditional_object)
 	if (contents.len)
 		return contents
 	else

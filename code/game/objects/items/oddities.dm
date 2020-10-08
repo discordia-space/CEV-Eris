@@ -18,8 +18,8 @@
 	rarity_value = 10
 	bad_types = /obj/item/weapon/oddity
 
-//You choose what stat can be increased, and a maximum value that will be added to this stat
-//The minimum is defined above. The value of change will be decided by random
+	//You choose what stat can be increased, and a maximum value that will be added to this stat
+	//The minimum is defined above. The value of change will be decided by random
 	var/list/oddity_stats
 	var/sanity_value = 1
 	var/datum/perk/oddity/perk

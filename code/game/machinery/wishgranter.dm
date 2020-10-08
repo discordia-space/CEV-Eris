@@ -22,7 +22,7 @@
 		user << "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's."
 		return
 
-	else if(is_special_character(user))
+	else if(is_special_character(user) > LIMITED_ANTAG)
 		user << "Even to a heart as dark as yours, you know nothing good will come of this.  Something instinctual makes you pull away."
 
 	else if (!insisting)

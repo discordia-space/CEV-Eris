@@ -19,10 +19,14 @@
 
 /obj/item/biosyphon/New()
 	..()
+	GLOB.all_faction_items[src] = GLOB.department_security
 	START_PROCESSING(SSobj, src)
 
 /obj/item/biosyphon/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
 	. = ..()
 
 /obj/item/biosyphon/Process()
@@ -30,3 +34,8 @@
 		var/obj/item/weapon/storage/box/donut/D = new /obj/item/weapon/storage/box/donut(get_turf(src))
 		visible_message(SPAN_NOTICE("[name] drop [D]."))
 		last_produce = world.time
+
+/obj/item/biosyphon/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return
+	..()

@@ -69,6 +69,12 @@ GLOBAL_LIST_EMPTY(all_stash_datums)
 //PERKS
 GLOBAL_LIST_EMPTY(all_perks)
 
+//individual_objectives
+GLOBAL_LIST_EMPTY(all_faction_items)
+
+//faction_items
+GLOBAL_LIST_EMPTY(individual_objectives)
+
 //NeoTheology
 GLOBAL_LIST_EMPTY(all_rituals)//List of all rituals
 GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's cooldown_category
@@ -163,6 +169,11 @@ GLOBAL_LIST_EMPTY(all_spawn_data)
 	for(var/T in paths)
 		var/datum/job/J = new T
 		GLOB.joblist[J.title] = J
+
+	paths = subtypesof(/datum/individual_objective)
+	for(var/T in paths)
+		var/datum/individual_objective/IO = new T
+		GLOB.individual_objectives[T] = IO
 
 	//Stashes
 	paths = subtypesof(/datum/stash)

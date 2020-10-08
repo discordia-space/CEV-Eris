@@ -120,7 +120,7 @@
 	if (flooring)
 		for(var/obj/O in src)
 			O.hide(O.hides_under_flooring() && (flooring.flags & TURF_HIDES_THINGS))
-			SEND_SIGNAL(O, CONSIG_TURF_LEVELUPDATE, (flooring.flags & TURF_HIDES_THINGS))
+			SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, (flooring.flags & TURF_HIDES_THINGS))
 
 
 /turf/simulated/floor/proc/is_damaged()

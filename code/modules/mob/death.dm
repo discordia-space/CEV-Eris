@@ -72,6 +72,7 @@
 
 	for(var/mob/living/carbon/human/H in oviewers(src))
 		H.sanity.onSeeDeath(src)
+		SEND_SIGNAL(H, COMSIG_MOB_DEATH, src)
 
 	stat = DEAD
 	update_lying_buckled_and_verb_status()
