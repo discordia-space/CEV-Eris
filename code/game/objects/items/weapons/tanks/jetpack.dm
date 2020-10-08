@@ -9,7 +9,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
-	bad_types = /obj/item/weapon/tank/jetpack
+	bad_type = /obj/item/weapon/tank/jetpack
 	spawn_tags = SPAWN_TAG_JETPACK
 	rarity_value = 50
 	var/datum/effect/effect/system/trail/jet/trail

@@ -16,7 +16,7 @@
 	throw_range = 8
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_FIRSTAID
-	bad_types = /obj/item/weapon/storage/firstaid
+	bad_type = /obj/item/weapon/storage/firstaid
 	var/empty = 0
 
 
@@ -198,7 +198,7 @@
 	matter = list(MATERIAL_PLASTIC = 1)
 	max_storage_space = 12
 	rarity_value = 10
-	bad_types = /obj/item/weapon/storage/pill_bottle
+	bad_type = /obj/item/weapon/storage/pill_bottle
 	spawn_tags = SPAWN_TAG_MEDICINE
 
 /obj/item/weapon/storage/pill_bottle/antitox

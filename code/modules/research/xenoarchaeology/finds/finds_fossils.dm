@@ -9,7 +9,7 @@
 	desc = "It's a fossil."
 	spawn_tags = SPAWN_TAG_XENOARCH_ITEM_FOSSIL
 	spawn_blacklisted = TRUE
-	bad_types = /obj/item/weapon/fossil
+	bad_type = /obj/item/weapon/fossil
 	var/animal = 1
 
 /obj/item/weapon/fossil/base/New()

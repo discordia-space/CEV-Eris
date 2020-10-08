@@ -1,13 +1,14 @@
 /datum/loot_spawner_data
-	var/list/all_spawn_bad_paths = list()
-	var/list/all_spawn_blacklist = list()
+	//var/list/all_spawn_bad_paths = list()
+	var/list/all_spawn_blacklist = list()//soft
 	//var/list/all_spawn_by_price = list()
-	var/list/all_spawn_price_by_path = list()
+	var/list/all_price_by_path = list()
 	//var/list/all_spawn_by_frequency = list()
-	var/list/all_spawn_frequency_by_path = list()
+	//var/list/all_spawn_frequency_by_path = list()
 	//var/list/all_spawn_by_rarity = list()
-	var/list/all_spawn_rarity_by_path = list()
+	//var/list/all_spawn_rarity_by_path = list()
 	var/list/all_spawn_by_tag = list()
+	var/list/all_spawn_by_spawn_value = list()
 	var/list/all_spawn_accompanying_obj_by_path = list()
 
 /datum/loot_spawner_data/New()
@@ -18,9 +19,9 @@
 	var/rarity
 	var/frequency
 	var/blacklisted
+	var/list/bad_paths = list()
 	var/list/spawn_tags = list()
 	var/list/accompanying_objs = list()
-	var/list/bad_paths = list()
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
@@ -32,52 +33,40 @@
 
 	for(var/path in paths)
 		var/atom/movable/A = path
+		var/bad_path = initial(A.bad_type)
+		if(!(bad_path in bad_paths))
+			ASSERT(ispath(bad_path) || !bad_path)
+			bad_paths += list(bad_path)
 
-		bad_paths = initial(A.bad_types)
-		if(istext(bad_paths))
-			bad_paths = splittext(bad_paths, ",")
-			if(bad_paths.len)
-				var/list/temp_list = bad_paths
-				bad_paths = list()
-				for(var/bad_path_text in temp_list)
-					bad_paths += text2path(bad_path_text)
-		else if(ispath(bad_paths))
-			bad_paths = list(bad_paths)
-		if(islist(bad_paths) && bad_paths.len)
-			for(var/bad_path in bad_paths)
-				if(!ispath(bad_path))
-					continue
-				if(!(bad_path in all_spawn_bad_paths))
-					all_spawn_bad_paths += bad_path
-
-		if(path in all_spawn_bad_paths)
-			continue
-
-		frequency = initial(A.spawn_frequency)
-		if(!frequency || frequency <= 0)
+		if(path in bad_paths)
 			continue
 
 		spawn_tags = splittext(initial(A.spawn_tags), ",")
 
 		if(!spawn_tags.len)
 			continue
-		//tags
+		//tags//
 		for(var/tag in spawn_tags)
 			all_spawn_by_tag[tag] += list(path)
-
-		//frequency
-		//all_spawn_by_frequency["[frequency]"] += list(path)
-		all_spawn_frequency_by_path[path] = frequency
 
 		//price//
 		price = initial(A.price_tag)
 		//all_spawn_by_price["[price]"] += list(path)
-		all_spawn_price_by_path[path] = price
+		all_price_by_path[path] = price
+
+		//frequency
+		frequency = initial(A.spawn_frequency)
+		//all_spawn_by_frequency["[frequency]"] += list(path)
+		//all_spawn_frequency_by_path[path] = frequency
 
 		//rarity//
 		rarity = initial(A.rarity_value)
+		ASSERT(rarity >= 1)
 		//all_spawn_by_rarity["[rarity]"] += list(path)
-		all_spawn_rarity_by_path[path] = rarity
+		//all_spawn_rarity_by_path[path] = rarity
+
+		//spawn_value//
+		all_spawn_by_spawn_value[path] = 10 * frequency/rarity
 
 		//blacklisted//
 		blacklisted = initial(A.spawn_blacklisted)
@@ -111,8 +100,6 @@
 
 /datum/loot_spawner_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
-	if(!islist(tags))
-		return things
 	for(var/tag in tags)
 		if(all_spawn_by_tag["[tag]"] in things)
 			continue
@@ -124,7 +111,7 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		if(all_spawn_price_by_path[path] < price)
+		if(all_price_by_path[path] < price)
 			things += path
 	return things
 
@@ -133,39 +120,7 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		if(all_spawn_price_by_path[path] > price)
-			things += path
-	return things
-
-/datum/loot_spawner_data/proc/pick_frequencies_spawn(list/paths)
-	//if(!paths || !paths.len) //NOPE
-	//	return
-	var/list/things = list()
-	for(var/path in paths)
-		var/frequency_path = all_spawn_frequency_by_path[path]
-		things["[frequency_path]"] = frequency_path
-	var/frequency = pickweight(things, 0)
-	if(istext(frequency))
-		frequency = text2num(frequency)
-	things = list()
-	for(var/path in paths)
-		if(all_spawn_frequency_by_path[path] >= frequency)
-			things += path
-	return things
-
-/datum/loot_spawner_data/proc/pick_rarities_spawn(list/paths)
-	//if(!paths || !paths.len) //NOPE
-	//	return
-	var/list/things = list()
-	for(var/path in paths)
-		var/rarity_path = 100/all_spawn_rarity_by_path[path]
-		things["[all_spawn_rarity_by_path[path]]"] = rarity_path
-	var/rarity = pickweight(things, 0)
-	if(istext(rarity))
-		rarity = text2num(rarity)
-	things = list()
-	for(var/path in paths)
-		if(all_spawn_rarity_by_path[path] <= rarity)
+		if(all_price_by_path[path] > price)
 			things += path
 	return things
 
@@ -173,31 +128,15 @@
 	//if(!paths || !paths.len) //NOPE
 		//return
 	var/list/things = list()
+	var/list/values = list()
 	for(var/path in paths)
-		var/frequency_path = all_spawn_frequency_by_path[path]
-		if(!frequency_path)
-			continue
-		if(frequency_path in things)
-			continue
-		things += frequency_path
-	var/frequency = pick(things)
+		if(!(all_spawn_by_spawn_value[path] in values))
+			values += all_spawn_by_spawn_value[path]
+			things[path] = all_spawn_by_spawn_value[path]
+	var/spawn_value = pickweight(things, 0)
+	spawn_value = all_spawn_by_spawn_value[spawn_value]
 	things = list()
 	for(var/path in paths)
-		if(all_spawn_frequency_by_path[path] == frequency)
+		if(all_spawn_by_spawn_value[path] == spawn_value)
 			things += path
-	paths = things
-	things = list()
-	for(var/path in paths)
-		var/rarity_path = all_spawn_rarity_by_path[path]
-		if(!rarity_path)
-			continue
-		if(rarity_path in things)
-			continue
-		things += rarity_path
-	var/rarity = pick(things)
-	things = list()
-	for(var/path in paths)
-		if(all_spawn_rarity_by_path[path] == rarity)
-			things += path
-	var/path_selected = pick(things)
-	return path_selected
+	return pick(things)

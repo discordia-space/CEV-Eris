@@ -8,7 +8,7 @@
 	spawn_tags = SPAWN_TAG_ITEM
 	rarity_value = 10
 	spawn_frequency = 10 //MAX
-	bad_types = /obj/item
+	bad_type = /obj/item
 
 	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6

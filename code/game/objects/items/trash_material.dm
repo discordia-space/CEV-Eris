@@ -1,7 +1,7 @@
 /obj/item/trash/material
 	icon = 'icons/obj/material_trash.dmi'
 	matter = list()
-	bad_types = /obj/item/trash/material
+	bad_type = /obj/item/trash/material
 	var/matter_chances = list()	//List of lists: list(material_name, chance, amount)
 
 

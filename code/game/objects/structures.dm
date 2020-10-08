@@ -4,7 +4,7 @@
 	spawn_frequency = 10
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_STRUCTURE
-	bad_types = /obj/structure
+	bad_type = /obj/structure
 	var/climbable
 	var/breakable
 	var/parts

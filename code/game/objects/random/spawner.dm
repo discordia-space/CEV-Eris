@@ -6,7 +6,7 @@
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_SPAWNER
-	bad_types = /obj/spawner
+	bad_type = /obj/spawner
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1
@@ -22,7 +22,6 @@
 	var/spread_range = 0
 	var/has_postspawn = TRUE
 	var/datum/loot_spawner_data/lsd
-
 
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
@@ -50,8 +49,6 @@
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
-	candidates = lsd.pick_frequencies_spawn(candidates)
-	candidates = lsd.pick_rarities_spawn(candidates)
 	var/selected = lsd.pick_spawn(candidates)
 	aditional_object = lsd.all_spawn_accompanying_obj_by_path[selected]
 	return selected

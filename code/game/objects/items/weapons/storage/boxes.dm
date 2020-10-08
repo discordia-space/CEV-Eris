@@ -31,7 +31,7 @@
 	var/illustration = "writing"
 	contained_sprite = TRUE
 	health = 20
-	bad_types = /obj/item/weapon/storage/box
+	bad_type = /obj/item/weapon/storage/box
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_BOX
 	rarity_value = 20

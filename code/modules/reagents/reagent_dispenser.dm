@@ -7,7 +7,7 @@
 	anchored = FALSE
 	reagent_flags = DRAINABLE | AMOUNT_VISIBLE
 	//sapwn_values
-	bad_types = /obj/structure/reagent_dispensers
+	bad_type = /obj/structure/reagent_dispensers
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_REAGENT_DISPENSER
