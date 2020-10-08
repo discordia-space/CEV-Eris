@@ -1,0 +1,5 @@
+author: TheShown
+delete-after: true
+changes:
+  - balance: Flashbangs no longer knockdown people with eye protection, and the stun
+      on people with eye protection has been further reduced.
