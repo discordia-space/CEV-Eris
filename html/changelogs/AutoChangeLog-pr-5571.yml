@@ -1,0 +1,4 @@
+author: TheShown
+delete-after: true
+changes:
+  - admin: Drop everything in VV does not drop EVERYTHING including organs anymore.
