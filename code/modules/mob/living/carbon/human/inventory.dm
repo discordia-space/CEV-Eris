@@ -26,6 +26,42 @@ This saves us from having to call add_fingerprint() any time something is put in
 		return
 	if(quick_equip_belt(I))
 		return
+/mob/living/carbon/human/verb/suit_storage_equip()
+	set name = "suit-storage-equip"
+	set hidden = 1
+	
+	var/obj/item/I = get_active_hand()
+	if(I)
+		if(src.s_store)
+			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+		else
+			equip_to_from_suit_storage(I)
+	else if ( src.s_store )
+		equip_to_from_suit_storage(src.s_store)
+	else
+		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
+	return
+/mob/living/carbon/human/verb/bag_equip()
+	set name = "bag-equip"
+	set hidden = 1
+	
+	var/obj/item/I = get_active_hand()
+	var/potential = src.get_inactive_hand()
+	if(!I && !src.back)
+		to_chat(src, SPAN_NOTICE("You have no storage on your back or item in hand."))
+		return
+	if(istype(src.back,/obj/item/weapon/storage))
+		var/obj/item/weapon/storage/backpack = src.back
+		if(I)
+			equip_to_from_bag(I, backpack)
+		else
+			equip_to_from_bag(null, backpack)
+	else if(istype(potential, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/pack = potential
+		if(I)
+			equip_to_from_bag(I, pack)
+		else
+			equip_to_from_bag(null, pack)
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_active_hand(var/obj/item/W)
