@@ -38,7 +38,7 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
 	..()
 
-/datum/individual_objective/derange//work but limit it to more of the one player
+/datum/individual_objective/derange
 	name = "Derange"
 	limited_antag = TRUE
 	rarity = 4
@@ -80,7 +80,7 @@
 /datum/individual_objective/addict/assign()
 	..()
 	timer = world.time
-	desc = "Stay intoxicated by alcohol or recreational drugs for [unit2time(units_requested)] minutes"
+	desc = "Stay intoxicated by alcohol or recreational drugs for [unit2time(units_requested)] minutes."
 	RegisterSignal(mind_holder, COMSIG_CARBON_HAPPY, .proc/task_completed)
 
 /datum/individual_objective/addict/task_completed(datum/reagent/happy, signal)
@@ -105,7 +105,7 @@
 /datum/individual_objective/gift
 	name = "Gift"
 	desc = "You feel a need to leave a mark in other people lives. Ensure that at \
-			least someone will level up with oddity that you touched"
+			least someone will level up with oddity that you touched."
 
 /datum/individual_objective/gift/assign()
 	..()
@@ -181,7 +181,7 @@
 	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(valid_targets)
 	desc = "Ensure that [target] will not get their sanity lowered to [sanity_threshold] and below \
-			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold"
+			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold."
 	timer = world.time
 	RegisterSignal(target, COMSIG_HUMAN_SANITY, .proc/task_completed)
 
@@ -218,9 +218,9 @@
 /datum/individual_objective/obsession/assign()
 	..()
 	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
-	target = pick(valid_targets)//todo: no mind.current
+	target = pick(valid_targets)
 	desc = "There is something interesting in [target]. For [unit2time(units_requested)] minutes, you need \
-			to keep eye contact with them, and keep them in your view. Cameras will not work"
+			to keep eye contact with them, and keep them in your view. Cameras will not work."
 	timer = world.time
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
@@ -289,7 +289,7 @@
 /datum/individual_objective/collenction/assign()
 	..()
 	target = pick_candidates()
-	desc = "Get your hands on a [target.name]"
+	desc = "Get your hands on a [target.name]."
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
 /datum/individual_objective/collenction/task_completed(obj/item/W)
@@ -331,7 +331,7 @@
 	target = pick(valids_targets)
 	units_requested = rand(500, 1000)
 	desc = "The money must always flow but you must also prevent fees from ruining you.  \
-			Make a back transfer from you personal account for amount of [units_requested][CREDITS]"
+			Make a back transfer from you personal account for amount of [units_requested][CREDITS]."
 	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
 
 /datum/individual_objective/economy/task_completed(datum/money_account/S, datum/money_account/T, amount)

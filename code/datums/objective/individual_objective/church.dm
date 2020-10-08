@@ -1,6 +1,5 @@
-/datum/individual_objective/bad_technology//work
+/datum/individual_objective/bad_technology
 	name = "Heretical Technology"
-	req_department = list(DEPARTMENT_CHURCH)
 	limited_antag = TRUE
 	req_cruciform = TRUE
 	rarity = 4
@@ -9,7 +8,7 @@
 /datum/individual_objective/bad_technology/assign()
 	..()
 	target = pick_faction_item(mind_holder)
-	desc = "\The [target] is clearly against NT doctrine. It must be destroyed by Sword of Truth."//no sword of truth
+	desc = "\The [target] is clearly against NT doctrine. It must be destroyed by Sword of Truth."
 	RegisterSignal(mind_holder, SWORD_OF_TRUTH_OF_DESTRUCTION, .proc/task_completed)
 
 /datum/individual_objective/bad_technology/task_completed(obj/item/I)
@@ -21,7 +20,7 @@
 	UnregisterSignal(mind_holder, SWORD_OF_TRUTH_OF_DESTRUCTION)
 	..()
 
-/datum/individual_objective/convert//owrk
+/datum/individual_objective/convert
 	name = "Convert"
 	limited_antag = TRUE
 	req_cruciform = TRUE
@@ -45,7 +44,7 @@
 			continue
 		valid_targets += H
 	target = pick(valid_targets)
-	desc = "[target] will make a nice addition to the church. Convert them, even if force is required."
+	desc = "[target] has the potential to be a great beliver hbut their path has gone astray. Convert them, even if force is required."
 	RegisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
 
 /datum/individual_objective/convert/task_completed(mob/living/carbon/human/H, obj/item/weapon/implant)
@@ -60,6 +59,7 @@
 /datum/individual_objective/spread
 	name = "Spread the Word"
 	req_cruciform = TRUE
+	req_department = list(DEPARTMENT_CHURCH)
 	var/datum/ritual/ritual
 	var/ritual_name = "Revelation"
 	var/mob/living/carbon/human/target
@@ -80,8 +80,8 @@
 		if(H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
 		valid_targets += H
-	target = pick(valid_targets)//todo: no mind.current
-	desc = "Perform  \the [ritual_name] ritual on [target]."
+	target = pick(valid_targets)
+	desc = "[target] may submit to evil forces if the [ritual_name] is not performed on them."
 	ritual = GLOB.all_rituals[ritual_name]
 	RegisterSignal(mind_holder, COMSIG_RITUAL, .proc/task_completed)
 
@@ -96,13 +96,14 @@
 
 /datum/individual_objective/sanctify
 	name = "Sanctify"
+	req_department = list(DEPARTMENT_CHURCH)
 	req_cruciform = TRUE
 	var/area/target_area
 
 /datum/individual_objective/sanctify/assign()
 	..()
 	target_area = random_ship_area()
-	desc = "Sanctify the [target_area]"
+	desc = "\the [target_area] if overran with useen evil forces. it needs to be cleansed."
 	RegisterSignal(target_area, COMSIG_AREA_SANCTIFY, .proc/task_completed)
 
 /datum/individual_objective/sanctify/task_completed()

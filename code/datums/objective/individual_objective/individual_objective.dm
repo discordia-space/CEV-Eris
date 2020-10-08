@@ -34,7 +34,7 @@
 	var/based_time = FALSE
 	var/list/req_department = list()
 	var/req_cruciform = FALSE
-	var/insight_reward = 25
+	var/insight_reward = 20
 	var/limited_antag = FALSE
 	var/rarity = 1
 	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
@@ -57,6 +57,7 @@
 	completed = TRUE
 	var/mob/living/carbon/human/H = owner.current
 	H.sanity.insight += insight_reward
+	H.sanity.insight_rest += insight_reward/2
 	to_chat(owner,  SPAN_NOTICE("You has completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()

@@ -119,7 +119,7 @@
 			continue
 		valied_areas += A
 	target = pick(valied_areas)
-	desc = "Ensure that [target] does not have cumulative price of items inside it that is higher than [price_target] credits."
+	desc = "Ensure that [target] does not have cumulative price of items inside it that is higher than [price_target][CREDITS]."
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/stripping/task_completed()
@@ -161,7 +161,7 @@
 	target = pick(valids_targets)
 	units_requested = rand(2000, 5000)
 	desc = "Some of your relative asked you to procure and provide this account number: \"[target.account_number]\" with sum of [units_requested][CREDITS]. \
-			You dont know exactly why, but this is important"
+			You dont know exactly why, but this is important."
 	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
 
 /datum/individual_objective/transfer/task_completed(datum/money_account/S, datum/money_account/T, amount)

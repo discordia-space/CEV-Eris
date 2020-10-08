@@ -1,7 +1,7 @@
 /datum/individual_objective/disturbance
 	name = "Disturbance"
 	req_department = list(DEPARTMENT_ENGINEERING)
-	units_requested = 3 MINUTES//work, change it to 10
+	units_requested = 10 MINUTES
 	based_time = TRUE
 	var/area/target_area
 	var/timer	
@@ -30,7 +30,7 @@
 
 /datum/individual_objective/more_tech
 	name = "Endless Search"
-	req_department = list(DEPARTMENT_ENGINEERING) //test
+	req_department = list(DEPARTMENT_ENGINEERING)
 	var/obj/item/target
 
 /datum/individual_objective/more_tech/proc/pick_candidates()
@@ -38,13 +38,12 @@
 	var/obj/randomcatcher/CATCH = new /obj/randomcatcher
 	candidates += CATCH.get_item(/obj/spawner/tool_upgrade/rare)
 	candidates += CATCH.get_item(/obj/spawner/tool/advanced)
-	candidates += CATCH.get_item(/obj/spawner/tool/advanced)
 	return pick(candidates)
 
 /datum/individual_objective/more_tech/assign()
 	..()
 	target = pick_candidates()
-	desc = "As always, you need more technology to your possession. Acquire a [target.name]"
+	desc = "As always, you need more technology to your possession. Acquire a [target.name]."
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
 /datum/individual_objective/more_tech/task_completed(obj/item/W)
@@ -65,7 +64,7 @@
 
 /datum/individual_objective/oddity/assign()
 	..()
-	desc = "Acquire at least [units_requested] oddities at the same time to be on you"
+	desc = "Acquire at least [units_requested] oddities at the same time to be on you."
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
 /datum/individual_objective/oddity/task_completed(obj/item/W)

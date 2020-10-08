@@ -50,7 +50,7 @@
 /datum/individual_objective/derail/assign()
 	..()
 	units_requested = rand(3,4)
-	desc = "Obeserve a sum of [units_requested] mental breakdowns of you, orother non people."
+	desc = "Observe a sum of [units_requested] mental breakdowns of you, orother non people."
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
 /datum/individual_objective/derail/task_completed(mob/living/L, datum/breakdown/breakdown)
@@ -70,7 +70,7 @@
 /datum/individual_objective/adiction/assign()
 	..()
 	units_requested = rand(3,4)
-	desc = "Obeserve a sum of [units_requested] occasions on where people will get addicted to any chems."
+	desc = "Observe a sum of [units_requested] occasions on where people will get addicted to any chems."
 	RegisterSignal(mind_holder, COMSIG_CARBON_ADICTION, .proc/task_completed)
 
 /datum/individual_objective/adiction/task_completed(mob/living/carbon/C, datum/reagent/reagent)
@@ -139,7 +139,7 @@
 /datum/individual_objective/damage/assign()
 	..()
 	units_requested = rand(120,160)
-	desc = "Receive cumulative [units_requested] damage of any kind, to ensure that you see things in a different light"
+	desc = "Receive cumulative [units_requested] damage of any kind, to ensure that you see things in a different light."
 	last_health = mind_holder.health
 	RegisterSignal(mind_holder, COMSIG_HUMAN_HEALTH, .proc/task_completed)
 
@@ -177,7 +177,7 @@
 		valid_organs += E
 	for(var/obj/item/organ/O in target.internal_organs)
 		valid_organs += O
-	desc = "[target] have something interesting to them. Put any organ of [target] in destructive analyzer"
+	desc = "[target] looks interesting. Put any of their organ in destructive analyzer."
 	RegisterSignal(mind_holder, COMSING_DESTRUCTIVE_ANALIZER, .proc/task_completed)
 
 /datum/individual_objective/for_science/task_completed(obj/item/I)

@@ -159,7 +159,7 @@
 
 /datum/ritual/group/cruciform/sanctify
 	name = "Sanctify"
-	desc = "Santify the land you tread."
+	desc = "Sanctify the land you tread."
 	phrase = "Benedicite loco isto."
 	phrases = list(
 		"Benedicite loco isto.",

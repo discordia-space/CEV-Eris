@@ -14,7 +14,7 @@
 	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
 	target = pick(candidates)
 	desc = "You swear you saw to [target] somewhere before, and in your line of job it cannot mean good. Search them, \
-	remove their backpack or empty their pockets"
+	remove their backpack or empty their pockets."
 	RegisterSignal(mind_holder, COMSIG_EMPTY_POCKETS, .proc/task_completed)
 
 /datum/individual_objective/familiar_face/task_completed(n_target)
@@ -52,8 +52,8 @@
 /datum/individual_objective/paranoia/assign()
 	..()
 	units_requested = rand(3,4)
-	desc = "he criminals are here, somewhere, you can feel that. Search [units_requested] people, \
-			remove their backpack or empty their pockets"
+	desc = "The criminals are here, somewhere, you can feel that. Search [units_requested] people, \
+			remove their backpack or empty their pockets."
 	RegisterSignal(mind_holder, COMSIG_EMPTY_POCKETS, .proc/task_completed)
 
 /datum/individual_objective/paranoia/task_completed(mob/living/carbon/n_target)
@@ -102,7 +102,7 @@
 /datum/individual_objective/guard/assign()
 	..()
 	target_area = random_ship_area()
-	desc = "[target_area] requires to be fortified with a turret"
+	desc = "[target_area] requires to be fortified with a turret."
 	RegisterSignal(target_area, COMSIG_TURRENT, .proc/task_completed)
 
 /datum/individual_objective/guard/task_completed()
