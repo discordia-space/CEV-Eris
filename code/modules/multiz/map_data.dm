@@ -125,14 +125,21 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 	var/path = "eris"
 
 	var/access_modify_region = list(
-		ACCESS_REGION_SECURITY = list(access_hos, access_change_ids),
-		ACCESS_REGION_MEDBAY = list(access_cmo, access_change_ids),
-		ACCESS_REGION_RESEARCH = list(access_rd, access_change_ids),
-		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids),
+		ACCESS_REGION_SECURITY = list(access_hos, access_change_ids, access_change_sec),
+		ACCESS_REGION_MEDBAY = list(access_cmo, access_change_ids, access_change_medbay),
+		ACCESS_REGION_RESEARCH = list(access_rd, access_change_ids, access_change_research),
+		ACCESS_REGION_ENGINEERING = list(access_ce, access_change_ids, access_change_engineering),
 		ACCESS_REGION_COMMAND = list(access_change_ids),
-		ACCESS_REGION_GENERAL = list(access_change_ids),
-		ACCESS_REGION_SUPPLY = list(access_change_ids),
-		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids)
+		ACCESS_REGION_GENERAL = list(access_change_ids, 
+										access_change_cargo, 
+										access_change_club, 
+										access_change_engineering, 
+										access_change_medbay, 
+										access_change_nt,
+										access_change_research,
+										access_change_sec),
+		ACCESS_REGION_SUPPLY = list(access_change_ids, access_change_cargo),
+		ACCESS_REGION_CHURCH = list(access_nt_preacher, access_change_ids, access_change_nt)
 	)
 
 	//HOLOMAP
