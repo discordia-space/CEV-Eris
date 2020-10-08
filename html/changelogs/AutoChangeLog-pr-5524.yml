@@ -1,0 +1,7 @@
+author: MacBlaze1
+delete-after: true
+changes:
+  - rscadd: You can now see down and up ladders, and up and down stairs by alt clicking
+      the zlevel change structure, whether it be a ladder or a stair
+  - rscadd: You can now throw items up and down ladders by clicking on the ladder
+      with the item inhand (grenades blow up)
