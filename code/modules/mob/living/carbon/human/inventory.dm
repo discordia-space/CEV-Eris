@@ -34,6 +34,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(I)
 		if(src.s_store)
 			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+			return
 		else
 			equip_to_from_suit_storage(I)
 	else if ( src.s_store )
