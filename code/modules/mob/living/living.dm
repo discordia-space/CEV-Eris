@@ -836,9 +836,8 @@ default behaviour is:
 /mob/living/proc/vomit()
 	return
 
-/mob/living/proc/adjustNutrition(var/amount)
-	nutrition += amount
-	nutrition = max(0,min(nutrition, max_nutrition))	//clamp the value
+/mob/living/proc/adjustNutrition(amount)
+	nutrition = max(0,min(nutrition+amount, max_nutrition))	//clamp the value
 
 /mob/living/proc/is_asystole()
 	return FALSE

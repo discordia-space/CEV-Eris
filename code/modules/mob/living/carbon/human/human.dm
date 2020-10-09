@@ -688,7 +688,7 @@ var/list/rank_prefix = list(\
 				if (istype(location, /turf/simulated))
 					location.add_vomit_floor(src, 1)
 
-				nutrition -= 40
+				adjustNutrition(-40)
 				adjustToxLoss(-3)
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
