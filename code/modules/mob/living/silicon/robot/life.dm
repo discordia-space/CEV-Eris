@@ -120,7 +120,7 @@
 
 	if (src.ear_deaf > 0) src.ear_deaf--
 	if (src.ear_damage < 25)
-		src.ear_damage -= 0.05
+		src.adjustEarDamage(-0.05)
 		src.ear_damage = max(src.ear_damage, 0)
 
 	src.density = !( src.lying )

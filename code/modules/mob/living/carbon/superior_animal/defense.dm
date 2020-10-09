@@ -117,14 +117,14 @@
 		if (2)
 			b_loss += 60
 			f_loss += 60
-			ear_damage += 30
+			adjustEarDamage(30)
 			ear_deaf += 120
 
 		if (3)
 			b_loss += 30
 			if (prob(50))
 				Paralyse(1)
-			ear_damage += 15
+			adjustEarDamage(15)
 			ear_deaf += 60
 
 	adjustBruteLoss(b_loss)
