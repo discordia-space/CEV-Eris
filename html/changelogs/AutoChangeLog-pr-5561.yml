@@ -1,9 +1,0 @@
-author: yorpyorpyorp
-delete-after: true
-changes:
-  - rscadd: Sub-access types to ID modification. Department heads can now add or remove
-      access to their departments and general ship areas.
-  - tweak: re-did some of the ID computer code, and moved a few access types around.
-      Maint is now a general access type, instead of an engineering one.
-  - refactor: Refactored the authorization function, to allow it to check for all
-      the ID mod subtypes.

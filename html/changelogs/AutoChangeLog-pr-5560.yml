@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: Prosthetic offsets fixed finally(I hope) for this time.
-  - rscdel: Sprites of red fleshy mass on limb stumps is no more.

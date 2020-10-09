@@ -1,9 +1,0 @@
-author: Trilbyspaceclone
-delete-after: true
-changes:
-  - rscadd: Added stock parts to the diesel generator, as well as a second manipulator
-      to the Mech Fabs
-  - rscadd: Each type of chem dispenser now has their own board that also can be replaced/made
-      at RnD
-  - tweak: Better sorting of RnD designs and new groups to help see/sort the differences
-  - bugfix: Rnd white fuzz has been corrected.
