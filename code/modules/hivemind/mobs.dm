@@ -190,7 +190,7 @@
 	infested.Blend(covering_mask, ICON_MULTIPLY)
 	overlays += infested
 
-	maxHealth = victim.maxHealth * 2 + 10
+	setMaxHealth(victim.maxHealth * 2 + 10)
 	health = maxHealth
 	name = "[pick("warped", "twisted", "tortured", "tormented")] [victim.name]"
 	if(length(victim.desc))

@@ -77,7 +77,7 @@
 	rarity_value = 59.5
 
 
-/mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(var/amount)
+/mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	fireloss = min(max(fireloss + amount/2, 0),(maxHealth*2)) //Slightly resistant to fire, because it would blow apart otherwise
