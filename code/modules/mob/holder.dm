@@ -152,14 +152,14 @@ var/list/holder_mob_icon_cache = list()
 	..()
 	update_location(slot)
 
-/obj/item/weapon/holder/proc/update_location(var/slotnumber = null)
-	if (!slotnumber)
-		if (istype(loc, /mob))
+/obj/item/weapon/holder/proc/update_location(var/slotnumber)
+	if(!slotnumber)
+		if(ismob(loc))
 			slotnumber = get_equip_slot()
 
 	report_onmob_location(1, slotnumber, contained)
 
-/obj/item/weapon/holder/attack_self(mob/M as mob)
+/obj/item/weapon/holder/attack_self(mob/M)
 
 	if (contained && !(contained.stat & DEAD))
 		if (istype(M,/mob/living/carbon/human))
@@ -444,18 +444,18 @@ var/list/holder_mob_icon_cache = list()
 	//This function will return the mob which is holding this holder, or null if it's not held
 	//It recurses up the hierarchy out of containers until it reaches a mob, or a turf, or hits the limit
 	var/x = 0//As a safety, we'll crawl up a maximum of five layers
-	var/atom/a = src
+	var/atom/A = src
 	while (x < 5)
 		x++
-		if (isnull(a))
+		if (isnull(A))
 			return null
 
-		a = a.loc
-		if (istype(a, /turf))
+		A = A.loc
+		if (istype(A, /turf))
 			return null//We must be on a table or a floor, or maybe in a wall. Either way we're not held.
 
-		if (istype(a, /mob))
-			return a
+		if (ismob(A))
+			return A
 		//If none of the above are true, we must be inside a box or backpack or something. Keep recursing up.
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers. Shouldn't happen

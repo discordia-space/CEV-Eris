@@ -229,7 +229,7 @@
 	icon = 'icons/atmos/digital_valve.dmi'
 
 	var/frequency = 0
-	var/id = null
+	var/id
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/valve/digital/attack_ai(mob/user as mob)

@@ -274,7 +274,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
 		G.zoom_factor += weapon_upgrades[GUN_UPGRADE_ZOOM]
 		G.initialize_scope()
-		if(istype(G.loc, /mob))
+		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
 

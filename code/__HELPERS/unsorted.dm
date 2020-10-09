@@ -935,7 +935,7 @@ proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 
 					for(var/mob/M in T)
 
-						if(!istype(M,/mob) || isEye(M)) continue // If we need to check for more mobs, I'll add a variable
+						if(!ismob(M) || isEye(M)) continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 
 					for(var/mob/M in mobs)

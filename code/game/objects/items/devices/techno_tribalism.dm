@@ -152,7 +152,7 @@
 /obj/item/device/techno_tribalism/attack_self()
 	if(world.time >= (last_produce + cooldown))
 		if(items_count >= max_count)
-			if(istype(src.loc, /mob/living/carbon/human))
+			if(ishuman(src.loc))
 				var/mob/living/carbon/human/user = src.loc
 				var/obj/item/weapon/oddity/techno/T = new /obj/item/weapon/oddity/techno(src)
 				T.oddity_stats = src.oddity_stats

@@ -935,8 +935,8 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 ////////////////////////////////////helper procs
 
 
-/obj/machinery/newscaster/proc/scan_user(mob/living/user as mob)
-	if(istype(user,/mob/living/carbon/human))                       //User is a human
+/obj/machinery/newscaster/proc/scan_user(mob/living/user)
+	if(ishuman(user))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		var/obj/item/weapon/card/id/id = human_user.GetIdCard()
 		if(istype(id))                                      //Newscaster scans you

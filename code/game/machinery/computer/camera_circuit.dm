@@ -101,10 +101,10 @@
 		updateDialog()
 
 	updateDialog()
-		if(istype(src.loc,/mob))
+		if(ismob(src.loc))
 			attack_self(src.loc)
 
-/obj/item/weapon/electronics/circuitboard/camera/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/weapon/electronics/circuitboard/camera/emag_act(var/remaining_charges, mob/user)
 	if(network)
 		authorised = 1
 		user << SPAN_NOTICE("You authorised the circuit network!")

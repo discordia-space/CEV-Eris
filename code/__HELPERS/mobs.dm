@@ -372,7 +372,7 @@ Proc for attack log creation, because really why not
 			if((M.stat != DEAD) || (!M.client))
 				continue
 			//They need a brain!
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(H.should_have_organ(BP_BRAIN) && !H.has_brain())
 					continue

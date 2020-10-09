@@ -124,7 +124,7 @@ By default here located equip sound calls.
 */
 
 
-/obj/item/proc/equipped(var/mob/Mob, var/slot)
+/obj/item/proc/equipped(mob/Mob, var/slot)
 /*
 Called after an item is placed in an equipment slot
 User is mob that equipped it
