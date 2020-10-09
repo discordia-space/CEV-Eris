@@ -65,13 +65,15 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 		price_tag = master.price_tag
 	if(allowed_only_top)
 		switch(price_tag)
-			if(0 to LEVEL_VERY_LOW_LOOT)
-				only_top = 1 // 1*1 = 1
-			if(LEVEL_VERY_LOW_LOOT to LEVEL_LOW_LOOT)
-				only_top = 0.30 //4*0.3 > 1
-			if(LEVEL_LOW_LOOT to LEVEL_HIG_LOOT)
-				only_top = 0.25 // 4*0.25 = 1
-			if(LEVEL_HIG_LOOT to LEVEL_VERY_HIG_LOOT)
-				only_top = 0.20 // 5*0.20 = 1
-			if(LEVEL_VERY_HIG_LOOT to INFINITY)
-				only_top = 0.15 //6*0.15 > 1
+			if(0 to LOOT_LEVEL_VERY_LOW)
+				only_top = 1
+			if(LOOT_LEVEL_VERY_LOW to LOOT_LEVEL_LOW)
+				only_top = 0.35
+			if(LOOT_LEVEL_LOW to LOOT_LEVEL_ADVERAGE)
+				only_top = 0.30
+			if(LOOT_LEVEL_ADVERAGE to LOOT_LEVEL_HIG)
+				only_top = 0.25
+			if(LOOT_LEVEL_HIG to LOOT_LEVEL_VERY_HIG)
+				only_top = 0.20
+			if(LOOT_LEVEL_VERY_HIG to INFINITY)
+				only_top = 0.15
