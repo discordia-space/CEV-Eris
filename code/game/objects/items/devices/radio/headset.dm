@@ -67,8 +67,9 @@
 
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_COVERT = 3)
-	syndie = 1
+	syndie = TRUE
 	ks1type = /obj/item/device/encryptionkey/syndicate
+	spawn_blacklisted = TRUE
 
 /obj/item/device/radio/headset/binary
 	origin_tech = list(TECH_COVERT = 3)
@@ -115,6 +116,10 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_com
+
+/obj/item/device/radio/headset/heads
+	bad_type = /obj/item/device/radio/headset/heads
+	spawn_blacklisted = TRUE
 
 /obj/item/device/radio/headset/heads/captain
 	name = "captain's headset"

@@ -26,6 +26,7 @@
 	var/cpr_time = 1
 	nutrition = 400//Carbon
 
+	var/is_watching = TRUE  //used for remote viewing of multiz structures
 
 	var/obj/item/weapon/tank/internal //Human/Monkey
 

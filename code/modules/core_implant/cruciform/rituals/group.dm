@@ -2,11 +2,12 @@
 	implant_type = /obj/item/weapon/implant/core_implant/cruciform
 	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
+	var/high_ritual = TRUE
 
 /datum/ritual/group/cruciform/pre_check(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C, targets)
 	if(!..())
 		return FALSE
-	if(!C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
+	if(high_ritual && !C.get_module(CRUCIFORM_PRIEST) && !C.get_module(CRUCIFORM_INQUISITOR))
 		return FALSE
 	return TRUE
 
@@ -155,3 +156,28 @@
 		CI.known_rituals |= initial(C.name)
 		C = /datum/ritual/cruciform/crusader/flash
 		CI.known_rituals |= initial(C.name)
+
+/datum/ritual/group/cruciform/sanctify
+	name = "Sanctify"
+	desc = "Sanctify the land you tread."
+	phrase = "Benedicite loco isto."
+	phrases = list(
+		"Benedicite loco isto.",
+		"Benedic hoc petimus Patris.",
+		"Nos obsecro te removere percula huius loci.",
+		"Ne malorum tangere terram",
+		"Frase quinta",
+		"Frase sexta",
+		"Frase septima"
+	)
+	effect_type = /datum/group_ritual_effect/cruciform/sanctify
+	high_ritual = FALSE
+
+/datum/group_ritual_effect/cruciform/sanctify/trigger_success(var/mob/starter, var/list/participants)
+	..()
+	var/area/A = get_area(starter)
+	A?.sanctify()
+
+/area/proc/sanctify()
+	SEND_SIGNAL(src, COMSIG_AREA_SANCTIFY)
+	return

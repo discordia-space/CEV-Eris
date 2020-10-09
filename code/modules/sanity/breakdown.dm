@@ -13,8 +13,8 @@
 	var/end_time
 	var/delay //delay time before it occurs, or updates. it must be used manually.
 
-	var/finished = FALSE //if the objetives were fulfilled.
-	var/insight_reward	//Amount of isight for fulfilling the objetives.
+	var/finished = FALSE //if the objectives were fulfilled.
+	var/insight_reward	//Amount of isight for fulfilling the objectives.
 	var/is_negative = FALSE
 
 	var/restore_sanity_pre

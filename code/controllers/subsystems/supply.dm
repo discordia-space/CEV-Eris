@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(supply)
 		for(var/atom/movable/AM in subarea)
 			if(AM.anchored)
 				continue
-
+			SEND_SIGNAL(shuttle, COMSIG_SHUTTLE_SUPPLY, AM)
 			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
 	for(var/a in exports)

@@ -12,6 +12,21 @@
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
+/obj/item/weapon/tool/sword/nt_sword/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_church
+
+/obj/item/weapon/tool/sword/nt_sword/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
+/obj/item/weapon/tool/sword/nt_sword/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
+
 /obj/item/weapon/tool/sword/nt_sword/wield(mob/living/user)
 	..()
 	set_light(l_range = 1.7, l_power = 1.3, l_color = COLOR_YELLOW)
@@ -71,7 +86,7 @@
 	anchored = TRUE
 	density = TRUE
 	breakable = FALSE
-	var/obj/item/weapon/tool/sword/nt_sword/sword = null
+	var/obj/item/weapon/tool/sword/nt_sword/sword
 
 /obj/structure/nt_pedestal/New(var/loc, var/turf/anchor)
 	..()

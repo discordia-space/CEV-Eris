@@ -71,7 +71,7 @@
 	req_access = list(access_engine_equip)
 	var/need_sound
 	var/area/area
-	var/areastring = null
+	var/areastring
 	var/obj/item/weapon/cell/large/cell
 	var/chargelevel = 0.0005  // Cap for how fast APC cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 	var/start_charge = 90				// initial cell charge %
@@ -81,7 +81,7 @@
 	var/lighting = 3
 	var/equipment = 3
 	var/environ = 3
-	var/operating = 1
+	var/operating = TRUE
 	var/charging = 0
 	var/chargemode = 1
 	var/chargecount = 0
@@ -89,14 +89,14 @@
 	var/coverlocked = 1
 	var/aidisabled = 0
 	var/tdir = null
-	var/obj/machinery/power/terminal/terminal = null
+	var/obj/machinery/power/terminal/terminal
 	var/lastused_light = 0
 	var/lastused_equip = 0
 	var/lastused_environ = 0
 	var/lastused_charging = 0
 	var/lastused_total = 0
 	var/main_status = 0
-	var/mob/living/silicon/ai/hacker = null // Malfunction var. If set AI hacked the APC and has full control.
+	var/mob/living/silicon/ai/hacker // Malfunction var. If set AI hacked the APC and has full control.
 	var/wiresexposed = 0
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/debug= 0
@@ -104,7 +104,7 @@
 	var/has_electronics = 0 // 0 - none, 1 - plugged in, 2 - secured by screwdriver
 	var/beenhit = 0 // used for counting how many times it has been hit, used for Aliens at the moment
 	var/longtermpower = 10
-	var/datum/wires/apc/wires = null
+	var/datum/wires/apc/wires
 	var/update_state = -1
 	var/update_overlay = -1
 	var/is_critical = 0
@@ -180,7 +180,7 @@
 		area = get_area(src)
 		area.apc = src
 		opened = 1
-		operating = 0
+		operating = FALSE
 		name = "[area.name] APC"
 		stat |= MAINT
 		update_icon()
@@ -876,7 +876,7 @@
 	return wires.IsIndexCut(wireIndex)
 
 
-/obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
+/obj/machinery/power/apc/proc/can_use(mob/user, var/loud = 0) //used by attack_hand() and Topic()
 	if (user.stat)
 		to_chat(user, SPAN_WARNING("You must be conscious to use [src]!"))
 		return FALSE
@@ -1029,7 +1029,7 @@
 		return FALSE
 
 /obj/machinery/power/apc/Process()
-
+	SEND_SIGNAL(area, COMSIG_AREA_APC_OPERATING, operating)
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)

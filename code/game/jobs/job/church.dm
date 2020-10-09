@@ -16,7 +16,7 @@
 	)
 
 	access = list(
-		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors
+		access_RC_announce, access_keycard_auth, access_heads, access_sec_doors, access_change_nt
 	)
 
 	wage = WAGE_PROFESSIONAL //The church has deep pockets

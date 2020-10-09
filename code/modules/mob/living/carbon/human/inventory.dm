@@ -195,6 +195,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return BP_R_ARM
 
 /mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
+	SEND_SIGNAL(src, COMSING_HUMAN_EQUITP, W)
 	switch(slot)
 		if(slot_in_backpack)
 			if(src.get_active_hand() == W)
