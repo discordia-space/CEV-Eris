@@ -25,8 +25,7 @@
 	return
 
 /mob/living/carbon/human/adjustBrainLoss(var/amount)
-
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)	return FALSE	//godmode
 
 	if(species && species.has_organ[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
@@ -34,13 +33,12 @@
 			sponge.take_damage(amount)
 			brainloss = sponge.damage
 		else
-			brainloss = 200
+			setBrainLoss(200)
 	else
-		brainloss = 0
+		setBrainLoss(0)
 
-/mob/living/carbon/human/setBrainLoss(var/amount)
-
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/carbon/human/setBrainLoss(amount)
+	if(status_flags & GODMODE)	return FALSE	//godmode
 
 	if(species && species.has_organ[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
@@ -54,7 +52,7 @@
 
 /mob/living/carbon/human/getBrainLoss()
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)	return FALSE	//godmode
 
 	if(species && species.has_organ[BP_BRAIN])
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name[BP_BRAIN]
@@ -100,7 +98,7 @@
 		heal_overall_damage(0, -amount)
 	BITSET(hud_updateflag, HEALTH_HUD)
 
-/mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
+/mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source)
 	amount = amount*species.brute_mod
 	if (organ_name in organs_by_name)
 		var/obj/item/organ/external/O = get_organ(organ_name)
@@ -297,7 +295,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(update)	UpdateDamageIcon()
 
 // damage MANY external organs, in random order
-/mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = FALSE, var/edge = FALSE, var/used_weapon = null)
+/mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = FALSE, var/edge = FALSE, var/used_weapon)
 	if(status_flags & GODMODE)	return	//godmode
 	var/list/obj/item/organ/external/parts = get_damageable_organs()
 	var/update = 0
@@ -376,7 +374,7 @@ This function restores all organs.
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage, def_zone)
 
-	var/obj/item/organ/external/organ = null
+	var/obj/item/organ/external/organ
 	if(isorgan(def_zone))
 		organ = def_zone
 	else

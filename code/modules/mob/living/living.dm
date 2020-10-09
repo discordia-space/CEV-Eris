@@ -241,12 +241,12 @@ default behaviour is:
 /mob/living/proc/getToxLoss()
 	return toxloss
 
-/mob/living/proc/adjustToxLoss(var/amount)
+/mob/living/proc/adjustToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = min(max(toxloss + amount, 0),(maxHealth*2))
 
-/mob/living/proc/setToxLoss(var/amount)
+/mob/living/proc/setToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = amount
