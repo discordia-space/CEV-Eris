@@ -73,7 +73,7 @@ It calls:
 */
 
 
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user=null)
+/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user)
 /*
 Checks if a given slot can be accessed at this time, either to equip or unequip Item
 */

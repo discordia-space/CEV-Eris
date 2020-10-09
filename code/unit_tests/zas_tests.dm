@@ -19,7 +19,7 @@
 
 datum/unit_test/zas_area_test
 	name = "ZAS: Area Test Template"
-	var/area_path = null                    // Put the area you are testing here.
+	var/area_path                    // Put the area you are testing here.
 	var/expectation = UT_NORMAL             // See defines above.
 
 datum/unit_test/zas_area_test/start_test()
@@ -143,7 +143,7 @@ datum/unit_test/zas_supply_shuttle_moved
 	name = "ZAS: Supply Shuttle (When Moved)"
 	async=1				// We're moving the shuttle using built in procs.
 
-	var/datum/shuttle/autodock/ferry/supply/shuttle = null
+	var/datum/shuttle/autodock/ferry/supply/shuttle
 
 	var/testtime = 0	//Used as a timer.
 

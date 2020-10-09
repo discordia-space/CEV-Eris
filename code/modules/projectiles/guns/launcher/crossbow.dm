@@ -70,7 +70,7 @@
 /obj/item/weapon/gun/launcher/crossbow/update_release_force()
 	release_force = tension*release_speed
 
-/obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user=null)
+/obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user)
 	if(tension <= 0)
 		to_chat(user, SPAN_WARNING("\The [src] is not drawn back!"))
 		return null

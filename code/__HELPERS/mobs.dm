@@ -150,7 +150,7 @@ Proc for attack log creation, because really why not
 6 is additional information, anything that needs to be added
 */
 
-/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object=null, var/addition=null)
+/proc/add_logs(mob/user, mob/target, what_done, var/admin=1, var/object, var/addition)
 	if(user && ismob(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [what_done] [target ? "[target.name][(ismob(target) && target.ckey) ? "([target.ckey])" : ""]" : "NON-EXISTANT SUBJECT"][object ? " with [object]" : " "][addition]</font>")
 	if(target && ismob(target))
@@ -211,10 +211,10 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if(!user)
 		return 0
-	var/atom/target_loc = null
+	var/atom/target_loc
 	if(target)
 		target_loc = target.loc
 

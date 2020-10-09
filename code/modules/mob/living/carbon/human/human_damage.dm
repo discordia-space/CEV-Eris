@@ -1,6 +1,5 @@
 //Updates the mob's health from organs and mob damage variables
 /mob/living/carbon/human/updatehealth()
-
 	if(status_flags & GODMODE)
 		health = maxHealth
 		stat = CONSCIOUS
@@ -111,7 +110,7 @@
 
 	BITSET(hud_updateflag, HEALTH_HUD)
 
-/mob/living/carbon/human/proc/adjustFireLossByPart(var/amount, var/organ_name, var/obj/damage_source = null)
+/mob/living/carbon/human/proc/adjustFireLossByPart(var/amount, var/organ_name, var/obj/damage_source)
 	amount = amount*species.burn_mod
 	if (organ_name in organs_by_name)
 		var/obj/item/organ/external/O = get_organ(organ_name)
@@ -144,13 +143,13 @@
 		cloneloss = 0
 	return ..()
 
-/mob/living/carbon/human/setCloneLoss(var/amount)
+/mob/living/carbon/human/setCloneLoss(amount)
 	if(species.flags & (NO_SCAN))
 		cloneloss = 0
 	else
 		..()
 
-/mob/living/carbon/human/adjustCloneLoss(var/amount)
+/mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
 	if(species.flags & (NO_SCAN))
@@ -352,7 +351,7 @@ This function restores all organs.
 		zone = BP_HEAD
 	return organs_by_name[zone]
 
-/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, sharp = FALSE, edge = FALSE, obj/used_weapon)
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 
