@@ -22,7 +22,7 @@
 	matter = list(MATERIAL_BIOMATTER = 1)
 	contained_sprite = TRUE
 	spawn_tags = SPAWN_JUNK
-	rarity_value = 3.33
+	rarity_value = 3.5
 
 
 	var/info		//What's actually written on the paper.
