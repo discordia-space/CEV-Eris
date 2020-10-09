@@ -16,21 +16,26 @@
 	name = "mob biome"
 	icon_state = "hostilemob-purple-biome"
 	main_tags = list(SPAWN_SPAWNER_MOB)
-	spread_range = 7
-	min_amount = 4
-	max_amount = 8
+	min_amount = 3
+	max_amount = 9
 	can_burrow = TRUE
 	allowed_only_top = TRUE
 	cap_price = INFINITY
-	smart_loc = SMART_LOC_1
 	biome_type = /obj/landmark/loot_biomes/mob
-	spawn_type = /obj/spawner/mob/biome_spawner_mob
 
 /obj/spawner/mob/biome_spawner_mob
 	name = "biome mob spawner"
 	icon_state = "hostilemob-purple-spawner"
 	biome_spawner = TRUE
 	latejoin = TRUE
+	spread_range = 7
+
+/obj/spawner/mob/biome_spawner_mob/low_chance
+	name = "biome mob spawner"
+	icon_state = "hostilemob-purple-spawner-low"
+	biome_spawner = TRUE
+	latejoin = TRUE
+	spawn_nothing_percentage = 60
 
 /obj/landmark/loot_biomes/mob/roach
 	icon_state = "hostilemob-brown-biome"
@@ -38,11 +43,13 @@
 
 /obj/landmark/loot_biomes/mob/roach/room
 	icon_state = "hostilemob-brown-biome"
-	smart_loc = SMART_LOC_2
+	check_room = TRUE
 
 /obj/landmark/loot_biomes/mob/spiders
 	icon_state = "hostilemob-black-biome"
 	main_tags = list(SPAWN_SPIDER)
+	min_amount = 1
+	max_amount = 5
 
 /obj/landmark/loot_biomes/mob/roomba
 	icon_state = "hostilemob-blue-biome"
@@ -52,13 +59,11 @@
 	name = "trap biome"
 	icon_state = "trap-purple-biome"
 	main_tags = list(SPAWN_TRAP_ARMED)
-	min_amount = 4
-	max_amount = 8
+	min_amount = 3
+	max_amount = 9
 	allowed_only_top = TRUE
-	smart_loc = SMART_LOC_1
 	cap_price = INFINITY
 	biome_type = /obj/landmark/loot_biomes/trap
-	spawn_type = /obj/spawner/traps/biome_spawner_trap
 
 /obj/spawner/traps/biome_spawner_trap
 	name = "biome trap spawner"

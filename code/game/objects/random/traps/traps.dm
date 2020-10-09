@@ -10,8 +10,9 @@
 	var/list/possible_traps = ..()
 	//Check that its possible to spawn the chosen trap at this location
 	for(var/trap in possible_traps)
-		if(biome_spawner && biome && biome.smart_loc)
-			if(find_smart_point(trap))
+		if(spread_range && istype(loc, /turf))
+			var/list/point_to_spawn = find_smart_point(trap)
+			if(point_to_spawn.len)
 				continue
 		else if(can_spawn_trap(loc, trap))
 			continue
@@ -41,14 +42,11 @@
 			return TRUE
 	if(locate(trap) in T)
 		return FALSE
-	if(T.is_wall || (T.is_hole && !T.is_solid_structure()) || T.density)
-		return FALSE
 
 /obj/spawner/traps/find_smart_point(path)
-	.=..()
-	if(!.)
-		return FALSE
-	var/list/spawn_points = .
+	var/list/spawn_points = ..()
+	if(!spawn_points.len)
+		return spawn_points
 	var/list/trap_points = list()
 	for(var/turf/T in spawn_points)
 		if(can_spawn_trap(T, path))

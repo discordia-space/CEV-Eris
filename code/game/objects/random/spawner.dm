@@ -67,24 +67,17 @@
 /obj/spawner/proc/spawn_item()
 	var/list/points_for_spawn = list()
 	var/list/spawns = list()
-	var/atom/LocA = src.loc
 	if(!biome)
 		find_biome()
-	if(biome_spawner && biome && biome.smart_loc)
-		LocA = get_turf(biome)
-	if(spread_range && istype(LocA, /turf))
-		for(var/turf/T in trange(spread_range, LocA))
-			if(!T.is_wall && !T.is_hole)
-				points_for_spawn += T
+	if(spread_range && istype(loc, /turf))
+		points_for_spawn = find_smart_point()
 	else
-		points_for_spawn += LocA //We do not use get turf here, so that things can spawn inside containers
+		points_for_spawn += loc //We do not use get turf here, so that things can spawn inside containers
 	for(var/i in 1 to rand(min_amount, max_amount))
 		spawn_count++
 		var/build_path = item_to_spawn()
 		if(!build_path)
 			return list()
-		if(find_smart_point(build_path))
-			points_for_spawn = find_smart_point(build_path)
 		if(!points_for_spawn.len)
 			to_world_log("Spawner \"[type]\" ([x],[y],[z]) try spawn without free space around!")
 			break
@@ -107,6 +100,11 @@
 					price_tag += AMAO.get_item_cost()
 	return spawns
 
+/obj/spawner/proc/check_biome_type()
+	.=FALSE
+	if(biome && istype(biome, biome_type))
+		.=TRUE
+
 /obj/spawner/proc/find_biome()
 	var/distance = INFINITY
 	var/new_distance
@@ -119,13 +117,13 @@
 				continue
 			if(get_area(src) != get_area(biome_candidate))
 				continue
-			if(new_distance > distance)
+			if(check_biome_type() && !istype(biome_candidate, biome_type))
 				continue
-			if(biome && istype(biome, biome_type) && !istype(biome_candidate, biome_type))
+			if(new_distance > distance && !check_biome_type())
 				continue
 			distance = new_distance
 			biome = biome_candidate
-	if(biome_spawner && biome)
+	if(biome_spawner && check_biome_type())
 		biome.spawner_count++
 		tags_to_spawn = biome.tags_to_spawn
 		allow_blacklist = biome.allow_blacklist
@@ -133,7 +131,6 @@
 		restricted_tags = biome.restricted_tags
 		top_price = biome.top_price
 		low_price = biome.low_price
-		spread_range = biome.spread_range
 		min_amount = max(1, biome.min_amount / biome.spawner_count)
 		max_amount = max(1, biome.max_amount / biome.spawner_count)
 
@@ -176,47 +173,38 @@
 /obj/spawner/proc/post_spawn(list/spawns)
 	return
 
-/obj/spawner/proc/find_smart_point(path)
-	if(!biome_spawner || !biome || !biome.smart_loc)
-		return FALSE
-	return can_spawn_in_biome(get_turf(biome), biome.range, biome.smart_loc, check_density)
-
-/proc/check_spawn_point(turf/T)
+/proc/check_spawn_point(turf/T, check_density=FALSE)
 	.=TRUE
 	if(T.density  || T.is_wall || (T.is_hole && !T.is_solid_structure()))
+		if(check_density && !turf_clear(T))
+			return FALSE
 		.=FALSE
 
-/proc/check_area(atom/A1,atom/A2)
+/obj/spawner/proc/find_smart_point()
+	var/list/points_for_spawn = list()
+	for(var/turf/T in trange(spread_range, loc))
+		if(!check_spawn_point(T, check_density))
+			continue
+		if(check_density && !turf_clear(T))
+			continue
+		if(biome_spawner && biome)
+			if(get_area(src) != get_area(biome))
+				continue
+			if(get_dist(src, T) > biome.range)
+				continue
+			if(biome.check_room && !check_room(T, biome))
+				continue
+		points_for_spawn += T
+	return points_for_spawn
+
+/proc/check_room(atom/movable/source, atom/movable/target)
 	.=TRUE
-	if(get_area(A1) != get_area(A2))
-		.=FALSE
-
-/proc/can_spawn_in_biome(turf/T, nrange, check_room=FALSE, check_density=FALSE)
-	var/list/spawn_points = list()
-	for(var/turf/target in trange(nrange, T))
-		if(target in spawn_points)
-			continue
-		if(!check_density || check_density && !turf_clear(target))
-			continue
-		if(!check_area(T,target))
-			continue
-		var/ndist = get_dist(T, target)
-		var/turf/current = T
-		var/clear_way = TRUE
-		for(var/i in 1 to ndist)
-			current = get_step(current, get_dir(current, target))
-			if(!check_spawn_point(current))
-				clear_way = FALSE
-				if(check_room > SMART_LOC_1)
-					break
-				continue
-			if(check_density && !turf_clear(current))
-				continue
-			if(!(current in spawn_points))
-				spawn_points += current
-		if(clear_way && !(target in spawn_points))
-			spawn_points += target
-	return spawn_points
+	var/ndist = get_dist(source, target)
+	var/turf/current = source
+	for(var/i in 1 to ndist)
+		current = get_step(current, get_dir(current, target))
+		if(!check_spawn_point(current))
+			return FALSE
 
 /obj/randomcatcher
 	name = "Random Catcher Object"
