@@ -507,7 +507,7 @@
 
 	var/obj/item/weapon/tool/T //For dealing damage to the item
 
-	if(istype(upgrade_loc, /obj/item/weapon/tool))
+	if(istool(upgrade_loc))
 		T = upgrade_loc
 
 	ASSERT(istype(upgrade_loc))

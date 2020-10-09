@@ -295,8 +295,8 @@
 		return
 	return 1
 
-/obj/structure/medical_stand/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype (W, /obj/item/weapon/tool))
+/obj/structure/medical_stand/attackby(obj/item/weapon/W, vmob/user)
+	if(istool(W))
 		if (valve_opened)
 			to_chat(user, SPAN_WARNING("Close the valve first."))
 			return

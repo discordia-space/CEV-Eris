@@ -76,7 +76,7 @@
 			return
 		var/obj/item/weapon/cell/cell = I.get_cell()
 
-		if(!cell && istype(I, /obj/item/weapon/tool))
+		if(!cell && istool(I))
 			var/obj/item/weapon/tool/T = I
 
 			if(!T.suitable_cell)

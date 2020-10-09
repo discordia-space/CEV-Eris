@@ -62,7 +62,7 @@
 			else
 				crash_with("[W], incompatible department")
 
-		else if(istype(W, /obj/item/weapon/tool))
+		else if(istool(W))
 			var/useful = FALSE
 			if(W.tool_qualities)
 
@@ -132,7 +132,7 @@
 			else
 				oddity_stats[STAT_ROB] += 1
 
-		else if(istype(W, /obj/item/weapon/gun))
+		else if(isgun(W))
 			oddity_stats[STAT_ROB] += 2
 			oddity_stats[STAT_VIG] += 2
 
