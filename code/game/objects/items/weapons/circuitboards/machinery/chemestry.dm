@@ -38,11 +38,11 @@
 
 /obj/item/weapon/electronics/circuitboard/soda_chemical_dispenser
 	name = T_BOARD("Soda Chemical Dispenser")
-	build_path = /obj/machinery/chemical_dispenser/industrial
+	build_path = /obj/machinery/chemical_dispenser/soda
 
 /obj/item/weapon/electronics/circuitboard/beer_chemical_dispenser
 	name = T_BOARD("Booze Chemical Dispenser")
-	build_path = /obj/machinery/chemical_dispenser/industrial
+	build_path = /obj/machinery/chemical_dispenser/beer
 
 
 /obj/item/weapon/electronics/circuitboard/electrolyzer
