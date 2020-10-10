@@ -1,0 +1,4 @@
+author: Trilbyspaceclone
+delete-after: true
+changes:
+  - bugfix: Chem dispenders now have different boards again
