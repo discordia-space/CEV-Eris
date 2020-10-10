@@ -76,3 +76,30 @@
 	self_recharge = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/gun/projectile/get_hardpoint_maptext()
+	return "[get_ammo()]/[ammo_magazine.max_ammo]"
+
+/obj/item/weapon/gun/projectile/get_hardpoint_status_value()
+	if(ammo_magazine)
+		return get_ammo()/ammo_magazine.max_ammo
+	return null
+
+/obj/item/mech_equipment/mounted_system/balistic_gun
+	name = "SA \"VJP\""
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use"
+	icon_state = "mech_taser"
+	holding_type = /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
+	matter = list(MATERIAL_PLASTEEL = 100)
+
+/obj/item/weapon/gun/energy/taser/carbine/mounted/mech
+	use_external_power = TRUE
+	restrict_safety = TRUE
+	self_recharge = TRUE
+	twohanded = FALSE
+	charge_cost = MECH_WEAPON_POWER_COST
+	spawn_blacklisted = TRUE
+
