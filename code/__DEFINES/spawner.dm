@@ -322,11 +322,13 @@
 #define SPAWN_JUNKFOOD "junkfood"
 #define SPAWN_PIZZA "pizza"
 #define SPAWN_RATIONS "rations"
+#define SPAWN_COOKED_FOOD "cooked_food"
 
 #define SPAWN_TAG_RATIONS "obj,item,snaks,rations"
 #define SPAWN_TAG_JUNKFOOD "obj,item,snaks,junkfood"
 #define SPAWN_TAG_JUNKFOOD_RATIONS "obj,item,snaks,junkfood,rations"
 #define SPAWN_TAG_PIZZA "obj,item,snaks,pizza"
+#define SPAWN_TAG_COOKED_FOOD "obj,item,snaks,cooked"
 
 // ITEM - GRENADES
 #define SPAWN_TAG_GRENADE "obj,item,grenade"

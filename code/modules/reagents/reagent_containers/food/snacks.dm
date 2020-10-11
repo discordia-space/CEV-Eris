@@ -6,6 +6,7 @@
 	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_COOKED_FOOD
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash
