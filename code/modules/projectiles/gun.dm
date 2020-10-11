@@ -23,7 +23,7 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 	hud_actions = list()
-	bad_types = /obj/item/weapon/gun
+	bad_type = /obj/item/weapon/gun
 	spawn_tags = SPAWN_TAG_GUN
 	rarity_value = 10
 	spawn_frequency = 10

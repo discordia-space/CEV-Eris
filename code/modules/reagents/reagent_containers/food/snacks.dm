@@ -2869,7 +2869,7 @@
 	filling_color = "#BAA14C"
 	taste_tag = list(CHEESE_FOOD)
 	spawn_tags = SPAWN_TAG_PIZZA
-	bad_types = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 	name = "Margherita"

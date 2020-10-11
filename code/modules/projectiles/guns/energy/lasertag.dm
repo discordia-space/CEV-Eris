@@ -7,7 +7,7 @@
 	matter = list(MATERIAL_PLASTIC = 6)
 	fire_sound = 'sound/weapons/Laser.ogg'
 	projectile_type = /obj/item/projectile/beam/lastertag/blue
-	bad_types = /obj/item/weapon/gun/energy/lasertag
+	bad_type = /obj/item/weapon/gun/energy/lasertag
 	var/required_vest
 
 /obj/item/weapon/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)

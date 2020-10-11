@@ -1,6 +1,6 @@
 /obj/item/weapon/electronics/circuitboard/telecomms
 	board_type = "machine"
-	bad_types = /obj/item/weapon/electronics/circuitboard/telecomms
+	bad_type = /obj/item/weapon/electronics/circuitboard/telecomms
 
 /obj/item/weapon/electronics/circuitboard/telecomms/receiver
 	name = T_BOARD("subspace receiver")

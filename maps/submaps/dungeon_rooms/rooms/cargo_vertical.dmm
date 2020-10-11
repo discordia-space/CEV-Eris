@@ -109,11 +109,11 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "v" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "w" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/crawler)
 "x" = (

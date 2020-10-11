@@ -41,7 +41,8 @@
 //items - one star
 #define SPAWN_ITEM_TECH_OS "item_tech_os"
 
-#define SPAWN_TAG_ITEM_TECH_OS "obj,item,item_tech_os"
+#define SPAWN_TAG_ITEM_TECH_OS "obj,item,item_tech_os,onestar"
+
 // ITEMS - organ- PROSTHESIS
 #define SPAWN_OS_PROSTHETIC "prosthetic_os"
 
@@ -450,3 +451,11 @@
 #define SPAWN_TAG_SPAWNER_SCRAP "spawner,spawner_scrap"
 #define SPAWN_TAG_SPAWNER_LARGE_SCRAP "spawner,spawner_scrap,spawner_large_scrap"
 
+// FACTION KEYWORDS
+#define SPAWN_ASTERS "asters"
+#define SPAWN_FROZEN_STAR "frozen_star"
+#define SPAWN_IRONHAMMER "ironhammer"
+#define SPAWN_NANOTRASEN "nanotrasen"
+#define SPAWN_NEOTHEOLOGY "neotheology"
+#define SPAWN_MOEBIUS "moebius"
+#define SPAWN_SERBIAN "serbian"

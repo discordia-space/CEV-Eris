@@ -105,15 +105,10 @@
 			building = FALSE
 			return
 
-	if(req_amount)
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			if(!S.can_use(req_amount))
-				to_chat(user, "Not enough items in [I]")
-				building = FALSE
-				return
-		else
-			to_chat(user, "This isn't a stack!")
+	if(req_amount && istype(I, /obj/item/stack))
+		var/obj/item/stack/S = I
+		if(!S.can_use(req_amount))
+			to_chat(user, "Not enough items in [I]")
 			building = FALSE
 			return
 

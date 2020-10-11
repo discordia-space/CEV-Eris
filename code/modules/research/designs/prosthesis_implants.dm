@@ -68,7 +68,6 @@
 	build_path = /obj/item/organ_module/active/multitool/miner
 	name = "Embedded mining multitool"
 
-
 //Implants
 /datum/design/research/item/implant
 	build_type = PROTOLATHE | MECHFAB

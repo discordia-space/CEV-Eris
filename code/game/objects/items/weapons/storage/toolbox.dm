@@ -19,7 +19,7 @@
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_TOOLBOX
-	bad_types = /obj/item/weapon/storage/toolbox
+	bad_type = /obj/item/weapon/storage/toolbox
 
 /obj/item/weapon/storage/toolbox/emergency
 	name = "emergency toolbox"

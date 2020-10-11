@@ -10,8 +10,6 @@
 	sort_string = "VBVAB"
 	category = CAT_CIRCUITS
 
-
-
 /datum/design/research/item/custom_circuit_assembly
 	name = "Small custom assembly"
 	desc = "An customizable assembly for simple, small devices."

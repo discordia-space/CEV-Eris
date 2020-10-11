@@ -14,6 +14,11 @@
 	holder = null
 	return ..()
 
+/datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
+	var/datum/stat/S = stat_list[statName]
+	S.addModif(timeDelay, Value, id)
+	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+
 /datum/stat_holder/proc/removeTempStat(statName, id)
 	if(!id)
 		crash_with("no id passed to removeTempStat(")
@@ -29,6 +34,7 @@
 /datum/stat_holder/proc/changeStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
 	S.changeValue(Value)
+	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 	
 /datum/stat_holder/proc/setStat(statName, Value)
 	var/datum/stat/S = stat_list[statName]
@@ -37,7 +43,10 @@
 /datum/stat_holder/proc/getStat(statName, pure = FALSE)
 	if (!islist(statName))
 		var/datum/stat/S = stat_list[statName]
+		SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 		return S ? S.getValue(pure) : 0
+	else
+		log_debug("passed list to getStat()")
 
 //	Those are accept list of stats
 //	Compound stat checks.
@@ -129,11 +138,6 @@
 	var/desc = "Basic characteristic, you are not supposed to see this. Report to admins."
 	var/value = STAT_VALUE_DEFAULT
 	var/list/mods = list()
-
-
-/datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
-	var/datum/stat/S = stat_list[statName]
-	S.addModif(timeDelay, Value, id)
 
 /datum/stat/proc/addModif(delay, affect, id)
 	for(var/elem in mods)

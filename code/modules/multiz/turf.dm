@@ -180,7 +180,7 @@ see multiz/movement.dm for some info.
 /turf/simulated/open/levelupdate()
 	for(var/obj/O in src)
 		O.hide(FALSE)
-		SEND_SIGNAL(O, CONSIG_TURF_LEVELUPDATE, FALSE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 // Straight copy from space.
 /turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)

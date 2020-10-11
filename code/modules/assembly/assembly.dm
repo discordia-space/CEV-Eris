@@ -11,7 +11,7 @@
 	throw_range = 10
 	origin_tech = list(TECH_MAGNET = 1)
 
-	bad_types = /obj/item/device/assembly
+	bad_type = /obj/item/device/assembly
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_ASSEMBLY
 

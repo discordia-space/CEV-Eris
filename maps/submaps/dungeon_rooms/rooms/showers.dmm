@@ -52,7 +52,7 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "m" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/crawler)
 "n" = (

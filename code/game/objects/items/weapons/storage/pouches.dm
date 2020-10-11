@@ -16,7 +16,7 @@
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_POUCH
-	bad_types = /obj/item/weapon/storage/pouch
+	bad_type = /obj/item/weapon/storage/pouch
 
 	var/sliding_behavior = FALSE
 
