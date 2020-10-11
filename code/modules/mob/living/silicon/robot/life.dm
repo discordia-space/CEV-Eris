@@ -45,7 +45,7 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if ( cell && is_component_functioning("power cell") && src.cell.charge > 0 )
+	if (cell && is_component_functioning("power cell") && src.cell.charge > 0)
 		if(src.module_state_1)
 			cell_use_power(50) // 50W load for every enabled tool TODO: tool-specific loads
 		if(src.module_state_2)
@@ -120,7 +120,7 @@
 
 	if (src.ear_deaf > 0) src.ear_deaf--
 	if (src.ear_damage < 25)
-		src.adjustEarDamage(-0.05)
+		src.ear_damage -= 0.05
 		src.ear_damage = max(src.ear_damage, 0)
 
 	src.density = !( src.lying )

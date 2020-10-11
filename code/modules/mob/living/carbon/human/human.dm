@@ -125,16 +125,14 @@
 				b_loss += 150
 
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(30)
-				ear_deaf += 120
+				adjustEarDamage(30,120)
 			if (prob(70) && !shielded)
 				Paralyse(10)
 
 		if(3)
 			b_loss += 100
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(15)
-				ear_deaf += 60
+				adjustEarDamage(15,60)
 			if (prob(50) && !shielded)
 				Paralyse(10)
 	if (bomb_defense)
