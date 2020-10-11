@@ -58,7 +58,7 @@
 	var/mob/living/carbon/human/H = owner.current
 	H.sanity.insight += insight_reward
 	H.sanity.insight_rest += insight_reward/2
-	to_chat(owner,  SPAN_NOTICE("You has completed the personal objective: [name]"))
+	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()
 	var/n_desc = desc
