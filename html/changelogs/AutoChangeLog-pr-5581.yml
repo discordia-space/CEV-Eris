@@ -1,0 +1,4 @@
+author: TorinoFermic
+delete-after: true
+changes:
+  - bugfix: Better temp fix for crashing bug
