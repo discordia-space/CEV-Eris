@@ -31,13 +31,13 @@
 	var/spawn_count = 0
 	var/latejoin = FALSE
 	var/check_density = TRUE //for find smart spawn
+	var/use_biome_range = FALSE
 
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
 	..()
 	lsd = GLOB.all_spawn_data["loot_s_data"]
 	allow_aditional_object = with_aditional_object
-	lsd = GLOB.all_spawn_data["loot_s_data"]
 	if(!latejoin && !prob(spawn_nothing_percentage))
 		var/list/spawns = spawn_item()
 		if(spawns.len)
@@ -119,21 +119,35 @@
 				continue
 			if(check_biome_type() && !istype(biome_candidate, biome_type))
 				continue
-			if(new_distance > distance && !check_biome_type())
-				continue
+			if(new_distance > distance)
+				if(check_biome_type())
+					continue
+				if(!(!check_biome_type() && istype(biome_candidate, biome_type)))
+					continue
+				if(!check_biome_type() && !istype(biome_candidate, biome_type))
+					continue
 			distance = new_distance
 			biome = biome_candidate
-	if(biome_spawner && check_biome_type())
-		biome.spawner_count++
-		tags_to_spawn = biome.tags_to_spawn
-		allow_blacklist = biome.allow_blacklist
-		exclusion_paths = biome.exclusion_paths
-		restricted_tags = biome.restricted_tags
-		top_price = biome.top_price
-		low_price = biome.low_price
-		min_amount = max(1, biome.min_amount / biome.spawner_count)
-		max_amount = max(1, biome.max_amount / biome.spawner_count)
-
+	if(biome_spawner && biome)
+		var/count = 1
+		if(istype(src, /obj/spawner/traps))
+			biome.spawner_trap_count++
+			count = biome.spawner_trap_count
+		else if(istype(src, /obj/spawner/mob))
+			biome.spawner_mob_count++
+			count = biome.spawner_mob_count
+		if(check_biome_type())
+			tags_to_spawn = biome.tags_to_spawn
+			allow_blacklist = biome.allow_blacklist
+			exclusion_paths = biome.exclusion_paths
+			restricted_tags = biome.restricted_tags
+			top_price = biome.top_price
+			low_price = biome.low_price
+			min_amount = max(1, biome.min_amount / count)
+			max_amount = min(biome.max_amount, max(3, biome.max_amount / count))
+			if(use_biome_range)
+				spread_range = biome.range
+				loc = biome.loc
 
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
@@ -157,12 +171,17 @@
 	if(top_price)
 		candidates -= lsd.spawns_upper_price(candidates, top_price)
 	candidates += include_paths
-
-	if(biome_spawner && biome && biome.allowed_only_top && biome.spawner_count < 2)
-		var/top = round(candidates.len*spawn_count*biome.only_top)
-		if(top <= candidates.len)
-			var/top_spawn = CLAMP(top, 1, min(candidates.len,10))
-			candidates = lsd.only_top_candidates(candidates, top_spawn)
+	if(biome_spawner && biome && biome.allowed_only_top)
+		var/count = 1
+		if(istype(src, /obj/spawner/traps))
+			count = biome.spawner_trap_count
+		else if(istype(src, /obj/spawner/mob))
+			count = biome.spawner_mob_count
+		if(count < 2)
+			var/top = round(candidates.len*spawn_count*biome.only_top)
+			if(top <= candidates.len)
+				var/top_spawn = CLAMP(top, 1, min(candidates.len,10))
+				candidates = lsd.only_top_candidates(candidates, top_spawn)
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)

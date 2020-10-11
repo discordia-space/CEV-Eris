@@ -20,10 +20,11 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/can_burrow = FALSE
 	var/min_amount = 1
 	var/max_amount = 1
-	var/spawner_count = 0
 	var/biome_type = /obj/landmark/loot_biomes
 	var/obj/landmark/loot_biomes/obj/master
 	var/check_room = FALSE
+	var/spawner_trap_count = 0
+	var/spawner_mob_count = 0
 
 /obj/landmark/loot_biomes/Initialize(mapload)
 	.=..()

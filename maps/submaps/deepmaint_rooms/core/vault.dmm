@@ -13,6 +13,7 @@
 "am" = (/obj/structure/catwalk,/turf/simulated/floor/plating/under,/area/deepmaint)
 "an" = (/obj/machinery/door/airlock/vault{icon_state = "door_locked"; locked = 1},/turf/simulated/floor/tiled/dark/cargo,/area/deepmaint)
 "ao" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
+"ap" = (/obj/spawner/mob/biome_spawner_mob,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "aq" = (/obj/structure/railing{tag = "icon-railing0 (WEST)"; icon_state = "railing0"; dir = 8},/turf/simulated/floor/plating/under,/area/deepmaint)
 "ar" = (/obj/machinery/door/firedoor,/obj/effect/window_lwall_spawn/reinforced,/turf/simulated/floor/plating,/area/deepmaint)
 "as" = (/obj/structure/disposalpipe/segment{icon_state = "pipe-s"; dir = 4},/turf/simulated/floor/tiled/steel,/area/deepmaint)
@@ -63,7 +64,6 @@
 "bl" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bm" = (/obj/machinery/vending/powermat,/turf/simulated/floor/plating,/area/deepmaint)
 "bn" = (/obj/spawner/junk,/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
-"bo" = (/obj/spawner/mob/roaches/cluster,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bp" = (/obj/item/remains/human,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/gun_loot,/turf/simulated/floor/tiled/dark/techfloor,/area/deepmaint)
 "bq" = (/obj/spawner/junk,/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/turf/simulated/floor/plating/under,/area/deepmaint)
 "br" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
@@ -131,7 +131,7 @@ afacaNaNaOabbnayaBaBaJaJaBaybqabaUbCaWacaa
 aoacaaaaaXabaKabababababababaMabbabCaWagaf
 bbacbcaaaXabaPabbebfbgbhbiabaMabbjbCaWagaa
 aaacaaaaaXabaMabbkahahahblabaQabbmbCaWacaa
-aaacadacababaRabahbobpahahabaMababbDakacaf
+aaacadacababaRabahapbpahahabaMababbDakacaf
 aabSbsbtabalaSabababanabababaQalabbPbvacaa
 aabwbxbwabalbuaTaVaYbYaYaVbdbyalabbPbvacaa
 aaabatabababauabababbZababababababbPbEacaf

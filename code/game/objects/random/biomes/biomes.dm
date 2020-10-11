@@ -28,7 +28,6 @@
 	icon_state = "hostilemob-purple-spawner"
 	biome_spawner = TRUE
 	latejoin = TRUE
-	spread_range = 7
 
 /obj/spawner/mob/biome_spawner_mob/low_chance
 	name = "biome mob spawner"
@@ -59,8 +58,6 @@
 	name = "trap biome"
 	icon_state = "trap-purple-biome"
 	main_tags = list(SPAWN_TRAP_ARMED)
-	min_amount = 3
-	max_amount = 9
 	allowed_only_top = TRUE
 	cap_price = INFINITY
 	biome_type = /obj/landmark/loot_biomes/trap
@@ -70,3 +67,8 @@
 	icon_state = "trap-purple-spawner"
 	biome_spawner = TRUE
 	latejoin = TRUE
+	use_biome_range = TRUE
+
+/obj/spawner/traps/biome_spawner_trap/low_chance
+	name = "biome trap spawner"
+	icon_state = "trap-purple-spawner-low"
