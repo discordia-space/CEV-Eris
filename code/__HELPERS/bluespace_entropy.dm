@@ -48,9 +48,8 @@ GLOBAL_VAR_INIT(bluespace_distotion_cooldown, 10 MINUTES)
 	var/list/turfs = list()
 	var/turf/picked
 	for(var/turf/T in trange(outer_range, origin))
-		if(istype(T,/turf/space)) continue
-		if(istype(T,/turf/simulated/open)) continue
 		if(!turf_clear(T)) continue
+		if(!T.is_solid_structure()) continue
 		if(T.x >= world.maxx-TRANSITIONEDGE || T.x <= TRANSITIONEDGE)	continue
 		if(T.y >= world.maxy-TRANSITIONEDGE || T.y <= TRANSITIONEDGE)	continue
 		if(!inner_range || get_dist(origin, T) >= inner_range)

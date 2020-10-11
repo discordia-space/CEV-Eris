@@ -79,6 +79,9 @@ see multiz/movement.dm for some info.
 		for(var/atom/A in src)
 			fallThrough(A)
 
+/turf/simulated/open/is_solid_structure()
+	return !isOpen()
+
 /turf/simulated/open/proc/isOpen(var/obj/structure/catwalk/catwalk)
 	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
