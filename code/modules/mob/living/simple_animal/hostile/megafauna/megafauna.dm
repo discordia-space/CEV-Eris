@@ -23,7 +23,6 @@
 	var/list/attack_action_types = list()
 	var/megafauna_min_cooldown = 10
 	var/megafauna_max_cooldown = 20
-	var/next_telegraph
 
 /mob/living/simple_animal/hostile/megafauna/Initialize(mapload)
 	. = ..()
@@ -110,27 +109,26 @@
 	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/proc/telegraph()
-	if(world.time < next_telegraph)
-		return
 	for(var/mob/M in range(10,src))
 		if(M.client)
 			shake_camera(M, 4, 3)
 	visible_message(SPAN_DANGER(pick("Prepare to die!", "JUSTICE", "Run!")))
-	next_telegraph = world.time + rand(megafauna_min_cooldown, megafauna_max_cooldown)
 
 /mob/living/simple_animal/hostile/megafauna/proc/spiral_shoot(negative = pick(TRUE, FALSE), rounds = 20)
+	set waitfor = 0
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
 	var/incvar = negative ? -1 : 1
-	var/startpoint = 0
+	var/dirpoint = 1
 	var/list/alldirs = GLOB.alldirs.Copy()
-	var/firedir = alldirs[1]
+	var/firedir = alldirs[dirpoint]
 	for(var/i = 0 to rounds)
 		shoot_projectile(start_turf, firedir)
-		startpoint += incvar
-		if(startpoint < 1)
-			startpoint = alldirs.len
-		else if(startpoint > alldirs.len)
-			startpoint = 0
+		dirpoint += incvar
+		if(dirpoint < 1)
+			dirpoint = alldirs.len
+		else if(dirpoint > alldirs.len)
+			dirpoint = 1
+		firedir = alldirs[dirpoint]
 		sleep(rand(1,3))
 
 /mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, var/dir)
