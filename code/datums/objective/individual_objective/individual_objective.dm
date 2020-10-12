@@ -1,4 +1,5 @@
 /datum/mind/var/list/individual_objectives = list()
+/mob/living/carbon/human/var/personal_score = 0
 
 /mob/living/carbon/human/proc/pick_individual_objective()
 	var/list/valid_objectives = list()
@@ -27,16 +28,17 @@
 	var/desc = "Placeholder Objective"
 	var/datum/mind/owner
 	var/mob/living/carbon/human/mind_holder
-	var/completed = FALSE
-	var/allow_cruciform = TRUE
 	var/units_completed = 0
 	var/units_requested = 1
-	var/based_time = FALSE
+	var/completed = FALSE
 	var/list/req_department = list()
 	var/req_cruciform = FALSE
-	var/insight_reward = 20
+	var/allow_cruciform = TRUE
+	var/based_time = FALSE
 	var/limited_antag = FALSE
 	var/rarity = 1
+	var/insight_reward = 20
+	var/score_reward = 10
 	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
 	var/show_la = "<span style='color:red'>(LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
@@ -58,6 +60,7 @@
 	var/mob/living/carbon/human/H = owner.current
 	H.sanity.insight += insight_reward
 	H.sanity.insight_rest += insight_reward/2
+	update_faction_score()
 	to_chat(owner,  SPAN_NOTICE("You has completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()
@@ -115,3 +118,16 @@
 	if(req_department.len && (!L.mind.assigned_job || !(L.mind.assigned_job.department in req_department)))
 		return FALSE
 	return TRUE
+
+/datum/individual_objective/proc/update_faction_score()
+	mind_holder.personal_score += score_reward
+	if(req_cruciform || DEPARTMENT_CHURCH in req_department)
+		GLOB.neotheology_score += score_reward
+	else if(DEPARTMENT_SECURITY in req_department)
+		GLOB.ironhammer_score += score_reward
+	else if(DEPARTMENT_SCIENCE in req_department || DEPARTMENT_MEDICAL in req_department)
+		GLOB.moebius_score += score_reward
+	else if(DEPARTMENT_GUILD in req_department)
+		GLOB.guild_score += score_reward
+	else if(DEPARTMENT_ENGINEERING in req_department)
+		GLOB.technomancer_score += score_reward

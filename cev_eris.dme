@@ -531,6 +531,7 @@
 #include "code\game\dna\genes\disabilities.dm"
 #include "code\game\dna\genes\gene.dm"
 #include "code\game\dna\genes\powers.dm"
+#include "code\game\gamemodes\scores.dm"
 #include "code\game\gamemodes\storyevent.dm"
 #include "code\game\gamemodes\storyevent_helpers.dm"
 #include "code\game\gamemodes\storyteller.dm"
