@@ -29,6 +29,10 @@
 		bio = 0,
 		rad = 0
 	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1, //Small plasteel cost since it's better than a handmade vest, which only costs steel
+	)
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
@@ -135,6 +139,10 @@
 		rad = 0
 	)
 	price_tag = 500
+	matter = list(
+		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
+		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	name = "full bulletproof suit"
@@ -149,6 +157,10 @@
 		bomb = 10,
 		bio = 0,
 		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 15, // fullbody suit, so it costs a lot of steel compared to the non-ih one
+		MATERIAL_PLASTEEL = 3,
 	)
 
 /obj/item/clothing/suit/armor/bulletproof/serbian
@@ -190,6 +202,11 @@
 	)
 	siemens_coefficient = 0
 	price_tag = 650
+	matter = list(
+		MATERIAL_STEEL = 6, // slightly less steel cost to make room for reflective glass
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 15 // reflective material, lots of it
+	)
 
 /obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
