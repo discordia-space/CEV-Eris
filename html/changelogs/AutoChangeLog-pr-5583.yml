@@ -1,5 +1,0 @@
-author: genessee596
-delete-after: true
-changes:
-  - bugfix: The autolathe disk "Technomancers IJIRO-451 Advanced Tools" should now
-      correctly spawn wherever common disks may be found, albeit rarely.

@@ -1,5 +1,0 @@
-author: genessee596
-delete-after: true
-changes:
-  - bugfix: The 'Asters Robustcells' disk should now correctly spawn wherever common
-      design disks would be found.
