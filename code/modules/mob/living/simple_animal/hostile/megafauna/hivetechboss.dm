@@ -30,7 +30,6 @@
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/death()
 	..()
 	delhivetech()
-	walk(src, 0)
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/proc/telenode()
 	var/list/atom/NODES = list()
@@ -46,7 +45,7 @@
 			othertyrant = 1
 	if(othertyrant == 0)
 		for(var/obj/machinery/hivemind_machine/NODE in world)
-			qdel(NODE)
+			NODE.destruct()
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/Life()
 
@@ -88,7 +87,7 @@
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + 120
 	walk(src, 0)
-	telegraph()
+	INVOKE_ASYNC(src, .proc/telegraph)
 	if(prob(50))
 		random_shots()
 		move_to_delay = initial(move_to_delay)

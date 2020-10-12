@@ -34,19 +34,14 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
-	if(health <= 0)
-		qdel(src)
-		return
+	..()
+	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/gib()
-	if(health <= 0)
-		qdel(src)
-		return
+	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/dust(just_ash, drop_items, force)
-	if(health <= 0)
-		qdel(src)
-		return
+	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/AttackingTarget()
 	if(recovery_time >= world.time)

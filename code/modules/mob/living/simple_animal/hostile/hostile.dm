@@ -180,10 +180,6 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 	return L
 
-/mob/living/simple_animal/hostile/death()
-	..()
-	walk(src, 0)
-
 /mob/living/simple_animal/hostile/Life()
 
 	. = ..()
