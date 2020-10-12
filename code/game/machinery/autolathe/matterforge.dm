@@ -9,8 +9,8 @@
 /obj/machinery/matter_nanoforge
 	name = "Matter NanoForge"
 	desc = "It consumes items and produces compressed matter."
-	icon = 'icons/obj/machines/autolathe.dmi'
-	icon_state = "autolathe"
+	icon = 'icons/obj/machines/matterforge.dmi'
+	icon_state = "techprint"
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -350,10 +350,14 @@
 		var/added_mats = artifact.power * total_material_gained[mat] * lst[mat]
 		if(added_mats + stored_material[MATERIAL_COMPRESSED_MATTER] > storage_capacity)
 			added_mats = storage_capacity - stored_material[MATERIAL_COMPRESSED_MATTER]
+		var/leftover_mats = (added_mats + stored_material[MATERIAL_COMPRESSED_MATTER]) - storage_capacity
 		stored_material[MATERIAL_COMPRESSED_MATTER] += added_mats
 		update_desc(stored_material[MATERIAL_COMPRESSED_MATTER])
-		gained_mats += artifact.power * total_material_gained[mat] * lst[mat]
-		used_sheets = total_material_gained[mat]
+		gained_mats += added_mats
+		if(leftover_mats == 0)
+			used_sheets = (added_mats / artifact.power) / lst[mat]
+		else
+			used_sheets = total_material_gained[mat]
 	if(istype(eating, /obj/item/stack))
 		var/obj/item/stack/stack = eating
 		to_chat(user, SPAN_NOTICE("You create [gained_mats] Compressed Matter from [stack.singular_name]\s in the [src]."))
@@ -509,6 +513,7 @@
 /obj/machinery/matter_nanoforge/proc/consume_materials(datum/design/design)
 	for(var/material in design.materials)
 	// + 15 base cost for each material then * 2 
+		design.materials[material] += ((1 - lst[material]) * 10) * 2
 		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]): design.materials[material]
 		stored_material[MATERIAL_COMPRESSED_MATTER] = max(0, stored_material[MATERIAL_COMPRESSED_MATTER] - material_cost)
 
