@@ -10,7 +10,7 @@
 	var/obj/item/weapon/oddity/strange_item = null //Not sure if nessecary to name this way, autolathe.dm did it with there var definitions for beakers and disks. Temporary name. //var/obj/item/weapon/oddity/strange_item
 	var/list/strange_item_stats = list()
 
-	categories = list("Creat Artwork") //Temporary name.
+	categories = list("Create Artwork") //Temporary name.
 
 	suitable_materials = list(MATERIAL_WOOD, MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_PLASTEEL, MATERIAL_PLASTIC)
 
@@ -38,6 +38,8 @@
 	if(!ui)
 		ui = new(user, src, ui_key, "artist_bench.tmpl", "Artist's Bench UI", 600, 700)
 
+		ui.add_template("_materials", "autolathe_materials.tmpl")
+
 		ui.set_initial_data(data)
 
 		ui.open()
@@ -45,6 +47,7 @@
 /obj/machinery/autolathe/artist_bench/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/oddity))
 		insert_oddity(user, I)
+	.=..()
 
 /obj/machinery/autolathe/artist_bench/Topic(href, href_list)//var/mob/living/carbon/human/H, var/mob/living/user
 	if(..())
@@ -152,8 +155,7 @@
 	//var/list/LWeights = list(weight_mechanical, weight_cognition, weight_biology, weight_robustness, weight_toughness, weight_vigilance)
 
 	if(full_artwork == "artwork_revolver")
-		var/mob/living/carbon/human/user = src.loc
-		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new /obj/item/weapon/gun/projectile/revolver/artwork_revolver(src)
+		var/obj/item/weapon/gun/projectile/revolver/artwork_revolver/R = new /obj/item/weapon/gun/projectile/revolver/artwork_revolver
 
 		var/gun_pattern = pickweight(list(
 			"pistol" = 8 + weight_robustness,
@@ -176,13 +178,13 @@
 				R.recoil_buildup = 18
 
 			if("magnum") //From consul.dm, Arbitrary values
-				R.caliber = R.CAL_MAGNUM
+				R.caliber = CAL_MAGNUM
 				R.damage_multiplier = 1.35
 				R.penetration_multiplier = 1.5
 				R.recoil_buildup = 35
 
 			if("shotgun") //From bull.dm, Arbitrary values
-				R.caliber = R.CAL_SHOTGUN
+				R.caliber = CAL_SHOTGUN
 				R.damage_multiplier = 0.8
 				R.penetration_multiplier = 0.75
 				R.recoil_buildup = 1.2 //from sawnoff.dm
@@ -191,7 +193,7 @@
 				R.fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 
 			if("rifle")
-				R.caliber = pick(R.CAL_CLRIFLE, R.CAL_SRIFLE, R.CAL_LRIFLE)
+				R.caliber = pick(CAL_CLRIFLE, CAL_SRIFLE, CAL_LRIFLE)
 				R.fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
 //
 //No gun currently uses CAL_357 far as I know
@@ -199,33 +201,32 @@
 //				caliber = pick(CAL_357)
 
 			if("sniper")//From sniper.dm, Arbitrary values
-				R.caliber = R.CAL_ANTIM
+				R.caliber = CAL_ANTIM
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
 				R.fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 				R.one_hand_penalty = 15 //From sniper.dm, Temporary values
 				R.recoil_buildup = 90
 
 			if("gyro")//From gyropistol.dm, Arbitrary values
-				R.caliber = R.CAL_70
+				R.caliber = CAL_70
 				R.recoil_buildup = 0.1
 
 			if("cap")
-				R.caliber = R.CAL_CAP
+				R.caliber = CAL_CAP
 
 			if("rocket")//From RPG.dm, Arbitrary values
-				R.caliber = R.CAL_ROCKET
+				R.caliber = CAL_ROCKET
 				R.fire_sound = 'sound/effects/bang.ogg'
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 				R.one_hand_penalty = 15 //From ak47.dm, temporary values
 				R.recoil_buildup = 15
 
 			if("grenade")
-				R.caliber = R.CAL_GRENADE
+				R.caliber = CAL_GRENADE
 				R.fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 				R.bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 				R.one_hand_penalty = 15 //from sniper.dm, Temporary values
 				R.recoil_buildup = 20 //from projectile_grenade_launcher.dm
-
 
 		if(R.max_shells == 3 && (gun_pattern == "shotgun"||"rocket"))//From Timesplitters triple-firing RPG far as I know
 			R.init_firemodes = list(
@@ -233,9 +234,59 @@
 				list(mode_name="fire three barrels at once", burst=3, icon="auto"),
 				)
 
+		return R
 
-/obj/machinery/autolathe/artist_bench/proc/create_art(ins_used, mob/living/user)
+	else if(full_artwork == "artwork_statue")
+		var/obj/structure/artwork_statue/S = new /obj/structure/artwork_statue
+		return S
+
+	else if(full_artwork == "artwork_oddity")
+		var/obj/item/weapon/oddity/artwork/O = new /obj/item/weapon/oddity/artwork(src)
+
+		var/oddity_pattern = pickweight(list(
+			"combat" = 8 + weight_robustness + weight_toughness + weight_vigilance,
+			"craft" = 8 + weight_mechanical + weight_cognition + weight_biology,
+			"mix" = 4 + weight_mechanical + weight_cognition + weight_biology + weight_robustness + weight_toughness + weight_vigilance //Arbitrary value chance
+			))
+
+		var/list/oddity_stats = list(STAT_MEC = 0, STAT_COG = 0, STAT_BIO = 0, STAT_ROB = 0, STAT_TGH = 0, STAT_VIG = 0)//May not be nessecary
+		switch(oddity_pattern)//Arbitrary values
+
+			if("combat")
+				oddity_stats = list(
+					STAT_TGH = 9 + rand(-3,3),
+					STAT_ROB = 9 + rand(-3,3),
+					STAT_VIG = 9 + rand(-3,3),
+				)
+
+			if("craft")
+				oddity_stats = list(
+					STAT_COG = 9 + rand(-3,3),
+					STAT_BIO = 9 + rand(-3,3),
+					STAT_MEC = 9 + rand(-3,3),
+				)
+
+			if("mix")
+				oddity_stats = list(
+					STAT_TGH = 4 + rand(-1, 5),
+					STAT_ROB = 4 + rand(-1, 5),
+					STAT_VIG = 4 + rand(-1, 5),
+					STAT_COG = 4 + rand(-1, 5),
+					STAT_BIO = 4 + rand(-1, 5),
+					STAT_MEC = 4 + rand(-1, 5),
+				)
+
+		O.oddity_stats = oddity_stats
+		O.AddComponent(/datum/component/inspiration, O.oddity_stats)
+
+		return O
+
+	else
+		return "ERR_ARTWORK"
+
+/obj/machinery/autolathe/artist_bench/proc/create_art(ins_used)
 	var/mob/living/carbon/human/H = usr
+	var/artwork = choose_full_art()
 
 	if(!ins_used)
 		return
@@ -243,9 +294,9 @@
 	if(ins_used < INSIGHT_MIN)
 		to_chat(usr, SPAN_WARNING("At least 40 insight is needed to use this bench.")) //Temporary description
 		return
-
-	if(H.stats.getPerk(/datum/perk/artist/) && H.sanity.insight_block == 1)
-		H.sanity.finish_rest()
+//
+//	if(!Adjacent(user))
+//		return
 
 	if(!H.stats.getPerk(/datum/perk/artist/))
 		var/list/stat_change = list()
@@ -253,3 +304,9 @@
 		var/stat_pool = 5 //Arbitrary value for how much to remove the stats by, from sanity_mob
 		while(stat_pool--)
 			LAZYAMINUS(stat_change, pick(ALL_STATS), 1)
+
+	consume_materials(artwork)
+	H.put_in_hands(artwork)
+	H.sanity.insight -= ins_used
+	if(H.stats.getPerk(/datum/perk/artist/) && H.sanity.insight_block == 1)
+		H.sanity.finish_rest()

@@ -130,18 +130,24 @@
 /datum/sanity/proc/handle_insight()
 	var/moralist_factor = 1
 	var/style_factor = owner.get_style_factor()
+	var/artist_factor = 1
 	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H)
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
+	if(owner.stats.getPerk(/datum/perk/artist))
+		artist_factor = 2
+	else
+		artist_factor = 1
 	if(!insight_block)
-		insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
+		insight += INSIGHT_GAIN(level_change) * artist_factor * insight_passive_gain_multiplier * moralist_factor * style_factor
 	while(insight >= 100)
 		if(insight_block)
-			return
+			break
 		if(owner.stats.getPerk(/datum/perk/artist/))
 			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))//Temporary description.
+			owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 			++resting
 			insight = 100
 			insight_block = 1
@@ -227,6 +233,7 @@
 
 	if(owner.stats.getPerk(/datum/perk/artist/))
 		to_chat(owner, SPAN_NOTICE("You have created art and improved your stats.")) //Temporary description
+		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)
 	else
 		to_chat(owner, SPAN_NOTICE("You have rested well and improved your stats."))
 		owner.playsound_local(get_turf(owner), 'sound/sanity/rest.ogg', 100)

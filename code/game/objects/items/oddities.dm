@@ -261,32 +261,4 @@
 	var/random_icon = rand(1,6)
 	icon_state = "artwork_[random_icon]"
 
-	var/oddity_pattern = pick("combat", "craft", "mix")
-
-	switch(oddity_pattern)
-
-		if("combat")
-			oddity_stats = list(
-				STAT_TGH = 12,
-				STAT_ROB = 12,
-				STAT_VIG = 12,
-			)
-
-		if("craft")
-			oddity_stats = list(
-				STAT_COG = 12,
-				STAT_BIO = 12,
-				STAT_MEC = 12,
-			)
-
-		if("mix")
-			oddity_stats = list(
-				STAT_TGH = 6,
-				STAT_ROB = 6,
-				STAT_VIG = 6,
-				STAT_COG = 6,
-				STAT_BIO = 6,
-				STAT_MEC = 6,
-			)
-
 	. = ..()

@@ -1,6 +1,6 @@
 /obj/structure/artwork_statue
 	name = "Weird Statue"
-	desc = "An object of art, depecting a scene."
+	desc = "An object of art, depicting a scene."
 	icon = 'icons/obj/structures/artwork_statue.dmi'
 	icon_state = "artwork_statue"
 
