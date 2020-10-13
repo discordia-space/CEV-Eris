@@ -5,6 +5,13 @@
 	rarity = 4
 	var/obj/item/target
 
+/datum/individual_objective/bad_technology/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	if(locate(/obj/item/weapon/tool/sword/nt_sword))
+		return pick_faction_item(L)
+	return FALSE
+
 /datum/individual_objective/bad_technology/assign()
 	..()
 	target = pick_faction_item(mind_holder)

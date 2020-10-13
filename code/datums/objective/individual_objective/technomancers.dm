@@ -85,6 +85,13 @@
 	rarity = 4
 	var/obj/item/target
 
+/datum/individual_objective/tribalism/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	if(locate(/obj/item/device/techno_tribalism))
+		return pick_faction_item(L)
+	return FALSE
+
 /datum/individual_objective/tribalism/assign()
 	..()
 	target = pick_faction_item(mind_holder)

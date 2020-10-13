@@ -132,6 +132,7 @@
 	for(var/mob/affected in participants)
 		to_chat(affected, succ_message)
 		success(affected, participants.len)
+	GLOB.grup_ritual_performed++
 
 /datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
 	return

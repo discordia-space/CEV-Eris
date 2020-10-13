@@ -9,7 +9,6 @@ GLOBAL_VAR_INIT(score_researchdone, 0)
 GLOBAL_VAR_INIT(score_eventsendured, 0) // how many random events did the station survive?
 GLOBAL_VAR_INIT(score_escapees, 0) // how many people got out alive?
 GLOBAL_VAR_INIT(score_deadcrew, 0) // dead bodies on the station, oh no
-GLOBAL_VAR_INIT(score_mess, 0) // how much poo, puke, gibs, etc went uncleaned
 GLOBAL_VAR_INIT(score_meals, 0)
 GLOBAL_VAR_INIT(score_disease, 0) // how many rampant, uncured diseases are on board the station
 GLOBAL_VAR_INIT(score_deadcommand, 0) // used during rev, how many command staff perished
@@ -43,7 +42,6 @@ GLOBAL_VAR_INIT(initial_technomancer_score, 0)
 GLOBAL_VAR_INIT(area_powerloss, 0) // how many APCs have poor charge?
 GLOBAL_VAR_INIT(score_powerloss, 0)
 
-
 GLOBAL_VAR_INIT(area_fireloss, 0) //air/fire issues
 GLOBAL_VAR_INIT(score_fireloss, 0)
 
@@ -53,26 +51,55 @@ GLOBAL_VAR_INIT(field_radius, 0)
 GLOBAL_VAR_INIT(all_smes_powered, TRUE)
 GLOBAL_VAR_INIT(score_smes_powered, 0)
 
-
 GLOBAL_VAR_INIT(technomancer_objectives_completed, 0)
 GLOBAL_VAR_INIT(score_technomancer_objectives, 0)
 GLOBAL_VAR_INIT(technomancer_faction_item_loss, 0)
 GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
-GLOBAL_VAR_INIT(ironhammer_score, 750)
-GLOBAL_VAR_INIT(initial_ironhammer_score, 750)
+
+//Neotheology_score
+GLOBAL_VAR_INIT(neotheology_score, 0)
+GLOBAL_VAR_INIT(initial_neotheology_score, 250)
+
+GLOBAL_VAR_INIT(neotheology_objectives_completed, 0)
+GLOBAL_VAR_INIT(neotheology_objectives_score, 0)
+
+GLOBAL_VAR_INIT(score_neotheology_faction_item_loss, 0)
+GLOBAL_VAR_INIT(neotheology_faction_item_loss, 0)
+
+GLOBAL_VAR_INIT(dirt_areas, 0) // dirt areas
+GLOBAL_VAR_INIT(score_mess, 0)
+
+GLOBAL_VAR_INIT(biomatter_neothecnology_amt, 0)
+GLOBAL_VAR_INIT(biomatter_score, 0)
+
+GLOBAL_VAR_INIT(grup_ritual_performed, 0)
+GLOBAL_VAR_INIT(grup_ritual_score, 0)
+
+GLOBAL_VAR_INIT(new_neothecnology_convert_score, 0)
+GLOBAL_VAR_INIT(new_neothecnology_convert, 0)
+
+//guild
+GLOBAL_VAR_INIT(initial_guild_score, 0)
+GLOBAL_VAR_INIT(guild_score, 0)
+
+GLOBAL_VAR_INIT(guild_objectives_completed, 0)
+GLOBAL_VAR_INIT(guild_objectives_score, 0)
+
+
+//moebius
 GLOBAL_VAR_INIT(moebius_score, 0)
 GLOBAL_VAR_INIT(initial_moebius_score, 0)
-GLOBAL_VAR_INIT(neotheology_score, 250)
-GLOBAL_VAR_INIT(initial_neotheology_score, 250)
-GLOBAL_VAR_INIT(guild_score, 0)
-GLOBAL_VAR_INIT(initial_guild_score, 0)
 
-
-GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
+GLOBAL_VAR_INIT(moebius_objectives_completed, 0)
 GLOBAL_VAR_INIT(moebius_objectives_score, 0)
-GLOBAL_VAR_INIT(neotheology_objectives_score, 0)
-GLOBAL_VAR_INIT(guild_objectives_score, 0)
+
+//ironhammer
+GLOBAL_VAR_INIT(ironhammer_score, 0)
+GLOBAL_VAR_INIT(initial_ironhammer_score, 500)
+
+GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
+GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
 	//Thresholds for Score Ratings
@@ -176,10 +203,10 @@ GLOBAL_VAR_INIT(guild_objectives_score, 0)
 
 
 
-	// Modifiers
+	// technomancer Modifiers
 	if(GLOB.all_smes_powered)
 		GLOB.score_smes_powered = 350 //max = 350
-	GLOB.score_technomancer_objectives = GLOB.technomancer_objectives_completed * 25
+	GLOB.score_technomancer_objectives = GLOB.technomancer_objectives_completed * 25 //max: ~= 100
 	GLOB.score_ship_shield = 2 * GLOB.field_radius //max ~= 500
 	GLOB.score_fireloss -= GLOB.area_fireloss * 25
 	GLOB.score_powerloss -= GLOB.area_powerloss * 25
@@ -187,21 +214,35 @@ GLOBAL_VAR_INIT(guild_objectives_score, 0)
 	GLOB.technomancer_score = GLOB.initial_technomancer_score + GLOB.score_smes_powered + GLOB.score_technomancer_objectives + GLOB.score_ship_shield + GLOB.score_fireloss + GLOB.score_powerloss + GLOB.score_technomancer_faction_item_loss
 	//END technomancers
 
+	// NeoTheology score
+	var/list/dirt_areas = list()
 	// Check how much uncleaned mess is on the station
 	for(var/obj/effect/decal/cleanable/M in world)
 		if(!isStationLevel(M.z)) continue
 		var/area/A = get_area(M)
+		if(A in dirt_areas) continue
 		if(!(A in ship_areas)) continue
 		if(A.is_maintenance) continue
-		if(istype(M, /obj/effect/decal/cleanable/blood/gibs))
-			GLOB.score_mess += 3
+		dirt_areas += A
+	GLOB.dirt_areas = dirt_areas.len
 
-		if(istype(M, /obj/effect/decal/cleanable/blood))
-			GLOB.score_mess += 1
 
-		if(istype(M, /obj/effect/decal/cleanable/vomit))
-			GLOB.score_mess += 1
+	// NeoTheology Modifiers
+	GLOB.score_neotheology_faction_item_loss -= 150 * GLOB.neotheology_faction_item_loss
+	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
+	GLOB.score_mess -= GLOB.dirt_areas * 25
+	GLOB.biomatter_score = round(min(GLOB.biomatter_neothecnology_amt/10, 350)) //350
+	GLOB.grup_ritual_score += GLOB.grup_ritual_performed * 5
+	GLOB.new_neothecnology_convert_score = GLOB.new_neothecnology_convert * 50 // ~150-300
+	GLOB.neotheology_score = GLOB.initial_neotheology_score + GLOB.score_neotheology_faction_item_loss + GLOB.neotheology_objectives_score + GLOB.score_mess + GLOB.grup_ritual_score + GLOB.biomatter_score + GLOB.new_neothecnology_convert_score
+	//END NeoTheology
 
+
+	//Moebius score 
+
+	//ironhammer score
+
+	//guild score
 
 	// Bonus Modifiers
 	var/deathpoints = GLOB.score_deadcrew * 25 //done
