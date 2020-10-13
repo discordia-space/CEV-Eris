@@ -89,6 +89,30 @@ macro "borghotkeymode"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
+	elem
+		name = "ALT+A"
+		command = "westfaceperm"
+	elem 
+		name = "CTRL+A"
+		command = "westface"
+	elem 
+		name = "ALT+W"
+		command = "northfaceperm"
+	elem 
+		name = "CTRL+W"
+		command = "northface"
+	elem 
+		name = "ALT+D"
+		command = "eastfaceperm"
+	elem 
+		name = "CTRL+D"
+		command = "eastface"
+	elem 
+		name = "ALT+S"
+		command = "southfaceperm"
+	elem 
+		name = "CTRL+S"
+		command = "southface"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -519,7 +543,34 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
+		elem
+		name = "ALT+A"
+		command = "westfaceperm"
 	elem 
+		name = "CTRL+A"
+		command = "westface"
+	elem 
+		name = "ALT+W"
+		command = "northfaceperm"
+	elem 
+		name = "CTRL+W"
+		command = "northface"
+	elem 
+		name = "ALT+D"
+		command = "eastfaceperm"
+	elem 
+		name = "CTRL+D"
+		command = "eastface"
+	elem 
+		name = "ALT+S"
+		command = "southfaceperm"
+	elem 
+		name = "CTRL+S"
+		command = "southface"
+	elem
+		name = "B"
+		command = "resist" 
+	elem
 		name = "INSERT"
 		command = "a-intent right"
 	elem 
