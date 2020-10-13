@@ -391,6 +391,9 @@ macro "macro"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem
+		name = "B"
+		command = "resist" 
 	elem 
 		name = "CTRL+NUMPAD1"
 		command = "body-r-leg"
@@ -568,9 +571,6 @@ macro "hotkeymode"
 		name = "CTRL+S"
 		command = "southface"
 	elem
-		name = "B"
-		command = "resist" 
-	elem
 		name = "INSERT"
 		command = "a-intent right"
 	elem 
@@ -630,6 +630,9 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+G"
 		command = "a-intent right"
+	elem
+		name = "B"
+		command = "resist" 
 	elem 
 		name = "H"
 		command = "holster"
