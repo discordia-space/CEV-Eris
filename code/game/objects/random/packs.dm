@@ -89,6 +89,7 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "rare loot"
 	icon_state = "box-orange"
 	rarity_value = 100
+	spawn_tags = SPAWN_TAG_RARE_ITEM
 
 /obj/spawner/pack/rare/item_to_spawn()
 	return pickweight(RANDOM_RARE_ITEM) // made into a define so that rare objects can be spawned for mobs too

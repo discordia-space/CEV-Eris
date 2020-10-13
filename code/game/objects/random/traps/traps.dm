@@ -3,17 +3,21 @@
 	icon_state = "trap-red"
 	alpha = 128
 	tags_to_spawn = list(SPAWN_TRAP_ARMED)
+	biome_type = /obj/landmark/loot_biomes/trap
+	check_density = FALSE
 
-/obj/spawner/traps/item_to_spawn()
-	.=..()
-	var/list/possible_traps = valid_candidates()
+/obj/spawner/traps/valid_candidates()
+	var/list/possible_traps = ..()
 	//Check that its possible to spawn the chosen trap at this location
-	while (possible_traps.len)
-		var/trap = pick_spawn(possible_traps)
-		if (can_spawn_trap(loc, trap))
-			return trap
-		else
-			possible_traps -= trap
+	for(var/trap in possible_traps)
+		if(spread_range && istype(loc, /turf))
+			var/list/point_to_spawn = find_smart_point(trap)
+			if(point_to_spawn.len)
+				continue
+		else if(can_spawn_trap(loc, trap))
+			continue
+		possible_traps -= trap
+	return possible_traps
 
 /obj/spawner/traps/low_chance
 	icon_state = "trap-red-low"
@@ -30,11 +34,21 @@
 	icon_state = "trap-orange-low"
 	spawn_nothing_percentage = 70
 
-
 //Checks if a trap can spawn in this location
 /proc/can_spawn_trap(turf/T, trap)
 	.=TRUE
 	if(ispath(trap, /obj/structure/wire_splicing))
-		if (locate(/obj/structure/cable) in dview(3, T))
+		if(locate(/obj/structure/cable) in dview(3, T))
 			return TRUE
+	if(locate(trap) in T)
 		return FALSE
+
+/obj/spawner/traps/find_smart_point(path)
+	var/list/spawn_points = ..()
+	if(!spawn_points.len)
+		return spawn_points
+	var/list/trap_points = list()
+	for(var/turf/T in spawn_points)
+		if(can_spawn_trap(T, path))
+			trap_points += T
+	return trap_points

@@ -118,7 +118,7 @@
 	for(var/mob/living/M in victims_to_teleport)
 		M.forceMove(get_turf(target))
 
-	new /obj/structure/scrap/science/large(src.loc)
+	new /obj/structure/scrap_spawner/science/large(src.loc)
 
 	sleep(2)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()

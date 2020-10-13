@@ -88,6 +88,7 @@
 	icon_state = "ore_hydrogen"
 	material = MATERIAL_MHYDROGEN
 	rarity_value = 50
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/ore/slag
 	name = "Slag"

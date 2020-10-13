@@ -25,11 +25,11 @@
 				to_chat(user,"<span class='warning'>You can't load living things into the cargo compartment.</span>")
 				return
 
-			if(istype(target, /obj/structure/scrap))
+			if(istype(target, /obj/structure/scrap_spawner))
 				owner.visible_message(SPAN_NOTICE("\The [owner] begins compressing \the [O] with \the [src]."))
 				if(do_after(owner, 20, O, 0, 1))
-					if(istype(O, /obj/structure/scrap))
-						var/obj/structure/scrap/S = O
+					if(istype(O, /obj/structure/scrap_spawner))
+						var/obj/structure/scrap_spawner/S = O
 						S.make_cube()
 						owner.visible_message(SPAN_NOTICE("\The [owner] compresses \the [O] into a cube with \the [src]."))
 				return
