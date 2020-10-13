@@ -122,12 +122,12 @@
 /datum/individual_objective/proc/update_faction_score()
 	mind_holder.personal_score += score_reward
 	if(req_cruciform || DEPARTMENT_CHURCH in req_department)
-		GLOB.neotheology_score += score_reward
+		GLOB.neotheology_objectives_score += 1
 	else if(DEPARTMENT_SECURITY in req_department)
-		GLOB.ironhammer_score += score_reward
+		GLOB.ironhammer_objectives_score += 1
 	else if(DEPARTMENT_SCIENCE in req_department || DEPARTMENT_MEDICAL in req_department)
-		GLOB.moebius_score += score_reward
+		GLOB.moebius_objectives_score += 1
 	else if(DEPARTMENT_GUILD in req_department)
-		GLOB.guild_score += score_reward
+		GLOB.guild_objectives_score += 1
 	else if(DEPARTMENT_ENGINEERING in req_department)
-		GLOB.technomancer_score += score_reward
+		GLOB.technomancer_objectives_completed += 1
