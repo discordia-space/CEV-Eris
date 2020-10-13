@@ -22,3 +22,4 @@
     twohanded = TRUE
     spawn_tags = SPAWN_TAG_GUN_PROJECTILE
     rarity_value = 30
+    loaded = list(/obj/item/ammo_casing/grenade,/obj/item/ammo_casing/grenade)
