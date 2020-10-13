@@ -20,6 +20,8 @@
     max_shells = 3
     recoil_buildup = 20
     twohanded = TRUE
+
+/obj/item/weapon/gun/projectile/shotgun/pump/china/preloaded
     spawn_tags = SPAWN_TAG_GUN_PROJECTILE
     rarity_value = 30
     loaded = list(/obj/item/ammo_casing/grenade,/obj/item/ammo_casing/grenade)
