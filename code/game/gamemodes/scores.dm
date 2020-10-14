@@ -86,6 +86,8 @@ GLOBAL_VAR_INIT(guild_score, 0)
 GLOBAL_VAR_INIT(guild_objectives_completed, 0)
 GLOBAL_VAR_INIT(guild_objectives_score, 0)
 
+GLOBAL_VAR_INIT(guild_faction_item_loss, 0)
+GLOBAL_VAR_INIT(score_guild_faction_item_loss, 0)
 
 //moebius
 GLOBAL_VAR_INIT(moebius_score, 0)
@@ -94,12 +96,22 @@ GLOBAL_VAR_INIT(initial_moebius_score, 0)
 GLOBAL_VAR_INIT(moebius_objectives_completed, 0)
 GLOBAL_VAR_INIT(moebius_objectives_score, 0)
 
+GLOBAL_VAR_INIT(moebius_faction_item_loss, 0)
+GLOBAL_VAR_INIT(score_moebius_faction_item_loss, 0)
+
 //ironhammer
 GLOBAL_VAR_INIT(ironhammer_score, 0)
 GLOBAL_VAR_INIT(initial_ironhammer_score, 500)
 
 GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
 GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
+
+
+GLOBAL_VAR_INIT(ironhammer_faction_item_loss, 0)
+GLOBAL_VAR_INIT(score_ironhammer_faction_item_loss, 0)
+
+GLOBAL_VAR_INIT(completed_antag_contracts, 0)
+GLOBAL_VAR_INIT(score_antag_contracts, 0)
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
 	//Thresholds for Score Ratings
@@ -211,6 +223,7 @@ GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
 	GLOB.score_fireloss -= GLOB.area_fireloss * 25
 	GLOB.score_powerloss -= GLOB.area_powerloss * 25
 	GLOB.score_technomancer_faction_item_loss -= 150 * GLOB.technomancer_faction_item_loss
+
 	GLOB.technomancer_score = GLOB.initial_technomancer_score + GLOB.score_smes_powered + GLOB.score_technomancer_objectives + GLOB.score_ship_shield + GLOB.score_fireloss + GLOB.score_powerloss + GLOB.score_technomancer_faction_item_loss
 	//END technomancers
 
@@ -234,15 +247,29 @@ GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
 	GLOB.biomatter_score = round(min(GLOB.biomatter_neothecnology_amt/10, 350)) //350
 	GLOB.grup_ritual_score += GLOB.grup_ritual_performed * 5
 	GLOB.new_neothecnology_convert_score = GLOB.new_neothecnology_convert * 50 // ~150-300
+
 	GLOB.neotheology_score = GLOB.initial_neotheology_score + GLOB.score_neotheology_faction_item_loss + GLOB.neotheology_objectives_score + GLOB.score_mess + GLOB.grup_ritual_score + GLOB.biomatter_score + GLOB.new_neothecnology_convert_score
-	//END NeoTheology
 
 
 	//Moebius score 
+	GLOB.score_moebius_faction_item_loss -= 150 * GLOB.moebius_faction_item_loss
+	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25
+
+	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score
 
 	//ironhammer score
+	GLOB.score_ironhammer_faction_item_loss -= 150 * GLOB.ironhammer_faction_item_loss
+	GLOB.ironhammer_objectives_score = GLOB.ironhammer_objectives_completed * 25
+	GLOB.score_antag_contracts -= GLOB.completed_antag_contracts * 25
+
+
+	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts
 
 	//guild score
+	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss
+	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25
+
+	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score
 
 	// Bonus Modifiers
 	var/deathpoints = GLOB.score_deadcrew * 25 //done

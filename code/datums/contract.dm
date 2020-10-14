@@ -71,6 +71,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 /datum/antag_contract/proc/complete(datum/mind/M)
 	if(completed)
 		warning("Contract completed twice: [name] [desc]")
+	else
+		GLOB.completed_antag_contracts++
 	completed = TRUE
 	completed_by = M
 
