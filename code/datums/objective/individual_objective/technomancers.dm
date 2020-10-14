@@ -22,6 +22,7 @@
 		timer = world.time
 	if(check_for_completion())
 		completed()
+		target_area.local_bluespace_entropy -= 50
 
 /datum/individual_objective/disturbance/completed()
 	if(completed) return
