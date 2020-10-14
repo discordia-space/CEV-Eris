@@ -256,7 +256,7 @@
 	icon_state = "industrial_dispenser"
 	ui_title = "Industrial Dispenser 4835"
 
-	circuit = /obj/item/weapon/electronics/circuitboard/industeral_chemical_dispenser
+	circuit = /obj/item/weapon/electronics/circuitboard/industrial_chemical_dispenser
 
 	dispensable_reagents = list(
 		"acetone","aluminum","ammonia",
