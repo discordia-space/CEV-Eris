@@ -135,8 +135,10 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/loot_path = lsd.pick_spawn(candidates, rare)
 		new loot_path(src)
 		var/list/aditional_objects = lsd.all_accompanying_obj_by_path[loot_path]
-		if(islist(aditional_objects) && aditional_objects.len && prob(25))
-			for(var/thing in aditional_objects)
+		if(islist(aditional_objects) && aditional_objects.len)
+			for(var/obj/thing in aditional_objects)
+				if(!prob(thing.prob_aditional_object*0.8))
+					continue
 				new thing(src)
 
 	for(var/obj/item/loot in contents)
