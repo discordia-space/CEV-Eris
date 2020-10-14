@@ -32,8 +32,8 @@
 		/obj/item/weapon/cell/medium = 1
 	)
 
-/obj/item/weapon/electronics/circuitboard/industrial_chemical_dispenser
-	name = T_BOARD("Industrial Chemical Dispenser")
+/obj/item/weapon/electronics/circuitboard/industeral_chemical_dispenser
+	name = T_BOARD("Industeral Chemical Dispenser")
 	build_path = /obj/machinery/chemical_dispenser/industrial
 	req_components = list(
 		/obj/item/weapon/stock_parts/matter_bin = 2,
