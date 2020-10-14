@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/list/loot_tags = list(
 		SPAWN_MATERIAL_BUILDING,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_RARE_ITEM
+		SPAWN_RARE_ITEM = 0.5
 	)
 	var/list/restricted_tags = list()
 	var/dig_amount = 4
@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/min_tags = min(loot_tags.len,2)
 		var/tags_amt = max(round(loot_tags.len*0.3),min_tags)
 		for(var/y in 1 to tags_amt)
-			true_loot_tags += pick_n_take(loot_tags_copy)
+			true_loot_tags += pickweight_n_take(loot_tags_copy)
 		var/list/candidates = lsd.spawn_by_tag(true_loot_tags)
 		candidates -= lsd.spawn_by_tag(restricted_tags)
 		candidates -= lsd.all_spawn_blacklist
@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MEDICAL,
 		SPAWN_SURGERY_TOOL,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_RARE_ITEM
+		SPAWN_RARE_ITEM = 0.5
 	)
 
 /obj/structure/scrap_spawner/vehicle
@@ -390,7 +390,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MATERIAL_BUILDING,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
 		SPAWN_ORE,
-		SPAWN_RARE_ITEM,
+		SPAWN_RARE_ITEM = 0.5
 	)
 
 /obj/structure/scrap_spawner/food
@@ -403,7 +403,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_JUNKFOOD,
 		SPAWN_BOOZE,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_RARE_ITEM
+		SPAWN_RARE_ITEM = 0.5
 	)
 
 /obj/structure/scrap_spawner/guns
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_TOY_WEAPON,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_RARE_ITEM
+		SPAWN_RARE_ITEM = 0.5
 	)
 
 /obj/structure/scrap_spawner/science
@@ -454,8 +454,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_GUN_UPGRADE,
 		SPAWN_SCIENCE,
 		SPAWN_ORE,
-		SPAWN_ODDITY,
-		SPAWN_RARE_ITEM)
+		SPAWN_RARE_ITEM = 0.5)
 
 /obj/structure/scrap_spawner/cloth
 	icontype = "cloth"
@@ -463,7 +462,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	desc = "Pile of second hand clothing for charity."
 	parts_icon = 'icons/obj/structures/scrap/cloth.dmi'
 	rarity_value = 10
-	loot_tags = list(SPAWN_CLOTHING,SPAWN_RARE_ITEM)
+	loot_tags = list(SPAWN_CLOTHING,SPAWN_RARE_ITEM = 0.5)
 	restricted_tags = list(SPAWN_VOID_SUIT)
 
 /obj/structure/scrap_spawner/poor
@@ -475,9 +474,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_tags = list(
 		SPAWN_ITEM,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_ODDITY,
 		SPAWN_ORE,
-		SPAWN_RARE_ITEM
+		SPAWN_RARE_ITEM = 0.5
 	)
 
 /obj/structure/scrap_spawner/poor/large
