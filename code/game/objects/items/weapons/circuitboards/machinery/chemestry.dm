@@ -35,15 +35,35 @@
 /obj/item/weapon/electronics/circuitboard/industeral_chemical_dispenser
 	name = T_BOARD("Industeral Chemical Dispenser")
 	build_path = /obj/machinery/chemical_dispenser/industrial
+	req_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 2,
+		/obj/item/weapon/stock_parts/capacitor = 1,
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1,
+		/obj/item/weapon/cell/medium = 1
+	)
 
 /obj/item/weapon/electronics/circuitboard/soda_chemical_dispenser
 	name = T_BOARD("Soda Chemical Dispenser")
-	build_path = /obj/machinery/chemical_dispenser/industrial
+	build_path = /obj/machinery/chemical_dispenser/soda
+	req_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 2,
+		/obj/item/weapon/stock_parts/capacitor = 1,
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1,
+		/obj/item/weapon/cell/medium = 1
+	)
 
 /obj/item/weapon/electronics/circuitboard/beer_chemical_dispenser
 	name = T_BOARD("Booze Chemical Dispenser")
-	build_path = /obj/machinery/chemical_dispenser/industrial
-
+	build_path = /obj/machinery/chemical_dispenser/beer
+	req_components = list(
+		/obj/item/weapon/stock_parts/matter_bin = 2,
+		/obj/item/weapon/stock_parts/capacitor = 1,
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/console_screen = 1,
+		/obj/item/weapon/cell/medium = 1
+	)
 
 /obj/item/weapon/electronics/circuitboard/electrolyzer
 	name = T_BOARD("Electrolyzer")

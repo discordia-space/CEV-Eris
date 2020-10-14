@@ -322,6 +322,9 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		return TRUE
 	if(findtext(strength, value))
 		return TRUE
+	for(var/i in taste_tag)
+		if(findtext(i, value))
+			return TRUE
 
 /datum/catalog_entry/drink/New(var/datum/reagent/V)
 	if(!istype(V))
