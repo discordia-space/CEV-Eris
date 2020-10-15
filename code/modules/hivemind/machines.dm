@@ -480,7 +480,10 @@
 
 
 /obj/machinery/hivemind_machine/mob_spawner/use_ability()
-	var/mob/living/simple_animal/hostile/hivemind/spawned_mob = new mob_to_spawn(loc)
+	var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
+	var/mob/living/simple_animal/hostile/hivemind/spawned_mob = CATCH.get_item(mob_to_spawn)
+	spawned_mob.loc = src
+	qdel(CATCH)
 	spawned_creatures.Add(spawned_mob)
 	spawned_mob.master = src
 	flick("[icon_state]-anim", src)
