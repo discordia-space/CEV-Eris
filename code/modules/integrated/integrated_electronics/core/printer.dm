@@ -40,8 +40,9 @@ GLOBAL_LIST_EMPTY(circuit_fabricator_recipe_list)
 	var/metal_per_sheet = 10 // One sheet equals this much metal.
 	var/debug = FALSE // If true, metal is infinite.
 
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 3, MATERIAL_SILVER = 3)
+
 	var/upgraded = FALSE		// When hit with an upgrade disk, will turn true, allowing it to print the higher tier circuits.
-//	var/static/list/recipe_list = list()
 	var/current_category = null
 	var/obj/item/device/electronic_assembly/assembly_to_clone = null
 
