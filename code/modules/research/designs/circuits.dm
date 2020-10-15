@@ -95,8 +95,8 @@
 	sort_string = "FAHAC"
 	category = CAT_MEDI
 
-/datum/design/research/circuit/chemical_dispenser_industeral
-	name = "Industeral Chemical Dispenser"
+/datum/design/research/circuit/chemical_dispenser_industrial
+	name = "Industrial Chemical Dispenser"
 	build_path = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/industrial
 	sort_string = "FAHAD"
 	category = CAT_MEDI
