@@ -1634,6 +1634,7 @@
 #include "code\modules\integrated\integrated_electronics\core\helpers.dm"
 #include "code\modules\integrated\integrated_electronics\core\integrated_circuit.dm"
 #include "code\modules\integrated\integrated_electronics\core\pins.dm"
+#include "code\modules\integrated\integrated_electronics\core\printer.dm"
 #include "code\modules\integrated\integrated_electronics\core\tools.dm"
 #include "code\modules\integrated\integrated_electronics\passive\passive.dm"
 #include "code\modules\integrated\integrated_electronics\passive\power.dm"
