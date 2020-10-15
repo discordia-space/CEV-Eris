@@ -61,9 +61,10 @@ SUBSYSTEM_DEF(supply)
 			SEND_SIGNAL(shuttle, COMSIG_SHUTTLE_SUPPLY, AM)
 			sold_atoms += export_item_and_contents(AM, contraband, hacked, dry_run = FALSE)
 
-	for(var/a in exports)
-		var/datum/export/E = a
+	for(var/A in exports)
+		var/datum/export/E = A
 		var/export_text = E.total_printout()
+		GLOB.supply_profit += E.cost
 		if(!export_text)
 			continue
 
@@ -111,7 +112,7 @@ SUBSYSTEM_DEF(supply)
 
 		var/datum/supply_order/SO = S
 		var/datum/supply_pack/SP = SO.object
-
+		GLOB.supply_profit -= SP.cost
 		var/obj/A = new SP.containertype(pickedloc)
 		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
 

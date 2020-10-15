@@ -89,6 +89,9 @@ GLOBAL_VAR_INIT(guild_objectives_score, 0)
 GLOBAL_VAR_INIT(guild_faction_item_loss, 0)
 GLOBAL_VAR_INIT(score_guild_faction_item_loss, 0)
 
+GLOBAL_VAR_INIT(supply_profit, 0)
+GLOBAL_VAR_INIT(guild_profit_score, 0)
+
 //moebius
 GLOBAL_VAR_INIT(moebius_score, 0)
 GLOBAL_VAR_INIT(initial_moebius_score, 0)
@@ -99,19 +102,33 @@ GLOBAL_VAR_INIT(moebius_objectives_score, 0)
 GLOBAL_VAR_INIT(moebius_faction_item_loss, 0)
 GLOBAL_VAR_INIT(score_moebius_faction_item_loss, 0)
 
+
+GLOBAL_VAR_INIT(crew_dead, 0)
+GLOBAL_VAR_INIT(score_crew_dead, 0)
+
+
+GLOBAL_VAR_INIT(research_point_gained, 0)
+GLOBAL_VAR_INIT(score_research_point_gained, 0)
+
 //ironhammer
 GLOBAL_VAR_INIT(ironhammer_score, 0)
-GLOBAL_VAR_INIT(initial_ironhammer_score, 500)
+GLOBAL_VAR_INIT(initial_ironhammer_score, 750)
 
 GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
 GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
-
 
 GLOBAL_VAR_INIT(ironhammer_faction_item_loss, 0)
 GLOBAL_VAR_INIT(score_ironhammer_faction_item_loss, 0)
 
 GLOBAL_VAR_INIT(completed_antag_contracts, 0)
 GLOBAL_VAR_INIT(score_antag_contracts, 0)
+
+GLOBAL_VAR_INIT(captured_or_dead_antags, 0)
+GLOBAL_VAR_INIT(captured_or_dead_antags_score, 0)
+
+GLOBAL_VAR_INIT(ironhammer_operative_dead, 0)
+GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
+
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
 	//Thresholds for Score Ratings
@@ -180,7 +197,23 @@ GLOBAL_VAR_INIT(score_antag_contracts, 0)
 
 	//if(SSticker && SSticker.mode)
 	//	SSticker.mode.set_scoreboard_gvars()
-
+	for(var/datum/mind/M in SSticker.minds)
+		if(!M.current)
+			continue
+		if(M.current.stat == DEAD)
+			if(M.assigned_job && M.assigned_job.faction == "CEV Eris")
+				if(M.assigned_job.department == DEPARTMENT_SECURITY)
+					GLOB.ironhammer_operative_dead++
+				if(!M.antagonist.len)
+					GLOB.crew_dead++
+			if(M.antagonist.len)
+				GLOB.captured_or_dead_antags++
+		else
+			if(M.antagonist.len)
+				var/area/A = get_area(M.current)
+				if(istype(A, /area/eris/security/prison) || istype(A, /area/eris/security/brig) || M.current.restrained())
+					GLOB.captured_or_dead_antags++
+		if(ishuman(M.current))
 	//init technomancer score
 	var/obj/item/weapon/cell/large/high/HC = /obj/item/weapon/cell/large/high
 	var/min_chage = initial(HC.maxcharge) * 0.6
@@ -241,9 +274,9 @@ GLOBAL_VAR_INIT(score_antag_contracts, 0)
 
 
 	// NeoTheology Modifiers
-	GLOB.score_neotheology_faction_item_loss -= 150 * GLOB.neotheology_faction_item_loss
+	GLOB.score_neotheology_faction_item_loss -= GLOB.neotheology_faction_item_loss * 150 //300
 	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
-	GLOB.score_mess -= GLOB.dirt_areas * 25
+	GLOB.score_mess -= GLOB.dirt_areas * 25 //~250
 	GLOB.biomatter_score = round(min(GLOB.biomatter_neothecnology_amt/10, 350)) //350
 	GLOB.grup_ritual_score += GLOB.grup_ritual_performed * 5
 	GLOB.new_neothecnology_convert_score = GLOB.new_neothecnology_convert * 50 // ~150-300
@@ -252,24 +285,30 @@ GLOBAL_VAR_INIT(score_antag_contracts, 0)
 
 
 	//Moebius score 
-	GLOB.score_moebius_faction_item_loss -= 150 * GLOB.moebius_faction_item_loss
-	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25
+	GLOB.score_moebius_faction_item_loss -= GLOB.moebius_faction_item_loss * 150 //300
+	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25 // ~100
+	GLOB.score_crew_dead -=	GLOB.crew_dead++ * 200 // ~200
+	GLOB.score_research_point_gained = round(GLOB.research_point_gained / 10) // or /100? review it
 
-	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score
+	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score + GLOB.score_crew_dead
 
 	//ironhammer score
 	GLOB.score_ironhammer_faction_item_loss -= 150 * GLOB.ironhammer_faction_item_loss
 	GLOB.ironhammer_objectives_score = GLOB.ironhammer_objectives_completed * 25
-	GLOB.score_antag_contracts -= GLOB.completed_antag_contracts * 25
+	GLOB.score_antag_contracts -= GLOB.completed_antag_contracts * 30
+	GLOB.ironhammer_operative_dead_score -= GLOB.ironhammer_operative_dead * 50
+	GLOB.captured_or_dead_antags_score = 100 * GLOB.captured_or_dead_antags
 
-
-	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts
+	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts + GLOB.ironhammer_operative_dead_score + GLOB.captured_or_dead_antags_score
 
 	//guild score
 	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss
-	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25
+	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25 // ~100
+	GLOB.guild_profit_score	= round(GLOB.supply_profit/50) //~400
 
-	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score
+
+
+	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score + GLOB.guild_profit_score
 
 	// Bonus Modifiers
 	var/deathpoints = GLOB.score_deadcrew * 25 //done

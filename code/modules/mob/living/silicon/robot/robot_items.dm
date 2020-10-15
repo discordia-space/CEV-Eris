@@ -32,7 +32,7 @@
 				for(var/T in loaded_item.origin_tech)
 					files.check_item_for_tech(loaded_item)
 					var/object_research_value = files.experiments.get_object_research_value(loaded_item)
-					files.research_points += object_research_value
+					files.adjust_research_points(object_research_value)
 					files.experiments.do_research_object(loaded_item)
 					to_chat(user, "\The [loaded_item] incremented the research points by [object_research_value].")
 					for(var/mob/living/carbon/human/H in viewers(user))
