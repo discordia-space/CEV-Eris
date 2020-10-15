@@ -318,17 +318,17 @@
 #define SPAWN_TAG_BOOZE "obj,item,drink,bottle_drink,bottle_alcohol"
 #define SPAWN_TAG_DRINK_SODA "obj,item,drink,bottle_drink,cans"
 
-// item -snaks
+// item -snacks
 #define SPAWN_JUNKFOOD "junkfood"
 #define SPAWN_PIZZA "pizza"
 #define SPAWN_RATIONS "rations"
 #define SPAWN_COOKED_FOOD "cooked_food"
 
-#define SPAWN_TAG_RATIONS "obj,item,snaks,rations"
-#define SPAWN_TAG_JUNKFOOD "obj,item,snaks,junkfood"
-#define SPAWN_TAG_JUNKFOOD_RATIONS "obj,item,snaks,junkfood,rations"
-#define SPAWN_TAG_PIZZA "obj,item,snaks,pizza"
-#define SPAWN_TAG_COOKED_FOOD "obj,item,snaks,cooked"
+#define SPAWN_TAG_RATIONS "obj,item,snacks,rations"
+#define SPAWN_TAG_JUNKFOOD "obj,item,snacks,junkfood"
+#define SPAWN_TAG_JUNKFOOD_RATIONS "obj,item,snacks,junkfood,rations"
+#define SPAWN_TAG_PIZZA "obj,item,snacks,pizza"
+#define SPAWN_TAG_COOKED_FOOD "obj,item,snacks,cooked"
 
 // ITEM - GRENADES
 #define SPAWN_TAG_GRENADE "obj,item,grenade"
