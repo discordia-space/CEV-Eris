@@ -297,7 +297,7 @@
 		wrench(user, O)
 		return
 
-	if(istype(O, /obj/item/weapon/tool))
+	if(istool(O))
 		return src.attack_hand(user)
 
 

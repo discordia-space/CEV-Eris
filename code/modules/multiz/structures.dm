@@ -157,7 +157,7 @@
 		if(!A.CanPass(M))
 			to_chat(M, SPAN_NOTICE("\A [A] is blocking \the [src]."))
 			return
-		else if (A.density && istype(A, /mob))
+		else if (A.density && ismob(A))
 			tempMob = A
 			continue
 

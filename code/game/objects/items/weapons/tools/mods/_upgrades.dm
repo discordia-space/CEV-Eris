@@ -274,7 +274,7 @@
 	if(weapon_upgrades[GUN_UPGRADE_ZOOM])
 		G.zoom_factor += weapon_upgrades[GUN_UPGRADE_ZOOM]
 		G.initialize_scope()
-		if(istype(G.loc, /mob))
+		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
 
@@ -507,7 +507,7 @@
 
 	var/obj/item/weapon/tool/T //For dealing damage to the item
 
-	if(istype(upgrade_loc, /obj/item/weapon/tool))
+	if(istool(upgrade_loc))
 		T = upgrade_loc
 
 	ASSERT(istype(upgrade_loc))

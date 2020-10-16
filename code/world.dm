@@ -28,7 +28,7 @@ var/global/datum/global_init/init = new ()
 /datum/global_init/Destroy()
 	return 1
 
-var/game_id = null
+var/game_id
 /proc/generate_gameid()
 	if(game_id != null)
 		return
