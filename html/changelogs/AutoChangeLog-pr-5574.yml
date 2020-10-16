@@ -1,8 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - rscadd: 'biome spawners: These are a smart spawner that prioritizes the most dangerous
-      mobs and traps depending on the amount of loot in the area.'
-  - tweak: several deep maint maps work with biomes.
-  - tweak: the trash piles now work on spawn tags.
-  - tweak: trash piles now always contain at least one rare item.

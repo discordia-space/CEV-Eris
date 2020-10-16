@@ -1,7 +1,0 @@
-author: genessee596
-delete-after: true
-changes:
-  - rscadd: Three new autolathe disks that can print armor can now be found in maintenance,
-      one of which that can also be bought at an Asters Print-o-Mat. Two more disks
-      that print IH faction armor can be found in the SecTech.
-  - tweak: The SecTech now vends Ironhammer Miscellaneous Pack design disks.

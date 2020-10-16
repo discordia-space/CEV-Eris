@@ -1,9 +1,0 @@
-author: Wouju
-delete-after: true
-changes:
-  - rscadd: Added new hivemind surname, added ability for hivemind to convert disposal
-      bins
-  - rscdel: Removed hivemind ability to convert plumbing ducts
-  - bugfix: Hivemind death is now properly announced
-  - refactor: code is easier to look at, i hope (it looks more like an actual list
-      and you don't have to scroll to the side too much)
