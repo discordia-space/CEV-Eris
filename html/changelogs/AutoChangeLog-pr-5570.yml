@@ -1,0 +1,8 @@
+author: maikilangiolo
+delete-after: true
+changes:
+  - rscadd: added windows with remote shutters to club kitchen
+  - rscadd: added windoor in front of booze-o-mat
+  - rscadd: added 'take-away' counter
+  - tweak: switched places of condi-master and sink
+  - tweak: moved a light fixture and air alarm
