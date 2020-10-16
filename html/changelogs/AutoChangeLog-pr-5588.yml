@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - rscadd: Press B to resist.
+  - rscadd: Ctrl+WASD changes your face direction, Alt+WASD locks your face direction.
