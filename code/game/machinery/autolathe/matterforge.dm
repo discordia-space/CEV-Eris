@@ -281,18 +281,17 @@
 
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
 	if(I.datum_components.Find(/datum/component/inspiration))
-		var/obj/item/weapon/oddity/ps = I
-		if(ps.oddity_stats[STAT_MEC]> 0)
+		var/datum/component/inspiration/cringe = I.datum_components[/datum/component/inspiration]
+		if(cringe.power > 0)
 			if(!power_source)
 				user.drop_item(I)
 				I.forceMove(src)
-				power_source = ps
-
+				power_source = I
 			else
 				user.drop_item(I)
 				I.forceMove(src)
 				power_source.forceMove(loc)
-				power_source = ps
+				power_source = I
 			return
 
 	if(power_source)
