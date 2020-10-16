@@ -126,8 +126,26 @@
 							/datum/design/research/item/custom_circuit_assembly/medium,
 							/datum/design/research/item/custom_circuit_assembly/drone,
 							/datum/design/research/item/custom_circuit_assembly/large,
-							/datum/design/research/item/custom_circuit_assembly/implant
+							/datum/design/research/item/custom_circuit_assembly/implant,
+							/datum/design/research/item/custom_circuit_assembly/printer
 							)
+
+
+/datum/technology/custom_circuits_advanced
+	name = "Advanced Designs"
+	desc = "Integral Ciruits - Advanced Designs"
+	tech_type = RESEARCH_ENGINEERING
+
+	x = 0.4
+	y = 0.9
+	icon = "tesla"
+
+	required_technologies = list(/datum/technology/custom_circuits)
+	required_tech_levels = list()
+	cost = 2000
+
+	unlocks_designs = list(/datum/design/research/item/custom_circuit_assembly/advanced_designs)
+
 /* No tesla engine?
 /datum/technology/tesla
 	name = "Tesla"

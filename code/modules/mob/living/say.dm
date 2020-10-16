@@ -276,12 +276,9 @@ var/list/channel_to_radio_key = new
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
 				listening_falloff |= M
 
-		for(var/X in GLOB.hearing_objects)
-			if(!isobj(X))
-				continue
-			var/obj/O = X
-			if(O.locs.len && (O.locs[1] in hear))
-				listening_obj |= O
+		for(var/obj in GLOB.hearing_objects)
+			if(get_turf(obj) in hear)
+				listening_obj |= obj
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
