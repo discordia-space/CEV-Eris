@@ -1,0 +1,5 @@
+author: genessee596
+delete-after: true
+changes:
+  - tweak: The China Lake and it's specialized ammunition should now correctly spawn
+      in places across the ship.
