@@ -120,6 +120,7 @@
 	icon_state = "thunderdome"
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 1
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/armor/bulletproof
 	name = "bulletproof helmet"

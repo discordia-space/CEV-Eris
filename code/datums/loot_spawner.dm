@@ -180,3 +180,28 @@
 		if(all_spawn_value_by_path[path] == spawn_value)
 			things += path
 	return pick(things)
+
+/datum/loot_spawner_data/proc/take_tags(list/paths)
+	var/list/local_tags = list()
+	var/atom/movable/A
+	for(var/path in paths)
+		A = path
+		var/list/spawn_tags = splittext(initial(A.spawn_tags), ",")
+		for(var/tag in spawn_tags)
+			if(tag in local_tags)
+				continue
+			local_tags += list(tag)
+	return local_tags
+
+/datum/loot_spawner_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE)
+	var/list/candidates = spawn_by_tag(tags)
+	candidates -= spawn_by_tag(bad_tags)
+	if(!allow_blacklist)
+		candidates -= all_spawn_blacklist
+	if(low_price)
+		candidates -= spawns_lower_price(candidates, low_price)
+	if(top_price)
+		candidates -= spawns_upper_price(candidates, top_price)
+	if(filter_density)
+		candidates = filter_densty(candidates)
+	return candidates

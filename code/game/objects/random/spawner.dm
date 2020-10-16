@@ -156,21 +156,6 @@
 	if(biome_spawner && biome && biome.price_tag >= biome.cap_price)
 		return
 	var/list/candidates = valid_candidates()
-	//if(!candidates.len)
-	//	return
-	return pick_spawn(candidates)
-
-/obj/spawner/proc/valid_candidates()
-	var/list/candidates = lsd.spawn_by_tag(tags_to_spawn)
-	candidates -= lsd.spawn_by_tag(restricted_tags)
-	candidates -= exclusion_paths
-	if(!allow_blacklist)
-		candidates -= lsd.all_spawn_blacklist
-	if(low_price)
-		candidates -= lsd.spawns_lower_price(candidates, low_price)
-	if(top_price)
-		candidates -= lsd.spawns_upper_price(candidates, top_price)
-	candidates += include_paths
 	if(biome_spawner && biome && biome.allowed_only_top)
 		var/count = 1
 		if(istype(src, /obj/spawner/traps))
@@ -182,6 +167,14 @@
 			if(top <= candidates.len)
 				var/top_spawn = CLAMP(top, 1, min(candidates.len,7))
 				candidates = lsd.only_top_candidates(candidates, top_spawn)
+	//if(!candidates.len)
+	//	return
+	return pick_spawn(candidates)
+
+/obj/spawner/proc/valid_candidates()
+	var/list/candidates = lsd.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price)
+	candidates -= exclusion_paths
+	candidates += include_paths
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
