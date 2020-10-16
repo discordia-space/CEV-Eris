@@ -1,61 +1,46 @@
+GLOBAL_VAR_INIT(score_crewscore, 1000)
 #define MAX_FACTION_SCORE 1000
-//////SCORE STUFF
-//Goonstyle scoreboard
-GLOBAL_VAR_INIT(score_crewscore, 0) // this is the overall var/score for the whole round
-GLOBAL_VAR_INIT(score_stuffshipped, 0) // how many useful items have cargo shipped out?
-GLOBAL_VAR_INIT(score_stuffharvested, 0) // how many harvests have hydroponics done?
-GLOBAL_VAR_INIT(score_oremined, 0) // obvious
-GLOBAL_VAR_INIT(score_researchdone, 0)
-GLOBAL_VAR_INIT(score_eventsendured, 0) // how many random events did the station survive?
-GLOBAL_VAR_INIT(score_escapees, 0) // how many people got out alive?
-GLOBAL_VAR_INIT(score_deadcrew, 0) // dead bodies on the station, oh no
-GLOBAL_VAR_INIT(score_meals, 0)
-GLOBAL_VAR_INIT(score_disease, 0) // how many rampant, uncured diseases are on board the station
-GLOBAL_VAR_INIT(score_deadcommand, 0) // used during rev, how many command staff perished
-GLOBAL_VAR_INIT(score_arrested, 0) // how many traitors/revs/whatever are alive in the brig
-GLOBAL_VAR_INIT(score_traitorswon, 0) // how many traitors were successful?
-GLOBAL_VAR_INIT(score_allarrested, 0) // did the crew catch all the enemies alive?
-GLOBAL_VAR_INIT(score_opkilled, 0) // used during nuke mode, how many operatives died?
-GLOBAL_VAR_INIT(score_disc, 0) // is the disc safe and secure?
-GLOBAL_VAR_INIT(score_nuked, 0) // was the station blown into little bits?
-GLOBAL_VAR_INIT(score_nuked_penalty, 0) //penalty for getting blown to bits
 
-// these ones are mainly for the stat panel
-GLOBAL_VAR_INIT(score_messbonus, 0) // if there are no messes on the station anywhere, huge bonus
-GLOBAL_VAR_INIT(score_deadaipenalty, 0) // is the AI dead? if so, big penalty
-GLOBAL_VAR_INIT(score_foodeaten, 0)	// nom nom nom
-GLOBAL_VAR_INIT(score_clownabuse, 0)	// how many times a clown was punched, struck or otherwise maligned
-GLOBAL_VAR(score_richestname)	// this is all stuff to show who was the richest alive on the shuttle
-GLOBAL_VAR(score_richestjob)	// kinda pointless if you dont have a money system i guess
-GLOBAL_VAR_INIT(score_richestcash, 0)
-GLOBAL_VAR(score_richestkey)
-GLOBAL_VAR(score_dmgestname) // who had the most damage on the shuttle (but was still alive)
-GLOBAL_VAR(score_dmgestjob)
-GLOBAL_VAR_INIT(score_dmgestdamage, 0)
-GLOBAL_VAR(score_dmgestkey)
+//moebius
+GLOBAL_VAR_INIT(moebius_score, 0)
+GLOBAL_VAR_INIT(initial_moebius_score, 0)
+
+GLOBAL_VAR_INIT(moebius_objectives_completed, 0)
+GLOBAL_VAR_INIT(moebius_objectives_score, 0)
+
+GLOBAL_VAR_INIT(moebius_faction_item_loss, 0)
+GLOBAL_VAR_INIT(score_moebius_faction_item_loss, 0)
 
 
-//TECHNOMANCERS
-GLOBAL_VAR_INIT(technomancer_score, 0)
-GLOBAL_VAR_INIT(initial_technomancer_score, 0)
+GLOBAL_VAR_INIT(crew_dead, 0)
+GLOBAL_VAR_INIT(score_crew_dead, 0)
 
-GLOBAL_VAR_INIT(area_powerloss, 0) // how many APCs have poor charge?
-GLOBAL_VAR_INIT(score_powerloss, 0)
 
-GLOBAL_VAR_INIT(area_fireloss, 0) //air/fire issues
-GLOBAL_VAR_INIT(score_fireloss, 0)
+GLOBAL_VAR_INIT(research_point_gained, 0)
+GLOBAL_VAR_INIT(score_research_point_gained, 0)
 
-GLOBAL_VAR_INIT(score_ship_shield, 0)
-GLOBAL_VAR_INIT(field_radius, 0)
 
-GLOBAL_VAR_INIT(all_smes_powered, TRUE)
-GLOBAL_VAR_INIT(score_smes_powered, 0)
+GLOBAL_LIST_EMPTY(moebius_autopsies_mobs)
+GLOBAL_VAR_INIT(score_moebius_autopsies_mobs, 0)
 
-GLOBAL_VAR_INIT(technomancer_objectives_completed, 0)
-GLOBAL_VAR_INIT(score_technomancer_objectives, 0)
-GLOBAL_VAR_INIT(technomancer_faction_item_loss, 0)
-GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
+//ironhammer
+GLOBAL_VAR_INIT(ironhammer_score, 0)
+GLOBAL_VAR_INIT(initial_ironhammer_score, 750)
 
+GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
+GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
+
+GLOBAL_VAR_INIT(ironhammer_faction_item_loss, 0)
+GLOBAL_VAR_INIT(score_ironhammer_faction_item_loss, 0)
+
+GLOBAL_VAR_INIT(completed_antag_contracts, 0)
+GLOBAL_VAR_INIT(score_antag_contracts, 0)
+
+GLOBAL_VAR_INIT(captured_or_dead_antags, 0)
+GLOBAL_VAR_INIT(captured_or_dead_antags_score, 0)
+
+GLOBAL_VAR_INIT(ironhammer_operative_dead, 0)
+GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 
 //Neotheology_score
 GLOBAL_VAR_INIT(neotheology_score, 0)
@@ -92,42 +77,29 @@ GLOBAL_VAR_INIT(score_guild_faction_item_loss, 0)
 GLOBAL_VAR_INIT(supply_profit, 0)
 GLOBAL_VAR_INIT(guild_profit_score, 0)
 
-//moebius
-GLOBAL_VAR_INIT(moebius_score, 0)
-GLOBAL_VAR_INIT(initial_moebius_score, 0)
+GLOBAL_VAR_INIT(guild_shared_gears_score, 0)
+GLOBAL_VAR_INIT(guild_shared_gears, 0)
 
-GLOBAL_VAR_INIT(moebius_objectives_completed, 0)
-GLOBAL_VAR_INIT(moebius_objectives_score, 0)
+//TECHNOMANCERS
+GLOBAL_VAR_INIT(technomancer_score, 0)
+GLOBAL_VAR_INIT(initial_technomancer_score, 0)
 
-GLOBAL_VAR_INIT(moebius_faction_item_loss, 0)
-GLOBAL_VAR_INIT(score_moebius_faction_item_loss, 0)
+GLOBAL_VAR_INIT(area_powerloss, 0) // how many APCs have poor charge?
+GLOBAL_VAR_INIT(score_powerloss, 0)
 
+GLOBAL_VAR_INIT(area_fireloss, 0) //air/fire issues
+GLOBAL_VAR_INIT(score_fireloss, 0)
 
-GLOBAL_VAR_INIT(crew_dead, 0)
-GLOBAL_VAR_INIT(score_crew_dead, 0)
+GLOBAL_VAR_INIT(score_ship_shield, 0)
+GLOBAL_VAR_INIT(field_radius, 0)
 
+GLOBAL_VAR_INIT(all_smes_powered, TRUE)
+GLOBAL_VAR_INIT(score_smes_powered, 0)
 
-GLOBAL_VAR_INIT(research_point_gained, 0)
-GLOBAL_VAR_INIT(score_research_point_gained, 0)
-
-//ironhammer
-GLOBAL_VAR_INIT(ironhammer_score, 0)
-GLOBAL_VAR_INIT(initial_ironhammer_score, 750)
-
-GLOBAL_VAR_INIT(ironhammer_objectives_completed, 0)
-GLOBAL_VAR_INIT(ironhammer_objectives_score, 0)
-
-GLOBAL_VAR_INIT(ironhammer_faction_item_loss, 0)
-GLOBAL_VAR_INIT(score_ironhammer_faction_item_loss, 0)
-
-GLOBAL_VAR_INIT(completed_antag_contracts, 0)
-GLOBAL_VAR_INIT(score_antag_contracts, 0)
-
-GLOBAL_VAR_INIT(captured_or_dead_antags, 0)
-GLOBAL_VAR_INIT(captured_or_dead_antags_score, 0)
-
-GLOBAL_VAR_INIT(ironhammer_operative_dead, 0)
-GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
+GLOBAL_VAR_INIT(technomancer_objectives_completed, 0)
+GLOBAL_VAR_INIT(score_technomancer_objectives, 0)
+GLOBAL_VAR_INIT(technomancer_faction_item_loss, 0)
+GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
@@ -148,55 +120,7 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 	#define NANOTRANSEN_FINEST 5000
 
 	// Score Calculation and Display
-
-	// Who is alive/dead, who escaped
-	for(var/mob/living/silicon/ai/I in GLOB.player_list)//evan vigila esto
-		if(I.stat == DEAD && isStationLevel(I.z))
-			GLOB.score_deadaipenalty++
-			GLOB.score_deadcrew++
-
-	for(var/thing in GLOB.human_mob_list)
-		var/mob/living/carbon/human/I = thing
-		if(I.stat == DEAD && isStationLevel(I.z))
-			GLOB.score_deadcrew++
-
-	//if(SSshuttle.emergency.mode >= SHUTTLE_ENDGAME)
-	for(var/mob/living/player in GLOB.player_list)//evan vigila esto
-		if(player.stat != DEAD)
-			var/turf/location = get_turf(player.loc)
-			var/area/escape_zone = locate(/area/shuttle/escape)
-			if(location in escape_zone)
-				GLOB.score_escapees++
-
-	var/cash_score = 0
-	var/dmg_score = 0
-
-	//if(SSshuttle.emergency.mode >= SHUTTLE_ENDGAME)
-	for(var/thing in GLOB.human_mob_list)
-		var/mob/living/carbon/human/E = thing
-		cash_score = 0
-		dmg_score = 0
-		var/turf/location = get_turf(E.loc)
-		//var/area/escape_zone = SSshuttle.emergency.areaInstance
-
-		if(E.stat != DEAD && location)// && (location in escape_zone)) // Escapee Scores
-			cash_score = get_score_container_worth(E)
-
-			if(cash_score > GLOB.score_richestcash)
-				GLOB.score_richestcash = cash_score
-				GLOB.score_richestname = E.real_name
-				GLOB.score_richestjob = E.job
-				GLOB.score_richestkey = E.key
-
-			dmg_score = E.getBruteLoss() + E.getFireLoss() + E.getToxLoss() + E.getOxyLoss()
-			if(dmg_score > GLOB.score_dmgestdamage)
-				GLOB.score_dmgestdamage = dmg_score
-				GLOB.score_dmgestname = E.real_name
-				GLOB.score_dmgestjob = E.job
-				GLOB.score_dmgestkey = E.key
-
-	//if(SSticker && SSticker.mode)
-	//	SSticker.mode.set_scoreboard_gvars()
+	var/list/guild_fingerprints = new
 	for(var/datum/mind/M in SSticker.minds)
 		if(!M.current)
 			continue
@@ -213,12 +137,23 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 				var/area/A = get_area(M.current)
 				if(istype(A, /area/eris/security/prison) || istype(A, /area/eris/security/brig) || M.current.restrained())
 					GLOB.captured_or_dead_antags++
-		if(ishuman(M.current))
+			else if(M.assigned_job && M.assigned_job.department == DEPARTMENT_GUILD && ishuman(M.current))
+				var/mob/living/carbon/human/H = M.current
+				guild_fingerprints += H.get_full_print()
+
+	for(var/mob/living/carbon/human/H in (GLOB.player_list & GLOB.human_mob_list  & GLOB.living_mob_list))
+		if(H.mind && H.mind.assigned_job && H.mind.assigned_job.faction == "CEV Eris" && H.mind.assigned_job.department != DEPARTMENT_GUILD && !H.mind.antagonist.len)
+			for(var/obj/item/I in H.GetAllContents())
+				var/full_print = H.get_full_print()
+				if(full_print in guild_fingerprints)
+					GLOB.guild_shared_gears++
+					break
+
 	//init technomancer score
 	var/obj/item/weapon/cell/large/high/HC = /obj/item/weapon/cell/large/high
 	var/min_chage = initial(HC.maxcharge) * 0.6
 	// Check station's power levels
-	for(var/area/A in ship_areas)//evan revisa esto
+	for(var/area/A in ship_areas)
 		if(A.fire || A.atmosalm)
 			GLOB.area_fireloss++
 		if(!A.apc)
@@ -229,7 +164,7 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 				GLOB.area_powerloss++
 
 	var/smes_count = 0
-	for(var/obj/machinery/power/smes/S in SSmachines.machinery)//evan revisa esto
+	for(var/obj/machinery/power/smes/S in SSmachines.machinery)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(S.charge < S.capacity*0.7)
@@ -238,15 +173,12 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 	if(smes_count == 0)
 		GLOB.all_smes_powered = FALSE
 
-
-	for(var/obj/machinery/power/shield_generator/S in SSmachines.machinery)//evan revisa esto
+	for(var/obj/machinery/power/shield_generator/S in SSmachines.machinery)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(!S.running) continue
 		GLOB.field_radius += S.field_radius
 	GLOB.field_radius = CLAMP(GLOB.field_radius, 0, world.maxx)
-
-
 
 	// technomancer Modifiers
 	if(GLOB.all_smes_powered)
@@ -258,7 +190,6 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 	GLOB.score_technomancer_faction_item_loss -= 150 * GLOB.technomancer_faction_item_loss
 
 	GLOB.technomancer_score = GLOB.initial_technomancer_score + GLOB.score_smes_powered + GLOB.score_technomancer_objectives + GLOB.score_ship_shield + GLOB.score_fireloss + GLOB.score_powerloss + GLOB.score_technomancer_faction_item_loss
-	//END technomancers
 
 	// NeoTheology score
 	var/list/dirt_areas = list()
@@ -288,9 +219,10 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 	GLOB.score_moebius_faction_item_loss -= GLOB.moebius_faction_item_loss * 150 //300
 	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25 // ~100
 	GLOB.score_crew_dead -=	GLOB.crew_dead++ * 200 // ~200
-	GLOB.score_research_point_gained = round(GLOB.research_point_gained / 10) // or /100? review it
+	GLOB.score_research_point_gained = round(GLOB.research_point_gained / 20) // or /100? review it
+	GLOB.score_moebius_autopsies_mobs = GLOB.moebius_autopsies_mobs.len * 15 // ~75
 
-	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score + GLOB.score_crew_dead
+	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score + GLOB.score_crew_dead + GLOB.score_research_point_gained + GLOB.score_moebius_autopsies_mobs
 
 	//ironhammer score
 	GLOB.score_ironhammer_faction_item_loss -= 150 * GLOB.ironhammer_faction_item_loss
@@ -302,81 +234,22 @@ GLOBAL_VAR_INIT(ironhammer_operative_dead_score, 0)
 	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts + GLOB.ironhammer_operative_dead_score + GLOB.captured_or_dead_antags_score
 
 	//guild score
-	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss
+	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss // ~-300
 	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25 // ~100
-	GLOB.guild_profit_score	= round(GLOB.supply_profit/50) //~400
-
-
+	GLOB.guild_profit_score	= min(round(GLOB.supply_profit/50), 0) // ? review it
+	GLOB.guild_shared_gears_score = GLOB.guild_shared_gears * 30 // ~150-300
 
 	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score + GLOB.guild_profit_score
 
-	// Bonus Modifiers
-	var/deathpoints = GLOB.score_deadcrew * 25 //done
-	var/researchpoints = GLOB.score_researchdone * 30
-	var/eventpoints = GLOB.score_eventsendured * 50
-	var/escapoints = GLOB.score_escapees * 25 //done
-	var/harvests = GLOB.score_stuffharvested * 5
-	var/shipping = GLOB.score_stuffshipped * 5
-	var/mining = GLOB.score_oremined * 2 //done, might want polishing
-	var/meals = GLOB.score_meals * 5
-	var/messpoints
-
-	if(GLOB.score_mess != 0)
-		messpoints = GLOB.score_mess //done
-	var/plaguepoints = GLOB.score_disease * 30
-
-
-	// Good Things
-	GLOB.score_crewscore += shipping
-	GLOB.score_crewscore += harvests
-	GLOB.score_crewscore += mining
-	GLOB.score_crewscore += researchpoints
-	GLOB.score_crewscore += eventpoints
-	GLOB.score_crewscore += escapoints
-
-
-	GLOB.score_crewscore += meals
-	if(GLOB.score_allarrested) // This only seems to be implemented for Rev and Nukies. -DaveKorhal
-		GLOB.score_crewscore *= 3 // This needs to be here for the bonus to be applied properly
-
-
-	GLOB.score_crewscore -= deathpoints
-	if(GLOB.score_deadaipenalty)
-		GLOB.score_crewscore -= 250
-
-
-	GLOB.score_crewscore -= messpoints
-	GLOB.score_crewscore -= plaguepoints
 
 	// Show the score - might add "ranks" later
-	to_chat(world, "<b>The crew's final score is:</b>")
-	to_chat(world, "<b><font size='4'>[GLOB.score_crewscore]</font></b>")
+	//to_chat(world, "<b>The crew's final score is:</b>")
+	//to_chat(world, "<b><font size='4'>[GLOB.score_crewscore]</font></b>")
 	for(var/mob/E in GLOB.player_list)
 		//if(E.client && !E.get_preference(PREFTOGGLE_DISABLE_SCOREBOARD))
 		E.scorestats()
 
-// A recursive function to properly determine the wealthiest escapee
-/datum/controller/subsystem/ticker/proc/get_score_container_worth(atom/C, level=0)
-	if(level >= 5)
-		// in case the containers recurse or something
-		return 0
-	else
-		. = 0
-		//for(var/obj/item/weapon/card/id/id in C.contents)
-			//var/datum/money_account/A = get_money_account(id.associated_account_number)revisa esto
-			// has an account?
-		//	if(A)
-		//		. += A.money
-		for(var/obj/item/weapon/spacecash/cash in C.contents)
-			. += cash.worth
-		for(var/obj/item/weapon/storage/S in C.contents)
-			. += .(S, level + 1)
 
-/datum/game_mode/proc/get_scoreboard_stats()
-	return
-
-/datum/game_mode/proc/set_scoreboard_gvars()
-	return
 /* backup
 /mob/proc/scorestats()
 	var/dat = "<b>Round Statistics and Score</b><br><hr>"
@@ -477,9 +350,66 @@ backup */
 	var/dat = "<b>Round Statistics and Score</b><br><hr>"
 	//if(SSticker && SSticker.mode)
 	//	dat += SSticker.mode.get_scoreboard_stats()
+//ironhammer
 
 	dat += {"
 	<b><u>Faction Scores</u></b><br>
+	<u>Ironhammer scores</u><br>
+	<b>Base score:</b> [green_text(GLOB.initial_ironhammer_score)]<br>
+	<b>Faction item perdidos:</b> [GLOB.ironhammer_faction_item_loss] ([to_score_color(GLOB.score_ironhammer_faction_item_loss)] Points)<br>
+	<b>Faction Objectives:</b> [GLOB.ironhammer_objectives_completed] ([to_score_color(GLOB.ironhammer_objectives_score)] Points)<br>
+	<b>contratos completados:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
+	<b>antags capturados o asesinados:</b> [GLOB.captured_or_dead_antags] ([to_score_color(GLOB.captured_or_dead_antags_score)] Points)<br>
+	<b>operativos muertos:</b> [GLOB.ironhammer_operative_dead] ([to_score_color(GLOB.ironhammer_operative_dead_score)] Points)<br>
+	<b>Final score:</b> [get_color_score(GLOB.ironhammer_score, MAX_FACTION_SCORE)] Points<br>
+	"}
+
+	dat += {"
+	<b><u>Faction Scores</u></b><br>
+	<u>moebius scores</u><br>
+	<b>Base score:</b> [green_text(GLOB.initial_moebius_score)]<br>
+	<b>Faction item perdidos:</b> [GLOB.moebius_faction_item_loss] ([to_score_color(GLOB.score_moebius_faction_item_loss)] Points)<br>
+	<b>Faction Objectives:</b> [GLOB.moebius_objectives_completed] ([to_score_color(GLOB.moebius_objectives_score)] Points)<br>
+	<b>tripulacion muerta:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
+	<b>research poitns ganados:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
+	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
+	<b>Final score:</b> [get_color_score(GLOB.moebius_score, MAX_FACTION_SCORE)] Points<br>
+	"}
+
+GLOBAL_VAR_INIT(neotheology_score, 0)
+GLOBAL_VAR_INIT(initial_neotheology_score, 250)
+
+GLOBAL_VAR_INIT(neotheology_objectives_completed, 0)
+GLOBAL_VAR_INIT(neotheology_objectives_score, 0)
+
+GLOBAL_VAR_INIT(score_neotheology_faction_item_loss, 0)
+GLOBAL_VAR_INIT(neotheology_faction_item_loss, 0)
+
+GLOBAL_VAR_INIT(dirt_areas, 0) // dirt areas
+GLOBAL_VAR_INIT(score_mess, 0)
+
+GLOBAL_VAR_INIT(biomatter_neothecnology_amt, 0)
+GLOBAL_VAR_INIT(biomatter_score, 0)
+
+GLOBAL_VAR_INIT(grup_ritual_performed, 0)
+GLOBAL_VAR_INIT(grup_ritual_score, 0)
+
+GLOBAL_VAR_INIT(new_neothecnology_convert_score, 0)
+GLOBAL_VAR_INIT(new_neothecnology_convert, 0)
+
+	dat += {"
+	<b><u>Faction Scores</u></b><br>
+	<u>neotechnology scores</u><br>
+	<b>Base score:</b> [green_text(GLOB.initial_neotheology_score)]<br>
+	<b>Faction item perdidos:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
+	<b>Faction Objectives:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
+	<b>tripulacion muerta:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
+	<b>research poitns ganados:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
+	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
+	<b>Final score:</b> [get_color_score(GLOB.moebius_score, MAX_FACTION_SCORE)] Points<br>
+	"}
+
+	dat += {"
 	<u>Technomancers scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_technomancer_score)]<br>
 	<b>Faction Objectives:</b> [GLOB.technomancer_objectives_completed] ([to_score_color(GLOB.score_technomancer_objectives)] Points)<br>
@@ -488,7 +418,7 @@ backup */
 	<b>Faction item perdidos:</b> [GLOB.technomancer_faction_item_loss] ([to_score_color(GLOB.score_technomancer_faction_item_loss)] Points)<br>
 	<b>Areas sin energia:</b> [GLOB.area_powerloss] ([to_score_color(GLOB.score_powerloss)] Points)<br>
 	<b>Areas con problemas atmosfericos:</b> [GLOB.area_fireloss] ([to_score_color(GLOB.score_fireloss)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.technomancer_score, GLOB.technomancer_score)] Points<br>
+	<b>Final score:</b> [get_color_score(GLOB.technomancer_score, MAX_FACTION_SCORE)] Points<br>
 	"}
 
 	/*
@@ -511,21 +441,21 @@ backup */
 	<b>Times a Clown was Abused:</b> [GLOB.score_clownabuse]<br><br>
 	"}
 	*/
-	if(GLOB.score_escapees)
-		dat += {"<b>Richest Escapee:</b> [GLOB.score_richestname], [GLOB.score_richestjob]: $[num2text(GLOB.score_richestcash,50)] ([GLOB.score_richestkey])<br>
-		<b>Most Battered Escapee:</b> [GLOB.score_dmgestname], [GLOB.score_dmgestjob]: [GLOB.score_dmgestdamage] damage ([GLOB.score_dmgestkey])<br>"}
-	else
+	//if(GLOB.score_escapees)
+	//	dat += {"<b>Richest Escapee:</b> [GLOB.score_richestname], [GLOB.score_richestjob]: $[num2text(GLOB.score_richestcash,50)] ([GLOB.score_richestkey])<br>
+	//	<b>Most Battered Escapee:</b> [GLOB.score_dmgestname], [GLOB.score_dmgestjob]: [GLOB.score_dmgestdamage] damage ([GLOB.score_dmgestkey])<br>"}
+	//else
 		//if(SSshuttle.emergency.mode <= SHUTTLE_STRANDED)
 		//	dat += "The station wasn't evacuated!<br>"
 		//else
-		dat += "No-one escaped!<br>"
+	//	dat += "No-one escaped!<br>"
 
 	//dat += SSticker.mode.declare_job_completion()
 
-	dat += {"
-	<hr><br>
-	<b><u>FINAL SCORE: [GLOB.score_crewscore]</u></b><br>
-	"}
+	//dat += {"
+	//<hr><br>
+	//<b><u>FINAL SCORE: [GLOB.score_crewscore]</u></b><br>
+	//"}
 
 	var/score_rating = "The Aristocrats!"
 	switch(GLOB.score_crewscore)
