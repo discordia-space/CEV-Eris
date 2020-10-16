@@ -16,12 +16,14 @@
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 3)
+
 /obj/item/weapon/gun/energy/taser/carbine/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST
+	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/ion
 	name = "mounted ion rifle"
@@ -30,12 +32,14 @@
 	holding_type = /obj/item/weapon/gun/energy/ionrifle/mounted/mech
 	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
+
 /obj/item/weapon/gun/energy/ionrifle/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	self_recharge = TRUE
 	twohanded = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 2
+	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/taser/laser
 	name = "\improper CH-PS \"Immolator\" laser"
@@ -60,9 +64,15 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 5)
+	spawn_blacklisted = TRUE
+
+/obj/item/weapon/gun/energy/plasmacutter
+	bad_type = /obj/item/weapon/gun/energy/plasmacutter
+
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 	use_external_power = TRUE
 	restrict_safety = TRUE
 	twohanded = FALSE
 	self_recharge = FALSE
 	charge_cost = MECH_WEAPON_POWER_COST * 1.5
+	spawn_blacklisted = TRUE

@@ -10,7 +10,8 @@
 	force = WEAPON_FORCE_NORMAL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	volume = 2
-
+	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_ITEM_TECH_OS
 
 /obj/item/weapon/tank/onestar_regenerator/Initialize(mapload, ...)
 	. = ..()

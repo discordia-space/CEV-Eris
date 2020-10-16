@@ -1,4 +1,3 @@
-
 // Big stompy robots.
 /mob/living/exosuit
 	name = "exosuit"
@@ -58,6 +57,9 @@
 
 	//Air!
 	var/use_air      = FALSE
+
+	// Strafing - Is the mech currently strafing?
+	var/strafing = FALSE
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
@@ -174,7 +176,8 @@
 		material ? to_chat(user, "Its frame is reinforced with [material].") : null
 
 /mob/living/exosuit/return_air()
-	return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
+	if(src && loc)
+		return (body && body.pilot_coverage >= 100 && hatch_closed) ? body.cockpit : loc.return_air()
 
 /mob/living/exosuit/GetIdCard()
 	return access_card

@@ -1,4 +1,6 @@
 //Alphabetical order of civilian jobs.
+/obj/item/clothing/under/rank
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/assistant
 	desc = "Filled with hatred and envy."
@@ -50,7 +52,7 @@
 	item_state = "church"
 
 /obj/item/clothing/under/rank/church/sport
-	desc = "smells like lilac."
+	desc = "Smells like lilac."
 	name = "church sports vestment"
 	icon_state = "nt_sports"
 	item_state = "nt_sports"

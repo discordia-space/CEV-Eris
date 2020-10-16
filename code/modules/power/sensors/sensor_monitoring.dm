@@ -13,9 +13,9 @@
 	//computer stuff
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/powermonitor
+	circuit = /obj/item/weapon/electronics/circuitboard/powermonitor
 	var/alerting = 0
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 	active_power_usage = 300
 	var/datum/nano_module/power_monitor/power_monitor

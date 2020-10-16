@@ -237,8 +237,6 @@
 			M.change_mob_type( /mob/observer/ghost , null, null, delmob )
 		if("angel")
 			M.change_mob_type( /mob/observer/eye/angel , null, null, delmob )
-		if("larva")
-			M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 		if("human")
 			M.change_mob_type( /mob/living/carbon/human , null, null, delmob, input["species"])
 		if("slime")
@@ -567,7 +565,8 @@
 
 
 /datum/admin_topic/boot2
-	keyword = "boot"
+	keyword = "boot2"
+	require_perms = list(R_MOD|R_ADMIN)
 
 /datum/admin_topic/boot2/Run(list/input)
 	var/mob/M = locate(input["boot2"])
@@ -840,12 +839,9 @@
 		to_chat(usr, "This can only be used on instances of type /mob/living")
 		return
 
-	if(config.allow_admin_rev)
-		L.revive()
-		message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
-		log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
-	else
-		to_chat(usr, "Admin Rejuvinates have been disabled")
+	L.revive()
+	message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
+	log_admin("[key_name(usr)] healed / Revived [key_name(L)]")
 
 
 /datum/admin_topic/makeai
@@ -1207,6 +1203,30 @@
 	var/mob/M = locate(input["subtlemessage"])
 	usr.client.cmd_admin_subtle_message(M)
 
+/datum/admin_topic/manup
+	keyword = "manup"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/manup/Run(list/input)
+	var/mob/M = locate(input["manup"])
+	usr.client.man_up(M)
+
+/datum/admin_topic/paralyze
+	keyword = "paralyze"
+	require_perms = list(R_MOD|R_ADMIN)
+
+/datum/admin_topic/paralyze/Run(list/input)
+	var/mob/M = locate(input["paralyze"])
+
+	var/msg
+	if (M.paralysis == 0)
+		M.paralysis = 8000
+		msg = "has paralyzed [key_name(M)]."
+	else
+		M.paralysis = 0
+		msg = "has unparalyzed [key_name(M)]."
+		log_and_message_admins(msg)
+
 /datum/admin_topic/viewlogs
 	keyword = "viewlogs"
 	require_perms = list(R_MOD|R_ADMIN)
@@ -1269,10 +1289,6 @@
 	require_perms = list(R_FUN)
 
 /datum/admin_topic/object_list/Run(list/input)
-	if(!config.allow_admin_spawning)
-		to_chat(usr, "Spawning of items is not allowed.")
-		return
-
 	var/atom/loc = usr.loc
 
 	var/dirty_paths
@@ -1350,7 +1366,7 @@
 						O.set_dir(obj_dir)
 						if(obj_name)
 							O.name = obj_name
-							if(istype(O,/mob))
+							if(ismob(O))
 								var/mob/M = O
 								M.real_name = obj_name
 						if(where == "inhand" && isliving(usr) && istype(O, /obj/item))

@@ -4,6 +4,7 @@
 	vessel_mass = 300
 	default_delay = 20 SECONDS
 	speed_mod = 5 SECONDS
+	base = 1
 
 	start_x = 9
 	start_y = 10
@@ -41,6 +42,11 @@
 		"nav_deck4_aquila",
 		"nav_bridge_aquila"
 	)*/
+
+/obj/effect/overmap/ship/eris/Initialize()
+	.=..()
+	if(name == "CEV Eris")
+		ships[eris] = src
 
 /obj/machinery/computer/shuttle_control/explore/exploration_shuttle
 	name = "shuttle control console"

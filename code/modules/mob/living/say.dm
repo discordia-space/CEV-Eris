@@ -135,6 +135,25 @@ var/list/channel_to_radio_key = new
 			return say_dead(message)
 		return
 
+	if(GLOB.in_character_filter.len)
+		if(findtext(message, config.ic_filter_regex))
+			// let's try to be a bit more informative!
+			var/warning_message = "A splitting spike of headache prevents you from saying whatever vile words you planned to say! You think better of saying such nonsense again. The following terms break the atmosphere and are not allowed: &quot;"
+			var/list/words = splittext(message, " ")
+			var/cringe = ""
+			for (var/word in words)
+				if (findtext(word, config.ic_filter_regex))
+					warning_message = "[warning_message]<b>[word]</b> "
+					cringe += "/<b>[word]</b>"
+				else
+					warning_message = "[warning_message][word] "
+
+
+			warning_message = trim(warning_message)
+			to_chat(src, SPAN_WARNING("[warning_message]&quot;"))
+			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
+			return
+
 	if(HUSK in mutations)
 		return
 
@@ -257,12 +276,9 @@ var/list/channel_to_radio_key = new
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
 				listening_falloff |= M
 
-		for(var/X in hearing_objects)
-			if(!isobj(X))
-				continue
-			var/obj/O = X
-			if(O.locs.len && (O.locs[1] in hear))
-				listening_obj |= O
+		for(var/obj in GLOB.hearing_objects)
+			if(get_turf(obj) in hear)
+				listening_obj |= obj
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")

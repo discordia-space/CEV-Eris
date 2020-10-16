@@ -5,6 +5,7 @@
 	name = "collectable hat"
 	desc = "A rare collectable hat."
 	price_tag = 1000
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/collectable/petehat
 	name = "ultra rare hat"

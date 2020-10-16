@@ -7,13 +7,13 @@
 	layer = TABLE_LAYER
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 1
 	active_power_usage = 5
 
-	var/mob/living/carbon/victim = null
+	var/mob/living/carbon/victim
 
-	var/obj/machinery/computer/operating/computer = null
+	var/obj/machinery/computer/operating/computer
 	can_buckle = TRUE
 	buckle_dir = SOUTH
 	buckle_lying = TRUE //bed-like behavior, forces mob.lying = buckle_lying if != -1
@@ -32,16 +32,16 @@
 /obj/machinery/optable/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			//SN src = null
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				//SN src = null
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(25))
 				density = FALSE
 		else

@@ -127,7 +127,7 @@
 	name = "biogenerator screen"
 	icon_state = "screen-working"
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/biogen_console
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen_console
 
 	//we store it here and update with special proc
 	var/list/metrics = list("operational" = FALSE,
@@ -207,7 +207,7 @@
 	var/wearout_cycle = 1200
 	var/pipes_dirtiness = 0
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/biogen_port
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen_port
 
 
 /obj/machinery/multistructure/biogenerator_part/port/update_icon()
@@ -240,20 +240,38 @@
 				to_chat(user, SPAN_WARNING("You should close cover first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
+				var/set_canister = FALSE
 				if(tank)
-					tank.anchored = FALSE
-					tank.pixel_x = initial(tank.pixel_x)
-					tank = null
-					playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
-					to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
+					tank.can_anchor = TRUE
+					set_canister = tank.set_anchored(FALSE)
+					if(set_canister)
+						var/datum/component/plumbing/P = tank.GetComponent(/datum/component/plumbing/supply)
+						if(P)
+							P.disable()
+							P.supply_connects = initial(P.supply_connects)
+							P.demand_connects = initial(P.demand_connects)
+						tank.pixel_x = initial(tank.pixel_x)
+						tank = null
+						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
+						to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
 				else
 					tank = locate(/obj/structure/reagent_dispensers) in get_turf(src)
 					if(tank)
-						tank.anchored = TRUE
-						tank.pixel_x = 8
-						playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-						to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
-
+						set_canister = tank.set_anchored(TRUE)
+						if(set_canister)
+							tank.can_anchor = FALSE
+							var/datum/component/plumbing/P = tank.GetComponent(/datum/component/plumbing/supply)
+							if(P)
+								P.disable()
+								P.supply_connects = null
+								P.demand_connects = NORTH | SOUTH | EAST | WEST
+								P.enable()
+							tank.pixel_x = 8
+							playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
+							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))	
+				if(!set_canister)
+					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
+					tank = null
 		if(QUALITY_SCREW_DRIVING)
 			if(tank)
 				to_chat(user, SPAN_WARNING("You need to detach [tank] first."))
@@ -294,7 +312,7 @@
 	var/obj/machinery/atmospherics/binary/biogen_chamber/chamber
 	var/obj/machinery/power/biogenerator_core/core
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/biogen
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen
 
 
 /obj/machinery/multistructure/biogenerator_part/generator/New()

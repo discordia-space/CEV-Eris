@@ -8,9 +8,10 @@
 	worksound = WORKSOUND_HAMMER
 	flags = CONDUCT
 	origin_tech = list(TECH_ENGINEERING = 1)
-	tool_qualities = list(QUALITY_HAMMERING = 20)
+	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
+	rarity_value = 4.8
 
 /obj/item/weapon/tool/hammer/homewrecker
 	name = "homewrecker"
@@ -27,6 +28,8 @@
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
 	max_upgrades = 5
+	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	rarity_value = 32
 
 /obj/item/weapon/tool/hammer/powered_hammer //to be made into proper two-handed tool as small "powered" hammer doesn't make sense
 	name = "powered hammer"					//lacks normal sprites, both icon, item and twohanded for this
@@ -43,6 +46,7 @@
 	use_power_cost = 2
 	suitable_cell = /obj/item/weapon/cell/medium
 	max_upgrades = 4
+	rarity_value = 24
 
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer
 	name = "One Star sledgehammer"
@@ -62,6 +66,9 @@
 	use_power_cost = 1.5
 	workspeed = 1.5
 	max_upgrades = 2
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/weapon/tool/hammer/mace
 	name = "mace"
@@ -69,11 +76,10 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "mace"
 	item_state = "mace"
-
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
-
 	tool_qualities = list(QUALITY_HAMMERING = 20)
+	spawn_tags = SPAWN_TAG_WEAPON
 
 /obj/item/weapon/tool/hammer/mace/makeshift
 	name = "makeshift mace"
@@ -86,6 +92,8 @@
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	degradation = 5 //This one breaks REALLY fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 30
+	spawn_tags = SPAWN_TAG_JUNK
 
 /obj/item/weapon/tool/hammer/charge
 	name = "charge hammer"
@@ -102,6 +110,8 @@
 	slot_flags = SLOT_BACK
 	suitable_cell = /obj/item/weapon/cell/medium
 	use_power_cost = 15
+	rarity_value = 100
+	spawn_frequency = 4
 	var/datum/effect/effect/system/trail/T
 	var/last_launch
 

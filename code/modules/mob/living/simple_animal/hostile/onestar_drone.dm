@@ -23,6 +23,8 @@
 	light_color = COLOR_LIGHTING_BLUE_BRIGHT
 	mob_classification = CLASSIFICATION_SYNTHETIC
 	move_to_delay = 9
+	spawn_tags = SPAWN_TAG_MOB_OS_CUSTODIAN
+	rarity_value = 23.8
 	var/shell_type = "os"
 	var/marks_type = "os"
 	var/screen_type = "os" //if someone decides to make the drones for something aside from OS and have different desgins
@@ -71,10 +73,11 @@
 	fire_verb = "lobs flame"
 	screen_type = "os_red"
 	projectiletype = /obj/item/projectile/flamer_lob
-	ranged = 1
+	ranged = TRUE
+	rarity_value = 59.5
 
 
-/mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(var/amount)
+/mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	fireloss = min(max(fireloss + amount/2, 0),(maxHealth*2)) //Slightly resistant to fire, because it would blow apart otherwise
@@ -87,6 +90,7 @@
 	tooltype = "os_red"
 	screen_type = "yellow"
 	projectiletype = /obj/item/projectile/beam/drone
-	ranged = 1
+	ranged = TRUE
 	melee_damage_lower = 7
 	melee_damage_upper = 15
+	rarity_value = 39.66

@@ -17,7 +17,7 @@
 	icon_state = "morgue1"
 	dir = EAST
 	density = TRUE
-	var/obj/structure/m_tray/connected = null
+	var/obj/structure/m_tray/connected
 	var/open = FALSE
 	anchored = TRUE
 	var/mob/living/occupant
@@ -44,20 +44,20 @@
 
 /obj/structure/morgue/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
@@ -252,7 +252,7 @@
 	icon_state = "morguet"
 	density = TRUE
 	layer = LOW_OBJ_LAYER
-	var/obj/structure/morgue/connected = null
+	var/obj/structure/morgue/connected
 	anchored = TRUE
 	throwpass = 1
 
@@ -291,7 +291,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "crema1"
 	density = TRUE
-	var/obj/structure/c_tray/connected = null
+	var/obj/structure/c_tray/connected
 	anchored = TRUE
 	var/cremating = 0
 	var/id = 1
@@ -325,20 +325,20 @@
 
 /obj/structure/crematorium/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A as mob|obj in src)
 				A.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.forceMove(loc)
@@ -475,8 +475,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "cremat"
 	density = TRUE
-	layer = 2.0
-	var/obj/structure/crematorium/connected = null
+	layer = 2
+	var/obj/structure/crematorium/connected
 	anchored = TRUE
 	throwpass = 1
 

@@ -11,7 +11,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = list(access_genetics) //For premature unlocking.
-	circuit = /obj/item/weapon/circuitboard/clonepod
+	circuit = /obj/item/weapon/electronics/circuitboard/clonepod
 	var/mob/living/occupant
 	var/heal_level = 20 //The clone is released once its health reaches this level.
 	var/heal_rate = 1
@@ -296,20 +296,20 @@
 
 /obj/machinery/clonepod/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			for(var/atom/movable/A in src)
 				A.loc = loc
 				ex_act(severity)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				for(var/atom/movable/A in src)
 					A.loc = loc
 					ex_act(severity)
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if(prob(25))
 				for(var/atom/movable/A in src)
 					A.loc = loc

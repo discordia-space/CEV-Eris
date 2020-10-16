@@ -47,9 +47,10 @@
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
 	for(var/obj/O in src)
-		O.hide(1)
+		O.hide(TRUE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, TRUE)
 
-/turf/simulated/wall/New(var/newloc, var/materialtype, var/rmaterialtype)
+/turf/simulated/wall/New(newloc, materialtype, rmaterialtype)
 	if (!damage_overlays)
 		damage_overlays = new
 
@@ -73,7 +74,7 @@
 	..(newloc)
 
 
-/turf/simulated/wall/Initialize(var/mapload)
+/turf/simulated/wall/Initialize(mapload)
 	..()
 
 	if (mapload)
@@ -113,7 +114,7 @@
 // Extracts angle's tan if ischance = TRUE.
 // In other case it just makes bullets and lazorz go where they're supposed to.
 
-/turf/simulated/wall/proc/projectile_reflection(var/obj/item/projectile/Proj, var/ischance = FALSE)
+/turf/simulated/wall/proc/projectile_reflection(obj/item/projectile/Proj, var/ischance = FALSE)
 	if(Proj.starting)
 		var/ricochet_temp_id = rand(1,1000)
 		if(!ischance)
@@ -372,11 +373,11 @@
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(rand(500, 800))
-		if(2.0)
+		if(2)
 			take_damage(rand(200, 500))
-		if(3.0)
+		if(3)
 			take_damage(rand(90, 250))
 		else
 	return
@@ -388,10 +389,10 @@
 		return 0
 	return 1
 
-/turf/simulated/wall/proc/thermitemelt(mob/user as mob)
+/turf/simulated/wall/proc/thermitemelt(mob/user)
 	if(!can_melt())
 		return
-	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
+	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
 	O.name = "Thermite"
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'

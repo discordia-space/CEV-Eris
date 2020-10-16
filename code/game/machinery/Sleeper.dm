@@ -5,13 +5,13 @@
 	icon_state = "sleeper_0"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/sleeper
+	circuit = /obj/item/weapon/electronics/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline", "stoxin" = "Soporific", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 

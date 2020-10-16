@@ -7,7 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	reagent_flags = NO_REACT
@@ -140,7 +140,7 @@
 	icon_state = "drying_rack"
 	icon_on = "drying_rack_on"
 	icon_off = "drying_rack"
-	var/drying_power = 0.005
+	var/drying_power = 0.1 //should take a bit but. why make people wait a lifetime to DRY PLANTS
 	var/currently_drying = FALSE
 
 /obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
@@ -173,7 +173,7 @@
 	for(var/obj/item/weapon/reagent_containers/food/snacks/S in contents)
 		if(S.dry)
 			continue
-		S.dryness += drying_power * (rand(0.85, 1.15))
+		S.dryness += drying_power
 		if (S.dryness >= 1)
 			if(S.dried_type == S.type || !S.dried_type)
 				S.dry = TRUE

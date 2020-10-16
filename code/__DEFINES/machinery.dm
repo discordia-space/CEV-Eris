@@ -13,7 +13,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define ENVIRON 3
 #define TOTAL   4 // For total power used only.
 
-//Power use
+//Power use var/use_power
 #define NO_POWER_USE		0
 #define IDLE_POWER_USE		1
 #define ACTIVE_POWER_USE	2
@@ -94,7 +94,7 @@ var/list/restricted_camera_networks = list(NETWORK_MERCENARY, "Secret")
 // These balance how easy or hard it is to create huge pressure gradients with pumps and filters.
 // Lower values means it takes longer to create large pressures differences.
 // Has no effect on pumping gasses from high pressure to low, only from low to high.
-#define ATMOS_PUMP_EFFICIENCY   10.0 // 10 is maximum value.
+#define ATMOS_PUMP_EFFICIENCY   10 // 10 is maximum value.
 #define ATMOS_FILTER_EFFICIENCY 2.5
 
 // Will not bother pumping or filtering if the gas source as fewer than this amount of moles, to help with performance.

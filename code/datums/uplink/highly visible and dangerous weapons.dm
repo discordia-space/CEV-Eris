@@ -59,3 +59,25 @@
 	name = "Weapon reverse loader"
 	item_cost = 5
 	path = /obj/item/weapon/gun_upgrade/mechanism/reverse_loader
+
+/datum/uplink_item/item/visible_weapons/boom_trigger
+	name = "Syndicate \"Self Desturct\" trigger"
+	item_cost = 5
+	path = /obj/item/weapon/gun_upgrade/trigger/boom
+
+/datum/uplink_item/item/visible_weapons/gauss
+	name = "Syndicate \"Gauss Coil\" barrel"
+	item_cost = 7
+	path = /obj/item/weapon/gun_upgrade/barrel/gauss
+
+/datum/uplink_item/item/visible_weapons/psychic_lasercannon
+	name = "Prototype: psychic laser cannon"
+	desc = "A laser cannon that attacks the minds of people, causing sanity loss and inducing mental breakdowns. Also can be used to complete mind fryer contracts."
+	item_cost = 12
+	path = /obj/item/weapon/gun/energy/psychic/lasercannon
+
+/datum/uplink_item/item/visible_weapons/psychic_lasercannon/buy(obj/item/device/uplink/U)
+	. = ..()
+	if(.)
+		var/obj/item/weapon/gun/energy/psychic/lasercannon/L = .
+		L.owner = U.uplink_owner

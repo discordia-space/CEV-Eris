@@ -9,8 +9,8 @@
 	w_class = ITEM_SIZE_TINY
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/implanted = FALSE
-	var/mob/living/carbon/human/wearer = null
-	var/obj/item/organ/external/part = null
+	var/mob/living/carbon/human/wearer
+	var/obj/item/organ/external/part
 	var/implant_color = "b"
 	var/allow_reagents = FALSE
 	var/malfunction = MALFUNCTION_NONE
@@ -20,9 +20,9 @@
 	var/external = FALSE
 	var/cruciform_resist = FALSE
 
-/obj/item/weapon/implant/attackby(obj/item/weapon/I as obj, mob/user as mob)
+/obj/item/weapon/implant/attackby(obj/item/weapon/I, mob/user)
 	..()
-	if (istype(I, /obj/item/weapon/implanter))
+	if(istype(I, /obj/item/weapon/implanter))
 		var/obj/item/weapon/implanter/M = I
 		if(is_external())
 			return
@@ -78,6 +78,8 @@
 
 	on_install(target, affected)
 	wearer.update_implants()
+	for(var/mob/living/carbon/human/H in viewers(target))
+		SEND_SIGNAL(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
 	return TRUE
 
 /obj/item/weapon/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)

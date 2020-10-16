@@ -3,10 +3,10 @@
 	desc = "Machine used for copying recipes from unprotected autolathe disks."
 	icon = 'icons/obj/machines/disk_cloner.dmi'
 	icon_state = "disk_cloner"
-	circuit = /obj/item/weapon/circuitboard/autolathe_disk_cloner
+	circuit = /obj/item/weapon/electronics/circuitboard/autolathe_disk_cloner
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 500
 

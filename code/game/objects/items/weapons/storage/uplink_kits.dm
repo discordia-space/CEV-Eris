@@ -1,3 +1,6 @@
+/obj/item/weapon/storage/box/syndicate
+	spawn_blacklisted = TRUE
+
 /obj/item/weapon/storage/box/syndicate/populate_contents()
 	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, /*"lordsingulo" = 1,*/ "smoothoperator" = 1)))
 		if("bloodyspai")
@@ -47,7 +50,7 @@
 
 		if("hacker")
 			new /obj/item/device/encryptionkey/syndicate(src)
-			new /obj/item/weapon/aiModule/syndicate(src)
+			new /obj/item/weapon/electronics/ai_module/syndicate(src)
 			new /obj/item/weapon/card/emag(src)
 			new /obj/item/device/encryptionkey/binary(src)
 			return
@@ -75,6 +78,7 @@
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
@@ -264,7 +268,7 @@
 	// Dylovene. Going with 1.5 rather than 1.6666666...
 	fill_cigarre_package(pack, list("potassium" = 1.5, "nitrogen" = 1.5, "silicon" = 1.5))
 	// Mindbreaker
-	fill_cigarre_package(pack, list("silicon" = 4.5, "hydrogen" = 4.5))
+	fill_cigarre_package(pack, list("silicon" = 4.5))
 
 	pack.desc += " 'MB' has been scribbled on it."
 
@@ -311,3 +315,13 @@
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
 	new /obj/item/weapon/spacecash/bundle/c1000(src)
+
+/obj/item/weapon/storage/box/syndie_kit/randomstim
+	name = "5 Random Stims Kit"
+	desc = "Contain 5 random Stim Syringes."
+	storage_slots = 5
+
+/obj/item/weapon/storage/box/syndie_kit/randomstim/populate_contents()
+	for(var/i, i < storage_slots , i++)
+		var/stim = pick(subtypesof(/obj/item/weapon/reagent_containers/syringe/stim))
+		new stim(src)

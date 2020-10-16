@@ -1,21 +1,21 @@
 /datum/design						//Datum for object designs, used in construction
-	var/name = null					//Name of the created object. If null, it will be 'guessed' from build_path if possible.
-	var/item_name = null			//An item name before it is modified by various name-modifying procs
-	var/name_category = null		//If set, name is modified into "[name_category] ([item_name])"
-	var/desc = null					//Description of the created object. If null, it will use group_desc and name where applicable.
-	var/id = null					//ID of the created object for easy refernece. If null, uses typepath instead.
+	var/name					//Name of the created object. If null, it will be 'guessed' from build_path if possible.
+	var/item_name			//An item name before it is modified by various name-modifying procs
+	var/name_category		//If set, name is modified into "[name_category] ([item_name])"
+	var/desc					//Description of the created object. If null, it will use group_desc and name where applicable.
+	var/id					//ID of the created object for easy refernece. If null, uses typepath instead.
 	var/sort_string = "ZZZZZ"		//Sorting order
 
 	var/list/materials = list()		//List of materials. Format: "id" = amount.
 	var/list/chemicals = list()		//List of reagents. Format: "id" = amount.
 	var/adjust_materials = TRUE		//Whether material efficiency applies to this design
-	var/build_path = null			//The path of the object that gets created.
+	var/build_path			//The path of the object that gets created.
 	var/build_type = NONE			//Flag as to what kind machine the design is built in. See defines.
-	var/category = null 			//Primarily used for Mech Fabricators, but can be used for anything.
+	var/category 			//Primarily used for Mech Fabricators, but can be used for anything.
 	var/time = 0					//How many ticks it requires to build. If 0, calculated from the amount of materials used.
 	var/starts_unlocked = FALSE		//If the design starts unlocked.
 
-	var/list/ui_data = null			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
+	var/list/ui_data			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
 
 	// An MPC file containing this design. You can use it directly, but only if it doesn't interact with the rest of MPC system. If it does, use copies.
 	var/datum/computer_file/binary/design/file
@@ -142,7 +142,7 @@
 		var/list/RS = list()
 
 		for(var/reagent in chemicals)
-			var/datum/reagent/reagent_datum = chemical_reagents_list[reagent]
+			var/datum/reagent/reagent_datum = GLOB.chemical_reagents_list[reagent]
 			RS.Add(list(list("id" = reagent, "name" = reagent_datum.name, "req" = chemicals[reagent])))
 
 		ui_data["chemicals"] = RS

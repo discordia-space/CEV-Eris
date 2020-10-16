@@ -13,6 +13,9 @@
 	siemens_coefficient = 0.6
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
+	bad_type = /obj/item/clothing/head/armor
+	rarity_value = 10
 	style = 0
 
 /*
@@ -22,6 +25,7 @@
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
+	rarity_value = 5
 	armor = list(
 		melee = 35,
 		bullet = 30,
@@ -30,11 +34,21 @@
 		bio = 0,
 		rad = 0
 	)
+	matter = list(
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTEEL = 1 //a lil bit of plasteel since it's better than handmade shit
+	)
 
 /obj/item/clothing/head/armor/helmet/visor
 	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed visor to protect the eyes."
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
+	rarity_value = 6.66
+	matter = list(
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 2 // costs some glass cause of the visor and the included eye protection
+	)
 
 /obj/item/clothing/head/armor/helmet/merchelm
 	name = "Heavy Armour Helmet"
@@ -58,11 +72,13 @@
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE
+	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
+	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "technomancer helmet"
@@ -120,6 +136,11 @@
 	)
 	price_tag = 400
 	flash_protection = FLASH_PROTECTION_MAJOR
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
+		MATERIAL_GLASS = 3 //For the visor parts
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -202,6 +223,11 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
+	matter = list(
+		MATERIAL_STEEL = 10, // also comes with a hud with it's own prices
+		MATERIAL_PLASTEEL = 2,
+		MATERIAL_GLASS = 2
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_full/New()
 	..()
@@ -261,6 +287,7 @@
 	icon_state = "ablative"
 	body_parts_covered = HEAD | EARS | EYES
 	flags_inv = HIDEEARS | HIDEEYES
+	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 25,
@@ -271,6 +298,11 @@
 	)
 	siemens_coefficient = 0
 	price_tag = 325
+	matter = list(
+		MATERIAL_STEEL = 4, // slightly less steel cost
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
+	)
 
 // Riot helmet
 /obj/item/clothing/head/armor/riot
@@ -286,6 +318,7 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	price_tag = 150
+	rarity_value = 25
 
 /obj/item/clothing/head/armor/riot/Initialize()
 	. = ..()
@@ -421,6 +454,7 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
+	rarity_value = 50
 
 	action_button_name = "Flip Face Shield"
 	var/up = TRUE
@@ -475,6 +509,7 @@
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	rarity_value = 100
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
@@ -482,6 +517,7 @@
 	icon_state = "cyberpunkgoggle"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
 	siemens_coefficient = 0.9	//More conductive than most helmets
+	rarity_value = 5.55
 	armor = list(
 		melee = 5,
 		bullet = 20,

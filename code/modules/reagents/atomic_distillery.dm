@@ -11,19 +11,30 @@
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	price_tag = 20000
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
 	unacidable = TRUE
 
 /obj/item/weapon/reagent_containers/atomic_distillery/New()
 	..()
+	GLOB.all_faction_items[src] = GLOB.department_command
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/reagent_containers/atomic_distillery/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
 	. = ..()
 
 /obj/item/weapon/reagent_containers/atomic_distillery/Process()
 	reagents.add_reagent("atomvodka", 1)
+
+/obj/item/weapon/reagent_containers/atomic_distillery/attackby(obj/item/I, mob/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
 
 /obj/item/weapon/reagent_containers/atomic_distillery/pre_attack(atom/A, mob/user, params)
 	if(user.a_intent == I_HURT)

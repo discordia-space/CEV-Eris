@@ -3,9 +3,10 @@
 	desc = "Based on compressed matter technology, can store a single item."
 	icon_state = "implant_evil"
 	var/activation_emote = "sigh"
-	var/obj/item/scanned = null
+	var/obj/item/scanned
 	is_legal = FALSE
 	origin_tech = list(TECH_MATERIAL=2, TECH_MAGNET=4, TECH_BLUESPACE=5, TECH_COVERT=4)
+	spawn_tags = null
 
 /obj/item/weapon/implant/compressed/trigger(emote, mob/living/source)
 	if(!scanned)
@@ -33,6 +34,7 @@
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
 	implant = /obj/item/weapon/implant/compressed
+	spawn_tags = null
 
 /obj/item/weapon/implanter/compressed/update_icon()
 	if(implant)

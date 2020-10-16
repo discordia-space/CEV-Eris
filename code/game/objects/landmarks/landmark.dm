@@ -11,18 +11,18 @@
 
 /obj/landmark/New()
 	..()
-	landmarks_list += src
+	GLOB.landmarks_list += src
 
 /obj/landmark/proc/delete()
 	delete_me = TRUE
 
-/obj/landmark/Initialize()
+/obj/landmark/Initialize(mapload)
 	. = ..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
 
 /obj/landmark/Destroy()
-	landmarks_list -= src
+	GLOB.landmarks_list -= src
 	return ..()
 
 

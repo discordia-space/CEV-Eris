@@ -7,7 +7,7 @@
 	time = 1 //Crafting individual tiles is fast
 	related_stats = list(STAT_MEC)
 
-/datum/craft_recipe/floor/classic/
+/datum/craft_recipe/floor/classic
 	name = "wood floor tile"
 	result = /obj/item/stack/tile/wood
 	steps = list(
@@ -318,6 +318,17 @@
 	name = "dark monofloor tile"
 	result = /obj/item/stack/tile/floor/dark/monofloor
 	variation_type = CRAFT_VARIATION
+
+/datum/craft_recipe/floor/lighttile
+	name = "light tile"
+	result = /obj/machinery/floor_light
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_GLASS, "time" = 30),
+		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(QUALITY_SCREW_DRIVING, 10, 80),
+		list(/obj/item/stack/cable_coil, 5, "time" = 20),
+		list(QUALITY_PULSING, 30, 80)
+	)
 
 /datum/craft_recipe/floor/grille
 	name = "regular grille"

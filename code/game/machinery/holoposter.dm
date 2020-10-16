@@ -4,7 +4,7 @@
 	icon = 'icons/obj/holoposter.dmi'
 	icon_state = "off"
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
 	power_channel = ENVIRON
 	var/icon_forced = FALSE

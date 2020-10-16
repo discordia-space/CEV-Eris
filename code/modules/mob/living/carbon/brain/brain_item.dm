@@ -6,21 +6,15 @@
 	parent_organ = BP_HEAD
 	vital = 1
 	icon_state = "brain2"
-	force = 1.0
+	force = 1
 	w_class = ITEM_SIZE_SMALL
-	throwforce = 1.0
+	throwforce = 1
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	price_tag = 900
 	var/mob/living/carbon/brain/brainmob = null
-
-/obj/item/organ/internal/brain/xeno
-	name = "thinkpan"
-	desc = "It looks kind of like an enormous wad of purple bubblegum."
-	icon = 'icons/mob/alien.dmi'
-	icon_state = "chitin"
 
 /obj/item/organ/internal/brain/New()
 	..()

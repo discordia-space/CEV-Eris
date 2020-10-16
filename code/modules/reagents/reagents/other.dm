@@ -61,16 +61,16 @@
 	overdose = REAGENTS_OVERDOSE * 0.5
 	color_weight = 20
 
-/datum/reagent/other/paint/touch_turf(var/turf/T)
+/datum/reagent/other/paint/touch_turf(turf/T)
 	if(istype(T) && !istype(T, /turf/space))
 		T.color = color
 	return TRUE
 
-/datum/reagent/other/paint/touch_obj(var/obj/O)
+/datum/reagent/other/paint/touch_obj(obj/O)
 	if(istype(O))
 		O.color = color
 
-/datum/reagent/other/paint/touch_mob(var/mob/M)
+/datum/reagent/other/paint/touch_mob(mob/M)
 	if(istype(M) && !isobserver(M)) //painting observers: not allowed
 		M.color = color //maybe someday change this to paint only clothes and exposed body parts for human mobs.
 
@@ -124,10 +124,10 @@
 	glass_desc = "It's magic. We don't have to explain it."
 	appear_in_default_catalog = FALSE
 
-/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/adminordrazine/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 	affect_blood(M, alien, effect_multiplier)
 
-/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/adminordrazine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
 	M.radiation = 0
@@ -174,13 +174,13 @@
 	reagent_state = SOLID
 	color = "#B8B8C0"
 
-/datum/reagent/metal/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/uranium/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 	affect_ingest(M, alien, effect_multiplier)
 
-/datum/reagent/metal/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/metal/uranium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.apply_effect(effect_multiplier, IRRADIATE, 0)
 
-/datum/reagent/metal/uranium/touch_turf(var/turf/T)
+/datum/reagent/metal/uranium/touch_turf(turf/T)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
@@ -188,7 +188,7 @@
 				new /obj/effect/decal/cleanable/greenglow(T)
 			return TRUE
 	return TRUE
-	
+
 
 /datum/reagent/adrenaline
 	name = "Adrenaline"
@@ -199,7 +199,7 @@
 	color = "#C8A5DC"
 	reagent_type = "Organic/Stimulator"
 
-/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/adrenaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.SetParalysis(0)
 	M.SetWeakened(0)
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
@@ -208,7 +208,7 @@
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
 	M.adjustOxyLoss(15)
 
-/datum/reagent/water/holywater/touch_turf(var/turf/T)
+/datum/reagent/water/holywater/touch_turf(turf/T)
 	if(volume >= 5)
 		T.holy = 1
 	return TRUE
@@ -246,7 +246,7 @@
 	color = "#673910"
 	touch_met = 50
 
-/datum/reagent/other/thermite/touch_turf(var/turf/T)
+/datum/reagent/other/thermite/touch_turf(turf/T)
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
@@ -255,11 +255,11 @@
 			remove_self(5)
 	return TRUE
 
-/datum/reagent/other/thermite/touch_mob(var/mob/living/L, var/amount)
+/datum/reagent/other/thermite/touch_mob(mob/living/L, var/amount)
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/other/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/thermite/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustFireLoss(3 * 0.6)
 
 /datum/reagent/other/matter_deconstructor //Currently uncraftable, used in excelsior reclaimer
@@ -271,7 +271,7 @@
 	color = "#DC7633"
 	touch_met = 50
 
-/datum/reagent/other/matter_deconstructor/touch_obj(var/obj/O)
+/datum/reagent/other/matter_deconstructor/touch_obj(obj/O)
 	var/list/matter = O.matter
 	if(length(matter))
 		for(var/i in matter)
@@ -292,11 +292,11 @@
 	color = "#A5F0EE"
 	touch_met = 50
 
-/datum/reagent/other/space_cleaner/touch_obj(var/obj/O)
+/datum/reagent/other/space_cleaner/touch_obj(obj/O)
 	O.clean_blood()
 	O.color = "white"
 
-/datum/reagent/other/space_cleaner/touch_turf(var/turf/T)
+/datum/reagent/other/space_cleaner/touch_turf(turf/T)
 	if(volume >= 1)
 		if(istype(T, /turf/simulated))
 			var/turf/simulated/S = T
@@ -310,7 +310,7 @@
 	T.color = "white"
 	return TRUE
 
-/datum/reagent/other/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/space_cleaner/affect_touch(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -346,7 +346,7 @@
 	reagent_state = LIQUID
 	color = "#009CA8"
 
-/datum/reagent/other/lube/touch_turf(var/turf/simulated/T)
+/datum/reagent/other/lube/touch_turf(turf/simulated/T)
 	if(!istype(T))
 		return TRUE
 	if(volume >= 1)
@@ -361,7 +361,7 @@
 	reagent_state = LIQUID
 	color = "#C7FFFF"
 
-/datum/reagent/other/silicate/touch_obj(var/obj/O)
+/datum/reagent/other/silicate/touch_obj(obj/O)
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		W.apply_silicate(volume)
@@ -384,7 +384,7 @@
 	reagent_state = LIQUID
 	color = "#808080"
 
-/datum/reagent/other/nitroglycerin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/nitroglycerin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.add_chemical_effect(CE_PULSE, 2)
 
@@ -420,10 +420,10 @@
 	reagent_state = LIQUID
 	color = "#F2F3F4"
 
-/datum/reagent/other/luminol/touch_obj(var/obj/O)
+/datum/reagent/other/luminol/touch_obj(obj/O)
 	O.reveal_blood()
 
-/datum/reagent/other/luminol/touch_mob(var/mob/living/L)
+/datum/reagent/other/luminol/touch_mob(mob/living/L)
 	L.reveal_blood()
 
 
@@ -438,7 +438,7 @@
 	addiction_chance = 10
 	nerve_system_accumulations = 5
 
-/datum/reagent/other/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
@@ -446,7 +446,7 @@
 			if(istype(R))
 				R.metabolism = initial(R.metabolism) * 3
 
-/datum/reagent/other/aranecolmin/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_ANTITOX, 0.3)
 	if(M.bloodstr)
 		for(var/current in M.bloodstr.reagent_list)
@@ -475,10 +475,10 @@
 	overdose = 25
 	addiction_chance = 5
 
-/datum/reagent/other/arectine/affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+/datum/reagent/other/arectine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.set_light(2.5)
 
-/datum/reagent/other/arectine/overdose(var/mob/living/carbon/M, var/alien)
+/datum/reagent/other/arectine/overdose(mob/living/carbon/M, alien)
 	if(prob(10))
 		M.IgniteMob()
 

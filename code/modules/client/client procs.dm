@@ -352,7 +352,7 @@
 					log_world("Failed to update players table for user with id [src.id]. Error message: [query_update.ErrorMsg()].")
 
 		//Panic bunker - player not in DB, so they get kicked
-		else if(config.panic_bunker && !holder && !deadmin_holder)
+		else if(config.panic_bunker && !holder && !deadmin_holder && !(ckey in GLOB.PB_bypass))
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
 			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
@@ -627,7 +627,7 @@
 	else
 		score = response["fraud_score"]
 
-	return score/100 //To normalize with the 0.0 to 1.0 scores.
+	return score/100 //To normalize with the 0 to 1 scores.
 
 /client/proc/colour_transition(list/colour_to = null, time = 10) //Call this with no parameters to reset to default.
 	animate(src, color = colour_to, time = time, easing = SINE_EASING)

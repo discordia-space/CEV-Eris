@@ -20,7 +20,7 @@
 
 	level = BELOW_PLATING_LEVEL
 
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -33,7 +33,7 @@
 	var/output_pressure_max = DEFAULT_PRESSURE_DELTA
 
 	var/frequency = 0
-	var/id = null
+	var/id
 	var/datum/radio_frequency/radio_connection
 
 	var/pressure_checks = PRESSURE_CHECK_EXTERNAL

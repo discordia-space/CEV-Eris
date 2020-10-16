@@ -42,7 +42,7 @@
 	desc = "Simple rocket nozzle, expelling gas at hypersonic velocities to propell the ship."
 	icon = 'icons/obj/ship_engine.dmi'
 	icon_state = "nozzle"
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 	opacity = 0
@@ -126,7 +126,7 @@
 	spawn(20)
 		qdel(src)
 
-/obj/item/weapon/circuitboard/unary_atmos/engine
+/obj/item/weapon/electronics/circuitboard/unary_atmos/engine
 	name = T_BOARD("gas thruster")
 	icon_state = "mcontroller"
 	build_path = /obj/machinery/atmospherics/unary/engine/

@@ -166,7 +166,7 @@
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = WALL_OBJ_LAYER
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
@@ -337,10 +337,10 @@
 					on = FALSE
 					set_light(0)
 			else
-				use_power = 2
+				use_power = ACTIVE_POWER_USE
 				set_light(brightness_range, brightness_power, brightness_color)
 	else
-		use_power = 1
+		use_power = IDLE_POWER_USE
 		set_light(0)
 
 	active_power_usage = ((light_range + light_power) * 10)
@@ -368,15 +368,16 @@
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
+	..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "[desc] It is turned [on? "on" : "off"].")
+			to_chat(user, "It is turned [on? "on" : "off"].")
 		if(LIGHT_EMPTY)
-			to_chat(user, "[desc] The [fitting] has been removed.")
+			to_chat(user, "The [fitting] has been removed.")
 		if(LIGHT_BURNED)
-			to_chat(user, "[desc] The [fitting] is burnt out.")
+			to_chat(user, "The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
-			to_chat(user, "[desc] The [fitting] has been smashed.")
+			to_chat(user, "The [fitting] has been smashed.")
 
 
 
@@ -394,15 +395,22 @@
 
 	// attempt to insert light
 	if(istype(I, /obj/item/weapon/light))
-		if(status != LIGHT_EMPTY)
-			to_chat(user, "There is a [fitting] already inserted.")
+		if(status == LIGHT_OK)
+			to_chat(user, SPAN_WARNING("There is a [fitting] already inserted."))
 			return
 		else
 			src.add_fingerprint(user)
 			var/obj/item/weapon/light/L = I
 			if(istype(L, light_type))
+				user.drop_item()
+
+				if(status != LIGHT_EMPTY)
+					drop_light_tube(user)
+					to_chat(user, SPAN_NOTICE("You replace [L]."))
+				else
+					to_chat(user, SPAN_NOTICE("You insert [L]."))
+
 				status = L.status
-				to_chat(user, "You insert the [L.name].")
 				switchcount = L.switchcount
 				rigged = L.rigged
 				brightness_range = L.brightness_range
@@ -411,17 +419,15 @@
 				on = has_power()
 				update()
 
-				user.drop_item()	//drop the item to update overlays and such
 				qdel(L)
 
 				if(on && rigged)
-
 					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
 			else
-				to_chat(user, "This type of light requires a [fitting].")
+				to_chat(user, SPAN_WARNING("This type of light requires a [fitting]."))
 				return
 
 		// attempt to break the light
@@ -476,7 +482,7 @@
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
 			if (prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
+				electrocute_mob(user, get_area(src), src, rand(0.7,1))
 
 
 // returns whether this light has power
@@ -531,49 +537,31 @@
 
 	// make it burn hands if not wearing fire-insulated gloves
 	if(on)
-		var/prot = 0
+		var/prot = FALSE
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
 			if(H.species.heat_level_1 > LIGHT_BULB_TEMPERATURE)
-				prot = 1
+				prot = TRUE
 			else if(H.gloves)
 				var/obj/item/clothing/gloves/G = H.gloves
 				if(G.max_heat_protection_temperature)
 					if(G.max_heat_protection_temperature > LIGHT_BULB_TEMPERATURE)
-						prot = 1
+						prot = TRUE
 		else
-			prot = 1
+			prot = TRUE
 
-		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
-			to_chat(user, "You remove the light [fitting]")
+		if(prot || (COLD_RESISTANCE in user.mutations))
+			to_chat(user, SPAN_NOTICE("You remove the light [fitting]"))
 		else if(TK in user.mutations)
-			to_chat(user, "You telekinetically remove the light [fitting].")
+			to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
 	else
-		to_chat(user, "You remove the light [fitting].")
+		to_chat(user, SPAN_NOTICE("You remove the light [fitting]."))
 
-	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/weapon/light/L = new light_type()
-	L.status = status
-	L.rigged = rigged
-	L.brightness_range = brightness_range
-	L.brightness_power = brightness_power
-	L.brightness_color = brightness_color
-
-	// light item inherits the switchcount, then zero it
-	L.switchcount = switchcount
-	switchcount = 0
-
-	L.update()
-	L.add_fingerprint(user)
-
-	user.put_in_active_hand(L)	//puts it in our active hand
-
-	status = LIGHT_EMPTY
-	update()
+	drop_light_tube(user)
 
 
 /obj/machinery/light/attack_tk(mob/user)
@@ -581,9 +569,13 @@
 		to_chat(user, "There is no [fitting] in this light.")
 		return
 
-	to_chat(user, "You telekinetically remove the light [fitting].")
-	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/weapon/light/L = new light_type()
+	to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
+	drop_light_tube()
+
+
+// create a light tube/bulb item and put it in the drop location
+/obj/machinery/light/proc/drop_light_tube(mob/living/user)
+	var/obj/item/weapon/light/L = new light_type(drop_location())
 	L.status = status
 	L.rigged = rigged
 	L.brightness_range = brightness_range
@@ -595,11 +587,15 @@
 	switchcount = 0
 
 	L.update()
-	L.add_fingerprint(user)
-	L.loc = loc
 
 	status = LIGHT_EMPTY
 	update()
+
+	// If the target is a mob, try to put the bulb in mob's hand
+	if(user)
+		L.add_fingerprint(user)
+		user.put_in_active_hand(L)
+
 
 // break the light and make sparks if was on
 
@@ -629,13 +625,13 @@
 
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(75))
 				broken()
-		if(3.0)
+		if(3)
 			if (prob(50))
 				broken()
 	return
@@ -767,7 +763,7 @@
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 
-		to_chat(user, "You inject the solution into the [src].")
+		to_chat(user, "You inject the solution into [src].")
 
 		if(S.reagents.has_reagent("plasma", 5))
 

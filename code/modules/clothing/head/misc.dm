@@ -69,7 +69,7 @@
 	icon_state = "syndicate"
 	desc = "A plastic replica of a bloodthirsty mercenary's space helmet, you'll look just like a real murderous criminal operative in this! This is a toy, it is not made for use in space!"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
 	item_flags = COVER_PREVENT_MANIPULATION
 
@@ -140,8 +140,9 @@
 	name = "pirate bandana"
 	desc = "Yarr."
 	icon_state = "bandana"
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	style = 1
+	rarity_value = 3.5
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
@@ -192,7 +193,7 @@
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
 	flags_inv = BLOCKHEADHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
@@ -222,7 +223,7 @@
 		)
 	desc = "A helmet made out of chitinous alien hide."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
-	siemens_coefficient = 2.0
+	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
 
 /obj/item/clothing/head/philosopher_wig
@@ -234,7 +235,7 @@
 		slot_r_hand_str = "pwig",
 		)
 	flags_inv = BLOCKHEADHAIR
-	siemens_coefficient = 2.0 //why is it so conductive?!
+	siemens_coefficient = 2 //why is it so conductive?!
 	body_parts_covered = 0
 
 /obj/item/clothing/head/bandana/orange //themij: Taryn Kifer
@@ -256,6 +257,7 @@
 	name = "Oberth Republic beret"
 	desc = "Brown beret with emblem. Material that it made of will protect against energy projectiles."
 	icon_state = "germanberet"
+	rarity_value = 12.5
 	armor = list(
 		melee = 5,
 		bullet = 5,

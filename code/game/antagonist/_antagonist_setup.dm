@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 		if(A.outer)
 			GLOB.outer_antag_types[A.id] = A
 			var/list/start_locs = list()
-			for(var/obj/landmark/L in landmarks_list)
+			for(var/obj/landmark/L in GLOB.landmarks_list)
 				if(L.name == A.landmark_id)
 					start_locs += get_turf(L)
 			GLOB.antag_starting_locations[A.id] = start_locs
@@ -111,12 +111,12 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 /proc/get_antags(var/id)
 	var/list/L = list()
-	for(var/datum/antagonist/A in current_antags)
+	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(A.id == id)
 			L.Add(A)
 	return L
 
-/proc/get_player_antag_name(var/datum/mind/player)
+/proc/get_player_antag_name(datum/mind/player)
 	if(!istype(player))
 		return "ERROR"
 	var/names
@@ -125,9 +125,13 @@ GLOBAL_LIST_EMPTY(faction_types)
 			names += ", "+A.role_text
 		else
 			names = A.role_text
+
+	if(!names && player_is_limited_antag(player))
+		names = "Limited antag"
+
 	return names
 
-/proc/player_is_antag(var/datum/mind/player, var/only_offstation_roles = FALSE)
+/proc/player_is_antag(datum/mind/player, only_offstation_roles = FALSE)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if((antag.outer && only_offstation_roles) || !only_offstation_roles)
 			return TRUE
@@ -153,10 +157,10 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 /proc/get_antags_list(var/a_type)
 	if(!a_type)
-		return current_antags
+		return GLOB.current_antags
 
 	var/list/L = list()
-	for(var/datum/antagonist/antag in current_antags)
+	for(var/datum/antagonist/antag in GLOB.current_antags)
 		if(antag.id == a_type)
 			L.Add(antag)
 	return L
@@ -173,36 +177,36 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 /proc/get_dead_antags_count(var/a_type)
 	var/count = 0
-	for(var/datum/antagonist/antag in current_antags)
+	for(var/datum/antagonist/antag in GLOB.current_antags)
 		if((!a_type || antag.id == a_type) && antag.is_dead())
 			count++
 	return count
 
 /proc/get_antags_count(var/a_type)
 	if(!a_type)
-		return current_antags.len
+		return GLOB.current_antags.len
 
 	var/count = 0
-	for(var/datum/antagonist/antag in current_antags)
+	for(var/datum/antagonist/antag in GLOB.current_antags)
 		if(!a_type || antag.id == a_type)
 			count++
 	return count
 
 /proc/get_active_antag_count(var/a_type)
 	var/active_antags = 0
-	for(var/datum/antagonist/antag in current_antags)
+	for(var/datum/antagonist/antag in GLOB.current_antags)
 		if((!a_type || antag.id == a_type) && antag.is_active())
 			active_antags++
 	return active_antags
 
 /proc/get_faction_by_id(var/f_id)
-	for(var/datum/faction/F in current_factions)
+	for(var/datum/faction/F in GLOB.current_factions)
 		if(F.id == f_id)
 			return F
 
 /proc/get_factions_by_id(var/f_id)
 	var/list/L = list()
-	for(var/datum/faction/F in current_factions)
+	for(var/datum/faction/F in GLOB.current_factions)
 		if(F.id == f_id)
 			L.Add(F)
 	return L
@@ -215,7 +219,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 /proc/create_or_get_faction(var/f_id)
 	var/list/factions = list()
-	for(var/datum/faction/F in current_factions)
+	for(var/datum/faction/F in GLOB.current_factions)
 		if(F.id == f_id)
 			factions.Add(F)
 

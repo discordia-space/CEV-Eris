@@ -174,15 +174,11 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
 
-	for (var/mob/living/exosuit/M in mechas_list)
+	for (var/mob/living/exosuit/M in GLOB.mechas_list)
 		if (M.z == z && get_dist(src, M) <= dist)
 			L += M
 
 	return L
-
-/mob/living/simple_animal/hostile/death()
-	..()
-	walk(src, 0)
 
 /mob/living/simple_animal/hostile/Life()
 
@@ -273,5 +269,5 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
-			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
+			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille) || istype(obstacle, /obj/structure/railing))
 				obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)

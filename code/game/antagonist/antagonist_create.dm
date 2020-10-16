@@ -27,7 +27,7 @@
 				if(istype(H))
 					H.change_appearance(APPEARANCE_ALL, H.loc, H, TRUE, list("Human"), state = GLOB.z_state)
 
-	current_antags.Add(src)
+	GLOB.current_antags.Add(src)
 	special_init()
 
 	if(new_faction)
@@ -46,7 +46,7 @@
 /datum/antagonist/proc/special_init()
 
 
-/datum/antagonist/proc/create_from_ghost(var/mob/observer/ghost, var/datum/faction/new_faction, var/doequip = TRUE, var/announce = TRUE, var/update = TRUE)
+/datum/antagonist/proc/create_from_ghost(mob/observer/ghost, datum/faction/new_faction, doequip = TRUE, announce = TRUE, update = TRUE)
 	if(!istype(ghost))
 		log_debug("ANTAGONIST Wrong target passed to create_from_ghost of [id]! Ghost: [ghost == null?"NULL":ghost] \ref[ghost]")
 		return FALSE
@@ -105,7 +105,7 @@
 		faction.remove_member(src)
 		faction = null
 
-	current_antags.Remove(src)
+	GLOB.current_antags.Remove(src)
 	if (!owner)
 		return //This can happen with some spamclicking
 	if(owner.current)

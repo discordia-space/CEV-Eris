@@ -110,10 +110,10 @@
 		return
 	malfunction = MALFUNCTION_TEMPORARY
 	switch (severity)
-		if (2.0)	//Weak EMP will make implant tear limbs off.
+		if (2)	//Weak EMP will make implant tear limbs off.
 			if (prob(50))
 				small_boom()
-		if (1.0)	//strong EMP will melt implant either making it go off, or disarming it
+		if (1)	//strong EMP will melt implant either making it go off, or disarming it
 			if (prob(70))
 				if (prob(50))
 					small_boom()
@@ -135,3 +135,4 @@
 /obj/item/weapon/implanter/explosive
 	name = "implanter (E)"
 	implant = /obj/item/weapon/implant/explosive
+	spawn_tags = null

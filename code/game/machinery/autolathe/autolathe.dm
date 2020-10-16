@@ -20,7 +20,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/autolathe
+	circuit = /obj/item/weapon/electronics/circuitboard/autolathe
 
 	var/build_type = AUTOLATHE
 
@@ -460,6 +460,13 @@
 
 	disk = null
 
+/obj/machinery/autolathe/AltClick(mob/living/user)
+	if(user.incapacitated())
+		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		return
+	if(!in_range(src, user))
+		return
+	src.eject_disk(user)
 
 /obj/machinery/autolathe/proc/eat(mob/living/user, obj/item/eating)
 	if(!eating && istype(user))
@@ -831,7 +838,7 @@
 	las_rating -= las_amount
 
 	speed = initial(speed) + man_rating + las_rating
-	mat_efficiency = max(0.2, 1.0 - (man_rating * 0.1))
+	mat_efficiency = max(0.2, 1 - (man_rating * 0.1))
 
 
 

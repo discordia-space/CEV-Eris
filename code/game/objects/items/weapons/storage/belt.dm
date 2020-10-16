@@ -9,6 +9,9 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
+	bad_type = /obj/item/weapon/storage/belt
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_BELT
 
 	var/show_above_suit = 0
 
@@ -37,6 +40,7 @@
 	name = "tool belt"
 	desc = "Can hold various tools."
 	icon_state = "utility"
+	spawn_tags = SPAWN_TAG_BELT_UTILITY
 	can_hold = list(
 		/obj/item/weapon/tool,
 		/obj/item/device/lightreplacer,
@@ -62,6 +66,8 @@
 		/obj/item/weapon/grenade/chem_grenade/antiweed,
 		/obj/item/weapon/grenade/chem_grenade/metalfoam
 	)
+/obj/item/weapon/storage/belt/utility/full
+	rarity_value = 50
 
 /obj/item/weapon/storage/belt/utility/full/populate_contents()
 	new /obj/item/weapon/tool/screwdriver(src)
@@ -75,6 +81,7 @@
 	name = "neotheologian utility belt"
 	desc = "Waist-held holy items."
 	icon_state = "utility_neotheology"
+	rarity_value = 20
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
@@ -88,27 +95,38 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
+		/obj/item/bodybag,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/head/surgery,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/clothing/glasses/hud/health,
 		/obj/item/device/scanner/health,
-		/obj/item/weapon/dnainjector,
 		/obj/item/device/radio/headset,
+		/obj/item/device/lighting/toggleable/flashlight,
+		/obj/item/weapon/dnainjector,
+		/obj/item/weapon/reagent_containers/blood,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
 		/obj/item/weapon/reagent_containers/glass/bottle,
 		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/reagent_containers/syringe,
+		/obj/item/weapon/reagent_containers/hypospray,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/weapon/cell/small,
 		/obj/item/weapon/storage/fancy/cigarettes,
 		/obj/item/weapon/storage/pill_bottle,
+		/obj/item/weapon/tool/bonesetter,
+		/obj/item/weapon/tool/scalpel,
+		/obj/item/weapon/tool/scalpel/advanced,
+		/obj/item/weapon/tool/scalpel/laser,
+		/obj/item/weapon/tool/surgicaldrill,
+		/obj/item/weapon/tool/cautery,
+		/obj/item/weapon/tool/retractor,
+		/obj/item/weapon/tool/saw/circular,
+		/obj/item/weapon/tool/hemostat,
 		/obj/item/stack/medical,
-		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/head/surgery,
-		/obj/item/clothing/gloves,
-		/obj/item/weapon/reagent_containers/hypospray,
-		/obj/item/clothing/glasses,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/device/lighting/toggleable/flashlight,
-		/obj/item/weapon/extinguisher/mini
+		/obj/item/stack/nanopaste,
+		/obj/item/taperoll/medical
 	)
 
 /obj/item/weapon/storage/belt/medical/emt
@@ -116,11 +134,18 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "emsbelt"
 	item_state = "emsbelt"
+	can_hold_extra = list(
+		/obj/item/device/radio/off,
+		/obj/item/weapon/inflatable_dispenser,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/extinguisher/mini
+	)
 
 /obj/item/weapon/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical"
+	rarity_value = 20
 	can_hold = list(
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
@@ -141,24 +166,22 @@
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
 		/obj/item/weapon/melee,
-		//obj/item/weapon/gun/projectile/mk58, //too big, use holster
 		/obj/item/weapon/gun/projectile/clarissa,
 		/obj/item/weapon/gun/projectile/giskard,
-		//obj/item/weapon/gun/projectile/olivaw, //too big, use holster
-		//obj/item/weapon/gun/projectile/revolver/havelock, //too big, use holster
 		/obj/item/weapon/gun/energy/gun/martin,
-		//obj/item/weapon/gun/energy/taser, //too big, use holster
 		/obj/item/taperoll
 	)
 
 /obj/item/weapon/storage/belt/tactical/ironhammer
 	name = "ironhammer tactical belt"
 	icon_state = "tactical_ironhammer"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/tactical/neotheology
 	name = "neotheologian tactical belt"
 	desc = "Can hold various military and security equipment."
 	icon_state = "tactical_neotheology"
+	rarity_value = 40
 	can_hold_extra = list(
 		/obj/item/weapon/book/ritual/cruciform,
 		/obj/item/weapon/implant/core_implant/cruciform,
@@ -175,6 +198,7 @@
 	can_hold = list(
 		/obj/item/clothing/mask/luchador
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/belt/holding
 	name = "belt of holding"
@@ -186,3 +210,4 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 3)
 	origin_tech = list(TECH_BLUESPACE = 4)
+	spawn_blacklisted = TRUE

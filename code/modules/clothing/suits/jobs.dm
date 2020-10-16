@@ -10,6 +10,7 @@
 	item_state = "ass_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -27,6 +28,7 @@
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -44,6 +46,7 @@
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -62,6 +65,7 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
+	spawn_blacklisted = TRUE
 	extra_allowed = list(
 		/obj/item/seeds,
 		/obj/item/weapon/reagent_containers/glass/fertilizer,
@@ -80,6 +84,7 @@
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	spawn_blacklisted = TRUE
 
 //Chaplain
 /obj/item/clothing/suit/neotheology_jacket
@@ -89,6 +94,7 @@
 	item_state = "chaplain_hoodie"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	spawn_blacklisted = TRUE
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -104,6 +110,8 @@
 	icon_state = "church_coat"
 	item_state = "church_coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -119,6 +127,7 @@
 	icon_state = "nt_sportsjacket"
 	item_state = "nt_sportsjacket"
 	body_parts_covered = UPPER_TORSO|ARMS
+	spawn_blacklisted = TRUE
 
 //Chaplain
 /obj/item/clothing/suit/nun
@@ -128,6 +137,7 @@
 	item_state = "nun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	spawn_blacklisted = TRUE
 
 //Chef
 /obj/item/clothing/suit/chef
@@ -138,6 +148,7 @@
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	spawn_blacklisted = TRUE
 
 //Chef
 /obj/item/clothing/suit/chef/classic
@@ -147,6 +158,7 @@
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
 	body_parts_covered = 0
+	spawn_blacklisted = TRUE
 
 //Detective
 /obj/item/clothing/suit/storage/detective
@@ -173,6 +185,7 @@
 	icon_state = "insp_coat"
 	item_state = "insp_coat"
 	blood_overlay_type = "coat"
+	rarity_value = 16.66
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
@@ -184,6 +197,7 @@
 	extra_allowed = list(/obj/item/weapon/tool)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	price_tag = 50
+	rarity_value = 8
 
 /obj/item/clothing/suit/storage/hazardvest/orange
 	icon_state = "hazard_orange"
@@ -202,6 +216,7 @@
 	item_state = "te_coat"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
 	armor = list(
 		melee = 25,
 		bullet = 20,
@@ -221,6 +236,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
+	rarity_value = 5
 	armor = list(
 		melee = 10,
 		bullet = 0,
@@ -236,6 +252,7 @@
 	icon_state = "surgeon"
 	item_state = "surgeon"
 	blood_overlay_type = "armor"
+	spawn_blacklisted = TRUE
 	extra_allowed = list(
 		/obj/item/weapon/tool/bonesetter,
 		/obj/item/weapon/tool/cautery,

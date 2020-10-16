@@ -15,6 +15,8 @@
 	icon_state = "canister"
 	w_class = ITEM_SIZE_NORMAL
 	max_fuel = 100
+	rarity_value = 25
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 
 /obj/item/weapon/weldpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills

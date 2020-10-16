@@ -7,9 +7,8 @@
 	icon_state = "powered_off"
 	density = TRUE
 	anchored = TRUE
-
-	circuit = /obj/item/weapon/circuitboard/autodoc
-	use_power = 1
+	circuit = /obj/item/weapon/electronics/circuitboard/autodoc
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
 
@@ -20,7 +19,7 @@
 	autodoc_processor.damage_heal_amount = 20
 
 
-/obj/machinery/autodoc/relaymove(mob/user as mob)
+/obj/machinery/autodoc/relaymove(mob/user)
 	if (user.stat)
 		return
 	src.go_out()

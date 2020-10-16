@@ -67,19 +67,17 @@
 	var/moving_dir = direction
 
 	var/failed = FALSE
-	if(prob(rand(0, round(5 / rand(1, 5)))))
-		to_chat(mover, SPAN_DANGER("You clumsily fumble with the exosuit joystick."))
-		failed = TRUE
-	else if(exosuit.emp_damage >= EMP_MOVE_DISRUPT && prob(30))
+	if(exosuit.emp_damage >= EMP_MOVE_DISRUPT && prob(30))
 		failed = TRUE
 	if(failed)
 		moving_dir = pick(GLOB.cardinal - exosuit.dir)
 
 	var/obj/item/weapon/cell/C = exosuit.get_cell()
 	C.use(exosuit.legs.power_use * CELLRATE)
-	if(exosuit.dir != moving_dir)
+	if(exosuit.dir != moving_dir && !exosuit.strafing)
 		playsound(exosuit.loc, exosuit.mech_turn_sound, 40,1)
 		exosuit.set_dir(moving_dir)
+		next_move = world.time + exosuit.legs.turn_delay
 	else
 		var/turf/target_loc = get_step(exosuit, direction)
 		if(target_loc && exosuit.legs && exosuit.legs.can_move_on(exosuit.loc, target_loc))

@@ -14,6 +14,7 @@
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL
+	spawn_blacklisted = TRUE
 	var/access = list()
 	access = access_crate_cash
 	var/worth = 0
@@ -41,6 +42,10 @@
 			h_user.put_in_hands(bundle)
 		to_chat(user, SPAN_NOTICE("You add [src.worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
 		qdel(src)
+
+/obj/item/weapon/spacecash/Destroy()
+	. = ..()
+	worth = 0		// Prevents money from be duplicated anytime.
 
 /obj/item/weapon/spacecash/bundle
 	name = "pile of credits"
@@ -80,11 +85,15 @@
 	var/amount = input(usr, "How many credits do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(CLAMP(amount, 0, src.worth))
 	if(amount==0) return 0
+	else if (!Adjacent(usr))
+		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
+		return
 
 	src.worth -= amount
 	src.update_icon()
 	if(!worth)
 		usr.drop_from_inventory(src)
+		qdel(src)
 	if(amount in list(1000,500,200,100,50,20,1))
 		var/cashtype = text2path("/obj/item/weapon/spacecash/bundle/c[amount]")
 		var/obj/cash = new cashtype (usr.loc)
@@ -94,8 +103,6 @@
 		bundle.worth = amount
 		bundle.update_icon()
 		usr.put_in_hands(bundle)
-	if(!worth)
-		qdel(src)
 
 /obj/item/weapon/spacecash/bundle/Initialize()
 	. = ..()
@@ -157,6 +164,17 @@
 	icon_state = "spacecash500"
 	desc = "It's worth 500 credits."
 	worth = 500
+
+// exists here specifically for vagabond since they do not have bank accounts and used to have around 800 credits.
+/obj/item/weapon/spacecash/bundle/vagabond
+	name = "pile of credits"
+	icon_state = "spacecash500"
+
+/obj/item/weapon/spacecash/bundle/vagabond/Initialize()
+	var/rand_amount = rand(700,900)
+	desc = "They are worth [rand_amount] credits."
+	worth = rand_amount
+	. = ..()
 
 /obj/item/weapon/spacecash/bundle/c1000
 	name = "1000 credits"

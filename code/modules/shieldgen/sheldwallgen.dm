@@ -7,7 +7,7 @@
 		anchored = FALSE
 		density = TRUE
 		req_access = list(access_engine_equip)
-		circuit = /obj/item/weapon/circuitboard/shieldwallgen
+		circuit = /obj/item/weapon/electronics/circuitboard/shieldwallgen
 		var/shield_type = /obj/machinery/shieldwall //Overridden by excelsior variant
 		var/active = 0
 		var/power = 0
@@ -26,7 +26,7 @@
 		//There have to be at least two posts, so these are effectively doubled
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
-		use_power = 0	//Draws directly from power net. Does not use APC power.
+		use_power = NO_POWER_USE	//Draws directly from power net. Does not use APC power.
 		var/max_field_dist = 8
 		var/stunmode = FALSE
 		var/stun_chance = 1
@@ -330,21 +330,21 @@
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		switch(severity)
-			if(1.0) //big boom
+			if(1) //big boom
 				if(prob(50))
 					G = gen_primary
 				else
 					G = gen_secondary
 				G.storedpower -= 120000
 
-			if(2.0) //medium boom
+			if(2) //medium boom
 				if(prob(50))
 					G = gen_primary
 				else
 					G = gen_secondary
 				G.storedpower -= 30000
 
-			if(3.0) //lil boom
+			if(3) //lil boom
 				if(prob(50))
 					G = gen_primary
 				else

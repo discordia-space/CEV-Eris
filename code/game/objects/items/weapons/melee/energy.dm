@@ -126,7 +126,7 @@
 
 /obj/item/weapon/melee/energy/sword/pirate/New()
 	blade_color = "cutlass"
-	
+
 /obj/item/weapon/melee/energy/sword/sabre/New()
 	blade_color = "green"
 
@@ -192,6 +192,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
+	var/cleanup = TRUE	// Should the blade despawn moments after being discarded by the summoner?
 
 /obj/item/weapon/melee/energy/blade/New()
 
@@ -207,10 +208,12 @@
 
 /obj/item/weapon/melee/energy/blade/attack_self(mob/user as mob)
 	user.drop_from_inventory(src)
-	spawn(1) if(src) qdel(src)
+	if(cleanup)
+		spawn(1) if(src) qdel(src)
 
 /obj/item/weapon/melee/energy/blade/dropped()
-	spawn(1) if(src) qdel(src)
+	if(cleanup)
+		spawn(1) if(src) qdel(src)
 
 /obj/item/weapon/melee/energy/blade/Process()
 	if(!creator || loc != creator || (creator.l_hand != src && creator.r_hand != src))
@@ -225,4 +228,12 @@
 			host.pinned -= src
 			host.embedded -= src
 			host.drop_from_inventory(src)
-		spawn(1) if(src) qdel(src)
+		if(cleanup)
+			spawn(1) if(src) qdel(src)
+
+/obj/item/weapon/melee/energy/blade/organ_module //just to make sure that blade doesnt delet itself
+	cleanup = FALSE
+
+/obj/item/weapon/melee/energy/blade/organ_module/New()
+
+/obj/item/weapon/melee/energy/blade/organ_module/attack_self(mob/user as mob)

@@ -22,7 +22,7 @@
 	anchored = TRUE
 	density = TRUE
 	power_channel = EQUIP
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
 
@@ -106,7 +106,7 @@
 						continue
 				M.sleeping = 0
 				M.stuttering += 20
-				M.ear_deaf += 30
+				M.adjustEarDamage(0,30)
 				M.Weaken(3)
 				if(prob(30))
 					M.Stun(10)

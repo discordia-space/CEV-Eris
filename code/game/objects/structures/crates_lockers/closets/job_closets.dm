@@ -25,8 +25,8 @@
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/suit/wcoat(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/shoes/color/black(src)
+	new /obj/item/clothing/shoes/color/black(src)
 	new /obj/item/clothing/under/rank/bartender/skirt(src)
 
 /*
@@ -46,6 +46,8 @@
 	new /obj/item/weapon/storage/box/mousetraps(src)
 	new /obj/item/weapon/storage/box/mousetraps(src)
 	new /obj/item/clothing/under/rank/chef(src)
+	new /obj/item/weapon/reagent_containers/glass/beaker/bowl(src)
+	new /obj/item/weapon/reagent_containers/glass/beaker/bowl(src)
 	new /obj/item/clothing/head/chefhat(src)
 
 /*
@@ -111,6 +113,8 @@
 	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/weapon/soap/nanotrasen(src)
 	new /obj/item/weapon/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
+	new /obj/item/weapon/gun/energy/nt_svalinn(src)
+	new /obj/item/weapon/cell/small(src)
 
 /obj/structure/closet/acolyte
 	name = "acolyte closet"
@@ -133,3 +137,5 @@
 	new /obj/item/clothing/under/rank/church/sport(src)
 	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/clothing/suit/space/void/acolyte(src)
+	new /obj/item/weapon/gun/energy/nt_svalinn(src)
+	new /obj/item/weapon/cell/small(src)

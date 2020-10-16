@@ -10,7 +10,7 @@
 	var/transfer_blood = 0
 	var/mob/living/carbon/human/bloody_hands_mob
 
-/obj/item/clothing/shoes/
+/obj/item/clothing/shoes
 	var/track_blood = 0
 
 /obj/item/weapon/reagent_containers/glass/rag
@@ -26,7 +26,8 @@
 	flags = NOBLUDGEON
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	unacidable = 0
-
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20
 	var/on_fire = 0
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
 
@@ -38,7 +39,7 @@
 	STOP_PROCESSING(SSobj, src) //so we don't continue turning to ash while gc'd
 	. = ..()
 
-/obj/item/weapon/reagent_containers/glass/rag/attack_self(mob/user as mob)
+/obj/item/weapon/reagent_containers/glass/rag/attack_self(mob/user)
 	if(on_fire)
 		user.visible_message(SPAN_WARNING("\The [user] stamps out [src]."), SPAN_WARNING("You stamp out [src]."))
 		user.unEquip(src)
@@ -104,7 +105,7 @@
 			user.visible_message("\The [user] finishes wiping off the [A]!")
 			A.clean_blood()
 
-/obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
+/obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user, flag)
 	if(isliving(target))
 		var/mob/living/M = target
 		if(on_fire)
@@ -114,31 +115,24 @@
 		else if(reagents.total_volume)
 			if(user.targeted_organ == BP_MOUTH && ishuman(target))
 				var/mob/living/carbon/human/H = target
+				user.visible_message(SPAN_DANGER("\The [user] starts smothering [H] with [src]!"), SPAN_DANGER("You start smothering [H] with [src]!"))
 				if(!H.check_mouth_coverage())
 					if(do_after(user, 20, H))
 						user.do_attack_animation(src)
-						user.visible_message(
-							"<span class='danger'>\The [user] smothers [H] with [src]!</span>",
-							"<span class='warning'>You smother [H] with [src]!</span>",
-							"You hear some struggling and muffled cries of surprise"
-							)
-
+						user.visible_message(SPAN_DANGER("\The [user] smothers [H] with [src]!"), SPAN_DANGER("You smother [H] with [src]!"))
 						reagents.trans_to_mob(H, amount_per_transfer_from_this, CHEM_BLOOD)
 						update_name()
 						return
 
 				user.do_attack_animation(src)
-				user.visible_message(
-					"<span class='danger'>\The [user] try to smothers [H] with [src], but blocked!</span>",
-					"<span class='warning'>You try to smother [H] with [src]!</span>"
-					)
+				user.visible_message(SPAN_DANGER("\The [user] tries to smother [H] with [src], but fails because the mouth is covered!"), SPAN_DANGER("You try to smother [H] with [src], but their mouth is covered!"))
 			else
 				wipe_down(target, user)
 		return
 
 	return ..()
 
-/obj/item/weapon/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
+/obj/item/weapon/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user, proximity)
 	if(!proximity)
 		return
 

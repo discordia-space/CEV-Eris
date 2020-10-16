@@ -9,6 +9,9 @@
 	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
+	bad_type = /obj/item/weapon/tank/jetpack
+	spawn_tags = SPAWN_TAG_JETPACK
+	rarity_value = 50
 	var/datum/effect/effect/system/trail/jet/trail
 	var/on = FALSE
 	var/stabilization_on = 0
@@ -49,6 +52,7 @@
 	icon_state = "jetpack-black"
 	distribute_pressure = 0
 	default_gas = "carbon_dioxide"
+	rarity_value = 33.33
 
 /*****************************
 	Core Functionality

@@ -1,7 +1,7 @@
 #define REAGENTS_PER_SHEET 20
 
 /obj/machinery/reagentgrinder
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/nano_template
@@ -160,12 +160,12 @@
 	layer = BELOW_OBJ_LAYER
 	density = FALSE
 	anchored = FALSE
-	circuit = /obj/item/weapon/circuitboard/reagentgrinder
+	circuit = /obj/item/weapon/electronics/circuitboard/reagentgrinder
 	nano_template = "grinder.tmpl"
 	var/inuse = 0
 	var/obj/item/weapon/reagent_containers/beaker = null
 
-/obj/item/weapon/circuitboard/reagentgrinder
+/obj/item/weapon/electronics/circuitboard/reagentgrinder
 	name = T_BOARD("reagent grinder")
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/portable
@@ -262,15 +262,16 @@
 	icon = 'icons/obj/machines/grinder.dmi'
 	icon_state = "grinder"
 	reagent_flags = NO_REACT
-	circuit = /obj/item/weapon/circuitboard/industrial_grinder
+	circuit = /obj/item/weapon/electronics/circuitboard/industrial_grinder
 	limit = 25
 	nano_template = "industrial_grinder.tmpl"
 
-/obj/item/weapon/circuitboard/industrial_grinder
+/obj/item/weapon/electronics/circuitboard/industrial_grinder
 	name = T_BOARD("industrial grinder")
 	board_type = "machine"
 	build_path = /obj/machinery/reagentgrinder/industrial
 	origin_tech = list(TECH_BIO = 1)
+	rarity_value = 10
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator = 2,
 		/obj/item/weapon/stock_parts/scanning_module = 1,
@@ -340,6 +341,8 @@
 	icon_state = "mortar"
 	storage_slots = 3
 	unacidable = 1
+	rarity_value = 25
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(5,10,30,60)
 	reagent_flags = REFILLABLE | DRAINABLE

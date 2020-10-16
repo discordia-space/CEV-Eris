@@ -1,0 +1,19 @@
+###############################################################################################
+# Words that will block in character chat messages from sending.                              #
+# Case is not important. Commented-out examples are listed below, just remove the "#".        #
+###############################################################################################
+lol
+kek
+omg
+tbh
+owo
+uwu
+idk
+cbt
+tfw
+mfw
+iirc
+lmao
+lmfao
+afaik
+afk

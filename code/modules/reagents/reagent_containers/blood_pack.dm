@@ -2,6 +2,7 @@
 	name = "blood packs bags"
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/bloodpacks/populate_contents()
 	new /obj/item/weapon/reagent_containers/blood(src)
@@ -51,23 +52,25 @@
 	else
 		name = "blood pack"
 
-
+#define bloodtypeandpackname(bloodtype) name = "blood pack ("+bloodtype+")"; blood_type = bloodtype;
 /obj/item/weapon/reagent_containers/blood/APlus
-	blood_type = "A+"
+	bloodtypeandpackname("A+")
 
 /obj/item/weapon/reagent_containers/blood/AMinus
-	blood_type = "A-"
+	bloodtypeandpackname("A-")
 
 /obj/item/weapon/reagent_containers/blood/BPlus
-	blood_type = "B+"
+	bloodtypeandpackname("B+")
 
 /obj/item/weapon/reagent_containers/blood/BMinus
-	blood_type = "B-"
+	bloodtypeandpackname("B-")
 
 /obj/item/weapon/reagent_containers/blood/OPlus
-	blood_type = "O+"
+	bloodtypeandpackname("O+")
 
 /obj/item/weapon/reagent_containers/blood/OMinus
-	blood_type = "O-"
+	bloodtypeandpackname("O-")
 
 /obj/item/weapon/reagent_containers/blood/empty
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20

@@ -21,6 +21,9 @@
 	req_access = list()
 	w_class = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
+	spawn_tags = SPAWN_TAG_RING
+	rarity_value = 10
+	bad_type = /obj/item/weapon/rig
 
 	// These values are passed on to all component pieces.
 	armor = list(
@@ -59,12 +62,12 @@
 
 	//Component/device holders.
 	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
-	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
+	var/obj/item/clothing/shoes/boots                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
-	var/obj/item/clothing/head/space/rig/helmet = null // Deployable helmet, if any.
-	var/obj/item/clothing/gloves/rig/gloves = null            // Deployable gauntlets, if any.
-	var/obj/item/weapon/cell/large/cell                             // Power supply, if any.
-	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)
+	var/obj/item/clothing/head/space/rig/helmet				 // Deployable helmet, if any.
+	var/obj/item/clothing/gloves/rig/gloves					// Deployable gauntlets, if any.
+	var/obj/item/weapon/cell/large/cell						// Power supply, if any.
+	var/obj/item/rig_module/selected_module      		      // Primary system (used with middle-click)
 	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.
 	var/obj/item/rig_module/voice/speech                      // As above.
 	var/obj/item/rig_module/storage/storage					  // var for installed storage module, if any
@@ -184,7 +187,7 @@
 			piece.siemens_coefficient = siemens_coefficient
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
-		if(islist(armor)) piece.armor = armor.Copy()
+		if(armor) piece.armor = armor
 
 	update_icon(1)
 
@@ -306,9 +309,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor[ARMOR_BIO] = 100
+						piece.armor.bio = 100
 					else
-						piece.armor[ARMOR_BIO] = armor[ARMOR_BIO]
+						piece.armor.bio = armor.bio
 
 				else
 					failed_to_seal = 1

@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/pile_ripper
+/obj/item/weapon/electronics/circuitboard/pile_ripper
 	name = T_BOARD("Pile Ripper")
 	build_path = /obj/machinery/pile_ripper
 	board_type = "machine"
@@ -15,7 +15,7 @@
 	layer = MOB_LAYER + 1 // Overhead
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 
 	var/safety_mode = FALSE // Temporality stops the machine if it detects a mob
@@ -50,8 +50,8 @@
 	for(var/obj/ripped_item in ripped_turf)
 		if(count >= rating)
 			break
-		if(istype(ripped_item, /obj/structure/scrap))
-			var/obj/structure/scrap/pile = ripped_item
+		if(istype(ripped_item, /obj/structure/scrap_spawner))
+			var/obj/structure/scrap_spawner/pile = ripped_item
 			while(pile.dig_out_lump(loc, 1))
 				if(prob(20))
 					break
@@ -150,7 +150,7 @@
 	L.adjustBruteLoss(45)
 	if(istype(L, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
-		H.nutrition -= 100
+		H.adjustNutrition(-100)
 		if(H.nutrition <= 0)
 			H.gib()
 		if(H.isMonkey())

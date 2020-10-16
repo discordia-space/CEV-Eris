@@ -13,7 +13,7 @@
 	else
 		visible_message(SPAN_WARNING("\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]"))
 
-	health -= (I.force / 2.0)
+	health -= (I.force / 2)
 	healthcheck()
 
 /obj/effect/roach/bullet_act(var/obj/item/projectile/Proj)
@@ -56,7 +56,7 @@
 /obj/effect/roach/roach_egg/Process()
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
-		var/obj/item/organ/external/O = null
+		var/obj/item/organ/external/O
 		if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!
 			O = loc
 			src.visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))

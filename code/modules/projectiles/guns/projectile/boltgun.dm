@@ -61,7 +61,7 @@
 	if(bolt_open)
 		if(chambered)
 			to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
-			chambered.loc = get_turf(src)
+			chambered.forceMove(get_turf(src))
 			loaded -= chambered
 			chambered = null
 		else
@@ -99,3 +99,4 @@
 	recoil_buildup = 0.4 // Double the excel variant
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
+	rarity_value = 48

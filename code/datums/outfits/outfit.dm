@@ -22,23 +22,23 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit
 	name = "Naked"
 
-	var/uniform = null
-	var/suit = null
-	var/back = null
-	var/belt = null
-	var/gloves = null
-	var/shoes = null
-	var/head = null
-	var/mask = null
-	var/l_ear = null
-	var/r_ear = null
-	var/glasses = null
-	var/id = null
-	var/l_pocket = null
-	var/r_pocket = null
-	var/suit_store = null
-	var/r_hand = null
-	var/l_hand = null
+	var/uniform
+	var/suit
+	var/back
+	var/belt
+	var/gloves
+	var/shoes
+	var/head
+	var/mask
+	var/l_ear
+	var/r_ear
+	var/glasses
+	var/id
+	var/l_pocket
+	var/r_pocket
+	var/suit_store
+	var/r_hand
+	var/l_hand
 	var/list/backpack_contents = list() // In the list(path=count,otherpath=count) format
 
 	var/id_type
@@ -83,7 +83,7 @@ var/list/outfits_decls_by_type_
 	if(W)
 		rank = W.rank
 		assignment = W.assignment
-	equip_pda(H, rank, assignment, equip_adjustments)
+	equip_pda(H, rank, assignment, equip_adjustments, W)
 
 	for(var/path in backpack_contents)
 		var/number = backpack_contents[path]
@@ -176,17 +176,19 @@ var/list/outfits_decls_by_type_
 	if(assignment)
 		W.assignment = assignment
 	H.set_id_info(W)
-	if(H.equip_to_slot_or_store_or_drop(W, id_slot))
+	if(H.equip_to_slot_or_store_or_drop(W, id_slot)) // keeping this here to ensure that if no PDA, ID will end up in ID slot.
 		return W
 
-/decl/hierarchy/outfit/proc/equip_pda(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments)
+/decl/hierarchy/outfit/proc/equip_pda(var/mob/living/carbon/human/H, var/rank, var/assignment, var/equip_adjustments, var/obj/item/weapon/card/id/W)
 	if(!pda_slot || !pda_type)
 		return
 	if(OUTFIT_ADJUSTMENT_SKIP_ID_PDA & equip_adjustments)
 		return
 	var/obj/item/modular_computer/pda/pda = new pda_type(H)
-	if(H.equip_to_slot_or_store_or_drop(pda, pda_slot))
-		return pda
+	if(W && pda) // ID's start in the PDA
+		pda.attackby(W,H,TRUE) // doing it this way ensures it passes through the attackby checks like looking for an ID slot etc instead of making unconnected checks here. Also gives the user a message so they know where it is.
+		H.equip_to_slot_or_store_or_drop(pda, id_slot) // Doing this here so that the ID stays in the ID slot if there is no PDA on spawn.
+	return pda
 
 /decl/hierarchy/outfit/dd_SortValue()
 	return name

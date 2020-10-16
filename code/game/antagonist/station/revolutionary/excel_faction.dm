@@ -46,7 +46,7 @@
 	var/obj/landmark/storyevent/midgame_stash_spawn/landmark = null
 
 	var/list/L = list()
-	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in landmarks_list)
+	for(var/obj/landmark/storyevent/midgame_stash_spawn/S in GLOB.landmarks_list)
 		L.Add(S)
 
 	L = shuffle(L)
@@ -63,8 +63,8 @@
 	var/turf/LM = landmark.get_loc()
 
 	new /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior(LM)
-	new /obj/item/weapon/circuitboard/excelsiorautolathe(LM)
-	new /obj/item/weapon/circuitboard/excelsior_teleporter(LM)
+	new /obj/item/weapon/electronics/circuitboard/excelsiorautolathe(LM)
+	new /obj/item/weapon/electronics/circuitboard/excelsior_teleporter(LM)
 
 	for (var/datum/antagonist/A in members)
 		to_chat(A.owner.current, SPAN_NOTICE("Use your excelsior supply stash. [landmark.navigation]"))

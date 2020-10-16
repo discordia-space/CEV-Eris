@@ -15,6 +15,7 @@
 	item_state = "electronic"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+	rarity_value = 25
 
 
 	//Scan range can be changed, and the power costs scale up with it
@@ -351,7 +352,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	//In this case, this means it must be held in the hands of a mob
 
 	//This is a seperate proc so that it can be overridden later. For example to allow for scanners embedded in other things
-	if (!istype(loc, /mob))
+	if (!ismob(loc))
 		return FALSE
 
 	if (!is_held())

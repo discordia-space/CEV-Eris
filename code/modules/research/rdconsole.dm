@@ -42,7 +42,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/rdconsole
+	circuit = /obj/item/weapon/electronics/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
 

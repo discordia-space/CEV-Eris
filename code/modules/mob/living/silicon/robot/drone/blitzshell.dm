@@ -79,9 +79,9 @@
 		/obj/item/stack/telecrystal //To reload the uplink
 		)
 
-/obj/item/weapon/gripper/antag/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/weapon/gripper/antag/afterattack(atom/target, var/mob/living/user, proximity, params)
 	..()
-	if(istype(target, /mob/living/carbon/human))
+	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.stat == DEAD)
 			if(H.get_organ(BP_HEAD))
@@ -163,6 +163,7 @@
 /obj/item/device/drone_uplink
 	name = "Drone Bounty Uplink"
 	icon_state = "uplink_access"
+	spawn_blacklisted = TRUE
 
 /obj/item/device/drone_uplink/New()
 	..()

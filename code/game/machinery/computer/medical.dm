@@ -7,16 +7,16 @@
 	icon_screen = "medcomp"
 	light_color = COLOR_LIGHTING_GREEN_MACHINERY
 	req_one_access = list(access_moebius, access_forensics_lockers)
-	circuit = /obj/item/weapon/circuitboard/med_data
-	var/obj/item/weapon/card/id/scan = null
-	var/authenticated = null
-	var/rank = null
-	var/screen = null
-	var/datum/data/record/active1 = null
-	var/datum/data/record/active2 = null
-	var/a_id = null
-	var/temp = null
-	var/printing = null
+	circuit = /obj/item/weapon/electronics/circuitboard/med_data
+	var/obj/item/weapon/card/id/scan
+	var/authenticated
+	var/rank
+	var/screen
+	var/datum/data/record/active1
+	var/datum/data/record/active2
+	var/a_id
+	var/temp
+	var/printing
 
 /obj/machinery/computer/med_data/verb/eject_id()
 	set category = "Object"
@@ -56,7 +56,7 @@
 		dat = text("Confirm Identity: <A href='?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 		if (src.authenticated)
 			switch(src.screen)
-				if(1.0)
+				if(1)
 					dat += {"
 <A href='?src=\ref[src];search=1'>Search Records</A>
 <BR><A href='?src=\ref[src];screen=2'>List Records</A>
@@ -67,16 +67,16 @@
 <BR><A href='?src=\ref[src];screen=3'>Record Maintenance</A>
 <BR><A href='?src=\ref[src];logout=1'>{Log Out}</A><BR>
 "}
-				if(2.0)
+				if(2)
 					dat += "<B>Record List</B>:<HR>"
 					if(!isnull(data_core.general))
 						for(var/datum/data/record/R in sortRecord(data_core.general))
 							dat += text("<A href='?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
 					dat += text("<HR><A href='?src=\ref[];screen=1'>Back</A>", src)
-				if(3.0)
+				if(3)
 					dat += text("<B>Records Maintenance</B><HR>\n<A href='?src=\ref[];back=1'>Backup To Disk</A><BR>\n<A href='?src=\ref[];u_load=1'>Upload From disk</A><BR>\n<A href='?src=\ref[];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='?src=\ref[];screen=1'>Back</A>", src, src, src, src)
-				if(4.0)
+				if(4)
 					var/icon/front = active1.fields["photo_front"]
 					var/icon/side = active1.fields["photo_side"]
 					user << browse_rsc(front, "front.png")
@@ -105,7 +105,7 @@
 						dat += "<B>Medical Record Lost!</B><BR>"
 						dat += text("<A href='?src=\ref[src];new=1'>New Record</A><BR><BR>")
 					dat += text("\n<A href='?src=\ref[];print_p=1'>Print Record</A><BR>\n<A href='?src=\ref[];screen=2'>Back</A><BR>", src, src)
-				if(5.0)
+				if(5)
 					dat += "<CENTER><B>Virus Database</B></CENTER>"
 					/*	Advanced diseases is weak! Feeble! Glory to virus2!
 					for(var/Dt in typesof(/datum/disease/))
@@ -121,11 +121,11 @@
 						dat += "<br><a href='?src=\ref[src];vir=\ref[v]'>[v.fields["name"]]</a>"
 
 					dat += "<br><a href='?src=\ref[src];screen=1'>Back</a>"
-				if(6.0)
+				if(6)
 					dat += "<center><b>Medical Robot Monitor</b></center>"
 					dat += "<a href='?src=\ref[src];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"
-					var/bdat = null
+					var/bdat
 					for(var/mob/living/bot/medbot/M in world)
 
 						if(M.z != src.z)	continue	//only find medibots on the same z-level as the computer
@@ -489,8 +489,8 @@
 			if (href_list["print_p"])
 				if (!( src.printing ))
 					src.printing = 1
-					var/datum/data/record/record1 = null
-					var/datum/data/record/record2 = null
+					var/datum/data/record/record1
+					var/datum/data/record/record2
 					if ((istype(src.active1, /datum/data/record) && data_core.general.Find(src.active1)))
 						record1 = active1
 					if ((istype(src.active2, /datum/data/record) && data_core.medical.Find(src.active2)))

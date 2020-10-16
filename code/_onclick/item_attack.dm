@@ -53,6 +53,27 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
+/obj/item/proc/nt_sword_attack(obj/item/I, mob/living/user)//for sword of truth
+	. = FALSE
+	if(!istype(I, /obj/item/weapon/tool/sword/nt_sword))
+		return FALSE
+	var/obj/item/weapon/tool/sword/nt_sword/NT = I
+	if(NT.isBroken)
+		return FALSE
+	if(!(NT.flags & NOBLUDGEON))
+		if(user.a_intent == I_HELP)
+			return FALSE
+		user.do_attack_animation(src)
+		if (NT.hitsound)
+			playsound(loc, I.hitsound, 50, 1, -1)
+		visible_message(SPAN_DANGER("[src] has been hit by [user] with [NT]."))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		if(prob(10))
+			for(var/mob/living/carbon/human/H in viewers(user))
+				SEND_SIGNAL(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)
+			qdel(src)
+		. = TRUE
+
 /obj/item/attackby(obj/item/I, mob/living/user, var/params)
 	return
 

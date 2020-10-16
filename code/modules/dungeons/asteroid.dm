@@ -91,7 +91,7 @@
 		spot_add(1,3,type_wall)
 		spot_add(2,1,type_wall)
 		spot_add(2,2,type_under) //Center floor
-		spot_add(2,2,/obj/random/contraband/) //Loot!
+		spot_add(2,2,/obj/spawner/contraband/) //Loot!
 		spot_add(2,3,type_wall)
 		spot_add(3,1,type_wall)
 		spot_add(3,2,type_wall)
@@ -104,7 +104,7 @@
 
 	New()
 		..()
-		spot_add(2,2,/obj/random/contraband) //EXTRA loot!
+		spot_add(2,2,/obj/spawner/contraband) //EXTRA loot!
 		spot_add(2,2,/mob/living/simple_animal/hostile/alien) //GRRR
 
 //Longer cargo container for higher difficulties
@@ -134,9 +134,9 @@
 		spot_add(3,3,type_under) //Mid floor
 		spot_add(4,3,type_under) //Right floor
 
-		spot_add(2,3,/obj/random/contraband) //Left loot
-		spot_add(3,3,/obj/random/contraband) //Mid loot
-		spot_add(4,3,/obj/random/contraband) //Right loot
+		spot_add(2,3,/obj/spawner/contraband) //Left loot
+		spot_add(3,3,/obj/spawner/contraband) //Mid loot
+		spot_add(4,3,/obj/spawner/contraband) //Right loot
 
 		if(prob(30))
 			spot_add(3,3,/mob/living/simple_animal/hostile/alien) //And maybe a friend.
@@ -167,7 +167,7 @@
 	alpha = 120
 	anchored = TRUE
 	unacidable = 1
-	simulated = 0
+	simulated = FALSE
 	invisibility = 101
 	var/delay = 2
 

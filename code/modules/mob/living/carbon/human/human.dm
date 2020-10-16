@@ -9,7 +9,7 @@
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/obj/item/weapon/rig/wearing_rig // This is very not good, but it's much much better than calling get_rig() every update_lying_buckled_and_verb_status() call.
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+/mob/living/carbon/human/New(var/new_loc, var/new_species)
 
 	if(!dna)
 		dna = new /datum/dna(null)
@@ -80,10 +80,6 @@
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
 
-		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[BP_PLASMA]
-		if(P)
-			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
-
 		if(back && istype(back,/obj/item/weapon/rig))
 			var/obj/item/weapon/rig/suit = back
 			var/cell_status = "ERROR"
@@ -108,11 +104,11 @@
 			flick("flash", HUDtech["flash"])
 
 	var/shielded = 0
-	var/b_loss = null
-	var/f_loss = null
+	var/b_loss
+	var/f_loss
 	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
 	switch (severity)
-		if (1.0)
+		if (1)
 			b_loss += 500
 			if (!prob(bomb_defense))
 				gib()
@@ -124,21 +120,19 @@
 //				var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
 				//user.throw_at(target, 200, 4)
 
-		if (2.0)
+		if (2)
 			if (!shielded)
 				b_loss += 150
 
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30
-				ear_deaf += 120
+				adjustEarDamage(30,120)
 			if (prob(70) && !shielded)
 				Paralyse(10)
 
-		if(3.0)
+		if(3)
 			b_loss += 100
 			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15
-				ear_deaf += 60
+				adjustEarDamage(15,60)
 			if (prob(50) && !shielded)
 				Paralyse(10)
 	if (bomb_defense)
@@ -159,7 +153,7 @@
 		return 1
 	return 0
 
-/mob/living/carbon/human/var/co2overloadtime = null
+/mob/living/carbon/human/var/co2overloadtime
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
 
 
@@ -167,7 +161,7 @@
 	if(user.incapacitated()  || !user.Adjacent(src))
 		return
 
-	var/obj/item/clothing/under/suit = null
+	var/obj/item/clothing/under/suit
 	if (istype(w_uniform, /obj/item/clothing/under))
 		suit = w_uniform
 
@@ -312,7 +306,7 @@ var/list/rank_prefix = list(\
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, def_zone)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
@@ -692,7 +686,7 @@ var/list/rank_prefix = list(\
 				if (istype(location, /turf/simulated))
 					location.add_vomit_floor(src, 1)
 
-				nutrition -= 40
+				adjustNutrition(-40)
 				adjustToxLoss(-3)
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
@@ -1146,7 +1140,7 @@ var/list/rank_prefix = list(\
 //Needed for augmentation
 /mob/living/carbon/human/proc/rebuild_organs(from_preference)
 	if(!species)
-		return 0
+		return FALSE
 
 	status_flags |= REBUILDING_ORGANS
 
@@ -1157,26 +1151,26 @@ var/list/rank_prefix = list(\
 			C.removed_mob()
 			organs_to_readd += C
 
-	for(var/obj/item/organ/organ in (organs|internal_organs))
-		qdel(organ)
-
 	var/obj/item/weapon/implant/core_implant/CI = get_core_implant()
 	var/checkprefcruciform = FALSE	// To reset the cruciform to original form
 	if(CI)
 		checkprefcruciform = TRUE
 		qdel(CI)
 
-	if(organs.len)
-		organs.Cut()
-	if(internal_organs.len)
-		internal_organs.Cut()
-	if(organs_by_name.len)
-		organs_by_name.Cut()
-	if(internal_organs_by_name.len)
-		internal_organs_by_name.Cut()
-
 
 	if(from_preference)
+		for(var/obj/item/organ/organ in (organs|internal_organs))
+			qdel(organ)
+
+		if(organs.len)
+			organs.Cut()
+		if(internal_organs.len)
+			internal_organs.Cut()
+		if(organs_by_name.len)
+			organs_by_name.Cut()
+		if(internal_organs_by_name.len)
+			internal_organs_by_name.Cut()
+
 		var/datum/preferences/Pref
 		if(istype(from_preference, /datum/preferences))
 			Pref = from_preference
@@ -1185,7 +1179,7 @@ var/list/rank_prefix = list(\
 		else
 			return
 
-		var/datum/body_modification/BM = null
+		var/datum/body_modification/BM
 
 		for(var/tag in species.has_limbs)
 			BM = Pref.get_modification(tag)
@@ -1216,14 +1210,20 @@ var/list/rank_prefix = list(\
 				C.access.Add(mind.assigned_job.cruciform_access)
 
 	else
-		var/organ_type = null
+		var/organ_type
 
 		for(var/limb_tag in species.has_limbs)
 			var/datum/organ_description/OD = species.has_limbs[limb_tag]
+			var/obj/item/I = organs_by_name[limb_tag]
+			if(I && I.type == OD.default_type)
+				continue
 			OD.create_organ(src)
 
 		for(var/organ_tag in species.has_organ)
 			organ_type = species.has_organ[organ_tag]
+			var/obj/item/I = internal_organs_by_name[organ_tag]
+			if(I && I.type == organ_type)
+				continue
 			new organ_type(src)
 
 		if(checkprefcruciform)
@@ -1400,7 +1400,7 @@ var/list/rank_prefix = list(\
 
 	var/mob/S = src
 	var/mob/U = usr
-	var/self = null
+	var/self
 	if(S == U)
 		self = 1 // Removing object from yourself.
 

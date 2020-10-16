@@ -12,7 +12,7 @@
 	armor = list(
 		melee = 35,
 		bullet = 30,
-		energy =30,
+		energy = 30,
 		bomb = 40,
 		bio = 100,
 		rad = 100
@@ -121,6 +121,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
+	rarity_value = 4.5
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -162,10 +163,12 @@
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
+	rarity_value = 20
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+	spawn_blacklisted = TRUE
 
 //Atmospherics Rig (BS12)
 /obj/item/clothing/head/space/void/atmos
@@ -203,44 +206,66 @@
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
+	rarity_value = 8
 
 //Science
 /obj/item/clothing/head/space/void/science
-	name = "Moebius Contractor Helmet"
+	name = "Moebius combat Helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
-	icon_state = "assaulthelm"
-	item_state = "assaulthelm"
+	icon_state = "moebiushelmb"
+	item_state = "moebiushelmb"
 	item_state_slots = list(
 		slot_l_hand_str = "assaulthelm",
 		slot_r_hand_str = "assaulthelm",
 		)
-
-	armor = list(
-		melee = 35,
-		bullet = 40,
-		energy = 30,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+	matter = list(
+	MATERIAL_PLASTEEL = 5,
+	MATERIAL_STEEL = 5,
+	MATERIAL_GLASS = 5
 	)
-	siemens_coefficient = 0.4
-	light_overlay = "helmet_light_dual"
-
-/obj/item/clothing/suit/space/void/science
-	name = "Moebius Contractor Power Armor"
-	icon_state = "assaultsuit"
-	desc = "A power armor designed by Moebius for contractor work. Features near impeccable armor."
-	item_state = "assaultsuit"
+	price_tag = 200
 	armor = list(
 		melee = 40,
-		bullet = 50,
-		energy = 40,
+		bullet = 35,
+		energy = 45,
 		bomb = 30,
 		bio = 100,
 		rad = 75
 	)
 	siemens_coefficient = 0.4
-	helmet = /obj/item/clothing/head/space/void/science
+	light_overlay = "helmet_light_dual"
+	spawn_blacklisted = TRUE
 
-/obj/item/clothing/suit/space/void/security/equipped
-	tank = /obj/item/weapon/tank/jetpack/oxygen
+/obj/item/clothing/head/space/void/science
+    var/list/icon_states = list("moebiushelmb","moebiushelmr", "moebiushelmp","moebiushelmg", "moebiushelmy", "moebiushelmw") //TODO: a manual selection anytime.
+
+/obj/item/clothing/head/space/void/science/New()
+    ..()
+    icon_state = pick(icon_states)
+
+/obj/item/clothing/suit/space/void/science
+	name = "Moebius combat voidsuit"
+	icon_state = "moebiussuit"
+	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment. Features several advanced layers of armor."
+	item_state = "moebiussuit"
+	matter = list(
+	MATERIAL_PLASTEEL = 15,
+	MATERIAL_STEEL = 10,
+	MATERIAL_PLASTIC = 10,
+	MATERIAL_PLATINUM = 5
+	)
+	armor = list(
+		melee = 40,
+		bullet = 35,
+		energy = 45,
+		bomb = 30,
+		bio = 100,
+		rad = 75
+	)
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4)
+	price_tag = 1200
+	siemens_coefficient = 0.4
+	helmet = /obj/item/clothing/head/space/void/science
+	rarity_value = 20
+
+

@@ -22,6 +22,10 @@
 	name = "large glass beaker"
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/large
 
+/datum/design/autolathe/container/mixingbowl
+	name = "mixing bowl"
+	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bowl
+
 /datum/design/autolathe/container/vial
 	name = "glass vial"
 	build_path = /obj/item/weapon/reagent_containers/glass/beaker/vial
@@ -33,7 +37,9 @@
 /datum/design/autolathe/container/syringe
 	name = "syringe"
 	build_path = /obj/item/weapon/reagent_containers/syringe
-
+/datum/design/autolathe/container/syringe/large
+	name = "Large syringe"
+	build_path = /obj/item/weapon/reagent_containers/syringe/large
 /datum/design/autolathe/container/syringegun_ammo
 	name = "syringe gun cartridge"
 	build_path = /obj/item/weapon/syringe_cartridge

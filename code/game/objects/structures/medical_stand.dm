@@ -295,15 +295,15 @@
 		return
 	return 1
 
-/obj/structure/medical_stand/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype (W, /obj/item/weapon/tool))
-		if (valve_opened)
+/obj/structure/medical_stand/attackby(obj/item/weapon/W, mob/user)
+	if(istool(W))
+		if(valve_opened)
 			to_chat(user, SPAN_WARNING("Close the valve first."))
 			return
-		if (tank)
+		if(tank)
 			if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				return
-			if (!is_loosen)
+			if(!is_loosen)
 				is_loosen = TRUE
 			else
 				is_loosen = FALSE
@@ -341,7 +341,7 @@
 	else
 		return ..()
 
-/obj/structure/medical_stand/examine(var/mob/user)
+/obj/structure/medical_stand/examine(mob/user)
 	. = ..()
 
 	if (get_dist(src, user) > 2)
@@ -392,7 +392,7 @@
 			if(internalsHud)
 				internalsHud.icon_state = "internal0"
 			breather.internal = null
-	else if (valve_opened)
+	else if (tank && valve_opened)
 		var/datum/gas_mixture/removed = tank.remove_air(0.01)
 		var/datum/gas_mixture/environment = loc.return_air()
 		environment.merge(removed)

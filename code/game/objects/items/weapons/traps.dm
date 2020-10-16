@@ -198,6 +198,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 /obj/item/weapon/beartrap/attack_self(mob/user as mob)
 	..()
+	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
+		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
+		return
 	if(!deployed && can_use(user))
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
@@ -316,9 +319,12 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/Crossed(AM as mob|obj)
 	if(deployed && isliving(AM))
 		var/mob/living/L = AM
-		if(("\ref[L]" in aware_mobs) && MOVING_DELIBERATELY(L))
-			return ..()
 		var/true_prob_catch = prob_catch - L.skill_to_evade_traps()
+		if("\ref[L]" in aware_mobs)
+			if(MOVING_DELIBERATELY(L))
+				return ..()
+			else
+				true_prob_catch -= 30
 		if(!prob(true_prob_catch))
 			return ..()
 		L.visible_message(
@@ -410,9 +416,13 @@ Very rarely it might escape
 /obj/item/weapon/beartrap/armed
 	deployed = TRUE
 	anchored = TRUE
-
-
+	rarity_value = 33.3
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_TRAP_ARMED
 
 /obj/item/weapon/beartrap/makeshift/armed
 	deployed = TRUE
 	anchored = TRUE
+	rarity_value = 22.2
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_TRAP_ARMED

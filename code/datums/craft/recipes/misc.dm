@@ -46,6 +46,16 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/bone_braces
+	name = "bone braces"
+	result = /obj/item/bone_brace
+	steps = list(
+		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 20, 50),
+		list(QUALITY_WIRE_CUTTING, 10, 120)
+	)
+	related_stats = list(STAT_COG, STAT_BIO, STAT_MEC)
+
 /datum/craft_recipe/plastic_bag
 	name = "plastic bag"
 	result = /obj/item/weapon/storage/bag/plastic
@@ -147,7 +157,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC, "time" = 30),
 		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
-		list(/obj/item/weapon/circuitboard, 1, "time" = 20),
+		list(/obj/item/weapon/electronics/circuitboard, 1, "time" = 20),
 		list(/obj/item/weapon/stock_parts/subspace/crystal, 1),
 		list(/obj/item/weapon/stock_parts/capacitor, 1),
 		list(/obj/item/weapon/cell/small, 1),
@@ -204,5 +214,46 @@
 		list(QUALITY_CUTTING, 10, 120),
 		list(/obj/item/stack/rods, 2),
 		list(QUALITY_BOLT_TURNING, 10, 60)
+	)
+	related_stats = list(STAT_COG)
+
+//Make a drill bit with some material and a welder! So you won't need to print a whole new exosuit drill when your head snaps.
+
+/datum/craft_recipe/drill_head
+	name = "steel drill head"
+	result = /obj/item/weapon/material/drill_head
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 60)
+	)
+	related_stats = list(STAT_MEC)
+
+	name_craft_menu = "exosuit drill heads"
+
+/datum/craft_recipe/drill_head/plasteel
+	name = "plasteel drill head"
+	result = /obj/item/weapon/material/drill_head/plasteel
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 30),
+		list(QUALITY_WELDING, 10, 60)
+	)
+	variation_type = CRAFT_VARIATION
+
+/datum/craft_recipe/drill_head/diamond
+	name = "diamond drill head"
+	result = /obj/item/weapon/material/drill_head/diamond
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_DIAMOND, "time" = 30),
+		list(QUALITY_WELDING, 10, 60)
+	)
+	variation_type = CRAFT_VARIATION
+
+/datum/craft_recipe/pipe
+	name = "Smoking pipe"
+	result = /obj/item/clothing/mask/smokable/pipe
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD, "time" = 0),
+		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)

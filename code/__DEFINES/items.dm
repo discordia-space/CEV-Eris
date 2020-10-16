@@ -58,6 +58,7 @@
 #define GUN_UPGRADE_DAMAGE_PSY "psy_damage"
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
+#define GUN_UPGRADE_ZOOM "zoom"
 
 
 
@@ -93,21 +94,21 @@
 
 // A rare, random item
 #define RANDOM_RARE_ITEM list(\
-					/obj/random/common_oddities = 8,\
-					/obj/random/material_rare = 3,\
-					/obj/random/tool/advanced = 5,\
-					/obj/random/gun_normal = 3,\
-					/obj/random/lathe_disk/advanced = 2,\
+					/obj/spawner/oddities = 8,\
+					/obj/spawner/material/resources/rare = 3,\
+					/obj/spawner/tool/advanced = 5,\
+					/obj/spawner/gun/normal = 3,\
+					/obj/spawner/lathe_disk/advanced = 2,\
 					/obj/item/weapon/cell/small/moebius/nuclear = 1,\
 					/obj/item/weapon/cell/medium/moebius/hyper = 1,\
-					/obj/random/rig = 1.5,\
-					/obj/random/rig/damaged = 1.5,\
-					/obj/random/voidsuit = 4,\
-					/obj/random/pouch = 2,\
-					/obj/random/tool_upgrade/rare = 4,\
-					/obj/random/rig_module/rare = 4,\
-					/obj/random/credits/c1000 = 3,\
-					/obj/random/exosuit_equipment = 3,\
-					/obj/random/cloth/holster = 4,\
+					/obj/spawner/rig = 1.5,\
+					/obj/spawner/rig/damaged = 1.5,\
+					/obj/spawner/voidsuit = 4,\
+					/obj/spawner/pouch = 2,\
+					/obj/spawner/tool_upgrade/rare = 4,\
+					/obj/spawner/rig_module/rare = 4,\
+					/obj/spawner/credits/c1000 = 3,\
+					/obj/spawner/exosuit_equipment = 3,\
+					/obj/spawner/cloth/holster = 4,\
 					/obj/item/stash_spawner = 4,\
 					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)

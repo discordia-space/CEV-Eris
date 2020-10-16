@@ -10,12 +10,12 @@
 //similar to weeds, but only barfed out by nurses manually
 /obj/effect/spider/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
-		if(3.0)
+		if(3)
 			if (prob(5))
 				qdel(src)
 	return
@@ -26,7 +26,7 @@
 	else
 		visible_message("<span class='warning'>\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]</span>")
 
-	var/damage = I.force / 4.0
+	var/damage = I.force / 4
 
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_INSTANT, QUALITY_WELDING, FAILCHANCE_ZERO))
@@ -52,6 +52,8 @@
 /obj/effect/spider/stickyweb
 	health = 5
 	icon_state = "stickyweb1"
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_CLEANABLE
 	New()
 		if(prob(50))
 			icon_state = "stickyweb2"
@@ -96,7 +98,7 @@
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		var/num = rand(6,24)
-		var/obj/item/organ/external/O = null
+		var/obj/item/organ/external/O
 		if(istype(loc, /obj/item/organ/external))
 			O = loc
 
@@ -113,12 +115,15 @@
 	anchored = FALSE
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	health = 3
+	//spawn_values
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_SPIDER
 	var/last_itch = 0
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 
-/obj/effect/spider/spiderling/New(var/location, var/atom/parent)
+/obj/effect/spider/spiderling/New(location, atom/parent)
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
 	START_PROCESSING(SSobj, src)

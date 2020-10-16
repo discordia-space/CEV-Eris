@@ -102,19 +102,19 @@ Class Procs:
 
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
+	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
 	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
-	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/weapon/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
 /obj/machinery/Initialize(mapload, d=0)
@@ -147,21 +147,21 @@ Class Procs:
 
 /obj/machinery/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if (prob(25))
 				qdel(src)
 				return
 		else
 	return
 
-/proc/is_operable(var/obj/machinery/M, var/mob/user)
+/proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
@@ -170,7 +170,7 @@ Class Procs:
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
-/obj/machinery/CanUseTopic(var/mob/user)
+/obj/machinery/CanUseTopic(mob/user)
 	if(stat & BROKEN)
 		return STATUS_CLOSE
 
@@ -179,11 +179,11 @@ Class Procs:
 
 	return ..()
 
-/obj/machinery/CouldUseTopic(var/mob/user)
+/obj/machinery/CouldUseTopic(mob/user)
 	..()
 	user.set_machine(src)
 
-/obj/machinery/CouldNotUseTopic(var/mob/user)
+/obj/machinery/CouldNotUseTopic(mob/user)
 	user.unset_machine()
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,7 +325,7 @@ Class Procs:
 
 	return FALSE //If got no qualities - continue base attackby proc
 
-/obj/machinery/proc/default_part_replacement(var/obj/item/weapon/storage/part_replacer/R, var/mob/user)
+/obj/machinery/proc/default_part_replacement(obj/item/weapon/storage/part_replacer/R, mob/user)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -355,7 +355,7 @@ Class Procs:
 			to_chat(user, SPAN_NOTICE("    [C.name]"))
 	return 1
 
-/obj/machinery/proc/create_frame(var/type)
+/obj/machinery/proc/create_frame(type)
 	if(type == FRAME_DEFAULT)
 		return new /obj/machinery/constructable_frame/machine_frame(loc)
 	if(type == FRAME_VERTICAL)

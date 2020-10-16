@@ -16,7 +16,7 @@
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 
-/obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
 
 	// Drop all the things. All of them.
 	overlays.Cut()
@@ -139,7 +139,7 @@
 
 /obj/item/weapon/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/weapon/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/tray/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
 			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
@@ -171,7 +171,7 @@
 
 /obj/item/weapon/tray/pre_pickup(mob/user)
 	if(!isturf(loc))
-		return FALSE
+		return ..()
 
 	for(var/obj/item/I in loc)
 		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )

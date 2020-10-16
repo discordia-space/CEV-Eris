@@ -8,13 +8,13 @@
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	// req_access = list(access_kitchen,access_morgue)
-	circuit = /obj/item/weapon/circuitboard/mindswapper
+	circuit = /obj/item/weapon/electronics/circuitboard/mindswapper
 
 	var/operating = FALSE  // Is it on?
 	var/swap_time = 200  // Time from starting until minds are swapped
 	var/swap_range = 1
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 500
 

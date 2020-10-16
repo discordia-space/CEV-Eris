@@ -12,7 +12,7 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 
-	var/id = 1.0
+	var/id = 1
 	layer = BLASTDOOR_LAYER
 	open_layer = BLASTDOOR_LAYER
 	closed_layer = CLOSED_BLASTDOOR_LAYER

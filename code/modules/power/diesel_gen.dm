@@ -7,7 +7,7 @@
 	desc = "A power generator that runs on solid plasma sheets. Rated for 80 kW max safe output."
 
 	var/fuel_type = "fuel"
-	circuit = /obj/item/weapon/circuitboard/diesel
+	circuit = /obj/item/weapon/electronics/circuitboard/diesel
 
 	/*
 		These values were chosen so that the generator can run safely up to 80 kW

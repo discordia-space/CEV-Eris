@@ -1,10 +1,16 @@
 //GLOBAL_LIST_INIT(mech_decals, (icon_states(MECH_DECALS_ICON)-list("template", "mask")))
-
 /mob/living/exosuit/premade
 	name = "impossible exosuit"
 	desc = "It seems to be saying 'please let me die'."
 
 	material = MATERIAL_STEEL
+
+	//spawn_values
+	spawn_tags = SPAWN_TAG_MECH
+	spawn_frequency = 10
+	rarity_value = 10
+	bad_type = /mob/living/exosuit/premade
+
 	var/exosuit_color
 	var/decal
 	var/installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit
@@ -184,4 +190,3 @@
 
 /mob/living/exosuit/premade/random/extra/New(newloc, obj/structure/heavy_vehicle_frame/source_frame)
 	..(newloc, source_frame, TRUE)
-

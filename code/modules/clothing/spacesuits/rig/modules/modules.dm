@@ -14,6 +14,8 @@
 	icon = 'icons/obj/rig_modules.dmi'
 	icon_state = "module"
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 20, MATERIAL_GLASS = 5)
+	spawn_tags = SPAWN_TAG_RING_MODULE
+	rarity_value = 5
 
 	var/damage = 0
 	var/obj/item/weapon/rig/holder
@@ -77,7 +79,7 @@
 		if(2)
 			to_chat(usr, "It is almost completely destroyed.")
 
-/obj/item/rig_module/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/rig_module/attackby(obj/item/W, mob/user)
 
 	if(istype(W,/obj/item/stack/nanopaste))
 

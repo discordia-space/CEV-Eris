@@ -15,9 +15,11 @@
 	default_material = MATERIAL_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 6
 	var/amount = 0
 
-/obj/item/weapon/material/shard/New(var/newloc, var/material_key, var/_amount)
+/obj/item/weapon/material/shard/New(newloc, material_key, _amount)
 	if (_amount)
 		amount = max(round(_amount, 0.01), 0.01) //We won't ever need to physically represent less than 1% of a material unit
 	.=..()
@@ -176,6 +178,7 @@
 // Preset types - left here for the code that uses them
 /obj/item/weapon/material/shard/shrapnel
 	name = "shrapnel" //Needed for crafting
+	rarity_value = 2.5
 
 /obj/item/weapon/material/shard/shrapnel/New(loc)
 
@@ -184,6 +187,7 @@
 /obj/item/weapon/material/shard/shrapnel/scrap
 	name = "scrap metal"
 	amount = 1
+	rarity_value = 5
 
 /obj/item/weapon/material/shard/plasma/New(loc)
 	..(loc, MATERIAL_PLASMAGLASS)
