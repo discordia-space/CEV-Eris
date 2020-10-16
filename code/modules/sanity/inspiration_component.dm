@@ -74,7 +74,4 @@
 		return get_stats.Invoke()
 
 /datum/component/inspiration/proc/get_power()
-	if(power)
-		return power
-	else
-		return 0
+	return power

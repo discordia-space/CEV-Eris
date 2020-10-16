@@ -16,7 +16,7 @@
 	layer = BELOW_OBJ_LAYER
 	use_power = NO_POWER_USE
 	var/list/stored_material = list()
-	var/obj/power_source = null
+	var/obj/power_source
 	var/storage_capacity = 1000
 	var/unfolded = null
 	var/show_category
@@ -26,7 +26,7 @@
 
 	var/working = FALSE
 	var/paused = FALSE
-	var/error = null
+	var/error
 	var/progress = 0
 
 	var/datum/design/current_design = null
@@ -280,7 +280,7 @@
 		return 1
 
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/oddity))
+	if(I.datum_components.Find(/datum/component/inspiration))
 		var/obj/item/weapon/oddity/ps = I
 		if(ps.oddity_stats[STAT_MEC]> 0)
 			if(!power_source)
