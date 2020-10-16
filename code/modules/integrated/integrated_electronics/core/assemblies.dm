@@ -41,6 +41,7 @@
 	max_components = IC_COMPONENTS_BASE / 2
 	max_complexity = IC_COMPLEXITY_BASE / 2
 	var/obj/item/weapon/implant/integrated_circuit/implant
+	bad_type = /obj/item/device/electronic_assembly/implant
 	spawn_frequency = 0
 
 /obj/item/device/electronic_assembly/New()

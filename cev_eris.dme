@@ -1124,6 +1124,8 @@
 #include "code\game\objects\random\tools.dm"
 #include "code\game\objects\random\toys.dm"
 #include "code\game\objects\random\voidsuit.dm"
+#include "code\game\objects\random\biomes\biome.dm"
+#include "code\game\objects\random\biomes\biomes.dm"
 #include "code\game\objects\random\mob\mobs.dm"
 #include "code\game\objects\random\mob\roach.dm"
 #include "code\game\objects\random\mob\slime.dm"

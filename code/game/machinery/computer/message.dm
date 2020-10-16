@@ -504,6 +504,7 @@
 /obj/item/weapon/paper/monitorkey
 	//..()
 	name = "Monitor Decryption Key"
+	spawn_blacklisted = TRUE
 	var/obj/machinery/message_server/server
 
 /obj/item/weapon/paper/monitorkey/New()

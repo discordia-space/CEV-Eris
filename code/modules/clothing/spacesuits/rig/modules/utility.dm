@@ -457,6 +457,7 @@
 
 	interface_name = "Hardsuit Cape"
 	interface_desc = "A generic cape for a hardsuit."
+	rarity_value = 80
 
 /obj/item/rig_module/cape/te
 	name = "technomancer cape"
@@ -467,3 +468,4 @@
 
 	interface_name = "Technomancer Cape"
 	interface_desc = "A grand yet hardy cape."
+	rarity_value = 100

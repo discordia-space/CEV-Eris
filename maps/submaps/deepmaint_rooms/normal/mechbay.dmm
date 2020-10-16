@@ -4,13 +4,13 @@
 "d" = (/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "e" = (/obj/machinery/mech_recharger,/obj/spawner/exosuit/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "f" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
-"g" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
+"g" = (/obj/spawner/traps/biome_spawner_trap/low_chance,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "h" = (/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "i" = (/obj/spawner/pack/machine,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "j" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/spawner/powercell,/obj/spawner/powercell,/obj/spawner/powercell,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "k" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "l" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
-"m" = (/obj/spawner/mob/roaches/cluster/low_chance,/obj/machinery/repair_station,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
+"m" = (/obj/machinery/repair_station,/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "n" = (/obj/machinery/recharge_station,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "o" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "p" = (/obj/structure/reagent_dispensers/fueltank,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
@@ -22,6 +22,7 @@
 "v" = (/obj/spawner/junk,/turf/simulated/floor/tiled/steel/cargo,/area/deepmaint)
 "w" = (/obj/spawner/junk,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "x" = (/obj/spawner/junk,/obj/spawner/junk,/turf/simulated/floor/tiled/steel/brown_perforated,/area/deepmaint)
+"y" = (/obj/landmark/loot_biomes/mob/roach{range = 6},/turf/simulated/wall,/area/deepmaint)
 
 (1,1,1) = {"
 taaababatat
@@ -29,7 +30,7 @@ accccucccca
 aceecvceeca
 afddgdgddfa
 twhijklihha
-ahmncccnmha
+ahmncycnmha
 ahhiopqihha
 advdgdgdddt
 aceecdcerct
