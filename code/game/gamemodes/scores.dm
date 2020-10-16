@@ -370,32 +370,11 @@ backup */
 	<b>Base score:</b> [green_text(GLOB.initial_moebius_score)]<br>
 	<b>Faction item perdidos:</b> [GLOB.moebius_faction_item_loss] ([to_score_color(GLOB.score_moebius_faction_item_loss)] Points)<br>
 	<b>Faction Objectives:</b> [GLOB.moebius_objectives_completed] ([to_score_color(GLOB.moebius_objectives_score)] Points)<br>
-	<b>tripulacion muerta:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
+	<b>tripulacion muerta:</b> [GLOB.crew_dead] ([to_score_color(GLOB.score_crew_dead)] Points)<br>
 	<b>research poitns ganados:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
-	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
+	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs.len] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
 	<b>Final score:</b> [get_color_score(GLOB.moebius_score, MAX_FACTION_SCORE)] Points<br>
 	"}
-
-GLOBAL_VAR_INIT(neotheology_score, 0)
-GLOBAL_VAR_INIT(initial_neotheology_score, 250)
-
-GLOBAL_VAR_INIT(neotheology_objectives_completed, 0)
-GLOBAL_VAR_INIT(neotheology_objectives_score, 0)
-
-GLOBAL_VAR_INIT(score_neotheology_faction_item_loss, 0)
-GLOBAL_VAR_INIT(neotheology_faction_item_loss, 0)
-
-GLOBAL_VAR_INIT(dirt_areas, 0) // dirt areas
-GLOBAL_VAR_INIT(score_mess, 0)
-
-GLOBAL_VAR_INIT(biomatter_neothecnology_amt, 0)
-GLOBAL_VAR_INIT(biomatter_score, 0)
-
-GLOBAL_VAR_INIT(grup_ritual_performed, 0)
-GLOBAL_VAR_INIT(grup_ritual_score, 0)
-
-GLOBAL_VAR_INIT(new_neothecnology_convert_score, 0)
-GLOBAL_VAR_INIT(new_neothecnology_convert, 0)
 
 	dat += {"
 	<b><u>Faction Scores</u></b><br>
@@ -403,10 +382,21 @@ GLOBAL_VAR_INIT(new_neothecnology_convert, 0)
 	<b>Base score:</b> [green_text(GLOB.initial_neotheology_score)]<br>
 	<b>Faction item perdidos:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
 	<b>Faction Objectives:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
-	<b>tripulacion muerta:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
-	<b>research poitns ganados:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
-	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
-	<b>Final score:</b> [get_color_score(GLOB.moebius_score, MAX_FACTION_SCORE)] Points<br>
+	<b>areas sucias:</b> [GLOB.dirt_areas] ([to_score_color(GLOB.score_mess)] Points)<br>
+	<b>Biomateria producida:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
+	<b>conversiones hecas:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
+	<b>Final score:</b> [get_color_score(GLOB.neotheology_score, MAX_FACTION_SCORE)] Points<br>
+	"}
+
+	dat += {"
+	<b><u>Faction Scores</u></b><br>
+	<u>giuld scores</u><br>
+	<b>Base score:</b> [green_text(GLOB.initial_guild_score)]<br>
+	<b>Faction item perdidos:</b> [GLOB.guild_faction_item_loss] ([to_score_color(GLOB.score_guild_faction_item_loss)] Points)<br>
+	<b>Faction Objectives:</b> [GLOB.guild_objectives_completed] ([to_score_color(GLOB.guild_objectives_score)] Points)<br>
+	<b>profit outpost:</b> [GLOB.supply_profit] ([to_score_color(GLOB.guild_profit_score)] Points)<br>
+	<b>Tripulacion items repartidos:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
+	<b>Final score:</b> [get_color_score(GLOB.guild_score, MAX_FACTION_SCORE)] Points<br>
 	"}
 
 	dat += {"
