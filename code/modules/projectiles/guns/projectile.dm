@@ -14,7 +14,7 @@
 	matter = list(MATERIAL_STEEL = 1)
 	recoil_buildup = 1
 	bad_type = /obj/item/weapon/gun/projectile
-	spawn_tag = SPAWN_TAG_GUN_PROJECTILE
+	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 
 	var/caliber = CAL_357		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
