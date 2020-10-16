@@ -184,7 +184,7 @@
 	layer = OBJ_LAYER
 	ui_title = "Soda Dispens-o-matic"
 
-	circuit = /obj/item/weapon/electronics/circuitboard/soda_chemical_dispenser
+	circuit = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/soda
 
 	accept_beaker = FALSE
 	density = FALSE
@@ -209,7 +209,7 @@
 	layer = OBJ_LAYER
 	ui_title = "Booze Portal 9001"
 
-	circuit = /obj/item/weapon/electronics/circuitboard/beer_chemical_dispenser
+	circuit = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/beer
 
 	accept_beaker = FALSE
 	density = FALSE
@@ -256,7 +256,7 @@
 	icon_state = "industrial_dispenser"
 	ui_title = "Industrial Dispenser 4835"
 
-	circuit = /obj/item/weapon/electronics/circuitboard/industeral_chemical_dispenser
+	circuit = /obj/item/weapon/electronics/circuitboard/chemical_dispenser/industrial
 
 	dispensable_reagents = list(
 		"acetone","aluminum","ammonia",
