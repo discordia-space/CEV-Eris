@@ -13,7 +13,7 @@
 	/// Callback used for dynamic calculation of the stats to level up, used if stats is null. It must accept NO arguments, and it needs to return a list shaped like stats.
 	var/datum/callback/get_stats
 	/// used to determine how powerful the artifact is for the matterforge
-	var/power
+	var/power = 0
 /// Statistics can be a list (static) or a callback to a proc that returns a list (of the same format)
 /datum/component/inspiration/Initialize(statistics)
 	if(!istype(parent, /obj/item))
