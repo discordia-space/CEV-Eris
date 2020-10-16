@@ -1,0 +1,6 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - balance: The hivemind tyrant no longer stops time for the entire server during
+      combat
+  - balance: The hivemind tyrant no longer destroys a majority of the ship upon death
