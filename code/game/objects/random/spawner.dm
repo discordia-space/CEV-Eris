@@ -180,7 +180,7 @@
 		if(count < 2)
 			var/top = round(candidates.len*spawn_count*biome.only_top)
 			if(top <= candidates.len)
-				var/top_spawn = CLAMP(top, 1, min(candidates.len,10))
+				var/top_spawn = CLAMP(top, 1, min(candidates.len,7))
 				candidates = lsd.only_top_candidates(candidates, top_spawn)
 	return candidates
 

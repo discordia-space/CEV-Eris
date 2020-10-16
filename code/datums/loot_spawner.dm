@@ -2,7 +2,7 @@
 	//var/list/all_spawn_bad_paths = list()//hard
 	var/list/all_spawn_blacklist = list()//soft
 	//var/list/all_spawn_by_price = list()
-	var/list/all_price_by_path = list()
+	//var/list/all_price_by_path = list()
 	//var/list/all_spawn_by_frequency = list()
 	//var/list/all_spawn_frequency_by_path = list()
 	//var/list/all_spawn_by_rarity = list()
@@ -41,19 +41,23 @@
 			continue
 
 		spawn_tags = splittext(initial(A.spawn_tags), ",")
-
 		if(!spawn_tags.len)
 			continue
+
+		frequency = initial(A.spawn_frequency)
+		if(!frequency)
+			continue
+
 		//tags//
 		for(var/tag in spawn_tags)
 			all_spawn_by_tag[tag] += list(path)
 
 		//price//
 		//all_spawn_by_price["[price]"] += list(path)
-		all_price_by_path[path] = initial(A.price_tag)
+		//all_price_by_path[path] = initial(A.price_tag)
 
 		//frequency
-		frequency = initial(A.spawn_frequency)
+		//frequency = initial(A.spawn_frequency)
 		//all_spawn_by_frequency["[frequency]"] += list(path)
 		//all_spawn_frequency_by_path[path] = frequency
 
@@ -109,7 +113,8 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		if(all_price_by_path[path] < price)
+		var/atom/movable/AM = path
+		if(initial(AM.price_tag) < price)
 			things += path
 	return things
 
@@ -118,11 +123,22 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		if(all_price_by_path[path] > price)
+		var/atom/movable/AM = path
+		if(initial(AM.price_tag) > price)
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/only_top_candidates(list/paths, top)
+/datum/loot_spawner_data/proc/filter_densty(list/paths)
+	//if(!paths || !paths.len || !price) //NOPE
+	//	return
+	var/list/things = list()
+	for(var/path in paths)
+		var/atom/movable/AM = path
+		if(!initial(AM.density))
+			things += path
+	return things
+
+/datum/loot_spawner_data/proc/only_top_candidates(list/paths, top=7)
 	//if(!paths || !paths.len) //NOPE
 		//return
 	if(paths.len <= top)
@@ -134,8 +150,6 @@
 		var/low = INFINITY
 		for(var/path in paths)
 			var/sapwn_value = all_spawn_value_by_path[path]
-			if(sapwn_value <= 0)
-				continue
 			if((sapwn_value < low) && !(sapwn_value in valid_spawn_value))
 				low = sapwn_value
 		valid_spawn_value += low
