@@ -32,7 +32,6 @@
 		for(var/stat in oddity_stats)
 			oddity_stats[stat] = rand(1, oddity_stats[stat])
 		AddComponent(/datum/component/inspiration, oddity_stats)
-		AddComponent(/datum/component/artifact_power, oddity_stats)
 	if(!perk)
 		perk = pick(subtypesof(/datum/perk/oddity))
 

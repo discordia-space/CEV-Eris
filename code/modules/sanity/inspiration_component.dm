@@ -12,7 +12,8 @@
 	var/list/stats
 	/// Callback used for dynamic calculation of the stats to level up, used if stats is null. It must accept NO arguments, and it needs to return a list shaped like stats.
 	var/datum/callback/get_stats
-
+	/// used to determine how powerful the artifact is for the matterforge
+	var/power
 /// Statistics can be a list (static) or a callback to a proc that returns a list (of the same format)
 /datum/component/inspiration/Initialize(statistics)
 	if(!istype(parent, /obj/item))
@@ -23,6 +24,15 @@
 		get_stats = statistics
 	else
 		return COMPONENT_INCOMPATIBLE
+	switch(stats[STAT_MEC])
+		if(1 to 3)
+			power = 1
+		if(3 to 5)
+			power = 2
+		if(5 to 7)
+			power = 3
+		if(7 to INFINITY)
+			power = 4
 
 /datum/component/inspiration/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_EXAMINE, .proc/on_examine)
@@ -42,6 +52,19 @@
 			else
 				continue
 		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+	var/strength
+	switch(stats[STAT_MEC])
+		if(1 to 3)
+			strength = "a weak catalyst power"
+		if(3 to 5)
+			strength = "a normal catalyst power"
+		if(5 to 7)
+			strength = "a medium catalyst power"
+		if(7 to INFINITY)
+			strength = "a strong catalyst power"
+		else
+			strength = "no catalyst power"
+	to_chat(user, SPAN_NOTICE("This item has [strength]"))
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()
@@ -49,3 +72,9 @@
 		return stats
 	else
 		return get_stats.Invoke()
+
+/datum/component/inspiration/proc/get_power()
+	if(power)
+		return power
+	else
+		return 0

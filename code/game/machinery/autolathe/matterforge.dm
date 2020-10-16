@@ -344,7 +344,7 @@
 				total_material_gained[material] += total_material
 				total_used += total_material
 				mass_per_sheet += O.matter[material]
-	var/datum/component/artifact_power/artifact = power_source.GetComponent(/datum/component/artifact_power)
+	var/datum/component/inspiration/artifact = power_source.GetComponent(/datum/component/inspiration)
 	var/gained_mats = 0
 	for(var/mat in total_material_gained)
 		var/added_mats = artifact.power * total_material_gained[mat] * lst[mat]
