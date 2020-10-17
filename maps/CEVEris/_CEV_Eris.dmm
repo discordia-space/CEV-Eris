@@ -8433,7 +8433,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "atl" = (
 /obj/machinery/light/small{
@@ -8527,6 +8527,9 @@
 	name = "Unloading Doors";
 	pixel_x = -24;
 	pixel_y = -8
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "QMLoad2"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
@@ -9244,7 +9247,7 @@
 "avx" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "avy" = (
 /obj/machinery/smartfridge/secure/extract,
@@ -11823,7 +11826,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "aBJ" = (
 /obj/structure/cable/green{
@@ -13932,7 +13936,7 @@
 	name = "Cargo Bay";
 	req_access = list(50)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "aHm" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -29766,7 +29770,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "bqz" = (
 /obj/structure/bed/chair{
@@ -29779,7 +29783,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "bqB" = (
 /obj/structure/table/standard,
@@ -33231,10 +33235,8 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "byK" = (
-/obj/structure/table/reinforced,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/turf/simulated/floor/tiled/dark/gray_platform,
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "byL" = (
 /obj/structure/table/rack,
@@ -34377,6 +34379,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
@@ -41870,12 +41875,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"bRC" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "bRD" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -41893,6 +41892,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "bRF" = (
@@ -45313,7 +45318,7 @@
 /area/eris/maintenance/section2deck3port)
 "bZD" = (
 /obj/machinery/trade_beacon/sending,
-/obj/effect/floor_decal/industrial/outline/blue,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "bZE" = (
@@ -45856,11 +45861,10 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/crew_quarters/sleep)
 "cbf" = (
-/obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
-	id = "QMLoad"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "cbg" = (
 /obj/structure/disposalpipe/segment,
@@ -46755,7 +46759,10 @@
 /area/eris/rnd/mixing)
 "cdm" = (
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "cdo" = (
 /obj/machinery/door/firedoor,
@@ -47142,10 +47149,10 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "cef" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "QMLoad2"
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ceg" = (
 /obj/machinery/light,
@@ -47221,6 +47228,12 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "cep" = (
@@ -47621,7 +47634,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ceZ" = (
 /obj/structure/table/rack,
@@ -48398,13 +48414,13 @@
 /obj/structure/multiz/stairs/enter/bottom{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "cgN" = (
 /obj/structure/multiz/stairs/active/bottom{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "cgO" = (
 /turf/simulated/wall/r_wall,
@@ -59996,7 +60012,7 @@
 /obj/machinery/conveyor/east{
 	id = "QMLoad"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "cIl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -60695,7 +60711,7 @@
 /obj/machinery/conveyor/east{
 	id = "QMLoad"
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "cKa" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -97452,7 +97468,7 @@
 /obj/machinery/conveyor/east{
 	id = "QMLoad"
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "erO" = (
 /obj/structure/cable/green{
@@ -99491,7 +99507,7 @@
 	id = "QMLoaddoor2";
 	name = "Supply Dock Loading Door"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ewd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -99658,7 +99674,7 @@
 	name = "Cargo Docking Hatch";
 	req_access = list(13)
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ewv" = (
 /obj/machinery/disposal,
@@ -99821,7 +99837,7 @@
 	id = "QMLoaddoor";
 	name = "Supply Dock Loading Door"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ewO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -100291,20 +100307,20 @@
 /obj/machinery/conveyor/west{
 	id = "QMLoad2"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "exL" = (
 /obj/machinery/conveyor/west{
 	id = "QMLoad2"
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "exM" = (
 /obj/machinery/light/small,
 /obj/machinery/conveyor/west{
 	id = "QMLoad2"
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "exN" = (
 /obj/structure/catwalk,
@@ -104596,6 +104612,20 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"fkL" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
+"flr" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "fzU" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	tag = "icon-map (EAST)";
@@ -104621,6 +104651,9 @@
 /obj/structure/sign/securearea,
 /turf/simulated/wall/r_wall,
 /area/eris/maintenance/section1deck4central)
+"fDX" = (
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "fJM" = (
 /obj/structure/table/standard,
 /obj/spawner/medical,
@@ -104736,22 +104769,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "gXX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
-"gYp" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
-"hld" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "hqB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
@@ -104762,12 +104786,25 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "hug" = (
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"hwC" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "hAw" = (
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under,
@@ -104951,7 +104988,15 @@
 	req_access = list(13)
 	},
 /obj/effect/decal/warning_stripes,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
+"jnx" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "jrc" = (
 /obj/structure/closet/crate,
@@ -105100,6 +105145,16 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
+"kyA" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "kEW" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -105121,12 +105176,6 @@
 /obj/item/weapon/storage/box,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
-"kGH" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
 "kUI" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -105357,6 +105406,13 @@
 /obj/machinery/atmospherics/unary/heat_exchanger,
 /turf/simulated/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
+"mOz" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "mQQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /turf/simulated/floor/hull{
@@ -105418,7 +105474,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ntp" = (
 /obj/machinery/hologram/holopad,
@@ -105438,6 +105495,14 @@
 /obj/machinery/duct,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/neotheology/chapelritualroom)
+"nAq" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "nGz" = (
 /obj/structure/sink{
 	dir = 4;
@@ -105452,7 +105517,15 @@
 /area/eris/medical/chemistry)
 "nJh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
+"nJO" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "nYI" = (
 /obj/structure/catwalk,
@@ -105479,7 +105552,15 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
+"ofd" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "ofp" = (
 /obj/machinery/disposal,
@@ -105606,25 +105687,43 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/bridge)
+"oNL" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "oTl" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/freezer/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/surgery)
-"oXl" = (
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/eris/quartermaster/hangarsupply)
-"oXs" = (
-/obj/effect/floor_decal/industrial/warning{
+"oUC" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey{
 	dir = 8
 	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
+"oXl" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "oZm" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "paj" = (
 /obj/structure/sign/faction/moebius{
@@ -105648,7 +105747,16 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
+"ppU" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ptL" = (
 /obj/structure/closet/self_pacification,
@@ -105719,6 +105827,16 @@
 /obj/machinery/duct,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
+"qBp" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
+"qRL" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "qTX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -105768,6 +105886,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
+"rlv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "rnc" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -105778,6 +105905,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
@@ -105859,7 +105990,8 @@
 /area/eris/crew_quarters/kitchen)
 "rUL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "rXZ" = (
 /mob/living/simple_animal/cat/fluff/bones,
@@ -105896,6 +106028,16 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
+"sAg" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "sGt" = (
 /obj/effect/shuttle_landmark/merc/sec2east,
 /turf/space,
@@ -105954,6 +106096,13 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
+"tdV" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "tea" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/meter,
@@ -105981,6 +106130,11 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"tDQ" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/eris/quartermaster/hangarsupply)
 "tEu" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/lights/tubes,
@@ -106052,7 +106206,18 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
+"urc" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "utr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -106193,15 +106358,15 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "vvC" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "vwc" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "vIB" = (
@@ -106235,6 +106400,15 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section3)
+"whr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "wja" = (
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/wall/r_wall,
@@ -106290,6 +106464,15 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemstor)
+"wRE" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "wXf" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/machinery/light/small{
@@ -106339,6 +106522,12 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
+"xnm" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/quartermaster/hangarsupply)
 "xuA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -106349,12 +106538,13 @@
 /obj/machinery/status_display/supply_display{
 	pixel_x = -32
 	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "QMLoad"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/hangarsupply)
 "xGZ" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/hangarsupply)
 "xLv" = (
@@ -129138,9 +129328,9 @@ aBv
 aBv
 auV
 cJZ
-ato
+fDX
 amn
-ato
+fDX
 exL
 auV
 aaa
@@ -129542,9 +129732,9 @@ vdS
 fjl
 xwS
 erN
-ato
+fDX
 atx
-ato
+fDX
 exM
 auV
 auV
@@ -129740,10 +129930,10 @@ auV
 mBD
 ato
 ato
-ato
-ato
-ato
-ato
+byK
+cbf
+cbf
+cbf
 cbf
 cdm
 cef
@@ -129942,13 +130132,13 @@ auV
 rPr
 ato
 ato
-ato
-kGH
-oXs
-oXs
-oXs
+qBp
 xGZ
-ato
+vwc
+xGZ
+tdV
+xGZ
+xnm
 voT
 cfs
 auV
@@ -130144,13 +130334,13 @@ auV
 fVv
 hIx
 ato
-ato
+qBp
 vvC
 oXl
-oXl
-oXl
-hld
-nqt
+xGZ
+flr
+vvC
+oNL
 lwW
 cgp
 auV
@@ -130345,16 +130535,16 @@ awg
 auV
 baH
 bta
-byK
+ato
 nqt
-vvC
-oXl
+xGZ
+xGZ
 bZl
-oXl
-hld
+xGZ
+xGZ
 oZm
 pmS
-ato
+fDX
 aHl
 cgM
 cgN
@@ -130549,14 +130739,14 @@ tEu
 ato
 tPR
 nJh
-vvC
-oXl
-oXl
-oXl
-hld
+mOz
+nAq
+xGZ
+kyA
+mOz
 oZm
 pmS
-ato
+fDX
 aHl
 cgM
 cgN
@@ -130751,12 +130941,12 @@ avx
 apb
 bqy
 gTF
-bRC
+xGZ
 vwc
-vwc
-vwc
-gYp
-gTF
+xGZ
+tdV
+xGZ
+rlv
 xaI
 jrc
 auV
@@ -131155,11 +131345,11 @@ avx
 apb
 bqA
 aBI
-kGH
-oXs
-oXs
-oXs
-xGZ
+fkL
+tDQ
+fkL
+nJO
+fkL
 bBr
 bBP
 bRq
@@ -131357,11 +131547,11 @@ ato
 ato
 plN
 rUL
-vvC
-oXl
-oXl
-oXl
-hld
+ofd
+urc
+fkL
+hwC
+ofd
 ceY
 axs
 bJn
@@ -131559,11 +131749,11 @@ btk
 ato
 ato
 obk
-vvC
-oXl
+fkL
+fkL
 bZD
-oXl
-hld
+fkL
+fkL
 uqX
 gkN
 bJK
@@ -131760,12 +131950,12 @@ auV
 bsi
 aTu
 byL
-ato
-vvC
-oXl
-oXl
-oXl
-hld
+qBp
+oUC
+jnx
+fkL
+sAg
+oUC
 uqX
 gkN
 cgt
@@ -131962,13 +132152,13 @@ auV
 auV
 auV
 auV
-ato
-bRC
-vwc
-vwc
-vwc
-gYp
-obk
+qBp
+fkL
+tDQ
+fkL
+nJO
+fkL
+wRE
 ato
 bRr
 auV
@@ -132164,13 +132354,13 @@ aun
 aBM
 dhU
 auV
-btk
-ato
-ato
+whr
+qRL
+qRL
 hqX
 hqX
 hqX
-hqX
+ppU
 cgf
 cgu
 ayL
