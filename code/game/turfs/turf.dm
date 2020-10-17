@@ -269,7 +269,7 @@ var/const/enterloopsanity = 100
 	else if(flooring)
 		sound = footstep_sound(flooring.footstep_sound)
 	else if(initial_flooring)
-		var/decl/flooring/floor = initial_flooring
+		var/decl/flooring/floor = decls_repository.get_decl(initial_flooring)
 		sound = footstep_sound(floor.footstep_sound)
 
 	return sound
