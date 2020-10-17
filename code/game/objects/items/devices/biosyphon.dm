@@ -17,8 +17,8 @@
 	var/last_produce = 0
 	var/cooldown = 15 MINUTES
 
-/obj/item/biosyphon/New()
-	..()
+/obj/item/biosyphon/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/biosyphon/Destroy()
