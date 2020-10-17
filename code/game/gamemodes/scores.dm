@@ -152,7 +152,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	//init technomancer score
 	var/obj/item/weapon/cell/large/high/HC = /obj/item/weapon/cell/large/high
 	var/min_chage = initial(HC.maxcharge) * 0.6
-	// Check station's power levels
+	//Check station's power levels
 	for(var/area/A in ship_areas)
 		if(A.fire || A.atmosalm)
 			GLOB.area_fireloss++
@@ -180,7 +180,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		GLOB.field_radius += S.field_radius
 	GLOB.field_radius = CLAMP(GLOB.field_radius, 0, world.maxx)
 
-	// technomancer Modifiers
+	//Technomancer Modifiers
 	if(GLOB.all_smes_powered)
 		GLOB.score_smes_powered = 350 //max = 350
 	GLOB.score_technomancer_objectives = GLOB.technomancer_objectives_completed * 25 //max: ~= 100
@@ -193,7 +193,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	// NeoTheology score
 	var/list/dirt_areas = list()
-	// Check how much uncleaned mess is on the station
+	//Check how much uncleaned mess is on the station
 	for(var/obj/effect/decal/cleanable/M in world)
 		if(!isStationLevel(M.z)) continue
 		var/area/A = get_area(M)
@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.dirt_areas = dirt_areas.len
 
 
-	// NeoTheology Modifiers
+	//NeoTheology Modifiers
 	GLOB.score_neotheology_faction_item_loss -= GLOB.neotheology_faction_item_loss * 150 //300
 	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
 	GLOB.score_mess -= GLOB.dirt_areas * 25 //~250
@@ -218,13 +218,13 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	//Moebius score 
 	GLOB.score_moebius_faction_item_loss -= GLOB.moebius_faction_item_loss * 150 //300
 	GLOB.moebius_objectives_score = GLOB.moebius_objectives_completed * 25 // ~100
-	GLOB.score_crew_dead -=	GLOB.crew_dead++ * 200 // ~200
-	GLOB.score_research_point_gained = round(GLOB.research_point_gained / 20) // or /100? review it
+	GLOB.score_crew_dead -=	GLOB.crew_dead * 25 // ~200
+	GLOB.score_research_point_gained = min(round(GLOB.research_point_gained/20), 500) // or /100? review it
 	GLOB.score_moebius_autopsies_mobs = GLOB.moebius_autopsies_mobs.len * 15 // ~75
 
 	GLOB.moebius_score = GLOB.initial_moebius_score + GLOB.score_moebius_faction_item_loss + GLOB.moebius_objectives_score + GLOB.score_crew_dead + GLOB.score_research_point_gained + GLOB.score_moebius_autopsies_mobs
 
-	//ironhammer score
+	//Ironhammer score
 	GLOB.score_ironhammer_faction_item_loss -= 150 * GLOB.ironhammer_faction_item_loss
 	GLOB.ironhammer_objectives_score = GLOB.ironhammer_objectives_completed * 25
 	GLOB.score_antag_contracts -= GLOB.completed_antag_contracts * 30
@@ -233,10 +233,10 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	GLOB.ironhammer_score = GLOB.initial_ironhammer_score + GLOB.ironhammer_objectives_score + GLOB.score_antag_contracts + GLOB.ironhammer_operative_dead_score + GLOB.captured_or_dead_antags_score
 
-	//guild score
+	//Guild score
 	GLOB.score_guild_faction_item_loss -= 150 * GLOB.guild_faction_item_loss // ~-300
 	GLOB.guild_objectives_score = GLOB.guild_objectives_completed * 25 // ~100
-	GLOB.guild_profit_score	= min(round(GLOB.supply_profit/50), 0) // ? review it
+	GLOB.guild_profit_score	= min(round(GLOB.supply_profit/50), 500) // ? review it
 	GLOB.guild_shared_gears_score = GLOB.guild_shared_gears * 30 // ~150-300
 
 	GLOB.guild_score = GLOB.initial_guild_score + GLOB.guild_objectives_score + GLOB.guild_profit_score

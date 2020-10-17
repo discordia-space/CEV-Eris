@@ -8,6 +8,8 @@
 		if(!IO.can_assign(src))
 			continue
 		valid_objectives[npath] = 10/IO.rarity
+		if(!IO.limited_antag && (IO.req_department.len || IO.req_cruciform))
+			valid_objectives[npath] = 20/IO.rarity //priorize faction objectives
 	for(var/datum/individual_objective/objective in mind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return

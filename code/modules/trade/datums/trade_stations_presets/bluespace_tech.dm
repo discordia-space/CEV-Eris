@@ -7,8 +7,7 @@
 			/obj/item/weapon/bluespace_harpoon,
 			/obj/item/weapon/tool/knife/dagger/bluespace,
 			/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
-			/obj/item/weapon/electronics/circuitboard/bssilk_hub,
-			/obj/item/biosyphon
+			/obj/item/weapon/electronics/circuitboard/bssilk_hub
 		)
 	)
 
