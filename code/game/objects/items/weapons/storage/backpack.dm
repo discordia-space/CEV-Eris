@@ -359,4 +359,4 @@
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.5
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
 	equip_access = FALSE
-	rarity_value = 3
+	rarity_value = 5

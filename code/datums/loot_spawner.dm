@@ -1,6 +1,6 @@
 /datum/loot_spawner_data
 	//var/list/all_spawn_bad_paths = list()//hard
-	var/list/all_spawn_blacklist = list()//soft
+	//var/list/all_spawn_blacklist = list()//soft
 	//var/list/all_spawn_by_price = list()
 	//var/list/all_price_by_path = list()
 	//var/list/all_spawn_by_frequency = list()
@@ -17,7 +17,7 @@
 	//spawn vars
 	var/rarity
 	var/frequency
-	var/blacklisted
+	//var/blacklisted
 	var/list/bad_paths = list()
 	var/list/spawn_tags = list()
 	var/list/accompanying_objs = list()
@@ -71,9 +71,9 @@
 		all_spawn_value_by_path[path] = 10 * frequency/rarity
 
 		//blacklisted//
-		blacklisted = initial(A.spawn_blacklisted)
-		if(blacklisted)
-			all_spawn_blacklist += path
+		//blacklisted = initial(A.spawn_blacklisted)
+		//if(blacklisted)
+		//	all_spawn_blacklist += path
 
 		accompanying_objs = initial(A.accompanying_object)
 		if(istext(accompanying_objs))
@@ -197,7 +197,12 @@
 	var/list/candidates = spawn_by_tag(tags)
 	candidates -= spawn_by_tag(bad_tags)
 	if(!allow_blacklist)
-		candidates -= all_spawn_blacklist
+		var/atom/movable/A
+		for(var/path in candidates)
+			A = path
+			if(!initial(A.spawn_blacklisted))
+				continue
+			candidates -= path
 	if(low_price)
 		candidates -= spawns_lower_price(candidates, low_price)
 	if(top_price)
