@@ -15,6 +15,7 @@
 	var/spawn_cost = 1
 	var/start_discovered = FALSE
 	var/list/linked_with //trade 'stations' or 'station' that must spawn with //list or path
+	var/commision = 200
 
 	var/list/forced_overmap_zone //list(list(minx, maxx), list(miny, maxy))
 	var/ovemap_opacity = 0

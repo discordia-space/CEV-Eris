@@ -192,6 +192,7 @@
 	if(PRG.station)
 		if(!PRG.choosed_category || !(PRG.choosed_category in PRG.station.assortiment))
 			PRG.set_choosed_category()
+		.["commision"] = PRG.station.commision
 		.["current_category"] = PRG.choosed_category ? PRG.station.assortiment.Find(PRG.choosed_category) : null
 		.["goods"] = list()
 		.["categories"] = list()
