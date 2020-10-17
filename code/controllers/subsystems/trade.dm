@@ -184,6 +184,12 @@ SUBSYSTEM_DEF(trade)
 				if(isnum(tcount))
 					. += tcount
 
+/datum/controller/subsystem/trade/proc/collect_price_for_list(list/m)
+	. = 0
+	for(var/t in m)
+		if(ispath(t))
+			. += get_import_cost(t) * get_2d_matrix_cell(m, t, "count")
+
 /datum/controller/subsystem/trade/proc/shoplist2list(list/m)
 	if(islist(m))
 		. = list()
@@ -203,33 +209,25 @@ SUBSYSTEM_DEF(trade)
 	if(QDELETED(beacon) || !account || !length(shoppinglist) || !istype(station))
 		return
 
-	var/cost = 0
-	for(var/category_name in shoppinglist)
-		var/list/category = shoppinglist[category_name]
-		for(var/path in category)
-			cost += get_import_cost(path, station) * category[path]
-
-	if(get_account_credits(account) < cost)
-		return
-
 	if(recursiveLen(shoppinglist))
 		var/obj/structure/closet/crate/C
 		var/list/sl = shoplist2list(shoppinglist)
 		var/count_of_all = collect_counts_from(sl)
+		cost = collect_price_for_list(sl)
 		if(count_of_all > 1 && count_of_all)
 			cost += station.commision
 			C = beacon.drop(/obj/structure/closet/crate)
+		if(get_account_credits(account) < cost)
+			return
 		for(var/t in sl)
 			var/tcount = get_2d_matrix_cell(sl, t, "count")
 			for(var/i in 1 to tcount)
 				C ? new t(C) : beacon.drop(t)
-			cost += get_import_cost(t, station) * tcount
 			var/list/i = get_2d_matrix_cell(sl, t, "index")
-
 			if(length(i) >= 2)
 				var/cat = i[1]
 				var/indix = i[2]
 				if(indix && cat)
 					station.set_good_amount(cat, indix, max(0, station.get_good_amount(cat, indix) - tcount))
 
-	charge_to_account(account.account_number, account.get_name(), "Purchase", "Asters Automated Trading System", cost)
+		charge_to_account(account.account_number, account.get_name(), "Purchase", "Asters Automated Trading System", cost)

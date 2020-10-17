@@ -85,7 +85,7 @@
 									<td>{{:value.amount_available}}
 									<td>
 										{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
-										<div class="link {{if value.count == 0}}disabled{{else}}selected{{/if}}">{{:value.count}}</div>
+										{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
 										{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
 							{{/if}}
 						{{/for}}

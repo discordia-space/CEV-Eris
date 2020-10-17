@@ -107,18 +107,25 @@
 		reset_shoplist()
 		return 1
 
-	if(href_list["PRG_cart_add"])
+	if(href_list["PRG_cart_add"] || href_list["PRG_cart_add_input"])
+		var/ind
+		var/count2buy = 1
+		if(href_list["PRG_cart_add_input"])
+			count2buy = input(usr, "Input how many you want to add", "Trade", 2) as num
+			ind = text2num(href_list["PRG_cart_add_input"])
+		else
+			ind = text2num(href_list["PRG_cart_add"])
 		var/list/category = station.assortiment[choosed_category]
 		if(!islist(category))
 			return
-		var/path = LAZYACCESS(category, text2num(href_list["PRG_cart_add"]))
+		var/path = LAZYACCESS(category, ind)
 		if(!path)
 			return
-		var/good_amount = station.get_good_amount(choosed_category, text2num(href_list["PRG_cart_add"]))
+		var/good_amount = station.get_good_amount(choosed_category, ind)
 		if(!good_amount)
 			return
 		
-		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) + 1, 0, good_amount))
+		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) + count2buy, 0, good_amount))
 		return 1
 
 	if(href_list["PRG_cart_remove"])
