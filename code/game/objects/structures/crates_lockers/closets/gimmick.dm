@@ -2,14 +2,14 @@
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
 	icon_state = "cabinet"
-	bad_types = /obj/structure/closet/cabinet
+	bad_type = /obj/structure/closet/cabinet
 
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
 	icon_state = "syndicate"
 	anchored = FALSE
-	bad_types = /obj/structure/closet/gimmick
+	bad_type = /obj/structure/closet/gimmick
 
 /obj/structure/closet/gimmick/russian
 	name = "russian surplus closet"

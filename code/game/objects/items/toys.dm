@@ -23,7 +23,7 @@
 	force = NONE
 
 	//spawn_values
-	bad_types = /obj/item/toy
+	bad_type = /obj/item/toy
 	spawn_tags = SPAWN_TAG_TOY
 
 /*
@@ -125,6 +125,7 @@
 		)
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/bullets = 5
 
 	examine(mob/user)
@@ -240,9 +241,10 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	var/active = 0
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
+	var/active = 0
 
 	attack_self(mob/user)
 		src.active = !( src.active )
@@ -276,6 +278,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /*
  * Snap pops
@@ -486,7 +489,7 @@
 	icon_state = "figure"
 	icon = 'icons/obj/toy.dmi'
 	spawn_tags = SPAWN_TAG_FIGURE
-	bad_types = "/obj/item/toy/figure"
+	bad_type = /obj/item/toy/figure
 
 /obj/item/toy/figure/excelsior
 	name = "\"Excelsior\" figurine"
@@ -569,7 +572,7 @@
 	anchored = FALSE
 	density = TRUE
 	spawn_tags = SPAWN_TAG_STRUCTURE_PLUSHIE
-	bad_types = "/obj/structure/plushie"
+	bad_type = /obj/structure/plushie
 	var/phrase = "I don't want to exist anymore!"
 
 /obj/structure/plushie/attack_hand(mob/user)
@@ -613,7 +616,7 @@
 	desc = "A very generic small plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
-	bad_types = "/obj/item/toy/plushie"
+	bad_type = /obj/item/toy/plushie
 	spawn_tags = SPAWN_TAG_PLUSHIE
 
 /obj/item/toy/plushie/attack_self(mob/user)
@@ -655,6 +658,7 @@
 	item_state = "cultblade"
 	w_class = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
+	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
 /obj/item/weapon/inflatable_duck
 	name = "inflatable duck"

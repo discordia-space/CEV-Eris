@@ -1,6 +1,9 @@
 
 var/global/BSACooldown = 0
 var/global/floorIsLava = 0
+#define NO_ANTAG 0
+#define LIMITED_ANTAG 1
+#define ANTAG 2
 
 
 ////////////////////////////////
@@ -760,19 +763,26 @@ ADMIN_VERB_ADD(/datum/admins/proc/immreboot, R_SERVER, FALSE)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(mob/M as mob) // returns 1 for special characters
+/proc/is_special_character(mob/M) // returns 1 for special characters
 	if (!istype(M))
-		return FALSE
+		return NO_ANTAG
+
+	if(M.mind && player_is_limited_antag(M.mind))
+		return LIMITED_ANTAG
 
 	if(M.mind && player_is_antag(M.mind))
-		return TRUE
-
+		return ANTAG
 
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
-			return TRUE
+			return ANTAG
 
+	return NO_ANTAG
+
+/proc/is_limited_antag(mob/M)
+	if(M.mind && player_is_limited_antag(M.mind))
+		return TRUE
 	return FALSE
 
 ADMIN_VERB_ADD(/datum/admins/proc/spawn_fruit, R_DEBUG, FALSE)

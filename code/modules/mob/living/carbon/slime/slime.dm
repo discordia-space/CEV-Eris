@@ -381,14 +381,14 @@
 /mob/living/carbon/slime/restrained()
 	return 0
 
-/mob/living/carbon/slime/var/co2overloadtime = null
+/mob/living/carbon/slime/var/co2overloadtime
 /mob/living/carbon/slime/var/temperature_resistance = T0C+75
 
 mob/living/carbon/slime/toggle_throw_mode()
 	return
 
-/mob/living/carbon/slime/proc/gain_nutrition(var/amount)
-	nutrition += amount
+/mob/living/carbon/slime/proc/gain_nutrition(amount)
+	adjustNutrition(amount)
 	if(prob(amount * 2)) // Gain around one level per 50 nutrition
 		powerlevel++
 		if(powerlevel > 10)

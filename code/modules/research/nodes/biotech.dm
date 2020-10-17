@@ -95,9 +95,12 @@
 
 	unlocks_designs = list(	/datum/design/research/circuit/chemmaster,
 							/datum/design/research/circuit/chemical_dispenser,
+							/datum/design/research/circuit/chemical_dispenser_beer,
+							/datum/design/research/circuit/chemical_dispenser_soda,
 							/datum/design/research/circuit/chem_heater,
 							/datum/design/research/item/makeshift_centrifuge,
-							/datum/design/research/structure/bidon
+							/datum/design/research/structure/bidon,
+							/datum/design/research/structure/bidonadv
 							)
 /*
 /datum/technology/basic_food_processing
@@ -223,7 +226,8 @@
 							/datum/design/research/item/medical/adv_mass_spectrometer,
 							/datum/design/research/item/medical/adv_reagent_scanner,
 							/datum/design/research/item/weapon/chemsprayer,
-							/datum/design/research/item/weapon/rapidsyringe
+							/datum/design/research/item/weapon/rapidsyringe,
+							/datum/design/research/circuit/chemical_dispenser_industrial
 							)
 
 /datum/technology/top_biotech

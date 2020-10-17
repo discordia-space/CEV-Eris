@@ -11,7 +11,7 @@
 	var/max_components = IC_COMPONENTS_BASE
 	var/max_complexity = IC_COMPLEXITY_BASE
 	var/opened = 0
-	var/obj/item/weapon/cell/small/battery = null // Internal cell which most circuits need to work.
+	var/obj/item/weapon/cell/small/battery // Internal cell which most circuits need to work.
 
 /obj/item/device/electronic_assembly/medium
 	name = "electronic mechanism"
@@ -40,7 +40,9 @@
 	w_class = ITEM_SIZE_TINY
 	max_components = IC_COMPONENTS_BASE / 2
 	max_complexity = IC_COMPLEXITY_BASE / 2
-	var/obj/item/weapon/implant/integrated_circuit/implant = null
+	var/obj/item/weapon/implant/integrated_circuit/implant
+	bad_type = /obj/item/device/electronic_assembly/implant
+	spawn_frequency = 0
 
 /obj/item/device/electronic_assembly/New()
 	..()

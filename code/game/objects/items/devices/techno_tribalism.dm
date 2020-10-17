@@ -14,9 +14,55 @@
 	var/max_count = 5
 	var/cooldown = 30 MINUTES
 
-/obj/item/device/techno_tribalism/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/techno_tribalism/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_engineering
+
+/obj/item/device/techno_tribalism/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
+/obj/item/device/techno_tribalism/attackby(obj/item/W, mob/user, params)
+	if(nt_sword_attack(W, user))
+		return FALSE
 	if(items_count < max_count)
-		if(istype(W, /obj/item/weapon/tool))
+		if(W in GLOB.all_faction_items)
+			if(GLOB.all_faction_items[W] == GLOB.department_moebius)
+				oddity_stats[STAT_COG] += 3
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_MEC] += 3
+			else if(GLOB.all_faction_items[W] == GLOB.department_security)
+				oddity_stats[STAT_VIG] += 3
+				oddity_stats[STAT_TGH] += 3
+				oddity_stats[STAT_ROB] += 3
+			else if(GLOB.all_faction_items[W] == GLOB.department_church)
+				oddity_stats[STAT_BIO] += 3
+				oddity_stats[STAT_COG] += 2
+				oddity_stats[STAT_VIG] += 2
+				oddity_stats[STAT_TGH] += 2
+			else if(GLOB.all_faction_items[W] == GLOB.department_guild)
+				oddity_stats[STAT_COG] += 3
+				oddity_stats[STAT_MEC] += 3
+				oddity_stats[STAT_ROB] += 1
+				oddity_stats[STAT_VIG] += 2
+			else if(GLOB.all_faction_items[W] == GLOB.department_engineering)
+				oddity_stats[STAT_MEC] += 5
+				oddity_stats[STAT_COG] += 2
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_VIG] += 1
+			else if(GLOB.all_faction_items[W] == GLOB.department_command)
+				oddity_stats[STAT_ROB] += 2
+				oddity_stats[STAT_TGH] += 1
+				oddity_stats[STAT_BIO] += 1
+				oddity_stats[STAT_MEC] += 1
+				oddity_stats[STAT_VIG] += 3
+				oddity_stats[STAT_COG] += 1
+			else
+				crash_with("[W], incompatible department")
+
+		else if(istool(W))
 			var/useful = FALSE
 			if(W.tool_qualities)
 
@@ -86,7 +132,7 @@
 			else
 				oddity_stats[STAT_ROB] += 1
 
-		else if(istype(W, /obj/item/weapon/gun))
+		else if(isgun(W))
 			oddity_stats[STAT_ROB] += 2
 			oddity_stats[STAT_VIG] += 2
 
@@ -95,6 +141,7 @@
 			return
 
 		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
+		SEND_SIGNAL(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
 		qdel(W)
 
@@ -105,7 +152,7 @@
 /obj/item/device/techno_tribalism/attack_self()
 	if(world.time >= (last_produce + cooldown))
 		if(items_count >= max_count)
-			if(istype(src.loc, /mob/living/carbon/human))
+			if(ishuman(src.loc))
 				var/mob/living/carbon/human/user = src.loc
 				var/obj/item/weapon/oddity/techno/T = new /obj/item/weapon/oddity/techno(src)
 				T.oddity_stats = src.oddity_stats

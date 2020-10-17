@@ -6,6 +6,7 @@
 	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_COOKED_FOOD
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash
@@ -2869,7 +2870,7 @@
 	filling_color = "#BAA14C"
 	taste_tag = list(CHEESE_FOOD)
 	spawn_tags = SPAWN_TAG_PIZZA
-	bad_types = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 	name = "Margherita"

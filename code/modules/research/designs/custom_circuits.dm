@@ -10,8 +10,6 @@
 	sort_string = "VBVAB"
 	category = CAT_CIRCUITS
 
-
-
 /datum/design/research/item/custom_circuit_assembly
 	name = "Small custom assembly"
 	desc = "An customizable assembly for simple, small devices."
@@ -42,3 +40,15 @@
 	desc = "An customizable assembly for very small devices, implanted into living entities."
 	build_path = /obj/item/weapon/implant/integrated_circuit
 	sort_string = "VCAAE"
+
+/datum/design/research/item/custom_circuit_assembly/printer
+	name = "Integrated circuit printer"
+	desc = "A portable(ish) machine made to print tiny modular circuitry out of metal."
+	build_path = /obj/item/device/electronics/integrated/integrated_circuit_printer
+	sort_string = "VCAAF"
+
+/datum/design/research/item/custom_circuit_assembly/advanced_designs
+	name = "Integrated circuit printer upgrade disk - advanced designs"
+	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, advanced designs to the printer."
+	build_path = /obj/item/weapon/disk/integrated_circuit/upgrade/advanced
+	sort_string = "VCAAG"

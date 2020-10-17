@@ -15,7 +15,7 @@
 	w_class = ITEM_SIZE_SMALL
 
 	//spawn values
-	bad_types = /obj/item/weapon/tool
+	bad_type = /obj/item/weapon/tool
 	spawn_tags = SPAWN_TAG_TOOL
 
 	var/tool_in_use = FALSE
@@ -487,7 +487,7 @@
 //Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
 /obj/item/proc/handle_failure(mob/living/user, atom/target, required_stat, required_quality)
 	var/obj/item/weapon/tool/T
-	if(istype(src, /obj/item/weapon/tool))
+	if(istool(src))
 		T = src
 
 	var/crit_fail_chance = 25

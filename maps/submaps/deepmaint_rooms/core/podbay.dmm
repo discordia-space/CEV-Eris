@@ -1,7 +1,7 @@
 "aa" = (/turf/simulated/floor/tiled/dark,/area/deepmaint)
 "ab" = (/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "ac" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
-"ad" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
+"ad" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "ae" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "af" = (/turf/simulated/floor/tiled/dark/gray_platform,/area/deepmaint)
 "ag" = (/turf/simulated/wall/r_wall,/area/deepmaint)
@@ -60,7 +60,7 @@
 "bh" = (/turf/simulated/shuttle/wall/escpod{tag = "icon-escpodwall8"; icon_state = "escpodwall8"},/area/deepmaint)
 "bi" = (/obj/structure/shuttle_part/escpod{tag = "icon-escpodwall9"; icon_state = "escpodwall9"},/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
 "bj" = (/obj/structure/shuttle_part/escpod{tag = "icon-escpodwall10"; icon_state = "escpodwall10"},/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
-"bk" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/dark/gray_platform,/area/deepmaint)
+"bk" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/dark/gray_platform,/area/deepmaint)
 "bl" = (/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "bm" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 "bn" = (/obj/structure/table/standard,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
@@ -102,6 +102,7 @@
 "bX" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "bY" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark/panels,/area/deepmaint)
 "bZ" = (/obj/machinery/door/blast/regular,/turf/simulated/floor/tiled/dark/techfloor_grid,/area/deepmaint)
+"ca" = (/obj/structure/reagent_dispensers/fueltank,/obj/landmark/loot_biomes/mob/roach{range = 10},/turf/simulated/floor/tiled/dark/gray_perforated,/area/deepmaint)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -115,7 +116,7 @@ aaajafbabbbcbdbebfbgbhbibjaubZaIawaQagabaa
 aaabafafahafafafafafafahahabagagagagagabaa
 aaabbkblblblbmbmbmbnboblahabajbpblbqbrabaa
 aaabafblbsbtbubvbwbwbxblafabbyafbzbqbAabaa
-aaabafblblblbmbmbmbnboblafabajafblbqbrabaa
+aaabafblblblbmbmbmbncablafabajafblbqbrabaa
 aaabafafafafafafafafafafahabagagagagagabaa
 aaajahakalamanaoapaqarasataubZaIawawagabaa
 aaaxbBaybCbDbEbFbGbHaEaFaGaHavaQawawagabaa

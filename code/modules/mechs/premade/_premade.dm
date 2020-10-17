@@ -9,7 +9,7 @@
 	spawn_tags = SPAWN_TAG_MECH
 	spawn_frequency = 10
 	rarity_value = 10
-	bad_types = "/mob/living/exosuit/premade"
+	bad_type = /mob/living/exosuit/premade
 
 	var/exosuit_color
 	var/decal

@@ -11,14 +11,14 @@
 	var/heal_burn = 0
 	price_tag = 10
 	spawn_tags = SPAWN_TAG_MEDICINE
-	bad_types = /obj/item/stack/medical
+	bad_type = /obj/item/stack/medical
 	matter = list(MATERIAL_BIOMATTER = 5)
 	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
 	var/charge_sections = 5		// How many indicator blips are there?
 	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
 
 /obj/item/stack/medical/advanced
-	bad_types = /obj/item/stack/medical/advanced/bruise_pack
+	bad_type = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()

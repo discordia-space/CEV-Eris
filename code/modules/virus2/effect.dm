@@ -49,7 +49,7 @@
 	var/stage = 4
 	var/maxm = 1
 	var/badness = 1
-	var/data = null // For semi-procedural effects; this should be generated in generate() if used
+	var/data // For semi-procedural effects; this should be generated in generate() if used
 
 	proc/activate(var/mob/living/carbon/mob,var/multiplier)
 	proc/deactivate(var/mob/living/carbon/mob)
@@ -105,7 +105,7 @@
 	stage = 4
 	badness = 2
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob.ear_deaf += 20
+		mob.adjustEarDamage(0,20)
 
 /datum/disease2/effect/monkey
 	name = "Monkism Syndrome"

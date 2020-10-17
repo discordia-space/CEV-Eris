@@ -68,7 +68,7 @@
 "bp" = (/obj/spawner/junk,/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
 "bq" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 8},/turf/simulated/floor/wood,/area/deepmaint)
 "br" = (/obj/item/remains/human,/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood,/obj/spawner/pack/cloth,/obj/spawner/pack/cloth,/obj/spawner/pack/gun_loot,/turf/simulated/floor/wood,/area/deepmaint)
-"bs" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
+"bs" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "bt" = (/obj/spawner/junk,/turf/simulated/floor/carpet/turcarpet,/area/deepmaint)
 "bu" = (/obj/structure/bed/chair{dir = 1},/obj/spawner/junk,/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
 "bv" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/tiled/steel/gray_platform,/area/deepmaint)
@@ -85,7 +85,8 @@
 "bG" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/deepmaint)
 "bH" = (/obj/spawner/traps/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
 "bI" = (/obj/spawner/junk,/obj/spawner/junk,/obj/spawner/traps/low_chance,/turf/simulated/floor/tiled/steel/gray_perforated,/area/deepmaint)
-"bJ" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
+"bJ" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
+"bK" = (/obj/spawner/junk,/obj/landmark/loot_biomes/mob/roach/room{range = 10},/turf/simulated/floor/wood,/area/deepmaint)
 
 (1,1,1) = {"
 aaaaaiaaaaaaaaaaambsaaaaamaaaaaaaaaaaaaaaa
@@ -99,7 +100,7 @@ aaabababaxarbeayazaAaAaBararbebebgblbmabaa
 aabnbnabaraDarafafaEafafarawawawafafaJabam
 aabobpabbqaHaGafbeaIbeafbearbebHbeaTbrabaa
 aaaFbIaJbHbearaJbHbearaJaraKawawawawawabaa
-aaaFboabaLanbtafbJbebeafbeaKarbearbebeabaa
+aaaFboabaLanbtafbJbebKafbeaKarbearbebeabaa
 aabubvabaLbtaNafbearbcafbJawawawawawaIabaa
 aaabababafafafafafaPafafaUbearaGbebebwabaa
 aaabawawawawawawawbHawafarawawawbebxbyabaa

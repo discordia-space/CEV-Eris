@@ -26,7 +26,7 @@ var/list/global/tank_gauge_cache = list()
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_blacklisted = FALSE
-	bad_types = /obj/item/weapon/tank
+	bad_type = /obj/item/weapon/tank
 	spawn_tags = SPAWN_TAG_TANK_GAS
 
 	var/datum/gas_mixture/air_contents

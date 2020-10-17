@@ -5,7 +5,7 @@
 	icon_state = "remains"
 	anchored = FALSE
 	rarity_value = 20
-	bad_types = /obj/item/remains
+	bad_type = /obj/item/remains
 	spawn_tags = SPAWN_TAG_REMAINS
 
 /obj/item/remains/human

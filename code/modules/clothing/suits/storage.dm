@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/storage
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
-	bad_types = /obj/item/clothing/suit/storage
+	bad_type = /obj/item/clothing/suit/storage
 	spawn_tags = SPAWN_TAG_CLOTHING_SUIT_STORAGE
 	rarity_value = 10
 	var/obj/item/weapon/storage/internal/pockets

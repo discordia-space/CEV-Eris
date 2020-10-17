@@ -129,7 +129,7 @@
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_OS_PROSTHETIC
-	bad_types = /obj/item/organ/external/robotic/one_star
+	bad_type = /obj/item/organ/external/robotic/one_star
 	price_tag = 900
 
 /obj/item/organ/external/robotic/one_star/l_arm

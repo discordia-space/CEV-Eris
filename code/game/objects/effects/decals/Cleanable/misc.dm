@@ -50,6 +50,8 @@
 	icon = 'icons/obj/reagentfillings.dmi'
 	mouse_opacity = 0
 	random_rotation = FALSE
+	bad_type = /obj/effect/decal/cleanable/reagents
+	spawn_tags = null
 
 /obj/effect/decal/cleanable/reagents/proc/add_reagents(var/datum/reagents/reagents_to_add)
 	if(!reagents)

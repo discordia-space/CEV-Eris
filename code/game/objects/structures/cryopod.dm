@@ -18,7 +18,7 @@
 	rarity_value = 10
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_ENCOUNTER_CRYOPOD
-	bad_types = /obj/structure/cryopod_spawner
+	bad_type = /obj/structure/cryopod_spawner
 
 /obj/structure/cryopod_spawner/proc/add_stats(var/mob/living/carbon/human/target)
 	if(!ishuman(target))

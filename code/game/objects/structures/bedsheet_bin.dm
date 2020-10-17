@@ -96,7 +96,7 @@ LINEN BINS
 	set category = "Object"
 	set src in view(1)
 
-	if(istype(loc,/mob))
+	if(ismob(loc))
 		to_chat(usr, "Drop \the [src] first.")
 	else if(ishuman(usr))
 		toggle_fold(usr)
@@ -108,7 +108,7 @@ LINEN BINS
 
 	if(folded)
 		to_chat(usr, "Unfold \the [src] first.")
-	else if(istype(loc,/mob))
+	else if(ismob(loc))
 		to_chat(usr, "Drop \the [src] first.")
 	else if(ishuman(usr))
 		toggle_roll(usr)

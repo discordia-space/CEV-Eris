@@ -125,7 +125,7 @@
 	layer = BELOW_MOB_LAYER
 	anchored = TRUE //it's sticky, no you cant move it
 	spawn_frequency = 0
-	bad_types = /obj/item/weapon/ducttape
+	bad_type = /obj/item/weapon/ducttape
 
 	var/obj/item/weapon/stuck
 

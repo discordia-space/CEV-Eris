@@ -149,7 +149,7 @@
 // to pass a "close=1" parameter to the atom's Topic() proc for special handling.
 // Otherwise, the user mob's machine var will be reset directly.
 //
-/proc/onclose(mob/user, windowid, var/atom/ref=null)
+/proc/onclose(mob/user, windowid, var/atom/ref)
 	if(!user || !user.client) return
 	var/param = "null"
 	if(ref)

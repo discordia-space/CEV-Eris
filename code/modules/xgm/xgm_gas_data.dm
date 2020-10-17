@@ -22,8 +22,8 @@
 	var/specific_heat = 20	// J/(mol*K)
 	var/molar_mass = 0.032	// kg/mol
 
-	var/tile_overlay = null
-	var/overlay_limit = null
+	var/tile_overlay
+	var/overlay_limit
 
 	var/flags = 0
 
