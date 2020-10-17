@@ -22,7 +22,7 @@
 	var/show_category
 	var/list/categories
 
-	var/lst = list()
+	var/list/lst = list()
 
 	var/working = FALSE
 	var/paused = FALSE
