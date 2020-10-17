@@ -101,6 +101,15 @@ GLOBAL_VAR_INIT(score_technomancer_objectives, 0)
 GLOBAL_VAR_INIT(technomancer_faction_item_loss, 0)
 GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
+/client
+	var/individual_objectives_completed = 0
+	var/contracts_completed = 0
+	var/survive = FALSE
+	var/escaped = FALSE
+	var/roun_score = 0
+	var/cat_points = 0
+	var/cat_send = 0
+	var/cat_recieved = 0
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
 	//Thresholds for Score Ratings
@@ -141,17 +150,23 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 				var/mob/living/carbon/human/H = M.current
 				guild_fingerprints += H.get_full_print()
 
-	for(var/mob/living/carbon/human/H in (GLOB.player_list & GLOB.human_mob_list  & GLOB.living_mob_list))
-		if(H.mind && H.mind.assigned_job && H.mind.assigned_job.faction == "CEV Eris" && H.mind.assigned_job.department != DEPARTMENT_GUILD && !H.mind.antagonist.len)
-			for(var/obj/item/I in H.GetAllContents())
-				var/full_print = H.get_full_print()
-				if(full_print in guild_fingerprints)
-					GLOB.guild_shared_gears++
-					break
+	for(var/mob/living/L in (GLOB.player_list & GLOB.living_mob_list))
+		if(L.client)
+			L.client.survive = TRUE
+			if(isOnAdminLevel(L))
+				L.client.escaped = TRUE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.mind && H.mind.assigned_job && H.mind.assigned_job.faction == "CEV Eris" && H.mind.assigned_job.department != DEPARTMENT_GUILD && !H.mind.antagonist.len)
+				for(var/obj/item/I in H.GetAllContents())
+					var/full_print = H.get_full_print()
+					if(full_print in guild_fingerprints)
+						GLOB.guild_shared_gears++
+						break
 
-	//init technomancer score
 	var/obj/item/weapon/cell/large/high/HC = /obj/item/weapon/cell/large/high
-	var/min_chage = initial(HC.maxcharge) * 0.6
+	var/min_charge = initial(HC.maxcharge) * 0.6
+
 	//Check station's power levels
 	for(var/area/A in ship_areas)
 		if(A.fire || A.atmosalm)
@@ -160,7 +175,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 			GLOB.area_powerloss++ 
 			continue
 		for(var/obj/item/weapon/cell/C in A.apc.contents)
-			if(C.charge < min_chage)
+			if(C.charge < min_charge)
 				GLOB.area_powerloss++
 
 	var/smes_count = 0
@@ -249,85 +264,6 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		//if(E.client && !E.get_preference(PREFTOGGLE_DISABLE_SCOREBOARD))
 		E.scorestats()
 
-
-/* backup
-/mob/proc/scorestats()
-	var/dat = "<b>Round Statistics and Score</b><br><hr>"
-	//if(SSticker && SSticker.mode)
-	//	dat += SSticker.mode.get_scoreboard_stats()
-
-	dat += {"
-	<b><u>General Statistics</u></b><br>
-	<u>The Good</u><br>
-	<b>Ore Mined:</b> [GLOB.score_oremined] ([GLOB.score_oremined * 2] Points)<br>"}
-	//if(SSshuttle.emergency.mode == SHUTTLE_ENDGAME) dat += "<b>Shuttle Escapees:</b> [GLOB.score_escapees] ([GLOB.score_escapees * 25] Points)<br>"
-	dat += {"
-	<b>Whole Station Powered:</b> [GLOB.score_powerbonus ? "Yes" : "No"] ([GLOB.score_powerbonus * 2500] Points)<br><br>
-
-	<U>The Bad</U><br>
-	<b>Dead bodies on Station:</b> [GLOB.score_deadcrew] (-[GLOB.score_deadcrew * 25] Points)<br>
-	<b>Uncleaned Messes:</b> [GLOB.score_mess] (-[GLOB.score_mess] Points)<br>
-	<b>Station Power Issues:</b> [GLOB.score_powerloss] (-[GLOB.score_powerloss * 20] Points)<br>
-	<b>AI Destroyed:</b> [GLOB.score_deadaipenalty ? "Yes" : "No"] (-[GLOB.score_deadaipenalty * 250] Points)<br><br>
-
-	<U>The Weird</U><br>
-	<b>Food Eaten:</b> [GLOB.score_foodeaten] bites/sips<br>
-	<b>Times a Clown was Abused:</b> [GLOB.score_clownabuse]<br><br>
-	"}
-	if(GLOB.score_escapees)
-		dat += {"<b>Richest Escapee:</b> [GLOB.score_richestname], [GLOB.score_richestjob]: $[num2text(GLOB.score_richestcash,50)] ([GLOB.score_richestkey])<br>
-		<b>Most Battered Escapee:</b> [GLOB.score_dmgestname], [GLOB.score_dmgestjob]: [GLOB.score_dmgestdamage] damage ([GLOB.score_dmgestkey])<br>"}
-	else
-		//if(SSshuttle.emergency.mode <= SHUTTLE_STRANDED)
-		//	dat += "The station wasn't evacuated!<br>"
-		//else
-		dat += "No-one escaped!<br>"
-
-	//dat += SSticker.mode.declare_job_completion()
-
-	dat += {"
-	<hr><br>
-	<b><u>FINAL SCORE: [GLOB.score_crewscore]</u></b><br>
-	"}
-
-	var/score_rating = "The Aristocrats!"
-	switch(GLOB.score_crewscore)
-		if(-99999 to SINGULARITY_DESERVES_BETTER) score_rating = 					"Even the Singularity Deserves Better"
-		if(SINGULARITY_DESERVES_BETTER+1 to SINGULARITY_FODDER) score_rating = 		"Singularity Fodder"
-		if(SINGULARITY_FODDER+1 to ALL_FIRED) score_rating = 						"You're All Fired"
-		if(ALL_FIRED+1 to WASTE_OF_OXYGEN) score_rating = 							"A Waste of Perfectly Good Oxygen"
-		if(WASTE_OF_OXYGEN+1 to HEAP_OF_SCUM) score_rating = 						"A Wretched Heap of Scum and Incompetence"
-		if(HEAP_OF_SCUM+1 to LAB_MONKEYS) score_rating = 							"Outclassed by Lab Monkeys"
-		if(LAB_MONKEYS+1 to UNDESIREABLES) score_rating = 							"The Undesirables"
-		if(UNDESIREABLES+1 to SERVANTS_OF_SCIENCE-1) score_rating = 				"Ambivalently Average"
-		if(SERVANTS_OF_SCIENCE to GOOD_BUNCH-1) score_rating = 						"Skillful Servants of Science"
-		if(GOOD_BUNCH to MACHINE_THIRTEEN-1) score_rating = 						"Best of a Good Bunch"
-		if(MACHINE_THIRTEEN to PROMOTIONS_FOR_EVERYONE-1) score_rating = 			"Lean Mean Machine Thirteen"
-		if(PROMOTIONS_FOR_EVERYONE to AMBASSADORS_OF_DISCOVERY-1) score_rating = 	"Promotions for Everyone"
-		if(AMBASSADORS_OF_DISCOVERY to PRIDE_OF_SCIENCE-1) score_rating = 			"Ambassadors of Discovery"
-		if(PRIDE_OF_SCIENCE to NANOTRANSEN_FINEST-1) score_rating = 				"The Pride of Science Itself"
-		if(NANOTRANSEN_FINEST to INFINITY) score_rating = 							"Nanotrasen's Finest"
-
-	dat += "<b><u>RATING:</u></b> [score_rating]"
-	src << browse(dat, "window=roundstats;size=500x600")
-
-	#undef SINGULARITY_DESERVES_BETTER
-	#undef SINGULARITY_FODDER
-	#undef ALL_FIRED
-	#undef WASTE_OF_OXYGEN
-	#undef HEAP_OF_SCUM
-	#undef LAB_MONKEYS
-	#undef UNDESIREABLES
-	#undef SERVANTS_OF_SCIENCE
-	#undef GOOD_BUNCH
-	#undef MACHINE_THIRTEEN
-	#undef PROMOTIONS_FOR_EVERYONE
-	#undef AMBASSADORS_OF_DISCOVERY
-	#undef PRIDE_OF_SCIENCE
-	#undef NANOTRANSEN_FINEST
-
-backup */
-
 /proc/get_color_score(msg, score, maxscore=MAX_FACTION_SCORE)
 	if(score>maxscore*0.5)
 		return "<font color='green'>[msg]</font>"
@@ -348,10 +284,7 @@ backup */
 
 /mob/proc/scorestats()
 	var/dat = "<b>Round Statistics and Score</b><br><hr>"
-	//if(SSticker && SSticker.mode)
-	//	dat += SSticker.mode.get_scoreboard_stats()
-//ironhammer
-
+	//ironhammer
 	dat += {"
 	<b><u>Faction Scores</u></b><br>
 	<u>Ironhammer scores</u><br>
@@ -363,7 +296,7 @@ backup */
 	<b>operativos muertos:</b> [GLOB.ironhammer_operative_dead] ([to_score_color(GLOB.ironhammer_operative_dead_score)] Points)<br>
 	<b>Final score:</b> [get_color_score(GLOB.ironhammer_score, MAX_FACTION_SCORE)] Points<br>
 	"}
-
+	//moebius
 	dat += {"
 	<b><u>Faction Scores</u></b><br>
 	<u>moebius scores</u><br>
@@ -375,7 +308,7 @@ backup */
 	<b>autopsias realizadas:</b> [GLOB.moebius_autopsies_mobs.len] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
 	<b>Final score:</b> [get_color_score(GLOB.moebius_score, MAX_FACTION_SCORE)] Points<br>
 	"}
-
+	//nt
 	dat += {"
 	<b><u>Faction Scores</u></b><br>
 	<u>neotechnology scores</u><br>
@@ -387,7 +320,7 @@ backup */
 	<b>conversiones hecas:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
 	<b>Final score:</b> [get_color_score(GLOB.neotheology_score, MAX_FACTION_SCORE)] Points<br>
 	"}
-
+	//guid
 	dat += {"
 	<b><u>Faction Scores</u></b><br>
 	<u>giuld scores</u><br>
@@ -398,7 +331,7 @@ backup */
 	<b>Tripulacion items repartidos:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
 	<b>Final score:</b> [get_color_score(GLOB.guild_score, MAX_FACTION_SCORE)] Points<br>
 	"}
-
+	//Technomancers
 	dat += {"
 	<u>Technomancers scores</u><br>
 	<b>Base score:</b> [green_text(GLOB.initial_technomancer_score)]<br>
@@ -410,42 +343,6 @@ backup */
 	<b>Areas con problemas atmosfericos:</b> [GLOB.area_fireloss] ([to_score_color(GLOB.score_fireloss)] Points)<br>
 	<b>Final score:</b> [get_color_score(GLOB.technomancer_score, MAX_FACTION_SCORE)] Points<br>
 	"}
-
-	/*
-	dat += {"
-	<b><u>General Statistics</u></b><br>
-	<u>The Good</u><br>
-	<b>Ore Mined:</b> [GLOB.score_oremined] ([GLOB.score_oremined * 2] Points)<br>"}
-	//if(SSshuttle.emergency.mode == SHUTTLE_ENDGAME) dat += "<b>Shuttle Escapees:</b> [GLOB.score_escapees] ([GLOB.score_escapees * 25] Points)<br>"
-	dat += {"
-	<b>Whole Station Powered:</b> [GLOB.score_powerbonus ? "No" : "Yes"] ([GLOB.score_powerbonus * 2500] Points)<br><br>
-
-	<U>The Bad</U><br>
-	<b>Dead bodies on Station:</b> [GLOB.score_deadcrew] (-[GLOB.score_deadcrew * 25] Points)<br>
-	<b>Uncleaned Messes:</b> [GLOB.score_mess] (-[GLOB.score_mess] Points)<br>
-	<b>Station Power Issues:</b> [GLOB.score_powerloss] (-[GLOB.score_powerloss * 20] Points)<br>
-	<b>AI Destroyed:</b> [GLOB.score_deadaipenalty ? "Yes" : "No"] (-[GLOB.score_deadaipenalty * 250] Points)<br><br>
-
-	<U>The Weird</U><br>
-	<b>Food Eaten:</b> [GLOB.score_foodeaten] bites/sips<br>
-	<b>Times a Clown was Abused:</b> [GLOB.score_clownabuse]<br><br>
-	"}
-	*/
-	//if(GLOB.score_escapees)
-	//	dat += {"<b>Richest Escapee:</b> [GLOB.score_richestname], [GLOB.score_richestjob]: $[num2text(GLOB.score_richestcash,50)] ([GLOB.score_richestkey])<br>
-	//	<b>Most Battered Escapee:</b> [GLOB.score_dmgestname], [GLOB.score_dmgestjob]: [GLOB.score_dmgestdamage] damage ([GLOB.score_dmgestkey])<br>"}
-	//else
-		//if(SSshuttle.emergency.mode <= SHUTTLE_STRANDED)
-		//	dat += "The station wasn't evacuated!<br>"
-		//else
-	//	dat += "No-one escaped!<br>"
-
-	//dat += SSticker.mode.declare_job_completion()
-
-	//dat += {"
-	//<hr><br>
-	//<b><u>FINAL SCORE: [GLOB.score_crewscore]</u></b><br>
-	//"}
 
 	var/score_rating = "The Aristocrats!"
 	switch(GLOB.score_crewscore)
@@ -465,21 +362,34 @@ backup */
 		if(PRIDE_OF_SCIENCE to NANOTRANSEN_FINEST-1) score_rating = 				"The Pride of Science Itself"
 		if(NANOTRANSEN_FINEST to INFINITY) score_rating = 							"Nanotrasen's Finest"
 
-	dat += "<b><u>RATING:</u></b> [score_rating]"
+	dat += "<b><u>RATING:</u></b> [score_rating]<br><hr>"
+
+	
+	dat += "<b>Personal Score</b><br><hr>"
+
+	dat += {"
+	<b>Personal Objectives completed:</b> [client.individual_objectives_completed] ([to_score_color(client.individual_objectives_completed * 10)] Points)<br>"
+	<b>Contratos de de antag completados:</b> [client.contracts_completed] ([to_score_color(client.individual_objectives_completed * 20)] Points)<br>"
+	<b>sobrevir:</b> [client.survive ? "Yes" : "No"] ([to_score_color(300)] Points)<br>
+	<b>escaped:</b> [client.escaped ? "Yes" : "No"] ([to_score_color(200)] Points)<br>"
+	<b>catpoitns enviados:</b> [client.cat_send] ([to_score_color(client.cat_send * 5)] Points)<br>"
+	<b>catpoitns recibidos:</b> [client.cat_recieved] ([to_score_color(client.cat_recieved * 10)] Points)<br>"
+	"}
+
 	src << browse(dat, "window=roundstats;size=500x600")
 
-	#undef SINGULARITY_DESERVES_BETTER
-	#undef SINGULARITY_FODDER
-	#undef ALL_FIRED
-	#undef WASTE_OF_OXYGEN
-	#undef HEAP_OF_SCUM
-	#undef LAB_MONKEYS
-	#undef UNDESIREABLES
-	#undef SERVANTS_OF_SCIENCE
-	#undef GOOD_BUNCH
-	#undef MACHINE_THIRTEEN
-	#undef PROMOTIONS_FOR_EVERYONE
-	#undef AMBASSADORS_OF_DISCOVERY
-	#undef PRIDE_OF_SCIENCE
-	#undef NANOTRANSEN_FINEST
+#undef SINGULARITY_DESERVES_BETTER
+#undef SINGULARITY_FODDER
+#undef ALL_FIRED
+#undef WASTE_OF_OXYGEN
+#undef HEAP_OF_SCUM
+#undef LAB_MONKEYS
+#undef UNDESIREABLES
+#undef SERVANTS_OF_SCIENCE
+#undef GOOD_BUNCH
+#undef MACHINE_THIRTEEN
+#undef PROMOTIONS_FOR_EVERYONE
+#undef AMBASSADORS_OF_DISCOVERY
+#undef PRIDE_OF_SCIENCE
+#undef NANOTRANSEN_FINEST
 

@@ -78,6 +78,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 	if(M && M.current)
 		to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
+		if(M.current.client)
+			M.current.client.contracts_completed++
 
 	for(var/obj/item/device/uplink/U in world_uplinks)
 		if(U.uplink_owner != M)

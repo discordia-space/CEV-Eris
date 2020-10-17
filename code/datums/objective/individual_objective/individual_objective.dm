@@ -1,5 +1,4 @@
 /datum/mind/var/list/individual_objectives = list()
-/mob/living/carbon/human/var/personal_score = 0
 
 /mob/living/carbon/human/proc/pick_individual_objective()
 	var/list/valid_objectives = list()
@@ -40,7 +39,6 @@
 	var/limited_antag = FALSE
 	var/rarity = 1
 	var/insight_reward = 20
-	var/score_reward = 10
 	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
 	var/show_la = "<span style='color:red'>(LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
@@ -122,14 +120,15 @@
 	return TRUE
 
 /datum/individual_objective/proc/update_faction_score()
-	mind_holder.personal_score += score_reward
+	if(mind_holder.client)
+		mind_holder.client.individual_objectives_completed++
 	if(req_cruciform || DEPARTMENT_CHURCH in req_department)
-		GLOB.neotheology_objectives_completed += 1
+		GLOB.neotheology_objectives_completed++
 	else if(DEPARTMENT_SECURITY in req_department)
-		GLOB.ironhammer_objectives_completed += 1
+		GLOB.ironhammer_objectives_completed++
 	else if(DEPARTMENT_SCIENCE in req_department || DEPARTMENT_MEDICAL in req_department)
-		GLOB.moebius_objectives_completed += 1
+		GLOB.moebius_objectives_completed++
 	else if(DEPARTMENT_GUILD in req_department)
-		GLOB.guild_objectives_completed += 1
+		GLOB.guild_objectives_completed++
 	else if(DEPARTMENT_ENGINEERING in req_department)
-		GLOB.technomancer_objectives_completed += 1
+		GLOB.technomancer_objectives_completed++
