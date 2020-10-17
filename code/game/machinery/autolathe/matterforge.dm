@@ -18,7 +18,7 @@
 	var/list/stored_material = list()
 	var/obj/power_source
 	var/storage_capacity = 1000
-	var/unfolded = null
+	var/unfolded
 	var/show_category
 	var/list/categories
 
@@ -29,7 +29,7 @@
 	var/error
 	var/progress = 0
 
-	var/datum/design/current_design = null
+	var/datum/design/current_design
 	var/list/queue = list()
 	var/queue_max = 8
 
@@ -280,9 +280,9 @@
 		return 1
 
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
-	if(I.datum_components.Find(/datum/component/inspiration))
-		var/datum/component/inspiration/cringe = I.datum_components[/datum/component/inspiration]
-		if(cringe.power > 0)
+	if(I.GetComponent(/datum/component/inspiration))
+		var/datum/component/inspiration/comp = I.GetComponent(/datum/component/inspiration)
+		if(comp.power > 0)
 			if(!power_source)
 				user.drop_item(I)
 				I.forceMove(src)
