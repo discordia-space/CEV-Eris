@@ -130,7 +130,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/robustcells
 	disk_name = "Asters Robustcells"
 	icon_state = "guild"
-	rarity_value = 1.56
+	rarity_value = 2.5
 	spawn_tags = SPAWN_TAG_DESING_COMMON
 	license = 10
 	designs = list(
@@ -1235,7 +1235,7 @@
 	disk_name = "Ironhammer Combat Equipment - Standard Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
-	rarity_value = 2 // one of the more common advanced disks
+	rarity_value = 12 // one of the more common advanced disks
 	license = 6 // 6 pieces, or 3 sets if you use helm + vest
 	designs = list(
 		/datum/design/autolathe/clothing/generic_helmet_basic,
@@ -1246,7 +1246,7 @@
 	disk_name = "Ironhammer Combat Equipment - Bulletproof Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
-	rarity_value = 5 // about as rare as a advanced tool disk - remember that this takes from the 'advanced' pool (which is rare) instead of the 'common' pool like the normal armor disk does
+	rarity_value = 15 // about as rare as a advanced tool disk - remember that this takes from the 'advanced' pool (which is rare) instead of the 'common' pool like the normal armor disk does
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
 		/datum/design/autolathe/clothing/bulletproof_helmet_generic,
@@ -1257,7 +1257,7 @@
 	disk_name = "Ironhammer Combat Equipment - Laserproof Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESING_ADVANCED_COMMON
-	rarity_value = 5.5 // slightly rarer than bulletproof gear
+	rarity_value = 16 // slightly rarer than bulletproof gear
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
 		/datum/design/autolathe/clothing/ablative_vest,
