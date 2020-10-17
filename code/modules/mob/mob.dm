@@ -147,7 +147,8 @@
 		. += 6
 	if(lying) //Crawling, it's slower
 		. += 14 + (weakened)
-	. += move_intent.move_delay
+	var/decl/move_intent/m_intent = decls_repository.get_decl(move_intent)
+	. += m_intent.move_delay
 
 
 /mob/proc/Life()
