@@ -274,7 +274,7 @@
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
-				vision = H.internal_organs_by_name[H.species.vision_organ]
+				vision = H.random_organ_by_process(H.species.vision_organ)
 			if(!vision)
 				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : BP_EYES] on [H]!</span>")
 				return

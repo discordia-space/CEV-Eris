@@ -4,7 +4,7 @@
 	var/current_organ = BP_CHEST
 	var/global/list/r_organs = list(BP_HEAD, BP_R_ARM, BP_CHEST, BP_R_LEG)
 	var/global/list/l_organs = list(BP_EYES, BP_L_ARM, BP_GROIN, BP_L_LEG)
-	var/global/list/internal_organs = list("chest2", BP_HEART, BP_LUNGS, BP_LIVER)
+	var/global/list/internal_organs = list("chest2", OP_HEART, OP_LUNGS, OP_LIVER)
 
 /datum/category_item/player_setup_item/augmentation/modifications
 	name = "Augmentation"
