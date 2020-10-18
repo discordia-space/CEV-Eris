@@ -119,8 +119,6 @@
 
 	data["unfolded"] = unfolded
 
-	data["speed"] = speed
-
 	if(categories)
 		data["categories"] = categories
 		data["show_category"] = show_category
@@ -377,9 +375,6 @@
 
 	if(!current_design)
 		next_file()
-
-/obj/machinery/matter_nanoforge/proc/clear_queue()
-	queue.Cut()
 
 /obj/machinery/matter_nanoforge/proc/check_craftable_amount_by_material(datum/design/design, material)
 	return stored_material[MATERIAL_COMPRESSED_MATTER] / max(1, SANITIZE_LATHE_COST(design.materials[MATERIAL_COMPRESSED_MATTER])) // loaded material / required material
