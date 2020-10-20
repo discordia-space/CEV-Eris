@@ -2057,8 +2057,6 @@
 /obj/item/weapon/ruinedvirusdish    blacklisted=0    10  0     100
 /obj/item/weapon/diseasedisk/premade    blacklisted=0    10  0     100
 /obj/item/weapon/diseasedisk    blacklisted=0    10  0     100
-/obj/item/weapon    blacklisted=0    10  0     100
-/obj/item/tk_grab    blacklisted=0    10  0     100
 /obj/item/rocket_engine    blacklisted=0    10  0     100
 /obj/item/craft    blacklisted=0    10  0     100
 /obj/item/stack/cable_coil/cut    blacklisted=0    3.33333  0     100
@@ -2080,8 +2078,8 @@
 /obj/item/stack/nanopaste    blacklisted=0    5  15     100
 /obj/item/stack/rods/random    blacklisted=0    10  1     100
 /obj/item/stack/rods    blacklisted=0    10  1     100
-/obj/item/stack/telecrystal/random    blacklisted=0    10  50     100
-/obj/item/stack/telecrystal    blacklisted=0    10  50     100
+/obj/item/stack/telecrystal/random    blacklisted=1    10  50     100
+/obj/item/stack/telecrystal    blacklisted=1    10  50     100
 /obj/item/stack/material/animalhide/human    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/corgi    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/cat    blacklisted=0    10  0     100

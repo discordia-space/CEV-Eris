@@ -2079,8 +2079,6 @@
 /obj/item/weapon/ruinedvirusdish
 /obj/item/weapon/diseasedisk/premade
 /obj/item/weapon/diseasedisk
-/obj/item/weapon
-/obj/item/tk_grab
 /obj/item/rocket_engine
 /obj/item/craft
 /obj/item/stack/cable_coil/cut

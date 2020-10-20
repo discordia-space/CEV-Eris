@@ -224,6 +224,8 @@
 /obj/item/weapon/fossil/plant
 /obj/item/weapon/talkingcrystal
 /obj/item/stack/medical/bruise_pack/handmade
+/obj/item/stack/telecrystal/random
+/obj/item/stack/telecrystal
 /obj/item/organ/external/robotic/excelsior/l_arm
 /obj/item/organ/external/robotic/excelsior/r_arm
 /obj/item/organ/external/robotic/excelsior/l_leg

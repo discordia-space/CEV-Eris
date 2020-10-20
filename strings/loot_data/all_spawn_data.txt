@@ -2079,8 +2079,6 @@
 /obj/item/weapon/ruinedvirusdish    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/diseasedisk/premade    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/diseasedisk    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon    obj,item    blacklisted=0    10  0     100
-/obj/item/tk_grab    obj,item    blacklisted=0    10  0     100
 /obj/item/rocket_engine    obj,item    blacklisted=0    10  0     100
 /obj/item/craft    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/cable_coil/cut    obj,item,toy,utility    blacklisted=0    3.33333  0     100
@@ -2102,8 +2100,8 @@
 /obj/item/stack/nanopaste    obj,item,medicine,medical    blacklisted=0    5  15     100
 /obj/item/stack/rods/random    obj,item,bulding_material,rod,material_junk,junk    blacklisted=0    10  1     100
 /obj/item/stack/rods    obj,item    blacklisted=0    10  1     100
-/obj/item/stack/telecrystal/random    obj,item    blacklisted=0    10  50     100
-/obj/item/stack/telecrystal    obj,item    blacklisted=0    10  50     100
+/obj/item/stack/telecrystal/random    obj,item    blacklisted=1    10  50     100
+/obj/item/stack/telecrystal    obj,item    blacklisted=1    10  50     100
 /obj/item/stack/material/animalhide/human    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/corgi    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/cat    obj,item    blacklisted=0    10  0     100

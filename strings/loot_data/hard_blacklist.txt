@@ -57,6 +57,7 @@
 /obj/item/weapon/holder
 /obj/item/weapon/matter_decompiler
 /obj/item/weapon/hatton/robot
+/obj/item/tk_grab
 /obj/item/stack/cable_coil/cyborg
 /obj/item/stack/rods/cyborg
 /obj/item/stack/material/cyborg/plastic

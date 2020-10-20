@@ -27,6 +27,14 @@
 	var/loot_data_paths = file("[file_dir]/all_spawn_paths.txt")
 	var/hard_blacklist_data = file("[file_dir]/hard_blacklist.txt")
 	var/blacklist_paths_data = file("[file_dir]/blacklist.txt")
+	var/fike_dir_tags = "[file_dir]/tags/"
+	var/tag_data = file("[fike_dir_tags]")
+	if(generate_files)
+		fdel(loot_data)
+		fdel(loot_data_paths)
+		fdel(hard_blacklist_data)
+		fdel(blacklist_paths_data)
+		fdel(tag_data)
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
@@ -111,8 +119,8 @@
 		for(var/tag in spawn_tags)
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
-				var/tag_data = file("[file_dir]/tags/[tag].txt")
-				tag_data << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
+				var/tag_data_i = file("[fike_dir_tags][tag].txt")
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
 		if(generate_files)
 			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
 			loot_data_paths << "[path]"
