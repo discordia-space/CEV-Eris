@@ -1366,16 +1366,16 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/has_brain()
 	if(organ_list_by_process(BP_BRAIN).len)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/has_eyes()
 	if(organ_list_by_process(BP_EYES).len)
 		for(var/obj/item/organ/internal/eyes in organ_list_by_process(OP_EYES))
 			if(!(eyes && istype(eyes) && !(eyes.status & ORGAN_CUT_AWAY)))
-				return 0
-			return 1
-	return 0
+				return FALSE
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))

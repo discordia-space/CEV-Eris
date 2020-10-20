@@ -188,7 +188,7 @@
 /mob/living/carbon/human/proc/random_organ_by_process(organ_process)
 	if(organ_list_by_process(organ_process).len)
 		return pick(organ_list_by_process(organ_process))
-	return null
+	return
 
 // basically has_limb()
 /mob/living/carbon/human/has_appendage(var/appendage_check)	//returns TRUE if found, type of organ modification if limb is robotic, FALSE if not found
