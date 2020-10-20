@@ -1,3 +1,4 @@
+paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanying_obj    prob_all_accompanying_obj
 /obj/item/weapon/tank/jetpack/void    obj,item,jetpack    blacklisted=0    2  50     100
 /obj/item/weapon/tank/jetpack/oxygen    obj,item,jetpack    blacklisted=0    2  50     100
 /obj/item/weapon/tank/jetpack/carbondioxide    obj,item,jetpack    blacklisted=0    3.0003  50     100

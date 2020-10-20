@@ -23,18 +23,15 @@
 	var/list/accompanying_objs = list()
 	var/generate_files = config.generate_loot_data
 	var/file_dir = "strings/loot_data"
+	var/source_dir = file("[file_dir]/")
 	var/loot_data = file("[file_dir]/all_spawn_data.txt")
 	var/loot_data_paths = file("[file_dir]/all_spawn_paths.txt")
 	var/hard_blacklist_data = file("[file_dir]/hard_blacklist.txt")
 	var/blacklist_paths_data = file("[file_dir]/blacklist.txt")
 	var/fike_dir_tags = "[file_dir]/tags/"
-	var/tag_data = file("[fike_dir_tags]")
 	if(generate_files)
-		fdel(loot_data)
-		fdel(loot_data_paths)
-		fdel(hard_blacklist_data)
-		fdel(blacklist_paths_data)
-		fdel(tag_data)
+		fdel(source_dir)
+		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanying_obj    prob_all_accompanying_obj"
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
