@@ -1,0 +1,4 @@
+/obj/item/weapon/reagent_containers/syringe/inaprovaline    blacklisted=0    10  20     100
+/obj/item/weapon/reagent_containers/syringe/antitoxin    blacklisted=0    10  20     100
+/obj/item/weapon/reagent_containers/syringe/tricordrazine    blacklisted=0    6.66667  20     100
+/obj/item/stack/medical/ointment    blacklisted=0    20  10     100

@@ -21,6 +21,12 @@
 	var/list/bad_paths = list()
 	var/list/spawn_tags = list()
 	var/list/accompanying_objs = list()
+	var/generate_files = config.generate_loot_data
+	var/file_dir = "strings/loot_data"
+	var/loot_data = file("[file_dir]/all_spawn_data.txt")
+	var/loot_data_paths = file("[file_dir]/all_spawn_paths.txt")
+	var/hard_blacklist_data = file("[file_dir]/hard_blacklist.txt")
+	var/blacklist_paths_data = file("[file_dir]/blacklist.txt")
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
@@ -42,15 +48,16 @@
 
 		spawn_tags = splittext(initial(A.spawn_tags), ",")
 		if(!spawn_tags.len)
+			if(generate_files)
+				hard_blacklist_data  << "[path]"
 			continue
 
 		frequency = initial(A.spawn_frequency)
 		if(!frequency)
+			if(generate_files)
+				hard_blacklist_data  << "[path]"
 			continue
 
-		//tags//
-		for(var/tag in spawn_tags)
-			all_spawn_by_tag[tag] += list(path)
 
 		//price//
 		//all_spawn_by_price["[price]"] += list(path)
@@ -68,8 +75,8 @@
 		//all_spawn_rarity_by_path[path] = rarity
 
 		//spawn_value//
-		all_spawn_value_by_path[path] = 10 * frequency/rarity
-
+		var/spawn_value = 10 * frequency/rarity
+		all_spawn_value_by_path[path] = spawn_value
 		//blacklisted//
 		//blacklisted = initial(A.spawn_blacklisted)
 		//if(blacklisted)
@@ -99,6 +106,18 @@
 				var/obj/item/weapon/gun/projectile/P = A
 				if(initial(P.magazine_type))
 					all_accompanying_obj_by_path[path] += list(initial(P.magazine_type))
+
+		//tags//
+		for(var/tag in spawn_tags)
+			all_spawn_by_tag[tag] += list(path)
+			if(generate_files)
+				var/tag_data = file("[file_dir]/tags/[tag].txt")
+				tag_data << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
+		if(generate_files)
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
+			loot_data_paths << "[path]"
+			if(initial(A.spawn_blacklisted))
+				blacklist_paths_data << "[path]"
 
 /datum/loot_spawner_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()

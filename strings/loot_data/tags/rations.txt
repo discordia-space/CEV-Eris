@@ -1,0 +1,7 @@
+/obj/item/weapon/reagent_containers/food/snacks/candy/donor    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/candy    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/tastybread    blacklisted=0    10  20     100
+/obj/item/weapon/reagent_containers/food/snacks/no_raisin    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket    blacklisted=0    5  10     100
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    20  30     100

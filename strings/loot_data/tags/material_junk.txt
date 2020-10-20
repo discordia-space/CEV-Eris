@@ -1,0 +1,6 @@
+/obj/item/weapon/material/shard/shrapnel/scrap    blacklisted=0    20  0     100
+/obj/item/weapon/material/shard/shrapnel    blacklisted=0    40  0     100
+/obj/item/weapon/material/shard/plasma    blacklisted=0    16.6667  0     100
+/obj/item/weapon/material/shard    blacklisted=0    16.6667  0     100
+/obj/item/weapon/ore/glass    blacklisted=0    5  0     100
+/obj/item/stack/rods/random    blacklisted=0    10  1     100
