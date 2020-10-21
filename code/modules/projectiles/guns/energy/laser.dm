@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	zoom_factor = 0.5
-	damage_multiplier = 1.3
+	damage_multiplier = 0.9
 	charge_cost = 50
 	price_tag = 2500
 	rarity_value = 12
@@ -66,7 +66,7 @@
 	projectile_type = /obj/item/projectile/beam
 	fire_delay = 10 //old technology
 	zoom_factor = 0
-	damage_multiplier = 1
+	damage_multiplier = 1.1
 	charge_cost = 100
 	price_tag = 2000
 	rarity_value = 10

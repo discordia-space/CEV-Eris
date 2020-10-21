@@ -18,6 +18,7 @@
 	recoil_buildup = 1 //pulse weapons have a bit more recoil
 	one_hand_penalty = 10
 	twohanded = TRUE
+	damage_multiplier = 1.3
 
 	init_firemodes = list(
 		list(mode_name="burn", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=8, charge_cost=20, icon="stun", projectile_color = "#0000FF"),

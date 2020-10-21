@@ -16,6 +16,7 @@
 	charge_meter = 0
 	charge_cost = 200
 	price_tag = 2500
+	damage_multiplier = 2.2
 
 /obj/item/weapon/gun/energy/crossbow/ninja
 	name = "energy dart thrower"
@@ -31,3 +32,4 @@
 	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_PLASTIC = 20, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 9)
 	projectile_type = /obj/item/projectile/energy/bolt/large
 	price_tag = 4000
+	damage_multiplier = 1.7
