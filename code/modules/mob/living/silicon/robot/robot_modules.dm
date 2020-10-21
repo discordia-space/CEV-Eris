@@ -14,11 +14,13 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module
 	name = "robot module"
+	desc = "This is a robot module parent class. You shouldn't see this description"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
 	w_class = 100
 	item_state = "electronic"
 	flags = CONDUCT
+	bad_type = /obj/item/weapon/robot_module
 	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
@@ -65,9 +67,6 @@ var/global/list/robot_modules = list(
 		STAT_MEC = 5
 	)
 
-
-
-	desc = "This is a robot module parent class. You shouldn't see this description"
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
 	..()

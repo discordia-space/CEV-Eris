@@ -2,6 +2,8 @@
 	name = "organ"
 	icon = 'icons/obj/surgery.dmi'
 	germ_level = 0
+	matter = list(MATERIAL_BIOMATTER = 20)
+	bad_type = /obj/item/organ
 
 	// Strings.
 	var/surgery_name					// A special name that replaces item name in surgery messages
@@ -31,7 +33,6 @@
 	var/min_broken_damage = 30			// Damage before becoming broken
 	var/max_damage						// Damage cap
 	var/rejecting						// Is this organ already being rejected?
-	matter = list(MATERIAL_BIOMATTER = 20)
 
 	var/death_time						// limits organ self recovery
 

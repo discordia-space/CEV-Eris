@@ -176,6 +176,7 @@
 /obj/item/weapon/book/manual/wiki
 	var/page_link = ""
 	window_size = "970x710"
+	bad_type = /obj/item/weapon/book/manual/wiki
 
 /obj/item/weapon/book/manual/wiki/attack_self()
 	if(!dat)

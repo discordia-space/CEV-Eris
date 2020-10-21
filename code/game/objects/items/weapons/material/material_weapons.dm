@@ -10,6 +10,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	sharp = FALSE
 	edge = FALSE
+	bad_type = /obj/item/weapon/material
 
 	var/applies_material_colour = 1
 	var/unbreakable

@@ -14,6 +14,7 @@
 	dir = SOUTH
 	layer = BELOW_MOB_LAYER
 	organ_tag = "limb"
+	bad_type = /obj/item/organ/external
 	var/tally = 0
 
 	// Strings
@@ -29,7 +30,7 @@
 	var/perma_injury = 0
 
 	// Appearance vars.
-	var/body_part = null               // Part flag
+	var/body_part               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.
 	var/model                          // Used when caching robolimb icons.
 
@@ -50,9 +51,9 @@
 	var/list/embedded = list()			// Currently implanted objects that can be pulled out
 	var/max_size = 0
 
-	var/list/drop_on_remove = null
+	var/list/drop_on_remove
 
-	var/obj/item/organ_module/active/module = null
+	var/obj/item/organ_module/active/module
 
 	// Joint/state stuff.
 	var/functions = NONE	// Functions performed by body part. Bitflag, see _defines/damage_organs.dm for possible values.
@@ -75,7 +76,7 @@
 	var/cavity = 0
 
 	// Used for spawned robotic organs
-	var/default_description = null
+	var/default_description
 
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
