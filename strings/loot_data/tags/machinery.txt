@@ -19,5 +19,4 @@
 /obj/item/modular_computer/console/preset/civilian/professional    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/civilian    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/trade    blacklisted=1    10  0     100
-/obj/item/modular_computer/console/preset    blacklisted=1    10  0     100
 /obj/item/modular_computer/console    blacklisted=1    10  0     100

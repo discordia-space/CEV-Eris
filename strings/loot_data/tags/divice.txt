@@ -212,4 +212,3 @@
 /obj/item/device/synthesized_instrument/violin    blacklisted=0    10  0     100
 /obj/item/device/synthesized_instrument    blacklisted=0    10  0     100
 /obj/item/device/antibody_scanner    blacklisted=0    2  0     100
-/obj/item/device    blacklisted=0    10  0     100

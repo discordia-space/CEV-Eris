@@ -18,7 +18,7 @@
 	var/rarity
 	var/frequency
 	//var/blacklisted
-	var/list/bad_paths = list()
+	//var/list/bad_paths = list()
 	var/list/spawn_tags = list()
 	var/list/accompanying_objs = list()
 	var/generate_files = config.generate_loot_data
@@ -44,11 +44,8 @@
 	for(var/path in paths)
 		var/atom/movable/A = path
 		var/bad_path = initial(A.bad_type)
-		if(!(bad_path in bad_paths))
-			ASSERT(ispath(bad_path) || !bad_path)
-			bad_paths += list(bad_path)
-
-		if(path in bad_paths)
+		if(bad_path == path)
+			hard_blacklist_data  << "[path]"
 			continue
 
 		spawn_tags = splittext(initial(A.spawn_tags), ",")

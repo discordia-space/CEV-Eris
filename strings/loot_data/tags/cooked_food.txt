@@ -173,12 +173,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/validsalad    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast    blacklisted=0    10  250     100
 /obj/item/weapon/reagent_containers/food/snacks/csandwich    blacklisted=0    10  50     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/fruit_slice    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/egg/blue    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/egg/green    blacklisted=0    10  30     100
@@ -248,4 +242,3 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawmeatball    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/flatbread    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks    blacklisted=0    10  30     100

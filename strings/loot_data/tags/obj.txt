@@ -61,7 +61,6 @@
 /obj/item/weapon/card/emag    blacklisted=1    10  0     100
 /obj/item/weapon/card    blacklisted=1    10  0     100
 /obj/item/weapon/toy/xmas_cracker    blacklisted=0    10  0     100
-/obj/item/weapon/toy    blacklisted=0    10  0     100
 /obj/item/weapon/pinpointer/advpinpointer    blacklisted=0    10  0     100
 /obj/item/weapon/pinpointer/nukeop    blacklisted=0    10  0     100
 /obj/item/weapon/pinpointer    blacklisted=0    10  0     100
@@ -978,12 +977,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/validsalad    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast    blacklisted=0    10  250     100
 /obj/item/weapon/reagent_containers/food/snacks/csandwich    blacklisted=0    10  50     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/fruit_slice    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/egg/blue    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/egg/green    blacklisted=0    10  30     100
@@ -1055,14 +1048,12 @@
 /obj/item/weapon/reagent_containers/food/snacks/flatbread    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    20  30     100
-/obj/item/weapon/reagent_containers/food/snacks    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/condiment/enzyme    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/sugar    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/peppermill    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/flour    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment    blacklisted=0    10  10     100
-/obj/item/weapon/reagent_containers/food    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/blood/APlus    blacklisted=0    10  50     100
 /obj/item/weapon/reagent_containers/blood/AMinus    blacklisted=0    10  50     100
 /obj/item/weapon/reagent_containers/blood/BPlus    blacklisted=0    10  50     100
@@ -1129,7 +1120,6 @@
 /obj/item/weapon/reagent_containers/syringe/stim/menace    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/syringe/stim    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/syringe    blacklisted=0    10  20     100
-/obj/item/weapon/reagent_containers    blacklisted=0    10  20     100
 /obj/item/weapon/pen/crayon/red    blacklisted=0    16.6667  0     100
 /obj/item/weapon/pen/crayon/orange    blacklisted=0    16.6667  0     100
 /obj/item/weapon/pen/crayon/yellow    blacklisted=0    16.6667  0     100
@@ -1437,7 +1427,6 @@
 /obj/item/weapon/material/drill_head/plasteel    blacklisted=0    10  0     100
 /obj/item/weapon/material/drill_head/diamond    blacklisted=0    10  0     100
 /obj/item/weapon/material/drill_head    blacklisted=0    10  0     100
-/obj/item/weapon/material    blacklisted=0    10  0     100
 /obj/item/weapon/legcuffs    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/chef_recipes    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/barman_recipes    blacklisted=0    10  0     100
@@ -1457,7 +1446,6 @@
 /obj/item/weapon/book/manual/wiki/neotheology_cloning    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/wiki/barman_recipes    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/wiki/chef_recipes    blacklisted=0    10  0     100
-/obj/item/weapon/book/manual/wiki    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/excavation    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/mass_spectrometry    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/anomaly_spectroscopy    blacklisted=0    10  0     100
@@ -1925,7 +1913,6 @@
 /obj/item/weapon/ore/hydrogen    blacklisted=1    2  0     100
 /obj/item/weapon/ore/slag    blacklisted=1    10  0     100
 /obj/item/weapon/ore/strangerock    blacklisted=1    4  0     100
-/obj/item/weapon/grab    blacklisted=0    10  0     100
 /obj/item/weapon/bucket_sensor    blacklisted=0    10  0     100
 /obj/item/weapon/secbot_assembly/ed209_assembly    blacklisted=0    10  0     100
 /obj/item/weapon/secbot_assembly    blacklisted=0    10  0     100
@@ -1937,14 +1924,15 @@
 /obj/item/weapon/slimepotion2    blacklisted=0    10  0     100
 /obj/item/weapon/slimesteroid    blacklisted=0    10  0     100
 /obj/item/weapon/slimesteroid2    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/miner    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/paperwork    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/research    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/chemistry    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/service    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/no_use/loader    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/no_use    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/antag    blacklisted=0    10  0     100
+/obj/item/weapon/gripper/miner    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/paperwork    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/research    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/chemistry    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/service    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/no_use/loader    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/no_use    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/antag    blacklisted=1    10  0     100
+/obj/item/weapon/gripper    blacklisted=1    10  0     100
 /obj/item/weapon/inflatable_dispenser    blacklisted=0    6.66667  0     100
 /obj/item/weapon/robot_module/standard    blacklisted=0    10  0     100
 /obj/item/weapon/robot_module/medical/general    blacklisted=0    10  0     100
@@ -1965,7 +1953,6 @@
 /obj/item/weapon/robot_module/drone    blacklisted=0    10  0     100
 /obj/item/weapon/robot_module/hunter_seeker    blacklisted=0    10  0     100
 /obj/item/weapon/robot_module/blitzshell    blacklisted=0    10  0     100
-/obj/item/weapon/robot_module    blacklisted=0    10  0     100
 /obj/item/weapon/clipboard    blacklisted=0    10  0     100
 /obj/item/weapon/folder/blue    blacklisted=0    20  0     100
 /obj/item/weapon/folder/red    blacklisted=0    20  0     100
@@ -2086,7 +2073,6 @@
 /obj/item/stack/material/animalhide/monkey    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/lizard    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/xeno    blacklisted=0    10  0     100
-/obj/item/stack/material/animalhide    blacklisted=0    10  0     100
 /obj/item/stack/material/xenochitin    blacklisted=0    10  0     100
 /obj/item/stack/material/hairlesshide    blacklisted=0    10  0     100
 /obj/item/stack/material/wetleather    blacklisted=0    10  0     100
@@ -2211,9 +2197,7 @@
 /obj/item/stack/flag    blacklisted=0    10  0     100
 /obj/item/stack/ducts/random    blacklisted=0    10  0     100
 /obj/item/stack/ducts    blacklisted=0    10  0     100
-/obj/item/stack/sheet/refined_scrap    blacklisted=0    10  0     100
-/obj/item/stack/sheet    blacklisted=0    10  0     100
-/obj/item/stack    blacklisted=0    10  0     100
+/obj/item/stack/refined_scrap    blacklisted=0    10  0     100
 /obj/item/organ/internal/carrion/core    blacklisted=0    10  500     100
 /obj/item/organ/internal/carrion/chemvessel    blacklisted=0    10  500     100
 /obj/item/organ/internal/carrion/maw    blacklisted=0    10  500     100
@@ -2253,7 +2237,6 @@
 /obj/item/organ/internal/optical_sensor    blacklisted=0    10  500     100
 /obj/item/organ/internal/mmi_holder/posibrain    blacklisted=0    10  500     100
 /obj/item/organ/internal/mmi_holder    blacklisted=0    10  500     100
-/obj/item/organ/internal    blacklisted=0    10  500     100
 /obj/item/organ/external/head    blacklisted=0    10  500     100
 /obj/item/organ/external/stump    blacklisted=0    10  500     100
 /obj/item/organ/external/robotic/limb    blacklisted=0    10  500     100
@@ -2294,8 +2277,6 @@
 /obj/item/organ/external/chest    blacklisted=0    10  500     100
 /obj/item/organ/external/groin    blacklisted=0    10  500     100
 /obj/item/organ/external/unbreakable    blacklisted=0    10  500     100
-/obj/item/organ/external    blacklisted=0    10  500     100
-/obj/item/organ    blacklisted=0    10  500     100
 /obj/item/clothing/head/festive    blacklisted=0    10  30     100
 /obj/item/clothing/head/space/bomb/security    blacklisted=1    10  100     100
 /obj/item/clothing/head/space/bomb    blacklisted=1    10  100     100
@@ -3159,7 +3140,6 @@
 /obj/item/device/synthesized_instrument/violin    blacklisted=0    10  0     100
 /obj/item/device/synthesized_instrument    blacklisted=0    10  0     100
 /obj/item/device/antibody_scanner    blacklisted=0    2  0     100
-/obj/item/device    blacklisted=0    10  0     100
 /obj/item/remains/human    blacklisted=0    5  0     100
 /obj/item/remains/xeno    blacklisted=0    1  0     100
 /obj/item/remains/robot    blacklisted=0    5  0     100
@@ -3506,7 +3486,6 @@
 /obj/item/mech_component/propulsion/tracks    blacklisted=0    10  150     100
 /obj/item/mech_component/propulsion/cheap    blacklisted=0    10  150     100
 /obj/item/mech_component/propulsion    blacklisted=0    10  150     100
-/obj/item/mech_component    blacklisted=0    10  150     100
 /obj/item/seeds/cutting    blacklisted=0    10  0     100
 /obj/item/seeds/random    blacklisted=0    10  0     100
 /obj/item/seeds/chiliseed    blacklisted=0    10  0     100
@@ -3739,7 +3718,6 @@
 /obj/item/slime_extract/cerulean    blacklisted=0    10  0     100
 /obj/item/slime_extract/sepia    blacklisted=0    10  0     100
 /obj/item/slime_extract/rainbow    blacklisted=0    10  0     100
-/obj/item/slime_extract    blacklisted=0    10  0     100
 /obj/item/modular_computer/console/preset/engineering/alarms    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/engineering/supermatter    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/engineering/rcon    blacklisted=1    10  0     100
@@ -3761,7 +3739,6 @@
 /obj/item/modular_computer/console/preset/civilian/professional    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/civilian    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/trade    blacklisted=1    10  0     100
-/obj/item/modular_computer/console/preset    blacklisted=1    10  0     100
 /obj/item/modular_computer/console    blacklisted=1    10  0     100
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap/elbrus4kk    blacklisted=1    10  200     100
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap    blacklisted=1    10  200     100

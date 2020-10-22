@@ -29,14 +29,14 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/paper/crumpled/neo    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/crumpled    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/neopaper    junk    blacklisted=0    28.5714  0     100
-/obj/item/weapon/paper/court    junk    blacklisted=1    28.5714  0     100
-/obj/item/weapon/paper/toxin    junk    blacklisted=1    28.5714  0     100
+/obj/item/weapon/paper/court    junk    blacklisted=0    28.5714  0     100
+/obj/item/weapon/paper/toxin    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/courtroom    junk    blacklisted=1    28.5714  0     100
-/obj/item/weapon/paper/hydroponics    junk    blacklisted=1    28.5714  0     100
+/obj/item/weapon/paper/hydroponics    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/djstation    junk    blacklisted=1    28.5714  0     100
 /obj/item/weapon/paper/jobs    junk    blacklisted=1    28.5714  0     100
-/obj/item/weapon/paper/sop    junk    blacklisted=1    28.5714  0     100
-/obj/item/weapon/paper/self_pacification    junk    blacklisted=1    28.5714  0     100
+/obj/item/weapon/paper/sop    junk    blacklisted=0    28.5714  0     100
+/obj/item/weapon/paper/self_pacification    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/gravity_gen    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/solar    junk    blacklisted=0    28.5714  0     100
 /obj/item/weapon/paper/artifact_info    junk    blacklisted=0    28.5714  0     100
@@ -84,7 +84,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/card/emag    obj,item    blacklisted=1    10  0     100
 /obj/item/weapon/card    obj,item    blacklisted=1    10  0     100
 /obj/item/weapon/toy/xmas_cracker    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/toy    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/pinpointer/advpinpointer    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/pinpointer/nukeop    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/pinpointer    obj,item    blacklisted=0    10  0     100
@@ -1001,12 +1000,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/reagent_containers/food/snacks/validsalad    obj,item,snacks,cooked_food    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast    obj,item,snacks,cooked_food    blacklisted=0    10  250     100
 /obj/item/weapon/reagent_containers/food/snacks/csandwich    obj,item,snacks,cooked_food    blacklisted=0    10  50     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
-/obj/item/weapon/reagent_containers/food/snacks/grown    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/fruit_slice    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/egg/blue    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/egg/green    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
@@ -1078,14 +1071,12 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/reagent_containers/food/snacks/flatbread    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood    obj,item,snacks,junkfood,rations    blacklisted=0    20  30     100
-/obj/item/weapon/reagent_containers/food/snacks    obj,item,snacks,cooked_food    blacklisted=0    10  30     100
 /obj/item/weapon/reagent_containers/food/condiment/enzyme    obj,item    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/sugar    obj,item    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker    obj,item    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/peppermill    obj,item    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment/flour    obj,item    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/food/condiment    obj,item    blacklisted=0    10  10     100
-/obj/item/weapon/reagent_containers/food    obj,item    blacklisted=0    10  10     100
 /obj/item/weapon/reagent_containers/blood/APlus    obj,item    blacklisted=0    10  50     100
 /obj/item/weapon/reagent_containers/blood/AMinus    obj,item    blacklisted=0    10  50     100
 /obj/item/weapon/reagent_containers/blood/BPlus    obj,item    blacklisted=0    10  50     100
@@ -1152,7 +1143,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/reagent_containers/syringe/stim/menace    obj,item    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/syringe/stim    obj,item    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/syringe    obj,item    blacklisted=0    10  20     100
-/obj/item/weapon/reagent_containers    obj,item    blacklisted=0    10  20     100
 /obj/item/weapon/pen/crayon/red    obj,item,junk    blacklisted=0    16.6667  0     100
 /obj/item/weapon/pen/crayon/orange    obj,item,junk    blacklisted=0    16.6667  0     100
 /obj/item/weapon/pen/crayon/yellow    obj,item,junk    blacklisted=0    16.6667  0     100
@@ -1460,7 +1450,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/material/drill_head/plasteel    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/material/drill_head/diamond    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/material/drill_head    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/material    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/legcuffs    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/chef_recipes    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/barman_recipes    obj,item    blacklisted=0    10  0     100
@@ -1480,7 +1469,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/book/manual/wiki/neotheology_cloning    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/wiki/barman_recipes    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/wiki/chef_recipes    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/book/manual/wiki    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/excavation    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/mass_spectrometry    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/book/manual/anomaly_spectroscopy    obj,item    blacklisted=0    10  0     100
@@ -1948,7 +1936,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/ore/hydrogen    obj,item,material,ore    blacklisted=1    2  0     100
 /obj/item/weapon/ore/slag    obj,item,material,ore    blacklisted=1    10  0     100
 /obj/item/weapon/ore/strangerock    obj,item,fossil,xenoarch    blacklisted=1    4  0     100
-/obj/item/weapon/grab    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/bucket_sensor    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/secbot_assembly/ed209_assembly    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/secbot_assembly    obj,item    blacklisted=0    10  0     100
@@ -1960,14 +1947,15 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/slimepotion2    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/slimesteroid    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/slimesteroid2    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/miner    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/paperwork    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/research    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/chemistry    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/service    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/no_use/loader    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/no_use    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/gripper/antag    obj,item    blacklisted=0    10  0     100
+/obj/item/weapon/gripper/miner    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/paperwork    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/research    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/chemistry    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/service    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/no_use/loader    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/no_use    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper/antag    obj,item    blacklisted=1    10  0     100
+/obj/item/weapon/gripper    obj,item    blacklisted=1    10  0     100
 /obj/item/weapon/inflatable_dispenser    obj,item,toy,utility    blacklisted=0    6.66667  0     100
 /obj/item/weapon/robot_module/standard    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/robot_module/medical/general    obj,item    blacklisted=0    10  0     100
@@ -1988,7 +1976,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/weapon/robot_module/drone    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/robot_module/hunter_seeker    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/robot_module/blitzshell    obj,item    blacklisted=0    10  0     100
-/obj/item/weapon/robot_module    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/clipboard    obj,item    blacklisted=0    10  0     100
 /obj/item/weapon/folder/blue    obj,item,junk    blacklisted=0    20  0     100
 /obj/item/weapon/folder/red    obj,item,junk    blacklisted=0    20  0     100
@@ -2109,7 +2096,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/stack/material/animalhide/monkey    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/lizard    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/animalhide/xeno    obj,item    blacklisted=0    10  0     100
-/obj/item/stack/material/animalhide    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/xenochitin    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/hairlesshide    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/material/wetleather    obj,item    blacklisted=0    10  0     100
@@ -2234,9 +2220,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/stack/flag    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/ducts/random    obj,item    blacklisted=0    10  0     100
 /obj/item/stack/ducts    obj,item    blacklisted=0    10  0     100
-/obj/item/stack/sheet/refined_scrap    obj,item    blacklisted=0    10  0     100
-/obj/item/stack/sheet    obj,item    blacklisted=0    10  0     100
-/obj/item/stack    obj,item    blacklisted=0    10  0     100
+/obj/item/stack/refined_scrap    obj,item    blacklisted=0    10  0     100
 /obj/item/organ/internal/carrion/core    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/internal/carrion/chemvessel    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/internal/carrion/maw    obj,item    blacklisted=0    10  500     100
@@ -2276,7 +2260,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/organ/internal/optical_sensor    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/internal/mmi_holder/posibrain    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/internal/mmi_holder    obj,item    blacklisted=0    10  500     100
-/obj/item/organ/internal    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/external/head    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/external/stump    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/external/robotic/limb    obj,item    blacklisted=0    10  500     100
@@ -2317,8 +2300,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/organ/external/chest    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/external/groin    obj,item    blacklisted=0    10  500     100
 /obj/item/organ/external/unbreakable    obj,item    blacklisted=0    10  500     100
-/obj/item/organ/external    obj,item    blacklisted=0    10  500     100
-/obj/item/organ    obj,item    blacklisted=0    10  500     100
 /obj/item/clothing/head/festive    obj,item,clothing,head    blacklisted=0    10  30     100
 /obj/item/clothing/head/space/bomb/security    obj,item,clothing,head    blacklisted=1    10  100     100
 /obj/item/clothing/head/space/bomb    obj,item,clothing,head    blacklisted=1    10  100     100
@@ -3182,7 +3163,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/device/synthesized_instrument/violin    obj,item,divice    blacklisted=0    10  0     100
 /obj/item/device/synthesized_instrument    obj,item,divice    blacklisted=0    10  0     100
 /obj/item/device/antibody_scanner    obj,item,divice    blacklisted=0    2  0     100
-/obj/item/device    obj,item,divice    blacklisted=0    10  0     100
 /obj/item/remains/human    obj,item,remains    blacklisted=0    5  0     100
 /obj/item/remains/xeno    obj,item,remains    blacklisted=0    1  0     100
 /obj/item/remains/robot    obj,item,remains    blacklisted=0    5  0     100
@@ -3547,7 +3527,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/mech_component/propulsion/tracks    obj,item    blacklisted=0    10  150     100
 /obj/item/mech_component/propulsion/cheap    obj,item    blacklisted=0    10  150     100
 /obj/item/mech_component/propulsion    obj,item    blacklisted=0    10  150     100
-/obj/item/mech_component    obj,item    blacklisted=0    10  150     100
 /obj/item/mech_equipment/mounted_system/taser/ion    mech,item,mech_equipment    blacklisted=0    10  200     100
 /obj/item/mech_equipment/mounted_system/taser/laser    mech,item,mech_equipment    blacklisted=0    10  200     100
 /obj/item/mech_equipment/mounted_system/taser/plasma    mech,item,mech_equipment    blacklisted=1    10  200     100
@@ -3791,7 +3770,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/slime_extract/cerulean    obj,item    blacklisted=0    10  0     100
 /obj/item/slime_extract/sepia    obj,item    blacklisted=0    10  0     100
 /obj/item/slime_extract/rainbow    obj,item    blacklisted=0    10  0     100
-/obj/item/slime_extract    obj,item    blacklisted=0    10  0     100
 /obj/item/modular_computer/console/preset/engineering/alarms    obj,machinery    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/engineering/supermatter    obj,machinery    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/engineering/rcon    obj,machinery    blacklisted=1    10  0     100
@@ -3813,7 +3791,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/item/modular_computer/console/preset/civilian/professional    obj,machinery    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/civilian    obj,machinery    blacklisted=1    10  0     100
 /obj/item/modular_computer/console/preset/trade    obj,machinery    blacklisted=1    10  0     100
-/obj/item/modular_computer/console/preset    obj,machinery    blacklisted=1    10  0     100
 /obj/item/modular_computer/console    obj,machinery    blacklisted=1    10  0     100
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap/elbrus4kk    obj,item    blacklisted=1    10  200     100
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap    obj,item    blacklisted=1    10  200     100

@@ -83,7 +83,6 @@
 /obj/item/weapon/card/emag
 /obj/item/weapon/card
 /obj/item/weapon/toy/xmas_cracker
-/obj/item/weapon/toy
 /obj/item/weapon/pinpointer/advpinpointer
 /obj/item/weapon/pinpointer/nukeop
 /obj/item/weapon/pinpointer
@@ -1000,12 +999,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/validsalad
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 /obj/item/weapon/reagent_containers/food/snacks/csandwich
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato
-/obj/item/weapon/reagent_containers/food/snacks/grown
 /obj/item/weapon/reagent_containers/food/snacks/fruit_slice
 /obj/item/weapon/reagent_containers/food/snacks/egg/blue
 /obj/item/weapon/reagent_containers/food/snacks/egg/green
@@ -1077,14 +1070,12 @@
 /obj/item/weapon/reagent_containers/food/snacks/flatbread
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood
-/obj/item/weapon/reagent_containers/food/snacks
 /obj/item/weapon/reagent_containers/food/condiment/enzyme
 /obj/item/weapon/reagent_containers/food/condiment/sugar
 /obj/item/weapon/reagent_containers/food/condiment/saltshaker
 /obj/item/weapon/reagent_containers/food/condiment/peppermill
 /obj/item/weapon/reagent_containers/food/condiment/flour
 /obj/item/weapon/reagent_containers/food/condiment
-/obj/item/weapon/reagent_containers/food
 /obj/item/weapon/reagent_containers/blood/APlus
 /obj/item/weapon/reagent_containers/blood/AMinus
 /obj/item/weapon/reagent_containers/blood/BPlus
@@ -1151,7 +1142,6 @@
 /obj/item/weapon/reagent_containers/syringe/stim/menace
 /obj/item/weapon/reagent_containers/syringe/stim
 /obj/item/weapon/reagent_containers/syringe
-/obj/item/weapon/reagent_containers
 /obj/item/weapon/pen/crayon/red
 /obj/item/weapon/pen/crayon/orange
 /obj/item/weapon/pen/crayon/yellow
@@ -1459,7 +1449,6 @@
 /obj/item/weapon/material/drill_head/plasteel
 /obj/item/weapon/material/drill_head/diamond
 /obj/item/weapon/material/drill_head
-/obj/item/weapon/material
 /obj/item/weapon/legcuffs
 /obj/item/weapon/book/manual/chef_recipes
 /obj/item/weapon/book/manual/barman_recipes
@@ -1479,7 +1468,6 @@
 /obj/item/weapon/book/manual/wiki/neotheology_cloning
 /obj/item/weapon/book/manual/wiki/barman_recipes
 /obj/item/weapon/book/manual/wiki/chef_recipes
-/obj/item/weapon/book/manual/wiki
 /obj/item/weapon/book/manual/excavation
 /obj/item/weapon/book/manual/mass_spectrometry
 /obj/item/weapon/book/manual/anomaly_spectroscopy
@@ -1947,7 +1935,6 @@
 /obj/item/weapon/ore/hydrogen
 /obj/item/weapon/ore/slag
 /obj/item/weapon/ore/strangerock
-/obj/item/weapon/grab
 /obj/item/weapon/bucket_sensor
 /obj/item/weapon/secbot_assembly/ed209_assembly
 /obj/item/weapon/secbot_assembly
@@ -1967,6 +1954,7 @@
 /obj/item/weapon/gripper/no_use/loader
 /obj/item/weapon/gripper/no_use
 /obj/item/weapon/gripper/antag
+/obj/item/weapon/gripper
 /obj/item/weapon/inflatable_dispenser
 /obj/item/weapon/robot_module/standard
 /obj/item/weapon/robot_module/medical/general
@@ -1987,7 +1975,6 @@
 /obj/item/weapon/robot_module/drone
 /obj/item/weapon/robot_module/hunter_seeker
 /obj/item/weapon/robot_module/blitzshell
-/obj/item/weapon/robot_module
 /obj/item/weapon/clipboard
 /obj/item/weapon/folder/blue
 /obj/item/weapon/folder/red
@@ -2108,7 +2095,6 @@
 /obj/item/stack/material/animalhide/monkey
 /obj/item/stack/material/animalhide/lizard
 /obj/item/stack/material/animalhide/xeno
-/obj/item/stack/material/animalhide
 /obj/item/stack/material/xenochitin
 /obj/item/stack/material/hairlesshide
 /obj/item/stack/material/wetleather
@@ -2233,9 +2219,7 @@
 /obj/item/stack/flag
 /obj/item/stack/ducts/random
 /obj/item/stack/ducts
-/obj/item/stack/sheet/refined_scrap
-/obj/item/stack/sheet
-/obj/item/stack
+/obj/item/stack/refined_scrap
 /obj/item/organ/internal/carrion/core
 /obj/item/organ/internal/carrion/chemvessel
 /obj/item/organ/internal/carrion/maw
@@ -2275,7 +2259,6 @@
 /obj/item/organ/internal/optical_sensor
 /obj/item/organ/internal/mmi_holder/posibrain
 /obj/item/organ/internal/mmi_holder
-/obj/item/organ/internal
 /obj/item/organ/external/head
 /obj/item/organ/external/stump
 /obj/item/organ/external/robotic/limb
@@ -2316,8 +2299,6 @@
 /obj/item/organ/external/chest
 /obj/item/organ/external/groin
 /obj/item/organ/external/unbreakable
-/obj/item/organ/external
-/obj/item/organ
 /obj/item/clothing/head/festive
 /obj/item/clothing/head/space/bomb/security
 /obj/item/clothing/head/space/bomb
@@ -3181,7 +3162,6 @@
 /obj/item/device/synthesized_instrument/violin
 /obj/item/device/synthesized_instrument
 /obj/item/device/antibody_scanner
-/obj/item/device
 /obj/item/remains/human
 /obj/item/remains/xeno
 /obj/item/remains/robot
@@ -3546,7 +3526,6 @@
 /obj/item/mech_component/propulsion/tracks
 /obj/item/mech_component/propulsion/cheap
 /obj/item/mech_component/propulsion
-/obj/item/mech_component
 /obj/item/mech_equipment/mounted_system/taser/ion
 /obj/item/mech_equipment/mounted_system/taser/laser
 /obj/item/mech_equipment/mounted_system/taser/plasma
@@ -3790,7 +3769,6 @@
 /obj/item/slime_extract/cerulean
 /obj/item/slime_extract/sepia
 /obj/item/slime_extract/rainbow
-/obj/item/slime_extract
 /obj/item/modular_computer/console/preset/engineering/alarms
 /obj/item/modular_computer/console/preset/engineering/supermatter
 /obj/item/modular_computer/console/preset/engineering/rcon
@@ -3812,7 +3790,6 @@
 /obj/item/modular_computer/console/preset/civilian/professional
 /obj/item/modular_computer/console/preset/civilian
 /obj/item/modular_computer/console/preset/trade
-/obj/item/modular_computer/console/preset
 /obj/item/modular_computer/console
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap/elbrus4kk
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap
