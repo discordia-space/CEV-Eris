@@ -21,7 +21,7 @@
 	cocked_sound 	= 'sound/weapons/guns/interact/batrifle_cock.ogg'
 	recoil_buildup = 6
 	penetration_multiplier = 1.1
-	damage_multiplier = 1.1
+	damage_multiplier = 1.45
 	zoom_factor = 0.2
 	one_hand_penalty = 10 //bullpup rifle level
 

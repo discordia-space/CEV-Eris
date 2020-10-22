@@ -24,7 +24,7 @@
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		BURST_3_ROUND
+		list(mode_name="3-round bursts", burst=3, fire_delay = 3, move_delay=4, icon="burst", damage_multiplier = 0.05)
 		)
 
 /obj/item/weapon/gun/projectile/automatic/sol/proc/update_charge()

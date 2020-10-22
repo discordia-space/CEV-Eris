@@ -11,7 +11,7 @@
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 1700
-	damage_multiplier = 1.35
+	damage_multiplier = 1.5
 	penetration_multiplier = 1.5
 	recoil_buildup = 35
 	rarity_value = 8
