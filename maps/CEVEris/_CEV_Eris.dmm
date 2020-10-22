@@ -105415,11 +105415,20 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "lsO" = (
+<<<<<<< HEAD
+=======
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "kitchen_hatch";
 	layer = 3.3;
+<<<<<<< HEAD
 	name = "Kitchen Shutters"
+=======
+	name = "Maintenance Hatch"
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/bar)
@@ -105927,12 +105936,22 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "qcs" = (
+<<<<<<< HEAD
+=======
+/obj/effect/window_lwall_spawn/smartspawn,
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "kitchen_hatch";
 	layer = 3.3;
+<<<<<<< HEAD
 	name = "Kitchen Shutters"
 	},
+=======
+	name = "Maintenance Hatch"
+	},
+/obj/machinery/door/firedoor,
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
 "qkR" = (
@@ -105993,7 +106012,11 @@
 	dir = 2;
 	id = "kitchen_hatch";
 	layer = 3.3;
+<<<<<<< HEAD
 	name = "Kitchen Shutters"
+=======
+	name = "Maintenance Hatch"
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/crew_quarters/kitchen)
@@ -106123,6 +106146,17 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"rPI" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "kitchen_hatch";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/kitchen)
 "rUL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel,
@@ -106176,7 +106210,11 @@
 /obj/spawner/rations/low_chance,
 /obj/machinery/button/remote/blast_door{
 	id = "kitchen_hatch";
+<<<<<<< HEAD
 	name = "Kitchen Shutters Control";
+=======
+	name = "Kitchen Hatch Control";
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 	pixel_y = -24;
 	req_access = null
 	},
@@ -204817,7 +204855,11 @@ czL
 dXQ
 cjQ
 lsO
+<<<<<<< HEAD
 qcs
+=======
+rPI
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 cBC
 cBr
 elW
@@ -205019,7 +205061,11 @@ czM
 dXR
 cAw
 etm
+<<<<<<< HEAD
 qcs
+=======
+rPI
+>>>>>>> cee7ad955... Like the messy PR of before, adds windows and take-away counter to kitchen, windoor in front of booze-o-mat, shutters as per firefox request, and minor re-adjustments.
 egG
 cDI
 qZg
