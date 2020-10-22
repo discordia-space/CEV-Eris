@@ -4560,10 +4560,10 @@
 /obj/spawner/ammo/shotgun/low_chance
 /obj/spawner/ammo/shotgun
 /obj/spawner/ammo
-/obj/spawner/ammo_ihs/low_chance
-/obj/spawner/ammo_ihs
-/obj/spawner/ammo_lowcost/low_chance
-/obj/spawner/ammo_lowcost
+/obj/spawner/ammo/ihs/low_chance
+/obj/spawner/ammo/ihs
+/obj/spawner/ammo/lowcost/low_chance
+/obj/spawner/ammo/lowcost
 /obj/spawner/booze/low_chance
 /obj/spawner/booze
 /obj/spawner/boxes/low_chance

@@ -34981,7 +34981,7 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/ammo_ihs/low_chance,
+/obj/spawner/ammo/ihs/low_chance,
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bCS" = (
@@ -40585,8 +40585,8 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck4port)
 "bOD" = (
-/obj/spawner/ammo_ihs/low_chance,
-/obj/spawner/ammo_ihs/low_chance,
+/obj/spawner/ammo/ihs/low_chance,
+/obj/spawner/ammo/ihs/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bOE" = (
@@ -62396,7 +62396,7 @@
 /area/eris/maintenance/section2deck4port)
 "cOs" = (
 /obj/structure/closet,
-/obj/spawner/ammo_ihs/low_chance,
+/obj/spawner/ammo/ihs/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -62725,7 +62725,7 @@
 /area/eris/storage/primary)
 "cPl" = (
 /obj/structure/closet,
-/obj/spawner/ammo_ihs/low_chance,
+/obj/spawner/ammo/ihs/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,

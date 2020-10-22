@@ -2,10 +2,10 @@
 /obj/spawner/ammo/shotgun/low_chance    blacklisted=0    10  1     100
 /obj/spawner/ammo/shotgun    blacklisted=0    10  1     100
 /obj/spawner/ammo    blacklisted=0    10  1     100
-/obj/spawner/ammo_ihs/low_chance    blacklisted=0    10  1     100
-/obj/spawner/ammo_ihs    blacklisted=0    10  1     100
-/obj/spawner/ammo_lowcost/low_chance    blacklisted=0    10  1     100
-/obj/spawner/ammo_lowcost    blacklisted=0    10  1     100
+/obj/spawner/ammo/ihs/low_chance    blacklisted=0    10  1     100
+/obj/spawner/ammo/ihs    blacklisted=0    10  1     100
+/obj/spawner/ammo/lowcost/low_chance    blacklisted=0    10  1     100
+/obj/spawner/ammo/lowcost    blacklisted=0    10  1     100
 /obj/spawner/booze/low_chance    blacklisted=0    10  1     100
 /obj/spawner/booze    blacklisted=0    10  1     100
 /obj/spawner/boxes/low_chance    blacklisted=0    10  1     100
