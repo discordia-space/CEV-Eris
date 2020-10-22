@@ -211,6 +211,10 @@ var/list/_client_preferences_by_type
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
 
+/datum/client_preference/cat_points
+	description = "Enable cat points"
+	key = "CAT_POINTS"
+
 /********************
 * General Staff Preferences *
 ********************/

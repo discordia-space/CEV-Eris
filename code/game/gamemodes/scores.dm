@@ -108,8 +108,8 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	var/escaped = FALSE
 	var/roun_score = 0
 	var/cat_points = 0
-	var/cat_send = 0
-	var/cat_recieved = 0
+	var/cat_points_spent = 0
+	var/cat_points_tab = 0
 
 /datum/controller/subsystem/ticker/proc/scoreboard()
 	//Thresholds for Score Ratings
@@ -372,8 +372,8 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	<b>Contratos de de antag completados:</b> [client.contracts_completed] ([to_score_color(client.individual_objectives_completed * 20)] Points)<br>"
 	<b>sobrevir:</b> [client.survive ? "Yes" : "No"] ([to_score_color(300)] Points)<br>
 	<b>escaped:</b> [client.escaped ? "Yes" : "No"] ([to_score_color(200)] Points)<br>"
-	<b>catpoitns enviados:</b> [client.cat_send] ([to_score_color(client.cat_send * 5)] Points)<br>"
-	<b>catpoitns recibidos:</b> [client.cat_recieved] ([to_score_color(client.cat_recieved * 10)] Points)<br>"
+	<b>catpoitns enviados:</b> [client.cat_points_tab] ([to_score_color(client.cat_points_tab * 5)] Points)<br>"
+	<b>catpoitns recibidos:</b> [client.cat_points_spent] ([to_score_color(client.cat_points_spent * 10)] Points)<br>"
 	"}
 
 	src << browse(dat, "window=roundstats;size=500x600")
