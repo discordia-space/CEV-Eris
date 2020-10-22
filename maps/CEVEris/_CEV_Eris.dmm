@@ -807,6 +807,12 @@
 "ach" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "IHC_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/eris/command/commander)
 "aci" = (
@@ -3748,6 +3754,13 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	name = "Window Shutters Control";
+	step_y = -10;
+	pixel_x = -24;
+	req_access = list(58);
+	id = "IHC_Shutters"
 	},
 /obj/machinery/button/remote/blast_door{
 	id = "Armoury";
@@ -10204,7 +10217,10 @@
 /area/eris/crew_quarters/library)
 "aya" = (
 /obj/structure/table/woodentable,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "ayb" = (
@@ -11233,6 +11249,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/warden)
@@ -19323,6 +19342,9 @@
 /area/eris/security/main)
 "aUq" = (
 /obj/structure/closet/emcloset,
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/security/main)
 "aUr" = (
@@ -28769,7 +28791,10 @@
 /area/eris/maintenance/section3deck1central)
 "boa" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
 "bob" = (
@@ -31273,7 +31298,10 @@
 /area/eris/maintenance/section1deck3central)
 "bup" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/item/weapon/handcuffs,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -34173,7 +34201,10 @@
 /area/eris/maintenance/section3deck1central)
 "bAQ" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
 "bAR" = (
@@ -35391,7 +35422,10 @@
 /area/eris/security/lobby)
 "bDX" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -39099,7 +39133,10 @@
 /area/eris/maintenance/section4deck4port)
 "bLx" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -39744,7 +39781,10 @@
 /area/eris/maintenance/section4deck4port)
 "bMR" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
@@ -44890,7 +44930,10 @@
 /area/eris/security/lobby)
 "bYH" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/security/lobby)
 "bYI" = (
@@ -46215,7 +46258,10 @@
 /area/eris/crew_quarters/clothingstorage)
 "cbZ" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/clothingstorage)
 "cca" = (
@@ -47264,7 +47310,10 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/wood,
 /area/eris/command/fo)
 "ceu" = (
@@ -48376,7 +48425,10 @@
 /area/eris/storage/tech)
 "cgK" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -49907,7 +49959,10 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/mixing)
 "ckA" = (
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/table/reinforced,
 /obj/machinery/light{
 	dir = 4
@@ -50769,6 +50824,12 @@
 "cmG" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "MEO_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/eris/command/meo)
 "cmH" = (
@@ -52061,7 +52122,10 @@
 /area/eris/medical/medbay)
 "cpJ" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/item/weapon/cell/small,
 /obj/item/weapon/cell/small,
 /turf/simulated/floor/tiled/white,
@@ -52869,7 +52933,10 @@
 /area/eris/hallway/side/cryo)
 "crF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
@@ -53675,13 +53742,20 @@
 /turf/simulated/open,
 /area/eris/rnd/lab)
 "ctQ" = (
+/obj/item/modular_computer/console/preset/research/sysadmin,
+/obj/machinery/button/remote/blast_door{
+	id = "MEO_Shutters";
+	name = "Window Shutters Control";
+	pixel_x = -24;
+	req_access = list(30);
+	step_y = -5
+	},
 /obj/machinery/button/remote/blast_door{
 	id = "ScienceTotalLockdown";
 	name = "Science Total Lockdown Control";
 	pixel_x = -24;
 	pixel_y = 5
 	},
-/obj/item/modular_computer/console/preset/research/sysadmin,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
 "ctR" = (
@@ -53914,6 +53988,9 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/barbackroom)
@@ -54452,10 +54529,11 @@
 "cvY" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/button/remote/blast_door{
-	id = "maint_hatch_rd";
 	name = "Maintenance Hatch Control";
+	step_y = -5;
 	pixel_x = -24;
-	req_access = null
+	req_access = null;
+	id = "maint_hatch_rd"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
@@ -54914,6 +54992,14 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Lobby";
+	name = "Cargo Shutters";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/eris/quartermaster/office)
@@ -55415,6 +55501,14 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Lobby";
+	name = "Cargo Shutters";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/eris/quartermaster/office)
@@ -56071,6 +56165,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Lobby";
+	name = "Cargo Shutters";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/eris/quartermaster/office)
 "czx" = (
@@ -56252,6 +56354,14 @@
 	req_access = list(31)
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Lobby";
+	name = "Cargo Shutters";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled,
 /area/eris/quartermaster/office)
 "czU" = (
@@ -56410,7 +56520,10 @@
 /area/eris/maintenance/section3deck3port)
 "cAi" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "cAj" = (
@@ -56699,6 +56812,14 @@
 	id = "CargoTotalLockdown";
 	layer = 2.6;
 	name = "Cargo Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Door";
+	name = "Cargo Shutters";
 	opacity = 0
 	},
 /turf/simulated/floor/tiled/steel/cargo,
@@ -57878,7 +57999,10 @@
 /area/eris/hallway/side/bridgehallway)
 "cDn" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/item/weapon/cell/large/high,
 /obj/item/weapon/cell/large/high,
 /obj/machinery/light/small{
@@ -59387,7 +59511,10 @@
 /area/eris/maintenance/section4deck3port)
 "cGJ" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck2central)
 "cGK" = (
@@ -59429,6 +59556,21 @@
 	default_files = list(/datum/computer_file/program/trade);
 	icon_state = "guild";
 	name = "Asters Trade Program"
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "Cargo_Door";
+	name = "Lobby Door Shutters Control";
+	pixel_x = 24;
+	pixel_y = 5;
+	req_access = list(41);
+	step_y = -10
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "Cargo_Lobby";
+	name = "Lobby Shutters Control";
+	pixel_x = 24;
+	pixel_y = 5;
+	req_access = list(41)
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
@@ -59749,6 +59891,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/button/remote/blast_door{
+	id = "Merchant_Shutters";
+	name = "Window Shutters Control";
+	pixel_x = -24;
+	req_access = list(41);
+	step_y = 0
+	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
 "cHE" = (
@@ -59766,7 +59915,8 @@
 	id = "CargoTotalLockdown";
 	name = "Cargo Total Lockdown Control";
 	pixel_x = 24;
-	pixel_y = 5
+	pixel_y = 5;
+	req_access = list(41)
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
@@ -59792,7 +59942,10 @@
 /area/eris/engineering/engeva)
 "cHK" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/camera/network/research{
 	dir = 8
 	},
@@ -61305,16 +61458,12 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cLz" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "CargoTotalLockdown";
-	layer = 2.6;
-	name = "Cargo Total Lockdown";
-	opacity = 0
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "Merchant_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
 	},
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
 "cLA" = (
@@ -63128,6 +63277,13 @@
 	pixel_x = -24;
 	pixel_y = -5
 	},
+/obj/machinery/button/remote/blast_door{
+	name = "Window Shutters Control";
+	step_y = 9;
+	pixel_x = -24;
+	pixel_y = -5;
+	id = "Exultant_Shutters"
+	},
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
 "cQk" = (
@@ -63438,7 +63594,10 @@
 /obj/structure/sign/directions/evac{
 	pixel_y = -32
 	},
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
 "cQY" = (
@@ -64616,7 +64775,10 @@
 /area/space)
 "cTV" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
 "cTW" = (
@@ -65522,6 +65684,12 @@
 "cWg" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/plasma,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "Captain_Shutters";
+	layer = 3.3;
+	name = "Window Shutter"
+	},
 /turf/simulated/floor/plating,
 /area/eris/command/captain)
 "cWh" = (
@@ -66814,7 +66982,10 @@
 	d2 = 4
 	},
 /obj/structure/table/steel,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,7"
 	},
@@ -69344,7 +69515,10 @@
 /area/eris/command/meeting_room)
 "deQ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -69439,7 +69613,10 @@
 /area/eris/command/captain)
 "dfa" = (
 /obj/structure/table/woodentable,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
@@ -69677,6 +69854,12 @@
 	pixel_x = 8
 	},
 /obj/item/weapon/disk/nuclear,
+/obj/machinery/button/remote/blast_door{
+	id = "Captain_Shutters";
+	name = "Window Shutter Control";
+	pixel_y = -24;
+	req_access = list(20)
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfB" = (
@@ -75696,7 +75879,10 @@
 /area/eris/security/evidencestorage)
 "dsV" = (
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -76077,7 +76263,10 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -79423,7 +79612,10 @@
 	pixel_y = 32
 	},
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/item/device/eftpos{
 	eftpos_name = "Medbay EFTPOS scanner"
 	},
@@ -83365,7 +83557,10 @@
 	dir = 9
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/engine_room)
 "dKH" = (
@@ -84723,7 +84918,10 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
 	},
@@ -85316,7 +85514,10 @@
 /area/eris/storage/primary)
 "dPg" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/section3starboard)
 "dPh" = (
@@ -87200,7 +87401,10 @@
 /area/eris/maintenance/section4deck2starboard)
 "dTM" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2port)
 "dTN" = (
@@ -87387,7 +87591,10 @@
 /area/eris/maintenance/section3deck3starboard)
 "dUm" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/camera/network/engineering,
 /obj/structure/fireaxecabinet{
 	pixel_y = 24
@@ -89761,7 +89968,10 @@
 /area/eris/hallway/side/section3starboard)
 "dZJ" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
@@ -97234,6 +97444,9 @@
 /obj/item/clothing/mask/gas/plaguedoctor,
 /obj/item/clothing/glasses/monocle,
 /obj/item/clothing/glasses/monocle,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "ers" = (
@@ -97897,6 +98110,12 @@
 "esG" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "Exultant_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/eris/command/exultant)
 "esH" = (
@@ -98362,7 +98581,10 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_cargo_barracks";
 	name = "Maintenance Hatch Control";
@@ -99529,11 +99751,11 @@
 /area/eris/maintenance/section3deck3starboard)
 "ewh" = (
 /obj/structure/table/bar_special,
-/obj/item/weapon/book/manual/barman_recipes,
-/obj/item/weapon/flame/lighter/zippo,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/weapon/flame/lighter/zippo,
 /turf/simulated/floor/tiled/steel/bar_light,
 /area/eris/crew_quarters/bar)
 "ewi" = (
@@ -99990,7 +100212,10 @@
 /area/eris/maintenance/section4deck1central)
 "exf" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/item/weapon/cell/large/high,
 /obj/item/weapon/cell/large/high,
 /obj/item/weapon/cell/large/high,
@@ -100347,7 +100572,10 @@
 /area/eris/neotheology/office)
 "exQ" = (
 /obj/structure/table/standard,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -100387,7 +100615,10 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	step_x = 6;
+	step_y = 2
+	},
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 26
@@ -103339,7 +103570,8 @@
 	id = "silk_road_shutters";
 	name = "Silk Road Shutters Control";
 	pixel_x = 24;
-	pixel_y = 5
+	pixel_y = 5;
+	req_access = list(41)
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
@@ -104816,6 +105048,14 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
+"hZa" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/blue,
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/security/barracks)
 "iaf" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 1
@@ -105175,13 +105415,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "lsO" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "kitchen_hatch";
 	layer = 3.3;
-	name = "Maintenance Hatch"
+	name = "Kitchen Shutters"
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/bar)
@@ -105606,6 +105844,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/command/bridge)
+"oMv" = (
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "Exultant_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
+	},
+/turf/simulated/floor/plating,
+/area/eris/command/exultant)
 "oTl" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/freezer/medical,
@@ -105680,14 +105927,12 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "qcs" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "kitchen_hatch";
 	layer = 3.3;
-	name = "Maintenance Hatch"
+	name = "Kitchen Shutters"
 	},
-/obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
 "qkR" = (
@@ -105705,6 +105950,19 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
+"qlP" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Lobby";
+	name = "Cargo Shutters";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/hallway/side/section3starboard)
 "qnS" = (
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = -32
@@ -105735,7 +105993,7 @@
 	dir = 2;
 	id = "kitchen_hatch";
 	layer = 3.3;
-	name = "Maintenance Hatch"
+	name = "Kitchen Shutters"
 	},
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/crew_quarters/kitchen)
@@ -105782,6 +106040,25 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"rAB" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "CargoTotalLockdown";
+	layer = 2.6;
+	name = "Cargo Total Lockdown";
+	opacity = 0
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "Merchant_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
+	},
+/turf/simulated/floor/plating,
+/area/eris/quartermaster/office)
 "rBd" = (
 /obj/machinery/duct,
 /turf/simulated/floor/wood,
@@ -105846,17 +106123,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
-"rPI" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "kitchen_hatch";
-	layer = 3.3;
-	name = "Maintenance Hatch"
-	},
-/turf/simulated/floor/plating,
-/area/eris/crew_quarters/kitchen)
 "rUL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel,
@@ -105910,7 +106176,7 @@
 /obj/spawner/rations/low_chance,
 /obj/machinery/button/remote/blast_door{
 	id = "kitchen_hatch";
-	name = "Kitchen Hatch Control";
+	name = "Kitchen Shutters Control";
 	pixel_y = -24;
 	req_access = null
 	},
@@ -105993,6 +106259,17 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"tHs" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "maint_hatch_maintcryostor";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/turf/simulated/floor/plating,
+/area/eris/command/meo)
 "tMc" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -106030,6 +106307,19 @@
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/chemistry)
+"uhw" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "Cargo_Lobby";
+	name = "Cargo Shutters";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/eris/quartermaster/office)
 "uiz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	tag = "icon-intact (SOUTHWEST)";
@@ -106088,6 +106378,32 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/engineering/atmos)
+"uOj" = (
+/obj/structure/table/bar_special,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/bar)
+"uRn" = (
+/obj/structure/table/rack,
+/obj/spawner/lowkeyrandom,
+/obj/machinery/button/remote/blast_door{
+	id = "Cargo_Door";
+	name = "Lobby Door Shutters Control";
+	pixel_x = 24;
+	pixel_y = 5;
+	req_access = list(31);
+	step_y = -10
+	},
+/obj/machinery/button/remote/blast_door{
+	name = "Lobby Shutters Control";
+	step_y = 0;
+	pixel_x = 24;
+	pixel_y = 5;
+	req_access = list(31);
+	id = "Cargo_Lobby"
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/eris/quartermaster/office)
 "uYg" = (
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
@@ -106285,6 +106601,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/chemistry)
+"wIv" = (
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "Merchant_Shutters";
+	layer = 3.3;
+	name = "Window Shutters"
+	},
+/turf/simulated/floor/plating,
+/area/eris/quartermaster/office)
 "wOW" = (
 /obj/structure/closet/secure_closet/medicine,
 /obj/structure/catwalk,
@@ -170678,7 +171003,7 @@ aad
 aaa
 aaa
 aaf
-aRP
+hZa
 aSE
 aSQ
 aTr
@@ -204486,13 +204811,13 @@ cxA
 cxA
 cxA
 cxm
-cjQ
+uOj
 cjQ
 czL
 dXQ
 cjQ
 lsO
-rPI
+qcs
 cBC
 cBr
 elW
@@ -204694,7 +205019,7 @@ czM
 dXR
 cAw
 etm
-rPI
+qcs
 egG
 cDI
 qZg
@@ -209327,11 +209652,11 @@ dFC
 dZc
 arQ
 dIb
-arQ
-cwD
-cwD
+qlP
+uhw
+uhw
 cwT
-cwD
+uhw
 cyG
 cxH
 cyW
@@ -209533,12 +209858,12 @@ avn
 ctm
 ctL
 dPV
-cwD
+uhw
 cxY
 czw
 czT
-cwD
-cwD
+uhw
+uhw
 dYd
 dLa
 cAQ
@@ -209740,7 +210065,7 @@ cwE
 cxK
 cyY
 ctm
-cwD
+uhw
 cFX
 etk
 avn
@@ -209942,7 +210267,7 @@ cvx
 cxQ
 cvx
 esX
-cwD
+uhw
 cFX
 cFX
 avn
@@ -210143,8 +210468,8 @@ ctV
 ctV
 cxX
 czc
-ctm
-cwD
+uRn
+uhw
 cFX
 cFX
 avn
@@ -210323,7 +210648,7 @@ cpd
 cqZ
 clF
 clF
-cmG
+tHs
 ctR
 cuE
 cvj
@@ -210525,7 +210850,7 @@ cpd
 crb
 clF
 clF
-cmG
+tHs
 cvj
 crx
 cDW
@@ -249934,9 +250259,9 @@ ctr
 dzb
 ctr
 ctr
-cxI
+rAB
 cLz
-cxI
+wIv
 ctr
 bZc
 bZc
@@ -279048,10 +279373,10 @@ aaa
 eAs
 eAs
 esG
-esG
-esG
-esG
-esG
+oMv
+oMv
+oMv
+oMv
 eAs
 eAs
 aaa
@@ -279457,7 +279782,7 @@ dkN
 dHr
 dIY
 dJm
-esG
+oMv
 abF
 abF
 abF
@@ -279659,7 +279984,7 @@ dkO
 eEH
 dIZ
 dJn
-esG
+oMv
 abF
 abF
 abF
@@ -279861,7 +280186,7 @@ dpe
 dHN
 cWk
 dJo
-esG
+oMv
 abF
 abF
 abF
