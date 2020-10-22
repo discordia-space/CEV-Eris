@@ -6113,9 +6113,9 @@
 /area/eris/maintenance/section2deck5port)
 "aoh" = (
 /obj/structure/closet/oldstyle,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck5port)
 "aoi" = (
@@ -6265,8 +6265,8 @@
 /area/eris/maintenance/section2deck5port)
 "aoB" = (
 /obj/structure/table/rack,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/ammo,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
@@ -11929,8 +11929,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/security/main)
 "aBX" = (
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aBY" = (
@@ -12709,8 +12709,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDX" = (
@@ -13707,8 +13707,8 @@
 /area/eris/maintenance/section2deck4central)
 "aGH" = (
 /obj/structure/closet,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /turf/simulated/floor/tiled/steel,
@@ -20021,8 +20021,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aVQ" = (
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section1deck4central)
 "aVR" = (
@@ -20326,8 +20326,8 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aWv" = (
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "aWw" = (
@@ -22515,7 +22515,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bbf" = (
@@ -24753,8 +24753,8 @@
 /area/eris/maintenance/section3deck1central)
 "bfl" = (
 /obj/structure/table/standard,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
@@ -73663,7 +73663,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
 "dog" = (
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
@@ -77389,11 +77389,11 @@
 "dwQ" = (
 /obj/structure/closet/oldstyle,
 /obj/effect/decal/cleanable/dirt,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
-/obj/spawner/ammo_lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
 /turf/simulated/floor/tiled/dark/panels,
 /area/eris/maintenance/oldbridge)
 "dwR" = (

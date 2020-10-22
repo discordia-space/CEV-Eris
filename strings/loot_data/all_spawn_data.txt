@@ -4564,7 +4564,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanyi
 /obj/spawner/ammo/ihs/low_chance    spawner    blacklisted=0    10  1     100
 /obj/spawner/ammo/ihs    spawner    blacklisted=0    10  1     100
 /obj/spawner/ammo/lowcost/low_chance    spawner    blacklisted=0    10  1     100
-/obj/spawner/ammo_lowcost    spawner    blacklisted=0    10  1     100
+/obj/spawner/ammo/lowcost    spawner    blacklisted=0    10  1     100
 /obj/spawner/booze/low_chance    spawner    blacklisted=0    10  1     100
 /obj/spawner/booze    spawner    blacklisted=0    10  1     100
 /obj/spawner/boxes/low_chance    spawner    blacklisted=0    10  1     100
