@@ -1,0 +1,5 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - tweak: Having a high enough mechanical skill can tell you if a cell is rigged
+      to explode on use.
