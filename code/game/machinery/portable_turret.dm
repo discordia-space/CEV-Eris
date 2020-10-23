@@ -404,7 +404,7 @@ var/list/turret_icons
 			else
 				switch(I.use_tool_extended(user, src, WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_VERY_HARD,  required_stat = STAT_MEC))
 					if(TOOL_USE_SUCCESS)
-						to_chat(user, SPAN_WARNING("You disconnect the turret's security protocol override!"))
+						to_chat(user, SPAN_NOTICE("You disconnect the turret's security protocol override!"))
 						overridden = 1
 						req_one_access.Cut()
 						req_one_access = list(access_occupy)
