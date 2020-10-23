@@ -198,7 +198,7 @@
 	sync_access()
 	playsound(get_turf(src), 'sound/machines/windowdoor.ogg', 50, 1)
 	user.playsound_local(null, 'sound/mechs/nominal.ogg', 50)
-	//LAZYOR(user.additional_vision_handlers, src)
+	LAZYDISTINCTADD(user.additional_vision_handlers, src)
 	update_pilots()
 	return 1
 
@@ -224,7 +224,7 @@
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
-//	LAZYREMOVE(user.additional_vision_handlers, src)
+	LAZYREMOVE(user.additional_vision_handlers, src)
 	if(user in pilots)
 		a_intent = I_HURT
 		LAZYREMOVE(pilots, user)
