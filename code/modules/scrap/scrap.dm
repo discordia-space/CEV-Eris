@@ -23,10 +23,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/loot_min = 6
 	var/loot_max = 12
 	var/list/loot_tags = list(
-		SPAWN_MATERIAL_BUILDING,
-		SPAWN_JUNK, SPAWN_CLEANABLE
+		SPAWN_MATERIAL_BUILDING_ROD,
+		SPAWN_JUNK, SPAWN_CLEANABLE,
+		SPAWN_MATERIAL_JUNK
 	)
-	var/list/rare_loot = list(SPAWN_RARE_ITEM = 0.5)
+	var/list/rare_loot = list(SPAWN_RARE_ITEM)
 	var/list/restricted_tags = list()
 	var/dig_amount = 4
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
@@ -118,28 +119,38 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		make_big_loot()
 
 	var/amt = rand(loot_min, loot_max)
+	var/list/junk_tags = list(SPAWN_MATERIAL_BUILDING_ROD,SPAWN_JUNK,SPAWN_CLEANABLE,SPAWN_MATERIAL_JUNK)
 	for(var/x in 1 to amt)
+		var/rare = FALSE
+		var/rare_items_amt = rand(1,2)
+		if((x >= amt-rare_items_amt) && prob(rare_item_chance))
+			rare = TRUE
 		var/list/loot_tags_copy = loot_tags.Copy()
-		if(prob(20))
+		if(rare)
+			loot_tags_copy -= junk_tags
 			loot_tags_copy += rare_loot
 		var/list/true_loot_tags = list()
 		var/min_tags = min(loot_tags_copy.len,2)
 		var/tags_amt = max(round(loot_tags_copy.len*0.3),min_tags)
-		var/rare_items_amt = rand(1,2)
 		for(var/y in 1 to tags_amt)
 			true_loot_tags += pickweight_n_take(loot_tags_copy)
-		var/list/candidates = lsd.spawn_by_tag(true_loot_tags)
+		var/list/candidates = lsd.valid_candidates(true_loot_tags, restricted_tags, FALSE, 0, 0, TRUE)
 		if(SPAWN_ITEM in true_loot_tags)
 			candidates -= lsd.spawns_lower_price(candidates, 1)
 			candidates -= lsd.spawns_upper_price(candidates, 800)
-		candidates = lsd.filter_densty(candidates)
-		candidates -= lsd.spawn_by_tag(restricted_tags)
-		candidates -= lsd.all_spawn_blacklist
-		var/rare = FALSE
-		if((x >= amt-rare_items_amt) && prob(rare_item_chance))
-			rare = TRUE
+			var/list/old_tags = lsd.take_tags(candidates)
+			old_tags -= list(SPAWN_ITEM,SPAWN_OBJ)
+			var/new_tags_amt = max(round(old_tags.len*0.15),1)
+			true_loot_tags = list()
+			for(var/i in 1 to new_tags_amt)
+				true_loot_tags += pick_n_take(old_tags)
+			if(rare)
+				true_loot_tags -= junk_tags
+				true_loot_tags += rare_loot
+			candidates = lsd.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, 800, TRUE)
 		if(rare)
-			candidates = lsd.only_top_candidates(candidates, min(candidates.len*0.3, 7)) //top 7
+			var/top = CLAMP(round(candidates.len*0.3),1 ,7)
+			candidates = lsd.only_top_candidates(candidates, top) //top 7
 		var/loot_path = lsd.pick_spawn(candidates)
 		new loot_path(src)
 		var/list/aditional_objects = lsd.all_accompanying_obj_by_path[loot_path]
@@ -374,7 +385,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_tags = list(
 		SPAWN_MEDICAL,
 		SPAWN_SURGERY_TOOL,
-		SPAWN_JUNK, SPAWN_CLEANABLE
+		SPAWN_JUNK, SPAWN_CLEANABLE,
+		SPAWN_MATERIAL_BUILDING_ROD,
+		SPAWN_MATERIAL_JUNK
 	)
 
 
@@ -397,9 +410,10 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_GLOVES_INSULATED, SPAWN_JETPACK, SPAWN_ITEM_UTILITY,SPAWN_TOOL_UPGRADE,SPAWN_TOOLBOX,SPAWN_VOID_SUIT,
 		SPAWN_GUN_UPGRADE,
 		SPAWN_POUCH,
-		SPAWN_MATERIAL_BUILDING,
-		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_ORE
+		SPAWN_MATERIAL_BUILDING = 2,
+		SPAWN_MATERIAL_BUILDING_ROD,
+		SPAWN_JUNK = 2, SPAWN_CLEANABLE = 2,
+		SPAWN_ORE,SPAWN_MATERIAL_JUNK = 2
 	)
 
 /obj/structure/scrap_spawner/food
@@ -411,7 +425,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	loot_tags = list(
 		SPAWN_JUNKFOOD,
 		SPAWN_BOOZE,
-		SPAWN_JUNK, SPAWN_CLEANABLE
+		SPAWN_JUNK, SPAWN_CLEANABLE,
+		SPAWN_MATERIAL_BUILDING_ROD,SPAWN_MATERIAL_JUNK
 	)
 
 /obj/structure/scrap_spawner/guns
@@ -431,7 +446,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_POWERCELL,
 		SPAWN_MECH_QUIPMENT,
 		SPAWN_TOY_WEAPON,
-		SPAWN_JUNK, SPAWN_CLEANABLE
+		SPAWN_JUNK = 2, SPAWN_CLEANABLE = 2,
+		SPAWN_MATERIAL_JUNK = 2
 	)
 
 /obj/structure/scrap_spawner/science
@@ -461,9 +477,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_GUN_UPGRADE,
 		SPAWN_SCIENCE,
 		SPAWN_ORE,
-		SPAWN_RARE_ITEM//No rare_item, rare loot is pretty likely to appear in scientific scrap
+		SPAWN_RARE_ITEM,
 		)
-	rare_loot = list(SPAWN_ODDITY = 0.5)
+	rare_loot = list(SPAWN_ODDITY, SPAWN_RARE_ITEM)
 
 /obj/structure/scrap_spawner/cloth
 	icontype = "cloth"
@@ -482,11 +498,12 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	rarity_value = 2.5
 	loot_tags = list(
 		SPAWN_ITEM,
-		SPAWN_JUNK, SPAWN_CLEANABLE,
-		SPAWN_ORE
+		SPAWN_JUNK = 2, SPAWN_CLEANABLE,
+		SPAWN_ORE, SPAWN_MATERIAL_BUILDING_ROD,
+		SPAWN_MATERIAL_JUNK = 2
 	)
 	restricted_tags = list(SPAWN_MATERIAL_RESOURCES)
-	rare_loot = list(SPAWN_RARE_ITEM = 0.5, SPAWN_ODDITY = 0.5)
+	rare_loot = list(SPAWN_RARE_ITEM, SPAWN_ODDITY)
 
 /obj/structure/scrap_spawner/poor/large
 	name = "large mixed rubbish"

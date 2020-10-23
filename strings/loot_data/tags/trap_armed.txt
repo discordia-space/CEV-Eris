@@ -1,0 +1,4 @@
+/obj/item/weapon/beartrap/makeshift/armed    blacklisted=0    4.5045  0     100
+/obj/item/weapon/beartrap/armed    blacklisted=0    3.003  0     100
+/obj/item/device/assembly/mousetrap/armed    blacklisted=0    8  0     100
+/obj/structure/wire_splicing    blacklisted=0    10  0     100

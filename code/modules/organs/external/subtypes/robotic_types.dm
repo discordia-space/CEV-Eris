@@ -6,6 +6,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 	model = "asters"
 	price_tag = 300
+	bad_type = /obj/item/organ/external/robotic/asters
 
 /obj/item/organ/external/robotic/serbian
 	name = "\"Serbian Arms\""
@@ -13,6 +14,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 	model = "serbian"
 	price_tag = 600
+	bad_type = /obj/item/organ/external/robotic/serbian
 
 //In game prostheses
 /obj/item/organ/external/robotic/frozen_star
@@ -21,6 +23,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
 	price_tag = 450
+	bad_type = /obj/item/organ/external/robotic/frozen_star
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
 	name = "\"Frozen Star\" Left Arm"
@@ -44,6 +47,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
 	price_tag = 700
+	bad_type = /obj/item/organ/external/robotic/technomancer
 
 /obj/item/organ/external/robotic/technomancer/l_arm
 	name = "Technomancer \"Homebrew\" Left Arm"
@@ -71,6 +75,7 @@
 	max_damage = 60
 	min_broken_damage = 40
 	price_tag = 300
+	bad_type = /obj/item/organ/external/robotic/moebius
 
 /obj/item/organ/external/robotic/moebius/l_arm
 	name = "\"Moebius\" Left Arm"
@@ -103,6 +108,7 @@
 	min_broken_damage = 45
 	price_tag = 600
 	spawn_blacklisted = TRUE
+	bad_type = /obj/item/organ/external/robotic/excelsior
 
 /obj/item/organ/external/robotic/excelsior/l_arm
 	default_description = /datum/organ_description/arm/left

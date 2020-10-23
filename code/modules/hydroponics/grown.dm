@@ -6,7 +6,7 @@
 	icon_state = "blank"
 	desc = "Nutritious! Probably."
 	slot_flags = SLOT_HOLSTER
-
+	spawn_frequency = 0
 	var/plantname
 	var/datum/seed/seed
 	var/potency = -1

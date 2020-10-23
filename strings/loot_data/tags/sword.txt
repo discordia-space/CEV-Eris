@@ -1,0 +1,3 @@
+/obj/item/weapon/tool/sword/katana/nano    blacklisted=1    1.33333  20     100
+/obj/item/weapon/tool/sword/katana    blacklisted=0    2.28571  20     100
+/obj/item/weapon/tool/sword    blacklisted=0    3.2  20     100

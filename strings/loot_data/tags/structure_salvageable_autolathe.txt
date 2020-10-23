@@ -1,0 +1,1 @@
+/obj/structure/salvageable/autolathe    blacklisted=0    13  0     100

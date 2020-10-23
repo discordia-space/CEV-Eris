@@ -481,6 +481,7 @@
 	return
 
 /obj/item/weapon/paper/crumpled/neo/bloody
-	icon_state = "paper_neo_crumpled_bloodied"
+	icon_state = "paper_neo_crumpled_bloodied" //todo fix sprite
+	spawn_blacklisted = TRUE
 
 #undef MAX_FIELDS

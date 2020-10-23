@@ -1,0 +1,6 @@
+/obj/item/weapon/tank/jetpack/void    blacklisted=0    2  50     100
+/obj/item/weapon/tank/jetpack/oxygen    blacklisted=0    2  50     100
+/obj/item/weapon/tank/jetpack/carbondioxide    blacklisted=0    3.0003  50     100
+/obj/item/weapon/tank/jetpack/rig    blacklisted=0    2  50     100
+/obj/item/weapon/tank/jetpack/synthetic    blacklisted=0    2  50     100
+/obj/item/robot_parts/robot_component/jetpack    blacklisted=0    1.50015  100     100

@@ -1,0 +1,17 @@
+/obj/item/weapon/tool/sword/katana/nano    blacklisted=1    1.33333  20     100
+/obj/item/weapon/tool/sword/katana    blacklisted=0    2.28571  20     100
+/obj/item/weapon/tool/sword    blacklisted=0    3.2  20     100
+/obj/item/weapon/tool/knife/boot    blacklisted=0    5  20     100
+/obj/item/weapon/tool/knife/hook    blacklisted=0    20  20     100
+/obj/item/weapon/tool/knife/ritual    blacklisted=0    5  20     100
+/obj/item/weapon/tool/knife/butch    blacklisted=0    20  20     100
+/obj/item/weapon/tool/knife/neotritual    blacklisted=1    10  20     100
+/obj/item/weapon/tool/knife/tacknife    blacklisted=0    10  20     100
+/obj/item/weapon/tool/knife/dagger/ceremonial    blacklisted=1    6.66667  20     100
+/obj/item/weapon/tool/knife/dagger/bluespace    blacklisted=1    6.66667  400     100
+/obj/item/weapon/tool/knife/dagger/assassin    blacklisted=1    6.66667  20     100
+/obj/item/weapon/tool/knife/dagger    blacklisted=0    6.66667  20     100
+/obj/item/weapon/tool/knife/butterfly    blacklisted=0    4  20     100
+/obj/item/weapon/tool/knife/switchblade    blacklisted=0    3.33333  20     100
+/obj/item/weapon/tool/knife    blacklisted=0    10  20     100
+/obj/item/weapon/tool/scythe    blacklisted=0    3.33333  20     100
