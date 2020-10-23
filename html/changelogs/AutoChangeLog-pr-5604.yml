@@ -1,9 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: add some objects to the blacklist and modify the spawn values ​​of others.
-  - bugfix: runtimes in trash piles
-  - refactor: generation of loot in the trash piles.
-  - tweak: some spawners have a chance to spawn a rare item
-  - rscadd: now the loot rework generates files that contain all the spawn data for
-      each path.
