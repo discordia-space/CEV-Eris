@@ -46,7 +46,7 @@
 
 	//Things to configure
 	var/event_type
-	var/weight = 1
+	var/weight = 1 //Our base weight coefficient, which affects how likely we are to be picked from a list of other story events
 
 	//Which event pools this story event can appear in.
 	//Multiple options allowed, can be any combination of
