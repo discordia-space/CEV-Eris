@@ -1,0 +1,5 @@
+author: Garen7
+delete-after: true
+changes:
+  - bugfix: Fixed spider rose having the wrong inhand sprite when at 50% and in the
+      left hand
