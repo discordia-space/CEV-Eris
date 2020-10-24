@@ -72,11 +72,11 @@ GLOBAL_LIST_EMPTY(cat_points_spenders)
 	//if(M.ckey == ckey) //Evan uncoment
 	//	to_chat(src, SPAN_WARNING("You can't spend cat_points on yourself!"))
 	//	return FALSE
-	if(client.address == M.client.address)
-		message_admins(SPAN_WARNING("Illegal cat_points spending attempt detected from [key] to [M.key]. Using the same IP!"))
-		log_game("Illegal cat_points spending attempt detected from [key] to [M.key]. Using the same IP!")
-		to_chat(src, SPAN_WARNING("You can't spend cat_points on someone connected from the same IP."))
-		return FALSE
+	//if(client.address == M.client.address)
+	//	message_admins(SPAN_WARNING("Illegal cat_points spending attempt detected from [key] to [M.key]. Using the same IP!"))
+	//	log_game("Illegal cat_points spending attempt detected from [key] to [M.key]. Using the same IP!")
+	//	to_chat(src, SPAN_WARNING("You can't spend cat_points on someone connected from the same IP."))
+	//	return FALSE
 	if(!M.get_preference_value(/datum/client_preference/cat_points) == GLOB.PREF_YES)
 		to_chat(src, SPAN_WARNING("That player has turned off incoming cat_points."))
 		return FALSE
