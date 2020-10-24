@@ -302,9 +302,9 @@
 	if(seed.get_trait(TRAIT_STINGS))
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.gloves)
-			return FALSE
+			return TRUE //We have gloves, so we can pick it up safely
 		if(!reagents || reagents.total_volume <= 0)
-			return FALSE
+			return TRUE //Out of reagents
 		reagents.remove_any(rand(1,3)) //Todo, make it actually remove the reagents the seed uses.
 		seed.do_thorns(H,src)
 		seed.do_sting(H,src,pick(BP_R_ARM, BP_L_ARM))
