@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(trade)
-	name = "Trade"
+	name = "Asters Automated Trading System"
 	priority = SS_PRIORITY_SUPPLY
 	flags = SS_NO_FIRE
 
@@ -206,28 +206,35 @@ SUBSYSTEM_DEF(trade)
 					dot[b] = list("count" = il[b], "index" = list(i, il.Find(b)))
 
 /datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/beacon, datum/money_account/account, list/shoppinglist, datum/trade_station/station)
-	if(QDELETED(beacon) || !account || !length(shoppinglist) || !istype(station))
+	if(QDELETED(beacon) || !account || !recursiveLen(shoppinglist) || !istype(station))
 		return
 
-	if(recursiveLen(shoppinglist))
-		var/obj/structure/closet/crate/C
-		var/list/sl = shoplist2list(shoppinglist)
-		var/count_of_all = collect_counts_from(sl)
-		cost = collect_price_for_list(sl)
-		if(count_of_all > 1 && count_of_all)
-			cost += station.commision
-			C = beacon.drop(/obj/structure/closet/crate)
-		if(get_account_credits(account) < cost)
-			return
-		for(var/t in sl)
-			var/tcount = get_2d_matrix_cell(sl, t, "count")
-			for(var/i in 1 to tcount)
-				C ? new t(C) : beacon.drop(t)
-			var/list/i = get_2d_matrix_cell(sl, t, "index")
-			if(length(i) >= 2)
-				var/cat = i[1]
-				var/indix = i[2]
-				if(indix && cat)
-					station.set_good_amount(cat, indix, max(0, station.get_good_amount(cat, indix) - tcount))
+	var/obj/structure/closet/crate/C
+	var/list/sl = shoplist2list(shoppinglist)
+	var/count_of_all = collect_counts_from(sl)
+	cost = collect_price_for_list(sl)
+	if(count_of_all > 1 && count_of_all)
+		cost += station.commision
+		C = beacon.drop(/obj/structure/closet/crate)
+	if(get_account_credits(account) < cost)
+		return
+	for(var/t in sl)
+		var/tcount = get_2d_matrix_cell(sl, t, "count")
+		for(var/i in 1 to tcount)
+			C ? new t(C) : beacon.drop(t)
+		var/list/i = get_2d_matrix_cell(sl, t, "index")
+		if(length(i) >= 2)
+			var/cat = i[1]
+			var/indix = i[2]
+			if(indix && cat)
+				station.set_good_amount(cat, indix, max(0, station.get_good_amount(cat, indix) - tcount))
+	charge_to_account(account.account_number, account.get_name(), "Purchase", name, cost)
 
-		charge_to_account(account.account_number, account.get_name(), "Purchase", "Asters Automated Trading System", cost)
+/datum/controller/subsystem/trade/proc/sell_thing(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, atom/movable/thing, datum/trade_station/station)
+	if(QDELETED(beacon) || !istype(beacon) || !account || !istype(thing) || !istype(station))
+		return
+
+	var/cost = get_export_cost(thing)
+	qdel(thing)
+
+	charge_to_account(account.account_number, account.get_name(), "Selling", name, -cost)
