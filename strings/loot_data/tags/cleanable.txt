@@ -1,4 +1,3 @@
-/obj/effect/spawner/maintshroom/delayed    blacklisted=0    10  0     100
 /obj/effect/decal/cleanable/roach_egg_remains    blacklisted=0    18.1818  0     100
 /obj/effect/decal/cleanable/spiderling_remains    blacklisted=0    18.1818  0     100
 /obj/effect/decal/cleanable/crayon    blacklisted=0    18.1818  0     100

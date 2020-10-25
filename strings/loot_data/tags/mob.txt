@@ -29,3 +29,4 @@
 /mob/living/bot/miningonestar/resources/agressive    blacklisted=1    10  0     100
 /mob/living/bot/miningonestar/resources/in_work    blacklisted=1    10  0     100
 /mob/living/bot/miningonestar/resources    blacklisted=1    10  0     100
+/obj/effect/spider/spiderling    blacklisted=0    20  0     100

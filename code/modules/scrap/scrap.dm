@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_MATERIAL_JUNK
 	)
 	var/list/rare_loot = list(SPAWN_RARE_ITEM)
-	var/list/restricted_tags = list(SPAWN_ORGAN)
+	var/list/restricted_tags = list(SPAWN_ORGAN_ORGANIC)
 	var/dig_amount = 4
 	var/parts_icon = 'icons/obj/structures/scrap/trash.dmi'
 	var/base_min = 5	//min and max number of random pieces of base icon
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_ORE, SPAWN_MATERIAL_BUILDING_ROD,
 		SPAWN_MATERIAL_JUNK = 2
 	)
-	restricted_tags = list(SPAWN_MATERIAL_RESOURCES, SPAWN_ORGAN)
+	restricted_tags = list(SPAWN_MATERIAL_RESOURCES, SPAWN_ORGAN_ORGANIC)
 	rare_loot = list(SPAWN_RARE_ITEM, SPAWN_ODDITY)
 
 /obj/structure/scrap_spawner/poor/large
