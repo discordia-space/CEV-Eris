@@ -1,4 +1,3 @@
-/obj/item/clothing/gloves/color/white/bst    blacklisted=1    1    30   100    
 /obj/item/clothing/gloves/color/white    blacklisted=0    33.3333    30   100    
 /obj/item/clothing/gloves/color/yellow    blacklisted=0    33.3333    30   100    
 /obj/item/clothing/gloves/color/orange    blacklisted=0    33.3333    30   100    

@@ -76,7 +76,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/card/id/white    obj,item    blacklisted=1    10    0   100    
 /obj/item/weapon/card/id/blankwhite    obj,item    blacklisted=1    10    0   100    
 /obj/item/weapon/card/id/syndicate    obj,item    blacklisted=1    10    0   100    
-/obj/item/weapon/card/id/bst    obj,item    blacklisted=1    1    0   100    
 /obj/item/weapon/card/id    obj,item    blacklisted=1    10    0   100    
 /obj/item/weapon/card/data/clown    obj,item    blacklisted=1    10    0   100    
 /obj/item/weapon/card/data    obj,item    blacklisted=1    10    0   100    
@@ -474,7 +473,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/storage/pouch/pistol_holster    obj,item,storage,pouch,clothing    blacklisted=0    3.0303    0   100    
 /obj/item/weapon/storage/pouch/baton_holster    obj,item,storage,pouch,clothing    blacklisted=0    3.0303    0   100    
 /obj/item/weapon/storage/pouch/holding    obj,item,storage,pouch,clothing    blacklisted=1    10    0   100    
-/obj/item/weapon/storage/backpack/holding/bst    obj,item,storage,backpack,clothing    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/backpack/holding    obj,item,storage,backpack,clothing    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/white    obj,item,storage,backpack,clothing    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/purple/scientist    obj,item,storage,backpack,clothing    blacklisted=0    10    0   100    
@@ -567,7 +565,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/storage/bag/circuits    obj,item    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/bag/fossils    obj,item    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/bag    obj,item    blacklisted=0    10    0   100    
-/obj/item/weapon/storage/belt/utility/full/bst    obj,item,storage,belt,clothing,item_utility    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/belt/utility/full    obj,item,storage,belt,clothing,item_utility    blacklisted=0    2    0   100    
 /obj/item/weapon/storage/belt/utility/neotheology    obj,item,storage,belt,clothing,item_utility    blacklisted=0    5    0   100    
 /obj/item/weapon/storage/belt/utility    obj,item,storage,belt,clothing,item_utility    blacklisted=0    10    0   100    
@@ -2453,7 +2450,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/clothing/head/det/grey    obj,item,clothing,head    blacklisted=0    10    30   100    
 /obj/item/clothing/head/det    obj,item,clothing,head    blacklisted=0    10    30   100    
 /obj/item/clothing/head/HoS    obj,item,clothing,head    blacklisted=0    2    30   100    
-/obj/item/clothing/gloves/color/white/bst    obj,item,clothing,gloves    blacklisted=1    1    30   100    
 /obj/item/clothing/gloves/color/white    obj,item,clothing,gloves    blacklisted=0    33.3333    30   100    
 /obj/item/clothing/gloves/color/yellow    obj,item,clothing,gloves    blacklisted=0    33.3333    30   100    
 /obj/item/clothing/gloves/color/orange    obj,item,clothing,gloves    blacklisted=0    33.3333    30   100    
@@ -2682,7 +2678,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/clothing/mask/bandana/camo    obj,item,clothing,mask    blacklisted=0    5.49451    20   100    
 /obj/item/clothing/mask/bandana/skull    obj,item,clothing,mask    blacklisted=0    5.49451    20   100    
 /obj/item/clothing/mask/bandana    obj,item,clothing,mask    blacklisted=0    5.49451    20   100    
-/obj/item/clothing/under/assistantformal/bst    obj,item,clothing,under    blacklisted=1    1    30   100    
 /obj/item/clothing/under/assistantformal    obj,item,clothing,under    blacklisted=0    10    30   100    
 /obj/item/clothing/under/chameleon    obj,item,clothing,under,contraband,chamaleon    blacklisted=1    2    30   100    
 /obj/item/clothing/under/rank/fo_suit    obj,item,clothing,under    blacklisted=1    10    30   100    
@@ -2810,7 +2805,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/clothing/under/librarian    obj,item,clothing,under    blacklisted=0    10    30   100    
 /obj/item/clothing/under/mime    obj,item,clothing,under    blacklisted=0    10    30   100    
 /obj/item/clothing/under/punpun    obj,item,clothing,under    blacklisted=0    10    30   100    
-/obj/item/clothing/glasses/sunglasses/bst    obj,item,clothing,glasses    blacklisted=1    1    30   100    
 /obj/item/clothing/glasses/sunglasses/sechud/tactical    obj,item,clothing,glasses    blacklisted=0    5    30   100    
 /obj/item/clothing/glasses/sunglasses/sechud    obj,item,clothing,glasses    blacklisted=0    5    30   100    
 /obj/item/clothing/glasses/sunglasses/blindfold/tape    obj,item,clothing,glasses    blacklisted=0    5    30   100    
@@ -2847,7 +2841,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/clothing/glasses/bullet_proof_ironhammer    obj,item,clothing,glasses    blacklisted=0    5    30   100    
 /obj/item/clothing/glasses/welding/superior    obj,item,clothing,glasses    blacklisted=0    1    30   100    
 /obj/item/clothing/glasses/welding    obj,item,clothing,glasses    blacklisted=0    10    30   100    
-/obj/item/clothing/shoes/color/black/bst    obj,item,clothing,shoes    blacklisted=1    1    30   100    
 /obj/item/clothing/shoes/color/black    obj,item,clothing,shoes    blacklisted=0    10    30   100    
 /obj/item/clothing/shoes/color/white    obj,item,clothing,shoes    blacklisted=0    10    30   100    
 /obj/item/clothing/shoes/color/blue    obj,item,clothing,shoes    blacklisted=0    10    30   100    
@@ -3003,7 +2996,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/device/radio/headset/headset_service    obj,item,divice    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset/ia    obj,item,divice    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset/church    obj,item,divice    blacklisted=0    10    0   100    
-/obj/item/device/radio/headset/ert/bst    obj,item,divice    blacklisted=1    1    0   100    
 /obj/item/device/radio/headset/ert    obj,item,divice    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset    obj,item,divice    blacklisted=0    10    0   100    
 /obj/item/device/radio/beacon/bacon    obj,item,divice    blacklisted=0    10    0   100    

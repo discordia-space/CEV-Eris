@@ -53,7 +53,6 @@
 /obj/item/weapon/card/id/white    blacklisted=1    10    0   100    
 /obj/item/weapon/card/id/blankwhite    blacklisted=1    10    0   100    
 /obj/item/weapon/card/id/syndicate    blacklisted=1    10    0   100    
-/obj/item/weapon/card/id/bst    blacklisted=1    1    0   100    
 /obj/item/weapon/card/id    blacklisted=1    10    0   100    
 /obj/item/weapon/card/data/clown    blacklisted=1    10    0   100    
 /obj/item/weapon/card/data    blacklisted=1    10    0   100    
@@ -451,7 +450,6 @@
 /obj/item/weapon/storage/pouch/pistol_holster    blacklisted=0    3.0303    0   100    
 /obj/item/weapon/storage/pouch/baton_holster    blacklisted=0    3.0303    0   100    
 /obj/item/weapon/storage/pouch/holding    blacklisted=1    10    0   100    
-/obj/item/weapon/storage/backpack/holding/bst    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/backpack/holding    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/white    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/purple/scientist    blacklisted=0    10    0   100    
@@ -544,7 +542,6 @@
 /obj/item/weapon/storage/bag/circuits    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/bag/fossils    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/bag    blacklisted=0    10    0   100    
-/obj/item/weapon/storage/belt/utility/full/bst    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/belt/utility/full    blacklisted=0    2    0   100    
 /obj/item/weapon/storage/belt/utility/neotheology    blacklisted=0    5    0   100    
 /obj/item/weapon/storage/belt/utility    blacklisted=0    10    0   100    
@@ -2430,7 +2427,6 @@
 /obj/item/clothing/head/det/grey    blacklisted=0    10    30   100    
 /obj/item/clothing/head/det    blacklisted=0    10    30   100    
 /obj/item/clothing/head/HoS    blacklisted=0    2    30   100    
-/obj/item/clothing/gloves/color/white/bst    blacklisted=1    1    30   100    
 /obj/item/clothing/gloves/color/white    blacklisted=0    33.3333    30   100    
 /obj/item/clothing/gloves/color/yellow    blacklisted=0    33.3333    30   100    
 /obj/item/clothing/gloves/color/orange    blacklisted=0    33.3333    30   100    
@@ -2659,7 +2655,6 @@
 /obj/item/clothing/mask/bandana/camo    blacklisted=0    5.49451    20   100    
 /obj/item/clothing/mask/bandana/skull    blacklisted=0    5.49451    20   100    
 /obj/item/clothing/mask/bandana    blacklisted=0    5.49451    20   100    
-/obj/item/clothing/under/assistantformal/bst    blacklisted=1    1    30   100    
 /obj/item/clothing/under/assistantformal    blacklisted=0    10    30   100    
 /obj/item/clothing/under/chameleon    blacklisted=1    2    30   100    
 /obj/item/clothing/under/rank/fo_suit    blacklisted=1    10    30   100    
@@ -2787,7 +2782,6 @@
 /obj/item/clothing/under/librarian    blacklisted=0    10    30   100    
 /obj/item/clothing/under/mime    blacklisted=0    10    30   100    
 /obj/item/clothing/under/punpun    blacklisted=0    10    30   100    
-/obj/item/clothing/glasses/sunglasses/bst    blacklisted=1    1    30   100    
 /obj/item/clothing/glasses/sunglasses/sechud/tactical    blacklisted=0    5    30   100    
 /obj/item/clothing/glasses/sunglasses/sechud    blacklisted=0    5    30   100    
 /obj/item/clothing/glasses/sunglasses/blindfold/tape    blacklisted=0    5    30   100    
@@ -2824,7 +2818,6 @@
 /obj/item/clothing/glasses/bullet_proof_ironhammer    blacklisted=0    5    30   100    
 /obj/item/clothing/glasses/welding/superior    blacklisted=0    1    30   100    
 /obj/item/clothing/glasses/welding    blacklisted=0    10    30   100    
-/obj/item/clothing/shoes/color/black/bst    blacklisted=1    1    30   100    
 /obj/item/clothing/shoes/color/black    blacklisted=0    10    30   100    
 /obj/item/clothing/shoes/color/white    blacklisted=0    10    30   100    
 /obj/item/clothing/shoes/color/blue    blacklisted=0    10    30   100    
@@ -2980,7 +2973,6 @@
 /obj/item/device/radio/headset/headset_service    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset/ia    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset/church    blacklisted=0    10    0   100    
-/obj/item/device/radio/headset/ert/bst    blacklisted=1    1    0   100    
 /obj/item/device/radio/headset/ert    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset    blacklisted=0    10    0   100    
 /obj/item/device/radio/beacon/bacon    blacklisted=0    10    0   100    

@@ -66,7 +66,6 @@
 /obj/item/device/radio/headset/headset_service    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset/ia    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset/church    blacklisted=0    10    0   100    
-/obj/item/device/radio/headset/ert/bst    blacklisted=1    1    0   100    
 /obj/item/device/radio/headset/ert    blacklisted=0    10    0   100    
 /obj/item/device/radio/headset    blacklisted=0    10    0   100    
 /obj/item/device/radio/beacon/bacon    blacklisted=0    10    0   100    

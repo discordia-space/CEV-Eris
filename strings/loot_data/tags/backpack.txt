@@ -1,4 +1,3 @@
-/obj/item/weapon/storage/backpack/holding/bst    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/backpack/holding    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/white    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/purple/scientist    blacklisted=0    10    0   100    

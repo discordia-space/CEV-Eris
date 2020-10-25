@@ -1,4 +1,3 @@
-/obj/item/clothing/shoes/color/black/bst    blacklisted=1    1    30   100    
 /obj/item/clothing/shoes/color/black    blacklisted=0    10    30   100    
 /obj/item/clothing/shoes/color/white    blacklisted=0    10    30   100    
 /obj/item/clothing/shoes/color/blue    blacklisted=0    10    30   100    

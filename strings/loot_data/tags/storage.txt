@@ -88,7 +88,6 @@
 /obj/item/weapon/storage/pouch/pistol_holster    blacklisted=0    3.0303    0   100    
 /obj/item/weapon/storage/pouch/baton_holster    blacklisted=0    3.0303    0   100    
 /obj/item/weapon/storage/pouch/holding    blacklisted=1    10    0   100    
-/obj/item/weapon/storage/backpack/holding/bst    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/backpack/holding    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/white    blacklisted=0    10    0   100    
 /obj/item/weapon/storage/backpack/purple/scientist    blacklisted=0    10    0   100    
@@ -140,7 +139,6 @@
 /obj/item/weapon/storage/backpack/duffelbag    blacklisted=0    20    0   100    
 /obj/item/weapon/storage/backpack/chameleon    blacklisted=1    2    0   100    
 /obj/item/weapon/storage/backpack    blacklisted=0    10    0   100    
-/obj/item/weapon/storage/belt/utility/full/bst    blacklisted=1    1    0   100    
 /obj/item/weapon/storage/belt/utility/full    blacklisted=0    2    0   100    
 /obj/item/weapon/storage/belt/utility/neotheology    blacklisted=0    5    0   100    
 /obj/item/weapon/storage/belt/utility    blacklisted=0    10    0   100    

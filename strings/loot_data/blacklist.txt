@@ -40,7 +40,6 @@
 /obj/item/weapon/card/id/white
 /obj/item/weapon/card/id/blankwhite
 /obj/item/weapon/card/id/syndicate
-/obj/item/weapon/card/id/bst
 /obj/item/weapon/card/id
 /obj/item/weapon/card/data/clown
 /obj/item/weapon/card/data
@@ -102,9 +101,7 @@
 /obj/item/weapon/storage/box/syndie_kit
 /obj/item/weapon/storage/box/gun_upgrades
 /obj/item/weapon/storage/pouch/holding
-/obj/item/weapon/storage/backpack/holding/bst
 /obj/item/weapon/storage/backpack/chameleon
-/obj/item/weapon/storage/belt/utility/full/bst
 /obj/item/weapon/storage/belt/tactical/ironhammer
 /obj/item/weapon/storage/belt/champion
 /obj/item/weapon/storage/belt/holding
@@ -298,7 +295,6 @@
 /obj/item/clothing/head/surgery/blue
 /obj/item/clothing/head/surgery/green
 /obj/item/clothing/head/surgery
-/obj/item/clothing/gloves/color/white/bst
 /obj/item/clothing/gloves/chameleon
 /obj/item/clothing/gloves/security/ironhammer
 /obj/item/clothing/gloves/latex/nitrile
@@ -329,7 +325,6 @@
 /obj/item/clothing/mask/gas/death_commando
 /obj/item/clothing/mask/gas/cyborg
 /obj/item/clothing/mask/gas/poltergeist
-/obj/item/clothing/under/assistantformal/bst
 /obj/item/clothing/under/chameleon
 /obj/item/clothing/under/rank/fo_suit
 /obj/item/clothing/under/rank/assistant
@@ -376,12 +371,10 @@
 /obj/item/clothing/under/rank
 /obj/item/clothing/under/excelsior
 /obj/item/clothing/under/syndicate
-/obj/item/clothing/glasses/sunglasses/bst
 /obj/item/clothing/glasses/chameleon
 /obj/item/clothing/glasses/powered/thermal/syndi
 /obj/item/clothing/glasses/powered/thermal/onestar
 /obj/item/clothing/glasses/powered/thermal/lens
-/obj/item/clothing/shoes/color/black/bst
 /obj/item/clothing/shoes/chameleon
 /obj/item/clothing/shoes/jackboots/ironhammer
 /obj/item/clothing/shoes/jackboots/neotheology
@@ -413,7 +406,6 @@
 /obj/item/device/radio/headset/heads/hop
 /obj/item/device/radio/headset/heads/merchant
 /obj/item/device/radio/headset/heads/preacher
-/obj/item/device/radio/headset/ert/bst
 /obj/item/device/batterer
 /obj/item/device/uplink/hidden
 /obj/item/device/uplink
