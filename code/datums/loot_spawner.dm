@@ -15,8 +15,8 @@
 	var/list/paths = list()
 
 	//spawn vars
-	var/rarity
-	var/frequency
+	//var/rarity
+	//var/frequency
 	//var/blacklisted
 	//var/list/bad_paths = list()
 	var/list/spawn_tags = list()
@@ -31,7 +31,7 @@
 	var/fike_dir_tags = "[file_dir]/tags/"
 	if(generate_files)
 		fdel(source_dir)
-		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    price_tag    all_accompanying_obj    prob_all_accompanying_obj"
+		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accompanying_obj    all_accompanying_obj"
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
@@ -54,8 +54,8 @@
 				hard_blacklist_data  << "[path]"
 			continue
 
-		frequency = initial(A.spawn_frequency)
-		if(frequency <= 0)
+		//frequency = initial(A.spawn_frequency)
+		if(initial(A.spawn_frequency) <= 0)
 			if(generate_files)
 				hard_blacklist_data  << "[path]"
 			continue
@@ -71,8 +71,8 @@
 		//all_spawn_frequency_by_path[path] = frequency
 
 		//rarity//
-		rarity = initial(A.rarity_value)
-		ASSERT(rarity >= 1)
+		//rarity = initial(A.rarity_value)
+		ASSERT(initial(A.rarity_value) >= 1)
 		//all_spawn_by_rarity["[rarity]"] += list(path)
 		//all_spawn_rarity_by_path[path] = rarity
 
@@ -114,9 +114,9 @@
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
 				var/tag_data_i = file("[fike_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]    [initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]  [initial(A.price_tag)]  [list2params(all_accompanying_obj_by_path[path])]   [initial(A.prob_aditional_object)]"
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]    [initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
