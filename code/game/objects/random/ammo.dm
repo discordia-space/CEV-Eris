@@ -18,22 +18,22 @@
 	icon_state = "ammo-orange-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/ammo_ihs
+/obj/spawner/ammo/ihs
 	name = "random ironhammer ammunition"
 	icon_state = "ammo-blue"
 	tags_to_spawn = list(SPAWN_AMMO_IH)
 
-/obj/spawner/ammo_ihs/low_chance
+/obj/spawner/ammo/ihs/low_chance
 	name = "low chance random random ironhammer ammunition"
 	icon_state = "ammo-blue-low"
 	spawn_nothing_percentage = 60
 
-/obj/spawner/ammo_lowcost
+/obj/spawner/ammo/lowcost
 	name = "random low tier ammunition"
 	icon_state = "ammo-grey"
 	tags_to_spawn = list(SPAWN_AMMO_COMMON)
 
-/obj/spawner/ammo_lowcost/low_chance
+/obj/spawner/ammo/lowcost/low_chance
 	name = "low chance random low tier ammunition"
 	icon_state = "ammo-grey-low"
 	spawn_nothing_percentage = 60

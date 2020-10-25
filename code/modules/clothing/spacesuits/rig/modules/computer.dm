@@ -36,15 +36,12 @@
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
-
 	engage_string = "Eject AI"
 	activate_string = "Enable Dataspike"
 	deactivate_string = "Disable Dataspike"
 
 	interface_name = "integrated intelligence system"
 	interface_desc = "A socket that supports a range of artificial intelligence systems."
-
-	rarity_value = 2
 
 	var/mob/integrated_ai // Direct reference to the actual mob held in the suit.
 	var/obj/item/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
@@ -244,7 +241,7 @@
 
 	interface_name = "contact datajack"
 	interface_desc = "An induction-powered high-throughput datalink suitable for hacking encrypted networks."
-	rarity_value = 3.33
+	rarity_value = 3.5
 	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 	var/datum/research/files
 
@@ -350,7 +347,7 @@
 
 	interface_name = "niling d-sink"
 	interface_desc = "Colloquially known as a power siphon, this module drains power through the suit hands into the suit battery."
-	rarity_value = 3.33
+	rarity_value = 3.5
 	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 	var/atom/interfaced_with // Currently draining power from this device.
 	var/total_power_drained = 0

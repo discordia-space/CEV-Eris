@@ -283,7 +283,7 @@
 		inserted_casing.update_icon()
 		stored_ammo.Insert(1, inserted_casing)
 	else
-		if(istype(C.loc,/mob))
+		if(ismob(C.loc))
 			var/mob/M = C.loc
 			M.remove_from_mob(C)
 		C.forceMove(src)

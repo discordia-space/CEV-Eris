@@ -1,0 +1,4 @@
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita    blacklisted=0    10  25     100
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza    blacklisted=0    10  25     100
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza    blacklisted=0    10  25     100
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza    blacklisted=0    10  25     100

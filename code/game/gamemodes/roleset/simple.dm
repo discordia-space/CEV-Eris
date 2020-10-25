@@ -12,7 +12,10 @@
 	id = "blitz"
 	name = "blitzshell infiltration"
 	role_id = ROLE_BLITZ
-	weight = 1
+	weight = 0.6
+
+	req_crew = 10
+	req_sec = 2
 
 	base_quantity = 1
 	scaling_threshold = 15

@@ -37,9 +37,9 @@
 	. = ..()
 	if(.)
 		if (src.nutrition && src.stat != 2)
-			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+			src.adjustNutrition(-DEFAULT_HUNGER_FACTOR/10)
 			if (move_intent.flags & MOVE_INTENT_EXERTIVE)
-				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+				src.adjustNutrition(-DEFAULT_HUNGER_FACTOR/10)
 
 		if(is_watching == TRUE)
 			reset_view(null)

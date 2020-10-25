@@ -79,6 +79,9 @@ see multiz/movement.dm for some info.
 		for(var/atom/A in src)
 			fallThrough(A)
 
+/turf/simulated/open/is_solid_structure()
+	return !isOpen()
+
 /turf/simulated/open/proc/isOpen(var/obj/structure/catwalk/catwalk)
 	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
@@ -163,7 +166,8 @@ see multiz/movement.dm for some info.
 			var/fall_damage = mover.get_fall_damage()
 			if(M == mover)
 				continue
-			M.Weaken(10)
+			if(M.getarmor(BP_HEAD, ARMOR_MELEE) < fall_damage)
+				M.Weaken(10)
 			if(fall_damage >= FALL_GIB_DAMAGE)
 				M.gib()
 			else

@@ -28,7 +28,7 @@
 	icon_state = "tech-red"
 	tags_to_spawn = list(SPAWN_MECH_QUIPMENT)
 
-/obj/spawner/mech_equipment/low_chance
+/obj/spawner/exosuit_equipment/low_chance
 	name = "low chance random exosuit equipment"
 	icon_state = "tech-red-low"
 	spawn_nothing_percentage = 75

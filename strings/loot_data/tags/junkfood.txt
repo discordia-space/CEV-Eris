@@ -1,0 +1,15 @@
+/obj/item/weapon/reagent_containers/food/drinks/dry_ramen    blacklisted=0    6.66667  50     100
+/obj/item/weapon/reagent_containers/food/snacks/candy/donor    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/candy/mre    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/candy    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/sosjerky    blacklisted=0    10  20     100
+/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/tastybread    blacklisted=0    10  20     100
+/obj/item/weapon/reagent_containers/food/snacks/no_raisin    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie    blacklisted=0    10  10     100
+/obj/item/weapon/reagent_containers/food/snacks/chips    blacklisted=0    6.66667  10     100
+/obj/item/weapon/reagent_containers/food/snacks/sandwich    blacklisted=0    5  15     100
+/obj/item/weapon/reagent_containers/food/snacks/popcorn    blacklisted=0    10  15     100
+/obj/item/weapon/reagent_containers/food/snacks/pie    blacklisted=0    5  40     100
+/obj/item/weapon/reagent_containers/food/snacks/hotdog    blacklisted=0    5  30     100
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood    blacklisted=0    20  30     100

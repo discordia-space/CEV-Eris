@@ -5,7 +5,7 @@
 	desc = "A simple grasping tool specialized in construction and engineering work."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
-	bad_type = /obj/item/weapon/gripper
+	spawn_blacklisted = TRUE
 
 	flags = NOBLUDGEON
 
@@ -26,9 +26,9 @@
 		/obj/item/stack/tile //Repair floors yay
 		)
 
-	var/obj/item/wrapped = null // Item currently being held.
+	var/obj/item/wrapped // Item currently being held.
 
-	var/force_holder = null //
+	var/force_holder //
 	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should not attempt to trigger anything
 
 /obj/item/weapon/gripper/examine(var/mob/user)

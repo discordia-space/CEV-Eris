@@ -487,7 +487,7 @@
 //Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
 /obj/item/proc/handle_failure(mob/living/user, atom/target, required_stat, required_quality)
 	var/obj/item/weapon/tool/T
-	if(istype(src, /obj/item/weapon/tool))
+	if(istool(src))
 		T = src
 
 	var/crit_fail_chance = 25
@@ -1033,6 +1033,7 @@
 	name = "Electric Boogaloo 3000"
 	icon_state = "omnitool"
 	item_state = "omnitool"
+	spawn_tags = null
 	tool_qualities = list(QUALITY_BOLT_TURNING = 100,
 							QUALITY_PRYING = 100,
 							QUALITY_WELDING = 100,

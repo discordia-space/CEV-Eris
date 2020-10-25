@@ -41,9 +41,9 @@
 	name = "virus dish"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
-	var/datum/disease2/disease/virus2 = null
+	var/datum/disease2/disease/virus2
 	var/growth = 0
-	var/basic_info = null
+	var/basic_info
 	var/info = 0
 	var/analysed = 0
 
@@ -102,8 +102,8 @@
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "purple"
 	w_class = ITEM_SIZE_TINY
-	var/datum/disease2/effectholder/effect = null
-	var/list/species = null
+	var/datum/disease2/effectholder/effect
+	var/list/species
 	var/stage = 1
 	var/analysed = 1
 

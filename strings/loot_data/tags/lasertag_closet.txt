@@ -1,0 +1,2 @@
+/obj/structure/closet/lasertag/red    blacklisted=0    5  0     100
+/obj/structure/closet/lasertag/blue    blacklisted=0    5  0     100

@@ -118,8 +118,8 @@
 	clicks+=speed
 
 /datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
-	for(var/datum/disease2/effectholder/e in effects)
-		e.effect.deactivate(mob)
+	for(var/datum/disease2/effectholder/E in effects)
+		E.effect.deactivate(mob)
 	mob.virus2.Remove("[uniqueID]")
 	BITSET(mob.hud_updateflag, STATUS_HUD)
 

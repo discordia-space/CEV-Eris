@@ -142,7 +142,7 @@
 	icon_state = "bandana"
 	flags_inv = BLOCKHEADHAIR
 	style = 1
-	rarity_value = 3.33
+	rarity_value = 3.5
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"

@@ -52,7 +52,7 @@
 
 		var/to_fire = max_targets
 		for(var/A in affected)
-			if(istype(A, /obj/structure/burrow))
+			if(isburrow(A))
 				var/obj/structure/burrow/burrow = A
 				if(!burrow.obelisk_around)
 					burrow.obelisk_around = any2ref(src)

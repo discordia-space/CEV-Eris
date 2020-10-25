@@ -227,7 +227,7 @@
 							/datum/design/research/item/medical/adv_reagent_scanner,
 							/datum/design/research/item/weapon/chemsprayer,
 							/datum/design/research/item/weapon/rapidsyringe,
-							/datum/design/research/circuit/chemical_dispenser_industeral
+							/datum/design/research/circuit/chemical_dispenser_industrial
 							)
 
 /datum/technology/top_biotech

@@ -30,7 +30,7 @@
 	var/close_door_at = 0 //When to automatically close the door, if possible
 	var/obj/machinery/filler_object/f5
 	var/obj/machinery/filler_object/f6
-	var/welded = null //Placed here for simplicity, only airlocks can be welded tho
+	var/welded //Placed here for simplicity, only airlocks can be welded tho
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -38,12 +38,12 @@
 	var/damage_smoke = FALSE
 
 	// turf animation
-	var/atom/movable/overlay/c_animation = null
+	var/atom/movable/overlay/c_animation
 
 /obj/machinery/door/can_prevent_fall()
 	return density
 
-/obj/machinery/door/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/attack_generic(mob/user, var/damage)
 	if(damage >= resistance)
 		visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
 		take_damage(damage)
@@ -151,7 +151,7 @@
 	return !density
 
 
-/obj/machinery/door/proc/bumpopen(mob/user as mob)
+/obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)	return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
@@ -468,8 +468,8 @@
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!
 	if(istype(src, /obj/machinery/door/airlock/multi_tile/metal))
-		f5.set_opacity(1)
-		f6.set_opacity(1)
+		f5?.set_opacity(1)
+		f6?.set_opacity(1)
 
 	operating = 0
 

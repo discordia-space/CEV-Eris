@@ -510,13 +510,13 @@ proc/is_blind(A)
 		threatcount += 4
 
 	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
+		if(isgun(l_hand) || istype(l_hand, /obj/item/weapon/melee))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/weapon/gun) || istype(r_hand, /obj/item/weapon/melee))
+		if(isgun(r_hand) || istype(r_hand, /obj/item/weapon/melee))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
+		if(isgun(belt) || istype(belt, /obj/item/weapon/melee))
 			threatcount += 2
 
 		if(species.name != "Human")
@@ -643,3 +643,16 @@ proc/is_blind(A)
 
 /mob/proc/weight_coeff()
 	return get_max_w_class()/(ITEM_SIZE_TITANIC)
+
+/mob/proc/get_accumulated_vision_handlers()
+	var/result[2]
+	var/asight = 0
+	var/ainvis = 0
+	for(var/atom/vision_handler in additional_vision_handlers)
+		//Grab their flags
+		asight |= vision_handler.additional_sight_flags()
+		ainvis = max(ainvis, vision_handler.additional_see_invisible())
+	result[1] = asight
+	result[2] = ainvis
+
+	return result

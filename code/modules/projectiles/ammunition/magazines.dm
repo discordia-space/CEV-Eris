@@ -192,7 +192,7 @@
 	name = "magazine (40 Magnum rubber)"
 	icon_state = "magnum_r"
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
-	rarity_value = 2.5
+	rarity_value = 3
 
 ///////////// .20 RIFLE /////////////
 

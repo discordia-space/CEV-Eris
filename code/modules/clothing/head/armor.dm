@@ -34,12 +34,21 @@
 		bio = 0,
 		rad = 0
 	)
+	matter = list(
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTEEL = 1 //a lil bit of plasteel since it's better than handmade shit
+	)
 
 /obj/item/clothing/head/armor/helmet/visor
 	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed visor to protect the eyes."
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
 	rarity_value = 6.66
+	matter = list(
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 2 // costs some glass cause of the visor and the included eye protection
+	)
 
 /obj/item/clothing/head/armor/helmet/merchelm
 	name = "Heavy Armour Helmet"
@@ -111,6 +120,7 @@
 	icon_state = "thunderdome"
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 1
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/armor/bulletproof
 	name = "bulletproof helmet"
@@ -127,6 +137,11 @@
 	)
 	price_tag = 400
 	flash_protection = FLASH_PROTECTION_MAJOR
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
+		MATERIAL_GLASS = 3 //For the visor parts
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -209,6 +224,11 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
+	matter = list(
+		MATERIAL_STEEL = 10, // also comes with a hud with it's own prices
+		MATERIAL_PLASTEEL = 2,
+		MATERIAL_GLASS = 2
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_full/New()
 	..()
@@ -279,6 +299,11 @@
 	)
 	siemens_coefficient = 0
 	price_tag = 325
+	matter = list(
+		MATERIAL_STEEL = 4, // slightly less steel cost
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
+	)
 
 // Riot helmet
 /obj/item/clothing/head/armor/riot

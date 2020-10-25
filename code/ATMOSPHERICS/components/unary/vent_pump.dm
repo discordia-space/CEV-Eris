@@ -24,7 +24,7 @@
 
 	var/area/initial_loc
 	var/area_uid
-	var/id_tag = null
+	var/id_tag
 
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 	var/expanded_range = FALSE

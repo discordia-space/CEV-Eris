@@ -2,6 +2,7 @@
 	name = "random material"
 	icon_state = "material-grey"
 	tags_to_spawn = list(SPAWN_MATERIAL)
+	restricted_tags = list(SPAWN_MATERIAL_JUNK)
 
 /obj/spawner/material/building
 	name = "random building material"
@@ -37,6 +38,7 @@
 	name = "random ore"
 	icon_state = "material-black"
 	tags_to_spawn = list(SPAWN_ORE)
+	restricted_tags = list()
 
 /obj/spawner/material/ore/low_chance
 	name = "low chance random ore"
