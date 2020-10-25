@@ -5,6 +5,9 @@
 //print an error message to world.log
 
 
+#define PRINT_ATOM(A) "[A] ([A.x], [A.y], [A.z])"
+
+
 // On Linux/Unix systems the line endings are LF, on windows it's CRLF, admins that don't use notepad++
 // will get logs that are one big line if the system is Linux and they are using notepad.  This solves it by adding CR to every line ending
 // in the logs.  ascii character 13 = CR
