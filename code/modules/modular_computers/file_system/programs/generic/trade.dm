@@ -55,15 +55,6 @@
 		trade_screen = !trade_screen
 		return 1
 
-	if(href_list["PRG_send"])
-		SStrade.sell(sending, account)
-		return 1
-
-	if(href_list["PRG_receive"])
-		SStrade.buy(receiving, account, shoppinglist, station)
-		reset_shoplist()
-		return 1
-
 	if(href_list["PRG_account"])
 		var/acc_num = input("Enter account number", "Account linking", computer?.card_slot?.stored_card?.associated_account_number) as num|null
 		if(!acc_num)
@@ -80,10 +71,6 @@
 			return
 
 		account = A
-		return 1
-
-	if(href_list["PRG_account_unlink"])
-		account = null
 		return 1
 
 	if(href_list["PRG_station"])
@@ -140,12 +127,27 @@
 		set_2d_matrix_cell(shoppinglist, choosed_category, path, clamp(get_2d_matrix_cell(shoppinglist, choosed_category, path) - 1, 0, good_amount))
 		return 1
 
-	if(href_list["PRG_offer_fulfill"])
-		var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]))
-		if(!S)
-			return
-		SStrade.fulfill_offer(sending, account, station)
-		return 1
+	if(account)
+		if(href_list["PRG_receive"])
+			SStrade.buy(receiving, account, shoppinglist, station)
+			reset_shoplist()
+			return 1
+		if(href_list["PRG_account_unlink"])
+			account = null
+			return 1
+
+		if(href_list["PRG_offer_fulfill"])
+			var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]))
+			if(!S)
+				return
+			SStrade.fulfill_offer(sending, account, station)
+			return 1
+
+		var/t2n = text2num(href_list["PRG_sell"])
+		if(isnum(t2n) && station)
+			var/thing = get_2d_matrix_cell(station.assortiment, station.assortiment[choosed_category], t2n)
+			SStrade.sell(sending, account, thing, station)
+			return 1
 
 /datum/nano_module/program/trade
 	name = "Trading Program"
@@ -160,7 +162,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/trade/ui_data()
+/datum/nano_module/program/trade/ui_data()	
 	. = ..()
 	var/datum/computer_file/program/trade/PRG = program
 	if(!istype(PRG))
@@ -218,6 +220,9 @@
 
 					var/amount = PRG.station.get_good_amount(PRG.choosed_category, index)
 
+					var/amount2sell = 0
+					if(PRG.station && PRG.sending)
+						amount2sell = length(SStrade.assess_offer(PRG.sending, PRG.station, path))
 					var/pathname = initial(AM.name)
 					var/list/good_packet = assort[path]
 					if(islist(good_packet))
@@ -231,6 +236,7 @@
 						"price" = price,
 						"count" = count ? count : 0,
 						"amount_available" = amount,
+						"amount_available_around" = amount2sell,
 						"index" = index
 					))
 		if(!recursiveLen(.["goods"]))

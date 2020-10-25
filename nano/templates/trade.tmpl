@@ -88,7 +88,7 @@
 										{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
 										{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
 										{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
-									<td>{{:helper.link("", 'suitcase', {'PRG_sell' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
+									<td>{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
 							{{/if}}
 						{{/for}}
 					</table>

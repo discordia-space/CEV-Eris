@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(trade)
 		if(AM.anchored)
 			continue
 
-		var/export_cost = get_export_cost(AM)
+		var/export_cost = get_export_cost(AM) * 1.5
 		if(!export_cost)
 			continue
 
@@ -143,16 +143,18 @@ SUBSYSTEM_DEF(trade)
 		T.apply_to(A)
 
 
-/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station)
+/datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, offer_type = station.offer_type)
 	if(QDELETED(beacon) || !station)
 		return
 
 	. = list()
 
 	for(var/atom/movable/AM in beacon.get_objects())
-		if(AM.anchored || !istype(AM, station.offer_type))
+		if(AM.anchored || !istype(AM, offer_type))
 			continue
 		. += AM
+
+
 
 /datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station)
 	var/list/exported = assess_offer(beacon, station)
@@ -233,8 +235,10 @@ SUBSYSTEM_DEF(trade)
 /datum/controller/subsystem/trade/proc/sell_thing(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, atom/movable/thing, datum/trade_station/station)
 	if(QDELETED(beacon) || !istype(beacon) || !account || !istype(thing) || !istype(station))
 		return
-
+	
 	var/cost = get_export_cost(thing)
+
 	qdel(thing)
+	beacon.activate()
 
 	charge_to_account(account.account_number, account.get_name(), "Selling", name, -cost)
