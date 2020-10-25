@@ -234,7 +234,6 @@
 /obj/item/organ/external/robotic/excelsior/r_arm
 /obj/item/organ/external/robotic/excelsior/l_leg
 /obj/item/organ/external/robotic/excelsior/r_leg
-/obj/item/organ/external/robotic/excelsior
 /obj/item/organ/external/robotic/one_star/l_arm
 /obj/item/organ/external/robotic/one_star/r_arm
 /obj/item/organ/external/robotic/one_star/l_leg

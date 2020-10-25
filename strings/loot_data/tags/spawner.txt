@@ -1,11 +1,11 @@
 /obj/spawner/ammo/low_chance    blacklisted=0    10  1     100
 /obj/spawner/ammo/shotgun/low_chance    blacklisted=0    10  1     100
 /obj/spawner/ammo/shotgun    blacklisted=0    10  1     100
-/obj/spawner/ammo    blacklisted=0    10  1     100
 /obj/spawner/ammo/ihs/low_chance    blacklisted=0    10  1     100
 /obj/spawner/ammo/ihs    blacklisted=0    10  1     100
 /obj/spawner/ammo/lowcost/low_chance    blacklisted=0    10  1     100
 /obj/spawner/ammo/lowcost    blacklisted=0    10  1     100
+/obj/spawner/ammo    blacklisted=0    10  1     100
 /obj/spawner/booze/low_chance    blacklisted=0    10  1     100
 /obj/spawner/booze    blacklisted=0    10  1     100
 /obj/spawner/boxes/low_chance    blacklisted=0    10  1     100
@@ -70,9 +70,8 @@
 /obj/spawner/exosuit/damaged/low_chance    blacklisted=0    10  1     100
 /obj/spawner/exosuit/damaged    blacklisted=0    10  1     100
 /obj/spawner/exosuit    blacklisted=0    10  1     100
+/obj/spawner/exosuit_equipment/low_chance    blacklisted=0    10  1     100
 /obj/spawner/exosuit_equipment    blacklisted=0    10  1     100
-/obj/spawner/mech_equipment/low_chance    blacklisted=0    10  1     100
-/obj/spawner/mech_equipment    blacklisted=0    10  1     100
 /obj/spawner/flora/low_chance    blacklisted=0    10  1     100
 /obj/spawner/flora    blacklisted=0    10  1     100
 /obj/spawner/rations/low_chance    blacklisted=0    10  1     100

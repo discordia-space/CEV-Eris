@@ -131,7 +131,7 @@
 /obj/item/weapon
 /obj/item/tk_grab
 /obj/item/stack/cable_coil/cyborg
-/obj/item/stack/medical/advanced/bruise_pack
+/obj/item/stack/medical/advanced
 /obj/item/stack/medical
 /obj/item/stack/rods/cyborg
 /obj/item/stack/material/animalhide
@@ -147,6 +147,12 @@
 /obj/item/stack/tile/floor/cyborg
 /obj/item/stack
 /obj/item/organ/internal
+/obj/item/organ/external/robotic/asters
+/obj/item/organ/external/robotic/serbian
+/obj/item/organ/external/robotic/frozen_star
+/obj/item/organ/external/robotic/technomancer
+/obj/item/organ/external/robotic/moebius
+/obj/item/organ/external/robotic/excelsior
 /obj/item/organ/external/robotic/one_star
 /obj/item/organ/external
 /obj/item/organ
@@ -1236,6 +1242,7 @@
 /obj/structure/closet/gimmick
 /obj/structure/closet/random
 /obj/structure/closet/syndicate
+/obj/structure/closet/wardrobe/color
 /obj/structure/closet
 /obj/structure/plushie
 /obj/structure/nt_pedestal

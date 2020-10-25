@@ -158,7 +158,6 @@
 /obj/structure/closet/wardrobe/color/white    blacklisted=0    10  0     100
 /obj/structure/closet/wardrobe/color/grey    blacklisted=0    10  0     100
 /obj/structure/closet/wardrobe/color/mixed    blacklisted=0    10  0     100
-/obj/structure/closet/wardrobe/color    blacklisted=0    10  0     100
 /obj/structure/closet/wardrobe/pjs    blacklisted=0    10  0     100
 /obj/structure/closet/wardrobe/tactical    blacklisted=1    10  0     100
 /obj/structure/closet/wardrobe/sec    blacklisted=1    10  0     100

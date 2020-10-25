@@ -7,8 +7,8 @@
 	//var/list/all_spawn_frequency_by_path = list()
 	//var/list/all_spawn_by_rarity = list()
 	//var/list/all_spawn_rarity_by_path = list()
+	//var/list/all_spawn_value_by_path = list()
 	var/list/all_spawn_by_tag = list()
-	var/list/all_spawn_value_by_path = list()
 	var/list/all_accompanying_obj_by_path = list()
 
 /datum/loot_spawner_data/New()
@@ -55,7 +55,7 @@
 			continue
 
 		frequency = initial(A.spawn_frequency)
-		if(!frequency)
+		if(frequency <= 0)
 			if(generate_files)
 				hard_blacklist_data  << "[path]"
 			continue
@@ -77,8 +77,8 @@
 		//all_spawn_rarity_by_path[path] = rarity
 
 		//spawn_value//
-		var/spawn_value = 10 * frequency/rarity
-		all_spawn_value_by_path[path] = spawn_value
+		var/spawn_value = get_spawn_value(path)
+		//all_spawn_value_by_path[path] = spawn_value
 		//blacklisted//
 		//blacklisted = initial(A.spawn_blacklisted)
 		//if(blacklisted)
@@ -120,6 +120,11 @@
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
+
+/datum/loot_spawner_data/proc/get_spawn_value(var/npath)
+	var/atom/movable/A = npath
+	var/spawn_value = 10 * initial(A.spawn_frequency)/initial(A.rarity_value)
+	return spawn_value
 
 /datum/loot_spawner_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
@@ -170,7 +175,7 @@
 	for(var/j=1 to top)
 		var/low = INFINITY
 		for(var/path in paths)
-			var/sapwn_value = all_spawn_value_by_path[path]
+			var/sapwn_value = get_spawn_value(path)
 			if((sapwn_value < low) && !(sapwn_value in valid_spawn_value))
 				low = sapwn_value
 		valid_spawn_value += low
@@ -178,7 +183,7 @@
 		if(value > max_value)
 			max_value = value
 	for(var/path in paths)
-		if(all_spawn_value_by_path[path] <= max_value)
+		if(get_spawn_value(path) <= max_value)
 			things += path
 	return things
 
@@ -188,17 +193,17 @@
 	var/list/things = list()
 	var/list/values = list()
 	for(var/path in paths)
-		var/spawn_value = all_spawn_value_by_path[path]
+		var/spawn_value = get_spawn_value(path)
 		if(!(spawn_value in values) && spawn_value > 0)
 			values += spawn_value
 			if(invert_value)
 				spawn_value = 1/spawn_value
 			things[path] = spawn_value
 	var/spawn_value = pickweight(things, 0)
-	spawn_value = all_spawn_value_by_path[spawn_value]
+	spawn_value = get_spawn_value(spawn_value)
 	things = list()
 	for(var/path in paths)
-		if(all_spawn_value_by_path[path] == spawn_value)
+		if(get_spawn_value(path) == spawn_value)
 			things += path
 	return pick(things)
 

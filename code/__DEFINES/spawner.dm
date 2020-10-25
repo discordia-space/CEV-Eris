@@ -64,10 +64,14 @@
 
 #define SPAWN_TAG_ITEM_TECH_OS "obj,item,item_tech_os,onestar"
 
-// ITEMS - organ- PROSTHESIS
+// organ- PROSTHESIS
+#define SPAWN_ORGAN "organ"
 #define SPAWN_OS_PROSTHETIC "prosthetic_os"
 
-#define SPAWN_TAG_OS_PROSTHETIC "obj,item,organ,external,prosthetic,prosthetic_os,item_tech_os,onestar"
+#define SPAWN_TAG_ORGAN "obj,item,organ"
+#define SPAWN_TAG_ORGAN_INTERNAL "obj,item,organ,organ_internal"
+#define SPAWN_TAG_ORGAN_EXTERNAL "obj,item,organ,organ_external"
+#define SPAWN_TAG_PROSTHETIC_OS "obj,item,organ,organ_external,prosthetic,prosthetic_os,item_tech_os,onestar"
 
 //	Items - Oddities
 #define SPAWN_ODDITY "oddity"

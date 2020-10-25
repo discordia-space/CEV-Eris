@@ -29,11 +29,11 @@
 /obj/item/weapon/reagent_containers/syringe/antitoxin    blacklisted=0    10  20     100
 /obj/item/weapon/reagent_containers/syringe/tricordrazine    blacklisted=0    6.66667  20     100
 /obj/item/weapon/reagent_containers/syringe/spaceacillin    blacklisted=0    5  20     100
-/obj/item/stack/medical/advanced/ointment    blacklisted=0    10  10     100
-/obj/item/stack/medical/advanced    blacklisted=0    10  10     100
 /obj/item/stack/medical/bruise_pack/handmade    blacklisted=1    20  10     100
 /obj/item/stack/medical/bruise_pack    blacklisted=0    20  10     100
 /obj/item/stack/medical/ointment    blacklisted=0    20  10     100
+/obj/item/stack/medical/advanced/bruise_pack    blacklisted=0    10  10     100
+/obj/item/stack/medical/advanced/ointment    blacklisted=0    10  10     100
 /obj/item/stack/medical/splint    blacklisted=0    5  10     100
 /obj/item/stack/nanopaste    blacklisted=0    5  15     100
 /obj/item/bodybag/cryobag    blacklisted=0    10  250     100

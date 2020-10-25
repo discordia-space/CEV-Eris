@@ -9,7 +9,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_lamia    blacklisted=0    1.11111  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_deagle    blacklisted=0    2  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_gladstone    blacklisted=0    5.88235  25     100
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug    blacklisted=0    0.888889  25     100
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_pug    blacklisted=0    1.11111  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_straylight    blacklisted=0    4  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_molly    blacklisted=0    4  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/sa_zoric    blacklisted=0    4  25     100
@@ -35,6 +35,6 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/nt_purger    blacklisted=0    2  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/fs_cassad    blacklisted=0    1.11111  25     100
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns/ms_dartgun    blacklisted=0    2  25     100
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof    blacklisted=0    20  25     100
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/ablative    blacklisted=0    18.1818  25     100
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic    blacklisted=0    50  25     100
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof    blacklisted=0    6.66667  25     100
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic/ablative    blacklisted=0    6.25  25     100
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic    blacklisted=0    8.33333  25     100
