@@ -684,9 +684,13 @@
 	return TRUE
 
 /obj/item/projectile/Process()
-	var/first_step = TRUE
-
+	var/first_step = 1
+	var/i = 0
 	spawn while(src && src.loc)
+		if (++i > 512)
+			var/turf/T = src.loc
+			qdel(src)
+			throw EXCEPTION("Projectile stuck! Type: [type], Shot from: [shot_from], Position: [PRINT_ATOM(T)], Source location: [PRINT_ATOM(trajectory.source)], Target location: [PRINT_ATOM(trajectory.target)], Trajectory offset: ([trajectory.offset_x], [trajectory.offset_y])")
 		if(kill_count-- < 1)
 			on_impact(src.loc) //for any final impact behaviours
 			qdel(src)
@@ -839,6 +843,10 @@
 
 /obj/item/projectile/test/Process(turf/targloc)
 	while(src) //Loop on through!
+		if (++i > 512)
+			var/turf/T = src.loc
+			qdel(src)
+			throw EXCEPTION("Projectile stuck! Type: [type], Shot from: [shot_from], Position: [PRINT_ATOM(T)], Source location: [PRINT_ATOM(trajectory.source)], Target location: [PRINT_ATOM(trajectory.target)], Trajectory offset: ([trajectory.offset_x], [trajectory.offset_y])")
 		if(result)
 			return (result - 1)
 		if((!( targloc ) || loc == targloc))
