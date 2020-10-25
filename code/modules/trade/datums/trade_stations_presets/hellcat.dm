@@ -20,7 +20,7 @@
 			/obj/item/weapon/gun/energy/gun/martin,
 			/obj/item/weapon/gun/energy/laser,
 		),
-		"Projectile weapon" = list(
+		"Ballistic weapon" = list(
 			/obj/item/weapon/gun/projectile/paco,
 			/obj/item/weapon/gun/projectile/clarissa,
 			/obj/item/weapon/gun/projectile/olivaw,
