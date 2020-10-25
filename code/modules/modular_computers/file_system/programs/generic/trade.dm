@@ -145,8 +145,8 @@
 
 		var/t2n = text2num(href_list["PRG_sell"])
 		if(isnum(t2n) && station)
-			var/thing = get_2d_matrix_cell(station.assortiment, station.assortiment[choosed_category], t2n)
-			SStrade.sell(sending, account, thing, station)
+			var/path = get_2d_matrix_cell(station.assortiment, choosed_category, t2n)
+			SStrade.sell_thing(sending, account, locate(path) in SStrade.assess_offer(sending, station, path), station)
 			return 1
 
 /datum/nano_module/program/trade

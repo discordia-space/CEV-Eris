@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(trade)
 		if(AM.anchored)
 			continue
 
-		var/export_cost = get_export_cost(AM) * 1.5
+		var/export_cost = get_export_cost(AM) * 1.25
 		if(!export_cost)
 			continue
 
