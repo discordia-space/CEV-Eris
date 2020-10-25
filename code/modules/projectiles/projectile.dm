@@ -842,6 +842,7 @@
 	return Process(targloc)
 
 /obj/item/projectile/test/Process(turf/targloc)
+	var/i = 0
 	while(src) //Loop on through!
 		if (++i > 512)
 			var/turf/T = src.loc
