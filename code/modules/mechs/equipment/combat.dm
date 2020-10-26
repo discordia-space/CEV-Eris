@@ -98,7 +98,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech
 	name = 	"SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inacurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
