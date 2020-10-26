@@ -87,7 +87,7 @@
 
 /obj/item/mech_equipment/mounted_system/balistic_gun/pk
 	name = "SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inacurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
 	icon_state = "mech_pk"
 	holding_type = /obj/item/weapon/gun/projectile/automatic/lmg/pk/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
@@ -125,4 +125,3 @@
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
 		spawn(2)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
-
