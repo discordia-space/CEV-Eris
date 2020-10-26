@@ -684,7 +684,7 @@
 	return TRUE
 
 /obj/item/projectile/Process()
-	var/first_step = 1
+	var/first_step = TRUE
 	var/i = 0
 	spawn while(src && src.loc)
 		if (++i > 512)
