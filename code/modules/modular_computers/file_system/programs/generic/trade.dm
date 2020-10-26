@@ -162,7 +162,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 
-/datum/nano_module/program/trade/ui_data()	
+/datum/nano_module/program/trade/ui_data()
 	. = ..()
 	var/datum/computer_file/program/trade/PRG = program
 	if(!istype(PRG))
