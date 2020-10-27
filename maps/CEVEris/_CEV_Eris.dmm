@@ -3757,7 +3757,6 @@
 	},
 /obj/machinery/button/remote/blast_door{
 	name = "Window Shutters Control";
-	step_y = -10;
 	pixel_x = -24;
 	req_access = list(58);
 	id = "IHC_Shutters"
@@ -10218,8 +10217,6 @@
 "aya" = (
 /obj/structure/table/woodentable,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
@@ -28792,8 +28789,6 @@
 "boa" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck1central)
@@ -31299,8 +31294,6 @@
 "bup" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/item/weapon/handcuffs,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -34202,8 +34195,6 @@
 "bAQ" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck1central)
@@ -35423,8 +35414,6 @@
 "bDX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -39134,8 +39123,6 @@
 "bLx" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/light{
 	dir = 1
@@ -39782,8 +39769,6 @@
 "bMR" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/alarm{
 	pixel_y = 26
@@ -44931,8 +44916,6 @@
 "bYH" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/security/lobby)
@@ -46259,8 +46242,6 @@
 "cbZ" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/crew_quarters/clothingstorage)
@@ -47311,8 +47292,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/wood,
 /area/eris/command/fo)
@@ -48426,8 +48405,6 @@
 "cgK" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/light{
 	dir = 8
@@ -49960,8 +49937,6 @@
 /area/eris/rnd/mixing)
 "ckA" = (
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -52123,8 +52098,6 @@
 "cpJ" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/item/weapon/cell/small,
 /obj/item/weapon/cell/small,
@@ -52934,8 +52907,6 @@
 "crF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -53748,7 +53719,6 @@
 	name = "Window Shutters Control";
 	pixel_x = -24;
 	req_access = list(30);
-	step_y = -5
 	},
 /obj/machinery/button/remote/blast_door{
 	id = "ScienceTotalLockdown";
@@ -54530,7 +54500,6 @@
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/button/remote/blast_door{
 	name = "Maintenance Hatch Control";
-	step_y = -5;
 	pixel_x = -24;
 	req_access = null;
 	id = "maint_hatch_rd"
@@ -56521,8 +56490,6 @@
 "cAi" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
@@ -58000,8 +57967,6 @@
 "cDn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/item/weapon/cell/large/high,
 /obj/item/weapon/cell/large/high,
@@ -59512,8 +59477,6 @@
 "cGJ" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck2central)
@@ -59563,7 +59526,6 @@
 	pixel_x = 24;
 	pixel_y = 5;
 	req_access = list(41);
-	step_y = -10
 	},
 /obj/machinery/button/remote/blast_door{
 	id = "Cargo_Lobby";
@@ -59896,7 +59858,6 @@
 	name = "Window Shutters Control";
 	pixel_x = -24;
 	req_access = list(41);
-	step_y = 0
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
@@ -59943,8 +59904,6 @@
 "cHK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/camera/network/research{
 	dir = 8
@@ -63279,7 +63238,6 @@
 	},
 /obj/machinery/button/remote/blast_door{
 	name = "Window Shutters Control";
-	step_y = 9;
 	pixel_x = -24;
 	pixel_y = -5;
 	id = "Exultant_Shutters"
@@ -63595,8 +63553,6 @@
 	pixel_y = -32
 	},
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section4)
@@ -64776,8 +64732,6 @@
 "cTV" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/main/section2)
@@ -66983,8 +66937,6 @@
 	},
 /obj/structure/table/steel,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,7"
@@ -69516,8 +69468,6 @@
 "deQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -69614,8 +69564,6 @@
 "dfa" = (
 /obj/structure/table/woodentable,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -75880,8 +75828,6 @@
 "dsV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -76264,8 +76210,6 @@
 	pixel_x = 24
 	},
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -79613,8 +79557,6 @@
 	},
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/item/device/eftpos{
 	eftpos_name = "Medbay EFTPOS scanner"
@@ -83558,8 +83500,6 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/engine_room)
@@ -84919,8 +84859,6 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
@@ -85515,8 +85453,6 @@
 "dPg" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/section3starboard)
@@ -87402,8 +87338,6 @@
 "dTM" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck2port)
@@ -87592,8 +87526,6 @@
 "dUm" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/camera/network/engineering,
 /obj/structure/fireaxecabinet{
@@ -89969,8 +89901,6 @@
 "dZJ" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -98582,8 +98512,6 @@
 	name = "plastic table frame"
 	},
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_cargo_barracks";
@@ -100213,8 +100141,6 @@
 "exf" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/item/weapon/cell/large/high,
 /obj/item/weapon/cell/large/high,
@@ -100573,8 +100499,6 @@
 "exQ" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -100616,8 +100540,6 @@
 	name = "plastic table frame"
 	},
 /obj/machinery/recharger{
-	step_x = 6;
-	step_y = 2
 	},
 /obj/machinery/alarm{
 	dir = 8;
@@ -106430,11 +106352,9 @@
 	pixel_x = 24;
 	pixel_y = 5;
 	req_access = list(31);
-	step_y = -10
 	},
 /obj/machinery/button/remote/blast_door{
 	name = "Lobby Shutters Control";
-	step_y = 0;
 	pixel_x = 24;
 	pixel_y = 5;
 	req_access = list(31);
