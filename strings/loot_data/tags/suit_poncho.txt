@@ -1,0 +1,2 @@
+/obj/item/clothing/suit/poncho/tactical    blacklisted=0    1.25  30     100
+/obj/item/clothing/suit/poncho    blacklisted=0    20  30     100

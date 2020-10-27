@@ -13,9 +13,14 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "reinforce"
 	flags = NOBLUDGEON
-	var/obj/screen/grab/hud = null
-	var/mob/living/affecting = null
-	var/mob/living/carbon/human/assailant = null
+	layer = 21
+	abstract = 1
+	item_state = "nothing"
+	w_class = ITEM_SIZE_COLOSSAL
+	spawn_tags = null
+	var/obj/screen/grab/hud
+	var/mob/living/affecting
+	var/mob/living/carbon/human/assailant
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = 1
@@ -25,10 +30,6 @@
 	var/dancing //determines if assailant and affecting keep looking at each other.
 				//Basically a wrestling position
 
-	layer = 21
-	abstract = 1
-	item_state = "nothing"
-	w_class = ITEM_SIZE_COLOSSAL
 
 /obj/proc/affect_grab(var/mob/user, var/mob/target, var/state)
 	return FALSE

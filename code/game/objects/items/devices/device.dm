@@ -1,5 +1,6 @@
 /obj/item/device
 	spawn_tags = SPAWN_TAG_DIVICE
+	bad_type = /obj/item/device
 
 /obj/item/device/Created()
 	.=..()

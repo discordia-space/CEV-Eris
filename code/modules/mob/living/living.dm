@@ -836,6 +836,11 @@ default behaviour is:
 			A.static_overlays |= static_overlay
 			A.client.images |= static_overlay
 
+/mob/living/Destroy()
+	qdel(stats)
+	stats = null
+	return ..()
+
 /mob/living/proc/vomit()
 	return
 

@@ -36,15 +36,12 @@
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
 
-
 	engage_string = "Eject AI"
 	activate_string = "Enable Dataspike"
 	deactivate_string = "Disable Dataspike"
 
 	interface_name = "integrated intelligence system"
 	interface_desc = "A socket that supports a range of artificial intelligence systems."
-
-	rarity_value = 2
 
 	var/mob/integrated_ai // Direct reference to the actual mob held in the suit.
 	var/obj/item/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.

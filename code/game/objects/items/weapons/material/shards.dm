@@ -15,7 +15,7 @@
 	default_material = MATERIAL_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
-	spawn_tags = SPAWN_TAG_JUNK
+	spawn_tags = SPAWN_TAG_MATERIAL_JUNK
 	rarity_value = 6
 	var/amount = 0
 

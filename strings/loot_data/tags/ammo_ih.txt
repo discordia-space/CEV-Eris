@@ -1,0 +1,12 @@
+/obj/item/weapon/cell/medium/high    blacklisted=0    16.3636  100     100
+/obj/item/ammo_magazine/ammobox/clrifle/rubber    blacklisted=0    20  40     100
+/obj/item/ammo_magazine/ammobox/clrifle    blacklisted=0    20  40     100
+/obj/item/ammo_magazine/magnum/empty    blacklisted=0    10  60     100
+/obj/item/ammo_magazine/magnum/rubber    blacklisted=0    33.3333  60     100
+/obj/item/ammo_magazine/magnum    blacklisted=0    20  60     100
+/obj/item/ammo_magazine/ihclrifle/empty    blacklisted=0    10  60     100
+/obj/item/ammo_magazine/ihclrifle/practice    blacklisted=0    10  60     100
+/obj/item/ammo_magazine/ihclrifle/rubber    blacklisted=0    20  60     100
+/obj/item/ammo_magazine/ihclrifle    blacklisted=0    20  60     100
+/obj/item/ammo_magazine/slmagnum/rubber    blacklisted=0    20  60     100
+/obj/item/ammo_magazine/slmagnum    blacklisted=0    20  60     100

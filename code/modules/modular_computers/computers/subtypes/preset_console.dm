@@ -1,3 +1,6 @@
+/obj/item/modular_computer/console/preset
+	bad_type = /obj/item/modular_computer/console/preset
+
 /obj/item/modular_computer/console/preset/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)

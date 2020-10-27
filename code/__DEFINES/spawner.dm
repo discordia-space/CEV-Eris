@@ -11,6 +11,7 @@
 #define LOOT_LEVEL_VERY_HIG 20000
 
 //	Items
+#define SPAWN_OBJ "obj"
 #define SPAWN_ITEM "item"
 #define SPAWN_WEAPON "weapon"
 
@@ -102,6 +103,7 @@
 #define SPAWN_MATERIAL_RESOURCES_RARE "material_resources_rare"
 #define SPAWN_MATERIAL_BUILDING "bulding_material"
 #define SPAWN_MATERIAL_BUILDING_ROD "rod"
+#define SPAWN_MATERIAL_JUNK "material_junk"
 
 #define SPAWN_TAG_MATERIAL "obj,item,material"
 #define SPAWN_TAG_ORE "obj,item,material,ore"
@@ -109,8 +111,9 @@
 #define SPAWN_TAG_MATERIAL_RESOURCES_RARE "obj,item,material,material_resources,material_resources_rare"
 #define SPAWN_TAG_MATERIAL_RESOURCES_BULDING "obj,item,material,bulding_material,material_resources"
 #define SPAWN_TAG_MATERIAL_BUILDING "obj,item,material,bulding_material"
-#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod,junk"
-#define SPAWN_TAG_ORE_TAG_JUNK "obj,item,material,ore,junk"
+#define SPAWN_TAG_MATERIAL_BUILDING_ROD "obj,item,bulding_material,rod,material_junk,junk"
+#define SPAWN_TAG_ORE_TAG_JUNK "obj,item,material,ore,material_junk,junk"
+#define SPAWN_TAG_MATERIAL_JUNK "obj,item,bulding_material,material_junk,junk"
 
 // FOSSIL
 #define SPAWN_XENOARCH "xenoarcheology"
@@ -328,7 +331,7 @@
 #define SPAWN_TAG_JUNKFOOD "obj,item,snacks,junkfood"
 #define SPAWN_TAG_JUNKFOOD_RATIONS "obj,item,snacks,junkfood,rations"
 #define SPAWN_TAG_PIZZA "obj,item,snacks,pizza"
-#define SPAWN_TAG_COOKED_FOOD "obj,item,snacks,cooked"
+#define SPAWN_TAG_COOKED_FOOD "obj,item,snacks,cooked_food"
 
 // ITEM - GRENADES
 #define SPAWN_TAG_GRENADE "obj,item,grenade"

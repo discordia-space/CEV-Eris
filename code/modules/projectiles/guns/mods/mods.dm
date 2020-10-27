@@ -96,7 +96,7 @@
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
 	rarity_value = 50
- 
+
 /obj/item/weapon/gun_upgrade/barrel/excruciator/New()
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
@@ -354,7 +354,7 @@
 	I.req_gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/weapon/gun_upgrade/trigger/boom
-	name = "Syndicate \"Self Desturct\" trigger"
+	name = "Syndicate \"Self Destruct\" trigger"
 	desc = "Trigger that explode gun on shoot, only for enegry weapon."
 	icon_state = "Boom"
 	spawn_blacklisted = TRUE
@@ -389,7 +389,7 @@
 	I.req_gun_tags = list(GUN_SCOPE)
 
 /obj/item/weapon/gun_upgrade/scope/killer
-	name = "Syndicate \"Proffesional Killer\" scope"
+	name = "Syndicate \"Contract Killer\" scope"
 	desc = "Scope used for sniping from large distances."
 	icon_state = "Killer"
 	spawn_blacklisted = TRUE
