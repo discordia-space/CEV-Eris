@@ -18,7 +18,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	sanity_damage = 0.1
 	var/loot_generated = FALSE
 	var/icontype = "general"
-	var/datum/loot_spawner_data/lsd
 	var/obj/item/weapon/storage/internal/updating/loot	//the visible loot
 	var/loot_min = 6
 	var/loot_max = 12
@@ -48,7 +47,6 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 
 /obj/structure/scrap_spawner/Initialize()
 	. = ..()
-	lsd = GLOB.all_spawn_data["loot_s_data"]
 	update_icon(TRUE)
 
 /obj/structure/scrap_spawner/examine(mob/user)
@@ -134,11 +132,11 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/tags_amt = max(round(loot_tags_copy.len*0.3),min_tags)
 		for(var/y in 1 to tags_amt)
 			true_loot_tags += pickweight_n_take(loot_tags_copy)
-		var/list/candidates = lsd.valid_candidates(true_loot_tags, restricted_tags, FALSE, 0, 0, TRUE)
+		var/list/candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 0, 0, TRUE)
 		if(SPAWN_ITEM in true_loot_tags)
-			candidates -= lsd.spawns_lower_price(candidates, 1)
-			candidates -= lsd.spawns_upper_price(candidates, 800)
-			var/list/old_tags = lsd.take_tags(candidates)
+			candidates -= SSspawn_data.spawns_lower_price(candidates, 1)
+			candidates -= SSspawn_data.spawns_upper_price(candidates, 800)
+			var/list/old_tags = SSspawn_data.take_tags(candidates)
 			old_tags -= list(SPAWN_ITEM,SPAWN_OBJ)
 			var/new_tags_amt = max(round(old_tags.len*0.15),1)
 			true_loot_tags = list()
@@ -147,13 +145,13 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			if(rare)
 				true_loot_tags -= junk_tags
 				true_loot_tags += rare_loot
-			candidates = lsd.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, 800, TRUE)
+			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, 800, TRUE)
 		if(rare)
 			var/top = CLAMP(round(candidates.len*0.3),1 ,7)
-			candidates = lsd.only_top_candidates(candidates, top) //top 7
-		var/loot_path = lsd.pick_spawn(candidates)
+			candidates = SSspawn_data.only_top_candidates(candidates, top) //top 7
+		var/loot_path = SSspawn_data.pick_spawn(candidates)
 		new loot_path(src)
-		var/list/aditional_objects = lsd.all_accompanying_obj_by_path[loot_path]
+		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[loot_path]
 		if(islist(aditional_objects) && aditional_objects.len)
 			for(var/thing in aditional_objects)
 				var/atom/movable/AM = thing

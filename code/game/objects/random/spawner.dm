@@ -22,7 +22,6 @@
 	var/list/include_paths = list()
 	var/spread_range = 0
 	var/has_postspawn = TRUE
-	var/datum/loot_spawner_data/lsd
 	var/list/points_for_spawn = list()
 	//BIOME SPAWNERS
 	var/obj/landmark/loot_biomes/biome
@@ -36,7 +35,6 @@
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
 	..()
-	lsd = GLOB.all_spawn_data["loot_s_data"]
 	allow_aditional_object = with_aditional_object
 	if(!latejoin && !prob(spawn_nothing_percentage))
 		var/list/spawns = spawn_item()
@@ -167,20 +165,20 @@
 			var/top = round(candidates.len*spawn_count*biome.only_top)
 			if(top <= candidates.len)
 				var/top_spawn = CLAMP(top, 1, min(candidates.len,7))
-				candidates = lsd.only_top_candidates(candidates, top_spawn)
+				candidates = SSspawn_data.only_top_candidates(candidates, top_spawn)
 	//if(!candidates.len)
 	//	return
 	return pick_spawn(candidates)
 
 /obj/spawner/proc/valid_candidates()
-	var/list/candidates = lsd.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price)
+	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price)
 	candidates -= exclusion_paths
 	candidates += include_paths
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
-	var/selected = lsd.pick_spawn(candidates)
-	aditional_object = lsd.all_accompanying_obj_by_path[selected]
+	var/selected = SSspawn_data.pick_spawn(candidates)
+	aditional_object = SSspawn_data.all_accompanying_obj_by_path[selected]
 	return selected
 
 /obj/spawner/proc/post_spawn(list/spawns)

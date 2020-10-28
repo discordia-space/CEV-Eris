@@ -1,4 +1,4 @@
-/datum/loot_spawner_data
+///datum/controller/subsystem/spawn_data
 	//var/list/all_spawn_bad_paths = list()//hard
 	//var/list/all_spawn_blacklist = list()//soft
 	//var/list/all_spawn_by_price = list()
@@ -8,10 +8,14 @@
 	//var/list/all_spawn_by_rarity = list()
 	//var/list/all_spawn_rarity_by_path = list()
 	//var/list/all_spawn_value_by_path = list()
-	var/list/all_spawn_by_tag = list()
-	var/list/all_accompanying_obj_by_path = list()
+	//var/list/all_spawn_by_tag = list()
+	//var/list/all_accompanying_obj_by_path = list()
 
-/datum/loot_spawner_data/New()
+///datum/controller/subsystem/spawn_data/Initialize()
+//	..()
+//	generate_data()
+
+/datum/controller/subsystem/spawn_data/proc/generate_data()
 	var/list/paths = list()
 
 	//spawn vars
@@ -45,7 +49,8 @@
 		var/atom/movable/A = path
 		var/bad_path = initial(A.bad_type)
 		if(bad_path == path)
-			hard_blacklist_data  << "[path]"
+			if(generate_files)
+				hard_blacklist_data  << "[path]"
 			continue
 
 		spawn_tags = splittext(initial(A.spawn_tags), ",")
@@ -121,12 +126,12 @@
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
 
-/datum/loot_spawner_data/proc/get_spawn_value(var/npath)
+/datum/controller/subsystem/spawn_data/proc/get_spawn_value(var/npath)
 	var/atom/movable/A = npath
 	var/spawn_value = 10 * initial(A.spawn_frequency)/initial(A.rarity_value)
 	return spawn_value
 
-/datum/loot_spawner_data/proc/spawn_by_tag(list/tags)
+/datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
 	for(var/tag in tags)
 		if(all_spawn_by_tag["[tag]"] in things)
@@ -134,7 +139,7 @@
 		things += all_spawn_by_tag["[tag]"]
 	return things
 
-/datum/loot_spawner_data/proc/spawns_lower_price(list/paths, price)
+/datum/controller/subsystem/spawn_data/proc/spawns_lower_price(list/paths, price)
 	//if(!paths || !paths.len || !price) //NOPE
 	//	return
 	var/list/things = list()
@@ -144,7 +149,7 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/spawns_upper_price(list/paths, price)
+/datum/controller/subsystem/spawn_data/proc/spawns_upper_price(list/paths, price)
 	//if(!paths || !paths.len || !price) //NOPE
 	//	return
 	var/list/things = list()
@@ -154,7 +159,7 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/filter_densty(list/paths)
+/datum/controller/subsystem/spawn_data/proc/filter_densty(list/paths)
 	//if(!paths || !paths.len || !price) //NOPE
 	//	return
 	var/list/things = list()
@@ -164,7 +169,7 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/only_top_candidates(list/paths, top=7)
+/datum/controller/subsystem/spawn_data/proc/only_top_candidates(list/paths, top=7)
 	//if(!paths || !paths.len) //NOPE
 		//return
 	if(paths.len <= top)
@@ -187,7 +192,7 @@
 			things += path
 	return things
 
-/datum/loot_spawner_data/proc/pick_spawn(list/paths, invert_value=FALSE)
+/datum/controller/subsystem/spawn_data/proc/pick_spawn(list/paths, invert_value=FALSE)
 	//if(!paths || !paths.len) //NOPE
 		//return
 	var/list/things = list()
@@ -207,7 +212,7 @@
 			things += path
 	return pick(things)
 
-/datum/loot_spawner_data/proc/take_tags(list/paths)
+/datum/controller/subsystem/spawn_data/proc/take_tags(list/paths)
 	var/list/local_tags = list()
 	var/atom/movable/A
 	for(var/path in paths)
@@ -219,7 +224,7 @@
 			local_tags += list(tag)
 	return local_tags
 
-/datum/loot_spawner_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE)
+/datum/controller/subsystem/spawn_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE)
 	var/list/candidates = spawn_by_tag(tags)
 	candidates -= spawn_by_tag(bad_tags)
 	if(!allow_blacklist)

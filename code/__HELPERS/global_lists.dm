@@ -243,8 +243,6 @@ GLOBAL_LIST_EMPTY(all_spawn_data)
 		if (R.phrase)
 			GLOB.all_rituals[R.name] = R
 
-	GLOB.all_spawn_data["loot_s_data"] = new /datum/loot_spawner_data
-
 	return 1
 
 var/global/list/admin_permissions = list(
