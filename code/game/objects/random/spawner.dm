@@ -90,8 +90,9 @@
 			var/atom/movable/AM = A
 			price_tag += AM.get_item_cost()
 		if(allow_aditional_object && islist(aditional_object) && aditional_object.len)
-			for(var/obj/thing in aditional_object)
-				if(!prob(thing.prob_aditional_object))
+			for(var/thing in aditional_object)
+				var/atom/movable/AM2 = thing
+				if(!prob(initial(AM2.prob_aditional_object)))
 					continue
 				var/atom/AO = new thing (T)
 				spawns.Add(AO)

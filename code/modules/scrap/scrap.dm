@@ -155,8 +155,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		new loot_path(src)
 		var/list/aditional_objects = lsd.all_accompanying_obj_by_path[loot_path]
 		if(islist(aditional_objects) && aditional_objects.len)
-			for(var/obj/thing in aditional_objects)
-				if(!prob(thing.prob_aditional_object*0.8))
+			for(var/thing in aditional_objects)
+				var/atom/movable/AM = thing
+				if(!prob(initial(AM.prob_aditional_object)*0.8))
 					continue
 				new thing(src)
 
