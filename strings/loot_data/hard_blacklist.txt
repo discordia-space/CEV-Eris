@@ -30,6 +30,7 @@
 /obj/item/weapon/storage/pouch/nt_sheath
 /obj/item/weapon/storage/pouch
 /obj/item/weapon/storage/backpack/holding/bst
+/obj/item/weapon/storage/bag/trash/robot
 /obj/item/weapon/storage/bag/sheetsnatcher/borg
 /obj/item/weapon/storage/belt/utility/full/bst
 /obj/item/weapon/storage/belt
@@ -268,6 +269,7 @@
 /obj/item/slime_extract
 /obj/item/modular_computer/console/preset
 /obj/item/modular_computer
+/obj/item/bluespace_dust
 /mob/living/carbon/human/bst
 /mob/living/carbon/human/appearance_test
 /mob/living/carbon/human/dummy/mannequin

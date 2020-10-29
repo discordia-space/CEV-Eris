@@ -522,7 +522,6 @@
 /obj/item/weapon/storage/backpack/duffelbag
 /obj/item/weapon/storage/backpack/chameleon
 /obj/item/weapon/storage/backpack
-/obj/item/weapon/storage/bag/trash/robot
 /obj/item/weapon/storage/bag/trash/holding
 /obj/item/weapon/storage/bag/trash
 /obj/item/weapon/storage/bag/plastic
@@ -3824,7 +3823,6 @@
 /obj/item/construct
 /obj/item/smallDelivery
 /obj/item/stash_spawner
-/obj/item/bluespace_dust
 /mob/living/carbon/slime
 /mob/living/carbon/superior_animal/roach/roachling
 /mob/living/carbon/superior_animal/roach/hunter

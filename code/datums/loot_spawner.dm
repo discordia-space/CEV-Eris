@@ -119,9 +119,9 @@
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
 				var/tag_data_i = file("[fike_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]    [initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price_tag=[initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    [spawn_value]    [initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price_tag=[initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
