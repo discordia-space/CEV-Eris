@@ -196,8 +196,6 @@
 	var/list/things = list()
 	var/list/values = list()
 	for(var/path in paths)
-		if(isnull(path))
-			continue
 		var/spawn_value = get_spawn_value(path)
 		if(!(spawn_value in values) && spawn_value > 0)
 			values += spawn_value
@@ -242,4 +240,5 @@
 		candidates = filter_densty(candidates)
 	candidates -= exclude
 	candidates |= include
+	candidates = removeNullsFromList(candidates)
 	return candidates
