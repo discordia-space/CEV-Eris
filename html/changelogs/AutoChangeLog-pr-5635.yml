@@ -1,0 +1,5 @@
+author: TheShown911
+delete-after: true
+changes:
+  - tweak: NPC monkeys don't receive environment sanity damage and insight.
+  - code_imp: onLife() sanity procs effects trigger once every 2 life ticks.
