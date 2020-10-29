@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/list/loot_tags_copy = loot_tags.Copy()
 		if(rare)
 			loot_tags_copy -= junk_tags
-			loot_tags_copy += rare_loot
+			loot_tags_copy |= rare_loot
 		var/list/true_loot_tags = list()
 		var/min_tags = min(loot_tags_copy.len,2)
 		var/tags_amt = max(round(loot_tags_copy.len*0.3),min_tags)
@@ -138,13 +138,13 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			candidates -= SSspawn_data.spawns_upper_price(candidates, 800)
 			var/list/old_tags = SSspawn_data.take_tags(candidates)
 			old_tags -= list(SPAWN_ITEM,SPAWN_OBJ)
-			var/new_tags_amt = max(round(old_tags.len*0.15),1)
+			var/new_tags_amt = max(round(old_tags.len*0.10),1)
 			true_loot_tags = list()
 			for(var/i in 1 to new_tags_amt)
 				true_loot_tags += pick_n_take(old_tags)
 			if(rare)
 				true_loot_tags -= junk_tags
-				true_loot_tags += rare_loot
+				true_loot_tags |= rare_loot
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, 800, TRUE)
 		if(rare)
 			var/top = CLAMP(round(candidates.len*0.3),1 ,7)

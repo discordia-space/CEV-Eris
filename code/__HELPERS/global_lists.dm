@@ -116,8 +116,6 @@ var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, 
 //A list of slots where an item doesn't count as "worn" if it's in one of them
 var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
 
-GLOBAL_LIST_EMPTY(all_spawn_data)
-
 //////////////////////////
 /////Initial Building/////
 //////////////////////////

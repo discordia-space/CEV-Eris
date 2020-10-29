@@ -16,7 +16,7 @@
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    10    20   100    
 /obj/item/weapon/tool/hammer/powered_hammer    blacklisted=0    4.16667    20   100    
 /obj/item/weapon/tool/hammer/charge    blacklisted=0    0.4    20   100    
-/obj/item/weapon/tool/hammer    blacklisted=0    20.8333    20   100    
+/obj/item/weapon/tool/hammer    blacklisted=0    20    20   100    
 /obj/item/weapon/tool/hemostat    blacklisted=0    10    20   100    
 /obj/item/weapon/tool/knife/boot    blacklisted=0    5    20   100    
 /obj/item/weapon/tool/knife/hook    blacklisted=0    20    20   100    
@@ -33,7 +33,6 @@
 /obj/item/weapon/tool/knife    blacklisted=0    10    20   100    
 /obj/item/weapon/tool/omnitool    blacklisted=0    1.04167    1000   100    
 /obj/item/weapon/tool/medmultitool    blacklisted=1    10    20   100    
-/obj/item/weapon/tool/engimplant    blacklisted=1    10    20   100    
 /obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    10    20   100    
 /obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    10    20   100    
 /obj/item/weapon/tool/pickaxe/jackhammer    blacklisted=0    2.08333    20   100    
@@ -59,13 +58,13 @@
 /obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    10    20   100    
 /obj/item/weapon/tool/screwdriver/combi_driver    blacklisted=0    2.08333    20   100    
 /obj/item/weapon/tool/screwdriver    blacklisted=0    16.6667    20   100    
-/obj/item/weapon/tool/shovel/improvised    blacklisted=0    20.8333    20   100    
+/obj/item/weapon/tool/shovel/improvised    blacklisted=0    20    20   100    
 /obj/item/weapon/tool/shovel/spade    blacklisted=0    5.20833    20   100    
 /obj/item/weapon/tool/shovel/power    blacklisted=0    2.08333    20   100    
 /obj/item/weapon/tool/shovel    blacklisted=0    10.4167    20   100    
-/obj/item/weapon/tool/broken_bottle    blacklisted=1    10    20   100    
-/obj/item/weapon/tool/nailstick    blacklisted=1    10    20   100    
-/obj/item/weapon/tool/hatchet    blacklisted=1    10    20   100    
+/obj/item/weapon/tool/broken_bottle    blacklisted=0    10    20   100    
+/obj/item/weapon/tool/nailstick    blacklisted=0    10    20   100    
+/obj/item/weapon/tool/hatchet    blacklisted=0    10    20   100    
 /obj/item/weapon/tool/fireaxe    blacklisted=0    2.08333    20   100    
 /obj/item/weapon/tool/minihoe    blacklisted=0    10    20   100    
 /obj/item/weapon/tool/scythe    blacklisted=0    3.33333    20   100    

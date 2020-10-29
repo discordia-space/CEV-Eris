@@ -307,7 +307,6 @@
 /obj/item/weapon/tool/knife
 /obj/item/weapon/tool/omnitool
 /obj/item/weapon/tool/medmultitool
-/obj/item/weapon/tool/engimplant
 /obj/item/weapon/tool/pickaxe/onestar
 /obj/item/weapon/tool/pickaxe/jackhammer/onestar
 /obj/item/weapon/tool/pickaxe/jackhammer

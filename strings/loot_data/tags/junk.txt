@@ -28,7 +28,9 @@
 /obj/item/weapon/tool/saw/improvised    blacklisted=0    33.3333    20   100    
 /obj/item/weapon/tool/shiv    blacklisted=0    10    20   100    
 /obj/item/weapon/tool/screwdriver/improvised    blacklisted=0    33.3333    20   100    
-/obj/item/weapon/tool/shovel/improvised    blacklisted=0    20.8333    20   100    
+/obj/item/weapon/tool/shovel/improvised    blacklisted=0    20    20   100    
+/obj/item/weapon/tool/broken_bottle    blacklisted=0    10    20   100    
+/obj/item/weapon/tool/nailstick    blacklisted=0    10    20   100    
 /obj/item/weapon/tool/tape_roll/web    blacklisted=0    50    20   100    
 /obj/item/weapon/tool/weldingtool/improvised    blacklisted=0    25    20   100    
 /obj/item/weapon/tool/wirecutters/improvised    blacklisted=0    16.6667    20   100    

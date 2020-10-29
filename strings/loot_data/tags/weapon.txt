@@ -1,7 +1,7 @@
 /obj/item/weapon/tool/sword/katana/nano    blacklisted=1    1.33333    20   100    
 /obj/item/weapon/tool/sword/katana    blacklisted=0    2.28571    20   100    
 /obj/item/weapon/tool/sword    blacklisted=0    3.2    20   100    
-/obj/item/weapon/tool/hammer/mace    blacklisted=0    20.8333    20   100    
+/obj/item/weapon/tool/hammer/mace    blacklisted=0    6.66667    20   100    
 /obj/item/weapon/tool/knife/boot    blacklisted=0    5    20   100    
 /obj/item/weapon/tool/knife/hook    blacklisted=0    20    20   100    
 /obj/item/weapon/tool/knife/ritual    blacklisted=0    5    20   100    

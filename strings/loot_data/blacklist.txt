@@ -64,16 +64,12 @@
 /obj/item/weapon/tool/knife/dagger/bluespace
 /obj/item/weapon/tool/knife/dagger/assassin
 /obj/item/weapon/tool/medmultitool
-/obj/item/weapon/tool/engimplant
 /obj/item/weapon/tool/pickaxe/onestar
 /obj/item/weapon/tool/pickaxe/jackhammer/onestar
 /obj/item/weapon/tool/pickaxe/drill/onestar
 /obj/item/weapon/tool/pickaxe/diamonddrill/rig
 /obj/item/weapon/tool/saw/circular/advanced
 /obj/item/weapon/tool/screwdriver/combi_driver/onestar
-/obj/item/weapon/tool/broken_bottle
-/obj/item/weapon/tool/nailstick
-/obj/item/weapon/tool/hatchet
 /obj/item/weapon/tool/chainofcommand
 /obj/item/weapon/tool/weldingtool/onestar
 /obj/item/weapon/storage/box/syndicate
