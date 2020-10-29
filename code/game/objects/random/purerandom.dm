@@ -5,7 +5,7 @@
 	top_price = 800
 	low_price = 1
 	restricted_tags = list(SPAWN_ORE, SPAWN_MATERIAL_RESOURCES, SPAWN_COOKED_FOOD, SPAWN_ORGAN_ORGANIC)
-	include_paths = list(/obj/spawner/pack/rare)
+	include_paths = list(/obj/spawner/pack/rare, /obj/item/stash_spawner)
 
 /obj/spawner/lowkeyrandom/low_chance
 	name = "low chance random stuff"

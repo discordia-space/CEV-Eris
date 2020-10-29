@@ -81,6 +81,7 @@
 /obj/item/weapon/pen    blacklisted=0    16.6667    0   100    
 /obj/item/weapon/caution/cone    blacklisted=0    20    0   100    
 /obj/item/weapon/caution    blacklisted=0    20    0   100    
+/obj/item/weapon/bananapeel    blacklisted=0    10    0   100    
 /obj/item/weapon/c_tube    blacklisted=0    10    0   100    
 /obj/item/weapon/wrapping_paper    blacklisted=0    10    0   100    
 /obj/item/weapon/material/shard/shrapnel/scrap    blacklisted=0    20    0   100    
@@ -88,6 +89,7 @@
 /obj/item/weapon/material/shard/plasma    blacklisted=0    16.6667    0   100    
 /obj/item/weapon/material/shard    blacklisted=0    16.6667    0   100    
 /obj/item/weapon/implanter    blacklisted=0    16.6667    0   100    
+/obj/item/weapon/corncob    blacklisted=0    10    0   100    
 /obj/item/weapon/ore/glass    blacklisted=0    5    0   100    
 /obj/item/weapon/folder/blue    blacklisted=0    20    0   100    
 /obj/item/weapon/folder/red    blacklisted=0    20    0   100    

@@ -37,6 +37,7 @@
 /obj/item/weapon/storage/internal/updating
 /obj/item/weapon/storage/internal
 /obj/item/weapon/storage/toolbox
+/obj/item/weapon/storage
 /obj/item/weapon/reagent_containers/enricher
 /obj/item/weapon/reagent_containers/food/drinks/cans
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
@@ -98,6 +99,8 @@
 /obj/item/weapon/gun/projectile
 /obj/item/weapon/gun
 /obj/item/weapon/rig
+/obj/item/weapon/grown
+/obj/item/weapon/plantspray
 /obj/item/weapon/ore
 /obj/item/weapon/holder/diona
 /obj/item/weapon/holder/borer
@@ -258,6 +261,10 @@
 /obj/item/mech_component
 /obj/item/mech_equipment/mounted_system
 /obj/item/mech_equipment
+/obj/item/weedkiller/triclopyr
+/obj/item/weedkiller/lindane
+/obj/item/weedkiller/D24
+/obj/item/weedkiller
 /obj/item/slime_extract
 /obj/item/modular_computer/console/preset
 /obj/item/modular_computer

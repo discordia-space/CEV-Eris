@@ -18,13 +18,15 @@
 #define SPAWN_TAG_ITEM "obj,item"
 #define SPAWN_TAG_WEAPON "obj,item,weapon"
 
+
+#define SPAWN_TAG_DICE "obj,item,dice"
+#define SPAWN_TAG_ITEM_BOTANICAL "obj,item,botanical"
+#define SPAWN_TAG_ITEM_CLOWN "obj,item,clown"
+
+
 #define SPAWN_RARE_ITEM "rare_item"
 
 #define SPAWN_TAG_RARE_ITEM "obj,item,rare_item"
-
-#define SPAWN_SPACECASH "spacecash"
-
-#define SPAWN_TAG_SPACECASH "obj,item,spacecash"
 
 //Items - tools
 #define SPAWN_TOOL "tool"
@@ -247,7 +249,7 @@
 #define SPAWN_TAG_CLOTHING_SUIT_PONCHO "obj,item,clothing,suit,suit_poncho"
 
 //	Items - storage
-#define SPAWN_storage "storage"
+#define SPAWN_STORAGE "storage"
 #define SPAWN_TOOLBOX "toolbox"
 #define SPAWN_POUCH "pouch"
 #define SPAWN_BELT "belt"
@@ -255,6 +257,7 @@
 #define SPAWN_FIRSTAID "firstaid"
 #define SPAWN_BACKPACK "backpack"
 
+#define SPAWN_TAG_STORAGE "obj,item,storage"
 #define SPAWN_TAG_TOOLBOX "obj,item,storage,toolbox"
 #define SPAWN_TAG_POUCH "obj,item,storage,pouch,clothing"
 #define SPAWN_TAG_BELT "obj,item,storage,belt,clothing"
@@ -472,6 +475,7 @@
 
 #define SPAWN_TAG_REMAINS "obj,item,remains"
 #define SPAWN_TAG_JUNK "obj,item,junk"
+#define SPAWN_TAG_JUNK_CLOWN "obj,item,junk,clown"
 #define SPAWN_TAG_CLEANABLE "effect,cleanable"
 
 //  SPAWNERS

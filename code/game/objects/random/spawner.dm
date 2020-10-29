@@ -171,9 +171,7 @@
 	return pick_spawn(candidates)
 
 /obj/spawner/proc/valid_candidates()
-	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price)
-	candidates -= exclusion_paths
-	candidates += include_paths
+	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price, FALSE, include_paths, exclusion_paths)
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)

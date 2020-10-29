@@ -8,12 +8,14 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
+	spawn_tags = SPAWN_TAG_ITEM_BOTANICAL
+	bad_type = /obj/item/weapon/plantspray
+	price_tag = 1
 	var/toxicity = 4
 	var/pest_kill_str = 0
 	var/weed_kill_str = 0
 
 /obj/item/weapon/plantspray/weeds // -- Skie
-
 	name = "weed-spray"
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
 	icon_state = "weedspray"
@@ -52,28 +54,29 @@
 // Weedkiller defines for hydroponics
 // *************************************
 
-/obj/item/weedkiller
+/obj/item/weedkiller // any use?
 	name = "bottle of weedkiller"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
+	spawn_tags = null //?
 	var/toxicity = 0
 	var/weed_kill_str = 0
 
-/obj/item/weedkiller/triclopyr
+/obj/item/weedkiller/triclopyr //?
 	name = "bottle of glyphosate"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	toxicity = 4
 	weed_kill_str = 2
 
-/obj/item/weedkiller/lindane
+/obj/item/weedkiller/lindane //?
 	name = "bottle of triclopyr"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	toxicity = 6
 	weed_kill_str = 4
 
-/obj/item/weedkiller/D24
+/obj/item/weedkiller/D24 //?
 	name = "bottle of 2,4-D"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle15"

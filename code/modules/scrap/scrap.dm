@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			if(rare)
 				true_loot_tags -= junk_tags
 				true_loot_tags |= rare_loot
-			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, 800, TRUE)
+			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, 800, TRUE, list(/obj/item/stash_spawner))
 		if(rare)
 			var/top = CLAMP(round(candidates.len*0.3),1 ,7)
 			candidates = SSspawn_data.only_top_candidates(candidates, top) //top 7

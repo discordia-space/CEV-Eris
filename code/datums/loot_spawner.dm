@@ -126,7 +126,7 @@
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
 
-/datum/controller/subsystem/spawn_data/proc/get_spawn_value(var/npath)
+/datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
 	var/atom/movable/A = npath
 	var/spawn_value = 10 * initial(A.spawn_frequency)/initial(A.rarity_value)
 	return spawn_value
@@ -134,9 +134,7 @@
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
 	for(var/tag in tags)
-		if(all_spawn_by_tag["[tag]"] in things)
-			continue
-		things += all_spawn_by_tag["[tag]"]
+		things |= all_spawn_by_tag["[tag]"]
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/spawns_lower_price(list/paths, price)
@@ -198,6 +196,8 @@
 	var/list/things = list()
 	var/list/values = list()
 	for(var/path in paths)
+		if(isnull(path))
+			continue
 		var/spawn_value = get_spawn_value(path)
 		if(!(spawn_value in values) && spawn_value > 0)
 			values += spawn_value
@@ -224,7 +224,7 @@
 			local_tags += list(tag)
 	return local_tags
 
-/datum/controller/subsystem/spawn_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE)
+/datum/controller/subsystem/spawn_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE, list/include, list/exclude)
 	var/list/candidates = spawn_by_tag(tags)
 	candidates -= spawn_by_tag(bad_tags)
 	if(!allow_blacklist)
@@ -240,4 +240,6 @@
 		candidates -= spawns_upper_price(candidates, top_price)
 	if(filter_density)
 		candidates = filter_densty(candidates)
+	candidates -= exclude
+	candidates |= include
 	return candidates

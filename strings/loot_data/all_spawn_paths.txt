@@ -663,7 +663,6 @@
 /obj/item/weapon/storage/wallet
 /obj/item/weapon/storage/photo_album
 /obj/item/weapon/storage/makeshift_grinder
-/obj/item/weapon/storage
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites
@@ -1899,7 +1898,6 @@
 /obj/item/weapon/holo/esword/red
 /obj/item/weapon/holo/esword
 /obj/item/weapon/holo
-/obj/item/weapon/grown
 /obj/item/weapon/corncob
 /obj/item/weapon/plantspray/weeds
 /obj/item/weapon/plantspray/pests/old/carbaryl
@@ -1907,7 +1905,6 @@
 /obj/item/weapon/plantspray/pests/old/phosmet
 /obj/item/weapon/plantspray/pests/old
 /obj/item/weapon/plantspray/pests
-/obj/item/weapon/plantspray
 /obj/item/weapon/barcodescanner
 /obj/item/weapon/coin/gold
 /obj/item/weapon/coin/silver
@@ -3597,10 +3594,6 @@
 /obj/item/honey_frame
 /obj/item/beehive_assembly
 /obj/item/bee_pack
-/obj/item/weedkiller/triclopyr
-/obj/item/weedkiller/lindane
-/obj/item/weedkiller/D24
-/obj/item/weedkiller
 /obj/item/integrated_circuit/passive/power/solar_cell
 /obj/item/integrated_circuit/passive/power/metabolic_siphon/synthetic
 /obj/item/integrated_circuit/passive/power/metabolic_siphon
