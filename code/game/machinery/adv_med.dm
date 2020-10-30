@@ -213,7 +213,7 @@
 			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
 			return
 		var/obj/item/weapon/paper/R = new(src.loc)
-		R.name = "[occupant.real_name] scan report"
+		R.name = "[occupant.get_authentification_name()] scan report"
 		R.info = format_occupant_data(src.connected.get_occupant_data())
 		R.update_icon()
 
@@ -223,7 +223,7 @@
 		return
 	var/mob/living/carbon/human/H = occupant
 	var/list/occupant_data = list(
-		"name" = H.real_name,
+		"name" = H.get_authentification_name(),
 		"stationtime" = stationtime2text(),
 		"stat" = H.stat,
 		"health" = round(H.health/H.maxHealth)*100,
@@ -256,7 +256,7 @@
 /obj/machinery/body_scanconsole/proc/format_occupant_data(var/list/occ)
 	var/dat = "<font color='blue'><b>Scan performed at [occ["stationtime"]]</b></font><br>"
 	dat += "<font color='blue'><b>Occupant Statistics:</b></font><br>"
-	dat += text("Name: <i>[]</i><br>", occ["name"])
+	dat += text("ID Name: <i>[]</i><br>", occ["name"])
 	var/aux
 	switch (occ["stat"])
 		if(0)
