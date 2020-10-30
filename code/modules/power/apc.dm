@@ -594,26 +594,8 @@
 			SPAN_NOTICE("You insert the power cell."))
 		chargecount = 0
 		update_icon()
-
-	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))			// trying to unlock the interface with an ID card
-		if(emagged)
-			to_chat(user, "The interface is broken.")
-		else if(opened)
-			to_chat(user, "You must close the cover to swipe an ID card.")
-		else if(wiresexposed)
-			to_chat(user, "You must close the panel")
-		else if(stat & (BROKEN|MAINT))
-			to_chat(user, "Nothing happens.")
-		else if(hacker)
-			to_chat(user, SPAN_WARNING("Access denied."))
-		else
-			if(allowed(usr) && !isWireCut(APC_WIRE_IDSCAN))
-				locked = !locked
-				to_chat(user, "You [ locked ? "lock" : "unlock"] the APC interface.")
-				update_icon()
-			else
-				to_chat(user, SPAN_WARNING("Access denied."))
-
+	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))	
+		toggle_lock(user)
 	else if (istype(I, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())
@@ -788,6 +770,32 @@
 
 	return ui_interact(user)
 
+/obj/machinery/power/apc/proc/toggle_lock(mob/user)
+	if(emagged)
+		to_chat(user, "The interface is broken.")
+	else if(opened)
+		to_chat(user, "You must close the cover to swipe an ID card.")
+	else if(wiresexposed)
+		to_chat(user, "You must close the panel")
+	else if(stat & (BROKEN|MAINT))
+		to_chat(user, "Nothing happens.")
+	else if(hacker)
+		to_chat(user, SPAN_WARNING("Access denied."))
+	else
+		if(allowed(usr) && !isWireCut(APC_WIRE_IDSCAN))
+			locked = !locked
+			to_chat(user, "You [ locked ? "lock" : "unlock"] the APC interface.")
+			update_icon()
+		else
+			to_chat(user, SPAN_WARNING("Access denied."))
+
+
+/obj/machinery/power/apc/AltClick(mob/user)
+	..()
+	if(!can_use(user) || issilicon(user))
+		return
+	else
+		toggle_lock(user)
 
 /obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!user)
