@@ -17,16 +17,15 @@
 	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
-	var/obj/item/weapon/cell/cell
-	var/obj/item/weapon/cell/starting_cell = /obj/item/weapon/cell/medium/high
+	var/obj/item/weapon/cell/cell = /obj/item/weapon/cell/medium/high
 	var/suitable_cell = /obj/item/weapon/cell/medium
 	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/melee/baton/Initialize()
 	. = ..()
-	if(!cell && suitable_cell && starting_cell)
-		cell = new starting_cell(src)
+	if(cell)
+		cell = new cell(src)
 	update_icon()
 
 /obj/item/weapon/melee/baton/Destroy()
@@ -180,7 +179,7 @@
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
-	starting_cell = null
+	cell = null
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 
 /obj/item/weapon/melee/baton/excelbaton
@@ -198,7 +197,7 @@
 	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
-	starting_cell = /obj/item/weapon/cell/medium/excelsior
+	cell = /obj/item/weapon/cell/medium/excelsior
 
 //excelsior baton has 2 inhand sprites
 /obj/item/weapon/melee/baton/excelbaton/set_status(s)
