@@ -105,6 +105,28 @@
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	preloaded_reagents = list("sacid" = 60)
 
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape
+	name = "vape vial"
+	desc = "A small plastic vial."
+	icon_state = "vial_plastic"
+	matter = list(MATERIAL_PLASTIC = 1)
+
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry
+	name = "berry vape vial"
+	preloaded_reagents = list("nicotine" = 20, "berryjuice" = 10)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon
+	name = "lemon vape vial"
+	preloaded_reagents = list("nicotine" = 20, "lemonjuice" = 10)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana
+	name= "banana vape vial"
+	preloaded_reagents = list("nicotine" = 20, "banana" = 10)
+
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine
+	name = "nicotine vape vial"
+	preloaded_reagents = list("nicotine" = 30)
 
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."
