@@ -20,7 +20,7 @@
 
 	return mobs
 
-/proc/random_hair_style(gender, species = "Human")
+/proc/random_hair_style(gender, species = SPECIES_HUMAN)
 	var/h_style = "Bald"
 
 	var/datum/species/mob_species = all_species[species]
@@ -30,7 +30,7 @@
 
 	return h_style
 
-/proc/random_facial_hair_style(gender, species = "Human")
+/proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 	var/f_style = "Shaved"
 	var/datum/species/mob_species = all_species[species]
 	var/list/valid_facialhairstyles = mob_species.get_facial_hair_styles(gender)
@@ -38,14 +38,14 @@
 		f_style = pick(valid_facialhairstyles)
 		return f_style
 
-/proc/sanitize_name(name, species = "Human", max_length = MAX_NAME_LEN)
+/proc/sanitize_name(name, species = SPECIES_HUMAN, max_length = MAX_NAME_LEN)
 	var/datum/species/current_species
 	if(species)
 		current_species = all_species[species]
 
 	return current_species ? current_species.sanitize_name(name) : sanitizeName(name, max_length)
 
-/proc/random_name(gender, species = "Human")
+/proc/random_name(gender, species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
@@ -59,7 +59,7 @@
 	else
 		return current_species.get_random_name(gender)
 
-/proc/random_first_name(gender, species = "Human")
+/proc/random_first_name(gender, species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
@@ -73,7 +73,7 @@
 	else
 		return current_species.get_random_first_name(gender)
 
-/proc/random_last_name(species = "Human")
+/proc/random_last_name(species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
