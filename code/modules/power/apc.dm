@@ -568,9 +568,8 @@
 				cell.add_fingerprint(user)
 				cell.update_icon()
 				cell = null
-				user.visible_message("<span class='warning'>[user.name] removes the power cell from [name]!</span>",\
-									 "<span class='notice'>You remove the power cell.</span>")
-				//user << "You remove the power cell."
+				user.visible_message(SPAN_WARNING("[user.name] removes the power cell from [name]!"),\
+									 SPAN_NOTICE("You remove the power cell."))
 				charging = 0
 				update_icon()
 				return
@@ -710,7 +709,7 @@
 					to_chat(user, SPAN_NOTICE("You emag the APC interface."))
 					update_icon()
 				else
-					to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] the APC interface.</span>")
+					to_chat(user, SPAN_WARNING("You fail to [ locked ? "unlock" : "lock"] the APC interface."))
 				return TRUE
 
 /obj/machinery/power/apc/attack_hand(mob/user)
@@ -782,7 +781,7 @@
 	else if(hacker)
 		to_chat(user, SPAN_WARNING("Access denied."))
 	else
-		if(allowed(usr) && !isWireCut(APC_WIRE_IDSCAN))
+		if(allowed(user) && !isWireCut(APC_WIRE_IDSCAN))
 			locked = !locked
 			to_chat(user, "You [ locked ? "lock" : "unlock"] the APC interface.")
 			update_icon()

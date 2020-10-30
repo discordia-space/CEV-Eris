@@ -883,9 +883,9 @@
 		to_chat(user, "It does nothing")
 		return
 	else
-		if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
+		if(allowed(user) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
 			locked = !locked
-			to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+			to_chat(user, SPAN_NOTICE("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
 		else
 			to_chat(user, SPAN_WARNING("Access denied."))
 
