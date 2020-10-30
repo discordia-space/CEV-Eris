@@ -67,7 +67,7 @@
 
 	update_icon()
 
-/obj/item/weapon/mine/attack_hand(mob/user as mob)
+/obj/item/weapon/mine/attack_hand(mob/user)
 	if (deployed)
 		user.visible_message(
 				SPAN_DANGER("[user] extends its hand to reach the [src]!"),
@@ -79,7 +79,8 @@
 				SPAN_DANGER("you attempts to pick up the [src] only to hear a beep as it explodes in your hands!")
 				)
 			explode()
-	.=..()
+			return
+	. =..()
 
 /obj/item/weapon/mine/attackby(obj/item/I, mob/user)
 	if(QUALITY_PULSING in I.tool_qualities)
