@@ -90,7 +90,7 @@
 
 /mob/living/carbon/slime/handle_regular_status_updates()
 
-	src.blinded = null
+	src.blinded = FALSE
 
 	health = maxHealth - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
@@ -110,7 +110,7 @@
 
 	if (src.stat == DEAD)
 		src.lying = 1
-		src.blinded = 1
+		src.blinded = TRUE
 	else
 		if (src.paralysis || src.stunned || src.weakened || (status_flags && FAKEDEATH)) //Stunned etc.
 			if (src.stunned > 0)
@@ -122,7 +122,7 @@
 				src.stat = 0
 			if (src.paralysis > 0)
 				AdjustParalysis(-1)
-				src.blinded = 0
+				src.blinded = FALSE
 				src.lying = 0
 				src.stat = 0
 
@@ -134,7 +134,7 @@
 
 	if (src.eye_blind)
 		src.eye_blind = 0
-		src.blinded = 1
+		src.blinded = TRUE
 
 	if (src.ear_deaf > 0) src.ear_deaf = 0
 	if (src.ear_damage < 25)
@@ -143,7 +143,7 @@
 	src.density = !( src.lying )
 
 	if (src.sdisabilities & BLIND)
-		src.blinded = 1
+		src.blinded = TRUE
 	if (src.sdisabilities & DEAF)
 		src.ear_deaf = 1
 

@@ -58,7 +58,7 @@
 		for(var/obj/item/weapon/grab/G in src)
 			G.Process()
 
-		blinded = 0 // Placing this here just show how out of place it is.
+		blinded = FALSE // Placing this here just show how out of place it is.
 		// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
 		if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 			handle_disabilities() // eye, ear, brain damages

@@ -5,7 +5,7 @@
 	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
-	src.blinded = null
+	src.blinded = FALSE
 
 	//Status updates, death etc.
 	clamp_values()
@@ -99,9 +99,9 @@
 				AdjustWeakened(-1)
 			if (src.paralysis > 0)
 				AdjustParalysis(-1)
-				src.blinded = 1
+				src.blinded = TRUE
 			else
-				src.blinded = 0
+				src.blinded = FALSE
 
 		else	//Not stunned.
 			src.stat = 0
@@ -109,14 +109,14 @@
 		confused = max(0, confused - 1)
 
 	else //Dead.
-		src.blinded = 1
+		src.blinded = TRUE
 		src.stat = 2
 
 	if (src.stuttering) src.stuttering--
 
 	if (src.eye_blind)
 		src.eye_blind--
-		src.blinded = 1
+		src.blinded = TRUE
 
 	if (src.ear_deaf > 0) src.ear_deaf--
 	if (src.ear_damage < 25)
@@ -126,7 +126,7 @@
 	src.density = !( src.lying )
 
 	if ((src.sdisabilities & BLIND))
-		src.blinded = 1
+		src.blinded = TRUE
 	if ((src.sdisabilities & DEAF))
 		src.ear_deaf = 1
 
@@ -145,9 +145,9 @@
 			radio.on = TRUE
 
 	if(is_component_functioning("camera"))
-		src.blinded = 0
+		src.blinded = FALSE
 	else
-		src.blinded = 1
+		src.blinded = TRUE
 
 	return 1
 
