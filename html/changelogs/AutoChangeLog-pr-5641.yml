@@ -1,0 +1,5 @@
+author: drexample
+delete-after: true
+changes:
+  - bugfix: Fixes drones and blitzshells annihilating the master controller (and other
+      drone health related issues)
