@@ -184,6 +184,14 @@ datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/machines)
 	if (istype(SSmachines.power_objects))
 		power_objects = SSmachines.power_objects
 
+//Prints associative list of key = typepaths of stuff in processing and value = how many of it exists in processing
+/datum/controller/subsystem/machines/proc/debug_print()
+	var/list/the_list = list()
+	for(var/atom/thing in processing)
+		the_list[thing.type] += 1
+	to_chat(world, "outputting list")
+	to_chat(world, json_encode(the_list))
+
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY
 #undef SSMACHINES_POWERNETS
