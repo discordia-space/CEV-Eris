@@ -58,12 +58,12 @@
 				res |= picked.primitive_form
 	return res
 
-/datum/disease2/disease/proc/activate(var/mob/living/carbon/mob)
+/datum/disease2/disease/proc/activate(mob/living/carbon/mob)
 	if(dead)
 		cure(mob)
 		return
 
-	if(mob.stat == 2)
+	if(mob.stat == DEAD)
 		return
 	if(stage <= 1 && clicks == 0) 	// with a certain chance, the mob may become immune to the disease before it starts properly
 		if(prob(5))
