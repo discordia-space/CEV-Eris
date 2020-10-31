@@ -459,7 +459,7 @@
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
 			for(var/damage_type in in_chamber.damage_types)
 				var/damage = in_chamber.damage_types[damage_type]*2.5
-				user.apply_damage(damage, damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
+				user.apply_damage(damage, damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=TRUE)
 			user.death()
 		else
 			to_chat(user, SPAN_NOTICE("Ow..."))
