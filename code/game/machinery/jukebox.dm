@@ -171,11 +171,11 @@
 		return
 
 	if(!anchored)
-		usr << "<span class='warning'>You must secure \the [src] first.</span>"
+		to_chat(usr, SPAN_WARNING("You must secure \the [src] first."))
 		return
 
 	if(inoperable())
-		usr << "\The [src] doesn't appear to function."
+		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 
 	if(href_list["change_track"])
@@ -221,7 +221,7 @@
 			spawn(15)
 				explode()
 		else if(current_track == null)
-			usr << "No track selected."
+			to_chat(usr, "No track selected.")
 		else
 			StartPlaying()
 
@@ -229,7 +229,7 @@
 
 /obj/machinery/media/jukebox/interact(mob/user)
 	if(inoperable())
-		usr << "\The [src] doesn't appear to function."
+		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
 	ui_interact(user)
 
