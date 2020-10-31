@@ -49,7 +49,7 @@
 	if(wearing_rig && wearing_rig.offline)
 		wearing_rig = null
 
-	..()
+	. = ..()
 
 	if(life_tick%30==15)
 		hud_updateflag = 1022
@@ -57,7 +57,7 @@
 	voice = GetVoice()
 
 	//No need to update all of these procs if the guy is dead.
-	if(stat != DEAD && !in_stasis)
+	if(. && !in_stasis)
 
 		//Organs and blood
 		handle_organs()
