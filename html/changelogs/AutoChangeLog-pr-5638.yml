@@ -1,4 +1,0 @@
-author: TermService
-delete-after: true
-changes:
-  - bugfix: fixed double mine bug

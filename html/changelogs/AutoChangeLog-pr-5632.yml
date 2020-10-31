@@ -1,8 +1,0 @@
-author: Garen7
-delete-after: true
-changes:
-  - bugfix: Heads can no longer give themselves Church/Club access (the Priest/Manager
-      still can though)
-  - bugfix: MBO can give access to the medbay(moebius general access) and to his office
-  - bugfix: MBO can access his office again
-  - bugfix: Doctors can access virology again
