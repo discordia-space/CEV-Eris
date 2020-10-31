@@ -45,7 +45,7 @@
 		return FALSE
 	..()
 
-/mob/living/carbon/superior_animal/roach/bluespace/attack_hand(mob/living/carbon/M as mob)
+/mob/living/carbon/superior_animal/roach/bluespace/attack_hand(mob/living/carbon/M)
 	if(M.a_intent != I_HELP && prob(change_tele_to_mob))
 		var/source = src
 		if(target_mob)

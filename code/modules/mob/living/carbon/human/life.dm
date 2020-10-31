@@ -81,8 +81,8 @@
 
 /mob/living/carbon/human/proc/handle_some_updates()
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)
