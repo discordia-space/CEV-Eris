@@ -198,4 +198,4 @@ While it would be entirely possible to check the mob's move handlers list for th
 	var/can_be_fed = 1 //Can be feeded by reagent_container or other things
 
 	///THe z level this mob is currently registered in
-	var/registered_z = null
+	var/registered_z

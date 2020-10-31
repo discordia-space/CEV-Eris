@@ -72,7 +72,7 @@
 
 	var/turf/T = get_turf(src)
 	if(T)
-		if (registered_z != T.z)
+		if(registered_z != T.z)
 			update_z(T.z)
 
 /mob/living/proc/handle_breathing()

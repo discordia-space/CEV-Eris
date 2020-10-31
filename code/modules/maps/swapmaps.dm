@@ -325,8 +325,11 @@ swapmap
 		x2+=x1-1
 		y2+=y1-1
 		z2+=z1-1
-		while(z2 > world.maxz) // stretch z if necessary
-			world.incrementMaxZ()
+		if(z2 > world.maxz) // stretch z if necessary
+			while(z2 > world.maxz)
+				world.incrementMaxZ()
+		else //Shrinking z level, notify it got changed
+			SSmobs.MaxZChanged()
 
 		if(!ischunk)
 			swapmaps_loaded[src]=null
