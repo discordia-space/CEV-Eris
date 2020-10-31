@@ -117,7 +117,8 @@
 
 	for(var/mob/living/M in victims_to_teleport)
 		go_to_bluespace(get_turf(src), 3, FALSE, M, get_turf(target))
-	new /obj/structure/scrap/science/large(src.loc)
+
+	new /obj/structure/scrap_spawner/science/large(src.loc)
 
 	sleep(2)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()

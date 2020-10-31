@@ -5,6 +5,11 @@
 	rarity = 4
 	var/obj/item/target
 
+/datum/individual_objective/bad_technology/can_assign(mob/living/L)
+	if(!..())
+		return FALSE
+	return pick_faction_item(L)
+
 /datum/individual_objective/bad_technology/assign()
 	..()
 	target = pick_faction_item(mind_holder)
@@ -44,7 +49,7 @@
 			continue
 		valid_targets += H
 	target = pick(valid_targets)
-	desc = "[target] has the potential to be a great beliver hbut their path has gone astray. Convert them, even if force is required."
+	desc = "[target] has the potential to be a great beliver but their path has gone astray. Convert them, even if force is required."
 	RegisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
 
 /datum/individual_objective/convert/task_completed(mob/living/carbon/human/H, obj/item/weapon/implant)

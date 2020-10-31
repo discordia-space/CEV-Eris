@@ -40,7 +40,7 @@
 	var/completed_desc = "<span style='color:green'>Objective completed!</span>"
 	var/show_la = "<span style='color:red'>(LA)</span>"
 	var/la_explanation  = "<b><B>Note:</B><span style='font-size: 75%'> limited antag (LA) objectives provide an ability to harm only your target, \
-						or to push for faction on faction conflict, but do not allow you to kill everyone in the department to get inside for their \
+						or to push for faction on faction conflict, but do not allow you to kill everyone in the department to get inside for your \
 						needs.</span></b>"
 
 /datum/individual_objective/proc/assign(datum/mind/new_owner)
@@ -58,7 +58,7 @@
 	var/mob/living/carbon/human/H = owner.current
 	H.sanity.insight += insight_reward
 	H.sanity.insight_rest += insight_reward/2
-	to_chat(owner,  SPAN_NOTICE("You has completed the personal objective: [name]"))
+	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
 
 /datum/individual_objective/proc/get_description()
 	var/n_desc = desc
@@ -86,14 +86,14 @@
 		return TRUE
 	return FALSE
 
-/datum/individual_objective/proc/pick_faction_item(var/mob/living/carbon/human/H, ignore_departmen=FALSE)
+/datum/individual_objective/proc/pick_faction_item(mob/living/carbon/human/H, ignore_departmen=FALSE)
 	var/list/valid_targets = list()
 	for(var/obj/item/faction_item in GLOB.all_faction_items)
 		if(faction_item in valid_targets)
 			continue
 		if(!ignore_departmen && H.mind.assigned_job && (H.mind.assigned_job.department in GLOB.all_faction_items[faction_item]))
 			continue
-		if(!ignore_departmen && H && GLOB.all_faction_items[faction_item] == church_positions && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
+		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && H.get_core_implant(/obj/item/weapon/implant/core_implant/cruciform))
 			continue
 		if(!locate(faction_item.type))
 			continue

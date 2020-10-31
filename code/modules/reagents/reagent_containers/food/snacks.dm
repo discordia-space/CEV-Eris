@@ -1,4 +1,7 @@
 //Food items that are eaten normally and don't leave anything behind.
+/obj/item/weapon/reagent_containers/food
+	bad_type = /obj/item/weapon/reagent_containers/food
+
 /obj/item/weapon/reagent_containers/food/snacks
 	name = "snack"
 	desc = "yummy"
@@ -6,6 +9,8 @@
 	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEM_SIZE_SMALL
+	spawn_tags = SPAWN_TAG_COOKED_FOOD
+	bad_type = /obj/item/weapon/reagent_containers/food/snacks
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash
@@ -3309,7 +3314,7 @@
 	taste_tag = list(BLAND_FOOD)
 
 // potato + knife = raw sticks
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user)
+/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user) //this is obsolete??
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_CUTTING, FAILCHANCE_ZERO, required_stat = STAT_BIO))
 			new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(src)

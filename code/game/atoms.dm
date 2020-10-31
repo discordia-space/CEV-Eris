@@ -744,3 +744,10 @@ its easier to just keep the beam vertical.
 		else if(C)
 			color = C
 			return
+
+//Return flags that may be added as part of a mobs sight
+/atom/proc/additional_sight_flags()
+	return 0
+
+/atom/proc/additional_see_invisible()
+	return 0

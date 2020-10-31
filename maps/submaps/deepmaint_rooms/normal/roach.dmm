@@ -1,7 +1,7 @@
 "a" = (/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
 "b" = (/turf/simulated/floor/tiled/techmaint_perforated,/area/deepmaint)
 "c" = (/turf/simulated/wall,/area/deepmaint)
-"d" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
+"d" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/plating/under,/area/deepmaint)
 "e" = (/obj/spawner/scrap,/turf/simulated/floor/plating/under,/area/deepmaint)
 "f" = (/turf/simulated/floor/plating/under,/area/deepmaint)
 "g" = (/obj/spawner/pack/machine,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
@@ -16,11 +16,12 @@
 "p" = (/obj/structure/railing,/turf/simulated/floor/plating/under,/area/deepmaint)
 "q" = (/obj/machinery/door/airlock/maintenance_common{name = "Service Maintenance"; req_access = list(12)},/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
 "r" = (/obj/structure/railing,/obj/structure/railing{tag = "icon-railing0 (EAST)"; icon_state = "railing0"; dir = 4},/turf/simulated/floor/plating/under,/area/deepmaint)
-"s" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"s" = (/obj/landmark/loot_biomes/mob/roach{range = 6},/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
 "t" = (/obj/spawner/mob/roaches/cluster,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
-"u" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
+"u" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
 "v" = (/obj/structure/table/standard,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot,/obj/spawner/pack/tech_loot/low_chance,/obj/spawner/pack/tech_loot/low_chance,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/white/brown_perforated,/area/deepmaint)
 "w" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/techmaint_panels,/area/deepmaint)
+"x" = (/obj/spawner/mob/biome_spawner_mob/low_chance,/turf/simulated/floor/tiled/techmaint_cargo,/area/deepmaint)
 
 (1,1,1) = {"
 bbbbbbbbbbb
@@ -28,10 +29,10 @@ bccccaccccb
 bcdecfcedcb
 bcfecccefcb
 bcfccgccfcb
-bcfhvjkhfcb
+bcfhvskhfcb
 blfhijmhfnb
 bopchqhcprb
-bsawataaasb
-bjjjjujjjjb
+buawataaaub
+bjjjjxjjjjb
 bbbbbbbbbbb
 "}

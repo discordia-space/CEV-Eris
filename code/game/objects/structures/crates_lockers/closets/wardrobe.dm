@@ -6,6 +6,7 @@
 	spawn_tags = SPAWN_TAG_WARDROBE
 
 /obj/structure/closet/wardrobe/color
+	bad_type = /obj/structure/closet/wardrobe/color
 	spawn_blacklisted = FALSE
 
 /obj/structure/closet/wardrobe/color/pink

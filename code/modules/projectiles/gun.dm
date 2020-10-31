@@ -226,11 +226,11 @@
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
 
-		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+		if(H.r_hand == src && isgun(H.l_hand))
 			off_hand = H.l_hand
 			dual_wielding = TRUE
 
-		else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+		else if(H.l_hand == src && isgun(H.r_hand))
 			off_hand = H.r_hand
 			dual_wielding = TRUE
 		else
@@ -527,11 +527,11 @@
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
 			hud_actions += action
-			if(istype(src.loc, /mob))
+			if(ismob(src.loc))
 				var/mob/user = src.loc
 				user.client.screen += action
 	else
-		if(istype(src.loc, /mob))
+		if(ismob(src.loc))
 			var/mob/user = src.loc
 			user.client.screen -= action
 		hud_actions -= action

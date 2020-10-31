@@ -72,8 +72,8 @@ They generally give more random result and can provide more divercity in spawn.
 					/obj/spawner/knife = 6,
 					/obj/spawner/ammo = 15,
 					/obj/spawner/ammo/shotgun = 15,
-					/obj/spawner/ammo_ihs = 15,
-					/obj/spawner/ammo_lowcost = 18,
+					/obj/spawner/ammo/ihs = 15,
+					/obj/spawner/ammo/lowcost = 18,
 					/obj/spawner/gun_upgrade = 10,
 					/obj/spawner/cloth/holster = 8
 				))
@@ -89,6 +89,7 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "rare loot"
 	icon_state = "box-orange"
 	rarity_value = 100
+	spawn_tags = SPAWN_TAG_RARE_ITEM
 
 /obj/spawner/pack/rare/item_to_spawn()
 	return pickweight(RANDOM_RARE_ITEM) // made into a define so that rare objects can be spawned for mobs too

@@ -297,7 +297,7 @@
 		wrench(user, O)
 		return
 
-	if(istype(O, /obj/item/weapon/tool))
+	if(istool(O))
 		return src.attack_hand(user)
 
 
@@ -545,9 +545,9 @@
 
 /obj/machinery/power/shield_generator/proc/get_logs()
 	var/list/all_logs = list()
-	for(var/entry in event_log)
+	for(var/i = event_log.len; i > 1; i--)
 		all_logs.Add(list(list(
-			"entry" = entry
+			"entry" = event_log[i]
 		)))
 	return all_logs
 

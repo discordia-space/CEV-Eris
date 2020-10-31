@@ -32,7 +32,7 @@
 	power = 50
 
 /datum/ritual/cruciform/base/soul_hunger/perform(mob/living/carbon/human/H, obj/item/weapon/implant/core_implant/C)
-	H.nutrition += 100
+	H.adjustNutrition(100)
 	H.adjustToxLoss(5)
 	return TRUE
 

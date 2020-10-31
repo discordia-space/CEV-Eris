@@ -18,7 +18,7 @@
 	)
 
 /obj/item/clothing/head/mindreader/ui_action_click()
-	if(istype(loc, /mob))
+	if(ismob(loc))
 		if(world.time >= (last_use + self_cooldown))
 			last_use = world.time
 			var/mob/user = loc

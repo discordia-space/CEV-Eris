@@ -70,6 +70,7 @@ var/const/tk_maxrange = 15
 	w_class = ITEM_SIZE_COLOSSAL
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
+	spawn_tags = null
 
 	var/last_throw = 0
 	var/atom/movable/focus

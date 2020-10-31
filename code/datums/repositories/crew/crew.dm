@@ -52,7 +52,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
 		if(C.has_sensor && pos && pos.z == z_level && C.sensor_mode != SUIT_SENSOR_OFF)
-			if(istype(C.loc, /mob/living/carbon/human))
+			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
 
 				if(H.w_uniform != C)

@@ -23,7 +23,7 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
-	density = 1 //Should be 0, but then these things would be a nightmare to kill.
+	density = TRUE //Should be 0, but then these things would be a nightmare to kill.
 	faction = "spiders"
 
 /mob/living/simple_animal/spider_core/New()

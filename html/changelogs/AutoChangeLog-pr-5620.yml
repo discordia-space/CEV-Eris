@@ -1,0 +1,4 @@
+author: Garen7
+delete-after: true
+changes:
+  - bugfix: Fixes the orange error on boots with a knife in them

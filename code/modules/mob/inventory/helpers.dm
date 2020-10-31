@@ -1,8 +1,8 @@
 /obj/item
 	var/overslot = 0
-	var/obj/item/overslot_contents = null
+	var/obj/item/overslot_contents
 
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user=null)
+/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user)
 	return TRUE
 
 /proc/mob_can_equip(mob/living/Mob, obj/item/Item, slot, disable_warning)

@@ -31,6 +31,7 @@
 	total_health = 75
 	brute_mod = 1.5
 	burn_mod = 1.5
+	lower_sanity_process = TRUE
 
 	spawn_flags = IS_RESTRICTED
 

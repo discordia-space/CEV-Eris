@@ -190,7 +190,7 @@
 	infested.Blend(covering_mask, ICON_MULTIPLY)
 	overlays += infested
 
-	maxHealth = victim.maxHealth * 2 + 10
+	setMaxHealth(victim.maxHealth * 2 + 10)
 	health = maxHealth
 	name = "[pick("warped", "twisted", "tortured", "tormented")] [victim.name]"
 	if(length(victim.desc))
@@ -709,7 +709,7 @@
 		else
 			flick("mechiver-opening_wires", src)
 
-		if(istype(passenger, /mob/living/carbon/human))
+		if(ishuman(passenger))
 			if(!safely) //that was stressful
 				var/mob/living/carbon/human/H = passenger
 				if(!pilot && H.stat == DEAD)
@@ -737,7 +737,7 @@
 		picked_mob = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
 	else
 		if(pilot)
-			if(istype(corpse, /mob/living/carbon/human))
+			if(ishuman(corpse))
 				picked_mob = /mob/living/simple_animal/hostile/hivemind/himan
 			else if(istype(corpse, /mob/living/silicon/robot))
 				picked_mob = /mob/living/simple_animal/hostile/hivemind/hiborg

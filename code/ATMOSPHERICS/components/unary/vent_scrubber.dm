@@ -17,7 +17,7 @@
 	layer = GAS_SCRUBBER_LAYER
 
 	var/area/initial_loc
-	var/id_tag = null
+	var/id_tag
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 

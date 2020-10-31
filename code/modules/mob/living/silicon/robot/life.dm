@@ -45,7 +45,7 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if ( cell && is_component_functioning("power cell") && src.cell.charge > 0 )
+	if (cell && is_component_functioning("power cell") && src.cell.charge > 0)
 		if(src.module_state_1)
 			cell_use_power(50) // 50W load for every enabled tool TODO: tool-specific loads
 		if(src.module_state_2)

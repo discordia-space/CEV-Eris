@@ -64,7 +64,6 @@
 	var/view_damage_threshold = 20
 	var/environment_cap_coeff = 1 //How much we are affected by environmental cognitohazards. Multiplies the above threshold
 
-
 	var/say_time = 0
 	var/breakdown_time = 0
 	var/spook_time = 0
@@ -75,6 +74,8 @@
 
 	var/eat_time_message = 0
 
+	var/life_tick_modifier = 2	//How often is the onLife() triggered and by how much are the effects multiplied
+
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
 	level = max_level
@@ -83,7 +84,8 @@
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
 /datum/sanity/proc/onLife()
-	if(owner.stat == DEAD || owner.in_stasis)
+	handle_breakdowns()
+	if(owner.stat == DEAD || owner.life_tick % life_tick_modifier || owner.in_stasis || (owner.species.lower_sanity_process && !owner.client))
 		return
 	var/affect = SANITY_PASSIVE_GAIN * sanity_passive_gain_multiplier
 	if(owner.stat) //If we're unconscious
@@ -92,8 +94,7 @@
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
-	handle_breakdowns()
+	changeLevel(max(affect  * life_tick_modifier, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_insight()
 	handle_level()
 	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
@@ -134,7 +135,7 @@
 			if(H)
 				if(H.sanity.level > 60)
 					moralist_factor += 0.02
-	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor
+	insight += INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier
 	while(insight >= 100)
 		to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
 		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)

@@ -134,7 +134,7 @@
 	for(var/i = 1 to amount)
 		var/turf/spawn_loc = pick(places_to_spawn)
 		champion = new champion_path(spawn_loc)
-		champion.maxHealth += 150
+		champion.adjustMaxHealth(150)
 		champion.health += 150
 		champion.malfunction_chance = 0
 		champion.name = "Champion "

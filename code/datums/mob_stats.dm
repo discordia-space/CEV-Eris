@@ -43,7 +43,8 @@
 /datum/stat_holder/proc/getStat(statName, pure = FALSE)
 	if (!islist(statName))
 		var/datum/stat/S = stat_list[statName]
-		SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
+		if(holder)
+			SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 		return S ? S.getValue(pure) : 0
 	else
 		log_debug("passed list to getStat()")
