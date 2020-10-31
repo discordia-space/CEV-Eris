@@ -227,7 +227,7 @@
 	name = "roller bed"
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
-	anchored = 0
+	anchored = FALSE
 	buckle_pixel_shift = "x=0;y=6"
 	var/item_form_type = /obj/item/roller	//The folded-up object path.
 
@@ -269,13 +269,13 @@
 		R.add_fingerprint(user)
 		qdel(src)
 
-/obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
+/obj/structure/bed/roller/post_buckle_mob(mob/living/M)
 	. = ..()
 	if(M == buckled_mob)
-		set_density(1)
+		set_density(TRUE)
 		icon_state = "up"
 	else
-		set_density(0)
+		set_density(FALSE)
 		icon_state = "down"
 
 /obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)

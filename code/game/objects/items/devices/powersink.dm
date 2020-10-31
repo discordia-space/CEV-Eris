@@ -52,7 +52,7 @@
 			else
 				if (mode == 2)
 					STOP_PROCESSING_POWER_OBJECT(src)
-				anchored = 0
+				anchored = FALSE
 				mode = 0
 				src.visible_message(SPAN_NOTICE("[user] detaches [src] from the cable!"))
 				set_light(0)

@@ -243,7 +243,7 @@
 	if(health <= 0)
 		destroyed=1
 		new /obj/item/stack/rods(get_turf(src))
-		density=0
+		density = FALSE
 		update_icon()
 
 // Used in mapping to avoid

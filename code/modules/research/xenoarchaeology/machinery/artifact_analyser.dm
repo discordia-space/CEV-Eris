@@ -91,7 +91,7 @@
 			P.artifact_type = scanned_object.type
 			if(istype(scanned_object, /obj/machinery/artifact))
 				var/obj/machinery/artifact/A = scanned_object
-				A.anchored = 0
+				A.anchored = FALSE
 				A.being_used = 0
 				scanned_object = null
 				if(A.my_effect)

@@ -38,7 +38,7 @@
 		flip(user)
 
 /obj/structure/railing/Destroy()
-	anchored = null
+	anchored = FALSE
 	flags = null
 	broken = 1
 	for(var/obj/structure/railing/R in oview(src, 1))

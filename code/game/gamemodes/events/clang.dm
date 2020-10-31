@@ -4,7 +4,7 @@ This file is included but not used. This overpowered event is too game-ruining t
 Immovable rod random event.
 The rod will spawn at some location outside the station, and travel in a straight line to the opposite side of the station
 Everything solid in the way will be ex_act()'d
-In my current plan for it, 'solid' will be defined as anything with density == 1
+In my current plan for it, 'solid' will be defined as anything with density == TRUE
 
 --NEOFite
 */
