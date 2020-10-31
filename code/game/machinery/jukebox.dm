@@ -16,7 +16,7 @@
 	anchored = TRUE
 	density = TRUE
 	power_channel = EQUIP
-	use_power = TRUE
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
 	circuit = /obj/item/weapon/electronics/circuitboard/jukebox
@@ -167,7 +167,7 @@
 		overlays += "panel_open"
 
 /obj/machinery/media/jukebox/Topic(href, href_list)
-	if(..() || !(Adjacent(usr) || istype(usr, /mob/living/silicon)))
+	if(..() || !(Adjacent(usr) || issilicon(usr)))
 		return
 
 	if(!anchored)
