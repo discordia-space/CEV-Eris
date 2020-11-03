@@ -69,7 +69,9 @@
 	languages = H.languages
 	flavor = H.flavor_text
 	age = H.age
-	stats = H.stats
+	QDEL_NULL(stats)
+	stats = new /datum/stat_holder()
+	H.stats.copyTo(stats)
 
 /datum/core_module/cruciform/cloning/preinstall()
 	if(ishuman(implant.wearer))
@@ -84,7 +86,9 @@
 		languages = H.languages
 		flavor = H.flavor_text
 		age = H.age
-		stats = H.stats
+		QDEL_NULL(stats)
+		stats = new /datum/stat_holder
+		H.stats.copyTo(stats)
 
 
 /datum/core_module/cruciform/obey/install()
