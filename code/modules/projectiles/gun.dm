@@ -575,6 +575,7 @@
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
+		refresh_upgrades()
 
 /obj/item/weapon/gun/proc/toggle_safety(mob/living/user)
 	if(restrict_safety || src != user.get_active_hand())
@@ -685,7 +686,6 @@
 
 /obj/item/weapon/gun/refresh_upgrades()
 	//First of all, lets reset any var that could possibly be altered by an upgrade
-	damage_multiplier = initial(damage_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
@@ -703,6 +703,7 @@
 	zoom_factor = initial(zoom_factor)
 	initialize_scope()
 	initialize_firemodes()
+	update_firemode()
 
 	//Now lets have each upgrade reapply its modifications
 	SEND_SIGNAL(src, COMSIG_ADDVAL, src)
