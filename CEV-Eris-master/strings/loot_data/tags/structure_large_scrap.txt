@@ -1,9 +1,0 @@
-/obj/structure/scrap_spawner/large    blacklisted=0    13.3333  0     100
-/obj/structure/scrap_spawner/medical/large    blacklisted=0    4.66853  0     100
-/obj/structure/scrap_spawner/vehicle/large    blacklisted=0    6.66667  0     100
-/obj/structure/scrap_spawner/food/large    blacklisted=0    13.3333  0     100
-/obj/structure/scrap_spawner/guns/large    blacklisted=0    1  0     100
-/obj/structure/scrap_spawner/science/large    blacklisted=0    4.66853  0     100
-/obj/structure/scrap_spawner/cloth/large    blacklisted=0    8.67303  0     100
-/obj/structure/scrap_spawner/poor/large    blacklisted=0    33.3333  0     100
-/obj/structure/scrap_spawner/poor/structure    blacklisted=0    30.03  0     100

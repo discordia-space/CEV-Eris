@@ -1,8 +1,0 @@
-/obj/structure/closet/random/miscellaneous    blacklisted=0    10  0     100
-/obj/structure/closet/random/tech    blacklisted=0    6.66667  0     100
-/obj/structure/closet/random/spareparts    blacklisted=0    2  0     100
-/obj/structure/closet/random/milsupply    blacklisted=0    2  0     100
-/obj/structure/closet/random/medsupply    blacklisted=0    10  0     100
-/obj/structure/closet/random/hostilemobs/beacon    blacklisted=1    16.6667  0     100
-/obj/structure/closet/random/hostilemobs    blacklisted=1    8  0     100
-/obj/structure/closet/secure_closet/rare_loot    blacklisted=0    1  0     100

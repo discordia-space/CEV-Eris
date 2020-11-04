@@ -1,2 +1,0 @@
-/obj/spawner/pack/rare/low_chance    blacklisted=0    1  1     100
-/obj/spawner/pack/rare    blacklisted=0    1  1     100

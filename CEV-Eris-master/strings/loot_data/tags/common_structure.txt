@@ -1,4 +1,0 @@
-/obj/structure/dispenser/oxygen    blacklisted=0    10  0     100
-/obj/structure/dispenser/plasma    blacklisted=0    4  0     100
-/obj/structure/dispenser    blacklisted=0    2  0     100
-/obj/structure/ore_box    blacklisted=0    10  0     100
