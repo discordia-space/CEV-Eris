@@ -1,0 +1,131 @@
+<!-- 
+ -->
+{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<div class="item"><h1>{{:data.name}}</h1></div>
+	<div class="item">{{:data.description}}</div>
+	<div class="item">
+		<h4>Specifications:</h4>
+		{{if data.reagent_type}}
+			<div class="itemLabel">Type:</div>
+			<div class="itemContent">{{:data.reagent_type}}</div>
+		{{/if}}
+		<div class="itemLabel">Phase:</div>
+		<div class="itemContent">{{:data.reagent_state}} at STP</div>
+		<div class="itemLabel">Color:</div>
+		<div class="itemContent"><span class='colorBox' style='background-color:{{:data.color}}'></span></div>
+		<div class="itemLabel">Metabolism:</div>
+		<div class="itemContent">
+			{{:data.metabolism_blood}}u/s in blood
+			{{if data.metabolism_stomach}}
+				<br>{{:data.metabolism_stomach}}u/s in stomach
+			{{else}}
+				<br>{{:data.metabolism_blood/2}}u/s in stomach
+			{{/if}}
+		</div>
+		<div class="itemLabel">NSA:</div>
+		<div class="itemContent">{{:data.nsa}} units</div>
+		
+		{{if data.addiction_threshold}}
+			<div class="itemLabel">Addiction threshold:</div>
+			<div class="itemContent">{{:data.addiction_threshold}}u</div>
+		{{/if}}
+
+		{{if data.addiction_chance}}
+			<div class="itemLabel">Addiction chance:</div>
+			<div class="itemContent">{{:data.addiction_chance}}</div>
+		{{/if}}
+
+		{{if data.overdose}}
+			<div class="itemLabel">Overdose at:</div>
+			<div class="itemContent">{{:data.overdose}}u</div>
+		{{/if}}
+
+		{{if data.heating_decompose || data.chilling_decompose}}
+			<div class="itemLabel">
+				Decomposition:
+			</div>
+			<div class="itemContent">
+				{{if data.heating_decompose}}
+					Heating: Into 
+					{{for data.heating_decompose.types}}
+						{{:helper.catalogEntryLink(value)}}
+					{{/for}}
+					 at {{:data.heating_point}}k
+				{{/if}}
+				{{if data.chilling_decompose}}
+					Chilling: Into 
+					{{for data.chilling_decompose.types}}
+						{{:helper.catalogEntryLink(value)}}
+					{{/for}}
+					 at {{:data.chilling_point}}k.
+				{{/if}}
+			</div>
+		{{/if}}
+		{{if data.result_of_decomposition_in}}
+			<div class="itemLabel">
+				Result of decomposition:
+			</div>
+			<div class="itemContent">
+				<div class="statusDisplay">
+					<table>
+						{{for data.result_of_decomposition_in}}
+							<tr>{{:helper.catalogEntryLink(value)}}
+						{{/for}}
+					</table>
+				</div>
+			</div>
+		{{/if}}
+		{{if data.recipe_data}}
+			<div class="itemLabel">Recipe:</div>
+			<div class="itemContent">
+				{{for data.recipe_data}}
+					<div class="statusDisplay" style="overflow: auto;">
+						{{for value.reagents :val:val_i}}
+							{{:val.parts}} of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+						{{for value.catalyst :val:val_i}}
+							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{/for}}
+
+						{{if value.minimum_temperature && value.maximum_temperature}}
+							At temperatures between {{:value.minimum_temperature}}K and {{:value.maximum_temperature}}K<br>
+						{{else value.minimum_temperature}}
+							At temperatures above {{:value.minimum_temperature}}K<br>
+						{{else value.maximum_temperature}}
+							At temperatures below {{:value.maximum_temperature}}K<br>
+						{{/if}}
+
+						{{if value.required_object}}
+							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}<br>
+						{{/if}}
+						Results in {{:value.result_amount}} of substance
+					</div>
+				{{/for}}
+			</div>
+		{{/if}}
+
+		{{if data.can_be_used_in}}
+			<div class="itemLabel">Takes part in reactions:</div>
+			<div class="itemContent">
+				<div class="statusDisplay" style="overflow: auto;">
+						<table>
+						{{for data.can_be_used_in}}
+							<tr>{{:helper.catalogEntryLink(value)}}
+						{{/for}}
+					</table>
+				</div>
+			</div>
+		{{/if}}
+
+		<div class="item">{{:data.taste}}</div>
+
+		{{if !data.scannable}}
+			<div class="item">Impossible to scan.</div>
+		{{/if}}
+	</div>
+{{/if}}

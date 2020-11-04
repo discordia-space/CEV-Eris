@@ -1,0 +1,2 @@
+// AREA LIST //
+GLOBAL_LIST_EMPTY(map_areas)

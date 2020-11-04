@@ -1,0 +1,38 @@
+<div class="item">
+	<div class="itemLabelWide">
+		Processing chamber
+	</div>
+	<div class="itemContentMedium">
+		{{:helper.link('Eject Reagents', 'eject', {'eject' : 1}, data.contents.length ? null : 'disabled', 'floatRight')}}
+	</div>
+</div>
+<div class="statusDisplay" style="min-height: 180px;">
+	<div class='item'>
+		{{for data.contents}}
+			<span class='highlight'>{{:value}}</span><br>
+		{{empty}}
+			<span class="average"><i>
+				No reagents loaded
+			</i></span>
+		{{/for}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Buffer
+	</div>
+</div>
+<div class="statusDisplay" style="min-height: 180px;">
+	<div class="item">
+		<div class="itemContent" style="width: 100%;">
+			{{for data.reagents.contents}}
+				<div class="highlight clearBoth">{{:helper.fixed(value.volume)}} units of {{:value.name}} {{:helper.link('Create Bottle', 'eject', {'bottle' : value.id}, null, 'floatRight')}}</div>
+			{{empty}}
+				<span class="bad">
+					Buffer is empty
+				</span>
+			{{/for}}
+		</div>
+	</div>
+</div>

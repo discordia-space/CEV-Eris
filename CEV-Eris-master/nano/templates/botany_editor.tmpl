@@ -1,0 +1,95 @@
+<!-- 
+Title: Bioballistic Delivery System UI
+Used In File(s): \code\modules\hydroponics\seed_machines.dm
+ -->
+ 
+{{if data.active}}
+	<div class="notice">Processing...</div>
+{{else}}
+	{{if data.loaded_gene}}
+	<div class="display">
+		<header><h3>Buffered gene</h3></header>
+	
+		<article>
+			<section>
+				<span class="label">Source:</span>
+				<div class="content">{{:data.loaded_gene.source}}</div>
+			</section>
+			<section>
+				<span class="label">Locus:</span>
+				<div class="content">{{:data.loaded_gene.mask}}</div>
+			</section>
+		</article>
+
+		<div class="item">
+			{{:helper.link('Clear gene buffer', 'closethick', {'clear_gene' : 1}, null)}}
+			{{if data.seed}}
+				{{:helper.link('Apply to target', 'circle-arrow-e', {'apply_gene' : 1}, (data.seed.degradation < 100) ? null : 'disabled')}}
+			{{/if}}
+		</div>
+	</div>
+	{{/if}}
+
+	<div class="display">
+		<header><h3>Modification target</h3></header>
+	
+		<article>
+			{{if data.seed}}
+				<section>
+					<span class="label">Target:</span>
+					<div class="content">{{:data.seed.name}}</div>
+				</section>
+				<section>
+					<span class="label">Degradation:</span>
+					<div class="content">{{:data.seed.degradation}}%</div>
+				</section>
+				<section>
+					{{:helper.link('Eject target', 'eject', {'eject_seed' : 1}, null)}}
+				</section>
+			{{else}}
+				<div class="notice">No target seed packet loaded</div>
+			{{/if}}
+		</article>
+	</div>
+
+	<div class="display">
+		<header><h3>Loaded disk</h3></header>
+	
+		<article>
+		{{if data.disk}}
+			<section>
+				<span class="label">Disk space:</span>
+				<div class="content">{{:helper.displayBar(data.disk.used_capacity, 0, data.disk.max_capacity, 'good', data.disk.used_capacity + " / " + data.disk.max_capacity + " GQ")}}</div>
+			</section>
+			{{if data.disk.stored_genes.length}}
+			<section>
+				<span class="label">Stored genes:</span>
+			</section>
+			{{/if}}
+
+			{{for data.disk.stored_genes}}
+			<section>
+				<div class="content">{{:value.mask}} - {{:value.source}}</div>
+				<div class="content">
+					{{:helper.link('Load', 'arrowthickstop-1-n', {'load_gene' : value.filename}, null)}}
+					{{:helper.link('Delete', 'trash', {'delete_gene' : value.filename}, null)}}
+				</div>
+			</section>
+			{{/for}}
+
+
+		{{else}}
+			<section>
+				<div class="notice">No disk loaded</div>
+			</section>
+		{{/if}}
+		</article>
+
+		{{if data.disk}}
+		<div class="item">
+			{{:helper.link('Eject disk', 'eject', {'eject_disk' : 1}, null)}}
+		</div>
+		{{/if}}
+
+	</div>
+{{/if}}

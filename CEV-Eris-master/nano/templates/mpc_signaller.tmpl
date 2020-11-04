@@ -1,0 +1,63 @@
+<!-- 
+Title: Signal Manager
+Used In File(s):
+\code\modules\modular_computers\file_system\programs\generic\signaller.dm
+\code\modules\assembly\signaler.dm
+ -->
+
+<div class="display">
+	<header><h3>Signal parameters</h3></header>
+
+	<article>
+		<section>
+			<span class="label">Frequency:</span>
+			<div class="content">
+				{{:helper.link("", 'minus', {'change_freq' : -10})}} 
+				{{:helper.link("", 'minus', {'change_freq' : -2})}} 
+
+				{{:helper.link(data.freq / 10, null, {'edit_freq' : 1}, null, "linkFaintBackground")}}
+
+				{{:helper.link("", 'plus', {'change_freq' : 2})}} 
+				{{:helper.link("", 'plus', {'change_freq' : 10})}}
+			</div>
+		</section>
+		<section>
+			<span class="label">Code:</span>
+			<div class="content">
+				{{:helper.link("", 'minus', {'change_code' : -5})}} 
+				{{:helper.link("", 'minus', {'change_code' : -1})}} 
+
+				{{:helper.link(data.code, null, {'edit_code' : 1}, null, "linkFaintBackground")}}
+
+				{{:helper.link("", 'plus', {'change_code' : 1})}} 
+				{{:helper.link("", 'plus', {'change_code' : 5})}} 
+			</div>
+		</section>
+	</article>
+
+	<div class="item">
+		{{:helper.link('Send', 'signal-diag', {'signal' : 1, 'freq' : data.freq, 'code' : data.code})}}
+		{{if data.max_saved}}
+			{{:helper.link('Save', 'disk', {'save_signal' : 1}, (data.saved_signals.length < data.max_saved) ? null : "disabled")}}
+		{{/if}}
+	</div>
+</div>
+
+{{if data.saved_signals && data.saved_signals.length}}
+<div class="display">
+	<header><h3>Saved signals</h3></header>
+
+	<article>
+		{{for data.saved_signals :signal:signal_i}}
+		<section>
+			<span class="label">Signal {{:signal_i+1}}</span>
+			<div class="content">{{:signal.freq / 10}}, {{:signal.code}}</div>
+			<div class="content">
+				{{:helper.link('Send', 'signal-diag', {'signal' : 1, 'freq' : signal.freq, 'code' : signal.code})}}
+				{{:helper.link('Remove', 'close', {'delete_signal' : signal_i+1})}}
+			</div>
+		</section>
+		{{/for}}
+	</article>
+</div>
+{{/if}}

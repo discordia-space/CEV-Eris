@@ -1,0 +1,48 @@
+<div class="item">
+	<h3>Specifications:</h3>
+	<div class="statusDisplay" style="overflow: auto;">
+		<h4>Armor details:</h4>
+		{{if data.armor_info.length}}
+			{{for data.armor_info}}
+				<div class="itemLabel">
+					{{:value.name}}
+				</div>
+				<div class="itemContent">
+				{{:helper.displayBar(value.value, 0, 100, value.value <= 25 ? 'bad' : value.value < 50 ? 'average' : 'good', value.value + '%')}}
+				</div>
+			{{/for}}
+			<br>
+		{{else}}
+			<div class="average">
+				Provides no armor protection.
+			</div>
+		{{/if}}
+		{{if data.slowdown != 1}}
+			<div class="itemLabel">
+				Slowdown:
+			</div>
+			<div class="itemContent">
+				{{:helper.displayBar(data.slowdown, -5, 20, data.slowdown < 1 ? 'good' : data.slowdown > 1 ? 'bad': 'average', data.slowdown+' delay units')}}
+			</div>
+		{{/if}}
+		<br>
+		{{if data.body_coverage}}
+			<div class="itemLabel">
+				Coverage:
+			</div>
+			<div class="itemContent">
+				{{:data.body_coverage}} 
+			</div>
+		{{else}}
+			<div class="average">
+				Provides no body coverage.
+			</div>
+		{{/if}}
+		<div class="itemLabel">
+			Time to equip:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.equip_delay, 0, 100, data.equip_delay < 10 ? 'good' : data.equip_delay > 50 ? 'bad': 'average', data.equip_delay/10+' seconds')}}
+		</div>
+	</div>
+</div>

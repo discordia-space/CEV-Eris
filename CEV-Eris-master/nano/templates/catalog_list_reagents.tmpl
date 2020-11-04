@@ -1,0 +1,16 @@
+{{if data.catalog_browse_stage == "list"}}
+	<table align="center">
+		<tr>
+			<td>{{:helper.link(data.catalog_search, 'search', {'catalog_search_run' : 1})}}</td>
+		</tr>
+	</table>
+	<table style="width:100%">
+		<tr><td>Name<th style="width:25%">Phase<th style="width:35%">Type
+		{{for data.entries}}
+			<tr class="candystripe">
+			<td style="background-color: #1a1a1a;">{{:helper.link(value.name, '', {'set_active_entry' : value.id})}}
+			<td style="background-color: #1a1a1a;">{{:value.reagent_state}}
+			<td style="background-color: #1a1a1a;">{{:value.reagent_type}}
+		{{/for}}
+	</table>
+{{/if}}

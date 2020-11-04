@@ -1,0 +1,46 @@
+{{if data.PC_hasheader}}
+	<div class='uiModularHeader'>
+		<div style="float: left">
+			<div style="padding: 0px">
+				<table><tr>
+				{{if data.PC_batteryicon && data.PC_showbatteryicon}}
+					<td><img src='{{:data.PC_batteryicon}}'>
+				{{/if}}
+				{{if data.PC_batterypercent && data.PC_showbatteryicon}}
+					<td><b>{{:data.PC_batterypercent}}</b>
+				{{/if}}
+				{{if data.PC_ntneticon}}
+					<td><img src='{{:data.PC_ntneticon}}'>
+				{{/if}}
+				{{if data.PC_apclinkicon}}
+					<td><img src='{{:data.PC_apclinkicon}}'>
+				{{/if}}
+				{{if data.PC_stationtime}}
+					<td><b>{{:data.PC_stationtime}}<b>
+				{{/if}}
+				{{for data.PC_programheaders}}
+					<td><img src='{{:value.icon}}'>
+				{{/for}}
+				</table>
+			</div>
+		</div>
+		<div style="float: right;padding-left: 5px">
+			<table><tr>
+				{{if data.PC_light_name}}
+					<td>{{:helper.link('', 'lightbulb', {'PC_toggle_component' : 1, 'component' : data.PC_light_name}, null, data.PC_light_on ? 'selected' : null)}}
+				{{/if}}
+				<td>{{:helper.link('Shutdown', null, {'PC_shutdown' : 1})}}
+			</table>
+		</div>
+		<div style="clear: both"></div>
+		{{if data.has_gps}}
+			<div style="border-top:3px double #7B7B7B;padding: 0px">
+				<table><tr>
+					<td><img src='{{:data.gps_icon}}'>
+					<td>{{:data.gps_data}}
+				</table>
+			</div>
+		{{/if}}
+		
+	</div>
+{{/if}}

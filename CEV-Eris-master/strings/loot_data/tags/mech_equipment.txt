@@ -1,0 +1,15 @@
+/obj/item/robot_parts/robot_component/armour/exosuit/radproof    blacklisted=0    10  500     100
+/obj/item/robot_parts/robot_component/armour/exosuit/em    blacklisted=0    10  550     100
+/obj/item/robot_parts/robot_component/armour/exosuit/combat    blacklisted=0    10  1000     100
+/obj/item/robot_parts/robot_component/armour/exosuit    blacklisted=0    10  300     100
+/obj/item/mech_equipment/mounted_system/taser/ion    blacklisted=0    10  200     100
+/obj/item/mech_equipment/mounted_system/taser/laser    blacklisted=0    10  200     100
+/obj/item/mech_equipment/mounted_system/taser/plasma    blacklisted=1    10  200     100
+/obj/item/mech_equipment/mounted_system/taser    blacklisted=0    10  200     100
+/obj/item/mech_equipment/mounted_system/rcd    blacklisted=0    10  200     100
+/obj/item/mech_equipment/mounted_system/extinguisher    blacklisted=0    10  200     100
+/obj/item/mech_equipment/sleeper    blacklisted=0    10  200     100
+/obj/item/mech_equipment/clamp    blacklisted=0    10  200     100
+/obj/item/mech_equipment/light    blacklisted=0    10  200     100
+/obj/item/mech_equipment/catapult    blacklisted=0    10  200     100
+/obj/item/mech_equipment/drill    blacklisted=0    10  200     100

@@ -1,0 +1,49 @@
+<!-- 
+Title: Biogenerator
+Used In File(s): \code\game\machinery\biogenerator.dm
+ -->
+<h2>Biogenerator</h2>
+ <div class='itemLabel'>Useable Biomass: </div> <div class='itemContent'>{{:data.points}}g</div> 
+{{if data.menustat=="menu"}}
+    {{if data.beaker!=null}}
+        {{:helper.link('Activate Biogenerator', 'arrowreturnthick-1-s', { "action" : "activate" })}}
+        {{:helper.link('Detach Container', 'arrowreturnthick-1-s', { "action" : "detach" })}}
+        <div class='item'>
+            {{for data.recipes}}
+                {{if value.is_category}}
+                    <h3>{{:value.name}}</h3>
+                {{else}}
+                    <div class='itemLabel'>{{:value.name}}</div> 
+                    <div class='itemContent'>{{:helper.link(value.cost, 'eject', {'action' : 'create', 'item' : value.name})}}
+                    {{if value.allow_multiple}}
+                        {{:helper.link('X5', 'eject', {'action' : 'create', 'item' : 'value.name'})}}
+                    {{/if}}
+                    </div>
+                {{/if}}
+            {{empty}}
+                No items available!
+            {{/for}}
+        </div>
+    {{else}}
+        <div class='item'>
+            <div class="notice">No beaker inside. Please insert a beaker.</div>
+        </div>
+    {{/if}}
+{{else data.menustat== "nopoints"}}
+    <div class='item'>
+        You do not have biomass to create products.<BR>
+        Please, put growns into bioreactor and activate it.
+    </div>
+    {{:helper.link('Return to menu', 'arrowreturnthick-1-s', { 'action' : 'menu' })}}
+{{else data.menustat== "complete"}}
+    <div class='item'>
+        Operation complete.
+    </div>
+    {{:helper.link('Return to menu', 'arrowreturnthick-1-s', { 'action' : 'menu' })}}
+{{else data.menustat== "void"}}
+    <div class='item'>
+        <div class="notice">Error: No growns inside.</div>
+        Please, put growns into bioreactor.
+    </div>
+    {{:helper.link('Return to menu', 'arrowreturnthick-1-s', { 'action' : 'menu' })}}
+{{/if}}

@@ -1,0 +1,95 @@
+
+
+<div class="itemLabel"> Status: </div>
+	{{if data.status == 1}}
+		<div class="good">
+			<div class="itemContent"> OPERATIONAL </div>
+		</div>
+	{{else data.status == 2}}
+		<div class="average">
+			<div class="itemContent"> SOLUTION REQUIRED </div>
+		</div>
+	{{else data.status == 3}}
+		<div class="average">
+			<div class="itemContent"> BREACH DETECTED </div>
+		</div>
+	{{else data.status == 4}}
+		<div class="average">
+			<div class="itemContent"> CHAMBER OPENED </div>
+		</div>
+	{{else data.status == 5}}
+		<div class="average">
+			<div class="itemContent"> PIPES EXPOSED </div>
+		</div>
+	{{else data.status == 6}}
+		<div class="bad">
+			<div class="itemContent"> MAJOR PIPES ISSUE DETECTED </div>
+		</div>
+	{{else}}
+		<div class="bad">
+			<div class="itemContent"> NON OPERATIONAL </div>
+		</div>
+	{{/if}}
+
+Biomatter tank:
+
+<hr> </hr>
+
+<div class="itemLabel">
+	Biomatter:
+</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.biotank_occupancy, 0, data.biotank_max_capacity, 'highlight', showText = data.biotank_occupancy + '/' + data.biotank_max_capacity)}}
+	</div>
+
+<br>
+<div class="itemLabel">
+	Status:
+</div>
+	<div class="itemContent">
+		{{if data.biotank_status}}
+			disconnected from bioreactor
+		{{else}}
+			connected to bioreactor
+		{{/if}}
+	</div>
+
+	
+<div class="itemLabel">
+	Canister:
+</div>
+	<div class="itemContent">
+		{{if data.canister}}
+			connected with {{:data.canister}}
+		{{else}}
+			not connected
+		{{/if}}
+	</div>
+
+<hr> </hr>
+
+<div class="itemLabel"> Pipes condition:  </div>
+	<div class="itemContent">
+		{{if data.pipes_condition > 60 && data.pipes_condition <= 90}}
+			<div class="good">
+				SLIGHTLY CONTAMINATED
+			</div>
+		{{else data.pipes_condition <= 60 && data.pipes_condition > 20}}
+			<div class="average">
+				CONTAMINATED
+			</div>
+		{{else data.pipes_condition <= 20}}
+			<div class="bad">
+				CRITICAL CONTAMINATION
+			</div>
+		{{else data.pipes_condition <= 0}}
+			<div class="bad">
+				BLOCKAGE
+			</div>
+		{{else}}
+			<div class="good">
+				CLEAN
+			</div>
+		{{/if}}
+	</div>
+

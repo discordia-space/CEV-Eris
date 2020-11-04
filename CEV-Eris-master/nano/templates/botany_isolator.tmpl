@@ -1,0 +1,133 @@
+<!-- 
+Title: Lysis-isolation Centrifuge UI 
+Used In File(s): \code\modules\hydroponics\seed_machines.dm
+ -->
+
+{{if data.active}}
+	<div class="notice">Processing...</div>
+{{else}}
+	{{if data.loaded_gene}}
+	<div class="display">
+		<header><h3>Buffered gene</h3></header>
+	
+		<article>
+			<section>
+				<span class="label">Source:</span>
+				<div class="content">{{:data.loaded_gene.source}}</div>
+			</section>
+			<section>
+				<span class="label">Locus:</span>
+				<div class="content">{{:data.loaded_gene.mask}}</div>
+			</section>
+		</article>
+
+		<div class="item">
+			{{:helper.link('Clear gene buffer', 'closethick', {'clear_gene' : 1}, null)}}
+			{{if data.disk}}
+				{{:helper.link('Save to disk', 'disk', {'save_gene' : 1}, (data.disk.max_capacity - data.disk.used_capacity >= data.loaded_gene.size) ? null : 'disabled')}}
+			{{/if}}
+		</div>
+	</div>
+	{{/if}}
+	
+	{{if data.hasGenetics}}
+	<div class="display">
+		<header><h3>Buffered genome</h3></header>
+		
+		<article>
+			<section>
+				<span class="label">Source:</span>
+				<div class="content">{{:data.sourceName}}</div>
+			</section>
+			<section>
+				<span class="label">Gene decay:</span>
+				<div class="content">{{:data.seed.degradation}}%</div>
+			</section>
+
+			{{for data.geneMasks}}
+				<section>
+					<span class="label">{{:value.mask}}</span>
+					<div class="content">
+						{{:helper.link('Extract', 'circle-arrow-s', {'get_gene' : value.tag}, null)}}
+					</div>
+				</section>
+			{{empty}}
+				<section>
+					<div class="notice">Data error. Genetic record corrupt.</div>
+				</section>
+			{{/for}}
+		</article>
+
+		<div class="item">
+			{{:helper.link('Clear genome buffer', 'closethick', {'clear_buffer' : 1}, null)}}
+		</div>
+	</div>
+	{{/if}}
+	
+	{{if !data.hasGenetics}}
+	<div class="display">
+		<header><h3>Loaded material</h3></header>
+	
+		<article>
+		{{if data.seed}}
+			<section>
+				<span class="label">Packet loaded:</span>
+				<div class="content">{{:data.seed.name}}</div>
+			</section>
+		{{else}}
+			<section>
+				<div class="notice">No seeds loaded</div>
+			</section>
+		{{/if}}
+		</article>
+
+		{{if data.seed}}
+		<div class="item">
+			{{:helper.link('Process genome', 'gear', {'scan_genome' : 1}, null)}}
+			{{:helper.link('Eject packet', 'eject', {'eject_seed' : 1}, null)}}
+		</div>
+		{{/if}}
+	</div>
+	{{/if}}
+
+
+	<div class="display">
+		<header><h3>Loaded disk</h3></header>
+	
+		<article>
+		{{if data.disk}}
+			<section>
+				<span class="label">Disk space:</span>
+				<div class="content">{{:helper.displayBar(data.disk.used_capacity, 0, data.disk.max_capacity, 'good', data.disk.used_capacity + " / " + data.disk.max_capacity + " GQ")}}</div>
+			</section>
+			{{if data.disk.stored_genes.length}}
+			<section>
+				<span class="label">Stored genes:</span>
+			</section>
+			{{/if}}
+
+			{{for data.disk.stored_genes}}
+			<section>
+				<div class="content">{{:value.mask}} - {{:value.source}}</div>
+				<div class="content">
+					{{:helper.link('Delete', 'trash', {'delete_gene' : value.filename}, null)}}
+				</div>
+			</section>
+			{{/for}}
+
+
+		{{else}}
+			<section>
+				<div class="notice">No disk loaded</div>
+			</section>
+		{{/if}}
+		</article>
+
+		{{if data.disk}}
+		<div class="item">
+			{{:helper.link('Eject disk', 'eject', {'eject_disk' : 1}, null)}}
+		</div>
+		{{/if}}
+
+	</div>
+{{/if}} 

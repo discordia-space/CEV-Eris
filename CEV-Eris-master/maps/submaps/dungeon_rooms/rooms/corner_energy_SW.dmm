@@ -1,0 +1,289 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"b" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"c" = (
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"d" = (
+/obj/structure/window/reinforced{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"e" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"f" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"g" = (
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"h" = (
+/obj/structure/grille,
+/turf/simulated/floor/tiled/techmaint,
+/area/crawler)
+"i" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"j" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"k" = (
+/obj/machinery/power/breakerbox/activated,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/crawler)
+"l" = (
+/obj/structure/computerframe,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/crawler)
+"m" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"n" = (
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"o" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+"p" = (
+/obj/machinery/power/terminal,
+/obj/structure/catwalk,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"q" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"r" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"s" = (
+/obj/crawler/crawler_wallbreaker/vertical,
+/turf/simulated/floor/bluegrid,
+/area/crawler)
+"t" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"u" = (
+/obj/machinery/power/smes/buildable,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/crawler)
+"v" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"w" = (
+/obj/structure/catwalk,
+/obj/machinery/light/floor,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"x" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/derelict,
+/area/crawler)
+"y" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/derelict/white_small_edges,
+/area/crawler)
+"z" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"A" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/crawler)
+"C" = (
+/obj/crawler/crawler_wallbreaker,
+/turf/simulated/wall/untinted/onestar_reinforced,
+/area/crawler)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+o
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+j
+c
+r
+c
+j
+c
+a
+"}
+(3,1,1) = {"
+a
+d
+k
+p
+u
+p
+u
+c
+a
+"}
+(4,1,1) = {"
+a
+d
+l
+p
+u
+p
+u
+c
+a
+"}
+(5,1,1) = {"
+a
+e
+m
+q
+m
+c
+y
+c
+C
+"}
+(6,1,1) = {"
+b
+f
+f
+f
+t
+a
+i
+A
+C
+"}
+(7,1,1) = {"
+b
+g
+g
+g
+g
+v
+z
+A
+C
+"}
+(8,1,1) = {"
+b
+g
+n
+g
+g
+x
+z
+A
+C
+"}
+(9,1,1) = {"
+a
+h
+a
+n
+g
+x
+z
+A
+C
+"}
+(10,1,1) = {"
+a
+i
+h
+g
+g
+x
+z
+A
+a
+"}
+(11,1,1) = {"
+a
+i
+h
+g
+g
+x
+z
+A
+a
+"}
+(12,1,1) = {"
+a
+i
+h
+g
+g
+x
+z
+w
+a
+"}
+(13,1,1) = {"
+a
+a
+o
+s
+s
+s
+o
+a
+a
+"}

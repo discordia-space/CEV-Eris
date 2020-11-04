@@ -1,0 +1,34 @@
+{{:helper.syndicateMode()}}
+
+<b>Following contracts will be fulfilled</b>:
+<table style="width:100%">
+<tr>
+<td>Title</td>
+<th style="width:68%">Description</th>
+<th style="width:12%">Reward</th>
+</tr>
+{{for data.contracts}}
+	<tr class="candystripe">
+	<td style="background-color: #8daf6a;">{{:value.name}}</td>
+	<td style="background-color: #8daf6a;">{{:value.desc}}</td>
+	<td style="background-color: #8daf6a;">{{:value.reward}}</td>
+	</tr>
+{{/for}}
+</table>
+
+<div class="item">
+	<div class="itemLabelWide">
+		<b>Reward will be paid to</b>:
+	</div>
+	<div class="itemContent">
+		{{if data.is_owner}}
+			{{:data.owner}}
+		{{else}}
+			{{:helper.link(data.owner + " (click to change)", null, {'owner' : 1})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	{{:helper.link('Launch', 'play', {'launch' : 1}, data.can_launch ? null : 'disabled')}}
+</div>

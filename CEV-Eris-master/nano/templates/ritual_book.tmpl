@@ -1,0 +1,52 @@
+<!-- 
+Title: Ritual Book
+Used In File(s): \code\modules\core_implant\ritual_book.dm
+ -->
+ 
+{{if data.noimplant}}
+	<div class="itemContentWidest">
+		<div style="text-align: center;">
+			It's completely blank. Shouldn't there be text here?
+		</div>
+	</div>
+{{else}}
+	<div class="statusDisplay">
+		<div class="item">
+			<div class="itemContentWidest">
+				{{for data.categories}}
+					<div class="itemContentNarrow" style="width: auto">
+						{{:helper.link(value, '', {'set_category' : value}, null)}}
+					</div>
+				{{/for}}
+			</div>
+		</div>
+	</div>
+	
+	{{for data.rituals}}
+		<div class="block">
+			<div class="item">
+				<div class="itemLabelWidest"><b>{{:value.name}}</b></div>
+				<div class="itemContentWidest"><i>{{:value.desc}}</i></div>
+				
+				<div class="item">
+					<div class="block">
+						<div class="item">
+							{{if value.group}}
+								{{if data.currexp == value.type}}
+									<div class="itemLabelWidest">{{:helper.link('', 'triangle-1-n', {'unfold' : 'fold'}, null, 'bigButton')}}</b></div>
+									{{for value.phrases}}
+										<div class="itemLabelWidest" style="margin-bottom: 7px;">{{:helper.link(value.phrase, '', {'say_group' : value.type, 'say_id' : value.ind}, null, 'statusValue')}}</div>
+									{{/for}}
+								{{else}}
+									<div class="itemLabelWidest">{{:helper.link('', 'triangle-1-s', {'unfold' : value.type}, null, 'bigButton')}}</div>
+								{{/if}}
+							{{else}}
+								<div class="itemLabelWidest">{{:helper.link(value.phrase, '', {'say' : value.type}, null, 'statusValue')}}</b></div>
+							{{/if}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{{/for}}
+{{/if}}

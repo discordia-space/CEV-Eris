@@ -1,0 +1,2 @@
+/obj/structure/satellite/science    blacklisted=0    10  0     100
+/obj/structure/satellite    blacklisted=0    10  0     100

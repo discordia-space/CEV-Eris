@@ -1,0 +1,45 @@
+{{if !data.authenticated}}
+	{{if data.error}}
+	<div align="center" style="margin-top: 15px;">
+		<div class="item"><b>An error has occurred</b></div>
+		<div class="item">Invalid Tax ID.</div>
+		<table>
+			<tr>
+				<td>{{:helper.link('Back', null, {'back' : 1})}}</td>
+			</tr>
+		</table>
+	{{else}}
+	<div align="center" style="margin-top: 15px;">
+		<div class='item'>
+			<div style="font-size: x-large;font-weight: bold;">TaxQuickly</div>
+			<div style="font-style: italic;">Managing your money since 2559</div>
+		</div>
+		<div class="item">
+			<div class="itemLabel">
+				Tax ID:
+			</div>
+			<div align="left" class="itemContent">
+				{{:data.stored_login}}&nbsp
+			</div>
+			<div class="itemLabel">
+				Options:
+			</div>
+			<div class="itemContent">
+				{{:helper.link('Enter Tax ID', null, {'edit_login' : 1})}}
+				{{:helper.link('Log In', null, {'login' : 1})}}
+			</div>
+		</div>
+	</div>
+	{{/if}}
+{{else}}
+	<div align="center" style="margin-top: 15px;">
+		<div class="item"><b>Access authorized</b></div>
+		<div class="item">Chose action:</div>
+		<table>
+			<tr>
+				<td>{{:helper.link('Resume', null, {'resume' : 1})}}</td>
+				<td>{{:helper.link('Log out', null, {'logout' : 1})}}</td>
+			</tr>
+		</table>
+	</div>
+{{/if}}

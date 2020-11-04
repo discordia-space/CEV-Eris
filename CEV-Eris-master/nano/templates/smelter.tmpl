@@ -1,0 +1,86 @@
+<div class='statusDisplay'>
+	{{if data.currentItem}}
+		<center><b><h2>SMELTING...</h2></b>
+		<hr></hr>
+		<h3>Loaded item: {{:data.currentItem}}</h3></center><br>
+		<div class="itemLabel">
+			Progress:
+		</div>
+		<div class="itemContent">
+			{{:helper.displayBar(data.progress, 0, 100, 'highlight')}}
+		</div>
+
+	{{else}}
+		<center><b><h2>NO ITEM</h2></b></center>
+	{{/if}}
+</div>
+
+<div class="block">
+	<div class="item">
+		<div class="itemLabelWidest"><b>Loaded materials</b></div>
+	</div>
+	{{for data.materials}}
+		<div class="item">
+			<div class="itemLabelNarrow">{{:value.name}}</div>
+			<div class="itemContentNarrow">{{:value.count}}/{{:data.capacity}}</div>
+			<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject' : value.name}, null, 'statusValue')}}</b></div>
+		</div>
+	{{empty}}
+		<div class="item">
+			<div class="itemLabelNarrow">empty</div>
+		</div>
+	{{/for}}
+	<div class="item">
+		{{:helper.link('EJECT ALL', '', {'eject' : 1}, null, 'bigButton')}}
+	</div>
+</div>
+
+<div class="block">
+	<div class="item">
+		<div class="item"><center>{{:helper.link("Sides Config", 'wrench', {'toggle_config' : 1},null,'statusValue')}}</center></div>
+	</div>
+	{{if data.show_config}}
+		<div class="block">
+			<div class="item"><center>{{:helper.link("Input Config", '', {'toggle_iconfig' : 1},null,'statusValue')}}</center></div>
+			{{if data.show_iconfig}}
+				<div class ="item">
+				<div class="itemLabel"> Set to: </div>
+				<div class="itemContent">
+					{{:helper.link('North', '', {'setsideI' : 'NORTH'}, data.sideI == "North" ? 'selected' : null, 'statusValue')}}
+					{{:helper.link('East', '', {'setsideI' : 'EAST'}, data.sideI == "East" ? 'selected' : null, 'statusValue')}}
+					{{:helper.link('South', '', {'setsideI' : 'SOUTH'}, data.sideI == "South" ? 'selected' : null, 'statusvalue')}}
+					{{:helper.link('West', '', {'setsideI' : 'WEST'}, data.sideI == "West" ? 'selected' : null, 'statusValue')}}
+				</div>
+				</div>
+			{{/if}}
+		</div>
+		<div class="block">
+			<div class="item"><center>{{:helper.link("Output Config", '', {'toggle_oconfig' : 1},null,'statusValue')}}</center></div>
+			{{if data.show_oconfig}}
+				<div class ="item">
+				<div class="itemLabel"> Set to: </div>
+				<div class="itemContent">
+					{{:helper.link('North', '', {'setsideO' : 'NORTH'}, data.sideO == "North" ? 'selected' : null, 'statusValue')}}
+					{{:helper.link('East', '', {'setsideO' : 'EAST'}, data.sideO == "East" ? 'selected' : null, 'statusValue')}}
+					{{:helper.link('South', '', {'setsideO' : 'SOUTH'}, data.sideO == "South" ? 'selected' : null, 'statusvalue')}}
+					{{:helper.link('West', '', {'setsideO' : 'WEST'}, data.sideO == "West" ? 'selected' : null, 'statusValue')}}
+				</div>
+				</div>
+			{{/if}}
+		</div>
+		<div class="block">
+			<div class="item"><center>{{:helper.link("Refusal Output Config", '', {'toggle_rconfig' : 1},null,'statusValue')}}</center></div>
+			{{if data.show_rconfig}}
+				<div class ="item">
+				<div class="itemLabel"> Set to: </div>
+				<div class="itemContent">
+					{{:helper.link('North', '', {'setsideR' : 'NORTH'}, data.sideR == "North" ? 'selected' : null, 'statusValue')}}
+					{{:helper.link('East', '', {'setsideR' : 'EAST'}, data.sideR == "East" ? 'selected' : null, 'statusValue')}}
+					{{:helper.link('South', '', {'setsideR' : 'SOUTH'}, data.sideR == "South" ? 'selected' : null, 'statusvalue')}}
+					{{:helper.link('West', '', {'setsideR' : 'WEST'}, data.sideR == "West" ? 'selected' : null, 'statusValue')}}
+				</div>
+				</div>
+			{{/if}}
+		</div>
+	{{/if}}
+</div>

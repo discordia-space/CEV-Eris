@@ -1,0 +1,82 @@
+<!-- 
+Title: Autolathe
+Used In File(s): \code\game\machinery\autolathe.dm
+ -->
+
+<div style="display: table; width:100%">
+
+<div style="display: table-row">
+	{{if data.have_materials && data.have_reagents}}
+		<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
+			{{#def._materials}}
+		</div>
+		<div class="fixedLeft" style="width:48%; display: table-cell; padding: 0 1%">
+			{{#def._reagents}}
+		</div>
+	{{else data.have_materials}}
+		{{#def._materials}}
+	{{else data.have_reagents}}
+		{{#def._reagents}}
+	{{/if}}
+</div>
+
+{{if data.have_disk}}
+<div class="fixedWidest" style="width:100%; display: table-row">
+	<div class="block">
+		<div class="item">
+			<div class="itemContentWide">
+			Disk: 
+			{{if data.disk}}
+				<b>{{:data.disk.name ? data.disk.name : 'data disk'}}</b>
+	
+				{{if data.disk.license > 0}}
+					<div class="unimportant">{{:data.disk.license}} license points left</div>
+				{{else data.disk.license == 0}}
+					<div class="bad">{{:data.disk.license}} license points left</div>
+				{{/if}}
+			{{else}}
+				not inserted
+			{{/if}}
+			</div>
+			<div class="itemlabelNarrow">{{:helper.link(data.disk ? 'eject' : 'insert', 'eject', {'disk' : 1}, null, 'statusValue')}}</div>
+		</div>
+	</div>
+</div>
+{{/if}}
+
+{{if data.special_actions}}
+<div class="fixedWidest" style="width:100%; display: table-row">
+	<div class="block" style="padding: 0px 4px 2px 4px">
+	{{for data.special_actions}}
+		<div class="item">
+		{{:helper.link(value.name, value.icon, {'action' : value.action})}}
+		</div>
+	{{/for}}
+	</div>
+</div>
+{{/if}}
+
+{{if data.categories}}
+<div class="fixedWidest" style="width:100%; display: table-row">
+	<div class="block" style="padding: 0px 4px 2px 4px">
+		<div class="item">
+			{{for data.categories :category:category_i}}
+				{{:helper.link(category, null, {'category' : category_i+1}, category == data.show_category ? 'selected' : null)}}
+			{{empty}}
+			There are no known designs
+			{{/for}}
+		</div>
+	</div>
+</div>
+{{/if}}
+
+<div style="display: table-row">
+	<div class="fixedLeftWider" style="width:50%; display: table-cell">
+		{{#def._designs}}
+	</div>
+	<div class="fixedLeft" style="width:50%; display: table-cell">
+		{{#def._queue}}
+	</div>
+</div>
+
+</div>

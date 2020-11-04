@@ -1,0 +1,29 @@
+"a" = (/obj/spawner/mob/roaches/cluster/low_chance,/turf/simulated/floor/wood,/area/deepmaint)
+"b" = (/turf/simulated/floor/wood,/area/deepmaint)
+"c" = (/obj/spawner/junk,/turf/simulated/floor/wood,/area/deepmaint)
+"d" = (/obj/spawner/junk,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"e" = (/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"f" = (/obj/structure/bookcase,/turf/simulated/floor/wood,/area/deepmaint)
+"g" = (/obj/structure/barricade,/turf/simulated/floor/wood,/area/deepmaint)
+"h" = (/obj/spawner/pack/machine,/turf/simulated/floor/wood,/area/deepmaint)
+"i" = (/obj/structure/table/woodentable,/obj/structure/barricade,/turf/simulated/floor/wood,/area/deepmaint)
+"j" = (/obj/machinery/deployable/barrier,/turf/simulated/floor/wood,/area/deepmaint)
+"k" = (/obj/structure/table/woodentable,/obj/spawner/pack/rare,/obj/spawner/pack/rare,/obj/spawner/pack/rare/low_chance,/obj/spawner/pack/rare/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"l" = (/obj/structure/table/woodentable,/obj/spawner/junkfood,/obj/spawner/junkfood,/obj/spawner/junkfood,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"m" = (/obj/structure/table/woodentable,/obj/spawner/pack/gun_loot,/obj/spawner/pack/gun_loot,/obj/spawner/pack/gun_loot/low_chance,/obj/spawner/pack/gun_loot/low_chance,/obj/spawner/pack/gun_loot/low_chance,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"n" = (/obj/item/remains,/turf/simulated/floor/tiled/steel/brown_platform,/area/deepmaint)
+"o" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/deepmaint)
+
+(1,1,1) = {"
+abcbdedbbcb
+bbfgghggfab
+cffifffiffc
+bgigbbbggjb
+egfbklmbfhe
+ehfcenebfhd
+djfbeeebfge
+bjogcccggjb
+bffofffoffb
+bhfjhggjfbc
+bbcbedebcba
+"}

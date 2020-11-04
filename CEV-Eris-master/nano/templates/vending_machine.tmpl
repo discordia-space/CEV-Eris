@@ -1,0 +1,100 @@
+<!-- 
+	Interface for vending machines 
+	See: code/game/machinery/vending.dm
+-->
+
+{{if data.mode == 0}} <!-- Listing -->
+<h2>Items available</h2>
+<div class='item'>
+	{{for data.products}}
+	<div class='item'>
+			<div style='float'>
+				{{if value.price > 0 || (value.price > 0 && data.custom && !data.unlocked)}}
+					{{:helper.link('Buy (' + value.price + ')', 'cart', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
+				{{else}}
+					{{:helper.link('Vend', 'circle-arrow-s', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
+				{{/if}}
+				{{if data.custom && data.unlocked}}
+					{{:helper.link('Set Price', 'file-invoice-dollar', { "setprice" : value.key }, null)}}
+					{{if value.amount <= 0}}
+						{{:helper.link('Remove', 'times', { "remove" : value.key }, null)}}
+					{{/if}}
+				{{/if}}
+					
+			</div>
+		<div class='itemContent'>
+		{{if value.color}}<span style='color:{{:value.color}}'>{{:value.name}}</span>
+		{{else}}{{:value.name}}
+		{{/if}}
+			 ({{:value.amount ? value.amount : "NONE LEFT"}})
+		</div>
+	</div>
+	{{empty}}
+	No items available!
+	{{/for}}
+	{{if data.advertisement}}
+		<div class='statusDisplay' style='text-align: center'>
+			{{:data.advertisement}}
+		</div>
+	{{/if}}
+	{{if data.markup}}
+		<div class='item'>
+			<br>This Vendomat will buy items for {{:data.markup}}% of their listed price.
+		</div>
+	{{/if}}
+	{{if data.custom && data.unlocked}}
+		<div class='item'>
+			{{:helper.link('Management Screen', 'gear', {'management' : 1})}}
+		</div>
+	{{/if}}
+</div>
+{{if data.coin}}
+<h2>Coin</h2>
+<div class='item'>
+	<div class='itemLabel'>Coin deposited:</div> 
+	<div class='itemContent'>{{:helper.link(data.coin, 'eject', {'remove_coin' : 1})}}</div>
+</div>
+{{/if}}
+{{else data.mode == 1}} <!-- Payment screen -->
+<h2>Item selected</h2>
+<div class='item'>
+	<div class='item'>
+		<div class='itemLabel'>Item selected:</div> <div class='itemContent'>{{:data.product}}</div>
+		{{if data.description}}
+			<div class='itemLabel'>Description:</div> <div class='itemContent'>{{:data.description}}</div>
+		{{/if}}
+		<div class='itemLabel'>Charge:</div> <div class='itemContent'>{{:data.price}}</div>
+	</div>
+	<div class='statusDisplay' style='overflow: auto;'>
+		{{if data.message_err}} <span class='uiIcon16 icon-alert' ></span>{{/if}} {{:data.message}}
+	</div>
+	<div class='item'>
+		{{:helper.link('Cancel', 'arrowreturn-1-w', {'cancelpurchase' : 1})}}
+	</div>
+</div>
+{{else data.mode == 2}} <!-- Owner screen -->
+<h2>Vendomat Management</h2>
+<div class='statusDisplay' style='overflow: auto;'>
+	{{if data.message_err}} <span class='uiIcon16 icon-alert' ></span>{{/if}} {{:data.message}}
+</div>
+<div class='item'>
+	{{:helper.link('OK', 'arrowreturn-1-w', {'return' : 1})}}
+	{{if data.unlocked}}
+		{{:helper.link('Set Organization', 'address-book', {'setdepartment' : 1})}}
+		{{:helper.link('Set Account', 'address-book', {'setaccount' : 1})}}
+		{{:helper.link('Markup', 'cart', {'markup' : 1})}}
+	{{/if}}
+</div>
+{{/if}}
+{{if data.panel}}
+<h2>Maintenance panel</h2>
+<div class='item'>
+	<div class='itemLabel'>Speaker</div><div class='item'>{{:helper.link(data.speaker ? 'Enabled' : 'Disabled',  'gear', {'togglevoice' : 1})}}</div>
+</div>
+	{{if data.owner_name}}
+		<br><br><hr><i>This Vendomat is registered to {{:data.owner_name}}.</i>
+		{{if data.unlocked}}
+			{{:helper.link("Unregister", null, {'unregister' : 1})}}
+		{{/if}}
+	{{/if}}
+{{/if}}

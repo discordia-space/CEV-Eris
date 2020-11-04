@@ -1,0 +1,4 @@
+/mob/living/bot/miningonestar/resources/agressive/with_support    blacklisted=1    10  0     100
+/mob/living/bot/miningonestar/resources/agressive    blacklisted=1    10  0     100
+/mob/living/bot/miningonestar/resources/in_work    blacklisted=1    10  0     100
+/mob/living/bot/miningonestar/resources    blacklisted=1    10  0     100

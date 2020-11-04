@@ -1,0 +1,7 @@
+/obj/item/weapon/storage/box/shotgunammo/slug    blacklisted=0    5  0     100
+/obj/item/weapon/storage/box/shotgunammo/blanks    blacklisted=0    2  0     100
+/obj/item/weapon/storage/box/shotgunammo/beanbags    blacklisted=0    10  0     100
+/obj/item/weapon/storage/box/shotgunammo/buckshot    blacklisted=0    7.50188  0     100
+/obj/item/weapon/storage/box/shotgunammo/flashshells    blacklisted=0    2.5  0     100
+/obj/item/weapon/storage/box/shotgunammo/practiceshells    blacklisted=0    2  0     100
+/obj/item/weapon/storage/box/shotgunammo    blacklisted=0    2.5  0     100

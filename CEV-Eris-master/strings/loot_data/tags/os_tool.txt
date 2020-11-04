@@ -1,0 +1,8 @@
+/obj/item/weapon/tool/crowbar/onestar    blacklisted=1    10  20     100
+/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    10  20     100
+/obj/item/weapon/tool/medmultitool    blacklisted=1    10  20     100
+/obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    10  20     100
+/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    10  20     100
+/obj/item/weapon/tool/pickaxe/drill/onestar    blacklisted=1    10  20     100
+/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    10  20     100
+/obj/item/weapon/tool/weldingtool/onestar    blacklisted=1    10  20     100
