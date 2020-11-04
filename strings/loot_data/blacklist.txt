@@ -116,6 +116,7 @@
 /obj/item/weapon/pen/reagent
 /obj/item/weapon/pen/chameleon
 /obj/item/weapon/oddity/techno
+/obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior
@@ -160,14 +161,15 @@
 /obj/item/weapon/gun/energy/laser/practice/xenoarch
 /obj/item/weapon/gun/energy/laser/xenoarch
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
+/obj/item/weapon/gun/energy/plasma/stranger
+/obj/item/weapon/gun/energy/plasma/mounted/blitz
+/obj/item/weapon/gun/energy/plasma/mounted
 /obj/item/weapon/gun/energy/gun/mounted
 /obj/item/weapon/gun/energy/gun/nuclear
 /obj/item/weapon/gun/energy/captain/xenoarch
 /obj/item/weapon/gun/energy/lasercannon/mounted
 /obj/item/weapon/gun/energy/psychic/lasercannon
 /obj/item/weapon/gun/energy/psychic
-/obj/item/weapon/gun/energy/plasma/mounted/blitz
-/obj/item/weapon/gun/energy/plasma/mounted
 /obj/item/weapon/gun/energy/shrapnel/mounted
 /obj/item/weapon/gun/energy/xray/xenoarch
 /obj/item/weapon/gun/projectile/revolver/capgun
@@ -506,6 +508,7 @@
 /obj/item/modular_computer/telescreen/preset
 /obj/item/modular_computer/telescreen
 /mob/living/carbon/superior_animal/roach/roachling
+/mob/living/carbon/superior_animal/roach/bluespace
 /mob/living/carbon/superior_animal/roach/kaiser
 /mob/living/bot/miningonestar/resources/agressive/with_support
 /mob/living/bot/miningonestar/resources/agressive

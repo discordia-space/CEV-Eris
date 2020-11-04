@@ -1175,6 +1175,7 @@
 /obj/item/weapon/oddity/common/old_radio
 /obj/item/weapon/oddity/common/paper_bundle
 /obj/item/weapon/oddity/techno
+/obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/inflatable_duck
 /obj/item/weapon/twohanded/offhand
@@ -1733,6 +1734,14 @@
 /obj/item/weapon/gun/energy/laser
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 /obj/item/weapon/gun/energy/plasmacutter/mounted
+/obj/item/weapon/gun/energy/plasma/stranger
+/obj/item/weapon/gun/energy/plasma/mounted/blitz
+/obj/item/weapon/gun/energy/plasma/mounted
+/obj/item/weapon/gun/energy/plasma/destroyer
+/obj/item/weapon/gun/energy/plasma/cassad
+/obj/item/weapon/gun/energy/plasma/brigador
+/obj/item/weapon/gun/energy/plasma/martyr
+/obj/item/weapon/gun/energy/plasma
 /obj/item/weapon/gun/energy/crossbow/ninja
 /obj/item/weapon/gun/energy/crossbow/largecrossbow
 /obj/item/weapon/gun/energy/crossbow
@@ -1754,13 +1763,6 @@
 /obj/item/weapon/gun/energy/lasertag/red
 /obj/item/weapon/gun/energy/mindflayer
 /obj/item/weapon/gun/energy/nt_svalinn
-/obj/item/weapon/gun/energy/plasma/mounted/blitz
-/obj/item/weapon/gun/energy/plasma/mounted
-/obj/item/weapon/gun/energy/plasma/destroyer
-/obj/item/weapon/gun/energy/plasma/cassad
-/obj/item/weapon/gun/energy/plasma/brigador
-/obj/item/weapon/gun/energy/plasma/martyr
-/obj/item/weapon/gun/energy/plasma
 /obj/item/weapon/gun/energy/shrapnel/mounted
 /obj/item/weapon/gun/energy/shrapnel
 /obj/item/weapon/gun/energy/sniperrifle
@@ -3773,6 +3775,7 @@
 /mob/living/carbon/slime
 /mob/living/carbon/superior_animal/roach/roachling
 /mob/living/carbon/superior_animal/roach/hunter
+/mob/living/carbon/superior_animal/roach/bluespace
 /mob/living/carbon/superior_animal/roach/fuhrer
 /mob/living/carbon/superior_animal/roach/kaiser
 /mob/living/carbon/superior_animal/roach/support

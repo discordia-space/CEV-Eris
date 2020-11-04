@@ -130,6 +130,7 @@
 	suitable_cell = /obj/item/weapon/cell/small
 	can_dual = TRUE
 	w_class = ITEM_SIZE_NORMAL
+	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
 		list(mode_name="burn", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=5, move_delay=null, charge_cost=3, icon="stun", projectile_color = "#0000FF"),

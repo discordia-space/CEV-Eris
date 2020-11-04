@@ -1176,6 +1176,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/oddity/common/old_radio    obj,item,oddity    blacklisted=0    spawn_value=4.34783    price_tag=0   100    
 /obj/item/weapon/oddity/common/paper_bundle    obj,item,oddity    blacklisted=0    spawn_value=6.25    price_tag=0   100    
 /obj/item/weapon/oddity/techno    obj,item,oddity    blacklisted=1    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/oddity/broken_necklace    obj,item,oddity    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/oddity/secdocs    obj,item,oddity    blacklisted=1    spawn_value=10    price_tag=5000   100    
 /obj/item/weapon/inflatable_duck    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/twohanded/offhand    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -1734,6 +1735,14 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/gun/energy/laser    obj,item,gun,gun_energy    blacklisted=0    spawn_value=8.33333    price_tag=2500   100    
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech    obj,item,gun,gun_energy    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/gun/energy/plasmacutter/mounted    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/gun/energy/plasma/stranger    obj,item,gun,gun_energy    blacklisted=1    spawn_value=10    price_tag=5000   100    
+/obj/item/weapon/gun/energy/plasma/mounted/blitz    obj,item,gun,gun_energy    blacklisted=1    spawn_value=10    price_tag=4500   100    
+/obj/item/weapon/gun/energy/plasma/mounted    obj,item,gun,gun_energy    blacklisted=1    spawn_value=10    price_tag=4500   100    
+/obj/item/weapon/gun/energy/plasma/destroyer    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4500   100    
+/obj/item/weapon/gun/energy/plasma/cassad    obj,item,gun,gun_energy    blacklisted=0    spawn_value=8.33333    price_tag=3000   100    
+/obj/item/weapon/gun/energy/plasma/brigador    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4500   100    
+/obj/item/weapon/gun/energy/plasma/martyr    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=500   100    
+/obj/item/weapon/gun/energy/plasma    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4500   100    
 /obj/item/weapon/gun/energy/crossbow/ninja    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=2500   100    
 /obj/item/weapon/gun/energy/crossbow/largecrossbow    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4000   100    
 /obj/item/weapon/gun/energy/crossbow    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=2500   100    
@@ -1755,13 +1764,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/gun/energy/lasertag/red    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/gun/energy/mindflayer    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=3000   100    
 /obj/item/weapon/gun/energy/nt_svalinn    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=1000   100    
-/obj/item/weapon/gun/energy/plasma/mounted/blitz    obj,item,gun,gun_energy    blacklisted=1    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/mounted    obj,item,gun,gun_energy    blacklisted=1    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/destroyer    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/cassad    obj,item,gun,gun_energy    blacklisted=0    spawn_value=8.33333    price_tag=3000   100    
-/obj/item/weapon/gun/energy/plasma/brigador    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4500   100    
-/obj/item/weapon/gun/energy/plasma/martyr    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=500   100    
-/obj/item/weapon/gun/energy/plasma    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=4500   100    
 /obj/item/weapon/gun/energy/shrapnel/mounted    obj,item,gun,gun_energy,shotgun    blacklisted=1    spawn_value=5    price_tag=2500   100    
 /obj/item/weapon/gun/energy/shrapnel    obj,item,gun,gun_energy,shotgun    blacklisted=0    spawn_value=5    price_tag=2500   100    
 /obj/item/weapon/gun/energy/sniperrifle    obj,item,gun,gun_energy    blacklisted=0    spawn_value=10    price_tag=5000   100    
@@ -3774,6 +3776,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /mob/living/carbon/slime    mob,slime    blacklisted=0    spawn_value=10    price_tag=0   100    
 /mob/living/carbon/superior_animal/roach/roachling    mob,hostile_mob,mob_roach    blacklisted=1    spawn_value=20    price_tag=100   100    
 /mob/living/carbon/superior_animal/roach/hunter    mob,hostile_mob,mob_roach    blacklisted=0    spawn_value=8.88889    price_tag=200   100    
+/mob/living/carbon/superior_animal/roach/bluespace    mob,hostile_mob,mob_roach    blacklisted=1    spawn_value=20    price_tag=150   100    
 /mob/living/carbon/superior_animal/roach/fuhrer    mob,hostile_mob,mob_roach    blacklisted=0    spawn_value=1.11111    price_tag=150   100    
 /mob/living/carbon/superior_animal/roach/kaiser    mob,hostile_mob,mob_roach    blacklisted=1    spawn_value=1    price_tag=150   100    
 /mob/living/carbon/superior_animal/roach/support    mob,hostile_mob,mob_roach    blacklisted=0    spawn_value=8.88889    price_tag=150   100    
