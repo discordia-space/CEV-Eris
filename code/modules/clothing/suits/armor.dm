@@ -369,9 +369,9 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 40,
-		bullet = 30,
+		bullet = 25,
 		energy = 35,
-		bomb = 10,
+		bomb = 20,
 		bio = 0,
 		rad = 30
 	)
