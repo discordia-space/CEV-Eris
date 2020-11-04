@@ -243,7 +243,7 @@
 							log_msg = dd_limittext(log_msg, length(log_msg) - 2)
 							log_msg += ")"
 					log_msg += ", "
-				do_teleport(ROI, dest)
+				go_to_bluespace(get_turf(src),telepad.entropy_value, FALSE, ROI, dest)
 
 			if (dd_hassuffix(log_msg, ", "))
 				log_msg = dd_limittext(log_msg, length(log_msg) - 2)
@@ -265,14 +265,6 @@
 		telefail()
 		temp_msg = "ERROR!<BR>Elevation is less than 1 or greater than 90."
 		return
-	/*if(z_co in GLOB.using_map.admin_levels)
-		telefail()
-		temp_msg = "ERROR! Sector is invalid! Valid sectors are [english_list(GLOB.using_map.player_levels)]."
-		return*/
-	/*if(!z_co in GLOB.using_map.station_levels)
-		telefail()
-		temp_msg = "ERROR! Bad configuration provided by the user. Unable to charge the teleporter."
-		return*/
 	if(teles_left > 0)
 		doteleport(user)
 	else

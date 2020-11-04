@@ -74,6 +74,10 @@
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	spawn_blacklisted = TRUE
 
+/obj/item/weapon/storage/bag/trash/holding/New()
+	..()
+	bluespace_entropy(4, get_turf(src))
+
 /obj/item/weapon/storage/bag/trash/holding/update_icon()
 	return
 
@@ -123,6 +127,10 @@
 	                /obj/item/weapon/grown,
 	                /obj/item/weapon/reagent_containers/food/snacks/egg,
 	                /obj/item/weapon/reagent_containers/food/snacks/meat)
+
+/obj/item/weapon/storage/bag/ore/holding/New()
+	..()
+	bluespace_entropy(10, get_turf(src))
 
 // -----------------------------
 //          Produce bag

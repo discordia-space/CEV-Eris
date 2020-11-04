@@ -60,6 +60,7 @@ var/global/excelsior_last_draft = 0
 		/obj/item/weapon/electronics/circuitboard/excelsior_boombox = 150,
 		/obj/item/weapon/electronics/circuitboard/diesel = 150
 		)
+	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
 	excelsior_teleporters |= src
@@ -75,6 +76,7 @@ var/global/excelsior_last_draft = 0
 	var/man_amount = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
+		entropy_value = initial(entropy_value)/M.rating
 		man_amount++
 
 	// +50% speed for each upgrade tier
@@ -271,6 +273,7 @@ var/global/excelsior_last_draft = 0
 /obj/machinery/complant_teleporter/proc/complete_order(order_path, amount)
 	use_power(active_power_usage * 3)
 	new order_path(loc, amount)
+	bluespace_entropy(entropy_value, get_turf(src))
 	processing_order = FALSE
 
 /obj/machinery/complant_teleporter/attackby(obj/item/I, mob/user)

@@ -96,19 +96,19 @@
 		sleep(-1)
 		update_growth_stages()
 
-/datum/seed/proc/get_trait(var/trait)
+/datum/seed/proc/get_trait(trait)
 	return traits["[trait]"]
 
 /datum/seed/proc/get_trash_type()
 	return trash_type
 
-/datum/seed/proc/set_trait(var/trait,var/nval,var/ubound,var/lbound, var/degrade)
+/datum/seed/proc/set_trait(trait,nval,ubound,lbound, degrade)
 	if(!isnull(degrade)) nval *= degrade
 	if(!isnull(ubound))  nval = min(nval,ubound)
 	if(!isnull(lbound))  nval = max(nval,lbound)
 	traits["[trait]"] =  nval
 
-/datum/seed/proc/create_spores(var/turf/T)
+/datum/seed/proc/create_spores(turf/T)
 	if(!T)
 		return
 	if(!istype(T))
@@ -128,7 +128,7 @@
 	S.start()
 
 // Does brute damage to a target.
-/datum/seed/proc/do_thorns(var/mob/living/carbon/human/target, var/obj/item/fruit, var/target_limb)
+/datum/seed/proc/do_thorns(mob/living/carbon/human/target, obj/item/fruit, target_limb)
 
 	if(!get_trait(TRAIT_CARNIVOROUS))
 		return
@@ -173,7 +173,7 @@
 	target.updatehealth()
 
 // Adds reagents to a target.
-/datum/seed/proc/do_sting(var/mob/living/carbon/human/target, var/obj/item/fruit)
+/datum/seed/proc/do_sting(mob/living/carbon/human/target, obj/item/fruit)
 	if(!get_trait(TRAIT_STINGS))
 		return
 	if(chems && chems.len)
@@ -193,7 +193,7 @@
 			target.reagents.add_reagent(rid,injecting)
 
 //Splatter a turf.
-/datum/seed/proc/splatter(var/turf/T,var/obj/item/thrown)
+/datum/seed/proc/splatter(turf/T,obj/item/thrown)
 	if(splat_type && !(locate(/obj/effect/plant) in T))
 		var/obj/effect/plant/splat = new splat_type(T, src)
 		if(!istype(splat)) // Plants handle their own stuff.
@@ -227,7 +227,7 @@
 					R.add_reagent(chem,min(5,max(1,get_trait(TRAIT_POTENCY)/3)))
 
 //Applies an effect to a target atom.
-/datum/seed/proc/thrown_at(var/obj/item/thrown,var/atom/target, var/force_explode)
+/datum/seed/proc/thrown_at(obj/item/thrown,atom/target, force_explode)
 
 	var/splatted
 	var/turf/origin_turf = get_turf(target)
@@ -293,7 +293,7 @@
 			origin_turf.visible_message(SPAN_DANGER("The [thrown.name] splatters against [target]!"))
 		qdel(thrown)
 
-/datum/seed/proc/handle_environment(var/turf/current_turf, var/datum/gas_mixture/environment, var/light_supplied, var/check_only)
+/datum/seed/proc/handle_environment(turf/current_turf, datum/gas_mixture/environment, light_supplied, check_only)
 
 	var/health_change = 0
 	// Handle gas consumption.
@@ -345,7 +345,7 @@
 
 	return health_change
 
-/datum/seed/proc/apply_special_effect(var/mob/living/target,var/obj/item/thrown)
+/datum/seed/proc/apply_special_effect(mob/living/target,obj/item/thrown)
 
 	var/impact = 1
 	do_sting(target,thrown)
@@ -358,22 +358,11 @@
 		var/outer_teleport_radius = get_trait(TRAIT_POTENCY)/5
 		var/inner_teleport_radius = get_trait(TRAIT_POTENCY)/15
 
-		var/list/turfs = list()
-		if(inner_teleport_radius > 0)
-			var/turf/TLoc = get_turf(target)
-			for(var/turf/T in trange(outer_teleport_radius, TLoc))
-				if(get_dist(target,T) >= inner_teleport_radius)
-					turfs |= T
+		var/turf/TLoc = get_turf(target)
+		var/turf/picked = get_random_turf_in_range(TLoc, outer_teleport_radius, inner_teleport_radius)
 
-		if(turfs.len)
-			// Moves the mob, causes sparks.
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-			s.set_up(3, 1, get_turf(target))
-			s.start()
-			var/turf/picked = get_turf(pick(turfs))                      // Just in case...
-			new/obj/effect/decal/cleanable/molten_item(get_turf(target)) // Leave a pile of goo behind for dramatic effect...
-			target.loc = picked                                          // And teleport them to the chosen location.
-
+		if(picked)
+			go_to_bluespace(TLoc, 2, TRUE, target, picked)
 			impact = 1
 
 	return impact
@@ -536,7 +525,7 @@
 	return pick(mutants)
 
 //Mutates the plant overall (randomly).
-/datum/seed/proc/mutate(var/degree,var/turf/source_turf)
+/datum/seed/proc/mutate(degree,turf/source_turf)
 
 	if(!degree || get_trait(TRAIT_IMMUTABLE) > 0) return
 
@@ -710,7 +699,7 @@
 	return P
 
 //Place the plant products at the feet of the user.
-/datum/seed/proc/harvest(var/mob/living/user,var/yield_mod,var/harvest_sample,var/force_amount)
+/datum/seed/proc/harvest(mob/living/user,yield_mod,harvest_sample,force_amount)
 
 	if(!user)
 		return
@@ -780,7 +769,7 @@
 // When the seed in this machine mutates/is modified, the tray seed value
 // is set to a new datum copied from the original. This datum won't actually
 // be put into the global datum list until the product is harvested, though.
-/datum/seed/proc/diverge(var/modified)
+/datum/seed/proc/diverge(modified)
 
 	if(get_trait(TRAIT_IMMUTABLE) > 0) return
 
