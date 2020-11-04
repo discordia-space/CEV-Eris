@@ -5,17 +5,6 @@
 /obj/item/clothing/head/space/santahat    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/space/emergency    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/space/syndicate    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/combat/ironhammer    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/combat    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/hazard    blacklisted=1    spawn_value=5    price_tag=100   100    
-/obj/item/clothing/head/space/rig/light    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/merc    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/industrial    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/ce    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/eva    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/hazmat    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/medical    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/space/anomaly    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle    blacklisted=0    spawn_value=18.018    price_tag=100   100    
@@ -143,8 +132,6 @@
 /obj/item/clothing/head/soft/sarge2soft    blacklisted=0    spawn_value=28.5714    price_tag=30   100    
 /obj/item/clothing/head/soft/medical    blacklisted=0    spawn_value=28.5714    price_tag=30   100    
 /obj/item/clothing/head/soft    blacklisted=0    spawn_value=28.5714    price_tag=30   100    
-/obj/item/clothing/head/lightrig/hacker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/head/lightrig    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/head/bio_hood/general    blacklisted=0    spawn_value=10    price_tag=50   100    
 /obj/item/clothing/head/bio_hood/virology    blacklisted=0    spawn_value=10    price_tag=50   100    
 /obj/item/clothing/head/bio_hood/security    blacklisted=0    spawn_value=10    price_tag=50   100    

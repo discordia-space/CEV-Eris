@@ -79,17 +79,6 @@
 /obj/item/clothing/head/space/santahat    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/space/emergency    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/space/syndicate    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/combat/ironhammer    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/combat    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/hazard    blacklisted=1    spawn_value=5    price_tag=100   100    
-/obj/item/clothing/head/space/rig/light    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/merc    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/industrial    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/ce    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/eva    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/hazmat    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig/medical    blacklisted=1    spawn_value=10    price_tag=100   100    
-/obj/item/clothing/head/space/rig    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/space/anomaly    blacklisted=1    spawn_value=10    price_tag=100   100    
 /obj/item/clothing/head/chameleon    blacklisted=1    spawn_value=2    price_tag=30   100    
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle    blacklisted=0    spawn_value=18.018    price_tag=100   100    
@@ -217,8 +206,6 @@
 /obj/item/clothing/head/soft/sarge2soft    blacklisted=0    spawn_value=28.5714    price_tag=30   100    
 /obj/item/clothing/head/soft/medical    blacklisted=0    spawn_value=28.5714    price_tag=30   100    
 /obj/item/clothing/head/soft    blacklisted=0    spawn_value=28.5714    price_tag=30   100    
-/obj/item/clothing/head/lightrig/hacker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/head/lightrig    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/head/bio_hood/general    blacklisted=0    spawn_value=10    price_tag=50   100    
 /obj/item/clothing/head/bio_hood/virology    blacklisted=0    spawn_value=10    price_tag=50   100    
 /obj/item/clothing/head/bio_hood/security    blacklisted=0    spawn_value=10    price_tag=50   100    
@@ -261,12 +248,6 @@
 /obj/item/clothing/gloves/fingerless    blacklisted=0    spawn_value=1.11111    price_tag=10   100    
 /obj/item/clothing/gloves/german    blacklisted=0    spawn_value=3.0303    price_tag=30   100    
 /obj/item/clothing/gloves/stungloves    blacklisted=0    spawn_value=1.0101    price_tag=500   100    
-/obj/item/clothing/gloves/rig/light/ninja    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/rig/light    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/rig/ce    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/rig    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/lightrig/hacker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/lightrig    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/suit/space/void/excelsior    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/SCAF    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
 /obj/item/clothing/suit/space/void/merc/equipped    blacklisted=0    spawn_value=1.6    price_tag=30   100    /obj/item/clothing/shoes/magboots
@@ -292,13 +273,8 @@
 /obj/item/clothing/suit/space/santa    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/suit/space/emergency    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/suit/space/syndicate    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/suit/space/rig/light/ninja    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/suit/space/rig/light    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/suit/space/rig    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/suit/space/anomaly    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/suit/chameleon    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/suit/lightrig/hacker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/suit/lightrig    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/suit/armor/vest/security    blacklisted=0    spawn_value=5    price_tag=200   100    
 /obj/item/clothing/suit/armor/vest/detective    blacklisted=0    spawn_value=5    price_tag=200   100    
 /obj/item/clothing/suit/armor/vest/warden    blacklisted=0    spawn_value=2.85714    price_tag=350   100    
@@ -642,9 +618,6 @@
 /obj/item/clothing/shoes/reinforced    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
 /obj/item/clothing/shoes/workboots    blacklisted=0    spawn_value=2    price_tag=30   100    
 /obj/item/clothing/shoes/magboots/merc    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/magboots/rig/light    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/magboots/rig/ce    blacklisted=1    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/magboots/rig    blacklisted=1    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/shoes/magboots    blacklisted=1    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/shoes/syndigaloshes    blacklisted=1    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/shoes/mime    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
@@ -657,8 +630,6 @@
 /obj/item/clothing/shoes/slippers_worn    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/shoes/swimmingfins    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/shoes/leather    blacklisted=0    spawn_value=6.99301    price_tag=30   100    
-/obj/item/clothing/shoes/lightrig/hacker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/shoes/lightrig    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/accessory/bs_silk    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/accessory/blue    blacklisted=0    spawn_value=10    price_tag=30   100    
 /obj/item/clothing/accessory/red    blacklisted=0    spawn_value=10    price_tag=30   100    

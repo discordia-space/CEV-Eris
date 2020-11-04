@@ -180,9 +180,6 @@
 /obj/item/device/mmi/radio_enabled    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/mmi    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/robotanalyzer    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/device/nanite_container    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/smokescreen    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/drone_uplink    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/device/toner    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/camera_film    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/camera    blacklisted=0    spawn_value=10    price_tag=0   100    

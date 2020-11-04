@@ -83,7 +83,6 @@
 #define SPAWN_ODDITY "oddity"
 
 #define SPAWN_TAG_ODDITY "obj,item,oddity"
-#define SPAWN_TAG_ODDITY_WEAPON "obj,item,oddity,weapon"
 
 //	Items - Tanks
 #define SPAWN_TANK_GAS "tank_gas"
@@ -315,15 +314,15 @@
 #define SPAWN_TAG_RESEARCH_POINTS "obj,item,science"
 #define SPAWN_TAG_COMPUTER_HARDWERE "obj,item,computer_hardware"
 
-// ITEMS - RING
-#define SPAWN_RING "ring_suit"
-#define SPAWN_RING_MODULE "ring_module"
-#define SPAWN_RING_MODULE_COMMON "ring_module_common"
+// ITEMS - RIG
+#define SPAWN_RIG "rig_suit"
+#define SPAWN_RIG_MODULE "rig_module"
+#define SPAWN_RIG_MODULE_COMMON "rig_module_common"
 
-#define SPAWN_TAG_RING "obj,item,space_suit,ring_suit"
-#define SPAWN_TAG_RING_HAZMAT "obj,item,space_suit,ring_suit,science"
-#define SPAWN_TAG_RING_MODULE "obj,item,ring_module"
-#define SPAWN_TAG_RING_MODULE_COMMON "ring_module_common"
+#define SPAWN_TAG_RIG "obj,item,space_suit,rig_suit"
+#define SPAWN_TAG_RIG_HAZMAT "obj,item,space_suit,rig_suit,science"
+#define SPAWN_TAG_RIG_MODULE "obj,item,rig_module"
+#define SPAWN_TAG_RIG_MODULE_COMMON "rig_module_common"
 
 // ITEM - DRIKS
 #define SPAWN_BOOZE "bottle_alcohol"

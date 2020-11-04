@@ -28,9 +28,3 @@
 /obj/item/clothing/gloves/fingerless    blacklisted=0    spawn_value=1.11111    price_tag=10   100    
 /obj/item/clothing/gloves/german    blacklisted=0    spawn_value=3.0303    price_tag=30   100    
 /obj/item/clothing/gloves/stungloves    blacklisted=0    spawn_value=1.0101    price_tag=500   100    
-/obj/item/clothing/gloves/rig/light/ninja    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/rig/light    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/rig/ce    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/rig    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/lightrig/hacker    blacklisted=0    spawn_value=10    price_tag=30   100    
-/obj/item/clothing/gloves/lightrig    blacklisted=0    spawn_value=10    price_tag=30   100    

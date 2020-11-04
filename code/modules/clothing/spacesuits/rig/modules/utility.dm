@@ -37,7 +37,7 @@
 	interface_desc = "Shows an informative health readout when used on a subject."
 	device_type = /obj/item/device/scanner/health
 	rarity_value = 2.5
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/device/drill
 	name = "hardsuit drill mount"
@@ -63,7 +63,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/ano_scanner
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 
 /obj/item/rig_module/device/orescanner
@@ -76,7 +76,7 @@
 	usable = 1
 	selectable = 0
 	device_type = /obj/item/device/scanner/mining
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 
 /obj/item/rig_module/device/rcd
@@ -158,7 +158,7 @@
 		list("radium",        "radium",        0, 20)
 		)
 	rarity_value = 5
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
 
@@ -334,7 +334,7 @@
 	interface_name = "maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
 	rarity_value = 1.25
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/obj/item/weapon/tank/jetpack/rig/jets
 
 /obj/item/rig_module/maneuvering_jets/engage()

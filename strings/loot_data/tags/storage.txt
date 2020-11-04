@@ -8,7 +8,7 @@
 /obj/item/weapon/storage/box/beakers    blacklisted=0    spawn_value=20    price_tag=0   100    
 /obj/item/weapon/storage/box/bodybags    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/weapon/storage/box/injectors    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/sniperammo    blacklisted=0    spawn_value=2.5    price_tag=0   100    
+/obj/item/weapon/storage/box/sniperammo    blacklisted=0    spawn_value=1.25    price_tag=0   100    
 /obj/item/weapon/storage/box/flashbangs    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
 /obj/item/weapon/storage/box/teargas    blacklisted=0    spawn_value=2    price_tag=0   100    
 /obj/item/weapon/storage/box/emps    blacklisted=0    spawn_value=1.66667    price_tag=0   100    
