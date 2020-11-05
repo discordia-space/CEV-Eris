@@ -2,8 +2,9 @@
 	name = "brain"
 	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
 	desc = "A piece of juicy meat found in a person's head."
-	organ_tag = BP_BRAIN
-	parent_organ = BP_HEAD
+	organ_efficiency = list(BP_BRAIN = 100)
+	parent_organ_base = BP_HEAD
+	unique_tag = BP_BRAIN
 	vital = 1
 	icon_state = "brain2"
 	force = 1
@@ -57,7 +58,7 @@
 		if(borer)
 			borer.detatch() //Should remove borer if the brain is removed - RR
 
-		var/obj/item/organ/internal/carrion/core/C = owner.internal_organs_by_name[BP_SPCORE]
+		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
 			C.removed()
 			qdel(src)

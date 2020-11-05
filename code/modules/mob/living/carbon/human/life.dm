@@ -141,7 +141,7 @@
 	//Vision
 	var/obj/item/organ/vision
 	if(species.vision_organ)
-		vision = internal_organs_by_name[species.vision_organ]
+		vision = random_organ_by_process(species.vision_organ)	//You can't really have 2 vision organs that see at the same time, so this is emulated by switching between the eyes. 
 
 	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
 		eye_blind =  0
@@ -311,9 +311,11 @@
 	return null
 
 /mob/living/carbon/human/get_breath_modulo()
-	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[BP_LUNGS]
-	if(L)
-		return L.breath_modulo
+	var/breath_modulo_total
+	for(var/obj/item/organ/internal/lungs/L in organ_list_by_process(OP_LUNGS))
+		breath_modulo_total += L.breath_modulo
+	if(!isnull(breath_modulo_total))
+		return breath_modulo_total
 	return ..()
 
 /mob/living/carbon/human/handle_breath(datum/gas_mixture/breath)
@@ -333,7 +335,7 @@
 		oxygen_alert = max(oxygen_alert, 1)
 		return 0
 
-	if(get_organ_efficiency(BP_LUNGS) && handle_breath_lungs(breath))
+	if(get_organ_efficiency(OP_LUNGS) && handle_breath_lungs(breath))
 		failed_last_breath = 0
 	else
 		failed_last_breath = 1
@@ -352,7 +354,7 @@
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
 
-	var/lung_efficiency = get_organ_efficiency(BP_LUNGS)
+	var/lung_efficiency = get_organ_efficiency(OP_LUNGS)
 
 	if(!breath)
 		return 0
@@ -790,7 +792,7 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(species.has_organ[BP_BRAIN] && !has_brain()) //No brain = death
+		if(species.has_process[BP_BRAIN] && !has_brain()) //No brain = death
 			death()
 			blinded = 1
 			silent = 0

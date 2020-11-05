@@ -300,7 +300,7 @@
 	M.eye_blind = max(M.eye_blind - (5 * effect_multiplier), 0)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
+		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
 			if(E.damage > 0)
 				E.damage = max(E.damage - (0.5 * effect_multiplier), 0)

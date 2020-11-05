@@ -108,7 +108,7 @@ var/global/list/sparring_attack_cache = list()
 	playsound(user.loc, attack_sound, 25, 1, -1)
 
 /datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
-	var/obj/item/organ/internal/eyes/eyes = target.internal_organs_by_name[BP_EYES]
+	var/obj/item/organ/internal/eyes/eyes = target.random_organ_by_process(OP_EYES)
 	eyes.take_damage(rand(3,4), 1)
 
 	user.visible_message(SPAN_DANGER("[user] presses \his [eye_attack_text] into [target]'s [eyes.name]!"))

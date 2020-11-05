@@ -1,10 +1,11 @@
 /obj/item/organ/internal/heart
 	name = "heart"
 	icon_state = "heart-on"
-	organ_tag = BP_HEART
-	parent_organ = BP_CHEST
+	organ_efficiency = list(OP_HEART = 100)
+	parent_organ_base = BP_CHEST
 	dead_icon = "heart-off"
 	price_tag = 1000
+	specific_organ_size = 2
 	var/open
 
 /obj/item/organ/internal/heart/open

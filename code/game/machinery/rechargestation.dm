@@ -94,11 +94,6 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
-	else if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
-		if(!isnull(H.internal_organs_by_name[BP_CELL]) && H.nutrition < 450)
-			H.nutrition = min(H.nutrition+10, 450)
-			cell.use(7000/450*10)
 
 /obj/machinery/recharge_station/examine(mob/user)
 	..(user)
@@ -217,10 +212,6 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.cell)
-			return 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(!isnull(H.internal_organs_by_name[BP_CELL]))
 			return 1
 	return 0
 
