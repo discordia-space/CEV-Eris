@@ -97,34 +97,55 @@ SUBSYSTEM_DEF(statverbs)
 
 // Example
 
-/turf/simulated/floor/initalize_statverbs()
-	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))
-		add_statverb(/datum/statverb/remove_plating)
-
-/datum/statverb/remove_plating
-	name = "Remove plating"
-	required_stat = STAT_ROB
-	minimal_stat  = STAT_LEVEL_ADEPT
-
 /datum/statverb/remove_plating/action(mob/user, turf/simulated/floor/target)
 	if(target.flooring && target.flooring.flags & TURF_REMOVE_CROWBAR)
 		user.visible_message(
-			SPAN_DANGER("[user] grab [target] edge with hands!"),
-			"You grab [target] edge with hands"
+			SPAN_DANGER("[user] grabbed the edges of [target] with their hands!"),
+			"You grab the edges of [target] with your hands"
 		)
 		if(do_mob(user, target, target.flooring.removal_time * 3))
 			user.visible_message(
 				SPAN_DANGER("[user] roughly tore plating off from [target]!"),
-				"You tore plating off from [target]"
+				"You tore the plating off from [target]"
 			)
 			target.make_plating(FALSE)
 		else
 			var/target_name = target ? "[target]" : "the floor"
 			user.visible_message(
-				SPAN_DANGER("[user] stop toring plating from [target_name]!"),
-				"You stop toring plating off from [target_name]"
+				SPAN_DANGER("[user] stopped tearing the plating off from [target_name]!"),
+				"You stop tearing plating off from [target_name]"
 			)
 
+/obj/machinery/computer/rdconsole/initalize_statverbs()
+	if(access_research_equipment in req_access)
+		add_statverb(/datum/statverb/hack_console)
 
+/datum/statverb/hack_console
+	name = "Hack console"
+	required_stat = STAT_COG
+	minimal_stat  = STAT_LEVEL_ADEPT
 
+/datum/statverb/hack_console/action(mob/user, obj/machinery/computer/rdconsole/target)
+	var/datum/repeating_sound/keyboardsound = new(30, 100, 0.25, target, "keyboard", 80, 1)
+	if(access_research_equipment in target.req_access)
+		user.visible_message(
+			SPAN_DANGER("[user] begins hacking into [target]!"),
+			"You start hacking the access requirement on [target]"
+		)
+		if(do_mob(user, target))
+			keyboardsound.stop()
+			keyboardsound = null
+			target.req_access.Cut()
+			user.visible_message(
+				SPAN_DANGER("[user] breaks the access encryption on [target]!"),
+				"You break the access encryption on [target]"
+			)
+		else
+			keyboardsound.stop()
+			keyboardsound = null
+			var/target_name = target ? "[target]" : "the Research Console"
+			user.visible_message(
+				SPAN_DANGER("[user] stopped hacking into [target_name]!"),
+				"You stop hacking into [target_name]."
+			)
 
