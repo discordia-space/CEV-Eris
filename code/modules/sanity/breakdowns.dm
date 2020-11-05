@@ -189,7 +189,7 @@
 							break
 				if(damage_eyes)
 					holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches at [G.his] eyes!"))
-					var/obj/item/organ/internal/eyes/eyes = holder.owner.internal_organs_by_name[BP_EYES]
+					var/obj/item/organ/internal/eyes/eyes = holder.owner.random_organ_by_process(OP_EYES)
 					eyes.take_damage(rand(1,2), 1)
 				else
 					holder.owner.visible_message(SPAN_DANGER(pick(list(

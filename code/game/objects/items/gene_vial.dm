@@ -18,7 +18,7 @@
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/internal/carrion/core/C
 	if(istype(H))
-		C = H.internal_organs_by_name[BP_SPCORE]
+		C = H.random_organ_by_process(BP_SPCORE)
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
 			to_chat(user, SPAN_WARNING("\The [blocked] is in the way!"))
