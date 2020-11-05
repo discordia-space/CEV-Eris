@@ -21,8 +21,12 @@
 
 /mob/living/carbon/superior_animal/roach/bluespace/Life()
 	. = ..()
-	if(stat) // if the roach is conscious
+	if(stat != CONSCIOUS)
 		return
+
+	if(stat != AI_inactive)
+		return
+
 	var/turf/target
 	if((stance == HOSTILE_STANCE_ATTACK || stance == HOSTILE_STANCE_ATTACKING) && target_mob && !Adjacent(target_mob) && prob(change_tele_to_mob))
 		target = get_turf(target_mob)
@@ -45,7 +49,7 @@
 		return FALSE
 	..()
 
-/mob/living/carbon/superior_animal/roach/bluespace/attack_hand(mob/living/carbon/M as mob)
+/mob/living/carbon/superior_animal/roach/bluespace/attack_hand(mob/living/carbon/M)
 	if(M.a_intent != I_HELP && prob(change_tele_to_mob))
 		var/source = src
 		if(target_mob)

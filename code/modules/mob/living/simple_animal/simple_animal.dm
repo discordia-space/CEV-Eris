@@ -167,16 +167,16 @@
 		to_chat(user, SPAN_WARNING("It looks wounded."))
 
 /mob/living/simple_animal/Life()
-	..()
+	.=..()
 
 	if(!stasis)
 
-		if(stat == DEAD)
-			return 0
+		if(!.)
+			return FALSE
 
 		if(health <= 0)
 			death()
-			return
+			return FALSE
 
 		if(health > maxHealth)
 			health = maxHealth
@@ -250,7 +250,7 @@
 					speak_audio()
 
 			if(incapacitated())
-				return 1
+				return TRUE
 
 			//Movement
 			turns_since_move++
@@ -264,7 +264,7 @@
 							step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 							turns_since_move = 0
 
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/proc/visible_emote(message)
 	if(islist(message))

@@ -12,7 +12,7 @@
 	rarity_value = 11.25
 
 /mob/living/carbon/superior_animal/roach/support/New()
-	..()
+	.=..()
 	gas_sac = new /datum/reagents(100, src)
 
 /mob/living/carbon/superior_animal/roach/support/proc/gas_attack()
