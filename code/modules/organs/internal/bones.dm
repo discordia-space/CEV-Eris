@@ -36,7 +36,7 @@
 
 /obj/item/organ/internal/bone/proc/reinforce()
 	if(!reinforced) //Just in case
-		organ_efficiency_base += 33
+		organ_efficiency += 33
 		reinforced = TRUE
 		name = "reinforced [name]"
 		icon_state = "reinforced_[icon_state]"
