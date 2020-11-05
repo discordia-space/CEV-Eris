@@ -69,8 +69,7 @@
 
 	//Used in living/recoil.dm
 	var/recoil = 0 //What our current recoil level is
-	var/last_recoil_update = 0 //When our last recoil update was
-	var/recoil_timer //Holds the timer ID
+	var/recoil_reduction_timer
 	var/falls_mod = 1
 	var/mob_bomb_defense = 0	// protection from explosives
 	var/mod_climb_delay = 1 // delay for climb
