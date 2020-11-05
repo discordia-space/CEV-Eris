@@ -97,6 +97,15 @@ SUBSYSTEM_DEF(statverbs)
 
 // Example
 
+/turf/simulated/floor/initalize_statverbs()	
+	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))	
+		add_statverb(/datum/statverb/remove_plating)	
+
+/datum/statverb/remove_plating	
+	name = "Remove plating"	
+	required_stat = STAT_ROB	
+	minimal_stat  = STAT_LEVEL_ADEPT	
+
 /datum/statverb/remove_plating/action(mob/user, turf/simulated/floor/target)
 	if(target.flooring && target.flooring.flags & TURF_REMOVE_CROWBAR)
 		user.visible_message(
