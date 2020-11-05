@@ -1,0 +1,6 @@
+author: Evankhell561
+delete-after: true
+changes:
+  - tweak: bluespace roaches no longer teleport when their AI is idle.
+  - tweak: You cannot get a virus while you are dead.
+  - tweak: All breakdowns end when you die.
