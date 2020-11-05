@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(statverbs)
 			return FALSE
 
 	if(user.stats.getStat(required_stat) < minimal_stat)
-		to_chat(user, SPAN_WARNING("You're not skilled enought in [required_stat]"))
+		to_chat(user, SPAN_WARNING("You're not skilled enough in [required_stat]"))
 		return FALSE
 
 	action(user, target)
@@ -97,14 +97,14 @@ SUBSYSTEM_DEF(statverbs)
 
 // Example
 
-/turf/simulated/floor/initalize_statverbs()	
-	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))	
-		add_statverb(/datum/statverb/remove_plating)	
+/turf/simulated/floor/initalize_statverbs()
+	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))
+		add_statverb(/datum/statverb/remove_plating)
 
-/datum/statverb/remove_plating	
-	name = "Remove plating"	
-	required_stat = STAT_ROB	
-	minimal_stat  = STAT_LEVEL_ADEPT	
+/datum/statverb/remove_plating
+	name = "Remove plating"
+	required_stat = STAT_ROB
+	minimal_stat  = STAT_LEVEL_ADEPT
 
 /datum/statverb/remove_plating/action(mob/user, turf/simulated/floor/target)
 	if(target.flooring && target.flooring.flags & TURF_REMOVE_CROWBAR)
@@ -135,16 +135,23 @@ SUBSYSTEM_DEF(statverbs)
 	minimal_stat  = STAT_LEVEL_ADEPT
 
 /datum/statverb/hack_console/action(mob/user, obj/machinery/computer/rdconsole/target)
-	var/datum/repeating_sound/keyboardsound = new(30, 100, 0.25, target, "keyboard", 80, 1)
-	if(access_research_equipment in target.req_access)
+	if(target.hacked == 1)
+		user.visible_message(
+			SPAN_WARNING("[target] is already hacked!")
+		)
+		return
+	if(target.hacked == 0)
+		var/timer = 220 - (user.stats.getStat(STAT_COG) * 2)
+		var/datum/repeating_sound/keyboardsound = new(30, timer, 0.15, target, "keyboard", 80, 1)
 		user.visible_message(
 			SPAN_DANGER("[user] begins hacking into [target]!"),
 			"You start hacking the access requirement on [target]"
 		)
-		if(do_mob(user, target))
+		if(do_mob(user, target, timer))
 			keyboardsound.stop()
 			keyboardsound = null
 			target.req_access.Cut()
+			target.hacked = 1
 			user.visible_message(
 				SPAN_DANGER("[user] breaks the access encryption on [target]!"),
 				"You break the access encryption on [target]"
@@ -152,7 +159,7 @@ SUBSYSTEM_DEF(statverbs)
 		else
 			keyboardsound.stop()
 			keyboardsound = null
-			var/target_name = target ? "[target]" : "the Research Console"
+			var/target_name = target ? "[target]" : "the research console"
 			user.visible_message(
 				SPAN_DANGER("[user] stopped hacking into [target_name]!"),
 				"You stop hacking into [target_name]."
