@@ -19,13 +19,17 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
 
+#define FIRE_ALERT_NONE 0 //No fire alert
+#define FIRE_ALERT_COLD 1 //Frostbite
+#define FIRE_ALERT_HOT 2 //Real fire
+
 #define RADIATION_SPEED_COEFFICIENT 0.1
 
 /mob/living/carbon/human
 	var/oxygen_alert = 0
 	var/plasma_alert = 0
 	var/co2_alert = 0
-	var/fire_alert = 0
+	var/fire_alert = FIRE_ALERT_NONE
 	var/pressure_alert = 0
 	var/temperature_alert = 0
 	var/in_stasis = 0
@@ -39,7 +43,7 @@
 	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
-	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
+	fire_alert = FIRE_ALERT_NONE //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
 	//TODO: seperate this out
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
@@ -335,13 +339,15 @@
 		oxygen_alert = max(oxygen_alert, 1)
 		return 0
 
-	if(get_organ_efficiency(OP_LUNGS) && handle_breath_lungs(breath))
-		failed_last_breath = 0
+	if(get_organ_efficiency(OP_LUNGS))
+		failed_last_breath = !handle_breath_lungs(breath)
 	else
 		failed_last_breath = 1
 	return 1
 
 /mob/living/carbon/human/proc/handle_breath_lungs(datum/gas_mixture/breath)
+	if(!breath)
+		return FALSE
 	//vars - feel free to modulate if you want more effects that are not gained with efficiency 
 	var/breath_type = species.breath_type ? species.breath_type : "oxygen"
 	var/poison_type = species.poison_type ? species.poison_type : "plasma"
@@ -355,9 +361,6 @@
 	var/SA_sleep_min = 5
 
 	var/lung_efficiency = get_organ_efficiency(OP_LUNGS)
-
-	if(!breath)
-		return 0
 
 	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 	// Lung damage increases the minimum safe pressure.
@@ -478,7 +481,7 @@
 					damage = COLD_GAS_DAMAGE_LEVEL_1
 
 			apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Cold")
-			fire_alert = 1
+			fire_alert = FIRE_ALERT_COLD
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
 				to_chat(src, SPAN_DANGER("You feel your face burning and a searing heat in your lungs!"))
@@ -492,7 +495,7 @@
 					damage = HEAT_GAS_DAMAGE_LEVEL_3
 
 			apply_damage(damage, BURN, BP_HEAD, used_weapon = "Excessive Heat")
-			fire_alert = 2
+			fire_alert = FIRE_ALERT_HOT
 
 		//breathing in hot/cold air also heats/cools you a bit
 		var/temp_adj = breath.temperature - bodytemperature
@@ -572,7 +575,7 @@
 	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
-		fire_alert = max(fire_alert, 1)
+		fire_alert = max(fire_alert, FIRE_ALERT_COLD)
 		if(status_flags & GODMODE)	return 1	//godmode
 		var/burn_dam = 0
 		switch(bodytemperature)
@@ -583,10 +586,10 @@
 			if(species.heat_level_3 to INFINITY)
 				burn_dam = HEAT_DAMAGE_LEVEL_3
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
-		fire_alert = max(fire_alert, 2)
+		fire_alert = max(fire_alert, FIRE_ALERT_HOT)
 
 	else if(bodytemperature <= species.cold_level_1)
-		fire_alert = max(fire_alert, 1)
+		fire_alert = max(fire_alert, FIRE_ALERT_COLD)
 		if(status_flags & GODMODE)	return 1	//godmode
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
@@ -599,7 +602,7 @@
 				if(species.cold_level_2 to species.cold_level_1)
 					burn_dam = COLD_DAMAGE_LEVEL_3
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-			fire_alert = max(fire_alert, 1)
+			fire_alert = max(fire_alert, FIRE_ALERT_COLD)
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!

@@ -44,6 +44,9 @@
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
 
+/obj/item/organ/internal/proc/get_process_eficiency(process_define)
+	return organ_efficiency[process_define] - (organ_efficiency[process_define] * (damage / max_damage))
+
 /obj/item/organ/internal/proc/take_internal_damage(amount, var/silent=0)
 	if(BP_IS_ROBOTIC(src))
 		damage = between(0, src.damage + (amount * 0.8), max_damage)
