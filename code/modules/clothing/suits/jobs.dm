@@ -162,7 +162,7 @@
 
 //Detective
 /obj/item/clothing/suit/storage/detective
-	name = "brown trenchcoat"
+	name = "gray trenchcoat"
 	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective"
 	item_state = "det_suit"
