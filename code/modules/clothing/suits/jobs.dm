@@ -162,7 +162,7 @@
 
 //Detective
 /obj/item/clothing/suit/storage/detective
-	name = "brown trenchcoat"
+	name = "grey trenchcoat"
 	desc = "A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
 	icon_state = "detective"
 	item_state = "det_suit"
@@ -178,12 +178,6 @@
 	)
 	siemens_coefficient = 0.8
 	price_tag = 250
-
-/obj/item/clothing/suit/storage/detective/gray
-	name = "grey trenchcoat"
-	desc = "A grey rugged canvas trenchcoat, designed and created by TX Fabrication Corp. The coat is externally impact resistant - perfect for your next act of autodefenestration!"
-	icon_state = "grey_coat"
-	item_state = "grey_coat"
 	rarity_value = 16.66
 
 /obj/item/clothing/suit/storage/detective/ironhammer
