@@ -343,9 +343,9 @@
 	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 //I wanted to name it set_up() but some how I thought that would be misleading
-/obj/item/clothing/head/armor/faceshield/proc/set_is_up(u)
-	up = u
-	if(u)
+/obj/item/clothing/head/armor/faceshield/proc/set_is_up(is_up)
+	up = is_up
+	if(up)
 		armor = getArmor(arglist(armor_up))
 		flash_protection = initial(flash_protection)
 		tint = initial(tint)
