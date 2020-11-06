@@ -147,7 +147,6 @@
 	slot_flags = SLOT_BELT
 	price_tag = 1000
 	spawn_frequency = 0
-	spawn_blacklisted = TRUE
 	storage_slots = 1
 	max_w_class = ITEM_SIZE_BULKY
 

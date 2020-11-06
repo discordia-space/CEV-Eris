@@ -225,6 +225,8 @@
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/obsession/task_completed()
+	if(mind_holder.stat == DEAD)
+		return
 	if(target in view(mind_holder))
 		units_completed += abs(world.time - timer)
 		timer = world.time
@@ -261,6 +263,8 @@
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/greed/task_completed()
+	if(mind_holder.stat == DEAD)
+		return
 	var/find = FALSE
 	for(var/obj/item/I in mind_holder.GetAllContents())
 		if(target.type == I.type)

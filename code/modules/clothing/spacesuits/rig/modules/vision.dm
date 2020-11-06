@@ -94,7 +94,7 @@
 	interface_desc = "An integrated meson scanner."
 
 	vision_modes = list(/datum/rig_vision/meson)
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/vision/thermal
 	name = "hardsuit thermal scanner"
@@ -133,7 +133,7 @@
 	interface_desc = "An integrated security heads up display."
 
 	vision_modes = list(/datum/rig_vision/sechud)
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/vision/medhud
 	name = "hardsuit medical hud"
@@ -146,7 +146,7 @@
 	interface_desc = "An integrated medical heads up display."
 
 	vision_modes = list(/datum/rig_vision/medhud)
-	spawn_tags = SPAWN_TAG_RING_MODULE_COMMON
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 
 // There should only ever be one vision module installed in a suit.

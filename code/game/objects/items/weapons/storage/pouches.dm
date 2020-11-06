@@ -14,7 +14,6 @@
 	attack_verb = list("pouched")
 	spawn_blacklisted = FALSE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_POUCH
 	bad_type = /obj/item/weapon/storage/pouch
 
@@ -282,3 +281,7 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	spawn_blacklisted = TRUE
+
+/obj/item/weapon/storage/pouch/holding/New()
+	..()
+	bluespace_entropy(3, get_turf(src))

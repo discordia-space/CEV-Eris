@@ -1,4 +1,0 @@
-/obj/item/organ/external/robotic/one_star/l_arm    blacklisted=1    10  900     100
-/obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    10  900     100
-/obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    10  900     100
-/obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    10  900     100

@@ -10,11 +10,13 @@
 	active_power_usage = 5000
 	circuit = /obj/item/weapon/electronics/circuitboard/telesci_pad
 	var/efficiency
+	var/entropy_value = 8
 
 /obj/machinery/telepad/RefreshParts()
 	var/E
 	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
 		E += C.rating
+		entropy_value = initial(entropy_value)/C.rating
 	efficiency = E
 
 /obj/machinery/telepad/attackby(obj/item/I, mob/user, params)

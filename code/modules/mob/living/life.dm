@@ -2,6 +2,7 @@
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
+	. = FALSE
 	..()
 	if(config.enable_mob_sleep)
 		if(life_cycles_before_scan > 0)
@@ -41,7 +42,7 @@
 			//Random events (vomiting etc)
 			handle_random_events()
 
-			. = 1
+			. = TRUE
 
 		//Handle temperature/pressure differences between body and environment
 		if(environment)

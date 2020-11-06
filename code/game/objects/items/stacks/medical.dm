@@ -7,12 +7,12 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 20
-	var/heal_brute = 0
-	var/heal_burn = 0
 	price_tag = 10
 	spawn_tags = SPAWN_TAG_MEDICINE
 	bad_type = /obj/item/stack/medical
 	matter = list(MATERIAL_BIOMATTER = 5)
+	var/heal_brute = 0
+	var/heal_burn = 0
 	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
 	var/charge_sections = 5		// How many indicator blips are there?
 	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
