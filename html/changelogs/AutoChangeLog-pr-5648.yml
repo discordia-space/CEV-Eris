@@ -1,0 +1,5 @@
+author: FrownTown
+delete-after: true
+changes:
+  - rscadd: added new statverb interaction for hacking R&D console permissions
+  - bugfix: cleaned up grammar in the remove floortile statverb
