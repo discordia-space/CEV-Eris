@@ -57,7 +57,7 @@
 		max_damage = min_broken_damage * 2
 
 	if(istype(holder))
-		species = all_species["Human"]
+		species = all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
 			species = all_species[dna.species]
@@ -107,7 +107,7 @@
 		owner.death()
 
 /obj/item/organ/get_item_cost()
-	if((status & ORGAN_DEAD) || species != all_species["Human"]) //No dead or monkey organs!
+	if((status & ORGAN_DEAD) || species != all_species[SPECIES_HUMAN]) //No dead or monkey organs!
 		return 0
 	return ..()
 
