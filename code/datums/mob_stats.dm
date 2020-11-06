@@ -92,11 +92,9 @@
 	return avg / namesList.len
 
 /datum/stat_holder/proc/copyTo(var/datum/stat_holder/recipient)
-	to_chat(world, "copying stats")
 	for(var/i in stat_list)
 		var/datum/stat/S = stat_list[i]
 		var/datum/stat/RS = recipient.stat_list[i]
-		to_chat(world, "[i], [S]:[S.value]. [RS]:[RS.value]")
 		S.copyTo(RS)
 
 	for(var/datum/perk/P in perks)
