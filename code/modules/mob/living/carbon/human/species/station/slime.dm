@@ -19,7 +19,7 @@
 	remains_type = /obj/effect/decal/cleanable/ash
 	death_message = "rapidly loses cohesion, splattering across the ground..."
 
-	has_organ = list(
+	has_process = list(
 		BP_BRAIN = /obj/item/organ/internal/brain/slime
 		)
 
