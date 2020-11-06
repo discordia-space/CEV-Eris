@@ -314,7 +314,7 @@
 /obj/machinery/light/proc/update(var/trigger = 1)
 
 	update_icon()
-	if(on == TRUE)
+	if(on)
 		if(needsound == 1)
 			playsound(src.loc, 'sound/effects/Custom_lights.ogg', 65, 1)
 			needsound = 0
