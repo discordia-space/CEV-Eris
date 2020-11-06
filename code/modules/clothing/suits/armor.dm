@@ -72,6 +72,20 @@
 	price_tag = 150
 	rarity_value = 15
 
+/obj/item/clothing/suit/armor/vest/northtech
+	name = "outdated ablative vest"
+	desc = "An outdated ablative vest with plates designed to absorb rather than reflect energy projectiles."
+	icon_state = "northtech"
+	armor = list(
+		melee = 25,
+		bullet = 25,
+		energy = 60,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
+	rarity_value = 65
+
 /obj/item/clothing/suit/armor/greatcoat
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."

@@ -243,3 +243,9 @@ obj/item/clothing/under/genericr
 	desc = "A simple red shirt with black pants."
 	icon_state = "genericr"
 	item_state = "genericr"
+
+/obj/item/clothing/under/northtech
+	name = "NorthTech Security Uniform"
+	desc = "An outdated uniform of now extinct security corporation \"NewTech\". It was one of the first corporations to adopt and employ the use of energy weapons technology."
+	icon_state = "northtech"
+	has_sensor = 0

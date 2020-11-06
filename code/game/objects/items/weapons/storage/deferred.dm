@@ -52,7 +52,7 @@
 	. = ..()
 
 
-/obj/item/weapon/storage/deferred/rations //DO this before merging 
+/obj/item/weapon/storage/deferred/rations //DO this before merging
 	name = "infantryman's rations kit"
 	icon_state = "irp_box"
 	item_state = "irp_box"
@@ -311,3 +311,14 @@
 	/obj/item/clothing/suit/armor/greatcoat/german_overcoat = 1,
 	/obj/item/clothing/under/germansuit = 1)
 
+/obj/item/weapon/storage/deferred/crate/northtech_uniform
+	name = "NorthTech uniform crate"
+	desc = "A moderately sized crate full of clothes."
+	icon_state = "northtech_deferred"
+	initial_contents = list(
+	/obj/item/clothing/mask/balaclava/tactical = 1,
+	/obj/item/clothing/shoes/jackboots = 1,
+	/obj/item/clothing/gloves/thick  = 1,
+	/obj/item/clothing/head/soft/northtech = 1,
+	/obj/item/clothing/suit/armor/vest/northtech = 1,
+	/obj/item/clothing/under/northtech = 1)

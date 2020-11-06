@@ -111,4 +111,5 @@
 					/obj/spawner/exosuit_equipment = 3,\
 					/obj/spawner/cloth/holster = 4,\
 					/obj/item/stash_spawner = 4,\
-					/obj/item/weapon/storage/deferred/crate/german_uniform = 4)
+					/obj/item/weapon/storage/deferred/crate/german_uniform = 4,\
+					/obj/item/weapon/storage/deferred/crate/northtech_uniform = 4)

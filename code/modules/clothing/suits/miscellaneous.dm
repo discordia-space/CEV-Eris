@@ -385,3 +385,23 @@
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
 	style = 1
+
+/obj/item/clothing/suit/storage/punkvest
+	name = "punk vest"
+	desc = "Sleek grey vest with pockets in it. You feel absolutely punk wearing it."
+	icon_state = "punk_vest"
+	item_state = "punk_vest"
+	armor = list(
+		melee = 10,
+		bullet = 20,
+		energy = 10,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	body_parts_covered = UPPER_TORSO
+	cold_protection = UPPER_TORSO
+	min_cold_protection_temperature = T0C - 20
+	rarity_value = 16.66
+	style = 1
+	

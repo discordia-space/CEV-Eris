@@ -93,6 +93,12 @@
 	desc = "It's field cap in corporate colors."
 	icon_state = "corpsoft"
 
+/obj/item/clothing/head/soft/northtech
+	name = "NorthTech security cap"
+	initial_name = "NorthTech security cap"
+	desc = "It's a field cap in red colors with \"NorthTech\" logo on it."
+	icon_state = "northtech"
+
 // S E R B I A //
 
 /obj/item/clothing/head/soft/green2soft

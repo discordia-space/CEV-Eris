@@ -59,6 +59,11 @@
 	path = /obj/item/clothing/suit/storage/cyberpunksleek
 	cost = 2
 
+/datum/gear/suit/punk_vest
+	display_name = "punk vest"
+	path = /obj/item/clothing/suit/storage/punkvest
+	cost = 2
+
 /datum/gear/suit/coat/New()
 	..()
 	var/coat = list(
