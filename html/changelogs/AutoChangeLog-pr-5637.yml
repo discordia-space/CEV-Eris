@@ -1,0 +1,4 @@
+author: TermService
+delete-after: true
+changes:
+  - rscadd: You can lock/unlock APC and air alarm with alt-click
