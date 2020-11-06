@@ -21,7 +21,7 @@
 /mob/living/carbon/human/proc/get_organ_efficiency(process_define)
 	var/list/process_list = internal_organs_by_efficiency[process_define]
 	var/effective_efficiency = 0
-	if(process_list.len)
+	if(process_list && process_list.len)
 		for(var/organ in process_list)
 			var/obj/item/organ/internal/I = organ
 			effective_efficiency += I.get_process_eficiency(process_define)
