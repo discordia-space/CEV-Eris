@@ -6,10 +6,12 @@
 
 /datum/perk/survivor/assign(mob/living/carbon/human/H)
 	..()
-	holder?.sanity.death_view_multiplier *= 0.5
+	if(holder)
+		holder.sanity.death_view_multiplier *= 0.5
 
 /datum/perk/survivor/remove()
-	holder?.sanity.death_view_multiplier *= 2
+	if(holder)
+		holder.sanity.death_view_multiplier *= 2
 	..()
 
 /datum/perk/selfmedicated
@@ -20,12 +22,14 @@
 
 /datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
 	..()
-	holder?.metabolism_effects.addiction_chance_multiplier = 0.5
-	holder?.metabolism_effects.nsa_threshold += 10
+	if(holder)
+		holder.metabolism_effects.addiction_chance_multiplier = 0.5
+		holder.metabolism_effects.nsa_threshold += 10
 
 /datum/perk/selfmedicated/remove()
-	holder?.metabolism_effects.addiction_chance_multiplier = 1
-	holder?.metabolism_effects.nsa_threshold -= 10
+	if(holder)
+		holder.metabolism_effects.addiction_chance_multiplier = 1
+		holder.metabolism_effects.nsa_threshold -= 10
 	..()
 
 /datum/perk/vagabond
@@ -36,10 +40,12 @@
 
 /datum/perk/vagabond/assign(mob/living/carbon/human/H)
 	..()
-	holder?.sanity.view_damage_threshold += 20
+	if(holder)
+		holder.sanity.view_damage_threshold += 20
 
 /datum/perk/vagabond/remove()
-	holder?.sanity.view_damage_threshold -= 20
+	if(holder)
+		holder.sanity.view_damage_threshold -= 20
 	..()
 
 /datum/perk/merchant
@@ -50,10 +56,12 @@
 
 /datum/perk/merchant/assign(mob/living/carbon/human/H)
 	..()
-	holder?.sanity.valid_inspirations += /obj/item/weapon/spacecash/bundle
+	if(holder)
+		holder.sanity.valid_inspirations += /obj/item/weapon/spacecash/bundle
 
 /datum/perk/merchant/remove()
-	holder?.sanity.valid_inspirations -= /obj/item/weapon/spacecash/bundle
+	if(holder)
+		holder.sanity.valid_inspirations -= /obj/item/weapon/spacecash/bundle
 	..()
 
 #define CHOICE_LANG "language" // Random language chosen from a pool
@@ -70,6 +78,8 @@
 
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)
 	..()
+	if(!holder)
+		return
 	var/list/choices = list(CHOICE_RAREOBJ)
 	if(GLOB.various_antag_contracts.len)
 		choices += CHOICE_TCONTRACT
@@ -82,7 +92,7 @@
 	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN) // Not static, because we're gonna remove languages already known by the user
 	for(var/l in valid_languages)
 		var/datum/language/L = all_languages[l]
-		if(L in holder?.languages)
+		if(L in holder.languages)
 			valid_languages -= l
 	if(valid_languages.len)
 		choices += CHOICE_LANG
@@ -90,23 +100,23 @@
 	switch(pick(choices))
 		if(CHOICE_LANG)
 			var/language = pick(valid_languages)
-			holder?.add_language(language)
+			holder.add_language(language)
 			desc += " In particular, you happen to know [language]."
 		if(CHOICE_TCONTRACT)
 			var/datum/antag_contract/A = pick(GLOB.various_antag_contracts)
 			desc += " You feel like you remembered something important."
-			holder?.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the station. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
+			holder.mind.store_memory("Thanks to your connections, you were tipped off about some suspicious individuals on the station. In particular, you were told that they have a contract: " + A.name + ": " + A.desc)
 		if(CHOICE_STASHPAPER)
 			desc += " You have a special note in your storage."
 			stash.spawn_stash()
 			var/obj/item/weapon/paper/stash_note = stash.spawn_note()
-			holder?.equip_to_storage_or_drop(stash_note)
+			holder.equip_to_storage_or_drop(stash_note)
 		if(CHOICE_RAREOBJ)
 			desc += " You managed to smuggle a rare item aboard."
 			var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
 			var/obj/item/weapon/storage/box/B = new
 			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
-			holder?.equip_to_storage_or_drop(B)
+			holder.equip_to_storage_or_drop(B)
 
 #undef CHOICE_LANG
 #undef CHOICE_TCONTRACT
@@ -120,10 +130,12 @@
 
 /datum/perk/sanityboost/assign(mob/living/carbon/human/H)
 	..()
-	holder?.sanity.sanity_passive_gain_multiplier *= 1.5
+	if(holder)
+		holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
 /datum/perk/sanityboost/remove()
-	holder?.sanity.sanity_passive_gain_multiplier /= 1.5
+	if(holder)
+		holder.sanity.sanity_passive_gain_multiplier /= 1.5
 	..()
 
 /// Basically a marker perk. If the user has this perk, another will be given in certain conditions.
@@ -138,12 +150,14 @@
 
 /datum/perk/active_inspiration/assign(mob/living/carbon/human/H)
 	..()
-	holder?.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
-	holder?.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
+	if(holder)
+		holder.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
+		holder.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
 
 /datum/perk/active_inspiration/remove()
-	holder?.stats.removeTempStat(STAT_COG, "Exotic Inspiration")
-	holder?.stats.removeTempStat(STAT_MEC, "Exotic Inspiration")
+	if(holder)
+		holder.stats.removeTempStat(STAT_COG, "Exotic Inspiration")
+		holder.stats.removeTempStat(STAT_MEC, "Exotic Inspiration")
 	..()
 
 /datum/perk/sommelier

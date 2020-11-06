@@ -73,23 +73,17 @@
 	stats = new /datum/stat_holder()
 	H.stats.copyTo(stats)
 
+/datum/core_module/cruciform/cloning/on_implant_uninstall()
+	if(ishuman(implant.wearer))
+		write_wearer(implant.wearer)
+
 /datum/core_module/cruciform/cloning/preinstall()
 	if(ishuman(implant.wearer))
 		implant.remove_modules(CRUCIFORM_CLONING)
 
 /datum/core_module/cruciform/cloning/install()
 	if(ishuman(implant.wearer))
-		var/mob/living/carbon/human/H = implant.wearer
-		dna = H.dna
-		ckey = H.ckey
-		mind = H.mind
-		languages = H.languages
-		flavor = H.flavor_text
-		age = H.age
-		QDEL_NULL(stats)
-		stats = new /datum/stat_holder
-		H.stats.copyTo(stats)
-
+		write_wearer(implant.wearer)
 
 /datum/core_module/cruciform/obey/install()
 	var/laws = list("You are enslaved. You must obey the laws below.",
