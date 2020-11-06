@@ -14,7 +14,6 @@
 	attack_verb = list("pouched")
 	spawn_blacklisted = FALSE
 	rarity_value = 10
-	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_POUCH
 	bad_type = /obj/item/weapon/storage/pouch
 

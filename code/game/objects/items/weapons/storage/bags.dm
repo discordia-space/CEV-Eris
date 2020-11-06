@@ -53,6 +53,7 @@
 //The custodial robot gets a larger bag since it only has one and no cart
 /obj/item/weapon/storage/bag/trash/robot
 	max_storage_space = DEFAULT_BULKY_STORAGE * 2
+	spawn_tags = null
 
 /obj/item/weapon/storage/bag/trash/robot/update_icon()
 	if(contents.len == 0)
@@ -71,6 +72,7 @@
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/storage/bag/trash/holding/New()
 	..()

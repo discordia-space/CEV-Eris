@@ -11,7 +11,7 @@
 	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
-	rarity_value = 4.8
+	rarity_value = 5
 
 /obj/item/weapon/tool/hammer/homewrecker
 	name = "homewrecker"
@@ -80,6 +80,7 @@
 	force = WEAPON_FORCE_DANGEROUS
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
+	rarity_value = 15
 
 /obj/item/weapon/tool/hammer/mace/makeshift
 	name = "makeshift mace"

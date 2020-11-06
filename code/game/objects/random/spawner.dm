@@ -11,8 +11,8 @@
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1
-	var/top_price = 0
-	var/low_price = 0
+	var/top_price = null
+	var/low_price = null
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
@@ -22,7 +22,6 @@
 	var/list/include_paths = list()
 	var/spread_range = 0
 	var/has_postspawn = TRUE
-	var/datum/loot_spawner_data/lsd
 	var/list/points_for_spawn = list()
 	//BIOME SPAWNERS
 	var/obj/landmark/loot_biomes/biome
@@ -36,7 +35,6 @@
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
 	..()
-	lsd = GLOB.all_spawn_data["loot_s_data"]
 	allow_aditional_object = with_aditional_object
 	if(!latejoin && !prob(spawn_nothing_percentage))
 		var/list/spawns = spawn_item()
@@ -90,8 +88,9 @@
 			var/atom/movable/AM = A
 			price_tag += AM.get_item_cost()
 		if(allow_aditional_object && islist(aditional_object) && aditional_object.len)
-			for(var/obj/thing in aditional_object)
-				if(!prob(thing.prob_aditional_object))
+			for(var/thing in aditional_object)
+				var/atom/movable/AM2 = thing
+				if(!prob(initial(AM2.prob_aditional_object)))
 					continue
 				var/atom/AO = new thing (T)
 				spawns.Add(AO)
@@ -166,20 +165,18 @@
 			var/top = round(candidates.len*spawn_count*biome.only_top)
 			if(top <= candidates.len)
 				var/top_spawn = CLAMP(top, 1, min(candidates.len,7))
-				candidates = lsd.only_top_candidates(candidates, top_spawn)
+				candidates = SSspawn_data.only_top_candidates(candidates, top_spawn)
 	//if(!candidates.len)
 	//	return
 	return pick_spawn(candidates)
 
 /obj/spawner/proc/valid_candidates()
-	var/list/candidates = lsd.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price)
-	candidates -= exclusion_paths
-	candidates += include_paths
+	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, restricted_tags, allow_blacklist, low_price, top_price, FALSE, include_paths, exclusion_paths)
 	return candidates
 
 /obj/spawner/proc/pick_spawn(list/candidates)
-	var/selected = lsd.pick_spawn(candidates)
-	aditional_object = lsd.all_accompanying_obj_by_path[selected]
+	var/selected = SSspawn_data.pick_spawn(candidates)
+	aditional_object = SSspawn_data.all_accompanying_obj_by_path[selected]
 	return selected
 
 /obj/spawner/proc/post_spawn(list/spawns)

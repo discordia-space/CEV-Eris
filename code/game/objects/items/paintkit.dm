@@ -26,6 +26,10 @@
 	var/new_light_overlay
 	var/new_mob_icon_file
 
+/obj/item/clothing/head/space/void
+	bad_type = /obj/item/clothing/head/space/void
+	spawn_tags = null
+
 /obj/item/clothing/head/space/void/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/device/kit/suit))
 		var/obj/item/device/kit/suit/kit = O

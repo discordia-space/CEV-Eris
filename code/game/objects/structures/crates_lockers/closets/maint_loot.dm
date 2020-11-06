@@ -4,6 +4,7 @@
 	spawn_tags = SPAWN_TAG_RANDOM_CLOSET
 	rarity_value = 10
 	bad_type = /obj/structure/closet/random
+	spawn_blacklisted = FALSE
 
 /obj/structure/closet/random/miscellaneous
 	name = "\improper forgotten closet"
