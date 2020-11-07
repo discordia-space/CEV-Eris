@@ -134,7 +134,6 @@
 /obj/structure/closet/onestar/tier3/medical/empty    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/structure/closet/onestar/tier3/medical    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/structure/closet/onestar/tier3    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/structure/closet/onestar    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/structure/closet/syndicate/personal    blacklisted=0    spawn_value=1    price_tag=0   100    
 /obj/structure/closet/syndicate/suit    blacklisted=0    spawn_value=1    price_tag=0   100    
 /obj/structure/closet/syndicate/nuclear    blacklisted=0    spawn_value=1    price_tag=0   100    

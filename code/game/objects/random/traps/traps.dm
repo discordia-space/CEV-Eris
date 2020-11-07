@@ -3,7 +3,6 @@
 	icon_state = "trap-red"
 	alpha = 128
 	tags_to_spawn = list(SPAWN_TRAP_ARMED)
-	biome_type = /obj/landmark/loot_biomes/trap
 	check_density = FALSE
 
 /obj/spawner/traps/valid_candidates()
@@ -52,3 +51,13 @@
 		if(can_spawn_trap(T, path))
 			trap_points += T
 	return trap_points
+
+/obj/spawner/traps/update_biome_vars()
+	tags_to_spawn = biome.trap_tags
+	biome.spawner_trap_count++
+	var/count = biome.spawner_trap_count
+	min_amount = max(1, biome.min_traps_amount / count)
+	max_amount = min(biome.max_traps_amount, max(3, biome.max_traps_amount / count))
+	if(use_biome_range)
+		spread_range = biome.range
+		loc = biome.loc

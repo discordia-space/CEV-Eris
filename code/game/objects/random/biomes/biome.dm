@@ -1,4 +1,31 @@
 GLOBAL_LIST_EMPTY(loot_biomes)
+/turf
+	var/obj/landmark/loot_biomes/biome
+
+/turf/proc/update_biome()
+	var/distance = INFINITY
+	for(var/obj/landmark/loot_biomes/biome_candidate in GLOB.loot_biomes)
+		if(biome_candidate.z != z)
+			continue
+		var/new_distance = get_dist(src, biome_candidate)
+		if(new_distance > biome_candidate.range)
+			continue
+		if(get_area(src) != get_area(biome_candidate))
+			continue
+		if(biome)
+			if(new_distance > distance)
+				continue
+			biome.turf_list -= src
+			biome.spawn_turfs -=src
+		distance = new_distance
+		biome = biome_candidate
+		biome.turf_list += src
+		if(check_spawn_point(src))
+			if(biome.check_room)
+				if(check_room(src, biome))
+					biome.spawn_turfs += src
+			else
+				biome.spawn_turfs += src
 
 /obj/landmark/loot_biomes
 	name = "debug biome"
@@ -7,6 +34,8 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/list/main_tags = list()
 	var/list/secondary_tags = list()
 	var/list/tags_to_spawn = list()
+	var/list/trap_tags = list(SPAWN_TRAP_ARMED)
+	var/list/mob_tags = list(SPAWN_ROACH)
 	var/cap_price = 500000
 	var/top_price = 10000 //top_price = cap_price / 10
 	var/low_price = 0
@@ -18,52 +47,44 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/allowed_only_top = FALSE
 	var/range = 7
 	var/can_burrow = FALSE
-	var/min_amount = 1
-	var/max_amount = 1
-	var/biome_type = /obj/landmark/loot_biomes
-	var/obj/landmark/loot_biomes/obj/master
+	var/min_loot_amount = 1
+	var/max_loot_amount = 1
+	var/min_traps_amount = 1
+	var/max_traps_amount = 1
+	var/min_mobs_amount = 1
+	var/max_mobs_amount = 1
 	var/check_room = FALSE
 	var/spawner_trap_count = 0
 	var/spawner_mob_count = 0
+	var/list/turf_list = list()
+	var/list/spawn_turfs = list()
 
 /obj/landmark/loot_biomes/Initialize(mapload)
-	.=..()
-	price_tag = 0
-	for(var/obj/item/I in view())
-		price_tag += I.get_item_cost()
+	. = ..()
 	update()
 	if(cap_price)
 		top_price = cap_price / 10
 	GLOB.loot_biomes += src
 
-/obj/landmark/loot_biomes/proc/check_master()
-	if(master) return master
-	var/distance = range
-	var/new_distance
-	for(var/obj/landmark/loot_biomes/biome in GLOB.loot_biomes)
-		new_distance = get_dist(src, biome)
-		if(biome.z != z)
-			continue
-		if(biome == src)
-			continue
-		if(new_distance > distance)
-			continue
-		if(istype(biome, /obj/landmark/loot_biomes/obj))
-			if(!istype(src, /obj/landmark/loot_biomes/obj))
-				master = biome
-				distance = new_distance
-			else
-				crash_with("Two biome obj landmarks are too close, the minimun distance is [range], the coordenates are: [x], [y], [z]")
-				continue
-	return master
+/obj/landmark/loot_biomes/proc/update_turfs()
+	turf_list = list()
+	spawn_turfs = list()
+	var/turf/source = get_turf(src)
+	for(var/turf/T in trange(range, source))
+		T.update_biome()
+
+/obj/landmark/loot_biomes/proc/update_price()
+	price_tag = 0
+	for(var/turf/T in turf_list)
+		for(var/obj/item/I in T.contents)
+			price_tag += I.get_item_cost()
 
 /obj/landmark/loot_biomes/proc/update()
+	update_turfs()
+	update_price()
 	tags_to_spawn = main_tags
 	if(prob(prob_secondary_tags) && secondary_tags.len)
 		tags_to_spawn = secondary_tags
-	check_master()
-	if(master)
-		price_tag = master.price_tag
 	if(allowed_only_top)
 		switch(price_tag)
 			if(0 to LOOT_LEVEL_VERY_LOW)

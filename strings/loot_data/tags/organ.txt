@@ -67,7 +67,6 @@
 /obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
 /obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
 /obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/organ/external/chest    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/organ/external/groin    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/organ/external/unbreakable    blacklisted=0    spawn_value=10    price_tag=500   100    

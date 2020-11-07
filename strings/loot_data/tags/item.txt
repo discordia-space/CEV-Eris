@@ -2,7 +2,6 @@
 /obj/item/weapon/tank/jetpack/oxygen    blacklisted=0    spawn_value=2    price_tag=50   100    
 /obj/item/weapon/tank/jetpack/carbondioxide    blacklisted=0    spawn_value=3.0003    price_tag=50   100    
 /obj/item/weapon/tank/jetpack/rig    blacklisted=0    spawn_value=2    price_tag=50   100    
-/obj/item/weapon/tank/jetpack/synthetic    blacklisted=0    spawn_value=2    price_tag=50   100    
 /obj/item/weapon/tank/onestar_regenerator    blacklisted=1    spawn_value=10    price_tag=50   100    
 /obj/item/weapon/tank/oxygen/red    blacklisted=0    spawn_value=10    price_tag=50   100    
 /obj/item/weapon/tank/oxygen/yellow    blacklisted=0    spawn_value=10    price_tag=50   100    
@@ -23,7 +22,6 @@
 /obj/item/weapon/card/id/guest    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/id/syndicate_command    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/id/captains_spare    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/card/id/synthetic    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/id/all_access    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/id/centcom    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/id/gold    blacklisted=1    spawn_value=10    price_tag=0   100    
@@ -58,7 +56,6 @@
 /obj/item/weapon/card/data    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/emag_broken    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/card/emag    blacklisted=1    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/card    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/toy/xmas_cracker    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/pinpointer/advpinpointer    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/pinpointer/nukeop    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -644,6 +641,11 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random    blacklisted=0    spawn_value=3.33333    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites    blacklisted=0    spawn_value=2.5    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites    blacklisted=1    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape    blacklisted=0    spawn_value=5    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/vial    blacklisted=0    spawn_value=5    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace    blacklisted=1    spawn_value=5    price_tag=300   100    
 /obj/item/weapon/reagent_containers/glass/beaker/large    blacklisted=0    spawn_value=2.5    price_tag=20   100    
@@ -685,9 +687,6 @@
 /obj/item/weapon/reagent_containers/glass/bottle/capsaicin    blacklisted=0    spawn_value=10    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/bottle/frostoil    blacklisted=0    spawn_value=10    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/bottle/robot/inaprovaline    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/bottle/robot/antitoxin    blacklisted=0    spawn_value=10    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/bottle/robot    blacklisted=0    spawn_value=10    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/bottle    blacklisted=0    spawn_value=10    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/solution_tray    blacklisted=0    spawn_value=10    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/replenishing    blacklisted=1    spawn_value=10    price_tag=20   100    
@@ -1549,7 +1548,6 @@
 /obj/item/weapon/stock_parts/smes_coil/super_capacity    blacklisted=0    spawn_value=2    price_tag=100   100    
 /obj/item/weapon/stock_parts/smes_coil/super_io    blacklisted=0    spawn_value=2    price_tag=100   100    
 /obj/item/weapon/stock_parts/smes_coil    blacklisted=0    spawn_value=3.33333    price_tag=100   100    
-/obj/item/weapon/melee/baton/robot    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/weapon/melee/baton/cattleprod    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/weapon/melee/baton/excelbaton    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/weapon/melee/baton    blacklisted=0    spawn_value=10    price_tag=500   100    
@@ -2240,7 +2238,6 @@
 /obj/item/organ/external/robotic/one_star/r_arm    blacklisted=1    spawn_value=10    price_tag=900   100    
 /obj/item/organ/external/robotic/one_star/l_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
 /obj/item/organ/external/robotic/one_star/r_leg    blacklisted=1    spawn_value=10    price_tag=900   100    
-/obj/item/organ/external/robotic    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/organ/external/chest    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/organ/external/groin    blacklisted=0    spawn_value=10    price_tag=500   100    
 /obj/item/organ/external/unbreakable    blacklisted=0    spawn_value=10    price_tag=500   100    
@@ -3396,7 +3393,6 @@
 /obj/item/robot_parts/head    blacklisted=0    spawn_value=10    price_tag=100   100    
 /obj/item/robot_parts/robot_suit/with_limbs    blacklisted=0    spawn_value=10    price_tag=100   100    
 /obj/item/robot_parts/robot_suit    blacklisted=0    spawn_value=10    price_tag=100   100    
-/obj/item/robot_parts    blacklisted=0    spawn_value=10    price_tag=100   100    
 /obj/item/mech_component/manipulators/combat    blacklisted=0    spawn_value=10    price_tag=150   100    
 /obj/item/mech_component/manipulators/heavy    blacklisted=0    spawn_value=10    price_tag=150   100    
 /obj/item/mech_component/manipulators/light    blacklisted=0    spawn_value=10    price_tag=150   100    
@@ -3500,7 +3496,6 @@
 /obj/item/seeds/surik    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/seeds/telriis    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/seeds/thaadra    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/seeds    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/bee_smoker    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/honey_frame/filled    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/honey_frame    blacklisted=0    spawn_value=10    price_tag=0   100    

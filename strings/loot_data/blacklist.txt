@@ -10,7 +10,6 @@
 /obj/item/weapon/card/id/guest
 /obj/item/weapon/card/id/syndicate_command
 /obj/item/weapon/card/id/captains_spare
-/obj/item/weapon/card/id/synthetic
 /obj/item/weapon/card/id/all_access
 /obj/item/weapon/card/id/centcom
 /obj/item/weapon/card/id/gold
@@ -45,7 +44,6 @@
 /obj/item/weapon/card/data
 /obj/item/weapon/card/emag_broken
 /obj/item/weapon/card/emag
-/obj/item/weapon/card
 /obj/item/weapon/electronics/circuitboard/shuttle/mining
 /obj/item/weapon/electronics/circuitboard/shuttle/engineering
 /obj/item/weapon/electronics/circuitboard/shuttle/research
@@ -593,7 +591,6 @@
 /obj/structure/closet/onestar/tier3/medical/empty
 /obj/structure/closet/onestar/tier3/medical
 /obj/structure/closet/onestar/tier3
-/obj/structure/closet/onestar
 /obj/structure/closet/wardrobe/tactical
 /obj/structure/closet/wardrobe/sec
 /obj/structure/closet/wardrobe/science_white

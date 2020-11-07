@@ -99,7 +99,7 @@
 					accompanying_objs += text2path(obj_text)
 		else if(ispath(accompanying_objs))
 			accompanying_objs = list(accompanying_objs)
-		if(accompanying_objs.len)
+		if(islist(accompanying_objs) && accompanying_objs.len)
 			for(var/obj_path in accompanying_objs)
 				if(!ispath(obj_path))
 					continue

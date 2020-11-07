@@ -1,5 +1,6 @@
 /obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=5    price_tag=2500   100    
 /obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=5    price_tag=2500   100    
+/obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=3.33333    price_tag=4500   100    /obj/item/ammo_casing/grenade/frag
 /obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=9.38086    price_tag=2000   100    
 /obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=5    price_tag=1500   100    
 /obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=6.25    price_tag=1000   100    
