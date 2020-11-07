@@ -211,7 +211,7 @@
 						user.client.eye = target
 						user.client.perspective = EYE_PERSPECTIVE
 					user.hud_used.updatePlaneMasters(user)
-					user.is_watching != user.is_watching 
+					user.is_watching = !user.is_watching 
 				return
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
