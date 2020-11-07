@@ -49,6 +49,8 @@
 					var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
 					if(IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 						gun.vars["fire_delay"] *= IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+		else if(propname == "damage_mult_add")
+			gun.damage_multiplier += settings[propname]
 
 //Called whenever the firemode is switched to, or the gun is picked up while its active
 /datum/firemode/proc/update()
