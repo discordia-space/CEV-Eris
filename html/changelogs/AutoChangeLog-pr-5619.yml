@@ -1,5 +1,0 @@
-author: MadmanMartian
-delete-after: true
-changes:
-  - bugfix: Fixes being able to dupe guns by deconstructing a turret with them installed.
-  - bugfix: Fixes some energy guns not giving the turret the correct projectile.

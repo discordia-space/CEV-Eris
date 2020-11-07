@@ -1,7 +1,0 @@
-author: Garen7
-delete-after: true
-changes:
-  - rscadd: Alt clicking a body scanner will eject the occupant
-  - rscadd: Body scanners now put the name of the occupant on the output and name
-      the printed paper after the occupant
-  - spellcheck: Fixed a typo in the body scanner printout

@@ -1,7 +1,0 @@
-author: TheShown, INFRARED_BARON, TonnyJest(Suzan Trost)
-delete-after: true
-changes:
-  - rscadd: Added organ processes
-  - rscadd: Added organ stacking
-  - tweak: organs can be put in any bodypart
-  - rscadd: Added organ sizes and max space
