@@ -181,13 +181,13 @@
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
-			var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[BP_EYES]
-			if(!E)
+			var/eye_efficiency = H.get_organ_efficiency(OP_EYES)
+			if(!eye_efficiency)
 				return
-			if(E.is_bruised() && prob(E.damage + 50))
+			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
 				if (O.HUDtech.Find("flash"))
 					flick("e_flash", O.HUDtech["flash"])
-				E.damage += rand(1, 5)
+
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))

@@ -3,6 +3,7 @@
 	desc = "Some blue dust"
 	icon = 'icons/obj/bluespace_crystal_structure.dmi'
 	icon_state = "dust"
+	spawn_tags = null
 
 /obj/item/bluespace_dust/attack_hand(mob/user)
 	to_chat(user, SPAN_NOTICE("Dust disappears as you touch it"))

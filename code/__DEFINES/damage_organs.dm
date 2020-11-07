@@ -36,12 +36,23 @@
 #define ARMOR_RAD			"rad"
 
 
-// Organs.
+// Organ processes
+#define OP_EYES     "eyes"
+#define OP_HEART    "heart"
+#define OP_LUNGS    "lungs"
+#define OP_LIVER    "liver"
+#define OP_KIDNEYS  "kidneys"
+#define OP_APPENDIX "appendix"
+#define OP_BONE "bone"
+
+// Carrion organ processes
+#define OP_MAW       "carrion maw"
+#define OP_SPINNERET "carrion spinneret"
+#define OP_CHEMICALS "chemmical vessel"
+
+// Unique organs.
 #define BP_MOUTH    "mouth"
 #define BP_EYES     "eyes"
-#define BP_HEART    "heart"
-#define BP_LUNGS    "lungs"
-#define BP_TRACH	"tracheae"
 #define BP_BRAIN    "brain"
 #define BP_B_CHEST  "ribcage"
 #define BP_B_GROIN  "pelvis"
@@ -50,38 +61,9 @@
 #define BP_B_R_ARM  "right humerus"
 #define BP_B_L_LEG  "left femur"
 #define BP_B_R_LEG  "right femur"
-#define BP_LIVER    "liver"
-#define BP_KIDNEYS  "kidneys"
-#define BP_STOMACH  "stomach"
-#define BP_PLASMA   "plasma vessel"
-#define BP_APPENDIX "appendix"
-#define BP_CELL     "cell"
-#define BP_HIVE     "hive node"
-#define BP_NUTRIENT "nutrient vessel"
-#define BP_ACID     "acid gland"
-#define BP_EGG      "egg sac"
-#define BP_RESIN    "resin spinner"
-#define BP_STRATA   "neural strata"
-#define BP_RESPONSE "response node"
-#define BP_GBLADDER "gas bladder"
-#define BP_POLYP    "polyp segment"
-#define BP_ANCHOR   "anchoring ligament"
-#define BP_ACETONE  "acetone reactor"
 
-// Carrion Organs.
-#define BP_SPCORE       "spider core"
-#define BP_MAW          "carrion maw"
-#define BP_SPINNERET     "carrion spinneret"
-#define BP_CHEMICALS    "chemmical vessel"
-
-// Robo Organs.
-#define BP_POSIBRAIN	"posibrain"
-#define BP_VOICE		"vocal synthesiser"
-#define BP_STACK		"stack"
-#define BP_OPTICS		"optics"
-#define BP_FLOAT		"floatation disc"
-#define BP_JETS			"maneuvering jets"
-#define BP_COOLING_FINS "cooling fins"
+// Unique carrion Organs.
+#define BP_SPCORE   "spider core"
 
 //Augmetations
 #define BP_AUGMENT_R_ARM         "right arm augment"

@@ -49,7 +49,7 @@
 		to_chat(user, SPAN_DANGER("You have no idea what species this person is. Report this on the bug tracker."))
 		return SURGERY_FAILURE
 
-	if(!target.species.has_organ[BP_BRAIN])
+	if(!target.species.has_process[BP_BRAIN])
 		to_chat(user, SPAN_DANGER("You're pretty sure [target.species.name_plural] don't normally have a brain."))
 		return SURGERY_FAILURE
 
@@ -72,7 +72,7 @@
 
 	var/obj/item/device/mmi/M = tool
 	var/obj/item/organ/mmi_holder/holder = new(target, 1)
-	target.internal_organs_by_name[BP_BRAIN] = holder
+	target.internal_organs_by_efficiency[BP_BRAIN] += holder
 	user.drop_from_inventory(tool)
 	tool.loc = holder
 	holder.stored_mmi = tool

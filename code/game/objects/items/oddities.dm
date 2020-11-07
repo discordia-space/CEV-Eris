@@ -231,7 +231,6 @@
 		STAT_TGH = 5,
 		STAT_VIG = 5,
 	)
-	spawn_tags = SPAWN_TAG_ODDITY_WEAPON
 	rarity_value = 22
 
 /obj/item/weapon/oddity/common/old_id

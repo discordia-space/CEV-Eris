@@ -2,8 +2,11 @@
 	layer = ABOVE_LYING_MOB_LAYER
 	origin_tech = list(TECH_BIO = 2)
 	bad_type = /obj/item/organ/internal
+	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
 	var/list/owner_verbs = list()
-	var/organ_efficiency = 100	//Efficency of an organ, should become the most important variable
+	var/list/organ_efficiency = list()	//Efficency of an organ, should become the most important variable
+	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
+	var/specific_organ_size = 1  // Space organs take up in weight calculations, unaffected by w_class for balance reasons
 
 /obj/item/organ/internal/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	..()
@@ -14,11 +17,19 @@
 	handle_regeneration()
 
 /obj/item/organ/internal/removed_mob()
-	owner.internal_organs_by_name -= organ_tag
+	for(var/process in organ_efficiency)
+		owner.internal_organs_by_efficiency[process] -= src
+
 	owner.internal_organs -= src
 
-	for(var/verb_path in owner_verbs)
-		verbs -= verb_path
+	var/skipverbs = FALSE
+	for(var/organ in owner.internal_organs)
+		var/obj/I = organ
+		if(I.type == type)
+			skipverbs = TRUE
+	if(!skipverbs)
+		for(var/verb_path in owner_verbs)
+			verbs -= verb_path
 	..()
 
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
@@ -28,12 +39,18 @@
 /obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
 	..()
 	owner.internal_organs |= src
-	owner.internal_organs_by_name[organ_tag] = src
+	for(var/process in organ_efficiency)
+		if(!islist(owner.internal_organs_by_efficiency[process]))
+			owner.internal_organs_by_efficiency[process] = list()
+		owner.internal_organs_by_efficiency[process] += src
 
 	for(var/proc_path in owner_verbs)
-		verbs += proc_path
+		verbs |= proc_path
 
-/obj/item/organ/internal/proc/take_internal_damage(amount, silent=FALSE)
+/obj/item/organ/internal/proc/get_process_eficiency(process_define)
+	return organ_efficiency[process_define] - (organ_efficiency[process_define] * (damage / max_damage))
+
+/obj/item/organ/internal/proc/take_internal_damage(amount, var/silent=0)
 	if(BP_IS_ROBOTIC(src))
 		damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else

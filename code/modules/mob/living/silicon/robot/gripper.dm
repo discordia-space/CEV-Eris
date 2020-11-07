@@ -5,7 +5,7 @@
 	desc = "A simple grasping tool specialized in construction and engineering work."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 
 	flags = NOBLUDGEON
 
