@@ -203,17 +203,15 @@
 		if(!user.is_physically_disabled())
 			if(target)
 				if(user.client)
-					if(user.is_watching == TRUE)
+					if(user.is_watching)
 						to_chat(user, SPAN_NOTICE("You look [istop ? "down" : "up"] \the [src]."))
 						user.client.eye = user.client.mob
 						user.client.perspective = MOB_PERSPECTIVE
-						user.hud_used.updatePlaneMasters(user)
-						user.is_watching = FALSE
-					else if(user.is_watching == FALSE)
+					else if(!user.is_watching)
 						user.client.eye = target
 						user.client.perspective = EYE_PERSPECTIVE
-						user.hud_used.updatePlaneMasters(user)
-						user.is_watching = TRUE
+					user.hud_used.updatePlaneMasters(user)
+					user.is_watching != user.is_watching 
 				return
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
@@ -224,8 +222,8 @@
 		user.hud_used.updatePlaneMasters(user)
 		user.is_watching = FALSE
 		return
-////STAIRS////
 
+////STAIRS////
 /obj/structure/multiz/stairs
 	name = "stairs"
 	desc = "Stairs leading to another deck. Not too useful if the gravity goes out."
@@ -296,17 +294,15 @@
 		if(!user.is_physically_disabled())
 			if(target)
 				if(user.client)
-					if(user.is_watching == TRUE)
+					if(user.is_watching)
 						to_chat(user, SPAN_NOTICE("You look [istop ? "down" : "up"] \the [src]."))
 						user.client.eye = user.client.mob
 						user.client.perspective = MOB_PERSPECTIVE
-						user.hud_used.updatePlaneMasters(user)
-						user.is_watching = FALSE
-					else if(user.is_watching == FALSE)
+					else if(!user.is_watching)
 						user.client.eye = target
 						user.client.perspective = EYE_PERSPECTIVE
-						user.hud_used.updatePlaneMasters(user)
-						user.is_watching = TRUE
+					user.hud_used.updatePlaneMasters(user)
+					user.is_watching = !user.is_watching
 				return
 		else
 			to_chat(user, SPAN_NOTICE("You can't do it right now."))
