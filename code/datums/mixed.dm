@@ -21,7 +21,7 @@
 /datum/data/record
 	name = "record"
 	size = 5
-	var/list/fields = list(  )
+	var/list/fields = list()
 
 
 /datum/data/text

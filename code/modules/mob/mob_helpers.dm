@@ -23,7 +23,7 @@
 /mob/living/carbon/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return (M.sdisabilities & DEAF) || M.ear_deaf
@@ -103,9 +103,9 @@ var/list/global/organ_rel_size = list(
 // Do not use this if someone is intentionally trying to hit a specific body part.
 // Use get_zone_with_miss_chance() for that.
 /proc/ran_zone(zone, probability)
-	if (zone)
+	if(zone)
 		zone = check_zone(zone)
-		if (prob(probability))
+		if(prob(probability))
 			return zone
 
 	var/ran_zone = zone
@@ -138,7 +138,7 @@ var/list/global/organ_rel_size = list(
 				return zone
 
 	var/miss_chance = 10
-	if (zone in base_miss_chance)
+	if(zone in base_miss_chance)
 		miss_chance = base_miss_chance[zone]
 	miss_chance = max(miss_chance + miss_chance_mod, 0)
 	if(prob(miss_chance))
@@ -152,9 +152,9 @@ var/list/global/organ_rel_size = list(
 //Replaces some of the characters with *, used in whispers. pr = probability of no star.
 //Will try to preserve HTML formatting. re_encode controls whether the returned text is HTML encoded outside tags.
 /proc/stars(n, pr = 25, re_encode = 1)
-	if (pr < 0)
+	if(pr < 0)
 		return null
-	else if (pr >= 100)
+	else if(pr >= 100)
 		return n
 
 	var/intag = 0
@@ -219,14 +219,14 @@ var/list/global/organ_rel_size = list(
 	var/p = 1//1 is the start of any word
 	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
 		var/n_letter = copytext_char(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
-		if (prob(80) && (lowertext(n_letter) in LIST_OF_CONSONANT))
-			if (prob(10))
+		if(prob(80) && (lowertext(n_letter) in LIST_OF_CONSONANT))
+			if(prob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
 			else
-				if (prob(20))
+				if(prob(20))
 					n_letter = text("[n_letter]-[n_letter]-[n_letter]")
 				else
-					if (prob(5))
+					if(prob(5))
 						n_letter = null
 					else
 						n_letter = text("[n_letter]-[n_letter]")
@@ -269,8 +269,8 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			n_letter = copytext_char(te, p, n+1)
 		else
 			n_letter = copytext_char(te, p, p+n_mod)
-		if (prob(50))
-			if (prob(30))
+		if(prob(50))
+			if(prob(30))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
 			else
 				n_letter = text("[n_letter]-[n_letter]")
@@ -286,7 +286,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list)
-		if (M.real_name == text("[msg]"))
+		if(M.real_name == text("[msg]"))
 			return 1
 	return 0
 
@@ -345,7 +345,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				hud_used.action_intent.icon_state = I_HURT
 			else
 				hud_used.action_intent.icon_state = I_HELP*/
-	if (HUDneed.Find("intent"))
+	if(HUDneed.Find("intent"))
 		var/obj/screen/intent/I = HUDneed["intent"]
 		I.update_icon()
 
@@ -458,7 +458,7 @@ proc/is_blind(A)
 			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
-	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
+	if(!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
 		return 0
 	check_eye(src)
 	return 1
@@ -573,10 +573,10 @@ proc/is_blind(A)
 	return
 
 /mob/living/in_perfect_health()
-	if (stat == DEAD)
+	if(stat == DEAD)
 		return FALSE
 
-	if (brainloss || bruteloss || cloneloss || fireloss || halloss || oxyloss || toxloss)
+	if(brainloss || bruteloss || cloneloss || fireloss || halloss || oxyloss || toxloss)
 		return FALSE
 
 
@@ -587,7 +587,7 @@ proc/is_blind(A)
 		return FALSE
 
 	for (var/obj/item/organ/o in internal_organs)
-		if (o.damage)
+		if(o.damage)
 			return FALSE
 
 	return ..()
@@ -612,7 +612,7 @@ proc/is_blind(A)
 /mob/proc/drop_embedded()
 	//Embedded list is defined at mob level so we can have this here too
 	for(var/obj/A in embedded)
-		if (A.loc == src)
+		if(A.loc == src)
 			A.forceMove(loc)
 			if(isitem(A))
 				var/obj/item/I = A

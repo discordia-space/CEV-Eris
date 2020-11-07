@@ -774,7 +774,7 @@ proc
 				add = icon(I:icon, I:icon_state, I:dir)
 				// This checks for a silent failure mode of the icon routine. If the requested dir
 				// doesn't exist in this icon state it returns a 32x32 icon with 0 alpha.
-				if (I:dir != SOUTH && add.Width() == 32 && add.Height() == 32)
+				if(I:dir != SOUTH && add.Width() == 32 && add.Height() == 32)
 					// Check every pixel for blank (computationally expensive, but the process is limited
 					// by the amount of film on the station, only happens when we hit something that's
 					// turned, and bails at the very first pixel it sees.
@@ -787,7 +787,7 @@ proc
 						if(!blankpixel)
 							break
 					// If we ALWAYS returned a null (which happens when GetPixel encounters something with alpha 0)
-					if (blankpixel)
+					if(blankpixel)
 						// Pull the default direction.
 						add = icon(I:icon, I:icon_state)
 			else // 'I' is an appearance object.
@@ -866,9 +866,9 @@ proc
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
 
-proc/adjust_brightness(var/color, var/value)
-	if (!color) return "#FFFFFF"
-	if (!value) return color
+/proc/adjust_brightness(var/color, var/value)
+	if(!color) return "#FFFFFF"
+	if(!value) return color
 
 	var/list/RGB = ReadRGB(color)
 	RGB[1] = CLAMP(RGB[1]+value, 0, 255)
@@ -878,9 +878,9 @@ proc/adjust_brightness(var/color, var/value)
 
 
 //Adds a list of values to the HSV of a color
-proc/adjust_HSV(var/color, var/list/values)
-	if (!color) return "#FFFFFF"
-	if (!values || !values.len) return color
+/proc/adjust_HSV(var/color, var/list/values)
+	if(!color) return "#FFFFFF"
+	if(!values || !values.len) return color
 
 	var/hsv_string = RGBtoHSV(color)
 	var/list/HSV = ReadHSV(hsv_string)
@@ -892,16 +892,16 @@ proc/adjust_HSV(var/color, var/list/values)
 //Uses a list of values to overwrite HSV components of a color
 //A null entry won't overwrite anything
 proc/set_HSV(var/color, var/list/values)
-	if (!color) return "#FFFFFF"
-	if (!values || !values.len) return color
+	if(!color) return "#FFFFFF"
+	if(!values || !values.len) return color
 
 	var/hsv_string = RGBtoHSV(color)
 	var/list/HSV = ReadHSV(hsv_string)
-	if (!isnull(values[1]))
+	if(!isnull(values[1]))
 		HSV[1] = CLAMP(values[1], 0, 255)
-	if (!isnull(values[2]))
+	if(!isnull(values[2]))
 		HSV[2] = CLAMP(values[2], 0, 255)
-	if (!isnull(values[3]))
+	if(!isnull(values[3]))
 		HSV[3] = CLAMP(values[3], 0, 255)
 	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
@@ -930,7 +930,7 @@ cap_mode is capturing mode (optional), user is capturing mob (requred only wehen
 lighting determines lighting capturing (optional), suppress_errors suppreses errors and continues to capture (optional).
 non_blocking var, if true, will allow sleeping to prevent server freeze, at the cost of taking longer
 */
-proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
+/proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
 	for(var/xoff = 0 to range)
@@ -954,10 +954,10 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 		for(var/atom/movable/A in T)
 			if(A.invisibility)
 				continue
-			if (cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
+			if(cap_mode == CAPTURE_MODE_HISTORICAL && !A.anchored)
 				continue
 			atoms.Add(A)
-		if (non_blocking)
+		if(non_blocking)
 			CHECK_TICK
 	//Lines below actually render all colected data
 	atoms = sort_atoms_by_layer(atoms)
@@ -973,7 +973,7 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 				var/xoff = (A.x - tx) * 32
 				var/yoff = (A.y - ty) * 32
 				cap.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
-			if (non_blocking)
+			if(non_blocking)
 				CHECK_TICK
 
 	return cap
@@ -992,7 +992,7 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 
 
 	//We really need vector math, this will do for now ~Nanako
-	if (animate)
+	if(animate)
 		var/target_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 		var/target_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
@@ -1013,9 +1013,9 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 //Calculate average color of an icon and store it in global list for future use
 proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	var/icon/I = icon(icon, icon_state, image_dir)
-	if (!istype(I))
+	if(!istype(I))
 		return
-	if (!I.Width() || !I.Height())
+	if(!I.Width() || !I.Height())
 		error("proc/get_average_color: Image has wrong dimensions")
 		return
 
@@ -1026,7 +1026,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	var/pixel_count = 0
 	for (var/x = 1, x <= I.Width(), x++)
 		for (var/y = 1, y <= I.Height(), y++)
-			if (!I.GetPixel(x, y, dir = image_dir))
+			if(!I.GetPixel(x, y, dir = image_dir))
 				continue
 			pixel_count++
 			var/list/rgb = ReadRGB(I.GetPixel(x, y, dir = image_dir))

@@ -414,7 +414,7 @@ SUBSYSTEM_DEF(job)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H
 
-proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+/proc/EquipCustomLoadout(var/mob/living/carbon/human/H, datum/job/job)
 	if(!H || !H.client)
 		return
 

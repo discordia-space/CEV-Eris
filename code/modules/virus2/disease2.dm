@@ -137,10 +137,10 @@
 		if(D != holder)
 			exclude += D.effect.type
 	holder.majormutate(exclude)
-	if (prob(5))
+	if(prob(5))
 		antigen = list(pick(ALL_ANTIGENS))
 		antigen |= pick(ALL_ANTIGENS)
-	if (prob(5) && all_species.len)
+	if(prob(5) && all_species.len)
 		affected_species = get_infectable_species()
 
 /datum/disease2/disease/proc/getcopy()
@@ -177,7 +177,7 @@
 		if(!(type in types2))
 			equal = 0
 
-	if (antigen != disease.antigen)
+	if(antigen != disease.antigen)
 		equal = 0
 	return equal
 
@@ -193,7 +193,7 @@ var/global/list/virusDB = list()
 
 /datum/disease2/disease/proc/name()
 	.= "stamm #[add_zero("[uniqueID]", 4)]"
-	if ("[uniqueID]" in virusDB)
+	if("[uniqueID]" in virusDB)
 		var/datum/data/record/V = virusDB["[uniqueID]"]
 		.= V.fields["name"]
 
@@ -222,7 +222,7 @@ var/global/list/virusDB = list()
 	return r
 
 /datum/disease2/disease/proc/addToDB()
-	if ("[uniqueID]" in virusDB)
+	if("[uniqueID]" in virusDB)
 		return 0
 	var/datum/data/record/v = new()
 	v.fields["id"] = uniqueID

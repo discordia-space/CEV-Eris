@@ -5,17 +5,17 @@
 	icon_screen = "shuttle"
 	light_color = COLOR_LIGHTING_CYAN_MACHINERY
 	var/auth_need = 3
-	var/list/authorized = list(  )
+	var/list/authorized = list()
 
 
 	attackby(var/obj/item/weapon/card/W as obj, var/mob/user as mob)
 		if(stat & (BROKEN|NOPOWER))	return
-		if ((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || emergency_shuttle.location() || !( user )))	return
-		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
-			if (istype(W, /obj/item/modular_computer))
+		if((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || emergency_shuttle.location() || !( user )))	return
+		if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/modular_computer))
+			if(istype(W, /obj/item/modular_computer))
 				var/obj/item/device/pda/pda = W
 				W = pda.id
-			if (!W:access) //no access
+			if(!W:access) //no access
 				user << "The access level of [W:registered_name]\'s card is not high enough. "
 				return
 
@@ -35,7 +35,7 @@
 				if("Authorize")
 					src.authorized -= W:registered_name
 					src.authorized += W:registered_name
-					if (src.auth_need - src.authorized.len > 0)
+					if(src.auth_need - src.authorized.len > 0)
 						message_admins("[key_name_admin(user)] has authorized early shuttle launch")
 						log_game("[user.ckey] has authorized early shuttle launch")
 						world << (SPAN_NOTICE("<b>Alert: [src.auth_need - src.authorized.len] authorizations needed until shuttle is launched early</b>"))
@@ -46,7 +46,7 @@
 						emergency_shuttle.set_launch_countdown(10)
 						//src.authorized = null
 						qdel(src.authorized)
-						src.authorized = list(  )
+						src.authorized = list()
 
 				if("Repeal")
 					src.authorized -= W:registered_name
@@ -55,9 +55,9 @@
 				if("Abort")
 					world << SPAN_NOTICE("<b>All authorizations to shortening time for shuttle launch have been revoked!</b>")
 					src.authorized.len = 0
-					src.authorized = list(  )
+					src.authorized = list()
 
-		else if (istype(W, /obj/item/weapon/card/emag) && !emagged)
+		else if(istype(W, /obj/item/weapon/card/emag) && !emagged)
 			var/choice = alert(user, "Would you like to launch the shuttle?","Shuttle control", "Launch", "Cancel")
 
 			if(!emagged && !emergency_shuttle.location() && user.get_active_hand() == W)

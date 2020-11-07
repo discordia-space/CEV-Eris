@@ -109,8 +109,8 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/datum/hud/hud_used
 
-	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
+	var/list/grabbed_by = list()
+	var/list/requests = list()
 
 	var/in_throw_mode = 0
 
