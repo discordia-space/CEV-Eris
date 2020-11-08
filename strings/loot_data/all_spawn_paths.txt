@@ -1393,7 +1393,6 @@
 /obj/item/weapon/emp_mine
 /obj/item/weapon/plastique
 /obj/item/weapon/extinguisher/mini
-/obj/item/weapon/extinguisher/mech
 /obj/item/weapon/extinguisher
 /obj/item/weapon/a_gift
 /obj/item/weapon/gift

@@ -1,6 +1,5 @@
 /obj/item/weapon/storage/makeshift_grinder    blacklisted=0    spawn_value=4    price_tag=0   100    
 /obj/item/weapon/extinguisher/mini    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/extinguisher/mech    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/extinguisher    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/mop    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/weldpack/canister    blacklisted=0    spawn_value=4    price_tag=0   100    

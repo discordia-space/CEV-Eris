@@ -28,18 +28,17 @@ Has ability of every roach.
 	status_flags = 0
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
 
+	blattedin_revives_left = 0
+
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser
+	meat_amount = 15
+	sanity_damage = 3
+
 	var/distress_call_stage = 3
 
 	var/health_marker_1 = 1500
 	var/health_marker_2 = 1000
 	var/health_marker_3 = 500
-
-	blattedin_revives_left = 0
-
-
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/roachmeat/kaiser
-	meat_amount = 15
-	sanity_damage = 3
 
 /mob/living/carbon/superior_animal/roach/kaiser/New()
 	..()

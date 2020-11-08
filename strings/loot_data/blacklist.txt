@@ -627,3 +627,4 @@
 /obj/spawner/mob/slime/cluster/low_chance
 /obj/spawner/mob/spiders/low_chance
 /obj/spawner/mob/spiders/cluster/low_chance
+/obj/effect/decal/cleanable/carrion_puddle

@@ -11,8 +11,8 @@
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1
-	var/top_price = null
-	var/low_price = null
+	var/top_price
+	var/low_price
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
@@ -69,7 +69,7 @@
 /obj/spawner/proc/spawn_item()
 	var/list/points_for_spawn = list()
 	var/list/spawns = list()
-	if(!biome)
+	if(biome_spawner && !biome)
 		find_biome()
 	if(spread_range && istype(loc, /turf))
 		points_for_spawn = find_smart_point()
@@ -192,17 +192,17 @@
 
 /obj/randomcatcher/proc/get_item(type, with_aditional_object=FALSE)
 	new type(src, with_aditional_object)
-	if (contents.len)
+	if(contents.len)
 		. = pick(contents)
 	else
-		return null
+		return
 
 /obj/randomcatcher/proc/get_items(type, with_aditional_object=FALSE)
 	new type(src, with_aditional_object)
-	if (contents.len)
+	if(contents.len)
 		return contents
 	else
-		return null
+		return
 
 /obj/spawner/proc/burrow()
 	return FALSE

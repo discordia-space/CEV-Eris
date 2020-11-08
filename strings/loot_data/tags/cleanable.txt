@@ -47,5 +47,5 @@
 /obj/effect/decal/cleanable/fruit_smudge    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/rubble    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/solid_biomass    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/carrion_puddle    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
+/obj/effect/decal/cleanable/carrion_puddle    blacklisted=1    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/spider/stickyweb    blacklisted=0    spawn_value=10    price_tag=0   100    

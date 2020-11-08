@@ -26,7 +26,7 @@
 	name = "wire splicing"
 	icon_state = "trap-orange"
 	alpha = 128
-	tags_to_spawn = list(SPAWN_WIRE_TRAP)
+	tags_to_spawn = list(SPAWN_TRAP_WIRE)
 
 /obj/spawner/traps/wire_splicing/low_chance
 	name = "low chance wire splicing"

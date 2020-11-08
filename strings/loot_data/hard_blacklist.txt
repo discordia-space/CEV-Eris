@@ -69,6 +69,7 @@
 /obj/item/weapon/oddity
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
 /obj/item/weapon/computer_hardware
+/obj/item/weapon/extinguisher/mech
 /obj/item/weapon/handcuffs/cyborg
 /obj/item/weapon/material
 /obj/item/weapon/maneki_neko
