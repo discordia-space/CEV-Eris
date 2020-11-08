@@ -47,6 +47,9 @@
 		icon_state = "powerglove"
 	update_wear_icon()
 
+	if(ismob(usr))
+		usr.update_action_buttons()
+
 /obj/item/clothing/gloves/stungloves/examine(mob/user)
 	if(!..(user, 1))
 		return
@@ -96,6 +99,8 @@
 	if(deductcharge(hitcost))
 		L.stun_effect_act(stun, agony, user.targeted_organ, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Stunned [key_name(L)] with [src]</font>"
+		L.attack_log += "\[[time_stamp()]\] <font color='orange'>Was stunned by [key_name(L)] with [src]</font>"
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
