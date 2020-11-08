@@ -177,7 +177,9 @@
 /obj/item/weapon/gun_upgrade/underbarrel
 /obj/item/weapon/gun_upgrade/scope
 /obj/item/weapon/gun_upgrade
+/obj/item/weapon/weaponparts/heavysniper
 /obj/item/weapon/weaponparts
+/obj/item/weapon/research
 /obj/item/weapon/fossil
 /obj/item/weapon
 /obj/item/tk_grab

@@ -104,15 +104,14 @@
 				if(!ispath(obj_path))
 					continue
 				all_accompanying_obj_by_path[path] += list(obj_path)
-		if(!all_accompanying_obj_by_path[path])
-			if(ispath(path, /obj/item/weapon/gun/energy))
-				var/obj/item/weapon/gun/energy/E = A
-				if(!initial(E.use_external_power) && !initial(E.self_recharge))
-					all_accompanying_obj_by_path[path] += list(initial(E.suitable_cell))
-			else if(ispath(path, /obj/item/weapon/gun/projectile))
-				var/obj/item/weapon/gun/projectile/P = A
-				if(initial(P.magazine_type))
-					all_accompanying_obj_by_path[path] += list(initial(P.magazine_type))
+		if(ispath(path, /obj/item/weapon/gun/energy))
+			var/obj/item/weapon/gun/energy/E = A
+			if(!initial(E.use_external_power) && !initial(E.self_recharge))
+				all_accompanying_obj_by_path[path] += list(initial(E.suitable_cell))
+		else if(ispath(path, /obj/item/weapon/gun/projectile))
+			var/obj/item/weapon/gun/projectile/P = A
+			if(initial(P.magazine_type))
+				all_accompanying_obj_by_path[path] += list(initial(P.magazine_type))
 
 		//tags//
 		for(var/tag in spawn_tags)

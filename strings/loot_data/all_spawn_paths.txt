@@ -2001,9 +2001,7 @@
 /obj/item/weapon/weaponparts/heavysniper/reciever
 /obj/item/weapon/weaponparts/heavysniper/stockreciever
 /obj/item/weapon/weaponparts/heavysniper/barrel
-/obj/item/weapon/weaponparts/heavysniper
 /obj/item/weapon/packageWrap
-/obj/item/weapon/research
 /obj/item/weapon/rocksliver
 /obj/item/weapon/archaeological_find
 /obj/item/weapon/fossil/base

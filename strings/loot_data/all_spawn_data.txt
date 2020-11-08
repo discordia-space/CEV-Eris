@@ -2002,9 +2002,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/weaponparts/heavysniper/reciever    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/weaponparts/heavysniper/stockreciever    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/weaponparts/heavysniper/barrel    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/weaponparts/heavysniper    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/packageWrap    obj,item,utility    blacklisted=0    spawn_value=2    price_tag=0   100    
-/obj/item/weapon/research    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/rocksliver    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/archaeological_find    obj,item,fossil,xenoarch    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/fossil/base    obj,item,fossil,xenoarch    blacklisted=1    spawn_value=10    price_tag=0   100    
