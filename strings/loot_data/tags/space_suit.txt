@@ -20,22 +20,22 @@
 /obj/item/weapon/rig/hazmat    blacklisted=0    spawn_value=4    price_tag=0   100    
 /obj/item/weapon/rig/medical/equipped    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/weapon/rig/medical    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/clothing/suit/space/void/excelsior    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/SCAF    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc/equipped    blacklisted=0    spawn_value=1.6    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc/boxed    blacklisted=0    spawn_value=1.6    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=1.6    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/acolyte    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/agrolyte    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/custodian    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/engineering/equipped    blacklisted=0    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/engineering    blacklisted=0    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/mining    blacklisted=0    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/medical/equipped    blacklisted=1    spawn_value=4.44444    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/medical    blacklisted=0    spawn_value=4.44444    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/security/equipped    blacklisted=1    spawn_value=2    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/security    blacklisted=0    spawn_value=2    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=5    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.6    price_tag=1200   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=8    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/excelsior    blacklisted=1    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/SCAF    blacklisted=1    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc/equipped    blacklisted=0    spawn_value=1.55409    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc/boxed    blacklisted=0    spawn_value=1.55409    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=1.55409    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/acolyte    blacklisted=1    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/agrolyte    blacklisted=1    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/custodian    blacklisted=1    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/engineering/equipped    blacklisted=0    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/engineering    blacklisted=0    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/mining    blacklisted=0    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/medical/equipped    blacklisted=1    spawn_value=4.10738    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/medical    blacklisted=0    spawn_value=4.10738    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/security/equipped    blacklisted=1    spawn_value=1.92877    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/security    blacklisted=0    spawn_value=1.92877    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=4.57741    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.50718    price_tag=1200   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=6.97039    price_tag=30   100    /obj/item/clothing/shoes/magboots

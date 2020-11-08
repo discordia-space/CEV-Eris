@@ -7,7 +7,6 @@
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_POWERCELL_LARGE
-	spawn_frequency = 9
 
 /obj/item/weapon/cell/large/high
 	name = "Asters \"Robustcell 5000L\""
@@ -120,7 +119,6 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 2)
 	price_tag = 100
 	spawn_tags = SPAWN_TAG_POWERCELL_MEDIUM
-	spawn_frequency = 9.5
 
 /obj/item/weapon/cell/medium/high
 	name = "Asters \"Robustcell 800M\""
@@ -212,7 +210,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 	price_tag = 50
 	spawn_tags = SPAWN_TAG_POWERCELL_SMALL
-	rarity_value = 2.5
+	rarity_value = 3
 
 /obj/item/weapon/cell/small/high
 	name = "Asters \"Robustcell 200S\""
@@ -220,7 +218,7 @@
 	icon_state = "s_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 200
-	rarity_value = 3.5
+	rarity_value = 4
 
 /obj/item/weapon/cell/small/super
 	name = "Asters \"Robustcell 300S\""
@@ -228,7 +226,7 @@
 	icon_state = "s_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 300
-	rarity_value = 5.5
+	rarity_value = 7
 
 /obj/item/weapon/cell/small/hyper
 	name = "Asters \"Robustcell-X 500S\""
@@ -243,7 +241,7 @@
 	desc = "Moebius Laboratories branded rechargeable S-standardized power cell. This one is cheap, yet better than Aster model for same price."
 	icon_state = "meb_s_st"
 	maxcharge = 120
-	rarity_value = 3
+	rarity_value = 4
 
 /obj/item/weapon/cell/small/moebius/high
 	name = "Moebius \"Power-Geyser 250S\""
@@ -251,7 +249,7 @@
 	icon_state = "meb_s_hi"
 	origin_tech = list(TECH_POWER = 2)
 	maxcharge = 250
-	rarity_value = 4.5
+	rarity_value = 5
 
 /obj/item/weapon/cell/small/moebius/super
 	name = "Moebius \"Power-Geyser 300S\""
@@ -259,7 +257,7 @@
 	icon_state = "meb_s_sup"
 	origin_tech = list(TECH_POWER = 5)
 	maxcharge = 300
-	rarity_value = 5.5
+	rarity_value = 6
 
 /obj/item/weapon/cell/small/moebius/hyper
 	name = "Moebius \"Power-Geyser 400S\""

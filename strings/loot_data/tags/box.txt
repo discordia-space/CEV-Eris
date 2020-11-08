@@ -32,7 +32,7 @@
 /obj/item/weapon/storage/box/mousetraps    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/weapon/storage/box/pillbottles    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/weapon/storage/box/snappops    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=20    price_tag=10   100    
+/obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=16.6667    price_tag=10   100    
 /obj/item/weapon/storage/box/autoinjectors    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/storage/box/lights/bulbs    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/weapon/storage/box/lights/tubes    blacklisted=0    spawn_value=5    price_tag=0   100    
@@ -76,4 +76,4 @@
 /obj/item/weapon/storage/box/bloodpacks    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/storage/box/solution_trays    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/weapon/storage/box/samplebags    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/weapon/storage/briefcase/crimekit    blacklisted=0    spawn_value=5    price_tag=50   100    
+/obj/item/weapon/storage/briefcase/crimekit    blacklisted=0    spawn_value=4.60851    price_tag=50   100    

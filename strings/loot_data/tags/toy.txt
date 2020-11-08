@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/revolver/capgun    blacklisted=1    spawn_value=10.4167    price_tag=200   100    
+/obj/item/weapon/gun/projectile/revolver/capgun    blacklisted=1    spawn_value=8.40263    price_tag=200   100    
 /obj/item/toy/balloon    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/toy/blink    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/toy/spinningtoy    blacklisted=0    spawn_value=10    price_tag=0   100    

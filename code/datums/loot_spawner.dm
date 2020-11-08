@@ -128,7 +128,7 @@
 
 /datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
 	var/atom/movable/A = npath
-	var/spawn_value = 10 * initial(A.spawn_frequency)/initial(A.rarity_value)
+	var/spawn_value = 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(initial(A.price_tag),1)))
 	return spawn_value
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
