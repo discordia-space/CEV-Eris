@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/list/secondary_tags = list()
 	var/list/tags_to_spawn = list()
 	var/list/trap_tags = list(SPAWN_TRAP_ARMED)
-	var/list/mob_tags = list(SPAWN_ROACH)
+	var/list/mob_tags = list()
 	var/cap_price = 500000
 	var/top_price = 10000 //top_price = cap_price / 10
 	var/low_price = 0
@@ -82,9 +82,15 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 /obj/landmark/loot_biomes/proc/update()
 	update_turfs()
 	update_price()
+	update_tags()
+	update_danger_level()
+
+/obj/landmark/loot_biomes/proc/update_tags()
 	tags_to_spawn = main_tags
 	if(prob(prob_secondary_tags) && secondary_tags.len)
 		tags_to_spawn = secondary_tags
+
+/obj/landmark/loot_biomes/proc/update_danger_level()
 	if(allowed_only_top)
 		switch(price_tag)
 			if(0 to LOOT_LEVEL_VERY_LOW)

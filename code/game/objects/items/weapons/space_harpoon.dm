@@ -158,6 +158,7 @@
 	name = "OR BSD \"Blauerraumharpune\""
 	desc = "Reverse engineered version of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
 	icon_state = "harpoon-mounted-blitz-1"
+	spawn_tags = null
 
 /obj/item/weapon/bluespace_harpoon/mounted/blitz/update_icon()
 	icon_state = "harpoon-mounted-blitz-[mode]"

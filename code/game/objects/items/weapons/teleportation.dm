@@ -97,8 +97,8 @@
 	portal_type = /obj/effect/portal/unstable
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
-	var/calibration_required = TRUE
 	entropy_value = 4 //for bluespace entropy
+	var/calibration_required = TRUE
 
 /obj/item/weapon/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
 	..()

@@ -15,7 +15,7 @@
 	throw_speed = 3
 
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_COVERT = 3)
-
+	spawn_blacklisted = TRUE
 	var/obj/item/device/radio/spy/radio
 	var/obj/machinery/camera/spy/camera
 

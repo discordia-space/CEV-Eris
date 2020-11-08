@@ -2,6 +2,7 @@
 /obj/item/ammo_magazine
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 10
+	bad_type = /obj/item/ammo_magazine
 
 /obj/item/ammo_magazine/pistol
 	name = "standard magazine (.35 Auto)"

@@ -215,6 +215,7 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/card/id/captains_spare/New()
 	access = get_all_station_access()
@@ -239,6 +240,8 @@ var/const/NO_EMAG_ACT = -50
 	item_state = "tdgreen"
 	registered_name = "Administrator"
 	assignment = "Administrator"
+	spawn_blacklisted = TRUE
+
 /obj/item/weapon/card/id/all_access/New()
 	access = get_access_ids()
 	..()

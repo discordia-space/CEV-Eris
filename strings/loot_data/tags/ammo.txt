@@ -94,7 +94,6 @@
 /obj/item/ammo_magazine/m12/empty    blacklisted=0    spawn_value=4.24515    price_tag=60   100    
 /obj/item/ammo_magazine/m12    blacklisted=0    spawn_value=8.4903    price_tag=60   100    
 /obj/item/ammo_magazine/chemdart    blacklisted=0    spawn_value=8.4903    price_tag=60   100    
-/obj/item/ammo_magazine    blacklisted=0    spawn_value=8.4903    price_tag=60   100    
 /obj/item/ammo_casing/grenade/blast    blacklisted=0    spawn_value=3.80213    price_tag=20   100    
 /obj/item/ammo_casing/grenade/frag    blacklisted=0    spawn_value=3.80213    price_tag=20   100    
 /obj/item/ammo_casing/grenade/emp    blacklisted=0    spawn_value=8.84875    price_tag=20   100    

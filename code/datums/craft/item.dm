@@ -1,6 +1,7 @@
 /obj/item/craft
 	icon = 'icons/obj/crafts.dmi'
 	icon_state = "device"
+	spawn_tags = null
 	var/datum/craft_recipe/recipe
 	var/step = 1
 

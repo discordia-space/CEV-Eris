@@ -1,4 +1,5 @@
-/obj/landmark/loot_biomes/obj
+// only objs
+/obj/landmark/loot_biomes
 	name = "obj biome"
 	icon_state = "box-green-biome"
 	cap_price = 200000
@@ -10,6 +11,8 @@
 	tags_to_spawn = list(SPAWN_ITEM)
 	biome_spawner = TRUE
 
+
+// only mobs
 /obj/landmark/loot_biomes/mob
 	name = "mob biome"
 	icon_state = "hostilemob-purple-biome"
@@ -24,13 +27,11 @@
 	name = "biome mob spawner"
 	icon_state = "hostilemob-purple-spawner"
 	biome_spawner = TRUE
-	latejoin = TRUE
 
 /obj/spawner/mob/biome_spawner_mob/low_chance
 	name = "biome mob spawner"
 	icon_state = "hostilemob-purple-spawner-low"
 	biome_spawner = TRUE
-	latejoin = TRUE
 	spawn_nothing_percentage = 60
 
 /obj/landmark/loot_biomes/mob/roach
@@ -51,6 +52,7 @@
 	icon_state = "hostilemob-blue-biome"
 	mob_tags = list(SPAWN_MOB_ROOMBA,SPAWN_MOB_OS_CUSTODIAN)
 
+//only traps
 /obj/landmark/loot_biomes/trap
 	name = "trap biome"
 	icon_state = "trap-purple-biome"
@@ -64,7 +66,6 @@
 	name = "biome trap spawner"
 	icon_state = "trap-purple-spawner"
 	biome_spawner = TRUE
-	latejoin = TRUE
 	use_biome_range = TRUE
 
 /obj/spawner/traps/biome_spawner_trap/low_chance

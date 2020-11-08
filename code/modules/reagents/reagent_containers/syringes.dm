@@ -310,6 +310,7 @@
 	name = "blitzshell syringe"
 	desc = "A blitzshell syringe."
 	breakable = FALSE
+	spawn_tags = null
 
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
 	name = "lethal injection syringe"

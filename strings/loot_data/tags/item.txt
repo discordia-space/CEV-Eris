@@ -667,7 +667,6 @@
 /obj/item/weapon/reagent_containers/glass/paint/purple    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/paint/black    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/paint/white    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
-/obj/item/weapon/reagent_containers/glass/paint    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/rag    blacklisted=0    spawn_value=4.69461    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/fertilizer/ez    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/fertilizer/l4z    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
@@ -1085,8 +1084,6 @@
 /obj/item/weapon/reagent_containers/pill/spaceacillin    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/pill/prosurgeon    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/pill/floorpill    blacklisted=0    spawn_value=18.8643    price_tag=20   100    
-/obj/item/weapon/reagent_containers/pill    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
-/obj/item/weapon/reagent_containers/syringe/blitzshell    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/reagent_containers/syringe/large    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
@@ -1155,8 +1152,6 @@
 /obj/item/weapon/oddity/broken_necklace    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/oddity/secdocs    blacklisted=1    spawn_value=7.29982    price_tag=5000   100    
 /obj/item/weapon/inflatable_duck    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/twohanded/offhand    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/twohanded    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/camera_bug    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/cartridge/engineering    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/cartridge/atmos    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -1296,7 +1291,6 @@
 /obj/item/weapon/flame/lighter/zippo    blacklisted=0    spawn_value=8.54776    price_tag=50   100    
 /obj/item/weapon/flame/lighter/random    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/weapon/flame/lighter    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
-/obj/item/weapon/flame    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/cane/concealed    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/cane    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/caution/cone    blacklisted=0    spawn_value=20    price_tag=0   100    
@@ -1404,9 +1398,7 @@
 /obj/item/weapon/material/kitchen/utensil/spoon/plastic    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/material/kitchen/utensil/spoon/mre    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/material/kitchen/utensil/spoon    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/material/kitchen/utensil    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/material/kitchen/rollingpin    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/material/kitchen    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/material/butterfly/switchblade    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/material/butterfly    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/material/harpoon    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -1498,7 +1490,6 @@
 /obj/item/weapon/shield/riot    blacklisted=0    spawn_value=7.87465    price_tag=500   100    
 /obj/item/weapon/shield/energy    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/shield    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/bluespace_harpoon/mounted/blitz    blacklisted=1    spawn_value=7.35183    price_tag=4000   100    
 /obj/item/weapon/bluespace_harpoon/mounted    blacklisted=1    spawn_value=7.35183    price_tag=4000   100    
 /obj/item/weapon/bluespace_harpoon    blacklisted=1    spawn_value=7.35183    price_tag=4000   100    
 /obj/item/weapon/staff/broom    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -1563,9 +1554,7 @@
 /obj/item/weapon/melee/energy/sword    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/melee/energy/blade/organ_module    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/melee/energy/blade    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/melee/energy    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/melee/toolbox_maul    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/melee    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/hand_tele/handmade    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/hand_tele    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/tele_spear    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -1608,7 +1597,7 @@
 /obj/item/weapon/implant/health    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/implant/spying    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/implant/tracking    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/implant/uplink    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/weapon/implant/uplink    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/implant/carrion_spider/breeding    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/implant/carrion_spider/control    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/implant/carrion_spider/explosive    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -1701,7 +1690,6 @@
 /obj/item/weapon/gun/energy/ionrifle/mounted    blacklisted=0    spawn_value=3.63939    price_tag=3000   100    
 /obj/item/weapon/gun/energy/ionrifle    blacklisted=0    spawn_value=3.63939    price_tag=3000   100    
 /obj/item/weapon/gun/energy/laser/mounted/mech    blacklisted=1    spawn_value=6.49438    price_tag=2500   100    
-/obj/item/weapon/gun/energy/laser/mounted/blitz    blacklisted=1    spawn_value=6.49438    price_tag=2500   100    
 /obj/item/weapon/gun/energy/laser/mounted    blacklisted=1    spawn_value=6.49438    price_tag=2500   100    
 /obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=6.66667    price_tag=1000   100    
 /obj/item/weapon/gun/energy/laser/practice    blacklisted=0    spawn_value=6.66667    price_tag=1000   100    
@@ -1710,7 +1698,6 @@
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/gun/energy/plasmacutter/mounted    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/gun/energy/plasma/stranger    blacklisted=1    spawn_value=7.29982    price_tag=5000   100    
-/obj/item/weapon/gun/energy/plasma/mounted/blitz    blacklisted=1    spawn_value=7.32428    price_tag=4500   100    
 /obj/item/weapon/gun/energy/plasma/mounted    blacklisted=1    spawn_value=7.32428    price_tag=4500   100    
 /obj/item/weapon/gun/energy/plasma/destroyer    blacklisted=0    spawn_value=7.32428    price_tag=4500   100    
 /obj/item/weapon/gun/energy/plasma/cassad    blacklisted=0    spawn_value=6.46115    price_tag=3000   100    
@@ -1993,7 +1980,6 @@
 /obj/item/weapon/weaponparts/heavysniper/stockreciever    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/weaponparts/heavysniper/barrel    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/weaponparts/heavysniper    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/weapon/weaponparts    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/packageWrap    blacklisted=0    spawn_value=2    price_tag=0   100    
 /obj/item/weapon/research    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/rocksliver    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -2015,7 +2001,6 @@
 /obj/item/weapon/diseasedisk/premade    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/diseasedisk    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/rocket_engine    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/craft    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/stack/cable_coil/cut    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
 /obj/item/stack/cable_coil/yellow    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
 /obj/item/stack/cable_coil/blue    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
@@ -2845,7 +2830,6 @@
 /obj/item/frame/light    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/frame/apc    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/frame/holomap    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/frame    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/pipe    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/pipe_meter    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/kit/suit    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -2890,7 +2874,7 @@
 /obj/item/device/pipe_painter    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/powersink    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/device/propaganda_chip    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/spy_bug    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/device/spy_bug    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/device/spy_monitor    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/radio/spy    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/radio/uplink    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -3148,7 +3132,6 @@
 /obj/item/trash/cigbutt    blacklisted=0    spawn_value=28.5714    price_tag=0   100    
 /obj/item/trash/broken_robot_part    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/trash    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/von_krabin    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/organ_module/active/simple/armblade/energy_blade    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/organ_module/active/simple/armblade    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/organ_module/active/simple/wolverine    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -3222,7 +3205,6 @@
 /obj/item/rig_module/vision/thermal    blacklisted=0    spawn_value=2    price_tag=0   100    
 /obj/item/rig_module/vision/nvg    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
 /obj/item/rig_module    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/ai_verbs    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/underwear/socks    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/underwear/top    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/underwear/bottom    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -3324,7 +3306,6 @@
 /obj/item/ammo_magazine/m12/empty    blacklisted=0    spawn_value=4.24515    price_tag=60   100    
 /obj/item/ammo_magazine/m12    blacklisted=0    spawn_value=8.4903    price_tag=60   100    
 /obj/item/ammo_magazine/chemdart    blacklisted=0    spawn_value=8.4903    price_tag=60   100    
-/obj/item/ammo_magazine    blacklisted=0    spawn_value=8.4903    price_tag=60   100    
 /obj/item/ammo_casing/pistol/hv    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/ammo_casing/pistol/practice    blacklisted=0    spawn_value=8.84875    price_tag=20   100    
 /obj/item/ammo_casing/pistol/rubber    blacklisted=0    spawn_value=8.84875    price_tag=20   100    

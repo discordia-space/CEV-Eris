@@ -689,7 +689,6 @@
 /obj/item/weapon/reagent_containers/glass/paint/purple
 /obj/item/weapon/reagent_containers/glass/paint/black
 /obj/item/weapon/reagent_containers/glass/paint/white
-/obj/item/weapon/reagent_containers/glass/paint
 /obj/item/weapon/reagent_containers/glass/rag
 /obj/item/weapon/reagent_containers/glass/fertilizer/ez
 /obj/item/weapon/reagent_containers/glass/fertilizer/l4z
@@ -1107,8 +1106,6 @@
 /obj/item/weapon/reagent_containers/pill/spaceacillin
 /obj/item/weapon/reagent_containers/pill/prosurgeon
 /obj/item/weapon/reagent_containers/pill/floorpill
-/obj/item/weapon/reagent_containers/pill
-/obj/item/weapon/reagent_containers/syringe/blitzshell
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral
 /obj/item/weapon/reagent_containers/syringe/ld50_syringe
 /obj/item/weapon/reagent_containers/syringe/large
@@ -1177,8 +1174,6 @@
 /obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/inflatable_duck
-/obj/item/weapon/twohanded/offhand
-/obj/item/weapon/twohanded
 /obj/item/weapon/camera_bug
 /obj/item/weapon/cartridge/engineering
 /obj/item/weapon/cartridge/atmos
@@ -1318,7 +1313,6 @@
 /obj/item/weapon/flame/lighter/zippo
 /obj/item/weapon/flame/lighter/random
 /obj/item/weapon/flame/lighter
-/obj/item/weapon/flame
 /obj/item/weapon/cane/concealed
 /obj/item/weapon/cane
 /obj/item/weapon/caution/cone
@@ -1426,9 +1420,7 @@
 /obj/item/weapon/material/kitchen/utensil/spoon/plastic
 /obj/item/weapon/material/kitchen/utensil/spoon/mre
 /obj/item/weapon/material/kitchen/utensil/spoon
-/obj/item/weapon/material/kitchen/utensil
 /obj/item/weapon/material/kitchen/rollingpin
-/obj/item/weapon/material/kitchen
 /obj/item/weapon/material/butterfly/switchblade
 /obj/item/weapon/material/butterfly
 /obj/item/weapon/material/harpoon
@@ -1520,7 +1512,6 @@
 /obj/item/weapon/shield/riot
 /obj/item/weapon/shield/energy
 /obj/item/weapon/shield
-/obj/item/weapon/bluespace_harpoon/mounted/blitz
 /obj/item/weapon/bluespace_harpoon/mounted
 /obj/item/weapon/bluespace_harpoon
 /obj/item/weapon/staff/broom
@@ -1585,9 +1576,7 @@
 /obj/item/weapon/melee/energy/sword
 /obj/item/weapon/melee/energy/blade/organ_module
 /obj/item/weapon/melee/energy/blade
-/obj/item/weapon/melee/energy
 /obj/item/weapon/melee/toolbox_maul
-/obj/item/weapon/melee
 /obj/item/weapon/hand_tele/handmade
 /obj/item/weapon/hand_tele
 /obj/item/weapon/tele_spear
@@ -1723,7 +1712,6 @@
 /obj/item/weapon/gun/energy/ionrifle/mounted
 /obj/item/weapon/gun/energy/ionrifle
 /obj/item/weapon/gun/energy/laser/mounted/mech
-/obj/item/weapon/gun/energy/laser/mounted/blitz
 /obj/item/weapon/gun/energy/laser/mounted
 /obj/item/weapon/gun/energy/laser/practice/xenoarch
 /obj/item/weapon/gun/energy/laser/practice
@@ -1732,7 +1720,6 @@
 /obj/item/weapon/gun/energy/plasmacutter/mounted/mech
 /obj/item/weapon/gun/energy/plasmacutter/mounted
 /obj/item/weapon/gun/energy/plasma/stranger
-/obj/item/weapon/gun/energy/plasma/mounted/blitz
 /obj/item/weapon/gun/energy/plasma/mounted
 /obj/item/weapon/gun/energy/plasma/destroyer
 /obj/item/weapon/gun/energy/plasma/cassad
@@ -2015,7 +2002,6 @@
 /obj/item/weapon/weaponparts/heavysniper/stockreciever
 /obj/item/weapon/weaponparts/heavysniper/barrel
 /obj/item/weapon/weaponparts/heavysniper
-/obj/item/weapon/weaponparts
 /obj/item/weapon/packageWrap
 /obj/item/weapon/research
 /obj/item/weapon/rocksliver
@@ -2037,7 +2023,6 @@
 /obj/item/weapon/diseasedisk/premade
 /obj/item/weapon/diseasedisk
 /obj/item/rocket_engine
-/obj/item/craft
 /obj/item/stack/cable_coil/cut
 /obj/item/stack/cable_coil/yellow
 /obj/item/stack/cable_coil/blue
@@ -2867,7 +2852,6 @@
 /obj/item/frame/light
 /obj/item/frame/apc
 /obj/item/frame/holomap
-/obj/item/frame
 /obj/item/pipe
 /obj/item/pipe_meter
 /obj/item/device/kit/suit
@@ -3170,7 +3154,6 @@
 /obj/item/trash/cigbutt
 /obj/item/trash/broken_robot_part
 /obj/item/trash
-/obj/item/von_krabin
 /obj/item/organ_module/active/simple/armblade/energy_blade
 /obj/item/organ_module/active/simple/armblade
 /obj/item/organ_module/active/simple/wolverine
@@ -3258,7 +3241,6 @@
 /obj/item/rig_module/vision/sechud
 /obj/item/rig_module/vision/medhud
 /obj/item/rig_module
-/obj/item/ai_verbs
 /obj/item/underwear/socks
 /obj/item/underwear/top
 /obj/item/underwear/bottom
@@ -3360,7 +3342,6 @@
 /obj/item/ammo_magazine/m12/empty
 /obj/item/ammo_magazine/m12
 /obj/item/ammo_magazine/chemdart
-/obj/item/ammo_magazine
 /obj/item/ammo_casing/pistol/hv
 /obj/item/ammo_casing/pistol/practice
 /obj/item/ammo_casing/pistol/rubber

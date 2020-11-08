@@ -4,6 +4,7 @@
 	spawn_tags = SPAWN_TAG_SPAWNER_MOB
 	tags_to_spawn = list(SPAWN_SPAWNER_MOB)
 	exclusion_paths = list(/obj/spawner/mob)
+	latejoin = TRUE
 
 /obj/spawner/mob/cluster
 	name = "cluster of random mob"
@@ -23,6 +24,7 @@
 	var/count = biome.spawner_mob_count
 	min_amount = max(1, biome.min_mobs_amount / count)
 	max_amount = min(biome.max_mobs_amount, max(3, biome.max_mobs_amount / count))
+	latejoin = TRUE
 	if(use_biome_range)
 		spread_range = biome.range
 		loc = biome.loc

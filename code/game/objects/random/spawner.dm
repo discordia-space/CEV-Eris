@@ -33,9 +33,14 @@
 
 // creates a new object and deletes itself
 /obj/spawner/Initialize(mapload, with_aditional_object=TRUE)
-	..()
+	. = ..()
+	price_tag = 0
 	allow_aditional_object = with_aditional_object
-	if(!latejoin && !prob(spawn_nothing_percentage))
+	if(!prob(spawn_nothing_percentage))
+		if(biome_spawner && !biome)
+			find_biome()
+		if(latejoin)
+			return INITIALIZE_HINT_LATELOAD
 		var/list/spawns = spawn_item()
 		if(spawns.len)
 			burrow()
@@ -45,11 +50,11 @@
 				biome.price_tag += price_tag
 			post_spawn(spawns)
 
-	return latejoin ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL 
+	return INITIALIZE_HINT_QDEL 
 
 /obj/spawner/LateInitialize()
 	..()
-	if(!prob(spawn_nothing_percentage) && latejoin)
+	if(latejoin)
 		var/list/spawns = spawn_item()
 		if(spawns.len)
 			burrow()
@@ -69,8 +74,6 @@
 /obj/spawner/proc/spawn_item()
 	var/list/points_for_spawn = list()
 	var/list/spawns = list()
-	if(biome_spawner && !biome)
-		find_biome()
 	if(spread_range && istype(loc, /turf))
 		points_for_spawn = find_smart_point()
 	else
@@ -109,14 +112,16 @@
 		T.update_biome()
 		biome = T.biome
 	if(check_biome_spawner())
+		biome.update_price()
 		update_biome_vars()
+
 
 /obj/spawner/proc/update_biome_vars()
 	tags_to_spawn = biome.tags_to_spawn
 	allow_blacklist = biome.allow_blacklist
 	exclusion_paths = biome.exclusion_paths
 	restricted_tags = biome.restricted_tags
-	top_price = biome.top_price
+	top_price = min(biome.top_price, max(biome.cap_price - biome.price_tag, 0))
 	low_price = biome.low_price
 	min_amount = biome.min_loot_amount
 	max_amount = biome.max_loot_amount
@@ -127,8 +132,10 @@
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
 	if(check_biome_spawner())
-		biome.update()
-		if(biome.price_tag >= biome.cap_price && !istype(src, /obj/spawner/mob) && !istype(src, /obj/spawner/traps))
+		biome.update_price()
+		biome.update_tags()
+		biome.update_danger_level()
+		if(biome.price_tag + price_tag >= biome.cap_price && !istype(src, /obj/spawner/mob) && !istype(src, /obj/spawner/traps))
 			return
 	var/list/candidates = valid_candidates()
 	if(check_biome_spawner() && biome.allowed_only_top)

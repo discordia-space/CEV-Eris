@@ -4,6 +4,7 @@
 	alpha = 128
 	tags_to_spawn = list(SPAWN_TRAP_ARMED)
 	check_density = FALSE
+	latejoin = TRUE
 
 /obj/spawner/traps/valid_candidates()
 	var/list/possible_traps = ..()
@@ -55,6 +56,7 @@
 /obj/spawner/traps/update_biome_vars()
 	tags_to_spawn = biome.trap_tags
 	biome.spawner_trap_count++
+	latejoin = TRUE
 	var/count = biome.spawner_trap_count
 	min_amount = max(1, biome.min_traps_amount / count)
 	max_amount = min(biome.max_traps_amount, max(3, biome.max_traps_amount / count))

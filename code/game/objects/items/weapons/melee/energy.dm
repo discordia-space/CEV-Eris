@@ -1,8 +1,4 @@
 /obj/item/weapon/melee/energy
-	var/active = 0
-	var/active_force
-	var/active_throwforce
-	var/active_w_class
 	sharp = FALSE
 	edge = FALSE
 	armor_penetration = ARMOR_PEN_HALF
@@ -10,6 +6,11 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
 	embed_mult = 0 //No physical matter to catch onto things
+	bad_type = /obj/item/weapon/melee/energy
+	var/active = 0
+	var/active_force
+	var/active_throwforce
+	var/active_w_class
 
 /obj/item/weapon/melee/energy/is_hot()
 	if (active)

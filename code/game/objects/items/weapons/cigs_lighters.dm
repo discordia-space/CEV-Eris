@@ -15,8 +15,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 //For anything that can light stuff on fire
 /obj/item/weapon/flame
-	var/lit = 0
 	heat = 1670
+	bad_type = /obj/item/weapon/flame
+	var/lit = 0
 
 /obj/item/weapon/flame/is_hot()
 	if (lit)

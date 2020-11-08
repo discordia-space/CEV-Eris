@@ -40,7 +40,7 @@
 /obj/item/device/pipe_painter    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/powersink    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/device/propaganda_chip    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/spy_bug    blacklisted=0    spawn_value=10    price_tag=0   100    
+/obj/item/device/spy_bug    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/device/spy_monitor    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/radio/spy    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/radio/uplink    blacklisted=0    spawn_value=10    price_tag=0   100    
