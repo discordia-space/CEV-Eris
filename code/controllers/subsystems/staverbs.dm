@@ -42,7 +42,19 @@ SUBSYSTEM_DEF(statverbs)
 			return FALSE
 
 	if(user.stats.getStat(required_stat) < minimal_stat)
-		to_chat(user, SPAN_WARNING("You're not skilled enough in [required_stat]"))
+		switch(required_stat)
+			if(STAT_MEC)
+				to_chat(user, SPAN_WARNING("You don't know enough about engineering to do that!"))
+			if(STAT_BIO)
+				to_chat(user, SPAN_WARNING("You don't know enough about medicine to do that!"))
+			if(STAT_TGH)
+				to_chat(user, SPAN_WARNING("You're not tough enough to do that!"))
+			if(STAT_ROB)
+				to_chat(user, SPAN_WARNING("You're not strong enough to do that!"))
+			if(STAT_COG)
+				to_chat(user, SPAN_WARNING("You're not smart enough to do that!"))
+			if(STAT_VIG)
+				to_chat(user, SPAN_WARNING("You're not perceptive enough to do that!"))
 		return FALSE
 
 	action(user, target)
@@ -165,3 +177,40 @@ SUBSYSTEM_DEF(statverbs)
 				"You stop hacking into [target_name]."
 			)
 
+/obj/item/modular_computer/initalize_statverbs()
+	if(enabled == 0)
+		add_statverb(/datum/statverb/fix_computer)
+
+/datum/statverb/fix_computer
+	name = "Fix computer"
+	required_stat = STAT_COG
+	minimal_stat  = STAT_LEVEL_ADEPT
+
+/datum/statverb/fix_computer/action(mob/user, obj/item/modular_computer/target)
+	if(target.hard_drive.damage < 100)
+		user.visible_message(
+			SPAN_WARNING("[target] doesn't need repairs!")
+		)
+		return
+	var/timer = 160 - (user.stats.getStat(STAT_COG) * 2)
+	if(target.hard_drive.damage == 100)
+		var/datum/repeating_sound/keyboardsound = new(30, timer, 0.15, target, "keyboard", 80, 1)
+		user.visible_message(
+			SPAN_NOTICE("You begin repairing [target]."),
+		)
+		if(do_mob(user, target, timer))
+			keyboardsound.stop()
+			keyboardsound = null
+			target.hard_drive.damage = 0
+			target.hard_drive.install_default_files()
+			target.update_icon()
+			user.visible_message(
+				SPAN_NOTICE("You manage to repair [target], but the harddrive was corrupted! Only default programs were restored."),
+			)
+		else
+			keyboardsound.stop()
+			keyboardsound = null
+			var/target_name = target ? "[target]" : "the computer"
+			user.visible_message(
+				SPAN_NOTICE("You stop repairing [target_name]."),
+			)
