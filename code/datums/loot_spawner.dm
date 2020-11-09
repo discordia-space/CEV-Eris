@@ -15,9 +15,33 @@
 //	..()
 //	generate_data()
 
+/proc/get_spawn_price(path)
+	var/atom/movable/A = path
+	. = initial(A.price_tag)
+	if(ispath(path, /obj/item/weapon/stock_parts))//see /obj/item/weapon/stock_parts/get_item_cost(export)
+		var/obj/item/weapon/stock_parts/S = path
+		. *= initial(S.rating)
+	else if(ispath(path, /obj/item/stack))///obj/item/stack/get_item_cost(export)
+		var/obj/item/stack/S = path
+		. *= initial(S.amount)
+	else if(ispath(path, /obj/item/ammo_casing))///obj/item/ammo_casing/get_item_cost(export)
+		var/obj/item/ammo_casing/AC = path
+		. *= initial(AC.amount)
+	else if(ispath(path, /obj/item/weapon/handcuffs))///obj/item/weapon/handcuffs/get_item_cost(export)
+		var/obj/item/weapon/handcuffs/H = path
+		. += initial(H.breakouttime) / 20
+	else if(ispath(path, /obj/structure/reagent_dispensers))///obj/machinery/get_item_cost(export)
+		var/obj/structure/reagent_dispensers/R = path
+		. += initial(R.contents_cost)
+	else if(ispath(path, /obj/item/ammo_magazine))///obj/item/ammo_magazine/get_item_cost(export)
+		var/obj/item/ammo_magazine/M = path
+		var/amount = initial(M.initial_ammo)
+		if(isnull(amount))
+			amount = initial(M.max_ammo)
+		. += amount * get_spawn_price(initial(M.ammo_type))
+
 /datum/controller/subsystem/spawn_data/proc/generate_data()
 	var/list/paths = list()
-
 	//spawn vars
 	//var/rarity
 	//var/frequency
@@ -35,7 +59,7 @@
 	var/fike_dir_tags = "[file_dir]/tags/"
 	if(generate_files)
 		fdel(source_dir)
-		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accompanying_obj    all_accompanying_obj"
+		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    price    prob_all_accompanying_obj    all_accompanying_obj"
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
@@ -68,7 +92,7 @@
 
 		//price//
 		//all_spawn_by_price["[price]"] += list(path)
-		//all_price_by_path[path] = initial(A.price_tag)
+		//all_price_by_path[path] = get_spawn_price(A)
 
 		//frequency
 		//frequency = initial(A.spawn_frequency)
@@ -118,16 +142,16 @@
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
 				var/tag_data_i = file("[fike_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price_tag=[initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price=[get_spawn_price(A)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price_tag=[initial(A.price_tag)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price=[get_spawn_price(A)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
 
 /datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
 	var/atom/movable/A = npath
-	var/spawn_value = 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(initial(A.price_tag),1)))
+	var/spawn_value = 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))
 	return spawn_value
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
@@ -141,8 +165,7 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		var/atom/movable/AM = path
-		if(initial(AM.price_tag) < price)
+		if(get_spawn_price(path) < price)
 			things += path
 	return things
 
@@ -151,8 +174,7 @@
 	//	return
 	var/list/things = list()
 	for(var/path in paths)
-		var/atom/movable/AM = path
-		if(initial(AM.price_tag) > price)
+		if(get_spawn_price(path) > price)
 			things += path
 	return things
 

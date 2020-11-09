@@ -1,12 +1,12 @@
-/obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=4.27388    price_tag=2500   100    
-/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=4.27388    price_tag=2500   100    
-/obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=2.97148    price_tag=4500   100    /obj/item/ammo_casing/grenade/frag
-/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=7.1628    price_tag=2000   100    
-/obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.31479    price_tag=1500   100    
-/obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=5.26316    price_tag=1000   100    
-/obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=7.35183    price_tag=4000   100    
-/obj/item/weapon/gun/projectile/shotgun/bull    blacklisted=0    spawn_value=7.51821    price_tag=2000   100    
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet    blacklisted=0    spawn_value=7.64574    price_tag=1200   100    
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    blacklisted=0    spawn_value=7.64574    price_tag=1200   100    
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=3.69287    price_tag=1200   100    
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=7.64574    price_tag=1200   100    
+/obj/item/weapon/gun/energy/shrapnel/mounted    blacklisted=1    spawn_value=4.27388    price=2500   100    
+/obj/item/weapon/gun/energy/shrapnel    blacklisted=0    spawn_value=4.27388    price=2500   100    
+/obj/item/weapon/gun/projectile/shotgun/pump/china    blacklisted=0    spawn_value=2.97148    price=4500   100    /obj/item/ammo_casing/grenade/frag
+/obj/item/weapon/gun/projectile/shotgun/pump/gladstone    blacklisted=0    spawn_value=7.1628    price=2000   100    
+/obj/item/weapon/gun/projectile/shotgun/pump/regulator    blacklisted=0    spawn_value=4.31479    price=1500   100    
+/obj/item/weapon/gun/projectile/shotgun/pump    blacklisted=0    spawn_value=5.26316    price=1000   100    
+/obj/item/weapon/gun/projectile/shotgun/bojevic    blacklisted=0    spawn_value=7.35183    price=4000   100    
+/obj/item/weapon/gun/projectile/shotgun/bull    blacklisted=0    spawn_value=7.51821    price=2000   100    
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet    blacklisted=0    spawn_value=7.64574    price=1200   100    
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare    blacklisted=0    spawn_value=7.64574    price=1200   100    
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn    blacklisted=0    spawn_value=3.69287    price=1200   100    
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel    blacklisted=0    spawn_value=7.64574    price=1200   100    

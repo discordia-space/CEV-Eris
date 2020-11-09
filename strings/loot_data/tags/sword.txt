@@ -1,3 +1,3 @@
-/obj/item/weapon/tool/sword/katana/nano    blacklisted=1    spawn_value=1.30504    price_tag=20   100    
-/obj/item/weapon/tool/sword/katana    blacklisted=0    spawn_value=2.20379    price_tag=20   100    
-/obj/item/weapon/tool/sword    blacklisted=0    spawn_value=3.04171    price_tag=20   100    
+/obj/item/weapon/tool/sword/katana/nano    blacklisted=1    spawn_value=1.30504    price=20   100    
+/obj/item/weapon/tool/sword/katana    blacklisted=0    spawn_value=2.20379    price=20   100    
+/obj/item/weapon/tool/sword    blacklisted=0    spawn_value=3.04171    price=20   100    

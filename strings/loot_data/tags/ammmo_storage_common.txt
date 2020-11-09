@@ -1,4 +1,4 @@
-/obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.16435    price_tag=40   100    
-/obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.16435    price_tag=40   100    
-/obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=15.1468    price_tag=40   100    
-/obj/item/ammo_magazine/ammobox/pistol    blacklisted=0    spawn_value=3.16435    price_tag=40   100    
+/obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.04821    price=640   100    
+/obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.04821    price=640   100    
+/obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=12.8104    price=640   100    
+/obj/item/ammo_magazine/ammobox/pistol    blacklisted=0    spawn_value=3.04821    price=640   100    
