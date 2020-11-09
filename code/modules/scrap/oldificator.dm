@@ -2,7 +2,7 @@
 	var/obj/old_obj
 	var/list/armor
 
-/datum/component/oldficator/Initialize(start=TRUE, _turn_connects=TRUE, _unique=FALSE) //turn_connects for wheter or not we spin with the object to change our pipes
+/datum/component/oldficator/Initialize() //turn_connects for wheter or not we spin with the object to change our pipes
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 	old_obj = DuplicateObject(parent, TRUE)
@@ -19,6 +19,8 @@
 			continue
 		else
 			parent.vars[V] = old_obj.vars[V]
+		old_obj.vars[V] = null
+	QDEL_NULL(old_obj)
 	var/obj/O = parent
 	if(isitem(parent))
 		var/obj/item/I = parent
@@ -320,3 +322,12 @@
 	.=..()
 	if(. && hud && prob(75))
 		hud = new /obj/item/clothing/glasses/hud/broken
+
+/obj/item/device/assembly_holder/timer_igniter/make_old()//runtimes in DuplicateObject, nullspace
+	return
+
+/obj/item/weapon/storage/internal/make_old()//runtimes in DuplicateObject, nullspace
+	return
+
+/obj/item/clothing/ears/offear/make_old()
+	return

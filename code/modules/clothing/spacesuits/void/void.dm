@@ -46,18 +46,18 @@
 	accompanying_object = /obj/item/clothing/shoes/magboots
 
 	//Inbuilt devices.
-	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
+	var/obj/item/clothing/shoes/magboots/boots // Deployable boots, if any.
 	var/obj/item/clothing/head/armor/helmet/helmet = /obj/item/clothing/head/space/void   // Deployable helmet, if any.
-	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
+	var/obj/item/weapon/tank/tank              // Deployable tank, if any.
 
 /obj/item/clothing/suit/space/void/Initialize()
+	. = ..()
 	if(boots && ispath(boots))
 		boots = new boots(src)
 	if(helmet && ispath(helmet))
 		helmet = new helmet(src)
 	if(tank && ispath(tank))
 		tank = new tank(src)
-	. = ..()
 
 /obj/item/clothing/suit/space/void/examine(user)
 	..(user)

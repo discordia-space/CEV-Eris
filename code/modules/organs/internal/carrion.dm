@@ -350,7 +350,7 @@
 		to_chat(owner, SPAN_NOTICE("You consume \the [food], [taste_description]."))
 		visible_message(SPAN_DANGER("[owner] devours \the [food]!"))
 		qdel(food)
-	
+
 	else
 		to_chat(owner, SPAN_WARNING("You can't eat this!"))
 

@@ -212,7 +212,8 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
-	var/obj/item/master_item = null
+	spawn_tags = null
+	var/obj/item/master_item
 
 /obj/item/clothing/ears/offear/New(obj/O)
 	.=..()
@@ -271,12 +272,12 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.75
 	bad_type = /obj/item/clothing/gloves
 	spawn_tags = SPAWN_TAG_GLOVES
-	var/wired = 0
-	var/clipped = 0
 	body_parts_covered = ARMS
 	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
+	var/wired = 0
+	var/clipped = 0
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
@@ -419,15 +420,15 @@ BLIND     // can't see anything
 	spawn_tags = SPAWN_TAG_SHOES
 	bad_type = /obj/item/clothing/shoes
 
-	var/can_hold_knife
-	var/obj/item/holding
-	var/noslip = 0
-	var/module_inside = 0
-
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	force = 2
+
+	var/can_hold_knife
+	var/obj/item/holding
+	var/noslip = 0
+	var/module_inside = 0
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -515,9 +516,6 @@ BLIND     // can't see anything
 	else to_chat(usr, "You haven't got any accessories in your shoes")
 
 
-
-
-
 /obj/item/clothing/shoes/update_icon()
 	overlays.Cut()
 	if(holding)
@@ -561,9 +559,10 @@ BLIND     // can't see anything
 	var/list/extra_allowed = list()
 	equip_delay = 1 SECONDS
 
-/obj/item/clothing/suit/New()
-	allowed |= extra_allowed
+/obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
+	allowed |= extra_allowed
+
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
 /obj/item/clothing/under

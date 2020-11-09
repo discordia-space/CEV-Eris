@@ -90,10 +90,6 @@
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 	. = ..()
 
-/obj/item/New()
-	SHOULD_CALL_PARENT(TRUE)
-	. = ..()
-
 /obj/item/Destroy()
 	QDEL_NULL(hidden_uplink)
 	QDEL_NULL(blood_overlay)

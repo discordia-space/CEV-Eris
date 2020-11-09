@@ -846,6 +846,12 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 	else
 		O = new original.type(newloc)
 
+	if(isnull(O.loc) && isobj(O))
+		if(!ismachinery(O))
+			STOP_PROCESSING(SSobj, O)
+		else
+			STOP_PROCESSING(SSmachines, O)
+
 	if(perfectcopy && O && original)
 		for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
 			if(islist(original.vars[V]))
