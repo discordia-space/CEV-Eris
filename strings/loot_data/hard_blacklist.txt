@@ -114,6 +114,7 @@
 /obj/item/weapon/gun/energy/plasma/mounted/blitz
 /obj/item/weapon/gun/energy/lasertag
 /obj/item/weapon/gun/energy
+/obj/item/weapon/gun/launcher/spikethrower
 /obj/item/weapon/gun/projectile/shotgun
 /obj/item/weapon/gun/projectile/automatic
 /obj/item/weapon/gun/projectile/handmade_pistol
@@ -272,6 +273,7 @@
 /obj/item/clothing/shoes/lightrig/hacker
 /obj/item/clothing/shoes/lightrig
 /obj/item/clothing/shoes
+/obj/item/clothing/ears/offear
 /obj/item/clothing
 /obj/item/frame
 /obj/item/device/last_shelter
@@ -1865,6 +1867,7 @@
 /obj/effect/decal/cleanable/reagents/splashed
 /obj/effect/decal/cleanable/reagents/piled
 /obj/effect/decal/cleanable/reagents
+/obj/effect/decal/cleanable/greenglow
 /obj/effect/decal/cleanable
 /obj/effect/decal/point
 /obj/effect/decal/spraystill

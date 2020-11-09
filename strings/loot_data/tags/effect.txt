@@ -35,7 +35,6 @@
 /obj/effect/decal/cleanable/mucus    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/generic    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/ash    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/greenglow    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/dirt    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/flour    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/cobweb    blacklisted=0    spawn_value=18.1818    price_tag=0   100    

@@ -1759,7 +1759,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/weapon/gun/launcher/grenade/underslung    obj,item,gun    blacklisted=0    spawn_value=7.5895    price_tag=1500   100    
 /obj/item/weapon/gun/launcher/grenade/lenar    obj,item,gun    blacklisted=0    spawn_value=7.5895    price_tag=1500   100    
 /obj/item/weapon/gun/launcher/grenade    obj,item,gun    blacklisted=0    spawn_value=7.5895    price_tag=1500   100    
-/obj/item/weapon/gun/launcher/spikethrower    obj,item,gun    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/gun/launcher/crossbow/RCD    obj,item,gun    blacklisted=0    spawn_value=2.08333    price_tag=0   100    
 /obj/item/weapon/gun/launcher/crossbow    obj,item,gun    blacklisted=0    spawn_value=2.08333    price_tag=0   100    
 /obj/item/weapon/gun/launcher/pneumatic    obj,item,gun    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -2840,7 +2839,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/clothing/accessory/holster    obj,item,clothing,holster    blacklisted=0    spawn_value=8.1294    price_tag=200   100    
 /obj/item/clothing/accessory/locket    obj,item,clothing    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/accessory    obj,item,clothing    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
-/obj/item/clothing/ears/offear    obj,item,clothing    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/ears/earmuffs    obj,item,clothing    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/ears    obj,item,clothing    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/supply_beacon/supermatter    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -4301,7 +4299,6 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/effect/decal/cleanable/mucus    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/generic    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/ash    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
-/obj/effect/decal/cleanable/greenglow    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/dirt    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/flour    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    
 /obj/effect/decal/cleanable/cobweb    effect,cleanable    blacklisted=0    spawn_value=18.1818    price_tag=0   100    

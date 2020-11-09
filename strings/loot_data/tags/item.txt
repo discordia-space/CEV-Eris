@@ -1736,7 +1736,6 @@
 /obj/item/weapon/gun/launcher/grenade/underslung    blacklisted=0    spawn_value=7.5895    price_tag=1500   100    
 /obj/item/weapon/gun/launcher/grenade/lenar    blacklisted=0    spawn_value=7.5895    price_tag=1500   100    
 /obj/item/weapon/gun/launcher/grenade    blacklisted=0    spawn_value=7.5895    price_tag=1500   100    
-/obj/item/weapon/gun/launcher/spikethrower    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/weapon/gun/launcher/crossbow/RCD    blacklisted=0    spawn_value=2.08333    price_tag=0   100    
 /obj/item/weapon/gun/launcher/crossbow    blacklisted=0    spawn_value=2.08333    price_tag=0   100    
 /obj/item/weapon/gun/launcher/pneumatic    blacklisted=0    spawn_value=10    price_tag=0   100    
@@ -2817,7 +2816,6 @@
 /obj/item/clothing/accessory/holster    blacklisted=0    spawn_value=8.1294    price_tag=200   100    
 /obj/item/clothing/accessory/locket    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/accessory    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
-/obj/item/clothing/ears/offear    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/ears/earmuffs    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/ears    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/supply_beacon/supermatter    blacklisted=0    spawn_value=10    price_tag=0   100    

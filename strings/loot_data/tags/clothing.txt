@@ -665,6 +665,5 @@
 /obj/item/clothing/accessory/holster    blacklisted=0    spawn_value=8.1294    price_tag=200   100    
 /obj/item/clothing/accessory/locket    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/accessory    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
-/obj/item/clothing/ears/offear    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/ears/earmuffs    blacklisted=0    spawn_value=8.71299    price_tag=30   100    
 /obj/item/clothing/ears    blacklisted=0    spawn_value=8.71299    price_tag=30   100    

@@ -1758,7 +1758,6 @@
 /obj/item/weapon/gun/launcher/grenade/underslung
 /obj/item/weapon/gun/launcher/grenade/lenar
 /obj/item/weapon/gun/launcher/grenade
-/obj/item/weapon/gun/launcher/spikethrower
 /obj/item/weapon/gun/launcher/crossbow/RCD
 /obj/item/weapon/gun/launcher/crossbow
 /obj/item/weapon/gun/launcher/pneumatic
@@ -2839,7 +2838,6 @@
 /obj/item/clothing/accessory/holster
 /obj/item/clothing/accessory/locket
 /obj/item/clothing/accessory
-/obj/item/clothing/ears/offear
 /obj/item/clothing/ears/earmuffs
 /obj/item/clothing/ears
 /obj/item/supply_beacon/supermatter
@@ -4300,7 +4298,6 @@
 /obj/effect/decal/cleanable/mucus
 /obj/effect/decal/cleanable/generic
 /obj/effect/decal/cleanable/ash
-/obj/effect/decal/cleanable/greenglow
 /obj/effect/decal/cleanable/dirt
 /obj/effect/decal/cleanable/flour
 /obj/effect/decal/cleanable/cobweb
