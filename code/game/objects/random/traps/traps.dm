@@ -4,7 +4,6 @@
 	alpha = 128
 	tags_to_spawn = list(SPAWN_TRAP_ARMED)
 	check_density = FALSE
-	latejoin = TRUE
 
 /obj/spawner/traps/valid_candidates()
 	var/list/possible_traps = ..()

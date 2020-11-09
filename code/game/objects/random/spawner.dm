@@ -132,9 +132,7 @@
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
 	if(check_biome_spawner())
-		biome.update_price()
 		biome.update_tags()
-		biome.update_danger_level()
 		if(biome.price_tag + price_tag >= biome.cap_price && !istype(src, /obj/spawner/mob) && !istype(src, /obj/spawner/traps))
 			return
 	var/list/candidates = valid_candidates()

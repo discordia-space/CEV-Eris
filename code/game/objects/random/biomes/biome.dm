@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 				continue
 			biome.turf_list -= src
 			biome.spawn_turfs -=src
+			biome.update_price()
 		distance = new_distance
 		biome = biome_candidate
 		biome.turf_list += src
@@ -78,19 +79,6 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	for(var/turf/T in turf_list)
 		for(var/obj/item/I in T.contents)
 			price_tag += I.get_item_cost()
-
-/obj/landmark/loot_biomes/proc/update()
-	update_turfs()
-	update_price()
-	update_tags()
-	update_danger_level()
-
-/obj/landmark/loot_biomes/proc/update_tags()
-	tags_to_spawn = main_tags
-	if(prob(prob_secondary_tags) && secondary_tags.len)
-		tags_to_spawn = secondary_tags
-
-/obj/landmark/loot_biomes/proc/update_danger_level()
 	if(allowed_only_top)
 		switch(price_tag)
 			if(0 to LOOT_LEVEL_VERY_LOW)
@@ -105,3 +93,14 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 				only_top = 0.20
 			if(LOOT_LEVEL_VERY_HIG to INFINITY)
 				only_top = 0.15
+
+/obj/landmark/loot_biomes/proc/update()
+	update_turfs()
+	update_price()
+	update_tags()
+
+/obj/landmark/loot_biomes/proc/update_tags()
+	tags_to_spawn = main_tags
+	if(prob(prob_secondary_tags) && secondary_tags.len)
+		tags_to_spawn = secondary_tags
+

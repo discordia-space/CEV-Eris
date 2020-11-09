@@ -27,6 +27,7 @@
 	name = "biome mob spawner"
 	icon_state = "hostilemob-purple-spawner"
 	biome_spawner = TRUE
+	latejoin = TRUE
 
 /obj/spawner/mob/biome_spawner_mob/low_chance
 	name = "biome mob spawner"
@@ -67,6 +68,7 @@
 	icon_state = "trap-purple-spawner"
 	biome_spawner = TRUE
 	use_biome_range = TRUE
+	latejoin = TRUE
 
 /obj/spawner/traps/biome_spawner_trap/low_chance
 	name = "biome trap spawner"

@@ -4,7 +4,6 @@
 	spawn_tags = SPAWN_TAG_SPAWNER_MOB
 	tags_to_spawn = list(SPAWN_SPAWNER_MOB)
 	exclusion_paths = list(/obj/spawner/mob)
-	latejoin = TRUE
 
 /obj/spawner/mob/cluster
 	name = "cluster of random mob"

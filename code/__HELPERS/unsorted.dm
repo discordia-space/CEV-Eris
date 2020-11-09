@@ -832,9 +832,9 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",
 	"contents", "reagents", "stat", "x", "y", "z", "comp_lookup", "bodyparts", "internal_organs", "hand_bodyparts",
 	"overlays_standing", "hud_list", "computer_id", "lastKnownIP", "WIRE_RECEIVE", "WIRE_PULSE", "WIRE_PULSE_SPECIAL",
-	"WIRE_RADIO_RECEIVE", "WIRE_RADIO_PULSE", "FREQ_LISTENING", "deffont", "signfont", "crayonfont"))
+	"WIRE_RADIO_RECEIVE", "WIRE_RADIO_PULSE", "FREQ_LISTENING", "deffont", "signfont", "crayonfont", "hud_actions", "hidden_uplink"))
 
-/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc)
+/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc, stop_process = FALSE)
 	RETURN_TYPE(original.type)
 	if(!original)
 		return
@@ -846,7 +846,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 	else
 		O = new original.type(newloc)
 
-	if(isnull(O.loc) && isobj(O))
+	if(isnull(O.loc) && isobj(O) && stop_process)
 		if(!ismachinery(O))
 			STOP_PROCESSING(SSobj, O)
 		else
@@ -857,7 +857,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 			if(islist(original.vars[V]))
 				var/list/L = original.vars[V]
 				O.vars[V] = L.Copy()
-			else if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
+			else if(istype(original.vars[V], /datum) || ismob(original.vars[V]) || isHUDobj(original.vars[V]))
 				continue	// this would reference the original's object, that will break when it is used or deleted.
 			else
 				O.vars[V] = original.vars[V]

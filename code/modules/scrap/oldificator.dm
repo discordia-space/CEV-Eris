@@ -5,7 +5,7 @@
 /datum/component/oldficator/Initialize() //turn_connects for wheter or not we spin with the object to change our pipes
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
-	old_obj = DuplicateObject(parent, TRUE)
+	old_obj = DuplicateObject(parent, TRUE, FALSE, null, TRUE)
 	if(isitem(parent))
 		var/obj/item/I = parent
 		armor = I.armor.getList()
@@ -15,11 +15,13 @@
 		if(islist(old_obj.vars[V]))
 			var/list/L = old_obj.vars[V]
 			parent.vars[V] = L.Copy()
-		else if(istype(old_obj.vars[V], /datum) || ismob(old_obj.vars[V]))
+		else if(istype(original.vars[V], /datum) || ismob(original.vars[V]) || isHUDobj(original.vars[V]))
 			continue
 		else
 			parent.vars[V] = old_obj.vars[V]
-		old_obj.vars[V] = null
+		//if(V != "gender") test
+		//	old_obj.vars[V] = null
+
 	QDEL_NULL(old_obj)
 	var/obj/O = parent
 	if(isitem(parent))
@@ -147,13 +149,14 @@
 	if(.)
 		// It's silly to have old self-charging cells spawn partially discharged
 		if(!autorecharging)
-			charge = min(charge, RAND_DECIMAL(0, maxcharge))
+			use(RAND_DECIMAL(0, maxcharge))
+		else
+			autorecharging = FALSE
 
 		if(prob(10))
-			rigged = TRUE
 			if(prob(80))
-				charge = maxcharge  //make it BOOM hard
-		update_icon()
+				give(maxcharge)  //make it BOOM hard
+			rigged = TRUE
 
 /obj/item/weapon/stock_parts/make_old()
 	.=..()
@@ -190,14 +193,15 @@
 
 
 /obj/item/weapon/electronics/ai_module/make_old()
-	.=..()
-	if(. && prob(75) && !istype(src, /obj/item/weapon/electronics/ai_module/broken))
-		var/obj/item/weapon/electronics/ai_module/brokenmodule = new /obj/item/weapon/electronics/ai_module/broken
+	GET_COMPONENT(oldified, /datum/component/oldficator)
+	if(!oldified && prob(75) && !istype(src, /obj/item/weapon/electronics/ai_module/broken))
+		var/obj/item/weapon/electronics/ai_module/brokenmodule = new /obj/item/weapon/electronics/ai_module/broken(loc)
 		brokenmodule.name = src.name
 		brokenmodule.desc = src.desc
 		brokenmodule.make_old()
 		qdel(src)
-
+	else
+		.=..()
 
 /obj/item/clothing/suit/space/make_old()
 	.=..()
@@ -240,6 +244,9 @@
 	contents.Cut()
 	return ..()
 
+/obj/machinery/broken/make_old()
+	return
+
 /obj/item/weapon/electronics/ai_module/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
 	IonStorm(0)
@@ -259,9 +266,9 @@
 
 
 /obj/item/clothing/glasses/hud/make_old()
-	.=..()
-	if(. && prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))
-		var/obj/item/clothing/glasses/hud/broken/brokenhud = new /obj/item/clothing/glasses/hud/broken
+	GET_COMPONENT(oldified, /datum/component/oldficator)
+	if(!oldified && prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))
+		var/obj/item/clothing/glasses/hud/broken/brokenhud = new /obj/item/clothing/glasses/hud/broken(loc)
 		brokenhud.name = src.name
 		brokenhud.desc = src.desc
 		brokenhud.icon = src.icon
@@ -269,6 +276,8 @@
 		brokenhud.item_state = src.item_state
 		brokenhud.make_old()
 		qdel(src)
+	else
+		.=..()
 
 /obj/item/clothing/glasses/make_old()
 	.=..()
@@ -329,5 +338,8 @@
 /obj/item/weapon/storage/internal/make_old()//runtimes in DuplicateObject, nullspace
 	return
 
-/obj/item/clothing/ears/offear/make_old()
+/obj/item/clothing/ears/offear/make_old()//runtimes in DuplicateObject, nullspace
+	return
+
+/obj/effect/make_old()//runtimes in DuplicateObject, stopprocess
 	return
