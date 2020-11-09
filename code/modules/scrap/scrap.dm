@@ -39,6 +39,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	var/beacon = FALSE // If this junk pile is getting pulled by the junk beacon or not.
 	var/rare_item_chance = 70
 	var/rare_item = FALSE
+	var/prob_make_old = 80
 
 /obj/structure/scrap_spawner/proc/make_cube()
 	try_make_loot() //don't have a cube without materials
@@ -105,7 +106,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		else
 			big_item = CATCH.get_item(/obj/spawner/pack/junk_machine)
 		big_item.forceMove(src)
-		if(prob(70))
+		if(prob(prob_make_old))
 			big_item.make_old()
 		qdel(CATCH)
 
@@ -162,7 +163,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				new thing(src)
 
 	for(var/obj/item/loot in contents)
-		if(prob(70))
+		if(prob(prob_make_old))
 			loot.make_old()
 		if(istype(loot, /obj/item/weapon/reagent_containers/food/snacks))
 			var/obj/item/weapon/reagent_containers/food/snacks/S = loot

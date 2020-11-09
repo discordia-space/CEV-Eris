@@ -464,10 +464,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "zippo"
 
 /obj/item/weapon/flame/lighter/random
-	New()
-		icon_state = "lighter-[pick("r","c","y","g")]"
-		item_state = icon_state
-		base_state = icon_state
+
+/obj/item/weapon/flame/lighter/random/Initialize(mapload)
+	. = ..()
+	icon_state = "lighter-[pick("r","c","y","g")]"
+	item_state = icon_state
+	base_state = icon_state
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(!base_state)

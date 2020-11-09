@@ -6,7 +6,8 @@
 	has_sensor = 0
 	spawn_blacklisted = TRUE
 
-/obj/item/clothing/under/excelsior/New()
+/obj/item/clothing/under/excelsior/Initialize(mapload, ...)
+	. = ..()
 	name = "white excelsior jumpsuit"
 	if (prob(66))
 		name = "mixed excelsior jumpsuit"

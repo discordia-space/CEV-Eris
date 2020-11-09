@@ -8,8 +8,8 @@
 	tags_to_spawn = list(SPAWN_JUNK, SPAWN_CLEANABLE)
 
 /obj/spawner/junk/post_spawn(list/stuff)
-	for (var/atom/thing in stuff)
-		if (prob(30))
+	for(var/obj/thing in stuff)
+		if(prob(30))
 			thing.make_old()
 
 /obj/spawner/junk/low_chance

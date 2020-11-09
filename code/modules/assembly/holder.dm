@@ -176,6 +176,7 @@
 
 /obj/item/device/assembly_holder/timer_igniter
 	name = "timer-igniter assembly"
+	spawn_frequency = 0
 
 /obj/item/device/assembly_holder/timer_igniter/New()
 	..()

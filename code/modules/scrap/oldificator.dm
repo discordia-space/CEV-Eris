@@ -1,18 +1,46 @@
-/atom
-	var/oldified = FALSE  // Whether the item has underwent make_old()
-	// var/crit_fail = FALSE // In theory should make the item fail horifically, currently only used in vending.dm
+/datum/component/oldficator
+	var/obj/old_obj
+	var/list/armor
+
+/datum/component/oldficator/Initialize(start=TRUE, _turn_connects=TRUE, _unique=FALSE) //turn_connects for wheter or not we spin with the object to change our pipes
+	if(!isobj(parent))
+		return COMPONENT_INCOMPATIBLE
+	old_obj = DuplicateObject(parent, TRUE)
+	if(isitem(parent))
+		var/obj/item/I = parent
+		armor = I.armor.getList()
+
+/datum/component/oldficator/proc/make_young()
+	for(var/V in old_obj.vars - GLOB.duplicate_forbidden_vars)
+		if(islist(old_obj.vars[V]))
+			var/list/L = old_obj.vars[V]
+			parent.vars[V] = L.Copy()
+		else if(istype(old_obj.vars[V], /datum) || ismob(old_obj.vars[V]))
+			continue
+		else
+			parent.vars[V] = old_obj.vars[V]
+	var/obj/O = parent
+	if(isitem(parent))
+		var/obj/item/I = parent
+		I.armor = getArmor(arglist(armor))
+	O.update_icon()
+	qdel(src)
 
 //Defined at atom level for convenience, not currently used for mobs and turfs, but there are possible applications
-/atom/proc/make_old()
-	return
+/obj/proc/make_young()
+	SHOULD_CALL_PARENT(TRUE)
+	GET_COMPONENT(oldified, /datum/component/oldficator)
+	if(oldified)
+		oldified.make_young()
+		return TRUE
+	return FALSE
 
-/atom/proc/make_young()
-	oldified = FALSE
-
-/obj/make_old()
-	if (oldified)
+/obj/proc/make_old()
+	GET_COMPONENT(oldified, /datum/component/oldficator)
+	if(oldified)
 		return FALSE
-	if (prob(80))
+	AddComponent(/datum/component/oldficator)
+	if(prob(80))
 		color = pick("#AA7744", "#774411", "#777777")
 	light_color = color
 	name = "[pick("old", "worn", "rusted", "weathered", "expired", "dirty", "frayed", "beaten", "ancient", "tarnished")] [name]"
@@ -27,43 +55,35 @@
 	price_tag *= RAND_DECIMAL(0.1, 0.6) //Tank the price of it
 
 	//Deplete matter and matter_reagents
-	for (var/a in matter)
+	for(var/a in matter)
 		matter[a] *= RAND_DECIMAL(0.5, 1)
 
-	for (var/a in matter_reagents)
+	for(var/a in matter_reagents)
 		matter_reagents[a] *= RAND_DECIMAL(0.5, 1)
 
 	for(var/obj/item/sub_item in contents)
-		if (prob(80))
+		if(prob(80))
 			sub_item.make_old()
-
-	oldified = TRUE
-
-
-	update_icon()
+	spawn(1)
+		update_icon()
 	return TRUE
 
-/obj/make_young()
-	if(oldified)
-		name = initial(name)
-		color = initial(color)
-	..()
 
 /obj/item/make_old()
 	.=..()
-	if (.)
+	if(.)
 		if(prob(75))
-			origin_tech = null
+			origin_tech = list()
 		siemens_coefficient += 0.3
 
 /obj/item/weapon/tool/make_old()
 	.=..()
-	if (.)
+	if(.)
 		adjustToolHealth(-(rand(40, 150) * degradation))
 
 /obj/item/weapon/storage/make_old()
 	.=..()
-	if (.)
+	if(.)
 		var/del_count = rand(0, contents.len)
 		for(var/i = 1 to del_count)
 			var/removed_item = pick(contents)
@@ -77,35 +97,36 @@
 
 //Old pill bottles get a name that disguises their contents
 /obj/item/weapon/storage/pill_bottle/make_old()
-	if (prob(85))
+	GET_COMPONENT(oldified, /datum/component/oldficator)
+	if(!oldified && prob(85))
 		name = "bottle of [pick("generic ", "unknown ", "")]pills"
 		desc = "Contains pills of some kind. The label has long since worn away"
-		for (var/obj/item/weapon/reagent_containers/pill/P in contents)
+		for(var/obj/item/weapon/reagent_containers/pill/P in contents)
 			P.make_old()
-
 	.=..()
 
 //Make sure old pills always hide their contents too
 /obj/item/weapon/reagent_containers/pill/make_old()
-	name = "pill"
-	desc = "Some kind of pill. The imprints have worn away."
+	GET_COMPONENT(oldified, /datum/component/oldficator)
+	if(!oldified)
+		name = "pill"
+		desc = "Some kind of pill. The imprints have worn away."
 	.=..()
 
 /obj/structure/reagent_dispensers/make_old()
 	.=..()
-	if (. && reagents)
+	if(. && reagents)
 		for(var/datum/reagent/R in reagents.reagent_list)
 			R.volume = rand(0, R.volume)
 
 
 /obj/item/weapon/reagent_containers/make_old()
 	.=..()
-	if (.)
+	if(.)
 		var/actual_volume = reagents.total_volume
 		for(var/datum/reagent/R in reagents.reagent_list)
-			R.volume = rand(0, R.volume)
+			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 		reagents.add_reagent("toxin", rand(0, actual_volume - reagents.total_volume))
-
 
 //Sealed survival food, always edible
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood/make_old()
@@ -121,7 +142,7 @@
 
 /obj/item/weapon/cell/make_old()
 	.=..()
-	if (.)
+	if(.)
 		// It's silly to have old self-charging cells spawn partially discharged
 		if(!autorecharging)
 			charge = min(charge, RAND_DECIMAL(0, maxcharge))
@@ -134,7 +155,7 @@
 
 /obj/item/weapon/stock_parts/make_old()
 	.=..()
-	if (.)
+	if(.)
 		var/degrade = pick(0,1,1,1,2)
 		rating = max(rating - degrade, 1)
 
@@ -149,44 +170,41 @@
 	return
 
 /obj/item/weapon/grenade/make_old()
-	..()
-	det_time = RAND_DECIMAL(0, det_time)
+	. =..()
+	if(.)
+		det_time = RAND_DECIMAL(0, det_time)
 
 /obj/item/weapon/tank/make_old()
 	.=..()
-	if (.)
+	if(.)
 		air_contents.remove(pick(0.2, 0.4 ,0.6, 0.8))
 
 
 /obj/item/weapon/electronics/circuitboard/make_old()
 	.=..()
-	if (.)
-		if(prob(75))
-			name = T_BOARD("unknown")
-			build_path = pick(/obj/machinery/washing_machine, /obj/machinery/broken, /obj/machinery/shower, /obj/machinery/holoposter, /obj/machinery/holosign)
+	if(. && prob(75))
+		name = T_BOARD("unknown")
+		build_path = pick(/obj/machinery/washing_machine, /obj/machinery/broken, /obj/machinery/shower, /obj/machinery/holoposter, /obj/machinery/holosign)
 
 
 /obj/item/weapon/electronics/ai_module/make_old()
 	.=..()
-	if (.)
-		if(prob(75) && !istype(src, /obj/item/weapon/electronics/ai_module/broken))
-			var/obj/item/weapon/electronics/ai_module/brokenmodule = new /obj/item/weapon/electronics/ai_module/broken
-			brokenmodule.name = src.name
-			brokenmodule.desc = src.desc
-			brokenmodule.make_old()
-			qdel(src)
+	if(. && prob(75) && !istype(src, /obj/item/weapon/electronics/ai_module/broken))
+		var/obj/item/weapon/electronics/ai_module/brokenmodule = new /obj/item/weapon/electronics/ai_module/broken
+		brokenmodule.name = src.name
+		brokenmodule.desc = src.desc
+		brokenmodule.make_old()
+		qdel(src)
 
 
 /obj/item/clothing/suit/space/make_old()
 	.=..()
-	if (.)
-		if(prob(50))
-			create_breaches(pick(BRUTE, BURN), rand(10, 50))
-
+	if(. && prob(50))
+		create_breaches(pick(BRUTE, BURN), rand(10, 50))
 
 /obj/item/clothing/make_old()
 	.=..()
-	if (.)
+	if(.)
 		if(prob(30))
 			slowdown += pick(0.5, 0.5, 1, 1.5)
 		if(prob(40))
@@ -206,15 +224,6 @@
 			add_blood()
 		if(prob(60)) // I mean, the thing is ew gross.
 			equip_delay += rand(0, 6 SECONDS)
-
-/obj/item/clothing/make_young()
-	if(oldified)
-		slowdown = initial(slowdown)
-		heat_protection = initial(heat_protection)
-		cold_protection = initial(cold_protection)
-		equip_delay = initial(equip_delay)
-	..()
-
 
 /obj/item/weapon/electronics/ai_module/broken
 	name = "\improper broken core AI module"
@@ -238,7 +247,7 @@
 
 /obj/item/weapon/dnainjector/make_old()
 	.=..()
-	if (.)
+	if(.)
 		if(prob(75))
 			name = "DNA-Injector (unknown)"
 			desc = pick("1mm0r74l17y 53rum", "1ncr3d1bl3 73l3p47y hNlk", "5up3rhum4n m16h7")
@@ -249,20 +258,19 @@
 
 /obj/item/clothing/glasses/hud/make_old()
 	.=..()
-	if (.)
-		if(prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))
-			var/obj/item/clothing/glasses/hud/broken/brokenhud = new /obj/item/clothing/glasses/hud/broken
-			brokenhud.name = src.name
-			brokenhud.desc = src.desc
-			brokenhud.icon = src.icon
-			brokenhud.icon_state = src.icon_state
-			brokenhud.item_state = src.item_state
-			brokenhud.make_old()
-			qdel(src)
+	if(. && prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))
+		var/obj/item/clothing/glasses/hud/broken/brokenhud = new /obj/item/clothing/glasses/hud/broken
+		brokenhud.name = src.name
+		brokenhud.desc = src.desc
+		brokenhud.icon = src.icon
+		brokenhud.icon_state = src.icon_state
+		brokenhud.item_state = src.item_state
+		brokenhud.make_old()
+		qdel(src)
 
 /obj/item/clothing/glasses/make_old()
 	.=..()
-	if (.)
+	if(.)
 		if(prob(75))
 			vision_flags = 0
 		if(prob(75))
@@ -270,34 +278,30 @@
 
 /obj/item/device/lighting/glowstick/make_old()
 	.=..()
-	if (.)
-		if(prob(75))
-			fuel = rand(0, fuel)
+	if(. && prob(75))
+		fuel = rand(0, fuel)
 
 /obj/item/device/lighting/toggleable/make_old()
 	.=..()
-	if (.)
-		if(prob(75))
-			brightness_on = brightness_on / 2
+	if(. && prob(75))
+		brightness_on = brightness_on / 2
 
 /obj/machinery/floodlight/make_old()
 	.=..()
-	if (.)
-		if(prob(75))
-			brightness_on = brightness_on / 2
+	if(. && prob(75))
+		brightness_on = brightness_on / 2
 
 /obj/machinery/make_old()
 	.=..()
-	if (.)
+	if(.)
 		if(prob(60))
 			stat |= BROKEN
 		if(prob(60))
 			emagged = TRUE
 
-
 /obj/machinery/vending/make_old()
 	.=..()
-	if (.)
+	if(.)
 		if(prob(60))
 			vend_power_usage *= pick(1, 1.3, 1.5, 1.7, 2)
 		if(prob(60))
@@ -314,14 +318,5 @@
 
 /obj/item/clothing/glasses/sunglasses/sechud/make_old()
 	.=..()
-	if (.)
-		if(hud && prob(75))
-			hud = new /obj/item/clothing/glasses/hud/broken
-
-/*
-/obj/effect/decal/mecha_wreckage/make_old()
-	.=..()
-	if (.)
-		salvage_num = max(1, salvage_num - pick(1, 2, 3))
-*/
-
+	if(. && hud && prob(75))
+		hud = new /obj/item/clothing/glasses/hud/broken

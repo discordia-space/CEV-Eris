@@ -311,19 +311,19 @@
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
 	body_parts_covered = HEAD|FACE|EARS
-	var/list/armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
-	var/list/armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	tint = TINT_MODERATE
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "Flip Face Shield"
-	var/up = FALSE
 	price_tag = 150
 	rarity_value = 25
+	var/list/armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
+	var/list/armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
+	var/up = FALSE
 
 /obj/item/clothing/head/armor/riot/Initialize()
-	. = ..()
 	armor = up ? armor_up : armor_down
+	. = ..()
 	update_icon()
 
 /obj/item/clothing/head/armor/riot/attack_self()
@@ -449,8 +449,6 @@
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	var/list/armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
-	var/list/armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHEADHAIR
 	flash_protection = FLASH_PROTECTION_MAJOR
 	body_parts_covered = HEAD|FACE|EARS
@@ -458,12 +456,14 @@
 	rarity_value = 50
 
 	action_button_name = "Flip Face Shield"
+	var/list/armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
+	var/list/armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
 	var/up = TRUE
 
 
 /obj/item/clothing/head/armor/altyn/Initialize()
-	. = ..()
 	armor = up ? armor_up : armor_down
+	. = ..()
 	update_icon()
 
 /obj/item/clothing/head/armor/altyn/update_icon()

@@ -9,7 +9,8 @@
 	spawn_tags = SPAWN_TAG_DICE
 	var/sides = 6
 
-/obj/item/weapon/dice/New()
+/obj/item/weapon/dice/Initialize(mapload)
+	. = ..()
 	icon_state = "[name][rand(1,sides)]"
 
 /obj/item/weapon/dice/d2

@@ -103,7 +103,7 @@
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
 	cut_overlays()
-	if(reagents.total_volume > 0)
+	if(reagents && reagents.total_volume > 0)
 		icon_state = initial(icon_state)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector")
 		filling_overlay.color = reagents.get_color()

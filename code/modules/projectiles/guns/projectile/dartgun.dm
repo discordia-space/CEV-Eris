@@ -9,7 +9,8 @@
 
 	muzzle_type = null
 
-/obj/item/projectile/bullet/chemdart/New()
+/obj/item/projectile/bullet/chemdart/Initialize(mapload)
+	. = ..()
 	reagents = new/datum/reagents(reagent_amount)
 	reagents.my_atom = src
 

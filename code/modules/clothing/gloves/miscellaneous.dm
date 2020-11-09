@@ -28,6 +28,7 @@
 	rarity_value = 10
 
 /obj/item/clothing/gloves/insulated/cheap/New()
+	.= ..()
 	//average of 0.5, somewhat better than regular gloves' 0.75
 	siemens_coefficient = pick(0,0.1,0.3,0.5,0.5,0.75,1.35)
 

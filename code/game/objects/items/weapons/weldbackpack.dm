@@ -18,7 +18,8 @@
 	rarity_value = 25
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 
-/obj/item/weapon/weldpack/New()
+/obj/item/weapon/weldpack/Initialize(mapload)
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src

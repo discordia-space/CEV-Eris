@@ -81,12 +81,17 @@
 	var/max_upgrades = 3
 
 /obj/item/Initialize()
-	if (islist(armor))
+	SHOULD_CALL_PARENT(TRUE)
+	if(islist(armor))
 		armor = getArmor(arglist(armor))
-	else if (!armor)
+	else if(!armor)
 		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
+	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	. = ..()
+
+/obj/item/New()
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 
 /obj/item/Destroy()

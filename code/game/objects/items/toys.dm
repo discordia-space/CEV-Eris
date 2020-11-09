@@ -36,7 +36,8 @@
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
-/obj/item/toy/balloon/New()
+/obj/item/toy/balloon/Initialize(mapload)
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
@@ -323,10 +324,11 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
+	flags // TODO??
 	var/empty = 0
-	flags
 
-/obj/item/toy/waterflower/New()
+/obj/item/toy/waterflower/Initialize(mapload)
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src

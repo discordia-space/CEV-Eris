@@ -219,8 +219,8 @@
 			to_chat(user, SPAN_NOTICE("You inject [trans] units of the solution. [src] now contains [src.reagents.total_volume] units."))
 
 
-
-/obj/item/weapon/reagent_containers/syringe/update_icon(A)
+//evan es aca
+/obj/item/weapon/reagent_containers/syringe/update_icon()
 	..()
 	cut_overlays()
 

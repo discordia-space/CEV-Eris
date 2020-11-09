@@ -215,6 +215,7 @@
 	var/obj/item/master_item = null
 
 /obj/item/clothing/ears/offear/New(obj/O)
+	.=..()
 	name = O.name
 	desc = O.desc
 	icon = O.icon
