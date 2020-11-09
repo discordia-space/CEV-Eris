@@ -832,37 +832,40 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 	"tag", "datum_components", "area", "type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key",
 	"contents", "reagents", "stat", "x", "y", "z", "comp_lookup", "bodyparts", "internal_organs", "hand_bodyparts",
 	"overlays_standing", "hud_list", "computer_id", "lastKnownIP", "WIRE_RECEIVE", "WIRE_PULSE", "WIRE_PULSE_SPECIAL",
-	"WIRE_RADIO_RECEIVE", "WIRE_RADIO_PULSE", "FREQ_LISTENING", "deffont", "signfont", "crayonfont", "hud_actions", "hidden_uplink"))
+	"WIRE_RADIO_RECEIVE", "WIRE_RADIO_PULSE", "FREQ_LISTENING", "deffont", "signfont", "crayonfont", "hud_actions", "hidden_uplink",
+	"gc_destroyed", "is_processing", "signal_procs", "signal_enabled"))
 
-/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc, stop_process = FALSE)
+/proc/DuplicateObject(atom/original, perfectcopy = TRUE, sameloc, atom/newloc)
 	RETURN_TYPE(original.type)
 	if(!original)
 		return
 
-	var/obj/O
+	var/atom/O
 
 	if(sameloc)
 		O = new original.type(original.loc)
 	else
 		O = new original.type(newloc)
 
-	if(isnull(O.loc) && isobj(O) && stop_process)
-		if(!ismachinery(O))
-			STOP_PROCESSING(SSobj, O)
-		else
-			STOP_PROCESSING(SSmachines, O)
-
 	if(perfectcopy && O && original)
-		for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-			if(islist(original.vars[V]))
-				var/list/L = original.vars[V]
-				O.vars[V] = L.Copy()
-			else if(istype(original.vars[V], /datum) || ismob(original.vars[V]) || isHUDobj(original.vars[V]))
-				continue	// this would reference the original's object, that will break when it is used or deleted.
-			else
-				O.vars[V] = original.vars[V]
+		var/list/all_vars = duplicate_vars(original)
+		for(var/V in all_vars)
+			O.vars[V] = all_vars[V]
 	return O
 
+
+/proc/duplicate_vars(atom/original)
+	RETURN_TYPE(/list)
+	var/list/all_vars = list()
+	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
+		if(islist(original.vars[V]))
+			var/list/L = original.vars[V]
+			all_vars[V] = L.Copy()
+		else if(istype(original.vars[V], /datum) || ismob(original.vars[V]) || isHUDobj(original.vars[V]) || isobj(original.vars[V]))
+			continue	// this would reference the original's object, that will break when it is used or deleted.
+		else
+			all_vars[V] = original.vars[V]
+	return all_vars
 
 /area/proc/copy_contents_to(var/area/A , var/platingRequired = 0 )
 	//Takes: Area. Optional: If it should copy to areas that don't have plating

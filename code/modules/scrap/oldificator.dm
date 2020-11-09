@@ -1,28 +1,19 @@
 /datum/component/oldficator
 	var/obj/old_obj
 	var/list/armor
+	var/list/all_vars = list()
 
 /datum/component/oldficator/Initialize() //turn_connects for wheter or not we spin with the object to change our pipes
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
-	old_obj = DuplicateObject(parent, TRUE, FALSE, null, TRUE)
+	all_vars = duplicate_vars(parent)
 	if(isitem(parent))
 		var/obj/item/I = parent
 		armor = I.armor.getList()
 
 /datum/component/oldficator/proc/make_young()
-	for(var/V in old_obj.vars - GLOB.duplicate_forbidden_vars)
-		if(islist(old_obj.vars[V]))
-			var/list/L = old_obj.vars[V]
-			parent.vars[V] = L.Copy()
-		else if(istype(original.vars[V], /datum) || ismob(original.vars[V]) || isHUDobj(original.vars[V]))
-			continue
-		else
-			parent.vars[V] = old_obj.vars[V]
-		//if(V != "gender") test
-		//	old_obj.vars[V] = null
-
-	QDEL_NULL(old_obj)
+	for(var/V in all_vars)
+		parent.vars[V] = all_vars[V]
 	var/obj/O = parent
 	if(isitem(parent))
 		var/obj/item/I = parent
@@ -331,15 +322,3 @@
 	.=..()
 	if(. && hud && prob(75))
 		hud = new /obj/item/clothing/glasses/hud/broken
-
-/obj/item/device/assembly_holder/timer_igniter/make_old()//runtimes in DuplicateObject, nullspace
-	return
-
-/obj/item/weapon/storage/internal/make_old()//runtimes in DuplicateObject, nullspace
-	return
-
-/obj/item/clothing/ears/offear/make_old()//runtimes in DuplicateObject, nullspace
-	return
-
-/obj/effect/make_old()//runtimes in DuplicateObject, stopprocess
-	return
