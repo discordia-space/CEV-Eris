@@ -594,6 +594,7 @@
 	price_tag = 500
 	var/buff_time = 20 MINUTES
 	nutriment_amt = 3
+	preloaded_reagents = list("sprinkles" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/On_Consume(var/mob/eater, var/mob/feeder = null)
 	..()
@@ -612,10 +613,11 @@
 	icon_state = "donut_mec"
 	overlay_state = "donut_mec_c"
 	stats_buff = list(STAT_MEC)
+	preloaded_reagents = list("sprinkles" = 1, "lemonjuice" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/cog
 	name = "Purple Masterpiece Donut"
-	desc = "The artificial grape taste you will never forget. An intellectual's favorite."
+	desc = "The too-sweet artificial grape taste you will never forget. An intellectual's favorite."
 	icon_state = "donut_cog"
 	overlay_state = "donut_cog_c"
 	stats_buff = list(STAT_COG)
@@ -626,6 +628,7 @@
 	icon_state = "donut_bio"
 	overlay_state = "donut_bio_c"
 	stats_buff = list(STAT_BIO)
+	preloaded_reagents = list("sprinkles" = 1, "mint" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/rob
 	name = "Brown Masterpiece Donut"
@@ -633,6 +636,7 @@
 	icon_state = "donut_rob"
 	overlay_state = "donut_rob_c"
 	stats_buff = list(STAT_ROB)
+	preloaded_reagents = list("sprinkles" = 1, "coco" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/stat_buff/tgh
 	name = "Cream Masterpiece Donut"
@@ -647,6 +651,7 @@
 	icon_state = "donut_vig"
 	overlay_state = "donut_vig_c"
 	stats_buff = list(STAT_VIG)
+	preloaded_reagents = list("sprinkles" = 1, "berryjuice" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"
