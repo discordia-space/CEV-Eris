@@ -369,8 +369,8 @@
 	if(active && cell) // dains power from the cell whenever the suit is sealed
 		cell.use(drain*0.1)
 
-	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.empty())
-		if(!cell || cell.empty())
+	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.is_empty())
+		if(!cell || cell.is_empty())
 			if(electrified > 0)
 				electrified = 0
 			if(!offline)
@@ -637,7 +637,7 @@
 
 /obj/item/weapon/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
 
-	if(sealing || !cell || cell.empty())
+	if(sealing || !cell || cell.is_empty())
 		return
 
 	if(!istype(wearer) || !wearer.back == src)
@@ -866,7 +866,7 @@
 			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
 			return 0
 
-	if(offline || !cell || cell.empty() || locked_down)
+	if(offline || !cell || cell.is_empty() || locked_down)
 		if(user) user << SPAN_WARNING("Your host rig is unpowered and unresponsive.")
 		return 0
 	if(!wearer || wearer.back != src)
