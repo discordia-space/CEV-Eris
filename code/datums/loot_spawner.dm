@@ -15,31 +15,6 @@
 //	..()
 //	generate_data()
 
-/proc/get_spawn_price(path)
-	var/atom/movable/A = path
-	. = initial(A.price_tag)
-	if(ispath(path, /obj/item/weapon/stock_parts))//see /obj/item/weapon/stock_parts/get_item_cost(export)
-		var/obj/item/weapon/stock_parts/S = path
-		. *= initial(S.rating)
-	else if(ispath(path, /obj/item/stack))///obj/item/stack/get_item_cost(export)
-		var/obj/item/stack/S = path
-		. *= initial(S.amount)
-	else if(ispath(path, /obj/item/ammo_casing))///obj/item/ammo_casing/get_item_cost(export)
-		var/obj/item/ammo_casing/AC = path
-		. *= initial(AC.amount)
-	else if(ispath(path, /obj/item/weapon/handcuffs))///obj/item/weapon/handcuffs/get_item_cost(export)
-		var/obj/item/weapon/handcuffs/H = path
-		. += initial(H.breakouttime) / 20
-	else if(ispath(path, /obj/structure/reagent_dispensers))///obj/machinery/get_item_cost(export)
-		var/obj/structure/reagent_dispensers/R = path
-		. += initial(R.contents_cost)
-	else if(ispath(path, /obj/item/ammo_magazine))///obj/item/ammo_magazine/get_item_cost(export)
-		var/obj/item/ammo_magazine/M = path
-		var/amount = initial(M.initial_ammo)
-		if(isnull(amount))
-			amount = initial(M.max_ammo)
-		. += amount * get_spawn_price(initial(M.ammo_type))
-
 /datum/controller/subsystem/spawn_data/proc/generate_data()
 	var/list/paths = list()
 	//spawn vars
@@ -59,7 +34,7 @@
 	var/fike_dir_tags = "[file_dir]/tags/"
 	if(generate_files)
 		fdel(source_dir)
-		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    price    prob_all_accompanying_obj    all_accompanying_obj"
+		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_accompanying_obj    all_accompanying_obj"
 
 	//Initialise all paths
 	paths = subtypesof(/obj/item) - typesof(/obj/item/projectile)
@@ -89,11 +64,6 @@
 				hard_blacklist_data  << "[path]"
 			continue
 
-
-		//price//
-		//all_spawn_by_price["[price]"] += list(path)
-		//all_price_by_path[path] = get_spawn_price(A)
-
 		//frequency
 		//frequency = initial(A.spawn_frequency)
 		//all_spawn_by_frequency["[frequency]"] += list(path)
@@ -105,14 +75,7 @@
 		//all_spawn_by_rarity["[rarity]"] += list(path)
 		//all_spawn_rarity_by_path[path] = rarity
 
-		//spawn_value//
-		var/spawn_value = get_spawn_value(path)
-		//all_spawn_value_by_path[path] = spawn_value
-		//blacklisted//
-		//blacklisted = initial(A.spawn_blacklisted)
-		//if(blacklisted)
-		//	all_spawn_blacklist += path
-
+		//aditional_objs
 		accompanying_objs = initial(A.accompanying_object)
 		if(istext(accompanying_objs))
 			accompanying_objs = splittext(accompanying_objs, ",")
@@ -137,14 +100,26 @@
 			if(initial(P.magazine_type))
 				all_accompanying_obj_by_path[path] += list(initial(P.magazine_type))
 
+		//price//
+		var/price = get_spawn_price(path)
+
+		//spawn_value//
+		var/spawn_value = get_spawn_value(path)
+		//all_spawn_value_by_path[path] = spawn_value
+		//blacklisted//
+		//blacklisted = initial(A.spawn_blacklisted)
+		//if(blacklisted)
+		//	all_spawn_blacklist += path
+
+
 		//tags//
 		for(var/tag in spawn_tags)
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
 				var/tag_data_i = file("[fike_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price=[get_spawn_price(A)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]    price=[get_spawn_price(A)]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
@@ -153,6 +128,47 @@
 	var/atom/movable/A = npath
 	var/spawn_value = 10 * initial(A.spawn_frequency)/(initial(A.rarity_value) + log(10,max(get_spawn_price(A),1)))
 	return spawn_value
+
+/datum/controller/subsystem/spawn_data/proc/get_spawn_price(path, with_accompaying_obj = TRUE)
+	var/atom/movable/A = path
+	. = initial(A.price_tag)
+	if(all_accompanying_obj_by_path[path])
+		for(var/a_obj in all_accompanying_obj_by_path[path])
+			. += get_spawn_price(a_obj, FALSE)
+	if(ispath(path, /obj/item/weapon/stock_parts))//see /obj/item/weapon/stock_parts/get_item_cost(export)
+		var/obj/item/weapon/stock_parts/S = path
+		. *= initial(S.rating)
+	else if(ispath(path, /obj/item/stack))///obj/item/stack/get_item_cost(export)
+		var/obj/item/stack/S = path
+		. *= initial(S.amount)
+	else if(ispath(path, /obj/item/ammo_casing))///obj/item/ammo_casing/get_item_cost(export)
+		var/obj/item/ammo_casing/AC = path
+		. *= initial(AC.amount)
+	else if(ispath(path, /obj/item/weapon/handcuffs))///obj/item/weapon/handcuffs/get_item_cost(export)
+		var/obj/item/weapon/handcuffs/H = path
+		. += initial(H.breakouttime) / 20
+	else if(ispath(path, /obj/structure/reagent_dispensers))///obj/machinery/get_item_cost(export)
+		var/obj/structure/reagent_dispensers/R = path
+		. += initial(R.contents_cost)
+	else if(ispath(path, /obj/item/ammo_magazine))///obj/item/ammo_magazine/get_item_cost(export)
+		var/obj/item/ammo_magazine/M = path
+		var/amount = initial(M.initial_ammo)
+		if(isnull(amount))
+			amount = initial(M.max_ammo)
+		. += amount * get_spawn_price(initial(M.ammo_type))
+	else if(ispath(path, /obj/item/weapon/tool))
+		var/obj/item/weapon/tool/T = path
+		if(initial(T.suitable_cell))
+			. += get_spawn_price(initial(T.suitable_cell))
+	else if(ispath(path, /obj/item/weapon/storage/box/shotgunammo))
+		var/obj/item/weapon/storage/box/shotgunammo/S = path
+		if(initial(S.initial_amount) > 0 && initial(S.ammo_type))
+			. += initial(S.initial_amount) * get_spawn_price(S.ammo_type)
+
+	/*else if(ispath(path, /obj/item/device)) //TODO make all devices
+		var/obj/item/device/D = path
+		if(initial(D.starting_cell) && initial(D.suitable_cell))
+			. += get_spawn_price(initial(D.suitable_cell))*/
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()

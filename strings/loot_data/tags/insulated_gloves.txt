@@ -1,2 +1,2 @@
-/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=8.54776    price=50   100    
-/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=5.29072    price=200   100    
+/obj/item/clothing/gloves/insulated/cheap    blacklisted=0    spawn_value=8.54776   spawn_price=50   100    
+/obj/item/clothing/gloves/insulated    blacklisted=0    spawn_value=5.29072   spawn_price=200   100    

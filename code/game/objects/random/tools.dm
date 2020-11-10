@@ -21,7 +21,7 @@
 /obj/spawner/tool/advanced
 	name = "random advanced tool"
 	icon_state = "tool-orange"
-	tags_to_spawn = list(SPAWN_ADVANCED_TOOL)
+	tags_to_spawn = list(SPAWN_TOOL_ADVANCED)
 
 /obj/spawner/tool/advanced/low_chance
 	name = "low chance advanced tool"

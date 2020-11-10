@@ -276,6 +276,7 @@
 /obj/item/clothing/ears/offear
 /obj/item/clothing
 /obj/item/frame
+/obj/item/remains
 /obj/item/device/last_shelter
 /obj/item/device/radio/headset/heads
 /obj/item/device/radio/headset/ert/bst
@@ -295,6 +296,7 @@
 /obj/item/device/radio/random_radio
 /obj/item/device/techno_tribalism
 /obj/item/device/von_krabin
+/obj/item/device/scanner
 /obj/item/device/assembly
 /obj/item/device/electronic_assembly/implant
 /obj/item/device/nanite_container
@@ -305,7 +307,6 @@
 /obj/item/device/camera/siliconcam/drone_camera
 /obj/item/device/camera/siliconcam
 /obj/item/device
-/obj/item/remains
 /obj/item/toy/figure
 /obj/item/toy/plushie
 /obj/item/toy

@@ -178,57 +178,47 @@
 	illustration = "ammo"
 	rarity_value = 40
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+	bad_type = /obj/item/weapon/storage/box/shotgunammo
+	var/initial_amount = 7
+	var/ammo_type
+
+/obj/item/weapon/storage/box/shotgunammo/populate_contents()
+	if(initial_amount > 0 && ammo_type)
+		for(var/i in 1 to initial_amount)
+			new ammo_type(src)
 
 /obj/item/weapon/storage/box/shotgunammo/slug
 	name = "box of shotgun slugs"
+	ammo_type = /obj/item/ammo_casing/shotgun/prespawned
 	rarity_value = 20
-
-/obj/item/weapon/storage/box/shotgunammo/slug/populate_contents()
-	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/prespawned(src)
 
 /obj/item/weapon/storage/box/shotgunammo/blanks
 	name = "box of blank shells"
+	ammo_type = /obj/item/ammo_casing/shotgun/blank/prespawned
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
-
-/obj/item/weapon/storage/box/shotgunammo/blanks/populate_contents()
-	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/blank/prespawned(src)
 
 /obj/item/weapon/storage/box/shotgunammo/beanbags
 	name = "box of beanbag shells"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag/prespawned
 	rarity_value = 10
-
-/obj/item/weapon/storage/box/shotgunammo/beanbags/populate_contents()
-	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/beanbag/prespawned(src)
 
 /obj/item/weapon/storage/box/shotgunammo/buckshot
 	name = "box of shotgun shells"
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet/prespawned
 	rarity_value = 13.33
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
-/obj/item/weapon/storage/box/shotgunammo/buckshot/populate_contents()
-	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/pellet/prespawned(src)
-
 /obj/item/weapon/storage/box/shotgunammo/flashshells
 	name = "box of illumination shells"
+	ammo_type = /obj/item/ammo_casing/shotgun/flash/prespawned
 	rarity_value = 40
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
 
-/obj/item/weapon/storage/box/shotgunammo/flashshells/populate_contents()
-	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/flash/prespawned(src)
-
 /obj/item/weapon/storage/box/shotgunammo/practiceshells
 	name = "box of practice shells"
+	ammo_type = /obj/item/ammo_casing/shotgun/practice/prespawned
 	rarity_value = 50
-
-/obj/item/weapon/storage/box/shotgunammo/practiceshells/populate_contents()
-	for(var/i in 1 to 7)
-		new /obj/item/ammo_casing/shotgun/practice/prespawned(src)
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of .60 Anti Material shells"
@@ -561,7 +551,7 @@
 	illustration = "lightmixed"
 	spawn_tags = SPAWN_TAG_BOX_TAG_JUNK
 	rarity_value = 6.66
-	
+
 
 /obj/item/weapon/storage/box/lights/mixed/populate_contents()
 	for(var/i in 1 to 14)

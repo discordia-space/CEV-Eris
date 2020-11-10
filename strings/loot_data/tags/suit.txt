@@ -1,64 +1,64 @@
-/obj/item/clothing/suit/space/void/excelsior    blacklisted=1    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/SCAF    blacklisted=1    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc/equipped    blacklisted=0    spawn_value=1.55409    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc/boxed    blacklisted=0    spawn_value=1.55409    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=1.55409    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/acolyte    blacklisted=1    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/agrolyte    blacklisted=1    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/custodian    blacklisted=1    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/engineering/equipped    blacklisted=0    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/engineering    blacklisted=0    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/mining    blacklisted=0    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/medical/equipped    blacklisted=1    spawn_value=4.10738    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/medical    blacklisted=0    spawn_value=4.10738    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/security/equipped    blacklisted=1    spawn_value=1.92877    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/security    blacklisted=0    spawn_value=1.92877    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=4.57741    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.50718    price=1200   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=6.97039    price=30   100    /obj/item/clothing/shoes/magboots
-/obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.09317    price=30   100    
-/obj/item/clothing/suit/storage/vest/insulated    blacklisted=0    spawn_value=1.59291    price=600   100    
-/obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/vest    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/ass_jacket    blacklisted=0    spawn_value=15.439    price=30   100    
-/obj/item/clothing/suit/storage/cargo_jacket    blacklisted=0    spawn_value=15.439    price=30   100    
-/obj/item/clothing/suit/storage/qm_coat    blacklisted=0    spawn_value=3.77685    price=30   100    
-/obj/item/clothing/suit/storage/toggle/club    blacklisted=1    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/toggle/labcoat/cmo    blacklisted=0    spawn_value=22.3358    price=30   100    
-/obj/item/clothing/suit/storage/toggle/labcoat/chemist    blacklisted=0    spawn_value=22.3358    price=30   100    
-/obj/item/clothing/suit/storage/toggle/labcoat/virologist    blacklisted=0    spawn_value=22.3358    price=30   100    
-/obj/item/clothing/suit/storage/toggle/labcoat/science    blacklisted=0    spawn_value=22.3358    price=30   100    
-/obj/item/clothing/suit/storage/toggle/labcoat/medspec    blacklisted=0    spawn_value=22.3358    price=30   100    
-/obj/item/clothing/suit/storage/toggle/labcoat    blacklisted=0    spawn_value=22.3358    price=30   100    
-/obj/item/clothing/suit/storage/toggle/bomber    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/toggle/hoodie/black    blacklisted=0    spawn_value=15.439    price=30   100    
-/obj/item/clothing/suit/storage/toggle/hoodie    blacklisted=0    spawn_value=15.439    price=30   100    
-/obj/item/clothing/suit/storage/toggle    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/neotheosports    blacklisted=1    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/detective/ironhammer    blacklisted=0    spawn_value=5.24716    price=250   100    
-/obj/item/clothing/suit/storage/detective    blacklisted=0    spawn_value=8.06586    price=250   100    
-/obj/item/clothing/suit/storage/hazardvest/orange    blacklisted=0    spawn_value=10.3104    price=50   100    
-/obj/item/clothing/suit/storage/hazardvest/black    blacklisted=0    spawn_value=10.3104    price=50   100    
-/obj/item/clothing/suit/storage/hazardvest    blacklisted=0    spawn_value=10.3104    price=50   100    
-/obj/item/clothing/suit/storage/te_coat    blacklisted=1    spawn_value=8.06586    price=250   100    
-/obj/item/clothing/suit/storage/robotech_jacket    blacklisted=0    spawn_value=14.9277    price=50   100    
-/obj/item/clothing/suit/storage/surgical_apron    blacklisted=1    spawn_value=8.54776    price=50   100    
-/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake    blacklisted=0    spawn_value=14.2306    price=30   100    
-/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager    blacklisted=0    spawn_value=14.2306    price=30   100    
-/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake    blacklisted=0    spawn_value=14.2306    price=30   100    
-/obj/item/clothing/suit/storage/leather_jacket    blacklisted=0    spawn_value=14.2306    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek/green    blacklisted=0    spawn_value=12.9414    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek/black    blacklisted=0    spawn_value=12.9414    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek/white    blacklisted=0    spawn_value=12.9414    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek    blacklisted=0    spawn_value=12.9414    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek_long/green    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek_long/black    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek_long/white    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/cyberpunksleek_long    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/storage/bladerunner    blacklisted=0    spawn_value=12.9414    price=30   100    
-/obj/item/clothing/suit/storage/drive_jacket    blacklisted=0    spawn_value=5.51355    price=30   100    
-/obj/item/clothing/suit/storage/violet_jacket    blacklisted=0    spawn_value=5.51355    price=30   100    
-/obj/item/clothing/suit/storage/bomj    blacklisted=0    spawn_value=8.71299    price=30   100    
-/obj/item/clothing/suit/poncho/tactical    blacklisted=0    spawn_value=1.22734    price=30   100    
-/obj/item/clothing/suit/poncho    blacklisted=0    spawn_value=15.439    price=30   100    
+/obj/item/clothing/suit/space/void/excelsior    blacklisted=1    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/SCAF    blacklisted=1    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc/equipped    blacklisted=0    spawn_value=1.54505   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc/boxed    blacklisted=0    spawn_value=1.54505   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/merc    blacklisted=0    spawn_value=1.54505   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/acolyte    blacklisted=1    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/agrolyte    blacklisted=1    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/custodian    blacklisted=1    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/engineering/equipped    blacklisted=0    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/engineering    blacklisted=0    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/mining    blacklisted=0    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/medical/equipped    blacklisted=1    spawn_value=4.04487   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/medical    blacklisted=0    spawn_value=4.04487   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/security/equipped    blacklisted=1    spawn_value=1.91488   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/security    blacklisted=0    spawn_value=1.91488   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/atmos    blacklisted=0    spawn_value=4.49991   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/science    blacklisted=1    spawn_value=1.50688   spawn_price=1230   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void/wizard    blacklisted=1    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/space/void    blacklisted=0    spawn_value=6.79224   spawn_price=60   100    /obj/item/clothing/shoes/magboots
+/obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.09317   spawn_price=30   100    
+/obj/item/clothing/suit/storage/vest/insulated    blacklisted=0    spawn_value=1.59291   spawn_price=600   100    
+/obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/vest    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/ass_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cargo_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
+/obj/item/clothing/suit/storage/qm_coat    blacklisted=0    spawn_value=3.77685   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/club    blacklisted=1    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/labcoat/cmo    blacklisted=0    spawn_value=22.3358   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/labcoat/chemist    blacklisted=0    spawn_value=22.3358   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/labcoat/virologist    blacklisted=0    spawn_value=22.3358   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/labcoat/science    blacklisted=0    spawn_value=22.3358   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/labcoat/medspec    blacklisted=0    spawn_value=22.3358   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/labcoat    blacklisted=0    spawn_value=22.3358   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/bomber    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/hoodie/black    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle/hoodie    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
+/obj/item/clothing/suit/storage/toggle    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/neotheosports    blacklisted=1    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/detective/ironhammer    blacklisted=0    spawn_value=5.24716   spawn_price=250   100    
+/obj/item/clothing/suit/storage/detective    blacklisted=0    spawn_value=8.06586   spawn_price=250   100    
+/obj/item/clothing/suit/storage/hazardvest/orange    blacklisted=0    spawn_value=10.3104   spawn_price=50   100    
+/obj/item/clothing/suit/storage/hazardvest/black    blacklisted=0    spawn_value=10.3104   spawn_price=50   100    
+/obj/item/clothing/suit/storage/hazardvest    blacklisted=0    spawn_value=10.3104   spawn_price=50   100    
+/obj/item/clothing/suit/storage/te_coat    blacklisted=1    spawn_value=8.06586   spawn_price=250   100    
+/obj/item/clothing/suit/storage/robotech_jacket    blacklisted=0    spawn_value=14.9277   spawn_price=50   100    
+/obj/item/clothing/suit/storage/surgical_apron    blacklisted=1    spawn_value=8.54776   spawn_price=50   100    
+/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake    blacklisted=0    spawn_value=14.2306   spawn_price=30   100    
+/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager    blacklisted=0    spawn_value=14.2306   spawn_price=30   100    
+/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake    blacklisted=0    spawn_value=14.2306   spawn_price=30   100    
+/obj/item/clothing/suit/storage/leather_jacket    blacklisted=0    spawn_value=14.2306   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek/green    blacklisted=0    spawn_value=12.9414   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek/black    blacklisted=0    spawn_value=12.9414   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek/white    blacklisted=0    spawn_value=12.9414   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek    blacklisted=0    spawn_value=12.9414   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek_long/green    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek_long/black    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek_long/white    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/cyberpunksleek_long    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/storage/bladerunner    blacklisted=0    spawn_value=12.9414   spawn_price=30   100    
+/obj/item/clothing/suit/storage/drive_jacket    blacklisted=0    spawn_value=5.51355   spawn_price=30   100    
+/obj/item/clothing/suit/storage/violet_jacket    blacklisted=0    spawn_value=5.51355   spawn_price=30   100    
+/obj/item/clothing/suit/storage/bomj    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/suit/poncho/tactical    blacklisted=0    spawn_value=1.22734   spawn_price=30   100    
+/obj/item/clothing/suit/poncho    blacklisted=0    spawn_value=15.439   spawn_price=30   100    

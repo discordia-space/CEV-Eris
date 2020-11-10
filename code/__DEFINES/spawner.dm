@@ -31,11 +31,11 @@
 //Items - tools
 #define SPAWN_TOOL "tool"
 #define SPAWN_JUNK_TOOL "junk_tool"
-#define SPAWN_ADVANCED_TOOL "advanced_tool"
+#define SPAWN_TOOL_ADVANCED "tool_advanced"
 #define SPAWN_OS_TOOL "os_tool"
 
 #define SPAWN_TAG_TOOL "obj,item,tool"
-#define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,advanced_tool"
+#define SPAWN_TAG_TOOL_ADVANCED "obj,item,tool,tool_advanced"
 #define SPAWN_TAG_OS_TOOL "obj,item,tool,os_tool,onestar"
 #define SPAWN_TAG_TOOL_TAG_JUNK "obj,item,tool,junk_tool,junk"
 
