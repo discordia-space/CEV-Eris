@@ -29,6 +29,7 @@
 /obj/item/weapon/contraband/poster
 /obj/item/weapon/complicator
 /obj/item/weapon/storage/pill_bottle
+/obj/item/weapon/storage/box/shotgunammo
 /obj/item/weapon/storage/box
 /obj/item/weapon/storage/pouch/nt_sheath
 /obj/item/weapon/storage/pouch

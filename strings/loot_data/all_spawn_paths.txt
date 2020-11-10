@@ -387,7 +387,6 @@
 /obj/item/weapon/storage/box/shotgunammo/buckshot
 /obj/item/weapon/storage/box/shotgunammo/flashshells
 /obj/item/weapon/storage/box/shotgunammo/practiceshells
-/obj/item/weapon/storage/box/shotgunammo
 /obj/item/weapon/storage/box/sniperammo
 /obj/item/weapon/storage/box/flashbangs
 /obj/item/weapon/storage/box/teargas

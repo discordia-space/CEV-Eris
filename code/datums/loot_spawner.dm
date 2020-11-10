@@ -160,11 +160,20 @@
 		var/obj/item/weapon/tool/T = path
 		if(initial(T.suitable_cell))
 			. += get_spawn_price(initial(T.suitable_cell))
-	else if(ispath(path, /obj/item/weapon/storage/box/shotgunammo))
-		var/obj/item/weapon/storage/box/shotgunammo/S = path
-		if(initial(S.initial_amount) > 0 && initial(S.ammo_type))
-			. += initial(S.initial_amount) * get_spawn_price(S.ammo_type)
-
+	else if(ispath(path, /obj/item/weapon/storage/box))
+		var/obj/item/weapon/storage/box/B = path
+		if(initial(B.initial_amount) > 0 && initial(B.spawn_type))
+			. += initial(B.initial_amount) * get_spawn_price(initial(B.spawn_type))
+	else if(ispath(path, /obj/item/clothing))
+		var/obj/item/clothing/C = path
+		. += 5 * initial(C.style)
+	else if(ispath(path, /obj/item/weapon/cell))
+		var/obj/item/weapon/cell/C = path
+		if(initial(C.price_tag))
+			var/bonus = initial(C.maxcharge)/(initial(C.price_tag)*2)
+			if(initial(C.autorecharging))
+				bonus *= 2
+			. += bonus
 	/*else if(ispath(path, /obj/item/device)) //TODO make all devices
 		var/obj/item/device/D = path
 		if(initial(D.starting_cell) && initial(D.suitable_cell))

@@ -9,7 +9,7 @@
 	siemens_coefficient = 0.6
 	price_tag = 200
 	rarity_value = 20
-	style = 1
+	style = STYLE_LOW
 	bad_type = /obj/item/clothing/suit/armor
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 
@@ -279,7 +279,7 @@
 	equip_delay = 2 SECONDS
 	price_tag = 250
 	rarity_value = 25
-	style = 0
+	style = STYLE_NONE
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"

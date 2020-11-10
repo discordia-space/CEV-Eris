@@ -36,7 +36,10 @@
 /obj/item/weapon/tool/wirecutters/improvised    blacklisted=0    spawn_value=13.6967   spawn_price=20   100    
 /obj/item/weapon/tool/wrench/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   100    
 /obj/item/weapon/storage/box/matches    blacklisted=0    spawn_value=16.6667   spawn_price=10   100    
+/obj/item/weapon/storage/box/lights/bulbs    blacklisted=0    spawn_value=5   spawn_price=0   100    
+/obj/item/weapon/storage/box/lights/tubes    blacklisted=0    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/storage/box/lights/mixed    blacklisted=0    spawn_value=15.015   spawn_price=0   100    
+/obj/item/weapon/storage/box/lights    blacklisted=0    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace    blacklisted=1    spawn_value=4.44897   spawn_price=300   100    
 /obj/item/weapon/reagent_containers/glass/beaker/large    blacklisted=0    spawn_value=2.42125   spawn_price=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/noreact    blacklisted=1    spawn_value=4.69461   spawn_price=20   100    

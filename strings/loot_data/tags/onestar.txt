@@ -1,11 +1,11 @@
 /obj/item/weapon/tank/onestar_regenerator    blacklisted=1    spawn_value=8.54776   spawn_price=50   100    
 /obj/item/weapon/tool/crowbar/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   100    
-/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=8.27871   spawn_price=120   100    
+/obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=8.27136   spawn_price=123   100    
 /obj/item/weapon/tool/medmultitool    blacklisted=1    spawn_value=8.84875   spawn_price=20   100    
 /obj/item/weapon/tool/pickaxe/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   100    
-/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    spawn_value=8.27871   spawn_price=120   100    
+/obj/item/weapon/tool/pickaxe/jackhammer/onestar    blacklisted=1    spawn_value=8.27136   spawn_price=123   100    
 /obj/item/weapon/tool/pickaxe/drill/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   100    
-/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    spawn_value=8.44231   spawn_price=70   100    
+/obj/item/weapon/tool/screwdriver/combi_driver/onestar    blacklisted=1    spawn_value=8.43792   spawn_price=71   100    
 /obj/item/weapon/tool/weldingtool/onestar    blacklisted=1    spawn_value=8.84875   spawn_price=20   100    
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar    blacklisted=1    spawn_value=1.4006   spawn_price=25   100    
 /obj/item/weapon/stock_parts/capacitor/one_star    blacklisted=1    spawn_value=2.34198   spawn_price=500   100    

@@ -1,4 +1,4 @@
-/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=13.3333   spawn_price=100   100    
+/obj/item/weapon/cell/medium/high    blacklisted=0    spawn_value=13.3031   spawn_price=104   100    
 /obj/item/ammo_magazine/ammobox/clrifle/rubber    blacklisted=0    spawn_value=11.5143   spawn_price=4840   100    
 /obj/item/ammo_magazine/ammobox/clrifle    blacklisted=0    spawn_value=11.5143   spawn_price=4840   100    
 /obj/item/ammo_magazine/magnum/empty    blacklisted=0    spawn_value=14.7533   spawn_price=60   100    

@@ -16,8 +16,8 @@
 /obj/item/clothing/mask/luchador/tecnicos    blacklisted=0    spawn_value=0.985444   spawn_price=30   100    
 /obj/item/clothing/mask/luchador/rudos    blacklisted=0    spawn_value=0.985444   spawn_price=30   100    
 /obj/item/clothing/mask/luchador    blacklisted=0    spawn_value=0.985444   spawn_price=30   100    
-/obj/item/clothing/mask/breath/medical    blacklisted=0    spawn_value=2.41097   spawn_price=30   100    
-/obj/item/clothing/mask/breath    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
+/obj/item/clothing/mask/breath/medical    blacklisted=0    spawn_value=2.40708   spawn_price=35   100    
+/obj/item/clothing/mask/breath    blacklisted=0    spawn_value=8.66246   spawn_price=35   100    
 /obj/item/clothing/mask/gas/plaguedoctor    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
 /obj/item/clothing/mask/gas/swat    blacklisted=0    spawn_value=0.983294   spawn_price=50   100    
 /obj/item/clothing/mask/gas/ihs    blacklisted=0    spawn_value=4.62919   spawn_price=40   100    

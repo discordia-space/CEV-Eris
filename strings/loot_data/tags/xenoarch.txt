@@ -1,8 +1,8 @@
 /obj/item/weapon/reagent_containers/glass/replenishing    blacklisted=1    spawn_value=8.84875   spawn_price=20   100    
-/obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=6.64832   spawn_price=1100   100    
-/obj/item/weapon/gun/energy/laser/xenoarch    blacklisted=1    spawn_value=6.4872   spawn_price=2600   100    
+/obj/item/weapon/gun/energy/laser/practice/xenoarch    blacklisted=1    spawn_value=6.6478   spawn_price=1103   100    
+/obj/item/weapon/gun/energy/laser/xenoarch    blacklisted=1    spawn_value=6.48699   spawn_price=2603   100    
 /obj/item/weapon/gun/energy/captain/xenoarch    blacklisted=1    spawn_value=7.32428   spawn_price=4500   100    
-/obj/item/weapon/gun/energy/xray/xenoarch    blacklisted=1    spawn_value=7.34604   spawn_price=4100   100    
+/obj/item/weapon/gun/energy/xray/xenoarch    blacklisted=1    spawn_value=7.34586   spawn_price=4103   100    
 /obj/item/weapon/ore/strangerock    blacklisted=1    spawn_value=4   spawn_price=0   100    
 /obj/item/weapon/archaeological_find    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/fossil/base    blacklisted=1    spawn_value=10   spawn_price=0   100    

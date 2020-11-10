@@ -150,8 +150,8 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				true_loot_tags |= rare_loot
 			candidates = SSspawn_data.valid_candidates(true_loot_tags, restricted_tags, FALSE, 1, top_price, TRUE, list(/obj/item/stash_spawner))
 		if(rare)
-			var/top = CLAMP(round(candidates.len*0.3),1 ,7)
-			candidates = SSspawn_data.only_top_candidates(candidates, top) //top 7
+			var/top = CLAMP(round(candidates.len*0.3),1 ,10)
+			candidates = SSspawn_data.only_top_candidates(candidates, top) //top 10
 		var/loot_path = SSspawn_data.pick_spawn(candidates)
 		new loot_path(src)
 		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[loot_path]

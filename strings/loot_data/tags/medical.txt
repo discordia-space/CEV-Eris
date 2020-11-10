@@ -2,12 +2,12 @@
 /obj/item/weapon/tool/cautery    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
 /obj/item/weapon/tool/hemostat    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
 /obj/item/weapon/tool/retractor    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
-/obj/item/weapon/tool/saw/circular/advanced    blacklisted=1    spawn_value=4.57769   spawn_price=70   100    
-/obj/item/weapon/tool/saw/circular    blacklisted=0    spawn_value=8.44231   spawn_price=70   100    
+/obj/item/weapon/tool/saw/circular/advanced    blacklisted=1    spawn_value=4.5764   spawn_price=71   100    
+/obj/item/weapon/tool/saw/circular    blacklisted=0    spawn_value=8.43792   spawn_price=71   100    
 /obj/item/weapon/tool/scalpel/advanced    blacklisted=0    spawn_value=4.69461   spawn_price=20   100    
-/obj/item/weapon/tool/scalpel/laser    blacklisted=0    spawn_value=3.1402   spawn_price=70   100    
+/obj/item/weapon/tool/scalpel/laser    blacklisted=0    spawn_value=3.13959   spawn_price=71   100    
 /obj/item/weapon/tool/scalpel    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
-/obj/item/weapon/tool/surgicaldrill    blacklisted=0    spawn_value=8.44231   spawn_price=70   100    
+/obj/item/weapon/tool/surgicaldrill    blacklisted=0    spawn_value=8.43792   spawn_price=71   100    
 /obj/item/weapon/storage/pill_bottle/antitox    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/storage/pill_bottle/bicaridine    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/storage/pill_bottle/dexalin_plus    blacklisted=0    spawn_value=10   spawn_price=0   100    

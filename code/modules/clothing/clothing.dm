@@ -1,3 +1,7 @@
+#define STYLE_NONE 0
+#define STYLE_LOW 1
+#define STYLE_HIGH 2
+
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
@@ -19,7 +23,7 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
-	var/style = 0
+	var/style = STYLE_NONE
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
