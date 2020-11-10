@@ -2,6 +2,11 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/random    blacklisted=0    spawn_value=3.33333    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/vial/nanites    blacklisted=0    spawn_value=2.5    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/vial/uncapnanites    blacklisted=1    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/berry    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/lemon    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/banana    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape/nicotine    blacklisted=0    spawn_value=5    price_tag=20   100    
+/obj/item/weapon/reagent_containers/glass/beaker/vial/vape    blacklisted=0    spawn_value=5    price_tag=20   100    
 /obj/item/weapon/reagent_containers/glass/beaker/vial    blacklisted=0    spawn_value=5    price_tag=20   100    
 /obj/item/weapon/computer_hardware/hard_drive/portable/research_points/rare    blacklisted=0    spawn_value=1.66667    price_tag=25   100    
 /obj/item/weapon/computer_hardware/hard_drive/portable/research_points    blacklisted=0    spawn_value=8.33333    price_tag=25   100    
