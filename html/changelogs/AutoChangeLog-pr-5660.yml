@@ -1,7 +1,0 @@
-author: FrownTown
-delete-after: true
-changes:
-  - rscadd: 'Added new statverb: fix modular computer'
-  - rscadd: Added new "stats required" messages that are stat-dependent
-  - bugfix: Made the revelations program less janky
-  - spellcheck: Fixed some more bad grammar / spelling in staverbs.dm
