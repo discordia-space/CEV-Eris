@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 30)
 	matter_reagents = list("fuel" = 40)
-	layer = ABOVE_OBJ_LAYER //should fix all layering problems? or am i crazy stupid and understood it wrong
+	layer = BELOW_MOB_LAYER //fixed the wrong layer - Plasmatik
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_ITEM_MINE
 	var/prob_explode = 100
@@ -68,6 +68,15 @@
 	update_icon()
 
 /obj/item/weapon/mine/attack_hand(mob/user)
+	if (user.faction == "excelsior" && deployed)
+		user.visible_message(
+			SPAN_NOTICE("You remember your Excelsior training and carefully deactivate the mine for transport.")
+			)
+		deployed = FALSE
+		anchored = FALSE
+		armed = FALSE
+		update_icon()
+		return
 	if (deployed)
 		user.visible_message(
 				SPAN_DANGER("[user] extends its hand to reach the [src]!"),
@@ -112,8 +121,10 @@
 /obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
+			if (AM.faction == "excelsior")
+				return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
-			if(prob(true_prob_explode) && !is_excelsior(AM))
+			if(prob(true_prob_explode))
 				explode()
 				return
 	.=..()
