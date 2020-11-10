@@ -1227,6 +1227,8 @@
 	)
 
 // ARMOR
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
+	bad_type = /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
 
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic
 	disk_name = "Ironhammer Combat Equipment - Standard Armor"

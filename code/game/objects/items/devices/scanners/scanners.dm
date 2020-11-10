@@ -7,10 +7,14 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 4
-	throw_range = 20
+	throw_speed = 3
+	throw_range = 7
 
-	origin_tech = null
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	origin_tech = list(TECH_BIO = 1)
+
+
+	bad_type = /obj/item/device/scanner
 
 	var/obj/item/weapon/cell/cell
 	var/suitable_cell = /obj/item/weapon/cell/small
@@ -26,12 +30,6 @@
 	var/window_height = 600
 
 	var/charge_per_use = 0
-
-	throw_speed = 3
-	throw_range = 7
-
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/device/scanner/attack_self(mob/user)
 	if(!scan_data)
