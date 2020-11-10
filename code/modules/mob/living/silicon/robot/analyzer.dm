@@ -15,18 +15,10 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 1, TECH_ENGINEERING = 2)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	rarity_value = 50
-	var/mode = 1;
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/weapon/cell/small
 
-/obj/item/device/robotanalyzer/New()
-	..()
-	if(!cell && suitable_cell)
-		cell = new suitable_cell(src)
-
-/obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
-	if(!cell || !cell.checked_use(5))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+/obj/item/device/robotanalyzer/attack(mob/living/M, mob/living/user)
+	if(!cell_use_check(5, user))
 		return
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, text("\red You try to analyze the floor's vitals!"))
@@ -102,12 +94,3 @@
 			if(!organ_found)
 				to_chat(user, "No prosthetics located.")
 	src.add_fingerprint(user)
-
-
-/obj/item/device/robotanalyzer/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-
-/obj/item/device/robotanalyzer/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C

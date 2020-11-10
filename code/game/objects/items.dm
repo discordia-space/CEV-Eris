@@ -81,11 +81,11 @@
 	var/max_upgrades = 3
 
 /obj/item/Initialize()
-	if (islist(armor))
+	if(islist(armor))
 		armor = getArmor(arglist(armor))
-	else if (!armor)
+	else if(!armor)
 		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
+	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 	. = ..()
 
@@ -368,7 +368,7 @@
 		return
 
 	if((flags & NOBLOODY)||(item_flags & NOBLOODY))
-		return	
+		return
 
 	//if we haven't made our blood_overlay already
 	if( !blood_overlay )
@@ -528,8 +528,3 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/on_embed_removal(mob/living/user)
 	return
-
-
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
-
