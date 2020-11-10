@@ -100,6 +100,7 @@
 		WEAPON_CHARGE
 	)
 	twohanded = FALSE
+	spawn_blacklisted = TRUE//antag_item_targets
 
 /obj/item/weapon/gun/energy/lasercannon
 	name = "Prototype: laser cannon"

@@ -61,7 +61,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/friedegg    blacklisted=0    spawn_value=8.77352   spawn_price=25   100    
 /obj/item/weapon/reagent_containers/food/snacks/tofurkey    blacklisted=0    spawn_value=8.77352   spawn_price=25   100    
 /obj/item/weapon/reagent_containers/food/snacks/meat/carp    blacklisted=0    spawn_value=8.1294   spawn_price=200   100    
-/obj/item/weapon/reagent_containers/food/snacks/meat/corgi    blacklisted=0    spawn_value=7.87465   spawn_price=500   100    
+/obj/item/weapon/reagent_containers/food/snacks/meat/corgi    blacklisted=1    spawn_value=7.87465   spawn_price=500   100    
 /obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh    blacklisted=0    spawn_value=8.33333   spawn_price=100   100    
 /obj/item/weapon/reagent_containers/food/snacks/meat/human    blacklisted=0    spawn_value=8.33333   spawn_price=100   100    
 /obj/item/weapon/reagent_containers/food/snacks/meat/monkey    blacklisted=0    spawn_value=8.33333   spawn_price=100   100    

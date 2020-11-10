@@ -478,7 +478,6 @@
 /obj/item/clothing/under/rank/ih_commander/skirt    blacklisted=1    spawn_value=8.66246   spawn_price=35   100    
 /obj/item/clothing/under/rank/ih_commander    blacklisted=1    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/under/rank/cadet    blacklisted=1    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/under/rank    blacklisted=1    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/under/bluepyjamas    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/under/redpyjamas    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/under/swimsuit/black    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    

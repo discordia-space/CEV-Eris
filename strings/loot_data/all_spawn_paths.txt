@@ -797,7 +797,6 @@
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass
 /obj/item/weapon/reagent_containers/food/drinks/jar
-/obj/item/weapon/reagent_containers/food/drinks
 /obj/item/weapon/reagent_containers/food/snacks/candy/donor
 /obj/item/weapon/reagent_containers/food/snacks/candy/mre
 /obj/item/weapon/reagent_containers/food/snacks/candy
@@ -1268,7 +1267,6 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
 /obj/item/weapon/computer_hardware/hard_drive/portable/design
 /obj/item/weapon/computer_hardware/hard_drive/portable/basic
 /obj/item/weapon/computer_hardware/hard_drive/portable/advanced/shady
@@ -1501,7 +1499,6 @@
 /obj/item/weapon/cell/small/excelsior
 /obj/item/weapon/cell/small
 /obj/item/weapon/cell/disposable
-/obj/item/weapon/rcd/mounted
 /obj/item/weapon/rcd
 /obj/item/weapon/rcd_ammo
 /obj/item/weapon/rpd
@@ -2650,7 +2647,6 @@
 /obj/item/clothing/under/rank/ih_commander/skirt
 /obj/item/clothing/under/rank/ih_commander
 /obj/item/clothing/under/rank/cadet
-/obj/item/clothing/under/rank
 /obj/item/clothing/under/bluepyjamas
 /obj/item/clothing/under/redpyjamas
 /obj/item/clothing/under/swimsuit/black
@@ -2849,17 +2845,6 @@
 /obj/item/frame/holomap
 /obj/item/pipe
 /obj/item/pipe_meter
-/obj/item/remains/human
-/obj/item/remains/xeno
-/obj/item/remains/robot
-/obj/item/remains/mouse
-/obj/item/remains/lizard
-/obj/item/blueprints
-/obj/item/bodybag/cryobag
-/obj/item/bodybag
-/obj/item/gene_vial
-/obj/item/glass_jar
-/obj/item/latexballon
 /obj/item/device/kit/suit
 /obj/item/device/kit/paint/powerloader/flames_red
 /obj/item/device/kit/paint/powerloader/flames_blue
@@ -3077,6 +3062,17 @@
 /obj/item/device/synthesized_instrument/violin
 /obj/item/device/synthesized_instrument
 /obj/item/device/antibody_scanner
+/obj/item/remains/human
+/obj/item/remains/xeno
+/obj/item/remains/robot
+/obj/item/remains/mouse
+/obj/item/remains/lizard
+/obj/item/blueprints
+/obj/item/bodybag/cryobag
+/obj/item/bodybag
+/obj/item/gene_vial
+/obj/item/glass_jar
+/obj/item/latexballon
 /obj/item/target/syndicate
 /obj/item/target/alien
 /obj/item/target

@@ -51,6 +51,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 /obj/item/weapon/reagent_containers/food/drinks/bottle
+/obj/item/weapon/reagent_containers/food/drinks
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom
@@ -74,6 +75,7 @@
 /obj/item/weapon/twohanded/offhand
 /obj/item/weapon/twohanded
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/guns
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor
 /obj/item/weapon/computer_hardware
 /obj/item/weapon/flame
 /obj/item/weapon/extinguisher/mech
@@ -85,6 +87,7 @@
 /obj/item/weapon/book/manual/wiki
 /obj/item/weapon/cell
 /obj/item/weapon/rcd/borg
+/obj/item/weapon/rcd/mounted
 /obj/item/weapon/rpd/borg
 /obj/item/weapon/bluespace_harpoon/mounted/blitz
 /obj/item/weapon/stock_parts/subspace
@@ -262,6 +265,7 @@
 /obj/item/clothing/suit/storage
 /obj/item/clothing/mask
 /obj/item/clothing/under/assistantformal/bst
+/obj/item/clothing/under/rank
 /obj/item/clothing/under
 /obj/item/clothing/glasses/sunglasses/bst
 /obj/item/clothing/glasses/powered
@@ -277,7 +281,6 @@
 /obj/item/clothing/ears/offear
 /obj/item/clothing
 /obj/item/frame
-/obj/item/remains
 /obj/item/device/last_shelter
 /obj/item/device/radio/headset/heads
 /obj/item/device/radio/headset/ert/bst
@@ -308,6 +311,7 @@
 /obj/item/device/camera/siliconcam/drone_camera
 /obj/item/device/camera/siliconcam
 /obj/item/device
+/obj/item/remains
 /obj/item/toy/figure
 /obj/item/toy/plushie
 /obj/item/toy

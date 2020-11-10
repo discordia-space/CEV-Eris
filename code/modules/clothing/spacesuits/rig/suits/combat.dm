@@ -1,5 +1,6 @@
 /obj/item/clothing/head/space/rig/combat
 	light_overlay = "helmet_light_dual_green"
+	spawn_tags = null
 
 /obj/item/weapon/rig/combat
 	name = "combat hardsuit control module"
@@ -43,6 +44,7 @@
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/space/rig/combat/ironhammer
 	suit_type = "ironhammer hardsuit"
+	spawn_blacklisted = TRUE//antag_item_targets
 
 /obj/item/weapon/rig/combat/ironhammer/equipped
 	initial_modules = list(

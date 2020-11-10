@@ -1,5 +1,6 @@
 //Alphabetical order of civilian jobs.
 /obj/item/clothing/under/rank
+	bad_type = /obj/item/clothing/under/rank
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/assistant

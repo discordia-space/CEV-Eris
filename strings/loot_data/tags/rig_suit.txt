@@ -1,6 +1,6 @@
 /obj/item/weapon/rig/combat/equipped    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
-/obj/item/weapon/rig/combat/ironhammer/equipped    blacklisted=0    spawn_value=5   spawn_price=0   100    
-/obj/item/weapon/rig/combat/ironhammer    blacklisted=0    spawn_value=5   spawn_price=0   100    
+/obj/item/weapon/rig/combat/ironhammer/equipped    blacklisted=1    spawn_value=5   spawn_price=0   100    
+/obj/item/weapon/rig/combat/ironhammer    blacklisted=1    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/rig/combat    blacklisted=0    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/rig/hazard/equipped    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
 /obj/item/weapon/rig/hazard    blacklisted=0    spawn_value=10   spawn_price=0   100    
@@ -14,8 +14,8 @@
 /obj/item/weapon/rig/industrial    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/rig/eva/equipped    blacklisted=0    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/rig/eva    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/rig/ce/equipped    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
-/obj/item/weapon/rig/ce    blacklisted=0    spawn_value=5   spawn_price=0   100    
+/obj/item/weapon/rig/ce/equipped    blacklisted=1    spawn_value=2.5   spawn_price=0   100    
+/obj/item/weapon/rig/ce    blacklisted=1    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/rig/hazmat/equipped    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
 /obj/item/weapon/rig/hazmat    blacklisted=0    spawn_value=4   spawn_price=0   100    
 /obj/item/weapon/rig/medical/equipped    blacklisted=0    spawn_value=5   spawn_price=0   100    

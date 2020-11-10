@@ -9,6 +9,7 @@
 	reagent_flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
 	volume = 50
+	bad_type = /obj/item/weapon/reagent_containers/food/drinks
 	var/base_name // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	var/base_icon // Base icon name for fill states
 

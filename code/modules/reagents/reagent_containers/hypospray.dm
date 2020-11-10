@@ -15,6 +15,7 @@
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	preloaded_reagents = list("bicaridine" = 40)
+	//spawn_blacklisted = TRUE//antag_item_targets?
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
@@ -95,6 +96,7 @@
 	reagent_flags = REFILLABLE | DRAINABLE | AMOUNT_VISIBLE
 	volume = 5
 	preloaded_reagents = list("inaprovaline" = 5)
+	spawn_blacklisted = FALSE
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()

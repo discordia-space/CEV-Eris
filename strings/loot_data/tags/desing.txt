@@ -70,5 +70,4 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/generic    blacklisted=0    spawn_value=7.46383   spawn_price=25   100    
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof    blacklisted=1    spawn_value=3.78817   spawn_price=25   100    
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/armor/ih    blacklisted=1    spawn_value=3.78817   spawn_price=25   100    
-/obj/item/weapon/computer_hardware/hard_drive/portable/design/armor    blacklisted=0    spawn_value=3.78817   spawn_price=25   100    
 /obj/item/weapon/computer_hardware/hard_drive/portable/design    blacklisted=0    spawn_value=3.78817   spawn_price=25   100    
