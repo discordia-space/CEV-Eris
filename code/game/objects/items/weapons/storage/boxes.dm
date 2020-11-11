@@ -241,6 +241,7 @@
 	rarity_value = 80
 	initial_amount = 1
 	spawn_type = /obj/item/ammo_casing/antim/prespawned
+	spawn_tags = SPAWN_TAG_AMMO
 
 /obj/item/weapon/storage/box/sniperammo/populate_contents()
 	new spawn_type(src)

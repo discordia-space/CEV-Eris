@@ -52,6 +52,10 @@
 			trap_points += T
 	return trap_points
 
+/obj/spawner/traps/update_tags()
+	..()
+	tags_to_spawn = biome.trap_tags
+
 /obj/spawner/traps/update_biome_vars()
 	tags_to_spawn = biome.trap_tags
 	biome.spawner_trap_count++

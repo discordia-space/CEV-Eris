@@ -6,6 +6,9 @@ Packs are meant to be send mainly to junkpiles, but can be placed on map as well
 They generally give more random result and can provide more divercity in spawn.
 */
 
+/obj/spawner/pack
+	bad_type = /obj/spawner/pack
+
 /obj/spawner/pack/cloth
 	name = "Random cloth supply"
 	icon_state = "armor-red"

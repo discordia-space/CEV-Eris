@@ -1,9 +1,5 @@
 // only objs
-/obj/landmark/loot_biomes
-	name = "obj biome"
-	icon_state = "box-green-biome"
-	cap_price = 200000
-	main_tags = list(SPAWN_ITEM)
+/obj/landmark/loot_biomes/obj //debug
 
 /obj/spawner/biome_spawner_obj
 	name = "biome obj spawner"
@@ -11,6 +7,11 @@
 	tags_to_spawn = list(SPAWN_ITEM)
 	biome_spawner = TRUE
 
+/obj/spawner/biome_spawner_obj/low_chance
+	name = "biome obj spawner"
+	icon_state = "box-green-spawner-low"
+	biome_spawner = TRUE
+	spawn_nothing_percentage = 60
 
 // only mobs
 /obj/landmark/loot_biomes/mob
@@ -19,9 +20,14 @@
 	mob_tags = list(SPAWN_SPAWNER_MOB)
 	min_mobs_amount = 3
 	max_mobs_amount = 9
+	min_loot_amount = 1
+	max_loot_amount = 1
 	can_burrow = TRUE
 	allowed_only_top = TRUE
-	cap_price = INFINITY
+
+/obj/landmark/loot_biomes/mob/chek_tags()
+	if(!mob_tags.len)
+		crash_with("[src.name] has no spawn tag: [x],[y],[z]")
 
 /obj/spawner/mob/biome_spawner_mob
 	name = "biome mob spawner"
@@ -32,7 +38,6 @@
 /obj/spawner/mob/biome_spawner_mob/low_chance
 	name = "biome mob spawner"
 	icon_state = "hostilemob-purple-spawner-low"
-	biome_spawner = TRUE
 	spawn_nothing_percentage = 60
 
 /obj/landmark/loot_biomes/mob/roach
@@ -48,6 +53,8 @@
 	mob_tags = list(SPAWN_SPIDER)
 	min_mobs_amount = 1
 	max_mobs_amount = 5
+	min_loot_amount = 1
+	max_loot_amount = 1
 
 /obj/landmark/loot_biomes/mob/roomba
 	icon_state = "hostilemob-blue-biome"
@@ -63,6 +70,10 @@
 	min_traps_amount = 1
 	max_traps_amount = 1
 
+/obj/landmark/loot_biomes/trap/chek_tags()
+	if(!trap_tags.len)
+		crash_with("[src.name] has no spawn tag: [x],[y],[z]")
+
 /obj/spawner/traps/biome_spawner_trap
 	name = "biome trap spawner"
 	icon_state = "trap-purple-spawner"
@@ -73,3 +84,4 @@
 /obj/spawner/traps/biome_spawner_trap/low_chance
 	name = "biome trap spawner"
 	icon_state = "trap-purple-spawner-low"
+	spawn_nothing_percentage = 60

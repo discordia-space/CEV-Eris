@@ -321,3 +321,16 @@
 	.=..()
 	if(. && hud && prob(75))
 		hud = new /obj/item/clothing/glasses/hud/broken
+/*
+/obj/effect/decal/mecha_wreckage/make_old()
+	.=..()
+	if (.)
+		salvage_num = max(1, salvage_num - pick(1, 2, 3))
+*/
+
+/mob/living/exosuit/proc/make_old()
+	name = "[pick("old", "rusted", "weathered", "ancient")] [name]"
+	updatehealth()
+	emp_act(rand(0,3))
+	adjustFireLoss(rand(0, health))
+	adjustBruteLoss(rand(0, health))

@@ -14,6 +14,7 @@
 	var/top_price
 	var/low_price
 	var/list/tags_to_spawn = list(SPAWN_ITEM, SPAWN_MOB, SPAWN_MACHINERY, SPAWN_STRUCTURE)
+	var/list/should_be_include_tag = list()//TODO
 	var/allow_blacklist = FALSE
 	var/list/aditional_object = list()
 	var/allow_aditional_object = TRUE
@@ -50,7 +51,7 @@
 				biome.price_tag += price_tag
 			post_spawn(spawns)
 
-	return INITIALIZE_HINT_QDEL 
+	return INITIALIZE_HINT_QDEL
 
 /obj/spawner/LateInitialize()
 	..()
@@ -108,15 +109,17 @@
 
 /obj/spawner/proc/find_biome()
 	var/turf/T = get_turf(src)
-	if(T)
-		T.update_biome()
+	if(T && T.biome)
 		biome = T.biome
 	if(check_biome_spawner())
-		biome.update_price()
 		update_biome_vars()
 
+/obj/spawner/proc/update_tags()
+	biome.update_tags()
+	tags_to_spawn = biome.tags_to_spawn
 
 /obj/spawner/proc/update_biome_vars()
+	update_tags()
 	tags_to_spawn = biome.tags_to_spawn
 	allow_blacklist = biome.allow_blacklist
 	exclusion_paths = biome.exclusion_paths
@@ -132,7 +135,7 @@
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()
 	if(check_biome_spawner())
-		biome.update_tags()
+		update_tags()
 		if(biome.price_tag + price_tag >= biome.cap_price && !istype(src, /obj/spawner/mob) && !istype(src, /obj/spawner/traps))
 			return
 	var/list/candidates = valid_candidates()

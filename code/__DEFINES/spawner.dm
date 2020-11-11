@@ -60,7 +60,7 @@
 #define SPAWN_TAG_TOOL_UPGRADE "obj,item,tool_upgrade"
 #define SPAWN_TAG_TOOL_UPGRADE_RARE "obj,item,tool_upgrade,tool_upgrade_rare"
 #define SPAWN_TAG_TOOL_UPGRADE_RARE_OS "obj,item,tool_upgrade,tool_upgrade_rare,item_tech_os,onestar"
-#define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade"
+#define SPAWN_TAG_GUN_UPGRADE "obj,item,gun_upgrade,guns"
 
 //items - one star
 #define SPAWN_ITEM_TECH_OS "item_tech_os"
@@ -165,12 +165,12 @@
 #define SPAWN_GUN_PROJECTILE "gun_projectile"
 #define SPAWN_GUN_SHOTGUN "shotgun"
 
-#define SPAWN_TAG_GUN "obj,item,gun"
-#define SPAWN_TAG_GUN_ENERGY "obj,item,gun,gun_energy"
-#define SPAWN_TAG_GUN_ENERGY_CHAMALEON "obj,item,gun,gun_energy,contraband,chamaleon"
-#define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile"
-#define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun"
-#define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun"
+#define SPAWN_TAG_GUN "obj,item,gun,guns"
+#define SPAWN_TAG_GUN_ENERGY "obj,item,gun,gun_energy,guns"
+#define SPAWN_TAG_GUN_ENERGY_CHAMALEON "obj,item,gun,gun_energy,contraband,chamaleon,guns"
+#define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile,guns"
+#define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun,guns"
+#define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun,guns"
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO "ammmo_storage"
@@ -178,11 +178,11 @@
 #define SPAWN_AMMO_SHOTGUN "ammmo_storage_shotgun"
 #define SPAWN_AMMO_COMMON "ammo_common"
 
-#define SPAWN_TAG_AMMO "obj,item,gun,ammo,ammmo_storage"
-#define SPAWN_TAG_AMMO_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_common"
-#define SPAWN_TAG_AMMO_SHOTGUN "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun"
-#define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,gun,ammo,ammmo_storage,ammmo_storage_shotgun,ammo_common"
-#define SPAWN_TAG_AMMO_IH "obj,item,gun,ammo,ammmo_storage,ammo_ih"
+#define SPAWN_TAG_AMMO "obj,item,guns,ammo,ammmo_storage"
+#define SPAWN_TAG_AMMO_COMMON "obj,item,guns,ammo,ammmo_storage,ammmo_storage_common"
+#define SPAWN_TAG_AMMO_SHOTGUN "obj,item,guns,ammo,ammmo_storage,ammmo_storage_shotgun"
+#define SPAWN_TAG_AMMO_SHOTGUN_COMMON "obj,item,guns,ammo,ammmo_storage,ammmo_storage_shotgun,ammo_common"
+#define SPAWN_TAG_AMMO_IH "obj,item,guns,ammo,ammmo_storage,ammo_ih"
 
 //	Items - contraband
 #define SPAWN_CONTRABAND "contraband"

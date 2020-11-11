@@ -17,8 +17,12 @@
 		return TRUE
 	return FALSE
 
-/obj/spawner/mob/update_biome_vars()
+/obj/spawner/mob/update_tags()
+	..()
 	tags_to_spawn = biome.mob_tags
+
+/obj/spawner/mob/update_biome_vars()
+	update_tags()
 	biome.spawner_mob_count++
 	var/count = biome.spawner_mob_count
 	min_amount = max(1, biome.min_mobs_amount / count)
