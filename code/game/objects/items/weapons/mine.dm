@@ -68,15 +68,16 @@
 	update_icon()
 
 /obj/item/weapon/mine/attack_hand(mob/user)
-	if (user.faction == "excelsior" && deployed)
-		user.visible_message(
-			SPAN_NOTICE("You remember your Excelsior training and carefully deactivate the mine for transport.")
-			)
-		deployed = FALSE
-		anchored = FALSE
-		armed = FALSE
-		update_icon()
-		return
+	for(var/datum/antagonist/A in user.mind.antagonist)
+		if(A.id == "excelsior_rev" && deployed)
+			user.visible_message(
+				SPAN_NOTICE("You remember your Excelsior training and carefully deactivate the mine for transport.")
+				)
+			deployed = FALSE
+			anchored = FALSE
+			armed = FALSE
+			update_icon()
+			return
 	if (deployed)
 		user.visible_message(
 				SPAN_DANGER("[user] extends its hand to reach the [src]!"),
@@ -121,8 +122,9 @@
 /obj/item/weapon/mine/Crossed(mob/AM)
 	if (armed)
 		if (isliving(AM))
-			if (AM.faction == "excelsior")
-				return
+			for(var/datum/antagonist/A in AM.mind.antagonist)
+				if(A.id == "excelsior_rev")
+					return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
 			if(prob(true_prob_explode))
 				explode()

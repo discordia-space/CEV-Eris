@@ -90,7 +90,6 @@
 			return
 
 	make_antagonist_faction(wearer.mind, antag_id, F, check = FALSE)
-	wearer.faction = "excelsior"
 
 
 /obj/item/weapon/implant/excelsior/on_uninstall()
@@ -100,7 +99,6 @@
 	for(var/datum/antagonist/A in wearer.mind.antagonist)
 		if(A.id == antag_id)
 			A.remove_antagonist()
-			wearer.faction = "neutral"
 
 	if(prob(66))
 		wearer.adjustBrainLoss(200)
