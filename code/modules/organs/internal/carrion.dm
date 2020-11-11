@@ -374,7 +374,7 @@
 	anchored = TRUE
 
 /obj/effect/decal/cleanable/carrion_puddle/Initialize()
-	.=..()
+	. = ..()
 	START_PROCESSING(SSprocessing, src)
 
 /obj/effect/decal/cleanable/carrion_puddle/Destroy()

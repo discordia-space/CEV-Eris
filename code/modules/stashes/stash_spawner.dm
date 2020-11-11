@@ -11,7 +11,7 @@
 
 
 /obj/item/stash_spawner/Initialize()
-	.=..()
+	. = ..()
 	datum = pick_n_take_stash_datum()
 	if(!datum)
 		//If it failed to get a datum, we can't do anything
