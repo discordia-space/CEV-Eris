@@ -212,7 +212,7 @@
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
-	var/obj/item/master_item = null
+	var/obj/item/master_item
 
 /obj/item/clothing/ears/offear/New(obj/O)
 	name = O.name
