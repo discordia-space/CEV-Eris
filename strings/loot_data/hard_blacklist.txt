@@ -112,6 +112,7 @@
 /obj/item/weapon/spacecash/bundle
 /obj/item/weapon/spacecash/ewallet
 /obj/item/weapon/spacecash
+/obj/item/weapon/holo
 /obj/item/weapon/grown
 /obj/item/weapon/plantspray
 /obj/item/weapon/ore
@@ -159,6 +160,8 @@
 /obj/item/weapon/fossil
 /obj/item/weapon
 /obj/item/tk_grab
+/obj/item/modular_computer/console/preset
+/obj/item/modular_computer
 /obj/item/stack/cable_coil/cyborg
 /obj/item/stack/medical/advanced
 /obj/item/stack/medical
@@ -320,8 +323,6 @@
 /obj/item/weedkiller/D24
 /obj/item/weedkiller
 /obj/item/slime_extract
-/obj/item/modular_computer/console/preset
-/obj/item/modular_computer
 /obj/item/bluespace_dust
 /mob/living/carbon/human/bst
 /mob/living/carbon/human/appearance_test
@@ -817,7 +818,9 @@
 /obj/machinery/teleport/hub
 /obj/machinery/teleport/station
 /obj/machinery/teleport
-/obj/machinery/dna_scannernew
+/obj/machinery/computer/rdconsole/robotics
+/obj/machinery/computer/rdconsole/core
+/obj/machinery/computer/rdconsole
 /obj/machinery/computer/scan_consolenew
 /obj/machinery/computer/general_air_control/large_tank_control
 /obj/machinery/computer/general_air_control/supermatter_core
@@ -887,15 +890,13 @@
 /obj/machinery/computer/shuttle_control
 /obj/machinery/computer/turbine_computer
 /obj/machinery/computer/power_monitor
-/obj/machinery/computer/rdconsole/robotics
-/obj/machinery/computer/rdconsole/core
-/obj/machinery/computer/rdconsole
 /obj/machinery/computer/rdservercontrol
 /obj/machinery/computer/telescience
 /obj/machinery/computer/centrifuge
 /obj/machinery/computer/curer
 /obj/machinery/computer/diseasesplicer
 /obj/machinery/computer
+/obj/machinery/dna_scannernew
 /obj/machinery/bodyscanner
 /obj/machinery/body_scanconsole
 /obj/machinery/ai_slipper
