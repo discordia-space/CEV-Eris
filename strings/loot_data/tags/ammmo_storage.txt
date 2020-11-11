@@ -4,6 +4,7 @@
 /obj/item/weapon/storage/box/shotgunammo/buckshot    blacklisted=0    spawn_value=6.18234   spawn_price=700   100    
 /obj/item/weapon/storage/box/shotgunammo/flashshells    blacklisted=0    spawn_value=2.33399   spawn_price=700   100    
 /obj/item/weapon/storage/box/shotgunammo/practiceshells    blacklisted=0    spawn_value=1.89232   spawn_price=700   100    
+/obj/item/weapon/storage/box/sniperammo    blacklisted=0    spawn_value=1.21951   spawn_price=100   100    
 /obj/item/ammo_magazine/ammobox/pistol/practice    blacklisted=1    spawn_value=3.04821   spawn_price=640   100    
 /obj/item/ammo_magazine/ammobox/pistol/hv    blacklisted=1    spawn_value=3.04821   spawn_price=640   100    
 /obj/item/ammo_magazine/ammobox/pistol/rubber    blacklisted=0    spawn_value=12.8104   spawn_price=640   100    

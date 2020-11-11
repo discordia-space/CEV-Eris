@@ -1,5 +1,6 @@
 /obj/item/weapon/tool/crowbar/improvised    blacklisted=0    spawn_value=30.2936   spawn_price=20   100    
 /obj/item/weapon/tool/hammer/homewrecker    blacklisted=0    spawn_value=3.00291   spawn_price=20   100    
+/obj/item/weapon/tool/hammer/mace/makeshift    blacklisted=0    spawn_value=3.19478   spawn_price=20   100    
 /obj/item/weapon/tool/saw/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   100    
 /obj/item/weapon/tool/shiv    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
 /obj/item/weapon/tool/screwdriver/improvised    blacklisted=0    spawn_value=23.2502   spawn_price=20   100    

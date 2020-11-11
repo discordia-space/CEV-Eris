@@ -1759,7 +1759,6 @@
 /obj/item/weapon/gun/launcher/pneumatic
 /obj/item/weapon/gun/launcher/syringe/rapid
 /obj/item/weapon/gun/launcher/syringe
-/obj/item/weapon/gun/launcher
 /obj/item/weapon/gun/matter/launcher/nt_sprayer
 /obj/item/weapon/gun/matter/launcher/reclaimer
 /obj/item/weapon/gun/matter/launcher
@@ -4174,7 +4173,6 @@
 /obj/spawner/pack/junk_machine/low_chance
 /obj/spawner/pack/junk_machine/beacon
 /obj/spawner/pack/junk_machine
-/obj/spawner/pack
 /obj/spawner/pouch/low_chance
 /obj/spawner/pouch
 /obj/spawner/powercell/small
@@ -4228,6 +4226,7 @@
 /obj/spawner/voidsuit/damaged/low_chance
 /obj/spawner/voidsuit/damaged
 /obj/spawner/voidsuit
+/obj/spawner/biome_spawner_obj/low_chance
 /obj/spawner/biome_spawner_obj
 /obj/spawner/mob/biome_spawner_mob/low_chance
 /obj/spawner/mob/biome_spawner_mob

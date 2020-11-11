@@ -15,6 +15,7 @@
 /obj/item/weapon/tool/hammer/homewrecker    blacklisted=0    spawn_value=3.00291   spawn_price=20   100    
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer    blacklisted=1    spawn_value=8.27136   spawn_price=123   100    
 /obj/item/weapon/tool/hammer/powered_hammer    blacklisted=0    spawn_value=3.8329   spawn_price=123   100    
+/obj/item/weapon/tool/hammer/mace/makeshift    blacklisted=0    spawn_value=3.19478   spawn_price=20   100    
 /obj/item/weapon/tool/hammer/charge    blacklisted=0    spawn_value=0.391812   spawn_price=123   100    
 /obj/item/weapon/tool/hammer    blacklisted=0    spawn_value=15.8704   spawn_price=20   100    
 /obj/item/weapon/tool/hemostat    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    

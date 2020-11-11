@@ -133,7 +133,6 @@
 /obj/spawner/pack/junk_machine/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/pack/junk_machine/beacon    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/pack/junk_machine    blacklisted=0    spawn_value=10   spawn_price=1   100    
-/obj/spawner/pack    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/pouch/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/pouch    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/powercell/small    blacklisted=0    spawn_value=10   spawn_price=1   100    
@@ -187,6 +186,7 @@
 /obj/spawner/voidsuit/damaged/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/voidsuit/damaged    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/voidsuit    blacklisted=0    spawn_value=10   spawn_price=1   100    
+/obj/spawner/biome_spawner_obj/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/biome_spawner_obj    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/mob/biome_spawner_mob/low_chance    blacklisted=0    spawn_value=10   spawn_price=1   100    
 /obj/spawner/mob/biome_spawner_mob    blacklisted=0    spawn_value=10   spawn_price=1   100    

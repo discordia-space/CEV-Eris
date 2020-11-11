@@ -119,6 +119,7 @@
 /obj/item/weapon/gun/energy/lasertag
 /obj/item/weapon/gun/energy
 /obj/item/weapon/gun/launcher/spikethrower
+/obj/item/weapon/gun/launcher
 /obj/item/weapon/gun/projectile/shotgun
 /obj/item/weapon/gun/projectile/automatic
 /obj/item/weapon/gun/projectile/handmade_pistol
@@ -1771,6 +1772,7 @@
 /obj/structure/table/rack/shelf
 /obj/structure/table/rack
 /obj/structure/table
+/obj/spawner/pack
 /obj/spawner/powercell/low_chance
 /obj/spawner/scrap/low_chance
 /obj/spawner/scrap/sparse/low_chance
