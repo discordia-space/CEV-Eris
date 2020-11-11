@@ -1243,6 +1243,14 @@ var/list/rank_prefix = list(\
 
 	update_body()
 
+/mob/living/carbon/human/proc/post_prefinit()
+	var/obj/item/weapon/implant/core_implant/C = locate() in src
+	if(C)
+		C.install(src)
+		C.activate()
+		C.install_default_modules_by_job(mind.assigned_job)
+		C.access |= mind.assigned_job.cruciform_access
+
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"
 	set name = "Write in blood"
