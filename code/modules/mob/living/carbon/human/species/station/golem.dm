@@ -17,7 +17,7 @@
 	blood_color = "#515573"
 	flesh_color = "#137E8F"
 
-	has_organ = list(
+	has_process = list(
 		BP_BRAIN = /obj/item/organ/internal/brain/golem
 		)
 

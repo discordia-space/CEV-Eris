@@ -105,7 +105,7 @@ mob/living/carbon/human/proc/handle_pain()
 		if(I.status&ORGAN_DEAD || BP_IS_ROBOTIC(I))
 			continue
 		if(I.damage > 2) if(prob(2))
-			var/obj/item/organ/external/parent = get_organ(I.parent_organ)
+			var/obj/item/organ/external/parent = I.parent
 			src.custom_pain("You feel a sharp pain in your [parent.name]", 1)
 
 	var/toxDamageMessage = null

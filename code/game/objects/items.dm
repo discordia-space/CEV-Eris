@@ -306,7 +306,7 @@
 
 	if(istype(H))
 
-		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[BP_EYES]
+		var/obj/item/organ/internal/eyes/eyes = H.random_organ_by_process(OP_EYES)
 
 		if(!eyes)
 			return

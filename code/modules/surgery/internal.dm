@@ -50,6 +50,17 @@
 	if(!istype(I))
 		return FALSE
 
+	var/total_volume = 0	//Used for internal organs and cavity implants
+	for(var/obj/item/item in implants)
+		if(istype(item, /obj/item/weapon/implant) || istype(item, /obj/item/organ_module))
+			continue
+
+		total_volume += item.w_class
+
+	for(var/organ_inside in internal_organs)
+		var/obj/item/organ/internal/internal = organ_inside
+		total_volume += internal.specific_organ_size
+
 	// "Organ modules"
 	// TODO: ditch them
 	if(istype(I, /obj/item/organ_module))
@@ -76,22 +87,27 @@
 
 	// Organs
 	if(istype(I, /obj/item/organ/internal))
-		var/obj/item/organ/organ = I
-
+		var/obj/item/organ/internal/organ = I
+		
 		var/o_a =  (organ.gender == PLURAL) ? "" : "a "
-		var/o_do = (organ.gender == PLURAL) ? "don't" : "doesn't"
+
+		if(organ.unique_tag)
+			for(var/obj/item/organ/internal/existing_organ in owner.internal_organs)
+				if(existing_organ.unique_tag == organ.unique_tag)
+					to_chat(user, SPAN_WARNING("[owner] already has [o_a][organ.unique_tag]."))
+					return FALSE
 
 		if(BP_IS_ROBOTIC(src) && !BP_IS_ROBOTIC(organ))
 			to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body part."))
 			return FALSE
 
-		if(organ_tag != organ.parent_organ)
-			to_chat(user, SPAN_WARNING("\The [organ.organ_tag] [o_do] normally go in \the [name]."))
+		if(total_volume + organ.specific_organ_size > max_volume)
+			to_chat(user, SPAN_DANGER("There isn't enough space in [get_surgery_name()]!"))
 			return FALSE
 
-		for(var/obj/item/organ/internal/existing_organ in internal_organs)
-			if(existing_organ.organ_tag == organ.organ_tag)
-				to_chat(user, SPAN_WARNING("\The [name] already has [o_a][organ.organ_tag] in it."))
+		if(istype(organ,/obj/item/organ/internal/bone))
+			if(!(organ.parent_organ_base == organ_tag))
+				to_chat(user, SPAN_DANGER("You can't fit [o_a][organ] inside [src]"))
 				return FALSE
 
 		return TRUE
@@ -120,21 +136,15 @@
 			return FALSE
 
 		// You can only attach a limb to either a parent organ or a stump of the same organ
-		if(limb.parent_organ != organ_tag && limb.organ_tag != organ_tag)
+		if(limb.parent_organ_base != organ_tag && limb.organ_tag != organ_tag)
 			to_chat(user, SPAN_WARNING("You can't attach [limb] to [get_surgery_name()]!"))
 			return FALSE
 
 		return TRUE
 
-	// Cavity implants
-	var/total_volume = I.w_class
-	for(var/obj/item/item in implants)
-		if(istype(item, /obj/item/weapon/implant) || istype(item, /obj/item/organ_module))
-			continue
+// Cavity implants
 
-		total_volume += item.w_class
-
-	if(total_volume > cavity_max_w_class)
+	if(total_volume + I.w_class > max_volume)
 		to_chat(user, SPAN_WARNING("There isn't enough space in [get_surgery_name()]!"))
 		return FALSE
 
@@ -170,7 +180,7 @@
 		var/obj/item/organ/external/limb = I
 
 		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
-		var/obj/item/organ/external/target_limb = owner.get_organ(limb.parent_organ)
+		var/obj/item/organ/external/target_limb = owner.get_organ(limb.parent_organ_base)
 
 		// Save the owner before removing limb stump, as it may null the owner
 		// if the operation is performed on the stump itself

@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: the datum that generates the spawn values is now a subsystem.
-  - tweak: organs will no longer spawn in maint.
