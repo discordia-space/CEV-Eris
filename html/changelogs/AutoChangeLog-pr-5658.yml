@@ -1,0 +1,5 @@
+author: TheShown911
+delete-after: true
+changes:
+  - balance: Control spider duration incersed to 50-60 seconds, but if the controled
+      victim dies under mind control the spider core dies with it.
