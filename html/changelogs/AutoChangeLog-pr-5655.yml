@@ -1,0 +1,9 @@
+author: Garen7
+delete-after: true
+changes:
+  - bugfix: Fixed the stats UI not working for altyn, maska, and old riot helmets
+  - bugfix: Fixed altyn, maska, and old riot helmets sometimes not showing gear underneath
+      the helmet(and other things)
+  - refactor: Merged the altyn and old riot helmets into the same type
+  - refactor: Properly wrapped the variable tracking if the face shield was up to
+      avoid future bugs
