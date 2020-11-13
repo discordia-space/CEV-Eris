@@ -1,0 +1,7 @@
+author: kappa-sama
+delete-after: true
+changes:
+  - rscadd: Added small amounts of reagent to each masterpiece donut to provide differing
+      flavors between each donut.
+  - tweak: The description text for each of the masterpiece donuts is now more...
+      flavorful.
