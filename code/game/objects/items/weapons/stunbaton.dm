@@ -18,14 +18,15 @@
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/weapon/cell/cell
-	var/spawn_cell = TRUE
+	var/obj/item/weapon/cell/starting_cell = /obj/item/weapon/cell/medium/high
 	var/suitable_cell = /obj/item/weapon/cell/medium
+	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/weapon/melee/baton/Initialize()
 	. = ..()
-	if(!cell && suitable_cell && spawn_cell)
-		cell = new suitable_cell(src)
+	if(!cell && suitable_cell && starting_cell)
+		cell = new starting_cell(src)
 	update_icon()
 
 /obj/item/weapon/melee/baton/Destroy()
@@ -35,6 +36,11 @@
 /obj/item/weapon/melee/baton/get_cell()
 	return cell
 
+/obj/item/weapon/melee/baton/proc/set_status(s)
+	status = s
+	tool_qualities = status ? list(QUALITY_PULSING = 1) : null
+	update_icon()
+
 /obj/item/weapon/melee/baton/handle_atom_del(atom/A)
 	..()
 	if(A == cell)
@@ -43,12 +49,9 @@
 
 /obj/item/weapon/melee/baton/proc/deductcharge(var/power_drain)
 	if(cell)
-		if(cell.checked_use(power_drain))
-			return TRUE
-		else
-			status = FALSE
-			update_icon()
-			return FALSE
+		. = cell.checked_use(power_drain) //try to use enough power
+		if(!cell.check_charge(hitcost))	//do we have enough power for another hit?
+			set_status(FALSE)
 
 /obj/item/weapon/melee/baton/update_icon()
 	if(status)
@@ -59,7 +62,7 @@
 		icon_state = "[initial(icon_state)]"
 
 	if(icon_state == "[initial(icon_state)]_active")
-		set_light(1.5, 1, COLOR_LIGHTING_ORANGE_BRIGHT)
+		set_light(1.5, 1)
 	else
 		set_light(0)
 
@@ -69,18 +72,16 @@
 
 	if(cell)
 		to_chat(user, SPAN_NOTICE("The baton is [round(cell.percent())]% charged."))
-	if(!cell)
+	else
 		to_chat(user, SPAN_WARNING("The baton does not have a power source installed."))
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
-		status = !status
+		set_status(!status)
 		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
-		tool_qualities = status ? list(QUALITY_PULSING = 1) : null
 		playsound(loc, "sparks", 75, 1, -1)
-		update_icon()
 	else
-		status = FALSE
+		set_status(FALSE)
 		if(!cell)
 			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
 		else
@@ -131,11 +132,9 @@
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects
-	if(status)
+	if(status && deductcharge(hitcost))
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
-
-		deductcharge(hitcost)
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
@@ -160,10 +159,13 @@
 /obj/item/weapon/melee/baton/MouseDrop(over_object)
 	if((loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
+		set_status(FALSE)
+		update_icon()
 
 /obj/item/weapon/melee/baton/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		cell = C
+		update_icon()
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/melee/baton/cattleprod
@@ -178,7 +180,7 @@
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
-	spawn_cell = FALSE
+	starting_cell = null
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 
 /obj/item/weapon/melee/baton/excelbaton
@@ -186,6 +188,7 @@
 	desc = "A cheap and effective way to feed the red tide."
 	icon_state = "sovietbaton"
 	item_state = "soviet"
+	light_color = COLOR_LIGHTING_CYAN_BRIGHT
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
 	stunforce = 0
@@ -195,4 +198,10 @@
 	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+	starting_cell = /obj/item/weapon/cell/medium/excelsior
 
+//excelsior baton has 2 inhand sprites
+/obj/item/weapon/melee/baton/excelbaton/set_status(s)
+	..()
+	item_state = initial(item_state) + (status ? "_active" : "")
+	update_wear_icon()
