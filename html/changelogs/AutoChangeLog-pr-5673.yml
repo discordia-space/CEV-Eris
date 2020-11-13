@@ -1,0 +1,5 @@
+author: Harrivchaw
+delete-after: true
+changes:
+  - tweak: Carrion explosive spider now has a delay and pops out of the victim's body
+      when it's activated
