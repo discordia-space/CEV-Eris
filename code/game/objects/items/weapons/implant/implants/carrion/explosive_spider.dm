@@ -6,19 +6,18 @@
 	var/heavy_range = 0
 	var/weak_range = 2
 	var/flash_range = 6
-	var/det_time = 20
+	var/det_time = 2SECONDS
 
 /obj/item/weapon/implant/carrion_spider/explosive/activate()
 	..()
-	var/obj/item/weapon/implant/carrion_spider/explosive/biteszadusto = new/obj/item/weapon/implant/carrion_spider/explosive(get_turf(src))
-	if((istype(wearer, /mob/living/simple_animal) || istype(wearer, /mob/living/carbon)))
+	if(wearer)
+		src.uninstall()
 		visible_message(SPAN_WARNING("[src] pops out of [wearer] and flashes brightly!"))
 	else
 		visible_message(SPAN_WARNING("[src] flashes brightly!"))
-	biteszadusto.set_light(3,3, COLOR_ORANGE)
+	src.set_light(3,3, COLOR_ORANGE)
 	spawn(det_time)
-		biteszadusto.prime()
-	qdel(src)
+		src?.prime()
 
 /obj/item/weapon/implant/carrion_spider/explosive/proc/prime()
 	var/turf/O = get_turf(src)
@@ -28,6 +27,6 @@
 
 	die()
 
-/obj/item/weapon/implant/carrion_spider/explosive/proc/on_explosion(var/turf/O)
+/obj/item/weapon/implant/carrion_spider/explosive/proc/on_explosion(O)
 	visible_message(SPAN_DANGER("[src] explodes!"))
 	explosion(get_turf(src), devastation_range, heavy_range, weak_range, flash_range)
