@@ -16,7 +16,7 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
-
+	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	var/spray_particles = 3
 	var/spray_amount = 9	//units of liquid per particle
 	var/max_water = 300
@@ -24,7 +24,7 @@
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
 	var/list/overlaylist = list("fire_extinguisherO1","fire_extinguisherO2","fire_extinguisherO3","fire_extinguisherO4","fire_extinguisherO5","fire_extinguisherO6")
-	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
+
 
 /obj/item/weapon/extinguisher/mini
 	name = "fire extinguisher"
