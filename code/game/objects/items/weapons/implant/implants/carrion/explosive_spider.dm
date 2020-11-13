@@ -6,7 +6,7 @@
 	var/heavy_range = 0
 	var/weak_range = 2
 	var/flash_range = 6
-	var/det_time = 2SECONDS
+	var/det_time = 2 SECONDS
 
 /obj/item/weapon/implant/carrion_spider/explosive/activate()
 	..()
