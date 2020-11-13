@@ -69,7 +69,7 @@
 
 /obj/item/weapon/mine/attack_hand(mob/user)
 	for(var/datum/antagonist/A in user.mind.antagonist)
-		if(A.id == "excelsior_rev" && deployed)
+		if(A.id == ROLE_EXCELSIOR_REV && deployed)
 			user.visible_message(
 				SPAN_NOTICE("You remember your Excelsior training and carefully deactivate the mine for transport.")
 				)
@@ -123,7 +123,7 @@
 	if (armed)
 		if (isliving(AM))
 			for(var/datum/antagonist/A in AM.mind.antagonist)
-				if(A.id == "excelsior_rev")
+				if(A.id == ROLE_EXCELSIOR_REV)
 					return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
 			if(prob(true_prob_explode))
