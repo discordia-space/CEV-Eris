@@ -22,7 +22,6 @@
 /obj/item/device/lighting/glowstick/yellow    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/lighting/glowstick/random    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/device/lighting/glowstick    blacklisted=0    spawn_value=10    price_tag=0   100    
-/obj/item/device/lighting/toggleable/drone    blacklisted=1    spawn_value=10    price_tag=0   100    
 /obj/item/device/lighting/toggleable/flashlight/pen    blacklisted=0    spawn_value=20    price_tag=0   100    
 /obj/item/device/lighting/toggleable/flashlight/heavy    blacklisted=0    spawn_value=20    price_tag=0   100    
 /obj/item/device/lighting/toggleable/flashlight/seclite    blacklisted=0    spawn_value=20    price_tag=0   100    

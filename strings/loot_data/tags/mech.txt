@@ -6,6 +6,7 @@
 /obj/item/mech_equipment/mounted_system/taser/laser    blacklisted=0    spawn_value=10    price_tag=200   100    
 /obj/item/mech_equipment/mounted_system/taser/plasma    blacklisted=1    spawn_value=10    price_tag=200   100    
 /obj/item/mech_equipment/mounted_system/taser    blacklisted=0    spawn_value=10    price_tag=200   100    
+/obj/item/mech_equipment/mounted_system/balistic_gun/pk    blacklisted=1    spawn_value=10    price_tag=200   100    
 /obj/item/mech_equipment/mounted_system/rcd    blacklisted=0    spawn_value=10    price_tag=200   100    
 /obj/item/mech_equipment/mounted_system/extinguisher    blacklisted=0    spawn_value=10    price_tag=200   100    
 /obj/item/mech_equipment/sleeper    blacklisted=0    spawn_value=10    price_tag=200   100    
