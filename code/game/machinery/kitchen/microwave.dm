@@ -149,7 +149,7 @@
 		if(!I.reagents)
 			return 1
 		for (var/datum/reagent/R in I.reagents.reagent_list)
-			if(!(R.id in acceptable_reagents))
+			if(!acceptable_reagents.Find(R.id))
 				to_chat(user, SPAN_WARNING("Your [I] contains components unsuitable for cookery."))
 				return 1
 		return
