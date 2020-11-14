@@ -123,7 +123,7 @@
 			to_chat(user, SPAN_WARNING("It's dirty!"))
 			return 1
 	else if(is_type_in_list(I,acceptable_items))
-		if(contents.len>=max_n_of_items)
+		if(length(contents) >= max_n_of_items)
 			to_chat(user, SPAN_WARNING("This [src] is full of ingredients, you cannot put more."))
 			return 1
 		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
