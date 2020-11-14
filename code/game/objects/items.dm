@@ -81,7 +81,6 @@
 	var/max_upgrades = 3
 
 /obj/item/Initialize()
-	SHOULD_CALL_PARENT(TRUE)
 	if(islist(armor))
 		armor = getArmor(arglist(armor))
 	else if(!armor)
@@ -526,8 +525,3 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/on_embed_removal(mob/living/user)
 	return
-
-
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
-

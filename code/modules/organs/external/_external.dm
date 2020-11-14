@@ -172,6 +172,10 @@
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
+		if(istype(I, /obj/item/weapon/implant))
+			var/obj/item/weapon/implant/Imp = I
+			Imp.uninstall()
+			continue
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
 			implant.forceMove(get_turf(owner))
 		else

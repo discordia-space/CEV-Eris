@@ -84,7 +84,7 @@
 		if(istype(AM, /mob/shadow))
 			continue
 		if(!AM.anchored)
-			if(prob(offset_chance))		
+			if(prob(offset_chance))
 				go_to_bluespace(source, entropy_value, TRUE, AM, get_turf(pick(orange(teleport_offset,source))))
 			else
 				go_to_bluespace(source, entropy_value, TRUE, AM, target)
@@ -122,7 +122,7 @@
 		src.cell = C
 
 /obj/item/weapon/bluespace_harpoon/mounted
-	spawn_blacklisted = TRUE
+	spawn_tags = null
 	var/charge_cost = 100
 	var/charge_tick = 0
 	var/recharge_time = 4

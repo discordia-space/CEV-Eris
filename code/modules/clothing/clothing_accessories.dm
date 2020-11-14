@@ -53,7 +53,7 @@
 	return ..()
 
 /obj/item/clothing/examine(var/mob/user)
-	..(user)
+	. = ..(user)
 	if(accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
 			to_chat(user, "\A [A] is attached to it.")

@@ -30,7 +30,7 @@
 
 /obj/item/weapon/gun/energy/shrapnel/consume_next_projectile()
 	.=..()
-	if(. && consume_cell && cell.empty())
+	if(. && consume_cell && cell.is_empty())
 		visible_message(SPAN_WARNING("\The [cell] of \the [src] burns out!"))
 		qdel(cell)
 		cell = null
