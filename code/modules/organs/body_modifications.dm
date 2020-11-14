@@ -2,7 +2,7 @@ var/global/list/body_modifications = list()
 var/global/list/modifications_types = list(
 	BP_CHEST = "",  "chest2" = "", BP_HEAD = "",   BP_GROIN = "",
 	BP_L_ARM  = "", BP_R_ARM  = "", BP_L_LEG  = "", BP_R_LEG  = "",
-	BP_HEART  = "", BP_LUNGS  = "", BP_LIVER  = "", BP_EYES   = ""
+	OP_HEART  = "", OP_LUNGS  = "", OP_LIVER  = "", OP_EYES   = ""
 )
 
 /proc/generate_body_modification_lists()
@@ -33,7 +33,7 @@ var/global/list/modifications_types = list(
 	var/desc = ""							// Description.
 	var/list/body_parts = list(				// For sorting'n'selection optimization.
 		BP_CHEST, "chest2", BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG,\
-		BP_HEART, BP_LUNGS, BP_LIVER, BP_BRAIN, BP_EYES)
+		OP_HEART, OP_LUNGS, OP_LIVER, BP_BRAIN, OP_EYES)
 	var/list/allowed_species = list("Human")// Species restriction.
 	var/replace_limb = null					// To draw usual limb or not.
 	var/mob_icon = ""
@@ -173,7 +173,7 @@ var/global/list/modifications_types = list(
 	short_name = "P: assisted"
 	id = "assisted"
 	desc = "Assisted organ."
-	body_parts = list(BP_HEART, BP_LUNGS, BP_LIVER, BP_EYES)
+	body_parts = list(OP_HEART, OP_LUNGS, OP_LIVER, OP_EYES)
 	allow_nt = FALSE
 
 /datum/body_modification/organ/assisted/create_organ(var/mob/living/carbon/holder, var/O, var/color)
@@ -189,7 +189,7 @@ var/global/list/modifications_types = list(
 	short_name = "P: prosthesis"
 	id = "robotize_organ"
 	desc = "Robotic organ."
-	body_parts = list(BP_HEART, BP_LUNGS, BP_LIVER, BP_EYES)
+	body_parts = list(OP_HEART, OP_LUNGS, OP_LIVER, OP_EYES)
 	allow_nt = FALSE
 
 /datum/body_modification/organ/robotize_organ/create_organ(var/mob/living/carbon/holder, O, color)
