@@ -112,6 +112,7 @@
 /obj/item/weapon/spacecash/bundle
 /obj/item/weapon/spacecash/ewallet
 /obj/item/weapon/spacecash
+/obj/item/weapon/holo
 /obj/item/weapon/grown
 /obj/item/weapon/plantspray
 /obj/item/weapon/ore
@@ -159,6 +160,8 @@
 /obj/item/weapon/fossil
 /obj/item/weapon
 /obj/item/tk_grab
+/obj/item/modular_computer/console/preset
+/obj/item/modular_computer
 /obj/item/stack/cable_coil/cyborg
 /obj/item/stack/medical/advanced
 /obj/item/stack/medical
@@ -321,8 +324,6 @@
 /obj/item/weedkiller/D24
 /obj/item/weedkiller
 /obj/item/slime_extract
-/obj/item/modular_computer/console/preset
-/obj/item/modular_computer
 /obj/item/bluespace_dust
 /mob/living/carbon/human/bst
 /mob/living/carbon/human/appearance_test
