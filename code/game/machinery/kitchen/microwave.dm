@@ -348,9 +348,9 @@
 /obj/machinery/microwave/proc/dispose()
 	for (var/obj/O in contents)
 		O.loc = src.loc
-	if(src.reagents.total_volume)
-		src.dirty++
-	src.reagents.clear_reagents()
+	if(reagents.total_volume)
+		dirty++
+	reagents.clear_reagents()
 	to_chat(usr, SPAN_NOTICE("You dispose of the microwave contents."))
 	src.updateUsrDialog()
 
