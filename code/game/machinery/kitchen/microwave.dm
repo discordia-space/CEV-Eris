@@ -269,7 +269,7 @@
 	var/obj/cooked
 	if(!recipe)
 		dirty += 1
-		if(prob(max(10,dirty*5)))
+		if(prob(max(10, dirty * 5)))
 			if(!wzhzhzh(4))
 				abort()
 				return
