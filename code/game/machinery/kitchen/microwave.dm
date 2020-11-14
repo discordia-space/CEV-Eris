@@ -222,7 +222,7 @@
 			if(!items_measures.Find(O))
 				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
 			else
-				if(N==1)
+				if(N == 1)
 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures[O]]<BR>"}
 				else
 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
