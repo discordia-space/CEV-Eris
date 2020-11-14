@@ -1,0 +1,4 @@
+author: MadmanMartian
+delete-after: true
+changes:
+  - admin: Control spiders now tell you who is taking over who
