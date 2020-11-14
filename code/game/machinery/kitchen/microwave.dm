@@ -321,10 +321,7 @@
 
 /obj/machinery/microwave/proc/has_extra_item()
 	for (var/obj/O in contents)
-		if( \
-				!istype(O,/obj/item/weapon/reagent_containers/food) && \
-				!istype(O, /obj/item/weapon/grown) \
-			)
+		if(!istype(O,/obj/item/weapon/reagent_containers/food) && !istype(O, /obj/item/weapon/grown))
 			return 1
 	return 0
 
