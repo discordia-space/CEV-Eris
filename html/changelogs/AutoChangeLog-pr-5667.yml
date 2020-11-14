@@ -1,5 +1,0 @@
-author: Evankhell561
-delete-after: true
-changes:
-  - tweak: The projector chameleon now turns off automatically when the battery runs
-      out.
