@@ -258,7 +258,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	start()
-	if(reagents.total_volume==0 && !(locate(/obj) in contents)) //dry run
+	if(reagents.total_volume == 0 && !(locate(/obj) in contents)) //dry run
 		if(!wzhzhzh(10))
 			abort()
 			return
