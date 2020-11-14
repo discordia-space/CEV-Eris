@@ -219,7 +219,7 @@
 			items_counts[display_name]++
 		for (var/O in items_counts)
 			var/N = items_counts[O]
-			if(!(O in items_measures))
+			if(!items_measures.Find(O))
 				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
 			else
 				if(N==1)
