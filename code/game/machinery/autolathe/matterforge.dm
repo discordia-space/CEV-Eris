@@ -279,7 +279,7 @@
 
 /obj/machinery/matter_nanoforge/attackby(obj/item/I, mob/user)
 	if(I.GetComponent(/datum/component/inspiration))
-		var/datum/component/inspiration/comp = I.GetComponent(/datum/component/inspiration)
+		GET_COMPONENT_FROM(comp, /datum/component/inspiration, I)
 		if(comp.power > 0)
 			if(!power_source)
 				user.drop_item(I)
