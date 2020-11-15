@@ -1,0 +1,5 @@
+author: MemedHams
+delete-after: true
+changes:
+  - imageadd: Added a battery panel to the excelsior baton and it now has a sprite
+      for when
