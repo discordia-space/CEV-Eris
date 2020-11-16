@@ -14,6 +14,8 @@
 	force = WEAPON_FORCE_DANGEROUS
 	matter = list(MATERIAL_STEEL = 3)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 
 	var/spray_particles = 3
 	var/spray_amount = 9	//units of liquid per particle
@@ -39,7 +41,7 @@
 	overlaylist = list()
 
 /obj/item/weapon/extinguisher/Initialize()
-	..()
+	. = ..()
 	if(overlaylist.len)
 		var/icon/temp = new /icon('icons/obj/items.dmi', overlaylist[rand(1,overlaylist.len)])
 		overlays += temp

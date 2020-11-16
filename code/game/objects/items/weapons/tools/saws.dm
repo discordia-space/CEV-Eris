@@ -22,6 +22,8 @@
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
+	rarity_value = 3
 
 /obj/item/weapon/tool/saw/circular //tier 3
 	name = "circular saw"
@@ -36,6 +38,7 @@
 
 	use_power_cost = 0.15
 	suitable_cell = /obj/item/weapon/cell/small
+	spawn_tags = SPAWN_TAG_SURGERY_TOOL
 
 /obj/item/weapon/tool/saw/circular/advanced //tier 4, focusing on armor penetration
 	name = "advanced circular saw"
@@ -47,6 +50,8 @@
 	degradation = 0.7
 	use_power_cost = 0.22
 	max_upgrades = 4
+	spawn_blacklisted = TRUE
+	rarity_value = 20
 
 /obj/item/weapon/tool/saw/chain //tier 4, focusing on damage, fuel variant
 	name = "chainsaw"
@@ -62,6 +67,8 @@
 	max_upgrades = 4
 	use_fuel_cost = 0.1
 	max_fuel = 80
+	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/saw/hyper //tier 4, focusing on damage, cell variant
 	name = "TM hypersaw"
@@ -78,3 +85,5 @@
 	degradation = 0.7
 	use_power_cost = 1
 	suitable_cell = /obj/item/weapon/cell/medium
+	rarity_value = 96
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

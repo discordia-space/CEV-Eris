@@ -121,9 +121,11 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
+	rarity_value = 18
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
+	spawn_blacklisted = TRUE
 
 	//Security
 /obj/item/clothing/head/space/void/security
@@ -162,10 +164,12 @@
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
+	rarity_value = 40
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
 	tank = /obj/item/weapon/tank/jetpack/oxygen
+	spawn_blacklisted = TRUE
 
 //Atmospherics Rig (BS12)
 /obj/item/clothing/head/space/void/atmos
@@ -203,6 +207,7 @@
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
+	rarity_value = 16
 
 //Science
 /obj/item/clothing/head/space/void/science
@@ -261,6 +266,7 @@
 	price_tag = 1200
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
+	rarity_value = 50
+	spawn_blacklisted = TRUE
 
-/obj/item/clothing/suit/space/void/security/equipped
-	tank = /obj/item/weapon/tank/jetpack/oxygen
+

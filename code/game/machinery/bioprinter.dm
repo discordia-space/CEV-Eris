@@ -17,11 +17,11 @@
 	var/max_matter = 300
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/list/products = list(
-		BP_HEART =   list(/obj/item/organ/internal/heart,  50),
-		BP_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
-		BP_KIDNEYS = list(/obj/item/organ/internal/kidneys,20),
-		BP_EYES =    list(/obj/item/organ/internal/eyes,   30),
-		BP_LIVER =   list(/obj/item/organ/internal/liver,  50)
+		OP_HEART =   list(/obj/item/organ/internal/heart,  50),
+		OP_LUNGS =   list(/obj/item/organ/internal/lungs,  40),
+		OP_KIDNEYS = list(/obj/item/organ/internal/kidneys,20),
+		OP_EYES =    list(/obj/item/organ/internal/eyes,   30),
+		OP_LIVER =   list(/obj/item/organ/internal/liver,  50)
 		)
 
 /obj/machinery/bioprinter/prosthetics

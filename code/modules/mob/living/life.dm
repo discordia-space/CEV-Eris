@@ -2,6 +2,7 @@
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
+	. = FALSE
 	..()
 	if(config.enable_mob_sleep)
 		if(life_cycles_before_scan > 0)
@@ -41,7 +42,7 @@
 			//Random events (vomiting etc)
 			handle_random_events()
 
-			. = 1
+			. = TRUE
 
 		//Handle temperature/pressure differences between body and environment
 		if(environment)
@@ -183,6 +184,8 @@
 		reset_view(null)
 
 /mob/living/proc/update_sight()
+	set_sight(0)
+	set_see_in_dark(0)
 	if(stat == DEAD || eyeobj)
 		update_dead_sight()
 	else
@@ -192,6 +195,9 @@
 			sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 			see_in_dark = initial(see_in_dark)
 			see_invisible = initial(see_invisible)
+	var/list/vision = get_accumulated_vision_handlers()
+	set_sight(sight | vision[1])
+	set_see_invisible(max(vision[2], see_invisible))
 
 /mob/living/proc/update_dead_sight()
 	sight |= SEE_TURFS

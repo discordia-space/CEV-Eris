@@ -1,5 +1,5 @@
 
-/obj/item/device/encryptionkey/
+/obj/item/device/encryptionkey
 	name = "standard encryption key"
 	desc = "An encryption key for a radio headset. Contains cypherkeys."
 	icon = 'icons/obj/radio.dmi'
@@ -7,13 +7,14 @@
 	item_state = ""
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 	var/translate_binary = 0
 	var/translate_hive = 0
 	var/syndie = 0
 	var/list/channels = list()
-	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 
-/obj/item/device/encryptionkey/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/encryptionkey/attackby(obj/item/weapon/W, mob/user)
 
 /obj/item/device/encryptionkey/syndicate
 	icon_state = "cypherkey"

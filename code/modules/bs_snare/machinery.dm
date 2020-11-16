@@ -10,7 +10,7 @@
 	var/silk_id = ""
 
 	var/console_id = ""
-	var/obj/machinery/computer/bssilk_control/connected_console = null
+	var/obj/machinery/computer/bssilk_control/connected_console
 
 	//animations
 	var/animation_icon = 'icons/effects/bs_snare.dmi'
@@ -73,12 +73,15 @@
 	var/obj/effect/temporary/A = new(get_turf(target), 24.5, animation_icon, back_animation)
 	target.dir = 2
 	target.forceMove(A)
+	bluespace_entropy(3, get_turf(A))
 	sleep(23)
 	target.forceMove(src)
+	bluespace_entropy(3, get_turf(src))
 	target.dir = 2
 	new /obj/effect/temporary(get_turf(src), 26.5, animation_icon, onhub_animation)
 	sleep(24)
 	target.forceMove(loc)
+	bluespace_entropy(3, get_turf(loc))
 
 /obj/machinery/bssilk_hub/Destroy()
 	. = ..()
@@ -89,13 +92,13 @@
 	name = "bluespace snare control"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
-	circuit = /obj/item/weapon/circuitboard/bssilk_cons
+	circuit = /obj/item/weapon/electronics/circuitboard/bssilk_cons
 
 	icon_keyboard = "rd_key"
 	icon_screen = "telesci"
 
 	var/hub_id = ""
-	var/obj/machinery/bssilk_hub/connected_hub = null
+	var/obj/machinery/bssilk_hub/connected_hub
 
 /obj/machinery/computer/bssilk_control/Destroy()
 	. = ..()

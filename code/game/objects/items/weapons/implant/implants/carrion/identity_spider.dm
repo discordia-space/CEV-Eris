@@ -9,7 +9,7 @@
 		return
 	if(wearer)
 		if(wearer.type == /mob/living/carbon/human)
-			var/obj/item/organ/internal/carrion/core/C = owner_mob.internal_organs_by_name[BP_SPCORE]
+			var/obj/item/organ/internal/carrion/core/C = owner_mob.random_organ_by_process(BP_SPCORE)
 			wearer.dna.real_name = wearer.real_name
 			C.absorbed_dna |= wearer.dna
 			to_chat(owner_mob, SPAN_NOTICE("You absorb [wearer]'s DNA"))

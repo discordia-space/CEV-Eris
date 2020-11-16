@@ -3,20 +3,27 @@
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
 
-	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	//spawn_values
+	price_tag = 0
+	spawn_tags = SPAWN_TAG_ITEM
+	rarity_value = 10
+	spawn_frequency = 10 //MAX
+	bad_type = /obj/item
+
+	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1
-	var/health = null
-	var/max_health = null
-	var/burn_point = null
-	var/burning = null
-	var/hitsound = null
-	var/worksound = null
+	var/health
+	var/max_health
+	var/burn_point
+	var/burning
+	var/hitsound
+	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	pass_flags = PASSTABLE
 
-	var/obj/item/master = null
+	var/obj/item/master
 	var/list/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
@@ -26,7 +33,7 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
 
-	var/datum/action/item_action/action = null
+	var/datum/action/item_action/action
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
 	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
 
@@ -35,7 +42,7 @@
 	var/flags_inv = 0
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 
-	var/list/tool_qualities = null// List of item qualities for tools system. See qualities.dm.
+	var/list/tool_qualities// List of item qualities for tools system. See qualities.dm.
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
@@ -44,13 +51,13 @@
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/datum/armor/armor // Ref to the armor datum
 	var/list/allowed = list() //suit storage stuff.
-	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
-	var/zoomdevicename = null //name used for message when binoculars/scope is used
+	var/obj/item/device/uplink/hidden/hidden_uplink // All items can have an uplink hidden inside, just remember to add the triggers.
+	var/zoomdevicename //name used for message when binoculars/scope is used
 	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/contained_sprite = FALSE //TRUE if object icon and related mob overlays are all in one dmi
 
-	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
+	var/icon_override  //Used to override hardcoded clothing dmis in human clothing proc.
 
 	//** These specify item/icon overrides for _slots_
 
@@ -74,11 +81,11 @@
 	var/max_upgrades = 3
 
 /obj/item/Initialize()
-	if (islist(armor))
+	if(islist(armor))
 		armor = getArmor(arglist(armor))
-	else if (!armor)
+	else if(!armor)
 		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
+	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
 	. = ..()
 
@@ -107,11 +114,11 @@
 			qdel(src)
 			return
 		if(2)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3)
-			if (prob(5))
+			if(prob(5))
 				qdel(src)
 				return
 
@@ -169,18 +176,18 @@
 	throwing = 0
 	var/atom/old_loc = loc
 	if(target.put_in_active_hand(src) && old_loc )
-		if ((target != old_loc) && (target != old_loc.get_holding_mob()))
+		if((target != old_loc) && (target != old_loc.get_holding_mob()))
 			do_pickup_animation(target,old_loc)
 	add_hud_actions(target)
 
 /obj/item/attack_ai(mob/user as mob)
-	if (istype(loc, /obj/item/weapon/robot_module))
+	if(istype(loc, /obj/item/weapon/robot_module))
 		//If the item is part of a cyborg module, equip it
 		if(!isrobot(user))
 			return
 		var/mob/living/silicon/robot/R = user
 		R.activate_module(src)
-//		R.hud_used.update_robot_modules_display()
+	//R.hud_used.update_robot_modules_display()
 
 /obj/item/proc/talk_into(mob/living/M, message, channel, verb = "says", datum/language/speaking = null, speech_volume)
 	return
@@ -194,7 +201,7 @@
 /obj/item/proc/on_slotmove(mob/user)
 	if(wielded)
 		unwield(user)
-	if (zoom)
+	if(zoom)
 		zoom(user)
 
 
@@ -299,7 +306,7 @@
 
 	if(istype(H))
 
-		var/obj/item/organ/internal/eyes/eyes = H.internal_organs_by_name[BP_EYES]
+		var/obj/item/organ/internal/eyes/eyes = H.random_organ_by_process(OP_EYES)
 
 		if(!eyes)
 			return
@@ -327,7 +334,7 @@
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
-			if (eyes.damage >= eyes.min_broken_damage)
+			if(eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
 					to_chat(M, SPAN_WARNING("You go blind!"))
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
@@ -354,14 +361,14 @@
 		update_icon()
 
 /obj/item/add_blood(mob/living/carbon/human/M as mob)
-	if (!..())
+	if(!..())
 		return 0
 
 	if(istype(src, /obj/item/weapon/melee/energy))
 		return
 
 	if((flags & NOBLOODY)||(item_flags & NOBLOODY))
-		return	
+		return
 
 	//if we haven't made our blood_overlay already
 	if( !blood_overlay )
@@ -446,16 +453,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		var/viewoffset = tilesize * tileoffset
 
 		switch(usr.dir)
-			if (NORTH)
+			if(NORTH)
 				usr.client.pixel_x = 0
 				usr.client.pixel_y = viewoffset
-			if (SOUTH)
+			if(SOUTH)
 				usr.client.pixel_x = 0
 				usr.client.pixel_y = -viewoffset
-			if (EAST)
+			if(EAST)
 				usr.client.pixel_x = viewoffset
 				usr.client.pixel_y = 0
-			if (WEST)
+			if(WEST)
 				usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
 
@@ -521,8 +528,3 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/on_embed_removal(mob/living/user)
 	return
-
-
-/obj/item/device
-	icon = 'icons/obj/device.dmi'
-

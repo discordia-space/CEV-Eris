@@ -50,6 +50,8 @@
 	icon = 'icons/obj/reagentfillings.dmi'
 	mouse_opacity = 0
 	random_rotation = FALSE
+	bad_type = /obj/effect/decal/cleanable/reagents
+	spawn_tags = null
 
 /obj/effect/decal/cleanable/reagents/proc/add_reagents(var/datum/reagents/reagents_to_add)
 	if(!reagents)
@@ -148,8 +150,8 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
-	var/list/viruses = list()
 	sanity_damage = 1
+	var/list/viruses = list()
 
 	Destroy()
 		. = ..()

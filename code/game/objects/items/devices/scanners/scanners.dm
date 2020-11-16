@@ -7,13 +7,14 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
-	throw_speed = 4
-	throw_range = 20
+	throw_speed = 3
+	throw_range = 7
 
-	origin_tech = null
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	origin_tech = list(TECH_BIO = 1)
+	bad_type = /obj/item/device/scanner
 
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
+	suitable_cell = /obj/item/weapon/cell/small
 
 	var/scan_title
 	var/scan_data
@@ -27,11 +28,7 @@
 
 	var/charge_per_use = 0
 
-	throw_speed = 3
-	throw_range = 7
 
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	origin_tech = list(TECH_BIO = 1)
 
 /obj/item/device/scanner/attack_self(mob/user)
 	if(!scan_data)
@@ -52,8 +49,7 @@
 		return
 	if (!user.IsAdvancedToolUser())
 		return
-	if(!cell_use_check(charge_per_use))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+	if(!cell_use_check(charge_per_use, user))
 		return
 	return TRUE
 
@@ -79,39 +75,6 @@
 		if(!scan_title)
 			scan_title = "[capitalize(name)] scan - [A]"
 
-/obj/item/device/scanner/proc/cell_check()
-	if(!cell && suitable_cell)
-		cell = new suitable_cell(src)
-
-//all user was replased on usr
-/obj/item/device/scanner/proc/cell_use_check(charge)
-	. = TRUE
-	if(!cell || !cell.checked_use(charge))
-		to_chat(usr, SPAN_WARNING("[src] battery is dead or missing."))
-		. = FALSE
-
-/obj/item/device/scanner/Initialize()
-	. = ..()
-	cell_check()
-
-/obj/item/device/scanner/get_cell()
-	return cell
-
-/obj/item/device/scanner/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-		update_icon()
-
-/obj/item/device/scanner/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
-
-/obj/item/device/scanner/attackby(obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		src.cell = C
-
-
 /obj/item/device/scanner/proc/print_report_verb()
 	set name = "Print Report"
 	set category = "Object"
@@ -135,7 +98,7 @@
 		user << browse(null, "window=scanner")
 		return 1
 
-/obj/item/device/scanner/proc/print_report(var/mob/living/user)
+/obj/item/device/scanner/proc/print_report(mob/living/user)
 	if(!scan_data)
 		to_chat(user, "There is no scan data to print.")
 		return

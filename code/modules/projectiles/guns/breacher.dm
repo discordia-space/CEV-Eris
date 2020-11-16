@@ -14,12 +14,13 @@
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("struck", "hit", "bashed")
 	price_tag = 1000
+	spawn_blacklisted = TRUE
 	var/obj/item/weapon/hatton_magazine/magazine
+	origin_tech = list(TECH_COMBAT = 2)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 	var/fire_sound = 'sound/weapons/pulse.ogg'
 	var/fire_cooldown = 0
 	var/last_fired = 0
-	origin_tech = list(TECH_COMBAT = 2)
-	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 
 
 /obj/item/weapon/hatton/Initialize()
@@ -152,6 +153,7 @@
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	price_tag = 100
+	spawn_blacklisted = TRUE
 
 	var/charge = 3
 
@@ -183,9 +185,10 @@
 //Just imagine the robot is using that power to run an internal air compressor to refill the tube.
 //This also explains the cooldown between uses
 /obj/item/weapon/hatton/robot
-	var/power_cost = 200 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
 	fire_cooldown = 150 //fifteen second cooldown between uses
 	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations. It uses a massive surge of power to break down obstacles."
+	spawn_frequency = 0
+	var/power_cost = 200 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
 
 /obj/item/weapon/hatton/robot/use_charge()
 	var/mob/living/silicon/robot/R = loc
@@ -207,6 +210,7 @@
 	icon_state = "Moebius_Hammer_1"
 	item_state = "Moebius_Hammer_1"
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
+	spawn_blacklisted = TRUE
 
 /obj/item/weapon/hatton/moebius/update_icon()
 	overlays.Cut()

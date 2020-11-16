@@ -6,6 +6,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 	model = "asters"
 	price_tag = 300
+	bad_type = /obj/item/organ/external/robotic/asters
 
 /obj/item/organ/external/robotic/serbian
 	name = "\"Serbian Arms\""
@@ -13,6 +14,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 	model = "serbian"
 	price_tag = 600
+	bad_type = /obj/item/organ/external/robotic/serbian
 
 //In game prostheses
 /obj/item/organ/external/robotic/frozen_star
@@ -21,6 +23,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
 	price_tag = 450
+	bad_type = /obj/item/organ/external/robotic/frozen_star
 
 /obj/item/organ/external/robotic/frozen_star/l_arm
 	name = "\"Frozen Star\" Left Arm"
@@ -44,6 +47,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
 	price_tag = 700
+	bad_type = /obj/item/organ/external/robotic/technomancer
 
 /obj/item/organ/external/robotic/technomancer/l_arm
 	name = "Technomancer \"Homebrew\" Left Arm"
@@ -71,25 +75,26 @@
 	max_damage = 60
 	min_broken_damage = 40
 	price_tag = 300
+	bad_type = /obj/item/organ/external/robotic/moebius
 
 /obj/item/organ/external/robotic/moebius/l_arm
-	name = "Technomancer \"Homebrew\" Left Arm"
+	name = "\"Moebius\" Left Arm"
 	default_description = /datum/organ_description/arm/left
 
 /obj/item/organ/external/robotic/moebius/r_arm
-	name = "Technomancer \"Homebrew\" Right Arm"
+	name = "\"Moebius\" Right Arm"
 	default_description = /datum/organ_description/arm/right
 
 /obj/item/organ/external/robotic/moebius/l_leg
-	name = "Technomancer \"Homebrew\" Left Leg"
+	name = "\"Moebius\" Left Leg"
 	default_description = /datum/organ_description/leg/left
 
 /obj/item/organ/external/robotic/moebius/r_leg
-	name = "Technomancer \"Homebrew\" Right Leg"
+	name = "\"Moebius\" Right Leg"
 	default_description = /datum/organ_description/leg/right
 
 /obj/item/organ/external/robotic/moebius/groin
-	name = "Technomancer \"Homebrew\" Groin"
+	name = "\"Moebius\" Groin"
 	default_description = /datum/organ_description/groin
 
 /obj/item/organ/external/robotic/excelsior
@@ -102,6 +107,8 @@
 	max_damage = 65
 	min_broken_damage = 45
 	price_tag = 600
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/organ/external/robotic/excelsior
 
 /obj/item/organ/external/robotic/excelsior/l_arm
 	default_description = /datum/organ_description/arm/left
@@ -124,6 +131,11 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_PROSTHETIC_OS
+	bad_type = /obj/item/organ/external/robotic/one_star
 	price_tag = 900
 
 /obj/item/organ/external/robotic/one_star/l_arm

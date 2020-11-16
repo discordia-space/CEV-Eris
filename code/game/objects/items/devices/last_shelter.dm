@@ -6,9 +6,26 @@
 	item_state = "last_shelter"
 	price_tag = 20000
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 9, TECH_BIO = 3)
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	var/cooldown = 15 MINUTES
 	var/last_teleport = -15 MINUTES
 	var/scan = FALSE
+
+/obj/item/device/last_shelter/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_church
+
+/obj/item/device/last_shelter/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
+/obj/item/device/last_shelter/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
 
 /obj/item/device/last_shelter/attack_self(mob/user)
 	if(world.time >= (last_teleport + cooldown))

@@ -1,6 +1,7 @@
 /obj/structure/closet/malf/suits
 	desc = "It's a storage unit for operational gear."
 	icon_state = "syndicate"
+	rarity_value = 50
 
 /obj/structure/closet/malf/suits/populate_contents()
 	new /obj/item/weapon/tank/jetpack/void(src)

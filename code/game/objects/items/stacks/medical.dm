@@ -7,10 +7,12 @@
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 20
+	price_tag = 10
+	spawn_tags = SPAWN_TAG_MEDICINE
+	bad_type = /obj/item/stack/medical
+	matter = list(MATERIAL_BIOMATTER = 5)
 	var/heal_brute = 0
 	var/heal_burn = 0
-	price_tag = 10
-	matter = list(MATERIAL_BIOMATTER = 5)
 	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
 	var/charge_sections = 5		// How many indicator blips are there?
 	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
@@ -118,6 +120,7 @@
 	origin_tech = list(TECH_BIO = 1)
 	heal_brute = 4
 	preloaded_reagents = list("silicon" = 4, "ethanol" = 8)
+	rarity_value = 5
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -201,6 +204,7 @@
 	singular_name = "non sterile bandage"
 	desc = "Parts of clothes that can be wrapped around bloody stumps."
 	icon_state = "hm_brutepack"
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/medical/ointment
 	name = "ointment"
@@ -211,6 +215,8 @@
 	heal_burn = 4
 	origin_tech = list(TECH_BIO = 1)
 	preloaded_reagents = list("silicon" = 4, "carbon" = 8)
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -262,6 +268,9 @@
 			else
 				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
 
+/obj/item/stack/medical/advanced
+	bad_type = /obj/item/stack/medical/advanced
+
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"
@@ -273,6 +282,8 @@
 	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
 	splittable = FALSE	// Is the stack capable of being splitted?
 	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "lithium" = 4)
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -369,6 +380,7 @@
 	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
 	splittable = FALSE	// Is the stack capable of being splitted?
 	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "mercury" = 4)
+	rarity_value = 10
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user)
 	if(..())
@@ -431,6 +443,7 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	rarity_value = 20
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/living/user)
 	if(..())

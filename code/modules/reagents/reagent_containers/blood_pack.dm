@@ -2,6 +2,7 @@
 	name = "blood packs bags"
 	desc = "This box contains blood packs."
 	icon_state = "sterile"
+	rarity_value = 10
 
 /obj/item/weapon/storage/box/bloodpacks/populate_contents()
 	new /obj/item/weapon/reagent_containers/blood(src)
@@ -71,3 +72,5 @@
 	bloodtypeandpackname("O-")
 
 /obj/item/weapon/reagent_containers/blood/empty
+	spawn_tags = SPAWN_TAG_JUNK
+	rarity_value = 20

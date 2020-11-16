@@ -3,7 +3,11 @@
 	icon_state = "ominous"
 	desc = "It looks like ancient, and strange generator."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_OMINOUS
 	var/cooldown = FALSE
+	var/entropy_value = 3
 
 /obj/structure/ominous/attack_hand(mob/living/user as mob)
 	var/last_use
@@ -45,7 +49,7 @@
 
 /obj/structure/ominous/teleporter/proc/teleport()
 	for(var/mob/living/carbon/human/H in range(7, src))
-		H.forceMove(locate(x + rand(-14, 14), y + rand(-14, 14), z))
+		go_to_bluespace(get_turf(src), entropy_value, FALSE, H, locate(x + rand(-14, 14), y + rand(-14, 14), z))
 
 /obj/structure/ominous/teleporter/attack_hand(mob/living/user as mob)
 	var/last_use

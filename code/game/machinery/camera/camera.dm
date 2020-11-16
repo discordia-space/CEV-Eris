@@ -185,7 +185,7 @@
 			return
 
 
-	if(istype(I, /obj/item/weapon/tool) && panel_open)
+	if(istool(I) && panel_open)
 		interact(user)
 
 	// OTHER

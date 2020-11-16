@@ -53,7 +53,7 @@
 	var/time = say_timestamp()
 	to_chat(src,"[time] [message]")
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null,\
+/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language,\
 		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
 
 	if(!client)

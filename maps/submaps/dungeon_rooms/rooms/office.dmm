@@ -376,7 +376,7 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "aT" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "aU" = (
@@ -446,7 +446,7 @@
 /obj/item/weapon/pen,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/weapon/gun/projectile/handmade_pistol,
-/obj/random/ammo,
+/obj/spawner/ammo,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 

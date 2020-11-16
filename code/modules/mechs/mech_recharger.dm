@@ -9,7 +9,7 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
-	circuit = /obj/item/weapon/circuitboard/mech_recharger
+	circuit = /obj/item/weapon/electronics/circuitboard/mech_recharger
 
 	var/mob/living/exosuit/charging = null
 

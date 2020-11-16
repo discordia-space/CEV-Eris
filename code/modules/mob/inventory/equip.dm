@@ -125,3 +125,40 @@ var/list/slot_equipment_priority = list(
 			Item.forceMove(src.back)
 			return backpack
 	return ..()
+/mob/living/carbon/human/proc/quick_equip_storage(obj/item/Item)
+	var/potential = src.get_inactive_hand()
+	if(istype(src.back,/obj/item/weapon/storage))
+		var/obj/item/weapon/storage/backpack = src.back
+		if(backpack.attackby(Item,src))
+			return TRUE
+	if(istype(potential, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/pack = potential
+		if(pack.attackby(Item,src))
+			return TRUE
+	if(quick_equip_belt(Item)) 
+		return TRUE
+	return FALSE
+/mob/living/carbon/human/proc/quick_equip_belt(obj/item/Item)
+	if(istype(src.belt,/obj/item/weapon/storage/))
+		var/obj/item/weapon/storage/B= src.belt
+		if(B.attackby(Item,src))
+			return TRUE
+	return FALSE
+
+/mob/living/carbon/human/proc/equip_to_from_suit_storage(obj/item/Item)
+	if(Item == src.s_store) 
+		if(put_in_active_hand(Item))
+			return TRUE
+	else
+		if(equip_to_slot_if_possible(Item, slot_s_store))
+			return TRUE
+
+/mob/living/carbon/human/proc/equip_to_from_bag(var/obj/item/Item, obj/item/weapon/storage/store)
+	if(Item)
+		store.attackby(Item,src)
+		return TRUE
+	else if(!Item && store.contents.len >=1) 
+		var/return_hand = hand ? slot_l_hand : slot_r_hand
+		equip_to_slot_if_possible(store.contents[store.contents.len], return_hand)
+		return TRUE
+	return FALSE

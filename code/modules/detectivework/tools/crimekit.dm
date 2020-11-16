@@ -7,6 +7,10 @@
 	item_state = "case"
 	storage_slots = 14
 	price_tag = 50
+	rarity_value = 20
+	spawn_frequency = 10
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_BOX//CUIDADO
 
 /obj/item/weapon/storage/briefcase/crimekit/populate_contents()
 	new /obj/item/weapon/storage/box/swabs(src)

@@ -23,6 +23,10 @@
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
 	hud_actions = list()
+	bad_type = /obj/item/weapon/gun
+	spawn_tags = SPAWN_TAG_GUN
+	rarity_value = 10
+	spawn_frequency = 10
 
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
@@ -63,7 +67,7 @@
 
 	var/icon_contained = TRUE
 	var/static/list/item_icons_cache = list()
-	var/wielded_item_state = null
+	var/wielded_item_state
 	var/one_hand_penalty = 0 //The higher this number is, the more severe the accuracy penalty for shooting it one handed. 5 is a good baseline for this, but var edit it live and play with it yourself.
 
 	var/projectile_color //Set by a firemode. Sets the fired projectiles color
@@ -119,7 +123,7 @@
 
 
 /obj/item/weapon/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
-	var/wield_state = null
+	var/wield_state
 	if(wielded_item_state)
 		wield_state = wielded_item_state
 	if(!(hands || back || onsuit))
@@ -159,7 +163,7 @@
 //Checks whether a given mob can use the gun
 //Any checks that shouldn't result in handle_click_empty() being called if they fail should go here.
 //Otherwise, if you want handle_click_empty() to be called, check in consume_next_projectile() and return null there.
-/obj/item/weapon/gun/proc/special_check(var/mob/user)
+/obj/item/weapon/gun/proc/special_check(mob/user)
 
 	if(!isliving(user))
 		return FALSE
@@ -222,11 +226,11 @@
 	if(ishuman(user) && user.a_intent == "harm")
 		var/mob/living/carbon/human/H = user
 
-		if(H.r_hand == src && istype(H.l_hand, /obj/item/weapon/gun))
+		if(H.r_hand == src && isgun(H.l_hand))
 			off_hand = H.l_hand
 			dual_wielding = TRUE
 
-		else if(H.l_hand == src && istype(H.r_hand, /obj/item/weapon/gun))
+		else if(H.l_hand == src && isgun(H.r_hand))
 			off_hand = H.r_hand
 			dual_wielding = TRUE
 		else
@@ -326,7 +330,7 @@
 	return null
 
 //used by aiming code
-/obj/item/weapon/gun/proc/can_hit(atom/target as mob, var/mob/living/user as mob)
+/obj/item/weapon/gun/proc/can_hit(atom/target, mob/living/user)
 	if(!special_check(user))
 		return 2
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
@@ -343,7 +347,7 @@
 	update_firemode() //Stops automatic weapons spamming this shit endlessly
 
 //called after successfully firing
-/obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, var/pointblank=0, var/reflex=0)
+/obj/item/weapon/gun/proc/handle_post_fire(mob/living/user, atom/target, pointblank=0, reflex=0)
 	if(silenced)
 		//Silenced shots have a lower range and volume
 		playsound(user, fire_sound_silenced, 15, 1, -3)
@@ -382,7 +386,7 @@
 	user.handle_recoil(src)
 	update_icon()
 
-/obj/item/weapon/gun/proc/process_point_blank(var/obj/item/projectile/P, mob/user, atom/target)
+/obj/item/weapon/gun/proc/process_point_blank(obj/item/projectile/P, mob/user, atom/target)
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
 
@@ -407,7 +411,7 @@
 
 
 //does the actual launching of the projectile
-/obj/item/weapon/gun/proc/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
+/obj/item/weapon/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
@@ -523,17 +527,17 @@
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
 			hud_actions += action
-			if(istype(src.loc, /mob))
+			if(ismob(src.loc))
 				var/mob/user = src.loc
 				user.client.screen += action
 	else
-		if(istype(src.loc, /mob))
+		if(ismob(src.loc))
 			var/mob/user = src.loc
 			user.client.screen -= action
 		hud_actions -= action
 		qdel(action)
 
-/obj/item/weapon/gun/proc/add_firemode(var/list/firemode)
+/obj/item/weapon/gun/proc/add_firemode(list/firemode)
 	//If this var is set, it means spawn a specific subclass of firemode
 	if (firemode["mode_type"])
 		var/newtype = firemode["mode_type"]
@@ -550,7 +554,7 @@
 		sel_mode = 1
 	return set_firemode(sel_mode)
 
-/obj/item/weapon/gun/proc/set_firemode(var/index)
+/obj/item/weapon/gun/proc/set_firemode(index)
 	if(index > firemodes.len)
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
@@ -593,7 +597,7 @@
 //When safety is toggled
 //When gun is picked up
 //When gun is readied
-/obj/item/weapon/gun/proc/update_firemode(var/force_state = null)
+/obj/item/weapon/gun/proc/update_firemode(force_state = null)
 	if (sel_mode && firemodes && firemodes.len)
 		var/datum/firemode/new_mode = firemodes[sel_mode]
 		new_mode.update(force_state)
@@ -670,7 +674,7 @@
 
 	return data
 
-/obj/item/weapon/gun/Topic(href, href_list, var/datum/topic_state/state)
+/obj/item/weapon/gun/Topic(href, href_list, datum/topic_state/state)
 	if(..(href, href_list, state))
 		return 1
 

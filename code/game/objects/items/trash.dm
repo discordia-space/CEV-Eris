@@ -6,6 +6,8 @@
 	desc = "This is rubbish."
 	icon = 'icons/obj/trash.dmi'
 	w_class = ITEM_SIZE_SMALL
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_JUNK
 	matter = list(MATERIAL_PLASTIC = 1)
 
 /obj/item/trash/attack(mob/M, mob/living/user)

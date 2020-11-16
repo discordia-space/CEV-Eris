@@ -30,7 +30,6 @@
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/death()
 	..()
 	delhivetech()
-	walk(src, 0)
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/proc/telenode()
 	var/list/atom/NODES = list()
@@ -46,7 +45,7 @@
 			othertyrant = 1
 	if(othertyrant == 0)
 		for(var/obj/machinery/hivemind_machine/NODE in world)
-			qdel(NODE)
+			NODE.destruct()
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/Life()
 
@@ -69,33 +68,19 @@
 		health_marker_3 = !health_marker_3
 		telenode()
 
-	if(!stat)
-		switch(stance)
-			if(HOSTILE_STANCE_IDLE)
-				target_mob = FindTarget()
-
-			if(HOSTILE_STANCE_ATTACK)
-				if(destroy_surroundings)
-					DestroySurroundings()
-				MoveToTarget()
-
-			if(HOSTILE_STANCE_ATTACKING)
-				if(destroy_surroundings)
-					DestroySurroundings()
-				AttackTarget()
-
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/OpenFire()
 	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + 120
 	walk(src, 0)
 	telegraph()
-	if(prob(50))
-		random_shots()
-		move_to_delay = initial(move_to_delay)
-		MoveToTarget()
-		return
-	else
-		select_spiral_attack()
-		move_to_delay = initial(move_to_delay)
-		MoveToTarget()
-		return
+	spawn(rand(megafauna_min_cooldown, megafauna_max_cooldown))
+		if(prob(50))
+			random_shots()
+			move_to_delay = initial(move_to_delay)
+			MoveToTarget()
+			return
+		else
+			select_spiral_attack()
+			move_to_delay = initial(move_to_delay)
+			MoveToTarget()
+			return

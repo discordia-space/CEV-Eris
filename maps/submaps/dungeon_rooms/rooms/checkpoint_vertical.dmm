@@ -77,7 +77,7 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/crawler)
 "t" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "u" = (
@@ -103,7 +103,7 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "y" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/crawler)
 

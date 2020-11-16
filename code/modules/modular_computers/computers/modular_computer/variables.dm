@@ -3,10 +3,11 @@
 /obj/item/modular_computer
 	name = "Modular Computer"
 	desc = "A modular computer. You shouldn't see this."
-
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/modular_computer
 	var/enabled = 0											// Whether the computer is turned on.
 	var/screen_on = 1										// Whether the computer is active/opened/it's screen is on.
-	var/datum/computer_file/program/active_program = null	// A currently active program running on the computer.
+	var/datum/computer_file/program/active_program			// A currently active program running on the computer.
 	var/hardware_flag = 0									// A flag that describes this device type
 	var/last_power_usage = 0								// Last tick power usage of this computer
 	var/last_battery_percent = 0							// Used for deciding if battery percentage has chandged

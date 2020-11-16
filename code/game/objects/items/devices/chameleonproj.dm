@@ -10,8 +10,9 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
+	suitable_cell = /obj/item/weapon/cell/small
 	var/can_use = 1
-	var/obj/effect/dummy/chameleon/active_dummy = null
+	var/obj/effect/dummy/chameleon/active_dummy
 	var/saved_item = /obj/item/trash/cigbutt
 	var/saved_icon = 'icons/inventory/face/icon.dmi'
 	var/saved_icon_state = "cigbutt"
@@ -19,28 +20,6 @@
 
 	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
 	var/move_cost = 4 //how much charge is consumed per movement
-	var/obj/item/weapon/cell/cell
-	var/suitable_cell = /obj/item/weapon/cell/small
-
-/obj/item/device/chameleon/Initialize()
-	.=..()
-	if(. && !cell && suitable_cell)
-		cell = new suitable_cell(src)
-
-/obj/item/device/chameleon/get_cell()
-	return cell
-
-/obj/item/device/chameleon/handle_atom_del(atom/A)
-	..()
-	if(A == cell)
-		cell = null
-
-/obj/item/device/chameleon/examine(mob/user)
-	..()
-	if(cell)
-		to_chat(user, SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent())]%\""))
-	else
-		to_chat(user, SPAN_WARNING("\The [src] has no cell."))
 
 /obj/item/device/chameleon/dropped()
 	disrupt()
@@ -50,25 +29,13 @@
 	disrupt()
 	..()
 
-/obj/item/device/chameleon/attack_self()
-	toggle()
+/obj/item/device/chameleon/attack_self(mob/user)
+	if(cell_check(tick_cost,user))
+		toggle()
 
 /obj/item/device/chameleon/Process()
-	if(active_dummy)
-		if(cell)
-			cell.checked_use(tick_cost)
-
-/obj/item/device/chameleon/MouseDrop(over_object)
-	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell,usr))
-		cell = null
-	else
-		return ..()
-
-/obj/item/device/chameleon/attackby(var/obj/item/C, mob/living/user)
-	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		cell = C
-		return
-	..()
+	if(active_dummy && !cell_use_check(tick_cost))
+		toggle()
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
 	if (istype(target, /obj/item/weapon/storage)) return

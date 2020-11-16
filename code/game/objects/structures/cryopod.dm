@@ -1,4 +1,4 @@
-/obj/structure/cryopod_spawner/proc/justequip(var/mob/living/carbon/human/H, var/title, var/alt_title, var/outfit_type)
+/obj/structure/cryopod_spawner/proc/justequip(mob/living/carbon/human/H, title, alt_title, outfit_type)
 	var/decl/hierarchy/outfit/outfit = outfit_type
 	. = outfit.equip(H, title, alt_title)
 
@@ -15,6 +15,10 @@
 		STAT_COG = 40,
 		STAT_BIO = 25,
 	)
+	rarity_value = 10
+	spawn_frequency = 10
+	spawn_tags = SPAWN_TAG_ENCOUNTER_CRYOPOD
+	bad_type = /obj/structure/cryopod_spawner
 
 /obj/structure/cryopod_spawner/proc/add_stats(var/mob/living/carbon/human/target)
 	if(!ishuman(target))

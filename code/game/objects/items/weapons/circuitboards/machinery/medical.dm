@@ -1,4 +1,4 @@
-/*/obj/item/weapon/circuitboard/autodoc
+/*/obj/item/weapon/electronics/circuitboard/autodoc
 	name = T_BOARD("autodoc")
 	build_path = /obj/machinery/autodoc
 	board_type = "machine"
@@ -9,7 +9,7 @@
 		/obj/item/weapon/stock_parts/console_screen = 2,
 		/obj/item/weapon/stock_parts/micro_laser = 2
 )*/
-/obj/item/weapon/circuitboard/sleeper
+/obj/item/weapon/electronics/circuitboard/sleeper
 	name = T_BOARD("sleeper")
 	build_path = /obj/machinery/sleeper
 	board_type = "machine"

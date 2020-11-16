@@ -127,7 +127,7 @@
 	name = "biogenerator screen"
 	icon_state = "screen-working"
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/biogen_console
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen_console
 
 	//we store it here and update with special proc
 	var/list/metrics = list("operational" = FALSE,
@@ -207,7 +207,7 @@
 	var/wearout_cycle = 1200
 	var/pipes_dirtiness = 0
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/biogen_port
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen_port
 
 
 /obj/machinery/multistructure/biogenerator_part/port/update_icon()
@@ -312,7 +312,7 @@
 	var/obj/machinery/atmospherics/binary/biogen_chamber/chamber
 	var/obj/machinery/power/biogenerator_core/core
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/biogen
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/biogen
 
 
 /obj/machinery/multistructure/biogenerator_part/generator/New()

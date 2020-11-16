@@ -16,20 +16,12 @@
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0 // DAMN BOI
 	species_restricted = null
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
 	icon_state = "mime"
-
-/obj/item/clothing/shoes/black
-	name = "black shoes"
-	icon_state = "black"
-	desc = "A pair of black shoes."
-
-	cold_protection = LEGS
-	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = LEGS
-	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	rarity_value = 14.3
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain, wooden sandals."
@@ -38,6 +30,7 @@
 	species_restricted = null
 	body_parts_covered = 0
 	siemens_coefficient = 0
+	rarity_value = 14.3
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
@@ -45,6 +38,7 @@
 	icon_state = "black"
 	body_parts_covered = LEGS
 	siemens_coefficient = 0
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
@@ -53,11 +47,12 @@
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN + 0.4
 	force = NONE
+	rarity_value = 14.3
 	//	armor = list(melee = 100, bullet = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
 
-/obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
+/obj/item/clothing/shoes/clown_shoes/handle_movement(turf/walking, running)
 	if(running)
 		if(footstep >= 2)
 			footstep = 0
@@ -73,6 +68,7 @@
 	icon_state = "cult"
 	item_state = "cult"
 	force = WEAPON_FORCE_WEAK
+	spawn_blacklisted = TRUE
 	siemens_coefficient = 0.7
 
 	cold_protection = LEGS
@@ -85,6 +81,7 @@
 	name = "cyborg boots"
 	desc = "Shoes for a cyborg costume"
 	icon_state = "boots"
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/slippers
 	name = "bunny slippers"
@@ -94,6 +91,7 @@
 	force = 0
 	species_restricted = null
 	w_class = ITEM_SIZE_SMALL
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/slippers_worn
 	name = "worn bunny slippers"
@@ -115,3 +113,4 @@
 	name = "leather shoes"
 	desc = "A sturdy pair of leather shoes."
 	icon_state = "leather"
+	rarity_value = 14.3

@@ -12,6 +12,7 @@
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
 	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	rarity_value = 15
 
 	var/gps_prefix = "COM"
 	var/datum/gps_data/gps
@@ -114,6 +115,7 @@
 // Looks like a normal GPS, but displays PDA GPS and such
 /obj/item/device/gps/traitor
 	hide_prefixes = list()
+	spawn_blacklisted = TRUE
 
 // Locator
 // A GPS device that tracks beacons and implants
