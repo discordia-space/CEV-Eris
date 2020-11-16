@@ -20,7 +20,6 @@
 /obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.09317   spawn_price=30   100    
 /obj/item/clothing/suit/storage/vest/insulated    blacklisted=0    spawn_value=1.59291   spawn_price=600   100    
 /obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/suit/storage/vest    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/suit/storage/ass_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
 /obj/item/clothing/suit/storage/cargo_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
 /obj/item/clothing/suit/storage/qm_coat    blacklisted=0    spawn_value=3.77685   spawn_price=30   100    

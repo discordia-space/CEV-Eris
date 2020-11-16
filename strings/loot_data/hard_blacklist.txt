@@ -260,6 +260,7 @@
 /obj/item/clothing/head/space
 /obj/item/clothing/head/armor/faceshield
 /obj/item/clothing/head/armor
+/obj/item/clothing/head/collectable
 /obj/item/clothing/head/lightrig/hacker
 /obj/item/clothing/head/lightrig
 /obj/item/clothing/head
@@ -281,6 +282,7 @@
 /obj/item/clothing/suit/armor/heavy/red
 /obj/item/clothing/suit/armor/heavy/green
 /obj/item/clothing/suit/armor
+/obj/item/clothing/suit/storage/vest
 /obj/item/clothing/suit/storage
 /obj/item/clothing/suit
 /obj/item/clothing/mask
@@ -288,6 +290,7 @@
 /obj/item/clothing/under/rank
 /obj/item/clothing/under
 /obj/item/clothing/glasses/sunglasses/bst
+/obj/item/clothing/glasses/hud
 /obj/item/clothing/glasses/powered
 /obj/item/clothing/glasses
 /obj/item/clothing/shoes/color/black/bst

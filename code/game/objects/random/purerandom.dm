@@ -14,8 +14,7 @@
 
 /obj/spawner/lowkeyrandom/valid_candidates()
 	var/list/candidates = ..()
-	var/list/old_tags = SSspawn_data.take_tags(candidates)
-	old_tags -= list(SPAWN_OBJ)
+	var/list/old_tags = SSspawn_data.take_tags(candidates, list(SPAWN_OBJ))
 	var/new_tags_amt = max(round(old_tags.len*0.10),1)
 	tags_to_spawn = list()
 	for(var/i in 1 to new_tags_amt)

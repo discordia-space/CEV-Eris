@@ -255,7 +255,7 @@
 			things += path
 	return pick(things)
 
-/datum/controller/subsystem/spawn_data/proc/take_tags(list/paths)
+/datum/controller/subsystem/spawn_data/proc/take_tags(list/paths, list/exclude)
 	var/list/local_tags = list()
 	var/atom/movable/A
 	for(var/path in paths)
@@ -265,6 +265,7 @@
 			if(tag in local_tags)
 				continue
 			local_tags += list(tag)
+	local_tags -= exclude
 	return local_tags
 
 /datum/controller/subsystem/spawn_data/proc/valid_candidates(list/tags, list/bad_tags, allow_blacklist=FALSE, low_price=0, top_price=0, filter_density=FALSE, list/include, list/exclude)

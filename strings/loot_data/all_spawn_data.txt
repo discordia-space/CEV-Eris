@@ -2347,7 +2347,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/clothing/head/collectable/hardhat    obj,item,clothing,head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
 /obj/item/clothing/head/collectable/thunderdome    obj,item,clothing,head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
 /obj/item/clothing/head/collectable/swat    obj,item,clothing,head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
-/obj/item/clothing/head/collectable    obj,item,clothing,head    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
 /obj/item/clothing/head/hardhat/visor    obj,item,clothing,head    blacklisted=0    spawn_value=2.40708   spawn_price=35   100    
 /obj/item/clothing/head/hardhat/blue    obj,item,clothing,head    blacklisted=0    spawn_value=8.66246   spawn_price=35   100    
 /obj/item/clothing/head/hardhat/orange    obj,item,clothing,head    blacklisted=0    spawn_value=8.66246   spawn_price=35   100    
@@ -2529,7 +2528,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/clothing/suit/storage/vest/merc    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=1.09317   spawn_price=30   100    
 /obj/item/clothing/suit/storage/vest/insulated    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=1.59291   spawn_price=600   100    
 /obj/item/clothing/suit/storage/vest/chestrig    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/suit/storage/vest    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/suit/storage/ass_jacket    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
 /obj/item/clothing/suit/storage/cargo_jacket    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
 /obj/item/clothing/suit/storage/qm_coat    obj,item,clothing,suit,suit_storage    blacklisted=0    spawn_value=3.77685   spawn_price=30   100    
@@ -2798,7 +2796,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/clothing/glasses/hud/security/jensenshades    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
 /obj/item/clothing/glasses/hud/security    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
 /obj/item/clothing/glasses/hud/broken    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
-/obj/item/clothing/glasses/hud    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
 /obj/item/clothing/glasses/powered/meson    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.40549   spawn_price=500   100    
 /obj/item/clothing/glasses/powered/night    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.40549   spawn_price=500   100    
 /obj/item/clothing/glasses/powered/science    obj,item,clothing,glasses    blacklisted=0    spawn_value=4.65612   spawn_price=30   100    
@@ -3824,7 +3821,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/structure/closet/l3closet    obj,structure,closet    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/structure/closet/random/miscellaneous    obj,structure,closet,closet_random    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/structure/closet/random/tech    obj,structure,closet,closet_random    blacklisted=0    spawn_value=6.66667   spawn_price=0   100    
-/obj/structure/closet/random/spareparts    obj,structure,closet,closet_random    blacklisted=0    spawn_value=2   spawn_price=0   100    
+/obj/structure/closet/random/spareparts    obj,structure,closet,closet_random    blacklisted=1    spawn_value=2   spawn_price=0   100    
 /obj/structure/closet/random/milsupply    obj,structure,closet,closet_random    blacklisted=0    spawn_value=2   spawn_price=0   100    
 /obj/structure/closet/random/medsupply    obj,structure,closet,closet_random    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/structure/closet/random/hostilemobs/beacon    obj,structure,closet,closet_random    blacklisted=1    spawn_value=16.6667   spawn_price=0   100    

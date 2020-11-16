@@ -2324,7 +2324,6 @@
 /obj/item/clothing/head/collectable/hardhat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
 /obj/item/clothing/head/collectable/thunderdome    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
 /obj/item/clothing/head/collectable/swat    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
-/obj/item/clothing/head/collectable    blacklisted=1    spawn_value=7.69231   spawn_price=1000   100    
 /obj/item/clothing/head/hardhat/visor    blacklisted=0    spawn_value=2.40708   spawn_price=35   100    
 /obj/item/clothing/head/hardhat/blue    blacklisted=0    spawn_value=8.66246   spawn_price=35   100    
 /obj/item/clothing/head/hardhat/orange    blacklisted=0    spawn_value=8.66246   spawn_price=35   100    
@@ -2506,7 +2505,6 @@
 /obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.09317   spawn_price=30   100    
 /obj/item/clothing/suit/storage/vest/insulated    blacklisted=0    spawn_value=1.59291   spawn_price=600   100    
 /obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/suit/storage/vest    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/suit/storage/ass_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
 /obj/item/clothing/suit/storage/cargo_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   100    
 /obj/item/clothing/suit/storage/qm_coat    blacklisted=0    spawn_value=3.77685   spawn_price=30   100    
@@ -2775,7 +2773,6 @@
 /obj/item/clothing/glasses/hud/security/jensenshades    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
 /obj/item/clothing/glasses/hud/security    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
 /obj/item/clothing/glasses/hud/broken    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
-/obj/item/clothing/glasses/hud    blacklisted=0    spawn_value=4.4841   spawn_price=200   100    
 /obj/item/clothing/glasses/powered/meson    blacklisted=0    spawn_value=4.40549   spawn_price=500   100    
 /obj/item/clothing/glasses/powered/night    blacklisted=0    spawn_value=4.40549   spawn_price=500   100    
 /obj/item/clothing/glasses/powered/science    blacklisted=0    spawn_value=4.65612   spawn_price=30   100    
@@ -3727,7 +3724,7 @@
 /obj/structure/closet/l3closet    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/structure/closet/random/miscellaneous    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/structure/closet/random/tech    blacklisted=0    spawn_value=6.66667   spawn_price=0   100    
-/obj/structure/closet/random/spareparts    blacklisted=0    spawn_value=2   spawn_price=0   100    
+/obj/structure/closet/random/spareparts    blacklisted=1    spawn_value=2   spawn_price=0   100    
 /obj/structure/closet/random/milsupply    blacklisted=0    spawn_value=2   spawn_price=0   100    
 /obj/structure/closet/random/medsupply    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/structure/closet/random/hostilemobs/beacon    blacklisted=1    spawn_value=16.6667   spawn_price=0   100    

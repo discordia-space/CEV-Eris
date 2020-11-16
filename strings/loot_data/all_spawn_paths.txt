@@ -2346,7 +2346,6 @@
 /obj/item/clothing/head/collectable/hardhat
 /obj/item/clothing/head/collectable/thunderdome
 /obj/item/clothing/head/collectable/swat
-/obj/item/clothing/head/collectable
 /obj/item/clothing/head/hardhat/visor
 /obj/item/clothing/head/hardhat/blue
 /obj/item/clothing/head/hardhat/orange
@@ -2528,7 +2527,6 @@
 /obj/item/clothing/suit/storage/vest/merc
 /obj/item/clothing/suit/storage/vest/insulated
 /obj/item/clothing/suit/storage/vest/chestrig
-/obj/item/clothing/suit/storage/vest
 /obj/item/clothing/suit/storage/ass_jacket
 /obj/item/clothing/suit/storage/cargo_jacket
 /obj/item/clothing/suit/storage/qm_coat
@@ -2797,7 +2795,6 @@
 /obj/item/clothing/glasses/hud/security/jensenshades
 /obj/item/clothing/glasses/hud/security
 /obj/item/clothing/glasses/hud/broken
-/obj/item/clothing/glasses/hud
 /obj/item/clothing/glasses/powered/meson
 /obj/item/clothing/glasses/powered/night
 /obj/item/clothing/glasses/powered/science

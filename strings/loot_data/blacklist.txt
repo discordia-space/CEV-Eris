@@ -310,7 +310,6 @@
 /obj/item/clothing/head/collectable/hardhat
 /obj/item/clothing/head/collectable/thunderdome
 /obj/item/clothing/head/collectable/swat
-/obj/item/clothing/head/collectable
 /obj/item/clothing/head/chefhat
 /obj/item/clothing/head/caphat/cap
 /obj/item/clothing/head/caphat/formal
@@ -543,6 +542,7 @@
 /obj/structure/closet/thunderdome/tdred
 /obj/structure/closet/thunderdome/tdgreen
 /obj/structure/closet/thunderdome
+/obj/structure/closet/random/spareparts
 /obj/structure/closet/random/hostilemobs/beacon
 /obj/structure/closet/random/hostilemobs
 /obj/structure/closet/secure_closet/bar
