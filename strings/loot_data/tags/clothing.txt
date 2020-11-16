@@ -294,8 +294,6 @@
 /obj/item/clothing/suit/armor/bulletproof/serbian    blacklisted=0    spawn_value=2.34701   spawn_price=405   100    
 /obj/item/clothing/suit/armor/bulletproof    blacklisted=0    spawn_value=1.89741   spawn_price=505   100    
 /obj/item/clothing/suit/armor/laserproof    blacklisted=0    spawn_value=1.47457   spawn_price=655   100    
-/obj/item/clothing/suit/armor/heavy/red    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
-/obj/item/clothing/suit/armor/heavy/green    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer    blacklisted=0    spawn_value=1.89757   spawn_price=500   100    
 /obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=1.89757   spawn_price=500   100    
 /obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
@@ -372,7 +370,6 @@
 /obj/item/clothing/suit/poncho    blacklisted=0    spawn_value=15.281   spawn_price=35   100    
 /obj/item/clothing/suit/fire    blacklisted=0    spawn_value=8.54776   spawn_price=50   100    
 /obj/item/clothing/suit/radiation    blacklisted=0    spawn_value=3.95257   spawn_price=100   100    
-/obj/item/clothing/suit    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/killthroat    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/homeless    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
@@ -665,4 +662,3 @@
 /obj/item/clothing/accessory/locket    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/accessory    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/ears/earmuffs    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/ears    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    

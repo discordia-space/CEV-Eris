@@ -245,7 +245,7 @@
 /obj/item/weapon/disk    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/camera_assembly    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/orion_ship    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/tool/multitool/hacktool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
+/obj/item/weapon/tool/multitool/hacktool    blacklisted=1    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/multitool/uplink    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/multitool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/armblade/claws    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
@@ -375,7 +375,7 @@
 /obj/item/weapon/storage/box/anti_photons    blacklisted=0    spawn_value=1.60262   spawn_price=250   100    
 /obj/item/weapon/storage/box/incendiary    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
 /obj/item/weapon/storage/box/trackimp    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
-/obj/item/weapon/storage/box/chemimp    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
+/obj/item/weapon/storage/box/chemimp    blacklisted=1    spawn_value=1.66667   spawn_price=0   100    
 /obj/item/weapon/storage/box/rxglasses    blacklisted=0    spawn_value=4.47984   spawn_price=210   100    
 /obj/item/weapon/storage/box/drinkingglasses    blacklisted=0    spawn_value=8.4903   spawn_price=60   100    
 /obj/item/weapon/storage/box/cdeathalarm_kit    blacklisted=0    spawn_value=2   spawn_price=0   100    
@@ -1780,8 +1780,6 @@
 /obj/item/weapon/gun/projectile/revolver    blacklisted=0    spawn_value=7.75132   spawn_price=2000   100    
 /obj/item/weapon/gun/matter/launcher/nt_sprayer    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/gun/matter/launcher/reclaimer    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter/launcher    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/rig/combat/equipped    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
 /obj/item/weapon/rig/combat/ironhammer/equipped    blacklisted=1    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/rig/combat/ironhammer    blacklisted=1    spawn_value=5   spawn_price=0   100    
@@ -2479,8 +2477,6 @@
 /obj/item/clothing/suit/armor/bulletproof/serbian    blacklisted=0    spawn_value=2.34701   spawn_price=405   100    
 /obj/item/clothing/suit/armor/bulletproof    blacklisted=0    spawn_value=1.89741   spawn_price=505   100    
 /obj/item/clothing/suit/armor/laserproof    blacklisted=0    spawn_value=1.47457   spawn_price=655   100    
-/obj/item/clothing/suit/armor/heavy/red    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
-/obj/item/clothing/suit/armor/heavy/green    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer    blacklisted=0    spawn_value=1.89757   spawn_price=500   100    
 /obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=1.89757   spawn_price=500   100    
 /obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
@@ -2557,7 +2553,6 @@
 /obj/item/clothing/suit/poncho    blacklisted=0    spawn_value=15.281   spawn_price=35   100    
 /obj/item/clothing/suit/fire    blacklisted=0    spawn_value=8.54776   spawn_price=50   100    
 /obj/item/clothing/suit/radiation    blacklisted=0    spawn_value=3.95257   spawn_price=100   100    
-/obj/item/clothing/suit    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/killthroat    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/homeless    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
@@ -2851,7 +2846,6 @@
 /obj/item/clothing/accessory/locket    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/accessory    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/ears/earmuffs    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/ears    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/supply_beacon/supermatter    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/supply_beacon    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/frame/fire_alarm    blacklisted=0    spawn_value=10   spawn_price=0   100    
@@ -2916,7 +2910,7 @@
 /obj/item/device/propaganda_chip    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_bug    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_monitor    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/device/radio/spy    blacklisted=0    spawn_value=10   spawn_price=0   100    
+/obj/item/device/radio/spy    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/uplink    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/headset/uplink    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/headset/syndicate    blacklisted=1    spawn_value=10   spawn_price=0   100    
@@ -2949,7 +2943,6 @@
 /obj/item/device/radio/off    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/phone/medbay    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/phone    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/device/radio/exosuit    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_sensor    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/suit_cooling_unit    blacklisted=0    spawn_value=10   spawn_price=0   100    

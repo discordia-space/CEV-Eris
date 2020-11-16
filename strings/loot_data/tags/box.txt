@@ -17,7 +17,7 @@
 /obj/item/weapon/storage/box/anti_photons    blacklisted=0    spawn_value=1.60262   spawn_price=250   100    
 /obj/item/weapon/storage/box/incendiary    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
 /obj/item/weapon/storage/box/trackimp    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
-/obj/item/weapon/storage/box/chemimp    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
+/obj/item/weapon/storage/box/chemimp    blacklisted=1    spawn_value=1.66667   spawn_price=0   100    
 /obj/item/weapon/storage/box/rxglasses    blacklisted=0    spawn_value=4.47984   spawn_price=210   100    
 /obj/item/weapon/storage/box/drinkingglasses    blacklisted=0    spawn_value=8.4903   spawn_price=60   100    
 /obj/item/weapon/storage/box/cdeathalarm_kit    blacklisted=0    spawn_value=2   spawn_price=0   100    

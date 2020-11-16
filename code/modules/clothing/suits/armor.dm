@@ -288,6 +288,7 @@
 	icon_state = "tdred"
 	item_state = "tdred"
 	siemens_coefficient = 1
+	spawn_frequency = 0//Thunderdome
 
 /obj/item/clothing/suit/armor/heavy/green
 	name = "Thunderdome suit (green)"
@@ -295,6 +296,7 @@
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
 	siemens_coefficient = 1
+	spawn_frequency = 0//Thunderdome
 
 // Riot suit
 /obj/item/clothing/suit/armor/heavy/riot
@@ -344,6 +346,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
+	bad_type = /obj/item/clothing/suit/storage/vest//bad_sprite
 
 //Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
@@ -392,7 +395,6 @@
 /obj/item/clothing/suit/armor/reactive
 	name = "reactive teleport armor"
 	desc = "Someone separated our Research Director's head from their body!"
-	var/active = FALSE
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
@@ -404,6 +406,7 @@
 		bio = 0,
 		rad = 0
 	)
+	var/active = FALSE
 	var/entropy_value = 2
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")

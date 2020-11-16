@@ -268,7 +268,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/weapon/disk    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/camera_assembly    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/orion_ship    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/tool/multitool/hacktool    obj,item,tool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
+/obj/item/weapon/tool/multitool/hacktool    obj,item,tool    blacklisted=1    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/multitool/uplink    obj,item,tool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/multitool    obj,item,tool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/armblade/claws    obj,item,tool    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    
@@ -398,7 +398,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/weapon/storage/box/anti_photons    obj,item,storage,box    blacklisted=0    spawn_value=1.60262   spawn_price=250   100    
 /obj/item/weapon/storage/box/incendiary    obj,item,storage,box    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
 /obj/item/weapon/storage/box/trackimp    obj,item,storage,box    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
-/obj/item/weapon/storage/box/chemimp    obj,item,storage,box    blacklisted=0    spawn_value=1.66667   spawn_price=0   100    
+/obj/item/weapon/storage/box/chemimp    obj,item,storage,box    blacklisted=1    spawn_value=1.66667   spawn_price=0   100    
 /obj/item/weapon/storage/box/rxglasses    obj,item,storage,box    blacklisted=0    spawn_value=4.47984   spawn_price=210   100    
 /obj/item/weapon/storage/box/drinkingglasses    obj,item,storage,box    blacklisted=0    spawn_value=8.4903   spawn_price=60   100    
 /obj/item/weapon/storage/box/cdeathalarm_kit    obj,item,storage,box    blacklisted=0    spawn_value=2   spawn_price=0   100    
@@ -1803,8 +1803,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/weapon/gun/projectile/revolver    obj,item,gun,gun_projectile,guns    blacklisted=0    spawn_value=7.75132   spawn_price=2000   100    
 /obj/item/weapon/gun/matter/launcher/nt_sprayer    obj,item,gun,guns    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/gun/matter/launcher/reclaimer    obj,item,gun,guns    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter/launcher    obj,item,gun,guns    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter    obj,item,gun,guns    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/rig/combat/equipped    obj,item,space_suit,rig_suit    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
 /obj/item/weapon/rig/combat/ironhammer/equipped    obj,item,space_suit,rig_suit    blacklisted=1    spawn_value=5   spawn_price=0   100    
 /obj/item/weapon/rig/combat/ironhammer    obj,item,space_suit,rig_suit    blacklisted=1    spawn_value=5   spawn_price=0   100    
@@ -2524,8 +2522,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/clothing/suit/armor/bulletproof/serbian    obj,item,clothing,armor    blacklisted=0    spawn_value=2.34701   spawn_price=405   100    
 /obj/item/clothing/suit/armor/bulletproof    obj,item,clothing,armor    blacklisted=0    spawn_value=1.89741   spawn_price=505   100    
 /obj/item/clothing/suit/armor/laserproof    obj,item,clothing,armor    blacklisted=0    spawn_value=1.47457   spawn_price=655   100    
-/obj/item/clothing/suit/armor/heavy/red    obj,item,clothing,armor    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
-/obj/item/clothing/suit/armor/heavy/green    obj,item,clothing,armor    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer    obj,item,clothing,armor    blacklisted=0    spawn_value=1.89757   spawn_price=500   100    
 /obj/item/clothing/suit/armor/heavy/riot    obj,item,clothing,armor    blacklisted=0    spawn_value=1.89757   spawn_price=500   100    
 /obj/item/clothing/suit/armor/heavy    obj,item,clothing,armor    blacklisted=0    spawn_value=3.64991   spawn_price=250   100    
@@ -2602,7 +2598,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/clothing/suit/poncho    obj,item,clothing,suit,suit_poncho    blacklisted=0    spawn_value=15.281   spawn_price=35   100    
 /obj/item/clothing/suit/fire    obj,item,clothing    blacklisted=0    spawn_value=8.54776   spawn_price=50   100    
 /obj/item/clothing/suit/radiation    obj,item,clothing,hazmatsuit    blacklisted=0    spawn_value=3.95257   spawn_price=100   100    
-/obj/item/clothing/suit    obj,item,clothing    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco    obj,item,clothing,mask    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/killthroat    obj,item,clothing,mask    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/mask/smokable/cigarette/homeless    obj,item,clothing,mask    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
@@ -2896,7 +2891,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/clothing/accessory/locket    obj,item,clothing    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/accessory    obj,item,clothing    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/clothing/ears/earmuffs    obj,item,clothing    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
-/obj/item/clothing/ears    obj,item,clothing    blacklisted=0    spawn_value=8.71299   spawn_price=30   100    
 /obj/item/supply_beacon/supermatter    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/supply_beacon    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/frame/fire_alarm    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   100    
@@ -2961,7 +2955,7 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/device/propaganda_chip    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_bug    obj,item,divice    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_monitor    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/device/radio/spy    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
+/obj/item/device/radio/spy    obj,item,divice    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/uplink    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/headset/uplink    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/headset/syndicate    obj,item,divice    blacklisted=1    spawn_value=10   spawn_price=0   100    
@@ -2994,7 +2988,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_acc
 /obj/item/device/radio/off    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/phone/medbay    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/phone    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/device/radio/exosuit    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_sensor    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/suit_cooling_unit    obj,item,divice    blacklisted=0    spawn_value=10   spawn_price=0   100    

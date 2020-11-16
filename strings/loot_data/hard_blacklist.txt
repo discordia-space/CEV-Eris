@@ -136,6 +136,8 @@
 /obj/item/weapon/gun/projectile/handmade_pistol
 /obj/item/weapon/gun/projectile/revolver/sky_driver
 /obj/item/weapon/gun/projectile
+/obj/item/weapon/gun/matter/launcher
+/obj/item/weapon/gun/matter
 /obj/item/weapon/gun
 /obj/item/weapon/rig
 /obj/item/weapon/spacecash/bundle/c1
@@ -276,8 +278,11 @@
 /obj/item/clothing/suit/space
 /obj/item/clothing/suit/lightrig/hacker
 /obj/item/clothing/suit/lightrig
+/obj/item/clothing/suit/armor/heavy/red
+/obj/item/clothing/suit/armor/heavy/green
 /obj/item/clothing/suit/armor
 /obj/item/clothing/suit/storage
+/obj/item/clothing/suit
 /obj/item/clothing/mask
 /obj/item/clothing/under/assistantformal/bst
 /obj/item/clothing/under/rank
@@ -294,6 +299,7 @@
 /obj/item/clothing/shoes/lightrig
 /obj/item/clothing/shoes
 /obj/item/clothing/ears/offear
+/obj/item/clothing/ears
 /obj/item/clothing
 /obj/item/frame
 /obj/item/remains
@@ -315,6 +321,7 @@
 /obj/item/device/radio/intercom
 /obj/item/device/radio/borg
 /obj/item/device/radio/random_radio
+/obj/item/device/radio/exosuit
 /obj/item/device/techno_tribalism
 /obj/item/device/von_krabin
 /obj/item/device/scanner

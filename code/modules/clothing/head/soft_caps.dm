@@ -7,10 +7,10 @@
 		slot_l_hand_str = "helmet", //probably a placeholder
 		slot_r_hand_str = "helmet",
 		)
-	var/flipped = 0
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 	rarity_value = 3.5
+	var/flipped = 0
 
 /obj/item/clothing/head/soft/dropped()
 	src.icon_state = initial(icon_state)

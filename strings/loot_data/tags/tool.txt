@@ -1,4 +1,4 @@
-/obj/item/weapon/tool/multitool/hacktool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
+/obj/item/weapon/tool/multitool/hacktool    blacklisted=1    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/multitool/uplink    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/multitool    blacklisted=0    spawn_value=7.51821   spawn_price=20   100    
 /obj/item/weapon/tool/armblade/claws    blacklisted=0    spawn_value=8.84875   spawn_price=20   100    

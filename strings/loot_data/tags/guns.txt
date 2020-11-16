@@ -106,8 +106,6 @@
 /obj/item/weapon/gun/projectile/revolver    blacklisted=0    spawn_value=7.75132   spawn_price=2000   100    
 /obj/item/weapon/gun/matter/launcher/nt_sprayer    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/gun/matter/launcher/reclaimer    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter/launcher    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/gun_upgrade/barrel/forged    blacklisted=0    spawn_value=8.33333   spawn_price=100   100    
 /obj/item/weapon/gun_upgrade/barrel/mag_accel    blacklisted=1    spawn_value=3.125   spawn_price=100   100    
 /obj/item/weapon/gun_upgrade/barrel/overheat    blacklisted=1    spawn_value=3.125   spawn_price=100   100    

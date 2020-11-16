@@ -41,7 +41,7 @@
 /obj/item/device/propaganda_chip    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_bug    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_monitor    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/device/radio/spy    blacklisted=0    spawn_value=10   spawn_price=0   100    
+/obj/item/device/radio/spy    blacklisted=1    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/uplink    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/headset/uplink    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/headset/syndicate    blacklisted=1    spawn_value=10   spawn_price=0   100    
@@ -74,7 +74,6 @@
 /obj/item/device/radio/off    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/phone/medbay    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio/phone    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/device/radio/exosuit    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/radio    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/spy_sensor    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/device/suit_cooling_unit    blacklisted=0    spawn_value=10   spawn_price=0   100    

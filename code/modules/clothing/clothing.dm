@@ -175,6 +175,7 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
+	bad_type = /obj/item/clothing/ears
 
 /obj/item/clothing/ears/attack_hand(mob/user)
 	if (!user) return
@@ -260,6 +261,7 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
+	bad_type = /obj/item/clothing/glasses
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -535,7 +537,6 @@ BLIND     // can't see anything
 /obj/item/clothing/suit
 	icon = 'icons/inventory/suit/icon.dmi'
 	name = "suit"
-	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(
 		/obj/item/weapon/clipboard,
@@ -560,8 +561,10 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-	var/list/extra_allowed = list()
 	equip_delay = 1 SECONDS
+	bad_type = /obj/item/clothing/suit
+	var/fire_resist = T0C+100
+	var/list/extra_allowed = list()
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
@@ -659,6 +662,9 @@ BLIND     // can't see anything
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
 
+/obj/item/clothing/under/rank
+	bad_type = /obj/item/clothing/under/rank
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = 3

@@ -370,6 +370,7 @@
 	illustration = "implant"
 	rarity_value = 60
 	initial_amount = 5
+	spawn_blacklisted = 1
 	spawn_type = /obj/item/weapon/implantcase/chem
 
 /obj/item/weapon/storage/box/chemimp/populate_contents()

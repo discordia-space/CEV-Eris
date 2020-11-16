@@ -103,5 +103,3 @@
 /obj/item/weapon/gun/projectile/revolver    blacklisted=0    spawn_value=7.75132   spawn_price=2000   100    
 /obj/item/weapon/gun/matter/launcher/nt_sprayer    blacklisted=0    spawn_value=10   spawn_price=0   100    
 /obj/item/weapon/gun/matter/launcher/reclaimer    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter/launcher    blacklisted=0    spawn_value=10   spawn_price=0   100    
-/obj/item/weapon/gun/matter    blacklisted=0    spawn_value=10   spawn_price=0   100    

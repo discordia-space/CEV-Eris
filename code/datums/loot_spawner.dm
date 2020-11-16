@@ -46,8 +46,7 @@
 
 	for(var/path in paths)
 		var/atom/movable/A = path
-		var/bad_path = initial(A.bad_type)
-		if(bad_path == path)
+		if(path == initial(A.bad_type))
 			if(generate_files)
 				hard_blacklist_data  << "[path]"
 			continue

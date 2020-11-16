@@ -1802,8 +1802,6 @@
 /obj/item/weapon/gun/projectile/revolver
 /obj/item/weapon/gun/matter/launcher/nt_sprayer
 /obj/item/weapon/gun/matter/launcher/reclaimer
-/obj/item/weapon/gun/matter/launcher
-/obj/item/weapon/gun/matter
 /obj/item/weapon/rig/combat/equipped
 /obj/item/weapon/rig/combat/ironhammer/equipped
 /obj/item/weapon/rig/combat/ironhammer
@@ -2523,8 +2521,6 @@
 /obj/item/clothing/suit/armor/bulletproof/serbian
 /obj/item/clothing/suit/armor/bulletproof
 /obj/item/clothing/suit/armor/laserproof
-/obj/item/clothing/suit/armor/heavy/red
-/obj/item/clothing/suit/armor/heavy/green
 /obj/item/clothing/suit/armor/heavy/riot/ironhammer
 /obj/item/clothing/suit/armor/heavy/riot
 /obj/item/clothing/suit/armor/heavy
@@ -2601,7 +2597,6 @@
 /obj/item/clothing/suit/poncho
 /obj/item/clothing/suit/fire
 /obj/item/clothing/suit/radiation
-/obj/item/clothing/suit
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 /obj/item/clothing/mask/smokable/cigarette/killthroat
 /obj/item/clothing/mask/smokable/cigarette/homeless
@@ -2895,7 +2890,6 @@
 /obj/item/clothing/accessory/locket
 /obj/item/clothing/accessory
 /obj/item/clothing/ears/earmuffs
-/obj/item/clothing/ears
 /obj/item/supply_beacon/supermatter
 /obj/item/supply_beacon
 /obj/item/frame/fire_alarm
@@ -2993,7 +2987,6 @@
 /obj/item/device/radio/off
 /obj/item/device/radio/phone/medbay
 /obj/item/device/radio/phone
-/obj/item/device/radio/exosuit
 /obj/item/device/radio
 /obj/item/device/spy_sensor
 /obj/item/device/suit_cooling_unit

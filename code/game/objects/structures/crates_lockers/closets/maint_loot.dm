@@ -55,10 +55,11 @@
 /obj/structure/closet/random/spareparts
 	name = "\improper spare parts closet"
 	desc = "Somewhat old closet with spare parts in it."
-	icon_state = "eng"
+	icon_state = "eng"//bad icon
 	icon_door = "eng_secure_door"
 	old_chance = 10
 	rarity_value = 50
+	spawn_blacklisted = TRUE//bad icon
 
 /obj/structure/closet/random/tech/populate_contents()
 	new /obj/spawner/lowkeyrandom/low_chance(src)

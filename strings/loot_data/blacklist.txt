@@ -54,6 +54,7 @@
 /obj/item/weapon/electronics/circuitboard/excelsior_boombox
 /obj/item/weapon/electronics/circuitboard/excelsior_teleporter
 /obj/item/weapon/electronics/circuitboard/excelsior_turret
+/obj/item/weapon/tool/multitool/hacktool
 /obj/item/weapon/tool/sword/katana/nano
 /obj/item/weapon/tool/crowbar/onestar
 /obj/item/weapon/tool/hammer/powered_hammer/onestar_hammer
@@ -70,6 +71,7 @@
 /obj/item/weapon/tool/screwdriver/combi_driver/onestar
 /obj/item/weapon/tool/chainofcommand
 /obj/item/weapon/tool/weldingtool/onestar
+/obj/item/weapon/storage/box/chemimp
 /obj/item/weapon/storage/box/syndicate
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 /obj/item/weapon/storage/box/syndie_kit/imp_compress
@@ -428,6 +430,7 @@
 /obj/item/device/mental_imprinter
 /obj/item/device/powersink
 /obj/item/device/spy_bug
+/obj/item/device/radio/spy
 /obj/item/device/radio/headset/syndicate
 /obj/item/device/radio/headset/heads/captain
 /obj/item/device/radio/headset/heads/ai_integrated
