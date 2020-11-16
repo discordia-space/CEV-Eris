@@ -19,6 +19,9 @@
 	attacktext = "attacks"
 	universal_speak = TRUE
 	speak_chance = 5
+	bad_type = /mob/living/simple_animal/hostile/hivemind
+	spawn_tags = SPAWN_TAG_MOB_HIVEMIND
+	rarity_value = 20
 	var/malfunction_chance = 5
 	var/ability_cooldown = 30 SECONDS
 	var/list/target_speak = list()			//this is like speak list, but when we see our target
@@ -187,7 +190,7 @@
 	infested.Blend(covering_mask, ICON_MULTIPLY)
 	overlays += infested
 
-	maxHealth = victim.maxHealth * 2 + 10
+	setMaxHealth(victim.maxHealth * 2 + 10)
 	health = maxHealth
 	name = "[pick("warped", "twisted", "tortured", "tormented")] [victim.name]"
 	if(length(victim.desc))
@@ -284,7 +287,7 @@
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
 	speed = 2.5 //explosive, slow, don't ignore it. it can catch up to you
-
+	rarity_value = 25
 	speak = list(
 				"WE COME IN PEACE.",
 				"WE BRING GREETINGS FROM A FRIENDLY AI.",
@@ -346,6 +349,7 @@
 	speed = 7
 	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
 	mob_size = MOB_MEDIUM
+	rarity_value = 100
 
 	speak = list("They grow up so fast.",
 				"Come out, come out, wherever you are.",
@@ -705,7 +709,7 @@
 		else
 			flick("mechiver-opening_wires", src)
 
-		if(istype(passenger, /mob/living/carbon/human))
+		if(ishuman(passenger))
 			if(!safely) //that was stressful
 				var/mob/living/carbon/human/H = passenger
 				if(!pilot && H.stat == DEAD)
@@ -733,7 +737,7 @@
 		picked_mob = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
 	else
 		if(pilot)
-			if(istype(corpse, /mob/living/carbon/human))
+			if(ishuman(corpse))
 				picked_mob = /mob/living/simple_animal/hostile/hivemind/himan
 			else if(istype(corpse, /mob/living/silicon/robot))
 				picked_mob = /mob/living/simple_animal/hostile/hivemind/hiborg

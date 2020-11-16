@@ -36,7 +36,7 @@
 		active = FALSE
 		if(wearer?.stat == DEAD)
 			while(number_of_spiders)
-				new /obj/random/mob/spiders(wearer.loc)
+				new /obj/spawner/mob/spiders(wearer.loc)
 				number_of_spiders--
 			wearer.gib()
 			die()

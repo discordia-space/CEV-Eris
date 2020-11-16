@@ -5,11 +5,9 @@
 	anchored = TRUE // -- TLE
 	movement_handlers = list(/datum/movement_handler/no_move)
 
-/mob/living/silicon/decoy/New()
+/mob/living/silicon/decoy/Initialize()
 	src.icon = 'icons/mob/AI.dmi'
 	src.icon_state = "ai"
 	src.anchored = TRUE
 	src.canmove = 0
-
-/mob/living/silicon/decoy/Initialize()
-	return
+	return INITIALIZE_HINT_NORMAL

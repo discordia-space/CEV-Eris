@@ -34,13 +34,14 @@
 	s.start()
 
 	if(computer.hard_drive)
-		qdel(computer.hard_drive)
+		computer.hard_drive.damage = 100
+		computer.hard_drive.stored_files.Cut()
 
 	if(computer.cell && prob(25))
-		qdel(computer.cell)
+		computer.cell.charge = 0
 
 	if(computer.tesla_link && prob(50))
-		qdel(computer.tesla_link)
+		computer.tesla_link.damage = 100
 
 /datum/computer_file/program/revelation/Topic(href, href_list)
 	if(..())

@@ -10,10 +10,27 @@
 	w_class = ITEM_SIZE_HUGE
 	reagent_flags = OPENCONTAINER
 	price_tag = 20000
+	spawn_frequency = 0
+	spawn_blacklisted = TRUE
 	origin_tech = list(TECH_BIO = 9, TECH_MATERIAL = 9, TECH_PLASMA = 3)
 	unacidable = TRUE //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 3, MATERIAL_STEEL = 2, MATERIAL_PLASMA = 5, MATERIAL_BIOMATTER = 50)
 	var/blood_amount = 0
+
+/obj/item/weapon/reagent_containers/enricher/New()
+	..()
+	GLOB.all_faction_items[src] = GLOB.department_moebius
+
+/obj/item/weapon/reagent_containers/enricher/Destroy()
+	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
+	GLOB.all_faction_items -= src
+	..()
+
+/obj/item/weapon/reagent_containers/enricher/attackby(obj/item/I, mob/living/user, params)
+	if(nt_sword_attack(I, user))
+		return FALSE
+	..()
 
 /obj/item/weapon/reagent_containers/enricher/attack_self()
 	if(reagents.total_volume)

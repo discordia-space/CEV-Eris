@@ -45,7 +45,7 @@
 	new /obj/item/clothing/glasses/monocle(src.loc)
 	var/CHOICE= pick( /obj/item/clothing/head/bowler, /obj/item/clothing/head/that)
 	new CHOICE(src.loc)
-	new /obj/item/clothing/shoes/black(src.loc)
+	new /obj/item/clothing/shoes/color/black(src.loc)
 	new /obj/item/weapon/cane(src.loc)
 	//new /obj/item/clothing/under/sl_suit(src.loc)
 	new /obj/item/clothing/mask/fakemoustache(src.loc)

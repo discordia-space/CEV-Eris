@@ -16,7 +16,7 @@
 //============================================
 
 /datum/event/hivemind
-	announceWhen	= 300
+	announceWhen	= 180 //hivemind is annouced wayy faster now, enjoy
 
 
 /datum/event/hivemind/announce()

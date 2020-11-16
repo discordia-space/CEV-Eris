@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/telesci_pad
+/obj/item/weapon/electronics/circuitboard/telesci_pad
 	name = T_BOARD("telepad")
 	build_path = /obj/machinery/telepad
 	board_type = "machine"
@@ -9,7 +9,7 @@
 		/obj/item/weapon/stock_parts/capacitor = 1
 	)
 
-/obj/item/weapon/circuitboard/telesci_console
+/obj/item/weapon/electronics/circuitboard/telesci_console
 	name = T_BOARD("Telescience Console")
 	build_path = /obj/machinery/computer/telescience
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 2)

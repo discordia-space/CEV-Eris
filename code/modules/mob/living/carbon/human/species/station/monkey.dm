@@ -27,10 +27,11 @@
 	hud_type = /datum/hud_data/monkey
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/monkey
 
-	rarity_value = 0.1
+	species_rarity_value = 0.1
 	total_health = 75
 	brute_mod = 1.5
 	burn_mod = 1.5
+	lower_sanity_process = TRUE
 
 	spawn_flags = IS_RESTRICTED
 

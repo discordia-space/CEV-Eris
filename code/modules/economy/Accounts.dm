@@ -171,6 +171,7 @@
 
 		//The transaction to give the money
 		var/datum/transaction/T2 = new(amount, source.get_name(), purpose, terminal_id)
+		SEND_SIGNAL(source, COMSIG_TRANSATION, source, target, amount)
 		return T2.apply_to(target)
 
 	return FALSE

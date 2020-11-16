@@ -52,7 +52,7 @@
 	idle_power_usage = 10
 	active_power_usage = 200
 
-	circuit = /obj/item/weapon/circuitboard/sorter
+	circuit = /obj/item/weapon/electronics/circuitboard/sorter
 	// based on levels of manipulators
 	var/speed = 25
 	// based on levels of scanners

@@ -110,24 +110,26 @@
 	deactivate(user)
 
 /obj/item/weapon/melee/energy/sword/New()
-	blade_color = pick("red","blue","green","purple")
+	if(!blade_color)
+		blade_color = pick("red","blue","green","purple")
+	..()
 
-/obj/item/weapon/melee/energy/sword/green/New()
+/obj/item/weapon/melee/energy/sword/green
 	blade_color = "green"
 
-/obj/item/weapon/melee/energy/sword/red/New()
+/obj/item/weapon/melee/energy/sword/red
 	blade_color = "red"
 
-/obj/item/weapon/melee/energy/sword/blue/New()
+/obj/item/weapon/melee/energy/sword/blue
 	blade_color = "blue"
 
-/obj/item/weapon/melee/energy/sword/purple/New()
+/obj/item/weapon/melee/energy/sword/purple
 	blade_color = "purple"
 
-/obj/item/weapon/melee/energy/sword/pirate/New()
+/obj/item/weapon/melee/energy/sword/pirate
 	blade_color = "cutlass"
 
-/obj/item/weapon/melee/energy/sword/sabre/New()
+/obj/item/weapon/melee/energy/sword/sabre
 	blade_color = "green"
 
 /obj/item/weapon/melee/energy/sword/activate(mob/living/user)
@@ -192,9 +194,10 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
+	var/cleanup = TRUE	// Should the blade despawn moments after being discarded by the summoner?
 
 /obj/item/weapon/melee/energy/blade/New()
-
+	..()
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -207,10 +210,12 @@
 
 /obj/item/weapon/melee/energy/blade/attack_self(mob/user as mob)
 	user.drop_from_inventory(src)
-	spawn(1) if(src) qdel(src)
+	if(cleanup)
+		spawn(1) if(src) qdel(src)
 
 /obj/item/weapon/melee/energy/blade/dropped()
-	spawn(1) if(src) qdel(src)
+	if(cleanup)
+		spawn(1) if(src) qdel(src)
 
 /obj/item/weapon/melee/energy/blade/Process()
 	if(!creator || loc != creator || (creator.l_hand != src && creator.r_hand != src))
@@ -225,9 +230,11 @@
 			host.pinned -= src
 			host.embedded -= src
 			host.drop_from_inventory(src)
-		spawn(1) if(src) qdel(src)
+		if(cleanup)
+			spawn(1) if(src) qdel(src)
 
 /obj/item/weapon/melee/energy/blade/organ_module //just to make sure that blade doesnt delet itself
+	cleanup = FALSE
 
 /obj/item/weapon/melee/energy/blade/organ_module/New()
 

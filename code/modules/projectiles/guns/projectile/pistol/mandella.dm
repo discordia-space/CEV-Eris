@@ -9,14 +9,15 @@
 	item_state = "mandella"
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = 1
-	caliber = CAL_CLRIFLE
 	silenced = TRUE
 
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
+	caliber = CAL_CLRIFLE
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
+	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.7
 	recoil_buildup = 19

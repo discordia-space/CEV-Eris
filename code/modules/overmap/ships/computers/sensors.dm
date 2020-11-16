@@ -4,7 +4,7 @@
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
 	light_color = COLOR_LIGHTING_CYAN_MACHINERY
-	//circuit = /obj/item/weapon/circuitboard/sensors
+	//circuit = /obj/item/weapon/electronics/circuitboard/sensors
 	var/obj/effect/overmap/ship/linked
 	var/obj/machinery/shipsensors/sensors
 	var/viewing = 0

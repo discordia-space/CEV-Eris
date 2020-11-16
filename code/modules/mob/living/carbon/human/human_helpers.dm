@@ -46,7 +46,7 @@
 	equipment_tint_total = 0
 	equipment_see_invis	= 0
 	equipment_vision_flags = 0
-	equipment_prescription = 0
+	equipment_prescription = FALSE
 	equipment_darkness_modifier = 0
 //	equipment_overlays.Cut()
 
@@ -59,8 +59,8 @@
 	if(istype(wearing_rig,/obj/item/weapon/rig))
 		process_rig(wearing_rig)
 
-/mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G, var/forceActive)
-	if(G && (G.active || forceActive))
+/mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G, var/forceactive)
+	if(G && (G.active || forceactive))
 		equipment_darkness_modifier += G.darkness_view
 		equipment_vision_flags |= G.vision_flags
 		equipment_prescription = equipment_prescription || G.prescription
@@ -84,7 +84,7 @@
 			equipment_tint_total += TINT_BLIND
 	var/obj/item/clothing/glasses/G = O.getCurrentGlasses()
 	if(G && O.visor.active)
-		process_glasses(G,1)
+		process_glasses(G,TRUE)
 
 /mob/living/carbon/human/reset_layer()
 	if(hiding)

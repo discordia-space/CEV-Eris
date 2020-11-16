@@ -137,7 +137,7 @@
 /turf/simulated/floor/plating/under,
 /area/crawler)
 "x" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/crawler)
 "y" = (

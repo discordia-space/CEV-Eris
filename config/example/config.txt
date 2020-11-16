@@ -348,3 +348,12 @@ IPR_MINIMUM_AGE 5
 
 # Enable/disable 'panic bunker' (prevents new players from joining if they've never been seen before in the DB)
 #PANIC_BUNKER
+
+# Set start location for CEV Eris uncomment ONE only.
+RANDOM_START
+#ASTEROID_START
+#FORTRESS_START
+#RUINS_START
+
+# Generate loot data.
+#GENERATE_LOOT_DATA

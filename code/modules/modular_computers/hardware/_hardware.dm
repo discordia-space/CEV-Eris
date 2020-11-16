@@ -4,7 +4,10 @@
 	icon = 'icons/obj/modular_components.dmi'
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_SILVER = 1)
 	price_tag = 50
-	var/obj/item/modular_computer/holder2 = null
+	spawn_tags = SPAWN_TAG_COMPUTER_HARDWERE
+	bad_type = /obj/item/weapon/computer_hardware
+	rarity_value = 25
+	var/obj/item/modular_computer/holder2
 	var/power_usage = 0 			// If the hardware uses extra power, change this.
 	var/enabled = TRUE				// If the hardware is turned off set this to 0.
 	var/critical = FALSE			// Prevent disabling for important component, like the HDD.

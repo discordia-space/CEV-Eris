@@ -87,7 +87,7 @@
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
-	var/armed = null
+	var/armed
 	if (istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
 		var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
 		armed = P.armed
@@ -120,7 +120,7 @@
 /datum/computer/file/embedded_program/docking/simple/escape_pod
 	var/armed = FALSE
 	var/eject_delay = 10	//give latecomers some time to get out of the way if they don't make it onto the pod
-	var/eject_time = null
+	var/eject_time
 	var/closing = FALSE
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/arm()

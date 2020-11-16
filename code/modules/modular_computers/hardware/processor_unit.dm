@@ -12,6 +12,7 @@
 	critical = TRUE
 	malfunction_probability = 1
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
+	rarity_value = 8.33
 
 	var/max_programs = 3
 
@@ -34,6 +35,7 @@
 	power_usage = 100
 	max_programs = 4
 	price_tag = 80
+	rarity_value = 16.66
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3)
 
 /obj/item/weapon/computer_hardware/processor_unit/adv/small
@@ -44,6 +46,7 @@
 	hardware_size = 1
 	power_usage = 40
 	max_programs = 3
+	rarity_value = 12.5
 
 
 /obj/item/weapon/computer_hardware/processor_unit/super
@@ -57,6 +60,7 @@
 	max_programs = 5
 	origin_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 4)
 	price_tag = 200
+	rarity_value = 50
 
 /obj/item/weapon/computer_hardware/processor_unit/super/small
 	name = "photonic microprocessor"
@@ -66,3 +70,4 @@
 	hardware_size = 1
 	power_usage = 75
 	max_programs = 4
+	rarity_value = 50

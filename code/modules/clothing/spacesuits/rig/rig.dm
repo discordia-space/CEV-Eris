@@ -21,6 +21,9 @@
 	req_access = list()
 	w_class = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
+	spawn_tags = SPAWN_TAG_RIG
+	rarity_value = 10
+	bad_type = /obj/item/weapon/rig
 
 	// These values are passed on to all component pieces.
 	armor = list(
@@ -59,12 +62,12 @@
 
 	//Component/device holders.
 	var/obj/item/weapon/tank/air_supply                       // Air tank, if any.
-	var/obj/item/clothing/shoes/boots = null                  // Deployable boots, if any.
+	var/obj/item/clothing/shoes/boots                  // Deployable boots, if any.
 	var/obj/item/clothing/suit/space/rig/chest                // Deployable chestpiece, if any.
-	var/obj/item/clothing/head/space/rig/helmet = null // Deployable helmet, if any.
-	var/obj/item/clothing/gloves/rig/gloves = null            // Deployable gauntlets, if any.
-	var/obj/item/weapon/cell/large/cell                             // Power supply, if any.
-	var/obj/item/rig_module/selected_module = null            // Primary system (used with middle-click)
+	var/obj/item/clothing/head/space/rig/helmet				 // Deployable helmet, if any.
+	var/obj/item/clothing/gloves/rig/gloves					// Deployable gauntlets, if any.
+	var/obj/item/weapon/cell/large/cell						// Power supply, if any.
+	var/obj/item/rig_module/selected_module      		      // Primary system (used with middle-click)
 	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.
 	var/obj/item/rig_module/voice/speech                      // As above.
 	var/obj/item/rig_module/storage/storage					  // var for installed storage module, if any
@@ -366,8 +369,8 @@
 	if(active && cell) // dains power from the cell whenever the suit is sealed
 		cell.use(drain*0.1)
 
-	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.empty())
-		if(!cell || cell.empty())
+	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.is_empty())
+		if(!cell || cell.is_empty())
 			if(electrified > 0)
 				electrified = 0
 			if(!offline)
@@ -634,7 +637,7 @@
 
 /obj/item/weapon/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
 
-	if(sealing || !cell || cell.empty())
+	if(sealing || !cell || cell.is_empty())
 		return
 
 	if(!istype(wearer) || !wearer.back == src)
@@ -863,7 +866,7 @@
 			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
 			return 0
 
-	if(offline || !cell || cell.empty() || locked_down)
+	if(offline || !cell || cell.is_empty() || locked_down)
 		if(user) user << SPAN_WARNING("Your host rig is unpowered and unresponsive.")
 		return 0
 	if(!wearer || wearer.back != src)

@@ -17,7 +17,6 @@
 	var/thrust_limit = 1 //global thrust limit for all engines, 0..1
 	var/triggers_events = 1
 
-
 	Crossed(var/obj/effect/overmap_event/movable/ME)
 		..()
 		if(ME)
@@ -138,6 +137,7 @@
 			Move(newloc)
 			handle_wraparound()
 		update_icon()
+	SEND_SIGNAL(src, COMSIG_SHIP_STILL, x, y, is_still())
 
 /obj/effect/overmap/ship/update_icon()
 	if(!is_still())

@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/clonepod
+/obj/item/weapon/electronics/circuitboard/clonepod
 	name = T_BOARD("clone pod")
 	build_path = /obj/machinery/clonepod
 	board_type = "machine"
@@ -10,7 +10,7 @@
 		/obj/item/weapon/stock_parts/console_screen = 1
 	)
 
-/obj/item/weapon/circuitboard/clonescanner
+/obj/item/weapon/electronics/circuitboard/clonescanner
 	name = T_BOARD("cloning scanner")
 	build_path = /obj/machinery/dna_scannernew
 	board_type = "machine"

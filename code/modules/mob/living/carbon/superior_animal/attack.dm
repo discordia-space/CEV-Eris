@@ -1,7 +1,7 @@
 /mob/living/carbon/superior_animal/attack_ui(slot_id)
 	return
 
-/mob/living/carbon/superior_animal/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/carbon/superior_animal/UnarmedAttack(atom/A, var/proximity)
 	if(!..())
 		return
 

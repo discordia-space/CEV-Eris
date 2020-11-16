@@ -2688,9 +2688,9 @@
 	pixel_x = 32
 	},
 /obj/structure/table/rack,
-/obj/random/lathe_disk/advanced,
-/obj/random/lathe_disk,
-/obj/random/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/advanced,
+/obj/spawner/lathe_disk,
+/obj/spawner/lathe_disk/low_chance,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -2710,7 +2710,7 @@
 /obj/item/stack/material/plasteel{
 	amount = 60
 	},
-/obj/random/material,
+/obj/spawner/material/building,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -5208,7 +5208,6 @@
 	},
 /area/centcom/raider_base)
 "nL" = (
-/obj/item/organ/internal/xenos/plasmavessel,
 /turf/unsimulated/floor{
 	tag = "icon-asteroid";
 	icon_state = "asteroid"
@@ -5401,7 +5400,6 @@
 	},
 /area/centcom/raider_base)
 "ol" = (
-/obj/item/organ/internal/xenos/eggsac,
 /turf/unsimulated/floor{
 	tag = "icon-asteroid";
 	icon_state = "asteroid"

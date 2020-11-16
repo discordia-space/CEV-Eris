@@ -18,7 +18,7 @@
 	active_power_usage = 300
 	reagent_flags = TRANSPARENT
 
-	circuit = /obj/item/weapon/circuitboard/neotheology/solidifier
+	circuit = /obj/item/weapon/electronics/circuitboard/neotheology/solidifier
 	var/active = FALSE
 	var/port_dir = SOUTH
 	var/obj/structure/reagent_dispensers/biomatter/container

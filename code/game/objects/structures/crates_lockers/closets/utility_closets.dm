@@ -16,6 +16,8 @@
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
+	rarity_value = 3
+	spawn_tags = SPAWN_TAG_TECHNICAL_CLOSET
 
 /obj/structure/closet/emcloset/populate_contents()
 	switch(pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
@@ -59,6 +61,9 @@
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "fire"
+	rarity_value = 1.5
+	spawn_tags = SPAWN_TAG_TECHNICAL_CLOSET
+
 
 /obj/structure/closet/firecloset/populate_contents()
 	new /obj/item/clothing/gloves/thick(src)
@@ -78,6 +83,8 @@
 	desc = "It's a storage unit for tools."
 	icon_state = "eng"
 	icon_door = "eng_tool"
+	rarity_value = 1.5
+	spawn_tags = SPAWN_TAG_TECHNICAL_CLOSET
 
 /obj/structure/closet/toolcloset/populate_contents()
 	if(prob(40))
@@ -116,8 +123,8 @@
 		new /obj/item/weapon/storage/pouch/engineering_supply(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
-	new /obj/random/tool_upgrade(src)
-	new /obj/random/tool_upgrade(src)
+	new /obj/spawner/tool_upgrade(src)
+	new /obj/spawner/tool_upgrade(src)
 	//Every tool closet contains a couple guaranteed toolmods
 
 /*
@@ -142,12 +149,18 @@
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective space suits."
 	icon_state = "bomb"
+	rarity_value = 14.28
+	spawn_tags = SPAWN_TAG_BOMB_CLOSET
+
 
 /obj/structure/closet/bombcloset/populate_contents()
 	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/color/black(src)
-	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/shoes/color/black(src)
 	new /obj/item/clothing/head/space/bomb(src)
+
+/obj/structure/closet/bombcloset/security
+	rarity_value = 50
 
 /obj/structure/closet/bombcloset/security/populate_contents()
 	new /obj/item/clothing/suit/space/bomb/security(src)

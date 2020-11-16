@@ -28,7 +28,7 @@
 	. = ..()
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/attackby(var/obj/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/gun))
+	if(isgun(O))
 		var/obj/item/weapon/gun/gun = O
 		if(installed_gun)
 			to_chat(user, SPAN_WARNING("There's already a weapon installed."))

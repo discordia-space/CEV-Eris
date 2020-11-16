@@ -819,7 +819,7 @@
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
+					var/obj/item/weapon/electronics/airalarm/circuit = new /obj/item/weapon/electronics/airalarm()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
@@ -840,15 +840,7 @@
 	switch(buildstage)
 		if(2)
 			if (istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/modular_computer))// trying to unlock the interface with an ID card
-				if(stat & (NOPOWER|BROKEN))
-					to_chat(user, "It does nothing")
-					return
-				else
-					if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
-						locked = !locked
-						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
-					else
-						to_chat(user, SPAN_WARNING("Access denied."))
+				toggle_lock(user)
 			return
 
 		if(1)
@@ -865,7 +857,7 @@
 					return
 
 		if(0)
-			if(istype(I, /obj/item/weapon/airalarm_electronics))
+			if(istype(I, /obj/item/weapon/electronics/airalarm))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -885,11 +877,30 @@
 		to_chat(user, "It is not wired.")
 	if (buildstage < 1)
 		to_chat(user, "The circuit is missing.")
+
+/obj/machinery/alarm/proc/toggle_lock(mob/user)
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(user, "It does nothing")
+		return
+	else
+		if(allowed(user) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
+			locked = !locked
+			to_chat(user, SPAN_NOTICE("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
+		else
+			to_chat(user, SPAN_WARNING("Access denied."))
+
+/obj/machinery/alarm/AltClick(mob/user)
+	..()
+	if(issilicon(user) || !Adjacent(user))
+		return
+	toggle_lock(user)
+
+
 /*
 AIR ALARM CIRCUIT
 Just a object used in constructing air alarms
 */
-/obj/item/weapon/airalarm_electronics
+/obj/item/weapon/electronics/airalarm
 	name = "air alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -1023,7 +1034,7 @@ FIRE ALARM
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
+					var/obj/item/weapon/electronics/airalarm/circuit = new /obj/item/weapon/electronics/airalarm()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
@@ -1056,7 +1067,7 @@ FIRE ALARM
 					return
 
 		if(0)
-			if(istype(I, /obj/item/weapon/firealarm_electronics))
+			if(istype(I, /obj/item/weapon/electronics/firealarm))
 				to_chat(user, "You insert the circuit!")
 				qdel(I)
 				buildstage = 1
@@ -1186,7 +1197,7 @@ FIRE ALARM
 FIRE ALARM CIRCUIT
 Just a object used in constructing fire alarms
 */
-/obj/item/weapon/firealarm_electronics
+/obj/item/weapon/electronics/firealarm
 	name = "fire alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"

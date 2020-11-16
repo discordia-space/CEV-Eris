@@ -144,7 +144,7 @@
 // mouse drop another mob or self
 //
 /obj/machinery/disposal/MouseDrop_T(atom/movable/A, mob/user)
-	if(istype(A, /mob))
+	if(ismob(A))
 		var/mob/target = A
 		if(user.stat || !user.canmove)
 			return

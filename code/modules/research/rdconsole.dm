@@ -42,7 +42,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	circuit = /obj/item/weapon/circuitboard/rdconsole
+	circuit = /obj/item/weapon/electronics/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
 	var/obj/item/weapon/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
 
@@ -54,6 +54,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/id     = 0			//ID of the computer (for server restrictions).
 	var/sync   = 1		//If sync = 0, it doesn't show up on Server Control Console
 	var/can_research = TRUE   //Is this console capable of researching
+	var/hacked = 0 // If this console has had its access requirements hacked or not.
 
 	req_access = list(access_research_equipment) //Data and setting manipulation requires scientist access.
 
@@ -93,7 +94,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		C.files.download_from(files)
 
 /obj/machinery/computer/rdconsole/Initialize()
-	..()
+	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
 	SyncRDevices()
 

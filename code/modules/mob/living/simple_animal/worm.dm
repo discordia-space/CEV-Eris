@@ -139,7 +139,7 @@
 			W.dismantle_wall()
 			return 1
 	else if(istype(target,/atom/movable))
-		if(istype(target,/mob) || eatingDuration >= 50) //5 ticks to eat stuff like airlocks
+		if(ismob(target) || eatingDuration >= 50) //5 ticks to eat stuff like airlocks
 			var/atom/movable/objectOrMob = target
 			contents += objectOrMob
 			return 1

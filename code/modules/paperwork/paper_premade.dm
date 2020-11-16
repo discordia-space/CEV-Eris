@@ -44,6 +44,7 @@
 
 /obj/item/weapon/paper/courtroom
 	name = "A Crash Course in Legal SOP on SS13"
+	spawn_blacklisted = TRUE
 	info = {"\[b\]Roles:\[/b\]
 	The Detective is basically the investigator and prosecutor.
 	The Staff Assistant can perform these functions with written authority from the Detective.
@@ -124,6 +125,7 @@
 
 /obj/item/weapon/paper/djstation
 	name = "DJ Listening Outpost"
+	spawn_blacklisted = TRUE
 	info = {"\[b\]Welcome new owner!\[/b\]
 	
 	You have purchased the latest in listening equipment. The telecommunication setup we created is the best in listening to common and private radio fequencies. Here is a step by step guide to start listening in on those saucy radio channels:
@@ -134,6 +136,7 @@
 
 /obj/item/weapon/paper/jobs
 	name = "Job Information"
+	spawn_blacklisted = TRUE
 	info = {"Information on all formal jobs that can be assigned on Space Station 13 can be found on this document.
 	The data will be in the following form.
 	Generally lower ranking positions come first in this list.

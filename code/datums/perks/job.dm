@@ -6,10 +6,12 @@
 
 /datum/perk/survivor/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.death_view_multiplier *= 0.5
+	if(holder)
+		holder.sanity.death_view_multiplier *= 0.5
 
 /datum/perk/survivor/remove()
-	holder.sanity.death_view_multiplier *= 2
+	if(holder)
+		holder.sanity.death_view_multiplier *= 2
 	..()
 
 /datum/perk/selfmedicated
@@ -20,12 +22,14 @@
 
 /datum/perk/selfmedicated/assign(mob/living/carbon/human/H)
 	..()
-	holder.metabolism_effects.addiction_chance_multiplier = 0.5
-	holder.metabolism_effects.nsa_threshold += 10
+	if(holder)
+		holder.metabolism_effects.addiction_chance_multiplier = 0.5
+		holder.metabolism_effects.nsa_threshold += 10
 
 /datum/perk/selfmedicated/remove()
-	holder.metabolism_effects.addiction_chance_multiplier = 1
-	holder.metabolism_effects.nsa_threshold -= 10
+	if(holder)
+		holder.metabolism_effects.addiction_chance_multiplier = 1
+		holder.metabolism_effects.nsa_threshold -= 10
 	..()
 
 /datum/perk/vagabond
@@ -36,10 +40,12 @@
 
 /datum/perk/vagabond/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.view_damage_threshold += 20
+	if(holder)
+		holder.sanity.view_damage_threshold += 20
 
 /datum/perk/vagabond/remove()
-	holder.sanity.view_damage_threshold -= 20
+	if(holder)
+		holder.sanity.view_damage_threshold -= 20
 	..()
 
 /datum/perk/merchant
@@ -50,10 +56,12 @@
 
 /datum/perk/merchant/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.valid_inspirations += /obj/item/weapon/spacecash/bundle
+	if(holder)
+		holder.sanity.valid_inspirations += /obj/item/weapon/spacecash/bundle
 
 /datum/perk/merchant/remove()
-	holder.sanity.valid_inspirations -= /obj/item/weapon/spacecash/bundle
+	if(holder)
+		holder.sanity.valid_inspirations -= /obj/item/weapon/spacecash/bundle
 	..()
 
 #define CHOICE_LANG "language" // Random language chosen from a pool
@@ -70,6 +78,8 @@
 
 /datum/perk/deep_connection/assign(mob/living/carbon/human/H)
 	..()
+	if(!holder)
+		return
 	var/list/choices = list(CHOICE_RAREOBJ)
 	if(GLOB.various_antag_contracts.len)
 		choices += CHOICE_TCONTRACT
@@ -120,10 +130,12 @@
 
 /datum/perk/sanityboost/assign(mob/living/carbon/human/H)
 	..()
-	holder.sanity.sanity_passive_gain_multiplier *= 1.5
+	if(holder)
+		holder.sanity.sanity_passive_gain_multiplier *= 1.5
 
 /datum/perk/sanityboost/remove()
-	holder.sanity.sanity_passive_gain_multiplier /= 1.5
+	if(holder)
+		holder.sanity.sanity_passive_gain_multiplier /= 1.5
 	..()
 
 /// Basically a marker perk. If the user has this perk, another will be given in certain conditions.
@@ -138,12 +150,14 @@
 
 /datum/perk/active_inspiration/assign(mob/living/carbon/human/H)
 	..()
-	holder.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
-	holder.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
+	if(holder)
+		holder.stats.addTempStat(STAT_COG, 5, INFINITY, "Exotic Inspiration")
+		holder.stats.addTempStat(STAT_MEC, 10, INFINITY, "Exotic Inspiration")
 
 /datum/perk/active_inspiration/remove()
-	holder.stats.removeTempStat(STAT_COG, "Exotic Inspiration")
-	holder.stats.removeTempStat(STAT_MEC, "Exotic Inspiration")
+	if(holder)
+		holder.stats.removeTempStat(STAT_COG, "Exotic Inspiration")
+		holder.stats.removeTempStat(STAT_MEC, "Exotic Inspiration")
 	..()
 
 /datum/perk/sommelier

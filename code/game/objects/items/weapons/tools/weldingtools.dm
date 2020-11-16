@@ -2,6 +2,7 @@
 	name = "welding tool"
 	icon_state = "welder"
 	item_state = "welder"
+	rarity_value = 6
 	flags = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	switched_on_force = WEAPON_FORCE_PAINFUL
@@ -53,6 +54,8 @@
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	rarity_value = 4
+	spawn_tags = SPAWN_TAG_TOOL_TAG_JUNK
 
 //The improvised welding tool is created with a full tank of fuel.
 //It's implied that it's burning the oxygen in the emergency tank that was used to create it
@@ -71,6 +74,8 @@
 	heat = 3773
 	degradation = 0.7
 	max_upgrades = 4
+	rarity_value = 24
+	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/weapon/tool/weldingtool/onestar
 	name = "One Star welding tool"
@@ -87,3 +92,6 @@
 	heat = 2750
 	max_upgrades = 2
 	workspeed = 1.7
+	spawn_blacklisted = TRUE
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_OS_TOOL

@@ -71,35 +71,43 @@
 // Telecomm parts
 /datum/design/research/item/part/subspace_ansible
 	build_path = /obj/item/weapon/stock_parts/subspace/ansible
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAA"
 
 /datum/design/research/item/part/hyperwave_filter
 	build_path = /obj/item/weapon/stock_parts/subspace/filter
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAB"
 
 /datum/design/research/item/part/subspace_amplifier
 	build_path = /obj/item/weapon/stock_parts/subspace/amplifier
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAC"
 
 /datum/design/research/item/part/subspace_treatment
 	build_path = /obj/item/weapon/stock_parts/subspace/treatment
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAD"
 
 /datum/design/research/item/part/subspace_analyzer
 	build_path = /obj/item/weapon/stock_parts/subspace/analyzer
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAE"
 
 /datum/design/research/item/part/subspace_crystal
 	build_path = /obj/item/weapon/stock_parts/subspace/crystal
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAF"
 
 /datum/design/research/item/part/subspace_transmitter
 	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
+	category = "Telecoms | Bluespace"
 	sort_string = "UAAAG"
 
 /datum/design/research/item/part/artificialbscrystal
 	name = "Artificial BlueSpace Crystal"
 	build_path = /obj/item/bluespace_crystal/artificial
+	category = "Telecoms | Bluespace"
 	sort_string = "VAAAF"
 
 // SMES coils

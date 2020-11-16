@@ -38,6 +38,11 @@
 	new /obj/item/clothing/mask/luchador/rudos(src)
 	new /obj/item/clothing/mask/luchador/tecnicos(src)
 
+/obj/structure/closet/lasertag
+	bad_type = /obj/structure/closet/lasertag
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_LASERTAG_CLOSET
+
 /obj/structure/closet/lasertag/red
 	name = "red laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."

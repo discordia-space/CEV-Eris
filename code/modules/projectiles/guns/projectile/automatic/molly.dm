@@ -18,6 +18,7 @@
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 3)
 	price_tag = 1700
+	rarity_value = 16
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	damage_multiplier = 0.7 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg

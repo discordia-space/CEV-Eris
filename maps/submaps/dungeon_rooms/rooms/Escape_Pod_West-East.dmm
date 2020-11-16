@@ -31,7 +31,7 @@
 /turf/simulated/wall/untinted/onestar,
 /area/crawler)
 "j" = (
-/obj/random/mob/roomba,
+/obj/spawner/mob/roomba,
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
 

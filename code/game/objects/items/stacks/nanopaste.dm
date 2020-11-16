@@ -9,9 +9,11 @@
 	amount = 10
 	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
 	price_tag = 15
+	spawn_tags = SPAWN_TAG_MEDICINE
+	rarity_value = 20
 
 
-/obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/stack/nanopaste/attack(mob/living/M, mob/user)
 	if(..())
 		return 1
 	if (!istype(M) || !istype(user))

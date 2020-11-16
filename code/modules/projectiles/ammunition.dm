@@ -173,7 +173,7 @@
 	var/reload_delay = 0 //when we need to make reload slower
 
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
-	var/initial_ammo = null
+	var/initial_ammo
 
 	var/multiple_sprites = 0
 	//because BYOND doesn't support numbers as keys in associative lists
@@ -283,7 +283,7 @@
 		inserted_casing.update_icon()
 		stored_ammo.Insert(1, inserted_casing)
 	else
-		if(istype(C.loc,/mob))
+		if(ismob(C.loc))
 			var/mob/M = C.loc
 			M.remove_from_mob(C)
 		C.forceMove(src)

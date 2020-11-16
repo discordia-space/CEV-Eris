@@ -9,6 +9,8 @@
 	armor = list(melee = 75, bullet = 33, energy = 10, bomb = 25, bio = 100, rad = 0)
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 7)
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+	rarity_value = 10
 
 /obj/item/robot_parts/robot_component/armour/exosuit/Initialize(newloc)
 	. = ..()

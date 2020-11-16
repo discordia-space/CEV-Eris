@@ -25,8 +25,8 @@
 	new /obj/item/clothing/under/rank/bartender(src)
 	new /obj/item/clothing/suit/wcoat(src)
 	new /obj/item/clothing/suit/wcoat(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/clothing/shoes/color/black(src)
+	new /obj/item/clothing/shoes/color/black(src)
 	new /obj/item/clothing/under/rank/bartender/skirt(src)
 
 /*
@@ -46,6 +46,8 @@
 	new /obj/item/weapon/storage/box/mousetraps(src)
 	new /obj/item/weapon/storage/box/mousetraps(src)
 	new /obj/item/clothing/under/rank/chef(src)
+	new /obj/item/weapon/reagent_containers/glass/beaker/bowl(src)
+	new /obj/item/weapon/reagent_containers/glass/beaker/bowl(src)
 	new /obj/item/clothing/head/chefhat(src)
 
 /*

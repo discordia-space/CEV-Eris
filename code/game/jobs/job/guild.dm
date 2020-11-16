@@ -15,7 +15,7 @@
 	access = list(
 		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining,
 		access_heads, access_mining_station, access_RC_announce, access_keycard_auth, access_sec_doors,
-		access_eva, access_external_airlocks
+		access_eva, access_external_airlocks, access_change_cargo
 	)
 	ideal_character_age = 40
 	stat_modifiers = list(

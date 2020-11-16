@@ -14,10 +14,11 @@
 	dir = SOUTH
 	layer = BELOW_MOB_LAYER
 	organ_tag = "limb"
+	bad_type = /obj/item/organ/external
+	spawn_tags = SPAWN_TAG_ORGAN_EXTERNAL
 	var/tally = 0
 
 	// Strings
-	var/broken_description				// fracture string if any.
 	var/damage_state = "00"				// Modifier used for generating the on-mob damage overlay for this limb.
 	var/damage_msg = "\red You feel an intense pain"
 
@@ -30,7 +31,7 @@
 	var/perma_injury = 0
 
 	// Appearance vars.
-	var/body_part = null               // Part flag
+	var/body_part               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.
 	var/model                          // Used when caching robolimb icons.
 
@@ -46,13 +47,14 @@
 	var/number_wounds = 0				// number of wounds, which is NOT wounds.len!
 	var/list/children = list()			// Sub-limbs.
 	var/list/internal_organs = list()	// Internal organs of this body part
+	var/default_bone_type
 	var/list/implants = list()			// Currently implanted objects.
 	var/list/embedded = list()			// Currently implanted objects that can be pulled out
 	var/max_size = 0
 
-	var/list/drop_on_remove = null
+	var/list/drop_on_remove
 
-	var/obj/item/organ_module/active/module = null
+	var/obj/item/organ_module/active/module
 
 	// Joint/state stuff.
 	var/functions = NONE	// Functions performed by body part. Bitflag, see _defines/damage_organs.dm for possible values.
@@ -66,7 +68,7 @@
 	var/encased				// Needs to be opened with a saw to access certain organs.
 
 	var/cavity_name = "cavity"				// Name of body part's cavity, displayed during cavity implant surgery
-	var/cavity_max_w_class = ITEM_SIZE_TINY	// Max w_class of cavity implanted items
+	var/max_volume = ITEM_SIZE_SMALL	// Max w_class of cavity implanted items
 
 	// Surgery vars.
 	var/open = 0
@@ -75,7 +77,7 @@
 	var/cavity = 0
 
 	// Used for spawned robotic organs
-	var/default_description = null
+	var/default_description
 
 /obj/item/organ/external/New(mob/living/carbon/human/holder, datum/organ_description/OD)
 	if(OD)
@@ -83,6 +85,7 @@
 	else if(default_description)
 		set_description(new default_description)
 
+	make_bones()
 	..(holder)
 
 	if(istype(holder))
@@ -108,7 +111,8 @@
 	src.surgery_name = desc.surgery_name
 	src.organ_tag = desc.organ_tag
 	src.body_part = desc.body_part
-	src.parent_organ = desc.parent_organ
+	src.parent_organ_base = desc.parent_organ_base
+	src.default_bone_type = desc.default_bone_type
 
 	src.max_damage = desc.max_damage
 	src.min_broken_damage = desc.min_broken_damage
@@ -117,7 +121,7 @@
 	src.cannot_amputate = desc.cannot_amputate
 
 	src.w_class = desc.w_class
-	src.cavity_max_w_class = desc.cavity_max_w_class
+	src.max_volume = desc.max_volume
 
 	src.amputation_point = desc.amputation_point
 	src.joint = desc.joint
@@ -168,6 +172,10 @@
 	for(var/atom/movable/implant in implants)
 		//large items and non-item objs fall to the floor, everything else stays
 		var/obj/item/I = implant
+		if(istype(I, /obj/item/weapon/implant))
+			var/obj/item/weapon/implant/Imp = I
+			Imp.uninstall()
+			continue
 		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
 			implant.forceMove(get_turf(owner))
 		else
@@ -191,6 +199,16 @@
 	..()
 	SSnano.update_uis(src)
 
+/obj/item/organ/external/proc/make_bones()
+	if(default_bone_type && !is_stump(src))
+		var/obj/item/organ/internal/bone/bone
+		if(nature < MODIFICATION_SILICON)
+			bone = new default_bone_type
+		else
+			var/mecha_bone = text2path("[default_bone_type]/robotic")
+			bone = new mecha_bone
+
+		bone?.replaced(src)
 
 /obj/item/organ/external/proc/update_bionics_hud()
 	switch(organ_tag)
@@ -429,13 +447,23 @@ This function completely restores a damaged organ to perfect condition.
 				if(trace_chemicals[chemID] <= 0)
 					trace_chemicals.Remove(chemID)
 
-		if(!(status & ORGAN_BROKEN))
-			perma_injury = 0
-
 		//Infections
 		update_germs()
+
 	else
 		..()
+
+//Handles bones untill a specific bone porcess is made.
+/obj/item/organ/external/proc/handle_bones()
+	if(!(status & ORGAN_BROKEN))
+		perma_injury = 0
+
+	if(!is_stump())
+		if(!get_bone() && !(owner.status_flags & REBUILDING_ORGANS))
+			for(var/obj/item/organ/external/limb in children)
+				limb.droplimb(FALSE, DROPLIMB_EDGE)
+			droplimb(FALSE, DROPLIMB_BLUNT)
+			owner?.gib() //In theory if droplimb is succesfull, the organ will have no owner and gib() should only get called if droplimb fails(Like on the upper body)
 
 //Updating germ levels. Handles organ germ levels and necrosis.
 /*
@@ -748,7 +776,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 // Checks if the limb should get fractured by now
 /obj/item/organ/external/proc/should_fracture()
-	return config.bones_can_break && !BP_IS_ROBOTIC(src) && brute_dam > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER)
+	var/bone_efficiency = owner.get_specific_organ_efficiency(OP_BONE, organ_tag)
+	return config.bones_can_break && !BP_IS_ROBOTIC(src) && (brute_dam > ((min_broken_damage * ORGAN_HEALTH_MULTIPLIER) * (bone_efficiency / 100)))
 
 // Fracture the bone in the limb
 /obj/item/organ/external/proc/fracture()
@@ -756,60 +785,28 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
 	if((status & ORGAN_BROKEN) || cannot_break)
 		return
-
-	if(owner)
-		owner.visible_message(
-			"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",
-			"<span class='danger'>Something feels like it shattered in your [name]!</span>",
-			"<span class='danger'>You hear a sickening crack.</span>"
-		)
-		if(owner.species && !(owner.species.flags & NO_PAIN))
-			owner.emote("scream")
-
-	status |= ORGAN_BROKEN
-	broken_description = pick("broken","fracture","hairline fracture")
-	perma_injury = brute_dam
-
-	// Fractures have a chance of getting you out of restraints
-	if (prob(25))
-		release_restraints()
-
-	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
-	// TODO: consider moving this to a suit proc or process() or something during
-	// hardsuit rewrite.
-	if(ishuman(owner) && !(status & ORGAN_SPLINTED))
-
-		var/mob/living/carbon/human/H = owner
-
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-
-			var/obj/item/clothing/suit/space/suit = H.wear_suit
-
-			if(isnull(suit.supporting_limbs))
-				return
-
-			to_chat(owner, SPAN_NOTICE("You feel \the [suit] constrict about your [name], supporting it."))
-			status |= ORGAN_SPLINTED
-			suit.supporting_limbs |= src
-
+	var/obj/item/organ/internal/bone/bone = get_bone()
+	bone?.fracture()
 
 /obj/item/organ/external/proc/mend_fracture()
 	if(should_fracture())
 		return FALSE	//will just immediately fracture again
 
-	status &= ~ORGAN_BROKEN
-	status &= ~ORGAN_SPLINTED
-	perma_injury = 0
+	var/obj/item/organ/internal/bone/bone = get_bone()
+	bone?.mend()
 	return TRUE
+
+/obj/item/organ/external/proc/get_bone()
+	return locate(/obj/item/organ/internal/bone) in internal_organs
 
 /obj/item/organ/external/proc/mutate()
 	if(BP_IS_ROBOTIC(src))
 		return
-	src.status |= ORGAN_MUTATED
+	status |= ORGAN_MUTATED
 	if(owner) owner.update_body()
 
 /obj/item/organ/external/proc/unmutate()
-	src.status &= ~ORGAN_MUTATED
+	status &= ~ORGAN_MUTATED
 	if(owner) owner.update_body()
 
 /obj/item/organ/external/proc/get_damage()	//returns total damage
@@ -982,14 +979,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"name" = "Bleeding",
 				"fix_name" = "Clamp",
 				"step" = /datum/surgery_step/fix_bleeding
-			)
-			conditions_list.Add(list(condition))
-
-		if(status & ORGAN_BROKEN)
-			condition = list(
-				"name" = "Bone fracture",
-				"fix_name" = "Mend",
-				"step" = /datum/surgery_step/fix_bone
 			)
 			conditions_list.Add(list(condition))
 

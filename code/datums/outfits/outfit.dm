@@ -22,23 +22,23 @@ var/list/outfits_decls_by_type_
 /decl/hierarchy/outfit
 	name = "Naked"
 
-	var/uniform = null
-	var/suit = null
-	var/back = null
-	var/belt = null
-	var/gloves = null
-	var/shoes = null
-	var/head = null
-	var/mask = null
-	var/l_ear = null
-	var/r_ear = null
-	var/glasses = null
-	var/id = null
-	var/l_pocket = null
-	var/r_pocket = null
-	var/suit_store = null
-	var/r_hand = null
-	var/l_hand = null
+	var/uniform
+	var/suit
+	var/back
+	var/belt
+	var/gloves
+	var/shoes
+	var/head
+	var/mask
+	var/l_ear
+	var/r_ear
+	var/glasses
+	var/id
+	var/l_pocket
+	var/r_pocket
+	var/suit_store
+	var/r_hand
+	var/l_hand
 	var/list/backpack_contents = list() // In the list(path=count,otherpath=count) format
 
 	var/id_type

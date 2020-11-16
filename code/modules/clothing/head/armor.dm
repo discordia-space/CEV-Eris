@@ -13,6 +13,9 @@
 	siemens_coefficient = 0.6
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 100
+	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
+	bad_type = /obj/item/clothing/head/armor
+	rarity_value = 10
 	style = 0
 
 /*
@@ -22,6 +25,7 @@
 	name = "helmet"
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
+	rarity_value = 5
 	armor = list(
 		melee = 35,
 		bullet = 30,
@@ -30,11 +34,21 @@
 		bio = 0,
 		rad = 0
 	)
+	matter = list(
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTEEL = 1 //a lil bit of plasteel since it's better than handmade shit
+	)
 
 /obj/item/clothing/head/armor/helmet/visor
 	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed visor to protect the eyes."
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
+	rarity_value = 6.66
+	matter = list(
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 2 // costs some glass cause of the visor and the included eye protection
+	)
 
 /obj/item/clothing/head/armor/helmet/merchelm
 	name = "Heavy Armour Helmet"
@@ -58,20 +72,22 @@
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE
+	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
+	rarity_value = 50
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "technomancer helmet"
 	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
-	icon_state = "technohelmet"
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
 	action_button_name = "Toggle Headlamp"
+	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
 		melee = 45,
@@ -83,6 +99,10 @@
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+
+/obj/item/clothing/head/armor/helmet/technomancer/New()
+	. = ..()
+	icon_state = pick(list("technohelmet_visor", "technohelmet_googles"))
 
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
@@ -104,6 +124,7 @@
 	icon_state = "thunderdome"
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 1
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/armor/bulletproof
 	name = "bulletproof helmet"
@@ -120,6 +141,11 @@
 	)
 	price_tag = 400
 	flash_protection = FLASH_PROTECTION_MAJOR
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
+		MATERIAL_GLASS = 3 //For the visor parts
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -202,6 +228,11 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
+	matter = list(
+		MATERIAL_STEEL = 10, // also comes with a hud with it's own prices
+		MATERIAL_PLASTEEL = 2,
+		MATERIAL_GLASS = 2
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_full/New()
 	..()
@@ -261,6 +292,7 @@
 	icon_state = "ablative"
 	body_parts_covered = HEAD | EARS | EYES
 	flags_inv = HIDEEARS | HIDEEYES
+	rarity_value = 25
 	armor = list(
 		melee = 30,
 		bullet = 25,
@@ -271,58 +303,81 @@
 	)
 	siemens_coefficient = 0
 	price_tag = 325
+	matter = list(
+		MATERIAL_STEEL = 4, // slightly less steel cost
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
+	)
 
-// Riot helmet
-/obj/item/clothing/head/armor/riot
+// toggleable face guard
+/obj/item/clothing/head/armor/faceshield
+	//We cant just use the armor var to store the original since initial(armor) will return a null pointer
+	var/list/armor_up = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+	var/tint_down = TINT_MODERATE
+	flags_inv = HIDEEARS
+	var/flags_inv_down = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
+	body_parts_covered = HEAD|EARS
+	var/body_parts_covered_down = HEAD|EARS|EYES|FACE
+	flash_protection = FLASH_PROTECTION_NONE
+	var/flash_protection_down = FLASH_PROTECTION_MAJOR
+	action_button_name = "Flip Face Shield"
+	var/up = FALSE
+	bad_type = /obj/item/clothing/head/armor/faceshield
+
+/obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	body_parts_covered = HEAD|FACE|EARS
-	var/list/armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
-	var/list/armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
+	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
-	tint = TINT_MODERATE
-	flash_protection = FLASH_PROTECTION_MAJOR
-	action_button_name = "Flip Face Shield"
-	var/up = FALSE
 	price_tag = 150
+	rarity_value = 25
 
-/obj/item/clothing/head/armor/riot/Initialize()
+/obj/item/clothing/head/armor/faceshield/Initialize()
 	. = ..()
-	armor = up ? armor_up : armor_down
-	update_icon()
+	set_is_up(up)
 
-/obj/item/clothing/head/armor/riot/attack_self()
+/obj/item/clothing/head/armor/faceshield/attack_self()
 	toggle()
 
-/obj/item/clothing/head/armor/riot/update_icon()
+/obj/item/clothing/head/armor/faceshield/update_icon()
 	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
-/obj/item/clothing/head/armor/riot/verb/toggle()
+//I wanted to name it set_up() but some how I thought that would be misleading
+/obj/item/clothing/head/armor/faceshield/proc/set_is_up(is_up)
+	up = is_up
+	if(up)
+		armor = getArmor(arglist(armor_up))
+		flash_protection = initial(flash_protection)
+		tint = initial(tint)
+		flags_inv = initial(flags_inv)
+		body_parts_covered = initial(body_parts_covered)
+	else
+		armor = getArmor(arglist(armor_down))
+		flash_protection = flash_protection_down
+		tint = tint_down
+		flags_inv = flags_inv_down
+		body_parts_covered = body_parts_covered_down
+
+	update_icon()
+	update_wear_icon()	//update our mob overlays
+
+/obj/item/clothing/head/armor/faceshield/verb/toggle()
 	set category = "Object"
-	set name = "Adjust riot helmet"
+	set name = "Adjust face shield"
 	set src in usr
 
 	if(!usr.incapacitated())
-		src.up = !src.up
+		src.set_is_up(!src.up)
 
 		if(src.up)
-			body_parts_covered &= ~(EYES|FACE)
-			tint = TINT_NONE
-			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
-			flash_protection = FLASH_PROTECTION_NONE
-			armor = armor_up
 			to_chat(usr, "You push the [src] up out of your face.")
 		else
-			body_parts_covered |= (EYES|FACE)
-			tint = initial(tint)
-			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
-			flash_protection = initial(flash_protection)
-			armor = armor_down
 			to_chat(usr, "You flip the [src] down to protect your face.")
 
-		update_icon()
-		update_wear_icon()	//update our mob overlays
 		usr.update_action_buttons()
 
 
@@ -411,70 +466,28 @@
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
 
-/obj/item/clothing/head/armor/altyn
+/obj/item/clothing/head/armor/faceshield/altyn
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	var/list/armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
-	var/list/armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0) // slightly better than usual due to mask
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHEADHAIR
-	flash_protection = FLASH_PROTECTION_MAJOR
-	body_parts_covered = HEAD|FACE|EARS
+	armor_up = list(melee = 20, bullet = 15, energy = 0, bomb = 15, bio = 0, rad = 0)
+	armor_down = list(melee = 40, bullet = 40, energy = 0, bomb = 35, bio = 0, rad = 0)
 	siemens_coefficient = 1
+	rarity_value = 50
+	up = TRUE
 
-	action_button_name = "Flip Face Shield"
-	var/up = TRUE
-
-
-/obj/item/clothing/head/armor/altyn/Initialize()
-	. = ..()
-	armor = up ? armor_up : armor_down
-	update_icon()
-
-/obj/item/clothing/head/armor/altyn/update_icon()
-	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
-
-/obj/item/clothing/head/armor/altyn/attack_self()
-	toggle()
-
-
-/obj/item/clothing/head/armor/altyn/verb/toggle()
-	set category = "Object"
-	set name = "Adjust face shield"
-	set src in usr
-
-	if(!usr.incapacitated())
-		src.up = !src.up
-
-		if(src.up)
-			body_parts_covered &= ~(EYES|FACE)
-			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
-			flash_protection = FLASH_PROTECTION_NONE
-			armor = armor_up
-			to_chat(usr, "You push the [src] up out of your face.")
-		else
-			body_parts_covered |= (EYES|FACE)
-			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
-			flash_protection = initial(flash_protection)
-			armor = armor_down
-			to_chat(usr, "You flip the [src] down to protect your face.")
-
-		update_icon()
-		update_wear_icon()	//update our mob overlays
-		usr.update_action_buttons()
-
-
-/obj/item/clothing/head/armor/altyn/brown
+/obj/item/clothing/head/armor/faceshield/altyn/brown
 	icon_state = "altyn_brown"
 
-/obj/item/clothing/head/armor/altyn/black
+/obj/item/clothing/head/armor/faceshield/altyn/black
 	icon_state = "altyn_black"
 
-/obj/item/clothing/head/armor/altyn/maska
+/obj/item/clothing/head/armor/faceshield/altyn/maska
 	name = "maska helmet"
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
+	rarity_value = 100
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
@@ -482,6 +495,7 @@
 	icon_state = "cyberpunkgoggle"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
 	siemens_coefficient = 0.9	//More conductive than most helmets
+	rarity_value = 5.55
 	armor = list(
 		melee = 5,
 		bullet = 20,

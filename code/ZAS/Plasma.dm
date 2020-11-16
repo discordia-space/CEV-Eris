@@ -117,10 +117,10 @@ obj/var/contaminated = 0
 
 /mob/living/carbon/human/proc/burn_eyes()
 	//The proc that handles eye burning.
-	if(!species.has_organ[BP_EYES])
+	if(!species.has_process[OP_EYES])
 		return
 
-	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[BP_EYES]
+	var/obj/item/organ/internal/eyes/E = random_organ_by_process(OP_EYES)
 	if(E)
 		if(prob(20)) to_chat(src, SPAN_DANGER("Your eyes burn!"))
 		E.damage += 2.5

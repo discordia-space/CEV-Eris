@@ -31,7 +31,7 @@
 /turf/space/levelupdate()
 	for(var/obj/O in src)
 		O.hide(FALSE)
-		SEND_SIGNAL(O, CONSIG_TURF_LEVELUPDATE, FALSE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 /turf/space/is_solid_structure()
 	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice

@@ -13,7 +13,7 @@
 
 /obj/structure/scrap_cube/Initialize(mapload, size = -1)
 	if(size < 0)
-		new /obj/random/scrap/moderate_weighted(src)
+		new /obj/spawner/scrap(src)
 	. = ..()
 
 /obj/structure/scrap_cube/attackby(obj/item/W, mob/user)
@@ -43,7 +43,7 @@
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/stack/sheet/refined_scrap
+/obj/item/stack/refined_scrap
 	name = "refined scrap"
 	desc = "This is ghetto gold! It could be used as fuel or building material. Even central Command would give cargo points for this."
 	icon = 'icons/obj/structures/scrap/refine.dmi'

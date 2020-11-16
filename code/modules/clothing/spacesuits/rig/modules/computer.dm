@@ -26,7 +26,6 @@
 	module.holder.ui_interact(usr, nano_state = GLOB.contained_state)
 
 /obj/item/rig_module/ai_container
-
 	name = "IIS module"
 	desc = "An integrated intelligence system module suitable for most hardsuits."
 	icon_state = "IIS"
@@ -34,7 +33,8 @@
 	usable = 1
 	disruptive = 0
 	activates_on_touch = 1
-
+	rarity_value = 2
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 	engage_string = "Eject AI"
 	activate_string = "Enable Dataspike"
@@ -228,7 +228,6 @@
 	return
 
 /obj/item/rig_module/datajack
-
 	name = "datajack module"
 	desc = "A simple induction datalink module."
 	icon_state = "datajack"
@@ -242,6 +241,8 @@
 
 	interface_name = "contact datajack"
 	interface_desc = "An induction-powered high-throughput datalink suitable for hacking encrypted networks."
+	rarity_value = 3.5
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/datum/research/files
 
 /obj/item/rig_module/datajack/New()
@@ -300,7 +301,6 @@
 	return files.download_from(incoming_files)
 
 /obj/item/rig_module/electrowarfare_suite
-
 	name = "electrowarfare module"
 	desc = "A bewilderingly complex bundle of fiber optics and chips."
 	icon_state = "ewar"
@@ -314,6 +314,7 @@
 
 	interface_name = "electrowarfare system"
 	interface_desc = "An active counter-electronic warfare suite that disrupts AI tracking."
+	rarity_value = 10
 
 /obj/item/rig_module/electrowarfare_suite/activate()
 
@@ -333,7 +334,6 @@
 	M.digitalcamo = max(0,(M.digitalcamo-1))
 
 /obj/item/rig_module/power_sink
-
 	name = "hardsuit power sink"
 	desc = "An heavy-duty power sink."
 	icon_state = "powersink"
@@ -347,7 +347,8 @@
 
 	interface_name = "niling d-sink"
 	interface_desc = "Colloquially known as a power siphon, this module drains power through the suit hands into the suit battery."
-
+	rarity_value = 3.5
+	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/atom/interfaced_with // Currently draining power from this device.
 	var/total_power_drained = 0
 	var/drain_loc

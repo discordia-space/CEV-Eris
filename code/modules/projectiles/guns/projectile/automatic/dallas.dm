@@ -7,10 +7,11 @@
 	item_state = "dallas"
 	w_class = ITEM_SIZE_HUGE
 	force = WEAPON_FORCE_PAINFUL
-	caliber = CAL_CLRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
+	caliber = CAL_CLRIFLE
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
+	magazine_type = /obj/item/ammo_magazine/c10x24
 	auto_eject = 1
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 15)
 	price_tag = 5000 //99 rounds of pure pain and destruction served in auto-fire, so it basically an upgraded LMG

@@ -170,7 +170,7 @@
 	nodamage = 1
 	taser_effect = 1
 	agony = 30
-	damage_types = list(HALLOSS = 30)
+	damage_types = list(BURN = 1)
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer
