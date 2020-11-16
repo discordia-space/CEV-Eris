@@ -152,6 +152,7 @@
 /obj/item/weapon/spacecash/bundle
 /obj/item/weapon/spacecash/ewallet
 /obj/item/weapon/spacecash
+/obj/item/weapon/holo
 /obj/item/weapon/grown
 /obj/item/weapon/plantspray
 /obj/item/weapon/ore

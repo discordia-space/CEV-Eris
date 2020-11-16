@@ -1,1 +1,1 @@
-/obj/item/weapon/mine    blacklisted=0    spawn_value=10   spawn_price=0   100    nothing
+/obj/item/weapon/mine    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
