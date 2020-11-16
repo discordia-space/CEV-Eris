@@ -4147,7 +4147,6 @@
 /obj/spawner/pack/tech_loot
 /obj/spawner/pack/gun_loot/low_chance
 /obj/spawner/pack/gun_loot
-/obj/spawner/pack/rare/low_chance
 /obj/spawner/pack/rare
 /obj/spawner/pack/machine/low_chance
 /obj/spawner/pack/machine

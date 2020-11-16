@@ -101,6 +101,7 @@ They generally give more random result and can provide more divercity in spawn.
 	name = "low chance rare loot"
 	icon_state = "box-orange-low"
 	spawn_nothing_percentage = 70
+	spawn_frequency = 0
 
 
 //The pack to surpass them all. This pack is meant to be PLACED ON MAP. Not in JUNK CODE, because it CONTAINS JUNK SPAWNER.

@@ -1796,6 +1796,7 @@
 /obj/structure/table/rack/shelf
 /obj/structure/table/rack
 /obj/structure/table
+/obj/spawner/pack/rare/low_chance
 /obj/spawner/pack
 /obj/spawner/powercell/low_chance
 /obj/spawner/scrap/low_chance

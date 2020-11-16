@@ -17,5 +17,5 @@
 /obj/item/weapon/stock_parts/matter_bin/adv    blacklisted=0    spawn_value=3.66287   spawn_price=200   100    
 /obj/item/weapon/rig/hazmat/equipped    blacklisted=0    spawn_value=2.5   spawn_price=0   100    
 /obj/item/weapon/rig/hazmat    blacklisted=0    spawn_value=4   spawn_price=0   100    
-/obj/item/device/scanner/reagent    blacklisted=0    spawn_value=10   spawn_price=0   100    
+/obj/item/device/scanner/reagent    blacklisted=0    spawn_value=8.54148   spawn_price=51   100    
 /obj/item/device/science_tool    blacklisted=0    spawn_value=6.25   spawn_price=0   100    

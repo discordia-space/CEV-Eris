@@ -173,10 +173,10 @@
 			if(initial(C.autorecharging))
 				bonus *= 2
 			. += bonus
-	/*else if(ispath(path, /obj/item/device)) //TODO make all devices
+	else if(ispath(path, /obj/item/device))
 		var/obj/item/device/D = path
 		if(initial(D.starting_cell) && initial(D.suitable_cell))
-			. += get_spawn_price(initial(D.suitable_cell))*/
+			. += get_spawn_price(initial(D.suitable_cell))
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
