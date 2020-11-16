@@ -130,7 +130,7 @@
 
 #define SPAWN_TAG_XENOARCH_ITEM "obj,item,xenoarch"
 #define SPAWN_TAG_XENOARCH_ITEM_FOSSIL "obj,item,fossil,xenoarch"
-#define SPAWN_TAG_GUN_ENERGY_XENOARCH "obj,item,gun,gun_energy,xenoarch"
+#define SPAWN_TAG_GUN_ENERGY_XENOARCH "obj,item,gun,guns,gun_energy,xenoarch"
 
 //  MINES
 #define SPAWN_MINE "mine"
@@ -171,6 +171,7 @@
 #define SPAWN_TAG_GUN_PROJECTILE "obj,item,gun,gun_projectile,guns"
 #define SPAWN_TAG_GUN_SHOTGUN "obj,item,gun,gun_projectile,shotgun,guns"
 #define SPAWN_TAG_GUN_SHOTGUN_ENERGY "obj,item,gun,gun_energy,shotgun,guns"
+#define SPAWN_TAG_GUN_ENERGY_BOTANICAL "obj,item,gun,gun_energy,guns,botanical"
 
 //	Items - GUNS - ammo
 #define SPAWN_AMMO "ammmo_storage"

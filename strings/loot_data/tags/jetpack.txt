@@ -1,5 +1,5 @@
-/obj/item/weapon/tank/jetpack/void    blacklisted=0    spawn_value=1.93427   spawn_price=50   100    
-/obj/item/weapon/tank/jetpack/oxygen    blacklisted=0    spawn_value=1.93427   spawn_price=50   100    
-/obj/item/weapon/tank/jetpack/carbondioxide    blacklisted=0    spawn_value=2.85478   spawn_price=50   100    
-/obj/item/weapon/tank/jetpack/rig    blacklisted=0    spawn_value=1.93427   spawn_price=50   100    
-/obj/item/robot_parts/robot_component/jetpack    blacklisted=0    spawn_value=1.45645   spawn_price=100   100    
+/obj/item/weapon/tank/jetpack/void    blacklisted=0    spawn_value=1.93427   spawn_price=50   100    nothing
+/obj/item/weapon/tank/jetpack/oxygen    blacklisted=0    spawn_value=1.93427   spawn_price=50   100    nothing
+/obj/item/weapon/tank/jetpack/carbondioxide    blacklisted=0    spawn_value=2.85478   spawn_price=50   100    nothing
+/obj/item/weapon/tank/jetpack/rig    blacklisted=0    spawn_value=1.93427   spawn_price=50   100    nothing
+/obj/item/robot_parts/robot_component/jetpack    blacklisted=0    spawn_value=1.45645   spawn_price=100   100    nothing

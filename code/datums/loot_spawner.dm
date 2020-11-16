@@ -31,7 +31,7 @@
 	var/loot_data_paths = file("[file_dir]/all_spawn_paths.txt")
 	var/hard_blacklist_data = file("[file_dir]/hard_blacklist.txt")
 	var/blacklist_paths_data = file("[file_dir]/blacklist.txt")
-	var/fike_dir_tags = "[file_dir]/tags/"
+	var/file_dir_tags = "[file_dir]/tags/"
 	if(generate_files)
 		fdel(source_dir)
 		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_all_accompanying_obj    all_accompanying_obj"
@@ -115,10 +115,10 @@
 		for(var/tag in spawn_tags)
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
-				var/tag_data_i = file("[fike_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+				var/tag_data_i = file("[file_dir_tags][tag].txt")
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   [initial(A.prob_aditional_object)]    [all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   [initial(A.prob_aditional_object)]    [initial(A.accompanying_object)]"
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   [initial(A.prob_aditional_object)]    [all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
@@ -131,7 +131,7 @@
 /datum/controller/subsystem/spawn_data/proc/get_spawn_price(path, with_accompaying_obj = TRUE)
 	var/atom/movable/A = path
 	. = initial(A.price_tag)
-	if(all_accompanying_obj_by_path[path])
+	if(with_accompaying_obj && all_accompanying_obj_by_path[path])
 		for(var/a_obj in all_accompanying_obj_by_path[path])
 			. += get_spawn_price(a_obj, FALSE)
 	if(ispath(path, /obj/item/weapon/stock_parts))//see /obj/item/weapon/stock_parts/get_item_cost(export)
