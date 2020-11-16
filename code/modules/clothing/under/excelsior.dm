@@ -9,9 +9,9 @@
 /obj/item/clothing/under/excelsior/Initialize(mapload, ...)
 	. = ..()
 	name = "white excelsior jumpsuit"
-	if (prob(66))
+	if(prob(66))
 		name = "mixed excelsior jumpsuit"
 		icon_state = "excelsior_mixed"
-		if (prob(50))
+		if(prob(50))
 			name = "orange excelsior jumpsuit"
 			icon_state = "excelsior_orange"

@@ -45,6 +45,7 @@ var/global/photo_count = 0
 /obj/item/weapon/photo/Initialize(mapload)
 	. = ..()
 	id = photo_count++
+	..()
 
 /obj/item/weapon/photo/attack_self(mob/user as mob)
 	user.examinate(src)

@@ -70,22 +70,26 @@
 	var/list/stack_storage
 	var/stack_amt = 120 // Amount to stack before releassing
 
-/obj/machinery/mineral/stacking_machine/New()
+/obj/machinery/mineral/stacking_machine/Initialize(mapload, d)
+	. = ..()
 	stack_storage = new
 
 	//TODO: Make this dynamic based on detecting conveyor belts or something. Maybe an interface to manually configure it
 	//These markers delete themselves on initialize so the machine can never be properly rebuilt during a round. This is bad.
 	input_dir = NORTH //Sensible default so that the machine can at least be replaced in the same location
 	output_dir = SOUTH
-	spawn()
-		//Locate our output and input machinery.
-		var/obj/marker = null
-		marker = locate(/obj/landmark/machinery/input) in range(1, loc)
-		if(marker)
-			input_dir = get_dir(src, marker)
-		marker = locate(/obj/landmark/machinery/output) in range(1, loc)
-		if(marker)
-			output_dir = get_dir(src, marker)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/mineral/stacking_machine/LateInitialize()
+	. = ..()
+	//Locate our output and input machinery.
+	var/obj/marker
+	marker = locate(/obj/landmark/machinery/input) in range(1, loc)
+	if(marker)
+		input_dir = get_dir(src, marker)
+	marker = locate(/obj/landmark/machinery/output) in range(1, loc)
+	if(marker)
+		output_dir = get_dir(src, marker)
 
 /obj/machinery/mineral/stacking_machine/proc/outputMaterial(var/material_name, var/amount)
 	var/stored_amount = stack_storage[material_name] || 0

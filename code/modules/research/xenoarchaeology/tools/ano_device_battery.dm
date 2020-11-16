@@ -8,7 +8,7 @@
 	var/stored_charge = 0
 	var/effect_id = ""
 
-/obj/item/weapon/anobattery/Initialize(mapload)
+/obj/item/weapon/anobattery/New()
 	. = ..()
 	battery_effect = new()
 

@@ -1853,7 +1853,6 @@
 /obj/item/weapon/holo/esword/green
 /obj/item/weapon/holo/esword/red
 /obj/item/weapon/holo/esword
-/obj/item/weapon/holo
 /obj/item/weapon/corncob
 /obj/item/weapon/plantspray/weeds
 /obj/item/weapon/plantspray/pests/old/carbaryl

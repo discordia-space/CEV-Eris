@@ -208,6 +208,7 @@ steam.start() -- spawns the effect
 
 
 /obj/effect/effect/smoke/Initialize()
+	. = ..()
 	spawn(time_to_live)
 		fade_out()
 

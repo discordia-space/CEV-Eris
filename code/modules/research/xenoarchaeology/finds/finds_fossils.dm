@@ -60,6 +60,7 @@
 /obj/skeleton/New()
 	src.breq = rand(6)+3
 	src.desc = "An incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
+	..()
 
 /obj/skeleton/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/fossil/bone))
@@ -104,7 +105,7 @@
 	desc = "It's fossilised plant remains."
 	animal = 0
 
-/obj/item/weapon/fossil/plant/Initialize(mapload)
-	. = ..()
+/obj/item/weapon/fossil/plant/New()
+	..()
 	icon_state = "plant[rand(1,4)]"
 	update_icon()

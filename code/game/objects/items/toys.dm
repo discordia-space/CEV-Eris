@@ -35,12 +35,11 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
+	preloaded_reagents = list()
 
-/obj/item/toy/balloon/Initialize(mapload)
-	. = ..()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
+/obj/item/toy/balloon/New()
+	create_reagents(10)
+	..()
 
 /obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user)
 	return
@@ -325,14 +324,8 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	flags // TODO??
+	preloaded_reagents = list("water" = 10)
 	var/empty = 0
-
-/obj/item/toy/waterflower/Initialize(mapload)
-	. = ..()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user )
 	return

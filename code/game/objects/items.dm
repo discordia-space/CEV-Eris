@@ -184,7 +184,7 @@
 			return
 		var/mob/living/silicon/robot/R = user
 		R.activate_module(src)
-//		R.hud_used.update_robot_modules_display()
+	//R.hud_used.update_robot_modules_display()
 
 /obj/item/proc/talk_into(mob/living/M, message, channel, verb = "says", datum/language/speaking = null, speech_volume)
 	return

@@ -28,12 +28,12 @@
 	if(last_use + 5 MINUTES > world.time)
 		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 5 minutes to regenerate."))
 		return
-	
+
 	var/datum/mind/owner_mind = owner_mob.mind
 
 	to_chat(owner_mob, SPAN_NOTICE("You assume control of the host."))
 	to_chat(wearer, SPAN_DANGER("You feel a strange shifting sensation as another consciousness displaces yours."))
-
+	message_admins("[owner_mob] ([key_name_admin(owner_mob)]) took control of [wearer]([key_name_admin(wearer)]")
 	if(ishuman(wearer)) //Wearer base type is human, so we have to change it back to mob/living
 		start_damage = list(wearer.getBruteLoss(), wearer.getOxyLoss(), wearer.getToxLoss(), wearer.getFireLoss())
 	else
