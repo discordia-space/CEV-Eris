@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/glass = 15,
 		/obj/item/stack/material/plasteel = 10,
 		/obj/item/stack/material/gold = 5,
-		/obj/item/stack/material/glass/plasmarglass = 10,
+		/obj/item/stack/material/glass/reinforced = 10,
 	)
 
 /datum/nt_blueprint/machinery/reader
