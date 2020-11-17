@@ -47,23 +47,30 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	if(!items_check(user, target_turf, blueprint))
 		fail("Something is missing.",user,C,targets)
 		return
-	//TODO: add a nice overlay effect on turf
+	
 	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
+	
+	var/obj/effect/overlay/nt_construction/effect = new(target_turf)
+
 	if(!do_after(user, 5 SECONDS, target_turf))
 		fail("You feel something is judging you upon your impatience",user,C,targets)
+		effect.failure()
 		return
 	if(!items_check(user, target_turf, blueprint))
 		fail("Something got stolen!",user,C,targets)
+		effect.failure()
 		return
 	//magic has to be a bit innacurate
 
 	for(var/item_type in blueprint.materials)
 		var/t = locate(item_type) in target_turf.contents
 		qdel(t)
-		
+	
+	effect.success()	
 	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
 	var/build_path = blueprint.build_path
-	new build_path(target_turf)	
+	new build_path(target_turf)
+	
 
 /datum/ritual/cruciform/priest/construction/proc/items_check(mob/user,turf/target, datum/nt_blueprint/blueprint)
 	var/list/turf_contents = target.contents
