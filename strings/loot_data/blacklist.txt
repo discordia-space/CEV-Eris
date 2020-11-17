@@ -117,7 +117,6 @@
 /obj/item/weapon/pen/reagent
 /obj/item/weapon/pen/chameleon
 /obj/item/weapon/oddity/techno
-/obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/onestar
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/excelsior

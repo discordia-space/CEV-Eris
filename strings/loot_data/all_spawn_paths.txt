@@ -1169,7 +1169,6 @@
 /obj/item/weapon/oddity/common/old_radio
 /obj/item/weapon/oddity/common/paper_bundle
 /obj/item/weapon/oddity/techno
-/obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity/secdocs
 /obj/item/weapon/inflatable_duck
 /obj/item/weapon/camera_bug
@@ -3148,7 +3147,6 @@
 /obj/item/toy/prize/mauler
 /obj/item/toy/prize/odysseus
 /obj/item/toy/prize/phazon
-/obj/item/toy/prize
 /obj/item/toy/figure/excelsior
 /obj/item/toy/figure/serbian
 /obj/item/toy/figure/acolyte

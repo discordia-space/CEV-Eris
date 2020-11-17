@@ -1147,7 +1147,6 @@
 /obj/item/weapon/oddity/common/old_radio    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/oddity/common/paper_bundle    blacklisted=0    spawn_value=6.25   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/oddity/techno    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
-/obj/item/weapon/oddity/broken_necklace    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/oddity/secdocs    blacklisted=1    spawn_value=7.29982   spawn_price=5000   prob_accompanying_obj=100    nothing
 /obj/item/weapon/inflatable_duck    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/camera_bug    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
@@ -3104,7 +3103,6 @@
 /obj/item/toy/prize/mauler    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/prize/odysseus    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/prize/phazon    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
-/obj/item/toy/prize    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/figure/excelsior    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/figure/serbian    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/figure/acolyte    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing

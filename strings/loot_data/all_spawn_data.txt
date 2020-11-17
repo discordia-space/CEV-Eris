@@ -1170,7 +1170,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/weapon/oddity/common/old_radio    obj,item,oddity    blacklisted=0    spawn_value=4.34783   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/oddity/common/paper_bundle    obj,item,oddity    blacklisted=0    spawn_value=6.25   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/oddity/techno    obj,item,oddity    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
-/obj/item/weapon/oddity/broken_necklace    obj,item,oddity    blacklisted=1    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/oddity/secdocs    obj,item,oddity    blacklisted=1    spawn_value=7.29982   spawn_price=5000   prob_accompanying_obj=100    nothing
 /obj/item/weapon/inflatable_duck    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/weapon/camera_bug    obj,item    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
@@ -3149,7 +3148,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/item/toy/prize/mauler    obj,item,toy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/prize/odysseus    obj,item,toy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/prize/phazon    obj,item,toy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
-/obj/item/toy/prize    obj,item,toy    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/figure/excelsior    obj,item,toy,toy_figure    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/figure/serbian    obj,item,toy,toy_figure    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/item/toy/figure/acolyte    obj,item,toy,toy_figure    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing

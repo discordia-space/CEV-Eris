@@ -71,6 +71,7 @@
 /obj/item/weapon/reagent_containers
 /obj/item/weapon/pen/robopen
 /obj/item/weapon/oddity/common
+/obj/item/weapon/oddity/broken_necklace
 /obj/item/weapon/oddity
 /obj/item/weapon/twohanded/offhand
 /obj/item/weapon/twohanded
@@ -339,6 +340,7 @@
 /obj/item/device/camera/siliconcam/drone_camera
 /obj/item/device/camera/siliconcam
 /obj/item/device
+/obj/item/toy/prize
 /obj/item/toy/figure
 /obj/item/toy/plushie
 /obj/item/toy

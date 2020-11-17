@@ -402,6 +402,7 @@
 /obj/item/toy/prize
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
+	bad_type = /obj/item/toy/prize
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
