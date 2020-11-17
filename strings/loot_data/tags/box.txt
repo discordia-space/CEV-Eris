@@ -5,7 +5,7 @@
 /obj/item/weapon/storage/box/masks    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/syringes    blacklisted=0    spawn_value=4.51546   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/syringegun    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/weapon/storage/box/beakers    blacklisted=0    spawn_value=13.9936   spawn_price=140   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/weapon/storage/box/beakers    blacklisted=0    spawn_value=13.9685   spawn_price=144.2   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/bodybags    blacklisted=0    spawn_value=4.57769   spawn_price=70   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/injectors    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/weapon/storage/box/flashbangs    blacklisted=0    spawn_value=1.59887   spawn_price=350   prob_accompanying_obj=100    accompanying_objs=nothing

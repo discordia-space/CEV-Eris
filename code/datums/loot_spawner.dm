@@ -181,6 +181,9 @@
 		var/obj/item/weapon/storage/fancy/F = path
 		if(initial(F.item_obj) && initial(F.storage_slots))
 			. += initial(F.storage_slots) * get_spawn_price(initial(F.item_obj))
+	else if(ispath(path, /obj/item/weapon/reagent_containers/glass/beaker))
+		var/obj/item/weapon/reagent_containers/glass/beaker/B = path
+		. += initial(B.volume)/100
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
