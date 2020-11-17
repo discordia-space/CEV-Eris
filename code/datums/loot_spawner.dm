@@ -116,9 +116,9 @@
 			all_spawn_by_tag[tag] += list(path)
 			if(generate_files)
 				var/tag_data_i = file("[file_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    [all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
+				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    accompanying_objs=[all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    [all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
+			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    accompanying_objs=[all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
 			loot_data_paths << "[path]"
 			if(initial(A.spawn_blacklisted))
 				blacklist_paths_data << "[path]"
@@ -177,6 +177,10 @@
 		var/obj/item/device/D = path
 		if(initial(D.starting_cell) && initial(D.suitable_cell))
 			. += get_spawn_price(initial(D.suitable_cell))
+	else if(ispath(path, /obj/item/weapon/storage/fancy))
+		var/obj/item/weapon/storage/fancy/F = path
+		if(initial(F.item_obj) && initial(F.storage_slots))
+			. += initial(F.storage_slots) * get_spawn_price(initial(F.item_obj))
 
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
