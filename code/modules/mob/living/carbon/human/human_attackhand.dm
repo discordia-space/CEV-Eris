@@ -136,10 +136,15 @@
 				return
 
 			var/stat_damage = 3 + max(0, (H.stats.getStat(STAT_ROB) / 10))
+			var/limb_efficiency_multiplier = 1
 			var/block = 0
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
+			var/obj/item/organ/external/current_hand = organs_by_name[hand ? BP_L_ARM : BP_R_ARM]
+
+			if(current_hand)
+				limb_efficiency_multiplier = 1 * (current_hand.limb_efficiency / 100)
 
 			if(!affecting || affecting.is_stump())
 				to_chat(M, SPAN_DANGER("They are missing that limb!"))
@@ -162,6 +167,8 @@
 			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
 				accurate = 1 // certain circumstances make it impossible for us to evade punches
 				stat_damage = stat_damage + 2
+
+			stat_damage *= limb_efficiency_multiplier
 
 			// Process evasion and blocking
 			var/miss_type = 0
