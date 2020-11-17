@@ -424,7 +424,7 @@ default behaviour is:
 	disabilities = 0
 
 	// fix blindness and deafness
-	blinded = 0
+	blinded = FALSE
 	eye_blind = 0
 	eye_blurry = 0
 	ear_deaf = 0
