@@ -281,15 +281,11 @@
 	if(I.GetComponent(/datum/component/inspiration))
 		GET_COMPONENT_FROM(comp, /datum/component/inspiration, I)
 		if(comp.power > 0)
-			if(!power_source)
-				user.drop_item(I)
-				I.forceMove(src)
-				power_source = I
-			else
-				user.drop_item(I)
-				I.forceMove(src)
+			user.drop_item(I)
+			I.forceMove(src)
+			if(power_source)
 				power_source.forceMove(loc)
-				power_source = I
+			power_source = I
 			return
 
 	if(power_source)
