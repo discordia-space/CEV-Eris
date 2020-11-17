@@ -9,8 +9,8 @@
 //Randomly spawned tools will often be in imperfect condition if they've been left lying out
 /obj/spawner/tool/post_spawn(list/spawns)
 	if (isturf(loc))
-		for (var/obj/O in spawns)
-			if (!istype(O, /obj/spawner) && prob(20))
+		for(var/obj/O in spawns)
+			if(!istype(O, /obj/spawner) && prob(20))
 				O.make_old()
 
 /obj/spawner/tool/low_chance

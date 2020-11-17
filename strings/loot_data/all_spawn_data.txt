@@ -3820,7 +3820,6 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /obj/structure/closet/l3closet    obj,structure,closet    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/structure/closet/random/miscellaneous    obj,structure,closet,closet_random    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/structure/closet/random/tech    obj,structure,closet,closet_random    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    nothing
-/obj/structure/closet/random/spareparts    obj,structure,closet,closet_random    blacklisted=1    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/structure/closet/random/milsupply    obj,structure,closet,closet_random    blacklisted=0    spawn_value=2   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/structure/closet/random/medsupply    obj,structure,closet,closet_random    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    nothing
 /obj/structure/closet/random/hostilemobs/beacon    obj,structure,closet,closet_random    blacklisted=1    spawn_value=16.6667   spawn_price=0   prob_accompanying_obj=100    nothing

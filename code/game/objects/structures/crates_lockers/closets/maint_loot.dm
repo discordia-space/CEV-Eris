@@ -59,7 +59,7 @@
 	icon_door = "eng_secure_door"
 	old_chance = 10
 	rarity_value = 50
-	spawn_blacklisted = TRUE//bad icon
+	bad_type = /obj/structure/closet/random/spareparts//bad icon
 
 /obj/structure/closet/random/tech/populate_contents()
 	new /obj/spawner/lowkeyrandom/low_chance(src)

@@ -1415,6 +1415,7 @@
 /obj/structure/closet/lasertag
 /obj/structure/closet/cabinet
 /obj/structure/closet/gimmick
+/obj/structure/closet/random/spareparts
 /obj/structure/closet/random
 /obj/structure/closet/onestar
 /obj/structure/closet/syndicate

@@ -3819,7 +3819,6 @@
 /obj/structure/closet/l3closet
 /obj/structure/closet/random/miscellaneous
 /obj/structure/closet/random/tech
-/obj/structure/closet/random/spareparts
 /obj/structure/closet/random/milsupply
 /obj/structure/closet/random/medsupply
 /obj/structure/closet/random/hostilemobs/beacon

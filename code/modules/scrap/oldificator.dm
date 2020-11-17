@@ -331,6 +331,6 @@
 /mob/living/exosuit/proc/make_old()
 	name = "[pick("old", "rusted", "weathered", "ancient")] [name]"
 	updatehealth()
-	emp_act(rand(0,3))
+	emp_act(rand(1,6))
 	adjustFireLoss(rand(0, health))
 	adjustBruteLoss(rand(0, health))

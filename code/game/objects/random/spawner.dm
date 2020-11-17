@@ -49,7 +49,6 @@
 				post_spawn(spawns)
 			if(biome)
 				biome.price_tag += price_tag
-			post_spawn(spawns)
 
 	return INITIALIZE_HINT_QDEL
 
@@ -63,7 +62,6 @@
 				post_spawn(spawns)
 			if(biome)
 				biome.price_tag += price_tag
-			post_spawn(spawns)
 	qdel(src)
 
 /obj/spawner/proc/check_biome_spawner()
