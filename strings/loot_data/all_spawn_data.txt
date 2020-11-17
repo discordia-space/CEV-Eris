@@ -3754,8 +3754,8 @@ paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompa
 /mob/living/exosuit/premade/combat    mech,mech_premade    blacklisted=0    spawn_value=1.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /mob/living/exosuit/premade/heavy    mech,mech_premade    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /mob/living/exosuit/premade/light    mech,mech_premade    blacklisted=0    spawn_value=10   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/mob/living/exosuit/premade/powerloader/flames_red    mech,mech_premade    blacklisted=1    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
-/mob/living/exosuit/premade/powerloader/flames_blue    mech,mech_premade    blacklisted=1    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/powerloader/flames_red    mech,mech_premade    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
+/mob/living/exosuit/premade/powerloader/flames_blue    mech,mech_premade    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /mob/living/exosuit/premade/powerloader/firefighter    mech,mech_premade    blacklisted=0    spawn_value=5   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /mob/living/exosuit/premade/powerloader    mech,mech_premade    blacklisted=0    spawn_value=6.66667   spawn_price=0   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/machinery/constructable_frame/machine_frame    obj,structure,structure_machine_frame,struture_constructable_frame    blacklisted=0    spawn_value=8.33333   spawn_price=100   prob_accompanying_obj=100    accompanying_objs=nothing

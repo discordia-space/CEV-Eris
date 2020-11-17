@@ -23,7 +23,6 @@
 	min_loot_amount = 1
 	max_loot_amount = 1
 	can_burrow = TRUE
-	allowed_only_top = TRUE
 
 /obj/landmark/loot_biomes/mob/chek_tags()
 	if(!mob_tags.len)
@@ -65,7 +64,6 @@
 	name = "trap biome"
 	icon_state = "trap-purple-biome"
 	trap_tags = list(SPAWN_TRAP_ARMED)
-	allowed_only_top = TRUE
 	cap_price = INFINITY
 	min_traps_amount = 1
 	max_traps_amount = 1

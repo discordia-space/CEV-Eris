@@ -1129,6 +1129,7 @@
 #include "code\game\objects\random\biomes\biome.dm"
 #include "code\game\objects\random\biomes\biomes.dm"
 #include "code\game\objects\random\biomes\guns.dm"
+#include "code\game\objects\random\biomes\tech.dm"
 #include "code\game\objects\random\mob\mobs.dm"
 #include "code\game\objects\random\mob\roach.dm"
 #include "code\game\objects\random\mob\slime.dm"

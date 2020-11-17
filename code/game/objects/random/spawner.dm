@@ -69,6 +69,10 @@
 	if(biome_spawner && biome)
 		. = TRUE
 
+
+/obj/spawner/proc/burrow()
+	return FALSE
+
 // creates the random item
 /obj/spawner/proc/spawn_item()
 	var/list/points_for_spawn = list()
@@ -137,7 +141,7 @@
 		if(biome.price_tag + price_tag >= biome.cap_price && !istype(src, /obj/spawner/mob) && !istype(src, /obj/spawner/traps))
 			return
 	var/list/candidates = valid_candidates()
-	if(check_biome_spawner() && biome.allowed_only_top)
+	if(check_biome_spawner() && (istype(src, /obj/spawner/traps) || istype(src, /obj/spawner/mob)))
 		var/count = 1
 		if(istype(src, /obj/spawner/traps))
 			count = biome.spawner_trap_count
@@ -209,6 +213,3 @@
 		return contents
 	else
 		return
-
-/obj/spawner/proc/burrow()
-	return FALSE

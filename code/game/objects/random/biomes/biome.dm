@@ -53,7 +53,6 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	var/list/restricted_tags = list()
 	var/danger_level = 0
 	var/only_top = 1
-	var/allowed_only_top = FALSE//for mob biomes
 	var/range = 7
 	var/can_burrow = FALSE
 	var/min_loot_amount = 1
@@ -87,20 +86,19 @@ GLOBAL_LIST_EMPTY(loot_biomes)
 	for(var/turf/T in turf_list)
 		for(var/obj/item/I in T.contents)
 			price_tag += I.get_item_cost()
-	if(allowed_only_top)
-		switch(price_tag)
-			if(0 to LOOT_LEVEL_VERY_LOW)
-				only_top = 1
-			if(LOOT_LEVEL_VERY_LOW to LOOT_LEVEL_LOW)
-				only_top = 0.35
-			if(LOOT_LEVEL_LOW to LOOT_LEVEL_ADVERAGE)
-				only_top = 0.30
-			if(LOOT_LEVEL_ADVERAGE to LOOT_LEVEL_HIG)
-				only_top = 0.25
-			if(LOOT_LEVEL_HIG to LOOT_LEVEL_VERY_HIG)
-				only_top = 0.20
-			if(LOOT_LEVEL_VERY_HIG to INFINITY)
-				only_top = 0.15
+	switch(price_tag)
+		if(0 to LOOT_LEVEL_VERY_LOW)
+			only_top = 1
+		if(LOOT_LEVEL_VERY_LOW to LOOT_LEVEL_LOW)
+			only_top = 0.35
+		if(LOOT_LEVEL_LOW to LOOT_LEVEL_ADVERAGE)
+			only_top = 0.30
+		if(LOOT_LEVEL_ADVERAGE to LOOT_LEVEL_HIG)
+			only_top = 0.25
+		if(LOOT_LEVEL_HIG to LOOT_LEVEL_VERY_HIG)
+			only_top = 0.20
+		if(LOOT_LEVEL_VERY_HIG to INFINITY)
+			only_top = 0.15
 
 /obj/landmark/loot_biomes/proc/update()
 	update_turfs()

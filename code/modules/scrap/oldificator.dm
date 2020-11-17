@@ -328,9 +328,19 @@
 		salvage_num = max(1, salvage_num - pick(1, 2, 3))
 */
 
+/mob/living/exosuit
+	var/oldified = FALSE//Todo: inprove it.
+
 /mob/living/exosuit/proc/make_old()
+	if(oldified)
+		return FALSE
+	oldified = TRUE
 	name = "[pick("old", "rusted", "weathered", "ancient")] [name]"
-	updatehealth()
 	emp_act(rand(1,6))
 	adjustFireLoss(rand(0, health))
 	adjustBruteLoss(rand(0, health))
+	/*
+	for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
+		comp.make_old()
+	updatehealth()
+	*/

@@ -535,8 +535,6 @@
 /mob/living/bot/miningonestar/resources/agressive
 /mob/living/bot/miningonestar/resources/in_work
 /mob/living/bot/miningonestar/resources
-/mob/living/exosuit/premade/powerloader/flames_red
-/mob/living/exosuit/premade/powerloader/flames_blue
 /obj/structure/closet/coffin/spawnercorpse
 /obj/structure/closet/thunderdome/tdred
 /obj/structure/closet/thunderdome/tdgreen

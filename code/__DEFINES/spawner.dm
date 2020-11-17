@@ -349,6 +349,8 @@
 #define SPAWN_TAG_GRENADE_CLEANER "obj,item,grenade,grenade_cleaner,item_utility"
 
 //	MECH
+#define SPAWN_MECH "mech"
+
 #define SPAWN_MECH_PREMADE "mech_premade"
 #define SPAWN_MECH_QUIPMENT "mech_equipment"
 
