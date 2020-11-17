@@ -50,9 +50,9 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	
 	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
 	
-	var/obj/effect/overlay/nt_construction/effect = new(target_turf)
+	var/obj/effect/overlay/nt_construction/effect = new(target_turf, blueprint.build_time)
 
-	if(!do_after(user, 5 SECONDS, target_turf))
+	if(!do_after(user, blueprint.build_time, target_turf))
 		fail("You feel something is judging you upon your impatience",user,C,targets)
 		effect.failure()
 		return
@@ -93,6 +93,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	var/name = "Report me"
 	var/build_path
 	var/list/materials
+	var/build_time = 3 SECONDS
 	
 /datum/nt_blueprint/canister
 	name = "Biomatter Canister"
@@ -109,6 +110,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/plastic = 4,
 		/obj/item/stack/material/plasteel = 2,
 	)
+	build_time = 5 SECONDS
 
 /datum/nt_blueprint/machinery
 
@@ -120,6 +122,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/gold = 5,
 		/CRUCIFORM_TYPE = 1
 	)
+	build_time = 8 SECONDS
 /datum/nt_blueprint/machinery/bioprinter
 	name = "Biomatter Printer"
 	build_path = /obj/machinery/autolathe/bioprinter
@@ -129,7 +132,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/silver = 6,
 		/obj/item/weapon/storage/toolbox = 1
 	)
-
+	build_time = 5 SECONDS
 /datum/nt_blueprint/machinery/solidifier
 	name = "Biomatter Solidifier"
 	build_path = /obj/machinery/biomatter_solidifier
@@ -138,7 +141,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/silver = 5,
 		/obj/structure/reagent_dispensers/biomatter = 1
 	)
-
+	build_time = 9 SECONDS
 //cloner
 /datum/nt_blueprint/machinery/cloner
 	name = "Cloner Pod"
@@ -149,7 +152,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/gold = 5,
 		/obj/item/stack/material/glass/reinforced = 10,
 	)
-
+	build_time = 10 SECONDS
 /datum/nt_blueprint/machinery/reader
 	name = "Cruciform Reader"
 	build_path = /obj/machinery/neotheology/reader
@@ -159,7 +162,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/silver = 10,
 		/CRUCIFORM_TYPE = 1
 	)
-
+	build_time = 10 SECONDS
 /datum/nt_blueprint/machinery/biocan
 	name = "Biomass tank"
 	build_path = /obj/machinery/neotheology/biomass_container
@@ -168,7 +171,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/plasteel = 5,
 		/obj/structure/reagent_dispensers/biomatter/large = 1
 	)
-
+	build_time = 8 SECONDS
 //generator
 /datum/nt_blueprint/machinery/biogen
 	name = "Biomatter Power Generator"
@@ -180,7 +183,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/biomatter = 5,
 		/obj/structure/reagent_dispensers/biomatter = 1
 	)
-
+	build_time = 15 SECONDS
 /datum/nt_blueprint/machinery/biogen_console
 	name = "Biomatter Power Generator: Console"
 	build_path = /obj/machinery/multistructure/biogenerator_part/console
@@ -189,6 +192,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/plastic = 15,
 		/obj/item/stack/cable_coil = 30 //! TODO: proper recipe
 	)
+	build_time = 6 SECONDS
 /datum/nt_blueprint/machinery/biogen_port
 	name = "Biomatter Power Generator: Port"
 	build_path = /obj/machinery/multistructure/biogenerator_part/port
@@ -196,7 +200,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/steel = 10,
 		/obj/item/weapon/reagent_containers/glass/bucket = 1
 	)
-
+	build_time = 5 SECONDS
 //bioreactor
 /datum/nt_blueprint/machinery/bioreactor_loader
 	name = "Biomatter Reactor: Loader"
@@ -207,6 +211,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/glass = 2,
 		/obj/structure/reagent_dispensers/biomatter = 1
 	)
+	build_time = 8 SECONDS
 
 /datum/nt_blueprint/machinery/bioreactor_metrics
 	name = "Biomatter Reactor: Metrics"
@@ -217,7 +222,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/glass = 4,
 		/obj/item/stack/cable_coil = 30 //! TODO: proper recipe
 	)
-
+	build_time = 7 SECONDS
 /datum/nt_blueprint/machinery/bioreactor_port
 	name = "Biomatter Reactor: Port"
 	build_path = /obj/machinery/multistructure/bioreactor_part/bioport
@@ -225,7 +230,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/silver = 5,
 		/obj/item/weapon/reagent_containers/glass/bucket = 1
 	)
-
+	build_time = 6 SECONDS
 /datum/nt_blueprint/machinery/bioreactor_biotank
 	name = "Biomatter Reactor: Tank"
 	build_path = /obj/machinery/multistructure/bioreactor_part/biotank_platform
@@ -234,7 +239,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/steel = 20,
 		/obj/structure/reagent_dispensers/biomatter/large = 1
 	)
-
+	build_time = 6 SECONDS
 /datum/nt_blueprint/machinery/bioreactor_unloader
 	name = "Biomatter Reactor: Unloader"
 	build_path = /obj/machinery/multistructure/bioreactor_part/unloader
@@ -243,7 +248,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/rods = 5,
 		/obj/structure/reagent_dispensers/biomatter = 1
 	)
-
+	build_time = 8 SECONDS
 /datum/nt_blueprint/machinery/bioreactor_platform
 	name = "Biomatter Reactor: Platform"
 	build_path = /obj/machinery/multistructure/bioreactor_part/biotank_platform
@@ -251,3 +256,4 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		/obj/item/stack/material/steel = 10,
 		/obj/item/stack/tile/floor = 1
 	)
+	build_time = 8 SECONDS
