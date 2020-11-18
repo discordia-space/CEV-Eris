@@ -262,7 +262,8 @@
 	name = "APC EMP shield"
 	result = /obj/item/stock_part/emp_shield/apc
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_URANIUM, "time" = 0),
+		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL, "time" = 0),
+		list(CRAFT_MATERIAL, 2, MATERIAL_URANIUM, "time" = 20),
 		list(QUALITY_BOLT_TURNING, 10, 60),
 		list(/obj/item/stack/cable_coil, 10, "time" = 20),
 		list(QUALITY_CUTTING, 10, 10),
