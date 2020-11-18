@@ -26,7 +26,13 @@ THE SOFTWARE.
 '''
 
 from __future__ import print_function
-import yaml, os, glob, sys, re, time, argparse
+import yaml
+import os
+import glob
+import sys
+import re
+import time
+import argparse
 from datetime import datetime, date, timedelta
 from time import time
 
@@ -44,6 +50,7 @@ args = opt.parse_args()
 
 all_changelog_entries = {}
 
+
 validPrefixes = [
     'bugfix',
     'wip',
@@ -51,6 +58,7 @@ validPrefixes = [
     'soundadd',
     'sounddel',
     'rscdel',
+    'maptweak',
     'rscadd',
     'imageadd',
     'imagedel',
@@ -141,72 +149,7 @@ for fileName in glob.glob(os.path.join(args.ymlDir, "*.yml")):
     name, ext = os.path.splitext(os.path.basename(fileName))
     if name.startswith('.'):
         continue
-    if name == 'example':'''
-Usage:
-    $ python ss13_genchangelog.py [--dry-run] html/changelog.html html/changelogs/
-
-ss13_genchangelog.py - Generate changelog from YAML.
-
-Copyright 2013 Rob "N3X15" Nelson <nexis@7chan.org>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-'''
-
-from __future__ import print_function
-import yaml, os, glob, sys, re, time, argparse
-from datetime import datetime, date, timedelta
-from time import time
-
-today = date.today()
-
-dateformat = "%d %B %Y"
-
-opt = argparse.ArgumentParser()
-opt.add_argument('-d', '--dry-run', dest='dryRun', default=False, action='store_true', help='Only parse changelogs and, if needed, the targetFile. (A .dry_changelog.yml will be output for debugging purposes.)')
-opt.add_argument('-t', '--time-period', dest='timePeriod', default=9, type=int, help='Define how many weeks back the changelog should display')
-opt.add_argument('targetFile', help='The HTML changelog we wish to update.')
-opt.add_argument('ymlDir', help='The directory of YAML changelogs we will use.')
-
-args = opt.parse_args()
-
-all_changelog_entries = {}
-
-validPrefixes = [
-    'bugfix',
-    'wip',
-    'tweak',
-    'soundadd',
-    'sounddel',
-    'rscdel',
-    'rscadd',
-    'imageadd',
-    'imagedel',
-    'spellcheck',
-    'experiment',
-    'tgs',
-    'balance',
-    'code_imp',
-    'refactor',
-    'config',
-    'admin',
-    'server'
-]
+    if name == 'example':
         continue
     fileName = os.path.abspath(fileName)
     print(' Reading {}...'.format(fileName))
