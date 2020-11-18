@@ -97,4 +97,4 @@
 	if(is_excelsior(usr))
 		..()
 	else
-		to_chat(usr, SPAN_WARNING("The helmet fails to deploy, a built in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))
+		to_chat(usr, SPAN_WARNING("The helmet fails to deploy, a built-in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))
