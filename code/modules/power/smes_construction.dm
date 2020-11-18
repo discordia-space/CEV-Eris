@@ -397,7 +397,7 @@
 
 				to_chat(usr, SPAN_NOTICE("You install the EMP shield into the SMES unit."))
 				user.drop_item()
-                emp_shield = W
+				emp_shield = W
 				emp_shield.loc = src
 				component_parts += W
 				
