@@ -62,9 +62,9 @@
 	is_critical = 1
 
 /obj/item/stock_part/emp_shield/apc
-    name = "APC EMP shield"
-    desc = "Device that would save your APC from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
-    matter = list(MATERIAL_STEEL = 5, MATERIAL_URANIUM = 1)
+	name = "APC EMP shield"
+	desc = "Device that would save your APC from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
+	matter = list(MATERIAL_STEEL = 5, MATERIAL_URANIUM = 1)
 
 /obj/machinery/power/apc
 	name = "area power controller"

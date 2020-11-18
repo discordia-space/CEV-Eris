@@ -51,18 +51,18 @@
 	rarity_value = 50
 
 /obj/item/stock_part/emp_shield
-    name = "machinery emp shielding"
-    desc = "Weird metal box full of wires. This one looks salvaged."
-    icon = 'icons/obj/assemblies.dmi' //placeholder for now
-    icon_state = "armor-igniter-analyzer"
-    matter = list(MATERIAL_STEEL = 4)
-    origin_tech = list(TECH_MAGNET = 1, TECH_POWER = 2, TECH_MATERIAL = 2)
+	name = "machinery emp shielding"
+	desc = "Weird metal box full of wires. This one looks salvaged."
+	icon = 'icons/obj/assemblies.dmi' //placeholder for now
+	icon_state = "armor-igniter-analyzer"
+	matter = list(MATERIAL_STEEL = 4)
+	origin_tech = list(TECH_MAGNET = 1, TECH_POWER = 2, TECH_MATERIAL = 2)
 
 /obj/item/stock_part/emp_shield/smes
-    name = "SMES EMP shield"
-    desc = "Device that would save your SMES from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
-    matter = list(MATERIAL_STEEL = 10, MATERIAL_URANIUM = 3)
-    origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 4, TECH_MATERIAL = 2)
+	name = "SMES EMP shield"
+	desc = "Device that would save your SMES from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_URANIUM = 3)
+	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 4, TECH_MATERIAL = 2)
 
 // SMES itself
 /obj/machinery/power/smes/buildable
