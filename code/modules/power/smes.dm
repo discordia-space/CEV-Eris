@@ -49,6 +49,7 @@
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
 	var/obj/machinery/power/terminal/terminal = null
 	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
+	var/obj/item/stock_part/emp_shield/smes/emp_shield
 
 /obj/machinery/power/smes/drain_power(var/drain_check, var/surge, var/amount = 0)
 
@@ -461,6 +462,7 @@
 
 
 /obj/machinery/power/smes/emp_act(severity)
+	if(emp_shield) return
 	if(prob(50))
 		inputting(rand(0,1))
 		outputting(rand(0,1))

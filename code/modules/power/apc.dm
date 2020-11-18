@@ -61,6 +61,11 @@
 /obj/machinery/power/apc/hyper/critical
 	is_critical = 1
 
+/obj/item/stock_part/emp_shield/apc
+    name = "APC EMP shield"
+    desc = "Device that would save your APC from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
+    matter = list(MATERIAL_STEEL = 5, MATERIAL_URANIUM = 1)
+
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
@@ -69,6 +74,7 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	req_access = list(access_engine_equip)
+	var/obj/item/stock_part/emp_shield/apc/emp_shield
 	var/need_sound
 	var/area/area
 	var/areastring
@@ -462,6 +468,16 @@
 
 		if(QUALITY_PRYING)
 			if(opened)
+				if (emp_shield)
+					if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+						return
+					if (!do_after(usr, 20 SECONDS, src)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
+						return
+
+					to_chat(usr, SPAN_WARNING("You have disassembled the SMES EMP shielding!"))
+					emp_shield.forceMove(get_turf(user))
+					return
+
 				if (has_electronics==1)
 					if (terminal)
 						to_chat(user, SPAN_WARNING("Disconnect wires first."))
@@ -561,6 +577,23 @@
 
 		if(ABORT_CHECK)
 			return
+	if (istype(I, /obj/item/stock_part/emp_shield/apc) && opened && terminal != null)
+		if(emp_shield)
+			to_chat(user, SPAN_NOTICE("You can't add more EMP shielding to this APC!"))
+			return
+		else
+			if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+				return
+			if (!do_after(user, 30 SECONDS, src))
+				return
+
+		to_chat(usr, SPAN_NOTICE("You install the EMP shield into the [src]."))
+		user.drop_item()
+		emp_shield = I
+		emp_shield.loc = src
+		RefreshParts()		
+		return
+
 	if (istype(I, /obj/item/weapon/gripper))//Gripper can extract cell
 		var/obj/item/weapon/gripper/Gri = I
 		if(opened && cell)
@@ -1218,6 +1251,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity)
+	if(emp_shield) return
 	// Fail for 8-12 minutes (divided by severity)
 	// Division by 2 is required, because machinery ticks are every two seconds. Without it we would fail for 16-24 minutes.
 	energy_fail(round(rand(240, 360) / severity))

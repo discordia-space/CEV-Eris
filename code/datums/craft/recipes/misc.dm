@@ -257,3 +257,28 @@
 		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)
+
+/datum/craft_recipe/emp_shield_apc
+	name = "APC EMP shield"
+	result = /obj/item/stock_part/emp_shield/apc
+	steps = list(
+		list(CRAFT_MATERIAL, 2, MATERIAL_URANIUM, "time" = 0),
+		list(QUALITY_BOLT_TURNING, 10, 60),
+		list(/obj/item/stack/cable_coil, 10, "time" = 20),
+		list(QUALITY_CUTTING, 10, 10),
+		list(QUALITY_SCREW_DRIVING, 10, 20)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/emp_shield_smes
+	name = "SMES EMP shield"
+	result = /obj/item/stock_part/emp_shield/smes
+	steps = list(
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL, "time" = 0),
+		list(CRAFT_MATERIAL, 5, MATERIAL_URANIUM, "time" = 30),
+		list(QUALITY_WELDING, 10, 60),
+		list(/obj/item/stack/cable_coil, 30, "time" = 20),
+		list(QUALITY_CUTTING, 10, 10),
+		list(QUALITY_SCREW_DRIVING, 10, 20)
+	)
+	related_stats = list(STAT_MEC)

@@ -50,6 +50,19 @@
 	rating = 3
 	rarity_value = 50
 
+/obj/item/stock_part/emp_shield
+    name = "machinery emp shielding"
+    desc = "Weird metal box full of wires. This one looks salvaged."
+    icon = 'icons/obj/assemblies.dmi' //placeholder for now
+    icon_state = "armor-igniter-analyzer"
+    matter = list(MATERIAL_STEEL = 4)
+    origin_tech = list(TECH_MAGNET = 1, TECH_POWER = 2, TECH_MATERIAL = 2)
+
+/obj/item/stock_part/emp_shield/smes
+    name = "SMES EMP shield"
+    desc = "Device that would save your SMES from electro-magnetic pulses. Probably. \nAttention! Manufacturer takes no responsibility for any harm caused by this device."
+    matter = list(MATERIAL_STEEL = 10, MATERIAL_URANIUM = 3)
+    origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 4, TECH_MATERIAL = 2)
 
 // SMES itself
 /obj/machinery/power/smes/buildable
@@ -319,6 +332,21 @@
 
 		// Crowbar - Disassemble the SMES.
 		if(tool_type == QUALITY_PRYING)
+
+			if (emp_shield)
+				playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+				to_chat(user, SPAN_WARNING("You begin to yank the [emp_shield] out!"))
+				if (!do_after(usr, 100 * cur_coils, src)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s
+					return
+
+				if (failure_probability && prob(failure_probability))
+					total_system_failure(failure_probability, user)
+					return
+
+				to_chat(usr, SPAN_WARNING("You have disassembled the SMES EMP shielding!"))
+				emp_shield.forceMove(get_turf(user))
+				return
+
 			if (terminal)
 				to_chat(user, SPAN_WARNING("You have to disassemble the terminal first!"))
 				return
@@ -356,6 +384,24 @@
 				RefreshParts()
 			else
 				to_chat(usr, SPAN_WARNING("You can't insert more coils to this SMES unit!"))
+		else if (istype(W, /obj/item/stock_part/emp_shield/smes))
+			if(emp_shield)
+				to_chat(user, SPAN_NOTICE("You can't add more EMP shielding to this SMES unit!"))
+				return
+			else
+				if (failure_probability && prob(failure_probability))
+					total_system_failure(failure_probability, user)
+					return
+				if (!do_after(user, 100 * cur_coils, src))
+					return
+
+				to_chat(usr, SPAN_NOTICE("You install the EMP shield into the SMES unit."))
+				user.drop_item()
+                emp_shield = W
+				emp_shield.loc = src
+				component_parts += W
+				
+				RefreshParts()			
 
 // SMESes that power ship sections
 // Output enabled,  partially charged
