@@ -519,7 +519,7 @@ proc/is_blind(A)
 		if(isgun(belt) || istype(belt, /obj/item/weapon/melee))
 			threatcount += 2
 
-		if(species.name != "Human")
+		if(species.name != SPECIES_HUMAN)
 			threatcount += 2
 
 	if(check_records || check_arrest)

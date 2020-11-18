@@ -62,7 +62,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	// TODO: enable after baymed
 	//set_species(H ? H.get_species() : SPECIES_HUMAN)
 
-	set_species("Human")
+	set_species(SPECIES_HUMAN)
 	//set_branch(H ? (H.char_branch && H.char_branch.name) : "None")
 	//set_rank(H ? (H.char_rank && H.char_rank.name) : "None")
 
