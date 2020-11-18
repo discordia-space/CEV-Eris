@@ -145,7 +145,7 @@
 	//Vision
 	var/obj/item/organ/vision
 	if(species.vision_organ)
-		vision = random_organ_by_process(species.vision_organ)	//You can't really have 2 vision organs that see at the same time, so this is emulated by switching between the eyes. 
+		vision = random_organ_by_process(species.vision_organ)	//You can't really have 2 vision organs that see at the same time, so this is emulated by switching between the eyes.
 
 	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
 		eye_blind =  0
@@ -348,7 +348,7 @@
 /mob/living/carbon/human/proc/handle_breath_lungs(datum/gas_mixture/breath)
 	if(!breath)
 		return FALSE
-	//vars - feel free to modulate if you want more effects that are not gained with efficiency 
+	//vars - feel free to modulate if you want more effects that are not gained with efficiency
 	var/breath_type = species.breath_type ? species.breath_type : "oxygen"
 	var/poison_type = species.poison_type ? species.poison_type : "plasma"
 	var/exhale_type = species.exhale_type ? species.exhale_type : 0
@@ -1152,6 +1152,14 @@
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder
+
+	if (BITTEST(hud_updateflag, EXCELSIOR_HUD))
+		var/image/holder = hud_list[EXCELSIOR_HUD]
+		holder.icon_state = "hudblank"
+		if(is_excelsior(src))
+			holder.icon_state = "hudexcelsior"
+		hud_list[EXCELSIOR_HUD] = holder
+
 	hud_updateflag = 0
 
 /mob/living/carbon/human/handle_silent()

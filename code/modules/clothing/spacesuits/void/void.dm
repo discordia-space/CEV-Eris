@@ -44,6 +44,7 @@
 	spawn_frequency = 8
 	spawn_blacklisted = FALSE
 	accompanying_object = /obj/item/clothing/shoes/magboots
+	var/auto_deploy_helmet = TRUE
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
@@ -106,11 +107,8 @@
 			boots.canremove = 0
 
 	if(helmet)
-		if(H.head)
-			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
-		else if (H.equip_to_slot_if_possible(helmet, slot_head))
-			to_chat(M, "Your suit's helmet deploys with a hiss.")
-			helmet.canremove = 0
+		if(auto_deploy_helmet)
+			toggle_helmet()
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.

@@ -61,3 +61,13 @@
 
 /obj/item/clothing/glasses/hud/broken/process_hud(mob/M)
 	process_broken_hud(M, 1)
+
+
+/obj/item/clothing/glasses/hud/excelsior
+	name = "Excelsior HUD"
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their opinion on communism."
+	icon_state = "excelhud"
+	body_parts_covered = 0
+
+/obj/item/clothing/glasses/hud/excelsior/process_hud(mob/M)
+	process_excel_hud(M)

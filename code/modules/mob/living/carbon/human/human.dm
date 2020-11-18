@@ -36,6 +36,7 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy",   ON_MOB_HUD_LAYER)
+	hud_list[EXCELSIOR_HUD]   = image('icons/mob/hud.dmi', src, "hudblank",     ON_MOB_HUD_LAYER)
 
 
 
