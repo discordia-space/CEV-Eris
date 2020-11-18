@@ -189,6 +189,7 @@
 /obj/item/weapon/holo
 	damtype = HALLOSS
 	no_attack_log = 1
+	bad_type = /obj/item/weapon/holo
 
 /obj/item/weapon/holo/esword
 	desc = "May the force be within you. Sorta."
@@ -203,12 +204,10 @@
 	var/item_color
 
 /obj/item/weapon/holo/esword/green
-	New()
-		item_color = "green"
+	item_color = "green"
 
 /obj/item/weapon/holo/esword/red
-	New()
-		item_color = "red"
+	item_color = "red"
 
 /obj/item/weapon/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
@@ -222,7 +221,8 @@
 	return 0
 
 /obj/item/weapon/holo/esword/New()
-	item_color = pick("red","blue","green","purple")
+	if(!item_color)
+		item_color = pick("red","blue","green","purple")
 
 /obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
 	active = !active

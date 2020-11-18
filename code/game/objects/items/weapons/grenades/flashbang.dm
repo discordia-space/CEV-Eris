@@ -56,27 +56,35 @@
 		M.eye_blind = max(M.eye_blind, 5)
 
 
-
 //Now applying sound
 	if((get_dist(M, T) <= 2 || loc == M.loc || loc == M))
 		if(ear_safety <= 0)
 			stat_def *= 5
 			if ((prob(14) || (M == loc && prob(70))))
 				M.adjustEarDamage(rand(1, 10))
+				M.confused = max(M.confused,8)
 			else
 				M.adjustEarDamage(rand(0, 5))
 				M.ear_deaf = max(M.ear_deaf,15)
+				M.confused = max(M.confused,8)
+		else
+			stat_def *= 2
+			M.confused = max(M.confused,4)
 
 	else if(get_dist(M, T) <= 5)
-		if(!ear_safety)
+		if(ear_safety <= 0)
 			stat_def *= 4
 			M.adjustEarDamage(rand(0, 3))
 			M.ear_deaf = max(M.ear_deaf,10)
+			M.confused = max(M.confused,6)
+		else
+			M.confused = max(M.confused,2)
 
 	else if(!ear_safety)
 		stat_def *= 2
 		M.adjustEarDamage(rand(0, 1))
 		M.ear_deaf = max(M.ear_deaf,5)
+		M.confused = max(M.confused,5)
 
 	//This really should be in mob not every check
 	if(ishuman(M))

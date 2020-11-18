@@ -107,7 +107,7 @@ SUBSYSTEM_DEF(job)
 
 		if(job in command_positions) //If you want a command position, select it!
 			continue
-		
+
 		if(job.is_restricted(player.client.prefs))
 			continue
 
@@ -414,7 +414,7 @@ SUBSYSTEM_DEF(job)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H
 
-proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+/proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
 	if(!H || !H.client)
 		return
 

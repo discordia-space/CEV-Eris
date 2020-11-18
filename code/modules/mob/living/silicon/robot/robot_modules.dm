@@ -101,12 +101,13 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/weapon/robot_module/Initialize()
+	. = ..()
 	for(var/obj/item/I in modules)
 		I.canremove = 0
 		I.set_plane(ABOVE_HUD_PLANE)
 		I.layer = ABOVE_HUD_LAYER
 
-	for (var/obj/item/weapon/tool/T in modules)
+	for(var/obj/item/weapon/tool/T in modules)
 		T.degradation = 0 //We don't want robot tools breaking
 
 	//A quick hack to stop robot modules running out of power
@@ -547,7 +548,7 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/material/cyborg/steel/M = new (src)
 	M.synths = list(metal)
 	src.modules += M
-	
+
 	var/obj/item/stack/material/cyborg/glass/G = new (src)
 	G.synths = list(glass)
 	src.modules += G

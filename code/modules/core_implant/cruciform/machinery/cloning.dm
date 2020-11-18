@@ -229,7 +229,7 @@
 			occupant.UpdateAppearance()
 			occupant.sync_organ_dna()
 			occupant.flavor_text = R.flavor
-			occupant.stats = R.stats
+			R.stats.copyTo(occupant.stats)
 
 		if(progress == CLONING_BODY || progress <= CLONING_BODY && progress > CLONING_BODY-10)
 			var/datum/effect/effect/system/spark_spread/s = new

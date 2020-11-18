@@ -593,7 +593,7 @@
 			SPAN_NOTICE("You insert the power cell."))
 		chargecount = 0
 		update_icon()
-	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))	
+	else if (istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/modular_computer))
 		toggle_lock(user)
 	else if (istype(I, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
 		var/turf/T = loc
@@ -1070,7 +1070,7 @@
 	else
 		main_status = 2
 
-	if(!cell || cell.empty())
+	if(!cell || cell.is_empty())
 		if(need_sound == TRUE)
 			playsound(loc, 'sound/machines/Custom_apcnopower.ogg', 75, 0)
 			need_sound = FALSE
