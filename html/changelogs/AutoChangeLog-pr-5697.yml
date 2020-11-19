@@ -1,6 +1,0 @@
-author: CeUvi
-delete-after: true
-changes:
-  - tweak: Randomizer to spawn with one or the other helmet
-  - imageadd: new technomancer armor sprite and helmet sprite and the second helmet
-      sprite
