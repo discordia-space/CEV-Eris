@@ -70,4 +70,15 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/hud/excelsior/process_hud(mob/M)
-	process_excel_hud(M)
+	if(is_excelsior(M))
+		process_excel_hud(M)
+
+/obj/item/clothing/glasses/hud/excelsior/equipped(mob/M)
+	. = ..()
+
+	var/mob/living/carbon/human/H = M
+	if(!istype(H) || H.glasses != src)
+		return
+
+	if(!is_excelsior(H))
+		to_chat(H, SPAN_WARNING("The hud fails to activate, a built in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))

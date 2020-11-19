@@ -44,7 +44,6 @@
 	spawn_frequency = 8
 	spawn_blacklisted = FALSE
 	accompanying_object = /obj/item/clothing/shoes/magboots
-	var/auto_deploy_helmet = TRUE
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
@@ -107,8 +106,7 @@
 			boots.canremove = 0
 
 	if(helmet)
-		if(auto_deploy_helmet)
-			toggle_helmet()
+		toggle_helmet()
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.

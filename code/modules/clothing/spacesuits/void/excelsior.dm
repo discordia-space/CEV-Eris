@@ -91,10 +91,3 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/excelsior
 	spawn_blacklisted = TRUE
-	auto_deploy_helmet = FALSE
-
-/obj/item/clothing/suit/space/void/excelsior/toggle_helmet()
-	if(is_excelsior(usr))
-		..()
-	else
-		to_chat(usr, SPAN_WARNING("The helmet fails to deploy, a built in speaker says, \"Failed to locate implant, please contact your nearest Excelsior representative immediately for assistance\"."))
