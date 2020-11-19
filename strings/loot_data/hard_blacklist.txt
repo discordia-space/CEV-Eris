@@ -310,7 +310,6 @@
 /obj/item/borg/upgrade/syndicate
 /obj/item/borg/upgrade
 /obj/item/borg
-/obj/item/rig_module/vision
 /obj/item/ammo_magazine/magnum/practice
 /obj/item/ammo_magazine/magnum/hv
 /obj/item/ammo_magazine/ihclrifle/hv
@@ -1787,7 +1786,6 @@
 /obj/item/toy
 /obj/item/trash/material
 /obj/item/borg
-/obj/item/rig_module/vision
 /obj/item/mech_component
 /obj/item/mech_equipment/mounted_system
 /obj/item/mech_equipment
@@ -1923,6 +1921,8 @@
 /obj/item/trash/material
 /obj/item/borg
 /obj/item/rig_module/vision
+/obj/item/rig_module/device
+/obj/item/rig_module/
 /obj/item/mech_component
 /obj/item/mech_equipment/mounted_system
 /obj/item/mech_equipment

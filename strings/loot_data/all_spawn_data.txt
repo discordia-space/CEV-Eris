@@ -3302,7 +3302,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/rig_module/device/anomaly_scanner    rig_module_common    blacklisted=0    spawn_value=20    price_tag=0   100    
 /obj/item/rig_module/device/orescanner    rig_module_common    blacklisted=0    spawn_value=20    price_tag=0   100    
 /obj/item/rig_module/device/rcd    obj,item,rig_module    blacklisted=0    spawn_value=5    price_tag=0   100    
-/obj/item/rig_module/device    obj,item,rig_module    blacklisted=0    spawn_value=20    price_tag=0   100    
+/obj/item/rig_module/device    obj,item,rig_module    blacklisted=1    spawn_value=20    price_tag=0   100    
 /obj/item/rig_module/grenade_launcher    obj,item,rig_module    blacklisted=0    spawn_value=5    price_tag=0   100    
 /obj/item/rig_module/mounted/egun    obj,item,rig_module    blacklisted=0    spawn_value=2    price_tag=0   100    
 /obj/item/rig_module/mounted/taser    rig_module_common    blacklisted=0    spawn_value=1    price_tag=0   100    
@@ -3335,7 +3335,7 @@ paths    spawn_tags    blacklisted    spawn_value    price_tag    prob_all_accom
 /obj/item/rig_module/vision/nvg    obj,item,rig_module    blacklisted=0    spawn_value=3.33333    price_tag=0   100    
 /obj/item/rig_module/vision/sechud    rig_module_common    blacklisted=0    spawn_value=20    price_tag=0   100    
 /obj/item/rig_module/vision/medhud    rig_module_common    blacklisted=0    spawn_value=20    price_tag=0   100    
-/obj/item/rig_module    obj,item,rig_module    blacklisted=0    spawn_value=20    price_tag=0   100    
+/obj/item/rig_module    obj,item,rig_module    blacklisted=1    spawn_value=20    price_tag=0   100    
 /obj/item/ai_verbs    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/underwear/socks    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
 /obj/item/underwear/top    obj,item    blacklisted=0    spawn_value=10    price_tag=0   100    
