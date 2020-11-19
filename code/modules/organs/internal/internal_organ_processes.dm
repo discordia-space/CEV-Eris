@@ -25,7 +25,7 @@
 		for(var/organ in process_list)
 			var/obj/item/organ/internal/I = organ
 			effective_efficiency += I.get_process_eficiency(process_define)
-		
+
 	return effective_efficiency
 
 /mob/living/carbon/human/proc/get_specific_organ_efficiency(process_define, parent_organ_tag)
@@ -35,7 +35,7 @@
 		var/obj/item/organ/internal/I = organ
 		if(process_define in I.organ_efficiency)
 			effective_efficiency += I.get_process_eficiency(process_define)
-	
+
 	return effective_efficiency
 
 /mob/living/carbon/human/proc/eye_process()
@@ -80,7 +80,7 @@
 	if(chem_effects[CE_ALCOHOL_TOXIC])
 		liver.take_internal_damage(chem_effects[CE_ALCOHOL_TOXIC], prob(90)) // Chance to warn them
 
-	
+
 
 	//Blood regeneration if there is some space
 	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])

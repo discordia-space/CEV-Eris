@@ -5,7 +5,7 @@
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null

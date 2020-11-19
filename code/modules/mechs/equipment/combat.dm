@@ -99,10 +99,10 @@
 		return get_ammo()/ammo_magazine.max_ammo
 	return null
 
-/obj/item/mech_equipment/mounted_system/balistic_gun
-	bad_type = /obj/item/mech_equipment/mounted_system/balistic_gun
+/obj/item/mech_equipment/mounted_system/ballistic
+	bad_type = /obj/item/mech_equipment/mounted_system/ballistic
 
-/obj/item/mech_equipment/mounted_system/balistic_gun/pk
+/obj/item/mech_equipment/mounted_system/ballistic/pk
 	name = "SA \"VJP\""
 	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 15 round bursts. Horribly inaccurate, but packs quite a punch."
 	icon_state = "mech_pk"

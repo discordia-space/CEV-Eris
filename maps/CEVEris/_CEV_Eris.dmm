@@ -56494,6 +56494,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/misc,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/devices,
 /obj/item/weapon/computer_hardware/hard_drive/portable/design/tools,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/conveyors,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "cAu" = (
@@ -101988,6 +101989,7 @@
 /area/space)
 "eBl" = (
 /obj/structure/table/standard,
+/obj/item/weapon/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "eBm" = (
