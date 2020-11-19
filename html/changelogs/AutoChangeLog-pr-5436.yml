@@ -2,4 +2,4 @@ author: greggbot
 delete-after: true
 changes:
   - rscadd: The NT bioreactor room and Guild lathe now have a new disk spawn each
-      - biofabrics for NT, and logistics for guild.
+  - rscadd: biofabrics for NT, and logistics for guild.
