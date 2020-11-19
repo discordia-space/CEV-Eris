@@ -2497,9 +2497,9 @@
 /obj/item/clothing/suit/armor/heavy/riot    blacklisted=0    spawn_value=1.89757   spawn_price=500   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/heavy    blacklisted=0    spawn_value=3.64991   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/armor/reactive    blacklisted=0    spawn_value=4.48194   spawn_price=205   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.09317   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/storage/vest/merc    blacklisted=0    spawn_value=1.08228   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/vest/insulated    blacklisted=0    spawn_value=1.59291   spawn_price=600   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
+/obj/item/clothing/suit/storage/vest/chestrig    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/ass_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/cargo_jacket    blacklisted=0    spawn_value=15.439   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/qm_coat    blacklisted=0    spawn_value=3.77685   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
@@ -2513,7 +2513,6 @@
 /obj/item/clothing/suit/storage/toggle/bomber    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/toggle/hoodie/black    blacklisted=0    spawn_value=15.281   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/toggle/hoodie    blacklisted=0    spawn_value=15.281   spawn_price=35   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/suit/storage/toggle    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/neotheosports    blacklisted=1    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/detective/ironhammer    blacklisted=0    spawn_value=5.24716   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/suit/storage/detective    blacklisted=0    spawn_value=8.06586   spawn_price=250   prob_accompanying_obj=100    accompanying_objs=nothing

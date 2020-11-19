@@ -507,7 +507,7 @@
 /obj/item/ammo_magazine/ammobox/pistol/practice
 /obj/item/ammo_magazine/ammobox/pistol/hv
 /obj/item/mech_equipment/mounted_system/taser/plasma
-/obj/item/mech_equipment/mounted_system/balistic_gun/pk
+/obj/item/mech_equipment/mounted_system/ballistic/pk
 /obj/item/slime_extract/grey
 /obj/item/slime_extract/gold
 /obj/item/slime_extract/silver

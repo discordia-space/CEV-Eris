@@ -2535,7 +2535,6 @@
 /obj/item/clothing/suit/storage/toggle/bomber
 /obj/item/clothing/suit/storage/toggle/hoodie/black
 /obj/item/clothing/suit/storage/toggle/hoodie
-/obj/item/clothing/suit/storage/toggle
 /obj/item/clothing/suit/storage/neotheosports
 /obj/item/clothing/suit/storage/detective/ironhammer
 /obj/item/clothing/suit/storage/detective
@@ -3469,7 +3468,7 @@
 /obj/item/mech_equipment/mounted_system/taser/laser
 /obj/item/mech_equipment/mounted_system/taser/plasma
 /obj/item/mech_equipment/mounted_system/taser
-/obj/item/mech_equipment/mounted_system/balistic_gun/pk
+/obj/item/mech_equipment/mounted_system/ballistic/pk
 /obj/item/mech_equipment/mounted_system/rcd
 /obj/item/mech_equipment/mounted_system/extinguisher
 /obj/item/mech_equipment/sleeper

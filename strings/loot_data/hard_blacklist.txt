@@ -288,6 +288,7 @@
 /obj/item/clothing/suit/armor/heavy/green
 /obj/item/clothing/suit/armor
 /obj/item/clothing/suit/storage/vest
+/obj/item/clothing/suit/storage/toggle
 /obj/item/clothing/suit/storage
 /obj/item/clothing/suit
 /obj/item/clothing/mask/smokable
@@ -384,7 +385,7 @@
 /obj/item/ammo_magazine
 /obj/item/robot_parts
 /obj/item/mech_component
-/obj/item/mech_equipment/mounted_system/balistic_gun
+/obj/item/mech_equipment/mounted_system/ballistic
 /obj/item/mech_equipment/mounted_system
 /obj/item/mech_equipment
 /obj/item/seeds
