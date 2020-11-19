@@ -289,12 +289,14 @@
 #define SPAWN_TAG_MEDICAL "obj,item,medical"
 
 // ITEMS - MEDICINE
-#define SPAWN_MEDICINE_COMMON "medicine_common"
 #define SPAWN_MEDICINE "medicine"
+#define SPAWN_MEDICINE_COMMON "medicine_common"
+#define SPAWN_MEDICINE_ADVANCED "medicine_advanced"
 
 #define SPAWN_TAG_MEDICINE "obj,item,medicine,medical"
 #define SPAWN_TAG_MEDICINE_COMMON "obj,item,medicine,medicine_common,medical"
 #define SPAWN_TAG_MEDICINE_CONTRABAND "obj,item,medicine,medical,contraband"
+#define SPAWN_TAG_MEDICINE_ADVANCED "obj,item,medicine,medicine_advanced,medical"
 
 //ITEMS - BEAKER
 #define SPAWN_TAG_VIAL "obj,item,beaker,vial,science,medical"

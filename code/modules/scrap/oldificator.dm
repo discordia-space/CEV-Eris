@@ -112,8 +112,7 @@
 	.=..()
 	if(. && reagents)
 		for(var/datum/reagent/R in reagents.reagent_list)
-			R.volume = rand(0, R.volume)
-
+			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 
 /obj/item/weapon/reagent_containers/make_old()
 	.=..()
@@ -139,14 +138,10 @@
 	.=..()
 	if(.)
 		// It's silly to have old self-charging cells spawn partially discharged
-		if(!autorecharging)
-			use(RAND_DECIMAL(0, maxcharge))
-		else
-			autorecharging = FALSE
-
+		autorecharging = FALSE
+		maxcharge = rand(maxcharge/2, maxcharge)
+		use(RAND_DECIMAL(0, maxcharge))
 		if(prob(10))
-			if(prob(80))
-				give(maxcharge)  //make it BOOM hard
 			rigged = TRUE
 
 /obj/item/weapon/stock_parts/make_old()

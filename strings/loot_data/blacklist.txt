@@ -94,7 +94,6 @@
 /obj/item/weapon/storage/box/syndie_kit/ewar_voice
 /obj/item/weapon/storage/box/syndie_kit/spy_sensor
 /obj/item/weapon/storage/box/syndie_kit/randomstim
-/obj/item/weapon/storage/box/syndie_kit
 /obj/item/weapon/storage/box/gun_upgrades
 /obj/item/weapon/storage/pouch/holding
 /obj/item/weapon/storage/backpack/chameleon

@@ -47,13 +47,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A simple match stick, used for lighting fine smokables."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "match_unlit"
-	var/burnt = 0
-	var/smoketime = 5
 	w_class = ITEM_SIZE_TINY
 	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
 	preloaded_reagents = list("sulfur" = 3, "potassium" = 3, "hydrazine" = 3, "carbon" = 5)
+	var/burnt = 0
+	var/smoketime = 5
 
 /obj/item/weapon/flame/match/Process()
 	if(isliving(loc))
@@ -97,6 +97,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "smokable item"
 	desc = "You're not sure what this is. You should probably ahelp it."
 	body_parts_covered = 0
+	bad_type = /obj/item/clothing/mask/smokable
 	var/lit = 0
 	var/icon_on
 	var/icon_off

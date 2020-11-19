@@ -377,7 +377,6 @@
 /obj/item/clothing/mask/smokable/cigarette    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/smokable/pipe/cobpipe    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/smokable/pipe    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
-/obj/item/clothing/mask/smokable    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/vape/better    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/vape    blacklisted=0    spawn_value=8.71299   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing
 /obj/item/clothing/mask/chameleon    blacklisted=1    spawn_value=1.94261   spawn_price=30   prob_accompanying_obj=100    accompanying_objs=nothing

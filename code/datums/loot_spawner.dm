@@ -163,6 +163,14 @@
 		var/obj/item/weapon/storage/box/B = path
 		if(initial(B.initial_amount) > 0 && initial(B.spawn_type))
 			. += initial(B.initial_amount) * get_spawn_price(initial(B.spawn_type))
+	else if(ispath(path, /obj/item/weapon/storage/fancy))
+		var/obj/item/weapon/storage/fancy/F = path
+		if(initial(F.item_obj) && initial(F.storage_slots))
+			. += initial(F.storage_slots) * get_spawn_price(initial(F.item_obj))
+	else if(ispath(path, /obj/item/weapon/storage/pill_bottle))
+		var/obj/item/weapon/storage/pill_bottle/PB = path
+		if(initial(PB.initial_amt) && initial(PB.pill_type))
+			. += initial(PB.initial_amt) * get_spawn_price(initial(PB.pill_type))
 	else if(ispath(path, /obj/item/clothing))
 		var/obj/item/clothing/C = path
 		. += 5 * initial(C.style)
@@ -185,10 +193,6 @@
 		var/obj/item/device/D = path
 		if(initial(D.starting_cell) && initial(D.suitable_cell))
 			. += get_spawn_price(initial(D.suitable_cell))
-	else if(ispath(path, /obj/item/weapon/storage/fancy))
-		var/obj/item/weapon/storage/fancy/F = path
-		if(initial(F.item_obj) && initial(F.storage_slots))
-			. += initial(F.storage_slots) * get_spawn_price(initial(F.item_obj))
 	else if(ispath(path, /obj/item/weapon/reagent_containers/glass/beaker))
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = path
 		. += initial(B.volume)/100

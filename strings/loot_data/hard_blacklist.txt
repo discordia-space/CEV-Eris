@@ -30,6 +30,7 @@
 /obj/item/weapon/complicator
 /obj/item/weapon/storage/pill_bottle
 /obj/item/weapon/storage/box/shotgunammo
+/obj/item/weapon/storage/box/syndie_kit
 /obj/item/weapon/storage/box
 /obj/item/weapon/storage/pouch/nt_sheath
 /obj/item/weapon/storage/pouch
@@ -62,6 +63,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown
 /obj/item/weapon/reagent_containers/food/snacks
 /obj/item/weapon/reagent_containers/food
+/obj/item/weapon/reagent_containers/blood
 /obj/item/weapon/reagent_containers/atomic_distillery
 /obj/item/weapon/reagent_containers/borghypo/medical
 /obj/item/weapon/reagent_containers/borghypo/rescue
@@ -288,6 +290,7 @@
 /obj/item/clothing/suit/storage/vest
 /obj/item/clothing/suit/storage
 /obj/item/clothing/suit
+/obj/item/clothing/mask/smokable
 /obj/item/clothing/mask
 /obj/item/clothing/under/assistantformal/bst
 /obj/item/clothing/under/rank
