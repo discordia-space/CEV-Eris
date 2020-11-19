@@ -108,6 +108,7 @@
 	var/analysed = 1
 
 /obj/item/weapon/diseasedisk/premade/New()
+	. = ..()
 	name = "blank GNA disk (stage: [stage])"
 	effect = new /datum/disease2/effectholder
 	effect.effect = new /datum/disease2/effect/invisible

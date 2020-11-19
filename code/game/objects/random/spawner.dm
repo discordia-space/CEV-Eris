@@ -46,7 +46,7 @@
 				biome.price_tag += price_tag
 			post_spawn(spawns)
 
-	return latejoin ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL 
+	return latejoin ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 /obj/spawner/LateInitialize()
 	..()
@@ -184,7 +184,7 @@
 
 /proc/check_spawn_point(turf/T, check_density=FALSE)
 	.=TRUE
-	if(T.density  || T.is_wall || (T.is_hole && !T.is_solid_structure()))
+	if(T.density || T.is_wall || (T.is_hole && !T.is_solid_structure()))
 		if(check_density && !turf_clear(T))
 			return FALSE
 		.=FALSE

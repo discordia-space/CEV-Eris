@@ -225,7 +225,7 @@
 	return L
 
 /obj/item/weapon/storage/proc/show_to(mob/user)
-	if (!user.client)
+	if(!user.client)
 		return
 
 	if(user.s_active != src) //opening a new storage item
@@ -237,7 +237,7 @@
 				return
 
 	var/datum/hud/data = GLOB.HUDdatums[user.defaultHUD]
-	if (data)
+	if(data)
 		generateHUD(data).show(user.client)
 		is_seeing |= user
 		user.s_active = src
@@ -253,7 +253,7 @@
 	user.client.hide_HUD_element("storage")
 
 /obj/item/weapon/storage/proc/open(mob/user)
-	if (src.use_sound)
+	if(src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 
 	show_to(user)
@@ -271,7 +271,7 @@
 		src.open(user)
 
 /obj/item/weapon/storage/proc/close_all()
-	for (var/mob/M in is_seeing)
+	for(var/mob/M in is_seeing)
 		close(M)
 
 /obj/item/weapon/storage/proc/refresh_all()
@@ -398,7 +398,6 @@
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W, mob/user)
 	..()
-
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LP = W
 		var/amt_inserted = 0
@@ -449,7 +448,7 @@
 			H.r_store = null
 			return*/
 
-	if (loc == user)
+	if(loc == user)
 		open(user)
 	else
 		close_all()
@@ -561,6 +560,7 @@
 	if(user.get_active_hand() == src && user.get_inactive_hand() == null)
 		if(user.swap_hand())
 			open(user)
+			return TRUE
 
 /obj/item/weapon/storage/proc/make_exact_fit()
 	storage_slots = contents.len

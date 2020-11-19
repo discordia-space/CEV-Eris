@@ -11,17 +11,18 @@
 
 
 /obj/item/stash_spawner/Initialize()
+	. = ..()
 	datum = pick_n_take_stash_datum()
-	if (!datum)
+	if(!datum)
 		//If it failed to get a datum, we can't do anything
 		return INITIALIZE_HINT_QDEL
 
 	datum.select_location()
-	if (!datum.stash_location)
+	if(!datum.stash_location)
 		//We require a found location
 		return INITIALIZE_HINT_QDEL
 
-	if (!isStationLevel(src.z))
+	if(!isStationLevel(z))
 		//We wont spawn that on derelicts, because it makes no sense to spawn those notes there
 		return INITIALIZE_HINT_QDEL
 

@@ -12,7 +12,7 @@
 		rad = 30
 	)
 	siemens_coefficient = 0.35
-	species_restricted = list("Human")
+	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
 
@@ -34,7 +34,7 @@
 	siemens_coefficient = 0.35
 	breach_threshold = 10
 	resilience = 0.07
-	species_restricted = list("Human")
+	species_restricted = list(SPECIES_HUMAN)
 	supporting_limbs = list()
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
@@ -55,7 +55,7 @@
 		rad = 75
 	)
 	siemens_coefficient = 0.35
-	species_restricted = list("Human")
+	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
 
@@ -83,7 +83,7 @@
 	siemens_coefficient = 0.35
 	breach_threshold = 8
 	resilience = 0.08
-	species_restricted = list("Human")
+	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
 	rarity_value = 50
 

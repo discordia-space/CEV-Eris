@@ -41,7 +41,7 @@
 
 /datum/design/research/item/exosuit/weapon/pk
 	name = "mounted rigged PK"
-	build_path = /obj/item/mech_equipment/mounted_system/balistic_gun/pk
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
 
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp

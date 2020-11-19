@@ -67,7 +67,7 @@
 /obj/item/organ/internal/carrion/core/Destroy()
 	owner = null //overrides removed() call
 	. = ..()
-	
+
 
 /obj/item/organ/internal/carrion/core/proc/make_spider()
 	set category = "Carrion"
@@ -78,7 +78,7 @@
 	if (!spiderlist.len)
 		to_chat(owner, SPAN_WARNING("You dont have any spiders evolved!"))
 		return
-	
+
 	for(var/item in spiderlist)
 		S = item
 		options["[initial(S.name)]([initial(S.spider_price)])"] = S
@@ -98,7 +98,7 @@
 
 /obj/item/organ/internal/carrion/core/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
 	var/list/data = list()
-	
+
 	var/list/spiders_in_list = list()
 	for(var/item in active_spiders)
 		var/obj/item/weapon/implant/carrion_spider/S = item
@@ -112,7 +112,7 @@
 		)
 
 	data["list_of_spiders"] = spiders_in_list
-		
+
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "carrion_spiders.tmpl", "Carrion Spiders", 400, 400)
@@ -325,7 +325,7 @@
 		to_chat(owner, SPAN_NOTICE("You consume \the [food], [taste_description]."))
 		visible_message(SPAN_DANGER("[owner] devours \the [food]!"))
 		qdel(food)
-	
+
 	else
 		to_chat(owner, SPAN_WARNING("You can't eat this!"))
 
@@ -374,7 +374,7 @@
 	anchored = TRUE
 
 /obj/effect/decal/cleanable/carrion_puddle/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSprocessing, src)
 
 /obj/effect/decal/cleanable/carrion_puddle/Destroy()

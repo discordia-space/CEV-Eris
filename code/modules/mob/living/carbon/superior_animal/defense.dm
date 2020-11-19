@@ -136,7 +136,7 @@
 		return
 
 	if(stat == DEAD)
-		blinded = 1
+		blinded = TRUE
 		silent = 0
 	else
 		updatehealth()
@@ -144,13 +144,13 @@
 		handle_weakened()
 		if(health <= 0)
 			death()
-			blinded = 1
+			blinded = TRUE
 			silent = 0
 			return 1
 
 		if(paralysis && paralysis > 0)
 			handle_paralysed()
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 			if(halloss > 0)
 				adjustHalLoss(-3)
@@ -158,7 +158,7 @@
 		if(sleeping)
 			adjustHalLoss(-3)
 			sleeping = max(sleeping-1, 0)
-			blinded = 1
+			blinded = TRUE
 			stat = UNCONSCIOUS
 		else if(resting)
 			if(halloss > 0)

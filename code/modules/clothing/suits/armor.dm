@@ -323,14 +323,15 @@
  * Storage Types
  */
 /obj/item/clothing/suit/storage/vest
-	name = "webbed armor vest"
-	desc = "A synthetic armor vest. This one has added webbing and ballistic plates."
+	name = "webbed armor"
+	desc = "An armored vest used for day-to-day operations. This one has various pouches and straps attached."
 	icon_state = "webvest"
-	armor = list(
-		melee = 20,
+	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
+	armor = list( //Same stats as the standard vest only difference is that this one has storage
+		melee = 30,
 		bullet = 30,
-		energy = 20,
-		bomb = 25,
+		energy = 30,
+		bomb = 10,
 		bio = 0,
 		rad = 0
 	)

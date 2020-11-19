@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/starlight = "#ffffff"	// null if turned off
 
-	var/list/ert_species = list("Human")
+	var/list/ert_species = list(SPECIES_HUMAN)
 
 	var/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
 
@@ -437,7 +437,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
-			
+
 				if ("ipqualityscore_apikey")
 					config.ipqualityscore_apikey = value
 
@@ -678,7 +678,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("ert_species")
 					config.ert_species = splittext(value, ";")
 					if(!config.ert_species.len)
-						config.ert_species += "Human"
+						config.ert_species += SPECIES_HUMAN
 
 				if("use_cortical_stacks")
 					config.use_cortical_stacks = 1
@@ -714,13 +714,13 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("webhook_url")
 					config.webhook_url = value
-				
-		
+
+
 				if("random_start")
 					var/list/startlist = list(
-						"asteroid", 
-						"abandoned fortress", 
-						"space ruins") 
+						"asteroid",
+						"abandoned fortress",
+						"space ruins")
 					var/pick = rand(1, startlist.len)
 					config.start_location = startlist[pick]
 
